@@ -5,11 +5,11 @@ import { users } from "@/db/schema";
 import { eq, or } from "drizzle-orm";
 import { signToken, getRedirectUrl } from "@/lib/auth";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { createHash } from "crypto";
 
-interface LoginState {
+export interface LoginState {
   error: string;
+  redirectTo?: string;
 }
 
 function hashPassword(pw: string): string {
@@ -101,5 +101,12 @@ export async function loginAction(
     maxAge: user.role === "student" ? 7 * 24 * 60 * 60 : 8 * 60 * 60,
   });
 
-  redirect(getRedirectUrl(user.role));
+  // Return the redirect URL — client handles navigation (supports external URLs)
+  const redirectParam = (formData.get("redirect") as string) ?? "";
+  const redirectTo =
+    redirectParam.startsWith("https://") || redirectParam.startsWith("/")
+      ? redirectParam
+      : getRedirectUrl(user.role);
+
+  return { error: "", redirectTo };
 }

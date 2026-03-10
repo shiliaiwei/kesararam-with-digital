@@ -1,17 +1,23 @@
 "use client";
 
-import { useState, useActionState } from "react";
+import { Suspense, useState, useActionState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { loginAction } from "@/app/actions/auth";
 
-const initialState = { error: "" };
+const initialState = { error: "", redirectTo: "" };
 
-export default function LoginPage() {
+function LoginForm() {
   const [attempts, setAttempts] = useState(0);
-  const [state, formAction, pending] = useActionState(
-    loginAction,
-    initialState,
-  );
+  const [state, formAction, pending] = useActionState(loginAction, initialState);
+  const searchParams = useSearchParams();
+  const redirectParam = searchParams.get("redirect") ?? "";
+
+  useEffect(() => {
+    if (state?.redirectTo) {
+      window.location.href = state.redirectTo;
+    }
+  }, [state?.redirectTo]);
 
   return (
     <div className="min-h-screen dot-bg flex items-center justify-center px-4 py-20">
@@ -36,6 +42,7 @@ export default function LoginPage() {
         {/* Form card */}
         <div className="bg-white border-2 border-t-0 border-black rounded-b-3xl shadow-[6px_6px_0_#000] px-8 py-8">
           <form action={formAction} className="flex flex-col gap-5">
+            <input type="hidden" name="redirect" value={redirectParam} />
             {/* Email or Username */}
             <div className="flex flex-col gap-1.5">
               <label htmlFor="email" className="text-sm font-bold text-black">
@@ -54,10 +61,7 @@ export default function LoginPage() {
 
             {/* Password */}
             <div className="flex flex-col gap-1.5">
-              <label
-                htmlFor="password"
-                className="text-sm font-bold text-black"
-              >
+              <label htmlFor="password" className="text-sm font-bold text-black">
                 Password
               </label>
               <input
@@ -81,18 +85,17 @@ export default function LoginPage() {
             {/* Warning at high attempts */}
             {attempts >= 5 && (
               <div className="px-4 py-3 bg-yellow-50 border-2 border-yellow-500 rounded-xl text-sm font-bold text-yellow-800 shadow-[2px_2px_0_#ca8a04]">
-                Warning: too many failed attempts. Your account will be locked
-                after 9 failures. No mercy.
+                Warning: too many failed attempts. Your account will be locked after 9 failures.
               </div>
             )}
 
             <button
               type="submit"
-              disabled={pending}
+              disabled={pending || !!state?.redirectTo}
               onClick={() => setAttempts((a) => a + 1)}
               className="w-full py-3.5 bg-yellow-400 text-black font-black text-base border-2 border-black rounded-xl shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-none disabled:translate-x-0 disabled:translate-y-0"
             >
-              {pending ? "Signing in…" : "Sign In"}
+              {state?.redirectTo ? "Redirecting…" : pending ? "Signing in…" : "Sign In"}
             </button>
           </form>
         </div>
@@ -102,5 +105,13 @@ export default function LoginPage() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginForm />
+    </Suspense>
   );
 }
