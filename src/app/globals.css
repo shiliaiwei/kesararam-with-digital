@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Siemreap&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -71,7 +72,7 @@
   --chart-3: oklch(0.546 0.245 262.881);
   --chart-4: oklch(0.488 0.243 264.376);
   --chart-5: oklch(0.424 0.199 265.638);
-  --radius: 0.625rem;
+  --radius: 1.25rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -116,6 +117,156 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* ─── KWD Traffic-Light Color Tokens ─── */
+:root {
+  --kwd-cyan: #06b6d4;
+  --kwd-rose: #fda4af;
+  --kwd-orange: #f97316;
+  --kwd-blue: #3b82f6;
+  --kwd-yellow: #eab308;
+  --kwd-green: #22c55e;
+  --kwd-purple: #a855f7;
+  --kwd-red: #ef4444;
+  --kwd-accent: #ff0050;
+
+  /* Neo-brutalism tokens */
+  --nb-border: 2px solid #000000;
+  --nb-shadow: 4px 4px 0px #000000;
+  --nb-shadow-sm: 2px 2px 0px #000000;
+  --nb-shadow-lg: 6px 6px 0px #000000;
+  --nb-shadow-xl: 8px 8px 0px #000000;
+  --nb-radius-sm: 12px;
+  --nb-radius-md: 24px;
+  --nb-radius-lg: 32px;
+
+  /* Fonts */
+  --font-kh-header: "Kantumruy Pro", sans-serif;
+  --font-kh-body: "Siemreap", sans-serif;
+}
+
+/* ─── Neo-Brutalism Utility Classes ─── */
+.nb-border {
+  border: var(--nb-border);
+}
+.nb-shadow {
+  box-shadow: var(--nb-shadow);
+}
+.nb-shadow-sm {
+  box-shadow: var(--nb-shadow-sm);
+}
+.nb-shadow-lg {
+  box-shadow: var(--nb-shadow-lg);
+}
+.nb-shadow-xl {
+  box-shadow: var(--nb-shadow-xl);
+}
+
+.nb-card {
+  border: var(--nb-border);
+  box-shadow: var(--nb-shadow);
+  border-radius: var(--nb-radius-md);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+}
+.nb-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--nb-shadow-lg);
+}
+
+.nb-btn {
+  border: var(--nb-border);
+  box-shadow: var(--nb-shadow);
+  border-radius: var(--nb-radius-sm);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+  cursor: pointer;
+}
+.nb-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--nb-shadow-lg);
+}
+.nb-btn:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+
+/* ─── Grid Dot Background ─── */
+.grid-bg {
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(rgba(6, 182, 212, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.07) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.dot-bg {
+  background-color: #ffffff;
+  background-image: radial-gradient(
+    circle,
+    rgba(59, 130, 246, 0.18) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+}
+
+.hero-dot-bg {
+  background-color: #18181b;
+  background-image: radial-gradient(
+    circle,
+    rgba(6, 182, 212, 0.12) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+}
+
+/* ─── Caution Tape Border (decorative) ─── */
+.caution-tape {
+  background: repeating-linear-gradient(
+    -45deg,
+    #eab308 0px,
+    #eab308 12px,
+    #000000 12px,
+    #000000 24px
+  );
+  height: 6px;
+}
+
+/* ─── Khmer Fonts ─── */
+.font-kh-header {
+  font-family: var(--font-kh-header) !important;
+  font-weight: 700;
+}
+.font-kh-body {
+  font-family: var(--font-kh-body) !important;
+}
+
+/* ─── Active nav tab indicator ─── */
+.nav-active {
+  background-color: #000000;
+  color: #ffffff;
+  border: 2px solid #000000;
+  box-shadow: var(--nb-shadow-sm);
+}
+
+/* ─── Skeleton pulse override ─── */
+.nb-skeleton {
+  background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
+  background-size: 200% 100%;
+  animation: nb-shimmer 1.5s infinite;
+  border: var(--nb-border);
+  border-radius: var(--nb-radius-md);
+}
+@keyframes nb-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -125,5 +276,6 @@
   }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
   }
 }

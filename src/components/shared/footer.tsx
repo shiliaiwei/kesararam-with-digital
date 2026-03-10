@@ -1,0 +1,141 @@
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { useLang } from "@/context/lang-context";
+import { t } from "@/lib/translations";
+
+export function Footer() {
+  const { lang } = useLang();
+  const tr = t[lang].footer;
+  const nav = t[lang].nav;
+  const kh = lang === "kh";
+  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+
+  const LEARN_LINKS = [
+    { label: kh ? "ស្ញ្ញាចរាចរ" : "Traffic Signs", href: "/road-sign" },
+    { label: kh ? "ច្បាប់ចរាចរណ៍" : "Road Traffic Law", href: "/road-traffic" },
+    { label: kh ? "សិទ្ធិដំណើរ" : "Right of Way", href: "/priority" },
+    { label: kh ? "ជំនាញបើកបរ" : "Driving Skills", href: "/driving" },
+    { label: kh ? "ប្រភេទទាំងអស់" : "All Categories", href: "/home" },
+  ];
+
+  const PLATFORM_LINKS = [
+    { label: nav.leaderboard, href: "/leaderboard" },
+    { label: nav.suarAI, href: "/suar/ai" },
+    { label: nav.about, href: "/about" },
+    { label: nav.login, href: "/login" },
+  ];
+
+  return (
+    <footer className="bg-white text-black border-t-4 border-black">
+      {/* Caution tape */}
+      <div className="caution-tape" />
+
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+          {/* Brand */}
+          <div className="md:col-span-1 flex flex-col gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 flex items-center justify-center overflow-hidden">
+                <Image
+                  src="https://raw.githubusercontent.com/kesararam/kesararam/refs/heads/main/brand/lgo.png"
+                  alt="KWD"
+                  width={40}
+                  height={40}
+                  className="object-contain"
+                  unoptimized
+                />
+              </div>
+              <div>
+                <p className="font-black text-lg leading-none">KWD</p>
+                <p className="text-[9px] text-zinc-400 tracking-widest">
+                  Kesararam. with. digital.
+                </p>
+              </div>
+            </div>
+            <p className="text-sm text-zinc-700 leading-relaxed" style={khFont}>
+              {tr.tagline}
+            </p>
+            <p
+              className="text-xs text-zinc-500"
+              style={{ fontFamily: "Siemreap, sans-serif" }}
+            >
+              វេទិកាបហ្វឹករៀនបើករថយន្ត — ភាសាខ្មែរ
+            </p>
+          </div>
+
+          {/* Learn */}
+          <div>
+            <h4
+              className="font-black text-sm text-yellow-600 tracking-widest uppercase mb-4"
+              style={khFont}
+            >
+              {tr.learnTitle}
+            </h4>
+            <ul className="flex flex-col gap-2">
+              {LEARN_LINKS.map(({ label, href }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="text-sm text-zinc-600 hover:text-black hover:underline transition-colors"
+                    style={khFont}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Platform */}
+          <div>
+            <h4
+              className="font-black text-sm text-cyan-600 tracking-widest uppercase mb-4"
+              style={khFont}
+            >
+              {tr.platformTitle}
+            </h4>
+            <ul className="flex flex-col gap-2">
+              {PLATFORM_LINKS.map(({ label, href }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="text-sm text-zinc-600 hover:text-black hover:underline transition-colors"
+                    style={khFont}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4
+              className="font-black text-sm text-green-600 tracking-widest uppercase mb-4"
+              style={khFont}
+            >
+              {tr.contactTitle}
+            </h4>
+            <ul className="flex flex-col gap-2 text-sm text-zinc-600">
+              <li>kesararamwithdigital.tech</li>
+              <li>Cambodia</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-12 pt-6 border-t-2 border-zinc-200 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          <p className="text-xs text-zinc-500">
+            &copy; {new Date().getFullYear()} Kesararam With Digital. All rights
+            reserved.
+          </p>
+          <p className="text-xs text-zinc-400">
+            Built for Cambodian road safety education.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
