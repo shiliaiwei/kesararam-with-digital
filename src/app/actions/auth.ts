@@ -29,10 +29,18 @@ export async function loginAction(
     return { error: "Email/username and password are required." };
   }
 
-  const [user] = await db
-    .select()
-    .from(users)
-    .where(or(eq(users.email, login), eq(users.username, login)));
+  let user: (typeof import("@/db/schema").users.$inferSelect) | undefined;
+
+  try {
+    const [found] = await db
+      .select()
+      .from(users)
+      .where(or(eq(users.email, login), eq(users.username, login)));
+    user = found;
+  } catch (e) {
+    console.error("DB error during login:", e);
+    return { error: "Service unavailable. Please try again later." };
+  }
 
   if (!user || !user.isActive) {
     return { error: "Invalid credentials." };
@@ -46,14 +54,18 @@ export async function loginAction(
   const hash = hashPassword(password);
   if (user.passwordHash !== hash) {
     const newAttempts = (user.loginAttempts ?? 0) + 1;
-    const updates: Partial<typeof user> = { loginAttempts: newAttempts };
+    const updates: Record<string, unknown> = { loginAttempts: newAttempts };
 
     if (newAttempts >= 9) {
-      const lockUntil = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24h
-      updates.lockedUntil = lockUntil;
+      updates.lockedUntil = new Date(Date.now() + 24 * 60 * 60 * 1000);
     }
 
-    await db.update(users).set(updates).where(eq(users.id, user.id));
+    try {
+      await db.update(users).set(updates).where(eq(users.id, user.id));
+    } catch (_) {
+      // non-fatal
+    }
+
     const remaining = Math.max(0, 9 - newAttempts);
     return {
       error:
@@ -64,10 +76,14 @@ export async function loginAction(
   }
 
   // Success — reset attempts
-  await db
-    .update(users)
-    .set({ loginAttempts: 0, lockedUntil: null })
-    .where(eq(users.id, user.id));
+  try {
+    await db
+      .update(users)
+      .set({ loginAttempts: 0, lockedUntil: null })
+      .where(eq(users.id, user.id));
+  } catch (_) {
+    // non-fatal
+  }
 
   const token = await signToken({
     id: user.id,
