@@ -30,7 +30,9 @@ export default function SuarAIPage() {
             </h1>
             <p
               className="mt-3 text-zinc-600 text-base leading-relaxed"
-              style={lang === "kh" ? { fontFamily: "Siemreap, sans-serif" } : {}}
+              style={
+                lang === "kh" ? { fontFamily: "Siemreap, sans-serif" } : {}
+              }
             >
               {lang === "kh"
                 ? "មុខងារនេះកំពុងស្ថិតនៅក្នុងដំណើរការអភិវឌ្ឍន៍។ សូមមកទស្សនាម្តងទៀតនៅពេលក្រោយ។"
