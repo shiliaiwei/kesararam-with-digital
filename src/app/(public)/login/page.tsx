@@ -9,7 +9,10 @@ const initialState = { error: "", redirectTo: "" };
 
 function LoginForm() {
   const [attempts, setAttempts] = useState(0);
-  const [state, formAction, pending] = useActionState(loginAction, initialState);
+  const [state, formAction, pending] = useActionState(
+    loginAction,
+    initialState,
+  );
   const searchParams = useSearchParams();
   const redirectParam = searchParams.get("redirect") ?? "";
 
@@ -61,7 +64,10 @@ function LoginForm() {
 
             {/* Password */}
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="password" className="text-sm font-bold text-black">
+              <label
+                htmlFor="password"
+                className="text-sm font-bold text-black"
+              >
                 Password
               </label>
               <input
@@ -85,7 +91,8 @@ function LoginForm() {
             {/* Warning at high attempts */}
             {attempts >= 5 && (
               <div className="px-4 py-3 bg-yellow-50 border-2 border-yellow-500 rounded-xl text-sm font-bold text-yellow-800 shadow-[2px_2px_0_#ca8a04]">
-                Warning: too many failed attempts. Your account will be locked after 9 failures.
+                Warning: too many failed attempts. Your account will be locked
+                after 9 failures.
               </div>
             )}
 
@@ -95,7 +102,11 @@ function LoginForm() {
               onClick={() => setAttempts((a) => a + 1)}
               className="w-full py-3.5 bg-yellow-400 text-black font-black text-base border-2 border-black rounded-xl shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-none disabled:translate-x-0 disabled:translate-y-0"
             >
-              {state?.redirectTo ? "Redirecting…" : pending ? "Signing in…" : "Sign In"}
+              {state?.redirectTo
+                ? "Redirecting…"
+                : pending
+                  ? "Signing in…"
+                  : "Sign In"}
             </button>
           </form>
         </div>
