@@ -29,7 +29,7 @@ export async function loginAction(
     return { error: "Email/username and password are required." };
   }
 
-  let user: (typeof import("@/db/schema").users.$inferSelect) | undefined;
+  let user: typeof import("@/db/schema").users.$inferSelect | undefined;
 
   try {
     const [found] = await db
