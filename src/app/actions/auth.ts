@@ -6,6 +6,7 @@ import { eq, or } from "drizzle-orm";
 import { signToken, getRedirectUrl } from "@/lib/auth";
 import { cookies } from "next/headers";
 import { createHash } from "crypto";
+import { redirect } from "next/navigation";
 
 export interface LoginState {
   error: string;
@@ -111,4 +112,20 @@ export async function loginAction(
       : getRedirectUrl(user.role);
 
   return { error: "", redirectTo };
+}
+
+export async function logoutAction() {
+  const cookieStore = await cookies();
+  cookieStore.set("kwd_token", "", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    domain:
+      process.env.NODE_ENV === "production"
+        ? ".kesararamwithdigital.tech"
+        : undefined,
+    maxAge: 0,
+  });
+  redirect("/login");
 }
