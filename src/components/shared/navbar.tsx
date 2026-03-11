@@ -11,6 +11,7 @@ import { useLang } from "@/context/lang-context";
 import { t } from "@/lib/translations";
 import { logoutAction } from "@/app/actions/auth";
 import type { JWTPayload } from "@/lib/auth";
+import { AvatarDisplay } from "@/components/shared/avatar-display";
 
 interface NavbarProps {
   session?: JWTPayload | null;
@@ -30,13 +31,6 @@ function ProfileMenu({ session }: { session: JWTPayload }) {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  const initials = session.name
-    .split(" ")
-    .map((n: string) => n[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2);
-
   const dashboardHref =
     session.role === "admin"
       ? "https://dashboard.kesararamwithdigital.tech/admin/overview"
@@ -53,52 +47,15 @@ function ProfileMenu({ session }: { session: JWTPayload }) {
 
   return (
     <div ref={ref} className="relative flex-shrink-0">
+      {/* Avatar-only button — no text, no chevron */}
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 px-2 py-1.5 border-2 border-black bg-white shadow-[2px_2px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100"
+        className="p-0.5 border-2 border-black bg-white shadow-[2px_2px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 block"
         style={{ borderRadius: "15px" }}
         aria-label="Profile menu"
         aria-expanded={open}
       >
-        <div
-          className="flex items-center justify-center text-xs font-bold"
-          style={{
-            width: "28px",
-            height: "28px",
-            borderRadius: "15px",
-            background: "#FFD700",
-            color: "#1a1a1a",
-            flexShrink: 0,
-          }}
-        >
-          {initials}
-        </div>
-        <div className="hidden sm:flex flex-col text-left leading-none">
-          <span className="text-xs font-bold text-black truncate max-w-[80px]">
-            {session.name.split(" ")[0]}
-          </span>
-          <span
-            className="text-[9px] font-semibold uppercase tracking-wider"
-            style={{ color: roleColor }}
-          >
-            {session.role}
-          </span>
-        </div>
-        <svg
-          width="10"
-          height="10"
-          viewBox="0 0 10 10"
-          fill="none"
-          className={cn("hidden sm:block transition-transform", open && "rotate-180")}
-        >
-          <path
-            d="M1 3l4 4 4-4"
-            stroke="#374151"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        <AvatarDisplay avatar={session.avatar ?? null} name={session.name} size={34} radius={13} />
       </button>
 
       {open && (
@@ -110,11 +67,19 @@ function ProfileMenu({ session }: { session: JWTPayload }) {
             className="px-4 py-3 border-b-2 border-black"
             style={{ background: "#f9fafb" }}
           >
-            <p className="text-xs font-black text-black truncate">{session.name}</p>
-            <p className="text-[10px] text-zinc-500 truncate">{session.email}</p>
+            <p className="text-xs font-black text-black truncate">
+              {session.name}
+            </p>
+            <p className="text-[10px] text-zinc-500 truncate">
+              {session.email}
+            </p>
             <span
               className="inline-block mt-1 text-[9px] font-bold uppercase tracking-widest px-2 py-0.5"
-              style={{ background: roleColor, color: "#fff", borderRadius: "15px" }}
+              style={{
+                background: roleColor,
+                color: "#fff",
+                borderRadius: "15px",
+              }}
             >
               {session.role}
             </span>
@@ -201,7 +166,8 @@ export function Navbar({ session }: NavbarProps) {
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-1 flex-1 justify-center">
             {NAV_ITEMS.map(({ label, href }) => {
-              const active = pathname === href || pathname.startsWith(href + "/");
+              const active =
+                pathname === href || pathname.startsWith(href + "/");
               return (
                 <Link
                   key={href}
@@ -258,7 +224,8 @@ export function Navbar({ session }: NavbarProps) {
           >
             <div className="flex flex-col gap-2">
               {NAV_ITEMS.map(({ label, href }) => {
-                const active = pathname === href || pathname.startsWith(href + "/");
+                const active =
+                  pathname === href || pathname.startsWith(href + "/");
                 return (
                   <Link
                     key={href}
@@ -330,4 +297,3 @@ export function Navbar({ session }: NavbarProps) {
     </>
   );
 }
-

@@ -13,6 +13,7 @@ const LABEL_MAP: Record<string, string> = {
   logs: "Audit Logs",
   classes: "Classes",
   sessions: "Sessions",
+  profile: "My Profile",
 };
 
 export function DashboardHeader({ title }: { title?: string }) {
@@ -28,10 +29,7 @@ export function DashboardHeader({ title }: { title?: string }) {
       }}
     >
       {/* Sidebar toggle */}
-      <SidebarTrigger
-        className="-ml-1"
-        style={{ color: "#8E8E8E" }}
-      />
+      <SidebarTrigger className="-ml-1" style={{ color: "#8E8E8E" }} />
 
       {/* Curb stripe divider */}
       <div
@@ -52,7 +50,9 @@ export function DashboardHeader({ title }: { title?: string }) {
           return (
             <span key={href} className="flex items-center gap-1">
               {i > 0 && (
-                <span style={{ color: "rgba(255,255,255,0.2)", margin: "0 2px" }}>
+                <span
+                  style={{ color: "rgba(255,255,255,0.2)", margin: "0 2px" }}
+                >
                   /
                 </span>
               )}
@@ -75,7 +75,14 @@ export function DashboardHeader({ title }: { title?: string }) {
       </nav>
 
       {/* Right side: traffic signal indicator */}
-      <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "6px" }}>
+      <div
+        style={{
+          marginLeft: "auto",
+          display: "flex",
+          alignItems: "center",
+          gap: "6px",
+        }}
+      >
         <div
           style={{
             display: "flex",
@@ -87,9 +94,30 @@ export function DashboardHeader({ title }: { title?: string }) {
             border: "1px solid rgba(255,255,255,0.06)",
           }}
         >
-          <div style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#ff0050" }} />
-          <div style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#FFD700" }} />
-          <div style={{ width: "7px", height: "7px", borderRadius: "50%", background: "#006747" }} />
+          <div
+            style={{
+              width: "7px",
+              height: "7px",
+              borderRadius: "50%",
+              background: "#ff0050",
+            }}
+          />
+          <div
+            style={{
+              width: "7px",
+              height: "7px",
+              borderRadius: "50%",
+              background: "#FFD700",
+            }}
+          />
+          <div
+            style={{
+              width: "7px",
+              height: "7px",
+              borderRadius: "50%",
+              background: "#006747",
+            }}
+          />
         </div>
       </div>
     </header>

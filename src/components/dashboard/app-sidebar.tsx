@@ -36,31 +36,66 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { logoutAction } from "@/app/actions/auth";
+import { AvatarDisplay } from "@/components/shared/avatar-display";
 
 interface NavItem {
   label: string;
   href: string;
-  icon: React.ComponentType<{ style?: React.CSSProperties; className?: string }>;
+  icon: React.ComponentType<{
+    style?: React.CSSProperties;
+    className?: string;
+  }>;
   accent: string;
 }
 
 const adminNav: NavItem[] = [
-  { label: "Overview", href: "/admin/overview", icon: LayoutDashboard, accent: "#FFD700" },
+  {
+    label: "Overview",
+    href: "/admin/overview",
+    icon: LayoutDashboard,
+    accent: "#FFD700",
+  },
   { label: "Users", href: "/admin/users", icon: Users, accent: "#006747" },
-  { label: "Content", href: "/admin/content", icon: BookOpen, accent: "#06b6d4" },
-  { label: "Audit Logs", href: "/admin/logs", icon: ScrollText, accent: "#8E8E8E" },
+  {
+    label: "Content",
+    href: "/admin/content",
+    icon: BookOpen,
+    accent: "#06b6d4",
+  },
+  {
+    label: "Audit Logs",
+    href: "/admin/logs",
+    icon: ScrollText,
+    accent: "#8E8E8E",
+  },
 ];
 
 const teacherNav: NavItem[] = [
-  { label: "Overview", href: "/teacher/overview", icon: LayoutDashboard, accent: "#FFD700" },
-  { label: "Classes", href: "/teacher/classes", icon: School, accent: "#006747" },
-  { label: "Sessions", href: "/teacher/sessions", icon: Tv2, accent: "#06b6d4" },
+  {
+    label: "Overview",
+    href: "/teacher/overview",
+    icon: LayoutDashboard,
+    accent: "#FFD700",
+  },
+  {
+    label: "Classes",
+    href: "/teacher/classes",
+    icon: School,
+    accent: "#006747",
+  },
+  {
+    label: "Sessions",
+    href: "/teacher/sessions",
+    icon: Tv2,
+    accent: "#06b6d4",
+  },
 ];
 
 interface AppSidebarProps {
   role: "admin" | "teacher";
   name: string;
   email: string;
+  avatar?: string | null;
 }
 
 function KWDLogoFull({ role }: { role: "admin" | "teacher" }) {
@@ -80,7 +115,10 @@ function KWDLogoFull({ role }: { role: "admin" | "teacher" }) {
         />
       </div>
       <div className="flex flex-col leading-none">
-        <span className="font-black text-sm tracking-tight" style={{ color: "#ffffff" }}>
+        <span
+          className="font-black text-sm tracking-tight"
+          style={{ color: "#ffffff" }}
+        >
           KWD
         </span>
         <span
@@ -112,7 +150,7 @@ function KWDLogoIcon() {
   );
 }
 
-export function AppSidebar({ role, name, email }: AppSidebarProps) {
+export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
   const pathname = usePathname();
   const { state } = useSidebar();
   const isCollapsed = state === "collapsed";
@@ -151,7 +189,11 @@ export function AppSidebar({ role, name, email }: AppSidebarProps) {
             <SidebarMenuButton
               size="lg"
               render={
-                <Link href={role === "admin" ? "/admin/overview" : "/teacher/overview"} />
+                <Link
+                  href={
+                    role === "admin" ? "/admin/overview" : "/teacher/overview"
+                  }
+                />
               }
               style={{ borderRadius: "15px" }}
               className="hover:bg-[#252d3d] transition-colors"
@@ -189,7 +231,9 @@ export function AppSidebar({ role, name, email }: AppSidebarProps) {
                     style={{
                       borderRadius: "15px",
                       marginBottom: "2px",
-                      background: active ? "rgba(255,215,0,0.12)" : "transparent",
+                      background: active
+                        ? "rgba(255,215,0,0.12)"
+                        : "transparent",
                       borderLeft: active
                         ? `3px solid ${item.accent}`
                         : "3px solid transparent",
@@ -206,7 +250,9 @@ export function AppSidebar({ role, name, email }: AppSidebarProps) {
                         flexShrink: 0,
                       }}
                     />
-                    <span style={{ fontWeight: active ? 600 : 400 }}>{item.label}</span>
+                    <span style={{ fontWeight: active ? 600 : 400 }}>
+                      {item.label}
+                    </span>
                     {active && !isCollapsed && (
                       <ChevronRight
                         style={{
@@ -239,9 +285,13 @@ export function AppSidebar({ role, name, email }: AppSidebarProps) {
               }}
             >
               {role === "admin" ? (
-                <ShieldCheck style={{ width: "14px", height: "14px", color: "#ff0050" }} />
+                <ShieldCheck
+                  style={{ width: "14px", height: "14px", color: "#ff0050" }}
+                />
               ) : (
-                <GraduationCap style={{ width: "14px", height: "14px", color: "#006747" }} />
+                <GraduationCap
+                  style={{ width: "14px", height: "14px", color: "#006747" }}
+                />
               )}
               <span
                 style={{
@@ -285,7 +335,10 @@ export function AppSidebar({ role, name, email }: AppSidebarProps) {
 
       {/* ── Footer / User ── */}
       <SidebarFooter
-        style={{ borderTop: "1px solid rgba(255,255,255,0.06)", padding: "8px 6px" }}
+        style={{
+          borderTop: "1px solid rgba(255,255,255,0.06)",
+          padding: "8px 6px",
+        }}
       >
         <SidebarMenu>
           <SidebarMenuItem>
@@ -302,26 +355,7 @@ export function AppSidebar({ role, name, email }: AppSidebarProps) {
                   />
                 }
               >
-                <Avatar
-                  style={{
-                    width: "32px",
-                    height: "32px",
-                    borderRadius: "15px",
-                    flexShrink: 0,
-                  }}
-                >
-                  <AvatarFallback
-                    style={{
-                      borderRadius: "15px",
-                      background: "#FFD700",
-                      color: "#1a1a1a",
-                      fontSize: "11px",
-                      fontWeight: 700,
-                    }}
-                  >
-                    {initials}
-                  </AvatarFallback>
-                </Avatar>
+                <AvatarDisplay avatar={avatar ?? null} name={name} size={32} radius={15} />
                 {!isCollapsed && (
                   <div
                     className="grid flex-1 text-left leading-tight"
@@ -329,11 +363,18 @@ export function AppSidebar({ role, name, email }: AppSidebarProps) {
                   >
                     <span
                       className="truncate"
-                      style={{ fontSize: "13px", fontWeight: 600, color: "#f0f2f5" }}
+                      style={{
+                        fontSize: "13px",
+                        fontWeight: 600,
+                        color: "#f0f2f5",
+                      }}
                     >
                       {name}
                     </span>
-                    <span className="truncate" style={{ fontSize: "11px", color: "#8E8E8E" }}>
+                    <span
+                      className="truncate"
+                      style={{ fontSize: "11px", color: "#8E8E8E" }}
+                    >
                       {email}
                     </span>
                   </div>
@@ -350,6 +391,18 @@ export function AppSidebar({ role, name, email }: AppSidebarProps) {
                 align="start"
                 sideOffset={4}
               >
+                <DropdownMenuItem style={{ borderRadius: "15px", cursor: "pointer" }}>
+                  <Link
+                    href={role === "admin" ? "/admin/profile" : "/teacher/profile"}
+                    className="flex w-full items-center gap-2 text-sm"
+                    style={{ color: "#f0f2f5" }}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="8" r="4" /><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                    </svg>
+                    My Profile
+                  </Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem
                   style={{ borderRadius: "15px", cursor: "pointer" }}
                 >
@@ -373,4 +426,3 @@ export function AppSidebar({ role, name, email }: AppSidebarProps) {
     </Sidebar>
   );
 }
-

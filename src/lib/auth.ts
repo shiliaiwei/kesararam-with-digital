@@ -8,6 +8,7 @@ export interface JWTPayload {
   email: string;
   name: string;
   role: UserRole;
+  avatar?: string | null;
   iat?: number;
   exp?: number;
 }

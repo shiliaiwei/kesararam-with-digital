@@ -89,6 +89,7 @@ export async function loginAction(
     email: user.email,
     name: user.displayName ?? user.username,
     role: user.role,
+    avatar: user.avatar ?? null,
   });
 
   const cookieStore = await cookies();
