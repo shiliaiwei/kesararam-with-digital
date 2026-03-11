@@ -1,15 +1,8 @@
-import { db } from "@/lib/db";
+﻿import { db } from "@/lib/db";
 import { users, classes, auditLogs } from "@/db/schema";
 import { count, eq, desc } from "drizzle-orm";
 import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -18,7 +11,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
 import { Users, School, ShieldCheck, UserCheck } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -72,153 +64,225 @@ async function getStats() {
   };
 }
 
+const STAT_CARDS = [
+  {
+    key: "totalUsers",
+    label: "Total Users",
+    icon: Users,
+    accent: "#3b82f6",
+    bar: "#3b82f6",
+  },
+  {
+    key: "students",
+    label: "Students",
+    icon: UserCheck,
+    accent: "#006747",
+    bar: "#006747",
+  },
+  {
+    key: "teachers",
+    label: "Teachers",
+    icon: School,
+    accent: "#f97316",
+    bar: "#f97316",
+  },
+  {
+    key: "admins",
+    label: "Admins",
+    icon: ShieldCheck,
+    accent: "#a855f7",
+    bar: "#a855f7",
+  },
+] as const;
+
 export default async function AdminOverviewPage() {
   const session = await getSession();
   if (!session || session.role !== "admin") redirect("/login");
   const stats = await getStats();
-  const statCards = [
-    {
-      label: "Total Users",
-      value: stats.totalUsers,
-      icon: Users,
-      color: "text-blue-600",
-    },
-    {
-      label: "Students",
-      value: stats.students,
-      icon: UserCheck,
-      color: "text-green-600",
-    },
-    {
-      label: "Teachers",
-      value: stats.teachers,
-      icon: School,
-      color: "text-orange-600",
-    },
-    {
-      label: "Admins",
-      value: stats.admins,
-      icon: ShieldCheck,
-      color: "text-purple-600",
-    },
-  ];
+
   return (
     <div className="flex flex-col gap-6 py-4">
-      <div className="border-b-2 border-[#a8a8a8] pb-4">
-        <h1 className="text-3xl font-black uppercase tracking-tighter">Dashboard</h1>
-        <p className="text-black font-medium mt-1">Overview of the KWD platform.</p>
+      {/* Page header */}
+      <div className="border-b-[3px] border-black pb-4 flex items-end justify-between">
+        <div>
+          <h1 className="text-3xl font-black uppercase tracking-tighter text-black">
+            Dashboard
+          </h1>
+          <p className="text-sm font-bold text-[#a8a8a8] uppercase tracking-widest mt-1">
+            Overview of the KWD platform.
+          </p>
+        </div>
+        <div className="flex gap-1 items-center border-2 border-black bg-white shadow-[4px_4px_0_#000] px-3 py-1.5">
+          <div className="w-3 h-3 bg-[#ef4444] border border-black" />
+          <div className="w-3 h-3 bg-[#eab308] border border-black" />
+          <div className="w-3 h-3 bg-[#006747] border border-black" />
+        </div>
       </div>
+
+      {/* Stat cards */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {statCards.map((s) => (
-          <Card key={s.label} className="rounded-none border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] bg-white">
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-bold text-black uppercase">
-                {s.label}
-              </CardTitle>
-              <s.icon className={`size-6 ${s.color}`} />
-            </CardHeader>
-            <CardContent>
-              <div className="text-4xl font-black">{s.value}</div>
-            </CardContent>
-          </Card>
-        ))}
+        {STAT_CARDS.map((s) => {
+          const Icon = s.icon;
+          const value = stats[s.key];
+          return (
+            <div
+              key={s.key}
+              className="border-2 border-[#a8a8a8] bg-[#ffffff] shadow-[4px_4px_0_#000] flex flex-col"
+            >
+              <div className="h-1.5 w-full" style={{ background: s.accent }} />
+              <div className="flex items-start justify-between p-4 pb-2">
+                <p className="text-xs font-black uppercase tracking-widest text-[#a8a8a8]">
+                  {s.label}
+                </p>
+                <div
+                  className="border-2 border-[#a8a8a8] p-1"
+                  style={{ color: s.accent }}
+                >
+                  <Icon className="size-4" />
+                </div>
+              </div>
+              <div className="px-4 pb-4">
+                <span className="text-5xl font-black text-black leading-none">
+                  {value}
+                </span>
+              </div>
+            </div>
+          );
+        })}
       </div>
+
+      {/* Tables row */}
       <div className="grid gap-6 lg:grid-cols-2">
-        <Card className="rounded-none border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] bg-white">
-          <CardHeader className="border-b-2 border-[#a8a8a8] bg-[#f97316] text-white">
-            <CardTitle className="uppercase font-black">Recent Users</CardTitle>
-            <CardDescription className="text-white/90 font-medium">
-              The 5 most recently created accounts.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="p-0">
-            <Table>
-              <TableHeader className="bg-gray-100 border-b-2 border-[#a8a8a8]">
-                <TableRow className="border-none hover:bg-transparent">
-                  <TableHead className="font-bold text-black uppercase">Name</TableHead>
-                  <TableHead className="font-bold text-black uppercase">Role</TableHead>
-                  <TableHead className="font-bold text-black uppercase">Status</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {stats.recentUsers.map((u) => (
-                  <TableRow key={u.id} className="border-b-2 border-[#a8a8a8] hover:bg-gray-50">
-                    <TableCell className="border-r-2 border-[#a8a8a8] p-4 text-black font-medium">
-                      <div className="font-bold text-base">
-                        {u.displayName ?? u.username}
-                      </div>
-                      <div className="text-xs text-gray-700 mt-1 font-medium">
-                        {u.email}
-                      </div>
-                    </TableCell>
-                    <TableCell className="border-r-2 border-[#a8a8a8] p-4">
-                      <Badge variant="outline" className="capitalize rounded-none border-2 border-[#a8a8a8] font-bold text-black drop-shadow-[2px_2px_0_#000]">
-                        {u.role}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="p-4">
-                      <Badge className={`capitalize rounded-none border-2 border-black font-bold text-black shadow-[2px_2px_0_#000] ${u.isActive ? "bg-[#22c55e] hover:bg-[#22c55e]" : "bg-[#a8a8a8] hover:bg-[#a8a8a8]"}`}>
-                        {u.isActive ? "Active" : "Inactive"}
-                      </Badge>
-                    </TableCell>
-                  </TableRow>
-                ))}
-                {stats.recentUsers.length === 0 && (
-                  <TableRow>
-                    <TableCell
-                      colSpan={3}
-                      className="text-center text-muted-foreground text-sm py-6"
+        {/* Recent Users */}
+        <div className="border-2 border-[#a8a8a8] bg-[#ffffff] shadow-[4px_4px_0_#000]">
+          <div className="border-b-2 border-black bg-[#006747] px-4 py-3 flex items-center justify-between">
+            <div>
+              <h2 className="font-black uppercase tracking-widest text-white text-sm">
+                Recent Users
+              </h2>
+              <p className="text-white/80 text-xs font-medium mt-0.5">
+                The 5 most recently created accounts.
+              </p>
+            </div>
+            <Users className="size-5 text-white/70" />
+          </div>
+          <Table>
+            <TableHeader>
+              <TableRow className="border-b-2 border-[#a8a8a8] bg-[#f5f5f0] hover:bg-[#f5f5f0]">
+                <TableHead className="font-black text-black uppercase text-xs tracking-widest py-3">
+                  Name
+                </TableHead>
+                <TableHead className="font-black text-black uppercase text-xs tracking-widest">
+                  Role
+                </TableHead>
+                <TableHead className="font-black text-black uppercase text-xs tracking-widest">
+                  Status
+                </TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {stats.recentUsers.map((u) => (
+                <TableRow
+                  key={u.id}
+                  className="border-b-2 border-[#a8a8a8] hover:bg-[#f5f5f0]"
+                >
+                  <TableCell className="border-r-2 border-[#a8a8a8] p-3">
+                    <div className="font-black text-black text-sm">
+                      {u.displayName ?? u.username}
+                    </div>
+                    <div className="text-xs text-[#a8a8a8] font-medium mt-0.5">
+                      {u.email}
+                    </div>
+                  </TableCell>
+                  <TableCell className="border-r-2 border-[#a8a8a8] p-3">
+                    <span className="inline-block px-2 py-0.5 text-xs font-black uppercase tracking-widest border-2 border-[#a8a8a8] bg-white text-black shadow-[2px_2px_0_#000]">
+                      {u.role}
+                    </span>
+                  </TableCell>
+                  <TableCell className="p-3">
+                    <span
+                      className={`inline-block px-2 py-0.5 text-xs font-black uppercase tracking-widest border-2 border-black ${
+                        u.isActive
+                          ? "bg-[#22c55e] text-black"
+                          : "bg-[#a8a8a8] text-white"
+                      }`}
                     >
-                      No users yet.
-                    </TableCell>
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
-        <Card className="rounded-none border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] bg-white">
-          <CardHeader className="border-b-2 border-[#a8a8a8] bg-[#3b82f6] text-white">
-            <CardTitle className="uppercase font-black">Recent Activity</CardTitle>
-            <CardDescription className="text-white/90 font-medium">Latest audit log entries.</CardDescription>
-          </CardHeader>
-          <CardContent className="p-0">
-            <Table>
-              <TableHeader className="bg-gray-100 border-b-2 border-[#a8a8a8]">
-                <TableRow className="border-none hover:bg-transparent">
-                  <TableHead className="font-bold text-black uppercase">Action</TableHead>
-                  <TableHead className="font-bold text-black uppercase">Entity</TableHead>
-                  <TableHead className="font-bold text-black uppercase">Time</TableHead>
+                      {u.isActive ? "Active" : "Inactive"}
+                    </span>
+                  </TableCell>
                 </TableRow>
-              </TableHeader>
-              <TableBody>
-                {stats.recentLogs.map((l) => (
-                  <TableRow key={l.id}>
-                    <TableCell className="font-medium text-sm">
-                      {l.action}
-                    </TableCell>
-                    <TableCell className="text-sm text-muted-foreground">
-                      {l.entityType ?? "�"}
-                    </TableCell>
-                    <TableCell className="text-xs text-muted-foreground">
-                      {new Date(l.createdAt).toLocaleDateString()}
-                    </TableCell>
-                  </TableRow>
-                ))}
-                {stats.recentLogs.length === 0 && (
-                  <TableRow>
-                    <TableCell
-                      colSpan={3}
-                      className="text-center text-black font-bold text-sm py-6 bg-gray-50"
-                    >
-                      No activity yet.
-                    </TableCell>
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
-          </CardContent>
-        </Card>
+              ))}
+              {stats.recentUsers.length === 0 && (
+                <TableRow>
+                  <TableCell
+                    colSpan={3}
+                    className="text-center text-[#a8a8a8] text-sm font-bold py-10 uppercase tracking-widest"
+                  >
+                    No users yet.
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </div>
+
+        {/* Recent Activity */}
+        <div className="border-2 border-[#a8a8a8] bg-[#ffffff] shadow-[4px_4px_0_#000]">
+          <div className="border-b-2 border-black bg-[#3b82f6] px-4 py-3 flex items-center justify-between">
+            <div>
+              <h2 className="font-black uppercase tracking-widest text-white text-sm">
+                Recent Activity
+              </h2>
+              <p className="text-white/80 text-xs font-medium mt-0.5">
+                Latest audit log entries.
+              </p>
+            </div>
+            <ShieldCheck className="size-5 text-white/70" />
+          </div>
+          <Table>
+            <TableHeader>
+              <TableRow className="border-b-2 border-[#a8a8a8] bg-[#f5f5f0] hover:bg-[#f5f5f0]">
+                <TableHead className="font-black text-black uppercase text-xs tracking-widest py-3">
+                  Action
+                </TableHead>
+                <TableHead className="font-black text-black uppercase text-xs tracking-widest">
+                  Entity
+                </TableHead>
+                <TableHead className="font-black text-black uppercase text-xs tracking-widest">
+                  Time
+                </TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {stats.recentLogs.map((l) => (
+                <TableRow
+                  key={l.id}
+                  className="border-b-2 border-[#a8a8a8] hover:bg-[#f5f5f0]"
+                >
+                  <TableCell className="border-r-2 border-[#a8a8a8] p-3 font-bold text-sm text-black">
+                    {l.action}
+                  </TableCell>
+                  <TableCell className="border-r-2 border-[#a8a8a8] p-3 text-sm text-[#a8a8a8] font-medium">
+                    {l.entityType ?? "-"}
+                  </TableCell>
+                  <TableCell className="p-3 text-xs text-[#a8a8a8] font-medium">
+                    {new Date(l.createdAt).toLocaleDateString()}
+                  </TableCell>
+                </TableRow>
+              ))}
+              {stats.recentLogs.length === 0 && (
+                <TableRow>
+                  <TableCell
+                    colSpan={3}
+                    className="text-center text-[#a8a8a8] text-sm font-bold py-10 uppercase tracking-widest"
+                  >
+                    No activity yet.
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </div>
       </div>
     </div>
   );

@@ -58,3 +58,23 @@ export const flashcards = pgTable("flashcards", {
 export type ContentItem = typeof contentItems.$inferSelect;
 export type NewContentItem = typeof contentItems.$inferInsert;
 export type Flashcard = typeof flashcards.$inferSelect;
+
+// Road Markings
+export const roadMarkings = pgTable("road_markings", {
+  id: serial("id").primaryKey(),
+  category: text("category").notNull(), // curbs | signals | longitudinal
+  nameEn: text("name_en").notNull(),
+  nameKm: text("name_km").notNull().default(""),
+  descriptionEn: text("description_en").notNull().default(""),
+  descriptionKm: text("description_km").notNull().default(""),
+  imageUrl: text("image_url"),
+  colorCode: text("color_code"),
+  isActive: boolean("is_active").default(true).notNull(),
+  sortOrder: integer("sort_order").default(0).notNull(),
+  createdBy: integer("created_by").references(() => users.id),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export type RoadMarking = typeof roadMarkings.$inferSelect;
+export type NewRoadMarking = typeof roadMarkings.$inferInsert;

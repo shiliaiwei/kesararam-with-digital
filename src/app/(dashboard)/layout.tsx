@@ -28,7 +28,7 @@ export default async function DashboardLayout({
           email={session.email}
           avatar={session.avatar ?? null}
         />
-        <SidebarInset style={{ background: "#0a0e1a", flex: 1, minWidth: 0 }}>
+        <SidebarInset style={{ background: "#f5f5f0", flex: 1, minWidth: 0 }}>
           <DashboardHeader />
           <main className="flex flex-1 flex-col gap-4 p-4 pt-0">
             {children}
