@@ -38,3 +38,5 @@ Next.js 16, TypeScript, Tailwind CSS v4, shadcn/ui, Drizzle ORM, Neon Postgres, 
 
 Run migrations: `npx drizzle-kit push`
 Generate: `npx drizzle-kit generate`
+
+#a8a8a8 #006747 #ffffff
