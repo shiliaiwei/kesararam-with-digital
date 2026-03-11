@@ -21,7 +21,9 @@ export function AvatarDisplay({
 }: AvatarDisplayProps) {
   const parsed = (() => {
     try {
-      return avatar ? (JSON.parse(avatar) as { face?: string; head?: string }) : null;
+      return avatar
+        ? (JSON.parse(avatar) as { face?: string; head?: string })
+        : null;
     } catch {
       return null;
     }

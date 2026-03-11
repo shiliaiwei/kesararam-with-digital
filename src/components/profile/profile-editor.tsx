@@ -6,25 +6,85 @@ import { updateProfileAction } from "@/app/actions/profile";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
 
 const FACES = [
-  "Angry with Fang.svg","Awe.svg","Blank.svg","Calm.svg","Cheeky.svg",
-  "Concerned Fear.svg","Concerned.svg","Contempt.svg","Cute.svg","Cyclops.svg",
-  "Driven.svg","Eating Happy.svg","Explaining.svg","Eyes Closed.svg","Fear.svg",
-  "Hectic.svg","Loving Grin 1.svg","Loving Grin 2.svg","Monster.svg","Old.svg",
-  "Rage.svg","Serious.svg","Smile Big.svg","Smile LOL.svg","Smile Teeth Gap.svg",
-  "Smile.svg","Solemn.svg","Suspicious.svg","Tired.svg","Very Angry.svg",
+  "Angry with Fang.svg",
+  "Awe.svg",
+  "Blank.svg",
+  "Calm.svg",
+  "Cheeky.svg",
+  "Concerned Fear.svg",
+  "Concerned.svg",
+  "Contempt.svg",
+  "Cute.svg",
+  "Cyclops.svg",
+  "Driven.svg",
+  "Eating Happy.svg",
+  "Explaining.svg",
+  "Eyes Closed.svg",
+  "Fear.svg",
+  "Hectic.svg",
+  "Loving Grin 1.svg",
+  "Loving Grin 2.svg",
+  "Monster.svg",
+  "Old.svg",
+  "Rage.svg",
+  "Serious.svg",
+  "Smile Big.svg",
+  "Smile LOL.svg",
+  "Smile Teeth Gap.svg",
+  "Smile.svg",
+  "Solemn.svg",
+  "Suspicious.svg",
+  "Tired.svg",
+  "Very Angry.svg",
 ];
 
 const HEADS = [
-  "Afro.svg","Bangs 2.svg","Bangs.svg","Bantu Knots.svg","Bear.svg",
-  "Bun 2.svg","Bun.svg","Buns.svg","Cornrows 2.svg","Cornrows.svg",
-  "Flat Top Long.svg","Flat Top.svg","Gray Bun.svg","Gray Medium.svg","Gray Short.svg",
-  "hat-beanie.svg","hat-hip.svg","Hijab.svg","Long Afro.svg","Long Bangs.svg",
-  "Long Curly.svg","Long.svg","Medium 1.svg","Medium 2.svg","Medium 3.svg",
-  "Medium Bangs 2.svg","Medium Bangs 3.svg","Medium Bangs.svg","Medium Straight.svg",
-  "Mohawk 2.svg","Mohawk.svg","No Hair 1.svg","No Hair 2.svg","No Hair 3.svg",
-  "Pomp.svg","Shaved 1.svg","Shaved 2.svg","Shaved 3.svg",
-  "Short 1.svg","Short 2.svg","Short 3.svg","Short 4.svg","Short 5.svg",
-  "Turban.svg","Twists 2.svg","Twists.svg",
+  "Afro.svg",
+  "Bangs 2.svg",
+  "Bangs.svg",
+  "Bantu Knots.svg",
+  "Bear.svg",
+  "Bun 2.svg",
+  "Bun.svg",
+  "Buns.svg",
+  "Cornrows 2.svg",
+  "Cornrows.svg",
+  "Flat Top Long.svg",
+  "Flat Top.svg",
+  "Gray Bun.svg",
+  "Gray Medium.svg",
+  "Gray Short.svg",
+  "hat-beanie.svg",
+  "hat-hip.svg",
+  "Hijab.svg",
+  "Long Afro.svg",
+  "Long Bangs.svg",
+  "Long Curly.svg",
+  "Long.svg",
+  "Medium 1.svg",
+  "Medium 2.svg",
+  "Medium 3.svg",
+  "Medium Bangs 2.svg",
+  "Medium Bangs 3.svg",
+  "Medium Bangs.svg",
+  "Medium Straight.svg",
+  "Mohawk 2.svg",
+  "Mohawk.svg",
+  "No Hair 1.svg",
+  "No Hair 2.svg",
+  "No Hair 3.svg",
+  "Pomp.svg",
+  "Shaved 1.svg",
+  "Shaved 2.svg",
+  "Shaved 3.svg",
+  "Short 1.svg",
+  "Short 2.svg",
+  "Short 3.svg",
+  "Short 4.svg",
+  "Short 5.svg",
+  "Turban.svg",
+  "Twists 2.svg",
+  "Twists.svg",
 ];
 
 interface ProfileEditorProps {
@@ -34,10 +94,19 @@ interface ProfileEditorProps {
   dark?: boolean;
 }
 
-export function ProfileEditor({ initialName, initialAvatar, dark = false }: ProfileEditorProps) {
+export function ProfileEditor({
+  initialName,
+  initialAvatar,
+  dark = false,
+}: ProfileEditorProps) {
   const parsed = (() => {
-    try { return initialAvatar ? (JSON.parse(initialAvatar) as { face?: string; head?: string }) : {}; }
-    catch { return {}; }
+    try {
+      return initialAvatar
+        ? (JSON.parse(initialAvatar) as { face?: string; head?: string })
+        : {};
+    } catch {
+      return {};
+    }
   })();
 
   const [face, setFace] = useState<string>(parsed.face ?? "");
@@ -68,26 +137,30 @@ export function ProfileEditor({ initialName, initialAvatar, dark = false }: Prof
   }
 
   // Theme tokens
-  const cardBg     = dark ? "#252d3d" : "#ffffff";
-  const border     = dark ? "1px solid rgba(255,255,255,0.08)" : "2px solid #000";
-  const shadow     = dark ? "none" : "4px 4px 0 #000";
-  const labelClr   = dark ? "#8E8E8E" : "#52525b";
-  const textClr    = dark ? "#f0f2f5" : "#000000";
-  const inputBg    = dark ? "rgba(255,255,255,0.05)" : "#ffffff";
-  const itemBg     = dark ? "rgba(255,255,255,0.03)" : "#fafafa";
+  const cardBg = dark ? "#252d3d" : "#ffffff";
+  const border = dark ? "1px solid rgba(255,255,255,0.08)" : "2px solid #000";
+  const shadow = dark ? "none" : "4px 4px 0 #000";
+  const labelClr = dark ? "#8E8E8E" : "#52525b";
+  const textClr = dark ? "#f0f2f5" : "#000000";
+  const inputBg = dark ? "rgba(255,255,255,0.05)" : "#ffffff";
+  const itemBg = dark ? "rgba(255,255,255,0.03)" : "#fafafa";
 
-  const items    = tab === "face" ? FACES : HEADS;
+  const items = tab === "face" ? FACES : HEADS;
   const selected = tab === "face" ? face : head;
-  const setItem  = tab === "face" ? setFace : setHead;
+  const setItem = tab === "face" ? setFace : setHead;
   const category = tab === "face" ? "face" : "head";
 
   return (
     <div className="flex flex-col gap-5">
-
       {/* ── Preview + name ── */}
       <div
         className="flex items-center gap-4 p-5"
-        style={{ background: cardBg, border, borderRadius: "15px", boxShadow: shadow }}
+        style={{
+          background: cardBg,
+          border,
+          borderRadius: "15px",
+          boxShadow: shadow,
+        }}
       >
         {/* Live avatar preview */}
         <AvatarDisplay
@@ -98,7 +171,15 @@ export function ProfileEditor({ initialName, initialAvatar, dark = false }: Prof
         />
 
         <div className="flex flex-col gap-2 flex-1">
-          <label style={{ fontSize: "11px", fontWeight: 700, color: labelClr, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+          <label
+            style={{
+              fontSize: "11px",
+              fontWeight: 700,
+              color: labelClr,
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+            }}
+          >
             Display Name
           </label>
           <input
@@ -121,9 +202,24 @@ export function ProfileEditor({ initialName, initialAvatar, dark = false }: Prof
       </div>
 
       {/* ── Avatar picker ── */}
-      <div style={{ background: cardBg, border, borderRadius: "15px", boxShadow: shadow, overflow: "hidden" }}>
+      <div
+        style={{
+          background: cardBg,
+          border,
+          borderRadius: "15px",
+          boxShadow: shadow,
+          overflow: "hidden",
+        }}
+      >
         {/* Tabs */}
-        <div className="flex" style={{ borderBottom: dark ? "1px solid rgba(255,255,255,0.08)" : "2px solid #000" }}>
+        <div
+          className="flex"
+          style={{
+            borderBottom: dark
+              ? "1px solid rgba(255,255,255,0.08)"
+              : "2px solid #000",
+          }}
+        >
           {(["face", "head"] as const).map((t) => (
             <button
               key={t}
@@ -139,7 +235,12 @@ export function ProfileEditor({ initialName, initialAvatar, dark = false }: Prof
                 color: tab === t ? "#1a1a1a" : labelClr,
                 border: "none",
                 cursor: "pointer",
-                borderRight: t === "face" ? (dark ? "1px solid rgba(255,255,255,0.08)" : "2px solid #000") : "none",
+                borderRight:
+                  t === "face"
+                    ? dark
+                      ? "1px solid rgba(255,255,255,0.08)"
+                      : "2px solid #000"
+                    : "none",
                 transition: "all 0.1s",
               }}
             >
@@ -164,9 +265,15 @@ export function ProfileEditor({ initialName, initialAvatar, dark = false }: Prof
             onClick={() => setItem("")}
             title="No selection"
             style={{
-              width: "64px", height: "64px",
+              width: "64px",
+              height: "64px",
               borderRadius: "15px",
-              border: selected === "" ? "2px solid #FFD700" : (dark ? "1px solid rgba(255,255,255,0.1)" : "2px solid #000"),
+              border:
+                selected === ""
+                  ? "2px solid #FFD700"
+                  : dark
+                    ? "1px solid rgba(255,255,255,0.1)"
+                    : "2px solid #000",
               background: selected === "" ? "rgba(255,215,0,0.15)" : itemBg,
               cursor: "pointer",
               fontSize: "10px",
@@ -183,9 +290,15 @@ export function ProfileEditor({ initialName, initialAvatar, dark = false }: Prof
               onClick={() => setItem(item)}
               title={item.replace(".svg", "")}
               style={{
-                width: "64px", height: "64px",
+                width: "64px",
+                height: "64px",
                 borderRadius: "15px",
-                border: selected === item ? "2px solid #FFD700" : (dark ? "1px solid rgba(255,255,255,0.08)" : "2px solid #d4d4d4"),
+                border:
+                  selected === item
+                    ? "2px solid #FFD700"
+                    : dark
+                      ? "1px solid rgba(255,255,255,0.08)"
+                      : "2px solid #d4d4d4",
                 background: selected === item ? "rgba(255,215,0,0.12)" : itemBg,
                 cursor: "pointer",
                 padding: "4px",

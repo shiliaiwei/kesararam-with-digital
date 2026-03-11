@@ -55,7 +55,12 @@ function ProfileMenu({ session }: { session: JWTPayload }) {
         aria-label="Profile menu"
         aria-expanded={open}
       >
-        <AvatarDisplay avatar={session.avatar ?? null} name={session.name} size={34} radius={13} />
+        <AvatarDisplay
+          avatar={session.avatar ?? null}
+          name={session.name}
+          size={34}
+          radius={13}
+        />
       </button>
 
       {open && (

@@ -355,7 +355,12 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
                   />
                 }
               >
-                <AvatarDisplay avatar={avatar ?? null} name={name} size={32} radius={15} />
+                <AvatarDisplay
+                  avatar={avatar ?? null}
+                  name={name}
+                  size={32}
+                  radius={15}
+                />
                 {!isCollapsed && (
                   <div
                     className="grid flex-1 text-left leading-tight"
@@ -391,14 +396,28 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
                 align="start"
                 sideOffset={4}
               >
-                <DropdownMenuItem style={{ borderRadius: "15px", cursor: "pointer" }}>
+                <DropdownMenuItem
+                  style={{ borderRadius: "15px", cursor: "pointer" }}
+                >
                   <Link
-                    href={role === "admin" ? "/admin/profile" : "/teacher/profile"}
+                    href={
+                      role === "admin" ? "/admin/profile" : "/teacher/profile"
+                    }
                     className="flex w-full items-center gap-2 text-sm"
                     style={{ color: "#f0f2f5" }}
                   >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="8" r="4" /><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="12" cy="8" r="4" />
+                      <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
                     </svg>
                     My Profile
                   </Link>

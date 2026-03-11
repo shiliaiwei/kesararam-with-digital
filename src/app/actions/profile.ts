@@ -21,7 +21,10 @@ export async function updateProfileAction(
     try {
       const parsed = JSON.parse(avatarRaw) as { face?: string; head?: string };
       if (parsed.face || parsed.head) {
-        avatar = JSON.stringify({ face: parsed.face ?? "", head: parsed.head ?? "" });
+        avatar = JSON.stringify({
+          face: parsed.face ?? "",
+          head: parsed.head ?? "",
+        });
       }
     } catch {
       return { error: "Invalid avatar data." };
