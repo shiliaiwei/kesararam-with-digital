@@ -104,60 +104,60 @@ export default async function AdminOverviewPage() {
   ];
   return (
     <div className="flex flex-col gap-6 py-4">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground">Overview of the KWD platform.</p>
+      <div className="border-b-2 border-[#a8a8a8] pb-4">
+        <h1 className="text-3xl font-black uppercase tracking-tighter">Dashboard</h1>
+        <p className="text-black font-medium mt-1">Overview of the KWD platform.</p>
       </div>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {statCards.map((s) => (
-          <Card key={s.label}>
+          <Card key={s.label} className="rounded-none border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] bg-white">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
+              <CardTitle className="text-sm font-bold text-black uppercase">
                 {s.label}
               </CardTitle>
-              <s.icon className={`size-4 ${s.color}`} />
+              <s.icon className={`size-6 ${s.color}`} />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{s.value}</div>
+              <div className="text-4xl font-black">{s.value}</div>
             </CardContent>
           </Card>
         ))}
       </div>
-      <div className="grid gap-4 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Recent Users</CardTitle>
-            <CardDescription>
+      <div className="grid gap-6 lg:grid-cols-2">
+        <Card className="rounded-none border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] bg-white">
+          <CardHeader className="border-b-2 border-[#a8a8a8] bg-[#f97316] text-white">
+            <CardTitle className="uppercase font-black">Recent Users</CardTitle>
+            <CardDescription className="text-white/90 font-medium">
               The 5 most recently created accounts.
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-0">
             <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Role</TableHead>
-                  <TableHead>Status</TableHead>
+              <TableHeader className="bg-gray-100 border-b-2 border-[#a8a8a8]">
+                <TableRow className="border-none hover:bg-transparent">
+                  <TableHead className="font-bold text-black uppercase">Name</TableHead>
+                  <TableHead className="font-bold text-black uppercase">Role</TableHead>
+                  <TableHead className="font-bold text-black uppercase">Status</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {stats.recentUsers.map((u) => (
-                  <TableRow key={u.id}>
-                    <TableCell>
-                      <div className="font-medium">
+                  <TableRow key={u.id} className="border-b-2 border-[#a8a8a8] hover:bg-gray-50">
+                    <TableCell className="border-r-2 border-[#a8a8a8] p-4 text-black font-medium">
+                      <div className="font-bold text-base">
                         {u.displayName ?? u.username}
                       </div>
-                      <div className="text-xs text-muted-foreground">
+                      <div className="text-xs text-gray-700 mt-1 font-medium">
                         {u.email}
                       </div>
                     </TableCell>
-                    <TableCell>
-                      <Badge variant="outline" className="capitalize">
+                    <TableCell className="border-r-2 border-[#a8a8a8] p-4">
+                      <Badge variant="outline" className="capitalize rounded-none border-2 border-[#a8a8a8] font-bold text-black drop-shadow-[2px_2px_0_#000]">
                         {u.role}
                       </Badge>
                     </TableCell>
-                    <TableCell>
-                      <Badge variant={u.isActive ? "default" : "secondary"}>
+                    <TableCell className="p-4">
+                      <Badge className={`capitalize rounded-none border-2 border-black font-bold text-black shadow-[2px_2px_0_#000] ${u.isActive ? "bg-[#22c55e] hover:bg-[#22c55e]" : "bg-[#a8a8a8] hover:bg-[#a8a8a8]"}`}>
                         {u.isActive ? "Active" : "Inactive"}
                       </Badge>
                     </TableCell>
@@ -177,18 +177,18 @@ export default async function AdminOverviewPage() {
             </Table>
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
-            <CardDescription>Latest audit log entries.</CardDescription>
+        <Card className="rounded-none border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] bg-white">
+          <CardHeader className="border-b-2 border-[#a8a8a8] bg-[#3b82f6] text-white">
+            <CardTitle className="uppercase font-black">Recent Activity</CardTitle>
+            <CardDescription className="text-white/90 font-medium">Latest audit log entries.</CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-0">
             <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Action</TableHead>
-                  <TableHead>Entity</TableHead>
-                  <TableHead>Time</TableHead>
+              <TableHeader className="bg-gray-100 border-b-2 border-[#a8a8a8]">
+                <TableRow className="border-none hover:bg-transparent">
+                  <TableHead className="font-bold text-black uppercase">Action</TableHead>
+                  <TableHead className="font-bold text-black uppercase">Entity</TableHead>
+                  <TableHead className="font-bold text-black uppercase">Time</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -209,7 +209,7 @@ export default async function AdminOverviewPage() {
                   <TableRow>
                     <TableCell
                       colSpan={3}
-                      className="text-center text-muted-foreground text-sm py-6"
+                      className="text-center text-black font-bold text-sm py-6 bg-gray-50"
                     >
                       No activity yet.
                     </TableCell>

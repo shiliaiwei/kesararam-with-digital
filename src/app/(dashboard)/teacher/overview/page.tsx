@@ -21,40 +21,40 @@ export default async function TeacherOverviewPage() {
   ];
   return (
     <div className="flex flex-col gap-6 py-4">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground">Welcome back, {session.name}.</p>
+      <div className="border-b-2 border-[#a8a8a8] pb-4">
+        <h1 className="text-3xl font-black uppercase tracking-tighter">Dashboard</h1>
+        <p className="text-black font-medium mt-1">Welcome back, {session.name}.</p>
       </div>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {statCards.map((s) => (
-          <Card key={s.label}>
+          <Card key={s.label} className="rounded-none border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] bg-white">
             <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">{s.label}</CardTitle>
-              <s.icon className={`size-4 ${s.color}`} />
+              <CardTitle className="text-sm font-bold text-black uppercase">{s.label}</CardTitle>
+              <s.icon className={`size-6 ${s.color}`} />
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold">{s.value}</div>
+              <div className="text-4xl font-black">{s.value}</div>
             </CardContent>
           </Card>
         ))}
       </div>
-      <Card>
-        <CardHeader>
-          <CardTitle>Recent Classes</CardTitle>
-          <CardDescription>Your 5 most recently created classes.</CardDescription>
+      <Card className="rounded-none border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] bg-white">
+        <CardHeader className="border-b-2 border-[#a8a8a8] bg-[#eab308] text-black">
+          <CardTitle className="uppercase font-black">Recent Classes</CardTitle>
+          <CardDescription className="text-black font-medium">Your 5 most recently created classes.</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-0">
           <Table>
-            <TableHeader><TableRow><TableHead>Class Name</TableHead><TableHead>Join Code</TableHead><TableHead>Created</TableHead></TableRow></TableHeader>
+            <TableHeader className="bg-gray-100 border-b-2 border-[#a8a8a8]"><TableRow className="border-none hover:bg-transparent"><TableHead className="font-bold text-black uppercase">Class Name</TableHead><TableHead className="font-bold text-black uppercase">Join Code</TableHead><TableHead className="font-bold text-black uppercase">Created</TableHead></TableRow></TableHeader>
             <TableBody>
               {myClasses.map((c) => (
-                <TableRow key={c.id}>
-                  <TableCell className="font-medium">{c.name}</TableCell>
-                  <TableCell><code className="bg-muted px-2 py-0.5 rounded text-sm font-mono tracking-widest">{c.code}</code></TableCell>
-                  <TableCell className="text-sm text-muted-foreground">{new Date(c.createdAt).toLocaleDateString()}</TableCell>
+                <TableRow key={c.id} className="border-b-2 border-[#a8a8a8] hover:bg-gray-50">
+                  <TableCell className="border-r-2 border-[#a8a8a8] p-4 text-black font-bold uppercase">{c.name}</TableCell>
+                  <TableCell className="border-r-2 border-[#a8a8a8] p-4"><code className="bg-[#a8a8a8] px-2 py-1 rounded-none border-2 border-black font-bold text-black text-sm tracking-widest shadow-[2px_2px_0_#000]">{c.code}</code></TableCell>
+                  <TableCell className="p-4 text-black font-medium text-sm">{new Date(c.createdAt).toLocaleDateString()}</TableCell>
                 </TableRow>
               ))}
-              {myClasses.length === 0 && <TableRow><TableCell colSpan={3} className="text-center text-muted-foreground py-8 text-sm">No classes yet. Create your first class in Classes.</TableCell></TableRow>}
+              {myClasses.length === 0 && <TableRow><TableCell colSpan={3} className="text-center font-bold text-black py-8 text-sm bg-gray-50">No classes yet. Create your first class in Classes.</TableCell></TableRow>}
             </TableBody>
           </Table>
         </CardContent>

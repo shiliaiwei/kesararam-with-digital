@@ -42,10 +42,18 @@ export default async function StudentProfilePage() {
           <div
             style={{
               height: "6px",
-              background: "repeating-linear-gradient(90deg,#eab308 0,#eab308 20px,#000 20px,#000 40px)",
+              background:
+                "repeating-linear-gradient(90deg,#eab308 0,#eab308 20px,#000 20px,#000 40px)",
             }}
           />
-          <div style={{ padding: "24px", display: "flex", alignItems: "center", gap: "20px" }}>
+          <div
+            style={{
+              padding: "24px",
+              display: "flex",
+              alignItems: "center",
+              gap: "20px",
+            }}
+          >
             <AvatarDisplay
               avatar={user?.avatar ?? null}
               name={name}
@@ -53,8 +61,21 @@ export default async function StudentProfilePage() {
               radius={0}
             />
             <div>
-              <h1 style={{ fontSize: "22px", fontWeight: 900, lineHeight: 1.2, margin: 0 }}>{name}</h1>
-              <p style={{ fontSize: "13px", color: "#52525b", marginTop: "4px" }}>{user?.email}</p>
+              <h1
+                style={{
+                  fontSize: "22px",
+                  fontWeight: 900,
+                  lineHeight: 1.2,
+                  margin: 0,
+                }}
+              >
+                {name}
+              </h1>
+              <p
+                style={{ fontSize: "13px", color: "#52525b", marginTop: "4px" }}
+              >
+                {user?.email}
+              </p>
               <span
                 style={{
                   display: "inline-block",
@@ -79,10 +100,10 @@ export default async function StudentProfilePage() {
         {/* ── Stats ── */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { label: "Total Score",    value: "—", color: "#eab308" },
-            { label: "Challenges",     value: "—", color: "#22c55e" },
-            { label: "Current Rank",   value: "—", color: "#3b82f6" },
-            { label: "Flashcards Done",value: "—", color: "#a855f7" },
+            { label: "Total Score", value: "—", color: "#eab308" },
+            { label: "Challenges", value: "—", color: "#22c55e" },
+            { label: "Current Rank", value: "—", color: "#3b82f6" },
+            { label: "Flashcards Done", value: "—", color: "#a855f7" },
           ].map(({ label, value, color }) => (
             <div
               key={label}
@@ -93,8 +114,19 @@ export default async function StudentProfilePage() {
                 padding: "16px",
               }}
             >
-              <span style={{ fontSize: "24px", fontWeight: 900, color }}>{value}</span>
-              <p style={{ fontSize: "12px", color: "#71717a", fontWeight: 600, marginTop: "4px" }}>{label}</p>
+              <span style={{ fontSize: "24px", fontWeight: 900, color }}>
+                {value}
+              </span>
+              <p
+                style={{
+                  fontSize: "12px",
+                  color: "#71717a",
+                  fontWeight: 600,
+                  marginTop: "4px",
+                }}
+              >
+                {label}
+              </p>
             </div>
           ))}
         </div>
@@ -102,11 +134,18 @@ export default async function StudentProfilePage() {
         {/* ── Edit profile ── */}
         <div>
           {/* Section label with curb marker */}
-          <div style={{ display: "flex", alignItems: "stretch", marginBottom: "12px" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "stretch",
+              marginBottom: "12px",
+            }}
+          >
             <div
               style={{
                 width: "6px",
-                background: "repeating-linear-gradient(180deg,#eab308 0,#eab308 6px,#000 6px,#000 12px)",
+                background:
+                  "repeating-linear-gradient(180deg,#eab308 0,#eab308 6px,#000 6px,#000 12px)",
               }}
             />
             <div
@@ -117,7 +156,15 @@ export default async function StudentProfilePage() {
                 alignItems: "center",
               }}
             >
-              <span style={{ fontSize: "11px", fontWeight: 900, color: "#eab308", textTransform: "uppercase", letterSpacing: "0.12em" }}>
+              <span
+                style={{
+                  fontSize: "11px",
+                  fontWeight: 900,
+                  color: "#eab308",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.12em",
+                }}
+              >
                 Edit Profile
               </span>
             </div>
@@ -125,7 +172,9 @@ export default async function StudentProfilePage() {
           <ProfileEditor
             initialName={name}
             initialAvatar={user?.avatar ?? null}
-            initialAvatarChangedAt={user?.avatarChangedAt?.toISOString() ?? null}
+            initialAvatarChangedAt={
+              user?.avatarChangedAt?.toISOString() ?? null
+            }
             role="student"
             dark={false}
           />

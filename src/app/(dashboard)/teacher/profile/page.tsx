@@ -79,7 +79,9 @@ export default async function TeacherProfilePage() {
           <ProfileEditor
             initialName={name}
             initialAvatar={user?.avatar ?? null}
-            initialAvatarChangedAt={user?.avatarChangedAt?.toISOString() ?? null}
+            initialAvatarChangedAt={
+              user?.avatarChangedAt?.toISOString() ?? null
+            }
             role="teacher"
             dark
           />
