@@ -13,9 +13,7 @@ export interface LoginState {
 }
 
 function hashPassword(pw: string): string {
-  return createHash("sha256")
-    .update(pw + (process.env.JWT_SECRET ?? ""))
-    .digest("hex");
+  return createHash("sha256").update(pw).digest("hex");
 }
 
 export async function loginAction(
