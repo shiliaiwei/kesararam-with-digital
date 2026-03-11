@@ -98,6 +98,10 @@ export async function loginAction(
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
     path: "/",
+    domain:
+      process.env.NODE_ENV === "production"
+        ? ".kesararamwithdigital.tech"
+        : undefined,
     maxAge: user.role === "student" ? 7 * 24 * 60 * 60 : 8 * 60 * 60,
   });
 
