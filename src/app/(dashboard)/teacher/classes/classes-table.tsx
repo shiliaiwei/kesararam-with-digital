@@ -71,39 +71,39 @@ function CreateClassDialog({
         New Class
       </Button>
       <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Create Class</DialogTitle>
-          <DialogDescription>
-            A unique join code will be generated automatically.
-          </DialogDescription>
-        </DialogHeader>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-2">
-          <div className="grid gap-1.5">
-            <Label htmlFor="class-name">Class Name</Label>
-            <Input
-              id="class-name"
-              name="name"
-              required
-              placeholder="e.g. Morning Driving 2026"
-            />
-          </div>
-          {error && <p className="text-sm text-destructive">{error}</p>}
-          <div className="flex justify-end gap-2">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => setOpen(false)}
-            >
-              Cancel
-            </Button>
-            <Button type="submit" disabled={pending}>
-              {pending ? "Creating…" : "Create"}
-            </Button>
-          </div>
-        </form>
-      </DialogContent>
-    </Dialog>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Create Class</DialogTitle>
+            <DialogDescription>
+              A unique join code will be generated automatically.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-2">
+            <div className="grid gap-1.5">
+              <Label htmlFor="class-name">Class Name</Label>
+              <Input
+                id="class-name"
+                name="name"
+                required
+                placeholder="e.g. Morning Driving 2026"
+              />
+            </div>
+            {error && <p className="text-sm text-destructive">{error}</p>}
+            <div className="flex justify-end gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setOpen(false)}
+              >
+                Cancel
+              </Button>
+              <Button type="submit" disabled={pending}>
+                {pending ? "Creating…" : "Create"}
+              </Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
@@ -186,7 +186,12 @@ export function ClassesTable({
                 </TableCell>
                 <TableCell>
                   <DropdownMenu>
-                    <DropdownMenuTrigger className={buttonVariants({ variant: "ghost", size: "icon" })}>
+                    <DropdownMenuTrigger
+                      className={buttonVariants({
+                        variant: "ghost",
+                        size: "icon",
+                      })}
+                    >
                       <MoreHorizontal className="size-4" />
                       <span className="sr-only">Actions</span>
                     </DropdownMenuTrigger>

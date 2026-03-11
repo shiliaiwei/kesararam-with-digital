@@ -25,6 +25,14 @@ export async function proxy(req: NextRequest) {
         new URL("/profile/student", "https://kesararamwithdigital.tech"),
       );
     }
+    // Redirect authenticated users from dashboard root to their role overview
+    if (pathname === "/") {
+      const overview =
+        payload.role === "admin" ? "/admin/overview" : "/teacher/overview";
+      return NextResponse.redirect(
+        new URL(overview, `https://${DASHBOARD_HOSTNAME}`),
+      );
+    }
   }
 
   for (const [role, prefixes] of Object.entries(PROTECTED_ROUTES)) {
@@ -45,7 +53,8 @@ export async function proxy(req: NextRequest) {
     }
   }
 
-  if (pathname === "/") {
+  // Redirect the main-domain root to /home
+  if (pathname === "/" && hostname !== DASHBOARD_HOSTNAME && !hostname.startsWith("dashboard.")) {
     return NextResponse.redirect(new URL("/home", req.url));
   }
 

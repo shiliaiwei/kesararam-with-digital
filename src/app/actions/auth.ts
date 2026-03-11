@@ -127,5 +127,9 @@ export async function logoutAction() {
         : undefined,
     maxAge: 0,
   });
-  redirect("/login");
+  redirect(
+    process.env.NODE_ENV === "production"
+      ? "https://kesararamwithdigital.tech/login"
+      : "/login",
+  );
 }

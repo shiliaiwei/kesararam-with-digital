@@ -76,7 +76,13 @@ export function AppSidebar({ role, name, email }: AppSidebarProps) {
           <SidebarMenuItem>
             <SidebarMenuButton
               size="lg"
-              render={<Link href={role === "admin" ? "/admin/overview" : "/teacher/overview"} />}
+              render={
+                <Link
+                  href={
+                    role === "admin" ? "/admin/overview" : "/teacher/overview"
+                  }
+                />
+              }
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
               <div className="bg-primary text-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">

@@ -84,78 +84,80 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
         New User
       </Button>
       <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Create User</DialogTitle>
-          <DialogDescription>Add a new user to the platform.</DialogDescription>
-        </DialogHeader>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-2">
-          <div className="grid gap-1.5">
-            <Label htmlFor="create-username">Username</Label>
-            <Input
-              id="create-username"
-              name="username"
-              required
-              placeholder="e.g. sopheak01"
-            />
-          </div>
-          <div className="grid gap-1.5">
-            <Label htmlFor="create-email">Email</Label>
-            <Input
-              id="create-email"
-              name="email"
-              type="email"
-              required
-              placeholder="user@kwd.tech"
-            />
-          </div>
-          <div className="grid gap-1.5">
-            <Label htmlFor="create-displayName">Display Name</Label>
-            <Input
-              id="create-displayName"
-              name="displayName"
-              placeholder="Sopheak Chan"
-            />
-          </div>
-          <div className="grid gap-1.5">
-            <Label htmlFor="create-role">Role</Label>
-            <Select name="role" defaultValue="student" required>
-              <SelectTrigger id="create-role">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="student">Student</SelectItem>
-                <SelectItem value="teacher">Teacher</SelectItem>
-                <SelectItem value="admin">Admin</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="grid gap-1.5">
-            <Label htmlFor="create-password">Password</Label>
-            <Input
-              id="create-password"
-              name="password"
-              type="password"
-              required
-              placeholder="••••••••"
-            />
-          </div>
-          {error && <p className="text-sm text-destructive">{error}</p>}
-          <div className="flex justify-end gap-2">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => setOpen(false)}
-            >
-              Cancel
-            </Button>
-            <Button type="submit" disabled={pending}>
-              {pending ? "Creating…" : "Create"}
-            </Button>
-          </div>
-        </form>
-      </DialogContent>
-    </Dialog>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Create User</DialogTitle>
+            <DialogDescription>
+              Add a new user to the platform.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-2">
+            <div className="grid gap-1.5">
+              <Label htmlFor="create-username">Username</Label>
+              <Input
+                id="create-username"
+                name="username"
+                required
+                placeholder="e.g. sopheak01"
+              />
+            </div>
+            <div className="grid gap-1.5">
+              <Label htmlFor="create-email">Email</Label>
+              <Input
+                id="create-email"
+                name="email"
+                type="email"
+                required
+                placeholder="user@kwd.tech"
+              />
+            </div>
+            <div className="grid gap-1.5">
+              <Label htmlFor="create-displayName">Display Name</Label>
+              <Input
+                id="create-displayName"
+                name="displayName"
+                placeholder="Sopheak Chan"
+              />
+            </div>
+            <div className="grid gap-1.5">
+              <Label htmlFor="create-role">Role</Label>
+              <Select name="role" defaultValue="student" required>
+                <SelectTrigger id="create-role">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="student">Student</SelectItem>
+                  <SelectItem value="teacher">Teacher</SelectItem>
+                  <SelectItem value="admin">Admin</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid gap-1.5">
+              <Label htmlFor="create-password">Password</Label>
+              <Input
+                id="create-password"
+                name="password"
+                type="password"
+                required
+                placeholder="••••••••"
+              />
+            </div>
+            {error && <p className="text-sm text-destructive">{error}</p>}
+            <div className="flex justify-end gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setOpen(false)}
+              >
+                Cancel
+              </Button>
+              <Button type="submit" disabled={pending}>
+                {pending ? "Creating…" : "Create"}
+              </Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
@@ -189,94 +191,92 @@ function EditUserDialog({
 
   return (
     <>
-      <DropdownMenuItem onClick={() => setOpen(true)}>
-        Edit
-      </DropdownMenuItem>
+      <DropdownMenuItem onClick={() => setOpen(true)}>Edit</DropdownMenuItem>
       <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Edit User</DialogTitle>
-          <DialogDescription>
-            Update account details for {user.username}.
-          </DialogDescription>
-        </DialogHeader>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-2">
-          <div className="grid gap-1.5">
-            <Label htmlFor="edit-email">Email</Label>
-            <Input
-              id="edit-email"
-              name="email"
-              type="email"
-              required
-              defaultValue={user.email}
-            />
-          </div>
-          <div className="grid gap-1.5">
-            <Label htmlFor="edit-displayName">Display Name</Label>
-            <Input
-              id="edit-displayName"
-              name="displayName"
-              defaultValue={user.displayName ?? ""}
-            />
-          </div>
-          <div className="grid gap-1.5">
-            <Label htmlFor="edit-role">Role</Label>
-            <Select name="role" defaultValue={user.role}>
-              <SelectTrigger id="edit-role">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="student">Student</SelectItem>
-                <SelectItem value="teacher">Teacher</SelectItem>
-                <SelectItem value="admin">Admin</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="grid gap-1.5">
-            <Label>Status</Label>
-            <Select
-              name="isActive"
-              defaultValue={user.isActive ? "true" : "false"}
-            >
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="true">Active</SelectItem>
-                <SelectItem value="false">Inactive</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="grid gap-1.5">
-            <Label htmlFor="edit-password">
-              New Password{" "}
-              <span className="text-muted-foreground font-normal">
-                (leave blank to keep)
-              </span>
-            </Label>
-            <Input
-              id="edit-password"
-              name="password"
-              type="password"
-              placeholder="••••••••"
-            />
-          </div>
-          {error && <p className="text-sm text-destructive">{error}</p>}
-          <div className="flex justify-end gap-2">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => setOpen(false)}
-            >
-              Cancel
-            </Button>
-            <Button type="submit" disabled={pending}>
-              {pending ? "Saving…" : "Save"}
-            </Button>
-          </div>
-        </form>
-      </DialogContent>
-    </Dialog>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Edit User</DialogTitle>
+            <DialogDescription>
+              Update account details for {user.username}.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-2">
+            <div className="grid gap-1.5">
+              <Label htmlFor="edit-email">Email</Label>
+              <Input
+                id="edit-email"
+                name="email"
+                type="email"
+                required
+                defaultValue={user.email}
+              />
+            </div>
+            <div className="grid gap-1.5">
+              <Label htmlFor="edit-displayName">Display Name</Label>
+              <Input
+                id="edit-displayName"
+                name="displayName"
+                defaultValue={user.displayName ?? ""}
+              />
+            </div>
+            <div className="grid gap-1.5">
+              <Label htmlFor="edit-role">Role</Label>
+              <Select name="role" defaultValue={user.role}>
+                <SelectTrigger id="edit-role">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="student">Student</SelectItem>
+                  <SelectItem value="teacher">Teacher</SelectItem>
+                  <SelectItem value="admin">Admin</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid gap-1.5">
+              <Label>Status</Label>
+              <Select
+                name="isActive"
+                defaultValue={user.isActive ? "true" : "false"}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="true">Active</SelectItem>
+                  <SelectItem value="false">Inactive</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="grid gap-1.5">
+              <Label htmlFor="edit-password">
+                New Password{" "}
+                <span className="text-muted-foreground font-normal">
+                  (leave blank to keep)
+                </span>
+              </Label>
+              <Input
+                id="edit-password"
+                name="password"
+                type="password"
+                placeholder="••••••••"
+              />
+            </div>
+            {error && <p className="text-sm text-destructive">{error}</p>}
+            <div className="flex justify-end gap-2">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setOpen(false)}
+              >
+                Cancel
+              </Button>
+              <Button type="submit" disabled={pending}>
+                {pending ? "Saving…" : "Save"}
+              </Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
@@ -347,7 +347,10 @@ export function UsersTable({ initialUsers }: { initialUsers: UserRow[] }) {
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
-        <Select value={roleFilter} onValueChange={(v) => setRoleFilter(v ?? "all")}>
+        <Select
+          value={roleFilter}
+          onValueChange={(v) => setRoleFilter(v ?? "all")}
+        >
           <SelectTrigger className="w-36">
             <SelectValue placeholder="All roles" />
           </SelectTrigger>
@@ -405,9 +408,14 @@ export function UsersTable({ initialUsers }: { initialUsers: UserRow[] }) {
                 </TableCell>
                 <TableCell>
                   <DropdownMenu>
-                    <DropdownMenuTrigger className={buttonVariants({ variant: "ghost", size: "icon" })}>
-                        <MoreHorizontal className="size-4" />
-                        <span className="sr-only">Actions</span>
+                    <DropdownMenuTrigger
+                      className={buttonVariants({
+                        variant: "ghost",
+                        size: "icon",
+                      })}
+                    >
+                      <MoreHorizontal className="size-4" />
+                      <span className="sr-only">Actions</span>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                       <EditUserDialog user={u} onSuccess={refresh} />
