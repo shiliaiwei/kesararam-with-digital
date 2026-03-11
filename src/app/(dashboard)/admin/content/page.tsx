@@ -88,7 +88,9 @@ export default async function AdminContentPage() {
                   </TableCell>
                   <TableCell>
                     <span className="text-xs bg-muted px-2 py-0.5 rounded-full">
-                      {CATEGORY_LABELS[item.categorySlug ?? ""] ?? item.categorySlug ?? item.categoryId}
+                      {CATEGORY_LABELS[item.categorySlug ?? ""] ??
+                        item.categorySlug ??
+                        item.categoryId}
                     </span>
                   </TableCell>
                   <TableCell className="capitalize text-sm text-muted-foreground">

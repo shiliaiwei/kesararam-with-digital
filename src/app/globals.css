@@ -123,11 +123,13 @@
   --kwd-rose: #fda4af;
   --kwd-orange: #f97316;
   --kwd-blue: #3b82f6;
-  --kwd-yellow: #eab308;
-  --kwd-green: #22c55e;
+  --kwd-yellow: #FFD700;
+  --kwd-green: #006747;
   --kwd-purple: #a855f7;
-  --kwd-red: #ef4444;
-  --kwd-accent: #ff0050;
+  --kwd-red: #ff0050;
+  --kwd-gray-dark: #374151;
+  --kwd-gray-mid: #8E8E8E;
+  --kwd-gray-light: #a8a8a8;
 
   /* Neo-brutalism tokens */
   --nb-border: 2px solid #000000;
@@ -142,6 +144,40 @@
   /* Fonts */
   --font-kh-header: "Kantumruy Pro", sans-serif;
   --font-kh-body: "Siemreap", sans-serif;
+}
+
+/* ─── KWD Dashboard Dark Theme ─── */
+.kwd-dash {
+  --background: #1e2430;
+  --foreground: #f0f2f5;
+  --card: #252d3d;
+  --card-foreground: #f0f2f5;
+  --popover: #1e2430;
+  --popover-foreground: #f0f2f5;
+  --primary: #FFD700;
+  --primary-foreground: #1a1a1a;
+  --secondary: #2d3748;
+  --secondary-foreground: #a8a8a8;
+  --muted: #2d3748;
+  --muted-foreground: #8E8E8E;
+  --accent: #374151;
+  --accent-foreground: #FFD700;
+  --destructive: #ff0050;
+  --border: rgba(255,255,255,0.08);
+  --input: rgba(255,255,255,0.06);
+  --ring: #FFD700;
+  --radius: 0.9375rem; /* 15px */
+  --sidebar: #1a2035;
+  --sidebar-foreground: #f0f2f5;
+  --sidebar-primary: #FFD700;
+  --sidebar-primary-foreground: #1a1a1a;
+  --sidebar-accent: #252d3d;
+  --sidebar-accent-foreground: #FFD700;
+  --sidebar-border: rgba(255,255,255,0.06);
+  --sidebar-ring: #FFD700;
+  background-color: var(--background);
+  color: var(--foreground);
+  min-height: 100dvh;
 }
 
 /* ─── Neo-Brutalism Utility Classes ─── */

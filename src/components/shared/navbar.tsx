@@ -1,6 +1,6 @@
-"use client";
+﻿"use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -9,8 +9,156 @@ import { cn } from "@/lib/utils";
 import { LangSwitcher } from "@/components/shared/lang-switcher";
 import { useLang } from "@/context/lang-context";
 import { t } from "@/lib/translations";
+import { logoutAction } from "@/app/actions/auth";
+import type { JWTPayload } from "@/lib/auth";
 
-export function Navbar() {
+interface NavbarProps {
+  session?: JWTPayload | null;
+}
+
+function ProfileMenu({ session }: { session: JWTPayload }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handler(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const initials = session.name
+    .split(" ")
+    .map((n: string) => n[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2);
+
+  const dashboardHref =
+    session.role === "admin"
+      ? "https://dashboard.kesararamwithdigital.tech/admin/overview"
+      : session.role === "teacher"
+        ? "https://dashboard.kesararamwithdigital.tech/teacher/overview"
+        : "/profile/student";
+
+  const roleColor =
+    session.role === "admin"
+      ? "#ff0050"
+      : session.role === "teacher"
+        ? "#006747"
+        : "#3b82f6";
+
+  return (
+    <div ref={ref} className="relative flex-shrink-0">
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex items-center gap-2 px-2 py-1.5 border-2 border-black bg-white shadow-[2px_2px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100"
+        style={{ borderRadius: "15px" }}
+        aria-label="Profile menu"
+        aria-expanded={open}
+      >
+        <div
+          className="flex items-center justify-center text-xs font-bold"
+          style={{
+            width: "28px",
+            height: "28px",
+            borderRadius: "15px",
+            background: "#FFD700",
+            color: "#1a1a1a",
+            flexShrink: 0,
+          }}
+        >
+          {initials}
+        </div>
+        <div className="hidden sm:flex flex-col text-left leading-none">
+          <span className="text-xs font-bold text-black truncate max-w-[80px]">
+            {session.name.split(" ")[0]}
+          </span>
+          <span
+            className="text-[9px] font-semibold uppercase tracking-wider"
+            style={{ color: roleColor }}
+          >
+            {session.role}
+          </span>
+        </div>
+        <svg
+          width="10"
+          height="10"
+          viewBox="0 0 10 10"
+          fill="none"
+          className={cn("hidden sm:block transition-transform", open && "rotate-180")}
+        >
+          <path
+            d="M1 3l4 4 4-4"
+            stroke="#374151"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+
+      {open && (
+        <div
+          className="absolute right-0 mt-2 bg-white border-2 border-black shadow-[4px_4px_0_#000] z-50 min-w-[200px] overflow-hidden"
+          style={{ borderRadius: "15px" }}
+        >
+          <div
+            className="px-4 py-3 border-b-2 border-black"
+            style={{ background: "#f9fafb" }}
+          >
+            <p className="text-xs font-black text-black truncate">{session.name}</p>
+            <p className="text-[10px] text-zinc-500 truncate">{session.email}</p>
+            <span
+              className="inline-block mt-1 text-[9px] font-bold uppercase tracking-widest px-2 py-0.5"
+              style={{ background: roleColor, color: "#fff", borderRadius: "15px" }}
+            >
+              {session.role}
+            </span>
+          </div>
+          <div className="py-1">
+            {(session.role === "admin" || session.role === "teacher") && (
+              <a
+                href={dashboardHref}
+                className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-black hover:bg-yellow-300 transition-colors"
+                onClick={() => setOpen(false)}
+              >
+                <span>&#9707;</span>
+                Dashboard
+              </a>
+            )}
+            {session.role === "student" && (
+              <Link
+                href="/profile/student"
+                className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-black hover:bg-yellow-300 transition-colors"
+                onClick={() => setOpen(false)}
+              >
+                <span>&#9786;</span>
+                My Profile
+              </Link>
+            )}
+            <div className="h-px bg-black/10 my-1" />
+            <form action={logoutAction}>
+              <button
+                type="submit"
+                className="flex w-full items-center gap-2 px-4 py-2.5 text-sm font-semibold hover:bg-red-50 transition-colors"
+                style={{ color: "#ff0050" }}
+              >
+                <span>&#8594;</span>
+                Sign Out
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function Navbar({ session }: NavbarProps) {
   const pathname = usePathname();
   const { lang } = useLang();
   const tr = t[lang].nav;
@@ -53,8 +201,7 @@ export function Navbar() {
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-1 flex-1 justify-center">
             {NAV_ITEMS.map(({ label, href }) => {
-              const active =
-                pathname === href || pathname.startsWith(href + "/");
+              const active = pathname === href || pathname.startsWith(href + "/");
               return (
                 <Link
                   key={href}
@@ -72,15 +219,19 @@ export function Navbar() {
             })}
           </div>
 
-          {/* Lang switcher + Login */}
+          {/* Lang switcher + Auth */}
           <div className="hidden md:flex items-center gap-2 ml-3 flex-shrink-0">
             <LangSwitcher />
-            <Link
-              href="/login"
-              className="px-4 py-1.5 text-sm font-bold bg-yellow-400 text-black border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[5px_5px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 whitespace-nowrap"
-            >
-              {tr.login}
-            </Link>
+            {session ? (
+              <ProfileMenu session={session} />
+            ) : (
+              <Link
+                href="/login"
+                className="px-4 py-1.5 text-sm font-bold bg-yellow-400 text-black border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[5px_5px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 whitespace-nowrap"
+              >
+                {tr.login}
+              </Link>
+            )}
           </div>
 
           {/* Mobile hamburger */}
@@ -107,8 +258,7 @@ export function Navbar() {
           >
             <div className="flex flex-col gap-2">
               {NAV_ITEMS.map(({ label, href }) => {
-                const active =
-                  pathname === href || pathname.startsWith(href + "/");
+                const active = pathname === href || pathname.startsWith(href + "/");
                 return (
                   <Link
                     key={href}
@@ -125,13 +275,51 @@ export function Navbar() {
                   </Link>
                 );
               })}
-              <Link
-                href="/login"
-                onClick={() => setMobileOpen(false)}
-                className="mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center"
-              >
-                {tr.login}
-              </Link>
+
+              {session ? (
+                <>
+                  {(session.role === "admin" || session.role === "teacher") && (
+                    <a
+                      href={
+                        session.role === "admin"
+                          ? "https://dashboard.kesararamwithdigital.tech/admin/overview"
+                          : "https://dashboard.kesararamwithdigital.tech/teacher/overview"
+                      }
+                      onClick={() => setMobileOpen(false)}
+                      className="mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center"
+                    >
+                      Dashboard
+                    </a>
+                  )}
+                  {session.role === "student" && (
+                    <Link
+                      href="/profile/student"
+                      onClick={() => setMobileOpen(false)}
+                      className="mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center"
+                    >
+                      My Profile
+                    </Link>
+                  )}
+                  <form action={logoutAction}>
+                    <button
+                      type="submit"
+                      className="w-full mt-1 px-4 py-3 text-base font-bold border-2 border-black text-center"
+                      style={{ color: "#ff0050" }}
+                    >
+                      Sign Out
+                    </button>
+                  </form>
+                </>
+              ) : (
+                <Link
+                  href="/login"
+                  onClick={() => setMobileOpen(false)}
+                  className="mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center"
+                >
+                  {tr.login}
+                </Link>
+              )}
+
               <div className="mt-2 flex justify-center">
                 <LangSwitcher />
               </div>
@@ -142,3 +330,4 @@ export function Navbar() {
     </>
   );
 }
+
