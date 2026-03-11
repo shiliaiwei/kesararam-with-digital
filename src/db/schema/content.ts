@@ -5,48 +5,38 @@ import {
   integer,
   timestamp,
   boolean,
-  pgEnum,
 } from "drizzle-orm/pg-core";
 import { users } from "./users";
 
-export const categorySlugEnum = pgEnum("category_slug", [
-  "road-sign",
-  "road-traffic",
-  "priority",
-  "driving",
-  "technical",
-  "loading-people-goods",
-  "general-knowledge",
-  "emergency",
-]);
-
-export const contentTypeEnum = pgEnum("content_type", [
-  "sign", // traffic sign with image
-  "qa", // question & answer
-  "scenario", // scenario with image
-  "reference", // reference / law article
-  "contact", // emergency contact
-]);
+export const categories = pgTable("categories", {
+  id: serial("id").primaryKey(),
+  slug: text("slug").notNull(),
+  titleEn: text("title_en").notNull(),
+  titleKm: text("title_km"),
+  sortOrder: integer("sort_order").default(0),
+  isActive: boolean("is_active").default(true).notNull(),
+});
 
 export const contentItems = pgTable("content_items", {
   id: serial("id").primaryKey(),
-  categorySlug: categorySlugEnum("category_slug").notNull(),
-  type: contentTypeEnum("type").notNull().default("qa"),
+  categoryId: integer("category_id").notNull(),
+  type: text("type").notNull(),
   titleEn: text("title_en").notNull(),
-  titleKh: text("title_kh").notNull().default(""),
+  titleKm: text("title_km").notNull().default(""),
   descriptionEn: text("description_en").notNull().default(""),
-  descriptionKh: text("description_kh").notNull().default(""),
-  questionEn: text("question_en").notNull().default(""),
-  questionKh: text("question_kh").notNull().default(""),
-  answerEn: text("answer_en").notNull().default(""),
-  answerKh: text("answer_kh").notNull().default(""),
+  descriptionKm: text("description_km").notNull().default(""),
   imageUrl: text("image_url"),
-  audioUrl: text("audio_url"),
-  score: integer("score").default(10).notNull(),
-  points: integer("points").default(1).notNull(),
-  timeLimitSeconds: integer("time_limit_seconds").default(30).notNull(),
+  audioUrlEn: text("audio_url_en"),
+  audioUrlKm: text("audio_url_km"),
+  questionEn: text("question_en").notNull().default(""),
+  questionKm: text("question_km").notNull().default(""),
+  answerEn: text("answer_en").notNull().default(""),
+  answerKm: text("answer_km").notNull().default(""),
+  scorePoints: integer("score_points").default(10).notNull(),
+  timeLimit: integer("time_limit").default(30).notNull(),
+  difficulty: text("difficulty"),
   sortOrder: integer("sort_order").default(0).notNull(),
-  isPublished: boolean("is_published").default(false).notNull(),
+  isActive: boolean("is_active").default(false).notNull(),
   createdBy: integer("created_by").references(() => users.id),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
@@ -58,9 +48,9 @@ export const flashcards = pgTable("flashcards", {
     .notNull()
     .references(() => contentItems.id),
   frontEn: text("front_en").notNull(),
-  frontKh: text("front_kh").notNull().default(""),
+  frontKm: text("front_km").notNull().default(""),
   backEn: text("back_en").notNull(),
-  backKh: text("back_kh").notNull().default(""),
+  backKm: text("back_km").notNull().default(""),
   imageUrl: text("image_url"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });

@@ -54,7 +54,11 @@ export async function proxy(req: NextRequest) {
   }
 
   // Redirect the main-domain root to /home
-  if (pathname === "/" && hostname !== DASHBOARD_HOSTNAME && !hostname.startsWith("dashboard.")) {
+  if (
+    pathname === "/" &&
+    hostname !== DASHBOARD_HOSTNAME &&
+    !hostname.startsWith("dashboard.")
+  ) {
     return NextResponse.redirect(new URL("/home", req.url));
   }
 

@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
-import { contentItems } from "@/db/schema";
-import { desc } from "drizzle-orm";
+import { contentItems, categories } from "@/db/schema";
+import { desc, eq } from "drizzle-orm";
 import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import {
@@ -40,14 +40,16 @@ export default async function AdminContentPage() {
   const items = await db
     .select({
       id: contentItems.id,
-      categorySlug: contentItems.categorySlug,
+      categoryId: contentItems.categoryId,
+      categorySlug: categories.slug,
       type: contentItems.type,
       titleEn: contentItems.titleEn,
-      isPublished: contentItems.isPublished,
-      score: contentItems.score,
+      isActive: contentItems.isActive,
+      scorePoints: contentItems.scorePoints,
       createdAt: contentItems.createdAt,
     })
     .from(contentItems)
+    .leftJoin(categories, eq(contentItems.categoryId, categories.id))
     .orderBy(desc(contentItems.createdAt));
 
   return (
@@ -86,16 +88,16 @@ export default async function AdminContentPage() {
                   </TableCell>
                   <TableCell>
                     <span className="text-xs bg-muted px-2 py-0.5 rounded-full">
-                      {CATEGORY_LABELS[item.categorySlug] ?? item.categorySlug}
+                      {CATEGORY_LABELS[item.categorySlug ?? ""] ?? item.categorySlug ?? item.categoryId}
                     </span>
                   </TableCell>
                   <TableCell className="capitalize text-sm text-muted-foreground">
                     {item.type}
                   </TableCell>
-                  <TableCell className="text-sm">{item.score}</TableCell>
+                  <TableCell className="text-sm">{item.scorePoints}</TableCell>
                   <TableCell>
-                    <Badge variant={item.isPublished ? "default" : "secondary"}>
-                      {item.isPublished ? "Published" : "Draft"}
+                    <Badge variant={item.isActive ? "default" : "secondary"}>
+                      {item.isActive ? "Active" : "Inactive"}
                     </Badge>
                   </TableCell>
                   <TableCell className="hidden lg:table-cell text-xs text-muted-foreground">
