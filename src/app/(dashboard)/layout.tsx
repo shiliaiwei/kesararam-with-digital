@@ -26,10 +26,9 @@ export default async function DashboardLayout({
           role={session.role as "admin" | "teacher"}
           name={session.name}
           email={session.email}
+          avatar={session.avatar ?? null}
         />
-        <SidebarInset
-          style={{ background: "var(--background)", flex: 1, minWidth: 0 }}
-        >
+        <SidebarInset style={{ background: "#0a0e1a", flex: 1, minWidth: 0 }}>
           <DashboardHeader />
           <main className="flex flex-1 flex-col gap-4 p-4 pt-0">
             {children}

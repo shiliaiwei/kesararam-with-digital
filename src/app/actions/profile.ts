@@ -31,6 +31,10 @@ export async function updateProfileAction(
     }
   }
 
+  // Detect if avatar actually changed (simple string comparison)
+  const oldAvatar = session.avatar ?? null;
+  const avatarChanged = avatar !== null && avatar !== oldAvatar;
+
   try {
     await db
       .update(users)
@@ -38,9 +42,11 @@ export async function updateProfileAction(
         ...(displayName ? { displayName } : {}),
         avatar,
         updatedAt: new Date(),
+        ...(avatarChanged ? { avatarChangedAt: new Date() } : {}),
       })
       .where(eq(users.id, session.id));
-  } catch {
+  } catch (err) {
+    console.error("[profile update error]", err);
     return { error: "Failed to update profile. Please try again." };
   }
 

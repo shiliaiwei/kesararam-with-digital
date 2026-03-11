@@ -103,7 +103,7 @@ function KWDLogoFull({ role }: { role: "admin" | "teacher" }) {
     <div className="flex items-center gap-2.5 px-1">
       <div
         className="flex size-8 shrink-0 items-center justify-center overflow-hidden"
-        style={{ borderRadius: "15px", background: "#FFD700" }}
+        style={{ background: "#FFD700", border: "2px solid #000" }}
       >
         <Image
           src="https://raw.githubusercontent.com/kesararam/kesararam/refs/heads/main/brand/lgo.png"
@@ -136,7 +136,7 @@ function KWDLogoIcon() {
   return (
     <div
       className="flex size-8 shrink-0 items-center justify-center overflow-hidden"
-      style={{ borderRadius: "15px", background: "#FFD700" }}
+      style={{ background: "#FFD700", border: "2px solid #000" }}
     >
       <Image
         src="https://raw.githubusercontent.com/kesararam/kesararam/refs/heads/main/brand/lgo.png"
@@ -169,18 +169,19 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
         {
           "--sidebar": "#1a2035",
           "--sidebar-foreground": "#f0f2f5",
-          "--sidebar-border": "rgba(255,255,255,0.06)",
+          "--sidebar-border": "#FFD700",
           "--sidebar-accent": "#252d3d",
           "--sidebar-accent-foreground": "#FFD700",
           "--sidebar-primary": "#FFD700",
           "--sidebar-primary-foreground": "#1a1a1a",
+          borderRight: "3px solid #FFD700",
         } as React.CSSProperties
       }
     >
       {/* ── Header / Logo ── */}
       <SidebarHeader
         style={{
-          borderBottom: "1px solid rgba(255,215,0,0.15)",
+          borderBottom: "2px solid #FFD700",
           padding: "12px 10px",
         }}
       >
@@ -195,7 +196,7 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
                   }
                 />
               }
-              style={{ borderRadius: "15px" }}
+              style={{ borderRadius: "0" }}
               className="hover:bg-[#252d3d] transition-colors"
             >
               {isCollapsed ? <KWDLogoIcon /> : <KWDLogoFull role={role} />}
@@ -229,14 +230,14 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
                     isActive={active}
                     tooltip={item.label}
                     style={{
-                      borderRadius: "15px",
+                      borderRadius: "0",
                       marginBottom: "2px",
                       background: active
                         ? "rgba(255,215,0,0.12)"
                         : "transparent",
                       borderLeft: active
-                        ? `3px solid ${item.accent}`
-                        : "3px solid transparent",
+                        ? `4px solid ${item.accent}`
+                        : "4px solid transparent",
                       color: active ? "#ffffff" : "#a8a8a8",
                       transition: "all 0.15s ease",
                     }}
@@ -275,10 +276,9 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
           <div style={{ padding: "8px 8px 0" }}>
             <div
               style={{
-                borderRadius: "15px",
                 padding: "8px 12px",
                 background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.06)",
+                border: "2px solid rgba(255,215,0,0.3)",
                 display: "flex",
                 alignItems: "center",
                 gap: "8px",
@@ -336,7 +336,7 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
       {/* ── Footer / User ── */}
       <SidebarFooter
         style={{
-          borderTop: "1px solid rgba(255,255,255,0.06)",
+          borderTop: "2px solid #FFD700",
           padding: "8px 6px",
         }}
       >
@@ -348,7 +348,7 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
                   <SidebarMenuButton
                     size="lg"
                     style={{
-                      borderRadius: "15px",
+                      borderRadius: "0",
                       background: "rgba(255,255,255,0.04)",
                     }}
                     className="hover:bg-[#252d3d]"
@@ -387,9 +387,10 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 style={{
-                  background: "#252d3d",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  borderRadius: "15px",
+                  background: "#1a2035",
+                  border: "2px solid #FFD700",
+                  boxShadow: "4px 4px 0 #FFD700",
+                  borderRadius: "0",
                   minWidth: "200px",
                 }}
                 side="top"
@@ -397,7 +398,7 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
                 sideOffset={4}
               >
                 <DropdownMenuItem
-                  style={{ borderRadius: "15px", cursor: "pointer" }}
+                  style={{ borderRadius: "0", cursor: "pointer" }}
                 >
                   <Link
                     href={
@@ -423,7 +424,7 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem
-                  style={{ borderRadius: "15px", cursor: "pointer" }}
+                  style={{ borderRadius: "0", cursor: "pointer" }}
                 >
                   <form action={logoutAction} className="w-full">
                     <button

@@ -20,6 +20,7 @@ export default async function TeacherProfilePage() {
       username: users.username,
       email: users.email,
       avatar: users.avatar,
+      avatarChangedAt: users.avatarChangedAt,
     })
     .from(users)
     .where(eq(users.id, session.id));
@@ -35,15 +36,15 @@ export default async function TeacherProfilePage() {
           className="flex items-center gap-5 p-5"
           style={{
             background: "#252d3d",
-            border: "1px solid rgba(255,255,255,0.08)",
-            borderRadius: "15px",
+            border: "2px solid rgba(255,255,255,0.2)",
+            boxShadow: "4px 4px 0 rgba(255,255,255,0.15)",
           }}
         >
           <AvatarDisplay
             avatar={user?.avatar ?? null}
             name={name}
             size={80}
-            radius={15}
+            radius={0}
           />
           <div>
             <h1 className="text-xl font-black" style={{ color: "#f0f2f5" }}>
@@ -56,9 +57,9 @@ export default async function TeacherProfilePage() {
               className="inline-flex items-center gap-1.5 mt-2 px-3 py-0.5 text-xs font-bold uppercase tracking-widest"
               style={{
                 background: "rgba(0,103,71,0.2)",
-                color: "#006747",
-                borderRadius: "15px",
-                border: "1px solid rgba(0,103,71,0.4)",
+                color: "#22c55e",
+                border: "2px solid #006747",
+                boxShadow: "2px 2px 0 #006747",
               }}
             >
               <GraduationCap style={{ width: "11px", height: "11px" }} />
@@ -78,6 +79,8 @@ export default async function TeacherProfilePage() {
           <ProfileEditor
             initialName={name}
             initialAvatar={user?.avatar ?? null}
+            initialAvatarChangedAt={user?.avatarChangedAt?.toISOString() ?? null}
+            role="teacher"
             dark
           />
         </div>

@@ -134,7 +134,7 @@ export function Navbar({ session }: NavbarProps) {
   const tr = t[lang].nav;
 
   const NAV_ITEMS = [
-    { label: tr.home, href: "/home" },
+    { label: tr.home, href: "/" },
     { label: tr.learn, href: "/learn" },
     { label: tr.play, href: "/play" },
     { label: tr.leaderboard, href: "/leaderboard" },
@@ -149,7 +149,7 @@ export function Navbar({ session }: NavbarProps) {
       <header className="sticky top-0 left-0 right-0 z-50 bg-white border-b-2 border-black">
         <nav className="flex items-center px-6 py-3 max-w-7xl mx-auto">
           {/* Logo */}
-          <Link href="/home" className="flex items-center gap-2 flex-shrink-0">
+          <Link href="/" className="flex items-center gap-2 flex-shrink-0">
             <div className="w-9 h-9 flex items-center justify-center overflow-hidden">
               <Image
                 src="https://raw.githubusercontent.com/kesararam/kesararam/refs/heads/main/brand/lgo.png"

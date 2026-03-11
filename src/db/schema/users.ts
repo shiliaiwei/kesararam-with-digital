@@ -18,6 +18,7 @@ export const users = pgTable("users", {
   role: roleEnum("role").notNull().default("student"),
   displayName: text("display_name"),
   avatar: text("avatar"),
+  avatarChangedAt: timestamp("avatar_changed_at"),
   isActive: boolean("is_active").default(true).notNull(),
   isSuspended: boolean("is_suspended").default(false).notNull(),
   loginAttempts: integer("login_attempts").default(0).notNull(),
