@@ -14,7 +14,7 @@ import {
   ShieldCheck,
   GraduationCap,
   ChevronRight,
-  RoadHorizon,
+  Route,
   Pencil,
   Info,
   Settings,
@@ -69,7 +69,7 @@ const adminNav: NavItem[] = [
   {
     label: "Road Markings",
     href: "/admin/road-markings",
-    icon: RoadHorizon,
+    icon: Route,
     accent: "#f97316",
   },
   {

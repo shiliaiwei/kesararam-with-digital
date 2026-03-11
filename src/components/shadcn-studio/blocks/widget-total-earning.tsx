@@ -48,16 +48,18 @@ const TotalEarningCard = ({
       <CardHeader className="flex items-center justify-between">
         <span className="text-lg font-semibold">{title}</span>
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-muted-foreground size-6 rounded-full"
-            >
-              <EllipsisVerticalIcon />
-              <span className="sr-only">Menu</span>
-            </Button>
-          </DropdownMenuTrigger>
+          <DropdownMenuTrigger
+            render={
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-muted-foreground size-6 rounded-full"
+              >
+                <EllipsisVerticalIcon />
+                <span className="sr-only">Menu</span>
+              </Button>
+            }
+          />
           <DropdownMenuContent align="end">
             <DropdownMenuGroup>
               {listItems.map((item, index) => (

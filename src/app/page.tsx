@@ -1,17 +1,5 @@
-import { getSession } from "@/lib/auth";
-import { Navbar } from "@/components/shared/navbar";
-import { Footer } from "@/components/shared/footer";
-import HomePageContent from "@/app/(public)/home/page";
+import { redirect } from "next/navigation";
 
-export default async function RootPage() {
-  const session = await getSession();
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar session={session} />
-      <main className="flex-1">
-        <HomePageContent />
-      </main>
-      <Footer />
-    </div>
-  );
+export default function RootPage() {
+  redirect("/home");
 }

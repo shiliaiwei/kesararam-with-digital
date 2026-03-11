@@ -299,8 +299,8 @@ export default TransactionDatatable;
 function RowActions() {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <div className="flex">
+      <DropdownMenuTrigger
+        render={
           <Button
             size="icon"
             variant="ghost"
@@ -309,8 +309,8 @@ function RowActions() {
           >
             <EllipsisVerticalIcon className="size-5" aria-hidden="true" />
           </Button>
-        </div>
-      </DropdownMenuTrigger>
+        }
+      />
       <DropdownMenuContent align="end">
         <DropdownMenuGroup>
           <DropdownMenuItem>

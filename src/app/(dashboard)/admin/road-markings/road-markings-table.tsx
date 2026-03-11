@@ -601,10 +601,8 @@ export function RoadMarkingsTable({ initialRows }: { initialRows: Row[] }) {
                 </TableCell>
                 <TableCell className="text-right">
                   <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <button className="p-1 border-2 border-[#a8a8a8] hover:border-black hover:shadow-[2px_2px_0_#000] transition-all">
-                        <MoreHorizontal className="size-4" />
-                      </button>
+                    <DropdownMenuTrigger className="p-1 border-2 border-[#a8a8a8] hover:border-black hover:shadow-[2px_2px_0_#000] transition-all">
+                      <MoreHorizontal className="size-4" />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
                       align="end"

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { ReactNode } from "react";
+import type { ReactElement } from "react";
 
 import {
   DropdownMenu,
@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 type Props = {
-  trigger: ReactNode;
+  trigger: ReactElement;
   defaultOpen?: boolean;
   align?: "start" | "center" | "end";
 };
@@ -22,7 +22,7 @@ const LanguageDropdown = ({ defaultOpen, align, trigger }: Props) => {
 
   return (
     <DropdownMenu defaultOpen={defaultOpen}>
-      <DropdownMenuTrigger asChild>{trigger}</DropdownMenuTrigger>
+      <DropdownMenuTrigger render={trigger} />
       <DropdownMenuContent className="w-50" align={align || "end"}>
         <DropdownMenuRadioGroup value={language} onValueChange={setLanguage}>
           <DropdownMenuRadioItem

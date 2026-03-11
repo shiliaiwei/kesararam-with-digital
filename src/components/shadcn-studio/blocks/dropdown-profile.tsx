@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactElement } from "react";
 
 import {
   UserIcon,
@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 type Props = {
-  trigger: ReactNode;
+  trigger: ReactElement;
   defaultOpen?: boolean;
   align?: "start" | "center" | "end";
 };
@@ -30,7 +30,7 @@ type Props = {
 const ProfileDropdown = ({ trigger, defaultOpen, align = "end" }: Props) => {
   return (
     <DropdownMenu defaultOpen={defaultOpen}>
-      <DropdownMenuTrigger asChild>{trigger}</DropdownMenuTrigger>
+      <DropdownMenuTrigger render={trigger} />
       <DropdownMenuContent className="w-80" align={align || "end"}>
         <DropdownMenuLabel className="flex items-center gap-4 px-4 py-2.5 font-normal">
           <div className="relative">
