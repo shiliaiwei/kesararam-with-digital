@@ -8,15 +8,12 @@ import {
   deleteUser,
   toggleUserActive,
 } from "@/app/actions/users";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
 import {
@@ -28,21 +25,22 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { MoreHorizontal, Plus, Search, UserCheck, UserX } from "lucide-react";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 
 type UserRow = Pick<
   User,
@@ -56,10 +54,41 @@ type UserRow = Pick<
   | "createdAt"
 >;
 
+type Role = "student" | "teacher" | "admin";
+
+const ROLE_CONFIG: Record<Role, { label: string; active: string }> = {
+  student: { label: "Student", active: "bg-[#3b82f6] text-white" },
+  teacher: { label: "Teacher", active: "bg-[#22c55e] text-white" },
+  admin: { label: "Admin", active: "bg-[#a855f7] text-white" },
+};
+
+function RolePicker({ value, onChange }: { value: Role; onChange: (v: Role) => void }) {
+  return (
+    <div className="flex gap-2">
+      {(Object.keys(ROLE_CONFIG) as Role[]).map((r) => (
+        <button
+          key={r}
+          type="button"
+          onClick={() => onChange(r)}
+          className={cn(
+            "flex-1 py-2 font-black uppercase text-xs tracking-widest border-2 border-black transition-all",
+            value === r
+              ? cn(ROLE_CONFIG[r].active, "shadow-[3px_3px_0_#000]")
+              : "bg-white text-black hover:shadow-[2px_2px_0_#000]"
+          )}
+        >
+          {ROLE_CONFIG[r].label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
   const [open, setOpen] = useState(false);
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState("");
+  const [role, setRole] = useState<Role>("student");
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -71,7 +100,8 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
       } else {
         setOpen(false);
         setError("");
-        toast.success("User created successfully.");
+        setRole("student");
+        toast.success("User created.");
         onSuccess();
       }
     });
@@ -79,81 +109,105 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
 
   return (
     <>
-      <Button size="sm" onClick={() => setOpen(true)}>
-        <Plus className="size-4 mr-1" />
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="flex items-center gap-1.5 px-4 py-2 bg-[#006747] text-white font-black uppercase text-sm border-2 border-black shadow-[4px_4px_0_#000] hover:shadow-[2px_2px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+      >
+        <Plus className="size-4" />
         New User
-      </Button>
+      </button>
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle>Create User</DialogTitle>
-            <DialogDescription>
-              Add a new user to the platform.
-            </DialogDescription>
-          </DialogHeader>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-2">
+        <DialogContent className="sm:max-w-md p-0 border-2 border-black shadow-[6px_6px_0_#000] !rounded-none overflow-hidden">
+          <div className="bg-[#eab308] px-6 py-4 border-b-2 border-black">
+            <DialogTitle className="font-black uppercase text-xl tracking-tight">
+              Create New User
+            </DialogTitle>
+            <p className="text-sm font-medium mt-0.5">Add a new user to the platform.</p>
+          </div>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5 p-6">
+            {/* hidden role — @base-ui/react Select does not write to FormData */}
+            <input type="hidden" name="role" value={role} />
+
             <div className="grid gap-1.5">
-              <Label htmlFor="create-username">Username</Label>
+              <label htmlFor="create-username" className="font-black uppercase text-xs tracking-widest">
+                Username *
+              </label>
               <Input
                 id="create-username"
                 name="username"
                 required
                 placeholder="e.g. sopheak01"
+                className="border-2 border-[#a8a8a8] !rounded-none focus-visible:border-black focus-visible:ring-0 font-medium"
               />
             </div>
+
             <div className="grid gap-1.5">
-              <Label htmlFor="create-email">Email</Label>
+              <label htmlFor="create-email" className="font-black uppercase text-xs tracking-widest">
+                Email *
+              </label>
               <Input
                 id="create-email"
                 name="email"
                 type="email"
                 required
                 placeholder="user@kwd.tech"
+                className="border-2 border-[#a8a8a8] !rounded-none focus-visible:border-black focus-visible:ring-0 font-medium"
               />
             </div>
+
             <div className="grid gap-1.5">
-              <Label htmlFor="create-displayName">Display Name</Label>
+              <label htmlFor="create-display" className="font-black uppercase text-xs tracking-widest">
+                Display Name
+              </label>
               <Input
-                id="create-displayName"
+                id="create-display"
                 name="displayName"
                 placeholder="Sopheak Chan"
+                className="border-2 border-[#a8a8a8] !rounded-none focus-visible:border-black focus-visible:ring-0 font-medium"
               />
             </div>
+
             <div className="grid gap-1.5">
-              <Label htmlFor="create-role">Role</Label>
-              <Select name="role" defaultValue="student" required>
-                <SelectTrigger id="create-role">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="student">Student</SelectItem>
-                  <SelectItem value="teacher">Teacher</SelectItem>
-                  <SelectItem value="admin">Admin</SelectItem>
-                </SelectContent>
-              </Select>
+              <span className="font-black uppercase text-xs tracking-widest">Role *</span>
+              <RolePicker value={role} onChange={setRole} />
             </div>
+
             <div className="grid gap-1.5">
-              <Label htmlFor="create-password">Password</Label>
+              <label htmlFor="create-password" className="font-black uppercase text-xs tracking-widest">
+                Password *
+              </label>
               <Input
                 id="create-password"
                 name="password"
                 type="password"
                 required
                 placeholder="••••••••"
+                className="border-2 border-[#a8a8a8] !rounded-none focus-visible:border-black focus-visible:ring-0 font-medium"
               />
             </div>
-            {error && <p className="text-sm text-destructive">{error}</p>}
-            <div className="flex justify-end gap-2">
-              <Button
+
+            {error && (
+              <p className="text-sm font-bold text-white bg-[#ef4444] border-2 border-black px-3 py-2 shadow-[2px_2px_0_#000]">
+                {error}
+              </p>
+            )}
+
+            <div className="flex justify-end gap-3 pt-1">
+              <button
                 type="button"
-                variant="outline"
                 onClick={() => setOpen(false)}
+                className="px-4 py-2 font-black uppercase text-sm border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[1px_1px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
               >
                 Cancel
-              </Button>
-              <Button type="submit" disabled={pending}>
-                {pending ? "Creating…" : "Create"}
-              </Button>
+              </button>
+              <button
+                type="submit"
+                disabled={pending}
+                className="px-4 py-2 bg-[#006747] text-white font-black uppercase text-sm border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[1px_1px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {pending ? "Creating..." : "Create User"}
+              </button>
             </div>
           </form>
         </DialogContent>
@@ -172,6 +226,8 @@ function EditUserDialog({
   const [open, setOpen] = useState(false);
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState("");
+  const [role, setRole] = useState<Role>(user.role as Role);
+  const [isActive, setIsActive] = useState(user.isActive);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -193,86 +249,116 @@ function EditUserDialog({
     <>
       <DropdownMenuItem onClick={() => setOpen(true)}>Edit</DropdownMenuItem>
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle>Edit User</DialogTitle>
-            <DialogDescription>
+        <DialogContent className="sm:max-w-md p-0 border-2 border-black shadow-[6px_6px_0_#000] !rounded-none overflow-hidden">
+          <div className="bg-[#3b82f6] px-6 py-4 border-b-2 border-black">
+            <DialogTitle className="font-black uppercase text-xl tracking-tight text-white">
+              Edit User
+            </DialogTitle>
+            <p className="text-sm font-medium mt-0.5 text-white/90">
               Update account details for {user.username}.
-            </DialogDescription>
-          </DialogHeader>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-2">
+            </p>
+          </div>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5 p-6">
+            {/* hidden fields — @base-ui/react Select does not write to FormData */}
+            <input type="hidden" name="role" value={role} />
+            <input type="hidden" name="isActive" value={String(isActive)} />
+
             <div className="grid gap-1.5">
-              <Label htmlFor="edit-email">Email</Label>
+              <label htmlFor="edit-email" className="font-black uppercase text-xs tracking-widest">
+                Email *
+              </label>
               <Input
                 id="edit-email"
                 name="email"
                 type="email"
                 required
                 defaultValue={user.email}
+                className="border-2 border-[#a8a8a8] !rounded-none focus-visible:border-black focus-visible:ring-0 font-medium"
               />
             </div>
+
             <div className="grid gap-1.5">
-              <Label htmlFor="edit-displayName">Display Name</Label>
+              <label htmlFor="edit-display" className="font-black uppercase text-xs tracking-widest">
+                Display Name
+              </label>
               <Input
-                id="edit-displayName"
+                id="edit-display"
                 name="displayName"
                 defaultValue={user.displayName ?? ""}
+                className="border-2 border-[#a8a8a8] !rounded-none focus-visible:border-black focus-visible:ring-0 font-medium"
               />
             </div>
+
             <div className="grid gap-1.5">
-              <Label htmlFor="edit-role">Role</Label>
-              <Select name="role" defaultValue={user.role}>
-                <SelectTrigger id="edit-role">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="student">Student</SelectItem>
-                  <SelectItem value="teacher">Teacher</SelectItem>
-                  <SelectItem value="admin">Admin</SelectItem>
-                </SelectContent>
-              </Select>
+              <span className="font-black uppercase text-xs tracking-widest">Role</span>
+              <RolePicker value={role} onChange={setRole} />
             </div>
+
             <div className="grid gap-1.5">
-              <Label>Status</Label>
-              <Select
-                name="isActive"
-                defaultValue={user.isActive ? "true" : "false"}
-              >
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="true">Active</SelectItem>
-                  <SelectItem value="false">Inactive</SelectItem>
-                </SelectContent>
-              </Select>
+              <span className="font-black uppercase text-xs tracking-widest">Status</span>
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIsActive(true)}
+                  className={cn(
+                    "flex-1 py-2 font-black uppercase text-xs tracking-widest border-2 border-black transition-all",
+                    isActive
+                      ? "bg-[#22c55e] text-white shadow-[3px_3px_0_#000]"
+                      : "bg-white text-black hover:shadow-[2px_2px_0_#000]"
+                  )}
+                >
+                  Active
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsActive(false)}
+                  className={cn(
+                    "flex-1 py-2 font-black uppercase text-xs tracking-widest border-2 border-black transition-all",
+                    !isActive
+                      ? "bg-[#ef4444] text-white shadow-[3px_3px_0_#000]"
+                      : "bg-white text-black hover:shadow-[2px_2px_0_#000]"
+                  )}
+                >
+                  Inactive
+                </button>
+              </div>
             </div>
+
             <div className="grid gap-1.5">
-              <Label htmlFor="edit-password">
+              <label htmlFor="edit-password" className="font-black uppercase text-xs tracking-widest">
                 New Password{" "}
-                <span className="text-muted-foreground font-normal">
-                  (leave blank to keep)
-                </span>
-              </Label>
+                <span className="text-[#a8a8a8] font-medium normal-case">(leave blank to keep)</span>
+              </label>
               <Input
                 id="edit-password"
                 name="password"
                 type="password"
                 placeholder="••••••••"
+                className="border-2 border-[#a8a8a8] !rounded-none focus-visible:border-black focus-visible:ring-0 font-medium"
               />
             </div>
-            {error && <p className="text-sm text-destructive">{error}</p>}
-            <div className="flex justify-end gap-2">
-              <Button
+
+            {error && (
+              <p className="text-sm font-bold text-white bg-[#ef4444] border-2 border-black px-3 py-2 shadow-[2px_2px_0_#000]">
+                {error}
+              </p>
+            )}
+
+            <div className="flex justify-end gap-3 pt-1">
+              <button
                 type="button"
-                variant="outline"
                 onClick={() => setOpen(false)}
+                className="px-4 py-2 font-black uppercase text-sm border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[1px_1px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
               >
                 Cancel
-              </Button>
-              <Button type="submit" disabled={pending}>
-                {pending ? "Saving…" : "Save"}
-              </Button>
+              </button>
+              <button
+                type="submit"
+                disabled={pending}
+                className="px-4 py-2 bg-[#3b82f6] text-white font-black uppercase text-sm border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[1px_1px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {pending ? "Saving..." : "Save Changes"}
+              </button>
             </div>
           </form>
         </DialogContent>
@@ -329,9 +415,9 @@ export function UsersTable({ initialUsers }: { initialUsers: UserRow[] }) {
   });
 
   const roleColors: Record<string, string> = {
-    admin: "bg-purple-100 text-purple-700 border-purple-200",
-    teacher: "bg-blue-100 text-blue-700 border-blue-200",
-    student: "bg-green-100 text-green-700 border-green-200",
+    admin: "bg-[#a855f7] text-white border-[#a855f7]",
+    teacher: "bg-[#22c55e] text-white border-[#22c55e]",
+    student: "bg-[#3b82f6] text-white border-[#3b82f6]",
   };
 
   return (
@@ -390,7 +476,7 @@ export function UsersTable({ initialUsers }: { initialUsers: UserRow[] }) {
                 </TableCell>
                 <TableCell>
                   <span
-                    className={`inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium capitalize ${roleColors[u.role]}`}
+                    className={`inline-flex items-center border-2 px-2 py-0.5 text-xs font-black uppercase tracking-widest ${roleColors[u.role]}`}
                   >
                     {u.role}
                   </span>
