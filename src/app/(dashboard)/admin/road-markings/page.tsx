@@ -11,22 +11,44 @@ export default async function AdminRoadMarkingsPage() {
   const session = await getSession();
   if (!session || session.role !== "admin") redirect("/login");
 
-  const rows = await db
-    .select({
-      id: roadMarkings.id,
-      category: roadMarkings.category,
-      nameEn: roadMarkings.nameEn,
-      nameKm: roadMarkings.nameKm,
-      descriptionEn: roadMarkings.descriptionEn,
-      descriptionKm: roadMarkings.descriptionKm,
-      imageUrl: roadMarkings.imageUrl,
-      colorCode: roadMarkings.colorCode,
-      isActive: roadMarkings.isActive,
-      sortOrder: roadMarkings.sortOrder,
-      createdAt: roadMarkings.createdAt,
-    })
-    .from(roadMarkings)
-    .orderBy(desc(roadMarkings.createdAt));
+  type RoadMarkingRow = {
+    id: number;
+    category: string;
+    nameEn: string;
+    nameKm: string;
+    descriptionEn: string;
+    descriptionKm: string;
+    imageUrl: string | null;
+    colorCode: string | null;
+    isActive: boolean;
+    sortOrder: number;
+    createdAt: Date;
+  };
+  let rows: RoadMarkingRow[] = [];
+  let dbError: string | null = null;
+
+  try {
+    rows = await db
+      .select({
+        id: roadMarkings.id,
+        category: roadMarkings.category,
+        nameEn: roadMarkings.nameEn,
+        nameKm: roadMarkings.nameKm,
+        descriptionEn: roadMarkings.descriptionEn,
+        descriptionKm: roadMarkings.descriptionKm,
+        imageUrl: roadMarkings.imageUrl,
+        colorCode: roadMarkings.colorCode,
+        isActive: roadMarkings.isActive,
+        sortOrder: roadMarkings.sortOrder,
+        createdAt: roadMarkings.createdAt,
+      })
+      .from(roadMarkings)
+      .orderBy(desc(roadMarkings.createdAt));
+  } catch (err) {
+    console.error("[road-markings] DB error:", err);
+    dbError =
+      "Database table not found. Run `npx drizzle-kit push` to create the road_markings table.";
+  }
 
   return (
     <div className="flex flex-col gap-6 py-4">
@@ -81,9 +103,18 @@ export default async function AdminRoadMarkingsPage() {
       </div>
 
       {/* Main CRUD table */}
-      <div className="border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] bg-white p-5">
-        <RoadMarkingsTable initialRows={rows} />
-      </div>
+      {dbError ? (
+        <div className="border-2 border-[#ef4444] bg-[#fda4af] shadow-[4px_4px_0_#000] p-5">
+          <p className="font-black uppercase text-sm text-black tracking-widest">
+            DB Setup Required
+          </p>
+          <p className="text-sm text-black mt-1">{dbError}</p>
+        </div>
+      ) : (
+        <div className="border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] bg-white p-5">
+          <RoadMarkingsTable initialRows={rows} />
+        </div>
+      )}
     </div>
   );
 }

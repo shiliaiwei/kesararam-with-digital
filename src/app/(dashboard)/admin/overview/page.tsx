@@ -16,52 +16,65 @@ import { Users, School, ShieldCheck, UserCheck } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 async function getStats() {
-  const [totalUsers] = await db.select({ c: count() }).from(users);
-  const [students] = await db
-    .select({ c: count() })
-    .from(users)
-    .where(eq(users.role, "student"));
-  const [teachers] = await db
-    .select({ c: count() })
-    .from(users)
-    .where(eq(users.role, "teacher"));
-  const [admins] = await db
-    .select({ c: count() })
-    .from(users)
-    .where(eq(users.role, "admin"));
-  const [totalClasses] = await db.select({ c: count() }).from(classes);
-  const recentUsers = await db
-    .select({
-      id: users.id,
-      username: users.username,
-      displayName: users.displayName,
-      email: users.email,
-      role: users.role,
-      isActive: users.isActive,
-      createdAt: users.createdAt,
-    })
-    .from(users)
-    .orderBy(desc(users.createdAt))
-    .limit(5);
-  const recentLogs = await db
-    .select({
-      id: auditLogs.id,
-      action: auditLogs.action,
-      entityType: auditLogs.entityType,
-      createdAt: auditLogs.createdAt,
-    })
-    .from(auditLogs)
-    .orderBy(desc(auditLogs.createdAt))
-    .limit(5);
-  return {
-    totalUsers: totalUsers.c,
-    students: students.c,
-    teachers: teachers.c,
-    admins: admins.c,
-    totalClasses: totalClasses.c,
-    recentUsers,
-    recentLogs,
-  };
+  try {
+    const [totalUsers] = await db.select({ c: count() }).from(users);
+    const [students] = await db
+      .select({ c: count() })
+      .from(users)
+      .where(eq(users.role, "student"));
+    const [teachers] = await db
+      .select({ c: count() })
+      .from(users)
+      .where(eq(users.role, "teacher"));
+    const [admins] = await db
+      .select({ c: count() })
+      .from(users)
+      .where(eq(users.role, "admin"));
+    const [totalClasses] = await db.select({ c: count() }).from(classes);
+    const recentUsers = await db
+      .select({
+        id: users.id,
+        username: users.username,
+        displayName: users.displayName,
+        email: users.email,
+        role: users.role,
+        isActive: users.isActive,
+        createdAt: users.createdAt,
+      })
+      .from(users)
+      .orderBy(desc(users.createdAt))
+      .limit(5);
+    const recentLogs = await db
+      .select({
+        id: auditLogs.id,
+        action: auditLogs.action,
+        entityType: auditLogs.entityType,
+        createdAt: auditLogs.createdAt,
+      })
+      .from(auditLogs)
+      .orderBy(desc(auditLogs.createdAt))
+      .limit(5);
+    return {
+      totalUsers: totalUsers.c,
+      students: students.c,
+      teachers: teachers.c,
+      admins: admins.c,
+      totalClasses: totalClasses.c,
+      recentUsers,
+      recentLogs,
+    };
+  } catch (err) {
+    console.error("[admin overview] DB error:", err);
+    return {
+      totalUsers: 0,
+      students: 0,
+      teachers: 0,
+      admins: 0,
+      totalClasses: 0,
+      recentUsers: [],
+      recentLogs: [],
+    };
+  }
 }
 
 const STAT_CARDS = [
