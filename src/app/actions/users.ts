@@ -33,9 +33,7 @@ export async function createUser(formData: FormData) {
       passwordHash: hashPassword(password),
       role,
       isActive: true,
-      isSuspended: false,
       loginAttempts: 0,
-      createdBy: session.id,
     });
     revalidatePath("/admin/users");
     return { success: true };
