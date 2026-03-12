@@ -36,17 +36,21 @@ export async function updateProfileAction(
   const avatarChanged = avatar !== null && avatar !== oldAvatar;
 
   try {
+    const updateData: Record<string, unknown> = {
+      updatedAt: new Date(),
+    };
+    if (displayName) updateData.displayName = displayName;
+    // Only set avatar if it's not null (don't clear existing avatar)
+    if (avatar !== null) updateData.avatar = avatar;
+    if (avatarChanged) updateData.avatarChangedAt = new Date();
+
     await db
       .update(users)
-      .set({
-        ...(displayName ? { displayName } : {}),
-        avatar,
-        updatedAt: new Date(),
-        ...(avatarChanged ? { avatarChangedAt: new Date() } : {}),
-      })
+      .set(updateData)
       .where(eq(users.id, session.id));
   } catch (err) {
-    console.error("[profile update error]", err);
+    const detail = (err as { cause?: { message?: string } }).cause?.message ?? (err instanceof Error ? err.message : "unknown");
+    console.error("[profile update error]", detail);
     return { error: "Failed to update profile. Please try again." };
   }
 

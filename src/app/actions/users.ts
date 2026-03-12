@@ -15,11 +15,11 @@ export async function createUser(formData: FormData) {
   const session = await getSession();
   if (!session || session.role !== "admin") throw new Error("Unauthorized");
 
-  const username = (formData.get("username") as string).trim().toLowerCase();
-  const email = (formData.get("email") as string).trim().toLowerCase();
-  const displayName = (formData.get("displayName") as string).trim();
-  const password = formData.get("password") as string;
-  const role = formData.get("role") as "student" | "teacher" | "admin";
+  const username = ((formData.get("username") as string) ?? "").trim().toLowerCase();
+  const email = ((formData.get("email") as string) ?? "").trim().toLowerCase();
+  const displayName = ((formData.get("displayName") as string) ?? "").trim();
+  const password = (formData.get("password") as string) ?? "";
+  const role = (formData.get("role") as "student" | "teacher" | "admin") ?? "student";
 
   if (!username || !email || !password || !role) {
     return { error: "All fields are required." };
@@ -38,8 +38,11 @@ export async function createUser(formData: FormData) {
     revalidatePath("/admin/users");
     return { success: true };
   } catch (e: unknown) {
+    // Neon HTTP driver wraps errors — check e.cause.code for postgres error codes
+    // 23505 = unique_violation
+    const code = (e as { cause?: { code?: string } }).cause?.code;
     const msg = e instanceof Error ? e.message : "";
-    if (msg.includes("unique"))
+    if (code === "23505" || msg.includes("unique") || msg.includes("duplicate"))
       return { error: "Username or email already exists." };
     return { error: "Failed to create user." };
   }
