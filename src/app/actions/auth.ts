@@ -37,7 +37,8 @@ export async function loginAction(
       .where(or(eq(users.email, login), eq(users.username, login)));
     user = found;
   } catch (e) {
-    console.error("DB error during login:", e);
+    const detail = (e as { cause?: { message?: string } }).cause?.message ?? (e instanceof Error ? e.message : String(e));
+    console.error("[login] DB SELECT failed:", detail);
     return { error: "Service unavailable. Please try again later." };
   }
 
