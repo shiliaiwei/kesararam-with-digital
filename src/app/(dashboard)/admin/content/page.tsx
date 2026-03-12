@@ -37,20 +37,35 @@ export default async function AdminContentPage() {
   const session = await getSession();
   if (!session || session.role !== "admin") redirect("/login");
 
-  const items = await db
-    .select({
-      id: contentItems.id,
-      categoryId: contentItems.categoryId,
-      categorySlug: categories.slug,
-      type: contentItems.type,
-      titleEn: contentItems.titleEn,
-      isActive: contentItems.isActive,
-      scorePoints: contentItems.scorePoints,
-      createdAt: contentItems.createdAt,
-    })
-    .from(contentItems)
-    .leftJoin(categories, eq(contentItems.categoryId, categories.id))
-    .orderBy(desc(contentItems.createdAt));
+  let items: {
+    id: number;
+    categoryId: number;
+    categorySlug: string | null;
+    type: string;
+    titleEn: string;
+    isActive: boolean;
+    scorePoints: number;
+    createdAt: Date;
+  }[] = [];
+
+  try {
+    items = await db
+      .select({
+        id: contentItems.id,
+        categoryId: contentItems.categoryId,
+        categorySlug: categories.slug,
+        type: contentItems.type,
+        titleEn: contentItems.titleEn,
+        isActive: contentItems.isActive,
+        scorePoints: contentItems.scorePoints,
+        createdAt: contentItems.createdAt,
+      })
+      .from(contentItems)
+      .leftJoin(categories, eq(contentItems.categoryId, categories.id))
+      .orderBy(desc(contentItems.createdAt));
+  } catch (err) {
+    console.error("[admin content] DB error:", err);
+  }
 
   return (
     <div className="flex flex-col gap-6 py-4">

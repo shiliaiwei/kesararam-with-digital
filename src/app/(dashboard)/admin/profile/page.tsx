@@ -12,17 +12,30 @@ export default async function AdminProfilePage() {
   const session = await getSession();
   if (!session || session.role !== "admin") redirect("/login");
 
-  const [user] = await db
-    .select({
-      displayName: users.displayName,
-      username: users.username,
-      email: users.email,
-      avatar: users.avatar,
-      avatarChangedAt: users.avatarChangedAt,
-      createdAt: users.createdAt,
-    })
-    .from(users)
-    .where(eq(users.id, session.id));
+  let user: {
+    displayName: string | null;
+    username: string;
+    email: string;
+    avatar: string | null;
+    avatarChangedAt: Date | null;
+    createdAt: Date;
+  } | undefined;
+
+  try {
+    [user] = await db
+      .select({
+        displayName: users.displayName,
+        username: users.username,
+        email: users.email,
+        avatar: users.avatar,
+        avatarChangedAt: users.avatarChangedAt,
+        createdAt: users.createdAt,
+      })
+      .from(users)
+      .where(eq(users.id, session.id));
+  } catch (err) {
+    console.error("[admin profile] DB error:", err);
+  }
 
   const name = user?.displayName ?? user?.username ?? session.name;
 

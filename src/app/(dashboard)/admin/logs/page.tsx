@@ -25,21 +25,36 @@ export default async function AdminLogsPage() {
   const session = await getSession();
   if (!session || session.role !== "admin") redirect("/login");
 
-  const logs = await db
-    .select({
-      id: auditLogs.id,
-      action: auditLogs.action,
-      entityType: auditLogs.entityType,
-      entityId: auditLogs.entityId,
-      ipAddress: auditLogs.ipAddress,
-      createdAt: auditLogs.createdAt,
-      userEmail: users.email,
-      username: users.username,
-    })
-    .from(auditLogs)
-    .leftJoin(users, eq(auditLogs.userId, users.id))
-    .orderBy(desc(auditLogs.createdAt))
-    .limit(100);
+  let logs: {
+    id: number;
+    action: string;
+    entityType: string | null;
+    entityId: number | null;
+    ipAddress: string | null;
+    createdAt: Date;
+    userEmail: string | null;
+    username: string | null;
+  }[] = [];
+
+  try {
+    logs = await db
+      .select({
+        id: auditLogs.id,
+        action: auditLogs.action,
+        entityType: auditLogs.entityType,
+        entityId: auditLogs.entityId,
+        ipAddress: auditLogs.ipAddress,
+        createdAt: auditLogs.createdAt,
+        userEmail: users.email,
+        username: users.username,
+      })
+      .from(auditLogs)
+      .leftJoin(users, eq(auditLogs.userId, users.id))
+      .orderBy(desc(auditLogs.createdAt))
+      .limit(100);
+  } catch (err) {
+    console.error("[admin logs] DB error:", err);
+  }
 
   return (
     <div className="flex flex-col gap-6 py-4">
