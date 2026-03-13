@@ -1,4 +1,4 @@
-﻿import { db } from "@/lib/db";
+import { db } from "@/lib/db";
 import { users, classes, auditLogs } from "@/db/schema";
 import { count, eq, desc } from "drizzle-orm";
 import { getSession } from "@/lib/auth";
@@ -11,7 +11,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Users, School, ShieldCheck, UserCheck } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Users, School, ShieldCheck, UserCheck, Activity } from "lucide-react";
+import { OverviewChart } from "@/components/dashboard/overview-chart";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export const dynamic = "force-dynamic";
 
@@ -54,6 +64,7 @@ async function getStats() {
       .from(auditLogs)
       .orderBy(desc(auditLogs.createdAt))
       .limit(5);
+    
     return {
       totalUsers: totalUsers.c,
       students: students.c,
@@ -77,226 +88,185 @@ async function getStats() {
   }
 }
 
-const STAT_CARDS = [
-  {
-    key: "totalUsers",
-    label: "Total Users",
-    icon: Users,
-    accent: "#3b82f6",
-    bar: "#3b82f6",
-  },
-  {
-    key: "students",
-    label: "Students",
-    icon: UserCheck,
-    accent: "#006747",
-    bar: "#006747",
-  },
-  {
-    key: "teachers",
-    label: "Teachers",
-    icon: School,
-    accent: "#f97316",
-    bar: "#f97316",
-  },
-  {
-    key: "admins",
-    label: "Admins",
-    icon: ShieldCheck,
-    accent: "#a855f7",
-    bar: "#a855f7",
-  },
-] as const;
-
 export default async function AdminOverviewPage() {
   const session = await getSession();
   if (!session || session.role !== "admin") redirect("/login");
   const stats = await getStats();
 
+  const chartData = [
+    { name: "Students", total: stats.students },
+    { name: "Teachers", stats: stats.teachers }, // Fixed typo in next render pass? No, just keep simple
+    { name: "Admins", total: stats.admins },
+  ];
+  // Correct chart data structure
+  const roleChartData = [
+    { name: "Students", total: stats.students },
+    { name: "Teachers", total: stats.teachers },
+    { name: "Admins", total: stats.admins },
+  ];
+
+
   return (
-    <div className="flex flex-col gap-6 py-4">
-      {/* Page header */}
-      <div className="border-b-[3px] border-black pb-4 flex items-end justify-between">
+    <div className="flex flex-col gap-6">
+      <div className="flex items-center justify-between space-y-2">
         <div>
-          <h1 className="text-3xl font-black uppercase tracking-tighter text-black">
-            Dashboard
-          </h1>
-          <p className="text-sm font-bold text-[#a8a8a8] uppercase tracking-widest mt-1">
+          <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
+          <p className="text-muted-foreground">
             Overview of the KWD platform.
           </p>
         </div>
-        <div className="flex gap-1 items-center border-2 border-black bg-white shadow-[4px_4px_0_#000] px-3 py-1.5">
-          <div className="w-3 h-3 bg-[#ef4444] border border-black" />
-          <div className="w-3 h-3 bg-[#eab308] border border-black" />
-          <div className="w-3 h-3 bg-[#006747] border border-black" />
-        </div>
       </div>
 
-      {/* Stat cards */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {STAT_CARDS.map((s) => {
-          const Icon = s.icon;
-          const value = stats[s.key];
-          return (
-            <div
-              key={s.key}
-              className="border-2 border-[#a8a8a8] bg-[#ffffff] shadow-[4px_4px_0_#000] flex flex-col"
-            >
-              <div className="h-1.5 w-full" style={{ background: s.accent }} />
-              <div className="flex items-start justify-between p-4 pb-2">
-                <p className="text-xs font-black uppercase tracking-widest text-[#a8a8a8]">
-                  {s.label}
-                </p>
-                <div
-                  className="border-2 border-[#a8a8a8] p-1"
-                  style={{ color: s.accent }}
-                >
-                  <Icon className="size-4" />
-                </div>
-              </div>
-              <div className="px-4 pb-4">
-                <span className="text-5xl font-black text-black leading-none">
-                  {value}
-                </span>
-              </div>
-            </div>
-          );
-        })}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Total Users</CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{stats.totalUsers}</div>
+            <p className="text-xs text-muted-foreground">
+              Across all roles
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Students</CardTitle>
+            <UserCheck className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{stats.students}</div>
+            <p className="text-xs text-muted-foreground">
+              Active learners
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Teachers</CardTitle>
+            <School className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{stats.teachers}</div>
+            <p className="text-xs text-muted-foreground">
+              Instructors
+            </p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Total Classes</CardTitle>
+            <Activity className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{stats.totalClasses}</div>
+            <p className="text-xs text-muted-foreground">
+              Active courses
+            </p>
+          </CardContent>
+        </Card>
       </div>
 
-      {/* Tables row */}
-      <div className="grid gap-6 lg:grid-cols-2">
-        {/* Recent Users */}
-        <div className="border-2 border-[#a8a8a8] bg-[#ffffff] shadow-[4px_4px_0_#000]">
-          <div className="border-b-2 border-black bg-[#006747] px-4 py-3 flex items-center justify-between">
-            <div>
-              <h2 className="font-black uppercase tracking-widest text-white text-sm">
-                Recent Users
-              </h2>
-              <p className="text-white/80 text-xs font-medium mt-0.5">
-                The 5 most recently created accounts.
-              </p>
-            </div>
-            <Users className="size-5 text-white/70" />
-          </div>
-          <Table>
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+        <Card className="col-span-4">
+          <CardHeader>
+            <CardTitle>User Distribution</CardTitle>
+          </CardHeader>
+          <CardContent className="pl-2">
+            <OverviewChart data={roleChartData} />
+          </CardContent>
+        </Card>
+        <Card className="col-span-3">
+          <CardHeader>
+            <CardTitle>Recent Activity</CardTitle>
+            <CardDescription>
+              Latest audit log entries.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Action</TableHead>
+                  <TableHead>Time</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {stats.recentLogs.map((l) => (
+                  <TableRow key={l.id}>
+                    <TableCell className="font-medium">
+                      <div className="flex flex-col">
+                        <span>{l.action}</span>
+                        <span className="text-xs text-muted-foreground">{l.entityType}</span>
+                      </div>
+                    </TableCell>
+                    <TableCell className="text-xs text-muted-foreground">
+                      {new Date(l.createdAt).toLocaleDateString()}
+                    </TableCell>
+                  </TableRow>
+                ))}
+                {stats.recentLogs.length === 0 && (
+                  <TableRow>
+                    <TableCell colSpan={2} className="text-center text-sm text-muted-foreground">
+                      No activity yet.
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+      </div>
+      
+      <Card>
+        <CardHeader>
+          <CardTitle>Recent Users</CardTitle>
+          <CardDescription>
+            New users joined the platform.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+           <Table>
             <TableHeader>
-              <TableRow className="border-b-2 border-[#a8a8a8] bg-[#f5f5f0] hover:bg-[#f5f5f0]">
-                <TableHead className="font-black text-black uppercase text-xs tracking-widest py-3">
-                  Name
-                </TableHead>
-                <TableHead className="font-black text-black uppercase text-xs tracking-widest">
-                  Role
-                </TableHead>
-                <TableHead className="font-black text-black uppercase text-xs tracking-widest">
-                  Status
-                </TableHead>
+              <TableRow>
+                <TableHead>User</TableHead>
+                <TableHead>Role</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Date</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {stats.recentUsers.map((u) => (
-                <TableRow
-                  key={u.id}
-                  className="border-b-2 border-[#a8a8a8] hover:bg-[#f5f5f0]"
-                >
-                  <TableCell className="border-r-2 border-[#a8a8a8] p-3">
-                    <div className="font-black text-black text-sm">
-                      {u.displayName ?? u.username}
-                    </div>
-                    <div className="text-xs text-[#a8a8a8] font-medium mt-0.5">
-                      {u.email}
+                <TableRow key={u.id}>
+                  <TableCell>
+                    <div className="flex flex-col">
+                      <span className="font-medium">{u.displayName || u.username}</span>
+                      <span className="text-xs text-muted-foreground">{u.email}</span>
                     </div>
                   </TableCell>
-                  <TableCell className="border-r-2 border-[#a8a8a8] p-3">
-                    <span className="inline-block px-2 py-0.5 text-xs font-black uppercase tracking-widest border-2 border-[#a8a8a8] bg-white text-black shadow-[2px_2px_0_#000]">
-                      {u.role}
-                    </span>
-                  </TableCell>
-                  <TableCell className="p-3">
-                    <span
-                      className={`inline-block px-2 py-0.5 text-xs font-black uppercase tracking-widest border-2 border-black ${
-                        u.isActive
-                          ? "bg-[#22c55e] text-black"
-                          : "bg-[#a8a8a8] text-white"
-                      }`}
-                    >
+                  <TableCell className="capitalize">{u.role}</TableCell>
+                  <TableCell>
+                    <Badge variant={u.isActive ? "default" : "secondary"}>
                       {u.isActive ? "Active" : "Inactive"}
-                    </span>
+                    </Badge>
                   </TableCell>
+                   <TableCell className="text-muted-foreground">
+                      {new Date(u.createdAt).toLocaleDateString()}
+                    </TableCell>
                 </TableRow>
               ))}
               {stats.recentUsers.length === 0 && (
                 <TableRow>
-                  <TableCell
-                    colSpan={3}
-                    className="text-center text-[#a8a8a8] text-sm font-bold py-10 uppercase tracking-widest"
-                  >
+                  <TableCell colSpan={4} className="text-center text-sm text-muted-foreground">
                     No users yet.
                   </TableCell>
                 </TableRow>
               )}
             </TableBody>
           </Table>
-        </div>
-
-        {/* Recent Activity */}
-        <div className="border-2 border-[#a8a8a8] bg-[#ffffff] shadow-[4px_4px_0_#000]">
-          <div className="border-b-2 border-black bg-[#3b82f6] px-4 py-3 flex items-center justify-between">
-            <div>
-              <h2 className="font-black uppercase tracking-widest text-white text-sm">
-                Recent Activity
-              </h2>
-              <p className="text-white/80 text-xs font-medium mt-0.5">
-                Latest audit log entries.
-              </p>
-            </div>
-            <ShieldCheck className="size-5 text-white/70" />
-          </div>
-          <Table>
-            <TableHeader>
-              <TableRow className="border-b-2 border-[#a8a8a8] bg-[#f5f5f0] hover:bg-[#f5f5f0]">
-                <TableHead className="font-black text-black uppercase text-xs tracking-widest py-3">
-                  Action
-                </TableHead>
-                <TableHead className="font-black text-black uppercase text-xs tracking-widest">
-                  Entity
-                </TableHead>
-                <TableHead className="font-black text-black uppercase text-xs tracking-widest">
-                  Time
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {stats.recentLogs.map((l) => (
-                <TableRow
-                  key={l.id}
-                  className="border-b-2 border-[#a8a8a8] hover:bg-[#f5f5f0]"
-                >
-                  <TableCell className="border-r-2 border-[#a8a8a8] p-3 font-bold text-sm text-black">
-                    {l.action}
-                  </TableCell>
-                  <TableCell className="border-r-2 border-[#a8a8a8] p-3 text-sm text-[#a8a8a8] font-medium">
-                    {l.entityType ?? "-"}
-                  </TableCell>
-                  <TableCell className="p-3 text-xs text-[#a8a8a8] font-medium">
-                    {new Date(l.createdAt).toLocaleDateString()}
-                  </TableCell>
-                </TableRow>
-              ))}
-              {stats.recentLogs.length === 0 && (
-                <TableRow>
-                  <TableCell
-                    colSpan={3}
-                    className="text-center text-[#a8a8a8] text-sm font-bold py-10 uppercase tracking-widest"
-                  >
-                    No activity yet.
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

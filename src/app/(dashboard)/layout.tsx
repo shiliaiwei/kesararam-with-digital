@@ -20,7 +20,7 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="kwd-dash" style={{ display: "flex", minHeight: "100dvh" }}>
+    <div className="flex min-h-screen w-full">
       <SidebarProvider>
         <AppSidebar
           role={session.role as "admin" | "teacher"}
@@ -28,9 +28,9 @@ export default async function DashboardLayout({
           email={session.email}
           avatar={session.avatar ?? null}
         />
-        <SidebarInset style={{ background: "#f5f5f0", flex: 1, minWidth: 0 }}>
+        <SidebarInset className="flex flex-col bg-muted/40">
           <DashboardHeader />
-          <main className="flex flex-1 flex-col gap-4 p-4 pt-0">
+          <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
             {children}
           </main>
         </SidebarInset>

@@ -15,11 +15,14 @@ export async function createUser(formData: FormData) {
   const session = await getSession();
   if (!session || session.role !== "admin") throw new Error("Unauthorized");
 
-  const username = ((formData.get("username") as string) ?? "").trim().toLowerCase();
+  const username = ((formData.get("username") as string) ?? "")
+    .trim()
+    .toLowerCase();
   const email = ((formData.get("email") as string) ?? "").trim().toLowerCase();
   const displayName = ((formData.get("displayName") as string) ?? "").trim();
   const password = (formData.get("password") as string) ?? "";
-  const role = (formData.get("role") as "student" | "teacher" | "admin") ?? "student";
+  const role =
+    (formData.get("role") as "student" | "teacher" | "admin") ?? "student";
 
   if (!username || !email || !password || !role) {
     return { error: "All fields are required." };

@@ -12,14 +12,16 @@ export default async function AdminProfilePage() {
   const session = await getSession();
   if (!session || session.role !== "admin") redirect("/login");
 
-  let user: {
-    displayName: string | null;
-    username: string;
-    email: string;
-    avatar: string | null;
-    avatarChangedAt: Date | null;
-    createdAt: Date;
-  } | undefined;
+  let user:
+    | {
+        displayName: string | null;
+        username: string;
+        email: string;
+        avatar: string | null;
+        avatarChangedAt: Date | null;
+        createdAt: Date;
+      }
+    | undefined;
 
   try {
     [user] = await db

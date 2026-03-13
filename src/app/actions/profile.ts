@@ -44,12 +44,11 @@ export async function updateProfileAction(
     if (avatar !== null) updateData.avatar = avatar;
     if (avatarChanged) updateData.avatarChangedAt = new Date();
 
-    await db
-      .update(users)
-      .set(updateData)
-      .where(eq(users.id, session.id));
+    await db.update(users).set(updateData).where(eq(users.id, session.id));
   } catch (err) {
-    const detail = (err as { cause?: { message?: string } }).cause?.message ?? (err instanceof Error ? err.message : "unknown");
+    const detail =
+      (err as { cause?: { message?: string } }).cause?.message ??
+      (err instanceof Error ? err.message : "unknown");
     console.error("[profile update error]", detail);
     return { error: "Failed to update profile. Please try again." };
   }

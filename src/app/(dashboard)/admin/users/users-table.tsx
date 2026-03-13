@@ -11,11 +11,7 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import {
   Table,
   TableBody,
@@ -62,7 +58,13 @@ const ROLE_CONFIG: Record<Role, { label: string; active: string }> = {
   admin: { label: "Admin", active: "bg-[#a855f7] text-white" },
 };
 
-function RolePicker({ value, onChange }: { value: Role; onChange: (v: Role) => void }) {
+function RolePicker({
+  value,
+  onChange,
+}: {
+  value: Role;
+  onChange: (v: Role) => void;
+}) {
   return (
     <div className="flex gap-2">
       {(Object.keys(ROLE_CONFIG) as Role[]).map((r) => (
@@ -74,7 +76,7 @@ function RolePicker({ value, onChange }: { value: Role; onChange: (v: Role) => v
             "flex-1 py-2 font-black uppercase text-xs tracking-widest border-2 border-black transition-all",
             value === r
               ? cn(ROLE_CONFIG[r].active, "shadow-[3px_3px_0_#000]")
-              : "bg-white text-black hover:shadow-[2px_2px_0_#000]"
+              : "bg-white text-black hover:shadow-[2px_2px_0_#000]",
           )}
         >
           {ROLE_CONFIG[r].label}
@@ -123,14 +125,19 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
             <DialogTitle className="font-black uppercase text-xl tracking-tight">
               Create New User
             </DialogTitle>
-            <p className="text-sm font-medium mt-0.5">Add a new user to the platform.</p>
+            <p className="text-sm font-medium mt-0.5">
+              Add a new user to the platform.
+            </p>
           </div>
           <form onSubmit={handleSubmit} className="flex flex-col gap-5 p-6">
             {/* hidden role — @base-ui/react Select does not write to FormData */}
             <input type="hidden" name="role" value={role} />
 
             <div className="grid gap-1.5">
-              <label htmlFor="create-username" className="font-black uppercase text-xs tracking-widest">
+              <label
+                htmlFor="create-username"
+                className="font-black uppercase text-xs tracking-widest"
+              >
                 Username *
               </label>
               <Input
@@ -143,7 +150,10 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
             </div>
 
             <div className="grid gap-1.5">
-              <label htmlFor="create-email" className="font-black uppercase text-xs tracking-widest">
+              <label
+                htmlFor="create-email"
+                className="font-black uppercase text-xs tracking-widest"
+              >
                 Email *
               </label>
               <Input
@@ -157,7 +167,10 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
             </div>
 
             <div className="grid gap-1.5">
-              <label htmlFor="create-display" className="font-black uppercase text-xs tracking-widest">
+              <label
+                htmlFor="create-display"
+                className="font-black uppercase text-xs tracking-widest"
+              >
                 Display Name
               </label>
               <Input
@@ -169,12 +182,17 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
             </div>
 
             <div className="grid gap-1.5">
-              <span className="font-black uppercase text-xs tracking-widest">Role *</span>
+              <span className="font-black uppercase text-xs tracking-widest">
+                Role *
+              </span>
               <RolePicker value={role} onChange={setRole} />
             </div>
 
             <div className="grid gap-1.5">
-              <label htmlFor="create-password" className="font-black uppercase text-xs tracking-widest">
+              <label
+                htmlFor="create-password"
+                className="font-black uppercase text-xs tracking-widest"
+              >
                 Password *
               </label>
               <Input
@@ -264,7 +282,10 @@ function EditUserDialog({
             <input type="hidden" name="isActive" value={String(isActive)} />
 
             <div className="grid gap-1.5">
-              <label htmlFor="edit-email" className="font-black uppercase text-xs tracking-widest">
+              <label
+                htmlFor="edit-email"
+                className="font-black uppercase text-xs tracking-widest"
+              >
                 Email *
               </label>
               <Input
@@ -278,7 +299,10 @@ function EditUserDialog({
             </div>
 
             <div className="grid gap-1.5">
-              <label htmlFor="edit-display" className="font-black uppercase text-xs tracking-widest">
+              <label
+                htmlFor="edit-display"
+                className="font-black uppercase text-xs tracking-widest"
+              >
                 Display Name
               </label>
               <Input
@@ -290,12 +314,16 @@ function EditUserDialog({
             </div>
 
             <div className="grid gap-1.5">
-              <span className="font-black uppercase text-xs tracking-widest">Role</span>
+              <span className="font-black uppercase text-xs tracking-widest">
+                Role
+              </span>
               <RolePicker value={role} onChange={setRole} />
             </div>
 
             <div className="grid gap-1.5">
-              <span className="font-black uppercase text-xs tracking-widest">Status</span>
+              <span className="font-black uppercase text-xs tracking-widest">
+                Status
+              </span>
               <div className="flex gap-2">
                 <button
                   type="button"
@@ -304,7 +332,7 @@ function EditUserDialog({
                     "flex-1 py-2 font-black uppercase text-xs tracking-widest border-2 border-black transition-all",
                     isActive
                       ? "bg-[#22c55e] text-white shadow-[3px_3px_0_#000]"
-                      : "bg-white text-black hover:shadow-[2px_2px_0_#000]"
+                      : "bg-white text-black hover:shadow-[2px_2px_0_#000]",
                   )}
                 >
                   Active
@@ -316,7 +344,7 @@ function EditUserDialog({
                     "flex-1 py-2 font-black uppercase text-xs tracking-widest border-2 border-black transition-all",
                     !isActive
                       ? "bg-[#ef4444] text-white shadow-[3px_3px_0_#000]"
-                      : "bg-white text-black hover:shadow-[2px_2px_0_#000]"
+                      : "bg-white text-black hover:shadow-[2px_2px_0_#000]",
                   )}
                 >
                   Inactive
@@ -325,9 +353,14 @@ function EditUserDialog({
             </div>
 
             <div className="grid gap-1.5">
-              <label htmlFor="edit-password" className="font-black uppercase text-xs tracking-widest">
+              <label
+                htmlFor="edit-password"
+                className="font-black uppercase text-xs tracking-widest"
+              >
                 New Password{" "}
-                <span className="text-[#a8a8a8] font-medium normal-case">(leave blank to keep)</span>
+                <span className="text-[#a8a8a8] font-medium normal-case">
+                  (leave blank to keep)
+                </span>
               </label>
               <Input
                 id="edit-password"
