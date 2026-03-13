@@ -44,9 +44,7 @@ export function DashboardHeader() {
               <BreadcrumbItem key={href}>
                 {!isLast ? (
                   <>
-                    <BreadcrumbLink asChild>
-                      <Link href={href}>{label}</Link>
-                    </BreadcrumbLink>
+                    <BreadcrumbLink href={href}>{label}</BreadcrumbLink>
                     <BreadcrumbSeparator />
                   </>
                 ) : (
