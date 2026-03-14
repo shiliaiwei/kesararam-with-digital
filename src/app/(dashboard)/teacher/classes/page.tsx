@@ -17,12 +17,11 @@ export default async function TeacherClassesPage() {
   // Calculate stats
   const totalClasses = classes.length;
   const activeClasses = classes.filter(c => c.code).length; // Classes with codes are active
-  const totalStudents = classes.reduce((sum, c) => sum + (c.studentCount || 0), 0);
 
   const stats = [
     { label: "Total Classes", value: totalClasses.toString(), icon: School, color: "#3b82f6" },
     { label: "Active Classes", value: activeClasses.toString(), icon: Calendar, color: "#22c55e" },
-    { label: "Total Students", value: totalStudents.toString(), icon: Users, color: "#f97316" },
+    { label: "Join Codes", value: activeClasses.toString(), icon: Users, color: "#f97316" },
   ];
 
   return (
