@@ -119,7 +119,8 @@ export function CloudinaryGallery() {
     }
 
     return resources.filter((resource) => {
-      const fileName = resource.public_id.split("/").pop() ?? resource.public_id;
+      const fileName =
+        resource.public_id.split("/").pop() ?? resource.public_id;
       const searchable = [
         fileName,
         resource.public_id,
@@ -167,7 +168,7 @@ export function CloudinaryGallery() {
   }
 
   return (
-    <Card className="border-2 border-black shadow-[4px_4px_0_#000] rounded-none">
+    <Card className="border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] rounded-none">
       <CardHeader>
         <CardTitle className="text-2xl font-black uppercase tracking-tighter">
           {viewTitle()}
@@ -189,7 +190,7 @@ export function CloudinaryGallery() {
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="Search by name, folder, or tag"
-                  className="w-full h-10 border-2 border-black pl-10 pr-3 text-sm font-medium bg-white"
+                  className="w-full h-10 border-2 border-[#a8a8a8] pl-10 pr-3 text-sm font-medium bg-white"
                 />
               </div>
             </label>
@@ -201,7 +202,7 @@ export function CloudinaryGallery() {
               <select
                 value={selectedFolder}
                 onChange={(e) => setSelectedFolder(e.target.value)}
-                className="h-10 border-2 border-black bg-white px-2 text-sm font-medium"
+                className="h-10 border-2 border-[#a8a8a8] bg-white px-2 text-sm font-medium"
               >
                 <option value="">All folders</option>
                 {folders.map((folder) => (
@@ -219,7 +220,7 @@ export function CloudinaryGallery() {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="h-10 border-2 border-black bg-white px-2 text-sm font-medium"
+                className="h-10 border-2 border-[#a8a8a8] bg-white px-2 text-sm font-medium"
               >
                 <option value="">All categories</option>
                 {categories.map((category) => (
@@ -238,51 +239,57 @@ export function CloudinaryGallery() {
                 setSelectedCategory("");
                 setSearchTerm("");
               }}
-              className="px-3 py-1.5 text-xs font-black uppercase tracking-widest border-2 border-black bg-white text-black shadow-[2px_2px_0_#000]"
+              className="px-3 py-1.5 text-xs font-black uppercase tracking-widest border-2 border-[#a8a8a8] bg-white text-black shadow-[2px_2px_0_#000]"
             >
               Reset Filters
             </button>
             {selectedFolder && (
-              <span className="px-2 py-1 text-xs font-bold border-2 border-black bg-[#22c55e] text-black">
+              <span className="px-2 py-1 text-xs font-bold border-2 border-[#a8a8a8] bg-[#22c55e] text-black">
                 Folder: {selectedFolder}
               </span>
             )}
             {selectedCategory && (
-              <span className="px-2 py-1 text-xs font-bold border-2 border-black bg-[#3b82f6] text-white">
+              <span className="px-2 py-1 text-xs font-bold border-2 border-[#a8a8a8] bg-[#3b82f6] text-white">
                 Category: {selectedCategory}
               </span>
             )}
             {searchTerm && (
-              <span className="px-2 py-1 text-xs font-bold border-2 border-black bg-[#eab308] text-black">
+              <span className="px-2 py-1 text-xs font-bold border-2 border-[#a8a8a8] bg-[#eab308] text-black">
                 Search: {searchTerm}
               </span>
             )}
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-            <div className="border-2 border-black bg-white px-3 py-2">
+            <div className="border-2 border-[#a8a8a8] bg-white px-3 py-2">
               <p className="text-[10px] font-black uppercase tracking-widest text-[#a8a8a8]">
                 Showing
               </p>
-              <p className="text-lg font-black text-black">{filteredResources.length}</p>
+              <p className="text-lg font-black text-black">
+                {filteredResources.length}
+              </p>
             </div>
-            <div className="border-2 border-black bg-white px-3 py-2">
+            <div className="border-2 border-[#a8a8a8] bg-white px-3 py-2">
               <p className="text-[10px] font-black uppercase tracking-widest text-[#a8a8a8]">
                 Total Loaded
               </p>
-              <p className="text-lg font-black text-black">{resources.length}</p>
+              <p className="text-lg font-black text-black">
+                {resources.length}
+              </p>
             </div>
-            <div className="border-2 border-black bg-white px-3 py-2">
+            <div className="border-2 border-[#a8a8a8] bg-white px-3 py-2">
               <p className="text-[10px] font-black uppercase tracking-widest text-[#a8a8a8]">
                 Folders
               </p>
               <p className="text-lg font-black text-black">{folders.length}</p>
             </div>
-            <div className="border-2 border-black bg-white px-3 py-2">
+            <div className="border-2 border-[#a8a8a8] bg-white px-3 py-2">
               <p className="text-[10px] font-black uppercase tracking-widest text-[#a8a8a8]">
                 Categories
               </p>
-              <p className="text-lg font-black text-black">{categories.length}</p>
+              <p className="text-lg font-black text-black">
+                {categories.length}
+              </p>
             </div>
           </div>
         </div>
@@ -297,8 +304,8 @@ export function CloudinaryGallery() {
         )}
 
         {error && !loading && (
-          <div className="border-l-4 border-[#ef4444] bg-[#fecaca] p-4">
-            <p className="text-sm font-bold text-[#991b1b]">Error: {error}</p>
+          <div className="border-l-4 border-[#ef4444] bg-[#fda4af] p-4">
+            <p className="text-sm font-bold text-black">Error: {error}</p>
           </div>
         )}
 
@@ -312,7 +319,7 @@ export function CloudinaryGallery() {
                 <button
                   key={folder.name}
                   onClick={() => setSelectedFolder(folder.name)}
-                  className="text-left border-2 border-black bg-white p-2 shadow-[2px_2px_0_#000]"
+                  className="text-left border-2 border-[#a8a8a8] bg-white p-2 shadow-[2px_2px_0_#000]"
                 >
                   <p className="text-xs font-black truncate">{folder.name}</p>
                   <p className="text-xs text-[#a8a8a8]">
@@ -334,7 +341,7 @@ export function CloudinaryGallery() {
                 <button
                   key={category.name}
                   onClick={() => setSelectedCategory(category.name)}
-                  className="text-left border-2 border-black bg-white p-2 shadow-[2px_2px_0_#000]"
+                  className="text-left border-2 border-[#a8a8a8] bg-white p-2 shadow-[2px_2px_0_#000]"
                 >
                   <p className="text-xs font-black truncate">{category.name}</p>
                   <p className="text-xs text-[#a8a8a8]">
@@ -377,7 +384,7 @@ export function CloudinaryGallery() {
                       {resource.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-1.5 py-0.5 text-xs font-bold rounded-none bg-[#eab308] text-black border border-black"
+                          className="px-1.5 py-0.5 text-xs font-bold rounded-none bg-[#eab308] text-black border border-[#a8a8a8]"
                         >
                           {tag}
                         </span>
@@ -399,7 +406,7 @@ export function CloudinaryGallery() {
 
                   <button
                     onClick={() => void copyImageUrl(resource)}
-                    className="w-full mt-2 px-2 py-1.5 text-xs font-black uppercase border-2 border-black bg-white text-black shadow-[2px_2px_0_#000] hover:bg-[#3b82f6] hover:text-white hover:border-[#3b82f6] transition-colors"
+                    className="w-full mt-2 px-2 py-1.5 text-xs font-black uppercase border-2 border-[#a8a8a8] bg-white text-black shadow-[2px_2px_0_#000] hover:bg-[#3b82f6] hover:text-white hover:border-[#3b82f6] transition-colors"
                   >
                     {copiedId === resource.public_id ? "Copied" : "Copy URL"}
                   </button>
@@ -423,7 +430,8 @@ export function CloudinaryGallery() {
 
         <div className="border-l-4 border-[#3b82f6] bg-[#e7f4fd] p-3 mt-6">
           <p className="text-xs font-bold text-[#1e40af]">
-            View: {viewMode} • Showing: {filteredResources.length} of {resources.length} images
+            View: {viewMode} • Showing: {filteredResources.length} of{" "}
+            {resources.length} images
           </p>
         </div>
       </CardContent>

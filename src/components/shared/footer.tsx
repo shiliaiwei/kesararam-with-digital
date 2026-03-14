@@ -28,7 +28,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-white text-black border-t-4 border-black">
+    <footer className="bg-white text-black border-t-4 border-[#a8a8a8]">
       {/* Caution tape */}
       <div className="caution-tape" />
 

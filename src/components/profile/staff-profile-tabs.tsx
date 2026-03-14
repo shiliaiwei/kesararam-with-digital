@@ -45,7 +45,7 @@ export function StaffProfileTabs({
   return (
     <div className="flex flex-col gap-6 py-4 max-w-2xl">
       {/* ── Page header ── */}
-      <div className="border-b-[3px] border-black pb-4">
+      <div className="border-b-[3px] border-[#a8a8a8] pb-4">
         <h1 className="text-3xl font-black uppercase tracking-tighter text-black">
           My Profile
         </h1>
@@ -69,7 +69,7 @@ export function StaffProfileTabs({
             <p className="text-sm text-[#a8a8a8] font-medium">{email}</p>
             <div className="flex gap-2 items-center">
               <span
-                className="inline-block px-2.5 py-0.5 text-xs font-black uppercase tracking-widest border-2 border-black shadow-[2px_2px_0_#000]"
+                className="inline-block px-2.5 py-0.5 text-xs font-black uppercase tracking-widest border-2 border-[#a8a8a8] shadow-[2px_2px_0_#000]"
                 style={{ background: roleStyle.bg, color: roleStyle.text }}
               >
                 {roleStyle.label}
@@ -83,16 +83,17 @@ export function StaffProfileTabs({
       </div>
 
       {/* ── Tab bar ── */}
-      <div className="flex border-2 border-black shadow-[4px_4px_0_#000] overflow-hidden">
+      <div className="flex border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] overflow-hidden">
         {TABS.map((tab, i) => {
           const active = activeTab === tab.id;
-          const tabHref = tab.id === "edit" ? basePath : `${basePath}?tab=${tab.id}`;
+          const tabHref =
+            tab.id === "edit" ? basePath : `${basePath}?tab=${tab.id}`;
           return (
             <Link
               key={tab.id}
               href={tabHref}
               className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-xs font-black uppercase tracking-widest transition-colors ${
-                i > 0 ? "border-l-2 border-black" : ""
+                i > 0 ? "border-l-2 border-[#a8a8a8]" : ""
               } ${
                 active
                   ? "bg-black text-white"
@@ -121,7 +122,7 @@ export function StaffProfileTabs({
 
       {activeTab === "info" && (
         <div className="border-2 border-[#a8a8a8] bg-[#ffffff] shadow-[4px_4px_0_#000]">
-          <div className="border-b-2 border-black bg-[#3b82f6] px-4 py-3">
+          <div className="border-b-2 border-[#a8a8a8] bg-[#3b82f6] px-4 py-3">
             <h3 className="font-black uppercase tracking-widest text-white text-sm">
               Account Information
             </h3>
@@ -156,7 +157,7 @@ export function StaffProfileTabs({
 
       {activeTab === "settings" && (
         <div className="border-2 border-[#a8a8a8] bg-[#ffffff] shadow-[4px_4px_0_#000]">
-          <div className="border-b-2 border-black bg-[#f97316] px-4 py-3">
+          <div className="border-b-2 border-[#a8a8a8] bg-[#f97316] px-4 py-3">
             <h3 className="font-black uppercase tracking-widest text-white text-sm">
               Settings
             </h3>

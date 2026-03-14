@@ -9,7 +9,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
-      <div className="border-b-4 border-black py-20 bg-white">
+      <div className="border-b-4 border-[#a8a8a8] py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           <div>
             <span className="text-xs font-black tracking-widest uppercase bg-black text-white px-3 py-1.5 rounded-lg">
@@ -28,9 +28,9 @@ export default function AboutPage() {
             </p>
           </div>
           {/* Paper grid style panel */}
-          <div className="border-2 border-black rounded-3xl shadow-[6px_6px_0_#000] overflow-hidden">
+          <div className="border-2 border-[#a8a8a8] rounded-3xl shadow-[6px_6px_0_#000] overflow-hidden">
             <div
-              className="h-48 border-b-2 border-black"
+              className="h-48 border-b-2 border-[#a8a8a8]"
               style={{
                 backgroundImage:
                   "linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px)",
@@ -70,10 +70,10 @@ export default function AboutPage() {
           ].map(({ title, text, color }) => (
             <div
               key={title}
-              className="bg-white border-2 border-black rounded-3xl p-7 shadow-[4px_4px_0_#000] flex flex-col gap-3"
+              className="bg-white border-2 border-[#a8a8a8] rounded-3xl p-7 shadow-[4px_4px_0_#000] flex flex-col gap-3"
             >
               <div
-                className="w-10 h-3 border-2 border-black rounded-full"
+                className="w-10 h-3 border-2 border-[#a8a8a8] rounded-full"
                 style={{ backgroundColor: color }}
               />
               <h3 className="text-xl font-black">{title}</h3>

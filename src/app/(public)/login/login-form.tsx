@@ -26,7 +26,7 @@ function LoginFormInner() {
     <div className="min-h-screen dot-bg flex items-center justify-center px-4 py-20">
       <div className="w-full max-w-md">
         {/* Header card */}
-        <div className="bg-yellow-400 text-black border-2 border-black rounded-t-3xl px-8 py-6">
+        <div className="bg-yellow-400 text-black border-2 border-[#a8a8a8] rounded-t-3xl px-8 py-6">
           <Link
             href="/home"
             className="text-xs text-black/60 hover:text-black transition-colors"
@@ -43,7 +43,7 @@ function LoginFormInner() {
         </div>
 
         {/* Form card */}
-        <div className="bg-white border-2 border-t-0 border-black rounded-b-3xl shadow-[6px_6px_0_#000] px-8 py-8">
+        <div className="bg-white border-2 border-t-0 border-[#a8a8a8] rounded-b-3xl shadow-[6px_6px_0_#000] px-8 py-8">
           <form action={formAction} className="flex flex-col gap-5">
             <input type="hidden" name="redirect" value={redirectParam} />
             {/* Email or Username */}
@@ -57,7 +57,7 @@ function LoginFormInner() {
                 name="email"
                 required
                 autoComplete="username"
-                className="w-full px-4 py-3 border-2 border-black rounded-xl text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
+                className="w-full px-4 py-3 border-2 border-[#a8a8a8] rounded-xl text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
                 placeholder="your@email.com or username"
               />
             </div>
@@ -76,14 +76,14 @@ function LoginFormInner() {
                 name="password"
                 required
                 autoComplete="current-password"
-                className="w-full px-4 py-3 border-2 border-black rounded-xl text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
+                className="w-full px-4 py-3 border-2 border-[#a8a8a8] rounded-xl text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
                 placeholder="••••••••"
               />
             </div>
 
             {/* Error */}
             {state?.error && (
-              <div className="px-4 py-3 bg-red-50 border-2 border-red-500 rounded-xl text-sm font-bold text-red-700 shadow-[2px_2px_0_#ef4444]">
+              <div className="px-4 py-3 bg-[#fda4af] border-2 border-red-500 rounded-xl text-sm font-bold text-black shadow-[4px_4px_0_#000]">
                 {state.error}
               </div>
             )}
@@ -100,7 +100,7 @@ function LoginFormInner() {
               type="submit"
               disabled={pending || !!state?.redirectTo}
               onClick={() => setAttempts((a) => a + 1)}
-              className="w-full py-3.5 bg-yellow-400 text-black font-black text-base border-2 border-black rounded-xl shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-none disabled:translate-x-0 disabled:translate-y-0"
+              className="w-full py-3.5 bg-yellow-400 text-black font-black text-base border-2 border-[#a8a8a8] rounded-xl shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-none disabled:translate-x-0 disabled:translate-y-0"
             >
               {state?.redirectTo
                 ? "Redirecting…"

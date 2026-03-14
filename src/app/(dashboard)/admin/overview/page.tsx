@@ -6,6 +6,8 @@ import { DataTable } from "@/components/data-table";
 import data from "@/app/dashboard/data.json";
 import { RBACForm } from "@/components/dashboard/rbac-form";
 import { CloudinaryDemo } from "@/components/dashboard/cloudinary-demo";
+import { CloudinaryGallery } from "@/components/dashboard/cloudinary-gallery";
+import { RealtimeMatrix } from "@/components/dashboard/realtime-matrix";
 
 export const dynamic = "force-dynamic";
 
@@ -23,18 +25,26 @@ export default async function AdminOverviewPage() {
           </p>
         </div>
       </div>
-      
+
       <SectionCards />
-      
+
+      <div className="px-4 lg:px-6">
+        <RealtimeMatrix />
+      </div>
+
+      <div className="px-4 lg:px-6">
+        <CloudinaryGallery />
+      </div>
+
       <div className="grid gap-4 md:grid-cols-2 px-4 lg:px-6">
-         <RBACForm />
-         <CloudinaryDemo />
+        <RBACForm />
+        <CloudinaryDemo />
       </div>
 
       <div className="px-4 lg:px-6">
         <ChartAreaInteractive />
       </div>
-      
+
       <div className="px-4 lg:px-6">
         <DataTable data={data} />
       </div>

@@ -25,13 +25,13 @@ const teacherNav: NavItem[] = [
 export function DashboardNav({ role }: { role: "admin" | "teacher" }) {
   const pathname = usePathname();
   const items = role === "admin" ? adminNav : teacherNav;
-  const accentColor = role === "admin" ? "bg-red-500" : "bg-blue-500";
+  const accentColor = role === "admin" ? "bg-[#fda4af]0" : "bg-blue-500";
 
   return (
-    <header className="w-full border-b-2 border-black bg-white px-6 py-3 flex items-center gap-6">
+    <header className="w-full border-b-2 border-[#a8a8a8] bg-white px-6 py-3 flex items-center gap-6">
       <div className="flex items-center gap-2 mr-4">
         <div
-          className={`w-3 h-3 rounded-full ${accentColor} border-2 border-black`}
+          className={`w-3 h-3 rounded-full ${accentColor} border-2 border-[#a8a8a8]`}
         />
         <span className="font-black text-sm uppercase tracking-widest">
           KWD {role}
@@ -45,7 +45,7 @@ export function DashboardNav({ role }: { role: "admin" | "teacher" }) {
             <Link
               key={item.href}
               href={item.href}
-              className={`px-3 py-1.5 text-sm font-bold border-2 border-black rounded-lg transition-all duration-75 ${
+              className={`px-3 py-1.5 text-sm font-bold border-2 border-[#a8a8a8] rounded-lg transition-all duration-75 ${
                 active
                   ? "bg-yellow-400 shadow-[3px_3px_0_#000]"
                   : "bg-white hover:bg-yellow-50 hover:shadow-[2px_2px_0_#000]"
@@ -60,7 +60,7 @@ export function DashboardNav({ role }: { role: "admin" | "teacher" }) {
       <form action={logoutAction}>
         <button
           type="submit"
-          className="px-3 py-1.5 text-sm font-bold border-2 border-black rounded-lg bg-white hover:bg-red-50 hover:shadow-[2px_2px_0_#ef4444] transition-all duration-75"
+          className="px-3 py-1.5 text-sm font-bold border-2 border-[#a8a8a8] rounded-lg bg-white hover:bg-[#fda4af] hover:shadow-[4px_4px_0_#000] transition-all duration-75"
         >
           Sign Out
         </button>

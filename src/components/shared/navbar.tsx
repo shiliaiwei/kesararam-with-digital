@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
@@ -50,7 +50,7 @@ function ProfileMenu({ session }: { session: JWTPayload }) {
       {/* Avatar-only button — no text, no chevron */}
       <button
         onClick={() => setOpen(!open)}
-        className="p-0.5 border-2 border-black bg-white shadow-[2px_2px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 block"
+        className="p-0.5 border-2 border-[#a8a8a8] bg-white shadow-[2px_2px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 block"
         style={{ borderRadius: "15px" }}
         aria-label="Profile menu"
         aria-expanded={open}
@@ -65,11 +65,11 @@ function ProfileMenu({ session }: { session: JWTPayload }) {
 
       {open && (
         <div
-          className="absolute right-0 mt-2 bg-white border-2 border-black shadow-[4px_4px_0_#000] z-50 min-w-[200px] overflow-hidden"
+          className="absolute right-0 mt-2 bg-white border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] z-50 min-w-[200px] overflow-hidden"
           style={{ borderRadius: "15px" }}
         >
           <div
-            className="px-4 py-3 border-b-2 border-black"
+            className="px-4 py-3 border-b-2 border-[#a8a8a8]"
             style={{ background: "#f9fafb" }}
           >
             <p className="text-xs font-black text-black truncate">
@@ -114,7 +114,7 @@ function ProfileMenu({ session }: { session: JWTPayload }) {
             <form action={logoutAction}>
               <button
                 type="submit"
-                className="flex w-full items-center gap-2 px-4 py-2.5 text-sm font-semibold hover:bg-red-50 transition-colors"
+                className="flex w-full items-center gap-2 px-4 py-2.5 text-sm font-semibold hover:bg-[#fda4af] transition-colors"
                 style={{ color: "#ff0050" }}
               >
                 <span>&#8594;</span>
@@ -146,7 +146,7 @@ export function Navbar({ session }: NavbarProps) {
 
   return (
     <>
-      <header className="sticky top-0 left-0 right-0 z-50 bg-white border-b-2 border-black">
+      <header className="sticky top-0 left-0 right-0 z-50 bg-white border-b-2 border-[#a8a8a8]">
         <nav className="flex items-center px-6 py-3 max-w-7xl mx-auto">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
@@ -180,8 +180,8 @@ export function Navbar({ session }: NavbarProps) {
                   className={cn(
                     "px-3 py-1.5 text-sm font-semibold border-2 transition-all duration-100 whitespace-nowrap",
                     active
-                      ? "bg-yellow-400 text-black border-black shadow-[2px_2px_0_#ca8a04]"
-                      : "border-transparent text-zinc-700 hover:border-black hover:bg-yellow-300 hover:shadow-[2px_2px_0_#000]",
+                      ? "bg-yellow-400 text-black border-[#a8a8a8] shadow-[2px_2px_0_#ca8a04]"
+                      : "border-transparent text-zinc-700 hover:border-[#a8a8a8] hover:bg-yellow-300 hover:shadow-[2px_2px_0_#000]",
                   )}
                 >
                   {label}
@@ -198,7 +198,7 @@ export function Navbar({ session }: NavbarProps) {
             ) : (
               <Link
                 href="/login"
-                className="px-4 py-1.5 text-sm font-bold bg-yellow-400 text-black border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[5px_5px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 whitespace-nowrap"
+                className="px-4 py-1.5 text-sm font-bold bg-yellow-400 text-black border-2 border-[#a8a8a8] shadow-[3px_3px_0_#000] hover:shadow-[5px_5px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 whitespace-nowrap"
               >
                 {tr.login}
               </Link>
@@ -207,7 +207,7 @@ export function Navbar({ session }: NavbarProps) {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden ml-auto p-1.5 border-2 border-black bg-white shadow-[2px_2px_0_#000] active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all"
+            className="md:hidden ml-auto p-1.5 border-2 border-[#a8a8a8] bg-white shadow-[2px_2px_0_#000] active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
@@ -224,7 +224,7 @@ export function Navbar({ session }: NavbarProps) {
         >
           <div className="absolute inset-0 bg-black/40" />
           <div
-            className="absolute top-0 left-0 right-0 bg-white border-b-2 border-black shadow-[0_6px_0_#000] pt-20 pb-6 px-6"
+            className="absolute top-0 left-0 right-0 bg-white border-b-2 border-[#a8a8a8] shadow-[0_6px_0_#000] pt-20 pb-6 px-6"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex flex-col gap-2">
@@ -239,8 +239,8 @@ export function Navbar({ session }: NavbarProps) {
                     className={cn(
                       "px-4 py-3 text-base font-bold border-2 transition-all duration-100",
                       active
-                        ? "bg-yellow-400 text-black border-black shadow-[2px_2px_0_#ca8a04]"
-                        : "border-black text-black hover:bg-yellow-300",
+                        ? "bg-yellow-400 text-black border-[#a8a8a8] shadow-[2px_2px_0_#ca8a04]"
+                        : "border-[#a8a8a8] text-black hover:bg-yellow-300",
                     )}
                   >
                     {label}
@@ -258,7 +258,7 @@ export function Navbar({ session }: NavbarProps) {
                           : "https://dashboard.kesararamwithdigital.tech/teacher/overview"
                       }
                       onClick={() => setMobileOpen(false)}
-                      className="mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center"
+                      className="mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] text-center"
                     >
                       Dashboard
                     </a>
@@ -267,7 +267,7 @@ export function Navbar({ session }: NavbarProps) {
                     <Link
                       href="/profile/student"
                       onClick={() => setMobileOpen(false)}
-                      className="mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center"
+                      className="mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] text-center"
                     >
                       My Profile
                     </Link>
@@ -275,7 +275,7 @@ export function Navbar({ session }: NavbarProps) {
                   <form action={logoutAction}>
                     <button
                       type="submit"
-                      className="w-full mt-1 px-4 py-3 text-base font-bold border-2 border-black text-center"
+                      className="w-full mt-1 px-4 py-3 text-base font-bold border-2 border-[#a8a8a8] text-center"
                       style={{ color: "#ff0050" }}
                     >
                       Sign Out
@@ -286,7 +286,7 @@ export function Navbar({ session }: NavbarProps) {
                 <Link
                   href="/login"
                   onClick={() => setMobileOpen(false)}
-                  className="mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center"
+                  className="mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] text-center"
                 >
                   {tr.login}
                 </Link>

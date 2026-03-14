@@ -19,10 +19,13 @@ const LABEL_MAP: Record<string, string> = {
   overview: "Overview",
   users: "Users",
   content: "Content",
+  media: "Media",
   logs: "Logs",
   classes: "Classes",
   sessions: "Sessions",
   profile: "Profile",
+  folders: "Folders",
+  categories: "Categories",
 };
 
 export function DashboardHeader() {
@@ -38,7 +41,8 @@ export function DashboardHeader() {
           {segments.map((seg, i) => {
             const isLast = i === segments.length - 1;
             const href = "/" + segments.slice(0, i + 1).join("/");
-            const label = LABEL_MAP[seg] || seg.charAt(0).toUpperCase() + seg.slice(1);
+            const label =
+              LABEL_MAP[seg] || seg.charAt(0).toUpperCase() + seg.slice(1);
 
             return (
               <BreadcrumbItem key={href}>

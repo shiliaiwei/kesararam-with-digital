@@ -27,7 +27,7 @@ export function Hero() {
   ];
 
   return (
-    <section className="relative dot-bg min-h-[92vh] flex items-center overflow-hidden border-b-4 border-black">
+    <section className="relative dot-bg min-h-[92vh] flex items-center overflow-hidden border-b-4 border-[#a8a8a8]">
       {/* Caution tape strip at the very top */}
       <div className="absolute top-0 left-0 right-0 h-2 caution-tape" />
 
@@ -46,7 +46,7 @@ export function Hero() {
           {/* -- Left Content -- */}
           <div className="flex flex-col gap-6">
             {/* Badge */}
-            <div className="inline-flex w-fit items-center gap-2 px-4 py-2 bg-yellow-400 border-2 border-black shadow-[3px_3px_0_#000]">
+            <div className="inline-flex w-fit items-center gap-2 px-4 py-2 bg-yellow-400 border-2 border-[#a8a8a8] shadow-[3px_3px_0_#000]">
               <span className="w-2 h-2 bg-black animate-pulse" />
               <span className="text-xs font-black tracking-wider text-black uppercase">
                 {tr.badge}
@@ -61,7 +61,7 @@ export function Hero() {
                 {tr.headline1}
                 <br />
                 <span
-                  className="inline-block bg-yellow-400 text-black px-3 py-1 border-2 border-black shadow-[4px_4px_0_#ca8a04] mt-1"
+                  className="inline-block bg-yellow-400 text-black px-3 py-1 border-2 border-[#a8a8a8] shadow-[4px_4px_0_#ca8a04] mt-1"
                   style={{ borderRadius: "0px" }}
                 >
                   {tr.headline2}
@@ -89,7 +89,7 @@ export function Hero() {
             </p>
 
             {/* Stats row */}
-            <div className="flex flex-wrap gap-4 mt-4 pt-4 border-t-2 border-black/20">
+            <div className="flex flex-wrap gap-4 mt-4 pt-4 border-t-2 border-[#a8a8a8]/20">
               {[
                 { value: "8", label: tr.stats.categories },
                 { value: "500+", label: tr.stats.questions },
@@ -118,9 +118,9 @@ export function Hero() {
           <div className="relative flex justify-center md:justify-end">
             <div className="relative w-full max-w-sm md:max-w-md">
               {/* Card frame */}
-              <div className="relative bg-white border-4 border-black shadow-[8px_8px_0_#eab308] p-6 overflow-hidden">
+              <div className="relative bg-white border-4 border-[#a8a8a8] shadow-[8px_8px_0_#eab308] p-6 overflow-hidden">
                 {/* Top accent bar */}
-                <div className="absolute top-0 left-0 right-0 h-3 bg-yellow-400 border-b-2 border-black" />
+                <div className="absolute top-0 left-0 right-0 h-3 bg-yellow-400 border-b-2 border-[#a8a8a8]" />
 
                 {/* Logo */}
                 <div className="flex items-center gap-3 mt-3 mb-6">
@@ -149,11 +149,11 @@ export function Hero() {
                   {SIGNS.map(({ color, label, Icon }) => (
                     <div
                       key={label}
-                      className="flex flex-col items-center gap-1 p-3 border-2 border-black shadow-[2px_2px_0_#000] hover:-translate-y-0.5 hover:shadow-[3px_3px_0_#000] transition-all duration-100"
+                      className="flex flex-col items-center gap-1 p-3 border-2 border-[#a8a8a8] shadow-[2px_2px_0_#000] hover:-translate-y-0.5 hover:shadow-[3px_3px_0_#000] transition-all duration-100"
                       style={{ backgroundColor: color + "22" }}
                     >
                       <span
-                        className="w-10 h-10 border-2 border-black flex items-center justify-center"
+                        className="w-10 h-10 border-2 border-[#a8a8a8] flex items-center justify-center"
                         style={{ backgroundColor: color }}
                       >
                         <Icon size={18} color="#fff" />
@@ -186,9 +186,9 @@ export function Hero() {
                     </span>
                     <span className="text-green-600">68%</span>
                   </div>
-                  <div className="h-3 bg-zinc-100 border-2 border-black overflow-hidden">
+                  <div className="h-3 bg-zinc-100 border-2 border-[#a8a8a8] overflow-hidden">
                     <div
-                      className="h-full bg-green-400 border-r-2 border-black transition-all duration-700"
+                      className="h-full bg-green-400 border-r-2 border-[#a8a8a8] transition-all duration-700"
                       style={{ width: "68%" }}
                     />
                   </div>
@@ -196,10 +196,10 @@ export function Hero() {
               </div>
 
               {/* Floating badges */}
-              <div className="absolute -top-4 -right-4 bg-cyan-400 border-2 border-black px-3 py-1.5 shadow-[3px_3px_0_#000] rotate-3">
+              <div className="absolute -top-4 -right-4 bg-cyan-400 border-2 border-[#a8a8a8] px-3 py-1.5 shadow-[3px_3px_0_#000] rotate-3">
                 <span className="text-xs font-black">EN / KH</span>
               </div>
-              <div className="absolute -bottom-4 -left-4 bg-green-400 border-2 border-black px-3 py-1.5 shadow-[3px_3px_0_#000] -rotate-2">
+              <div className="absolute -bottom-4 -left-4 bg-green-400 border-2 border-[#a8a8a8] px-3 py-1.5 shadow-[3px_3px_0_#000] -rotate-2">
                 <span className="text-xs font-black">Live Challenges</span>
               </div>
             </div>

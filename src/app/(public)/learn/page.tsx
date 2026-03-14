@@ -37,10 +37,10 @@ export default function LearnPage() {
           ].map(({ mode, color }) => (
             <div
               key={mode}
-              className="bg-white border-2 border-black rounded-3xl p-5 flex flex-col gap-2 shadow-[4px_4px_0_#000] cursor-pointer hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#000] transition-all"
+              className="bg-white border-2 border-[#a8a8a8] rounded-3xl p-5 flex flex-col gap-2 shadow-[4px_4px_0_#000] cursor-pointer hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#000] transition-all"
             >
               <div
-                className="w-10 h-10 border-2 border-black rounded-xl"
+                className="w-10 h-10 border-2 border-[#a8a8a8] rounded-xl"
                 style={{ backgroundColor: color }}
               />
               <span className="font-black text-sm">{mode}</span>

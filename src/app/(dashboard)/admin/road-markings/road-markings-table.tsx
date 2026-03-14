@@ -101,10 +101,10 @@ function MarkingFormFields({
           defaultValue={defaultValues?.category ?? "curbs"}
           required
         >
-          <SelectTrigger className="border-2 border-black shadow-[2px_2px_0_#000] rounded-none">
+          <SelectTrigger className="border-2 border-[#a8a8a8] shadow-[2px_2px_0_#000] rounded-none">
             <SelectValue />
           </SelectTrigger>
-          <SelectContent className="border-2 border-black rounded-none">
+          <SelectContent className="border-2 border-[#a8a8a8] rounded-none">
             {CATEGORIES.map((c) => (
               <SelectItem
                 key={c.value}
@@ -128,7 +128,7 @@ function MarkingFormFields({
             required
             defaultValue={defaultValues?.nameEn ?? ""}
             placeholder="e.g. White Edge Line"
-            className="border-2 border-black shadow-[2px_2px_0_#000] rounded-none"
+            className="border-2 border-[#a8a8a8] shadow-[2px_2px_0_#000] rounded-none"
           />
         </div>
         <div className="grid gap-1.5">
@@ -139,7 +139,7 @@ function MarkingFormFields({
             name="nameKm"
             defaultValue={defaultValues?.nameKm ?? ""}
             placeholder="ភាសាខ្មែរ"
-            className="border-2 border-black shadow-[2px_2px_0_#000] rounded-none"
+            className="border-2 border-[#a8a8a8] shadow-[2px_2px_0_#000] rounded-none"
           />
         </div>
       </div>
@@ -153,7 +153,7 @@ function MarkingFormFields({
           defaultValue={defaultValues?.descriptionEn ?? ""}
           rows={2}
           placeholder="Describe the road marking..."
-          className="border-2 border-black shadow-[2px_2px_0_#000] rounded-none resize-none"
+          className="border-2 border-[#a8a8a8] shadow-[2px_2px_0_#000] rounded-none resize-none"
         />
       </div>
 
@@ -166,7 +166,7 @@ function MarkingFormFields({
           defaultValue={defaultValues?.descriptionKm ?? ""}
           rows={2}
           placeholder="ពិពណ៌នា..."
-          className="border-2 border-black shadow-[2px_2px_0_#000] rounded-none resize-none"
+          className="border-2 border-[#a8a8a8] shadow-[2px_2px_0_#000] rounded-none resize-none"
         />
       </div>
 
@@ -179,7 +179,7 @@ function MarkingFormFields({
             name="imageUrl"
             defaultValue={defaultValues?.imageUrl ?? ""}
             placeholder="https://..."
-            className="border-2 border-black shadow-[2px_2px_0_#000] rounded-none"
+            className="border-2 border-[#a8a8a8] shadow-[2px_2px_0_#000] rounded-none"
           />
         </div>
         <div className="grid gap-1.5">
@@ -190,7 +190,7 @@ function MarkingFormFields({
             name="colorCode"
             defaultValue={defaultValues?.colorCode ?? ""}
             placeholder="#ffffff"
-            className="border-2 border-black shadow-[2px_2px_0_#000] rounded-none"
+            className="border-2 border-[#a8a8a8] shadow-[2px_2px_0_#000] rounded-none"
           />
         </div>
       </div>
@@ -204,7 +204,7 @@ function MarkingFormFields({
           type="number"
           min={0}
           defaultValue={defaultValues?.sortOrder ?? 0}
-          className="border-2 border-black shadow-[2px_2px_0_#000] rounded-none w-24"
+          className="border-2 border-[#a8a8a8] shadow-[2px_2px_0_#000] rounded-none w-24"
         />
       </div>
     </>
@@ -238,7 +238,7 @@ function CreateDialog({ onSuccess }: { onSuccess: () => void }) {
     return (
       <button
         onClick={() => setOpen(true)}
-        className="flex items-center gap-2 px-4 py-2 font-bold text-sm uppercase tracking-widest border-2 border-black bg-[#eab308] shadow-[4px_4px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#000] transition-all"
+        className="flex items-center gap-2 px-4 py-2 font-bold text-sm uppercase tracking-widest border-2 border-[#a8a8a8] bg-[#eab308] shadow-[4px_4px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#000] transition-all"
       >
         <Plus className="size-4" />
         New Marking
@@ -248,14 +248,14 @@ function CreateDialog({ onSuccess }: { onSuccess: () => void }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="bg-white border-2 border-black shadow-[8px_8px_0_#000] w-full max-w-xl max-h-[90vh] overflow-y-auto">
-        <div className="flex items-center justify-between p-4 border-b-2 border-black bg-[#eab308]">
+      <div className="bg-white border-2 border-[#a8a8a8] shadow-[8px_8px_0_#000] w-full max-w-xl max-h-[90vh] overflow-y-auto">
+        <div className="flex items-center justify-between p-4 border-b-2 border-[#a8a8a8] bg-[#eab308]">
           <h2 className="font-black text-lg uppercase tracking-widest">
             New Road Marking
           </h2>
           <button
             onClick={() => setOpen(false)}
-            className="font-black text-xl w-8 h-8 flex items-center justify-center border-2 border-black bg-white hover:bg-[#ef4444] hover:text-white transition-colors"
+            className="font-black text-xl w-8 h-8 flex items-center justify-center border-2 border-[#a8a8a8] bg-white hover:bg-[#ef4444] hover:text-white transition-colors"
           >
             X
           </button>
@@ -271,14 +271,14 @@ function CreateDialog({ onSuccess }: { onSuccess: () => void }) {
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="px-4 py-2 font-bold text-sm uppercase tracking-widest border-2 border-black bg-white shadow-[2px_2px_0_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all"
+              className="px-4 py-2 font-bold text-sm uppercase tracking-widest border-2 border-[#a8a8a8] bg-white shadow-[2px_2px_0_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={pending}
-              className="px-4 py-2 font-bold text-sm uppercase tracking-widest border-2 border-black bg-[#22c55e] shadow-[4px_4px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#000] transition-all disabled:opacity-60"
+              className="px-4 py-2 font-bold text-sm uppercase tracking-widest border-2 border-[#a8a8a8] bg-[#22c55e] shadow-[4px_4px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#000] transition-all disabled:opacity-60"
             >
               {pending ? "Creating..." : "Create"}
             </button>
@@ -317,14 +317,14 @@ function EditDialog({ row, onSuccess }: { row: Row; onSuccess: () => void }) {
       <DropdownMenuItem onClick={() => setOpen(true)}>Edit</DropdownMenuItem>
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="bg-white border-2 border-black shadow-[8px_8px_0_#000] w-full max-w-xl max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between p-4 border-b-2 border-black bg-[#3b82f6]">
+          <div className="bg-white border-2 border-[#a8a8a8] shadow-[8px_8px_0_#000] w-full max-w-xl max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between p-4 border-b-2 border-[#a8a8a8] bg-[#3b82f6]">
               <h2 className="font-black text-lg uppercase tracking-widest text-white">
                 Edit Marking
               </h2>
               <button
                 onClick={() => setOpen(false)}
-                className="font-black text-xl w-8 h-8 flex items-center justify-center border-2 border-black bg-white hover:bg-[#ef4444] hover:text-white transition-colors"
+                className="font-black text-xl w-8 h-8 flex items-center justify-center border-2 border-[#a8a8a8] bg-white hover:bg-[#ef4444] hover:text-white transition-colors"
               >
                 X
               </button>
@@ -339,10 +339,10 @@ function EditDialog({ row, onSuccess }: { row: Row; onSuccess: () => void }) {
                   name="isActive"
                   defaultValue={row.isActive ? "true" : "false"}
                 >
-                  <SelectTrigger className="border-2 border-black shadow-[2px_2px_0_#000] rounded-none">
+                  <SelectTrigger className="border-2 border-[#a8a8a8] shadow-[2px_2px_0_#000] rounded-none">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="border-2 border-black rounded-none">
+                  <SelectContent className="border-2 border-[#a8a8a8] rounded-none">
                     <SelectItem value="true" className="rounded-none">
                       Active
                     </SelectItem>
@@ -361,14 +361,14 @@ function EditDialog({ row, onSuccess }: { row: Row; onSuccess: () => void }) {
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
-                  className="px-4 py-2 font-bold text-sm uppercase tracking-widest border-2 border-black bg-white shadow-[2px_2px_0_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all"
+                  className="px-4 py-2 font-bold text-sm uppercase tracking-widest border-2 border-[#a8a8a8] bg-white shadow-[2px_2px_0_#000] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={pending}
-                  className="px-4 py-2 font-bold text-sm uppercase tracking-widest border-2 border-black bg-[#22c55e] shadow-[4px_4px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#000] transition-all disabled:opacity-60"
+                  className="px-4 py-2 font-bold text-sm uppercase tracking-widest border-2 border-[#a8a8a8] bg-[#22c55e] shadow-[4px_4px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_#000] transition-all disabled:opacity-60"
                 >
                   {pending ? "Saving..." : "Save"}
                 </button>
@@ -510,13 +510,13 @@ export function RoadMarkingsTable({ initialRows }: { initialRows: Row[] }) {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search markings..."
-              className="w-full pl-9 pr-3 py-2 border-2 border-black shadow-[2px_2px_0_#000] text-sm font-medium focus:outline-none focus:shadow-[4px_4px_0_#000] transition-all"
+              className="w-full pl-9 pr-3 py-2 border-2 border-[#a8a8a8] shadow-[2px_2px_0_#000] text-sm font-medium focus:outline-none focus:shadow-[4px_4px_0_#000] transition-all"
             />
           </div>
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="border-2 border-black shadow-[2px_2px_0_#000] px-3 py-2 text-sm font-bold uppercase tracking-widest focus:outline-none bg-white"
+            className="border-2 border-[#a8a8a8] shadow-[2px_2px_0_#000] px-3 py-2 text-sm font-bold uppercase tracking-widest focus:outline-none bg-white"
           >
             <option value="all">All</option>
             {CATEGORIES.map((c) => (
@@ -578,7 +578,7 @@ export function RoadMarkingsTable({ initialRows }: { initialRows: Row[] }) {
                   {row.colorCode ? (
                     <div className="flex items-center gap-2">
                       <span
-                        className="inline-block w-5 h-5 border-2 border-black"
+                        className="inline-block w-5 h-5 border-2 border-[#a8a8a8]"
                         style={{ background: row.colorCode }}
                       />
                       <span className="text-xs font-mono">{row.colorCode}</span>
@@ -590,7 +590,7 @@ export function RoadMarkingsTable({ initialRows }: { initialRows: Row[] }) {
                 <TableCell>
                   <button
                     onClick={() => handleToggleActive(row.id, row.isActive)}
-                    className={`px-2 py-0.5 text-xs font-black uppercase tracking-widest border-2 border-black transition-colors ${
+                    className={`px-2 py-0.5 text-xs font-black uppercase tracking-widest border-2 border-[#a8a8a8] transition-colors ${
                       row.isActive
                         ? "bg-[#22c55e] text-black"
                         : "bg-[#a8a8a8] text-white"
@@ -601,12 +601,12 @@ export function RoadMarkingsTable({ initialRows }: { initialRows: Row[] }) {
                 </TableCell>
                 <TableCell className="text-right">
                   <DropdownMenu>
-                    <DropdownMenuTrigger className="p-1 border-2 border-[#a8a8a8] hover:border-black hover:shadow-[2px_2px_0_#000] transition-all">
+                    <DropdownMenuTrigger className="p-1 border-2 border-[#a8a8a8] hover:border-[#a8a8a8] hover:shadow-[2px_2px_0_#000] transition-all">
                       <MoreHorizontal className="size-4" />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
                       align="end"
-                      className="border-2 border-black rounded-none shadow-[4px_4px_0_#000]"
+                      className="border-2 border-[#a8a8a8] rounded-none shadow-[4px_4px_0_#000]"
                     >
                       <EditDialog row={row} onSuccess={refresh} />
                       <DropdownMenuSeparator className="bg-black" />

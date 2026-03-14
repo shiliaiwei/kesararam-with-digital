@@ -1,44 +1,46 @@
-## Profile Management Architecture
+[3/12/2026 5:45 PM] SRIEVi: Neo-brutalist
 
-### User Role-Based Profile Types
+Neo-brutal
 
-**Admin & Teacher Profiles**
+neo-brutalism
+[3/12/2026 5:48 PM] SRIEVi: Caution Tape Border border ,
 
-- Feature: Face Expression Avatar (customizable facial expressions)
-- Access: Profile editing, settings management, view info panel
-- Dropdown menu structure:
-  - Edit Profile
-  - View Info
-  - Settings
-  - Logout
+Curbs Markings
 
-**Student Profiles**
+Edge line and curb delineation markings
 
-- Feature: Standard Avatar (non-expression based)
-- Access: Limited profile customization
-- Dropdown menu structure:
-  - View Profile
-  - Settings
-  - Logout
+Signals Markings
 
-### Edit Profile Dropdown Menu (Neo-Brutalist)
+Stop lines, pedestrian crossings, and signal zones
 
-```
-┌─────────────────────┐
-│ Edit Profile        │ ← border-2 border-[#a8a8a8]
-│ View Info           │   shadow-[4px_4px_0_#000]
-│ Settings            │
-│ ─────────────────── │
-│ Logout              │
-└─────────────────────┘
-```
+Longitudinal Markings
 
-- **Border**: `border-2 border-[#a8a8a8]`
-- **Shadow**: `shadow-[4px_4px_0_#000]`
-- **Divider**: Solid line separating logout action
-- **Hover State**: `bg-[#eab308]` (traffic-light yellow)
+Center lines, lane dividers, and caution zones
+[3/12/2026 5:50 PM] SRIEVi: Curbs Markings
 
-### Customization Fields
+Border: border-2 border-[#a8a8a8]
+Shadow: shadow-[4px_4px_0_#000]
+Background: bg-[#ffffff]
+Accent: #006747 for active states
+Signals Markings
 
-**For Admin/Teacher**: Face, expression, hair/head styling
-**For Student**: Avatar selection only
+Border: border-2 border-[#a8a8a8]
+Shadow: shadow-[4px_4px_0_#000]
+Highlight color: #3b82f6 for signal indicators
+Longitudinal Markings
+
+Border: border-2 border-[#a8a8a8]
+Shadow: shadow-[4px_4px_0_#000]
+Warning state: #f97316 for caution zones
+Caution Border
+
+Border: border-2 border-[#ef4444]
+Shadow: shadow-[4px_4px_0_#000]
+Background: bg-[#fda4af] for alerts
+Styling Rules
+All elements: border-2 border-[#a8a8a8] minimum
+Interactive elements: Add shadow-[4px_4px_0_#000]
+No border-radius — sharp corners only
+No gradients — solid colors exclusively
+No emoji in labels or descriptions
+[3/12/2026 5:50 PM] SRIEVi: Traffic-light palette: yellow #eab308, blue #3b82f6, red #ef4444, green #22c55e, orange #f97316, cyan #06b6d4, purple #a855f7,
