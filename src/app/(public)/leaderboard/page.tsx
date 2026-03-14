@@ -10,11 +10,11 @@ export default function LeaderboardPage() {
   return (
     <div className="min-h-screen dot-bg">
       <div
-        className="border-b-4 border-[#a8a8a8] py-16"
+        className="border-b-4 border-black py-16"
         style={{ backgroundColor: "#eab308" }}
       >
         <div className="max-w-7xl mx-auto px-6">
-          <span className="text-xs font-black tracking-widest uppercase bg-black text-white px-3 py-1.5 rounded-lg">
+          <span className="text-xs font-black tracking-widest uppercase bg-black text-white px-3 py-1.5 rounded-none">
             Leaderboard
           </span>
           <h1 className="text-5xl font-black text-black mt-3">Rankings</h1>
@@ -28,24 +28,24 @@ export default function LeaderboardPage() {
         {/* Top 3 podium */}
         <div className="flex flex-col md:flex-row items-end justify-center gap-4 mb-12">
           {/* 2nd */}
-          <div className="bg-white border-2 border-[#a8a8a8] rounded-3xl shadow-[4px_4px_0_#3b82f6] p-6 flex flex-col items-center gap-2 w-full md:w-48 order-1 md:order-none">
-            <div className="w-14 h-14 bg-zinc-200 border-2 border-[#a8a8a8] rounded-full flex items-center justify-center font-black text-xl">
+          <div className="bg-white border-2 border-black rounded-none shadow-[4px_4px_0_#3b82f6] p-6 flex flex-col items-center gap-2 w-full md:w-48 order-1 md:order-none">
+            <div className="w-14 h-14 bg-zinc-200 border-2 border-black rounded-none flex items-center justify-center font-black text-xl">
               2
             </div>
             <span className="font-black text-sm text-center">—</span>
             <span className="text-xs text-zinc-500">Silver</span>
           </div>
           {/* 1st */}
-          <div className="bg-yellow-400 border-2 border-[#a8a8a8] rounded-3xl shadow-[6px_6px_0_#ca8a04] p-8 flex flex-col items-center gap-2 w-full md:w-56 order-0 md:order-none">
-            <div className="w-16 h-16 bg-white border-2 border-[#a8a8a8] rounded-full flex items-center justify-center font-black text-2xl">
+          <div className="bg-yellow-400 border-2 border-black rounded-none shadow-[6px_6px_0_#ca8a04] p-8 flex flex-col items-center gap-2 w-full md:w-56 order-0 md:order-none">
+            <div className="w-16 h-16 bg-white border-2 border-black rounded-none flex items-center justify-center font-black text-2xl">
               1
             </div>
             <span className="font-black text-center">—</span>
             <span className="text-xs font-bold">Gold Champion</span>
           </div>
           {/* 3rd */}
-          <div className="bg-white border-2 border-[#a8a8a8] rounded-3xl shadow-[4px_4px_0_#f97316] p-6 flex flex-col items-center gap-2 w-full md:w-48 order-2 md:order-none">
-            <div className="w-14 h-14 bg-orange-100 border-2 border-[#a8a8a8] rounded-full flex items-center justify-center font-black text-xl">
+          <div className="bg-white border-2 border-black rounded-none shadow-[4px_4px_0_#f97316] p-6 flex flex-col items-center gap-2 w-full md:w-48 order-2 md:order-none">
+            <div className="w-14 h-14 bg-orange-100 border-2 border-black rounded-none flex items-center justify-center font-black text-xl">
               3
             </div>
             <span className="font-black text-sm text-center">—</span>
@@ -54,8 +54,8 @@ export default function LeaderboardPage() {
         </div>
 
         {/* Table */}
-        <div className="bg-white border-2 border-[#a8a8a8] rounded-3xl shadow-[4px_4px_0_#000] overflow-hidden">
-          <div className="grid grid-cols-4 bg-yellow-400 border-b-2 border-[#a8a8a8] px-6 py-3 text-xs font-black tracking-wider text-black">
+        <div className="bg-white border-2 border-black rounded-none shadow-[4px_4px_0_#000] overflow-hidden">
+          <div className="grid grid-cols-4 bg-yellow-400 border-b-2 border-black px-6 py-3 text-xs font-black tracking-wider text-black">
             <span>Rank</span>
             <span className="col-span-2">Student</span>
             <span className="text-right">Score</span>

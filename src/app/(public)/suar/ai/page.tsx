@@ -11,12 +11,12 @@ export default function SuarAIPage() {
     <div className="min-h-screen dot-bg flex items-center justify-center px-6">
       <div className="w-full max-w-lg">
         {/* Card */}
-        <div className="bg-white border-4 border-[#a8a8a8] shadow-[8px_8px_0_#000] p-10 flex flex-col items-center gap-6 text-center">
+        <div className="bg-white border-4 border-black shadow-[8px_8px_0_#000] p-10 flex flex-col items-center gap-6 text-center">
           {/* Top caution strip */}
-          <div className="w-full h-3 caution-tape border-2 border-[#a8a8a8] -mt-10 mb-2" />
+          <div className="w-full h-3 caution-tape border-2 border-black -mt-10 mb-2" />
 
           {/* Icon */}
-          <div className="w-20 h-20 bg-yellow-400 border-4 border-[#a8a8a8] shadow-[4px_4px_0_#000] flex items-center justify-center">
+          <div className="w-20 h-20 bg-yellow-400 border-4 border-black shadow-[4px_4px_0_#000] flex items-center justify-center">
             <FaTools size={36} className="text-black" />
           </div>
 
@@ -41,8 +41,8 @@ export default function SuarAIPage() {
           </div>
 
           {/* Status badge */}
-          <div className="flex items-center gap-2 px-4 py-2 bg-zinc-100 border-2 border-[#a8a8a8] shadow-[2px_2px_0_#000]">
-            <span className="w-2 h-2 bg-yellow-400 border border-[#a8a8a8] animate-pulse" />
+          <div className="flex items-center gap-2 px-4 py-2 bg-zinc-100 border-2 border-black shadow-[2px_2px_0_#000]">
+            <span className="w-2 h-2 bg-yellow-400 border border-black animate-pulse" />
             <span className="text-xs font-black text-black uppercase tracking-widest">
               {lang === "kh" ? "កំពុងអភិវឌ្ឍ" : "Coming Soon"}
             </span>
@@ -51,7 +51,7 @@ export default function SuarAIPage() {
           {/* Back link */}
           <Link
             href="/home"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-yellow-400 border-2 border-[#a8a8a8] shadow-[3px_3px_0_#000] font-black text-sm text-black hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#000] transition-all"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-yellow-400 border-2 border-black shadow-[3px_3px_0_#000] font-black text-sm text-black hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#000] transition-all"
           >
             <FaArrowLeft size={12} />
             {lang === "kh" ? "ត្រឡប់ទៅទំព័រដើម" : "Back to Home"}

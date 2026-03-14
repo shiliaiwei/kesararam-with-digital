@@ -17,7 +17,7 @@ export function AvatarDisplay({
   avatar,
   name,
   size = 36,
-  radius = 15,
+  radius = 0,
 }: AvatarDisplayProps) {
   const parsed = (() => {
     try {

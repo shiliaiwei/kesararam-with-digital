@@ -41,6 +41,7 @@ Styling Rules
 All elements: border-2 border-[#a8a8a8] minimum
 Interactive elements: Add shadow-[4px_4px_0_#000]
 No border-radius — sharp corners only
+
 No gradients — solid colors exclusively
 No emoji in labels or descriptions
 [3/12/2026 5:50 PM] SRIEVi: Traffic-light palette: yellow #eab308, blue #3b82f6, red #ef4444, green #22c55e, orange #f97316, cyan #06b6d4, purple #a855f7,

@@ -12,7 +12,7 @@ export default function LearnPage() {
     <div className="min-h-screen dot-bg">
       <div className="bg-black text-white border-b-4 border-yellow-400 py-16">
         <div className="max-w-7xl mx-auto px-6">
-          <span className="text-xs font-black tracking-widest uppercase bg-yellow-400 text-black px-3 py-1.5 rounded-lg">
+          <span className="text-xs font-black tracking-widest uppercase bg-yellow-400 text-black px-3 py-1.5 rounded-none">
             Study Hub
           </span>
           <h1 className="text-5xl font-black mt-3">Learn</h1>
@@ -37,10 +37,10 @@ export default function LearnPage() {
           ].map(({ mode, color }) => (
             <div
               key={mode}
-              className="bg-white border-2 border-[#a8a8a8] rounded-3xl p-5 flex flex-col gap-2 shadow-[4px_4px_0_#000] cursor-pointer hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#000] transition-all"
+              className="bg-white border-2 border-black rounded-none p-5 flex flex-col gap-2 shadow-[4px_4px_0_#000] cursor-pointer hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#000] transition-all"
             >
               <div
-                className="w-10 h-10 border-2 border-[#a8a8a8] rounded-xl"
+                className="w-10 h-10 border-2 border-black rounded-none"
                 style={{ backgroundColor: color }}
               />
               <span className="font-black text-sm">{mode}</span>

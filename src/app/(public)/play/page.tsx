@@ -116,11 +116,11 @@ export default function PlayPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
-      <section className="bg-yellow-400 border-b-2 border-[#a8a8a8] py-16">
+      <section className="bg-yellow-400 border-b-2 border-black py-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col items-start gap-4 max-w-2xl">
             <div
-              className="inline-block bg-black text-white text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-[20px]"
+              className="inline-block bg-black text-white text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-none"
               style={khFont}
             >
               {kh ? "លេងហ្គេម" : "Game Center"}
@@ -144,14 +144,14 @@ export default function PlayPage() {
             <div className="flex flex-wrap gap-3 mt-2">
               <Link
                 href="/leaderboard"
-                className="px-6 py-3 bg-black text-white font-black border-2 border-[#a8a8a8] rounded-[20px] shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100"
+                className="px-6 py-3 bg-black text-white font-black border-2 border-black rounded-none shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100"
                 style={khFont}
               >
                 {kh ? "មើលចំណាត់ថ្នាក់" : "View Leaderboard"}
               </Link>
               <Link
                 href="/learn"
-                className="px-6 py-3 bg-white text-black font-black border-2 border-[#a8a8a8] rounded-[20px] shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100"
+                className="px-6 py-3 bg-white text-black font-black border-2 border-black rounded-none shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100"
                 style={khFont}
               >
                 {kh ? "រៀនមុន" : "Study First"}
@@ -162,13 +162,13 @@ export default function PlayPage() {
       </section>
 
       {/* Stats row */}
-      <section className="border-b-2 border-[#a8a8a8] bg-white py-8">
+      <section className="border-b-2 border-black bg-white py-8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {STATS.map(({ value, label, labelKh, color }) => (
               <div
                 key={label}
-                className="border-2 border-[#a8a8a8] rounded-[20px] p-5 shadow-[4px_4px_0_#000] flex flex-col gap-1"
+                className="border-2 border-black rounded-none p-5 shadow-[4px_4px_0_#000] flex flex-col gap-1"
               >
                 <span className="text-3xl font-black" style={{ color }}>
                   {value}
@@ -190,7 +190,7 @@ export default function PlayPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-10">
             <div
-              className="inline-block bg-black text-white text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-[20px] mb-3"
+              className="inline-block bg-black text-white text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-none mb-3"
               style={khFont}
             >
               {kh ? "ជ្រើសរើស" : "Choose Mode"}
@@ -217,18 +217,18 @@ export default function PlayPage() {
                 <Link
                   key={id}
                   href={href}
-                  className="group bg-white border-2 border-[#a8a8a8] rounded-[20px] p-6 shadow-[4px_4px_0_#000] hover:shadow-[8px_8px_0_#000] hover:-translate-x-1 hover:-translate-y-1 transition-all duration-150 flex flex-col gap-4"
+                  className="group bg-white border-2 border-black rounded-none p-6 shadow-[4px_4px_0_#000] hover:shadow-[8px_8px_0_#000] hover:-translate-x-1 hover:-translate-y-1 transition-all duration-150 flex flex-col gap-4"
                 >
                   {/* Icon + badge row */}
                   <div className="flex items-start justify-between">
                     <div
-                      className="w-12 h-12 border-2 border-[#a8a8a8] rounded-[20px] flex items-center justify-center shadow-[2px_2px_0_#000]"
+                      className="w-12 h-12 border-2 border-black rounded-none flex items-center justify-center shadow-[2px_2px_0_#000]"
                       style={{ backgroundColor: color }}
                     >
                       <Icon size={20} className="text-black" />
                     </div>
                     <span
-                      className="text-[10px] font-black tracking-widest uppercase px-2.5 py-1 border-2 border-[#a8a8a8] rounded-[20px]"
+                      className="text-[10px] font-black tracking-widest uppercase px-2.5 py-1 border-2 border-black rounded-none"
                       style={{ backgroundColor: color, ...khFont }}
                     >
                       {kh ? badgeKh : badge}
@@ -251,7 +251,7 @@ export default function PlayPage() {
                   {/* CTA */}
                   <div className="mt-auto pt-2">
                     <span
-                      className="inline-block text-sm font-black border-b-2 border-[#a8a8a8] group-hover:border-b-4 transition-all duration-100"
+                      className="inline-block text-sm font-black border-b-2 border-black group-hover:border-b-4 transition-all duration-100"
                       style={khFont}
                     >
                       {kh ? "ចាប់ផ្តើម" : "Start playing"}
@@ -265,7 +265,7 @@ export default function PlayPage() {
       </section>
 
       {/* CTA Banner */}
-      <section className="bg-black py-16 border-t-2 border-[#a8a8a8]">
+      <section className="bg-black py-16 border-t-2 border-black">
         <div className="max-w-4xl mx-auto px-6 text-center flex flex-col items-center gap-6">
           <h2
             className="text-4xl md:text-5xl font-black text-white"
@@ -281,14 +281,14 @@ export default function PlayPage() {
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
               href="/learn"
-              className="px-8 py-4 bg-yellow-400 text-black font-black border-2 border-yellow-400 rounded-[20px] shadow-[4px_4px_0_#eab308] hover:shadow-[6px_6px_0_#eab308] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100"
+              className="px-8 py-4 bg-yellow-400 text-black font-black border-2 border-yellow-400 rounded-none shadow-[4px_4px_0_#eab308] hover:shadow-[6px_6px_0_#eab308] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100"
               style={khFont}
             >
               {kh ? "ចូលរៀន" : "Start Learning"}
             </Link>
             <Link
               href="/login"
-              className="px-8 py-4 bg-transparent text-white font-black border-2 border-white rounded-[20px] hover:bg-white hover:text-black transition-all duration-100"
+              className="px-8 py-4 bg-transparent text-white font-black border-2 border-white rounded-none hover:bg-white hover:text-black transition-all duration-100"
               style={khFont}
             >
               {kh ? "បង្កើតគណនី" : "Create Free Account"}

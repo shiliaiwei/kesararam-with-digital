@@ -10,15 +10,15 @@ function ContentCardSkeleton({ slug }: ContentCardSkeletonProps) {
   const color = CATEGORY_COLORS[slug] ?? "#eab308";
   return (
     <div
-      className="bg-white border-2 border-[#a8a8a8] rounded-3xl overflow-hidden"
+      className="bg-white border-2 border-black rounded-none overflow-hidden"
       style={{ boxShadow: "4px 4px 0 #000" }}
     >
       <div className="h-2" style={{ backgroundColor: color }} />
       <div className="p-5 flex flex-col gap-3">
-        <Skeleton className="h-5 w-3/4 rounded-xl" />
-        <Skeleton className="h-3 w-1/2 rounded-xl" />
-        <Skeleton className="h-16 w-full rounded-xl" />
-        <Skeleton className="h-8 w-24 rounded-xl" />
+        <Skeleton className="h-5 w-3/4 rounded-none" />
+        <Skeleton className="h-3 w-1/2 rounded-none" />
+        <Skeleton className="h-16 w-full rounded-none" />
+        <Skeleton className="h-8 w-24 rounded-none" />
       </div>
     </div>
   );
@@ -48,12 +48,12 @@ export function CategoryPageShell({
     <div className="min-h-screen dot-bg">
       {/* Category hero */}
       <div
-        className="border-b-4 border-[#a8a8a8] py-16 md:py-20"
+        className="border-b-4 border-black py-16 md:py-20"
         style={{ backgroundColor: color }}
       >
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col gap-3">
-            <span className="text-xs font-black tracking-widest uppercase bg-black text-white px-3 py-1.5 rounded-lg w-fit">
+            <span className="text-xs font-black tracking-widest uppercase bg-black text-white px-3 py-1.5 rounded-none w-fit">
               Knowledge Category
             </span>
             <h1 className="text-5xl md:text-6xl font-black text-black leading-tight">
@@ -78,7 +78,7 @@ export function CategoryPageShell({
                 (mode) => (
                   <span
                     key={mode}
-                    className="px-4 py-2 bg-white border-2 border-[#a8a8a8] rounded-xl text-sm font-bold shadow-[2px_2px_0_#000] cursor-not-allowed opacity-60"
+                    className="px-4 py-2 bg-white border-2 border-black rounded-none text-sm font-bold shadow-[2px_2px_0_#000] cursor-not-allowed opacity-60"
                     title="Coming soon — content managed by admin"
                   >
                     {mode}
@@ -103,11 +103,11 @@ export function CategoryPageShell({
         ) : (
           /* Empty state */
           <div
-            className="bg-white border-2 border-[#a8a8a8] rounded-3xl p-12 text-center max-w-lg mx-auto"
+            className="bg-white border-2 border-black rounded-none p-12 text-center max-w-lg mx-auto"
             style={{ boxShadow: shadow }}
           >
             <div
-              className="w-16 h-16 border-2 border-[#a8a8a8] rounded-2xl mx-auto mb-4 flex items-center justify-center"
+              className="w-16 h-16 border-2 border-black rounded-none mx-auto mb-4 flex items-center justify-center"
               style={{ backgroundColor: color }}
             >
               <FaClipboardList size={28} className="text-black" />

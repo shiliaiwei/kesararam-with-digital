@@ -17,7 +17,7 @@ export default function HomePage() {
       <CategoryGrid />
 
       {/* Daily stats section */}
-      <section className="grid-bg py-16 border-b-2 border-[#a8a8a8]">
+      <section className="grid-bg py-16 border-b-2 border-black">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
             {[
@@ -28,7 +28,7 @@ export default function HomePage() {
             ].map(({ value, label, color }) => (
               <div
                 key={label}
-                className="bg-white border-2 border-[#a8a8a8] rounded-3xl p-6 shadow-[4px_4px_0_#000] flex flex-col gap-1"
+                className="bg-white border-2 border-black rounded-none p-6 shadow-[4px_4px_0_#000] flex flex-col gap-1"
               >
                 <span className="text-3xl font-black" style={{ color }}>
                   {value}
@@ -46,11 +46,11 @@ export default function HomePage() {
       </section>
 
       {/* How it works */}
-      <section className="bg-white py-20 border-b-2 border-[#a8a8a8]">
+      <section className="bg-white py-20 border-b-2 border-black">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-12 text-center">
             <div
-              className="inline-block bg-black text-white text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-lg mb-3"
+              className="inline-block bg-black text-white text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-none mb-3"
               style={khFont}
             >
               {tr.howBadge}
@@ -83,10 +83,10 @@ export default function HomePage() {
             ].map(({ step, title, desc, color }) => (
               <div
                 key={step}
-                className="bg-white border-2 border-[#a8a8a8] rounded-3xl p-8 shadow-[4px_4px_0_#000] flex flex-col gap-4"
+                className="bg-white border-2 border-black rounded-none p-8 shadow-[4px_4px_0_#000] flex flex-col gap-4"
               >
                 <div
-                  className="w-14 h-14 border-2 border-[#a8a8a8] rounded-2xl flex items-center justify-center font-black text-xl shadow-[2px_2px_0_#000]"
+                  className="w-14 h-14 border-2 border-black rounded-none flex items-center justify-center font-black text-xl shadow-[2px_2px_0_#000]"
                   style={{ backgroundColor: color }}
                 >
                   {step}

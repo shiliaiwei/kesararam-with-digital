@@ -85,13 +85,13 @@ export function CategoryGrid() {
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
   return (
-    <section className="dot-bg py-20 border-b-2 border-[#a8a8a8]">
+    <section className="dot-bg py-20 border-b-2 border-black">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section header */}
         <div className="mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
           <div>
             <div
-              className="inline-block bg-black text-white text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-lg mb-3"
+              className="inline-block bg-black text-white text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-none mb-3"
               style={khFont}
             >
               {tr.sectionBadge}
@@ -124,7 +124,7 @@ export function CategoryGrid() {
               <Link
                 key={cat.slug}
                 href={`/${cat.slug}`}
-                className="group flex flex-col bg-white border-2 border-[#a8a8a8] rounded-3xl overflow-hidden transition-all duration-150 hover:-translate-y-1 hover:-translate-x-1"
+                className="group flex flex-col bg-white border-2 border-black rounded-none overflow-hidden transition-all duration-150 hover:-translate-y-1 hover:-translate-x-1"
                 style={{ boxShadow: "4px 4px 0 #000" }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.boxShadow = shadow;
@@ -136,10 +136,10 @@ export function CategoryGrid() {
               >
                 {/* Color header */}
                 <div
-                  className="flex items-center justify-center py-8 border-b-2 border-[#a8a8a8]"
+                  className="flex items-center justify-center py-8 border-b-2 border-black"
                   style={{ backgroundColor: color }}
                 >
-                  <div className="w-16 h-16 bg-white border-2 border-[#a8a8a8] rounded-2xl flex items-center justify-center shadow-[2px_2px_0_#000]">
+                  <div className="w-16 h-16 bg-white border-2 border-black rounded-none flex items-center justify-center shadow-[2px_2px_0_#000]">
                     <cat.Icon size={28} className="text-black" />
                   </div>
                 </div>
@@ -166,15 +166,15 @@ export function CategoryGrid() {
                   </p>
 
                   {/* Bottom indicator */}
-                  <div className="mt-3 pt-3 border-t-2 border-[#a8a8a8] flex items-center justify-between">
+                  <div className="mt-3 pt-3 border-t-2 border-black flex items-center justify-between">
                     <span
-                      className="text-xs font-black px-2 py-0.5 border border-[#a8a8a8] rounded-lg"
+                      className="text-xs font-black px-2 py-0.5 border border-black rounded-none"
                       style={{ backgroundColor: color, ...khFont }}
                     >
                       {tr.studyNow}
                     </span>
                     <div
-                      className="w-7 h-7 border-2 border-[#a8a8a8] rounded-lg flex items-center justify-center group-hover:translate-x-0.5 transition-transform"
+                      className="w-7 h-7 border-2 border-black rounded-none flex items-center justify-center group-hover:translate-x-0.5 transition-transform"
                       style={{ backgroundColor: color }}
                     >
                       <span className="text-base font-black leading-none">
