@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams, useRouter } from "next/navigation";
+import Link from "next/link";
 import { ProfileEditor } from "@/components/profile/profile-editor";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
 import { Pencil, Info, Settings } from "lucide-react";
@@ -9,6 +9,7 @@ type Tab = "edit" | "info" | "settings";
 
 interface StaffProfileTabsProps {
   role: "admin" | "teacher";
+  activeTab: Tab;
   name: string;
   email: string;
   username: string;
@@ -30,6 +31,7 @@ const ROLE_STYLE = {
 
 export function StaffProfileTabs({
   role,
+  activeTab,
   name,
   email,
   username,
@@ -37,18 +39,8 @@ export function StaffProfileTabs({
   avatarChangedAt,
   createdAt,
 }: StaffProfileTabsProps) {
-  const params = useSearchParams();
-  const router = useRouter();
-  const rawTab = params.get("tab");
-  const activeTab: Tab =
-    rawTab === "info" || rawTab === "settings" ? rawTab : "edit";
-
   const roleStyle = ROLE_STYLE[role];
   const basePath = role === "admin" ? "/admin/profile" : "/teacher/profile";
-
-  function goTab(tab: Tab) {
-    router.push(tab === "edit" ? basePath : `${basePath}?tab=${tab}`);
-  }
 
   return (
     <div className="flex flex-col gap-6 py-4 max-w-2xl">
@@ -94,10 +86,11 @@ export function StaffProfileTabs({
       <div className="flex border-2 border-black shadow-[4px_4px_0_#000] overflow-hidden">
         {TABS.map((tab, i) => {
           const active = activeTab === tab.id;
+          const tabHref = tab.id === "edit" ? basePath : `${basePath}?tab=${tab.id}`;
           return (
-            <button
+            <Link
               key={tab.id}
-              onClick={() => goTab(tab.id)}
+              href={tabHref}
               className={`flex-1 flex items-center justify-center gap-2 py-2.5 text-xs font-black uppercase tracking-widest transition-colors ${
                 i > 0 ? "border-l-2 border-black" : ""
               } ${
@@ -108,7 +101,7 @@ export function StaffProfileTabs({
             >
               <tab.Icon className="size-3.5" />
               {tab.label}
-            </button>
+            </Link>
           );
         })}
       </div>
