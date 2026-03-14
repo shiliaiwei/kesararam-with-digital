@@ -140,25 +140,19 @@ export function CategoryGrid() {
               >
                 {/* Color header */}
                 <div
-                  className="flex items-center justify-center py-12 border-b-2 border-black"
+                  className="relative flex items-center justify-center py-12 border-b-2 border-black overflow-hidden"
                   style={{ 
                     backgroundColor: color
                   }}
                 >
-                  <div className="w-6 h-6 bg-white border border-black flex items-start justify-center shadow-[1px_1px_0_#000]"
-                    style={{ 
-                      borderRadius: "3px"
+                  <img 
+                    src="https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/lgo_dhuxrl?_a=BAMAAAUs0"
+                    alt={kh ? cat.titleKh : cat.titleEn}
+                    className="absolute inset-0 w-full h-full object-cover opacity-80"
+                    style={{
+                      mixBlendMode: 'multiply'
                     }}
-                  >
-                    <img 
-                      src="https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/lgo_dhuxrl?_a=BAMAAAUs0"
-                      alt={kh ? cat.titleKh : cat.titleEn}
-                      className="w-4 h-4 object-contain object-top bg-transparent"
-                      style={{
-                        mixBlendMode: 'multiply'
-                      }}
-                    />
-                  </div>
+                  />
                 </div>
 
                 {/* Body */}
