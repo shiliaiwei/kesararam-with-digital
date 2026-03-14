@@ -26,7 +26,7 @@ export function CloudinaryDemo() {
     .filter(Boolean);
 
   return (
-    <Card className="@container/card mt-4 overflow-hidden border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] rounded-none">
+    <Card className="@container/card mt-4 overflow-hidden border-2 border-black shadow-[4px_4px_0_#000] rounded-none">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <CloudUpload className="h-5 w-5" />
@@ -39,25 +39,25 @@ export function CloudinaryDemo() {
       <CardContent className="flex flex-col gap-4">
         <div className="grid gap-3 sm:grid-cols-2">
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-black uppercase tracking-widest text-[#a8a8a8]">
+            <span className="text-xs font-black uppercase tracking-widest text-zinc-500">
               Folder
             </span>
             <input
               value={folder}
               onChange={(e) => setFolder(e.target.value)}
               placeholder="road-signs"
-              className="h-10 border-2 border-[#a8a8a8] px-3 text-sm font-medium outline-none"
+              className="h-10 border-2 border-black px-3 text-sm font-medium outline-none"
             />
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-black uppercase tracking-widest text-[#a8a8a8]">
+            <span className="text-xs font-black uppercase tracking-widest text-zinc-500">
               Tags (comma separated)
             </span>
             <input
               value={tags}
               onChange={(e) => setTags(e.target.value)}
               placeholder="road-sign, warning"
-              className="h-10 border-2 border-[#a8a8a8] px-3 text-sm font-medium outline-none"
+              className="h-10 border-2 border-black px-3 text-sm font-medium outline-none"
             />
           </label>
         </div>
@@ -85,7 +85,7 @@ export function CloudinaryDemo() {
             return (
               <Button
                 variant="outline"
-                className="border-2 border-[#a8a8a8] rounded-none shadow-[3px_3px_0_#000]"
+                className="border-2 border-black rounded-none shadow-[3px_3px_0_#000]"
                 onClick={() => open()}
               >
                 Choose File to Upload
@@ -101,7 +101,7 @@ export function CloudinaryDemo() {
         )}
 
         {imageUrl && (
-          <div className="mt-4 border-2 border-[#a8a8a8] p-4 text-sm text-muted-foreground">
+          <div className="mt-4 border-2 border-black p-4 text-sm text-muted-foreground">
             <p className="mb-2 font-medium text-foreground">
               Recently Uploaded:
             </p>
@@ -109,10 +109,10 @@ export function CloudinaryDemo() {
             <img
               src={imageUrl}
               alt="Uploaded to CDN"
-              className="h-32 w-auto object-cover border-2 border-[#a8a8a8]"
+              className="h-32 w-auto object-cover border-2 border-black"
             />
             <p className="mt-2 truncate text-xs">{imageUrl}</p>
-            <p className="mt-1 text-xs text-[#a8a8a8]">
+            <p className="mt-1 text-xs text-zinc-500">
               folder: {folder || "root"} | tags:{" "}
               {normalizedTags.join(", ") || "none"}
             </p>

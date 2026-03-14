@@ -9,7 +9,7 @@ export function LangSwitcher({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "flex items-center border-2 border-[#a8a8a8] rounded-xl overflow-hidden shadow-[2px_2px_0_#000]",
+        "flex items-center border-2 border-black rounded-xl overflow-hidden shadow-[2px_2px_0_#000]",
         className,
       )}
     >

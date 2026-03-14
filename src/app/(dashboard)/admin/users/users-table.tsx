@@ -73,7 +73,7 @@ function RolePicker({
           type="button"
           onClick={() => onChange(r)}
           className={cn(
-            "flex-1 py-2 font-black uppercase text-xs tracking-widest border-2 border-[#a8a8a8] transition-all",
+            "flex-1 py-2 font-black uppercase text-xs tracking-widest border-2 border-black transition-all",
             value === r
               ? cn(ROLE_CONFIG[r].active, "shadow-[3px_3px_0_#000]")
               : "bg-white text-black hover:shadow-[2px_2px_0_#000]",
@@ -114,14 +114,14 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="flex items-center gap-1.5 px-4 py-2 bg-[#006747] text-white font-black uppercase text-sm border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] hover:shadow-[2px_2px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+        className="flex items-center gap-1.5 px-4 py-2 bg-[#006747] text-white font-black uppercase text-sm border-2 border-black shadow-[4px_4px_0_#000] hover:shadow-[2px_2px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
       >
         <Plus className="size-4" />
         New User
       </button>
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-md p-0 border-2 border-[#a8a8a8] shadow-[6px_6px_0_#000] !rounded-none overflow-hidden">
-          <div className="bg-[#eab308] px-6 py-4 border-b-2 border-[#a8a8a8]">
+        <DialogContent className="sm:max-w-md p-0 border-2 border-black shadow-[6px_6px_0_#000] !rounded-none overflow-hidden">
+          <div className="bg-[#eab308] px-6 py-4 border-b-2 border-black">
             <DialogTitle className="font-black uppercase text-xl tracking-tight">
               Create New User
             </DialogTitle>
@@ -145,7 +145,7 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
                 name="username"
                 required
                 placeholder="e.g. sopheak01"
-                className="border-2 border-[#a8a8a8] !rounded-none focus-visible:border-[#a8a8a8] focus-visible:ring-0 font-medium"
+                className="border-2 border-black !rounded-none focus-visible:border-black focus-visible:ring-0 font-medium"
               />
             </div>
 
@@ -162,7 +162,7 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
                 type="email"
                 required
                 placeholder="user@kwd.tech"
-                className="border-2 border-[#a8a8a8] !rounded-none focus-visible:border-[#a8a8a8] focus-visible:ring-0 font-medium"
+                className="border-2 border-black !rounded-none focus-visible:border-black focus-visible:ring-0 font-medium"
               />
             </div>
 
@@ -177,7 +177,7 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
                 id="create-display"
                 name="displayName"
                 placeholder="Sopheak Chan"
-                className="border-2 border-[#a8a8a8] !rounded-none focus-visible:border-[#a8a8a8] focus-visible:ring-0 font-medium"
+                className="border-2 border-black !rounded-none focus-visible:border-black focus-visible:ring-0 font-medium"
               />
             </div>
 
@@ -201,12 +201,12 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
                 type="password"
                 required
                 placeholder="••••••••"
-                className="border-2 border-[#a8a8a8] !rounded-none focus-visible:border-[#a8a8a8] focus-visible:ring-0 font-medium"
+                className="border-2 border-black !rounded-none focus-visible:border-black focus-visible:ring-0 font-medium"
               />
             </div>
 
             {error && (
-              <p className="text-sm font-bold text-white bg-[#ef4444] border-2 border-[#a8a8a8] px-3 py-2 shadow-[2px_2px_0_#000]">
+              <p className="text-sm font-bold text-white bg-[#ef4444] border-2 border-black px-3 py-2 shadow-[2px_2px_0_#000]">
                 {error}
               </p>
             )}
@@ -215,14 +215,14 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="px-4 py-2 font-black uppercase text-sm border-2 border-[#a8a8a8] shadow-[3px_3px_0_#000] hover:shadow-[1px_1px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+                className="px-4 py-2 font-black uppercase text-sm border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[1px_1px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={pending}
-                className="px-4 py-2 bg-[#006747] text-white font-black uppercase text-sm border-2 border-[#a8a8a8] shadow-[3px_3px_0_#000] hover:shadow-[1px_1px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-4 py-2 bg-[#006747] text-white font-black uppercase text-sm border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[1px_1px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {pending ? "Creating..." : "Create User"}
               </button>
@@ -267,8 +267,8 @@ function EditUserDialog({
     <>
       <DropdownMenuItem onClick={() => setOpen(true)}>Edit</DropdownMenuItem>
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-md p-0 border-2 border-[#a8a8a8] shadow-[6px_6px_0_#000] !rounded-none overflow-hidden">
-          <div className="bg-[#3b82f6] px-6 py-4 border-b-2 border-[#a8a8a8]">
+        <DialogContent className="sm:max-w-md p-0 border-2 border-black shadow-[6px_6px_0_#000] !rounded-none overflow-hidden">
+          <div className="bg-[#3b82f6] px-6 py-4 border-b-2 border-black">
             <DialogTitle className="font-black uppercase text-xl tracking-tight text-white">
               Edit User
             </DialogTitle>
@@ -294,7 +294,7 @@ function EditUserDialog({
                 type="email"
                 required
                 defaultValue={user.email}
-                className="border-2 border-[#a8a8a8] !rounded-none focus-visible:border-[#a8a8a8] focus-visible:ring-0 font-medium"
+                className="border-2 border-black !rounded-none focus-visible:border-black focus-visible:ring-0 font-medium"
               />
             </div>
 
@@ -309,7 +309,7 @@ function EditUserDialog({
                 id="edit-display"
                 name="displayName"
                 defaultValue={user.displayName ?? ""}
-                className="border-2 border-[#a8a8a8] !rounded-none focus-visible:border-[#a8a8a8] focus-visible:ring-0 font-medium"
+                className="border-2 border-black !rounded-none focus-visible:border-black focus-visible:ring-0 font-medium"
               />
             </div>
 
@@ -329,7 +329,7 @@ function EditUserDialog({
                   type="button"
                   onClick={() => setIsActive(true)}
                   className={cn(
-                    "flex-1 py-2 font-black uppercase text-xs tracking-widest border-2 border-[#a8a8a8] transition-all",
+                    "flex-1 py-2 font-black uppercase text-xs tracking-widest border-2 border-black transition-all",
                     isActive
                       ? "bg-[#22c55e] text-white shadow-[3px_3px_0_#000]"
                       : "bg-white text-black hover:shadow-[2px_2px_0_#000]",
@@ -341,7 +341,7 @@ function EditUserDialog({
                   type="button"
                   onClick={() => setIsActive(false)}
                   className={cn(
-                    "flex-1 py-2 font-black uppercase text-xs tracking-widest border-2 border-[#a8a8a8] transition-all",
+                    "flex-1 py-2 font-black uppercase text-xs tracking-widest border-2 border-black transition-all",
                     !isActive
                       ? "bg-[#ef4444] text-white shadow-[3px_3px_0_#000]"
                       : "bg-white text-black hover:shadow-[2px_2px_0_#000]",
@@ -358,7 +358,7 @@ function EditUserDialog({
                 className="font-black uppercase text-xs tracking-widest"
               >
                 New Password{" "}
-                <span className="text-[#a8a8a8] font-medium normal-case">
+                <span className="text-zinc-500 font-medium normal-case">
                   (leave blank to keep)
                 </span>
               </label>
@@ -367,12 +367,12 @@ function EditUserDialog({
                 name="password"
                 type="password"
                 placeholder="••••••••"
-                className="border-2 border-[#a8a8a8] !rounded-none focus-visible:border-[#a8a8a8] focus-visible:ring-0 font-medium"
+                className="border-2 border-black !rounded-none focus-visible:border-black focus-visible:ring-0 font-medium"
               />
             </div>
 
             {error && (
-              <p className="text-sm font-bold text-white bg-[#ef4444] border-2 border-[#a8a8a8] px-3 py-2 shadow-[2px_2px_0_#000]">
+              <p className="text-sm font-bold text-white bg-[#ef4444] border-2 border-black px-3 py-2 shadow-[2px_2px_0_#000]">
                 {error}
               </p>
             )}
@@ -381,14 +381,14 @@ function EditUserDialog({
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="px-4 py-2 font-black uppercase text-sm border-2 border-[#a8a8a8] shadow-[3px_3px_0_#000] hover:shadow-[1px_1px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+                className="px-4 py-2 font-black uppercase text-sm border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[1px_1px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={pending}
-                className="px-4 py-2 bg-[#3b82f6] text-white font-black uppercase text-sm border-2 border-[#a8a8a8] shadow-[3px_3px_0_#000] hover:shadow-[1px_1px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-4 py-2 bg-[#3b82f6] text-white font-black uppercase text-sm border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[1px_1px_0_#000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {pending ? "Saving..." : "Save Changes"}
               </button>

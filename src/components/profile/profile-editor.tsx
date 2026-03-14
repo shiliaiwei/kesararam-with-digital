@@ -178,14 +178,14 @@ export function ProfileEditor({
   const cardBg = dark ? "#111827" : "#ffffff";
   const border = dark ? "2px solid #ffffff" : "2px solid #000000";
   const shadow = dark ? "4px 4px 0 #ffffff" : "4px 4px 0 #000000";
-  const labelClr = dark ? "#a8a8a8" : "#a8a8a8";
+  const labelClr = dark ? "#9ca3af" : "#000000";
   const textClr = dark ? "#f0f2f5" : "#000000";
   const inputBg = dark ? "#0d1117" : "#ffffff";
-  const inputBdr = dark ? "2px solid #ffffff" : "2px solid #a8a8a8";
+  const inputBdr = dark ? "2px solid #ffffff" : "2px solid #000000";
   const itemBg = dark ? "#0d1117" : "#f5f5f0";
   const stripeClr = "#eab308";
   const stripeBg = dark ? "#111827" : "#000000";
-  const dimBdr = dark ? "rgba(255,255,255,0.15)" : "#a8a8a8";
+  const dimBdr = dark ? "rgba(255,255,255,0.15)" : "#000000";
 
   return (
     <>
@@ -312,9 +312,9 @@ export function ProfileEditor({
                   flex: 1,
                   padding: "10px 0",
                   background: "#0d1117",
-                  color: "#a8a8a8",
-                  border: "2px solid #a8a8a8",
-                  boxShadow: "3px 3px 0 #a8a8a8",
+                  color: "#9ca3af",
+                  border: "2px solid #9ca3af",
+                  boxShadow: "3px 3px 0 #9ca3af",
                   fontWeight: 700,
                   fontSize: "12px",
                   cursor: "pointer",

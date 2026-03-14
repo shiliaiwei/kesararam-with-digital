@@ -60,14 +60,14 @@ export default async function AdminRoadMarkingsPage() {
             Road Markings
           </h1>
         </div>
-        <p className="text-sm text-[#a8a8a8] font-medium pl-5">
+        <p className="text-sm text-zinc-500 font-medium pl-5">
           Manage curbs, signals, and longitudinal road markings.
         </p>
       </div>
 
       {/* Category legend */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-        <div className="border-2 border-[#a8a8a8] bg-[#ffffff] shadow-[4px_4px_0_#000] p-3 flex items-start gap-3">
+        <div className="border-2 border-black bg-[#ffffff] shadow-[4px_4px_0_#000] p-3 flex items-start gap-3">
           <div className="w-3 h-full min-h-[40px] bg-[#006747] shrink-0" />
           <div>
             <p className="font-black uppercase text-xs tracking-widest text-[#006747]">
@@ -78,7 +78,7 @@ export default async function AdminRoadMarkingsPage() {
             </p>
           </div>
         </div>
-        <div className="border-2 border-[#a8a8a8] bg-white shadow-[4px_4px_0_#000] p-3 flex items-start gap-3">
+        <div className="border-2 border-black bg-white shadow-[4px_4px_0_#000] p-3 flex items-start gap-3">
           <div className="w-3 h-full min-h-[40px] bg-[#3b82f6] shrink-0" />
           <div>
             <p className="font-black uppercase text-xs tracking-widest text-[#3b82f6]">
@@ -89,7 +89,7 @@ export default async function AdminRoadMarkingsPage() {
             </p>
           </div>
         </div>
-        <div className="border-2 border-[#a8a8a8] bg-white shadow-[4px_4px_0_#000] p-3 flex items-start gap-3">
+        <div className="border-2 border-black bg-white shadow-[4px_4px_0_#000] p-3 flex items-start gap-3">
           <div className="w-3 h-full min-h-[40px] bg-[#f97316] shrink-0" />
           <div>
             <p className="font-black uppercase text-xs tracking-widest text-[#f97316]">
@@ -111,7 +111,7 @@ export default async function AdminRoadMarkingsPage() {
           <p className="text-sm text-black mt-1">{dbError}</p>
         </div>
       ) : (
-        <div className="border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] bg-white p-5">
+        <div className="border-2 border-black shadow-[4px_4px_0_#000] bg-white p-5">
           <RoadMarkingsTable initialRows={rows} />
         </div>
       )}

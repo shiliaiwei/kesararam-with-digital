@@ -62,10 +62,10 @@ function MetricCard({
   const isPositive = trend >= 0;
 
   return (
-    <div className="border-2 border-[#a8a8a8] bg-white shadow-[4px_4px_0_#000] p-4">
+    <div className="border-2 border-black bg-white shadow-[4px_4px_0_#000] p-4">
       <div className="flex items-start justify-between">
         <div className="flex-1">
-          <p className="text-xs font-black uppercase tracking-widest text-[#a8a8a8] mb-1">
+          <p className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-1">
             {title}
           </p>
           <p className="text-2xl font-black text-black mb-2">{value}</p>
@@ -125,7 +125,7 @@ export function RealtimeMatrix() {
 
   if (!data) {
     return (
-      <div className="border-2 border-[#a8a8a8] bg-white shadow-[4px_4px_0_#000] p-4">
+      <div className="border-2 border-black bg-white shadow-[4px_4px_0_#000] p-4">
         <div className="animate-pulse space-y-3">
           <div className="h-4 bg-gray-300 rounded w-1/3"></div>
           <div className="h-8 bg-gray-300 rounded w-1/2"></div>
@@ -135,7 +135,7 @@ export function RealtimeMatrix() {
   }
 
   return (
-    <Card className="border-2 border-[#a8a8a8] shadow-[4px_4px_0_#000] rounded-none">
+    <Card className="border-2 border-black shadow-[4px_4px_0_#000] rounded-none">
       <CardHeader>
         <div className="flex items-start justify-between">
           <div>
@@ -149,10 +149,10 @@ export function RealtimeMatrix() {
           <div className="flex items-center gap-2">
             <div
               className={`w-2 h-2 rounded-full ${
-                isLive ? "bg-[#22c55e] animate-pulse" : "bg-[#a8a8a8]"
+                isLive ? "bg-[#22c55e] animate-pulse" : "bg-black"
               }`}
             />
-            <span className="text-xs font-bold uppercase text-[#a8a8a8]">
+            <span className="text-xs font-bold uppercase text-zinc-500">
               {isLive ? "Live" : "Paused"}
             </span>
           </div>
@@ -160,10 +160,10 @@ export function RealtimeMatrix() {
       </CardHeader>
       <CardContent className="space-y-6">
         {/* Control bar */}
-        <div className="flex items-center gap-2 pb-4 border-b-2 border-[#a8a8a8]">
+        <div className="flex items-center gap-2 pb-4 border-b-2 border-black">
           <button
             onClick={() => setIsLive(!isLive)}
-            className={`px-3 py-1.5 text-xs font-black uppercase tracking-widest border-2 border-[#a8a8a8] rounded-none ${
+            className={`px-3 py-1.5 text-xs font-black uppercase tracking-widest border-2 border-black rounded-none ${
               isLive
                 ? "bg-[#ef4444] text-white shadow-[2px_2px_0_#000]"
                 : "bg-white text-black shadow-[2px_2px_0_#000]"
@@ -172,7 +172,7 @@ export function RealtimeMatrix() {
             {isLive ? "Pause" : "Resume"}
           </button>
           <div className="flex-1" />
-          <span className="text-xs text-[#a8a8a8] font-medium">
+          <span className="text-xs text-zinc-500 font-medium">
             Last updated: {lastUpdate?.toLocaleTimeString()}
           </span>
         </div>

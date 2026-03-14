@@ -129,7 +129,7 @@
   --kwd-red: #ff0050;
   --kwd-gray-dark: #374151;
   --kwd-gray-mid: #8e8e8e;
-  --kwd-gray-light: #a8a8a8;
+  --kwd-gray-light: #d1d5db;
 
   /* Neo-brutalism tokens */
   --nb-border: 2px solid #000000;
@@ -157,7 +157,7 @@
   --primary: #ffd700;
   --primary-foreground: #1a1a1a;
   --secondary: #2d3748;
-  --secondary-foreground: #a8a8a8;
+  --secondary-foreground: #9ca3af;
   --muted: #2d3748;
   --muted-foreground: #8e8e8e;
   --accent: #374151;
