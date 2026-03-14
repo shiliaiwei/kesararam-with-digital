@@ -55,17 +55,8 @@ const adminNav: NavItem[] = [
   { label: "Overview", href: "/admin/overview", icon: LayoutDashboard },
   { label: "Users", href: "/admin/users", icon: Users },
   { label: "Content", href: "/admin/content", icon: BookOpen },
+  { label: "Media", href: "/admin/media", icon: Images },
   { label: "Logs", href: "/admin/logs", icon: ScrollText },
-];
-
-const adminCloudinaryNav: NavItem[] = [
-  { label: "Media Library", href: "/admin/media", icon: Images },
-  { label: "Folders", href: "/admin/media?view=folders", icon: FolderOpen },
-  {
-    label: "Categories",
-    href: "/admin/media?view=categories",
-    icon: Tags,
-  },
 ];
 
 const teacherNav: NavItem[] = [
@@ -101,7 +92,7 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-black text-white">
                 <Image
                   src="https://raw.githubusercontent.com/kesararam/kesararam/refs/heads/main/brand/lgo.png"
                   alt="KWD"
@@ -207,28 +198,6 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-
-        {role === "admin" && (
-          <SidebarGroup>
-            <SidebarGroupLabel>Cloudinary</SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                {adminCloudinaryNav.map((item) => (
-                  <SidebarMenuItem key={item.href}>
-                    <SidebarMenuButton
-                      isActive={isNavItemActive(item.href)}
-                      tooltip={item.label}
-                      render={<Link href={item.href} />}
-                    >
-                      <item.icon />
-                      <span>{item.label}</span>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
-        )}
       </SidebarContent>
 
       <SidebarFooter>

@@ -26,38 +26,38 @@ export function CloudinaryDemo() {
     .filter(Boolean);
 
   return (
-    <Card className="@container/card mt-4 overflow-hidden border-2 border-black shadow-[4px_4px_0_#000] rounded-none">
+    <Card className="@container/card mt-4 overflow-hidden border-2 border-black shadow-[4px_4px_0_#000] rounded-none bg-white">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <CloudUpload className="h-5 w-5" />
+        <CardTitle className="flex items-center gap-2 text-2xl font-black uppercase tracking-tighter text-black">
+          <CloudUpload className="h-6 w-6" />
           Cloudinary Upload
         </CardTitle>
-        <CardDescription>
-          Upload files with folder and category tags.
+        <CardDescription className="text-xs font-bold uppercase tracking-widest text-black">
+          Upload files with folder and category tags
         </CardDescription>
       </CardHeader>
-      <CardContent className="flex flex-col gap-4">
+      <CardContent className="space-y-6">
         <div className="grid gap-3 sm:grid-cols-2">
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-black uppercase tracking-widest text-zinc-500">
+            <span className="text-xs font-black uppercase tracking-widest text-black">
               Folder
             </span>
             <input
               value={folder}
               onChange={(e) => setFolder(e.target.value)}
-              placeholder="road-signs"
-              className="h-10 border-2 border-black px-3 text-sm font-medium outline-none"
+              placeholder="E.G. ROAD-SIGNS"
+              className="h-10 border-2 border-black px-3 text-sm font-bold bg-white focus:outline-none focus:ring-0 placeholder:text-black/60 uppercase"
             />
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-xs font-black uppercase tracking-widest text-zinc-500">
+            <span className="text-xs font-black uppercase tracking-widest text-black">
               Tags (comma separated)
             </span>
             <input
               value={tags}
               onChange={(e) => setTags(e.target.value)}
-              placeholder="road-sign, warning"
-              className="h-10 border-2 border-black px-3 text-sm font-medium outline-none"
+              placeholder="E.G. WARNING, URBAN"
+              className="h-10 border-2 border-black px-3 text-sm font-bold bg-white focus:outline-none focus:ring-0 placeholder:text-black/60 uppercase"
             />
           </label>
         </div>
@@ -67,6 +67,30 @@ export function CloudinaryDemo() {
           options={{
             folder: folder || undefined,
             tags: normalizedTags.length > 0 ? normalizedTags : undefined,
+            styles: {
+              palette: {
+                window: "#FFFFFF",
+                windowBorder: "#000000",
+                tabIcon: "#000000",
+                menuIcons: "#000000",
+                textDark: "#000000",
+                textLight: "#FFFFFF",
+                link: "#000000",
+                action: "#000000",
+                inactiveTabIcon: "#555555",
+                error: "#000000",
+                inProgress: "#000000",
+                complete: "#000000",
+                sourceBg: "#FFFFFF"
+              },
+              fonts: {
+                default: null,
+                "'Inter', sans-serif": {
+                  url: "https://fonts.googleapis.com/css?family=Inter",
+                  active: true
+                }
+              }
+            }
           }}
           onSuccess={(result: any) => {
             if (result.info?.secure_url) {
@@ -85,7 +109,7 @@ export function CloudinaryDemo() {
             return (
               <Button
                 variant="outline"
-                className="border-2 border-black rounded-none shadow-[3px_3px_0_#000]"
+                className="w-full h-12 text-sm font-black uppercase tracking-widest border-2 border-black bg-white text-black shadow-[4px_4px_0_#000] hover:bg-black hover:text-white transition-all active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0_#000] rounded-none"
                 onClick={() => open()}
               >
                 Choose File to Upload
@@ -95,27 +119,42 @@ export function CloudinaryDemo() {
         </CldUploadWidget>
 
         {error && (
-          <div className="border-2 border-[#ef4444] bg-[#fda4af] p-3 text-xs font-bold text-black">
-            {error}
+          <div className="border-2 border-black bg-white p-3 text-xs font-black text-black uppercase">
+            Error: {error}
           </div>
         )}
 
         {imageUrl && (
-          <div className="mt-4 border-2 border-black p-4 text-sm text-muted-foreground">
-            <p className="mb-2 font-medium text-foreground">
-              Recently Uploaded:
+          <div className="mt-4 border-2 border-black bg-white p-4">
+            <p className="mb-3 text-xs font-black uppercase tracking-widest text-black">
+              Recently Uploaded
             </p>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={imageUrl}
-              alt="Uploaded to CDN"
-              className="h-32 w-auto object-cover border-2 border-black"
-            />
-            <p className="mt-2 truncate text-xs">{imageUrl}</p>
-            <p className="mt-1 text-xs text-zinc-500">
-              folder: {folder || "root"} | tags:{" "}
-              {normalizedTags.join(", ") || "none"}
-            </p>
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="relative w-32 aspect-square bg-white border-2 border-black shrink-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={imageUrl}
+                  alt="Uploaded to CDN"
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all"
+                />
+              </div>
+              <div className="flex-1 min-w-0 space-y-2">
+                <div className="space-y-1">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-black">URL</p>
+                  <p className="text-xs truncate font-mono bg-white border border-black p-1 text-black">{imageUrl}</p>
+                </div>
+                <div className="flex gap-4">
+                  <div className="space-y-1">
+                    <p className="text-[10px] font-black uppercase tracking-widest text-black">Folder</p>
+                    <p className="text-xs font-bold text-black uppercase">{folder || "ROOT"}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-[10px] font-black uppercase tracking-widest text-black">Tags</p>
+                    <p className="text-xs font-bold text-black uppercase">{normalizedTags.length > 0 ? normalizedTags.join(", ") : "NONE"}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </CardContent>
