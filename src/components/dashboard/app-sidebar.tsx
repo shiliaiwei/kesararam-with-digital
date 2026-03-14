@@ -22,7 +22,7 @@ import { AvatarDisplay } from "@/components/shared/avatar-display";
 interface NavItem {
   label: string;
   href: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: React.ComponentType<{ className?: string; size?: number }>;
   color: string;
 }
 
@@ -38,7 +38,7 @@ const teacherNav: NavItem[] = [
   { label: "Sessions", href: "/teacher/sessions", icon: Tv2, color: "#22c55e" },
 ];
 
-const profileNav = [
+const profileNav: NavItem[] = [
   { label: "View Info", href: "?tab=info", icon: Info, color: "#3b82f6" },
   { label: "Edit Profile", href: "", icon: Pencil, color: "#22c55e" },
   { label: "Settings", href: "?tab=settings", icon: Settings, color: "#f97316" },
