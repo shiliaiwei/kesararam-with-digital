@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# removed Strapi CMS artifacts
+/strapi-cms/
+/STRAPI_INTEGRATION.md
+/src/lib/strapi.ts
+/src/app/actions/strapi.ts
+/src/app/(dashboard)/admin/strapi-categories/
+/src/app/(dashboard)/admin/strapi-lessons/
+/src/app/(dashboard)/admin/strapi-quizzes/
