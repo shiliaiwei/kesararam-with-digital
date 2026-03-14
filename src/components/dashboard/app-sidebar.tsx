@@ -171,23 +171,25 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton
-                  size="lg"
-                  className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-                >
-                  <AvatarDisplay
-                    avatar={avatar ?? null}
-                    name={name}
-                    size={32}
-                    radius={8}
+              <DropdownMenuTrigger
+                render={
+                  <SidebarMenuButton
+                    size="lg"
+                    className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
                   />
-                  <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-semibold">{name}</span>
-                    <span className="truncate text-xs text-muted-foreground">{email}</span>
-                  </div>
-                  <ChevronsUpDown className="ml-auto size-4" />
-                </SidebarMenuButton>
+                }
+              >
+                <AvatarDisplay
+                  avatar={avatar ?? null}
+                  name={name}
+                  size={32}
+                  radius={8}
+                />
+                <div className="grid flex-1 text-left text-sm leading-tight">
+                  <span className="truncate font-semibold">{name}</span>
+                  <span className="truncate text-xs text-muted-foreground">{email}</span>
+                </div>
+                <ChevronsUpDown className="ml-auto size-4" />
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
@@ -211,27 +213,33 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <DropdownMenuItem asChild>
-                    <Link href={`${profileHref}?tab=info`} className="cursor-pointer">
-                      <Info className="mr-2 h-4 w-4" />
-                      <span>View Info</span>
-                    </Link>
+                  <DropdownMenuItem
+                    render={
+                      <Link href={`${profileHref}?tab=info`} className="cursor-pointer" />
+                    }
+                  >
+                    <Info className="mr-2 h-4 w-4" />
+                    <span>View Info</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href={profileHref} className="cursor-pointer">
-                      <Pencil className="mr-2 h-4 w-4" />
-                      <span>Edit Profile</span>
-                    </Link>
+                  <DropdownMenuItem
+                    render={
+                      <Link href={profileHref} className="cursor-pointer" />
+                    }
+                  >
+                    <Pencil className="mr-2 h-4 w-4" />
+                    <span>Edit Profile</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href={`${profileHref}?tab=settings`} className="cursor-pointer">
-                      <Settings className="mr-2 h-4 w-4" />
-                      <span>Settings</span>
-                    </Link>
+                  <DropdownMenuItem
+                    render={
+                      <Link href={`${profileHref}?tab=settings`} className="cursor-pointer" />
+                    }
+                  >
+                    <Settings className="mr-2 h-4 w-4" />
+                    <span>Settings</span>
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
+                <DropdownMenuItem>
                    <form action={logoutAction} className="w-full cursor-pointer">
                      <button type="submit" className="flex w-full items-center gap-2">
                        <LogOut className="mr-2 h-4 w-4" />
