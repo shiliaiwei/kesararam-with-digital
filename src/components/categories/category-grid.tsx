@@ -148,10 +148,7 @@ export function CategoryGrid() {
                   <img 
                     src="https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/lgo_dhuxrl?_a=BAMAAAUs0"
                     alt={kh ? cat.titleKh : cat.titleEn}
-                    className="w-16 h-16 object-contain opacity-80"
-                    style={{
-                      mixBlendMode: 'multiply'
-                    }}
+                    className="w-16 h-16 object-contain"
                   />
                 </div>
 
