@@ -124,22 +124,20 @@
   --kwd-orange: #f97316;
   --kwd-blue: #3b82f6;
   --kwd-yellow: #ffd700;
-  --kwd-green: #006747;
+  --kwd-green: #22c55e;
   --kwd-purple: #a855f7;
-  --kwd-red: #ff0050;
-  --kwd-gray-dark: #374151;
-  --kwd-gray-mid: #8e8e8e;
-  --kwd-gray-light: #d1d5db;
+  --kwd-red: #ef4444;
 
-  /* Neo-brutalism tokens */
-  --nb-border: 2px solid #000000;
-  --nb-shadow: 4px 4px 0px #000000;
+  /* Neo-brutalism tokens - Updated Design Lab */
+  --nb-border: 1px solid #000000;
+  --nb-shadow: 3px 3px 0px #000000;
   --nb-shadow-sm: 2px 2px 0px #000000;
-  --nb-shadow-lg: 6px 6px 0px #000000;
-  --nb-shadow-xl: 8px 8px 0px #000000;
+  --nb-shadow-lg: 4px 4px 0px #000000;
+  --nb-shadow-xl: 5px 5px 0px #000000;
+  --nb-radius: 15px;
   --nb-radius-sm: 12px;
-  --nb-radius-md: 24px;
-  --nb-radius-lg: 32px;
+  --nb-radius-md: 15px;
+  --nb-radius-lg: 18px;
 
   /* Fonts */
   --font-kh-header: "Kantumruy Pro", sans-serif;
@@ -200,13 +198,13 @@
 .nb-card {
   border: var(--nb-border);
   box-shadow: var(--nb-shadow);
-  border-radius: var(--nb-radius-md);
+  border-radius: var(--nb-radius);
   transition:
     transform 0.1s ease,
     box-shadow 0.1s ease;
 }
 .nb-card:hover {
-  transform: translate(-2px, -2px);
+  transform: translate(-1px, -1px);
   box-shadow: var(--nb-shadow-lg);
 }
 
@@ -220,7 +218,7 @@
   cursor: pointer;
 }
 .nb-btn:hover {
-  transform: translate(-2px, -2px);
+  transform: translate(-1px, -1px);
   box-shadow: var(--nb-shadow-lg);
 }
 .nb-btn:active {
@@ -282,7 +280,7 @@
 .nav-active {
   background-color: #000000;
   color: #ffffff;
-  border: 2px solid #000000;
+  border: 1px solid #000000;
   box-shadow: var(--nb-shadow-sm);
 }
 
@@ -292,7 +290,7 @@
   background-size: 200% 100%;
   animation: nb-shimmer 1.5s infinite;
   border: var(--nb-border);
-  border-radius: var(--nb-radius-md);
+  border-radius: var(--nb-radius);
 }
 @keyframes nb-shimmer {
   0% {
