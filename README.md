@@ -6,64 +6,69 @@ Cambodian driving knowledge and licensing education platform. Master traffic sig
 
 ### Design Philosophy: Neo-Brutalism
 
-The website follows a neo-brutalist design approach inspired by road markings and traffic safety aesthetics. This creates a bold, functional, and highly accessible interface.
+The website follows a neo-brutalist design approach inspired by road markings and traffic safety aesthetics. This creates a bold, functional, and highly accessible interface that mirrors the clarity and directness of road signage.
 
 ### Core Visual Principles
 
-- **Rounded corners**: 15px border-radius for modern brutalism
+- **Sharp corners only**: border-radius: 0 (enforced with inline styles)
 - **No gradients**: Solid colors exclusively
-- **Bold borders**: 1px solid black borders on all elements
-- **Hard shadows**: Offset box-shadows (no blur) for depth
-- **High contrast**: Black borders on vibrant colored backgrounds
+- **Bold black borders**: 2px standard, 4px for emphasis
+- **Hard shadows**: Offset box-shadows with no blur
+- **High contrast**: Black borders on white/colored backgrounds
 - **No emoji**: Text-only labels and descriptions
+- **Traffic-light colors**: Semantic color system inspired by road safety
 
 ### Shape & Structure
 
-#### Neo-Brutalist Lab Specifications
-```css
-/* Core Design Lab Standards */
-border: 1px solid #000;
-border-radius: 15px;
-box-shadow: 3px 3px 0 #000;
-background-color: /* Traffic-light colors */
-```
-
 #### Border System
 ```css
-/* Standard border */
-border: 1px solid #000000
+/* Standard borders */
+border-2 border-black           /* Default for all interactive elements */
+border-4 border-black           /* Emphasis (hero cards, featured content) */
+border-2 border-yellow-400      /* Yellow accent borders */
 
-/* Component borders */
-border border-black           /* All interactive elements */
-border border-[#ef4444]       /* Alert/caution states */
+/* Caution borders */
+border-2 border-[#ef4444]       /* Alert/warning states */
+border-b-4 border-yellow-400    /* Section dividers */
+```
+
+#### Corner Radius
+```tsx
+/* Always sharp corners - enforced with inline styles */
+style={{ borderRadius: "0px" }}
+className="rounded-none"
 ```
 
 #### Shadow System (Hard Shadows)
 ```css
 /* Neo-brutalism shadows - no blur, pure offset */
-shadow-[2px_2px_0_#000]      /* Small - badges */
-shadow-[3px_3px_0_#000]      /* Standard - cards, buttons, inputs */
-shadow-[4px_4px_0_#000]      /* Large - main cards, modals */
-shadow-[5px_5px_0_#000]      /* XL - hero elements */
-```
+shadow-[2px_2px_0_#000]         /* Small - badges, tags, icons */
+shadow-[3px_3px_0_#000]         /* Medium - inputs, small cards */
+shadow-[4px_4px_0_#000]         /* Large - standard cards, buttons */
+shadow-[6px_6px_0_#000]         /* XL - hover states, emphasis */
+shadow-[8px_8px_0_#000]         /* XXL - hero elements, featured cards */
 
-#### Border Radius System
-```css
-/* Consistent rounded corners */
-rounded-[12px]               /* Small - buttons, badges */
-rounded-[15px]               /* Standard - cards, inputs */
-rounded-[18px]               /* Large - containers */
+/* Colored shadows for specific contexts */
+shadow-[4px_4px_0_#eab308]      /* Yellow shadow for CTAs */
+shadow-[6px_6px_0_#eab308]      /* Yellow shadow hover state */
 ```
 
 #### Interactive States
 ```css
 /* Hover: Lift effect */
 hover:-translate-x-0.5 hover:-translate-y-0.5
-hover:shadow-[4px_4px_0_#000]
+hover:shadow-[6px_6px_0_#000]
+hover:-translate-x-1 hover:-translate-y-1
+hover:shadow-[8px_8px_0_#000]
 
 /* Active: Press down effect */
-active:translate-x-[1px] active:translate-y-[1px]
+active:translate-x-[2px] active:translate-y-[2px]
 active:shadow-none
+
+/* Color transitions */
+hover:bg-black hover:text-white
+transition-all duration-100
+transition-all duration-150
 ```
 
 ### Color Palette
@@ -72,53 +77,45 @@ active:shadow-none
 Inspired by road safety and traffic signals:
 
 ```css
---kwd-yellow: #ffd700    /* Primary/Warning - Road signs */
---kwd-blue: #3b82f6      /* Info/Signals - Traffic lights */
---kwd-red: #ef4444       /* Danger/Stop - Stop signs */
---kwd-green: #22c55e     /* Success/Go - Active states */
---kwd-orange: #f97316    /* Caution - Warning zones */
---kwd-cyan: #06b6d4      /* Accent - Highlights */
---kwd-purple: #a855f7    /* Special - Premium features */
---kwd-rose: #fda4af      /* Alert background */
+/* Primary colors */
+--kwd-yellow: #eab308          /* Primary/Warning - Road signs, CTAs */
+--kwd-blue: #3b82f6            /* Info/Signals - Traffic lights, links */
+--kwd-green: #22c55e           /* Success/Go - Active states, confirmations */
+--kwd-red: #ef4444             /* Danger/Stop - Alerts, errors */
+--kwd-orange: #f97316          /* Caution - Warning zones, attention */
+
+/* Accent colors */
+--kwd-cyan: #06b6d4            /* Accent - Highlights, decorative */
+--kwd-purple: #a855f7          /* Special - Premium features, mixed modes */
+--kwd-rose: #fda4af            /* Alert background - Soft warnings */
+
+/* Neutrals */
+--kwd-black: #000000           /* Borders, text, shadows */
+--kwd-white: #ffffff           /* Backgrounds, inverted text */
+--kwd-zinc-400: #a1a1aa        /* Muted text */
+--kwd-zinc-500: #71717a        /* Secondary text */
+--kwd-zinc-600: #52525b        /* Tertiary text */
 ```
 
-### Road Marking Categories
+#### Color Usage Patterns
+```tsx
+/* Hero sections */
+bg-yellow-400 border-b-2 border-black
 
-#### 1. Curbs Markings
-Edge line and curb delineation markings
-```css
-border: 1px solid #000
-box-shadow: 3px 3px 0 #000
-border-radius: 15px
-background: #ffffff
-accent: #22c55e (active states)
-```
+/* Game mode cards */
+bg-white border-2 border-black shadow-[4px_4px_0_#000]
 
-#### 2. Signals Markings
-Stop lines, pedestrian crossings, signal zones
-```css
-border: 1px solid #000
-box-shadow: 3px 3px 0 #000
-border-radius: 15px
-highlight: #3b82f6 (signal indicators)
-```
+/* CTAs */
+bg-black text-white border-2 border-black shadow-[4px_4px_0_#000]
+bg-yellow-400 text-black border-2 border-yellow-400 shadow-[4px_4px_0_#eab308]
 
-#### 3. Longitudinal Markings
-Center lines, lane dividers, caution zones
-```css
-border: 1px solid #000
-box-shadow: 3px 3px 0 #000
-border-radius: 15px
-warning: #f97316 (caution zones)
-```
+/* Badges */
+bg-black text-white px-3 py-1.5 rounded-none
+bg-yellow-400 text-black border-2 border-black
 
-#### 4. Caution Border
-Alert and warning states
-```css
-border: 1px solid #ef4444
-box-shadow: 3px 3px 0 #000
-border-radius: 15px
-background: #fda4af (alerts)
+/* Icon containers */
+border-2 border-black shadow-[2px_2px_0_#000]
+style={{ backgroundColor: color }} /* Dynamic color per category */
 ```
 
 ### Typography
@@ -127,16 +124,48 @@ background: #fda4af (alerts)
 ```css
 /* Khmer fonts */
 --font-kh-header: "Kantumruy Pro", sans-serif  /* Headers, bold text */
---font-kh-body: "Siemreap", sans-serif         /* Body text */
+--font-kh-body: "Siemreap", sans-serif         /* Body text, paragraphs */
 
 /* Latin fonts */
---font-sans: Inter, sans-serif                  /* Default */
+--font-sans: Inter, sans-serif                  /* Default sans-serif */
 ```
 
 #### Font Weights & Styles
-- Headers: font-black (900) with uppercase and tight tracking
-- Body: font-medium (500) to font-bold (700)
-- Labels: font-bold (700) with uppercase
+```css
+/* Headers */
+font-black (900)                /* Primary headings */
+uppercase                       /* All caps for emphasis */
+tracking-tighter                /* Tight letter spacing for large text */
+tracking-widest                 /* Wide spacing for small labels */
+
+/* Body text */
+font-medium (500)               /* Regular body text */
+font-bold (700)                 /* Emphasized text, labels */
+leading-none                    /* Tight line height for headings */
+leading-relaxed                 /* Comfortable reading for paragraphs */
+
+/* Labels & badges */
+text-xs font-black uppercase tracking-widest
+text-sm font-bold uppercase
+```
+
+#### Typography Scale
+```tsx
+/* Headings */
+text-7xl font-black             /* Hero titles (mobile: text-5xl) */
+text-5xl font-black             /* Page titles */
+text-4xl font-black             /* Section titles */
+text-3xl font-black             /* Subsection titles */
+text-2xl font-black             /* Card titles */
+text-xl font-black              /* Small card titles */
+
+/* Body */
+text-lg                         /* Large body text, descriptions */
+text-sm                         /* Standard body text */
+text-xs                         /* Small text, labels */
+text-[10px]                     /* Micro text, metadata */
+text-[11px]                     /* Tiny labels */
+```
 
 ### Background Patterns
 
@@ -163,53 +192,164 @@ background: #fda4af (alerts)
 ```
 
 #### Caution Tape
-```css
-.caution-tape {
-  background: repeating-linear-gradient(
-    -45deg,
-    #eab308 0px, #eab308 12px,
-    #000000 12px, #000000 24px
-  );
-  height: 6px;
-}
+```tsx
+/* Decorative warning pattern */
+<div className="h-1.5 bg-[repeating-linear-gradient(-45deg,#eab308_0px,#eab308_12px,#000000_12px,#000000_24px)]" />
 ```
 
 ### Component Patterns
 
+#### Hero Section
+```tsx
+<section className="bg-yellow-400 border-b-2 border-black py-16">
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="inline-block bg-black text-white text-xs font-black 
+                    tracking-widest uppercase px-3 py-1.5 rounded-none">
+      Label
+    </div>
+    <h1 className="text-5xl md:text-7xl font-black text-black leading-none">
+      Title
+    </h1>
+    <p className="text-lg text-black/70 max-w-lg leading-relaxed">
+      Description text
+    </p>
+  </div>
+</section>
+```
+
 #### Neo-Brutalist Card
 ```tsx
-<div className="border border-black bg-white shadow-[3px_3px_0_#000] rounded-[15px]
-                hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#000] 
-                transition-all duration-100">
+<div className="bg-white border-2 border-black rounded-none p-6 
+                shadow-[4px_4px_0_#000] 
+                hover:shadow-[8px_8px_0_#000] 
+                hover:-translate-x-1 hover:-translate-y-1 
+                transition-all duration-150">
   {/* Content */}
 </div>
 ```
 
-#### Neo-Brutalist Button
+
+#### Button Variants
 ```tsx
-<button className="px-4 py-2 border border-black bg-yellow-400 rounded-[12px]
-                   shadow-[3px_3px_0_#000] font-black uppercase 
-                   hover:bg-black hover:text-white 
-                   active:translate-x-[1px] active:translate-y-[1px] 
-                   active:shadow-none transition-all">
+/* Primary CTA */
+<button className="px-6 py-3 bg-black text-white font-black 
+                   border-2 border-black rounded-none 
+                   shadow-[4px_4px_0_#000] 
+                   hover:shadow-[6px_6px_0_#000] 
+                   hover:-translate-x-0.5 hover:-translate-y-0.5 
+                   transition-all duration-100">
   Click Me
+</button>
+
+/* Secondary CTA */
+<button className="px-6 py-3 bg-white text-black font-black 
+                   border-2 border-black rounded-none 
+                   shadow-[4px_4px_0_#000] 
+                   hover:shadow-[6px_6px_0_#000] 
+                   hover:-translate-x-0.5 hover:-translate-y-0.5 
+                   transition-all duration-100">
+  Click Me
+</button>
+
+/* Yellow accent CTA */
+<button className="px-8 py-4 bg-yellow-400 text-black font-black 
+                   border-2 border-yellow-400 rounded-none 
+                   shadow-[4px_4px_0_#eab308] 
+                   hover:shadow-[6px_6px_0_#eab308] 
+                   hover:-translate-x-0.5 hover:-translate-y-0.5 
+                   transition-all duration-100">
+  Start Now
+</button>
+
+/* Small action button */
+<button className="px-3 py-1.5 text-xs font-black uppercase 
+                   tracking-widest border-2 border-black 
+                   bg-white text-black shadow-[2px_2px_0_#000] 
+                   hover:bg-black hover:text-white 
+                   active:shadow-none active:translate-x-[2px] 
+                   active:translate-y-[2px] transition-colors">
+  Action
 </button>
 ```
 
 #### Badge/Tag
 ```tsx
-<span className="inline-block px-3 py-1 border border-black rounded-[12px]
-                 bg-cyan-400 shadow-[2px_2px_0_#000] 
-                 text-xs font-black uppercase tracking-widest">
+/* Black badge */
+<span className="inline-block bg-black text-white text-xs font-black 
+                 tracking-widest uppercase px-3 py-1.5 rounded-none">
   Label
+</span>
+
+/* Colored badge with border */
+<span className="text-[10px] font-black tracking-widest uppercase 
+                 px-2.5 py-1 border-2 border-black rounded-none"
+      style={{ backgroundColor: color }}>
+  Badge
+</span>
+
+/* Small tag */
+<span className="px-1.5 py-0.5 text-[10px] font-black uppercase 
+                 border border-black bg-black text-white">
+  Tag
 </span>
 ```
 
-#### Alert/Caution Component
+#### Icon Container
 ```tsx
-<div className="border border-[#ef4444] bg-[#fda4af] shadow-[3px_3px_0_#000] rounded-[15px]
-                p-4 font-bold text-black">
-  {/* Alert Content */}
+<div className="w-12 h-12 border-2 border-black rounded-none 
+                flex items-center justify-center shadow-[2px_2px_0_#000]"
+     style={{ backgroundColor: color }}>
+  <Icon size={20} className="text-black" />
+</div>
+```
+
+#### Stats Card
+```tsx
+<div className="border-2 border-black rounded-none p-5 
+                shadow-[4px_4px_0_#000] flex flex-col gap-1">
+  <span className="text-3xl font-black" style={{ color }}>
+    500+
+  </span>
+  <span className="text-sm font-bold text-zinc-600">
+    Label
+  </span>
+</div>
+```
+
+#### Profile/Identity Card
+```tsx
+<div className="border-2 border-black bg-white shadow-[4px_4px_0_#000] 
+                overflow-hidden">
+  {/* Color bar accent */}
+  <div className="h-1.5" style={{ background: color }} />
+  
+  <div className="flex items-center gap-5 p-5">
+    <div className="border-2 border-black shadow-[4px_4px_0_#000]">
+      {/* Avatar */}
+    </div>
+    <div className="flex flex-col gap-2">
+      <h2 className="text-2xl font-black text-black leading-none">
+        Name
+      </h2>
+      <p className="text-sm text-zinc-500 font-medium">
+        Email
+      </p>
+    </div>
+  </div>
+</div>
+```
+
+#### Tab Navigation
+```tsx
+<div className="flex border-2 border-black shadow-[4px_4px_0_#000] 
+                overflow-hidden">
+  <button className={`flex-1 flex items-center justify-center gap-2 
+                      py-2.5 text-xs font-black uppercase tracking-widest 
+                      transition-colors border-l-2 border-black first:border-l-0
+                      ${active ? 'bg-black text-white' : 'bg-white text-black hover:bg-yellow-400'}`}>
+    <Icon className="size-3.5" />
+    Tab Label
+  </button>
 </div>
 ```
 
@@ -218,7 +358,7 @@ background: #fda4af (alerts)
 #### Dashboard Theme
 ```css
 .kwd-dash {
-  --background: #1e2430      /* Dark blue-gray */
+  --background: #1e2430      /* Dark blue-gray background */
   --foreground: #f0f2f5      /* Light text */
   --primary: #ffd700         /* Yellow accent */
   --card: #252d3d            /* Card background */
@@ -227,10 +367,21 @@ background: #fda4af (alerts)
 ```
 
 #### Spacing System
-- Consistent use of Tailwind spacing scale
-- Gap utilities: gap-2, gap-4, gap-6
-- Padding: p-4, p-5, p-6 for cards
-- Margins: Minimal, prefer gap/space utilities
+```css
+/* Consistent Tailwind spacing */
+gap-2, gap-3, gap-4, gap-5, gap-6    /* Flexbox/grid gaps */
+p-4, p-5, p-6                        /* Card padding */
+px-3, px-6, py-2, py-3, py-4         /* Button padding */
+space-y-2, space-y-4, space-y-6      /* Vertical spacing */
+```
+
+#### Container Widths
+```css
+max-w-7xl mx-auto px-6               /* Standard page container */
+max-w-4xl mx-auto px-6               /* Narrow content */
+max-w-2xl                            /* Forms, profiles */
+max-w-lg, max-w-xl                   /* Text blocks */
+```
 
 ### Accessibility Features
 
@@ -239,6 +390,7 @@ background: #fda4af (alerts)
 - Semantic HTML structure
 - ARIA labels on interactive elements
 - Keyboard navigation support
+- Grayscale images with color on hover for visual hierarchy
 
 ### Tech Stack
 
@@ -286,12 +438,13 @@ npm start
 
 ### Design Guidelines Summary
 
-1. **Always use 1px black borders** on all elements
-2. **Apply hard shadows** (3px 3px 0 #000) for depth perception
-3. **Use 15px border-radius** for modern brutalism aesthetic
-4. **Use traffic-light colors** for semantic meaning (no neutral grays)
+1. **Always use 2px black borders** on interactive elements (4px for emphasis)
+2. **Apply hard shadows** (no blur) with varied sizes: 2px, 3px, 4px, 6px, 8px
+3. **Keep corners sharp** - border-radius: 0 (enforced with inline styles)
+4. **Use traffic-light colors** for semantic meaning
 5. **Maintain high contrast** for accessibility
 6. **Apply hover/active states** with translate + shadow changes
 7. **Use uppercase + bold** for emphasis
 8. **No gradients or emoji** - keep it brutalist
-9. **Caution borders** (#ef4444) for all alert/warning states
+9. **Colored shadows** for yellow CTAs (#eab308)
+10. **Grayscale to color** on hover for images

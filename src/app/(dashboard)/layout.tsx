@@ -2,7 +2,6 @@ import { redirect } from "next/navigation";
 import { getSession } from "@/lib/auth";
 import { AppSidebar } from "@/components/dashboard/app-sidebar";
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 export default async function DashboardLayout({
   children,
@@ -20,21 +19,24 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="flex min-h-screen w-full">
-      <SidebarProvider>
-        <AppSidebar
-          role={session.role as "admin" | "teacher"}
-          name={session.name}
-          email={session.email}
-          avatar={session.avatar ?? null}
-        />
-        <SidebarInset className="flex flex-col bg-muted/40">
-          <DashboardHeader />
-          <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+    <div className="min-h-screen bg-white flex">
+      {/* Sidebar */}
+      <AppSidebar
+        role={session.role as "admin" | "teacher"}
+        name={session.name}
+        email={session.email}
+        avatar={session.avatar ?? null}
+      />
+      
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col">
+        <DashboardHeader />
+        <main className="flex-1 p-6 bg-white">
+          <div className="max-w-7xl mx-auto">
             {children}
-          </main>
-        </SidebarInset>
-      </SidebarProvider>
+          </div>
+        </main>
+      </div>
     </div>
   );
 }
