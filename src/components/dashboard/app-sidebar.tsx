@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
   Users,
@@ -12,13 +12,13 @@ import {
   Tv2,
   LogOut,
   Route,
-  Settings,
-  User,
   ChevronsUpDown,
   Bell,
   CreditCard,
-  Sparkles,
   BadgeCheck,
+  Images,
+  FolderOpen,
+  Tags,
 } from "lucide-react";
 import {
   Sidebar,
@@ -32,7 +32,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-  useSidebar,
 } from "@/components/ui/sidebar";
 import {
   DropdownMenu,
@@ -56,14 +55,26 @@ const adminNav: NavItem[] = [
   { label: "Overview", href: "/admin/overview", icon: LayoutDashboard },
   { label: "Users", href: "/admin/users", icon: Users },
   { label: "Content", href: "/admin/content", icon: BookOpen },
+  { label: "Profile", href: "/admin/profile", icon: BadgeCheck },
   { label: "Road Markings", href: "/admin/road-markings", icon: Route },
   { label: "Logs", href: "/admin/logs", icon: ScrollText },
+];
+
+const adminCloudinaryNav: NavItem[] = [
+  { label: "Media Library", href: "/admin/media", icon: Images },
+  { label: "Folders", href: "/admin/media?view=folders", icon: FolderOpen },
+  {
+    label: "Categories",
+    href: "/admin/media?view=categories",
+    icon: Tags,
+  },
 ];
 
 const teacherNav: NavItem[] = [
   { label: "Overview", href: "/teacher/overview", icon: LayoutDashboard },
   { label: "Classes", href: "/teacher/classes", icon: School },
   { label: "Sessions", href: "/teacher/sessions", icon: Tv2 },
+  { label: "Profile", href: "/teacher/profile", icon: BadgeCheck },
 ];
 
 interface AppSidebarProps {
@@ -75,7 +86,14 @@ interface AppSidebarProps {
 
 export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const navItems = role === "admin" ? adminNav : teacherNav;
+  const profileHref = role === "admin" ? "/admin/profile" : "/teacher/profile";
+
+  function isNavItemActive(href: string) {
+    const targetPath = href.split("?")[0];
+    return pathname === targetPath || pathname.startsWith(`${targetPath}/`);
+  }
 
   return (
     <Sidebar collapsible="icon">
@@ -98,7 +116,9 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">KWD</span>
-                <span className="truncate text-xs text-muted-foreground capitalize">{role} Panel</span>
+                <span className="truncate text-xs text-muted-foreground capitalize">
+                  {role} Panel
+                </span>
               </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -113,37 +133,65 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
               {navItems.map((item) => (
                 <SidebarMenuItem key={item.href}>
                   <SidebarMenuButton
-                    isActive={pathname === item.href || pathname.startsWith(item.href + "/")}
+                    isActive={isNavItemActive(item.href)}
                     tooltip={item.label}
+                    render={<Link href={item.href} />}
                   >
-                    <Link href={item.href} className="flex w-full items-center gap-2">
-                       <item.icon />
-                       <span>{item.label}</span>
-                    </Link>
+                    <item.icon />
+                    <span>{item.label}</span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+
+        {role === "admin" && (
+          <SidebarGroup>
+            <SidebarGroupLabel>Cloudinary</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {adminCloudinaryNav.map((item) => (
+                  <SidebarMenuItem key={item.href}>
+                    <SidebarMenuButton
+                      isActive={isNavItemActive(item.href)}
+                      tooltip={item.label}
+                      render={<Link href={item.href} />}
+                    >
+                      <item.icon />
+                      <span>{item.label}</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
       </SidebarContent>
 
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
-              <DropdownMenuTrigger>
-                <SidebarMenuButton
-                  size="lg"
-                  className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-                >
-                  <AvatarDisplay avatar={avatar ?? null} name={name} size={32} radius={8} />
-                  <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-semibold">{name}</span>
-                    <span className="truncate text-xs">{email}</span>
-                  </div>
-                  <ChevronsUpDown className="ml-auto size-4" />
-                </SidebarMenuButton>
+              <DropdownMenuTrigger
+                render={
+                  <SidebarMenuButton
+                    size="lg"
+                    className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                  />
+                }
+              >
+                <AvatarDisplay
+                  avatar={avatar ?? null}
+                  name={name}
+                  size={32}
+                  radius={8}
+                />
+                <div className="grid flex-1 text-left text-sm leading-tight">
+                  <span className="truncate font-semibold">{name}</span>
+                  <span className="truncate text-xs">{email}</span>
+                </div>
+                <ChevronsUpDown className="ml-auto size-4" />
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
@@ -153,7 +201,12 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
               >
                 <DropdownMenuLabel className="p-0 font-normal">
                   <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                    <AvatarDisplay avatar={avatar ?? null} name={name} size={32} radius={8} />
+                    <AvatarDisplay
+                      avatar={avatar ?? null}
+                      name={name}
+                      size={32}
+                      radius={8}
+                    />
                     <div className="grid flex-1 text-left text-sm leading-tight">
                       <span className="truncate font-semibold">{name}</span>
                       <span className="truncate text-xs">{email}</span>
@@ -162,17 +215,21 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => router.push(profileHref)}>
                     <BadgeCheck className="mr-2 h-4 w-4" />
                     Account
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => router.push(`${profileHref}?tab=settings`)}
+                  >
                     <CreditCard className="mr-2 h-4 w-4" />
-                    Billing
+                    Settings
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => router.push(`${profileHref}?tab=info`)}
+                  >
                     <Bell className="mr-2 h-4 w-4" />
-                    Notifications
+                    Profile Info
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
