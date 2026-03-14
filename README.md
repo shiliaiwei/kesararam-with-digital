@@ -28,7 +28,7 @@ border-4 border-black           /* Emphasis (hero cards, featured content) */
 border-2 border-yellow-400      /* Yellow accent borders */
 
 /* Caution borders */
-border-2 border-[#ef4444]       /* Alert/warning states */
+border-2 border-[ #ef4444 ]       /* Alert/warning states */
 border-b-4 border-yellow-400    /* Section dividers */
 ```
 

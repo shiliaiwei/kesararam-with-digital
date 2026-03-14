@@ -121,26 +121,14 @@ export function CategoryGrid() {
             const color = CATEGORY_COLORS[cat.slug];
             const shadow = CATEGORY_SHADOW[cat.slug];
             
-            // Add caution borders for categories 6, 7, 8 (indices 5, 6, 7)
-            const shouldUseCautionBorder = index >= 5;
-            const cautionBorders = [
-              "#ef4444", // red
-              "#eab308", // yellow-400 equivalent
-              "#f97316"  // orange
-            ];
-            const cautionBorder = cautionBorders[index % cautionBorders.length];
-            
             return (
               <Link
                 key={cat.slug}
                 href={`/${cat.slug}`}
-                className={`group flex flex-col bg-white border-2 overflow-hidden transition-all duration-150 hover:-translate-y-1 hover:-translate-x-1 ${
-                  shouldUseCautionBorder ? '' : 'border-black'
-                }`}
+                className="group flex flex-col bg-white border border-black overflow-hidden transition-all duration-150 hover:-translate-y-1 hover:-translate-x-1"
                 style={{ 
                   boxShadow: "4px 4px 0 #000",
-                  borderRadius: "3px",
-                  borderColor: shouldUseCautionBorder ? cautionBorder : '#000'
+                  borderRadius: "3px"
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.boxShadow = shadow;
@@ -152,26 +140,23 @@ export function CategoryGrid() {
               >
                 {/* Color header */}
                 <div
-                  className={`flex items-center justify-center py-12 border-b-2 ${
-                    shouldUseCautionBorder ? '' : 'border-black'
-                  }`}
+                  className="flex items-center justify-center py-12 border-b-2 border-black"
                   style={{ 
-                    backgroundColor: color,
-                    borderBottomColor: shouldUseCautionBorder ? cautionBorder : '#000'
+                    backgroundColor: color
                   }}
                 >
-                  <div className={`w-24 h-24 bg-white border-2 flex items-center justify-center shadow-[2px_2px_0_#000] ${
-                    shouldUseCautionBorder ? '' : 'border-black'
-                  }`}
+                  <div className="w-6 h-6 bg-white border border-black flex items-start justify-center shadow-[1px_1px_0_#000]"
                     style={{ 
-                      borderRadius: "3px",
-                      borderColor: shouldUseCautionBorder ? cautionBorder : '#000'
+                      borderRadius: "3px"
                     }}
                   >
                     <img 
                       src="https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/lgo_dhuxrl?_a=BAMAAAUs0"
                       alt={kh ? cat.titleKh : cat.titleEn}
-                      className="w-16 h-16 object-contain"
+                      className="w-4 h-4 object-contain object-top bg-transparent"
+                      style={{
+                        mixBlendMode: 'multiply'
+                      }}
                     />
                   </div>
                 </div>
@@ -198,22 +183,13 @@ export function CategoryGrid() {
                   </p>
 
                   {/* Bottom indicator */}
-                  <div className={`mt-3 pt-3 border-t-2 flex items-center justify-between ${
-                    shouldUseCautionBorder ? '' : 'border-black'
-                  }`}
-                    style={{
-                      borderTopColor: shouldUseCautionBorder ? cautionBorder : '#000'
-                    }}
-                  >
+                  <div className="mt-3 pt-3 border-t border-black flex items-center justify-between">
                     <span
-                      className={`text-xs font-black px-2 py-0.5 border ${
-                        shouldUseCautionBorder ? '' : 'border-black'
-                      }`}
+                      className="text-xs font-black px-2 py-0.5 border border-black"
                       style={{ 
                         backgroundColor: color, 
                         ...khFont,
-                        borderRadius: "3px",
-                        borderColor: shouldUseCautionBorder ? cautionBorder : '#000'
+                        borderRadius: "3px"
                       }}
                     >
                       {tr.studyNow}
