@@ -89,15 +89,10 @@ Inspired by road safety and traffic signals:
 --kwd-purple: #a855f7          /* Special - Premium features, mixed modes */
 --kwd-rose: #fda4af            /* Alert background - Soft warnings */
 
-/* Neutrals */
---kwd-black: #000000           /* Borders, text, shadows */
---kwd-white: #ffffff           /* Backgrounds, inverted text */
---kwd-zinc-400: #a1a1aa        /* Muted text */
---kwd-zinc-500: #71717a        /* Secondary text */
---kwd-zinc-600: #52525b        /* Tertiary text */
-```
+
 
 #### Color Usage Patterns
+
 ```tsx
 /* Hero sections */
 bg-yellow-400 border-b-2 border-black
