@@ -11,6 +11,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { UsersTable } from "./users-table";
+import { SectionCards } from "@/components/section-cards";
+import { DataTable } from "@/components/data-table";
+import data from "@/app/dashboard/data.json";
 
 export const dynamic = "force-dynamic";
 
@@ -53,6 +56,9 @@ export default async function AdminUsersPage() {
         <h1 className="text-2xl font-bold tracking-tight">Users</h1>
         <p className="text-muted-foreground">Manage all platform accounts.</p>
       </div>
+
+      <SectionCards />
+
       <Card>
         <CardHeader>
           <CardTitle>All Users</CardTitle>
@@ -64,6 +70,10 @@ export default async function AdminUsersPage() {
           <UsersTable initialUsers={allUsers} />
         </CardContent>
       </Card>
+
+      <div className="px-4 lg:px-6">
+        <DataTable data={data} />
+      </div>
     </div>
   );
 }

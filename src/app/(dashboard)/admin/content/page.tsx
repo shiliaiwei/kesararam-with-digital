@@ -19,6 +19,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { ChartAreaInteractive } from "@/components/chart-area-interactive";
 
 export const dynamic = "force-dynamic";
 
@@ -74,6 +75,10 @@ export default async function AdminContentPage() {
         <p className="text-muted-foreground">
           All quiz questions and learning materials.
         </p>
+      </div>
+
+      <div className="px-4 lg:px-6">
+        <ChartAreaInteractive />
       </div>
 
       <Card>

@@ -45,9 +45,9 @@ export async function getSession(): Promise<JWTPayload | null> {
 export function getRedirectUrl(role: UserRole): string {
   switch (role) {
     case "teacher":
-      return "https://dashboard.kesararamwithdigital.tech/teacher/overview";
+      return "https://dashboard.kesararamwithdigital.tech/teacher/classes";
     case "admin":
-      return "https://dashboard.kesararamwithdigital.tech/admin/overview";
+      return "https://dashboard.kesararamwithdigital.tech/admin/users";
     default:
       return "/profile/student";
   }

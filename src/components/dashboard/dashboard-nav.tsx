@@ -10,14 +10,13 @@ interface NavItem {
 }
 
 const adminNav: NavItem[] = [
-  { label: "Overview", href: "/admin/overview" },
   { label: "Users", href: "/admin/users" },
   { label: "Content", href: "/admin/content" },
+  { label: "Media", href: "/admin/media" },
   { label: "Logs", href: "/admin/logs" },
 ];
 
 const teacherNav: NavItem[] = [
-  { label: "Overview", href: "/teacher/overview" },
   { label: "Classes", href: "/teacher/classes" },
   { label: "Sessions", href: "/teacher/sessions" },
 ];

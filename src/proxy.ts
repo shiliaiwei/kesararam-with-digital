@@ -25,12 +25,12 @@ export async function proxy(req: NextRequest) {
         new URL("/profile/student", "https://kesararamwithdigital.tech"),
       );
     }
-    // Redirect authenticated users from dashboard root to their role overview
+    // Redirect authenticated users from dashboard root to their role default page
     if (pathname === "/") {
-      const overview =
-        payload.role === "admin" ? "/admin/overview" : "/teacher/overview";
+      const defaultPage =
+        payload.role === "admin" ? "/admin/users" : "/teacher/classes";
       return NextResponse.redirect(
-        new URL(overview, `https://${DASHBOARD_HOSTNAME}`),
+        new URL(defaultPage, `https://${DASHBOARD_HOSTNAME}`),
       );
     }
   }

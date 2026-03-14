@@ -33,9 +33,9 @@ function ProfileMenu({ session }: { session: JWTPayload }) {
 
   const dashboardHref =
     session.role === "admin"
-      ? "https://dashboard.kesararamwithdigital.tech/admin/overview"
+      ? "https://dashboard.kesararamwithdigital.tech/admin/users"
       : session.role === "teacher"
-        ? "https://dashboard.kesararamwithdigital.tech/teacher/overview"
+        ? "https://dashboard.kesararamwithdigital.tech/teacher/classes"
         : "/profile/student";
 
   const roleColor =
@@ -254,8 +254,8 @@ export function Navbar({ session }: NavbarProps) {
                     <a
                       href={
                         session.role === "admin"
-                          ? "https://dashboard.kesararamwithdigital.tech/admin/overview"
-                          : "https://dashboard.kesararamwithdigital.tech/teacher/overview"
+                          ? "https://dashboard.kesararamwithdigital.tech/admin/users"
+                          : "https://dashboard.kesararamwithdigital.tech/teacher/classes"
                       }
                       onClick={() => setMobileOpen(false)}
                       className="mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center"

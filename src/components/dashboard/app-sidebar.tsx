@@ -52,7 +52,6 @@ interface NavItem {
 }
 
 const adminNav: NavItem[] = [
-  { label: "Overview", href: "/admin/overview", icon: LayoutDashboard },
   { label: "Users", href: "/admin/users", icon: Users },
   { label: "Content", href: "/admin/content", icon: BookOpen },
   { label: "Media", href: "/admin/media", icon: Images },
@@ -60,7 +59,6 @@ const adminNav: NavItem[] = [
 ];
 
 const teacherNav: NavItem[] = [
-  { label: "Overview", href: "/teacher/overview", icon: LayoutDashboard },
   { label: "Classes", href: "/teacher/classes", icon: School },
   { label: "Sessions", href: "/teacher/sessions", icon: Tv2 },
 ];

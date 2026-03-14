@@ -19,6 +19,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { DataTable } from "@/components/data-table";
+import data from "@/app/dashboard/data.json";
 
 export const dynamic = "force-dynamic";
 
@@ -131,6 +133,10 @@ export default async function TeacherSessionsPage() {
           </Table>
         </CardContent>
       </Card>
+
+      <div className="px-4 lg:px-6">
+        <DataTable data={data} />
+      </div>
     </div>
   );
 }
