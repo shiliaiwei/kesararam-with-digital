@@ -26,8 +26,6 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { ScrollText, Shield, Server, Activity, FileText } from "lucide-react";
-import { RealtimeMatrix } from "@/components/dashboard/realtime-matrix";
-import { RBACForm } from "@/components/dashboard/rbac-form";
 
 export const dynamic = "force-dynamic";
 
@@ -67,14 +65,6 @@ export default async function LogsPage() {
             Monitor system activity, security events, and operational logs.
           </p>
         </div>
-      </div>
-
-      <div className="px-4 lg:px-6">
-        <RealtimeMatrix />
-      </div>
-
-      <div className="grid gap-4 md:grid-cols-2 px-4 lg:px-6">
-        <RBACForm />
       </div>
 
       <Tabs defaultValue="all" className="space-y-4">

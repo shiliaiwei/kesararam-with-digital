@@ -9,8 +9,6 @@ import {
 } from "@/components/ui/card";
 import { getTeacherClasses } from "@/app/actions/classes";
 import { ClassesTable } from "./classes-table";
-import { SectionCards } from "@/components/section-cards";
-import { ChartAreaInteractive } from "@/components/chart-area-interactive";
 
 export const dynamic = "force-dynamic";
 
@@ -29,12 +27,6 @@ export default async function TeacherClassesPage() {
         <p className="text-muted-foreground">
           Manage your classes and share join codes with students.
         </p>
-      </div>
-
-      <SectionCards />
-
-      <div className="px-4 lg:px-6">
-        <ChartAreaInteractive />
       </div>
 
       <Card>
