@@ -16,6 +16,7 @@ import {
   Bell,
   CreditCard,
   BadgeCheck,
+  Pencil,
   Images,
   FolderOpen,
   Tags,
@@ -55,8 +56,6 @@ const adminNav: NavItem[] = [
   { label: "Overview", href: "/admin/overview", icon: LayoutDashboard },
   { label: "Users", href: "/admin/users", icon: Users },
   { label: "Content", href: "/admin/content", icon: BookOpen },
-  { label: "Profile", href: "/admin/profile", icon: BadgeCheck },
-  { label: "Road Markings", href: "/admin/road-markings", icon: Route },
   { label: "Logs", href: "/admin/logs", icon: ScrollText },
 ];
 
@@ -74,7 +73,6 @@ const teacherNav: NavItem[] = [
   { label: "Overview", href: "/teacher/overview", icon: LayoutDashboard },
   { label: "Classes", href: "/teacher/classes", icon: School },
   { label: "Sessions", href: "/teacher/sessions", icon: Tv2 },
-  { label: "Profile", href: "/teacher/profile", icon: BadgeCheck },
 ];
 
 interface AppSidebarProps {
@@ -215,21 +213,21 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <DropdownMenuItem onClick={() => router.push(profileHref)}>
+                  <DropdownMenuItem
+                    onClick={() => router.push(`${profileHref}?tab=info`)}
+                  >
                     <BadgeCheck className="mr-2 h-4 w-4" />
-                    Account
+                    Profile
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => router.push(profileHref)}>
+                    <Pencil className="mr-2 h-4 w-4" />
+                    Edit Profile
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     onClick={() => router.push(`${profileHref}?tab=settings`)}
                   >
                     <CreditCard className="mr-2 h-4 w-4" />
                     Settings
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    onClick={() => router.push(`${profileHref}?tab=info`)}
-                  >
-                    <Bell className="mr-2 h-4 w-4" />
-                    Profile Info
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />

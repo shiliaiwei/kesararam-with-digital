@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   Card,
@@ -9,7 +9,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { FolderOpen, Image as ImageIcon, Loader2, Tags } from "lucide-react";
+import {
+  FolderOpen,
+  Image as ImageIcon,
+  Loader2,
+  Search,
+  Tags,
+} from "lucide-react";
 
 type ViewMode = "gallery" | "folders" | "categories";
 
@@ -42,6 +48,10 @@ function getViewMode(rawView: string | null): ViewMode {
   return "gallery";
 }
 
+function normalizeSearch(input: string): string {
+  return input.trim().toLowerCase();
+}
+
 export function CloudinaryGallery() {
   const searchParams = useSearchParams();
   const viewMode = getViewMode(searchParams.get("view"));
@@ -54,6 +64,7 @@ export function CloudinaryGallery() {
   const [selectedFolder, setSelectedFolder] = useState<string>(initialFolder);
   const [selectedCategory, setSelectedCategory] =
     useState<string>(initialCategory);
+  const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -61,6 +72,7 @@ export function CloudinaryGallery() {
   useEffect(() => {
     setSelectedFolder(initialFolder);
     setSelectedCategory(initialCategory);
+    setSearchTerm("");
   }, [initialFolder, initialCategory]);
 
   useEffect(() => {
@@ -100,6 +112,27 @@ export function CloudinaryGallery() {
     }
   }
 
+  const filteredResources = useMemo(() => {
+    const query = normalizeSearch(searchTerm);
+    if (!query) {
+      return resources;
+    }
+
+    return resources.filter((resource) => {
+      const fileName = resource.public_id.split("/").pop() ?? resource.public_id;
+      const searchable = [
+        fileName,
+        resource.public_id,
+        resource.folder,
+        ...(resource.tags ?? []),
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      return searchable.includes(query);
+    });
+  }, [resources, searchTerm]);
+
   async function copyImageUrl(resource: CloudinaryResource) {
     try {
       if (!navigator.clipboard?.writeText) {
@@ -130,7 +163,7 @@ export function CloudinaryGallery() {
     if (viewMode === "categories") {
       return "Browse image groups by Cloudinary tags";
     }
-    return "Display and manage images from Cloudinary";
+    return "Search, filter, and browse images quickly";
   }
 
   return (
@@ -144,19 +177,73 @@ export function CloudinaryGallery() {
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
-        <div className="space-y-3">
+        <div className="border-2 border-[#a8a8a8] bg-[#f8fafc] p-4 shadow-[3px_3px_0_#000] space-y-4">
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-4">
+            <label className="xl:col-span-2 flex flex-col gap-1">
+              <span className="text-xs font-black uppercase tracking-widest text-[#a8a8a8]">
+                Search images
+              </span>
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#a8a8a8]" />
+                <input
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Search by name, folder, or tag"
+                  className="w-full h-10 border-2 border-black pl-10 pr-3 text-sm font-medium bg-white"
+                />
+              </div>
+            </label>
+
+            <label className="flex flex-col gap-1">
+              <span className="text-xs font-black uppercase tracking-widest text-[#a8a8a8]">
+                Folder filter
+              </span>
+              <select
+                value={selectedFolder}
+                onChange={(e) => setSelectedFolder(e.target.value)}
+                className="h-10 border-2 border-black bg-white px-2 text-sm font-medium"
+              >
+                <option value="">All folders</option>
+                {folders.map((folder) => (
+                  <option key={folder.name} value={folder.name}>
+                    {folder.name} ({folder.count})
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="flex flex-col gap-1">
+              <span className="text-xs font-black uppercase tracking-widest text-[#a8a8a8]">
+                Category filter
+              </span>
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="h-10 border-2 border-black bg-white px-2 text-sm font-medium"
+              >
+                <option value="">All categories</option>
+                {categories.map((category) => (
+                  <option key={category.name} value={category.name}>
+                    {category.name} ({category.count})
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+
           <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={() => {
                 setSelectedFolder("");
                 setSelectedCategory("");
+                setSearchTerm("");
               }}
               className="px-3 py-1.5 text-xs font-black uppercase tracking-widest border-2 border-black bg-white text-black shadow-[2px_2px_0_#000]"
             >
               Reset Filters
             </button>
             {selectedFolder && (
-              <span className="px-2 py-1 text-xs font-bold border-2 border-black bg-[#eab308] text-black">
+              <span className="px-2 py-1 text-xs font-bold border-2 border-black bg-[#22c55e] text-black">
                 Folder: {selectedFolder}
               </span>
             )}
@@ -165,54 +252,38 @@ export function CloudinaryGallery() {
                 Category: {selectedCategory}
               </span>
             )}
+            {searchTerm && (
+              <span className="px-2 py-1 text-xs font-bold border-2 border-black bg-[#eab308] text-black">
+                Search: {searchTerm}
+              </span>
+            )}
           </div>
 
-          <div className="flex flex-wrap gap-2 items-start">
-            <span className="inline-flex items-center gap-1 text-xs font-black uppercase tracking-widest text-[#a8a8a8]">
-              <FolderOpen className="h-3.5 w-3.5" />
-              Folders
-            </span>
-            {folders.slice(0, 10).map((folder) => (
-              <button
-                key={folder.name}
-                onClick={() =>
-                  setSelectedFolder((prev) =>
-                    prev === folder.name ? "" : folder.name,
-                  )
-                }
-                className={`px-2 py-1 text-xs font-bold border-2 border-black shadow-[2px_2px_0_#000] ${
-                  selectedFolder === folder.name
-                    ? "bg-[#22c55e] text-black"
-                    : "bg-white text-black"
-                }`}
-              >
-                {folder.name} ({folder.count})
-              </button>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap gap-2 items-start">
-            <span className="inline-flex items-center gap-1 text-xs font-black uppercase tracking-widest text-[#a8a8a8]">
-              <Tags className="h-3.5 w-3.5" />
-              Categories
-            </span>
-            {categories.slice(0, 14).map((category) => (
-              <button
-                key={category.name}
-                onClick={() =>
-                  setSelectedCategory((prev) =>
-                    prev === category.name ? "" : category.name,
-                  )
-                }
-                className={`px-2 py-1 text-xs font-bold border-2 border-black shadow-[2px_2px_0_#000] ${
-                  selectedCategory === category.name
-                    ? "bg-[#3b82f6] text-white"
-                    : "bg-white text-black"
-                }`}
-              >
-                {category.name} ({category.count})
-              </button>
-            ))}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <div className="border-2 border-black bg-white px-3 py-2">
+              <p className="text-[10px] font-black uppercase tracking-widest text-[#a8a8a8]">
+                Showing
+              </p>
+              <p className="text-lg font-black text-black">{filteredResources.length}</p>
+            </div>
+            <div className="border-2 border-black bg-white px-3 py-2">
+              <p className="text-[10px] font-black uppercase tracking-widest text-[#a8a8a8]">
+                Total Loaded
+              </p>
+              <p className="text-lg font-black text-black">{resources.length}</p>
+            </div>
+            <div className="border-2 border-black bg-white px-3 py-2">
+              <p className="text-[10px] font-black uppercase tracking-widest text-[#a8a8a8]">
+                Folders
+              </p>
+              <p className="text-lg font-black text-black">{folders.length}</p>
+            </div>
+            <div className="border-2 border-black bg-white px-3 py-2">
+              <p className="text-[10px] font-black uppercase tracking-widest text-[#a8a8a8]">
+                Categories
+              </p>
+              <p className="text-lg font-black text-black">{categories.length}</p>
+            </div>
           </div>
         </div>
 
@@ -276,8 +347,8 @@ export function CloudinaryGallery() {
         )}
 
         {!loading && !error && resources.length > 0 && (
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {resources.map((resource) => (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+            {filteredResources.map((resource) => (
               <div
                 key={resource.public_id}
                 className="border-2 border-[#a8a8a8] bg-[#f5f5f0] overflow-hidden group hover:shadow-[4px_4px_0_#000] transition-shadow"
@@ -338,22 +409,21 @@ export function CloudinaryGallery() {
           </div>
         )}
 
-        {!loading && !error && resources.length === 0 && (
+        {!loading && !error && filteredResources.length === 0 && (
           <div className="flex flex-col items-center justify-center py-12 gap-3">
             <ImageIcon className="w-12 h-12 text-[#a8a8a8]" />
             <p className="text-sm font-bold text-[#a8a8a8]">
-              No images found in Cloudinary
+              No images match your filters
             </p>
             <p className="text-xs text-[#a8a8a8]">
-              Upload images with tags to display them here
+              Try changing search, folder, or category filters
             </p>
           </div>
         )}
 
         <div className="border-l-4 border-[#3b82f6] bg-[#e7f4fd] p-3 mt-6">
           <p className="text-xs font-bold text-[#1e40af]">
-            Total images: {resources.length} • folders: {folders.length} •
-            categories: {categories.length}
+            View: {viewMode} • Showing: {filteredResources.length} of {resources.length} images
           </p>
         </div>
       </CardContent>
