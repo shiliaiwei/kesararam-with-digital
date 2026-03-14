@@ -12,7 +12,6 @@ import {
   Tv2,
   LogOut,
   Route,
-  ChevronsUpDown,
   Bell,
   Pencil,
   Images,
@@ -20,6 +19,8 @@ import {
   Tags,
   Settings,
   Info,
+  User,
+  ChevronRight,
 } from "lucide-react";
 import {
   Sidebar,
@@ -32,19 +33,17 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import { logoutAction } from "@/app/actions/auth";
-import { AvatarDisplay } from "@/components/shared/avatar-display";
 
 interface NavItem {
   label: string;
@@ -125,6 +124,71 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
 
       <SidebarContent>
         <SidebarGroup>
+          <SidebarGroupLabel>Account</SidebarGroupLabel>
+          <SidebarMenu>
+            <Collapsible defaultOpen={false} className="group/collapsible">
+              <SidebarMenuItem>
+                <CollapsibleTrigger
+                  render={
+                    <SidebarMenuButton tooltip="Profile">
+                      <User />
+                      <span>Profile</span>
+                      <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                    </SidebarMenuButton>
+                  }
+                />
+                <CollapsibleContent>
+                  <SidebarMenuSub>
+                    <SidebarMenuSubItem>
+                      <SidebarMenuSubButton
+                        render={
+                          <Link href={`${profileHref}?tab=info`}>
+                            <Info />
+                            <span>View Info</span>
+                          </Link>
+                        }
+                      />
+                    </SidebarMenuSubItem>
+                    <SidebarMenuSubItem>
+                      <SidebarMenuSubButton
+                        render={
+                          <Link href={profileHref}>
+                            <Pencil />
+                            <span>Edit Profile</span>
+                          </Link>
+                        }
+                      />
+                    </SidebarMenuSubItem>
+                    <SidebarMenuSubItem>
+                      <SidebarMenuSubButton
+                        render={
+                          <Link href={`${profileHref}?tab=settings`}>
+                            <Settings />
+                            <span>Settings</span>
+                          </Link>
+                        }
+                      />
+                    </SidebarMenuSubItem>
+                    <SidebarMenuSubItem>
+                      <form action={logoutAction} className="w-full">
+                        <SidebarMenuSubButton
+                          render={
+                            <button type="submit" className="flex w-full items-center gap-2 cursor-pointer">
+                              <LogOut />
+                              <span>Log out</span>
+                            </button>
+                          }
+                        />
+                      </form>
+                    </SidebarMenuSubItem>
+                  </SidebarMenuSub>
+                </CollapsibleContent>
+              </SidebarMenuItem>
+            </Collapsible>
+          </SidebarMenu>
+        </SidebarGroup>
+
+        <SidebarGroup>
           <SidebarGroupLabel>Platform</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -168,89 +232,6 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
       </SidebarContent>
 
       <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger
-                render={
-                  <SidebarMenuButton
-                    size="lg"
-                    className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-                  />
-                }
-              >
-                <AvatarDisplay
-                  avatar={avatar ?? null}
-                  name={name}
-                  size={32}
-                  radius={8}
-                />
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{name}</span>
-                  <span className="truncate text-xs text-muted-foreground">{email}</span>
-                </div>
-                <ChevronsUpDown className="ml-auto size-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-                side="bottom"
-                align="end"
-                sideOffset={4}
-              >
-                <DropdownMenuLabel className="p-0 font-normal">
-                  <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                    <AvatarDisplay
-                      avatar={avatar ?? null}
-                      name={name}
-                      size={32}
-                      radius={8}
-                    />
-                    <div className="grid flex-1 text-left text-sm leading-tight">
-                      <span className="truncate font-semibold">{name}</span>
-                      <span className="truncate text-xs text-muted-foreground">{email}</span>
-                    </div>
-                  </div>
-                </DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                  <DropdownMenuItem
-                    render={
-                      <Link href={`${profileHref}?tab=info`} className="cursor-pointer" />
-                    }
-                  >
-                    <Info className="mr-2 h-4 w-4" />
-                    <span>View Info</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    render={
-                      <Link href={profileHref} className="cursor-pointer" />
-                    }
-                  >
-                    <Pencil className="mr-2 h-4 w-4" />
-                    <span>Edit Profile</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    render={
-                      <Link href={`${profileHref}?tab=settings`} className="cursor-pointer" />
-                    }
-                  >
-                    <Settings className="mr-2 h-4 w-4" />
-                    <span>Settings</span>
-                  </DropdownMenuItem>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                   <form action={logoutAction} className="w-full cursor-pointer">
-                     <button type="submit" className="flex w-full items-center gap-2">
-                       <LogOut className="mr-2 h-4 w-4" />
-                       <span>Log out</span>
-                     </button>
-                   </form>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
-        </SidebarMenu>
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
