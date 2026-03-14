@@ -14,12 +14,12 @@ import {
   Route,
   ChevronsUpDown,
   Bell,
-  CreditCard,
-  BadgeCheck,
   Pencil,
   Images,
   FolderOpen,
   Tags,
+  Settings,
+  Info,
 } from "lucide-react";
 import {
   Sidebar,
@@ -176,21 +176,21 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
                   <SidebarMenuButton
                     size="lg"
                     className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-                  />
+                  >
+                    <AvatarDisplay
+                      avatar={avatar ?? null}
+                      name={name}
+                      size={32}
+                      radius={8}
+                    />
+                    <div className="grid flex-1 text-left text-sm leading-tight">
+                      <span className="truncate font-semibold">{name}</span>
+                      <span className="truncate text-xs">{email}</span>
+                    </div>
+                    <ChevronsUpDown className="ml-auto size-4" />
+                  </SidebarMenuButton>
                 }
-              >
-                <AvatarDisplay
-                  avatar={avatar ?? null}
-                  name={name}
-                  size={32}
-                  radius={8}
-                />
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{name}</span>
-                  <span className="truncate text-xs">{email}</span>
-                </div>
-                <ChevronsUpDown className="ml-auto size-4" />
-              </DropdownMenuTrigger>
+              />
               <DropdownMenuContent
                 className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
                 side="bottom"
@@ -216,8 +216,8 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
                   <DropdownMenuItem
                     onClick={() => router.push(`${profileHref}?tab=info`)}
                   >
-                    <BadgeCheck className="mr-2 h-4 w-4" />
-                    Profile
+                    <Info className="mr-2 h-4 w-4" />
+                    View Info
                   </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => router.push(profileHref)}>
                     <Pencil className="mr-2 h-4 w-4" />
@@ -226,7 +226,7 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
                   <DropdownMenuItem
                     onClick={() => router.push(`${profileHref}?tab=settings`)}
                   >
-                    <CreditCard className="mr-2 h-4 w-4" />
+                    <Settings className="mr-2 h-4 w-4" />
                     Settings
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
