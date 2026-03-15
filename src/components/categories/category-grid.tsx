@@ -78,6 +78,14 @@ const CATEGORIES = [
   },
 ] as const;
 
+// Category images with background removed
+const CATEGORY_IMAGES = [
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_5_2026-03-15_13-28-33_iyd1g0?_a=BAMAAAUs0",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_4_2026-03-15_13-28-33_dudy3h?_a=BAMAAAUs0",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_1_2026-03-15_13-28-33_ftfpbi?_a=BAMAAAUs0",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_2_2026-03-15_13-28-33_eashrw?_a=BAMAAAUs0"
+];
+
 export function CategoryGrid() {
   const { lang } = useLang();
   const tr = t[lang].categories;
@@ -120,6 +128,8 @@ export function CategoryGrid() {
           {CATEGORIES.map((cat, index) => {
             const color = CATEGORY_COLORS[cat.slug];
             const shadow = CATEGORY_SHADOW[cat.slug];
+            // Randomly select an image for each category
+            const randomImage = CATEGORY_IMAGES[index % CATEGORY_IMAGES.length];
             
             return (
               <Link
@@ -147,7 +157,7 @@ export function CategoryGrid() {
                   }}
                 >
                   <img 
-                    src="https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/lgo_dhuxrl?_a=BAMAAAUs0"
+                    src={randomImage}
                     alt={kh ? cat.titleKh : cat.titleEn}
                     className="w-full h-48 object-contain object-bottom transition-transform duration-300 group-hover:scale-105"
                     style={{
