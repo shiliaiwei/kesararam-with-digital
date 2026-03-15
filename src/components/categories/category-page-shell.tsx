@@ -1,3 +1,5 @@
+"use client";
+
 import { Skeleton } from "@/components/ui/skeleton";
 import { CATEGORY_COLORS, CATEGORY_SHADOW } from "@/lib/utils";
 import { FaClipboardList } from "react-icons/fa";
