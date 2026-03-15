@@ -11,7 +11,7 @@ export default function RoadSignPage() {
     <CategoryPageShell
       slug="road-sign"
       titleEn="Traffic Signs"
-      titleKh="ស្ញ្ញាផ្លូវវិថី"
+      titleKh="សញ្ញាផ្លូវវិថី"
       descEn="Browse and learn all official road signs used in Cambodia. Each sign includes a description, what it means, and audio support in Khmer and English."
     />
   );

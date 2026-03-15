@@ -19,14 +19,14 @@ const CATEGORIES = [
   {
     slug: "road-sign",
     titleEn: "Traffic Signs",
-    titleKh: "ស្ញ្ញាផ្លូវវិថី",
+    titleKh: "សញ្ញាផ្លូវវិថី",
     descEn: "Identify and understand all official road signs used in Cambodia.",
     Icon: FaExclamationTriangle,
   },
   {
     slug: "road-traffic",
     titleEn: "Road Traffic Law",
-    titleKh: "ច្បាប់ចរាចរណ៍",
+    titleKh: "ច្បាប់ចរាចរ",
     descEn:
       "Study the legal framework governing road use and user responsibilities.",
     Icon: FaBalanceScale,

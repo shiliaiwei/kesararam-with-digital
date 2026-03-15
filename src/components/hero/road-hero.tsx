@@ -120,11 +120,11 @@ export function RoadHero() {
             className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-tight mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]"
             style={khFont}
           >
-            {kh ? "ស្គាល់ស្ញ្ញា" : "Master Every"}
+            {kh ? "ស្គាល់សញ្ញា" : "Master Every"}
           </div>
           <div className="text-6xl md:text-8xl lg:text-9xl font-black leading-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
             <span className="text-yellow-400 underline decoration-white decoration-8">
-              {kh ? "ចរាចរណ៍" : "Road Sign"}
+              {kh ? "ចរាចរ" : "Road Sign"}
             </span>
           </div>
           <div
@@ -141,7 +141,7 @@ export function RoadHero() {
           style={khFont}
         >
           {kh
-            ? "រៀនស្ញ្ញាចរាចរណ៍ ច្បាប់ផ្លូវ និងជំនាញបើកបរជាមួយប្រព័ន្ធអន្តរកម្ម"
+            ? "រៀនសញ្ញាចរាចរ ច្បាប់ផ្លូវ និងជំនាញបើកបរជាមួយប្រព័ន្ធអន្តរកម្ម"
             : "Learn traffic signs, road laws, and driving skills with interactive lessons"}
         </p>
 

@@ -11,7 +11,7 @@ export default function RoadTrafficPage() {
     <CategoryPageShell
       slug="road-traffic"
       titleEn="Road Traffic Law"
-      titleKh="ច្បាប់ចរាចរណ៍"
+      titleKh="ច្បាប់ចរាចរ"
       descEn="Study the legal framework governing road use and the responsibilities of all road users. Covers law articles, case studies, and structured Q&A."
     />
   );

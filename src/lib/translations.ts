@@ -17,7 +17,7 @@ export const t = {
       headline1: "Master Every",
       headline2: "Road Sign.",
       headline3: "Pass Your Exam.",
-      subtitle: "ស្គាល់ស្ញ្ញាចរាចរណ៍ — ប្រឡងជោគជ័យ",
+      subtitle: "ស្គាល់សញ្ញាចរាចរ — ប្រឡងជោគជ័យ",
       desc: "Study traffic signs, road laws, and driving theory with interactive quizzes, flashcards, and live challenge sessions — in both Khmer and English.",
       startLearning: "Start Learning",
       createAccount: "Create Account",
@@ -96,10 +96,10 @@ export const t = {
     hero: {
       badge: "វេទិការបព្រឹត្តនៃការបើកបរ — កម្ពុជា",
       headline1: "ស្គាល់គ្រប់",
-      headline2: "ស្ញ្ញាផ្លូវវិថី.",
+      headline2: "សញ្ញាផ្លូវវិថី.",
       headline3: "ជ្រើសប្រឡងជោគជ័យ.",
-      subtitle: "ស្គាល់ស្ញ្ញាចរាចរណ៍ — ប្រឡងជោគជ័យ",
-      desc: "រៀនស្ញ្ញាចរាចរណ៍ ច្បាប់ផ្លូវវិថី និងទ្រឹស្ដីបើកបរ ជាមួយតេស្ត ប័ណ្ណ និងសម័យប្រកួតផ្ទាល់ — ជាភាសាខ្មែរ និងអង់គ្លេស.",
+      subtitle: "ស្គាល់សញ្ញាចរាចរ — ប្រឡងជោគជ័យ",
+      desc: "រៀនសញ្ញាចរាចរ ច្បាប់ផ្លូវ និងទ្រឹស្ដីបើកបរ ជាមួយតេស្ត ប័ណ្ណ និងសម័យប្រកួតផ្ទាល់ — ជាភាសាខ្មែរ និងអង់គ្លេស.",
       startLearning: "ចាប់ផ្ដើម",
       createAccount: "បង្កើតគណនី",
       stats: {
@@ -107,7 +107,7 @@ export const t = {
         questions: "សំណួរហ្វឹកហ្វឺន",
         roles: "តួនាទីអ្នកប្រើ",
       },
-      cardProgress: "វឌ្ឍនភាពស្ញ្ញាចរាចរណ៍",
+      cardProgress: "វឌ្ឍនភាពសញ្ញាចរាចរ",
       signs: {
         stop: "ឈប់",
         caution: "ប្រយ័ត្ន",
@@ -138,7 +138,7 @@ export const t = {
       howTitle: "បីជំហានឆ្ពោះទៅការឆ្លងប្រឡង",
       step1Title: "រុករកប្រភេទ",
       step1Desc:
-        "រុករកប្រភេទចំណេះដឹងទាំង ៨។ រៀននៅក្នុងមេរៀនរៀបចំ ស្ញ្ញា និងឯកសារយោង.",
+        "រុករកប្រភេទចំណេះដឹងទាំង ៨។ រៀននៅក្នុងមេរៀនរៀបចំ សញ្ញា និងឯកសារយោង.",
       step2Title: "រៀន និងហ្វឹកហ្វឺន",
       step2Desc:
         "ប្រើប្រាស់ប័ណ្ណ តេស្ត និង Suar AI ដើម្បីពង្រឹងការយល់ដឹងរបស់អ្នក ជាភាសាខ្មែរ ឬអង់គ្លេស.",
@@ -147,7 +147,7 @@ export const t = {
         "ប្រកួតក្នុងវគ្គប្រឡងផ្ទាល់ដែលគ្រប់គ្រងដោយគ្រូ។ ទទួលពិន្ទុ ចូលក្នុងតារាងចំណាត់ថ្នាក់ និងទទួលរង្វាន់.",
       ctaTitle: "រួចរាល់ ចាប់ផ្ដើមត្រៀមប្រឡង?",
       ctaSubtitle: "ចូលរៀន — ចូលប្រកួត — ជោគជ័យ",
-      ctaExplore: "រុករកស្ញ្ញាចរាចរណ៍",
+      ctaExplore: "រុករកសញ្ញាចរាចរ",
       ctaRegister: "បង្កើតគណនីឥតគិតថ្លៃ",
     },
 

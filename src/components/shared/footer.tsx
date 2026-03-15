@@ -13,8 +13,8 @@ export function Footer() {
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
   const LEARN_LINKS = [
-    { label: kh ? "ស្ញ្ញាចរាចរ" : "Traffic Signs", href: "/road-sign" },
-    { label: kh ? "ច្បាប់ចរាចរណ៍" : "Road Traffic Law", href: "/road-traffic" },
+    { label: kh ? "សញ្ញាចរាចរ" : "Traffic Signs", href: "/road-sign" },
+    { label: kh ? "ច្បាប់ចរាចរ" : "Road Traffic Law", href: "/road-traffic" },
     { label: kh ? "សិទ្ធិដំណើរ" : "Right of Way", href: "/priority" },
     { label: kh ? "ជំនាញបើកបរ" : "Driving Skills", href: "/driving" },
     { label: kh ? "ប្រភេទទាំងអស់" : "All Categories", href: "/home" },
