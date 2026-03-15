@@ -1,6 +1,8 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { CATEGORY_COLORS, CATEGORY_SHADOW } from "@/lib/utils";
 import { FaClipboardList } from "react-icons/fa";
+import { useLang } from "@/context/lang-context";
+import Image from "next/image";
 
 interface ContentCardSkeletonProps {
   slug: string;
@@ -43,55 +45,84 @@ export function CategoryPageShell({
 }: CategoryPageShellProps) {
   const color = CATEGORY_COLORS[slug] ?? "#eab308";
   const shadow = CATEGORY_SHADOW[slug] ?? "4px 4px 0 #000";
+  const { lang } = useLang();
+  const kh = lang === "kh";
+  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+
+  // Mode translations
+  const modes = [
+    { en: "Flashcards", kh: "ប័ណ្ណសិក្សា" },
+    { en: "Quiz", kh: "តេស្ត" },
+    { en: "Practice Test", kh: "ហ្វឹកហ្វឺន" },
+    { en: "Challenge", kh: "ប្រកួត" }
+  ];
 
   return (
     <div className="min-h-screen dot-bg">
-      {/* Category hero */}
+      {/* Category hero - reduced padding */}
       <div
-        className="border-b-4 border-black py-16 md:py-20"
+        className="border-b-4 border-black py-10 md:py-12"
         style={{ backgroundColor: color }}
       >
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col gap-3">
-            <span className="text-xs font-black tracking-widest uppercase bg-black text-white px-3 py-1.5 rounded-none w-fit">
-              Knowledge Category
-            </span>
-            <h1 className="text-5xl md:text-6xl font-black text-black leading-tight">
-              {titleEn}
-            </h1>
-            <p
-              className="text-xl text-black/70 font-kh-header"
-              style={{
-                fontFamily: "Kantumruy Pro, sans-serif",
-                fontWeight: 700,
-              }}
-            >
-              {titleKh}
-            </p>
-            <p className="text-base text-black/80 max-w-xl leading-relaxed mt-1">
-              {descEn}
-            </p>
+          <div className="flex items-center gap-6">
+            {/* Character image on the left */}
+            <div className="hidden md:block flex-shrink-0">
+              <div 
+                className="w-32 h-32 border-2 border-black rounded-none overflow-hidden bg-white"
+                style={{ boxShadow: "4px 4px 0 #000" }}
+              >
+                <Image
+                  src="https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_5_2026-03-15_13-28-33_iyd1g0?_a=BAMAAAUs0"
+                  alt="Character"
+                  width={128}
+                  height={128}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            </div>
 
-            {/* Related links */}
-            <div className="flex flex-wrap gap-3 mt-4">
-              {["Flashcards", "Quiz", "Practice Test", "Challenge"].map(
-                (mode) => (
+            {/* Content */}
+            <div className="flex flex-col gap-2 flex-1">
+              <span 
+                className="text-xs font-black tracking-widest uppercase bg-black text-white px-3 py-1.5 rounded-none w-fit"
+                style={khFont}
+              >
+                {kh ? "ប្រភេទចំណេះដឹង" : "Knowledge Category"}
+              </span>
+              <h1 className="text-4xl md:text-5xl font-black text-black leading-tight">
+                {kh ? titleKh : titleEn}
+              </h1>
+              <p
+                className="text-lg text-black/70"
+                style={{ fontFamily: "Siemreap, sans-serif" }}
+              >
+                {kh ? titleEn : titleKh}
+              </p>
+              <p className="text-sm text-black/80 max-w-2xl leading-relaxed" style={khFont}>
+                {descEn}
+              </p>
+
+              {/* Related links - reduced spacing */}
+              <div className="flex flex-wrap gap-2 mt-3">
+                {modes.map((mode) => (
                   <span
-                    key={mode}
-                    className="px-4 py-2 bg-white border-2 border-black rounded-none text-sm font-bold shadow-[2px_2px_0_#000] cursor-not-allowed opacity-60"
-                    title="Coming soon — content managed by admin"
+                    key={mode.en}
+                    className="px-3 py-1.5 bg-white border-2 border-black rounded-none text-xs font-bold shadow-[2px_2px_0_#000] cursor-not-allowed opacity-60"
+                    title={kh ? "មកដល់ឆាប់ៗ" : "Coming soon — content managed by admin"}
+                    style={khFont}
                   >
-                    {mode}
+                    {kh ? mode.kh : mode.en}
                   </span>
-                ),
-              )}
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Content area */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      {/* Content area - reduced padding */}
+      <div className="max-w-7xl mx-auto px-6 py-8">
         {isLoading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {Array.from({ length: 6 }).map((_, i) => (
@@ -103,7 +134,7 @@ export function CategoryPageShell({
         ) : (
           /* Empty state */
           <div
-            className="bg-white border-2 border-black rounded-none p-12 text-center max-w-lg mx-auto"
+            className="bg-white border-2 border-black rounded-none p-8 text-center max-w-lg mx-auto"
             style={{ boxShadow: shadow }}
           >
             <div
@@ -112,10 +143,13 @@ export function CategoryPageShell({
             >
               <FaClipboardList size={28} className="text-black" />
             </div>
-            <h3 className="text-xl font-black mb-2">No content yet</h3>
-            <p className="text-sm text-zinc-500">
-              An administrator will publish content for this category soon.
-              Check back later.
+            <h3 className="text-xl font-black mb-2" style={khFont}>
+              {kh ? "មិនទាន់មានមាតិកា" : "No content yet"}
+            </h3>
+            <p className="text-sm text-zinc-500" style={khFont}>
+              {kh 
+                ? "អ្នកគ្រប់គ្រងនឹងបោះពុម្ពមាតិកាសម្រាប់ប្រភេទនេះឆាប់ៗនេះ។"
+                : "An administrator will publish content for this category soon. Check back later."}
             </p>
           </div>
         )}
