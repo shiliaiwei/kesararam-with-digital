@@ -75,7 +75,7 @@ export function CategoryPageShell({
                 style={{ boxShadow: "4px 4px 0 #000" }}
               >
                 <Image
-                  src="https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_5_2026-03-15_13-28-33_iyd1g0?_a=BAMAAAUs0"
+                  src="https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0"
                   alt="Character"
                   width={128}
                   height={128}
