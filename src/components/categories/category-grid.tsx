@@ -148,7 +148,7 @@ export function CategoryGrid() {
                   <img 
                     src="https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/lgo_dhuxrl?_a=BAMAAAUs0"
                     alt={kh ? cat.titleKh : cat.titleEn}
-                    className="w-32 h-32 object-contain"
+                    className="w-40 h-40 object-contain"
                   />
                 </div>
 
