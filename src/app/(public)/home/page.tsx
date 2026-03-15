@@ -1,6 +1,6 @@
 "use client";
 
-import { FloatingIconsHero } from "@/components/hero/floating-icons-hero";
+import { RoadHero } from "@/components/hero/road-hero";
 import { CategoryGrid } from "@/components/categories/category-grid";
 import { useLang } from "@/context/lang-context";
 import { t } from "@/lib/translations";
@@ -13,7 +13,7 @@ export default function HomePage() {
 
   return (
     <>
-      <FloatingIconsHero />
+      <RoadHero />
       <CategoryGrid />
 
       {/* Daily stats section */}
