@@ -3,68 +3,127 @@
 import Link from "next/link";
 import { useLang } from "@/context/lang-context";
 
-const TRAFFIC_SIGNS = [
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_29_2026-03-15_14-25-55_fe1jw4?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_28_2026-03-15_14-25-55_shzh19?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_27_2026-03-15_14-25-55_dzw4l5?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_26_2026-03-15_14-25-55_yleyvu?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_25_2026-03-15_14-25-55_eakxhh?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_24_2026-03-15_14-25-55_d5pki2?_a=BAMAAAUs0",
-];
-
 export function RoadHero() {
   const { lang } = useLang();
   const kh = lang === "kh";
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
   return (
-    <section className="relative min-h-screen bg-white overflow-hidden">
-      {/* Animated road background */}
-      <div className="absolute inset-0">
-        {/* Road surface */}
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-100 to-zinc-200" />
-        
-        {/* Road markings - animated dashed lines */}
-        <div className="absolute left-1/2 top-0 bottom-0 w-2 -ml-1">
-          <div className="h-full flex flex-col justify-around animate-road-scroll">
-            {[...Array(20)].map((_, i) => (
-              <div key={i} className="h-16 w-2 bg-yellow-400 rounded-full" />
-            ))}
-          </div>
+    <section className="relative min-h-screen bg-zinc-800 overflow-hidden">
+      {/* Main Road Surface */}
+      <div className="absolute inset-0 bg-gradient-to-b from-zinc-700 via-zinc-600 to-zinc-700">
+        {/* Road texture overlay */}
+        <div className="absolute inset-0 opacity-10" style={{
+          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.3) 2px, rgba(0,0,0,0.3) 4px)'
+        }} />
+      </div>
+
+      {/* Left Lane - Single Yellow Broken Line (M2-01) */}
+      <div className="absolute left-[15%] top-0 bottom-0 w-1">
+        <div className="h-full flex flex-col animate-road-scroll-slow">
+          {[...Array(30)].map((_, i) => (
+            <div key={i} className="flex flex-col">
+              <div className="h-20 w-1 bg-yellow-400" />
+              <div className="h-20 w-1 bg-transparent" />
+            </div>
+          ))}
         </div>
-
-        {/* Side road lines */}
-        <div className="absolute left-0 top-0 bottom-0 w-1 bg-white" />
-        <div className="absolute right-0 top-0 bottom-0 w-1 bg-white" />
       </div>
 
-      {/* Floating traffic signs */}
-      <div className="absolute inset-0 pointer-events-none">
-        {TRAFFIC_SIGNS.map((sign, index) => (
-          <div
-            key={index}
-            className="absolute animate-float"
-            style={{
-              left: `${10 + (index % 3) * 30}%`,
-              top: `${15 + Math.floor(index / 3) * 35}%`,
-              animationDelay: `${index * 0.5}s`,
-              animationDuration: `${3 + (index % 3)}s`,
-            }}
-          >
-            <img
-              src={sign}
-              alt="Traffic sign"
-              className="w-16 h-16 md:w-24 md:h-24 opacity-20 hover:opacity-60 transition-opacity duration-300"
-            />
-          </div>
-        ))}
+      {/* Left-Center Lane - Single Yellow Solid Line (M2-02) */}
+      <div className="absolute left-[30%] top-0 bottom-0 w-1 bg-yellow-400" />
+
+      {/* Center - Double Yellow Solid Line (M2-03) */}
+      <div className="absolute left-[47%] top-0 bottom-0 w-1 bg-yellow-400" />
+      <div className="absolute left-[49%] top-0 bottom-0 w-1 bg-yellow-400" />
+
+      {/* Center-Right - Double Yellow Combination Line (M2-04) */}
+      <div className="absolute left-[62%] top-0 bottom-0 w-1 bg-yellow-400" />
+      <div className="absolute left-[64%] top-0 bottom-0 w-1">
+        <div className="h-full flex flex-col animate-road-scroll-medium">
+          {[...Array(30)].map((_, i) => (
+            <div key={i} className="flex flex-col">
+              <div className="h-20 w-1 bg-yellow-400" />
+              <div className="h-20 w-1 bg-transparent" />
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Main content */}
+      {/* Right Lane - Single White Broken Line (M2-06) */}
+      <div className="absolute left-[77%] top-0 bottom-0 w-1">
+        <div className="h-full flex flex-col animate-road-scroll-fast">
+          {[...Array(30)].map((_, i) => (
+            <div key={i} className="flex flex-col">
+              <div className="h-16 w-1 bg-white" />
+              <div className="h-16 w-1 bg-transparent" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Left Edge Line - White Solid (M2-08) */}
+      <div className="absolute left-[5%] top-0 bottom-0 w-2 bg-white" />
+
+      {/* Right Edge Line - White Solid (M2-08) */}
+      <div className="absolute right-[5%] top-0 bottom-0 w-2 bg-white" />
+
+      {/* Left Curb - Yellow-White Markings (M2-09) */}
+      <div className="absolute left-0 top-0 bottom-0 w-12">
+        <div className="h-full flex flex-col animate-curb-scroll">
+          {[...Array(20)].map((_, i) => (
+            <div key={i} className="flex flex-col">
+              <div className="h-16 w-12 bg-yellow-400 border-r-4 border-black" style={{
+                backgroundImage: 'repeating-linear-gradient(45deg, #fbbf24 0, #fbbf24 10px, #000 10px, #000 20px)'
+              }} />
+              <div className="h-16 w-12 bg-white border-r-4 border-black" style={{
+                backgroundImage: 'repeating-linear-gradient(45deg, #fff 0, #fff 10px, #000 10px, #000 20px)'
+              }} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Right Curb - Red-White Markings (M2-10) */}
+      <div className="absolute right-0 top-0 bottom-0 w-12">
+        <div className="h-full flex flex-col animate-curb-scroll">
+          {[...Array(20)].map((_, i) => (
+            <div key={i} className="flex flex-col">
+              <div className="h-16 w-12 bg-red-500 border-l-4 border-black" style={{
+                backgroundImage: 'repeating-linear-gradient(45deg, #ef4444 0, #ef4444 10px, #000 10px, #000 20px)'
+              }} />
+              <div className="h-16 w-12 bg-white border-l-4 border-black" style={{
+                backgroundImage: 'repeating-linear-gradient(45deg, #fff 0, #fff 10px, #000 10px, #000 20px)'
+              }} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Road Divider Blocks with Yellow-Black Markings (M2-11) */}
+      <div className="absolute left-1/2 -ml-8 top-0 bottom-0 w-16">
+        <div className="h-full flex flex-col justify-around animate-divider-scroll">
+          {[...Array(8)].map((_, i) => (
+            <div key={i} className="relative h-24 w-16">
+              {/* Divider block */}
+              <div className="absolute inset-0 bg-zinc-400 border-2 border-black shadow-lg" />
+              {/* Yellow-Black diagonal stripes */}
+              <div className="absolute inset-0" style={{
+                backgroundImage: 'repeating-linear-gradient(-45deg, #fbbf24 0, #fbbf24 15px, #000 15px, #000 30px)'
+              }} />
+              {/* Guide post circles */}
+              <div className="absolute -top-2 left-1/2 -ml-2 w-4 h-4 bg-yellow-400 rounded-full border-2 border-black" />
+              <div className="absolute -bottom-2 left-1/2 -ml-2 w-4 h-4 bg-yellow-400 rounded-full border-2 border-black" />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Main Content */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 py-20">
         {/* Badge */}
         <div
-          className="inline-block bg-yellow-400 text-black text-xs font-black tracking-widest uppercase px-4 py-2 border-2 border-black shadow-[4px_4px_0_#000] mb-8 animate-bounce-slow"
+          className="inline-block bg-yellow-400 text-black text-xs font-black tracking-widest uppercase px-4 py-2 border-2 border-black shadow-[4px_4px_0_#000] mb-8"
           style={khFont}
         >
           {kh ? "ប្រព័ន្ធសិក្សាថ្មី" : "New Learning System"}
@@ -73,18 +132,18 @@ export function RoadHero() {
         {/* Main headline */}
         <h1 className="text-center mb-6">
           <div
-            className="text-5xl md:text-7xl lg:text-8xl font-black text-black leading-tight mb-2"
+            className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-tight mb-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]"
             style={khFont}
           >
             {kh ? "ស្គាល់ស្ញ្ញា" : "Master Every"}
           </div>
-          <div className="text-6xl md:text-8xl lg:text-9xl font-black leading-none">
-            <span className="text-yellow-400 underline decoration-black decoration-8">
+          <div className="text-6xl md:text-8xl lg:text-9xl font-black leading-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]">
+            <span className="text-yellow-400 underline decoration-white decoration-8">
               {kh ? "ចរាចរណ៍" : "Road Sign"}
             </span>
           </div>
           <div
-            className="text-4xl md:text-6xl lg:text-7xl font-black text-black leading-tight mt-2"
+            className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mt-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]"
             style={khFont}
           >
             {kh ? "ប្រឡងជោគជ័យ" : "Pass Your Exam"}
@@ -93,7 +152,7 @@ export function RoadHero() {
 
         {/* Subtitle */}
         <p
-          className="text-lg md:text-2xl text-zinc-700 font-medium text-center max-w-3xl mb-12"
+          className="text-lg md:text-2xl text-white font-medium text-center max-w-3xl mb-12 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
           style={khFont}
         >
           {kh
@@ -127,33 +186,33 @@ export function RoadHero() {
         {/* Stats */}
         <div className="grid grid-cols-3 gap-6 md:gap-12">
           <div className="text-center">
-            <div className="text-3xl md:text-5xl font-black text-yellow-400 mb-2">
+            <div className="text-3xl md:text-5xl font-black text-yellow-400 mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
               1,200+
             </div>
             <div
-              className="text-xs md:text-sm font-bold text-zinc-600 uppercase tracking-wider"
+              className="text-xs md:text-sm font-bold text-white uppercase tracking-wider drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
               style={khFont}
             >
               {kh ? "សិស្ស" : "Students"}
             </div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-5xl font-black text-yellow-400 mb-2">
+            <div className="text-3xl md:text-5xl font-black text-yellow-400 mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
               500+
             </div>
             <div
-              className="text-xs md:text-sm font-bold text-zinc-600 uppercase tracking-wider"
+              className="text-xs md:text-sm font-bold text-white uppercase tracking-wider drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
               style={khFont}
             >
               {kh ? "សំណួរ" : "Questions"}
             </div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-5xl font-black text-yellow-400 mb-2">
+            <div className="text-3xl md:text-5xl font-black text-yellow-400 mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
               8
             </div>
             <div
-              className="text-xs md:text-sm font-bold text-zinc-600 uppercase tracking-wider"
+              className="text-xs md:text-sm font-bold text-white uppercase tracking-wider drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
               style={khFont}
             >
               {kh ? "ប្រធានបទ" : "Categories"}
@@ -162,12 +221,9 @@ export function RoadHero() {
         </div>
       </div>
 
-      {/* Bottom road fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none" />
-
       {/* CSS Animations */}
       <style jsx>{`
-        @keyframes road-scroll {
+        @keyframes road-scroll-slow {
           0% {
             transform: translateY(-100%);
           }
@@ -175,32 +231,52 @@ export function RoadHero() {
             transform: translateY(0);
           }
         }
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0) rotate(0deg);
+        @keyframes road-scroll-medium {
+          0% {
+            transform: translateY(-100%);
           }
-          50% {
-            transform: translateY(-20px) rotate(5deg);
-          }
-        }
-        @keyframes bounce-slow {
-          0%,
           100% {
             transform: translateY(0);
           }
-          50% {
-            transform: translateY(-10px);
+        }
+        @keyframes road-scroll-fast {
+          0% {
+            transform: translateY(-100%);
+          }
+          100% {
+            transform: translateY(0);
           }
         }
-        .animate-road-scroll {
-          animation: road-scroll 3s linear infinite;
+        @keyframes curb-scroll {
+          0% {
+            transform: translateY(-100%);
+          }
+          100% {
+            transform: translateY(0);
+          }
         }
-        .animate-float {
-          animation: float 4s ease-in-out infinite;
+        @keyframes divider-scroll {
+          0% {
+            transform: translateY(-100%);
+          }
+          100% {
+            transform: translateY(0);
+          }
         }
-        .animate-bounce-slow {
-          animation: bounce-slow 2s ease-in-out infinite;
+        .animate-road-scroll-slow {
+          animation: road-scroll-slow 8s linear infinite;
+        }
+        .animate-road-scroll-medium {
+          animation: road-scroll-medium 6s linear infinite;
+        }
+        .animate-road-scroll-fast {
+          animation: road-scroll-fast 4s linear infinite;
+        }
+        .animate-curb-scroll {
+          animation: curb-scroll 5s linear infinite;
+        }
+        .animate-divider-scroll {
+          animation: divider-scroll 10s linear infinite;
         }
       `}</style>
     </section>

@@ -443,3 +443,15 @@ npm start
 8. **No gradients or emoji** - keep it brutalist
 9. **Colored shadows** for yellow CTAs (#eab308)
 10. **Grayscale to color** on hover for images
+
+
+
+
+The Animation Logic
+The Animation Logic
+
+remove the traffic icon, all .  and let create new desgin animation roads loop using this style Function of Longitudinal Markings , and Index of Guide Posts, SINGLE YELLOW BROKEN LINE,SINGLE YELLOW SOLID LINE,DOUBLE YELLOW SOLID LINE, DOUBLE YELLOW COMBINATION LINE,DOUBLE YELLOW COMBINATION LINE, SINGLE WHITE BROKEN LINE, WHITE SINGLE SOLID LINE, EDGE LINE, YELLOW-WHITE CURB MARKINGS, RED-WHITE CURB MARKINGS, YELLOW-BLACK MARKINGS ON ROAD DEVIDER BLOCK,  crreate animation loop roads using these style 
+
+
+
+ make it design by code to make animation The Animation Logic , take it long and perfect
