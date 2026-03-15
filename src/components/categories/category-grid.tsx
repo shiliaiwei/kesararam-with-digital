@@ -149,9 +149,18 @@ export function CategoryGrid() {
                   <img 
                     src="https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/lgo_dhuxrl?_a=BAMAAAUs0"
                     alt={kh ? cat.titleKh : cat.titleEn}
-                    className="w-full h-48 object-contain object-bottom"
+                    className="w-full h-48 object-contain object-bottom transition-transform duration-300 group-hover:scale-105"
                     style={{
                       marginBottom: "-2px"
+                    }}
+                  />
+                  {/* Caution tape effect on hover */}
+                  <div 
+                    className="absolute bottom-0 left-0 right-0 h-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      background: "repeating-linear-gradient(45deg, #000, #000 10px, #fbbf24 10px, #fbbf24 20px)",
+                      transform: "translateY(100%)",
+                      animation: "none"
                     }}
                   />
                 </div>
