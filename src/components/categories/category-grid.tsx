@@ -84,7 +84,7 @@ const CATEGORY_IMAGES = [
   "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_4_2026-03-15_13-28-33_dudy3h?_a=BAMAAAUs0",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_1_2026-03-15_13-28-33_ftfpbi?_a=BAMAAAUs0",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_2_2026-03-15_13-28-33_eashrw?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/mdnmr2mxadowugm30czhnwyte2y3qtlmzwnw0so_p89tbs?_a=BAMAAAUs0",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/mdnmr2mxadowugm30czhnwyte2y3qtlmzwnw0so_p89tbs?_a=BAMAAAUs0",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/cld-sample-5?_a=BAMAAAUs0",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/v1/samples/shoe?_a=BAMAAAUs0"
 ];
