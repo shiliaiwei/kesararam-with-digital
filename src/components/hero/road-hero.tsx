@@ -169,7 +169,7 @@ export function RoadHero() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-6 md:gap-12">
+        {/* <div className="grid grid-cols-3 gap-6 md:gap-12">
           <div className="text-center">
             <div className="text-3xl md:text-5xl font-black text-yellow-400 mb-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
               1,200+
@@ -203,7 +203,7 @@ export function RoadHero() {
               {kh ? "ប្រធានបទ" : "Categories"}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* CSS Animations */}

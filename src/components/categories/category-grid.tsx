@@ -111,8 +111,7 @@ export function CategoryGrid() {
               className="text-4xl md:text-5xl font-black text-black leading-tight"
               style={khFont}
             >
-              {tr.sectionTitle1}
-              <br />
+              {tr.sectionTitle1}{" "}
               <span className="underline decoration-yellow-400 decoration-4">
                 {tr.sectionTitle2}
               </span>
