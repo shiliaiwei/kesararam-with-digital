@@ -10,21 +10,32 @@ export function RoadHero() {
 
   return (
     <section className="relative min-h-screen bg-zinc-800 overflow-hidden">
-      {/* Main Road Surface */}
+      {/* Main Road Surface - Realistic Highway Asphalt */}
       <div className="absolute inset-0 bg-gradient-to-b from-zinc-700 via-zinc-600 to-zinc-700">
-        {/* Road texture overlay */}
-        <div className="absolute inset-0 opacity-10" style={{
-          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.3) 2px, rgba(0,0,0,0.3) 4px)'
+        {/* Asphalt texture - fine grain */}
+        <div className="absolute inset-0 opacity-30" style={{
+          backgroundImage: `
+            radial-gradient(circle at 20% 30%, rgba(0,0,0,0.3) 1px, transparent 1px),
+            radial-gradient(circle at 60% 70%, rgba(0,0,0,0.2) 1px, transparent 1px),
+            radial-gradient(circle at 80% 10%, rgba(0,0,0,0.25) 1px, transparent 1px),
+            radial-gradient(circle at 40% 90%, rgba(0,0,0,0.2) 1px, transparent 1px)
+          `,
+          backgroundSize: '100px 100px, 150px 150px, 120px 120px, 180px 180px',
+          backgroundPosition: '0 0, 50px 50px, 30px 80px, 70px 20px'
+        }} />
+        {/* Subtle road wear marks */}
+        <div className="absolute inset-0 opacity-5" style={{
+          backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 200px, rgba(0,0,0,0.5) 200px, rgba(0,0,0,0.5) 202px)'
         }} />
       </div>
 
       {/* Left Lane - Single Yellow Broken Line (M2-01) */}
-      <div className="absolute left-[15%] top-0 bottom-0 w-1">
-        <div className="h-full flex flex-col animate-road-scroll-slow">
-          {[...Array(30)].map((_, i) => (
+      <div className="absolute left-[15%] top-0 bottom-0 w-1 overflow-hidden">
+        <div className="h-[200%] flex flex-col animate-road-scroll-slow">
+          {[...Array(60)].map((_, i) => (
             <div key={i} className="flex flex-col">
-              <div className="h-20 w-1 bg-yellow-400" />
-              <div className="h-20 w-1 bg-transparent" />
+              <div className="h-24 w-1 bg-yellow-400" />
+              <div className="h-24 w-1 bg-transparent" />
             </div>
           ))}
         </div>
@@ -39,71 +50,55 @@ export function RoadHero() {
 
       {/* Center-Right - Double Yellow Combination Line (M2-04) */}
       <div className="absolute left-[62%] top-0 bottom-0 w-1 bg-yellow-400" />
-      <div className="absolute left-[64%] top-0 bottom-0 w-1">
-        <div className="h-full flex flex-col animate-road-scroll-medium">
-          {[...Array(30)].map((_, i) => (
+      <div className="absolute left-[64%] top-0 bottom-0 w-1 overflow-hidden">
+        <div className="h-[200%] flex flex-col animate-road-scroll-medium">
+          {[...Array(60)].map((_, i) => (
             <div key={i} className="flex flex-col">
-              <div className="h-20 w-1 bg-yellow-400" />
-              <div className="h-20 w-1 bg-transparent" />
+              <div className="h-24 w-1 bg-yellow-400" />
+              <div className="h-24 w-1 bg-transparent" />
             </div>
           ))}
         </div>
       </div>
 
       {/* Right Lane - Single White Broken Line (M2-06) */}
-      <div className="absolute left-[77%] top-0 bottom-0 w-1">
-        <div className="h-full flex flex-col animate-road-scroll-fast">
-          {[...Array(30)].map((_, i) => (
+      <div className="absolute left-[77%] top-0 bottom-0 w-1 overflow-hidden">
+        <div className="h-[200%] flex flex-col animate-road-scroll-fast">
+          {[...Array(60)].map((_, i) => (
             <div key={i} className="flex flex-col">
-              <div className="h-16 w-1 bg-white" />
-              <div className="h-16 w-1 bg-transparent" />
+              <div className="h-20 w-1 bg-white" />
+              <div className="h-20 w-1 bg-transparent" />
             </div>
           ))}
         </div>
       </div>
 
-      {/* Left Edge Line - White Solid (M2-08) */}
-      <div className="absolute left-[5%] top-0 bottom-0 w-2 bg-white" />
+      {/* Left Edge Line - White Solid Highway Style (M2-08) */}
+      <div className="absolute left-[5%] top-0 bottom-0 w-3 bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
 
-      {/* Right Edge Line - White Solid (M2-08) */}
-      <div className="absolute right-[5%] top-0 bottom-0 w-2 bg-white" />
+      {/* Right Edge Line - White Solid Highway Style (M2-08) */}
+      <div className="absolute right-[5%] top-0 bottom-0 w-3 bg-white shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
 
-      {/* Left Curb - Yellow-White Markings (M2-09) */}
-      <div className="absolute left-0 top-0 bottom-0 w-12">
-        <div className="h-full flex flex-col animate-curb-scroll">
-          {[...Array(20)].map((_, i) => (
-            <div key={i} className="flex flex-col">
-              <div className="h-16 w-12 bg-yellow-400 border-r-4 border-black" style={{
-                backgroundImage: 'repeating-linear-gradient(45deg, #fbbf24 0, #fbbf24 10px, #000 10px, #000 20px)'
-              }} />
-              <div className="h-16 w-12 bg-white border-r-4 border-black" style={{
-                backgroundImage: 'repeating-linear-gradient(45deg, #fff 0, #fff 10px, #000 10px, #000 20px)'
-              }} />
-            </div>
-          ))}
-        </div>
+      {/* Left Curb - Yellow-Black Caution Tape Style */}
+      <div className="absolute left-0 top-0 bottom-0 w-16 overflow-hidden">
+        <div className="h-[200%] animate-curb-scroll" style={{
+          backgroundImage: 'repeating-linear-gradient(45deg, #fbbf24 0, #fbbf24 30px, #000 30px, #000 60px)',
+          borderRight: '4px solid #000'
+        }} />
       </div>
 
-      {/* Right Curb - Red-White Markings (M2-10) */}
-      <div className="absolute right-0 top-0 bottom-0 w-12">
-        <div className="h-full flex flex-col animate-curb-scroll">
-          {[...Array(20)].map((_, i) => (
-            <div key={i} className="flex flex-col">
-              <div className="h-16 w-12 bg-red-500 border-l-4 border-black" style={{
-                backgroundImage: 'repeating-linear-gradient(45deg, #ef4444 0, #ef4444 10px, #000 10px, #000 20px)'
-              }} />
-              <div className="h-16 w-12 bg-white border-l-4 border-black" style={{
-                backgroundImage: 'repeating-linear-gradient(45deg, #fff 0, #fff 10px, #000 10px, #000 20px)'
-              }} />
-            </div>
-          ))}
-        </div>
+      {/* Right Curb - Red-White Caution Tape Style */}
+      <div className="absolute right-0 top-0 bottom-0 w-16 overflow-hidden">
+        <div className="h-[200%] animate-curb-scroll" style={{
+          backgroundImage: 'repeating-linear-gradient(45deg, #ef4444 0, #ef4444 30px, #fff 30px, #fff 60px)',
+          borderLeft: '4px solid #000'
+        }} />
       </div>
 
       {/* Road Divider Blocks with Yellow-Black Markings (M2-11) */}
-      <div className="absolute left-1/2 -ml-8 top-0 bottom-0 w-16">
-        <div className="h-full flex flex-col justify-around animate-divider-scroll">
-          {[...Array(8)].map((_, i) => (
+      <div className="absolute left-1/2 -ml-8 top-0 bottom-0 w-16 overflow-hidden">
+        <div className="h-[200%] flex flex-col justify-around animate-divider-scroll">
+          {[...Array(16)].map((_, i) => (
             <div key={i} className="relative h-24 w-16">
               {/* Divider block */}
               <div className="absolute inset-0 bg-zinc-400 border-2 border-black shadow-lg" />
@@ -225,58 +220,58 @@ export function RoadHero() {
       <style jsx>{`
         @keyframes road-scroll-slow {
           0% {
-            transform: translateY(-100%);
+            transform: translateY(0);
           }
           100% {
-            transform: translateY(0);
+            transform: translateY(50%);
           }
         }
         @keyframes road-scroll-medium {
           0% {
-            transform: translateY(-100%);
+            transform: translateY(0);
           }
           100% {
-            transform: translateY(0);
+            transform: translateY(50%);
           }
         }
         @keyframes road-scroll-fast {
           0% {
-            transform: translateY(-100%);
+            transform: translateY(0);
           }
           100% {
-            transform: translateY(0);
+            transform: translateY(50%);
           }
         }
         @keyframes curb-scroll {
           0% {
-            transform: translateY(-100%);
+            transform: translateY(0);
           }
           100% {
-            transform: translateY(0);
+            transform: translateY(50%);
           }
         }
         @keyframes divider-scroll {
           0% {
-            transform: translateY(-100%);
+            transform: translateY(0);
           }
           100% {
-            transform: translateY(0);
+            transform: translateY(50%);
           }
         }
         .animate-road-scroll-slow {
-          animation: road-scroll-slow 8s linear infinite;
+          animation: road-scroll-slow 20s linear infinite;
         }
         .animate-road-scroll-medium {
-          animation: road-scroll-medium 6s linear infinite;
+          animation: road-scroll-medium 18s linear infinite;
         }
         .animate-road-scroll-fast {
-          animation: road-scroll-fast 4s linear infinite;
+          animation: road-scroll-fast 15s linear infinite;
         }
         .animate-curb-scroll {
-          animation: curb-scroll 5s linear infinite;
+          animation: curb-scroll 20s linear infinite;
         }
         .animate-divider-scroll {
-          animation: divider-scroll 10s linear infinite;
+          animation: divider-scroll 22s linear infinite;
         }
       `}</style>
     </section>
