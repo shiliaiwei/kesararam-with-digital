@@ -51,13 +51,12 @@ export function FloatingIconsHero() {
         const angle = (index / TRAFFIC_ICONS.length) * Math.PI * 2;
         const radius = 300 + Math.random() * 200;
 
-        // Initial state: scattered and blurred
+        // Initial state: scattered around center, fully visible
         gsap.set(icon, {
           x: Math.cos(angle) * radius * 2,
           y: Math.sin(angle) * radius * 2,
-          opacity: 0.3,
-          scale: 0.5,
-          filter: "blur(8px)",
+          opacity: 0.6,
+          scale: 0.8,
         });
 
         // Scroll animation: orbit toward center
@@ -74,9 +73,8 @@ export function FloatingIconsHero() {
         tl.to(icon, {
           x: Math.cos(angle) * radius * 0.5,
           y: Math.sin(angle) * radius * 0.5,
-          opacity: 0.8,
-          scale: 0.9,
-          filter: "blur(2px)",
+          opacity: 0.9,
+          scale: 1,
           ease: "power2.out",
         })
           // Phase 2: Pass through center - scale up and glow
@@ -84,16 +82,15 @@ export function FloatingIconsHero() {
             x: Math.cos(angle) * radius * 0.2,
             y: Math.sin(angle) * radius * 0.2,
             opacity: 1,
-            scale: 1.1,
-            filter: "blur(0px) drop-shadow(0 0 20px rgba(250, 204, 21, 0.6))",
+            scale: 1.2,
+            filter: "drop-shadow(0 0 20px rgba(250, 204, 21, 0.6))",
             ease: "power1.inOut",
           })
           // Phase 3: Exit - drift upward and fade
           .to(icon, {
             y: "-=200",
             opacity: 0,
-            scale: 0.8,
-            filter: "blur(4px)",
+            scale: 0.9,
             ease: "power2.in",
           });
       });
@@ -140,31 +137,10 @@ export function FloatingIconsHero() {
                 src={icon}
                 alt="Traffic sign"
                 className="w-full h-full object-contain"
-                style={{
-                  backdropFilter: "blur(8px)",
-                  WebkitBackdropFilter: "blur(8px)",
-                }}
               />
             </div>
           );
         })}
-      </div>
-
-      {/* Central headline - sticky during scroll */}
-      <div className="sticky top-1/2 -translate-y-1/2 z-10 text-center px-6 max-w-4xl">
-        <h1 className="text-6xl md:text-8xl font-black text-black leading-tight mb-6">
-          Get Exclusive
-          <br />
-          <span className="text-yellow-400 underline decoration-black decoration-4">
-            Access
-          </span>
-        </h1>
-        <p className="text-xl md:text-2xl text-zinc-600 font-medium mb-8">
-          Master every road sign and pass your driving exam with confidence
-        </p>
-        <button className="px-8 py-4 bg-yellow-400 text-black font-black text-lg border-2 border-black shadow-[6px_6px_0_#000] hover:shadow-[8px_8px_0_#000] hover:-translate-x-1 hover:-translate-y-1 transition-all duration-150">
-          Start Learning Now
-        </button>
       </div>
     </section>
   );
