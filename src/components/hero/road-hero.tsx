@@ -131,7 +131,7 @@ export function RoadHero() {
             className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mt-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.8)]"
             style={khFont}
           >
-            {kh ? "ប្រឡងជោគជ័យ" : "Pass Your Exam"}
+            {kh ? "សុវត្ថិភាពជាចម្បងជានិច្ច" : "Safety First, Always"}
           </div>
         </h1>
 
