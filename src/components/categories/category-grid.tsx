@@ -140,15 +140,16 @@ export function CategoryGrid() {
               >
                 {/* Color header */}
                 <div
-                  className="relative flex items-center justify-center py-12 border-b-2 border-black overflow-hidden"
+                  className="relative flex items-end justify-center py-12 border-b-2 border-black overflow-hidden"
                   style={{ 
-                    backgroundColor: color
+                    backgroundColor: color,
+                    minHeight: "200px"
                   }}
                 >
                   <img 
                     src="https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/lgo_dhuxrl?_a=BAMAAAUs0"
                     alt={kh ? cat.titleKh : cat.titleEn}
-                    className="w-40 h-40 object-contain"
+                    className="w-48 h-48 object-contain object-bottom"
                   />
                 </div>
 
