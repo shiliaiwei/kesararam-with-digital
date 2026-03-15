@@ -44,7 +44,7 @@ function LoginFormInner() {
 
         {/* Form card */}
         <div className="bg-white border-2 border-t-0 border-black rounded-none shadow-[6px_6px_0_#000] px-8 py-8">
-          <form action={formAction} className="flex flex-col gap-5">
+          <form action={formAction} className="flex flex-col gap-5" autoComplete="off">
             <input type="hidden" name="redirect" value={redirectParam} />
             {/* Email or Username */}
             <div className="flex flex-col gap-1.5">
@@ -56,7 +56,7 @@ function LoginFormInner() {
                 id="email"
                 name="email"
                 required
-                autoComplete="username"
+                autoComplete="off"
                 className="w-full px-4 py-3 border-2 border-black rounded-none text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
                 placeholder="your@email.com or username"
               />
@@ -75,7 +75,7 @@ function LoginFormInner() {
                 id="password"
                 name="password"
                 required
-                autoComplete="current-password"
+                autoComplete="off"
                 className="w-full px-4 py-3 border-2 border-black rounded-none text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
                 placeholder="••••••••"
               />
