@@ -49,17 +49,17 @@ export function FloatingIconsHero() {
         if (!icon) return;
 
         const angle = (index / TRAFFIC_ICONS.length) * Math.PI * 2;
-        const radius = 300 + Math.random() * 200;
+        const radius = 250;
 
-        // Initial state: scattered around center, fully visible
+        // Initial state: positioned in circle around center, fully visible
         gsap.set(icon, {
-          x: Math.cos(angle) * radius * 2,
-          y: Math.sin(angle) * radius * 2,
-          opacity: 0.6,
-          scale: 0.8,
+          x: Math.cos(angle) * radius,
+          y: Math.sin(angle) * radius,
+          opacity: 1,
+          scale: 1,
         });
 
-        // Scroll animation: orbit toward center
+        // Scroll animation: orbit and scale
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: containerRef.current,
@@ -69,28 +69,26 @@ export function FloatingIconsHero() {
           },
         });
 
-        // Phase 1: Move toward center with orbital path
+        // Phase 1: Rotate and move closer
         tl.to(icon, {
-          x: Math.cos(angle) * radius * 0.5,
-          y: Math.sin(angle) * radius * 0.5,
-          opacity: 0.9,
-          scale: 1,
+          x: Math.cos(angle + 0.5) * (radius * 0.7),
+          y: Math.sin(angle + 0.5) * (radius * 0.7),
+          scale: 1.1,
           ease: "power2.out",
         })
-          // Phase 2: Pass through center - scale up and glow
+          // Phase 2: Continue rotation with glow
           .to(icon, {
-            x: Math.cos(angle) * radius * 0.2,
-            y: Math.sin(angle) * radius * 0.2,
-            opacity: 1,
-            scale: 1.2,
-            filter: "drop-shadow(0 0 20px rgba(250, 204, 21, 0.6))",
+            x: Math.cos(angle + 1) * (radius * 0.5),
+            y: Math.sin(angle + 1) * (radius * 0.5),
+            scale: 1.3,
+            filter: "drop-shadow(0 0 20px rgba(250, 204, 21, 0.8))",
             ease: "power1.inOut",
           })
-          // Phase 3: Exit - drift upward and fade
+          // Phase 3: Exit upward
           .to(icon, {
-            y: "-=200",
+            y: "-=300",
             opacity: 0,
-            scale: 0.9,
+            scale: 1,
             ease: "power2.in",
           });
       });
@@ -104,8 +102,8 @@ export function FloatingIconsHero() {
     const angle = (index / TRAFFIC_ICONS.length) * Math.PI * 2;
     return {
       angle,
-      radius: 300 + Math.random() * 200,
-      size: 60 + Math.random() * 60,
+      radius: 250,
+      size: 80 + Math.random() * 40,
       delay: Math.random() * 0.5,
     };
   });
