@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CloudinaryMediaBrowser } from "@/components/media/cloudinary-media-browser";
 import { 
   Images, 
@@ -20,6 +20,40 @@ export function MediaManagement() {
   const [showMediaBrowser, setShowMediaBrowser] = useState(false);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
+  const [stats, setStats] = useState({
+    totalImages: 0,
+    folders: 0,
+    tags: 0,
+    storage: "0 MB"
+  });
+
+  // Load stats from Cloudinary API
+  useEffect(() => {
+    const loadStats = async () => {
+      try {
+        const response = await fetch('/api/cloudinary/test');
+        if (response.ok) {
+          const data = await response.json();
+          if (data.success) {
+            setStats({
+              totalImages: data.stats?.total_count || 0,
+              folders: data.stats?.folders_count || 0,
+              tags: 0, // We don't have tag stats yet
+              storage: "N/A" // We don't have storage stats yet
+            });
+          } else {
+            console.error('Cloudinary API error:', data.details);
+          }
+        } else {
+          console.error('Failed to fetch Cloudinary stats');
+        }
+      } catch (error) {
+        console.error('Failed to load stats:', error);
+      }
+    };
+
+    loadStats();
+  }, []);
 
   return (
     <div className="p-6 space-y-6">
@@ -60,7 +94,7 @@ export function MediaManagement() {
               <Images size={18} className="text-black" />
             </div>
             <div>
-              <p className="text-xl font-black text-black">2,847</p>
+              <p className="text-xl font-black text-black">{stats.totalImages}</p>
               <p className="text-xs font-bold text-zinc-600 uppercase">Total Images</p>
             </div>
           </div>
@@ -72,7 +106,7 @@ export function MediaManagement() {
               <Folder size={18} className="text-black" />
             </div>
             <div>
-              <p className="text-xl font-black text-black">12</p>
+              <p className="text-xl font-black text-black">{stats.folders}</p>
               <p className="text-xs font-bold text-zinc-600 uppercase">Folders</p>
             </div>
           </div>
@@ -84,7 +118,7 @@ export function MediaManagement() {
               <Tag size={18} className="text-black" />
             </div>
             <div>
-              <p className="text-xl font-black text-black">45</p>
+              <p className="text-xl font-black text-black">{stats.tags}</p>
               <p className="text-xs font-bold text-zinc-600 uppercase">Tags</p>
             </div>
           </div>
@@ -96,7 +130,7 @@ export function MediaManagement() {
               <Upload size={18} className="text-black" />
             </div>
             <div>
-              <p className="text-xl font-black text-black">1.2GB</p>
+              <p className="text-xl font-black text-black">{stats.storage}</p>
               <p className="text-xs font-bold text-zinc-600 uppercase">Storage Used</p>
             </div>
           </div>
@@ -239,15 +273,23 @@ export function MediaManagement() {
       </div>
 
       {/* Cloudinary Media Browser */}
-      <CloudinaryMediaBrowser
-        isOpen={showMediaBrowser}
-        onClose={() => setShowMediaBrowser(false)}
-        onSelect={(url) => {
-          // Handle image selection - could copy to clipboard, etc.
-          navigator.clipboard.writeText(url);
-          alert("Image URL copied to clipboard!");
-        }}
-      />
+      {showMediaBrowser && (
+        <CloudinaryMediaBrowser
+          isOpen={showMediaBrowser}
+          onClose={() => setShowMediaBrowser(false)}
+          onSelect={(url) => {
+            // Handle image selection - could copy to clipboard, etc.
+            if (navigator.clipboard?.writeText) {
+              navigator.clipboard.writeText(url);
+              alert("Image URL copied to clipboard!");
+            } else {
+              // Fallback for browsers without clipboard API
+              console.log("Selected image URL:", url);
+              alert("Image selected: " + url);
+            }
+          }}
+        />
+      )}
     </div>
   );
 }

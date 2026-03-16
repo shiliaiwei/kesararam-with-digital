@@ -12,6 +12,22 @@ export async function GET() {
   try {
     console.log('Testing Cloudinary connection...');
     
+    // Check if environment variables are set
+    const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+    const apiKey = process.env.CLOUDINARY_API_KEY;
+    const apiSecret = process.env.CLOUDINARY_API_SECRET;
+    
+    if (!cloudName || !apiKey || !apiSecret) {
+      return NextResponse.json({
+        success: false,
+        error: 'Missing Cloudinary environment variables',
+        details: `Missing: ${!cloudName ? 'CLOUD_NAME ' : ''}${!apiKey ? 'API_KEY ' : ''}${!apiSecret ? 'API_SECRET' : ''}`,
+        cloud_name: cloudName || 'NOT_SET',
+        api_key: apiKey ? 'Set' : 'Not set',
+        suggestion: 'Check your environment variables in production'
+      }, { status: 500 });
+    }
+    
     // Test basic connection by searching for images (simpler than usage API)
     const images = await cloudinary.search
       .expression('resource_type:image')

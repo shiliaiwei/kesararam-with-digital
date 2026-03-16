@@ -10,6 +10,22 @@ cloudinary.config({
 
 export async function GET(request: NextRequest) {
   try {
+    // Check if environment variables are set
+    const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+    const apiKey = process.env.CLOUDINARY_API_KEY;
+    const apiSecret = process.env.CLOUDINARY_API_SECRET;
+    
+    if (!cloudName || !apiKey || !apiSecret) {
+      return NextResponse.json(
+        { 
+          error: 'Missing Cloudinary environment variables',
+          details: `Missing: ${!cloudName ? 'CLOUD_NAME ' : ''}${!apiKey ? 'API_KEY ' : ''}${!apiSecret ? 'API_SECRET' : ''}`,
+          code: 500
+        },
+        { status: 500 }
+      );
+    }
+
     const { searchParams } = new URL(request.url);
     const folder = searchParams.get('folder');
     const search = searchParams.get('search');
@@ -75,7 +91,8 @@ export async function GET(request: NextRequest) {
       { 
         error: 'Failed to fetch images from Cloudinary',
         details: error.message || 'Unknown error',
-        code: error.http_code || 500
+        code: error.http_code || 500,
+        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
       },
       { status: 500 }
     );

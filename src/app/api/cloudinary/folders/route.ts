@@ -10,6 +10,27 @@ cloudinary.config({
 
 export async function GET() {
   try {
+    // Check if environment variables are set
+    const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+    const apiKey = process.env.CLOUDINARY_API_KEY;
+    const apiSecret = process.env.CLOUDINARY_API_SECRET;
+    
+    if (!cloudName || !apiKey || !apiSecret) {
+      return NextResponse.json({
+        folders: [
+          { name: "Root (All Images)", path: "root" },
+          { name: "Traffic Signs", path: "traffic-signs" },
+          { name: "Road Markings", path: "road-markings" },
+          { name: "Vehicles", path: "vehicles" },
+          { name: "Emergency", path: "emergency" },
+          { name: "General", path: "general" },
+        ],
+        total_count: 6,
+        error: 'Using default folders - missing environment variables',
+        details: `Missing: ${!cloudName ? 'CLOUD_NAME ' : ''}${!apiKey ? 'API_KEY ' : ''}${!apiSecret ? 'API_SECRET' : ''}`
+      });
+    }
+
     console.log('Fetching folders from Cloudinary...');
 
     // Try to get folders from Cloudinary
