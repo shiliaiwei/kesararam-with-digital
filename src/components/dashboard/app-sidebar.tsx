@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
 import {
   Users,
   BookOpen,
@@ -13,11 +12,6 @@ import {
   LogOut,
   Images,
   User,
-  Settings,
-  Info,
-  Pencil,
-  ChevronDown,
-  ChevronRight,
   Plus,
 } from "lucide-react";
 import { logoutAction } from "@/app/actions/auth";
@@ -42,12 +36,6 @@ const teacherNav: NavItem[] = [
   { label: "Sessions", href: "/teacher/sessions", icon: Tv2, color: "#22c55e" },
 ];
 
-const profileNav: NavItem[] = [
-  { label: "View Info", href: "?tab=info", icon: Info, color: "#3b82f6" },
-  { label: "Edit Profile", href: "", icon: Pencil, color: "#22c55e" },
-  { label: "Settings", href: "?tab=settings", icon: Settings, color: "#f97316" },
-];
-
 interface AppSidebarProps {
   role: "admin" | "teacher";
   name: string;
@@ -57,7 +45,6 @@ interface AppSidebarProps {
 
 export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
   const pathname = usePathname();
-  const [isAccountOpen, setIsAccountOpen] = useState(false);
   const navItems = role === "admin" ? adminNav : teacherNav;
   const profileHref = role === "admin" ? "/admin/profile" : "/teacher/profile";
   const roleColor = role === "admin" ? "#ef4444" : "#22c55e";
@@ -67,12 +54,8 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
     return pathname === targetPath || pathname.startsWith(`${targetPath}/`);
   }
 
-  function isAccountActive() {
-    return pathname.includes("/profile") || pathname.includes("?tab=");
-  }
-
   return (
-    <div className="w-72 bg-white border-r-4 border-black flex flex-col shadow-[4px_0_0_#000]">
+    <div className="w-64 bg-white border-r-4 border-black flex flex-col shadow-[4px_0_0_#000]">
       {/* Header */}
       <div className="border-b-2 border-black p-4">
         <div className="flex items-center gap-3 mb-3">
@@ -120,62 +103,23 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
 
       {/* Navigation */}
       <div className="flex-1 p-4 space-y-4">
-        {/* Account Dropdown Section */}
+        {/* Account Link */}
         <div>
-          <button
-            onClick={() => setIsAccountOpen(!isAccountOpen)}
-            className={`w-full flex items-center justify-between p-2.5 border-2 border-black transition-all duration-100 ${
-              isAccountActive()
+          <Link
+            href={profileHref}
+            className={`w-full flex items-center gap-2 p-2.5 border-2 border-black transition-all duration-100 ${
+              pathname.includes("/profile")
                 ? "bg-yellow-400 shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
                 : "bg-white hover:bg-yellow-50 hover:shadow-[1px_1px_0_#000]"
             }`}
           >
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 border-2 border-black bg-blue-500 flex items-center justify-center shadow-[1px_1px_0_#000]">
-                <User size={12} className="text-black" />
-              </div>
-              <span className="font-bold text-xs text-black uppercase">
-                Account
-              </span>
+            <div className="w-6 h-6 border-2 border-black bg-blue-500 flex items-center justify-center shadow-[1px_1px_0_#000]">
+              <User size={12} className="text-black" />
             </div>
-            {isAccountOpen ? (
-              <ChevronDown size={14} className="text-black" />
-            ) : (
-              <ChevronRight size={14} className="text-black" />
-            )}
-          </button>
-
-          {/* Account Dropdown Items */}
-          {isAccountOpen && (
-            <div className="mt-1 ml-4 space-y-1">
-              {profileNav.map((item) => {
-                const href = item.href ? `${profileHref}${item.href}` : profileHref;
-                const isActive = pathname === href || (item.href && pathname.includes(item.href));
-                
-                return (
-                  <Link
-                    key={item.label}
-                    href={href}
-                    className={`flex items-center gap-2 p-2 border border-black transition-all duration-100 ${
-                      isActive
-                        ? "bg-yellow-300 shadow-[1px_1px_0_#000]"
-                        : "bg-white hover:bg-yellow-50"
-                    }`}
-                  >
-                    <div
-                      className="w-5 h-5 border border-black flex items-center justify-center"
-                      style={{ backgroundColor: item.color }}
-                    >
-                      <item.icon size={10} className="text-black" />
-                    </div>
-                    <span className="font-bold text-xs text-black">
-                      {item.label}
-                    </span>
-                  </Link>
-                );
-              })}
-            </div>
-          )}
+            <span className="font-bold text-xs text-black uppercase">
+              Account
+            </span>
+          </Link>
         </div>
 
         {/* Platform Section */}
@@ -218,7 +162,7 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
             Quick Actions
           </h2>
           <Link
-            href={role === "admin" ? "/admin/content/road-sign/new" : "/teacher/content/new"}
+            href={role === "admin" ? "/admin/content" : "/teacher/content"}
             className="flex items-center gap-2 p-2.5 border-2 border-black bg-green-400 hover:bg-green-300 hover:shadow-[1px_1px_0_#000] transition-all duration-100"
           >
             <div className="w-6 h-6 border-2 border-black bg-white flex items-center justify-center shadow-[1px_1px_0_#000]">

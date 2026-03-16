@@ -14,6 +14,7 @@ interface TrafficSign {
   audioUrlEn?: string;
   audioUrlKm?: string;
   isActive: boolean;
+  createdAt?: string;
 }
 
 interface TrafficSignFormProps {
