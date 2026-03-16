@@ -74,17 +74,20 @@ export function CategoryPageShell({
                 className="w-32 h-32 rounded-none overflow-hidden bg-white relative"
                 style={{ 
                   boxShadow: "4px 4px 0 #000",
-                  border: "4px solid",
-                  borderImage: "repeating-linear-gradient(45deg, #000, #000 10px, #fbbf24 10px, #fbbf24 20px) 4"
+                  border: "4px solid #000",
+                  background: "repeating-linear-gradient(45deg, #000, #000 8px, #fbbf24 8px, #fbbf24 16px)"
                 }}
               >
-                <Image
-                  src="https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0"
-                  alt="Character"
-                  width={128}
-                  height={128}
-                  className="w-full h-full object-contain"
-                />
+                <div className="w-full h-full bg-white m-1">
+                  <Image
+                    src="https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu"
+                    alt="Character"
+                    width={120}
+                    height={120}
+                    className="w-full h-full object-contain"
+                    unoptimized
+                  />
+                </div>
               </div>
             </div>
 
