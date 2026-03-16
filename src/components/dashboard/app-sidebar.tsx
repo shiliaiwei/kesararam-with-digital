@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import {
   Users,
   BookOpen,
@@ -15,6 +16,9 @@ import {
   Settings,
   Info,
   Pencil,
+  ChevronDown,
+  ChevronRight,
+  Plus,
 } from "lucide-react";
 import { logoutAction } from "@/app/actions/auth";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
@@ -53,6 +57,7 @@ interface AppSidebarProps {
 
 export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
   const pathname = usePathname();
+  const [isAccountOpen, setIsAccountOpen] = useState(false);
   const navItems = role === "admin" ? adminNav : teacherNav;
   const profileHref = role === "admin" ? "/admin/profile" : "/teacher/profile";
   const roleColor = role === "admin" ? "#ef4444" : "#22c55e";
@@ -62,23 +67,27 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
     return pathname === targetPath || pathname.startsWith(`${targetPath}/`);
   }
 
+  function isAccountActive() {
+    return pathname.includes("/profile") || pathname.includes("?tab=");
+  }
+
   return (
-    <div className="w-80 bg-white border-r-4 border-black flex flex-col shadow-[4px_0_0_#000]">
+    <div className="w-72 bg-white border-r-4 border-black flex flex-col shadow-[4px_0_0_#000]">
       {/* Header */}
-      <div className="border-b-2 border-black p-6">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="w-12 h-12 border-2 border-black bg-black flex items-center justify-center shadow-[2px_2px_0_#000]">
+      <div className="border-b-2 border-black p-4">
+        <div className="flex items-center gap-3 mb-3">
+          <div className="w-10 h-10 border-2 border-black bg-black flex items-center justify-center shadow-[2px_2px_0_#000]">
             <Image
               src="https://raw.githubusercontent.com/kesararam/kesararam/refs/heads/main/brand/lgo.png"
               alt="KWD"
-              width={24}
-              height={24}
+              width={20}
+              height={20}
               className="object-contain invert"
               unoptimized
             />
           </div>
           <div>
-            <h1 className="text-xl font-black uppercase tracking-tighter text-black">
+            <h1 className="text-lg font-black uppercase tracking-tighter text-black">
               KWD
             </h1>
             <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">
@@ -87,22 +96,19 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
           </div>
         </div>
 
-        {/* User Profile Card */}
-        <div className="border-2 border-black bg-white shadow-[3px_3px_0_#000] overflow-hidden">
+        {/* User Profile Card - Compact */}
+        <div className="border-2 border-black bg-white shadow-[2px_2px_0_#000] overflow-hidden">
           <div className="h-1" style={{ backgroundColor: roleColor }} />
-          <div className="p-4 flex items-center gap-3">
-            <div className="border-2 border-black shadow-[2px_2px_0_#000]">
-              <AvatarDisplay avatar={avatar} name={name} size={48} radius={0} />
+          <div className="p-3 flex items-center gap-2">
+            <div className="border-2 border-black shadow-[1px_1px_0_#000]">
+              <AvatarDisplay avatar={avatar} name={name} size={32} radius={0} />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-black text-sm text-black truncate uppercase">
+              <h3 className="font-black text-xs text-black truncate uppercase">
                 {name}
               </h3>
-              <p className="text-xs text-zinc-500 font-medium truncate">
-                {email}
-              </p>
               <span
-                className="inline-block px-2 py-0.5 text-[10px] font-black uppercase tracking-widest border border-black mt-1"
+                className="inline-block px-1.5 py-0.5 text-[9px] font-black uppercase tracking-widest border border-black"
                 style={{ backgroundColor: roleColor, color: "#ffffff" }}
               >
                 {role}
@@ -113,49 +119,71 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
       </div>
 
       {/* Navigation */}
-      <div className="flex-1 p-6 space-y-6">
-        {/* Profile Section */}
+      <div className="flex-1 p-4 space-y-4">
+        {/* Account Dropdown Section */}
         <div>
-          <h2 className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-3">
-            Account
-          </h2>
-          <div className="space-y-2">
-            {profileNav.map((item) => {
-              const href = item.href ? `${profileHref}${item.href}` : profileHref;
-              const isActive = pathname === href || (item.href && pathname.includes(item.href));
-              
-              return (
-                <Link
-                  key={item.label}
-                  href={href}
-                  className={`flex items-center gap-3 p-3 border-2 border-black transition-all duration-100 ${
-                    isActive
-                      ? "bg-yellow-400 shadow-[3px_3px_0_#000] -translate-x-0.5 -translate-y-0.5"
-                      : "bg-white hover:bg-yellow-50 hover:shadow-[2px_2px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5"
-                  }`}
-                  style={{ borderRadius: "0px" }}
-                >
-                  <div
-                    className="w-8 h-8 border-2 border-black flex items-center justify-center shadow-[1px_1px_0_#000]"
-                    style={{ backgroundColor: item.color, borderRadius: "0px" }}
+          <button
+            onClick={() => setIsAccountOpen(!isAccountOpen)}
+            className={`w-full flex items-center justify-between p-2.5 border-2 border-black transition-all duration-100 ${
+              isAccountActive()
+                ? "bg-yellow-400 shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                : "bg-white hover:bg-yellow-50 hover:shadow-[1px_1px_0_#000]"
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 border-2 border-black bg-blue-500 flex items-center justify-center shadow-[1px_1px_0_#000]">
+                <User size={12} className="text-black" />
+              </div>
+              <span className="font-bold text-xs text-black uppercase">
+                Account
+              </span>
+            </div>
+            {isAccountOpen ? (
+              <ChevronDown size={14} className="text-black" />
+            ) : (
+              <ChevronRight size={14} className="text-black" />
+            )}
+          </button>
+
+          {/* Account Dropdown Items */}
+          {isAccountOpen && (
+            <div className="mt-1 ml-4 space-y-1">
+              {profileNav.map((item) => {
+                const href = item.href ? `${profileHref}${item.href}` : profileHref;
+                const isActive = pathname === href || (item.href && pathname.includes(item.href));
+                
+                return (
+                  <Link
+                    key={item.label}
+                    href={href}
+                    className={`flex items-center gap-2 p-2 border border-black transition-all duration-100 ${
+                      isActive
+                        ? "bg-yellow-300 shadow-[1px_1px_0_#000]"
+                        : "bg-white hover:bg-yellow-50"
+                    }`}
                   >
-                    <item.icon size={16} className="text-black" />
-                  </div>
-                  <span className="font-bold text-sm text-black uppercase">
-                    {item.label}
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
+                    <div
+                      className="w-5 h-5 border border-black flex items-center justify-center"
+                      style={{ backgroundColor: item.color }}
+                    >
+                      <item.icon size={10} className="text-black" />
+                    </div>
+                    <span className="font-bold text-xs text-black">
+                      {item.label}
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         {/* Platform Section */}
         <div>
-          <h2 className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-3">
+          <h2 className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2 px-1">
             Platform
           </h2>
-          <div className="space-y-2">
+          <div className="space-y-1">
             {navItems.map((item) => {
               const isActive = isNavItemActive(item.href);
               
@@ -163,20 +191,19 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center gap-3 p-3 border-2 border-black transition-all duration-100 ${
+                  className={`flex items-center gap-2 p-2.5 border-2 border-black transition-all duration-100 ${
                     isActive
-                      ? "bg-yellow-400 shadow-[3px_3px_0_#000] -translate-x-0.5 -translate-y-0.5"
-                      : "bg-white hover:bg-yellow-50 hover:shadow-[2px_2px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5"
+                      ? "bg-yellow-400 shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                      : "bg-white hover:bg-yellow-50 hover:shadow-[1px_1px_0_#000]"
                   }`}
-                  style={{ borderRadius: "0px" }}
                 >
                   <div
-                    className="w-8 h-8 border-2 border-black flex items-center justify-center shadow-[1px_1px_0_#000]"
-                    style={{ backgroundColor: item.color, borderRadius: "0px" }}
+                    className="w-6 h-6 border-2 border-black flex items-center justify-center shadow-[1px_1px_0_#000]"
+                    style={{ backgroundColor: item.color }}
                   >
-                    <item.icon size={16} className="text-black" />
+                    <item.icon size={12} className="text-black" />
                   </div>
-                  <span className="font-bold text-sm text-black uppercase">
+                  <span className="font-bold text-xs text-black uppercase">
                     {item.label}
                   </span>
                 </Link>
@@ -184,20 +211,37 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
             })}
           </div>
         </div>
+
+        {/* Quick Actions */}
+        <div>
+          <h2 className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2 px-1">
+            Quick Actions
+          </h2>
+          <Link
+            href={role === "admin" ? "/admin/content/road-sign/new" : "/teacher/content/new"}
+            className="flex items-center gap-2 p-2.5 border-2 border-black bg-green-400 hover:bg-green-300 hover:shadow-[1px_1px_0_#000] transition-all duration-100"
+          >
+            <div className="w-6 h-6 border-2 border-black bg-white flex items-center justify-center shadow-[1px_1px_0_#000]">
+              <Plus size={12} className="text-black" />
+            </div>
+            <span className="font-bold text-xs text-black uppercase">
+              Add Content
+            </span>
+          </Link>
+        </div>
       </div>
 
       {/* Footer */}
-      <div className="border-t-2 border-black p-6">
+      <div className="border-t-2 border-black p-4">
         <form action={logoutAction} className="w-full">
           <button
             type="submit"
-            className="w-full flex items-center gap-3 p-3 border-2 border-black bg-white hover:bg-red-50 hover:shadow-[2px_2px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100"
-            style={{ borderRadius: "0px" }}
+            className="w-full flex items-center gap-2 p-2.5 border-2 border-black bg-white hover:bg-red-50 hover:shadow-[1px_1px_0_#000] transition-all duration-100"
           >
-            <div className="w-8 h-8 border-2 border-black bg-red-400 flex items-center justify-center shadow-[1px_1px_0_#000]">
-              <LogOut size={16} className="text-black" />
+            <div className="w-6 h-6 border-2 border-black bg-red-400 flex items-center justify-center shadow-[1px_1px_0_#000]">
+              <LogOut size={12} className="text-black" />
             </div>
-            <span className="font-bold text-sm text-black uppercase">
+            <span className="font-bold text-xs text-black uppercase">
               Log Out
             </span>
           </button>
