@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { X, Search, Folder, Image as ImageIcon, Check } from "lucide-react";
+import { X, Search, Folder, Image as ImageIcon, Check, RefreshCw } from "lucide-react";
 import Image from "next/image";
 
 interface CloudinaryResource {
@@ -27,98 +27,6 @@ interface CloudinaryMediaBrowserProps {
   selectedUrl?: string;
 }
 
-// Mock data - replace with actual Cloudinary API calls
-const mockFolders: CloudinaryFolder[] = [
-  { name: "traffic-signs", path: "traffic-signs" },
-  { name: "road-markings", path: "road-markings" },
-  { name: "vehicles", path: "vehicles" },
-  { name: "emergency", path: "emergency" },
-  { name: "general", path: "general" },
-];
-
-const mockImages: CloudinaryResource[] = [
-  {
-    public_id: "traffic-signs/stop-sign",
-    secure_url: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu",
-    format: "jpg",
-    width: 400,
-    height: 400,
-    bytes: 25600,
-    created_at: "2024-03-15T10:00:00Z",
-    folder: "traffic-signs"
-  },
-  {
-    public_id: "traffic-signs/yield-sign",
-    secure_url: "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_5_2026-03-15_13-28-33_iyd1g0",
-    format: "png",
-    width: 400,
-    height: 400,
-    bytes: 28800,
-    created_at: "2024-03-15T10:05:00Z",
-    folder: "traffic-signs"
-  },
-  {
-    public_id: "traffic-signs/speed-limit",
-    secure_url: "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_4_2026-03-15_13-28-33_dudy3h",
-    format: "png",
-    width: 400,
-    height: 400,
-    bytes: 22400,
-    created_at: "2024-03-15T10:10:00Z",
-    folder: "traffic-signs"
-  },
-  {
-    public_id: "traffic-signs/warning-sign",
-    secure_url: "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_1_2026-03-15_13-28-33_ftfpbi",
-    format: "png",
-    width: 400,
-    height: 400,
-    bytes: 24200,
-    created_at: "2024-03-15T10:12:00Z",
-    folder: "traffic-signs"
-  },
-  {
-    public_id: "traffic-signs/no-entry",
-    secure_url: "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_2_2026-03-15_13-28-33_eashrw",
-    format: "png",
-    width: 400,
-    height: 400,
-    bytes: 26800,
-    created_at: "2024-03-15T10:15:00Z",
-    folder: "traffic-signs"
-  },
-  {
-    public_id: "road-markings/yellow-line",
-    secure_url: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/mdnmr2mxadowugm30czhnwyte2y3qtlmzwnw0so_p89tbs",
-    format: "jpg",
-    width: 600,
-    height: 300,
-    bytes: 35200,
-    created_at: "2024-03-15T10:20:00Z",
-    folder: "road-markings"
-  },
-  {
-    public_id: "road-markings/white-line",
-    secure_url: "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/cld-sample-5",
-    format: "png",
-    width: 500,
-    height: 250,
-    bytes: 28400,
-    created_at: "2024-03-15T10:25:00Z",
-    folder: "road-markings"
-  },
-  {
-    public_id: "vehicles/car-front",
-    secure_url: "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/v1/samples/shoe",
-    format: "png",
-    width: 500,
-    height: 300,
-    bytes: 42000,
-    created_at: "2024-03-15T10:30:00Z",
-    folder: "vehicles"
-  }
-];
-
 export function CloudinaryMediaBrowser({ 
   isOpen, 
   onClose, 
@@ -128,14 +36,36 @@ export function CloudinaryMediaBrowser({
   const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [images, setImages] = useState<CloudinaryResource[]>([]);
+  const [folders, setFolders] = useState<CloudinaryFolder[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (isOpen) {
+      loadFolders();
       loadImages();
     }
   }, [isOpen, selectedFolder, searchTerm]);
+
+  const loadFolders = async () => {
+    try {
+      const response = await fetch('/api/cloudinary/folders');
+      if (response.ok) {
+        const data = await response.json();
+        setFolders(data.folders || []);
+      }
+    } catch (err) {
+      console.error('Error loading folders:', err);
+      // Use default folders if API fails
+      setFolders([
+        { name: "traffic-signs", path: "traffic-signs" },
+        { name: "road-markings", path: "road-markings" },
+        { name: "vehicles", path: "vehicles" },
+        { name: "emergency", path: "emergency" },
+        { name: "general", path: "general" },
+      ]);
+    }
+  };
 
   const loadImages = async () => {
     setLoading(true);
@@ -206,7 +136,7 @@ export function CloudinaryMediaBrowser({
                 <Folder size={16} />
                 All Images
               </button>
-              {mockFolders.map((folder) => (
+              {folders.map((folder) => (
                 <button
                   key={folder.path}
                   onClick={() => setSelectedFolder(folder.path)}
@@ -227,20 +157,29 @@ export function CloudinaryMediaBrowser({
           <div className="flex-1 flex flex-col">
             {/* Search */}
             <div className="p-4 border-b-2 border-black">
-              <div className="relative">
-                <Search size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400" />
-                <input
-                  type="text"
-                  placeholder="Search images..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  onKeyPress={(e) => {
-                    if (e.key === 'Enter') {
-                      loadImages();
-                    }
-                  }}
-                  className="w-full pl-10 pr-4 py-2 border-2 border-black font-medium text-sm focus:outline-none focus:shadow-[2px_2px_0_#000]"
-                />
+              <div className="flex items-center gap-2">
+                <div className="relative flex-1">
+                  <Search size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400" />
+                  <input
+                    type="text"
+                    placeholder="Search images..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onKeyPress={(e) => {
+                      if (e.key === 'Enter') {
+                        loadImages();
+                      }
+                    }}
+                    className="w-full pl-10 pr-4 py-2 border-2 border-black font-medium text-sm focus:outline-none focus:shadow-[2px_2px_0_#000]"
+                  />
+                </div>
+                <button
+                  onClick={loadImages}
+                  disabled={loading}
+                  className="p-2 bg-blue-400 border-2 border-black hover:bg-blue-300 disabled:opacity-50"
+                >
+                  <RefreshCw size={16} className={loading ? "animate-spin" : ""} />
+                </button>
               </div>
               {error && (
                 <div className="mt-2 p-2 bg-red-100 border border-red-400 text-red-700 text-sm">
