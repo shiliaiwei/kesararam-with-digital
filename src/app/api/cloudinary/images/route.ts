@@ -74,7 +74,7 @@ export async function GET(request: NextRequest) {
 
     // Filter for root folder on the server side if needed
     if (folder === 'root') {
-      resources = resources.filter(resource => !resource.public_id.includes('/'));
+      resources = resources.filter((resource: any) => !resource.public_id.includes('/'));
     }
 
     return NextResponse.json({
