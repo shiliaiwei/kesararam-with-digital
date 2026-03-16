@@ -49,8 +49,8 @@ const mockImages: CloudinaryResource[] = [
   },
   {
     public_id: "traffic-signs/yield-sign",
-    secure_url: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/photo_5_2026-03-15_13-28-33_iyd1g0",
-    format: "jpg",
+    secure_url: "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_5_2026-03-15_13-28-33_iyd1g0",
+    format: "png",
     width: 400,
     height: 400,
     bytes: 28800,
@@ -59,8 +59,8 @@ const mockImages: CloudinaryResource[] = [
   },
   {
     public_id: "traffic-signs/speed-limit",
-    secure_url: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/photo_4_2026-03-15_13-28-33_dudy3h",
-    format: "jpg",
+    secure_url: "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_4_2026-03-15_13-28-33_dudy3h",
+    format: "png",
     width: 400,
     height: 400,
     bytes: 22400,
@@ -68,23 +68,53 @@ const mockImages: CloudinaryResource[] = [
     folder: "traffic-signs"
   },
   {
+    public_id: "traffic-signs/warning-sign",
+    secure_url: "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_1_2026-03-15_13-28-33_ftfpbi",
+    format: "png",
+    width: 400,
+    height: 400,
+    bytes: 24200,
+    created_at: "2024-03-15T10:12:00Z",
+    folder: "traffic-signs"
+  },
+  {
+    public_id: "traffic-signs/no-entry",
+    secure_url: "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/photo_2_2026-03-15_13-28-33_eashrw",
+    format: "png",
+    width: 400,
+    height: 400,
+    bytes: 26800,
+    created_at: "2024-03-15T10:15:00Z",
+    folder: "traffic-signs"
+  },
+  {
     public_id: "road-markings/yellow-line",
-    secure_url: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/photo_1_2026-03-15_13-28-33_ftfpbi",
+    secure_url: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/mdnmr2mxadowugm30czhnwyte2y3qtlmzwnw0so_p89tbs",
     format: "jpg",
     width: 600,
     height: 300,
     bytes: 35200,
-    created_at: "2024-03-15T10:15:00Z",
+    created_at: "2024-03-15T10:20:00Z",
+    folder: "road-markings"
+  },
+  {
+    public_id: "road-markings/white-line",
+    secure_url: "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/cld-sample-5",
+    format: "png",
+    width: 500,
+    height: 250,
+    bytes: 28400,
+    created_at: "2024-03-15T10:25:00Z",
     folder: "road-markings"
   },
   {
     public_id: "vehicles/car-front",
-    secure_url: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/photo_2_2026-03-15_13-28-33_eashrw",
-    format: "jpg",
+    secure_url: "https://res.cloudinary.com/dpgivqzrl/image/upload/e_background_removal/f_auto,q_auto/v1/samples/shoe",
+    format: "png",
     width: 500,
     height: 300,
     bytes: 42000,
-    created_at: "2024-03-15T10:20:00Z",
+    created_at: "2024-03-15T10:30:00Z",
     folder: "vehicles"
   }
 ];
@@ -99,32 +129,41 @@ export function CloudinaryMediaBrowser({
   const [searchTerm, setSearchTerm] = useState("");
   const [images, setImages] = useState<CloudinaryResource[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (isOpen) {
       loadImages();
     }
-  }, [isOpen, selectedFolder]);
+  }, [isOpen, selectedFolder, searchTerm]);
 
   const loadImages = async () => {
     setLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      let filteredImages = mockImages;
-      
+    setError(null);
+    
+    try {
+      const params = new URLSearchParams();
       if (selectedFolder) {
-        filteredImages = mockImages.filter(img => img.folder === selectedFolder);
+        params.append('folder', selectedFolder);
       }
-      
       if (searchTerm) {
-        filteredImages = filteredImages.filter(img => 
-          img.public_id.toLowerCase().includes(searchTerm.toLowerCase())
-        );
+        params.append('search', searchTerm);
       }
-      
-      setImages(filteredImages);
+
+      const response = await fetch(`/api/cloudinary/images?${params}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch images');
+      }
+
+      const data = await response.json();
+      setImages(data.resources || []);
+    } catch (err) {
+      console.error('Error loading images:', err);
+      setError("Failed to load images. Please try again.");
+      setImages([]);
+    } finally {
       setLoading(false);
-    }, 500);
+    }
   };
 
   const formatFileSize = (bytes: number) => {
@@ -195,9 +234,19 @@ export function CloudinaryMediaBrowser({
                   placeholder="Search images..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      loadImages();
+                    }
+                  }}
                   className="w-full pl-10 pr-4 py-2 border-2 border-black font-medium text-sm focus:outline-none focus:shadow-[2px_2px_0_#000]"
                 />
               </div>
+              {error && (
+                <div className="mt-2 p-2 bg-red-100 border border-red-400 text-red-700 text-sm">
+                  {error}
+                </div>
+              )}
             </div>
 
             {/* Images Grid */}
@@ -234,6 +283,11 @@ export function CloudinaryMediaBrowser({
                           fill
                           className="object-cover"
                           sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
+                          onError={(e) => {
+                            // Fallback to a placeholder if image fails to load
+                            const target = e.target as HTMLImageElement;
+                            target.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0xMDAgNzBDMTA1LjUyMyA3MCAxMTAgNzQuNDc3IDExMCA4MEMxMTAgODUuNTIzIDEwNS41MjMgOTAgMTAwIDkwQzk0LjQ3NyA5MCA5MCA4NS41MjMgOTAgODBDOTAgNzQuNDc3IDk0LjQ3NyA3MCAxMDAgNzBaIiBmaWxsPSIjOUNBM0FGIi8+CjxwYXRoIGQ9Ik0xNzAgMTMwSDMwVjE0MEgxNzBWMTMwWiIgZmlsbD0iIzlDQTNBRiIvPgo8L3N2Zz4K";
+                          }}
                         />
                       </div>
 
