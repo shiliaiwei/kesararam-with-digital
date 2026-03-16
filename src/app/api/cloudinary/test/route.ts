@@ -1,35 +1,55 @@
 import { NextRequest, NextResponse } from "next/server";
 import { v2 as cloudinary } from 'cloudinary';
 
-// Configure Cloudinary with environment variables or fallback to your credentials
+// Configure Cloudinary with environment variables
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'dpgivqzrl',
-  api_key: process.env.CLOUDINARY_API_KEY || '855448365679894',
-  api_secret: process.env.CLOUDINARY_API_SECRET || 'tKuGg8SWpRbz_6GXYo8vrAemFkA',
+  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     console.log('Testing Cloudinary connection...');
     
-    // Test the connection by getting account usage
-    const result = await cloudinary.api.usage();
+    // Test basic connection by searching for images (simpler than usage API)
+    const images = await cloudinary.search
+      .expression('resource_type:image')
+      .sort_by('created_at', 'desc')
+      .max_results(5)
+      .execute();
     
+    // Try to get folders (might be empty)
+    let folders = [];
+    try {
+      const folderResult = await cloudinary.api.root_folders();
+      folders = folderResult.folders || [];
+    } catch (folderError) {
+      console.log('No folders found or folder API error:', folderError);
+    }
+
     console.log('Cloudinary connection successful:', {
       cloud_name: cloudinary.config().cloud_name,
-      credits_used: result.credits?.used || 0,
-      resources: result.resources || 0
+      sample_images: images.resources?.length || 0,
+      folders_count: folders.length
     });
 
     return NextResponse.json({
       success: true,
       cloud_name: cloudinary.config().cloud_name,
       api_key: cloudinary.config().api_key,
-      usage: {
-        credits_used: result.credits?.used || 0,
-        resources: result.resources || 0,
-        bandwidth_used: result.bandwidth?.used || 0
+      connection: 'OK',
+      stats: {
+        folders_count: folders.length,
+        sample_images_found: images.resources?.length || 0,
+        total_count: images.total_count || 0
       },
+      sample_images: images.resources?.slice(0, 3).map((img: any) => ({
+        public_id: img.public_id,
+        secure_url: img.secure_url,
+        format: img.format
+      })) || [],
+      folders: folders.map((f: any) => f.name),
       message: 'Cloudinary connection successful'
     });
 
@@ -42,7 +62,8 @@ export async function GET(request: NextRequest) {
       details: error.message || 'Unknown error',
       http_code: error.http_code || 500,
       cloud_name: cloudinary.config().cloud_name,
-      api_key: cloudinary.config().api_key ? 'Set' : 'Not set'
+      api_key: cloudinary.config().api_key ? 'Set' : 'Not set',
+      suggestion: 'Check your API credentials and network connection'
     }, { status: 500 });
   }
 }

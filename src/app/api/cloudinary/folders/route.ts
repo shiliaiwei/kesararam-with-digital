@@ -1,32 +1,38 @@
 import { NextRequest, NextResponse } from "next/server";
 import { v2 as cloudinary } from 'cloudinary';
 
-// Configure Cloudinary with environment variables or fallback to your credentials
+// Configure Cloudinary with environment variables
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'dpgivqzrl',
-  api_key: process.env.CLOUDINARY_API_KEY || '855448365679894',
-  api_secret: process.env.CLOUDINARY_API_SECRET || 'tKuGg8SWpRbz_6GXYo8vrAemFkA',
+  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     console.log('Fetching folders from Cloudinary...');
-    
-    // Get all folders from Cloudinary
-    const result = await cloudinary.api.root_folders();
-    
-    console.log('Cloudinary folders result:', {
-      folders_count: result.folders?.length || 0
-    });
-    
-    // Transform the response to match our interface
-    const folders = (result.folders || []).map((folder: any) => ({
-      name: folder.name,
-      path: folder.path || folder.name
-    }));
+
+    // Try to get folders from Cloudinary
+    let folders = [];
+    try {
+      const folderResult = await cloudinary.api.root_folders();
+      folders = (folderResult.folders || []).map((folder: any) => ({
+        name: folder.name,
+        path: folder.path || folder.name
+      }));
+    } catch (folderError) {
+      console.log('No folders found or folder API error:', folderError);
+    }
+
+    // Always include root folder for images without folders
+    const rootFolder = { name: "Root (All Images)", path: "root" };
+    const allFolders = [rootFolder, ...folders];
+
+    console.log('Folders found:', allFolders.length);
 
     return NextResponse.json({
-      folders: folders
+      folders: allFolders,
+      total_count: allFolders.length
     });
 
   } catch (error: any) {
@@ -34,19 +40,18 @@ export async function GET(request: NextRequest) {
     
     // Return default folders if API fails
     const defaultFolders = [
-      { name: "traffic-signs", path: "traffic-signs" },
-      { name: "road-markings", path: "road-markings" },
-      { name: "vehicles", path: "vehicles" },
-      { name: "emergency", path: "emergency" },
-      { name: "general", path: "general" },
-      { name: "uploads", path: "uploads" },
+      { name: "Root (All Images)", path: "root" },
+      { name: "Traffic Signs", path: "traffic-signs" },
+      { name: "Road Markings", path: "road-markings" },
+      { name: "Vehicles", path: "vehicles" },
+      { name: "Emergency", path: "emergency" },
+      { name: "General", path: "general" },
     ];
-
-    console.log('Using default folders due to API error');
 
     return NextResponse.json({
       folders: defaultFolders,
-      error: 'Could not fetch folders from Cloudinary, using defaults',
+      total_count: defaultFolders.length,
+      error: 'Using default folders due to API error',
       details: error.message || 'Unknown error'
     });
   }

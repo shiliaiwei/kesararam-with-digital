@@ -65,8 +65,8 @@ export function TrafficSignsContent() {
     setEditingSign(null);
   };
 
-  const handleDeleteSign = (id: number | undefined) => {
-    if (id && confirm("Are you sure you want to delete this traffic sign?")) {
+  const handleDeleteSign = (id: number) => {
+    if (confirm("Are you sure you want to delete this traffic sign?")) {
       setSigns(prev => prev.filter(sign => sign.id !== id));
     }
   };
@@ -181,8 +181,9 @@ export function TrafficSignsContent() {
                   Edit
                 </button>
                 <button 
-                  onClick={() => handleDeleteSign(sign.id)}
-                  className="flex items-center gap-1 px-2 py-1 bg-red-400 border border-black text-xs font-bold hover:bg-red-300"
+                  onClick={() => sign.id && handleDeleteSign(sign.id)}
+                  disabled={!sign.id}
+                  className="flex items-center gap-1 px-2 py-1 bg-red-400 border border-black text-xs font-bold hover:bg-red-300 disabled:opacity-50"
                 >
                   <Trash2 size={12} />
                   Delete

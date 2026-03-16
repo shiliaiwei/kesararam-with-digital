@@ -33,7 +33,7 @@ export function CloudinaryMediaBrowser({
   onSelect, 
   selectedUrl 
 }: CloudinaryMediaBrowserProps) {
-  const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
+  const [selectedFolder, setSelectedFolder] = useState<string | null>("root");
   const [searchTerm, setSearchTerm] = useState("");
   const [images, setImages] = useState<CloudinaryResource[]>([]);
   const [folders, setFolders] = useState<CloudinaryFolder[]>([]);
@@ -52,12 +52,16 @@ export function CloudinaryMediaBrowser({
       const response = await fetch('/api/cloudinary/folders');
       if (response.ok) {
         const data = await response.json();
-        setFolders(data.folders || []);
+        // Always include root folder for images without folders
+        const rootFolder = { name: "Root (All Images)", path: "root" };
+        const folders = [rootFolder, ...(data.folders || [])];
+        setFolders(folders);
       }
     } catch (err) {
       console.error('Error loading folders:', err);
-      // Use default folders if API fails
+      // Use default folders if API fails, including root
       setFolders([
+        { name: "Root (All Images)", path: "root" },
         { name: "traffic-signs", path: "traffic-signs" },
         { name: "road-markings", path: "road-markings" },
         { name: "vehicles", path: "vehicles" },
@@ -150,9 +154,9 @@ export function CloudinaryMediaBrowser({
             <h3 className="text-sm font-black text-black mb-3 uppercase">Folders</h3>
             <div className="space-y-1">
               <button
-                onClick={() => setSelectedFolder(null)}
+                onClick={() => setSelectedFolder("root")}
                 className={`w-full flex items-center gap-2 p-2 text-left border border-black text-sm font-medium transition-colors ${
-                  selectedFolder === null 
+                  selectedFolder === "root" 
                     ? "bg-blue-400 text-black" 
                     : "bg-white hover:bg-blue-50 text-black"
                 }`}

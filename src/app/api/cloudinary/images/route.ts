@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { v2 as cloudinary } from 'cloudinary';
 
-// Configure Cloudinary with environment variables or fallback to your credentials
+// Configure Cloudinary with environment variables
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'dpgivqzrl',
-  api_key: process.env.CLOUDINARY_API_KEY || '855448365679894',
-  api_secret: process.env.CLOUDINARY_API_SECRET || 'tKuGg8SWpRbz_6GXYo8vrAemFkA',
+  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 export async function GET(request: NextRequest) {
@@ -18,14 +18,14 @@ export async function GET(request: NextRequest) {
 
     let searchExpression = 'resource_type:image';
     
-    // Add folder filter to search expression
-    if (folder && folder !== 'all') {
+    // Handle folder filtering - if folder is specified and not 'all' or 'root'
+    if (folder && folder !== 'all' && folder !== 'root') {
       searchExpression += ` AND folder:${folder}`;
     }
     
     // Add search term to search expression
     if (search) {
-      searchExpression += ` AND filename:*${search}*`;
+      searchExpression += ` AND public_id:*${search}*`;
     }
 
     console.log('Search expression:', searchExpression);
@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
     });
 
     // Transform the response to match our interface
-    const resources = (result.resources || []).map((resource: any) => ({
+    let resources = (result.resources || []).map((resource: any) => ({
       public_id: resource.public_id,
       secure_url: resource.secure_url,
       format: resource.format,
@@ -55,6 +55,11 @@ export async function GET(request: NextRequest) {
       created_at: resource.created_at,
       folder: resource.public_id.includes('/') ? resource.public_id.split('/')[0] : 'root'
     }));
+
+    // Filter for root folder on the server side if needed
+    if (folder === 'root') {
+      resources = resources.filter(resource => !resource.public_id.includes('/'));
+    }
 
     return NextResponse.json({
       resources: resources,
