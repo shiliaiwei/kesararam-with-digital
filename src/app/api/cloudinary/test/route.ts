@@ -1,5 +1,18 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { v2 as cloudinary } from 'cloudinary';
+
+// Define interfaces for better type safety
+interface CloudinaryStats {
+  folders_count: number;
+  sample_images_found: number;
+  total_count: number;
+}
+
+interface SampleImage {
+  public_id: string;
+  secure_url: string;
+  format: string;
+}
 
 // Configure Cloudinary with environment variables
 cloudinary.config({
@@ -36,7 +49,7 @@ export async function GET() {
       .execute();
     
     // Try to get folders (might be empty)
-    let folders = [];
+    let folders: any[] = [];
     try {
       const folderResult = await cloudinary.api.root_folders();
       folders = folderResult.folders || [];
@@ -50,21 +63,25 @@ export async function GET() {
       folders_count: folders.length
     });
 
+    const stats: CloudinaryStats = {
+      folders_count: folders.length,
+      sample_images_found: images.resources?.length || 0,
+      total_count: images.total_count || 0
+    };
+
+    const sampleImages: SampleImage[] = images.resources?.slice(0, 3).map((img: any) => ({
+      public_id: img.public_id,
+      secure_url: img.secure_url,
+      format: img.format
+    })) || [];
+
     return NextResponse.json({
       success: true,
       cloud_name: cloudinary.config().cloud_name,
       api_key: cloudinary.config().api_key,
       connection: 'OK',
-      stats: {
-        folders_count: folders.length,
-        sample_images_found: images.resources?.length || 0,
-        total_count: images.total_count || 0
-      },
-      sample_images: images.resources?.slice(0, 3).map((img: any) => ({
-        public_id: img.public_id,
-        secure_url: img.secure_url,
-        format: img.format
-      })) || [],
+      stats: stats,
+      sample_images: sampleImages,
       folders: folders.map((f: any) => f.name),
       message: 'Cloudinary connection successful'
     });

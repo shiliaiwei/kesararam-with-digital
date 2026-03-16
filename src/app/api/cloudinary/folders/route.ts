@@ -1,5 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { v2 as cloudinary } from 'cloudinary';
+
+// Define interfaces for better type safety
+interface CloudinaryFolder {
+  name: string;
+  path: string;
+}
 
 // Configure Cloudinary with environment variables
 cloudinary.config({
@@ -34,7 +40,7 @@ export async function GET() {
     console.log('Fetching folders from Cloudinary...');
 
     // Try to get folders from Cloudinary
-    let folders = [];
+    let folders: CloudinaryFolder[] = [];
     try {
       const folderResult = await cloudinary.api.root_folders();
       folders = (folderResult.folders || []).map((folder: any) => ({
@@ -46,8 +52,8 @@ export async function GET() {
     }
 
     // Always include root folder for images without folders
-    const rootFolder = { name: "Root (All Images)", path: "root" };
-    const allFolders = [rootFolder, ...folders];
+    const rootFolder: CloudinaryFolder = { name: "Root (All Images)", path: "root" };
+    const allFolders: CloudinaryFolder[] = [rootFolder, ...folders];
 
     console.log('Folders found:', allFolders.length);
 
@@ -60,7 +66,7 @@ export async function GET() {
     console.error('Cloudinary folders API error:', error);
     
     // Return default folders if API fails
-    const defaultFolders = [
+    const defaultFolders: CloudinaryFolder[] = [
       { name: "Root (All Images)", path: "root" },
       { name: "Traffic Signs", path: "traffic-signs" },
       { name: "Road Markings", path: "road-markings" },

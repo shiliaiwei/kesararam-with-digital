@@ -1,6 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
 import { v2 as cloudinary } from 'cloudinary';
 
+// Define interfaces for better type safety
+interface CloudinaryResource {
+  public_id: string;
+  secure_url: string;
+  format: string;
+  width: number;
+  height: number;
+  bytes: number;
+  created_at: string;
+  folder?: string;
+}
+
+interface TransformedResource {
+  public_id: string;
+  secure_url: string;
+  format: string;
+  width: number;
+  height: number;
+  bytes: number;
+  created_at: string;
+  folder: string;
+}
+
 // Configure Cloudinary with environment variables
 cloudinary.config({
   cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
@@ -61,7 +84,7 @@ export async function GET(request: NextRequest) {
     });
 
     // Transform the response to match our interface
-    let resources = (result.resources || []).map((resource: any) => ({
+    let resources: TransformedResource[] = (result.resources || []).map((resource: CloudinaryResource) => ({
       public_id: resource.public_id,
       secure_url: resource.secure_url,
       format: resource.format,
@@ -74,7 +97,7 @@ export async function GET(request: NextRequest) {
 
     // Filter for root folder on the server side if needed
     if (folder === 'root') {
-      resources = resources.filter((resource: any) => !resource.public_id.includes('/'));
+      resources = resources.filter((resource: TransformedResource) => !resource.public_id.includes('/'));
     }
 
     return NextResponse.json({
