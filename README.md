@@ -463,3 +463,71 @@ remove the traffic icon, all .  and let create new desgin animation roads loop u
 
 
  The Vienna Convention on Road Signs and Signals
+
+ In article 2 the convention classes all road signs into a number of categories (A–H):
+
+A: Danger warning signs
+B: Priority signs
+C: Prohibitory or restrictive signs
+D: Mandatory signs
+E: Special regulation signs
+F: Information, facilities, or service signs
+G: Direction, position, or indication sign
+H: Additional panels
+
+
+https://gettingaroundgermany.info/parken.shtml
+https://www.roadtrafficsigns.com/
+https://unece.org/road-traffic-and-road-signs-and-signals-agreements-and-conventions
+
+List of questions (classic view)
+What is the correct way to navigate multiple mini-roundabouts?
+You have stopped at a red light. The traffic light changes to red and amber. What should you do?
+Which vehicles are turning correctly at this roundabout?
+When can you drive in a bus lane?
+What does this sign mean?
+You stop at a pelican crossing with a central island. The light turns green, but someone is still crossing. What should you do?
+When can you drive in an operational cycle lane?
+You see this sign at the edge of the motorway. What does it mean?
+What does this sign mean?
+What does this sign mean?
+What does this sign mean?
+You have arrived at a narrow junction where a lorry is turning. What should you do here?
+Where should you start indicating for the left turn pictured?
+You wish to cross this dual carriageway. How should you cross?
+You see this sign on the motorway. What does it mean?
+What does this sign mean?
+You see this flashing amber sign on the motorway. What does it mean?
+You see children playing on the road in a Home Zone. What should you do?
+You are on a single carriageway with three lanes. Who may drive in the centre lane?
+You have arrived at a box junction and you have a green light. Can you enter the junction before your path is clear?
+What is a Red Route?
+Where will you find this sign?
+What does this sign mean?
+What does this sign mean?
+What does this sign mean?
+Three cars arrive at a junction. Which cars have priority?
+What does this sign mean?
+You are waiting for a gap in traffic so you can turn right onto a minor road. Where should you wait?
+You see a painted triangle on the road ahead. What does this marking mean?
+You arrive at an amber traffic light. What should you do?
+You are driving an ordinary car along the motorway. Can you enter this HOV lane?
+Two cars are turning right at a junction. In which scenarios are both cars turning legally?
+You arrive at a red traffic light with a bike lane and two stop lines. You should stop
+What does this sign mean?
+Where will you find this sign?
+You are on the motorway and you see this sign. What does it mean?
+What does this sign mean?
+What does this sign mean?
+What does this sign mean?
+You are on a single-track road and you encounter an oncoming vehicle. What should you do?
+What does this sign mean?
+You stop at a zebra crossing to let a pedestrian cross. When can you proceed?
+You arrive at a section of road bordered by a pair of red lines. What do these lines mean?
+What does this sign mean?
+You stop at a zebra crossing with a central island to let a pedestrian cross. When can you proceed?
+You see this signal on the motorway. What does it mean?
+After seeing this sign, what should you beware of?
+What precautions should you take when you drive down a steep hill?
+You see this sign by the roadside. What is ahead?
+What does this sign mean?

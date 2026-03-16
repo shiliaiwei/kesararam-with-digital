@@ -71,8 +71,12 @@ export function CategoryPageShell({
             {/* Character image on the left */}
             <div className="hidden md:block flex-shrink-0">
               <div 
-                className="w-32 h-32 border-2 border-black rounded-none overflow-hidden bg-white"
-                style={{ boxShadow: "4px 4px 0 #000" }}
+                className="w-32 h-32 rounded-none overflow-hidden bg-white relative"
+                style={{ 
+                  boxShadow: "4px 4px 0 #000",
+                  border: "4px solid",
+                  borderImage: "repeating-linear-gradient(45deg, #000, #000 10px, #fbbf24 10px, #fbbf24 20px) 4"
+                }}
               >
                 <Image
                   src="https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0"
