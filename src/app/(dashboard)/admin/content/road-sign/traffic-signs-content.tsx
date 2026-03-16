@@ -6,7 +6,7 @@ import Image from "next/image";
 import { TrafficSignForm } from "./traffic-sign-form";
 
 interface TrafficSign {
-  id: number;
+  id?: number;
   titleEn: string;
   titleKm: string;
   descriptionEn: string;
@@ -15,7 +15,7 @@ interface TrafficSign {
   audioUrlEn?: string;
   audioUrlKm?: string;
   isActive: boolean;
-  createdAt: string;
+  createdAt?: string;
 }
 
 // Mock data - replace with actual API calls
@@ -46,16 +46,16 @@ export function TrafficSignsContent() {
   );
 
   const handleSaveSign = (signData: TrafficSign) => {
-    if (editingSign) {
+    if (editingSign && editingSign.id) {
       // Update existing sign
       setSigns(prev => prev.map(sign => 
-        sign.id === editingSign.id ? { ...signData, id: editingSign.id } : sign
+        sign.id === editingSign.id ? { ...signData, id: editingSign.id, createdAt: editingSign.createdAt } : sign
       ));
     } else {
       // Add new sign
       const newSign = {
         ...signData,
-        id: Math.max(...signs.map(s => s.id), 0) + 1,
+        id: Math.max(...signs.map(s => s.id || 0), 0) + 1,
         createdAt: new Date().toISOString()
       };
       setSigns(prev => [...prev, newSign]);
@@ -65,8 +65,8 @@ export function TrafficSignsContent() {
     setEditingSign(null);
   };
 
-  const handleDeleteSign = (id: number) => {
-    if (confirm("Are you sure you want to delete this traffic sign?")) {
+  const handleDeleteSign = (id: number | undefined) => {
+    if (id && confirm("Are you sure you want to delete this traffic sign?")) {
       setSigns(prev => prev.filter(sign => sign.id !== id));
     }
   };
