@@ -80,16 +80,20 @@ export function CloudinaryMediaBrowser({
         params.append('search', searchTerm);
       }
 
+      console.log('Loading images with params:', { selectedFolder, searchTerm });
+
       const response = await fetch(`/api/cloudinary/images?${params}`);
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error('Failed to fetch images');
+        throw new Error(data.details || data.error || 'Failed to fetch images');
       }
 
-      const data = await response.json();
+      console.log('Images loaded:', data.resources?.length || 0);
       setImages(data.resources || []);
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error loading images:', err);
-      setError("Failed to load images. Please try again.");
+      setError(err.message || "Failed to load images. Please try again.");
       setImages([]);
     } finally {
       setLoading(false);
@@ -112,12 +116,32 @@ export function CloudinaryMediaBrowser({
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b-2 border-black">
           <h2 className="text-xl font-black text-black">Select Media from Cloudinary</h2>
-          <button
-            onClick={onClose}
-            className="w-8 h-8 border-2 border-black bg-red-400 flex items-center justify-center hover:bg-red-300"
-          >
-            <X size={16} />
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={async () => {
+                try {
+                  const response = await fetch('/api/cloudinary/test');
+                  const data = await response.json();
+                  if (data.success) {
+                    alert('Cloudinary connection successful!');
+                  } else {
+                    alert(`Connection failed: ${data.details}`);
+                  }
+                } catch (err) {
+                  alert('Test failed: ' + (err as Error).message);
+                }
+              }}
+              className="px-3 py-1 bg-green-400 border border-black text-xs font-bold hover:bg-green-300"
+            >
+              Test API
+            </button>
+            <button
+              onClick={onClose}
+              className="w-8 h-8 border-2 border-black bg-red-400 flex items-center justify-center hover:bg-red-300"
+            >
+              <X size={16} />
+            </button>
+          </div>
         </div>
 
         <div className="flex h-[70vh]">
