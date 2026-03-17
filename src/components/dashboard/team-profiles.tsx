@@ -4,10 +4,13 @@ import { useState, useEffect, useCallback } from "react";
 import { Shield, RefreshCw, Copy, Check, X } from "lucide-react";
 import { TEAM_MEMBERS, type TeamMember } from "@/lib/team-data";
 
+// Public base URL — always the root domain, never the dashboard subdomain
+const PUBLIC_BASE_URL = "https://kesararamwithdigital.tech";
+
 // QR image — encodes a signed URL with token
 function QRImage({ value, size = 180 }: { value: string; size?: number }) {
   if (!value) return <div style={{ width: size, height: size, background: "#ccc" }} />;
-  const src = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(value)}&color=000000&bgcolor=FFEE00&margin=8`;
+  const src = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(value)}&color=000000&bgcolor=ffffff&margin=8`;
   return (
     <img
       src={src}
@@ -140,9 +143,7 @@ function VSIDCardBack({ member }: { member: TeamMember }) {
     );
     if (!res.ok) return;
     const { token } = await res.json();
-    // Always use the public app URL so QR links work without login
-    const base = process.env.NEXT_PUBLIC_APP_URL ?? (typeof window !== "undefined" ? window.location.origin : "");
-    setSignedUrl(`${base}/p/${member.id}?token=${token}`);
+    setSignedUrl(`${PUBLIC_BASE_URL}/p/${member.id}?token=${token}`);
     setCountdown(60);
   }, [member.id, member.imageUrl]);
 
@@ -247,8 +248,7 @@ function ProfileModal({
     );
     if (res.ok) {
       const { token } = await res.json();
-      const base = process.env.NEXT_PUBLIC_APP_URL ?? (typeof window !== "undefined" ? window.location.origin : "");
-      setSignedUrl(`${base}/p/${member.id}?token=${token}`);
+      setSignedUrl(`${PUBLIC_BASE_URL}/p/${member.id}?token=${token}`);
       setCountdown(60);
     }
   }, [member.id, member.imageUrl]);
