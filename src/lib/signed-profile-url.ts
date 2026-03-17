@@ -16,7 +16,7 @@ export async function generateProfileToken(
   return new SignJWT({ memberId, imageUrl })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime("24s")
+    .setExpirationTime("60s")
     .sign(SECRET);
 }
 

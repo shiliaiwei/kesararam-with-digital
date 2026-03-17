@@ -33,8 +33,8 @@ function ProtectedImage({
     if (!res.ok) return;
     const { token } = await res.json();
     setSrc(`/api/profile-image?token=${token}`);
-    // Mark expired after 24 s so UI shows refresh indicator
-    setTimeout(() => setExpired(true), 24000);
+    // Mark expired after 60 s so UI shows refresh indicator
+    setTimeout(() => setExpired(true), 60000);
   }, [memberId, imageUrl]);
 
   useEffect(() => { refresh(); }, [refresh]);
@@ -64,122 +64,178 @@ function ProtectedImage({
   );
 }
 
-// ── VSID Card (front) ─────────────────────────────────────────────────────────
-function VSIDCardFront({ member, profileUrl }: { member: TeamMember; profileUrl: string }) {
+// ── VSID Card (front) — Neo-Brutalist ────────────────────────────────────────
+function VSIDCardFront({ member }: { member: TeamMember; profileUrl: string }) {
   return (
     <div
-      className="relative w-[340px] bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200 select-none"
-      style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+      className="relative w-[340px] bg-[#FFEE00] select-none"
+      style={{
+        border: "3px solid #000",
+        boxShadow: "6px 6px 0px #000",
+        fontFamily: "'Arial Black', Arial, sans-serif",
+      }}
     >
-      {/* diagonal watermark pattern */}
+      {/* Header */}
       <div
-        className="absolute inset-0 opacity-5 pointer-events-none"
-        style={{
-          backgroundImage: "repeating-linear-gradient(45deg,#000 0,#000 1px,transparent 0,transparent 50%)",
-          backgroundSize: "20px 20px",
-        }}
-      />
-
-      {/* Header bar */}
-      <div className="bg-gradient-to-r from-blue-800 to-blue-600 px-4 py-2 flex justify-between items-center">
-        <span className="text-white font-bold text-sm tracking-wide">TECHNOVATION GIRLS</span>
-        <span className="text-blue-200 text-xs font-semibold">
-          {member.role === "student" ? "Student ID" : "Mentor ID"}
+        className="px-3 py-2 flex justify-between items-center"
+        style={{ background: "#000", borderBottom: "3px solid #000" }}
+      >
+        <span className="text-[#FFEE00] font-black text-sm tracking-widest uppercase">
+          TECHNOVATION GIRLS
+        </span>
+        <span
+          className="text-[10px] font-black px-2 py-0.5 uppercase"
+          style={{ background: "#FFEE00", color: "#000", border: "2px solid #FFEE00" }}
+        >
+          {member.role === "student" ? "STUDENT ID" : "MENTOR ID"}
         </span>
       </div>
 
       {/* Body */}
-      <div className="px-4 pt-3 pb-4 flex gap-4">
+      <div className="p-3 flex gap-3">
         {/* Photo */}
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0" style={{ border: "3px solid #000" }}>
           <ProtectedImage
             memberId={member.id}
             imageUrl={member.imageUrl}
             alt={member.name}
-            className="w-20 h-24 object-cover rounded border-2 border-gray-300"
+            className="w-20 h-24 object-cover block"
           />
         </div>
 
         {/* Info */}
         <div className="flex-1 min-w-0">
-          <p className="font-bold text-gray-900 text-base leading-tight">{member.name}</p>
-          <p className="text-gray-500 text-xs mt-0.5">{member.school}</p>
-          <p className="text-gray-500 text-xs">{member.role === "student" ? "Junior Division" : member.specialty}</p>
+          <p
+            className="font-black text-base leading-tight uppercase"
+            style={{ color: "#000", letterSpacing: "-0.5px" }}
+          >
+            {member.name}
+          </p>
+          <div
+            className="mt-1 mb-1"
+            style={{ height: "3px", background: "#000", width: "100%" }}
+          />
+          <p className="text-[11px] font-bold uppercase text-black">{member.school}</p>
+          <p className="text-[10px] font-bold text-black opacity-70">
+            {member.role === "student" ? "JUNIOR DIVISION" : member.specialty?.toUpperCase()}
+          </p>
 
-          {/* Signature line */}
-          <div className="mt-2 border-b border-gray-400 w-28" />
-          <p className="text-gray-400 text-[9px] mt-0.5">Registrar&apos;s Office</p>
+          {/* VSID badge */}
+          <div
+            className="mt-2 inline-block px-2 py-0.5"
+            style={{ background: "#000", color: "#FFEE00" }}
+          >
+            <span className="font-black text-[11px] tracking-widest">{member.vsid}</span>
+          </div>
 
-          {/* VSID + barcode */}
-          <p className="text-red-600 font-bold text-xs mt-2">{member.vsid}</p>
-          <div className="mt-1 flex gap-1">
-            {member.vsid.split("").map((c, i) => (
-              <div key={i} className="bg-black" style={{ width: c === "-" ? 4 : 2, height: 20 }} />
+          {/* Barcode */}
+          <div className="mt-1 flex gap-[2px] items-end">
+            {member.vsid.replace(/-/g, "").split("").map((c, i) => (
+              <div
+                key={i}
+                style={{
+                  width: i % 3 === 0 ? 3 : 2,
+                  height: i % 2 === 0 ? 18 : 12,
+                  background: "#000",
+                }}
+              />
             ))}
           </div>
         </div>
       </div>
 
       {/* Footer */}
-      <div className="bg-gray-50 border-t border-gray-200 px-4 py-2 flex justify-between text-[10px] text-gray-500">
-        <span>Enrolled: {member.enrolled}</span>
-        <span>Expiry: {member.expiry}</span>
-        <span>Card No. {member.cardNo}</span>
+      <div
+        className="px-3 py-1.5 flex justify-between text-[9px] font-black uppercase"
+        style={{ background: "#000", color: "#FFEE00", borderTop: "3px solid #000" }}
+      >
+        <span>ENROLLED: {member.enrolled}</span>
+        <span>EXP: {member.expiry}</span>
+        <span>#{member.cardNo}</span>
       </div>
     </div>
   );
 }
 
-// ── VSID Card (back) ──────────────────────────────────────────────────────────
+// ── VSID Card (back) — Neo-Brutalist ─────────────────────────────────────────
 function VSIDCardBack({ member, profileUrl }: { member: TeamMember; profileUrl: string }) {
   return (
     <div
-      className="relative w-[340px] bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200 select-none"
-      style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+      className="relative w-[340px] bg-white select-none"
+      style={{
+        border: "3px solid #000",
+        boxShadow: "6px 6px 0px #000",
+        fontFamily: "'Arial Black', Arial, sans-serif",
+      }}
     >
+      {/* Header */}
       <div
-        className="absolute inset-0 opacity-5 pointer-events-none"
-        style={{
-          backgroundImage: "repeating-linear-gradient(45deg,#000 0,#000 1px,transparent 0,transparent 50%)",
-          backgroundSize: "20px 20px",
-        }}
-      />
-
-      <div className="bg-gradient-to-r from-blue-800 to-blue-600 px-4 py-2">
-        <span className="text-white font-bold text-sm">KESARARAM WITH DIGITAL</span>
+        className="px-3 py-2"
+        style={{ background: "#000", borderBottom: "3px solid #000" }}
+      >
+        <span className="text-[#FFEE00] font-black text-sm tracking-widest uppercase">
+          KESARARAM WITH DIGITAL
+        </span>
       </div>
 
-      <div className="px-4 py-3 grid grid-cols-2 gap-4 text-xs">
+      {/* Body */}
+      <div className="p-3 grid grid-cols-2 gap-3 text-[10px]">
         <div>
-          <p className="font-bold text-gray-800 mb-1">TERMS OF USE</p>
-          <p className="text-gray-600 leading-relaxed">
-            This card must be carried during all program sessions. Violation of program policies may result in card revocation.
+          <p
+            className="font-black text-[10px] uppercase mb-1 px-1"
+            style={{ background: "#FFEE00", display: "inline-block" }}
+          >
+            TERMS OF USE
           </p>
-          <p className="font-bold text-gray-800 mt-2 mb-1">LOST CARD</p>
-          <p className="text-gray-600 leading-relaxed">
-            If found, please return to the program coordinator or contact the team lead.
+          <p className="text-black leading-relaxed font-bold mt-1">
+            This card must be carried during all program sessions. Violation of policies may result in revocation.
+          </p>
+          <p
+            className="font-black text-[10px] uppercase mt-2 mb-1 px-1"
+            style={{ background: "#FFEE00", display: "inline-block" }}
+          >
+            LOST CARD
+          </p>
+          <p className="text-black leading-relaxed font-bold mt-1">
+            Return to program coordinator or contact the team lead immediately.
           </p>
         </div>
         <div>
-          <p className="font-bold text-gray-800 mb-1">ACCESS PRIVILEGES</p>
-          <ul className="text-gray-600 space-y-0.5">
+          <p
+            className="font-black text-[10px] uppercase mb-1 px-1"
+            style={{ background: "#FFEE00", display: "inline-block" }}
+          >
+            ACCESS
+          </p>
+          <ul className="text-black font-bold space-y-0.5 mt-1">
             {member.accessPrivileges.map((p) => (
-              <li key={p}>• {p}</li>
+              <li key={p} className="flex items-start gap-1">
+                <span style={{ color: "#000" }}>▸</span> {p}
+              </li>
             ))}
           </ul>
-          <p className="font-bold text-gray-800 mt-2 mb-1">CONTACT INFO</p>
-          <p className="text-gray-600">Siem Reap, Cambodia</p>
-          <p className="text-blue-600">technovation-one.vercel.app</p>
+          <p
+            className="font-black text-[10px] uppercase mt-2 mb-1 px-1"
+            style={{ background: "#FFEE00", display: "inline-block" }}
+          >
+            CONTACT
+          </p>
+          <p className="text-black font-bold mt-1">Siem Reap, Cambodia</p>
         </div>
       </div>
 
-      {/* QR code */}
-      <div className="border-t border-gray-200 px-4 py-3 flex items-center gap-4">
-        <QRImage value={profileUrl} size={72} />
-        <div className="text-[10px] text-gray-500">
-          <p className="font-bold text-gray-700 mb-1">SCAN TO VIEW PROFILE</p>
-          <p>Link expires every 24 seconds.</p>
-          <p>Secured with signed token.</p>
+      {/* QR section */}
+      <div
+        className="px-3 py-2 flex items-center gap-3"
+        style={{ borderTop: "3px solid #000", background: "#FFEE00" }}
+      >
+        <div style={{ border: "3px solid #000" }}>
+          <QRImage value={profileUrl} size={64} />
+        </div>
+        <div>
+          <p className="font-black text-[11px] uppercase">SCAN TO VIEW PROFILE</p>
+          <p className="font-bold text-[10px] mt-0.5">Link expires every 60 seconds.</p>
+          <p className="font-bold text-[10px]">Secured with signed token.</p>
         </div>
       </div>
     </div>
@@ -199,7 +255,7 @@ function ProfileModal({
   const [token, setToken] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [showBack, setShowBack] = useState(false);
-  const [countdown, setCountdown] = useState(24);
+  const [countdown, setCountdown] = useState(60);
 
   const fetchToken = useCallback(async () => {
     const res = await fetch(
@@ -216,11 +272,11 @@ function ProfileModal({
     fetchToken();
   }, [fetchToken]);
 
-  // Countdown + auto-refresh every 24 s
+  // Countdown + auto-refresh every 60 s
   useEffect(() => {
     const interval = setInterval(() => {
       setCountdown((c) => {
-        if (c <= 1) { fetchToken(); return 24; }
+        if (c <= 1) { fetchToken(); return 60; }
         return c - 1;
       });
     }, 1000);
@@ -306,7 +362,7 @@ function ProfileModal({
 ay-200 rounded-lg p-4">
             <p className="text-xs font-bold text-gray-700 mb-2 flex items-center gap-1">
               <Shield className="w-3 h-3" />
-              {isKhmer ? "URL ដែលបានចុះហត្ថលេខា (ផុតកំណត់ ២៤ វិនាទី)" : "SIGNED PROFILE URL (expires 24s)"}
+              {isKhmer ? "URL ដែលបានចុះហត្ថលេខា (ផុតកំណត់ ៦០ វិនាទី)" : "SIGNED PROFILE URL (expires 60s)"}
             </p>
             <div className="flex gap-2">
               <code className="flex-1 text-xs bg-white border border-gray-300 rounded px-2 py-2 truncate text-gray-600">

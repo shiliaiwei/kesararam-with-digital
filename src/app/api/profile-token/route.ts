@@ -19,5 +19,5 @@ export async function GET(req: NextRequest) {
   }
 
   const token = await generateProfileToken(memberId, imageUrl);
-  return NextResponse.json({ token, expiresIn: 24 });
+  return NextResponse.json({ token, expiresIn: 60 });
 }
