@@ -8,16 +8,17 @@ import { TEAM_MEMBERS, type TeamMember } from "@/lib/team-data";
 const PUBLIC_BASE_URL = "https://kesararamwithdigital.tech";
 
 // QR image — encodes a signed URL with token
-function QRImage({ value, size = 180 }: { value: string; size?: number }) {
-  if (!value) return <div style={{ width: size, height: size, background: "#ccc" }} />;
-  const src = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(value)}&color=000000&bgcolor=ffffff&margin=8`;
+function QRImage({ value, size = 200 }: { value: string; size?: number }) {
+  if (!value) return <div style={{ width: size, height: size, background: "#eee" }} />;
+  // ecc=H = highest error correction (30% damage tolerance) — best for phone scanning
+  const src = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(value)}&color=000000&bgcolor=ffffff&margin=16&ecc=H`;
   return (
     <img
       src={src}
       alt="QR Code"
       width={size}
       height={size}
-      style={{ display: "block", imageRendering: "pixelated" }}
+      style={{ display: "block" }}
     />
   );
 }
@@ -135,7 +136,7 @@ function VSIDCardFront({ member }: { member: TeamMember }) {
 // ── VSID Card Back — QR rotates every 60s with unique signed token ────────────
 function VSIDCardBack({ member }: { member: TeamMember }) {
   const [signedUrl, setSignedUrl] = useState<string>("");
-  const [countdown, setCountdown] = useState(60);
+  const [countdown, setCountdown] = useState(3600);
 
   const fetchToken = useCallback(async () => {
     const res = await fetch(
@@ -144,22 +145,25 @@ function VSIDCardBack({ member }: { member: TeamMember }) {
     if (!res.ok) return;
     const { token } = await res.json();
     setSignedUrl(`${PUBLIC_BASE_URL}/p/${member.id}?token=${token}`);
-    setCountdown(60);
+    setCountdown(3600);
   }, [member.id, member.imageUrl]);
 
-  // Fetch on mount
   useEffect(() => { fetchToken(); }, [fetchToken]);
 
-  // Countdown + auto-refresh every 60s
   useEffect(() => {
     const interval = setInterval(() => {
       setCountdown((c) => {
-        if (c <= 1) { fetchToken(); return 60; }
+        if (c <= 1) { fetchToken(); return 3600; }
         return c - 1;
       });
     }, 1000);
     return () => clearInterval(interval);
   }, [fetchToken]);
+
+  // Format countdown as mm:ss
+  const mins = Math.floor(countdown / 60);
+  const secs = countdown % 60;
+  const timeLabel = `${mins}:${String(secs).padStart(2, "0")}`;
 
   return (
     <div
@@ -199,29 +203,21 @@ function VSIDCardBack({ member }: { member: TeamMember }) {
         </div>
       </div>
 
-      {/* QR — unique signed URL, rotates every 60s */}
+      {/* QR — centered, large, easy to scan */}
       <div
-        className="px-3 py-3 flex items-center gap-4"
-        style={{ borderTop: "3px solid #000", background: "#FFEE00" }}
+        className="px-3 py-4 flex flex-col items-center gap-2"
+        style={{ borderTop: "3px solid #000", background: "#fff" }}
       >
-        <div className="flex flex-col items-center gap-1">
-          <div style={{ border: "3px solid #000" }}>
-            <QRImage value={signedUrl} size={120} />
-          </div>
-          {/* Countdown below QR — not overlapping */}
-          <div
-            className="w-full text-center font-black text-[10px] px-2 py-0.5"
-            style={{ background: "#000", color: "#FFEE00" }}
-          >
-            EXPIRES {countdown}s
-          </div>
+        <div style={{ border: "4px solid #000", padding: 4, background: "#fff" }}>
+          <QRImage value={signedUrl} size={180} />
         </div>
-        <div>
-          <p className="font-black text-[13px] uppercase leading-tight">SCAN TO VIEW</p>
-          <p className="font-black text-[13px] uppercase leading-tight">PROFILE</p>
-          <p className="font-bold text-[10px] mt-2">Unique link per scan.</p>
-          <p className="font-bold text-[10px] opacity-60">No login needed.</p>
+        <div
+          className="w-full text-center font-black text-[11px] px-2 py-1"
+          style={{ background: "#000", color: "#FFEE00" }}
+        >
+          SCAN TO VIEW PROFILE · EXPIRES {timeLabel}
         </div>
+        <p className="font-bold text-[10px] text-gray-500">No login needed</p>
       </div>
     </div>
   );
@@ -239,7 +235,7 @@ function ProfileModal({
 }) {
   const [showBack, setShowBack] = useState(false);
   const [signedUrl, setSignedUrl] = useState<string>("");
-  const [countdown, setCountdown] = useState(60);
+  const [countdown, setCountdown] = useState(3600);
   const [copied, setCopied] = useState(false);
 
   const fetchToken = useCallback(async () => {
@@ -249,7 +245,7 @@ function ProfileModal({
     if (res.ok) {
       const { token } = await res.json();
       setSignedUrl(`${PUBLIC_BASE_URL}/p/${member.id}?token=${token}`);
-      setCountdown(60);
+      setCountdown(3600);
     }
   }, [member.id, member.imageUrl]);
 
@@ -258,12 +254,16 @@ function ProfileModal({
   useEffect(() => {
     const interval = setInterval(() => {
       setCountdown((c) => {
-        if (c <= 1) { fetchToken(); return 60; }
+        if (c <= 1) { fetchToken(); return 3600; }
         return c - 1;
       });
     }, 1000);
     return () => clearInterval(interval);
   }, [fetchToken]);
+
+  const mins = Math.floor(countdown / 60);
+  const secs = countdown % 60;
+  const timeLabel = `${mins}:${String(secs).padStart(2, "0")}`;
 
   const copyLink = async () => {
     if (!signedUrl) return;
@@ -287,9 +287,9 @@ function ProfileModal({
             </span>
             <span
               className="font-black text-[10px] px-2 py-0.5"
-              style={{ background: countdown <= 10 ? "#ff4444" : "#FFEE00", color: "#000" }}
+              style={{ background: countdown <= 300 ? "#ff4444" : "#FFEE00", color: "#000" }}
             >
-              {countdown}s
+              {timeLabel}
             </span>
           </div>
           <button onClick={onClose} style={{ color: "#FFEE00" }}>
@@ -328,7 +328,7 @@ function ProfileModal({
               <div className="flex items-center gap-2">
                 <Shield className="w-3 h-3" style={{ color: "#FFEE00" }} />
                 <span className="font-black text-[11px] uppercase" style={{ color: "#FFEE00" }}>
-                  {isKhmer ? "តំណតែមួយគត់ — ផុតកំណត់ ៦០ វិនាទី" : "UNIQUE SIGNED URL — EXPIRES 60s"}
+                  {isKhmer ? "តំណតែមួយគត់ — ផុតកំណត់ ១ ម៉ោង" : "UNIQUE SIGNED URL — EXPIRES 1H"}
                 </span>
               </div>
               <button

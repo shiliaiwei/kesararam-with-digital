@@ -64,7 +64,7 @@ function PublicMemberContent() {
   const member = TEAM_MEMBERS.find((m) => m.id === memberId);
 
   const [status, setStatus] = useState<"loading" | "valid" | "expired" | "invalid">("loading");
-  const [countdown, setCountdown] = useState(60);
+  const [countdown, setCountdown] = useState(3600);
 
   // Verify token on mount
   useEffect(() => {
@@ -78,7 +78,7 @@ function PublicMemberContent() {
       .then((data) => {
         if (data.valid) {
           setStatus("valid");
-          setCountdown(60);
+          setCountdown(3600);
         } else {
           setStatus("invalid");
         }
@@ -133,6 +133,9 @@ function PublicMemberContent() {
   }
 
   const isStudent = member.role === "student";
+  const mins = Math.floor(countdown / 60);
+  const secs = countdown % 60;
+  const timeLabel = `${mins}:${String(secs).padStart(2, "0")}`;
 
   return (
     <div className="min-h-screen" style={{ background: "#f5f5f5", fontFamily: "'Arial Black', Arial, sans-serif" }}>
@@ -146,10 +149,10 @@ function PublicMemberContent() {
         </span>
         <div
           className="flex items-center gap-2 px-3 py-1"
-          style={{ background: countdown <= 10 ? "#ff4444" : "#FFEE00", border: "2px solid #FFEE00" }}
+          style={{ background: countdown <= 300 ? "#ff4444" : "#FFEE00", border: "2px solid #FFEE00" }}
         >
-          <RefreshCw className={`w-3 h-3 ${countdown <= 5 ? "animate-spin" : ""}`} style={{ color: "#000" }} />
-          <span className="font-black text-[11px]" style={{ color: "#000" }}>{countdown}s</span>
+          <RefreshCw className={`w-3 h-3 ${countdown <= 60 ? "animate-spin" : ""}`} style={{ color: "#000" }} />
+          <span className="font-black text-[11px]" style={{ color: "#000" }}>{timeLabel}</span>
         </div>
       </div>
 
@@ -223,7 +226,7 @@ function PublicMemberContent() {
         </div>
 
         <p className="text-center font-bold text-[11px] mt-5 text-gray-500">
-          This view expires in {countdown}s · Scan QR code again to re-access
+          This view expires in {timeLabel} · Scan QR code again to re-access
         </p>
       </div>
     </div>
