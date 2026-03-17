@@ -104,8 +104,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     imageUrl: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773739866/SUN_RUNAMARA_rmtlzf.jpg",
     vsid: "VSID-2026-005",
     cardNo: "C50777005",
-    enrolled: "2025
-",
+    enrolled: "2025",
     expiry: "2026/04/20",
     accessPrivileges: ["Lab", "Library", "Competition Platform", "Mentor Sessions"],
     bio: "Passionate about building apps that make a difference in the community.",
