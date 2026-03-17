@@ -26,6 +26,7 @@ interface NavItem {
 }
 
 const adminNav: NavItem[] = [
+  { label: "Project Planner", href: "/admin/project-planner", icon: Calendar, color: "#3b82f6" },
   { label: "Users", href: "/admin/users", icon: Users, color: "#3b82f6" },
   { label: "Content", href: "/admin/content", icon: BookOpen, color: "#22c55e" },
   { label: "Media", href: "/admin/media", icon: Images, color: "#a855f7" },
@@ -33,6 +34,7 @@ const adminNav: NavItem[] = [
 ];
 
 const teacherNav: NavItem[] = [
+  { label: "Project Planner", href: "/teacher/project-planner", icon: Calendar, color: "#3b82f6" },
   { label: "Classes", href: "/teacher/classes", icon: School, color: "#3b82f6" },
   { label: "Sessions", href: "/teacher/sessions", icon: Tv2, color: "#22c55e" },
 ];
