@@ -1,0 +1,199 @@
+
+As a mentor, you can help them change the world by helping a team of 1-5 girls to:
+stay on track and manage their time to meet deadlines
+keep girls energized and motivated
+Connect teams to additional resources and subject matter experts, if possible
+
+
+Chapter Name
+Technovation Cambodia
+Chapter Ambassador
+Voneat Pen
+Contact Information
+https://www.facebook.com/TechnovationCambodia/
+Organization
+606
+Country
+Cambodia
+City
+Phnom Penh
+State
+Phnom Penh
+Seasons Running
+5
+
+
+
+
+
+Share what your team learned, technically or otherwise, and how your team overcame challenges, both technical and non-technical. (Maximum 100 words, must be in English)
+2-6 pictures that describe your journey
+Images of your user research results, survey results, etc.
+Pictures or screenshots of prototypes or previous versions of your project
+NEW: Explain how you decided the information you gathered was legitimate (Maximum 100 words)
+NEW: List your bibliography of resources used/remixed (No limit)
+6. Mobile or Web App Source Code 
+Mobile App source code should be submitted depending on the language used:
+MIT App Inventor — .aia file OR
+Thunkable — Project Detail Page Link (to find it, from your Projects page click on 3 dots next to your Technovation project) OR
+Other programming languages — zip file
+Web app — submit a zip file
+If including an AI model in your project, you may include a zip file that has dataset information (images, spreadsheet, etc)
+Recommended bonus: Include basic instructions on using the app and demo user login information (username/password if needed) for judges to test within the .zip file or via comments in App Inventor or Thunkable
+
+7. Team Photo and Summary (Optional)
+Write one paragraph about your team and share a photo of you all to help judges get to know you—try to avoid sharing your full name and only use your first name.
+To see the full details of each submission criterion, reference the judging rubric.
+
+
+
+
+
+"I'm participating in Technovation Girls. Help me create an idea for an app that solves a problem in my community. I'm interested in the topic of [gender violence / mental health / environmental care] Specifically, I want to work in [for example: street harassment / litter in public spaces / difficulty talking about emotions] "What kind of app could I create to help solve this problem?"
+
+
+“I'm participating as a mentor for Technovation Girls. Help me create a schedule of activities to help my students complete their projects. Please note that I will support them in their learning and project development process from October to April, and that they must submit their projects by April 20 2026.
+
+
+https://technovationchallenge.org/submission-guidelines/
+
+
+
+Program Timeline.
+Prepare
+Receive training and sign an agreement. Join our platform and global communities
+Onboarding
+Aug-Nov
+
+Plan and Partner
+Create a plan to run the program. Build partnerships to involve girls and mentors in the program
+Planning & Engagement.
+
+Learn
+Support girls and mentors to learn using our free online project-based curriculum
+Learning Journey
+Aug-Apr.
+
+Build
+Teams design and submit projects to a global competition on our online platform
+Submissions
+due in April
+
+Compete
+Judges evaluate projects and provide scores and feedback
+Competition
+May - June.
+
+Celebrate
+Host local pitch events. Finalists pitch at our World Summit
+Celebration
+
+
+Offer fulfilling judge and mentor opportunities to your employees while helping them build critical workplace skills like leadership, collaboration, and creative problem-solving.
+Launching The AI Forward Alliance to bring this vision to life.
+
+Increasing peace and stability
+
+
+
+Time Commitment
+Each submission takes 30-60 minutes to review
+
+We ask that you review at least 5 submissions
+Judging is entirely virtual!
+Log on at your convenience
+Total: 3+ Hours
+
+Timeline
+
+Key Dates for 2025-2026 Season
+Registration Opens: August 13, 2025
+
+12 weeks to submission: January 26, 2026
+This is the latest we recommend starting the program
+
+Registration Deadline (Students and Mentors): March 18, 2026 at 23:59 UTC.
+The last day to formally register a team
+
+Submission Deadline: April 20, 2026 at 5pm PDT | April 21 at 1am WAT | 2am CEST | 5:30am IST
+
+Quarterfinals (Judging Round 1): April 23 - May 26, 2026
+
+Semifinalists announced: May 26, 2026
+
+Semifinals (Judging Round 2): June 1 - June 15, 2026
+
+Virtual Celebration and Finalists & Regional Winners Announcement: July 2026
+
+World Summit: September 2026
+
+Aug
+Sep
+Oct
+Nov
+Dec
+Jan
+Feb
+Mar
+Apr
+May
+Jun
+Jul
+Aug
+Sign up!
+Official Season
+Judging
+Celebration & Reflection
+https://technovationchallenge.org/competition/
+
+https://www.technovation.org/educators/#:~:text=based%20in%20Texas-,Standards%20Alignment,-Our%20curriculum%20aligns
+
+https://technovationchallenge.org/courses/senior-division-curriculum/lessons/introduction/
+
+https://technovationchallenge.org/submission-guidelines/
+
+
+https://technovationchallenge.org/courses/ai-in-action-curriculum/
+
+https://www.techforkids.asia/en/rise/technovation-x-future-digital-talents/show?_post=OA%3D%3D
+
+
+
+
+https://technovationchallenge.org/courses/junior-division-curriculum/%20,%20https://technovationchallenge.org/mentor-resources/%20,%20https://technovationchallenge.org/junior-rubric/  https://technovationchallenge.org/technovation-curriculum/ , https://technovationchallenge.org/competition/  , https://technovationchallenge.org/mentor-curriculum/ https://www.technovation.org/educators/#:~:text=based%20in%20Texas-,Standards%20Alignment,-Our%20curriculum%20aligns , https://technovationchallenge.org/safety/ , https://www.technovation.org/safety/volunteer-code-of-conduct/ , https://technovationchallenge.org/curriculum2023/English/week-1/?slide=ideation-1 , https://sdgs.un.org/goals , https://www.technovation.org/app-gallery/ , https://technovationchallenge.org/courses/mentor-training/lessons/mentor-training-wrap-up-your-season/ , https://www.technovation.org/terms-of-use/ https:/​/www.technovation.org/privacy-policy/  https://www.technovation.org/about/​ , https://techforkids.asia/ , https://technovation-one.vercel.app/
+
+https://technovationchallenge.org/courses/junior-division-curriculum/%20,%20
+
+https://technovationchallenge.org/mentor-resources/%20,%20
+
+https://technovationchallenge.org/junior-rubric/  
+
+https://technovationchallenge.org/technovation-curriculum/ , 
+
+https://technovationchallenge.org/competition/  , 
+
+https://technovationchallenge.org/mentor-curriculum/ 
+
+https://www.technovation.org/educators/#:~:text=based%20in%20Texas-,Standards%20Alignment,-Our%20curriculum%20aligns , 
+
+https://technovationchallenge.org/safety/ , 
+
+https://www.technovation.org/safety/volunteer-code-of-conduct/ , 
+
+https://technovationchallenge.org/curriculum2023/English/week-1/?slide=ideation-1 ,
+
+ https://sdgs.un.org/goals , 
+
+https://www.technovation.org/app-gallery/ ,
+
+ https://technovationchallenge.org/courses/mentor-training/lessons/mentor-training-wrap-up-your-season/ , 
+
+https://www.technovation.org/terms-of-use/
+
+ https:/​/www.technovation.org/privacy-policy/  
+
+https://www.technovation.org/about/​ , 
+
+https://techforkids.asia/ ,
+
+ https://technovation-one.vercel.app/
