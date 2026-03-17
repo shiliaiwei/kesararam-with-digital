@@ -446,168 +446,190 @@ export function ProjectPlanner({ role }: { role: "admin" | "teacher" }) {
     return todaysTodos;
   };
 
-  // Enhanced Task Card Component
-  const TaskCard = ({ task }: { task: Task }) => (
-    <div className={`bg-white border-2 rounded-lg p-4 shadow-sm hover:shadow-md transition-all cursor-pointer ${
-      task.priority === 'critical' ? 'border-red-500 bg-red-50' :
-      task.priority === 'high' ? 'border-orange-500 bg-orange-50' :
-      task.priority === 'medium' ? 'border-yellow-500 bg-yellow-50' : 'border-green-500 bg-green-50'
-    } ${selectedTask === task.id ? 'ring-2 ring-blue-500' : ''}`}
-    onClick={() => setSelectedTask(selectedTask === task.id ? null : task.id)}>
-      
-      {/* Task Header */}
-      <div className="flex items-start justify-between mb-3">
-        <div className="flex-1">
-          <div className="flex items-center gap-2 mb-1">
-            <div className={`w-4 h-4 border-2 border-black rounded-full flex items-center justify-center ${
-              task.status === "completed" ? "bg-green-500" : ""
-            }`}>
-              {task.status === "completed" && <CheckCircle className="w-3 h-3 text-white" />}
-            </div>
-            <h3 className="font-bold text-sm text-gray-900">
-              {isKhmer ? task.titleKh : task.title}
-            </h3>
-          </div>
-          
-          <div className="flex items-center gap-3 text-xs text-gray-600 mb-2">
-            <span className="bg-gray-100 px-2 py-1 rounded">
-              {isKhmer ? `សប្តាហ៍ទី ${task.week}` : `WEEK ${task.week}`}
-            </span>
-            <span>{task.startDate.toLocaleDateString()} - {task.endDate.toLocaleDateString()}</span>
-            <span className={`px-2 py-1 rounded text-white text-xs font-bold ${
-              task.priority === 'critical' ? 'bg-red-500' :
-              task.priority === 'high' ? 'bg-orange-500' :
-              task.priority === 'medium' ? 'bg-yellow-500' : 'bg-green-500'
-            }`}>
-              {task.priority.toUpperCase()}
-            </span>
-          </div>
-        </div>
-        
-        <div className="flex items-center gap-2">
-          <span className={`px-2 py-1 text-xs border rounded ${getStatusColor(task.status)}`}>
-            {isKhmer 
-              ? (task.status === "completed" ? "បានបញ្ចប់" : 
-                 task.status === "in-progress" ? "កំពុងដំណើរការ" :
-                 task.status === "overdue" ? "ហួសកំណត់" : "មិនទាន់ចាប់ផ្តើម")
-              : task.status.replace("-", " ").toUpperCase()
-            }
+  // Neo-Brutalist Task Card
+  const TaskCard = ({ task }: { task: Task }) => {
+    const isOpen = selectedTask === task.id;
+    const priorityBg =
+      task.priority === "critical" ? "#ff4444" :
+      task.priority === "high"     ? "#ff8800" :
+      task.priority === "medium"   ? "#FFEE00" : "#00cc66";
+    const priorityColor = task.priority === "medium" ? "#000" : task.priority === "high" ? "#000" : "#fff";
+
+    const statusBg =
+      task.status === "completed"  ? "#00cc66" :
+      task.status === "in-progress"? "#3b82f6" :
+      task.status === "overdue"    ? "#ff4444" : "#e5e7eb";
+    const statusColor = task.status === "not-started" ? "#000" : "#fff";
+
+    return (
+      <div
+        className="bg-white cursor-pointer select-none"
+        style={{ border: "3px solid #000", boxShadow: isOpen ? "6px 6px 0 #000" : "4px 4px 0 #000", fontFamily: "'Arial Black', Arial, sans-serif" }}
+        onClick={() => setSelectedTask(isOpen ? null : task.id)}
+      >
+        {/* Priority stripe */}
+        <div style={{ height: 6, background: priorityBg }} />
+
+        {/* Header */}
+        <div className="px-3 pt-2 pb-1 flex items-start justify-between gap-2">
+          <p className="font-black text-sm uppercase leading-tight flex-1">
+            {isKhmer ? task.titleKh : task.title}
+          </p>
+          <span
+            className="text-[9px] font-black px-1.5 py-0.5 flex-shrink-0"
+            style={{ background: statusBg, color: statusColor, border: "2px solid #000" }}
+          >
+            {task.status === "completed" ? (isKhmer ? "បានបញ្ចប់" : "DONE") :
+             task.status === "in-progress" ? (isKhmer ? "កំពុងដំណើរការ" : "IN PROG") :
+             task.status === "overdue" ? (isKhmer ? "ហួសកំណត់" : "OVERDUE") :
+             (isKhmer ? "មិនទាន់" : "TODO")}
           </span>
-          
-          {(role === "admin" || role === "teacher") && (
+        </div>
+
+        {/* Week + dates */}
+        <div className="px-3 pb-2 flex items-center gap-2">
+          <span className="text-[10px] font-black px-1.5 py-0.5" style={{ background: "#000", color: "#FFEE00" }}>
+            W{task.week}
+          </span>
+          <span className="text-[10px] font-bold text-gray-500">
+            {task.startDate.toLocaleDateString("en-US", { month: "short", day: "numeric" })} →{" "}
+            {task.endDate.toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+          </span>
+          <span
+            className="ml-auto text-[9px] font-black px-1.5 py-0.5"
+            style={{ background: priorityBg, color: priorityColor, border: "2px solid #000" }}
+          >
+            {task.priority.toUpperCase()}
+          </span>
+        </div>
+
+        {/* Description */}
+        <div className="px-3 pb-2">
+          <p className="text-[11px] font-bold text-gray-700 leading-snug">
+            {isKhmer ? task.descriptionKh : task.description}
+          </p>
+        </div>
+
+        {/* Lane tag */}
+        <div className="px-3 pb-2">
+          <span className="text-[9px] font-black uppercase px-1.5 py-0.5" style={{ background: "#FFEE00", border: "1.5px solid #000" }}>
+            {isKhmer ? task.laneKh : task.lane}
+          </span>
+        </div>
+
+        {/* Admin status selector */}
+        {(role === "admin" || role === "teacher") && (
+          <div className="px-3 pb-2" onClick={(e) => e.stopPropagation()}>
             <select
               value={task.status}
               onChange={(e) => updateTask(task.id, { status: e.target.value as Task["status"] })}
-              className="text-xs border border-gray-300 rounded px-2 py-1"
-              onClick={(e) => e.stopPropagation()}
+              className="w-full text-[10px] font-bold px-2 py-1"
+              style={{ border: "2px solid #000", background: "#fff" }}
             >
               <option value="not-started">{isKhmer ? "មិនទាន់ចាប់ផ្តើម" : "NOT STARTED"}</option>
               <option value="in-progress">{isKhmer ? "កំពុងដំណើរការ" : "IN PROGRESS"}</option>
               <option value="completed">{isKhmer ? "បានបញ្ចប់" : "COMPLETED"}</option>
               <option value="overdue">{isKhmer ? "ហួសកំណត់" : "OVERDUE"}</option>
             </select>
-          )}
+          </div>
+        )}
+
+        {/* Expand toggle */}
+        <div
+          className="px-3 py-1.5 text-center text-[10px] font-black uppercase"
+          style={{ background: isOpen ? "#000" : "#f5f5f5", color: isOpen ? "#FFEE00" : "#000", borderTop: "2px solid #000" }}
+        >
+          {isOpen ? (isKhmer ? "▲ បិទ" : "▲ CLOSE") : (isKhmer ? "▼ ថ្ងៃ TO-DO" : "▼ DAILY TO-DOS")}
         </div>
-      </div>
 
-      {/* Task Description */}
-      <p className="text-sm text-gray-700 mb-3">
-        {isKhmer ? task.descriptionKh : task.description}
-      </p>
-
-      {/* Lane Badge */}
-      <div className="mb-3">
-        <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
-          {isKhmer ? task.laneKh : task.lane}
-        </span>
-      </div>
-
-      {/* Daily Todos - Expanded View */}
-      {selectedTask === task.id && task.dailyTodos && (
-        <div className="mt-4 border-t pt-4">
-          <h4 className="font-bold text-sm mb-3 text-gray-900">
-            {isKhmer ? "កិច្ចការប្រចាំថ្ងៃ:" : "DAILY TO-DOS:"}
-          </h4>
-          <div className="space-y-2">
-            {task.dailyTodos.map((todo, index) => (
-              <div key={index} className="flex items-center gap-3 p-2 bg-gray-50 rounded">
+        {/* Daily todos expanded */}
+        {isOpen && task.dailyTodos && (
+          <div style={{ borderTop: "2px solid #000" }}>
+            {task.dailyTodos.map((todo, i) => (
+              <div
+                key={i}
+                className="flex items-start gap-2 px-3 py-2"
+                style={{ borderBottom: i < task.dailyTodos!.length - 1 ? "1px solid #e5e7eb" : "none" }}
+                onClick={(e) => e.stopPropagation()}
+              >
                 <input
                   type="checkbox"
                   checked={todo.completed || false}
                   onChange={() => toggleTodo(task.id, todo.date)}
-                  className="w-4 h-4 text-blue-600"
+                  className="mt-0.5 w-4 h-4 flex-shrink-0"
+                  style={{ accentColor: "#000" }}
                 />
                 <div className="flex-1">
-                  <div className="text-xs text-gray-600 mb-1">
-                    {new Date(todo.date).toLocaleDateString('en-US', { 
-                      weekday: 'short', 
-                      month: 'short', 
-                      day: 'numeric' 
-                    })}
-                  </div>
-                  <div className={`text-sm ${todo.completed ? 'line-through text-gray-500' : 'text-gray-900'}`}>
+                  <p className="text-[10px] font-black text-gray-400">
+                    {new Date(todo.date).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })}
+                  </p>
+                  <p className={`text-[11px] font-bold ${todo.completed ? "line-through text-gray-400" : "text-gray-900"}`}>
                     {isKhmer ? todo.taskKh : todo.task}
-                  </div>
+                  </p>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      )}
-    </div>
-  );
+        )}
+      </div>
+    );
+  };
 
-  // Today's Todos Component
+  // Today's Todos Component — Neo-Brutalist
   const TodaysTodos = () => {
     const todaysTodos = getTodaysTodos();
-    
-    if (todaysTodos.length === 0) {
-      return (
-        <div className="bg-green-50 border border-green-300 p-4 rounded-lg">
-          <div className="flex items-center gap-2 mb-2">
-            <CheckCircle className="w-5 h-5 text-green-600" />
-            <h3 className="font-bold text-green-800">
-              {isKhmer ? "គ្មានកិច្ចការថ្ងៃនេះ!" : "NO TASKS TODAY!"}
-            </h3>
-          </div>
-          <p className="text-sm text-green-700">
-            {isKhmer ? "អ្នកបានបញ្ចប់កិច្ចការទាំងអស់សម្រាប់ថ្ងៃនេះ។" : "You've completed all tasks for today."}
-          </p>
-        </div>
-      );
-    }
+    const remaining = todaysTodos.filter(({ todo }) => !todo.completed).length;
 
     return (
-      <div className="bg-blue-50 border border-blue-300 p-4 rounded-lg">
-        <div className="flex items-center gap-2 mb-3">
-          <Calendar className="w-5 h-5 text-blue-600" />
-          <h3 className="font-bold text-blue-800">
-            {isKhmer ? "កិច្ចការថ្ងៃនេះ" : "TODAY'S TO-DOS"}
-          </h3>
-          <span className="bg-blue-200 text-blue-800 px-2 py-1 rounded text-xs font-bold">
-            {todaysTodos.filter(({todo}) => !todo.completed).length} {isKhmer ? "នៅសល់" : "REMAINING"}
+      <div style={{ border: "3px solid #000", boxShadow: "4px 4px 0 #000", fontFamily: "'Arial Black', Arial, sans-serif" }}>
+        <div className="flex items-center justify-between px-3 py-2" style={{ background: "#000" }}>
+          <div className="flex items-center gap-2">
+            <Calendar className="w-4 h-4 text-[#FFEE00]" />
+            <span className="font-black text-sm text-[#FFEE00] uppercase">
+              {isKhmer ? "កិច្ចការថ្ងៃនេះ" : "TODAY'S TO-DOS"}
+            </span>
+          </div>
+          <span
+            className="text-[10px] font-black px-2 py-0.5"
+            style={{ background: remaining > 0 ? "#FFEE00" : "#00cc66", color: "#000" }}
+          >
+            {remaining > 0 ? `${remaining} ${isKhmer ? "នៅសល់" : "LEFT"}` : (isKhmer ? "✓ រួចរាល់" : "✓ ALL DONE")}
           </span>
         </div>
-        <div className="space-y-2">
-          {todaysTodos.map(({task, todo}, index) => (
-            <div key={index} className="flex items-center gap-3 p-2 bg-white rounded border">
-              <input
-                type="checkbox"
-                checked={todo.completed || false}
-                onChange={() => toggleTodo(task.id, todo.date)}
-                className="w-4 h-4 text-blue-600"
-              />
-              <div className="flex-1">
-                <div className="text-xs text-gray-600 mb-1">
-                  {isKhmer ? task.titleKh : task.title}
-                </div>
-                <div className={`text-sm ${todo.completed ? 'line-through text-gray-500' : 'text-gray-900'}`}>
-                  {isKhmer ? todo.taskKh : todo.task}
+
+        {todaysTodos.length === 0 ? (
+          <div className="px-4 py-3">
+            <p className="font-bold text-sm text-gray-600">
+              {isKhmer ? "គ្មានកិច្ចការថ្ងៃនេះ" : "No tasks scheduled for today."}
+            </p>
+          </div>
+        ) : (
+          <div>
+            {todaysTodos.map(({ task, todo }, index) => (
+              <div
+                key={index}
+                className="flex items-start gap-3 px-3 py-2"
+                style={{ borderBottom: index < todaysTodos.length - 1 ? "1px solid #e5e7eb" : "none" }}
+              >
+                <input
+                  type="checkbox"
+                  checked={todo.completed || false}
+                  onChange={() => toggleTodo(task.id, todo.date)}
+                  className="mt-0.5 w-4 h-4 flex-shrink-0"
+                  style={{ accentColor: "#000" }}
+                />
+                <div className="flex-1">
+                  <p className="text-[10px] font-black uppercase text-gray-400">
+                    {isKhmer ? task.titleKh : task.title}
+                  </p>
+                  <p className={`text-sm font-bold ${todo.completed ? "line-through text-gray-400" : "text-gray-900"}`}>
+                    {isKhmer ? todo.taskKh : todo.task}
+                  </p>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     );
   };
@@ -1050,39 +1072,41 @@ export function ProjectPlanner({ role }: { role: "admin" | "teacher" }) {
         {/* Enhanced Tasks Section */}
         <div>
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-black border-b border-gray-300 pb-2">
-              {isKhmer ? "កិច្ចការ / សកម្មភាព" : "TASKS / ACTIVITIES"} 
-              <span className="text-sm font-normal ml-2" style={{ color: currentFramework?.color }}>
-                ({isKhmer ? currentFramework?.nameKh : currentFramework?.name})
+            <div>
+              <h2
+                className="text-xl font-black uppercase border-b-4 border-black pb-1 inline-block"
+                style={{ fontFamily: "'Arial Black', Arial, sans-serif" }}
+              >
+                {isKhmer ? "កិច្ចការ / សកម្មភាព" : "TASKS / ACTIVITIES"}
+              </h2>
+              <span
+                className="ml-2 text-[10px] font-black px-2 py-0.5 align-middle"
+                style={{ background: currentFramework?.color ?? "#000", color: "#fff", border: "2px solid #000" }}
+              >
+                {isKhmer ? currentFramework?.nameKh : currentFramework?.name}
               </span>
-            </h2>
-            
+            </div>
+
             {/* View Mode Toggle */}
-            <div className="flex gap-2">
-              <button
-                onClick={() => setViewMode("cards")}
-                className={`px-3 py-1 text-xs rounded ${
-                  viewMode === "cards" ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-700"
-                }`}
-              >
-                {isKhmer ? "កាត" : "CARDS"}
-              </button>
-              <button
-                onClick={() => setViewMode("timeline")}
-                className={`px-3 py-1 text-xs rounded ${
-                  viewMode === "timeline" ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-700"
-                }`}
-              >
-                {isKhmer ? "កាលវិភាគ" : "TIMELINE"}
-              </button>
-              <button
-                onClick={() => setViewMode("calendar")}
-                className={`px-3 py-1 text-xs rounded ${
-                  viewMode === "calendar" ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-700"
-                }`}
-              >
-                {isKhmer ? "ប្រតិទិន" : "CALENDAR"}
-              </button>
+            <div className="flex gap-0">
+              {(["cards", "timeline", "calendar"] as const).map((mode, i) => (
+                <button
+                  key={mode}
+                  onClick={() => setViewMode(mode)}
+                  className="px-3 py-1.5 text-[10px] font-black uppercase"
+                  style={{
+                    background: viewMode === mode ? "#000" : "#fff",
+                    color: viewMode === mode ? "#FFEE00" : "#000",
+                    border: "2px solid #000",
+                    borderLeft: i > 0 ? "1px solid #000" : "2px solid #000",
+                    fontFamily: "'Arial Black', Arial, sans-serif",
+                  }}
+                >
+                  {isKhmer
+                    ? (mode === "cards" ? "កាត" : mode === "timeline" ? "កាលវិភាគ" : "ប្រតិទិន")
+                    : mode.toUpperCase()}
+                </button>
+              ))}
             </div>
           </div>
 
@@ -1091,7 +1115,7 @@ export function ProjectPlanner({ role }: { role: "admin" | "teacher" }) {
             <TodaysTodos />
           </div>
 
-          {/* Tasks Display based on view mode */}
+          {/* Cards view — neo-brutalist grid */}
           {viewMode === "cards" && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {tasks.map((task) => (
