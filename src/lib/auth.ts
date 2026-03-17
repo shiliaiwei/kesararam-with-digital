@@ -1,7 +1,7 @@
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
-export type UserRole = "student" | "teacher" | "admin";
+export type UserRole = "student" | "teacher" | "admin" | "staff";
 
 export interface JWTPayload {
   id: number;
@@ -48,6 +48,8 @@ export function getRedirectUrl(role: UserRole): string {
       return "https://dashboard.kesararamwithdigital.tech/teacher/classes";
     case "admin":
       return "https://dashboard.kesararamwithdigital.tech/admin/users";
+    case "staff":
+      return "https://dashboard.kesararamwithdigital.tech/staff/content";
     default:
       return "/profile/student";
   }

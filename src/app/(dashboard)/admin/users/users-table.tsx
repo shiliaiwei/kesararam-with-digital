@@ -46,12 +46,13 @@ type UserRow = Pick<
   timeSpent?: number; // in minutes
 };
 
-type Role = "student" | "teacher" | "admin";
+type Role = "student" | "teacher" | "admin" | "staff";
 
 const ROLE_CONFIG: Record<Role, { label: string; color: string; bgColor: string }> = {
   student: { label: "Student", color: "#3b82f6", bgColor: "bg-blue-400" },
   teacher: { label: "Teacher", color: "#22c55e", bgColor: "bg-green-400" },
-  admin: { label: "Admin", color: "#ef4444", bgColor: "bg-red-400" },
+  admin:   { label: "Admin",   color: "#ef4444", bgColor: "bg-red-400" },
+  staff:   { label: "Staff",   color: "#f59e0b", bgColor: "bg-yellow-400" },
 };
 
 // User Activity Modal Component
@@ -211,7 +212,7 @@ function RolePicker({
   onChange: (v: Role) => void;
 }) {
   return (
-    <div className="grid grid-cols-3 gap-2">
+    <div className="grid grid-cols-4 gap-2">
       {(Object.keys(ROLE_CONFIG) as Role[]).map((r) => (
         <button
           key={r}
@@ -656,7 +657,9 @@ export function UsersTable({ initialUsers }: { initialUsers: UserRow[] }) {
             >
               <option value="all">All Roles</option>
               <option value="admin">Admin</option>
+              <option value="staff">Staff</option>
               <option value="teacher">Teacher</option>
+              <option value="student">Student</option>
               <option value="student">Student</option>
             </select>
 

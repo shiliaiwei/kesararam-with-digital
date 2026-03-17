@@ -22,7 +22,7 @@ export default async function DashboardLayout({
     <div className="min-h-screen bg-white flex">
       {/* Sidebar */}
       <AppSidebar
-        role={session.role as "admin" | "teacher"}
+        role={session.role as "admin" | "teacher" | "staff"}
         name={session.name}
         email={session.email}
         avatar={session.avatar ?? null}

@@ -39,8 +39,15 @@ const teacherNav: NavItem[] = [
   { label: "Sessions", href: "/teacher/sessions", icon: Tv2, color: "#22c55e" },
 ];
 
+const staffNav: NavItem[] = [
+  { label: "Content", href: "/staff/content", icon: BookOpen, color: "#22c55e" },
+  { label: "Media", href: "/staff/media", icon: Images, color: "#a855f7" },
+  { label: "Classes", href: "/staff/classes", icon: School, color: "#3b82f6" },
+  { label: "Project Planner", href: "/staff/project-planner", icon: Calendar, color: "#f59e0b" },
+];
+
 interface AppSidebarProps {
-  role: "admin" | "teacher";
+  role: "admin" | "teacher" | "staff";
   name: string;
   email: string;
   avatar?: string | null;
@@ -48,9 +55,9 @@ interface AppSidebarProps {
 
 export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
   const pathname = usePathname();
-  const navItems = role === "admin" ? adminNav : teacherNav;
-  const profileHref = role === "admin" ? "/admin/profile" : "/teacher/profile";
-  const roleColor = role === "admin" ? "#ef4444" : "#22c55e";
+  const navItems = role === "admin" ? adminNav : role === "staff" ? staffNav : teacherNav;
+  const profileHref = role === "admin" ? "/admin/profile" : role === "staff" ? "/staff/profile" : "/teacher/profile";
+  const roleColor = role === "admin" ? "#ef4444" : role === "staff" ? "#f59e0b" : "#22c55e";
 
   function isNavItemActive(href: string) {
     const targetPath = href.split("?")[0];
@@ -165,7 +172,7 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
             Quick Actions
           </h2>
           <Link
-            href={role === "admin" ? "/admin/content" : "/teacher/content"}
+            href={role === "admin" ? "/admin/content" : role === "staff" ? "/staff/content" : "/teacher/content"}
             className="flex items-center gap-2 p-2.5 border-2 border-black bg-green-400 hover:bg-green-300 hover:shadow-[1px_1px_0_#000] transition-all duration-100"
           >
             <div className="w-6 h-6 border-2 border-black bg-white flex items-center justify-center shadow-[1px_1px_0_#000]">

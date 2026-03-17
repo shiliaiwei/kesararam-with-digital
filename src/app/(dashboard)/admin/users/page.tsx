@@ -17,7 +17,7 @@ export default async function AdminUsersPage() {
     username: string;
     email: string;
     displayName: string | null;
-    role: "student" | "teacher" | "admin";
+    role: "student" | "teacher" | "admin" | "staff";
     isActive: boolean;
     loginAttempts: number;
     createdAt: Date;

@@ -363,7 +363,7 @@ const MILESTONES: Milestone[] = [
   },
 ];
 
-export function ProjectPlanner({ role }: { role: "admin" | "teacher" }) {
+export function ProjectPlanner({ role }: { role: "admin" | "teacher" | "staff" }) {
   const [tasks, setTasks] = useState<Task[]>(ENHANCED_TASKS);
   const [editingTask, setEditingTask] = useState<string | null>(null);
   const [pendingChanges, setPendingChanges] = useState<Task[]>([]);
