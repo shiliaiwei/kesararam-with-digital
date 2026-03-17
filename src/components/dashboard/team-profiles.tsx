@@ -46,7 +46,7 @@ function ProtectedImage({
     if (!res.ok) return;
     const { token } = await res.json();
     setSrc(`/api/profile-image?token=${token}`);
-    setTimeout(() => setExpired(true), 60000);
+    setTimeout(() => setExpired(true), 3600000);
   }, [memberId, imageUrl]);
 
   useEffect(() => { refresh(); }, [refresh]);
