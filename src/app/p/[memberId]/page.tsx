@@ -30,8 +30,7 @@ function ProfileImage({ memberId, imageUrl, name }: { memberId: string; imageUrl
 export default function PublicMemberPage() {
   const params = useParams();
   const rawId = params?.memberId as string;
-  // strip leading @ if present (Next.js @ route segment)
-  const memberId = rawId?.startsWith("@") ? rawId.slice(1) : rawId;
+  const memberId = rawId;
 
   const member = TEAM_MEMBERS.find((m) => m.id === memberId);
 
