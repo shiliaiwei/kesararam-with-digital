@@ -373,8 +373,8 @@ export function ProjectPlanner({ role }: { role: "admin" | "teacher" }) {
   const [hoveredTask, setHoveredTask] = useState<string | null>(null);
   const [showDeliverables, setShowDeliverables] = useState(false);
   const [selectedTask, setSelectedTask] = useState<string | null>(null);
-  const [viewMode, setViewMode] = useState<"cards" | "timeline" | "calendar">("cards");
-  const [activeTab, setActiveTab] = useState<"planner" | "team" | "judging">("planner");
+  const [viewMode, setViewMode] = useState<"cards" | "timeline" | "gantt">("cards");
+  const [activeTab, setActiveTab] = useState<"planner" | "tasks" | "team" | "judging">("planner");
 
   // Update current time every minute
   useEffect(() => {
@@ -711,33 +711,332 @@ export function ProjectPlanner({ role }: { role: "admin" | "teacher" }) {
     </div>
   );
 
+  // ── Full-screen Tasks Tab ─────────────────────────────────────────────────
+  const TasksTab = () => (
+    <div className="p-6" style={{ fontFamily: "'Arial Black', Arial, sans-serif" }}>
+      {/* Header bar */}
+      <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+        <div>
+          <h1 className="font-black text-3xl uppercase" style={{ letterSpacing: "-1px" }}>
+            {isKhmer ? "កិច្ចការ / សកម្មភាព" : "TASKS / ACTIVITIES"}
+          </h1>
+          <p className="text-xs font-bold text-gray-500 mt-1">
+            {tasks.filter(t => t.status === "completed").length}/{tasks.length} {isKhmer ? "បានបញ្ចប់" : "COMPLETED"}
+            {" · "}
+            {tasks.filter(t => t.status === "in-progress").length} {isKhmer ? "កំពុងដំណើរការ" : "IN PROGRESS"}
+            {" · "}
+            {tasks.filter(t => t.status === "overdue").length} {isKhmer ? "ហួសកំណត់" : "OVERDUE"}
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2 flex-wrap">
+          {/* Framework selector */}
+          <select
+            value={selectedFramework}
+            onChange={(e) => setSelectedFramework(e.target.value)}
+            className="text-[11px] font-black uppercase px-3 py-2"
+            style={{ border: "2px solid #000", background: "#FFEE00", color: "#000" }}
+          >
+            {PROJECT_FRAMEWORKS.map(f => (
+              <option key={f.id} value={f.id}>{isKhmer ? f.nameKh : f.name}</option>
+            ))}
+          </select>
+
+          {/* View mode */}
+          <div className="flex">
+            {(["cards", "timeline", "gantt"] as const).map((mode, i) => (
+              <button
+                key={mode}
+                onClick={() => setViewMode(mode)}
+                className="px-4 py-2 text-[11px] font-black uppercase"
+                style={{
+                  background: viewMode === mode ? "#000" : "#fff",
+                  color: viewMode === mode ? "#FFEE00" : "#000",
+                  border: "2px solid #000",
+                  borderLeft: i > 0 ? "1px solid #000" : "2px solid #000",
+                }}
+              >
+                {isKhmer
+                  ? (mode === "cards" ? "កាត" : mode === "timeline" ? "បញ្ជី" : "GANTT")
+                  : mode.toUpperCase()}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Framework badge */}
+      {currentFramework && (
+        <div
+          className="mb-5 px-4 py-2 flex items-center gap-3"
+          style={{ background: currentFramework.color, border: "2px solid #000", boxShadow: "3px 3px 0 #000" }}
+        >
+          <span className="font-black text-white text-sm uppercase">
+            {isKhmer ? currentFramework.nameKh : currentFramework.name}
+          </span>
+          <span className="text-white text-xs font-bold opacity-90">
+            — {isKhmer ? currentFramework.descriptionKh : currentFramework.description}
+          </span>
+        </div>
+      )}
+
+      {/* Today's todos */}
+      <div className="mb-6">
+        <TodaysTodos />
+      </div>
+
+      {/* CARDS view */}
+      {viewMode === "cards" && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {tasks.map((task) => <TaskCard key={task.id} task={task} />)}
+        </div>
+      )}
+
+      {/* TIMELINE list view */}
+      {viewMode === "timeline" && (
+        <div style={{ border: "3px solid #000", boxShadow: "5px 5px 0 #000" }}>
+          {/* Header row */}
+          <div
+            className="grid text-[11px] font-black uppercase px-4 py-2"
+            style={{ background: "#000", color: "#FFEE00", gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr" }}
+          >
+            <span>{isKhmer ? "ចំណងជើង" : "TASK"}</span>
+            <span>{isKhmer ? "សប្តាហ៍" : "WEEK"}</span>
+            <span>{isKhmer ? "ថ្ងៃ" : "DATES"}</span>
+            <span>{isKhmer ? "អាទិភាព" : "PRIORITY"}</span>
+            <span>{isKhmer ? "ស្ថានភាព" : "STATUS"}</span>
+          </div>
+          {tasks.map((task, i) => {
+            const priorityBg = task.priority === "critical" ? "#ff4444" : task.priority === "high" ? "#ff8800" : task.priority === "medium" ? "#FFEE00" : "#00cc66";
+            const statusBg = task.status === "completed" ? "#00cc66" : task.status === "in-progress" ? "#3b82f6" : task.status === "overdue" ? "#ff4444" : "#e5e7eb";
+            const statusColor = task.status === "not-started" ? "#000" : "#fff";
+            return (
+              <div
+                key={task.id}
+                className="grid items-center px-4 py-3 cursor-pointer"
+                style={{
+                  gridTemplateColumns: "2fr 1fr 1fr 1fr 1fr",
+                  borderTop: i > 0 ? "2px solid #000" : "2px solid #000",
+                  background: i % 2 === 0 ? "#fff" : "#fafafa",
+                }}
+                onClick={() => setSelectedTask(selectedTask === task.id ? null : task.id)}
+              >
+                <div>
+                  <p className="font-black text-sm uppercase leading-tight">{isKhmer ? task.titleKh : task.title}</p>
+                  <p className="text-[10px] font-bold text-gray-500 mt-0.5">{isKhmer ? task.laneKh : task.lane}</p>
+                  {selectedTask === task.id && task.dailyTodos && (
+                    <div className="mt-2 space-y-1" onClick={e => e.stopPropagation()}>
+                      {task.dailyTodos.map((todo, ti) => (
+                        <div key={ti} className="flex items-center gap-2">
+                          <input type="checkbox" checked={todo.completed || false} onChange={() => toggleTodo(task.id, todo.date)} style={{ accentColor: "#000" }} />
+                          <span className={`text-[10px] font-bold ${todo.completed ? "line-through text-gray-400" : ""}`}>{isKhmer ? todo.taskKh : todo.task}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <span className="font-black text-sm px-2 py-0.5 inline-block" style={{ background: "#000", color: "#FFEE00" }}>W{task.week}</span>
+                <span className="text-[10px] font-bold text-gray-600">
+                  {task.startDate.toLocaleDateString("en-US", { month: "short", day: "numeric" })} →{" "}
+                  {task.endDate.toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+                </span>
+                <span className="text-[10px] font-black px-2 py-0.5 inline-block" style={{ background: priorityBg, color: task.priority === "medium" || task.priority === "high" ? "#000" : "#fff", border: "1.5px solid #000" }}>
+                  {task.priority.toUpperCase()}
+                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-black px-2 py-0.5" style={{ background: statusBg, color: statusColor, border: "1.5px solid #000" }}>
+                    {task.status === "completed" ? "DONE" : task.status === "in-progress" ? "IN PROG" : task.status === "overdue" ? "OVERDUE" : "TODO"}
+                  </span>
+                  {(role === "admin" || role === "teacher") && (
+                    <select
+                      value={task.status}
+                      onChange={(e) => { e.stopPropagation(); updateTask(task.id, { status: e.target.value as Task["status"] }); }}
+                      onClick={e => e.stopPropagation()}
+                      className="text-[10px] font-bold px-1 py-0.5"
+                      style={{ border: "1.5px solid #000" }}
+                    >
+                      <option value="not-started">TODO</option>
+                      <option value="in-progress">IN PROGRESS</option>
+                      <option value="completed">DONE</option>
+                      <option value="overdue">OVERDUE</option>
+                    </select>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* GANTT view — full width */}
+      {viewMode === "gantt" && (
+        <div>
+          {/* Legend */}
+          <div className="flex flex-wrap gap-2 mb-4">
+            {[
+              { label: "DONE", bg: "#00cc66", color: "#fff" },
+              { label: "IN PROGRESS", bg: "#3b82f6", color: "#fff" },
+              { label: "TODO", bg: "#e5e7eb", color: "#000" },
+              { label: "OVERDUE", bg: "#ff4444", color: "#fff" },
+              { label: "DEADLINE", bg: "#000", color: "#FFEE00" },
+            ].map(({ label, bg, color }) => (
+              <span key={label} className="text-[10px] font-black px-2 py-0.5" style={{ background: bg, color, border: "2px solid #000" }}>{label}</span>
+            ))}
+          </div>
+
+          <div className="overflow-x-auto" style={{ border: "3px solid #000", boxShadow: "5px 5px 0 #000" }}>
+            <table className="w-full text-xs border-collapse" style={{ minWidth: 1100, tableLayout: "fixed" }}>
+              <colgroup>
+                <col style={{ width: 160 }} />
+                {Array.from({ length: 12 }).map((_, i) => <col key={i} style={{ width: `${940 / 12}px` }} />)}
+              </colgroup>
+              <thead>
+                <tr style={{ background: "#000" }}>
+                  <th className="text-left px-3 py-2 font-black text-[#FFEE00] uppercase" style={{ borderRight: "2px solid #333" }}>
+                    {isKhmer ? "ផ្នែក" : "LANE"}
+                  </th>
+                  {Array.from({ length: 12 }, (_, i) => {
+                    const wStart = new Date("2026-03-17");
+                    wStart.setDate(wStart.getDate() + i * 7);
+                    const wEnd = new Date(wStart);
+                    wEnd.setDate(wStart.getDate() + 6);
+                    const isCurrent = currentTime >= wStart && currentTime <= wEnd;
+                    const fmt = (d: Date) => d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+                    return (
+                      <th
+                        key={i}
+                        className="text-center px-1 py-2 font-black"
+                        style={{
+                          background: isCurrent ? "#FFEE00" : "#000",
+                          color: isCurrent ? "#000" : "#FFEE00",
+                          borderLeft: "1px solid #333",
+                        }}
+                      >
+                        <div>W{i + 1}</div>
+                        <div className="font-bold text-[9px] opacity-80">{fmt(wStart)}</div>
+                        <div className="font-bold text-[9px] opacity-80">{fmt(wEnd)}</div>
+                      </th>
+                    );
+                  })}
+                </tr>
+              </thead>
+              <tbody>
+                {WORK_LANES.map((lane, li) => {
+                  const laneTasks = tasks.filter(t => t.lane === lane.en);
+                  return (
+                    <tr key={li} style={{ background: li % 2 === 0 ? "#fff" : "#f9f9f9", borderBottom: "2px solid #000" }}>
+                      <td className="px-3 py-2 font-black text-[11px] uppercase align-top" style={{ borderRight: "2px solid #000" }}>
+                        {isKhmer ? lane.kh : lane.en}
+                      </td>
+                      {Array.from({ length: 12 }, (_, wi) => {
+                        const weekNum = wi + 1;
+                        const cellTasks = laneTasks.filter(t => t.week === weekNum);
+                        const isDeadline = lane.en === "Submission & Final Assets" && weekNum === 12;
+                        return (
+                          <td key={wi} className="px-1 py-1 align-top" style={{ borderLeft: "1px solid #ddd", minHeight: 48 }}>
+                            {isDeadline && cellTasks.length === 0 && (
+                              <div className="text-[9px] font-black text-center py-1" style={{ background: "#000", color: "#FFEE00" }}>
+                                APR 20<br />DEADLINE
+                              </div>
+                            )}
+                            {cellTasks.map(task => {
+                              const bg = task.status === "completed" ? "#00cc66" : task.status === "in-progress" ? "#3b82f6" : task.status === "overdue" ? "#ff4444" : "#e5e7eb";
+                              const tc = task.status === "not-started" ? "#000" : "#fff";
+                              return (
+                                <div
+                                  key={task.id}
+                                  className="group relative mb-1 px-1.5 py-1 cursor-pointer"
+                                  style={{ background: bg, border: "2px solid #000", color: tc }}
+                                >
+                                  <p className="font-black text-[9px] leading-tight line-clamp-2 uppercase">
+                                    {isKhmer ? task.titleKh : task.title}
+                                  </p>
+                                  <p className="text-[8px] leading-tight mt-0.5 opacity-80 line-clamp-1">
+                                    {isKhmer ? task.descriptionKh : task.description}
+                                  </p>
+                                  {/* Hover popup */}
+                                  <div className="absolute z-50 hidden group-hover:block left-full top-0 ml-2 w-56 pointer-events-none"
+                                    style={{ background: "#000", color: "#fff", border: "2px solid #FFEE00", padding: "10px", boxShadow: "4px 4px 0 #FFEE00" }}>
+                                    <p className="font-black text-[11px] uppercase mb-1">{isKhmer ? task.titleKh : task.title}</p>
+                                    <p className="text-[10px] opacity-70 mb-1">
+                                      {task.startDate.toLocaleDateString()} → {task.endDate.toLocaleDateString()}
+                                    </p>
+                                    <p className="text-[10px] leading-relaxed mb-2">{isKhmer ? task.detailedDescriptionKh : task.detailedDescription}</p>
+                                    {task.dailyTodos && (
+                                      <div style={{ borderTop: "1px solid #333", paddingTop: 6 }}>
+                                        <p className="font-black text-[9px] text-[#FFEE00] mb-1">DAILY TODOS:</p>
+                                        {task.dailyTodos.slice(0, 3).map((todo, ti) => (
+                                          <p key={ti} className={`text-[9px] mb-0.5 ${todo.completed ? "line-through opacity-50" : ""}`}>
+                                            ▸ {isKhmer ? todo.taskKh : todo.task}
+                                          </p>
+                                        ))}
+                                        {task.dailyTodos.length > 3 && <p className="text-[9px] opacity-50">+{task.dailyTodos.length - 3} more</p>}
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+
   return (
-    <div className="min-h-screen bg-white p-8 font-sans">
-      {/* Tab Navigation */}
-      <div className="flex gap-1 mb-6 border-b border-gray-200">
+    <div className="min-h-screen bg-white font-sans">
+      {/* Tab Navigation — Neo-Brutalist */}
+      <div
+        className="flex"
+        style={{ borderBottom: "3px solid #000", fontFamily: "'Arial Black', Arial, sans-serif" }}
+      >
         {([
           { id: "planner", label: isKhmer ? "ផែនការ" : "PROJECT PLANNER", icon: Calendar },
-          { id: "team", label: isKhmer ? "ក្រុម" : "TEAM PROFILES", icon: Users },
+          { id: "tasks",   label: isKhmer ? "កិច្ចការ" : "TASKS / ACTIVITIES", icon: CheckCircle },
+          { id: "team",    label: isKhmer ? "ក្រុម" : "TEAM PROFILES", icon: Users },
           { id: "judging", label: isKhmer ? "ការវិនិច្ឆ័យ" : "JUDGING", icon: Trophy },
-        ] as const).map((tab) => (
+        ] as const).map((tab, i) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`flex items-center gap-2 px-4 py-2 text-sm font-bold border-b-2 transition-colors ${
-              activeTab === tab.id
-                ? "border-blue-600 text-blue-600"
-                : "border-transparent text-gray-500 hover:text-gray-800"
-            }`}
+            className="flex items-center gap-2 px-5 py-3 text-xs font-black uppercase transition-colors"
+            style={{
+              background: activeTab === tab.id ? "#000" : "#fff",
+              color: activeTab === tab.id ? "#FFEE00" : "#000",
+              borderRight: i < 3 ? "2px solid #000" : "none",
+              borderBottom: activeTab === tab.id ? "3px solid #000" : "none",
+              marginBottom: activeTab === tab.id ? -3 : 0,
+            }}
           >
             <tab.icon className="w-4 h-4" />
             {tab.label}
           </button>
         ))}
+        {/* Right side controls always visible */}
+        <div className="ml-auto flex items-center gap-0 pr-4">
+          <button
+            onClick={() => setIsKhmer(!isKhmer)}
+            className="flex items-center gap-1 px-3 py-1 text-[10px] font-black uppercase"
+            style={{ border: "2px solid #000", background: "#FFEE00", color: "#000" }}
+          >
+            <Globe className="w-3 h-3" />
+            {isKhmer ? "EN" : "KH"}
+          </button>
+        </div>
       </div>
 
-      {activeTab === "team" && <TeamProfiles isKhmer={isKhmer} />}
-      {activeTab === "judging" && <JudgingStatus isKhmer={isKhmer} />}
-      {activeTab === "planner" && <>
+      {activeTab === "team" && <div className="p-8"><TeamProfiles isKhmer={isKhmer} /></div>}
+      {activeTab === "judging" && <div className="p-8"><JudgingStatus isKhmer={isKhmer} /></div>}
+      {activeTab === "tasks" && <TasksTab />}
+      {activeTab === "planner" && <div className="p-8">
 
       {/* Language Toggle, Framework Selector & Live Calendar */}
       <div className="flex justify-between items-center mb-6">
@@ -784,6 +1083,7 @@ export function ProjectPlanner({ role }: { role: "admin" | "teacher" }) {
           <button
             onClick={() => setIsKhmer(!isKhmer)}
             className="flex items-center gap-2 px-4 py-2 bg-gray-100 border border-gray-300 rounded hover:bg-gray-200 transition-colors"
+            style={{ display: "none" }}
           >
             <Globe className="w-4 h-4" />
             <span className="font-medium">
@@ -1001,47 +1301,7 @@ export function ProjectPlanner({ role }: { role: "admin" | "teacher" }) {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-8">
-        {/* Goals Section */}
-        <div>
-          <h2 className="text-xl font-bold text-black mb-4 border-b border-gray-300 pb-2">
-            {isKhmer ? "គោលដៅ" : "GOALS"}
-          </h2>
-          <div className="space-y-3">
-            {[
-              {
-                en: "Develop web app with mobile browser support",
-                kh: "អភិវឌ្ឍកម្មវិធីបណ្តាញដែលគាំទ្រកម្មវិធីរុករកទូរស័ព្ទ"
-              },
-              {
-                en: "Address community problem through technology",
-                kh: "ដោះស្រាយបញ្ហាសហគមន៍តាមរយៈបច្ចេកវិទ្យា"
-              },
-              {
-                en: "Implement privacy and accessibility standards",
-                kh: "អនុវត្តស្តង់ដារឯកជនភាពនិងលក្ខណៈងាយស្រួលប្រើប្រាស់"
-              },
-              {
-                en: "Complete user research and testing",
-                kh: "បញ្ចប់ការស្រាវជ្រាវអ្នកប្រើប្រាស់និងការធ្វើតេស្ត"
-              },
-              {
-                en: "Submit by April 20, 2026 5:00 PM PDT",
-                kh: "ដាក់ស្នើមុនថ្ងៃទី២០ ខែមេសា ឆ្នាំ២០២៦ ម៉ោង៥:០០ល្ងាច PDT"
-              },
-              {
-                en: "Advance through judging rounds to World Summit",
-                kh: "ឆ្លងកាត់ជុំវិនិច្ឆ័យទៅកាន់កិច្ចប្រជុំកំពូលពិភពលោក"
-              }
-            ].map((goal, index) => (
-              <div key={index} className="flex items-center gap-3">
-                <div className="w-4 h-4 border-2 border-black rounded-full flex-shrink-0"></div>
-                <span className="text-sm">{isKhmer ? goal.kh : goal.en}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
+      <div className="grid grid-cols-2 gap-8">
         {/* Milestones */}
         <div>
           <h2 className="text-xl font-bold text-black mb-4 border-b border-gray-300 pb-2">
@@ -1069,386 +1329,62 @@ export function ProjectPlanner({ role }: { role: "admin" | "teacher" }) {
           </div>
         </div>
 
-        {/* Enhanced Tasks Section */}
+        {/* Task summary — click to go to Tasks tab */}
         <div>
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <h2
-                className="text-xl font-black uppercase border-b-4 border-black pb-1 inline-block"
-                style={{ fontFamily: "'Arial Black', Arial, sans-serif" }}
-              >
-                {isKhmer ? "កិច្ចការ / សកម្មភាព" : "TASKS / ACTIVITIES"}
-              </h2>
-              <span
-                className="ml-2 text-[10px] font-black px-2 py-0.5 align-middle"
-                style={{ background: currentFramework?.color ?? "#000", color: "#fff", border: "2px solid #000" }}
-              >
-                {isKhmer ? currentFramework?.nameKh : currentFramework?.name}
-              </span>
-            </div>
-
-            {/* View Mode Toggle */}
-            <div className="flex gap-0">
-              {(["cards", "timeline", "calendar"] as const).map((mode, i) => (
-                <button
-                  key={mode}
-                  onClick={() => setViewMode(mode)}
-                  className="px-3 py-1.5 text-[10px] font-black uppercase"
-                  style={{
-                    background: viewMode === mode ? "#000" : "#fff",
-                    color: viewMode === mode ? "#FFEE00" : "#000",
-                    border: "2px solid #000",
-                    borderLeft: i > 0 ? "1px solid #000" : "2px solid #000",
-                    fontFamily: "'Arial Black', Arial, sans-serif",
-                  }}
-                >
-                  {isKhmer
-                    ? (mode === "cards" ? "កាត" : mode === "timeline" ? "កាលវិភាគ" : "ប្រតិទិន")
-                    : mode.toUpperCase()}
-                </button>
-              ))}
-            </div>
+          <div className="flex items-center justify-between mb-4 border-b border-gray-300 pb-2">
+            <h2 className="text-xl font-bold text-black">
+              {isKhmer ? "ស្ថានភាពកិច្ចការ" : "TASK STATUS"}
+            </h2>
+            <button
+              onClick={() => setActiveTab("tasks")}
+              className="text-xs font-black px-3 py-1.5 uppercase"
+              style={{ background: "#000", color: "#FFEE00", border: "2px solid #000", fontFamily: "'Arial Black', Arial, sans-serif" }}
+            >
+              {isKhmer ? "មើលទាំងអស់ →" : "VIEW ALL →"}
+            </button>
           </div>
-
-          {/* Today's Todos */}
-          <div className="mb-6">
-            <TodaysTodos />
-          </div>
-
-          {/* Cards view — neo-brutalist grid */}
-          {viewMode === "cards" && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {tasks.map((task) => (
-                <TaskCard key={task.id} task={task} />
-              ))}
-            </div>
-          )}
-
-          {viewMode === "timeline" && (
-            <div className="space-y-4">
-              {tasks.map((task) => (
-                <div key={task.id} className="flex items-start gap-4 p-4 border rounded-lg hover:bg-gray-50">
-                  <div className="flex-shrink-0 w-24 text-center">
-                    <div className="text-xs text-gray-600 mb-1">
-                      {isKhmer ? `សប្តាហ៍ទី ${task.week}` : `WEEK ${task.week}`}
-                    </div>
-                    <div className="text-xs text-gray-500">
-                      {task.startDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                    </div>
-                  </div>
-                  
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className={`w-3 h-3 border-2 border-black rounded-full ${
-                        task.status === "completed" ? "bg-green-500" : ""
-                      }`}></div>
-                      <h3 className="font-bold text-sm">
-                        {isKhmer ? task.titleKh : task.title}
-                      </h3>
-                      <span className={`px-2 py-1 text-xs rounded ${
-                        task.priority === 'critical' ? 'bg-red-100 text-red-800' :
-                        task.priority === 'high' ? 'bg-orange-100 text-orange-800' :
-                        task.priority === 'medium' ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800'
-                      }`}>
-                        {task.priority.toUpperCase()}
-                      </span>
-                    </div>
-                    
-                    <p className="text-sm text-gray-700 mb-2">
-                      {isKhmer ? task.descriptionKh : task.description}
-                    </p>
-                    
-                    <div className="flex items-center gap-4 text-xs text-gray-600">
-                      <span>{isKhmer ? task.laneKh : task.lane}</span>
-                      <span>{task.startDate.toLocaleDateString()} - {task.endDate.toLocaleDateString()}</span>
-                      <span className={`px-2 py-1 rounded ${getStatusColor(task.status)}`}>
-                        {isKhmer 
-                          ? (task.status === "completed" ? "បានបញ្ចប់" : 
-                             task.status === "in-progress" ? "កំពុងដំណើរការ" :
-                             task.status === "overdue" ? "ហួសកំណត់" : "មិនទាន់ចាប់ផ្តើម")
-                          : task.status.replace("-", " ").toUpperCase()
-                        }
-                      </span>
-                    </div>
-                  </div>
-                  
-                  {(role === "admin" || role === "teacher") && (
-                    <select
-                      value={task.status}
-                      onChange={(e) => updateTask(task.id, { status: e.target.value as Task["status"] })}
-                      className="text-xs border border-gray-300 rounded px-2 py-1"
-                    >
-                      <option value="not-started">{isKhmer ? "មិនទាន់ចាប់ផ្តើម" : "NOT STARTED"}</option>
-                      <option value="in-progress">{isKhmer ? "កំពុងដំណើរការ" : "IN PROGRESS"}</option>
-                      <option value="completed">{isKhmer ? "បានបញ្ចប់" : "COMPLETED"}</option>
-                      <option value="overdue">{isKhmer ? "ហួសកំណត់" : "OVERDUE"}</option>
-                    </select>
-                  )}
+          <div className="space-y-2">
+            {tasks.map((task) => {
+              const statusBg = task.status === "completed" ? "#00cc66" : task.status === "in-progress" ? "#3b82f6" : task.status === "overdue" ? "#ff4444" : "#e5e7eb";
+              const statusColor = task.status === "not-started" ? "#000" : "#fff";
+              return (
+                <div key={task.id} className="flex items-center gap-3 p-2" style={{ border: "2px solid #000" }}>
+                  <span className="font-black text-[10px] px-1.5 py-0.5" style={{ background: "#000", color: "#FFEE00", flexShrink: 0 }}>W{task.week}</span>
+                  <span className="font-bold text-xs flex-1 truncate uppercase">{isKhmer ? task.titleKh : task.title}</span>
+                  <span className="text-[10px] font-black px-1.5 py-0.5 flex-shrink-0" style={{ background: statusBg, color: statusColor, border: "1.5px solid #000" }}>
+                    {task.status === "completed" ? "DONE" : task.status === "in-progress" ? "IN PROG" : task.status === "overdue" ? "OVERDUE" : "TODO"}
+                  </span>
                 </div>
-              ))}
-            </div>
-          )}
-
-          {viewMode === "calendar" && (
-            <div className="bg-white border rounded-lg p-4">
-              <div className="grid grid-cols-7 gap-2 mb-4">
-                {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map(day => (
-                  <div key={day} className="text-center text-xs font-bold text-gray-600 p-2">
-                    {day}
-                  </div>
-                ))}
-              </div>
-              
-              {/* Calendar grid would go here - simplified for now */}
-              <div className="text-center text-gray-500 py-8">
-                {isKhmer ? "មុខងារប្រតិទិនកំពុងអភិវឌ្ឍ..." : "CALENDAR VIEW IN DEVELOPMENT..."}
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Timeline/Gantt Chart */}
-      <div className="mt-8">
-        <h2 className="text-xl font-bold text-black mb-1 border-b border-gray-300 pb-2">
-          {isKhmer ? "កាលវិភាគ / តារាង Gantt" : "TIMELINE / GANTT"}
-        </h2>
-        <p className="text-xs text-gray-500 mb-4">
-          {isKhmer
-            ? "ដាក់កណ្ដុរលើប្លុកដើម្បីមើលព័ត៌មានលម្អិត • ពណ៌បង្ហាញស្ថានភាព"
-            : "Hover any block for details • colour = status • today's week is highlighted"}
-        </p>
-
-        {/* Legend */}
-        <div className="flex flex-wrap gap-3 mb-4 text-xs">
-          {[
-            { label: isKhmer ? "បានបញ្ចប់" : "COMPLETED",   cls: "bg-green-100 border border-green-400 text-green-800" },
-            { label: isKhmer ? "កំពុងដំណើរការ" : "IN PROGRESS", cls: "bg-blue-100 border border-blue-400 text-blue-800" },
-            { label: isKhmer ? "មិនទាន់ចាប់ផ្តើម" : "NOT STARTED", cls: "bg-gray-100 border border-gray-400 text-gray-600" },
-            { label: isKhmer ? "ហួសកំណត់" : "OVERDUE",     cls: "bg-red-100 border border-red-400 text-red-800" },
-            { label: isKhmer ? "ថ្ងៃផុតកំណត់" : "DEADLINE",   cls: "bg-red-600 text-white" },
-          ].map(({ label, cls }) => (
-            <span key={label} className={`px-2 py-0.5 rounded font-medium ${cls}`}>{label}</span>
-          ))}
-        </div>
-
-        <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
-          {/* ── fixed-layout table so columns stay equal width ── */}
-          <table className="w-full text-xs border-collapse" style={{ minWidth: 900, tableLayout: "fixed" }}>
-            <colgroup>
-              {/* lane label column */}
-              <col style={{ width: 140 }} />
-              {/* 12 week columns */}
-              {Array.from({ length: 12 }).map((_, i) => (
-                <col key={i} style={{ width: `${860 / 12}px` }} />
-              ))}
-            </colgroup>
-
-            {/* ── Week header row ── */}
-            <thead>
-              <tr className="bg-gray-50 border-b-2 border-gray-300">
-                <th className="text-left px-3 py-2 font-bold text-gray-500 uppercase tracking-wide border-r border-gray-200">
-                  {isKhmer ? "ផ្នែក" : "LANE"}
-                </th>
-                {Array.from({ length: 12 }, (_, i) => {
-                  // Week start = Mar 17 + i*7 days
-                  const wStart = new Date('2026-03-17');
-                  wStart.setDate(wStart.getDate() + i * 7);
-                  const wEnd = new Date(wStart);
-                  wEnd.setDate(wStart.getDate() + 6);
-                  const isCurrentWeek =
-                    currentTime >= wStart && currentTime <= wEnd;
-                  const fmt = (d: Date) =>
-                    d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-
-                  return (
-                    <th
-                      key={i}
-                      className={`text-center px-1 py-2 border-l border-gray-200 font-bold ${
-                        isCurrentWeek
-                          ? "bg-blue-600 text-white"
-                          : "text-gray-700"
-                      }`}
-                    >
-                      <div className="font-black">W{i + 1}</div>
-                      <div className={`font-normal text-[10px] leading-tight ${isCurrentWeek ? "text-blue-100" : "text-gray-400"}`}>
-                        {fmt(wStart)}
-                      </div>
-                      <div className={`font-normal text-[10px] leading-tight ${isCurrentWeek ? "text-blue-100" : "text-gray-400"}`}>
-                        {fmt(wEnd)}
-                      </div>
-                    </th>
-                  );
-                })}
-              </tr>
-            </thead>
-
-            {/* ── Lane rows ── */}
-            <tbody>
-              {WORK_LANES.map((lane, laneIndex) => {
-                const laneTasks = tasks.filter(t => t.lane === lane.en);
-                // alternating row bg
-                const rowBg = laneIndex % 2 === 0 ? "bg-white" : "bg-gray-50/60";
-
-                return (
-                  <tr key={laneIndex} className={`${rowBg} border-b border-gray-100`}>
-                    {/* Lane label */}
-                    <td className="px-3 py-2 border-r border-gray-200 align-top">
-                      <span className="font-bold text-gray-700 leading-tight block">
-                        {isKhmer ? lane.kh : lane.en}
-                      </span>
-                    </td>
-
-                    {/* Week cells */}
-                    {Array.from({ length: 12 }, (_, weekIndex) => {
-                      const weekNum = weekIndex + 1;
-                      const cellTasks = laneTasks.filter(t => t.week === weekNum);
-
-                      // deadline marker: week 12 submission
-                      const isDeadlineCell = lane.en === "SUBMISSION & FINAL ASSETS" && weekNum === 12;
-
-                      return (
-                        <td
-                          key={weekIndex}
-                          className="border-l border-gray-200 px-1 py-1 align-top"
-                          style={{ minHeight: 48 }}
-                        >
-                          {isDeadlineCell && cellTasks.length === 0 && (
-                            <div className="bg-red-600 text-white text-[9px] font-black px-1 py-0.5 rounded text-center leading-tight">
-                              APR 20<br />DEADLINE
-                            </div>
-                          )}
-
-                          {cellTasks.map(task => {
-                            const statusCls =
-                              task.status === "completed"
-                                ? "bg-green-100 border-green-400 text-green-800"
-                                : task.status === "in-progress"
-                                ? "bg-blue-100 border-blue-400 text-blue-800"
-                                : task.status === "overdue"
-                                ? "bg-red-100 border-red-400 text-red-800"
-                                : "bg-gray-100 border-gray-300 text-gray-700";
-
-                            const priorityDot =
-                              task.priority === "critical" ? "bg-red-500"
-                              : task.priority === "high"   ? "bg-orange-400"
-                              : task.priority === "medium" ? "bg-yellow-400"
-                              : "bg-green-400";
-
-                            return (
-                              <div
-                                key={task.id}
-                                className={`group relative border rounded px-1.5 py-1 mb-1 cursor-pointer hover:shadow-md transition-shadow ${statusCls}`}
-                              >
-                                {/* priority dot */}
-                                <span className={`inline-block w-1.5 h-1.5 rounded-full mr-1 ${priorityDot}`} />
-
-                                {/* short title — truncated */}
-                                <span className="font-semibold leading-tight line-clamp-2 text-[10px]">
-                                  {isKhmer ? task.titleKh : task.title}
-                                </span>
-
-                                {/* short description below title */}
-                                <p className="text-[9px] leading-tight mt-0.5 opacity-70 line-clamp-2">
-                                  {isKhmer ? task.descriptionKh : task.description}
-                                </p>
-
-                                {/* ── Hover popup ── */}
-                                <div className="absolute z-50 hidden group-hover:block bg-gray-900 text-white rounded-lg shadow-xl p-3 w-56 left-full top-0 ml-1 pointer-events-none">
-                                  <div className="font-bold text-xs mb-1">
-                                    {isKhmer ? task.titleKh : task.title}
-                                  </div>
-                                  <div className="text-[10px] text-gray-300 mb-1">
-                                    {task.startDate.toLocaleDateString()} → {task.endDate.toLocaleDateString()}
-                                  </div>
-                                  <div className="text-[10px] text-gray-200 leading-relaxed mb-2">
-                                    {isKhmer ? task.detailedDescriptionKh : task.detailedDescription}
-                                  </div>
-                                  {task.dailyTodos && (
-                                    <div className="border-t border-gray-700 pt-2">
-                                      <p className="text-[10px] font-bold text-gray-400 mb-1">
-                                        {isKhmer ? "កិច្ចការប្រចាំថ្ងៃ:" : "DAILY TODOS:"}
-                                      </p>
-                                      {task.dailyTodos.slice(0, 3).map((todo, ti) => (
-                                        <div key={ti} className="flex items-start gap-1 text-[10px] text-gray-300 mb-0.5">
-                                          <span className={`mt-0.5 w-2 h-2 rounded-full flex-shrink-0 ${todo.completed ? "bg-green-400" : "bg-gray-500"}`} />
-                                          <span className={todo.completed ? "line-through opacity-60" : ""}>
-                                            {isKhmer ? todo.taskKh : todo.task}
-                                          </span>
-                                        </div>
-                                      ))}
-                                      {task.dailyTodos.length > 3 && (
-                                        <p className="text-[10px] text-gray-500 mt-1">
-                                          +{task.dailyTodos.length - 3} {isKhmer ? "ច្រើនទៀត" : "more"}
-                                        </p>
-                                      )}
-                                    </div>
-                                  )}
-                                  {/* arrow */}
-                                  <div className="absolute top-3 -left-1.5 w-3 h-3 bg-gray-900 rotate-45" />
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+              );
+            })}
+          </div>
         </div>
       </div>
 
       {/* Critical Deadline Alert */}
-      <div className="mt-8 border-2 border-red-500 bg-red-50 p-4">
+      <div className="mt-8 border-2 border-black p-4" style={{ background: "#fff0f0" }}>
         <div className="flex items-center gap-2">
           <AlertTriangle className="w-5 h-5 text-red-600" />
-          <span className="font-bold text-red-800">
+          <span className="font-black text-red-800 uppercase" style={{ fontFamily: "'Arial Black', Arial, sans-serif" }}>
             {isKhmer ? "ថ្ងៃផុតកំណត់សំខាន់" : "CRITICAL DEADLINE"}
           </span>
+          <span className="font-black text-xs px-2 py-0.5 ml-2" style={{ background: "#ff4444", color: "#fff", border: "2px solid #000" }}>
+            APR 20, 2026 · 5PM PDT
+          </span>
         </div>
-        <div className="text-red-700 mt-1">
-          {isKhmer 
-            ? "ថ្ងៃផុតកំណត់ដាក់ស្នើចុងក្រោយ: ថ្ងៃទី២០ ខែមេសា ឆ្នាំ២០២៦ ម៉ោង៥:០០ល្ងាច PDT"
-            : "Final Submission Due: April 20, 2026 at 5:00 PM PDT"
-          }
-        </div>
-        <div className="text-sm text-red-600 mt-1">
-          {isKhmer 
-            ? "លទ្ធផលទាំងអស់ត្រូវតែដាក់ស្នើ: ការពិពណ៌នា ១០០ ពាក្យ, វីដេអូបង្ហាញគម្រោង (៣ នាទី), វីដេអូបច្ចេកទេស (៣ នាទី), ផែនការទទួលយកអ្នកប្រើប្រាស់, ដំណើរការសិក្សា, កូដប្រភព (ឯកសារកម្មវិធីបណ្តាញ)"
-            : "All deliverables must be submitted: 100-word description, pitch video (3 min), technical video (3 min), User Adoption Plan, Learning Journey, Source Code (web app files)"
-          }
-        </div>
-        <div className="text-sm text-red-600 mt-2">
-          <strong>{isKhmer ? "កាលវិភាគការវិនិច្ឆ័យ:" : "Judging Timeline:"}</strong> 
-          {isKhmer 
-            ? " ជុំទី១ (២៣ មេសា - ២៦ ឧសភា) → ជុំពាក់កណ្តាល (១-១៥ មិថុនា) → កិច្ចប្រជុំកំពូលពិភពលោក (កញ្ញា ២០២៦)"
-            : " Quarterfinals (Apr 23 - May 26) → Semifinals (Jun 1-15) → World Summit (Sep 2026)"
-          }
-        </div>
+        <p className="text-sm text-red-700 mt-2 font-bold">
+          {isKhmer
+            ? "លទ្ធផលទាំងអស់ត្រូវតែដាក់ស្នើ: ការពិពណ៌នា ១០០ ពាក្យ, វីដេអូ (៣ នាទី), ផែនការអ្នកប្រើ, ដំណើរការសិក្សា, កូដប្រភព"
+            : "All deliverables due: 100-word description · pitch video (3 min) · technical video (3 min) · User Adoption Plan · Learning Journey · Source Code"}
+        </p>
       </div>
 
       {/* Footer */}
-      <div className="mt-8 pt-4 border-t border-gray-300 text-sm text-gray-600">
-        <div className="flex justify-between items-center">
-          <div>
-            <strong>{isKhmer ? "ទីតាំងក្រុម:" : "Team Location:"}</strong> 
-            {isKhmer ? " សៀមរាប, កម្ពុជា • " : " Siem Reap, Cambodia • "}
-            <strong>{isKhmer ? "ផ្នែក:" : "Division:"}</strong> 
-            {isKhmer ? " កម្រិតកូនក្មេង" : " Junior"}
-          </div>
-          <div>
-            <strong>{isKhmer ? "អ្នកណែនាំ:" : "Mentors:"}</strong> 
-            {isKhmer 
-              ? " ពិសិដ្ឋ ភាព (គ្រូបង្រៀន), វី ស្រុី (និស្សិតសាកលវិទ្យាល័យ)"
-              : " Piseth Pheap (Teacher), Vi SRIE (University Student)"
-            }
-          </div>
-        </div>
+      <div className="mt-6 pt-4 border-t-2 border-black text-xs text-gray-600 flex justify-between">
+        <span><strong>{isKhmer ? "ទីតាំង:" : "Location:"}</strong> {isKhmer ? "សៀមរាប, កម្ពុជា" : "Siem Reap, Cambodia"} · <strong>{isKhmer ? "ផ្នែក:" : "Division:"}</strong> {isKhmer ? "កម្រិតកូនក្មេង" : "Junior"}</span>
+        <span><strong>{isKhmer ? "អ្នកណែនាំ:" : "Mentors:"}</strong> {isKhmer ? "ពិសិដ្ឋ ភាព, វី ស្រុី" : "Piseth Pheap, Vi SRIE"}</span>
       </div>
-      </>}
+      </div>}
     </div>
   );
 }
