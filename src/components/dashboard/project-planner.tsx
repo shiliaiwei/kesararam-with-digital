@@ -1186,53 +1186,194 @@ export function ProjectPlanner({ role }: { role: "admin" | "teacher" }) {
 
       {/* Timeline/Gantt Chart */}
       <div className="mt-8">
-        <h2 className="text-xl font-bold text-black mb-4 border-b border-gray-300 pb-2">
+        <h2 className="text-xl font-bold text-black mb-1 border-b border-gray-300 pb-2">
           {isKhmer ? "កាលវិភាគ / តារាង Gantt" : "TIMELINE / GANTT"}
         </h2>
-        <div className="overflow-x-auto">
-          <div className="min-w-full">
-            {/* Week Headers */}
-            <div className="grid grid-cols-13 gap-1 mb-2">
-              <div className="text-xs font-medium text-gray-600 p-2">
-                {isKhmer ? "កិច្ចការ" : "TASK"}
-              </div>
-              {Array.from({ length: 12 }, (_, i) => (
-                <div key={i} className="text-xs font-medium text-center p-2 border-l border-gray-300">
-                  {isKhmer ? `សប្តាហ៍ ${i + 1}` : `Week ${i + 1}`}
-                </div>
+        <p className="text-xs text-gray-500 mb-4">
+          {isKhmer
+            ? "ដាក់កណ្ដុរលើប្លុកដើម្បីមើលព័ត៌មានលម្អិត • ពណ៌បង្ហាញស្ថានភាព"
+            : "Hover any block for details • colour = status • today's week is highlighted"}
+        </p>
+
+        {/* Legend */}
+        <div className="flex flex-wrap gap-3 mb-4 text-xs">
+          {[
+            { label: isKhmer ? "បានបញ្ចប់" : "COMPLETED",   cls: "bg-green-100 border border-green-400 text-green-800" },
+            { label: isKhmer ? "កំពុងដំណើរការ" : "IN PROGRESS", cls: "bg-blue-100 border border-blue-400 text-blue-800" },
+            { label: isKhmer ? "មិនទាន់ចាប់ផ្តើម" : "NOT STARTED", cls: "bg-gray-100 border border-gray-400 text-gray-600" },
+            { label: isKhmer ? "ហួសកំណត់" : "OVERDUE",     cls: "bg-red-100 border border-red-400 text-red-800" },
+            { label: isKhmer ? "ថ្ងៃផុតកំណត់" : "DEADLINE",   cls: "bg-red-600 text-white" },
+          ].map(({ label, cls }) => (
+            <span key={label} className={`px-2 py-0.5 rounded font-medium ${cls}`}>{label}</span>
+          ))}
+        </div>
+
+        <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
+          {/* ── fixed-layout table so columns stay equal width ── */}
+          <table className="w-full text-xs border-collapse" style={{ minWidth: 900, tableLayout: "fixed" }}>
+            <colgroup>
+              {/* lane label column */}
+              <col style={{ width: 140 }} />
+              {/* 12 week columns */}
+              {Array.from({ length: 12 }).map((_, i) => (
+                <col key={i} style={{ width: `${860 / 12}px` }} />
               ))}
-            </div>
-            
-            {/* Task Rows */}
-            {WORK_LANES.map((lane, laneIndex) => {
-              const laneTasks = tasks.filter(task => task.lane === lane.en);
-              
-              return (
-                <div key={laneIndex} className="grid grid-cols-13 gap-1 mb-1 border-b border-gray-100">
-                  <div className="text-xs p-2 font-medium bg-gray-50">
-                    {isKhmer ? lane.kh : lane.en}
-                  </div>
-                  {Array.from({ length: 12 }, (_, weekIndex) => {
-                    const weekTasks = laneTasks.filter(task => task.week === weekIndex + 1);
-                    
-                    return (
-                      <div key={weekIndex} className="border-l border-gray-200 p-1 min-h-[40px] relative">
-                        {weekTasks.map((task, taskIndex) => (
-                          <div
-                            key={task.id}
-                            className={`text-xs p-1 rounded mb-1 ${getStatusColor(task.status)}`}
-                            title={isKhmer ? task.descriptionKh : task.description}
-                          >
-                            {isKhmer ? task.titleKh : task.title}
-                          </div>
-                        ))}
+            </colgroup>
+
+            {/* ── Week header row ── */}
+            <thead>
+              <tr className="bg-gray-50 border-b-2 border-gray-300">
+                <th className="text-left px-3 py-2 font-bold text-gray-500 uppercase tracking-wide border-r border-gray-200">
+                  {isKhmer ? "ផ្នែក" : "LANE"}
+                </th>
+                {Array.from({ length: 12 }, (_, i) => {
+                  // Week start = Mar 17 + i*7 days
+                  const wStart = new Date('2026-03-17');
+                  wStart.setDate(wStart.getDate() + i * 7);
+                  const wEnd = new Date(wStart);
+                  wEnd.setDate(wStart.getDate() + 6);
+                  const isCurrentWeek =
+                    currentTime >= wStart && currentTime <= wEnd;
+                  const fmt = (d: Date) =>
+                    d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+                  return (
+                    <th
+                      key={i}
+                      className={`text-center px-1 py-2 border-l border-gray-200 font-bold ${
+                        isCurrentWeek
+                          ? "bg-blue-600 text-white"
+                          : "text-gray-700"
+                      }`}
+                    >
+                      <div className="font-black">W{i + 1}</div>
+                      <div className={`font-normal text-[10px] leading-tight ${isCurrentWeek ? "text-blue-100" : "text-gray-400"}`}>
+                        {fmt(wStart)}
                       </div>
-                    );
-                  })}
-                </div>
-              );
-            })}
-          </div>
+                      <div className={`font-normal text-[10px] leading-tight ${isCurrentWeek ? "text-blue-100" : "text-gray-400"}`}>
+                        {fmt(wEnd)}
+                      </div>
+                    </th>
+                  );
+                })}
+              </tr>
+            </thead>
+
+            {/* ── Lane rows ── */}
+            <tbody>
+              {WORK_LANES.map((lane, laneIndex) => {
+                const laneTasks = tasks.filter(t => t.lane === lane.en);
+                // alternating row bg
+                const rowBg = laneIndex % 2 === 0 ? "bg-white" : "bg-gray-50/60";
+
+                return (
+                  <tr key={laneIndex} className={`${rowBg} border-b border-gray-100`}>
+                    {/* Lane label */}
+                    <td className="px-3 py-2 border-r border-gray-200 align-top">
+                      <span className="font-bold text-gray-700 leading-tight block">
+                        {isKhmer ? lane.kh : lane.en}
+                      </span>
+                    </td>
+
+                    {/* Week cells */}
+                    {Array.from({ length: 12 }, (_, weekIndex) => {
+                      const weekNum = weekIndex + 1;
+                      const cellTasks = laneTasks.filter(t => t.week === weekNum);
+
+                      // deadline marker: week 12 submission
+                      const isDeadlineCell = lane.en === "SUBMISSION & FINAL ASSETS" && weekNum === 12;
+
+                      return (
+                        <td
+                          key={weekIndex}
+                          className="border-l border-gray-200 px-1 py-1 align-top"
+                          style={{ minHeight: 48 }}
+                        >
+                          {isDeadlineCell && cellTasks.length === 0 && (
+                            <div className="bg-red-600 text-white text-[9px] font-black px-1 py-0.5 rounded text-center leading-tight">
+                              APR 20<br />DEADLINE
+                            </div>
+                          )}
+
+                          {cellTasks.map(task => {
+                            const statusCls =
+                              task.status === "completed"
+                                ? "bg-green-100 border-green-400 text-green-800"
+                                : task.status === "in-progress"
+                                ? "bg-blue-100 border-blue-400 text-blue-800"
+                                : task.status === "overdue"
+                                ? "bg-red-100 border-red-400 text-red-800"
+                                : "bg-gray-100 border-gray-300 text-gray-700";
+
+                            const priorityDot =
+                              task.priority === "critical" ? "bg-red-500"
+                              : task.priority === "high"   ? "bg-orange-400"
+                              : task.priority === "medium" ? "bg-yellow-400"
+                              : "bg-green-400";
+
+                            return (
+                              <div
+                                key={task.id}
+                                className={`group relative border rounded px-1.5 py-1 mb-1 cursor-pointer hover:shadow-md transition-shadow ${statusCls}`}
+                              >
+                                {/* priority dot */}
+                                <span className={`inline-block w-1.5 h-1.5 rounded-full mr-1 ${priorityDot}`} />
+
+                                {/* short title — truncated */}
+                                <span className="font-semibold leading-tight line-clamp-2 text-[10px]">
+                                  {isKhmer ? task.titleKh : task.title}
+                                </span>
+
+                                {/* short description below title */}
+                                <p className="text-[9px] leading-tight mt-0.5 opacity-70 line-clamp-2">
+                                  {isKhmer ? task.descriptionKh : task.description}
+                                </p>
+
+                                {/* ── Hover popup ── */}
+                                <div className="absolute z-50 hidden group-hover:block bg-gray-900 text-white rounded-lg shadow-xl p-3 w-56 left-full top-0 ml-1 pointer-events-none">
+                                  <div className="font-bold text-xs mb-1">
+                                    {isKhmer ? task.titleKh : task.title}
+                                  </div>
+                                  <div className="text-[10px] text-gray-300 mb-1">
+                                    {task.startDate.toLocaleDateString()} → {task.endDate.toLocaleDateString()}
+                                  </div>
+                                  <div className="text-[10px] text-gray-200 leading-relaxed mb-2">
+                                    {isKhmer ? task.detailedDescriptionKh : task.detailedDescription}
+                                  </div>
+                                  {task.dailyTodos && (
+                                    <div className="border-t border-gray-700 pt-2">
+                                      <p className="text-[10px] font-bold text-gray-400 mb-1">
+                                        {isKhmer ? "កិច្ចការប្រចាំថ្ងៃ:" : "DAILY TODOS:"}
+                                      </p>
+                                      {task.dailyTodos.slice(0, 3).map((todo, ti) => (
+                                        <div key={ti} className="flex items-start gap-1 text-[10px] text-gray-300 mb-0.5">
+                                          <span className={`mt-0.5 w-2 h-2 rounded-full flex-shrink-0 ${todo.completed ? "bg-green-400" : "bg-gray-500"}`} />
+                                          <span className={todo.completed ? "line-through opacity-60" : ""}>
+                                            {isKhmer ? todo.taskKh : todo.task}
+                                          </span>
+                                        </div>
+                                      ))}
+                                      {task.dailyTodos.length > 3 && (
+                                        <p className="text-[10px] text-gray-500 mt-1">
+                                          +{task.dailyTodos.length - 3} {isKhmer ? "ច្រើនទៀត" : "more"}
+                                        </p>
+                                      )}
+                                    </div>
+                                  )}
+                                  {/* arrow */}
+                                  <div className="absolute top-3 -left-1.5 w-3 h-3 bg-gray-900 rotate-45" />
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </div>
 
