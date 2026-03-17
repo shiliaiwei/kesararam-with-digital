@@ -140,8 +140,9 @@ function VSIDCardBack({ member }: { member: TeamMember }) {
     );
     if (!res.ok) return;
     const { token } = await res.json();
-    const origin = typeof window !== "undefined" ? window.location.origin : "";
-    setSignedUrl(`${origin}/p/${member.id}?token=${token}`);
+    // Always use the public app URL so QR links work without login
+    const base = process.env.NEXT_PUBLIC_APP_URL ?? (typeof window !== "undefined" ? window.location.origin : "");
+    setSignedUrl(`${base}/p/${member.id}?token=${token}`);
     setCountdown(60);
   }, [member.id, member.imageUrl]);
 
@@ -202,21 +203,22 @@ function VSIDCardBack({ member }: { member: TeamMember }) {
         className="px-3 py-3 flex items-center gap-4"
         style={{ borderTop: "3px solid #000", background: "#FFEE00" }}
       >
-        <div style={{ border: "3px solid #000", position: "relative" }}>
-          <QRImage value={signedUrl} size={120} />
-          {/* Countdown ring overlay */}
+        <div className="flex flex-col items-center gap-1">
+          <div style={{ border: "3px solid #000" }}>
+            <QRImage value={signedUrl} size={120} />
+          </div>
+          {/* Countdown below QR — not overlapping */}
           <div
-            className="absolute bottom-0 right-0 font-black text-[9px] px-1"
+            className="w-full text-center font-black text-[10px] px-2 py-0.5"
             style={{ background: "#000", color: "#FFEE00" }}
           >
-            {countdown}s
+            EXPIRES {countdown}s
           </div>
         </div>
         <div>
           <p className="font-black text-[13px] uppercase leading-tight">SCAN TO VIEW</p>
           <p className="font-black text-[13px] uppercase leading-tight">PROFILE</p>
           <p className="font-bold text-[10px] mt-2">Unique link per scan.</p>
-          <p className="font-bold text-[10px]">Expires in {countdown}s.</p>
           <p className="font-bold text-[10px] opacity-60">No login needed.</p>
         </div>
       </div>
@@ -245,8 +247,8 @@ function ProfileModal({
     );
     if (res.ok) {
       const { token } = await res.json();
-      const origin = typeof window !== "undefined" ? window.location.origin : "";
-      setSignedUrl(`${origin}/p/${member.id}?token=${token}`);
+      const base = process.env.NEXT_PUBLIC_APP_URL ?? (typeof window !== "undefined" ? window.location.origin : "");
+      setSignedUrl(`${base}/p/${member.id}?token=${token}`);
       setCountdown(60);
     }
   }, [member.id, member.imageUrl]);
