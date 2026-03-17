@@ -1,7 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Calendar, Users, Clock, CheckCircle, AlertTriangle, Edit3, Save, X, Globe, Info, Settings } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { Calendar, Users, Clock, CheckCircle, AlertTriangle, Edit3, Save, X, Globe, Info, Settings, Trophy } from "lucide-react";
+import { TeamProfiles } from "@/components/dashboard/team-profiles";
+import { JudgingStatus } from "@/components/dashboard/judging-status";
 
 interface TeamMember {
   name: string;
@@ -38,6 +40,7 @@ interface Task {
   assignee?: string;
   priority: "low" | "medium" | "high" | "critical";
   dependencies?: string[];
+  dailyTodos?: DailyTodo[];
 }
 
 interface ProjectFramework {
@@ -195,94 +198,95 @@ const WORK_LANES = [
   { en: "Submission & Final Assets", kh: "ការដាក់ស្នើនិងទ្រព្យសម្បត្តិចុងក្រោយ" }
 ];
 
-const INITIAL_TASKS: Task[] = [
+// Enhanced task structure with specific dates and daily to-dos
+const ENHANCED_TASKS: Task[] = [
   { 
     id: "1", 
     title: "IDENTIFY COMMUNITY PROBLEMS", 
     titleKh: "កំណត់បញ្ហាសហគមន៍",
-    startDate: getWeekStartDate(1),
-    endDate: getWeekStartDate(1),
+    startDate: new Date('2026-03-17'), // Week 1: Mar 17-23
+    endDate: new Date('2026-03-23'),
     week: 1, 
     lane: "IDEATION & PROBLEM SELECTION", 
     laneKh: "គំនិតនិងការជ្រើសរើសបញ្ហា",
     status: "completed", 
     description: "Research and identify community problems to solve",
     descriptionKh: "ស្រាវជ្រាវនិងកំណត់បញ្ហាសហគមន៍ដែលត្រូវដោះស្រាយ",
-    detailedDescription: "WEEK 1 DELIVERABLE: Conduct community research using surveys, interviews, and observation. Document 3-5 potential problems that affect your local community. Focus on issues that technology can help solve. Create problem statements for each identified issue.",
-    detailedDescriptionKh: "លទ្ធផលសប្តាហ៍ទី១: ធ្វើការស្រាវជ្រាវសហគមន៍ដោយប្រើការស្ទង់មតិ, ការសម្ភាសន៍, និងការសង្កេត។ ចងក្រងបញ្ហាសក្តានុពល ៣-៥ ដែលប៉ះពាល់ដល់សហគមន៍មូលដ្ឋានរបស់អ្នក។ ផ្តោតលើបញ្ហាដែលបច្ចេកវិទ្យាអាចជួយដោះស្រាយ។ បង្កើតសេចក្តីថ្លែងការណ៍បញ្ហាសម្រាប់បញ្ហានីមួយៗដែលបានកំណត់។",
+    detailedDescription: "WEEK 1 DELIVERABLE: Conduct community research using surveys, interviews, and observation. Document 3-5 potential problems that affect your local community.",
+    detailedDescriptionKh: "លទ្ធផលសប្តាហ៍ទី១: ធ្វើការស្រាវជ្រាវសហគមន៍ដោយប្រើការស្ទង់មតិ, ការសម្ភាសន៍, និងការសង្កេត។",
     priority: "high",
-    dependencies: []
+    dependencies: [],
+    dailyTodos: [
+      { date: '2026-03-17', task: 'Brainstorm community problems', taskKh: 'គិតអំពីបញ្ហាសហគមន៍' },
+      { date: '2026-03-18', task: 'Create survey questions', taskKh: 'បង្កើតសំណួរស្ទង់មតិ' },
+      { date: '2026-03-19', task: 'Interview 5 community members', taskKh: 'សម្ភាសន៍សមាជិកសហគមន៍ ៥ នាក់' },
+      { date: '2026-03-20', task: 'Analyze survey results', taskKh: 'វិភាគលទ្ធផលស្ទង់មតិ' },
+      { date: '2026-03-21', task: 'Document top 3 problems', taskKh: 'ចងក្រងបញ្ហាកំពូល ៣' },
+      { date: '2026-03-22', task: 'Research existing solutions', taskKh: 'ស្រាវជ្រាវដំណោះស្រាយដែលមានស្រាប់' },
+      { date: '2026-03-23', task: 'Prepare problem presentation', taskKh: 'រៀបចំការបង្ហាញបញ្ហា' }
+    ]
   },
   { 
     id: "2", 
     title: "PROBLEM SELECTION & VALIDATION", 
     titleKh: "ការជ្រើសរើសនិងការបញ្ជាក់បញ្ហា",
-    startDate: getWeekStartDate(2),
-    endDate: getWeekStartDate(2),
+    startDate: new Date('2026-03-24'), // Week 2: Mar 24-30
+    endDate: new Date('2026-03-30'),
     week: 2, 
     lane: "IDEATION & PROBLEM SELECTION", 
     laneKh: "គំនិតនិងការជ្រើសរើសបញ្ហា",
-    status: "completed", 
+    status: "in-progress", 
     description: "Choose final problem and validate with target users",
     descriptionKh: "ជ្រើសរើសបញ្ហាចុងក្រោយនិងបញ្ជាក់ជាមួយអ្នកប្រើប្រាស់គោលដៅ",
-    detailedDescription: "WEEK 2 DELIVERABLE: Select ONE problem from your research. Validate the problem by interviewing 5-10 potential users. Create user personas and problem impact assessment. Document why this problem is worth solving and how technology can address it.",
-    detailedDescriptionKh: "លទ្ធផលសប្តាហ៍ទី២: ជ្រើសរើសបញ្ហាមួយពីការស្រាវជ្រាវរបស់អ្នក។ បញ្ជាក់បញ្ហាដោយសម្ភាសន៍អ្នកប្រើប្រាស់សក្តានុពល ៥-១០ នាក់។ បង្កើតបុគ្គលិកលក្ខណៈអ្នកប្រើប្រាស់និងការវាយតម្លៃផលប៉ះពាល់បញ្ហា។ ចងក្រងមូលហេតុដែលបញ្ហានេះសមនឹងដោះស្រាយនិងរបៀបដែលបច្ចេកវិទ្យាអាចដោះស្រាយវា។",
-    priority: "high",
-    dependencies: ["1"]
+    detailedDescription: "WEEK 2 DELIVERABLE: Select ONE problem from research. Validate with 5-10 potential users. Create user personas.",
+    detailedDescriptionKh: "លទ្ធផលសប្តាហ៍ទី២: ជ្រើសរើសបញ្ហាមួយពីការស្រាវជ្រាវ។ បញ្ជាក់ជាមួយអ្នកប្រើប្រាស់សក្តានុពល ៥-១០ នាក់។",
+    priority: "critical",
+    dependencies: ["1"],
+    dailyTodos: [
+      { date: '2026-03-24', task: 'Review all identified problems', taskKh: 'ពិនិត្យបញ្ហាដែលបានកំណត់ទាំងអស់' },
+      { date: '2026-03-25', task: 'Score problems by impact/feasibility', taskKh: 'ដាក់ពិន្ទុបញ្ហាតាមផលប៉ះពាល់/លទ្ធភាព' },
+      { date: '2026-03-26', task: 'Select final problem', taskKh: 'ជ្រើសរើសបញ្ហាចុងក្រោយ' },
+      { date: '2026-03-27', task: 'Interview 5 potential users', taskKh: 'សម្ភាសន៍អ្នកប្រើប្រាស់សក្តានុពល ៥ នាក់' },
+      { date: '2026-03-28', task: 'Create user personas', taskKh: 'បង្កើតបុគ្គលិកលក្ខណៈអ្នកប្រើប្រាស់' },
+      { date: '2026-03-29', task: 'Define problem statement', taskKh: 'កំណត់សេចក្តីថ្លែងការណ៍បញ្ហា' },
+      { date: '2026-03-30', task: 'Validate problem with team', taskKh: 'បញ្ជាក់បញ្ហាជាមួយក្រុម' }
+    ]
   },
   { 
     id: "3", 
     title: "WEB APP FRAMEWORK SETUP", 
     titleKh: "ការរៀបចំក្របខ័ណ្ឌកម្មវិធីបណ្តាញ",
-    startDate: getWeekStartDate(2),
-    endDate: getWeekStartDate(3),
-    week: 2, 
-    lane: "WEB APP DEVELOPMENT", 
-    laneKh: "ការអភិវឌ្ឍន៍កម្មវិធីបណ្តាញ",
-    status: "in-progress", 
-    description: "Set up React/Next.js or chosen web framework",
-    descriptionKh: "រៀបចំ React/Next.js ឬក្របខ័ណ្ឌបណ្តាញដែលបានជ្រើសរើស",
-    detailedDescription: "WEEK 2-3 DELIVERABLE: Choose and set up your web development framework (React, Next.js, or App Inventor). Create project structure, set up development environment, and establish version control with Git. Create basic app shell with navigation.",
-    detailedDescriptionKh: "លទ្ធផលសប្តាហ៍ទី២-៣: ជ្រើសរើសនិងរៀបចំក្របខ័ណ្ឌការអភិវឌ្ឍន៍បណ្តាញរបស់អ្នក (React, Next.js, ឬ App Inventor)។ បង្កើតរចនាសម្ព័ន្ធគម្រោង, រៀបចំបរិយាកាសការអភិវឌ្ឍន៍, និងបង្កើតការគ្រប់គ្រងកំណែជាមួយ Git។ បង្កើតសំបកកម្មវិធីមូលដ្ឋានជាមួយការរុករក។",
-    priority: "critical",
-    dependencies: ["2"]
-  },
-  { 
-    id: "4", 
-    title: "CORE FEATURES DEVELOPMENT", 
-    titleKh: "ការអភិវឌ្ឍន៍លក្ខណៈពិសេសសំខាន់",
-    startDate: getWeekStartDate(3),
-    endDate: getWeekStartDate(5),
+    startDate: new Date('2026-03-31'), // Week 3: Mar 31-Apr 6
+    endDate: new Date('2026-04-06'),
     week: 3, 
     lane: "WEB APP DEVELOPMENT", 
     laneKh: "ការអភិវឌ្ឍន៍កម្មវិធីបណ្តាញ",
-    status: "in-progress", 
-    description: "Build main application features and functionality",
-    descriptionKh: "បង្កើតលក្ខណៈពិសេសនិងមុខងារសំខាន់របស់កម្មវិធី",
-    detailedDescription: "WEEK 3-5 DELIVERABLE: Develop core app functionality that addresses your chosen problem. Implement user authentication, main features, and basic UI/UX. Focus on MVP (Minimum Viable Product) approach. Test features as you build.",
-    detailedDescriptionKh: "លទ្ធផលសប្តាហ៍ទី៣-៥: អភិវឌ្ឍមុខងារកម្មវិធីសំខាន់ដែលដោះស្រាយបញ្ហាដែលអ្នកបានជ្រើសរើស។ អនុវត្តការផ្ទៀងផ្ទាត់អ្នកប្រើប្រាស់, លក្ខណៈពិសេសសំខាន់, និង UI/UX មូលដ្ឋាន។ ផ្តោតលើវិធីសាស្ត្រ MVP (ផលិតផលអប្បបរមាដែលអាចប្រើបាន)។ ធ្វើតេស្តលក្ខណៈពិសេសនៅពេលអ្នកបង្កើត។",
-    priority: "critical",
-    dependencies: ["3"]
-  },
-  { 
-    id: "5", 
-    title: "RESPONSIVE DESIGN IMPLEMENTATION", 
-    titleKh: "ការអនុវត្តការរចនាឆ្លើយតប",
-    startDate: getWeekStartDate(4),
-    endDate: getWeekStartDate(5),
-    week: 4, 
-    lane: "MOBILE BROWSER OPTIMIZATION", 
-    laneKh: "ការបង្កើនប្រសិទ្ធភាពកម្មវិធីរុករកទូរស័ព្ទ",
     status: "not-started", 
-    description: "Ensure app works well on mobile browsers",
-    descriptionKh: "ធានាថាកម្មវិធីដំណើរការល្អនៅលើកម្មវិធីរុករកទូរស័ព្ទ",
-    detailedDescription: "WEEK 4-5 DELIVERABLE: Implement responsive design using CSS Grid/Flexbox or framework components. Test on multiple mobile devices and browsers. Optimize touch interactions, font sizes, and button spacing for mobile use.",
-    detailedDescriptionKh: "លទ្ធផលសប្តាហ៍ទី៤-៥: អនុវត្តការរចនាឆ្លើយតបដោយប្រើ CSS Grid/Flexbox ឬសមាសធាតុក្របខ័ណ្ឌ។ ធ្វើតេស្តលើឧបករណ៍ទូរស័ព្ទនិងកម្មវិធីរុករកច្រើន។ បង្កើនប្រសិទ្ធភាពអន្តរកម្មប៉ះ, ទំហំអក្សរ, និងចន្លោះប៊ូតុងសម្រាប់ការប្រើប្រាស់ទូរស័ព្ទ។",
-    priority: "high",
-    dependencies: ["4"]
+    description: "Set up development environment and framework",
+    descriptionKh: "រៀបចំបរិយាកាសការអភិវឌ្ឍន៍និងក្របខ័ណ្ឌ",
+    detailedDescription: "WEEK 3 DELIVERABLE: Choose framework, set up development environment, create project structure with Git.",
+    detailedDescriptionKh: "លទ្ធផលសប្តាហ៍ទី៣: ជ្រើសរើសក្របខ័ណ្ឌ, រៀបចំបរិយាកាសការអភិវឌ្ឍន៍, បង្កើតរចនាសម្ព័ន្ធគម្រោងជាមួយ Git។",
+    priority: "critical",
+    dependencies: ["2"],
+    dailyTodos: [
+      { date: '2026-03-31', task: 'Research web frameworks (React/Next.js)', taskKh: 'ស្រាវជ្រាវក្របខ័ណ្ឌបណ្តាញ (React/Next.js)' },
+      { date: '2026-04-01', task: 'Choose framework and tools', taskKh: 'ជ្រើសរើសក្របខ័ណ្ឌនិងឧបករណ៍' },
+      { date: '2026-04-02', task: 'Set up development environment', taskKh: 'រៀបចំបរិយាកាសការអភិវឌ្ឍន៍' },
+      { date: '2026-04-03', task: 'Initialize project with Git', taskKh: 'ចាប់ផ្តើមគម្រោងជាមួយ Git' },
+      { date: '2026-04-04', task: 'Create basic project structure', taskKh: 'បង្កើតរចនាសម្ព័ន្ធគម្រោងមូលដ្ឋាន' },
+      { date: '2026-04-05', task: 'Set up basic routing', taskKh: 'រៀបចំការបញ្ជូនមូលដ្ឋាន' },
+      { date: '2026-04-06', task: 'Test development setup', taskKh: 'ធ្វើតេស្តការរៀបចំការអភិវឌ្ឍន៍' }
+    ]
   }
-  // ... Continue with more tasks following the same pattern
+  // Add more enhanced tasks following the same pattern...
 ];
+
+interface DailyTodo {
+  date: string;
+  task: string;
+  taskKh: string;
+  completed?: boolean;
+}
 
 const MILESTONES: Milestone[] = [
   { 
@@ -360,7 +364,7 @@ const MILESTONES: Milestone[] = [
 ];
 
 export function ProjectPlanner({ role }: { role: "admin" | "teacher" }) {
-  const [tasks, setTasks] = useState<Task[]>(INITIAL_TASKS);
+  const [tasks, setTasks] = useState<Task[]>(ENHANCED_TASKS);
   const [editingTask, setEditingTask] = useState<string | null>(null);
   const [pendingChanges, setPendingChanges] = useState<Task[]>([]);
   const [isKhmer, setIsKhmer] = useState(false);
@@ -368,6 +372,9 @@ export function ProjectPlanner({ role }: { role: "admin" | "teacher" }) {
   const [selectedFramework, setSelectedFramework] = useState<string>("agile");
   const [hoveredTask, setHoveredTask] = useState<string | null>(null);
   const [showDeliverables, setShowDeliverables] = useState(false);
+  const [selectedTask, setSelectedTask] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<"cards" | "timeline" | "calendar">("cards");
+  const [activeTab, setActiveTab] = useState<"planner" | "team" | "judging">("planner");
 
   // Update current time every minute
   useEffect(() => {
@@ -404,6 +411,206 @@ export function ProjectPlanner({ role }: { role: "admin" | "teacher" }) {
   });
 
   const currentFramework = PROJECT_FRAMEWORKS.find(f => f.id === selectedFramework);
+
+  // Toggle daily todo completion
+  const toggleTodo = (taskId: string, todoDate: string) => {
+    setTasks(prev => prev.map(task => {
+      if (task.id === taskId && task.dailyTodos) {
+        return {
+          ...task,
+          dailyTodos: task.dailyTodos.map(todo => 
+            todo.date === todoDate 
+              ? { ...todo, completed: !todo.completed }
+              : todo
+          )
+        };
+      }
+      return task;
+    }));
+  };
+
+  // Get today's todos across all tasks
+  const getTodaysTodos = () => {
+    const today = new Date().toISOString().split('T')[0];
+    const todaysTodos: Array<{task: Task, todo: DailyTodo}> = [];
+    
+    tasks.forEach(task => {
+      if (task.dailyTodos) {
+        const todayTodo = task.dailyTodos.find(todo => todo.date === today);
+        if (todayTodo) {
+          todaysTodos.push({ task, todo: todayTodo });
+        }
+      }
+    });
+    
+    return todaysTodos;
+  };
+
+  // Enhanced Task Card Component
+  const TaskCard = ({ task }: { task: Task }) => (
+    <div className={`bg-white border-2 rounded-lg p-4 shadow-sm hover:shadow-md transition-all cursor-pointer ${
+      task.priority === 'critical' ? 'border-red-500 bg-red-50' :
+      task.priority === 'high' ? 'border-orange-500 bg-orange-50' :
+      task.priority === 'medium' ? 'border-yellow-500 bg-yellow-50' : 'border-green-500 bg-green-50'
+    } ${selectedTask === task.id ? 'ring-2 ring-blue-500' : ''}`}
+    onClick={() => setSelectedTask(selectedTask === task.id ? null : task.id)}>
+      
+      {/* Task Header */}
+      <div className="flex items-start justify-between mb-3">
+        <div className="flex-1">
+          <div className="flex items-center gap-2 mb-1">
+            <div className={`w-4 h-4 border-2 border-black rounded-full flex items-center justify-center ${
+              task.status === "completed" ? "bg-green-500" : ""
+            }`}>
+              {task.status === "completed" && <CheckCircle className="w-3 h-3 text-white" />}
+            </div>
+            <h3 className="font-bold text-sm text-gray-900">
+              {isKhmer ? task.titleKh : task.title}
+            </h3>
+          </div>
+          
+          <div className="flex items-center gap-3 text-xs text-gray-600 mb-2">
+            <span className="bg-gray-100 px-2 py-1 rounded">
+              {isKhmer ? `សប្តាហ៍ទី ${task.week}` : `WEEK ${task.week}`}
+            </span>
+            <span>{task.startDate.toLocaleDateString()} - {task.endDate.toLocaleDateString()}</span>
+            <span className={`px-2 py-1 rounded text-white text-xs font-bold ${
+              task.priority === 'critical' ? 'bg-red-500' :
+              task.priority === 'high' ? 'bg-orange-500' :
+              task.priority === 'medium' ? 'bg-yellow-500' : 'bg-green-500'
+            }`}>
+              {task.priority.toUpperCase()}
+            </span>
+          </div>
+        </div>
+        
+        <div className="flex items-center gap-2">
+          <span className={`px-2 py-1 text-xs border rounded ${getStatusColor(task.status)}`}>
+            {isKhmer 
+              ? (task.status === "completed" ? "បានបញ្ចប់" : 
+                 task.status === "in-progress" ? "កំពុងដំណើរការ" :
+                 task.status === "overdue" ? "ហួសកំណត់" : "មិនទាន់ចាប់ផ្តើម")
+              : task.status.replace("-", " ").toUpperCase()
+            }
+          </span>
+          
+          {(role === "admin" || role === "teacher") && (
+            <select
+              value={task.status}
+              onChange={(e) => updateTask(task.id, { status: e.target.value as Task["status"] })}
+              className="text-xs border border-gray-300 rounded px-2 py-1"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <option value="not-started">{isKhmer ? "មិនទាន់ចាប់ផ្តើម" : "NOT STARTED"}</option>
+              <option value="in-progress">{isKhmer ? "កំពុងដំណើរការ" : "IN PROGRESS"}</option>
+              <option value="completed">{isKhmer ? "បានបញ្ចប់" : "COMPLETED"}</option>
+              <option value="overdue">{isKhmer ? "ហួសកំណត់" : "OVERDUE"}</option>
+            </select>
+          )}
+        </div>
+      </div>
+
+      {/* Task Description */}
+      <p className="text-sm text-gray-700 mb-3">
+        {isKhmer ? task.descriptionKh : task.description}
+      </p>
+
+      {/* Lane Badge */}
+      <div className="mb-3">
+        <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">
+          {isKhmer ? task.laneKh : task.lane}
+        </span>
+      </div>
+
+      {/* Daily Todos - Expanded View */}
+      {selectedTask === task.id && task.dailyTodos && (
+        <div className="mt-4 border-t pt-4">
+          <h4 className="font-bold text-sm mb-3 text-gray-900">
+            {isKhmer ? "កិច្ចការប្រចាំថ្ងៃ:" : "DAILY TO-DOS:"}
+          </h4>
+          <div className="space-y-2">
+            {task.dailyTodos.map((todo, index) => (
+              <div key={index} className="flex items-center gap-3 p-2 bg-gray-50 rounded">
+                <input
+                  type="checkbox"
+                  checked={todo.completed || false}
+                  onChange={() => toggleTodo(task.id, todo.date)}
+                  className="w-4 h-4 text-blue-600"
+                />
+                <div className="flex-1">
+                  <div className="text-xs text-gray-600 mb-1">
+                    {new Date(todo.date).toLocaleDateString('en-US', { 
+                      weekday: 'short', 
+                      month: 'short', 
+                      day: 'numeric' 
+                    })}
+                  </div>
+                  <div className={`text-sm ${todo.completed ? 'line-through text-gray-500' : 'text-gray-900'}`}>
+                    {isKhmer ? todo.taskKh : todo.task}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+
+  // Today's Todos Component
+  const TodaysTodos = () => {
+    const todaysTodos = getTodaysTodos();
+    
+    if (todaysTodos.length === 0) {
+      return (
+        <div className="bg-green-50 border border-green-300 p-4 rounded-lg">
+          <div className="flex items-center gap-2 mb-2">
+            <CheckCircle className="w-5 h-5 text-green-600" />
+            <h3 className="font-bold text-green-800">
+              {isKhmer ? "គ្មានកិច្ចការថ្ងៃនេះ!" : "NO TASKS TODAY!"}
+            </h3>
+          </div>
+          <p className="text-sm text-green-700">
+            {isKhmer ? "អ្នកបានបញ្ចប់កិច្ចការទាំងអស់សម្រាប់ថ្ងៃនេះ។" : "You've completed all tasks for today."}
+          </p>
+        </div>
+      );
+    }
+
+    return (
+      <div className="bg-blue-50 border border-blue-300 p-4 rounded-lg">
+        <div className="flex items-center gap-2 mb-3">
+          <Calendar className="w-5 h-5 text-blue-600" />
+          <h3 className="font-bold text-blue-800">
+            {isKhmer ? "កិច្ចការថ្ងៃនេះ" : "TODAY'S TO-DOS"}
+          </h3>
+          <span className="bg-blue-200 text-blue-800 px-2 py-1 rounded text-xs font-bold">
+            {todaysTodos.filter(({todo}) => !todo.completed).length} {isKhmer ? "នៅសល់" : "REMAINING"}
+          </span>
+        </div>
+        <div className="space-y-2">
+          {todaysTodos.map(({task, todo}, index) => (
+            <div key={index} className="flex items-center gap-3 p-2 bg-white rounded border">
+              <input
+                type="checkbox"
+                checked={todo.completed || false}
+                onChange={() => toggleTodo(task.id, todo.date)}
+                className="w-4 h-4 text-blue-600"
+              />
+              <div className="flex-1">
+                <div className="text-xs text-gray-600 mb-1">
+                  {isKhmer ? task.titleKh : task.title}
+                </div>
+                <div className={`text-sm ${todo.completed ? 'line-through text-gray-500' : 'text-gray-900'}`}>
+                  {isKhmer ? todo.taskKh : todo.task}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
 
   const updateTask = (taskId: string, updates: Partial<Task>) => {
     if (role === "teacher") {
@@ -484,6 +691,32 @@ export function ProjectPlanner({ role }: { role: "admin" | "teacher" }) {
 
   return (
     <div className="min-h-screen bg-white p-8 font-sans">
+      {/* Tab Navigation */}
+      <div className="flex gap-1 mb-6 border-b border-gray-200">
+        {([
+          { id: "planner", label: isKhmer ? "ផែនការ" : "PROJECT PLANNER", icon: Calendar },
+          { id: "team", label: isKhmer ? "ក្រុម" : "TEAM PROFILES", icon: Users },
+          { id: "judging", label: isKhmer ? "ការវិនិច្ឆ័យ" : "JUDGING", icon: Trophy },
+        ] as const).map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`flex items-center gap-2 px-4 py-2 text-sm font-bold border-b-2 transition-colors ${
+              activeTab === tab.id
+                ? "border-blue-600 text-blue-600"
+                : "border-transparent text-gray-500 hover:text-gray-800"
+            }`}
+          >
+            <tab.icon className="w-4 h-4" />
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {activeTab === "team" && <TeamProfiles isKhmer={isKhmer} />}
+      {activeTab === "judging" && <JudgingStatus isKhmer={isKhmer} />}
+      {activeTab === "planner" && <>
+
       {/* Language Toggle, Framework Selector & Live Calendar */}
       <div className="flex justify-between items-center mb-6">
         <div className="bg-blue-50 border border-blue-300 p-4 rounded">
@@ -814,109 +1047,140 @@ export function ProjectPlanner({ role }: { role: "admin" | "teacher" }) {
           </div>
         </div>
 
-        {/* Tasks */}
+        {/* Enhanced Tasks Section */}
         <div>
-          <h2 className="text-xl font-bold text-black mb-4 border-b border-gray-300 pb-2">
-            {isKhmer ? "កិច្ចការ / សកម្មភាព" : "TASKS / ACTIVITIES"} 
-            <span className="text-sm font-normal ml-2" style={{ color: currentFramework?.color }}>
-              ({isKhmer ? currentFramework?.nameKh : currentFramework?.name})
-            </span>
-          </h2>
-          <div className="space-y-2 max-h-96 overflow-y-auto">
-            {tasks.map((task) => {
-              const hasPendingChange = pendingChanges.some(t => t.id === task.id);
-              const pendingTask = pendingChanges.find(t => t.id === task.id);
-              
-              return (
-                <TaskTooltip key={task.id} task={task}>
-                  <div className={`border p-3 cursor-help transition-all hover:shadow-md ${
-                    hasPendingChange ? 'border-yellow-400 bg-yellow-50' : 'border-gray-300'
-                  } ${task.priority === 'critical' ? 'border-l-4 border-l-red-500' : 
-                       task.priority === 'high' ? 'border-l-4 border-l-orange-500' :
-                       task.priority === 'medium' ? 'border-l-4 border-l-yellow-500' : 'border-l-4 border-l-green-500'}`}>
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2">
-                          <div className={`w-3 h-3 border-2 border-black rounded-full ${
-                            task.status === "completed" ? "bg-green-500" : ""
-                          }`}></div>
-                          <span className="font-medium text-sm">
-                            {isKhmer ? task.titleKh : task.title}
-                          </span>
-                          <span className={`px-2 py-1 text-xs border rounded ${getStatusColor(task.status)}`}>
-                            {isKhmer 
-                              ? (task.status === "completed" ? "បានបញ្ចប់" : 
-                                 task.status === "in-progress" ? "កំពុងដំណើរការ" :
-                                 task.status === "overdue" ? "ហួសកំណត់" : "មិនទាន់ចាប់ផ្តើម")
-                              : task.status.replace("-", " ").toUpperCase()
-                            }
-                          </span>
-                          <Info className="w-3 h-3 text-gray-400" />
-                        </div>
-                        <div className="text-xs text-gray-600 mt-1 flex items-center gap-4">
-                          <span>{isKhmer ? `សប្តាហ៍ទី ${task.week}` : `WEEK ${task.week}`}</span>
-                          <span>{isKhmer ? task.laneKh : task.lane}</span>
-                          <span className="text-blue-600">
-                            {task.startDate.toLocaleDateString()} - {task.endDate.toLocaleDateString()}
-                          </span>
-                        </div>
-                        <div className="text-xs text-gray-500 mt-1">
-                          {isKhmer ? task.descriptionKh : task.description}
-                        </div>
-                        
-                        {hasPendingChange && role === "admin" && (
-                          <div className="mt-2 p-2 bg-yellow-100 border border-yellow-300 rounded">
-                            <div className="text-xs font-medium text-yellow-800 mb-1">
-                              {isKhmer ? "ការផ្លាស់ប្តូររបស់គ្រូដែលកំពុងរង់ចាំ:" : "PENDING TEACHER CHANGE:"}
-                            </div>
-                            <div className="text-xs text-yellow-700">
-                              {isKhmer ? "ស្ថានភាព:" : "STATUS:"} {
-                                isKhmer 
-                                  ? (pendingTask?.status === "completed" ? "បានបញ្ចប់" : 
-                                     pendingTask?.status === "in-progress" ? "កំពុងដំណើរការ" :
-                                     pendingTask?.status === "overdue" ? "ហួសកំណត់" : "មិនទាន់ចាប់ផ្តើម")
-                                  : pendingTask?.status?.replace("-", " ").toUpperCase()
-                              }
-                            </div>
-                            <div className="flex gap-2 mt-2">
-                              <button
-                                onClick={() => approveChange(task.id)}
-                                className="px-2 py-1 bg-green-600 text-white text-xs rounded hover:bg-green-700"
-                              >
-                                {isKhmer ? "យល់ព្រម" : "APPROVE"}
-                              </button>
-                              <button
-                                onClick={() => rejectChange(task.id)}
-                                className="px-2 py-1 bg-red-600 text-white text-xs rounded hover:bg-red-700"
-                              >
-                                {isKhmer ? "បដិសេធ" : "REJECT"}
-                              </button>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                      
-                      {(role === "admin" || role === "teacher") && (
-                        <div className="flex gap-1">
-                          <select
-                            value={hasPendingChange ? pendingTask?.status : task.status}
-                            onChange={(e) => updateTask(task.id, { status: e.target.value as Task["status"] })}
-                            className="text-xs border border-gray-300 rounded px-1 py-1"
-                            disabled={role === "teacher" && hasPendingChange}
-                          >
-                            <option value="not-started">{isKhmer ? "មិនទាន់ចាប់ផ្តើម" : "NOT STARTED"}</option>
-                            <option value="in-progress">{isKhmer ? "កំពុងដំណើរការ" : "IN PROGRESS"}</option>
-                            <option value="completed">{isKhmer ? "បានបញ្ចប់" : "COMPLETED"}</option>
-                            <option value="overdue">{isKhmer ? "ហួសកំណត់" : "OVERDUE"}</option>
-                          </select>
-                        </div>
-                      )}
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-bold text-black border-b border-gray-300 pb-2">
+              {isKhmer ? "កិច្ចការ / សកម្មភាព" : "TASKS / ACTIVITIES"} 
+              <span className="text-sm font-normal ml-2" style={{ color: currentFramework?.color }}>
+                ({isKhmer ? currentFramework?.nameKh : currentFramework?.name})
+              </span>
+            </h2>
+            
+            {/* View Mode Toggle */}
+            <div className="flex gap-2">
+              <button
+                onClick={() => setViewMode("cards")}
+                className={`px-3 py-1 text-xs rounded ${
+                  viewMode === "cards" ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-700"
+                }`}
+              >
+                {isKhmer ? "កាត" : "CARDS"}
+              </button>
+              <button
+                onClick={() => setViewMode("timeline")}
+                className={`px-3 py-1 text-xs rounded ${
+                  viewMode === "timeline" ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-700"
+                }`}
+              >
+                {isKhmer ? "កាលវិភាគ" : "TIMELINE"}
+              </button>
+              <button
+                onClick={() => setViewMode("calendar")}
+                className={`px-3 py-1 text-xs rounded ${
+                  viewMode === "calendar" ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-700"
+                }`}
+              >
+                {isKhmer ? "ប្រតិទិន" : "CALENDAR"}
+              </button>
+            </div>
+          </div>
+
+          {/* Today's Todos */}
+          <div className="mb-6">
+            <TodaysTodos />
+          </div>
+
+          {/* Tasks Display based on view mode */}
+          {viewMode === "cards" && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {tasks.map((task) => (
+                <TaskCard key={task.id} task={task} />
+              ))}
+            </div>
+          )}
+
+          {viewMode === "timeline" && (
+            <div className="space-y-4">
+              {tasks.map((task) => (
+                <div key={task.id} className="flex items-start gap-4 p-4 border rounded-lg hover:bg-gray-50">
+                  <div className="flex-shrink-0 w-24 text-center">
+                    <div className="text-xs text-gray-600 mb-1">
+                      {isKhmer ? `សប្តាហ៍ទី ${task.week}` : `WEEK ${task.week}`}
+                    </div>
+                    <div className="text-xs text-gray-500">
+                      {task.startDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                     </div>
                   </div>
-                </TaskTooltip>
-              );
-            })}
-          </div>
+                  
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className={`w-3 h-3 border-2 border-black rounded-full ${
+                        task.status === "completed" ? "bg-green-500" : ""
+                      }`}></div>
+                      <h3 className="font-bold text-sm">
+                        {isKhmer ? task.titleKh : task.title}
+                      </h3>
+                      <span className={`px-2 py-1 text-xs rounded ${
+                        task.priority === 'critical' ? 'bg-red-100 text-red-800' :
+                        task.priority === 'high' ? 'bg-orange-100 text-orange-800' :
+                        task.priority === 'medium' ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800'
+                      }`}>
+                        {task.priority.toUpperCase()}
+                      </span>
+                    </div>
+                    
+                    <p className="text-sm text-gray-700 mb-2">
+                      {isKhmer ? task.descriptionKh : task.description}
+                    </p>
+                    
+                    <div className="flex items-center gap-4 text-xs text-gray-600">
+                      <span>{isKhmer ? task.laneKh : task.lane}</span>
+                      <span>{task.startDate.toLocaleDateString()} - {task.endDate.toLocaleDateString()}</span>
+                      <span className={`px-2 py-1 rounded ${getStatusColor(task.status)}`}>
+                        {isKhmer 
+                          ? (task.status === "completed" ? "បានបញ្ចប់" : 
+                             task.status === "in-progress" ? "កំពុងដំណើរការ" :
+                             task.status === "overdue" ? "ហួសកំណត់" : "មិនទាន់ចាប់ផ្តើម")
+                          : task.status.replace("-", " ").toUpperCase()
+                        }
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {(role === "admin" || role === "teacher") && (
+                    <select
+                      value={task.status}
+                      onChange={(e) => updateTask(task.id, { status: e.target.value as Task["status"] })}
+                      className="text-xs border border-gray-300 rounded px-2 py-1"
+                    >
+                      <option value="not-started">{isKhmer ? "មិនទាន់ចាប់ផ្តើម" : "NOT STARTED"}</option>
+                      <option value="in-progress">{isKhmer ? "កំពុងដំណើរការ" : "IN PROGRESS"}</option>
+                      <option value="completed">{isKhmer ? "បានបញ្ចប់" : "COMPLETED"}</option>
+                      <option value="overdue">{isKhmer ? "ហួសកំណត់" : "OVERDUE"}</option>
+                    </select>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {viewMode === "calendar" && (
+            <div className="bg-white border rounded-lg p-4">
+              <div className="grid grid-cols-7 gap-2 mb-4">
+                {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map(day => (
+                  <div key={day} className="text-center text-xs font-bold text-gray-600 p-2">
+                    {day}
+                  </div>
+                ))}
+              </div>
+              
+              {/* Calendar grid would go here - simplified for now */}
+              <div className="text-center text-gray-500 py-8">
+                {isKhmer ? "មុខងារប្រតិទិនកំពុងអភិវឌ្ឍ..." : "CALENDAR VIEW IN DEVELOPMENT..."}
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -1019,6 +1283,7 @@ export function ProjectPlanner({ role }: { role: "admin" | "teacher" }) {
           </div>
         </div>
       </div>
+      </>}
     </div>
   );
 }
