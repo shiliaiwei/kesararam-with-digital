@@ -1,6 +1,6 @@
 "use client";
 
-import { StreetHero } from "@/components/hero/street-hero";
+import { RoadSigns3DHero } from "@/components/hero/road-signs-3d-hero";
 import { CategoryGrid } from "@/components/categories/category-grid";
 import { useLang } from "@/context/lang-context";
 import { t } from "@/lib/translations";
@@ -14,8 +14,8 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero: pure street illustration, no text overlay */}
-      <StreetHero />
+      {/* Hero: 3D animated road signs marquee */}
+      <RoadSigns3DHero />
 
       <CategoryGrid />
 
