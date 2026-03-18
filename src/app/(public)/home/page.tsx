@@ -1,6 +1,6 @@
 "use client";
 
-import { RoadHero } from "@/components/hero/road-hero";
+import { EnhancedStreetHero } from "@/components/hero/enhanced-street-hero";
 import { CategoryGrid } from "@/components/categories/category-grid";
 import { useLang } from "@/context/lang-context";
 import { t } from "@/lib/translations";
@@ -13,7 +13,7 @@ export default function HomePage() {
 
   return (
     <>
-      <RoadHero />
+      <EnhancedStreetHero />
       <CategoryGrid />
 
       {/* Daily stats section */}
