@@ -117,7 +117,7 @@ export function RoadSigns3DHero() {
   return (
     <section className="relative w-full bg-transparent pt-4 pb-8">
       {/* Header */}
-      <div className="text-center mb-6">
+      <div className="text-center mb-3">
         <h2 
           className="inline-block text-3xl font-black text-black bg-yellow-400 px-6 py-3 border-2 border-black shadow-[6px_6px_0_#000] transform hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[8px_8px_0_#000] transition-all" 
           style={khFont}
