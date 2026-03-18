@@ -1,7 +1,6 @@
 "use client";
 
 import { Marquee } from "@/components/ui/marquee";
-import Image from "next/image";
 
 // Road signs from Cloudinary Assets256 folder
 const roadSigns = [
@@ -93,17 +92,15 @@ function SignCard({ src, index }: { src: string; index: number }) {
     <div
       className="relative shrink-0 cursor-pointer transition-all duration-300 hover:scale-110 hover:z-10"
       style={{
-        width: "clamp(120px, 15vw, 180px)",
-        height: "clamp(120px, 15vw, 180px)",
+        width: "clamp(100px, 12vw, 150px)",
+        height: "clamp(100px, 12vw, 150px)",
       }}
     >
-      <div className="relative w-full h-full bg-white rounded-2xl border-2 border-zinc-800 shadow-[4px_4px_0_rgba(0,0,0,0.8)] overflow-hidden">
-        <Image
+      <div className="relative w-full h-full">
+        <img
           src={src}
           alt={`Road sign ${index + 1}`}
-          fill
-          className="object-contain p-3"
-          sizes="(max-width: 768px) 120px, 180px"
+          className="w-full h-full object-contain"
           loading="lazy"
         />
       </div>
@@ -113,7 +110,7 @@ function SignCard({ src, index }: { src: string; index: number }) {
 
 export function RoadSigns3DHero() {
   return (
-    <section className="relative w-full min-h-screen bg-gradient-to-b from-zinc-50 via-white to-zinc-50 overflow-hidden flex items-center justify-center py-12">
+    <section className="relative w-full bg-transparent overflow-hidden pt-4 pb-8">
       {/* 3D Perspective Container */}
       <div className="relative w-full max-w-[1800px] mx-auto">
         {/* Perspective wrapper */}
@@ -126,7 +123,7 @@ export function RoadSigns3DHero() {
         >
           {/* Row 1 - Top (furthest) */}
           <div
-            className="relative mb-6"
+            className="relative mb-3"
             style={{
               transform: "rotateX(8deg) translateZ(-200px) scale(0.85)",
               transformStyle: "preserve-3d",
@@ -141,7 +138,7 @@ export function RoadSigns3DHero() {
 
           {/* Row 2 */}
           <div
-            className="relative mb-6"
+            className="relative mb-3"
             style={{
               transform: "rotateX(6deg) translateZ(-100px) scale(0.92)",
               transformStyle: "preserve-3d",
@@ -156,7 +153,7 @@ export function RoadSigns3DHero() {
 
           {/* Row 3 */}
           <div
-            className="relative mb-6"
+            className="relative mb-3"
             style={{
               transform: "rotateX(4deg) translateZ(0px) scale(0.98)",
               transformStyle: "preserve-3d",
@@ -186,8 +183,8 @@ export function RoadSigns3DHero() {
         </div>
 
         {/* Gradient overlays for fade effect */}
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent pointer-events-none z-10" />
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent pointer-events-none z-10" />
+        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent pointer-events-none z-10" />
+        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent pointer-events-none z-10" />
       </div>
     </section>
   );
