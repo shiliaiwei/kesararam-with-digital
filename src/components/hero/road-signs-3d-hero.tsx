@@ -93,8 +93,8 @@ function SignCard({ src, index }: { src: string; index: number }) {
     <div
       className="relative shrink-0 cursor-pointer transition-all duration-300 hover:scale-110 hover:z-10"
       style={{
-        width: "clamp(60px, 10vw, 120px)",
-        height: "clamp(60px, 10vw, 120px)",
+        width: "clamp(80px, 15vw, 140px)",
+        height: "clamp(80px, 15vw, 140px)",
       }}
     >
       <div className="relative w-full h-full">
@@ -132,7 +132,7 @@ export function RoadSigns3DHero() {
         <div
           className="relative w-full"
           style={{
-            perspective: "800px",
+            perspective: "600px",
             perspectiveOrigin: "center center",
           }}
         >
@@ -140,11 +140,11 @@ export function RoadSigns3DHero() {
           <div
             className="relative mb-1 md:mb-2"
             style={{
-              transform: "rotateX(6deg) translateZ(-150px) scale(0.88)",
+              transform: "rotateX(4deg) translateZ(-100px) scale(0.9)",
               transformStyle: "preserve-3d",
             }}
           >
-            <Marquee className="[--duration:60s] [--gap:0.3rem]" pauseOnHover>
+            <Marquee className="[--duration:60s] [--gap:0.5rem]" pauseOnHover>
               {row1.map((src, i) => (
                 <SignCard key={`r1-${i}`} src={src} index={i} />
               ))}
@@ -155,11 +155,11 @@ export function RoadSigns3DHero() {
           <div
             className="relative mb-1 md:mb-2"
             style={{
-              transform: "rotateX(4deg) translateZ(-75px) scale(0.94)",
+              transform: "rotateX(3deg) translateZ(-50px) scale(0.95)",
               transformStyle: "preserve-3d",
             }}
           >
-            <Marquee className="[--duration:55s] [--gap:0.3rem]" reverse pauseOnHover>
+            <Marquee className="[--duration:55s] [--gap:0.5rem]" reverse pauseOnHover>
               {row2.map((src, i) => (
                 <SignCard key={`r2-${i}`} src={src} index={i + 19} />
               ))}
@@ -174,7 +174,7 @@ export function RoadSigns3DHero() {
               transformStyle: "preserve-3d",
             }}
           >
-            <Marquee className="[--duration:50s] [--gap:0.3rem]" pauseOnHover>
+            <Marquee className="[--duration:50s] [--gap:0.5rem]" pauseOnHover>
               {row3.map((src, i) => (
                 <SignCard key={`r3-${i}`} src={src} index={i + 38} />
               ))}
@@ -185,11 +185,11 @@ export function RoadSigns3DHero() {
           <div
             className="relative"
             style={{
-              transform: "rotateX(1deg) translateZ(75px) scale(1.06)",
+              transform: "rotateX(1deg) translateZ(50px) scale(1.05)",
               transformStyle: "preserve-3d",
             }}
           >
-            <Marquee className="[--duration:45s] [--gap:0.3rem]" reverse pauseOnHover>
+            <Marquee className="[--duration:45s] [--gap:0.5rem]" reverse pauseOnHover>
               {row4.map((src, i) => (
                 <SignCard key={`r4-${i}`} src={src} index={i + 57} />
               ))}
