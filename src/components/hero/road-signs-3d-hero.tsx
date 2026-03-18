@@ -119,7 +119,7 @@ export function RoadSigns3DHero() {
       {/* Header */}
       <div className="text-center mb-6">
         <h2 className="text-3xl font-black text-zinc-800" style={khFont}>
-          {kh ? "មគ្គុទ្ទេស វីថីសុវត្ថិភាព" : "The Shield of Safety"}
+          {kh ? "វីថីសុវត្ថិភាព" : "The Way of Safety"}
         </h2>
       </div>
 
