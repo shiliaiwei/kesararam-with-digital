@@ -111,8 +111,13 @@ function SignCard({ src, index }: { src: string; index: number }) {
 export function RoadSigns3DHero() {
   return (
     <section className="relative w-full bg-transparent overflow-hidden pt-4 pb-8">
+      {/* Header */}
+      <div className="text-center mb-6">
+        <h2 className="text-3xl font-black text-zinc-800">Master Signs</h2>
+      </div>
+
       {/* 3D Perspective Container */}
-      <div className="relative w-full max-w-[1800px] mx-auto">
+      <div className="relative w-full">
         {/* Perspective wrapper */}
         <div
           className="relative w-full"
