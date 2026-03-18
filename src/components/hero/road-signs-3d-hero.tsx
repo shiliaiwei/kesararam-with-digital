@@ -1,6 +1,7 @@
 "use client";
 
 import { Marquee } from "@/components/ui/marquee";
+import { useLang } from "@/context/lang-context";
 
 // Road signs from Cloudinary Assets256 folder
 const roadSigns = [
@@ -109,11 +110,17 @@ function SignCard({ src, index }: { src: string; index: number }) {
 }
 
 export function RoadSigns3DHero() {
+  const { lang } = useLang();
+  const kh = lang === "kh";
+  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+
   return (
     <section className="relative w-full bg-transparent overflow-hidden pt-4 pb-8">
       {/* Header */}
       <div className="text-center mb-6">
-        <h2 className="text-3xl font-black text-zinc-800">Master Signs</h2>
+        <h2 className="text-3xl font-black text-zinc-800" style={khFont}>
+          {kh ? "មគ្គុទ្ទេស វីថីសុវត្ថិភាព" : "The Shield of Safety"}
+        </h2>
       </div>
 
       {/* 3D Perspective Container */}
