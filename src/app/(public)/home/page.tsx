@@ -1,6 +1,7 @@
 "use client";
 
 import { RoadSigns3DHero } from "@/components/hero/road-signs-3d-hero";
+import { SponsorsMarquee } from "@/components/sections/sponsors-marquee";
 import { CategoryGrid } from "@/components/categories/category-grid";
 import { useLang } from "@/context/lang-context";
 import { t } from "@/lib/translations";
@@ -67,6 +68,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Sponsors / Trust section */}
+      <SponsorsMarquee />
     </>
   );
 }
