@@ -40,8 +40,8 @@ function SponsorLogo({ src, index }: { src: string; index: number }) {
     <div className="flex items-center justify-center px-6 grayscale hover:grayscale-0 transition-all duration-300">
       <img
         src={src}
-        alt={`Sponsor ${index + 1}`}
-        className="h-12 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity"
+        alt={`Logo ${index + 1}`}
+        className="h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
         loading="lazy"
       />
     </div>
@@ -53,20 +53,35 @@ export function SponsorsMarquee() {
     <section className="bg-white py-12 border-b-2 border-black overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-8">
         <h2 className="text-2xl font-black text-center text-zinc-800">
-          Trusted By
+          Developer Preview
         </h2>
+        <p className="text-sm text-zinc-500 text-center mt-2">
+          Not actual sponsors - UI demonstration only
+        </p>
       </div>
       
       <div className="relative">
-        <Marquee className="[--duration:80s]" pauseOnHover>
+        <Marquee className="[--duration:80s] hover:[animation-play-state:paused]">
           {sponsors.map((src, i) => (
             <SponsorLogo key={i} src={src} index={i} />
           ))}
         </Marquee>
         
-        {/* Fade edges */}
-        <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+        {/* Blur glass edges */}
+        <div className="absolute inset-y-0 left-0 w-32 pointer-events-none" 
+          style={{ 
+            background: "linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 40%, transparent 100%)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)"
+          }} 
+        />
+        <div className="absolute inset-y-0 right-0 w-32 pointer-events-none" 
+          style={{ 
+            background: "linear-gradient(to left, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 40%, transparent 100%)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)"
+          }} 
+        />
       </div>
     </section>
   );
