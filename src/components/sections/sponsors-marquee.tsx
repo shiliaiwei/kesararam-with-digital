@@ -66,22 +66,6 @@ export function SponsorsMarquee() {
             <SponsorLogo key={i} src={src} index={i} />
           ))}
         </Marquee>
-        
-        {/* Blur glass edges */}
-        <div className="absolute inset-y-0 left-0 w-32 pointer-events-none" 
-          style={{ 
-            background: "linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 40%, transparent 100%)",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)"
-          }} 
-        />
-        <div className="absolute inset-y-0 right-0 w-32 pointer-events-none" 
-          style={{ 
-            background: "linear-gradient(to left, rgba(255,255,255,1) 0%, rgba(255,255,255,0.8) 40%, transparent 100%)",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)"
-          }} 
-        />
       </div>
     </section>
   );
