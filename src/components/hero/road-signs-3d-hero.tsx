@@ -82,7 +82,7 @@ const roadSigns = [
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567506/5_abpqsn.png",
 ];
 
-// Split into rows for 3D effect
+// Split into rows
 const row1 = roadSigns.slice(0, 19);
 const row2 = roadSigns.slice(19, 38);
 const row3 = roadSigns.slice(38, 57);
@@ -91,20 +91,18 @@ const row4 = roadSigns.slice(57);
 function SignCard({ src, index }: { src: string; index: number }) {
   return (
     <div
-      className="relative shrink-0 cursor-pointer transition-all duration-300 hover:scale-110 hover:z-10"
+      className="relative shrink-0 cursor-pointer transition-all duration-300 hover:scale-110"
       style={{
-        width: "clamp(80px, 15vw, 140px)",
-        height: "clamp(80px, 15vw, 140px)",
+        width: "clamp(80px, 12vw, 120px)",
+        height: "clamp(80px, 12vw, 120px)",
       }}
     >
-      <div className="relative w-full h-full">
-        <img
-          src={src}
-          alt={`Road sign ${index + 1}`}
-          className="w-full h-full object-contain"
-          loading="lazy"
-        />
-      </div>
+      <img
+        src={src}
+        alt={`Road sign ${index + 1}`}
+        className="w-full h-full object-contain"
+        loading="lazy"
+      />
     </div>
   );
 }
@@ -115,87 +113,46 @@ export function RoadSigns3DHero() {
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
   return (
-    <section className="relative w-full bg-transparent pt-2 pb-24 md:pt-4 md:pb-32 mb-8">
+    <section className="relative w-full bg-transparent pt-4 pb-16 mb-8">
       {/* Header */}
-      <div className="text-center mb-2">
+      <div className="text-center mb-6">
         <h2 
-          className="inline-block text-xl md:text-3xl font-black text-black bg-yellow-400 px-4 py-2 md:px-6 md:py-3 border-2 border-black shadow-[4px_4px_0_#000] md:shadow-[6px_6px_0_#000] transform hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_#000] md:hover:shadow-[8px_8px_0_#000] transition-all" 
+          className="inline-block text-2xl md:text-3xl font-black text-black bg-yellow-400 px-6 py-3 border-2 border-black shadow-[6px_6px_0_#000] transform hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[8px_8px_0_#000] transition-all" 
           style={khFont}
         >
           {kh ? "វីថីសុវត្ថិភាព" : "The Way of Safety"}
         </h2>
       </div>
 
-      {/* 3D Perspective Container */}
-      <div className="relative w-full overflow-x-hidden">
-        {/* Perspective wrapper */}
-        <div
-          className="relative w-full"
-          style={{
-            perspective: "600px",
-            perspectiveOrigin: "center center",
-          }}
-        >
-          {/* Row 1 - Top (furthest) */}
-          <div
-            className="relative mb-1 md:mb-2"
-            style={{
-              transform: "rotateX(4deg) translateZ(-100px) scale(0.9)",
-              transformStyle: "preserve-3d",
-            }}
-          >
-            <Marquee className="[--duration:60s] [--gap:0.5rem]" pauseOnHover>
-              {row1.map((src, i) => (
-                <SignCard key={`r1-${i}`} src={src} index={i} />
-              ))}
-            </Marquee>
-          </div>
+      {/* Simple flat marquee rows - no overflow hidden, full visibility */}
+      <div className="relative w-full space-y-4">
+        {/* Row 1 */}
+        <Marquee className="[--duration:60s] [--gap:1rem]" pauseOnHover>
+          {row1.map((src, i) => (
+            <SignCard key={`r1-${i}`} src={src} index={i} />
+          ))}
+        </Marquee>
 
-          {/* Row 2 */}
-          <div
-            className="relative mb-1 md:mb-2"
-            style={{
-              transform: "rotateX(3deg) translateZ(-50px) scale(0.95)",
-              transformStyle: "preserve-3d",
-            }}
-          >
-            <Marquee className="[--duration:55s] [--gap:0.5rem]" reverse pauseOnHover>
-              {row2.map((src, i) => (
-                <SignCard key={`r2-${i}`} src={src} index={i + 19} />
-              ))}
-            </Marquee>
-          </div>
+        {/* Row 2 */}
+        <Marquee className="[--duration:55s] [--gap:1rem]" reverse pauseOnHover>
+          {row2.map((src, i) => (
+            <SignCard key={`r2-${i}`} src={src} index={i + 19} />
+          ))}
+        </Marquee>
 
-          {/* Row 3 */}
-          <div
-            className="relative mb-1 md:mb-2"
-            style={{
-              transform: "rotateX(2deg) translateZ(0px) scale(1)",
-              transformStyle: "preserve-3d",
-            }}
-          >
-            <Marquee className="[--duration:50s] [--gap:0.5rem]" pauseOnHover>
-              {row3.map((src, i) => (
-                <SignCard key={`r3-${i}`} src={src} index={i + 38} />
-              ))}
-            </Marquee>
-          </div>
+        {/* Row 3 */}
+        <Marquee className="[--duration:50s] [--gap:1rem]" pauseOnHover>
+          {row3.map((src, i) => (
+            <SignCard key={`r3-${i}`} src={src} index={i + 38} />
+          ))}
+        </Marquee>
 
-          {/* Row 4 - Bottom (closest) */}
-          <div
-            className="relative"
-            style={{
-              transform: "rotateX(1deg) translateZ(50px) scale(1.05)",
-              transformStyle: "preserve-3d",
-            }}
-          >
-            <Marquee className="[--duration:45s] [--gap:0.5rem]" reverse pauseOnHover>
-              {row4.map((src, i) => (
-                <SignCard key={`r4-${i}`} src={src} index={i + 57} />
-              ))}
-            </Marquee>
-          </div>
-        </div>
+        {/* Row 4 */}
+        <Marquee className="[--duration:45s] [--gap:1rem]" reverse pauseOnHover>
+          {row4.map((src, i) => (
+            <SignCard key={`r4-${i}`} src={src} index={i + 57} />
+          ))}
+        </Marquee>
       </div>
     </section>
   );
