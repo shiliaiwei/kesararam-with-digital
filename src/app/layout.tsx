@@ -46,7 +46,7 @@ export default function RootLayout({
           href="https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg"
         />
       </head>
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} font-sans antialiased overflow-x-hidden`}>
         <LangProvider>
           {children}
           <Toaster richColors closeButton />

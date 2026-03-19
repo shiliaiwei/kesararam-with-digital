@@ -113,9 +113,9 @@ export function RoadSigns3DHero() {
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
   return (
-    <section className="relative w-full bg-transparent pt-4 pb-16 mb-8">
+    <section className="relative w-full overflow-hidden bg-transparent pt-4 pb-16 mb-8">
       {/* Header */}
-      <div className="text-center mb-6">
+      <div className="text-center mb-6 px-4">
         <h2 
           className="inline-block text-2xl md:text-3xl font-black text-black bg-yellow-400 px-6 py-3 border-2 border-black shadow-[6px_6px_0_#000] transform hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[8px_8px_0_#000] transition-all" 
           style={khFont}
@@ -124,35 +124,43 @@ export function RoadSigns3DHero() {
         </h2>
       </div>
 
-      {/* Simple flat marquee rows - no overflow hidden, full visibility */}
-      <div className="relative w-full space-y-6">
+      {/* Marquee rows with overflow contained */}
+      <div className="relative w-full space-y-6 overflow-hidden">
         {/* Row 1 */}
-        <Marquee className="[--duration:60s] [--gap:1.5rem]" pauseOnHover>
-          {row1.map((src, i) => (
-            <SignCard key={`r1-${i}`} src={src} index={i} />
-          ))}
-        </Marquee>
+        <div className="overflow-hidden">
+          <Marquee className="[--duration:60s] [--gap:1.5rem]" pauseOnHover>
+            {row1.map((src, i) => (
+              <SignCard key={`r1-${i}`} src={src} index={i} />
+            ))}
+          </Marquee>
+        </div>
 
         {/* Row 2 */}
-        <Marquee className="[--duration:55s] [--gap:1.5rem]" reverse pauseOnHover>
-          {row2.map((src, i) => (
-            <SignCard key={`r2-${i}`} src={src} index={i + 19} />
-          ))}
-        </Marquee>
+        <div className="overflow-hidden">
+          <Marquee className="[--duration:55s] [--gap:1.5rem]" reverse pauseOnHover>
+            {row2.map((src, i) => (
+              <SignCard key={`r2-${i}`} src={src} index={i + 19} />
+            ))}
+          </Marquee>
+        </div>
 
         {/* Row 3 */}
-        <Marquee className="[--duration:50s] [--gap:1.5rem]" pauseOnHover>
-          {row3.map((src, i) => (
-            <SignCard key={`r3-${i}`} src={src} index={i + 38} />
-          ))}
-        </Marquee>
+        <div className="overflow-hidden">
+          <Marquee className="[--duration:50s] [--gap:1.5rem]" pauseOnHover>
+            {row3.map((src, i) => (
+              <SignCard key={`r3-${i}`} src={src} index={i + 38} />
+            ))}
+          </Marquee>
+        </div>
 
         {/* Row 4 */}
-        <Marquee className="[--duration:45s] [--gap:1.5rem]" reverse pauseOnHover>
-          {row4.map((src, i) => (
-            <SignCard key={`r4-${i}`} src={src} index={i + 57} />
-          ))}
-        </Marquee>
+        <div className="overflow-hidden">
+          <Marquee className="[--duration:45s] [--gap:1.5rem]" reverse pauseOnHover>
+            {row4.map((src, i) => (
+              <SignCard key={`r4-${i}`} src={src} index={i + 57} />
+            ))}
+          </Marquee>
+        </div>
       </div>
     </section>
   );
