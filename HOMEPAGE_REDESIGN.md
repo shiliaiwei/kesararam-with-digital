@@ -162,3 +162,68 @@ Design inspired by urban planning street cross-section diagrams and modern web d
 
 ## License
 Part of the KWD (Khmer Web Development) project.
+
+
+
+help wwrite plan about this category  needed to input output frontent interface user, and what these category type of user could be learn from these exampple 
+-road and sign , when user enter that category user see the signs and if user what to see the description click popup and see description details and availble the sound read too both langeuage but user can do mute from the menaul setting profile user too, and what the and what type Flashcards
+Quiz Practice Test Challenge should i create and link to who, guide me plan it, 
+Browse and learn all official road signs used in Cambodia. Each sign includes a description, what it means, and audio support in Khmer and English.
+
+-road-traffic  : user see the question and answer q and a 
+Study the legal framework governing road use and the responsibilities of all road users. Covers law articles, case studies, and structured Q&A.
+Flashcards
+Quiz
+Practice Test
+Challenge
+
+-priority
+Understand road priority rules through interactive scenarios and intersection diagrams. Learn who goes first and how to handle complex junctions safely.
+ image reference to solve prompblem
+Flashcards
+Quiz
+Practice Test
+Challenge
+
+-driving
+Practical content to improve your driving technique. Covers manoeuvres, demonstrations, and a personal progress tracking system.
+user see q and a 
+Flashcards
+Quiz
+Practice Test
+Challenge
+
+-technical
+Educational content about how vehicles work, safety features, and routine maintenance knowledge essential for safe driving.
+ user see the question and answer q and a 
+Flashcards
+Quiz
+Practice Test
+Challenge
+-loading-people-goods
+Information on the safe loading of passengers and cargo, legal weight limits, and national transport regulations.
+
+Flashcards
+Quiz
+Practice Test
+Challenge
+-general-knowledge
+Covers broad driving and road safety topics. Essential knowledge not covered by specific categories, including useful reference documents and links.
+
+Flashcards
+Quiz
+Practice Test
+Challenge
+-Emergency 
+Emergency procedures, contact numbers, and protocols for handling road incidents. Know what to do in any urgent situation on Cambodian roads.
+
+Flashcards
+Quiz
+Practice Test
+Challenge
+
+and what method to create quiz Flashcards
+Quiz
+Practice Test
+Challenge  and how it store or link relationship and keep score correct make it all better method to learning  all these learning hub first and quiz or challeng later, 
+all who controll these resource input output like staff teacher admin but i want to all input and ouput should be confirm by admin approve make sure admin check it correct data ouput, 
