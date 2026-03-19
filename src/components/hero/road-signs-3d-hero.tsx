@@ -93,8 +93,8 @@ function SignCard({ src, index }: { src: string; index: number }) {
     <div
       className="relative shrink-0 cursor-pointer transition-all duration-300 hover:scale-110"
       style={{
-        width: "clamp(80px, 12vw, 120px)",
-        height: "clamp(80px, 12vw, 120px)",
+        width: "clamp(100px, 15vw, 140px)",
+        height: "clamp(100px, 15vw, 140px)",
       }}
     >
       <img
@@ -125,30 +125,30 @@ export function RoadSigns3DHero() {
       </div>
 
       {/* Simple flat marquee rows - no overflow hidden, full visibility */}
-      <div className="relative w-full space-y-4">
+      <div className="relative w-full space-y-6">
         {/* Row 1 */}
-        <Marquee className="[--duration:60s] [--gap:1rem]" pauseOnHover>
+        <Marquee className="[--duration:60s] [--gap:1.5rem]" pauseOnHover>
           {row1.map((src, i) => (
             <SignCard key={`r1-${i}`} src={src} index={i} />
           ))}
         </Marquee>
 
         {/* Row 2 */}
-        <Marquee className="[--duration:55s] [--gap:1rem]" reverse pauseOnHover>
+        <Marquee className="[--duration:55s] [--gap:1.5rem]" reverse pauseOnHover>
           {row2.map((src, i) => (
             <SignCard key={`r2-${i}`} src={src} index={i + 19} />
           ))}
         </Marquee>
 
         {/* Row 3 */}
-        <Marquee className="[--duration:50s] [--gap:1rem]" pauseOnHover>
+        <Marquee className="[--duration:50s] [--gap:1.5rem]" pauseOnHover>
           {row3.map((src, i) => (
             <SignCard key={`r3-${i}`} src={src} index={i + 38} />
           ))}
         </Marquee>
 
         {/* Row 4 */}
-        <Marquee className="[--duration:45s] [--gap:1rem]" reverse pauseOnHover>
+        <Marquee className="[--duration:45s] [--gap:1.5rem]" reverse pauseOnHover>
           {row4.map((src, i) => (
             <SignCard key={`r4-${i}`} src={src} index={i + 57} />
           ))}
