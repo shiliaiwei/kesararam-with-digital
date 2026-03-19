@@ -94,9 +94,14 @@ export function AIChat() {
     <div className="flex flex-col h-[600px] max-w-4xl mx-auto border-2 border-black rounded-none shadow-[8px_8px_0_#000] bg-white">
       {/* Header */}
       <div className="bg-yellow-400 border-b-2 border-black p-4 flex items-center justify-between">
-        <h2 className="text-xl font-black" style={khFont}>
-          {kh ? "ជំនួយ AI" : "AI Assistant"}
-        </h2>
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center text-yellow-400 font-black">
+            S
+          </div>
+          <h2 className="text-xl font-black" style={khFont}>
+            {kh ? "ស្វ័រ AI" : "Suar AI"}
+          </h2>
+        </div>
         <select
           value={provider}
           onChange={(e) => setProvider(e.target.value as any)}
@@ -113,10 +118,13 @@ export function AIChat() {
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.length === 0 && (
           <div className="text-center text-zinc-500 mt-8" style={khFont}>
+            <div className="w-16 h-16 bg-yellow-400 border-2 border-black rounded-full flex items-center justify-center text-3xl font-black mx-auto mb-4">
+              S
+            </div>
             <p className="text-lg font-bold">
               {kh
-                ? "សួស្តី! តើខ្ញុំអាចជួយអ្វីបានទេ?"
-                : "Hello! How can I help you today?"}
+                ? "សួស្តី! ខ្ញុំឈ្មោះ ស្វ័រ AI"
+                : "Hello! I'm Suar AI"}
             </p>
             <p className="text-sm mt-2">
               {kh

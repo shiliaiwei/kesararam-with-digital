@@ -4,10 +4,10 @@ import { getSession } from "@/lib/auth";
 /**
  * POST /api/chat
  * 
- * AI chat endpoint that requires user authentication.
+ * Suar AI chat endpoint - Available to all logged-in users
  * Supports multiple AI providers: Google Gemini, Imagine AI, Perplexity
  * 
- * Requirements: User must be logged in
+ * Requirements: User must be logged in (Student, Staff, or Admin)
  */
 export async function POST(request: NextRequest) {
   try {
@@ -173,7 +173,7 @@ async function chatWithPerplexity(message: string, history: any[]): Promise<stri
       messages: [
         {
           role: "system",
-          content: "You are a helpful assistant for a Cambodian driving education platform. Provide accurate, concise answers about traffic laws, road signs, and driving safety.",
+          content: "You are Suar AI, a helpful assistant for a Cambodian driving education platform called KWD (Kesararam With Digital). Provide accurate, concise answers about Cambodian traffic laws, road signs, and driving safety. Be friendly and supportive to learners.",
         },
         ...history,
         {
