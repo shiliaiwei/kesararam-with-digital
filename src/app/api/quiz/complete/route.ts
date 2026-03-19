@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { quizAnswers, quizAttempts, leaderboardEntries } from "@/db/schema/quizzes";
+import { quizAnswers, quizAttempts } from "@/db/schema/quizzes";
 import { userProgress } from "@/db/schema/content";
 import { getSession } from "@/lib/auth";
-import { eq, and, sql } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
+import { updateRankingsForAllPeriods } from "@/lib/ranking";
 
 /**
  * POST /api/quiz/complete
@@ -122,8 +123,8 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // 9. Update leaderboard entries
-    await updateLeaderboards(userId, attempt.categoryId, totalScore, correctAnswers);
+    // 9. Update leaderboard entries for all periods
+    await updateRankingsForAllPeriods(userId, attempt.categoryId, totalScore, correctAnswers);
 
     // 10. Prepare detailed breakdown
     const breakdown = answers.map((answer) => ({
@@ -151,122 +152,5 @@ export async function POST(request: NextRequest) {
       },
       { status: 500 }
     );
-  }
-}
-
-/**
- * Helper function to update leaderboard entries for all periods
- */
-async function updateLeaderboards(
-  userId: number,
-  categoryId: number | null,
-  scoreChange: number,
-  correctAnswersChange: number
-) {
-  const periods: Array<"weekly" | "monthly" | "all-time"> = ["weekly", "monthly", "all-time"];
-
-  for (const period of periods) {
-    const periodStart = getPeriodStart(period);
-
-    // Check if entry exists
-    const [existingEntry] = await db
-      .select()
-      .from(leaderboardEntries)
-      .where(
-        and(
-          eq(leaderboardEntries.studentId, userId),
-          categoryId !== null
-            ? eq(leaderboardEntries.categoryId, categoryId)
-            : sql`${leaderboardEntries.categoryId} IS NULL`,
-          eq(leaderboardEntries.period, period),
-          eq(leaderboardEntries.periodStart, periodStart)
-        )
-      );
-
-    if (existingEntry) {
-      // Update existing entry
-      await db
-        .update(leaderboardEntries)
-        .set({
-          score: existingEntry.score + scoreChange,
-          correctAnswers: existingEntry.correctAnswers + correctAnswersChange,
-          totalAttempts: existingEntry.totalAttempts + 1,
-          updatedAt: new Date(),
-        })
-        .where(eq(leaderboardEntries.id, existingEntry.id));
-    } else {
-      // Create new entry
-      await db.insert(leaderboardEntries).values({
-        studentId: userId,
-        categoryId: categoryId,
-        score: scoreChange,
-        correctAnswers: correctAnswersChange,
-        totalAttempts: 1,
-        period,
-        periodStart,
-      });
-    }
-
-    // Recalculate ranks for this period/category
-    await recalculateRanks(categoryId, period, periodStart);
-  }
-}
-
-/**
- * Helper function to get period start date
- */
-function getPeriodStart(period: "weekly" | "monthly" | "all-time"): string {
-  const now = new Date();
-
-  if (period === "weekly") {
-    const day = now.getDay();
-    const diff = now.getDate() - day;
-    const weekStart = new Date(now.setDate(diff));
-    weekStart.setHours(0, 0, 0, 0);
-    return weekStart.toISOString().split("T")[0];
-  }
-
-  if (period === "monthly") {
-    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
-    return monthStart.toISOString().split("T")[0];
-  }
-
-  // all-time uses epoch
-  return "1970-01-01";
-}
-
-/**
- * Helper function to recalculate ranks for a leaderboard
- */
-async function recalculateRanks(
-  categoryId: number | null,
-  period: string,
-  periodStart: string
-) {
-  // Get all entries for this leaderboard, ordered by score and correct answers
-  const entries = await db
-    .select()
-    .from(leaderboardEntries)
-    .where(
-      and(
-        categoryId !== null
-          ? eq(leaderboardEntries.categoryId, categoryId)
-          : sql`${leaderboardEntries.categoryId} IS NULL`,
-        eq(leaderboardEntries.period, period),
-        eq(leaderboardEntries.periodStart, periodStart)
-      )
-    )
-    .orderBy(
-      sql`${leaderboardEntries.score} DESC`,
-      sql`${leaderboardEntries.correctAnswers} DESC`,
-      sql`${leaderboardEntries.updatedAt} ASC`
-    );
-
-  // Update ranks
-  for (let i = 0; i < entries.length; i++) {
-    await db
-      .update(leaderboardEntries)
-      .set({ rank: i + 1 })
-      .where(eq(leaderboardEntries.id, entries[i].id));
   }
 }

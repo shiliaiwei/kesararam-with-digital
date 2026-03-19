@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
       .from(userProgress)
       .where(
         and(
-          eq(userProgress.userId, session.userId),
+          eq(userProgress.userId, session.id),
           eq(userProgress.contentId, contentId)
         )
       );
@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
       const [created] = await db
         .insert(userProgress)
         .values({
-          userId: session.userId,
+          userId: session.id,
           contentId,
           completed: false,
           lastViewedAt: new Date(),

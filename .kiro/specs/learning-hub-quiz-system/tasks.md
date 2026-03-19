@@ -234,49 +234,49 @@ The implementation follows 4 phases: Database Schema & Core APIs → Quiz Engine
 - [x] 7. Checkpoint - Verify quiz engine
   - Ensure all tests pass, ask the user if questions arise.
 
-- [-] 8. Implement progress tracking APIs
-  - [ ] 8.1 Create GET /api/progress/[userId] endpoint
+- [x] 8. Implement progress tracking APIs
+  - [x] 8.1 Create GET /api/progress/[userId] endpoint
     - Calculate completion statistics by category
     - Return totalItems, completedItems, completionPercentage, averageScore
     - Allow user to view own progress, admin to view all
     - _Requirements: 18.1, 18.2, 18.4_
   
-  - [ ] 8.2 Write property test for completion percentage
+  - [x] 8.2 Write property test for completion percentage
     - **Property 14: Category Completion Percentage Calculation**
     - **Validates: Requirements 18.2**
   
-  - [ ] 8.3 Create GET /api/progress/[userId]/category/[categoryId] endpoint
+  - [x] 8.3 Create GET /api/progress/[userId]/category/[categoryId] endpoint
     - Return detailed progress for specific category
     - Include list of completed items, scores, trends
     - _Requirements: 18.4, 18.5_
   
-  - [ ] 8.4 Create POST /api/progress/mark-viewed endpoint
+  - [x] 8.4 Create POST /api/progress/mark-viewed endpoint
     - Update or create user_progress record
     - Set lastViewedAt to current timestamp
     - _Requirements: 18.1_
   
-  - [ ] 8.5 Create POST /api/progress/mark-completed endpoint
+  - [x] 8.5 Create POST /api/progress/mark-completed endpoint
     - Update user_progress record
     - Set completed to true
     - _Requirements: 18.1_
   
-  - [ ] 8.6 Write property test for progress tracking
+  - [x] 8.6 Write property test for progress tracking
     - **Property 13: Progress Tracking Per Content Item**
     - **Validates: Requirements 18.1**
 
-- [ ] 9. Implement challenge system APIs
-  - [ ] 9.1 Create POST /api/challenge/create endpoint
+- [x] 9. Implement challenge system APIs
+  - [x] 9.1 Create POST /api/challenge/create endpoint
     - Accept categoryId, challengeType, level, maxStudents
     - Generate unique 6-character room code
     - Create challenge_sessions record with status='waiting'
     - Return sessionId and roomCode
     - _Requirements: 28.1_
   
-  - [ ] 9.2 Write property test for room code uniqueness
+  - [x] 9.2 Write property test for room code uniqueness
     - **Property 24: Challenge Session Room Code Uniqueness**
     - **Validates: Requirements 28.1**
   
-  - [ ] 9.3 Create POST /api/challenge/join endpoint
+  - [x] 9.3 Create POST /api/challenge/join endpoint
     - Accept roomCode
     - Validate session exists and status is 'waiting' or 'active'
     - Check participant count against maxStudents
@@ -284,18 +284,18 @@ The implementation follows 4 phases: Database Schema & Core APIs → Quiz Engine
     - Return sessionId, status, participantCount
     - _Requirements: 28.2, 28.3_
   
-  - [ ] 9.4 Write property test for participant limit
+  - [x] 9.4 Write property test for participant limit
     - **Property 25: Challenge Session Participant Limit**
     - **Validates: Requirements 28.2**
   
-  - [ ] 9.5 Create POST /api/challenge/start/[sessionId] endpoint
+  - [x] 9.5 Create POST /api/challenge/start/[sessionId] endpoint
     - Use Fair Algorithm to select questions for category
     - Update session status to 'active'
     - Set startedAt timestamp
     - Return questions and startedAt
     - _Requirements: 15.2, 28.4_
   
-  - [ ] 9.6 Create POST /api/challenge/answer endpoint
+  - [x] 9.6 Create POST /api/challenge/answer endpoint
     - Accept sessionId, contentId, answer, timeSpent
     - Validate answer
     - Calculate points with time bonus
@@ -305,7 +305,7 @@ The implementation follows 4 phases: Database Schema & Core APIs → Quiz Engine
     - Return isCorrect, points, timeBonus, currentRank
     - _Requirements: 15.3, 28.4_
   
-  - [ ] 9.7 Create POST /api/challenge/complete/[sessionId] endpoint
+  - [x] 9.7 Create POST /api/challenge/complete/[sessionId] endpoint
     - Update session status to 'completed'
     - Set endedAt timestamp
     - Calculate final rankings for all participants
@@ -314,39 +314,39 @@ The implementation follows 4 phases: Database Schema & Core APIs → Quiz Engine
     - Return rankings and finalScores
     - _Requirements: 15.4, 28.5_
   
-  - [ ] 9.8 Create GET /api/challenge/session/[sessionId] endpoint
+  - [x] 9.8 Create GET /api/challenge/session/[sessionId] endpoint
     - Return session details with participants and current scores
     - Include real-time rankings
     - _Requirements: 15.4_
 
 
 
-- [ ] 10. Implement ranking system APIs
-  - [ ] 10.1 Create ranking calculation utility function
+- [x] 10. Implement ranking system APIs
+  - [x] 10.1 Create ranking calculation utility function
     - Implement updateRankings function
     - Handle period calculation (weekly, monthly, all-time)
     - Update or create leaderboard_entries
     - Recalculate ranks for affected period/category
     - _Requirements: 17.1, 17.2_
   
-  - [ ] 10.2 Create GET /api/leaderboard endpoint
+  - [x] 10.2 Create GET /api/leaderboard endpoint
     - Accept categoryId, period, limit query params
     - Return ranked list ordered by score, then correctAnswers
     - Include student displayName and avatar
     - _Requirements: 17.3, 17.4_
   
-  - [ ] 10.3 Create GET /api/leaderboard/user/[userId] endpoint
+  - [x] 10.3 Create GET /api/leaderboard/user/[userId] endpoint
     - Accept categoryId and period query params
     - Return user's rank and score for specified period/category
     - _Requirements: 17.4_
   
-  - [ ] 10.4 Integrate ranking updates into quiz completion
+  - [x] 10.4 Integrate ranking updates into quiz completion
     - Call updateRankings after quiz/challenge completion
     - Update for weekly, monthly, and all-time periods
     - Update both category-specific and overall rankings
     - _Requirements: 17.2, 17.5_
 
-- [ ] 11. Implement user preference APIs
+- [x] 11. Implement user preference APIs
   - [ ] 11.1 Create GET /api/user/preferences endpoint
     - Return user preferences including audioMuted
     - Restrict to authenticated user's own preferences
