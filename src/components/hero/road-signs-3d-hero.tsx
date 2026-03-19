@@ -115,7 +115,7 @@ export function RoadSigns3DHero() {
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
   return (
-    <section className="relative w-full bg-transparent pt-2 pb-12 md:pt-4 md:pb-20">
+    <section className="relative w-full bg-transparent pt-2 pb-24 md:pt-4 md:pb-32 mb-8">
       {/* Header */}
       <div className="text-center mb-2">
         <h2 
