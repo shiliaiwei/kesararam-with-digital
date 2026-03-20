@@ -166,11 +166,18 @@ Part of the KWD (Khmer Web Development) project.
 
 
 help wwrite plan about this category  needed to input output frontent interface user, and what these category type of user could be learn from these exampple 
--road and sign , when user enter that category user see the signs and if user what to see the description click popup and see description details and availble the sound read too both langeuage but user can do mute from the menaul setting profile user too, and what the and what type Flashcards
-Quiz Practice Test Challenge should i create and link to who, guide me plan it, 
-Browse and learn all official road signs used in Cambodia. Each sign includes a description, what it means, and audio support in Khmer and English.
 
--road-traffic  : user see the question and answer q and a 
+
+
+
+The system architecture manages input and output through a structured resource management workflow. First, the Road Signs category displays a 12-column grid layout where users can browse official Cambodian road signs. Each entry includes the sign's logo; clicking a sign opens a popup with detailed descriptions and bilingual audio support (Khmer and English).
+
+This data feeds into various Game Modes, such as Flashcards, Quizzes, Practice Tests ( is for none user only they can test the knowledge without login but no record anyt thing like score and data they just do the quiz testing thire memory ), and Challenges. While staff members create the core content, teachers have the logic to customize these modes by selecting specific question types and difficulty levels for their students. To ensure quality, the system follows a strict administrative workflow: all content must be reviewed and approved by an Admin before it is published to the frontend.
+
+let make it from frontent and backent and link to  all role what they can do.
+
+so start build logical for input and output controll controol resoruce management conten: start first
+-/road-traffic if user enter this category: user can see the question and answer q and a 
 Study the legal framework governing road use and the responsibilities of all road users. Covers law articles, case studies, and structured Q&A.
 Flashcards
 Quiz

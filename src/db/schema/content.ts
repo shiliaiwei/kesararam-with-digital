@@ -119,3 +119,50 @@ export const roadMarkings = pgTable("road_markings", {
 
 export type RoadMarking = typeof roadMarkings.$inferSelect;
 export type NewRoadMarking = typeof roadMarkings.$inferInsert;
+
+// Traffic Signs with Approval Workflow
+export const trafficSigns = pgTable("traffic_signs", {
+  id: serial("id").primaryKey(),
+  titleEn: text("title_en").notNull(),
+  titleKm: text("title_km").notNull(),
+  descriptionEn: text("description_en").notNull(),
+  descriptionKm: text("description_km").notNull(),
+  imageUrl: text("image_url").notNull(),
+  audioUrlEn: text("audio_url_en"),
+  audioUrlKm: text("audio_url_km"),
+  
+  // Classification
+  signType: text("sign_type").notNull(), // warning | regulatory | informational | guide
+  category: text("category"), // speed | parking | direction | etc
+  
+  // Workflow
+  status: text("status").notNull().default("pending"), // pending | approved | rejected | inactive
+  createdBy: integer("created_by").references(() => users.id),
+  approvedBy: integer("approved_by").references(() => users.id),
+  approvedAt: timestamp("approved_at"),
+  rejectionReason: text("rejection_reason"),
+  
+  // Metadata
+  isActive: boolean("is_active").default(false).notNull(),
+  sortOrder: integer("sort_order").default(0).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const trafficSignApprovals = pgTable("traffic_sign_approvals", {
+  id: serial("id").primaryKey(),
+  signId: integer("sign_id")
+    .notNull()
+    .references(() => trafficSigns.id),
+  adminId: integer("admin_id")
+    .notNull()
+    .references(() => users.id),
+  action: text("action").notNull(), // approved | rejected
+  comments: text("comments"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export type TrafficSign = typeof trafficSigns.$inferSelect;
+export type NewTrafficSign = typeof trafficSigns.$inferInsert;
+export type TrafficSignApproval = typeof trafficSignApprovals.$inferSelect;
+export type NewTrafficSignApproval = typeof trafficSignApprovals.$inferInsert;

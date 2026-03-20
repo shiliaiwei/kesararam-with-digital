@@ -12,8 +12,11 @@ interface TrafficSign {
   descriptionEn: string;
   descriptionKm: string;
   imageUrl: string;
-  audioUrlEn?: string;
-  audioUrlKm?: string;
+  audioUrlEn?: string | null;
+  audioUrlKm?: string | null;
+  signType: string;
+  category?: string | null;
+  status?: string;
   isActive: boolean;
   createdAt?: string;
 }
@@ -31,8 +34,10 @@ export function TrafficSignForm({ sign, onClose, onSave }: TrafficSignFormProps)
     descriptionEn: sign?.descriptionEn || "",
     descriptionKm: sign?.descriptionKm || "",
     imageUrl: sign?.imageUrl || "",
-    audioUrlEn: sign?.audioUrlEn || "",
-    audioUrlKm: sign?.audioUrlKm || "",
+    audioUrlEn: sign?.audioUrlEn || null,
+    audioUrlKm: sign?.audioUrlKm || null,
+    signType: sign?.signType || "regulatory",
+    category: sign?.category || null,
     isActive: sign?.isActive ?? true,
   });
 
@@ -142,6 +147,38 @@ export function TrafficSignForm({ sign, onClose, onSave }: TrafficSignFormProps)
                       Browse Cloudinary Media
                     </button>
                   </div>
+                </div>
+
+                {/* Sign Type */}
+                <div>
+                  <label className="block text-sm font-bold text-black mb-2">
+                    Sign Type
+                  </label>
+                  <select
+                    value={formData.signType}
+                    onChange={(e) => setFormData(prev => ({ ...prev, signType: e.target.value }))}
+                    className="w-full p-3 border-2 border-black font-medium focus:outline-none"
+                    required
+                  >
+                    <option value="regulatory">Regulatory</option>
+                    <option value="warning">Warning</option>
+                    <option value="informational">Informational</option>
+                    <option value="guide">Guide</option>
+                  </select>
+                </div>
+
+                {/* Category */}
+                <div>
+                  <label className="block text-sm font-bold text-black mb-2">
+                    Category (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.category || ""}
+                    onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value || null }))}
+                    className="w-full p-3 border-2 border-black font-medium focus:outline-none"
+                    placeholder="e.g., speed, parking, direction"
+                  />
                 </div>
 
                 {/* Status */}
