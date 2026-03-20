@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Save, X, Image as ImageIcon, Music, Video, Tag } from "lucide-react";
+import { Save, X } from "lucide-react";
+import { QAForm } from "./qa-form";
+import { MediaSelector } from "../media/media-selector";
 
 interface FormData {
   categoryId: string;

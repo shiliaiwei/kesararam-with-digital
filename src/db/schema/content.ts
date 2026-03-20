@@ -22,18 +22,23 @@ export const contentItems = pgTable("content_items", {
   id: serial("id").primaryKey(),
   categoryId: integer("category_id").notNull(),
   type: text("type").notNull(),
-  status: text("status").notNull().default("pending"), // 'pending', 'active', 'rejected', 'inactive'
+  status: text("status").notNull().default("pending"),
   titleEn: text("title_en").notNull(),
   titleKm: text("title_km").notNull().default(""),
   descriptionEn: text("description_en").notNull().default(""),
   descriptionKm: text("description_km").notNull().default(""),
   imageUrl: text("image_url"),
+  imageSource: text("image_source").default("url"), // 'url' | 'cloudinary'
   audioUrlEn: text("audio_url_en"),
+  audioSourceEn: text("audio_source_en").default("url"),
   audioUrlKm: text("audio_url_km"),
+  audioSourceKm: text("audio_source_km").default("url"),
   questionEn: text("question_en").notNull().default(""),
   questionKm: text("question_km").notNull().default(""),
   answerEn: text("answer_en").notNull().default(""),
   answerKm: text("answer_km").notNull().default(""),
+  hintEn: text("hint_en"),
+  hintKm: text("hint_km"),
   scorePoints: integer("score_points").default(10).notNull(),
   timeLimit: integer("time_limit").default(30).notNull(),
   difficulty: text("difficulty"),
@@ -251,3 +256,45 @@ export type StaffActivityMetric = typeof staffActivityMetrics.$inferSelect;
 export type NewStaffActivityMetric = typeof staffActivityMetrics.$inferInsert;
 export type AdminReviewMetric = typeof adminReviewMetrics.$inferSelect;
 export type NewAdminReviewMetric = typeof adminReviewMetrics.$inferInsert;
+
+// Questions table - one content can have multiple questions
+export const questions = pgTable("questions", {
+  id: serial("id").primaryKey(),
+  contentId: integer("content_id")
+    .notNull()
+    .references(() => contentItems.id, { onDelete: "cascade" }),
+  questionEn: text("question_en").notNull(),
+  questionKm: text("question_km").notNull().default(""),
+  hintEn: text("hint_en"),
+  hintKm: text("hint_km"),
+  imageUrl: text("image_url"),
+  imageSource: text("image_source").default("url"),
+  audioUrlEn: text("audio_url_en"),
+  audioSourceEn: text("audio_source_en").default("url"),
+  audioUrlKm: text("audio_url_km"),
+  audioSourceKm: text("audio_source_km").default("url"),
+  sortOrder: integer("sort_order").default(0).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// Answers table - one question can have up to 5 answers
+export const answers = pgTable("answers", {
+  id: serial("id").primaryKey(),
+  questionId: integer("question_id")
+    .notNull()
+    .references(() => questions.id, { onDelete: "cascade" }),
+  answerType: text("answer_type").notNull(), // 'text_short' | 'text_paragraph' | 'multiple_choice' | 'checkbox' | 'dropdown' | 'rating' | 'image_selection'
+  answerEn: text("answer_en").notNull(),
+  answerKm: text("answer_km").notNull().default(""),
+  isCorrect: boolean("is_correct").default(false).notNull(),
+  imageUrl: text("image_url"),
+  imageSource: text("image_source").default("url"),
+  sortOrder: integer("sort_order").default(0).notNull(),
+  metadata: text("metadata"), // JSON for additional data like rating scale, selection limits
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export type Question = typeof questions.$inferSelect;
+export type NewQuestion = typeof questions.$inferInsert;
+export type Answer = typeof answers.$inferSelect;
+export type NewAnswer = typeof answers.$inferInsert;
