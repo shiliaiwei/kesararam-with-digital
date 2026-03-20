@@ -166,3 +166,88 @@ export type TrafficSign = typeof trafficSigns.$inferSelect;
 export type NewTrafficSign = typeof trafficSigns.$inferInsert;
 export type TrafficSignApproval = typeof trafficSignApprovals.$inferSelect;
 export type NewTrafficSignApproval = typeof trafficSignApprovals.$inferInsert;
+
+// Media Resources
+export const mediaResources = pgTable("media_resources", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  type: text("type").notNull(), // image | audio | video | logo | brand
+  url: text("url").notNull(),
+  source: text("source").notNull().default("cloudinary"), // cloudinary | external
+  cloudinaryId: text("cloudinary_id"),
+  fileSize: integer("file_size"),
+  mimeType: text("mime_type"),
+  width: integer("width"),
+  height: integer("height"),
+  duration: integer("duration"), // for audio/video in seconds
+  createdBy: integer("created_by").references(() => users.id),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// Content-Media Relationship
+export const contentMedia = pgTable("content_media", {
+  id: serial("id").primaryKey(),
+  contentId: integer("content_id")
+    .notNull()
+    .references(() => contentItems.id, { onDelete: "cascade" }),
+  mediaId: integer("media_id")
+    .notNull()
+    .references(() => mediaResources.id, { onDelete: "cascade" }),
+  usageType: text("usage_type").notNull(), // primary | thumbnail | reference | explanation
+  sortOrder: integer("sort_order").default(0).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// Game Mode Content Links
+export const gameModeContent = pgTable("game_mode_content", {
+  id: serial("id").primaryKey(),
+  contentId: integer("content_id")
+    .notNull()
+    .references(() => contentItems.id, { onDelete: "cascade" }),
+  gameMode: text("game_mode").notNull(), // flashcard | quiz | practice | challenge
+  isActive: boolean("is_active").default(true).notNull(),
+  difficultyOverride: text("difficulty_override"),
+  pointsOverride: integer("points_override"),
+  timeLimitOverride: integer("time_limit_override"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// Staff Activity Metrics
+export const staffActivityMetrics = pgTable("staff_activity_metrics", {
+  id: serial("id").primaryKey(),
+  staffId: integer("staff_id")
+    .notNull()
+    .references(() => users.id),
+  actionType: text("action_type").notNull(), // create | update | delete | submit
+  contentId: integer("content_id").references(() => contentItems.id),
+  categoryId: integer("category_id"),
+  metadata: text("metadata"), // JSON string
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// Admin Review Metrics
+export const adminReviewMetrics = pgTable("admin_review_metrics", {
+  id: serial("id").primaryKey(),
+  adminId: integer("admin_id")
+    .notNull()
+    .references(() => users.id),
+  contentId: integer("content_id")
+    .notNull()
+    .references(() => contentItems.id),
+  action: text("action").notNull(), // approved | rejected | requested_changes
+  reviewTime: integer("review_time"), // seconds
+  comments: text("comments"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export type MediaResource = typeof mediaResources.$inferSelect;
+export type NewMediaResource = typeof mediaResources.$inferInsert;
+export type ContentMedia = typeof contentMedia.$inferSelect;
+export type NewContentMedia = typeof contentMedia.$inferInsert;
+export type GameModeContent = typeof gameModeContent.$inferSelect;
+export type NewGameModeContent = typeof gameModeContent.$inferInsert;
+export type StaffActivityMetric = typeof staffActivityMetrics.$inferSelect;
+export type NewStaffActivityMetric = typeof staffActivityMetrics.$inferInsert;
+export type AdminReviewMetric = typeof adminReviewMetrics.$inferSelect;
+export type NewAdminReviewMetric = typeof adminReviewMetrics.$inferInsert;
