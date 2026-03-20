@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FileText, Clock, CheckCircle, XCircle, TrendingUp } from "lucide-react";
+import { FileText, Clock, CheckCircle, XCircle, TrendingUp, AlertCircle } from "lucide-react";
 
 interface StatsData {
   totalContent: number;
@@ -22,6 +22,7 @@ export function StatsOverview() {
     approvalRate: 0,
   });
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchStats();
@@ -30,10 +31,17 @@ export function StatsOverview() {
   const fetchStats = async () => {
     try {
       const response = await fetch("/api/staff/analytics");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
-      setStats(data.stats || stats);
+      if (data.stats) {
+        setStats(data.stats);
+      }
     } catch (error) {
       console.error("Error fetching stats:", error);
+      setError("Failed to load statistics");
+      // Keep default stats on error
     } finally {
       setLoading(false);
     }
@@ -90,6 +98,25 @@ export function StatsOverview() {
             <div className="h-8 bg-gray-200 rounded w-1/2"></div>
           </div>
         ))}
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div
+        className="bg-yellow-100 border-2 border-yellow-600 p-6"
+        style={{ boxShadow: "4px 4px 0 #facc15" }}
+      >
+        <div className="flex items-center gap-3">
+          <AlertCircle className="text-yellow-900" size={24} />
+          <div>
+            <p className="font-bold text-yellow-900">Unable to load statistics</p>
+            <p className="text-sm text-yellow-800">
+              {error}. Your content is safe, but stats are temporarily unavailable.
+            </p>
+          </div>
+        </div>
       </div>
     );
   }

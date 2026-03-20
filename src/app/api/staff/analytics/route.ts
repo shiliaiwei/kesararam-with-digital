@@ -15,14 +15,15 @@ export async function GET(request: NextRequest) {
     const staffId = session.user.id;
 
     // Get total content count
-    const [{ totalContent }] = await db
-      .select({ totalContent: sql<number>`count(*)` })
+    const totalContentResult = await db
+      .select({ totalContent: sql<number>`count(*)::int` })
       .from(contentItems)
       .where(eq(contentItems.createdBy, staffId));
+    const totalContent = totalContentResult[0]?.totalContent || 0;
 
     // Get pending count
-    const [{ pendingApproval }] = await db
-      .select({ pendingApproval: sql<number>`count(*)` })
+    const pendingResult = await db
+      .select({ pendingApproval: sql<number>`count(*)::int` })
       .from(contentItems)
       .where(
         and(
@@ -30,10 +31,11 @@ export async function GET(request: NextRequest) {
           eq(contentItems.status, "pending")
         )
       );
+    const pendingApproval = pendingResult[0]?.pendingApproval || 0;
 
     // Get approved count
-    const [{ approved }] = await db
-      .select({ approved: sql<number>`count(*)` })
+    const approvedResult = await db
+      .select({ approved: sql<number>`count(*)::int` })
       .from(contentItems)
       .where(
         and(
@@ -41,10 +43,11 @@ export async function GET(request: NextRequest) {
           eq(contentItems.status, "active")
         )
       );
+    const approved = approvedResult[0]?.approved || 0;
 
     // Get rejected count
-    const [{ rejected }] = await db
-      .select({ rejected: sql<number>`count(*)` })
+    const rejectedResult = await db
+      .select({ rejected: sql<number>`count(*)::int` })
       .from(contentItems)
       .where(
         and(
@@ -52,13 +55,14 @@ export async function GET(request: NextRequest) {
           eq(contentItems.status, "rejected")
         )
       );
+    const rejected = rejectedResult[0]?.rejected || 0;
 
     // Get this week's count
     const oneWeekAgo = new Date();
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
-    const [{ thisWeek }] = await db
-      .select({ thisWeek: sql<number>`count(*)` })
+    const thisWeekResult = await db
+      .select({ thisWeek: sql<number>`count(*)::int` })
       .from(contentItems)
       .where(
         and(
@@ -66,6 +70,7 @@ export async function GET(request: NextRequest) {
           gte(contentItems.createdAt, oneWeekAgo)
         )
       );
+    const thisWeek = thisWeekResult[0]?.thisWeek || 0;
 
     // Calculate approval rate
     const totalReviewed = Number(approved) + Number(rejected);
@@ -86,7 +91,7 @@ export async function GET(request: NextRequest) {
     const contentByCategory = await db
       .select({
         categoryId: contentItems.categoryId,
-        count: sql<number>`count(*)`,
+        count: sql<number>`count(*)::int`,
       })
       .from(contentItems)
       .where(eq(contentItems.createdBy, staffId))
@@ -101,13 +106,25 @@ export async function GET(request: NextRequest) {
         thisWeek: Number(thisWeek),
         approvalRate,
       },
-      recentActivity,
-      contentByCategory,
+      recentActivity: recentActivity || [],
+      contentByCategory: contentByCategory || [],
     });
   } catch (error) {
     console.error("Error fetching analytics:", error);
     return NextResponse.json(
-      { error: "Failed to fetch analytics" },
+      { 
+        error: "Failed to fetch analytics",
+        stats: {
+          totalContent: 0,
+          pendingApproval: 0,
+          approved: 0,
+          rejected: 0,
+          thisWeek: 0,
+          approvalRate: 0,
+        },
+        recentActivity: [],
+        contentByCategory: [],
+      },
       { status: 500 }
     );
   }
