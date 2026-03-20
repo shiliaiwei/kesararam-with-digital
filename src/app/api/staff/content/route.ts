@@ -1,62 +1,172 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { contentItems, categories } from "@/db/schema";
-import { eq, and } from "drizzle-orm";
+import { contentItems, staffActivityMetrics } from "@/db/schema/content";
+import { eq, and, desc, sql, or, like } from "drizzle-orm";
 
-function canAccess(role: string) {
-  return role === "staff" || role === "admin";
-}
-
-export async function GET(req: NextRequest) {
-  const session = await getSession();
-  if (!session || !canAccess(session.role)) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
-
-  const categorySlug = req.nextUrl.searchParams.get("category");
-
+// GET /api/staff/content - List staff's own content
+export async function GET(request: NextRequest) {
   try {
-    // Find category id from slug
-    let items;
-    if (categorySlug) {
-      const cat = await db.select().from(categories).where(eq(categories.slug, categorySlug)).limit(1);
-      if (!cat.length) return NextResponse.json({ items: [] });
-      items = await db.select().from(contentItems).where(eq(contentItems.categoryId, cat[0].id));
-    } else {
-      items = await db.select().from(contentItems);
-    }
-    return NextResponse.json({ items });
-  } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
-  }
-}
-
-export async function POST(req: NextRequest) {
-  const session = await getSession();
-  if (!session || !canAccess(session.role)) {
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-  }
-
-  try {
-    const body = await req.json();
-    const { categorySlug, ...rest } = body;
-
-    // Resolve category id
-    let categoryId = rest.categoryId;
-    if (categorySlug) {
-      const cat = await db.select().from(categories).where(eq(categories.slug, categorySlug)).limit(1);
-      if (cat.length) categoryId = cat[0].id;
+    const session = await getSession();
+    if (!session?.user?.id || session.user.role !== "staff") {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const [created] = await db.insert(contentItems).values({
-      ...rest,
+    const { searchParams } = new URL(request.url);
+    const status = searchParams.get("status");
+    const categoryId = searchParams.get("categoryId");
+    const search = searchParams.get("search");
+    const page = parseInt(searchParams.get("page") || "1");
+    const limit = parseInt(searchParams.get("limit") || "20");
+    const offset = (page - 1) * limit;
+
+    // Build query conditions
+    const conditions = [eq(contentItems.createdBy, session.user.id)];
+    
+    if (status) {
+      conditions.push(eq(contentItems.status, status));
+    }
+    
+    if (categoryId) {
+      conditions.push(eq(contentItems.categoryId, parseInt(categoryId)));
+    }
+    
+    if (search) {
+      conditions.push(
+        or(
+          like(contentItems.titleEn, `%${search}%`),
+          like(contentItems.titleKm, `%${search}%`),
+          like(contentItems.questionEn, `%${search}%`)
+        )
+      );
+    }
+
+    // Fetch content
+    const content = await db
+      .select()
+      .from(contentItems)
+      .where(and(...conditions))
+      .orderBy(desc(contentItems.updatedAt))
+      .limit(limit)
+      .offset(offset);
+
+    // Get total count
+    const [{ count }] = await db
+      .select({ count: sql<number>`count(*)` })
+      .from(contentItems)
+      .where(and(...conditions));
+
+    return NextResponse.json({
+      content,
+      pagination: {
+        page,
+        limit,
+        total: Number(count),
+        totalPages: Math.ceil(Number(count) / limit),
+      },
+    });
+  } catch (error) {
+    console.error("Error fetching content:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch content" },
+      { status: 500 }
+    );
+  }
+}
+
+// POST /api/staff/content - Create new content
+export async function POST(request: NextRequest) {
+  try {
+    const session = await getSession();
+    if (!session?.user?.id || session.user.role !== "staff") {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const body = await request.json();
+    const {
       categoryId,
-      createdBy: session.id,
-    }).returning();
+      type,
+      titleEn,
+      titleKm,
+      descriptionEn,
+      descriptionKm,
+      imageUrl,
+      audioUrlEn,
+      audioUrlKm,
+      questionEn,
+      questionKm,
+      answerEn,
+      answerKm,
+      scorePoints,
+      timeLimit,
+      difficulty,
+      subtopic,
+      sortOrder,
+      videoUrl,
+      logoUrl,
+      brandUrl,
+      resourceType,
+      tags,
+      metadata,
+    } = body;
 
-    return NextResponse.json({ item: created }, { status: 201 });
-  } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
+    // Validate required fields
+    if (!categoryId || !type || !titleEn) {
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
+    }
+
+    // Create content
+    const [newContent] = await db
+      .insert(contentItems)
+      .values({
+        categoryId,
+        type,
+        status: "pending",
+        titleEn,
+        titleKm: titleKm || "",
+        descriptionEn: descriptionEn || "",
+        descriptionKm: descriptionKm || "",
+        imageUrl,
+        audioUrlEn,
+        audioUrlKm,
+        questionEn: questionEn || "",
+        questionKm: questionKm || "",
+        answerEn: answerEn || "",
+        answerKm: answerKm || "",
+        scorePoints: scorePoints || 10,
+        timeLimit: timeLimit || 30,
+        difficulty,
+        subtopic,
+        sortOrder: sortOrder || 0,
+        isActive: false,
+        createdBy: session.user.id,
+        videoUrl,
+        logoUrl,
+        brandUrl,
+        resourceType: resourceType || "qa",
+        tags: tags || [],
+        metadata: metadata ? JSON.stringify(metadata) : null,
+      })
+      .returning();
+
+    // Log activity
+    await db.insert(staffActivityMetrics).values({
+      staffId: session.user.id,
+      actionType: "create",
+      contentId: newContent.id,
+      categoryId,
+      metadata: JSON.stringify({ type, titleEn }),
+    });
+
+    return NextResponse.json({ content: newContent }, { status: 201 });
+  } catch (error) {
+    console.error("Error creating content:", error);
+    return NextResponse.json(
+      { error: "Failed to create content" },
+      { status: 500 }
+    );
   }
 }

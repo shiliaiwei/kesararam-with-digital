@@ -1,11 +1,9 @@
-import { drizzle } from "drizzle-orm/postgres-js";
-import postgres from "postgres";
+import { neon } from "@neondatabase/serverless";
 import { config } from "dotenv";
 
 config({ path: ".env.local" });
 
-const sql = postgres(process.env.DATABASE_URL);
-const db = drizzle(sql);
+const sql = neon(process.env.DATABASE_URL);
 
 async function createStaffPanelTables() {
   console.log("Creating staff panel tables...");
@@ -130,8 +128,6 @@ async function createStaffPanelTables() {
   } catch (error) {
     console.error("❌ Error creating tables:", error);
     throw error;
-  } finally {
-    await sql.end();
   }
 }
 

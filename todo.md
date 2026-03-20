@@ -280,3 +280,48 @@ Challenge
 -Emergency 
 
 Emergency procedures, contact numbers, and protocols for handling road incidents. Know what to do in any urgent situation on Cambodian roads. and make sure build the backend in dashbaor dinput content manament logical , like image should be select list from cloudanry and audio to they have option from url or list from cloudinary 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let redesign input item content to frontend , image url should be optional from url or list pick up from cloudinary by search or filter from that, and audio too, and should be this item link to many Q&A , staff can more question and answer, but limited only one question can link to five answer, type of answer, - Text-Based Answers Short, Answer Paragraph, - Choice-Based Answers Multiple Choice Checkboxes Dropdown - Rating & Scale Answers, Specific Data Formats like image signs pick. Selection Limit. the each of them should be at least have one question and staff can add more later.   Flashcards is show the question click or swap to reveal answer, and also see how many flashcard to learn , and has a button go next or back, 
+
+Quiz for this quiz should be show how many question and each question has one correct like a b c d, also add hint too, both langeuage base user switch, if user select each one right or wrong reveal the correct answer before go to the next question.
+
+Practice Test this for nonr user , use from above no need to create new just link from all above,  and  live challenge by teacher  livestream real time, link from all above and lavel type, Challenge. 
+
+please dont description or write file readme.md anymore , only when i request to write only, remember that role, and jsut write the code and think about it perfect structure. 
+
+
+
+
