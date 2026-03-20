@@ -257,11 +257,12 @@ export type NewStaffActivityMetric = typeof staffActivityMetrics.$inferInsert;
 export type AdminReviewMetric = typeof adminReviewMetrics.$inferSelect;
 export type NewAdminReviewMetric = typeof adminReviewMetrics.$inferInsert;
 
-// Questions table - one content can have multiple questions
+// Questions table - one topic can have multiple questions
 export const questions = pgTable("questions", {
   id: serial("id").primaryKey(),
+  topicId: integer("topic_id")
+    .references(() => topics.id, { onDelete: "cascade" }),
   contentId: integer("content_id")
-    .notNull()
     .references(() => contentItems.id, { onDelete: "cascade" }),
   questionEn: text("question_en").notNull(),
   questionKm: text("question_km").notNull().default(""),
@@ -273,6 +274,8 @@ export const questions = pgTable("questions", {
   audioSourceEn: text("audio_source_en").default("url"),
   audioUrlKm: text("audio_url_km"),
   audioSourceKm: text("audio_source_km").default("url"),
+  difficulty: text("difficulty").default("medium"),
+  status: text("status").default("draft"),
   sortOrder: integer("sort_order").default(0).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
@@ -298,3 +301,162 @@ export type Question = typeof questions.$inferSelect;
 export type NewQuestion = typeof questions.$inferInsert;
 export type Answer = typeof answers.$inferSelect;
 export type NewAnswer = typeof answers.$inferInsert;
+
+// Topics table - replaces content_items for topic-level data
+export const topics = pgTable("topics", {
+  id: serial("id").primaryKey(),
+  topicCode: text("topic_code").notNull().unique(),
+  categoryId: integer("category_id")
+    .notNull()
+    .references(() => categories.id),
+  nameEn: text("name_en").notNull(),
+  nameKm: text("name_km").notNull(),
+  descriptionEn: text("description_en").notNull().default(""),
+  descriptionKm: text("description_km").notNull().default(""),
+  primaryImageUrl: text("primary_image_url"),
+  primaryImageSource: text("primary_image_source").default("url"),
+  lawReference: text("law_reference"),
+  subGroup: text("sub_group"),
+  audioUrlEn: text("audio_url_en"),
+  audioSourceEn: text("audio_source_en").default("url"),
+  audioUrlKm: text("audio_url_km"),
+  audioSourceKm: text("audio_source_km").default("url"),
+  status: text("status").notNull().default("draft"),
+  createdBy: integer("created_by").references(() => users.id),
+  approvedBy: integer("approved_by").references(() => users.id),
+  approvedAt: timestamp("approved_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// Game Modes
+export const gameModes = pgTable("game_modes", {
+  id: serial("id").primaryKey(),
+  modeKey: text("mode_key").notNull().unique(),
+  nameEn: text("name_en").notNull(),
+  nameKm: text("name_km").notNull(),
+  descriptionEn: text("description_en"),
+  descriptionKm: text("description_km"),
+  tagLabel: text("tag_label"),
+  questionCount: integer("question_count").default(10),
+  timeLimit: integer("time_limit"),
+  timerPerQuestion: boolean("timer_per_question").default(false),
+  categoriesIncluded: text("categories_included").array(),
+  difficultyLevels: text("difficulty_levels").array(),
+  isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// Learning Mode Settings
+export const learningModeSettings = pgTable("learning_mode_settings", {
+  id: serial("id").primaryKey(),
+  topicId: integer("topic_id").references(() => topics.id, { onDelete: "cascade" }),
+  categoryId: integer("category_id").references(() => categories.id),
+  modeType: text("mode_type").notNull(),
+  settings: text("settings").notNull().default("{}"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// Challenge Sessions (teacher-led live challenges)
+export const challengeSessions = pgTable("challenge_sessions", {
+  id: serial("id").primaryKey(),
+  sessionCode: text("session_code").notNull().unique(),
+  teacherId: integer("teacher_id")
+    .notNull()
+    .references(() => users.id),
+  sessionName: text("session_name").notNull(),
+  categoryIds: integer("category_ids").array(),
+  difficultyLevels: text("difficulty_levels").array(),
+  questionCount: integer("question_count").notNull(),
+  timePerQuestion: integer("time_per_question").notNull(),
+  scoringMode: text("scoring_mode").default("speed"),
+  allowLateJoin: boolean("allow_late_join").default(true),
+  language: text("language").default("both"),
+  status: text("status").default("lobby"),
+  startedAt: timestamp("started_at"),
+  endedAt: timestamp("ended_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// Challenge Participants
+export const challengeParticipants = pgTable("challenge_participants", {
+  id: serial("id").primaryKey(),
+  sessionId: integer("session_id")
+    .notNull()
+    .references(() => challengeSessions.id, { onDelete: "cascade" }),
+  userId: integer("user_id").references(() => users.id),
+  displayName: text("display_name").notNull(),
+  score: integer("score").default(0),
+  correctAnswers: integer("correct_answers").default(0),
+  joinedAt: timestamp("joined_at").defaultNow().notNull(),
+});
+
+// Daily Challenge Sets
+export const dailyChallengeSets = pgTable("daily_challenge_sets", {
+  id: serial("id").primaryKey(),
+  challengeDate: text("challenge_date").notNull().unique(),
+  questionIds: integer("question_ids").array().notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// User Streaks
+export const userStreaks = pgTable("user_streaks", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id")
+    .notNull()
+    .unique()
+    .references(() => users.id),
+  currentStreak: integer("current_streak").default(0),
+  longestStreak: integer("longest_streak").default(0),
+  lastPlayDate: text("last_play_date"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// Game Scores
+export const gameScores = pgTable("game_scores", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => users.id),
+  gameMode: text("game_mode").notNull(),
+  score: integer("score").notNull(),
+  totalQuestions: integer("total_questions").notNull(),
+  correctAnswers: integer("correct_answers").notNull(),
+  timeTaken: integer("time_taken"),
+  difficulty: text("difficulty"),
+  categoryBreakdown: text("category_breakdown"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// Staff Category Assignments
+export const staffCategoryAssignments = pgTable("staff_category_assignments", {
+  id: serial("id").primaryKey(),
+  staffId: integer("staff_id")
+    .notNull()
+    .references(() => users.id),
+  categoryId: integer("category_id")
+    .notNull()
+    .references(() => categories.id),
+  assignedBy: integer("assigned_by").references(() => users.id),
+  assignedAt: timestamp("assigned_at").defaultNow().notNull(),
+});
+
+export type Topic = typeof topics.$inferSelect;
+export type NewTopic = typeof topics.$inferInsert;
+export type GameMode = typeof gameModes.$inferSelect;
+export type NewGameMode = typeof gameModes.$inferInsert;
+export type LearningModeSetting = typeof learningModeSettings.$inferSelect;
+export type NewLearningModeSetting = typeof learningModeSettings.$inferInsert;
+export type ChallengeSession = typeof challengeSessions.$inferSelect;
+export type NewChallengeSession = typeof challengeSessions.$inferInsert;
+export type ChallengeParticipant = typeof challengeParticipants.$inferSelect;
+export type NewChallengeParticipant = typeof challengeParticipants.$inferInsert;
+export type DailyChallengeSet = typeof dailyChallengeSets.$inferSelect;
+export type NewDailyChallengeSet = typeof dailyChallengeSets.$inferInsert;
+export type UserStreak = typeof userStreaks.$inferSelect;
+export type NewUserStreak = typeof userStreaks.$inferInsert;
+export type GameScore = typeof gameScores.$inferSelect;
+export type NewGameScore = typeof gameScores.$inferInsert;
+export type StaffCategoryAssignment = typeof staffCategoryAssignments.$inferSelect;
+export type NewStaffCategoryAssignment = typeof staffCategoryAssignments.$inferInsert;

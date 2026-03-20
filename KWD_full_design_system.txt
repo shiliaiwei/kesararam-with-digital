@@ -1,0 +1,790 @@
+================================================================================
+KESARARAM WITH DIGITAL (KWD)
+FULL PLATFORM DESIGN SYSTEM — FRONTEND & BACKEND
+Site: https://www.kesararamwithdigital.tech
+================================================================================
+Design Language: Black / Amber-Yellow / White — Bold, high-contrast, accessible
+Typography: Heavy display headings, clean body text, bilingual KH + EN throughout
+================================================================================
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 0 — PLATFORM OVERVIEW & ROLE MAP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The platform has two primary user-facing areas:
+
+  LEARN     — Study by category. All 8 knowledge areas live here.
+              URL pattern: /learn → /road-sign, /road-traffic, /priority,
+              /driving, /technical, /loading-people-goods,
+              /general-knowledge, /emergency
+
+  PLAY      — Game Center. Gamified practice modes drawing from the
+  (Game       same content pool. URL: /play
+  Center)
+
+Supporting pages: /leaderboard  /suar/ai  /about  /login
+
+────────────────────────────────────────────────────────────────────────────────
+WHO CONTROLS WHAT — ROLE MATRIX
+────────────────────────────────────────────────────────────────────────────────
+
+  ┌──────────────┬─────────────────────────────────────────────────────────────┐
+  │ Role         │ Controls                                                    │
+  ├──────────────┼─────────────────────────────────────────────────────────────┤
+  │ Admin        │ Full control of ALL 8 categories and the Game Center.       │
+  │              │ Approves and publishes all content created by Staff.        │
+  │              │ Manages users, roles, and site-wide settings.               │
+  │              │ Can override or edit any content at any time.               │
+  ├──────────────┼─────────────────────────────────────────────────────────────┤
+  │ Staff        │ Creates and edits content within assigned categories.       │
+  │              │ Submits content for Admin review.                           │
+  │              │ Cannot publish directly. Cannot access other Staff's items. │
+  ├──────────────┼─────────────────────────────────────────────────────────────┤
+  │ Teacher      │ Does not create content.                                    │
+  │              │ Configures Quiz / Practice Test settings per student group. │
+  │              │ Creates and hosts live Challenge sessions.                  │
+  │              │ Views student progress and scores.                          │
+  ├──────────────┼─────────────────────────────────────────────────────────────┤
+  │ Student      │ Accesses all published Learn content and Game Center modes. │
+  │              │ Progress and scores are tracked per account.                │
+  ├──────────────┼─────────────────────────────────────────────────────────────┤
+  │ Guest        │ Can browse Learn categories and sign catalogue.             │
+  │              │ Can use Practice Test mode only (no score saved).           │
+  │              │ Cannot access Quiz scores, Challenge, or Leaderboard.       │
+  └──────────────┴─────────────────────────────────────────────────────────────┘
+
+CONTENT FLOW (for all 8 categories):
+  Staff creates → Submitted for Admin review → Admin approves → Published
+  All four learning modes (Flashcards, Quiz, Practice Test, Challenge)
+  and all six Game Center modes draw from this single approved content pool.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 1 — LEARN SECTION: ALL 8 CATEGORIES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+────────────────────────────────────────────────────────────────────────────────
+1A. /learn — CATEGORY SELECTION PAGE
+────────────────────────────────────────────────────────────────────────────────
+
+FRONTEND DISPLAY:
+  - 4 mode shortcut tabs at the top: [Flashcards] [Quizzes] [Practice Test]
+    [Infographic] — clicking any tab launches that mode across all categories
+  - Section label: "EIGHT CATEGORIES" / "Knowledge Categories"
+  - 2-row × 4-column card grid (all devices scale this responsively)
+  - Each category card:
+      • Color-coded background (each of 8 categories has a unique color)
+      • Category icon / illustration (diamond traffic sign motif)
+      • Category name in English (bold) + Khmer subtitle
+      • Short description (1–2 lines)
+      • [Study now] button in category accent color
+  - Language toggle (EN / ខ្មែរ) in top-right nav — switches all text globally
+
+CATEGORIES AND THEIR URLS:
+  1. Traffic Signs          → /road-sign          Color: Amber-Yellow
+  2. Road Traffic Law       → /road-traffic        Color: Blue
+  3. Right of Way           → /priority            Color: Red / Coral
+  4. Driving Skills         → /driving             Color: Green
+  5. Vehicle Technology     → /technical           Color: Orange
+  6. Loading People & Goods → /loading-people-goods Color: Cyan / Teal
+  7. General Knowledge      → /general-knowledge   Color: Purple
+  8. Emergency              → /emergency           Color: Pink / Rose
+
+────────────────────────────────────────────────────────────────────────────────
+1B. INDIVIDUAL CATEGORY PAGE — SHARED STRUCTURE (all 8 categories)
+────────────────────────────────────────────────────────────────────────────────
+
+Every category page follows the same layout pattern:
+
+HEADER BANNER (category accent color background):
+  - "KNOWLEDGE CATEGORY" label tag (black pill)
+  - Category title in English (large, bold)
+  - Category title in Khmer (subtitle)
+  - Category illustration / character image (right-aligned)
+  - Short description paragraph (bilingual or active language)
+  - Four mode buttons: [Flashcards] [Quiz] [Practice Test] [Challenge]
+    Each button launches that mode pre-filtered to this category's content.
+
+CONTENT AREA (white background below banner):
+  - When empty: "No content yet" state with KWD icon and note that admin
+    will publish content soon.
+  - When populated: content display specific to each category (see below).
+
+────────────────────────────────────────────────────────────────────────────────
+1C. CONTENT DISPLAY — PER CATEGORY
+────────────────────────────────────────────────────────────────────────────────
+
+── 1. TRAFFIC SIGNS (/road-sign) ────────────────────────────────────────────
+
+  CONTENT TYPE: Sign image catalogue + Q&A
+  PURPOSE: Browse and learn all official road signs used in Cambodia.
+           Each sign includes a description, what it means, and audio
+           support in Khmer and English.
+
+  CATALOGUE GRID — responsive column layout:
+    Desktop ≥1280px  →  8 columns
+    Laptop  1024px   →  6 columns
+    Tablet  768px    →  4 columns
+    Mobile  ≤767px   →  2 columns
+
+  SIGN CARD (each grid cell):
+    - Sign image (square, centred)
+    - Sign code (e.g. RS-042)
+    - Short sign name in active language
+    - Hover: highlight border + full name tooltip
+    - Click: opens Sign Detail Popup
+
+  FILTER & SEARCH (above grid):
+    - Text search (sign name or code, both languages)
+    - Filter: Sign Category (Warning / Prohibitory / Mandatory / Informational)
+    - Filter: Sub-group
+    - Result count: "Showing 48 of 120 signs"
+
+  SIGN DETAIL POPUP (on card click):
+    - Large sign image
+    - Sign code + full name (KH + EN)
+    - Detailed meaning / description (bilingual tabs)
+    - Law article reference (if any)
+    - Audio player: two tracks (KH + EN), Play/Pause, progress bar
+    - Linked Q&A accordion: all Q&A items tied to this sign
+    - Quick mode buttons: [Flashcards] [Quiz] [Practice Test] [Challenge]
+
+── 2. ROAD TRAFFIC LAW (/road-traffic) ──────────────────────────────────────
+
+  CONTENT TYPE: Law articles + case studies + Q&A
+  PURPOSE: Study the legal framework governing road use and the
+           responsibilities of all road users.
+
+  DISPLAY: List of Q&A items (not a visual grid)
+    - Each row: question ID + question preview text
+    - Click row: opens Q&A Popup
+
+  Q&A POPUP:
+    - Question ID displayed prominently
+    - Full question text (active language)
+    - Answer with detailed description (bilingual tabs or language toggle)
+    - Audio player: KH track + EN track
+    - Law article or case study reference (if linked)
+
+── 3. RIGHT OF WAY (/priority) ──────────────────────────────────────────────
+
+  CONTENT TYPE: Priority rule scenarios + intersection diagrams + Q&A
+  PURPOSE: Understand priority rules and how to handle intersections correctly.
+
+  DISPLAY: Q&A list
+    - Each row: question preview + scenario image thumbnail
+    - Click: opens Q&A Popup
+
+  Q&A POPUP:
+    - Scenario image (REQUIRED for this category — intersection diagram)
+    - Full question text (KH + EN)
+    - Answer with detailed description
+    - Audio player: KH + EN tracks
+
+── 4. DRIVING SKILLS (/driving) ─────────────────────────────────────────────
+
+  CONTENT TYPE: Practical driving manoeuvres + demonstrations + Q&A
+  PURPOSE: Learn proper driving techniques and best practices for road safety.
+
+  DISPLAY: Q&A list
+    - Each row: question number + question preview
+    - Click: opens Q&A Popup
+
+  Q&A POPUP:
+    - Question number
+    - Full question text (KH + EN)
+    - Answer with detailed description
+    - Demonstration image (optional)
+    - Audio player: KH + EN tracks
+
+── 5. VEHICLE TECHNOLOGY (/technical) ───────────────────────────────────────
+
+  CONTENT TYPE: Vehicle mechanics + safety features + maintenance Q&A
+  PURPOSE: Learn how vehicles work, safety systems, and maintenance essentials.
+
+  DISPLAY: Q&A list
+    - Each row: question number + question preview
+    - Click: opens Q&A Popup
+
+  Q&A POPUP:
+    - Question number
+    - Full question text (KH + EN)
+    - Answer with detailed description
+    - Vehicle diagram image (optional)
+    - Audio player: KH + EN tracks
+
+── 6. LOADING PEOPLE & GOODS (/loading-people-goods) ────────────────────────
+
+  CONTENT TYPE: Loading regulations + weight limits + transport law Q&A
+  PURPOSE: Rules for safe transport of passengers and cargo within legal limits.
+
+  DISPLAY: Q&A list
+    - Each row: question number + question preview
+    - Click: opens Q&A Popup
+
+  Q&A POPUP:
+    - Question number
+    - Full question text (KH + EN)
+    - Answer with detailed description
+    - Reference image (optional)
+    - Audio player: KH + EN tracks
+
+── 7. GENERAL KNOWLEDGE (/general-knowledge) ────────────────────────────────
+
+  CONTENT TYPE: Broad driving + road safety Q&A + reference documents
+  PURPOSE: Essential road safety topics and broad driving knowledge not
+           covered in other specific categories. Random Q&A format.
+
+  DISPLAY:
+    - Q&A list (randomised order on each page load)
+    - Each row: question preview
+    - Click: opens Q&A Popup
+    - ADDITIONAL: Reference Documents section below Q&A list
+        • List of downloadable files or external links
+        • List of legal documents with links
+
+  Q&A POPUP:
+    - Full question text (KH + EN)
+    - Answer with detailed description
+    - Audio player: KH + EN tracks
+
+── 8. EMERGENCY (/emergency) ────────────────────────────────────────────────
+
+  CONTENT TYPE: Emergency protocols + contact numbers + incident procedures
+  PURPOSE: Emergency procedures, contacts, and protocols for road incidents.
+
+  DISPLAY: Q&A list
+    - Each row: question number + question preview
+    - Click: opens Q&A Popup
+
+  Q&A POPUP:
+    - Question number
+    - Full question text (KH + EN)
+    - Answer with detailed description
+    - Audio player: KH + EN tracks (REQUIRED for this category)
+    - Emergency contact numbers displayed in the popup where relevant
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 2 — LEARN MODES (shared across all 8 categories)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+All four modes reuse the Q&A content from the category. No duplicate
+content creation. Mode is launched from the category page buttons or
+from the /learn tabs at the top.
+
+────────────────────────────────────────────────────────────────────────────────
+MODE 1 — FLASHCARDS
+────────────────────────────────────────────────────────────────────────────────
+
+PURPOSE: Self-paced review. See the question, flip to reveal the answer.
+
+SESSION START:
+  - Deck title + total card count: "18 Flashcards — Traffic Signs"
+  - [Shuffle] toggle
+  - Language selector (KH / EN)
+  - [Start] button
+
+CARD FRONT (Question side):
+  - Question text (active language)
+  - Sign image or question image (if linked)
+  - Tap/click anywhere or press [Flip] to reveal answer
+
+CARD BACK (Answer side):
+  - Answer content rendered by type (text, image, list of choices)
+  - Detailed description (active language)
+  - Audio play button (KH or EN track, per active language)
+
+NAVIGATION:
+  - Swipe left/right (touch) OR [← Back] [Next →] buttons
+  - Progress indicator: "Card 4 of 18"
+  - Dot strip / thumbnail bar showing all cards: reviewed (dim) vs unseen
+  - [Restart] button
+
+COMPLETION SCREEN:
+  - "You reviewed 18 flashcards"
+  - [Retry] [Go to Quiz] buttons
+
+────────────────────────────────────────────────────────────────────────────────
+MODE 2 — QUIZ
+────────────────────────────────────────────────────────────────────────────────
+
+PURPOSE: Scored assessment. One correct answer per question (a/b/c/d).
+
+SESSION START:
+  - Title + category name
+  - Total question count: "20 Questions"
+  - Language selector
+  - [Start Quiz] button
+
+QUESTION SCREEN:
+  - Progress bar + counter: "Question 3 of 20"
+  - Timer (if enabled by Teacher or default setting)
+  - Question text (active language)
+  - Question image (if linked)
+  - Answer choices as labelled buttons: A / B / C / D
+  - [Hint] button: reveals short hint text (hint use is counted and shown
+    in results)
+  - Language toggle available mid-quiz
+
+ANSWER FEEDBACK (shown immediately after user selects):
+  - Correct: selected button turns GREEN + "Correct!" message
+  - Wrong: selected button turns RED + correct answer highlighted GREEN
+  - Brief answer explanation shown (from answer detail field)
+  - [Next Question →] button appears
+
+RESULTS SCREEN:
+  - Score: "14 / 20 Correct"
+  - Hints used: "4 hints used"
+  - Time taken (if timer enabled)
+  - Full question review list: each question, user's answer, correct answer,
+    correct / wrong indicator
+  - [Retry] [Try Flashcards] [Go to Practice Test] buttons
+
+────────────────────────────────────────────────────────────────────────────────
+MODE 3 — PRACTICE TEST
+────────────────────────────────────────────────────────────────────────────────
+
+PURPOSE: Simulate the real driving theory exam. Open to all including guests.
+         No login required. No scores or progress saved to any account.
+
+BEHAVIOUR:
+  - Uses the SAME Q&A pool as Quiz mode — no separate content
+  - Guest-accessible route (no authentication gate)
+  - UI identical to Quiz mode with these differences:
+      • Banner notice: "Practice mode — your results will not be saved"
+      • No score recorded to leaderboard or account
+      • No Teacher customisation applied
+  - Results screen for guests: [Retake Test] + [Create Account to Save Progress]
+
+────────────────────────────────────────────────────────────────────────────────
+MODE 4 — CHALLENGE (Live Teacher-Led Session)
+────────────────────────────────────────────────────────────────────────────────
+
+PURPOSE: Real-time competitive quiz session run live by a Teacher.
+         All participants answer simultaneously.
+
+TEACHER (HOST) SIDE:
+  - Creates session: selects category, difficulty, question count,
+    time per question, scoring mode, session language
+  - System generates: 6-character JOIN CODE + shareable link + QR code
+  - Host dashboard: participant list, live leaderboard, [Start] / [Next]
+    question controls
+
+STUDENT SIDE:
+  - Enters join code or scans QR code on /play or challenge entry screen
+  - Enters display name (logged-in users use profile name automatically)
+  - Lobby screen: "Waiting for Teacher to start…"
+  - Question displayed simultaneously to all on Teacher start
+  - Countdown timer per question
+  - Taps answer choice; correct answer revealed to all after time/all answered
+  - Points: faster correct answer = more points (configurable)
+  - Live leaderboard shown between questions
+  - Final screen: full ranking + each participant's score
+
+CONTENT SOURCE: All Q&A from the category selected by Teacher. No new content.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 3 — GAME CENTER (/play)
+         "Play & Practice — Choose a game mode and sharpen your driving
+          theory knowledge. Every session brings you closer to passing
+          your exam."
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+All Game Center modes pull from the SAME approved content pool as the
+Learn section. No separate content is created for Game Center.
+Staff publish content in categories; Game Center automatically uses it.
+
+STATS BAR (below hero on /play):
+  - 500+ Questions in pool
+  - 6 Game modes
+  - 8 Knowledge areas
+  - Real-time Leaderboard
+
+MODE CARD GRID: 3 columns × 2 rows (6 total modes)
+  Each mode card: icon, badge label (e.g. "10 QUESTIONS"), mode name,
+  description, [Start playing] link
+
+────────────────────────────────────────────────────────────────────────────────
+GAME MODE 1 — QUICK QUIZ                              Badge: 10 QUESTIONS
+────────────────────────────────────────────────────────────────────────────────
+
+  10 random questions drawn from ALL categories. MCQ format.
+  Tests broad knowledge across the full curriculum in under 5 minutes.
+  Scored. Logged-in users' scores recorded to leaderboard.
+
+────────────────────────────────────────────────────────────────────────────────
+GAME MODE 2 — SPEED ROUND                             Badge: 60 SECONDS
+────────────────────────────────────────────────────────────────────────────────
+
+  60-second time attack. Answer as many questions (signs + rules) as
+  possible before time runs out. One point per correct answer.
+  No penalty for skipping. Score submitted to leaderboard on completion.
+
+────────────────────────────────────────────────────────────────────────────────
+GAME MODE 3 — SIGN CHALLENGE                          Badge: VISUAL
+────────────────────────────────────────────────────────────────────────────────
+
+  Visual identification mode using Traffic Signs category content.
+  A sign image is displayed; user types or selects its meaning.
+  No multiple-choice options — user must recall the answer.
+  Correct / Wrong revealed immediately; move to next sign.
+
+────────────────────────────────────────────────────────────────────────────────
+GAME MODE 4 — MIXED BATTLE                            Badge: ALL CATEGORIES
+────────────────────────────────────────────────────────────────────────────────
+
+  All 8 categories included at random. The ultimate full-curriculum drill.
+  Question count and timer configurable in settings.
+  Designed as final preparation before the real exam.
+
+────────────────────────────────────────────────────────────────────────────────
+GAME MODE 5 — DAILY CHALLENGE                         Badge: DAILY
+────────────────────────────────────────────────────────────────────────────────
+
+  A new set of 15 questions every day (reset at midnight Cambodia time).
+  Streak system: consecutive daily completions earn a streak bonus.
+  Each user can complete Daily Challenge once per day.
+  Streak count and daily score recorded to leaderboard.
+
+────────────────────────────────────────────────────────────────────────────────
+GAME MODE 6 — EXAM SIMULATION                         Badge: 40 QUESTIONS
+────────────────────────────────────────────────────────────────────────────────
+
+  Full 40-question simulation timed to match the real Cambodia driving
+  theory exam format and duration.
+  MCQ. No hints. Timer mirrors official exam. Score shown at end.
+  Pass/fail threshold follows the real exam standard.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 4 — BACKEND: STAFF CONTENT CREATION (applies to all 8 categories)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Staff access the dashboard at: /dashboard → Content → [Category Name]
+
+Each category has two management areas:
+  (1) Sign / Item Record  — the primary content card (sign, law article,
+                            scenario, etc., depending on category)
+  (2) Q&A Records         — questions and answers linked to that record
+
+────────────────────────────────────────────────────────────────────────────────
+4A. PRIMARY RECORD FORM (fields vary slightly per category)
+────────────────────────────────────────────────────────────────────────────────
+
+SHARED FIELDS (all categories):
+  ┌────────────────────────┬─────────────────────────────────────────────────┐
+  │ Field                  │ Input Type                                      │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ Record ID / Code       │ Auto-generated. Manual override allowed.        │
+  │                        │ Unique per category. Read-only after publish.   │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ Title / Name (KH)      │ Text field — Khmer — required                   │
+  │ Title / Name (EN)      │ Text field — English — required                 │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ Category               │ Dropdown — one of the 8 categories — required   │
+  │                        │ Pre-selected if creating from within a category │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ Sub-group / Type       │ Dropdown — sub-list driven by Category          │
+  │                        │ e.g. Warning / Prohibitory for Traffic Signs    │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ Description (KH)       │ Rich text editor — Khmer — required             │
+  │ Description (EN)       │ Rich text editor — English — required           │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ Law / Article Ref      │ Text field — optional                           │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ Status                 │ Dropdown: Draft / Submitted / Approved /        │
+  │                        │ Published / Rejected                            │
+  │                        │ Staff may set: Draft or Submitted only.         │
+  └────────────────────────┴─────────────────────────────────────────────────┘
+
+IMAGE FIELD:
+  - Label: "Image" (sign image, scenario diagram, vehicle diagram, etc.)
+  - Required: YES for Traffic Signs and Right of Way / OPTIONAL for others
+  - Staff selects ONE of two input methods:
+      ○ URL Input — paste a direct image URL (validated on submit)
+      ○ Cloudinary Picker — modal opens:
+            • Search bar (filename, tag, folder)
+            • Filter: folder / tag / file type / upload date
+            • Thumbnail grid of Cloudinary assets
+            • Click to select → preview shown in form with [Remove] button
+  - Preview shown inline after selection.
+
+AUDIO FIELDS (two separate fields, one per language):
+  Audio (KH):
+  Audio (EN):
+  - Required: YES for Traffic Signs and Emergency / OPTIONAL for others
+  - For EACH audio field, staff selects ONE of two input methods:
+      ○ URL Input — paste direct audio file URL
+      ○ Cloudinary Picker — same modal, filtered to audio assets
+  - Inline audio player preview shown after selection.
+
+CATEGORY-SPECIFIC FIELD NOTES:
+  Traffic Signs          — Image: REQUIRED. Sub-group = sign type.
+  Road Traffic Law       — Image: optional. Law Ref: important, include it.
+  Right of Way           — Image: REQUIRED (scenario/intersection diagram).
+  Driving Skills         — Image: optional (manoeuvre diagram).
+  Vehicle Technology     — Image: optional (vehicle part diagram).
+  Loading People & Goods — Image: optional.
+  General Knowledge      — Image: optional. Adds two extra fields:
+                             • Reference Documents: repeatable field
+                               (document title + URL or upload)
+                             • Legal Documents: repeatable field
+                               (document title + URL or upload)
+  Emergency              — Image: optional. Audio: REQUIRED both KH + EN.
+
+LINKED Q&A PANEL (within Primary Record form):
+  - Table listing all Q&A items currently linked to this record.
+    Columns: Q&A ID | Question preview | Status | [Edit] [Unlink]
+  - [+ Add New Question] button — opens Q&A form pre-linked to this record
+  - Validation: record cannot be Submitted for review unless at least
+    ONE Q&A item is linked and also in Draft or higher status.
+
+FORM ACTIONS:
+  [Save as Draft]   [Submit for Review]   [Cancel]
+  On edit:          [Update]   [Delete]
+  Delete is blocked if record is Published or has linked published Q&A items.
+
+────────────────────────────────────────────────────────────────────────────────
+4B. Q&A RECORD FORM — QUESTION + ANSWERS
+────────────────────────────────────────────────────────────────────────────────
+
+One Q&A record = ONE question linked to a Primary Record.
+Each question has a minimum of 1 answer and a maximum of 5 answers.
+
+── QUESTION FIELDS ───────────────────────────────────────────────────────────
+
+  ┌────────────────────────┬─────────────────────────────────────────────────┐
+  │ Field                  │ Input Type                                      │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ Question ID            │ Auto-generated — read-only display              │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ Linked Record          │ Read-only if created from within a record.      │
+  │                        │ Searchable dropdown if created standalone.      │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ Question Text (KH)     │ Textarea — Khmer — required                     │
+  │ Question Text (EN)     │ Textarea — English — required                   │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ Question Image         │ Optional — URL input OR Cloudinary Picker       │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ Hint Text (KH)         │ Text field — optional. Shown to user on request.│
+  │ Hint Text (EN)         │ Text field — optional.                          │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ Difficulty Level       │ Dropdown: Easy / Medium / Hard — required       │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ Audio (KH)             │ Optional — URL input OR Cloudinary Picker       │
+  │ Audio (EN)             │ Optional — URL input OR Cloudinary Picker       │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ Status                 │ Same states as Primary Record                   │
+  └────────────────────────┴─────────────────────────────────────────────────┘
+
+── ANSWER SECTION ────────────────────────────────────────────────────────────
+
+  Rules:
+    - Minimum 1 answer / Maximum 5 answers per question
+    - [+ Add Answer] button — disabled when 5 answers exist
+    - Answers reorderable via drag-and-drop handle
+    - For Quiz / Challenge / Game Center modes: one answer must be marked
+      as CORRECT using the radio button on that answer row
+
+  For EACH answer row:
+
+  ┌────────────────────────┬─────────────────────────────────────────────────┐
+  │ Field                  │ Input Type                                      │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ Answer Type            │ Dropdown — see types below — required           │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ Answer Content         │ Dynamic — changes per Answer Type               │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ Explanation (KH)       │ Rich text — shown after answer revealed in Quiz │
+  │ Explanation (EN)       │ Rich text — optional but strongly recommended   │
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ Is Correct             │ Radio button — marks this as the correct answer │
+  │                        │ Required for Quiz / Challenge. One per question.│
+  ├────────────────────────┼─────────────────────────────────────────────────┤
+  │ [Remove]               │ Button — removes this answer row                │
+  └────────────────────────┴─────────────────────────────────────────────────┘
+
+── ANSWER TYPES ──────────────────────────────────────────────────────────────
+
+  1. SHORT TEXT
+     Content: Single-line text (KH) + Single-line text (EN)
+     Displayed as: plain text answer in popup and flashcard back
+
+  2. PARAGRAPH
+     Content: Multi-line textarea (KH) + Multi-line textarea (EN)
+     Displayed as: formatted paragraph
+
+  3. MULTIPLE CHOICE — Single Select (a / b / c / d)
+     Content: Choice label text (KH + EN)
+     One answer row = one MCQ option. Mark one row as "Is Correct".
+     Displayed as: labelled buttons A / B / C / D in Quiz and Game Center
+
+  4. CHECKBOXES — Multiple Select
+     Content: Checkbox option label (KH + EN)
+     Multiple rows can be marked correct.
+     Displayed as: checkbox list; user selects all correct options
+     Used in Flashcards; limited use in Quiz (flagged as multi-correct)
+
+  5. DROPDOWN SELECT
+     Content: Dropdown option label (KH + EN)
+     One option marked correct.
+     Displayed as: select / dropdown in learning interface
+
+  6. RATING / SCALE
+     Content:
+       • Scale Min value (number)
+       • Scale Max value (number)
+       • Min label (KH + EN) e.g. "Not Dangerous"
+       • Max label (KH + EN) e.g. "Very Dangerous"
+       • Correct value or correct range
+     Displayed as: slider or star-rating component
+
+  7. IMAGE / SIGN PICK — Visual Selection
+     Content:
+       • Image — URL input OR Cloudinary Picker
+       • Alt label (KH + EN) for accessibility
+     Use case: "Which sign means No Entry?" — answer options are sign images
+     Displayed as: image grid; user taps correct sign image
+     One image answer marked "Is Correct"
+     Primarily used in Sign Challenge game mode
+
+  8. SELECTION LIMIT — Choose N from a list
+     Content:
+       • Option label (KH + EN)
+       • Selection limit number set at question level (number input)
+         e.g. "Choose exactly 2"
+     Displayed as: option list with a counter enforcing the limit
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 5 — BACKEND: LEARNING MODE CONFIGURATION (Staff + Teacher)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Staff configure default mode settings per category.
+Teachers override settings per student group or live session.
+
+────────────────────────────────────────────────────────────────────────────────
+FLASHCARDS CONFIG (Staff — per category)
+────────────────────────────────────────────────────────────────────────────────
+  ┌──────────────────────────┬──────────────────────────────────────────────┐
+  │ Setting                  │ Input                                        │
+  ├──────────────────────────┼──────────────────────────────────────────────┤
+  │ Show answer image        │ Toggle ON/OFF                                │
+  │ Show audio on card back  │ Toggle ON/OFF                                │
+  │ Allow shuffle            │ Toggle ON/OFF (default ON)                   │
+  │ Default language         │ Dropdown: KH / EN / User choice              │
+  └──────────────────────────┴──────────────────────────────────────────────┘
+
+────────────────────────────────────────────────────────────────────────────────
+QUIZ CONFIG (Staff default; Teacher can override per class group)
+────────────────────────────────────────────────────────────────────────────────
+  ┌──────────────────────────┬──────────────────────────────────────────────┐
+  │ Setting                  │ Input                                        │
+  ├──────────────────────────┼──────────────────────────────────────────────┤
+  │ Question count           │ Number input (max = total available MCQ)     │
+  │ Enable timer             │ Toggle ON/OFF                                │
+  │ Time limit per question  │ Number input (seconds) — shown if timer ON   │
+  │ Enable hints             │ Toggle ON/OFF                                │
+  │ Show correct after wrong │ Toggle ON/OFF (default ON)                   │
+  │ Question order           │ Sequential / Randomised                      │
+  │ Difficulty filter        │ Multi-select: Easy / Medium / Hard           │
+  └──────────────────────────┴──────────────────────────────────────────────┘
+
+────────────────────────────────────────────────────────────────────────────────
+PRACTICE TEST CONFIG (Staff — minimal config)
+────────────────────────────────────────────────────────────────────────────────
+  ┌──────────────────────────┬──────────────────────────────────────────────┐
+  │ Setting                  │ Input                                        │
+  ├──────────────────────────┼──────────────────────────────────────────────┤
+  │ Content source           │ Links from existing Q&A pool (same as Quiz)  │
+  │ Question count           │ Number input                                 │
+  │ Guest access             │ Toggle ON/OFF (default ON)                   │
+  │ Show results to guest    │ Toggle ON/OFF (results shown, not saved)     │
+  └──────────────────────────┴──────────────────────────────────────────────┘
+
+────────────────────────────────────────────────────────────────────────────────
+CHALLENGE SESSION CREATION (Teacher only)
+────────────────────────────────────────────────────────────────────────────────
+  ┌──────────────────────────┬──────────────────────────────────────────────┐
+  │ Setting                  │ Input                                        │
+  ├──────────────────────────┼──────────────────────────────────────────────┤
+  │ Session name             │ Text field (e.g. "Class 10A — Road Signs")   │
+  │ Content source           │ Multi-select: category / sub-group / all     │
+  │ Difficulty level         │ Multi-select: Easy / Medium / Hard           │
+  │ Question count           │ Number input                                 │
+  │ Time per question (sec)  │ Number input                                 │
+  │ Scoring mode             │ Speed-based / Equal points per correct       │
+  │ Allow late join          │ Toggle ON/OFF                                │
+  │ Session language         │ KH / EN / Both                              │
+  └──────────────────────────┴──────────────────────────────────────────────┘
+  On [Create Session]: generates JOIN CODE + shareable link + QR code.
+  Teacher's live host dashboard opens automatically.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 6 — APPROVAL WORKFLOW (Admin controls all 8 categories)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STATES — apply to both Primary Records and Q&A Records:
+
+  Draft  →  Submitted for Review  →  Approved  →  Published
+                                  →  Rejected  →  (returned to Draft)
+
+Admin review queue: /dashboard → Review → lists all Submitted records
+  Admin can: Approve, Reject (with rejection note), Publish, Unpublish.
+  Rejected items return to Staff with the Admin's note visible in the form.
+
+VISIBILITY RULES:
+  Draft          — visible to creating Staff only
+  Submitted      — visible to Admin in review queue + creating Staff
+  Approved       — visible to Admin; Staff notified; not yet public
+  Published      — live on the frontend; visible to all users + guests
+  Rejected       — visible to creating Staff only; returned to Draft state
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PART 7 — DATA RELATIONSHIP MAP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  CATEGORY (1 of 8)
+      │
+      └──(has many)──► PRIMARY RECORDS (Signs / Articles / Scenarios / etc.)
+                            │
+                            ├── Record ID, Name (KH+EN), Description (KH+EN)
+                            ├── Image (optional or required per category)
+                            ├── Audio KH + Audio EN
+                            ├── Sub-group / Type
+                            └── Status
+                            │
+                            └──(has many)──► Q&A RECORDS (min 1, no upper limit)
+                                                │
+                                                ├── Question (1 per Q&A record)
+                                                │     ├── Text (KH + EN)
+                                                │     ├── Image (optional)
+                                                │     ├── Hint (KH + EN)
+                                                │     ├── Audio (KH + EN)
+                                                │     └── Difficulty
+                                                │
+                                                └── Answers (1 to 5)
+                                                      ├── Answer Type (8 types)
+                                                      ├── Content (KH + EN)
+                                                      ├── Explanation (KH + EN)
+                                                      └── Is Correct flag
+
+  Q&A RECORDS  ──(consumed by)──►  Flashcards Mode
+                                   Quiz Mode
+                                   Practice Test Mode
+                                   Challenge Mode (Teacher session)
+                                   Quick Quiz (Game Center)
+                                   Speed Round (Game Center)
+                                   Sign Challenge (Traffic Signs Q&A only)
+                                   Mixed Battle (all 8 categories)
+                                   Daily Challenge (rotating daily set)
+                                   Exam Simulation (40Q from full pool)
+
+================================================================================
+END OF DOCUMENT
+================================================================================
