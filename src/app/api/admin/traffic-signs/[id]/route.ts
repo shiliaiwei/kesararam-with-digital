@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { trafficSigns } from "@/db/schema";
 import { eq } from "drizzle-orm";
-import { verifyAuth } from "@/lib/auth";
+import { getSession } from "@/lib/auth";
 
 // PUT /api/admin/traffic-signs/[id] - Update sign
 export async function PUT(
@@ -10,8 +10,8 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   try {
-    const user = await verifyAuth(request);
-    if (!user || !["admin", "staff"].includes(user.role)) {
+    const session = await getSession();
+    if (!session || !["admin", "staff"].includes(session.role)) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -30,8 +30,8 @@ export async function PUT(
     }
 
     // Staff can only edit their own pending/rejected signs
-    if (user.role === "staff") {
-      if (existingSign.createdBy !== user.id) {
+    if (session.role === "staff") {
+      if (existingSign.createdBy !== session.id) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
       }
       if (!["pending", "rejected"].includes(existingSign.status)) {
@@ -67,8 +67,8 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    const user = await verifyAuth(request);
-    if (!user || user.role !== "admin") {
+    const session = await getSession();
+    if (!session || session.role !== "admin") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 

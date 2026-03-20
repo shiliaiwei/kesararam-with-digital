@@ -2,13 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { trafficSigns, users } from "@/db/schema";
 import { eq, desc, sql } from "drizzle-orm";
-import { verifyAuth } from "@/lib/auth";
+import { getSession } from "@/lib/auth";
 
 // GET /api/admin/traffic-signs - Admin: Get all signs with filters
 export async function GET(request: NextRequest) {
   try {
-    const user = await verifyAuth(request);
-    if (!user || user.role !== "admin") {
+    const session = await getSession();
+    if (!session || session.role !== "admin") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -48,8 +48,8 @@ export async function GET(request: NextRequest) {
 // POST /api/admin/traffic-signs - Admin/Staff: Create new sign
 export async function POST(request: NextRequest) {
   try {
-    const user = await verifyAuth(request);
-    if (!user || !["admin", "staff"].includes(user.role)) {
+    const session = await getSession();
+    if (!session || !["admin", "staff"].includes(session.role)) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
         category: category || null,
         status: "pending",
         isActive: false,
-        createdBy: user.id,
+        createdBy: session.id,
       })
       .returning();
 

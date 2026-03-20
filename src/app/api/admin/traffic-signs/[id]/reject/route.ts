@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { trafficSigns, trafficSignApprovals } from "@/db/schema";
 import { eq } from "drizzle-orm";
-import { verifyAuth } from "@/lib/auth";
+import { getSession } from "@/lib/auth";
 
 // POST /api/admin/traffic-signs/[id]/reject - Reject sign
 export async function POST(
@@ -10,8 +10,8 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   try {
-    const user = await verifyAuth(request);
-    if (!user || user.role !== "admin") {
+    const session = await getSession();
+    if (!session || session.role !== "admin") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -52,7 +52,7 @@ export async function POST(
     // Create approval record
     await db.insert(trafficSignApprovals).values({
       signId,
-      adminId: user.id,
+      adminId: session.id,
       action: "rejected",
       comments: comments || reason,
     });
