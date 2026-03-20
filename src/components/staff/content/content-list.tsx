@@ -77,6 +77,7 @@ const STATUS_CONFIG = {
 export function ContentList() {
   const [content, setContent] = useState<ContentItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [pagination, setPagination] = useState<PaginationData>({
     page: 1,
     limit: 20,
@@ -96,6 +97,7 @@ export function ContentList() {
 
   const fetchContent = async () => {
     setLoading(true);
+    setError(null);
     try {
       const params = new URLSearchParams({
         page: pagination.page.toString(),
@@ -107,12 +109,21 @@ export function ContentList() {
       if (searchQuery) params.append("search", searchQuery);
 
       const response = await fetch(`/api/staff/content?${params}`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const data = await response.json();
 
       setContent(data.content || []);
-      setPagination(data.pagination);
-    } catch (error) {
-      console.error("Error fetching content:", error);
+      if (data.pagination) {
+        setPagination(data.pagination);
+      }
+    } catch (err) {
+      console.error("Error fetching content:", err);
+      setError("Failed to load content. Please try again.");
+      setContent([]);
     } finally {
       setLoading(false);
     }
@@ -248,6 +259,25 @@ export function ContentList() {
               <div className="h-3 bg-gray-200 rounded w-1/2"></div>
             </div>
           ))}
+        </div>
+      ) : error ? (
+        <div
+          className="bg-red-100 border-2 border-red-600 p-6"
+          style={{ boxShadow: "4px 4px 0 #dc2626" }}
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <AlertCircle className="text-red-900" size={24} />
+            <div>
+              <p className="font-bold text-red-900">Error Loading Content</p>
+              <p className="text-sm text-red-800">{error}</p>
+            </div>
+          </div>
+          <button
+            onClick={() => fetchContent()}
+            className="bg-red-400 border-2 border-black px-4 py-2 font-bold hover:shadow-[2px_2px_0_#000] transition-all"
+          >
+            Try Again
+          </button>
         </div>
       ) : content.length === 0 ? (
         <div

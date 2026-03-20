@@ -51,24 +51,35 @@ export async function GET(request: NextRequest) {
       .offset(offset);
 
     // Get total count
-    const [{ count }] = await db
-      .select({ count: sql<number>`count(*)` })
+    const countResult = await db
+      .select({ count: sql<number>`count(*)::int` })
       .from(contentItems)
       .where(and(...conditions));
+    
+    const totalCount = countResult[0]?.count || 0;
 
     return NextResponse.json({
-      content,
+      content: content || [],
       pagination: {
         page,
         limit,
-        total: Number(count),
-        totalPages: Math.ceil(Number(count) / limit),
+        total: Number(totalCount),
+        totalPages: Math.ceil(Number(totalCount) / limit) || 1,
       },
     });
   } catch (error) {
     console.error("Error fetching content:", error);
     return NextResponse.json(
-      { error: "Failed to fetch content" },
+      { 
+        error: "Failed to fetch content",
+        content: [],
+        pagination: {
+          page: 1,
+          limit: 20,
+          total: 0,
+          totalPages: 1,
+        },
+      },
       { status: 500 }
     );
   }
