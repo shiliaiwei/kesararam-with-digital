@@ -108,13 +108,20 @@ export function ContentList() {
       if (categoryFilter) params.append("categoryId", categoryFilter);
       if (searchQuery) params.append("search", searchQuery);
 
+      console.log("Fetching content with params:", params.toString());
+      
       const response = await fetch(`/api/staff/content?${params}`);
       
+      console.log("Response status:", response.status);
+      
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error("API Error:", errorText);
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       
       const data = await response.json();
+      console.log("Content data:", data);
 
       setContent(data.content || []);
       if (data.pagination) {
