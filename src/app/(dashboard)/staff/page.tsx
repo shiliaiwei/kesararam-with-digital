@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { Plus, FileText, Image, Gamepad2, BarChart3 } from "lucide-react";
 import { StatsOverview } from "@/components/staff/dashboard/stats-overview";
-import { MyTopicsList } from "@/components/staff/content/my-topics-list";
 
 export const metadata: Metadata = {
   title: "Staff Dashboard | KWD",
@@ -105,14 +104,14 @@ export default function StaffDashboardPage() {
           ].map((category, index) => (
             <Link
               key={index}
-              href={`/staff/content?category=${category.slug}`}
+              href={`/staff/content/${category.slug}`}
               className="bg-white border-2 border-black p-4 hover:shadow-[4px_4px_0_#000] transition-all"
               style={{ boxShadow: "2px 2px 0 #000" }}
             >
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="font-black text-black">{category.name}</h3>
-                  <p className="text-sm text-zinc-600">{category.count} items</p>
+                  <p className="text-sm text-zinc-600">Manage content</p>
                 </div>
                 <div
                   className={`w-10 h-10 ${category.color} border-2 border-black flex items-center justify-center`}
@@ -123,12 +122,6 @@ export default function StaffDashboardPage() {
             </Link>
           ))}
         </div>
-      </div>
-
-      {/* My Topics - Review Tracking */}
-      <div>
-        <h2 className="text-xl font-black text-black mb-4">My Topics - Review Status</h2>
-        <MyTopicsList />
       </div>
     </div>
   );
