@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { sql } from "drizzle-orm";
+import { sql } from "@/lib/db";
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getSession();
@@ -13,6 +12,7 @@ export async function POST(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const { id } = await params;
     const body = await request.json();
     const { reason } = body;
 
@@ -23,30 +23,25 @@ export async function POST(
       );
     }
 
-    // Add rejection_reason column if it doesn't exist
-    await db.execute(sql`
-      ALTER TABLE topics 
-      ADD COLUMN IF NOT EXISTS rejection_reason TEXT
-    `);
-
     // Update topic status to rejected
-    const result = await db.execute(sql`
+    const result = await sql`
       UPDATE topics 
       SET 
         status = 'rejected',
         rejection_reason = ${reason},
+        reviewed_at = NOW(),
         updated_at = NOW()
-      WHERE id = ${params.id}
+      WHERE id = ${id}
       RETURNING *
-    `);
+    `;
 
-    if (result.rows.length === 0) {
+    if (result.length === 0) {
       return NextResponse.json({ error: "Topic not found" }, { status: 404 });
     }
 
     return NextResponse.json({ 
       success: true,
-      topic: result.rows[0]
+      topic: result[0]
     });
   } catch (error) {
     console.error("Error rejecting topic:", error);

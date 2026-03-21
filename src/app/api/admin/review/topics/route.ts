@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { sql } from "drizzle-orm";
+import { sql } from "@/lib/db";
 
 export async function GET(request: NextRequest) {
   try {
@@ -15,21 +14,20 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get("search");
     const status = searchParams.get("status") || "pending";
 
-    const conditions: any[] = [sql`t.status = ${status}`];
+    // Build WHERE conditions
+    const conditions: string[] = [`t.status = '${status}'`];
 
     if (categoryId) {
-      conditions.push(sql`t.category_id = ${parseInt(categoryId)}`);
+      conditions.push(`t.category_id = ${parseInt(categoryId)}`);
     }
 
     if (search) {
-      conditions.push(
-        sql`(t.name_en ILIKE ${`%${search}%`} OR t.name_km ILIKE ${`%${search}%`} OR t.topic_code ILIKE ${`%${search}%`})`
-      );
+      conditions.push(`(t.name_en ILIKE '%${search}%' OR t.name_km ILIKE '%${search}%' OR t.topic_code ILIKE '%${search}%')`);
     }
 
-    const whereClause = sql`WHERE ${sql.join(conditions, sql` AND `)}`;
+    const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
 
-    const result = await db.execute(sql`
+    const result = await sql`
       SELECT 
         t.*,
         c.title_en as category_name,
@@ -38,22 +36,22 @@ export async function GET(request: NextRequest) {
       FROM topics t
       LEFT JOIN categories c ON t.category_id = c.id
       LEFT JOIN users u ON t.created_by = u.id
-      ${whereClause}
+      ${sql.unsafe(whereClause)}
       ORDER BY t.created_at DESC
-    `);
+    `;
 
     // Get stats for today
-    const statsResult = await db.execute(sql`
+    const statsResult = await sql`
       SELECT 
         COUNT(*) FILTER (WHERE status = 'pending')::int as pending,
         COUNT(*) FILTER (WHERE status = 'approved' AND DATE(approved_at) = CURRENT_DATE)::int as approved,
         COUNT(*) FILTER (WHERE status = 'rejected' AND DATE(updated_at) = CURRENT_DATE)::int as rejected
       FROM topics
-    `);
+    `;
 
     return NextResponse.json({
-      topics: result.rows,
-      stats: statsResult.rows[0] || { pending: 0, approved: 0, rejected: 0 },
+      topics: result,
+      stats: statsResult[0] || { pending: 0, approved: 0, rejected: 0 },
     });
   } catch (error) {
     console.error("Error fetching review topics:", error);
