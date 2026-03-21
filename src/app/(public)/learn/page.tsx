@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { BookOpen, Brain, FileText, Image as ImageIcon } from "lucide-react";
 import {
