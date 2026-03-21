@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Edit, Send, Trash2, CheckCircle, XCircle, Clock } from "lucide-react";
+import { ArrowLeft, Send, Trash2, CheckCircle, XCircle, Clock } from "lucide-react";
 
 interface Topic {
   id: number;
@@ -141,15 +141,6 @@ export function TopicDetailView({ categorySlug, topicId }: TopicDetailViewProps)
         </button>
 
         <div className="flex items-center gap-2">
-          {/* Edit button - always available for staff's own content */}
-          <button
-            onClick={() => router.push(`/staff/content/${categorySlug}/${topicId}/edit`)}
-            className="bg-yellow-400 border-2 border-black px-4 py-2 font-bold hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2"
-          >
-            <Edit size={20} />
-            Edit
-          </button>
-
           {/* Submit button - only for draft or rejected */}
           {(topic.status === "draft" || topic.status === "rejected") && (
             <button
@@ -172,6 +163,13 @@ export function TopicDetailView({ categorySlug, topicId }: TopicDetailViewProps)
             </button>
           )}
         </div>
+      </div>
+
+      {/* Edit Info Banner */}
+      <div className="bg-blue-50 border-2 border-blue-400 p-4">
+        <p className="text-sm font-bold text-blue-900">
+          💡 To edit this topic, go back to the list and click the Edit button (pencil icon) to open the edit form.
+        </p>
       </div>
 
       {/* Topic Details Card */}
