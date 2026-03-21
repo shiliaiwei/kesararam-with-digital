@@ -47,6 +47,7 @@ export function RoadTrafficCatalogue() {
   const [questions, setQuestions] = useState<Record<number, Question[]>>({});
   const [playingAudio, setPlayingAudio] = useState<number | null>(null);
   const [expandedQuestions, setExpandedQuestions] = useState<Record<number, boolean>>({});
+  const [expandedTopics, setExpandedTopics] = useState<Record<number, boolean>>({});
 
   const translations = {
     en: {
@@ -150,6 +151,13 @@ export function RoadTrafficCatalogue() {
     }
 
     setFilteredTopics(filtered);
+  };
+
+  const toggleTopic = (topicId: number) => {
+    setExpandedTopics(prev => ({
+      ...prev,
+      [topicId]: !prev[topicId]
+    }));
   };
 
   const toggleQuestion = (questionId: number) => {
@@ -295,161 +303,175 @@ export function RoadTrafficCatalogue() {
                 className="bg-white border-2 border-black"
                 style={{ boxShadow: "4px 4px 0 #000" }}
               >
-                {/* Topic Header - Always Visible */}
-                <div className="p-6 border-b-2 border-black bg-blue-50">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-xs font-mono bg-zinc-100 border border-black px-2 py-1">
-                      {topic.topic_code}
-                    </span>
-                    {topic.sub_group && (
-                      <span className="text-xs font-bold bg-blue-100 border border-blue-400 px-2 py-1">
-                        {topic.sub_group}
+                {/* Topic Header - Clickable */}
+                <button
+                  onClick={() => toggleTopic(topic.id)}
+                  className="w-full p-6 flex items-start justify-between hover:bg-gray-50 transition-all text-left"
+                >
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-xs font-mono bg-zinc-100 border border-black px-2 py-1">
+                        {topic.topic_code}
                       </span>
-                    )}
-                  </div>
-                  <h3 className="text-xl font-black mb-2">
-                    {lang === "en" ? topic.name_en : topic.name_km}
-                  </h3>
-                  <p className="text-sm text-zinc-600">
-                    {lang === "en" ? topic.description_en : topic.description_km}
-                  </p>
-                </div>
-
-                {/* Topic Content - Always Expanded */}
-                <div className="p-6">
-                  {/* Audio Player */}
-                  {((lang === "en" && topic.audio_url_en) || (lang === "kh" && topic.audio_url_km)) && (
-                    <div className="mb-6">
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          toggleAudio(topic.id);
-                        }}
-                        className="bg-blue-400 border-2 border-black px-4 py-2 font-bold hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2"
-                      >
-                        {playingAudio === topic.id ? <Pause size={18} /> : <Play size={18} />}
-                        {t.playAudio}
-                      </button>
-                      {playingAudio === topic.id && (
-                        <audio
-                          key={`audio-${topic.id}-${lang}`}
-                          src={lang === "en" ? topic.audio_url_en : topic.audio_url_km}
-                          autoPlay
-                          onEnded={() => setPlayingAudio(null)}
-                          onError={() => setPlayingAudio(null)}
-                          className="hidden"
-                        />
+                      {topic.sub_group && (
+                        <span className="text-xs font-bold bg-blue-100 border border-blue-400 px-2 py-1">
+                          {topic.sub_group}
+                        </span>
                       )}
                     </div>
+                    <h3 className="text-xl font-black">
+                      {lang === "en" ? topic.name_en : topic.name_km}
+                    </h3>
+                  </div>
+                  {expandedTopics[topic.id] ? (
+                    <ChevronUp size={24} className="flex-shrink-0 ml-4" />
+                  ) : (
+                    <ChevronDown size={24} className="flex-shrink-0 ml-4" />
                   )}
+                </button>
 
-                  {/* Law Reference */}
-                  {topic.law_reference && (
-                    <div className="mb-6 p-4 bg-amber-50 border-2 border-amber-600">
-                      <p className="text-sm font-bold text-amber-900 mb-2">
-                        {t.lawReference}
-                      </p>
-                      <p className="text-sm font-mono text-amber-800">
-                        {topic.law_reference}
-                      </p>
-                    </div>
-                  )}
+                {/* Topic Content - Collapsible */}
+                {expandedTopics[topic.id] && (
+                  <div className="border-t-2 border-black bg-gray-50 p-6">
+                    {/* Description */}
+                    <p className="text-sm text-zinc-700 mb-6">
+                      {lang === "en" ? topic.description_en : topic.description_km}
+                    </p>
 
-                  {/* Questions Section - Collapsible Individual Questions */}
-                  {questions[topic.id] && questions[topic.id].length > 0 && (
-                    <div>
-                      <h4 className="font-black text-lg mb-4">
-                        {t.questions}
-                      </h4>
-                      <div className="space-y-3">
-                        {questions[topic.id].map((q, index) => (
-                          <div
-                            key={q.id}
-                            className="bg-gray-50 border-2 border-black"
-                          >
-                            {/* Question Header - Clickable */}
-                            <button
-                              onClick={() => toggleQuestion(q.id)}
-                              className="w-full p-4 flex items-start justify-between hover:bg-gray-100 transition-all text-left"
-                            >
-                              <div className="flex items-start gap-3 flex-1">
-                                <span className="font-black text-sm bg-black text-white px-2 py-1 flex-shrink-0">
-                                  Q{index + 1}
-                                </span>
-                                <p className="font-bold text-base">
-                                  {lang === "en" ? q.question_en : q.question_km}
-                                </p>
-                              </div>
-                              {expandedQuestions[q.id] ? (
-                                <ChevronUp size={20} className="flex-shrink-0 ml-4" />
-                              ) : (
-                                <ChevronDown size={20} className="flex-shrink-0 ml-4" />
-                              )}
-                            </button>
-
-                            {/* Question Details - Expanded */}
-                            {expandedQuestions[q.id] && (
-                              <div className="border-t-2 border-black bg-white p-4">
-                                {/* Question Image - Landscape */}
-                                {q.image_url && (
-                                  <div className="mb-4">
-                                    <img
-                                      src={q.image_url}
-                                      alt="Question scenario"
-                                      className="w-full max-w-2xl border-2 border-black object-cover"
-                                      style={{ aspectRatio: '16/9' }}
-                                    />
-                                  </div>
-                                )}
-
-                                {/* Answers */}
-                                <div className="space-y-2 mb-4">
-                                  {q.answers.map((a, aIndex) => (
-                                    <div
-                                      key={a.id}
-                                      className={`p-3 border-2 ${
-                                        a.is_correct
-                                          ? "bg-green-100 border-green-600"
-                                          : "bg-white border-gray-300"
-                                      }`}
-                                    >
-                                      <div className="flex items-start gap-2">
-                                        <span className="font-bold flex-shrink-0">
-                                          {String.fromCharCode(65 + aIndex)}.
-                                        </span>
-                                        <span className="flex-1">
-                                          {lang === "en" ? a.answer_en : a.answer_km}
-                                        </span>
-                                        {a.is_correct && (
-                                          <span className="text-green-600 font-bold text-sm flex-shrink-0">
-                                            ✓
-                                          </span>
-                                        )}
-                                      </div>
-                                    </div>
-                                  ))}
-                                </div>
-
-                                {/* Hint */}
-                                {(q.hint_en || q.hint_km) && (
-                                  <div className="p-3 bg-blue-50 border-2 border-blue-400">
-                                    <p className="text-sm font-bold text-blue-900 mb-1">
-                                      💡 Hint
-                                    </p>
-                                    <p className="text-sm text-blue-800">
-                                      {lang === "en" ? q.hint_en : q.hint_km}
-                                    </p>
-                                  </div>
-                                )}
-                              </div>
-                            )}
-                          </div>
-                        ))}
+                    {/* Audio Player */}
+                    {((lang === "en" && topic.audio_url_en) || (lang === "kh" && topic.audio_url_km)) && (
+                      <div className="mb-6">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleAudio(topic.id);
+                          }}
+                          className="bg-blue-400 border-2 border-black px-4 py-2 font-bold hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2"
+                        >
+                          {playingAudio === topic.id ? <Pause size={18} /> : <Play size={18} />}
+                          {t.playAudio}
+                        </button>
+                        {playingAudio === topic.id && (
+                          <audio
+                            key={`audio-${topic.id}-${lang}`}
+                            src={lang === "en" ? topic.audio_url_en : topic.audio_url_km}
+                            autoPlay
+                            onEnded={() => setPlayingAudio(null)}
+                            onError={() => setPlayingAudio(null)}
+                            className="hidden"
+                          />
+                        )}
                       </div>
-                    </div>
-                  )}
-                </div>
+                    )}
+
+                    {/* Law Reference */}
+                    {topic.law_reference && (
+                      <div className="mb-6 p-4 bg-amber-50 border-2 border-amber-600">
+                        <p className="text-sm font-bold text-amber-900 mb-2">
+                          {t.lawReference}
+                        </p>
+                        <p className="text-sm font-mono text-amber-800">
+                          {topic.law_reference}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Questions Section - Collapsible Individual Questions */}
+                    {questions[topic.id] && questions[topic.id].length > 0 && (
+                      <div>
+                        <h4 className="font-black text-lg mb-4">
+                          {t.questions}
+                        </h4>
+                        <div className="space-y-3">
+                          {questions[topic.id].map((q, index) => (
+                            <div
+                              key={q.id}
+                              className="bg-white border-2 border-black"
+                            >
+                              {/* Question Header - Clickable */}
+                              <button
+                                onClick={() => toggleQuestion(q.id)}
+                                className="w-full p-4 flex items-start justify-between hover:bg-gray-100 transition-all text-left"
+                              >
+                                <div className="flex items-start gap-3 flex-1">
+                                  <span className="font-black text-sm bg-black text-white px-2 py-1 flex-shrink-0">
+                                    Q{index + 1}
+                                  </span>
+                                  <p className="font-bold text-base">
+                                    {lang === "en" ? q.question_en : q.question_km}
+                                  </p>
+                                </div>
+                                {expandedQuestions[q.id] ? (
+                                  <ChevronUp size={20} className="flex-shrink-0 ml-4" />
+                                ) : (
+                                  <ChevronDown size={20} className="flex-shrink-0 ml-4" />
+                                )}
+                              </button>
+
+                              {/* Question Details - Expanded */}
+                              {expandedQuestions[q.id] && (
+                                <div className="border-t-2 border-black bg-gray-50 p-4">
+                                  {/* Question Image - Landscape */}
+                                  {q.image_url && (
+                                    <div className="mb-4">
+                                      <img
+                                        src={q.image_url}
+                                        alt="Question scenario"
+                                        className="w-full max-w-2xl border-2 border-black object-cover"
+                                        style={{ aspectRatio: '16/9' }}
+                                      />
+                                    </div>
+                                  )}
+
+                                  {/* Answers */}
+                                  <div className="space-y-2 mb-4">
+                                    {q.answers.map((a, aIndex) => (
+                                      <div
+                                        key={a.id}
+                                        className={`p-3 border-2 ${
+                                          a.is_correct
+                                            ? "bg-green-100 border-green-600"
+                                            : "bg-white border-gray-300"
+                                        }`}
+                                      >
+                                        <div className="flex items-start gap-2">
+                                          <span className="font-bold flex-shrink-0">
+                                            {String.fromCharCode(65 + aIndex)}.
+                                          </span>
+                                          <span className="flex-1">
+                                            {lang === "en" ? a.answer_en : a.answer_km}
+                                          </span>
+                                          {a.is_correct && (
+                                            <span className="text-green-600 font-bold text-sm flex-shrink-0">
+                                              ✓
+                                            </span>
+                                          )}
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+
+                                  {/* Hint */}
+                                  {(q.hint_en || q.hint_km) && (
+                                    <div className="p-3 bg-blue-50 border-2 border-blue-400">
+                                      <p className="text-sm font-bold text-blue-900 mb-1">
+                                        💡 Hint
+                                      </p>
+                                      <p className="text-sm text-blue-800">
+                                        {lang === "en" ? q.hint_en : q.hint_km}
+                                      </p>
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             ))}
           </div>
