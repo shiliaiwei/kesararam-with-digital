@@ -45,7 +45,7 @@ export function TrafficSignsCatalogue() {
       signs: "signs",
       noSigns: "No signs found",
     },
-    km: {
+    kh: {
       category: "ប្រភេទចំណេះដឹង",
       title: "សញ្ញាចរាចរណ៍",
       titleKm: "Traffic Signs",
@@ -60,7 +60,7 @@ export function TrafficSignsCatalogue() {
     },
   };
 
-  const t = translations[lang];
+  const t = translations[lang] || translations.en;
 
   useEffect(() => {
     fetchTopics();
