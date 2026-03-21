@@ -36,14 +36,18 @@ function ProfileMenu({ session }: { session: JWTPayload }) {
       ? "https://dashboard.kesararamwithdigital.tech/admin/users"
       : session.role === "teacher"
         ? "https://dashboard.kesararamwithdigital.tech/teacher/classes"
-        : "/profile/student";
+        : session.role === "staff"
+          ? "https://dashboard.kesararamwithdigital.tech/staff"
+          : "/profile/student";
 
   const roleColor =
     session.role === "admin"
       ? "#ff0050"
       : session.role === "teacher"
         ? "#006747"
-        : "#3b82f6";
+        : session.role === "staff"
+          ? "#3b82f6"
+          : "#3b82f6";
 
   return (
     <div ref={ref} className="relative flex-shrink-0">
@@ -90,7 +94,7 @@ function ProfileMenu({ session }: { session: JWTPayload }) {
             </span>
           </div>
           <div className="py-1">
-            {(session.role === "admin" || session.role === "teacher") && (
+            {(session.role === "admin" || session.role === "teacher" || session.role === "staff") && (
               <a
                 href={dashboardHref}
                 className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-black hover:bg-yellow-300 transition-colors"
@@ -250,12 +254,14 @@ export function Navbar({ session }: NavbarProps) {
 
               {session ? (
                 <>
-                  {(session.role === "admin" || session.role === "teacher") && (
+                  {(session.role === "admin" || session.role === "teacher" || session.role === "staff") && (
                     <a
                       href={
                         session.role === "admin"
                           ? "https://dashboard.kesararamwithdigital.tech/admin/users"
-                          : "https://dashboard.kesararamwithdigital.tech/teacher/classes"
+                          : session.role === "teacher"
+                            ? "https://dashboard.kesararamwithdigital.tech/teacher/classes"
+                            : "https://dashboard.kesararamwithdigital.tech/staff"
                       }
                       onClick={() => setMobileOpen(false)}
                       className="mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center"
