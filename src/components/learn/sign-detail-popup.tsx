@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { X, Play, Pause, BookOpen, Brain, FileText, Zap, ChevronDown, ChevronUp } from "lucide-react";
+import { useLang } from "@/context/lang-context";
 
 interface Topic {
   id: number;
@@ -35,12 +36,11 @@ interface Answer {
 
 interface SignDetailPopupProps {
   topic: Topic;
-  language: "en" | "km";
   onClose: () => void;
 }
 
-export function SignDetailPopup({ topic, language, onClose }: SignDetailPopupProps) {
-  const [activeTab, setActiveTab] = useState<"en" | "km">(language);
+export function SignDetailPopup({ topic, onClose }: SignDetailPopupProps) {
+  const { lang } = useLang();
   const [questions, setQuestions] = useState<Question[]>([]);
   const [expandedQA, setExpandedQA] = useState<number | null>(null);
   const [playingAudio, setPlayingAudio] = useState<"en" | "km" | null>(null);
@@ -122,37 +122,13 @@ export function SignDetailPopup({ topic, language, onClose }: SignDetailPopupPro
           </div>
         </div>
 
-        {/* Description Tabs */}
-        <div className="border-b-2 border-black">
-          <div className="flex">
-            <button
-              onClick={() => setActiveTab("en")}
-              className={`flex-1 px-6 py-3 font-black border-r-2 border-black transition-all ${
-                activeTab === "en"
-                  ? "bg-black text-white"
-                  : "bg-white hover:bg-gray-100"
-              }`}
-            >
-              English
-            </button>
-            <button
-              onClick={() => setActiveTab("km")}
-              className={`flex-1 px-6 py-3 font-black transition-all ${
-                activeTab === "km"
-                  ? "bg-black text-white"
-                  : "bg-white hover:bg-gray-100"
-              }`}
-            >
-              ភាសាខ្មែរ
-            </button>
-          </div>
-        </div>
-
+        {/* Description Tabs - Removed, using global language */}
+        
         {/* Description Content */}
         <div className="p-6 border-b-2 border-black">
           <h4 className="font-black text-lg mb-3">Meaning & Description</h4>
           <p className="text-zinc-800 leading-relaxed whitespace-pre-wrap">
-            {activeTab === "en" ? topic.description_en : topic.description_km}
+            {lang === "en" ? topic.description_en : topic.description_km}
           </p>
 
           {topic.law_reference && (
@@ -238,7 +214,7 @@ export function SignDetailPopup({ topic, language, onClose }: SignDetailPopupPro
                         Q{index + 1}
                       </span>
                       <span className="font-bold">
-                        {activeTab === "en" ? q.question_en : q.question_km}
+                        {lang === "en" ? q.question_en : q.question_km}
                       </span>
                     </div>
                     {expandedQA === q.id ? (
@@ -265,7 +241,7 @@ export function SignDetailPopup({ topic, language, onClose }: SignDetailPopupPro
                                 {String.fromCharCode(65 + aIndex)}.
                               </span>
                               <span>
-                                {activeTab === "en" ? a.answer_en : a.answer_km}
+                                {lang === "en" ? a.answer_en : a.answer_km}
                               </span>
                               {a.is_correct && (
                                 <span className="ml-auto text-green-600 font-bold text-sm">

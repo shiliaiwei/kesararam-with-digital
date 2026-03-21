@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Search, Filter, ArrowLeft, BookOpen, Brain, FileText, Zap } from "lucide-react";
 import { SignDetailPopup } from "./sign-detail-popup";
+import { useLang } from "@/context/lang-context";
 
 interface Topic {
   id: number;
@@ -21,13 +22,13 @@ interface Topic {
 const SUB_GROUPS = ["Warning", "Prohibitory", "Mandatory", "Informational"];
 
 export function TrafficSignsCatalogue() {
+  const { lang } = useLang();
   const [topics, setTopics] = useState<Topic[]>([]);
   const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [subGroupFilter, setSubGroupFilter] = useState("");
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
-  const [language, setLanguage] = useState<"en" | "km">("en");
 
   useEffect(() => {
     fetchTopics();
@@ -152,7 +153,7 @@ export function TrafficSignsCatalogue() {
           className="bg-white border-2 border-black p-4"
           style={{ boxShadow: "4px 4px 0 #000" }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
             {/* Search */}
             <div className="md:col-span-6">
               <div className="relative">
@@ -184,32 +185,6 @@ export function TrafficSignsCatalogue() {
                   </option>
                 ))}
               </select>
-            </div>
-
-            {/* Language Toggle */}
-            <div className="md:col-span-2">
-              <div className="flex border-2 border-black">
-                <button
-                  onClick={() => setLanguage("en")}
-                  className={`flex-1 px-4 py-2 font-bold transition-all ${
-                    language === "en"
-                      ? "bg-black text-white"
-                      : "bg-white hover:bg-gray-100"
-                  }`}
-                >
-                  EN
-                </button>
-                <button
-                  onClick={() => setLanguage("km")}
-                  className={`flex-1 px-4 py-2 font-bold transition-all border-l-2 border-black ${
-                    language === "km"
-                      ? "bg-black text-white"
-                      : "bg-white hover:bg-gray-100"
-                  }`}
-                >
-                  ខ្មែរ
-                </button>
-              </div>
             </div>
           </div>
 
@@ -250,7 +225,7 @@ export function TrafficSignsCatalogue() {
                   {topic.primary_image_url ? (
                     <img
                       src={topic.primary_image_url}
-                      alt={language === "en" ? topic.name_en : topic.name_km}
+                      alt={lang === "en" ? topic.name_en : topic.name_km}
                       className="w-full h-full object-contain"
                     />
                   ) : (
@@ -264,7 +239,7 @@ export function TrafficSignsCatalogue() {
                     {topic.topic_code}
                   </div>
                   <div className="font-bold text-sm line-clamp-2">
-                    {language === "en" ? topic.name_en : topic.name_km}
+                    {lang === "en" ? topic.name_en : topic.name_km}
                   </div>
                 </div>
               </button>
@@ -277,7 +252,6 @@ export function TrafficSignsCatalogue() {
       {selectedTopic && (
         <SignDetailPopup
           topic={selectedTopic}
-          language={language}
           onClose={() => setSelectedTopic(null)}
         />
       )}
