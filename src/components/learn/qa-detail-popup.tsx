@@ -31,6 +31,7 @@ interface Question {
   question_km: string;
   hint_en: string;
   hint_km: string;
+  image_url: string | null;
   answers: Answer[];
 }
 
@@ -128,6 +129,23 @@ export function QADetailPopup({ qaItem, onClose }: QADetailPopupProps) {
           <h4 className="font-black text-sm sm:text-base mb-3 text-blue-600">
             {t.question}
           </h4>
+          
+          {/* Question Image (scenario/reference) */}
+          {qaItem.image_url && (
+            <div className="mb-4">
+              <div
+                className="bg-white border-2 border-black p-4 max-w-md mx-auto"
+                style={{ boxShadow: "4px 4px 0 #000" }}
+              >
+                <img
+                  src={qaItem.image_url}
+                  alt="Question scenario"
+                  className="w-full h-auto object-contain"
+                />
+              </div>
+            </div>
+          )}
+
           <p className="text-lg sm:text-xl font-bold text-black leading-relaxed">
             {lang === "en" ? qaItem.question_en : qaItem.question_km}
           </p>

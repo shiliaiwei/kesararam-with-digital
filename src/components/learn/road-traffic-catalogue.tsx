@@ -25,6 +25,7 @@ interface Question {
   question_km: string;
   hint_en: string;
   hint_km: string;
+  image_url: string | null;
   answers: Answer[];
 }
 
