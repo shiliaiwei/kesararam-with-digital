@@ -8,7 +8,7 @@ import { eq, and, desc, sql, or, like } from "drizzle-orm";
 export async function GET(request: NextRequest) {
   try {
     const session = await getSession();
-    if (!session?.user?.id || session.user.role !== "staff") {
+    if (!session?.id || session.role !== "staff") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     const offset = (page - 1) * limit;
 
     // Build query conditions
-    const conditions = [eq(contentItems.createdBy, session.user.id)];
+    const conditions = [eq(contentItems.createdBy, session.id)];
     
     if (status) {
       conditions.push(eq(contentItems.status, status));
@@ -89,7 +89,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const session = await getSession();
-    if (!session?.user?.id || session.user.role !== "staff") {
+    if (!session?.id || session.role !== "staff") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -153,7 +153,7 @@ export async function POST(request: NextRequest) {
         subtopic,
         sortOrder: sortOrder || 0,
         isActive: false,
-        createdBy: session.user.id,
+        createdBy: session.id,
         videoUrl,
         logoUrl,
         brandUrl,
@@ -165,7 +165,7 @@ export async function POST(request: NextRequest) {
 
     // Log activity
     await db.insert(staffActivityMetrics).values({
-      staffId: session.user.id,
+      staffId: session.id,
       actionType: "create",
       contentId: newContent.id,
       categoryId,

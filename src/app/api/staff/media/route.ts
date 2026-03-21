@@ -8,7 +8,7 @@ import { eq, desc, like, or } from "drizzle-orm";
 export async function GET(request: NextRequest) {
   try {
     const session = await getSession();
-    if (!session?.user?.id || session.user.role !== "staff") {
+    if (!session?.id || session.role !== "staff") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -58,7 +58,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const session = await getSession();
-    if (!session?.user?.id || session.user.role !== "staff") {
+    if (!session?.id || session.role !== "staff") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -98,7 +98,7 @@ export async function POST(request: NextRequest) {
         width,
         height,
         duration,
-        createdBy: session.user.id,
+        createdBy: session.id,
       })
       .returning();
 

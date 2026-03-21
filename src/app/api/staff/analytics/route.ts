@@ -8,11 +8,11 @@ import { eq, and, gte, sql } from "drizzle-orm";
 export async function GET(request: NextRequest) {
   try {
     const session = await getSession();
-    if (!session?.user?.id || session.user.role !== "staff") {
+    if (!session?.id || session.role !== "staff") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const staffId = session.user.id;
+    const staffId = session.id;
 
     // Get total content count
     const totalContentResult = await db

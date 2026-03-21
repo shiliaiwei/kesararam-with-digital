@@ -11,7 +11,7 @@ export async function GET(
 ) {
   try {
     const session = await getSession();
-    if (!session?.user?.id || session.user.role !== "staff") {
+    if (!session?.id || session.role !== "staff") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -24,7 +24,7 @@ export async function GET(
       .where(
         and(
           eq(contentItems.id, contentId),
-          eq(contentItems.createdBy, session.user.id)
+          eq(contentItems.createdBy, session.id)
         )
       );
 
@@ -49,7 +49,7 @@ export async function PUT(
 ) {
   try {
     const session = await getSession();
-    if (!session?.user?.id || session.user.role !== "staff") {
+    if (!session?.id || session.role !== "staff") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -63,7 +63,7 @@ export async function PUT(
       .where(
         and(
           eq(contentItems.id, contentId),
-          eq(contentItems.createdBy, session.user.id)
+          eq(contentItems.createdBy, session.id)
         )
       );
 
@@ -139,7 +139,7 @@ export async function PUT(
 
     // Log activity
     await db.insert(staffActivityMetrics).values({
-      staffId: session.user.id,
+      staffId: session.id,
       actionType: "update",
       contentId,
       categoryId: existing.categoryId,
@@ -163,7 +163,7 @@ export async function DELETE(
 ) {
   try {
     const session = await getSession();
-    if (!session?.user?.id || session.user.role !== "staff") {
+    if (!session?.id || session.role !== "staff") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -177,7 +177,7 @@ export async function DELETE(
       .where(
         and(
           eq(contentItems.id, contentId),
-          eq(contentItems.createdBy, session.user.id)
+          eq(contentItems.createdBy, session.id)
         )
       );
 
@@ -198,7 +198,7 @@ export async function DELETE(
 
     // Log activity
     await db.insert(staffActivityMetrics).values({
-      staffId: session.user.id,
+      staffId: session.id,
       actionType: "delete",
       contentId,
       categoryId: existing.categoryId,

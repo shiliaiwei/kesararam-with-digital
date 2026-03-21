@@ -138,35 +138,21 @@ export function TopicFormModal({
           <div className="space-y-4">
             <h3 className="font-black text-lg">Basic Information</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block font-bold mb-2">Topic Code</label>
-                <input
-                  type="text"
-                  name="topicCode"
-                  value={formData.topicCode}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-                  placeholder="Auto-generated if empty"
-                />
-              </div>
-
-              <div>
-                <label className="block font-bold mb-2">Sub-group / Type</label>
-                <select
-                  name="subGroup"
-                  value={formData.subGroup}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-                >
-                  <option value="">Select Type</option>
-                  {SUB_GROUPS[categorySlug]?.map((sg) => (
-                    <option key={sg} value={sg}>
-                      {sg}
-                    </option>
-                  ))}
-                </select>
-              </div>
+            <div>
+              <label className="block font-bold mb-2">Sub-group / Type</label>
+              <select
+                name="subGroup"
+                value={formData.subGroup}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
+              >
+                <option value="">Select Type</option>
+                {SUB_GROUPS[categorySlug]?.map((sg) => (
+                  <option key={sg} value={sg}>
+                    {sg}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div>
@@ -180,7 +166,7 @@ export function TopicFormModal({
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-                placeholder="Enter name in English"
+                placeholder="e.g., Stop Sign, Speed Limit 40 km/h, No Entry"
               />
             </div>
 
@@ -195,19 +181,7 @@ export function TopicFormModal({
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-                placeholder="បញ្ចូលឈ្មោះជាភាសាខ្មែរ"
-              />
-            </div>
-
-            <div>
-              <label className="block font-bold mb-2">Law Reference</label>
-              <input
-                type="text"
-                name="lawReference"
-                value={formData.lawReference}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-                placeholder="e.g., Article 42, Section 3"
+                placeholder="ឧ. សញ្ញាឈប់, កំណត់ល្បឿន ៤០ គ.ម/ម, ហាមចូល"
               />
             </div>
           </div>
@@ -227,7 +201,7 @@ export function TopicFormModal({
                 required
                 rows={4}
                 className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] resize-none"
-                placeholder="Enter detailed description in English"
+                placeholder="e.g., This sign requires all vehicles to come to a complete stop before proceeding. Drivers must check for traffic and pedestrians before continuing."
               />
             </div>
 
@@ -242,7 +216,7 @@ export function TopicFormModal({
                 required
                 rows={4}
                 className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] resize-none"
-                placeholder="បញ្ចូលការពិពណ៌នាលម្អិតជាភាសាខ្មែរ"
+                placeholder="ឧ. សញ្ញានេះតម្រូវឱ្យយានជំនិះទាំងអស់ឈប់ទាំងស្រុងមុនពេលបន្ត។ អ្នកបើកបរត្រូវពិនិត្យមើលចរាចរណ៍និងអ្នកថ្មើរជើងមុនពេលបន្ត។"
               />
             </div>
           </div>
