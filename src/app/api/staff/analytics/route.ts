@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { contentItems, staffActivityMetrics } from "@/db/schema/content";
-import { eq, and, gte, sql } from "drizzle-orm";
+import { sql } from "@/lib/db";
 
 // GET /api/staff/analytics - Get staff performance metrics
 export async function GET(request: NextRequest) {
@@ -15,62 +13,41 @@ export async function GET(request: NextRequest) {
     const staffId = session.id;
 
     // Get total content count
-    const totalContentResult = await db
-      .select({ totalContent: sql<number>`count(*)::int` })
-      .from(contentItems)
-      .where(eq(contentItems.createdBy, staffId));
-    const totalContent = totalContentResult[0]?.totalContent || 0;
+    const totalContentResult = await sql`
+      SELECT COUNT(*)::int as total_content FROM topics WHERE created_by = ${staffId}
+    `;
+    const totalContent = totalContentResult[0]?.total_content || 0;
 
     // Get pending count
-    const pendingResult = await db
-      .select({ pendingApproval: sql<number>`count(*)::int` })
-      .from(contentItems)
-      .where(
-        and(
-          eq(contentItems.createdBy, staffId),
-          eq(contentItems.status, "pending")
-        )
-      );
-    const pendingApproval = pendingResult[0]?.pendingApproval || 0;
+    const pendingResult = await sql`
+      SELECT COUNT(*)::int as pending_approval FROM topics 
+      WHERE created_by = ${staffId} AND status = 'pending'
+    `;
+    const pendingApproval = pendingResult[0]?.pending_approval || 0;
 
     // Get approved count
-    const approvedResult = await db
-      .select({ approved: sql<number>`count(*)::int` })
-      .from(contentItems)
-      .where(
-        and(
-          eq(contentItems.createdBy, staffId),
-          eq(contentItems.status, "active")
-        )
-      );
+    const approvedResult = await sql`
+      SELECT COUNT(*)::int as approved FROM topics 
+      WHERE created_by = ${staffId} AND status = 'approved'
+    `;
     const approved = approvedResult[0]?.approved || 0;
 
     // Get rejected count
-    const rejectedResult = await db
-      .select({ rejected: sql<number>`count(*)::int` })
-      .from(contentItems)
-      .where(
-        and(
-          eq(contentItems.createdBy, staffId),
-          eq(contentItems.status, "rejected")
-        )
-      );
+    const rejectedResult = await sql`
+      SELECT COUNT(*)::int as rejected FROM topics 
+      WHERE created_by = ${staffId} AND status = 'rejected'
+    `;
     const rejected = rejectedResult[0]?.rejected || 0;
 
     // Get this week's count
     const oneWeekAgo = new Date();
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
-    const thisWeekResult = await db
-      .select({ thisWeek: sql<number>`count(*)::int` })
-      .from(contentItems)
-      .where(
-        and(
-          eq(contentItems.createdBy, staffId),
-          gte(contentItems.createdAt, oneWeekAgo)
-        )
-      );
-    const thisWeek = thisWeekResult[0]?.thisWeek || 0;
+    const thisWeekResult = await sql`
+      SELECT COUNT(*)::int as this_week FROM topics 
+      WHERE created_by = ${staffId} AND created_at >= ${oneWeekAgo.toISOString()}
+    `;
+    const thisWeek = thisWeekResult[0]?.this_week || 0;
 
     // Calculate approval rate
     const totalReviewed = Number(approved) + Number(rejected);
@@ -79,23 +56,15 @@ export async function GET(request: NextRequest) {
         ? Math.round((Number(approved) / totalReviewed) * 100)
         : 0;
 
-    // Get recent activity
-    const recentActivity = await db
-      .select()
-      .from(staffActivityMetrics)
-      .where(eq(staffActivityMetrics.staffId, staffId))
-      .orderBy(sql`${staffActivityMetrics.createdAt} DESC`)
-      .limit(10);
-
     // Get content by category
-    const contentByCategory = await db
-      .select({
-        categoryId: contentItems.categoryId,
-        count: sql<number>`count(*)::int`,
-      })
-      .from(contentItems)
-      .where(eq(contentItems.createdBy, staffId))
-      .groupBy(contentItems.categoryId);
+    const contentByCategory = await sql`
+      SELECT 
+        category_id,
+        COUNT(*)::int as count
+      FROM topics
+      WHERE created_by = ${staffId}
+      GROUP BY category_id
+    `;
 
     return NextResponse.json({
       stats: {
@@ -106,7 +75,7 @@ export async function GET(request: NextRequest) {
         thisWeek: Number(thisWeek),
         approvalRate,
       },
-      recentActivity: recentActivity || [],
+      recentActivity: [],
       contentByCategory: contentByCategory || [],
     });
   } catch (error) {

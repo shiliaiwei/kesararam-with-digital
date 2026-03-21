@@ -103,14 +103,28 @@ export function MyTopicsList() {
   const fetchTopics = async () => {
     setLoading(true);
     try {
-      const response = await fetch("/api/staff/topics");
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+      
+      const response = await fetch("/api/staff/topics", {
+        signal: controller.signal,
+      });
+      
+      clearTimeout(timeoutId);
+      
       if (response.ok) {
         const data = await response.json();
         setTopics(data.topics || []);
         calculateStats(data.topics || []);
+      } else {
+        console.error("Failed to fetch topics:", response.status);
+        setTopics([]);
+        calculateStats([]);
       }
     } catch (error) {
       console.error("Error fetching topics:", error);
+      setTopics([]);
+      calculateStats([]);
     } finally {
       setLoading(false);
     }
