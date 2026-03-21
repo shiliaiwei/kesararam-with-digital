@@ -1,5 +1,37 @@
-Traffic Signs Learn Page:
-let fix, UI frontent first, translate this text base on user swtich lang "Browse and learn all official road signs used in Cambodia. Each sign includes a description, what it means, and audio support in Khmer and English." and the label,FlashcardsQuizPractice TestChallenge becuase it already have in all detail learn, and next fix the block showing grid, showing only image and below it showing code signs, if user click open popup, make showing ui logo above the meaning and description , no text above the logo signs and reponsive device make it full see in device, example each of pop showing id signs and br logo signs, and br showing details of it, so all description details should be following user switch from defualt base onit dont show both at the same example if user switch in khmer should all content showing in khmer like cotnent details and audio. and next fix the ui in dashbaord staff, form all code, should write spacifc by hand, and status label make it small label, and spacific category all of 8 , make easy to manage
+## Road Traffic Q&A Page - COMPLETED ✓
+
+### Issues Fixed:
+1. ✓ Audio player now working properly with stopPropagation and proper event handlers
+2. ✓ Removed "Questions (0)" count display - now shows just "Questions" header
+3. ✓ Question images set to landscape orientation (16:9 aspect ratio)
+4. ✓ Topics display in expandable format (not popup)
+5. ✓ Content shows based on user's selected language
+6. ✓ Audio matches selected language
+
+### Current Implementation:
+- Topics list with expandable sections
+- Each topic shows: code, sub-group tag, title, description
+- Expanded view shows: audio player, law reference, questions with answers
+- Questions display with Q1, Q2 numbering
+- Landscape images for question scenarios
+- Correct answers highlighted in green
+- Hints shown in blue info boxes
+
+### Architecture Notes:
+- Learn pages (/learn/*) = Study/Learning hub with Q&A
+- Play section (/play/*) = Quizzes/Tests/Challenges (separate, to be built)
+- Same content used in both but different presentation
+- All 8 categories will have learn pages
+
+### Next Steps (if needed):
+- Staff UI to add questions to existing topics (API exists at /api/staff/topics/[id]/questions)
+- Consider building question management interface for staff
+- Test audio playback with actual audio files
+
+
+
+
+the quize or qestion challeng will link later,
 
 
 
@@ -9,42 +41,26 @@ let fix, UI frontent first, translate this text base on user swtich lang "Browse
 
 
 
+next we gonna build this page  work flow 
+priority Learn Page:
+
+first list the image just like the road-signs list,
+if user click open
+  CONTENT TYPE: Priority rule scenarios + intersection diagrams + Q&A
+  PURPOSE: Understand priority rules and how to handle intersections correctly.
+
+  DISPLAY: Q&A list
+    - Each row: question preview + scenario image thumbnail
+    - Click: opens Q&A Popup
+
+  Q&A POPUP:
+    - Scenario image (REQUIRED for this category — intersection diagram)
+    - Full question text (KH + EN)
+    - Answer with detailed description
+    - Audio player: KH + EN tracks
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-Traffic Signs Learn Page:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Road Traffic Law Learn Page:
-
-
-
+the quize or qestion challeng will link later,
 
 
 
@@ -59,7 +75,7 @@ Road Traffic Law Learn Page:
 
 Driving Skills Learn Page:
 
-
+the quize or qestion challeng will link later,
 
 
 
@@ -79,8 +95,7 @@ Driving Skills Learn Page:
 
 Vehicle Technology Learn Page:
 
-
-
+the quize or qestion challeng will link later,
 
 
 
@@ -97,7 +112,7 @@ Loading People & Goods Learn Page:
 
 
 
-
+the quize or qestion challeng will link later,
 
 
 
@@ -113,7 +128,7 @@ General Knowledge Learn Page:
 
 
 
-
+the quize or qestion challeng will link later,
 
 
 
@@ -133,7 +148,7 @@ Emergency Learn Page:
 
 
 
-
+the quize or qestion challeng will link later,
 
 
 
