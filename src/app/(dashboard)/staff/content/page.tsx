@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { ContentList } from "@/components/staff/content/content-list";
+import { MyTopicsList } from "@/components/staff/content/my-topics-list";
 
 export const metadata: Metadata = {
   title: "My Content | Staff Dashboard",
@@ -16,7 +16,7 @@ export default function StaffContentPage() {
         </p>
       </div>
 
-      <ContentList />
+      <MyTopicsList />
     </div>
   );
 }
