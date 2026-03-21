@@ -294,6 +294,20 @@ CONTENT AREA (white background below banner):
     - Emergency contact numbers displayed in the popup where relevant
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 PART 2 — LEARN MODES (shared across all 8 categories)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
