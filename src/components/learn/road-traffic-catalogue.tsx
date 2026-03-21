@@ -15,6 +15,7 @@ interface Topic {
   law_reference: string;
   audio_url_en: string;
   audio_url_km: string;
+  primary_image_url: string | null;
 }
 
 interface Question {
@@ -306,8 +307,19 @@ export function RoadTrafficCatalogue() {
                 {/* Topic Header - Clickable */}
                 <button
                   onClick={() => toggleTopic(topic.id)}
-                  className="w-full p-6 flex items-start justify-between hover:bg-gray-50 transition-all text-left"
+                  className="w-full p-6 flex items-start gap-4 hover:bg-gray-50 transition-all text-left"
                 >
+                  {/* Topic Image */}
+                  {topic.primary_image_url && (
+                    <div className="flex-shrink-0">
+                      <img
+                        src={topic.primary_image_url}
+                        alt={lang === "en" ? topic.name_en : topic.name_km}
+                        className="w-24 h-24 object-cover border-2 border-black"
+                      />
+                    </div>
+                  )}
+                  
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       <span className="text-xs font-mono bg-zinc-100 border border-black px-2 py-1">
@@ -323,10 +335,11 @@ export function RoadTrafficCatalogue() {
                       {lang === "en" ? topic.name_en : topic.name_km}
                     </h3>
                   </div>
+                  
                   {expandedTopics[topic.id] ? (
-                    <ChevronUp size={24} className="flex-shrink-0 ml-4" />
+                    <ChevronUp size={24} className="flex-shrink-0" />
                   ) : (
-                    <ChevronDown size={24} className="flex-shrink-0 ml-4" />
+                    <ChevronDown size={24} className="flex-shrink-0" />
                   )}
                 </button>
 
