@@ -307,19 +307,8 @@ export function RoadTrafficCatalogue() {
                 {/* Topic Header - Clickable */}
                 <button
                   onClick={() => toggleTopic(topic.id)}
-                  className="w-full p-6 flex items-start gap-4 hover:bg-gray-50 transition-all text-left"
+                  className="w-full p-6 flex items-start justify-between hover:bg-gray-50 transition-all text-left"
                 >
-                  {/* Topic Image */}
-                  {topic.primary_image_url && (
-                    <div className="flex-shrink-0">
-                      <img
-                        src={topic.primary_image_url}
-                        alt={lang === "en" ? topic.name_en : topic.name_km}
-                        className="w-24 h-24 object-cover border-2 border-black"
-                      />
-                    </div>
-                  )}
-                  
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       <span className="text-xs font-mono bg-zinc-100 border border-black px-2 py-1">
@@ -337,15 +326,31 @@ export function RoadTrafficCatalogue() {
                   </div>
                   
                   {expandedTopics[topic.id] ? (
-                    <ChevronUp size={24} className="flex-shrink-0" />
+                    <ChevronUp size={24} className="flex-shrink-0 ml-4" />
                   ) : (
-                    <ChevronDown size={24} className="flex-shrink-0" />
+                    <ChevronDown size={24} className="flex-shrink-0 ml-4" />
                   )}
                 </button>
 
                 {/* Topic Content - Collapsible */}
                 {expandedTopics[topic.id] && (
                   <div className="border-t-2 border-black bg-gray-50 p-6">
+                    {/* Topic Image - 16:9 only */}
+                    {topic.primary_image_url && (
+                      <div className="mb-6">
+                        <img
+                          src={topic.primary_image_url}
+                          alt={lang === "en" ? topic.name_en : topic.name_km}
+                          className="w-full max-w-3xl border-2 border-black object-cover"
+                          style={{ aspectRatio: '16/9' }}
+                          onError={(e) => {
+                            // Hide image if it fails to load or doesn't meet requirements
+                            e.currentTarget.style.display = 'none';
+                          }}
+                        />
+                      </div>
+                    )}
+
                     {/* Description */}
                     <p className="text-sm text-zinc-700 mb-6">
                       {lang === "en" ? topic.description_en : topic.description_km}

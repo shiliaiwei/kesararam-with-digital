@@ -290,6 +290,19 @@ export function TopicFormModal({
           <div className="space-y-4">
             <h3 className="font-black text-lg">Media Resources</h3>
 
+            {/* Image Requirement Alert */}
+            <div className="bg-orange-50 border-2 border-orange-500 p-4">
+              <p className="text-sm font-bold text-orange-900 mb-2">
+                ⚠️ Image Aspect Ratio Requirement
+              </p>
+              <p className="text-sm text-orange-800">
+                All images MUST be in 16:9 aspect ratio (landscape). Images that don't meet this requirement will not be displayed on the public learn page.
+              </p>
+              <p className="text-xs text-orange-700 mt-2">
+                Recommended sizes: 1920x1080, 1280x720, 960x540, or any 16:9 ratio
+              </p>
+            </div>
+
             {requiresImage && (
               <div className="bg-amber-50 border-2 border-amber-400 p-3">
                 <p className="font-bold text-sm">Image is REQUIRED for this category</p>
