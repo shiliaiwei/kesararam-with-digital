@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { sql, eq, and, desc, or, like } from "drizzle-orm";
+import { sql } from "@/lib/db";
 
 export async function GET(request: NextRequest) {
   try {
@@ -10,66 +9,53 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    console.log("Session user ID:", session.id, "Role:", session.role);
-
     const { searchParams } = new URL(request.url);
     const categoryId = searchParams.get("categoryId");
     const status = searchParams.get("status");
     const search = searchParams.get("search");
     const page = parseInt(searchParams.get("page") || "1");
-    const limit = parseInt(searchParams.get("limit") || "20");
+    const limit = parseInt(searchParams.get("limit") || "50");
     const offset = (page - 1) * limit;
 
     // Build WHERE conditions
-    const conditions: any[] = [];
+    const conditions: string[] = [];
+    const params: any[] = [];
 
     // Staff can only see their own content unless admin
     if (session.role !== "admin") {
-      conditions.push(sql`t.created_by = ${session.id}`);
-      console.log("Filtering by created_by:", session.id);
+      conditions.push(`created_by = ${session.id}`);
     }
 
     if (categoryId) {
-      conditions.push(sql`t.category_id = ${parseInt(categoryId)}`);
+      conditions.push(`category_id = ${parseInt(categoryId)}`);
     }
 
     if (status) {
-      conditions.push(sql`t.status = ${status}`);
+      conditions.push(`status = '${status}'`);
     }
 
     if (search) {
-      conditions.push(
-        sql`(t.name_en ILIKE ${`%${search}%`} OR t.name_km ILIKE ${`%${search}%`} OR t.topic_code ILIKE ${`%${search}%`})`
-      );
+      conditions.push(`(name_en ILIKE '%${search}%' OR name_km ILIKE '%${search}%' OR topic_code ILIKE '%${search}%')`);
     }
 
-    const whereClause = conditions.length > 0 ? sql`WHERE ${sql.join(conditions, sql` AND `)}` : sql``;
-
-    console.log("WHERE conditions count:", conditions.length);
+    const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
 
     // Get topics
-    const topics = await db.execute(sql`
-      SELECT 
-        t.*,
-        c.title_en as category_name,
-        (SELECT COUNT(*)::int FROM questions WHERE topic_id = t.id) as question_count
-      FROM topics t
-      LEFT JOIN categories c ON t.category_id = c.id
-      ${whereClause}
-      ORDER BY t.created_at DESC 
+    const topics = await sql`
+      SELECT * FROM topics
+      ${sql.unsafe(whereClause)}
+      ORDER BY created_at DESC 
       LIMIT ${limit} OFFSET ${offset}
-    `);
-
-    console.log("Topics found:", topics.rows.length);
+    `;
 
     // Get total count
-    const countResult = await db.execute(sql`
-      SELECT COUNT(*)::int as total FROM topics t ${whereClause}
-    `);
-    const total = countResult.rows[0]?.total || 0;
+    const countResult = await sql`
+      SELECT COUNT(*)::int as total FROM topics ${sql.unsafe(whereClause)}
+    `;
+    const total = countResult[0]?.total || 0;
 
     return NextResponse.json({
-      topics: topics.rows,
+      topics,
       pagination: {
         page,
         limit,
@@ -98,8 +84,6 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    console.log("Creating topic with data:", JSON.stringify(body, null, 2));
-    console.log("Session user ID:", session.id);
 
     const {
       topicCode,
@@ -121,7 +105,6 @@ export async function POST(request: NextRequest) {
 
     // Validate required fields
     if (!categoryId || !nameEn || !nameKm) {
-      console.error("Missing required fields:", { categoryId, nameEn, nameKm });
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
@@ -130,9 +113,8 @@ export async function POST(request: NextRequest) {
 
     // Generate topic code if not provided
     const finalTopicCode = topicCode || `T-${Date.now()}`;
-    console.log("Generated topic code:", finalTopicCode);
 
-    const result = await db.execute(sql`
+    const result = await sql`
       INSERT INTO topics (
         topic_code, category_id, name_en, name_km,
         description_en, description_km,
@@ -151,11 +133,9 @@ export async function POST(request: NextRequest) {
         ${topicStatus || "draft"}, ${session.id}, NOW(), NOW()
       )
       RETURNING *
-    `);
+    `;
 
-    console.log("Topic created successfully:", result.rows[0].id);
-
-    return NextResponse.json({ topic: result.rows[0] }, { status: 201 });
+    return NextResponse.json({ topic: result[0] }, { status: 201 });
   } catch (error: any) {
     console.error("Error creating topic:", error);
     if (error.code === "23505") {

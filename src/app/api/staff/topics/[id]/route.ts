@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
-import { db } from "@/lib/db";
-import { sql } from "drizzle-orm";
+import { sql } from "@/lib/db";
 
 export async function GET(
   request: NextRequest,
@@ -15,7 +14,7 @@ export async function GET(
 
     const { id } = await params;
 
-    const result = await db.execute(sql`
+    const result = await sql`
       SELECT 
         t.*,
         c.title_en as category_name,
@@ -23,9 +22,9 @@ export async function GET(
       FROM topics t
       LEFT JOIN categories c ON t.category_id = c.id
       WHERE t.id = ${id}
-    `);
+    `;
 
-    const topic = result.rows[0];
+    const topic = result[0];
 
     if (!topic) {
       return NextResponse.json({ error: "Topic not found" }, { status: 404 });
@@ -40,16 +39,16 @@ export async function GET(
     }
 
     // Get linked questions
-    const questionsResult = await db.execute(sql`
+    const questions = await sql`
       SELECT 
         q.*,
         (SELECT COUNT(*)::int FROM answers WHERE question_id = q.id) as answer_count
       FROM questions q
       WHERE q.topic_id = ${id}
       ORDER BY q.sort_order, q.created_at
-    `);
+    `;
 
-    return NextResponse.json({ topic, questions: questionsResult.rows });
+    return NextResponse.json({ topic, questions });
   } catch (error) {
     console.error("Error fetching topic:", error);
     return NextResponse.json(
@@ -71,10 +70,10 @@ export async function PUT(
 
     const { id } = await params;
 
-    const existingResult = await db.execute(sql`
+    const existingResult = await sql`
       SELECT * FROM topics WHERE id = ${id}
-    `);
-    const existing = existingResult.rows[0];
+    `;
+    const existing = existingResult[0];
 
     if (!existing) {
       return NextResponse.json({ error: "Topic not found" }, { status: 404 });
@@ -107,7 +106,7 @@ export async function PUT(
       status: topicStatus,
     } = body;
 
-    const result = await db.execute(sql`
+    const result = await sql`
       UPDATE topics SET
         topic_code = ${topicCode || existing.topic_code},
         category_id = ${categoryId || existing.category_id},
@@ -127,9 +126,9 @@ export async function PUT(
         updated_at = NOW()
       WHERE id = ${id}
       RETURNING *
-    `);
+    `;
 
-    return NextResponse.json({ topic: result.rows[0] });
+    return NextResponse.json({ topic: result[0] });
   } catch (error: any) {
     console.error("Error updating topic:", error);
     if (error.code === "23505") {
@@ -157,10 +156,10 @@ export async function DELETE(
 
     const { id } = await params;
 
-    const existingResult = await db.execute(sql`
+    const existingResult = await sql`
       SELECT * FROM topics WHERE id = ${id}
-    `);
-    const existing = existingResult.rows[0];
+    `;
+    const existing = existingResult[0];
 
     if (!existing) {
       return NextResponse.json({ error: "Topic not found" }, { status: 404 });
@@ -174,15 +173,15 @@ export async function DELETE(
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
-    // Cannot delete if published
-    if (existing.status === "published") {
+    // Staff can only delete draft content
+    if (session.role !== "admin" && existing.status !== "draft") {
       return NextResponse.json(
-        { error: "Cannot delete published topic" },
+        { error: "Can only delete draft content" },
         { status: 400 }
       );
     }
 
-    await db.execute(sql`DELETE FROM topics WHERE id = ${id}`);
+    await sql`DELETE FROM topics WHERE id = ${id}`;
 
     return NextResponse.json({ success: true });
   } catch (error) {
