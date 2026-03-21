@@ -10,6 +10,8 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    console.log("Session user ID:", session.id, "Role:", session.role);
+
     const { searchParams } = new URL(request.url);
     const categoryId = searchParams.get("categoryId");
     const status = searchParams.get("status");
@@ -24,6 +26,7 @@ export async function GET(request: NextRequest) {
     // Staff can only see their own content unless admin
     if (session.role !== "admin") {
       conditions.push(sql`t.created_by = ${session.id}`);
+      console.log("Filtering by created_by:", session.id);
     }
 
     if (categoryId) {
@@ -42,20 +45,22 @@ export async function GET(request: NextRequest) {
 
     const whereClause = conditions.length > 0 ? sql`WHERE ${sql.join(conditions, sql` AND `)}` : sql``;
 
+    console.log("WHERE conditions count:", conditions.length);
+
     // Get topics
     const topics = await db.execute(sql`
       SELECT 
         t.*,
         c.title_en as category_name,
-        u.name as creator_name,
         (SELECT COUNT(*)::int FROM questions WHERE topic_id = t.id) as question_count
       FROM topics t
       LEFT JOIN categories c ON t.category_id = c.id
-      LEFT JOIN users u ON t.created_by = u.id
       ${whereClause}
       ORDER BY t.created_at DESC 
       LIMIT ${limit} OFFSET ${offset}
     `);
+
+    console.log("Topics found:", topics.rows.length);
 
     // Get total count
     const countResult = await db.execute(sql`
@@ -93,6 +98,9 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
+    console.log("Creating topic with data:", JSON.stringify(body, null, 2));
+    console.log("Session user ID:", session.id);
+
     const {
       topicCode,
       categoryId,
@@ -113,6 +121,7 @@ export async function POST(request: NextRequest) {
 
     // Validate required fields
     if (!categoryId || !nameEn || !nameKm) {
+      console.error("Missing required fields:", { categoryId, nameEn, nameKm });
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
@@ -121,6 +130,7 @@ export async function POST(request: NextRequest) {
 
     // Generate topic code if not provided
     const finalTopicCode = topicCode || `T-${Date.now()}`;
+    console.log("Generated topic code:", finalTopicCode);
 
     const result = await db.execute(sql`
       INSERT INTO topics (
@@ -142,6 +152,8 @@ export async function POST(request: NextRequest) {
       )
       RETURNING *
     `);
+
+    console.log("Topic created successfully:", result.rows[0].id);
 
     return NextResponse.json({ topic: result.rows[0] }, { status: 201 });
   } catch (error: any) {
