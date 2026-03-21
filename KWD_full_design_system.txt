@@ -230,19 +230,6 @@ CONTENT AREA (white background below banner):
 
 ── 3. RIGHT OF WAY (/priority) ──────────────────────────────────────────────
 
-  CONTENT TYPE: Priority rule scenarios + intersection diagrams + Q&A
-  PURPOSE: Understand priority rules and how to handle intersections correctly.
-
-  DISPLAY: Q&A list
-    - Each row: question preview + scenario image thumbnail
-    - Click: opens Q&A Popup
-
-  Q&A POPUP:
-    - Scenario image (REQUIRED for this category — intersection diagram)
-    - Full question text (KH + EN)
-    - Answer with detailed description
-    - Audio player: KH + EN tracks
-
 
 
 
