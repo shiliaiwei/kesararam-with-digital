@@ -46,6 +46,8 @@ const teacherNav: NavItem[] = [
 ];
 
 const staffNav: NavItem[] = [
+  { label: "Project Planner", href: "/staff/project-planner", icon: Calendar, color: "#f59e0b" },
+  { label: "My Submissions", href: "/staff/submissions", icon: AlertCircle, color: "#3b82f6" },
   {
     label: "Content",
     icon: BookOpen,
@@ -63,7 +65,6 @@ const staffNav: NavItem[] = [
   },
   { label: "Media", href: "/staff/media", icon: Images, color: "#a855f7" },
   { label: "Classes", href: "/staff/classes", icon: School, color: "#3b82f6" },
-  { label: "Project Planner", href: "/staff/project-planner", icon: Calendar, color: "#f59e0b" },
 ];
 
 interface AppSidebarProps {

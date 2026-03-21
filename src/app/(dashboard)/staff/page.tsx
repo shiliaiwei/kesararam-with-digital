@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { Plus, FileText, Image, Gamepad2, BarChart3 } from "lucide-react";
 import { StatsOverview } from "@/components/staff/dashboard/stats-overview";
+import { MyTopicsList } from "@/components/staff/content/my-topics-list";
 
 export const metadata: Metadata = {
   title: "Staff Dashboard | KWD",
@@ -124,17 +125,10 @@ export default function StaffDashboardPage() {
         </div>
       </div>
 
-      {/* Recent Activity */}
+      {/* My Topics - Review Tracking */}
       <div>
-        <h2 className="text-xl font-black text-black mb-4">Recent Activity</h2>
-        <div
-          className="bg-white border-2 border-black p-6"
-          style={{ boxShadow: "4px 4px 0 #000" }}
-        >
-          <p className="text-zinc-600 text-center py-8">
-            No recent activity. Start creating content!
-          </p>
-        </div>
+        <h2 className="text-xl font-black text-black mb-4">My Topics - Review Status</h2>
+        <MyTopicsList />
       </div>
     </div>
   );
