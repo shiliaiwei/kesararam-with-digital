@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
       SELECT 
         t.*,
         c.title_en as category_name,
-        u.name as creator_name,
+        u.display_name as creator_name,
         (SELECT COUNT(*)::int FROM questions WHERE topic_id = t.id) as question_count
       FROM topics t
       LEFT JOIN categories c ON t.category_id = c.id
