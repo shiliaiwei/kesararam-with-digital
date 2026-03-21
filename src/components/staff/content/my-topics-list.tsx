@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { 
   Clock, 
   CheckCircle, 
@@ -85,6 +86,7 @@ const CATEGORIES = [
 ];
 
 export function MyTopicsList() {
+  const router = useRouter();
   const [topics, setTopics] = useState<Topic[]>([]);
   const [loading, setLoading] = useState(true);
   const [stats, setStats] = useState<Stats>({
@@ -183,6 +185,10 @@ export function MyTopicsList() {
 
   const getCategoryName = (categoryId: number) => {
     return CATEGORIES.find((c) => c.id === categoryId)?.name || "Unknown";
+  };
+
+  const getCategorySlug = (categoryId: number) => {
+    return CATEGORIES.find((c) => c.id === categoryId)?.slug || "road-sign";
   };
 
   const filteredTopics =
@@ -377,8 +383,9 @@ export function MyTopicsList() {
                     {(topic.status === "draft" || topic.status === "rejected") && (
                       <>
                         <button
+                          onClick={() => router.push(`/staff/content/${getCategorySlug(topic.category_id)}`)}
                           className="bg-yellow-400 border-2 border-black p-2 hover:shadow-[2px_2px_0_#000] transition-all"
-                          title="Edit"
+                          title="Edit (opens in category page)"
                         >
                           <Edit size={18} />
                         </button>
@@ -394,6 +401,7 @@ export function MyTopicsList() {
                     )}
 
                     <button
+                      onClick={() => router.push(`/staff/content/${getCategorySlug(topic.category_id)}/${topic.id}`)}
                       className="bg-blue-400 border-2 border-black p-2 hover:shadow-[2px_2px_0_#000] transition-all"
                       title="View Details"
                     >
