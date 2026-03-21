@@ -5,7 +5,7 @@ import { sql } from "drizzle-orm";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getSession();
@@ -13,16 +13,16 @@ export async function GET(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const { id } = await params;
+
     const result = await db.execute(sql`
       SELECT 
         t.*,
         c.title_en as category_name,
-        c.slug as category_slug,
-        u.name as creator_name
+        c.slug as category_slug
       FROM topics t
       LEFT JOIN categories c ON t.category_id = c.id
-      LEFT JOIN users u ON t.created_by = u.id
-      WHERE t.id = ${params.id}
+      WHERE t.id = ${id}
     `);
 
     const topic = result.rows[0];
@@ -45,7 +45,7 @@ export async function GET(
         q.*,
         (SELECT COUNT(*)::int FROM answers WHERE question_id = q.id) as answer_count
       FROM questions q
-      WHERE q.topic_id = ${params.id}
+      WHERE q.topic_id = ${id}
       ORDER BY q.sort_order, q.created_at
     `);
 
@@ -61,7 +61,7 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getSession();
@@ -69,8 +69,10 @@ export async function PUT(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const { id } = await params;
+
     const existingResult = await db.execute(sql`
-      SELECT * FROM topics WHERE id = ${params.id}
+      SELECT * FROM topics WHERE id = ${id}
     `);
     const existing = existingResult.rows[0];
 
@@ -123,7 +125,7 @@ export async function PUT(
         audio_source_km = ${audioSourceKm || existing.audio_source_km},
         status = ${topicStatus || existing.status},
         updated_at = NOW()
-      WHERE id = ${params.id}
+      WHERE id = ${id}
       RETURNING *
     `);
 
@@ -145,7 +147,7 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getSession();
@@ -153,8 +155,10 @@ export async function DELETE(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const { id } = await params;
+
     const existingResult = await db.execute(sql`
-      SELECT * FROM topics WHERE id = ${params.id}
+      SELECT * FROM topics WHERE id = ${id}
     `);
     const existing = existingResult.rows[0];
 
@@ -178,7 +182,7 @@ export async function DELETE(
       );
     }
 
-    await db.execute(sql`DELETE FROM topics WHERE id = ${params.id}`);
+    await db.execute(sql`DELETE FROM topics WHERE id = ${id}`);
 
     return NextResponse.json({ success: true });
   } catch (error) {

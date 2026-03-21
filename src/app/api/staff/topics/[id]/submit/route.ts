@@ -5,7 +5,7 @@ import { sql } from "drizzle-orm";
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getSession();
@@ -13,8 +13,10 @@ export async function POST(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const { id } = await params;
+
     const topicResult = await db.execute(sql`
-      SELECT * FROM topics WHERE id = ${params.id}
+      SELECT * FROM topics WHERE id = ${id}
     `);
     const topic = topicResult.rows[0];
 
@@ -32,7 +34,7 @@ export async function POST(
 
     // Check if at least one question exists
     const countResult = await db.execute(sql`
-      SELECT COUNT(*)::int as count FROM questions WHERE topic_id = ${params.id}
+      SELECT COUNT(*)::int as count FROM questions WHERE topic_id = ${id}
     `);
     const count = countResult.rows[0]?.count || 0;
 
@@ -45,8 +47,8 @@ export async function POST(
 
     const updateResult = await db.execute(sql`
       UPDATE topics 
-      SET status = 'pending', updated_at = NOW()
-      WHERE id = ${params.id}
+      SET status = 'pending', submitted_at = NOW(), updated_at = NOW()
+      WHERE id = ${id}
       RETURNING *
     `);
 
