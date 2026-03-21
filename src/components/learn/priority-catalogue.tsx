@@ -45,10 +45,10 @@ export function PriorityCatalogue() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [subGroupFilter, setSubGroupFilter] = useState("");
-  const [questions, setQuestions] = useState<Record<number, Question[]>>({});
-  const [playingAudio, setPlayingAudio] = useState<number | null>(null);
+  const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [playingAudio, setPlayingAudio] = useState<boolean>(false);
   const [expandedQuestions, setExpandedQuestions] = useState<Record<number, boolean>>({});
-  const [expandedTopics, setExpandedTopics] = useState<Record<number, boolean>>({});
 
   const translations = {
     en: {
@@ -61,11 +61,12 @@ export function PriorityCatalogue() {
       allTypes: "All Types",
       showing: "Showing",
       of: "of",
-      topics: "topics",
-      noTopics: "No topics found",
+      topics: "scenarios",
+      noTopics: "No scenarios found",
       questions: "Questions",
       playAudio: "Play Audio",
       lawReference: "Law Reference",
+      close: "Close",
     },
     kh: {
       category: "ប្រភេទចំណេះដឹង",
@@ -77,11 +78,12 @@ export function PriorityCatalogue() {
       allTypes: "ប្រភេទទាំងអស់",
       showing: "បង្ហាញ",
       of: "នៃ",
-      topics: "ប្រធានបទ",
-      noTopics: "រកមិនឃើញប្រធានបទ",
+      topics: "ស្ថានភាព",
+      noTopics: "រកមិនឃើញស្ថានភាព",
       questions: "សំណួរ",
       playAudio: "ចាក់សំឡេង",
       lawReference: "ឯកសារយោងច្បាប់",
+      close: "បិទ",
     },
   };
 
@@ -90,14 +92,6 @@ export function PriorityCatalogue() {
   useEffect(() => {
     fetchTopics();
   }, []);
-
-  useEffect(() => {
-    if (topics.length > 0) {
-      topics.forEach(topic => {
-        fetchQuestions(topic.id);
-      });
-    }
-  }, [topics]);
 
   useEffect(() => {
     filterTopics();
@@ -117,15 +111,10 @@ export function PriorityCatalogue() {
   };
 
   const fetchQuestions = async (topicId: number) => {
-    if (questions[topicId]) return;
-
     try {
       const response = await fetch(`/api/public/topics/${topicId}/questions`);
       const data = await response.json();
-      setQuestions((prev) => ({
-        ...prev,
-        [topicId]: data.questions || [],
-      }));
+      setQuestions(data.questions || []);
     } catch (error) {
       console.error("Error fetching questions:", error);
     }
@@ -152,11 +141,10 @@ export function PriorityCatalogue() {
     setFilteredTopics(filtered);
   };
 
-  const toggleTopic = (topicId: number) => {
-    setExpandedTopics(prev => ({
-      ...prev,
-      [topicId]: !prev[topicId]
-    }));
+  const handleTopicClick = (topic: Topic) => {
+    setSelectedTopic(topic);
+    fetchQuestions(topic.id);
+    setExpandedQuestions({});
   };
 
   const toggleQuestion = (questionId: number) => {
@@ -166,12 +154,8 @@ export function PriorityCatalogue() {
     }));
   };
 
-  const toggleAudio = (topicId: number) => {
-    if (playingAudio === topicId) {
-      setPlayingAudio(null);
-    } else {
-      setPlayingAudio(topicId);
-    }
+  const toggleAudio = () => {
+    setPlayingAudio(!playingAudio);
   };
 
   return (
@@ -274,19 +258,15 @@ export function PriorityCatalogue() {
         </div>
       </div>
 
-      {/* Topics List */}
+      {/* Scenarios Grid - Image + Code like Road Signs */}
       <div className="max-w-7xl mx-auto px-4 pb-12">
         {loading ? (
-          <div className="space-y-3">
-            {Array.from({ length: 5 }).map((_, i) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
+            {Array.from({ length: 12 }).map((_, i) => (
               <div
                 key={i}
-                className="bg-white border-2 border-black p-6 animate-pulse"
-                style={{ boxShadow: "4px 4px 0 #000" }}
-              >
-                <div className="h-6 bg-gray-200 w-3/4 mb-3"></div>
-                <div className="h-4 bg-gray-200 w-1/2"></div>
-              </div>
+                className="aspect-square bg-gray-200 border-2 border-black animate-pulse"
+              />
             ))}
           </div>
         ) : filteredTopics.length === 0 ? (
@@ -297,203 +277,235 @@ export function PriorityCatalogue() {
             <p className="text-zinc-600 font-bold">{t.noTopics}</p>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
             {filteredTopics.map((topic) => (
-              <div
+              <button
                 key={topic.id}
-                className="bg-white border-2 border-black"
-                style={{ boxShadow: "4px 4px 0 #000" }}
+                onClick={() => handleTopicClick(topic)}
+                className="group bg-white border-2 border-black hover:shadow-[4px_4px_0_#000] transition-all flex flex-col"
               >
-                {/* Topic Header - Clickable */}
-                <button
-                  onClick={() => toggleTopic(topic.id)}
-                  className="w-full p-4 md:p-6 flex items-start justify-between hover:bg-gray-50 transition-all text-left"
-                >
-                  <div className="flex-1 min-w-0 pr-4">
-                    <div className="flex items-center gap-2 mb-2 flex-wrap">
-                      <span className="text-xs font-mono bg-zinc-100 border border-black px-2 py-1 whitespace-nowrap">
-                        {topic.topic_code}
-                      </span>
-                      {topic.sub_group && (
-                        <span className="text-xs font-bold bg-red-100 border border-red-400 px-2 py-1 whitespace-nowrap">
-                          {topic.sub_group}
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="text-lg md:text-xl font-black break-words">
-                      {lang === "en" ? topic.name_en : topic.name_km}
-                    </h3>
-                  </div>
-                  
-                  {expandedTopics[topic.id] ? (
-                    <ChevronUp size={24} className="flex-shrink-0" />
+                {/* Intersection Diagram Image */}
+                <div className="aspect-square p-3 md:p-4 flex items-center justify-center">
+                  {topic.primary_image_url ? (
+                    <img
+                      src={topic.primary_image_url}
+                      alt={topic.topic_code}
+                      className="w-full h-full object-contain"
+                    />
                   ) : (
-                    <ChevronDown size={24} className="flex-shrink-0" />
+                    <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                      <span className="text-3xl md:text-4xl">🚦</span>
+                    </div>
                   )}
-                </button>
-
-                {/* Topic Content - Collapsible */}
-                {expandedTopics[topic.id] && (
-                  <div className="border-t-2 border-black bg-gray-50 p-4 md:p-6">
-                    {/* Topic Image - 16:9 only */}
-                    {topic.primary_image_url && (
-                      <div className="mb-4 md:mb-6">
-                        <img
-                          src={topic.primary_image_url}
-                          alt={lang === "en" ? topic.name_en : topic.name_km}
-                          className="w-full max-w-3xl border-2 border-black object-cover"
-                          style={{ aspectRatio: '16/9' }}
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                          }}
-                        />
-                      </div>
-                    )}
-
-                    {/* Description */}
-                    <p className="text-sm md:text-base text-zinc-700 mb-4 md:mb-6 break-words whitespace-pre-wrap">
-                      {lang === "en" ? topic.description_en : topic.description_km}
-                    </p>
-
-                    {/* Audio Player */}
-                    {((lang === "en" && topic.audio_url_en) || (lang === "kh" && topic.audio_url_km)) && (
-                      <div className="mb-4 md:mb-6">
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleAudio(topic.id);
-                          }}
-                          className="bg-red-400 border-2 border-black px-4 py-2 font-bold hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2"
-                        >
-                          {playingAudio === topic.id ? <Pause size={18} /> : <Play size={18} />}
-                          {t.playAudio}
-                        </button>
-                        {playingAudio === topic.id && (
-                          <audio
-                            key={`audio-${topic.id}-${lang}`}
-                            src={lang === "en" ? topic.audio_url_en : topic.audio_url_km}
-                            autoPlay
-                            onEnded={() => setPlayingAudio(null)}
-                            onError={() => setPlayingAudio(null)}
-                            className="hidden"
-                          />
-                        )}
-                      </div>
-                    )}
-
-                    {/* Law Reference */}
-                    {topic.law_reference && (
-                      <div className="mb-4 md:mb-6 p-3 md:p-4 bg-amber-50 border-2 border-amber-600">
-                        <p className="text-xs md:text-sm font-bold text-amber-900 mb-2">
-                          {t.lawReference}
-                        </p>
-                        <p className="text-xs md:text-sm font-mono text-amber-800 break-words">
-                          {topic.law_reference}
-                        </p>
-                      </div>
-                    )}
-
-                    {/* Questions Section - Collapsible Individual Questions */}
-                    {questions[topic.id] && questions[topic.id].length > 0 && (
-                      <div>
-                        <h4 className="font-black text-base md:text-lg mb-4">
-                          {t.questions}
-                        </h4>
-                        <div className="space-y-3">
-                          {questions[topic.id].map((q, index) => (
-                            <div
-                              key={q.id}
-                              className="bg-white border-2 border-black"
-                            >
-                              {/* Question Header - Clickable */}
-                              <button
-                                onClick={() => toggleQuestion(q.id)}
-                                className="w-full p-3 md:p-4 flex items-start justify-between hover:bg-gray-100 transition-all text-left"
-                              >
-                                <div className="flex items-start gap-2 md:gap-3 flex-1 min-w-0 pr-2">
-                                  <span className="font-black text-xs md:text-sm bg-black text-white px-2 py-1 flex-shrink-0">
-                                    Q{index + 1}
-                                  </span>
-                                  <p className="font-bold text-sm md:text-base break-words overflow-wrap-anywhere">
-                                    {lang === "en" ? q.question_en : q.question_km}
-                                  </p>
-                                </div>
-                                {expandedQuestions[q.id] ? (
-                                  <ChevronUp size={20} className="flex-shrink-0" />
-                                ) : (
-                                  <ChevronDown size={20} className="flex-shrink-0" />
-                                )}
-                              </button>
-
-                              {/* Question Details - Expanded */}
-                              {expandedQuestions[q.id] && (
-                                <div className="border-t-2 border-black bg-gray-50 p-3 md:p-4">
-                                  {/* Question Image - Landscape */}
-                                  {q.image_url && (
-                                    <div className="mb-4">
-                                      <img
-                                        src={q.image_url}
-                                        alt="Question scenario"
-                                        className="w-full border-2 border-black object-cover"
-                                        style={{ aspectRatio: '16/9' }}
-                                      />
-                                    </div>
-                                  )}
-
-                                  {/* Answers */}
-                                  <div className="space-y-2 mb-4">
-                                    {q.answers.map((a, aIndex) => (
-                                      <div
-                                        key={a.id}
-                                        className={`p-2 md:p-3 border-2 ${
-                                          a.is_correct
-                                            ? "bg-green-100 border-green-600"
-                                            : "bg-white border-gray-300"
-                                        }`}
-                                      >
-                                        <div className="flex items-start gap-2">
-                                          <span className="font-bold flex-shrink-0 text-sm md:text-base">
-                                            {String.fromCharCode(65 + aIndex)}.
-                                          </span>
-                                          <span className="flex-1 text-sm md:text-base break-words overflow-wrap-anywhere">
-                                            {lang === "en" ? a.answer_en : a.answer_km}
-                                          </span>
-                                          {a.is_correct && (
-                                            <span className="text-green-600 font-bold text-sm flex-shrink-0">
-                                              ✓
-                                            </span>
-                                          )}
-                                        </div>
-                                      </div>
-                                    ))}
-                                  </div>
-
-                                  {/* Hint */}
-                                  {(q.hint_en || q.hint_km) && (
-                                    <div className="p-3 bg-blue-50 border-2 border-blue-400">
-                                      <p className="text-xs md:text-sm font-bold text-blue-900 mb-1">
-                                        💡 Hint
-                                      </p>
-                                      <p className="text-xs md:text-sm text-blue-800 break-words overflow-wrap-anywhere">
-                                        {lang === "en" ? q.hint_en : q.hint_km}
-                                      </p>
-                                    </div>
-                                  )}
-                                </div>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+                </div>
+                {/* Code Only */}
+                <div className="border-t-2 border-black p-2 bg-zinc-50">
+                  <div className="font-mono text-xs font-bold text-center text-zinc-700">
+                    {topic.topic_code}
                   </div>
-                )}
-              </div>
+                </div>
+              </button>
             ))}
           </div>
         )}
       </div>
+
+      {/* Detail Popup */}
+      {selectedTopic && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto">
+          <div
+            className="bg-white border-4 border-black max-w-4xl w-full max-h-[90vh] overflow-y-auto my-8"
+            style={{ boxShadow: "8px 8px 0 #000" }}
+          >
+            {/* Header */}
+            <div className="sticky top-0 bg-red-400 border-b-4 border-black p-6 flex items-start justify-between z-10">
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-2 flex-wrap">
+                  <span className="text-xs font-mono bg-white border-2 border-black px-2 py-1">
+                    {selectedTopic.topic_code}
+                  </span>
+                  {selectedTopic.sub_group && (
+                    <span className="text-xs font-bold bg-red-100 border-2 border-red-600 px-2 py-1">
+                      {selectedTopic.sub_group}
+                    </span>
+                  )}
+                </div>
+                <h2 className="text-2xl md:text-3xl font-black break-words">
+                  {lang === "en" ? selectedTopic.name_en : selectedTopic.name_km}
+                </h2>
+              </div>
+              <button
+                onClick={() => setSelectedTopic(null)}
+                className="ml-4 p-2 bg-white border-2 border-black hover:shadow-[2px_2px_0_#000] transition-all flex-shrink-0"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="p-6 space-y-6">
+              {/* Intersection Diagram - 16:9 */}
+              {selectedTopic.primary_image_url && (
+                <div>
+                  <img
+                    src={selectedTopic.primary_image_url}
+                    alt={lang === "en" ? selectedTopic.name_en : selectedTopic.name_km}
+                    className="w-full border-2 border-black object-cover"
+                    style={{ aspectRatio: '16/9' }}
+                  />
+                </div>
+              )}
+
+              {/* Description */}
+              <div>
+                <p className="text-base break-words whitespace-pre-wrap">
+                  {lang === "en" ? selectedTopic.description_en : selectedTopic.description_km}
+                </p>
+              </div>
+
+              {/* Audio Player */}
+              {((lang === "en" && selectedTopic.audio_url_en) || (lang === "kh" && selectedTopic.audio_url_km)) && (
+                <div>
+                  <button
+                    type="button"
+                    onClick={toggleAudio}
+                    className="bg-red-400 border-2 border-black px-4 py-2 font-bold hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2"
+                  >
+                    {playingAudio ? <Pause size={18} /> : <Play size={18} />}
+                    {t.playAudio}
+                  </button>
+                  {playingAudio && (
+                    <audio
+                      key={`audio-${selectedTopic.id}-${lang}`}
+                      src={lang === "en" ? selectedTopic.audio_url_en : selectedTopic.audio_url_km}
+                      autoPlay
+                      onEnded={() => setPlayingAudio(false)}
+                      onError={() => setPlayingAudio(false)}
+                      className="hidden"
+                    />
+                  )}
+                </div>
+              )}
+
+              {/* Law Reference */}
+              {selectedTopic.law_reference && (
+                <div className="p-4 bg-amber-50 border-2 border-amber-600">
+                  <p className="text-sm font-bold text-amber-900 mb-2">
+                    {t.lawReference}
+                  </p>
+                  <p className="text-sm font-mono text-amber-800 break-words">
+                    {selectedTopic.law_reference}
+                  </p>
+                </div>
+              )}
+
+              {/* Questions Section */}
+              {questions.length > 0 && (
+                <div>
+                  <h4 className="font-black text-lg mb-4">
+                    {t.questions}
+                  </h4>
+                  <div className="space-y-3">
+                    {questions.map((q, index) => (
+                      <div
+                        key={q.id}
+                        className="bg-gray-50 border-2 border-black"
+                      >
+                        {/* Question Header */}
+                        <button
+                          onClick={() => toggleQuestion(q.id)}
+                          className="w-full p-4 flex items-start justify-between hover:bg-gray-100 transition-all text-left"
+                        >
+                          <div className="flex items-start gap-3 flex-1 min-w-0 pr-2">
+                            <span className="font-black text-sm bg-black text-white px-2 py-1 flex-shrink-0">
+                              Q{index + 1}
+                            </span>
+                            <p className="font-bold text-base break-words overflow-wrap-anywhere">
+                              {lang === "en" ? q.question_en : q.question_km}
+                            </p>
+                          </div>
+                          {expandedQuestions[q.id] ? (
+                            <ChevronUp size={20} className="flex-shrink-0" />
+                          ) : (
+                            <ChevronDown size={20} className="flex-shrink-0" />
+                          )}
+                        </button>
+
+                        {/* Question Details */}
+                        {expandedQuestions[q.id] && (
+                          <div className="border-t-2 border-black bg-white p-4">
+                            {/* Question Image */}
+                            {q.image_url && (
+                              <div className="mb-4">
+                                <img
+                                  src={q.image_url}
+                                  alt="Question scenario"
+                                  className="w-full border-2 border-black object-cover"
+                                  style={{ aspectRatio: '16/9' }}
+                                />
+                              </div>
+                            )}
+
+                            {/* Answers */}
+                            <div className="space-y-2 mb-4">
+                              {q.answers.map((a, aIndex) => (
+                                <div
+                                  key={a.id}
+                                  className={`p-3 border-2 ${
+                                    a.is_correct
+                                      ? "bg-green-100 border-green-600"
+                                      : "bg-white border-gray-300"
+                                  }`}
+                                >
+                                  <div className="flex items-start gap-2">
+                                    <span className="font-bold flex-shrink-0">
+                                      {String.fromCharCode(65 + aIndex)}.
+                                    </span>
+                                    <span className="flex-1 break-words overflow-wrap-anywhere">
+                                      {lang === "en" ? a.answer_en : a.answer_km}
+                                    </span>
+                                    {a.is_correct && (
+                                      <span className="text-green-600 font-bold text-sm flex-shrink-0">
+                                        ✓
+                                      </span>
+                                    )}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+
+                            {/* Hint */}
+                            {(q.hint_en || q.hint_km) && (
+                              <div className="p-3 bg-blue-50 border-2 border-blue-400">
+                                <p className="text-sm font-bold text-blue-900 mb-1">
+                                  💡 Hint
+                                </p>
+                                <p className="text-sm text-blue-800 break-words overflow-wrap-anywhere">
+                                  {lang === "en" ? q.hint_en : q.hint_km}
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Footer */}
+            <div className="border-t-4 border-black p-6 bg-gray-50">
+              <button
+                onClick={() => setSelectedTopic(null)}
+                className="w-full bg-white border-2 border-black px-6 py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all"
+              >
+                {t.close}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
