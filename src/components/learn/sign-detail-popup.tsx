@@ -248,7 +248,7 @@ export function SignDetailPopup({ topic, onClose }: SignDetailPopupProps) {
         )}
 
         {/* Quick Mode Buttons */}
-        <div className="p-4 sm:p-6">
+        <div className="p-4 sm:p-6 border-b-2 border-black">
           <h4 className="font-black text-base sm:text-lg mb-3">
             {lang === "en" ? "Practice with this sign" : "អនុវត្តជាមួយសញ្ញានេះ"}
           </h4>
@@ -270,6 +270,16 @@ export function SignDetailPopup({ topic, onClose }: SignDetailPopupProps) {
               {lang === "en" ? "Challenge" : "ប្រកួត"}
             </button>
           </div>
+        </div>
+
+        {/* Close Button Footer */}
+        <div className="p-4 sm:p-6 bg-gray-50">
+          <button
+            onClick={onClose}
+            className="w-full bg-white border-2 border-black px-4 sm:px-6 py-2 sm:py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all text-sm sm:text-base"
+          >
+            {lang === "en" ? "Close" : "បិទ"}
+          </button>
         </div>
       </div>
     </div>
