@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import {
   Users,
   BookOpen,
@@ -14,15 +15,18 @@ import {
   User,
   Plus,
   Calendar,
+  ChevronDown,
+  ChevronRight,
 } from "lucide-react";
 import { logoutAction } from "@/app/actions/auth";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
 
 interface NavItem {
   label: string;
-  href: string;
+  href?: string;
   icon: React.ComponentType<{ className?: string; size?: number }>;
   color: string;
+  children?: { label: string; href: string }[];
 }
 
 const adminNav: NavItem[] = [
@@ -40,7 +44,21 @@ const teacherNav: NavItem[] = [
 ];
 
 const staffNav: NavItem[] = [
-  { label: "Content", href: "/staff/content", icon: BookOpen, color: "#22c55e" },
+  {
+    label: "Content",
+    icon: BookOpen,
+    color: "#22c55e",
+    children: [
+      { label: "Traffic Signs", href: "/staff/content/road-sign" },
+      { label: "Road Traffic Law", href: "/staff/content/road-traffic" },
+      { label: "Right of Way", href: "/staff/content/priority" },
+      { label: "Driving Skills", href: "/staff/content/driving" },
+      { label: "Vehicle Technology", href: "/staff/content/technical" },
+      { label: "Loading People & Goods", href: "/staff/content/loading-people-goods" },
+      { label: "General Knowledge", href: "/staff/content/general-knowledge" },
+      { label: "Emergency", href: "/staff/content/emergency" },
+    ],
+  },
   { label: "Media", href: "/staff/media", icon: Images, color: "#a855f7" },
   { label: "Classes", href: "/staff/classes", icon: School, color: "#3b82f6" },
   { label: "Project Planner", href: "/staff/project-planner", icon: Calendar, color: "#f59e0b" },
@@ -58,14 +76,21 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
   const navItems = role === "admin" ? adminNav : role === "staff" ? staffNav : teacherNav;
   const profileHref = role === "admin" ? "/admin/profile" : role === "staff" ? "/staff/profile" : "/teacher/profile";
   const roleColor = role === "admin" ? "#ef4444" : role === "staff" ? "#f59e0b" : "#22c55e";
+  const [expandedItems, setExpandedItems] = useState<string[]>(["Content"]);
 
   function isNavItemActive(href: string) {
     const targetPath = href.split("?")[0];
     return pathname === targetPath || pathname.startsWith(`${targetPath}/`);
   }
 
+  function toggleExpand(label: string) {
+    setExpandedItems((prev) =>
+      prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label]
+    );
+  }
+
   return (
-    <div className="w-64 bg-white border-r-4 border-black flex flex-col shadow-[4px_0_0_#000]">
+    <div className="w-64 bg-white border-r-4 border-black flex flex-col shadow-[4px_0_0_#000] h-screen sticky top-0">
       {/* Header */}
       <div className="border-b-2 border-black p-4">
         <div className="flex items-center gap-3 mb-3">
@@ -111,8 +136,8 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
         </div>
       </div>
 
-      {/* Navigation */}
-      <div className="flex-1 p-4 space-y-4">
+      {/* Navigation - Scrollable */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {/* Account Link */}
         <div>
           <Link
@@ -139,12 +164,70 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
           </h2>
           <div className="space-y-1">
             {navItems.map((item) => {
-              const isActive = isNavItemActive(item.href);
-              
+              if (item.children) {
+                const isExpanded = expandedItems.includes(item.label);
+                const hasActiveChild = item.children.some((child) =>
+                  isNavItemActive(child.href)
+                );
+
+                return (
+                  <div key={item.label}>
+                    <button
+                      onClick={() => toggleExpand(item.label)}
+                      className={`w-full flex items-center justify-between gap-2 p-2.5 border-2 border-black transition-all duration-100 ${
+                        hasActiveChild
+                          ? "bg-yellow-100 shadow-[1px_1px_0_#000]"
+                          : "bg-white hover:bg-yellow-50 hover:shadow-[1px_1px_0_#000]"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <div
+                          className="w-6 h-6 border-2 border-black flex items-center justify-center shadow-[1px_1px_0_#000]"
+                          style={{ backgroundColor: item.color }}
+                        >
+                          <item.icon size={12} className="text-black" />
+                        </div>
+                        <span className="font-bold text-xs text-black uppercase">
+                          {item.label}
+                        </span>
+                      </div>
+                      {isExpanded ? (
+                        <ChevronDown size={14} className="text-black" />
+                      ) : (
+                        <ChevronRight size={14} className="text-black" />
+                      )}
+                    </button>
+
+                    {isExpanded && (
+                      <div className="mt-1 ml-4 space-y-1">
+                        {item.children.map((child) => {
+                          const isActive = isNavItemActive(child.href);
+                          return (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              className={`block p-2 text-xs font-bold border-l-2 border-black transition-all ${
+                                isActive
+                                  ? "bg-yellow-400 pl-3"
+                                  : "bg-gray-50 hover:bg-yellow-50 hover:pl-3"
+                              }`}
+                            >
+                              {child.label}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              const isActive = isNavItemActive(item.href!);
+
               return (
                 <Link
                   key={item.href}
-                  href={item.href}
+                  href={item.href!}
                   className={`flex items-center gap-2 p-2.5 border-2 border-black transition-all duration-100 ${
                     isActive
                       ? "bg-yellow-400 shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
@@ -172,7 +255,7 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
             Quick Actions
           </h2>
           <Link
-            href={role === "admin" ? "/admin/content" : role === "staff" ? "/staff/content" : "/teacher/content"}
+            href={role === "admin" ? "/admin/content" : role === "staff" ? "/staff/content/road-sign" : "/teacher/content"}
             className="flex items-center gap-2 p-2.5 border-2 border-black bg-green-400 hover:bg-green-300 hover:shadow-[1px_1px_0_#000] transition-all duration-100"
           >
             <div className="w-6 h-6 border-2 border-black bg-white flex items-center justify-center shadow-[1px_1px_0_#000]">
@@ -185,8 +268,8 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
         </div>
       </div>
 
-      {/* Footer */}
-      <div className="border-t-2 border-black p-4">
+      {/* Footer - Sticky at Bottom */}
+      <div className="border-t-2 border-black p-4 bg-white">
         <form action={logoutAction} className="w-full">
           <button
             type="submit"
