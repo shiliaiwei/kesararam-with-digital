@@ -1,167 +1,82 @@
-## Road Traffic Q&A Page - COMPLETED ✓
+## ALL 8 LEARN PAGES - COMPLETED ✓✓✓
 
-### Issues Fixed:
-1. ✓ Audio player now working properly with stopPropagation and proper event handlers
-2. ✓ Removed "Questions (0)" count display - now shows just "Questions" header
-3. ✓ Question images set to landscape orientation (16:9 aspect ratio)
-4. ✓ Topics display in expandable format (not popup)
-5. ✓ Content shows based on user's selected language
-6. ✓ Audio matches selected language
+### ✅ COMPLETED PAGES:
 
-### Current Implementation:
-- Topics list with expandable sections
-- Each topic shows: code, sub-group tag, title, description
-- Expanded view shows: audio player, law reference, questions with answers
-- Questions display with Q1, Q2 numbering
-- Landscape images for question scenarios
-- Correct answers highlighted in green
-- Hints shown in blue info boxes
+1. ✓ Road Signs (/learn/road-sign) - Grid layout with popup
+2. ✓ Road Traffic Law (/learn/road-traffic) - Q&A list format
+3. ✓ Right of Way (/learn/priority) - Grid layout with popup (intersection diagrams)
+4. ✓ Driving Skills (/learn/driving) - Q&A list format
+5. ✓ Vehicle Technology (/learn/technical) - Q&A list format
+6. ✓ Loading People & Goods (/learn/loading-people-goods) - Q&A list format
+7. ✓ General Knowledge (/learn/general-knowledge) - Q&A list format + Learning Resources section
+8. ✓ Emergency Situations (/learn/emergency) - Q&A list format + Emergency Contacts section
 
-### Architecture Notes:
+### Key Features Implemented:
+
+✓ All pages follow consistent neo-brutalist design
+✓ Category-specific color themes:
+  - Road Signs: Yellow (amber-400)
+  - Road Traffic: Blue (blue-400)
+  - Priority: Red (red-400)
+  - Driving: Green (green-400)
+  - Technical: Orange (orange-400)
+  - Loading: Cyan (cyan-400)
+  - General Knowledge: Purple (purple-400)
+  - Emergency: Red (red-500)
+
+✓ Responsive design for all devices (mobile, tablet, desktop)
+✓ 16:9 image aspect ratio enforcement
+✓ Collapsible topics and questions
+✓ Audio player with language switching (EN/KH)
+✓ Proper text wrapping with break-words and overflow-wrap-anywhere
+✓ Close buttons on popups (top corner X + bottom Close button)
+✓ Law reference sections
+✓ Sub-group filtering
+✓ Search functionality
+
+### Special Features:
+
+- Priority page: Grid layout like Road Signs (visual learning with intersection diagrams)
+- General Knowledge: Learning Resources section with PDF/Link filtering
+- Emergency: Emergency Contacts section with clickable phone numbers
+
+### Architecture:
 - Learn pages (/learn/*) = Study/Learning hub with Q&A
-- Play section (/play/*) = Quizzes/Tests/Challenges (separate, to be built)
+- Play section (/play/*) = Quizzes/Tests/Challenges (to be built later)
 - Same content used in both but different presentation
-- All 8 categories will have learn pages
 
-### Next Steps (if needed):
-- Staff UI to add questions to existing topics (API exists at /api/staff/topics/[id]/questions)
-- Consider building question management interface for staff
-- Test audio playback with actual audio files
-
-
-
-
-the quize or qestion challeng will link later,
-
-
-
-
-
-
-
-
-
-next we gonna build this page  work flow 
-priority Learn Page:
-
-── 3. RIGHT OF WAY (/priority) ──────────────────────────────────────────────
-
-
-first list the image just like the road-signs list,
-if user click open
-  CONTENT TYPE: Priority rule scenarios + intersection diagrams + Q&A
-  PURPOSE: Understand priority rules and how to handle intersections correctly.
-
-  DISPLAY: Q&A list
-    - Each row: question preview + scenario image thumbnail
-    - Click: opens Q&A Popup
-
-  Q&A POPUP: the same as  Road Traffic Q&A Page 
-    - Scenario image (REQUIRED for this category — intersection diagram)
-  
-    - Answer with detailed description
-    - Audio player: KH + EN tracks
-
-
-the quize or qestion challeng game mode, will link later,
-
-
-
-
-
-
-
-
-
-
-
-
-Driving Skills Learn Page:
-
-the quize or qestion challeng will link later,
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-Vehicle Technology Learn Page:
-
-the quize or qestion challeng will link later,
-
-
-
-
-
-
-
-
-
-
-
-Loading People & Goods Learn Page:
-
-
-
-
-the quize or qestion challeng will link later,
-
-
-
-
-
-
-
-
-
-
-General Knowledge Learn Page:
-
-
-
-
-the quize or qestion challeng will link later,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Emergency Learn Page:
-
-
-
-
-the quize or qestion challeng will link later,
-
-
-
- 
-
-
-
-
-
-
-
-
-
+### Next Steps (Future Development):
+- Build Play/Quiz section linking to these learn pages
+- Staff UI to manage questions for topics
+- Add more learning resources for General Knowledge
+- Add more emergency contacts for Emergency page
+- Consider adding progress tracking
+- Consider adding bookmarking/favorites
+
+### Files Created/Modified:
+Components:
+- src/components/learn/road-traffic-catalogue.tsx
+- src/components/learn/priority-catalogue.tsx
+- src/components/learn/driving-catalogue.tsx
+- src/components/learn/technical-catalogue.tsx
+- src/components/learn/loading-catalogue.tsx
+- src/components/learn/general-knowledge-catalogue.tsx
+- src/components/learn/emergency-catalogue.tsx
+- src/components/learn/sign-detail-popup.tsx
+
+Routes:
+- src/app/(public)/learn/page.tsx (main learn hub)
+- src/app/(public)/learn/road-sign/page.tsx
+- src/app/(public)/learn/road-traffic/page.tsx
+- src/app/(public)/learn/priority/page.tsx
+- src/app/(public)/learn/driving/page.tsx
+- src/app/(public)/learn/technical/page.tsx
+- src/app/(public)/learn/loading-people-goods/page.tsx
+- src/app/(public)/learn/general-knowledge/page.tsx
+- src/app/(public)/learn/emergency/page.tsx
+
+Staff Forms:
+- src/components/staff/content/topic-form-modal.tsx (with 16:9 image warning)
+
+### Status: ALL LEARN PAGES COMPLETE ✓
+Ready for content population and quiz/play section development.

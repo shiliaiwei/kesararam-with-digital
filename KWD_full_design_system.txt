@@ -242,38 +242,6 @@ CONTENT AREA (white background below banner):
 
 
 
-── 4. DRIVING SKILLS (/driving) ─────────────────────────────────────────────
-
-  CONTENT TYPE: Practical driving manoeuvres + demonstrations + Q&A
-  PURPOSE: Learn proper driving techniques and best practices for road safety.
-
-  DISPLAY: Q&A list
-    - Each row: question number + question preview
-    - Click: opens Q&A Popup
-
-  Q&A POPUP:
-    - Question number
-    - Full question text (KH + EN)
-    - Answer with detailed description
-    - Demonstration image (optional)
-    - Audio player: KH + EN tracks
-
-── 5. VEHICLE TECHNOLOGY (/technical) ───────────────────────────────────────
-
-  CONTENT TYPE: Vehicle mechanics + safety features + maintenance Q&A
-  PURPOSE: Learn how vehicles work, safety systems, and maintenance essentials.
-
-  DISPLAY: Q&A list
-    - Each row: question number + question preview
-    - Click: opens Q&A Popup
-
-  Q&A POPUP:
-    - Question number
-    - Full question text (KH + EN)
-    - Answer with detailed description
-    - Vehicle diagram image (optional)
-    - Audio player: KH + EN tracks
-
 ── 6. LOADING PEOPLE & GOODS (/loading-people-goods) ────────────────────────
 
   CONTENT TYPE: Loading regulations + weight limits + transport law Q&A
