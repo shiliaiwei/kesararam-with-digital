@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
-import { sql } from "drizzle-orm";
+import { sql } from "@/lib/db";
 
 export async function GET(request: NextRequest) {
   try {
@@ -8,15 +7,17 @@ export async function GET(request: NextRequest) {
     const categoryId = searchParams.get("categoryId");
     const status = searchParams.get("status") || "published";
 
-    const conditions: any[] = [sql`t.status = ${status}`];
+    const conditions: string[] = [`t.status = '${status}'`];
 
     if (categoryId) {
-      conditions.push(sql`t.category_id = ${parseInt(categoryId)}`);
+      conditions.push(`t.category_id = ${parseInt(categoryId)}`);
     }
 
-    const whereClause = sql`WHERE ${sql.join(conditions, sql` AND `)}`;
+    const whereClause = conditions.length > 0 
+      ? sql.unsafe(`WHERE ${conditions.join(' AND ')}`)
+      : sql``;
 
-    const result = await db.execute(sql`
+    const result = await sql`
       SELECT 
         t.id,
         t.topic_code,
@@ -29,16 +30,15 @@ export async function GET(request: NextRequest) {
         t.law_reference,
         t.audio_url_en,
         t.audio_url_km,
-        c.title_en as category_name,
-        c.slug as category_slug
+        t.category_id,
+        t.status
       FROM topics t
-      LEFT JOIN categories c ON t.category_id = c.id
       ${whereClause}
       ORDER BY t.sort_order, t.created_at DESC
-    `);
+    `;
 
     return NextResponse.json({
-      topics: result.rows,
+      topics: result,
     });
   } catch (error) {
     console.error("Error fetching public topics:", error);

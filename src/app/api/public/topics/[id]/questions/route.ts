@@ -1,16 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
-import { sql } from "drizzle-orm";
+import { sql } from "@/lib/db";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
+
     // Get questions for this topic
-    const questionsResult = await db.execute(sql`
+    const questions = await sql`
       SELECT 
         q.id,
+        q.topic_id,
         q.question_en,
         q.question_km,
         q.hint_en,
@@ -20,16 +22,14 @@ export async function GET(
         q.audio_url_km,
         q.difficulty
       FROM questions q
-      WHERE q.topic_id = ${params.id}
+      WHERE q.topic_id = ${id}
         AND q.status = 'published'
       ORDER BY q.sort_order, q.created_at
-    `);
-
-    const questions = questionsResult.rows;
+    `;
 
     // Get answers for each question
     for (const question of questions) {
-      const answersResult = await db.execute(sql`
+      const answers = await sql`
         SELECT 
           a.id,
           a.answer_en,
@@ -39,8 +39,8 @@ export async function GET(
         FROM answers a
         WHERE a.question_id = ${question.id}
         ORDER BY a.sort_order
-      `);
-      (question as any).answers = answersResult.rows;
+      `;
+      (question as any).answers = answers;
     }
 
     return NextResponse.json({
