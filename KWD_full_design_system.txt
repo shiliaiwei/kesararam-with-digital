@@ -203,7 +203,7 @@ CONTENT AREA (white background below banner):
     - Full question text (active language)
     - Answer with detailed description (bilingual tabs or language toggle)
     - Audio player: KH track + EN track
-    - Law article or case study reference (if linked)
+ 
 
 
 

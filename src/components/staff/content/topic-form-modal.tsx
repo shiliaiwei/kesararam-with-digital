@@ -149,6 +149,19 @@ export function TopicFormModal({
 
         {/* Form */}
         <div className="p-6 space-y-6">
+          {/* Info Banner for Road Traffic */}
+          {formData.categoryId === 2 && (
+            <div className="bg-blue-50 border-2 border-blue-400 p-4">
+              <p className="text-sm font-bold text-blue-900 mb-2">
+                📝 Road Traffic Law Content
+              </p>
+              <p className="text-sm text-blue-800">
+                For Road Traffic Law, you need to add questions after creating the topic. 
+                Questions will appear on the public learn page for users to study.
+              </p>
+            </div>
+          )}
+
           {/* Basic Info */}
           <div className="space-y-4">
             <h3 className="font-black text-lg">Basic Information</h3>
