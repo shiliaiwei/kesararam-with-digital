@@ -95,7 +95,6 @@ function SignCard({ src, index, scale }: { src: string; index: number; scale: nu
       style={{
         width: `${80 * scale}px`,
         height: `${80 * scale}px`,
-        opacity: 0.7 + (scale - 0.7) * 0.6, // Fade effect for depth
       }}
     >
       <img
@@ -114,7 +113,7 @@ export function RoadSigns3DHero() {
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
   return (
-    <section className="relative w-full overflow-hidden bg-transparent pt-4 pb-16 mb-8">
+    <section className="relative w-full overflow-hidden bg-transparent pt-4 pb-24 mb-8">
       {/* Header */}
       <div className="text-center mb-6 px-4">
         <h2 
@@ -126,18 +125,18 @@ export function RoadSigns3DHero() {
       </div>
 
       {/* Marquee rows with 3D perspective - smaller at top, bigger at bottom */}
-      <div className="relative w-full space-y-4 overflow-hidden" style={{ perspective: "1000px" }}>
+      <div className="relative w-full space-y-6 overflow-visible py-4">
         {/* Row 1 - Smallest (far away) */}
-        <div className="overflow-hidden" style={{ transform: "translateZ(-200px) scale(1.2)" }}>
+        <div className="overflow-hidden">
           <Marquee className="[--duration:60s] [--gap:1rem]" pauseOnHover>
             {row1.map((src, i) => (
-              <SignCard key={`r1-${i}`} src={src} index={i} scale={0.7} />
+              <SignCard key={`r1-${i}`} src={src} index={i} scale={0.8} />
             ))}
           </Marquee>
         </div>
 
         {/* Row 2 - Medium-small */}
-        <div className="overflow-hidden" style={{ transform: "translateZ(-100px) scale(1.1)" }}>
+        <div className="overflow-hidden">
           <Marquee className="[--duration:55s] [--gap:1.2rem]" reverse pauseOnHover>
             {row2.map((src, i) => (
               <SignCard key={`r2-${i}`} src={src} index={i + 19} scale={1.0} />
@@ -146,19 +145,19 @@ export function RoadSigns3DHero() {
         </div>
 
         {/* Row 3 - Medium-large */}
-        <div className="overflow-hidden" style={{ transform: "translateZ(0px)" }}>
+        <div className="overflow-hidden">
           <Marquee className="[--duration:50s] [--gap:1.4rem]" pauseOnHover>
             {row3.map((src, i) => (
-              <SignCard key={`r3-${i}`} src={src} index={i + 38} scale={1.3} />
+              <SignCard key={`r3-${i}`} src={src} index={i + 38} scale={1.2} />
             ))}
           </Marquee>
         </div>
 
         {/* Row 4 - Largest (closest) */}
-        <div className="overflow-hidden" style={{ transform: "translateZ(100px) scale(0.9)" }}>
+        <div className="overflow-hidden">
           <Marquee className="[--duration:45s] [--gap:1.6rem]" reverse pauseOnHover>
             {row4.map((src, i) => (
-              <SignCard key={`r4-${i}`} src={src} index={i + 57} scale={1.6} />
+              <SignCard key={`r4-${i}`} src={src} index={i + 57} scale={1.4} />
             ))}
           </Marquee>
         </div>
