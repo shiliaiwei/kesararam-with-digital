@@ -1,5 +1,16 @@
 import Link from "next/link";
 import { BookOpen, Brain, FileText, Image as ImageIcon } from "lucide-react";
+import {
+  FaExclamationTriangle,
+  FaBalanceScale,
+  FaTrafficLight,
+  FaCar,
+  FaWrench,
+  FaTruck,
+  FaBook,
+  FaFirstAid,
+} from "react-icons/fa";
+import { CATEGORY_COLORS, CATEGORY_SHADOW } from "@/lib/utils";
 
 const CATEGORIES = [
   {
@@ -8,8 +19,8 @@ const CATEGORIES = [
     nameEn: "Traffic Signs",
     nameKm: "សញ្ញាចរាចរណ៍",
     description: "Learn all official road signs",
-    color: "bg-amber-400",
-    icon: "🚦",
+    descEn: "Identify and understand all official road signs used in Cambodia.",
+    Icon: FaExclamationTriangle,
   },
   {
     id: 2,
@@ -17,8 +28,8 @@ const CATEGORIES = [
     nameEn: "Road Traffic Law",
     nameKm: "ច្បាប់ចរាចរណ៍ផ្លូវ",
     description: "Legal framework for road use",
-    color: "bg-blue-400",
-    icon: "⚖️",
+    descEn: "Study the legal framework governing road use and user responsibilities.",
+    Icon: FaBalanceScale,
   },
   {
     id: 3,
@@ -26,8 +37,8 @@ const CATEGORIES = [
     nameEn: "Right of Way",
     nameKm: "សិទ្ធិអាទិភាព",
     description: "Priority rules and intersections",
-    color: "bg-red-400",
-    icon: "🔀",
+    descEn: "Understand priority rules and how to handle intersections correctly.",
+    Icon: FaTrafficLight,
   },
   {
     id: 4,
@@ -35,8 +46,8 @@ const CATEGORIES = [
     nameEn: "Driving Skills",
     nameKm: "ជំនាញបើកបរ",
     description: "Practical driving techniques",
-    color: "bg-green-400",
-    icon: "🚗",
+    descEn: "Learn proper driving techniques and best practices for road safety.",
+    Icon: FaCar,
   },
   {
     id: 5,
@@ -44,8 +55,8 @@ const CATEGORIES = [
     nameEn: "Vehicle Technology",
     nameKm: "បច្ចេកវិទ្យាយានយន្ត",
     description: "Vehicle mechanics and safety",
-    color: "bg-orange-400",
-    icon: "🔧",
+    descEn: "How vehicles work, safety systems, and maintenance essentials.",
+    Icon: FaWrench,
   },
   {
     id: 6,
@@ -53,8 +64,8 @@ const CATEGORIES = [
     nameEn: "Loading People & Goods",
     nameKm: "ផ្ទុកមនុស្ស និងទំនិញ",
     description: "Transport regulations",
-    color: "bg-cyan-400",
-    icon: "📦",
+    descEn: "Rules for safe transport of passengers and cargo within legal limits.",
+    Icon: FaTruck,
   },
   {
     id: 7,
@@ -62,8 +73,8 @@ const CATEGORIES = [
     nameEn: "General Knowledge",
     nameKm: "ចំណេះដឹងទូទៅ",
     description: "Essential road safety topics",
-    color: "bg-purple-400",
-    icon: "📚",
+    descEn: "Essential road safety topics and broad driving knowledge.",
+    Icon: FaBook,
   },
   {
     id: 8,
@@ -71,9 +82,20 @@ const CATEGORIES = [
     nameEn: "Emergency",
     nameKm: "ពេលអាសន្ន",
     description: "Emergency procedures",
-    color: "bg-pink-400",
-    icon: "🚨",
+    descEn: "Emergency procedures, contacts, and protocols for road incidents.",
+    Icon: FaFirstAid,
   },
+];
+
+const CATEGORY_IMAGES = [
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
 ];
 
 export default function LearnPage() {
@@ -131,25 +153,77 @@ export default function LearnPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {CATEGORIES.map((category) => (
-            <Link
-              key={category.id}
-              href={`/learn/${category.slug}`}
-              className={`${category.color} border-2 border-black p-6 hover:shadow-[8px_8px_0_#000] transition-all group`}
-            >
-              <div className="text-6xl mb-4">{category.icon}</div>
-              <h3 className="text-2xl font-black mb-1">{category.nameEn}</h3>
-              <h4 className="text-lg font-bold mb-3 text-zinc-800">
-                {category.nameKm}
-              </h4>
-              <p className="text-sm font-medium text-zinc-700 mb-4">
-                {category.description}
-              </p>
-              <div className="bg-black text-white px-4 py-2 font-bold inline-block group-hover:shadow-[4px_4px_0_rgba(0,0,0,0.3)] transition-all">
-                Study now →
-              </div>
-            </Link>
-          ))}
+          {CATEGORIES.map((category, index) => {
+            const color = CATEGORY_COLORS[category.slug];
+            const shadow = CATEGORY_SHADOW[category.slug];
+            const randomImage = CATEGORY_IMAGES[index % CATEGORY_IMAGES.length];
+            
+            return (
+              <Link
+                key={category.id}
+                href={`/learn/${category.slug}`}
+                className="group flex flex-col bg-white border border-black overflow-hidden transition-all duration-150 hover:-translate-y-1 hover:-translate-x-1"
+                style={{ 
+                  boxShadow: "4px 4px 0 #000",
+                  borderRadius: "3px"
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.boxShadow = shadow;
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.boxShadow =
+                    "4px 4px 0 #000";
+                }}
+              >
+                {/* Color header with image */}
+                <div
+                  className="relative flex items-end justify-center border-b-2 border-black overflow-hidden"
+                  style={{ 
+                    backgroundColor: color,
+                    minHeight: "200px"
+                  }}
+                >
+                  <img 
+                    src={randomImage}
+                    alt={category.nameEn}
+                    className="w-full h-48 object-contain object-bottom transition-transform duration-300 group-hover:scale-105"
+                    style={{
+                      marginBottom: "-2px"
+                    }}
+                  />
+                </div>
+
+                {/* Body */}
+                <div className="flex flex-col flex-1 p-5 gap-2">
+                  <h3 className="font-black text-lg text-black leading-tight">
+                    {category.nameEn}
+                  </h3>
+                  <p
+                    className="text-xs text-zinc-500"
+                    style={{ fontFamily: "Siemreap, sans-serif" }}
+                  >
+                    {category.nameKm}
+                  </p>
+                  <p className="text-sm text-zinc-600 leading-relaxed mt-1 flex-1">
+                    {category.descEn}
+                  </p>
+
+                  {/* Bottom indicator */}
+                  <div className="mt-3 pt-3 border-t border-black flex items-center justify-between">
+                    <span
+                      className="text-xs font-black px-2 py-0.5 border border-black"
+                      style={{ 
+                        backgroundColor: color,
+                        borderRadius: "3px"
+                      }}
+                    >
+                      Study now
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>

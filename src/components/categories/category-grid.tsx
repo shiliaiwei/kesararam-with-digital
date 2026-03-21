@@ -136,7 +136,7 @@ export function CategoryGrid() {
             return (
               <Link
                 key={cat.slug}
-                href={`/${cat.slug}`}
+                href={`/learn/${cat.slug}`}
                 className="group flex flex-col bg-white border border-black overflow-hidden transition-all duration-150 hover:-translate-y-1 hover:-translate-x-1"
                 style={{ 
                   boxShadow: "4px 4px 0 #000",
