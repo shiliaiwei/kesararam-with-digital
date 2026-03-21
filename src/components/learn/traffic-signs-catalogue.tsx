@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Search, Filter, ArrowLeft, BookOpen, Brain, FileText, Zap } from "lucide-react";
+import { Search, ArrowLeft } from "lucide-react";
 import { SignDetailPopup } from "./sign-detail-popup";
 import { useLang } from "@/context/lang-context";
 
@@ -29,6 +29,38 @@ export function TrafficSignsCatalogue() {
   const [search, setSearch] = useState("");
   const [subGroupFilter, setSubGroupFilter] = useState("");
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
+
+  // Translations
+  const translations = {
+    en: {
+      category: "KNOWLEDGE CATEGORY",
+      title: "Traffic Signs",
+      titleKm: "សញ្ញាចរាចរណ៍",
+      description: "Browse and learn all official road signs used in Cambodia. Each sign includes a description, what it means, and audio support in Khmer and English.",
+      backButton: "Back to Categories",
+      searchPlaceholder: "Search by sign name or code...",
+      allSignTypes: "All Sign Types",
+      showing: "Showing",
+      of: "of",
+      signs: "signs",
+      noSigns: "No signs found",
+    },
+    km: {
+      category: "ប្រភេទចំណេះដឹង",
+      title: "សញ្ញាចរាចរណ៍",
+      titleKm: "Traffic Signs",
+      description: "រកមើល និងរៀនសញ្ញាចរាចរណ៍ផ្លូវការទាំងអស់ដែលប្រើនៅកម្ពុជា។ សញ្ញានីមួយៗរួមមានការពិពណ៌នា អត្ថន័យ និងការគាំទ្រសំឡេងជាភាសាខ្មែរ និងអង់គ្លេស។",
+      backButton: "ត្រឡប់ទៅប្រភេទ",
+      searchPlaceholder: "ស្វែងរកតាមឈ្មោះ ឬលេខកូដសញ្ញា...",
+      allSignTypes: "ប្រភេទសញ្ញាទាំងអស់",
+      showing: "បង្ហាញ",
+      of: "នៃ",
+      signs: "សញ្ញា",
+      noSigns: "រកមិនឃើញសញ្ញា",
+    },
+  };
+
+  const t = translations[lang];
 
   useEffect(() => {
     fetchTopics();
@@ -78,49 +110,27 @@ export function TrafficSignsCatalogue() {
         style={{ boxShadow: "0 4px 0 #000" }}
       >
         <div className="max-w-7xl mx-auto px-4 py-12">
-          <div className="flex items-start justify-between">
+          <div className="flex items-start justify-between gap-8">
             <div className="flex-1">
               <div className="inline-block bg-black text-white px-3 py-1 font-bold text-sm mb-4">
-                KNOWLEDGE CATEGORY
+                {t.category}
               </div>
-              <h1 className="text-5xl font-black mb-2">Traffic Signs</h1>
-              <h2 className="text-2xl font-bold mb-4">សញ្ញាចរាចរណ៍</h2>
-              <p className="text-lg max-w-2xl">
-                Browse and learn all official road signs used in Cambodia. Each sign
-                includes a description, what it means, and audio support in Khmer and
-                English.
+              <h1 className="text-4xl md:text-5xl font-black mb-2">{t.title}</h1>
+              <h2 className="text-xl md:text-2xl font-bold mb-4">{t.titleKm}</h2>
+              <p className="text-base md:text-lg max-w-2xl">
+                {t.description}
               </p>
-
-              {/* Mode Buttons */}
-              <div className="flex flex-wrap gap-3 mt-6">
-                <button className="bg-white border-2 border-black px-6 py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center gap-2">
-                  <BookOpen size={20} />
-                  Flashcards
-                </button>
-                <button className="bg-white border-2 border-black px-6 py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center gap-2">
-                  <Brain size={20} />
-                  Quiz
-                </button>
-                <button className="bg-white border-2 border-black px-6 py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center gap-2">
-                  <FileText size={20} />
-                  Practice Test
-                </button>
-                <button className="bg-white border-2 border-black px-6 py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center gap-2">
-                  <Zap size={20} />
-                  Challenge
-                </button>
-              </div>
             </div>
 
             {/* Category Illustration */}
-            <div className="hidden lg:block">
+            <div className="hidden lg:block flex-shrink-0">
               <div
-                className="w-48 h-48 bg-white border-4 border-black flex items-center justify-center"
+                className="w-40 h-40 xl:w-48 xl:h-48 bg-white border-4 border-black flex items-center justify-center"
                 style={{ boxShadow: "8px 8px 0 #000" }}
               >
                 <svg
                   viewBox="0 0 100 100"
-                  className="w-32 h-32"
+                  className="w-28 h-28 xl:w-32 xl:h-32"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="3"
@@ -143,7 +153,7 @@ export function TrafficSignsCatalogue() {
           className="bg-white border-2 border-black px-4 py-2 font-bold hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2"
         >
           <ArrowLeft size={20} />
-          Back to Categories
+          {t.backButton}
         </button>
       </div>
 
@@ -163,7 +173,7 @@ export function TrafficSignsCatalogue() {
                 />
                 <input
                   type="text"
-                  placeholder="Search by sign name or code..."
+                  placeholder={t.searchPlaceholder}
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   className="w-full pl-10 pr-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
@@ -178,7 +188,7 @@ export function TrafficSignsCatalogue() {
                 onChange={(e) => setSubGroupFilter(e.target.value)}
                 className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
               >
-                <option value="">All Sign Types</option>
+                <option value="">{t.allSignTypes}</option>
                 {SUB_GROUPS.map((sg) => (
                   <option key={sg} value={sg}>
                     {sg}
@@ -190,15 +200,15 @@ export function TrafficSignsCatalogue() {
 
           {/* Result Count */}
           <div className="mt-4 text-sm font-bold text-zinc-600">
-            Showing {filteredTopics.length} of {topics.length} signs
+            {t.showing} {filteredTopics.length} {t.of} {topics.length} {t.signs}
           </div>
         </div>
       </div>
 
-      {/* Signs Grid */}
+      {/* Signs Grid - Only Image + Code */}
       <div className="max-w-7xl mx-auto px-4 pb-12">
         {loading ? (
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3 md:gap-4">
             {Array.from({ length: 16 }).map((_, i) => (
               <div
                 key={i}
@@ -211,35 +221,34 @@ export function TrafficSignsCatalogue() {
             className="bg-white border-2 border-black p-12 text-center"
             style={{ boxShadow: "4px 4px 0 #000" }}
           >
-            <p className="text-zinc-600 font-bold">No signs found</p>
+            <p className="text-zinc-600 font-bold">{t.noSigns}</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3 md:gap-4">
             {filteredTopics.map((topic) => (
               <button
                 key={topic.id}
                 onClick={() => setSelectedTopic(topic)}
-                className="group bg-white border-2 border-black hover:shadow-[4px_4px_0_#000] transition-all"
+                className="group bg-white border-2 border-black hover:shadow-[4px_4px_0_#000] transition-all flex flex-col"
               >
-                <div className="aspect-square p-4 flex items-center justify-center border-b-2 border-black">
+                {/* Image Only */}
+                <div className="aspect-square p-3 md:p-4 flex items-center justify-center">
                   {topic.primary_image_url ? (
                     <img
                       src={topic.primary_image_url}
-                      alt={lang === "en" ? topic.name_en : topic.name_km}
+                      alt={topic.topic_code}
                       className="w-full h-full object-contain"
                     />
                   ) : (
                     <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-                      <span className="text-4xl">🚦</span>
+                      <span className="text-3xl md:text-4xl">🚦</span>
                     </div>
                   )}
                 </div>
-                <div className="p-2">
-                  <div className="font-mono text-xs font-bold text-zinc-600 mb-1">
+                {/* Code Only */}
+                <div className="border-t-2 border-black p-2 bg-zinc-50">
+                  <div className="font-mono text-xs font-bold text-center text-zinc-700">
                     {topic.topic_code}
-                  </div>
-                  <div className="font-bold text-sm line-clamp-2">
-                    {lang === "en" ? topic.name_en : topic.name_km}
                   </div>
                 </div>
               </button>

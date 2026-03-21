@@ -264,7 +264,7 @@ export function CategoryContentManager({
                     </td>
                     <td className="px-4 py-3">
                       <span
-                        className={`px-3 py-1 text-xs font-bold uppercase rounded-sm ${
+                        className={`px-2 py-0.5 text-[10px] font-bold uppercase ${
                           STATUS_COLORS[topic.status]
                         }`}
                       >

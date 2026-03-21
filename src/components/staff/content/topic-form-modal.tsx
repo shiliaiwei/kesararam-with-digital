@@ -5,14 +5,25 @@ import { X, Save, Send } from "lucide-react";
 import { MediaSelector } from "../media/media-selector";
 
 interface TopicFormModalProps {
-  categoryId: number;
-  categorySlug: string;
+  categoryId?: number;
+  categorySlug?: string;
   requiresImage?: boolean;
   requiresAudio?: boolean;
   initialData?: any;
   onClose: () => void;
   onSuccess: () => void;
 }
+
+const CATEGORIES = [
+  { id: 1, name: "Road Signs", slug: "road-sign" },
+  { id: 2, name: "Road Traffic", slug: "road-traffic" },
+  { id: 3, name: "Priority Rules", slug: "priority" },
+  { id: 4, name: "Driving Techniques", slug: "driving" },
+  { id: 5, name: "Technical Knowledge", slug: "technical" },
+  { id: 6, name: "Loading People & Goods", slug: "loading-people-goods" },
+  { id: 7, name: "General Knowledge", slug: "general-knowledge" },
+  { id: 8, name: "Emergency Situations", slug: "emergency" },
+];
 
 const SUB_GROUPS: Record<string, string[]> = {
   "road-sign": ["Warning", "Prohibitory", "Mandatory", "Informational"],
@@ -26,8 +37,8 @@ const SUB_GROUPS: Record<string, string[]> = {
 };
 
 export function TopicFormModal({
-  categoryId,
-  categorySlug,
+  categoryId: propCategoryId,
+  categorySlug: propCategorySlug,
   requiresImage = false,
   requiresAudio = false,
   initialData,
@@ -36,6 +47,7 @@ export function TopicFormModal({
 }: TopicFormModalProps) {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
+    categoryId: propCategoryId || initialData?.category_id || 1,
     topicCode: initialData?.topic_code || "",
     nameEn: initialData?.name_en || "",
     nameKm: initialData?.name_km || "",
@@ -51,6 +63,9 @@ export function TopicFormModal({
     audioSourceKm: initialData?.audio_source_km || "url",
   });
 
+  const selectedCategory = CATEGORIES.find(c => c.id === formData.categoryId);
+  const currentCategorySlug = selectedCategory?.slug || propCategorySlug || "road-sign";
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
@@ -64,7 +79,7 @@ export function TopicFormModal({
     try {
       const payload = {
         topicCode: formData.topicCode || undefined,
-        categoryId,
+        categoryId: formData.categoryId,
         nameEn: formData.nameEn,
         nameKm: formData.nameKm,
         descriptionEn: formData.descriptionEn,
@@ -139,6 +154,28 @@ export function TopicFormModal({
             <h3 className="font-black text-lg">Basic Information</h3>
 
             <div>
+              <label className="block font-bold mb-2">
+                Category <span className="text-red-500">*</span>
+              </label>
+              <select
+                name="categoryId"
+                value={formData.categoryId}
+                onChange={(e) => setFormData(prev => ({ 
+                  ...prev, 
+                  categoryId: parseInt(e.target.value),
+                  subGroup: "" // Reset sub-group when category changes
+                }))}
+                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
+              >
+                {CATEGORIES.map((cat) => (
+                  <option key={cat.id} value={cat.id}>
+                    {cat.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
               <label className="block font-bold mb-2">Sub-group / Type</label>
               <select
                 name="subGroup"
@@ -147,12 +184,27 @@ export function TopicFormModal({
                 className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
               >
                 <option value="">Select Type</option>
-                {SUB_GROUPS[categorySlug]?.map((sg) => (
+                {SUB_GROUPS[currentCategorySlug]?.map((sg) => (
                   <option key={sg} value={sg}>
                     {sg}
                   </option>
                 ))}
               </select>
+            </div>
+
+            <div>
+              <label className="block font-bold mb-2">Topic Code</label>
+              <input
+                type="text"
+                name="topicCode"
+                value={formData.topicCode}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
+                placeholder="e.g., RS-W-001, RT-SL-040, PR-INT-001"
+              />
+              <p className="text-xs text-zinc-600 mt-1">
+                Optional. Leave blank to auto-generate.
+              </p>
             </div>
 
             <div>
