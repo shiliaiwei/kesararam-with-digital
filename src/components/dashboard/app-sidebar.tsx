@@ -13,7 +13,6 @@ import {
   LogOut,
   Images,
   User,
-  Plus,
   Calendar,
   ChevronDown,
   ChevronRight,
@@ -253,24 +252,6 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
               );
             })}
           </div>
-        </div>
-
-        {/* Quick Actions */}
-        <div>
-          <h2 className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2 px-1">
-            Quick Actions
-          </h2>
-          <Link
-            href={role === "admin" ? "/admin/content" : role === "staff" ? "/staff/content/road-sign" : "/teacher/content"}
-            className="flex items-center gap-2 p-2.5 border-2 border-black bg-green-400 hover:bg-green-300 hover:shadow-[1px_1px_0_#000] transition-all duration-100"
-          >
-            <div className="w-6 h-6 border-2 border-black bg-white flex items-center justify-center shadow-[1px_1px_0_#000]">
-              <Plus size={12} className="text-black" />
-            </div>
-            <span className="font-bold text-xs text-black uppercase">
-              Add Content
-            </span>
-          </Link>
         </div>
       </div>
 
