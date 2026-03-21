@@ -307,37 +307,37 @@ export function RoadTrafficCatalogue() {
                 {/* Topic Header - Clickable */}
                 <button
                   onClick={() => toggleTopic(topic.id)}
-                  className="w-full p-6 flex items-start justify-between hover:bg-gray-50 transition-all text-left"
+                  className="w-full p-4 md:p-6 flex items-start justify-between hover:bg-gray-50 transition-all text-left"
                 >
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-xs font-mono bg-zinc-100 border border-black px-2 py-1">
+                  <div className="flex-1 min-w-0 pr-4">
+                    <div className="flex items-center gap-2 mb-2 flex-wrap">
+                      <span className="text-xs font-mono bg-zinc-100 border border-black px-2 py-1 whitespace-nowrap">
                         {topic.topic_code}
                       </span>
                       {topic.sub_group && (
-                        <span className="text-xs font-bold bg-blue-100 border border-blue-400 px-2 py-1">
+                        <span className="text-xs font-bold bg-blue-100 border border-blue-400 px-2 py-1 whitespace-nowrap">
                           {topic.sub_group}
                         </span>
                       )}
                     </div>
-                    <h3 className="text-xl font-black">
+                    <h3 className="text-lg md:text-xl font-black break-words">
                       {lang === "en" ? topic.name_en : topic.name_km}
                     </h3>
                   </div>
                   
                   {expandedTopics[topic.id] ? (
-                    <ChevronUp size={24} className="flex-shrink-0 ml-4" />
+                    <ChevronUp size={24} className="flex-shrink-0" />
                   ) : (
-                    <ChevronDown size={24} className="flex-shrink-0 ml-4" />
+                    <ChevronDown size={24} className="flex-shrink-0" />
                   )}
                 </button>
 
                 {/* Topic Content - Collapsible */}
                 {expandedTopics[topic.id] && (
-                  <div className="border-t-2 border-black bg-gray-50 p-6">
+                  <div className="border-t-2 border-black bg-gray-50 p-4 md:p-6">
                     {/* Topic Image - 16:9 only */}
                     {topic.primary_image_url && (
-                      <div className="mb-6">
+                      <div className="mb-4 md:mb-6">
                         <img
                           src={topic.primary_image_url}
                           alt={lang === "en" ? topic.name_en : topic.name_km}
@@ -352,7 +352,7 @@ export function RoadTrafficCatalogue() {
                     )}
 
                     {/* Description */}
-                    <p className="text-sm text-zinc-700 mb-6">
+                    <p className="text-sm md:text-base text-zinc-700 mb-4 md:mb-6 break-words whitespace-pre-wrap">
                       {lang === "en" ? topic.description_en : topic.description_km}
                     </p>
 
@@ -385,11 +385,11 @@ export function RoadTrafficCatalogue() {
 
                     {/* Law Reference */}
                     {topic.law_reference && (
-                      <div className="mb-6 p-4 bg-amber-50 border-2 border-amber-600">
-                        <p className="text-sm font-bold text-amber-900 mb-2">
+                      <div className="mb-4 md:mb-6 p-3 md:p-4 bg-amber-50 border-2 border-amber-600">
+                        <p className="text-xs md:text-sm font-bold text-amber-900 mb-2">
                           {t.lawReference}
                         </p>
-                        <p className="text-sm font-mono text-amber-800">
+                        <p className="text-xs md:text-sm font-mono text-amber-800 break-words">
                           {topic.law_reference}
                         </p>
                       </div>
@@ -398,7 +398,7 @@ export function RoadTrafficCatalogue() {
                     {/* Questions Section - Collapsible Individual Questions */}
                     {questions[topic.id] && questions[topic.id].length > 0 && (
                       <div>
-                        <h4 className="font-black text-lg mb-4">
+                        <h4 className="font-black text-base md:text-lg mb-4">
                           {t.questions}
                         </h4>
                         <div className="space-y-3">
@@ -410,33 +410,33 @@ export function RoadTrafficCatalogue() {
                               {/* Question Header - Clickable */}
                               <button
                                 onClick={() => toggleQuestion(q.id)}
-                                className="w-full p-4 flex items-start justify-between hover:bg-gray-100 transition-all text-left"
+                                className="w-full p-3 md:p-4 flex items-start justify-between hover:bg-gray-100 transition-all text-left"
                               >
-                                <div className="flex items-start gap-3 flex-1">
-                                  <span className="font-black text-sm bg-black text-white px-2 py-1 flex-shrink-0">
+                                <div className="flex items-start gap-2 md:gap-3 flex-1 min-w-0 pr-2">
+                                  <span className="font-black text-xs md:text-sm bg-black text-white px-2 py-1 flex-shrink-0">
                                     Q{index + 1}
                                   </span>
-                                  <p className="font-bold text-base">
+                                  <p className="font-bold text-sm md:text-base break-words overflow-wrap-anywhere">
                                     {lang === "en" ? q.question_en : q.question_km}
                                   </p>
                                 </div>
                                 {expandedQuestions[q.id] ? (
-                                  <ChevronUp size={20} className="flex-shrink-0 ml-4" />
+                                  <ChevronUp size={20} className="flex-shrink-0" />
                                 ) : (
-                                  <ChevronDown size={20} className="flex-shrink-0 ml-4" />
+                                  <ChevronDown size={20} className="flex-shrink-0" />
                                 )}
                               </button>
 
                               {/* Question Details - Expanded */}
                               {expandedQuestions[q.id] && (
-                                <div className="border-t-2 border-black bg-gray-50 p-4">
+                                <div className="border-t-2 border-black bg-gray-50 p-3 md:p-4">
                                   {/* Question Image - Landscape */}
                                   {q.image_url && (
                                     <div className="mb-4">
                                       <img
                                         src={q.image_url}
                                         alt="Question scenario"
-                                        className="w-full max-w-2xl border-2 border-black object-cover"
+                                        className="w-full border-2 border-black object-cover"
                                         style={{ aspectRatio: '16/9' }}
                                       />
                                     </div>
@@ -447,17 +447,17 @@ export function RoadTrafficCatalogue() {
                                     {q.answers.map((a, aIndex) => (
                                       <div
                                         key={a.id}
-                                        className={`p-3 border-2 ${
+                                        className={`p-2 md:p-3 border-2 ${
                                           a.is_correct
                                             ? "bg-green-100 border-green-600"
                                             : "bg-white border-gray-300"
                                         }`}
                                       >
                                         <div className="flex items-start gap-2">
-                                          <span className="font-bold flex-shrink-0">
+                                          <span className="font-bold flex-shrink-0 text-sm md:text-base">
                                             {String.fromCharCode(65 + aIndex)}.
                                           </span>
-                                          <span className="flex-1">
+                                          <span className="flex-1 text-sm md:text-base break-words overflow-wrap-anywhere">
                                             {lang === "en" ? a.answer_en : a.answer_km}
                                           </span>
                                           {a.is_correct && (
@@ -473,10 +473,10 @@ export function RoadTrafficCatalogue() {
                                   {/* Hint */}
                                   {(q.hint_en || q.hint_km) && (
                                     <div className="p-3 bg-blue-50 border-2 border-blue-400">
-                                      <p className="text-sm font-bold text-blue-900 mb-1">
+                                      <p className="text-xs md:text-sm font-bold text-blue-900 mb-1">
                                         💡 Hint
                                       </p>
-                                      <p className="text-sm text-blue-800">
+                                      <p className="text-xs md:text-sm text-blue-800 break-words overflow-wrap-anywhere">
                                         {lang === "en" ? q.hint_en : q.hint_km}
                                       </p>
                                     </div>
