@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Search, ArrowLeft } from "lucide-react";
+import { Search, ArrowLeft, ChevronDown, ChevronUp, Play, Pause } from "lucide-react";
 import { useLang } from "@/context/lang-context";
-import { QADetailPopup } from "@/components/learn/qa-detail-popup";
 
 interface Topic {
   id: number;
@@ -36,20 +35,18 @@ interface Answer {
   is_correct: boolean;
 }
 
-interface QAItem extends Question {
-  topic: Topic;
-}
-
 const SUB_GROUPS = ["Traffic Rules", "Speed Limits", "Parking", "Overtaking"];
 
 export function RoadTrafficCatalogue() {
   const { lang } = useLang();
-  const [qaItems, setQAItems] = useState<QAItem[]>([]);
-  const [filteredQAItems, setFilteredQAItems] = useState<QAItem[]>([]);
+  const [topics, setTopics] = useState<Topic[]>([]);
+  const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [subGroupFilter, setSubGroupFilter] = useState("");
-  const [selectedQA, setSelectedQA] = useState<QAItem | null>(null);
+  const [expandedTopic, setExpandedTopic] = useState<number | null>(null);
+  const [questions, setQuestions] = useState<Record<number, Question[]>>({});
+  const [playingAudio, setPlayingAudio] = useState<number | null>(null);
 
   const translations = {
     en: {
@@ -58,12 +55,15 @@ export function RoadTrafficCatalogue() {
       titleKm: "ច្បាប់ចរាចរណ៍ផ្លូវ",
       description: "Learn essential road traffic laws and regulations in Cambodia. Study law articles, case studies, and Q&A to understand your responsibilities as a road user.",
       backButton: "Back to Categories",
-      searchPlaceholder: "Search by topic or question...",
+      searchPlaceholder: "Search by topic...",
       allTypes: "All Types",
       showing: "Showing",
       of: "of",
-      questions: "questions",
-      noQuestions: "No questions found",
+      topics: "topics",
+      noTopics: "No topics found",
+      questions: "Questions",
+      playAudio: "Play Audio",
+      lawReference: "Law Reference",
     },
     kh: {
       category: "ប្រភេទចំណេះដឹង",
@@ -71,80 +71,93 @@ export function RoadTrafficCatalogue() {
       titleKm: "Road Traffic Law",
       description: "រៀនច្បាប់ និងបទប្បញ្ញត្តិចរាចរណ៍ផ្លូវសំខាន់ៗនៅកម្ពុជា។ សិក្សាអត្ថបទច្បាប់ ករណីសិក្សា និងសំណួរ-ចម្លើយ ដើម្បីយល់ពីទំនួលខុសត្រូវរបស់អ្នកក្នុងនាមជាអ្នកប្រើប្រាស់ផ្លូវ។",
       backButton: "ត្រឡប់ទៅប្រភេទ",
-      searchPlaceholder: "ស្វែងរកតាមប្រធានបទ ឬសំណួរ...",
+      searchPlaceholder: "ស្វែងរកតាមប្រធានបទ...",
       allTypes: "ប្រភេទទាំងអស់",
       showing: "បង្ហាញ",
       of: "នៃ",
+      topics: "ប្រធានបទ",
+      noTopics: "រកមិនឃើញប្រធានបទ",
       questions: "សំណួរ",
-      noQuestions: "រកមិនឃើញសំណួរ",
+      playAudio: "ចាក់សំឡេង",
+      lawReference: "ឯកសារយោងច្បាប់",
     },
   };
 
   const t = translations[lang] || translations.en;
 
   useEffect(() => {
-    fetchQAItems();
+    fetchTopics();
   }, []);
 
   useEffect(() => {
-    filterQAItems();
-  }, [qaItems, search, subGroupFilter]);
+    filterTopics();
+  }, [topics, search, subGroupFilter]);
 
-  const fetchQAItems = async () => {
+  const fetchTopics = async () => {
     setLoading(true);
     try {
-      // Fetch all topics for category 2 (Road Traffic)
-      const topicsResponse = await fetch("/api/public/topics?categoryId=2&status=published");
-      const topicsData = await topicsResponse.json();
-      const topics = topicsData.topics || [];
-
-      // Fetch questions for each topic
-      const allQAItems: QAItem[] = [];
-      for (const topic of topics) {
-        try {
-          const questionsResponse = await fetch(`/api/public/topics/${topic.id}/questions`);
-          const questionsData = await questionsResponse.json();
-          const questions = questionsData.questions || [];
-          
-          // Combine topic with each question
-          questions.forEach((q: Question) => {
-            allQAItems.push({
-              ...q,
-              topic,
-            });
-          });
-        } catch (error) {
-          console.error(`Error fetching questions for topic ${topic.id}:`, error);
-        }
-      }
-
-      setQAItems(allQAItems);
+      const response = await fetch("/api/public/topics?categoryId=2&status=published");
+      const data = await response.json();
+      setTopics(data.topics || []);
     } catch (error) {
-      console.error("Error fetching Q&A items:", error);
+      console.error("Error fetching topics:", error);
     } finally {
       setLoading(false);
     }
   };
 
-  const filterQAItems = () => {
-    let filtered = [...qaItems];
+  const fetchQuestions = async (topicId: number) => {
+    if (questions[topicId]) return;
+
+    try {
+      const response = await fetch(`/api/public/topics/${topicId}/questions`);
+      const data = await response.json();
+      setQuestions((prev) => ({
+        ...prev,
+        [topicId]: data.questions || [],
+      }));
+    } catch (error) {
+      console.error("Error fetching questions:", error);
+    }
+  };
+
+  const filterTopics = () => {
+    let filtered = [...topics];
 
     if (search) {
       filtered = filtered.filter(
-        (item) =>
-          item.question_en.toLowerCase().includes(search.toLowerCase()) ||
-          item.question_km.includes(search) ||
-          item.topic.name_en.toLowerCase().includes(search.toLowerCase()) ||
-          item.topic.name_km.includes(search) ||
-          item.topic.topic_code.toLowerCase().includes(search.toLowerCase())
+        (t) =>
+          t.name_en.toLowerCase().includes(search.toLowerCase()) ||
+          t.name_km.includes(search) ||
+          t.topic_code.toLowerCase().includes(search.toLowerCase()) ||
+          t.description_en.toLowerCase().includes(search.toLowerCase()) ||
+          t.description_km.includes(search)
       );
     }
 
     if (subGroupFilter) {
-      filtered = filtered.filter((item) => item.topic.sub_group === subGroupFilter);
+      filtered = filtered.filter((t) => t.sub_group === subGroupFilter);
     }
 
-    setFilteredQAItems(filtered);
+    setFilteredTopics(filtered);
+  };
+
+  const toggleTopic = (topicId: number) => {
+    if (expandedTopic === topicId) {
+      setExpandedTopic(null);
+      setPlayingAudio(null);
+    } else {
+      setExpandedTopic(topicId);
+      fetchQuestions(topicId);
+    }
+  };
+
+  const toggleAudio = (topicId: number) => {
+    if (playingAudio === topicId) {
+      setPlayingAudio(null);
+    } else {
+      setPlayingAudio(topicId);
+    }
   };
 
   return (
@@ -240,86 +253,197 @@ export function RoadTrafficCatalogue() {
           </div>
 
           <div className="mt-4 text-sm font-bold text-zinc-600">
-            {t.showing} {filteredQAItems.length} {t.of} {qaItems.length} {t.questions}
+            {t.showing} {filteredTopics.length} {t.of} {topics.length} {t.topics}
           </div>
         </div>
       </div>
 
-      {/* Q&A List */}
+      {/* Topics List */}
       <div className="max-w-7xl mx-auto px-4 pb-12">
         {loading ? (
           <div className="space-y-3">
-            {Array.from({ length: 8 }).map((_, i) => (
+            {Array.from({ length: 5 }).map((_, i) => (
               <div
                 key={i}
-                className="bg-white border-2 border-black p-4 animate-pulse"
-                style={{ boxShadow: "2px 2px 0 #000" }}
+                className="bg-white border-2 border-black p-6 animate-pulse"
+                style={{ boxShadow: "4px 4px 0 #000" }}
               >
-                <div className="h-5 bg-gray-200 w-3/4"></div>
+                <div className="h-6 bg-gray-200 w-3/4 mb-3"></div>
+                <div className="h-4 bg-gray-200 w-1/2"></div>
               </div>
             ))}
           </div>
-        ) : filteredQAItems.length === 0 ? (
+        ) : filteredTopics.length === 0 ? (
           <div
             className="bg-white border-2 border-black p-12 text-center"
             style={{ boxShadow: "4px 4px 0 #000" }}
           >
-            <p className="text-zinc-600 font-bold">{t.noQuestions}</p>
+            <p className="text-zinc-600 font-bold">{t.noTopics}</p>
           </div>
         ) : (
-          <div className="space-y-3">
-            {filteredQAItems.map((item, index) => (
-              <button
-                key={item.id}
-                onClick={() => setSelectedQA(item)}
-                className="w-full bg-white border-2 border-black p-4 hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all text-left group"
-                style={{ boxShadow: "2px 2px 0 #000" }}
+          <div className="space-y-4">
+            {filteredTopics.map((topic) => (
+              <div
+                key={topic.id}
+                className="bg-white border-2 border-black"
+                style={{ boxShadow: "4px 4px 0 #000" }}
               >
-                <div className="flex items-start gap-4">
-                  {/* Question ID */}
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-blue-400 border-2 border-black flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <span className="font-black text-lg">Q{index + 1}</span>
-                    </div>
-                  </div>
-
-                  {/* Question Content */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xs font-mono bg-zinc-100 border border-black px-2 py-0.5">
-                        {item.topic.topic_code}
+                {/* Topic Header - Clickable */}
+                <button
+                  onClick={() => toggleTopic(topic.id)}
+                  className="w-full p-6 flex items-start justify-between hover:bg-gray-50 transition-all text-left"
+                >
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-xs font-mono bg-zinc-100 border border-black px-2 py-1">
+                        {topic.topic_code}
                       </span>
-                      {item.topic.sub_group && (
-                        <span className="text-xs font-bold bg-blue-100 border border-blue-400 px-2 py-0.5">
-                          {item.topic.sub_group}
+                      {topic.sub_group && (
+                        <span className="text-xs font-bold bg-blue-100 border border-blue-400 px-2 py-1">
+                          {topic.sub_group}
                         </span>
                       )}
                     </div>
-                    <p className="font-bold text-base text-black line-clamp-2">
-                      {lang === "en" ? item.question_en : item.question_km}
+                    <h3 className="text-xl font-black mb-2">
+                      {lang === "en" ? topic.name_en : topic.name_km}
+                    </h3>
+                    <p className="text-sm text-zinc-600">
+                      {lang === "en" ? topic.description_en : topic.description_km}
                     </p>
                   </div>
+                  {expandedTopic === topic.id ? (
+                    <ChevronUp size={24} className="flex-shrink-0 ml-4" />
+                  ) : (
+                    <ChevronDown size={24} className="flex-shrink-0 ml-4" />
+                  )}
+                </button>
 
-                  {/* Arrow indicator */}
-                  <div className="flex-shrink-0 text-zinc-400 group-hover:text-black group-hover:translate-x-1 transition-all">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M9 18l6-6-6-6" />
-                    </svg>
+                {/* Expanded Content */}
+                {expandedTopic === topic.id && (
+                  <div className="border-t-2 border-black bg-gray-50 p-6">
+                    {/* Audio Player */}
+                    {((lang === "en" && topic.audio_url_en) || (lang === "kh" && topic.audio_url_km)) && (
+                      <div className="mb-6">
+                        <button
+                          onClick={() => toggleAudio(topic.id)}
+                          className="bg-blue-400 border-2 border-black px-4 py-2 font-bold hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2"
+                        >
+                          {playingAudio === topic.id ? <Pause size={18} /> : <Play size={18} />}
+                          {t.playAudio}
+                        </button>
+                        {lang === "en" && topic.audio_url_en && (
+                          <audio
+                            src={topic.audio_url_en}
+                            autoPlay={playingAudio === topic.id}
+                            onEnded={() => setPlayingAudio(null)}
+                          />
+                        )}
+                        {lang === "kh" && topic.audio_url_km && (
+                          <audio
+                            src={topic.audio_url_km}
+                            autoPlay={playingAudio === topic.id}
+                            onEnded={() => setPlayingAudio(null)}
+                          />
+                        )}
+                      </div>
+                    )}
+
+                    {/* Law Reference */}
+                    {topic.law_reference && (
+                      <div className="mb-6 p-4 bg-amber-50 border-2 border-amber-600">
+                        <p className="text-sm font-bold text-amber-900 mb-2">
+                          {t.lawReference}
+                        </p>
+                        <p className="text-sm font-mono text-amber-800">
+                          {topic.law_reference}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Questions Section */}
+                    <div>
+                      <h4 className="font-black text-lg mb-4">
+                        {t.questions} ({questions[topic.id]?.length || 0})
+                      </h4>
+                      {questions[topic.id] && questions[topic.id].length > 0 ? (
+                        <div className="space-y-4">
+                          {questions[topic.id].map((q, index) => (
+                            <div
+                              key={q.id}
+                              className="bg-white border-2 border-black p-4"
+                            >
+                              <div className="flex items-start gap-3 mb-3">
+                                <span className="font-black text-sm bg-black text-white px-2 py-1 flex-shrink-0">
+                                  Q{index + 1}
+                                </span>
+                                <p className="font-bold text-base">
+                                  {lang === "en" ? q.question_en : q.question_km}
+                                </p>
+                              </div>
+
+                              {/* Question Image */}
+                              {q.image_url && (
+                                <div className="mb-3 ml-10">
+                                  <img
+                                    src={q.image_url}
+                                    alt="Question scenario"
+                                    className="max-w-sm border-2 border-black"
+                                  />
+                                </div>
+                              )}
+
+                              {/* Answers */}
+                              <div className="space-y-2 ml-10">
+                                {q.answers.map((a, aIndex) => (
+                                  <div
+                                    key={a.id}
+                                    className={`p-3 border-2 ${
+                                      a.is_correct
+                                        ? "bg-green-100 border-green-600"
+                                        : "bg-white border-gray-300"
+                                    }`}
+                                  >
+                                    <div className="flex items-start gap-2">
+                                      <span className="font-bold flex-shrink-0">
+                                        {String.fromCharCode(65 + aIndex)}.
+                                      </span>
+                                      <span className="flex-1">
+                                        {lang === "en" ? a.answer_en : a.answer_km}
+                                      </span>
+                                      {a.is_correct && (
+                                        <span className="text-green-600 font-bold text-sm flex-shrink-0">
+                                          ✓
+                                        </span>
+                                      )}
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+
+                              {/* Hint */}
+                              {(q.hint_en || q.hint_km) && (
+                                <div className="mt-3 ml-10 p-3 bg-blue-50 border-2 border-blue-400">
+                                  <p className="text-sm text-blue-800">
+                                    {lang === "en" ? q.hint_en : q.hint_km}
+                                  </p>
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-zinc-600 text-sm italic">
+                          No questions available for this topic yet.
+                        </p>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </button>
+                )}
+              </div>
             ))}
           </div>
         )}
       </div>
-
-      {/* Q&A Detail Popup */}
-      {selectedQA && (
-        <QADetailPopup
-          qaItem={selectedQA}
-          onClose={() => setSelectedQA(null)}
-        />
-      )}
     </div>
   );
 }
