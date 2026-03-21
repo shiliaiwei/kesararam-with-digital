@@ -25,11 +25,19 @@ interface CategoryContentManagerProps {
 }
 
 const STATUS_COLORS: Record<string, string> = {
-  draft: "bg-gray-200 text-gray-800",
-  pending: "bg-yellow-200 text-yellow-800",
-  approved: "bg-green-200 text-green-800",
-  published: "bg-blue-200 text-blue-800",
-  rejected: "bg-red-200 text-red-800",
+  draft: "bg-gray-300 text-gray-900 border border-gray-600",
+  pending: "bg-yellow-300 text-yellow-900 border border-yellow-600",
+  approved: "bg-green-300 text-green-900 border border-green-600",
+  published: "bg-blue-300 text-blue-900 border border-blue-600",
+  rejected: "bg-red-300 text-red-900 border border-red-600",
+};
+
+const STATUS_LABELS: Record<string, string> = {
+  draft: "Draft",
+  pending: "Under Review",
+  approved: "Approved",
+  published: "Published",
+  rejected: "Rejected",
 };
 
 const SUB_GROUPS: Record<string, string[]> = {
@@ -256,11 +264,11 @@ export function CategoryContentManager({
                     </td>
                     <td className="px-4 py-3">
                       <span
-                        className={`px-2 py-1 text-xs font-bold uppercase ${
+                        className={`px-3 py-1 text-xs font-bold uppercase rounded-sm ${
                           STATUS_COLORS[topic.status]
                         }`}
                       >
-                        {topic.status}
+                        {STATUS_LABELS[topic.status] || topic.status}
                       </span>
                     </td>
                     <td className="px-4 py-3 text-sm">
@@ -269,37 +277,42 @@ export function CategoryContentManager({
                     <td className="px-4 py-3">
                       <div className="flex items-center justify-end gap-2">
                         <button
-                          onClick={() => router.push(`/staff/topics/${topic.id}`)}
+                          onClick={() => router.push(`/staff/content/${categorySlug}/${topic.id}`)}
                           className="p-2 border-2 border-black hover:bg-blue-100 transition-all"
-                          title="View"
+                          title="View Details"
                         >
                           <Eye size={16} />
                         </button>
-                        {(topic.status === "draft" ||
-                          topic.status === "rejected") && (
-                          <>
-                            <button
-                              onClick={() => setEditingTopic(topic)}
-                              className="p-2 border-2 border-black hover:bg-yellow-100 transition-all"
-                              title="Edit"
-                            >
-                              <Edit size={16} />
-                            </button>
-                            <button
-                              onClick={() => handleSubmit(topic.id)}
-                              className="p-2 border-2 border-black hover:bg-green-100 transition-all"
-                              title="Submit for Review"
-                            >
-                              <Send size={16} />
-                            </button>
-                            <button
-                              onClick={() => handleDelete(topic.id)}
-                              className="p-2 border-2 border-black hover:bg-red-100 transition-all"
-                              title="Delete"
-                            >
-                              <Trash2 size={16} />
-                            </button>
-                          </>
+                        
+                        {/* Staff can edit their own content in any status */}
+                        <button
+                          onClick={() => setEditingTopic(topic)}
+                          className="p-2 border-2 border-black hover:bg-yellow-100 transition-all"
+                          title="Edit"
+                        >
+                          <Edit size={16} />
+                        </button>
+
+                        {/* Can submit draft or rejected content */}
+                        {(topic.status === "draft" || topic.status === "rejected") && (
+                          <button
+                            onClick={() => handleSubmit(topic.id)}
+                            className="p-2 border-2 border-black hover:bg-green-100 transition-all"
+                            title="Submit for Review"
+                          >
+                            <Send size={16} />
+                          </button>
+                        )}
+
+                        {/* Can only delete draft content */}
+                        {topic.status === "draft" && (
+                          <button
+                            onClick={() => handleDelete(topic.id)}
+                            className="p-2 border-2 border-black hover:bg-red-100 transition-all"
+                            title="Delete"
+                          >
+                            <Trash2 size={16} />
+                          </button>
                         )}
                       </div>
                     </td>
