@@ -141,8 +141,11 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
 
       {/* Navigation - Scrollable */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
-        {/* Account Link */}
+        {/* Account Section - Top Priority */}
         <div>
+          <h2 className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2 px-1">
+            Account
+          </h2>
           <Link
             href={profileHref}
             className={`w-full flex items-center gap-2 p-2.5 border-2 border-black transition-all duration-100 ${
@@ -155,7 +158,7 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
               <User size={12} className="text-black" />
             </div>
             <span className="font-bold text-xs text-black uppercase">
-              Account
+              My Profile
             </span>
           </Link>
         </div>
