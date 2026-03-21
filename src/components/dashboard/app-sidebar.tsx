@@ -17,6 +17,7 @@ import {
   Calendar,
   ChevronDown,
   ChevronRight,
+  AlertCircle,
 } from "lucide-react";
 import { logoutAction } from "@/app/actions/auth";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
@@ -31,6 +32,7 @@ interface NavItem {
 
 const adminNav: NavItem[] = [
   { label: "Project Planner", href: "/admin/project-planner", icon: Calendar, color: "#3b82f6" },
+  { label: "Review Queue", href: "/admin/review", icon: AlertCircle, color: "#f59e0b" },
   { label: "Users", href: "/admin/users", icon: Users, color: "#3b82f6" },
   { label: "Content", href: "/admin/content", icon: BookOpen, color: "#22c55e" },
   { label: "Media", href: "/admin/media", icon: Images, color: "#a855f7" },

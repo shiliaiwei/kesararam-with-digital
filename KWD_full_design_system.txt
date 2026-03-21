@@ -115,6 +115,30 @@ CONTENT AREA (white background below banner):
 1C. CONTENT DISPLAY — PER CATEGORY
 ────────────────────────────────────────────────────────────────────────────────
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ── 1. TRAFFIC SIGNS (/road-sign) ────────────────────────────────────────────
 
   CONTENT TYPE: Sign image catalogue + Q&A
@@ -150,6 +174,20 @@ CONTENT AREA (white background below banner):
     - Linked Q&A accordion: all Q&A items tied to this sign
     - Quick mode buttons: [Flashcards] [Quiz] [Practice Test] [Challenge]
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ── 2. ROAD TRAFFIC LAW (/road-traffic) ──────────────────────────────────────
 
   CONTENT TYPE: Law articles + case studies + Q&A
@@ -167,6 +205,29 @@ CONTENT AREA (white background below banner):
     - Audio player: KH track + EN track
     - Law article or case study reference (if linked)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ── 3. RIGHT OF WAY (/priority) ──────────────────────────────────────────────
 
   CONTENT TYPE: Priority rule scenarios + intersection diagrams + Q&A
@@ -181,6 +242,18 @@ CONTENT AREA (white background below banner):
     - Full question text (KH + EN)
     - Answer with detailed description
     - Audio player: KH + EN tracks
+
+
+
+
+
+
+
+
+
+
+
+
 
 ── 4. DRIVING SKILLS (/driving) ─────────────────────────────────────────────
 
