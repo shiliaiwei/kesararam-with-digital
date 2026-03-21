@@ -88,13 +88,14 @@ const row2 = roadSigns.slice(19, 38);
 const row3 = roadSigns.slice(38, 57);
 const row4 = roadSigns.slice(57);
 
-function SignCard({ src, index }: { src: string; index: number }) {
+function SignCard({ src, index, scale }: { src: string; index: number; scale: number }) {
   return (
     <div
       className="relative shrink-0 cursor-pointer transition-all duration-300 hover:scale-110"
       style={{
-        width: "clamp(100px, 15vw, 140px)",
-        height: "clamp(100px, 15vw, 140px)",
+        width: `${80 * scale}px`,
+        height: `${80 * scale}px`,
+        opacity: 0.7 + (scale - 0.7) * 0.6, // Fade effect for depth
       }}
     >
       <img
@@ -124,40 +125,40 @@ export function RoadSigns3DHero() {
         </h2>
       </div>
 
-      {/* Marquee rows with overflow contained */}
-      <div className="relative w-full space-y-6 overflow-hidden">
-        {/* Row 1 */}
-        <div className="overflow-hidden">
-          <Marquee className="[--duration:60s] [--gap:1.5rem]" pauseOnHover>
+      {/* Marquee rows with 3D perspective - smaller at top, bigger at bottom */}
+      <div className="relative w-full space-y-4 overflow-hidden" style={{ perspective: "1000px" }}>
+        {/* Row 1 - Smallest (far away) */}
+        <div className="overflow-hidden" style={{ transform: "translateZ(-200px) scale(1.2)" }}>
+          <Marquee className="[--duration:60s] [--gap:1rem]" pauseOnHover>
             {row1.map((src, i) => (
-              <SignCard key={`r1-${i}`} src={src} index={i} />
+              <SignCard key={`r1-${i}`} src={src} index={i} scale={0.7} />
             ))}
           </Marquee>
         </div>
 
-        {/* Row 2 */}
-        <div className="overflow-hidden">
-          <Marquee className="[--duration:55s] [--gap:1.5rem]" reverse pauseOnHover>
+        {/* Row 2 - Medium-small */}
+        <div className="overflow-hidden" style={{ transform: "translateZ(-100px) scale(1.1)" }}>
+          <Marquee className="[--duration:55s] [--gap:1.2rem]" reverse pauseOnHover>
             {row2.map((src, i) => (
-              <SignCard key={`r2-${i}`} src={src} index={i + 19} />
+              <SignCard key={`r2-${i}`} src={src} index={i + 19} scale={1.0} />
             ))}
           </Marquee>
         </div>
 
-        {/* Row 3 */}
-        <div className="overflow-hidden">
-          <Marquee className="[--duration:50s] [--gap:1.5rem]" pauseOnHover>
+        {/* Row 3 - Medium-large */}
+        <div className="overflow-hidden" style={{ transform: "translateZ(0px)" }}>
+          <Marquee className="[--duration:50s] [--gap:1.4rem]" pauseOnHover>
             {row3.map((src, i) => (
-              <SignCard key={`r3-${i}`} src={src} index={i + 38} />
+              <SignCard key={`r3-${i}`} src={src} index={i + 38} scale={1.3} />
             ))}
           </Marquee>
         </div>
 
-        {/* Row 4 */}
-        <div className="overflow-hidden">
-          <Marquee className="[--duration:45s] [--gap:1.5rem]" reverse pauseOnHover>
+        {/* Row 4 - Largest (closest) */}
+        <div className="overflow-hidden" style={{ transform: "translateZ(100px) scale(0.9)" }}>
+          <Marquee className="[--duration:45s] [--gap:1.6rem]" reverse pauseOnHover>
             {row4.map((src, i) => (
-              <SignCard key={`r4-${i}`} src={src} index={i + 57} />
+              <SignCard key={`r4-${i}`} src={src} index={i + 57} scale={1.6} />
             ))}
           </Marquee>
         </div>
