@@ -312,41 +312,41 @@ export function PriorityCatalogue() {
 
       {/* Detail Popup */}
       {selectedTopic && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 overflow-y-auto">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2 sm:p-4 overflow-y-auto">
           <div
-            className="bg-white border-4 border-black max-w-4xl w-full max-h-[90vh] overflow-y-auto my-8"
-            style={{ boxShadow: "8px 8px 0 #000" }}
+            className="bg-white border-2 sm:border-4 border-black w-full max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto my-2 sm:my-8"
+            style={{ boxShadow: "4px 4px 0 #000" }}
           >
             {/* Header */}
-            <div className="sticky top-0 bg-red-400 border-b-4 border-black p-6 flex items-start justify-between z-10">
-              <div className="flex-1">
+            <div className="sticky top-0 bg-red-400 border-b-2 sm:border-b-4 border-black p-3 sm:p-6 flex items-start justify-between z-10">
+              <div className="flex-1 min-w-0 pr-2">
                 <div className="flex items-center gap-2 mb-2 flex-wrap">
-                  <span className="text-xs font-mono bg-white border-2 border-black px-2 py-1">
+                  <span className="text-xs font-mono bg-white border border-black sm:border-2 px-2 py-1 whitespace-nowrap">
                     {selectedTopic.topic_code}
                   </span>
                   {selectedTopic.sub_group && (
-                    <span className="text-xs font-bold bg-red-100 border-2 border-red-600 px-2 py-1">
+                    <span className="text-xs font-bold bg-red-100 border border-red-600 sm:border-2 px-2 py-1 whitespace-nowrap">
                       {selectedTopic.sub_group}
                     </span>
                   )}
                 </div>
-                <h2 className="text-2xl md:text-3xl font-black break-words">
+                <h2 className="text-lg sm:text-2xl md:text-3xl font-black break-words">
                   {lang === "en" ? selectedTopic.name_en : selectedTopic.name_km}
                 </h2>
               </div>
               <button
                 onClick={() => setSelectedTopic(null)}
-                className="ml-4 p-2 bg-white border-2 border-black hover:shadow-[2px_2px_0_#000] transition-all flex-shrink-0"
+                className="ml-2 p-1.5 sm:p-2 bg-white border border-black sm:border-2 hover:shadow-[2px_2px_0_#000] transition-all flex-shrink-0 text-lg sm:text-xl"
               >
                 ✕
               </button>
             </div>
 
             {/* Content */}
-            <div className="p-6 space-y-6">
+            <div className="p-3 sm:p-6 space-y-4 sm:space-y-6">
               {/* Intersection Diagram - 16:9 */}
               {selectedTopic.primary_image_url && (
-                <div>
+                <div className="w-full">
                   <img
                     src={selectedTopic.primary_image_url}
                     alt={lang === "en" ? selectedTopic.name_en : selectedTopic.name_km}
@@ -358,7 +358,7 @@ export function PriorityCatalogue() {
 
               {/* Description */}
               <div>
-                <p className="text-base break-words whitespace-pre-wrap">
+                <p className="text-sm sm:text-base break-words whitespace-pre-wrap">
                   {lang === "en" ? selectedTopic.description_en : selectedTopic.description_km}
                 </p>
               </div>
@@ -369,9 +369,9 @@ export function PriorityCatalogue() {
                   <button
                     type="button"
                     onClick={toggleAudio}
-                    className="bg-red-400 border-2 border-black px-4 py-2 font-bold hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2"
+                    className="bg-red-400 border-2 border-black px-3 sm:px-4 py-2 font-bold hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2 text-sm sm:text-base"
                   >
-                    {playingAudio ? <Pause size={18} /> : <Play size={18} />}
+                    {playingAudio ? <Pause size={16} className="sm:w-[18px] sm:h-[18px]" /> : <Play size={16} className="sm:w-[18px] sm:h-[18px]" />}
                     {t.playAudio}
                   </button>
                   {playingAudio && (
@@ -389,11 +389,11 @@ export function PriorityCatalogue() {
 
               {/* Law Reference */}
               {selectedTopic.law_reference && (
-                <div className="p-4 bg-amber-50 border-2 border-amber-600">
-                  <p className="text-sm font-bold text-amber-900 mb-2">
+                <div className="p-3 sm:p-4 bg-amber-50 border-2 border-amber-600">
+                  <p className="text-xs sm:text-sm font-bold text-amber-900 mb-2">
                     {t.lawReference}
                   </p>
-                  <p className="text-sm font-mono text-amber-800 break-words">
+                  <p className="text-xs sm:text-sm font-mono text-amber-800 break-words overflow-wrap-anywhere">
                     {selectedTopic.law_reference}
                   </p>
                 </div>
@@ -402,10 +402,10 @@ export function PriorityCatalogue() {
               {/* Questions Section */}
               {questions.length > 0 && (
                 <div>
-                  <h4 className="font-black text-lg mb-4">
+                  <h4 className="font-black text-base sm:text-lg mb-3 sm:mb-4">
                     {t.questions}
                   </h4>
-                  <div className="space-y-3">
+                  <div className="space-y-2 sm:space-y-3">
                     {questions.map((q, index) => (
                       <div
                         key={q.id}
@@ -414,29 +414,29 @@ export function PriorityCatalogue() {
                         {/* Question Header */}
                         <button
                           onClick={() => toggleQuestion(q.id)}
-                          className="w-full p-4 flex items-start justify-between hover:bg-gray-100 transition-all text-left"
+                          className="w-full p-3 sm:p-4 flex items-start justify-between hover:bg-gray-100 transition-all text-left"
                         >
-                          <div className="flex items-start gap-3 flex-1 min-w-0 pr-2">
-                            <span className="font-black text-sm bg-black text-white px-2 py-1 flex-shrink-0">
+                          <div className="flex items-start gap-2 sm:gap-3 flex-1 min-w-0 pr-2">
+                            <span className="font-black text-xs sm:text-sm bg-black text-white px-2 py-1 flex-shrink-0">
                               Q{index + 1}
                             </span>
-                            <p className="font-bold text-base break-words overflow-wrap-anywhere">
+                            <p className="font-bold text-sm sm:text-base break-words overflow-wrap-anywhere">
                               {lang === "en" ? q.question_en : q.question_km}
                             </p>
                           </div>
                           {expandedQuestions[q.id] ? (
-                            <ChevronUp size={20} className="flex-shrink-0" />
+                            <ChevronUp size={18} className="flex-shrink-0 sm:w-5 sm:h-5" />
                           ) : (
-                            <ChevronDown size={20} className="flex-shrink-0" />
+                            <ChevronDown size={18} className="flex-shrink-0 sm:w-5 sm:h-5" />
                           )}
                         </button>
 
                         {/* Question Details */}
                         {expandedQuestions[q.id] && (
-                          <div className="border-t-2 border-black bg-white p-4">
+                          <div className="border-t-2 border-black bg-white p-3 sm:p-4">
                             {/* Question Image */}
                             {q.image_url && (
-                              <div className="mb-4">
+                              <div className="mb-3 sm:mb-4">
                                 <img
                                   src={q.image_url}
                                   alt="Question scenario"
@@ -447,21 +447,21 @@ export function PriorityCatalogue() {
                             )}
 
                             {/* Answers */}
-                            <div className="space-y-2 mb-4">
+                            <div className="space-y-2 mb-3 sm:mb-4">
                               {q.answers.map((a, aIndex) => (
                                 <div
                                   key={a.id}
-                                  className={`p-3 border-2 ${
+                                  className={`p-2 sm:p-3 border-2 ${
                                     a.is_correct
                                       ? "bg-green-100 border-green-600"
                                       : "bg-white border-gray-300"
                                   }`}
                                 >
                                   <div className="flex items-start gap-2">
-                                    <span className="font-bold flex-shrink-0">
+                                    <span className="font-bold flex-shrink-0 text-sm sm:text-base">
                                       {String.fromCharCode(65 + aIndex)}.
                                     </span>
-                                    <span className="flex-1 break-words overflow-wrap-anywhere">
+                                    <span className="flex-1 text-sm sm:text-base break-words overflow-wrap-anywhere">
                                       {lang === "en" ? a.answer_en : a.answer_km}
                                     </span>
                                     {a.is_correct && (
@@ -476,11 +476,11 @@ export function PriorityCatalogue() {
 
                             {/* Hint */}
                             {(q.hint_en || q.hint_km) && (
-                              <div className="p-3 bg-blue-50 border-2 border-blue-400">
-                                <p className="text-sm font-bold text-blue-900 mb-1">
+                              <div className="p-2 sm:p-3 bg-blue-50 border-2 border-blue-400">
+                                <p className="text-xs sm:text-sm font-bold text-blue-900 mb-1">
                                   💡 Hint
                                 </p>
-                                <p className="text-sm text-blue-800 break-words overflow-wrap-anywhere">
+                                <p className="text-xs sm:text-sm text-blue-800 break-words overflow-wrap-anywhere">
                                   {lang === "en" ? q.hint_en : q.hint_km}
                                 </p>
                               </div>
@@ -495,10 +495,10 @@ export function PriorityCatalogue() {
             </div>
 
             {/* Footer */}
-            <div className="border-t-4 border-black p-6 bg-gray-50">
+            <div className="border-t-2 sm:border-t-4 border-black p-3 sm:p-6 bg-gray-50">
               <button
                 onClick={() => setSelectedTopic(null)}
-                className="w-full bg-white border-2 border-black px-6 py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all"
+                className="w-full bg-white border-2 border-black px-4 sm:px-6 py-2 sm:py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all text-sm sm:text-base"
               >
                 {t.close}
               </button>
