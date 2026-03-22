@@ -51,6 +51,48 @@ export async function listFiles(folderId?: string): Promise<GoogleDriveFile[]> {
 }
 
 /**
+ * List all files recursively from a folder and its subfolders
+ */
+export async function listFilesRecursive(folderId?: string): Promise<GoogleDriveFile[]> {
+  try {
+    const drive = getDriveClient();
+    const allFiles: GoogleDriveFile[] = [];
+    
+    // Get files in current folder
+    const query = folderId 
+      ? `'${folderId}' in parents and trashed=false`
+      : 'trashed=false';
+
+    const response = await drive.files.list({
+      q: query,
+      fields: 'files(id, name, mimeType, size, thumbnailLink, webViewLink, webContentLink, createdTime, modifiedTime)',
+      orderBy: 'name',
+      pageSize: 1000,
+    });
+
+    const items = (response.data.files || []) as GoogleDriveFile[];
+    
+    // Separate folders and files
+    const folders = items.filter(item => item.mimeType === 'application/vnd.google-apps.folder');
+    const files = items.filter(item => item.mimeType !== 'application/vnd.google-apps.folder');
+    
+    // Add files from current folder
+    allFiles.push(...files);
+    
+    // Recursively get files from subfolders
+    for (const folder of folders) {
+      const subFiles = await listFilesRecursive(folder.id);
+      allFiles.push(...subFiles);
+    }
+    
+    return allFiles;
+  } catch (error) {
+    console.error('Error listing files recursively:', error);
+    throw new Error('Failed to list files recursively from Google Drive');
+  }
+}
+
+/**
  * Get file metadata by ID
  */
 export async function getFileMetadata(fileId: string): Promise<GoogleDriveFile> {
