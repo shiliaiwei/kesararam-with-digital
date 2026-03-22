@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { listFilesRecursive } from '@/lib/google-drive';
+import { listFiles } from '@/lib/google-drive';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -34,11 +34,11 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const folderId = searchParams.get('folderId') || process.env.GOOGLE_DRIVE_MEDIA_FOLDER_ID;
 
-    console.log('Fetching files recursively from folder:', folderId || 'root');
+    console.log('Fetching files from folder:', folderId || 'root');
 
-    const files = await listFilesRecursive(folderId || undefined);
+    const files = await listFiles(folderId || undefined);
 
-    console.log('Successfully fetched', files.length, 'files recursively');
+    console.log('Successfully fetched', files.length, 'files');
 
     return NextResponse.json({ 
       success: true,

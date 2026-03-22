@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { HardDrive, Search, RefreshCw, Folder, File, Image, Music, FileText, Video, Download, ExternalLink } from "lucide-react";
-import { formatFileSize, getViewUrl, getDownloadUrl, isImage, isAudio, isPDF, isVideo } from "@/lib/google-drive-client";
+import { HardDrive, Search, RefreshCw, Folder, File, Image, Music, FileText, Video, Download, ExternalLink, ChevronRight, Home, Copy, X, Play } from "lucide-react";
+import { formatFileSize, getViewUrl, getDownloadUrl, isImage, isAudio, isPDF, isVideo, getEmbedUrl } from "@/lib/google-drive-client";
 
 interface GoogleDriveFile {
   id: string;
@@ -15,11 +15,20 @@ interface GoogleDriveFile {
   modifiedTime?: string;
 }
 
-export default function GoogleDriveDashboard() {
+interface BreadcrumbItem {
+  id: string;
+  name: string;
+}
+
+export default function StaffGoogleDriveDashboard() {
   const [files, setFiles] = useState<GoogleDriveFile[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+  const [currentFolderId, setCurrentFolderId] = useState<string | null>(null);
+  const [breadcrumbs, setBreadcrumbs] = useState<BreadcrumbItem[]>([]);
   const [filterType, setFilterType] = useState<"all" | "image" | "audio" | "pdf" | "video">("all");
+  const [previewFile, setPreviewFile] = useState<GoogleDriveFile | null>(null);
+  const [copySuccess, setCopySuccess] = useState<string | null>(null);
   const [stats, setStats] = useState({
     total: 0,
     images: 0,
@@ -30,17 +39,21 @@ export default function GoogleDriveDashboard() {
   });
 
   useEffect(() => {
-    fetchFiles();
-  }, []);
+    fetchFiles(currentFolderId);
+  }, [currentFolderId]);
 
   useEffect(() => {
     calculateStats();
   }, [files]);
 
-  const fetchFiles = async () => {
+  const fetchFiles = async (folderId: string | null) => {
     setLoading(true);
     try {
-      const response = await fetch('/api/media/google-drive/list');
+      const url = folderId 
+        ? `/api/media/google-drive/list?folderId=${folderId}`
+        : '/api/media/google-drive/list';
+      
+      const response = await fetch(url);
       const data = await response.json();
       if (data.success) {
         setFiles(data.files);
@@ -56,9 +69,49 @@ export default function GoogleDriveDashboard() {
     }
   };
 
+  const handleFolderClick = (folder: GoogleDriveFile) => {
+    setCurrentFolderId(folder.id);
+    setBreadcrumbs([...breadcrumbs, { id: folder.id, name: folder.name }]);
+  };
+
+  const handleBreadcrumbClick = (index: number) => {
+    if (index === -1) {
+      // Go to root
+      setCurrentFolderId(null);
+      setBreadcrumbs([]);
+    } else {
+      const newBreadcrumbs = breadcrumbs.slice(0, index + 1);
+      setBreadcrumbs(newBreadcrumbs);
+      setCurrentFolderId(newBreadcrumbs[index].id);
+    }
+  };
+
+  const handleCopyLink = (file: GoogleDriveFile, type: 'view' | 'download' | 'embed') => {
+    let url = '';
+    switch (type) {
+      case 'view':
+        url = getViewUrl(file.id);
+        break;
+      case 'download':
+        url = getDownloadUrl(file.id);
+        break;
+      case 'embed':
+        url = getEmbedUrl(file.id);
+        break;
+    }
+    
+    navigator.clipboard.writeText(url);
+    setCopySuccess(file.id + type);
+    setTimeout(() => setCopySuccess(null), 2000);
+  };
+
+  const handlePreview = (file: GoogleDriveFile) => {
+    setPreviewFile(file);
+  };
+
   const handleSearch = async () => {
     if (!search.trim()) {
-      fetchFiles();
+      fetchFiles(currentFolderId);
       return;
     }
 
@@ -112,8 +165,11 @@ export default function GoogleDriveDashboard() {
   };
 
   const filteredFiles = getFilteredFiles();
+  const folders = filteredFiles.filter(f => f.mimeType === 'application/vnd.google-apps.folder');
+  const regularFiles = filteredFiles.filter(f => f.mimeType !== 'application/vnd.google-apps.folder');
 
   return (
+    <>
     <div className="min-h-screen bg-white p-6">
       {/* Header */}
       <div className="mb-8">
@@ -121,13 +177,37 @@ export default function GoogleDriveDashboard() {
           <HardDrive size={32} className="text-green-600" />
           <h1 className="text-3xl font-black">Google Drive Resources</h1>
         </div>
-        <p className="text-zinc-600">Manage media files stored in Google Drive</p>
+        <p className="text-zinc-600">Browse and manage media files by category</p>
+      </div>
+
+      {/* Breadcrumb Navigation */}
+      <div className="bg-white border-2 border-black p-3 mb-6" style={{ boxShadow: "4px 4px 0 #000" }}>
+        <div className="flex items-center gap-2 flex-wrap">
+          <button
+            onClick={() => handleBreadcrumbClick(-1)}
+            className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 border border-black hover:bg-yellow-100 transition-all font-bold text-sm"
+          >
+            <Home size={14} />
+            Root
+          </button>
+          {breadcrumbs.map((crumb, index) => (
+            <div key={crumb.id} className="flex items-center gap-2">
+              <ChevronRight size={16} className="text-zinc-400" />
+              <button
+                onClick={() => handleBreadcrumbClick(index)}
+                className="px-3 py-1 bg-gray-100 border border-black hover:bg-yellow-100 transition-all font-bold text-sm"
+              >
+                {crumb.name}
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 md:grid-cols-6 gap-4 mb-6">
         <div className="bg-white border-2 border-black p-4" style={{ boxShadow: "4px 4px 0 #000" }}>
-          <p className="text-sm font-bold text-zinc-600 mb-1">Total Files</p>
+          <p className="text-sm font-bold text-zinc-600 mb-1">Total Items</p>
           <p className="text-2xl font-black">{stats.total}</p>
         </div>
         <div className="bg-blue-50 border-2 border-blue-400 p-4" style={{ boxShadow: "4px 4px 0 #000" }}>
@@ -178,7 +258,7 @@ export default function GoogleDriveDashboard() {
 
           {/* Refresh */}
           <button
-            onClick={fetchFiles}
+            onClick={() => fetchFiles(currentFolderId)}
             disabled={loading}
             className="px-6 py-2 bg-green-400 border-2 border-black font-bold hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2 disabled:opacity-50"
           >
@@ -237,49 +317,106 @@ export default function GoogleDriveDashboard() {
                   </td>
                 </tr>
               ) : (
-                filteredFiles.map((file) => (
-                  <tr key={file.id} className="border-b border-zinc-200 hover:bg-zinc-50">
-                    <td className="px-4 py-3">
-                      {getFileIcon(file.mimeType)}
-                    </td>
-                    <td className="px-4 py-3">
-                      <div className="flex items-center gap-2">
-                        {file.thumbnailLink && (
-                          <img src={file.thumbnailLink} alt="" className="w-10 h-10 object-cover border border-black" />
-                        )}
-                        <span className="font-medium">{file.name}</span>
-                      </div>
-                    </td>
-                    <td className="px-4 py-3 font-mono text-sm">
-                      {file.size ? formatFileSize(file.size) : '-'}
-                    </td>
-                    <td className="px-4 py-3 text-sm text-zinc-600">
-                      {file.modifiedTime ? new Date(file.modifiedTime).toLocaleDateString() : '-'}
-                    </td>
-                    <td className="px-4 py-3">
-                      <div className="flex items-center justify-end gap-2">
-                        <a
-                          href={getViewUrl(file.id)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 bg-blue-100 border border-black hover:shadow-[2px_2px_0_#000] transition-all"
-                          title="View"
-                        >
-                          <ExternalLink size={16} />
-                        </a>
-                        <a
-                          href={getDownloadUrl(file.id)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="p-2 bg-green-100 border border-black hover:shadow-[2px_2px_0_#000] transition-all"
-                          title="Download"
-                        >
-                          <Download size={16} />
-                        </a>
-                      </div>
-                    </td>
-                  </tr>
-                ))
+                <>
+                  {/* Folders First */}
+                  {folders.map((folder) => (
+                    <tr 
+                      key={folder.id} 
+                      className="border-b border-zinc-200 hover:bg-yellow-50 cursor-pointer"
+                      onClick={() => handleFolderClick(folder)}
+                    >
+                      <td className="px-4 py-3">
+                        <Folder size={20} className="text-yellow-600" />
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-2">
+                          <span className="font-bold">{folder.name}</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3 font-mono text-sm text-zinc-400">
+                        Folder
+                      </td>
+                      <td className="px-4 py-3 text-sm text-zinc-600">
+                        {folder.modifiedTime ? new Date(folder.modifiedTime).toLocaleDateString() : '-'}
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center justify-end gap-2">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleFolderClick(folder);
+                            }}
+                            className="p-2 bg-yellow-100 border border-black hover:shadow-[2px_2px_0_#000] transition-all"
+                            title="Open Folder"
+                          >
+                            <ChevronRight size={16} />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                  
+                  {/* Files */}
+                  {regularFiles.map((file) => (
+                    <tr key={file.id} className="border-b border-zinc-200 hover:bg-zinc-50">
+                      <td className="px-4 py-3">
+                        {getFileIcon(file.mimeType)}
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-2">
+                          {file.thumbnailLink && (
+                            <img src={file.thumbnailLink} alt="" className="w-10 h-10 object-cover border border-black" />
+                          )}
+                          <span className="font-medium">{file.name}</span>
+                        </div>
+                      </td>
+                      <td className="px-4 py-3 font-mono text-sm">
+                        {file.size ? formatFileSize(file.size) : '-'}
+                      </td>
+                      <td className="px-4 py-3 text-sm text-zinc-600">
+                        {file.modifiedTime ? new Date(file.modifiedTime).toLocaleDateString() : '-'}
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center justify-end gap-2">
+                          <button
+                            onClick={() => handlePreview(file)}
+                            className="p-2 bg-purple-100 border border-black hover:shadow-[2px_2px_0_#000] transition-all"
+                            title="Preview"
+                          >
+                            <Play size={16} />
+                          </button>
+                          <button
+                            onClick={() => handleCopyLink(file, 'view')}
+                            className={`p-2 border border-black hover:shadow-[2px_2px_0_#000] transition-all ${
+                              copySuccess === file.id + 'view' ? 'bg-green-200' : 'bg-yellow-100'
+                            }`}
+                            title="Copy View Link"
+                          >
+                            <Copy size={16} />
+                          </button>
+                          <a
+                            href={getViewUrl(file.id)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 bg-blue-100 border border-black hover:shadow-[2px_2px_0_#000] transition-all"
+                            title="Open in New Tab"
+                          >
+                            <ExternalLink size={16} />
+                          </a>
+                          <a
+                            href={getDownloadUrl(file.id)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 bg-green-100 border border-black hover:shadow-[2px_2px_0_#000] transition-all"
+                            title="Download"
+                          >
+                            <Download size={16} />
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </>
               )}
             </tbody>
           </table>
@@ -288,14 +425,138 @@ export default function GoogleDriveDashboard() {
 
       {/* Info Box */}
       <div className="mt-6 bg-blue-50 border-2 border-blue-400 p-4">
-        <p className="text-sm font-bold text-blue-900 mb-2">📝 How to Add Files</p>
+        <p className="text-sm font-bold text-blue-900 mb-2">📝 How to Use</p>
         <ol className="text-sm text-blue-800 space-y-1 list-decimal list-inside">
-          <li>Upload files to your Google Drive folder</li>
-          <li>Make sure folder is shared with: <code className="bg-blue-100 px-1">kwd-900@kwd2026.iam.gserviceaccount.com</code></li>
-          <li>Click "Refresh" button above to see new files</li>
-          <li>Use files in content creation by selecting "Drive" option</li>
+          <li>Click on folders to browse their contents</li>
+          <li>Use breadcrumb navigation to go back</li>
+          <li>Click Preview button to view/play files directly</li>
+          <li>Click Copy button to copy file links for use in content</li>
         </ol>
       </div>
     </div>
+
+    {/* Preview Modal */}
+    {previewFile && (
+      <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" onClick={() => setPreviewFile(null)}>
+        <div className="bg-white border-4 border-black max-w-5xl w-full max-h-[90vh] overflow-auto" style={{ boxShadow: "8px 8px 0 #000" }} onClick={(e) => e.stopPropagation()}>
+          {/* Modal Header */}
+          <div className="bg-zinc-100 border-b-2 border-black p-4 flex items-center justify-between sticky top-0 z-10">
+            <div className="flex items-center gap-3">
+              {getFileIcon(previewFile.mimeType)}
+              <div>
+                <h3 className="font-black text-lg">{previewFile.name}</h3>
+                <p className="text-sm text-zinc-600">
+                  {previewFile.size && formatFileSize(previewFile.size)}
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => setPreviewFile(null)}
+              className="p-2 bg-red-400 border-2 border-black hover:shadow-[2px_2px_0_#000] transition-all"
+            >
+              <X size={20} />
+            </button>
+          </div>
+
+          {/* Modal Content */}
+          <div className="p-6">
+            {/* Preview Area */}
+            <div className="mb-6 bg-zinc-50 border-2 border-black p-4 min-h-[400px] flex items-center justify-center">
+              {isImage(previewFile.mimeType) && (
+                <img 
+                  src={getViewUrl(previewFile.id)} 
+                  alt={previewFile.name}
+                  className="max-w-full max-h-[600px] object-contain border-2 border-black"
+                />
+              )}
+              
+              {isAudio(previewFile.mimeType) && (
+                <div className="w-full max-w-2xl">
+                  <div className="mb-4 text-center">
+                    <Music size={64} className="mx-auto text-purple-600 mb-2" />
+                    <p className="font-bold">{previewFile.name}</p>
+                  </div>
+                  <audio 
+                    controls 
+                    className="w-full"
+                    src={getViewUrl(previewFile.id)}
+                  >
+                    Your browser does not support audio playback.
+                  </audio>
+                </div>
+              )}
+              
+              {isVideo(previewFile.mimeType) && (
+                <video 
+                  controls 
+                  className="max-w-full max-h-[600px] border-2 border-black"
+                  src={getViewUrl(previewFile.id)}
+                >
+                  Your browser does not support video playback.
+                </video>
+              )}
+              
+              {isPDF(previewFile.mimeType) && (
+                <iframe
+                  src={getEmbedUrl(previewFile.id)}
+                  className="w-full h-[600px] border-2 border-black"
+                  title={previewFile.name}
+                />
+              )}
+            </div>
+
+            {/* Action Buttons */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <button
+                onClick={() => handleCopyLink(previewFile, 'view')}
+                className={`p-3 border-2 border-black font-bold hover:shadow-[2px_2px_0_#000] transition-all flex items-center justify-center gap-2 ${
+                  copySuccess === previewFile.id + 'view' ? 'bg-green-200' : 'bg-blue-100'
+                }`}
+              >
+                <Copy size={18} />
+                {copySuccess === previewFile.id + 'view' ? 'Copied!' : 'Copy View Link'}
+              </button>
+              
+              <button
+                onClick={() => handleCopyLink(previewFile, 'download')}
+                className={`p-3 border-2 border-black font-bold hover:shadow-[2px_2px_0_#000] transition-all flex items-center justify-center gap-2 ${
+                  copySuccess === previewFile.id + 'download' ? 'bg-green-200' : 'bg-green-100'
+                }`}
+              >
+                <Copy size={18} />
+                {copySuccess === previewFile.id + 'download' ? 'Copied!' : 'Copy Download Link'}
+              </button>
+              
+              <button
+                onClick={() => handleCopyLink(previewFile, 'embed')}
+                className={`p-3 border-2 border-black font-bold hover:shadow-[2px_2px_0_#000] transition-all flex items-center justify-center gap-2 ${
+                  copySuccess === previewFile.id + 'embed' ? 'bg-green-200' : 'bg-yellow-100'
+                }`}
+              >
+                <Copy size={18} />
+                {copySuccess === previewFile.id + 'embed' ? 'Copied!' : 'Copy Embed Link'}
+              </button>
+            </div>
+
+            {/* Link Display */}
+            <div className="mt-4 space-y-2">
+              <div className="bg-zinc-50 border-2 border-black p-3">
+                <p className="text-xs font-bold text-zinc-600 mb-1">View URL:</p>
+                <code className="text-xs break-all">{getViewUrl(previewFile.id)}</code>
+              </div>
+              <div className="bg-zinc-50 border-2 border-black p-3">
+                <p className="text-xs font-bold text-zinc-600 mb-1">Download URL:</p>
+                <code className="text-xs break-all">{getDownloadUrl(previewFile.id)}</code>
+              </div>
+              <div className="bg-zinc-50 border-2 border-black p-3">
+                <p className="text-xs font-bold text-zinc-600 mb-1">Embed URL:</p>
+                <code className="text-xs break-all">{getEmbedUrl(previewFile.id)}</code>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   );
 }

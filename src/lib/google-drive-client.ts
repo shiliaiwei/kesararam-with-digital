@@ -4,6 +4,13 @@
  */
 
 /**
+ * Get embed URL for PDFs, videos
+ */
+export function getEmbedUrl(fileId: string): string {
+  return `https://drive.google.com/file/d/${fileId}/preview`;
+}
+
+/**
  * Get direct download URL for a file
  */
 export function getDownloadUrl(fileId: string): string {
@@ -15,13 +22,6 @@ export function getDownloadUrl(fileId: string): string {
  */
 export function getViewUrl(fileId: string): string {
   return `https://drive.google.com/uc?export=view&id=${fileId}`;
-}
-
-/**
- * Get embed URL for PDFs, videos
- */
-export function getEmbedUrl(fileId: string): string {
-  return `https://drive.google.com/file/d/${fileId}/preview`;
 }
 
 /**
