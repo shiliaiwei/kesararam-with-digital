@@ -17,8 +17,6 @@ import {
   ChevronDown,
   ChevronRight,
   AlertCircle,
-  HardDrive,
-  Image as ImageIcon,
 } from "lucide-react";
 import { logoutAction } from "@/app/actions/auth";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
@@ -37,8 +35,6 @@ const adminNav: NavItem[] = [
   { label: "Users", href: "/admin/users", icon: Users, color: "#3b82f6" },
   { label: "Content", href: "/admin/content", icon: BookOpen, color: "#22c55e" },
   { label: "Media", href: "/admin/media", icon: Images, color: "#a855f7" },
-  { label: "Google Photos", href: "/admin/google-photos", icon: ImageIcon, color: "#3b82f6" },
-  { label: "Google Drive", href: "/admin/google-drive", icon: HardDrive, color: "#10b981" },
   { label: "Logs", href: "/admin/logs", icon: ScrollText, color: "#f97316" },
 ];
 
@@ -67,8 +63,6 @@ const staffNav: NavItem[] = [
     ],
   },
   { label: "Media", href: "/staff/media", icon: Images, color: "#a855f7" },
-  { label: "Google Photos", href: "/staff/google-photos", icon: ImageIcon, color: "#3b82f6" },
-  { label: "Google Drive", href: "/staff/google-drive", icon: HardDrive, color: "#10b981" },
   { label: "Classes", href: "/staff/classes", icon: School, color: "#3b82f6" },
 ];
 

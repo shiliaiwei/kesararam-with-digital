@@ -37,31 +37,50 @@ export interface GooglePhotosItem {
  * Make authenticated request to Google Photos API
  */
 async function makePhotosRequest(endpoint: string, method: string = 'GET', body?: any) {
-  const auth = getPhotosClient();
-  const client = await auth.getClient();
-  const accessToken = await client.getAccessToken();
-  
-  const url = `https://photoslibrary.googleapis.com/v1/${endpoint}`;
-  const options: RequestInit = {
-    method,
-    headers: {
-      'Authorization': `Bearer ${accessToken.token}`,
-      'Content-Type': 'application/json',
-    },
-  };
-  
-  if (body) {
-    options.body = JSON.stringify(body);
+  try {
+    const auth = getPhotosClient();
+    const client = await auth.getClient();
+    const accessToken = await client.getAccessToken();
+    
+    if (!accessToken.token) {
+      throw new Error('Failed to get access token from service account');
+    }
+    
+    const url = `https://photoslibrary.googleapis.com/v1/${endpoint}`;
+    const options: RequestInit = {
+      method,
+      headers: {
+        'Authorization': `Bearer ${accessToken.token}`,
+        'Content-Type': 'application/json',
+      },
+    };
+    
+    if (body) {
+      options.body = JSON.stringify(body);
+    }
+    
+    console.log('Making request to:', url);
+    const response = await fetch(url, options);
+    
+    if (!response.ok) {
+      const errorText = await response.text();
+      let errorMessage = `Google Photos API error: ${response.status}`;
+      
+      try {
+        const errorJson = JSON.parse(errorText);
+        errorMessage += ` - ${errorJson.error?.message || errorText}`;
+      } catch {
+        errorMessage += ` - ${errorText}`;
+      }
+      
+      throw new Error(errorMessage);
+    }
+    
+    return response.json();
+  } catch (error) {
+    console.error('Google Photos API request failed:', error);
+    throw error;
   }
-  
-  const response = await fetch(url, options);
-  
-  if (!response.ok) {
-    const error = await response.text();
-    throw new Error(`Google Photos API error: ${response.status} - ${error}`);
-  }
-  
-  return response.json();
 }
 
 /**

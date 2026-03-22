@@ -1,16 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { Image as ImageIcon, Music, Video, Link as LinkIcon, Cloud, HardDrive } from "lucide-react";
+import { Image as ImageIcon, Music, Video, Link as LinkIcon, Cloud } from "lucide-react";
 import { CloudinaryBrowser } from "./cloudinary-browser";
-import { GooglePhotosPicker } from "./google-photos-picker";
 
 interface MediaSelectorProps {
   type: "image" | "audio" | "video";
   label: string;
   value: string;
-  source: "url" | "cloudinary" | "google-photos";
-  onChange: (url: string, source: "url" | "cloudinary" | "google-photos") => void;
+  source: "url" | "cloudinary";
+  onChange: (url: string, source: "url" | "cloudinary") => void;
   placeholder?: string;
 }
 
@@ -23,8 +22,7 @@ export function MediaSelector({
   placeholder,
 }: MediaSelectorProps) {
   const [showBrowser, setShowBrowser] = useState(false);
-  const [showGooglePhotos, setShowGooglePhotos] = useState(false);
-  const [inputMode, setInputMode] = useState<"url" | "cloudinary" | "google-photos">(source);
+  const [inputMode, setInputMode] = useState<"url" | "cloudinary">(source);
 
   const getIcon = () => {
     switch (type) {
@@ -49,11 +47,6 @@ export function MediaSelector({
     setInputMode("cloudinary");
   };
 
-  const handleGooglePhotosSelect = (mediaId: string, url: string, fileName: string) => {
-    onChange(url, "google-photos");
-    setInputMode("google-photos");
-  };
-
   return (
     <div>
       <label className="block font-bold mb-2 flex items-center gap-2">
@@ -62,7 +55,7 @@ export function MediaSelector({
       </label>
 
       {/* Mode Selector */}
-      <div className="grid grid-cols-3 gap-2 mb-2">
+      <div className="grid grid-cols-2 gap-2 mb-2">
         <button
           type="button"
           onClick={() => setInputMode("url")}
@@ -89,21 +82,6 @@ export function MediaSelector({
         >
           <Cloud size={14} />
           Cloudinary
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            setInputMode("google-photos");
-            setShowGooglePhotos(true);
-          }}
-          className={`px-3 py-2 border-2 border-black font-bold transition-all inline-flex items-center justify-center gap-1.5 text-sm ${
-            inputMode === "google-photos"
-              ? "bg-green-400 shadow-[2px_2px_0_#000]"
-              : "bg-white hover:shadow-[2px_2px_0_#000]"
-          }`}
-        >
-          <ImageIcon size={14} />
-          Photos
         </button>
       </div>
 
@@ -136,48 +114,6 @@ export function MediaSelector({
         </div>
       )}
 
-      {/* Google Photos Selection */}
-      {inputMode === "google-photos" && (
-        <div className="space-y-2">
-          <button
-            type="button"
-            onClick={() => setShowGooglePhotos(true)}
-            className="w-full px-4 py-2 border-2 border-black font-bold bg-green-100 hover:shadow-[2px_2px_0_#000] transition-all"
-          >
-            {value ? "Change Selection" : "Browse Google Photos"}
-          </button>
-          {value && (
-            <div className="p-2 border-2 border-black bg-gray-50">
-              <p className="text-sm font-medium truncate">{value}</p>
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Preview */}
-      {value && (
-        <div className="mt-2">
-          {type === "image" && (
-            <img
-              src={value}
-              alt="Preview"
-              className="max-w-xs border-2 border-black"
-              style={{ boxShadow: "4px 4px 0 #000" }}
-            />
-          )}
-          {type === "audio" && (
-            <audio controls className="w-full max-w-md mt-2">
-              <source src={value} />
-            </audio>
-          )}
-          {type === "video" && (
-            <video controls className="max-w-md border-2 border-black mt-2">
-              <source src={value} />
-            </video>
-          )}
-        </div>
-      )}
-
       {/* Cloudinary Browser Modal */}
       {showBrowser && (
         <CloudinaryBrowser
@@ -185,15 +121,6 @@ export function MediaSelector({
           onSelect={handleCloudinarySelect}
           onClose={() => setShowBrowser(false)}
           currentUrl={value}
-        />
-      )}
-
-      {/* Google Photos Picker Modal */}
-      {showGooglePhotos && (
-        <GooglePhotosPicker
-          fileType={type === 'image' ? 'image' : type === 'video' ? 'video' : 'all'}
-          onSelect={handleGooglePhotosSelect}
-          onClose={() => setShowGooglePhotos(false)}
         />
       )}
     </div>

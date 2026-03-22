@@ -74,17 +74,37 @@ export default function AdminGooglePhotosDashboard() {
   const fetchAlbums = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/media/google-photos/list?type=albums');
+      // Try OAuth endpoint first
+      const response = await fetch('/api/media/google-photos-oauth/list?type=albums');
       const data = await response.json();
+      
+      if (data.needsAuth) {
+        // User needs to authenticate
+        setAlbums([]);
+        alert('Please sign in with Google to access your photos');
+        return;
+      }
+      
       if (data.success) {
         setAlbums(data.albums);
       } else {
         console.error('API Error:', data);
-        alert(`Error: ${data.message || data.error}`);
+        
+        // Show user-friendly error message
+        let errorMsg = 'Failed to load albums. ';
+        if (data.message?.includes('not enabled')) {
+          errorMsg += 'Please enable Google Photos Library API in Google Cloud Console.';
+        } else if (data.message?.includes('missing')) {
+          errorMsg += 'Environment variables are not configured.';
+        } else {
+          errorMsg += data.message || data.error || 'Unknown error';
+        }
+        
+        alert(errorMsg);
       }
     } catch (error) {
       console.error('Error fetching albums:', error);
-      alert('Failed to connect to Google Photos API');
+      alert('Failed to connect to Google Photos API. Check console for details.');
     } finally {
       setLoading(false);
     }
@@ -214,22 +234,33 @@ export default function AdminGooglePhotosDashboard() {
 
       {/* Breadcrumb Navigation */}
       <div className="bg-white border-2 border-black p-3 mb-6" style={{ boxShadow: "4px 4px 0 #000" }}>
-        <div className="flex items-center gap-2 flex-wrap">
-          <button
-            onClick={handleBreadcrumbClick}
-            className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 border border-black hover:bg-yellow-100 transition-all font-bold text-sm"
+        <div className="flex items-center justify-between flex-wrap gap-3">
+          <div className="flex items-center gap-2 flex-wrap">
+            <button
+              onClick={handleBreadcrumbClick}
+              className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 border border-black hover:bg-yellow-100 transition-all font-bold text-sm"
+            >
+              <Home size={14} />
+              All Albums
+            </button>
+            {breadcrumbs.map((crumb) => (
+              <div key={crumb.id} className="flex items-center gap-2">
+                <ChevronRight size={16} className="text-zinc-400" />
+                <span className="px-3 py-1 bg-yellow-100 border border-black font-bold text-sm">
+                  {crumb.name}
+                </span>
+              </div>
+            ))}
+          </div>
+          
+          {/* Sign in with Google Button */}
+          <a
+            href="/api/auth/google"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white border-2 border-black font-bold hover:shadow-[2px_2px_0_#000] transition-all"
           >
-            <Home size={14} />
-            All Albums
-          </button>
-          {breadcrumbs.map((crumb) => (
-            <div key={crumb.id} className="flex items-center gap-2">
-              <ChevronRight size={16} className="text-zinc-400" />
-              <span className="px-3 py-1 bg-yellow-100 border border-black font-bold text-sm">
-                {crumb.name}
-              </span>
-            </div>
-          ))}
+            <ImageIcon size={16} />
+            Sign in with Google
+          </a>
         </div>
       </div>
 
