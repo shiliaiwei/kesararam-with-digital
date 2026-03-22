@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { HardDrive, Search, RefreshCw, Folder, File, Image, Music, FileText, Video, Download, ExternalLink } from "lucide-react";
-import { formatFileSize, getViewUrl, getDownloadUrl, isImage, isAudio, isPDF, isVideo } from "@/lib/google-drive";
+import { formatFileSize, getViewUrl, getDownloadUrl, isImage, isAudio, isPDF, isVideo } from "@/lib/google-drive-client";
 
 interface GoogleDriveFile {
   id: string;
