@@ -6,10 +6,39 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
   try {
+    // Check if environment variables are set
+    if (!process.env.GOOGLE_DRIVE_SERVICE_ACCOUNT_EMAIL) {
+      console.error('Missing GOOGLE_DRIVE_SERVICE_ACCOUNT_EMAIL');
+      return NextResponse.json(
+        { 
+          success: false,
+          error: 'Google Drive not configured',
+          message: 'Service account email is missing'
+        },
+        { status: 500 }
+      );
+    }
+
+    if (!process.env.GOOGLE_DRIVE_PRIVATE_KEY) {
+      console.error('Missing GOOGLE_DRIVE_PRIVATE_KEY');
+      return NextResponse.json(
+        { 
+          success: false,
+          error: 'Google Drive not configured',
+          message: 'Private key is missing'
+        },
+        { status: 500 }
+      );
+    }
+
     const { searchParams } = new URL(request.url);
     const folderId = searchParams.get('folderId') || process.env.GOOGLE_DRIVE_MEDIA_FOLDER_ID;
 
+    console.log('Fetching files from folder:', folderId || 'root');
+
     const files = await listFiles(folderId || undefined);
+
+    console.log('Successfully fetched', files.length, 'files');
 
     return NextResponse.json({ 
       success: true,
@@ -22,7 +51,8 @@ export async function GET(request: Request) {
       { 
         success: false,
         error: 'Failed to list files from Google Drive',
-        message: error instanceof Error ? error.message : 'Unknown error'
+        message: error instanceof Error ? error.message : 'Unknown error',
+        details: error instanceof Error ? error.stack : undefined
       },
       { status: 500 }
     );

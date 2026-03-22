@@ -44,9 +44,13 @@ export default function GoogleDriveDashboard() {
       const data = await response.json();
       if (data.success) {
         setFiles(data.files);
+      } else {
+        console.error('API Error:', data);
+        alert(`Error: ${data.message || data.error}`);
       }
     } catch (error) {
       console.error('Error fetching files:', error);
+      alert('Failed to connect to Google Drive API');
     } finally {
       setLoading(false);
     }
