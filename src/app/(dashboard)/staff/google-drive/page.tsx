@@ -20,6 +20,16 @@ interface BreadcrumbItem {
   name: string;
 }
 
+interface FolderStats {
+  total: number;
+  images: number;
+  audio: number;
+  pdfs: number;
+  videos: number;
+  totalSize: number;
+  fileTypes: Record<string, number>;
+}
+
 export default function StaffGoogleDriveDashboard() {
   const [files, setFiles] = useState<GoogleDriveFile[]>([]);
   const [loading, setLoading] = useState(true);
@@ -30,6 +40,8 @@ export default function StaffGoogleDriveDashboard() {
   const [previewFile, setPreviewFile] = useState<GoogleDriveFile | null>(null);
   const [copySuccess, setCopySuccess] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<GoogleDriveFile | null>(null);
+  const [folderStats, setFolderStats] = useState<Record<string, FolderStats>>({});
+  const [loadingStats, setLoadingStats] = useState<Record<string, boolean>>({});
   const [stats, setStats] = useState({
     total: 0,
     images: 0,
@@ -46,6 +58,32 @@ export default function StaffGoogleDriveDashboard() {
   useEffect(() => {
     calculateStats();
   }, [files]);
+
+  useEffect(() => {
+    // Fetch stats for all folders when at root level
+    if (!currentFolderId && folders.length > 0) {
+      folders.forEach(folder => {
+        if (!folderStats[folder.id] && !loadingStats[folder.id]) {
+          fetchFolderStats(folder.id);
+        }
+      });
+    }
+  }, [files, currentFolderId]);
+
+  const fetchFolderStats = async (folderId: string) => {
+    setLoadingStats(prev => ({ ...prev, [folderId]: true }));
+    try {
+      const response = await fetch(`/api/media/google-drive/folder-stats?folderId=${folderId}`);
+      const data = await response.json();
+      if (data.success) {
+        setFolderStats(prev => ({ ...prev, [folderId]: data.stats }));
+      }
+    } catch (error) {
+      console.error('Error fetching folder stats:', error);
+    } finally {
+      setLoadingStats(prev => ({ ...prev, [folderId]: false }));
+    }
+  };
 
   const fetchFiles = async (folderId: string | null) => {
     setLoading(true);
@@ -209,17 +247,78 @@ export default function StaffGoogleDriveDashboard() {
             Browse by Category
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {folders.map((folder) => (
-              <button
-                key={folder.id}
-                onClick={() => handleFolderClick(folder)}
-                className="bg-gradient-to-br from-yellow-50 to-yellow-100 border-2 border-black p-6 hover:shadow-[6px_6px_0_#000] transition-all text-left group"
-              >
-                <Folder size={56} className="text-yellow-600 mb-3 group-hover:scale-110 transition-transform" />
-                <h3 className="font-black text-xl mb-1">{folder.name}</h3>
-                <p className="text-sm text-zinc-600">Click to browse files</p>
-              </button>
-            ))}
+            {folders.map((folder) => {
+              const stats = folderStats[folder.id];
+              const loading = loadingStats[folder.id];
+              const topFileTypes = stats ? Object.entries(stats.fileTypes)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 3)
+                .map(([ext, count]) => `${ext.toUpperCase()} (${count})`)
+                .join(', ') : '';
+
+              return (
+                <button
+                  key={folder.id}
+                  onClick={() => handleFolderClick(folder)}
+                  className="bg-gradient-to-br from-yellow-50 to-yellow-100 border-2 border-black p-6 hover:shadow-[6px_6px_0_#000] transition-all text-left group"
+                >
+                  <Folder size={56} className="text-yellow-600 mb-3 group-hover:scale-110 transition-transform" />
+                  <h3 className="font-black text-xl mb-2">{folder.name}</h3>
+                  
+                  {loading ? (
+                    <div className="text-sm text-zinc-500">Loading stats...</div>
+                  ) : stats ? (
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-zinc-600">Total Files:</span>
+                        <span className="font-bold">{stats.total}</span>
+                      </div>
+                      
+                      {stats.images > 0 && (
+                        <div className="flex items-center gap-2 text-sm">
+                          <Image size={14} className="text-blue-600" />
+                          <span className="text-zinc-600">{stats.images} Images</span>
+                        </div>
+                      )}
+                      
+                      {stats.audio > 0 && (
+                        <div className="flex items-center gap-2 text-sm">
+                          <Music size={14} className="text-purple-600" />
+                          <span className="text-zinc-600">{stats.audio} Audio</span>
+                        </div>
+                      )}
+                      
+                      {stats.videos > 0 && (
+                        <div className="flex items-center gap-2 text-sm">
+                          <Video size={14} className="text-green-600" />
+                          <span className="text-zinc-600">{stats.videos} Videos</span>
+                        </div>
+                      )}
+                      
+                      {stats.pdfs > 0 && (
+                        <div className="flex items-center gap-2 text-sm">
+                          <FileText size={14} className="text-red-600" />
+                          <span className="text-zinc-600">{stats.pdfs} PDFs</span>
+                        </div>
+                      )}
+                      
+                      <div className="flex items-center justify-between text-sm pt-2 border-t border-yellow-300">
+                        <span className="text-zinc-600">Total Size:</span>
+                        <span className="font-bold text-yellow-700">{formatFileSize(stats.totalSize)}</span>
+                      </div>
+                      
+                      {topFileTypes && (
+                        <div className="text-xs text-zinc-500 pt-1">
+                          {topFileTypes}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <p className="text-sm text-zinc-600">Click to browse</p>
+                  )}
+                </button>
+              );
+            })}
           </div>
         </div>
       )}
