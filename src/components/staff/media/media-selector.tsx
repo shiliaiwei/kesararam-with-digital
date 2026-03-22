@@ -1,15 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { Image as ImageIcon, Music, Video, Link as LinkIcon, Cloud } from "lucide-react";
+import { Image as ImageIcon, Music, Video, Link as LinkIcon, Cloud, HardDrive } from "lucide-react";
 import { CloudinaryBrowser } from "./cloudinary-browser";
+import { GoogleDrivePicker } from "./google-drive-picker";
 
 interface MediaSelectorProps {
   type: "image" | "audio" | "video";
   label: string;
   value: string;
-  source: "url" | "cloudinary";
-  onChange: (url: string, source: "url" | "cloudinary") => void;
+  source: "url" | "cloudinary" | "google-drive";
+  onChange: (url: string, source: "url" | "cloudinary" | "google-drive") => void;
   placeholder?: string;
 }
 
@@ -22,7 +23,8 @@ export function MediaSelector({
   placeholder,
 }: MediaSelectorProps) {
   const [showBrowser, setShowBrowser] = useState(false);
-  const [inputMode, setInputMode] = useState<"url" | "cloudinary">(source);
+  const [showGoogleDrive, setShowGoogleDrive] = useState(false);
+  const [inputMode, setInputMode] = useState<"url" | "cloudinary" | "google-drive">(source);
 
   const getIcon = () => {
     switch (type) {
@@ -47,6 +49,11 @@ export function MediaSelector({
     setInputMode("cloudinary");
   };
 
+  const handleGoogleDriveSelect = (fileId: string, url: string, fileName: string) => {
+    onChange(url, "google-drive");
+    setInputMode("google-drive");
+  };
+
   return (
     <div>
       <label className="block font-bold mb-2 flex items-center gap-2">
@@ -55,17 +62,17 @@ export function MediaSelector({
       </label>
 
       {/* Mode Selector */}
-      <div className="flex gap-2 mb-2">
+      <div className="grid grid-cols-3 gap-2 mb-2">
         <button
           type="button"
           onClick={() => setInputMode("url")}
-          className={`flex-1 px-4 py-2 border-2 border-black font-bold transition-all inline-flex items-center justify-center gap-2 ${
+          className={`px-3 py-2 border-2 border-black font-bold transition-all inline-flex items-center justify-center gap-1.5 text-sm ${
             inputMode === "url"
               ? "bg-blue-400 shadow-[2px_2px_0_#000]"
               : "bg-white hover:shadow-[2px_2px_0_#000]"
           }`}
         >
-          <LinkIcon size={16} />
+          <LinkIcon size={14} />
           URL
         </button>
         <button
@@ -74,14 +81,29 @@ export function MediaSelector({
             setInputMode("cloudinary");
             setShowBrowser(true);
           }}
-          className={`flex-1 px-4 py-2 border-2 border-black font-bold transition-all inline-flex items-center justify-center gap-2 ${
+          className={`px-3 py-2 border-2 border-black font-bold transition-all inline-flex items-center justify-center gap-1.5 text-sm ${
             inputMode === "cloudinary"
               ? "bg-purple-400 shadow-[2px_2px_0_#000]"
               : "bg-white hover:shadow-[2px_2px_0_#000]"
           }`}
         >
-          <Cloud size={16} />
+          <Cloud size={14} />
           Cloudinary
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            setInputMode("google-drive");
+            setShowGoogleDrive(true);
+          }}
+          className={`px-3 py-2 border-2 border-black font-bold transition-all inline-flex items-center justify-center gap-1.5 text-sm ${
+            inputMode === "google-drive"
+              ? "bg-green-400 shadow-[2px_2px_0_#000]"
+              : "bg-white hover:shadow-[2px_2px_0_#000]"
+          }`}
+        >
+          <HardDrive size={14} />
+          Drive
         </button>
       </div>
 
@@ -105,6 +127,24 @@ export function MediaSelector({
             className="w-full px-4 py-2 border-2 border-black font-bold bg-purple-100 hover:shadow-[2px_2px_0_#000] transition-all"
           >
             {value ? "Change Selection" : "Browse Cloudinary"}
+          </button>
+          {value && (
+            <div className="p-2 border-2 border-black bg-gray-50">
+              <p className="text-sm font-medium truncate">{value}</p>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Google Drive Selection */}
+      {inputMode === "google-drive" && (
+        <div className="space-y-2">
+          <button
+            type="button"
+            onClick={() => setShowGoogleDrive(true)}
+            className="w-full px-4 py-2 border-2 border-black font-bold bg-green-100 hover:shadow-[2px_2px_0_#000] transition-all"
+          >
+            {value ? "Change Selection" : "Browse Google Drive"}
           </button>
           {value && (
             <div className="p-2 border-2 border-black bg-gray-50">
@@ -145,6 +185,15 @@ export function MediaSelector({
           onSelect={handleCloudinarySelect}
           onClose={() => setShowBrowser(false)}
           currentUrl={value}
+        />
+      )}
+
+      {/* Google Drive Picker Modal */}
+      {showGoogleDrive && (
+        <GoogleDrivePicker
+          fileType={type === 'image' ? 'image' : type === 'audio' ? 'audio' : 'video'}
+          onSelect={handleGoogleDriveSelect}
+          onClose={() => setShowGoogleDrive(false)}
         />
       )}
     </div>
