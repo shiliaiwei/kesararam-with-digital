@@ -24,6 +24,22 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  webpack: (config, { isServer }) => {
+    // Exclude googleapis from client-side bundle
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+        crypto: false,
+        stream: false,
+        http2: false,
+        child_process: false,
+      };
+    }
+    return config;
+  },
 };
 
 export default nextConfig;
