@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { HardDrive, Search, RefreshCw, Folder, File, Image, Music, FileText, Video, ChevronRight, Home, Copy, X, Play } from "lucide-react";
+import { HardDrive, Search, RefreshCw, Folder, File, Image, Music, FileText, Video, ChevronRight, Home, Copy, X, ExternalLink } from "lucide-react";
 import { formatFileSize, getViewUrl, isImage, isAudio, isPDF, isVideo, getEmbedUrl } from "@/lib/google-drive-client";
 
 interface GoogleDriveFile {
@@ -502,10 +502,10 @@ export default function StaffGoogleDriveDashboard() {
                         <div className="flex items-center justify-end gap-2">
                           <button
                             onClick={() => handlePreview(file)}
-                            className="p-2 bg-purple-100 border border-black hover:shadow-[2px_2px_0_#000] transition-all"
-                            title="Preview"
+                            className="px-4 py-2 bg-purple-100 border-2 border-black font-bold hover:shadow-[2px_2px_0_#000] transition-all"
+                            title="View Details"
                           >
-                            <Play size={16} />
+                            View Details
                           </button>
                           <button
                             onClick={() => handleCopyLink(file)}
@@ -515,15 +515,6 @@ export default function StaffGoogleDriveDashboard() {
                             title="Copy Link"
                           >
                             <Copy size={16} />
-                          </button>
-                          <button
-                            onClick={() => handleUseFile(file)}
-                            className={`px-3 py-2 border-2 border-black font-bold hover:shadow-[2px_2px_0_#000] transition-all text-sm ${
-                              copySuccess === file.id + 'use' ? 'bg-green-200' : 'bg-blue-100'
-                            }`}
-                            title="Use in Form"
-                          >
-                            {copySuccess === file.id + 'use' ? '✓ Copied' : 'Use'}
                           </button>
                         </div>
                       </td>
@@ -544,31 +535,10 @@ export default function StaffGoogleDriveDashboard() {
         <ol className="text-sm text-blue-800 space-y-1 list-decimal list-inside">
           <li>Click on folders to browse their contents</li>
           <li>Use breadcrumb navigation to go back</li>
-          <li>Click <strong>Preview</strong> to view/play files</li>
-          <li>Click <strong>Copy</strong> to copy the file link</li>
-          <li>Click <strong>Use</strong> to copy link and paste in content forms</li>
+          <li>Click <strong>View Details</strong> to preview and play files</li>
+          <li>Click <strong>Copy</strong> icon to copy the file link</li>
         </ol>
       </div>
-
-      {/* Selected File Notice */}
-      {selectedFile && (
-        <div className="mt-4 bg-green-50 border-2 border-green-400 p-4">
-          <p className="text-sm font-bold text-green-900 mb-2">✓ File Ready to Use</p>
-          <div className="flex items-center gap-3">
-            {getFileIcon(selectedFile.mimeType)}
-            <div className="flex-1">
-              <p className="font-bold text-green-900">{selectedFile.name}</p>
-              <p className="text-xs text-green-700">Link copied! Paste it in your content form.</p>
-            </div>
-            <button
-              onClick={() => setSelectedFile(null)}
-              className="p-2 bg-white border border-green-600 hover:bg-green-100 transition-all"
-            >
-              <X size={16} />
-            </button>
-          </div>
-        </div>
-      )}
     </div>
 
     {/* Preview Modal */}
@@ -611,25 +581,56 @@ export default function StaffGoogleDriveDashboard() {
                   <div className="mb-4 text-center">
                     <Music size={64} className="mx-auto text-purple-600 mb-2" />
                     <p className="font-bold">{previewFile.name}</p>
+                    <p className="text-sm text-zinc-600 mt-2">
+                      {previewFile.size && `Size: ${formatFileSize(previewFile.size)}`}
+                    </p>
                   </div>
                   <audio 
                     controls 
                     className="w-full"
-                    src={`https://drive.google.com/uc?export=download&id=${previewFile.id}`}
+                    controlsList="nodownload"
                   >
+                    <source src={previewFile.webViewLink} type={previewFile.mimeType} />
+                    <source src={`https://drive.google.com/uc?export=download&id=${previewFile.id}`} type={previewFile.mimeType} />
                     Your browser does not support audio playback.
                   </audio>
+                  <div className="mt-4 text-center">
+                    <a
+                      href={previewFile.webViewLink || `https://drive.google.com/file/d/${previewFile.id}/view`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 border-2 border-black font-bold hover:shadow-[2px_2px_0_#000] transition-all"
+                    >
+                      <ExternalLink size={16} />
+                      Open in Google Drive
+                    </a>
+                  </div>
                 </div>
               )}
               
               {isVideo(previewFile.mimeType) && (
-                <video 
-                  controls 
-                  className="max-w-full max-h-[600px] border-2 border-black"
-                  src={`https://drive.google.com/uc?export=download&id=${previewFile.id}`}
-                >
-                  Your browser does not support video playback.
-                </video>
+                <div className="w-full">
+                  <video 
+                    controls 
+                    className="max-w-full max-h-[600px] border-2 border-black mx-auto"
+                    controlsList="nodownload"
+                  >
+                    <source src={previewFile.webViewLink} type={previewFile.mimeType} />
+                    <source src={`https://drive.google.com/uc?export=download&id=${previewFile.id}`} type={previewFile.mimeType} />
+                    Your browser does not support video playback.
+                  </video>
+                  <div className="mt-4 text-center">
+                    <a
+                      href={previewFile.webViewLink || `https://drive.google.com/file/d/${previewFile.id}/view`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-green-100 border-2 border-black font-bold hover:shadow-[2px_2px_0_#000] transition-all"
+                    >
+                      <ExternalLink size={16} />
+                      Open in Google Drive
+                    </a>
+                  </div>
+                </div>
               )}
               
               {isPDF(previewFile.mimeType) && (
@@ -642,28 +643,15 @@ export default function StaffGoogleDriveDashboard() {
             </div>
 
             {/* Action Buttons */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="flex justify-center">
               <button
                 onClick={() => handleCopyLink(previewFile)}
-                className={`p-3 border-2 border-black font-bold hover:shadow-[2px_2px_0_#000] transition-all flex items-center justify-center gap-2 ${
+                className={`px-6 py-3 border-2 border-black font-bold hover:shadow-[2px_2px_0_#000] transition-all flex items-center justify-center gap-2 ${
                   copySuccess === previewFile.id + 'view' ? 'bg-green-200' : 'bg-blue-100'
                 }`}
               >
                 <Copy size={18} />
-                {copySuccess === previewFile.id + 'view' ? 'Copied!' : 'Copy Link'}
-              </button>
-              
-              <button
-                onClick={() => {
-                  handleUseFile(previewFile);
-                  setPreviewFile(null);
-                }}
-                className={`p-3 border-2 border-black font-bold hover:shadow-[2px_2px_0_#000] transition-all flex items-center justify-center gap-2 ${
-                  copySuccess === previewFile.id + 'use' ? 'bg-green-200' : 'bg-yellow-100'
-                }`}
-              >
-                <Copy size={18} />
-                {copySuccess === previewFile.id + 'use' ? 'Ready to Use!' : 'Use in Form'}
+                {copySuccess === previewFile.id + 'view' ? 'Link Copied!' : 'Copy Link'}
               </button>
             </div>
 
