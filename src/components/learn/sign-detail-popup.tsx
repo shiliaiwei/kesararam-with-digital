@@ -3,8 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import { X, Play, Pause, BookOpen, Brain, FileText, Zap, ChevronDown, ChevronUp } from "lucide-react";
 import { useLang } from "@/context/lang-context";
-import { MediaImage } from "@/components/common/media-image";
-import { MediaAudio } from "@/components/common/media-audio";
 
 interface Topic {
   id: number;
@@ -108,7 +106,7 @@ export function SignDetailPopup({ topic, onClose }: SignDetailPopupProps) {
               style={{ boxShadow: "6px 6px 0 #000" }}
             >
               {topic.primary_image_url ? (
-                <MediaImage
+                <img
                   src={topic.primary_image_url}
                   alt={lang === "en" ? topic.name_en : topic.name_km}
                   className="w-full h-full object-contain"
@@ -164,14 +162,14 @@ export function SignDetailPopup({ topic, onClose }: SignDetailPopupProps) {
               {lang === "en" ? "Play Audio" : "ចាក់សំឡេង"}
             </button>
             {lang === "en" && topic.audio_url_en && (
-              <MediaAudio
+              <audio
                 ref={audioEnRef}
                 src={topic.audio_url_en}
                 onEnded={handleAudioEnded}
               />
             )}
             {lang === "kh" && topic.audio_url_km && (
-              <MediaAudio
+              <audio
                 ref={audioKmRef}
                 src={topic.audio_url_km}
                 onEnded={handleAudioEnded}
