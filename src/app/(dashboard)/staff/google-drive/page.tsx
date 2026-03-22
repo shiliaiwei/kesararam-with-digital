@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { HardDrive, Search, RefreshCw, Folder, File, Image, Music, FileText, Video, Download, ExternalLink, ChevronRight, Home, Copy, X, Play } from "lucide-react";
-import { formatFileSize, getViewUrl, getDownloadUrl, isImage, isAudio, isPDF, isVideo, getEmbedUrl } from "@/lib/google-drive-client";
+import { HardDrive, Search, RefreshCw, Folder, File, Image, Music, FileText, Video, ChevronRight, Home, Copy, X, Play } from "lucide-react";
+import { formatFileSize, getViewUrl, isImage, isAudio, isPDF, isVideo, getEmbedUrl } from "@/lib/google-drive-client";
 
 interface GoogleDriveFile {
   id: string;
@@ -29,6 +29,7 @@ export default function StaffGoogleDriveDashboard() {
   const [filterType, setFilterType] = useState<"all" | "image" | "audio" | "pdf" | "video">("all");
   const [previewFile, setPreviewFile] = useState<GoogleDriveFile | null>(null);
   const [copySuccess, setCopySuccess] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<GoogleDriveFile | null>(null);
   const [stats, setStats] = useState({
     total: 0,
     images: 0,
@@ -107,6 +108,14 @@ export default function StaffGoogleDriveDashboard() {
 
   const handlePreview = (file: GoogleDriveFile) => {
     setPreviewFile(file);
+  };
+
+  const handleUseFile = (file: GoogleDriveFile) => {
+    setSelectedFile(file);
+    // Copy the view URL to clipboard
+    navigator.clipboard.writeText(getViewUrl(file.id));
+    setCopySuccess(file.id + 'use');
+    setTimeout(() => setCopySuccess(null), 3000);
   };
 
   const handleSearch = async () => {
@@ -390,28 +399,19 @@ export default function StaffGoogleDriveDashboard() {
                             className={`p-2 border border-black hover:shadow-[2px_2px_0_#000] transition-all ${
                               copySuccess === file.id + 'view' ? 'bg-green-200' : 'bg-yellow-100'
                             }`}
-                            title="Copy View Link"
+                            title="Copy Link"
                           >
                             <Copy size={16} />
                           </button>
-                          <a
-                            href={getViewUrl(file.id)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-2 bg-blue-100 border border-black hover:shadow-[2px_2px_0_#000] transition-all"
-                            title="Open in New Tab"
+                          <button
+                            onClick={() => handleUseFile(file)}
+                            className={`px-3 py-2 border-2 border-black font-bold hover:shadow-[2px_2px_0_#000] transition-all text-sm ${
+                              copySuccess === file.id + 'use' ? 'bg-green-200' : 'bg-blue-100'
+                            }`}
+                            title="Use in Form"
                           >
-                            <ExternalLink size={16} />
-                          </a>
-                          <a
-                            href={getDownloadUrl(file.id)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-2 bg-green-100 border border-black hover:shadow-[2px_2px_0_#000] transition-all"
-                            title="Download"
-                          >
-                            <Download size={16} />
-                          </a>
+                            {copySuccess === file.id + 'use' ? '✓ Copied' : 'Use'}
+                          </button>
                         </div>
                       </td>
                     </tr>
@@ -429,10 +429,31 @@ export default function StaffGoogleDriveDashboard() {
         <ol className="text-sm text-blue-800 space-y-1 list-decimal list-inside">
           <li>Click on folders to browse their contents</li>
           <li>Use breadcrumb navigation to go back</li>
-          <li>Click Preview button to view/play files directly</li>
-          <li>Click Copy button to copy file links for use in content</li>
+          <li>Click <strong>Preview</strong> to view/play files</li>
+          <li>Click <strong>Copy</strong> to copy the file link</li>
+          <li>Click <strong>Use</strong> to copy link and paste in content forms</li>
         </ol>
       </div>
+
+      {/* Selected File Notice */}
+      {selectedFile && (
+        <div className="mt-4 bg-green-50 border-2 border-green-400 p-4">
+          <p className="text-sm font-bold text-green-900 mb-2">✓ File Ready to Use</p>
+          <div className="flex items-center gap-3">
+            {getFileIcon(selectedFile.mimeType)}
+            <div className="flex-1">
+              <p className="font-bold text-green-900">{selectedFile.name}</p>
+              <p className="text-xs text-green-700">Link copied! Paste it in your content form.</p>
+            </div>
+            <button
+              onClick={() => setSelectedFile(null)}
+              className="p-2 bg-white border border-green-600 hover:bg-green-100 transition-all"
+            >
+              <X size={16} />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
 
     {/* Preview Modal */}
@@ -506,7 +527,7 @@ export default function StaffGoogleDriveDashboard() {
             </div>
 
             {/* Action Buttons */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <button
                 onClick={() => handleCopyLink(previewFile, 'view')}
                 className={`p-3 border-2 border-black font-bold hover:shadow-[2px_2px_0_#000] transition-all flex items-center justify-center gap-2 ${
@@ -514,43 +535,28 @@ export default function StaffGoogleDriveDashboard() {
                 }`}
               >
                 <Copy size={18} />
-                {copySuccess === previewFile.id + 'view' ? 'Copied!' : 'Copy View Link'}
+                {copySuccess === previewFile.id + 'view' ? 'Copied!' : 'Copy Link'}
               </button>
               
               <button
-                onClick={() => handleCopyLink(previewFile, 'download')}
+                onClick={() => {
+                  handleUseFile(previewFile);
+                  setPreviewFile(null);
+                }}
                 className={`p-3 border-2 border-black font-bold hover:shadow-[2px_2px_0_#000] transition-all flex items-center justify-center gap-2 ${
-                  copySuccess === previewFile.id + 'download' ? 'bg-green-200' : 'bg-green-100'
+                  copySuccess === previewFile.id + 'use' ? 'bg-green-200' : 'bg-yellow-100'
                 }`}
               >
                 <Copy size={18} />
-                {copySuccess === previewFile.id + 'download' ? 'Copied!' : 'Copy Download Link'}
-              </button>
-              
-              <button
-                onClick={() => handleCopyLink(previewFile, 'embed')}
-                className={`p-3 border-2 border-black font-bold hover:shadow-[2px_2px_0_#000] transition-all flex items-center justify-center gap-2 ${
-                  copySuccess === previewFile.id + 'embed' ? 'bg-green-200' : 'bg-yellow-100'
-                }`}
-              >
-                <Copy size={18} />
-                {copySuccess === previewFile.id + 'embed' ? 'Copied!' : 'Copy Embed Link'}
+                {copySuccess === previewFile.id + 'use' ? 'Ready to Use!' : 'Use in Form'}
               </button>
             </div>
 
             {/* Link Display */}
-            <div className="mt-4 space-y-2">
+            <div className="mt-4">
               <div className="bg-zinc-50 border-2 border-black p-3">
-                <p className="text-xs font-bold text-zinc-600 mb-1">View URL:</p>
+                <p className="text-xs font-bold text-zinc-600 mb-1">File URL:</p>
                 <code className="text-xs break-all">{getViewUrl(previewFile.id)}</code>
-              </div>
-              <div className="bg-zinc-50 border-2 border-black p-3">
-                <p className="text-xs font-bold text-zinc-600 mb-1">Download URL:</p>
-                <code className="text-xs break-all">{getDownloadUrl(previewFile.id)}</code>
-              </div>
-              <div className="bg-zinc-50 border-2 border-black p-3">
-                <p className="text-xs font-bold text-zinc-600 mb-1">Embed URL:</p>
-                <code className="text-xs break-all">{getEmbedUrl(previewFile.id)}</code>
               </div>
             </div>
           </div>
