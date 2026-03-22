@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Plus, FileText, Image, Gamepad2, BarChart3 } from "lucide-react";
+import { Plus, FileText, Image, Gamepad2, BarChart3, HardDrive } from "lucide-react";
 import { StatsOverview } from "@/components/staff/dashboard/stats-overview";
 
 export const metadata: Metadata = {
@@ -30,6 +30,13 @@ export default function StaffDashboardPage() {
       href: "/staff/media",
       icon: Image,
       color: "bg-purple-400",
+    },
+    {
+      title: "Google Drive",
+      description: "Browse Google Drive resources",
+      href: "/staff/google-drive",
+      icon: HardDrive,
+      color: "bg-green-400",
     },
     {
       title: "Game Modes",
@@ -63,7 +70,7 @@ export default function StaffDashboardPage() {
       {/* Quick Actions */}
       <div>
         <h2 className="text-xl font-black text-black mb-4">Quick Actions</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {quickActions.map((action, index) => {
             const Icon = action.icon;
             return (
