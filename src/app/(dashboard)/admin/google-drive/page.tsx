@@ -516,7 +516,7 @@ export default function AdminGoogleDriveDashboard() {
                   <audio 
                     controls 
                     className="w-full"
-                    src={getViewUrl(previewFile.id)}
+                    src={`https://drive.google.com/uc?export=download&id=${previewFile.id}`}
                   >
                     Your browser does not support audio playback.
                   </audio>
@@ -527,7 +527,7 @@ export default function AdminGoogleDriveDashboard() {
                 <video 
                   controls 
                   className="max-w-full max-h-[600px] border-2 border-black"
-                  src={getViewUrl(previewFile.id)}
+                  src={`https://drive.google.com/uc?export=download&id=${previewFile.id}`}
                 >
                   Your browser does not support video playback.
                 </video>
