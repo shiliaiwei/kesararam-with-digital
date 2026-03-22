@@ -23,23 +23,47 @@ export function GoogleDrivePicker({ onSelect, onClose, fileType = 'all' }: Googl
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [selectedFile, setSelectedFile] = useState<GoogleDriveFile | null>(null);
+  const [currentFolderId, setCurrentFolderId] = useState<string | null>(null);
+  const [breadcrumbs, setBreadcrumbs] = useState<Array<{ id: string; name: string }>>([]);
 
   useEffect(() => {
     fetchFiles();
-  }, []);
+  }, [currentFolderId]);
 
   const fetchFiles = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/media/google-drive/list');
+      const url = currentFolderId 
+        ? `/api/media/google-drive/list?folderId=${currentFolderId}`
+        : '/api/media/google-drive/list';
+      
+      const response = await fetch(url);
       const data = await response.json();
       if (data.success) {
         setFiles(filterByType(data.files));
+      } else {
+        console.error('API Error:', data);
       }
     } catch (error) {
       console.error('Error fetching files:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleFolderClick = (folder: GoogleDriveFile) => {
+    setCurrentFolderId(folder.id);
+    setBreadcrumbs([...breadcrumbs, { id: folder.id, name: folder.name }]);
+  };
+
+  const handleBreadcrumbClick = (index: number) => {
+    if (index === -1) {
+      setCurrentFolderId(null);
+      setBreadcrumbs([]);
+    } else {
+      const newBreadcrumbs = breadcrumbs.slice(0, index + 1);
+      setBreadcrumbs(newBreadcrumbs);
+      setCurrentFolderId(newBreadcrumbs[index].id);
     }
   };
 
@@ -64,9 +88,13 @@ export function GoogleDrivePicker({ onSelect, onClose, fileType = 'all' }: Googl
   };
 
   const filterByType = (files: GoogleDriveFile[]) => {
-    if (fileType === 'all') return files;
+    // Don't filter folders
+    const folders = files.filter(f => f.mimeType === 'application/vnd.google-apps.folder');
+    const regularFiles = files.filter(f => f.mimeType !== 'application/vnd.google-apps.folder');
     
-    return files.filter(file => {
+    if (fileType === 'all') return [...folders, ...regularFiles];
+    
+    const filtered = regularFiles.filter(file => {
       switch (fileType) {
         case 'image':
           return file.mimeType.startsWith('image/');
@@ -80,6 +108,8 @@ export function GoogleDrivePicker({ onSelect, onClose, fileType = 'all' }: Googl
           return true;
       }
     });
+    
+    return [...folders, ...filtered];
   };
 
   const getFileIcon = (mimeType: string) => {
@@ -118,6 +148,29 @@ export function GoogleDrivePicker({ onSelect, onClose, fileType = 'all' }: Googl
 
         {/* Search */}
         <div className="p-4 border-b-2 border-black">
+          {/* Breadcrumbs */}
+          {breadcrumbs.length > 0 && (
+            <div className="flex items-center gap-2 mb-3 flex-wrap">
+              <button
+                onClick={() => handleBreadcrumbClick(-1)}
+                className="text-sm px-2 py-1 bg-gray-100 border border-black hover:bg-yellow-100 font-bold"
+              >
+                Root
+              </button>
+              {breadcrumbs.map((crumb, index) => (
+                <div key={crumb.id} className="flex items-center gap-2">
+                  <span className="text-zinc-400">/</span>
+                  <button
+                    onClick={() => handleBreadcrumbClick(index)}
+                    className="text-sm px-2 py-1 bg-gray-100 border border-black hover:bg-yellow-100 font-bold"
+                  >
+                    {crumb.name}
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+          
           <div className="flex gap-2">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
@@ -153,27 +206,34 @@ export function GoogleDrivePicker({ onSelect, onClose, fileType = 'all' }: Googl
             </div>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-              {files.map((file) => (
-                <button
-                  key={file.id}
-                  onClick={() => setSelectedFile(file)}
-                  className={`p-3 border-2 border-black hover:shadow-[2px_2px_0_#000] transition-all text-left ${
-                    selectedFile?.id === file.id ? 'bg-yellow-100 shadow-[2px_2px_0_#000]' : 'bg-white'
-                  }`}
-                >
-                  <div className="aspect-square mb-2 bg-gray-100 border-2 border-black flex items-center justify-center overflow-hidden">
-                    {file.mimeType.startsWith('image/') && file.thumbnailLink ? (
-                      <img src={file.thumbnailLink} alt={file.name} className="w-full h-full object-cover" />
-                    ) : (
-                      getFileIcon(file.mimeType)
+              {files.map((file) => {
+                const isFolder = file.mimeType === 'application/vnd.google-apps.folder';
+                
+                return (
+                  <button
+                    key={file.id}
+                    onClick={() => isFolder ? handleFolderClick(file) : setSelectedFile(file)}
+                    className={`p-3 border-2 border-black hover:shadow-[2px_2px_0_#000] transition-all text-left ${
+                      selectedFile?.id === file.id ? 'bg-yellow-100 shadow-[2px_2px_0_#000]' : 'bg-white'
+                    } ${isFolder ? 'bg-yellow-50' : ''}`}
+                  >
+                    <div className="aspect-square mb-2 bg-gray-100 border-2 border-black flex items-center justify-center overflow-hidden">
+                      {file.mimeType.startsWith('image/') && file.thumbnailLink ? (
+                        <img src={file.thumbnailLink} alt={file.name} className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="flex flex-col items-center justify-center">
+                          {getFileIcon(file.mimeType)}
+                          {isFolder && <p className="text-xs font-bold mt-2">Folder</p>}
+                        </div>
+                      )}
+                    </div>
+                    <p className="text-xs font-bold truncate">{file.name}</p>
+                    {file.size && (
+                      <p className="text-xs text-zinc-500">{formatFileSize(file.size)}</p>
                     )}
-                  </div>
-                  <p className="text-xs font-bold truncate">{file.name}</p>
-                  {file.size && (
-                    <p className="text-xs text-zinc-500">{formatFileSize(file.size)}</p>
-                  )}
-                </button>
-              ))}
+                  </button>
+                );
+              })}
             </div>
           )}
         </div>
