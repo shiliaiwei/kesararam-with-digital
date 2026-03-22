@@ -87,22 +87,10 @@ export default function StaffGoogleDriveDashboard() {
     }
   };
 
-  const handleCopyLink = (file: GoogleDriveFile, type: 'view' | 'download' | 'embed') => {
-    let url = '';
-    switch (type) {
-      case 'view':
-        url = getViewUrl(file.id);
-        break;
-      case 'download':
-        url = getDownloadUrl(file.id);
-        break;
-      case 'embed':
-        url = getEmbedUrl(file.id);
-        break;
-    }
-    
+  const handleCopyLink = (file: GoogleDriveFile) => {
+    const url = getViewUrl(file.id);
     navigator.clipboard.writeText(url);
-    setCopySuccess(file.id + type);
+    setCopySuccess(file.id + 'view');
     setTimeout(() => setCopySuccess(null), 2000);
   };
 
@@ -395,7 +383,7 @@ export default function StaffGoogleDriveDashboard() {
                             <Play size={16} />
                           </button>
                           <button
-                            onClick={() => handleCopyLink(file, 'view')}
+                            onClick={() => handleCopyLink(file)}
                             className={`p-2 border border-black hover:shadow-[2px_2px_0_#000] transition-all ${
                               copySuccess === file.id + 'view' ? 'bg-green-200' : 'bg-yellow-100'
                             }`}
@@ -529,7 +517,7 @@ export default function StaffGoogleDriveDashboard() {
             {/* Action Buttons */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <button
-                onClick={() => handleCopyLink(previewFile, 'view')}
+                onClick={() => handleCopyLink(previewFile)}
                 className={`p-3 border-2 border-black font-bold hover:shadow-[2px_2px_0_#000] transition-all flex items-center justify-center gap-2 ${
                   copySuccess === previewFile.id + 'view' ? 'bg-green-200' : 'bg-blue-100'
                 }`}
