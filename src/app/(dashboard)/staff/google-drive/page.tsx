@@ -185,7 +185,7 @@ export default function StaffGoogleDriveDashboard() {
             className="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 border border-black hover:bg-yellow-100 transition-all font-bold text-sm"
           >
             <Home size={14} />
-            Root
+            All Categories
           </button>
           {breadcrumbs.map((crumb, index) => (
             <div key={crumb.id} className="flex items-center gap-2">
@@ -201,6 +201,32 @@ export default function StaffGoogleDriveDashboard() {
         </div>
       </div>
 
+      {/* Folder Grid View - Show at root level */}
+      {!currentFolderId && folders.length > 0 && (
+        <div className="mb-6">
+          <h2 className="text-2xl font-black mb-4 flex items-center gap-2">
+            <Folder className="text-yellow-600" size={32} />
+            Browse by Category
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {folders.map((folder) => (
+              <button
+                key={folder.id}
+                onClick={() => handleFolderClick(folder)}
+                className="bg-gradient-to-br from-yellow-50 to-yellow-100 border-2 border-black p-6 hover:shadow-[6px_6px_0_#000] transition-all text-left group"
+              >
+                <Folder size={56} className="text-yellow-600 mb-3 group-hover:scale-110 transition-transform" />
+                <h3 className="font-black text-xl mb-1">{folder.name}</h3>
+                <p className="text-sm text-zinc-600">Click to browse files</p>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Stats and Table View - Show when inside a folder */}
+      {currentFolderId && (
+        <>
       {/* Stats Cards */}
       <div className="grid grid-cols-2 md:grid-cols-6 gap-4 mb-6">
         <div className="bg-white border-2 border-black p-4" style={{ boxShadow: "4px 4px 0 #000" }}>
@@ -410,6 +436,8 @@ export default function StaffGoogleDriveDashboard() {
           </table>
         </div>
       </div>
+        </>
+      )}
 
       {/* Info Box */}
       <div className="mt-6 bg-blue-50 border-2 border-blue-400 p-4">
