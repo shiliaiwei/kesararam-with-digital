@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { Image as ImageIcon, Music, Video, Link as LinkIcon, Cloud, HardDrive } from "lucide-react";
 import { CloudinaryBrowser } from "./cloudinary-browser";
-import { GoogleDrivePicker } from "./google-drive-picker";
+import { GooglePhotosPicker } from "./google-photos-picker";
 
 interface MediaSelectorProps {
   type: "image" | "audio" | "video";
   label: string;
   value: string;
-  source: "url" | "cloudinary" | "google-drive";
-  onChange: (url: string, source: "url" | "cloudinary" | "google-drive") => void;
+  source: "url" | "cloudinary" | "google-photos";
+  onChange: (url: string, source: "url" | "cloudinary" | "google-photos") => void;
   placeholder?: string;
 }
 
@@ -23,8 +23,8 @@ export function MediaSelector({
   placeholder,
 }: MediaSelectorProps) {
   const [showBrowser, setShowBrowser] = useState(false);
-  const [showGoogleDrive, setShowGoogleDrive] = useState(false);
-  const [inputMode, setInputMode] = useState<"url" | "cloudinary" | "google-drive">(source);
+  const [showGooglePhotos, setShowGooglePhotos] = useState(false);
+  const [inputMode, setInputMode] = useState<"url" | "cloudinary" | "google-photos">(source);
 
   const getIcon = () => {
     switch (type) {
@@ -49,9 +49,9 @@ export function MediaSelector({
     setInputMode("cloudinary");
   };
 
-  const handleGoogleDriveSelect = (fileId: string, url: string, fileName: string) => {
-    onChange(url, "google-drive");
-    setInputMode("google-drive");
+  const handleGooglePhotosSelect = (mediaId: string, url: string, fileName: string) => {
+    onChange(url, "google-photos");
+    setInputMode("google-photos");
   };
 
   return (
@@ -93,17 +93,17 @@ export function MediaSelector({
         <button
           type="button"
           onClick={() => {
-            setInputMode("google-drive");
-            setShowGoogleDrive(true);
+            setInputMode("google-photos");
+            setShowGooglePhotos(true);
           }}
           className={`px-3 py-2 border-2 border-black font-bold transition-all inline-flex items-center justify-center gap-1.5 text-sm ${
-            inputMode === "google-drive"
+            inputMode === "google-photos"
               ? "bg-green-400 shadow-[2px_2px_0_#000]"
               : "bg-white hover:shadow-[2px_2px_0_#000]"
           }`}
         >
-          <HardDrive size={14} />
-          Drive
+          <ImageIcon size={14} />
+          Photos
         </button>
       </div>
 
@@ -136,15 +136,15 @@ export function MediaSelector({
         </div>
       )}
 
-      {/* Google Drive Selection */}
-      {inputMode === "google-drive" && (
+      {/* Google Photos Selection */}
+      {inputMode === "google-photos" && (
         <div className="space-y-2">
           <button
             type="button"
-            onClick={() => setShowGoogleDrive(true)}
+            onClick={() => setShowGooglePhotos(true)}
             className="w-full px-4 py-2 border-2 border-black font-bold bg-green-100 hover:shadow-[2px_2px_0_#000] transition-all"
           >
-            {value ? "Change Selection" : "Browse Google Drive"}
+            {value ? "Change Selection" : "Browse Google Photos"}
           </button>
           {value && (
             <div className="p-2 border-2 border-black bg-gray-50">
@@ -188,12 +188,12 @@ export function MediaSelector({
         />
       )}
 
-      {/* Google Drive Picker Modal */}
-      {showGoogleDrive && (
-        <GoogleDrivePicker
-          fileType={type === 'image' ? 'image' : type === 'audio' ? 'audio' : 'video'}
-          onSelect={handleGoogleDriveSelect}
-          onClose={() => setShowGoogleDrive(false)}
+      {/* Google Photos Picker Modal */}
+      {showGooglePhotos && (
+        <GooglePhotosPicker
+          fileType={type === 'image' ? 'image' : type === 'video' ? 'video' : 'all'}
+          onSelect={handleGooglePhotosSelect}
+          onClose={() => setShowGooglePhotos(false)}
         />
       )}
     </div>

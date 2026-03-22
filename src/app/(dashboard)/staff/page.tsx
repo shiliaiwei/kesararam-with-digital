@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Plus, FileText, Image, Gamepad2, BarChart3, HardDrive } from "lucide-react";
+import { Plus, FileText, Image, Gamepad2, BarChart3, HardDrive, ImageIcon } from "lucide-react";
 import { StatsOverview } from "@/components/staff/dashboard/stats-overview";
 
 export const metadata: Metadata = {
@@ -32,8 +32,15 @@ export default function StaffDashboardPage() {
       color: "bg-purple-400",
     },
     {
+      title: "Google Photos",
+      description: "Browse photos and videos",
+      href: "/staff/google-photos",
+      icon: ImageIcon,
+      color: "bg-blue-400",
+    },
+    {
       title: "Google Drive",
-      description: "Browse Google Drive resources",
+      description: "Browse audio files and PDFs",
       href: "/staff/google-drive",
       icon: HardDrive,
       color: "bg-green-400",
