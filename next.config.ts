@@ -24,22 +24,9 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  webpack: (config, { isServer }) => {
-    // Exclude googleapis from client-side bundle
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        net: false,
-        tls: false,
-        crypto: false,
-        stream: false,
-        http2: false,
-        child_process: false,
-      };
-    }
-    return config;
-  },
+  // Empty turbopack config to acknowledge we're using Turbopack
+  // Google Drive API will run server-side only via API routes with runtime: 'nodejs'
+  turbopack: {},
 };
 
 export default nextConfig;
