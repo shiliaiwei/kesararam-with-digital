@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Search, ArrowLeft } from "lucide-react";
 import { SignDetailPopup } from "./sign-detail-popup";
 import { useLang } from "@/context/lang-context";
+import { MediaImage } from "@/components/common/media-image";
 
 interface Topic {
   id: number;
@@ -234,7 +235,7 @@ export function TrafficSignsCatalogue() {
                 {/* Image Only */}
                 <div className="aspect-square p-3 md:p-4 flex items-center justify-center">
                   {topic.primary_image_url ? (
-                    <img
+                    <MediaImage
                       src={topic.primary_image_url}
                       alt={topic.topic_code}
                       className="w-full h-full object-contain"
