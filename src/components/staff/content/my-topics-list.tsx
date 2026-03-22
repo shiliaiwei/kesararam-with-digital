@@ -300,7 +300,7 @@ export function MyTopicsList() {
       ) : (
         <div className="space-y-4">
           {filteredTopics.map((topic) => {
-            const statusConfig = STATUS_CONFIG[topic.status];
+            const statusConfig = STATUS_CONFIG[topic.status] || STATUS_CONFIG.draft;
             const StatusIcon = statusConfig.icon;
 
             return (
