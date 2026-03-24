@@ -90,14 +90,14 @@ const CATEGORIES = [
 ];
 
 const CATEGORY_IMAGES = [
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380370/kwd/afe770139087986f_np4j2n.png",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380369/kwd/6ec559a44b9bf87a_et8ygh.png",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380300/kwd/1d2f48f1a2d4a64c_xrnmua.png",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380370/kwd/afe770139087986f_np4j2n.png",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380369/kwd/6ec559a44b9bf87a_et8ygh.png",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380300/kwd/1d2f48f1a2d4a64c_xrnmua.png",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380370/kwd/afe770139087986f_np4j2n.png",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380369/kwd/6ec559a44b9bf87a_et8ygh.png",
 ];
 
 export default function LearnPage() {
@@ -188,7 +188,7 @@ export default function LearnPage() {
                   <img 
                     src={randomImage}
                     alt={category.nameEn}
-                    className="w-full h-48 object-contain object-bottom transition-transform duration-300 group-hover:scale-105"
+                    className="w-full h-48 object-contain object-bottom transition-all duration-300 group-hover:scale-110 group-hover:animate-bounce"
                     style={{
                       marginBottom: "-2px"
                     }}
