@@ -2,91 +2,7 @@
 
 import { Marquee } from "@/components/ui/marquee";
 import { useLang } from "@/context/lang-context";
-
-// Road signs from Cloudinary Assets256 folder
-const roadSigns = [
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567766/1313_rgyqmp.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567763/1220_yniewl.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567761/1213_wfvtpb.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567758/1112_iboram.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567755/1018_azg5k4.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567700/783_cpt0hd.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567700/782_orf4um.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567700/781_mc5jir.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567700/780_fy3m2i.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567699/779_umhzho.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567699/778_rpllnw.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567698/776_jbg2lq.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567698/775_fug6ra.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567697/774_oiep4k.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567696/773_uk6rt9.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567696/771_qze6fq.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567695/770_w12d5f.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567695/769_ike5sq.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567695/768_une1lu.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567694/767_t5bcgd.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567693/763_abffsf.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567692/762_vzkkpx.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567692/761_jzqqxn.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567692/760_d7pv4e.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567692/759_wstotk.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567691/758_djdjiu.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567691/757_vgkiwb.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567688/752_otemq7.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567687/751_fmrkxb.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567687/750_yvzguu.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567687/748_cl0wwv.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567687/747_elxndx.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567686/746_g4pbeh.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567684/742_ipt48v.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567683/741_cljp7l.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567683/740_upuxar.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567682/738_mfwqw0.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567681/737_h9gskl.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567681/736_iuhbqx.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567679/732_amlsqq.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567678/728_tbu6ta.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567677/727_uxbemn.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567677/726_ahecgh.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567675/702_innihz.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567675/701_julsob.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567675/699_juu7lq.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567674/697_ihjdb8.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567673/695_bennjm.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567673/694_ljbnye.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567672/656_bgcfab.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567667/653_f6ybei.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567667/652_n2qkz9.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567657/609_rht9cd.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567657/606_vzkj6r.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567648/564_rbnapr.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567648/562_vyeuj5.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567647/560_mlzoqf.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567647/558_u6ryk5.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567642/475_tvvqyl.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567640/474_eojjoq.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567639/473_fw8ikf.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567634/469_eh9pyl.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567634/468_yvrcf6.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567630/429_egxole.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567630/426_oplsvb.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567608/379_tqmzmb.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567594/241_ssjrhy.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567594/239_jub4zp.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567542/68_eydmt0.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567542/65_o8giis.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567542/63_ico9dx.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567508/43_yasdle.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567507/28_lomkpx.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567507/21_eu1tae.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773567506/5_abpqsn.png",
-];
-
-// Split into rows
-const row1 = roadSigns.slice(0, 19);
-const row2 = roadSigns.slice(19, 38);
-const row3 = roadSigns.slice(38, 57);
-const row4 = roadSigns.slice(57);
+import { useEffect, useState } from "react";
 
 function SignCard({ src, index, scale }: { src: string; index: number; scale: number }) {
   return (
@@ -111,6 +27,70 @@ export function RoadSigns3DHero() {
   const { lang } = useLang();
   const kh = lang === "kh";
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  
+  const [roadSigns, setRoadSigns] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Fetch images from Cloudinary Slide folder
+    fetch("/api/cloudinary/slide-images")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.images && data.images.length > 0) {
+          setRoadSigns(data.images);
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error loading slide images:", error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="relative w-full overflow-hidden bg-transparent pt-4 pb-24 mb-8">
+        <div className="text-center mb-6 px-4">
+          <h2 
+            className="inline-block text-2xl md:text-3xl font-black text-black bg-yellow-400 px-6 py-3 border-2 border-black shadow-[6px_6px_0_#000]" 
+            style={khFont}
+          >
+            {kh ? "វីថីសុវត្ថិភាព" : "The Way of Safety"}
+          </h2>
+        </div>
+        <div className="flex items-center justify-center py-20">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-4 border-black border-t-yellow-400 mx-auto mb-4"></div>
+            <p className="text-sm font-bold text-zinc-600">Loading signs...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (roadSigns.length === 0) {
+    return (
+      <section className="relative w-full overflow-hidden bg-transparent pt-4 pb-24 mb-8">
+        <div className="text-center mb-6 px-4">
+          <h2 
+            className="inline-block text-2xl md:text-3xl font-black text-black bg-yellow-400 px-6 py-3 border-2 border-black shadow-[6px_6px_0_#000]" 
+            style={khFont}
+          >
+            {kh ? "វីថីសុវត្ថិភាព" : "The Way of Safety"}
+          </h2>
+        </div>
+        <div className="text-center py-20">
+          <p className="text-sm font-bold text-zinc-600">No signs available</p>
+        </div>
+      </section>
+    );
+  }
+
+  // Split into rows
+  const row1 = roadSigns.slice(0, Math.ceil(roadSigns.length / 4));
+  const row2 = roadSigns.slice(Math.ceil(roadSigns.length / 4), Math.ceil(roadSigns.length / 2));
+  const row3 = roadSigns.slice(Math.ceil(roadSigns.length / 2), Math.ceil(roadSigns.length * 3 / 4));
+  const row4 = roadSigns.slice(Math.ceil(roadSigns.length * 3 / 4));
 
   return (
     <section className="relative w-full overflow-hidden bg-transparent pt-4 pb-24 mb-8">
@@ -139,7 +119,7 @@ export function RoadSigns3DHero() {
         <div className="overflow-hidden">
           <Marquee className="[--duration:55s] [--gap:1.2rem]" reverse pauseOnHover>
             {row2.map((src, i) => (
-              <SignCard key={`r2-${i}`} src={src} index={i + 19} scale={1.0} />
+              <SignCard key={`r2-${i}`} src={src} index={i + row1.length} scale={1.0} />
             ))}
           </Marquee>
         </div>
@@ -148,7 +128,7 @@ export function RoadSigns3DHero() {
         <div className="overflow-hidden">
           <Marquee className="[--duration:50s] [--gap:1.4rem]" pauseOnHover>
             {row3.map((src, i) => (
-              <SignCard key={`r3-${i}`} src={src} index={i + 38} scale={1.2} />
+              <SignCard key={`r3-${i}`} src={src} index={i + row1.length + row2.length} scale={1.2} />
             ))}
           </Marquee>
         </div>
@@ -157,7 +137,7 @@ export function RoadSigns3DHero() {
         <div className="overflow-hidden">
           <Marquee className="[--duration:45s] [--gap:1.6rem]" reverse pauseOnHover>
             {row4.map((src, i) => (
-              <SignCard key={`r4-${i}`} src={src} index={i + 57} scale={1.4} />
+              <SignCard key={`r4-${i}`} src={src} index={i + row1.length + row2.length + row3.length} scale={1.4} />
             ))}
           </Marquee>
         </div>
