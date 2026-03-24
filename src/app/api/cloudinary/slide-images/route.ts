@@ -10,11 +10,29 @@ cloudinary.config({
 export async function GET() {
   try {
     console.log("Fetching Slide images from Cloudinary...");
+    
+    // Check if environment variables are set
+    const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+    const apiKey = process.env.CLOUDINARY_API_KEY;
+    const apiSecret = process.env.CLOUDINARY_API_SECRET;
+    
     console.log("Config:", {
-      cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-      api_key: process.env.CLOUDINARY_API_KEY ? "SET" : "MISSING",
-      api_secret: process.env.CLOUDINARY_API_SECRET ? "SET" : "MISSING",
+      cloud_name: cloudName || "MISSING",
+      api_key: apiKey ? "SET" : "MISSING",
+      api_secret: apiSecret ? "SET" : "MISSING",
     });
+
+    if (!cloudName || !apiKey || !apiSecret) {
+      console.error("Missing Cloudinary credentials");
+      return NextResponse.json(
+        { 
+          error: "Cloudinary credentials not configured",
+          details: "Please set CLOUDINARY environment variables",
+          images: [],
+        },
+        { status: 500 }
+      );
+    }
 
     // Specific 100 image filenames for the homepage slide
     const slideImageFilenames = [

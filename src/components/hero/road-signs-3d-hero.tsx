@@ -34,10 +34,18 @@ export function RoadSigns3DHero() {
   useEffect(() => {
     // Fetch images from Cloudinary Slide folder
     fetch("/api/cloudinary/slide-images")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
       .then((data) => {
+        console.log("Slide images response:", data);
         if (data.images && data.images.length > 0) {
           setRoadSigns(data.images);
+        } else {
+          console.warn("No images returned from API");
         }
         setLoading(false);
       })
