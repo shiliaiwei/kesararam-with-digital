@@ -11,7 +11,7 @@ cloudinary.config({
 export async function GET(request: NextRequest) {
   try {
     const session = await getSession();
-    if (!session?.id || session.role !== "staff") {
+    if (!session?.id || (session.role !== "staff" && session.role !== "admin")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
