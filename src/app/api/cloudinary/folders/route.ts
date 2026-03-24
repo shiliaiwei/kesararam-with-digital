@@ -22,18 +22,38 @@ export async function GET(request: NextRequest) {
       api_secret: process.env.CLOUDINARY_API_SECRET ? "SET" : "MISSING",
     });
 
-    // Get all folders from Cloudinary
-    const result = await cloudinary.api.root_folders();
+    // Get all folders from Cloudinary (including subfolders)
+    const rootResult = await cloudinary.api.root_folders();
     
-    console.log("Folders result:", result.folders?.length || 0, "folders found");
+    console.log("Root folders result:", rootResult.folders?.length || 0, "folders found");
     
-    const folders = result.folders.map((folder: any) => ({
-      name: folder.name,
-      path: folder.path,
-    }));
+    const allFolders: any[] = [];
+    
+    // Add root folders
+    for (const folder of rootResult.folders) {
+      allFolders.push({
+        name: folder.name,
+        path: folder.path,
+      });
+      
+      // Try to get subfolders
+      try {
+        const subResult = await cloudinary.api.sub_folders(folder.path);
+        if (subResult.folders && subResult.folders.length > 0) {
+          for (const subfolder of subResult.folders) {
+            allFolders.push({
+              name: `${folder.name}/${subfolder.name}`,
+              path: subfolder.path,
+            });
+          }
+        }
+      } catch (subError) {
+        console.log(`No subfolders in ${folder.path}`);
+      }
+    }
 
     return NextResponse.json({
-      folders,
+      folders: allFolders,
     });
   } catch (error: any) {
     console.error("Error fetching Cloudinary folders:", error);

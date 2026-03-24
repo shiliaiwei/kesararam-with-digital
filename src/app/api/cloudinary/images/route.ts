@@ -35,6 +35,7 @@ export async function GET(request: NextRequest) {
     };
 
     // If not root, fetch from specific folder
+    // If root, we still fetch all images (no prefix filter)
     if (folder !== "root") {
       options.prefix = folder;
     }
