@@ -19,6 +19,14 @@ export async function GET(request: NextRequest) {
     const folder = searchParams.get("folder") || "root";
     const search = searchParams.get("search") || "";
 
+    console.log("Cloudinary config:", {
+      cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+      api_key: process.env.CLOUDINARY_API_KEY ? "SET" : "MISSING",
+      api_secret: process.env.CLOUDINARY_API_SECRET ? "SET" : "MISSING",
+    });
+
+    console.log("Fetching images for folder:", folder);
+
     // Build options for fetching resources
     const options: any = {
       type: "upload",
@@ -32,6 +40,11 @@ export async function GET(request: NextRequest) {
     }
 
     const result = await cloudinary.api.resources(options);
+
+    console.log("Cloudinary API result:", {
+      count: result.resources?.length || 0,
+      rate_limit_remaining: result.rate_limit_remaining,
+    });
 
     // Transform the response
     const resources = result.resources.map((resource: any) => ({
@@ -51,6 +64,11 @@ export async function GET(request: NextRequest) {
     });
   } catch (error: any) {
     console.error("Error fetching Cloudinary images:", error);
+    console.error("Error details:", {
+      message: error.message,
+      http_code: error.http_code,
+      error: error.error,
+    });
     return NextResponse.json(
       { 
         error: error.message || "Failed to fetch images",
