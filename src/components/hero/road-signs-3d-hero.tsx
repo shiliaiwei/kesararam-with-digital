@@ -108,7 +108,7 @@ export function RoadSigns3DHero() {
       <div className="relative w-full space-y-6 overflow-visible py-4">
         {/* Row 1 - Smallest (far away) */}
         <div className="overflow-hidden">
-          <Marquee className="[--duration:60s] [--gap:1rem]" pauseOnHover>
+          <Marquee className="[--duration:120s] [--gap:1rem]" pauseOnHover>
             {row1.map((src, i) => (
               <SignCard key={`r1-${i}`} src={src} index={i} scale={0.8} />
             ))}
@@ -117,7 +117,7 @@ export function RoadSigns3DHero() {
 
         {/* Row 2 - Medium-small */}
         <div className="overflow-hidden">
-          <Marquee className="[--duration:55s] [--gap:1.2rem]" reverse pauseOnHover>
+          <Marquee className="[--duration:100s] [--gap:1.2rem]" reverse pauseOnHover>
             {row2.map((src, i) => (
               <SignCard key={`r2-${i}`} src={src} index={i + row1.length} scale={1.0} />
             ))}
@@ -126,7 +126,7 @@ export function RoadSigns3DHero() {
 
         {/* Row 3 - Medium-large */}
         <div className="overflow-hidden">
-          <Marquee className="[--duration:50s] [--gap:1.4rem]" pauseOnHover>
+          <Marquee className="[--duration:90s] [--gap:1.4rem]" pauseOnHover>
             {row3.map((src, i) => (
               <SignCard key={`r3-${i}`} src={src} index={i + row1.length + row2.length} scale={1.2} />
             ))}
@@ -135,7 +135,7 @@ export function RoadSigns3DHero() {
 
         {/* Row 4 - Largest (closest) */}
         <div className="overflow-hidden">
-          <Marquee className="[--duration:45s] [--gap:1.6rem]" reverse pauseOnHover>
+          <Marquee className="[--duration:80s] [--gap:1.6rem]" reverse pauseOnHover>
             {row4.map((src, i) => (
               <SignCard key={`r4-${i}`} src={src} index={i + row1.length + row2.length + row3.length} scale={1.4} />
             ))}
