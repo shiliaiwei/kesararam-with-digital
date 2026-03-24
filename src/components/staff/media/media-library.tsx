@@ -10,7 +10,9 @@ import {
   Video,
   FileImage,
   ExternalLink,
+  Cloud,
 } from "lucide-react";
+import { CloudinaryBrowser } from "./cloudinary-browser";
 
 interface MediaItem {
   id: number;
@@ -42,10 +44,18 @@ export function MediaLibrary() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [showAddModal, setShowAddModal] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
+  const [activeTab, setActiveTab] = useState<"database" | "cloudinary">("database");
+  const [cloudinaryAssets, setCloudinaryAssets] = useState<any[]>([]);
+  const [cloudinaryLoading, setCloudinaryLoading] = useState(false);
+  const [cloudinaryType, setCloudinaryType] = useState<"image" | "audio" | "video">("image");
 
   useEffect(() => {
-    fetchMedia();
-  }, [typeFilter, searchQuery]);
+    if (activeTab === "database") {
+      fetchMedia();
+    } else {
+      fetchCloudinaryAssets();
+    }
+  }, [typeFilter, searchQuery, activeTab, cloudinaryType]);
 
   const fetchMedia = async () => {
     setLoading(true);
@@ -61,6 +71,23 @@ export function MediaLibrary() {
       console.error("Error fetching media:", error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchCloudinaryAssets = async () => {
+    setCloudinaryLoading(true);
+    try {
+      const params = new URLSearchParams({
+        type: cloudinaryType,
+        search: searchQuery,
+      });
+      const response = await fetch(`/api/staff/media/cloudinary?${params}`);
+      const data = await response.json();
+      setCloudinaryAssets(data.assets || []);
+    } catch (error) {
+      console.error("Error fetching Cloudinary assets:", error);
+    } finally {
+      setCloudinaryLoading(false);
     }
   };
 
@@ -82,6 +109,31 @@ export function MediaLibrary() {
 
   return (
     <div className="space-y-6">
+      {/* Tab Switcher */}
+      <div className="flex gap-2">
+        <button
+          onClick={() => setActiveTab("database")}
+          className={`px-6 py-3 border-2 border-black font-black transition-all ${
+            activeTab === "database"
+              ? "bg-blue-400 shadow-[4px_4px_0_#000]"
+              : "bg-white hover:shadow-[2px_2px_0_#000]"
+          }`}
+        >
+          Database Media
+        </button>
+        <button
+          onClick={() => setActiveTab("cloudinary")}
+          className={`px-6 py-3 border-2 border-black font-black transition-all inline-flex items-center gap-2 ${
+            activeTab === "cloudinary"
+              ? "bg-blue-400 shadow-[4px_4px_0_#000]"
+              : "bg-white hover:shadow-[2px_2px_0_#000]"
+          }`}
+        >
+          <Cloud size={20} />
+          Cloudinary Assets
+        </button>
+      </div>
+
       {/* Actions Bar */}
       <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
         <div className="flex gap-2 flex-wrap">
@@ -119,7 +171,7 @@ export function MediaLibrary() {
       </div>
 
       {/* Type Filter Tabs */}
-      {showFilters && (
+      {showFilters && activeTab === "database" && (
         <div
           className="bg-white border-2 border-black p-4"
           style={{ boxShadow: "4px 4px 0 #000" }}
@@ -156,8 +208,52 @@ export function MediaLibrary() {
         </div>
       )}
 
-      {/* Media Grid */}
-      {loading ? (
+      {/* Cloudinary Type Filter */}
+      {showFilters && activeTab === "cloudinary" && (
+        <div
+          className="bg-white border-2 border-black p-4"
+          style={{ boxShadow: "4px 4px 0 #000" }}
+        >
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => setCloudinaryType("image")}
+              className={`px-4 py-2 border-2 border-black font-bold transition-all inline-flex items-center gap-2 ${
+                cloudinaryType === "image"
+                  ? "bg-blue-400 shadow-[2px_2px_0_#000]"
+                  : "bg-white hover:shadow-[2px_2px_0_#000]"
+              }`}
+            >
+              <ImageIcon size={18} />
+              Images
+            </button>
+            <button
+              onClick={() => setCloudinaryType("audio")}
+              className={`px-4 py-2 border-2 border-black font-bold transition-all inline-flex items-center gap-2 ${
+                cloudinaryType === "audio"
+                  ? "bg-purple-400 shadow-[2px_2px_0_#000]"
+                  : "bg-white hover:shadow-[2px_2px_0_#000]"
+              }`}
+            >
+              <Music size={18} />
+              Audio
+            </button>
+            <button
+              onClick={() => setCloudinaryType("video")}
+              className={`px-4 py-2 border-2 border-black font-bold transition-all inline-flex items-center gap-2 ${
+                cloudinaryType === "video"
+                  ? "bg-red-400 shadow-[2px_2px_0_#000]"
+                  : "bg-white hover:shadow-[2px_2px_0_#000]"
+              }`}
+            >
+              <Video size={18} />
+              Videos
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Database Media Grid */}
+      {activeTab === "database" && loading ? (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {Array.from({ length: 10 }).map((_, i) => (
             <div
@@ -170,7 +266,7 @@ export function MediaLibrary() {
             </div>
           ))}
         </div>
-      ) : media.length === 0 ? (
+      ) : activeTab === "database" && media.length === 0 ? (
         <div
           className="bg-white border-2 border-black p-12 text-center"
           style={{ boxShadow: "4px 4px 0 #000" }}
@@ -184,7 +280,7 @@ export function MediaLibrary() {
             Add Your First Media
           </button>
         </div>
-      ) : (
+      ) : activeTab === "database" ? (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {media.map((item) => {
             const Icon = getMediaIcon(item.type);
@@ -259,7 +355,108 @@ export function MediaLibrary() {
             );
           })}
         </div>
-      )}
+      ) : null}
+
+      {/* Cloudinary Assets Grid */}
+      {activeTab === "cloudinary" && cloudinaryLoading ? (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <div
+              key={i}
+              className="bg-white border-2 border-black p-4 animate-pulse"
+              style={{ boxShadow: "4px 4px 0 #000" }}
+            >
+              <div className="aspect-square bg-gray-200 mb-4"></div>
+              <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+            </div>
+          ))}
+        </div>
+      ) : activeTab === "cloudinary" && cloudinaryAssets.length === 0 ? (
+        <div
+          className="bg-white border-2 border-black p-12 text-center"
+          style={{ boxShadow: "4px 4px 0 #000" }}
+        >
+          <Cloud size={48} className="mx-auto mb-4 text-zinc-400" />
+          <p className="text-zinc-600 mb-2">No Cloudinary assets found</p>
+          <p className="text-sm text-zinc-500">
+            Upload assets to your Cloudinary account to see them here
+          </p>
+        </div>
+      ) : activeTab === "cloudinary" ? (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          {cloudinaryAssets.map((asset) => (
+            <div
+              key={asset.public_id}
+              className="bg-white border-2 border-black hover:shadow-[6px_6px_0_#000] transition-all group"
+              style={{ boxShadow: "4px 4px 0 #000" }}
+            >
+              {/* Asset Preview */}
+              <div className="aspect-square bg-gray-100 border-b-2 border-black relative overflow-hidden">
+                {asset.resource_type === "image" ? (
+                  <img
+                    src={asset.secure_url}
+                    alt={asset.public_id}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    {asset.resource_type === "video" && cloudinaryType === "audio" ? (
+                      <Music size={48} className="text-zinc-400" />
+                    ) : (
+                      <Video size={48} className="text-zinc-400" />
+                    )}
+                  </div>
+                )}
+
+                {/* Cloudinary Badge */}
+                <div className="absolute top-2 right-2 bg-blue-400 border-2 border-black px-2 py-1 text-xs font-bold inline-flex items-center gap-1">
+                  <Cloud size={12} />
+                  Cloudinary
+                </div>
+              </div>
+
+              {/* Asset Info */}
+              <div className="p-3">
+                <div className="bg-blue-400 border-2 border-black px-2 py-1 mb-2 inline-flex items-center gap-1">
+                  {cloudinaryType === "image" && <ImageIcon size={14} />}
+                  {cloudinaryType === "audio" && <Music size={14} />}
+                  {cloudinaryType === "video" && <Video size={14} />}
+                  <span className="text-xs font-bold uppercase">{cloudinaryType}</span>
+                </div>
+
+                <h3 className="font-bold text-sm mb-1 truncate" title={asset.public_id}>
+                  {asset.public_id.split("/").pop()}
+                </h3>
+
+                <div className="text-xs text-zinc-600 space-y-1">
+                  {asset.width && asset.height && (
+                    <p>
+                      {asset.width} × {asset.height}
+                    </p>
+                  )}
+                  {asset.duration && (
+                    <p>
+                      Duration: {Math.floor(asset.duration / 60)}:
+                      {(Math.floor(asset.duration) % 60).toString().padStart(2, "0")}
+                    </p>
+                  )}
+                  <p className="text-xs text-zinc-500">Format: {asset.format}</p>
+                </div>
+
+                <a
+                  href={asset.secure_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 text-xs text-blue-600 hover:text-blue-800 inline-flex items-center gap-1"
+                >
+                  <ExternalLink size={12} />
+                  View
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : null}
 
       {/* Add Media Modal */}
       {showAddModal && (
