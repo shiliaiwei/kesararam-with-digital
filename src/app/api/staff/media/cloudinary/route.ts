@@ -21,24 +21,43 @@ export async function GET(request: NextRequest) {
 
     const resourceType = type === "video" ? "video" : type === "audio" ? "video" : "image";
 
-    const result = await cloudinary.search
-      .expression(
-        search
-          ? `resource_type:${resourceType} AND ${search}`
-          : `resource_type:${resourceType}`
-      )
-      .sort_by("created_at", "desc")
-      .max_results(50)
-      .execute();
+    // Fetch all resources including those in folders
+    const options: any = {
+      type: "upload",
+      resource_type: resourceType,
+      max_results: 500, // Increased to get more results
+    };
+
+    if (search) {
+      options.prefix = search;
+    }
+
+    const result = await cloudinary.api.resources(options);
+
+    // Transform the response to match the expected format
+    const assets = result.resources.map((resource: any) => ({
+      public_id: resource.public_id,
+      secure_url: resource.secure_url,
+      format: resource.format,
+      resource_type: resource.resource_type,
+      width: resource.width,
+      height: resource.height,
+      duration: resource.duration,
+      created_at: resource.created_at,
+    }));
 
     return NextResponse.json({
-      assets: result.resources || [],
-      total: result.total_count || 0,
+      assets,
+      total: result.resources.length,
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error fetching Cloudinary assets:", error);
     return NextResponse.json(
-      { error: "Failed to fetch assets", assets: [] },
+      { 
+        error: error.message || "Failed to fetch assets", 
+        details: error.error?.message || "",
+        assets: [] 
+      },
       { status: 500 }
     );
   }

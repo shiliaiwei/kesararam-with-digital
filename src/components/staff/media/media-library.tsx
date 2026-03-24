@@ -83,9 +83,17 @@ export function MediaLibrary() {
       });
       const response = await fetch(`/api/staff/media/cloudinary?${params}`);
       const data = await response.json();
+      
+      console.log("Cloudinary API response:", data);
+      
+      if (!response.ok) {
+        console.error("Cloudinary API error:", data.error, data.details);
+      }
+      
       setCloudinaryAssets(data.assets || []);
     } catch (error) {
       console.error("Error fetching Cloudinary assets:", error);
+      setCloudinaryAssets([]);
     } finally {
       setCloudinaryLoading(false);
     }
