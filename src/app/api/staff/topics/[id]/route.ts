@@ -106,6 +106,15 @@ export async function PUT(
       status: topicStatus,
     } = body;
 
+    // If staff edits a published/approved topic, send it back to pending for re-review
+    const isAdmin = session.role === "admin";
+    const currentStatus = existing.status;
+    const newStatus = isAdmin
+      ? (topicStatus || currentStatus)
+      : (currentStatus === "published" || currentStatus === "approved")
+        ? "pending"
+        : (topicStatus || currentStatus);
+
     const result = await sql`
       UPDATE topics SET
         topic_code = ${topicCode || existing.topic_code},
@@ -122,7 +131,7 @@ export async function PUT(
         audio_source_en = ${audioSourceEn || existing.audio_source_en},
         audio_url_km = ${audioUrlKm !== undefined ? audioUrlKm : existing.audio_url_km},
         audio_source_km = ${audioSourceKm || existing.audio_source_km},
-        status = ${topicStatus || existing.status},
+        status = ${newStatus},
         updated_by = ${Number(session.id)},
         updated_at = NOW()
       WHERE id = ${id}
