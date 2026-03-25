@@ -5,13 +5,10 @@ import { useState } from "react";
 import { useLang } from "@/context/lang-context";
 
 const LOGOS = [
-  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556274/66b4722689fe3_oovtm3.png",        name: "Ministry of Public Works" },
-  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556274/607e44cbba851_pnmy8i.png",        name: "Ministry of Education" },
-  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556276/66aafc8e5a697_obtttu.png",        name: "Technovation" },
-  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556275/cropped-Technovation-Logo-Girls-White_ykzwzq.webp", name: "Technovation Girls" },
-  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556277/logo-girls_o7e3tg.png",           name: "Girls Program" },
-  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556276/logo_tg_halxkd.png",              name: "Future Digital Talents" },
-  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556276/FDTboy_qofevj.png",               name: "CADT" },
+  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556277/logo-girls_o7e3tg.png",    name: "Technovation Girls" },
+  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556276/FDTboy_qofevj.png",        name: "Future Digital Talents" },
+  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556276/66aafc8e5a697_obtttu.png", name: "Ministry of Education, Youth and Sport" },
+  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556274/60b09a9dcc100_a0nmfz.png", name: "Tech for Kids Academy" },
 ];
 
 function LogoItem({ src, name }: { src: string; name: string }) {
@@ -31,7 +28,6 @@ function LogoItem({ src, name }: { src: string; name: string }) {
         }`}
         loading="lazy"
       />
-      {/* Name tooltip shown on hover */}
       <span
         className={`absolute -bottom-6 whitespace-nowrap text-[10px] font-black uppercase tracking-wide text-zinc-600 transition-all duration-200 ${
           hovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1"
