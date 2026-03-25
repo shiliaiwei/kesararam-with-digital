@@ -63,18 +63,25 @@ export async function GET(request: NextRequest) {
           const format = (resource.format || "").toLowerCase();
           return allowedFormats.includes(format);
         })
-        .map((resource: any) => ({
-          public_id: resource.public_id,
-          secure_url: resource.secure_url,
-          format: resource.format,
-          resource_type: resource.resource_type,
-          width: resource.width,
-          height: resource.height,
-          duration: resource.duration,
-          bytes: resource.bytes,
-          created_at: resource.created_at,
-          filename: resource.public_id.split("/").pop() || resource.public_id,
-        }));
+        .map((resource: any) => {
+          const pathParts = resource.public_id.split("/");
+          const filename = pathParts.pop() || resource.public_id;
+          const folder = pathParts.length > 0 ? pathParts.join("/") : "root";
+          
+          return {
+            public_id: resource.public_id,
+            secure_url: resource.secure_url,
+            format: resource.format,
+            resource_type: resource.resource_type,
+            width: resource.width,
+            height: resource.height,
+            duration: resource.duration,
+            bytes: resource.bytes,
+            created_at: resource.created_at,
+            filename,
+            folder,
+          };
+        });
 
       console.log(`Found ${assets.length} ${type} assets (filtered from ${result.resources.length})`);
 

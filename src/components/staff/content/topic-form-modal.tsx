@@ -109,19 +109,10 @@ export function TopicFormModal({
       });
 
       if (response.ok) {
-        const { topic } = await response.json();
-
-        // Submit for review if creating new topic
-        if (!initialData) {
-          await fetch(`/api/staff/topics/${topic.id}/submit`, {
-            method: "POST",
-          });
-        }
-
         showToast(
           initialData 
-            ? "Topic updated successfully" 
-            : "Topic submitted for review",
+            ? "Topic updated and submitted for review" 
+            : "Topic created and submitted for review",
           "success"
         );
         onSuccess();

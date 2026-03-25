@@ -288,13 +288,20 @@ export function CategoryContentManager({
                       {topic.question_count}
                     </td>
                     <td className="px-4 py-3">
-                      <span
-                        className={`px-2 py-0.5 text-[10px] font-bold uppercase ${
-                          STATUS_COLORS[topic.status]
-                        }`}
-                      >
-                        {STATUS_LABELS[topic.status] || topic.status}
-                      </span>
+                      <div className="flex flex-col gap-1">
+                        <span
+                          className={`px-2 py-0.5 text-[10px] font-bold uppercase ${
+                            STATUS_COLORS[topic.status]
+                          }`}
+                        >
+                          {STATUS_LABELS[topic.status] || topic.status}
+                        </span>
+                        {topic.status === "pending" && (
+                          <span className="text-[9px] text-orange-600 font-bold">
+                            Under Review by Admin
+                          </span>
+                        )}
+                      </div>
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-1 text-sm text-zinc-600">
