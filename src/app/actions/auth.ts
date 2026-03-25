@@ -1,10 +1,10 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { users } from "@/db/schema";
-import { eq, or } from "drizzle-orm";
+import { users, sessions } from "@/db/schema";
+import { eq, or, and } from "drizzle-orm";
 import { signToken, getRedirectUrl } from "@/lib/auth";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { createHash } from "crypto";
 import { redirect } from "next/navigation";
 
@@ -81,7 +81,7 @@ export async function loginAction(
   try {
     await db
       .update(users)
-      .set({ loginAttempts: 0, lockedUntil: null })
+      .set({ loginAttempts: 0, lockedUntil: null, lastLoginAt: new Date() })
       .where(eq(users.id, user.id));
   } catch (_) {
     // non-fatal
@@ -94,6 +94,43 @@ export async function loginAction(
     role: user.role,
     avatar: user.avatar ?? null,
   });
+
+  // Get request headers for IP and user agent
+  const headersList = await headers();
+  const ipAddress = headersList.get("x-forwarded-for") || headersList.get("x-real-ip") || "unknown";
+  const userAgent = headersList.get("user-agent") || "unknown";
+
+  // Invalidate all previous active sessions for this user
+  try {
+    await db
+      .update(sessions)
+      .set({ isActive: false, logoutAt: new Date() })
+      .where(
+        and(
+          eq(sessions.userId, user.id),
+          eq(sessions.isActive, true)
+        )
+      );
+  } catch (err) {
+    console.error("[login] Failed to invalidate previous sessions:", err);
+    // non-fatal - continue with login
+  }
+
+  // Create new session record
+  try {
+    await db.insert(sessions).values({
+      userId: user.id,
+      token,
+      ipAddress,
+      userAgent,
+      isActive: true,
+      loginAt: new Date(),
+      lastActivityAt: new Date(),
+    });
+  } catch (err) {
+    console.error("[login] Failed to create session record:", err);
+    // non-fatal - continue with login
+  }
 
   const cookieStore = await cookies();
   cookieStore.set("kwd_token", token, {
@@ -120,6 +157,21 @@ export async function loginAction(
 
 export async function logoutAction() {
   const cookieStore = await cookies();
+  const token = cookieStore.get("kwd_token")?.value;
+
+  // Mark session as inactive
+  if (token) {
+    try {
+      await db
+        .update(sessions)
+        .set({ isActive: false, logoutAt: new Date() })
+        .where(eq(sessions.token, token));
+    } catch (err) {
+      console.error("[logout] Failed to update session:", err);
+      // non-fatal
+    }
+  }
+
   cookieStore.set("kwd_token", "", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",

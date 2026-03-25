@@ -14,6 +14,51 @@ export async function proxy(req: NextRequest) {
   const token = req.cookies.get("kwd_token")?.value;
   const payload = token ? await verifyToken(token) : null;
 
+  // Skip database session check during build time
+  if (token && payload && process.env.NODE_ENV !== "development") {
+    try {
+      const { db } = await import("@/lib/db");
+      const { sessions } = await import("@/db/schema");
+      const { eq, and } = await import("drizzle-orm");
+
+      const [sessionRecord] = await db
+        .select()
+        .from(sessions)
+        .where(
+          and(
+            eq(sessions.token, token),
+            eq(sessions.isActive, true)
+          )
+        );
+
+      // If session is not found or inactive, clear the cookie and redirect to login
+      if (!sessionRecord || !sessionRecord.isActive) {
+        const response = NextResponse.redirect(
+          new URL("/login", "https://kesararamwithdigital.tech")
+        );
+        response.cookies.set("kwd_token", "", {
+          httpOnly: true,
+          maxAge: 0,
+          path: "/",
+        });
+        return response;
+      }
+
+      // Update last activity
+      try {
+        await db
+          .update(sessions)
+          .set({ lastActivityAt: new Date() })
+          .where(eq(sessions.id, sessionRecord.id));
+      } catch (err) {
+        // non-fatal
+      }
+    } catch (error) {
+      console.error("Session validation error:", error);
+      // Continue with request even if session check fails
+    }
+  }
+
   if (hostname === DASHBOARD_HOSTNAME || hostname.startsWith("dashboard.")) {
     if (!payload) {
       const loginUrl = new URL("/login", "https://kesararamwithdigital.tech");
@@ -28,7 +73,7 @@ export async function proxy(req: NextRequest) {
     // Redirect authenticated users from dashboard root to their role default page
     if (pathname === "/") {
       const defaultPage =
-        payload.role === "admin" ? "/admin/users" : "/teacher/classes";
+        payload.role === "admin" ? "/admin" : "/teacher/classes";
       return NextResponse.redirect(
         new URL(defaultPage, `https://${DASHBOARD_HOSTNAME}`),
       );
