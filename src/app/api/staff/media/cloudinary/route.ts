@@ -27,28 +27,18 @@ export async function GET(request: NextRequest) {
 
     const { searchParams } = new URL(request.url);
     const type = searchParams.get("type") || "image";
-    const search = searchParams.get("search") || "";
 
     // Determine resource type for Cloudinary API
     const resourceType = type === "video" ? "video" : type === "audio" ? "video" : "image";
     const allowedFormats = ALLOWED_FORMATS[type] || ALLOWED_FORMATS.image;
 
-    console.log(`Fetching ${type} assets - search: "${search}"`);
-
     try {
-      const options: any = {
+      // Fetch all resources — search/filter is done client-side
+      const result = await cloudinary.api.resources({
         type: "upload",
         resource_type: resourceType,
         max_results: 500,
-      };
-
-      // Add search query if provided
-      if (search) {
-        options.expression = `filename:${search}* OR public_id:${search}*`;
-      }
-
-      console.log(`Fetching resources with options:`, options);
-      const result = await cloudinary.api.resources(options);
+      });
 
       if (!result || !result.resources) {
         return NextResponse.json({

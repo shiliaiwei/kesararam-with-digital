@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Search, X, Image as ImageIcon, Music, Video, Check } from "lucide-react";
 
 interface CloudinaryAsset {
@@ -13,6 +13,7 @@ interface CloudinaryAsset {
   duration?: number;
   created_at: string;
   filename?: string;
+  folder?: string;
   bytes?: number;
 }
 
@@ -36,22 +37,17 @@ export function CloudinaryBrowser({
 
   useEffect(() => {
     fetchAssets();
-  }, [type, search]);
+  }, [type]);
 
   const fetchAssets = async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams({
         type,
-        search: search,
         _t: Date.now().toString(),
       });
       const response = await fetch(`/api/staff/media/cloudinary?${params}`, {
         cache: "no-store",
-        headers: {
-          "Cache-Control": "no-cache, no-store, must-revalidate",
-          "Pragma": "no-cache",
-        },
       });
       const data = await response.json();
       setAssets(data.assets || []);
@@ -63,6 +59,17 @@ export function CloudinaryBrowser({
     }
   };
 
+  // Client-side filtering — instant, no re-fetch
+  const filtered = useMemo(() => {
+    if (!search.trim()) return assets;
+    const q = search.trim().toLowerCase();
+    return assets.filter(
+      (a) =>
+        (a.filename || "").toLowerCase().includes(q) ||
+        a.public_id.toLowerCase().includes(q)
+    );
+  }, [assets, search]);
+
   const handleSelect = () => {
     if (selectedUrl) {
       onSelect(selectedUrl, "cloudinary");
@@ -70,20 +77,7 @@ export function CloudinaryBrowser({
     }
   };
 
-  const getIcon = () => {
-    switch (type) {
-      case "image":
-        return ImageIcon;
-      case "audio":
-        return Music;
-      case "video":
-        return Video;
-      default:
-        return ImageIcon;
-    }
-  };
-
-  const Icon = getIcon();
+  const Icon = type === "image" ? ImageIcon : type === "audio" ? Music : Video;
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
@@ -110,20 +104,26 @@ export function CloudinaryBrowser({
         {/* Search */}
         <div className="p-4 border-b-2 border-black bg-white">
           <div className="relative">
-            <Search
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"
-              size={20}
-            />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={20} />
             <input
               type="text"
               placeholder={`Search ${type} by filename...`}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
+              autoFocus
+              className="w-full pl-10 pr-8 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
             />
+            {search && (
+              <button
+                onClick={() => setSearch("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-black"
+              >
+                <X size={16} />
+              </button>
+            )}
           </div>
           <p className="text-xs text-zinc-500 mt-2">
-            {assets.length} {type}(s) found
+            {search ? `${filtered.length} of ${assets.length}` : assets.length} {type}(s) found
           </p>
         </div>
 
@@ -132,25 +132,22 @@ export function CloudinaryBrowser({
           {loading ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {Array.from({ length: 8 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="aspect-square bg-gray-200 border-2 border-black animate-pulse"
-                />
+                <div key={i} className="aspect-square bg-gray-200 border-2 border-black animate-pulse" />
               ))}
             </div>
-          ) : assets.length === 0 ? (
+          ) : filtered.length === 0 ? (
             <div className="text-center py-12">
               <Icon size={64} className="mx-auto text-zinc-300 mb-4" />
               <p className="text-zinc-600 font-bold mb-2">No {type}s found</p>
               {search && (
-                <p className="text-sm text-zinc-500">
-                  Try a different search term or clear the search
-                </p>
+                <button onClick={() => setSearch("")} className="text-sm text-blue-600 font-bold hover:underline">
+                  Clear search
+                </button>
               )}
             </div>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {assets.map((asset) => (
+              {filtered.map((asset) => (
                 <button
                   key={asset.public_id}
                   onClick={() => setSelectedUrl(asset.secure_url)}
