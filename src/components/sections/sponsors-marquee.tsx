@@ -2,6 +2,7 @@
 
 import { Marquee } from "@/components/ui/marquee";
 import { useState } from "react";
+import { useLang } from "@/context/lang-context";
 
 const LOGOS = [
   { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556274/66b4722689fe3_oovtm3.png",        name: "Ministry of Public Works" },
@@ -43,10 +44,12 @@ function LogoItem({ src, name }: { src: string; name: string }) {
 }
 
 export function SponsorsMarquee() {
+  const { isKh } = useLang();
+
   return (
     <section className="bg-white py-10 pb-14 border-b-2 border-black overflow-hidden">
       <p className="text-[11px] font-black uppercase tracking-widest text-zinc-400 text-center mb-8">
-        We Participate With
+        {isKh ? "យើងចូលរួមជាមួយ" : "We Participate With"}
       </p>
 
       <Marquee
