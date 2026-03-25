@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Image as ImageIcon, Music, Video, Link as LinkIcon, Cloud } from "lucide-react";
+import { Image as ImageIcon, Music, Video, Link as LinkIcon, Cloud, X } from "lucide-react";
 import { CloudinaryBrowser } from "./cloudinary-browser";
 
 interface MediaSelectorProps {
@@ -45,6 +45,10 @@ export function MediaSelector({
   const handleCloudinarySelect = (url: string, src: "cloudinary") => {
     onChange(url, src);
     setInputMode("cloudinary");
+  };
+
+  const clearSelection = () => {
+    onChange("", inputMode);
   };
 
   return (
@@ -106,9 +110,46 @@ export function MediaSelector({
           >
             {value ? "Change Selection" : "Browse Cloudinary"}
           </button>
+          
+          {/* Preview */}
           {value && (
-            <div className="p-2 border-2 border-black bg-gray-50">
-              <p className="text-sm font-medium truncate">{value}</p>
+            <div className="border-2 border-black bg-white">
+              {type === "image" && (
+                <div className="aspect-video bg-zinc-100 border-b-2 border-black">
+                  <img
+                    src={value}
+                    alt="Selected image"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              )}
+              {type === "audio" && (
+                <div className="p-4 bg-zinc-50 border-b-2 border-black">
+                  <audio controls className="w-full">
+                    <source src={value} />
+                    Your browser does not support the audio element.
+                  </audio>
+                </div>
+              )}
+              {type === "video" && (
+                <div className="aspect-video bg-zinc-100 border-b-2 border-black">
+                  <video controls className="w-full h-full">
+                    <source src={value} />
+                    Your browser does not support the video element.
+                  </video>
+                </div>
+              )}
+              <div className="p-2 flex items-center justify-between">
+                <p className="text-xs font-medium truncate flex-1">{value}</p>
+                <button
+                  type="button"
+                  onClick={clearSelection}
+                  className="ml-2 p-1 hover:bg-red-100 border border-red-300 rounded"
+                  title="Clear selection"
+                >
+                  <X size={14} className="text-red-600" />
+                </button>
+              </div>
             </div>
           )}
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Search, X, Image as ImageIcon, Music, Video, Check } from "lucide-react";
 
 interface CloudinaryAsset {
@@ -13,6 +13,7 @@ interface CloudinaryAsset {
   duration?: number;
   created_at: string;
   filename?: string;
+  bytes?: number;
 }
 
 interface CloudinaryBrowserProps {
@@ -32,33 +33,31 @@ export function CloudinaryBrowser({
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [selectedUrl, setSelectedUrl] = useState(currentUrl || "");
-  const [debouncedSearch, setDebouncedSearch] = useState("");
-
-  // Debounce search input
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedSearch(search);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [search]);
 
   useEffect(() => {
     fetchAssets();
-  }, [type, debouncedSearch]);
+  }, [type, search]);
 
   const fetchAssets = async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams({
         type,
-        search: debouncedSearch,
+        search: search,
+        _t: Date.now().toString(),
       });
-      const response = await fetch(`/api/staff/media/cloudinary?${params}`);
+      const response = await fetch(`/api/staff/media/cloudinary?${params}`, {
+        cache: "no-store",
+        headers: {
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+          "Pragma": "no-cache",
+        },
+      });
       const data = await response.json();
       setAssets(data.assets || []);
     } catch (error) {
       console.error("Error fetching assets:", error);
+      setAssets([]);
     } finally {
       setLoading(false);
     }
@@ -93,7 +92,7 @@ export function CloudinaryBrowser({
         style={{ boxShadow: "8px 8px 0 #000" }}
       >
         {/* Header */}
-        <div className="border-b-4 border-black p-4 flex items-center justify-between">
+        <div className="border-b-4 border-black p-4 flex items-center justify-between bg-yellow-400">
           <div className="flex items-center gap-3">
             <Icon size={24} />
             <h2 className="text-2xl font-black">
@@ -102,14 +101,14 @@ export function CloudinaryBrowser({
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 border-2 border-black"
+            className="p-2 hover:bg-black hover:text-yellow-400 border-2 border-black transition-all"
           >
             <X size={20} />
           </button>
         </div>
 
         {/* Search */}
-        <div className="p-4 border-b-2 border-black">
+        <div className="p-4 border-b-2 border-black bg-white">
           <div className="relative">
             <Search
               className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"
@@ -117,19 +116,19 @@ export function CloudinaryBrowser({
             />
             <input
               type="text"
-              placeholder="Search by filename..."
+              placeholder={`Search ${type} by filename...`}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full pl-10 pr-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
             />
           </div>
-          <p className="text-xs text-zinc-500 mt-1">
-            Search by filename or path (e.g., "stop-sign", "warning", "kwd/")
+          <p className="text-xs text-zinc-500 mt-2">
+            {assets.length} {type}(s) found
           </p>
         </div>
 
         {/* Assets Grid */}
-        <div className="flex-1 overflow-y-auto p-4">
+        <div className="flex-1 overflow-y-auto p-4 bg-zinc-50">
           {loading ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {Array.from({ length: 8 }).map((_, i) => (
@@ -141,7 +140,8 @@ export function CloudinaryBrowser({
             </div>
           ) : assets.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-zinc-600 mb-2">No assets found</p>
+              <Icon size={64} className="mx-auto text-zinc-300 mb-4" />
+              <p className="text-zinc-600 font-bold mb-2">No {type}s found</p>
               {search && (
                 <p className="text-sm text-zinc-500">
                   Try a different search term or clear the search
@@ -154,26 +154,30 @@ export function CloudinaryBrowser({
                 <button
                   key={asset.public_id}
                   onClick={() => setSelectedUrl(asset.secure_url)}
-                  className={`relative aspect-square border-2 border-black hover:shadow-[4px_4px_0_#000] transition-all ${
+                  className={`relative aspect-square border-2 transition-all ${
                     selectedUrl === asset.secure_url
-                      ? "ring-4 ring-green-400 shadow-[4px_4px_0_#000]"
-                      : ""
+                      ? "border-green-500 ring-4 ring-green-400 shadow-[4px_4px_0_#22c55e]"
+                      : "border-black hover:shadow-[4px_4px_0_#000]"
                   }`}
                 >
                   {type === "image" ? (
                     <img
                       src={asset.secure_url}
-                      alt={asset.public_id}
+                      alt={asset.filename || asset.public_id}
                       className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-100">
-                      <Icon size={48} className="text-zinc-400" />
+                    <div className="w-full h-full flex flex-col items-center justify-center bg-gray-100 p-4">
+                      <Icon size={48} className="text-zinc-400 mb-2" />
+                      <p className="text-xs font-bold text-center truncate w-full">
+                        {asset.filename || asset.public_id.split("/").pop()}
+                      </p>
                     </div>
                   )}
                   {selectedUrl === asset.secure_url && (
-                    <div className="absolute top-2 right-2 bg-green-400 border-2 border-black p-1">
-                      <Check size={16} />
+                    <div className="absolute top-2 right-2 bg-green-500 border-2 border-black p-1">
+                      <Check size={16} className="text-white" />
                     </div>
                   )}
                   <div className="absolute bottom-0 left-0 right-0 bg-black/75 text-white text-xs p-2 truncate">
@@ -186,7 +190,7 @@ export function CloudinaryBrowser({
         </div>
 
         {/* Footer */}
-        <div className="border-t-4 border-black p-4 flex gap-2">
+        <div className="border-t-4 border-black p-4 flex gap-2 bg-white">
           <button
             onClick={handleSelect}
             disabled={!selectedUrl}

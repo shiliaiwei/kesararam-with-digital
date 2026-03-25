@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { X, Save, Send } from "lucide-react";
+import { X, Send } from "lucide-react";
 import { MediaSelector } from "../media/media-selector";
 import { useToast } from "@/components/ui/toast-container";
 
@@ -75,7 +75,7 @@ export function TopicFormModal({
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (submitForReview = false) => {
+  const handleSubmit = async () => {
     setLoading(true);
 
     try {
@@ -94,7 +94,7 @@ export function TopicFormModal({
         audioSourceEn: formData.audioSourceEn,
         audioUrlKm: formData.audioUrlKm || null,
         audioSourceKm: formData.audioSourceKm,
-        status: submitForReview ? "pending" : "draft",
+        status: "pending", // Always submit for review
       };
 
       const url = initialData
@@ -111,7 +111,8 @@ export function TopicFormModal({
       if (response.ok) {
         const { topic } = await response.json();
 
-        if (submitForReview && !initialData) {
+        // Submit for review if creating new topic
+        if (!initialData) {
           await fetch(`/api/staff/topics/${topic.id}/submit`, {
             method: "POST",
           });
@@ -120,9 +121,7 @@ export function TopicFormModal({
         showToast(
           initialData 
             ? "Topic updated successfully" 
-            : submitForReview 
-              ? "Topic created and submitted for review" 
-              : "Topic saved as draft",
+            : "Topic submitted for review",
           "success"
         );
         onSuccess();
@@ -241,7 +240,7 @@ export function TopicFormModal({
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-                placeholder="e.g., Stop Sign, Speed Limit 40 km/h, No Entry"
+                placeholder={formData.nameEn ? "" : "e.g., Stop Sign, Speed Limit 40 km/h"}
               />
             </div>
 
@@ -256,7 +255,7 @@ export function TopicFormModal({
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-                placeholder="ឧ. សញ្ញាឈប់, កំណត់ល្បឿន ៤០ គ.ម/ម, ហាមចូល"
+                placeholder={formData.nameKm ? "" : "ឧ. សញ្ញាឈប់, កំណត់ល្បឿន ៤០ គ.ម/ម"}
               />
             </div>
           </div>
@@ -276,7 +275,7 @@ export function TopicFormModal({
                 required
                 rows={4}
                 className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] resize-none"
-                placeholder="e.g., This sign requires all vehicles to come to a complete stop before proceeding. Drivers must check for traffic and pedestrians before continuing."
+                placeholder={formData.descriptionEn ? "" : "Enter description in English"}
               />
             </div>
 
@@ -291,7 +290,7 @@ export function TopicFormModal({
                 required
                 rows={4}
                 className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] resize-none"
-                placeholder="ឧ. សញ្ញានេះតម្រូវឱ្យយានជំនិះទាំងអស់ឈប់ទាំងស្រុងមុនពេលបន្ត។ អ្នកបើកបរត្រូវពិនិត្យមើលចរាចរណ៍និងអ្នកថ្មើរជើងមុនពេលបន្ត។"
+                placeholder={formData.descriptionKm ? "" : "បញ្ចូលការពិពណ៌នាជាភាសាខ្មែរ"}
               />
             </div>
           </div>
@@ -380,16 +379,7 @@ export function TopicFormModal({
         {/* Actions */}
         <div className="border-t-4 border-black p-6 bg-gray-50 flex gap-4">
           <button
-            onClick={() => handleSubmit(false)}
-            disabled={loading}
-            className="flex-1 bg-blue-400 border-2 border-black px-6 py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
-          >
-            <Save size={20} />
-            {loading ? "Saving..." : "Save as Draft"}
-          </button>
-
-          <button
-            onClick={() => handleSubmit(true)}
+            onClick={handleSubmit}
             disabled={loading}
             className="flex-1 bg-green-400 border-2 border-black px-6 py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
           >
@@ -399,6 +389,7 @@ export function TopicFormModal({
 
           <button
             onClick={onClose}
+            type="button"
             className="bg-white border-2 border-black px-6 py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center justify-center gap-2"
           >
             <X size={20} />
