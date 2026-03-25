@@ -19,35 +19,55 @@ export async function GET(request: NextRequest) {
     const folder = searchParams.get("folder") || "root";
     const search = searchParams.get("search") || "";
 
-    console.log("Cloudinary config:", {
-      cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-      api_key: process.env.CLOUDINARY_API_KEY ? "SET" : "MISSING",
-      api_secret: process.env.CLOUDINARY_API_SECRET ? "SET" : "MISSING",
-    });
+    console.log(`Fetching images - folder: ${folder}, search: ${search}`);
 
-    console.log("Fetching images for folder:", folder);
-
-    // Build options for fetching resources
-    const options: any = {
-      type: "upload",
-      resource_type: "image",
-      max_results: 500,
-    };
-
-    // If not root, fetch from specific folder
-    // If root, we still fetch all images (no prefix filter)
-    if (folder !== "root") {
-      options.prefix = folder;
+    // Check environment variables
+    if (!process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 
+        !process.env.CLOUDINARY_API_KEY || 
+        !process.env.CLOUDINARY_API_SECRET) {
+      return NextResponse.json(
+        { error: "Cloudinary credentials not configured", resources: [] },
+        { status: 500 }
+      );
     }
 
-    const result = await cloudinary.api.resources(options);
+    let result;
 
-    console.log("Cloudinary API result:", {
-      count: result.resources?.length || 0,
-      rate_limit_remaining: result.rate_limit_remaining,
-    });
+    // Try different folder paths
+    const folderPaths = folder === "root" 
+      ? ["", "KWD Media/", "kwd/"]
+      : [folder, `KWD Media/${folder}`, `kwd/${folder}`];
 
-    // Transform the response
+    for (const path of folderPaths) {
+      try {
+        const options: any = {
+          type: "upload",
+          resource_type: "image",
+          max_results: 500,
+        };
+
+        if (path) {
+          options.prefix = path;
+        }
+
+        console.log(`Trying path: "${path}"`);
+        result = await cloudinary.api.resources(options);
+
+        if (result.resources && result.resources.length > 0) {
+          console.log(`Success with path: "${path}", found ${result.resources.length} images`);
+          break;
+        }
+      } catch (err) {
+        console.log(`Failed with path: "${path}"`);
+        continue;
+      }
+    }
+
+    if (!result || !result.resources) {
+      return NextResponse.json({ resources: [], total: 0 });
+    }
+
+    // Transform resources
     const resources = result.resources.map((resource: any) => ({
       public_id: resource.public_id,
       secure_url: resource.secure_url,
@@ -56,24 +76,27 @@ export async function GET(request: NextRequest) {
       height: resource.height,
       bytes: resource.bytes,
       created_at: resource.created_at,
-      folder: resource.folder || "",
+      folder: resource.public_id.includes("/") 
+        ? resource.public_id.substring(0, resource.public_id.lastIndexOf("/"))
+        : "",
     }));
 
+    // Filter by search if provided
+    const filteredResources = search
+      ? resources.filter((r: any) =>
+          r.public_id.toLowerCase().includes(search.toLowerCase())
+        )
+      : resources;
+
     return NextResponse.json({
-      resources,
-      total: result.resources.length,
+      resources: filteredResources,
+      total: filteredResources.length,
     });
   } catch (error: any) {
-    console.error("Error fetching Cloudinary images:", error);
-    console.error("Error details:", {
-      message: error.message,
-      http_code: error.http_code,
-      error: error.error,
-    });
+    console.error("Error fetching images:", error);
     return NextResponse.json(
       { 
         error: error.message || "Failed to fetch images",
-        details: error.error?.message || "",
         resources: [] 
       },
       { status: 500 }
