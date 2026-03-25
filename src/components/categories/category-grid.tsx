@@ -14,7 +14,6 @@ import {
 } from "react-icons/fa";
 import { useLang } from "@/context/lang-context";
 import { t } from "@/lib/translations";
-import { useEffect, useState } from "react";
 
 const CATEGORIES = [
   {
@@ -79,16 +78,16 @@ const CATEGORIES = [
   },
 ] as const;
 
-// Fallback images
-const FALLBACK_IMAGES = [
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0"
+// Use the same specific category images as the Learn page
+const CATEGORY_IMAGES = [
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380370/kwd/afe770139087986f_np4j2n.png",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380369/kwd/6ec559a44b9bf87a_et8ygh.png",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380300/kwd/1d2f48f1a2d4a64c_xrnmua.png",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380370/kwd/afe770139087986f_np4j2n.png",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380369/kwd/6ec559a44b9bf87a_et8ygh.png",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380300/kwd/1d2f48f1a2d4a64c_xrnmua.png",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380370/kwd/afe770139087986f_np4j2n.png",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380369/kwd/6ec559a44b9bf87a_et8ygh.png",
 ];
 
 export function CategoryGrid() {
@@ -96,34 +95,6 @@ export function CategoryGrid() {
   const tr = t[lang].categories;
   const kh = lang === "kh";
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
-  
-  const [categoryImages, setCategoryImages] = useState<string[]>(FALLBACK_IMAGES);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Fetch images from Cloudinary
-    fetch("/api/cloudinary/category-images")
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        return res.json();
-      })
-      .then((data) => {
-        console.log("Category images response:", data);
-        if (data.images && data.images.length > 0) {
-          setCategoryImages(data.images);
-        } else {
-          console.warn("No category images returned from API, using fallback");
-        }
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error loading category images:", error);
-        console.warn("Using fallback images");
-        setLoading(false);
-      });
-  }, []);
 
   return (
     <section className="dot-bg py-20 border-b-2 border-black">
@@ -160,8 +131,8 @@ export function CategoryGrid() {
           {CATEGORIES.map((cat, index) => {
             const color = CATEGORY_COLORS[cat.slug];
             const shadow = CATEGORY_SHADOW[cat.slug];
-            // Use fetched image or fallback
-            const categoryImage = categoryImages[index] || FALLBACK_IMAGES[index];
+            // Use the same specific images as Learn page
+            const categoryImage = CATEGORY_IMAGES[index];
             
             return (
               <Link
@@ -188,20 +159,14 @@ export function CategoryGrid() {
                     minHeight: "200px"
                   }}
                 >
-                  {loading ? (
-                    <div className="w-full h-48 flex items-center justify-center">
-                      <div className="animate-spin rounded-full h-8 w-8 border-4 border-black border-t-yellow-400"></div>
-                    </div>
-                  ) : (
-                    <img 
-                      src={categoryImage}
-                      alt={kh ? cat.titleKh : cat.titleEn}
-                      className="w-full h-48 object-contain object-bottom transition-transform duration-300 group-hover:scale-105"
-                      style={{
-                        marginBottom: "-2px"
-                      }}
-                    />
-                  )}
+                  <img 
+                    src={categoryImage}
+                    alt={kh ? cat.titleKh : cat.titleEn}
+                    className="w-full h-48 object-contain object-bottom transition-all duration-300 group-hover:scale-110 group-hover:animate-bounce"
+                    style={{
+                      marginBottom: "-2px"
+                    }}
+                  />
                   {/* Caution tape effect on hover */}
                   <div 
                     className="absolute bottom-0 left-0 right-0 h-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
