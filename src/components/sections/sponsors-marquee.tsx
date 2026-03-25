@@ -1,44 +1,63 @@
 "use client";
 
 import { Marquee } from "@/components/ui/marquee";
+import { useState } from "react";
 
 const LOGOS = [
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556274/66b4722689fe3_oovtm3.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556274/607e44cbba851_pnmy8i.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556276/66aafc8e5a697_obtttu.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556275/cropped-Technovation-Logo-Girls-White_ykzwzq.webp",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556277/logo-girls_o7e3tg.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556276/logo_tg_halxkd.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556276/FDTboy_qofevj.png",
+  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556274/66b4722689fe3_oovtm3.png",        name: "Ministry of Public Works" },
+  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556274/607e44cbba851_pnmy8i.png",        name: "Ministry of Education" },
+  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556276/66aafc8e5a697_obtttu.png",        name: "Technovation" },
+  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556275/cropped-Technovation-Logo-Girls-White_ykzwzq.webp", name: "Technovation Girls" },
+  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556277/logo-girls_o7e3tg.png",           name: "Girls Program" },
+  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556276/logo_tg_halxkd.png",              name: "Future Digital Talents" },
+  { src: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1773556276/FDTboy_qofevj.png",               name: "CADT" },
 ];
+
+function LogoItem({ src, name }: { src: string; name: string }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <div
+      className="relative flex flex-col items-center justify-center"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <img
+        src={src}
+        alt={name}
+        className={`h-12 w-28 object-contain transition-all duration-300 ${
+          hovered ? "grayscale-0 opacity-100 scale-110" : "grayscale opacity-50"
+        }`}
+        loading="lazy"
+      />
+      {/* Name tooltip shown on hover */}
+      <span
+        className={`absolute -bottom-6 whitespace-nowrap text-[10px] font-black uppercase tracking-wide text-zinc-600 transition-all duration-200 ${
+          hovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1"
+        }`}
+      >
+        {name}
+      </span>
+    </div>
+  );
+}
 
 export function SponsorsMarquee() {
   return (
-    <section className="bg-white py-10 border-b-2 border-black overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 mb-6 text-center">
-        <p className="text-xs font-black uppercase tracking-widest text-zinc-400">
-          We participate with
-        </p>
-      </div>
+    <section className="bg-white py-10 pb-14 border-b-2 border-black overflow-hidden">
+      <p className="text-[11px] font-black uppercase tracking-widest text-zinc-400 text-center mb-8">
+        We Participate With
+      </p>
 
-      <div className="relative">
-        <Marquee className="[--duration:40s] hover:[animation-play-state:paused]">
-          {/* Duplicate for seamless loop */}
-          {[...LOGOS, ...LOGOS].map((src, i) => (
-            <div
-              key={i}
-              className="flex items-center justify-center mx-10"
-            >
-              <img
-                src={src}
-                alt=""
-                className="h-14 w-32 object-contain grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300"
-                loading="lazy"
-              />
-            </div>
-          ))}
-        </Marquee>
-      </div>
+      <Marquee
+        pauseOnHover
+        repeat={3}
+        className="[--duration:60s] [--gap:4rem]"
+      >
+        {LOGOS.map((logo, i) => (
+          <LogoItem key={i} src={logo.src} name={logo.name} />
+        ))}
+      </Marquee>
     </section>
   );
 }
