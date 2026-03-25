@@ -57,12 +57,14 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({ resources: [], total: 0 });
       }
 
-      // Transform and filter resources - exclude PDFs
+      // Transform and filter resources - exclude PDFs and broken/empty assets
       const resources = result.resources
         .filter((resource: any) => {
           const format = (resource.format || "").toLowerCase();
-          // Only include allowed formats, exclude PDFs
-          return ALLOWED_FORMATS.includes(format);
+          if (!ALLOWED_FORMATS.includes(format)) return false;
+          // Skip 0-byte assets (broken/corrupted)
+          if ((resource.bytes || 0) === 0) return false;
+          return true;
         })
         .map((resource: any) => ({
           public_id: resource.public_id,

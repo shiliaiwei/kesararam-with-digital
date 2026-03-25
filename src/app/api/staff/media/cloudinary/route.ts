@@ -47,11 +47,13 @@ export async function GET(request: NextRequest) {
         });
       }
 
-      // Filter by allowed formats and transform
+      // Filter by allowed formats and transform — skip 0-byte broken assets
       const assets = result.resources
         .filter((resource: any) => {
           const format = (resource.format || "").toLowerCase();
-          return allowedFormats.includes(format);
+          if (!allowedFormats.includes(format)) return false;
+          if ((resource.bytes || 0) === 0) return false;
+          return true;
         })
         .map((resource: any) => {
           const pathParts = resource.public_id.split("/");
