@@ -1,11 +1,9 @@
-import { Metadata } from "next";
-import { TrafficSignsContent } from "./traffic-signs-content";
+import { AdminCategoryManager } from "@/components/admin/admin-category-manager";
 
-export const metadata: Metadata = {
-  title: "Traffic Signs Content | Admin",
-  description: "Manage traffic signs content, images, descriptions, and audio",
-};
-
-export default function TrafficSignsContentPage() {
-  return <TrafficSignsContent />;
+export default function Page() {
+  return (
+    <div className="p-6">
+      <AdminCategoryManager categoryId={1} categoryName="Traffic Signs" categorySlug="road-sign" />
+    </div>
+  );
 }
