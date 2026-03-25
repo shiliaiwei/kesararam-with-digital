@@ -8,6 +8,9 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET() {
   try {
     const session = await getSession();
@@ -62,10 +65,17 @@ export async function GET() {
 
     console.log(`Returning ${folders.length} folders`);
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       folders,
       total: folders.length,
     });
+
+    // Set no-cache headers
+    response.headers.set("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0");
+    response.headers.set("Pragma", "no-cache");
+    response.headers.set("Expires", "0");
+
+    return response;
   } catch (error: any) {
     console.error("Error in folders API:", error);
     return NextResponse.json(

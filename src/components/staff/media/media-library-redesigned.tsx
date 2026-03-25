@@ -82,7 +82,13 @@ export function MediaLibraryRedesigned() {
   const fetchFolders = async () => {
     setFoldersLoading(true);
     try {
-      const response = await fetch("/api/cloudinary/folders");
+      const response = await fetch(`/api/cloudinary/folders?_t=${Date.now()}`, {
+        cache: "no-store",
+        headers: {
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+          "Pragma": "no-cache",
+        },
+      });
       const data = await response.json();
       setFolders(data.folders || []);
     } catch (error) {
@@ -98,9 +104,17 @@ export function MediaLibraryRedesigned() {
       const params = new URLSearchParams({
         type: resourceType === "all" ? "image" : resourceType,
         limit: "500",
+        // Add timestamp to prevent caching
+        _t: Date.now().toString(),
       });
 
-      const response = await fetch(`/api/cloudinary/images?${params}`);
+      const response = await fetch(`/api/cloudinary/images?${params}`, {
+        cache: "no-store",
+        headers: {
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+          "Pragma": "no-cache",
+        },
+      });
       const data = await response.json();
 
       let assets = data.resources || [];
