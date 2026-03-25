@@ -12,8 +12,10 @@ import {
   AlertCircle,
   TrendingUp,
   FileText,
-  Send
+  Send,
+  User
 } from "lucide-react";
+import { useToast } from "@/components/ui/toast-container";
 
 interface Topic {
   id: number;
@@ -87,8 +89,10 @@ const CATEGORIES = [
 
 export function MyTopicsList() {
   const router = useRouter();
+  const { showToast } = useToast();
   const [topics, setTopics] = useState<Topic[]>([]);
   const [loading, setLoading] = useState(true);
+  const [deleteConfirm, setDeleteConfirm] = useState<number | null>(null);
   const [stats, setStats] = useState<Stats>({
     total: 0,
     draft: 0,
@@ -144,42 +148,41 @@ export function MyTopicsList() {
   };
 
   const handleDelete = async (id: number) => {
-    if (!confirm("Are you sure you want to delete this topic?")) return;
-
     try {
       const response = await fetch(`/api/staff/topics/${id}`, {
         method: "DELETE",
       });
 
       if (response.ok) {
+        showToast("Topic deleted successfully", "success");
+        setDeleteConfirm(null);
         fetchTopics();
       } else {
         const data = await response.json();
-        alert(data.error || "Failed to delete topic");
+        showToast(data.error || "Failed to delete topic", "error");
       }
     } catch (error) {
       console.error("Error deleting topic:", error);
-      alert("Failed to delete topic");
+      showToast("Failed to delete topic", "error");
     }
   };
 
   const handleSubmitForReview = async (id: number) => {
-    if (!confirm("Submit this topic for admin review?")) return;
-
     try {
       const response = await fetch(`/api/staff/topics/${id}/submit`, {
         method: "POST",
       });
 
       if (response.ok) {
+        showToast("Topic submitted for review", "success");
         fetchTopics();
       } else {
         const data = await response.json();
-        alert(data.error || "Failed to submit topic");
+        showToast(data.error || "Failed to submit topic", "error");
       }
     } catch (error) {
       console.error("Error submitting topic:", error);
-      alert("Failed to submit topic");
+      showToast("Failed to submit topic", "error");
     }
   };
 
@@ -390,13 +393,30 @@ export function MyTopicsList() {
                           <Edit size={18} />
                         </button>
 
-                        <button
-                          onClick={() => handleDelete(topic.id)}
-                          className="bg-red-400 border-2 border-black p-2 hover:shadow-[2px_2px_0_#000] transition-all"
-                          title="Delete"
-                        >
-                          <Trash2 size={18} />
-                        </button>
+                        {deleteConfirm === topic.id ? (
+                          <div className="flex gap-1">
+                            <button
+                              onClick={() => handleDelete(topic.id)}
+                              className="px-3 py-2 text-xs font-bold bg-red-500 text-white border-2 border-black hover:bg-red-600"
+                            >
+                              Confirm Delete
+                            </button>
+                            <button
+                              onClick={() => setDeleteConfirm(null)}
+                              className="px-3 py-2 text-xs font-bold bg-white border-2 border-black hover:bg-gray-100"
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        ) : (
+                          <button
+                            onClick={() => setDeleteConfirm(topic.id)}
+                            className="bg-red-400 border-2 border-black p-2 hover:shadow-[2px_2px_0_#000] transition-all"
+                            title="Delete"
+                          >
+                            <Trash2 size={18} />
+                          </button>
+                        )}
                       </>
                     )}
 

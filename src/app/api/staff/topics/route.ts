@@ -40,11 +40,18 @@ export async function GET(request: NextRequest) {
 
     const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
 
-    // Get topics
+    // Get topics with creator and updater names
     const topics = await sql`
-      SELECT * FROM topics
+      SELECT 
+        t.*,
+        creator.full_name as creator_name,
+        updater.full_name as updater_name,
+        (SELECT COUNT(*)::int FROM questions WHERE topic_id = t.id) as question_count
+      FROM topics t
+      LEFT JOIN users creator ON t.created_by = creator.id
+      LEFT JOIN users updater ON t.updated_by = updater.id
       ${sql.unsafe(whereClause)}
-      ORDER BY created_at DESC 
+      ORDER BY t.updated_at DESC, t.created_at DESC 
       LIMIT ${limit} OFFSET ${offset}
     `;
 
@@ -122,7 +129,7 @@ export async function POST(request: NextRequest) {
         law_reference, sub_group,
         audio_url_en, audio_source_en,
         audio_url_km, audio_source_km,
-        status, created_by, created_at, updated_at
+        status, created_by, updated_by, created_at, updated_at
       ) VALUES (
         ${finalTopicCode}, ${categoryId}, ${nameEn}, ${nameKm},
         ${descriptionEn || ""}, ${descriptionKm || ""},
@@ -130,7 +137,7 @@ export async function POST(request: NextRequest) {
         ${lawReference || null}, ${subGroup || null},
         ${audioUrlEn || null}, ${audioSourceEn || "url"},
         ${audioUrlKm || null}, ${audioSourceKm || "url"},
-        ${topicStatus || "draft"}, ${session.id}, NOW(), NOW()
+        ${topicStatus || "draft"}, ${session.id}, ${session.id}, NOW(), NOW()
       )
       RETURNING *
     `;

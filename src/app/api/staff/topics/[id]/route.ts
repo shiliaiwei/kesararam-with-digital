@@ -123,6 +123,7 @@ export async function PUT(
         audio_url_km = ${audioUrlKm !== undefined ? audioUrlKm : existing.audio_url_km},
         audio_source_km = ${audioSourceKm || existing.audio_source_km},
         status = ${topicStatus || existing.status},
+        updated_by = ${session.id},
         updated_at = NOW()
       WHERE id = ${id}
       RETURNING *

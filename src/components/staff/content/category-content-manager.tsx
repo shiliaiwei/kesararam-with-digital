@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Plus, Search, Eye, Edit, Trash2, Send, Filter } from "lucide-react";
+import { Plus, Search, Eye, Edit, Trash2, Send, Filter, Clock, User } from "lucide-react";
 import { TopicFormModal } from "./topic-form-modal";
+import { useToast } from "@/components/ui/toast-container";
 
 interface Topic {
   id: number;
@@ -13,7 +14,12 @@ interface Topic {
   status: string;
   question_count: number;
   created_at: string;
+  updated_at: string;
   sub_group: string;
+  created_by: number;
+  updated_by?: number;
+  creator_name?: string;
+  updater_name?: string;
 }
 
 interface CategoryContentManagerProps {
@@ -59,6 +65,7 @@ export function CategoryContentManager({
   requiresAudio = false,
 }: CategoryContentManagerProps) {
   const router = useRouter();
+  const { showToast } = useToast();
   const [topics, setTopics] = useState<Topic[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -66,6 +73,7 @@ export function CategoryContentManager({
   const [subGroupFilter, setSubGroupFilter] = useState("");
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [editingTopic, setEditingTopic] = useState<Topic | null>(null);
+  const [deleteConfirm, setDeleteConfirm] = useState<number | null>(null);
 
   useEffect(() => {
     fetchTopics();
@@ -99,22 +107,22 @@ export function CategoryContentManager({
   };
 
   const handleDelete = async (id: number) => {
-    if (!confirm("Are you sure you want to delete this topic?")) return;
-
     try {
       const response = await fetch(`/api/staff/topics/${id}`, {
         method: "DELETE",
       });
 
       if (response.ok) {
+        showToast("Topic deleted successfully", "success");
+        setDeleteConfirm(null);
         fetchTopics();
       } else {
         const data = await response.json();
-        alert(data.error || "Failed to delete topic");
+        showToast(data.error || "Failed to delete topic", "error");
       }
     } catch (error) {
       console.error("Error deleting topic:", error);
-      alert("Failed to delete topic");
+      showToast("Failed to delete topic", "error");
     }
   };
 
@@ -125,15 +133,31 @@ export function CategoryContentManager({
       });
 
       if (response.ok) {
+        showToast("Topic submitted for review", "success");
         fetchTopics();
       } else {
         const data = await response.json();
-        alert(data.error || "Failed to submit topic");
+        showToast(data.error || "Failed to submit topic", "error");
       }
     } catch (error) {
       console.error("Error submitting topic:", error);
-      alert("Failed to submit topic");
+      showToast("Failed to submit topic", "error");
     }
+  };
+
+  const formatRelativeTime = (dateString: string) => {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffMs = now.getTime() - date.getTime();
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    const diffDays = Math.floor(diffMs / 86400000);
+
+    if (diffMins < 1) return "Just now";
+    if (diffMins < 60) return `${diffMins}m ago`;
+    if (diffHours < 24) return `${diffHours}h ago`;
+    if (diffDays < 7) return `${diffDays}d ago`;
+    return date.toLocaleDateString();
   };
 
   return (
@@ -242,13 +266,14 @@ export function CategoryContentManager({
                   <th className="px-4 py-3 text-left font-black">Type</th>
                   <th className="px-4 py-3 text-left font-black">Questions</th>
                   <th className="px-4 py-3 text-left font-black">Status</th>
-                  <th className="px-4 py-3 text-left font-black">Created</th>
+                  <th className="px-4 py-3 text-left font-black">Last Updated</th>
+                  <th className="px-4 py-3 text-left font-black">Updated By</th>
                   <th className="px-4 py-3 text-right font-black">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {topics.map((topic) => (
-                  <tr key={topic.id} className="border-b border-gray-200">
+                  <tr key={topic.id} className="border-b border-gray-200 hover:bg-gray-50">
                     <td className="px-4 py-3 font-mono text-sm">
                       {topic.topic_code}
                     </td>
@@ -271,8 +296,17 @@ export function CategoryContentManager({
                         {STATUS_LABELS[topic.status] || topic.status}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-sm">
-                      {new Date(topic.created_at).toLocaleDateString()}
+                    <td className="px-4 py-3">
+                      <div className="flex items-center gap-1 text-sm text-zinc-600">
+                        <Clock size={14} />
+                        <span>{formatRelativeTime(topic.updated_at)}</span>
+                      </div>
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="flex items-center gap-1 text-sm text-zinc-600">
+                        <User size={14} />
+                        <span>{topic.updater_name || topic.creator_name || "Unknown"}</span>
+                      </div>
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center justify-end gap-2">
@@ -284,7 +318,6 @@ export function CategoryContentManager({
                           <Eye size={16} />
                         </button>
                         
-                        {/* Staff can edit their own content in any status */}
                         <button
                           onClick={() => setEditingTopic(topic)}
                           className="p-2 border-2 border-black hover:bg-yellow-100 transition-all"
@@ -293,7 +326,6 @@ export function CategoryContentManager({
                           <Edit size={16} />
                         </button>
 
-                        {/* Can submit draft or rejected content */}
                         {(topic.status === "draft" || topic.status === "rejected") && (
                           <button
                             onClick={() => handleSubmit(topic.id)}
@@ -304,15 +336,33 @@ export function CategoryContentManager({
                           </button>
                         )}
 
-                        {/* Can only delete draft content */}
                         {topic.status === "draft" && (
-                          <button
-                            onClick={() => handleDelete(topic.id)}
-                            className="p-2 border-2 border-black hover:bg-red-100 transition-all"
-                            title="Delete"
-                          >
-                            <Trash2 size={16} />
-                          </button>
+                          <>
+                            {deleteConfirm === topic.id ? (
+                              <div className="flex gap-1">
+                                <button
+                                  onClick={() => handleDelete(topic.id)}
+                                  className="px-2 py-1 text-xs font-bold bg-red-500 text-white border-2 border-black hover:bg-red-600"
+                                >
+                                  Confirm
+                                </button>
+                                <button
+                                  onClick={() => setDeleteConfirm(null)}
+                                  className="px-2 py-1 text-xs font-bold bg-white border-2 border-black hover:bg-gray-100"
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                            ) : (
+                              <button
+                                onClick={() => setDeleteConfirm(topic.id)}
+                                className="p-2 border-2 border-black hover:bg-red-100 transition-all"
+                                title="Delete"
+                              >
+                                <Trash2 size={16} />
+                              </button>
+                            )}
+                          </>
                         )}
                       </div>
                     </td>

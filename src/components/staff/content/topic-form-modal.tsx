@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { X, Save, Send } from "lucide-react";
 import { MediaSelector } from "../media/media-selector";
+import { useToast } from "@/components/ui/toast-container";
 
 interface TopicFormModalProps {
   categoryId?: number;
@@ -45,6 +46,7 @@ export function TopicFormModal({
   onClose,
   onSuccess,
 }: TopicFormModalProps) {
+  const { showToast } = useToast();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     categoryId: propCategoryId || initialData?.category_id || 1,
@@ -115,14 +117,22 @@ export function TopicFormModal({
           });
         }
 
+        showToast(
+          initialData 
+            ? "Topic updated successfully" 
+            : submitForReview 
+              ? "Topic created and submitted for review" 
+              : "Topic saved as draft",
+          "success"
+        );
         onSuccess();
       } else {
         const data = await response.json();
-        alert(data.error || "Failed to save topic");
+        showToast(data.error || "Failed to save topic", "error");
       }
     } catch (error) {
       console.error("Error saving topic:", error);
-      alert("Failed to save topic");
+      showToast("Failed to save topic", "error");
     } finally {
       setLoading(false);
     }
