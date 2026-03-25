@@ -35,8 +35,8 @@ export async function GET(request: NextRequest) {
 
     // Try different folder paths - prioritize kwd/ based on actual structure
     const folderPaths = folder === "root" 
-      ? ["kwd/", "KWD Media/", ""]
-      : [`kwd/${folder}`, `KWD Media/${folder}`, folder];
+      ? ["kwd/"]  // Only fetch from kwd/ folder for root
+      : [folder.startsWith("kwd/") ? folder : `kwd/${folder}`];
 
     for (const path of folderPaths) {
       try {
@@ -44,21 +44,18 @@ export async function GET(request: NextRequest) {
           type: "upload",
           resource_type: "image",
           max_results: 500,
+          prefix: path,
         };
 
-        if (path) {
-          options.prefix = path;
-        }
-
-        console.log(`Trying path: "${path}"`);
+        console.log(`Fetching images from path: "${path}"`);
         result = await cloudinary.api.resources(options);
 
         if (result.resources && result.resources.length > 0) {
-          console.log(`Success with path: "${path}", found ${result.resources.length} images`);
+          console.log(`Success! Found ${result.resources.length} images in "${path}"`);
           break;
         }
-      } catch (err) {
-        console.log(`Failed with path: "${path}"`);
+      } catch (err: any) {
+        console.log(`Failed to fetch from "${path}":`, err.message);
         continue;
       }
     }

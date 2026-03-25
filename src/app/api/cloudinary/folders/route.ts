@@ -28,49 +28,35 @@ export async function GET() {
     }
 
     // Try to get folders
-    let folders: any[] = [];
+    let folders: FolderItem[] = [];
 
     try {
+      // First, try to get root folders
       const result = await cloudinary.api.root_folders();
-      console.log("Root folders:", result.folders);
+      console.log("Root folders found:", result.folders.map((f: any) => f.name));
       
-      // Get subfolders for each root folder
+      // For each root folder, get its subfolders
       for (const folder of result.folders) {
         try {
           const subResult = await cloudinary.api.sub_folders(folder.path);
-          console.log(`Subfolders for ${folder.path}:`, subResult.folders);
+          console.log(`Subfolders in ${folder.path}:`, subResult.folders.map((f: any) => f.name));
           
-          folders.push({
-            name: folder.name,
-            path: folder.path,
-          });
-
-          // Add subfolders
+          // Add subfolders with proper paths
           for (const subfolder of subResult.folders) {
             folders.push({
-              name: `${folder.name}/${subfolder.name}`,
+              name: subfolder.name.toUpperCase(),
               path: subfolder.path,
             });
           }
         } catch (subErr) {
-          console.log(`No subfolders for ${folder.path}`);
-          folders.push({
-            name: folder.name,
-            path: folder.path,
-          });
+          console.log(`No subfolders in ${folder.path}`);
         }
       }
-    } catch (error) {
-      console.error("Error fetching folders:", error);
-      // Return default folders based on kwd structure
-      folders = [
-        { name: "KWD", path: "kwd" },
-        { name: "HOMEPAGE", path: "homepage" },
-        { name: "LOGO", path: "logo" },
-        { name: "SECTION", path: "section" },
-      ];
+    } catch (error: any) {
+      console.error("Error fetching folders:", error.message);
     }
 
+    // If no folders found, return empty array (will show "All Images" only)
     console.log(`Returning ${folders.length} folders`);
 
     return NextResponse.json({
