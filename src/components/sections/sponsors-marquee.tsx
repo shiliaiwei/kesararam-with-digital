@@ -52,7 +52,7 @@ export function SponsorsMarquee() {
       <Marquee
         pauseOnHover
         repeat={4}
-        className="[--duration:60s] [--gap:0px]"
+        className="[--duration:25s] [--gap:0px]"
       >
         {LOGOS.map((logo, i) => (
           <div key={i} className="px-10">
