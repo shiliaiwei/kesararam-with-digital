@@ -33,10 +33,10 @@ export async function GET(request: NextRequest) {
 
     let result;
 
-    // Try different folder paths
+    // Try different folder paths - prioritize kwd/ based on actual structure
     const folderPaths = folder === "root" 
-      ? ["", "KWD Media/", "kwd/"]
-      : [folder, `KWD Media/${folder}`, `kwd/${folder}`];
+      ? ["kwd/", "KWD Media/", ""]
+      : [`kwd/${folder}`, `KWD Media/${folder}`, folder];
 
     for (const path of folderPaths) {
       try {

@@ -62,15 +62,9 @@ export async function GET() {
       }
     } catch (error) {
       console.error("Error fetching folders:", error);
-      // Return default folders if API fails
+      // Return default folders based on kwd structure
       folders = [
-        { name: "KWD MEDIA/1. ROAD SIGNS", path: "KWD Media/1. Road Signs" },
-        { name: "KWD MEDIA/2. ROAD TRAFFIC", path: "KWD Media/2. Road Traffic" },
-        { name: "KWD MEDIA/3. PRIORITY (RIGHT OF WAY)", path: "KWD Media/3. Priority (Right of Way)" },
-        { name: "KWD MEDIA/7. GENERAL KNOWLEDGE", path: "KWD Media/7. General Knowledge" },
-        { name: "KWD MEDIA/8. EMERGENCY SITUATIONS", path: "KWD Media/8. Emergency Situations" },
-        { name: "KWD MEDIA/PUZZLE", path: "KWD Media/puzzle" },
-        { name: "KWD MEDIA/SLIDE", path: "KWD Media/slide" },
+        { name: "KWD", path: "kwd" },
         { name: "HOMEPAGE", path: "homepage" },
         { name: "LOGO", path: "logo" },
         { name: "SECTION", path: "section" },
