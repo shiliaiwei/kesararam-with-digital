@@ -21,32 +21,64 @@ export async function GET(request: NextRequest) {
 
     const resourceType = type === "video" ? "video" : type === "audio" ? "video" : "image";
 
-    // Fetch all resources from "KWD Media" folder and its subfolders
-    const kwdMediaFolder = "KWD Media/";
-    
-    const options: any = {
-      type: "upload",
-      resource_type: resourceType,
-      max_results: 500,
-      prefix: kwdMediaFolder, // Fetch from "KWD Media" folder
-    };
+    // Try multiple folder paths to find the correct one
+    const possiblePrefixes = [
+      "KWD Media/",
+      "KWD%20Media/",
+      "kwd/",
+      "", // Try fetching all if specific folder doesn't work
+    ];
 
-    let result;
-    try {
-      // Try using search API first (more powerful)
-      if (search) {
+    let result: any = null;
+    let usedPrefix = "";
+
+    // Try each prefix until we find one that works
+    for (const prefix of possiblePrefixes) {
+      try {
+        console.log(`Trying prefix: "${prefix}"`);
+        const options: any = {
+          type: "upload",
+          resource_type: resourceType,
+          max_results: 500,
+        };
+
+        if (prefix) {
+          options.prefix = prefix;
+        }
+
+        const testResult = await cloudinary.api.resources(options);
+        
+        if (testResult.resources && testResult.resources.length > 0) {
+          result = testResult;
+          usedPrefix = prefix;
+          console.log(`Success with prefix: "${prefix}", found ${testResult.resources.length} resources`);
+          break;
+        }
+      } catch (err) {
+        console.log(`Failed with prefix: "${prefix}"`, err);
+        continue;
+      }
+    }
+
+    // If still no result, try search API
+    if (!result && search) {
+      try {
         result = await cloudinary.search
-          .expression(`resource_type:${resourceType} AND folder:"KWD Media/*" AND (filename:*${search}* OR public_id:*${search}*)`)
+          .expression(`resource_type:${resourceType} AND (filename:*${search}* OR public_id:*${search}*)`)
           .max_results(500)
           .execute();
-      } else {
-        // Fetch all from KWD Media folder
-        result = await cloudinary.api.resources(options);
+        usedPrefix = "search";
+      } catch (searchError) {
+        console.error("Search API also failed:", searchError);
       }
-    } catch (searchError) {
-      // Fallback to basic API if search fails
-      console.log("Search API failed, using basic API");
-      result = await cloudinary.api.resources(options);
+    }
+
+    if (!result || !result.resources) {
+      return NextResponse.json({
+        assets: [],
+        total: 0,
+        error: "No resources found. Please check your Cloudinary folder structure.",
+      });
     }
 
     // Transform the response to match the expected format
@@ -70,9 +102,12 @@ export async function GET(request: NextRequest) {
         )
       : assets;
 
+    console.log(`Returning ${filteredAssets.length} assets using prefix: "${usedPrefix}"`);
+
     return NextResponse.json({
       assets: filteredAssets,
       total: filteredAssets.length,
+      prefix_used: usedPrefix,
     });
   } catch (error: any) {
     console.error("Error fetching Cloudinary assets:", error);
