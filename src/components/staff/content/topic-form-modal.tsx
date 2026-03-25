@@ -300,18 +300,20 @@ export function TopicFormModal({
           <div className="space-y-4">
             <h3 className="font-black text-lg">Media Resources</h3>
 
-            {/* Image Requirement Alert */}
-            <div className="bg-orange-50 border-2 border-orange-500 p-4">
-              <p className="text-sm font-bold text-orange-900 mb-2">
-                ⚠️ Image Aspect Ratio Requirement
-              </p>
-              <p className="text-sm text-orange-800">
-                All images MUST be in 16:9 aspect ratio (landscape). Images that don't meet this requirement will not be displayed on the public learn page.
-              </p>
-              <p className="text-xs text-orange-700 mt-2">
-                Recommended sizes: 1920x1080, 1280x720, 960x540, or any 16:9 ratio
-              </p>
-            </div>
+            {/* Image Requirement Alert - Only for Q&A type categories */}
+            {(formData.categoryId === 2 || formData.categoryId === 7) && (
+              <div className="bg-orange-50 border-2 border-orange-500 p-4">
+                <p className="text-sm font-bold text-orange-900 mb-2">
+                  ⚠️ Image Aspect Ratio Requirement
+                </p>
+                <p className="text-sm text-orange-800">
+                  All images MUST be in 16:9 aspect ratio (landscape). Images that don't meet this requirement will not be displayed on the public learn page.
+                </p>
+                <p className="text-xs text-orange-700 mt-2">
+                  Recommended sizes: 1920x1080, 1280x720, 960x540, or any 16:9 ratio
+                </p>
+              </div>
+            )}
 
             {requiresImage && (
               <div className="bg-amber-50 border-2 border-amber-400 p-3">
@@ -319,13 +321,15 @@ export function TopicFormModal({
               </div>
             )}
 
-            {requiresAudio && (
-              <div className="bg-amber-50 border-2 border-amber-400 p-3">
-                <p className="font-bold text-sm">
-                  Audio (both languages) is REQUIRED for this category
-                </p>
-              </div>
-            )}
+            {/* Audio Note */}
+            <div className="bg-blue-50 border-2 border-blue-400 p-3">
+              <p className="font-bold text-sm text-blue-900 mb-1">
+                🎵 Audio Files (Optional)
+              </p>
+              <p className="text-xs text-blue-800">
+                You can provide audio in one or both languages. If audio is not available for a language, leave it blank and users will see "Audio not available" on the learn page.
+              </p>
+            </div>
 
             <MediaSelector
               type="image"
@@ -344,7 +348,7 @@ export function TopicFormModal({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <MediaSelector
                 type="audio"
-                label={`Audio (English)${requiresAudio ? " *" : ""}`}
+                label="Audio (English)"
                 value={formData.audioUrlEn}
                 source={formData.audioSourceEn as "url" | "cloudinary"}
                 onChange={(url, source) =>
@@ -358,7 +362,7 @@ export function TopicFormModal({
 
               <MediaSelector
                 type="audio"
-                label={`Audio (Khmer)${requiresAudio ? " *" : ""}`}
+                label="Audio (Khmer)"
                 value={formData.audioUrlKm}
                 source={formData.audioSourceKm as "url" | "cloudinary"}
                 onChange={(url, source) =>

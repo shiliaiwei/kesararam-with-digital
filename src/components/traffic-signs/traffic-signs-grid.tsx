@@ -145,7 +145,7 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
                   <h4 className="text-sm font-bold text-black uppercase">
                     English
                   </h4>
-                  {selectedSign.audioUrlEn && (
+                  {selectedSign.audioUrlEn ? (
                     <button
                       onClick={() => playAudio(selectedSign.audioUrlEn!)}
                       className="flex items-center gap-1 px-3 py-1 bg-blue-400 border-2 border-black text-xs font-bold hover:bg-blue-300"
@@ -153,6 +153,10 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
                       <Volume2 size={14} />
                       Play Audio
                     </button>
+                  ) : (
+                    <span className="text-xs text-zinc-500 italic">
+                      Audio not available
+                    </span>
                   )}
                 </div>
                 <p className="text-sm text-zinc-700 leading-relaxed">
@@ -169,7 +173,7 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
                   >
                     ភាសាខ្មែរ
                   </h4>
-                  {selectedSign.audioUrlKm && (
+                  {selectedSign.audioUrlKm ? (
                     <button
                       onClick={() => playAudio(selectedSign.audioUrlKm!)}
                       className="flex items-center gap-1 px-3 py-1 bg-blue-400 border-2 border-black text-xs font-bold hover:bg-blue-300"
@@ -177,6 +181,10 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
                       <Volume2 size={14} />
                       ចាក់សំឡេង
                     </button>
+                  ) : (
+                    <span className="text-xs text-zinc-500 italic" style={{ fontFamily: "Siemreap, sans-serif" }}>
+                      មិនមានសំឡេង
+                    </span>
                   )}
                 </div>
                 <p

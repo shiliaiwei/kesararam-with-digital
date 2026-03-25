@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Search, X, Image as ImageIcon, Music, Video, Check } from "lucide-react";
 
 interface CloudinaryAsset {
@@ -12,6 +12,7 @@ interface CloudinaryAsset {
   height?: number;
   duration?: number;
   created_at: string;
+  filename?: string;
 }
 
 interface CloudinaryBrowserProps {
@@ -31,17 +32,27 @@ export function CloudinaryBrowser({
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [selectedUrl, setSelectedUrl] = useState(currentUrl || "");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
+
+  // Debounce search input
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [search]);
 
   useEffect(() => {
     fetchAssets();
-  }, [type, search]);
+  }, [type, debouncedSearch]);
 
   const fetchAssets = async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams({
         type,
-        search,
+        search: debouncedSearch,
       });
       const response = await fetch(`/api/staff/media/cloudinary?${params}`);
       const data = await response.json();
@@ -106,12 +117,15 @@ export function CloudinaryBrowser({
             />
             <input
               type="text"
-              placeholder="Search assets..."
+              placeholder="Search by filename..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full pl-10 pr-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
             />
           </div>
+          <p className="text-xs text-zinc-500 mt-1">
+            Search by filename or path (e.g., "stop-sign", "warning", "kwd/")
+          </p>
         </div>
 
         {/* Assets Grid */}
@@ -127,7 +141,12 @@ export function CloudinaryBrowser({
             </div>
           ) : assets.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-zinc-600">No assets found</p>
+              <p className="text-zinc-600 mb-2">No assets found</p>
+              {search && (
+                <p className="text-sm text-zinc-500">
+                  Try a different search term or clear the search
+                </p>
+              )}
             </div>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -158,7 +177,7 @@ export function CloudinaryBrowser({
                     </div>
                   )}
                   <div className="absolute bottom-0 left-0 right-0 bg-black/75 text-white text-xs p-2 truncate">
-                    {asset.public_id.split("/").pop()}
+                    {asset.filename || asset.public_id.split("/").pop()}
                   </div>
                 </button>
               ))}

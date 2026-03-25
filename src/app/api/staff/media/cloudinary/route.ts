@@ -25,14 +25,31 @@ export async function GET(request: NextRequest) {
     const options: any = {
       type: "upload",
       resource_type: resourceType,
-      max_results: 500, // Increased to get more results
+      max_results: 500,
     };
 
+    // Use search expression for better filename matching
     if (search) {
-      options.prefix = search;
+      // Search by filename (public_id contains the search term)
+      options.search = `filename:*${search}* OR public_id:*${search}*`;
     }
 
-    const result = await cloudinary.api.resources(options);
+    let result;
+    try {
+      // Try using search API first (more powerful)
+      if (search) {
+        result = await cloudinary.search
+          .expression(`resource_type:${resourceType} AND (filename:*${search}* OR public_id:*${search}*)`)
+          .max_results(500)
+          .execute();
+      } else {
+        result = await cloudinary.api.resources(options);
+      }
+    } catch (searchError) {
+      // Fallback to basic API if search fails
+      console.log("Search API failed, using basic API");
+      result = await cloudinary.api.resources(options);
+    }
 
     // Transform the response to match the expected format
     const assets = result.resources.map((resource: any) => ({
@@ -44,11 +61,20 @@ export async function GET(request: NextRequest) {
       height: resource.height,
       duration: resource.duration,
       created_at: resource.created_at,
+      filename: resource.public_id.split("/").pop(), // Extract filename for display
     }));
 
+    // If search term provided, filter results by filename match
+    const filteredAssets = search
+      ? assets.filter((asset: any) => 
+          asset.filename.toLowerCase().includes(search.toLowerCase()) ||
+          asset.public_id.toLowerCase().includes(search.toLowerCase())
+        )
+      : assets;
+
     return NextResponse.json({
-      assets,
-      total: result.resources.length,
+      assets: filteredAssets,
+      total: filteredAssets.length,
     });
   } catch (error: any) {
     console.error("Error fetching Cloudinary assets:", error);
