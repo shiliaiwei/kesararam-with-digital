@@ -16,10 +16,11 @@ export async function GET(request: NextRequest) {
     }
 
     const { searchParams } = new URL(request.url);
-    const folder = searchParams.get("folder") || "root";
     const search = searchParams.get("search") || "";
+    const resourceType = searchParams.get("type") || "image";
+    const maxResults = parseInt(searchParams.get("limit") || "500");
 
-    console.log(`Fetching images - folder: ${folder}, search: ${search}`);
+    console.log(`Fetching resources - type: ${resourceType}, search: ${search}`);
 
     // Check environment variables
     if (!process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 
@@ -31,66 +32,60 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    let result;
+    try {
+      const options: any = {
+        type: "upload",
+        resource_type: resourceType,
+        max_results: maxResults,
+      };
 
-    // Try different folder paths - prioritize kwd/ based on actual structure
-    const folderPaths = folder === "root" 
-      ? ["kwd/"]  // Only fetch from kwd/ folder for root
-      : [folder.startsWith("kwd/") ? folder : `kwd/${folder}`];
-
-    for (const path of folderPaths) {
-      try {
-        const options: any = {
-          type: "upload",
-          resource_type: "image",
-          max_results: 500,
-          prefix: path,
-        };
-
-        console.log(`Fetching images from path: "${path}"`);
-        result = await cloudinary.api.resources(options);
-
-        if (result.resources && result.resources.length > 0) {
-          console.log(`Success! Found ${result.resources.length} images in "${path}"`);
-          break;
-        }
-      } catch (err: any) {
-        console.log(`Failed to fetch from "${path}":`, err.message);
-        continue;
+      // Add search query if provided
+      if (search) {
+        options.expression = `filename:${search}* OR public_id:${search}*`;
       }
+
+      console.log(`Fetching all resources with options:`, options);
+      const result = await cloudinary.api.resources(options);
+
+      if (!result || !result.resources) {
+        return NextResponse.json({ resources: [], total: 0 });
+      }
+
+      // Transform resources
+      const resources = result.resources.map((resource: any) => ({
+        public_id: resource.public_id,
+        secure_url: resource.secure_url,
+        format: resource.format,
+        width: resource.width,
+        height: resource.height,
+        bytes: resource.bytes,
+        created_at: resource.created_at,
+        resource_type: resource.resource_type,
+        type: resource.type,
+        folder: resource.public_id.includes("/") 
+          ? resource.public_id.substring(0, resource.public_id.lastIndexOf("/"))
+          : "root",
+        filename: resource.public_id.split("/").pop() || resource.public_id,
+      }));
+
+      console.log(`Found ${resources.length} resources`);
+
+      return NextResponse.json({
+        resources,
+        total: resources.length,
+      });
+    } catch (err: any) {
+      console.error("Failed to fetch resources:", err.message);
+      return NextResponse.json(
+        { 
+          error: err.message || "Failed to fetch resources",
+          resources: [] 
+        },
+        { status: 500 }
+      );
     }
-
-    if (!result || !result.resources) {
-      return NextResponse.json({ resources: [], total: 0 });
-    }
-
-    // Transform resources
-    const resources = result.resources.map((resource: any) => ({
-      public_id: resource.public_id,
-      secure_url: resource.secure_url,
-      format: resource.format,
-      width: resource.width,
-      height: resource.height,
-      bytes: resource.bytes,
-      created_at: resource.created_at,
-      folder: resource.public_id.includes("/") 
-        ? resource.public_id.substring(0, resource.public_id.lastIndexOf("/"))
-        : "",
-    }));
-
-    // Filter by search if provided
-    const filteredResources = search
-      ? resources.filter((r: any) =>
-          r.public_id.toLowerCase().includes(search.toLowerCase())
-        )
-      : resources;
-
-    return NextResponse.json({
-      resources: filteredResources,
-      total: filteredResources.length,
-    });
   } catch (error: any) {
-    console.error("Error fetching images:", error);
+    console.error("Error in images API:", error);
     return NextResponse.json(
       { 
         error: error.message || "Failed to fetch images",

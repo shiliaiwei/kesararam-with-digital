@@ -15,7 +15,7 @@ export async function GET() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    console.log("Fetching folders from Cloudinary...");
+    console.log("Fetching all folders from Cloudinary...");
 
     // Check environment variables
     if (!process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 
@@ -27,24 +27,28 @@ export async function GET() {
       );
     }
 
-    // Try to get folders
-    let folders: FolderItem[] = [];
+    // Get all root folders
+    let folders: Array<{ name: string; path: string }> = [];
 
     try {
-      // First, try to get root folders
       const result = await cloudinary.api.root_folders();
       console.log("Root folders found:", result.folders.map((f: any) => f.name));
       
-      // For each root folder, get its subfolders
+      // Add root folders
       for (const folder of result.folders) {
+        folders.push({
+          name: folder.name.toUpperCase(),
+          path: folder.path,
+        });
+
+        // Get subfolders for each root folder
         try {
           const subResult = await cloudinary.api.sub_folders(folder.path);
           console.log(`Subfolders in ${folder.path}:`, subResult.folders.map((f: any) => f.name));
           
-          // Add subfolders with proper paths
           for (const subfolder of subResult.folders) {
             folders.push({
-              name: subfolder.name.toUpperCase(),
+              name: `${folder.name}/${subfolder.name}`.toUpperCase(),
               path: subfolder.path,
             });
           }
@@ -56,7 +60,6 @@ export async function GET() {
       console.error("Error fetching folders:", error.message);
     }
 
-    // If no folders found, return empty array (will show "All Images" only)
     console.log(`Returning ${folders.length} folders`);
 
     return NextResponse.json({
