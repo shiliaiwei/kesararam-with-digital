@@ -11,6 +11,9 @@ cloudinary.config({
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
+// Allowed file formats (no PDFs)
+const ALLOWED_FORMATS = ["jpg", "jpeg", "png", "gif", "webp", "svg", "bmp", "tiff", "mp4", "webm", "mov", "avi", "mkv"];
+
 export async function GET(request: NextRequest) {
   try {
     const session = await getSession();
@@ -54,24 +57,30 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({ resources: [], total: 0 });
       }
 
-      // Transform resources
-      const resources = result.resources.map((resource: any) => ({
-        public_id: resource.public_id,
-        secure_url: resource.secure_url,
-        format: resource.format,
-        width: resource.width,
-        height: resource.height,
-        bytes: resource.bytes,
-        created_at: resource.created_at,
-        resource_type: resource.resource_type,
-        type: resource.type,
-        folder: resource.public_id.includes("/") 
-          ? resource.public_id.substring(0, resource.public_id.lastIndexOf("/"))
-          : "root",
-        filename: resource.public_id.split("/").pop() || resource.public_id,
-      }));
+      // Transform and filter resources - exclude PDFs
+      const resources = result.resources
+        .filter((resource: any) => {
+          const format = (resource.format || "").toLowerCase();
+          // Only include allowed formats, exclude PDFs
+          return ALLOWED_FORMATS.includes(format);
+        })
+        .map((resource: any) => ({
+          public_id: resource.public_id,
+          secure_url: resource.secure_url,
+          format: resource.format,
+          width: resource.width,
+          height: resource.height,
+          bytes: resource.bytes,
+          created_at: resource.created_at,
+          resource_type: resource.resource_type,
+          type: resource.type,
+          folder: resource.public_id.includes("/") 
+            ? resource.public_id.substring(0, resource.public_id.lastIndexOf("/"))
+            : "root",
+          filename: resource.public_id.split("/").pop() || resource.public_id,
+        }));
 
-      console.log(`Found ${resources.length} resources`);
+      console.log(`Found ${resources.length} resources (filtered from ${result.resources.length})`);
 
       // Set no-cache headers
       const response = NextResponse.json({
