@@ -51,11 +51,13 @@ export function SponsorsMarquee() {
 
       <Marquee
         pauseOnHover
-        repeat={3}
-        className="[--duration:60s] [--gap:4rem]"
+        repeat={4}
+        className="[--duration:60s] [--gap:0px]"
       >
         {LOGOS.map((logo, i) => (
-          <LogoItem key={i} src={logo.src} name={logo.name} />
+          <div key={i} className="px-10">
+            <LogoItem src={logo.src} name={logo.name} />
+          </div>
         ))}
       </Marquee>
     </section>
