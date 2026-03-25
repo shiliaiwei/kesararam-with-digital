@@ -17,9 +17,12 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get("limit") || "50");
     const offset = (page - 1) * limit;
 
-    // Use parameterized queries to avoid type mismatch issues
     const userId = Number(session.id);
     const isAdmin = session.role === "admin";
+    // scope=all → show all topics in category (staff can see all, but only edit own)
+    // scope=mine → show only own topics (default for My Submissions)
+    const scope = searchParams.get("scope") || "all";
+    const ownOnly = !isAdmin && scope === "mine";
 
     // Get topics with creator and updater names
     const topics = await sql`
@@ -32,7 +35,7 @@ export async function GET(request: NextRequest) {
       LEFT JOIN users creator ON t.created_by = creator.id
       LEFT JOIN users updater ON t.updated_by = updater.id
       WHERE 1=1
-        ${!isAdmin ? sql`AND t.created_by = ${userId}` : sql``}
+        ${ownOnly ? sql`AND t.created_by = ${userId}` : sql``}
         ${categoryId ? sql`AND t.category_id = ${parseInt(categoryId)}` : sql``}
         ${status ? sql`AND t.status = ${status}` : sql``}
         ${search ? sql`AND (t.name_en ILIKE ${'%' + search + '%'} OR t.name_km ILIKE ${'%' + search + '%'} OR t.topic_code ILIKE ${'%' + search + '%'})` : sql``}
@@ -44,7 +47,7 @@ export async function GET(request: NextRequest) {
     const countResult = await sql`
       SELECT COUNT(*)::int as total FROM topics t
       WHERE 1=1
-        ${!isAdmin ? sql`AND t.created_by = ${userId}` : sql``}
+        ${ownOnly ? sql`AND t.created_by = ${userId}` : sql``}
         ${categoryId ? sql`AND t.category_id = ${parseInt(categoryId)}` : sql``}
         ${status ? sql`AND t.status = ${status}` : sql``}
         ${search ? sql`AND (t.name_en ILIKE ${'%' + search + '%'} OR t.name_km ILIKE ${'%' + search + '%'} OR t.topic_code ILIKE ${'%' + search + '%'})` : sql``}

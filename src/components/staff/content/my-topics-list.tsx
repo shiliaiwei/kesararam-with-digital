@@ -112,7 +112,7 @@ export function MyTopicsList() {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
       
-      const response = await fetch("/api/staff/topics", {
+      const response = await fetch("/api/staff/topics?scope=mine&limit=200", {
         signal: controller.signal,
       });
       
@@ -291,14 +291,22 @@ export function MyTopicsList() {
           <AlertCircle size={48} className="mx-auto mb-4 text-zinc-400" />
           <p className="text-zinc-600 mb-2 font-bold">
             {statusFilter === "all"
-              ? "No topics yet"
+              ? "No submissions yet"
               : `No ${statusFilter} topics`}
           </p>
-          <p className="text-sm text-zinc-500">
+          <p className="text-sm text-zinc-500 mb-4">
             {statusFilter === "all"
-              ? "Create your first topic to get started"
+              ? "Go to a category page and create your first topic"
               : "Try selecting a different status filter"}
           </p>
+          {statusFilter === "all" && (
+            <a
+              href="/staff/content"
+              className="inline-flex items-center gap-2 bg-green-400 border-2 border-black px-5 py-2.5 font-black hover:shadow-[4px_4px_0_#000] transition-all text-sm"
+            >
+              Browse Categories
+            </a>
+          )}
         </div>
       ) : (
         <div className="space-y-4">

@@ -84,6 +84,8 @@ export function CategoryContentManager({
     try {
       const params = new URLSearchParams({
         categoryId: categoryId.toString(),
+        scope: "all", // show all content in category, not just own
+        limit: "200",
       });
 
       if (statusFilter) params.append("status", statusFilter);
