@@ -49,7 +49,7 @@ export function SponsorsMarquee() {
   return (
     <section className="bg-white py-10 pb-14 border-b-2 border-black overflow-hidden">
       <p className="text-[11px] font-black uppercase tracking-widest text-zinc-400 text-center mb-8">
-        {isKh ? "យើងចូលរួមជាមួយ" : "We Participate With"}
+        {isKh ? "យើងប្រកួតជាមួយកម្មវិធីដែលរៀបចំដោយ" : "We compete with the program organized by"}
       </p>
 
       <Marquee
