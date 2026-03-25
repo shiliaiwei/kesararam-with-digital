@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa";
 import { useLang } from "@/context/lang-context";
 import { t } from "@/lib/translations";
+import { useEffect, useState } from "react";
 
 const CATEGORIES = [
   {
@@ -78,8 +79,9 @@ const CATEGORIES = [
   },
 ] as const;
 
-// Category images with background removed
-const CATEGORY_IMAGES = [
+// Fallback images
+const FALLBACK_IMAGES = [
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto/700_xjoehu?_a=BAMAAAUs0",
@@ -94,6 +96,34 @@ export function CategoryGrid() {
   const tr = t[lang].categories;
   const kh = lang === "kh";
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  
+  const [categoryImages, setCategoryImages] = useState<string[]>(FALLBACK_IMAGES);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Fetch images from Cloudinary
+    fetch("/api/cloudinary/category-images")
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log("Category images response:", data);
+        if (data.images && data.images.length > 0) {
+          setCategoryImages(data.images);
+        } else {
+          console.warn("No category images returned from API, using fallback");
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error loading category images:", error);
+        console.warn("Using fallback images");
+        setLoading(false);
+      });
+  }, []);
 
   return (
     <section className="dot-bg py-20 border-b-2 border-black">
@@ -130,8 +160,8 @@ export function CategoryGrid() {
           {CATEGORIES.map((cat, index) => {
             const color = CATEGORY_COLORS[cat.slug];
             const shadow = CATEGORY_SHADOW[cat.slug];
-            // Randomly select an image for each category
-            const randomImage = CATEGORY_IMAGES[index % CATEGORY_IMAGES.length];
+            // Use fetched image or fallback
+            const categoryImage = categoryImages[index] || FALLBACK_IMAGES[index];
             
             return (
               <Link
@@ -158,14 +188,20 @@ export function CategoryGrid() {
                     minHeight: "200px"
                   }}
                 >
-                  <img 
-                    src={randomImage}
-                    alt={kh ? cat.titleKh : cat.titleEn}
-                    className="w-full h-48 object-contain object-bottom transition-transform duration-300 group-hover:scale-105"
-                    style={{
-                      marginBottom: "-2px"
-                    }}
-                  />
+                  {loading ? (
+                    <div className="w-full h-48 flex items-center justify-center">
+                      <div className="animate-spin rounded-full h-8 w-8 border-4 border-black border-t-yellow-400"></div>
+                    </div>
+                  ) : (
+                    <img 
+                      src={categoryImage}
+                      alt={kh ? cat.titleKh : cat.titleEn}
+                      className="w-full h-48 object-contain object-bottom transition-transform duration-300 group-hover:scale-105"
+                      style={{
+                        marginBottom: "-2px"
+                      }}
+                    />
+                  )}
                   {/* Caution tape effect on hover */}
                   <div 
                     className="absolute bottom-0 left-0 right-0 h-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
