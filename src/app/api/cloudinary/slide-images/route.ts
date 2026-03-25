@@ -72,12 +72,12 @@ export async function GET() {
       "29280546f27eef8c_hgv1uf"
     ];
 
-    // Fetch from kwd folder
-    console.log("Fetching from kwd/ folder...");
+    // Fetch from "KWD Media" folder
+    console.log("Fetching from KWD Media/ folder...");
     const result = await cloudinary.api.resources({
       type: "upload",
       resource_type: "image",
-      prefix: "kwd/",
+      prefix: "KWD Media/",
       max_results: 500,
     });
 
@@ -96,12 +96,12 @@ export async function GET() {
       [imageUrls[i], imageUrls[j]] = [imageUrls[j], imageUrls[i]];
     }
 
-    console.log(`Returning ${imageUrls.length} randomized slide images from kwd folder`);
+    console.log(`Returning ${imageUrls.length} randomized slide images from KWD Media folder`);
 
     return NextResponse.json({
       images: imageUrls,
       total: imageUrls.length,
-      source: "kwd folder (100 images, randomized)",
+      source: "KWD Media folder (100 images, randomized)",
     });
   } catch (error: any) {
     console.error("Error fetching Slide images:", error);

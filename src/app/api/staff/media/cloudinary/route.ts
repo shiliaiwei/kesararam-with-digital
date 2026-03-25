@@ -21,12 +21,14 @@ export async function GET(request: NextRequest) {
 
     const resourceType = type === "video" ? "video" : type === "audio" ? "video" : "image";
 
-    // Fetch all resources from kwd folder
+    // Fetch all resources from "KWD Media" folder and its subfolders
+    const kwdMediaFolder = "KWD Media/";
+    
     const options: any = {
       type: "upload",
       resource_type: resourceType,
       max_results: 500,
-      prefix: "kwd/", // Always fetch from kwd folder
+      prefix: kwdMediaFolder, // Fetch from "KWD Media" folder
     };
 
     let result;
@@ -34,11 +36,11 @@ export async function GET(request: NextRequest) {
       // Try using search API first (more powerful)
       if (search) {
         result = await cloudinary.search
-          .expression(`resource_type:${resourceType} AND folder:kwd AND (filename:*${search}* OR public_id:*${search}*)`)
+          .expression(`resource_type:${resourceType} AND folder:"KWD Media/*" AND (filename:*${search}* OR public_id:*${search}*)`)
           .max_results(500)
           .execute();
       } else {
-        // Fetch all from kwd folder
+        // Fetch all from KWD Media folder
         result = await cloudinary.api.resources(options);
       }
     } catch (searchError) {
