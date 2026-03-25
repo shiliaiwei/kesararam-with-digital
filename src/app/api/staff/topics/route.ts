@@ -28,8 +28,8 @@ export async function GET(request: NextRequest) {
     const topics = await sql`
       SELECT 
         t.*,
-        creator.full_name as creator_name,
-        updater.full_name as updater_name,
+        creator.display_name as creator_name,
+        updater.display_name as updater_name,
         (SELECT COUNT(*)::int FROM questions WHERE topic_id = t.id) as question_count
       FROM topics t
       LEFT JOIN users creator ON t.created_by = creator.id
