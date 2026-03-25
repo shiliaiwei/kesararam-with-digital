@@ -72,20 +72,66 @@ export async function GET() {
       "29280546f27eef8c_hgv1uf"
     ];
 
-    // Fetch from "KWD Media" folder
-    console.log("Fetching from KWD Media/ folder...");
-    const result = await cloudinary.api.resources({
-      type: "upload",
-      resource_type: "image",
-      prefix: "KWD Media/",
-      max_results: 500,
-    });
+    // Try multiple folder paths to find slide images
+    const possiblePaths = [
+      "KWD Media/slide/",
+      "KWD Media/SLIDE/",
+      "slide/",
+      "SLIDE/",
+      "KWD Media/",
+    ];
 
-    // Filter for only the specific slide images
-    const filteredResources = result.resources.filter((resource: any) => {
-      const filename = resource.public_id.split('/').pop();
-      return slideImageFilenames.includes(filename);
-    });
+    let result: any = null;
+    let usedPath = "";
+
+    for (const path of possiblePaths) {
+      try {
+        console.log(`Trying path: "${path}"`);
+        const testResult = await cloudinary.api.resources({
+          type: "upload",
+          resource_type: "image",
+          prefix: path,
+          max_results: 500,
+        });
+
+        if (testResult.resources && testResult.resources.length > 0) {
+          result = testResult;
+          usedPath = path;
+          console.log(`Success with path: "${path}", found ${testResult.resources.length} images`);
+          break;
+        }
+      } catch (err) {
+        console.log(`Failed with path: "${path}"`);
+        continue;
+      }
+    }
+
+    if (!result || !result.resources || result.resources.length === 0) {
+      console.error("No images found in any path");
+      return NextResponse.json(
+        { 
+          error: "No slide images found",
+          details: "Tried paths: " + possiblePaths.join(", "),
+          images: [],
+        },
+        { status: 404 }
+      );
+    }
+
+    // If we have specific filenames, filter for them, otherwise use all images
+    let filteredResources = result.resources;
+    
+    if (slideImageFilenames.length > 0) {
+      const filtered = result.resources.filter((resource: any) => {
+        const filename = resource.public_id.split('/').pop();
+        return slideImageFilenames.includes(filename);
+      });
+      
+      // If filtering gives us results, use them, otherwise use all
+      if (filtered.length > 0) {
+        filteredResources = filtered;
+      }
+    }
 
     // Extract URLs
     let imageUrls = filteredResources.map((resource: any) => resource.secure_url);
@@ -96,12 +142,12 @@ export async function GET() {
       [imageUrls[i], imageUrls[j]] = [imageUrls[j], imageUrls[i]];
     }
 
-    console.log(`Returning ${imageUrls.length} randomized slide images from KWD Media folder`);
+    console.log(`Returning ${imageUrls.length} randomized slide images from ${usedPath}`);
 
     return NextResponse.json({
       images: imageUrls,
       total: imageUrls.length,
-      source: "KWD Media folder (100 images, randomized)",
+      source: `${usedPath} (${imageUrls.length} images, randomized)`,
     });
   } catch (error: any) {
     console.error("Error fetching Slide images:", error);
