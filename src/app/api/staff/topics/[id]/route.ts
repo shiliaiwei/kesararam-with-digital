@@ -33,7 +33,7 @@ export async function GET(
     // Staff can only view their own content unless admin
     if (
       session.role !== "admin" &&
-      topic.created_by !== session.id
+      topic.created_by !== Number(session.id)
     ) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
@@ -82,7 +82,7 @@ export async function PUT(
     // Staff can only edit their own content unless admin
     if (
       session.role !== "admin" &&
-      existing.created_by !== session.id
+      existing.created_by !== Number(session.id)
     ) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
@@ -123,7 +123,7 @@ export async function PUT(
         audio_url_km = ${audioUrlKm !== undefined ? audioUrlKm : existing.audio_url_km},
         audio_source_km = ${audioSourceKm || existing.audio_source_km},
         status = ${topicStatus || existing.status},
-        updated_by = ${session.id},
+        updated_by = ${Number(session.id)},
         updated_at = NOW()
       WHERE id = ${id}
       RETURNING *
@@ -169,7 +169,7 @@ export async function DELETE(
     // Staff can only delete their own content unless admin
     if (
       session.role !== "admin" &&
-      existing.created_by !== session.id
+      existing.created_by !== Number(session.id)
     ) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }

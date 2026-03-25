@@ -17,28 +17,9 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get("limit") || "50");
     const offset = (page - 1) * limit;
 
-    // Build WHERE conditions
-    const conditions: string[] = [];
-    const params: any[] = [];
-
-    // Staff can only see their own content unless admin
-    if (session.role !== "admin") {
-      conditions.push(`created_by = ${session.id}`);
-    }
-
-    if (categoryId) {
-      conditions.push(`category_id = ${parseInt(categoryId)}`);
-    }
-
-    if (status) {
-      conditions.push(`status = '${status}'`);
-    }
-
-    if (search) {
-      conditions.push(`(name_en ILIKE '%${search}%' OR name_km ILIKE '%${search}%' OR topic_code ILIKE '%${search}%')`);
-    }
-
-    const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
+    // Use parameterized queries to avoid type mismatch issues
+    const userId = Number(session.id);
+    const isAdmin = session.role === "admin";
 
     // Get topics with creator and updater names
     const topics = await sql`
@@ -50,14 +31,23 @@ export async function GET(request: NextRequest) {
       FROM topics t
       LEFT JOIN users creator ON t.created_by = creator.id
       LEFT JOIN users updater ON t.updated_by = updater.id
-      ${sql.unsafe(whereClause)}
+      WHERE 1=1
+        ${!isAdmin ? sql`AND t.created_by = ${userId}` : sql``}
+        ${categoryId ? sql`AND t.category_id = ${parseInt(categoryId)}` : sql``}
+        ${status ? sql`AND t.status = ${status}` : sql``}
+        ${search ? sql`AND (t.name_en ILIKE ${'%' + search + '%'} OR t.name_km ILIKE ${'%' + search + '%'} OR t.topic_code ILIKE ${'%' + search + '%'})` : sql``}
       ORDER BY t.updated_at DESC, t.created_at DESC 
       LIMIT ${limit} OFFSET ${offset}
     `;
 
     // Get total count
     const countResult = await sql`
-      SELECT COUNT(*)::int as total FROM topics ${sql.unsafe(whereClause)}
+      SELECT COUNT(*)::int as total FROM topics t
+      WHERE 1=1
+        ${!isAdmin ? sql`AND t.created_by = ${userId}` : sql``}
+        ${categoryId ? sql`AND t.category_id = ${parseInt(categoryId)}` : sql``}
+        ${status ? sql`AND t.status = ${status}` : sql``}
+        ${search ? sql`AND (t.name_en ILIKE ${'%' + search + '%'} OR t.name_km ILIKE ${'%' + search + '%'} OR t.topic_code ILIKE ${'%' + search + '%'})` : sql``}
     `;
     const total = countResult[0]?.total || 0;
 
@@ -120,6 +110,7 @@ export async function POST(request: NextRequest) {
 
     // Generate topic code if not provided
     const finalTopicCode = topicCode || `T-${Date.now()}`;
+    const userId = Number(session.id);
 
     const result = await sql`
       INSERT INTO topics (
@@ -137,7 +128,7 @@ export async function POST(request: NextRequest) {
         ${lawReference || null}, ${subGroup || null},
         ${audioUrlEn || null}, ${audioSourceEn || "url"},
         ${audioUrlKm || null}, ${audioSourceKm || "url"},
-        ${topicStatus || "draft"}, ${session.id}, ${session.id}, NOW(), NOW()
+        ${topicStatus || "pending"}, ${userId}, ${userId}, NOW(), NOW()
       )
       RETURNING *
     `;

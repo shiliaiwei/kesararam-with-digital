@@ -26,7 +26,7 @@ export async function POST(
     // Staff can only submit their own content
     if (
       session.role !== "admin" &&
-      topic.created_by !== session.id
+      topic.created_by !== Number(session.id)
     ) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
