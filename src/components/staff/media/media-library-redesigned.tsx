@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import {
   Search,
-  Folder,
   Image as ImageIcon,
   ExternalLink,
   Copy,
@@ -12,8 +11,8 @@ import {
   Grid3x3,
   List,
   Filter,
-  X,
   Download,
+  AlertCircle,
 } from "lucide-react";
 
 interface CloudinaryAsset {
@@ -53,6 +52,7 @@ export function MediaLibraryRedesigned() {
   const [selectedAsset, setSelectedAsset] = useState<CloudinaryAsset | null>(null);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [showFilters, setShowFilters] = useState(false);
+  const [validatingAssets, setValidatingAssets] = useState(false);
 
   // Load folders on mount
   useEffect(() => {

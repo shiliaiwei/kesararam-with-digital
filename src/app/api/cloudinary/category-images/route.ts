@@ -7,6 +7,9 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+export const dynamic = "force-dynamic";
+export const revalidate = 3600;
+
 export async function GET() {
   try {
     console.log("Fetching Category images from Cloudinary...");
@@ -73,6 +76,3 @@ export async function GET() {
     );
   }
 }
-
-// Enable caching for 1 hour
-export const revalidate = 3600;

@@ -8,6 +8,16 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+// Allowed formats by type
+const ALLOWED_FORMATS: Record<string, string[]> = {
+  image: ["jpg", "jpeg", "png", "gif", "webp", "svg", "bmp", "tiff"],
+  audio: ["mp3", "wav", "m4a", "aac", "ogg", "flac", "wma"],
+  video: ["mp4", "webm", "mov", "avi", "mkv", "flv", "wmv"],
+};
+
 export async function GET(request: NextRequest) {
   try {
     const session = await getSession();
@@ -19,102 +29,81 @@ export async function GET(request: NextRequest) {
     const type = searchParams.get("type") || "image";
     const search = searchParams.get("search") || "";
 
+    // Determine resource type for Cloudinary API
     const resourceType = type === "video" ? "video" : type === "audio" ? "video" : "image";
+    const allowedFormats = ALLOWED_FORMATS[type] || ALLOWED_FORMATS.image;
 
-    // Try multiple folder paths to find the correct one
-    const possiblePrefixes = [
-      "KWD Media/",
-      "KWD%20Media/",
-      "kwd/",
-      "", // Try fetching all if specific folder doesn't work
-    ];
+    console.log(`Fetching ${type} assets - search: "${search}"`);
 
-    let result: any = null;
-    let usedPrefix = "";
+    try {
+      const options: any = {
+        type: "upload",
+        resource_type: resourceType,
+        max_results: 500,
+      };
 
-    // Try each prefix until we find one that works
-    for (const prefix of possiblePrefixes) {
-      try {
-        console.log(`Trying prefix: "${prefix}"`);
-        const options: any = {
-          type: "upload",
-          resource_type: resourceType,
-          max_results: 500,
-        };
-
-        if (prefix) {
-          options.prefix = prefix;
-        }
-
-        const testResult = await cloudinary.api.resources(options);
-        
-        if (testResult.resources && testResult.resources.length > 0) {
-          result = testResult;
-          usedPrefix = prefix;
-          console.log(`Success with prefix: "${prefix}", found ${testResult.resources.length} resources`);
-          break;
-        }
-      } catch (err) {
-        console.log(`Failed with prefix: "${prefix}"`, err);
-        continue;
+      // Add search query if provided
+      if (search) {
+        options.expression = `filename:${search}* OR public_id:${search}*`;
       }
-    }
 
-    // If still no result, try search API
-    if (!result && search) {
-      try {
-        result = await cloudinary.search
-          .expression(`resource_type:${resourceType} AND (filename:*${search}* OR public_id:*${search}*)`)
-          .max_results(500)
-          .execute();
-        usedPrefix = "search";
-      } catch (searchError) {
-        console.error("Search API also failed:", searchError);
+      console.log(`Fetching resources with options:`, options);
+      const result = await cloudinary.api.resources(options);
+
+      if (!result || !result.resources) {
+        return NextResponse.json({
+          assets: [],
+          total: 0,
+        });
       }
-    }
 
-    if (!result || !result.resources) {
-      return NextResponse.json({
-        assets: [],
-        total: 0,
-        error: "No resources found. Please check your Cloudinary folder structure.",
+      // Filter by allowed formats and transform
+      const assets = result.resources
+        .filter((resource: any) => {
+          const format = (resource.format || "").toLowerCase();
+          return allowedFormats.includes(format);
+        })
+        .map((resource: any) => ({
+          public_id: resource.public_id,
+          secure_url: resource.secure_url,
+          format: resource.format,
+          resource_type: resource.resource_type,
+          width: resource.width,
+          height: resource.height,
+          duration: resource.duration,
+          bytes: resource.bytes,
+          created_at: resource.created_at,
+          filename: resource.public_id.split("/").pop() || resource.public_id,
+        }));
+
+      console.log(`Found ${assets.length} ${type} assets (filtered from ${result.resources.length})`);
+
+      // Set no-cache headers
+      const response = NextResponse.json({
+        assets,
+        total: assets.length,
       });
+
+      response.headers.set("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0");
+      response.headers.set("Pragma", "no-cache");
+      response.headers.set("Expires", "0");
+
+      return response;
+    } catch (err: any) {
+      console.error("Failed to fetch resources:", err.message);
+      return NextResponse.json(
+        { 
+          error: err.message || "Failed to fetch assets",
+          assets: [] 
+        },
+        { status: 500 }
+      );
     }
-
-    // Transform the response to match the expected format
-    const assets = result.resources.map((resource: any) => ({
-      public_id: resource.public_id,
-      secure_url: resource.secure_url,
-      format: resource.format,
-      resource_type: resource.resource_type,
-      width: resource.width,
-      height: resource.height,
-      duration: resource.duration,
-      created_at: resource.created_at,
-      filename: resource.public_id.split("/").pop(), // Extract filename for display
-    }));
-
-    // If search term provided, filter results by filename match
-    const filteredAssets = search
-      ? assets.filter((asset: any) => 
-          asset.filename.toLowerCase().includes(search.toLowerCase()) ||
-          asset.public_id.toLowerCase().includes(search.toLowerCase())
-        )
-      : assets;
-
-    console.log(`Returning ${filteredAssets.length} assets using prefix: "${usedPrefix}"`);
-
-    return NextResponse.json({
-      assets: filteredAssets,
-      total: filteredAssets.length,
-      prefix_used: usedPrefix,
-    });
   } catch (error: any) {
-    console.error("Error fetching Cloudinary assets:", error);
+    console.error("Error in staff media cloudinary API:", error);
     return NextResponse.json(
       { 
         error: error.message || "Failed to fetch assets", 
-        details: error.error?.message || "",
         assets: [] 
       },
       { status: 500 }
