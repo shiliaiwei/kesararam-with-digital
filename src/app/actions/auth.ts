@@ -8,6 +8,9 @@ import { cookies, headers } from "next/headers";
 import { createHash } from "crypto";
 import { redirect } from "next/navigation";
 
+// In-memory IP rate limiter for login (5 attempts / 60s per IP)
+const ipRateMap = new Map<string, { count: number; resetAt: number }>();
+
 export interface LoginState {
   error: string;
   redirectTo?: string;
@@ -26,6 +29,27 @@ export async function loginAction(
 
   if (!login || !password) {
     return { error: "Email/username and password are required." };
+  }
+
+  // IP-based rate limit: 5 attempts per minute per IP
+  const headersList = await headers();
+  const ip =
+    headersList.get("x-forwarded-for")?.split(",")[0].trim() ||
+    headersList.get("x-real-ip") ||
+    "unknown";
+
+  const now = Date.now();
+  const key = `login:${ip}`;
+  const existing = ipRateMap.get(key);
+
+  if (existing && now < existing.resetAt) {
+    if (existing.count >= 5) {
+      const waitSec = Math.ceil((existing.resetAt - now) / 1000);
+      return { error: `Too many attempts. Try again in ${waitSec}s.` };
+    }
+    existing.count++;
+  } else {
+    ipRateMap.set(key, { count: 1, resetAt: now + 60_000 });
   }
 
   let user: typeof import("@/db/schema").users.$inferSelect | undefined;
@@ -96,7 +120,6 @@ export async function loginAction(
   });
 
   // Get request headers for IP and user agent
-  const headersList = await headers();
   const ipAddress = headersList.get("x-forwarded-for") || headersList.get("x-real-ip") || "unknown";
   const userAgent = headersList.get("user-agent") || "unknown";
 
