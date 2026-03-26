@@ -29,6 +29,18 @@ export function TrafficSignsCatalogue() {
   const [search, setSearch] = useState("");
   const [subGroupFilter, setSubGroupFilter] = useState("");
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
+  const [selectedQuestions, setSelectedQuestions] = useState<any[]>([]);
+
+  const handleTopicClick = async (topic: Topic) => {
+    setSelectedTopic(topic);
+    try {
+      const res = await fetch(`/api/public/topics/${topic.id}/questions`);
+      const data = await res.json();
+      setSelectedQuestions(data.questions || []);
+    } catch {
+      setSelectedQuestions([]);
+    }
+  };
 
   // Translations
   const translations = {
@@ -228,7 +240,7 @@ export function TrafficSignsCatalogue() {
             {filteredTopics.map((topic) => (
               <button
                 key={topic.id}
-                onClick={() => setSelectedTopic(topic)}
+                onClick={() => handleTopicClick(topic)}
                 className="group bg-white border-2 border-black hover:shadow-[4px_4px_0_#000] transition-all flex flex-col"
               >
                 {/* Image Only */}
@@ -261,7 +273,8 @@ export function TrafficSignsCatalogue() {
       {selectedTopic && (
         <SignDetailPopup
           topic={selectedTopic}
-          onClose={() => setSelectedTopic(null)}
+          questions={selectedQuestions}
+          onClose={() => { setSelectedTopic(null); setSelectedQuestions([]); }}
         />
       )}
     </div>

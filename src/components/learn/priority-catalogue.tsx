@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Search, ArrowLeft, ChevronDown, ChevronUp, Play, Pause } from "lucide-react";
+import { Search, ArrowLeft } from "lucide-react";
+import { SignDetailPopup } from "./sign-detail-popup";
 import { useLang } from "@/context/lang-context";
 
 interface Topic {
@@ -46,7 +47,7 @@ export function PriorityCatalogue() {
   const [search, setSearch] = useState("");
   const [subGroupFilter, setSubGroupFilter] = useState("");
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const [selectedQuestions, setSelectedQuestions] = useState<Question[]>([]);
   const [playingAudio, setPlayingAudio] = useState<boolean>(false);
   const [expandedQuestions, setExpandedQuestions] = useState<Record<number, boolean>>({});
 
@@ -110,17 +111,7 @@ export function PriorityCatalogue() {
     }
   };
 
-  const fetchQuestions = async (topicId: number) => {
-    try {
-      const response = await fetch(`/api/public/topics/${topicId}/questions`);
-      const data = await response.json();
-      setQuestions(data.questions || []);
-    } catch (error) {
-      console.error("Error fetching questions:", error);
-    }
-  };
-
-  const filterTopics = () => {
+  const handleTopicClick = async (topic: Topic) => {
     let filtered = [...topics];
 
     if (search) {
@@ -141,21 +132,16 @@ export function PriorityCatalogue() {
     setFilteredTopics(filtered);
   };
 
-  const handleTopicClick = (topic: Topic) => {
+  const handleTopicClick = async (topic: Topic) => {
     setSelectedTopic(topic);
-    fetchQuestions(topic.id);
+    try {
+      const res = await fetch(`/api/public/topics/${topic.id}/questions`);
+      const data = await res.json();
+      setSelectedQuestions(data.questions || []);
+    } catch {
+      setSelectedQuestions([]);
+    }
     setExpandedQuestions({});
-  };
-
-  const toggleQuestion = (questionId: number) => {
-    setExpandedQuestions(prev => ({
-      ...prev,
-      [questionId]: !prev[questionId]
-    }));
-  };
-
-  const toggleAudio = () => {
-    setPlayingAudio(!playingAudio);
   };
 
   return (
@@ -310,15 +296,16 @@ export function PriorityCatalogue() {
         )}
       </div>
 
-      {/* Detail Popup */}
       {selectedTopic && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2 sm:p-4 overflow-y-auto">
-          <div
-            className="bg-white border-2 sm:border-4 border-black w-full max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto my-2 sm:my-8"
-            style={{ boxShadow: "4px 4px 0 #000" }}
-          >
-            {/* Header */}
-            <div className="sticky top-0 bg-red-400 border-b-2 sm:border-b-4 border-black p-3 sm:p-6 flex items-start justify-between z-10">
+        <SignDetailPopup
+          topic={selectedTopic as any}
+          questions={selectedQuestions as any}
+          onClose={() => { setSelectedTopic(null); setSelectedQuestions([]); }}
+        />
+      )}
+    </div>
+  );
+}
               <div className="flex-1 min-w-0 pr-2">
                 <div className="flex items-center gap-2 mb-2 flex-wrap">
                   <span className="text-xs font-mono bg-white border border-black sm:border-2 px-2 py-1 whitespace-nowrap">
