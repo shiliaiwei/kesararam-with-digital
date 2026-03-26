@@ -1,21 +1,26 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { sessions, users } from "@/db/schema";
-import { eq, desc, and, gte } from "drizzle-orm";
+import { sessions } from "@/db/schema/sessions";
+import { users } from "@/db/schema/users";
+import { desc, gte, eq } from "drizzle-orm";
+
+export const dynamic = "force-dynamic";
 
 export async function GET() {
-  try {
-    const session = await getSession();
-    if (!session || session.role !== "admin") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+  const user = await getSession();
+  if (!user || user.role !== "admin") {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
 
-    // Get login metrics for the last 30 days
+  try {
     const thirtyDaysAgo = new Date();
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
 
-    // Get all sessions from the last 30 days
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Get all sessions from last 30 days with user info
     const recentSessions = await db
       .select({
         id: sessions.id,
@@ -34,31 +39,24 @@ export async function GET() {
       .from(sessions)
       .innerJoin(users, eq(sessions.userId, users.id))
       .where(gte(sessions.loginAt, thirtyDaysAgo))
-      .orderBy(desc(sessions.loginAt));
+      .orderBy(desc(sessions.loginAt))
+      .limit(50);
 
     // Calculate metrics
     const totalLogins = recentSessions.length;
     const uniqueUsers = new Set(recentSessions.map((s) => s.userId)).size;
     const activeSessions = recentSessions.filter((s) => s.isActive).length;
-
-    // Group by role
-    const loginsByRole = recentSessions.reduce(
-      (acc, session) => {
-        const role = session.role;
-        acc[role] = (acc[role] || 0) + 1;
-        return acc;
-      },
-      {} as Record<string, number>
-    );
-
-    // Get today's logins
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
     const todayLogins = recentSessions.filter(
-      (s) => new Date(s.loginAt).getTime() >= today.getTime()
+      (s) => new Date(s.loginAt) >= today
     ).length;
 
-    // Get last 7 days login trend
+    // Logins by role
+    const loginsByRole: Record<string, number> = {};
+    recentSessions.forEach((s) => {
+      loginsByRole[s.role] = (loginsByRole[s.role] || 0) + 1;
+    });
+
+    // 7-day login trend
     const loginTrend = [];
     for (let i = 6; i >= 0; i--) {
       const date = new Date();
@@ -67,14 +65,14 @@ export async function GET() {
       const nextDate = new Date(date);
       nextDate.setDate(nextDate.getDate() + 1);
 
-      const count = recentSessions.filter((s) => {
-        const sessionDate = new Date(s.loginAt);
-        return sessionDate >= date && sessionDate < nextDate;
+      const logins = recentSessions.filter((s) => {
+        const loginDate = new Date(s.loginAt);
+        return loginDate >= date && loginDate < nextDate;
       }).length;
 
       loginTrend.push({
         date: date.toISOString().split("T")[0],
-        logins: count,
+        logins,
       });
     }
 
@@ -87,12 +85,12 @@ export async function GET() {
         loginsByRole,
         loginTrend,
       },
-      recentSessions: recentSessions.slice(0, 50), // Last 50 sessions
+      recentSessions: recentSessions.slice(0, 10),
     });
-  } catch (error: any) {
-    console.error("Error fetching login metrics:", error);
+  } catch (error) {
+    console.error("Failed to fetch login metrics:", error);
     return NextResponse.json(
-      { error: error.message || "Failed to fetch metrics" },
+      { error: "Failed to fetch metrics" },
       { status: 500 }
     );
   }
