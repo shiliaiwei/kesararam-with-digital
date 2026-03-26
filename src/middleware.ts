@@ -1,154 +1,184 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyToken } from "@/lib/auth";
 
-const DASHBOARD_HOSTNAME = "dashboard.kesararamwithdigital.tech";
+const DASHBOARD_HOST = "dashboard.kesararamwithdigital.tech";
+const MAIN_HOST = "kesararamwithdigital.tech";
+const LOGIN_URL = `https://${MAIN_HOST}/login`;
 
-// In-memory rate limiter (per IP, resets on cold start — good enough for Edge)
-// For production scale, replace with Redis/Upstash
-const loginAttempts = new Map<string, { count: number; resetAt: number }>();
+// ── Rate limiter (IP-based, in-memory) ────────────────────────────────────────
+const ipMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT = 5;
+const RATE_WINDOW = 60_000; // 1 min
 
-const RATE_LIMIT = 5;        // max attempts
-const RATE_WINDOW = 60_000;  // 1 minute window
-
-function getRateLimit(ip: string): { allowed: boolean; remaining: number; resetIn: number } {
+function checkRateLimit(ip: string): { allowed: boolean; remaining: number; resetIn: number } {
   const now = Date.now();
-  const entry = loginAttempts.get(ip);
-
+  const entry = ipMap.get(ip);
   if (!entry || now > entry.resetAt) {
-    loginAttempts.set(ip, { count: 1, resetAt: now + RATE_WINDOW });
+    ipMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW });
     return { allowed: true, remaining: RATE_LIMIT - 1, resetIn: RATE_WINDOW };
   }
-
   if (entry.count >= RATE_LIMIT) {
     return { allowed: false, remaining: 0, resetIn: entry.resetAt - now };
   }
-
   entry.count++;
   return { allowed: true, remaining: RATE_LIMIT - entry.count, resetIn: entry.resetAt - now };
 }
 
-const PROTECTED_ROUTES: Record<string, string[]> = {
-  student: ["/profile"],
-  teacher: ["/teacher"],
-  admin: ["/admin"],
+// ── Role → allowed path prefixes ─────────────────────────────────────────────
+// Each role can ONLY access its own paths + shared paths.
+// Accessing another role's path = 403 redirect.
+const ROLE_PATHS: Record<string, string[]> = {
+  admin:   ["/admin", "/api/admin", "/api/staff", "/api/teacher", "/api/public", "/api/user", "/api/cloudinary"],
+  staff:   ["/staff", "/api/staff", "/api/public", "/api/user", "/api/cloudinary"],
+  teacher: ["/teacher", "/api/teacher", "/api/public", "/api/user"],
+  student: ["/profile", "/api/public", "/api/user"],
 };
+
+// Paths that require authentication (any role)
+const AUTH_REQUIRED = ["/admin", "/staff", "/teacher", "/profile", "/api/admin", "/api/staff", "/api/teacher"];
+
+// Dashboard root redirect per role
+const ROLE_HOME: Record<string, string> = {
+  admin:   "/admin",
+  staff:   "/staff/content",
+  teacher: "/teacher/classes",
+  student: "/profile/student", // students don't use dashboard
+};
+
+function getIp(req: NextRequest): string {
+  return (
+    req.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
+    req.headers.get("x-real-ip") ||
+    "unknown"
+  );
+}
 
 export async function middleware(req: NextRequest) {
   const { pathname, hostname } = req.nextUrl;
 
-  // ── Rate limit login endpoint ──────────────────────────────────────────────
-  if (pathname === "/api/auth/login" || pathname.startsWith("/_next") === false && pathname === "/login") {
-    if (req.method === "POST") {
-      const ip =
-        req.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
-        req.headers.get("x-real-ip") ||
-        "unknown";
+  // ── 1. Rate limit login (POST to /login page or server action) ────────────
+  if (req.method === "POST" && (pathname === "/login" || pathname.startsWith("/api/auth"))) {
+    const ip = getIp(req);
+    const { allowed, remaining, resetIn } = checkRateLimit(ip);
 
-      const { allowed, remaining, resetIn } = getRateLimit(ip);
-
-      if (!allowed) {
-        return new NextResponse(
-          JSON.stringify({ error: "Too many login attempts. Please wait before trying again." }),
-          {
-            status: 429,
-            headers: {
-              "Content-Type": "application/json",
-              "X-RateLimit-Limit": String(RATE_LIMIT),
-              "X-RateLimit-Remaining": "0",
-              "X-RateLimit-Reset": String(Math.ceil(resetIn / 1000)),
-              "Retry-After": String(Math.ceil(resetIn / 1000)),
-            },
-          }
-        );
-      }
-
-      const res = NextResponse.next();
-      res.headers.set("X-RateLimit-Limit", String(RATE_LIMIT));
-      res.headers.set("X-RateLimit-Remaining", String(remaining));
-      res.headers.set("X-RateLimit-Reset", String(Math.ceil(resetIn / 1000)));
-      return res;
+    if (!allowed) {
+      const retryAfter = Math.ceil(resetIn / 1000);
+      return new NextResponse(
+        JSON.stringify({ error: `Too many login attempts. Try again in ${retryAfter}s.` }),
+        {
+          status: 429,
+          headers: {
+            "Content-Type": "application/json",
+            "X-RateLimit-Limit": String(RATE_LIMIT),
+            "X-RateLimit-Remaining": "0",
+            "X-RateLimit-Reset": String(retryAfter),
+            "Retry-After": String(retryAfter),
+          },
+        }
+      );
     }
   }
 
-  // ── Auth & routing ─────────────────────────────────────────────────────────
+  // ── 2. Verify JWT token ───────────────────────────────────────────────────
   const token = req.cookies.get("kwd_token")?.value;
   const payload = token ? await verifyToken(token) : null;
 
-  // Session DB check (production only — skip on dev/build)
+  // ── 3. Session DB validation (production only) ────────────────────────────
   if (token && payload && process.env.NODE_ENV === "production") {
     try {
       const { db } = await import("@/lib/db");
       const { sessions } = await import("@/db/schema/sessions");
       const { eq, and } = await import("drizzle-orm");
 
-      const [sessionRecord] = await db
-        .select()
+      const [session] = await db
+        .select({ id: sessions.id, isActive: sessions.isActive })
         .from(sessions)
         .where(and(eq(sessions.token, token), eq(sessions.isActive, true)));
 
-      if (!sessionRecord) {
-        const response = NextResponse.redirect(
-          new URL("/login", "https://kesararamwithdigital.tech")
-        );
-        response.cookies.set("kwd_token", "", { httpOnly: true, maxAge: 0, path: "/" });
-        return response;
+      if (!session) {
+        // Session invalidated (e.g. another device logged in)
+        const res = NextResponse.redirect(new URL(LOGIN_URL));
+        res.cookies.set("kwd_token", "", { httpOnly: true, maxAge: 0, path: "/" });
+        return res;
       }
 
-      // Update last activity (non-blocking)
+      // Update last activity (fire-and-forget)
       db.update(sessions)
         .set({ lastActivityAt: new Date() })
-        .where(eq(sessions.id, sessionRecord.id))
+        .where(eq(sessions.id, session.id))
         .catch(() => {});
     } catch {
-      // non-fatal — continue
+      // DB unreachable — fail open (don't lock out users on DB hiccup)
     }
   }
 
-  // Dashboard routing
-  if (hostname === DASHBOARD_HOSTNAME || hostname.startsWith("dashboard.")) {
+  const role = payload?.role;
+  const isDashboard = hostname === DASHBOARD_HOST || hostname.startsWith("dashboard.");
+
+  // ── 4. Dashboard domain routing ───────────────────────────────────────────
+  if (isDashboard) {
+    // Not logged in → redirect to login
     if (!payload) {
-      const loginUrl = new URL("/login", "https://kesararamwithdigital.tech");
+      const loginUrl = new URL(LOGIN_URL);
       loginUrl.searchParams.set("redirect", req.url);
       return NextResponse.redirect(loginUrl);
     }
-    if (payload.role === "student") {
+
+    // Students don't use the dashboard
+    if (role === "student") {
+      return NextResponse.redirect(new URL("/profile/student", `https://${MAIN_HOST}`));
+    }
+
+    // Dashboard root → redirect to role home
+    if (pathname === "/" && role) {
       return NextResponse.redirect(
-        new URL("/profile/student", "https://kesararamwithdigital.tech")
+        new URL(ROLE_HOME[role] ?? "/", `https://${DASHBOARD_HOST}`)
       );
     }
-    if (pathname === "/") {
-      return NextResponse.redirect(
-        new URL(payload.role === "admin" ? "/admin" : "/teacher/classes",
-          `https://${DASHBOARD_HOSTNAME}`)
-      );
-    }
-  }
 
-  // Protected route guards
-  for (const [role, prefixes] of Object.entries(PROTECTED_ROUTES)) {
-    if (prefixes.some((p) => pathname.startsWith(p))) {
-      if (!payload) {
-        const url = req.nextUrl.clone();
-        url.pathname = "/login";
-        url.searchParams.set("redirect", pathname);
-        return NextResponse.redirect(url);
-      }
-      if (role !== "student" && payload.role !== role && payload.role !== "admin") {
-        return NextResponse.redirect(new URL("/", req.url));
+    // ── Role-based path enforcement ──────────────────────────────────────────
+    // Check if this role is allowed to access this path
+    if (role) {
+      const allowed = ROLE_PATHS[role] ?? [];
+      const isAllowed =
+        allowed.some((p) => pathname.startsWith(p)) ||
+        pathname.startsWith("/_next") ||
+        pathname.startsWith("/api/public");
+
+      if (!isAllowed) {
+        // Role trying to access another role's area → redirect to own home
+        return NextResponse.redirect(
+          new URL(ROLE_HOME[role] ?? "/", `https://${DASHBOARD_HOST}`)
+        );
       }
     }
+
+    return NextResponse.next();
   }
 
-  // Root redirect
-  if (pathname === "/" && hostname !== DASHBOARD_HOSTNAME && !hostname.startsWith("dashboard.")) {
+  // ── 5. Main domain — protect auth-required paths ─────────────────────────
+  const needsAuth = AUTH_REQUIRED.some((p) => pathname.startsWith(p));
+  if (needsAuth && !payload) {
+    const url = req.nextUrl.clone();
+    url.pathname = "/login";
+    url.searchParams.set("redirect", pathname);
+    return NextResponse.redirect(url);
+  }
+
+  // ── 6. Root → /home ───────────────────────────────────────────────────────
+  if (pathname === "/") {
     return NextResponse.redirect(new URL("/home", req.url));
   }
 
-  return NextResponse.next();
+  // Add rate limit headers to all responses
+  const res = NextResponse.next();
+  res.headers.set("X-Content-Type-Options", "nosniff");
+  res.headers.set("X-Frame-Options", "DENY");
+  return res;
 }
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:png|jpg|jpeg|svg|webp|ico)).*)",
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:png|jpg|jpeg|svg|webp|ico|woff2?|ttf)).*)",
   ],
 };
