@@ -17,6 +17,7 @@ import {
   ChevronDown,
   ChevronRight,
   AlertCircle,
+  Gamepad2,
 } from "lucide-react";
 import { logoutAction } from "@/app/actions/auth";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
@@ -34,6 +35,7 @@ const adminNav: NavItem[] = [
   { label: "Review Queue", href: "/admin/review", icon: AlertCircle, color: "#f59e0b" },
   { label: "Users", href: "/admin/users", icon: Users, color: "#3b82f6" },
   { label: "Content", href: "/admin/content", icon: BookOpen, color: "#22c55e" },
+  { label: "Game Sessions", href: "/admin/game-sessions", icon: Gamepad2, color: "#a855f7" },
   { label: "Media", href: "/admin/media", icon: Images, color: "#a855f7" },
   { label: "Logs", href: "/admin/logs", icon: ScrollText, color: "#f97316" },
 ];
@@ -42,6 +44,7 @@ const teacherNav: NavItem[] = [
   { label: "Project Planner", href: "/teacher/project-planner", icon: Calendar, color: "#3b82f6" },
   { label: "Classes", href: "/teacher/classes", icon: School, color: "#3b82f6" },
   { label: "Sessions", href: "/teacher/sessions", icon: Tv2, color: "#22c55e" },
+  { label: "Host Game", href: "/teacher/sessions/host", icon: Gamepad2, color: "#ffd700" },
 ];
 
 const staffNav: NavItem[] = [

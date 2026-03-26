@@ -2,8 +2,10 @@ import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import { sessions, quizzes } from "@/db/schema";
-import { eq, desc } from "drizzle-orm";
-import { Tv2, Play, Pause, Square, Clock, Users, Plus } from "lucide-react";
+import { gameSessions } from "@/db/schema/game";
+import { eq, desc, or } from "drizzle-orm";
+import Link from "next/link";
+import { Tv2, Play, Pause, Square, Clock, Users, Plus, Zap } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -84,12 +86,15 @@ export default async function TeacherSessionsPage() {
           </div>
           
           {/* New Session Button */}
-          <button className="flex items-center gap-2 px-4 py-3 bg-yellow-400 border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100">
-            <Plus size={20} className="text-black" />
+          <Link
+            href="/teacher/sessions/host"
+            className="flex items-center gap-2 px-4 py-3 bg-yellow-400 border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100"
+          >
+            <Zap size={20} className="text-black" />
             <span className="font-black text-sm uppercase tracking-wide text-black">
-              New Session
+              Host Live Game
             </span>
-          </button>
+          </Link>
         </div>
       </div>
 
