@@ -33,23 +33,36 @@ export async function POST(
 ) {
   try {
     const { code } = await params;
+    console.log(`[CONTROL] Request for session code: ${code}`);
+    
     const user = await getSession();
-    if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (!user) {
+      console.log(`[CONTROL] Unauthorized - no user session`);
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    console.log(`[CONTROL] User: ${user.name} (${user.id})`);
 
     const [session] = await db
       .select()
       .from(gameSessions)
       .where(eq(gameSessions.sessionCode, code.toUpperCase()));
 
-    if (!session) return NextResponse.json({ error: "Session not found" }, { status: 404 });
+    if (!session) {
+      console.log(`[CONTROL] Session not found: ${code}`);
+      return NextResponse.json({ error: "Session not found" }, { status: 404 });
+    }
+    console.log(`[CONTROL] Session found: ID=${session.id}, status=${session.status}, questionIds=${session.questionIds?.length || 0}`);
 
     const isHost = session.hostId === user.id;
     const isAdmin = user.role === "admin";
-    if (!isHost && !isAdmin)
+    if (!isHost && !isAdmin) {
+      console.log(`[CONTROL] Forbidden - user ${user.id} is not host ${session.hostId}`);
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
 
     const body = await req.json();
     const { action } = body as { action: "start" | "advance" | "pause" | "resume" | "end" | "terminate" };
+    console.log(`[CONTROL] Action: ${action}`);
 
     const currentStatus = session.status as GameStatus;
 

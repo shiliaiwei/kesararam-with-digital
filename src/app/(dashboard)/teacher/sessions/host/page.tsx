@@ -149,6 +149,7 @@ export default function HostPage() {
   async function control(action: string) {
     if (controlling || !("code" in phase)) return;
     setControlling(true);
+    setError(""); // Clear previous errors
     try {
       const res = await fetch(`/api/game/sessions/${phase.code}/control`, {
         method: "POST",
@@ -159,7 +160,8 @@ export default function HostPage() {
       if (!res.ok) {
         const errorData = await res.json().catch(() => ({ error: "Unknown error" }));
         console.error("Control action failed:", errorData);
-        setError(errorData.error || `Failed to ${action}`);
+        const errorMsg = errorData.details || errorData.error || `Failed to ${action}`;
+        setError(errorMsg);
       }
     } catch (err) {
       console.error("Control request failed:", err);
