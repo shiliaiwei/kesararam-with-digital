@@ -369,6 +369,19 @@ export default function StudentGamePage() {
   }
 
   if (phase === "question" && currentQuestion) {
+    // Safety checks - don't render if data is incomplete
+    if (!currentQuestion.answers || !Array.isArray(currentQuestion.answers) || currentQuestion.answers.length === 0) {
+      console.error("Invalid question data:", currentQuestion);
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 flex items-center justify-center p-4">
+          <div className="bg-white border-2 border-black p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-md">
+            <Loader2 className="animate-spin h-12 w-12 mx-auto text-yellow-600 mb-4" />
+            <p className="text-center font-bold">Loading question...</p>
+          </div>
+        </div>
+      );
+    }
+
     const timePerQuestion = endsAt ? Math.round((new Date(endsAt).getTime() - Date.now()) / 1000) : 30;
     
     // Safety check - ensure submitAnswer is a function
@@ -433,7 +446,7 @@ export default function StudentGamePage() {
           {/* Answer grid - Mobile optimized */}
           <div className="mb-3 sm:mb-6">
             <AnswerGrid
-              answers={currentQuestion.answers || []}
+              answers={currentQuestion.answers}
               selectedId={selectedAnswer}
               correctId={correctAnswerId}
               disabled={answerSubmitted}
