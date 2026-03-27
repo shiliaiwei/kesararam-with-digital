@@ -20,6 +20,7 @@ export async function POST(req: NextRequest) {
     timePerQuestion = 30,
     scoringMode = "speed",
     gameType = "quick-quiz",
+    maxPlayers = 50,
   } = body;
 
   if (!categoryIds?.length) {
@@ -115,6 +116,7 @@ export async function POST(req: NextRequest) {
       questionIds,
       timePerQuestion,
       scoringMode,
+      maxPlayers: Math.min(Math.max(maxPlayers, 1), 200),
       status: "lobby",
     })
     .returning();

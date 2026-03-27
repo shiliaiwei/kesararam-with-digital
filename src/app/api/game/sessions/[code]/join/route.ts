@@ -32,8 +32,8 @@ export async function POST(
     .from(gameParticipants)
     .where(eq(gameParticipants.sessionId, session.id));
 
-  if (existing.length >= 40)
-    return NextResponse.json({ error: "Session is full" }, { status: 409 });
+  if (existing.length >= (session.maxPlayers ?? 50))
+    return NextResponse.json({ error: `Session is full (max ${session.maxPlayers ?? 50} players)` }, { status: 409 });
 
   const alreadyIn = existing.find((p) => p.userId === user.id);
   let participant;

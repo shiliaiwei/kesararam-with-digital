@@ -37,6 +37,7 @@ export default function HostPage() {
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
   const [controlling, setControlling] = useState(false);
+  const [maxPlayers, setMaxPlayers] = useState(50);
 
   useEffect(() => {
     fetch("/api/game/categories")
@@ -90,7 +91,7 @@ export default function HostPage() {
     }
   }, []);
 
-  useGameSSE({ code: activeCode, onEvent: handleSSEEvent, enabled: !!activeCode });
+  useGameSSE(activeCode, handleSSEEvent, !!activeCode);
 
   async function createSession() {
     if (!sessionName.trim()) { setError(kh ? "ដាក់ឈ្មោះ" : "Enter session name"); return; }
@@ -111,6 +112,7 @@ export default function HostPage() {
         scoringMode,
         language,
         gameType: selectedMode,
+        maxPlayers,
         allowLateJoin: true,
       }),
     });
@@ -268,6 +270,22 @@ export default function HostPage() {
 
           {error && <p className="text-red-600 font-bold text-sm border-2 border-red-500 px-3 py-2" style={khFont}>{error}</p>}
 
+          {/* Max players */}
+          <div>
+            <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2" style={khFont}>
+              {kh ? "អ្នកលេងអតិបរមា" : "Max Players"}
+            </div>
+            <div className="flex gap-2">
+              {[10, 20, 30, 50, 100].map((n) => (
+                <button key={n} onClick={() => setMaxPlayers(n)}
+                  className="flex-1 py-2 border-2 border-black text-xs font-black transition-all"
+                  style={{ backgroundColor: maxPlayers === n ? "#000" : "#fff", color: maxPlayers === n ? "#ffd700" : "#000", boxShadow: "2px 2px 0 #000" }}>
+                  {n}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <button
             onClick={createSession}
             disabled={phase.name === "creating"}
@@ -295,7 +313,7 @@ export default function HostPage() {
           </div>
           <button
             onClick={() => control("start")}
-            disabled={controlling || phase.participants.length === 0}
+            disabled={controlling}
             className="flex items-center gap-2 px-6 py-3 bg-green-500 text-white font-black border-2 border-black disabled:opacity-40 transition-all"
             style={{ boxShadow: "3px 3px 0 #000", ...khFont }}
           >
@@ -329,8 +347,11 @@ export default function HostPage() {
         <div className="flex items-center gap-2 mb-3">
           <Users size={14} className="text-zinc-500" />
           <span className="font-black text-sm" style={khFont}>
-            {phase.participants.length} {kh ? "នាក់" : "players"}
+            {phase.participants.length} / {maxPlayers} {kh ? "នាក់" : "players"}
           </span>
+          <div className="flex-1 h-2 bg-zinc-200 border border-black">
+            <div className="h-full bg-green-500 transition-all" style={{ width: `${Math.min((phase.participants.length / maxPlayers) * 100, 100)}%` }} />
+          </div>
         </div>
         <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
           {phase.participants.map((p) => (
