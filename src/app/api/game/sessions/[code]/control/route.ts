@@ -5,7 +5,7 @@ import { questions, answers } from "@/db/schema/content";
 import { getSession } from "@/lib/auth";
 import { broadcast, LeaderboardEntry } from "@/lib/game-event-bus";
 import { mapContentToGameType, type GameStatus } from "@/lib/game-engine";
-import { eq, and } from "drizzle-orm";
+import { eq, and, asc } from "drizzle-orm";
 
 async function buildLeaderboard(sessionId: number, prevRanks: Map<number, number>): Promise<LeaderboardEntry[]> {
   const participants = await db
@@ -225,7 +225,7 @@ async function getQuestionPayload(questionId: number) {
   const [q] = await db.select().from(questions).where(eq(questions.id, questionId));
   if (!q) throw new Error(`Question ${questionId} not found`);
 
-  const ans = await db.select().from(answers).where(eq(answers.questionId, questionId)).orderBy(answers.sortOrder);
+  const ans = await db.select().from(answers).where(eq(answers.questionId, questionId)).orderBy(asc(answers.sortOrder));
   const gameType = mapContentToGameType({ answerCount: ans.length, hasImage: !!q.imageUrl, hasAudio: !!(q.audioUrlEn || q.audioUrlKm) });
 
   return {
