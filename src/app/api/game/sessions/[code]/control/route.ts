@@ -76,7 +76,7 @@ export async function POST(
       })
       .where(and(eq(gameSessions.id, session.id), eq(gameSessions.status, "lobby")));
 
-    const q = await getQuestionPayload(firstQId, session.language);
+  const q = await getQuestionPayload(firstQId);
     const endsAt = new Date(now.getTime() + session.timePerQuestion * 1000);
 
     broadcast(code.toUpperCase(), {
@@ -205,7 +205,7 @@ export async function POST(
       .set({ currentQuestionIndex: nextIdx, questionStartedAt: nextNow })
       .where(eq(gameSessions.id, session.id));
 
-    const q = await getQuestionPayload(nextQId, session.language);
+    const q = await getQuestionPayload(nextQId);
     const endsAt = new Date(nextNow.getTime() + session.timePerQuestion * 1000);
 
     broadcast(code.toUpperCase(), {
@@ -271,7 +271,7 @@ export async function POST(
   return NextResponse.json({ error: "Unknown action" }, { status: 400 });
 }
 
-async function getQuestionPayload(questionId: number, _language: string) {
+async function getQuestionPayload(questionId: number) {
   const [q] = await db
     .select()
     .from(questions)

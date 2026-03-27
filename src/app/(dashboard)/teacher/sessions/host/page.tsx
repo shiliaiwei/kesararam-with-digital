@@ -46,6 +46,24 @@ export default function HostPage() {
         setCategories(d.categories ?? []);
         if (d.categories?.length) setSelectedCats([d.categories[0].id]);
       });
+
+    // Restore active session if teacher navigates back
+    fetch("/api/game/sessions")
+      .then((r) => r.json())
+      .then((d) => {
+        const active = (d.sessions ?? []).find(
+          (s: any) => s.status === "lobby" || s.status === "active" || s.status === "paused"
+        );
+        if (active) {
+          setPhase({
+            name: "lobby",
+            code: active.sessionCode,
+            sessionId: active.id,
+            participants: [],
+          });
+        }
+      })
+      .catch(() => {});
   }, []);
 
   const activeCode = "code" in phase ? phase.code : "";
@@ -454,14 +472,24 @@ export default function HostPage() {
           <h1 className="text-3xl font-black" style={khFont}>{kh ? "លទ្ធផលចុងក្រោយ" : "Final Results"}</h1>
         </div>
 
+        {/* Summary card */}
+        <div className="border-2 border-black bg-yellow-400 p-6 mb-6" style={{ boxShadow: "5px 5px 0 #000" }}>
+          <div className="text-4xl font-black text-center mb-1" style={khFont}>
+            {phase.leaderboard.length} {kh ? "អ្នកលេង" : "players"}
+          </div>
+          <div className="text-center text-sm font-bold text-black/60" style={khFont}>
+            {kh ? "បានចូលរួមក្នុងហ្គេម" : "participated in this game"}
+          </div>
+        </div>
+
         <div className="flex gap-3 mb-6">
           <button
             onClick={() => router.push(`/teacher/sessions/${phase.code}/analytics`)}
             className="flex items-center gap-2 px-5 py-3 bg-black text-white font-black border-2 border-black"
-            style={{ boxShadow: "3px 3px 0 #000", ...khFont }}
+            style={{ boxShadow: "3px 3px 0 #ffd700", ...khFont }}
           >
             <BarChart2 size={14} />
-            {kh ? "វិភាគ" : "Analytics"}
+            {kh ? "មើលលទ្ធផល" : "View Results"}
           </button>
           <button
             onClick={() => setPhase({ name: "setup" })}
@@ -473,7 +501,14 @@ export default function HostPage() {
           </button>
         </div>
 
-        <LeaderboardPanel entries={phase.leaderboard} lang={lang as "en" | "kh"} />
+        {phase.leaderboard.length > 0 && (
+          <>
+            <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-3" style={khFont}>
+              {kh ? "ចំណាត់ថ្នាក់ចុងក្រោយ" : "Final Leaderboard"}
+            </div>
+            <LeaderboardPanel entries={phase.leaderboard} lang={lang as "en" | "kh"} />
+          </>
+        )}
       </div>
     );
   }

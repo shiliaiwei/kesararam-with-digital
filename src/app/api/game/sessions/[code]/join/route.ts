@@ -24,8 +24,8 @@ export async function POST(
   if (!session) return NextResponse.json({ error: "Session not found" }, { status: 404 });
   if (session.status === "ended")
     return NextResponse.json({ error: "Session has ended" }, { status: 410 });
-  if (session.status === "active" && !session.allowLateJoin)
-    return NextResponse.json({ error: "Late join not allowed" }, { status: 403 });
+  if (session.status === "active")
+    return NextResponse.json({ error: "Game already started — late join not allowed" }, { status: 403 });
 
   const existing = await db
     .select()

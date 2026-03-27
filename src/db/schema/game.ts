@@ -45,6 +45,7 @@ export const gameParticipants = pgTable(
     correctAnswers: integer("correct_answers").notNull().default(0),
     currentStreak: integer("current_streak").notNull().default(0),
     isConnected: boolean("is_connected").default(true),
+    rank: integer("rank").default(0),
     joinedAt: timestamp("joined_at").notNull().defaultNow(),
     lastSeenAt: timestamp("last_seen_at").notNull().defaultNow(),
   },

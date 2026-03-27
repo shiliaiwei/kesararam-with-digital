@@ -2,9 +2,9 @@ import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import { gameSessions } from "@/db/schema/game";
-import { eq, desc, sql } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 import Link from "next/link";
-import { Tv2, Play, Pause, Square, Clock, Users, Zap } from "lucide-react";
+import { Tv2, Play, Pause, Square, Clock, Users, Zap, ExternalLink } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -82,7 +82,7 @@ export default async function TeacherSessionsPage() {
           <table className="w-full">
             <thead>
               <tr className="border-b-2 border-black">
-                {["Code", "Mode", "Category", "Status", "Questions", "Date"].map(h => (
+                {["Code", "Mode", "Category", "Status", "Questions", "Date", ""].map(h => (
                   <th key={h} className="text-left py-3 px-2 text-xs font-black uppercase tracking-widest">{h}</th>
                 ))}
               </tr>
@@ -109,6 +109,24 @@ export default async function TeacherSessionsPage() {
                     <td className="py-3 px-2 text-sm font-bold">{s.questionIds?.length ?? 0}</td>
                     <td className="py-3 px-2 text-xs font-bold text-zinc-500">
                       {new Date(s.createdAt).toLocaleDateString()}
+                    </td>
+                    <td className="py-3 px-2">
+                      {(s.status === "lobby" || s.status === "active" || s.status === "paused") && (
+                        <Link
+                          href="/teacher/sessions/host"
+                          className="px-3 py-1.5 bg-yellow-400 border-2 border-black text-xs font-black hover:shadow-[2px_2px_0_#000] inline-flex items-center gap-1 transition-all"
+                        >
+                          <ExternalLink size={11} /> Rejoin
+                        </Link>
+                      )}
+                      {s.status === "ended" && (
+                        <Link
+                          href={`/teacher/sessions/${s.sessionCode}/analytics`}
+                          className="px-3 py-1.5 bg-zinc-100 border-2 border-black text-xs font-black hover:shadow-[2px_2px_0_#000] inline-flex items-center gap-1 transition-all"
+                        >
+                          <ExternalLink size={11} /> Results
+                        </Link>
+                      )}
                     </td>
                   </tr>
                 );
