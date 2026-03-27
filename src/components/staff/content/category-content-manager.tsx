@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import {
   Plus, Search, Eye, Edit, Trash2, Send,
   Globe, Clock, FileText, XCircle, CheckCircle,
-  Image as ImageIcon, Music, ChevronDown, RefreshCw
+  Image as ImageIcon, Music, ChevronDown, RefreshCw, HelpCircle
 } from "lucide-react";
 import { TopicFormModal } from "./topic-form-modal";
 import { useToast } from "@/components/ui/toast-container";
@@ -269,6 +269,7 @@ export function CategoryContentManager({
               <TopicRow
                 key={topic.id}
                 topic={topic}
+                categorySlug={categorySlug}
                 onEdit={() => setEditingTopic(topic)}
                 onSubmit={() => handleSubmit(topic.id)}
                 onDelete={() => setDeleteConfirm(topic.id)}
@@ -300,6 +301,7 @@ export function CategoryContentManager({
 // ── Row component ──────────────────────────────────────────────────────────────
 function TopicRow({
   topic,
+  categorySlug,
   onEdit,
   onSubmit,
   onDelete,
@@ -308,6 +310,7 @@ function TopicRow({
   isDeleteConfirm,
 }: {
   topic: Topic;
+  categorySlug: string;
   onEdit: () => void;
   onSubmit: () => void;
   onDelete: () => void;
@@ -363,6 +366,15 @@ function TopicRow({
 
       {/* Actions */}
       <div className="flex items-center gap-1.5 shrink-0">
+        {/* View questions */}
+        <a
+          href={`/staff/content/${categorySlug}/${topic.id}`}
+          className="p-1.5 border-2 border-black hover:bg-purple-100 transition-all"
+          title="View / Edit Questions"
+        >
+          <HelpCircle size={14} />
+        </a>
+
         {/* Edit — always available, re-submits for review */}
         <button
           onClick={onEdit}

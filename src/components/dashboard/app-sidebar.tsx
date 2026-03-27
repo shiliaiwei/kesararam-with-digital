@@ -18,6 +18,7 @@ import {
   ChevronRight,
   AlertCircle,
   Gamepad2,
+  HelpCircle,
 } from "lucide-react";
 import { logoutAction } from "@/app/actions/auth";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
