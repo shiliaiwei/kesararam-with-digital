@@ -51,39 +51,46 @@ export default function StudentGamePage() {
   const [lang] = useState<"en" | "kh">("en");
 
   const handleSSEEvent = useCallback((event: SSEEvent) => {
-    if (event.type === "lobby_update") {
-      setParticipants(event.participants);
-      setPhase("lobby");
-    } else if (event.type === "question_start") {
-      setCurrentQuestion(event.question);
-      setQuestionIndex(event.index);
-      setTotalQuestions(event.total);
-      setEndsAt(event.endsAt);
-      setSelectedAnswer(null);
-      setAnswerSubmitted(false);
-      setAnswerResult(null);
-      setCorrectAnswerId(null);
-      setPhase("question");
-      safePlaySound("question_start");
-    } else if (event.type === "question_end") {
-      setCorrectAnswerId(event.correctAnswerId);
-      setLeaderboard(event.leaderboard);
-      setPhase("results");
-      safePlaySound("question_end");
-    } else if (event.type === "leaderboard") {
-      setLeaderboard(event.entries);
-      setPhase("leaderboard");
-    } else if (event.type === "session_paused") {
-      safePlaySound("warning");
-    } else if (event.type === "session_resumed") {
-      safePlaySound("countdown_tick");
-    } else if (event.type === "session_end") {
-      setPodium(event.podium);
-      setLeaderboard(event.finalLeaderboard);
-      setPhase("podium");
-      safePlaySound("game_end");
-    } else if (event.type === "warning") {
-      safePlaySound("warning");
+    console.log("SSE Event received:", event.type);
+    
+    try {
+      if (event.type === "lobby_update") {
+        setParticipants(event.participants || []);
+        setPhase("lobby");
+      } else if (event.type === "question_start") {
+        console.log("Question starting:", event.question);
+        setCurrentQuestion(event.question);
+        setQuestionIndex(event.index);
+        setTotalQuestions(event.total);
+        setEndsAt(event.endsAt);
+        setSelectedAnswer(null);
+        setAnswerSubmitted(false);
+        setAnswerResult(null);
+        setCorrectAnswerId(null);
+        setPhase("question");
+        safePlaySound("question_start");
+      } else if (event.type === "question_end") {
+        setCorrectAnswerId(event.correctAnswerId);
+        setLeaderboard(event.leaderboard || []);
+        setPhase("results");
+        safePlaySound("question_end");
+      } else if (event.type === "leaderboard") {
+        setLeaderboard(event.entries || []);
+        setPhase("leaderboard");
+      } else if (event.type === "session_paused") {
+        safePlaySound("warning");
+      } else if (event.type === "session_resumed") {
+        safePlaySound("countdown_tick");
+      } else if (event.type === "session_end") {
+        setPodium(event.podium || []);
+        setLeaderboard(event.finalLeaderboard || []);
+        setPhase("podium");
+        safePlaySound("game_end");
+      } else if (event.type === "warning") {
+        safePlaySound("warning");
+      }
+    } catch (error) {
+      console.error("Error handling SSE event:", error);
     }
   }, []);
 
@@ -135,8 +142,12 @@ export default function StudentGamePage() {
 
   const submitAnswer = useCallback(
     async (answerId: number) => {
-      if (answerSubmitted || !currentQuestion) return;
+      if (answerSubmitted || !currentQuestion || !code) {
+        console.log("Cannot submit:", { answerSubmitted, hasQuestion: !!currentQuestion, code });
+        return;
+      }
 
+      console.log("Submitting answer:", answerId);
       setSelectedAnswer(answerId);
       setAnswerSubmitted(true);
 
@@ -158,6 +169,8 @@ export default function StudentGamePage() {
             pointsEarned: data.pointsEarned,
           });
           safePlaySound(data.isCorrect ? "correct" : "incorrect");
+        } else {
+          console.error("Failed to submit answer:", res.status);
         }
       } catch (err) {
         console.error("Failed to submit answer:", err);
@@ -358,6 +371,16 @@ export default function StudentGamePage() {
   if (phase === "question" && currentQuestion) {
     const timePerQuestion = endsAt ? Math.round((new Date(endsAt).getTime() - Date.now()) / 1000) : 30;
     
+    // Safety check - ensure submitAnswer is a function
+    const handleAnswerSelect = (answerId: number) => {
+      console.log("Answer selected:", answerId);
+      if (typeof submitAnswer === 'function') {
+        submitAnswer(answerId);
+      } else {
+        console.error("submitAnswer is not a function!");
+      }
+    };
+    
     return (
       <div className="min-h-screen bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 p-2 sm:p-4 animate-gradient">
         <div className="max-w-4xl mx-auto">
@@ -378,7 +401,7 @@ export default function StudentGamePage() {
                   totalSeconds={timePerQuestion}
                   onExpire={() => {
                     if (!answerSubmitted) {
-                      submitAnswer(0);
+                      handleAnswerSelect(0);
                     }
                   }}
                 />
@@ -410,13 +433,13 @@ export default function StudentGamePage() {
           {/* Answer grid - Mobile optimized */}
           <div className="mb-3 sm:mb-6">
             <AnswerGrid
-              answers={currentQuestion.answers}
+              answers={currentQuestion.answers || []}
               selectedId={selectedAnswer}
               correctId={correctAnswerId}
               disabled={answerSubmitted}
               lang={lang}
               gameType={currentQuestion.gameType}
-              onSelect={submitAnswer}
+              onSelect={handleAnswerSelect}
             />
           </div>
 
