@@ -31,26 +31,27 @@ export async function POST(
   req: NextRequest,
   { params }: { params: Promise<{ code: string }> }
 ) {
-  const { code } = await params;
-  const user = await getSession();
-  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  try {
+    const { code } = await params;
+    const user = await getSession();
+    if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const [session] = await db
-    .select()
-    .from(gameSessions)
-    .where(eq(gameSessions.sessionCode, code.toUpperCase()));
+    const [session] = await db
+      .select()
+      .from(gameSessions)
+      .where(eq(gameSessions.sessionCode, code.toUpperCase()));
 
-  if (!session) return NextResponse.json({ error: "Session not found" }, { status: 404 });
+    if (!session) return NextResponse.json({ error: "Session not found" }, { status: 404 });
 
-  const isHost = session.hostId === user.id;
-  const isAdmin = user.role === "admin";
-  if (!isHost && !isAdmin)
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    const isHost = session.hostId === user.id;
+    const isAdmin = user.role === "admin";
+    if (!isHost && !isAdmin)
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
-  const body = await req.json();
-  const { action } = body as { action: "start" | "advance" | "pause" | "resume" | "end" | "terminate" };
+    const body = await req.json();
+    const { action } = body as { action: "start" | "advance" | "pause" | "resume" | "end" | "terminate" };
 
-  const currentStatus = session.status as GameStatus;
+    const currentStatus = session.status as GameStatus;
 
   // ── TERMINATE (delete lobby before starting) ──────────────────────────────
   if (action === "terminate") {
@@ -219,23 +220,35 @@ export async function POST(
   }
 
   return NextResponse.json({ error: "Unknown action" }, { status: 400 });
+  } catch (error) {
+    console.error("Control route error:", error);
+    return NextResponse.json({ 
+      error: "Internal server error", 
+      details: error instanceof Error ? error.message : String(error) 
+    }, { status: 500 });
+  }
 }
 
 async function getQuestionPayload(questionId: number) {
-  const [q] = await db.select().from(questions).where(eq(questions.id, questionId));
-  if (!q) throw new Error(`Question ${questionId} not found`);
+  try {
+    const [q] = await db.select().from(questions).where(eq(questions.id, questionId));
+    if (!q) throw new Error(`Question ${questionId} not found`);
 
-  const ans = await db.select().from(answers).where(eq(answers.questionId, questionId)).orderBy(asc(answers.sortOrder));
-  const gameType = mapContentToGameType({ answerCount: ans.length, hasImage: !!q.imageUrl, hasAudio: !!(q.audioUrlEn || q.audioUrlKm) });
+    const ans = await db.select().from(answers).where(eq(answers.questionId, questionId)).orderBy(asc(answers.sortOrder));
+    const gameType = mapContentToGameType({ answerCount: ans.length, hasImage: !!q.imageUrl, hasAudio: !!(q.audioUrlEn || q.audioUrlKm) });
 
-  return {
-    id: q.id,
-    questionEn: q.questionEn,
-    questionKm: q.questionKm,
-    imageUrl: q.imageUrl ?? null,
-    audioUrlEn: q.audioUrlEn ?? null,
-    audioUrlKm: q.audioUrlKm ?? null,
-    gameType,
-    answers: ans.map(a => ({ id: a.id, answerEn: a.answerEn, answerKm: a.answerKm, imageUrl: a.imageUrl ?? null })),
-  };
+    return {
+      id: q.id,
+      questionEn: q.questionEn,
+      questionKm: q.questionKm,
+      imageUrl: q.imageUrl ?? null,
+      audioUrlEn: q.audioUrlEn ?? null,
+      audioUrlKm: q.audioUrlKm ?? null,
+      gameType,
+      answers: ans.map(a => ({ id: a.id, answerEn: a.answerEn, answerKm: a.answerKm, imageUrl: a.imageUrl ?? null })),
+    };
+  } catch (error) {
+    console.error("getQuestionPayload error:", error);
+    throw error;
+  }
 }
