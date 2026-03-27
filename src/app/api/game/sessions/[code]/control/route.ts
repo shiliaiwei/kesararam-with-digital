@@ -250,11 +250,37 @@ export async function POST(
 
 async function getQuestionPayload(questionId: number) {
   try {
-    const [q] = await db.select().from(questions).where(eq(questions.id, questionId));
+    // Explicitly select only the columns we need to avoid schema mismatch
+    const [q] = await db
+      .select({
+        id: questions.id,
+        questionEn: questions.questionEn,
+        questionKm: questions.questionKm,
+        imageUrl: questions.imageUrl,
+        audioUrlEn: questions.audioUrlEn,
+        audioUrlKm: questions.audioUrlKm,
+      })
+      .from(questions)
+      .where(eq(questions.id, questionId));
+      
     if (!q) throw new Error(`Question ${questionId} not found`);
 
-    const ans = await db.select().from(answers).where(eq(answers.questionId, questionId)).orderBy(asc(answers.sortOrder));
-    const gameType = mapContentToGameType({ answerCount: ans.length, hasImage: !!q.imageUrl, hasAudio: !!(q.audioUrlEn || q.audioUrlKm) });
+    const ans = await db
+      .select({
+        id: answers.id,
+        answerEn: answers.answerEn,
+        answerKm: answers.answerKm,
+        imageUrl: answers.imageUrl,
+      })
+      .from(answers)
+      .where(eq(answers.questionId, questionId))
+      .orderBy(asc(answers.sortOrder));
+      
+    const gameType = mapContentToGameType({ 
+      answerCount: ans.length, 
+      hasImage: !!q.imageUrl, 
+      hasAudio: !!(q.audioUrlEn || q.audioUrlKm) 
+    });
 
     return {
       id: q.id,
@@ -264,7 +290,12 @@ async function getQuestionPayload(questionId: number) {
       audioUrlEn: q.audioUrlEn ?? null,
       audioUrlKm: q.audioUrlKm ?? null,
       gameType,
-      answers: ans.map(a => ({ id: a.id, answerEn: a.answerEn, answerKm: a.answerKm, imageUrl: a.imageUrl ?? null })),
+      answers: ans.map(a => ({ 
+        id: a.id, 
+        answerEn: a.answerEn, 
+        answerKm: a.answerKm, 
+        imageUrl: a.imageUrl ?? null 
+      })),
     };
   } catch (error) {
     console.error("getQuestionPayload error:", error);
