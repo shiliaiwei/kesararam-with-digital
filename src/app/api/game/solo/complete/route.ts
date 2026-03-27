@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { gameScores, userStreaks } from "@/db/schema/content";
+import { users } from "@/db/schema/users";
 import { getSession } from "@/lib/auth";
 import { calculateScore } from "@/lib/game-engine";
 import { eq, and, sql } from "drizzle-orm";
-
-const BASE_POINTS = 1000;
 
 interface AnswerInput {
   questionId: number;
@@ -41,8 +40,8 @@ export async function POST(req: NextRequest) {
     const remainingTimeMs = Math.max(0, 30000 - ans.timeTakenMs); // Assume 30s per question
     const scoreResult = calculateScore({
       isCorrect,
+      difficulty: "medium", // Default for solo mode
       scoringMode: "speed",
-      basePoints: BASE_POINTS,
       remainingTimeMs,
       totalTimeMs: 30000,
       currentStreak: streak,
@@ -80,6 +79,17 @@ export async function POST(req: NextRequest) {
         timeTaken: timeTakenSeconds,
         difficulty,
       });
+
+      // Update user profile stats
+      await db
+        .update(users)
+        .set({
+          totalGamesPlayed: sql`${users.totalGamesPlayed} + 1`,
+          lifetimePoints: sql`${users.lifetimePoints} + ${totalScore}`,
+          highestScore: sql`GREATEST(${users.highestScore}, ${totalScore})`,
+          updatedAt: new Date(),
+        })
+        .where(eq(users.id, user.id));
 
       // Update streak
       const today = new Date().toISOString().split("T")[0];

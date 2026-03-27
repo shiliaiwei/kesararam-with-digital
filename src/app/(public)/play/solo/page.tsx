@@ -68,6 +68,7 @@ export default function SoloPage() {
   const [selectedCats, setSelectedCats] = useState<number[]>([]);
   const [difficulty, setDifficulty] = useState("mixed");
   const [error, setError] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
   // In-game state
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -80,6 +81,13 @@ export default function SoloPage() {
   const advanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
+    // Check authentication status
+    fetch("/api/auth/me")
+      .then((r) => {
+        setIsAuthenticated(r.ok);
+      })
+      .catch(() => setIsAuthenticated(false));
+
     fetch("/api/game/categories")
       .then((r) => r.json())
       .then((d) => {
@@ -221,6 +229,27 @@ export default function SoloPage() {
         </div>
 
         <div className="max-w-2xl mx-auto px-6 py-8 flex flex-col gap-8">
+          {/* Guest warning */}
+          {isAuthenticated === false && (
+            <div className="border-2 border-orange-500 bg-orange-50 p-4 flex items-start gap-3">
+              <div className="text-orange-600 flex-shrink-0 mt-0.5">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div>
+                <div className="font-black text-sm text-orange-900 mb-1" style={khFont}>
+                  {kh ? "ការជូនដំណឹង" : "Guest Mode"}
+                </div>
+                <div className="text-xs text-orange-800" style={khFont}>
+                  {kh 
+                    ? "អ្នកកំពុងលេងក្នុងរបៀបភ្ញៀវ។ ពិន្ទុរបស់អ្នកនឹងមិនត្រូវបានរក្សាទុក។ សូមចូលគណនីដើម្បីរក្សាពិន្ទុនិងប្រវត្តិរបស់អ្នក។"
+                    : "You're playing in guest mode. Your scores won't be saved. Please log in to save your scores and track your progress."}
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Game mode */}
           <div>
             <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-3" style={khFont}>

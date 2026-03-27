@@ -9,7 +9,11 @@ import {
   Palette,
   Volume2,
   Save,
-  Loader2
+  Loader2,
+  Trophy,
+  Zap,
+  Target,
+  Clock
 } from "lucide-react";
 
 interface UserSettings {
@@ -26,6 +30,22 @@ interface UserSettings {
     contentRejected: boolean;
     newAssignments: boolean;
   };
+}
+
+interface GameStats {
+  highestScore: number;
+  totalGamesPlayed: number;
+  lifetimePoints: number;
+  currentStreak: number;
+  longestStreak: number;
+  recentGames: {
+    id: number;
+    gameMode: string;
+    score: number;
+    correctAnswers: number;
+    totalQuestions: number;
+    createdAt: string;
+  }[];
 }
 
 export function SettingsContent() {
@@ -47,10 +67,18 @@ export function SettingsContent() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [activeTab, setActiveTab] = useState("profile");
+  const [gameStats, setGameStats] = useState<GameStats | null>(null);
+  const [statsLoading, setStatsLoading] = useState(false);
 
   useEffect(() => {
     fetchSettings();
   }, []);
+
+  useEffect(() => {
+    if (activeTab === "stats" && !gameStats) {
+      fetchGameStats();
+    }
+  }, [activeTab]);
 
   const fetchSettings = async () => {
     try {
@@ -63,6 +91,21 @@ export function SettingsContent() {
       console.error("Error fetching settings:", error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchGameStats = async () => {
+    setStatsLoading(true);
+    try {
+      const response = await fetch("/api/user/stats");
+      const data = await response.json();
+      if (data.stats) {
+        setGameStats(data.stats);
+      }
+    } catch (error) {
+      console.error("Error fetching game stats:", error);
+    } finally {
+      setStatsLoading(false);
     }
   };
 
@@ -88,6 +131,7 @@ export function SettingsContent() {
 
   const tabs = [
     { id: "profile", label: "Profile", icon: User },
+    { id: "stats", label: "Game Stats", icon: Trophy },
     { id: "notifications", label: "Notifications", icon: Bell },
     { id: "preferences", label: "Preferences", icon: Palette },
     { id: "privacy", label: "Privacy", icon: Shield },
@@ -186,6 +230,115 @@ export function SettingsContent() {
                 />
               </div>
             </div>
+          </div>
+        )}
+
+        {/* Game Stats Tab */}
+        {activeTab === "stats" && (
+          <div className="space-y-6">
+            <h2 className="text-xl font-black text-black">Game Statistics</h2>
+
+            {statsLoading ? (
+              <div className="flex items-center justify-center py-12">
+                <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+              </div>
+            ) : gameStats ? (
+              <>
+                {/* Key Stats */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="border-2 border-black p-4 bg-yellow-50" style={{ boxShadow: "3px 3px 0 #000" }}>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Trophy className="text-yellow-600" size={20} />
+                      <span className="text-xs font-black uppercase text-zinc-500">Highest Score</span>
+                    </div>
+                    <div className="text-3xl font-black text-black tabular-nums">
+                      {gameStats.highestScore.toLocaleString()}
+                    </div>
+                  </div>
+
+                  <div className="border-2 border-black p-4 bg-blue-50" style={{ boxShadow: "3px 3px 0 #000" }}>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Zap className="text-blue-600" size={20} />
+                      <span className="text-xs font-black uppercase text-zinc-500">Lifetime Points</span>
+                    </div>
+                    <div className="text-3xl font-black text-black tabular-nums">
+                      {gameStats.lifetimePoints.toLocaleString()}
+                    </div>
+                  </div>
+
+                  <div className="border-2 border-black p-4 bg-green-50" style={{ boxShadow: "3px 3px 0 #000" }}>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Target className="text-green-600" size={20} />
+                      <span className="text-xs font-black uppercase text-zinc-500">Games Played</span>
+                    </div>
+                    <div className="text-3xl font-black text-black tabular-nums">
+                      {gameStats.totalGamesPlayed}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Streaks */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="border-2 border-black p-4">
+                    <div className="text-xs font-black uppercase text-zinc-500 mb-2">Current Streak</div>
+                    <div className="text-2xl font-black text-orange-600 tabular-nums">
+                      {gameStats.currentStreak} {gameStats.currentStreak === 1 ? "day" : "days"}
+                    </div>
+                  </div>
+
+                  <div className="border-2 border-black p-4">
+                    <div className="text-xs font-black uppercase text-zinc-500 mb-2">Longest Streak</div>
+                    <div className="text-2xl font-black text-purple-600 tabular-nums">
+                      {gameStats.longestStreak} {gameStats.longestStreak === 1 ? "day" : "days"}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Recent Games */}
+                <div>
+                  <h3 className="text-lg font-black text-black mb-3">Recent Games</h3>
+                  <div className="space-y-2">
+                    {gameStats.recentGames.length > 0 ? (
+                      gameStats.recentGames.map((game) => (
+                        <div
+                          key={game.id}
+                          className="flex items-center justify-between p-3 border-2 border-black bg-white"
+                        >
+                          <div className="flex items-center gap-3">
+                            <Clock size={16} className="text-zinc-400" />
+                            <div>
+                              <div className="font-bold text-sm text-black">
+                                {game.gameMode.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())}
+                              </div>
+                              <div className="text-xs text-zinc-500">
+                                {new Date(game.createdAt).toLocaleDateString()} at{" "}
+                                {new Date(game.createdAt).toLocaleTimeString()}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <div className="font-black text-lg text-black tabular-nums">
+                              {game.score.toLocaleString()}
+                            </div>
+                            <div className="text-xs text-zinc-500">
+                              {game.correctAnswers}/{game.totalQuestions} correct
+                            </div>
+                          </div>
+                        </div>
+                      ))
+                    ) : (
+                      <div className="text-center py-8 text-zinc-500">
+                        No games played yet. Start playing to see your history!
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="text-center py-12 text-zinc-500">
+                Failed to load game statistics. Please try again later.
+              </div>
+            )}
           </div>
         )}
 
