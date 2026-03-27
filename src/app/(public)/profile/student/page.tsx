@@ -8,7 +8,15 @@ import { AvatarDisplay } from "@/components/shared/avatar-display";
 import { ProfileEditor } from "@/components/profile/profile-editor";
 import { StudentProfileStats } from "@/components/profile/student-profile-stats";
 
-export const metadata: Metadata = { title: "My Profile — KWD" };
+export const metadata: Metadata = {
+  title: "My Profile — KWD Quiz",
+  description: "View your quiz statistics, game history, and manage your student profile. Track your progress, scores, and rankings.",
+  openGraph: {
+    title: "My Profile — KWD Quiz",
+    description: "View your quiz statistics and manage your profile",
+    type: "profile",
+  },
+};
 
 export default async function StudentProfilePage() {
   const session = await getSession();

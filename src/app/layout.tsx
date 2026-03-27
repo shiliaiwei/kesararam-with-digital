@@ -31,6 +31,11 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
 };
 
 export default function RootLayout({
