@@ -75,6 +75,12 @@ export const sounds = {
     notes.forEach((f, i) => playTone(f, 0.15, "sine", 0.3, i * 0.12));
   },
 
+  podium() {
+    // Victory fanfare for podium display
+    const notes = [523, 659, 784, 1047, 1319, 1568];
+    notes.forEach((f, i) => playTone(f, 0.2, "sine", 0.25, i * 0.15));
+  },
+
   warning() {
     playTone(660, 0.08, "sine", 0.15);
     playTone(880, 0.12, "sine", 0.15, 0.08);
