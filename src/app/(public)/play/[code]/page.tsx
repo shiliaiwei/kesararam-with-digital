@@ -8,7 +8,7 @@ import { CountdownTimer } from "@/components/game/CountdownTimer";
 import { AnswerGrid } from "@/components/game/AnswerGrid";
 import { LeaderboardPanel } from "@/components/game/LeaderboardPanel";
 import { Podium } from "@/components/game/Podium";
-import { Zap, Trophy, Users, Clock } from "lucide-react";
+import { Zap, Trophy, Users, Clock, CheckCircle, XCircle, Loader2 } from "lucide-react";
 
 type GamePhase = "lobby" | "question" | "results" | "leaderboard" | "podium";
 
@@ -87,7 +87,7 @@ export default function StudentGamePage() {
     }
   }, []);
 
-  // Join the game session first
+  // Join the game session first - with persistence on refresh
   useEffect(() => {
     if (!code) {
       router.push("/play");
@@ -108,6 +108,12 @@ export default function StudentGamePage() {
             router.push(`/login?redirect=/play/${code}`);
             return;
           }
+          // If already in session or game started, that's okay - just connect
+          if (res.status === 403 || res.status === 409) {
+            console.log("Already in session or game started, connecting...");
+            setJoining(false);
+            return;
+          }
           setJoinError(data.error || "Failed to join session");
           setJoining(false);
           return;
@@ -116,6 +122,7 @@ export default function StudentGamePage() {
         // Successfully joined
         setJoining(false);
       } catch (err) {
+        console.error("Join error:", err);
         setJoinError("Network error. Please try again.");
         setJoining(false);
       }
@@ -168,10 +175,10 @@ export default function StudentGamePage() {
   // Show joining state
   if (joining) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-        <div className="bg-white border-2 border-black p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-          <div className="animate-spin h-12 w-12 border-4 border-black border-t-transparent rounded-full mx-auto"></div>
-          <p className="mt-4 text-lg font-bold">Joining game...</p>
+      <div className="min-h-screen bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center p-4">
+        <div className="bg-white border-2 border-black p-6 sm:p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-sm w-full">
+          <Loader2 className="animate-spin h-12 w-12 mx-auto text-purple-600 mb-4" />
+          <p className="text-center text-base sm:text-lg font-bold">Joining game...</p>
         </div>
       </div>
     );
@@ -181,12 +188,13 @@ export default function StudentGamePage() {
   if (joinError) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center p-4">
-        <div className="bg-white border-2 border-black p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-md">
-          <h1 className="text-2xl font-bold mb-4">Cannot Join Game</h1>
-          <p className="mb-4">{joinError}</p>
+        <div className="bg-white border-2 border-black p-6 sm:p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-md w-full">
+          <XCircle className="mx-auto text-red-500 mb-4" size={48} />
+          <h1 className="text-xl sm:text-2xl font-bold mb-4 text-center">Cannot Join Game</h1>
+          <p className="mb-6 text-center text-sm sm:text-base">{joinError}</p>
           <button
             onClick={() => router.push("/play")}
-            className="w-full bg-purple-500 text-white px-6 py-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all"
+            className="w-full bg-purple-500 text-white px-6 py-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all font-bold"
           >
             Back to Play
           </button>
@@ -198,12 +206,13 @@ export default function StudentGamePage() {
   if (error) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center p-4">
-        <div className="bg-white border-2 border-black p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-md">
-          <h1 className="text-2xl font-bold mb-4">Connection Error</h1>
-          <p className="mb-4">{error}</p>
+        <div className="bg-white border-2 border-black p-6 sm:p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-md w-full">
+          <XCircle className="mx-auto text-red-500 mb-4" size={48} />
+          <h1 className="text-xl sm:text-2xl font-bold mb-4 text-center">Connection Error</h1>
+          <p className="mb-6 text-center text-sm sm:text-base">{error}</p>
           <button
             onClick={() => router.push("/play")}
-            className="w-full bg-purple-500 text-white px-6 py-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all"
+            className="w-full bg-purple-500 text-white px-6 py-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all font-bold"
           >
             Back to Play
           </button>
@@ -214,10 +223,10 @@ export default function StudentGamePage() {
 
   if (!connected) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-        <div className="bg-white border-2 border-black p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-          <div className="animate-spin h-12 w-12 border-4 border-black border-t-transparent rounded-full mx-auto"></div>
-          <p className="mt-4 text-lg font-bold">Connecting to game...</p>
+      <div className="min-h-screen bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center p-4">
+        <div className="bg-white border-2 border-black p-6 sm:p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-sm w-full">
+          <Loader2 className="animate-spin h-12 w-12 mx-auto text-purple-600 mb-4" />
+          <p className="text-center text-base sm:text-lg font-bold">Connecting to game...</p>
         </div>
       </div>
     );
@@ -225,62 +234,72 @@ export default function StudentGamePage() {
 
   if (phase === "lobby") {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 p-4 animate-gradient">
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 p-2 sm:p-4 animate-gradient">
         <div className="max-w-4xl mx-auto">
-          {/* Animated header */}
-          <div className="bg-white border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-6 transform hover:scale-105 transition-transform">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Zap className="text-yellow-500 animate-pulse" size={32} />
-              <h1 className="text-5xl font-black text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+          {/* Animated header - Mobile optimized */}
+          <div className="bg-white border-2 sm:border-4 border-black p-4 sm:p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-4 sm:mb-6 transform hover:scale-105 transition-transform">
+            <div className="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+              <Zap className="text-yellow-500 animate-pulse" size={24} />
+              <h1 className="text-3xl sm:text-5xl font-black text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                 GET READY!
               </h1>
-              <Zap className="text-yellow-500 animate-pulse" size={32} />
+              <Zap className="text-yellow-500 animate-pulse" size={24} />
             </div>
-            <div className="bg-yellow-400 border-2 border-black p-4 inline-block mx-auto">
-              <p className="text-7xl font-black text-center tracking-widest text-black animate-pulse">
+            <div className="bg-yellow-400 border-2 border-black p-3 sm:p-4 inline-block mx-auto">
+              <p className="text-4xl sm:text-7xl font-black text-center tracking-widest text-black animate-pulse">
                 {code}
               </p>
             </div>
-            <p className="text-center text-gray-600 mt-4 text-lg font-bold">
+            <p className="text-center text-gray-600 mt-3 sm:mt-4 text-sm sm:text-lg font-bold px-2">
               Share this code with others to join!
             </p>
           </div>
 
-          {/* Players section with animation */}
-          <div className="bg-white border-4 border-black p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-            <div className="flex items-center gap-3 mb-6">
-              <Users className="text-purple-600" size={28} />
-              <h2 className="text-3xl font-black">
+          {/* Players section with animation - Mobile optimized */}
+          <div className="bg-white border-2 sm:border-4 border-black p-4 sm:p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+            <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+              <Users className="text-purple-600 flex-shrink-0" size={24} />
+              <h2 className="text-xl sm:text-3xl font-black flex-1">
                 Players Joined
               </h2>
-              <div className="ml-auto bg-purple-600 text-white px-4 py-2 rounded-full font-black text-xl">
+              <div className="bg-purple-600 text-white px-3 sm:px-4 py-1 sm:py-2 rounded-full font-black text-base sm:text-xl flex-shrink-0">
                 {participants.length}
               </div>
             </div>
             
             {participants.length > 0 ? (
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
                 {participants.map((p, index) => (
                   <div
                     key={p.userId}
-                    className={`border-3 border-black p-4 transform hover:scale-105 transition-all duration-200 ${
+                    className={`border-2 border-black p-2 sm:p-4 transform hover:scale-105 transition-all duration-200 ${
                       p.isConnected ? "bg-gradient-to-br from-green-400 to-green-500" : "bg-gray-200"
                     }`}
                     style={{
-                      boxShadow: "4px 4px 0px 0px rgba(0,0,0,1)",
+                      boxShadow: "2px 2px 0px 0px rgba(0,0,0,1)",
                       animation: `slideIn 0.3s ease-out ${index * 0.1}s both`
                     }}
                   >
                     <div className="flex items-center gap-2">
-                      <div className="w-10 h-10 bg-white border-2 border-black rounded-full flex items-center justify-center font-black text-lg">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white border-2 border-black rounded-full flex items-center justify-center font-black text-sm sm:text-lg flex-shrink-0">
                         {p.displayName.charAt(0).toUpperCase()}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="text-lg font-black truncate text-white drop-shadow-lg">
+                        <div className="text-sm sm:text-lg font-black truncate text-white drop-shadow-lg">
                           {p.displayName}
                         </div>
-                        <div className="text-xs font-bold text-white/80">
-                          {p.isConnected ? "✓ Ready" : "Disconnected"}
+                        <div className="text-xs font-bold text-white/80 flex items-center gap-1">
+                          {p.isConnected ? (
+                            <>
+                              <CheckCircle size={12} />
+                              <span>Ready</span>
+                            </>
+                          ) : (
+                            <>
+                              <XCircle size={12} />
+                              <span>Offline</span>
+                            </>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -288,19 +307,19 @@ export default function StudentGamePage() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-12">
-                <Users className="mx-auto text-gray-300 mb-4" size={64} />
-                <p className="text-gray-400 text-xl font-bold">
+              <div className="text-center py-8 sm:py-12">
+                <Users className="mx-auto text-gray-300 mb-3 sm:mb-4" size={48} />
+                <p className="text-gray-400 text-base sm:text-xl font-bold px-4">
                   Waiting for players to join...
                 </p>
               </div>
             )}
 
-            {/* Waiting message */}
-            <div className="mt-8 bg-yellow-100 border-2 border-yellow-500 p-4 rounded-lg">
-              <div className="flex items-center gap-3 justify-center">
-                <Clock className="text-yellow-600 animate-spin" size={24} />
-                <p className="text-center text-yellow-800 font-bold text-lg">
+            {/* Waiting message - Mobile optimized */}
+            <div className="mt-4 sm:mt-8 bg-yellow-100 border-2 border-yellow-500 p-3 sm:p-4 rounded-lg">
+              <div className="flex items-center gap-2 sm:gap-3 justify-center">
+                <Clock className="text-yellow-600 animate-spin flex-shrink-0" size={20} />
+                <p className="text-center text-yellow-800 font-bold text-sm sm:text-lg">
                   Waiting for host to start the game...
                 </p>
               </div>
@@ -340,15 +359,15 @@ export default function StudentGamePage() {
     const timePerQuestion = endsAt ? Math.round((new Date(endsAt).getTime() - Date.now()) / 1000) : 30;
     
     return (
-      <div className="min-h-screen bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 p-4 animate-gradient">
+      <div className="min-h-screen bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 p-2 sm:p-4 animate-gradient">
         <div className="max-w-4xl mx-auto">
-          {/* Top bar with question number and timer */}
-          <div className="flex justify-between items-center mb-6">
-            <div className="bg-white border-3 border-black px-6 py-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transform hover:scale-105 transition-transform">
-              <div className="flex items-center gap-2">
-                <Trophy className="text-yellow-500" size={20} />
-                <span className="font-black text-lg">
-                  Question {questionIndex + 1} / {totalQuestions}
+          {/* Top bar with question number and timer - Mobile optimized */}
+          <div className="flex justify-between items-center mb-3 sm:mb-6 gap-2">
+            <div className="bg-white border-2 border-black px-3 sm:px-6 py-2 sm:py-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transform hover:scale-105 transition-transform">
+              <div className="flex items-center gap-1 sm:gap-2">
+                <Trophy className="text-yellow-500 flex-shrink-0" size={16} />
+                <span className="font-black text-sm sm:text-lg whitespace-nowrap">
+                  Q {questionIndex + 1}/{totalQuestions}
                 </span>
               </div>
             </div>
@@ -367,29 +386,29 @@ export default function StudentGamePage() {
             )}
           </div>
 
-          {/* Question card with animation */}
-          <div className="bg-white border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-6 transform hover:scale-[1.02] transition-transform">
+          {/* Question card with animation - Mobile optimized */}
+          <div className="bg-white border-2 sm:border-4 border-black p-4 sm:p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-3 sm:mb-6 transform hover:scale-[1.02] transition-transform">
             {currentQuestion.imageUrl && (
-              <div className="mb-6 overflow-hidden rounded-lg border-3 border-black">
+              <div className="mb-4 sm:mb-6 overflow-hidden rounded-lg border-2 border-black">
                 <img
                   src={currentQuestion.imageUrl}
                   alt="Question"
-                  className="w-full max-h-80 object-contain bg-gray-50"
+                  className="w-full max-h-48 sm:max-h-80 object-contain bg-gray-50"
                 />
               </div>
             )}
-            <h2 className="text-3xl font-black text-center leading-tight mb-2">
+            <h2 className="text-xl sm:text-3xl font-black text-center leading-tight mb-2">
               {currentQuestion.questionEn}
             </h2>
             {currentQuestion.questionKm && (
-              <p className="text-2xl text-center text-gray-600 font-bold mt-3">
+              <p className="text-lg sm:text-2xl text-center text-gray-600 font-bold mt-2 sm:mt-3">
                 {currentQuestion.questionKm}
               </p>
             )}
           </div>
 
-          {/* Answer grid */}
-          <div className="mb-6">
+          {/* Answer grid - Mobile optimized */}
+          <div className="mb-3 sm:mb-6">
             <AnswerGrid
               answers={currentQuestion.answers}
               selectedId={selectedAnswer}
@@ -401,21 +420,28 @@ export default function StudentGamePage() {
             />
           </div>
 
-          {/* Answer feedback with animation */}
+          {/* Answer feedback with animation - Mobile optimized */}
           {answerResult && (
             <div
-              className={`p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transform scale-100 animate-bounce-in ${
+              className={`p-4 sm:p-8 border-2 sm:border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transform scale-100 animate-bounce-in ${
                 answerResult.isCorrect 
                   ? "bg-gradient-to-br from-green-400 to-green-500" 
                   : "bg-gradient-to-br from-red-400 to-red-500"
               }`}
             >
               <div className="text-center">
-                <p className="text-4xl font-black text-white mb-3 drop-shadow-lg">
-                  {answerResult.isCorrect ? "🎉 CORRECT!" : "❌ INCORRECT"}
-                </p>
-                <div className="bg-white border-2 border-black inline-block px-6 py-3 rounded-full">
-                  <p className="text-3xl font-black text-black">
+                <div className="flex items-center justify-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                  {answerResult.isCorrect ? (
+                    <CheckCircle className="text-white" size={32} />
+                  ) : (
+                    <XCircle className="text-white" size={32} />
+                  )}
+                  <p className="text-2xl sm:text-4xl font-black text-white drop-shadow-lg">
+                    {answerResult.isCorrect ? "CORRECT!" : "INCORRECT"}
+                  </p>
+                </div>
+                <div className="bg-white border-2 border-black inline-block px-4 sm:px-6 py-2 sm:py-3 rounded-full">
+                  <p className="text-xl sm:text-3xl font-black text-black">
                     +{answerResult.pointsEarned} points
                   </p>
                 </div>
