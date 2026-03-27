@@ -2,10 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { gameSessions, gameParticipants, gameSessionAnswers } from "@/db/schema/game";
 import { questions, answers } from "@/db/schema/content";
+import { users } from "@/db/schema/users";
 import { getSession } from "@/lib/auth";
 import { broadcast, LeaderboardEntry } from "@/lib/game-event-bus";
 import { mapContentToGameType, type GameStatus } from "@/lib/game-engine";
-import { eq, and, asc } from "drizzle-orm";
+import { eq, and, asc, sql } from "drizzle-orm";
 
 async function buildLeaderboard(sessionId: number, prevRanks: Map<number, number>): Promise<LeaderboardEntry[]> {
   const participants = await db
@@ -25,6 +26,38 @@ async function buildLeaderboard(sessionId: number, prevRanks: Map<number, number
       correctAnswers: p.correctAnswers,
       currentStreak: p.currentStreak,
     }));
+}
+
+async function syncScoresToUserProfiles(sessionId: number) {
+  console.log(`[syncScoresToUserProfiles] Syncing scores for session ${sessionId}`);
+  
+  try {
+    // Get all participants with their scores
+    const participants = await db
+      .select()
+      .from(gameParticipants)
+      .where(eq(gameParticipants.sessionId, sessionId));
+
+    // Update each user's profile with their game score
+    for (const participant of participants) {
+      await db
+        .update(users)
+        .set({
+          totalGamesPlayed: sql`${users.totalGamesPlayed} + 1`,
+          lifetimePoints: sql`${users.lifetimePoints} + ${participant.totalScore}`,
+          highestScore: sql`GREATEST(${users.highestScore}, ${participant.totalScore})`,
+          updatedAt: new Date(),
+        })
+        .where(eq(users.id, participant.userId));
+      
+      console.log(`[syncScoresToUserProfiles] Updated user ${participant.userId}: +${participant.totalScore} points`);
+    }
+    
+    console.log(`[syncScoresToUserProfiles] Successfully synced ${participants.length} user profiles`);
+  } catch (error) {
+    console.error("[syncScoresToUserProfiles] Error syncing scores:", error);
+    // Don't throw - we don't want to fail the game end if profile sync fails
+  }
 }
 
 export async function POST(
@@ -169,6 +202,10 @@ export async function POST(
         await db.update(gameParticipants).set({ rank: entry.rank })
           .where(and(eq(gameParticipants.sessionId, session.id), eq(gameParticipants.userId, entry.userId)));
       }
+      
+      // Sync scores to user profiles for leaderboard persistence
+      await syncScoresToUserProfiles(session.id);
+      
       // Small delay so clients see question_end before session_end
       await new Promise(r => setTimeout(r, 2000));
       broadcast(code.toUpperCase(), { type: "session_end", podium: leaderboard.slice(0, 3), finalLeaderboard: leaderboard });
@@ -227,6 +264,9 @@ export async function POST(
       await db.update(gameParticipants).set({ rank: entry.rank })
         .where(and(eq(gameParticipants.sessionId, session.id), eq(gameParticipants.userId, entry.userId)));
     }
+    
+    // Sync scores to user profiles for leaderboard persistence
+    await syncScoresToUserProfiles(session.id);
     
     broadcast(code.toUpperCase(), { type: "session_end", podium: leaderboard.slice(0, 3), finalLeaderboard: leaderboard });
     

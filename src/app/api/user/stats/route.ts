@@ -3,7 +3,7 @@ import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users } from "@/db/schema/users";
 import { gameScores, userStreaks } from "@/db/schema/content";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, sql } from "drizzle-orm";
 
 export async function GET() {
   const user = await getSession();
@@ -47,6 +47,20 @@ export async function GET() {
       .orderBy(desc(gameScores.createdAt))
       .limit(10);
 
+    // Calculate current rank on leaderboard
+    let currentRank: number | null = null;
+    if (userProfile && userProfile.lifetimePoints > 0) {
+      const [rankResult] = await db
+        .select({
+          rank: sql<number>`COUNT(*) + 1`,
+        })
+        .from(users)
+        .where(
+          sql`${users.lifetimePoints} > ${userProfile.lifetimePoints} AND ${users.isActive} = true AND ${users.role} = 'student'`
+        );
+      currentRank = rankResult?.rank || null;
+    }
+
     return NextResponse.json({
       stats: {
         highestScore: userProfile?.highestScore || 0,
@@ -54,6 +68,7 @@ export async function GET() {
         lifetimePoints: userProfile?.lifetimePoints || 0,
         currentStreak: streakData?.currentStreak || 0,
         longestStreak: streakData?.longestStreak || 0,
+        currentRank,
         recentGames: recentGames.map((game) => ({
           ...game,
           createdAt: game.createdAt.toISOString(),

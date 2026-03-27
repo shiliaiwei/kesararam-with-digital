@@ -38,6 +38,7 @@ interface GameStats {
   lifetimePoints: number;
   currentStreak: number;
   longestStreak: number;
+  currentRank: number | null;
   recentGames: {
     id: number;
     gameMode: string;
@@ -245,7 +246,7 @@ export function SettingsContent() {
             ) : gameStats ? (
               <>
                 {/* Key Stats */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                   <div className="border-2 border-black p-4 bg-yellow-50" style={{ boxShadow: "3px 3px 0 #000" }}>
                     <div className="flex items-center gap-2 mb-2">
                       <Trophy className="text-yellow-600" size={20} />
@@ -273,6 +274,16 @@ export function SettingsContent() {
                     </div>
                     <div className="text-3xl font-black text-black tabular-nums">
                       {gameStats.totalGamesPlayed}
+                    </div>
+                  </div>
+
+                  <div className="border-2 border-black p-4 bg-purple-50" style={{ boxShadow: "3px 3px 0 #000" }}>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Trophy className="text-purple-600" size={20} />
+                      <span className="text-xs font-black uppercase text-zinc-500">Current Rank</span>
+                    </div>
+                    <div className="text-3xl font-black text-black tabular-nums">
+                      {gameStats.currentRank ? `#${gameStats.currentRank}` : "—"}
                     </div>
                   </div>
                 </div>
