@@ -25,25 +25,25 @@ export async function PUT(
     await sql`
       UPDATE questions SET
         question_en = ${questionEn},
-        question_km = ${questionKm || null},
+        question_km = ${questionKm || ""},
         hint_en = ${hintEn || null},
         hint_km = ${hintKm || null},
         image_url = ${imageUrl || null},
         audio_url_en = ${audioUrlEn || null},
         audio_url_km = ${audioUrlKm || null},
-        difficulty = ${difficulty || "medium"},
-        updated_at = NOW()
+        difficulty = ${difficulty || "medium"}
       WHERE id = ${qid}
     `;
 
-    // Replace answers: delete old, insert new
+    // Replace answers
     if (answers && answers.length > 0) {
       await sql`DELETE FROM answers WHERE question_id = ${qid}`;
+      const aType = answers.some((a: any) => a.imageUrl) ? 'image_selection' : answers.length === 2 ? 'multiple_choice' : 'multiple_choice';
       for (let i = 0; i < answers.length; i++) {
         const a = answers[i];
         await sql`
           INSERT INTO answers (question_id, answer_type, answer_en, answer_km, is_correct, image_url, sort_order, created_at)
-          VALUES (${qid}, 'multiple_choice', ${a.answerEn}, ${a.answerKm || null}, ${a.isCorrect || false}, ${a.imageUrl || null}, ${i}, NOW())
+          VALUES (${qid}, ${aType}, ${a.answerEn}, ${a.answerKm || ""}, ${a.isCorrect || false}, ${a.imageUrl || null}, ${i}, NOW())
         `;
       }
     }

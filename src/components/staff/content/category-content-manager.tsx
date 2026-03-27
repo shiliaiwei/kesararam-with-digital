@@ -53,7 +53,7 @@ function QuestionForm({ topicId, initial, onSave, onCancel }: { topicId: number;
         <select value={diff} onChange={e => setDiff(e.target.value)} className="border-2 border-black px-2 py-1.5 text-sm font-bold bg-white focus:outline-none">
           <option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option>
         </select>
-        <input value={imgUrl} onChange={e => setImgUrl(e.target.value)} className="col-span-2 border-2 border-black px-2 py-1.5 text-sm focus:outline-none" placeholder="Image URL (optional)" />
+        <input value={imgUrl} onChange={e => setImgUrl(e.target.value)} className="col-span-2 border-2 border-black px-2 py-1.5 text-sm focus:outline-none" placeholder="Image URL — shown above answers (use for Image Pick questions)" />
       </div>
       <div className="space-y-1.5">
         <div className="flex items-center justify-between">

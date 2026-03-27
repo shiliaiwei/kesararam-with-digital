@@ -34,15 +34,15 @@ export async function GET(
       ORDER BY q.sort_order, q.created_at
     `;
 
-    // Get answers for each question
+    // Get answers for each question - map to camelCase for frontend
     for (const question of questions) {
       const answers = await sql`
         SELECT 
           a.id,
-          a.answer_en,
-          a.answer_km,
-          a.is_correct,
-          a.image_url,
+          a.answer_en   AS "answerEn",
+          a.answer_km   AS "answerKm",
+          a.is_correct  AS "isCorrect",
+          a.image_url   AS "imageUrl",
           a.sort_order
         FROM answers a
         WHERE a.question_id = ${question.id}
@@ -87,7 +87,7 @@ export async function POST(
       answers,
     } = body;
 
-    // Create question
+    // Create question (no created_by / updated_at columns in schema)
     const questionResult = await sql`
       INSERT INTO questions (
         topic_id,
@@ -99,53 +99,53 @@ export async function POST(
         audio_url_en,
         audio_url_km,
         difficulty,
-        status,
-        created_by,
-        created_at,
-        updated_at
+        status
       ) VALUES (
         ${topicId},
         ${questionEn},
-        ${questionKm || null},
+        ${questionKm || ""},
         ${hintEn || null},
         ${hintKm || null},
         ${imageUrl || null},
         ${audioUrlEn || null},
         ${audioUrlKm || null},
         ${difficulty || 'medium'},
-        'draft',
-        ${session.id},
-        NOW(),
-        NOW()
+        'draft'
       )
       RETURNING *
     `;
 
     const question = questionResult[0];
 
-    // Create answers
+    // Derive answer_type from answer count + image presence
+    const answerType = (answers: any[]) => {
+      if (answers.length === 2) return 'multiple_choice'; // true/false
+      if (answers.some((a: any) => a.imageUrl)) return 'image_selection';
+      return 'multiple_choice';
+    };
+
+    // Create answers (answer_type is NOT NULL)
     if (answers && answers.length > 0) {
+      const aType = answerType(answers);
       for (let i = 0; i < answers.length; i++) {
         const answer = answers[i];
         await sql`
           INSERT INTO answers (
             question_id,
+            answer_type,
             answer_en,
             answer_km,
             is_correct,
             image_url,
-            sort_order,
-            created_at,
-            updated_at
+            sort_order
           ) VALUES (
             ${question.id},
+            ${aType},
             ${answer.answerEn},
-            ${answer.answerKm || null},
+            ${answer.answerKm || ""},
             ${answer.isCorrect || false},
             ${answer.imageUrl || null},
-            ${i},
-            NOW(),
-            NOW()
+            ${i}
           )
         `;
       }
