@@ -22,19 +22,38 @@ export default async function StudentProfilePage() {
   const session = await getSession();
   if (!session || session.role !== "student") redirect("/login");
 
-  const [user] = await db
-    .select({
-      displayName: users.displayName,
-      username: users.username,
-      email: users.email,
-      avatar: users.avatar,
-      avatarChangedAt: users.avatarChangedAt,
-      highestScore: users.highestScore,
-      totalGamesPlayed: users.totalGamesPlayed,
-      lifetimePoints: users.lifetimePoints,
-    })
-    .from(users)
-    .where(eq(users.id, session.id));
+  let user = null;
+  let highestScore = 0;
+  let totalGamesPlayed = 0;
+  let lifetimePoints = 0;
+  
+  try {
+    const result = await db
+      .select()
+      .from(users)
+      .where(eq(users.id, session.id))
+      .limit(1);
+    
+    if (result && result.length > 0) {
+      user = result[0];
+      highestScore = user.highestScore || 0;
+      totalGamesPlayed = user.totalGamesPlayed || 0;
+      lifetimePoints = user.lifetimePoints || 0;
+    }
+  } catch (error) {
+    console.error("Error fetching user profile:", error);
+  }
+
+  // Fallback to session data if user not found
+  if (!user) {
+    user = {
+      displayName: session.name,
+      username: session.name,
+      email: session.email || "",
+      avatar: null,
+      avatarChangedAt: null,
+    };
+  }
 
   const name = user?.displayName ?? user?.username ?? session.name;
 
@@ -112,9 +131,9 @@ export default async function StudentProfilePage() {
         {/* ── Stats ── */}
         <StudentProfileStats
           userId={session.id}
-          initialHighestScore={user?.highestScore || 0}
-          initialTotalGamesPlayed={user?.totalGamesPlayed || 0}
-          initialLifetimePoints={user?.lifetimePoints || 0}
+          initialHighestScore={highestScore}
+          initialTotalGamesPlayed={totalGamesPlayed}
+          initialLifetimePoints={lifetimePoints}
         />
 
         {/* ── Edit profile ── */}
