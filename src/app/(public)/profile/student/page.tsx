@@ -22,37 +22,59 @@ export default async function StudentProfilePage() {
   const session = await getSession();
   if (!session || session.role !== "student") redirect("/login");
 
-  let user = null;
+  // Initialize with default values
+  let user = {
+    displayName: session.name,
+    username: session.name,
+    email: session.email || "",
+    avatar: null,
+    avatarChangedAt: null,
+  };
+  
   let highestScore = 0;
   let totalGamesPlayed = 0;
   let lifetimePoints = 0;
   
   try {
+    // Try to fetch user data - only select columns that definitely exist
     const result = await db
-      .select()
+      .select({
+        displayName: users.displayName,
+        username: users.username,
+        email: users.email,
+        avatar: users.avatar,
+        avatarChangedAt: users.avatarChangedAt,
+      })
       .from(users)
       .where(eq(users.id, session.id))
       .limit(1);
     
     if (result && result.length > 0) {
       user = result[0];
-      highestScore = user.highestScore || 0;
-      totalGamesPlayed = user.totalGamesPlayed || 0;
-      lifetimePoints = user.lifetimePoints || 0;
+    }
+    
+    // Try to get stats separately - these columns might not exist yet
+    try {
+      const statsResult = await db
+        .select({
+          highestScore: users.highestScore,
+          totalGamesPlayed: users.totalGamesPlayed,
+          lifetimePoints: users.lifetimePoints,
+        })
+        .from(users)
+        .where(eq(users.id, session.id))
+        .limit(1);
+      
+      if (statsResult && statsResult.length > 0) {
+        highestScore = statsResult[0].highestScore || 0;
+        totalGamesPlayed = statsResult[0].totalGamesPlayed || 0;
+        lifetimePoints = statsResult[0].lifetimePoints || 0;
+      }
+    } catch (statsError) {
+      console.log("Stats columns not available yet, using defaults");
     }
   } catch (error) {
     console.error("Error fetching user profile:", error);
-  }
-
-  // Fallback to session data if user not found
-  if (!user) {
-    user = {
-      displayName: session.name,
-      username: session.name,
-      email: session.email || "",
-      avatar: null,
-      avatarChangedAt: null,
-    };
   }
 
   const name = user?.displayName ?? user?.username ?? session.name;
