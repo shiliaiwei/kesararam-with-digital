@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import {
-  Plus, Search, Eye, Edit, Trash2, Send,
+  Plus, Search, Edit, Trash2, Send,
   Globe, Clock, FileText, XCircle, CheckCircle,
-  Image as ImageIcon, Music, ChevronDown, RefreshCw, HelpCircle
+  Image as ImageIcon, Music, RefreshCw, HelpCircle,
+  ChevronDown, ChevronUp, Circle, Save, X, Loader2
 } from "lucide-react";
 import { TopicFormModal } from "./topic-form-modal";
 import { useToast } from "@/components/ui/toast-container";
@@ -28,6 +29,24 @@ interface Topic {
   rejection_reason?: string | null;
 }
 
+interface Answer {
+  id?: number;
+  answerEn: string;
+  answerKm: string;
+  isCorrect: boolean;
+  imageUrl: string;
+}
+
+interface Question {
+  id: number;
+  question_en: string;
+  question_km: string;
+  hint_en: string | null;
+  image_url: string | null;
+  difficulty: string;
+  answers: Answer[];
+}
+
 interface CategoryContentManagerProps {
   categoryId: number;
   categoryName: string;
@@ -48,11 +67,11 @@ const SUB_GROUPS: Record<string, string[]> = {
 };
 
 const STATUS_ICON: Record<string, React.ReactNode> = {
-  published: <Globe   size={12} className="text-blue-600"   />,
-  pending:   <Clock   size={12} className="text-yellow-600" />,
-  approved:  <CheckCircle size={12} className="text-green-600" />,
-  draft:     <FileText size={12} className="text-gray-500"  />,
-  rejected:  <XCircle size={12} className="text-red-600"    />,
+  published: <Globe        size={12} className="text-blue-600"   />,
+  pending:   <Clock        size={12} className="text-yellow-600" />,
+  approved:  <CheckCircle  size={12} className="text-green-600"  />,
+  draft:     <FileText     size={12} className="text-gray-500"   />,
+  rejected:  <XCircle      size={12} className="text-red-600"    />,
 };
 
 const STATUS_STYLE: Record<string, string> = {
@@ -64,359 +83,260 @@ const STATUS_STYLE: Record<string, string> = {
 };
 
 const STATUS_LABEL: Record<string, string> = {
-  published: "Public",
-  pending:   "Under Review",
-  approved:  "Approved",
-  draft:     "Draft",
-  rejected:  "Rejected",
+  published: "Public", pending: "Under Review",
+  approved: "Approved", draft: "Draft", rejected: "Rejected",
 };
 
 const ALL_STATUSES = ["published", "pending", "approved", "draft", "rejected"] as const;
+const BLANK_ANSWER = (): Answer => ({ answerEn: "", answerKm: "", isCorrect: false, imageUrl: "" });
+const DIFF_COLORS: Record<string, string> = {
+  easy: "bg-green-100 text-green-800 border-green-300",
+  medium: "bg-yellow-100 text-yellow-800 border-yellow-300",
+  hard: "bg-red-100 text-red-800 border-red-300",
+};
 
-export function CategoryContentManager({
-  categoryId,
-  categoryName,
-  categorySlug,
-  requiresImage = false,
-  requiresAudio = false,
-}: CategoryContentManagerProps) {
-  const { showToast } = useToast();
-  const [topics, setTopics] = useState<Topic[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState("published"); // default: show public
-  const [subGroupFilter, setSubGroupFilter] = useState("");
-  const [showCreateModal, setShowCreateModal] = useState(false);
-  const [editingTopic, setEditingTopic] = useState<Topic | null>(null);
-  const [deleteConfirm, setDeleteConfirm] = useState<number | null>(null);
+// ── Inline Question Form ──────────────────────────────────────────────────────
+function QuestionForm({ topicId, initial, onSave, onCancel }: {
+  topicId: number; initial?: Question; onSave: () => void; onCancel: () => void;
+}) {
+  const [qEn, setQEn] = useState(initial?.question_en ?? "");
+  const [qKm, setQKm] = useState(initial?.question_km ?? "");
+  const [hintEn, setHintEn] = useState(initial?.hint_en ?? "");
+  const [imgUrl, setImgUrl] = useState(initial?.image_url ?? "");
+  const [diff, setDiff] = useState(initial?.difficulty ?? "medium");
+  const [answers, setAnswers] = useState<Answer[]>(
+    initial?.answers?.length
+      ? initial.answers.map(a => ({ id: a.id, answerEn: a.answerEn, answerKm: a.answerKm, isCorrect: a.isCorrect, imageUrl: a.imageUrl ?? "" }))
+      : [BLANK_ANSWER(), BLANK_ANSWER(), BLANK_ANSWER(), BLANK_ANSWER()]
+  );
+  const [saving, setSaving] = useState(false);
+  const [err, setErr] = useState("");
 
-  useEffect(() => { fetchTopics(); }, [categoryId]);
+  const upd = (i: number, f: keyof Answer, v: string | boolean) =>
+    setAnswers(p => p.map((a, idx) => idx === i ? { ...a, [f]: v } : a));
 
-  const fetchTopics = async () => {
-    setLoading(true);
+  const save = async () => {
+    if (!qEn.trim()) { setErr("Question (English) is required"); return; }
+    const valid = answers.filter(a => a.answerEn.trim());
+    if (valid.length < 2) { setErr("At least 2 answers required"); return; }
+    if (!valid.some(a => a.isCorrect)) { setErr("Mark at least one correct answer"); return; }
+    setSaving(true); setErr("");
     try {
-      const params = new URLSearchParams({
-        categoryId: categoryId.toString(),
-        scope: "all",
-        limit: "500",
+      const url = initial
+        ? `/api/staff/topics/${topicId}/questions/${initial.id}`
+        : `/api/staff/topics/${topicId}/questions`;
+      const res = await fetch(url, {
+        method: initial ? "PUT" : "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionEn: qEn.trim(), questionKm: qKm.trim(), hintEn: hintEn.trim() || null, imageUrl: imgUrl.trim() || null, difficulty: diff, answers: valid }),
       });
-      const res = await fetch(`/api/staff/topics?${params}`, { cache: "no-store" });
-      const data = await res.json();
-      // Sort by id ascending (same order as list)
-      const sorted = (data.topics || []).sort((a: Topic, b: Topic) => a.id - b.id);
-      setTopics(sorted);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoading(false);
-    }
+      if (res.ok) onSave();
+      else { const d = await res.json(); setErr(d.error || "Failed"); }
+    } catch { setErr("Network error"); }
+    finally { setSaving(false); }
   };
-
-  // Stats per status
-  const stats = useMemo(() => {
-    const s: Record<string, number> = {};
-    for (const st of ALL_STATUSES) s[st] = topics.filter(t => t.status === st).length;
-    s.all = topics.length;
-    return s;
-  }, [topics]);
-
-  // Filtered list — client-side for instant response
-  const filtered = useMemo(() => {
-    return topics.filter(t => {
-      if (statusFilter && statusFilter !== "all" && t.status !== statusFilter) return false;
-      if (subGroupFilter && t.sub_group !== subGroupFilter) return false;
-      if (search.trim()) {
-        const q = search.toLowerCase();
-        return t.name_en.toLowerCase().includes(q) ||
-               t.topic_code.toLowerCase().includes(q) ||
-               (t.name_km || "").toLowerCase().includes(q);
-      }
-      return true;
-    });
-  }, [topics, statusFilter, subGroupFilter, search]);
-
-  const handleDelete = async (id: number) => {
-    try {
-      const res = await fetch(`/api/staff/topics/${id}`, { method: "DELETE" });
-      if (res.ok) { showToast("Deleted", "success"); setDeleteConfirm(null); fetchTopics(); }
-      else { const d = await res.json(); showToast(d.error || "Failed", "error"); }
-    } catch { showToast("Failed to delete", "error"); }
-  };
-
-  const handleSubmit = async (id: number) => {
-    try {
-      const res = await fetch(`/api/staff/topics/${id}/submit`, { method: "POST" });
-      if (res.ok) { showToast("Submitted for review", "success"); fetchTopics(); }
-      else { const d = await res.json(); showToast(d.error || "Failed", "error"); }
-    } catch { showToast("Failed to submit", "error"); }
-  };
-
-  const subGroups = SUB_GROUPS[categorySlug] || [];
 
   return (
-    <div className="space-y-4">
-      {/* Header */}
-      <div className="bg-white border-2 border-black p-5" style={{ boxShadow: "4px 4px 0 #000" }}>
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h1 className="text-2xl font-black">{categoryName}</h1>
-            <p className="text-xs text-zinc-500 mt-0.5">
-              Showing all content — public items are visible to learners
-            </p>
-          </div>
-          <div className="flex gap-2">
-            <button
-              onClick={fetchTopics}
-              className="p-2.5 border-2 border-black hover:bg-gray-100 transition-all"
-              title="Refresh"
-            >
-              <RefreshCw size={16} />
-            </button>
-            <button
-              onClick={() => setShowCreateModal(true)}
-              className="bg-green-400 border-2 border-black px-4 py-2.5 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center gap-2 text-sm"
-            >
-              <Plus size={16} />
-              Create
-            </button>
-          </div>
-        </div>
+    <div className="border-2 border-black bg-white p-4 space-y-3" style={{ boxShadow: "3px 3px 0 #000" }}>
+      <div className="flex items-center justify-between">
+        <span className="font-black text-xs uppercase">{initial ? "Edit Question" : "New Question"}</span>
+        <button onClick={onCancel} className="p-1 border border-black hover:bg-gray-100"><X size={12} /></button>
+      </div>
+      {err && <div className="bg-red-50 border border-red-400 px-3 py-1.5 text-xs font-bold text-red-700">{err}</div>}
 
-        {/* Status filter tabs */}
-        <div className="flex flex-wrap gap-1.5 mb-3">
-          <button
-            onClick={() => setStatusFilter("all")}
-            className={`px-3 py-1.5 border-2 border-black text-xs font-black transition-all ${
-              statusFilter === "all" ? "bg-black text-white" : "bg-white hover:bg-gray-100"
-            }`}
-          >
-            All ({stats.all})
-          </button>
-          {ALL_STATUSES.map(s => stats[s] > 0 && (
-            <button
-              key={s}
-              onClick={() => setStatusFilter(statusFilter === s ? "all" : s)}
-              className={`px-3 py-1.5 border-2 border-black text-xs font-black transition-all inline-flex items-center gap-1.5 ${
-                statusFilter === s ? "shadow-[2px_2px_0_#000]" : ""
-              } ${STATUS_STYLE[s]}`}
-            >
-              {STATUS_ICON[s]}
-              {STATUS_LABEL[s]} ({stats[s]})
-            </button>
-          ))}
-        </div>
+      <div className="grid grid-cols-2 gap-2">
+        <textarea value={qEn} onChange={e => setQEn(e.target.value)} rows={2}
+          className="border-2 border-black px-2 py-1.5 text-sm focus:outline-none resize-none"
+          placeholder="Question (English) *" />
+        <textarea value={qKm} onChange={e => setQKm(e.target.value)} rows={2}
+          className="border-2 border-black px-2 py-1.5 text-sm focus:outline-none resize-none"
+          placeholder="Question (Khmer)" />
+      </div>
 
-        {/* Search + sub-group */}
-        <div className="flex gap-2">
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={15} />
-            <input
-              type="text"
-              placeholder="Search by name or code..."
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 border-2 border-black text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-            />
-          </div>
-          {subGroups.length > 0 && (
-            <select
-              value={subGroupFilter}
-              onChange={e => setSubGroupFilter(e.target.value)}
-              className="px-3 py-2 border-2 border-black text-sm font-bold bg-white focus:outline-none min-w-[130px]"
-            >
-              <option value="">All Types</option>
-              {subGroups.map(sg => <option key={sg} value={sg}>{sg}</option>)}
-            </select>
+      <div className="grid grid-cols-3 gap-2">
+        <select value={diff} onChange={e => setDiff(e.target.value)}
+          className="border-2 border-black px-2 py-1.5 text-sm font-bold bg-white focus:outline-none">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+        <input value={imgUrl} onChange={e => setImgUrl(e.target.value)}
+          className="col-span-2 border-2 border-black px-2 py-1.5 text-sm focus:outline-none"
+          placeholder="Image URL (optional)" />
+      </div>
+
+      <div className="space-y-1.5">
+        <div className="flex items-center justify-between">
+          <span className="text-xs font-black uppercase">Answers — tick the correct one(s)</span>
+          {answers.length < 6 && (
+            <button onClick={() => setAnswers(p => [...p, BLANK_ANSWER()])}
+              className="text-[10px] font-black border border-black px-2 py-0.5 bg-green-100 hover:bg-green-200 inline-flex items-center gap-1">
+              <Plus size={10} /> Add
+            </button>
           )}
         </div>
-      </div>
-
-      {/* Content list */}
-      <div className="bg-white border-2 border-black overflow-hidden" style={{ boxShadow: "4px 4px 0 #000" }}>
-        {loading ? (
-          <div className="divide-y divide-gray-100">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="p-4 flex gap-3 animate-pulse">
-                <div className="w-12 h-12 bg-gray-100 shrink-0" />
-                <div className="flex-1 space-y-2">
-                  <div className="h-4 bg-gray-100 w-2/3" />
-                  <div className="h-3 bg-gray-100 w-1/3" />
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : filtered.length === 0 ? (
-          <div className="p-12 text-center">
-            <Globe size={40} className="mx-auto mb-3 text-zinc-300" />
-            <p className="font-bold text-zinc-500 mb-1">
-              {statusFilter === "published" ? "No published content yet" : "No content found"}
-            </p>
-            <p className="text-xs text-zinc-400 mb-4">
-              {statusFilter === "published"
-                ? "Create content and submit for admin review to publish"
-                : "Try a different filter"}
-            </p>
-            <button
-              onClick={() => setShowCreateModal(true)}
-              className="bg-green-400 border-2 border-black px-5 py-2.5 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center gap-2 text-sm"
-            >
-              <Plus size={16} /> Create Content
+        {answers.map((a, i) => (
+          <div key={i} className="flex items-center gap-1.5">
+            <button onClick={() => upd(i, "isCorrect", !a.isCorrect)}
+              className={`w-6 h-6 shrink-0 border-2 border-black flex items-center justify-center ${a.isCorrect ? "bg-green-400" : "bg-white"}`}>
+              {a.isCorrect ? <CheckCircle size={12} /> : <Circle size={12} />}
             </button>
+            <input value={a.answerEn} onChange={e => upd(i, "answerEn", e.target.value)}
+              className="flex-1 border-2 border-black px-2 py-1 text-sm focus:outline-none"
+              placeholder={`Answer ${i + 1} (EN)`} />
+            <input value={a.answerKm} onChange={e => upd(i, "answerKm", e.target.value)}
+              className="flex-1 border-2 border-black px-2 py-1 text-sm focus:outline-none"
+              placeholder={`Answer ${i + 1} (KM)`} />
+            {answers.length > 2 && (
+              <button onClick={() => setAnswers(p => p.filter((_, idx) => idx !== i))}
+                className="p-1 border border-black hover:bg-red-100"><X size={11} /></button>
+            )}
           </div>
-        ) : (
-          <div className="divide-y divide-gray-100">
-            {filtered.map((topic) => (
-              <TopicRow
-                key={topic.id}
-                topic={topic}
-                categorySlug={categorySlug}
-                onEdit={() => setEditingTopic(topic)}
-                onSubmit={() => handleSubmit(topic.id)}
-                onDelete={() => setDeleteConfirm(topic.id)}
-                onDeleteConfirm={() => handleDelete(topic.id)}
-                onDeleteCancel={() => setDeleteConfirm(null)}
-                isDeleteConfirm={deleteConfirm === topic.id}
-              />
-            ))}
-          </div>
-        )}
+        ))}
+        <p className="text-[10px] text-zinc-400">2 answers = True/False &nbsp;|&nbsp; 4 answers = MCQ &nbsp;|&nbsp; image answers = Image Pick</p>
       </div>
 
-      {/* Modals */}
-      {(showCreateModal || editingTopic) && (
-        <TopicFormModal
-          categoryId={categoryId}
-          categorySlug={categorySlug}
-          requiresImage={requiresImage}
-          requiresAudio={requiresAudio}
-          initialData={editingTopic}
-          onClose={() => { setShowCreateModal(false); setEditingTopic(null); }}
-          onSuccess={() => { setShowCreateModal(false); setEditingTopic(null); fetchTopics(); }}
-        />
-      )}
+      <div className="flex justify-end gap-2 pt-1 border-t border-black">
+        <button onClick={onCancel} className="px-3 py-1.5 border-2 border-black text-xs font-black hover:bg-gray-100">Cancel</button>
+        <button onClick={save} disabled={saving}
+          className="px-3 py-1.5 border-2 border-black bg-green-400 text-xs font-black hover:shadow-[2px_2px_0_#000] disabled:opacity-50 inline-flex items-center gap-1.5">
+          {saving ? <Loader2 size={12} className="animate-spin" /> : <Save size={12} />}
+          {saving ? "Saving..." : "Save"}
+        </button>
+      </div>
     </div>
   );
 }
 
-// ── Row component ──────────────────────────────────────────────────────────────
-function TopicRow({
-  topic,
-  categorySlug,
-  onEdit,
-  onSubmit,
-  onDelete,
-  onDeleteConfirm,
-  onDeleteCancel,
-  isDeleteConfirm,
-}: {
-  topic: Topic;
-  categorySlug: string;
-  onEdit: () => void;
-  onSubmit: () => void;
-  onDelete: () => void;
-  onDeleteConfirm: () => void;
-  onDeleteCancel: () => void;
-  isDeleteConfirm: boolean;
-}) {
-  const isPublished = topic.status === "published";
-  const canEdit = true; // staff can always request edit (goes back to pending)
-  const canDelete = topic.status === "draft" || topic.status === "rejected";
-  const canSubmit = topic.status === "draft" || topic.status === "rejected";
+// ── Inline Questions Panel ────────────────────────────────────────────────────
+function QuestionsPanel({ topicId, topicStatus }: { topicId: number; topicStatus: string }) {
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [showCreate, setShowCreate] = useState(false);
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [expandedId, setExpandedId] = useState<number | null>(null);
+  const [delConfirm, setDelConfirm] = useState<number | null>(null);
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    try {
+      const res = await fetch(`/api/staff/topics/${topicId}/questions`);
+      const d = await res.json();
+      setQuestions(d.questions || []);
+    } catch { /* ignore */ }
+    finally { setLoading(false); }
+  }, [topicId]);
+
+  useEffect(() => { load(); }, [load]);
+
+  const del = async (qid: number) => {
+    await fetch(`/api/staff/topics/${topicId}/questions/${qid}`, { method: "DELETE" });
+    setDelConfirm(null); load();
+  };
+
+  const canEdit = topicStatus !== "pending";
 
   return (
-    <div className={`flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors ${
-      isPublished ? "border-l-4 border-blue-400" : ""
-    }`}>
-      {/* Thumbnail */}
-      <div className="w-11 h-11 shrink-0 border border-gray-200 bg-gray-50 flex items-center justify-center overflow-hidden">
-        {topic.primary_image_url ? (
-          <img src={topic.primary_image_url} alt="" className="w-full h-full object-cover" />
-        ) : (
-          <ImageIcon size={18} className="text-gray-300" />
-        )}
-      </div>
-
-      {/* Info */}
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="font-bold text-sm truncate">{topic.name_en}</span>
-          {topic.audio_url_en && <Music size={11} className="text-purple-400 shrink-0" />}
-        </div>
-        <div className="flex items-center gap-2 mt-0.5 flex-wrap">
-          <span className="text-[10px] font-mono text-zinc-400">#{topic.id}</span>
-          {topic.sub_group && (
-            <span className="text-[10px] text-zinc-500">{topic.sub_group}</span>
-          )}
-          <span className="text-[10px] text-zinc-400">
-            {topic.question_count} Q
-          </span>
-        </div>
-        {topic.status === "rejected" && topic.rejection_reason && (
-          <p className="text-[10px] text-red-600 mt-0.5 truncate" title={topic.rejection_reason}>
-            {topic.rejection_reason}
-          </p>
-        )}
-      </div>
-
-      {/* Status badge */}
-      <span className={`px-2 py-0.5 text-[10px] font-black uppercase inline-flex items-center gap-1 shrink-0 ${STATUS_STYLE[topic.status]}`}>
-        {STATUS_ICON[topic.status]}
-        {STATUS_LABEL[topic.status]}
-      </span>
-
-      {/* Actions */}
-      <div className="flex items-center gap-1.5 shrink-0">
-        {/* View questions */}
-        <a
-          href={`/staff/content/${categorySlug}/${topic.id}`}
-          className="p-1.5 border-2 border-black hover:bg-purple-100 transition-all"
-          title="View / Edit Questions"
-        >
-          <HelpCircle size={14} />
-        </a>
-
-        {/* Edit — always available, re-submits for review */}
-        <button
-          onClick={onEdit}
-          className="p-1.5 border-2 border-black hover:bg-yellow-100 transition-all"
-          title={isPublished ? "Edit (will go back to review)" : "Edit"}
-        >
-          <Edit size={14} />
-        </button>
-
-        {/* Submit for review */}
-        {canSubmit && (
-          <button
-            onClick={onSubmit}
-            className="p-1.5 border-2 border-black bg-green-100 hover:bg-green-200 transition-all"
-            title="Submit for review"
-          >
-            <Send size={14} />
+    <div className="border-t-2 border-black bg-zinc-50 p-4 space-y-3">
+      {/* Panel header */}
+      <div className="flex items-center justify-between">
+        <span className="font-black text-sm uppercase flex items-center gap-2">
+          <HelpCircle size={15} className="text-purple-600" />
+          Questions ({questions.length})
+        </span>
+        {canEdit && !showCreate && (
+          <button onClick={() => setShowCreate(true)}
+            className="bg-purple-400 border-2 border-black px-3 py-1.5 text-xs font-black hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-1.5">
+            <Plus size={13} /> Add Question
           </button>
         )}
-
-        {/* Delete */}
-        {canDelete && (
-          isDeleteConfirm ? (
-            <div className="flex gap-1">
-              <button onClick={onDeleteConfirm} className="px-2 py-1 text-[10px] font-black bg-red-500 text-white border-2 border-black">
-                Yes
-              </button>
-              <button onClick={onDeleteCancel} className="px-2 py-1 text-[10px] font-black bg-white border-2 border-black">
-                No
-              </button>
-            </div>
-          ) : (
-            <button
-              onClick={onDelete}
-              className="p-1.5 border-2 border-black hover:bg-red-100 transition-all"
-              title="Delete"
-            >
-              <Trash2 size={14} />
-            </button>
-          )
-        )}
       </div>
+
+      {topicStatus === "pending" && (
+        <p className="text-[10px] font-bold text-yellow-700 bg-yellow-50 border border-yellow-300 px-2 py-1">
+          Under review — questions are read-only until admin decision.
+        </p>
+      )}
+
+      {showCreate && (
+        <QuestionForm topicId={topicId}
+          onSave={() => { setShowCreate(false); load(); }}
+          onCancel={() => setShowCreate(false)} />
+      )}
+
+      {loading ? (
+        <p className="text-xs text-zinc-400 font-bold py-2">Loading...</p>
+      ) : questions.length === 0 && !showCreate ? (
+        <div className="text-center py-6 border-2 border-dashed border-zinc-300">
+          <p className="text-xs font-bold text-zinc-500 mb-2">No questions yet for this topic</p>
+          {canEdit && (
+            <button onClick={() => setShowCreate(true)}
+              className="bg-purple-400 border-2 border-black px-4 py-2 text-xs font-black hover:shadow-[2px_2px_0_#000] inline-flex items-center gap-1.5">
+              <Plus size={13} /> Create First Question
+            </button>
+          )}
+        </div>
+      ) : (
+        <div className="space-y-1.5">
+          {questions.map((q, idx) => (
+            <div key={q.id} className="border-2 border-black bg-white">
+              {editingId === q.id ? (
+                <QuestionForm topicId={topicId} initial={q}
+                  onSave={() => { setEditingId(null); load(); }}
+                  onCancel={() => setEditingId(null)} />
+              ) : (
+                <>
+                  <div className="flex items-center gap-2 px-3 py-2 cursor-pointer hover:bg-gray-50"
+                    onClick={() => setExpandedId(expandedId === q.id ? null : q.id)}>
+                    <span className="w-5 h-5 shrink-0 bg-black text-white text-[10px] font-black flex items-center justify-center">{idx + 1}</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-bold truncate">{q.question_en}</p>
+                      {q.question_km && <p className="text-[10px] text-zinc-500 truncate">{q.question_km}</p>}
+                    </div>
+                    <span className={`px-1.5 py-0.5 text-[10px] font-black border ${DIFF_COLORS[q.difficulty] ?? DIFF_COLORS.medium}`}>{q.difficulty}</span>
+                    <span className="text-[10px] text-zinc-400 font-bold shrink-0">{q.answers?.length ?? 0} ans</span>
+                    {expandedId === q.id ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
+                  </div>
+
+                  {expandedId === q.id && (
+                    <div className="border-t-2 border-black px-3 py-2 bg-gray-50 space-y-2">
+                      {q.image_url && <img src={q.image_url} alt="" className="h-20 object-contain border border-black" />}
+                      <div className="grid grid-cols-2 gap-1.5">
+                        {q.answers?.map((a, ai) => (
+                          <div key={ai} className={`flex items-center gap-1.5 px-2 py-1.5 border-2 text-xs font-bold ${a.isCorrect ? "border-green-500 bg-green-50 text-green-900" : "border-zinc-300 bg-white text-zinc-600"}`}>
+                            {a.isCorrect ? <CheckCircle size={11} className="text-green-600 shrink-0" /> : <Circle size={11} className="text-zinc-400 shrink-0" />}
+                            <span className="truncate">{a.answerEn}</span>
+                          </div>
+                        ))}
+                      </div>
+                      {q.hint_en && <p className="text-[10px] text-zinc-500 italic">Hint: {q.hint_en}</p>}
+                      {canEdit && (
+                        <div className="flex gap-1.5 pt-1">
+                          <button onClick={() => { setEditingId(q.id); setExpandedId(null); }}
+                            className="px-2.5 py-1 border-2 border-black bg-yellow-100 hover:bg-yellow-200 text-[10px] font-black inline-flex items-center gap-1">
+                            <Edit size={11} /> Edit
+                          </button>
+                          {delConfirm === q.id ? (
+                            <>
+                              <button onClick={() => del(q.id)} className="px-2.5 py-1 border-2 border-black bg-red-500 text-white text-[10px] font-black">Confirm</button>
+                              <button onClick={() => setDelConfirm(null)} className="px-2.5 py-1 border-2 border-black bg-white text-[10px] font-black">Cancel</button>
+                            </>
+                          ) : (
+                            <button onClick={() => setDelConfirm(q.id)}
+                              className="px-2.5 py-1 border-2 border-black bg-red-100 hover:bg-red-200 text-[10px] font-black inline-flex items-center gap-1">
+                              <Trash2 size={11} /> Delete
+                            </button>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
