@@ -26,8 +26,8 @@ export function CountdownTimer({ endsAt, totalSeconds, onExpire, muted }: Countd
       setRemaining(left);
 
       if (!muted) {
-        if (left <= 5 && left > 0) sounds.urgentTick();
-        else if (left > 5) sounds.tick();
+        if (left <= 5 && left > 0) sounds.urgent_tick();
+        else if (left > 5) sounds.countdown_tick();
       }
 
       if (left === 0 && !expiredRef.current) {
