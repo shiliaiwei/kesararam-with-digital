@@ -29,6 +29,23 @@ export function AnswerGrid({
   gameType,
   onSelect,
 }: AnswerGridProps) {
+  // Safety check - ensure onSelect is a function and prevent crashes
+  const handleClick = (id: number) => {
+    if (disabled) {
+      console.log('Answer selection disabled');
+      return;
+    }
+    if (typeof onSelect !== 'function') {
+      console.error('CRITICAL: onSelect is not a function:', typeof onSelect, onSelect);
+      return;
+    }
+    try {
+      onSelect(id);
+    } catch (error) {
+      console.error('Error calling onSelect:', error);
+    }
+  };
+
   const isTrueFalse = gameType === "true_false";
   const isImagePick = gameType === "image_pick";
 
@@ -37,6 +54,15 @@ export function AnswerGrid({
     : isImagePick
     ? "grid grid-cols-2 gap-4"
     : "grid grid-cols-2 gap-4";
+
+  // Safety check - ensure answers is an array
+  if (!Array.isArray(answers) || answers.length === 0) {
+    return (
+      <div className="text-center py-8 text-white">
+        <p>Loading answers...</p>
+      </div>
+    );
+  }
 
   return (
     <div className={gridClass}>
@@ -70,7 +96,8 @@ export function AnswerGrid({
           <button
             key={ans.id}
             disabled={disabled}
-            onClick={() => onSelect(ans.id)}
+            onClick={() => handleClick(ans.id)}
+            type="button"
             className="relative flex items-center gap-3 p-4 border-2 border-black rounded-none font-black text-white text-left transition-all duration-100 active:scale-95"
             style={{
               backgroundColor: bgColor,

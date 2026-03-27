@@ -8,6 +8,7 @@ import { CountdownTimer } from "@/components/game/CountdownTimer";
 import { AnswerGrid } from "@/components/game/AnswerGrid";
 import { LeaderboardPanel } from "@/components/game/LeaderboardPanel";
 import { Podium } from "@/components/game/Podium";
+import { ErrorBoundary } from "@/components/game/ErrorBoundary";
 import { Zap, Trophy, Users, Clock, CheckCircle, XCircle, Loader2 } from "lucide-react";
 
 type GamePhase = "lobby" | "question" | "results" | "leaderboard" | "podium";
@@ -58,7 +59,25 @@ export default function StudentGamePage() {
         setParticipants(event.participants || []);
         setPhase("lobby");
       } else if (event.type === "question_start") {
-        console.log("Question starting:", event.question);
+        console.log("Question starting - full event:", JSON.stringify(event, null, 2));
+        console.log("Question data:", event.question);
+        console.log("Answers:", event.question?.answers);
+        
+        // Validate question data before setting state
+        if (!event.question) {
+          console.error("CRITICAL: No question in question_start event");
+          return;
+        }
+        if (!event.question.answers || !Array.isArray(event.question.answers)) {
+          console.error("CRITICAL: Invalid answers in question:", event.question);
+          return;
+        }
+        if (event.question.answers.length === 0) {
+          console.error("CRITICAL: Empty answers array in question:", event.question);
+          return;
+        }
+        
+        console.log("Question validation passed, updating state");
         setCurrentQuestion(event.question);
         setQuestionIndex(event.index);
         setTotalQuestions(event.total);
@@ -69,6 +88,7 @@ export default function StudentGamePage() {
         setCorrectAnswerId(null);
         setPhase("question");
         safePlaySound("question_start");
+        console.log("State updated, phase set to question");
       } else if (event.type === "question_end") {
         setCorrectAnswerId(event.correctAnswerId);
         setLeaderboard(event.leaderboard || []);
@@ -91,6 +111,7 @@ export default function StudentGamePage() {
       }
     } catch (error) {
       console.error("Error handling SSE event:", error);
+      console.error("Event that caused error:", event);
     }
   }, []);
 
@@ -140,6 +161,7 @@ export default function StudentGamePage() {
 
   const { connected, error } = useGameSSE(code, handleSSEEvent, !joining && !joinError);
 
+  // Stable callback for submitting answers - wrapped in useCallback to prevent re-creation
   const submitAnswer = useCallback(
     async (answerId: number) => {
       if (answerSubmitted || !currentQuestion || !code) {
@@ -178,6 +200,12 @@ export default function StudentGamePage() {
     },
     [answerSubmitted, currentQuestion, code]
   );
+
+  // Stable wrapper for answer selection - this ensures the callback is always defined
+  const handleAnswerSelect = useCallback((answerId: number) => {
+    console.log("Answer selected:", answerId);
+    submitAnswer(answerId);
+  }, [submitAnswer]);
 
   useEffect(() => {
     if (!code) {
@@ -384,16 +412,6 @@ export default function StudentGamePage() {
 
     const timePerQuestion = endsAt ? Math.round((new Date(endsAt).getTime() - Date.now()) / 1000) : 30;
     
-    // Safety check - ensure submitAnswer is a function
-    const handleAnswerSelect = (answerId: number) => {
-      console.log("Answer selected:", answerId);
-      if (typeof submitAnswer === 'function') {
-        submitAnswer(answerId);
-      } else {
-        console.error("submitAnswer is not a function!");
-      }
-    };
-    
     return (
       <div className="min-h-screen bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 p-2 sm:p-4 animate-gradient">
         <div className="max-w-4xl mx-auto">
@@ -443,17 +461,32 @@ export default function StudentGamePage() {
             )}
           </div>
 
-          {/* Answer grid - Mobile optimized */}
+          {/* Answer grid - Mobile optimized with error boundary */}
           <div className="mb-3 sm:mb-6">
-            <AnswerGrid
-              answers={currentQuestion.answers}
-              selectedId={selectedAnswer}
-              correctId={correctAnswerId}
-              disabled={answerSubmitted}
-              lang={lang}
-              gameType={currentQuestion.gameType}
-              onSelect={handleAnswerSelect}
-            />
+            <ErrorBoundary
+              fallback={
+                <div className="bg-white border-2 border-black p-8 text-center">
+                  <XCircle className="mx-auto text-red-500 mb-4" size={48} />
+                  <p className="font-bold">Failed to load answers</p>
+                  <button
+                    onClick={() => window.location.reload()}
+                    className="mt-4 bg-red-500 text-white px-6 py-2 border-2 border-black font-bold"
+                  >
+                    Reload
+                  </button>
+                </div>
+              }
+            >
+              <AnswerGrid
+                answers={currentQuestion.answers}
+                selectedId={selectedAnswer}
+                correctId={correctAnswerId}
+                disabled={answerSubmitted}
+                lang={lang}
+                gameType={currentQuestion.gameType}
+                onSelect={handleAnswerSelect}
+              />
+            </ErrorBoundary>
           </div>
 
           {/* Answer feedback with animation - Mobile optimized */}
