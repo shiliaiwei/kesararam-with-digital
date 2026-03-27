@@ -1,7 +1,7 @@
 import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
-import { sessions, quizzes } from "@/db/schema";
+import { sessions as challengeSessions, quizzes } from "@/db/schema/quizzes";
 import { gameSessions } from "@/db/schema/game";
 import { eq, desc, or } from "drizzle-orm";
 import Link from "next/link";
@@ -17,20 +17,20 @@ export default async function TeacherSessionsPage() {
 
   const mySessions = await db
     .select({
-      id: sessions.id,
-      roomCode: sessions.roomCode,
-      challengeType: sessions.challengeType,
-      status: sessions.status,
-      maxStudents: sessions.maxStudents,
-      createdAt: sessions.createdAt,
-      startedAt: sessions.startedAt,
-      endedAt: sessions.endedAt,
+      id: challengeSessions.id,
+      roomCode: challengeSessions.roomCode,
+      challengeType: challengeSessions.challengeType,
+      status: challengeSessions.status,
+      maxStudents: challengeSessions.maxStudents,
+      createdAt: challengeSessions.createdAt,
+      startedAt: challengeSessions.startedAt,
+      endedAt: challengeSessions.endedAt,
       quizTitle: quizzes.title,
     })
-    .from(sessions)
-    .leftJoin(quizzes, eq(sessions.quizId, quizzes.id))
-    .where(eq(sessions.teacherId, session.id))
-    .orderBy(desc(sessions.createdAt))
+    .from(challengeSessions)
+    .leftJoin(quizzes, eq(challengeSessions.quizId, quizzes.id))
+    .where(eq(challengeSessions.teacherId, session.id))
+    .orderBy(desc(challengeSessions.createdAt))
     .limit(50);
 
   // Calculate stats
