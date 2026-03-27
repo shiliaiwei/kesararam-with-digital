@@ -66,15 +66,20 @@ export async function POST(
 
   // ── START ─────────────────────────────────────────────────────────────────
   if (action === "start") {
+    console.log(`[START] Session ${session.id}, status: ${currentStatus}, questionIds:`, session.questionIds);
+    
     // Allow re-start if already active (idempotent)
     if (currentStatus !== "lobby" && currentStatus !== "active")
       return NextResponse.json({ error: `Cannot start from status: ${currentStatus}` }, { status: 409 });
 
-    if (!session.questionIds?.length)
+    if (!session.questionIds?.length) {
+      console.error(`[START] No questions in session ${session.id}`);
       return NextResponse.json({ error: "No questions in session" }, { status: 400 });
+    }
 
     const now = new Date();
     const firstQId = session.questionIds[0];
+    console.log(`[START] First question ID: ${firstQId}`);
 
     await db.update(gameSessions)
       .set({ status: "active", startedAt: now, currentQuestionIndex: 0, questionStartedAt: now })
@@ -92,6 +97,7 @@ export async function POST(
       total: session.questionIds.length,
     });
 
+    console.log(`[START] Game started successfully, broadcasting question 1/${session.questionIds.length}`);
     return NextResponse.json({ status: "active", currentQuestionIndex: 0 });
   }
 

@@ -150,11 +150,20 @@ export default function HostPage() {
     if (controlling || !("code" in phase)) return;
     setControlling(true);
     try {
-      await fetch(`/api/game/sessions/${phase.code}/control`, {
+      const res = await fetch(`/api/game/sessions/${phase.code}/control`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action }),
       });
+      
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({ error: "Unknown error" }));
+        console.error("Control action failed:", errorData);
+        setError(errorData.error || `Failed to ${action}`);
+      }
+    } catch (err) {
+      console.error("Control request failed:", err);
+      setError(`Network error: ${err instanceof Error ? err.message : "Unknown"}`);
     } finally {
       setControlling(false);
     }
@@ -355,6 +364,12 @@ export default function HostPage() {
             </button>
           </div>
         </div>
+
+        {error && (
+          <div className="mb-6 border-2 border-red-500 bg-red-50 p-4" style={{ boxShadow: "3px 3px 0 #dc2626" }}>
+            <p className="text-red-600 font-bold text-sm" style={khFont}>{error}</p>
+          </div>
+        )}
 
         {/* Room code display */}
         <div className="border-2 border-black p-6 mb-6 bg-yellow-400 flex items-center justify-between" style={{ boxShadow: "5px 5px 0 #000" }}>
