@@ -119,7 +119,7 @@ export default function SoloPage() {
       sessionStartRef.current = Date.now();
       const endsAt = new Date(Date.now() + session.timePerQuestion * 1000).toISOString();
       setPhase({ name: "playing", session, qIndex: 0, endsAt, startedAt: Date.now() });
-      if (!muted) sounds.questionStart();
+      if (!muted) sounds.question_start();
     } catch {
       setError(kh ? "មានបញ្ហា" : "Something went wrong");
       setPhase({ name: "setup" });
@@ -145,7 +145,7 @@ export default function SoloPage() {
       setShowCorrect(false);
       const endsAt = new Date(Date.now() + session.timePerQuestion * 1000).toISOString();
       setPhase({ name: "playing", session, qIndex: nextIdx, endsAt, startedAt: Date.now() });
-      if (!muted) sounds.questionStart();
+      if (!muted) sounds.question_start();
     }, 1500);
   }, [muted]);
 
@@ -168,7 +168,7 @@ export default function SoloPage() {
       if (!muted) { if (newStreak > 2) sounds.streak(); else sounds.correct(); }
     } else {
       setMyStreak(0);
-      if (!muted) sounds.wrong();
+      if (!muted) sounds.incorrect();
     }
 
     advanceQuestion(phase.session, phase.qIndex, answerId, isCorrect, timeTakenMs);
@@ -179,7 +179,7 @@ export default function SoloPage() {
     setSelectedId(-1); // sentinel for timeout
     setShowCorrect(true);
     setMyStreak(0);
-    if (!muted) sounds.wrong();
+    if (!muted) sounds.incorrect();
     advanceQuestion(phase.session, phase.qIndex, null, false, phase.session.timePerQuestion * 1000);
   }
 
