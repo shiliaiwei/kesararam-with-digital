@@ -329,15 +329,31 @@ export default function HostPage() {
             </div>
             <h1 className="text-3xl font-black" style={khFont}>{kh ? "ចូលរួម" : "Players Joining"}</h1>
           </div>
-          <button
-            onClick={() => control("start")}
-            disabled={controlling}
-            className="flex items-center gap-2 px-6 py-3 bg-green-500 text-white font-black border-2 border-black disabled:opacity-40 transition-all"
-            style={{ boxShadow: "3px 3px 0 #000", ...khFont }}
-          >
-            <Play size={16} />
-            {kh ? "ចាប់ផ្តើម" : "Start Game"}
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => {
+                if (confirm(kh ? "បោះបង់ហ្គេមនេះ?" : "Cancel this game session?")) {
+                  control("terminate");
+                  setTimeout(() => setPhase({ name: "setup" }), 500);
+                }
+              }}
+              disabled={controlling}
+              className="flex items-center gap-2 px-4 py-3 bg-red-500 text-white font-black border-2 border-black disabled:opacity-40 transition-all"
+              style={{ boxShadow: "3px 3px 0 #000", ...khFont }}
+            >
+              <Square size={16} />
+              {kh ? "បោះបង់" : "Cancel"}
+            </button>
+            <button
+              onClick={() => control("start")}
+              disabled={controlling}
+              className="flex items-center gap-2 px-6 py-3 bg-green-500 text-white font-black border-2 border-black disabled:opacity-40 transition-all"
+              style={{ boxShadow: "3px 3px 0 #000", ...khFont }}
+            >
+              <Play size={16} />
+              {kh ? "ចាប់ផ្តើម" : "Start Game"}
+            </button>
+          </div>
         </div>
 
         {/* Room code display */}

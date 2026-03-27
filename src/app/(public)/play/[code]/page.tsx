@@ -17,6 +17,8 @@ export default function StudentGamePage() {
   const router = useRouter();
   const code = (params.code as string)?.toUpperCase();
 
+  const [joining, setJoining] = useState(true);
+  const [joinError, setJoinError] = useState<string | null>(null);
   const [phase, setPhase] = useState<GamePhase>("lobby");
   const [participants, setParticipants] = useState<ParticipantInfo[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState<QuestionPayload | null>(null);
@@ -72,7 +74,44 @@ export default function StudentGamePage() {
     }
   }, []);
 
-  const { connected, error } = useGameSSE(code, handleSSEEvent);
+  // Join the game session first
+  useEffect(() => {
+    if (!code) {
+      router.push("/play");
+      return;
+    }
+
+    async function joinSession() {
+      try {
+        const res = await fetch(`/api/game/sessions/${code}/join`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        });
+
+        if (!res.ok) {
+          const data = await res.json();
+          if (res.status === 401) {
+            // Not logged in - redirect to login with return URL
+            router.push(`/login?redirect=/play/${code}`);
+            return;
+          }
+          setJoinError(data.error || "Failed to join session");
+          setJoining(false);
+          return;
+        }
+
+        // Successfully joined
+        setJoining(false);
+      } catch (err) {
+        setJoinError("Network error. Please try again.");
+        setJoining(false);
+      }
+    }
+
+    joinSession();
+  }, [code, router]);
+
+  const { connected, error } = useGameSSE(code, handleSSEEvent, !joining && !joinError);
 
   const submitAnswer = useCallback(
     async (answerId: number) => {
@@ -112,6 +151,36 @@ export default function StudentGamePage() {
       router.push("/play");
     }
   }, [code, router]);
+
+  // Show joining state
+  if (joining) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+        <div className="bg-white border-2 border-black p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <div className="animate-spin h-12 w-12 border-4 border-black border-t-transparent rounded-full mx-auto"></div>
+          <p className="mt-4 text-lg font-bold">Joining game...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show join error
+  if (joinError) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center p-4">
+        <div className="bg-white border-2 border-black p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-md">
+          <h1 className="text-2xl font-bold mb-4">Cannot Join Game</h1>
+          <p className="mb-4">{joinError}</p>
+          <button
+            onClick={() => router.push("/play")}
+            className="w-full bg-purple-500 text-white px-6 py-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all"
+          >
+            Back to Play
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   if (error) {
     return (
