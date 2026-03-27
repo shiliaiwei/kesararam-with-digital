@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useGameSSE } from "@/hooks/use-game-sse";
 import type { SSEEvent, QuestionPayload, LeaderboardEntry, ParticipantInfo } from "@/lib/game-event-bus";
+import { logError } from "@/lib/error-logger";
 import { CountdownTimer } from "@/components/game/CountdownTimer";
 import { AnswerGrid } from "@/components/game/AnswerGrid";
 import { LeaderboardPanel } from "@/components/game/LeaderboardPanel";
@@ -65,15 +66,21 @@ export default function StudentGamePage() {
         
         // Validate question data before setting state
         if (!event.question) {
-          console.error("CRITICAL: No question in question_start event");
+          const error = "CRITICAL: No question in question_start event";
+          console.error(error);
+          logError(error, undefined, { event });
           return;
         }
         if (!event.question.answers || !Array.isArray(event.question.answers)) {
-          console.error("CRITICAL: Invalid answers in question:", event.question);
+          const error = "CRITICAL: Invalid answers in question";
+          console.error(error, event.question);
+          logError(error, undefined, { question: event.question });
           return;
         }
         if (event.question.answers.length === 0) {
-          console.error("CRITICAL: Empty answers array in question:", event.question);
+          const error = "CRITICAL: Empty answers array in question";
+          console.error(error, event.question);
+          logError(error, undefined, { question: event.question });
           return;
         }
         
@@ -112,6 +119,7 @@ export default function StudentGamePage() {
     } catch (error) {
       console.error("Error handling SSE event:", error);
       console.error("Event that caused error:", event);
+      logError("SSE event handler error", error as Error, { event });
     }
   }, []);
 

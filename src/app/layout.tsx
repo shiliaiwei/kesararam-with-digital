@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { LangProvider } from "@/context/lang-context";
+import { ErrorDebugPanel } from "@/components/ErrorDebugPanel";
 import "./globals.css";
 
 const inter = Inter({
@@ -50,6 +51,7 @@ export default function RootLayout({
         <LangProvider>
           {children}
           <Toaster richColors closeButton />
+          <ErrorDebugPanel />
         </LangProvider>
       </body>
     </html>
