@@ -5,33 +5,69 @@
 
 export type ScoringMode = "speed" | "equal";
 export type GameStatus = "lobby" | "active" | "paused" | "ended";
+export type Difficulty = "easy" | "medium" | "hard";
 
 export interface ScoreResult {
-  speedScore: number;
+  baseScore: number;
+  speedBonus: number;
   streakBonus: number;
   totalPoints: number;
 }
 
+/**
+ * New scoring system based on difficulty:
+ * - Easy: 1 point base
+ * - Medium: 2 points base
+ * - Hard: 3 points base
+ * 
+ * Streak bonus:
+ * - 2-3 correct: +1 point
+ * - 4-5 correct: +2 points
+ * - 6+ correct: +3 points
+ * 
+ * Speed bonus (optional, based on scoring mode):
+ * - Percentage of remaining time as bonus
+ */
 export function calculateScore(params: {
   isCorrect: boolean;
+  difficulty?: string | null;
   scoringMode: ScoringMode;
-  basePoints: number;
   remainingTimeMs: number;
   totalTimeMs: number;
   currentStreak: number;
 }): ScoreResult {
-  if (!params.isCorrect) return { speedScore: 0, streakBonus: 0, totalPoints: 0 };
+  if (!params.isCorrect) return { baseScore: 0, speedBonus: 0, streakBonus: 0, totalPoints: 0 };
 
-  const speedScore =
-    params.scoringMode === "equal"
-      ? params.basePoints
-      : params.basePoints +
-        Math.floor(params.basePoints * (params.remainingTimeMs / params.totalTimeMs));
+  // Base score by difficulty
+  const difficultyPoints: Record<string, number> = {
+    easy: 1,
+    medium: 2,
+    hard: 3,
+  };
+  const baseScore = difficultyPoints[params.difficulty?.toLowerCase() || "medium"] || 2;
 
-  const streakMultiplier = Math.min(Math.max(params.currentStreak - 1, 0), 5) * 0.1;
-  const streakBonus = Math.floor(params.basePoints * streakMultiplier);
+  // Speed bonus (only in speed mode)
+  const speedBonus =
+    params.scoringMode === "speed"
+      ? Math.floor(baseScore * (params.remainingTimeMs / params.totalTimeMs))
+      : 0;
 
-  return { speedScore, streakBonus, totalPoints: speedScore + streakBonus };
+  // Streak bonus
+  let streakBonus = 0;
+  if (params.currentStreak >= 6) {
+    streakBonus = 3;
+  } else if (params.currentStreak >= 4) {
+    streakBonus = 2;
+  } else if (params.currentStreak >= 2) {
+    streakBonus = 1;
+  }
+
+  return {
+    baseScore,
+    speedBonus,
+    streakBonus,
+    totalPoints: baseScore + speedBonus + streakBonus,
+  };
 }
 
 export function generateSessionCode(): string {

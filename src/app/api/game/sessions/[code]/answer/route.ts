@@ -1,12 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { gameSessions, gameParticipants, gameSessionAnswers } from "@/db/schema/game";
-import { answers } from "@/db/schema/content";
+import { answers, questions } from "@/db/schema/content";
 import { getSession } from "@/lib/auth";
 import { calculateScore } from "@/lib/game-engine";
 import { eq, and, sql } from "drizzle-orm";
-
-const BASE_POINTS = 1000;
 
 export async function POST(
   req: NextRequest,
@@ -67,7 +65,13 @@ export async function POST(
   if (!participant)
     return NextResponse.json({ error: "Not a participant" }, { status: 403 });
 
-  // 5. Check if answer is correct
+  // 5. Get question difficulty
+  const [question] = await db
+    .select({ difficulty: questions.difficulty })
+    .from(questions)
+    .where(eq(questions.id, questionId));
+
+  // 6. Check if answer is correct
   let isCorrect = false;
   if (answerId !== null && answerId !== undefined) {
     const [ans] = await db
@@ -77,7 +81,7 @@ export async function POST(
     isCorrect = ans?.isCorrect ?? false;
   }
 
-  // 6. Calculate score (server-side only)
+  // 7. Calculate score (server-side only) with new difficulty-based system
   const remainingTimeMs = questionStartedAt
     ? Math.max(
         0,
@@ -89,15 +93,15 @@ export async function POST(
 
   const scoreResult = calculateScore({
     isCorrect,
+    difficulty: question?.difficulty,
     scoringMode: session.scoringMode as "speed" | "equal",
-    basePoints: BASE_POINTS,
     remainingTimeMs,
     totalTimeMs: session.timePerQuestion * 1000,
-    // Pass the streak AFTER this answer so the bonus formula (streak-1) is correct
+    // Pass the streak AFTER this answer so the bonus formula is correct
     currentStreak: isCorrect ? participant.currentStreak + 1 : 0,
   });
 
-  // 7. Insert answer (unique constraint prevents replay)
+  // 8. Insert answer (unique constraint prevents replay)
   try {
     await db.insert(gameSessionAnswers).values({
       sessionId: session.id,
@@ -106,7 +110,7 @@ export async function POST(
       answerId: answerId ?? null,
       answeredAt: new Date(answeredAt),
       isCorrect,
-      speedScore: scoreResult.speedScore,
+      speedScore: scoreResult.speedBonus,
       streakBonus: scoreResult.streakBonus,
       totalPoints: scoreResult.totalPoints,
       remainingTimeMs,
@@ -115,7 +119,7 @@ export async function POST(
     return NextResponse.json({ error: "Already answered" }, { status: 409 });
   }
 
-  // 8. Update participant totals atomically
+  // 9. Update participant totals atomically
   await db
     .update(gameParticipants)
     .set({
@@ -139,7 +143,9 @@ export async function POST(
     accepted: true,
     isCorrect,
     pointsEarned: scoreResult.totalPoints,
-    speedScore: scoreResult.speedScore,
+    baseScore: scoreResult.baseScore,
+    speedBonus: scoreResult.speedBonus,
     streakBonus: scoreResult.streakBonus,
+    difficulty: question?.difficulty,
   });
 }
