@@ -5,9 +5,7 @@ import { getSession } from "@/lib/auth";
 import { eq } from "drizzle-orm";
 
 export async function GET() {
-  const user = await getSession();
-  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
+  // Allow both authenticated and non-authenticated users to get categories
   const rows = await db
     .select()
     .from(categories)
