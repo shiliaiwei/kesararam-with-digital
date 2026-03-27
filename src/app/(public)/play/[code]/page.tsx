@@ -425,16 +425,16 @@ export default function StudentGamePage() {
         <div className="max-w-4xl mx-auto">
           {/* Top bar with question number and timer - Mobile optimized */}
           <div className="flex justify-between items-center mb-3 sm:mb-6 gap-2">
-            <div className="bg-white border-2 border-black px-3 sm:px-6 py-2 sm:py-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transform hover:scale-105 transition-transform">
+            <div className="bg-white border-2 border-black px-3 sm:px-6 py-2 sm:py-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transform hover:scale-105 transition-transform flex-shrink-0">
               <div className="flex items-center gap-1 sm:gap-2">
                 <Trophy className="text-yellow-500 flex-shrink-0" size={16} />
-                <span className="font-black text-sm sm:text-lg whitespace-nowrap">
+                <span className="font-black text-xs sm:text-base md:text-lg whitespace-nowrap">
                   Q {questionIndex + 1}/{totalQuestions}
                 </span>
               </div>
             </div>
             {endsAt && (
-              <div className="transform hover:scale-110 transition-transform">
+              <div className="transform hover:scale-110 transition-transform flex-shrink-0">
                 <CountdownTimer
                   endsAt={endsAt}
                   totalSeconds={timePerQuestion}
@@ -459,11 +459,11 @@ export default function StudentGamePage() {
                 />
               </div>
             )}
-            <h2 className="text-xl sm:text-3xl font-black text-center leading-tight mb-2">
+            <h2 className="text-lg sm:text-2xl md:text-3xl font-black text-center leading-tight mb-2 break-words hyphens-auto px-2">
               {currentQuestion.questionEn}
             </h2>
             {currentQuestion.questionKm && (
-              <p className="text-lg sm:text-2xl text-center text-gray-600 font-bold mt-2 sm:mt-3">
+              <p className="text-base sm:text-xl md:text-2xl text-center text-gray-600 font-bold mt-2 sm:mt-3 break-words hyphens-auto px-2">
                 {currentQuestion.questionKm}
               </p>
             )}
