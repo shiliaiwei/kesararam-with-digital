@@ -29,6 +29,10 @@ export default function LeaderboardPage() {
   async function fetchLeaderboard() {
     try {
       const res = await fetch("/api/leaderboard?limit=50");
+      if (!res.ok) {
+        console.error("Leaderboard API error:", res.status);
+        return;
+      }
       const data = await res.json();
       setLeaderboard(data.leaderboard || []);
     } catch (error) {

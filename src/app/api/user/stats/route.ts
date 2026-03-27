@@ -23,42 +23,56 @@ export async function GET() {
       .from(users)
       .where(eq(users.id, user.id));
 
-    // Get streak data
-    const [streakData] = await db
-      .select({
-        currentStreak: userStreaks.currentStreak,
-        longestStreak: userStreaks.longestStreak,
-      })
-      .from(userStreaks)
-      .where(eq(userStreaks.userId, user.id));
+    // Get streak data (optional - may not exist)
+    let streakData = null;
+    try {
+      [streakData] = await db
+        .select({
+          currentStreak: userStreaks.currentStreak,
+          longestStreak: userStreaks.longestStreak,
+        })
+        .from(userStreaks)
+        .where(eq(userStreaks.userId, user.id));
+    } catch (err) {
+      console.log("No streak data found:", err);
+    }
 
-    // Get recent games (last 10)
-    const recentGames = await db
-      .select({
-        id: gameScores.id,
-        gameMode: gameScores.gameMode,
-        score: gameScores.score,
-        correctAnswers: gameScores.correctAnswers,
-        totalQuestions: gameScores.totalQuestions,
-        createdAt: gameScores.createdAt,
-      })
-      .from(gameScores)
-      .where(eq(gameScores.userId, user.id))
-      .orderBy(desc(gameScores.createdAt))
-      .limit(10);
+    // Get recent games (last 10) - optional
+    let recentGames: any[] = [];
+    try {
+      recentGames = await db
+        .select({
+          id: gameScores.id,
+          gameMode: gameScores.gameMode,
+          score: gameScores.score,
+          correctAnswers: gameScores.correctAnswers,
+          totalQuestions: gameScores.totalQuestions,
+          createdAt: gameScores.createdAt,
+        })
+        .from(gameScores)
+        .where(eq(gameScores.userId, user.id))
+        .orderBy(desc(gameScores.createdAt))
+        .limit(10);
+    } catch (err) {
+      console.log("No game scores found:", err);
+    }
 
     // Calculate current rank on leaderboard
     let currentRank: number | null = null;
     if (userProfile && userProfile.lifetimePoints > 0) {
-      const [rankResult] = await db
-        .select({
-          rank: sql<number>`COUNT(*) + 1`,
-        })
-        .from(users)
-        .where(
-          sql`${users.lifetimePoints} > ${userProfile.lifetimePoints} AND ${users.isActive} = true AND ${users.role} = 'student'`
-        );
-      currentRank = rankResult?.rank || null;
+      try {
+        const [rankResult] = await db
+          .select({
+            rank: sql<number>`COUNT(*) + 1`,
+          })
+          .from(users)
+          .where(
+            sql`${users.lifetimePoints} > ${userProfile.lifetimePoints} AND ${users.isActive} = true AND ${users.role} = 'student'`
+          );
+        currentRank = rankResult?.rank || null;
+      } catch (err) {
+        console.log("Error calculating rank:", err);
+      }
     }
 
     return NextResponse.json({
@@ -71,14 +85,17 @@ export async function GET() {
         currentRank,
         recentGames: recentGames.map((game) => ({
           ...game,
-          createdAt: game.createdAt.toISOString(),
+          createdAt: game.createdAt?.toISOString() || new Date().toISOString(),
         })),
       },
     });
   } catch (error) {
     console.error("Error fetching user stats:", error);
     return NextResponse.json(
-      { error: "Failed to fetch stats" },
+      { 
+        error: "Failed to fetch stats",
+        details: error instanceof Error ? error.message : String(error)
+      },
       { status: 500 }
     );
   }

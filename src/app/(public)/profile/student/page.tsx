@@ -45,7 +45,11 @@ export default function StudentProfilePage() {
 
       // Get user stats
       const statsRes = await fetch("/api/user/stats");
-      if (!statsRes.ok) throw new Error("Failed to fetch stats");
+      if (!statsRes.ok) {
+        const errorData = await statsRes.json();
+        console.error("Stats API error:", errorData);
+        throw new Error(errorData.error || "Failed to fetch stats");
+      }
       const statsData = await statsRes.json();
 
       setProfile({
@@ -54,15 +58,16 @@ export default function StudentProfilePage() {
         email: authData.email,
         avatar: authData.avatar,
         avatarChangedAt: null,
-        highestScore: statsData.stats.highestScore,
-        totalGamesPlayed: statsData.stats.totalGamesPlayed,
-        lifetimePoints: statsData.stats.lifetimePoints,
-        currentRank: statsData.stats.currentRank,
-        currentStreak: statsData.stats.currentStreak,
-        longestStreak: statsData.stats.longestStreak,
+        highestScore: statsData.stats?.highestScore || 0,
+        totalGamesPlayed: statsData.stats?.totalGamesPlayed || 0,
+        lifetimePoints: statsData.stats?.lifetimePoints || 0,
+        currentRank: statsData.stats?.currentRank || null,
+        currentStreak: statsData.stats?.currentStreak || 0,
+        longestStreak: statsData.stats?.longestStreak || 0,
       });
     } catch (error) {
       console.error("Error fetching profile:", error);
+      // Don't set profile to null on error - keep trying
     } finally {
       setLoading(false);
     }
