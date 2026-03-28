@@ -16,6 +16,7 @@ export async function GET(req: NextRequest) {
         username: users.username,
         displayName: users.displayName,
         avatar: users.avatar,
+        avatarChangedAt: users.avatarChangedAt,
         highestScore: users.highestScore,
         totalGamesPlayed: users.totalGamesPlayed,
         lifetimePoints: users.lifetimePoints,

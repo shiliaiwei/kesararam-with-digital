@@ -13,6 +13,7 @@ interface LeaderboardUser {
   username: string;
   displayName: string | null;
   avatar: string | null;
+  avatarChangedAt: string | null;
   highestScore: number;
   totalGamesPlayed: number;
   lifetimePoints: number;
@@ -114,22 +115,24 @@ const REWARD_ITEMS = [
 
 // ── Avatar ───────────────────────────────────────────────────────────────────
 
-function avatarSrc(url: string | null): string | null {
+function avatarSrc(url: string | null, changedAt?: string | null): string | null {
   if (!url) return null;
-  if (url.startsWith("https://res.cloudinary.com/")) {
-    return `/api/profile-image?imageUrl=${encodeURIComponent(url)}`;
-  }
-  return url;
+  const base = url.startsWith("https://res.cloudinary.com/")
+    ? `/api/profile-image?imageUrl=${encodeURIComponent(url)}`
+    : url;
+  // Cache-bust when avatar changes
+  return changedAt ? `${base}&v=${new Date(changedAt).getTime()}` : base;
 }
 
-function Avatar({ url, name, size = 56, ring }: {
+function Avatar({ url, name, size = 56, ring, changedAt }: {
   url: string | null;
   name: string;
   size?: number;
   ring?: string;
+  changedAt?: string | null;
 }) {
   const [err, setErr] = useState(false);
-  const src = avatarSrc(url);
+  const src = avatarSrc(url, changedAt);
   const initials = (name || "?").slice(0, 2).toUpperCase();
   const fontSize = Math.round(size * 0.36);
 
@@ -293,6 +296,7 @@ function PodiumCard({ user, cfg, index }: {
           name={name}
           size={isFirst ? 80 : 64}
           ring={cfg.accentColor}
+          changedAt={user?.avatarChangedAt}
         />
         <div className="absolute -bottom-3 left-1/2 -translate-x-1/2">
           <RankBadge rank={cfg.rank} />
@@ -533,18 +537,19 @@ export default function LeaderboardPage() {
                   <span className="col-span-2 text-right">Points</span>
                 </div>
 
-                {rest.length > 0 ? rest.map((user, i) => (
-                  <div
+                {rest.length > 0 ? rest.map((user) => (
+                  <a
                     key={user.id}
+                    href={`/p/${user.username}`}
                     className="trow grid grid-cols-12 px-5 py-3 border-t border-zinc-100 hover:bg-zinc-50 transition-colors items-center group"
                   >
                     <span className="col-span-1 text-xs font-black text-zinc-400">
                       {user.rank}
                     </span>
                     <div className="col-span-7 flex items-center gap-3">
-                      <Avatar url={user.avatar} name={user.displayName || user.username} size={34} />
+                      <Avatar url={user.avatar} name={user.displayName || user.username} size={34} changedAt={user.avatarChangedAt} />
                       <div className="flex flex-col min-w-0">
-                        <span className="font-bold text-black text-sm truncate leading-tight">
+                        <span className="font-bold text-black text-sm truncate leading-tight group-hover:underline">
                           {user.displayName || user.username}
                         </span>
                         {user.displayName && (
@@ -558,7 +563,7 @@ export default function LeaderboardPage() {
                     <span className="col-span-2 text-right font-black text-black tabular-nums text-sm">
                       {user.lifetimePoints.toLocaleString()}
                     </span>
-                  </div>
+                  </a>
                 )) : (
                   <div className="px-6 py-12 text-center text-zinc-400 text-sm">
                     No rankings yet. Play live games to appear here.

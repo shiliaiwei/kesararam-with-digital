@@ -23,7 +23,7 @@ export async function GET(
         q.difficulty
       FROM questions q
       WHERE q.topic_id = ${id}
-        AND q.status = 'published'
+        AND q.status IN ('published', 'approved')
       ORDER BY q.sort_order, q.created_at
     `;
 
