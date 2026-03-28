@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
+import { useLang } from "@/context/lang-context";
 import { useGameSSE } from "@/hooks/use-game-sse";
 import type { SSEEvent, QuestionPayload, LeaderboardEntry, ParticipantInfo } from "@/lib/game-event-bus";
 import { logError } from "@/lib/error-logger";
@@ -50,7 +51,7 @@ export default function StudentGamePage() {
   const [correctAnswerId, setCorrectAnswerId] = useState<number | null>(null);
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [podium, setPodium] = useState<LeaderboardEntry[]>([]);
-  const [lang] = useState<"en" | "kh">("en");
+  const { lang } = useLang();
 
   const handleSSEEvent = useCallback((event: SSEEvent) => {
     console.log("SSE Event received:", event.type);
@@ -459,13 +460,8 @@ export default function StudentGamePage() {
               </div>
             )}
             <h2 className="text-lg sm:text-2xl md:text-3xl font-black text-center leading-tight mb-2 break-words hyphens-auto px-2 text-white">
-              {currentQuestion.questionEn}
+              {lang === "kh" ? (currentQuestion.questionKm || currentQuestion.questionEn) : currentQuestion.questionEn}
             </h2>
-            {currentQuestion.questionKm && (
-              <p className="text-base sm:text-xl md:text-2xl text-center text-zinc-400 font-bold mt-2 sm:mt-3 break-words hyphens-auto px-2">
-                {currentQuestion.questionKm}
-              </p>
-            )}
           </div>
 
           {/* Answer grid - Mobile optimized with error boundary */}

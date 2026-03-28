@@ -10,13 +10,65 @@ import { Users, ChevronRight } from "lucide-react";
 
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
+// ── Game mode SVG icons ──────────────────────────────────────────────────────
+
+function IconQuickQuiz() {
+  return <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
+    <circle cx="24" cy="24" r="20" fill="#fef08a" stroke="#ca8a04" strokeWidth="2.5"/>
+    <text x="24" y="32" textAnchor="middle" fontSize="26" fontWeight="900" fill="#ca8a04" fontFamily="system-ui">?</text>
+  </svg>;
+}
+function IconSpeedRound() {
+  return <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
+    <polygon points="24,4 28,20 44,20 31,30 36,46 24,36 12,46 17,30 4,20 20,20" fill="#fca5a5" stroke="#b91c1c" strokeWidth="2"/>
+    <polygon points="24,10 27,21 38,21 29,28 32,39 24,33 16,39 19,28 10,21 21,21" fill="#ef4444"/>
+  </svg>;
+}
+function IconSignChallenge() {
+  return <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
+    <polygon points="24,4 44,24 24,44 4,24" fill="#bfdbfe" stroke="#1d4ed8" strokeWidth="2.5"/>
+    <circle cx="24" cy="24" r="8" fill="#1d4ed8"/>
+    <line x1="24" y1="18" x2="24" y2="26" stroke="#fff" strokeWidth="2.5" strokeLinecap="round"/>
+    <circle cx="24" cy="30" r="1.5" fill="#fff"/>
+  </svg>;
+}
+function IconMixedBattle() {
+  return <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
+    <rect x="6" y="6" width="16" height="16" rx="3" fill="#e9d5ff" stroke="#7e22ce" strokeWidth="2"/>
+    <rect x="26" y="6" width="16" height="16" rx="3" fill="#e9d5ff" stroke="#7e22ce" strokeWidth="2"/>
+    <rect x="6" y="26" width="16" height="16" rx="3" fill="#e9d5ff" stroke="#7e22ce" strokeWidth="2"/>
+    <rect x="26" y="26" width="16" height="16" rx="3" fill="#7e22ce" stroke="#7e22ce" strokeWidth="2"/>
+    <line x1="14" y1="14" x2="34" y2="34" stroke="#7e22ce" strokeWidth="2" strokeDasharray="3 2"/>
+  </svg>;
+}
+function IconDailyChallenge() {
+  return <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
+    <rect x="6" y="10" width="36" height="32" rx="3" fill="#bbf7d0" stroke="#15803d" strokeWidth="2"/>
+    <rect x="6" y="10" width="36" height="10" rx="3" fill="#15803d"/>
+    <line x1="16" y1="6" x2="16" y2="14" stroke="#15803d" strokeWidth="2.5" strokeLinecap="round"/>
+    <line x1="32" y1="6" x2="32" y2="14" stroke="#15803d" strokeWidth="2.5" strokeLinecap="round"/>
+    <circle cx="18" cy="28" r="3" fill="#15803d"/>
+    <circle cx="30" cy="28" r="3" fill="#15803d"/>
+    <circle cx="18" cy="36" r="3" fill="#15803d" opacity="0.4"/>
+  </svg>;
+}
+function IconExamSimulation() {
+  return <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
+    <polygon points="24,4 30,18 44,18 33,28 37,42 24,33 11,42 15,28 4,18 18,18" fill="#fed7aa" stroke="#c2410c" strokeWidth="2"/>
+    <polygon points="24,10 28,20 38,20 30,26 33,36 24,30 15,36 18,26 10,20 20,20" fill="#f97316"/>
+    <circle cx="24" cy="22" r="4" fill="#fff" opacity="0.8"/>
+  </svg>;
+}
+
+const GAME_MODE_ICONS = [IconQuickQuiz, IconSpeedRound, IconSignChallenge, IconMixedBattle, IconDailyChallenge, IconExamSimulation];
+
 const GAME_MODES = [
-  { id: "quick-quiz", title: "Quick Quiz", titleKh: "សំណួរលឿន", desc: "10 random questions across all categories.", descKh: "សំណួរចៃដន្យ ១០", color: "#eab308", accent: "#ca8a04", href: "/play/solo?mode=quick-quiz", badge: "10Q · 30s", emoji: "❓" },
-  { id: "speed-round", title: "Speed Round", titleKh: "វគ្គល្បឿន", desc: "Fast MCQ only — tap fast, score big.", descKh: "MCQ លឿន — ចុចឆាប់", color: "#ef4444", accent: "#b91c1c", href: "/play/solo?mode=speed-round", badge: "20Q · 15s", emoji: "⚡" },
-  { id: "sign-challenge", title: "Sign Challenge", titleKh: "ប្រឡងសញ្ញា", desc: "Identify traffic signs from images only.", descKh: "ស្គាល់សញ្ញាផ្លូវវិថី", color: "#3b82f6", accent: "#1d4ed8", href: "/play/solo?mode=sign-challenge", badge: "15Q · 20s", emoji: "🚦" },
-  { id: "mixed-battle", title: "Mixed Battle", titleKh: "ប្រយុទ្ធចម្រុះ", desc: "All categories, all question types.", descKh: "ប្រភេទទាំង ៨", color: "#a855f7", accent: "#7e22ce", href: "/play/solo?mode=mixed-battle", badge: "20Q · 30s", emoji: "🎲" },
-  { id: "daily-challenge", title: "Daily Challenge", titleKh: "បញ្ហាប្រចាំថ្ងៃ", desc: "New questions every day. Build your streak.", descKh: "សំណួរថ្មីរៀងរាល់ថ្ងៃ", color: "#22c55e", accent: "#15803d", href: "/play/solo?mode=daily-challenge", badge: "15Q · 30s", emoji: "🔥" },
-  { id: "exam-simulation", title: "Exam Simulation", titleKh: "ត្រាប់តាមប្រឡង", desc: "40 questions mirroring the real Cambodia exam.", descKh: "ស្រដៀងប្រឡងពិត", color: "#f97316", accent: "#c2410c", href: "/play/solo?mode=exam-simulation", badge: "40Q · 45s", emoji: "🏆" },
+  { id: "quick-quiz", title: "Quick Quiz", titleKh: "សំណួរលឿន", desc: "10 random questions across all categories.", descKh: "សំណួរចៃដន្យ ១០", color: "#eab308", accent: "#ca8a04", href: "/play/solo?mode=quick-quiz", badge: "10Q · 30s" },
+  { id: "speed-round", title: "Speed Round", titleKh: "វគ្គល្បឿន", desc: "Fast MCQ only — tap fast, score big.", descKh: "MCQ លឿន — ចុចឆាប់", color: "#ef4444", accent: "#b91c1c", href: "/play/solo?mode=speed-round", badge: "20Q · 15s" },
+  { id: "sign-challenge", title: "Sign Challenge", titleKh: "ប្រឡងសញ្ញា", desc: "Identify traffic signs from images only.", descKh: "ស្គាល់សញ្ញាផ្លូវវិថី", color: "#3b82f6", accent: "#1d4ed8", href: "/play/solo?mode=sign-challenge", badge: "15Q · 20s" },
+  { id: "mixed-battle", title: "Mixed Battle", titleKh: "ប្រយុទ្ធចម្រុះ", desc: "All categories, all question types.", descKh: "ប្រភេទទាំង ៨", color: "#a855f7", accent: "#7e22ce", href: "/play/solo?mode=mixed-battle", badge: "20Q · 30s" },
+  { id: "daily-challenge", title: "Daily Challenge", titleKh: "បញ្ហាប្រចាំថ្ងៃ", desc: "New questions every day. Build your streak.", descKh: "សំណួរថ្មីរៀងរាល់ថ្ងៃ", color: "#22c55e", accent: "#15803d", href: "/play/solo?mode=daily-challenge", badge: "15Q · 30s" },
+  { id: "exam-simulation", title: "Exam Simulation", titleKh: "ត្រាប់តាមប្រឡង", desc: "40 questions mirroring the real Cambodia exam.", descKh: "ស្រដៀងប្រឡងពិត", color: "#f97316", accent: "#c2410c", href: "/play/solo?mode=exam-simulation", badge: "40Q · 45s" },
 ];
 
 const STATS = [
@@ -37,6 +89,7 @@ function GameModeCard({ mode, index, kh, khFont }: {
   const cardRef = useRef<HTMLAnchorElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState(false);
+  const IconComp = GAME_MODE_ICONS[index];
 
   const playSound = useCallback(() => {
     try {
@@ -107,8 +160,8 @@ function GameModeCard({ mode, index, kh, khFont }: {
             opacity: hovered ? 1 : 0, transition: "opacity 0.3s ease",
           }}
         />
-        <div ref={iconRef} className="text-6xl select-none" style={{ lineHeight: 1 }}>
-          {mode.emoji}
+        <div ref={iconRef} className="w-14 h-14 flex-shrink-0">
+          <IconComp />
         </div>
         <span
           className="text-xs font-black px-3 py-1.5 border-2 border-black"

@@ -81,7 +81,12 @@ export async function POST(req: NextRequest) {
     }, { status: 404 });
   }
 
-  const shuffled = compatible.sort(() => Math.random() - 0.5).slice(0, questionCount);
+  // Fisher-Yates shuffle — truly random, prevents students seeing same order
+  for (let i = compatible.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [compatible[i], compatible[j]] = [compatible[j], compatible[i]];
+  }
+  const shuffled = compatible.slice(0, questionCount);
 
   // Fetch answers for each question
   const selectedIds = shuffled.map((q) => q.id);
@@ -124,13 +129,16 @@ export async function POST(req: NextRequest) {
       audioUrlKm: q.audioUrlKm ?? null,
       gameType: gt,
       difficulty: q.difficulty,
-      answers: ans.map((a) => ({
-        id: a.id,
-        answerEn: a.answerEn,
-        answerKm: a.answerKm,
-        imageUrl: a.imageUrl ?? null,
-        isCorrect: a.isCorrect, // revealed only in solo mode
-      })),
+      answers: ans
+        .map(a => ({ ...a, _r: Math.random() }))
+        .sort((a, b) => a._r - b._r)
+        .map(({ _r, ...a }) => ({
+          id: a.id,
+          answerEn: a.answerEn,
+          answerKm: a.answerKm,
+          imageUrl: a.imageUrl ?? null,
+          isCorrect: a.isCorrect,
+        })),
     };
   });
 

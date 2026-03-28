@@ -19,18 +19,97 @@ interface LeaderboardUser {
   rank: number;
 }
 
+// ── Reward SVG icons ─────────────────────────────────────────────────────────
+
+function IconNotebook() {
+  return <svg viewBox="0 0 40 40" fill="none" className="w-full h-full">
+    <rect x="8" y="4" width="24" height="32" rx="2" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="2"/>
+    <rect x="8" y="4" width="6" height="32" rx="2" fill="#1d4ed8"/>
+    <line x1="18" y1="13" x2="28" y2="13" stroke="#1d4ed8" strokeWidth="2" strokeLinecap="round"/>
+    <line x1="18" y1="19" x2="28" y2="19" stroke="#1d4ed8" strokeWidth="2" strokeLinecap="round"/>
+    <line x1="18" y1="25" x2="24" y2="25" stroke="#1d4ed8" strokeWidth="2" strokeLinecap="round"/>
+  </svg>;
+}
+function IconPencil() {
+  return <svg viewBox="0 0 40 40" fill="none" className="w-full h-full">
+    <rect x="17" y="4" width="6" height="26" rx="2" fill="#fef08a" stroke="#ca8a04" strokeWidth="2" transform="rotate(15 20 20)"/>
+    <polygon points="20,32 17,38 23,38" fill="#f97316" transform="rotate(15 20 20)"/>
+    <rect x="17" y="4" width="6" height="5" rx="1" fill="#e4e4e7" stroke="#ca8a04" strokeWidth="1.5" transform="rotate(15 20 20)"/>
+  </svg>;
+}
+function IconPen() {
+  return <svg viewBox="0 0 40 40" fill="none" className="w-full h-full">
+    <rect x="18" y="3" width="5" height="22" rx="2" fill="#bbf7d0" stroke="#15803d" strokeWidth="2"/>
+    <polygon points="20,34 17,25 23,25" fill="#15803d"/>
+    <rect x="18" y="3" width="5" height="6" rx="1" fill="#6b7280" stroke="#374151" strokeWidth="1.5"/>
+    <circle cx="20" cy="6" r="1.5" fill="#374151"/>
+  </svg>;
+}
+function IconRuler() {
+  return <svg viewBox="0 0 40 40" fill="none" className="w-full h-full">
+    <rect x="5" y="15" width="30" height="10" rx="2" fill="#fed7aa" stroke="#c2410c" strokeWidth="2" transform="rotate(-20 20 20)"/>
+    {[0,1,2,3,4,5].map(i => (
+      <line key={i} x1={9+i*4} y1="17" x2={9+i*4} y2={i%2===0?21:19} stroke="#c2410c" strokeWidth="1.5" transform="rotate(-20 20 20)"/>
+    ))}
+  </svg>;
+}
+function IconEraser() {
+  return <svg viewBox="0 0 40 40" fill="none" className="w-full h-full">
+    <rect x="6" y="14" width="28" height="14" rx="3" fill="#f0abfc" stroke="#7e22ce" strokeWidth="2"/>
+    <rect x="6" y="14" width="12" height="14" rx="3" fill="#7e22ce"/>
+    <line x1="18" y1="14" x2="18" y2="28" stroke="#7e22ce" strokeWidth="2"/>
+  </svg>;
+}
+function IconHighlighter() {
+  return <svg viewBox="0 0 40 40" fill="none" className="w-full h-full">
+    <rect x="14" y="4" width="12" height="24" rx="3" fill="#fca5a5" stroke="#b91c1c" strokeWidth="2"/>
+    <polygon points="20,36 15,28 25,28" fill="#b91c1c"/>
+    <rect x="14" y="4" width="12" height="7" rx="2" fill="#e4e4e7" stroke="#b91c1c" strokeWidth="1.5"/>
+  </svg>;
+}
+function IconStickyNotes() {
+  return <svg viewBox="0 0 40 40" fill="none" className="w-full h-full">
+    <rect x="6" y="8" width="22" height="22" rx="2" fill="#a5f3fc" stroke="#0e7490" strokeWidth="2"/>
+    <rect x="10" y="4" width="22" height="22" rx="2" fill="#67e8f9" stroke="#0e7490" strokeWidth="2"/>
+    <line x1="14" y1="13" x2="28" y2="13" stroke="#0e7490" strokeWidth="1.5" strokeLinecap="round"/>
+    <line x1="14" y1="18" x2="28" y2="18" stroke="#0e7490" strokeWidth="1.5" strokeLinecap="round"/>
+    <line x1="14" y1="23" x2="22" y2="23" stroke="#0e7490" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>;
+}
+function IconGeometrySet() {
+  return <svg viewBox="0 0 40 40" fill="none" className="w-full h-full">
+    <polygon points="20,4 36,34 4,34" fill="#fbcfe8" stroke="#be185d" strokeWidth="2"/>
+    <line x1="20" y1="4" x2="20" y2="34" stroke="#be185d" strokeWidth="1.5" strokeDasharray="2 2"/>
+    <line x1="12" y1="19" x2="28" y2="19" stroke="#be185d" strokeWidth="1.5" strokeDasharray="2 2"/>
+    <circle cx="20" cy="34" r="2" fill="#be185d"/>
+  </svg>;
+}
+function IconStudyPlanner() {
+  return <svg viewBox="0 0 40 40" fill="none" className="w-full h-full">
+    <rect x="6" y="8" width="28" height="28" rx="2" fill="#d9f99d" stroke="#4d7c0f" strokeWidth="2"/>
+    <rect x="6" y="8" width="28" height="8" rx="2" fill="#4d7c0f"/>
+    <line x1="13" y1="4" x2="13" y2="12" stroke="#4d7c0f" strokeWidth="2.5" strokeLinecap="round"/>
+    <line x1="27" y1="4" x2="27" y2="12" stroke="#4d7c0f" strokeWidth="2.5" strokeLinecap="round"/>
+    {[0,1,2].map(row => [0,1,2].map(col => (
+      <rect key={`${row}-${col}`} x={11+col*8} y={20+row*5} width="5" height="3" rx="1" fill="#4d7c0f" opacity="0.5"/>
+    )))}
+  </svg>;
+}
+
+const REWARD_ICONS = [IconNotebook, IconPencil, IconPen, IconRuler, IconEraser, IconHighlighter, IconStickyNotes, IconGeometrySet, IconStudyPlanner];
+
 // ── Reward items (9 items) ───────────────────────────────────────────────────
 
 const REWARD_ITEMS = [
-  { id: 1, name: "Notebook",       nameKh: "សៀវភៅកត់ត្រា",  cost: 500,  icon: "📓", color: "#3b82f6" },
-  { id: 2, name: "Pencil",         nameKh: "ខ្មៅដៃ",         cost: 100,  icon: "✏️", color: "#eab308" },
-  { id: 3, name: "Pen",            nameKh: "ប៊ិច",            cost: 150,  icon: "🖊️", color: "#22c55e" },
-  { id: 4, name: "Ruler",          nameKh: "បន្ទាត់",         cost: 200,  icon: "📏", color: "#f97316" },
-  { id: 5, name: "Eraser",         nameKh: "កាំបិតលុប",       cost: 80,   icon: "🧹", color: "#a855f7" },
-  { id: 6, name: "Highlighter",    nameKh: "ប៊ិចសម្គាល់",     cost: 250,  icon: "🖍️", color: "#ef4444" },
-  { id: 7, name: "Sticky Notes",   nameKh: "ក្រដាសសម្គាល់",  cost: 300,  icon: "📝", color: "#06b6d4" },
-  { id: 8, name: "Geometry Set",   nameKh: "ឧបករណ៍គណិត",    cost: 800,  icon: "📐", color: "#ec4899" },
-  { id: 9, name: "Study Planner",  nameKh: "ផែនការសិក្សា",   cost: 1200, icon: "📅", color: "#84cc16" },
+  { id: 1, name: "Notebook",       nameKh: "សៀវភៅកត់ត្រា",  cost: 500,  color: "#3b82f6" },
+  { id: 2, name: "Pencil",         nameKh: "ខ្មៅដៃ",         cost: 100,  color: "#eab308" },
+  { id: 3, name: "Pen",            nameKh: "ប៊ិច",            cost: 150,  color: "#22c55e" },
+  { id: 4, name: "Ruler",          nameKh: "បន្ទាត់",         cost: 200,  color: "#f97316" },
+  { id: 5, name: "Eraser",         nameKh: "កាំបិតលុប",       cost: 80,   color: "#a855f7" },
+  { id: 6, name: "Highlighter",    nameKh: "ប៊ិចសម្គាល់",     cost: 250,  color: "#ef4444" },
+  { id: 7, name: "Sticky Notes",   nameKh: "ក្រដាសសម្គាល់",  cost: 300,  color: "#06b6d4" },
+  { id: 8, name: "Geometry Set",   nameKh: "ឧបករណ៍គណិត",    cost: 800,  color: "#ec4899" },
+  { id: 9, name: "Study Planner",  nameKh: "ផែនការសិក្សា",   cost: 1200, color: "#84cc16" },
 ];
 
 // ── Avatar ───────────────────────────────────────────────────────────────────
@@ -259,14 +338,16 @@ function PodiumCard({ user, cfg, index }: {
 
 // ── Reward item card ─────────────────────────────────────────────────────────
 
-function RewardCard({ item, userPoints, isLoggedIn, onClaim }: {
+function RewardCard({ item, itemIndex, userPoints, isLoggedIn, onClaim }: {
   item: typeof REWARD_ITEMS[number];
+  itemIndex: number;
   userPoints: number;
   isLoggedIn: boolean;
   onClaim: (item: typeof REWARD_ITEMS[number]) => void;
 }) {
   const canClaim = isLoggedIn && userPoints >= item.cost;
   const [claimed, setClaimed] = useState(false);
+  const IconComp = REWARD_ICONS[itemIndex];
 
   function handleClaim() {
     if (!canClaim || claimed) return;
@@ -280,12 +361,12 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim }: {
       className="flex flex-col gap-3 p-4 bg-white border-2 border-black"
       style={{ boxShadow: `3px 3px 0 ${item.color}` }}
     >
-      {/* Icon */}
+      {/* SVG Icon */}
       <div
-        className="w-12 h-12 flex items-center justify-center border-2 border-black text-2xl"
+        className="w-12 h-12 flex items-center justify-center border-2 border-black p-1.5"
         style={{ backgroundColor: `${item.color}22` }}
       >
-        {item.icon}
+        <IconComp />
       </div>
       <div className="flex flex-col gap-0.5 flex-1">
         <span className="font-black text-sm text-black">{item.name}</span>
@@ -528,10 +609,11 @@ export default function LeaderboardPage() {
               )}
 
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4">
-                {REWARD_ITEMS.map(item => (
+                {REWARD_ITEMS.map((item, idx) => (
                   <RewardCard
                     key={item.id}
                     item={item}
+                    itemIndex={idx}
                     userPoints={userPoints}
                     isLoggedIn={!!currentUser}
                     onClaim={handleClaim}

@@ -82,7 +82,12 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const shuffled = compatible.sort(() => Math.random() - 0.5).slice(0, questionCount);
+  // Fisher-Yates shuffle — prevents students seeing same question order
+  for (let i = compatible.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [compatible[i], compatible[j]] = [compatible[j], compatible[i]];
+  }
+  const shuffled = compatible.slice(0, questionCount);
   const questionIds = shuffled.map((q) => q.id);
 
   // Get first category name for the session record
