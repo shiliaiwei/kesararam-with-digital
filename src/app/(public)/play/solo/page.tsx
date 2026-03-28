@@ -456,9 +456,9 @@ export default function SoloPage() {
   const effectiveLang = lang as "en" | "kh";
 
   return (
-    <div className="min-h-screen bg-zinc-950 flex flex-col" style={{ userSelect: "none" }}>
+    <div className="game-dot-bg min-h-screen flex flex-col" style={{ userSelect: "none" }}>
       {/* Top bar */}
-      <div className="flex items-center justify-between px-4 py-3 bg-black border-b-2 border-yellow-400">
+      <div className="relative z-10 flex items-center justify-between px-4 py-3 bg-black/80 backdrop-blur-sm border-b-2 border-yellow-400">
         <div className="flex items-center gap-2">
           <span className="text-yellow-400 font-black text-xs uppercase tracking-widest" style={khFont}>
             {kh ? GAME_MODE_CONFIG[phase.session.gameMode]?.labelKm : GAME_MODE_CONFIG[phase.session.gameMode]?.label}
@@ -486,7 +486,7 @@ export default function SoloPage() {
         />
       </div>
 
-      <div className="flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full">
+      <div className="relative z-10 flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full">
         {/* Header */}
         <div className="flex items-center justify-between">
           <span className="text-zinc-400 text-xs font-black uppercase tracking-widest" style={khFont}>
@@ -509,7 +509,7 @@ export default function SoloPage() {
 
         {/* Question */}
         <div
-          className="bg-zinc-900 border-2 border-zinc-700 p-4 text-white font-black text-lg leading-snug"
+          className="bg-zinc-900/80 backdrop-blur-sm border-2 border-zinc-700 p-4 text-white font-black text-lg leading-snug"
           style={{ boxShadow: "3px 3px 0 #ffd700", ...khFont }}
         >
           {effectiveLang === "kh" ? q.questionKm || q.questionEn : q.questionEn}
@@ -527,7 +527,7 @@ export default function SoloPage() {
         />
       </div>
 
-      <div className="px-4 py-2 bg-black border-t border-zinc-800 flex justify-end">
+      <div className="relative z-10 px-4 py-2 bg-black/80 border-t border-zinc-800 flex justify-end">
         <button onClick={() => setMuted((m) => !m)} className="text-zinc-500 hover:text-white text-xs font-bold transition-colors" style={khFont}>
           {muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}
         </button>

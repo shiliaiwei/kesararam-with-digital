@@ -351,10 +351,33 @@
 
 /* ─── Category Card Animations ─── */
 @keyframes slide {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 40px 40px;
-  }
+  from { background-position: 0 0; }
+  to { background-position: 40px 40px; }
+}
+
+/* ─── Game Quiz Dark Dot Background ─── */
+.game-dot-bg {
+  background-color: #1a1a1f;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+
+/* ─── Radial vignette overlay for game bg ─── */
+.game-dot-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.6) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes bounce-in {
+  0% { opacity: 0; transform: scale(0.3); }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.animate-bounce-in {
+  animation: bounce-in 0.5s ease-out;
 }

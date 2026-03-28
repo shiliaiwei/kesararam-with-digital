@@ -421,14 +421,13 @@ export default function StudentGamePage() {
     const timePerQuestion = endsAt ? Math.round((new Date(endsAt).getTime() - Date.now()) / 1000) : 30;
     
     return (
-      <div className="min-h-screen bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 p-2 sm:p-4 animate-gradient">
-        <div className="max-w-4xl mx-auto">
-          {/* Top bar with question number and timer - Mobile optimized */}
-          <div className="flex justify-between items-center mb-3 sm:mb-6 gap-2">
-            <div className="bg-white border-2 border-black px-3 sm:px-6 py-2 sm:py-3 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] sm:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transform hover:scale-105 transition-transform flex-shrink-0">
+      <div className="game-dot-bg min-h-screen p-2 sm:p-4">
+        <div className="relative z-10 max-w-4xl mx-auto">
+          <div className="relative z-10 flex justify-between items-center mb-3 sm:mb-6 gap-2">
+            <div className="bg-zinc-900/80 backdrop-blur-sm border-2 border-zinc-700 px-3 sm:px-6 py-2 sm:py-3 shadow-[2px_2px_0px_0px_#ffd700] flex-shrink-0">
               <div className="flex items-center gap-1 sm:gap-2">
-                <Trophy className="text-yellow-500 flex-shrink-0" size={16} />
-                <span className="font-black text-xs sm:text-base md:text-lg whitespace-nowrap">
+                <Trophy className="text-yellow-400 flex-shrink-0" size={16} />
+                <span className="font-black text-xs sm:text-base md:text-lg whitespace-nowrap text-white">
                   Q {questionIndex + 1}/{totalQuestions}
                 </span>
               </div>
@@ -448,8 +447,8 @@ export default function StudentGamePage() {
             )}
           </div>
 
-          {/* Question card with animation - Mobile optimized */}
-          <div className="bg-white border-2 sm:border-4 border-black p-4 sm:p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-3 sm:mb-6 transform hover:scale-[1.02] transition-transform">
+          {/* Question card */}
+          <div className="relative z-10 bg-zinc-900/90 backdrop-blur-sm border-2 border-zinc-700 p-4 sm:p-8 shadow-[4px_4px_0px_0px_#ffd700] mb-3 sm:mb-6">
             {currentQuestion.imageUrl && (
               <div className="mb-4 sm:mb-6 overflow-hidden rounded-lg border-2 border-black">
                 <img
@@ -459,11 +458,11 @@ export default function StudentGamePage() {
                 />
               </div>
             )}
-            <h2 className="text-lg sm:text-2xl md:text-3xl font-black text-center leading-tight mb-2 break-words hyphens-auto px-2">
+            <h2 className="text-lg sm:text-2xl md:text-3xl font-black text-center leading-tight mb-2 break-words hyphens-auto px-2 text-white">
               {currentQuestion.questionEn}
             </h2>
             {currentQuestion.questionKm && (
-              <p className="text-base sm:text-xl md:text-2xl text-center text-gray-600 font-bold mt-2 sm:mt-3 break-words hyphens-auto px-2">
+              <p className="text-base sm:text-xl md:text-2xl text-center text-zinc-400 font-bold mt-2 sm:mt-3 break-words hyphens-auto px-2">
                 {currentQuestion.questionKm}
               </p>
             )}
@@ -497,13 +496,13 @@ export default function StudentGamePage() {
             </ErrorBoundary>
           </div>
 
-          {/* Answer feedback with animation - Mobile optimized */}
+          {/* Answer feedback */}
           {answerResult && (
             <div
-              className={`p-4 sm:p-8 border-2 sm:border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transform scale-100 animate-bounce-in ${
-                answerResult.isCorrect 
-                  ? "bg-gradient-to-br from-green-400 to-green-500" 
-                  : "bg-gradient-to-br from-red-400 to-red-500"
+              className={`relative z-10 p-4 sm:p-8 border-2 sm:border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transform scale-100 animate-bounce-in ${
+                answerResult.isCorrect
+                  ? "bg-green-500"
+                  : "bg-red-500"
               }`}
             >
               <div className="text-center">
@@ -525,29 +524,6 @@ export default function StudentGamePage() {
               </div>
             </div>
           )}
-        </div>
-
-        <style jsx>{`
-          @keyframes bounce-in {
-            0% {
-              opacity: 0;
-              transform: scale(0.3);
-            }
-            50% {
-              transform: scale(1.05);
-            }
-            70% {
-              transform: scale(0.9);
-            }
-            100% {
-              opacity: 1;
-              transform: scale(1);
-            }
-          }
-          .animate-bounce-in {
-            animation: bounce-in 0.5s ease-out;
-          }
-        `}</style>
       </div>
     );
   }
