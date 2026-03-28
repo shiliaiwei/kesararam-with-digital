@@ -352,6 +352,7 @@ function RewardCard({ item, itemIndex, userPoints, isLoggedIn, onClaim }: {
   const canClaim = isLoggedIn && userPoints >= item.cost;
   const [claimed, setClaimed] = useState(false);
   const IconComp = REWARD_ICONS[itemIndex];
+  const pct = Math.min(100, (userPoints / item.cost) * 100);
 
   function handleClaim() {
     if (!canClaim || claimed) return;
@@ -376,7 +377,7 @@ function RewardCard({ item, itemIndex, userPoints, isLoggedIn, onClaim }: {
         <span className="font-black text-sm text-black">{item.name}</span>
         <span className="text-xs text-zinc-400">{item.nameKh}</span>
       </div>
-      {/* Cost badge */}
+      {/* Cost + claim */}
       <div className="flex items-center justify-between">
         <span
           className="text-xs font-black px-2 py-0.5 border border-black"
@@ -398,16 +399,21 @@ function RewardCard({ item, itemIndex, userPoints, isLoggedIn, onClaim }: {
           {claimed ? "Claimed!" : isLoggedIn ? "Claim" : "Login"}
         </button>
       </div>
-      {/* Progress bar */}
-      <div className="h-1 bg-zinc-100 border border-zinc-200 overflow-hidden">
-        <div
-          className="h-full transition-all duration-700"
-          style={{
-            width: `${Math.min(100, (userPoints / item.cost) * 100)}%`,
-            backgroundColor: item.color,
-          }}
-        />
-      </div>
+      {/* Progress bar — only shown when logged in */}
+      {isLoggedIn && (
+        <div className="space-y-1">
+          <div className="flex justify-between text-[10px] font-bold text-zinc-400">
+            <span>{userPoints.toLocaleString()} / {item.cost.toLocaleString()} pts</span>
+            <span>{Math.round(pct)}%</span>
+          </div>
+          <div className="h-1.5 bg-zinc-100 border border-zinc-200 overflow-hidden rounded-full">
+            <div
+              className="h-full transition-all duration-700 rounded-full"
+              style={{ width: `${pct}%`, backgroundColor: item.color }}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -416,29 +422,48 @@ function RewardCard({ item, itemIndex, userPoints, isLoggedIn, onClaim }: {
 
 export default function LeaderboardPage() {
   const [leaderboard, setLeaderboard] = useState<LeaderboardUser[]>([]);
+  const [prevRanks, setPrevRanks] = useState<Record<number, number>>({});
   const [loading, setLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState<{ id: number; lifetimePoints: number } | null>(null);
   const [claimMsg, setClaimMsg] = useState("");
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const tableRef = useRef<HTMLDivElement>(null);
 
+  // Fetch leaderboard and track rank changes
   const fetchLeaderboard = useCallback(async () => {
     try {
       const res = await fetch("/api/leaderboard?limit=50");
       if (!res.ok) return;
       const data = await res.json();
-      setLeaderboard(data.leaderboard || []);
+      const newBoard: LeaderboardUser[] = data.leaderboard || [];
+      setLeaderboard(prev => {
+        // Track previous ranks for animation
+        const ranks: Record<number, number> = {};
+        prev.forEach(u => { ranks[u.id] = u.rank; });
+        setPrevRanks(ranks);
+        return newBoard;
+      });
+      setLastUpdated(new Date());
     } catch { /* silent */ }
     finally { setLoading(false); }
   }, []);
 
   useEffect(() => {
     fetchLeaderboard();
-    const iv = setInterval(fetchLeaderboard, 30000);
+
+    // Real-time: poll every 10s (SSE would require a dedicated endpoint)
+    const iv = setInterval(fetchLeaderboard, 10000);
+
     // Check auth
     fetch("/api/auth/me")
       .then(r => r.ok ? r.json() : null)
-      .then(d => { if (d?.user) setCurrentUser({ id: d.user.id, lifetimePoints: d.user.lifetimePoints ?? 0 }); })
+      .then(d => {
+        if (d && !d.error) {
+          setCurrentUser({ id: d.id, lifetimePoints: d.lifetimePoints ?? 0 });
+        }
+      })
       .catch(() => {});
+
     return () => clearInterval(iv);
   }, [fetchLeaderboard]);
 
@@ -521,9 +546,16 @@ export default function LeaderboardPage() {
               </div>
             </div>
 
-            {/* ── Rankings table ── */}
-            <div>
-              <h2 className="text-xl font-black text-black mb-4 tracking-tight">All Rankings</h2>
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-black text-black tracking-tight">All Rankings</h2>
+              {lastUpdated && (
+                <span className="text-[10px] text-zinc-400 font-bold flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                  Live · {lastUpdated.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
+                </span>
+              )}
+            </div>
               <div
                 ref={tableRef}
                 className="bg-white border-2 border-black overflow-hidden"
@@ -537,15 +569,20 @@ export default function LeaderboardPage() {
                   <span className="col-span-2 text-right">Points</span>
                 </div>
 
-                {rest.length > 0 ? rest.map((user) => (
+                {rest.length > 0 ? rest.map((user) => {
+                  const prev = prevRanks[user.id];
+                  const moved = prev !== undefined ? prev - user.rank : 0; // positive = moved up
+                  return (
                   <a
                     key={user.id}
                     href={`/p/${user.username}`}
                     className="trow grid grid-cols-12 px-5 py-3 border-t border-zinc-100 hover:bg-zinc-50 transition-colors items-center group"
                   >
-                    <span className="col-span-1 text-xs font-black text-zinc-400">
-                      {user.rank}
-                    </span>
+                    <div className="col-span-1 flex items-center gap-1">
+                      <span className="text-xs font-black text-zinc-400">{user.rank}</span>
+                      {moved > 0 && <span className="text-[9px] font-black text-green-500">▲</span>}
+                      {moved < 0 && <span className="text-[9px] font-black text-red-400">▼</span>}
+                    </div>
                     <div className="col-span-7 flex items-center gap-3">
                       <Avatar url={user.avatar} name={user.displayName || user.username} size={34} changedAt={user.avatarChangedAt} />
                       <div className="flex flex-col min-w-0">
@@ -564,7 +601,8 @@ export default function LeaderboardPage() {
                       {user.lifetimePoints.toLocaleString()}
                     </span>
                   </a>
-                )) : (
+                  );
+                }) : (
                   <div className="px-6 py-12 text-center text-zinc-400 text-sm">
                     No rankings yet. Play live games to appear here.
                   </div>
