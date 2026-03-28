@@ -21,7 +21,7 @@ Successfully implemented automatic score synchronization from live games to user
 ### 3. Profile Stats with Current Rank ✅
 - Added "Current Rank" card to Game Stats tab
 - Shows user's position on global leaderboard
-- Calculated dynamically based on lifetime points
+- Calculated dynamically based on lifetime points![alt text](image.png)
 - Updates immediately after games complete
 
 ### 4. Updated Messaging ✅

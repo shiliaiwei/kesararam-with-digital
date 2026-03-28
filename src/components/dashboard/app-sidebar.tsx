@@ -102,7 +102,7 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
         <div className="flex items-center gap-3 mb-3">
           <div className="w-10 h-10 border-2 border-black bg-black flex items-center justify-center shadow-[2px_2px_0_#000]">
             <Image
-              src="https://raw.githubusercontent.com/kesararam/kesararam/refs/heads/main/brand/lgo.png"
+              src="/logo.svg"
               alt="KWD"
               width={20}
               height={20}

@@ -49,7 +49,7 @@ export default function RootLayout({
         <link
           rel="icon"
           type="image/svg+xml"
-          href="https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg"
+          href="/favicon.svg"
         />
       </head>
       <body className={`${inter.variable} font-sans antialiased overflow-x-hidden`}>

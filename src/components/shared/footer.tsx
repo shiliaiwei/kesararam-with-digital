@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLang } from "@/context/lang-context";
 import { t } from "@/lib/translations";
+import { Facebook, Twitter, Youtube, Github } from "lucide-react";
 
 export function Footer() {
   const { lang } = useLang();
@@ -27,44 +28,43 @@ export function Footer() {
     { label: nav.login, href: "/login" },
   ];
 
+  const SOCIAL_LINKS = [
+    { icon: Facebook, href: "#", label: "Facebook" },
+    { icon: Twitter, href: "#", label: "X (Twitter)" },
+    { icon: Youtube, href: "#", label: "YouTube" },
+    { icon: Github, href: "#", label: "GitHub" },
+  ];
+
   return (
     <footer className="bg-white text-black border-t-4 border-black">
       {/* Caution tape */}
       <div className="caution-tape" />
 
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-          {/* Brand */}
-          <div className="md:col-span-1 flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 flex items-center justify-center overflow-hidden">
-                <Image
-                  src="https://raw.githubusercontent.com/kesararam/kesararam/refs/heads/main/brand/lgo.png"
-                  alt="KWD"
-                  width={40}
-                  height={40}
-                  className="object-contain"
-                  unoptimized
-                />
-              </div>
-              <div>
-                <p className="font-black text-lg leading-none">KWD</p>
-                <p className="text-[9px] text-zinc-400 tracking-widest">
-                  Kesararam. with. digital.
-                </p>
-              </div>
-            </div>
-            <p className="text-sm text-zinc-700 leading-relaxed" style={khFont}>
-              {tr.tagline}
-            </p>
-            <p
-              className="text-xs text-zinc-500"
-              style={{ fontFamily: "Siemreap, sans-serif" }}
-            >
-              វេទិកាបហ្វឹករៀនបើករថយន្ត — ភាសាខ្មែរ
-            </p>
+        {/* Logo centered at top */}
+        <div className="flex flex-col items-center mb-12">
+          <div className="w-24 h-24 mb-4">
+            <Image
+              src="/logo.svg"
+              alt="KWD Logo"
+              width={96}
+              height={96}
+              className="object-contain"
+              unoptimized
+            />
           </div>
+          <p className="text-sm text-zinc-700 leading-relaxed text-center max-w-md" style={khFont}>
+            {tr.tagline}
+          </p>
+          <p
+            className="text-xs text-zinc-500 mt-2 text-center"
+            style={{ fontFamily: "Siemreap, sans-serif" }}
+          >
+            វេទិកាបហ្វឹករៀនបើករថយន្ត — ភាសាខ្មែរ
+          </p>
+        </div>
 
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Learn */}
           <div>
             <h4
@@ -126,11 +126,33 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t-2 border-zinc-200 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        {/* Social Media Icons - Centered */}
+        <div className="mt-12 flex justify-center gap-4">
+          {SOCIAL_LINKS.map(({ icon: Icon, href, label }) => (
+            <a
+              key={label}
+              href={href}
+              aria-label={label}
+              className="w-10 h-10 flex items-center justify-center bg-black text-white border-2 border-black hover:bg-yellow-400 hover:text-black transition-colors"
+            >
+              <Icon size={20} />
+            </a>
+          ))}
+        </div>
+
+        <div className="mt-8 pt-6 border-t-2 border-zinc-200 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
           <p className="text-xs text-zinc-500">
             &copy; {new Date().getFullYear()} Kesararam With Digital. All rights
             reserved.
           </p>
+          <div className="flex gap-4 text-xs text-zinc-500">
+            <Link href="#" className="hover:text-black hover:underline">
+              Privacy Policy
+            </Link>
+            <Link href="#" className="hover:text-black hover:underline">
+              Terms of Service
+            </Link>
+          </div>
           <p className="text-xs text-zinc-400">
             Built for Cambodian road safety education.
           </p>
