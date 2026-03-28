@@ -524,6 +524,7 @@ export default function StudentGamePage() {
               </div>
             </div>
           )}
+        </div>
       </div>
     );
   }
