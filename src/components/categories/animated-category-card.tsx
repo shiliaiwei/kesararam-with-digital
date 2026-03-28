@@ -1,9 +1,14 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CATEGORY_COLORS, CATEGORY_SHADOW } from "@/lib/utils";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 // ─── Per-category SVG icon scenes ───────────────────────────────────────────
 
@@ -382,22 +387,49 @@ export function AnimatedCategoryCard({
 
   const IconScene = ICON_SCENES[slug];
 
-  // Entrance animation
+  // Subtle hover sound via Web Audio API
+  const playHoverSound = useCallback(() => {
+    try {
+      const ctx = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(520, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(680, ctx.currentTime + 0.08);
+      gain.gain.setValueAtTime(0.06, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.12);
+    } catch {
+      // Audio not available — silently skip
+    }
+  }, []);
+
+  // ScrollTrigger entrance animation
   useEffect(() => {
     if (!cardRef.current) return;
-    gsap.fromTo(
-      cardRef.current,
-      { opacity: 0, y: 40, scale: 0.92 },
-      {
-        opacity: 1, y: 0, scale: 1,
-        duration: 0.55,
-        delay: index * 0.08,
-        ease: "back.out(1.4)",
-      }
-    );
+    gsap.set(cardRef.current, { opacity: 0, y: 50, scale: 0.9 });
+    const trigger = ScrollTrigger.create({
+      trigger: cardRef.current,
+      start: "top 88%",
+      once: true,
+      onEnter: () => {
+        gsap.to(cardRef.current, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          delay: index * 0.07,
+          ease: "back.out(1.5)",
+        });
+      },
+    });
+    return () => trigger.kill();
   }, [index]);
 
-  // Hover: card lift + shadow
+  // Hover: card lift
   useEffect(() => {
     if (!cardRef.current) return;
     gsap.to(cardRef.current, {
@@ -418,7 +450,7 @@ export function AnimatedCategoryCard({
         transition: "box-shadow 0.25s ease",
         willChange: "transform",
       }}
-      onMouseEnter={() => setIsHovered(true)}
+      onMouseEnter={() => { setIsHovered(true); playHoverSound(); }}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* ── Animated cover header ── */}
