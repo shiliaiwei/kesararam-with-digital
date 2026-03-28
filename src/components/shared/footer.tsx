@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLang } from "@/context/lang-context";
 import { t } from "@/lib/translations";
-import { Facebook, Twitter, Youtube, Github } from "lucide-react";
 
 export function Footer() {
   const { lang } = useLang();
@@ -26,13 +25,6 @@ export function Footer() {
     { label: nav.suarAI, href: "/suar/ai" },
     { label: nav.about, href: "/about" },
     { label: nav.login, href: "/login" },
-  ];
-
-  const SOCIAL_LINKS = [
-    { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: Twitter, href: "#", label: "X (Twitter)" },
-    { icon: Youtube, href: "#", label: "YouTube" },
-    { icon: Github, href: "#", label: "GitHub" },
   ];
 
   return (
@@ -126,30 +118,16 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Social Media Icons - Centered */}
-        <div className="mt-12 flex justify-center gap-4">
-          {SOCIAL_LINKS.map(({ icon: Icon, href, label }) => (
-            <a
-              key={label}
-              href={href}
-              aria-label={label}
-              className="w-10 h-10 flex items-center justify-center bg-black text-white border-2 border-black hover:bg-yellow-400 hover:text-black transition-colors"
-            >
-              <Icon size={20} />
-            </a>
-          ))}
-        </div>
-
         <div className="mt-8 pt-6 border-t-2 border-zinc-200 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
           <p className="text-xs text-zinc-500">
             &copy; {new Date().getFullYear()} Kesararam With Digital. All rights
             reserved.
           </p>
           <div className="flex gap-4 text-xs text-zinc-500">
-            <Link href="#" className="hover:text-black hover:underline">
+            <Link href="/privacy" className="hover:text-black hover:underline">
               Privacy Policy
             </Link>
-            <Link href="#" className="hover:text-black hover:underline">
+            <Link href="/terms" className="hover:text-black hover:underline">
               Terms of Service
             </Link>
           </div>
