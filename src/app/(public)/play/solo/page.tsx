@@ -192,6 +192,7 @@ export default function SoloPage() {
   }
 
   async function completeGame(session: SoloSession, timeTakenSeconds: number) {
+    const finalScore = myScore; // capture before async
     try {
       const res = await fetch("/api/game/solo/complete", {
         method: "POST",
@@ -205,10 +206,12 @@ export default function SoloPage() {
         }),
       });
       const result = await res.json();
-      setPhase({ name: "results", result });
+      // Always show the score the player saw during the game (client-tracked)
+      // Server score is used only for DB persistence with its own formula
+      setPhase({ name: "results", result: { ...result, totalScore: finalScore, personalBest: Math.max(result.personalBest ?? 0, finalScore) } });
       if (!muted) sounds.podium();
     } catch {
-      setPhase({ name: "results", result: { totalScore: myScore, accuracyPercentage: 0, timeTakenSeconds, correctAnswers: 0, totalQuestions: session.questions.length, personalBest: myScore, isNewPersonalBest: false, perQuestion: [] } });
+      setPhase({ name: "results", result: { totalScore: finalScore, accuracyPercentage: 0, timeTakenSeconds, correctAnswers: 0, totalQuestions: session.questions.length, personalBest: finalScore, isNewPersonalBest: false, perQuestion: [] } });
     }
   }
   completeGameRef.current = completeGame;
