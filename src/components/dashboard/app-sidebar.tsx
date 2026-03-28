@@ -100,13 +100,13 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
       {/* Header */}
       <div className="border-b-2 border-black p-4">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-10 h-10 border-2 border-black bg-black flex items-center justify-center shadow-[2px_2px_0_#000]">
+          <div className="w-10 h-10 border-2 border-black bg-white flex items-center justify-center shadow-[2px_2px_0_#000]">
             <Image
-              src="/logo.svg"
+              src="/logo-bw.svg"
               alt="KWD"
               width={20}
               height={20}
-              className="object-contain invert"
+              className="object-contain"
               unoptimized
             />
           </div>

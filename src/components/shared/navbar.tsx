@@ -156,7 +156,7 @@ export function Navbar({ session }: NavbarProps) {
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
             <div className="w-9 h-9 flex items-center justify-center overflow-hidden">
               <Image
-                src="/logo.svg"
+                src="/logo-bw.svg"
                 alt="KWD Logo"
                 width={36}
                 height={36}
