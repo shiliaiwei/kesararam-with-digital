@@ -1,17 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { CATEGORY_COLORS, CATEGORY_SHADOW } from "@/lib/utils";
-import {
-  FaExclamationTriangle,
-  FaBalanceScale,
-  FaTrafficLight,
-  FaCar,
-  FaWrench,
-  FaTruck,
-  FaBook,
-  FaFirstAid,
-} from "react-icons/fa";
+import { AnimatedCategoryCard } from "./animated-category-card";
 import { useLang } from "@/context/lang-context";
 import { t } from "@/lib/translations";
 
@@ -21,74 +10,50 @@ const CATEGORIES = [
     titleEn: "Traffic Signs",
     titleKh: "សញ្ញាផ្លូវវិថី",
     descEn: "Identify and understand all official road signs used in Cambodia.",
-    Icon: FaExclamationTriangle,
   },
   {
     slug: "road-traffic",
     titleEn: "Road Traffic Law",
     titleKh: "ច្បាប់ចរាចរ",
-    descEn:
-      "Study the legal framework governing road use and user responsibilities.",
-    Icon: FaBalanceScale,
+    descEn: "Study the legal framework governing road use and user responsibilities.",
   },
   {
     slug: "priority",
     titleEn: "Right of Way",
     titleKh: "សិទ្ធិដំណើរ",
-    descEn:
-      "Understand priority rules and how to handle intersections correctly.",
-    Icon: FaTrafficLight,
+    descEn: "Understand priority rules and how to handle intersections correctly.",
   },
   {
     slug: "driving",
     titleEn: "Driving Skills",
     titleKh: "ជំនាញបើកបរ",
-    descEn:
-      "Learn proper driving techniques and best practices for road safety.",
-    Icon: FaCar,
+    descEn: "Learn proper driving techniques and best practices for road safety.",
   },
   {
     slug: "technical",
     titleEn: "Vehicle Technology",
     titleKh: "បច្ចេកវិទ្យាយានយន្ត",
     descEn: "How vehicles work, safety systems, and maintenance essentials.",
-    Icon: FaWrench,
   },
   {
     slug: "loading-people-goods",
     titleEn: "Loading People & Goods",
     titleKh: "ការដឹកអ្នកដំណើរ",
-    descEn:
-      "Rules for safe transport of passengers and cargo within legal limits.",
-    Icon: FaTruck,
+    descEn: "Rules for safe transport of passengers and cargo within legal limits.",
   },
   {
     slug: "general-knowledge",
     titleEn: "General Knowledge",
     titleKh: "ចំណេះដឹងទូទៅ",
     descEn: "Essential road safety topics and broad driving knowledge.",
-    Icon: FaBook,
   },
   {
     slug: "emergency",
     titleEn: "Emergency",
     titleKh: "ជំនួយបន្ទាន់",
     descEn: "Emergency procedures, contacts, and protocols for road incidents.",
-    Icon: FaFirstAid,
   },
 ] as const;
-
-// Use the same specific category images as the Learn page
-const CATEGORY_IMAGES = [
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380370/kwd/afe770139087986f_np4j2n.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380369/kwd/6ec559a44b9bf87a_et8ygh.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380300/kwd/1d2f48f1a2d4a64c_xrnmua.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380370/kwd/afe770139087986f_np4j2n.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380369/kwd/6ec559a44b9bf87a_et8ygh.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380300/kwd/1d2f48f1a2d4a64c_xrnmua.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380370/kwd/afe770139087986f_np4j2n.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774380369/kwd/6ec559a44b9bf87a_et8ygh.png",
-];
 
 export function CategoryGrid() {
   const { lang } = useLang();
@@ -118,104 +83,25 @@ export function CategoryGrid() {
               </span>
             </h2>
           </div>
-          <p
-            className="text-zinc-600 max-w-sm text-base leading-relaxed"
-            style={khFont}
-          >
+          <p className="text-zinc-600 max-w-sm text-base leading-relaxed" style={khFont}>
             {tr.sectionDesc}
           </p>
         </div>
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {CATEGORIES.map((cat, index) => {
-            const color = CATEGORY_COLORS[cat.slug];
-            const shadow = CATEGORY_SHADOW[cat.slug];
-            // Use the same specific images as Learn page
-            const categoryImage = CATEGORY_IMAGES[index];
-            
-            return (
-              <Link
-                key={cat.slug}
-                href={`/learn/${cat.slug}`}
-                className="group flex flex-col bg-white border border-black overflow-hidden transition-all duration-150 hover:-translate-y-1 hover:-translate-x-1"
-                style={{ 
-                  boxShadow: "4px 4px 0 #000",
-                  borderRadius: "3px"
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow = shadow;
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.boxShadow =
-                    "4px 4px 0 #000";
-                }}
-              >
-                {/* Color header */}
-                <div
-                  className="relative flex items-end justify-center border-b-2 border-black overflow-hidden"
-                  style={{ 
-                    backgroundColor: color,
-                    minHeight: "200px"
-                  }}
-                >
-                  <img 
-                    src={categoryImage}
-                    alt={kh ? cat.titleKh : cat.titleEn}
-                    className="w-full h-48 object-contain object-bottom transition-all duration-300 group-hover:scale-110 group-hover:animate-bounce"
-                    style={{
-                      marginBottom: "-2px"
-                    }}
-                  />
-                  {/* Caution tape effect on hover */}
-                  <div 
-                    className="absolute bottom-0 left-0 right-0 h-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{
-                      background: "repeating-linear-gradient(45deg, #000, #000 10px, #fbbf24 10px, #fbbf24 20px)",
-                      transform: "translateY(100%)",
-                      animation: "none"
-                    }}
-                  />
-                </div>
-
-                {/* Body */}
-                <div className="flex flex-col flex-1 p-5 gap-2">
-                  <h3
-                    className="font-black text-lg text-black leading-tight"
-                    style={khFont}
-                  >
-                    {kh ? cat.titleKh : cat.titleEn}
-                  </h3>
-                  <p
-                    className="text-xs text-zinc-500"
-                    style={{ fontFamily: "Siemreap, sans-serif" }}
-                  >
-                    {cat.titleKh}
-                  </p>
-                  <p
-                    className="text-sm text-zinc-600 leading-relaxed mt-1 flex-1"
-                    style={khFont}
-                  >
-                    {cat.descEn}
-                  </p>
-
-                  {/* Bottom indicator */}
-                  <div className="mt-3 pt-3 border-t border-black flex items-center justify-between">
-                    <span
-                      className="text-xs font-black px-2 py-0.5 border border-black"
-                      style={{ 
-                        backgroundColor: color, 
-                        ...khFont,
-                        borderRadius: "3px"
-                      }}
-                    >
-                      {tr.studyNow}
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
+          {CATEGORIES.map((cat, index) => (
+            <AnimatedCategoryCard
+              key={cat.slug}
+              slug={cat.slug}
+              titleEn={cat.titleEn}
+              titleKh={cat.titleKh}
+              descEn={cat.descEn}
+              index={index}
+              lang={lang}
+              studyNowText={tr.studyNow}
+            />
+          ))}
         </div>
       </div>
     </section>
