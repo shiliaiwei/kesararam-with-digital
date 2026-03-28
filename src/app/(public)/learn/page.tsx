@@ -1,6 +1,5 @@
 "use client";
 
-import { BookOpen, Brain, FileText, Image as ImageIcon } from "lucide-react";
 import { AnimatedCategoryCard } from "@/components/categories/animated-category-card";
 
 const CATEGORIES = [
@@ -64,29 +63,6 @@ export default function LearnPage() {
           <p className="text-xl md:text-2xl max-w-3xl mx-auto">
             Master Cambodia&apos;s driving theory across 8 comprehensive knowledge categories
           </p>
-        </div>
-      </div>
-
-      {/* Quick Start */}
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="bg-white border-2 border-black p-6" style={{ boxShadow: "4px 4px 0 #000" }}>
-          <h2 className="font-black text-lg mb-4">QUICK START</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { label: "Flashcards", Icon: BookOpen, color: "bg-blue-400" },
-              { label: "Quizzes", Icon: Brain, color: "bg-green-400" },
-              { label: "Practice Test", Icon: FileText, color: "bg-purple-400" },
-              { label: "Infographic", Icon: ImageIcon, color: "bg-orange-400" },
-            ].map(({ label, Icon, color }) => (
-              <button
-                key={label}
-                className={`${color} border-2 border-black px-6 py-4 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center justify-center gap-2`}
-              >
-                <Icon size={20} />
-                {label}
-              </button>
-            ))}
-          </div>
         </div>
       </div>
 
