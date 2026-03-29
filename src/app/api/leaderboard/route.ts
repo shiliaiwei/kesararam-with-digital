@@ -23,7 +23,7 @@ export async function GET(req: NextRequest) {
       })
       .from(users)
       .where(sql`${users.isActive} = true AND ${users.role} = 'student'`)
-      .orderBy(desc(users.highestScore), desc(users.lifetimePoints))
+      .orderBy(desc(users.lifetimePoints), desc(users.highestScore))
       .limit(limit)
       .offset(offset);
 
