@@ -122,17 +122,17 @@ function PodiumCard({ user, cfg, index }: { user: LeaderboardUser|undefined; cfg
   }, [isFirst]);
 
   return (
-    <div ref={cardRef} className={`relative flex flex-col items-center ${cfg.order}`} style={{ minWidth: isFirst ? 140 : 110 }}>
+    <div ref={cardRef} className={`relative flex flex-col items-center w-full ${cfg.order}`}>
       {isFirst && <div ref={glowRef} className="absolute inset-0 pointer-events-none" style={{ background:"radial-gradient(ellipse at center, rgba(234,179,8,0.3) 0%, transparent 70%)", opacity:0.3 }} />}
       <div className="relative mb-2">
-        <Avatar url={user?.avatar??null} name={name} size={isFirst?68:52} ring={cfg.accentColor} changedAt={user?.avatarChangedAt} />
-        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2"><RankBadge rank={cfg.rank} /></div>
+        <Avatar url={user?.avatar??null} name={name} size={isFirst?60:46} ring={cfg.accentColor} changedAt={user?.avatarChangedAt} />
+        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 scale-75 md:scale-100"><RankBadge rank={cfg.rank} /></div>
       </div>
-      <div className="w-full flex flex-col items-center gap-1 pt-5 pb-3 px-2 border-2 border-black mt-1" style={{ backgroundColor: isFirst ? cfg.accentColor : "#fff", boxShadow:`3px 3px 0 ${cfg.shadowColor}` }}>
-        <span className="font-black text-center leading-tight w-full truncate text-xs md:text-sm" style={{ color: isFirst?"#000":"#111" }}>{name}</span>
-        <span className="text-[9px] font-black tracking-widest uppercase px-1.5 py-0.5 border border-black" style={{ backgroundColor:cfg.shadowColor, color:"#fff" }}>{cfg.label}</span>
-        <AnimatedNumber value={user?.lifetimePoints??0} className={`font-black tabular-nums ${isFirst?"text-2xl md:text-3xl":"text-lg md:text-xl"}`} style={{ color:cfg.scoreColor }} />
-        <span className="text-[9px] text-zinc-500 font-bold">pts</span>
+      <div className="w-full flex flex-col items-center gap-1 pt-5 pb-3 px-1 md:px-2 border-2 border-black mt-1" style={{ backgroundColor: isFirst ? cfg.accentColor : "#fff", boxShadow:`3px 3px 0 ${cfg.shadowColor}` }}>
+        <span className="font-black text-center leading-tight w-full truncate text-[10px] md:text-sm" style={{ color: isFirst?"#000":"#111" }}>{name}</span>
+        <span className="text-[8px] md:text-[9px] font-black tracking-widest uppercase px-1 py-0.5 border border-black" style={{ backgroundColor:cfg.shadowColor, color:"#fff" }}>{cfg.label}</span>
+        <AnimatedNumber value={user?.lifetimePoints??0} className={`font-black tabular-nums ${isFirst?"text-xl md:text-3xl":"text-base md:text-xl"}`} style={{ color:cfg.scoreColor }} />
+        <span className="text-[8px] text-zinc-500 font-bold">pts</span>
       </div>
       <div className={`w-full border-2 border-t-0 border-black ${cfg.barH}`} style={{ backgroundColor:cfg.accentColor, opacity:0.2 }} />
     </div>
@@ -275,7 +275,7 @@ export default function LeaderboardPage() {
         ) : (
           <>
             {/* Podium */}
-            <div className="flex items-end justify-center gap-3 md:gap-6 overflow-x-auto pb-2">
+            <div className="grid grid-cols-3 items-end gap-2 md:gap-6 w-full">
               {[
                 { cfg: PODIUM_CFG[0], user: top3[1] },
                 { cfg: PODIUM_CFG[1], user: top3[0] },
