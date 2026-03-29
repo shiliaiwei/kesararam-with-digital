@@ -27,17 +27,15 @@ export default function AboutPage() {
               engaging, and available in Khmer.
             </p>
           </div>
-          {/* Paper grid style panel */}
+          {/* Team image card */}
           <div className="border-2 border-black rounded-none shadow-[6px_6px_0_#000] overflow-hidden">
-            <div
-              className="h-48 border-b-2 border-black"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px)",
-                backgroundSize: "20px 20px",
-                backgroundColor: "#f9fafb",
-              }}
-            />
+            <div className="border-b-2 border-black overflow-hidden" style={{ height: 192 }}>
+              <img
+                src="https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751088/Image_5sqvro5sqvro5sqv_dw03um.png"
+                alt="Team KWD"
+                className="w-full h-full object-cover"
+              />
+            </div>
             <div className="p-5 bg-white">
               <p className="font-black text-sm">Team KWD</p>
               <p className="text-xs text-zinc-500 mt-1">
