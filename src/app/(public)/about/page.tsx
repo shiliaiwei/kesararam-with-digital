@@ -6,11 +6,6 @@ export const metadata: Metadata = {
   description: "About the KWD platform, our team, mission, and vision.",
 };
 
-export const metadata: Metadata = {
-  title: "About",
-  description: "About the KWD platform, our team, mission, and vision.",
-};
-
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white">
