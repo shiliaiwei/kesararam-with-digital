@@ -58,18 +58,34 @@ function Lightbox({ images, index, onClose, onPrev, onNext }: {
   images: string[]; index: number; onClose: () => void; onPrev: () => void; onNext: () => void;
 }) {
   return (
-    <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center" onClick={onClose}>
-      <button onClick={(e) => { e.stopPropagation(); onPrev(); }} className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all">
+    <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center select-none" onClick={onClose}>
+      <button onClick={(e) => { e.stopPropagation(); onPrev(); }} className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all z-10">
         <ChevronLeft className="text-white" size={24} />
       </button>
-      <img src={images[index]} alt="" className="max-h-[85vh] max-w-[90vw] object-contain" onClick={e => e.stopPropagation()} />
-      <button onClick={(e) => { e.stopPropagation(); onNext(); }} className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all">
+      {/* Wrapper blocks right-click and drag */}
+      <div
+        className="relative max-h-[85vh] max-w-[90vw]"
+        onClick={e => e.stopPropagation()}
+        onContextMenu={e => e.preventDefault()}
+        onDragStart={e => e.preventDefault()}
+      >
+        <img
+          src={images[index]}
+          alt=""
+          draggable={false}
+          className="max-h-[85vh] max-w-[90vw] object-contain pointer-events-none"
+          style={{ userSelect: "none" }}
+        />
+        {/* Invisible overlay blocks right-click on the image itself */}
+        <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} />
+      </div>
+      <button onClick={(e) => { e.stopPropagation(); onNext(); }} className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all z-10">
         <ChevronRight className="text-white" size={24} />
       </button>
-      <button onClick={onClose} className="absolute top-4 right-4 w-9 h-9 bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all">
+      <button onClick={onClose} className="absolute top-4 right-4 w-9 h-9 bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all z-10">
         <X className="text-white" size={18} />
       </button>
-      <div className="absolute bottom-4 text-white/50 text-xs font-bold">{index + 1} / {images.length}</div>
+      <div className="absolute bottom-4 text-white/40 text-xs font-bold">{index + 1} / {images.length}</div>
     </div>
   );
 }
@@ -109,8 +125,7 @@ const CONTENT = {
     testimonials: [
       { name: "Mentor", role: "Technovation Girls Mentor", text: "These girls didn't just build an app — they built confidence. Watching them go from 'I don't know how' to 'I built this' is the most rewarding thing I've ever been part of." },
       { name: "Teacher", role: "Kesararam Primary School", text: "KWD proves that road safety education can be engaging, bilingual, and student-led. Our students are proud to see their school on a global stage." },
-      { name: "Student", role: "KWD User", text: "I used to be afraid of the driving theory exam. Now I practice every day on KWD and I feel ready. The Khmer language support makes everything so much clearer." },
-    ],
+      { name: "Student", role: "KWD User", text: "I used to be afraid of the driving theory exam. Now I practice every day on KWD and I feel ready. The Khmer language support makes everything so much clearer." },    ],
     legalTitle: "Legal & Privacy",
     legalText: "KWD is committed to protecting user privacy, especially for students. Our platform follows Technovation's safety guidelines and Cambodia's data protection principles.",
     privacyBtn: "Privacy Policy",
@@ -148,7 +163,7 @@ const CONTENT = {
     testimonials: [
       { name: "អ្នកណែនាំ", role: "Technovation Girls Mentor", text: "ក្មេងស្រីទាំងនេះមិនត្រឹមតែបង្កើតកម្មវិធីប៉ុណ្ណោះ — ពួកគេបង្កើតទំនុកចិត្ត។ ការមើលឃើញពួកគេផ្លាស់ប្តូរពី 'ខ្ញុំមិនដឹងរបៀប' ទៅ 'ខ្ញុំបង្កើតវា' គឺជារឿងដ៏ពេញចិត្តបំផុតដែលខ្ញុំធ្លាប់ចូលរួម។" },
       { name: "គ្រូ", role: "សាលាបឋមសិក្សាកេសរារាម", text: "KWD បង្ហាញថាការអប់រំសុវត្ថិភាពផ្លូវវិថីអាចទាក់ទាញ ជាភាសាពីរ និងដឹកនាំដោយសិស្ស។ សិស្សរបស់យើងមានមោទនភាពដែលឃើញសាលារបស់ពួកគេនៅលើឆាកសកល។" },
-      { name: "សិស្ស", role: "អ្នកប្រើ KWD", text: "ខ្ញុំធ្លាប់ខ្លាចការប្រឡងទ្រឹស្ដីបើកបរ។ ឥឡូវខ្ញុំហ្វឹកហ្វឺនរៀងរាល់ថ្ងៃនៅ KWD ហើយខ្ញុំmerasa ត្រៀមខ្លួន។ ការគាំទ្រភាសាខ្មែរធ្វើឱ្យអ្វីៗច្បាស់ជាងច្រើន។" },
+      { name: "សិស្ស", role: "អ្នកប្រើ KWD", text: "ខ្ញុំធ្លាប់ខ្លាចការប្រឡងទ្រឹស្ដីបើកបរ។ ឥឡូវខ្ញុំហ្វឹកហ្វឺនរៀងរាល់ថ្ងៃនៅ KWD ហើយខ្ញុំត្រៀមខ្លួន។ ការគាំទ្រភាសាខ្មែរធ្វើឱ្យអ្វីៗច្បាស់ជាងច្រើន។" },
     ],
     legalTitle: "ច្បាប់ និងភាពឯកជន",
     legalText: "KWD ប្តេជ្ញាការពារភាពឯកជនរបស់អ្នកប្រើ ជាពិសេសសិស្ស។ វេទិការបស់យើងអនុវត្តតាមការណែនាំសុវត្ថិភាពរបស់ Technovation និងគោលការណ៍ការពារទិន្នន័យរបស់កម្ពុជា។",
@@ -161,9 +176,17 @@ const CONTENT = {
 
 export function AboutClient() {
   const { lang } = useLang();
-  const [showLang, setShowLang] = useState<"en" | "kh">(lang === "kh" ? "kh" : "en");
+  const [showLang, setShowLang] = useState<"en" | "kh">("en");
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
   const [hoveredImg, setHoveredImg] = useState<number | null>(null);
+
+  // Sync with site lang on first load only
+  const [synced, setSynced] = useState(false);
+  if (!synced && lang) {
+    setShowLang(lang === "kh" ? "kh" : "en");
+    setSynced(true);
+  }
+
   const c = CONTENT[showLang];
   const kh = showLang === "kh";
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
@@ -279,16 +302,28 @@ export function AboutClient() {
         <div>
           <div className="inline-block bg-black text-yellow-400 text-[10px] font-black tracking-widest uppercase px-3 py-1 mb-5">{c.testimonialsTitle}</div>
           <div className="grid md:grid-cols-3 gap-5">
-            {c.testimonials.map(({ name, role, text }) => (
+            {c.testimonials.map(({ name, role, text }) => {
+              const initials = name.slice(0, 2).toUpperCase();
+              const colors = ["#eab308", "#22c55e", "#3b82f6"];
+              const ci = c.testimonials.indexOf({ name, role, text } as typeof c.testimonials[0]);
+              const color = colors[c.testimonials.findIndex(t => t.name === name)] ?? "#eab308";
+              return (
               <div key={name} className="bg-white border-2 border-black p-6 flex flex-col gap-3" style={{ boxShadow:"4px 4px 0 #eab308" }}>
                 <div className="text-yellow-400 text-2xl font-black leading-none">"</div>
                 <p className="text-sm text-zinc-700 leading-relaxed flex-1 italic" style={khFont}>{text}</p>
-                <div className="border-t-2 border-black pt-3">
-                  <p className="font-black text-sm text-black" style={khFont}>{name}</p>
-                  <p className="text-[10px] text-zinc-400" style={khFont}>{role}</p>
+                <div className="border-t-2 border-black pt-3 flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full flex items-center justify-center font-black text-white text-xs flex-shrink-0 border-2 border-black"
+                    style={{ backgroundColor: color }}>
+                    {initials}
+                  </div>
+                  <div>
+                    <p className="font-black text-sm text-black leading-tight" style={khFont}>{name}</p>
+                    <p className="text-[10px] text-zinc-400" style={khFont}>{role}</p>
+                  </div>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
