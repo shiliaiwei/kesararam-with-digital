@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import { useLang } from "@/context/lang-context";
 
 const EN_SECTIONS = [
@@ -97,29 +96,23 @@ const KH_SECTIONS = [
 
 export default function TermsPage() {
   const { lang } = useLang();
-  const [showLang, setShowLang] = useState<"en" | "kh">(lang === "kh" ? "kh" : "en");
-  const sections = showLang === "kh" ? KH_SECTIONS : EN_SECTIONS;
-  const khFont = showLang === "kh" ? { fontFamily: "Siemreap, sans-serif" } : {};
-
-  const labels = {
+  const kh = lang === "kh";
+  const sections = kh ? KH_SECTIONS : EN_SECTIONS;
+  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const l = {
     en: { badge:"Legal", title:"Terms of Service", subtitle:"Last updated: March 2026 · KWD — Kesararam With Digital · Technovation Girls Cambodia", intro:"Please read these terms carefully before using KWD. By accessing or using the platform, you agree to be bound by these terms. These terms apply to all users — students, teachers, and administrators — and reflect our commitment to Technovation Girls' standards and the UN Sustainable Development Goals.", privBtn:"Privacy Policy →", aboutBtn:"About KWD", footer:"© 2026 KWD — Kesararam With Digital · Kesararam Primary School · Technovation Girls Cambodia" },
     kh: { badge:"ច្បាប់", title:"លក្ខខណ្ឌប្រើប្រាស់", subtitle:"ធ្វើបច្ចុប្បន្នភាព: មីនា ២០២៦ · KWD — Kesararam With Digital · Technovation Girls Cambodia", intro:"សូមអានលក្ខខណ្ឌទាំងនេះដោយប្រុងប្រយ័ត្នមុនពេលប្រើ KWD។ ដោយចូលប្រើ ឬប្រើវេទិកា អ្នកយល់ព្រមនឹងលក្ខខណ្ឌទាំងនេះ។ លក្ខខណ្ឌទាំងនេះអនុវត្តចំពោះអ្នកប្រើទាំងអស់ — សិស្ស គ្រូ និងអ្នកគ្រប់គ្រង — ហើយឆ្លុះបញ្ចាំងពីការប្តេជ្ញារបស់យើងចំពោះស្តង់ដាររបស់ Technovation Girls និងគោលដៅ SDG របស់អង្គការសហប្រជាជាតិ។", privBtn:"គោលការណ៍ភាពឯកជន →", aboutBtn:"អំពី KWD", footer:"© ២០២៦ KWD — Kesararam With Digital · សាលាបឋមសិក្សាកេសរារាម · Technovation Girls Cambodia" },
-  };
-  const l = labels[showLang];
+  }[lang === "kh" ? "kh" : "en"];
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
       <div className="bg-black border-b-4 border-yellow-400">
         <div className="max-w-4xl mx-auto px-6 py-14">
-          <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
+          <div className="mb-5">
             <div className="inline-flex items-center gap-2 bg-yellow-400 text-black text-[10px] font-black tracking-widest uppercase px-3 py-1 border-2 border-yellow-400">
               <span className="w-1.5 h-1.5 bg-black rounded-full" />
               {l.badge}
-            </div>
-            <div className="flex border-2 border-yellow-400 overflow-hidden">
-              <button onClick={() => setShowLang("en")} className={`px-4 py-1.5 text-xs font-black transition-all ${showLang==="en"?"bg-yellow-400 text-black":"bg-transparent text-yellow-400"}`}>EN</button>
-              <button onClick={() => setShowLang("kh")} className={`px-4 py-1.5 text-xs font-black transition-all ${showLang==="kh"?"bg-yellow-400 text-black":"bg-transparent text-yellow-400"}`} style={{ fontFamily:"Siemreap, sans-serif" }}>ខ្មែរ</button>
             </div>
           </div>
           <h1 className="text-4xl md:text-6xl font-black text-white leading-none mb-3" style={khFont}>{l.title}</h1>

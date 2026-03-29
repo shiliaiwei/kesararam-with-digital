@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import { useLang } from "@/context/lang-context";
 
 const CONTENT = {
@@ -169,24 +168,18 @@ const CONTENT = {
 
 export default function PrivacyPage() {
   const { lang } = useLang();
-  const [showLang, setShowLang] = useState<"en" | "kh">(lang === "kh" ? "kh" : "en");
-  const c = CONTENT[showLang];
-  const khFont = showLang === "kh" ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const c = CONTENT[lang === "kh" ? "kh" : "en"];
+  const khFont = lang === "kh" ? { fontFamily: "Siemreap, sans-serif" } : {};
 
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
       <div className="bg-black border-b-4 border-yellow-400">
         <div className="max-w-4xl mx-auto px-6 py-14">
-          <div className="flex items-center justify-between mb-5 flex-wrap gap-3">
+          <div className="mb-5">
             <div className="inline-flex items-center gap-2 bg-yellow-400 text-black text-[10px] font-black tracking-widest uppercase px-3 py-1 border-2 border-yellow-400">
               <span className="w-1.5 h-1.5 bg-black rounded-full" />
               {c.badge}
-            </div>
-            {/* Language toggle */}
-            <div className="flex border-2 border-yellow-400 overflow-hidden">
-              <button onClick={() => setShowLang("en")} className={`px-4 py-1.5 text-xs font-black transition-all ${showLang === "en" ? "bg-yellow-400 text-black" : "bg-transparent text-yellow-400"}`}>EN</button>
-              <button onClick={() => setShowLang("kh")} className={`px-4 py-1.5 text-xs font-black transition-all ${showLang === "kh" ? "bg-yellow-400 text-black" : "bg-transparent text-yellow-400"}`} style={{ fontFamily: "Siemreap, sans-serif" }}>ខ្មែរ</button>
             </div>
           </div>
           <h1 className="text-4xl md:text-6xl font-black text-white leading-none mb-3" style={khFont}>{c.title}</h1>

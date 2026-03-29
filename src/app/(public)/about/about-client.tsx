@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
+import { useState } from "react";import Link from "next/link";
 import { useLang } from "@/context/lang-context";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -176,19 +175,11 @@ const CONTENT = {
 
 export function AboutClient() {
   const { lang } = useLang();
-  const [showLang, setShowLang] = useState<"en" | "kh">("en");
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
   const [hoveredImg, setHoveredImg] = useState<number | null>(null);
 
-  // Sync with site lang on first load only
-  const [synced, setSynced] = useState(false);
-  if (!synced && lang) {
-    setShowLang(lang === "kh" ? "kh" : "en");
-    setSynced(true);
-  }
-
-  const c = CONTENT[showLang];
-  const kh = showLang === "kh";
+  const c = CONTENT[lang === "kh" ? "kh" : "en"];
+  const kh = lang === "kh";
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
   function openLightbox(i: number) { setLightboxIdx(i); }
@@ -209,11 +200,6 @@ export function AboutClient() {
               <div className="flex items-center gap-3 flex-wrap">
                 <div className="inline-flex items-center gap-2 bg-yellow-400 text-black text-[10px] font-black tracking-widest uppercase px-3 py-1 border-2 border-yellow-400">
                   <span className="w-1.5 h-1.5 bg-black rounded-full" />{c.badge}
-                </div>
-                {/* Lang toggle */}
-                <div className="flex border-2 border-yellow-400 overflow-hidden">
-                  <button onClick={() => setShowLang("en")} className={`px-3 py-1 text-xs font-black transition-all ${showLang==="en"?"bg-yellow-400 text-black":"bg-transparent text-yellow-400"}`}>EN</button>
-                  <button onClick={() => setShowLang("kh")} className={`px-3 py-1 text-xs font-black transition-all ${showLang==="kh"?"bg-yellow-400 text-black":"bg-transparent text-yellow-400"}`} style={{ fontFamily:"Siemreap,sans-serif" }}>ខ្មែរ</button>
                 </div>
               </div>
               <h1 className="text-4xl md:text-6xl font-black text-white leading-tight whitespace-pre-line" style={khFont}>{c.title}</h1>
