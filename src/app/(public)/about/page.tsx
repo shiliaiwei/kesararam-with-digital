@@ -1,4 +1,10 @@
 import type { Metadata } from "next";
+import { TeamCard } from "./team-card";
+
+export const metadata: Metadata = {
+  title: "About",
+  description: "About the KWD platform, our team, mission, and vision.",
+};
 
 export const metadata: Metadata = {
   title: "About",
@@ -27,22 +33,7 @@ export default function AboutPage() {
               engaging, and available in Khmer.
             </p>
           </div>
-          {/* Team image card */}
-          <div className="border-2 border-black rounded-none shadow-[6px_6px_0_#000] overflow-hidden">
-            <div className="border-b-2 border-black overflow-hidden" style={{ height: 192 }}>
-              <img
-                src="https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751088/Image_5sqvro5sqvro5sqv_dw03um.png"
-                alt="Team KWD"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="p-5 bg-white">
-              <p className="font-black text-sm">Team KWD</p>
-              <p className="text-xs text-zinc-500 mt-1">
-                Building road safety education for Cambodia
-              </p>
-            </div>
-          </div>
+          <TeamCard />
         </div>
       </div>
 
