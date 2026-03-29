@@ -73,7 +73,7 @@ export const t = {
     // Footer
     footer: {
       tagline:
-        "A Cambodian driving knowledge platform helping students prepare for the mandatory driving theory exam.",
+        "Master Cambodia's road rules. Ace the theory exam. Drive with confidence.",
       learnTitle: "Learn",
       platformTitle: "Platform",
       contactTitle: "Contact",
@@ -153,7 +153,7 @@ export const t = {
 
     // Footer
     footer: {
-      tagline: "វេទិកាបហ្វឹករៀនបើករថយន្ត ដែលជួយសិស្សត្រៀមប្រឡងទ្រឹស្ដី.",
+      tagline: "ស្ទាត់ច្បាប់ចរាចរ — ជោគជ័យក្នុងការប្រឡង — បើកបរដោយទំនុកចិត្ត។",
       learnTitle: "រៀន",
       platformTitle: "វេទិកា",
       contactTitle: "ទំនាក់ទំនង",

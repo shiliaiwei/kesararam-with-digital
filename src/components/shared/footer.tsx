@@ -52,7 +52,7 @@ export function Footer() {
             className="text-xs text-zinc-500 mt-2 text-center"
             style={{ fontFamily: "Siemreap, sans-serif" }}
           >
-            វេទិកាបហ្វឹករៀនបើករថយន្ត — ភាសាខ្មែរ
+            រៀន — ប្រកួត — ជោគជ័យ
           </p>
         </div>
 
