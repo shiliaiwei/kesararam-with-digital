@@ -19,6 +19,7 @@ import {
   AlertCircle,
   Gamepad2,
   HelpCircle,
+  CreditCard,
 } from "lucide-react";
 import { logoutAction } from "@/app/actions/auth";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
@@ -35,6 +36,7 @@ const adminNav: NavItem[] = [
   { label: "Project Planner", href: "/admin/project-planner", icon: Calendar, color: "#3b82f6" },
   { label: "Review Queue", href: "/admin/review", icon: AlertCircle, color: "#f59e0b" },
   { label: "Users", href: "/admin/users", icon: Users, color: "#3b82f6" },
+  { label: "Subscriptions", href: "/admin/subscriptions", icon: CreditCard, color: "#f59e0b" },
   { label: "Content", href: "/admin/content", icon: BookOpen, color: "#22c55e" },
   { label: "Game Sessions", href: "/admin/game-sessions", icon: Gamepad2, color: "#a855f7" },
   { label: "Media", href: "/admin/media", icon: Images, color: "#a855f7" },

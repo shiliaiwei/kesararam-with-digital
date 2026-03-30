@@ -4,6 +4,7 @@ import { gameSessions } from "@/db/schema/game";
 import { questions, answers, topics, categories } from "@/db/schema/content";
 import { getSession } from "@/lib/auth";
 import { generateSessionCode, GAME_MODE_TYPES, mapContentToGameType } from "@/lib/game-engine";
+import { enforceSessionCreation, getUserSubscription } from "@/lib/subscription";
 import { eq, and, inArray, sql } from "drizzle-orm";
 
 export async function POST(req: NextRequest) {
@@ -25,6 +26,23 @@ export async function POST(req: NextRequest) {
 
   if (!categoryIds?.length) {
     return NextResponse.json({ error: "Select at least one category" }, { status: 400 });
+  }
+
+  // ── Subscription enforcement (skip for admin) ──
+  if (user.role !== "admin") {
+    const blockReason = await enforceSessionCreation(user.id, maxPlayers);
+    if (blockReason) {
+      return NextResponse.json({ error: blockReason, upgradeRequired: true }, { status: 403 });
+    }
+
+    // Clamp maxPlayers to plan limit
+    const { limits } = await getUserSubscription(user.id);
+    if (maxPlayers > limits.maxPlayersPerSession) {
+      return NextResponse.json(
+        { error: `Your plan allows max ${limits.maxPlayersPerSession} players.`, upgradeRequired: true },
+        { status: 403 }
+      );
+    }
   }
 
   // Fetch questions — allow draft + approved so test data works
