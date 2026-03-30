@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Check, Zap, Crown, Building2, Clock, Users, BarChart3, Shield } from "lucide-react";
-import { PLAN_DISPLAY } from "@/lib/subscription";
+import { PLAN_DISPLAY } from "@/lib/subscription-plans";
 
 const PLANS = [
   {

@@ -1,115 +1,15 @@
 /**
- * Subscription system — plan definitions, limits, and enforcement.
- * Security: All plan checks happen server-side only.
- * Admins are the ONLY ones who can assign/modify subscriptions.
+ * Subscription system — server-side only.
+ * DB queries, plan enforcement, session limits.
+ * DO NOT import this in client components — use subscription-plans.ts instead.
  */
 
 import { db } from "@/lib/db";
 import { subscriptions } from "@/db/schema/subscriptions";
 import { eq, and, or, isNull, gt } from "drizzle-orm";
-
-// ─── Plan Definitions ────────────────────────────────────────────────────────
-
-export type PlanTier = "free" | "teacher_pro" | "school";
-
-export interface PlanLimits {
-  /** Max players per live session */
-  maxPlayersPerSession: number;
-  /** Max live sessions per month (null = unlimited) */
-  maxSessionsPerMonth: number | null;
-  /** Access to all question categories */
-  allCategories: boolean;
-  /** Max categories accessible (if not allCategories) */
-  maxCategories: number;
-  /** Session analytics & reports */
-  analytics: boolean;
-  /** Export results as CSV/PDF */
-  exportResults: boolean;
-  /** Advanced game modes (marathon, team battle) */
-  advancedGameModes: boolean;
-  /** Remove "Powered by KWD" branding */
-  removeBranding: boolean;
-  /** Max teacher accounts (for school plan) */
-  maxTeacherAccounts: number;
-  /** Max students per session */
-  maxStudentsPerSession: number;
-  /** Admin class management dashboard */
-  classManagement: boolean;
-  /** Priority support */
-  prioritySupport: boolean;
-}
-
-export const PLAN_LIMITS: Record<PlanTier, PlanLimits> = {
-  free: {
-    maxPlayersPerSession: 10,
-    maxSessionsPerMonth: 1,
-    allCategories: false,
-    maxCategories: 1,
-    analytics: false,
-    exportResults: false,
-    advancedGameModes: false,
-    removeBranding: false,
-    maxTeacherAccounts: 1,
-    maxStudentsPerSession: 10,
-    classManagement: false,
-    prioritySupport: false,
-  },
-  teacher_pro: {
-    maxPlayersPerSession: 50,
-    maxSessionsPerMonth: null, // unlimited
-    allCategories: true,
-    maxCategories: 999,
-    analytics: true,
-    exportResults: true,
-    advancedGameModes: true,
-    removeBranding: true,
-    maxTeacherAccounts: 1,
-    maxStudentsPerSession: 50,
-    classManagement: false,
-    prioritySupport: false,
-  },
-  school: {
-    maxPlayersPerSession: 200,
-    maxSessionsPerMonth: null,
-    allCategories: true,
-    maxCategories: 999,
-    analytics: true,
-    exportResults: true,
-    advancedGameModes: true,
-    removeBranding: true,
-    maxTeacherAccounts: 10,
-    maxStudentsPerSession: 200,
-    classManagement: true,
-    prioritySupport: true,
-  },
-};
-
-export const PLAN_DISPLAY = {
-  free: {
-    name: "Free",
-    nameKh: "ឥតគិតថ្លៃ",
-    price: 0,
-    priceLabel: "$0",
-    color: "#6b7280",
-    badge: null,
-  },
-  teacher_pro: {
-    name: "Teacher Pro",
-    nameKh: "គ្រូ Pro",
-    price: 10,
-    priceLabel: "$10",
-    color: "#f59e0b",
-    badge: "Most Popular",
-  },
-  school: {
-    name: "School",
-    nameKh: "សាលា",
-    price: 49,
-    priceLabel: "$49",
-    color: "#8b5cf6",
-    badge: "Best Value",
-  },
-} as const;
+import { PLAN_LIMITS, PLAN_DISPLAY, type PlanTier, type PlanLimits } from "./subscription-plans";
+export type { PlanTier, PlanLimits } from "./subscription-plans";
+export { PLAN_LIMITS, PLAN_DISPLAY } from "./subscription-plans";
 
 // ─── Subscription Resolver ────────────────────────────────────────────────────
 

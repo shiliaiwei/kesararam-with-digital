@@ -6,7 +6,7 @@ import {
   Clock, CheckCircle, XCircle, AlertTriangle, RefreshCw,
   ChevronDown, Shield, Users, BarChart3, Trash2, Edit3,
 } from "lucide-react";
-import { PLAN_DISPLAY, type PlanTier } from "@/lib/subscription";
+import { PLAN_DISPLAY, type PlanTier } from "@/lib/subscription-plans";
 
 type SubStatus = "active" | "expired" | "cancelled" | "trial";
 
