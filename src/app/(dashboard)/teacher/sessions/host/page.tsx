@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useLang } from "@/context/lang-context";
 import { useGameSSE } from "@/hooks/use-game-sse";
 import { GAME_MODE_CONFIG } from "@/lib/game-engine";
-import type { SSEEvent, ParticipantInfo, LeaderboardEntry, AnswerOption, QuestionPayload } from "@/lib/game-event-bus";
+import type { SSEEvent, ParticipantInfo, LeaderboardEntry, QuestionPayload } from "@/lib/game-event-bus";
 import {
   Play, Square, Users, BarChart2,
   Copy, Check, ChevronRight, Loader2,
@@ -102,6 +102,8 @@ export default function HostPage() {
   const [maxPlayers, setMaxPlayers] = useState(50);
   // Participants from lobby — kept for leaderboard seeding
   const [lobbyParticipants, setLobbyParticipants] = useState<ParticipantInfo[]>([]);
+  // Custom question count (overrides game mode default)
+  const [questionCount, setQuestionCount] = useState(10);
 
   useEffect(() => {
     fetch("/api/game/categories")
@@ -184,7 +186,7 @@ export default function HostPage() {
     const res = await fetch("/api/game/sessions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sessionName, categoryIds: selectedCats, difficulty, questionCount: cfg.questionCount, timePerQuestion: cfg.timePerQuestion, scoringMode, language, gameType: selectedMode, maxPlayers, allowLateJoin: true }),
+      body: JSON.stringify({ sessionName, categoryIds: selectedCats, difficulty, questionCount: questionCount, timePerQuestion: cfg.timePerQuestion, scoringMode, language, gameType: selectedMode, maxPlayers, allowLateJoin: true }),
     });
     if (!res.ok) { const err = await res.json(); setError(err.error ?? "Failed"); setPhase({ name: "setup" }); return; }
     const data = await res.json();
@@ -229,7 +231,7 @@ export default function HostPage() {
             <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2" style={khFont}>{kh ? "របៀបលេង" : "Game Mode"}</div>
             <div className="grid grid-cols-2 gap-2">
               {GAME_MODES.map((m) => (
-                <button key={m.id} onClick={() => setSelectedMode(m.id)} className="p-3 border-2 border-black text-left transition-all"
+                <button key={m.id} onClick={() => { setSelectedMode(m.id); setQuestionCount(m.questionCount); }} className="p-3 border-2 border-black text-left transition-all"
                   style={{ backgroundColor: selectedMode === m.id ? m.color : "#fff", boxShadow: selectedMode === m.id ? "3px 3px 0 #000" : "2px 2px 0 #000", transform: selectedMode === m.id ? "translate(-1px,-1px)" : undefined }}>
                   <div className="font-black text-sm text-black" style={khFont}>{kh ? m.labelKm : m.label}</div>
                   <div className="text-xs text-black/60">{m.questionCount}Q · {m.timePerQuestion}s/Q</div>
@@ -259,10 +261,72 @@ export default function HostPage() {
             </div>
             <div>
               <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2" style={khFont}>{kh ? "កម្រិត" : "Difficulty"}</div>
-              {["mixed","easy","medium","hard"].map((d) => <button key={d} onClick={() => setDifficulty(d)} className="w-full py-2 border-2 border-black text-xs font-black mb-1 transition-all" style={{ backgroundColor: difficulty===d?"#000":"#fff", color: difficulty===d?"#ffd700":"#000", boxShadow:"2px 2px 0 #000" }}>{d.charAt(0).toUpperCase()+d.slice(1)}</button>)}
+              {["mixed","easy","medium","hard"].map((d) => <button key={d} onClick={() => { setDifficulty(d); if (d !== "mixed" && questionCount > 20) setQuestionCount(20); }} className="w-full py-2 border-2 border-black text-xs font-black mb-1 transition-all" style={{ backgroundColor: difficulty===d?"#000":"#fff", color: difficulty===d?"#ffd700":"#000", boxShadow:"2px 2px 0 #000" }}>{d.charAt(0).toUpperCase()+d.slice(1)}</button>)}
             </div>
           </div>
           {error && <p className="text-red-600 font-bold text-sm border-2 border-red-500 px-3 py-2" style={khFont}>{error}</p>}
+
+          {/* ── Question Count + Composition ── */}
+          <div>
+            <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-3" style={khFont}>
+              {kh ? "ចំនួនសំណួរ" : "Question Count"}
+            </div>
+            <div className="flex items-center gap-4 mb-3">
+              <input
+                type="range"
+                min={5}
+                max={difficulty === "easy" || difficulty === "medium" || difficulty === "hard" ? 20 : 40}
+                step={1}
+                value={questionCount}
+                onChange={(e) => setQuestionCount(Number(e.target.value))}
+                className="flex-1 accent-yellow-400 cursor-pointer"
+              />
+              <div className="w-14 text-center border-2 border-black font-black text-lg py-1 bg-yellow-400" style={{ boxShadow: "2px 2px 0 #000" }}>
+                {questionCount}
+              </div>
+            </div>
+            <div className="flex gap-2 mb-4">
+              {(difficulty === "mixed" ? [5, 10, 15, 20, 30, 40] : [5, 10, 15, 20]).map((n) => (
+                <button key={n} onClick={() => setQuestionCount(n)}
+                  className="flex-1 py-1.5 border-2 border-black text-xs font-black transition-all"
+                  style={{ backgroundColor: questionCount === n ? "#000" : "#fff", color: questionCount === n ? "#ffd700" : "#000", boxShadow: "2px 2px 0 #000" }}>
+                  {n}
+                </button>
+              ))}
+            </div>
+            {/* Composition breakdown */}
+            <div className="border-2 border-black bg-zinc-50 p-3" style={{ boxShadow: "2px 2px 0 #000" }}>
+              <div className="text-xs font-black uppercase tracking-widest text-zinc-400 mb-2" style={khFont}>
+                {kh ? "ការបែងចែកសំណួរ" : "Composition Preview"}
+              </div>
+              {difficulty === "mixed" ? (() => {
+                const easy = Math.round(questionCount * 0.4);
+                const hard = Math.round(questionCount * 0.2);
+                const medium = questionCount - easy - hard;
+                const tf = Math.max(1, Math.round(questionCount * 0.15));
+                const mcq = questionCount - tf;
+                return (
+                  <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs font-bold">
+                    <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-green-500 inline-block" />{kh ? "ងាយ" : "Easy"}</span><span className="text-right font-black">{easy}Q</span>
+                    <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-yellow-500 inline-block" />{kh ? "មធ្យម" : "Medium"}</span><span className="text-right font-black">{medium}Q</span>
+                    <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-red-500 inline-block" />{kh ? "លំបាក" : "Hard"}</span><span className="text-right font-black">{hard}Q</span>
+                    <span className="col-span-2 border-t border-zinc-200 mt-1 pt-1" />
+                    <span className="text-zinc-500">MCQ</span><span className="text-right font-black text-zinc-500">{mcq}Q</span>
+                    <span className="text-zinc-500">{kh ? "ត្រូវ/មិនត្រូវ" : "True / False"}</span><span className="text-right font-black text-zinc-500">{tf}Q</span>
+                  </div>
+                );
+              })() : (
+                <div className="flex items-center justify-between text-xs font-bold">
+                  <span className="flex items-center gap-1.5">
+                    <span className={`w-2 h-2 rounded-full inline-block ${difficulty === "easy" ? "bg-green-500" : difficulty === "medium" ? "bg-yellow-500" : "bg-red-500"}`} />
+                    {difficulty === "easy" ? (kh ? "ងាយ" : "Easy") : difficulty === "medium" ? (kh ? "មធ្យម" : "Medium") : (kh ? "លំបាក" : "Hard")} · {kh ? "MCQ + ត្រូវ/មិនត្រូវ" : "MCQ + True/False"}
+                  </span>
+                  <span className="font-black">{questionCount}Q <span className="text-zinc-400 font-bold">/ max 20</span></span>
+                </div>
+              )}
+            </div>
+          </div>
+
           <div>
             <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2" style={khFont}>{kh ? "អ្នកលេងអតិបរមា" : "Max Players"}</div>
             <div className="flex gap-2">
