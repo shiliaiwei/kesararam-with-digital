@@ -12,32 +12,38 @@ export default async function SubscriptionsPage() {
   const session = await getSession();
   if (!session || session.role !== "admin") redirect("/login");
 
-  const rows = await db
-    .select({
-      id: subscriptions.id,
-      userId: subscriptions.userId,
-      plan: subscriptions.plan,
-      status: subscriptions.status,
-      isTrial: subscriptions.isTrial,
-      trialEndsAt: subscriptions.trialEndsAt,
-      startsAt: subscriptions.startsAt,
-      endsAt: subscriptions.endsAt,
-      note: subscriptions.note,
-      createdAt: subscriptions.createdAt,
-      updatedAt: subscriptions.updatedAt,
-      userName: users.displayName,
-      userEmail: users.email,
-      userRole: users.role,
-    })
-    .from(subscriptions)
-    .innerJoin(users, eq(subscriptions.userId, users.id))
-    .orderBy(desc(subscriptions.createdAt));
+  let rows: any[] = [];
+  let allUsers: any[] = [];
 
-  // All users for assign dialog
-  const allUsers = await db
-    .select({ id: users.id, displayName: users.displayName, email: users.email, role: users.role })
-    .from(users)
-    .orderBy(users.displayName);
+  try {
+    rows = await db
+      .select({
+        id: subscriptions.id,
+        userId: subscriptions.userId,
+        plan: subscriptions.plan,
+        status: subscriptions.status,
+        isTrial: subscriptions.isTrial,
+        trialEndsAt: subscriptions.trialEndsAt,
+        startsAt: subscriptions.startsAt,
+        endsAt: subscriptions.endsAt,
+        note: subscriptions.note,
+        createdAt: subscriptions.createdAt,
+        updatedAt: subscriptions.updatedAt,
+        userName: users.displayName,
+        userEmail: users.email,
+        userRole: users.role,
+      })
+      .from(subscriptions)
+      .innerJoin(users, eq(subscriptions.userId, users.id))
+      .orderBy(desc(subscriptions.createdAt));
+
+    allUsers = await db
+      .select({ id: users.id, displayName: users.displayName, email: users.email, role: users.role })
+      .from(users)
+      .orderBy(users.displayName);
+  } catch {
+    // Table may not exist yet — migration pending
+  }
 
   return <SubscriptionsManager initialRows={rows} allUsers={allUsers} adminId={session.id} />;
 }

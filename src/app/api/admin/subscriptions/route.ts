@@ -18,27 +18,31 @@ export async function GET() {
   if (!session || session.role !== "admin")
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
-  const rows = await db
-    .select({
-      id: subscriptions.id,
-      userId: subscriptions.userId,
-      plan: subscriptions.plan,
-      status: subscriptions.status,
-      isTrial: subscriptions.isTrial,
-      trialEndsAt: subscriptions.trialEndsAt,
-      startsAt: subscriptions.startsAt,
-      endsAt: subscriptions.endsAt,
-      note: subscriptions.note,
-      createdAt: subscriptions.createdAt,
-      userName: users.displayName,
-      userEmail: users.email,
-      userRole: users.role,
-    })
-    .from(subscriptions)
-    .innerJoin(users, eq(subscriptions.userId, users.id))
-    .orderBy(desc(subscriptions.createdAt));
+  try {
+    const rows = await db
+      .select({
+        id: subscriptions.id,
+        userId: subscriptions.userId,
+        plan: subscriptions.plan,
+        status: subscriptions.status,
+        isTrial: subscriptions.isTrial,
+        trialEndsAt: subscriptions.trialEndsAt,
+        startsAt: subscriptions.startsAt,
+        endsAt: subscriptions.endsAt,
+        note: subscriptions.note,
+        createdAt: subscriptions.createdAt,
+        userName: users.displayName,
+        userEmail: users.email,
+        userRole: users.role,
+      })
+      .from(subscriptions)
+      .innerJoin(users, eq(subscriptions.userId, users.id))
+      .orderBy(desc(subscriptions.createdAt));
 
-  return NextResponse.json({ subscriptions: rows });
+    return NextResponse.json({ subscriptions: rows });
+  } catch {
+    return NextResponse.json({ error: "Migration pending — run 0004_subscription_system.sql" }, { status: 503 });
+  }
 }
 
 // POST /api/admin/subscriptions — assign a subscription to a user

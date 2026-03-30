@@ -310,6 +310,7 @@ function EditDialog({ sub, onClose, onSuccess }: { sub: SubRow; onClose: () => v
 // ─── Main Component ───────────────────────────────────────────────────────────
 export function SubscriptionsManager({ initialRows, allUsers, adminId }: Props) {
   const [rows, setRows] = useState<SubRow[]>(initialRows);
+  const [migrationPending] = useState(initialRows.length === 0 && allUsers.length > 0 === false);
   const [showAssign, setShowAssign] = useState(false);
   const [editSub, setEditSub] = useState<SubRow | null>(null);
   const [search, setSearch] = useState("");
