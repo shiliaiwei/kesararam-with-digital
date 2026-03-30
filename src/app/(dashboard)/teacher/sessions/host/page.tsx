@@ -11,6 +11,7 @@ import {
   Copy, Check, ChevronRight, Loader2,
   SkipForward, Crown, TrendingUp, TrendingDown, Minus
 } from "lucide-react";
+import { UpgradeButton } from "@/components/pricing/upgrade-button";
 
 // Answer color/label config matching student UI
 const ANSWER_STYLES = [
@@ -222,6 +223,8 @@ export default function HostPage() {
           <div className="inline-block bg-black text-yellow-400 text-xs font-black tracking-widest uppercase px-3 py-1.5 mb-3" style={khFont}>{kh ? "បង្កើតហ្គេម" : "Create Game"}</div>
           <h1 className="text-3xl font-black" style={khFont}>{kh ? "ហ្គេមផ្ទាល់" : "Live Game Session"}</h1>
         </div>
+        {/* Upgrade nudge — always visible for free plan awareness */}
+        <UpgradeButton variant="banner" trigger="session_limit" lang={lang} className="mb-6" label={kh ? "ទទួលបានវគ្គគ្មានដែនកំណត់ + ប្រភេទទាំងអស់ — ធ្វើឱ្យប្រសើរឡើង" : "Get unlimited sessions + all categories — Upgrade to Teacher Pro"} />
         <div className="flex flex-col gap-6">
           <div>
             <label className="text-xs font-black uppercase tracking-widest text-zinc-500 block mb-2" style={khFont}>{kh ? "ឈ្មោះ" : "Session Name"}</label>
@@ -264,7 +267,14 @@ export default function HostPage() {
               {["mixed","easy","medium","hard"].map((d) => <button key={d} onClick={() => { setDifficulty(d); if (d !== "mixed" && questionCount > 20) setQuestionCount(20); }} className="w-full py-2 border-2 border-black text-xs font-black mb-1 transition-all" style={{ backgroundColor: difficulty===d?"#000":"#fff", color: difficulty===d?"#ffd700":"#000", boxShadow:"2px 2px 0 #000" }}>{d.charAt(0).toUpperCase()+d.slice(1)}</button>)}
             </div>
           </div>
-          {error && <p className="text-red-600 font-bold text-sm border-2 border-red-500 px-3 py-2" style={khFont}>{error}</p>}
+          {error && (
+            <div>
+              <p className="text-red-600 font-bold text-sm border-2 border-red-500 px-3 py-2 mb-2" style={khFont}>{error}</p>
+              {(error.toLowerCase().includes("session") || error.toLowerCase().includes("limit") || error.toLowerCase().includes("upgrade")) && (
+                <UpgradeButton variant="banner" trigger="session_limit" lang={lang} />
+              )}
+            </div>
+          )}
 
           {/* ── Question Count + Composition ── */}
           <div>
