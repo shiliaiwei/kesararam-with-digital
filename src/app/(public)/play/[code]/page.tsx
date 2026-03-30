@@ -64,6 +64,7 @@ export default function StudentGamePage() {
   const [joinError, setJoinError] = useState<string | null>(null);
   const [phase, setPhase] = useState<GamePhase>("lobby");
   const [sessionInfo, setSessionInfo] = useState<SessionInfo | null>(null);
+  const [currentUserId, setCurrentUserId] = useState<number | undefined>(undefined);
   const [participants, setParticipants] = useState<ParticipantInfo[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState<QuestionPayload | null>(null);
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -106,6 +107,8 @@ export default function StudentGamePage() {
         setPodium(event.podium || []);
         setLeaderboard(event.finalLeaderboard || []);
         setPhase("podium");
+        // Play rank-specific sound after a short delay (podium reveal handles the rest)
+        // The Podium component handles staggered rank sounds internally
       }
     } catch (error) {
       logError("SSE event handler error", error as Error, { event });
@@ -136,6 +139,11 @@ export default function StudentGamePage() {
           setJoining(false);
           return;
         }
+        // Capture userId from join response
+        try {
+          const joinData = await joinRes.json();
+          if (joinData.userId) setCurrentUserId(joinData.userId);
+        } catch { /* ignore */ }
         setJoining(false);
       } catch {
         setJoinError("Network error. Please try again.");
@@ -488,18 +496,7 @@ export default function StudentGamePage() {
             </div>
             <h1 className="text-white font-black text-3xl" style={khFont}>{kh ? "លទ្ធផលចុងក្រោយ" : "Final Results"}</h1>
           </div>
-          <Podium podium={podium} finalLeaderboard={leaderboard} lang={lang} />
-          <div className="mt-6">
-            <div className="text-white/40 text-xs font-bold uppercase tracking-widest mb-3" style={khFont}>
-              {kh ? "ចំណាត់ថ្នាក់ទាំងអស់" : "All Rankings"}
-            </div>
-            <LeaderboardPanel entries={leaderboard} lang={lang} />
-          </div>
-          <button onClick={() => router.push("/play")}
-            className="w-full mt-6 py-4 bg-yellow-400 text-black font-black text-lg border-2 border-yellow-300 transition-all hover:bg-yellow-300"
-            style={{ boxShadow: "0 0 20px rgba(250,204,21,0.4)" }}>
-            {kh ? "លេងម្ដងទៀត" : "Play Again"}
-          </button>
+          <Podium podium={podium} finalLeaderboard={leaderboard} lang={lang} currentUserId={currentUserId} onPlayAgain={() => router.push("/play")} />
         </div>
       </div>
     );
