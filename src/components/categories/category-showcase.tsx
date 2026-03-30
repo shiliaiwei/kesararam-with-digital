@@ -184,21 +184,179 @@ function ShowcaseCard({ category, index, lang }: ShowcaseCardProps) {
 
       case "swing-balance":
         tl.to(iconRef.current, {
-          rotaImpact();
-      },
-      idle: () => {
-        gsap.to(iconRef.current, {
-          y: -5,
+          rotation: 15,
+          duration: 1.2,
+          ease: "power1.inOut",
+        }).to(iconRef.current, {
+          rotation: -15,
+          duration: 1.2,
+          ease: "power1.inOut",
+        }).to(iconRef.current, {
+          rotation: 0,
           duration: 0.8,
-          repeat: -1,
-          yoyo: true,
           ease: "power1.inOut",
         });
-      },
-    },
-    // General Knowledge - Book flip
-    {
-      name: "General Knowledge",
-      hover: () => {
-        gsap.to(iconRef.current, {
-        
+        break;
+
+      case "traffic-pulse":
+        tl.to(iconRef.current, {
+          scale: 1.2,
+          duration: 0.5,
+          ease: "power2.out",
+        }).to(iconRef.current, {
+          scale: 1,
+          duration: 0.5,
+          ease: "power2.in",
+        }).to(iconRef.current, {
+          scale: 1,
+          duration: 1,
+        });
+        break;
+
+      case "drive-path":
+        tl.to(iconRef.current, {
+          x: 8,
+          duration: 0.6,
+          ease: "power1.inOut",
+        }).to(iconRef.current, {
+          x: -8,
+          duration: 0.6,
+          ease: "power1.inOut",
+        }).to(iconRef.current, {
+          x: 0,
+          duration: 0.4,
+          ease: "power1.inOut",
+        });
+        break;
+
+      case "mechanical-spin":
+        tl.to(iconRef.current, {
+          rotation: 180,
+          duration: 2,
+          ease: "none",
+        }).to(iconRef.current, {
+          rotation: 360,
+          duration: 2,
+          ease: "none",
+        });
+        break;
+
+      case "bounce-load":
+        tl.to(iconRef.current, {
+          y: -10,
+          duration: 0.4,
+          ease: "power2.out",
+        }).to(iconRef.current, {
+          y: 0,
+          duration: 0.4,
+          ease: "bounce.out",
+        }).to(iconRef.current, {
+          y: 0,
+          duration: 0.8,
+        });
+        break;
+
+      case "page-flip":
+        tl.to(iconRef.current, {
+          rotationY: 180,
+          duration: 1,
+          ease: "power1.inOut",
+        }).to(iconRef.current, {
+          rotationY: 360,
+          duration: 1,
+          ease: "power1.inOut",
+        }).to(iconRef.current, {
+          rotationY: 0,
+          duration: 0,
+        });
+        break;
+
+      case "emergency-flash":
+        tl.to(iconRef.current, {
+          scale: 1.3,
+          opacity: 0.6,
+          duration: 0.3,
+          ease: "power2.out",
+        }).to(iconRef.current, {
+          scale: 1,
+          opacity: 1,
+          duration: 0.3,
+          ease: "power2.in",
+        }).to(iconRef.current, {
+          scale: 1,
+          duration: 0.8,
+        });
+        break;
+
+      default:
+        tl.to(iconRef.current, {
+          y: -6,
+          duration: 1,
+          ease: "power1.inOut",
+        }).to(iconRef.current, {
+          y: 0,
+          duration: 1,
+          ease: "power1.inOut",
+        });
+    }
+
+    return () => { tl.kill(); };
+  }, [category.animation]);
+
+  // Hover animation
+  useEffect(() => {
+    if (!iconRef.current) return;
+    if (isHovered) {
+      gsap.to(iconRef.current, { scale: 1.3, duration: 0.3, ease: "back.out(1.7)" });
+    } else {
+      gsap.to(iconRef.current, { scale: 1, duration: 0.3, ease: "power2.out" });
+    }
+  }, [isHovered]);
+
+  const Icon = category.Icon;
+
+  return (
+    <div
+      ref={cardRef}
+      className="relative flex flex-col overflow-hidden border-2 border-black cursor-pointer"
+      style={{
+        boxShadow: isHovered ? `6px 6px 0 ${color ?? "#000"}` : "4px 4px 0 #000",
+        transform: isHovered ? "translate(-2px,-2px)" : "translate(0,0)",
+        transition: "box-shadow 0.2s ease, transform 0.2s ease",
+        background: "#fff",
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Cover */}
+      <div
+        className="relative flex items-center justify-center overflow-hidden"
+        style={{
+          height: 160,
+          backgroundColor: isHovered ? (color ?? "#eab308") : `${color ?? "#eab308"}22`,
+          transition: "background-color 0.3s ease",
+        }}
+      >
+        <div ref={bgRef} className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `radial-gradient(circle, ${color ?? "#000"}33 1px, transparent 1px)`,
+            backgroundSize: "20px 20px",
+            opacity: isHovered ? 0.8 : 0.3,
+            transition: "opacity 0.3s ease",
+          }} />
+        <div ref={iconRef} className="relative z-10 text-5xl"
+          style={{ color: isHovered ? "#fff" : (color ?? "#000") }}>
+          <category.Icon />
+        </div>
+        <div ref={particlesRef} />
+      </div>
+
+      {/* Content */}
+      <div className="p-4 border-t-2 border-black">
+        <h3 className="font-black text-base text-black" style={khFont}>
+          {kh ? category.titleKh : category.titleEn}
+        </h3>
+      </div>
+    </div>
+  );
+}
