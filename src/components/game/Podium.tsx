@@ -110,7 +110,7 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
         <div className="inline-block bg-black text-yellow-400 text-xs font-black tracking-widest uppercase px-3 py-1.5 mb-3" style={khFont}>
           {kh ? "ចប់ហ្គេម" : "Game Over"}
         </div>
-        <h2 className="text-4xl font-black" style={khFont}>
+        <h2 className="text-4xl font-black text-white" style={khFont}>
           {kh ? "ចំណាត់ថ្នាក់" : "Final Results"}
         </h2>
       </div>
@@ -130,23 +130,32 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
               style={{ opacity: isRevealed ? 1 : 0, transform: isRevealed ? "translateY(0) scale(1)" : "translateY(24px) scale(0.85)" }}>
               {entry ? (
                 <>
-                  {/* Avatar */}
-                  <div className="text-center">
+                  {/* Avatar + name above block */}
+                  <div className="flex flex-col items-center gap-1">
                     <div className="relative">
-                      <div className="w-14 h-14 border-2 border-black flex items-center justify-center font-black text-xl mx-auto mb-1"
-                        style={{ backgroundColor: cfg.color, boxShadow: isMe ? `0 0 16px ${cfg.color}` : undefined }}>
-                        {entry.displayName.charAt(0).toUpperCase()}
+                      {/* Avatar with colored border */}
+                      <div
+                        className="w-14 h-14 flex items-center justify-center font-black text-xl mx-auto"
+                        style={{
+                          backgroundColor: cfg.color,
+                          border: `3px solid ${cfg.color}`,
+                          boxShadow: `0 0 0 3px #000, 0 0 14px ${cfg.color}`,
+                          borderRadius: "50%",
+                        }}>
+                        <span className="text-black">{entry.displayName.charAt(0).toUpperCase()}</span>
                       </div>
                       {isMe && (
-                        <div className="absolute -top-1 -right-1 w-5 h-5 bg-yellow-400 border border-black flex items-center justify-center">
+                        <div className="absolute -top-1 -right-1 w-5 h-5 bg-yellow-400 border border-black rounded-full flex items-center justify-center">
                           <Star size={10} className="text-black" />
                         </div>
                       )}
                     </div>
-                    <div className="text-xs font-black max-w-[80px] truncate text-center" style={khFont}>
+                    {/* Name always white */}
+                    <div className="text-xs font-black max-w-[80px] truncate text-center text-white" style={khFont}>
                       {entry.displayName}{isMe ? " ★" : ""}
                     </div>
-                    <div className="text-xs font-bold text-zinc-500 tabular-nums">
+                    {/* Score always white */}
+                    <div className="text-xs font-bold text-white/80 tabular-nums">
                       {entry.totalScore.toLocaleString()}
                     </div>
                     <div className="text-lg">{cfg.emoji}</div>
@@ -155,7 +164,7 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
                   <div className={`w-24 ${cfg.height} border-2 border-black flex flex-col items-center justify-center gap-1`}
                     style={{ backgroundColor: cfg.color, boxShadow: "4px 4px 0 #000" }}>
                     <Icon size={20} className="text-black" />
-                    <span className="text-xs font-black" style={khFont}>{kh ? cfg.labelKm : cfg.label}</span>
+                    <span className="text-xs font-black text-black" style={khFont}>{kh ? cfg.labelKm : cfg.label}</span>
                   </div>
                 </>
               ) : (
@@ -168,15 +177,15 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
 
       {/* My result (if not top 3) */}
       {myEntry && myRank && myRank > 3 && (
-        <div className="border-2 border-black p-4 bg-yellow-50 text-center" style={{ boxShadow: "3px 3px 0 #000" }}>
-          <div className="text-sm font-bold text-zinc-600" style={khFont}>
+        <div className="border-2 border-yellow-400 p-4 bg-white/5 text-center" style={{ boxShadow: "3px 3px 0 #ffd700" }}>
+          <div className="text-sm font-bold text-white/70" style={khFont}>
             {kh ? "លទ្ធផលរបស់អ្នក" : "Your result"}
           </div>
-          <div className="text-2xl font-black">
+          <div className="text-2xl font-black text-white">
             #{myRank} — {myEntry.totalScore.toLocaleString()} pts
           </div>
           {myRank <= 10 && (
-            <div className="text-xs font-bold text-green-600 mt-1" style={khFont}>
+            <div className="text-xs font-bold text-green-400 mt-1" style={khFont}>
               {kh ? "ល្អណាស់! អ្នកស្ថិតក្នុង Top 10!" : "Great job! You're in the Top 10!"}
             </div>
           )}
@@ -185,16 +194,16 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
 
       {/* Full leaderboard */}
       <div className="w-full max-w-md">
-        <div className="text-xs font-black uppercase tracking-widest mb-2 text-zinc-500" style={khFont}>
+        <div className="text-xs font-black uppercase tracking-widest mb-2 text-white/60" style={khFont}>
           {kh ? "ចំណាត់ថ្នាក់ទាំងអស់" : "Full Rankings"}
         </div>
         {finalLeaderboard.slice(0, 10).map((entry, i) => (
           <div key={entry.userId}
-            className="flex items-center gap-3 p-2 border-b border-black/10"
-            style={{ backgroundColor: entry.userId === currentUserId ? "#fef9c3" : undefined }}>
-            <span className="w-6 text-sm font-black text-zinc-400">#{i + 1}</span>
-            <span className="flex-1 text-sm font-bold truncate" style={khFont}>{entry.displayName}</span>
-            <span className="text-sm font-black tabular-nums">{entry.totalScore.toLocaleString()}</span>
+            className="flex items-center gap-3 p-2 border-b border-white/10"
+            style={{ backgroundColor: entry.userId === currentUserId ? "rgba(255,215,0,0.15)" : undefined }}>
+            <span className="w-6 text-sm font-black text-white/50">#{i + 1}</span>
+            <span className="flex-1 text-sm font-bold truncate text-white" style={khFont}>{entry.displayName}</span>
+            <span className="text-sm font-black tabular-nums text-white">{entry.totalScore.toLocaleString()}</span>
           </div>
         ))}
       </div>
