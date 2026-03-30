@@ -19,7 +19,7 @@ interface NavbarProps {
   session?: JWTPayload | null;
 }
 
-function ProfileMenu({ session }: { session: JWTPayload }) {
+function ProfileMenu({ session, kh }: { session: JWTPayload; kh: boolean }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -116,6 +116,14 @@ function ProfileMenu({ session }: { session: JWTPayload }) {
                 My Profile
               </Link>
             )}
+            <Link
+              href="/pricing"
+              className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-amber-600 hover:bg-amber-50 transition-colors"
+              onClick={() => setOpen(false)}
+            >
+              <Crown size={14} className="text-amber-500" />
+              {kh ? "ធ្វើឱ្យប្រសើរឡើង" : "Upgrade Plan"}
+            </Link>
             <div className="h-px bg-black/10 my-1" />
             <form action={logoutAction}>
               <button
@@ -211,7 +219,7 @@ export function Navbar({ session }: NavbarProps) {
               {kh ? "ធ្វើឱ្យប្រសើរ" : "Upgrade"}
             </button>
             {session ? (
-              <ProfileMenu session={session} />
+              <ProfileMenu session={session} kh={kh} />
             ) : (
               <Link
                 href="/login"

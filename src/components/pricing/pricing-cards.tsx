@@ -41,6 +41,7 @@ const PLANS = [
       { en: "Export results (CSV/PDF)", kh: "នាំចេញលទ្ធផល (CSV/PDF)" },
       { en: "Advanced game modes", kh: "របៀបហ្គេមកម្រិតខ្ពស់" },
       { en: "Remove KWD branding", kh: "លុបស្លាក KWD" },
+      { en: "Suar AI — unlimited queries", kh: "Suar AI — សំណួរគ្មានដែនកំណត់" },
     ],
     locked: [],
     cta: { en: "Try Free for 30 Days", kh: "សាកល្បងឥតគិតថ្លៃ ៣០ ថ្ងៃ" },
@@ -101,18 +102,20 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
 
         {/* Yearly toggle */}
         <div className="flex items-center justify-center gap-3 mt-6">
-          <span className={`text-sm ${!yearly ? "text-white" : "text-white/40"}`} style={khFont}>
+          <span className={`text-sm font-semibold transition-colors ${!yearly ? "text-white" : "text-white/35"}`} style={khFont}>
             {kh ? "ប្រចាំខែ" : "Monthly"}
           </span>
           <button
             onClick={() => setYearly(!yearly)}
-            className={`relative w-12 h-6 rounded-full transition-colors ${yearly ? "bg-amber-400" : "bg-white/20"}`}
+            role="switch"
+            aria-checked={yearly}
+            className={`relative w-12 h-6 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${yearly ? "bg-amber-400" : "bg-white/20"}`}
           >
-            <span className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${yearly ? "translate-x-7" : "translate-x-1"}`} />
+            <span className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow-md transition-transform duration-300 ${yearly ? "translate-x-6" : "translate-x-0"}`} />
           </button>
-          <span className={`text-sm ${yearly ? "text-white" : "text-white/40"}`} style={khFont}>
+          <span className={`text-sm font-semibold transition-colors flex items-center gap-1.5 ${yearly ? "text-white" : "text-white/35"}`} style={khFont}>
             {kh ? "ប្រចាំឆ្នាំ" : "Yearly"}
-            <span className="ml-1.5 text-xs bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded-full">
+            <span className="ml-1.5 text-xs bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded-full font-black">
               {kh ? "សន្សំ ២០%" : "Save 20%"}
             </span>
           </span>
@@ -128,10 +131,10 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
           return (
             <div
               key={plan.key}
-              className={`relative rounded-2xl p-6 flex flex-col transition-transform hover:-translate-y-1 ${
+              className={`relative rounded-2xl p-6 flex flex-col transition-all duration-200 cursor-default group ${
                 plan.highlight
-                  ? "bg-gradient-to-b from-amber-400/10 to-amber-900/5 border-2 border-amber-400/60 shadow-[0_0_40px_rgba(251,191,36,0.15)]"
-                  : "bg-white/5 border border-white/10"
+                  ? "bg-gradient-to-b from-amber-400/12 via-amber-400/5 to-transparent border-2 border-amber-400/60 shadow-[0_0_40px_rgba(251,191,36,0.15)] hover:shadow-[0_0_60px_rgba(251,191,36,0.25)] hover:-translate-y-1.5"
+                  : "bg-white/4 border border-white/10 hover:border-white/25 hover:bg-white/6 hover:-translate-y-1"
               }`}
             >
               {/* Badge */}

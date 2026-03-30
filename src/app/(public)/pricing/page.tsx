@@ -1,4 +1,4 @@
-import { PricingCards } from "@/components/pricing/pricing-cards";
+import { PricingPageClient } from "./pricing-client";
 
 export const metadata = {
   title: "Pricing — KWD",
@@ -6,5 +6,5 @@ export const metadata = {
 };
 
 export default function PricingPage() {
-  return <PricingCards lang="en" />;
+  return <PricingPageClient />;
 }
