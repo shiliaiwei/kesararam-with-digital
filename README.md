@@ -1595,3 +1595,27 @@ Daily Challenge → MCQ + True/False + Image Pick
 Exam Simulation → MCQ + True/False (mirrors real exam)
 
  tha all nice . 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ https://chathub.gg/prompt-library
