@@ -80,15 +80,16 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
           <button
             key={sign.id}
             onClick={() => setSelectedSign(sign)}
-            className="aspect-square bg-white border-2 border-black hover:shadow-[6px_6px_0_#000] transition-all duration-200 p-2 group"
+            className="aspect-square bg-white border-2 border-black hover:shadow-[6px_6px_0_#000] transition-all duration-200 group overflow-hidden"
             style={{ boxShadow: "4px 4px 0 #000" }}
           >
-            <div className="relative w-full h-full">
+            <div className="relative w-full h-full flex items-center justify-center p-2">
               <Image
                 src={sign.imageUrl}
                 alt={kh ? sign.titleKm : sign.titleEn}
                 fill
-                className="object-contain group-hover:scale-110 transition-transform duration-200"
+                sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 16vw, 8vw"
+                className="object-contain p-2 group-hover:scale-105 transition-transform duration-200"
                 unoptimized
               />
             </div>
