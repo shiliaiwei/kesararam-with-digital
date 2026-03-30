@@ -7,7 +7,7 @@ import { CountdownTimer } from "@/components/game/CountdownTimer";
 import { AnswerGrid } from "@/components/game/AnswerGrid";
 import { sounds } from "@/lib/game-sounds";
 import { GAME_MODE_CONFIG } from "@/lib/game-engine";
-import { Zap, Flame, ChevronRight, RotateCcw, Trophy } from "lucide-react";
+import { Zap, Flame, ChevronRight, RotateCcw } from "lucide-react";
 
 interface SoloQuestion {
   id: number;
@@ -399,17 +399,6 @@ export default function SoloPage() {
                 <div className="text-xs font-bold text-zinc-500 mt-1" style={khFont}>{s.label}</div>
               </div>
             ))}
-          </div>
-
-          {/* Personal best */}
-          <div className="flex items-center gap-3 border-2 border-black p-4 bg-zinc-50" style={{ boxShadow: "3px 3px 0 #000" }}>
-            <Trophy size={20} className="text-yellow-500 flex-shrink-0" />
-            <div>
-              <div className="text-xs font-black uppercase tracking-widest text-zinc-500" style={khFont}>
-                {kh ? "ពិន្ទុខ្ពស់បំផុត" : "Personal Best"}
-              </div>
-              <div className="font-black text-xl tabular-nums">{r.personalBest.toLocaleString()}</div>
-            </div>
           </div>
 
           {/* Per-question breakdown */}

@@ -1,10 +1,76 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { gameScores, userStreaks } from "@/db/schema/content";
-import { users } from "@/db/schema/users";
 import { getSession } from "@/lib/auth";
 import { calculateScore } from "@/lib/game-engine";
-import { eq, and, sql } from "drizzle-orm";
+
+interface AnswerInput {
+  questionId: number;
+  answerId: number | null;
+  isCorrect: boolean;
+  timeTakenMs: number;
+}
+
+export async function POST(req: NextRequest) {
+  // Solo mode — no DB recording for anyone, just calculate and return stats
+  await getSession(); // still check session but don't use it for recording
+
+  const body = await req.json();
+  const { answers: answerInputs, timeTakenSeconds } = body as {
+    sessionId: number;
+    answers: AnswerInput[];
+    timeTakenSeconds: number;
+    gameMode: string;
+    difficulty: string;
+  };
+
+  let totalScore = 0;
+  let correctCount = 0;
+  let streak = 0;
+  const perQuestion = [];
+
+  for (const ans of answerInputs) {
+    const isCorrect = ans.isCorrect;
+    if (isCorrect) streak++;
+    else streak = 0;
+
+    const remainingTimeMs = Math.max(0, 30000 - ans.timeTakenMs);
+    const scoreResult = calculateScore({
+      isCorrect,
+      difficulty: "medium",
+      scoringMode: "speed",
+      remainingTimeMs,
+      totalTimeMs: 30000,
+      currentStreak: streak,
+    });
+
+    totalScore += scoreResult.totalPoints;
+    if (isCorrect) correctCount++;
+
+    perQuestion.push({
+      questionId: ans.questionId,
+      isCorrect,
+      pointsEarned: scoreResult.totalPoints,
+      timeTakenMs: ans.timeTakenMs,
+    });
+  }
+
+  const accuracyPercentage =
+    answerInputs.length > 0
+      ? Math.round((correctCount / answerInputs.length) * 100)
+      : 0;
+
+  return NextResponse.json({
+    totalScore,
+    accuracyPercentage,
+    timeTakenSeconds,
+    correctAnswers: correctCount,
+    totalQuestions: answerInputs.length,
+    personalBest: totalScore,
+    isNewPersonalBest: false,
+    perQuestion,
+  });
+}
+
 
 interface AnswerInput {
   questionId: number;

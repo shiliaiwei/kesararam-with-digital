@@ -10,65 +10,107 @@ import { Users, ChevronRight } from "lucide-react";
 
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
-// ── Game mode SVG icons ──────────────────────────────────────────────────────
+// ── Game mode SVG icons — animated, centered ────────────────────────────────
 
-function IconQuickQuiz() {
-  return <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
-    <circle cx="24" cy="24" r="20" fill="#fef08a" stroke="#ca8a04" strokeWidth="2.5"/>
-    <text x="24" y="32" textAnchor="middle" fontSize="26" fontWeight="900" fill="#ca8a04" fontFamily="system-ui">?</text>
-  </svg>;
+function IconQuickQuiz({ animated }: { animated?: boolean }) {
+  return (
+    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
+      <circle cx="40" cy="40" r="32" fill="#fef08a" stroke="#ca8a04" strokeWidth="3">
+        {animated && <animate attributeName="r" values="32;34;32" dur="1.8s" repeatCount="indefinite" />}
+      </circle>
+      <circle cx="40" cy="40" r="24" fill="#fde047" stroke="#ca8a04" strokeWidth="1.5" opacity="0.5" />
+      <text x="40" y="52" textAnchor="middle" fontSize="36" fontWeight="900" fill="#92400e" fontFamily="system-ui">?</text>
+      {animated && <>
+        <circle cx="62" cy="18" r="4" fill="#fbbf24" opacity="0.7"><animate attributeName="opacity" values="0.7;0.2;0.7" dur="2s" repeatCount="indefinite" /></circle>
+        <circle cx="18" cy="62" r="3" fill="#fbbf24" opacity="0.5"><animate attributeName="opacity" values="0.5;0.1;0.5" dur="2.4s" repeatCount="indefinite" /></circle>
+      </>}
+    </svg>
+  );
 }
-function IconSpeedRound() {
-  return <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
-    <polygon points="24,4 28,20 44,20 31,30 36,46 24,36 12,46 17,30 4,20 20,20" fill="#fca5a5" stroke="#b91c1c" strokeWidth="2"/>
-    <polygon points="24,10 27,21 38,21 29,28 32,39 24,33 16,39 19,28 10,21 21,21" fill="#ef4444"/>
-  </svg>;
+
+function IconSpeedRound({ animated }: { animated?: boolean }) {
+  return (
+    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
+      <polygon points="40,6 46,28 68,28 50,44 57,66 40,52 23,66 30,44 12,28 34,28" fill="#fca5a5" stroke="#b91c1c" strokeWidth="2.5">
+        {animated && <animateTransform attributeName="transform" type="rotate" values="0 40 40;5 40 40;-5 40 40;0 40 40" dur="0.8s" repeatCount="indefinite" />}
+      </polygon>
+      <polygon points="40,14 44,30 56,30 46,40 50,54 40,46 30,54 34,40 24,30 36,30" fill="#ef4444" />
+      <text x="40" y="46" textAnchor="middle" fontSize="16" fontWeight="900" fill="#fff" fontFamily="system-ui">⚡</text>
+    </svg>
+  );
 }
-function IconSignChallenge() {
-  return <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
-    <polygon points="24,4 44,24 24,44 4,24" fill="#bfdbfe" stroke="#1d4ed8" strokeWidth="2.5"/>
-    <circle cx="24" cy="24" r="8" fill="#1d4ed8"/>
-    <line x1="24" y1="18" x2="24" y2="26" stroke="#fff" strokeWidth="2.5" strokeLinecap="round"/>
-    <circle cx="24" cy="30" r="1.5" fill="#fff"/>
-  </svg>;
+
+function IconSignChallenge({ animated }: { animated?: boolean }) {
+  return (
+    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
+      <polygon points="40,6 74,40 40,74 6,40" fill="#bfdbfe" stroke="#1d4ed8" strokeWidth="3">
+        {animated && <animate attributeName="stroke-width" values="3;5;3" dur="1.5s" repeatCount="indefinite" />}
+      </polygon>
+      <polygon points="40,14 66,40 40,66 14,40" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="1" opacity="0.5" />
+      <circle cx="40" cy="36" r="5" fill="#1d4ed8" />
+      <rect x="38" y="44" width="4" height="4" rx="2" fill="#1d4ed8" />
+    </svg>
+  );
 }
-function IconMixedBattle() {
-  return <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
-    <rect x="6" y="6" width="16" height="16" rx="3" fill="#e9d5ff" stroke="#7e22ce" strokeWidth="2"/>
-    <rect x="26" y="6" width="16" height="16" rx="3" fill="#e9d5ff" stroke="#7e22ce" strokeWidth="2"/>
-    <rect x="6" y="26" width="16" height="16" rx="3" fill="#e9d5ff" stroke="#7e22ce" strokeWidth="2"/>
-    <rect x="26" y="26" width="16" height="16" rx="3" fill="#7e22ce" stroke="#7e22ce" strokeWidth="2"/>
-    <line x1="14" y1="14" x2="34" y2="34" stroke="#7e22ce" strokeWidth="2" strokeDasharray="3 2"/>
-  </svg>;
+
+function IconMixedBattle({ animated }: { animated?: boolean }) {
+  return (
+    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
+      <rect x="8" y="8" width="28" height="28" rx="5" fill="#e9d5ff" stroke="#7e22ce" strokeWidth="2.5">
+        {animated && <animate attributeName="y" values="8;5;8" dur="1.2s" repeatCount="indefinite" />}
+      </rect>
+      <rect x="44" y="8" width="28" height="28" rx="5" fill="#e9d5ff" stroke="#7e22ce" strokeWidth="2.5">
+        {animated && <animate attributeName="y" values="8;11;8" dur="1.2s" repeatCount="indefinite" />}
+      </rect>
+      <rect x="8" y="44" width="28" height="28" rx="5" fill="#e9d5ff" stroke="#7e22ce" strokeWidth="2.5">
+        {animated && <animate attributeName="y" values="44;47;44" dur="1.2s" repeatCount="indefinite" />}
+      </rect>
+      <rect x="44" y="44" width="28" height="28" rx="5" fill="#7e22ce" stroke="#7e22ce" strokeWidth="2.5">
+        {animated && <animate attributeName="y" values="44;41;44" dur="1.2s" repeatCount="indefinite" />}
+      </rect>
+      <text x="58" y="64" textAnchor="middle" fontSize="16" fill="#fff" fontWeight="900">⚔</text>
+    </svg>
+  );
 }
-function IconDailyChallenge() {
-  return <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
-    <rect x="6" y="10" width="36" height="32" rx="3" fill="#bbf7d0" stroke="#15803d" strokeWidth="2"/>
-    <rect x="6" y="10" width="36" height="10" rx="3" fill="#15803d"/>
-    <line x1="16" y1="6" x2="16" y2="14" stroke="#15803d" strokeWidth="2.5" strokeLinecap="round"/>
-    <line x1="32" y1="6" x2="32" y2="14" stroke="#15803d" strokeWidth="2.5" strokeLinecap="round"/>
-    <circle cx="18" cy="28" r="3" fill="#15803d"/>
-    <circle cx="30" cy="28" r="3" fill="#15803d"/>
-    <circle cx="18" cy="36" r="3" fill="#15803d" opacity="0.4"/>
-  </svg>;
+
+function IconDailyChallenge({ animated }: { animated?: boolean }) {
+  return (
+    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
+      <rect x="10" y="16" width="60" height="54" rx="5" fill="#bbf7d0" stroke="#15803d" strokeWidth="2.5" />
+      <rect x="10" y="16" width="60" height="18" rx="5" fill="#15803d" />
+      <line x1="26" y1="10" x2="26" y2="24" stroke="#15803d" strokeWidth="3" strokeLinecap="round" />
+      <line x1="54" y1="10" x2="54" y2="24" stroke="#15803d" strokeWidth="3" strokeLinecap="round" />
+      <circle cx="28" cy="46" r="5" fill="#15803d">
+        {animated && <animate attributeName="r" values="5;7;5" dur="1s" repeatCount="indefinite" />}
+      </circle>
+      <circle cx="52" cy="46" r="5" fill="#15803d" opacity="0.5" />
+      <circle cx="28" cy="60" r="5" fill="#15803d" opacity="0.3" />
+      <circle cx="52" cy="60" r="5" fill="#15803d" opacity="0.3" />
+    </svg>
+  );
 }
-function IconExamSimulation() {
-  return <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
-    <polygon points="24,4 30,18 44,18 33,28 37,42 24,33 11,42 15,28 4,18 18,18" fill="#fed7aa" stroke="#c2410c" strokeWidth="2"/>
-    <polygon points="24,10 28,20 38,20 30,26 33,36 24,30 15,36 18,26 10,20 20,20" fill="#f97316"/>
-    <circle cx="24" cy="22" r="4" fill="#fff" opacity="0.8"/>
-  </svg>;
+
+function IconExamSimulation({ animated }: { animated?: boolean }) {
+  return (
+    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
+      <polygon points="40,4 48,28 74,28 53,44 61,68 40,53 19,68 27,44 6,28 32,28" fill="#fed7aa" stroke="#c2410c" strokeWidth="2.5">
+        {animated && <animateTransform attributeName="transform" type="scale" values="1 1;1.05 1.05;1 1" additive="sum" dur="1.5s" repeatCount="indefinite" />}
+      </polygon>
+      <polygon points="40,12 46,30 62,30 49,40 54,58 40,48 26,58 31,40 18,30 34,30" fill="#f97316" />
+      <circle cx="40" cy="36" r="6" fill="#fff" opacity="0.9" />
+    </svg>
+  );
 }
 
 const GAME_MODE_ICONS = [IconQuickQuiz, IconSpeedRound, IconSignChallenge, IconMixedBattle, IconDailyChallenge, IconExamSimulation];
 
 const GAME_MODES = [
-  { id: "quick-quiz", title: "Quick Quiz", titleKh: "សំណួរលឿន", desc: "10 random questions across all categories.", descKh: "សំណួរចៃដន្យ ១០", color: "#eab308", accent: "#ca8a04", href: "/play/solo?mode=quick-quiz", badge: "10Q · 30s" },
-  { id: "speed-round", title: "Speed Round", titleKh: "វគ្គល្បឿន", desc: "Fast MCQ only — tap fast, score big.", descKh: "MCQ លឿន — ចុចឆាប់", color: "#ef4444", accent: "#b91c1c", href: "/play/solo?mode=speed-round", badge: "20Q · 15s" },
-  { id: "sign-challenge", title: "Sign Challenge", titleKh: "ប្រឡងសញ្ញា", desc: "Identify traffic signs from images only.", descKh: "ស្គាល់សញ្ញាផ្លូវវិថី", color: "#3b82f6", accent: "#1d4ed8", href: "/play/solo?mode=sign-challenge", badge: "15Q · 20s" },
-  { id: "mixed-battle", title: "Mixed Battle", titleKh: "ប្រយុទ្ធចម្រុះ", desc: "All categories, all question types.", descKh: "ប្រភេទទាំង ៨", color: "#a855f7", accent: "#7e22ce", href: "/play/solo?mode=mixed-battle", badge: "20Q · 30s" },
-  { id: "daily-challenge", title: "Daily Challenge", titleKh: "បញ្ហាប្រចាំថ្ងៃ", desc: "New questions every day. Build your streak.", descKh: "សំណួរថ្មីរៀងរាល់ថ្ងៃ", color: "#22c55e", accent: "#15803d", href: "/play/solo?mode=daily-challenge", badge: "15Q · 30s" },
-  { id: "exam-simulation", title: "Exam Simulation", titleKh: "ត្រាប់តាមប្រឡង", desc: "40 questions mirroring the real Cambodia exam.", descKh: "ស្រដៀងប្រឡងពិត", color: "#f97316", accent: "#c2410c", href: "/play/solo?mode=exam-simulation", badge: "40Q · 45s" },
+  { id: "quick-quiz",      title: "Quick Quiz",      titleKh: "សំណួរលឿន",       desc: "10 random questions across all categories.",     descKh: "សំណួរចៃដន្យ ១០",        color: "#eab308", accent: "#ca8a04", href: "/play/solo?mode=quick-quiz",      badge: "10Q · 30s", cta: "Play Now →",  ctaKh: "លេងឥឡូវ" },
+  { id: "speed-round",     title: "Speed Round",     titleKh: "វគ្គល្បឿន",       desc: "Fast MCQ only — tap fast, score big.",           descKh: "MCQ លឿន — ចុចឆាប់",       color: "#ef4444", accent: "#b91c1c", href: "/play/solo?mode=speed-round",     badge: "20Q · 15s", cta: "Go Fast →",   ctaKh: "ចូលប្រកួត" },
+  { id: "sign-challenge",  title: "Sign Challenge",  titleKh: "ប្រឡងសញ្ញា",     desc: "Identify traffic signs from images only.",       descKh: "ស្គាល់សញ្ញាផ្លូវវិថី",     color: "#3b82f6", accent: "#1d4ed8", href: "/play/solo?mode=sign-challenge",  badge: "15Q · 20s", cta: "Challenge →", ctaKh: "ប្រឡង" },
+  { id: "mixed-battle",    title: "Mixed Battle",    titleKh: "ប្រយុទ្ធចម្រុះ", desc: "All categories, all question types.",            descKh: "ប្រភេទទាំង ៨",             color: "#a855f7", accent: "#7e22ce", href: "/play/solo?mode=mixed-battle",    badge: "20Q · 30s", cta: "Battle! →",   ctaKh: "ប្រយុទ្ធ" },
+  { id: "daily-challenge", title: "Daily Challenge", titleKh: "បញ្ហាប្រចាំថ្ងៃ", desc: "New questions every day. Build your streak.",    descKh: "សំណួរថ្មីរៀងរាល់ថ្ងៃ",     color: "#22c55e", accent: "#15803d", href: "/play/solo?mode=daily-challenge", badge: "15Q · 30s", cta: "Daily →",     ctaKh: "ប្រចាំថ្ងៃ" },
+  { id: "exam-simulation", title: "Exam Simulation", titleKh: "ត្រាប់តាមប្រឡង", desc: "40 questions mirroring the real Cambodia exam.", descKh: "ស្រដៀងប្រឡងពិត",           color: "#f97316", accent: "#c2410c", href: "/play/solo?mode=exam-simulation", badge: "40Q · 45s", cta: "Simulate →",  ctaKh: "ត្រាប់តាម" },
 ];
 
 const STATS = [
@@ -87,7 +129,6 @@ function GameModeCard({ mode, index, kh, khFont }: {
   khFont: React.CSSProperties;
 }) {
   const cardRef = useRef<HTMLAnchorElement>(null);
-  const iconRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState(false);
   const IconComp = GAME_MODE_ICONS[index];
 
@@ -97,42 +138,25 @@ function GameModeCard({ mode, index, kh, khFont }: {
       const ctx = new AudioCtx();
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
+      osc.connect(gain); gain.connect(ctx.destination);
       osc.type = "triangle";
-      osc.frequency.setValueAtTime(400 + index * 60, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(600 + index * 60, ctx.currentTime + 0.1);
-      gain.gain.setValueAtTime(0.05, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.15);
+      osc.frequency.setValueAtTime(380 + index * 55, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(560 + index * 55, ctx.currentTime + 0.12);
+      gain.gain.setValueAtTime(0.06, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
+      osc.start(); osc.stop(ctx.currentTime + 0.18);
     } catch { /* silent */ }
   }, [index]);
 
   useEffect(() => {
     if (!cardRef.current) return;
-    gsap.set(cardRef.current, { opacity: 0, y: 50, scale: 0.92 });
+    gsap.set(cardRef.current, { opacity: 0, y: 48, scale: 0.93 });
     const trigger = ScrollTrigger.create({
-      trigger: cardRef.current,
-      start: "top 88%",
-      once: true,
-      onEnter: () => gsap.to(cardRef.current, {
-        opacity: 1, y: 0, scale: 1,
-        duration: 0.55, delay: index * 0.08, ease: "back.out(1.5)",
-      }),
+      trigger: cardRef.current, start: "top 90%", once: true,
+      onEnter: () => gsap.to(cardRef.current, { opacity: 1, y: 0, scale: 1, duration: 0.55, delay: index * 0.07, ease: "back.out(1.6)" }),
     });
     return () => trigger.kill();
   }, [index]);
-
-  useEffect(() => {
-    if (!iconRef.current) return;
-    gsap.to(iconRef.current, {
-      scale: hovered ? 1.25 : 1,
-      rotation: hovered ? ([10, -10, 6, -6, 0] as number[])[index % 5] : 0,
-      duration: 0.35,
-      ease: "back.out(1.7)",
-    });
-  }, [hovered, index]);
 
   return (
     <Link
@@ -140,69 +164,88 @@ function GameModeCard({ mode, index, kh, khFont }: {
       href={mode.href}
       className="group relative flex flex-col overflow-hidden border-2 border-black"
       style={{
-        boxShadow: hovered ? `6px 6px 0 ${mode.accent}` : "4px 4px 0 #000",
-        borderRadius: "3px",
-        transform: hovered ? "translate(-3px,-3px)" : "translate(0,0)",
+        boxShadow: hovered ? `8px 8px 0 ${mode.accent}` : "4px 4px 0 #000",
+        transform: hovered ? "translate(-4px,-4px)" : "translate(0,0)",
         transition: "box-shadow 0.2s ease, transform 0.2s ease",
         background: "#fff",
       }}
       onMouseEnter={() => { setHovered(true); playSound(); }}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className="h-2 w-full" style={{ backgroundColor: mode.color }} />
+      {/* Color top stripe */}
+      <div className="h-1.5 w-full" style={{ backgroundColor: mode.color }} />
+
+      {/* Cover area — centered icon with animated bg */}
       <div
-        className="relative flex items-center justify-between px-6 py-8 border-b-2 border-black overflow-hidden"
-        style={{ backgroundColor: hovered ? mode.color : `${mode.color}18`, transition: "background-color 0.3s ease" }}
+        className="relative flex items-center justify-center overflow-hidden"
+        style={{
+          height: 140,
+          backgroundColor: hovered ? mode.color : `${mode.color}20`,
+          transition: "background-color 0.3s ease",
+        }}
       >
+        {/* Animated dot pattern */}
         <div className="absolute inset-0 pointer-events-none"
           style={{
-            background: "repeating-linear-gradient(-55deg, transparent 0, transparent 18px, rgba(0,0,0,0.04) 18px, rgba(0,0,0,0.04) 36px)",
-            opacity: hovered ? 1 : 0, transition: "opacity 0.3s ease",
-          }}
-        />
-        <div ref={iconRef} className="w-14 h-14 flex-shrink-0">
-          <IconComp />
+            backgroundImage: `radial-gradient(circle, ${mode.accent}33 1px, transparent 1px)`,
+            backgroundSize: "18px 18px",
+            opacity: hovered ? 1 : 0.4,
+            transition: "opacity 0.3s ease",
+          }} />
+        {/* Glow ring */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="rounded-full"
+            style={{
+              width: 100, height: 100,
+              background: `radial-gradient(circle, ${mode.color}55 0%, transparent 70%)`,
+              transform: hovered ? "scale(1.4)" : "scale(1)",
+              transition: "transform 0.4s ease",
+            }} />
         </div>
-        <span
-          className="text-xs font-black px-3 py-1.5 border-2 border-black"
+        {/* Icon — centered, large */}
+        <div className="relative z-10 w-20 h-20"
+          style={{
+            transform: hovered ? "scale(1.15) rotate(3deg)" : "scale(1) rotate(0deg)",
+            transition: "transform 0.35s cubic-bezier(0.34,1.56,0.64,1)",
+          }}>
+          <IconComp animated={hovered} />
+        </div>
+        {/* Badge top-right */}
+        <div className="absolute top-3 right-3 z-10 text-xs font-black px-2.5 py-1 border-2 border-black"
           style={{
             backgroundColor: hovered ? "#000" : mode.color,
             color: hovered ? mode.color : "#000",
-            borderRadius: "3px",
-            transition: "background-color 0.25s, color 0.25s",
-            ...khFont,
-          }}
-        >
+            transition: "all 0.2s ease",
+          }}>
           {mode.badge}
-        </span>
+        </div>
       </div>
-      <div
-        className="flex flex-col flex-1 p-6 gap-3"
-        style={{ transform: hovered ? "translateY(-2px)" : "translateY(0)", transition: "transform 0.25s ease" }}
-      >
-        <h3 className="text-xl font-black text-black" style={khFont}>
+
+      {/* Content */}
+      <div className="flex flex-col flex-1 p-5 gap-2 border-t-2 border-black">
+        <h3 className="text-lg font-black text-black leading-tight" style={khFont}>
           {kh ? mode.titleKh : mode.title}
         </h3>
         <p className="text-sm text-zinc-500 leading-relaxed flex-1" style={khFont}>
           {kh ? mode.descKh : mode.desc}
         </p>
-        <div className="flex items-center justify-between pt-3 border-t-2 border-black mt-1">
-          <span
-            className="text-sm font-black px-3 py-1 border-2 border-black"
+
+        {/* CTA button — full width, prominent */}
+        <div className="mt-3 pt-3 border-t border-black/10">
+          <div
+            className="w-full flex items-center justify-center gap-2 py-3 font-black text-sm border-2 border-black transition-all duration-200"
             style={{
               backgroundColor: hovered ? "#000" : mode.color,
-              color: hovered ? "#fff" : "#000",
-              borderRadius: "3px",
-              transition: "all 0.25s ease",
-              ...khFont,
+              color: hovered ? mode.color : "#000",
+              boxShadow: hovered ? `inset 0 0 0 2px ${mode.color}` : "none",
             }}
           >
-            {kh ? "ចាប់ផ្តើម" : "Start playing"}
-          </span>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-            style={{ transform: hovered ? "translateX(5px)" : "translateX(0)", transition: "transform 0.25s ease" }}>
-            <path d="M4 10h12M12 6l4 4-4 4" stroke="#000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+            <span style={khFont}>{kh ? mode.ctaKh : mode.cta}</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+              style={{ transform: hovered ? "translateX(4px)" : "translateX(0)", transition: "transform 0.2s ease" }}>
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
         </div>
       </div>
     </Link>
