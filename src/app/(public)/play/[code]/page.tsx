@@ -11,32 +11,59 @@ import { AnswerGrid } from "@/components/game/AnswerGrid";
 import { LeaderboardPanel } from "@/components/game/LeaderboardPanel";
 import { Podium } from "@/components/game/Podium";
 import { ErrorBoundary } from "@/components/game/ErrorBoundary";
-import { Zap, Trophy, Users, Clock, CheckCircle, XCircle, Loader2 } from "lucide-react";
+import {
+  Zap, Trophy, Users, Clock, CheckCircle, XCircle,
+  Loader2, Wifi, WifiOff, BookOpen, Target, Timer, Star
+} from "lucide-react";
 
 type GamePhase = "lobby" | "question" | "results" | "leaderboard" | "podium";
 
-// Safe sound player that won't crash if sounds aren't available
-const safePlaySound = (soundName: string) => {
-  try {
-    // Only play sound if available
-    if (typeof window !== "undefined") {
-      // Sound playing is optional - don't crash if it fails
-      console.log(`Playing sound: ${soundName}`);
-    }
-  } catch (err) {
-    // Silently ignore sound errors
-    console.log("Sound not available");
-  }
+interface SessionInfo {
+  status: string;
+  gameMode: string;
+  category: string | null;
+  difficulty: string | null;
+  scoringMode: string;
+  timePerQuestion: number;
+  maxPlayers: number;
+  questionCount: number;
+  hostName: string;
+}
+
+const MODE_LABELS: Record<string, string> = {
+  "quick-quiz": "Quick Quiz",
+  "speed-round": "Speed Round",
+  "sign-challenge": "Sign Challenge",
+  "mixed-battle": "Mixed Battle",
+  "daily-challenge": "Daily Challenge",
+  "exam-simulation": "Exam Simulation",
+};
+
+const MODE_COLORS: Record<string, string> = {
+  "quick-quiz": "#eab308",
+  "speed-round": "#ef4444",
+  "sign-challenge": "#3b82f6",
+  "mixed-battle": "#a855f7",
+  "daily-challenge": "#22c55e",
+  "exam-simulation": "#f97316",
+};
+
+const DIFF_COLORS: Record<string, string> = {
+  easy: "#22c55e", medium: "#eab308", hard: "#ef4444", mixed: "#a855f7",
 };
 
 export default function StudentGamePage() {
   const params = useParams();
   const router = useRouter();
   const code = (params.code as string)?.toUpperCase();
+  const { lang } = useLang();
+  const kh = lang === "kh";
+  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
   const [joining, setJoining] = useState(true);
   const [joinError, setJoinError] = useState<string | null>(null);
   const [phase, setPhase] = useState<GamePhase>("lobby");
+  const [sessionInfo, setSessionInfo] = useState<SessionInfo | null>(null);
   const [participants, setParticipants] = useState<ParticipantInfo[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState<QuestionPayload | null>(null);
   const [questionIndex, setQuestionIndex] = useState(0);
@@ -44,48 +71,21 @@ export default function StudentGamePage() {
   const [endsAt, setEndsAt] = useState<string | null>(null);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [answerSubmitted, setAnswerSubmitted] = useState(false);
-  const [answerResult, setAnswerResult] = useState<{
-    isCorrect: boolean;
-    pointsEarned: number;
-  } | null>(null);
+  const [answerResult, setAnswerResult] = useState<{ isCorrect: boolean; pointsEarned: number } | null>(null);
   const [correctAnswerId, setCorrectAnswerId] = useState<number | null>(null);
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [podium, setPodium] = useState<LeaderboardEntry[]>([]);
-  const { lang } = useLang();
 
   const handleSSEEvent = useCallback((event: SSEEvent) => {
-    console.log("SSE Event received:", event.type);
-    
     try {
       if (event.type === "lobby_update") {
         setParticipants(event.participants || []);
         setPhase("lobby");
       } else if (event.type === "question_start") {
-        console.log("Question starting - full event:", JSON.stringify(event, null, 2));
-        console.log("Question data:", event.question);
-        console.log("Answers:", event.question?.answers);
-        
-        // Validate question data before setting state
-        if (!event.question) {
-          const error = "CRITICAL: No question in question_start event";
-          console.error(error);
-          logError(error, undefined, { event });
+        if (!event.question?.answers?.length) {
+          logError("Invalid question data", undefined, { event });
           return;
         }
-        if (!event.question.answers || !Array.isArray(event.question.answers)) {
-          const error = "CRITICAL: Invalid answers in question";
-          console.error(error, event.question);
-          logError(error, undefined, { question: event.question });
-          return;
-        }
-        if (event.question.answers.length === 0) {
-          const error = "CRITICAL: Empty answers array in question";
-          console.error(error, event.question);
-          logError(error, undefined, { question: event.question });
-          return;
-        }
-        
-        console.log("Question validation passed, updating state");
         setCurrentQuestion(event.question);
         setQuestionIndex(event.index);
         setTotalQuestions(event.total);
@@ -95,71 +95,49 @@ export default function StudentGamePage() {
         setAnswerResult(null);
         setCorrectAnswerId(null);
         setPhase("question");
-        safePlaySound("question_start");
-        console.log("State updated, phase set to question");
       } else if (event.type === "question_end") {
         setCorrectAnswerId(event.correctAnswerId);
         setLeaderboard(event.leaderboard || []);
         setPhase("results");
-        safePlaySound("question_end");
       } else if (event.type === "leaderboard") {
         setLeaderboard(event.entries || []);
         setPhase("leaderboard");
-      } else if (event.type === "session_paused") {
-        safePlaySound("warning");
-      } else if (event.type === "session_resumed") {
-        safePlaySound("countdown_tick");
       } else if (event.type === "session_end") {
         setPodium(event.podium || []);
         setLeaderboard(event.finalLeaderboard || []);
         setPhase("podium");
-        safePlaySound("game_end");
-      } else if (event.type === "warning") {
-        safePlaySound("warning");
       }
     } catch (error) {
-      console.error("Error handling SSE event:", error);
-      console.error("Event that caused error:", event);
       logError("SSE event handler error", error as Error, { event });
     }
   }, []);
 
-  // Join the game session first - with persistence on refresh
   useEffect(() => {
-    if (!code) {
-      router.push("/play");
-      return;
-    }
+    if (!code) { router.push("/play"); return; }
 
     async function joinSession() {
       try {
-        const res = await fetch(`/api/game/sessions/${code}/join`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-        });
+        // Fetch session info in parallel with join
+        const [joinRes, infoRes] = await Promise.all([
+          fetch(`/api/game/sessions/${code}/join`, { method: "POST", headers: { "Content-Type": "application/json" } }),
+          fetch(`/api/game/sessions/${code}/info`),
+        ]);
 
-        if (!res.ok) {
-          const data = await res.json();
-          if (res.status === 401) {
-            // Not logged in - redirect to login with return URL
-            router.push(`/login?redirect=/play/${code}`);
-            return;
-          }
-          // If already in session or game started, that's okay - just connect
-          if (res.status === 403 || res.status === 409) {
-            console.log("Already in session or game started, connecting...");
-            setJoining(false);
-            return;
-          }
+        if (infoRes.ok) {
+          const info = await infoRes.json();
+          setSessionInfo(info);
+        }
+
+        if (!joinRes.ok) {
+          const data = await joinRes.json();
+          if (joinRes.status === 401) { router.push(`/login?redirect=/play/${code}`); return; }
+          if (joinRes.status === 403 || joinRes.status === 409) { setJoining(false); return; }
           setJoinError(data.error || "Failed to join session");
           setJoining(false);
           return;
         }
-
-        // Successfully joined
         setJoining(false);
-      } catch (err) {
-        console.error("Join error:", err);
+      } catch {
         setJoinError("Network error. Please try again.");
         setJoining(false);
       }
@@ -170,354 +148,309 @@ export default function StudentGamePage() {
 
   const { connected, error } = useGameSSE(code, handleSSEEvent, !joining && !joinError);
 
-  // Stable callback for submitting answers - wrapped in useCallback to prevent re-creation
-  const submitAnswer = useCallback(
-    async (answerId: number) => {
-      if (answerSubmitted || !currentQuestion || !code) {
-        console.log("Cannot submit:", { answerSubmitted, hasQuestion: !!currentQuestion, code });
-        return;
+  const submitAnswer = useCallback(async (answerId: number) => {
+    if (answerSubmitted || !currentQuestion || !code) return;
+    setSelectedAnswer(answerId);
+    setAnswerSubmitted(true);
+    try {
+      const res = await fetch(`/api/game/sessions/${code}/answer`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ questionId: currentQuestion.id, answerId, answeredAt: new Date().toISOString() }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setAnswerResult({ isCorrect: data.isCorrect, pointsEarned: data.pointsEarned });
       }
+    } catch { /* silent */ }
+  }, [answerSubmitted, currentQuestion, code]);
 
-      console.log("Submitting answer:", answerId);
-      setSelectedAnswer(answerId);
-      setAnswerSubmitted(true);
+  const handleAnswerSelect = useCallback((answerId: number) => submitAnswer(answerId), [submitAnswer]);
 
-      try {
-        const res = await fetch(`/api/game/sessions/${code}/answer`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            questionId: currentQuestion.id,
-            answerId,
-            answeredAt: new Date().toISOString(),
-          }),
-        });
-
-        if (res.ok) {
-          const data = await res.json();
-          setAnswerResult({
-            isCorrect: data.isCorrect,
-            pointsEarned: data.pointsEarned,
-          });
-          safePlaySound(data.isCorrect ? "correct" : "incorrect");
-        } else {
-          console.error("Failed to submit answer:", res.status);
-        }
-      } catch (err) {
-        console.error("Failed to submit answer:", err);
-      }
-    },
-    [answerSubmitted, currentQuestion, code]
+  // ── Loading / Error states ─────────────────────────────────────────────────
+  const DotBg = ({ children }: { children: React.ReactNode }) => (
+    <div className="min-h-screen flex items-center justify-center p-4"
+      style={{ backgroundColor: "#0d0d14", backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px" }}>
+      {children}
+    </div>
   );
 
-  // Stable wrapper for answer selection - this ensures the callback is always defined
-  const handleAnswerSelect = useCallback((answerId: number) => {
-    console.log("Answer selected:", answerId);
-    submitAnswer(answerId);
-  }, [submitAnswer]);
-
-  useEffect(() => {
-    if (!code) {
-      router.push("/play");
-    }
-  }, [code, router]);
-
-  // Show joining state
   if (joining) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center p-4">
-        <div className="bg-white border-2 border-black p-6 sm:p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-sm w-full">
-          <Loader2 className="animate-spin h-12 w-12 mx-auto text-purple-600 mb-4" />
-          <p className="text-center text-base sm:text-lg font-bold">Joining game...</p>
+      <DotBg>
+        <div className="text-center">
+          <Loader2 className="animate-spin h-12 w-12 mx-auto text-yellow-400 mb-4" />
+          <p className="text-white font-black text-lg" style={khFont}>{kh ? "កំពុងចូល..." : "Joining game..."}</p>
         </div>
-      </div>
+      </DotBg>
     );
   }
 
-  // Show join error
   if (joinError) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center p-4">
-        <div className="bg-white border-2 border-black p-6 sm:p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-md w-full">
-          <XCircle className="mx-auto text-red-500 mb-4" size={48} />
-          <h1 className="text-xl sm:text-2xl font-bold mb-4 text-center">Cannot Join Game</h1>
-          <p className="mb-6 text-center text-sm sm:text-base">{joinError}</p>
-          <button
-            onClick={() => router.push("/play")}
-            className="w-full bg-purple-500 text-white px-6 py-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all font-bold"
-          >
-            Back to Play
+      <DotBg>
+        <div className="border-2 border-white/20 bg-white/5 p-8 max-w-md w-full text-center" style={{ boxShadow: "0 0 40px rgba(239,68,68,0.2)" }}>
+          <XCircle className="mx-auto text-red-400 mb-4" size={48} />
+          <h1 className="text-xl font-black text-white mb-3" style={khFont}>{kh ? "មិនអាចចូលបាន" : "Cannot Join Game"}</h1>
+          <p className="text-white/60 mb-6 text-sm" style={khFont}>{joinError}</p>
+          <button onClick={() => router.push("/play")}
+            className="w-full py-3 bg-yellow-400 text-black font-black border-2 border-yellow-300 transition-all hover:bg-yellow-300"
+            style={{ boxShadow: "0 0 16px rgba(250,204,21,0.3)" }}>
+            {kh ? "ត្រឡប់" : "Back to Play"}
           </button>
         </div>
-      </div>
+      </DotBg>
     );
   }
 
-  if (error) {
+  if (error || (!connected && phase === "lobby")) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center p-4">
-        <div className="bg-white border-2 border-black p-6 sm:p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-md w-full">
-          <XCircle className="mx-auto text-red-500 mb-4" size={48} />
-          <h1 className="text-xl sm:text-2xl font-bold mb-4 text-center">Connection Error</h1>
-          <p className="mb-6 text-center text-sm sm:text-base">{error}</p>
-          <button
-            onClick={() => router.push("/play")}
-            className="w-full bg-purple-500 text-white px-6 py-3 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all font-bold"
-          >
-            Back to Play
-          </button>
+      <DotBg>
+        <div className="border-2 border-white/20 bg-white/5 p-8 max-w-md w-full text-center">
+          {error ? <WifiOff className="mx-auto text-red-400 mb-4" size={48} /> : <Loader2 className="animate-spin mx-auto text-yellow-400 mb-4" size={48} />}
+          <h1 className="text-xl font-black text-white mb-3" style={khFont}>
+            {error ? (kh ? "បាត់ការតភ្ជាប់" : "Connection Error") : (kh ? "កំពុងភ្ជាប់..." : "Connecting...")}
+          </h1>
+          {error && (
+            <>
+              <p className="text-white/50 text-sm mb-6">{error}</p>
+              <button onClick={() => window.location.reload()}
+                className="w-full py-3 bg-yellow-400 text-black font-black border-2 border-yellow-300">
+                {kh ? "ព្យាយាមម្ដងទៀត" : "Retry"}
+              </button>
+            </>
+          )}
         </div>
-      </div>
+      </DotBg>
     );
   }
 
-  if (!connected) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center p-4">
-        <div className="bg-white border-2 border-black p-6 sm:p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-sm w-full">
-          <Loader2 className="animate-spin h-12 w-12 mx-auto text-purple-600 mb-4" />
-          <p className="text-center text-base sm:text-lg font-bold">Connecting to game...</p>
-        </div>
-      </div>
-    );
-  }
-
+  // ── Lobby ──────────────────────────────────────────────────────────────────
   if (phase === "lobby") {
+    const modeColor = MODE_COLORS[sessionInfo?.gameMode ?? ""] ?? "#eab308";
+    const modeLabel = MODE_LABELS[sessionInfo?.gameMode ?? ""] ?? sessionInfo?.gameMode ?? "—";
+    const diffColor = DIFF_COLORS[sessionInfo?.difficulty ?? "mixed"] ?? "#a855f7";
+
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 p-2 sm:p-4 animate-gradient">
-        <div className="max-w-4xl mx-auto">
-          {/* Animated header - Mobile optimized */}
-          <div className="bg-white border-2 sm:border-4 border-black p-4 sm:p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] mb-4 sm:mb-6 transform hover:scale-105 transition-transform">
-            <div className="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-              <Zap className="text-yellow-500 animate-pulse" size={24} />
-              <h1 className="text-3xl sm:text-5xl font-black text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                GET READY!
-              </h1>
-              <Zap className="text-yellow-500 animate-pulse" size={24} />
-            </div>
-            <div className="bg-yellow-400 border-2 border-black p-3 sm:p-4 inline-block mx-auto">
-              <p className="text-4xl sm:text-7xl font-black text-center tracking-widest text-black animate-pulse">
-                {code}
-              </p>
-            </div>
-            <p className="text-center text-gray-600 mt-3 sm:mt-4 text-sm sm:text-lg font-bold px-2">
-              Share this code with others to join!
-            </p>
+      <div className="min-h-screen flex flex-col"
+        style={{ backgroundColor: "#0d0d14", backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px" }}>
+
+        {/* Connection indicator */}
+        <div className="flex justify-end px-4 pt-3">
+          <div className={`flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold ${connected ? "text-green-400" : "text-yellow-400"}`}>
+            {connected ? <Wifi size={12} /> : <Loader2 size={12} className="animate-spin" />}
+            {connected ? (kh ? "ភ្ជាប់" : "Connected") : (kh ? "កំពុងភ្ជាប់..." : "Connecting...")}
+          </div>
+        </div>
+
+        <div className="flex-1 flex flex-col items-center justify-center px-4 py-6 gap-5 max-w-lg mx-auto w-full">
+
+          {/* Live badge */}
+          <div className="flex items-center gap-2 px-4 py-1.5 bg-red-600 border border-red-400">
+            <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
+            <span className="text-white font-black text-xs tracking-widest">LIVE SESSION</span>
           </div>
 
-          {/* Players section with animation - Mobile optimized */}
-          <div className="bg-white border-2 sm:border-4 border-black p-4 sm:p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-            <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-              <Users className="text-purple-600 flex-shrink-0" size={24} />
-              <h2 className="text-xl sm:text-3xl font-black flex-1">
-                Players Joined
-              </h2>
-              <div className="bg-purple-600 text-white px-3 sm:px-4 py-1 sm:py-2 rounded-full font-black text-base sm:text-xl flex-shrink-0">
-                {participants.length}
+          {/* Host + Session card */}
+          <div className="w-full border-2 border-white/15 bg-white/5 p-6 text-center"
+            style={{ boxShadow: `0 0 40px ${modeColor}22` }}>
+            <div className="text-white/40 text-xs font-bold uppercase tracking-widest mb-1" style={khFont}>
+              {kh ? "គ្រូបង្រៀន" : "Hosted by"}
+            </div>
+            <div className="text-white font-black text-2xl mb-4" style={khFont}>
+              {sessionInfo?.hostName ?? "—"}
+            </div>
+
+            {/* Room code */}
+            <div className="inline-block px-6 py-3 border-2 mb-4"
+              style={{ backgroundColor: modeColor, borderColor: modeColor, boxShadow: `0 0 24px ${modeColor}66` }}>
+              <div className="text-black font-black text-5xl tracking-[0.2em]">{code}</div>
+            </div>
+
+            <div className="text-white/40 text-xs font-bold" style={khFont}>
+              {kh ? "លេខកូដចូលរួម" : "Game Code"}
+            </div>
+          </div>
+
+          {/* Session details grid */}
+          {sessionInfo && (
+            <div className="w-full grid grid-cols-2 gap-2">
+              <div className="border border-white/10 bg-white/5 p-3 flex items-center gap-2">
+                <BookOpen size={14} className="text-yellow-400 flex-shrink-0" />
+                <div>
+                  <div className="text-white/40 text-xs" style={khFont}>{kh ? "របៀបលេង" : "Game Mode"}</div>
+                  <div className="text-white font-black text-sm" style={{ color: modeColor }}>{modeLabel}</div>
+                </div>
+              </div>
+              <div className="border border-white/10 bg-white/5 p-3 flex items-center gap-2">
+                <Target size={14} className="text-yellow-400 flex-shrink-0" />
+                <div>
+                  <div className="text-white/40 text-xs" style={khFont}>{kh ? "ប្រភេទ" : "Category"}</div>
+                  <div className="text-white font-black text-sm capitalize">{sessionInfo.category?.replace(/-/g, " ") ?? "—"}</div>
+                </div>
+              </div>
+              <div className="border border-white/10 bg-white/5 p-3 flex items-center gap-2">
+                <Star size={14} className="text-yellow-400 flex-shrink-0" />
+                <div>
+                  <div className="text-white/40 text-xs" style={khFont}>{kh ? "កម្រិត" : "Difficulty"}</div>
+                  <div className="font-black text-sm capitalize" style={{ color: diffColor }}>
+                    {sessionInfo.difficulty ?? "Mixed"}
+                  </div>
+                </div>
+              </div>
+              <div className="border border-white/10 bg-white/5 p-3 flex items-center gap-2">
+                <Timer size={14} className="text-yellow-400 flex-shrink-0" />
+                <div>
+                  <div className="text-white/40 text-xs" style={khFont}>{kh ? "ពេលវេលា" : "Time / Q"}</div>
+                  <div className="text-white font-black text-sm">{sessionInfo.timePerQuestion}s</div>
+                </div>
+              </div>
+              <div className="border border-white/10 bg-white/5 p-3 flex items-center gap-2">
+                <Trophy size={14} className="text-yellow-400 flex-shrink-0" />
+                <div>
+                  <div className="text-white/40 text-xs" style={khFont}>{kh ? "ពិន្ទុ" : "Scoring"}</div>
+                  <div className="text-white font-black text-sm capitalize">{sessionInfo.scoringMode}</div>
+                </div>
+              </div>
+              <div className="border border-white/10 bg-white/5 p-3 flex items-center gap-2">
+                <Zap size={14} className="text-yellow-400 flex-shrink-0" />
+                <div>
+                  <div className="text-white/40 text-xs" style={khFont}>{kh ? "សំណួរ" : "Questions"}</div>
+                  <div className="text-white font-black text-sm">{sessionInfo.questionCount}Q</div>
+                </div>
               </div>
             </div>
-            
+          )}
+
+          {/* Players joined */}
+          <div className="w-full border border-white/10 bg-white/5 p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <Users size={13} className="text-white/50" />
+              <span className="text-white/50 text-xs font-bold uppercase tracking-widest" style={khFont}>
+                {kh ? "អ្នកចូលរួម" : "Players"} · {participants.length}{sessionInfo ? ` / ${sessionInfo.maxPlayers}` : ""}
+              </span>
+              <div className="flex-1 h-px bg-white/10" />
+            </div>
             {participants.length > 0 ? (
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
-                {participants.map((p, index) => (
-                  <div
-                    key={p.userId}
-                    className={`border-2 border-black p-2 sm:p-4 transform hover:scale-105 transition-all duration-200 ${
-                      p.isConnected ? "bg-gradient-to-br from-green-400 to-green-500" : "bg-gray-200"
-                    }`}
-                    style={{
-                      boxShadow: "2px 2px 0px 0px rgba(0,0,0,1)",
-                      animation: `slideIn 0.3s ease-out ${index * 0.1}s both`
-                    }}
-                  >
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white border-2 border-black rounded-full flex items-center justify-center font-black text-sm sm:text-lg flex-shrink-0">
-                        {p.displayName.charAt(0).toUpperCase()}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="text-sm sm:text-lg font-black truncate text-white drop-shadow-lg">
-                          {p.displayName}
-                        </div>
-                        <div className="text-xs font-bold text-white/80 flex items-center gap-1">
-                          {p.isConnected ? (
-                            <>
-                              <CheckCircle size={12} />
-                              <span>Ready</span>
-                            </>
-                          ) : (
-                            <>
-                              <XCircle size={12} />
-                              <span>Offline</span>
-                            </>
-                          )}
-                        </div>
-                      </div>
+              <div className="flex flex-wrap gap-2">
+                {participants.map((p) => (
+                  <div key={p.userId}
+                    className="flex items-center gap-1.5 px-2.5 py-1.5 border border-white/15 bg-white/5">
+                    <div className="w-6 h-6 rounded-full flex items-center justify-center font-black text-xs text-white flex-shrink-0"
+                      style={{ background: `hsl(${(p.userId * 47) % 360}, 55%, 45%)` }}>
+                      {p.displayName.charAt(0).toUpperCase()}
                     </div>
+                    <span className="text-white text-xs font-bold truncate max-w-[80px]" style={khFont}>{p.displayName}</span>
+                    {p.isConnected && <div className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0" />}
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="text-center py-8 sm:py-12">
-                <Users className="mx-auto text-gray-300 mb-3 sm:mb-4" size={48} />
-                <p className="text-gray-400 text-base sm:text-xl font-bold px-4">
-                  Waiting for players to join...
-                </p>
+              <div className="text-center py-4 text-white/20 text-sm font-bold" style={khFont}>
+                {kh ? "អ្នកទីមួយ!" : "You're the first one here!"}
               </div>
             )}
+          </div>
 
-            {/* Waiting message - Mobile optimized */}
-            <div className="mt-4 sm:mt-8 bg-yellow-100 border-2 border-yellow-500 p-3 sm:p-4 rounded-lg">
-              <div className="flex items-center gap-2 sm:gap-3 justify-center">
-                <Clock className="text-yellow-600 animate-spin flex-shrink-0" size={20} />
-                <p className="text-center text-yellow-800 font-bold text-sm sm:text-lg">
-                  Waiting for host to start the game...
-                </p>
-              </div>
-            </div>
+          {/* Waiting pulse */}
+          <div className="flex items-center gap-2 text-white/40 text-sm font-bold" style={khFont}>
+            <Clock size={14} className="animate-pulse" />
+            {kh ? "រង់ចាំគ្រូចាប់ផ្តើម..." : "Waiting for host to start..."}
           </div>
         </div>
-
-        <style jsx>{`
-          @keyframes slideIn {
-            from {
-              opacity: 0;
-              transform: translateY(20px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-          @keyframes gradient {
-            0%, 100% {
-              background-position: 0% 50%;
-            }
-            50% {
-              background-position: 100% 50%;
-            }
-          }
-          .animate-gradient {
-            background-size: 200% 200%;
-            animation: gradient 15s ease infinite;
-          }
-        `}</style>
       </div>
     );
   }
 
+  // ── Question ───────────────────────────────────────────────────────────────
   if (phase === "question" && currentQuestion) {
-    // Safety checks - don't render if data is incomplete
-    if (!currentQuestion.answers || !Array.isArray(currentQuestion.answers) || currentQuestion.answers.length === 0) {
-      console.error("Invalid question data:", currentQuestion);
+    if (!currentQuestion.answers?.length) {
       return (
-        <div className="min-h-screen bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 flex items-center justify-center p-4">
-          <div className="bg-white border-2 border-black p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] max-w-md">
-            <Loader2 className="animate-spin h-12 w-12 mx-auto text-yellow-600 mb-4" />
-            <p className="text-center font-bold">Loading question...</p>
-          </div>
+        <div className="min-h-screen flex items-center justify-center"
+          style={{ backgroundColor: "#0d0d14" }}>
+          <Loader2 className="animate-spin h-10 w-10 text-yellow-400" />
         </div>
       );
     }
 
-    const timePerQuestion = endsAt ? Math.round((new Date(endsAt).getTime() - Date.now()) / 1000) : 30;
-    
-    return (
-      <div className="game-dot-bg min-h-screen p-2 sm:p-4">
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <div className="relative z-10 flex justify-between items-center mb-3 sm:mb-6 gap-2">
-            <div className="bg-zinc-900/80 backdrop-blur-sm border-2 border-zinc-700 px-3 sm:px-6 py-2 sm:py-3 shadow-[2px_2px_0px_0px_#ffd700] flex-shrink-0">
-              <div className="flex items-center gap-1 sm:gap-2">
-                <Trophy className="text-yellow-400 flex-shrink-0" size={16} />
-                <span className="font-black text-xs sm:text-base md:text-lg whitespace-nowrap text-white">
-                  Q {questionIndex + 1}/{totalQuestions}
-                </span>
-              </div>
-            </div>
-            {endsAt && (
-              <div className="transform hover:scale-110 transition-transform flex-shrink-0">
-                <CountdownTimer
-                  endsAt={endsAt}
-                  totalSeconds={timePerQuestion}
-                  onExpire={() => {
-                    if (!answerSubmitted) {
-                      handleAnswerSelect(0);
-                    }
-                  }}
-                />
-              </div>
-            )}
-          </div>
+    const timePerQuestion = endsAt
+      ? Math.max(5, Math.round((new Date(endsAt).getTime() - Date.now()) / 1000))
+      : 30;
 
+    return (
+      <div className="min-h-screen flex flex-col"
+        style={{ backgroundColor: "#0d0d14", backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px" }}>
+
+        {/* Top bar */}
+        <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-black/30 flex-shrink-0">
+          <div className="flex items-center gap-2 px-2.5 py-1 bg-red-600">
+            <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            <span className="text-white font-black text-xs tracking-widest">LIVE</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <Trophy size={13} className="text-yellow-400" />
+            <span className="text-white font-black text-sm">
+              {questionIndex + 1} / {totalQuestions}
+            </span>
+          </div>
+          {endsAt && (
+            <CountdownTimer
+              endsAt={endsAt}
+              totalSeconds={timePerQuestion}
+              onExpire={() => { if (!answerSubmitted) handleAnswerSelect(0); }}
+            />
+          )}
+        </div>
+
+        <div className="flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full">
           {/* Question card */}
-          <div className="relative z-10 bg-zinc-900/90 backdrop-blur-sm border-2 border-zinc-700 p-4 sm:p-8 shadow-[4px_4px_0px_0px_#ffd700] mb-3 sm:mb-6">
+          <div className="border-2 border-white/15 bg-white/5 p-5 sm:p-8 flex-shrink-0">
             {currentQuestion.imageUrl && (
-              <div className="mb-4 sm:mb-6 overflow-hidden rounded-lg border-2 border-black">
-                <img
-                  src={currentQuestion.imageUrl}
-                  alt="Question"
-                  className="w-full max-h-48 sm:max-h-80 object-contain bg-gray-50"
-                />
+              <div className="mb-4 overflow-hidden border border-white/10">
+                <img src={currentQuestion.imageUrl} alt="Question" className="w-full max-h-48 object-contain bg-black/20" />
               </div>
             )}
-            <h2 className="text-lg sm:text-2xl md:text-3xl font-black text-center leading-tight mb-2 break-words hyphens-auto px-2 text-white">
-              {lang === "kh" ? (currentQuestion.questionKm || currentQuestion.questionEn) : currentQuestion.questionEn}
+            <h2 className="text-white font-black text-xl sm:text-2xl text-center leading-snug" style={khFont}>
+              {kh ? (currentQuestion.questionKm || currentQuestion.questionEn) : currentQuestion.questionEn}
             </h2>
           </div>
 
-          {/* Answer grid - Mobile optimized with error boundary */}
-          <div className="mb-3 sm:mb-6">
-            <ErrorBoundary
-              fallback={
-                <div className="bg-white border-2 border-black p-8 text-center">
-                  <XCircle className="mx-auto text-red-500 mb-4" size={48} />
-                  <p className="font-bold">Failed to load answers</p>
-                  <button
-                    onClick={() => window.location.reload()}
-                    className="mt-4 bg-red-500 text-white px-6 py-2 border-2 border-black font-bold"
-                  >
-                    Reload
-                  </button>
-                </div>
-              }
-            >
-              <AnswerGrid
-                answers={currentQuestion.answers}
-                selectedId={selectedAnswer}
-                correctId={correctAnswerId}
-                disabled={answerSubmitted}
-                lang={lang}
-                gameType={currentQuestion.gameType}
-                onSelect={handleAnswerSelect}
-              />
-            </ErrorBoundary>
-          </div>
+          {/* Answers */}
+          <ErrorBoundary fallback={
+            <div className="text-center p-8 border border-red-500/30 bg-red-500/10">
+              <XCircle className="mx-auto text-red-400 mb-3" size={32} />
+              <p className="text-white font-bold text-sm">Failed to load answers</p>
+              <button onClick={() => window.location.reload()} className="mt-3 px-4 py-2 bg-red-500 text-white font-bold text-sm">Reload</button>
+            </div>
+          }>
+            <AnswerGrid
+              answers={currentQuestion.answers}
+              selectedId={selectedAnswer}
+              correctId={correctAnswerId}
+              disabled={answerSubmitted}
+              lang={lang}
+              gameType={currentQuestion.gameType}
+              onSelect={handleAnswerSelect}
+            />
+          </ErrorBoundary>
 
           {/* Answer feedback */}
           {answerResult && (
-            <div
-              className={`relative z-10 p-4 sm:p-8 border-2 sm:border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] sm:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transform scale-100 animate-bounce-in ${
-                answerResult.isCorrect
-                  ? "bg-green-500"
-                  : "bg-red-500"
-              }`}
-            >
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-2 sm:gap-3 mb-2 sm:mb-3">
-                  {answerResult.isCorrect ? (
-                    <CheckCircle className="text-white" size={32} />
-                  ) : (
-                    <XCircle className="text-white" size={32} />
-                  )}
-                  <p className="text-2xl sm:text-4xl font-black text-white drop-shadow-lg">
-                    {answerResult.isCorrect ? "CORRECT!" : "INCORRECT"}
-                  </p>
-                </div>
-                <div className="bg-white border-2 border-black inline-block px-4 sm:px-6 py-2 sm:py-3 rounded-full">
-                  <p className="text-xl sm:text-3xl font-black text-black">
-                    +{answerResult.pointsEarned} points
-                  </p>
-                </div>
+            <div className={`p-5 border-2 text-center ${answerResult.isCorrect ? "border-green-400 bg-green-500/20" : "border-red-400 bg-red-500/20"}`}
+              style={{ boxShadow: answerResult.isCorrect ? "0 0 24px rgba(74,222,128,0.3)" : "0 0 24px rgba(239,68,68,0.3)" }}>
+              <div className="flex items-center justify-center gap-2 mb-2">
+                {answerResult.isCorrect
+                  ? <CheckCircle className="text-green-400" size={28} />
+                  : <XCircle className="text-red-400" size={28} />}
+                <span className="text-white font-black text-xl" style={khFont}>
+                  {answerResult.isCorrect ? (kh ? "ត្រូវ!" : "Correct!") : (kh ? "មិនត្រូវ" : "Incorrect")}
+                </span>
               </div>
+              {answerResult.pointsEarned > 0 && (
+                <div className="inline-block px-4 py-1.5 bg-yellow-400 border border-yellow-300">
+                  <span className="text-black font-black text-lg">+{answerResult.pointsEarned} pts</span>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -525,38 +458,47 @@ export default function StudentGamePage() {
     );
   }
 
+  // ── Results / Leaderboard ──────────────────────────────────────────────────
   if (phase === "results" || phase === "leaderboard") {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-500 to-blue-500 p-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white border-2 border-black p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-            <h2 className="text-3xl font-bold text-center mb-6">Leaderboard</h2>
-            <LeaderboardPanel entries={leaderboard} lang={lang} />
+      <div className="min-h-screen p-4"
+        style={{ backgroundColor: "#0d0d14", backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px" }}>
+        <div className="max-w-lg mx-auto pt-8">
+          <div className="flex items-center gap-2 mb-4">
+            <Trophy size={16} className="text-yellow-400" />
+            <span className="text-white font-black text-sm uppercase tracking-widest" style={khFont}>
+              {kh ? "ចំណាត់ថ្នាក់" : "Leaderboard"}
+            </span>
           </div>
+          <LeaderboardPanel entries={leaderboard} lang={lang} />
         </div>
       </div>
     );
   }
 
+  // ── Podium ─────────────────────────────────────────────────────────────────
   if (phase === "podium") {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-600 to-pink-600 p-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="bg-white border-2 border-black p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-6">
-            <h1 className="text-4xl font-bold text-center mb-8">Game Over!</h1>
-            <Podium podium={podium} finalLeaderboard={leaderboard} lang={lang} />
+      <div className="min-h-screen p-4"
+        style={{ backgroundColor: "#0d0d14", backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px" }}>
+        <div className="max-w-2xl mx-auto pt-6">
+          <div className="text-center mb-6">
+            <div className="inline-block px-4 py-1.5 bg-yellow-400 text-black font-black text-xs uppercase tracking-widest mb-3">
+              {kh ? "ហ្គេមចប់" : "Game Over"}
+            </div>
+            <h1 className="text-white font-black text-3xl" style={khFont}>{kh ? "លទ្ធផលចុងក្រោយ" : "Final Results"}</h1>
           </div>
-
-          <div className="bg-white border-2 border-black p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-6">
-            <h2 className="text-2xl font-bold mb-4">Final Standings</h2>
+          <Podium podium={podium} finalLeaderboard={leaderboard} lang={lang} />
+          <div className="mt-6">
+            <div className="text-white/40 text-xs font-bold uppercase tracking-widest mb-3" style={khFont}>
+              {kh ? "ចំណាត់ថ្នាក់ទាំងអស់" : "All Rankings"}
+            </div>
             <LeaderboardPanel entries={leaderboard} lang={lang} />
           </div>
-
-          <button
-            onClick={() => router.push("/play")}
-            className="w-full bg-purple-500 text-white px-6 py-4 text-xl font-bold border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[4px] hover:translate-y-[4px] hover:shadow-none transition-all"
-          >
-            Play Again
+          <button onClick={() => router.push("/play")}
+            className="w-full mt-6 py-4 bg-yellow-400 text-black font-black text-lg border-2 border-yellow-300 transition-all hover:bg-yellow-300"
+            style={{ boxShadow: "0 0 20px rgba(250,204,21,0.4)" }}>
+            {kh ? "លេងម្ដងទៀត" : "Play Again"}
           </button>
         </div>
       </div>
