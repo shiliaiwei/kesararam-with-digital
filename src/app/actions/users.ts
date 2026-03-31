@@ -2,6 +2,7 @@
 
 import { db } from "@/lib/db";
 import { users } from "@/db/schema";
+import { subscriptions } from "@/db/schema/subscriptions";
 import { eq } from "drizzle-orm";
 import { createHash } from "crypto";
 import { revalidatePath } from "next/cache";
@@ -9,6 +10,28 @@ import { getSession } from "@/lib/auth";
 
 function hashPassword(pw: string): string {
   return createHash("sha256").update(pw).digest("hex");
+}
+
+/** Auto-assign a 7-day Teacher Pro trial when a teacher account is created */
+async function autoAssignTeacherTrial(userId: number, adminId: number) {
+  try {
+    const now = new Date();
+    const trialEndsAt = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+    await db.insert(subscriptions).values({
+      userId,
+      plan: "teacher_pro",
+      status: "trial",
+      isTrial: true,
+      trialEndsAt,
+      startsAt: now,
+      endsAt: null,
+      assignedBy: adminId,
+      note: "Auto 7-day trial on account creation",
+    });
+  } catch (e) {
+    // Non-fatal — subscription table may not exist yet
+    console.warn("[autoAssignTeacherTrial] skipped:", e);
+  }
 }
 
 export async function createUser(formData: FormData) {
@@ -29,7 +52,7 @@ export async function createUser(formData: FormData) {
   }
 
   try {
-    await db.insert(users).values({
+    const [newUser] = await db.insert(users).values({
       username,
       email,
       displayName: displayName || null,
@@ -37,12 +60,16 @@ export async function createUser(formData: FormData) {
       role,
       isActive: true,
       loginAttempts: 0,
-    });
+    }).returning({ id: users.id });
+
+    // Auto-assign 7-day Teacher Pro trial for new teacher accounts
+    if (role === "teacher" && newUser?.id) {
+      await autoAssignTeacherTrial(newUser.id, session.id);
+    }
+
     revalidatePath("/admin/users");
     return { success: true };
   } catch (e: unknown) {
-    // Neon HTTP driver wraps errors — check e.cause.code for postgres error codes
-    // 23505 = unique_violation
     const code = (e as { cause?: { code?: string } }).cause?.code;
     const msg = e instanceof Error ? e.message : "";
     if (code === "23505" || msg.includes("unique") || msg.includes("duplicate"))

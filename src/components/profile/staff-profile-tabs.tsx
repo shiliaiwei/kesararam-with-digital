@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ProfileEditor } from "@/components/profile/profile-editor";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
-import { Pencil, Info, Settings } from "lucide-react";
+import { Pencil, Info, Settings, Crown, Clock, Zap, Building2 } from "lucide-react";
 
 type Tab = "edit" | "info" | "settings";
 
@@ -16,6 +16,11 @@ interface StaffProfileTabsProps {
   avatar: string | null;
   avatarChangedAt: string | null;
   createdAt: string;
+  // Plan info (teacher only)
+  plan?: string;
+  isTrial?: boolean;
+  trialEndsAt?: string | null;
+  planStatus?: string;
 }
 
 const TABS: { id: Tab; label: string; Icon: React.ElementType }[] = [
@@ -38,9 +43,26 @@ export function StaffProfileTabs({
   avatar,
   avatarChangedAt,
   createdAt,
+  plan = "free",
+  isTrial = false,
+  trialEndsAt = null,
+  planStatus = "active",
 }: StaffProfileTabsProps) {
   const roleStyle = ROLE_STYLE[role];
   const basePath = role === "admin" ? "/admin/profile" : "/teacher/profile";
+
+  // Plan badge config
+  const planConfig = {
+    free:        { label: "Free",        icon: Zap,       color: "#6b7280", bg: "bg-zinc-500/15" },
+    teacher_pro: { label: "Teacher Pro", icon: Crown,     color: "#f59e0b", bg: "bg-amber-400/15" },
+    school:      { label: "School",      icon: Building2, color: "#a855f7", bg: "bg-purple-500/15" },
+  } as const;
+  const pc = planConfig[plan as keyof typeof planConfig] ?? planConfig.free;
+  const PlanIcon = pc.icon;
+
+  const trialDaysLeft = trialEndsAt
+    ? Math.max(0, Math.ceil((new Date(trialEndsAt).getTime() - Date.now()) / 86400000))
+    : null;
 
   return (
     <div className="flex flex-col gap-6 py-4 max-w-2xl">
@@ -67,7 +89,7 @@ export function StaffProfileTabs({
               {name}
             </h2>
             <p className="text-sm text-zinc-500 font-medium">{email}</p>
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 items-center flex-wrap">
               <span
                 className="inline-block px-2.5 py-0.5 text-xs font-black uppercase tracking-widest border-2 border-black shadow-[2px_2px_0_#000]"
                 style={{ background: roleStyle.bg, color: roleStyle.text }}
@@ -77,7 +99,39 @@ export function StaffProfileTabs({
               <span className="text-xs text-zinc-500 font-medium">
                 @{username}
               </span>
+              {/* Plan badge — teacher only */}
+              {role === "teacher" && (
+                <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 text-xs font-black border-2 border-black shadow-[2px_2px_0_#000] ${pc.bg}`}
+                  style={{ color: pc.color }}>
+                  <PlanIcon size={11} />
+                  {pc.label}
+                  {isTrial && trialDaysLeft !== null && (
+                    <span className={`ml-1 font-bold ${trialDaysLeft <= 2 ? "text-red-500" : ""}`}>
+                      · {trialDaysLeft}d trial
+                    </span>
+                  )}
+                </span>
+              )}
             </div>
+            {/* Trial countdown bar */}
+            {role === "teacher" && isTrial && trialDaysLeft !== null && (
+              <div className="mt-1">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-1">
+                    <Clock size={9} /> Trial expires in {trialDaysLeft} day{trialDaysLeft !== 1 ? "s" : ""}
+                  </span>
+                  <Link href="/pricing" className="text-[10px] font-black text-amber-600 hover:text-amber-500 uppercase tracking-widest">
+                    Upgrade →
+                  </Link>
+                </div>
+                <div className="h-1.5 bg-zinc-200 rounded-full overflow-hidden border border-black/10">
+                  <div
+                    className={`h-full rounded-full transition-all ${trialDaysLeft <= 2 ? "bg-red-500" : "bg-amber-400"}`}
+                    style={{ width: `${Math.min(100, (trialDaysLeft / 7) * 100)}%` }}
+                  />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

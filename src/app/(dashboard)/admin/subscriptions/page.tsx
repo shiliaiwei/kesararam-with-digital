@@ -38,7 +38,7 @@ export default async function SubscriptionsPage() {
       .orderBy(desc(subscriptions.createdAt));
 
     allUsers = await db
-      .select({ id: users.id, displayName: users.displayName, email: users.email, role: users.role })
+      .select({ id: users.id, displayName: users.displayName, username: users.username, email: users.email, role: users.role })
       .from(users)
       .orderBy(users.displayName);
   } catch {

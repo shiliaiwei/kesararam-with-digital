@@ -5,6 +5,7 @@ import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { Suspense } from "react";
 import { StaffProfileTabs } from "@/components/profile/staff-profile-tabs";
+import { getUserSubscription } from "@/lib/subscription";
 
 export const dynamic = "force-dynamic";
 type ProfileTab = "edit" | "info" | "settings";
@@ -71,6 +72,13 @@ export default async function TeacherProfilePage({
 
   const name = user?.displayName ?? user?.username ?? session.name;
 
+  // Fetch subscription for plan badge
+  let subInfo = { plan: "free" as string, isTrial: false, trialEndsAt: null as Date | null, status: "active" as string };
+  try {
+    const s = await getUserSubscription(session.id);
+    subInfo = { plan: s.plan, isTrial: s.isTrial, trialEndsAt: s.trialEndsAt, status: s.status };
+  } catch { /* ignore */ }
+
   return (
     <div className="p-6">
       <Suspense fallback={<ProfileSkeleton />}>
@@ -83,6 +91,10 @@ export default async function TeacherProfilePage({
           avatar={user?.avatar ?? null}
           avatarChangedAt={user?.avatarChangedAt?.toISOString() ?? null}
           createdAt={user?.createdAt?.toISOString() ?? new Date().toISOString()}
+          plan={subInfo.plan}
+          isTrial={subInfo.isTrial}
+          trialEndsAt={subInfo.trialEndsAt?.toISOString() ?? null}
+          planStatus={subInfo.status}
         />
       </Suspense>
     </div>
