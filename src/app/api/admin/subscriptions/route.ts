@@ -85,17 +85,23 @@ export async function POST(req: NextRequest) {
     try {
       await db
         .update(subscriptions)
-        .set({ status: "cancelled", updatedAt: now })
+        .set({ status: "cancelled" })
         .where(eq(subscriptions.userId, Number(userId)));
     } catch (cancelErr) {
       console.warn("[subscriptions] cancel existing failed:", cancelErr);
-      // Non-fatal — continue with insert
     }
 
     const trialEndsAt =
       isTrial && trialDays
         ? new Date(now.getTime() + Number(trialDays) * 24 * 60 * 60 * 1000)
         : null;
+
+    // Sanitize endsAt — must be a valid date string or null
+    let parsedEndsAt: Date | null = null;
+    if (!isTrial && endsAt && typeof endsAt === "string" && endsAt.trim().length > 4) {
+      const d = new Date(endsAt);
+      if (!isNaN(d.getTime())) parsedEndsAt = d;
+    }
 
     const [newSub] = await db
       .insert(subscriptions)
@@ -106,9 +112,9 @@ export async function POST(req: NextRequest) {
         isTrial: Boolean(isTrial),
         trialEndsAt,
         startsAt: now,
-        endsAt: endsAt ? new Date(endsAt) : null,
+        endsAt: parsedEndsAt,
         assignedBy: session.id,
-        note: note ?? null,
+        note: note && typeof note === "string" && note.trim() ? note.trim() : null,
       })
       .returning();
 

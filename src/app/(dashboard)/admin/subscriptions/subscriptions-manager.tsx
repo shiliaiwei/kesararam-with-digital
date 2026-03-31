@@ -270,16 +270,23 @@ function AssignDialog({ users: initialUsers, onClose, onSuccess }: {
     if (!selectedUser) { setError("Please select a user first"); return; }
     setLoading(true); setError("");
     try {
+      const payload: Record<string, unknown> = {
+          userId: selectedUser.id,
+          plan,
+          isTrial,
+          note: note.trim() || undefined,
+        };
+        if (isTrial) {
+          payload.trialDays = trialDays;
+        } else if (endsAt && endsAt.length > 4) {
+          payload.endsAt = endsAt;
+        }
+
       const res = await fetch("/api/admin/subscriptions", {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userId: selectedUser.id, plan, isTrial,
-          trialDays: isTrial ? trialDays : undefined,
-          endsAt: !isTrial && endsAt ? endsAt : undefined,
-          note: note || undefined,
-        }),
+        body: JSON.stringify(payload),
       });
 
       let data: any = {};
