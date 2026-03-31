@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import {
   Crown, Building2, Zap, Plus, Search,
   Clock, CheckCircle, XCircle, AlertTriangle, RefreshCw,
   Shield, Users, Trash2, Edit3, X, CalendarDays, StickyNote,
+  Lock, Unlock, Bot, BarChart3, Download, Gamepad2,
 } from "lucide-react";
-import { PLAN_DISPLAY, type PlanTier } from "@/lib/subscription-plans";
+import { PLAN_DISPLAY, PLAN_LIMITS, type PlanTier } from "@/lib/subscription-plans";
 
 type SubStatus = "active" | "expired" | "cancelled" | "trial";
 
@@ -17,13 +18,19 @@ interface SubRow {
   note: string | null; createdAt: Date | string; updatedAt: Date | string;
   userName: string | null; userEmail: string; userRole: string;
 }
+
 interface UserOption {
   id: number;
   displayName: string | null;
   username: string;
   email: string;
   role: string;
+  currentPlan?: string;
+  planStatus?: string;
+  isTrial?: boolean;
+  trialEndsAt?: string | null;
 }
+
 interface Props { initialRows: SubRow[]; allUsers: UserOption[]; adminId: number; }
 
 const PLAN_ICONS = { free: Zap, teacher_pro: Crown, school: Building2 } as const;
@@ -35,6 +42,36 @@ const STATUS_CONFIG: Record<SubStatus, { label: string; color: string; icon: Rea
   cancelled: { label: "Cancelled", color: "text-zinc-400 bg-zinc-400/10 border-zinc-400/30",     icon: XCircle },
 };
 
+const PLAN_FEATURES: Record<PlanTier, { label: string; icon: React.ComponentType<{ size?: number; className?: string }>; locked: boolean }[]> = {
+  free: [
+    { label: "1 session/month", icon: Gamepad2, locked: false },
+    { label: "10 players max", icon: Users, locked: false },
+    { label: "1 category only", icon: Lock, locked: false },
+    { label: "Analytics", icon: BarChart3, locked: true },
+    { label: "Export results", icon: Download, locked: true },
+    { label: "Advanced modes", icon: Gamepad2, locked: true },
+    { label: "Suar AI", icon: Bot, locked: true },
+  ],
+  teacher_pro: [
+    { label: "Unlimited sessions", icon: Gamepad2, locked: false },
+    { label: "50 players/session", icon: Users, locked: false },
+    { label: "All 8 categories", icon: Unlock, locked: false },
+    { label: "Analytics & reports", icon: BarChart3, locked: false },
+    { label: "Export results", icon: Download, locked: false },
+    { label: "Advanced game modes", icon: Gamepad2, locked: false },
+    { label: "Suar AI unlimited", icon: Bot, locked: false },
+  ],
+  school: [
+    { label: "Unlimited sessions", icon: Gamepad2, locked: false },
+    { label: "200 players/session", icon: Users, locked: false },
+    { label: "10 teacher accounts", icon: Users, locked: false },
+    { label: "All 8 categories", icon: Unlock, locked: false },
+    { label: "Analytics & reports", icon: BarChart3, locked: false },
+    { label: "Export results", icon: Download, locked: false },
+    { label: "Suar AI unlimited", icon: Bot, locked: false },
+  ],
+};
+
 function fmt(d: Date | string | null) {
   if (!d) return "—";
   return new Date(d).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
@@ -43,25 +80,33 @@ function daysLeft(d: Date | string | null) {
   if (!d) return null;
   return Math.ceil((new Date(d).getTime() - Date.now()) / 86400000);
 }
-function initials(name: string | null, username: string) {
-  const n = name ?? username;
-  return n.slice(0, 2).toUpperCase();
-}
 
-// ─── Toggle Switch ────────────────────────────────────────────────────────────
+// ─── Toggle ───────────────────────────────────────────────────────────────────
 function Toggle({ checked, onChange }: { checked: boolean; onChange: (v: boolean) => void }) {
   return (
-    <button
-      type="button"
-      role="switch"
-      aria-checked={checked}
-      onClick={() => onChange(!checked)}
-      className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${checked ? "bg-amber-400" : "bg-white/20"}`}
-    >
-      <span
-        className={`pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow-lg transform transition-transform duration-200 ease-in-out ${checked ? "translate-x-5" : "translate-x-0"}`}
-      />
+    <button type="button" role="switch" aria-checked={checked} onClick={() => onChange(!checked)}
+      className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${checked ? "bg-amber-400" : "bg-white/20"}`}>
+      <span className={`pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow-lg transform transition-transform duration-200 ${checked ? "translate-x-5" : "translate-x-0"}`} />
     </button>
+  );
+}
+
+// ─── Plan Badge ───────────────────────────────────────────────────────────────
+function PlanBadge({ plan, isTrial, trialEndsAt }: { plan: string; isTrial?: boolean; trialEndsAt?: string | null }) {
+  const p = plan as PlanTier;
+  const display = PLAN_DISPLAY[p] ?? PLAN_DISPLAY.free;
+  const Icon = PLAN_ICONS[p] ?? Zap;
+  const days = trialEndsAt ? daysLeft(trialEndsAt) : null;
+
+  return (
+    <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full border"
+      style={{ color: display.color, borderColor: display.color + "40", backgroundColor: display.color + "15" }}>
+      <Icon size={10} />
+      {display.name}
+      {isTrial && days !== null && (
+        <span className={`ml-0.5 ${days <= 2 ? "text-red-400" : "text-white/50"}`}>· {days}d</span>
+      )}
+    </span>
   );
 }
 
@@ -86,28 +131,31 @@ function UserTagSearch({ users, selected, onSelect, onClear }: {
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase().replace(/^@/, "");
-    if (!q) return users.slice(0, 10);
+    if (!q) return users.slice(0, 12);
     return users.filter(u =>
       u.username.toLowerCase().includes(q) ||
       u.email.toLowerCase().includes(q) ||
       (u.displayName ?? "").toLowerCase().includes(q)
-    ).slice(0, 10);
+    ).slice(0, 12);
   }, [query, users]);
 
   if (selected) {
     return (
       <div className="flex items-center gap-3 bg-amber-400/10 border border-amber-400/40 rounded-xl px-3 py-2.5">
         <div className="w-9 h-9 rounded-full bg-amber-400 text-black text-xs font-black flex items-center justify-center shrink-0">
-          {initials(selected.displayName, selected.username)}
+          {(selected.displayName ?? selected.username).slice(0, 2).toUpperCase()}
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-bold text-white truncate">{selected.displayName ?? selected.username}</p>
-          <p className="text-xs text-white/40 truncate">@{selected.username} · {selected.email}</p>
+          <div className="flex items-center gap-2 flex-wrap">
+            <p className="text-sm font-bold text-white">{selected.displayName ?? selected.username}</p>
+            <span className="text-white/40 text-xs">@{selected.username}</span>
+            {selected.currentPlan && (
+              <PlanBadge plan={selected.currentPlan} isTrial={selected.isTrial} trialEndsAt={selected.trialEndsAt} />
+            )}
+          </div>
+          <p className="text-xs text-white/35 truncate">{selected.email}</p>
         </div>
-        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/10 text-white/50 shrink-0 capitalize">
-          {selected.role}
-        </span>
-        <button onClick={onClear} className="text-white/30 hover:text-white transition-colors shrink-0 ml-1">
+        <button onClick={onClear} className="text-white/30 hover:text-white transition-colors shrink-0">
           <X size={14} />
         </button>
       </div>
@@ -122,47 +170,84 @@ function UserTagSearch({ users, selected, onSelect, onClear }: {
           value={query}
           onChange={e => { setQuery(e.target.value); setOpen(true); }}
           onFocus={() => setOpen(true)}
-          placeholder="@username, email, or display name..."
+          placeholder="Type @username, email, or name..."
           className="w-full bg-white/5 border border-white/10 rounded-xl pl-9 pr-3 py-2.5 text-sm text-white placeholder-white/25 focus:outline-none focus:border-amber-400/60 transition-colors"
+          autoComplete="off"
         />
       </div>
       {open && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-[#1c1c1c] border border-white/10 rounded-xl shadow-2xl z-20 overflow-hidden max-h-64 overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 mt-1 bg-[#1c1c1c] border border-white/10 rounded-xl shadow-2xl z-20 overflow-hidden max-h-72 overflow-y-auto">
           {results.length === 0 ? (
-            <p className="text-center text-white/30 text-xs py-4">No users found</p>
-          ) : results.map(u => (
-            <button
-              key={u.id}
-              onClick={() => { onSelect(u); setQuery(""); setOpen(false); }}
-              className="w-full flex items-center gap-3 px-3 py-2.5 hover:bg-white/6 transition-colors text-left border-b border-white/5 last:border-0"
-            >
-              <div className="w-8 h-8 rounded-full bg-white/10 text-white text-xs font-black flex items-center justify-center shrink-0">
-                {initials(u.displayName, u.username)}
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-white truncate">
-                  {u.displayName ?? u.username}
-                  <span className="text-white/30 font-normal ml-1.5">@{u.username}</span>
-                </p>
-                <p className="text-xs text-white/35 truncate">{u.email}</p>
-              </div>
-              <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shrink-0 ${
-                u.role === "teacher" ? "bg-green-500/15 text-green-400" :
-                u.role === "admin" ? "bg-red-500/15 text-red-400" :
-                "bg-white/10 text-white/40"
-              }`}>
-                {u.role}
-              </span>
-            </button>
-          ))}
+            <p className="text-center text-white/30 text-xs py-4 px-3">
+              No users match "{query.replace(/^@/, "")}"
+            </p>
+          ) : (
+            <>
+              <p className="text-[10px] text-white/25 uppercase tracking-widest px-3 pt-2 pb-1">
+                {results.length} user{results.length !== 1 ? "s" : ""} found
+              </p>
+              {results.map(u => (
+                <button key={u.id} onClick={() => { onSelect(u); setQuery(""); setOpen(false); }}
+                  className="w-full flex items-center gap-3 px-3 py-2.5 hover:bg-white/6 transition-colors text-left border-t border-white/5 first:border-0">
+                  <div className="w-8 h-8 rounded-full bg-white/10 text-white text-xs font-black flex items-center justify-center shrink-0">
+                    {(u.displayName ?? u.username).slice(0, 2).toUpperCase()}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <p className="text-sm font-semibold text-white">{u.displayName ?? u.username}</p>
+                      <span className="text-white/35 text-xs">@{u.username}</span>
+                      {u.currentPlan && (
+                        <PlanBadge plan={u.currentPlan} isTrial={u.isTrial} trialEndsAt={u.trialEndsAt} />
+                      )}
+                    </div>
+                    <p className="text-xs text-white/35 truncate">{u.email}</p>
+                  </div>
+                  <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shrink-0 ${
+                    u.role === "teacher" ? "bg-green-500/15 text-green-400" :
+                    u.role === "admin"   ? "bg-red-500/15 text-red-400" :
+                    "bg-white/10 text-white/40"
+                  }`}>{u.role}</span>
+                </button>
+              ))}
+            </>
+          )}
         </div>
       )}
     </div>
   );
 }
 
+// ─── Feature Lock List ────────────────────────────────────────────────────────
+function FeatureLockList({ plan }: { plan: PlanTier }) {
+  const features = PLAN_FEATURES[plan];
+  return (
+    <div className="bg-white/3 border border-white/8 rounded-xl p-3">
+      <p className="text-[10px] text-white/30 uppercase tracking-widest mb-2">What this plan includes</p>
+      <div className="grid grid-cols-2 gap-1">
+        {features.map((f, i) => {
+          const Icon = f.icon;
+          return (
+            <div key={i} className={`flex items-center gap-1.5 text-xs ${f.locked ? "text-white/25" : "text-white/70"}`}>
+              {f.locked
+                ? <Lock size={10} className="text-white/20 shrink-0" />
+                : <CheckCircle size={10} className="text-green-400 shrink-0" />
+              }
+              <span className={f.locked ? "line-through" : ""}>{f.label}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 // ─── Assign Dialog ────────────────────────────────────────────────────────────
-function AssignDialog({ users, onClose, onSuccess }: { users: UserOption[]; onClose: () => void; onSuccess: () => void }) {
+function AssignDialog({ users: initialUsers, onClose, onSuccess }: {
+  users: UserOption[];
+  onClose: () => void;
+  onSuccess: () => void;
+}) {
+  const [users, setUsers] = useState<UserOption[]>(initialUsers);
   const [selectedUser, setSelectedUser] = useState<UserOption | null>(null);
   const [plan, setPlan] = useState<PlanTier>("teacher_pro");
   const [isTrial, setIsTrial] = useState(true);
@@ -172,6 +257,14 @@ function AssignDialog({ users, onClose, onSuccess }: { users: UserOption[]; onCl
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+
+  // Fetch users with current plan info on mount
+  useEffect(() => {
+    fetch("/api/admin/users-with-plans")
+      .then(r => r.json())
+      .then(d => { if (d.users) setUsers(d.users); })
+      .catch(() => {});
+  }, []);
 
   async function submit() {
     if (!selectedUser) { setError("Please select a user first"); return; }
@@ -202,7 +295,7 @@ function AssignDialog({ users, onClose, onSuccess }: { users: UserOption[]; onCl
 
   return (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-[#111] border border-white/10 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+      <div className="bg-[#111] border border-white/10 rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden max-h-[92vh] flex flex-col">
 
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 shrink-0">
@@ -220,7 +313,7 @@ function AssignDialog({ users, onClose, onSuccess }: { users: UserOption[]; onCl
           </button>
         </div>
 
-        <div className="overflow-y-auto flex-1 px-5 py-4 flex flex-col gap-5">
+        <div className="overflow-y-auto flex-1 px-5 py-4 flex flex-col gap-4">
           {error && (
             <div className="flex items-center gap-2 bg-red-500/10 border border-red-500/30 text-red-400 text-sm px-3 py-2.5 rounded-xl">
               <XCircle size={14} className="shrink-0" /> {error}
@@ -237,8 +330,25 @@ function AssignDialog({ users, onClose, onSuccess }: { users: UserOption[]; onCl
             <div className="flex items-center gap-2 mb-2">
               <span className="w-5 h-5 rounded-full bg-amber-400 text-black text-[10px] font-black flex items-center justify-center shrink-0">1</span>
               <label className="text-xs font-bold text-white/50 uppercase tracking-widest">Select User</label>
+              <span className="text-[10px] text-white/25 ml-auto">{users.length} users loaded</span>
             </div>
-            <UserTagSearch users={users} selected={selectedUser} onSelect={setSelectedUser} onClear={() => setSelectedUser(null)} />
+            <UserTagSearch users={users} selected={selectedUser} onSelect={u => { setSelectedUser(u); }} onClear={() => setSelectedUser(null)} />
+
+            {/* Current plan info for selected user */}
+            {selectedUser?.currentPlan && selectedUser.currentPlan !== "free" && (
+              <div className="mt-2 flex items-center gap-2 bg-white/4 border border-white/8 rounded-lg px-3 py-2">
+                <Clock size={12} className="text-amber-400 shrink-0" />
+                <span className="text-xs text-white/50">
+                  Currently on <span className="text-white font-bold">{PLAN_DISPLAY[selectedUser.currentPlan as PlanTier]?.name ?? selectedUser.currentPlan}</span>
+                  {selectedUser.isTrial && selectedUser.trialEndsAt && (
+                    <> · <span className={daysLeft(selectedUser.trialEndsAt) !== null && daysLeft(selectedUser.trialEndsAt)! <= 2 ? "text-red-400 font-bold" : "text-amber-400"}>
+                      {daysLeft(selectedUser.trialEndsAt)}d trial left
+                    </span></>
+                  )}
+                  {" "}— assigning will replace it
+                </span>
+              </div>
+            )}
           </div>
 
           {/* Step 2 — Plan */}
@@ -247,15 +357,14 @@ function AssignDialog({ users, onClose, onSuccess }: { users: UserOption[]; onCl
               <span className="w-5 h-5 rounded-full bg-amber-400 text-black text-[10px] font-black flex items-center justify-center shrink-0">2</span>
               <label className="text-xs font-bold text-white/50 uppercase tracking-widest">Choose Plan</label>
             </div>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-2 mb-3">
               {planMeta.map(({ key, icon: Icon, label, price, desc }) => (
                 <button key={key} onClick={() => setPlan(key)}
                   className={`relative flex flex-col items-center gap-1.5 py-3 px-2 rounded-xl border transition-all ${
                     plan === key
                       ? "border-amber-400 bg-amber-400/10 shadow-[0_0_12px_rgba(251,191,36,0.15)]"
                       : "border-white/10 bg-white/4 hover:border-white/20"
-                  }`}
-                >
+                  }`}>
                   {plan === key && <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-amber-400" />}
                   <Icon size={18} className={plan === key ? "text-amber-400" : "text-white/35"} />
                   <span className={`text-xs font-black ${plan === key ? "text-amber-400" : "text-white/55"}`}>{label}</span>
@@ -264,6 +373,8 @@ function AssignDialog({ users, onClose, onSuccess }: { users: UserOption[]; onCl
                 </button>
               ))}
             </div>
+            {/* Feature lock list for selected plan */}
+            <FeatureLockList plan={plan} />
           </div>
 
           {/* Step 3 — Duration */}
@@ -283,13 +394,10 @@ function AssignDialog({ users, onClose, onSuccess }: { users: UserOption[]; onCl
               {isTrial ? (
                 <div className="flex items-center gap-2">
                   <Clock size={13} className="text-amber-400 shrink-0" />
-                  <input
-                    type="number"
-                    value={trialDays}
+                  <input type="number" value={trialDays}
                     onChange={e => setTrialDays(Math.max(1, Math.min(90, parseInt(e.target.value) || 7)))}
                     min={1} max={90}
-                    className="w-16 bg-black/30 border border-white/10 rounded-lg px-2 py-1.5 text-sm text-white text-center focus:outline-none focus:border-amber-400/50"
-                  />
+                    className="w-16 bg-black/30 border border-white/10 rounded-lg px-2 py-1.5 text-sm text-white text-center focus:outline-none focus:border-amber-400/50" />
                   <span className="text-xs text-white/40">days free trial</span>
                   <div className="flex gap-1 ml-auto">
                     {[7, 14, 30].map(d => (
@@ -313,7 +421,7 @@ function AssignDialog({ users, onClose, onSuccess }: { users: UserOption[]; onCl
 
           {/* Note */}
           <div>
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-2 mb-1.5">
               <StickyNote size={13} className="text-white/25" />
               <label className="text-xs font-bold text-white/35 uppercase tracking-widest">Admin Note (optional)</label>
             </div>
@@ -324,7 +432,7 @@ function AssignDialog({ users, onClose, onSuccess }: { users: UserOption[]; onCl
         </div>
 
         {/* Footer CTA */}
-        <div className="px-5 pb-5 shrink-0">
+        <div className="px-5 pb-5 shrink-0 border-t border-white/8 pt-4">
           <button onClick={submit} disabled={loading || success || !selectedUser}
             className="w-full flex items-center justify-center gap-2 bg-amber-400 text-black font-black py-3.5 rounded-xl hover:bg-amber-300 transition-all disabled:opacity-40 disabled:cursor-not-allowed text-sm">
             {loading ? <><RefreshCw size={15} className="animate-spin" /> Assigning...</>
@@ -375,7 +483,6 @@ function EditDialog({ sub, onClose, onSuccess }: { sub: SubRow; onClose: () => v
             <X size={14} />
           </button>
         </div>
-
         <div className="px-5 py-4 flex flex-col gap-4">
           <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-xl px-3 py-2.5">
             <div className="w-8 h-8 rounded-full bg-white/10 text-white text-xs font-black flex items-center justify-center">
@@ -386,7 +493,6 @@ function EditDialog({ sub, onClose, onSuccess }: { sub: SubRow; onClose: () => v
               <p className="text-xs truncate" style={{ color: planDisplay?.color }}>{planDisplay?.name ?? sub.plan}</p>
             </div>
           </div>
-
           <div>
             <label className="block text-xs text-white/40 uppercase tracking-widest mb-2">Status</label>
             <div className="grid grid-cols-2 gap-2">
@@ -404,19 +510,16 @@ function EditDialog({ sub, onClose, onSuccess }: { sub: SubRow; onClose: () => v
               })}
             </div>
           </div>
-
           <div>
             <label className="block text-xs text-white/40 uppercase tracking-widest mb-1.5">Ends At</label>
             <input type="date" value={endsAt} onChange={e => setEndsAt(e.target.value)}
               className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-amber-400/50" />
           </div>
-
           <div>
             <label className="block text-xs text-white/40 uppercase tracking-widest mb-1.5">Note</label>
             <textarea value={note} onChange={e => setNote(e.target.value)} rows={2}
               className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-white/20 focus:outline-none resize-none" />
           </div>
-
           <div className="flex gap-2">
             <button onClick={save} disabled={loading}
               className="flex-1 bg-amber-400 text-black font-black py-2.5 rounded-xl hover:bg-amber-300 disabled:opacity-50 text-sm transition-colors">
@@ -443,13 +546,13 @@ export function SubscriptionsManager({ initialRows, allUsers }: Props) {
   const [filterStatus, setFilterStatus] = useState("all");
   const [loading, setLoading] = useState(false);
 
-  async function refresh() {
+  const refresh = useCallback(async () => {
     setLoading(true);
     const res = await fetch("/api/admin/subscriptions");
     const data = await res.json();
     setRows(data.subscriptions ?? []);
     setLoading(false);
-  }
+  }, []);
 
   const filtered = useMemo(() => rows.filter(r => {
     const q = search.toLowerCase();
@@ -609,7 +712,7 @@ export function SubscriptionsManager({ initialRows, allUsers }: Props) {
         <AlertTriangle size={15} className="text-amber-400 mt-0.5 shrink-0" />
         <div>
           <p className="text-sm font-bold text-amber-400">Anti-Cheat Policy</p>
-          <p className="text-xs text-white/40 mt-0.5">Admin-assigned only. No self-upgrade, no payment bypass. Every action logged with admin ID. New teacher accounts auto-receive a 7-day Teacher Pro trial.</p>
+          <p className="text-xs text-white/40 mt-0.5">Admin-assigned only. No self-upgrade, no payment bypass. Every action logged. New teacher accounts auto-receive a 7-day Teacher Pro trial.</p>
         </div>
       </div>
     </div>

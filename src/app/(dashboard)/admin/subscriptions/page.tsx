@@ -15,6 +15,22 @@ export default async function SubscriptionsPage() {
   let rows: any[] = [];
   let allUsers: any[] = [];
 
+  // Always fetch users — separate try/catch so it never fails due to subscriptions table
+  try {
+    allUsers = await db
+      .select({
+        id: users.id,
+        displayName: users.displayName,
+        username: users.username,
+        email: users.email,
+        role: users.role,
+      })
+      .from(users)
+      .orderBy(users.username);
+  } catch {
+    // DB unavailable
+  }
+
   try {
     rows = await db
       .select({
@@ -36,13 +52,8 @@ export default async function SubscriptionsPage() {
       .from(subscriptions)
       .innerJoin(users, eq(subscriptions.userId, users.id))
       .orderBy(desc(subscriptions.createdAt));
-
-    allUsers = await db
-      .select({ id: users.id, displayName: users.displayName, username: users.username, email: users.email, role: users.role })
-      .from(users)
-      .orderBy(users.displayName);
   } catch {
-    // Table may not exist yet — migration pending
+    // Subscriptions table may not exist yet
   }
 
   return <SubscriptionsManager initialRows={rows} allUsers={allUsers} adminId={session.id} />;
