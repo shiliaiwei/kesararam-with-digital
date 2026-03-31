@@ -17,6 +17,7 @@ export async function GET() {
   const allUsers = await db
     .select({ id: users.id, displayName: users.displayName, username: users.username, email: users.email, role: users.role })
     .from(users)
+    .where(eq(users.role, "teacher"))
     .orderBy(users.username);
 
   // Get active subscriptions

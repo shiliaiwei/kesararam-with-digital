@@ -26,6 +26,7 @@ export default async function SubscriptionsPage() {
         role: users.role,
       })
       .from(users)
+      .where(eq(users.role, "teacher"))
       .orderBy(users.username);
   } catch {
     // DB unavailable

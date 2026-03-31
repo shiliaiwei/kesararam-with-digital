@@ -108,13 +108,13 @@ export async function POST(req: NextRequest) {
       plan: plan as PlanTier,
       status: isTrial ? "trial" : "active",
       isTrial: Boolean(isTrial),
-      trialEndsAt: trialEndsAt ?? null,
       startsAt: now,
       assignedBy: session.id,
     };
 
-    // Only include endsAt if it's a valid date
-    if (parsedEndsAt) insertValues.endsAt = parsedEndsAt;
+    // Only include timestamp fields when they have actual values
+    if (trialEndsAt instanceof Date) insertValues.trialEndsAt = trialEndsAt;
+    if (parsedEndsAt instanceof Date) insertValues.endsAt = parsedEndsAt;
 
     // Only include note if non-empty
     const cleanNote = note && typeof note === "string" && note.trim() ? note.trim() : null;
