@@ -103,19 +103,26 @@ export async function POST(req: NextRequest) {
       if (!isNaN(d.getTime())) parsedEndsAt = d;
     }
 
+    const insertValues: Record<string, unknown> = {
+      userId: Number(userId),
+      plan: plan as PlanTier,
+      status: isTrial ? "trial" : "active",
+      isTrial: Boolean(isTrial),
+      trialEndsAt: trialEndsAt ?? null,
+      startsAt: now,
+      assignedBy: session.id,
+    };
+
+    // Only include endsAt if it's a valid date
+    if (parsedEndsAt) insertValues.endsAt = parsedEndsAt;
+
+    // Only include note if non-empty
+    const cleanNote = note && typeof note === "string" && note.trim() ? note.trim() : null;
+    if (cleanNote) insertValues.note = cleanNote;
+
     const [newSub] = await db
       .insert(subscriptions)
-      .values({
-        userId: Number(userId),
-        plan: plan as PlanTier,
-        status: isTrial ? "trial" : "active",
-        isTrial: Boolean(isTrial),
-        trialEndsAt,
-        startsAt: now,
-        endsAt: parsedEndsAt,
-        assignedBy: session.id,
-        note: note && typeof note === "string" && note.trim() ? note.trim() : null,
-      })
+      .values(insertValues as any)
       .returning();
 
     return NextResponse.json({ subscription: newSub }, { status: 201 });
