@@ -1,18 +1,20 @@
 /**
  * Admin-only subscription management API.
+ * Uses raw Neon SQL client directly to avoid ORM null-timestamp serialization bug.
  */
 
 import { NextRequest, NextResponse } from "next/server";
+import { sql as neonSql } from "@/lib/db"; // raw neon client, not drizzle
 import { db } from "@/lib/db";
 import { subscriptions } from "@/db/schema/subscriptions";
 import { users } from "@/db/schema/users";
 import { getSession } from "@/lib/auth";
-import { eq, desc, sql } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 
 const VALID_PLANS = ["free", "teacher_pro", "school"] as const;
 type PlanTier = typeof VALID_PLANS[number];
 
-// GET /api/admin/subscriptions
+// GET — uses drizzle (reads are fine, no null timestamp issue)
 export async function GET() {
   try {
     const session = await getSession();
@@ -42,12 +44,12 @@ export async function GET() {
 
     return NextResponse.json({ subscriptions: rows });
   } catch (err) {
-    console.error("[GET /api/admin/subscriptions]", err);
+    console.error("[GET subscriptions]", err);
     return NextResponse.json({ subscriptions: [] }, { status: 200 });
   }
 }
 
-// POST /api/admin/subscriptions — assign a subscription to a user
+// POST — uses raw neon SQL to avoid null timestamp bug in neon-http driver
 export async function POST(req: NextRequest) {
   try {
     const session = await getSession();
@@ -70,56 +72,51 @@ export async function POST(req: NextRequest) {
     if (!VALID_PLANS.includes(plan as PlanTier))
       return NextResponse.json({ error: `Invalid plan: ${plan}` }, { status: 400 });
 
-    const [targetUser] = await db
-      .select({ id: users.id })
-      .from(users)
-      .where(eq(users.id, userId));
+    // Verify user exists
+    const [targetUser] = await db.select({ id: users.id }).from(users).where(eq(users.id, userId));
     if (!targetUser)
       return NextResponse.json({ error: "User not found" }, { status: 404 });
 
-    const now = new Date();
-
-    // Cancel existing subscriptions
-    try {
-      await db.update(subscriptions)
-        .set({ status: "cancelled" })
-        .where(eq(subscriptions.userId, userId));
-    } catch { /* non-fatal */ }
-
+    const now = new Date().toISOString();
+    const status = isTrial ? "trial" : "active";
     const trialEndsAt = isTrial
-      ? new Date(now.getTime() + trialDays * 24 * 60 * 60 * 1000)
+      ? new Date(Date.now() + trialDays * 86400000).toISOString()
       : null;
 
-    let endsAt: Date | null = null;
+    let endsAt: string | null = null;
     if (!isTrial && typeof body.endsAt === "string" && body.endsAt.length > 4) {
       const d = new Date(body.endsAt);
-      if (!isNaN(d.getTime())) endsAt = d;
+      if (!isNaN(d.getTime())) endsAt = d.toISOString();
     }
 
-    // Use raw SQL to avoid Neon HTTP driver serializing null timestamps as ""
-    const result = await db.execute(sql`
+    // Cancel existing — raw SQL
+    await neonSql`
+      UPDATE subscriptions SET status = 'cancelled'
+      WHERE user_id = ${userId}
+    `;
+
+    // Insert — raw Neon SQL template tag handles null correctly
+    const rows = await neonSql`
       INSERT INTO subscriptions
         (user_id, plan, status, is_trial, trial_ends_at, starts_at, ends_at, assigned_by, note)
-      VALUES
-        (
-          ${userId},
-          ${plan}::"plan_tier",
-          ${isTrial ? "trial" : "active"}::"subscription_status",
-          ${isTrial},
-          ${trialEndsAt ? trialEndsAt.toISOString() : null},
-          ${now.toISOString()},
-          ${endsAt ? endsAt.toISOString() : null},
-          ${session.id},
-          ${note}
-        )
-      RETURNING id, user_id, plan, status, is_trial, trial_ends_at, starts_at, ends_at, assigned_by, note, created_at, updated_at
-    `);
+      VALUES (
+        ${userId},
+        ${plan}::"plan_tier",
+        ${status}::"subscription_status",
+        ${isTrial},
+        ${trialEndsAt}::timestamptz,
+        ${now}::timestamptz,
+        ${endsAt}::timestamptz,
+        ${session.id},
+        ${note}
+      )
+      RETURNING *
+    `;
 
-    const inserted = (result as any).rows?.[0] ?? (result as any)[0] ?? null;
-    return NextResponse.json({ subscription: inserted }, { status: 201 });
+    return NextResponse.json({ subscription: rows[0] ?? null }, { status: 201 });
 
   } catch (err) {
-    console.error("[POST /api/admin/subscriptions]", err);
+    console.error("[POST subscriptions]", err);
     const msg = err instanceof Error ? err.message : String(err);
     return NextResponse.json({ error: `Server error: ${msg}` }, { status: 500 });
   }
