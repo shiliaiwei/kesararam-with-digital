@@ -30,18 +30,21 @@ export async function POST(req: NextRequest) {
 
   // ── Subscription enforcement (skip for admin) ──
   if (user.role !== "admin") {
-    const blockReason = await enforceSessionCreation(user.id, maxPlayers);
-    if (blockReason) {
-      return NextResponse.json({ error: blockReason, upgradeRequired: true }, { status: 403 });
-    }
+    try {
+      const blockReason = await enforceSessionCreation(user.id, maxPlayers);
+      if (blockReason) {
+        return NextResponse.json({ error: blockReason, upgradeRequired: true }, { status: 403 });
+      }
 
-    // Clamp maxPlayers to plan limit
-    const { limits } = await getUserSubscription(user.id);
-    if (maxPlayers > limits.maxPlayersPerSession) {
-      return NextResponse.json(
-        { error: `Your plan allows max ${limits.maxPlayersPerSession} players.`, upgradeRequired: true },
-        { status: 403 }
-      );
+      const { limits } = await getUserSubscription(user.id);
+      if (maxPlayers > limits.maxPlayersPerSession) {
+        return NextResponse.json(
+          { error: `Your plan allows max ${limits.maxPlayersPerSession} players.`, upgradeRequired: true },
+          { status: 403 }
+        );
+      }
+    } catch (subErr) {
+      console.warn("[sessions] subscription check failed, allowing session:", subErr);
     }
   }
 
