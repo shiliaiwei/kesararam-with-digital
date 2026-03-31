@@ -7,8 +7,7 @@ import { db } from "@/lib/db";
 import { subscriptions } from "@/db/schema/subscriptions";
 import { users } from "@/db/schema/users";
 import { getSession } from "@/lib/auth";
-import { eq, desc } from "drizzle-orm";
-import type { NewSubscription } from "@/db/schema/subscriptions";
+import { eq, desc, sql } from "drizzle-orm";
 
 const VALID_PLANS = ["free", "teacher_pro", "school"] as const;
 type PlanTier = typeof VALID_PLANS[number];
@@ -71,7 +70,6 @@ export async function POST(req: NextRequest) {
     if (!VALID_PLANS.includes(plan as PlanTier))
       return NextResponse.json({ error: `Invalid plan: ${plan}` }, { status: 400 });
 
-    // Verify user exists
     const [targetUser] = await db
       .select({ id: users.id })
       .from(users)
@@ -88,35 +86,36 @@ export async function POST(req: NextRequest) {
         .where(eq(subscriptions.userId, userId));
     } catch { /* non-fatal */ }
 
-    // Build typed insert — explicit null for optional timestamps
-    const trialEndsAt: Date | null = isTrial
+    const trialEndsAt = isTrial
       ? new Date(now.getTime() + trialDays * 24 * 60 * 60 * 1000)
       : null;
 
-    // Parse endsAt only when not a trial and value is provided
     let endsAt: Date | null = null;
     if (!isTrial && typeof body.endsAt === "string" && body.endsAt.length > 4) {
       const d = new Date(body.endsAt);
       if (!isNaN(d.getTime())) endsAt = d;
     }
 
-    const newRow: NewSubscription = {
-      userId,
-      plan: plan as PlanTier,
-      status: isTrial ? "trial" : "active",
-      isTrial,
-      trialEndsAt,
-      startsAt: now,
-      endsAt,
-      assignedBy: session.id,
-      note,
-    };
+    // Use raw SQL to avoid Neon HTTP driver serializing null timestamps as ""
+    const result = await db.execute(sql`
+      INSERT INTO subscriptions
+        (user_id, plan, status, is_trial, trial_ends_at, starts_at, ends_at, assigned_by, note)
+      VALUES
+        (
+          ${userId},
+          ${plan}::"plan_tier",
+          ${isTrial ? "trial" : "active"}::"subscription_status",
+          ${isTrial},
+          ${trialEndsAt ? trialEndsAt.toISOString() : null},
+          ${now.toISOString()},
+          ${endsAt ? endsAt.toISOString() : null},
+          ${session.id},
+          ${note}
+        )
+      RETURNING id, user_id, plan, status, is_trial, trial_ends_at, starts_at, ends_at, assigned_by, note, created_at, updated_at
+    `);
 
-    const [inserted] = await db
-      .insert(subscriptions)
-      .values(newRow)
-      .returning();
-
+    const inserted = (result as any).rows?.[0] ?? (result as any)[0] ?? null;
     return NextResponse.json({ subscription: inserted }, { status: 201 });
 
   } catch (err) {
