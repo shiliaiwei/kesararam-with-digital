@@ -1,6 +1,5 @@
 /**
  * Admin-only subscription management API.
- * Only admins can assign, modify, or revoke subscriptions.
  */
 
 import { NextRequest, NextResponse } from "next/server";
@@ -9,6 +8,7 @@ import { subscriptions } from "@/db/schema/subscriptions";
 import { users } from "@/db/schema/users";
 import { getSession } from "@/lib/auth";
 import { eq, desc } from "drizzle-orm";
+import type { NewSubscription } from "@/db/schema/subscriptions";
 
 const VALID_PLANS = ["free", "teacher_pro", "school"] as const;
 type PlanTier = typeof VALID_PLANS[number];
@@ -44,7 +44,7 @@ export async function GET() {
     return NextResponse.json({ subscriptions: rows });
   } catch (err) {
     console.error("[GET /api/admin/subscriptions]", err);
-    return NextResponse.json({ error: "Failed to fetch subscriptions", subscriptions: [] }, { status: 200 });
+    return NextResponse.json({ subscriptions: [] }, { status: 200 });
   }
 }
 
@@ -55,77 +55,70 @@ export async function POST(req: NextRequest) {
     if (!session || session.role !== "admin")
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
-    let body: any;
-    try {
-      body = await req.json();
-    } catch {
+    let body: Record<string, unknown> = {};
+    try { body = await req.json(); } catch {
       return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
     }
 
-    const { userId, plan, isTrial, trialDays, endsAt, note } = body ?? {};
+    const userId = Number(body.userId);
+    const plan = String(body.plan ?? "");
+    const isTrial = Boolean(body.isTrial);
+    const trialDays = Number(body.trialDays ?? 7);
+    const note = typeof body.note === "string" && body.note.trim() ? body.note.trim() : null;
 
-    if (!userId || !plan)
-      return NextResponse.json({ error: "userId and plan are required" }, { status: 400 });
-
+    if (!userId || isNaN(userId))
+      return NextResponse.json({ error: "Invalid userId" }, { status: 400 });
     if (!VALID_PLANS.includes(plan as PlanTier))
-      return NextResponse.json({ error: `Invalid plan. Must be one of: ${VALID_PLANS.join(", ")}` }, { status: 400 });
+      return NextResponse.json({ error: `Invalid plan: ${plan}` }, { status: 400 });
 
-    // Verify target user exists
+    // Verify user exists
     const [targetUser] = await db
-      .select({ id: users.id, role: users.role })
+      .select({ id: users.id })
       .from(users)
-      .where(eq(users.id, Number(userId)));
-
+      .where(eq(users.id, userId));
     if (!targetUser)
       return NextResponse.json({ error: "User not found" }, { status: 404 });
 
     const now = new Date();
 
-    // Cancel any existing active/trial subscriptions for this user
+    // Cancel existing subscriptions
     try {
-      await db
-        .update(subscriptions)
+      await db.update(subscriptions)
         .set({ status: "cancelled" })
-        .where(eq(subscriptions.userId, Number(userId)));
-    } catch (cancelErr) {
-      console.warn("[subscriptions] cancel existing failed:", cancelErr);
+        .where(eq(subscriptions.userId, userId));
+    } catch { /* non-fatal */ }
+
+    // Build typed insert — explicit null for optional timestamps
+    const trialEndsAt: Date | null = isTrial
+      ? new Date(now.getTime() + trialDays * 24 * 60 * 60 * 1000)
+      : null;
+
+    // Parse endsAt only when not a trial and value is provided
+    let endsAt: Date | null = null;
+    if (!isTrial && typeof body.endsAt === "string" && body.endsAt.length > 4) {
+      const d = new Date(body.endsAt);
+      if (!isNaN(d.getTime())) endsAt = d;
     }
 
-    const trialEndsAt =
-      isTrial && trialDays
-        ? new Date(now.getTime() + Number(trialDays) * 24 * 60 * 60 * 1000)
-        : null;
-
-    // Sanitize endsAt — must be a valid date string or null
-    let parsedEndsAt: Date | null = null;
-    if (!isTrial && endsAt && typeof endsAt === "string" && endsAt.trim().length > 4) {
-      const d = new Date(endsAt);
-      if (!isNaN(d.getTime())) parsedEndsAt = d;
-    }
-
-    const insertValues: Record<string, unknown> = {
-      userId: Number(userId),
+    const newRow: NewSubscription = {
+      userId,
       plan: plan as PlanTier,
       status: isTrial ? "trial" : "active",
-      isTrial: Boolean(isTrial),
+      isTrial,
+      trialEndsAt,
       startsAt: now,
+      endsAt,
       assignedBy: session.id,
+      note,
     };
 
-    // Only include timestamp fields when they have actual values
-    if (trialEndsAt instanceof Date) insertValues.trialEndsAt = trialEndsAt;
-    if (parsedEndsAt instanceof Date) insertValues.endsAt = parsedEndsAt;
-
-    // Only include note if non-empty
-    const cleanNote = note && typeof note === "string" && note.trim() ? note.trim() : null;
-    if (cleanNote) insertValues.note = cleanNote;
-
-    const [newSub] = await db
+    const [inserted] = await db
       .insert(subscriptions)
-      .values(insertValues as any)
+      .values(newRow)
       .returning();
 
-    return NextResponse.json({ subscription: newSub }, { status: 201 });
+    return NextResponse.json({ subscription: inserted }, { status: 201 });
+
   } catch (err) {
     console.error("[POST /api/admin/subscriptions]", err);
     const msg = err instanceof Error ? err.message : String(err);
