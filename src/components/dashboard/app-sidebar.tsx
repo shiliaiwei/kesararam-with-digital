@@ -20,6 +20,10 @@ import {
   Gamepad2,
   HelpCircle,
   CreditCard,
+  Crown,
+  Zap,
+  Building2,
+  Clock,
 } from "lucide-react";
 import { logoutAction } from "@/app/actions/auth";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
@@ -77,14 +81,29 @@ interface AppSidebarProps {
   name: string;
   email: string;
   avatar?: string | null;
+  plan?: string;
+  isTrial?: boolean;
+  trialEndsAt?: string | null;
 }
 
-export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
+export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial = false, trialEndsAt = null }: AppSidebarProps) {
   const pathname = usePathname();
   const navItems = role === "admin" ? adminNav : role === "staff" ? staffNav : teacherNav;
   const profileHref = role === "admin" ? "/admin/profile" : role === "staff" ? "/staff/profile" : "/teacher/profile";
   const roleColor = role === "admin" ? "#ef4444" : role === "staff" ? "#f59e0b" : "#22c55e";
   const [expandedItems, setExpandedItems] = useState<string[]>(["Content"]);
+
+  // Plan config for teacher badge
+  const planConfig: Record<string, { label: string; icon: typeof Zap; color: string; bg: string }> = {
+    free:        { label: "Free",        icon: Zap,       color: "#6b7280", bg: "#f4f4f5" },
+    teacher_pro: { label: "Teacher Pro", icon: Crown,     color: "#d97706", bg: "#fef3c7" },
+    school:      { label: "School",      icon: Building2, color: "#7c3aed", bg: "#f5f3ff" },
+  };
+  const pc = planConfig[plan] ?? planConfig.free;
+  const PlanIcon = pc.icon;
+  const trialDaysLeft = trialEndsAt
+    ? Math.max(0, Math.ceil((new Date(trialEndsAt).getTime() - Date.now()) / 86400000))
+    : null;
 
   function isNavItemActive(href: string) {
     const targetPath = href.split("?")[0];
@@ -141,6 +160,28 @@ export function AppSidebar({ role, name, email, avatar }: AppSidebarProps) {
               </span>
             </div>
           </div>
+          {/* Plan badge — teacher only */}
+          {role === "teacher" && (
+            <div className="border-t-2 border-black px-3 py-2 flex items-center justify-between"
+              style={{ backgroundColor: pc.bg }}>
+              <div className="flex items-center gap-1.5">
+                <PlanIcon size={11} style={{ color: pc.color }} />
+                <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: pc.color }}>
+                  {pc.label}
+                </span>
+                {isTrial && trialDaysLeft !== null && (
+                  <span className={`text-[9px] font-bold px-1 py-0.5 border border-current rounded ${trialDaysLeft <= 2 ? "text-red-600" : "text-amber-600"}`}>
+                    {trialDaysLeft}d left
+                  </span>
+                )}
+              </div>
+              {isTrial && (
+                <Link href="/pricing" className="text-[9px] font-black uppercase tracking-widest text-amber-600 hover:text-amber-500 border border-amber-400 px-1.5 py-0.5">
+                  Upgrade
+                </Link>
+              )}
+            </div>
+          )}
         </div>
       </div>
 

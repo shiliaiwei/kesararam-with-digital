@@ -69,3 +69,31 @@ yes, give that all username email password to admin Full edit , user can edit li
 fix the UI , this screenshort i test on ipad, and see logo signs leak ouside the card box, , all device make sure this signs logo alway in the box card and ceneter , than fix the button teacher live has skip button ,next and terminate live , i testing pause but it not working i wanted to remove that pause button, keep next button bigger to click and ternamated live , another place advoice click that button, and this UI live dashbaord i want u to redesgin the UI after teacher click start i want that UI , change to full screen at that time easy presetn share screen to studetn see real time question and see the type of quiz but teacher cannot select that answer only seen, and studetn can read decided, create card borad live real time score point studetn who has got and they can who bet each other every qestuon pointup and down ravey next button teacher click, but more foucs on queston and answer , make all working greate no error and live real matric data number.  after fix that , give me the theory of price , plan subcribetion, for this project to learn more and make revenue from this give me the theroy of picking user, avabale plan, and what we offer, and wxplain what shoul dmake it lock for subscribe , to learn more . 
 
 
+-- Only run if types don't exist yet
+DO $$ BEGIN
+  CREATE TYPE "plan_tier" AS ENUM ('free', 'teacher_pro', 'school');
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
+
+DO $$ BEGIN
+  CREATE TYPE "subscription_status" AS ENUM ('active', 'expired', 'cancelled', 'trial');
+EXCEPTION WHEN duplicate_object THEN NULL;
+END $$;
+
+CREATE TABLE IF NOT EXISTS "subscriptions" (
+  "id" serial PRIMARY KEY NOT NULL,
+  "user_id" integer NOT NULL REFERENCES "users"("id") ON DELETE CASCADE,
+  "plan" "plan_tier" NOT NULL DEFAULT 'free',
+  "status" "subscription_status" NOT NULL DEFAULT 'active',
+  "is_trial" boolean NOT NULL DEFAULT false,
+  "trial_ends_at" timestamp,
+  "starts_at" timestamp NOT NULL DEFAULT now(),
+  "ends_at" timestamp,
+  "assigned_by" integer NOT NULL REFERENCES "users"("id"),
+  "note" text,
+  "created_at" timestamp NOT NULL DEFAULT now(),
+  "updated_at" timestamp NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS "subscriptions_user_id_idx" ON "subscriptions"("user_id");
+CREATE INDEX IF NOT EXISTS "subscriptions_status_idx" ON "subscriptions"("status");
