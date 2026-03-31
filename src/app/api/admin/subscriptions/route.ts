@@ -1,7 +1,6 @@
 /**
  * Admin-only subscription management API.
  * Only admins can assign, modify, or revoke subscriptions.
- * No client-side bypass possible — all checks are server-side.
  */
 
 import { NextRequest, NextResponse } from "next/server";
@@ -10,15 +9,17 @@ import { subscriptions } from "@/db/schema/subscriptions";
 import { users } from "@/db/schema/users";
 import { getSession } from "@/lib/auth";
 import { eq, desc } from "drizzle-orm";
-import { PLAN_LIMITS, type PlanTier } from "@/lib/subscription";
 
-// GET /api/admin/subscriptions — list all subscriptions with user info
+const VALID_PLANS = ["free", "teacher_pro", "school"] as const;
+type PlanTier = typeof VALID_PLANS[number];
+
+// GET /api/admin/subscriptions
 export async function GET() {
-  const session = await getSession();
-  if (!session || session.role !== "admin")
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-
   try {
+    const session = await getSession();
+    if (!session || session.role !== "admin")
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+
     const rows = await db
       .select({
         id: subscriptions.id,
@@ -31,6 +32,7 @@ export async function GET() {
         endsAt: subscriptions.endsAt,
         note: subscriptions.note,
         createdAt: subscriptions.createdAt,
+        updatedAt: subscriptions.updatedAt,
         userName: users.displayName,
         userEmail: users.email,
         userRole: users.role,
@@ -40,65 +42,80 @@ export async function GET() {
       .orderBy(desc(subscriptions.createdAt));
 
     return NextResponse.json({ subscriptions: rows });
-  } catch {
-    return NextResponse.json({ error: "Migration pending — run 0004_subscription_system.sql" }, { status: 503 });
+  } catch (err) {
+    console.error("[GET /api/admin/subscriptions]", err);
+    return NextResponse.json({ error: "Failed to fetch subscriptions", subscriptions: [] }, { status: 200 });
   }
 }
 
 // POST /api/admin/subscriptions — assign a subscription to a user
 export async function POST(req: NextRequest) {
-  const session = await getSession();
-  if (!session || session.role !== "admin")
-    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  try {
+    const session = await getSession();
+    if (!session || session.role !== "admin")
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
-  const body = await req.json();
-  const { userId, plan, isTrial, trialDays, endsAt, note } = body;
+    let body: any;
+    try {
+      body = await req.json();
+    } catch {
+      return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+    }
 
-  if (!userId || !plan) {
-    return NextResponse.json({ error: "userId and plan are required" }, { status: 400 });
+    const { userId, plan, isTrial, trialDays, endsAt, note } = body ?? {};
+
+    if (!userId || !plan)
+      return NextResponse.json({ error: "userId and plan are required" }, { status: 400 });
+
+    if (!VALID_PLANS.includes(plan as PlanTier))
+      return NextResponse.json({ error: `Invalid plan. Must be one of: ${VALID_PLANS.join(", ")}` }, { status: 400 });
+
+    // Verify target user exists
+    const [targetUser] = await db
+      .select({ id: users.id, role: users.role })
+      .from(users)
+      .where(eq(users.id, Number(userId)));
+
+    if (!targetUser)
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+
+    const now = new Date();
+
+    // Cancel any existing active/trial subscriptions for this user
+    try {
+      await db
+        .update(subscriptions)
+        .set({ status: "cancelled", updatedAt: now })
+        .where(eq(subscriptions.userId, Number(userId)));
+    } catch (cancelErr) {
+      console.warn("[subscriptions] cancel existing failed:", cancelErr);
+      // Non-fatal — continue with insert
+    }
+
+    const trialEndsAt =
+      isTrial && trialDays
+        ? new Date(now.getTime() + Number(trialDays) * 24 * 60 * 60 * 1000)
+        : null;
+
+    const [newSub] = await db
+      .insert(subscriptions)
+      .values({
+        userId: Number(userId),
+        plan: plan as PlanTier,
+        status: isTrial ? "trial" : "active",
+        isTrial: Boolean(isTrial),
+        trialEndsAt,
+        startsAt: now,
+        endsAt: endsAt ? new Date(endsAt) : null,
+        assignedBy: session.id,
+        note: note ?? null,
+      })
+      .returning();
+
+    return NextResponse.json({ subscription: newSub }, { status: 201 });
+  } catch (err) {
+    console.error("[POST /api/admin/subscriptions]", err);
+    const msg = err instanceof Error ? err.message : String(err);
+    return NextResponse.json({ error: `Server error: ${msg}` }, { status: 500 });
   }
-
-  const validPlans: PlanTier[] = ["free", "teacher_pro", "school"];
-  if (!validPlans.includes(plan)) {
-    return NextResponse.json({ error: "Invalid plan" }, { status: 400 });
-  }
-
-  // Verify target user exists and is a teacher (or admin for school plan)
-  const [targetUser] = await db
-    .select({ id: users.id, role: users.role, email: users.email })
-    .from(users)
-    .where(eq(users.id, userId));
-
-  if (!targetUser) {
-    return NextResponse.json({ error: "User not found" }, { status: 404 });
-  }
-
-  // Cancel any existing active subscription for this user
-  await db
-    .update(subscriptions)
-    .set({ status: "cancelled", updatedAt: new Date() })
-    .where(eq(subscriptions.userId, userId));
-
-  const now = new Date();
-  const trialEndsAt =
-    isTrial && trialDays
-      ? new Date(now.getTime() + trialDays * 24 * 60 * 60 * 1000)
-      : null;
-
-  const [newSub] = await db
-    .insert(subscriptions)
-    .values({
-      userId,
-      plan,
-      status: isTrial ? "trial" : "active",
-      isTrial: !!isTrial,
-      trialEndsAt,
-      startsAt: now,
-      endsAt: endsAt ? new Date(endsAt) : null,
-      assignedBy: session.id,
-      note: note ?? null,
-    })
-    .returning();
-
-  return NextResponse.json({ subscription: newSub }, { status: 201 });
 }

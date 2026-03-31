@@ -260,7 +260,7 @@ function AssignDialog({ users: initialUsers, onClose, onSuccess }: {
 
   // Fetch users with current plan info on mount
   useEffect(() => {
-    fetch("/api/admin/users-with-plans")
+    fetch("/api/admin/users-with-plans", { credentials: "include" })
       .then(r => r.json())
       .then(d => { if (d.users) setUsers(d.users); })
       .catch(() => {});
@@ -272,6 +272,7 @@ function AssignDialog({ users: initialUsers, onClose, onSuccess }: {
     try {
       const res = await fetch("/api/admin/subscriptions", {
         method: "POST",
+        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           userId: selectedUser.id, plan, isTrial,
@@ -280,11 +281,19 @@ function AssignDialog({ users: initialUsers, onClose, onSuccess }: {
           note: note || undefined,
         }),
       });
-      if (!res.ok) { const d = await res.json(); setError(d.error ?? "Failed"); return; }
+
+      let data: any = {};
+      try { data = await res.json(); } catch { /* empty body */ }
+
+      if (!res.ok) {
+        setError(data.error ?? `Request failed (${res.status})`);
+        return;
+      }
       setSuccess(true);
       setTimeout(() => { onSuccess(); onClose(); }, 800);
-    } catch { setError("Network error"); }
-    finally { setLoading(false); }
+    } catch (err) {
+      setError(`Network error: ${err instanceof Error ? err.message : "Unknown"}`);
+    } finally { setLoading(false); }
   }
 
   const planMeta: { key: PlanTier; icon: typeof Zap; label: string; price: string; desc: string }[] = [
@@ -548,9 +557,11 @@ export function SubscriptionsManager({ initialRows, allUsers }: Props) {
 
   const refresh = useCallback(async () => {
     setLoading(true);
-    const res = await fetch("/api/admin/subscriptions");
-    const data = await res.json();
-    setRows(data.subscriptions ?? []);
+    try {
+      const res = await fetch("/api/admin/subscriptions", { credentials: "include" });
+      const data = await res.json();
+      setRows(data.subscriptions ?? []);
+    } catch { /* ignore */ }
     setLoading(false);
   }, []);
 
