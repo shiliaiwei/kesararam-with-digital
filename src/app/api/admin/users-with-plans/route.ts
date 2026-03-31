@@ -14,13 +14,19 @@ export async function GET() {
   if (!session || session.role !== "admin")
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
-  const allUsers = await db
-    .select({ id: users.id, displayName: users.displayName, username: users.username, email: users.email, role: users.role })
-    .from(users)
-    .where(eq(users.role, "teacher"))
-    .orderBy(users.username);
+  let allUsers: { id: number; displayName: string | null; username: string; email: string; role: string }[] = [];
+  try {
+    allUsers = await db
+      .select({ id: users.id, displayName: users.displayName, username: users.username, email: users.email, role: users.role })
+      .from(users)
+      .where(eq(users.role, "teacher"))
+      .orderBy(users.username);
+  } catch (err) {
+    console.error("[users-with-plans] users query failed:", err);
+    return NextResponse.json({ users: [] });
+  }
 
-  // Get active subscriptions
+  // Get active subscriptions — non-fatal if table missing
   let subMap: Record<number, { plan: string; status: string; isTrial: boolean; trialEndsAt: Date | null }> = {};
   try {
     const now = new Date();
@@ -32,11 +38,10 @@ export async function GET() {
         or(isNull(subscriptions.endsAt), gt(subscriptions.endsAt, now))
       ))
       .orderBy(desc(subscriptions.createdAt));
-
     for (const s of subs) {
       if (!subMap[s.userId]) subMap[s.userId] = s;
     }
-  } catch { /* subscriptions table may not exist */ }
+  } catch { /* subscriptions table may not exist yet */ }
 
   const result = allUsers.map(u => ({
     ...u,
