@@ -3,20 +3,21 @@
 import { useState, useEffect, useCallback } from "react";
 
 function qrUrl(data: string) {
-  return `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(data)}&bgcolor=0a0a0a&color=eab308&margin=10`;
+  // Standard black on white — maximum scanner compatibility
+  return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(data)}&bgcolor=ffffff&color=000000&margin=12&ecc=H`;
 }
 
 const STUDENTS = [
-  { id: "VSID-2026-001", name: "D. YIN",      fullName: "DANAI YIN",      role: "UI/UX Designer" },
-  { id: "VSID-2026-002", name: "C. KANIKA",   fullName: "CHANTHA KANIKA", role: "Content & Research" },
-  { id: "VSID-2026-003", name: "R. NEUN",     fullName: "ROZA NEUN",      role: "Frontend Developer" },
-  { id: "VSID-2026-004", name: "L. MANY",     fullName: "LIN MANY",       role: "Backend & Database" },
-  { id: "VSID-2026-005", name: "S. RUNAMARA", fullName: "SUN RUNAMARA",   role: "QA & Testing" },
+  { id: "VSID-2026-001", name: "D. YIN",      fullName: "D.YIN",      role: "UI/UX Designer" },
+  { id: "VSID-2026-002", name: "C. KANIKA",   fullName: "C.KANIKA", role: "Content & Research" },
+  { id: "VSID-2026-003", name: "R. NEUN",     fullName: "R.NEUN",      role: "Frontend Developer" },
+  { id: "VSID-2026-004", name: "L. MANY",     fullName: "L.MANY",       role: "Backend & Database" },
+  { id: "VSID-2026-005", name: "S. RUNAMARA", fullName: "S.RUNAMARA",   role: "QA & Testing" },
 ];
 
 const MENTORS = [
   { id: "VSID-2026-M01", name: "P. PHEAP", fullName: "PISETH PHEAP", role: "Teacher & Program Lead" },
-  { id: "VSID-2026-M02", name: "VI SRIE",  fullName: "VI SRIE",       role: "Java / Project Management" },
+  { id: "VSID-2026-M02", name: "SHILIAI WEI",  fullName: "S. Vi",       role: "Design, Checklist, Technical / Project Management" },
 ];
 
 interface Member { id: string; name: string; fullName: string; role: string; }
@@ -33,22 +34,23 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
     setLoading(true);
     try {
       const res = await fetch(`/api/team-token?id=${member.id}`);
-      const { token } = await res.json();
-      setQrLink(`${window.location.origin}/team/${token}`);
+      const { code } = await res.json();
+      // Short URL — much easier for QR scanners
+      setQrLink(`${window.location.origin}/team/${code}`);
     } catch { /* ignore */ }
     finally { setLoading(false); }
   }, [member.id]);
 
-  // Auto-refresh every 2.5 min
+  // Auto-refresh every 50 seconds (token expires in 1 min)
   useEffect(() => {
     if (!qrLink) return;
     const t = setInterval(async () => {
       try {
         const res = await fetch(`/api/team-token?id=${member.id}`);
-        const { token } = await res.json();
-        setQrLink(`${window.location.origin}/team/${token}`);
+        const { code } = await res.json();
+        setQrLink(`${window.location.origin}/team/${code}`);
       } catch { /* ignore */ }
-    }, 150000);
+    }, 50000);
     return () => clearInterval(t);
   }, [qrLink, member.id]);
 
