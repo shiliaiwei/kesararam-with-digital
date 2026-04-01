@@ -45,7 +45,7 @@ const MEMBERS: Record<string, {
     quote: "Teaching is not filling a bucket — it is lighting a fire.",
   },
   "VSID-2026-M02": {
-    lastName: "SRIE", fullName: "VI SRIE", role: "Design, Technical / Project Management", type: "mentor",
+    lastName: "WEI", fullName: "SHILIAI WEI", role: "Design, Technical / Project Management", type: "mentor",
     photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1775038113/eirsvi_scinny.jpg",
     contributions: ["Advised on software architecture", "Reviewed code quality", "Supported project management"],
     quote: "Build with intention. Ship with confidence.",
@@ -88,7 +88,7 @@ export default function TeamMemberPage() {
       setCountdown(c => {
         if (c <= 1) {
           clearInterval(interval);
-          router.replace("/about");
+          router.replace("/learn");
           return 0;
         }
         return c - 1;

@@ -17,7 +17,7 @@ const STUDENTS = [
 
 const MENTORS = [
   { id: "VSID-2026-M01", name: "P. PHEAP", fullName: "PISETH PHEAP", role: "Teacher & Program Lead" },
-  { id: "VSID-2026-M02", name: "SHILIAI WEI",  fullName: "S. Vi",       role: "Design, Technical / Project Mgmt" },
+  { id: "VSID-2026-M02", name: "S. WEI", fullName: "SHILIAI WEI", role: "Design, Technical / Project Mgmt" },
 ];
 
 interface Member { id: string; name: string; fullName: string; role: string; }
