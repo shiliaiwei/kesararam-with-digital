@@ -3,6 +3,7 @@
 import { useState } from "react";import Link from "next/link";
 import { useLang } from "@/context/lang-context";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { TeamSection } from "@/components/about/team-section";
 
 // ── Gallery images ────────────────────────────────────────────────────────────
 
@@ -326,6 +327,9 @@ export function AboutClient() {
         </div>
 
       </div>
+
+      {/* ── Team Section ── */}
+      <TeamSection />
 
       {/* Lightbox */}
       {lightboxIdx !== null && (
