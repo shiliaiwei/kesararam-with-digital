@@ -1,209 +1,193 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { QrCode } from "lucide-react";
 
-// QR code via Google Charts API — no npm package needed
 function qrUrl(data: string) {
-  return `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(data)}&bgcolor=111111&color=ffffff&margin=8`;
+  return `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(data)}&bgcolor=0a0a0a&color=eab308&margin=10`;
 }
 
 const STUDENTS = [
-  { id: "VSID-2026-001", name: "DANAI YIN",      age: "12", role: "UI/UX Designer",         photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_200/v1773739866/DANAI_YIN_sezo2q.jpg" },
-  { id: "VSID-2026-002", name: "CHANTHA KANIKA", age: "13", role: "Content & Research",      photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_200/v1773739866/CHANTHA_KANIKA_gmh6w9.jpg" },
-  { id: "VSID-2026-003", name: "ROZA NEUN",      age: "11", role: "Frontend Developer",      photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_200/v1773739867/Roza_Neun_ciz33b.jpg" },
-  { id: "VSID-2026-004", name: "LIN MANY",       age: "13", role: "Backend & Database",      photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_200/v1773739866/Lin_Many_nffno6.jpg" },
-  { id: "VSID-2026-005", name: "SUN RUNAMARA",   age: "11", role: "QA & Testing",            photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_200/v1773739866/SUN_RUNAMARA_rmtlzf.jpg" },
+  { id: "VSID-2026-001", name: "D. YIN",      fullName: "DANAI YIN",      role: "UI/UX Designer" },
+  { id: "VSID-2026-002", name: "C. KANIKA",   fullName: "CHANTHA KANIKA", role: "Content & Research" },
+  { id: "VSID-2026-003", name: "R. NEUN",     fullName: "ROZA NEUN",      role: "Frontend Developer" },
+  { id: "VSID-2026-004", name: "L. MANY",     fullName: "LIN MANY",       role: "Backend & Database" },
+  { id: "VSID-2026-005", name: "S. RUNAMARA", fullName: "SUN RUNAMARA",   role: "QA & Testing" },
 ];
 
 const MENTORS = [
-  { id: "VSID-2026-M01", name: "PISETH PHEAP", role: "Teacher & Program Lead",                    photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_200/v1773739866/Piseth_Pheap_b189jm.jpg" },
-  { id: "VSID-2026-M02", name: "VI SRIE",      role: "University Student — Java / Project Mgmt",  photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_200/v1775038113/eirsvi_scinny.jpg" },
+  { id: "VSID-2026-M01", name: "P. PHEAP", fullName: "PISETH PHEAP", role: "Teacher & Program Lead" },
+  { id: "VSID-2026-M02", name: "VI SRIE",  fullName: "VI SRIE",       role: "Java / Project Management" },
 ];
 
-interface Member {
-  id: string; name: string; role: string; photo: string; age?: string;
-}
+interface Member { id: string; name: string; fullName: string; role: string; }
+
+// Cyberpunk clip-path polygon
+const CLIP = "polygon(0 12px, 12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px))";
 
 function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean }) {
-  const [flipped, setFlipped] = useState(false);
   const [qrLink, setQrLink] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const accent = isMentor ? "#f59e0b" : "#eab308";
 
   const generateQR = useCallback(async () => {
-    if (qrLink) { setFlipped(true); return; }
     setLoading(true);
     try {
       const res = await fetch(`/api/team-token?id=${member.id}`);
       const { token } = await res.json();
-      const url = `${window.location.origin}/team/${token}`;
-      setQrLink(url);
-      setFlipped(true);
+      setQrLink(`${window.location.origin}/team/${token}`);
     } catch { /* ignore */ }
     finally { setLoading(false); }
-  }, [member.id, qrLink]);
+  }, [member.id]);
 
-  // Auto-refresh QR every 2.5 min so it doesn't expire while displayed
+  // Auto-refresh every 2.5 min
   useEffect(() => {
-    if (!flipped) return;
-    const interval = setInterval(async () => {
+    if (!qrLink) return;
+    const t = setInterval(async () => {
       try {
         const res = await fetch(`/api/team-token?id=${member.id}`);
         const { token } = await res.json();
         setQrLink(`${window.location.origin}/team/${token}`);
       } catch { /* ignore */ }
-    }, 150000); // 2.5 min
-    return () => clearInterval(interval);
-  }, [flipped, member.id]);
+    }, 150000);
+    return () => clearInterval(t);
+  }, [qrLink, member.id]);
 
   return (
-    <div className="relative" style={{ perspective: "1000px" }}>
+    <div className="relative group" style={{ clipPath: CLIP }}>
+      {/* Outer border layer */}
+      <div className="absolute inset-0 z-0" style={{ clipPath: CLIP, backgroundColor: accent, padding: 1 }} />
+
+      {/* Card body */}
       <div
-        className="relative transition-transform duration-500"
+        className="relative z-10 flex flex-col"
         style={{
-          transformStyle: "preserve-3d",
-          transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
-          height: 320,
+          clipPath: CLIP,
+          background: "linear-gradient(160deg, #1a1a1a 0%, #0d0d0d 100%)",
+          margin: "1.5px",
         }}
       >
-        {/* FRONT — ID card */}
-        <div
-          className="absolute inset-0 bg-[#111] border-2 border-white/10 rounded-2xl overflow-hidden flex flex-col"
-          style={{ backfaceVisibility: "hidden", boxShadow: `0 8px 32px rgba(0,0,0,0.6), 0 0 0 1px ${accent}22` }}
-        >
-          <div className="h-1" style={{ backgroundColor: accent }} />
+        {/* Top accent bar */}
+        <div className="h-0.5 w-full" style={{ backgroundColor: accent }} />
 
-          {/* Top label */}
-          <div className="px-4 pt-3 pb-2 flex items-center justify-between">
-            <span className="text-[9px] font-black uppercase tracking-widest text-white/25">KWD · 2026</span>
-            <span className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full border"
-              style={{ color: accent, borderColor: accent + "40", backgroundColor: accent + "15" }}>
-              {isMentor ? "MENTOR" : "STUDENT"}
-            </span>
+        {/* Corner decorations */}
+        <div className="absolute top-3 left-3 w-3 h-3 border-t border-l opacity-60" style={{ borderColor: accent }} />
+        <div className="absolute top-3 right-3 w-3 h-3 border-t border-r opacity-60" style={{ borderColor: accent }} />
+        <div className="absolute bottom-3 left-3 w-3 h-3 border-b border-l opacity-60" style={{ borderColor: accent }} />
+        <div className="absolute bottom-3 right-3 w-3 h-3 border-b border-r opacity-60" style={{ borderColor: accent }} />
+
+        <div className="px-4 pt-4 pb-4 flex flex-col items-center gap-3">
+          {/* Role badge */}
+          <div className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 border"
+            style={{ color: accent, borderColor: accent + "50", backgroundColor: accent + "12" }}>
+            {isMentor ? "MENTOR" : "STUDENT"}
           </div>
 
-          {/* Photo */}
-          <div className="flex justify-center py-3">
-            <div className="w-20 h-20 rounded-full overflow-hidden border-2"
-              style={{ borderColor: accent, boxShadow: `0 0 16px ${accent}44` }}>
-              <img src={member.photo} alt={member.name} className="w-full h-full object-cover object-top" />
-            </div>
+          {/* QR or placeholder */}
+          <div
+            className="w-full flex items-center justify-center rounded-sm overflow-hidden"
+            style={{ background: "#0a0a0a", border: `1px solid ${accent}30`, minHeight: 120 }}
+          >
+            {qrLink ? (
+              <img src={qrUrl(qrLink)} alt="QR" width={120} height={120} className="block" />
+            ) : (
+              <div className="flex flex-col items-center gap-2 py-6 opacity-30">
+                {/* QR placeholder grid */}
+                <div className="grid grid-cols-5 gap-0.5">
+                  {Array.from({ length: 25 }).map((_, i) => (
+                    <div key={i} className="w-2 h-2 rounded-sm"
+                      style={{ backgroundColor: [0,1,5,6,7,11,12,13,17,18,19,23,24].includes(i) ? accent : "transparent" }} />
+                  ))}
+                </div>
+                <span className="text-[8px] font-black uppercase tracking-widest" style={{ color: accent }}>SCAN ID</span>
+              </div>
+            )}
           </div>
 
-          {/* Info */}
-          <div className="text-center px-4 flex-1">
-            <p className="text-[9px] text-white/25 uppercase tracking-widest mb-0.5">
-              @{member.name.toLowerCase().replace(/\s/g, "")}
-            </p>
-            <p className="font-black text-white text-sm leading-tight">{member.name}</p>
-            <p className="text-[10px] text-white/45 mt-0.5">{member.role}</p>
-            {member.age && <p className="text-[9px] text-white/20 mt-0.5">Age {member.age}</p>}
+          {/* Name */}
+          <div className="text-center">
+            <p className="font-black text-white text-sm leading-tight tracking-wide">{member.name}</p>
+            <p className="text-[10px] mt-0.5" style={{ color: accent + "cc" }}>{member.role}</p>
           </div>
 
-          {/* Divider + ID */}
-          <div className="mx-4 border-t border-white/8 mt-2 pt-2 pb-1 flex items-center justify-between">
-            <span className="text-[9px] text-white/20 font-mono">{member.id}</span>
-            <span className="text-[9px] text-white/20">TECHNOVATION</span>
-          </div>
-
-          {/* Tap button */}
+          {/* Scan button */}
           <button
             onClick={generateQR}
             disabled={loading}
-            className="mx-4 mb-4 py-2 flex items-center justify-center gap-2 font-black text-xs uppercase tracking-widest border-2 transition-all hover:-translate-y-0.5"
-            style={{ backgroundColor: accent, color: "#000", borderColor: accent, boxShadow: `2px 2px 0 #000` }}
+            className="w-full py-2 text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-1.5"
+            style={{
+              clipPath: CLIP,
+              backgroundColor: accent,
+              color: "#000",
+              boxShadow: loading ? "none" : `0 0 12px ${accent}66`,
+            }}
           >
             {loading ? (
               <span className="w-3 h-3 border-2 border-black border-t-transparent rounded-full animate-spin" />
-            ) : (
-              <QrCode size={13} />
-            )}
-            {loading ? "Generating..." : "TAP TO VIEW ID"}
+            ) : qrLink ? "REFRESH QR" : "REVEAL QR"}
           </button>
         </div>
 
-        {/* BACK — QR code */}
-        <div
-          className="absolute inset-0 bg-[#111] border-2 border-white/10 rounded-2xl overflow-hidden flex flex-col items-center justify-center gap-4"
-          style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)", boxShadow: `0 8px 32px rgba(0,0,0,0.6)` }}
-        >
-          <div className="h-1 absolute top-0 left-0 right-0" style={{ backgroundColor: accent }} />
-
-          <p className="text-[9px] font-black uppercase tracking-widest text-white/30">Scan to view profile</p>
-
-          {qrLink && (
-            <div className="p-2 bg-white rounded-xl">
-              <img
-                src={qrUrl(qrLink)}
-                alt="QR Code"
-                width={140}
-                height={140}
-                className="block"
-              />
-            </div>
-          )}
-
-          <p className="text-[9px] text-white/20 font-mono px-4 text-center break-all">{member.id}</p>
-
-          <button
-            onClick={() => setFlipped(false)}
-            className="text-[10px] font-black uppercase tracking-widest px-4 py-1.5 border rounded-full transition-colors"
-            style={{ color: accent, borderColor: accent + "40" }}
-          >
-            ← Back
-          </button>
+        {/* Bottom scan line animation */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="absolute left-0 right-0 h-px animate-scan-line" style={{ backgroundColor: accent + "40" }} />
         </div>
       </div>
+
+      <style>{`
+        @keyframes scan-line {
+          0%   { top: 0%; }
+          100% { top: 100%; }
+        }
+        .animate-scan-line { animation: scan-line 2s linear infinite; }
+      `}</style>
     </div>
   );
 }
 
 export function TeamSection() {
   return (
-    <div className="bg-[#0a0a0a] py-16 px-6">
+    <div className="bg-[#080808] py-16 px-6 border-t-2 border-yellow-400/20">
       <div className="max-w-5xl mx-auto">
 
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-block bg-yellow-400 text-black text-[10px] font-black tracking-widest uppercase px-3 py-1 mb-4 border-2 border-black shadow-[2px_2px_0_#000]">
+          <div className="inline-block bg-yellow-400 text-black text-[10px] font-black tracking-widest uppercase px-3 py-1 mb-4"
+            style={{ clipPath: CLIP, boxShadow: "3px 3px 0 #000" }}>
             The Team
           </div>
           <h2 className="text-3xl md:text-4xl font-black text-white mb-2">
             Built by Students.<br />Guided by Mentors.
           </h2>
-          <p className="text-white/40 text-sm max-w-md mx-auto">
-            Tap any card to reveal the QR code. Scan it to view their full profile.
+          <p className="text-white/35 text-sm max-w-sm mx-auto">
+            Reveal the QR code on each card. Scan it to view their full profile.
           </p>
         </div>
 
         {/* Students */}
-        <div className="mb-10">
+        <div className="mb-12">
           <div className="flex items-center gap-3 mb-6">
-            <div className="inline-block bg-yellow-400 text-black text-[10px] font-black tracking-widest uppercase px-3 py-1 border-2 border-black shadow-[2px_2px_0_#000]">
+            <span className="text-[10px] font-black uppercase tracking-widest text-yellow-400 border border-yellow-400/30 px-3 py-1"
+              style={{ clipPath: CLIP }}>
               Students (5)
-            </div>
-            <div className="flex-1 h-px bg-white/10" />
+            </span>
+            <div className="flex-1 h-px" style={{ background: "linear-gradient(to right, #eab30840, transparent)" }} />
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-            {STUDENTS.map(m => (
-              <MemberCard key={m.id} member={m} isMentor={false} />
-            ))}
+            {STUDENTS.map(m => <MemberCard key={m.id} member={m} isMentor={false} />)}
           </div>
         </div>
 
         {/* Mentors */}
         <div>
           <div className="flex items-center gap-3 mb-6">
-            <div className="inline-block bg-amber-500 text-black text-[10px] font-black tracking-widest uppercase px-3 py-1 border-2 border-black shadow-[2px_2px_0_#000]">
+            <span className="text-[10px] font-black uppercase tracking-widest text-amber-400 border border-amber-400/30 px-3 py-1"
+              style={{ clipPath: CLIP }}>
               Mentors (2)
-            </div>
-            <div className="flex-1 h-px bg-white/10" />
+            </span>
+            <div className="flex-1 h-px" style={{ background: "linear-gradient(to right, #f59e0b40, transparent)" }} />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg">
-            {MENTORS.map(m => (
-              <MemberCard key={m.id} member={m} isMentor={true} />
-            ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-sm">
+            {MENTORS.map(m => <MemberCard key={m.id} member={m} isMentor={true} />)}
           </div>
         </div>
 
