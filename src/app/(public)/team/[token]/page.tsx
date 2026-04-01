@@ -133,15 +133,22 @@ export default function TeamMemberPage() {
           {/* Top color bar */}
           <div className="h-1" style={{ backgroundColor: accent }} />
 
-          {/* Photo — full width, portrait crop */}
-          <div className="relative w-full" style={{ paddingBottom: "100%" }}>
+          {/* Photo — full width, portrait crop, download restricted */}
+          <div className="relative w-full select-none" style={{ paddingBottom: "100%" }}
+            onContextMenu={e => e.preventDefault()}
+            onDragStart={e => e.preventDefault()}
+          >
             <img
               src={member.photo}
               alt={member.lastName}
-              className="absolute inset-0 w-full h-full object-cover object-top"
+              draggable={false}
+              className="absolute inset-0 w-full h-full object-cover object-top pointer-events-none"
+              style={{ userSelect: "none", WebkitUserSelect: "none" }}
             />
+            {/* Invisible overlay blocks right-click on image */}
+            <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} />
             {/* Gradient overlay at bottom of photo */}
-            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#111] to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#111] to-transparent pointer-events-none" />
           </div>
 
           {/* Info */}
