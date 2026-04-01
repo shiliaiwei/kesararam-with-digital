@@ -73,10 +73,10 @@ export function RoadSigns3DHero() {
 
   return (
     <section className="relative w-full overflow-hidden bg-[#080808] py-14">
-      <style>{\`
+      <style>{`
         @keyframes slide-fwd { from { transform: translateX(0) } to { transform: translateX(-50%) } }
         @keyframes slide-rev { from { transform: translateX(-50%) } to { transform: translateX(0) } }
-      \`}</style>
+      `}</style>
 
       <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-[#080808] to-transparent z-10 pointer-events-none" />
       <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-[#080808] to-transparent z-10 pointer-events-none" />
