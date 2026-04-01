@@ -412,13 +412,13 @@ export default function StudentGamePage() {
 
         <div className="flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full">
           {/* Question card */}
-          <div className="border-2 border-white/15 bg-white/5 p-5 sm:p-8 flex-shrink-0">
+          <div className="border-2 border-white/15 bg-white/5 p-4 sm:p-6 flex-shrink-0">
             {currentQuestion.imageUrl && (
-              <div className="mb-4 overflow-hidden border border-white/10">
-                <img src={currentQuestion.imageUrl} alt="Question" className="w-full max-h-48 object-contain bg-black/20" />
+              <div className="mb-4 bg-white border-2 border-black flex items-center justify-center p-4" style={{ minHeight: 180 }}>
+                <img src={currentQuestion.imageUrl} alt="Question" className="max-h-44 w-auto object-contain" />
               </div>
             )}
-            <h2 className="text-white font-black text-xl sm:text-2xl text-center leading-snug" style={khFont}>
+            <h2 className="text-white font-black text-base sm:text-xl md:text-2xl text-center leading-snug break-words hyphens-auto" style={khFont}>
               {kh ? (currentQuestion.questionKm || currentQuestion.questionEn) : currentQuestion.questionEn}
             </h2>
           </div>

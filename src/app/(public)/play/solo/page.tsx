@@ -494,14 +494,14 @@ export default function SoloPage() {
 
         {/* Image */}
         {q.imageUrl && (
-          <div className="border-2 border-zinc-700 bg-zinc-900 flex items-center justify-center p-2" style={{ minHeight: 160 }}>
-            <img src={q.imageUrl} alt="question" className="max-h-40 object-contain" />
+          <div className="border-2 border-black bg-white flex items-center justify-center p-4" style={{ minHeight: 180 }}>
+            <img src={q.imageUrl} alt="question" className="max-h-44 w-auto object-contain" />
           </div>
         )}
 
         {/* Question */}
         <div
-          className="bg-zinc-900/80 backdrop-blur-sm border-2 border-zinc-700 p-4 text-white font-black text-lg leading-snug"
+          className="bg-zinc-900/80 backdrop-blur-sm border-2 border-zinc-700 p-4 text-white font-black text-base sm:text-lg leading-snug break-words"
           style={{ boxShadow: "3px 3px 0 #ffd700", ...khFont }}
         >
           {effectiveLang === "kh" ? q.questionKm || q.questionEn : q.questionEn}

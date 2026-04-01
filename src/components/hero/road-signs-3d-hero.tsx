@@ -1,8 +1,6 @@
 "use client";
 
 import { useLang } from "@/context/lang-context";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 
 const B = "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_72";
 const SIGNS = [
@@ -56,9 +54,9 @@ function Row({ signs, reverse, duration }: { signs: string[]; reverse?: boolean;
         {items.map((src, i) => (
           <div
             key={i}
-            className="shrink-0 w-16 h-16 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-1.5 hover:border-amber-400/50 hover:bg-amber-400/5 transition-colors duration-150"
+            className="shrink-0 w-16 h-16 flex items-center justify-center p-1"
           >
-            <img src={src} alt="" width={56} height={56} loading="lazy" decoding="async" className="w-full h-full object-contain" />
+            <img src={src} alt="" width={60} height={60} loading="lazy" decoding="async" className="w-full h-full object-contain" />
           </div>
         ))}
       </div>
@@ -72,43 +70,29 @@ export function RoadSigns3DHero() {
   const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#080808] py-14">
+    <section className="relative w-full overflow-hidden bg-white py-12">
       <style>{`
         @keyframes slide-fwd { from { transform: translateX(0) } to { transform: translateX(-50%) } }
         @keyframes slide-rev { from { transform: translateX(-50%) } to { transform: translateX(0) } }
       `}</style>
 
-      <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-[#080808] to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-[#080808] to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
       <div className="relative z-10 text-center mb-8 px-4">
-        <div className="inline-flex items-center gap-2 bg-amber-400/10 border border-amber-400/20 text-amber-400 text-[11px] font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-widest">
-          <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-          {kh ? "ស្គាលសញ្ញាចរាចរ" : "Know Every Sign"}
+        <div className="inline-flex items-center gap-2 bg-amber-400/15 border border-amber-400/30 text-amber-600 text-[11px] font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-widest">
+          <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+          {kh ? "ស្គាល់សញ្ញាចរាចរ" : "Know Every Sign"}
         </div>
-        <h2 className="text-3xl md:text-4xl font-black text-white mb-2" style={kf}>
+        <h2 className="text-3xl md:text-4xl font-black text-black mb-0" style={kf}>
           {kh ? "វីថីសុវត្ថិភាព" : "The Way of Safety"}
         </h2>
-        <p className="text-white/40 text-sm" style={kf}>
-          {kh ? "ស្គាលសញ្ញាចរាចរតាម័នទាម័ស — ប្រលងជោគជ័យ" : "Master all Cambodia traffic signs — pass your exam"}
-        </p>
       </div>
 
-      <div className="relative z-10 flex flex-col gap-3">
+      <div className="relative z-10 flex flex-col gap-2">
         <Row signs={R1} duration={55} />
         <Row signs={R2} reverse duration={70} />
         <Row signs={R3} duration={45} />
-      </div>
-
-      <div className="relative z-10 text-center mt-8">
-        <Link
-          href="/road-sign"
-          className="inline-flex items-center gap-2 bg-amber-400 text-black font-black px-6 py-3 rounded-full border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[5px_5px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-150 text-sm uppercase tracking-wide"
-          style={kf}
-        >
-          {kh ? "រុករកសញ្ញាតាម័ស" : "Explore All Signs"}
-          <ArrowRight size={15} />
-        </Link>
       </div>
     </section>
   );
