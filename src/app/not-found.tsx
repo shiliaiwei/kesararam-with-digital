@@ -10,7 +10,7 @@ export default function NotFound() {
           <div className="flex justify-center mb-6">
             <div className="w-24 h-24">
               <Image
-                src="/logo.svg"
+                src="/brand/kwd.svg"
                 alt="KWD Logo"
                 width={96}
                 height={96}
