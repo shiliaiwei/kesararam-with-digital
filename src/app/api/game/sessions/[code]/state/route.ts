@@ -68,11 +68,10 @@ export async function GET(
 
   return NextResponse.json({
     status: session.status,
-    sessionName: session.sessionName,
+    gameMode: session.gameMode,
     currentQuestionIndex: session.currentQuestionIndex,
     totalQuestions: session.questionIds?.length ?? 0,
     timePerQuestion: session.timePerQuestion,
-    language: session.language,
     currentQuestion,
     endsAt,
     participants: participants.map((p) => ({

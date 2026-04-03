@@ -5,7 +5,7 @@ import { gameSessions, gameParticipants } from "@/db/schema/game";
 import { users } from "@/db/schema/users";
 import { eq, desc, count, sql } from "drizzle-orm";
 import Link from "next/link";
-import { Gamepad2, Users, Play, Square, Clock, BarChart2, Zap } from "lucide-react";
+import { Gamepad2, Users, Play, Square, Clock, BarChart2 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -25,14 +25,15 @@ export default async function AdminGameSessionsPage() {
     .select({
       id: gameSessions.id,
       sessionCode: gameSessions.sessionCode,
-      sessionName: gameSessions.sessionName,
+      gameMode: gameSessions.gameMode,
+      category: gameSessions.category,
+      difficulty: gameSessions.difficulty,
       status: gameSessions.status,
-      gameType: gameSessions.gameType,
-      questionCount: gameSessions.questionCount,
-      timePerQuestion: gameSessions.timePerQuestion,
       scoringMode: gameSessions.scoringMode,
-      isSoloPractice: gameSessions.isSoloPractice,
+      timePerQuestion: gameSessions.timePerQuestion,
+      maxPlayers: gameSessions.maxPlayers,
       currentQuestionIndex: gameSessions.currentQuestionIndex,
+      questionIds: gameSessions.questionIds,
       startedAt: gameSessions.startedAt,
       endedAt: gameSessions.endedAt,
       createdAt: gameSessions.createdAt,
@@ -59,7 +60,6 @@ export default async function AdminGameSessionsPage() {
   const active = rows.filter((r) => r.status === "active" || r.status === "paused").length;
   const ended = rows.filter((r) => r.status === "ended").length;
   const lobby = rows.filter((r) => r.status === "lobby").length;
-  const soloCount = rows.filter((r) => r.isSoloPractice).length;
 
   const STATUS_COLOR: Record<string, string> = {
     lobby: "#3b82f6",
@@ -94,7 +94,6 @@ export default async function AdminGameSessionsPage() {
           { label: "Active", value: active, color: "#22c55e", icon: Play },
           { label: "Lobby", value: lobby, color: "#3b82f6", icon: Clock },
           { label: "Ended", value: ended, color: "#6b7280", icon: Square },
-          { label: "Solo", value: soloCount, color: "#a855f7", icon: Zap },
         ].map(({ label, value, color, icon: Icon }) => (
           <div
             key={label}
@@ -129,7 +128,7 @@ export default async function AdminGameSessionsPage() {
           <table className="w-full">
             <thead>
               <tr className="border-b-2 border-black bg-zinc-50">
-                {["Code", "Name", "Host", "Type", "Status", "Players", "Progress", "Created", "Actions"].map((h) => (
+                {["Code", "Host", "Mode", "Category", "Status", "Players", "Progress", "Created", "Actions"].map((h) => (
                   <th
                     key={h}
                     className="text-left py-3 px-3 text-xs font-black uppercase tracking-widest text-black"
@@ -143,10 +142,11 @@ export default async function AdminGameSessionsPage() {
               {rows.map((row) => {
                 const statusColor = STATUS_COLOR[row.status] ?? "#6b7280";
                 const playerCount = countMap.get(row.id) ?? 0;
+                const questionCount = row.questionIds?.length ?? 0;
                 const progress =
-                  row.questionCount > 0
+                  questionCount > 0
                     ? Math.round(
-                        (((row.currentQuestionIndex ?? -1) + 1) / row.questionCount) * 100
+                        (((row.currentQuestionIndex ?? -1) + 1) / questionCount) * 100
                       )
                     : 0;
 
@@ -162,27 +162,22 @@ export default async function AdminGameSessionsPage() {
                       </code>
                     </td>
 
-                    {/* Name */}
-                    <td className="py-3 px-3">
-                      <div className="font-bold text-sm text-black max-w-[160px] truncate">
-                        {row.sessionName}
-                      </div>
-                      {row.isSoloPractice && (
-                        <span className="text-[10px] font-black uppercase text-purple-600">
-                          solo
-                        </span>
-                      )}
-                    </td>
-
                     {/* Host */}
                     <td className="py-3 px-3 text-xs font-bold text-zinc-600 max-w-[120px] truncate">
                       {row.hostName ?? row.hostEmail ?? "—"}
                     </td>
 
-                    {/* Type */}
+                    {/* Mode */}
                     <td className="py-3 px-3">
                       <span className="text-xs font-black uppercase text-zinc-500">
-                        {row.gameType}
+                        {row.gameMode}
+                      </span>
+                    </td>
+
+                    {/* Category */}
+                    <td className="py-3 px-3">
+                      <span className="text-xs font-bold text-zinc-500">
+                        {row.category ?? "—"}
                       </span>
                     </td>
 
@@ -206,7 +201,7 @@ export default async function AdminGameSessionsPage() {
 
                     {/* Progress */}
                     <td className="py-3 px-3">
-                      {row.status !== "lobby" && row.questionCount > 0 ? (
+                      {row.status !== "lobby" && questionCount > 0 ? (
                         <div className="flex items-center gap-2">
                           <div className="w-16 h-2 bg-zinc-200 border border-black">
                             <div
@@ -215,7 +210,7 @@ export default async function AdminGameSessionsPage() {
                             />
                           </div>
                           <span className="text-xs font-bold text-zinc-500">
-                            {(row.currentQuestionIndex ?? -1) + 1}/{row.questionCount}
+                            {(row.currentQuestionIndex ?? -1) + 1}/{questionCount}
                           </span>
                         </div>
                       ) : (
@@ -232,7 +227,7 @@ export default async function AdminGameSessionsPage() {
                     {/* Actions */}
                     <td className="py-3 px-3">
                       <div className="flex items-center gap-2">
-                        {row.status !== "ended" && !row.isSoloPractice && (
+                        {row.status !== "ended" && (
                           <form
                             action={async () => {
                               "use server";
@@ -248,7 +243,7 @@ export default async function AdminGameSessionsPage() {
                             </button>
                           </form>
                         )}
-                        {row.status === "ended" && !row.isSoloPractice && (
+                        {row.status === "ended" && (
                           <Link
                             href={`/teacher/sessions/${row.sessionCode}/analytics`}
                             className="px-2 py-1 bg-black text-yellow-400 text-xs font-black border border-black hover:bg-zinc-800 transition-colors flex items-center gap-1"
