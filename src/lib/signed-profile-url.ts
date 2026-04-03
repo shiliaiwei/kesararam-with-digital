@@ -1,7 +1,7 @@
 import { SignJWT, jwtVerify } from "jose";
 
 const SECRET = new TextEncoder().encode(
-  process.env.PROFILE_TOKEN_SECRET ?? "kwd-technovation-2026-secret-key"
+  process.env.PROFILE_TOKEN_SECRET ?? process.env.JWT_SECRET ?? "kwd-profile-token-fallback-2026"
 );
 
 export interface ProfileTokenPayload {
