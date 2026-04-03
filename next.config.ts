@@ -5,10 +5,6 @@ const nextConfig: NextConfig = {
     // TypeScript errors are caught in CI — don't block Vercel builds
     ignoreBuildErrors: true,
   },
-  eslint: {
-    // ESLint runs in CI separately — don't block Vercel builds
-    ignoreDuringBuilds: true,
-  },
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "raw.githubusercontent.com" },
