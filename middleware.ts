@@ -84,24 +84,8 @@ export async function middleware(req: NextRequest) {
   const token = req.cookies.get("kwd_token")?.value;
   const payload = token ? await verifyToken(token) : null;
 
-  // ── 5. Session DB validation (production only) ────────────────────────────
-  if (token && payload && process.env.NODE_ENV === "production") {
-    try {
-      const { db } = await import("@/lib/db");
-      const { sessions } = await import("@/db/schema/sessions");
-      const { eq, and } = await import("drizzle-orm");
-      const [session] = await db
-        .select({ id: sessions.id, isActive: sessions.isActive })
-        .from(sessions)
-        .where(and(eq(sessions.token, token), eq(sessions.isActive, true)));
-      if (!session) {
-        const res = NextResponse.redirect(new URL(LOGIN_URL));
-        res.cookies.set("kwd_token", "", { httpOnly: true, maxAge: 0, path: "/" });
-        return res;
-      }
-      db.update(sessions).set({ lastActivityAt: new Date() }).where(eq(sessions.id, session.id)).catch(() => {});
-    } catch { /* DB unreachable — fail open */ }
-  }
+  // ── 5. Session DB validation skipped in middleware (done in API routes) ──
+  // DB imports are not safe in Edge middleware — validation happens per-request in API layer.
 
   // ── 6. Auth-required paths ────────────────────────────────────────────────
   const needsAuth = AUTH_REQUIRED.some((p) => pathname.startsWith(p));
