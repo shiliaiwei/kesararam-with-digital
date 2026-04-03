@@ -166,22 +166,19 @@ export function Navbar({ session }: NavbarProps) {
       <header className="sticky top-0 left-0 right-0 z-50 bg-white border-b-2 border-black">
         <nav className="flex items-center px-6 py-3 max-w-7xl mx-auto">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-10 h-10 flex items-center justify-center bg-yellow-400 border-[2px] border-black shadow-[3px_3px_0_#000]">
+          <Link href="/" className="flex items-center gap-4 flex-shrink-0 ml-2">
+            <div className="w-9 h-9 flex items-center justify-center bg-white border-[3px] border-black rotate-45">
               <Image
                 src="/brand/kwd-black.png"
                 alt="KWD Logo"
-                width={24}
-                height={24}
-                className="object-contain"
+                width={20}
+                height={20}
+                className="object-contain -rotate-45"
                 unoptimized
               />
             </div>
-            <span className="font-black text-base tracking-tight leading-none">
-              KWD
-              <span className="block text-[9px] font-medium tracking-widest text-zinc-500 leading-tight">
-                Kesararam. with. digital.
-              </span>
+            <span className="font-black text-[10px] sm:text-[11px] uppercase tracking-widest text-black leading-tight">
+              Kesararam.<br />With. Digital.
             </span>
           </Link>
 
