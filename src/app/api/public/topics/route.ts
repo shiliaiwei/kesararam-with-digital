@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { sql } from "@/lib/db";
+import { db } from "@/lib/db";
+import { sql } from "drizzle-orm";
 
 export async function GET(request: NextRequest) {
   try {
@@ -7,17 +8,14 @@ export async function GET(request: NextRequest) {
     const categoryId = searchParams.get("categoryId");
     const status = searchParams.get("status") || "published";
 
-    const conditions: string[] = [`t.status = '${status}'`];
+    // Build WHERE conditions safely using Drizzle sql
+    let conditions = sql`t.status = ${status}`;
 
     if (categoryId) {
-      conditions.push(`t.category_id = ${parseInt(categoryId)}`);
+      conditions = sql`${conditions} AND t.category_id = ${parseInt(categoryId)}`;
     }
 
-    const whereClause = conditions.length > 0 
-      ? sql.unsafe(`WHERE ${conditions.join(' AND ')}`)
-      : sql``;
-
-    const result = await sql`
+    const result = await db.execute(sql`
       SELECT 
         t.id,
         t.topic_code,
@@ -33,12 +31,12 @@ export async function GET(request: NextRequest) {
         t.category_id,
         t.status
       FROM topics t
-      ${whereClause}
+      WHERE ${conditions}
       ORDER BY t.sort_order, t.created_at DESC
-    `;
+    `);
 
     return NextResponse.json({
-      topics: result,
+      topics: result.rows,
     });
   } catch (error) {
     console.error("Error fetching public topics:", error);
