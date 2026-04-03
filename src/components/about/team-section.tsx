@@ -29,13 +29,6 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
 
   const handleReveal = useCallback(async () => {
     setLoading(true);
-    if (member.image) {
-      setTimeout(() => {
-        setRevealed(true);
-        setLoading(false);
-      }, 500);
-      return;
-    }
     
     try {
       const res = await fetch(`/api/team-token?id=${member.id}`);
@@ -52,7 +45,7 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
 
   // Auto-refresh every 50 seconds (token expires in 1 min)
   useEffect(() => {
-    if (!qrLink || member.image) return;
+    if (!qrLink) return;
     const t = setInterval(async () => {
       try {
         const res = await fetch(`/api/team-token?id=${member.id}`);
@@ -61,7 +54,7 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
       } catch { /* ignore */ }
     }, 50000);
     return () => clearInterval(t);
-  }, [qrLink, member.id, member.image]);
+  }, [qrLink, member.id]);
 
   return (
     <div className="relative group" style={{ clipPath: CLIP }}>
@@ -101,16 +94,10 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
             className="w-full flex items-center justify-center rounded-sm overflow-hidden"
             style={{ background: "#0a0a0a", border: `1px solid ${accent}30`, minHeight: 120 }}
           >
-            {revealed ? (
-              member.image ? (
-                <div className="w-full flex justify-center p-1 bg-[#0a0a0a]">
-                  <img src={member.image} alt={member.name} className="w-full object-cover rounded-sm border border-black/50" style={{ aspectRatio: '4/6' }} />
-                </div>
-              ) : qrLink ? (
+            {revealed && qrLink ? (
                 <div className="bg-white p-2 shrink-0">
-                  <QRCode value={qrLink} size={96} level="H" />
+                  <QRCode value={qrLink} size={96} level="L" />
                 </div>
-              ) : null
             ) : (
               <div className="flex flex-col items-center justify-center gap-3 py-6 opacity-40 w-full h-full">
                 <img src="/brand/kwd-black-text.png" alt="Logo" className="w-16 h-8 object-contain mx-auto brightness-0 invert" />
@@ -126,35 +113,21 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
           </div>
 
           {/* Scan button */}
-          {revealed && member.image ? (
-            <a
-              href={`/team/${member.id}`}
-              className="w-full py-2 text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-1.5"
-              style={{
-                clipPath: CLIP,
-                backgroundColor: accent,
-                color: "#000",
-              }}
-            >
-              LINK TO PROFILE
-            </a>
-          ) : (
-            <button
-              onClick={handleReveal}
-              disabled={loading}
-              className="w-full py-2 text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-1.5"
-              style={{
-                clipPath: CLIP,
-                backgroundColor: accent,
-                color: "#000",
-                boxShadow: loading ? "none" : `0 0 12px ${accent}66`,
-              }}
-            >
-              {loading ? (
-                <span className="w-3 h-3 border-2 border-black border-t-transparent rounded-full animate-spin" />
-              ) : revealed ? "REFRESH QR" : (member.image ? "REVEAL PROFILE" : "REVEAL QR")}
-            </button>
-          )}
+          <button
+            onClick={handleReveal}
+            disabled={loading}
+            className="w-full py-2 text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-1.5"
+            style={{
+              clipPath: CLIP,
+              backgroundColor: accent,
+              color: "#000",
+              boxShadow: loading ? "none" : `0 0 12px ${accent}66`,
+            }}
+          >
+            {loading ? (
+              <span className="w-3 h-3 border-2 border-black border-t-transparent rounded-full animate-spin" />
+            ) : revealed ? "REFRESH QR" : "REVEAL QR"}
+          </button>
         </div>
 
         {/* Bottom scan line animation */}
