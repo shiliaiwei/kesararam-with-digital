@@ -50,7 +50,13 @@ export default async function StudentProfilePage() {
       .limit(1);
     
     if (result && result.length > 0) {
-      user = result[0];
+      user = {
+        displayName: result[0].displayName ?? session.name,
+        username: result[0].username,
+        email: result[0].email,
+        avatar: result[0].avatar,
+        avatarChangedAt: result[0].avatarChangedAt,
+      };
     }
     
     // Try to get stats separately - these columns might not exist yet
