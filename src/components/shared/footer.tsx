@@ -36,7 +36,7 @@ export function Footer() {
 
         <div className="flex flex-col items-center mb-14">
           <div className="w-28 h-28 mb-4 flex items-center justify-center">
-            <Image src="/brand/kwd-black.png" alt="KWD" width={112} height={112} className="object-contain w-full h-full" unoptimized />
+            <Image src="/brand/kwd-black-text.png" alt="KWD" width={112} height={112} className="object-contain w-full h-full" unoptimized />
           </div>
           <p className="text-sm font-bold text-zinc-700 leading-relaxed text-center max-w-md" style={kf}>
             {tr.tagline}

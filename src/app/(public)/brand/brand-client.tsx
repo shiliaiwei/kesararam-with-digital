@@ -17,7 +17,7 @@ const COLORS = [
 ];
 
 const LOGOS = [
-  { file: "/brand/kwd-black.png",      label: "Primary — Black",   bg: "#ffffff" },
+  { file: "/brand/kwd-black-text.png",      label: "Primary — Black",   bg: "#ffffff" },
   { file: "/brand/kwd.svg",            label: "SVG",               bg: "#ffffff" },
   { file: "/brand/KWD.png",            label: "PNG",               bg: "#ffffff" },
   { file: "/brand/kwd-black-text.png", label: "Black + Text",      bg: "#ffffff" },
@@ -62,7 +62,7 @@ export function BrandGuidelineClient() {
         {/* ── Hero logo ── */}
         <div className="flex justify-center mb-16">
           <Image
-            src="/brand/kwd-black.png"
+            src="/brand/kwd-black-text.png"
             alt="KWD"
             width={160}
             height={160}
@@ -255,7 +255,7 @@ export function BrandGuidelineClient() {
         {/* ── Footer ── */}
         <div className="border-t border-black/10 pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <Image src="/brand/kwd-black.png" alt="KWD" width={24} height={24} className="object-contain opacity-40" unoptimized />
+            <Image src="/brand/kwd-black-text.png" alt="KWD" width={24} height={24} className="object-contain opacity-40" unoptimized />
             <p className="text-xs text-zinc-400 font-medium" style={kf}>
               &copy; {new Date().getFullYear()} KWD — Kesararam With Digital. Brand Guideline v1.0
             </p>

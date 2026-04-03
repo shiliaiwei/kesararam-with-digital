@@ -152,7 +152,7 @@ KWD is provided as-is. We do not guarantee that using KWD will result in passing
 
           {/* Logo */}
           <div className="flex justify-center mb-10">
-            <Image src="/brand/kwd-black.png" alt="KWD" width={80} height={80} className="object-contain" unoptimized />
+            <Image src="/brand/kwd-black-text.png" alt="KWD" width={80} height={80} className="object-contain" unoptimized />
           </div>
 
           {/* Header */}
@@ -228,7 +228,7 @@ KWD is provided as-is. We do not guarantee that using KWD will result in passing
           {/* Footer */}
           <div className="border-t border-black/10 pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <Image src="/brand/kwd-black.png" alt="KWD" width={24} height={24} className="object-contain opacity-40" unoptimized />
+              <Image src="/brand/kwd-black-text.png" alt="KWD" width={24} height={24} className="object-contain opacity-40" unoptimized />
               <p className="text-xs text-zinc-400 font-medium" style={kf}>{l.footer}</p>
             </div>
             <div className="flex gap-4 text-xs font-bold">

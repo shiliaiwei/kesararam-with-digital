@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { getSession, getRedirectUrl } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { LoginForm } from "./login-form";
