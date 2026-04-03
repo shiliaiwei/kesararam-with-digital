@@ -245,9 +245,19 @@ export function RoadSigns3DHero() {
 
       {/* Label */}
       <div className="relative z-10 text-center mb-5 px-4">
-        <div className="inline-flex items-center gap-2 border-2 border-black bg-yellow-400 text-black text-[11px] font-black px-3 py-1 uppercase tracking-widest shadow-[2px_2px_0_#000] mb-3">
-          <span className="w-1.5 h-1.5 bg-black" />
-          {kh ? "ស្គាល់សញ្ញាចរាចរ — អូស ឬប៉ះ" : "Know Every Sign — drag or touch"}
+        <div
+          className="inline-flex items-center gap-2 text-white text-[11px] font-black px-4 py-1.5 uppercase tracking-widest mb-3"
+          style={{
+            background: "rgba(255,255,255,0.08)",
+            border: "1.5px solid rgba(255,255,255,0.35)",
+            borderRadius: "999px",
+            backdropFilter: "blur(12px) saturate(180%)",
+            WebkitBackdropFilter: "blur(12px) saturate(180%)",
+            boxShadow: "0 0 0 1px rgba(255,255,255,0.12) inset, 0 2px 16px rgba(0,0,0,0.08)",
+          }}
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-white opacity-80" />
+          {kh ? "\u179f\u17d2\u1782\u17b6\u179b\u179f\u1789\u17d2\u1789\u17b6\u1785\u179a\u17b6\u1785\u179a \u2014 \u17a2\u17bc\u179f \u1794\u17d0\u1794\u17d0\u17b7\u1780\u17d2\u1780\u17c1\u1794\u17d0\u1794\u17d0\u17b7\u1780\u17d2\u1780\u17c1" : "Know Every Sign — drag or touch"}
         </div>
         <h2 className="text-3xl md:text-4xl font-black text-black" style={kf}>
           {kh ? "វីថីសុវត្ថិភាព" : "The Way of Safety"}

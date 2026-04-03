@@ -17,9 +17,9 @@ const COLORS = [
 ];
 
 const LOGOS = [
-  { file: "/brand/kwd.svg",            label: "Primary — SVG",        bg: "#ffffff", border: "#000" },
-  { file: "/brand/KWD.png",            label: "Primary — PNG",        bg: "#ffffff", border: "#000" },
-  { file: "/brand/kwd-black.png",      label: "Black — PNG",          bg: "#ffffff", border: "#000" },
+  { file: "/brand/kwd-black.png",      label: "Primary — Black",      bg: "#ffffff", border: "#000" },
+  { file: "/brand/kwd.svg",            label: "SVG Variant",          bg: "#ffffff", border: "#000" },
+  { file: "/brand/KWD.png",            label: "PNG Variant",          bg: "#ffffff", border: "#000" },
   { file: "/brand/kwd-black-text.png", label: "Black with Text",      bg: "#ffffff", border: "#000" },
   { file: "/brand/kwd-yellow.png",     label: "Yellow Variant",       bg: "#000000", border: "#eab308" },
   { file: "/brand/kwd-green.png",      label: "Green Variant",        bg: "#000000", border: "#22c55e" },
@@ -87,9 +87,14 @@ export function BrandGuidelineClient() {
         <Section id="02" title="Logo">
           <p className="text-sm text-zinc-600 font-medium mb-6" style={kf}>
             {kh
-              ? "ឡូហ្គូ KWD មានទម្រង់ច្រើន ដើម្បីប្រើប្រាស់លើផ្ទៃខ្នងផ្សេងៗ។ ប្រើ SVG ជាចម្បង។"
-              : "The KWD logo exists in multiple forms for use across different surfaces. Always prefer the SVG primary version."}
+              ? "ឡូហ្គូ KWD មានទម្រង់ច្រើន ដើម្បីប្រើប្រាស់លើផ្ទៃខ្នងផ្សេងៗ។ ប្រើ kwd-black ជាចម្បង។"
+              : "The KWD logo exists in multiple forms. kwd-black is the primary logo — use it on all surfaces without background or border."}
           </p>
+          {/* Primary logo hero — no bg, no border, full size */}
+          <div className="flex flex-col items-center mb-10 py-12">
+            <Image src="/brand/kwd-black.png" alt="KWD Primary Logo" width={240} height={240} className="object-contain" unoptimized />
+            <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mt-4">Primary Logo — kwd-black</p>
+          </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
             {LOGOS.map(({ file, label, bg, border }) => (
               <div key={file} className="border-2 border-black overflow-hidden shadow-[3px_3px_0_#000]">
@@ -111,7 +116,7 @@ export function BrandGuidelineClient() {
               <li>— Do not apply drop shadows, gradients, or filters to the logo.</li>
               <li>— Do not place the logo on backgrounds that reduce contrast below readable threshold.</li>
               <li>— Maintain a minimum clear space equal to the height of the letter K on all sides.</li>
-              <li>— Use the black variant on light backgrounds. Use the yellow or white variant on dark backgrounds.</li>
+              <li>— Use the kwd-black variant as the primary logo on all light backgrounds. Use the yellow or white variant on dark backgrounds.</li>
               <li>— The logo must never appear smaller than 24px in height in digital contexts.</li>
             </ul>
           </div>
@@ -211,7 +216,6 @@ export function BrandGuidelineClient() {
           <div className="flex gap-4 text-xs font-bold">
             <Link href="/terms" className="text-zinc-500 hover:text-black transition-colors" style={kf}>Terms</Link>
             <Link href="/privacy" className="text-zinc-500 hover:text-black transition-colors" style={kf}>Privacy</Link>
-            <Link href="/sitemap-page" className="text-zinc-500 hover:text-black transition-colors" style={kf}>Sitemap</Link>
           </div>
         </div>
       </div>
