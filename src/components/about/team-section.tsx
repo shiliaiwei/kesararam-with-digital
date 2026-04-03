@@ -1,11 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-
-function qrUrl(data: string) {
-  // Use quickchart.io for reliable high-density URLs
-  return `https://quickchart.io/qr?text=${encodeURIComponent(data)}&size=200&margin=1&ecLevel=H`;
-}
+import QRCode from "react-qr-code";
 
 const STUDENTS = [
   { id: "VSID-2026-001", name: "D. YIN",      fullName: "D.YIN",      role: "UI/UX Designer" },
@@ -111,7 +107,9 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
                   <img src={member.image} alt={member.name} className="w-full object-cover rounded-sm border border-black/50" style={{ aspectRatio: '4/6' }} />
                 </div>
               ) : qrLink ? (
-                <img src={qrUrl(qrLink)} alt="QR" width={120} height={120} className="block" />
+                <div className="bg-white p-2 shrink-0">
+                  <QRCode value={qrLink} size={96} level="H" />
+                </div>
               ) : null
             ) : (
               <div className="flex flex-col items-center justify-center gap-3 py-6 opacity-40 w-full h-full">

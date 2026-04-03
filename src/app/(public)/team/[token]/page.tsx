@@ -88,7 +88,7 @@ export default function TeamMemberPage() {
       setCountdown(c => {
         if (c <= 1) {
           clearInterval(interval);
-          router.replace("/learn");
+          router.replace("/");
           return 0;
         }
         return c - 1;
@@ -124,11 +124,29 @@ export default function TeamMemberPage() {
   const accent = isMentor ? "#f59e0b" : "#eab308";
 
   return (
-    <div className="min-h-screen bg-[#0c0c0c] flex items-center justify-center px-4 py-10">
-      <div className="w-full max-w-xs">
+    <div className="min-h-screen bg-[#060606] flex items-center justify-center px-4 py-10 relative overflow-hidden">
+      {/* Background FUI decorations */}
+      <div className="absolute top-10 left-10 text-[10px] text-white/10 font-mono hidden md:block">SYS_CORE // VER_2.0.26</div>
+      <div className="absolute bottom-10 right-10 text-[10px] text-white/10 font-mono hidden md:block">VSID_LINK // AUTH_GRANTED</div>
+      <div className="absolute top-1/2 left-0 w-full h-px bg-yellow-400/5 -translate-y-1/2" />
+      <div className="absolute left-1/2 top-0 h-full w-px bg-yellow-400/5 -translate-x-1/2" />
+
+      <div className="w-full max-w-xs relative z-10">
+
+        {/* FUI framing */}
+        <div className="absolute -top-3 -left-3 w-6 h-6 border-t-[1.5px] border-l-[1.5px] border-yellow-500/50" />
+        <div className="absolute -top-3 -right-3 w-6 h-6 border-t-[1.5px] border-r-[1.5px] border-yellow-500/50" />
+        <div className="absolute -bottom-3 -left-3 w-6 h-6 border-b-[1.5px] border-l-[1.5px] border-yellow-500/50" />
+        <div className="absolute -bottom-3 -right-3 w-6 h-6 border-b-[1.5px] border-r-[1.5px] border-yellow-500/50" />
 
         {/* Card */}
-        <div className="bg-[#111] border border-white/10 overflow-hidden shadow-2xl">
+        <div className="bg-[#0c0c0c] border border-white/5 overflow-hidden shadow-[0_0_30px_rgba(234,179,8,0.05)] relative"
+          style={{ clipPath: "polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%)" }}>
+
+          {/* FUI Brand Logo */}
+          <div className="absolute top-4 right-4 z-20">
+             <img src="/brand/kwd-black-text.png" alt="KWD" className="h-4 opacity-50 brightness-0 invert object-contain" />
+          </div>
 
           {/* Top color bar */}
           <div className="h-1" style={{ backgroundColor: accent }} />
