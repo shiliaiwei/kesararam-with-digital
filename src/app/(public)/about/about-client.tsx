@@ -8,7 +8,7 @@ import { TeamSection } from "@/components/about/team-section";
 // ── Gallery images ────────────────────────────────────────────────────────────
 
 const GALLERY = [
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751538/team_mzuldw.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248422/d62e9dd9bf64b6a39fe35b39dr_sfzwbn.png",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751538/photo_89_2026-03-29_09-19-15_v0uy9h.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751510/photo_88_2026-03-29_09-19-15_f4l6el.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751491/photo_87_2026-03-29_09-19-15_baluw0.jpg",

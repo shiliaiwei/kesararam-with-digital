@@ -257,7 +257,7 @@ export function RoadSigns3DHero() {
           }}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-black opacity-60" />
-          {kh ? "\u179f\u17d2\u1782\u17b6\u179b\u179f\u1789\u17d2\u1789\u17b6\u1785\u179a\u17b6\u1785\u179a \u2014 \u17a2\u17bc\u179f \u1794\u17d0\u1794\u17d0\u17b7\u1780\u17d2\u1780\u17c1\u1794\u17d0\u1794\u17d0\u17b7\u1780\u17d2\u1780\u17c1" : "Know Every Sign — drag or touch"}
+          {kh ? "\u179f\u17d2\u1782\u17b6\u179b\u179f\u1789\u17d2\u1789\u17b6\u1785\u179a\u17b6\u1785\u179a" : "Know Every Sign"}
         </div>
         <h2 className="text-3xl md:text-4xl font-black text-black" style={kf}>
           {kh ? "វីថីសុវត្ថិភាព" : "The Way of Safety"}
@@ -272,10 +272,6 @@ export function RoadSigns3DHero() {
         <DragRow signs={ROW4} speed={70}  reverse={true}  sizeOffset={11} />
       </div>
 
-      {/* Hint */}
-      <p className="relative z-10 text-center text-[10px] font-bold text-zinc-400 uppercase tracking-widest mt-4" style={kf}>
-        {kh ? "អូស ឬប៉ះ ដើម្បីរំកិល" : "Drag or swipe to scroll"}
-      </p>
     </section>
   );
 }

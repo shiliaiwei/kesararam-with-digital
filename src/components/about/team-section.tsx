@@ -16,11 +16,11 @@ const STUDENTS = [
 ];
 
 const MENTORS = [
-  { id: "VSID-2026-M01", name: "P. PHEAP", fullName: "PISETH PHEAP", role: "Teacher & Program Lead" },
-  { id: "VSID-2026-M02", name: "S. WEI", fullName: "SHILIAI WEI", role: "Design, Technical / Project Mgmt" },
+  { id: "VSID-2026-M01", name: "P. PHEAP", fullName: "PISETH PHEAP", role: "Teacher & Program Lead", image: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248421/904da627410290a5ae64edr_xtkjjp.png" },
+  { id: "VSID-2026-M02", name: "S. WEI", fullName: "SHILIAI WEI", role: "Design, Technical / Project Mgmt", image: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248420/07d5d96b3f0a8af7743f3b4053ba18dr_ydb0zm.png" },
 ];
 
-interface Member { id: string; name: string; fullName: string; role: string; }
+interface Member { id: string; name: string; fullName: string; role: string; image?: string; }
 
 // Cyberpunk clip-path polygon
 const CLIP = "polygon(0 12px, 12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px))";
@@ -89,18 +89,14 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
             className="w-full flex items-center justify-center rounded-sm overflow-hidden"
             style={{ background: "#0a0a0a", border: `1px solid ${accent}30`, minHeight: 120 }}
           >
-            {qrLink ? (
+            {member.image ? (
+              <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+            ) : qrLink ? (
               <img src={qrUrl(qrLink)} alt="QR" width={120} height={120} className="block" />
             ) : (
-              <div className="flex flex-col items-center gap-2 py-6 opacity-30">
-                {/* QR placeholder grid */}
-                <div className="grid grid-cols-5 gap-0.5">
-                  {Array.from({ length: 25 }).map((_, i) => (
-                    <div key={i} className="w-2 h-2 rounded-sm"
-                      style={{ backgroundColor: [0,1,5,6,7,11,12,13,17,18,19,23,24].includes(i) ? accent : "transparent" }} />
-                  ))}
-                </div>
-                <span className="text-[8px] font-black uppercase tracking-widest" style={{ color: accent }}>SCAN ID</span>
+              <div className="flex flex-col items-center justify-center gap-2 py-6 opacity-30 w-full h-full">
+                <img src="https://res.cloudinary.com/dpgivqzrl/image/upload/v1775223625/kwd-gray_tuidfn.png" alt="Logo" className="w-10 h-10 object-contain mx-auto" />
+                <span className="text-[8px] font-black uppercase tracking-widest text-center" style={{ color: accent }}>SCAN ID</span>
               </div>
             )}
           </div>
@@ -112,21 +108,35 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
           </div>
 
           {/* Scan button */}
-          <button
-            onClick={generateQR}
-            disabled={loading}
-            className="w-full py-2 text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-1.5"
-            style={{
-              clipPath: CLIP,
-              backgroundColor: accent,
-              color: "#000",
-              boxShadow: loading ? "none" : `0 0 12px ${accent}66`,
-            }}
-          >
-            {loading ? (
-              <span className="w-3 h-3 border-2 border-black border-t-transparent rounded-full animate-spin" />
-            ) : qrLink ? "REFRESH QR" : "REVEAL QR"}
-          </button>
+          {member.image ? (
+            <a
+              href={`/team/${member.id}`}
+              className="w-full py-2 text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-1.5"
+              style={{
+                clipPath: CLIP,
+                backgroundColor: accent,
+                color: "#000",
+              }}
+            >
+              LINK TO PROFILE
+            </a>
+          ) : (
+            <button
+              onClick={generateQR}
+              disabled={loading}
+              className="w-full py-2 text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-1.5"
+              style={{
+                clipPath: CLIP,
+                backgroundColor: accent,
+                color: "#000",
+                boxShadow: loading ? "none" : `0 0 12px ${accent}66`,
+              }}
+            >
+              {loading ? (
+                <span className="w-3 h-3 border-2 border-black border-t-transparent rounded-full animate-spin" />
+              ) : qrLink ? "REFRESH QR" : "REVEAL QR"}
+            </button>
+          )}
         </div>
 
         {/* Bottom scan line animation */}
@@ -148,7 +158,7 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
 
 export function TeamSection() {
   return (
-    <div className="bg-[#080808] py-16 px-6 border-t-2 border-yellow-400/20">
+    <div className="bg-white py-16 px-6 border-t-2 border-yellow-400">
       <div className="max-w-5xl mx-auto">
 
         {/* Header */}
@@ -157,10 +167,10 @@ export function TeamSection() {
             style={{ clipPath: CLIP, boxShadow: "3px 3px 0 #000" }}>
             The Team
           </div>
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-2">
+          <h2 className="text-3xl md:text-4xl font-black text-black mb-2">
             Built by Students.<br />Guided by Mentors.
           </h2>
-          <p className="text-white/35 text-sm max-w-sm mx-auto">
+          <p className="text-black/50 text-sm max-w-sm mx-auto">
             Reveal the QR code on each card. Scan it to view their full profile.
           </p>
         </div>

@@ -167,12 +167,12 @@ export function Navbar({ session }: NavbarProps) {
         <nav className="flex items-center px-6 py-3 max-w-7xl mx-auto">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-9 h-9 flex items-center justify-center overflow-hidden">
+            <div className="w-10 h-10 flex items-center justify-center bg-yellow-400 border-[2px] border-black shadow-[3px_3px_0_#000]">
               <Image
                 src="/brand/kwd-black.png"
                 alt="KWD Logo"
-                width={36}
-                height={36}
+                width={24}
+                height={24}
                 className="object-contain"
                 unoptimized
               />
