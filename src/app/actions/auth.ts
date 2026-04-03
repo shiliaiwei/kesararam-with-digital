@@ -79,7 +79,16 @@ export async function loginAction(
   }
 
   const hash = hashPassword(password);
-  if (user.passwordHash !== hash) {
+  
+  const expectedHash = Buffer.from(user.passwordHash, 'utf8');
+  const actualHash = Buffer.from(hash, 'utf8');
+
+  let isValidPassword = false;
+  if (expectedHash.length === actualHash.length) {
+    isValidPassword = crypto.timingSafeEqual(expectedHash, actualHash);
+  }
+
+  if (!isValidPassword) {
     const newAttempts = (user.loginAttempts ?? 0) + 1;
     const updates: Record<string, unknown> = { loginAttempts: newAttempts };
 
