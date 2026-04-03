@@ -13,9 +13,9 @@ export interface JWTPayload {
   exp?: number;
 }
 
-const secret = new TextEncoder().encode(
-  process.env.JWT_SECRET ?? "kwd-fallback-secret",
-);
+const jwtSecret = process.env.JWT_SECRET;
+if (!jwtSecret) throw new Error("JWT_SECRET environment variable is required");
+const secret = new TextEncoder().encode(jwtSecret);
 
 export async function signToken(payload: Omit<JWTPayload, "iat" | "exp">) {
   const expiresIn = payload.role === "student" ? "7d" : "8h";
