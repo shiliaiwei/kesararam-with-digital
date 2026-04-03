@@ -1,8 +1,9 @@
 "use client";
 
+import { useRef, useEffect, useState, useCallback } from "react";
 import { useLang } from "@/context/lang-context";
 
-// ── Blue signs (regulatory / informational)
+// ── Blue signs
 const BLUE = [
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775173153/PW03-R2-07KWD_x7pgky.svg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775173156/PW03-R2-01KWD_anmelo.svg",
@@ -31,7 +32,7 @@ const BLUE = [
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775173089/PW03-G4-39KWD_gizeat.svg",
 ];
 
-// ── Red signs (prohibitory / warning)
+// ── Red signs (PW03-P1-10 and PW03-P1-09 removed)
 const RED = [
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775173158/PW03-R1-44KWD_qyidtw.svg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775173159/PW03-R1-41KWD_bhxu0a.svg",
@@ -48,13 +49,11 @@ const RED = [
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775173111/PW03-R3-02KWD_xty4we.svg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775173111/PW03-R3-03KWD_yyjpsq.svg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775173111/PW03-R3-01KWD_dvwtzg.svg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775173116/PW03-P1-10KWD_vtrlyi.svg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775173116/PW03-P1-09KWD_zro6cg.svg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775173119/PW03-P1-02KWD_ns8moh.svg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775173119/PW03-P1-01KWD_ry8dbh.svg",
 ];
 
-// ── Yellow signs (warning / caution)
+// ── Yellow signs
 const YELLOW = [
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775173074/PW03-W2-01KWD_pqsgka.svg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775173111/PW03-R3-04KWD_rb9coq.svg",
@@ -76,8 +75,8 @@ const YELLOW = [
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775173070/PW03-W2-07KWD_pv8k7r.svg",
 ];
 
-// Row: blue → red → yellow → blue → red → yellow (interleaved pattern)
-function buildRow(a: string[], b: string[], c: string[]): string[] {
+// Interleave all three pools into one big mixed list
+function interleave(a: string[], b: string[], c: string[]): string[] {
   const out: string[] = [];
   const len = Math.max(a.length, b.length, c.length);
   for (let i = 0; i < len; i++) {
@@ -88,70 +87,185 @@ function buildRow(a: string[], b: string[], c: string[]): string[] {
   return out;
 }
 
-const ROW1 = buildRow(BLUE.slice(0, 9), RED.slice(0, 7), YELLOW.slice(0, 6));
-const ROW2 = buildRow(RED.slice(7, 14), YELLOW.slice(6, 12), BLUE.slice(9, 17));
-const ROW3 = buildRow(YELLOW.slice(12), BLUE.slice(17), RED.slice(14));
+// Variable sizes to create a "busy" uneven rhythm
+const SIZES = [56, 48, 64, 52, 60, 44, 68, 50, 56, 48, 72, 52, 60, 44, 56, 64, 48, 56, 52, 68];
 
-function Row({ signs, reverse, duration }: {
+const ALL = interleave(BLUE, RED, YELLOW);
+// Split into 4 rows with different offsets for density
+const ROW1 = ALL.slice(0, 20);
+const ROW2 = ALL.slice(15, 35);
+const ROW3 = ALL.slice(10, 30);
+const ROW4 = ALL.slice(5, 25);
+
+// ── Draggable marquee row ─────────────────────────────────────────────────────
+function DragRow({
+  signs,
+  speed,
+  reverse,
+  sizeOffset = 0,
+}: {
   signs: string[];
+  speed: number; // px per second
   reverse?: boolean;
-  duration: number;
+  sizeOffset?: number;
 }) {
-  const items = [...signs, ...signs];
+  const trackRef = useRef<HTMLDivElement>(null);
+  const posRef = useRef(0);
+  const velRef = useRef(reverse ? speed : -speed);
+  const dragging = useRef(false);
+  const lastX = useRef(0);
+  const rafRef = useRef<number>(0);
+  const [hovered, setHovered] = useState(false);
+  const items = [...signs, ...signs, ...signs]; // triple for seamless loop
+
+  const getHalfWidth = useCallback(() => {
+    const el = trackRef.current;
+    if (!el) return 0;
+    return el.scrollWidth / 3;
+  }, []);
+
+  useEffect(() => {
+    let last = performance.now();
+
+    const tick = (now: number) => {
+      const dt = (now - last) / 1000;
+      last = now;
+
+      if (!dragging.current) {
+        // Friction decay toward auto-scroll speed
+        const target = reverse ? speed : -speed;
+        velRef.current += (target - velRef.current) * Math.min(dt * 4, 1);
+      } else {
+        // Friction when dragging released
+        velRef.current *= 0.92;
+      }
+
+      if (!hovered || dragging.current) {
+        posRef.current += velRef.current * dt;
+      }
+
+      const half = getHalfWidth();
+      if (half > 0) {
+        // Wrap seamlessly
+        if (posRef.current < -half) posRef.current += half;
+        if (posRef.current > 0) posRef.current -= half;
+      }
+
+      if (trackRef.current) {
+        trackRef.current.style.transform = `translateX(${posRef.current}px)`;
+      }
+
+      rafRef.current = requestAnimationFrame(tick);
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [hovered, reverse, speed, getHalfWidth]);
+
+  // Mouse drag
+  const onMouseDown = (e: React.MouseEvent) => {
+    dragging.current = true;
+    lastX.current = e.clientX;
+    velRef.current = 0;
+  };
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (!dragging.current) return;
+    const dx = e.clientX - lastX.current;
+    lastX.current = e.clientX;
+    posRef.current += dx;
+    velRef.current = dx / (1 / 60); // approximate velocity
+  };
+  const onMouseUp = () => { dragging.current = false; };
+
+  // Touch drag
+  const onTouchStart = (e: React.TouchEvent) => {
+    dragging.current = true;
+    lastX.current = e.touches[0].clientX;
+    velRef.current = 0;
+  };
+  const onTouchMove = (e: React.TouchEvent) => {
+    if (!dragging.current) return;
+    const dx = e.touches[0].clientX - lastX.current;
+    lastX.current = e.touches[0].clientX;
+    posRef.current += dx;
+    velRef.current = dx / (1 / 60);
+  };
+  const onTouchEnd = () => { dragging.current = false; };
+
   return (
-    <div className="overflow-hidden py-1">
-      <div
-        className="flex gap-3 w-max will-change-transform"
-        style={{ animation: `${reverse ? "kwd-rev" : "kwd-fwd"} ${duration}s linear infinite` }}
-      >
-        {items.map((src, i) => (
-          <div key={i} className="shrink-0 w-14 h-14 flex items-center justify-center">
-            <img
-              src={src}
-              alt=""
-              width={56}
-              height={56}
-              loading="lazy"
-              decoding="async"
-              className="w-14 h-14 object-contain"
-            />
-          </div>
-        ))}
+    <div
+      className="overflow-hidden cursor-grab active:cursor-grabbing select-none"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => { setHovered(false); dragging.current = false; }}
+      onMouseDown={onMouseDown}
+      onMouseMove={onMouseMove}
+      onMouseUp={onMouseUp}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
+      <div ref={trackRef} className="flex items-center gap-1 w-max will-change-transform">
+        {items.map((src, i) => {
+          const sz = SIZES[(i + sizeOffset) % SIZES.length];
+          return (
+            <div
+              key={i}
+              className="shrink-0 flex items-center justify-center transition-transform duration-150 hover:scale-125 hover:z-10 relative"
+              style={{ width: sz, height: sz }}
+            >
+              <img
+                src={src}
+                alt=""
+                width={sz}
+                height={sz}
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+                className="object-contain w-full h-full pointer-events-none"
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 }
 
+// ── Main export ───────────────────────────────────────────────────────────────
 export function RoadSigns3DHero() {
   const { lang } = useLang();
   const kh = lang === "kh";
   const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
   return (
-    <section className="relative w-full overflow-hidden bg-white py-10">
-      <style>{`
-        @keyframes kwd-fwd { from { transform: translateX(0) } to { transform: translateX(-50%) } }
-        @keyframes kwd-rev { from { transform: translateX(-50%) } to { transform: translateX(0) } }
-      `}</style>
+    <section className="relative w-full overflow-hidden bg-white py-10 select-none">
+      {/* Edge fades */}
+      <div className="absolute inset-y-0 left-0 w-16 md:w-28 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-16 md:w-28 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-      <div className="absolute inset-y-0 left-0 w-12 md:w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-12 md:w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-
-      <div className="relative z-10 text-center mb-6 px-4">
+      {/* Label */}
+      <div className="relative z-10 text-center mb-5 px-4">
         <div className="inline-flex items-center gap-2 border-2 border-black bg-yellow-400 text-black text-[11px] font-black px-3 py-1 uppercase tracking-widest shadow-[2px_2px_0_#000] mb-3">
           <span className="w-1.5 h-1.5 bg-black" />
-          {kh ? "ស្គាល់សញ្ញាចរាចរ" : "Know Every Sign"}
+          {kh ? "ស្គាល់សញ្ញាចរាចរ — អូស ឬប៉ះ" : "Know Every Sign — drag or touch"}
         </div>
         <h2 className="text-3xl md:text-4xl font-black text-black" style={kf}>
           {kh ? "វីថីសុវត្ថិភាព" : "The Way of Safety"}
         </h2>
       </div>
 
-      <div className="relative z-10 flex flex-col gap-2">
-        <Row signs={ROW1} duration={60} />
-        <Row signs={ROW2} reverse duration={75} />
-        <Row signs={ROW3} duration={50} />
+      {/* 4 rows — alternating direction, different speeds, size offsets */}
+      <div className="relative z-10 flex flex-col gap-1">
+        <DragRow signs={ROW1} speed={80}  reverse={false} sizeOffset={0} />
+        <DragRow signs={ROW2} speed={60}  reverse={true}  sizeOffset={7} />
+        <DragRow signs={ROW3} speed={100} reverse={false} sizeOffset={3} />
+        <DragRow signs={ROW4} speed={70}  reverse={true}  sizeOffset={11} />
       </div>
+
+      {/* Hint */}
+      <p className="relative z-10 text-center text-[10px] font-bold text-zinc-400 uppercase tracking-widest mt-4" style={kf}>
+        {kh ? "អូស ឬប៉ះ ដើម្បីរំកិល" : "Drag or swipe to scroll"}
+      </p>
     </section>
   );
 }
