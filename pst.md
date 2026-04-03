@@ -195,7 +195,7 @@ x.com, xauhongshe, tiktok, kahoot, youtube,,pinterst, cambodia driving rule app,
 
 
 
-
+and please remove the homepage icon slide current to new this link and please make like the blue yellow red blue yellow red make it logo icons look  llike that ,
 
 
 

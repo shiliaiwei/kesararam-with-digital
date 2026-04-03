@@ -1,7 +1,8 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { users, sessions } from "@/db/schema";
+import { users } from "@/db/schema";
+import { sessions } from "@/db/schema/sessions";
 import { eq, or, and } from "drizzle-orm";
 import { signToken, getRedirectUrl } from "@/lib/auth";
 import { cookies, headers } from "next/headers";
