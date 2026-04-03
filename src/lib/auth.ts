@@ -13,9 +13,11 @@ export interface JWTPayload {
   exp?: number;
 }
 
-const jwtSecret = process.env.JWT_SECRET;
-if (!jwtSecret) throw new Error("JWT_SECRET environment variable is required");
-const secret = new TextEncoder().encode(jwtSecret);
+function getSecret(): Uint8Array {
+  const jwtSecret = process.env.JWT_SECRET;
+  if (!jwtSecret) throw new Error("JWT_SECRET environment variable is required");
+  return new TextEncoder().encode(jwtSecret);
+}
 
 export async function signToken(payload: Omit<JWTPayload, "iat" | "exp">) {
   const expiresIn = payload.role === "student" ? "7d" : "8h";
@@ -23,12 +25,12 @@ export async function signToken(payload: Omit<JWTPayload, "iat" | "exp">) {
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setExpirationTime(expiresIn)
-    .sign(secret);
+    .sign(getSecret());
 }
 
 export async function verifyToken(token: string): Promise<JWTPayload | null> {
   try {
-    const { payload } = await jwtVerify(token, secret);
+    const { payload } = await jwtVerify(token, getSecret());
     return payload as unknown as JWTPayload;
   } catch {
     return null;
