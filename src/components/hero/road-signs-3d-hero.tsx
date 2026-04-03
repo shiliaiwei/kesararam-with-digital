@@ -92,33 +92,28 @@ const ROW1 = buildRow(BLUE.slice(0, 9), RED.slice(0, 7), YELLOW.slice(0, 6));
 const ROW2 = buildRow(RED.slice(7, 14), YELLOW.slice(6, 12), BLUE.slice(9, 17));
 const ROW3 = buildRow(YELLOW.slice(12), BLUE.slice(17), RED.slice(14));
 
-function Row({ signs, reverse, duration, bg }: {
+function Row({ signs, reverse, duration }: {
   signs: string[];
   reverse?: boolean;
   duration: number;
-  bg: string;
 }) {
   const items = [...signs, ...signs];
   return (
     <div className="overflow-hidden py-1">
       <div
-        className="flex gap-2 w-max will-change-transform"
+        className="flex gap-3 w-max will-change-transform"
         style={{ animation: `${reverse ? "kwd-rev" : "kwd-fwd"} ${duration}s linear infinite` }}
       >
         {items.map((src, i) => (
-          <div
-            key={i}
-            className="shrink-0 w-14 h-14 flex items-center justify-center"
-            style={{ background: bg, border: "2px solid #000", boxShadow: "2px 2px 0 #000" }}
-          >
+          <div key={i} className="shrink-0 w-14 h-14 flex items-center justify-center">
             <img
               src={src}
               alt=""
-              width={48}
-              height={48}
+              width={56}
+              height={56}
               loading="lazy"
               decoding="async"
-              className="w-10 h-10 object-contain"
+              className="w-14 h-14 object-contain"
             />
           </div>
         ))}
@@ -153,12 +148,9 @@ export function RoadSigns3DHero() {
       </div>
 
       <div className="relative z-10 flex flex-col gap-2">
-        {/* Row 1 — blue bg, forward */}
-        <Row signs={ROW1} duration={60} bg="#dbeafe" />
-        {/* Row 2 — red bg, reverse */}
-        <Row signs={ROW2} reverse duration={75} bg="#fee2e2" />
-        {/* Row 3 — yellow bg, forward */}
-        <Row signs={ROW3} duration={50} bg="#fef9c3" />
+        <Row signs={ROW1} duration={60} />
+        <Row signs={ROW2} reverse duration={75} />
+        <Row signs={ROW3} duration={50} />
       </div>
     </section>
   );
