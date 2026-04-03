@@ -25,11 +25,20 @@ export const metadata: Metadata = {
     "road safety",
     "KWD",
   ],
-  metadataBase: new URL("https://kesararamwithdigital.tech"),
+  metadataBase: new URL("https://www.kesararamwithdigital.tech"),
+  alternates: {
+    canonical: "./",
+  },
   openGraph: {
     siteName: "KWD — Kesararam With Digital",
     locale: "en_US",
     type: "website",
+    images: [{
+      url: "/brand/kwd-black.png",
+      width: 1200,
+      height: 630,
+      alt: "KWD Cover",
+    }],
   },
 };
 
