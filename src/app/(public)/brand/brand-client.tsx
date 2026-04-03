@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLang } from "@/context/lang-context";
 
+
 const COLORS = [
   { name: "Yellow",  hex: "#eab308", usage: "Primary CTA, road warning signs, brand accent" },
   { name: "Black",   hex: "#000000", usage: "Borders, text, structural elements" },
