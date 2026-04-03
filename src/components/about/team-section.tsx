@@ -3,8 +3,8 @@
 import { useState, useEffect, useCallback } from "react";
 
 function qrUrl(data: string) {
-  // Standard black on white — maximum scanner compatibility
-  return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(data)}&bgcolor=ffffff&color=000000&margin=12&ecc=H`;
+  // Use quickchart.io for reliable high-density URLs
+  return `https://quickchart.io/qr?text=${encodeURIComponent(data)}&size=200&margin=1&ecLevel=H`;
 }
 
 const STUDENTS = [
@@ -27,23 +27,36 @@ const CLIP = "polygon(0 12px, 12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(
 
 function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean }) {
   const [qrLink, setQrLink] = useState<string | null>(null);
+  const [revealed, setRevealed] = useState(false);
   const [loading, setLoading] = useState(false);
   const accent = isMentor ? "#f59e0b" : "#eab308";
 
-  const generateQR = useCallback(async () => {
+  const handleReveal = useCallback(async () => {
     setLoading(true);
+    if (member.image) {
+      setTimeout(() => {
+        setRevealed(true);
+        setLoading(false);
+      }, 500);
+      return;
+    }
+    
     try {
       const res = await fetch(`/api/team-token?id=${member.id}`);
       const { code } = await res.json();
-      // Short URL — much easier for QR scanners
       setQrLink(`${window.location.origin}/team/${code}`);
-    } catch { /* ignore */ }
+      setRevealed(true);
+    } catch {
+      // Fallback if API fails
+      setQrLink(`${window.location.origin}/team/${member.id}`);
+      setRevealed(true);
+    }
     finally { setLoading(false); }
-  }, [member.id]);
+  }, [member.id, member.image]);
 
   // Auto-refresh every 50 seconds (token expires in 1 min)
   useEffect(() => {
-    if (!qrLink) return;
+    if (!qrLink || member.image) return;
     const t = setInterval(async () => {
       try {
         const res = await fetch(`/api/team-token?id=${member.id}`);
@@ -52,7 +65,7 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
       } catch { /* ignore */ }
     }, 50000);
     return () => clearInterval(t);
-  }, [qrLink, member.id]);
+  }, [qrLink, member.id, member.image]);
 
   return (
     <div className="relative group" style={{ clipPath: CLIP }}>
@@ -78,10 +91,13 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
         <div className="absolute bottom-3 right-3 w-3 h-3 border-b border-r opacity-60" style={{ borderColor: accent }} />
 
         <div className="px-4 pt-4 pb-4 flex flex-col items-center gap-3">
-          {/* Role badge */}
-          <div className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 border"
-            style={{ color: accent, borderColor: accent + "50", backgroundColor: accent + "12" }}>
-            {isMentor ? "MENTOR" : "STUDENT"}
+          {/* Role badge & Brand Logo */}
+          <div className="w-full flex items-center justify-between">
+            <div className="text-[9px] font-black uppercase tracking-widest px-2 py-0.5 border"
+              style={{ color: accent, borderColor: accent + "50", backgroundColor: accent + "12" }}>
+              {isMentor ? "MENTOR" : "STUDENT"}
+            </div>
+            <img src="/brand/kwd-black-text.png" alt="KWD" className="h-2.5 opacity-30 brightness-0 invert object-contain" />
           </div>
 
           {/* QR or placeholder */}
@@ -89,13 +105,17 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
             className="w-full flex items-center justify-center rounded-sm overflow-hidden"
             style={{ background: "#0a0a0a", border: `1px solid ${accent}30`, minHeight: 120 }}
           >
-            {member.image ? (
-              <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
-            ) : qrLink ? (
-              <img src={qrUrl(qrLink)} alt="QR" width={120} height={120} className="block" />
+            {revealed ? (
+              member.image ? (
+                <div className="w-full flex justify-center p-1 bg-[#0a0a0a]">
+                  <img src={member.image} alt={member.name} className="w-full object-cover rounded-sm border border-black/50" style={{ aspectRatio: '4/6' }} />
+                </div>
+              ) : qrLink ? (
+                <img src={qrUrl(qrLink)} alt="QR" width={120} height={120} className="block" />
+              ) : null
             ) : (
-              <div className="flex flex-col items-center justify-center gap-2 py-6 opacity-30 w-full h-full">
-                <img src="https://res.cloudinary.com/dpgivqzrl/image/upload/v1775223625/kwd-gray_tuidfn.png" alt="Logo" className="w-10 h-10 object-contain mx-auto" />
+              <div className="flex flex-col items-center justify-center gap-3 py-6 opacity-40 w-full h-full">
+                <img src="/brand/kwd-black-text.png" alt="Logo" className="w-16 h-8 object-contain mx-auto brightness-0 invert" />
                 <span className="text-[8px] font-black uppercase tracking-widest text-center" style={{ color: accent }}>SCAN ID</span>
               </div>
             )}
@@ -108,7 +128,7 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
           </div>
 
           {/* Scan button */}
-          {member.image ? (
+          {revealed && member.image ? (
             <a
               href={`/team/${member.id}`}
               className="w-full py-2 text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-1.5"
@@ -122,7 +142,7 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
             </a>
           ) : (
             <button
-              onClick={generateQR}
+              onClick={handleReveal}
               disabled={loading}
               className="w-full py-2 text-[10px] font-black uppercase tracking-widest transition-all flex items-center justify-center gap-1.5"
               style={{
@@ -134,7 +154,7 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
             >
               {loading ? (
                 <span className="w-3 h-3 border-2 border-black border-t-transparent rounded-full animate-spin" />
-              ) : qrLink ? "REFRESH QR" : "REVEAL QR"}
+              ) : revealed ? "REFRESH QR" : (member.image ? "REVEAL PROFILE" : "REVEAL QR")}
             </button>
           )}
         </div>
