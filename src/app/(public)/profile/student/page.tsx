@@ -23,7 +23,13 @@ export default async function StudentProfilePage() {
   if (!session || session.role !== "student") redirect("/login");
 
   // Initialize with default values
-  let user = {
+  let user: {
+    displayName: string;
+    username: string;
+    email: string;
+    avatar: string | null;
+    avatarChangedAt: Date | null;
+  } = {
     displayName: session.name,
     username: session.name,
     email: session.email || "",
