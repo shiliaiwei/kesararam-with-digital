@@ -7,7 +7,7 @@ import { getSession } from "@/lib/auth";
 // POST /api/admin/content/[id]/approve - Approve content
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getSession();
@@ -15,7 +15,8 @@ export async function POST(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const contentId = parseInt(params.id);
+    const { id } = await params;
+    const contentId = parseInt(id);
     const body = await request.json();
     const { comments } = body;
 

@@ -132,7 +132,7 @@ Gemini Canvas: https://gemini.google.com
 
 
 v0 by Vercel: https://v0.dev
-x.com, xauhongshe, tiktok, kahoot, youtube,,pinterst, cambodia driving rule app, ministry of public  work and transport /prakas ,
+x.com, xauhongshe, tiktok, kahoot, youtube,,pinterst, cambodia driving rule app, ministry of public  work and transport /prakas , vectro amgic
 
 
 
@@ -140,6 +140,47 @@ x.com, xauhongshe, tiktok, kahoot, youtube,,pinterst, cambodia driving rule app,
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+please rebrand logo all type of it evry where and place need this logo, \public\brand default logo  primary kwd.svg kwd.png second kwd-black  and evry place holder image missing should be repalce to this logo automatic this brand blank, example in scan qr code, header brand , like favicons broswer app, eroror icon, not found, evrything is my brand name. and after that please rewrite the brand guideline what my brand was using in this project and the logo meaning to this brand , after tos, pp, and brand guideline,and sitemape, so in this page should be write black and white page paper standard, defind the difinition rewrite all of these accounding this project represent avoid using emoji, or link, : in privacy or term of serice which should be define user what we contribute inthis project was build using rea emoji from npm i thesvg color two category and sue for , (Github, Vscode, neo db, claude ai, copilot, nextjs, type scriptjs, html, css,  affinity, taiwlwind,,chatgpt, grok, kimi, kiro,gemini,notebookml,younbao,qwen, deepseek,antigravity,  git,firebase, vercel, cloudinary, stitch googel, figma,Google AI Studio: https://aistudio.google.com
+
+Firebase Studio: https://firebase.studio
+
+Kimi AI: https://kimi.ai
+
+Gemini Canvas: https://gemini.google.com
+
+v0 by Vercel: https://v0.dev
+
+x.com, xauhongshe, tiktok, kahoot, youtube,,pinterst, cambodia driving rule app, ministry of public  work and transport /prakas , vectro amgic) dont use link to those page just hover and see the real name  write the best senterce using deep difition , psychology and focus on text like bold make user focus meaning , so this style section is footer , , both language and responsive device , 
 
 
 

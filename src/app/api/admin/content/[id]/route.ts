@@ -7,7 +7,7 @@ import { getSession } from "@/lib/auth";
 // PUT /api/admin/content/[id] - Update content
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getSession();
@@ -15,7 +15,8 @@ export async function PUT(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const contentId = parseInt(params.id);
+    const { id } = await params;
+    const contentId = parseInt(id);
     const body = await request.json();
 
     // Check if content exists
@@ -80,7 +81,7 @@ export async function PUT(
 // DELETE /api/admin/content/[id] - Delete content (admin only)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getSession();
@@ -88,7 +89,8 @@ export async function DELETE(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const contentId = parseInt(params.id);
+    const { id } = await params;
+    const contentId = parseInt(id);
 
     await db.delete(contentItems).where(eq(contentItems.id, contentId));
 

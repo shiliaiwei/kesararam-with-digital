@@ -6,10 +6,11 @@ import { eq } from "drizzle-orm";
 // GET /api/traffic-signs/[id] - Get single sign details
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const signId = parseInt(params.id);
+    const { id } = await params;
+    const signId = parseInt(id);
 
     const [sign] = await db
       .select()

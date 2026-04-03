@@ -7,7 +7,7 @@ import { getSession } from "@/lib/auth";
 // PUT /api/admin/traffic-signs/[id] - Update sign
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getSession();
@@ -15,7 +15,8 @@ export async function PUT(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const signId = parseInt(params.id);
+    const { id } = await params;
+    const signId = parseInt(id);
     const body = await request.json();
 
     // Check if sign exists
@@ -64,7 +65,7 @@ export async function PUT(
 // DELETE /api/admin/traffic-signs/[id] - Delete sign (admin only)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getSession();
@@ -72,7 +73,8 @@ export async function DELETE(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const signId = parseInt(params.id);
+    const { id } = await params;
+    const signId = parseInt(id);
 
     await db.delete(trafficSigns).where(eq(trafficSigns.id, signId));
 
