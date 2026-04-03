@@ -21,11 +21,7 @@ const LOGOS = [
   { file: "/brand/kwd.svg",            label: "SVG",               bg: "#ffffff" },
   { file: "/brand/KWD.png",            label: "PNG",               bg: "#ffffff" },
   { file: "/brand/kwd-black-text.png", label: "Black + Text",      bg: "#ffffff" },
-  { file: "/brand/kwd-yellow.png",     label: "Yellow",            bg: "#000000" },
-  { file: "/brand/kwd-green.png",      label: "Green",             bg: "#000000" },
   { file: "/brand/kwd-gray.png",       label: "Gray",              bg: "#ffffff" },
-  { file: "/brand/kwd-nbg.png",        label: "No Background",     bg: "#f4f4f5" },
-  { file: "/brand/KWD-bl.png",         label: "Blue",              bg: "#000000" },
 ];
 
 const RULES = [
