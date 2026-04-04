@@ -6,7 +6,7 @@ import { sessions } from "@/db/schema/sessions";
 import { eq, or, and } from "drizzle-orm";
 import { signToken, getRedirectUrl } from "@/lib/auth";
 import { cookies, headers } from "next/headers";
-import { createHash } from "crypto";
+import { createHash, timingSafeEqual } from "crypto";
 import { redirect } from "next/navigation";
 
 // In-memory IP rate limiter for login (5 attempts / 60s per IP)
@@ -85,7 +85,7 @@ export async function loginAction(
 
   let isValidPassword = false;
   if (expectedHash.length === actualHash.length) {
-    isValidPassword = crypto.timingSafeEqual(expectedHash, actualHash);
+    isValidPassword = timingSafeEqual(expectedHash, actualHash);
   }
 
   if (!isValidPassword) {

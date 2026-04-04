@@ -366,6 +366,20 @@ function ProfileModal({
               {isKhmer ? member.bioKh : member.bio}
             </p>
           </div>
+
+          {/* Email */}
+          {member.email && (
+            <div style={{ border: "2px solid #000" }}>
+              <div className="px-3 py-1.5" style={{ background: "#000" }}>
+                <span className="font-black text-[11px] uppercase" style={{ color: "#FFEE00" }}>
+                  {isKhmer ? "អ៊ីមែល" : "EMAIL"}
+                </span>
+              </div>
+              <p className="text-sm px-3 py-2 text-gray-800 font-bold">
+                {member.email}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>

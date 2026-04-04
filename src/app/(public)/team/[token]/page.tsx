@@ -40,13 +40,13 @@ const MEMBERS: Record<string, {
   },
   "VSID-2026-M01": {
     lastName: "PHEAP", fullName: "PISETH PHEAP", role: "Teacher & Program Lead", type: "mentor",
-    photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1773739866/Piseth_Pheap_b189jm.jpg",
+    photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1775248418/481f63ff38a1842e9fce11ad5edr_xp2anf.png",
     contributions: ["Guided the team through Technovation curriculum", "Mentored project planning", "Connected team with resources"],
     quote: "Teaching is not filling a bucket — it is lighting a fire.",
   },
   "VSID-2026-M02": {
-    lastName: "WEI", fullName: "SHILIAI WEI", role: "Design, Technical / Project Management", type: "mentor",
-    photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1775038113/eirsvi_scinny.jpg",
+    lastName: "SRIE", fullName: "VI SRIE", role: "Design, Technical / Project Management", type: "mentor",
+    photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1775248420/07d5d96b3f0a8af7743f3b4053ba18dr_ydb0zm.png",
     contributions: ["Advised on software architecture", "Reviewed code quality", "Supported project management"],
     quote: "Build with intention. Ship with confidence.",
   },

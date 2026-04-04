@@ -33,12 +33,20 @@ export const metadata: Metadata = {
     siteName: "KWD — Kesararam With Digital",
     locale: "en_US",
     type: "website",
+    title: "KWD — Kesararam With Digital",
+    description: "Master Cambodia's road rules and driving theory with our interactive learning platform.",
     images: [{
-      url: "/brand/kwd-black-text.png",
+      url: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg",
       width: 1200,
       height: 630,
-      alt: "KWD Cover",
+      alt: "KWD Logo",
     }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "KWD — Kesararam With Digital",
+    description: "Master Cambodia's road rules and driving theory with our interactive learning platform.",
+    images: ["https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg"],
   },
 };
 
