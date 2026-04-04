@@ -16,3 +16,4 @@
 Γ£ô Compiled in 2.9s
 Γ£ô Compiled in 10.2s
 Γ£ô Compiled in 1271ms
+  Reload env: .env.local

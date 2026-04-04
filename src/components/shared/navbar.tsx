@@ -19,6 +19,43 @@ interface NavbarProps {
   session?: JWTPayload | null;
 }
 
+const ANIMATED_WORDS = [
+  "DIGITAL.",
+  "STEM.",
+  "YOUTH.",
+  "INNOVATION.",
+  "ARTIFICIAL INTELLIGENCE.",
+  "AUTOMATION.",
+  "EDUCATION.",
+  "CHANGE."
+];
+
+function AnimatedLogoText() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((cur) => (cur + 1) % ANIMATED_WORDS.length);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="font-black text-[10px] sm:text-[11px] uppercase tracking-widest text-black leading-tight flex flex-col justify-center">
+      <span>KESARARAM.</span>
+      <div className="flex items-center gap-1 overflow-hidden w-[220px]">
+        <span>WITH.</span>
+        <span
+          key={index}
+          className="inline-block animate-in slide-in-from-right-4 fade-in duration-500 text-black whitespace-nowrap"
+        >
+          {ANIMATED_WORDS[index]}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 function ProfileMenu({ session, kh }: { session: JWTPayload; kh: boolean }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -175,9 +212,7 @@ export function Navbar({ session }: NavbarProps) {
               className="object-contain rotate-45 transition-transform hover:scale-105"
               unoptimized
             />
-            <span className="font-black text-[10px] sm:text-[11px] uppercase tracking-widest text-black leading-tight">
-              Kesararam.<br />With. Digital.
-            </span>
+            <AnimatedLogoText />
           </Link>
 
           {/* Desktop nav */}
