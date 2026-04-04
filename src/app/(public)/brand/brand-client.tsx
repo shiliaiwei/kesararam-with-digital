@@ -148,6 +148,40 @@ export function BrandGuidelineClient() {
 
         <div className="border-t border-black/10 mb-12" />
 
+        {/* ── 02.5 Product Mockups ── */}
+        <div className="mb-14">
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 mb-4">
+            {kh ? "ផលិតផល" : "Product Mockups"}
+          </p>
+          <p className="text-sm text-zinc-500 font-medium mb-6" style={kf}>
+            {kh
+              ? "KWD លើផលិតផល និងសម្ភារៈម៉ាក។"
+              : "KWD applied across physical products and brand materials."}
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+            {[
+              "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775223638/wer_sbvdou.jpg",
+              "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775223635/sdf_huxoqr.jpg",
+              "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775223632/mu_pf6ixs.jpg",
+              "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775223590/fhg_goo6bj.jpg",
+              "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775223589/3sdse_u4gxe8.jpg",
+            ].map((src, i) => (
+              <div key={i} className="rounded-xl overflow-hidden border border-black/8 bg-zinc-50">
+                <Image
+                  src={src}
+                  alt={`KWD product mockup ${i + 1}`}
+                  width={400}
+                  height={300}
+                  className="w-full h-44 object-cover"
+                  unoptimized
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="border-t border-black/10 mb-12" />
+
         {/* ── 03 Color Palette ── */}
         <div className="mb-14">
           <p className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 mb-4">03 — {kh ? "ពណ៌" : "Color Palette"}</p>
