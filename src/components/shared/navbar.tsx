@@ -41,17 +41,15 @@ function AnimatedLogoText() {
   }, []);
 
   return (
-    <div className="font-black text-[10px] sm:text-[11px] uppercase tracking-widest text-black leading-tight flex items-center gap-1.5">
+    <div className="font-black text-[10px] uppercase tracking-widest text-black leading-none flex flex-col">
       <span>KESARARAM.</span>
-      <div className="flex items-center gap-1 overflow-hidden min-w-[220px]">
-        <span>WITH.</span>
-        <span
-          key={index}
-          className="inline-block animate-in slide-in-from-right-4 fade-in duration-500 text-black whitespace-nowrap"
-        >
-          {ANIMATED_WORDS[index]}
-        </span>
-      </div>
+      <span>WITH.</span>
+      <span
+        key={index}
+        className="inline-block animate-in slide-in-from-right-4 fade-in duration-500 text-zinc-400 whitespace-nowrap"
+      >
+        {ANIMATED_WORDS[index]}
+      </span>
     </div>
   );
 }
