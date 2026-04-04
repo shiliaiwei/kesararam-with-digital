@@ -9,6 +9,9 @@ import { TeamSection } from "@/components/about/team-section";
 
 const GALLERY = [
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248422/d62e9dd9bf64b6a39fe35b39dr_sfzwbn.png",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248421/c336547b399f3d4e5c6363a5ad7dr_dpirfd.png",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248421/904da627410290a5ae64edr_xtkjjp.png",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248441/_986anr986anr986a_nbsjda.png",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751538/photo_89_2026-03-29_09-19-15_v0uy9h.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751510/photo_88_2026-03-29_09-19-15_f4l6el.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751491/photo_87_2026-03-29_09-19-15_baluw0.jpg",
@@ -278,7 +281,7 @@ export function AboutClient() {
                 className="relative aspect-square overflow-hidden border-2 border-black group"
                 onMouseEnter={() => setHoveredImg(i)} onMouseLeave={() => setHoveredImg(null)}>
                 <img src={src} alt="" className="w-full h-full object-cover transition-all duration-400"
-                  style={{ filter: hoveredImg === i ? "none" : "grayscale(80%)", transform: hoveredImg === i ? "scale(1.08)" : "scale(1)" }} />
+                  style={{ filter: hoveredImg === i ? "none" : "grayscale(100%)", transform: hoveredImg === i ? "scale(1.08)" : "scale(1)" }} />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all" />
               </button>
             ))}

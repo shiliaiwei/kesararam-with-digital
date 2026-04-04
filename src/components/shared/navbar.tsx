@@ -41,9 +41,9 @@ function AnimatedLogoText() {
   }, []);
 
   return (
-    <div className="font-black text-[10px] sm:text-[11px] uppercase tracking-widest text-black leading-tight flex flex-col justify-center">
+    <div className="font-black text-[10px] sm:text-[11px] uppercase tracking-widest text-black leading-tight flex items-center gap-1.5">
       <span>KESARARAM.</span>
-      <div className="flex items-center gap-1 overflow-hidden w-[220px]">
+      <div className="flex items-center gap-1 overflow-hidden min-w-[220px]">
         <span>WITH.</span>
         <span
           key={index}
@@ -155,7 +155,7 @@ function ProfileMenu({ session, kh }: { session: JWTPayload; kh: boolean }) {
             )}
             <Link
               href="/pricing"
-              className="flex items-center gap-2 px-4 py-2.5 text-sm font-semibold text-amber-600 hover:bg-amber-50 transition-colors"
+              className={cn("flex items-center gap-2 px-4 py-2.5 text-sm text-amber-600 hover:bg-amber-50 transition-colors", kh ? "font-kh-header" : "font-semibold")}
               onClick={() => setOpen(false)}
             >
               <Crown size={14} className="text-amber-500" />
@@ -209,7 +209,7 @@ export function Navbar({ session }: NavbarProps) {
               alt="KWD Logo"
               width={48}
               height={48}
-              className="object-contain rotate-45 transition-transform hover:scale-105"
+              className="object-contain -rotate-45"
               unoptimized
             />
             <AnimatedLogoText />
@@ -225,7 +225,8 @@ export function Navbar({ session }: NavbarProps) {
                   key={href}
                   href={href}
                   className={cn(
-                    "px-3 py-1.5 text-sm font-semibold border-2 transition-all duration-100 whitespace-nowrap",
+                    "px-3 py-1.5 text-sm border-2 transition-all duration-100 whitespace-nowrap",
+                    kh ? "font-kh-header" : "font-semibold",
                     active
                       ? "bg-yellow-400 text-black border-black shadow-[2px_2px_0_#ca8a04]"
                       : "border-transparent text-zinc-700 hover:border-black hover:bg-yellow-300 hover:shadow-[2px_2px_0_#000]",
@@ -243,7 +244,10 @@ export function Navbar({ session }: NavbarProps) {
             {/* Upgrade CTA */}
             <button
               onClick={() => setUpgradeOpen(true)}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-black bg-amber-400 text-black border-2 border-black shadow-[2px_2px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 whitespace-nowrap uppercase tracking-wide"
+              className={cn(
+                "flex items-center gap-1.5 px-3 py-1.5 text-xs bg-amber-400 text-black border-2 border-black shadow-[2px_2px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 whitespace-nowrap uppercase tracking-wide",
+                kh ? "font-kh-header" : "font-black"
+              )}
             >
               <Crown size={13} />
               {kh ? "ធ្វើឱ្យប្រសើរ" : "Upgrade"}

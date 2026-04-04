@@ -129,7 +129,7 @@ function PodiumCard({ user, cfg, index }: { user: LeaderboardUser|undefined; cfg
         <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 scale-75 md:scale-100"><RankBadge rank={cfg.rank} /></div>
       </div>
       <div className="w-full flex flex-col items-center gap-1 pt-5 pb-3 px-1 md:px-2 border-2 border-black mt-1" style={{ backgroundColor: isFirst ? cfg.accentColor : "#fff", boxShadow:`3px 3px 0 ${cfg.shadowColor}` }}>
-        <span className="font-black text-center leading-tight w-full truncate text-[10px] md:text-sm" style={{ color: isFirst?"#000":"#111" }}>{name}</span>
+        <span className="font-black text-center leading-tight w-full truncate text-[10px] md:text-sm font-kh-header" style={{ color: isFirst?"#000":"#111" }}>{name}</span>
         <span className="text-[8px] md:text-[9px] font-black tracking-widest uppercase px-1 py-0.5 border border-black" style={{ backgroundColor:cfg.shadowColor, color:"#fff" }}>{cfg.label}</span>
         <AnimatedNumber value={user?.lifetimePoints??0} className={`font-black tabular-nums ${isFirst?"text-xl md:text-3xl":"text-base md:text-xl"}`} style={{ color:cfg.scoreColor }} />
         <span className="text-[8px] text-zinc-500 font-bold">pts</span>
@@ -317,7 +317,7 @@ export default function LeaderboardPage() {
                       <div className="col-span-7 flex items-center gap-2 min-w-0">
                         <Avatar url={user.avatar} name={user.displayName||user.username} size={30} changedAt={user.avatarChangedAt} />
                         <div className="flex flex-col min-w-0">
-                          <span className="font-bold text-black text-xs md:text-sm truncate leading-tight">
+                          <span className="font-bold text-black text-xs md:text-sm truncate leading-tight font-kh-header">
                             {user.displayName || user.username}
                           </span>
                           {user.displayName && (
