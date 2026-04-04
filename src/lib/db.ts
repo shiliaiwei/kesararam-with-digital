@@ -1,14 +1,13 @@
-import { neon } from "@neondatabase/serverless";
+import { neon, type NeonQueryFunction } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 import * as schema from "@/db/schema";
 
 // SECURITY: Server-side only. Never import in client components.
-// Uses lazy init so DATABASE_URL is only required at runtime, not build time.
+// Lazy init — DATABASE_URL only required at runtime, not build time.
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 let _db: any = null;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let _sql: any = null;
+let _sql: NeonQueryFunction<false, false> | null = null;
 
 function init() {
   if (_db) return;
@@ -18,14 +17,30 @@ function init() {
   _db = drizzle(_sql, { schema });
 }
 
+// db proxy — works for all drizzle ORM calls
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const db: ReturnType<typeof drizzle<typeof schema>> = new Proxy({} as any, {
-  get(_, prop) { init(); return _db[prop]; },
+  get(_, prop) {
+    init();
+    return _db[prop];
+  },
 });
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const sql: ReturnType<typeof neon> = new Proxy((() => {}) as any, {
-  get(_, prop) { init(); return _sql[prop]; },
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  apply(_, thisArg, args: any[]) { init(); return _sql(...args); },
-});
+// sql — tagged template literal function
+// Must be a real callable function, not a Proxy, for tagged template syntax to work
+export function sql(
+  strings: TemplateStringsArray,
+  ...values: unknown[]
+): ReturnType<NeonQueryFunction<false, false>> {
+  init();
+  return _sql!(strings, ...values);
+}
+
+// Allow sql to be used as a namespace for sub-queries (sql`...` inside sql`...`)
+// by forwarding property access to the underlying neon sql function
+Object.setPrototypeOf(sql, new Proxy(Function.prototype, {
+  get(_, prop) {
+    init();
+    return (_sql as unknown as Record<string | symbol, unknown>)[prop];
+  },
+}));

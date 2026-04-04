@@ -123,20 +123,20 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
         <div className="flex items-center gap-3 mb-3">
           <div className="w-10 h-10 border-2 border-black bg-white flex items-center justify-center shadow-[2px_2px_0_#000]">
             <Image
-              src="/logo-bw.svg"
+              src="/brand/kwd-black.png"
               alt="KWD"
-              width={20}
-              height={20}
+              width={28}
+              height={28}
               className="object-contain"
               unoptimized
             />
           </div>
           <div>
-            <h1 className="text-lg font-black uppercase tracking-tighter text-black">
+            <h1 className="text-lg font-black uppercase tracking-tighter text-black leading-none">
               KWD
             </h1>
-            <p className="text-xs font-bold uppercase tracking-widest text-zinc-500">
-              {role} Panel
+            <p className="text-[9px] font-black uppercase tracking-widest text-zinc-400 leading-tight">
+              Kesararam<br />With Digital
             </p>
           </div>
         </div>
