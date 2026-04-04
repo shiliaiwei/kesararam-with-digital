@@ -209,7 +209,7 @@ export function Navbar({ session }: NavbarProps) {
               alt="KWD Logo"
               width={48}
               height={48}
-              className="object-contain -rotate-45"
+              className="object-contain"
               unoptimized
             />
             <AnimatedLogoText />
