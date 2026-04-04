@@ -205,7 +205,7 @@ export function Navbar({ session }: NavbarProps) {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-4 flex-shrink-0 ml-2">
             <Image
-              src="/brand/kwd-black-text.png"
+              src="https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg"
               alt="KWD Logo"
               width={48}
               height={48}
