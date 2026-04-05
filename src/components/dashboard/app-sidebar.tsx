@@ -20,6 +20,8 @@ import {
   Zap,
   Building2,
   Clock,
+  ChevronDown,
+  ChevronRight,
 } from "lucide-react";
 import { logoutAction } from "@/app/actions/auth";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
