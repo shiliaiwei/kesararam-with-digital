@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { LangProvider } from "@/context/lang-context";
 import { ErrorDebugPanel } from "@/components/ErrorDebugPanel";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const inter = Inter({
@@ -75,6 +76,7 @@ export default function RootLayout({
           <Toaster richColors closeButton />
           <ErrorDebugPanel />
         </LangProvider>
+        <Analytics />
       </body>
     </html>
   );
