@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { X, Play, Pause, ChevronDown, ChevronUp, Volume2 } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 
@@ -40,9 +40,76 @@ interface SignDetailPopupProps {
   onClose: () => void;
 }
 
+// Splits text into words and highlights them one by one while audio plays
+function AnimatedText({
+  text,
+  playing,
+  audioDuration,
+  className,
+  style,
+}: {
+  text: string;
+  playing: boolean;
+  audioDuration: number;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  const words = text.split(/(\s+)/);
+  const wordCount = words.filter(w => w.trim()).length;
+  const [activeWord, setActiveWord] = useState(-1);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    if (playing && wordCount > 0 && audioDuration > 0) {
+      const msPerWord = (audioDuration * 1000) / wordCount;
+      let idx = 0;
+      setActiveWord(0);
+      intervalRef.current = setInterval(() => {
+        idx++;
+        if (idx >= wordCount) {
+          clearInterval(intervalRef.current!);
+          setActiveWord(-1);
+        } else {
+          setActiveWord(idx);
+        }
+      }, msPerWord);
+    } else {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      setActiveWord(-1);
+    }
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, [playing, audioDuration, wordCount]);
+
+  let wordIdx = 0;
+  return (
+    <span className={className} style={style}>
+      {words.map((chunk, i) => {
+        if (!chunk.trim()) return <span key={i}>{chunk}</span>;
+        const wi = wordIdx++;
+        const isActive = playing && wi === activeWord;
+        return (
+          <span
+            key={i}
+            className={`transition-all duration-150 ${
+              isActive
+                ? "bg-yellow-400 text-black rounded px-0.5 font-black"
+                : playing
+                ? "text-zinc-400"
+                : ""
+            }`}
+          >
+            {chunk}
+          </span>
+        );
+      })}
+    </span>
+  );
+}
+
 export function SignDetailPopup({ topic, questions = [], onClose }: SignDetailPopupProps) {
   const { lang } = useLang();
   const [playing, setPlaying] = useState(false);
+  const [duration, setDuration] = useState(0);
   const [expandedQA, setExpandedQA] = useState<number | null>(null);
   const audioEnRef = useRef<HTMLAudioElement>(null);
   const audioKmRef = useRef<HTMLAudioElement>(null);
@@ -60,9 +127,18 @@ export function SignDetailPopup({ topic, questions = [], onClose }: SignDetailPo
       audioRef.current && (audioRef.current.currentTime = 0);
       setPlaying(false);
     } else {
-      audioRef.current?.play();
-      setPlaying(true);
+      const el = audioRef.current;
+      if (el) {
+        if (el.duration && !isNaN(el.duration)) setDuration(el.duration);
+        el.play();
+        setPlaying(true);
+      }
     }
+  };
+
+  const handleLoaded = () => {
+    const el = audioRef.current;
+    if (el && el.duration && !isNaN(el.duration)) setDuration(el.duration);
   };
 
   return (
@@ -87,32 +163,19 @@ export function SignDetailPopup({ topic, questions = [], onClose }: SignDetailPo
 
         <div className="overflow-y-auto flex-1">
 
-          {/* ── Image block — full width, prominent ── */}
+          {/* Image — always white bg, no animation */}
           {topic.primary_image_url && (
-            <div
-              className={`relative w-full flex items-center justify-center transition-all duration-300 ${
-                playing ? "bg-yellow-400 border-b-4 border-black" : "bg-zinc-50 border-b-4 border-black"
-              }`}
-              style={{ minHeight: 220 }}
-            >
+            <div className="w-full flex items-center justify-center bg-white border-b-4 border-black py-6">
               <img
                 src={topic.primary_image_url}
                 alt={name}
-                className={`object-contain transition-all duration-300 ${
-                  playing ? "scale-110 drop-shadow-2xl" : "scale-100"
-                }`}
-                style={{ maxHeight: 200, maxWidth: "80%" }}
+                className="object-contain"
+                style={{ maxHeight: 180, maxWidth: "75%" }}
               />
-              {/* Playing pulse ring */}
-              {playing && (
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-48 h-48 rounded-full border-4 border-black animate-ping opacity-20" />
-                </div>
-              )}
             </div>
           )}
 
-          {/* ── Meta — dimmed, small, below image ── */}
+          {/* Meta — dimmed, small */}
           <div className="flex items-center gap-2 px-5 pt-3 pb-1">
             <span className="font-mono text-[10px] text-zinc-400 border border-zinc-200 px-1.5 py-0.5 bg-zinc-50">
               {topic.topic_code}
@@ -124,33 +187,33 @@ export function SignDetailPopup({ topic, questions = [], onClose }: SignDetailPo
             )}
           </div>
 
-          {/* ── Title — left, large, highlights when playing ── */}
+          {/* Title — word-by-word highlight when playing */}
           <div className="px-5 pt-2 pb-1">
-            <h2
-              className={`text-2xl sm:text-3xl font-black leading-tight break-words transition-all duration-300 ${
-                playing ? "text-black scale-[1.02] origin-left" : "text-black"
-              }`}
-              style={kf}
-            >
-              {name}
+            <h2 className="text-2xl sm:text-3xl font-black leading-tight break-words" style={kf}>
+              <AnimatedText
+                text={name}
+                playing={playing}
+                audioDuration={duration}
+                style={kf}
+              />
             </h2>
           </div>
 
-          {/* ── Description — left, highlights when playing ── */}
+          {/* Description — word-by-word highlight when playing */}
           {description && (
             <div className="px-5 pt-1 pb-4">
-              <p
-                className={`text-sm sm:text-base leading-relaxed break-words whitespace-pre-wrap transition-all duration-300 ${
-                  playing ? "text-black font-semibold" : "text-zinc-600 font-medium"
-                }`}
-                style={kf}
-              >
-                {description}
+              <p className="text-sm sm:text-base leading-relaxed break-words whitespace-pre-wrap" style={kf}>
+                <AnimatedText
+                  text={description}
+                  playing={playing}
+                  audioDuration={duration}
+                  style={kf}
+                />
               </p>
             </div>
           )}
 
-          {/* ── Law reference ── */}
+          {/* Law reference */}
           {topic.law_reference && (
             <div className="mx-5 mb-4 bg-blue-50 border-2 border-blue-200 px-4 py-3 text-xs text-blue-800">
               <span className="font-black uppercase tracking-wide block mb-1" style={kf}>
@@ -160,7 +223,7 @@ export function SignDetailPopup({ topic, questions = [], onClose }: SignDetailPo
             </div>
           )}
 
-          {/* ── Audio button ── */}
+          {/* Audio button */}
           {audioUrl && (
             <div className="px-5 pb-5">
               <button
@@ -187,15 +250,25 @@ export function SignDetailPopup({ topic, questions = [], onClose }: SignDetailPo
             </div>
           )}
 
-          {/* Hidden audio elements */}
+          {/* Hidden audio */}
           {topic.audio_url_en && (
-            <audio ref={audioEnRef} src={topic.audio_url_en} onEnded={() => setPlaying(false)} />
+            <audio
+              ref={audioEnRef}
+              src={topic.audio_url_en}
+              onLoadedMetadata={handleLoaded}
+              onEnded={() => setPlaying(false)}
+            />
           )}
           {topic.audio_url_km && (
-            <audio ref={audioKmRef} src={topic.audio_url_km} onEnded={() => setPlaying(false)} />
+            <audio
+              ref={audioKmRef}
+              src={topic.audio_url_km}
+              onLoadedMetadata={handleLoaded}
+              onEnded={() => setPlaying(false)}
+            />
           )}
 
-          {/* ── Q&A ── */}
+          {/* Q&A */}
           {questions.length > 0 && (
             <div className="border-t-2 border-black px-5 py-4 space-y-2">
               <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-3" style={kf}>
@@ -207,9 +280,7 @@ export function SignDetailPopup({ topic, questions = [], onClose }: SignDetailPo
                     onClick={() => setExpandedQA(expandedQA === q.id ? null : q.id)}
                     className="w-full px-4 py-3 flex items-start gap-3 text-left hover:bg-zinc-50 transition-all"
                   >
-                    <span className="font-black text-[10px] bg-black text-white px-1.5 py-0.5 shrink-0 mt-0.5">
-                      Q{i + 1}
-                    </span>
+                    <span className="font-black text-[10px] bg-black text-white px-1.5 py-0.5 shrink-0 mt-0.5">Q{i + 1}</span>
                     <span className="font-bold text-sm flex-1 break-words" style={kf}>
                       {isKh ? q.question_km : q.question_en}
                     </span>
@@ -227,9 +298,7 @@ export function SignDetailPopup({ topic, questions = [], onClose }: SignDetailPo
                           }`}
                         >
                           <span className="font-bold shrink-0">{String.fromCharCode(65 + ai)}.</span>
-                          <span className="flex-1 break-words" style={kf}>
-                            {isKh ? a.answer_km : a.answer_en}
-                          </span>
+                          <span className="flex-1 break-words" style={kf}>{isKh ? a.answer_km : a.answer_en}</span>
                           {a.is_correct && <span className="text-green-600 font-black text-xs shrink-0">✓</span>}
                         </div>
                       ))}
