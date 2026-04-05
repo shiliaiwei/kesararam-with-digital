@@ -316,6 +316,7 @@ export function AdminCategoryManager({ categoryId, categoryName, categorySlug }:
           categoryId={categoryId}
           categorySlug={categorySlug}
           initialData={editingTopic}
+          isAdmin={true}
           onClose={() => setEditingTopic(null)}
           onSuccess={() => { setEditingTopic(null); fetchTopics(); }}
         />

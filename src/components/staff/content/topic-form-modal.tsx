@@ -11,6 +11,7 @@ interface TopicFormModalProps {
   requiresImage?: boolean;
   requiresAudio?: boolean;
   initialData?: any;
+  isAdmin?: boolean;
   onClose: () => void;
   onSuccess: () => void;
 }
@@ -43,6 +44,7 @@ export function TopicFormModal({
   requiresImage = false,
   requiresAudio = false,
   initialData,
+  isAdmin = false,
   onClose,
   onSuccess,
 }: TopicFormModalProps) {
@@ -94,15 +96,18 @@ export function TopicFormModal({
         audioSourceEn: formData.audioSourceEn,
         audioUrlKm: formData.audioUrlKm || null,
         audioSourceKm: formData.audioSourceKm,
-        status: "pending", // Always submit for review
+        status: isAdmin ? undefined : "pending", // Admin keeps current status, staff submits for review
       };
 
-      const url = initialData
+      // Admin uses admin endpoint (no status restriction), staff uses staff endpoint
+      const baseUrl = isAdmin && initialData
+        ? `/api/admin/topics/${initialData.id}`
+        : initialData
         ? `/api/staff/topics/${initialData.id}`
         : "/api/staff/topics";
       const method = initialData ? "PUT" : "POST";
 
-      const response = await fetch(url, {
+      const response = await fetch(baseUrl, {
         method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
