@@ -13,12 +13,8 @@ import {
   LogOut,
   Images,
   User,
-  Calendar,
-  ChevronDown,
-  ChevronRight,
   AlertCircle,
   Gamepad2,
-  HelpCircle,
   CreditCard,
   Crown,
   Zap,
@@ -37,7 +33,6 @@ interface NavItem {
 }
 
 const adminNav: NavItem[] = [
-  { label: "Project Planner", href: "/admin/project-planner", icon: Calendar, color: "#3b82f6" },
   { label: "Review Queue", href: "/admin/review", icon: AlertCircle, color: "#f59e0b" },
   { label: "Users", href: "/admin/users", icon: Users, color: "#3b82f6" },
   { label: "Subscriptions", href: "/admin/subscriptions", icon: CreditCard, color: "#f59e0b" },
@@ -48,14 +43,12 @@ const adminNav: NavItem[] = [
 ];
 
 const teacherNav: NavItem[] = [
-  { label: "Project Planner", href: "/teacher/project-planner", icon: Calendar, color: "#3b82f6" },
   { label: "Classes", href: "/teacher/classes", icon: School, color: "#3b82f6" },
   { label: "Sessions", href: "/teacher/sessions", icon: Tv2, color: "#22c55e" },
   { label: "Host Game", href: "/teacher/sessions/host", icon: Gamepad2, color: "#ffd700" },
 ];
 
 const staffNav: NavItem[] = [
-  { label: "Project Planner", href: "/staff/project-planner", icon: Calendar, color: "#f59e0b" },
   { label: "My Submissions", href: "/staff/submissions", icon: AlertCircle, color: "#3b82f6" },
   {
     label: "Content",
