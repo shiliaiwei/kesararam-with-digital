@@ -65,7 +65,7 @@ export async function GET(request: NextRequest) {
         u.display_name as updated_by_name
       FROM topics t
       LEFT JOIN categories c ON t.category_id = c.id
-      LEFT JOIN users u ON t.updated_by = u.id
+      LEFT JOIN users u ON t.created_by = u.id
       ORDER BY t.updated_at DESC
       LIMIT 10
     `;
