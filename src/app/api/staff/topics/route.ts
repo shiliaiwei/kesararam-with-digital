@@ -66,7 +66,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("Error fetching topics:", error);
     return NextResponse.json(
-      { error: "Failed to fetch topics" },
+      { error: "Failed to fetch topics", detail: String(error) },
       { status: 500 }
     );
   }
@@ -146,7 +146,7 @@ export async function POST(request: NextRequest) {
       );
     }
     return NextResponse.json(
-      { error: "Failed to create topic" },
+      { error: "Failed to create topic", detail: String(error), code: (error as any)?.code },
       { status: 500 }
     );
   }
