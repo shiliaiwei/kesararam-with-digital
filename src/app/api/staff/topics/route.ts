@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
-import { sql } from "@/lib/db";
+import { db, sql } from "@/lib/db";
+import { topics, users } from "@/db/schema";
+import { eq, desc, ilike, and, or, count } from "drizzle-orm";
 
 export async function GET(request: NextRequest) {
   try {
@@ -16,59 +18,73 @@ export async function GET(request: NextRequest) {
     const page = parseInt(searchParams.get("page") || "1");
     const limit = parseInt(searchParams.get("limit") || "50");
     const offset = (page - 1) * limit;
-
     const userId = Number(session.id);
     const isAdmin = session.role === "admin";
-    // scope=all → show all topics in category (staff can see all, but only edit own)
-    // scope=mine → show only own topics (default for My Submissions)
     const scope = searchParams.get("scope") || "all";
     const ownOnly = !isAdmin && scope === "mine";
 
-    // Get topics with creator and updater names
-    const topics = await sql`
-      SELECT 
-        t.*,
-        creator.display_name as creator_name,
-        updater.display_name as updater_name,
-        (SELECT COUNT(*)::int FROM questions WHERE topic_id = t.id) as question_count
-      FROM topics t
-      LEFT JOIN users creator ON t.created_by = creator.id
-      LEFT JOIN users updater ON t.updated_by = updater.id
-      WHERE 1=1
-        ${ownOnly ? sql`AND t.created_by = ${userId}` : sql``}
-        ${categoryId ? sql`AND t.category_id = ${parseInt(categoryId)}` : sql``}
-        ${status ? sql`AND t.status = ${status}` : sql``}
-        ${search ? sql`AND (t.name_en ILIKE ${'%' + search + '%'} OR t.name_km ILIKE ${'%' + search + '%'} OR t.topic_code ILIKE ${'%' + search + '%'})` : sql``}
-      ORDER BY t.updated_at DESC, t.created_at DESC 
-      LIMIT ${limit} OFFSET ${offset}
-    `;
+    // Build conditions
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const conditions: any[] = [];
+    if (ownOnly) conditions.push(eq(topics.createdBy, userId));
+    if (categoryId) conditions.push(eq(topics.categoryId, parseInt(categoryId)));
+    if (status) conditions.push(eq(topics.status, status as "draft" | "pending" | "approved" | "rejected"));
+    if (search) {
+      conditions.push(
+        or(
+          ilike(topics.nameEn, `%${search}%`),
+          ilike(topics.nameKm, `%${search}%`),
+          ilike(topics.topicCode, `%${search}%`),
+        )
+      );
+    }
 
-    // Get total count
-    const countResult = await sql`
-      SELECT COUNT(*)::int as total FROM topics t
-      WHERE 1=1
-        ${ownOnly ? sql`AND t.created_by = ${userId}` : sql``}
-        ${categoryId ? sql`AND t.category_id = ${parseInt(categoryId)}` : sql``}
-        ${status ? sql`AND t.status = ${status}` : sql``}
-        ${search ? sql`AND (t.name_en ILIKE ${'%' + search + '%'} OR t.name_km ILIKE ${'%' + search + '%'} OR t.topic_code ILIKE ${'%' + search + '%'})` : sql``}
-    `;
-    const total = countResult[0]?.total || 0;
+    const where = conditions.length > 0 ? and(...conditions) : undefined;
+
+    const creator = { id: users.id, displayName: users.displayName };
+
+    const rows = await db
+      .select({
+        id: topics.id,
+        topicCode: topics.topicCode,
+        categoryId: topics.categoryId,
+        nameEn: topics.nameEn,
+        nameKm: topics.nameKm,
+        descriptionEn: topics.descriptionEn,
+        descriptionKm: topics.descriptionKm,
+        primaryImageUrl: topics.primaryImageUrl,
+        primaryImageSource: topics.primaryImageSource,
+        lawReference: topics.lawReference,
+        subGroup: topics.subGroup,
+        audioUrlEn: topics.audioUrlEn,
+        audioSourceEn: topics.audioSourceEn,
+        audioUrlKm: topics.audioUrlKm,
+        audioSourceKm: topics.audioSourceKm,
+        status: topics.status,
+        createdBy: topics.createdBy,
+        createdAt: topics.createdAt,
+        updatedAt: topics.updatedAt,
+        creatorName: creator.displayName,
+      })
+      .from(topics)
+      .leftJoin(users, eq(topics.createdBy, users.id))
+      .where(where)
+      .orderBy(desc(topics.updatedAt), desc(topics.createdAt))
+      .limit(limit)
+      .offset(offset);
+
+    const [{ total }] = await db
+      .select({ total: count() })
+      .from(topics)
+      .where(where);
 
     return NextResponse.json({
-      topics,
-      pagination: {
-        page,
-        limit,
-        total,
-        totalPages: Math.ceil(total / limit),
-      },
+      topics: rows,
+      pagination: { page, limit, total, totalPages: Math.ceil(total / limit) },
     });
   } catch (error) {
-    console.error("Error fetching topics:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch topics", detail: String(error) },
-      { status: 500 }
-    );
+    console.error("[GET /api/staff/topics]", error);
+    return NextResponse.json({ error: "Failed to fetch topics" }, { status: 500 });
   }
 }
 
@@ -78,43 +94,32 @@ export async function POST(request: NextRequest) {
     if (!session?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-
     if (session.role !== "staff" && session.role !== "admin") {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
     const body = await request.json();
-
     const {
-      topicCode,
-      categoryId,
-      nameEn,
-      nameKm,
-      descriptionEn,
-      descriptionKm,
-      primaryImageUrl,
-      primaryImageSource,
-      lawReference,
-      subGroup,
-      audioUrlEn,
-      audioSourceEn,
-      audioUrlKm,
-      audioSourceKm,
+      topicCode, categoryId, nameEn, nameKm,
+      descriptionEn, descriptionKm,
+      primaryImageUrl, primaryImageSource,
+      lawReference, subGroup,
+      audioUrlEn, audioSourceEn,
+      audioUrlKm, audioSourceKm,
       status: topicStatus,
     } = body;
 
-    // Validate required fields
     if (!categoryId || !nameEn || !nameKm) {
       return NextResponse.json(
-        { error: "Missing required fields" },
+        { error: "Missing required fields: categoryId, nameEn, nameKm" },
         { status: 400 }
       );
     }
 
-    // Generate topic code if not provided
     const finalTopicCode = topicCode || `T-${Date.now()}`;
     const userId = Number(session.id);
 
+    // Use simple tagged template — no nested fragments
     const result = await sql`
       INSERT INTO topics (
         topic_code, category_id, name_en, name_km,
@@ -123,7 +128,7 @@ export async function POST(request: NextRequest) {
         law_reference, sub_group,
         audio_url_en, audio_source_en,
         audio_url_km, audio_source_km,
-        status, created_by, updated_by, created_at, updated_at
+        status, created_by, created_at, updated_at
       ) VALUES (
         ${finalTopicCode}, ${categoryId}, ${nameEn}, ${nameKm},
         ${descriptionEn || ""}, ${descriptionKm || ""},
@@ -131,22 +136,20 @@ export async function POST(request: NextRequest) {
         ${lawReference || null}, ${subGroup || null},
         ${audioUrlEn || null}, ${audioSourceEn || "url"},
         ${audioUrlKm || null}, ${audioSourceKm || "url"},
-        ${topicStatus || "pending"}, ${userId}, ${userId}, NOW(), NOW()
+        ${topicStatus || "pending"}, ${userId}, NOW(), NOW()
       )
       RETURNING *
     `;
 
     return NextResponse.json({ topic: result[0] }, { status: 201 });
-  } catch (error: any) {
-    console.error("Error creating topic:", error);
-    if (error.code === "23505") {
-      return NextResponse.json(
-        { error: "Topic code already exists" },
-        { status: 400 }
-      );
+  } catch (error: unknown) {
+    console.error("[POST /api/staff/topics]", error);
+    const e = error as { code?: string; message?: string };
+    if (e.code === "23505") {
+      return NextResponse.json({ error: "Topic code already exists" }, { status: 400 });
     }
     return NextResponse.json(
-      { error: "Failed to create topic", detail: String(error), code: (error as any)?.code },
+      { error: "Failed to create topic", detail: e.message ?? "unknown" },
       { status: 500 }
     );
   }
