@@ -49,20 +49,20 @@ export function TopicFormModal({
   const { showToast } = useToast();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    categoryId: propCategoryId || initialData?.category_id || 1,
-    topicCode: initialData?.topic_code || "",
-    nameEn: initialData?.name_en || "",
-    nameKm: initialData?.name_km || "",
-    descriptionEn: initialData?.description_en || "",
-    descriptionKm: initialData?.description_km || "",
-    primaryImageUrl: initialData?.primary_image_url || "",
-    primaryImageSource: initialData?.primary_image_source || "url",
-    lawReference: initialData?.law_reference || "",
-    subGroup: initialData?.sub_group || "",
-    audioUrlEn: initialData?.audio_url_en || "",
-    audioSourceEn: initialData?.audio_source_en || "url",
-    audioUrlKm: initialData?.audio_url_km || "",
-    audioSourceKm: initialData?.audio_source_km || "url",
+    categoryId: propCategoryId || initialData?.categoryId || initialData?.category_id || 1,
+    topicCode: initialData?.topicCode || initialData?.topic_code || "",
+    nameEn: initialData?.nameEn || initialData?.name_en || "",
+    nameKm: initialData?.nameKm || initialData?.name_km || "",
+    descriptionEn: initialData?.descriptionEn || initialData?.description_en || "",
+    descriptionKm: initialData?.descriptionKm || initialData?.description_km || "",
+    primaryImageUrl: initialData?.primaryImageUrl || initialData?.primary_image_url || "",
+    primaryImageSource: initialData?.primaryImageSource || initialData?.primary_image_source || "url",
+    lawReference: initialData?.lawReference || initialData?.law_reference || "",
+    subGroup: initialData?.subGroup || initialData?.sub_group || "",
+    audioUrlEn: initialData?.audioUrlEn || initialData?.audio_url_en || "",
+    audioSourceEn: initialData?.audioSourceEn || initialData?.audio_source_en || "url",
+    audioUrlKm: initialData?.audioUrlKm || initialData?.audio_url_km || "",
+    audioSourceKm: initialData?.audioSourceKm || initialData?.audio_source_km || "url",
   });
 
   const selectedCategory = CATEGORIES.find(c => c.id === formData.categoryId);
