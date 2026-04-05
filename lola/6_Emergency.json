@@ -1,0 +1,638 @@
+{
+  "category_id": "6",
+  "category_en": "Emergency",
+  "category_km": "សង្គ្រោះបន្ទាន់",
+  "total_questions": 15,
+  "questions": [
+    {
+      "question_id": "122",
+      "category_id": "6",
+      "category_en": "Emergency",
+      "category_km": "សង្គ្រោះបន្ទាន់",
+      "question": {
+        "km": "នៅពេលជនរងគ្រោះមានរបួសហូរឈាមខ្លាំង តើអាចជួយឃាត់ឈាមដូចម្ដេច ?",
+        "en": "When a victim having wound with blooding, how can you help stop blooding?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "មិនត្រូវប៉ះពាល់មុខរបួសទេ ដើម្បីឲ្យឈាមឆាប់កកឈប់ហូរ",
+          "en": "Not to touch the wound to get the blood clotted and stop blooding",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ត្រូវយកក្រណាត់ ឬបង់សស្អាតរុំជុំវិញមុខរបួសរិតឲ្យតឹងបន្ដិច",
+          "en": "Use good cloth or bandage to tight around the wound, fasten a bit tightly. ",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ត្រូវទំពារស្លឹកឈើមកបិតមុខរបួស",
+          "en": "Chew some leaves and stick on the wound.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of first responder applying pressure bandage to stop bleeding on road accident victim's arm on Cambodian roadside, first aid kit open, calm professional response, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "123",
+      "category_id": "6",
+      "category_en": "Emergency",
+      "category_km": "សង្គ្រោះបន្ទាន់",
+      "question": {
+        "km": "នៅពេលមានជនរងគ្រោះថ្នាក់ចរាចរណ៍តើមានចំនុចសំខាន់ៗអ្វីខ្លះ ដែលអ្នកធ្វើការត្រួតពិនិត្យ ដើម្បីជួយជនរងគ្រោះ ?",
+        "en": "When there is someone has an accident, what are main points needed to check to help him or her?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ក្បាល ដងខ្លួន ដៃ និងជើង",
+          "en": "Head, body, arms, and legs.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "មុខ អ្នករងគ្រោះនៅស្រស់ ឬស្លេកស្លាំង",
+          "en": "The freshness or anemia of the victim’s face",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ការសន្លប់ បាត់ដង្ហើម គ្មានជីពចរ ហូរឈាម និងបាក់ឆ្អឹង",
+          "en": "Unconsciousness, no breathing, no pulse, blooding, and bone break.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of first responders helping road accident victims at crash scene on Cambodian national road, emergency triangle placed, police arriving, first aid being administered, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "126",
+      "category_id": "6",
+      "category_en": "Emergency",
+      "category_km": "សង្គ្រោះបន្ទាន់",
+      "question": {
+        "km": "តើអ្នកដឹងថាជីពចរជនរងគ្រោះមិនដើរដោយសារអ្វី ?",
+        "en": "How do you realize that the victim’s pulse does not work?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ដោយសារដៃស្ទាបពោះ",
+          "en": "By touching the stomach.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ដោយប្រើអារម្មណ៍ម្រាមដៃចុចត្រង់ចំហៀងក",
+          "en": "By using fingers to press at the a side of the neck.",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ជនរងគ្រោះនិយាយមិនបាន",
+          "en": "The victim cannot speak.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of trained bystander checking pulse on accident victim's neck (carotid artery) on Cambodian roadside, focused careful technique, concerned crowd behind, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "128",
+      "category_id": "6",
+      "category_en": "Emergency",
+      "category_km": "សង្គ្រោះបន្ទាន់",
+      "question": {
+        "km": "តើអ្នកដឹងថាជនរងគ្រោះបាត់ដង្ហើមដោយសារអ្វី ?",
+        "en": "How do you realize that the victim is not breathing?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ដោយសារឃើញដៃ និងជើងជនរងគ្រោះមិនកំរើក",
+          "en": "Due to seeing the victim’s arms and legs not moving",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ដោយសារជនរងគ្រោះនិយាយមិនបាន",
+          "en": "Due to the victim cannot speak.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ជនរងគ្រោះមិនមានចលនាឡើងចុះ ហើយមាត់និងច្រមុះគ្មានខ្យល់ចេញចូល",
+          "en": "The victim does not have movement up and down and no breathing through mouth and nose.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of emergency responder checking if accident victim is breathing by watching chest and listening closely, Cambodian roadside emergency scene, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "129",
+      "category_id": "6",
+      "category_en": "Emergency",
+      "category_km": "សង្គ្រោះបន្ទាន់",
+      "question": {
+        "km": "តើអ្នកអាចដឹងថាជនរងគ្រោះបាក់ដៃ ឬបាក់ជើងយ៉ាងដូចម្ដេច ?",
+        "en": "How do you realize that the victim got broken arm(s) or leg(s)?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ដឹងដោយគោះដៃ ឬជើង",
+          "en": "By knocking arms or legs.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ដឹងដោយសារជនរងគ្រោះឈឺចាប់ខ្លាំងនៅត្រង់ដៃ ឬជើងនៅពេលចង់កំរើកលើកដៃ ឬជើង",
+          "en": "Realizing that the victim gets a lot of hurt at the arms and legs when he/she want to move his/her them.",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ដឹងដោយស្ទាបដៃ ឬជើង",
+          "en": "By touching arms or legs.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of first responders carefully immobilizing suspected broken limb with improvised splint at road accident site in Cambodia, gentle professional handling, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "130",
+      "category_id": "6",
+      "category_en": "Emergency",
+      "category_km": "សង្គ្រោះបន្ទាន់",
+      "question": {
+        "km": "នៅពេលជនរងគ្រោះបាត់ដង្ហើម និងជីពចរមិនដើរ តើត្រូវជួយធ្វើចលនាបេះដូងដូចម្ដេច ?",
+        "en": "When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ត្រូវម៉ាស្សា ១០ដង និង ផ្លុំ២ដង",
+          "en": "Massage 10 times and 2 times of mouth-to-mouth resuscitation",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ត្រូវម៉ាស្សា ១៥ដង និង ផ្លុំ២ដង",
+          "en": "Massage 15 times and 2 times of mouth-to-mouth resuscitation",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ត្រូវម៉ាស្សា ២០ដង និង ផ្លុំ២ដង",
+          "en": "Massage 20 times and flow air in 2 times",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of trained bystander checking pulse on accident victim's neck (carotid artery) on Cambodian roadside, focused careful technique, concerned crowd behind, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "156",
+      "category_id": "6",
+      "category_en": "Emergency",
+      "category_km": "សង្គ្រោះបន្ទាន់",
+      "question": {
+        "km": "បើជនរងគ្រោះសន្លប់អ្នកបានទះស្មា ហើយនៅតែមិនដឹងខ្លួន តើអ្នកត្រូវជួយជនរងគ្រោះដូចម្ដេច ?",
+        "en": "If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ត្រូវដាក់ដេកបែរខ្នងចំហៀង និងផ្អៀងក្បាលដើម្បីងាយស្រួលឲ្យខ្យល់ឆ្លងកាត់",
+          "en": "Let him/her lie down or let him/her incline to one side so that the air can easily get through",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "ត្រូវដាក់ឲ្យអង្អុយ ដើម្បីឲ្យដកដង្ហើមបានស្រួល",
+          "en": "Let him/her sit down to breathe easily.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ត្រូវខាំកែងជើង",
+          "en": "Bite his or her heel.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of trained person performing CPR chest compressions on unconscious road accident victim on Cambodian roadside, correct two-hand placement on sternum, serious emergency, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "157",
+      "category_id": "6",
+      "category_en": "Emergency",
+      "category_km": "សង្គ្រោះបន្ទាន់",
+      "question": {
+        "km": "បើជនរងគ្រោះបាត់ដង្ហើម តើអ្នកអាចជួយជនរងគ្រោះនោះយ៉ាងដូចម្ដេច ?",
+        "en": "If the victim is not breathing, how can you help him or her?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ត្រូវអង្រន់ខ្លួន",
+          "en": "Shake his or her body.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ត្រូវច្របាច់ដៃ ជើង",
+          "en": "Press his or her arms and legs.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ត្រូវធ្វើចលនាបេះដូងដោយផ្លុំខ្យល់ចូលតាមមាត់ជនរងគ្រោះ និងយកដៃទាំងពីរសង្កត់ទ្រូង",
+          "en": "Do the CPR by blowing the air in through the victim’s mouth and press his or her chest by two hands.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of emergency responder checking if accident victim is breathing by watching chest and listening closely, Cambodian roadside emergency scene, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "158",
+      "category_id": "6",
+      "category_en": "Emergency",
+      "category_km": "សង្គ្រោះបន្ទាន់",
+      "question": {
+        "km": "តើអ្នកអាចជួយជនរងគ្រោះបាត់ដង្ហើមក្នុងរយៈពេលប៉ុន្មាននាទី ?",
+        "en": "How many minutes can you help victim with no breathing?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ក្នុងរយៈពេល ០២ ទៅ ៣ នាទី",
+          "en": "2 to 3 minutes",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "ក្នុងរយៈពេល ០៥ ទៅ ១០ នាទី",
+          "en": "5 to 10 minutes",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ក្នុងរយៈពេល ១០ ទៅ ១៥ នាទី",
+          "en": "10 to 15 minutes.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of emergency responder checking if accident victim is breathing by watching chest and listening closely, Cambodian roadside emergency scene, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "235",
+      "category_id": "6",
+      "category_en": "Emergency",
+      "category_km": "សង្គ្រោះបន្ទាន់",
+      "question": {
+        "km": "បើជនរងគ្រោះបាត់ដង្ហើម តើអ្នកត្រូវការផ្លុំខ្យល់បញ្ជូលតាមមាត់ជនរងគ្រោះប៉ុន្មានដងក្នុង ១នាទី ?",
+        "en": "If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ប្រហែល ១៥ដង ក្នុង១នាទី",
+          "en": "About 15 times per minute",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "ប្រហែល ១០ដង ក្នុង១នាទី",
+          "en": "About 10 times per minute",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ប្រហែល ០៥ដង ក្នុង១នាទី",
+          "en": "About 05 times per minutes.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of emergency responder checking if accident victim is breathing by watching chest and listening closely, Cambodian roadside emergency scene, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "404",
+      "category_id": "6",
+      "category_en": "Emergency",
+      "category_km": "សង្គ្រោះបន្ទាន់",
+      "question": {
+        "km": "នៅពេលជនរងគ្រោះបាត់ដង្ហើម និងជីពចរមិនដើរ ហើយអ្នកមានតែម្នាក់ឯង តើត្រូវសង្កត់ធ្វើចលនាបេះដូង និងផ្លុំខ្យល់ដូចម្ដេច ?",
+        "en": "When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ត្រូវសង្កត់១០ដង និងផ្លុំ២ដង",
+          "en": "Press 10 times and blow 2 times",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ត្រូវសង្កត់១៥ដង និងផ្លុំ២ដង",
+          "en": "Press 15 times and blow 2 times",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ត្រូវសង្កត់២០ដង និងផ្លុំ២ដង",
+          "en": "Press 20 times and blow 2 times",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of trained bystander checking pulse on accident victim's neck (carotid artery) on Cambodian roadside, focused careful technique, concerned crowd behind, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "492",
+      "category_id": "6",
+      "category_en": "Emergency",
+      "category_km": "សង្គ្រោះបន្ទាន់",
+      "question": {
+        "km": "តើអ្នកអាចប៉ះពាល់អ្នករងគ្រោះថ្នាក់ចរាចរណ៍ បានឬទេ ?",
+        "en": "Can you touch an accident victim?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "មិនបានទេ ព្រោះវាធ្វើឲ្យប្រែប្រួលភស្ដុតាងនៅកន្លែងកើតហេតុ",
+          "en": "No, because it can change the evidence at the event.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "បាន ដោយជួយតាមវិធីសង្គ្រោះបន្ទាន់",
+          "en": "Yes, by helping through First Aids.",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "មិនបានទេ ត្រូវរង់ចាំសង្គ្រោះបន្ទាន់មកសិន",
+          "en": "No, wait the ambulance ",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of first responders helping road accident victims at crash scene on Cambodian national road, emergency triangle placed, police arriving, first aid being administered, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "629",
+      "category_id": "6",
+      "category_en": "Emergency",
+      "category_km": "សង្គ្រោះបន្ទាន់",
+      "question": {
+        "km": "បើដឹងថាជនរងគ្រោះបាក់ដៃ តើអ្នកត្រូវធ្វើយ៉ាងដូចម្ដេច ?",
+        "en": "Realizing the victim got broken arm, how shall you do?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ត្រូវទាញ ឬបង្វិលដៃដែលបាក់នោះ",
+          "en": "Pull and twist the broken arm.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ត្រូវលើកជនរងគ្រោះដោយមិនបាច់ធ្វើអ្វីទាំងអស់",
+          "en": "Lift the victim and ignore everything.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ត្រូវទុកដៃបាក់ឲ្យស្ងៀម រួចប្រើបន្ទះដែក ឬឈើអបដៃរួចចងក្រណាត់ ឬក្រមាពាក់នឹងក ដើម្បីជួយទ្រដៃ",
+          "en": "Leave the broken arm with no moving then use metal or wooden board to splint the arm, and then tie with cloth or scaft at the neck to suport the broken arm.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of first responders carefully immobilizing suspected broken limb with improvised splint at road accident site in Cambodia, gentle professional handling, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "632",
+      "category_id": "6",
+      "category_en": "Emergency",
+      "category_km": "សង្គ្រោះបន្ទាន់",
+      "question": {
+        "km": "តើរយៈពេលបាត់ដង្ហើមប៉ុន្មាននាទី ដែលធ្វើឲ្យជនរងគ្រោះស្លាប់ ?",
+        "en": "How many minutes of no breathing does it cause the victim dead?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ចាប់ពី ៥នាទី ឡើងទៅ",
+          "en": "From 5 minutes and up.",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "ចាប់ពី ១០នាទី ឡើងទៅ",
+          "en": "From 10 minutes and up.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ចាប់ពី ១៥នាទី ឡើងទៅ",
+          "en": "From 15 minutes and up.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of emergency responder checking if accident victim is breathing by watching chest and listening closely, Cambodian roadside emergency scene, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "633",
+      "category_id": "6",
+      "category_en": "Emergency",
+      "category_km": "សង្គ្រោះបន្ទាន់",
+      "question": {
+        "km": "បើជនរងគ្រោះបាត់ដង្ហើម និងជីពចរមិនដើរ តើអ្នកអាចជួយជនរងគ្រោះនោះដូចម្ដេច ?",
+        "en": "If victim no breathing and the pulse no working, how can you help?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ត្រូវច្របាច់ និងខាំកែងជើង",
+          "en": "Press and bite the heel.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ត្រូវដាក់ឲ្យដេកបែរខ្នងចំហៀង និងផ្អៀងក្បាល",
+          "en": "Lay him or her sleep on his or her side and tilt his or her head.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ត្រូវផ្លុំខ្យល់ចូលតាមមាត់ជនរងគ្រោះ និងយកដៃទាំងពីរសង្កត់ទ្រូង",
+          "en": "Blow the air in through his or her mouth and bring the two hands press his or her chest.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of trained bystander checking pulse on accident victim's neck (carotid artery) on Cambodian roadside, focused careful technique, concerned crowd behind, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    }
+  ]
+}

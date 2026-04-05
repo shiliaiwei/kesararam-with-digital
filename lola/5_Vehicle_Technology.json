@@ -1,0 +1,1604 @@
+{
+  "category_id": "5",
+  "category_en": "Vehicle Technology",
+  "category_km": "បច្ចេកទេសយានយន្ត",
+  "total_questions": 38,
+  "questions": [
+    {
+      "question_id": "111",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកត្រូវត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចធុងទឹក ?",
+        "en": "What shall you check at the water tank?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ភាពកខ្វក់របស់ទឹក",
+          "en": "The dirtiness of the water",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "សីតុណ្ហភាពទឹក",
+          "en": "water’s temperature",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "កំរិតទឹកក្នុងធុង",
+          "en": "The level of water in the tank",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic close-up photo of mechanic checking coolant level in car radiator/water tank, hood open, engine bay visible, MIN-MAX markings on coolant reservoir, workshop or roadside, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "113",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចផ្លិតទឹក ?",
+        "en": "What shall you check at the water fan?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ភាពលេចជ្រាបរបស់ផ្លិតទឹក",
+          "en": "The leakage of the water fan",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ដំណើការ និង ជូតទឹកបានស្អាតល្អ",
+          "en": "The process and the wipe the water well",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ពណ៌របស់ផ្លិតទឹក",
+          "en": "Color of the water fan",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic close-up photo inside car engine bay showing cooling fan and fan belt, mechanic inspecting belt tension and fan condition, professional workshop lighting, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "114",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកត្រួតពិនិត្យកំរិតប្រេងហ្វ្រាំងដូចម្ដេច ?",
+        "en": "How shall you check the level of brake oil?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "កំរិតប្រេងហ្វ្រាំង ត្រូវស្ថិតនៅក្រោមគំនូសអប្បបរមា",
+          "en": "The level of brake oil must be below the minimum marking.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "កំរិតប្រេងហ្វ្រាំង ត្រូវស្ថិតនៅត្រង់ចន្លោះគំនូសអប្បបរមា និងអតិបរមា",
+          "en": "The level of brake oil must be between minimum and maximum markings",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "កំរិតប្រេងហ្វ្រាំង ស្ថិតនៅលើគំនូសអតិបរមា",
+          "en": "The level of brake oil is above maximum marking.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic close-up photo of technician checking brake fluid level in transparent reservoir, hood open, MIN-MAX markings visible, professional mechanic in workshop, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "115",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "ក្នុងពេលធ្វើដំណើរ តើអ្នកត្រូវត្រួតពិនិត្យអ្វីខ្លះ ?",
+        "en": "While travelling, what shall you check?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "កំរិតទឹក កំរិតប្រេងម៉ាស៊ីន និងកំរិតទឹកលាងកញ្ចក់",
+          "en": "The level of water, engine oil, and mirror-washed water",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ដំណើរការនាឡិកាសីតុណ្ហភាពទឹក នាឡិកាសាកអាគុយ និងសញ្ញាហ្វ្រាំង ព្រមទាំងសំពាធប្រេងម៉ាស៊ីន",
+          "en": "Water temperature device process , battery recharged device, and brake signal, including engine oil pressure.",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ពិនិត្យមើលសភាពកង់",
+          "en": "Check the status of the wheels.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of driver checking vehicle instruments on dashboard while driving: speedometer, fuel gauge, temperature gauge, engine warning lights, Cambodian road visible, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "116",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចអាគុយទឹក ?",
+        "en": "What shall you check at the liquid battery?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "មើលដង់ស៊ីតេអាគុយ",
+          "en": "Check the density of the battery",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "មើលចំនួនវ៉ុលរបស់អាគុយ",
+          "en": "Check the voltage of the battery",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "កំរិតទឹកអាគុយ",
+          "en": "The level of the water of battery.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic close-up photo of car battery under open hood, positive and negative terminals clearly visible, jumper cables nearby, mechanic in workshop setting, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "117",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចសំបកកៅស៊ូកង់ ?",
+        "en": "What shall you check at the tyres?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "សំពាធខ្យល់ ភាពសឹក ប៉ោង ប្រេះ មុត",
+          "en": "Air pressure, erosion, swellings, cracked, and punch. ",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "ភាពលេចជ្រាបទឹក",
+          "en": "The leakage of the water",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ភាពរឹងល្អនៃសំបកកៅស៊ូកង់",
+          "en": "The hardness of the tyres",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of driver checking vehicle instruments on dashboard while driving: speedometer, fuel gauge, temperature gauge, engine warning lights, Cambodian road visible, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "150",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "នៅរៀងរាល់ពេល មុននឹងចូលក្នុងរថយន្ត អ្នកត្រូវត្រួតពិនិត្យអ្វីខ្លះ ?",
+        "en": "What shall you check every time before getting into the car?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "មើលប្រព័ន្ធប្រេងឥន្ធនៈ",
+          "en": "Check the fuel system.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "មើលកង់កុំឲ្យធូរ និងភ្លើងចង្កៀងត្រូវឲ្យស្អាតជានិច្ច",
+          "en": "Check the wheels not to be flat and the lights must be cleaned all time.",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "មើលប្រព័ន្ធទឹក",
+          "en": "Check the water system",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of driver checking vehicle instruments on dashboard while driving: speedometer, fuel gauge, temperature gauge, engine warning lights, Cambodian road visible, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "151",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើភាពសឹករបស់សំបកកង់រថយន្តគ្រួសារ ត្រូវឲ្យនៅសល់ជំរៅក្រឡាយ៉ាងតិចប៉ុន្មាន មីលីមែត្រ?",
+        "en": "How many millimeters, at least, of the tyres’ depth to be left for the family car?\n"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "០,៥ ម.ម",
+          "en": "0.5 mm",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "១,០ ម.ម",
+          "en": "1.0mm",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "១,៦ ម.ម",
+          "en": "1.6mm",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a mechanic performing routine vehicle maintenance in Cambodia auto workshop, inspection checklist on clipboard, professional tools visible, vehicle on lift, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "154",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចចង្កូត ?",
+        "en": "What shall you check at the steer?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ភាពលេចជ្រាបទឹក និងខ្យល់",
+          "en": "The leakage of the water and air.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ភាពស្អាត",
+          "en": "Cleanliness",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ភាពរឹងមាំ និង មិនត្រូវឲ្យតឹងពេលកាច់ចង្កូត",
+          "en": "Hardiness and not to be tight to steer.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of driver checking vehicle instruments on dashboard while driving: speedometer, fuel gauge, temperature gauge, engine warning lights, Cambodian road visible, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "195",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើគម្លាតដងឆ័ត្រហ្វ្រាំង ត្រូវធ្វើការកែតម្រូវចាប់ពីប្រវែងប៉ុន្មានមីលីម៉ែត្រ ?",
+        "en": "From how many millimeters of the gape of brake pedal need to be adjusted? \n"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "លើសពី១០មីលីម៉ែត្រ",
+          "en": "More than 10mm",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "លើសពី ២០មីលីម៉ែត្រ",
+          "en": "More than 20mm",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "លើសពី ៣០មីលីម៉ែត្រ",
+          "en": "More than 30mm",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic close-up photo of technician checking brake fluid level in transparent reservoir, hood open, MIN-MAX markings visible, professional mechanic in workshop, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "196",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "ក្នុងករណីហ្វ្រាំងប្រើបូមប្រេង តើអ្នកដឹងប្រេងលេចខ្លាំងដោយសារអ្វី ?",
+        "en": "In case the brakes using oil pump, how do you realize the oil leaks a lot?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ដោយសារទាញហ្វ្រាំងដៃមិនសូវស៊ី",
+          "en": "By applying handbrake and not work well",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ដោយសារជាន់ហ្វ្រាំងជើងមិនសូវស៊ី",
+          "en": "By applying footbrake and not work well.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ដោយបញ្ឆេះម៉ាស៊ីន រួចជាន់ឈ្នាន់ហ្វ្រាំង ដោយឈ្នាន់ឆ្លាក់កើយដល់ក្ដារឈ្នាន់",
+          "en": "By starting the engine then applying the brake pedal, falling on brake pedal board.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic close-up photo of technician checking brake fluid level in transparent reservoir, hood open, MIN-MAX markings visible, professional mechanic in workshop, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "197",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើនៅត្រង់ស្នូលថ្ពក់ថាសវិល អ្នកត្រូវពិនិត្យអ្វីសំខាន់ជាងគេ ?",
+        "en": "At the core of the ......what are the main things to be checked?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ភាពច្រេះស៊ីស្នូល",
+          "en": "The rust of the core",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ភាពកោងរបស់ស្នូល",
+          "en": "The bend of the core.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ភាពរមួលរបស់ស្នូល",
+          "en": "The twist of the core.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of driver checking vehicle instruments on dashboard while driving: speedometer, fuel gauge, temperature gauge, engine warning lights, Cambodian road visible, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "198",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើនៅត្រង់ជន្ទាស អ្នកត្រួតពិនិត្យអ្វីជាសំខាន់ ?",
+        "en": "What should you take care on the car’s chassis?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ភាពលេចជ្រាបប្រេងលើជន្ទាស",
+          "en": "Leakage of the oil",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ភាពលេចជ្រាបទឹកលើជន្ទាស",
+          "en": "Leakage of water",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ភាពប្រេះស្រាំ បាក់ ឬរំកិល",
+          "en": "breaking a part",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a mechanic performing routine vehicle maintenance in Cambodia auto workshop, inspection checklist on clipboard, professional tools visible, vehicle on lift, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "199",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើនៅត្រង់ទ្វារនៃរថយន្ត អ្នកត្រួតពិនិត្យអ្វីជាសំខាន់ ?",
+        "en": "What is the main check at the doors of the car?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ភាពកខ្វក់នៃកញ្ចក់ទ្វារ",
+          "en": "The dirtiness of the doors’ glasses.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "គន្លឹះ ឬសោទ្វារ",
+          "en": "Bolt or door key",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ការបិទកញ្ចក់ទ្វារមិនជិតល្អ",
+          "en": "The doors’ glasses closed not well.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of driver checking vehicle instruments on dashboard while driving: speedometer, fuel gauge, temperature gauge, engine warning lights, Cambodian road visible, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "226",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "ចំពោះធុងប្រេងឥន្ធនៈ តើអ្នកត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ ?",
+        "en": "What is the main check at the fuel tank?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ភាពកខ្វក់ នៃប្រេងឥន្ធនៈ",
+          "en": "The dirtiness of the fuel.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ភាពកខ្វក់ នៃធុងប្រេងឥន្ធនៈ",
+          "en": "The dirtiness of the fuel tank.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ភាពលេច ឬជ្រាប",
+          "en": "The leakage of the fuel tank.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of driver refueling car at Cambodian gas station, fuel pump nozzle inserted, fuel gauge showing near empty, bright petrol station signage, tropical setting, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "227",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វី ត្រង់កាឡេរថយន្ត ?",
+        "en": "What shall you check at the drive shaft of the vehicle?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ភាពប្រេះស្រាំ ឬកោង",
+          "en": "The state of being cracked or bend",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "ភាពរឹងមាំ",
+          "en": "The hardiness",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ភាពកខ្វក់",
+          "en": "The dirtiness",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of driver checking vehicle instruments on dashboard while driving: speedometer, fuel gauge, temperature gauge, engine warning lights, Cambodian road visible, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "228",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើនៅត្រង់ថាសវិល (ប្លាតូហ៊្វម) អ្នកត្រូវពិនិត្យអ្វីសំខាន់ជាងគេ ?",
+        "en": "What should you check on the vehicle’s wheels?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ភាពលេចជ្រាបខ្យល់",
+          "en": "The leakage of air.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ភាពលេចជ្រាបទឹក",
+          "en": "The leakage of water.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ភាពប្រេះស្រាំ ឬសឹកខ្លាំង",
+          "en": "The state of being cracked or eroded",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of driver checking vehicle instruments on dashboard while driving: speedometer, fuel gauge, temperature gauge, engine warning lights, Cambodian road visible, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "229",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "កៅស៊ូកង់នៃរថយន្ត អ្នកត្រួតពិនិត្យអ្វីជាចាំបាច់ ?",
+        "en": "What is the necessary check at the tyres?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ក្រឡាសំបកកង់",
+          "en": "The tread of the tyres",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ភាពសឹក ធូរ តឹង ឬប្រេះ",
+          "en": "Erosion, looseness, tightness, or being cracked.",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ភាពបោរនៃថាសកង់",
+          "en": "The state of being buckled wheels",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of driver checking vehicle instruments on dashboard while driving: speedometer, fuel gauge, temperature gauge, engine warning lights, Cambodian road visible, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "230",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "នៅពេលអ្នកធ្វើដំណើរ ប្រហែលប៉ុន្មានម៉ោងត្រូវឈប់ត្រួតពិនិត្យគ្រឿងថ្ពក់សណ្ដោងសឺមីរ៉ឺម៉ក ឬរ៉ឺម៉ក ?",
+        "en": "While driving, how long shall you need to check the semi trailer-towed hooks or trailer?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ប្រហែល ៣ម៉ោង",
+          "en": "About 3 hours",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "ប្រហែល ៥ម៉ោង",
+          "en": "About 5 hours",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ប្រហែល ៧ម៉ោង",
+          "en": "About 7 hours",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of driver checking vehicle instruments on dashboard while driving: speedometer, fuel gauge, temperature gauge, engine warning lights, Cambodian road visible, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "351",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើគម្លាតដងឆ័ត្រហ្វ្រាំង ត្រូវធ្វើការកែតម្រូវមកត្រឹមប្រវែងប្រហែលប៉ុន្មានមីលីម៉ែត្រទើបត្រឹមត្រូវ ?",
+        "en": "How long, in millimetres, is the gape of a brake pedal needed adjusting to be accurately? "
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "១០មីលីម៉ែត្រ",
+          "en": "10mm",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "១៣មីលីម៉ែត្រ",
+          "en": "13mm",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "២៥មីលីម៉ែត្រ",
+          "en": "25mm",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic close-up photo of technician checking brake fluid level in transparent reservoir, hood open, MIN-MAX markings visible, professional mechanic in workshop, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "352",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "បើរង្វង់ដៃចង្កូតមានបន្ទាត់ផ្ចឹត០,៥០ម៉ែត្រ តើហ្សឺចង្កូតត្រូវរក្សាប៉ុន្មាន ?",
+        "en": "If the steering wheel with a diameter of 0.5m, how many degrees is ...... steering wheel left?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "មិនលើសពី ១០ដឺក្រេ",
+          "en": "Not more than 10 degrees",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "មិនលើសពី ២០ដឺក្រេ",
+          "en": "Not more than 20 degrees",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "មិនលើសពី ៣០ដឺក្រេ",
+          "en": "Not more than 30 degrees",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic close-up photo of mechanic checking steering wheel play and power steering fluid, driver testing full steering lock response, auto workshop, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "353",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ ចំពោះដៃចង្កូត និងដងចង្កូត ?",
+        "en": "What are the main check at the steering wheel and steering pedal?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ភាពលេចជ្រាបប្រេង",
+          "en": "The leakage of oil",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ភាពធូររលុងឬជាប់គាំង ភាពប្រេះស្រាំឬបាក់",
+          "en": "The looseness or stickiness, being cracked or broken.",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ភាពកោង ឬវៀច",
+          "en": "The state of being curved or crooked.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic close-up photo of mechanic checking steering wheel play and power steering fluid, driver testing full steering lock response, auto workshop, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "354",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ នៃធុងអាគុយ ?",
+        "en": "What is the main check of battery case?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ភាពកខ្វក់នៃធុងអាគុយ",
+          "en": "The dirtiness of battery case.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ភាពជាប់ និងកំរិតទឹកអាគុយ",
+          "en": "The quality and the level of water of the battery.",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ភាពមិនជាប់ល្អ រវាងក្បាលអាគុយនិងក្រចាប់ខ្សែភ្លើង",
+          "en": "The unwell inconsisency between the terminal posts and the battery alligator clips",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic close-up photo of car battery under open hood, positive and negative terminals clearly visible, jumper cables nearby, mechanic in workshop setting, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "355",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វី ចំពោះសាក់ស៊ីរថយន្ត ?",
+        "en": "What shall drivers check for the vehicle’s chassis?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ភាពប្រេះស្រាំ កោង ឬបាក់",
+          "en": "The state of being cracked, bend, or broken.",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "ភាពទន់រលាស់ នៃសាក់ស៊ី",
+          "en": "The flexibility of the chassis.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ភាពរឹងមាំ នៃសាក់ស៊ី",
+          "en": "The hardiness of the chassis.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of driver checking vehicle instruments on dashboard while driving: speedometer, fuel gauge, temperature gauge, engine warning lights, Cambodian road visible, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "534",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចភ្លើងបំភ្លឺផ្លូវ (ហ្វា-កូត ) ?",
+        "en": "What shall drivers check at the road light, headlights and coating lights?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ភាពភ្លឺថ្លា និងដំណើរការរបស់វា",
+          "en": "The clearness and the process of them.",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "ភាពលេចជ្រាបទឹក",
+          "en": "The leakage of water.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ភាពលេចជ្រាបប្រេង",
+          "en": "The leakage of oil.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic close-up photo of mechanic replacing headlight bulb, headlight housing open, bulb socket and wiring visible, professional auto workshop, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1032",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកត្រួតពិនិត្យកម្រិតប្រេងម៉ាស៊ីនដូចម្ដេច ?",
+        "en": "How shall you check engine oil?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "កម្រិតប្រេងម៉ាស៊ីន ត្រូវស្ថិតនៅក្រោមគំនូសអប្បបរមា",
+          "en": "The level of the engine oil must be below the minimum marking.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "កម្រិតប្រេងម៉ាស៊ីន ត្រូវស្ថិតនៅត្រង់ចន្លោះគំនូសអប្បបរមា និងអតិបរមា",
+          "en": "The level of engine oil must be between minimum and maximum markings",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ស្ថិតលើគំនូសអតិបរមា",
+          "en": "Must be above maximum marking.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic close-up photo of mechanic checking engine oil with dipstick, wiping clean then reinserting to check level, engine bay of car, proper oil level visible on dipstick, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1034",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ស៊ីផ្លេ ?",
+        "en": "What shall you check at the horn?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ពណ៌របស់ស៊ីផ្លេ",
+          "en": "Color of the horn.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ភាពកខ្វក់របស់វា",
+          "en": "The dirtiness of it.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ភាពដំណើរការល្អរបស់វា",
+          "en": "Well work of it.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of driver checking vehicle instruments on dashboard while driving: speedometer, fuel gauge, temperature gauge, engine warning lights, Cambodian road visible, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1035",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចច្រវ៉ាក់ ?",
+        "en": "What shall you check at the chain?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ភាពរឹងមាំនៃច្រវ៉ាក់",
+          "en": "The hardiness of it.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ភាពកខ្វក់នៃច្រវ៉ាក់",
+          "en": "The dirtiness of it.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "តឹងល្មម មិនធូរ ឬមិនតឹងពេក ត្រូវមានជាតិប្រេងរំអិលជានិច្ច",
+          "en": "tight enough, no loose, or not too tight, must be always with oil.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of driver checking vehicle instruments on dashboard while driving: speedometer, fuel gauge, temperature gauge, engine warning lights, Cambodian road visible, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1131",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើច្បាប់កំណត់ឱ្យជម្រៅក្រឡាសំបកកៅស៊ូកង់សឹកនៅសល់យ៉ាងតិចប៉ុន្មានមីលីម៉ែត្រដែលត្រូវប្ដូរចេញ ?",
+        "en": "According to the law, the depth of the motorcycle’s tyre tread after eroded, how many millimetres, at least, are they left need to be changed? "
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "យ៉ាងតិច ១ម.ម",
+          "en": "At least 1mm",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "យ៉ាងតិច ០,៧ម.ម ",
+          "en": "At least 0.7mm",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "យ៉ាងតិច ០,៥ម.ម ",
+          "en": "At least 0.5mm",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a mechanic performing routine vehicle maintenance in Cambodia auto workshop, inspection checklist on clipboard, professional tools visible, vehicle on lift, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1132",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចប្រេងម៉ាស៊ីន ?",
+        "en": "What shall you check at the oil point?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ភាពលេចជ្រាប និងត្រូវឱ្យមានតាមកម្រិតកំណត់",
+          "en": "The leakage and the existence of the specified level.",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "សីតុណ្ហភាពប្រេងម៉ាស៊ីន",
+          "en": "The oil temperature.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ពណ៌ប្រេងម៉ាស៊ីន",
+          "en": "The color of the oil.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic close-up photo of mechanic checking engine oil with dipstick, wiping clean then reinserting to check level, engine bay of car, proper oil level visible on dipstick, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1133",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចង្កៀងភ្លើងសញ្ញា ?",
+        "en": "What shall you check at the sign lights?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ពណ៌អំពូលភ្លើងសញ្ញា",
+          "en": "The color of the bulbs of the sign lights.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ភាពដំណើរការល្អ ឬភាពខូច ឬកខ្វក់",
+          "en": "Being well-processed or broken or dirty.",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ប្រភេទនៃចង្កៀង",
+          "en": "Types of lights.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic close-up photo of mechanic replacing headlight bulb, headlight housing open, bulb socket and wiring visible, professional auto workshop, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1134",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកត្រួតពិនិត្យដូចម្ដេច នៅលើកញ្ចក់មើលក្រោយ ?",
+        "en": "What shall you check on the wing mirrors?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ពណ៌កញ្ចក់មើលក្រោយ",
+          "en": "The color of the wing mirrors.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ត្រូវមានសភាពច្បាស់ល្អ និងដាក់ឱ្យត្រូវទីតាំង",
+          "en": "Clearliness and right position.",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ភាពរឹងមាំនៃកញ្ចក់មើលក្រោយ",
+          "en": "The hardiness of the wing mirrors.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of driver checking vehicle instruments on dashboard while driving: speedometer, fuel gauge, temperature gauge, engine warning lights, Cambodian road visible, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1231",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកពិនិត្យអ្វី នៅលើខ្នងកង់ ?",
+        "en": "What shall you check on the motorcycle’s wheels?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ភាពកខ្វក់នៃខ្នងកង់",
+          "en": "The dirtiness of the wheels.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ភាពប្រេះ ស្រាំ ឬប៉ោង",
+          "en": "Being cracked or swelling",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ភាពធូកាំនៃខ្នងកង់",
+          "en": "The looseness of the radius of the wheels.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of driver checking vehicle instruments on dashboard while driving: speedometer, fuel gauge, temperature gauge, engine warning lights, Cambodian road visible, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1232",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចហ្វ្រាំង ?",
+        "en": "What shall you check at the brakes?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ភាពកខ្វក់នៃហ្វ្រាំង",
+          "en": "The dirtiness of the brakes.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ភាពរឹងមាំនៃហ្វ្រាំង",
+          "en": "The hardiness of the brakes.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ហ្សឺ និងដំណើរការហ្វ្រាំងដៃ ហ្វ្រាំងជើង",
+          "en": "The level of properly work of brake system",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic close-up photo of technician checking brake fluid level in transparent reservoir, hood open, MIN-MAX markings visible, professional mechanic in workshop, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1233",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកត្រួតពិនិត្យដូចម្ដេច ចំពោះខ្ចៅ និងប៊ូឡុង ?",
+        "en": "How shall you check on nuts and bolts?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ត្រូវមានសភាពតឹងល្អ",
+          "en": "Shall be good tight.",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "ពណ៌ខ្ចៅ និងប៊ូឡុង",
+          "en": "The color of nuts and bolts.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ភាពទាន់សម័យស្អាតរបស់ខ្ចៅ និងប៊ូឡុង",
+          "en": "Modern nuts and bolts.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of driver checking vehicle instruments on dashboard while driving: speedometer, fuel gauge, temperature gauge, engine warning lights, Cambodian road visible, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1331",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់កុងទ័រល្បឿន ?",
+        "en": "What shall you check at the speedometer?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "លេខរបស់កុងទ័រល្បឿន",
+          "en": "The digits of the speedometer.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ភាពកខ្វក់របស់វា",
+          "en": "The dirtiness of it.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ការដំណើរការល្អរបស់វា",
+          "en": "The process of it.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of driver checking vehicle instruments on dashboard while driving: speedometer, fuel gauge, temperature gauge, engine warning lights, Cambodian road visible, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1334",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចដៃចង្កូត ?",
+        "en": "What shall you check at the motorcycle’s steering?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ភាពកខ្វក់របស់វា",
+          "en": "The dirtiness of it.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ភាពរឹងមាំល្អរបស់វា",
+          "en": "The hardiness of it.",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ទ្រង់ទ្រាយរបស់វា",
+          "en": "The softness of it.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic close-up photo of mechanic checking steering wheel play and power steering fluid, driver testing full steering lock response, auto workshop, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1335",
+      "category_id": "5",
+      "category_en": "Vehicle Technology",
+      "category_km": "បច្ចេកទេសយានយន្ត",
+      "question": {
+        "km": "តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ម៉ាស៊ីន ?",
+        "en": "What shall you check at the motorcycle’s engine?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ភាពរឹងមាំរបស់ម៉ាស៊ីន",
+          "en": "The hardiness of the engine.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ពណ៌របស់ម៉ាស៊ីន",
+          "en": "The color of the engine.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ភាពលេចជ្រាបប្រេងម៉ាស៊ីន និងកម្រិតប្រេងម៉ាស៊ីន",
+          "en": "The leakage of oil and the level of engine oil.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of driver checking vehicle instruments on dashboard while driving: speedometer, fuel gauge, temperature gauge, engine warning lights, Cambodian road visible, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    }
+  ]
+}

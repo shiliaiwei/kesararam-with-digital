@@ -19,22 +19,22 @@ import { useToast } from "@/components/ui/toast-container";
 
 interface Topic {
   id: number;
-  topic_code: string;
-  category_id: number;
-  name_en: string;
-  name_km: string;
-  description_en: string;
-  description_km: string;
-  sub_group: string | null;
-  primary_image_url: string | null;
-  audio_url_en: string | null;
-  audio_url_km: string | null;
+  topicCode: string;
+  categoryId: number;
+  nameEn: string;
+  nameKm: string;
+  descriptionEn: string;
+  descriptionKm: string;
+  subGroup: string | null;
+  primaryImageUrl: string | null;
+  audioUrlEn: string | null;
+  audioUrlKm: string | null;
   status: "draft" | "pending" | "approved" | "rejected";
-  rejection_reason: string | null;
-  created_at: string;
-  updated_at: string;
-  submitted_at: string | null;
-  reviewed_at: string | null;
+  rejectionReason?: string | null;
+  createdAt: string;
+  updatedAt: string;
+  submittedAt?: string | null;
+  reviewedAt?: string | null;
 }
 
 interface Stats {
@@ -324,7 +324,7 @@ export function MyTopicsList() {
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2 flex-wrap">
                       <span className="text-xs font-mono bg-zinc-100 border border-black px-2 py-1">
-                        {topic.topic_code}
+                        {topic.topicCode}
                       </span>
                       <span
                         className={`${statusConfig.color} ${statusConfig.textColor} border-2 ${statusConfig.borderColor} px-3 py-1 text-xs font-bold inline-flex items-center gap-1`}
@@ -335,44 +335,44 @@ export function MyTopicsList() {
                     </div>
 
                     <h3 className="text-xl font-black text-black mb-1">
-                      {topic.name_en}
+                      {topic.nameEn}
                     </h3>
-                    {topic.name_km && (
-                      <p className="text-zinc-600 mb-3">{topic.name_km}</p>
+                    {topic.nameKm && (
+                      <p className="text-zinc-600 mb-3">{topic.nameKm}</p>
                     )}
 
                     <div className="flex flex-wrap gap-4 text-sm text-zinc-600 mb-3">
                       <span className="font-bold">
-                        {getCategoryName(topic.category_id)}
+                        {getCategoryName(topic.categoryId)}
                       </span>
-                      {topic.sub_group && <span>{topic.sub_group}</span>}
+                      {topic.subGroup && <span>{topic.subGroup}</span>}
                     </div>
 
-                    {topic.status === "rejected" && topic.rejection_reason && (
+                    {topic.status === "rejected" && topic.rejectionReason && (
                       <div className="bg-red-50 border-2 border-red-400 p-3 mb-3">
                         <p className="text-sm font-bold text-red-900 mb-1">
                           Rejection Reason:
                         </p>
                         <p className="text-sm text-red-800">
-                          {topic.rejection_reason}
+                          {topic.rejectionReason}
                         </p>
                       </div>
                     )}
 
                     <div className="flex gap-4 text-xs text-zinc-500">
                       <span>
-                        Created: {new Date(topic.created_at).toLocaleDateString()}
+                        Created: {topic.createdAt ? new Date(topic.createdAt).toLocaleDateString() : "—"}
                       </span>
-                      {topic.submitted_at && (
+                      {topic.submittedAt && (
                         <span>
                           Submitted:{" "}
-                          {new Date(topic.submitted_at).toLocaleDateString()}
+                          {new Date(topic.submittedAt).toLocaleDateString()}
                         </span>
                       )}
-                      {topic.reviewed_at && (
+                      {topic.reviewedAt && (
                         <span>
                           Reviewed:{" "}
-                          {new Date(topic.reviewed_at).toLocaleDateString()}
+                          {new Date(topic.reviewedAt).toLocaleDateString()}
                         </span>
                       )}
                     </div>
@@ -391,12 +391,13 @@ export function MyTopicsList() {
                       </button>
                     )}
 
+                    {/* Edit + Delete only for draft or rejected — not pending/approved */}
                     {(topic.status === "draft" || topic.status === "rejected") && (
                       <>
                         <button
-                          onClick={() => router.push(`/staff/content/${getCategorySlug(topic.category_id)}`)}
+                          onClick={() => router.push(`/staff/content/${getCategorySlug(topic.categoryId)}`)}
                           className="bg-yellow-400 border-2 border-black p-2 hover:shadow-[2px_2px_0_#000] transition-all"
-                          title="Edit (opens in category page)"
+                          title="Edit"
                         >
                           <Edit size={18} />
                         </button>
@@ -429,7 +430,7 @@ export function MyTopicsList() {
                     )}
 
                     <button
-                      onClick={() => router.push(`/staff/content/${getCategorySlug(topic.category_id)}/${topic.id}`)}
+                      onClick={() => router.push(`/staff/content/${getCategorySlug(topic.categoryId)}/${topic.id}`)}
                       className="bg-blue-400 border-2 border-black p-2 hover:shadow-[2px_2px_0_#000] transition-all"
                       title="View Details"
                     >

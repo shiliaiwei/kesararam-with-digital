@@ -1,0 +1,2108 @@
+{
+  "category_id": "4",
+  "category_en": "Driving Skills",
+  "category_km": "ជំនាញបើកបរ",
+  "total_questions": 50,
+  "questions": [
+    {
+      "question_id": "101",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "តើអ្វីជាគ្រោះថ្នាក់ ដែលអ្នកត្រូវស្គាល់ក្នុងការបើកបរ ?",
+        "en": "What is an accident to be known in driving?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "អាគារដែលស្ថិតនៅជិតផ្លូវ",
+          "en": "Buildings nearby roads.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ភ្នំដែលស្ថិតនៅជិតផ្លូវ",
+          "en": "Mountains nearby roads.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ផ្លូវ និង អ្នកប្រើប្រាស់ផ្លូវ",
+          "en": "Road and road users.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a minor vehicle accident scene on Cambodian road, two cars with minor damage, drivers exchanging information calmly, hazard lights on, safety cones placed, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "102",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "នៅពេលដឹងថាកង់បែក ឬ ធ្លាយ តើអ្នកត្រូវធ្វើដូចម្ដេច ?",
+        "en": "Knowing a wheel is flat, what shall you do?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ត្រូវជាន់ហ្វ្រាំងខ្លាំងតាមការដែលអាចធ្វើទៅបាន",
+          "en": "Apply the brake as firmly as possible.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "បន្ថយល្បឿនរកកន្លែងចត",
+          "en": "Slow down and seek for parking area.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ត្រូវបន្ថយល្បឿន ទប់ចង្កូតឲ្យជាប់ ឬនឹង និងកាច់ចង្កូតឲ្យត្រង់តាមគន្លងផ្លូវ",
+          "en": "Slow down, firmly hold the steering wheel or/and steer follow the lane.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "103",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "មូលហេតុអ្វីខ្លះដែលធ្វើឲ្យរថយន្តរអិលរេ ?",
+        "en": "What is the reason making the vehicles swerve off?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "បន្ថយល្បឿនខ្លាំងពេក",
+          "en": "Too much slow down.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ជាន់ហ្វ្រាំងខ្លាំង កាច់ចង្កូតខ្លាំង បង្កើនល្បឿនខ្លាំង ឬបើកបរលឿនពេក",
+          "en": "Pun on the brake firmly, steer strongly, more speed up, or drive very fast.",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ផ្លូវកោងខ្លាំងពេក",
+          "en": "Very sharp bend.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic driver's-eye-view photo inside car on straight Cambodian road, hands firmly on steering wheel demonstrating controlled grip during swerving recovery, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "104",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "នៅពេលរថយន្តអ្នករអិលរេនៅលើផ្លូវស្ងួត តើអ្នកត្រូវធ្វើដូចម្ដេច ?",
+        "en": "When your vehicle is swerving off on a dry road, what shall you do?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "បន្ថយល្បឿន និង ជាន់ហ្វ្រាំងខ្លាំង",
+          "en": "Slow down and apply the brake firmly.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "បន្ថយល្បឿន និងមិនត្រូវជាន់ហ្វ្រាំងទេ",
+          "en": "Slow down and no need to apply the brake.",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "បន្ថែមល្បឿន និង មិនត្រូវជាន់ហ្វ្រាំងទេ",
+          "en": "Speed up and no need to apply the brake.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic driver's-eye-view photo inside car on straight Cambodian road, hands firmly on steering wheel demonstrating controlled grip during swerving recovery, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "105",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "នៅពេលហ្វ្រាំងខូច តើអ្នកត្រូវធ្វើដូចម្ដេច ?",
+        "en": "What shall you do when the brake is broken?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ដាក់ លេខចុះតាមលំដាប់និងចាប់ហ្វ្រាំងដៃថ្នមៗរកកន្លែងចត",
+          "en": "Engage the gear down orderly, apply hand brake gentlely, and seek for parking area.",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "បន្ថែម លេខឡើងរកកន្លែងចត",
+          "en": "Engage up orderly, and seek for parking area.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "មិនបាច់ធ្វើអ្វីទាំងអស់ទុកឱ្យឈប់តាមសំរួល",
+          "en": "Do nothing and wait until it stops by itself.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a driver applying brakes smoothly on wet Cambodian road, brake lights visible from behind, safe stopping distance maintained from vehicle ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "106",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "នៅពេលយប់ ក្នុងពេលជួបយានយន្តមកពីទិសផ្ទុយ តើអ្នកត្រូវទំលាក់ភ្លើងហ្វាមកកូតវិញ ក្នុងចំងាយប៉ុន្មាន ?",
+        "en": "At night, seeing a vehicle from the opposite traffic direction, at what distance from it shall you cast to coat light from headlight?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ប្រហែល ៣៥ ម៉ែត្រ",
+          "en": "About 35m",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ប្រហែល ៧៥ ម៉ែត្រ",
+          "en": "About 75m",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ប្រហែល ១៦០ ម៉ែត្រ",
+          "en": "About 160m",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "107",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "នៅក្នុងការបើកបរកាត់ភ្លៀងខ្លាំង ឬ កាត់ទឹកជ្រៅ តើធ្វើដូចម្ដេច ដើម្បីឲ្យហ្វ្រាំងឆាប់ស្ងួត ?",
+        "en": "Driving in heavy rain or in deep water, how shall you do to get the brake dried up quickly?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ត្រូវទុកហាលក្ដៅ",
+          "en": "Park the vehicle in the sun.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ត្រូវបង្កើនល្បឿន",
+          "en": "Speed up.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ត្រូវជាន់ហ្វ្រាំងសំងួតវា",
+          "en": "Apply the brake to dry the brakes up.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a driver applying brakes smoothly on wet Cambodian road, brake lights visible from behind, safe stopping distance maintained from vehicle ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "108",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "ក្នុងការបើកបរនៅពេលអាកាសធាតុក្ដៅខ្លាំង តើកង់រថយន្តមានសភាពដូចម្ដេច ?",
+        "en": "Driving in an extremely hot weather, what are the tires of vehicle?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "កង់ធូរ",
+          "en": "The tires are a bit flat.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "កង់តឹង",
+          "en": "The tires are tight.",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "កង់ធម្មតា",
+          "en": "They are normal.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "109",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "ក្នុងការជាន់ហ្វ្រាំងចុះទួលដូចគ្នា មួយជាន់ដក ៗ មួយទៀតជាន់ជាប់ តើមួយណាធ្វើឲ្យកំដៅហ្វ្រាំងកើនក្ដៅជាង ?",
+        "en": "Applying the brake while moving down a descent steep, one apply and release alternatively, another one apply firmly without releasing, which one make the brake hotter?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ការជាន់ដក ៗ",
+          "en": "Applying and releasing alternatively.",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "ការជាន់ជាប់",
+          "en": "Applying firmly without releasing.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "កើនកំដៅដូចគ្នា",
+          "en": "The same.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a driver applying brakes smoothly on wet Cambodian road, brake lights visible from behind, safe stopping distance maintained from vehicle ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "110",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "នៅពេលបើកចូលផ្លូវកោង តើកំលាំងអ្វីដែលអាចធ្វើឲ្យរថយន្តក្រឡាប់ ?",
+        "en": "When driving into a bend road, what forces can make your vehicle turn over?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "កំលាំងម៉ាស៊ីន",
+          "en": "Engine’s energy.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "កំលាំងចាកផ្ចិត",
+          "en": "Centrifugal force",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "កំលាំងមនុស្ស",
+          "en": "Human’s energy",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "148",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "តើចំងាយអ្វីខ្លះ ដែលអ្នកយកមកគណនាចំងាយឈប់របស់រថយន្ត ?",
+        "en": "What distances do you take into calculating the stopping distance of vehicle?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ចំងាយប្រតិកម្ម និងចំងាយចាប់ហ្វ្រាំង",
+          "en": "Reaction distance and braking distance.",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "ចំងាយធ្វើដំណើរ និងចំងាយប្រតិកម្ម",
+          "en": "Traveling distance and reaction distance.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ចំងាយធ្វើដំណើរ និងចំងាយចាប់ហ្វ្រាំង",
+          "en": "Traveling distance and braking distance.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a driver applying brakes smoothly on wet Cambodian road, brake lights visible from behind, safe stopping distance maintained from vehicle ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "190",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "ដើម្បីសំរួលការដាក់ លេខឡើង ឬចុះតើត្រូវផ្ដាច់អំព្រីយ៉ាប៉ុន្មានដង ?",
+        "en": "To adjust the gear up and down with ease, how many times shall you disconnect clutch?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "១ដង",
+          "en": "one time",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "២ដង",
+          "en": "two times",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "៣ដង",
+          "en": "three times",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic close-up photo of driver's hand on manual gear shift inside a vehicle, gear positions visible, dashboard in background, road visible through windshield, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "191",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "តើមូលហេតុសំខាន់ៗអ្វីខ្លះ ដែលធ្វើឲ្យហ្វ្រាំងឆាប់កើនកំដៅនៅពេលជាន់ហ្វ្រាំង ?",
+        "en": "What are the main reasons that make the brake get hotter quickly when braking?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "បើកបរពេលអាកាសធាតុក្ដៅខ្លាំង",
+          "en": "Driving in an extremly hot weather.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ផ្ទុកទំនិញហួសកំរិតកំណត់ និងបើកបរក្នុងល្បឿនលឿន",
+          "en": "Over load and drive extremly fast.",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "កាច់ចង្កូតខ្លាំងក្នុងពេលបើកបរ",
+          "en": "Steer firmly while driving.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a driver applying brakes smoothly on wet Cambodian road, brake lights visible from behind, safe stopping distance maintained from vehicle ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "192",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "បើទម្ងន់ និងល្បឿនកើនពីរដងរួមគ្នា តើចម្ងាយឈប់កើនឡើងប៉ុន្មានដង ?",
+        "en": "If the speed and weight increase twice together, how many times does the stopping distance increase, accordingly? "
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "៤ដង",
+          "en": "4 times",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "៦ដង",
+          "en": "6 times",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "៨ដង",
+          "en": "8 times",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a driver applying brakes smoothly on wet Cambodian road, brake lights visible from behind, safe stopping distance maintained from vehicle ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "193",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "ដើម្បីមើលទៅមុខឲ្យបានឆ្ងាយគ្រប់គ្រាន់ តើអ្នកត្រូវការមើលក្នុងចម្ងាយប៉ុន្មានវិនាទី ?",
+        "en": "To look ahead for long distance enough, how many seconds shall you need to look to it?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "៥ ទៅ ៨វិនាទី",
+          "en": "5 to 8 seconds",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "៨ ទៅ ១១វិនាទី",
+          "en": "8 to 11 seconds",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "១២ ទៅ ១៥វិនាទី",
+          "en": "12 to 15 seconds",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "194",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "តើអ្នកបើកបររថយន្តធុនធ្ងន់លើសពី ៣,៥តោន ឬប្រវែងបណ្ដោយលើសពី ៧ម៉ែត្រ បើកបរបន្តកន្ទុយគ្នា ក្នុងល្បឿនដូចគ្នា ត្រូវទុកចន្លោះសុវត្ថិភាពប៉ុន្មានម៉ែត្រ?",
+        "en": "What distance limit for large-sized trucks, with more than 3.5T or more than 7m in length driving in queue one after another and at the same speed, shall drivers leave?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "យ៉ាងតិច ៤០ម៉ែត្រ",
+          "en": "At least 40m",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "យ៉ាងតិច ៥០ម៉ែត្រ",
+          "en": "At least 50m",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "យ៉ាងតិច ៦០ម៉ែត្រ",
+          "en": "At least 60m",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "221",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "តើកំដៅនៅតំបួរហ្វ្រាំងកើនឡើងប៉ុន្មានអង្សា ទើបការជាន់ហ្វ្រាំងគ្មានប្រសិទ្ធិភាព ?",
+        "en": "What is the brake’s temperature taken as warning?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "២០០អង្សា",
+          "en": "200 celsius",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "៣០០អង្សា",
+          "en": "300 celsius",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "៤០០អង្សា",
+          "en": "400 celsius",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a driver applying brakes smoothly on wet Cambodian road, brake lights visible from behind, safe stopping distance maintained from vehicle ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "222",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "បើទម្ងន់កើនឡើងពីរដង តើចម្ងាយឈប់កើនឡើងប៉ុន្មានដង ?",
+        "en": "If the weight increases twice, how many times does the stopping distance increase?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "២​ដង",
+          "en": "Two times",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "៣ ដង",
+          "en": "three times",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "៤ ដង",
+          "en": "Four times",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a driver applying brakes smoothly on wet Cambodian road, brake lights visible from behind, safe stopping distance maintained from vehicle ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "223",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "បើល្បឿនកើនពីរដង តើចម្ងាយឈប់កើនឡើងប៉ុន្មានដង ?",
+        "en": "If the speed increases twice, how many times does the stopping distance increase?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "២ដង",
+          "en": "Two times",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "៣ដង",
+          "en": "Three times",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "៤ ដង",
+          "en": "Four times",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a driver applying brakes smoothly on wet Cambodian road, brake lights visible from behind, safe stopping distance maintained from vehicle ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "224",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "ក្នុងការបើកបរនៅលើផ្លូវសើម តើអ្នកបើកបរត្រូវបន្ថយល្បឿនប៉ុន្មានភាគរយលើផ្លូវស្ងួត ?",
+        "en": "Driving on the wet road, how many percentages do drivers decrease​ speed compared to dry road?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "១/២ លើផ្លូវ ស្ងួត",
+          "en": "1/2 on the dry road",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "១/៣ លើផ្លូវ ស្ងួត",
+          "en": "1/3 on the dry road",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "១/៤ លើផ្លូវ ស្ងួត",
+          "en": "1/4 on the dry road",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "225",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "តើមូលហេតុអ្វីខ្លះដែលធ្វើឲ្យកង់រអិលរេនៅពេលបើកបរលើផ្លូវស្ងួត ?",
+        "en": "What are reasons that make the wheels swerve off when driving on the dry road?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "បន្ថយល្បឿនមិនបានត្រឹមត្រូវ",
+          "en": "Slow down improperly",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "អបអំព្រីយ៉ា មិនបានត្រឹមត្រូវ",
+          "en": "Use the clutch improperly.",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "បង្កើនល្បឿន-បើកបរលឿន-ចាប់ហ្វ្រាំងខ្លាំង-កាច់ចង្កូតខ្លាំង",
+          "en": "Speed up, drive very fast, apply the brake firmly, and steer firmly.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic driver's-eye-view photo inside car on straight Cambodian road, hands firmly on steering wheel demonstrating controlled grip during swerving recovery, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "346",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "តើមូលហេតុអ្វី ដែលធ្វើឱ្យកង់ក្រោយរអិល ?",
+        "en": "What are reasons that make the back wheels slippery?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "បើកបរលឿនពេកលើផ្លូវមិនរាបស្មើ",
+          "en": "Drive too fast on a road is not flat",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "បង្កើនល្បឿនខ្លាំងពេក",
+          "en": "Speed up a lot",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "កាច់ចង្កូតរេចុះ ឡើង",
+          "en": "Steer swervedly",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "347",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "តើមូលហេតុអ្វី ដែលធ្វើឲ្យកង់មុខរអិល​រេ ?",
+        "en": "What are reasons that make front wheels slippery?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "បើកបរលឿនពេកលើផ្លូវមិនរាបស្មើ",
+          "en": "Drive too fast on a road is not flat",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "បង្កើនល្បឿនខ្លាំងពេក",
+          "en": "Speed up too fast",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "កាច់ចង្កូតរេចុះ ឡើង",
+          "en": "Turning the steering wheel too fast",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "392",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "ក្នុងការបើកបរនៅក្រៅទីប្រជុំជន តើអ្នកត្រូវទុកចន្លោះសុវត្ថិភាពប៉ុន្មានវិនាទី ?",
+        "en": "Driving outside built-up area, how far of distance limit do you leave?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "យ៉ាងតិច ១នាទី",
+          "en": "At least 1 minute",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "យ៉ាងតិច ២នាទី",
+          "en": "At least 2 minute",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "យ៉ាងតិច ៣នាទី",
+          "en": "At least 3 minute",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "393",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "តើចំងាយឈប់របស់រថយន្តធុនតូចក្នុងល្បឿន ៩០គ.ម ក្នុងមួយម៉ោង មានប៉ុន្មានម៉ែត្រ ?",
+        "en": "How many meters of a stopping distance for small-sized vehicles at the speed of 90km/h?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ប្រហែល ២៧ម៉ែត្រ",
+          "en": "About 27m",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ប្រហែល ៥០ម៉ែត្រ",
+          "en": "About 50m",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ប្រហែល ៨១ម៉ែត្រ",
+          "en": "About 81m",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a driver applying brakes smoothly on wet Cambodian road, brake lights visible from behind, safe stopping distance maintained from vehicle ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "483",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "ក្នុងការបើកបរនៅក្រៅទីប្រជុំជន តើអ្នកត្រូវទុកចន្លោះសុវត្ថិភាពប៉ុន្មានវិនាទី ?",
+        "en": "While driving, wow many minutes of the safety distance?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "យ៉ាងតិច ១ វិនាទី",
+          "en": "At least 1 second",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "យ៉ាងតិច ២ វិនាទី",
+          "en": "At least 2 second",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "យ៉ាងតិច ៣ វិនាទី",
+          "en": "At least 3 second",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "484",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "នៅលើផ្លូវសើម តើចំងាយចាប់ហ្វ្រាំងកើនឡើងប៉ុន្មានដង ?",
+        "en": "On a wet road, how many times does braking distance increase? "
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "២ ដង",
+          "en": "2 times",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "៣ ដង",
+          "en": "3 times",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "៤ ដង",
+          "en": "4 times",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a driver applying brakes smoothly on wet Cambodian road, brake lights visible from behind, safe stopping distance maintained from vehicle ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "485",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "មុនបើកបរចេញដំណើរ តើអ្នកត្រូវឱ្យសញ្ញាជាដំណឹងប៉ុន្មានវិនាទី ?",
+        "en": "Before departure, how many seconds shall you give information sign?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "យ៉ាងតិច ២ វិនាទី",
+          "en": "At least 2 seconds",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "យ៉ាងតិច ៣ វិនាទី",
+          "en": "At least 3 seconds",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "យ៉ាងតិច ៥ វិនាទី",
+          "en": "At least 5 seconds.",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "665",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "តើអ្នកបើកបរដែលមានសុខភាពធម្មតា ត្រូវការរយៈពេលធ្វើប្រតិកម្មប៉ុន្មានវិនាទី ?",
+        "en": "How long do healthy drivers need"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "១ វិនាទី",
+          "en": "1 minute",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "២ វិនាទី",
+          "en": "2 minute",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "៣ វិនាទី",
+          "en": "3 minute",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "666",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "មុននិងចូលក្នុងរថយន្ត ដើម្បីចាប់ផ្ដើមបើកបរថយក្រោយ តើអ្នកត្រូវធ្វើអ្វីខ្លះ ?",
+        "en": "Before getting into the vehicle in order to drive backward, what shall drivers do?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ត្រូវមើលទៅខាងមុខឲ្យបានចំងាយគ្រប់គ្រាន់ រួចឲ្យសញ្ញា និងបើកយឺតៗថយក្រោយ",
+          "en": "Look ahead with sufficient distance, give signals, and drive backward slowly",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ត្រូវមើលទៅខាងក្រោយឲ្យបានច្បាស់សិន រួចឲ្យសញ្ញា និងបើកយឺតៗថយក្រោយ",
+          "en": "Look to the back of the vehicle clearly, give signals, and drive backward slowly",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ត្រូវមើលទៅផ្នែកខាងស្ដាំឲ្យបានគ្រប់គ្រាន់ រួចឲ្យសញ្ញា និងបើកយឺតៗថយក្រោយ",
+          "en": "Look to the right side of the vehicle clearly, give signals, and dirve backward slowly",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "712",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "នៅពេលបត់ឆ្វេង ឬ ស្ដាំ តើអ្នកបើកបរត្រូវឲ្យសញ្ញាបត់ចំងាយយ៉ាងតិចប៉ុន្មានម៉ែត្រពីផ្លូវបត់ ?",
+        "en": "Turning left or right, how far at least do you give a turn sign from the turning road? "
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "យ៉ាងតិច ៥ ម៉ែត្រ",
+          "en": "At least 5m",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "យ៉ាងតិច ១០ ម៉ែត្រ",
+          "en": "At least 10m",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "យ៉ាងតិច ២០ ម៉ែត្រ",
+          "en": "At least 20m",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1026",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "ប្រើអាំព្រីយ៉ា តើការដាក់ លេខឡើង និងការដាក់ លេខចុះ អ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?",
+        "en": "Motorcycle using clutch lever, how shall drivers do to change gear shift up or down?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ត្រូវចាប់ហ្វ្រាំង",
+          "en": "Press the brake",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ត្រូវចាប់អាំព្រីយ៉ា",
+          "en": "Press the clutch",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ត្រូវចាប់ហ្វ្រាំង និងចាប់អាំព្រីយ៉ា",
+          "en": "Press both the brake and the clutch",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic close-up photo of driver's hand on manual gear shift inside a vehicle, gear positions visible, dashboard in background, road visible through windshield, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1027",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "ការប្រើល្បឿន៣០គីឡូម៉ែត្រក្នុងមួយម៉ោងនៅលើផ្លូវស្ងួតរាបស្មើ របស់អ្នកមានសំបកកង់ល្អ និងមានហ្វ្រាំងល្អ តើចម្ងាយចាប់ហ្វ្រាំងប្រហែលប៉ុន្មាន ?",
+        "en": "Driving at the speed of 30km/h on the flat, dry road, your motorcycle has good condition of brakes and tires, how far is a braking distance?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ប្រហែល ១០ ម៉ែត្រ",
+          "en": "About 10m",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "ប្រហែល ១៥ ម៉ែត្រ",
+          "en": "About 15m",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ប្រហែល ២០ ម៉ែត្រ",
+          "en": "About 20m",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a driver applying brakes smoothly on wet Cambodian road, brake lights visible from behind, safe stopping distance maintained from vehicle ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1028",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "នៅក្នុងទីប្រជុំជន អ្នកប្រើល្បឿន២០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?",
+        "en": "Inside a built-up area, you drive your motorcycle at 20km/h. How far at least do you leave distance limit for motorcycles?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "យ៉ាងតិច ៣ ម៉ែត្រ",
+          "en": "At least 3m",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "យ៉ាងតិច ៥ ម៉ែត្រ",
+          "en": "At least 5m",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "យ៉ាងតិច ៦ ម៉ែត្រ",
+          "en": "At least 6m",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1029",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "មុននឹងបើកបរចូលផ្លូវកោង តើអ្នកត្រូវធ្វើដូចម្ដេច ?",
+        "en": "Before driving your motorcycle into a bend road, what shall you do?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ត្រូវរក្សាល្បឿននៅដដែល",
+          "en": "Keep the same speed",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ត្រូវបន្ថយល្បឿនឲ្យសមស្របនឹងសភាពផ្លូវកោង និងបើកមកកៀកខាងស្ដាំដៃបំផុត-",
+          "en": "Slow down properly to a bend road status and drive very closed to the right side.",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ត្រូវបង្កើនល្បឿនដើម្បីឱ្យឆាប់ផុតផ្លូវកោង",
+          "en": "Speed up to get through it quickly",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1030",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "តើការប្រើភ្លើងហ្វ្រាំង ជាការចាំបាច់ដែរឬទេ ?",
+        "en": "Is it necessary to use brake light?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ពុំចាំបាច់ឡើយ ព្រោះមានកញ្ចក់ចាំងពន្លឺហើយ",
+          "en": "No need because there are reflective glasses already",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ជាការចាំបាច់ ដើម្បីឲ្យអ្នកបើកបរខាងក្រោយដឹងពីការបន្ថយល្បឿន ឬឈប់",
+          "en": "Yes, it is. It is necessary to inform drivers behind about the slowing down or stopping",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "មានក៏បាន មិនមានក៏បាន",
+          "en": "Either has or not",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a driver applying brakes smoothly on wet Cambodian road, brake lights visible from behind, safe stopping distance maintained from vehicle ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1126",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "ការដាក់ លេខចុះ ហើយរបស់អ្នកកន្ដ្រាក់ ហើយកង់ក្រោយអាចគាំង តើបណ្ដាលមកពីអ្វី ?",
+        "en": "Engaging the gear shift down then your motorcycle twitches and the back wheel is stuck, what does it cause? "
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "មកពីការចាប់ហ្វ្រាំងខ្លាំងពេក",
+          "en": "Caused by apply the brake firmly",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "មកពីល្បឿនយឺតពេក",
+          "en": "Caused by too slow speed",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "មកពីមិនបានបន្ថយល្បឿនឱ្យបានគ្រប់គ្រាន់",
+          "en": "Caused by the failure of slowing down suffiently",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic close-up photo of driver's hand on manual gear shift inside a vehicle, gear positions visible, dashboard in background, road visible through windshield, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1128",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "នៅក្នុងទីប្រជុំជន អ្នកប្រើល្បឿន៣០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?",
+        "en": "Inside a built-up area, you drive your motorcycle at 30km/h. How far at least do you leave distance limit for motorcycles?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "យ៉ាងតិច ៥ ម៉ែត្រ",
+          "en": "At least 5m",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "យ៉ាងតិច ៧ ម៉ែត្រ",
+          "en": "At least 7m",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "យ៉ាងតិច ៩ ម៉ែត្រ",
+          "en": "At least 9m",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1129",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "តើការបើកបរ ត្រូវចាំបាច់ឱ្យសញ្ញាជាដំណឹង ដែរឬទេ ?",
+        "en": "Driving a motorcycle, is it necessary to give serviced signs?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ពុំចាំបាច់ឱ្យសញ្ញាជាដំណឹងឡើយ ឱ្យតែមានការប្រុងប្រយ័ត្ន គឺជាការគ្រប់គ្រាន់",
+          "en": "No, it is not. Just caution is enough",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ឱ្យសញ្ញាជាដំណឹងក៏បាន មិនឱ្យក៏បាន",
+          "en": "Either give or not",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ចាំបាច់ត្រូវឱ្យសញ្ញាជាដំណឹងដើម្បីឱ្យអ្នកបើកបរផ្សេងៗទៀតដឹងពីបំណងរបស់យើង",
+          "en": "Yes, it is. It is necessary to inform others to get to know your purposes",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1130",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "ដើម្បីជៀសវាងការរអិលនៅលើផ្លូវដែលមានខ្សាច់ ឬថ្មតូចៗ តើអ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?",
+        "en": "To avoid slippery on a sandy or stony road, how shall drivers do?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ត្រូវបន្ថែមល្បឿន",
+          "en": "Slow down",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ត្រូវចាប់ហ្វ្រាំងទាំង២",
+          "en": "Apply both brakes",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ត្រូវបន្ថយល្បឿន ទប់ចង្កូតឱ្យត្រង់ មិនត្រូវចាប់ហ្វ្រាំង ឬដាក់ លេខចុះ ឬធ្វើការបត់ដោយសង្ខុញឡើយ-",
+          "en": "Slow down, hold the steer firmly, not to apply the brakes or engage the gear down or turn sharply",
+          "is_correct": true
+        }
+      ],
+      "correct_answer": "A3",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1226",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "ដើម្បីបន្ថយល្បឿន ឬឈប់ឱ្យមានប្រសិទ្ធភាព តើអ្នកត្រូវប្រើហ្វ្រាំងអ្វី ?",
+        "en": "To slow down or stop effectively, what brake do you put on?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ត្រូវប្រើតែហ្វ្រាំងជើង(ហ្វ្រាំងក្រោយ)",
+          "en": "Put on the footbrake (back brake)",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ត្រូវប្រើហ្វ្រាំងជើង(ហ្វ្រាំងក្រោយ) និងហ្វ្រាំងដៃ(ហ្វ្រាំងមុខ)",
+          "en": "Put on the footbrake (back brake) and handbrake (front brake)",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ត្រូវប្រើតែហ្វ្រាំងដៃ(ហ្វ្រាំងមុខ)",
+          "en": "Put on only handbrake (front brake)",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a driver applying brakes smoothly on wet Cambodian road, brake lights visible from behind, safe stopping distance maintained from vehicle ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1227",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "ការប្រើល្បឿន៧០គីឡូម៉ែត្រក្នុងមួយម៉ោងនៅលើផ្លូវរាបស្មើ ប្រភេទប្រុស (លើសពី១២៥ ឡើងទៅ) របស់អ្នកមាន សំបកកង់ល្អ និងមានហ្វ្រាំងល្អ តើចម្ងាយចាប់ហ្វ្រាំងប្រហែលប៉ុន្មាន ?",
+        "en": "Driving at the speed of 70km/h on the smooth road, your man-styled motorcycles (more than 125cc and up) have good condition in tires and brakes. What is the braking distance?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ប្រហែល ៥០ ម៉ែត្រ",
+          "en": "About 50m",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "ប្រហែល ៦០ ម៉ែត្រ",
+          "en": "About 60m",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ប្រហែល ៧០ ម៉ែត្រ",
+          "en": "About 70m",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a driver applying brakes smoothly on wet Cambodian road, brake lights visible from behind, safe stopping distance maintained from vehicle ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1228",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "ការបើកបរនៅលើផ្ទៃផ្លូវដែលមានថ្មតូចៗ ឬកន្លែងដែលមានខ្សាច់ តើអាចធ្វើឱ្យកង់អ្នករអិល ដែរឬទេ ?",
+        "en": "Driving on a small stony road or sandy area, can it make your motorcycle slippery?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ពុំរអិលទេនៅពេលបង្កើនល្បឿន",
+          "en": "No, when you speed up",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "អាចធ្វើឱ្យកង់រអិលនៅពេលបង្កើនល្បឿន ឬកាច់ចង្កូតខ្លាំង",
+          "en": "Yes, it can when you speed up and steer firmly",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "រអិលនៅពេលដឹកទំនិញហួសកំណត់",
+          "en": "It is slippery when you overload.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1229",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "នៅក្រៅទីប្រជុំជន អ្នកបើកបរល្បឿន៤០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវថែរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ?",
+        "en": "Outside a built-up area, you are driving at the speed of 40km/h. How far, in meter, do you leave a distance limit?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "យ៉ាងតិច២៤ម៉ែត្រ",
+          "en": "At least 24m",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "យ៉ាងតិច១៨ម៉ែត្រ",
+          "en": "At least 18m",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "យ៉ាងតិច១២ម៉ែត្រ",
+          "en": "At least 12",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1230",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "នៅក្រៅទីប្រជុំជន អ្នកបើកបរល្បឿន៦០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវថែរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ?",
+        "en": "Outside a built-up area, you are driving at the speed of 60km/h. How far, in meter, do you leave a distance limit?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "យ៉ាងតិច២៦ម៉ែត្រ",
+          "en": "At least 26m",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "យ៉ាងតិច៣៦ម៉ែត្រ",
+          "en": "At least 36m",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "យ៉ាងតិច៤៦ម៉ែត្រ",
+          "en": "At least 46m",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1326",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "ការប្រើល្បឿន៥០គីឡូម៉ែត្រក្នុងមួយម៉ោងនៅលើផ្លូវរាបស្មើ របស់អ្នកមានសំបកកង់ល្អ និងមានហ្វ្រាំងល្អ តើចម្ងាយ ឈប់ប្រហែលប៉ុន្មាន ?",
+        "en": "Driving at the speed of 50km/h on a smooth, your motorcycle has brakes and tires in good condition, what is a stopping distance, probably?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ប្រហែល ២៥ ម៉ែត្រ",
+          "en": "About 25m",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "ប្រហែល ៣៥ ម៉ែត្រ",
+          "en": "About 35m",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ប្រហែល ៤៥ ម៉ែត្រ",
+          "en": "About 45m",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a driver applying brakes smoothly on wet Cambodian road, brake lights visible from behind, safe stopping distance maintained from vehicle ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1327",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "នៅក្រៅទីប្រជុំជន អ្នកប្រើល្បឿន៥០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?",
+        "en": "Outside a built-up area, you are driving at the speed of 50km/h. How far at least, in meter, do you leave a distance limit?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "យ៉ាងតិច ២៥ ម៉ែត្រ",
+          "en": "At least 25m",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "យ៉ាងតិច ៣០ ម៉ែត្រ",
+          "en": "At least 30m",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "យ៉ាងតិច ៣៥ ម៉ែត្រ",
+          "en": "At least 35m",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1328",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "តើការបើកបរ ត្រូវមើលទៅមុខយ៉ាងដូចម្ដេច ?",
+        "en": "Driving a motorcycle, how do you look to the front?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "មើលទៅមុខឲ្យបានឆ្ងាយដើម្បីដឹងពីស្ថានភាពផ្លូវកោងឡើងចុះទួលនិងមើលភ្លើងសញ្ញារបស់យានខាងមុខ",
+          "en": "Look ahead in far distance to know the situation of bending road, ascent, descent, and look at the light signs of drivers in the front.",
+          "is_correct": true
+        },
+        {
+          "id": "A2",
+          "km": "ត្រូវមើលតែចរាចរណ៍នៅជិតៗខាងមុខ",
+          "en": "Look at only nearby traffic ahead",
+          "is_correct": false
+        },
+        {
+          "id": "A3",
+          "km": "ត្រូវមើលគំនូសសញ្ញាតាមបណ្ដោយទ្រូងផ្លូវ",
+          "en": "Look at markings along the road",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A1",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1329",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "ពេលបើកបរ ហើយកង់ក្រោយរអិលរេដោយសារការចាប់ហ្វ្រាំង តើអ្នកត្រូវធ្វើដូចម្ដេច ?",
+        "en": "Driving a motorcycle, the back wheel is slippery due to applying the brake, how shall you do?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "ត្រូវទប់ដៃចង្កូត និងបង្កើនល្បឿន",
+          "en": "Hold the steer firmly and speed up.",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "ត្រូវកាច់ដៃចង្កូតទៅរកទិសដែលរអិលរេនោះ",
+          "en": "Turn to the slippery direction",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ត្រូវចាប់ហ្វ្រាំងខ្លាំងបន្ថែមទៀត",
+          "en": "Apply the brake more firmly",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a driver applying brakes smoothly on wet Cambodian road, brake lights visible from behind, safe stopping distance maintained from vehicle ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    },
+    {
+      "question_id": "1330",
+      "category_id": "4",
+      "category_en": "Driving Skills",
+      "category_km": "ជំនាញបើកបរ",
+      "question": {
+        "km": "ពេលបើកបរ ហើយចង្កូតញាក់ តើបណ្ដាលមកពីអ្វី?",
+        "en": "Driving a motorcycle and the steer shakes, what does it cause?"
+      },
+      "answers": [
+        {
+          "id": "A1",
+          "km": "បើកបរលឿនពេក",
+          "en": "Drive too fast",
+          "is_correct": false
+        },
+        {
+          "id": "A2",
+          "km": "កង់បោរ ឬកាំរលុង បាដាងកង់រលុង កង់ធូរ ឬក៏ផ្ទុកខាងក្រោយធ្ងន់ពេក និងបាដាងចង្កូតមិនប្រក្រតី",
+          "en": "Buckled wheels, loose radius, loose ball bearing, flat, or loaded too heavy at the back and steering ball bearing is improperly.",
+          "is_correct": true
+        },
+        {
+          "id": "A3",
+          "km": "ដាក់ លេខមិនសមស្របទៅនឹងល្បឿន",
+          "en": "Engage the gear shift improperly.",
+          "is_correct": false
+        }
+      ],
+      "correct_answer": "A2",
+      "image_generation": {
+        "model": "flux-pro-1.1",
+        "aspect_ratio": "16:9",
+        "width": 1920,
+        "height": 1080,
+        "style": "photorealistic",
+        "quality": "ultra-high",
+        "prompt": "Realistic photo of a skilled driver demonstrating proper driving technique on Cambodian road, correct seating position, hands at 9-and-3 on steering wheel, focused expression, clear road ahead, ultra-realistic photography, Canon EOS R5, 24mm lens, f/2.8, golden hour lighting, cinematic depth of field, high detail, photojournalistic style, Cambodian road environment, Southeast Asian setting, tropical climate, daytime natural lighting",
+        "negative_prompt": "cartoon, illustration, anime, drawing, painting, blurry, low quality, watermark, text overlay, unrealistic, CGI, fake staged stock photo",
+        "seed": -1
+      }
+    }
+  ]
+}
