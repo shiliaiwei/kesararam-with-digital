@@ -26,21 +26,28 @@ export const db: ReturnType<typeof drizzle<typeof schema>> = new Proxy({} as any
   },
 });
 
-// sql — tagged template literal function
-// Must be a real callable function, not a Proxy, for tagged template syntax to work
-export function sql(
-  strings: TemplateStringsArray,
-  ...values: unknown[]
-): ReturnType<NeonQueryFunction<false, false>> {
-  init();
-  return _sql!(strings, ...values);
-}
-
-// Allow sql to be used as a namespace for sub-queries (sql`...` inside sql`...`)
-// by forwarding property access to the underlying neon sql function
-Object.setPrototypeOf(sql, new Proxy(Function.prototype, {
-  get(_, prop) {
+// sql — full proxy that behaves exactly like the neon sql function
+// Supports: sql`query`, sql`nested ${sql`sub`}`, and all neon sql properties
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const sql: NeonQueryFunction<false, false> = new Proxy(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function sqlProxy(...args: any[]) {
     init();
-    return (_sql as unknown as Record<string | symbol, unknown>)[prop];
-  },
-}));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return (_sql as any)(...args);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } as any,
+  {
+    get(_, prop) {
+      init();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return (_sql as any)[prop];
+    },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    apply(_, thisArg, args: any[]) {
+      init();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return (_sql as any).apply(thisArg, args);
+    },
+  }
+);
