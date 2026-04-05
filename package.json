@@ -11,10 +11,7 @@
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "db:migrate": "tsx scripts/migrate.ts",
-    "db:verify": "tsx scripts/verify-migration.ts",
-    "seed:categories": "tsx scripts/seed-categories.ts",
-    "seed:game-modes": "node scripts/seed-game-modes.mjs",
-    "seed:lola": "node scripts/seed-lola-questions.mjs"
+    "db:verify": "tsx scripts/verify-migration.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
