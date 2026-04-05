@@ -41,14 +41,17 @@ function AnimatedLogoText() {
   }, []);
 
   return (
-    <div className="font-black text-[10px] uppercase tracking-widest text-black leading-none flex flex-col">
+    <div className="font-black text-[10px] uppercase tracking-widest text-black leading-none flex flex-col w-[120px]">
       <span>KESARARAM.</span>
       <span>WITH.</span>
-      <span
-        key={index}
-        className="inline-block animate-in slide-in-from-right-4 fade-in duration-500 text-zinc-400 whitespace-nowrap"
-      >
-        {ANIMATED_WORDS[index]}
+      {/* Fixed width container — prevents layout shift when word changes */}
+      <span className="w-[120px] overflow-hidden">
+        <span
+          key={index}
+          className="inline-block animate-in slide-in-from-right-4 fade-in duration-500 text-zinc-400 whitespace-nowrap"
+        >
+          {ANIMATED_WORDS[index]}
+        </span>
       </span>
     </div>
   );
@@ -200,14 +203,14 @@ export function Navbar({ session }: NavbarProps) {
       <UpgradeModal open={upgradeOpen} onClose={() => setUpgradeOpen(false)} lang={lang} />
       <header className="sticky top-0 left-0 right-0 z-50 bg-white border-b-2 border-black">
         <nav className="flex items-center px-6 py-3 max-w-7xl mx-auto">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-4 flex-shrink-0 ml-2">
+          {/* Logo — fixed width so nav never shifts */}
+          <Link href="/" className="flex items-center gap-3 flex-shrink-0 ml-2 w-[180px]">
             <Image
               src="https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg"
               alt="KWD Logo"
-              width={48}
-              height={48}
-              className="object-contain"
+              width={40}
+              height={40}
+              className="object-contain flex-shrink-0"
               unoptimized
             />
             <AnimatedLogoText />
