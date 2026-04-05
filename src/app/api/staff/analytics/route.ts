@@ -1,100 +1,47 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { sql } from "@/lib/db";
 
-// GET /api/staff/analytics - Get staff performance metrics
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const session = await getSession();
-    if (!session?.id || session.role !== "staff") {
+    if (!session?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+    if (session.role !== "staff" && session.role !== "admin") {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
 
-    const staffId = session.id;
+    const userId = Number(session.id);
+    const isAdmin = session.role === "admin";
 
-    // Get total content count
-    const totalContentResult = await sql`
-      SELECT COUNT(*)::int as total_content FROM topics WHERE created_by = ${staffId}
-    `;
-    const totalContent = totalContentResult[0]?.total_content || 0;
-
-    // Get pending count
-    const pendingResult = await sql`
-      SELECT COUNT(*)::int as pending_approval FROM topics 
-      WHERE created_by = ${staffId} AND status = 'pending'
-    `;
-    const pendingApproval = pendingResult[0]?.pending_approval || 0;
-
-    // Get approved count
-    const approvedResult = await sql`
-      SELECT COUNT(*)::int as approved FROM topics 
-      WHERE created_by = ${staffId} AND status = 'approved'
-    `;
-    const approved = approvedResult[0]?.approved || 0;
-
-    // Get rejected count
-    const rejectedResult = await sql`
-      SELECT COUNT(*)::int as rejected FROM topics 
-      WHERE created_by = ${staffId} AND status = 'rejected'
-    `;
-    const rejected = rejectedResult[0]?.rejected || 0;
-
-    // Get this week's count
-    const oneWeekAgo = new Date();
-    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-
-    const thisWeekResult = await sql`
-      SELECT COUNT(*)::int as this_week FROM topics 
-      WHERE created_by = ${staffId} AND created_at >= ${oneWeekAgo.toISOString()}
-    `;
-    const thisWeek = thisWeekResult[0]?.this_week || 0;
-
-    // Calculate approval rate
-    const totalReviewed = Number(approved) + Number(rejected);
-    const approvalRate =
-      totalReviewed > 0
-        ? Math.round((Number(approved) / totalReviewed) * 100)
-        : 0;
-
-    // Get content by category
-    const contentByCategory = await sql`
-      SELECT 
-        category_id,
-        COUNT(*)::int as count
+    const rows = await sql`
+      SELECT
+        COUNT(*)::int                                                        AS total,
+        COUNT(*) FILTER (WHERE status = 'pending')::int                     AS pending,
+        COUNT(*) FILTER (WHERE status = 'approved')::int                    AS approved,
+        COUNT(*) FILTER (WHERE status = 'rejected')::int                    AS rejected,
+        COUNT(*) FILTER (WHERE created_at >= NOW() - INTERVAL '7 days')::int AS this_week
       FROM topics
-      WHERE created_by = ${staffId}
-      GROUP BY category_id
+      WHERE ${isAdmin ? sql`1=1` : sql`created_by = ${userId}`}
     `;
+
+    const r = rows[0] ?? { total: 0, pending: 0, approved: 0, rejected: 0, this_week: 0 };
+    const reviewed = (r.approved ?? 0) + (r.rejected ?? 0);
+    const approvalRate = reviewed > 0 ? Math.round(((r.approved ?? 0) / reviewed) * 100) : 0;
 
     return NextResponse.json({
       stats: {
-        totalContent: Number(totalContent),
-        pendingApproval: Number(pendingApproval),
-        approved: Number(approved),
-        rejected: Number(rejected),
-        thisWeek: Number(thisWeek),
+        totalContent:    r.total      ?? 0,
+        pendingApproval: r.pending    ?? 0,
+        approved:        r.approved   ?? 0,
+        rejected:        r.rejected   ?? 0,
+        thisWeek:        r.this_week  ?? 0,
         approvalRate,
       },
-      recentActivity: [],
-      contentByCategory: contentByCategory || [],
     });
   } catch (error) {
-    console.error("Error fetching analytics:", error);
-    return NextResponse.json(
-      { 
-        error: "Failed to fetch analytics",
-        stats: {
-          totalContent: 0,
-          pendingApproval: 0,
-          approved: 0,
-          rejected: 0,
-          thisWeek: 0,
-          approvalRate: 0,
-        },
-        recentActivity: [],
-        contentByCategory: [],
-      },
-      { status: 500 }
-    );
+    console.error("Staff analytics error:", error);
+    return NextResponse.json({ error: "Failed to load analytics" }, { status: 500 });
   }
 }

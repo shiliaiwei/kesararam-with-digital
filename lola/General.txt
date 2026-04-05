@@ -1,0 +1,196 @@
+======================================================================
+CATEGORY 8: GENERAL | ចំណេះដឹងទូទៅ
+Total Questions: 12   |   Questions with Picture: 0
+======================================================================
+
+Q1  [ID:814]
+  🇰🇭 តើអ្នកណាខ្លះដែលអាចឆ្លងមេរោគអេដស៍ ?
+  🇬🇧 Who can be infected HIV?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 មន្ដ្រីរាជការ នគរបាល យោធា
+       | 🇬🇧 Officers, Police, soldiers
+  ✅ A2 | 🇰🇭 មនុស្សគ្រប់រូប
+       | 🇬🇧 Everyone
+     A3 | 🇰🇭 ស្ដ្រីរកស៊ីផ្លូវភេទ
+       | 🇬🇧 Protitutes
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q2  [ID:815]
+  🇰🇭 តើមេរោគអេដស៍ ឆ្លងតាមរបៀបណា ?
+  🇬🇧 How can HIV infect?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 តាមមូសខាំ ឬសត្វល្អិតខាំ ការប្រើប្រាស់បង្គន់ បន្ទប់ទឹករួមគ្នា
+       | 🇬🇧 By mosquito or insect, using a toilet and bathroom together.
+     A2 | 🇰🇭 តាមការថើបគ្នា ចាប់ដៃគ្នា ហូបបាយរួមគ្នា
+       | 🇬🇧 By kissing, shaking hands, and having meal together.
+  ✅ A3 | 🇰🇭 តាមការរួមភេទ, ប្រើម្ជុលរួមគ្នា, ការបញ្ចូលឈាមដែលមានមេរោគ, ពីម្ដាយទៅកូន
+       | 🇬🇧 Through sex, shared needles, contaminated blood transfusions, and from mother to child
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q3  [ID:816]
+  🇰🇭 រហូតមកដល់បច្ចុប្បន្ននេះ តើមានថ្នាំសំរាប់ព្យាបាលមេរោគអេដស៍/ជម្ងឺអេដស៍ អោយជាសះស្បើយដែរ ឬទេ ?
+  🇬🇧 Up to now, is there a medicine that can cure the HIV/AIDS?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 មាន
+       | 🇬🇧 Yes, there is.
+  ✅ A2 | 🇰🇭 មិនមាន
+       | 🇬🇧 No, there isn’t.
+     A3 | 🇰🇭 ថ្នាំបុរាណអាចព្យាបាលបាន
+       | 🇬🇧 Traditional medicine can cure the disease.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q4  [ID:817]
+  🇰🇭 តើយើងអាចដឹងថា នរណាម្នាក់មានផ្ទុកមេរោគអេដស៍ ដោយវិធីណា ?
+  🇬🇧 How can you realize that someone have HIV?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 តាមការពិនិត្យមើលប្រដាប់បន្ដពូជ
+       | 🇬🇧 By examinating of the reproductive organ.
+     A2 | 🇰🇭 តាមការពិនិត្យមើលរូបរាងខាងក្រៅ (ស្គមស្គាំង ដំបៅពេញខ្លួន)
+       | 🇬🇧 By examinating the outlook (thin and sores cover all the body)
+  ✅ A3 | 🇰🇭 តាមការពិនិត្យឈាមរកមេរោគអេដស៍
+       | 🇬🇧 By testing the blood.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q5  [ID:818]
+  🇰🇭 តើវិធានការណាមួយ ដែលអាចបង្ការខ្លួនអ្នកមិនឲ្យឆ្លងមេរោគអេដស៍ និងជំងឺកាមរោគ ?
+  🇬🇧 Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 រួមភេទជាមួយអ្នកដែលមើលទៅឃើញថាមានសុខភាពល្អ
+       | 🇬🇧 Have sex with someone looked healthy.
+  ✅ A2 | 🇰🇭 រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេល
+       | 🇬🇧 Have sex with condom properly and all time
+     A3 | 🇰🇭 រួមភេទជាមួយដៃគូច្រើន
+       | 🇬🇧 Have sex with many partners.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q6  [ID:819]
+  🇰🇭 តើជម្ងឺណាមួយ ដែលជួយជម្រុញដល់ការចម្លងមេរោគអេដស៍ ?
+  🇬🇧 What disease that can push to infect HIV?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ជម្ងឺកាមរោគ
+       | 🇬🇧 Sexually transmitted disease
+     A2 | 🇰🇭 ជម្ងឺរលាកក្រពះ
+       | 🇬🇧 Gastrointestinal disease
+     A3 | 🇰🇭 ជម្ងឺទឹកនោមផ្អែម
+       | 🇬🇧 diabetes
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q7  [ID:820]
+  🇰🇭 តើអ្នកផ្ទុកមេរោគអេដស៍ ត្រូវបានអនុញ្ញាតឲ្យប្រឡងយក បណ្ណបើកបរដែរឬទេ?
+  🇬🇧 Is a person with HIV allowed to take a test for driver license?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ត្រូវបានអនុញ្ញាត
+       | 🇬🇧 Yes
+     A2 | 🇰🇭 មិនត្រូវបានអនុញ្ញាត
+       | 🇬🇧 No
+     A3 | 🇰🇭 រង់ចាំជាសះស្បើយសិន
+       | 🇬🇧 Wait until the disease is recovered.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q8  [ID:821]
+  🇰🇭 នៅពេលដឹងថា អ្នកបើកបរ មានផ្ទុកមេរោគអេដស៍ តើអ្នកហ៊ានជិះរថយន្តនោះដែរឬទេ ?
+  🇬🇧 Realizing the driver with HIV, dare you ride on that car?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ហ៊ានជិះ
+       | 🇬🇧 Dare
+     A2 | 🇰🇭 មិនហ៊ានជិះ
+       | 🇬🇧 Not dare
+     A3 | 🇰🇭 ផ្ដល់ព័ត៌មានដល់អ្នកដទៃ
+       | 🇬🇧 Share the information to others.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q9  [ID:822]
+  🇰🇭 នៅពេលដឹងថា ខ្លួនអ្នកមានផ្ទុកមេរោគអេដស៍ តើអ្នកត្រូវប្រកាន់យកការប្រព្រឹត្ដណាមួយ ?
+  🇬🇧 Realizing that you have HIV, what practice shall you choose? 
+
+  Answers (3 choices):
+     A1 | 🇰🇭 រួមភេទដោយមិនបាច់ប្រើស្រោមអនាម័យ
+       | 🇬🇧 Have sex without using condom.
+  ✅ A2 | 🇰🇭 រួមភេទដោយប្រើស្រោមអនាម័យត្រឹមត្រូវ និងគ្រប់ពេល
+       | 🇬🇧 Have sex using condom properly and all time.
+     A3 | 🇰🇭 មិនខ្វល់ពីការថែទាំសុខភាព
+       | 🇬🇧 Do not care about looking after the health.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q10  [ID:823]
+  🇰🇭 តើការធ្វើតេស្ដឈាមរកមេរោគអេដស៍ ឈរលើគោលការណ៍អ្វី ?
+  🇬🇧 On what principle is blood testing for HIV conducted?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ដោយស្ម័គ្រចិត្ដ រក្សាការសំងាត់ មានការផ្ដល់ប្រឹក្សា
+       | 🇬🇧 Voluntary, confidential, and counseling
+     A2 | 🇰🇭 តាមតំរូវការពីកន្លែងធ្វើការ
+       | 🇬🇧 The requirement from the workplace.
+     A3 | 🇰🇭 តាមការបង្ខិតបង្ខំ
+       | 🇬🇧 Force to do so.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q11  [ID:824]
+  🇰🇭 បើអ្នកដឹងថា នរណាម្នាក់មានផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការ តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+  🇬🇧 Realizing someone with HIV at your workplace, what shall you do?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 មិនផ្ដល់ឱកាសសំរាប់ការអប់រំ និងការតំឡើងឋានៈ
+       | 🇬🇧 Do not provide opportunity for education and promoted
+     A2 | 🇰🇭 បញ្ឈប់ពីការងារ
+       | 🇬🇧 Fired
+  ✅ A3 | 🇰🇭 រក្សាអោយធ្វើការធម្មតា
+       | 🇬🇧 Let him or her work as usual.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q12  [ID:825]
+  🇰🇭 តើអ្នកត្រូវធ្វើដូចម្ដេចចំពោះអ្នករងគ្រោះដោយសារមេរោគអេដស៍?
+  🇬🇧 How shall you do toward a victim of HIV?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 កាត់ផ្ដាច់ទំនាក់ទំនង
+       | 🇬🇧 Cut out relation.
+  ✅ A2 | 🇰🇭 ផ្ដល់ការគាំទ្រ និងមិនរើសអើង
+       | 🇬🇧 Suport and not discrimination
+     A3 | 🇰🇭 រដ្ឋអ្នកដោះស្រាយ
+       | 🇬🇧 The state is in charge of this case.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------

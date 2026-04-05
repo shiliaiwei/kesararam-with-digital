@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Plus, FileText, Image, Gamepad2, BarChart3 } from "lucide-react";
+import { Plus, FileText, Image } from "lucide-react";
 import { StatsOverview } from "@/components/staff/dashboard/stats-overview";
 
 export const metadata: Metadata = {
@@ -30,20 +30,6 @@ export default function StaffDashboardPage() {
       href: "/staff/media",
       icon: Image,
       color: "bg-purple-400",
-    },
-    {
-      title: "Game Modes",
-      description: "Configure game mode settings",
-      href: "/staff/game-modes",
-      icon: Gamepad2,
-      color: "bg-yellow-400",
-    },
-    {
-      title: "Analytics",
-      description: "View your performance metrics",
-      href: "/staff/analytics",
-      icon: BarChart3,
-      color: "bg-pink-400",
     },
   ];
 

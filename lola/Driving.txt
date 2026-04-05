@@ -1,0 +1,804 @@
+======================================================================
+CATEGORY 4: DRIVING | ជំនាញបើកបរ
+Total Questions: 50   |   Questions with Picture: 0
+======================================================================
+
+Q1  [ID:101]
+  🇰🇭 តើអ្វីជាគ្រោះថ្នាក់ ដែលអ្នកត្រូវស្គាល់ក្នុងការបើកបរ ?
+  🇬🇧 What is an accident to be known in driving?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អាគារដែលស្ថិតនៅជិតផ្លូវ
+       | 🇬🇧 Buildings nearby roads.
+     A2 | 🇰🇭 ភ្នំដែលស្ថិតនៅជិតផ្លូវ
+       | 🇬🇧 Mountains nearby roads.
+  ✅ A3 | 🇰🇭 ផ្លូវ និង អ្នកប្រើប្រាស់ផ្លូវ
+       | 🇬🇧 Road and road users.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q2  [ID:102]
+  🇰🇭 នៅពេលដឹងថាកង់បែក ឬ ធ្លាយ តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+  🇬🇧 Knowing a wheel is flat, what shall you do?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវជាន់ហ្វ្រាំងខ្លាំងតាមការដែលអាចធ្វើទៅបាន
+       | 🇬🇧 Apply the brake as firmly as possible.
+     A2 | 🇰🇭 បន្ថយល្បឿនរកកន្លែងចត
+       | 🇬🇧 Slow down and seek for parking area.
+  ✅ A3 | 🇰🇭 ត្រូវបន្ថយល្បឿន ទប់ចង្កូតឲ្យជាប់ ឬនឹង និងកាច់ចង្កូតឲ្យត្រង់តាមគន្លងផ្លូវ
+       | 🇬🇧 Slow down, firmly hold the steering wheel or/and steer follow the lane.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q3  [ID:103]
+  🇰🇭 មូលហេតុអ្វីខ្លះដែលធ្វើឲ្យរថយន្តរអិលរេ ?
+  🇬🇧 What is the reason making the vehicles swerve off?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 បន្ថយល្បឿនខ្លាំងពេក
+       | 🇬🇧 Too much slow down.
+  ✅ A2 | 🇰🇭 ជាន់ហ្វ្រាំងខ្លាំង កាច់ចង្កូតខ្លាំង បង្កើនល្បឿនខ្លាំង ឬបើកបរលឿនពេក
+       | 🇬🇧 Pun on the brake firmly, steer strongly, more speed up, or drive very fast.
+     A3 | 🇰🇭 ផ្លូវកោងខ្លាំងពេក
+       | 🇬🇧 Very sharp bend.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q4  [ID:104]
+  🇰🇭 នៅពេលរថយន្តអ្នករអិលរេនៅលើផ្លូវស្ងួត តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+  🇬🇧 When your vehicle is swerving off on a dry road, what shall you do?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 បន្ថយល្បឿន និង ជាន់ហ្វ្រាំងខ្លាំង
+       | 🇬🇧 Slow down and apply the brake firmly.
+  ✅ A2 | 🇰🇭 បន្ថយល្បឿន និងមិនត្រូវជាន់ហ្វ្រាំងទេ
+       | 🇬🇧 Slow down and no need to apply the brake.
+     A3 | 🇰🇭 បន្ថែមល្បឿន និង មិនត្រូវជាន់ហ្វ្រាំងទេ
+       | 🇬🇧 Speed up and no need to apply the brake.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q5  [ID:105]
+  🇰🇭 នៅពេលហ្វ្រាំងខូច តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+  🇬🇧 What shall you do when the brake is broken?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ដាក់ លេខចុះតាមលំដាប់និងចាប់ហ្វ្រាំងដៃថ្នមៗរកកន្លែងចត
+       | 🇬🇧 Engage the gear down orderly, apply hand brake gentlely, and seek for parking area.
+     A2 | 🇰🇭 បន្ថែម លេខឡើងរកកន្លែងចត
+       | 🇬🇧 Engage up orderly, and seek for parking area.
+     A3 | 🇰🇭 មិនបាច់ធ្វើអ្វីទាំងអស់ទុកឱ្យឈប់តាមសំរួល
+       | 🇬🇧 Do nothing and wait until it stops by itself.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q6  [ID:106]
+  🇰🇭 នៅពេលយប់ ក្នុងពេលជួបយានយន្តមកពីទិសផ្ទុយ តើអ្នកត្រូវទំលាក់ភ្លើងហ្វាមកកូតវិញ ក្នុងចំងាយប៉ុន្មាន ?
+  🇬🇧 At night, seeing a vehicle from the opposite traffic direction, at what distance from it shall you cast to coat light from headlight?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ប្រហែល ៣៥ ម៉ែត្រ
+       | 🇬🇧 About 35m
+     A2 | 🇰🇭 ប្រហែល ៧៥ ម៉ែត្រ
+       | 🇬🇧 About 75m
+  ✅ A3 | 🇰🇭 ប្រហែល ១៦០ ម៉ែត្រ
+       | 🇬🇧 About 160m
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q7  [ID:107]
+  🇰🇭 នៅក្នុងការបើកបរកាត់ភ្លៀងខ្លាំង ឬ កាត់ទឹកជ្រៅ តើធ្វើដូចម្ដេច ដើម្បីឲ្យហ្វ្រាំងឆាប់ស្ងួត ?
+  🇬🇧 Driving in heavy rain or in deep water, how shall you do to get the brake dried up quickly?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវទុកហាលក្ដៅ
+       | 🇬🇧 Park the vehicle in the sun.
+     A2 | 🇰🇭 ត្រូវបង្កើនល្បឿន
+       | 🇬🇧 Speed up.
+  ✅ A3 | 🇰🇭 ត្រូវជាន់ហ្វ្រាំងសំងួតវា
+       | 🇬🇧 Apply the brake to dry the brakes up.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q8  [ID:108]
+  🇰🇭 ក្នុងការបើកបរនៅពេលអាកាសធាតុក្ដៅខ្លាំង តើកង់រថយន្តមានសភាពដូចម្ដេច ?
+  🇬🇧 Driving in an extremely hot weather, what are the tires of vehicle?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 កង់ធូរ
+       | 🇬🇧 The tires are a bit flat.
+  ✅ A2 | 🇰🇭 កង់តឹង
+       | 🇬🇧 The tires are tight.
+     A3 | 🇰🇭 កង់ធម្មតា
+       | 🇬🇧 They are normal.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q9  [ID:109]
+  🇰🇭 ក្នុងការជាន់ហ្វ្រាំងចុះទួលដូចគ្នា មួយជាន់ដក ៗ មួយទៀតជាន់ជាប់ តើមួយណាធ្វើឲ្យកំដៅហ្វ្រាំងកើនក្ដៅជាង ?
+  🇬🇧 Applying the brake while moving down a descent steep, one apply and release alternatively, another one apply firmly without releasing, which one make the brake hotter?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ការជាន់ដក ៗ
+       | 🇬🇧 Applying and releasing alternatively.
+     A2 | 🇰🇭 ការជាន់ជាប់
+       | 🇬🇧 Applying firmly without releasing.
+     A3 | 🇰🇭 កើនកំដៅដូចគ្នា
+       | 🇬🇧 The same.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q10  [ID:110]
+  🇰🇭 នៅពេលបើកចូលផ្លូវកោង តើកំលាំងអ្វីដែលអាចធ្វើឲ្យរថយន្តក្រឡាប់ ?
+  🇬🇧 When driving into a bend road, what forces can make your vehicle turn over?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 កំលាំងម៉ាស៊ីន
+       | 🇬🇧 Engine’s energy.
+  ✅ A2 | 🇰🇭 កំលាំងចាកផ្ចិត
+       | 🇬🇧 Centrifugal force
+     A3 | 🇰🇭 កំលាំងមនុស្ស
+       | 🇬🇧 Human’s energy
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q11  [ID:148]
+  🇰🇭 តើចំងាយអ្វីខ្លះ ដែលអ្នកយកមកគណនាចំងាយឈប់របស់រថយន្ត ?
+  🇬🇧 What distances do you take into calculating the stopping distance of vehicle?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ចំងាយប្រតិកម្ម និងចំងាយចាប់ហ្វ្រាំង
+       | 🇬🇧 Reaction distance and braking distance.
+     A2 | 🇰🇭 ចំងាយធ្វើដំណើរ និងចំងាយប្រតិកម្ម
+       | 🇬🇧 Traveling distance and reaction distance.
+     A3 | 🇰🇭 ចំងាយធ្វើដំណើរ និងចំងាយចាប់ហ្វ្រាំង
+       | 🇬🇧 Traveling distance and braking distance.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q12  [ID:190]
+  🇰🇭 ដើម្បីសំរួលការដាក់ លេខឡើង ឬចុះតើត្រូវផ្ដាច់អំព្រីយ៉ាប៉ុន្មានដង ?
+  🇬🇧 To adjust the gear up and down with ease, how many times shall you disconnect clutch?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ១ដង
+       | 🇬🇧 one time
+  ✅ A2 | 🇰🇭 ២ដង
+       | 🇬🇧 two times
+     A3 | 🇰🇭 ៣ដង
+       | 🇬🇧 three times
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q13  [ID:191]
+  🇰🇭 តើមូលហេតុសំខាន់ៗអ្វីខ្លះ ដែលធ្វើឲ្យហ្វ្រាំងឆាប់កើនកំដៅនៅពេលជាន់ហ្វ្រាំង ?
+  🇬🇧 What are the main reasons that make the brake get hotter quickly when braking?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 បើកបរពេលអាកាសធាតុក្ដៅខ្លាំង
+       | 🇬🇧 Driving in an extremly hot weather.
+  ✅ A2 | 🇰🇭 ផ្ទុកទំនិញហួសកំរិតកំណត់ និងបើកបរក្នុងល្បឿនលឿន
+       | 🇬🇧 Over load and drive extremly fast.
+     A3 | 🇰🇭 កាច់ចង្កូតខ្លាំងក្នុងពេលបើកបរ
+       | 🇬🇧 Steer firmly while driving.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q14  [ID:192]
+  🇰🇭 បើទម្ងន់ និងល្បឿនកើនពីរដងរួមគ្នា តើចម្ងាយឈប់កើនឡើងប៉ុន្មានដង ?
+  🇬🇧 If the speed and weight increase twice together, how many times does the stopping distance increase, accordingly? 
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ៤ដង
+       | 🇬🇧 4 times
+     A2 | 🇰🇭 ៦ដង
+       | 🇬🇧 6 times
+  ✅ A3 | 🇰🇭 ៨ដង
+       | 🇬🇧 8 times
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q15  [ID:193]
+  🇰🇭 ដើម្បីមើលទៅមុខឲ្យបានឆ្ងាយគ្រប់គ្រាន់ តើអ្នកត្រូវការមើលក្នុងចម្ងាយប៉ុន្មានវិនាទី ?
+  🇬🇧 To look ahead for long distance enough, how many seconds shall you need to look to it?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ៥ ទៅ ៨វិនាទី
+       | 🇬🇧 5 to 8 seconds
+     A2 | 🇰🇭 ៨ ទៅ ១១វិនាទី
+       | 🇬🇧 8 to 11 seconds
+  ✅ A3 | 🇰🇭 ១២ ទៅ ១៥វិនាទី
+       | 🇬🇧 12 to 15 seconds
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q16  [ID:194]
+  🇰🇭 តើអ្នកបើកបររថយន្តធុនធ្ងន់លើសពី ៣,៥តោន ឬប្រវែងបណ្ដោយលើសពី ៧ម៉ែត្រ បើកបរបន្តកន្ទុយគ្នា ក្នុងល្បឿនដូចគ្នា ត្រូវទុកចន្លោះសុវត្ថិភាពប៉ុន្មានម៉ែត្រ?
+  🇬🇧 What distance limit for large-sized trucks, with more than 3.5T or more than 7m in length driving in queue one after another and at the same speed, shall drivers leave?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យ៉ាងតិច ៤០ម៉ែត្រ
+       | 🇬🇧 At least 40m
+  ✅ A2 | 🇰🇭 យ៉ាងតិច ៥០ម៉ែត្រ
+       | 🇬🇧 At least 50m
+     A3 | 🇰🇭 យ៉ាងតិច ៦០ម៉ែត្រ
+       | 🇬🇧 At least 60m
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q17  [ID:221]
+  🇰🇭 តើកំដៅនៅតំបួរហ្វ្រាំងកើនឡើងប៉ុន្មានអង្សា ទើបការជាន់ហ្វ្រាំងគ្មានប្រសិទ្ធិភាព ?
+  🇬🇧 What is the brake’s temperature taken as warning?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ២០០អង្សា
+       | 🇬🇧 200 celsius
+     A2 | 🇰🇭 ៣០០អង្សា
+       | 🇬🇧 300 celsius
+  ✅ A3 | 🇰🇭 ៤០០អង្សា
+       | 🇬🇧 400 celsius
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q18  [ID:222]
+  🇰🇭 បើទម្ងន់កើនឡើងពីរដង តើចម្ងាយឈប់កើនឡើងប៉ុន្មានដង ?
+  🇬🇧 If the weight increases twice, how many times does the stopping distance increase?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ២​ដង
+       | 🇬🇧 Two times
+     A2 | 🇰🇭 ៣ ដង
+       | 🇬🇧 three times
+     A3 | 🇰🇭 ៤ ដង
+       | 🇬🇧 Four times
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q19  [ID:223]
+  🇰🇭 បើល្បឿនកើនពីរដង តើចម្ងាយឈប់កើនឡើងប៉ុន្មានដង ?
+  🇬🇧 If the speed increases twice, how many times does the stopping distance increase?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ២ដង
+       | 🇬🇧 Two times
+     A2 | 🇰🇭 ៣ដង
+       | 🇬🇧 Three times
+  ✅ A3 | 🇰🇭 ៤ ដង
+       | 🇬🇧 Four times
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q20  [ID:224]
+  🇰🇭 ក្នុងការបើកបរនៅលើផ្លូវសើម តើអ្នកបើកបរត្រូវបន្ថយល្បឿនប៉ុន្មានភាគរយលើផ្លូវស្ងួត ?
+  🇬🇧 Driving on the wet road, how many percentages do drivers decrease​ speed compared to dry road?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ១/២ លើផ្លូវ ស្ងួត
+       | 🇬🇧 1/2 on the dry road
+  ✅ A2 | 🇰🇭 ១/៣ លើផ្លូវ ស្ងួត
+       | 🇬🇧 1/3 on the dry road
+     A3 | 🇰🇭 ១/៤ លើផ្លូវ ស្ងួត
+       | 🇬🇧 1/4 on the dry road
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q21  [ID:225]
+  🇰🇭 តើមូលហេតុអ្វីខ្លះដែលធ្វើឲ្យកង់រអិលរេនៅពេលបើកបរលើផ្លូវស្ងួត ?
+  🇬🇧 What are reasons that make the wheels swerve off when driving on the dry road?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 បន្ថយល្បឿនមិនបានត្រឹមត្រូវ
+       | 🇬🇧 Slow down improperly
+     A2 | 🇰🇭 អបអំព្រីយ៉ា មិនបានត្រឹមត្រូវ
+       | 🇬🇧 Use the clutch improperly.
+  ✅ A3 | 🇰🇭 បង្កើនល្បឿន-បើកបរលឿន-ចាប់ហ្វ្រាំងខ្លាំង-កាច់ចង្កូតខ្លាំង
+       | 🇬🇧 Speed up, drive very fast, apply the brake firmly, and steer firmly.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q22  [ID:346]
+  🇰🇭 តើមូលហេតុអ្វី ដែលធ្វើឱ្យកង់ក្រោយរអិល ?
+  🇬🇧 What are reasons that make the back wheels slippery?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 បើកបរលឿនពេកលើផ្លូវមិនរាបស្មើ
+       | 🇬🇧 Drive too fast on a road is not flat
+  ✅ A2 | 🇰🇭 បង្កើនល្បឿនខ្លាំងពេក
+       | 🇬🇧 Speed up a lot
+     A3 | 🇰🇭 កាច់ចង្កូតរេចុះ ឡើង
+       | 🇬🇧 Steer swervedly
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q23  [ID:347]
+  🇰🇭 តើមូលហេតុអ្វី ដែលធ្វើឲ្យកង់មុខរអិល​រេ ?
+  🇬🇧 What are reasons that make front wheels slippery?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 បើកបរលឿនពេកលើផ្លូវមិនរាបស្មើ
+       | 🇬🇧 Drive too fast on a road is not flat
+     A2 | 🇰🇭 បង្កើនល្បឿនខ្លាំងពេក
+       | 🇬🇧 Speed up too fast
+     A3 | 🇰🇭 កាច់ចង្កូតរេចុះ ឡើង
+       | 🇬🇧 Turning the steering wheel too fast
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q24  [ID:392]
+  🇰🇭 ក្នុងការបើកបរនៅក្រៅទីប្រជុំជន តើអ្នកត្រូវទុកចន្លោះសុវត្ថិភាពប៉ុន្មានវិនាទី ?
+  🇬🇧 Driving outside built-up area, how far of distance limit do you leave?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យ៉ាងតិច ១នាទី
+       | 🇬🇧 At least 1 minute
+  ✅ A2 | 🇰🇭 យ៉ាងតិច ២នាទី
+       | 🇬🇧 At least 2 minute
+     A3 | 🇰🇭 យ៉ាងតិច ៣នាទី
+       | 🇬🇧 At least 3 minute
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q25  [ID:393]
+  🇰🇭 តើចំងាយឈប់របស់រថយន្តធុនតូចក្នុងល្បឿន ៩០គ.ម ក្នុងមួយម៉ោង មានប៉ុន្មានម៉ែត្រ ?
+  🇬🇧 How many meters of a stopping distance for small-sized vehicles at the speed of 90km/h?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ប្រហែល ២៧ម៉ែត្រ
+       | 🇬🇧 About 27m
+     A2 | 🇰🇭 ប្រហែល ៥០ម៉ែត្រ
+       | 🇬🇧 About 50m
+  ✅ A3 | 🇰🇭 ប្រហែល ៨១ម៉ែត្រ
+       | 🇬🇧 About 81m
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q26  [ID:483]
+  🇰🇭 ក្នុងការបើកបរនៅក្រៅទីប្រជុំជន តើអ្នកត្រូវទុកចន្លោះសុវត្ថិភាពប៉ុន្មានវិនាទី ?
+  🇬🇧 While driving, wow many minutes of the safety distance?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យ៉ាងតិច ១ វិនាទី
+       | 🇬🇧 At least 1 second
+  ✅ A2 | 🇰🇭 យ៉ាងតិច ២ វិនាទី
+       | 🇬🇧 At least 2 second
+     A3 | 🇰🇭 យ៉ាងតិច ៣ វិនាទី
+       | 🇬🇧 At least 3 second
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q27  [ID:484]
+  🇰🇭 នៅលើផ្លូវសើម តើចំងាយចាប់ហ្វ្រាំងកើនឡើងប៉ុន្មានដង ?
+  🇬🇧 On a wet road, how many times does braking distance increase? 
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ២ ដង
+       | 🇬🇧 2 times
+     A2 | 🇰🇭 ៣ ដង
+       | 🇬🇧 3 times
+     A3 | 🇰🇭 ៤ ដង
+       | 🇬🇧 4 times
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q28  [ID:485]
+  🇰🇭 មុនបើកបរចេញដំណើរ តើអ្នកត្រូវឱ្យសញ្ញាជាដំណឹងប៉ុន្មានវិនាទី ?
+  🇬🇧 Before departure, how many seconds shall you give information sign?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យ៉ាងតិច ២ វិនាទី
+       | 🇬🇧 At least 2 seconds
+     A2 | 🇰🇭 យ៉ាងតិច ៣ វិនាទី
+       | 🇬🇧 At least 3 seconds
+  ✅ A3 | 🇰🇭 យ៉ាងតិច ៥ វិនាទី
+       | 🇬🇧 At least 5 seconds.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q29  [ID:665]
+  🇰🇭 តើអ្នកបើកបរដែលមានសុខភាពធម្មតា ត្រូវការរយៈពេលធ្វើប្រតិកម្មប៉ុន្មានវិនាទី ?
+  🇬🇧 How long do healthy drivers need
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ១ វិនាទី
+       | 🇬🇧 1 minute
+     A2 | 🇰🇭 ២ វិនាទី
+       | 🇬🇧 2 minute
+     A3 | 🇰🇭 ៣ វិនាទី
+       | 🇬🇧 3 minute
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q30  [ID:666]
+  🇰🇭 មុននិងចូលក្នុងរថយន្ត ដើម្បីចាប់ផ្ដើមបើកបរថយក្រោយ តើអ្នកត្រូវធ្វើអ្វីខ្លះ ?
+  🇬🇧 Before getting into the vehicle in order to drive backward, what shall drivers do?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវមើលទៅខាងមុខឲ្យបានចំងាយគ្រប់គ្រាន់ រួចឲ្យសញ្ញា និងបើកយឺតៗថយក្រោយ
+       | 🇬🇧 Look ahead with sufficient distance, give signals, and drive backward slowly
+  ✅ A2 | 🇰🇭 ត្រូវមើលទៅខាងក្រោយឲ្យបានច្បាស់សិន រួចឲ្យសញ្ញា និងបើកយឺតៗថយក្រោយ
+       | 🇬🇧 Look to the back of the vehicle clearly, give signals, and drive backward slowly
+     A3 | 🇰🇭 ត្រូវមើលទៅផ្នែកខាងស្ដាំឲ្យបានគ្រប់គ្រាន់ រួចឲ្យសញ្ញា និងបើកយឺតៗថយក្រោយ
+       | 🇬🇧 Look to the right side of the vehicle clearly, give signals, and dirve backward slowly
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q31  [ID:712]
+  🇰🇭 នៅពេលបត់ឆ្វេង ឬ ស្ដាំ តើអ្នកបើកបរត្រូវឲ្យសញ្ញាបត់ចំងាយយ៉ាងតិចប៉ុន្មានម៉ែត្រពីផ្លូវបត់ ?
+  🇬🇧 Turning left or right, how far at least do you give a turn sign from the turning road? 
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យ៉ាងតិច ៥ ម៉ែត្រ
+       | 🇬🇧 At least 5m
+     A2 | 🇰🇭 យ៉ាងតិច ១០ ម៉ែត្រ
+       | 🇬🇧 At least 10m
+  ✅ A3 | 🇰🇭 យ៉ាងតិច ២០ ម៉ែត្រ
+       | 🇬🇧 At least 20m
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q32  [ID:1026]
+  🇰🇭 ប្រើអាំព្រីយ៉ា តើការដាក់ លេខឡើង និងការដាក់ លេខចុះ អ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?
+  🇬🇧 Motorcycle using clutch lever, how shall drivers do to change gear shift up or down?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវចាប់ហ្វ្រាំង
+       | 🇬🇧 Press the brake
+  ✅ A2 | 🇰🇭 ត្រូវចាប់អាំព្រីយ៉ា
+       | 🇬🇧 Press the clutch
+     A3 | 🇰🇭 ត្រូវចាប់ហ្វ្រាំង និងចាប់អាំព្រីយ៉ា
+       | 🇬🇧 Press both the brake and the clutch
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q33  [ID:1027]
+  🇰🇭 ការប្រើល្បឿន៣០គីឡូម៉ែត្រក្នុងមួយម៉ោងនៅលើផ្លូវស្ងួតរាបស្មើ របស់អ្នកមានសំបកកង់ល្អ និងមានហ្វ្រាំងល្អ តើចម្ងាយចាប់ហ្វ្រាំងប្រហែលប៉ុន្មាន ?
+  🇬🇧 Driving at the speed of 30km/h on the flat, dry road, your motorcycle has good condition of brakes and tires, how far is a braking distance?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ប្រហែល ១០ ម៉ែត្រ
+       | 🇬🇧 About 10m
+     A2 | 🇰🇭 ប្រហែល ១៥ ម៉ែត្រ
+       | 🇬🇧 About 15m
+     A3 | 🇰🇭 ប្រហែល ២០ ម៉ែត្រ
+       | 🇬🇧 About 20m
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q34  [ID:1028]
+  🇰🇭 នៅក្នុងទីប្រជុំជន អ្នកប្រើល្បឿន២០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?
+  🇬🇧 Inside a built-up area, you drive your motorcycle at 20km/h. How far at least do you leave distance limit for motorcycles?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យ៉ាងតិច ៣ ម៉ែត្រ
+       | 🇬🇧 At least 3m
+     A2 | 🇰🇭 យ៉ាងតិច ៥ ម៉ែត្រ
+       | 🇬🇧 At least 5m
+  ✅ A3 | 🇰🇭 យ៉ាងតិច ៦ ម៉ែត្រ
+       | 🇬🇧 At least 6m
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q35  [ID:1029]
+  🇰🇭 មុននឹងបើកបរចូលផ្លូវកោង តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+  🇬🇧 Before driving your motorcycle into a bend road, what shall you do?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវរក្សាល្បឿននៅដដែល
+       | 🇬🇧 Keep the same speed
+  ✅ A2 | 🇰🇭 ត្រូវបន្ថយល្បឿនឲ្យសមស្របនឹងសភាពផ្លូវកោង និងបើកមកកៀកខាងស្ដាំដៃបំផុត-
+       | 🇬🇧 Slow down properly to a bend road status and drive very closed to the right side.
+     A3 | 🇰🇭 ត្រូវបង្កើនល្បឿនដើម្បីឱ្យឆាប់ផុតផ្លូវកោង
+       | 🇬🇧 Speed up to get through it quickly
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q36  [ID:1030]
+  🇰🇭 តើការប្រើភ្លើងហ្វ្រាំង ជាការចាំបាច់ដែរឬទេ ?
+  🇬🇧 Is it necessary to use brake light?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ពុំចាំបាច់ឡើយ ព្រោះមានកញ្ចក់ចាំងពន្លឺហើយ
+       | 🇬🇧 No need because there are reflective glasses already
+  ✅ A2 | 🇰🇭 ជាការចាំបាច់ ដើម្បីឲ្យអ្នកបើកបរខាងក្រោយដឹងពីការបន្ថយល្បឿន ឬឈប់
+       | 🇬🇧 Yes, it is. It is necessary to inform drivers behind about the slowing down or stopping
+     A3 | 🇰🇭 មានក៏បាន មិនមានក៏បាន
+       | 🇬🇧 Either has or not
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q37  [ID:1126]
+  🇰🇭 ការដាក់ លេខចុះ ហើយរបស់អ្នកកន្ដ្រាក់ ហើយកង់ក្រោយអាចគាំង តើបណ្ដាលមកពីអ្វី ?
+  🇬🇧 Engaging the gear shift down then your motorcycle twitches and the back wheel is stuck, what does it cause? 
+
+  Answers (3 choices):
+     A1 | 🇰🇭 មកពីការចាប់ហ្វ្រាំងខ្លាំងពេក
+       | 🇬🇧 Caused by apply the brake firmly
+     A2 | 🇰🇭 មកពីល្បឿនយឺតពេក
+       | 🇬🇧 Caused by too slow speed
+  ✅ A3 | 🇰🇭 មកពីមិនបានបន្ថយល្បឿនឱ្យបានគ្រប់គ្រាន់
+       | 🇬🇧 Caused by the failure of slowing down suffiently
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q38  [ID:1128]
+  🇰🇭 នៅក្នុងទីប្រជុំជន អ្នកប្រើល្បឿន៣០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?
+  🇬🇧 Inside a built-up area, you drive your motorcycle at 30km/h. How far at least do you leave distance limit for motorcycles?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យ៉ាងតិច ៥ ម៉ែត្រ
+       | 🇬🇧 At least 5m
+     A2 | 🇰🇭 យ៉ាងតិច ៧ ម៉ែត្រ
+       | 🇬🇧 At least 7m
+  ✅ A3 | 🇰🇭 យ៉ាងតិច ៩ ម៉ែត្រ
+       | 🇬🇧 At least 9m
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q39  [ID:1129]
+  🇰🇭 តើការបើកបរ ត្រូវចាំបាច់ឱ្យសញ្ញាជាដំណឹង ដែរឬទេ ?
+  🇬🇧 Driving a motorcycle, is it necessary to give serviced signs?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ពុំចាំបាច់ឱ្យសញ្ញាជាដំណឹងឡើយ ឱ្យតែមានការប្រុងប្រយ័ត្ន គឺជាការគ្រប់គ្រាន់
+       | 🇬🇧 No, it is not. Just caution is enough
+     A2 | 🇰🇭 ឱ្យសញ្ញាជាដំណឹងក៏បាន មិនឱ្យក៏បាន
+       | 🇬🇧 Either give or not
+  ✅ A3 | 🇰🇭 ចាំបាច់ត្រូវឱ្យសញ្ញាជាដំណឹងដើម្បីឱ្យអ្នកបើកបរផ្សេងៗទៀតដឹងពីបំណងរបស់យើង
+       | 🇬🇧 Yes, it is. It is necessary to inform others to get to know your purposes
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q40  [ID:1130]
+  🇰🇭 ដើម្បីជៀសវាងការរអិលនៅលើផ្លូវដែលមានខ្សាច់ ឬថ្មតូចៗ តើអ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?
+  🇬🇧 To avoid slippery on a sandy or stony road, how shall drivers do?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវបន្ថែមល្បឿន
+       | 🇬🇧 Slow down
+     A2 | 🇰🇭 ត្រូវចាប់ហ្វ្រាំងទាំង២
+       | 🇬🇧 Apply both brakes
+  ✅ A3 | 🇰🇭 ត្រូវបន្ថយល្បឿន ទប់ចង្កូតឱ្យត្រង់ មិនត្រូវចាប់ហ្វ្រាំង ឬដាក់ លេខចុះ ឬធ្វើការបត់ដោយសង្ខុញឡើយ-
+       | 🇬🇧 Slow down, hold the steer firmly, not to apply the brakes or engage the gear down or turn sharply
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q41  [ID:1226]
+  🇰🇭 ដើម្បីបន្ថយល្បឿន ឬឈប់ឱ្យមានប្រសិទ្ធភាព តើអ្នកត្រូវប្រើហ្វ្រាំងអ្វី ?
+  🇬🇧 To slow down or stop effectively, what brake do you put on?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវប្រើតែហ្វ្រាំងជើង(ហ្វ្រាំងក្រោយ)
+       | 🇬🇧 Put on the footbrake (back brake)
+  ✅ A2 | 🇰🇭 ត្រូវប្រើហ្វ្រាំងជើង(ហ្វ្រាំងក្រោយ) និងហ្វ្រាំងដៃ(ហ្វ្រាំងមុខ)
+       | 🇬🇧 Put on the footbrake (back brake) and handbrake (front brake)
+     A3 | 🇰🇭 ត្រូវប្រើតែហ្វ្រាំងដៃ(ហ្វ្រាំងមុខ)
+       | 🇬🇧 Put on only handbrake (front brake)
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q42  [ID:1227]
+  🇰🇭 ការប្រើល្បឿន៧០គីឡូម៉ែត្រក្នុងមួយម៉ោងនៅលើផ្លូវរាបស្មើ ប្រភេទប្រុស (លើសពី១២៥ ឡើងទៅ) របស់អ្នកមាន សំបកកង់ល្អ និងមានហ្វ្រាំងល្អ តើចម្ងាយចាប់ហ្វ្រាំងប្រហែលប៉ុន្មាន ?
+  🇬🇧 Driving at the speed of 70km/h on the smooth road, your man-styled motorcycles (more than 125cc and up) have good condition in tires and brakes. What is the braking distance?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ប្រហែល ៥០ ម៉ែត្រ
+       | 🇬🇧 About 50m
+     A2 | 🇰🇭 ប្រហែល ៦០ ម៉ែត្រ
+       | 🇬🇧 About 60m
+     A3 | 🇰🇭 ប្រហែល ៧០ ម៉ែត្រ
+       | 🇬🇧 About 70m
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q43  [ID:1228]
+  🇰🇭 ការបើកបរនៅលើផ្ទៃផ្លូវដែលមានថ្មតូចៗ ឬកន្លែងដែលមានខ្សាច់ តើអាចធ្វើឱ្យកង់អ្នករអិល ដែរឬទេ ?
+  🇬🇧 Driving on a small stony road or sandy area, can it make your motorcycle slippery?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ពុំរអិលទេនៅពេលបង្កើនល្បឿន
+       | 🇬🇧 No, when you speed up
+  ✅ A2 | 🇰🇭 អាចធ្វើឱ្យកង់រអិលនៅពេលបង្កើនល្បឿន ឬកាច់ចង្កូតខ្លាំង
+       | 🇬🇧 Yes, it can when you speed up and steer firmly
+     A3 | 🇰🇭 រអិលនៅពេលដឹកទំនិញហួសកំណត់
+       | 🇬🇧 It is slippery when you overload.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q44  [ID:1229]
+  🇰🇭 នៅក្រៅទីប្រជុំជន អ្នកបើកបរល្បឿន៤០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវថែរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ?
+  🇬🇧 Outside a built-up area, you are driving at the speed of 40km/h. How far, in meter, do you leave a distance limit?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 យ៉ាងតិច២៤ម៉ែត្រ
+       | 🇬🇧 At least 24m
+     A2 | 🇰🇭 យ៉ាងតិច១៨ម៉ែត្រ
+       | 🇬🇧 At least 18m
+     A3 | 🇰🇭 យ៉ាងតិច១២ម៉ែត្រ
+       | 🇬🇧 At least 12
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q45  [ID:1230]
+  🇰🇭 នៅក្រៅទីប្រជុំជន អ្នកបើកបរល្បឿន៦០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវថែរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ?
+  🇬🇧 Outside a built-up area, you are driving at the speed of 60km/h. How far, in meter, do you leave a distance limit?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យ៉ាងតិច២៦ម៉ែត្រ
+       | 🇬🇧 At least 26m
+  ✅ A2 | 🇰🇭 យ៉ាងតិច៣៦ម៉ែត្រ
+       | 🇬🇧 At least 36m
+     A3 | 🇰🇭 យ៉ាងតិច៤៦ម៉ែត្រ
+       | 🇬🇧 At least 46m
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q46  [ID:1326]
+  🇰🇭 ការប្រើល្បឿន៥០គីឡូម៉ែត្រក្នុងមួយម៉ោងនៅលើផ្លូវរាបស្មើ របស់អ្នកមានសំបកកង់ល្អ និងមានហ្វ្រាំងល្អ តើចម្ងាយ ឈប់ប្រហែលប៉ុន្មាន ?
+  🇬🇧 Driving at the speed of 50km/h on a smooth, your motorcycle has brakes and tires in good condition, what is a stopping distance, probably?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ប្រហែល ២៥ ម៉ែត្រ
+       | 🇬🇧 About 25m
+     A2 | 🇰🇭 ប្រហែល ៣៥ ម៉ែត្រ
+       | 🇬🇧 About 35m
+     A3 | 🇰🇭 ប្រហែល ៤៥ ម៉ែត្រ
+       | 🇬🇧 About 45m
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q47  [ID:1327]
+  🇰🇭 នៅក្រៅទីប្រជុំជន អ្នកប្រើល្បឿន៥០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?
+  🇬🇧 Outside a built-up area, you are driving at the speed of 50km/h. How far at least, in meter, do you leave a distance limit?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យ៉ាងតិច ២៥ ម៉ែត្រ
+       | 🇬🇧 At least 25m
+  ✅ A2 | 🇰🇭 យ៉ាងតិច ៣០ ម៉ែត្រ
+       | 🇬🇧 At least 30m
+     A3 | 🇰🇭 យ៉ាងតិច ៣៥ ម៉ែត្រ
+       | 🇬🇧 At least 35m
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q48  [ID:1328]
+  🇰🇭 តើការបើកបរ ត្រូវមើលទៅមុខយ៉ាងដូចម្ដេច ?
+  🇬🇧 Driving a motorcycle, how do you look to the front?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 មើលទៅមុខឲ្យបានឆ្ងាយដើម្បីដឹងពីស្ថានភាពផ្លូវកោងឡើងចុះទួលនិងមើលភ្លើងសញ្ញារបស់យានខាងមុខ
+       | 🇬🇧 Look ahead in far distance to know the situation of bending road, ascent, descent, and look at the light signs of drivers in the front.
+     A2 | 🇰🇭 ត្រូវមើលតែចរាចរណ៍នៅជិតៗខាងមុខ
+       | 🇬🇧 Look at only nearby traffic ahead
+     A3 | 🇰🇭 ត្រូវមើលគំនូសសញ្ញាតាមបណ្ដោយទ្រូងផ្លូវ
+       | 🇬🇧 Look at markings along the road
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q49  [ID:1329]
+  🇰🇭 ពេលបើកបរ ហើយកង់ក្រោយរអិលរេដោយសារការចាប់ហ្វ្រាំង តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+  🇬🇧 Driving a motorcycle, the back wheel is slippery due to applying the brake, how shall you do?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវទប់ដៃចង្កូត និងបង្កើនល្បឿន
+       | 🇬🇧 Hold the steer firmly and speed up.
+  ✅ A2 | 🇰🇭 ត្រូវកាច់ដៃចង្កូតទៅរកទិសដែលរអិលរេនោះ
+       | 🇬🇧 Turn to the slippery direction
+     A3 | 🇰🇭 ត្រូវចាប់ហ្វ្រាំងខ្លាំងបន្ថែមទៀត
+       | 🇬🇧 Apply the brake more firmly
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q50  [ID:1330]
+  🇰🇭 ពេលបើកបរ ហើយចង្កូតញាក់ តើបណ្ដាលមកពីអ្វី?
+  🇬🇧 Driving a motorcycle and the steer shakes, what does it cause?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 បើកបរលឿនពេក
+       | 🇬🇧 Drive too fast
+  ✅ A2 | 🇰🇭 កង់បោរ ឬកាំរលុង បាដាងកង់រលុង កង់ធូរ ឬក៏ផ្ទុកខាងក្រោយធ្ងន់ពេក និងបាដាងចង្កូតមិនប្រក្រតី
+       | 🇬🇧 Buckled wheels, loose radius, loose ball bearing, flat, or loaded too heavy at the back and steering ball bearing is improperly.
+     A3 | 🇰🇭 ដាក់ លេខមិនសមស្របទៅនឹងល្បឿន
+       | 🇬🇧 Engage the gear shift improperly.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------

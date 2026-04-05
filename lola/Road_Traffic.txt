@@ -1,0 +1,3077 @@
+======================================================================
+CATEGORY 1: ROAD TRAFFIC | ច្បាប់ចរាចរណ៍ផ្លូវគោក
+Total Questions: 192   |   Questions with Picture: 0
+======================================================================
+
+Q1  [ID:1]
+  🇰🇭 តើអ្នកបើកបរអាចជែងគ្នាលើស្ពានបានដែរឬទេ ?
+  🇬🇧 Can drivers overtake each other on the bridge?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អាចជែងបានពេលកំពុងចុះស្ពាន
+       | 🇬🇧 Can overtake while moving down.
+  ✅ A2 | 🇰🇭 ហាមជែង
+       | 🇬🇧 No overtaking
+     A3 | 🇰🇭 អាចជែងបាននៅពេលកំពុងឡើងស្ពាន
+       | 🇬🇧 Can overtake while moving up.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q2  [ID:2]
+  🇰🇭 ផ្លូវមានភក់ ឬទឹកដក់ តើអ្នកបើកបរត្រូវប្រុងប្រយ័ត្នដូចម្ដេច ចំពោះអ្នកថ្មើរជើង ?
+  🇬🇧 Roads with mud or water, how shall drivers pay attention toward pedestrians?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 បន្ថយល្បឿនប្រយ័ត្នកុំឲ្យខ្ទាតភក់លើអ្នកថ្មើជើង
+       | 🇬🇧 Slow down not to splash mud or water onto the pedestrians
+     A2 | 🇰🇭 ត្រូវឈប់រង់ចាំរហូតដល់ផ្លូវស្ងួតគ្មានភក់
+       | 🇬🇧 Stop and wait until the street is dried up
+     A3 | 🇰🇭 ត្រូវបង្កើនល្បឿនឲ្យផុតពីភក់នោះ
+       | 🇬🇧 Speed up to go through quickly
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q3  [ID:3]
+  🇰🇭 និយមន័យ «ផ្លូវថ្នល់» ?
+  🇬🇧 The definition of ’road’?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 តួផ្លូវ ទ្រូងផ្លូវ ជាយផ្លូវ ឬចិញ្ចើមផ្លូវ ស្ពាន ស្ពានអាកាស និងការដ្ឋានសំណង់ផ្សេងៗ
+       | 🇬🇧 is a road,​ roadway, roadside, sidewalks, bridge, skybridge, and other construction site.
+  ✅ A2 | 🇰🇭 តួផ្លូវ ទ្រូងផ្លូវ ជាយផ្លូវ ឬចិញ្ចើមផ្លូវ ស្ពាន ស្ពានអាកាស ស្ពានរំលង ផ្លូវរូង និងកំពង់ចម្លងតភ្ជាប់ផ្លូវថ្នល់
+       | 🇬🇧 is a road,​ roadway, roadsides, sidewalks, bridge, skybridge, bridge across the road, tunnel, ferry way linked to the road.
+     A3 | 🇰🇭 តួផ្លូវ ទ្រូងផ្លូវ ជាយផ្លូវ ស្ពានរំលង ផ្លូវរូង កំពង់ចម្លងតភ្ជាប់ផ្លូវថ្នល់ និងកំពង់ផែ
+       | 🇬🇧 is a road,​ roadway, roadsides, sidewalks, bridge across the road, tunnel, ferry way linked to the road, and port.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q4  [ID:4]
+  🇰🇭 និយមន័យ «ចិញ្ចើមផ្លូវ» ?
+  🇬🇧 The definition of ’sidewalks’?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ផ្នែកសងខាងទ្រូងផ្លូវក្រៅទីប្រជុំជន
+       | 🇬🇧 Both sides of the road outside built-up.
+     A2 | 🇰🇭 ផ្នែកសងខាងនៃទ្រូងផ្លូវនៅក្នុងទីប្រជុំជន
+       | 🇬🇧 Both sides of the road inside built-up.
+  ✅ A3 | 🇰🇭 ផ្នែកសងខាងនៃទ្រូងផ្លូវក្នុងទីប្រជុំជ​ន ទុកសម្រាប់ថ្មើរជើង ដាំដើមឈើ និងបង្កប់បរិក្ខារបម្រើផលប្រយោជន៍សាធារណៈ
+       | 🇬🇧 Both sides of the roadways for pedestrians, planting trees, and embedding equipment for public services.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q5  [ID:6]
+  🇰🇭 និយមន័យ «ជាយផ្លូវ» ?
+  🇬🇧 The definition of ’roadsides’?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ផ្នែកសងខាងទ្រូងផ្លូវក្នុងទីប្រជុំជនដែលយានជំនិះអាចចតទីនោះបានក្នុងករណីចាំបាច់
+       | 🇬🇧 The both sides of the road inside built-up where vehicles can be parked as necessary.
+  ✅ A2 | 🇰🇭 ផ្នែកសងខាងនៃទ្រូងផ្លូវនៅក្រៅទីប្រជុំជន ដែលយានជំនិះអាចចតនៅទីនោះបានក្នុងករណីចាំបាច់
+       | 🇬🇧 The both sides of the road outside built-up where vehicles can be parked as necessary
+     A3 | 🇰🇭 ផ្នែកសងខាងនៃទ្រូងផ្លូវនៅក្នុងនិងក្រៅទីប្រជុំជនដែលយានជំនិះអាចចតក្នុងករណីចាំបាច់
+       | 🇬🇧 The both sides of the road inside and outside built-up where vehicles can be parked as necessary.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q6  [ID:11]
+  🇰🇭 និយមន័យ «គន្លងផ្លូវ» ?
+  🇬🇧 The definition of ’lane’?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ជាទ្រូងផ្លូវអាចឲ្យយានជំនិះគ្រប់ប្រភេទធ្វើចរាចរទៅមកបាន
+       | 🇬🇧 The roadway where all vehicles can travel.
+     A2 | 🇰🇭 ជាទ្រូងផ្លូវ ដែលមានបែងចែកជាពីរទិសចរាចរណ៍ពាក់កណ្ដាលខាងឆ្វេង ពាក់កណ្ដាលខាងស្ដាំ
+       | 🇬🇧 The roadway divided into two traffic directions, half part for the left side and the other half for the right side.
+  ✅ A3 | 🇰🇭 ចំណែកមួយនៃទ្រូងផ្លូវ ខណ្ឌដោយគំនូសឬបរិក្ខារបែងចំណែកផ្លូវតាមបណ្ដោយទ្រូងផ្លូវ មានទទឹងគ្រប់គ្រាន់អាចធ្វើចរាចរណ៍បានមួយជួរ
+       | 🇬🇧 A part of the road barrier by markings or materials separating road along the road with leaving sufficient width for one line traffic
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q7  [ID:17]
+  🇰🇭 ជិតដល់ផ្លូវធំរួមតូច ឬចង្អៀត តើអ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?
+  🇬🇧 Close to the main road, small or narrow,path, what does the driver have to do?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ប្រើភ្លើងកូត-ហ្វា និងស៊ីផ្លេច្រើនដង បង្កើនល្បឿន
+       | 🇬🇧 Use headlights and horn several times, and speed up.
+  ✅ A2 | 🇰🇭 បន្ថយល្បឿន ឬឈប់ ទុកឲ្យយានជំនិះមកដល់ផ្លូវតូចចង្អៀតទៅមុន
+       | 🇬🇧 Slow down or stop, let vehicles arriving narrow road move ahead.
+     A3 | 🇰🇭 បង្កើនល្បឿន ឲ្យផុតពីផ្លូវតូចចង្អៀត
+       | 🇬🇧 Speed up to pass the narrow road quickly.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q8  [ID:18]
+  🇰🇭 អ្នកបើកបរលើផ្លូវមានថ្មខ្ទាត តើត្រូវប្រុងប្រយ័ត្នដូចម្ដេច ?
+  🇬🇧 How shall drivers pay attention while driving on the loose gravel road?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវបើកបរក្នុងល្បឿន ៨០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+       | 🇬🇧 Drive at the speed of 80Km/h.
+  ✅ A2 | 🇰🇭 ត្រូវបើកយឺតៗកុំឲ្យថ្មខ្ទាតទៅលើយានជំនិះដទៃ
+       | 🇬🇧 Drive slowly not to get gravels throw onto other vehicles.
+     A3 | 🇰🇭 ត្រូវបើកឲ្យលឿនបំផុត
+       | 🇬🇧 Drive at fastest speed
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q9  [ID:23]
+  🇰🇭 លើផ្លូវរថភ្លើង តើអ្នកបើកបរអាចឈប់បានដែរឬទេ ?
+  🇬🇧 Can drivers stop on the railway?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អាចឈប់បាន
+       | 🇬🇧 Yes, they can.
+     A2 | 🇰🇭 អាចឈប់បាននៅពេលដែលគ្មានដាក់សញ្ញាបំរាម
+       | 🇬🇧 yes, they can stop when no warning sign.
+  ✅ A3 | 🇰🇭 មិនអាចឈប់បានទេ
+       | 🇬🇧 No, they cannot.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q10  [ID:24]
+  🇰🇭 និយមន័យ «អ្នកបើកបរ» ?
+  🇬🇧 The definition of a ’driver’?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អ្នកបញ្ជាយានយន្ដនៅលើផ្លូវ
+       | 🇬🇧 The persons who operate the vehicles on the road.
+  ✅ A2 | 🇰🇭 អ្នកបញ្ជាយានជំនិះគិតទាំងអ្នកជិះសត្វ អ្នកដឹកសត្វ និងអ្នកបរសត្វ នៅលើផ្លូវ
+       | 🇬🇧 The persons who operate the vehicles including an animal rider, an animal walker, and person who walk the animals on the road.
+     A3 | 🇰🇭 អ្នកបញ្ជាយានជំនិះគិតទាំងអ្នកជិះសត្វ និងអ្នកដឹកសត្វនៅលើផ្លូវ
+       | 🇬🇧 The persons who operate the vehicles including an animal rider and an animal walker on the road.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q11  [ID:25]
+  🇰🇭 និយមន័យ «ឈប់» ?
+  🇬🇧 The definition of ’stopping’?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ការនៅស្ងៀមនៃយានជំនិះលើទ្រូងផ្លូវមួយរយៈពេលខ្លី ដែលមានអ្នកបើកបរ ស្ថិតនៅជាប់នឹងចង្កូតឬក្បែរយានជំនិះ
+       | 🇬🇧 Not moving vehicle on the road for a short, while a driver is at the steering wheel or nearby the vehicle.
+     A2 | 🇰🇭 ការនៅស្ងៀមនៃយានជំនិះលើទ្រូងផ្លូវមួយរយៈពេលខ្លី ដែលអ្នកបើកបរ អាចដើរចោលយានជំនិះមួយភ្លែត
+       | 🇬🇧 Not moving vehicle for a short time while driver can walk away from the vehicle for a while.
+     A3 | 🇰🇭 ការទុកយានជំនិះនៅលើទ្រូងផ្លូវមួយរយៈពេលខ្លី
+       | 🇬🇧 Leaving vehicle on the roadway for a short time.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q12  [ID:26]
+  🇰🇭 និយមន័យ «ចត» ?
+  🇬🇧 The definition of ’Parking’?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ការនៅស្ងៀមនៃយានជំនិះលើទ្រូងផ្លូវមួយរយៈពេលខ្លី ដែលមានអ្នកបើកបរស្ថិតនៅជាប់នឹងចង្កូតឬក្បែរយានជំនិះខ្លួន
+       | 🇬🇧 Not moving vehicle on the road for a short time, while a driver is at the steering wheel or nearby his/her own vehicle.
+  ✅ A2 | 🇰🇭 ការទុកឲ្យយានជំនិះនៅស្ងៀមក្នុងរយៈពេលយូរឬឆាប់ ដែលអ្នកបើកបរអាចដើរចោលយានជំនិះរបស់ខ្លួនបាន
+       | 🇬🇧 Not moving vehicle for a short time or long time while a driver walk away from his/her own vehicle.
+     A3 | 🇰🇭 ការទុកយានជំនិះនៅស្ងៀមក្នុងរយៈពេលយូរឬឆាប់ ដែលអ្នកបើកបរអង្គុយកាន់ចង្កូតយានជំនិះរបស់ខ្លួន
+       | 🇬🇧 Leaving not moving vehicle for long time or short time while a driver is at the steering wheel of his /her own vehicle.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q13  [ID:30]
+  🇰🇭 និយមន័យ «រថយន្តគ្រួសារ» ?
+  🇬🇧 The definition of ’family vehicle’?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 រថយន្តផ្ទុកអ្នកដំណើរមិនលើសពី៩នាក់រួមទាំងអ្នកបើកបរ
+       | 🇬🇧 Vehicle accommodates not more than 9 passengers including driver.
+     A2 | 🇰🇭 ផ្ទុកអ្នកដំណើរមិនលើសពី ៩នាក់ ទាំងអ្នកបើកបរ
+       | 🇬🇧 Vehicle accommodates not more than 9 passengers including driver.
+     A3 | 🇰🇭 ផ្ទុកអ្នកដំណើរមិនលើសពី ៩នាក់ មិនគិតអ្នកបើកបរ
+       | 🇬🇧 Vehicle accommodate not more than 9 passengers excluding driver.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q14  [ID:31]
+  🇰🇭 និយមន័យ «រថយន្តដឹកជញ្ជូនអ្នកដំណើរធុនធំ» ?
+  🇬🇧 The definition of ’large-sized passenger vehicle’?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ដែលមានទម្ងន់សរុបអតិបរមាលើសពី ៣,៥ តោន
+       | 🇬🇧 The vehicle with total maximum weight of not more than 3.5T.
+     A2 | 🇰🇭 ដែលមានចំណុះផ្ទុកចាប់ពី ១០នាក់ ដល់ ២០នាក់ ដោយមិនគិតអ្នកបើកបរ
+       | 🇬🇧 Vehicle accommodates people ranging from 10 to 20 people, excluding the driver.
+  ✅ A3 | 🇰🇭 ផ្ទុកមនុស្សលើសពី ២០នាក់ រួមទាំងអ្នកបើកបរ
+       | 🇬🇧 Vehicle accommodates more than 20 people, including the driver.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q15  [ID:34]
+  🇰🇭 និយមន័យ «រថយន្តដឹកជញ្ជូនអ្នកដំណើរធុនតូច» ?
+  🇬🇧 The definition of ’small-sized passenger vehicle’?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ដែលមានទម្ងន់សរុបអតិបរមាមិនលើសពី ៣,៥ តោន
+       | 🇬🇧 The vehicle with total maximum weight of not more than 3.5T.
+     A2 | 🇰🇭 ដែលមានចំណុះផ្ទុកចាប់ពី ១០នាក់ ដល់ ២០នាក់ ដោយមិនគិតអ្នកបើកបរ
+       | 🇬🇧 Vehicle accommodates passengers ranging from 10 to 20, excluding the driver.
+  ✅ A3 | 🇰🇭 ផ្ទុកមនុស្សចាប់ពី ១០ ដល់ ២០នាក់ រួមទាំងអ្នកបើកបរ
+       | 🇬🇧 Vehicle accommodates passengers ranging from 10 to 20, including the driver.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q16  [ID:36]
+  🇰🇭 និយមន័យ «រថយន្តធុនស្រាល» ?
+  🇬🇧 The definition of ’Light-Duty Vehicle’?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ដែលមានទម្ងន់សរុបអតិបរមាមិនលើសពី ៣,៥ តោន
+       | 🇬🇧 The vehicle with total maximum weight of not more than 3.5T.
+     A2 | 🇰🇭 ដែលមានចំណុះផ្ទុកចាប់ពី ១០នាក់ ដល់ ២០នាក់ ដោយមិនគិតអ្នកបើកបរ
+       | 🇬🇧 Vehicle accommodates passengers ranging from 10 to 20, excluding the driver.
+     A3 | 🇰🇭 ផ្ទុកមនុស្សចាប់ពី ១០ ដល់ ២០នាក់ រួមទាំងអ្នកបើកបរ
+       | 🇬🇧 Vehicle accommodates passengers ranging from 10 to 20, including the driver.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q17  [ID:37]
+  🇰🇭 និយមន័យ «រថយន្តធុនធ្ងន់» ?
+  🇬🇧 The definition of ’heavy-duty vehicle’?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ដែលមានទម្ងន់សរុបអតិបរមាលើសពី ២,៥ តោន ឡើងទៅ
+       | 🇬🇧 The vehicle with total maximum weight of more than 2.5T.
+  ✅ A2 | 🇰🇭 ដែលមានទម្ងន់សរុបអតិបរមាលើសពី ៣,៥ តោន ឡើងទៅ
+       | 🇬🇧 The vehicle with total maximum weight of more than 3.5T.
+     A3 | 🇰🇭 ទម្ងន់សរុបអតិបរមាលើសពី ៥ តោន ឡើងទៅ
+       | 🇬🇧 Vehicle with total maximum weight of more than 5 T
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q18  [ID:38]
+  🇰🇭 ពេលឮស៊ីរ៉ែនរថយន្តដែលមានសិទ្ធិអាទិភាព តើអ្នកត្រូវធ្ធើដូចម្ដេច ?
+  🇬🇧 Hearing the siren of a vehicle with priority, what shall you do?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ត្រូវឲ្យសញ្ញាអែបស្តាំ បន្ថយល្បឿនឬឈប់អែបស្តាំទុកសិទ្ធិយានស៊ឺរែនទៅមុន
+       | 🇬🇧 Give a right​ sign, slow down or stop at the right side, to prioritize siren vehicle goes ahead. 
+     A2 | 🇰🇭 ខ្ញុំត្រូវបង្កើនល្បឿនយ៉ាងលឿន ដើម្បីទៅមុខស៊ីរ៉ែន
+       | 🇬🇧 I have to speed up very fast to be a head of siren vehicle
+     A3 | 🇰🇭 ត្រូវអែបស្ដាំប្រញាប់បំផុត
+       | 🇬🇧 Move to the right side immediately.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q19  [ID:41]
+  🇰🇭 មុននឹងបត់ស្ដាំ ឬឆ្វេង តើត្រូវឲ្យភ្លើងសញ្ញា ប៉ុន្មានម៉ែត្រ ពីចំណុចត្រូវបត់ ?
+  🇬🇧 Before turning left or right, how far from a turned area shall you give a turn light? 
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវឲ្យភ្លើងសញ្ញាបត់ចម្ងាយ យ៉ាងតិច ១០ ម៉ែត្រ
+       | 🇬🇧 10 meters
+  ✅ A2 | 🇰🇭 ត្រូវឲ្យភ្លើងសញ្ញាបត់ចម្ងាយ យ៉ាងតិច ២០ ម៉ែត្រ
+       | 🇬🇧 At least 20 meters
+     A3 | 🇰🇭 ត្រូវឲ្យភ្លើងសញ្ញាបត់ យ៉ាងតិច ១៥ ម៉ែត្រ
+       | 🇬🇧 At least 15 meters.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q20  [ID:42]
+  🇰🇭 លើផ្លូវមានចរាចរណ៍ច្រើន ហើយត្រូវបត់ត្រទ្បប់ក្រោយ តើត្រូវធ្វើដូចម្ដេច?
+  🇬🇧 On the road having a lot of traffic and you must turn back, how shall you do?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវដាក់ភ្លើងសញ្ញាបត់ ហើយបត់ភ្លាមតាមបំណងរបស់ខ្ញុំ
+       | 🇬🇧 Give a signal and turn back immediately as I want.
+  ✅ A2 | 🇰🇭 ត្រូវមានការប្រុងប្រយ័ត្ន ដោយធ្វើការបត់ត្រទ្បប់ក្រោយ តាមបច្ចេកទេសបើកបរ
+       | 🇬🇧 Be careful of make U-turn or reverse by driving techniques.
+     A3 | 🇰🇭 ត្រូវបើកយឺតៗតាមបណ្ដោយទ្រូងផ្លូវ រង់ចាំឱកាស បត់ត្រទ្បប់ក្រោយវិញ
+       | 🇬🇧 Drive slowly along the roadway and wait for the opportunity to turn back.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q21  [ID:44]
+  🇰🇭 និយមន័យ «យានយន្តុបករណ៍» ?
+  🇬🇧 The definition of ’vehicle’
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យានយន្ដដែលមានទម្ងន់សរុបអតិបរមាលើសពី ៣,៥ តោន ឡើងទៅ
+       | 🇬🇧 Vehicle with a total maximum weight over 3.5 T
+     A2 | 🇰🇭 យានយន្ដដែលមានបំពាក់ឧបករណ៍គ្រឿងចក្រធំៗ អាចផ្ទុកមនុស្ស ឬទំនិញបន្ថែមនៅក្រៅកាប៊ីនបាន
+       | 🇬🇧 Vehicle equipped with large machineries can accommodate extra passengers or goods outside the cabin.
+  ✅ A3 | 🇰🇭 យានយន្ដពិសេសមានឧបករណ៍គ្រឿងចក្រ បំពាក់បន្ថែម គ្មានផ្ទុកមនុស្ស ឬទំនិញនៅក្រៅកាប៊ីន
+       | 🇬🇧 Special vehicles, with additional machinery equipped, without people and goods outside the cabin.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q22  [ID:45]
+  🇰🇭 លើផ្លូវដែលគ្មានភ្លើងអគ្គីសនី អ្នកកំពុងបើកបរប្រើភ្លើងហ្វា ហើយត្រូវប្ដូរភ្លើងទៅកូតវិញ តើត្រូវប្រុងប្រយ័ត្នដូចម្តេច ?
+  🇬🇧 On the road, no electricity, you’re driving using headlights and switch to coating light. How shall you pay attention?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវបង្កើនល្បឿន ព្រោះមានការប្រញាប់
+       | 🇬🇧 Speed up as hurry.
+  ✅ A2 | 🇰🇭 ត្រូវបន្ថយល្បឿនព្រោះមើលមិនបានឆ្ងាយ
+       | 🇬🇧 Slow down, as looking no further.
+     A3 | 🇰🇭 មិនបាច់បន្ថយល្បឿនទេ
+       | 🇬🇧 No need to slow down.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q23  [ID:46]
+  🇰🇭 និយមន័យ «រ៉ឺម៉ក» ?
+  🇬🇧 The definition of ’trailer’?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 យានសម្រាប់ថ្ពក់ជាមួយរថយន្ត
+       | 🇬🇧 Trailer for hooking up with a vehicle.
+     A2 | 🇰🇭 យានយន្ដសម្រាប់ថ្ពក់ជាមួយយានជំនិះផ្សេងទៀត
+       | 🇬🇧 Vehicle for hooking up with another riding vehicle.
+     A3 | 🇰🇭 យានសម្រាប់ថ្ពក់ជាប់នឹងក្បាលសណ្ដោង
+       | 🇬🇧 Vehicle for hooking up to the head of towing vehicle.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q24  [ID:53]
+  🇰🇭 និយមន័យ «សឺមីរ៉ឺម៉ក» ?
+  🇬🇧 The definition of ’semi-trailer’?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យានសម្រាប់ថ្ពក់ជាមួយ
+       | 🇬🇧 A trailer for hooking up with a car.
+     A2 | 🇰🇭 យានយន្ដសម្រាប់ថ្ពក់ជាមួយយានជំនិះផ្សេងទៀត
+       | 🇬🇧 Vehicle for hooking up with another.
+  ✅ A3 | 🇰🇭 យានសម្រាប់ថ្ពក់ជាប់នឹងក្បាលសណ្ដោង
+       | 🇬🇧 Vehicle for hooking up to the head of towing vehicle.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q25  [ID:55]
+  🇰🇭 គំនូសសញ្ញាទោល-ជាប់-បែងចែកទ្រូងផ្លូវជា ២ទិសចរាចរណ៍ផ្ទុយគ្នា តើអាចបើកបរឆ្លងកាត់បានទេ ?
+  🇬🇧 A single solid line dividing the road into two opposite traffic directions, can you drive across?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 មិនអាចបើកបរពីលើតាមបណ្ដោយគំនូសសញ្ញាបានទេ
+       | 🇬🇧 You cannot drive over it.
+     A2 | 🇰🇭 អាចបើកបរជាន់ ឬឆ្លងកាត់បាន
+       | 🇬🇧 You can drive on it or across it
+  ✅ A3 | 🇰🇭 ហាមបើកបរជាន់ ឬឆ្លងកាត់
+       | 🇬🇧 No driving over it or across it.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q26  [ID:59]
+  🇰🇭 សញ្ញាចរាចរណ៍ផ្លូវគោក រួមមានអ្វីខ្លះ ?
+  🇬🇧 What are the road traffic signs?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ផ្លាកសញ្ញា ភ្លើងសញ្ញា សញ្ញាបញ្ជារបស់ភ្នាក់ងារចរាចរណ៍ និងសញ្ញាផ្សេងៗ
+       | 🇬🇧 sign, light sign, mandatory sign of traffic police agents and other signs.
+     A2 | 🇰🇭 ផ្លាកសញ្ញាចរាចរណ៍ ភ្លើងសញ្ញាចរាចរណ៍ គំនូសញ្ញាចរាចរណ៍ បង្គោលភ្លើងបំភ្លឺផ្លូវ និងសញ្ញាផ្សេងៗទៀត
+       | 🇬🇧 Traffic signs, traffic lights, road markings, street lighting poles, and other signs.
+  ✅ A3 | 🇰🇭 ផ្លាកសញ្ញា ភ្លើងសញ្ញា គំនូសសញ្ញា សញ្ញាបញ្ជារបស់ភ្នាក់ងារចរាចរណ៍ និងសញ្ញាផ្សេងៗទៀត
+       | 🇬🇧 sign, light sign, mandatory sign of traffic police agents and other signs.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q27  [ID:60]
+  🇰🇭 លំដាប់សិទ្ធិអាទិភាព ត្រូវបានកំណត់ដូចម្តេចទើបត្រឹមត្រូវ ?
+  🇬🇧 How is the accurate order of priority rights determined?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 សញ្ញាបញ្ជារបស់ភ្នាក់ងារចរាចរណ៍ គំនូសសញ្ញា ភ្លើងសញ្ញា ផ្លាកសញ្ញា និងបទប្បញ្ញតិចរាចរណ៍
+       | 🇬🇧 Traffic police agents’ mandatory signs, markings, light signs, signs, and traffic regulations.
+  ✅ A2 | 🇰🇭 សញ្ញាបញ្ជារបស់ភ្នាក់ងារចរាចរណ៍ ភ្លើងសញ្ញាចរាចរណ៍ គំនូសសញ្ញាចរាចរណ៍ ផ្លាកសញ្ញាចរាចរណ៍ និងបទប្បញ្ញតិចរាចរណ៍
+       | 🇬🇧 Traffic police agents’ mandatory signs, traffic lights, traffic markings, traffic signs, and traffic regulations.
+     A3 | 🇰🇭 ភ្លើងសញ្ញា សញ្ញាបញ្ជារបស់ភ្នាក់ងារចរាចរណ៍ គំនូសសញ្ញា ផ្លាកសញ្ញានិងបទប្បញ្ញតិចរាចរណ៍
+       | 🇬🇧 Light signs, traffic police agent’s mandatory signs, marking signs, and traffic regulations.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q28  [ID:66]
+  🇰🇭 ការបើកបរយានជំនិះក្នុងព្រះរាជាណាចក្រកម្ពុជា ត្រូវប្រកាន់ខាងណា ?
+  🇬🇧 On what side in Cambodia shall people keep driving?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ប្រកាន់ស្ដាំ
+       | 🇬🇧 On the right hand side
+     A2 | 🇰🇭 ប្រកាន់ឆ្វេង
+       | 🇬🇧 On the left hand side
+     A3 | 🇰🇭 ប្រកាន់ឆ្វេងបើចង្កូតស្ដាំ
+       | 🇬🇧 On the left hand side for the right steering wheel
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q29  [ID:67]
+  🇰🇭 តើអ្នកបើកបរយានយន្តចាប់ពីទំហំស៊ីឡាំងប៉ុន្មានសង់ទីម៉ែត្រគូប ឡើងទៅ ទើបតម្រូវឲ្យមានបណ្ណបើកបរ ?
+  🇬🇧 In what cubic centimeters of vehicle’s cylinder are drivers required to have a driver license?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ១០០ សង់ទីម៉ែត្រគូប ឡើងទៅ
+       | 🇬🇧 100 cubic centimeters and up.
+  ✅ A2 | 🇰🇭 ១២៥ សង់ទីម៉ែត្រគូប ឡើងទៅ
+       | 🇬🇧 125 cubic centimeters and up.
+     A3 | 🇰🇭 ២៥០ សង់ទីម៉ែត្រគូប ឡើងទៅ
+       | 🇬🇧 250 cubic centimeters and up.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q30  [ID:72]
+  🇰🇭 តើអ្នកបើកបរយានយន្ត មានអត្រាជាតិអាល់កុលកម្រិតប៉ុន្មានត្រូវហាមឃាត់ ?
+  🇬🇧 How much alcohol rate taken are drivers prohibited?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ចាប់ពី ០,២៥ មីលីក្រាមក្នុងមួយលីត្រខ្យល់ ឬពី ០,៥០ ក្រាមក្នុងមួយលីត្រឈាមឡើងទៅ
+       | 🇬🇧 Ranging from 0.25 mg per liter of the air, or 0.5g per liter of blood, and up.
+     A2 | 🇰🇭 ចាប់ពី ០,៣០ មីលីក្រាមក្នុងមួយលីត្រខ្យល់ ឬពី ០,៦០ ក្រាមក្នុងមួយលីត្រឈាមឡើងទៅ
+       | 🇬🇧 Ranging from 0.30 mg per liter of air, or 0.60g per liter of blood, and up
+     A3 | 🇰🇭 ចាប់ពី ០,៤០ មីលីក្រាមក្នុងមួយលីត្រខ្យល់ ឬពី ០,៨០ ក្រាមក្នុងមួយលីត្រឈាមឡើងទៅ
+       | 🇬🇧 Ranging from 0.40mg per liter of air, or 0.80g per liter of blood, and up.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q31  [ID:73]
+  🇰🇭 ផ្លាកសញ្ញាហាមចតនៅតាមដងផ្លូវ មានអាទិភាពដូចម្ដេច ?
+  🇬🇧 How shall no parking sign on the street have priority?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 មានអាទិភាពពីផ្លាកសញ្ញា រហូតដល់ផ្លូវខ្វែងទី១ខាងក្រោយផ្លាកសញ្ញា
+       | 🇬🇧 Have priority from the sign until the first cross roads behind the signs
+     A2 | 🇰🇭 មានអាទិភាពពីផ្លូវខ្វែងខាងមុខផ្លាកសញ្ញា រហូតដល់ផ្លាកសញ្ញា
+       | 🇬🇧 Have priority from the cross roads in front of the sign until the sign.
+     A3 | 🇰🇭 មានអាទិភាពពីផ្លូវខ្វែងខាងមុខ រហូតដល់ផ្លូវខ្វែងទី១ក្រោយផ្លាកសញ្ញា
+       | 🇬🇧 Have priority from the front cross roads until the first cross roads behind the sign.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q32  [ID:75]
+  🇰🇭 តើអាចប្រើទូរស័ព្ទបានដែរឬទេ នៅពេលកំពុងបើកបរយានជំនិះ ?
+  🇬🇧 Can drivers talk on phone while driving?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 មិនអាចប្រើបានជាដាច់ខាត
+       | 🇬🇧 Absolutely not.
+     A2 | 🇰🇭 អាចប្រើបានតែក្នុងករណីចាំបាច់
+       | 🇬🇧 You can as necessary.
+  ✅ A3 | 🇰🇭 អាចប្រើបាន ប្រសិនបើមានឧបករណ៍សំឡេងភ្ជាប់
+       | 🇬🇧 You can use if you have headphones.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q33  [ID:82]
+  🇰🇭 នៅក្នុងទីក្រុង ឬទីប្រជុំជន រថយន្តធុនតូចត្រូវបានកំរិតល្បឿនអតិបរិមាប៉ុន្មានគីឡូម៉ែត្រក្នុងមួយម៉ោង ?
+  🇬🇧 In the town or populated area, what is the maximum speed limit, in kilometers per hour, for light vehicles?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 មិនលើសពី ៣០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+       | 🇬🇧 Not more than 30 km/h
+  ✅ A2 | 🇰🇭 មិនលើសពី ៤០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+       | 🇬🇧 Not more than 40 km/h
+     A3 | 🇰🇭 មិនលើសពី ៥០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+       | 🇬🇧 Not more than 50 km/h
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q34  [ID:83]
+  🇰🇭 នៅចំណុចកណ្ដាល នៃទ្រូងផ្លូវប្រសព្វ ហើយអ្នក កំពុងធ្វើភ្លើងសញ្ញាបត់ឆ្វេង ខណៈមានរថយន្តជាច្រើនជាប់គ្នារដឹកមកពីទិសផ្ទុយគ្នា តើត្រូវធ្វើដូចម្ដេច ?
+  🇬🇧 In the center of the roads intersection, and you’re switching on the left turn light, while many vehicles lining from the opposite direction, what shall you do?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវតែបត់ ព្រោះធ្វើសញ្ញាបត់ឆ្វេងរួចហើយ
+       | 🇬🇧 Have to turn because we have switched on the left turn light already.
+  ✅ A2 | 🇰🇭 មិនត្រូវបត់ឆ្វេងភ្លាមទេ ត្រូវបន្ថយល្បឿន បើចាំបាច់ឈប់ ឲ្យយានមកពីមុខទៅផុតអស់ទើប បត់ឆ្វេងដោយប្រុងប្រយ័ត្ន
+       | 🇬🇧 Do not turn left immediately, slow down, stop your vehicle as necessary, let the vehicle from the front (opposite direction) moves ahead and then turn left carefully.
+     A3 | 🇰🇭 រត់មុខគេ មានសិទ្វិបត់មុន
+       | 🇬🇧 The first vehicle of the the line has priority to turn left first.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q35  [ID:85]
+  🇰🇭 តើទោចក្រយានយន្តអាចផ្ទុកមនុស្សបានប៉ុន្មាននាក់ ?
+  🇬🇧 How many people can a motorcycle allow to load?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អាចផ្ទុកបានអ្នកបើកបរតែ ១នាក់
+       | 🇬🇧 Only one driver.
+     A2 | 🇰🇭 អាចផ្ទុកមនុស្សពេញវ័យបាន ៣នាក់
+       | 🇬🇧 3 adults
+  ✅ A3 | 🇰🇭 អាចផ្ទុកមនុស្ស ២នាក់ និងបន្ថែមកុមារ ១នាក់
+       | 🇬🇧 2 persons and one child.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q36  [ID:89]
+  🇰🇭 តើអ្នកបើកបរ និងអ្នករួមដំណើរតាមទោចក្រយានយន្ត ត្រូវពាក់មួកសុវត្ថិភាពដែរឬទេ ?
+  🇬🇧 Shall the driver and passenger(s) on motorcycle wear helmet or not?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ពាក់មួកសុវត្ថិភាពសម្រាប់តែអ្នកបើកបរ
+       | 🇬🇧 Only the driver
+     A2 | 🇰🇭 ពាក់មួកសុវត្ថិភាពតែអ្នករួមដំណើរ
+       | 🇬🇧 Only the passenger(s) on the motorcycle.
+  ✅ A3 | 🇰🇭 ពាក់មួកសុវត្ថិភាពទាំងអ្នកបើកបរ និងអ្នករួមដំណើរ
+       | 🇬🇧 Both driver and passenger(s).
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q37  [ID:95]
+  🇰🇭 ពេលចតរថយន្ត ត្រូវមានការប្រុងប្រយ័ត្នយ៉ាងដូចម្ដេច ?
+  🇬🇧 How do you pay attention while parking your vehicle?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ចតស្តាំដៃតាមទិសចរាចរណ៍និងមិនរំខានដល់អ្នកប្រើប្រាស់ផ្លូវឬចតនៅចំណតរថយន្តត្រូវដាក់ហ្វ្រាំងដៃ
+       | 🇬🇧 Park on the right hand side parallelling the traffic direction, not bother the other drivers on the same road, or park at the parking with hand brake.
+     A2 | 🇰🇭 ចតនៅកន្លែងណាដែលស្រឡះ
+       | 🇬🇧 Park at somewhere with space.
+     A3 | 🇰🇭 ចតនៅកន្លែងណាក៏បាន
+       | 🇬🇧 Park at anywhere.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q38  [ID:141]
+  🇰🇭 តើអ្នកបើកបរត្រីចក្រយានយន្ត និងទោចក្រយានយន្តសណ្តោងរ៉ឺម៉ក ត្រូវពាក់មួកសុវត្ថិភាពដែរឬទេ ?
+  🇬🇧 Shall motobike drivers and tri-cycles drives with trailers wear helmets?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ពាក់មួកសុវត្ថិភាពសម្រាប់តែអ្នកបើកបរត្រីចក្រយានយន្ដ
+       | 🇬🇧 Only the tricycle drivers.
+  ✅ A2 | 🇰🇭 ពាក់មួកសុវត្ថិភាពគ្រប់ប្រភេទអ្នកបើកបរ គ្រប់កាលៈទេសៈ
+       | 🇬🇧 Drivers shall wear all kinds of helmets and all circumstances.
+     A3 | 🇰🇭 អ្នកបើកបរត្រីចក្រយានយន្ដ និងទោចក្រយានយន្ដសណ្ដោងរ៉ឺម៉កពាក់មួកសុវត្ថិភាពបានតែនៅក្នុងទីប្រជុំជន
+       | 🇬🇧 All drivers who drives motobike and tri-cycle with trailer must wear helmets when drivers drive in town or populated areas.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q39  [ID:142]
+  🇰🇭 នៅក្នុងទីប្រជុំជន តើអ្នកបើកបរ និងអ្នករួមដំណើរជិះកៅអីមុខនៃយាន ត្រូវពាក់ខ្សែក្រវាត់សុវត្ថិភាពដែរឬទេ ?
+  🇬🇧 In built-up area, shall driver and passenger sitting at the front seat of the car wear seatbelt or not?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ពាក់ខ្សែក្រវាត់សុវត្ថិភាពសម្រាប់តែអ្នកបើកបរ
+       | 🇬🇧 Only the driver
+     A2 | 🇰🇭 ក្នុងករណីបើកបរល្បឿនយឺតៗមិនចាំបាច់ពាក់ខ្សែក្រវាត់សុវត្ថិភាពទេ
+       | 🇬🇧 No need to wear if you drive slowly.
+  ✅ A3 | 🇰🇭 ពាក់ខ្សែក្រវាត់សុវត្ថិភាពទាំងអ្នកបើកបរ និងអ្នករួមដំណើរខាងមុខ
+       | 🇬🇧 Need to wear all.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q40  [ID:143]
+  🇰🇭 តើផ្លាកសញ្ញាបន្ថែមពីក្រោម មានទ្រង់ទ្រាយដូចម្ដេច ?
+  🇬🇧 What shape is the below additional sign?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 រាងបួនជ្រុងស្មើ ផ្ទៃពណ៍សមានរូបសញ្ញានិងអក្សរឬ លេខពណ៍ខ្មៅ
+       | 🇬🇧 Square, white surface with a sign and black character or number.
+  ✅ A2 | 🇰🇭 មានរាងបួនជ្រុងទ្រវែង ផ្ទៃពណ៌ស មានរូបសញ្ញា និងអក្សរឬ លេខពណ៌ខ្មៅ
+       | 🇬🇧 Rectangle, white surface with a sign and black charactor or number.
+     A3 | 🇰🇭 រាងបួនជ្រុងទ្រវែង ផ្ទៃពណ៌ស មានរូបសញ្ញា និងអក្សរឬ លេខ ពណ៌ខៀវ
+       | 🇬🇧 Rectangle, white surface with a sign and blue character or number.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q41  [ID:144]
+  🇰🇭 តើអាចបើកបរយានជំនិះ ឆ្លងកាត់ ឈប់ ឬចតពីលើគំនូសសញ្ញាតម្រឹមគន្លងផ្លូវបានឬទេ ?
+  🇬🇧 Can drivers drive across, stop, or park on the lane-aligned markings or not?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អាចបាន
+       | 🇬🇧 Can.
+     A2 | 🇰🇭 អាចបានផ្នែកខ្លះ
+       | 🇬🇧 Can at some parts.
+  ✅ A3 | 🇰🇭 មិនបាន
+       | 🇬🇧 Cannot.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q42  [ID:170]
+  🇰🇭 តើភ្លើងសញ្ញាចរាចរណ៍មានប៉ុន្មានពណ៌ ?
+  🇬🇧 How many colours of the traffic light?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ២ ពណ៌
+       | 🇬🇧 2 colours
+  ✅ A2 | 🇰🇭 ៣ ពណ៌
+       | 🇬🇧 3 colours
+     A3 | 🇰🇭 ៤ ពណ៌
+       | 🇬🇧 4 colours
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q43  [ID:171]
+  🇰🇭 នៅពេលភ្លើងសញ្ញាចរាចរណ៍បញ្ចេញពន្លឺក្រហម តើអ្នកបើកបរយានជំនិះគ្រប់ប្រភេទត្រូវធ្វើដូចម្តេច?
+  🇬🇧 What do drivers do when the traffic light is red?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ឈប់នៅលើខ្សែបន្ទាត់គំនូសជាប់ពណ៌ស កាត់ទទឹងទ្រូងផ្លូវ
+       | 🇬🇧 Stop on the white solid line across the street
+     A2 | 🇰🇭 ឈប់នៅលើគំនូសសម្រាប់ថ្មើរជើងឆ្លងកាត់
+       | 🇬🇧 Stop on the zebra
+  ✅ A3 | 🇰🇭 ឈប់នៅមុខគំនូសជាប់ពណ៌ស កាត់ទទឹងផ្លូវ ឬមុខគំនូសសម្រាប់ថ្មើរជើង
+       | 🇬🇧 Stop in front of white solid line across the street or in front of the zebra.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q44  [ID:172]
+  🇰🇭 នៅកន្លែងមានរង្វង់មូល ឬខឿនបែងចែកទ្រូងផ្លូវ តើអ្នកបើកបរត្រូវវាងទៅខាងណា ?
+  🇬🇧 At the roundabout or road-dividing stones, at which side do drivers detour to?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ត្រូវវាងទៅខាងស្ដាំ
+       | 🇬🇧 Detour to the right hand side.
+     A2 | 🇰🇭 ត្រូវវាងទៅខាងឆ្វេង
+       | 🇬🇧 Detour to the left hand side.
+     A3 | 🇰🇭 ត្រូវវាងទៅផ្លូវណាទំនេរ
+       | 🇬🇧 Detour to anuwhere with free traffic road.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q45  [ID:173]
+  🇰🇭 តើអ្នកបើកបរអាចបើកបរយានជំនិះទន្ទឹមគ្នានៅលើទ្រូងផ្លូវ ឬគន្លងផ្លូវតែមួយបានទេ ?
+  🇬🇧 Can drivers drive up with a breast traveling on the road or on the same lane?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 មិនបានទេ
+       | 🇬🇧 Cannot.
+     A2 | 🇰🇭 បាន ប្រសិនបើផ្លូវធំទូលាយ
+       | 🇬🇧 Can if the road is broad
+     A3 | 🇰🇭 បាន បើគ្មានផ្លាកសញ្ញាហាមឃាត់
+       | 🇬🇧 Can if no warning sign
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q46  [ID:174]
+  🇰🇭 តើអាចប្រើខ្សែសណ្ដោងចំពោះយានជំនិះដែលមានទម្ងន់សរុបលើសពី ៥តោន បានដែរឬទេ ?
+  🇬🇧 Can driver are allowed to use ropes to tow any vehicle with a total weight from more than 5 tons aqward?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ហាមសណ្ដោង
+       | 🇬🇧 No towing.
+  ✅ A2 | 🇰🇭 ហាមប្រើខ្សែសណ្ដោង
+       | 🇬🇧 No using towing cable.
+     A3 | 🇰🇭 អាចប្រើបាន ប្រសិនបើខ្សែសណ្ដោងមានទំហំធំ និងមាំល្អ
+       | 🇬🇧 Can be used if good in quality of the cable.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q47  [ID:175]
+  🇰🇭 តើអាចសណ្ដោងយានជំនិះលើសពីមួយគ្រឿង ឬសណ្ដោងយានជំនិះដែលមាន សណ្ដោងរ៉ឺម៉ក ឬសឺមីរ៉ឺម៉ក បានដែរឬទេ ?
+  🇬🇧 Can more than one vehicle or vehicle with trailer(s) or semi-trailer(s) be trailed?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ហាមសណ្ដោង
+       | 🇬🇧 No trailing.
+     A2 | 🇰🇭 អាចសណ្ដោងបាន ប្រសិនបើយានជំនិះទាំងនោះគ្មានផ្ទុកមនុស្ស ឬទំនិញ
+       | 🇬🇧 Can be towed if no passengers or or goods on those vehicles.
+     A3 | 🇰🇭 បាន ប្រសិនប្រើខ្សែសណ្ដោងមានទំហំធំ និងមាំល្អ
+       | 🇬🇧 Can be towed if the cable is good in quality.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q48  [ID:176]
+  🇰🇭 រថយន្តមានសណ្ដោងរ៉ឺម៉ក តើត្រូវដាក់អ្វី មានរាងដូចម្ដេច នៅត្រង់ផ្នែកណានៃរថយន្ត ?
+  🇬🇧 Vehicle with trailer, what shall be put? of what shape? and at what part of the vehicle?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 មានសញ្ញាត្រីកោណសមបាតជាកញ្ចក់ចាំងពន្លឺពណ៍លឿង ដាក់នៅខាងមុខអមសងខាងផ្លាកលេខនិងខាងក្រោយនៃរ៉ឺម៉ក
+       | 🇬🇧 Having glass equalateral triangles with reflecting in yellow, installed at the front, both sides of the plate number and at the back of the trail.
+     A2 | 🇰🇭 ត្រូវមានសញ្ញាត្រីកោណសមបាតដែលជាកញ្ចក់ចាំងពន្លឺ ពណ៌ក្រហម ០២ ដាក់នៅខាងមុខអមសងខាងផ្លាកលេខ និងផ្នែកខាងក្រោយនៃរ៉ឺម៉ក
+       | 🇬🇧 Having 2 glass equilateral triangles with reflecting in red, installed at the front, both sides of the plate number and the at the back of the trailer.
+     A3 | 🇰🇭 ត្រូវមានសញ្ញាត្រីកោណជាកញ្ចក់ចាំងពន្លឺ ពណ៌ស ០២ អមសងខាងផ្លាកលេខខាងមុខ និងខាងក្រោយនៃរ៉ឺម៉ក
+       | 🇬🇧 Havinge 2 glass equilateral traingles with reflecting in white, installed at both sides of the front and back plate numbers of the trailer.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q49  [ID:177]
+  🇰🇭 តើអាចសណ្ដោងទោចក្រយានឬទោចក្រយានយន្ដ បានដែរឬទេ ?
+  🇬🇧 Can bicycle or motorcycle be towed?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អាចសណ្ដោងបាន
+       | 🇬🇧 Can
+     A2 | 🇰🇭 អាចសណ្ដោងបាន ប្រសិនបើគ្មានកន្លែងជួសជុលឬស្ថានីយ៍ប្រេងឥន្ធនៈ
+       | 🇬🇧 Can be towed if no gas station or repair shop.
+  ✅ A3 | 🇰🇭 ហាមសណ្ដោង
+       | 🇬🇧 No towing
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q50  [ID:178]
+  🇰🇭 តើអាចសណ្ដោងយានយន្ដដែលមានអ្នកដំណើរនៅក្នុងនោះ បានដែរឬទេ ?
+  🇬🇧 Can vehicle with passengers inside be towed?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អាចសណ្ដោងបាន
+       | 🇬🇧 Can
+  ✅ A2 | 🇰🇭 ហាមសណ្ដោង
+       | 🇬🇧 No towing.
+     A3 | 🇰🇭 អាចសណ្ដោងបាន ប្រសិនបើក្នុងនោះជាមនុស្សចាស់ឬកុមារ
+       | 🇬🇧 Can be towed if the vehicle accommodates old people and children.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q51  [ID:179]
+  🇰🇭 តើអ្នកបើកបរ ត្រូវធ្វើដូចម្តេចនៅពេលរថយន្តក្រុងកំពុងឈប់ដាក់អ្នកដំណើរឡើងចុះ ?
+  🇬🇧 What shall drivers do while stopping to pick up or drop down passengers?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 បើកបរល្បឿនដដែល និងស៊ីផ្លេរប្រសិនបើចាំបាច់
+       | 🇬🇧 Keep the same speed and honk the horn as necessary
+  ✅ A2 | 🇰🇭 បើកបរបន្ថយល្បឿន បើចាំបាច់ត្រូវឈប់
+       | 🇬🇧 Slow down or stop as necessary.
+     A3 | 🇰🇭 បើកបរដោយបន្ថែមល្បឿន
+       | 🇬🇧 Speed up.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q52  [ID:180]
+  🇰🇭 តើល្បឿនបើកបរអតិបរមានៅក្នុងទីប្រជុំជន សម្រាប់ទោចក្រយានយន្ត បានកំណតប៉ុន្មានគីឡូម៉ែត្រក្នុងមួយម៉ោង ?
+  🇬🇧 What is a maximum speed limit, km/h, in built-up area for motorcycle? 
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ២០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+       | 🇬🇧 20 km/h
+  ✅ A2 | 🇰🇭 ៣០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+       | 🇬🇧 30 km/h
+     A3 | 🇰🇭 ៤០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+       | 🇬🇧 40 km/h
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q53  [ID:181]
+  🇰🇭 តើការកំណត់ល្បឿនបើកបរអតិបរមានៅក្នុងទីប្រជុំជន សម្រាប់រថយន្តប៉ុន្មានគីឡូម៉ែត្រក្នុងមួយម៉ោង ?
+  🇬🇧 What is a maximum speed limit, km/h, in built-up area need to be limited for cars? 
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ៣០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+       | 🇬🇧 30 km/h
+  ✅ A2 | 🇰🇭 ៤០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+       | 🇬🇧 40 km/h
+     A3 | 🇰🇭 ៥០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+       | 🇬🇧 50 km/h
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q54  [ID:182]
+  🇰🇭 ល្បឿនបើកបរអតិបរមានៅក្រៅទីប្រជុំជន សម្រាប់ទោចក្រយានយន្ត ទំហំស៊ីឡាំងលើសពី ១២៥ សង់ទីម៉ែត្រគូប
+  🇬🇧 The maximum speed limit, km/h, outside built-up area for motorcycle with cylinder of more than 125 cubic centimeters .
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ៦០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+       | 🇬🇧 60 km/h
+  ✅ A2 | 🇰🇭 ៧០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+       | 🇬🇧 70 km/h
+     A3 | 🇰🇭 ៨០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+       | 🇬🇧 80 km/h
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q55  [ID:183]
+  🇰🇭 តើការកំណត់ល្បឿនបើកបរអតិបរមានៅក្រៅទីប្រជុំជន ៨០ គីឡូម៉ែត្រក្នុងមួយម៉ោង សម្រាប់ប្រភេទ​យានយន្តអ្វីខ្លះ ?
+  🇬🇧 For what kind of vehicles is limited the maximum speed limit of 80 km/h outside built-up area?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 សម្រាប់ធុនស្រាល និងដឹកអ្នកដំណើរ
+       | 🇬🇧 Light-duty vehicles and passenger vehicles
+     A2 | 🇰🇭 សម្រាប់គ្រួសារ និងដឹកអ្នកដំណើរធុនតូច
+       | 🇬🇧 Family cars and small passenger vehicles.
+     A3 | 🇰🇭 ដឹកអ្នកដំណើរធុនតូច និងដឹកទំនិញធុនស្រាល
+       | 🇬🇧 Small passenger vehicles and light-duty trucks.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q56  [ID:184]
+  🇰🇭 តើរថយន្តដឹកទំនិញអាចឈប់ ឬចត នៅជិតបង្គោលផ្លាកសញ្ញាចរាចរណ៍បានឬទេ ?
+  🇬🇧 Can trucks stop or park nearby traffic sign posts?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អាចឈប់ ឬចតបាន
+       | 🇬🇧 Can
+     A2 | 🇰🇭 អាចឈប់ ឬចតបានចំពោះដឹកទំនិញ
+       | 🇬🇧 Can for trucks
+  ✅ A3 | 🇰🇭 ហាមឈប់ ឬចត
+       | 🇬🇧 No parking or stopping.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q57  [ID:201]
+  🇰🇭 តើម្ចាស់យានជំនិះអាចបំពាក់ភ្លើងបំភ្លឺឬភ្លើងលំអរផ្សេងៗទៀតក្រៅពីការកំណត់លក្ខណៈបច្ចេកទេសរបស់យានជំនិះបានឬទេ ?
+  🇬🇧 Can vehicle owner install or decorate lights besite technical setting?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អាចបំពាក់បន្ថែមបាន
+       | 🇬🇧 Can
+     A2 | 🇰🇭 អាចបំពាក់ខ្លះៗបាន
+       | 🇬🇧 Can install some
+  ✅ A3 | 🇰🇭 ហាមបំពាក់បន្ថែម
+       | 🇬🇧 No installing.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q58  [ID:202]
+  🇰🇭 ល្បឿនបើកបរអតិបរមានៅក្រៅទីប្រជុំជន សម្រាប់ត្រីចក្រយានយន្ត ឬទោចក្រយានយន្តសណ្តោងរ៉ឺម៉ក
+  🇬🇧 The maximum speed limit of tricycle and trailer drawn motorcycle.
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ៤០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+       | 🇬🇧 40 km/h
+     A2 | 🇰🇭 ៥០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+       | 🇬🇧 50 km/h
+     A3 | 🇰🇭 ៦០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+       | 🇬🇧 60 km/h
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q59  [ID:203]
+  🇰🇭 តើអ្នកបើកបរអាចជែងគ្នានៅត្រង់ផ្លូវកាត់ផ្លូវរថភ្លើងដែលគ្មានរបាំងការពារ បានដែរឬទេ ?
+  🇬🇧 Can drivers overtake each other at the road crossing the railway with no barriers?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ជែងបានបើគ្មានរថភ្លើងឆ្លងកាត់
+       | 🇬🇧 Can if no train across
+     A2 | 🇰🇭 ជែងបានបើផ្លូវថ្នល់ត្រង់រថភ្លើងឆ្លងកាត់នោះធំទូលាយ
+       | 🇬🇧 Can if the road at the train crossing is broad.
+  ✅ A3 | 🇰🇭 ហាមជែង
+       | 🇬🇧 No overtaking.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q60  [ID:204]
+  🇰🇭 តើការកំណត់ល្បឿនបើកបរអតិបរមានៅក្រៅទីប្រជុំជន ៧០ គីឡូម៉ែត្រក្នុងមួយម៉ោង សម្រាប់ប្រភេទយានយន្តអ្វីខ្លះ ?
+  🇬🇧 For what kinds of vehicles is the maximum speed limit at 70km/h outside built-up area?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ទោចក្រយានយន្ដគ្រប់ប្រភេទ ដឹកអ្នកដំណើរធុនធំ និងដឹកទំនិញធុនធ្ងន់
+       | 🇬🇧 All kinds of motorcycles, large passenger busses, and heavy-duty trucks
+  ✅ A2 | 🇰🇭 ទោចក្រយានយន្ដដែលមានទំហំស៊ីឡាំងលើសពី ១២៥ សង់ទីម៉ែត្រគូប និងដឹកទំនិញធុនធ្ងន់
+       | 🇬🇧 Motorcycles with more than 125 cubic centimeters cylinder and heavy-duty trucks.
+     A3 | 🇰🇭 ទោចក្រយានយន្ដដែលមានទំហំស៊ីឡាំងលើសពី ១២៥ សង់ទីម៉ែត្រគូប ដឹកអ្នកដំណើរធុនធំ និងដឹកទំនិញធុនធ្ងន់
+       | 🇬🇧 Motorcycles with more than 125 cubic centimeters cylinder, large passenger buses, and heavy-duty trucks.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q61  [ID:205]
+  🇰🇭 ពេលទៅជិតដល់ស្ពានឬជិតដល់ផ្លូវរថភ្លើងឆ្លងកាត់ តើអ្នកបើកបរត្រូវធ្វើដូចម្តេច ?
+  🇬🇧 What shall drivers do when approach the bridge or railway crossing?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 បន្ថយល្បឿន
+       | 🇬🇧 Slow down.
+     A2 | 🇰🇭 បង្កើនល្បឿន ដើម្បីឆាប់ឆ្លងកាត់ផុតស្ពាន ឬផ្លូវរថភ្លើង
+       | 🇬🇧 Speed up to pass it quickly
+     A3 | 🇰🇭 បើកភ្លើងហ្វា និងស៊ីផ្លេរ បើមាន ឬរថភ្លើងជិតមកដល់
+       | 🇬🇧 Switch on headlight and honk the horn if there is a vehicle or a train get closed.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q62  [ID:206]
+  🇰🇭 តើអ្នកបើកបរយានជំនិះគ្រប់ប្រភេទ ត្រូវជែងទៅខាងណា ?
+  🇬🇧 Which side shall all drivers of all kinds of vehicles overtake?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ខាងស្តាំ
+       | 🇬🇧 The right side
+  ✅ A2 | 🇰🇭 ខាងឆ្វេង
+       | 🇬🇧 The left side
+     A3 | 🇰🇭 ខាងស្ដាំ និងខាងឆ្វេង
+       | 🇬🇧 The right side and the left side.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q63  [ID:207]
+  🇰🇭 តើក្នុងករណីណាដែលអ្នកបើកបរអាចជែងទៅខាងស្ដាំបាន ?
+  🇬🇧 In what case can drivers overtake on the right hand side?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យាននៅខាងមុខបើកបរក្នុងល្បឿនយឺត
+       | 🇬🇧 The vehicle moving at the front is slow
+     A2 | 🇰🇭 យានដែលត្រូវជែងនោះ ឲ្យសញ្ញាប្ដូរទិសខាងស្ដាំ
+       | 🇬🇧 The overtaking vehicle gave the right sign.
+  ✅ A3 | 🇰🇭 យានដែលត្រូវជែងនោះ ឲ្យសញ្ញាប្ដូរទិសខាងឆ្វេង ហើយឈប់ ឬត្រៀមបត់ឆ្វេង
+       | 🇬🇧 The overtaking vehicle gave left sign and then stop or ready to turn left.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q64  [ID:209]
+  🇰🇭 ចំណុចសំខាន់បំផុតសំរាប់សុវត្ថិភាពរបស់យានយន្តមានអ្វីខ្លះ ?
+  🇬🇧 What are the most important safe factors of vehicle?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 មានកង់ ហ្វ្រាំង ចង្កូត និងគ្រឿងបំភ្លឺ
+       | 🇬🇧 Wheels, brakes, steering wheel, and lights
+     A2 | 🇰🇭 មានម៉ាស៊ីន និងគ្រឿងបន្លាស់
+       | 🇬🇧 Machines and spare parts
+     A3 | 🇰🇭 សាក់ស៊ី និងកាប៊ីន
+       | 🇬🇧 Chassis and cabin of the car
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q65  [ID:210]
+  🇰🇭 នៅពេលអ្នកបើកបរជួបផ្លាកសញ្ញាហាមឈប់ តើអាចចតបានឬទេ ?
+  🇬🇧 Can drivers park when seeing no stopping sign?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 មិនអាចចតបានទេ
+       | 🇬🇧 Cannot park
+     A2 | 🇰🇭 អាចចតបាន
+       | 🇬🇧 Can park
+     A3 | 🇰🇭 អាចចតបានតែនៅពេលយប់
+       | 🇬🇧 Can park at night.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q66  [ID:213]
+  🇰🇭 ផ្លូវដែលមានទិសចរាចរណ៍ពីរផ្ទុយគ្នា តើអ្នកបើកបរយានជំនិះត្រូវឈប់ ឬចតយ៉ាងដូចម្ដេច ?
+  🇬🇧 A road with two opposite traffic directions, how shall drivers park or stop the vehicle?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវឈប់ ឬចតខាងឆ្វេងដៃ
+       | 🇬🇧 Park or stop on the left side
+     A2 | 🇰🇭 ត្រូវឈប់ ឬចតកណ្ដាលទ្រូងផ្លូវ
+       | 🇬🇧 Park or stop at the center of the roadway
+  ✅ A3 | 🇰🇭 ត្រូវឈប់ ឬចតខាងស្ដាំដៃតាមទិសចរាចរណ៍របស់ខ្លួន
+       | 🇬🇧 Park or stop on the right, at its own traffic direction.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q67  [ID:214]
+  🇰🇭 ក្នុងករណីទ្រូងផ្លូវចង្អៀតមិនអាចជៀសគ្នាបានរវាងយានធុនស្រាល និងយានធុនធ្ងន់ តើយានណាមួយត្រូវថយក្រោយ ?
+  🇬🇧 In case the narrow roadway and cannot avoid each other between light-duty vehicle and heavy-duty vehicle, which one need to move backward? 
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យានធុនធ្ងន់ត្រូវថយក្រោយ
+       | 🇬🇧 The heavy-tudy vehicle
+  ✅ A2 | 🇰🇭 យានធុនស្រាលត្រូវថយក្រោយ
+       | 🇬🇧 The light-duty vehicle
+     A3 | 🇰🇭 យានទាំងពីរត្រូវថយក្រោយដូចគ្នា
+       | 🇬🇧 The two vehicles
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q68  [ID:326]
+  🇰🇭 តើអ្នកអាចប្រើប្រាស់ស៊ីផ្លេខ្យល់នៅក្នុងទីក្រុង ឬទីប្រជុំជនបានឬទេ ?
+  🇬🇧 Can you use air horn in the city or in the built-up area?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អាចប្រើបាន
+       | 🇬🇧 Can
+  ✅ A2 | 🇰🇭 ហាមប្រើប្រាស់
+       | 🇬🇧 No using.
+     A3 | 🇰🇭 អាចប្រើបាននៅពេលថ្ងែ
+       | 🇬🇧 Can use at the day time
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q69  [ID:327]
+  🇰🇭 មុននឹងជែងយានជំនិះនៅខាងមុខ តើអ្នកបើកបរត្រូវធ្វើអ្វីខ្លះ ?
+  🇬🇧 Before overtaking the front vehicle, what shall drivers do?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវដឹងថាការជែងមិនបណ្តាលឲ្យមានគ្រោះថ្នាក់ ហើយប្រើភ្លើងសញ្ញាប្តូរទិសខាងស្តាំដើម្បីធ្វើការសុំជែង
+       | 🇬🇧 Knowing that the overtaking not cause accident, and turn on the right turn light for overtaking.
+  ✅ A2 | 🇰🇭 ត្រូវដឹងច្បាស់ថាការជែងនេះមិនបណ្ដាលឲ្យមានគ្រោះថ្នាក់អ្វីឡើយ ហើយប្រើភ្លើងសញ្ញាប្ដូរទិសខាង ឆ្វេង ដើម្បីធ្វើការសុំជែង
+       | 🇬🇧 Knowing that the overtaking not cause any accident, and turn on the left turn light for overtaking.
+     A3 | 🇰🇭 ត្រូវដឹងច្បាស់ការជែងនេះមិនបណ្ដាលឲ្យមានគ្រោះថ្នាក់ ហើយធ្វើការជែងដោយមិនចាំបាច់ឲ្យសញ្ញាអ្វីឡើយ
+       | 🇬🇧 Knowing that the overtaking not cause any accident, and do not need to give any light sign.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q70  [ID:328]
+  🇰🇭 នៅពេលជែង តើអ្នកបើកបរត្រូវទុកចន្លោះពីយានមួយទៀតយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?
+  🇬🇧 At least how many meters away from another vehicle shall drivers leave when overtaking?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ១ ម៉ែត្រ
+       | 🇬🇧 1 m
+     A2 | 🇰🇭 ១,៥ ម៉ែត្រ
+       | 🇬🇧 1.5 m
+     A3 | 🇰🇭 ២ ម៉ែត្រ
+       | 🇬🇧 2 m
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q71  [ID:329]
+  🇰🇭 តើអ្នកបើកបរអាចជែងគ្នាជាបីជួរ(ជែងលើដែលកំពុងជែងគ្នា) បានដែរឬទេ ?
+  🇬🇧 Can drivers overtake by three lines (overtake over another vehicle overtaking)?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អាចជែងបាន
+       | 🇬🇧 Can
+  ✅ A2 | 🇰🇭 ហាមជែង
+       | 🇬🇧 Don’t overtake
+     A3 | 🇰🇭 បើកភ្លើងសញ្ញាប្ដូរទិសខាងឆ្វេង ហើយជែងដោយប្រុងប្រយ័ត្ន
+       | 🇬🇧 Turn on left redirction light and overtake with care.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q72  [ID:330]
+  🇰🇭 នៅលើផ្លូវក្រៅទីប្រជុំជន តើយានជំនិះរបស់អ្នកត្រូវចត ឬឈប់យ៉ាងដូចម្ដេច ?
+  🇬🇧 How shall you stop or park your vehicle on the road outside towns or densely populated areas?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ត្រូវឈប់ ឬចតលើជាយផ្លូវខាងស្ដាំតាមទិសចរាចរណ៍
+       | 🇬🇧 Stop or park on the right roadside at its own traffic direction
+     A2 | 🇰🇭 ត្រូវឈប់ ឬចតលើជាយផ្លូវខាងឆ្វេង
+       | 🇬🇧 Stop or park on left roadside
+     A3 | 🇰🇭 ត្រូវឈប់ ឬចតលើជាយផ្លូវខាងស្ដាំ ឬខាងឆ្វេងក៏បាន
+       | 🇬🇧 Stop or park on either roadside
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q73  [ID:331]
+  🇰🇭 តើអ្នកបើកបរអាចជែងនៅជិតឬកន្លែងផ្លូវបត់ ផ្លូវខ្វែង ផ្លូវរអិល បានដែរឬទេ ?
+  🇬🇧 Can drivers overtake nearby or at a turn road or intersection or a slippery road?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ហាមជែង
+       | 🇬🇧 No overtaking.
+     A2 | 🇰🇭 អាចជែងបាន
+       | 🇬🇧 Can overtaking
+     A3 | 🇰🇭 អាចជែងបាន បើផ្លូវទំនេរ
+       | 🇬🇧 Can if free traffic
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q74  [ID:332]
+  🇰🇭 តាមបណ្ដាយផ្លូវមានគំនូសសញ្ញាភ្លោះពណ៌លឿងមួយជាប់ និងមួយដាច់ៗសំរាប់បែងចែកជាពីរទិសចរាចរណ៍ផ្ទុយគ្នា តើអ្នកបើកបរ នៅកៀកគំនូសណាមួយអាចឆ្លងកាត់ ឬជែងបាន ?
+  🇬🇧 Along the road with double yellow lines, one is solid line and another is break line, dividing into two opposite traffic directions, which line that a driver closed to can cross or overtake?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អ្នកបើកបរនៅជាប់គំនូសជាប់ អាចឆ្លងកាត់ ឬជែងបាន
+       | 🇬🇧 The driver who is closed to the solid line.
+     A2 | 🇰🇭 ហាមអ្នកបើកបរឆ្លងកាត់ ឬជែងនៅលើគំនូសដាច់ៗ
+       | 🇬🇧 Don’t drive across or overtake on the break line
+  ✅ A3 | 🇰🇭 អ្នកបើកបរនៅជាប់គំនូសដាច់ៗ អាចឆ្លងកាត់ ឬជែងបាន
+       | 🇬🇧 Driver who is closed to break line can cross or overtake.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q75  [ID:334]
+  🇰🇭 តើផ្លាកសញ្ញាបំបម្រាម មានរាងដូចម្ដេច ?
+  🇬🇧 What is the shape of prohibitory sign?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 មានរាងការ៉េ ជាយក្នុងពណ៌ខ្មៅ ជាយក្រៅពណ៌ស ផ្ទៃពណ៌លឿង រូបសញ្ញាពណ៌ខ្មៅ
+       | 🇬🇧 Square, inside edge is black, outside edge is white, surface is yellow and sign is black.
+  ✅ A2 | 🇰🇭 មានរាងមូលជាយព័ទ្ឋជុំវិញពីរជាន់ ជាយក្នុងក្រាស់ពណ៌ក្រហម ជាយក្រៅស្ដើងពណ៌សសញ្ញាខាងក្នុងជាទូទៅពណ៌ខ្មៅ
+       | 🇬🇧 Round shap, two-layer surrounded edge - thick red inside edge, white thin outside edge- Inside sign generally is black. 
+     A3 | 🇰🇭 រាងមូល ជាយពណ៌ស ព័ទ្ឋជុំវិញ មានផ្ទៃពណ៌ខៀវ រូបសញ្ញាខាងក្នុងពណ៌ស
+       | 🇬🇧 Round shap, surrounded white edge, blue surface, white inside sign.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q76  [ID:336]
+  🇰🇭 មុនបត់ស្ដាំ ឬបត់ឆ្វេង តើអ្នកត្រូវអោយភ្លើងសញ្ញាប៉ុន្មានម៉ែត្រពីផ្លូវប្រសព្វ ឬកន្លែងដែលត្រូវបត់?
+  🇬🇧 How far from the intersection or the turn road shall you give a turn light sing?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 យ៉ាងតិច២០ម៉ែត្រ
+       | 🇬🇧 At least 20 m
+     A2 | 🇰🇭 យ៉ាងតិច១៥ម៉ែត្រ
+       | 🇬🇧 At least 15 m
+     A3 | 🇰🇭 យ៉ាងតិច១០ម៉ែត្រ
+       | 🇬🇧 At least 10 m
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q77  [ID:337]
+  🇰🇭 នៅពេលរថយន្ត ដែលមានទម្ងន់សរុបលើសពី៥តោនឡើងទៅ ខូចម៉ាស៊ីនពុំអាចជុសជុលបាន តើអ្នកត្រូវប្រើឧបករណ៍អ្វីដើម្បីថ្ពក់សណ្ដោង ?
+  🇬🇧 When a vehicle with a total weight of more than 5T and broken, cannot be repaired, what material shall you use to hook and tow?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវប្រើខ្សែសណ្ដោង
+       | 🇬🇧 Use the towing cable
+  ✅ A2 | 🇰🇭 ត្រូវប្រើដងដែក
+       | 🇬🇧 Use the long metal
+     A3 | 🇰🇭 ត្រូវប្រើខ្សែពួរ
+       | 🇬🇧 Use the rope
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q78  [ID:362]
+  🇰🇭 នៅពេលឡើងរថយន្ត មុននឹងចេញដំណើរ ត្រូវធ្វើដូចម្ដេច ?
+  🇬🇧 Getting on the vehicle, before departure, what shall you do?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ពិនិត្យទីតាំងកៅអី និងកព្ចាក់ ខ្សែក្រវាត់ ចង្កឹះ លេខ ដេម៉ារ័រ ភ្លើងសញ្ញាមុខក្រោយ ដាក់ លេខ ហ្វ្រាំងដៃ ចេញដំណើរយឺតៗ
+       | 🇬🇧 - Adjust the seat position and the winding mirrow, - Wear seat belt, check gear shift, start the engine to check the front and back light signs, engage the gear, - Release the front brake, and - Depart slowly.
+     A2 | 🇰🇭 ជាន់ហ្វ្រាំងដាក់ លេខរួចចេញទៅដោយប្រុងប្រយ័ត្ន
+       | 🇬🇧 Put on the brake, engage the gear, and depart with care.
+     A3 | 🇰🇭 បើកកុងតាក់ដេម៉ារ័រ-ស៊ីផ្លេសុំផ្លូវរួចចេញដំណើរ
+       | 🇬🇧 Press starter, honk the horn, and depart.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q79  [ID:363]
+  🇰🇭 នៅលើទ្រូងផ្លូវឯកទិស តើអ្នកបើកបរអាចធ្វើការបត់ត្រឡប់ក្រោយយានជំនិះរបស់ខ្លួន បានឬទេ ?
+  🇬🇧 Can driver turn back his/her car on one-way traffic direction road?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អាចបត់ត្រឡប់ក្រោយបាន បើទ្រូងផ្លូវទំនេរគ្មានយានជំនិះធ្វើចរាចរណ៍
+       | 🇬🇧 Can if the road is free.
+     A2 | 🇰🇭 អាចបត់ត្រឡប់ក្រោយបាន បើទ្រូងផ្លូវធំទូលាយ
+       | 🇬🇧 Can if the road is broad.
+  ✅ A3 | 🇰🇭 ហាមបត់ត្រឡប់ក្រោយ
+       | 🇬🇧 No turning back.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q80  [ID:365]
+  🇰🇭 តើអ្នកបើកបរត្រូវចត ឬឈប់យានជំនិះចម្ងាយប៉ុន្មានម៉ែត្រពីផ្លូវបត់ ឬផ្លូវប្រសព្វ ?
+  🇬🇧 How far from the intersection or turn road shall you park or stop your vehicle?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យ៉ាងតិច ២ ម៉ែត្រ និងមហាវិថីយ៉ាងតិច ៥ម៉ែត្រ
+       | 🇬🇧 At least 2m, and 5m for the Boulevard
+     A2 | 🇰🇭 យ៉ាងតិច ៣ ម៉ែត្រ និងមហាវិថីយ៉ាងតិច ៨ម៉ែត្រ
+       | 🇬🇧 At least 3m, and 8m for Boulevard.
+  ✅ A3 | 🇰🇭 យ៉ាងតិច ៥ ម៉ែត្រ និងមហាវិថីយ៉ាងតិច ១០ម៉ែត្រ
+       | 🇬🇧 At least 5m, and 10m for Boulevard.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q81  [ID:366]
+  🇰🇭 តើអ្នកបើកបរយានជំនិះគ្រប់ប្រភេទ ត្រូវជៀសគ្នាដោយប្រកាន់យកខាងណា ?
+  🇬🇧 On what side shall drivers avoid each other?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ប្រកាន់យកខាងឆ្វេងដៃរៀងៗខ្លួន
+       | 🇬🇧 On the left side by each
+  ✅ A2 | 🇰🇭 ប្រកាន់យកខាងស្តាំដៃរៀងៗខ្លួន
+       | 🇬🇧 On the right side by each.
+     A3 | 🇰🇭 ប្រកាន់ខាងណាក៏បាន
+       | 🇬🇧 Any side
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q82  [ID:367]
+  🇰🇭 មុននឹងចូលក្នុងរថយន្ត ដើម្បីបើកបរថយក្រោយ តើអ្នកត្រូវធ្វើអ្វីខ្លះ?
+  🇬🇧 Before getting in your vehicle to move backward, what shall you do?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវមើលទៅមុខឲ្យបានគ្រប់គ្រាន់ រួចឲ្យសញ្ញា និងបើកយឺតៗថយក្រោយ
+       | 🇬🇧 Look to the front sufficiently, give a sign, and drive backward slowly.
+  ✅ A2 | 🇰🇭 ត្រូវមើលផ្នែកខាងក្រោយឲ្យបានច្បាស់សិន បើគ្មានឧបសគ្គទើបចូលបើកយឺតៗថយក្រោយដោយប្រុងប្រយ័ត្ន
+       | 🇬🇧 Look behind of the vehicle carefully, make sure nothing to happen, then get into the vehicle and drive backward slowly and carefully.
+     A3 | 🇰🇭 មើលផ្នែកខាងស្ដាំឲ្យគ្រប់គ្រាន់រួចឲ្យសញ្ញា និងបើកយឺតៗថយក្រោយ
+       | 🇬🇧 Look at the right hand side, give a sign, and drive backward slowly.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q83  [ID:368]
+  🇰🇭 តើអ្នកអាចឈប់ ឬ ចត លើគំនូសសញ្ញាសំរាប់ថ្មើរជើងឆ្លងកាត់បានឬទេ ?
+  🇬🇧 Can you park or stop your vehicle on the zebra?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ហាមឈប់ ឬចតពីលើ
+       | 🇬🇧 No stopping or parking on the zebra.
+     A2 | 🇰🇭 អាចឈប់ ឬចតបាន
+       | 🇬🇧 Can
+     A3 | 🇰🇭 អាចឈប់ ឬចតពាក់កណ្ដាលគំនូស
+       | 🇬🇧 Can, on the half part of the zebra.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q84  [ID:369]
+  🇰🇭 ក្រៅទីប្រជុំជន តើការកំណត់ល្បឿនអតិបរមា សំរាប់រថយន្តគ្រួសារប៉ុន្មានគីឡូម៉ែត្រក្នុងមួយម៉ោង ?
+  🇬🇧 Outside town or densely populated area what maximum speed limit ( km/h) shall family vehicle drive?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ៧០គ.ម​ ក្នុងមួយម៉ោង
+       | 🇬🇧 70km/h
+  ✅ A2 | 🇰🇭 ៨០គ.ម​ ក្នុងមួយម៉ោង
+       | 🇬🇧 80km/h
+     A3 | 🇰🇭 ១០០គ.ម​ ក្នុងមួយម៉ោង
+       | 🇬🇧 100km/h
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q85  [ID:372]
+  🇰🇭 នៅក្នុងទីក្រុង ឬទីប្រជុំជន តើការឈប់ ឬចតរថយន្តនៅលើទ្រូងផ្លូវមានចំងាយប៉ុន្មាន ពីគែមចិញ្ចើមផ្លូវ ?
+  🇬🇧 How far, on the roadway, from the curve markings shall drivers stop or park in the city or built-up area?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 មិនលើសពី២៥សង់ទីម៉ែត្រ
+       | 🇬🇧 Not more than 25cm
+     A2 | 🇰🇭 មិនលើសពី៣០សង់ទីម៉ែត្រ
+       | 🇬🇧 Not more than 30cm
+     A3 | 🇰🇭 មិនលើសពី៣៥សង់ទីម៉ែត្រ
+       | 🇬🇧 Not more than 35cm
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q86  [ID:374]
+  🇰🇭 ពេលដល់ផ្លូវប្រសព្វដែលមានដាក់ផ្លាកសញ្ញា“ឈប់”តើអ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?
+  🇬🇧 Getting to the intersection with sign ’STOP’, what shall drivers do?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ចាំបាច់ត្រូវតែឈប់ទោះបីផ្លូវខាងមុខមានឬគ្មានយានជំនិះធ្វើចរាចរណ៍ក៍ដោយ
+       | 🇬🇧 Must stop even though there is traffic or not at the front.
+     A2 | 🇰🇭 ឈប់តែនៅពេលមានថ្មើរជើងដើរឆ្លងកាត់
+       | 🇬🇧 Stop only when pedestriances crossing
+     A3 | 🇰🇭 មិនបាច់ឈប់ទេ បើគ្មានថ្មើរជើងឆ្លងកាត់
+       | 🇬🇧 No need to stop if no pedestriances walk across.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q87  [ID:407]
+  🇰🇭 ផ្លាកសញ្ញាគ្រោះថ្នាក់មានទ្រង់ទ្រាយដូចម្ដេច ?
+  🇬🇧 What shape is a danger sign?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 រាងជាការ៉េមានអង្កត់ទ្រូងមួយជាខ្សែឈរមានជាយពីរជាន់ ជាយពណ៍ខ្មៅក្រាស់និងជាយក្រៅពណ៍សស្តើងផ្ទៃក្នុងពណ៍លឿងរូបឬសញ្ញាពណ៍ខ្មៅ
+       | 🇬🇧 Square shap with one vertical diagonal, bouble layers edge, thick black layer, thin white outer edge, yellow inner background and black sign or picture. 
+     A2 | 🇰🇭 រាងមូល មានជាយព័ន្ធជុំវិញពណ៌ស ផ្ទៃក្នុងពណ៌ខៀវ និងរូបសញ្ញាពណ៌ស
+       | 🇬🇧 Round shape with white surrounded edge, blue inner surface and white sign.
+     A3 | 🇰🇭 រាងបួនជ្រុង មានជាយពណ៌ស ផ្ទៃក្នុងពណ៌ក្រហម
+       | 🇬🇧 Regtangle with white edge and red inside surfce
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q88  [ID:408]
+  🇰🇭 តើអ្នកបើកបរអាចជែងគ្នានៅលើស្ពានបានដែរឬទេ ?
+  🇬🇧 Can drive overtake on the bridge?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ជែងបានបើស្ពានមានទំហំធំ
+       | 🇬🇧 Can, if broad bridge.
+  ✅ A2 | 🇰🇭 មិនអាចជែងបានជាដាច់ខាត
+       | 🇬🇧 Absolutely cannot
+     A3 | 🇰🇭 អាចជែងបានពេលកំពុងឡើងស្ពាន
+       | 🇬🇧 Can while going up the bridge.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q89  [ID:409]
+  🇰🇭 នៅពេលយប់ក្រៅទីប្រជុំជនគ្មានចង្កៀងអគ្គីសនីបំភ្លឺ យានជំនិះជួបគ្នា តើអ្នកបើកបរត្រូវប្រើភ្លើងអ្វី ?
+  🇬🇧 What kinds of lights (coating lights, headlights, semi lights) do drivers use when meet each other outside built-up area without electricity, at night?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ត្រូវបិទភ្លើងហ្វា ហើយបើកភ្លើងកូតវិញ
+       | 🇬🇧 Turn off headlights and turn on coating lights.
+     A2 | 🇰🇭 ត្រូវបើកភ្លើងហ្វា
+       | 🇬🇧 Turn on headlight
+     A3 | 🇰🇭 ត្រូវបើកភ្លើងហ្វា ឆ្លាស់គ្នានឹងភ្លើងកូត
+       | 🇬🇧 Turn on coating light and headlight alternatively.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q90  [ID:410]
+  🇰🇭 តើកុមារដែលមានអាយុក្រោម ១០ឆ្នាំ អាចឲ្យអង្គុយនៅកៅអីមុខនៃរថយន្តបានដែរឬទេ ?
+  🇬🇧 Can a child under 10 years old sit at the front seat, in the cabin?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 មិនអាចអង្គុយបានទេ
+       | 🇬🇧 Can
+     A2 | 🇰🇭 អាចអង្គុយបាន និងពាក់ខ្សែក្រវាត់សុវត្ថិភាព
+       | 🇬🇧 Can but wear seat belt
+     A3 | 🇰🇭 អាចអង្គុយបាន បើឪពុក ឬម្ដាយអង្គុយជាមួយ
+       | 🇬🇧 Can if with his/her parent
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q91  [ID:411]
+  🇰🇭 បើអ្នកបើកបរក្រៅក្រុងក្នុងល្បឿន ៩០ គីឡូម៉ែត្រក្នុងមួយម៉ោង តើពេលជាន់ហ្វ្រាំងអាចឈប់ចំងាយប៉ុន្មានម៉ែត្រនៅលើផ្លូវស្ងួត និង ប៉ុន្មានម៉ែត្រនៅលើផ្លូវសើម ឬ រអិល ?
+  🇬🇧 If you are driving at the speed of 90km/h, how far can you stop your vehicle since you apply the brake, on the dry road? on the wet road? 
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ៨១ ម៉ែត្រ នៅលើផ្លូវស្ងួត និង១២០ម៉ែត្រ នៅលើផ្លូវសើម
+       | 🇬🇧 81m on the dry road and 120m on the wet road
+     A2 | 🇰🇭 ៦០ ម៉ែត្រ នៅលើផ្លូវស្ងួត និង១៦០ម៉ែត្រ នៅលើផ្លូវសើម
+       | 🇬🇧 60m on the dry road and 160m on the wet road.
+     A3 | 🇰🇭 ៣០ ម៉ែត្រ នៅលើផ្លូវស្ងួត និង៨០ម៉ែត្រ នៅលើផ្លូវសើម
+       | 🇬🇧 30m on the dry road and 80m on the wet road.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q92  [ID:412]
+  🇰🇭 តើព្រះរាជាណាចក្រកម្ពុជា ច្បាប់អនុញ្ញាតឲ្យប្រជាពលរដ្ឋអាយុប៉ុន្មាន មានសិទ្ធិប្រឡងបើកបររថយន្តប្រភេទធុនតូចបាន ?
+  🇬🇧 In accordance with the Cambodian law, at what age can a citizen take a test for driver license for light-duty vehicle?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 មានអាយុ ១៦ ឆ្នាំ ឡើងទៅ
+       | 🇬🇧 16 and up
+     A2 | 🇰🇭 មានអាយុ ១៧ ឆ្នាំ ឡើងទៅ
+       | 🇬🇧 17 and up
+  ✅ A3 | 🇰🇭 មានអាយុ ១៨ ឆ្នាំ ឡើងទៅ
+       | 🇬🇧 18 and up
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q93  [ID:413]
+  🇰🇭 នៅលើទ្រូងផ្លូវមានទិសចរាចរណ៍ពីរ ដែលគ្មានគំនូសសញ្ញាបែងចែកទិសចរាចរណ៍ តើអ្នកបើកបរត្រូវប្រើប្រាស់ទ្រូងផ្លូវដូចម្តេច ?
+  🇬🇧 On the roadway with two traffic directions, no sign divided the traffic directions, how shall drivers use the the road?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវប្រើប្រាស់ និងបើកបរកណ្ដាលទ្រូងផ្លូវ
+       | 🇬🇧 Drive at the center of the roadway
+  ✅ A2 | 🇰🇭 ត្រូវប្រើប្រាស់ពាក់កណ្ដាលទ្រូងផ្លូវផ្នែកខាងស្ដាំ ដោយបើកបរកៀកទៅខាងស្ដាំ
+       | 🇬🇧 Drive on the half right side of the road, by driving along to the right side.
+     A3 | 🇰🇭 ត្រូវប្រើប្រាស់ពាក់កណ្ដាលទ្រូងផ្លូវផ្នែកឆ្វេង ដោយបើកបរកៀកទៅឆ្វេង
+       | 🇬🇧 Drive on the left side of the roadway, close to the left.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q94  [ID:414]
+  🇰🇭 តើអ្នកបើកបរ ត្រូវប្រើភ្លើងអ្វីខ្លះនៅពេលដែលមានភ្លៀងខ្លាំង នៅក្នុងទីប្រជុំជន ?
+  🇬🇧 While heavy rain falling, in city or built-up area, what lights shall drivers turn on? 
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ភ្លើងកូត
+       | 🇬🇧 Coating light
+     A2 | 🇰🇭 ភ្លើងហ្វា
+       | 🇬🇧 Headlight
+     A3 | 🇰🇭 ភ្លើងដឺមី
+       | 🇬🇧 Semi light
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q95  [ID:415]
+  🇰🇭 បើមានរថយន្តនៅពីក្រោយសុំជែង តើអ្នកត្រូវធ្វើដូចម្ដេច  ?
+  🇬🇧 What shall you do when there is a running car behind get to overtake you?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ខ្ញុំត្រូវបន្ថែមល្បឿន និង ផ្ដល់សញ្ញាបត់ស្ដាំ
+       | 🇬🇧 Speed up and give the right turn sign.
+     A2 | 🇰🇭 ខ្ញុំត្រូវរក្សាល្បឿនឲ្យនៅដដែល និងឲ្យនោះជែងទៅមុខ
+       | 🇬🇧 Keep the same speed and let it overtakes ahead.
+  ✅ A3 | 🇰🇭 បើខាងមុខគ្មានឧបសគ្គ ត្រូវឲ្យសញ្ញាបត់ស្ដាំ បន្ថយល្បឿន និងអែបស្ដាំជាសញ្ញាអនុញ្ញាតឲ្យខាងក្រោយអាចជែងបាន
+       | 🇬🇧 If available, give the right turn sign, slow down, and a bit move to the right side as a sign to let it overtakes.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q96  [ID:417]
+  🇰🇭 នៅលើទ្រូងផ្លូវមានទិសចរាចរណ៍ពីរ ហើយមានគំនូសបែងចែកទ្រូងផ្លូវ តើអ្នកបើកបរត្រូវប្រកាន់យក ចំណែកផ្លូវខាងណា ?
+  🇬🇧 On the road with two traffic directions and having a marking dividing the road, which part of the road shall drivers drive on?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវប្រកាន់យកកណ្ដាលទ្រូងផ្លូវ
+       | 🇬🇧 Drive at the center of the road.
+  ✅ A2 | 🇰🇭 ត្រូវប្រកាន់យកចំណែកផ្លូវខាងស្ដាំ
+       | 🇬🇧 Drive on the right hand side.
+     A3 | 🇰🇭 ត្រូវប្រកាន់យកចំណែកផ្លូវខាងឆ្វេង
+       | 🇬🇧 Drive on the left hand side.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q97  [ID:418]
+  🇰🇭 រថយន្តប្រភេទណាខ្លះ មានសិទ្ធិអាទិភាព ជាងគេនៅលើទ្រូងផ្លូវសាធារណៈ ?
+  🇬🇧 What kinds of vehicles have more priority on the public road?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ពន្លត់អគ្គីភ័យ > នគរបាល យោធា អាវុធហត្ថ > សង្គ្រោះបន្ទាន់
+       | 🇬🇧 Fire truck > police car, military car, gendarmarie car > ambulance
+     A2 | 🇰🇭 នគរបាល យោធា អាវុធហត្ថ > សង្គ្រោះបន្ទាន់ > ពន្លត់អគ្គីភ័យ
+       | 🇬🇧 Police car, military car, gendarmarie car> ambulance > fire truck
+  ✅ A3 | 🇰🇭 ពន្លត់អគ្គីភ័យ > សង្គ្រោះបន្ទាន់ > នគរបាល យោធា អាវុធហត្ថ
+       | 🇬🇧 Fire truck > ambulance > police car, military car, gendarmarie car
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q98  [ID:419]
+  🇰🇭 យានជំនិះពីរជួបគ្នាមួយនៅក្នុងខ្សែរង្វង់មូល (មួយទៅក្រៅខ្សែរង្វង់មូល) គ្មានផ្លាកសញ្ញាបញ្ជាទិស តើមួយណាមានសិទ្ធិអាទិភាព ?
+  🇬🇧 Two vehicles at the roundabout, one is inside the roundabout and another one is outside, no mandatory direction sign, which vehicle is prioritized?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យានជំនិះនៅក្នុងខ្សែរង្វង់មូល
+       | 🇬🇧 The inside one.
+     A2 | 🇰🇭 យានជំនិះមកពីផ្លូវផ្សេងៗចូូលជិតដល់ក្នុងរង្វង់មូល
+       | 🇬🇧 Other vehicles from other roads move close to inside the roundabout
+  ✅ A3 | 🇰🇭 យានមកពីស្ដាំដៃ
+       | 🇬🇧 The vehicle from the right hand.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q99  [ID:420]
+  🇰🇭 ផ្លូវខ្វែងមានសិទ្ធិស្មើគ្នា តើត្រូវទុកសិទ្ធិអាទិភាពឲ្យយានជំនិះមកពីស្ដាំដៃ ឬ មកពីឆ្វេងដៃទៅមុន ?
+  🇬🇧 On the intersection with the same priority, shall drivers leave priority to the left hand vehicle go first or the right one?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ស្ដាំដៃ
+       | 🇬🇧 The right one
+     A2 | 🇰🇭 ឆ្វេងដៃ
+       | 🇬🇧 The left one
+     A3 | 🇰🇭 មួយណាក៏បាន
+       | 🇬🇧 Any one
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q100  [ID:453]
+  🇰🇭 ក្នុងករណីទ្រូងផ្លូវចង្អៀត មិនអាចជៀសគ្នាបាន តើយានជំនិះណាមួយត្រូវថយក្រោយ
+  🇬🇧 In case  a roadway is too narrow to allow two vehicles to pass, which vehicle shall reverse to give away?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យានដឹកអ្នកដំណើរ
+       | 🇬🇧 Passenger vehicle
+  ✅ A2 | 🇰🇭 យានដឹកទំនិញ
+       | 🇬🇧 Cargo truck
+     A3 | 🇰🇭 យានដែលបើកភ្លើងសុំផ្លូវក្រោយគេ
+       | 🇬🇧 Vehicle with for sign for way later
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q101  [ID:454]
+  🇰🇭 តើក្មេងចាប់ពីអាយុប៉ុន្មានឆ្នាំឡើងទៅ ទើបអនុញ្ញាតឲ្យអង្គុយ នៅកៅអីផ្នែកខាងមុខក្បែរអ្នកបើកបរ ?
+  🇬🇧 At what age and over of children can be allowed to sit in the front seat next to the driver?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវមានអាយុចាប់ពីអាយុ ៥ឆ្នាំ ពេញបរិបូរណ៍ឡើងទៅ
+       | 🇬🇧 5 and over
+     A2 | 🇰🇭 ត្រូវមានអាយុក្រោម ១០ឆ្នាំ
+       | 🇬🇧 under 10
+  ✅ A3 | 🇰🇭 ត្រូវមានអាយុចាប់ពី ១០ឆ្នាំ ពេញបរិបូរណ៍ឡើងទៅ
+       | 🇬🇧 10 and over
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q102  [ID:455]
+  🇰🇭 ពេលជៀសគ្នានៅលើផ្លូវចោតហើយចង្អៀត តើយានជំនិះណាត្រូវទៅមុន ?
+  🇬🇧 Avoiding each other on a steep and narrow road, which vehicle shall go first?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យានជំនិះដែលបើកភ្លើងសុំផ្លូវបានមុន
+       | 🇬🇧 The vehicle with the light sign for way first.
+     A2 | 🇰🇭 យានជំនិះចុះចំណោទ
+       | 🇬🇧 The one is moving down the steep
+  ✅ A3 | 🇰🇭 យានជំនិះឡើងចំណោទ
+       | 🇬🇧 The one is moving up
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q103  [ID:456]
+  🇰🇭 នៅលើស្ពានចង្អៀត ដែលបើកបរបានតែមួយគ្រឿង យានយន្តប្រភេទណាត្រូវទៅមុន ?
+  🇬🇧 When vehicles are passing on the narrow bridge with only one vehicle availble, which vehicle shall go first?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យានយន្ដធុនធំ
+       | 🇬🇧 The large vehicle
+  ✅ A2 | 🇰🇭 យានយន្ដធុនស្រាល
+       | 🇬🇧 The light-duty vehicle
+     A3 | 🇰🇭 យានយន្ដដែលបើកភ្លើងសុំផ្លូវបានមុន
+       | 🇬🇧 The vehicle with light sign for way first
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q104  [ID:457]
+  🇰🇭 នៅពេលបើកបរឆ្លងកាត់ផ្លូវរថភ្លើង តើអ្នកបើកបរត្រូវធ្វើដូចម្តេច ?
+  🇬🇧 Driving across the railway, how shall drivers do?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 បន្ថែមល្បឿន
+       | 🇬🇧 Speed up.
+  ✅ A2 | 🇰🇭 បន្ថយល្បឿន
+       | 🇬🇧 Slow down.
+     A3 | 🇰🇭 ស៊ីផ្លេឲ្យបានខ្លាំង
+       | 🇬🇧 Voice the horn loudly
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q105  [ID:458]
+  🇰🇭 នៅពេលរថភ្លើងបន្លឺសញ្ញាជិតមកដល់ តើអ្នកបើកបរត្រូវឈប់ចម្ងាយយ៉ាងតិចប៉ុន្មានម៉ែត្រ ពីរបាឬរបាំង ?
+  🇬🇧 When the train sirens and comes closer, how far, at least, shall you stop your vehicle from the barrier? 
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ចម្ងាយ ១ ម៉ែត្រ
+       | 🇬🇧 1m
+  ✅ A2 | 🇰🇭 ចម្ងាយ ២ ម៉ែត្រ
+       | 🇬🇧 2m
+     A3 | 🇰🇭 ចម្ងាយ ៣ ម៉ែត្រ
+       | 🇬🇧 3m
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q106  [ID:460]
+  🇰🇭 ផ្លាកសញ្ញាបញ្ជាមានទ្រង់ទ្រាយដូចម្ដេច ?
+  🇬🇧 What shape is a mandatory sign?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 រាងមូលមានជាយពីរជាន់ព័ទ្ធជុំវិញជាយក្នុងពណ៍ក្រហមហើយក្រាស់ជាយក្រៅពណ៍សស្តើងនិងមានរូបសញ្ញាសំគាល់ខាងក្នុងពណ៍ខ្មៅ
+       | 🇬🇧 Circle with double edges, the inside edge is red and thick, the outside edge is white and thin, and a black note sign in the zone.
+     A2 | 🇰🇭 ផ្លាកសញ្ញាបញ្ជាមានរាងបួនជ្រុងស្មើ មានជាយពីរជាន់ព័ទ្ធជុំវិញ ជាយក្នុងពណ៌ខៀវហើយក្រាស់ ជាយក្រៅពណ៌សហើយស្ដើង និងមានរូប ឬសញ្ញាសំគាល់ខាងក្នុងពណ៌លឿង
+       | 🇬🇧 Square with double edges surrounded, The inside edge is blue and thick, the outside edge is white and thin, and there is a yellow picture and a note inside the zone.
+  ✅ A3 | 🇰🇭 ផ្លាកសញ្ញាបញ្ជារាងមូល ជាយពណ៌សព័ទ្ធជុំវិញផ្ទៃក្នុងពណ៌ខៀវ និងមានរូប ឬសញ្ញាសំគាល់ខាងក្នុងពណ៌ស
+       | 🇬🇧 Circle with whit edge surrounded, the inside surface is blue. There is a white sign or a note in the zone.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q107  [ID:461]
+  🇰🇭 នៅពេលរថភ្លើងបន្លឺសញ្ញាជិតមកដល់ តើអ្នកបើកបរត្រូវឈប់ចម្ងាយយ៉ាងតិចប៉ុន្មានម៉ែត្រ ពីផ្លូវរថភ្លើង ?
+  🇬🇧 When the train sirens and comes closer, how far from the railway shall you stop?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ចម្ងាយ ៥ ម៉ែត្រ
+       | 🇬🇧 5m
+     A2 | 🇰🇭 ចម្ងាយ ១០ ម៉ែត្រ
+       | 🇬🇧 10m
+     A3 | 🇰🇭 ចម្ងាយ ២០ ម៉ែត្រ
+       | 🇬🇧 20m
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q108  [ID:463]
+  🇰🇭 នៅពេលរថយន្តអ្នកបុកមនុស្ស ឬប៉ះនឹងអ្នកធ្វើចរាចរណ៍លើផ្លូវសាធារណៈ តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+  🇬🇧 When your vehicle hit a person or others having traffic on the road, what shall you do?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ឈប់យាន ចុះជួយសង្គ្រោះ និងផ្ដល់ដំណឹងដល់ភ្នាក់ងារនគរបាលចរាចរណ៍ដែលនៅជិតបំផុត
+       | 🇬🇧 Get off the vehicle and recure and inform to the nearby traffic police
+     A2 | 🇰🇭 បើករត់គេចខ្លួន រួចទុកឲ្យសមត្ថកិច្ចដោះស្រាយពីហេតុការណ៍នេះ
+       | 🇬🇧 Drive away to avoid the event and leave the case for the police
+     A3 | 🇰🇭 ទុកយានចោលរត់យករួចខ្លួន
+       | 🇬🇧 Leave the vehicle and run away
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q109  [ID:465]
+  🇰🇭 នៅពេលយានជំនិះខូចគាំង ឬត្រូវបង្ខំឲ្យឈប់ ឬចតនៅលើទ្រូងផ្លូវក្រៅទីប្រជុំជន តើអ្នកបើកបរត្រូវ ប្រើភ្លើងសញ្ញាអាសន្ន និងដាក់សញ្ញាត្រីកោណចម្ងាយប៉ុន្មានយ៉ាងតិច?
+  🇬🇧 When your vehicle goes wrong and force to stop or park on the road outside built-up area, how far, at least, from the vehicle shall you put the agency light or triangle sign?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ២០ម៉ែត្រ ពីយានដែលអាចមើលឃើញយ៉ាងតិច ៨០ម៉ែត្រ
+       | 🇬🇧 20m from the vehicle which can be seen at least from 80m
+  ✅ A2 | 🇰🇭 ៣០ម៉ែត្រ ពីយានដែលអាចមើលឃើញយ៉ាងតិច ១០០ម៉ែត្រ
+       | 🇬🇧 30m from the vehicle which can be seen at least from 100m
+     A3 | 🇰🇭 ៥០ម៉ែត្រ ពីយានដែលអាចមើលឃើញយ៉ាងតិច ១២០ម៉ែត្រ
+       | 🇬🇧 50m from the vehicle which can be seen at least from 120
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q110  [ID:497]
+  🇰🇭 បើរថយន្តអ្នកខូចកណ្ដាលទ្រូងផ្លូវសាធារណៈ តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+  🇬🇧 If your vehicle was broken down on the roadway. What shall you do?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ខ្ញុំត្រូវធ្វើការជួសជុលភ្លាម
+       | 🇬🇧 I need to repair it soon.
+  ✅ A2 | 🇰🇭 ខ្ញុំត្រូវរុញទៅអែបខាងស្ដាំ ទើបធ្វើការជួសជុល បើគ្មានផ្លូវគ្រប់គ្រាន់ខ្ញុំត្រូវដាក់សញ្ញាឲ្យដំណឹង
+       | 🇬🇧 I need to push my vehicle to the right side and repair. If the case is not available, I shall place the sign to alert.
+     A3 | 🇰🇭 ទុកចោល រួចរាយការណ៍ដល់នគរបាលចរាចរណ៍
+       | 🇬🇧 Leave the vehicle and report to traffic police.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q111  [ID:501]
+  🇰🇭 នៅក្នុងទីប្រជុំជន តើអ្នកបើកបរត្រូវឈប់ ឬចតយានជំនិះ យ៉ាងតិចចម្ងាយប៉ុន្មានម៉ែត្រ ពីផ្លូវប្រសព្វ ឬផ្លូវបត់ ឬផ្លូវកោង ?
+  🇬🇧 Inside the built-up area, how far, at least, from the intersection, or turn road, or bend road, shall you stop or park your vehicle? 
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ចម្ងាយ ៣ ម៉ែត្រ
+       | 🇬🇧 3m
+     A2 | 🇰🇭 ចម្ងាយ ៤ ម៉ែត្រ
+       | 🇬🇧 4m
+  ✅ A3 | 🇰🇭 ចម្ងាយ ៥ ម៉ែត្រ
+       | 🇬🇧 5m
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q112  [ID:502]
+  🇰🇭 នៅក្រៅទីប្រជុំជន តើអ្នកបើកបរត្រូវឈប់ ឬចតយានជំនិះ យ៉ាងតិចប៉ុន្មានម៉ែត្រ ពីផ្លូវប្រសព្វ ឬផ្លូវបត់ ឬផ្លូវកោង ?
+  🇬🇧 Outside built-up area, how far, at least, from the intersection, or turn road, or bend road, shall you stop or park your vehicle? 
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ចម្ងាយ ៥ ម៉ែត្រ
+       | 🇬🇧 5m
+  ✅ A2 | 🇰🇭 ចម្ងាយ ១០ ម៉ែត្រ
+       | 🇬🇧 10m
+     A3 | 🇰🇭 ចម្ងាយ ១៥ ម៉ែត្រ
+       | 🇬🇧 15m
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q113  [ID:503]
+  🇰🇭 តើអ្នកបើកបរអាចប្រើសូរស័ព្ទ ស៊ីផ្លេ នៅពេលណា? កន្លែងណា?
+  🇬🇧 When and where can drivers honk the horn?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ពេលថ្ងៃ ពេលសុំជែង និងមិនត្រូវប្រើនៅជិតមន្ទីពេទ្យឬកន្លែងណាមានសញ្ញាហាមស៊ីផ្លេ
+       | 🇬🇧 At day time, when overtake, not to honk near the hospital or anywhere with no-horn sign.
+     A2 | 🇰🇭 ប្រើបាននៅពេលយប់
+       | 🇬🇧 At night time
+     A3 | 🇰🇭 ប្រើបានគ្រប់ពេលវេលា និងគ្រប់ទីកន្លែង
+       | 🇬🇧 ប្រើបានគ្រប់ពេលវេលា និងគ្រប់ទីកន្លែង
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q114  [ID:504]
+  🇰🇭 តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះ ចម្ងាយប៉ុន្មានម៉ែត្រ ពីមុខគំនូសឆ្នូតកាត់ទទឹងទ្រូងផ្លូវ សម្រាប់ថ្មើរជើងឆ្លងកាត់ ?
+  🇬🇧 How far from the zebra can drivers stop or park vehicle?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យ៉ាងតិច ១ ម៉ែត្រ
+       | 🇬🇧 At least 1m
+     A2 | 🇰🇭 យ៉ាងតិច ៣ ម៉ែត្រ
+       | 🇬🇧 At least 3m
+  ✅ A3 | 🇰🇭 យ៉ាងតិច ៥ ម៉ែត្រ
+       | 🇬🇧 At least 5m
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q115  [ID:505]
+  🇰🇭 តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះ ចម្ងាយប៉ុន្មានម៉ែត្រ ពីផ្លូវរថភ្លើងឆ្លងកាត់ ?
+  🇬🇧 How far from the railroad crossing can drivers stop or park vehicle?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យ៉ាងតិច ១៥ ម៉ែត្រ
+       | 🇬🇧 At least 15m
+  ✅ A2 | 🇰🇭 យ៉ាងតិច ២០ ម៉ែត្រ
+       | 🇬🇧 At least 20m
+     A3 | 🇰🇭 យ៉ាងតិច ២៥ម៉ែត្រ
+       | 🇬🇧 At least 25m
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q116  [ID:506]
+  🇰🇭 នៅពេលជែងរួច តើអ្នកត្រូវប្រុងប្រយ័ត្នអ្វីខ្លះ ?
+  🇬🇧 After overtaking, how shall you pay attention?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 បត់ស្ដាំវិញដោយប្រញាប់បំផុត
+       | 🇬🇧 Move the right side immediately
+     A2 | 🇰🇭 មិនចាំបាច់បន្ថយល្បឿនឡើយ ហើយបត់ស្ដាំវិញដោយប្រញាប់បំផុត
+       | 🇬🇧 No need to speed down and move to the right side instantly.
+  ✅ A3 | 🇰🇭 ពេលជែងរួចត្រូវធ្វើសញ្ញាប្ដូរទិសទៅស្ដាំ ដើម្បីឲ្យដំណឹងថាត្រូវចូលក្នុងចរន្ដចរាចរណ៍ដើមវិញដោយប្រយ័ត្ន
+       | 🇬🇧 After overtaking, you shall give changing direction sign to the right to alert that you move to current traffic with care.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q117  [ID:507]
+  🇰🇭 នៅក្នុងទីក្រុង ឬទីប្រជុំជន តើចិញ្ចើមផ្លូវមានតួនាទីសំខាន់សំរាប់ធ្វើអ្វី ?
+  🇬🇧 Inside or outside the city or built-up area, what do pavements play important roles for?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 សំរាប់ដាក់ទំនិញលក់ដូរ
+       | 🇬🇧 For selling things
+     A2 | 🇰🇭 សំរាប់ចត
+       | 🇬🇧 For parking
+  ✅ A3 | 🇰🇭 សំរាប់ថ្មើរជើងធ្វើដំណើរ
+       | 🇬🇧 For walking
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q118  [ID:508]
+  🇰🇭 តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះ ចម្ងាយប៉ុន្មានម៉ែត្រ ពីមុខ និងពីក្រោយទីតាំងបូមទឹករបស់យានពន្លត់អគ្គិភ័យ ?
+  🇬🇧 How far from the front or behind the pump shuttle of firetrucks can you stop or park your vehicle?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យ៉ាងតិច ៥ ម៉ែត្រ
+       | 🇬🇧 At least 5m
+  ✅ A2 | 🇰🇭 យ៉ាងតិច ១០ ម៉ែត្រ
+       | 🇬🇧 At least 10m
+     A3 | 🇰🇭 យ៉ាងតិច ១៥ម៉ែត្រ
+       | 🇬🇧 At least 15m
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q119  [ID:509]
+  🇰🇭 តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះជាពីរជួរទន្ទឹមគ្នា បានដែរឬទេ ?
+  🇬🇧 Can drivers stop or park vehicles within two lines?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អាចឈប់ ឬចតបាន
+       | 🇬🇧 Can
+  ✅ A2 | 🇰🇭 មិនអាចឈប់ ឬចតបានទេ
+       | 🇬🇧 Cannot
+     A3 | 🇰🇭 អាចឈប់ ឬចតបាន បើផ្លូវចង្អៀតខ្លាំង
+       | 🇬🇧 Can if very narrow road
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q120  [ID:510]
+  🇰🇭 តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះនៅលើទ្រូងផ្លូវថ្នល់ បានប៉ុន្មានម៉ោង ?
+  🇬🇧 How long can drivers stop or park vehicle on the roadway?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 មិនលើសពី ២៤ ម៉ោង
+       | 🇬🇧 Not more than 24h
+     A2 | 🇰🇭 លើសពី ២៤ ម៉ោង
+       | 🇬🇧 More than 24h
+     A3 | 🇰🇭 មិនលើសពី ៧២ ម៉ោង
+       | 🇬🇧 Not more than 72h
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q121  [ID:543]
+  🇰🇭 រថយន្តមួយកំពុងធ្វើចរាចរណ៍នៅលើផ្លូវជាតិ និងរថយន្តមួយទៀតចេញពីផ្លូវលំ តើរថយន្តណាមួយមានសិទ្ធិអាទិភាព ?
+  🇬🇧 One vehicle is moving on the national road and another one from the trail. Which one is prioritized?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ចេញពីផ្លូវលំ មានសិទ្ធិអាទិភាព
+       | 🇬🇧 The one from the trail.
+  ✅ A2 | 🇰🇭 កំពុងធ្វើចរាចរណ៍នៅលើផ្លូវជាតិ មានសិទ្ធិអាទិភាព
+       | 🇬🇧 The one is moving on the national road
+     A3 | 🇰🇭 ទាំងពីរមានសិទ្ធិស្មើគ្នា
+       | 🇬🇧 Both vehicles have the same priority.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q122  [ID:546]
+  🇰🇭 គំនូសសញ្ញាភ្លោះជាប់សំរាប់បែងចែកទ្រូងផ្លូវជាពីរទិសចរាចរណ៍ផ្ទុយគ្នា តើអ្នកអាចបើកបរឆ្លងកាត់ ឬជាន់ពីលើបានឬទេ ?
+  🇬🇧 Can you drive on or across the double solid lines dividing the road into two opposite traffic direction?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អាចបើកបរពីលើតាមបណ្ដោយគំនូសសញ្ញានេះបាន
+       | 🇬🇧 Can drive on along markings
+     A2 | 🇰🇭 អាចបើកបរជាន់ ឬឆ្លងកាត់បាន
+       | 🇬🇧 Can drive on or across the markings
+  ✅ A3 | 🇰🇭 ហាមបើកបរជាន់ ឬឆ្លងកាត់
+       | 🇬🇧 Don’t drive on or across the markings.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q123  [ID:548]
+  🇰🇭 តាមបណ្ដោយផ្លូវមានគំនូសសញ្ញាភ្លោះពណ៌លឿងមួយជាប់ និងមួយដាច់ៗបែងចែកជាពីរទិសចរាចរណ៍ផ្ទុយគ្នា តើអ្នកបើកបរ នៅកៀកគំនូសសញ្ញាណាមួយអាចឆ្លងកាត់ ឬជែងបាន ?
+  🇬🇧 Along the road with double yellow markings, one is solid and another one is broken, dividing the road into two opposite traffic directions, which line does the vehicle closed to have priority to cross?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 នៅកៀកគំនូសជាប់ អាចឆ្លងកាត់ ឬជែងបាន
+       | 🇬🇧 The vehicle closed to the solid line has prority to cross.
+  ✅ A2 | 🇰🇭 នៅកៀកគំនូសដាច់ៗ អាចឆ្លងកាត់ ឬជែងបាន
+       | 🇬🇧 The vehicle closed to the break line has priority to cross.
+     A3 | 🇰🇭 ហាមអ្នកបើកបរឆ្លងកាត់ ឬជែងលើគំនូសដាច់ៗ
+       | 🇬🇧 No crossing or overtaking on the break line.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q124  [ID:549]
+  🇰🇭 ផ្លាកសញ្ញាចរាចរណ៍ មានប៉ុន្មានក្រុម ?
+  🇬🇧 How many groups of traffic signs are there?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ១០ ក្រុមគឺ ផ្លាកសញ្ញាបំរាម បញ្ជា សិទ្ធិអាទិភាព គ្រោះថ្នាក់ បណ្តោះអាសន្ន បង្ហាញទិសដៅ ប្រាប់ទីប្រជុំជននិងព្រំប្រទល់តំបន់ ប្រាប់ឈ្មោះផ្លូវ ផ្លាកសញ្ញាផ្តល់ដំណឹង ផ្លាកសញ្ញា...
+       | 🇬🇧 There are 10 groups. Those are prohibitory signs, mandatory signs, prority signs, danger signs, temporary signs, direction indicating signs, indicating built-up area, and border signs, road name signs, service signs, and ...
+     A2 | 🇰🇭 ៥ ក្រុមគឺ ផ្លាកសញ្ញាបំរាម ប្រាប់ដំណឹង បង្ហាញទិសដៅ ប្រាប់ឈ្មោះតំបន់ ការដ្ឋាន
+       | 🇬🇧 There 5 groups. Those are warning signs, notification signs, direction indicating signs, area name indicating signs, and station signs.
+     A3 | 🇰🇭 ៤ ក្រុមគឺ ផ្លាកសញ្ញា គ្រោះថ្នាក់ បំរាម ប្រាប់ដំណឹង បង្ហាញទិសដៅ
+       | 🇬🇧 There are 4 groups. Those are dangerous signs, warning signs, notification signs, and direction indicating signs.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q125  [ID:552]
+  🇰🇭 ពេលចតរថយន្ត មុននឹងចុះពីរថយន្ត តើអ្នកត្រូវធ្វើយ៉ាងដូចម្ដេចខ្លះ ?
+  🇬🇧 After you park your vehicle, what shall you do before getting off? 
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ត្រូវទាញហ្វ្រាំងដៃ ពន្លត់ម៉ាស៊ីន មើលមុខក្រោយ ទើបពុំបណ្ដាលឱ្យមានគ្រោះថ្នាក់
+       | 🇬🇧 Apply the hand brake, turn off the engine, look at the back and the front, so that there is no accidence accured.
+     A2 | 🇰🇭 ត្រូវចុះពីដោយប្រញាប់បំផុត
+       | 🇬🇧 Get off the vehicle quickly
+     A3 | 🇰🇭 ទាញហ្វ្រាំងដៃ ហើយចុះពីយានជាបន្ទាន់
+       | 🇬🇧 Pull the hand brake and get off the vehicle instantly.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q126  [ID:554]
+  🇰🇭 នៅពេលកំពុងបើកបរ ពេលនោះហ្វ្រាំងជើងរថយន្តខូច តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+  🇬🇧 While driving, the car’s brake broken, what shall you do?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 បន្ថយល្បឿនដោយដាក់ លេខតាមលំដាប់ពីធំដល់តូចពេលល្បឿនចុះខ្សោយត្រូវទាញហ្វ្រាំងដៃជួយ
+       | 🇬🇧 Slow down by engaging the gear from top level to down level. When the speed slow down, you apply the hand brake to help
+     A2 | 🇰🇭 ពន្លត់ម៉ាស៊ីន ដើម្បីធ្វើការជួសជុល
+       | 🇬🇧 Stitch off the engine to repair.
+     A3 | 🇰🇭 បញ្ចុះពី លេខធំ មក លេខមួយ
+       | 🇬🇧 Engage the gear down to number 1
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q127  [ID:555]
+  🇰🇭 តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះ ចម្ងាយប៉ុន្មានម៉ែត្រ ពីមុខ និងពីក្រោយផ្លាកសញ្ញាកន្លែងរបស់ឡានក្រុងឈប់ ?
+  🇬🇧 How far can you stop or park your vehicle at the front or behind the bus stop area?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យ៉ាងតិច ៥ ម៉ែត្រ
+       | 🇬🇧 At least 5m
+  ✅ A2 | 🇰🇭 យ៉ាងតិច ១០ ម៉ែត្រ
+       | 🇬🇧 At least 10m
+     A3 | 🇰🇭 យ៉ាងតិច ១៥ ម៉ែត្រ
+       | 🇬🇧 At least 15m
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q128  [ID:557]
+  🇰🇭 តើអ្នកបើកបរអាចចតយានជំនិះ ចម្ងាយប៉ុន្មានម៉ែត្រពីមុខ ឬពីក្រោយដែលឈប់ ឬចត បន្ដកន្ទុយគ្នា ?
+  🇬🇧 How far can you stop or park your vehicle at the front or behind the vehicles stop or park one after another?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 យ៉ាងតិច ១ ម៉ែត្រ
+       | 🇬🇧 At least 1m
+     A2 | 🇰🇭 យ៉ាងតិច ១.៥០ ម៉ែត្រ
+       | 🇬🇧 At least 1.5m
+     A3 | 🇰🇭 យ៉ាងតិច ២ ម៉ែត្រ
+       | 🇬🇧 At least 2m
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q129  [ID:588]
+  🇰🇭 នៅពេលយប់មានភ្លើងហ្វារថយន្តចាំងពីមុខ តើអ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?
+  🇬🇧 What shall you do when there is a headlight of a vehicle from the front, at night?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 បើកបរក្នុងល្បឿនសមល្មមហើយអែបស្តាំបំផុត
+       | 🇬🇧 Drive in a moderate speed and move to the right side as much as possible.
+     A2 | 🇰🇭 ខ្ញុំមិនចាំបាច់បន្ថយល្បឿនទេ ព្រោះខ្ញុំទម្លាក់របាំងការពារពន្លឺថ្ងៃ ព្រោះខ្ញុំយល់ថាយានមកពីមុខក៏មើលឃើញខ្ញុំដែរ
+       | 🇬🇧 Do not need to slow down because I put down the daylight and think that the vehicle from the front also see me.
+     A3 | 🇰🇭 បើភ្លើងចាំងខ្លាំង ត្រូវបើកភ្លើងហ្វាតបវិញ
+       | 🇬🇧 If the headling is so strong, reply by turning on headlight.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q130  [ID:589]
+  🇰🇭 តើអ្នកបើកបរត្រូវបើកភ្លើងបំភ្លឺផ្លូវក្នុងករណីណាខ្លះ ?
+  🇬🇧 In what cases, shall drivers turn on the street light?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 បើភ្នែកនៅមើលទៅមុខច្បាស់មិនចាំបាច់កំណត់ពេលក្នុងការបើកភ្លើងបំភ្លឺទេ
+       | 🇬🇧 If you can see to the front clearly, do not need to do the timing to turn on the street light.
+     A2 | 🇰🇭 ខ្ញុំបើកភ្លើងបំភ្លឺចាប់ពីពេលដែលមានភ្លើងតាមសរសដងគោមក្នុងទីក្រុង
+       | 🇬🇧 I turn on the street lighting when the lights on the posts are on.
+  ✅ A3 | 🇰🇭 ត្រូវបើកភ្លើងបំភ្លឺ ពីព្រលប់ដល់ពេលភ្លឺមើលឃើញច្បាស់ ឬពេលមានភ្លៀង និងចុះអ័ព្វមិនអាចមើលឃើញអ្វីច្បាស់
+       | 🇬🇧 Turn on the street lingting from dusk until dawn that we can see clearly or when it is raining or fogging that we cannot see clearly.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q131  [ID:590]
+  🇰🇭 អ្នកបើកបរនៅលើផ្លូវមានភក់ ទឹកដក់ ហើយមានថ្មើរជើងដើរនៅជិតទីនោះ តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+  🇬🇧 Roads with mud or water, and pedestrians are walking nearby, what shall drivers do?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 បើកឲ្យលឿនព្រោះខ្លាចរថយន្តជាប់ផុង
+       | 🇬🇧 Speed up rapidly to avoid the vehicle stucked off
+  ✅ A2 | 🇰🇭 ខ្ញុំត្រូវបើកយឺតៗ ធ្វើយ៉ាងណាកុំឲ្យខ្ទាតទឹកភក់ ទៅលើអ្នកថ្មើរជើងដែលដើរជិតនោះ
+       | 🇬🇧 Slow down and make sure that there is no water or mud splashes over the pedestrians.
+     A3 | 🇰🇭 បើកអែបស្ដាំ និងស៊ីផ្លេឲ្យអ្នកថ្មើរជើងជៀស
+       | 🇬🇧 Drive to the right side and press the horn in order to get pedestrians avoided.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q132  [ID:596]
+  🇰🇭 ក្នុងទីក្រុង ឬទីប្រជុំជន នៅលើផ្លូវដែលមានទិសចរាចរណ៍ពីរផ្ទុយគ្នា តើអ្នកអាចចតរថយន្តជាពីរជួរបានឬទេ ?
+  🇬🇧 In the city or built-up area, the road with two opposite traffic directions, can you park within two lines?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អាចចតបាន
+       | 🇬🇧 Can
+     A2 | 🇰🇭 អាចចតបានតែនៅពេលមានបុណ្យទាន
+       | 🇬🇧 Can if there is a ceremony
+  ✅ A3 | 🇰🇭 ហាមចតពីរជួរ
+       | 🇬🇧 No parking in two lines
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q133  [ID:634]
+  🇰🇭 តើភ្លើងហ្វា អនុញ្ញាតឲ្យប្រើនៅពេលណា ? កន្លែងណា ?
+  🇬🇧 Where and when are headlights allowed to use?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ភ្លើងហ្វា អនុញ្ញាតឲ្យប្រើបានគ្រប់ពេល និងគ្រប់ទីកន្លែង
+       | 🇬🇧 Anywhere and anytime
+  ✅ A2 | 🇰🇭 ភ្លើងហ្វា អនុញ្ញាតឲ្យប្រើនៅពេលយប់ស្ងាត់ គ្មានអគ្គីសនីបំភ្លឺផ្លូវ និងប្រើឆ្លាស់គ្នាជាមួយភ្លើងកូតនៅពេលសុំជែង
+       | 🇬🇧 At night, no electricity, and alternatively use with coating light to seek for overtaking.
+     A3 | 🇰🇭 ភ្លើងហ្វា អនុញ្ញាតឲ្យប្រើនៅក្នុង និងក្រៅក្រុង
+       | 🇬🇧 In and out of the city
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q134  [ID:638]
+  🇰🇭 តើអ្នកបើកបរត្រូវធ្វើដូចម្ដេច នៅពេលថ្មើរជើងកំពុងឆ្លងកាត់ឬរៀបឆ្លងកាត់ នៅកន្លែងដែលមានគំនូសសញ្ញាសំរាប់ថ្មើរជើង ?
+  🇬🇧 What shall drivers do when pedestrians crossing or ready to cross at the zebra?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវបន្ថយល្បឿន
+       | 🇬🇧 Slow down
+  ✅ A2 | 🇰🇭 ត្រូវឈប់
+       | 🇬🇧 Stop
+     A3 | 🇰🇭 ត្រូវបង្កើនល្បឿន
+       | 🇬🇧 Speed up
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q135  [ID:645]
+  🇰🇭 ក្នុងករណីរថយន្តរបស់អ្នកត្រូវខូចគាំងនៅលើផ្លូវរថភ្លើង តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+  🇬🇧 In case your vehicle went wrong on the railroad crossing, what shall you do?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ប្រញាប់រាយការណ៍ជូនភ្នាក់ងារនគរបាល
+       | 🇬🇧 Report to the police immediately
+  ✅ A2 | 🇰🇭 ខ្ញុំត្រូវរកគ្រប់មធ្យោបាយធ្វើយ៉ាងណាកុំឲ្យមានឧបសគ្គដល់រថភ្លើង ឬត្រូវឲ្យដំណឹងដល់ភ្នាក់ងារផ្លូវដែកដែលនៅជិតបំផុត
+       | 🇬🇧 Find ways not to have obsticle to the train or inform to the nearest railroad agents.
+     A3 | 🇰🇭 ទុកចោលនៅលើផ្លូវដែកសិន
+       | 🇬🇧 Leave the vehicle on the railroad crossing
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q136  [ID:646]
+  🇰🇭 នៅពេលជួបប្រទះផ្លាកសញ្ញាហាមចត តើអ្នកអាចឈប់បានឬទេ ?
+  🇬🇧 Seeing the ’no parking’ sign, can you stop?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 អាចឈប់បាន
+       | 🇬🇧 Can
+     A2 | 🇰🇭 អាចឈប់បានតែថ្ងៃអាទិត្យ
+       | 🇬🇧 Can only on Sundays
+     A3 | 🇰🇭 មិនអាចឈប់បានទេ
+       | 🇬🇧 Cannot.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q137  [ID:647]
+  🇰🇭 នៅលើស្ពាន បើមាន គោ ក្របី ឬសត្វពាហនៈ កំពុងឆ្លងកាត់ តើអ្នកបើកបរត្រូវធ្វើយ៉ាងណា ?
+  🇬🇧 What shall drivers do on the bridge where the cattles or animals are crossing?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 បន្ថយល្បឿនឬឈប់បើចាំបាច់ត្រូវថយរថយន្តមកក្រោយទាល់តែសត្វទៅផុត
+       | 🇬🇧 Slow down or stop, if necessary move backward to let those animals move away
+     A2 | 🇰🇭 ខ្ញុំត្រូវស៊ីផ្លេ ដើម្បីឲ្យសត្វទាំងនោះជៀសផ្លូវ
+       | 🇬🇧 Press the horn to get those animals moved away.
+     A3 | 🇰🇭 បន្ថែមល្បឿន ដើម្បីឲ្យផុតពីហ្វូងសត្វពាហនៈ
+       | 🇬🇧 Speed up to pass the herd
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q138  [ID:838]
+  🇰🇭 នៅពេលមានថ្មើរជើងឆ្លងកាត់នៅជិតកៀកនឹងកន្លែងផ្លូវប្រសព្វ តើអ្នកបើកបរត្រូវធ្វើដូចម្តេច ?
+  🇬🇧 What shall drivers do when there is a pedestrian crossing nearby the intersection?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ស៊ីផ្លេឲ្យបានច្រើនដង
+       | 🇬🇧 Honk the horn several times
+     A2 | 🇰🇭 បន្ថែមល្បឿនដើម្បីទៅមុន
+       | 🇬🇧 Speed up to move ahead quickly
+  ✅ A3 | 🇰🇭 ឈប់ឲ្យថ្មើរជើងកំពុងឆ្លងកាត់ ឬរៀបនឹងឆ្លងកាត់ទៅមុន
+       | 🇬🇧 Stop in order to get pedestrian crossed first
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q139  [ID:839]
+  🇰🇭 ពេលថ្មើរជើងឆ្លងកាត់នៅកន្លែងដែល មានគំនូសថ្មើរជើងឆ្លងកាត់ គ្មានភ្លើងសញ្ញាចរាចរណ៍ ឬគ្មានភ្នាក់ងារបញ្ជាចរាចរណ៍នៅទីនោះ តើអ្នកបើកបរត្រូវធ្វើដូចម្តេច ?
+  🇬🇧 What shall drivers do at the zebra where pedestrians are crossing, without traffic light and traffic police agents?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ស៊ីផ្លេដើម្បីឲ្យថ្មើរជើងឈប់ដើរ
+       | 🇬🇧 Honk the horn to stop the pedestrians
+     A2 | 🇰🇭 បន្ថែមល្បឿនដោយប្រុងប្រយ័ត្ន
+       | 🇬🇧 Speed up carefully
+  ✅ A3 | 🇰🇭 បន្ថយល្បឿន ឬឈប់ ដើម្បីឲ្យថ្មើរជើងកំពុងឆ្លងកាត់ ឬរៀបនឹងឆ្លងកាត់ទៅមុន
+       | 🇬🇧 Slow down or stop to get pedestrians crossed the road.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q140  [ID:840]
+  🇰🇭 តើអ្នកបើកបរយានយន្តអាចប្រើភ្លើងហ្វានៅពេលណា ?
+  🇬🇧 When can drivers use headlight?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ពេលយប់ស្ងាត់នៅក្នុងទីប្រជុំជន ដោយល្បឿនលើសពី ៤០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+       | 🇬🇧 At night, in built-up area at the speed of more than 40km/h
+  ✅ A2 | 🇰🇭 ពេលយប់នៅលើទ្រូងផ្លូវដែលគ្មានអគ្គិសនីបំភ្លឺ ឬសុំជែងដោយប្រើឆ្លាស់គ្នាជាមួយភ្លើងកូត
+       | 🇬🇧 At night on the road without electricity or for overtaking by using alternatively with coating light.
+     A3 | 🇰🇭 ពេលយប់​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+       | 🇬🇧 At night on the road within electricity
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q141  [ID:841]
+  🇰🇭 តើអ្នកបើកបរយានយន្តអាចប្រើភ្លើងកូតនៅពេលណា ?
+  🇬🇧 When can drives use coating light?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ពេលថ្ងៃ ឬយប់នៅក្នុងទីប្រជុំជននិងក្រៅទីប្រជុំជន ឬពេលសុំជែងដោយប្រើឆ្លាស់គ្នាជាមួយភ្លើងហ្វា
+       | 🇬🇧 At the day or night time in or out of built-up area or when overtaking by using alternatively with headlight.
+     A2 | 🇰🇭 ពេលយប់នៅលើទ្រូងផ្លូវដែលគ្មានអគ្គិសនីបំភ្លឺ ឬពេលសុំជែងដោយប្រើឆ្លាស់គ្នាជាមួយភ្លើងហ្វា
+       | 🇬🇧 At night on the road without electricity or for overtaking by using alternatively with headlight light.
+  ✅ A3 | 🇰🇭 ពេលយប់ ឬពេលថ្ងៃកាលណា (មើលមិនឃើញច្បាស់) ឬពេលសុំជែងដោយប្រើឆ្លាស់គ្នាជាមួយភ្លើងហ្វា
+       | 🇬🇧 At night or the day time when we cannot see clearly or when overtaking by using alternatively with headlight.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q142  [ID:842]
+  🇰🇭 ពេលឈប់ឬចតយានយន្តនៅលើទ្រូងផ្លូវពេលយប់ដែលគ្មានភ្លើងអគ្គិសនីបំភ្លឺ តើអ្នកបើកបរត្រូវប្រើភ្លើងអ្វីខ្លះ ?
+  🇬🇧 What lights shall you use when you stop or park your vehicle on the road without electricity, at night?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ភ្លើងទីតាំង ភ្លើងក្រហម និងភ្លើងបំភ្លឺផ្លាកលេខ
+       | 🇬🇧 Location light, red light, and plate number light
+     A2 | 🇰🇭 ភ្លើងក្រហម ភ្លើងបំភ្លឺផ្លាកលេខ និងភ្លើងកូត
+       | 🇬🇧 Red light, plate number light, and coating light
+     A3 | 🇰🇭 ភ្លើងទីតាំង ភ្លើងក្រហម និងភ្លើងហ្វា
+       | 🇬🇧 Location light, red light, and headlight
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q143  [ID:843]
+  🇰🇭 នៅពេលមានទំនិញធ្លាក់លើទ្រូងផ្លូវ ហើយមិនអាចលើកទំនិញនោះបានភ្លាមៗ តើអ្នកបើកបរត្រូវប្រាប់ដំណឹងដល់អ្នកបើកបរផ្សេងទៀត ដោយរបៀបណា ?
+  🇬🇧 How shall you inform to other drivers when there was some goods felt down on the road and you could not pick up immediately?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ដាក់សញ្ញាត្រីកោណនៅចម្ងាយយ៉ាងតិច ៣០ ម៉ែត្រ ពីទំនិញនោះ
+       | 🇬🇧 Place triangle sign 30m from the fallen cargos.
+     A2 | 🇰🇭 ប្រើភ្លើងហ្វា កូត ដើម្បីផ្ដល់ដំណឹង
+       | 🇬🇧 Use headlight and coating light to inform
+     A3 | 🇰🇭 ប្រើភ្លើងទីតាំង ដើម្បីផ្ដល់ដំណឹង
+       | 🇬🇧 Use location lgith to alert
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q144  [ID:844]
+  🇰🇭 តើអ្នកបើកបរយានយន្តអាចប្រើស៊ីផ្លេនៅពេលណា ?
+  🇬🇧 When can drivers honk the horn?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ពេលយប់
+       | 🇬🇧 At night
+  ✅ A2 | 🇰🇭 ពេលថ្ងៃ
+       | 🇬🇧 At the day time
+     A3 | 🇰🇭 ពេលថ្ងៃ និងយប់
+       | 🇬🇧 At night and daytime
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q145  [ID:845]
+  🇰🇭 តើស៊ីផ្លេខ្យល់ត្រូវហាមប្រើនៅកន្លែងណាខ្លះ?
+  🇬🇧 Where is air horn forbidden to honk?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 នៅជនបទ ឬនៅជិតតំបន់ភ្នំ
+       | 🇬🇧 At the countryside or near the mountainous areas
+     A2 | 🇰🇭 នៅក្រៅទីក្រុង ឬទីប្រជុំជន
+       | 🇬🇧 Out of the city or downtown
+  ✅ A3 | 🇰🇭 ទីក្រុង ទីប្រជុំជន និងជិតមន្ទីរពេទ្យ
+       | 🇬🇧 In the city, downtown, and near the hospital
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q146  [ID:846]
+  🇰🇭 ភ្លើងសញ្ញាពិសេសមានពណ៌អ្វីខ្លះ ?
+  🇬🇧 What colors are the special light signs?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 បៃតង លឿង និងក្រហម
+       | 🇬🇧 Green, yellow, and red
+  ✅ A2 | 🇰🇭 ខៀវ ក្រហម និងលឿងទុំ
+       | 🇬🇧 Blue, red, and yellow
+     A3 | 🇰🇭 ខៀវ ក្រហម និង ស
+       | 🇬🇧 Blue, red, and white
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q147  [ID:847]
+  🇰🇭 ពេលជួបយានដែលបញ្ចេញភ្លើងសញ្ញាពិសេសពណ៌លឿងទុំកំពុងបំពេញភារកិច្ច តើអ្នកបើកបរត្រូធ្វើដូចម្តេច ?
+  🇬🇧 When seeing a vehicle lighting a special light of dark yellow in duty, what shall drivers do?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 បន្ថយល្បឿន អែបទៅខាងស្ដាំ និងឈប់
+       | 🇬🇧 Slow down, move to the right and stop
+     A2 | 🇰🇭 បន្ថយល្បឿន អែបទៅខាងស្ដាំ និងមិនអាចជែងយាននោះបានឡើយ
+       | 🇬🇧 Slow down, move to the right and cannot overtake that vehicle.
+  ✅ A3 | 🇰🇭 ប្រុងប្រយ័ត្នក្នុងការជៀស និងជែងយាននេះ
+       | 🇬🇧 Pay attention in avoiding and overtaking that vehicle
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q148  [ID:848]
+  🇰🇭 នៅពេលជួបយានមានសិទ្ធិអាទិភាពកំពុងបំពេញភារកិច្ចដោយ ប្រើភ្លើងសញ្ញាពិសេស និងសញ្ញាសូរសព្ទពិសេស តើអ្នកបើកបរត្រូវធ្វើដូចម្តេច?
+  🇬🇧 What shall you do when you meet vehicle with priority in duty using special light sign and special siren?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 បន្ថយល្បឿន អែបទៅខាងស្ដាំ ឬឈប់
+       | 🇬🇧 Slow down and move to the right side.
+     A2 | 🇰🇭 បន្ថយល្បឿន បត់ឆ្វេងដោយប្រុងប្រយ័ត្ន
+       | 🇬🇧 Slow down and turn left carefully.
+     A3 | 🇰🇭 បន្ថែមល្បឿន ដើម្បីកុំឲ្យយាននេះជែង
+       | 🇬🇧 Speed up not to let this vehicle overtakes
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q149  [ID:849]
+  🇰🇭 បណ្ណបើកបរជាតិសម្រាប់បើកបរយានយន្តក្នុងព្រះរាជាណាចក្រកម្ពុជា មានប៉ុន្មានប្រភេទ?
+  🇬🇧 How many kinds of national lisences, for driving in Cambodia, are there?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ៣ ប្រភេទ
+       | 🇬🇧 3 kinds
+     A2 | 🇰🇭 ៤ ប្រភេទ
+       | 🇬🇧 4 kinds
+  ✅ A3 | 🇰🇭 ៥ ប្រភេទ
+       | 🇬🇧 5 kinds
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q150  [ID:850]
+  🇰🇭 ប្រជាពលរដ្ឋដែលមានអាយុ ១៨ឆ្នាំពេញបរិបូរណ៍ តើអាចប្រឡងយកបណ្ណបើកបរយានយន្តប្រភេទណាខ្លះ?
+  🇬🇧 Which kinds of driver licenses can a citizen take a test for when he/she is 18?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ក
+       | 🇬🇧 A
+  ✅ A2 | 🇰🇭 ក និង ខ
+       | 🇬🇧 A and B
+     A3 | 🇰🇭 ខ និង គ
+       | 🇬🇧 B and C
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q151  [ID:852]
+  🇰🇭 ប្រជាពលរដ្ឋដែលមានអាយុ ២២ឆ្នាំពេញបរិបូរណ៍ តើអាចប្រឡងយកបណ្ណបើកបរយានយន្តប្រភេទណាខ្លះ?
+  🇬🇧 Which kinds of driver licenses can a citizen take a test for when he/she is 22?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ក ខ និង គ
+       | 🇬🇧 A, B, and C
+     A2 | 🇰🇭 ក ខ គ និង ឃ១
+       | 🇬🇧 A, B, C, and D1
+     A3 | 🇰🇭 ក ខ គ និង ឃ២
+       | 🇬🇧 A, B, C, and D2
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q152  [ID:853]
+  🇰🇭 ប្រជាពលរដ្ឋដែលមានអាយុ ២៤ឆ្នាំពេញបរិបូរណ៍ តើអាចប្រឡងយកបណ្ណបើកបរយានយន្តប្រភេទណាខ្លះ?
+  🇬🇧 Which kinds of driver licenses can a citizen take a test for when he/she is 24?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ឃ២ និង ង
+       | 🇬🇧 D2 and E
+     A2 | 🇰🇭 ខ គ និង ឃ
+       | 🇬🇧 B, C, and D
+  ✅ A3 | 🇰🇭 ក ខ គ ឃ និង ង
+       | 🇬🇧 A, B, C, D, and E
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q153  [ID:854]
+  🇰🇭 តើអ្នកបើកបរយានយន្ត មានអត្រាជាតិអាល់កុលកម្រិតប៉ុន្មាន ត្រូវផ្តន្ទាទោសដាក់ពន្ធនាគារ ?
+  🇬🇧 How many rate of alcohol taken is a driver sentenced to jail?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អត្រាជាតិអាល់កុលចាប់ពី ០,២៥ មីលីក្រាមក្នុងមួយលីត្រខ្យល់ ឡើងទៅ
+       | 🇬🇧 0.25ml per liter of the air and over
+  ✅ A2 | 🇰🇭 អត្រាជាតិអាល់កុលចាប់ពី ០,៤០ មីលីក្រាមក្នុងមួយលីត្រខ្យល់ ឡើងទៅ
+       | 🇬🇧 0.40ml per liter of the air and over.
+     A3 | 🇰🇭 អត្រាជាតិអាល់កុលចាប់ពី ០,៥០ មីលីក្រាមក្នុងមួយលីត្រខ្យល់ ឡើងទៅ
+       | 🇬🇧 0.50ml per liter of the air and over.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q154  [ID:1001]
+  🇰🇭 តើបណ្ណបើកបរទោចក្រយានយន្ដ និងត្រីចក្រយានយន្ដ មានប៉ុន្មានប្រភេទ ?
+  🇬🇧 How many kinds of bicycle and tricycle driver licenses are there?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 មាន១ប្រភេទ គឺ ប្រភេទ ក មានទំហំស៊ីឡាំងចាប់ពី ១២៥cc ឡើងទៅ
+       | 🇬🇧 There is one kind. It is A with cylinder rank from 125 cc and over.
+     A2 | 🇰🇭 មាន២ប្រភេទ គឺ ប្រភេទ ក១ មានទំហំស៊ីឡាំងចាប់ពី ៤៩cc ទៅ ១២៥cc និង ប្រភេទ ក២ មានទំហំស៊ីឡាំងលើសពី ១២៥cc ឡើងទៅ
+       | 🇬🇧 There are two kinds. They are A1 with cylinder size rank from 49cc to 125cc and A2 with cylinder size rank from 125cc and over.
+     A3 | 🇰🇭 មាន៣ប្រភេទ គឺ ប្រភេទ ក មានទំហំស៊ីឡាំង ចាប់ពី ៤៩cc ឡើងទៅ ប្រភេទ ក១ មានទំហំស៊ីឡាំង ១០០cc ឡើងទៅ និង ប្រភេទ ក២ មានទំហំស៊ីឡាំងចាប់ពី ១២៥cc ឡើងទៅ
+       | 🇬🇧 There are 3 kinds. They are A with cylinder size rank from 49 and over, A1 with cylinder size rank from 100cc and over, and A2 with cylinder soze rank from 125 cc and over.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q155  [ID:1002]
+  🇰🇭 ក្នុងទីប្រជុំជន តើការកំណត់ល្បឿនអតិបរមា សម្រាប់ទោចក្រយានយន្ដប៉ុន្មាន ?
+  🇬🇧 What is the maximum speed limit (km/h) of bicycle in built-up area?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ៣០ គ.ម ក្នុងមួយម៉ោង
+       | 🇬🇧 30km/h
+     A2 | 🇰🇭 ៤០ គ.ម ក្នុងមួយម៉ោង
+       | 🇬🇧 40km/h
+     A3 | 🇰🇭 ៥០ គ.ម ក្នុងមួយម៉ោង
+       | 🇬🇧 50km/h
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q156  [ID:1003]
+  🇰🇭 នៅពេលបត់ឆ្វេង ឬបត់ស្ដាំ តើអ្នកបើកបរទោចក្រយានយន្ដឱ្យសញ្ញាបត់ឆ្វេង ឬស្ដាំជាដំណឹងចម្ងាយយ៉ាងតិច ប៉ុន្មានម៉ែត្រពីផ្លូវបត់ ឬផ្លូវប្រសព្វ ?
+  🇬🇧 How far in meters, at least, do motorcycle drivers give a turn sign before turning left or right from the turn road or the intersection?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យ៉ាងតិច ១០ ម៉ែត្រ
+       | 🇬🇧 At least 10m
+     A2 | 🇰🇭 យ៉ាងតិច ១៥ ម៉ែត្រ
+       | 🇬🇧 At least 15m
+  ✅ A3 | 🇰🇭 យ៉ាងតិច ២០ ម៉ែត្រ
+       | 🇬🇧 At least 20m
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q157  [ID:1004]
+  🇰🇭 នៅក្រៅទីប្រជុំជន ចំណែកទ្រូងផ្លូវសម្រាប់ និងប្រើប្រាស់តែមួយរួមគ្នា តើត្រូវជែងនៅខាងណា ?
+  🇬🇧 Outside the built-up area, a division of the road is used by motorcycles and vehicles together, which side shall drivers overtake the vehicles?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវជែង នៅខាងស្ដាំដៃ
+       | 🇬🇧 Overtake on the right hand.
+     A2 | 🇰🇭 ត្រូវជែង ខាងណាក៏បាន
+       | 🇬🇧 Overtake on anyside
+  ✅ A3 | 🇰🇭 ត្រូវជែង នៅខាងឆ្វេងដៃ
+       | 🇬🇧 Overtake on the left side
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q158  [ID:1005]
+  🇰🇭 នៅលើផ្លូវប្រសព្វ ដែលពុំមានផ្លាកសញ្ញាមានសិទ្ធិអាទិភាព តើអ្នកបើកបរយានណាមានសិទ្ធិទៅមុន ?
+  🇬🇧 At the intersection without priority sign, which driver has priority to go first?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អ្នកបើកបរយាន មកពីខាងឆ្វេងដៃរបស់ខ្លួនមានសិទ្ធិទៅមុន
+       | 🇬🇧 The driver from the left
+  ✅ A2 | 🇰🇭 អ្នកបើកបរយាន មកពីខាងស្ដាំដៃរបស់ខ្លួនមានសិទ្ធិទៅមុន
+       | 🇬🇧 The driver from the right
+     A3 | 🇰🇭 អ្នកបើកបរយាន មកពីខាងស្ដាំ និងខាងឆ្វេង មានសិទ្ធិទៅដូចគ្នា
+       | 🇬🇧 The drivers from the left and the right have the same prority.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q159  [ID:1006]
+  🇰🇭 នៅពេលថ្ងៃ ដែលមានភ្លៀងធ្លាក់ខ្លាំង ឬ ចុះអ័ព្វ តើអ្នកបើកបរ ត្រូវបើកភ្លើងអ្វី ?
+  🇬🇧 What light do motorists turn on in the daytime with heavy rain or fog?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ត្រូវបើកភ្លើង កូត
+       | 🇬🇧 Coating light
+     A2 | 🇰🇭 ត្រូវបើកភ្លើងហ្វា
+       | 🇬🇧 Headlight
+     A3 | 🇰🇭 ត្រូវបើកភ្លើងកូត ហ្វា ឆ្លាស់គ្នា
+       | 🇬🇧 Alternatively, coating light and headlight 
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q160  [ID:1007]
+  🇰🇭 នៅក្នុងទីប្រជុំជន អ្នកបើកបរក្នុងល្បឿន ៣០ គ.ម ក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពប៉ុន្មានម៉ែត្រ ?
+  🇬🇧 In the built-up area, you are driving at the speed of 30km/h, how long of a distance limit for motorcycles shall you leave?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យ៉ាងតិច ៥ ម៉ែត្រ
+       | 🇬🇧 At least 5m
+     A2 | 🇰🇭 យ៉ាងតិច ៧ ម៉ែត្រ
+       | 🇬🇧 At least 7m
+  ✅ A3 | 🇰🇭 យ៉ាងតិច ៩ ម៉ែត្រ
+       | 🇬🇧 At least 9m
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q161  [ID:1009]
+  🇰🇭 ពេលជៀសគ្នា នៅលើផ្លូវចោតហើយចង្អៀត តើយានជំនិះណាមួយមានសិទ្ធិទៅមុន ?
+  🇬🇧 Avoiding each other on a steep, narrow road, which vehicle has priority to go first?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ទុកឱ្យ យានជំនិះ ឡើងចំណោតទៅមុន
+       | 🇬🇧 The one is moving up.
+     A2 | 🇰🇭 ទុកឱ្យយានជំនិះ ចុះចំណោតទៅមុន
+       | 🇬🇧 The one is moving down.
+     A3 | 🇰🇭 យានជំនិះ ទាំងពីរ មានសិទ្ធិទៅដូចគ្នា
+       | 🇬🇧 The two have the same priority.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q162  [ID:1010]
+  🇰🇭 តើច្បាប់អនុញ្ញាតឱ្យសណ្ដោងរ៉ឺម៉ក ផ្ទុកទំនិញបានប៉ុន្នានគីឡូក្រាម ?
+  🇬🇧 In accordance with law, at what weight of trail loaded can a motorcycle carry? 
+
+  Answers (3 choices):
+     A1 | 🇰🇭 មិនឱ្យ លើសពី ២០០ គីឡូក្រាម
+       | 🇬🇧 Not more than 200kg
+  ✅ A2 | 🇰🇭 មិនឱ្យ លើសពី ៣០០ គីឡូក្រាម
+       | 🇬🇧 Not more than 300kg
+     A3 | 🇰🇭 មិនឱ្យ លើសពី ៤០០ គីឡូក្រាម
+       | 🇬🇧 Not more than 400kg
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q163  [ID:1101]
+  🇰🇭 អ្នកបើកបរចេញពីផ្លូវលំ ឬដី និងអ្នកបើកបរលើផ្លូវជាតិ តើអ្នកបើកបរណាមានសិទ្ធិទៅមុន ?
+  🇬🇧 One is driving from the trail or red road, another one is driving on National Road. which one is more prioritized to go first?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 អ្នកបើកបរ លើផ្លូវជាតិមានសិទ្ធិទៅមុន
+       | 🇬🇧 The one is on the Natinal Road.
+     A2 | 🇰🇭 អ្នកបើកបរ លើផ្លូវលំ ឬផ្លូវដីមានសិទ្ធិទៅមុន
+       | 🇬🇧 The one is from the road.
+     A3 | 🇰🇭 អ្នកបើកបរ លើផ្លូវជាតិ និងផ្លូវលំ ឬផ្លូវដីមានសិទ្ធិទៅដូចគ្នា
+       | 🇬🇧 The two have the same right.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q164  [ID:1102]
+  🇰🇭 នៅពេលជែង តើត្រូវទុកចន្លោះគម្លាតប៉ុន្មានម៉ែត្រពីយានដែលអ្នកត្រូវជែង ?
+  🇬🇧 What space from the one overtaken shall drivers leave when overtaking?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យ៉ាងតិច ០,៥០ ម៉ែត្រ
+       | 🇬🇧 At least 0.50m
+     A2 | 🇰🇭 យ៉ាងតិច ០,៨០ ម៉ែត្រ
+       | 🇬🇧 At least 0.80m
+  ✅ A3 | 🇰🇭  យ៉ាងតិច ១ ម៉ែត្រ
+       | 🇬🇧 At least 1.00m
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q165  [ID:1103]
+  🇰🇭 តើច្បាប់អនុញ្ញាតឱ្យរ៉ឺម៉កដែលមានពូកទទឹងពីរទល់មុខគ្នា ផ្ទុកមនុស្សប៉ុន្មាននាក់ ?
+  🇬🇧 How many people can a trailer with two seats opposite each other accommodates in accordance with the law?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 មិនឱ្យលើសពី ៤ នាក់
+       | 🇬🇧 Not more than 4 persons
+     A2 | 🇰🇭 មិនឱ្យលើសពី ៦ នាក់
+       | 🇬🇧 Not more than 6 persons.
+     A3 | 🇰🇭 មិនឱ្យលើសពី ៨ នាក់
+       | 🇬🇧 Not more than 8 persons
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q166  [ID:1104]
+  🇰🇭 នៅក្រៅទីប្រជុំជន ពេលបើកបរក្នុងល្បឿន៧០គម/ម ត្រូវរក្សាទុកចន្លោះសុវត្ថិភាព ប៉ុន្មានម៉ែត្រ ?
+  🇬🇧 What is a distance limit for each vehicle shall you leave when you are driving at the speed of 70km/h outside built-up area?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យ៉ាងតិច ១៥ ម៉ែត្រ
+       | 🇬🇧 At least 15m
+     A2 | 🇰🇭 យ៉ាងតិច ២៥ ម៉ែត្រ
+       | 🇬🇧 At least 25m
+  ✅ A3 | 🇰🇭 យ៉ាងតិច ៤២ ម៉ែត្រ
+       | 🇬🇧 At least 42m
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q167  [ID:1105]
+  🇰🇭 ដូចម្ដេច ដែលហៅថា អ្នកប្រើប្រាស់ផ្លូវ?
+  🇬🇧 What is the road user?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ជាអ្នក ដែលរស់នៅសងខាងផ្លូវ
+       | 🇬🇧 The one who lives along the road.
+     A2 | 🇰🇭 ជាអ្នករស់នៅទីប្រជុំជន
+       | 🇬🇧 The one who lives in downtown.
+  ✅ A3 | 🇰🇭 ជាអ្នកបើកបរយានជំនិះ និងអ្នកថ្មើរជើង ដែលធ្វើដំណើរលើផ្លូវ
+       | 🇬🇧 The drivers of vehicles and pedestrians who travel on the road.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q168  [ID:1106]
+  🇰🇭 តើអ្នកបើកបរទោចក្រយានយន្ដ អាចបើកបរទន្ទឹមគ្នានៅលើគន្លងផ្លូវតែមួយ បានឬទេ?
+  🇬🇧 Can motorists drive up with a breast travelling on the same lane?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ហាមបើកបរទន្ទឹមគ្នា
+       | 🇬🇧 No driving up along side.
+     A2 | 🇰🇭 អាចបើកបរទន្ទឹមគ្នាបានគ្រប់ពេលវេលា
+       | 🇬🇧 Can drive up along side at any time.
+     A3 | 🇰🇭 អាចបើកបរទន្ទឹមគ្នាបានតែនៅលើផ្លូវធំទូលាយ
+       | 🇬🇧 Can only at the broad road.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q169  [ID:1107]
+  🇰🇭 ពេលជួបប្រទះផ្លាកសញ្ញាហាមចត តើអ្នកបើកបរអាចឈប់បានឬទេ?
+  🇬🇧 When seeing a ’no-parking sign’, can drivers stop?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 អាចឈប់បាន
+       | 🇬🇧 Can
+     A2 | 🇰🇭 មិនអាចឈប់បានទេ
+       | 🇬🇧 Cannot
+     A3 | 🇰🇭 អាចឈប់លើចិញ្ចើមផ្លូវបាន
+       | 🇬🇧 Can park on the sidewalk.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q170  [ID:1108]
+  🇰🇭 នៅលើគំនូសថ្មើរជើងឆ្លងកាត់ តើអ្នកបើកបរអាចឈប់បានឬទេ?
+  🇬🇧 On the zebra walking line, can drivers stop on it?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អាចឈប់បានបើទំនេរ
+       | 🇬🇧 Can if available
+  ✅ A2 | 🇰🇭 ហាមឈប់
+       | 🇬🇧 No stopping
+     A3 | 🇰🇭 អាចឈប់បាននៅពេលស្ងាត់
+       | 🇬🇧 Can when available
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q171  [ID:1109]
+  🇰🇭 នៅពេលអ្នកបើកបរទោចក្រយានយន្ដ និងត្រីចក្រយានយន្ដ ជួបអ្នកថ្មើរជើងដែលកំពុងឆ្លងកាត់ទ្រូងផ្លូវ គ្មានគំនូសសញ្ញាសម្រាប់ថ្មើរជើងឆ្លងកាត់ តើអ្នកត្រូវធ្វើដូចម្ដេចខ្លះ?
+  🇬🇧 What shall you do when you see pedestrians crossing the road without zebra?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវស៊ីផ្លេឱ្យអ្នកថ្មើរជើងជៀស និងបន្ដដំណើរ
+       | 🇬🇧 Honk the horn to get pedestrians away and go ahead.
+     A2 | 🇰🇭 ត្រូវបង្កើនល្បឿនឱ្យផុតពីអ្នកថ្មើរជើង
+       | 🇬🇧 Speed up to pass quickly
+  ✅ A3 | 🇰🇭 ហាមធ្វើឱ្យអាក់ខាន ឬរាំងស្ទះដល់ថ្មើរជើងធ្វើដំណើរ
+       | 🇬🇧 Do not distrupt the pedestrians
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q172  [ID:1110]
+  🇰🇭 តើទោចក្រយានយន្ដអនុញ្ញាតឱ្យផ្ទុកមនុស្សចំនួនប៉ុន្មាននាក់ ?
+  🇬🇧 How many persons can a motorcycle accommodate, due to the law?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អនុញ្ញាតឱ្យផ្ទុកមនុស្សពេញវ័យបាន២នាក់
+       | 🇬🇧 Two adults
+  ✅ A2 | 🇰🇭 អនុញ្ញាតឱ្យផ្ទុកមនុស្សពេញវ័យបាន២នាក់ និងអាចបន្ថែមបានកុមារម្នាក់
+       | 🇬🇧 Two adults and one child
+     A3 | 🇰🇭 អនុញ្ញាតឱ្យផ្ទុកមនុស្សពេញវ័យបាន៣នាក់ និងអាចបន្ថែមបានកុមារម្នាក់
+       | 🇬🇧 Three adults and somehow one child
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q173  [ID:1201]
+  🇰🇭 តើសញ្ញាចរាចរណ៍ មានប៉ុន្មានប្រភេទ អ្វីខ្លះ ?
+  🇬🇧 How many kinds of traffic signs are there? What are they?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 មាន ៣ ប្រភេទ គឺ ភ្លើងសញ្ញាចរាចរណ៍-ផ្លាកសញ្ញាចរាចរណ៍ និង គំនូសសញ្ញាចរាចរណ៍
+       | 🇬🇧 There are 3 kinds. They are trafiic lights, traffic signs, and traffic markings.
+  ✅ A2 | 🇰🇭 មានបួនប្រភេទ គឺ ភ្លើងសញ្ញាចរាចរណ៍-ផ្លាកសញ្ញាចរាចរណ៍-គំនូសសញ្ញាចរាចរណ៍ និងសញ្ញាបញ្ជារបស់ភ្នាក់ងារនគរបាលចរាចរណ៍
+       | 🇬🇧 There are 4 kinds. There are traffic lights, traffic signs, traffic markings, and direction signs from traffic plice officers.
+     A3 | 🇰🇭 មានប្រាំប្រភេទ គឺ ភ្លើងសញ្ញាចរាចរណ៍-ផ្លាកសញ្ញាចរាចរណ៍-គំនូសសញ្ញាចរាចរណ៍-សញ្ញាបញ្ជារបស់ភ្នាក់ងារនគរបាលចរាចរណ៍ និង សញ្ញាទង់ក្រហម
+       | 🇬🇧 There are 5 kinds. They are traffic lights, traffic signs, traffic markings, direction signs from traffic police officers, and red flag signs.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q174  [ID:1202]
+  🇰🇭 នៅលើទ្រូងផ្លូវដែលគ្មាន ឬមានគំនូសបែងចែកទ្រូងផ្លូវជាពីរទិសផ្ទុយគ្នា តើអ្នកបើកបរទោចក្រយានយន្ដត្រូវបើកដូចម្ដេច ?
+  🇬🇧 On a road with or without road-divided markings into two opposite traffic directions, how shall motorists drive?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 បើកបរអែបឆ្វេងនៃទ្រូងផ្លូវ
+       | 🇬🇧 Drive alongside the left of the road.
+  ✅ A2 | 🇰🇭 បើកបរអែបស្ដាំកៀកនឹងចិញ្ចើមផ្លូវ
+       | 🇬🇧 Drive alongside the right closed to the sidewalk.
+     A3 | 🇰🇭 បើកបរ កណ្ដាលទ្រូងផ្លូវ
+       | 🇬🇧 Drive along center of the road.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q175  [ID:1203]
+  🇰🇭 នៅក្នុងទីក្រុងឬប្រជុំជន មានបែងចែកទ្រូងផ្លូវជា២ទិសចរាចរណ៍ ហើយទិសម្ខាងមាន២គន្លងផ្លូវ តើអ្នកបើកបរទោចក្រយានយន្ដ ត្រូវបើកបរនៅគន្លងផ្លូវណា ?
+  🇬🇧 In the city or the built-up area, road with two opposite traffic directions, two lanes for each side, which lane do motorists drive on?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 នៅគន្លងផ្លូវខាងឆ្វេង
+       | 🇬🇧 On the left lane
+  ✅ A2 | 🇰🇭 នៅគន្លងផ្លូវខាងស្ដាំ
+       | 🇬🇧 On the right lane
+     A3 | 🇰🇭 នៅគន្លងផ្លូវណាក៏បាន
+       | 🇬🇧 On any lane
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q176  [ID:1204]
+  🇰🇭 តើការប្រើប្រាស់ ស៊ីផ្លេ ត្រូវបានអនុញ្ញាត នៅពេលណាខ្លះ ?
+  🇬🇧 When is horn allowed to honk?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ពេលថ្ងៃ
+       | 🇬🇧 At the daytime
+     A2 | 🇰🇭 ពេលយប់
+       | 🇬🇧 At night time
+     A3 | 🇰🇭 ពេលណាក៏បាន
+       | 🇬🇧 Any time
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q177  [ID:1205]
+  🇰🇭 តើអ្នកបើកបរយានជំនិះគ្រប់ប្រភេទ ត្រូវជៀសគ្នាទៅខាងណា ?
+  🇬🇧 At which side do all drivers for all kinds of vehicles avoid each other?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវជៀសគ្នា នៅខាងឆ្វេងរបស់ខ្លួន
+       | 🇬🇧 On the left hand side
+  ✅ A2 | 🇰🇭 ត្រូវជៀសគ្នា នៅខាងស្ដាំរបស់ខ្លួន
+       | 🇬🇧 On the right hand side
+     A3 | 🇰🇭 ត្រូវជៀសគ្នា នៅខាងណាក៏បាន
+       | 🇬🇧 Any side
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q178  [ID:1206]
+  🇰🇭 តើយានជំនិះគ្រប់ប្រភេទ អាចឈប់ ឬចតលើគំនូសសញ្ញាសម្រាប់ថ្មើរជើងឆ្លងកាត់បាន ឬទេ ?
+  🇬🇧 Can all kinds of vehicles stop or park on the zebra?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អាចឈប់ ឬចតពីលើបានបើសិនទំនេរ
+       | 🇬🇧 Can if available
+  ✅ A2 | 🇰🇭 ហាមឈប់ ឬចតយានជំនិះពីលើជាដាច់ខាត
+       | 🇬🇧 Don’t park or stop on the zebra.
+     A3 | 🇰🇭 អាចឈប់ ឬចតលើផ្នែកខ្លះបាន
+       | 🇬🇧 Can park or stop on some part of zebra.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q179  [ID:1207]
+  🇰🇭 នៅពេលបើកបរគ្រប់ប្រភេទ តើច្បាប់មានតម្រូវឱ្យពាក់មួកសុវត្ថិភាពដែរ ឬទេ ?
+  🇬🇧 Does the law require motorists of all kinds of motorcycles wear helmet when driving?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ពាក់មួកសុវត្ថិភាពក៏បាន មិនពាក់ក៏បាន
+       | 🇬🇧 It is possible to wear it or not.
+  ✅ A2 | 🇰🇭 ត្រូវតែពាក់មួកសុវត្ថិភាព
+       | 🇬🇧 Shall wear helmet
+     A3 | 🇰🇭 ពុំចាំបាច់ពាក់មួកសុវត្ថិភាព
+       | 🇬🇧 Shall not need to wear helmet.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q180  [ID:1208]
+  🇰🇭 ពេលអ្នកបើកបរជួបប្រទះផ្លាកសញ្ញាហាមបត់ឆ្វេង តើអាចបត់ត្រឡប់ក្រោយបានឬទេ?
+  🇬🇧 Can you turn back when you see a sign of ’no turn left sign’?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 អាចបាន
+       | 🇬🇧 Can
+  ✅ A2 | 🇰🇭 មិនបានទេ
+       | 🇬🇧 Cannot
+     A3 | 🇰🇭 នៅពេលស្ងាត់អាចបត់បាន
+       | 🇬🇧 Can if available.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q181  [ID:1209]
+  🇰🇭 នៅពេលអ្នកកំពុងបើកបរទោចក្រយានយន្ដ អាចនិយាយទូរស័ព្ទបានឬទេប្រសិនបើគ្មានឧបករណ៏ទំនាក់ទំនង?
+  🇬🇧 Can you call or answer the phone while driving a motorcycle if you do not have any earphones?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 មិនបាន
+       | 🇬🇧 Cannot
+     A2 | 🇰🇭 អាចនិយាយបាន
+       | 🇬🇧 Can
+     A3 | 🇰🇭 អាចនិយាយបាននៅពេលផ្លូវស្ងាត់
+       | 🇬🇧 Can if available.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q182  [ID:1210]
+  🇰🇭 បើមានបណ្ណបើកបរប្រភេទ ខ (ធុនតូច) តើអាចបើកបរប្រភេទ ក បានឬទេ ?
+  🇬🇧 You have a driver license B type (small size vehicle)
+, can you drive a motorcycle of A type?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 បើកបរបាននៅពេលគ្មាននគរបាលចរចារណ៍
+       | 🇬🇧 Can when no traffic police officers.
+  ✅ A2 | 🇰🇭 បើកបរមិនបានទេ
+       | 🇬🇧 Cannot
+     A3 | 🇰🇭 អាចបើកបរបាន
+       | 🇬🇧 Can.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q183  [ID:1301]
+  🇰🇭 នៅក្រៅទីប្រជុំជន តើត្រូវឈប់ ឬចតនៅទីកន្លែងដូចម្ដេច ?
+  🇬🇧 Outside built-up area, how do motorists stop or park their motorcycles?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវឈប់ ឬ ចតជាប់នឹងចិញ្ចើមផ្លូវ
+       | 🇬🇧 Stop or park adjusted to the pavement
+     A2 | 🇰🇭 ត្រូវឈប់ ឬ ចតនៅលើទ្រូងផ្លូវ
+       | 🇬🇧 Stop or park on the roadway.
+  ✅ A3 | 🇰🇭 ត្រូវឈប់ ឬ ចតនៅលើជាយផ្លូវ
+       | 🇬🇧 Stop or park on the roadside.
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q184  [ID:1302]
+  🇰🇭 តើប្រជាពលរដ្ឋមានអាយុចាប់ពីប៉ុន្មានឆ្នាំឡើងទៅ ទើបមានសិទ្ធិបើកបរទោចក្រយានយន្ដ ដែលមានទំហំស៊ីឡាំងចាប់ពី ១២៥សេសេ ចុះក្រោម ?
+  🇬🇧 How old is a citizen can drive a motorcycle with cylinder size 125cc and under?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ១៣ ឆ្នាំ ពេញបរិបូរណ៍
+       | 🇬🇧 13
+     A2 | 🇰🇭 ១៤ ឆ្នាំ ពេញបរិបូរណ៍
+       | 🇬🇧 14
+  ✅ A3 | 🇰🇭 ១៥ ឆ្នាំ ពេញបរិបូរណ៍
+       | 🇬🇧 15
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q185  [ID:1303]
+  🇰🇭 នៅក្រៅទីប្រជុំជន តើការកំណត់ល្បឿន អតិបរមា សម្រាប់ទោចក្រយានយន្ដប៉ុន្មាន ?
+  🇬🇧 What is the maximum speed limit of motorists outside built-up area?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 ៧០ គីឡូម៉ែត្រ ក្នុងមួយម៉ោង
+       | 🇬🇧 70km/h
+     A2 | 🇰🇭 ៨០ គីឡូម៉ែត្រ ក្នុងមួយម៉ោង
+       | 🇬🇧 80km/h
+     A3 | 🇰🇭 ៩០ គីឡូម៉ែត្រ ក្នុងមួយម៉ោង
+       | 🇬🇧 90km/h
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q186  [ID:1304]
+  🇰🇭 តើច្បាប់ចរាចរណ៍ផ្លូវគោក ហាមពិសាជាតិស្រវឹងដែលមានអត្រាជាតិអាកុលចាប់ពី ប៉ុន្មានមីលីក្រាម ក្នុងមួយលីត្រខ្យល់?
+  🇬🇧 According to the road traffic law, at what rate of alcohol in milligram per liter of air is forbidden? 
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭  ចាប់ពី ០,២៥ មីលីក្រាមក្នុងមួយលីត្រខ្យល់
+       | 🇬🇧 From 0.25mg per liter of air
+     A2 | 🇰🇭  ចាប់ពី ០,៥០ មីលីក្រាមក្នុងមួយលីត្រខ្យល់
+       | 🇬🇧 From 0.50mg per liter of air
+     A3 | 🇰🇭  ចាប់ពី ០,៨០ មីលីក្រាមក្នុងមួយលីត្រខ្យល់
+       | 🇬🇧 From 0.80mg per liter of air
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q187  [ID:1305]
+  🇰🇭 តើអ្នកបើកបរទោចក្រយានយន្ដ ឬត្រីចក្រយានយន្ដ អាចជែងខាងស្ដាំ បានឬទេ?
+  🇬🇧 Can motorists or tricycle drivers overtake on the right?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ហាមជែងខាងស្ដាំ
+       | 🇬🇧 No overtaking on the right.
+  ✅ A2 | 🇰🇭 បាន! លើកលែងតែយានដែលអ្នកត្រូវជែងនោះ កំពុងធ្វើសញ្ញាប្ដូរទិសខាងឆ្វេង ហើយឈប់ ឬត្រៀមបត់ឆ្វេង
+       | 🇬🇧 Can overtake unless vehicle you are overtaking has been redirected the sign to the left and stop signs, or be ready to turn left
+     A3 | 🇰🇭 អាចជែងខាងស្ដាំបាន បើសិនជាទ្រូងផ្លូវខាងមុខនោះទំនេរ ឬស្រឡះធំ
+       | 🇬🇧 Can if the road ahead available.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q188  [ID:1306]
+  🇰🇭 នៅលើមហាវិថីក្នុងទីប្រជុំជន តើយានជំនិះគ្រប់ប្រភេទ ត្រូវឈប់ដាក់មនុស្សឡើង ឬចុះ នៅចម្ងាយប៉ុន្មានម៉ែត្រ ពីផ្លូវប្រសព្វ?
+  🇬🇧 How far from the intersections shall you stop to drop and pick up passengers on the road in built-up area?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 យ៉ាងតិច ០៥ ម៉ែត្រ
+       | 🇬🇧 At least 05m
+     A2 | 🇰🇭 យ៉ាងតិច ០៨ ម៉ែត្រ
+       | 🇬🇧 At least 08m
+  ✅ A3 | 🇰🇭 យ៉ាងតិច ១០ ម៉ែត្រ
+       | 🇬🇧 At least 10m
+
+  Correct Answer: A3
+
+----------------------------------------------------------------------
+
+Q189  [ID:1307]
+  🇰🇭 នៅពេលអ្នកបើកបរទោចក្រយានយន្ដ និងត្រីចក្រយានយន្ដ ជួបអ្នកថ្មើរជើងដែលរៀប ឬកំពុងឆ្លងកាត់ទ្រូងផ្លូវ ដែលកន្លែងនោះមានគំនូសសញ្ញាសម្រាប់ថ្មើរជើងឆ្លងកាត់ តើអ្នកត្រូវធ្វើដូចម្ដេចខ្លះ?
+  🇬🇧 How shall you do when you, motorists or tricycle drivers, see pedestrians are crossing or being ready to cross on the zebra?
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ត្រូវបង្កើនល្បឿនឱ្យផុតពីអ្នកថ្មើរជើង
+       | 🇬🇧 Speed up to pass the pedestrians quickly
+  ✅ A2 | 🇰🇭 ត្រូវឈប់នៅមុខគំនូសសញ្ញាសម្រាប់ថ្មើរជើងឆ្លងកាត់ ដើម្បីទុកឱ្យថ្មើរជើងឆ្លងកាត់ផុតសិន
+       | 🇬🇧 Stop in front of the zebra and let them cross.
+     A3 | 🇰🇭 ត្រូវស៊ីផ្លេឱ្យអ្នកថ្មើរជើងជៀស និងបន្ដដំណើរ
+       | 🇬🇧 Honk the horn to get pedestrians away and go ahead.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q190  [ID:1308]
+  🇰🇭 អ្នកមានបណ្ណបើកបរប្រភេទ គ តើមានសិទ្ទិបើកបរប្រភេទ ក បានឬទេ ?
+  🇬🇧 You have a driver license of type C. Can you drive a motorcycle of type A?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 មិនបានទេ
+       | 🇬🇧 Cannot
+     A2 | 🇰🇭 បាន
+       | 🇬🇧 Can.
+     A3 | 🇰🇭 បានកុំឱ្យតែនគរបាលចរាចរណ៍ដឹង
+       | 🇬🇧 Can but not be alerted to traffic police.
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
+
+Q191  [ID:1309]
+  🇰🇭 នៅពេលចរាចរណ៍ចង្អៀតខ្លាំង យាននៅគន្លងខាងស្ដាំលឿនជាងយាននៅគន្លងខាងឆ្វេង តើចាត់ទុកជាការជែងដែរឬទេ?
+  🇬🇧 When there is too much traffic, a vehicle on the right lane is faster than the one on the left lane, is it considered as an overtaking behavior? 
+
+  Answers (3 choices):
+     A1 | 🇰🇭 ចាត់ទុកជាការជែង
+       | 🇬🇧 Yes, it is.
+  ✅ A2 | 🇰🇭 មិនចាត់ទុកជាការជែងទេ
+       | 🇬🇧 No, it isn’t.
+     A3 | 🇰🇭 ចាត់ទុកជាការជែងខុសច្បាប់
+       | 🇬🇧 Considered as an illigal overtaking behavior.
+
+  Correct Answer: A2
+
+----------------------------------------------------------------------
+
+Q192  [ID:1310]
+  🇰🇭 តើអ្នកបើកបរទោចក្រយានយន្ដ ត្រីចក្រយានយន្ដ ត្រូវឈប់ ឬចតប៉ុន្មានម៉ែត្រពីមុខ និងពីក្រោយផ្លាកសញ្ញាកន្លែងរបស់ឡានក្រុងឈប់?
+  🇬🇧 How far from the front or behind the ’bus-stop sign’ shall motorists or tricycle drivers stop or park?
+
+  Answers (3 choices):
+  ✅ A1 | 🇰🇭 យ៉ាងតិច ១០ ម៉ែត្រ
+       | 🇬🇧 At least 10m
+     A2 | 🇰🇭 យ៉ាងតិច ១៥ ម៉ែត្រ
+       | 🇬🇧 At least 15m
+     A3 | 🇰🇭 យ៉ាងតិច ២០ ម៉ែត្រ
+       | 🇬🇧 At least 20m
+
+  Correct Answer: A1
+
+----------------------------------------------------------------------
