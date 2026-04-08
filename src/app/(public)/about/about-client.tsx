@@ -9,9 +9,9 @@ import { TeamSection } from "@/components/about/team-section";
 
 const GALLERY = [
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248422/d62e9dd9bf64b6a39fe35b39dr_sfzwbn.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248421/c336547b399f3d4e5c6363a5ad7dr_dpirfd.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248421/904da627410290a5ae64edr_xtkjjp.png",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248441/_986anr986anr986a_nbsjda.png",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775673217/photo_2026-04-09_02-29-33_zyueex.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775673274/photo_2026-04-09_02-29-29_nxuioi.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775673225/DSC_0006_uzmstz.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751538/photo_89_2026-03-29_09-19-15_v0uy9h.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751510/photo_88_2026-03-29_09-19-15_f4l6el.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751491/photo_87_2026-03-29_09-19-15_baluw0.jpg",
@@ -232,6 +232,7 @@ export function AboutClient() {
           <div className="w-full md:w-64 flex-shrink-0 border-2 border-black overflow-hidden" style={{ boxShadow:"4px 4px 0 #000" }}>
             <img src={GALLERY[1]} alt="Team" className="w-full h-48 object-cover" />
             <img src={GALLERY[2]} alt="Team" className="w-full h-48 object-cover border-t-2 border-black" />
+            <img src={GALLERY[3]} alt="Team" className="w-full h-48 object-cover border-t-2 border-black" />
           </div>
         </div>
 
