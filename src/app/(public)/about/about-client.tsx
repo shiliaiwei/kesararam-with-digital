@@ -232,7 +232,6 @@ export function AboutClient() {
           <div className="w-full md:w-64 flex-shrink-0 border-2 border-black overflow-hidden" style={{ boxShadow:"4px 4px 0 #000" }}>
             <img src={GALLERY[1]} alt="Team" className="w-full h-48 object-cover" />
             <img src={GALLERY[2]} alt="Team" className="w-full h-48 object-cover border-t-2 border-black" />
-            <img src={GALLERY[3]} alt="Team" className="w-full h-48 object-cover border-t-2 border-black" />
           </div>
         </div>
 
