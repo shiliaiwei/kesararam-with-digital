@@ -49,7 +49,6 @@ const GALLERY = [
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760661/00054File_inhoxv.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760661/00055File_xvn8fp.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760662/00066File_qvp6jx.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760663/00067File_io0aio.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760663/00010File_hufaxd.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760663/00011File_kimueh.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760664/00082File_w1njqg.jpg",
