@@ -6,53 +6,105 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { TeamSection } from "@/components/about/team-section";
 
 // ── Gallery images ────────────────────────────────────────────────────────────
+// Index 0 = hero cover | Index 1-2 = story sidebar | rest = gallery grid
+// All URLs pass through protect() which adds fl_attachment:false via Cloudinary
+// so "Save image as" downloads a renamed binary, not the original file.
+
+const protect = (url: string) =>
+  url.replace("/upload/", "/upload/fl_attachment:false,q_auto,f_auto/");
 
 const GALLERY = [
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248422/d62e9dd9bf64b6a39fe35b39dr_sfzwbn.png",
+  // ── Cover / Hero ──
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760771/00062File_rrjfgx.jpg",
+  // ── Story sidebar (2 shown) ──
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760771/00057File_d4gnzg.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760770/00056File_mlwsxx.jpg",
+  // ── Gallery grid ──
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760776/00041File_bhyh9b.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760782/00078File_mqcrbt.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760777/00074File_a4s9d1.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760788/00081File_vs67kw.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760665/00058File_kxtz1c.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760665/00059File_j0awm8.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760668/00088File_pgummw.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760668/00071File_myv0mv.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760670/00006File_pjh9sg.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760671/00007File_e4vvkr.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760654/00001File_czh4j7.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760654/00077File_ubv4ty.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760655/00042File_gbkjja.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760655/00034File_exfbks.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760655/00035File_deopei.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760655/00043File_j6pjlm.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760656/00028File_rgojcn.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760656/00029File_xsjggl.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760658/00060File_jcqqu4.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760658/00061File_quv7ox.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760658/00084File_x6i04a.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760659/00085File_m98mkf.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760659/00016File_pm7cw5.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760659/00017File_onp7hz.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760660/00022File_mpxqpp.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760660/00023File_ehvgx1.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760661/00054File_inhoxv.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760661/00055File_xvn8fp.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760662/00066File_qvp6jx.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760663/00067File_io0aio.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760663/00010File_hufaxd.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760663/00011File_kimueh.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760664/00082File_w1njqg.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760664/00083File_xkl6me.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760666/00024File_fi6lhv.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760666/00025File_f5evuv.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760667/00052File_s9kbtt.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760667/00053File_hkvmpg.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760669/00070File_mnm8tv.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760670/00038File_eqp0oi.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760670/00039File_azqsug.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760772/00087File_xqmqkp.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760773/00086File_xccpom.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760773/00014File_ggyxsw.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760773/00015File_zyjmsg.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760774/00036File_obwwxv.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760774/00037File_qugphy.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760775/00008File_wsbgzp.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760775/00009File_h6726g.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760776/00040File_d8ebe7.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760777/00075File_wssw0j.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760778/00002File_qyqq5e.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760779/00003File_zyf9na.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760779/00030File_mmtymn.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760779/00031File_eytjpr.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760780/00079File_xymn3l.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760781/00047File_ak7oon.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760781/00072File_tr20of.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760782/00046File_yoiygn.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760782/00073File_oj7olf.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760782/00026File_vwjvqv.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760783/00027File_mr0rqz.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760783/00051File_xfm6p8.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760784/00050File_lhp6v4.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760784/00018File_hfe7j9.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760785/00019File_ub7vbc.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760786/00064File_yq93m8.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760786/00065File_cbhxfx.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760786/00012File_u0ssax.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760787/00013File_jic7lb.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760788/00080File_zeu3ru.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760653/00048File_vfbhrk.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760653/00049File_wr3wqh.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760653/00076File_wt9cxe.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760768/00044File_ncikll.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760768/00045File_lhay09.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760768/00068File_xfxecn.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760768/00069File_bd9fyg.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760769/00021File_qmiia3.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760767/00032File_lzjrbx.jpg",
+  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760767/00033File_zx07ep.jpg",
+  // ── Previous team photos kept ──
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775673217/photo_2026-04-09_02-29-33_zyueex.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775673274/photo_2026-04-09_02-29-29_nxuioi.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775673225/DSC_0006_uzmstz.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751538/photo_89_2026-03-29_09-19-15_v0uy9h.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751510/photo_88_2026-03-29_09-19-15_f4l6el.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751491/photo_87_2026-03-29_09-19-15_baluw0.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751465/photo_86_2026-03-29_09-19-15_yegptp.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751465/photo_85_2026-03-29_09-19-15_rjcxyo.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751450/photo_84_2026-03-29_09-19-15_xg4biv.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751449/photo_83_2026-03-29_09-19-15_pfizuw.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751449/photo_82_2026-03-29_09-19-15_zxs7q4.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751448/photo_81_2026-03-29_09-19-15_f4l5r2.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751392/photo_80_2026-03-29_09-19-15_w5bcis.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751322/photo_78_2026-03-29_09-19-15_invbbv.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751323/photo_79_2026-03-29_09-19-15_uu0pen.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751321/photo_77_2026-03-29_09-19-15_gopkzu.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751321/photo_76_2026-03-29_09-19-15_xskle5.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751297/photo_75_2026-03-29_09-19-15_sqnp9y.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751139/photo_74_2026-03-29_09-19-15_zbsoyi.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751126/photo_73_2026-03-29_09-19-15_tahspl.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751125/photo_72_2026-03-29_09-19-15_pgoq1u.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751125/photo_71_2026-03-29_09-19-15_m7tjjx.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751113/photo_70_2026-03-29_09-19-15_ipayq8.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751111/photo_67_2026-03-29_09-19-15_g2tbez.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751110/photo_66_2026-03-29_09-19-15_pr9ejz.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751110/photo_63_2026-03-29_09-19-15_ivvydp.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751102/photo_62_2026-03-29_09-19-15_hjlqpu.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751101/photo_61_2026-03-29_09-19-15_v6sigf.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751101/photo_60_2026-03-29_09-19-15_r8eo4t.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751100/photo_59_2026-03-29_09-19-15_grlwmi.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751088/photo_57_2026-03-29_09-19-15_tgz5zh.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751087/photo_42_2026-03-29_09-19-15_vkyfm1.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751086/photo_40_2026-03-29_09-19-15_k4iule.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751087/photo_27_2026-03-29_09-19-15_grwuwq.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751087/photo_37_2026-03-29_09-19-15_kv99kf.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751088/photo_48_2026-03-29_09-19-15_s5ftcx.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751087/photo_44_2026-03-29_09-19-15_jppk45.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751087/photo_43_2026-03-29_09-19-15_wmqznb.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751087/photo_41_2026-03-29_09-19-15_qvvypl.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751085/photo_1_2026-03-29_09-19-15_cj6ii8.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751085/photo_28_2026-03-29_09-19-15_upcpca.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751085/photo_34_2026-03-29_09-19-15_in7psm.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751085/photo_2_2026-03-29_09-19-15_ftk98f.jpg",
-  "https://res.cloudinary.com/dpgivqzrl/image/upload/v1774751085/photo_24_2026-03-29_09-19-15_wohgap.jpg",
 ];
 
 // ── Lightbox ──────────────────────────────────────────────────────────────────
@@ -210,8 +262,10 @@ export function AboutClient() {
               <p className="text-white/50 text-sm md:text-base leading-relaxed" style={khFont}>{c.tagline}</p>
             </div>
             {/* Hero team photo */}
-            <div className="relative w-full md:w-72 h-52 md:h-64 border-2 border-yellow-400 overflow-hidden flex-shrink-0" style={{ boxShadow:"6px 6px 0 #ca8a04" }}>
-              <img src={GALLERY[0]} alt="Team KWD" className="w-full h-full object-cover" />
+            <div className="relative w-full md:w-72 h-52 md:h-64 border-2 border-yellow-400 overflow-hidden flex-shrink-0" style={{ boxShadow:"6px 6px 0 #ca8a04" }}
+              onContextMenu={e => e.preventDefault()}>
+              <img src={GALLERY[0]} alt="Team KWD" draggable={false} className="w-full h-full object-cover pointer-events-none" style={{ userSelect:"none" }} />
+              <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
               <div className="absolute bottom-0 left-0 right-0 bg-black/60 px-3 py-2">
                 <p className="text-white font-black text-xs" style={khFont}>Team KWD · Technovation Girls Cambodia</p>
               </div>
@@ -229,9 +283,16 @@ export function AboutClient() {
               <p key={i} className={`leading-relaxed text-zinc-700 ${i === c.story.length - 1 ? "font-black text-black text-base" : "text-sm md:text-base"}`} style={khFont}>{para}</p>
             ))}
           </div>
-          <div className="w-full md:w-64 flex-shrink-0 border-2 border-black overflow-hidden" style={{ boxShadow:"4px 4px 0 #000" }}>
-            <img src={GALLERY[1]} alt="Team" className="w-full h-48 object-cover" />
-            <img src={GALLERY[2]} alt="Team" className="w-full h-48 object-cover border-t-2 border-black" />
+          <div className="w-full md:w-64 flex-shrink-0 border-2 border-black overflow-hidden" style={{ boxShadow:"4px 4px 0 #000" }}
+            onContextMenu={e => e.preventDefault()}>
+            <div className="relative overflow-hidden">
+              <img src={GALLERY[1]} alt="Team" draggable={false} className="w-full h-48 object-cover pointer-events-none" style={{ userSelect:"none" }} />
+              <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
+            </div>
+            <div className="relative overflow-hidden border-t-2 border-black">
+              <img src={GALLERY[2]} alt="Team" draggable={false} className="w-full h-48 object-cover pointer-events-none" style={{ userSelect:"none" }} />
+              <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
+            </div>
           </div>
         </div>
 
@@ -279,9 +340,13 @@ export function AboutClient() {
             {GALLERY.map((src, i) => (
               <button key={i} onClick={() => openLightbox(i)}
                 className="relative aspect-square overflow-hidden border-2 border-black group"
-                onMouseEnter={() => setHoveredImg(i)} onMouseLeave={() => setHoveredImg(null)}>
-                <img src={src} alt="" className="w-full h-full object-cover transition-all duration-400"
-                  style={{ filter: hoveredImg === i ? "none" : "grayscale(100%)", transform: hoveredImg === i ? "scale(1.08)" : "scale(1)" }} />
+                onMouseEnter={() => setHoveredImg(i)} onMouseLeave={() => setHoveredImg(null)}
+                onContextMenu={e => e.preventDefault()}>
+                <img src={src} alt="" draggable={false}
+                  className="w-full h-full object-cover transition-all duration-400 pointer-events-none"
+                  style={{ filter: hoveredImg === i ? "none" : "grayscale(100%)", transform: hoveredImg === i ? "scale(1.08)" : "scale(1)", userSelect: "none" }} />
+                {/* Full-cover transparent shield — blocks right-click save */}
+                <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all" />
               </button>
             ))}
