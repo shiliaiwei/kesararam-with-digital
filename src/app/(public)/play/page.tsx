@@ -162,88 +162,84 @@ function GameModeCard({ mode, index, kh, khFont }: {
     <Link
       ref={cardRef}
       href={mode.href}
-      className="group relative flex flex-col overflow-hidden border-2 border-black"
+      className="group relative flex flex-col overflow-hidden border-3 border-black"
       style={{
-        boxShadow: hovered ? `8px 8px 0 ${mode.accent}` : "4px 4px 0 #000",
-        transform: hovered ? "translate(-4px,-4px)" : "translate(0,0)",
-        transition: "box-shadow 0.2s ease, transform 0.2s ease",
-        background: "#fff",
+        boxShadow: hovered ? `0 0 0 3px #000, 10px 10px 0 ${mode.color}` : `0 0 0 3px #000, 5px 5px 0 #000`,
+        transform: hovered ? "translate(-5px,-5px)" : "translate(0,0)",
+        transition: "box-shadow 0.18s ease, transform 0.18s ease",
+        background: hovered ? mode.color : "#fff",
+        border: "3px solid #000",
       }}
       onMouseEnter={() => { setHovered(true); playSound(); }}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Color top stripe */}
-      <div className="h-1.5 w-full" style={{ backgroundColor: mode.color }} />
-
-      {/* Cover area — centered icon with animated bg */}
+      {/* Full-color header band */}
       <div
-        className="relative flex items-center justify-center overflow-hidden"
-        style={{
-          height: 140,
-          backgroundColor: hovered ? mode.color : `${mode.color}20`,
-          transition: "background-color 0.3s ease",
-        }}
+        className="relative flex items-center justify-between px-4 pt-4 pb-3"
+        style={{ backgroundColor: mode.color }}
       >
-        {/* Animated dot pattern */}
-        <div className="absolute inset-0 pointer-events-none"
+        {/* Big icon left */}
+        <div
+          className="w-16 h-16 flex-shrink-0"
           style={{
-            backgroundImage: `radial-gradient(circle, ${mode.accent}33 1px, transparent 1px)`,
-            backgroundSize: "18px 18px",
-            opacity: hovered ? 1 : 0.4,
-            transition: "opacity 0.3s ease",
-          }} />
-        {/* Glow ring */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="rounded-full"
-            style={{
-              width: 100, height: 100,
-              background: `radial-gradient(circle, ${mode.color}55 0%, transparent 70%)`,
-              transform: hovered ? "scale(1.4)" : "scale(1)",
-              transition: "transform 0.4s ease",
-            }} />
-        </div>
-        {/* Icon — centered, large */}
-        <div className="relative z-10 w-20 h-20"
-          style={{
-            transform: hovered ? "scale(1.15) rotate(3deg)" : "scale(1) rotate(0deg)",
-            transition: "transform 0.35s cubic-bezier(0.34,1.56,0.64,1)",
-          }}>
+            transform: hovered ? "scale(1.2) rotate(-6deg)" : "scale(1) rotate(0deg)",
+            transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1)",
+            filter: "drop-shadow(2px 3px 0 rgba(0,0,0,0.25))",
+          }}
+        >
           <IconComp animated={hovered} />
         </div>
         {/* Badge top-right */}
-        <div className="absolute top-3 right-3 z-10 text-xs font-black px-2.5 py-1 border-2 border-black"
+        <div
+          className="text-xs font-black px-2.5 py-1 self-start"
           style={{
-            backgroundColor: hovered ? "#000" : mode.color,
-            color: hovered ? mode.color : "#000",
-            transition: "all 0.2s ease",
-          }}>
+            backgroundColor: "#000",
+            color: mode.color,
+            border: "2px solid #000",
+            letterSpacing: "0.05em",
+          }}
+        >
           {mode.badge}
         </div>
       </div>
 
-      {/* Content */}
-      <div className="flex flex-col flex-1 p-5 gap-2 border-t-2 border-black">
-        <h3 className="text-lg font-black text-black leading-tight" style={khFont}>
+      {/* Content area */}
+      <div
+        className="flex flex-col flex-1 px-4 pt-3 pb-4 gap-1.5"
+        style={{
+          backgroundColor: hovered ? mode.color : "#fff",
+          transition: "background-color 0.18s ease",
+          borderTop: "3px solid #000",
+        }}
+      >
+        <h3
+          className="text-xl font-black leading-tight"
+          style={{ color: hovered ? "#000" : "#000", ...khFont }}
+        >
           {kh ? mode.titleKh : mode.title}
         </h3>
-        <p className="text-sm text-zinc-500 leading-relaxed flex-1" style={khFont}>
+        <p
+          className="text-sm leading-relaxed"
+          style={{ color: hovered ? "rgba(0,0,0,0.7)" : "#71717a", ...khFont }}
+        >
           {kh ? mode.descKh : mode.desc}
         </p>
 
-        {/* CTA button — full width, prominent */}
-        <div className="mt-3 pt-3 border-t border-black/10">
+        {/* CTA */}
+        <div className="mt-3">
           <div
-            className="w-full flex items-center justify-center gap-2 py-3 font-black text-sm border-2 border-black transition-all duration-200"
+            className="w-full flex items-center justify-center gap-2 py-3 font-black text-sm border-2 border-black"
             style={{
               backgroundColor: hovered ? "#000" : mode.color,
               color: hovered ? mode.color : "#000",
-              boxShadow: hovered ? `inset 0 0 0 2px ${mode.color}` : "none",
+              transition: "all 0.18s ease",
+              boxShadow: hovered ? "none" : "3px 3px 0 #000",
             }}
           >
             <span style={khFont}>{kh ? mode.ctaKh : mode.cta}</span>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-              style={{ transform: hovered ? "translateX(4px)" : "translateX(0)", transition: "transform 0.2s ease" }}>
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              style={{ transform: hovered ? "translateX(5px)" : "translateX(0)", transition: "transform 0.18s ease" }}>
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
         </div>
