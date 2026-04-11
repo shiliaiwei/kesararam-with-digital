@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { CategoryPageShell } from "@/components/categories/category-page-shell";
 
 export const metadata: Metadata = {
-  title: "General Knowledge",
-  description: "Essential road safety topics and broad driving knowledge.",
+  title: "Cambodia Driving Knowledge & Rules Test",
+  description: "Master Cambodian general driving knowledge. Essential road safety strategies, rules, and reference materials for passing your theory test.",
 };
 
 export default function GeneralKnowledgePage() {

@@ -6,11 +6,11 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Join Game | KWD Quiz",
-  description: "Join a live quiz game session. Enter your game code and compete with other players in real-time.",
+  title: "Live Driving Theory Quiz Cambodia",
+  description: "Join interactive live quizzes on Cambodian driving theory and road rules. Test your knowledge in real-time and compete with top students.",
   openGraph: {
-    title: "Join Game | KWD Quiz",
-    description: "Join a live quiz game session and compete with other players",
+    title: "Live Driving Theory Quiz Cambodia",
+    description: "Join interactive live quizzes on Cambodian driving theory and road rules.",
     type: "website",
   },
 };

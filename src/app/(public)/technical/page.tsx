@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { CategoryPageShell } from "@/components/categories/category-page-shell";
 
 export const metadata: Metadata = {
-  title: "Vehicle Technology",
-  description:
-    "Learn how vehicles work, safety systems, and maintenance basics.",
+  title: "Vehicle Technical Driving Guide Cambodia",
+  description: "Pass your Cambodia license test by understanding vehicle mechanics, engine safety, and technical driving requirements for cars and motorcycles.",
 };
 
 export default function TechnicalPage() {

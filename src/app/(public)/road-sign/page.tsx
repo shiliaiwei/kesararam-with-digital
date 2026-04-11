@@ -3,8 +3,8 @@ import { CategoryPageShell } from "@/components/categories/category-page-shell";
 import { TrafficSignsGrid } from "@/components/traffic-signs/traffic-signs-grid";
 
 export const metadata: Metadata = {
-  title: "Traffic Signs",
-  description: "Browse and learn all official road signs used in Cambodia.",
+  title: "Traffic Signs Test Cambodia | Road Signs",
+  description: "Practice Cambodian traffic signs and road markings. Master warning, regulatory, and information signs for your driving license theory exam.",
 };
 
 export default function RoadSignPage() {

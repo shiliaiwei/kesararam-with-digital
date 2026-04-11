@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { CategoryPageShell } from "@/components/categories/category-page-shell";
 
 export const metadata: Metadata = {
-  title: "Road Traffic Law",
-  description: "Study the legal framework governing road use in Cambodia.",
+  title: "Cambodia Road Traffic Laws & Regulations",
+  description: "Complete guide to Cambodian road traffic laws, speed limits, right-of-way, and legal driving regulations to pass your official theory exam.",
 };
 
 export default function RoadTrafficPage() {

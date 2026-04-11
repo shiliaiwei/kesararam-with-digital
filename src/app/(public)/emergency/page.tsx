@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { CategoryPageShell } from "@/components/categories/category-page-shell";
 
 export const metadata: Metadata = {
-  title: "Emergency",
-  description:
-    "Emergency procedures, contacts, and protocols for road incidents.",
+  title: "Driving Emergency Response Cambodia",
+  description: "Learn vital emergency response patterns, accident protocols, and vehicle breakdown procedures for safe driving on Cambodian roads.",
 };
 
 export default function EmergencyPage() {

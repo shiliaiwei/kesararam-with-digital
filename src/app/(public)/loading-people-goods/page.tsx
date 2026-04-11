@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { CategoryPageShell } from "@/components/categories/category-page-shell";
 
 export const metadata: Metadata = {
-  title: "Loading People & Goods",
-  description: "Rules for safe transport of passengers and cargo in Cambodia.",
+  title: "Vehicle Loading Laws in Cambodia",
+  description: "Learn the legal requirements for loading passengers and transporting goods safely on Cambodian roads. Essential for commercial and private drivers.",
 };
 
 export default function LoadingPeopleGoodsPage() {
