@@ -65,10 +65,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" type="image/svg+xml" href="/brand/kwd.svg" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/brand/kwd-black-text.png" />
-        <link rel="apple-touch-icon" href="/brand/kwd.png" />
-        <link rel="shortcut icon" href="/brand/kwd.svg" />
+        <link rel="icon" type="image/svg+xml" href="/brand/kwd-black-nobg_zicjml.svg" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/brand/kwd-black.png" />
+        <link rel="apple-touch-icon" href="/brand/kwd-black.png" />
+        <link rel="shortcut icon" href="/brand/kwd-black-nobg_zicjml.svg" />
       </head>
       <body className={`${inter.variable} font-sans antialiased overflow-x-hidden`}>
         <LangProvider>
