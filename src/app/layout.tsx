@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     title: "KWD — Kesararam With Digital",
     description: "Master Cambodia's road rules and driving theory with our interactive learning platform.",
     images: [{
-      url: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg",
+      url: "/brand/kwd-green_ofhdec.png",
       width: 1200,
       height: 630,
       alt: "KWD Logo",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "KWD — Kesararam With Digital",
     description: "Master Cambodia's road rules and driving theory with our interactive learning platform.",
-    images: ["https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg"],
+    images: ["/brand/kwd-green_ofhdec.png"],
   },
 };
 
@@ -65,10 +65,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" type="image/svg+xml" href="/brand/kwd-black-nobg_zicjml.svg" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/brand/kwd-black.png" />
-        <link rel="apple-touch-icon" href="/brand/kwd-black.png" />
-        <link rel="shortcut icon" href="/brand/kwd-black-nobg_zicjml.svg" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/brand/kwd-green_ofhdec.png" />
+        <link rel="apple-touch-icon" href="/brand/kwd-green_ofhdec.png" />
+        <link rel="shortcut icon" href="/brand/kwd-green_ofhdec.png" />
       </head>
       <body className={`${inter.variable} font-sans antialiased overflow-x-hidden`}>
         <LangProvider>
