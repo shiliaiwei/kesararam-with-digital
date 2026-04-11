@@ -291,7 +291,7 @@ export default function LeaderboardPage() {
   const [claimMsg, setClaimMsg] = useState("");
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [countdown, setCountdown] = useState(60);
-  const [lang, setLang] = useState<"en"|"kh">("en");
+
 
   const fetchLeaderboard = useCallback(async () => {
     try {
