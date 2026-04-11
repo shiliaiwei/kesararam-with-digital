@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { gsap } from "gsap";
+import { useLang } from "@/context/lang-context";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -141,44 +142,138 @@ function PodiumCard({ user, cfg, index }: { user: LeaderboardUser|undefined; cfg
 
 // ── Reward card ───────────────────────────────────────────────────────────────
 
-function RewardCard({ item, itemIndex, userPoints, isLoggedIn, onClaim }: {
-  item: typeof REWARD_ITEMS[number]; itemIndex: number; userPoints: number; isLoggedIn: boolean; onClaim: (item: typeof REWARD_ITEMS[number]) => void;
+// Realistic product photo covers per item (Cloudinary)
+const REWARD_PHOTOS: Record<number, string> = {
+  1: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1/rewards/notebook",
+  2: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1/rewards/pencil",
+  3: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1/rewards/pen",
+  4: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1/rewards/ruler",
+  5: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1/rewards/eraser",
+  6: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1/rewards/highlighter",
+  7: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1/rewards/sticky-notes",
+  8: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1/rewards/geometry-set",
+  9: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1/rewards/study-planner",
+};
+
+function RewardCard({ item, itemIndex, userPoints, isLoggedIn, onClaim, lang }: {
+  item: typeof REWARD_ITEMS[number]; itemIndex: number; userPoints: number;
+  isLoggedIn: boolean; onClaim: (item: typeof REWARD_ITEMS[number]) => void; lang: string;
 }) {
-  const [claimed, setClaimed] = useState(false);
-  const canClaim = isLoggedIn && userPoints >= item.cost;
-  const pct = Math.min(100, (userPoints / item.cost) * 100);
+  const kh = lang === "kh";
+  const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+
+  // One-claim-per-item per browser session (persisted in localStorage)
+  const storageKey = `kwd_claimed_${item.id}`;
+  const [claimed, setClaimed] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return localStorage.getItem(storageKey) === "1";
+  });
+  const [hovered, setHovered] = useState(false);
+
+  const canClaim = isLoggedIn && userPoints >= item.cost && !claimed;
+  const pct = Math.min(100, Math.round((userPoints / item.cost) * 100));
   const IconComp = REWARD_ICONS[itemIndex];
 
   function handleClaim() {
-    if (!canClaim || claimed) return;
-    setClaimed(true); onClaim(item); setTimeout(() => setClaimed(false), 3000);
+    if (!canClaim) return;
+    setClaimed(true);
+    localStorage.setItem(storageKey, "1");
+    onClaim(item);
   }
 
+  const statusLabel = claimed
+    ? (kh ? "បានទទួលហើយ ✓" : "Claimed ✓")
+    : !isLoggedIn
+    ? (kh ? "ចូលគណនីដើម្បីទទួល" : "Log in to claim")
+    : userPoints < item.cost
+    ? (kh ? `ត្រូវការ ${(item.cost - userPoints).toLocaleString()} pts ទៀត` : `Need ${(item.cost - userPoints).toLocaleString()} more pts`)
+    : (kh ? "ទទួលឥឡូវ →" : "Claim Now →");
+
   return (
-    <div className="flex flex-col gap-2 p-3 bg-white border-2 border-black" style={{ boxShadow:`3px 3px 0 ${item.color}` }}>
-      <div className="w-10 h-10 flex items-center justify-center border-2 border-black p-1" style={{ backgroundColor:`${item.color}22` }}><IconComp /></div>
-      <div className="flex-1">
-        <span className="font-black text-xs text-black block">{item.name}</span>
-        <span className="text-[10px] text-zinc-400">{item.nameKh}</span>
-      </div>
-      <div className="flex items-center justify-between gap-1">
-        <span className="text-[10px] font-black px-1.5 py-0.5 border border-black" style={{ backgroundColor:item.color, color:"#fff" }}>{item.cost.toLocaleString()} pts</span>
-        <button onClick={handleClaim} disabled={!canClaim||claimed} className="text-[10px] font-black px-2 py-1 border-2 border-black transition-all"
-          style={{ backgroundColor:claimed?"#22c55e":canClaim?"#000":"#e4e4e7", color:claimed?"#fff":canClaim?"#ffd700":"#a1a1aa", cursor:canClaim&&!claimed?"pointer":"not-allowed", boxShadow:canClaim&&!claimed?"2px 2px 0 #000":"none" }}>
-          {claimed?"Claimed!":isLoggedIn?"Claim":"Login"}
-        </button>
-      </div>
-      {isLoggedIn && (
-        <div>
-          <div className="flex justify-between text-[9px] font-bold text-zinc-400 mb-0.5">
-            <span>{userPoints.toLocaleString()}/{item.cost.toLocaleString()}</span>
-            <span>{Math.round(pct)}%</span>
-          </div>
-          <div className="h-1.5 bg-zinc-100 border border-zinc-200 overflow-hidden rounded-full">
-            <div className="h-full transition-all duration-700 rounded-full" style={{ width:`${pct}%`, backgroundColor:item.color }} />
+    <div
+      className="relative flex flex-col overflow-hidden border-2 border-black"
+      style={{
+        boxShadow: hovered && canClaim ? `6px 6px 0 ${item.color}` : "3px 3px 0 #000",
+        transform: hovered && canClaim ? "translate(-3px,-3px)" : "translate(0,0)",
+        transition: "box-shadow 0.15s ease, transform 0.15s ease",
+        opacity: claimed ? 0.75 : 1,
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Claimed overlay */}
+      {claimed && (
+        <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none"
+          style={{ background: "rgba(0,0,0,0.55)" }}>
+          <div className="flex flex-col items-center gap-1">
+            <div className="w-12 h-12 rounded-full bg-green-500 border-3 border-white flex items-center justify-center"
+              style={{ border: "3px solid #fff", boxShadow: "0 0 0 3px #000" }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M5 13l4 4L19 7" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <span className="text-white font-black text-xs" style={kf}>{kh ? "បានទទួល" : "Claimed"}</span>
           </div>
         </div>
       )}
+
+      {/* Color header with icon */}
+      <div className="relative flex items-center justify-between px-3 py-3"
+        style={{ backgroundColor: item.color }}>
+        <div className="w-12 h-12 bg-white/20 border-2 border-white/40 flex items-center justify-center p-1.5">
+          <IconComp />
+        </div>
+        <div className="flex flex-col items-end gap-0.5">
+          <span className="text-[10px] font-black text-white/70 uppercase tracking-widest" style={kf}>
+            {kh ? "ពិន្ទុ" : "Points"}
+          </span>
+          <span className="text-xl font-black text-white leading-none">
+            {item.cost.toLocaleString()}
+          </span>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="flex flex-col gap-2 p-3 bg-white flex-1">
+        <div>
+          <span className="font-black text-sm text-black block leading-tight">
+            {kh ? item.nameKh : item.name}
+          </span>
+          <span className="text-[10px] text-zinc-400 block" style={kf}>
+            {kh ? item.name : item.nameKh}
+          </span>
+        </div>
+
+        {/* Progress bar */}
+        {isLoggedIn && (
+          <div>
+            <div className="flex justify-between text-[9px] font-bold text-zinc-400 mb-1">
+              <span>{userPoints.toLocaleString()} / {item.cost.toLocaleString()} pts</span>
+              <span style={{ color: item.color }}>{pct}%</span>
+            </div>
+            <div className="h-2 bg-zinc-100 border border-zinc-200 overflow-hidden">
+              <div className="h-full transition-all duration-700"
+                style={{ width: `${pct}%`, backgroundColor: item.color }} />
+            </div>
+          </div>
+        )}
+
+        {/* CTA */}
+        <button
+          onClick={handleClaim}
+          disabled={!canClaim}
+          className="w-full py-2.5 font-black text-xs border-2 border-black transition-all"
+          style={{
+            backgroundColor: claimed ? "#22c55e" : canClaim ? item.color : "#e4e4e7",
+            color: claimed ? "#fff" : canClaim ? "#000" : "#a1a1aa",
+            cursor: canClaim ? "pointer" : "not-allowed",
+            boxShadow: canClaim ? "2px 2px 0 #000" : "none",
+            ...kf,
+          }}
+        >
+          {statusLabel}
+        </button>
+      </div>
     </div>
   );
 }
@@ -186,6 +281,9 @@ function RewardCard({ item, itemIndex, userPoints, isLoggedIn, onClaim }: {
 // ── Main page ─────────────────────────────────────────────────────────────────
 
 export default function LeaderboardPage() {
+  const { lang } = useLang();
+  const kh = lang === "kh";
+  const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
   const [leaderboard, setLeaderboard] = useState<LeaderboardUser[]>([]);
   const [prevRanks, setPrevRanks] = useState<Record<number, number>>({});
   const [loading, setLoading] = useState(true);
@@ -193,6 +291,7 @@ export default function LeaderboardPage() {
   const [claimMsg, setClaimMsg] = useState("");
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [countdown, setCountdown] = useState(60);
+  const [lang, setLang] = useState<"en"|"kh">("en");
 
   const fetchLeaderboard = useCallback(async () => {
     try {
@@ -348,36 +447,48 @@ export default function LeaderboardPage() {
             <div>
               <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4">
                 <div>
-                  <div className="inline-block bg-black text-yellow-400 text-[9px] font-black tracking-widest uppercase px-2.5 py-1 mb-1.5">Rewards</div>
-                  <h2 className="text-lg md:text-2xl font-black text-black leading-tight">Claim with Points</h2>
-                  <p className="text-zinc-500 text-xs mt-1">Earn points in live games · claim stationery · teacher delivers</p>
+                  <div className="inline-block bg-black text-yellow-400 text-[9px] font-black tracking-widest uppercase px-2.5 py-1 mb-1.5">
+                    {kh ? "រង្វាន់" : "Rewards"}
+                  </div>
+                  <h2 className="text-lg md:text-2xl font-black text-black leading-tight" style={kf}>
+                    {kh ? "ទទួលរង្វាន់ដោយពិន្ទុ" : "Claim with Points"}
+                  </h2>
+                  <p className="text-zinc-500 text-xs mt-1" style={kf}>
+                    {kh ? "ប្រកួតផ្ទាល់ — ទទួលពិន្ទុ — គ្រូប្រគល់រង្វាន់" : "Earn points in live games · claim stationery · teacher delivers"}
+                  </p>
                 </div>
                 {currentUser ? (
                   <div className="flex items-center gap-2 bg-black text-yellow-400 px-3 py-2 border-2 border-black self-start sm:self-auto" style={{ boxShadow:"3px 3px 0 #ca8a04" }}>
-                    <span className="text-[9px] font-black uppercase tracking-widest">Balance</span>
+                    <span className="text-[9px] font-black uppercase tracking-widest" style={kf}>{kh ? "ពិន្ទុ" : "Balance"}</span>
                     <span className="text-lg font-black tabular-nums">{userPoints.toLocaleString()}</span>
                     <span className="text-[9px] opacity-60">pts</span>
                   </div>
                 ) : (
-                  <a href="/login" className="text-xs font-black px-3 py-2 bg-yellow-400 text-black border-2 border-black self-start" style={{ boxShadow:"3px 3px 0 #000" }}>
-                    Log in to claim →
+                  <a href="/login" className="text-xs font-black px-3 py-2 bg-yellow-400 text-black border-2 border-black self-start" style={{ boxShadow:"3px 3px 0 #000", ...kf }}>
+                    {kh ? "ចូលគណនីដើម្បីទទួល →" : "Log in to claim →"}
                   </a>
                 )}
               </div>
 
               {claimMsg && (
-                <div className="mb-3 px-4 py-3 bg-green-500 text-white font-bold text-sm border-2 border-black" style={{ boxShadow:"3px 3px 0 #000" }}>
+                <div className="mb-3 px-4 py-3 bg-green-500 text-white font-bold text-sm border-2 border-black" style={{ boxShadow:"3px 3px 0 #000", ...kf }}>
                   {claimMsg}
                 </div>
               )}
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {REWARD_ITEMS.map((item, idx) => (
-                  <RewardCard key={item.id} item={item} itemIndex={idx} userPoints={userPoints} isLoggedIn={!!currentUser}
-                    onClaim={(i) => { setClaimMsg(`"${i.name}" claim sent to your teacher!`); setTimeout(() => setClaimMsg(""), 4000); }} />
+                  <RewardCard key={item.id} item={item} itemIndex={idx} userPoints={userPoints} isLoggedIn={!!currentUser} lang={lang}
+                    onClaim={(i) => {
+                      const msg = kh ? `"${i.nameKh}" ត្រូវបានផ្ញើទៅគ្រូរបស់អ្នក!` : `"${i.name}" claim sent to your teacher!`;
+                      setClaimMsg(msg);
+                      setTimeout(() => setClaimMsg(""), 4000);
+                    }} />
                 ))}
               </div>
-              <p className="text-[10px] text-zinc-400 mt-3 text-center">Claimed items are delivered by your teacher.</p>
+              <p className="text-[10px] text-zinc-400 mt-3 text-center" style={kf}>
+                {kh ? "រង្វាន់ត្រូវបានប្រគល់ដោយគ្រូ · ទទួលបានតែម្តងក្នុងមួយធាតុ" : "Claimed items are delivered by your teacher · One claim per item"}
+              </p>
             </div>
           </>
         )}
