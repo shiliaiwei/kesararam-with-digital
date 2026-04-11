@@ -13,11 +13,11 @@ export function Footer() {
   const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
   const LEARN_LINKS = [
-    { label: kh ? "\u179f\u1789\u17d2\u1789\u17b6\u1785\u179a\u17b6\u1785\u179a" : "Traffic Signs", href: "/road-sign" },
-    { label: kh ? "\u1785\u17d2\u1794\u17b6\u1794\u17cb\u1785\u179a\u17b6\u1785\u179a" : "Road Traffic Law", href: "/road-traffic" },
-    { label: kh ? "\u179f\u17b7\u1791\u17d2\u1792\u17b7\u178f\u17d2\u178f\u1793\u17d0\u17a2\u179a" : "Right of Way", href: "/priority" },
-    { label: kh ? "\u1787\u17d0\u1793\u17d2\u1793\u17b6\u1789\u1794\u17be\u1780\u1794\u179a" : "Driving Skills", href: "/driving" },
-    { label: kh ? "\u1794\u17d2\u179a\u1797\u17be\u178f\u178f\u17b6\u1798\u17a2\u179f\u17cb" : "All Categories", href: "/home" },
+    { label: kh ? "សញ្ញាចរាចរ" : "Traffic Signs", href: "/road-sign" },
+    { label: kh ? "ច្បាប់ចរាចរ" : "Road Traffic Law", href: "/road-traffic" },
+    { label: kh ? "សិទ្ធិអាទិភាព" : "Right of Way", href: "/priority" },
+    { label: kh ? "ជំនាញបើកបរ" : "Driving Skills", href: "/driving" },
+    { label: kh ? "ប្រភេទទាំងអស់" : "All Categories", href: "/home" },
   ];
 
   const PLATFORM_LINKS = [
@@ -25,7 +25,7 @@ export function Footer() {
     { label: nav.suarAI, href: "/suar/ai" },
     { label: nav.about, href: "/about" },
     { label: nav.login, href: "/login" },
-    { label: kh ? "\u1780\u17b6\u179a\u178e\u17c2\u1793\u17b6\u17c6\u1798\u17d0\u17b6\u1780" : "Brand Guideline", href: "/brand" },
+    { label: kh ? "គោលការណ៍ម៉ាក" : "Brand Guideline", href: "/brand" },
   ];
 
   return (
@@ -42,7 +42,7 @@ export function Footer() {
             {tr.tagline}
           </p>
           <p className="text-xs text-zinc-500 mt-2 text-center" style={{ fontFamily: "Siemreap, sans-serif" }}>
-            {"\u179a\u17b9\u1793"} {"\u2014"} {"\u1794\u17d2\u179a\u1780\u17bd\u178f"} {"\u2014"} {"\u1787\u17c4\u1782\u1787\u17d0\u1799"}
+            {"រៀន"} {"\u2014"} {"ប្រកួត"} {"\u2014"} {"ការពារជីវិត"}
           </p>
         </div>
 
@@ -83,15 +83,15 @@ export function Footer() {
             </h4>
             <ul className="flex flex-col gap-2 text-sm text-zinc-600 font-medium">
               <li>kesararamwithdigital.tech</li>
-              <li>{kh ? "\u1794\u17d2\u179a\u178f\u17be\u179f\u1780\u1798\u17d2\u1796\u17bb\u1787\u17b6" : "Cambodia"}</li>
+              <li>{kh ? "កម្ពុជា" : "Cambodia"}</li>
               <li>
                 <Link href="/privacy" className="hover:text-black transition-colors" style={kf}>
-                  {kh ? "\u1782\u17c4\u179b\u1780\u17b6\u179a\u178e\u17cb\u17a1\u1780\u1787\u1793\u1797\u17b6\u1796" : "Privacy Policy"}
+                  {kh ? "គោលការណ៍ភាពឯកជន" : "Privacy Policy"}
                 </Link>
               </li>
               <li>
                 <Link href="/terms" className="hover:text-black transition-colors" style={kf}>
-                  {kh ? "\u179b\u1780\u17d2\u1781\u1781\u178e\u17cb\u1794\u17d2\u179a\u17be\u1794\u17d2\u179a\u17b6\u179f\u17cb" : "Terms of Service"}
+                  {kh ? "លក្ខខណ្ឌប្រើប្រាស់" : "Terms of Service"}
                 </Link>
               </li>
             </ul>
@@ -101,10 +101,10 @@ export function Footer() {
         <div className="border-t-2 border-zinc-200 pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
           <p className="text-xs text-zinc-500 font-medium" style={kf}>
             &copy; {new Date().getFullYear()} Kesararam With Digital.{" "}
-            {kh ? "\u179a\u1780\u17d2\u179f\u17b6\u179f\u17b7\u1791\u17d2\u1792\u17b7\u1782\u17d2\u179a\u1794\u17cb\u1799\u17d0\u17b6\u1784" : "All rights reserved."}
+            {kh ? "រក្សាសិទ្ធិគ្រប់យ៉ាង" : "All rights reserved."}
           </p>
           <p className="text-xs text-zinc-400 font-medium" style={kf}>
-            {kh ? "\u1794\u1784\u17d2\u1780\u17be\u178f\u179f\u1798\u17d2\u179a\u17b6\u1794\u17cb\u1780\u17b6\u179a\u17a2\u1794\u17cb\u179a\u17c6\u179f\u17bd\u179c\u178f\u17d2\u178f\u1797\u17b6\u1796\u1785\u179a\u17b6\u1785\u179a\u178e\u17cb\u1780\u1798\u17d2\u1796\u17bb\u1787\u17b6" : "Built for Cambodian road safety education."}
+            {kh ? "បង្កើតសម្រាប់ការអប់រំសុវត្ថិភាពចរាចរណ៍កម្ពុជា" : "Built for Cambodian road safety education."}
           </p>
         </div>
       </div>
