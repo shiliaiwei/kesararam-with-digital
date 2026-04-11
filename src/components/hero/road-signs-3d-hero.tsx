@@ -257,10 +257,10 @@ export function RoadSigns3DHero() {
           }}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-black opacity-60" />
-          {kh ? "ស្គាល់សញ្ញាចរាចរ" : "Know Every Sign"}
+          {kh ? "វិថីសុវត្ថិភាព" : "THE WAY OF SAFETY AND KHMER"}
         </div>
         <h2 className="text-3xl md:text-4xl font-black text-black" style={kf}>
-          {kh ? "ផ្លូវវិថីសុវត្ថិភាព" : "The Way of Safety"}
+          {kh ? "វិថីសុវត្ថិភាព" : "The Way of Safety and Khmer"}
         </h2>
       </div>
 
