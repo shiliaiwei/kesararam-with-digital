@@ -86,7 +86,7 @@ export default function LearnPage() {
               </div>
               <h1
                 ref={headingRef}
-                className="text-6xl md:text-8xl font-black leading-none"
+                className="text-5xl md:text-6xl font-black leading-tight"
                 style={{ color: "#eab308", ...khFont }}
               >
                 {kh ? "រៀន" : "LEARN"}

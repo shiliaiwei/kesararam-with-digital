@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Check, Zap, Crown, Building2, Clock, Users, BarChart3, Shield } from "lucide-react";
 import { PLAN_DISPLAY } from "@/lib/subscription-plans";
 
@@ -175,9 +176,11 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
               )}
 
               {/* CTA */}
-              <button className={`w-full py-3 rounded-xl text-sm font-black transition-all mb-6 ${plan.ctaStyle}`} style={khFont}>
+              <Link href="/pricing/subscribe"
+                className={`w-full py-3 rounded-xl text-sm font-black transition-all mb-6 flex items-center justify-center ${plan.ctaStyle}`}
+                style={khFont}>
                 {kh ? plan.cta.kh : plan.cta.en}
-              </button>
+              </Link>
 
               {/* Features */}
               <div className="flex flex-col gap-2.5 flex-1">
