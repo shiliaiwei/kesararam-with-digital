@@ -98,7 +98,7 @@ export default function TermsPage() {
     builtSub: "ឧបករណ៍ បច្ចេកវិទ្យា និងវេទិកាទាំងអស់ដែលបានប្រើក្នុងការបង្កើតគម្រោងនេះ។",
     usedFor: "ប្រើសម្រាប់",
     footer: "២០២៦ KWD — Kesararam With Digital. សាលាបឋមសិក្សាកេសរារាម. Technovation Girls Cambodia.",
-    body: `KWD (Kesararam With Digital) គឺជាវេទិកាសិក្សាទ្រឹស្ដីបើកបររបស់កម្ពុជា ដែលបង្កើតឡើងដោយក្រុមក្មេងស្រីពីសាលាបឋមសិក្សាកេសរារាម ក្នុងក្របខ័ណ្ឌ Technovation Girls។ វាផ្តល់ការប្រឡងអន្តរកម្ម វគ្គហ្គេមផ្ទាល់ ចំណាត់ថ្នាក់ និងខ្លឹមសារជាភាសាខ្មែរ-អង់គ្លេស ដើម្បីជួយសិស្សត្រៀមប្រឡងទ្រឹស្ដីបើកបរ។
+    body: `KWD (Kesararam With Digital) គឺជាវេទិកាសិក្សាការបើកបរ និងស្គាល់សញ្ញាចរាចរ ដែលបង្កើតឡើងដោយក្រុមក្មេងស្រីពីសាលាបឋមសិក្សាកេសរារាម ក្នុងក្របខ័ណ្ឌ Technovation Girls។ វាផ្តល់ការប្រឡងអន្តរកម្ម វគ្គហ្គេមផ្ទាល់ ចំណាត់ថ្នាក់ និងខ្លឹមសារជាភាសាខ្មែរ-អង់គ្លេស ដើម្បីជួយសិស្សត្រៀមប្រឡងការបើកបរ និងស្គាល់សញ្ញាចរាចរ។
 
 ដោយបង្កើតគណនី ឬប្រើ KWD អ្នកយល់ព្រមនឹងលក្ខខណ្ឌប្រើប្រាស់ទាំងនេះ។ លក្ខខណ្ឌទាំងនេះអនុវត្តចំពោះអ្នកប្រើទាំងអស់ — សិស្ស គ្រូ និងអ្នកគ្រប់គ្រង។ សិស្ស គ្រូ និងអ្នកគ្រប់គ្រងសាលាអាចចុះឈ្មោះ។ គណនីសិស្សអាយុក្រោម ១៣ ឆ្នាំត្រូវបង្កើតដោយគ្រូ ឬអ្នកគ្រប់គ្រង ស្របតាមគោលការណ៍សុវត្ថិភាពកុមាររបស់ Technovation។ អ្នកទទួលខុសត្រូវក្នុងការរក្សាការសម្ងាត់នៃព័ត៌មានចូល។ កុំចែករំលែកពាក្យសម្ងាត់។
 
@@ -119,7 +119,7 @@ KWD ត្រូវបានផ្តល់ដូចដែលវាជា។ យ
     builtSub: "Every tool, technology, and platform that shaped this project.",
     usedFor: "Used for",
     footer: "2026 KWD — Kesararam With Digital. Kesararam Primary School. Technovation Girls Cambodia.",
-    body: `KWD (Kesararam With Digital) is a Cambodia driving theory learning platform built by a team of young girls from Kesararam Primary School, participating in Technovation Girls. It provides interactive quizzes, live game sessions, a leaderboard, and bilingual content in Khmer and English to help students prepare for the official driving theory exam. This project is submitted to Technovation Girls — a global program empowering girls to become technology entrepreneurs and leaders.
+    body: `KWD (Kesararam With Digital) is a Cambodia driving and traffic sign learning platform built by a team of young girls from Kesararam Primary School, participating in Technovation Girls. It provides interactive quizzes, live game sessions, a leaderboard, and bilingual content in Khmer and English to help students prepare for the official driving theory exam. This project is submitted to Technovation Girls — a global program empowering girls to become technology entrepreneurs and leaders.
 
 By creating an account or using KWD, you agree to these Terms of Service. They apply to all users — students, teachers, and administrators. Students, teachers, and school administrators may register. Student accounts for users under 13 must be created by a teacher or school administrator, in line with Technovation's child safety guidelines. You are responsible for maintaining the confidentiality of your login credentials. Do not share your password. Notify us immediately if you suspect unauthorized access.
 

@@ -16,7 +16,7 @@ export default function PrivacyPage() {
     termsBtn: "លក្ខខណ្ឌប្រើប្រាស់",
     aboutBtn: "អំពី KWD",
     footer: "២០២៦ KWD — Kesararam With Digital. សាលាបឋមសិក្សាកេសរារាម. Technovation Girls Cambodia.",
-    body: `KWD (Kesararam With Digital) គឺជាវេទិកាសិក្សាទ្រឹស្ដីបើកបរ ដែលបង្កើតឡើងដោយក្មេងស្រីខ្មែរពីសាលាបឋមសិក្សាកេសរារាម ក្នុងក្របខ័ណ្ឌ Technovation Girls។ យើងប្តេជ្ញាការពារភាពឯកជនរបស់សិស្ស គ្រូ និងអ្នកប្រើប្រាស់ទាំងអស់ ស្របតាមស្តង់ដារសុវត្ថិភាព Technovation និងគោលដៅ SDG របស់អង្គការសហប្រជាជាតិ។
+    body: `KWD (Kesararam With Digital) គឺជាវេទិកាសិក្សាការបើកបរ និងស្គាល់សញ្ញាចរាចរ ដែលបង្កើតឡើងដោយក្មេងស្រីខ្មែរពីសាលាបឋមសិក្សាកេសរារាម ក្នុងក្របខ័ណ្ឌ Technovation Girls។ យើងប្តេជ្ញាការពារភាពឯកជនរបស់សិស្ស គ្រូ និងអ្នកប្រើប្រាស់ទាំងអស់ ស្របតាមស្តង់ដារសុវត្ថិភាព Technovation និងគោលដៅ SDG របស់អង្គការសហប្រជាជាតិ។
 
 នៅពេលចុះឈ្មោះ យើងប្រមូលឈ្មោះ ឈ្មោះអ្នកប្រើ អ៊ីមែល និងពាក្យសម្ងាត់ (រក្សាទុកជាលេខកូដសុវត្ថិភាព)។ គ្រូ និងអ្នកគ្រប់គ្រងអាចផ្តល់ឈ្មោះសាលា និងតួនាទីផងដែរ។ គណនីសិស្សត្រូវបង្កើតដោយគ្រូ ឬអ្នកគ្រប់គ្រងសាលា — មិនមែនដោយផ្ទាល់ពីសិស្សអាយុក្រោម ១៣ ឆ្នាំទេ។ យើងប្រមូលតែឈ្មោះបង្ហាញ និងឈ្មោះអ្នកប្រើ ដើម្បីចូលរួមក្នុងការប្រឡង និងតាមដានវឌ្ឍនភាព។ យើងក៏ប្រមូលពិន្ទុហ្គេម លទ្ធផលប្រឡង កំណត់ត្រាចូលរួម និងទម្លាប់ប្រើប្រាស់ ដើម្បីកែលម្អវេទិកា។
 
@@ -36,7 +36,7 @@ KWD គាំទ្រ SDG 4 (ការអប់រំប្រកបដោយ�
     termsBtn: "Terms of Service",
     aboutBtn: "About KWD",
     footer: "2026 KWD — Kesararam With Digital. Kesararam Primary School. Technovation Girls Cambodia.",
-    body: `KWD (Kesararam With Digital) is a driving theory learning platform built by young Cambodian girls from Kesararam Primary School, participating in Technovation Girls. We are committed to protecting the privacy of every student, teacher, and user on our platform. This policy explains what data we collect, why, and how we protect it — in alignment with Technovation safety standards and the UN Sustainable Development Goals.
+    body: `KWD (Kesararam With Digital) is a driving and traffic sign learning platform built by young Cambodian girls from Kesararam Primary School, participating in Technovation Girls. We are committed to protecting the privacy of every student, teacher, and user on our platform. This policy explains what data we collect, why, and how we protect it — in alignment with Technovation safety standards and the UN Sustainable Development Goals.
 
 When you register, we collect your name, username, email address, and password stored as a secure hash. Teachers and admins may also provide a school name and role. Student accounts are created by teachers or school administrators — not directly by students under 13. We collect only the display name and username needed to participate in quizzes and track progress. We do not collect date of birth, phone numbers, or home addresses from students. We also automatically collect game scores, quiz results, session participation records, and feature usage patterns to improve the platform.
 
