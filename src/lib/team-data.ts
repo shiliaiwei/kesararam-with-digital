@@ -127,8 +127,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: "piseth-pheap",
-    name: "PISETH PHEAP",
-    nameKh: "ពិសិដ្ឋ ភាព",
+    name: "PHEAP PISETH",
+    nameKh: "ភាព ពិសិដ្ឋ",
     role: "mentor",
     specialty: "Teacher · Program Lead — Connecting Team with Resources, Resolving Resource Conflicts & Mentoring Students",
     specialtyKh: "គ្រូបង្រៀន · អ្នកដឹកនាំកម្មវិធី — ភ្ជាប់ក្រុមជាមួយធនធាន ដោះស្រាយជម្លោះ និងណែនាំសិស្ស",
@@ -146,8 +146,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: "shiliaiwei",
-    name: "VI",
-    nameKh: "វី",
+    name: "SHILIAI WEI",
+    nameKh: "ស៊ីលៀ វី",
     role: "mentor",
     specialty: "University Student · Design, Technical & Project Management",
     specialtyKh: "និស្សិតសាកលវិទ្យាល័យ — ការរចនា / គ្រប់គ្រងបច្ចេកទេស និងគម្រោង",
