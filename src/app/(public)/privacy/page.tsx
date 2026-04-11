@@ -28,7 +28,7 @@ KWD ត្រូវបានរចនាសម្រាប់បរិយាក�
 
 អ្នកអាចមើល និងធ្វើបច្ចុប្បន្នភាពព័ត៌មានប្រវត្តិរូបរបស់អ្នកបានគ្រប់ពេលពីការកំណត់គណនី។ អ្នកអាចស្នើសុំលុបគណនី និងទិន្នន័យដែលពាក់ព័ន្ធ — ពិន្ទុហ្គេមនៅក្នុងចំណាត់ថ្នាក់សាធារណៈអាចត្រូវរក្សាទុកក្នុងទម្រង់អនាមិក។ យើងប្រើ Cloudinary, Neon, និង Vercel — នីមួយៗមានគោលការណ៍ភាពឯកជនផ្ទាល់ខ្លួន។ យើងមិនលក់ទិន្នន័យរបស់អ្នកទៅភាគីទីបីណាមួយឡើយ។
 
-KWD គាំទ្រ SDG 4 (ការអប់រំប្រកបដោយគុណភាព) និង SDG 5 (សមភាពយេនឌ័រ) ដោយផ្តល់ការអប់រំទ្រឹស្ដីបើកបរឥតគិតថ្លៃ ជាភាសាខ្មែរ-អង់គ្លេស ដោយផ្តោតលើការផ្តល់អំណាចដល់ក្មេងស្រីតាមរយៈបច្ចេកវិទ្យា។ យើងអាចធ្វើបច្ចុប្បន្នភាពគោលការណ៍នេះ — ការប្រើប្រាស់ KWD បន្តបន្ទាប់ពីការផ្លាស់ប្តូរ មានន័យថាអ្នកទទួលយកគោលការណ៍ដែលបានធ្វើបច្ចុប្បន្នភាព។ សម្រាប់សំណួរទាក់ទងភាពឯកជន សូមទំនាក់ទំនងក្រុម KWD នៅសាលាបឋមសិក្សាកេសរារាម ឬតាមរយៈទំព័រ About។`,
+KWD គាំទ្រ SDG 4 (ការអប់រំប្រកបដោយគុណភាព) និង SDG 11 (ទីក្រុងប្រកបដោយចីរភាព) ដោយផ្តល់ការអប់រំទ្រឹស្ដីបើកបរឥតគិតថ្លៃ ជាភាសាខ្មែរ-អង់គ្លេស ដោយផ្តោតលើការផ្តល់អំណាចដល់ក្មេងស្រីតាមរយៈបច្ចេកវិទ្យា។ យើងអាចធ្វើបច្ចុប្បន្នភាពគោលការណ៍នេះ — ការប្រើប្រាស់ KWD បន្តបន្ទាប់ពីការផ្លាស់ប្តូរ មានន័យថាអ្នកទទួលយកគោលការណ៍ដែលបានធ្វើបច្ចុប្បន្នភាព។ សម្រាប់សំណួរទាក់ទងភាពឯកជន សូមទំនាក់ទំនងក្រុម KWD នៅសាលាបឋមសិក្សាកេសរារាម ឬតាមរយៈទំព័រ About។`,
   } : {
     badge: "Legal Document",
     title: "Privacy Policy",
@@ -48,7 +48,7 @@ Data is stored on Neon (PostgreSQL) with encrypted connections. Profile images a
 
 You can view and update your profile information at any time from your account settings. You may request deletion of your account and associated data — game scores on the public leaderboard may be retained in anonymized form. We use Cloudinary, Neon, and Vercel — each has its own privacy policy. We do not sell your data to any third party.
 
-KWD supports SDG 4 (Quality Education) and SDG 5 (Gender Equality) by providing free, bilingual driving theory education to Cambodian students, with a focus on empowering young girls through technology. We may update this policy from time to time — continued use of KWD after changes constitutes acceptance. For privacy-related questions, contact the KWD team at Kesararam Primary School or through the About page.`,
+KWD supports SDG 4 (Quality Education) and SDG 11 (Sustainable Cities & Communities) by providing free, bilingual driving theory education to Cambodian students, with a focus on empowering young girls through technology. We may update this policy from time to time — continued use of KWD after changes constitutes acceptance. For privacy-related questions, contact the KWD team at Kesararam Primary School or through the About page.`,
   };
 
   return (

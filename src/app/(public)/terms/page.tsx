@@ -106,7 +106,7 @@ KWD គឺសម្រាប់ការប្រើប្រាស់ក្ន�
 
 ពិន្ទុហ្គេមផ្ទាល់ត្រូវបានកត់ត្រា និងរួមចំណែកដល់ពិន្ទុអស់មួយជីវិត និងចំណាត់ថ្នាក់។ ចំណាត់ថ្នាក់គឺជាសាធារណៈ — ឈ្មោះបង្ហាញ និងពិន្ទុរបស់អ្នកអាចមើលឃើញដោយអ្នកទស្សនាទាំងអស់។ សិស្សអាចប្តូរពិន្ទុដែលប្រមូលបានសម្រាប់រង្វាន់ប្រដាប់ប្រដាសិក្សា ដែលត្រូវបានដំណើរការតាមរយៈគ្រូ។ ពិន្ទុ និងរង្វាន់គ្មានតម្លៃជាប្រាក់ ហើយមិនអាចផ្ទេរ លក់ ឬប្តូរជាប្រាក់ទេ។
 
-ការប្រឡង ខ្លឹមសារ ការរចនា និងកូដទាំងអស់នៅ KWD ជាកម្មសិទ្ធិរបស់សាលាបឋមសិក្សាកេសរារាម ឬបានទទួលអាជ្ញាប័ណ្ណ។ KWD គាំទ្រ SDG 4 (ការអប់រំប្រកបដោយគុណភាព) និង SDG 5 (សមភាពយេនឌ័រ) ដោយផ្តល់ការអប់រំទ្រឹស្ដីបើកបរឥតគិតថ្លៃ ដោយផ្តោតលើការផ្តល់អំណាចដល់ក្មេងស្រីតាមរយៈបច្ចេកវិទ្យា។
+ការប្រឡង ខ្លឹមសារ ការរចនា និងកូដទាំងអស់នៅ KWD ជាកម្មសិទ្ធិរបស់សាលាបឋមសិក្សាកេសរារាម ឬបានទទួលអាជ្ញាប័ណ្ណ។ KWD គាំទ្រ SDG 4 (ការអប់រំប្រកបដោយគុណភាព) និង SDG 11 (ទីក្រុងប្រកបដោយចីរភាព) ដោយផ្តល់ការអប់រំទ្រឹស្ដីបើកបរឥតគិតថ្លៃ ដោយផ្តោតលើការផ្តល់អំណាចដល់ក្មេងស្រីតាមរយៈបច្ចេកវិទ្យា។
 
 KWD ត្រូវបានផ្តល់ដូចដែលវាជា។ យើងមិនធានាថាការប្រើ KWD នឹងនាំឱ្យជាប់ការប្រឡងទ្រឹស្ដីបើកបរផ្លូវការទេ។ លក្ខខណ្ឌទាំងនេះត្រូវបានគ្រប់គ្រងដោយច្បាប់នៃព្រះរាជាណាចក្រកម្ពុជា។ យើងអាចធ្វើបច្ចុប្បន្នភាពលក្ខខណ្ឌទាំងនេះ — ការប្រើប្រាស់បន្តបន្ទាប់ពីការផ្លាស់ប្តូរ មានន័យថាការទទួលយក។`,
   } : {
@@ -127,7 +127,7 @@ KWD is for educational use — studying Cambodia's driving theory, participating
 
 Live game scores are recorded and contribute to your lifetime points and leaderboard ranking. The leaderboard is public — your display name and score are visible to all visitors. Students can redeem accumulated points for physical stationery rewards processed through their teacher. Points and rewards have no monetary value and cannot be transferred, sold, or exchanged for cash.
 
-All quiz questions, content, design, and code on KWD are owned by Kesararam Primary School or licensed to it. KWD directly supports SDG 4 (Quality Education) and SDG 5 (Gender Equality) by providing free, accessible driving theory education, centering young Cambodian girls as technology creators. Kesararam is a monastery and primary school — the oldest place of learning in our community. KWD carries that tradition of education into the digital age.
+All quiz questions, content, design, and code on KWD are owned by Kesararam Primary School or licensed to it. KWD directly supports SDG 4 (Quality Education) and SDG 11 (Sustainable Cities & Communities) by providing free, accessible driving theory education, centering young Cambodian girls as technology creators. Kesararam is a monastery and primary school — the oldest place of learning in our community. KWD carries that tradition of education into the digital age.
 
 KWD is provided as-is. We do not guarantee that using KWD will result in passing the official driving theory exam. These terms are governed by the laws of the Kingdom of Cambodia. We may update these terms at any time — continued use after changes constitutes acceptance.`,
   };
