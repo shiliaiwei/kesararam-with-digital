@@ -21,10 +21,10 @@ const CATEGORIES = [
 ] as const;
 
 const STATS = [
-  { value: "500+", label: "Questions", color: "#eab308" },
-  { value: "8", label: "Categories", color: "#3b82f6" },
-  { value: "3", label: "Study Modes", color: "#22c55e" },
-  { value: "KH/EN", label: "Bilingual", color: "#a855f7" },
+  { value: "500+", labelEn: "Questions",    labelKh: "សំណួរ",          color: "#eab308" },
+  { value: "8",    labelEn: "Categories",   labelKh: "ប្រភេទ",          color: "#3b82f6" },
+  { value: "3",    labelEn: "Study Modes",  labelKh: "របៀបរៀន",         color: "#22c55e" },
+  { value: "KH/EN",labelEn: "Bilingual",    labelKh: "ពីរភាសា",         color: "#a855f7" },
 ];
 
 export default function LearnPage() {
@@ -82,7 +82,7 @@ export default function LearnPage() {
             <div className="flex flex-col gap-5 max-w-2xl">
               <div className="inline-flex items-center gap-2 bg-yellow-400 text-black text-xs font-black tracking-widest uppercase px-3 py-1.5 w-fit border-2 border-yellow-400">
                 <span className="w-2 h-2 bg-black rounded-full animate-pulse" />
-                {kh ? "ចូលរៀន" : "Knowledge Hub"}
+                {kh ? "មជ្ឈមណ្ឌលចំណេះដឹង" : "Knowledge Hub"}
               </div>
               <h1
                 ref={headingRef}
@@ -98,7 +98,7 @@ export default function LearnPage() {
                 style={khFont}
               >
                 {kh
-                  ? "ស្ទាត់ជំនាញទ្រឹស្ដីបើកបររបស់កម្ពុជា — ៨ ប្រភេទ ២ ភាសា"
+                  ? "រៀនបើកបរ និងស្គាល់សញ្ញាចរាចរ — ៨ ប្រភេទ ២ ភាសា"
                   : "Master Cambodia's driving theory across 8 categories — in Khmer & English."}
               </p>
               <div ref={ctaRef} className="flex flex-wrap gap-3">
@@ -107,7 +107,7 @@ export default function LearnPage() {
                   className="px-6 py-3 bg-yellow-400 text-black font-black border-2 border-yellow-400 transition-all duration-100 hover:-translate-y-1"
                   style={{ boxShadow: "4px 4px 0 #ca8a04", ...khFont }}
                 >
-                  {kh ? "ចូលលេង →" : "Play Now →"}
+                  {kh ? "លេងឥឡូវ →" : "Play Now →"}
                 </Link>
                 <Link
                   href="/leaderboard"
@@ -135,14 +135,14 @@ export default function LearnPage() {
       <div ref={statsRef} className="border-b-2 border-black bg-white py-8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {STATS.map(({ value, label, color }) => (
+            {STATS.map(({ value, labelEn, labelKh, color }) => (
               <div
-                key={label}
+                key={labelEn}
                 className="stat-card border-2 border-black p-5 flex flex-col gap-1"
                 style={{ boxShadow: `4px 4px 0 ${color}` }}
               >
                 <span className="text-3xl font-black" style={{ color }}>{value}</span>
-                <span className="text-sm font-bold text-zinc-500" style={khFont}>{label}</span>
+                <span className="text-sm font-bold text-zinc-500" style={khFont}>{kh ? labelKh : labelEn}</span>
               </div>
             ))}
           </div>
@@ -190,7 +190,7 @@ export default function LearnPage() {
       <section className="bg-black border-t-4 border-yellow-400 py-16">
         <div className="max-w-4xl mx-auto px-6 text-center flex flex-col items-center gap-6">
           <h2 className="text-4xl md:text-5xl font-black text-white" style={khFont}>
-            {kh ? "ត្រៀមខ្លួនប្រឡង?" : "Ready to test yourself?"}
+            {kh ? "ត្រៀមខ្លួនហើយ?" : "Ready to test yourself?"}
           </h2>
           <p className="text-white/50 text-lg" style={khFont}>
             {kh ? "រៀន — ប្រកួត — ការពារជីវិត" : "Study the theory, play the games, pass the exam."}
@@ -200,7 +200,7 @@ export default function LearnPage() {
             className="px-10 py-4 bg-yellow-400 text-black font-black border-2 border-yellow-400 text-lg transition-all hover:-translate-y-1"
             style={{ boxShadow: "6px 6px 0 #ca8a04", ...khFont }}
           >
-            {kh ? "ចូលលេងឥឡូវ →" : "Start Playing →"}
+            {kh ? "លេងឥឡូវ →" : "Start Playing →"}
           </Link>
         </div>
       </section>

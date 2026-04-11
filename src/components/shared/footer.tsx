@@ -25,7 +25,7 @@ export function Footer() {
     { label: nav.suarAI, href: "/suar/ai" },
     { label: nav.about, href: "/about" },
     { label: nav.login, href: "/login" },
-    { label: kh ? "គោលការណ៍ម៉ាក" : "Brand Guideline", href: "/brand" },
+    { label: kh ? "ម៉ាករបស់យើង" : "Brand Guideline", href: "/brand" },
   ];
 
   return (
