@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Kantumruy_Pro, Siemreap } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { LangProvider } from "@/context/lang-context";
 import { ErrorDebugPanel } from "@/components/ErrorDebugPanel";
@@ -10,6 +10,20 @@ const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
+});
+
+const kantumruy = Kantumruy_Pro({
+  variable: "--font-kh-header",
+  subsets: ["khmer"],
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
+
+const siemreap = Siemreap({
+  variable: "--font-kh-body",
+  subsets: ["khmer"],
+  display: "swap",
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -69,7 +83,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/brand/kwd-green_ofhdec.png" />
         <link rel="shortcut icon" href="/brand/kwd-green_ofhdec.png" />
       </head>
-      <body className={`${inter.variable} font-sans antialiased overflow-x-hidden`}>
+      <body className={`${inter.variable} ${kantumruy.variable} ${siemreap.variable} font-sans antialiased overflow-x-hidden`}>
         <LangProvider>
           {children}
           <Toaster richColors closeButton />

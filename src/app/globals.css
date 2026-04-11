@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Siemreap&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -138,10 +137,6 @@
   --nb-radius-sm: 12px;
   --nb-radius-md: 15px;
   --nb-radius-lg: 18px;
-
-  /* Fonts */
-  --font-kh-header: "Kantumruy Pro", sans-serif;
-  --font-kh-body: "Siemreap", sans-serif;
 }
 
 /* ─── KWD Dashboard Dark Theme ─── */
