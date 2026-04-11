@@ -257,19 +257,19 @@ export function RoadSigns3DHero() {
           }}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-black opacity-60" />
-          {kh ? "វិថីសុវត្ថិភាព" : "THE WAY OF SAFETY AND KHMER"}
+          {kh ? "វិថីសុវត្ថិភាព" : "THE WAY OF SAFETY"}
         </div>
         <h2 className="text-3xl md:text-4xl font-black text-black" style={kf}>
-          {kh ? "វិថីសុវត្ថិភាព" : "The Way of Safety and Khmer"}
+          {kh ? "វិថីសុវត្ថិភាព" : "The Way of Safety"}
         </h2>
       </div>
 
       {/* 4 rows — alternating direction, different speeds, size offsets */}
       <div className="relative z-10 flex flex-col gap-1">
-        <DragRow signs={ROW1} speed={80}  reverse={false} sizeOffset={0} />
-        <DragRow signs={ROW2} speed={60}  reverse={true}  sizeOffset={7} />
+        <DragRow signs={ROW1} speed={80} reverse={false} sizeOffset={0} />
+        <DragRow signs={ROW2} speed={60} reverse={true} sizeOffset={7} />
         <DragRow signs={ROW3} speed={100} reverse={false} sizeOffset={3} />
-        <DragRow signs={ROW4} speed={70}  reverse={true}  sizeOffset={11} />
+        <DragRow signs={ROW4} speed={70} reverse={true} sizeOffset={11} />
       </div>
 
     </section>
