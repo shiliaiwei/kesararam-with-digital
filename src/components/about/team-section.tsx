@@ -4,16 +4,16 @@ import { useState, useEffect, useCallback } from "react";
 import QRCode from "react-qr-code";
 
 const STUDENTS = [
-  { id: "VSID-2026-001", name: "D. YIN",      fullName: "D.YIN",      role: "UI/UX Designer" },
-  { id: "VSID-2026-002", name: "C. KANIKA",   fullName: "C.KANIKA", role: "Content & Research" },
-  { id: "VSID-2026-003", name: "R. NEUN",     fullName: "R.NEUN",      role: "Frontend Developer" },
-  { id: "VSID-2026-004", name: "L. MANY",     fullName: "L.MANY",       role: "Backend & Database" },
-  { id: "VSID-2026-005", name: "S. RUNAMARA", fullName: "S.RUNAMARA",   role: "QA & Testing" },
+  { id: "VSID-2026-001", name: "D. YIN",      fullName: "D.YIN",      role: "Voice Reading · Team Lead" },
+  { id: "VSID-2026-002", name: "C. KANIKA",   fullName: "C.KANIKA",   role: "Content & Research" },
+  { id: "VSID-2026-003", name: "R. NEUN",     fullName: "R.NEUN",     role: "UI/UX Design" },
+  { id: "VSID-2026-004", name: "L. MANY",     fullName: "L.MANY",     role: "QA & Testing" },
+  { id: "VSID-2026-005", name: "S. RUNAMARA", fullName: "S.RUNAMARA", role: "QA & Testing" },
 ];
 
 const MENTORS = [
-  { id: "VSID-2026-M01", name: "P. PHEAP", fullName: "PISETH PHEAP", role: "Teacher & Program Lead", image: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248421/904da627410290a5ae64edr_xtkjjp.png" },
-  { id: "VSID-2026-M02", name: "S. WEI", fullName: "SHILIAI WEI", role: "Design, Technical / Project Mgmt", image: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248420/07d5d96b3f0a8af7743f3b4053ba18dr_ydb0zm.png" },
+  { id: "VSID-2026-M01", name: "PHEAP PISETH", fullName: "PHEAP PISETH", role: "Teacher & Program Lead", image: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248421/904da627410290a5ae64edr_xtkjjp.png" },
+  { id: "VSID-2026-M02", name: "SHILIAI WEI",  fullName: "SHILIAI WEI",  role: "Design, Technical / Project Mgmt", image: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248420/07d5d96b3f0a8af7743f3b4053ba18dr_ydb0zm.png" },
 ];
 
 interface Member { id: string; name: string; fullName: string; role: string; image?: string; }
