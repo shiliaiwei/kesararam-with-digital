@@ -257,10 +257,10 @@ export function RoadSigns3DHero() {
           }}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-black opacity-60" />
-          {kh ? "\u179f\u17d2\u1782\u17b6\u179b\u179f\u1789\u17d2\u1789\u17b6\u1785\u179a\u17b6\u1785\u179a" : "Know Every Sign"}
+          {kh ? "ស្គាល់សញ្ញាចរាចរ" : "Know Every Sign"}
         </div>
         <h2 className="text-3xl md:text-4xl font-black text-black" style={kf}>
-          {kh ? "វីថីសុវត្ថិភាព" : "The Way of Safety"}
+          {kh ? "ផ្លូវវិថីសុវត្ថិភាព" : "The Way of Safety"}
         </h2>
       </div>
 

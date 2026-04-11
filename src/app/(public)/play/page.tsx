@@ -107,17 +107,17 @@ const GAME_MODE_ICONS = [IconQuickQuiz, IconSpeedRound, IconSignChallenge, IconM
 const GAME_MODES = [
   { id: "quick-quiz",      title: "Quick Quiz",      titleKh: "សំណួរលឿន",       desc: "10 random questions across all categories.",     descKh: "សំណួរចៃដន្យ ១០",        color: "#eab308", accent: "#ca8a04", href: "/play/solo?mode=quick-quiz",      badge: "10Q · 30s", cta: "Play Now →",  ctaKh: "លេងឥឡូវ" },
   { id: "speed-round",     title: "Speed Round",     titleKh: "វគ្គល្បឿន",       desc: "Fast MCQ only — tap fast, score big.",           descKh: "MCQ លឿន — ចុចឆាប់",       color: "#ef4444", accent: "#b91c1c", href: "/play/solo?mode=speed-round",     badge: "20Q · 15s", cta: "Go Fast →",   ctaKh: "ចូលប្រកួត" },
-  { id: "sign-challenge",  title: "Sign Challenge",  titleKh: "ប្រឡងសញ្ញា",     desc: "Identify traffic signs from images only.",       descKh: "ស្គាល់សញ្ញាផ្លូវវិថី",     color: "#3b82f6", accent: "#1d4ed8", href: "/play/solo?mode=sign-challenge",  badge: "15Q · 20s", cta: "Challenge →", ctaKh: "ប្រឡង" },
-  { id: "mixed-battle",    title: "Mixed Battle",    titleKh: "ប្រយុទ្ធចម្រុះ", desc: "All categories, all question types.",            descKh: "ប្រភេទទាំង ៨",             color: "#a855f7", accent: "#7e22ce", href: "/play/solo?mode=mixed-battle",    badge: "20Q · 30s", cta: "Battle! →",   ctaKh: "ប្រយុទ្ធ" },
+  { id: "sign-challenge",  title: "Sign Challenge",  titleKh: "ប្រឡងសញ្ញា",     desc: "Identify traffic signs from images only.",       descKh: "ស្គាល់សញ្ញាចរាចរ",         color: "#3b82f6", accent: "#1d4ed8", href: "/play/solo?mode=sign-challenge",  badge: "15Q · 20s", cta: "Challenge →", ctaKh: "ប្រឡង" },
+  { id: "mixed-battle",    title: "Mixed Battle",    titleKh: "ប្រកួតចម្រុះ",   desc: "All categories, all question types.",            descKh: "ប្រភេទទាំង ៨",             color: "#a855f7", accent: "#7e22ce", href: "/play/solo?mode=mixed-battle",    badge: "20Q · 30s", cta: "Battle! →",   ctaKh: "ប្រកួត" },
   { id: "daily-challenge", title: "Daily Challenge", titleKh: "បញ្ហាប្រចាំថ្ងៃ", desc: "New questions every day. Build your streak.",    descKh: "សំណួរថ្មីរៀងរាល់ថ្ងៃ",     color: "#22c55e", accent: "#15803d", href: "/play/solo?mode=daily-challenge", badge: "15Q · 30s", cta: "Daily →",     ctaKh: "ប្រចាំថ្ងៃ" },
   { id: "exam-simulation", title: "Exam Simulation", titleKh: "ត្រាប់តាមប្រឡង", desc: "40 questions mirroring the real Cambodia exam.", descKh: "ស្រដៀងប្រឡងពិត",           color: "#f97316", accent: "#c2410c", href: "/play/solo?mode=exam-simulation", badge: "40Q · 45s", cta: "Simulate →",  ctaKh: "ត្រាប់តាម" },
 ];
 
 const STATS = [
-  { value: "500+", label: "Questions", color: "#eab308" },
-  { value: "6", label: "Game Modes", color: "#ef4444" },
-  { value: "8", label: "Categories", color: "#3b82f6" },
-  { value: "Live", label: "Multiplayer", color: "#22c55e" },
+  { value: "500+", labelEn: "Questions",   labelKh: "សំណួរ",      color: "#eab308" },
+  { value: "6",    labelEn: "Game Modes",  labelKh: "របៀបលេង",    color: "#ef4444" },
+  { value: "8",    labelEn: "Categories",  labelKh: "ប្រភេទ",      color: "#3b82f6" },
+  { value: "Live", labelEn: "Multiplayer", labelKh: "ប្រកួតផ្ទាល់", color: "#22c55e" },
 ];
 
 type GameMode = typeof GAME_MODES[number];
@@ -358,7 +358,7 @@ export default function PlayPage() {
                 {kh ? "ប្រកួត" : "PLAY"}<span className="text-yellow-400">.</span>
               </h1>
               <p ref={subRef} className="text-lg md:text-xl text-white/60 max-w-lg leading-relaxed" style={khFont}>
-                {kh ? "ជ្រើសរើសរបៀបលេង ហើយធ្វើតេស្តចំណេះដឹងបើកបររបស់អ្នក" : "Choose a game mode and sharpen your driving theory knowledge."}
+                {kh ? "ជ្រើសរើសរបៀបលេង ហើយសាកល្បងចំណេះដឹងរបស់អ្នក" : "Choose a game mode and sharpen your driving theory knowledge."}
               </p>
               <div ref={ctaRef} className="flex flex-wrap gap-3">
                 <Link href="/leaderboard"
@@ -391,11 +391,11 @@ export default function PlayPage() {
       <div ref={statsRef} className="border-b-2 border-black bg-white py-8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {STATS.map(({ value, label, color }) => (
-              <div key={label} className="stat-item border-2 border-black p-5 flex flex-col gap-1"
+            {STATS.map(({ value, labelEn, labelKh, color }) => (
+              <div key={labelEn} className="stat-item border-2 border-black p-5 flex flex-col gap-1"
                 style={{ boxShadow: `4px 4px 0 ${color}` }}>
                 <span className="text-3xl font-black" style={{ color }}>{value}</span>
-                <span className="text-sm font-bold text-zinc-500" style={khFont}>{label}</span>
+                <span className="text-sm font-bold text-zinc-500" style={khFont}>{kh ? labelKh : labelEn}</span>
               </div>
             ))}
           </div>
@@ -407,7 +407,7 @@ export default function PlayPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-10">
             <div className="inline-block bg-black text-white text-xs font-black tracking-widest uppercase px-3 py-1.5 mb-3" style={khFont}>
-              {kh ? "ជ្រើសរើស" : "Choose Mode"}
+              {kh ? "ជ្រើសរើសរបៀប" : "Choose Mode"}
             </div>
             <h2 className="text-4xl md:text-5xl font-black" style={khFont}>
               {kh ? "របៀបលេង" : "Game "}
@@ -428,7 +428,7 @@ export default function PlayPage() {
       <section className="bg-black border-t-4 border-yellow-400 py-16">
         <div className="max-w-4xl mx-auto px-6 text-center flex flex-col items-center gap-6">
           <h2 className="text-4xl md:text-5xl font-black text-white" style={khFont}>
-            {kh ? "ត្រៀមខ្លួនប្រឡង?" : "Ready to test yourself?"}
+            {kh ? "ត្រៀមខ្លួនហើយ?" : "Ready to test yourself?"}
           </h2>
           <p className="text-white/50 text-lg" style={khFont}>
             {kh ? "រៀន — ប្រកួត — ការពារជីវិត" : "Study the theory, play the games, pass the exam."}
@@ -437,7 +437,7 @@ export default function PlayPage() {
             <Link href="/learn"
               className="px-10 py-4 bg-yellow-400 text-black font-black border-2 border-yellow-400 text-lg transition-all hover:-translate-y-1"
               style={{ boxShadow: "6px 6px 0 #ca8a04", ...khFont }}>
-              {kh ? "ចូលរៀន →" : "Start Learning →"}
+              {kh ? "រៀនឥឡូវ →" : "Start Learning →"}
             </Link>
             <Link href="/login"
               className="px-10 py-4 bg-transparent text-white font-black border-2 border-white/40 hover:border-white text-lg transition-all"
