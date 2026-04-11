@@ -9,7 +9,7 @@ const MEMBERS: Record<string, {
   photo: string; contributions: string[]; quote: string;
 }> = {
   "VSID-2026-001": {
-    lastName: "YIN", fullName: "DANAI YIN", role: "UI/UX Designer", type: "student",
+    lastName: "YIN", fullName: "DANAI YIN", role: "Voice Reading · Team Lead", type: "student",
     photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1773739866/DANAI_YIN_sezo2q.jpg",
     contributions: ["Designed all UI screens", "Created the design system", "Led visual identity"],
     quote: "Design is how we make technology feel human.",
@@ -21,13 +21,13 @@ const MEMBERS: Record<string, {
     quote: "Knowledge is the foundation of every safe road.",
   },
   "VSID-2026-003": {
-    lastName: "NEUN", fullName: "ROZA NEUN", role: "Frontend Developer", type: "student",
+    lastName: "NEUN", fullName: "ROZA NEUN", role: "UI/UX Design", type: "student",
     photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1773739867/Roza_Neun_ciz33b.jpg",
     contributions: ["Built interactive quiz components", "Implemented live game UI", "Developed mobile-responsive layouts"],
     quote: "Every line of code is a step toward something real.",
   },
   "VSID-2026-004": {
-    lastName: "MANY", fullName: "LIN MANY", role: "Backend & Database", type: "student",
+    lastName: "MANY", fullName: "LIN MANY", role: "QA & Testing", type: "student",
     photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1773739866/Lin_Many_nffno6.jpg",
     contributions: ["Designed the database schema", "Built API endpoints", "Implemented real-time game engine"],
     quote: "The backend is the engine — invisible but essential.",
@@ -39,13 +39,13 @@ const MEMBERS: Record<string, {
     quote: "Quality is not an act, it is a habit.",
   },
   "VSID-2026-M01": {
-    lastName: "PHEAP", fullName: "PISETH PHEAP", role: "Teacher & Program Lead", type: "mentor",
+    lastName: "PISETH", fullName: "PHEAP PISETH", role: "Teacher & Program Lead", type: "mentor",
     photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1775248418/481f63ff38a1842e9fce11ad5edr_xp2anf.png",
-    contributions: ["Guided the team through Technovation curriculum", "Mentored project planning", "Connected team with resources"],
+    contributions: ["Program Lead connecting team with resources", "Resolved resource conflicts & challenges", "Mentored students throughout competition"],
     quote: "Teaching is not filling a bucket — it is lighting a fire.",
   },
   "VSID-2026-M02": {
-    lastName: "SRIE", fullName: "VI SRIE", role: "Design, Technical / Project Management", type: "mentor",
+    lastName: "WEI", fullName: "SHILIAI WEI", role: "Design, Technical & Project Management", type: "mentor",
     photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1775248420/07d5d96b3f0a8af7743f3b4053ba18dr_ydb0zm.png",
     contributions: ["Advised on software architecture", "Reviewed code quality", "Supported project management"],
     quote: "Build with intention. Ship with confidence.",
