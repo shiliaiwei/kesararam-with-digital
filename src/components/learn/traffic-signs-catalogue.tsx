@@ -19,7 +19,7 @@ interface Topic {
   audio_url_km: string;
 }
 
-const SUB_GROUPS = ["Warning", "Prohibitory", "Mandatory", "Informational"];
+const SUB_GROUPS = ["Arrows Markings", "Buildup Area Boundary Signs", "Direction Signs", "Informative Signs", "Longitudinal Markings", "Mandatory Signs", "Other Road Markings", "Priority Signs", "Prohibitory Signs", "Sign Posts", "Street Name Signs", "Supplementary Signs", "Temporary Signs", "Traffic Lights", "Traffic Police Signals", "Transverse Markings", "Warning Signs"];
 
 export function TrafficSignsCatalogue() {
   const { lang } = useLang();

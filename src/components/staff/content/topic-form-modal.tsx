@@ -28,7 +28,7 @@ const CATEGORIES = [
 ];
 
 const SUB_GROUPS: Record<string, string[]> = {
-  "road-sign": ["Warning", "Prohibitory", "Mandatory", "Informational"],
+  "road-sign": ["Arrows Markings", "Buildup Area Boundary Signs", "Direction Signs", "Informative Signs", "Longitudinal Markings", "Mandatory Signs", "Other Road Markings", "Priority Signs", "Prohibitory Signs", "Sign Posts", "Street Name Signs", "Supplementary Signs", "Temporary Signs", "Traffic Lights", "Traffic Police Signals", "Transverse Markings", "Warning Signs"],
   "road-traffic": ["Traffic Rules", "Speed Limits", "Parking", "Overtaking"],
   "priority": ["Intersections", "Roundabouts", "Pedestrian Crossings"],
   "driving": ["Basic Maneuvers", "Advanced Techniques", "Defensive Driving"],
