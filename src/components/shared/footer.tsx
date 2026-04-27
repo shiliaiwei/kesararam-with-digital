@@ -47,7 +47,7 @@ export function Footer() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-14">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-14">
           <div>
             <h4 className="font-black text-xs text-yellow-600 tracking-widest uppercase mb-4 border-b-2 border-black pb-2" style={kf}>
               {tr.learnTitle}
@@ -82,59 +82,40 @@ export function Footer() {
             <h4 className="font-black text-xs text-green-600 tracking-widest uppercase mb-4 border-b-2 border-black pb-2" style={kf}>
               {tr.contactTitle || (kh ? "ទំនាក់ទំនង" : "Contact")}
             </h4>
-            <ul className="flex flex-col gap-3 text-sm text-zinc-600 font-medium">
-              <li className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-rose-500" />
-                <a href="mailto:srievi@tuta.io" className="hover:text-black transition-colors">srievi@tuta.io</a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-emerald-500" />
-                <span 
-                  className="hover:text-black transition-colors cursor-pointer" 
-                  onClick={() => { window.location.href = `mailto:kesararamwithdigital` + `@` + `proton.me`; }}
-                  title="Click to email"
-                >
-                  kesararamwithdigital[at]proton.me
-                </span>
-              </li>
-              <li className="flex items-center gap-2 mb-2">
-                <Send className="w-4 h-4 text-sky-500" />
-                <a href="https://t.me/srievi" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">@srievi</a>
-              </li>
+            
+            <div className="flex flex-wrap gap-3 mb-6">
+              <a href="mailto:srievi@tuta.io" className="flex items-center justify-center w-10 h-10 border-2 border-black bg-[#FF90E8] text-black shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none transition-all" aria-label="Email">
+                <Mail className="w-5 h-5" />
+              </a>
+              <a href="https://t.me/srievi" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 border-2 border-black bg-[#90E0FF] text-black shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none transition-all" aria-label="Telegram">
+                <Send className="w-5 h-5" />
+              </a>
+              <a href="#" className="flex items-center justify-center w-10 h-10 border-2 border-black bg-[#FF6B6B] text-black shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none transition-all" aria-label="YouTube">
+                <Youtube className="w-5 h-5" />
+              </a>
+              <a href="https://web.facebook.com/kesararamprimaryschool" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 border-2 border-black bg-[#4D96FF] text-black shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none transition-all" aria-label="Facebook">
+                <Facebook className="w-5 h-5" />
+              </a>
+              <a href="#" className="flex items-center justify-center w-10 h-10 border-2 border-black bg-[#EAEAEA] text-black shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none transition-all" aria-label="X (Twitter)">
+                <Twitter className="w-5 h-5" />
+              </a>
+              <a href="#" className="flex items-center justify-center w-10 h-10 border-2 border-black bg-white text-black shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none transition-all" aria-label="GitHub">
+                <Github className="w-5 h-5" />
+              </a>
+            </div>
+
+            <ul className="flex flex-col gap-2">
               <li>
-                <Link href="/privacy" className="text-xs hover:text-black transition-colors" style={kf}>
+                <Link href="/privacy" className="text-sm text-zinc-600 hover:text-black font-medium transition-colors" style={kf}>
                   {kh ? "គោលការណ៍ភាពឯកជន" : "Privacy Policy"}
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-xs hover:text-black transition-colors" style={kf}>
+                <Link href="/terms" className="text-sm text-zinc-600 hover:text-black font-medium transition-colors" style={kf}>
                   {kh ? "លក្ខខណ្ឌប្រើប្រាស់" : "Terms of Service"}
                 </Link>
               </li>
             </ul>
-          </div>
-
-          <div>
-            <h4 className="font-black text-xs text-purple-600 tracking-widest uppercase mb-4 border-b-2 border-black pb-2" style={kf}>
-              {kh ? "បណ្ដាញសង្គម" : "Social Media"}
-            </h4>
-            <div className="flex flex-wrap gap-3">
-              <a href="#" className="p-2.5 bg-red-100 text-red-600 rounded-2xl hover:bg-red-200 transition-colors shadow-sm hover:shadow-md hover:-translate-y-1 transform duration-200" aria-label="YouTube">
-                <Youtube className="w-5 h-5" />
-              </a>
-              <a href="https://web.facebook.com/kesararamprimaryschool" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-blue-100 text-blue-600 rounded-2xl hover:bg-blue-200 transition-colors shadow-sm hover:shadow-md hover:-translate-y-1 transform duration-200" aria-label="Facebook">
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a href="#" className="p-2.5 bg-zinc-100 text-zinc-800 rounded-2xl hover:bg-zinc-200 transition-colors shadow-sm hover:shadow-md hover:-translate-y-1 transform duration-200" aria-label="X (Twitter)">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="p-2.5 bg-gray-100 text-gray-800 rounded-2xl hover:bg-gray-200 transition-colors shadow-sm hover:shadow-md hover:-translate-y-1 transform duration-200" aria-label="GitHub">
-                <Github className="w-5 h-5" />
-              </a>
-              <a href="#" className="p-2.5 bg-sky-100 text-sky-600 rounded-2xl hover:bg-sky-200 transition-colors shadow-sm hover:shadow-md hover:-translate-y-1 transform duration-200" aria-label="Telegram">
-                <Send className="w-5 h-5" />
-              </a>
-            </div>
           </div>
         </div>
 
