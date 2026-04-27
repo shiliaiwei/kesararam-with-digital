@@ -83,24 +83,21 @@ export function Footer() {
               {tr.contactTitle || (kh ? "ទំនាក់ទំនង" : "Contact")}
             </h4>
             
-            <div className="flex flex-wrap gap-3 mb-6">
-              <a href="mailto:srievi@tuta.io" className="flex items-center justify-center w-10 h-10 border-2 border-black bg-[#FF90E8] text-black shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none transition-all" aria-label="Email">
-                <Mail className="w-5 h-5" />
+            <div className="flex flex-wrap gap-2 mb-6">
+              <a href="mailto:srievi@tuta.io" className="flex items-center justify-center w-8 h-8 border-[1.5px] border-black bg-zinc-200 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all" aria-label="Email">
+                <Mail className="w-4 h-4" />
               </a>
-              <a href="https://t.me/srievi" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 border-2 border-black bg-[#90E0FF] text-black shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none transition-all" aria-label="Telegram">
-                <Send className="w-5 h-5" />
+              <a href="https://t.me/srievi" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-8 h-8 border-[1.5px] border-black bg-zinc-200 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all" aria-label="Telegram">
+                <Send className="w-4 h-4" />
               </a>
-              <a href="#" className="flex items-center justify-center w-10 h-10 border-2 border-black bg-[#FF6B6B] text-black shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none transition-all" aria-label="YouTube">
-                <Youtube className="w-5 h-5" />
+              <a href="#" className="flex items-center justify-center w-8 h-8 border-[1.5px] border-black bg-zinc-200 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all" aria-label="YouTube">
+                <Youtube className="w-4 h-4" />
               </a>
-              <a href="https://web.facebook.com/kesararamprimaryschool" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-10 h-10 border-2 border-black bg-[#4D96FF] text-black shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none transition-all" aria-label="Facebook">
-                <Facebook className="w-5 h-5" />
+              <a href="https://web.facebook.com/kesararamprimaryschool" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-8 h-8 border-[1.5px] border-black bg-zinc-200 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all" aria-label="Facebook">
+                <Facebook className="w-4 h-4" />
               </a>
-              <a href="#" className="flex items-center justify-center w-10 h-10 border-2 border-black bg-[#EAEAEA] text-black shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none transition-all" aria-label="X (Twitter)">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="flex items-center justify-center w-10 h-10 border-2 border-black bg-white text-black shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none transition-all" aria-label="GitHub">
-                <Github className="w-5 h-5" />
+              <a href="https://github.com/shiliaiwei/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-8 h-8 border-[1.5px] border-black bg-zinc-200 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all" aria-label="GitHub">
+                <Github className="w-4 h-4" />
               </a>
             </div>
 
