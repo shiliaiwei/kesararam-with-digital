@@ -254,14 +254,16 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
                     
                     {/* Rejection Reason - Always visible for rejected topics */}
                     {topic.status === "rejected" && (topic.rejectionReason || topic.rejection_reason) && (
-                      <div className="bg-red-50 border-l-4 border-red-500 px-3 py-2 mt-2">
-                        <div className="flex items-start gap-2">
-                          <XCircle size={14} className="text-red-600 shrink-0 mt-0.5" />
+                      <div className="bg-red-50 border-l-4 border-red-500 px-4 py-3 mt-2 animate-pulse">
+                        <div className="flex items-start gap-3">
+                          <div className="p-1.5 bg-red-500 rounded-full shrink-0">
+                            <XCircle size={16} className="text-white" />
+                          </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-xs font-black text-red-900 uppercase mb-1">
-                              Admin Feedback:
+                            <p className="text-xs font-black text-red-900 uppercase mb-1.5 flex items-center gap-2">
+                              <span>⚠️ Admin Feedback - Please Fix:</span>
                             </p>
-                            <p className="text-sm text-red-800 font-medium leading-relaxed">
+                            <p className="text-sm text-red-900 font-bold leading-relaxed bg-white border-2 border-red-300 p-2 rounded">
                               {topic.rejectionReason || topic.rejection_reason}
                             </p>
                           </div>
@@ -286,10 +288,33 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
                   </div>
                   
                   {/* Status Badge */}
-                  <span className={`px-3 py-1.5 text-xs font-black uppercase inline-flex items-center gap-1.5 shrink-0 ${S_STYLE[topic.status]}`}>
-                    {S_ICON[topic.status]} 
-                    {S_LABEL[topic.status]}
-                  </span>
+                  {topic.status === "rejected" && (topic.rejectionReason || topic.rejection_reason) ? (
+                    <div className="relative group">
+                      <span className={`px-3 py-1.5 text-xs font-black uppercase inline-flex items-center gap-1.5 shrink-0 cursor-help ${S_STYLE[topic.status]}`}>
+                        {S_ICON[topic.status]} 
+                        {S_LABEL[topic.status]}
+                        <span className="text-[10px]">ⓘ</span>
+                      </span>
+                      {/* Tooltip on hover */}
+                      <div className="absolute bottom-full right-0 mb-2 hidden group-hover:block z-50 w-80">
+                        <div className="bg-red-600 text-white p-4 rounded-lg shadow-2xl border-2 border-black">
+                          <div className="flex items-start gap-2 mb-2">
+                            <XCircle size={16} className="shrink-0 mt-0.5" />
+                            <p className="font-black text-xs uppercase">Admin Feedback:</p>
+                          </div>
+                          <p className="text-sm leading-relaxed">
+                            {topic.rejectionReason || topic.rejection_reason}
+                          </p>
+                          <div className="absolute bottom-0 right-4 transform translate-y-1/2 rotate-45 w-3 h-3 bg-red-600 border-r-2 border-b-2 border-black"></div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <span className={`px-3 py-1.5 text-xs font-black uppercase inline-flex items-center gap-1.5 shrink-0 ${S_STYLE[topic.status]}`}>
+                      {S_ICON[topic.status]} 
+                      {S_LABEL[topic.status]}
+                    </span>
+                  )}
                   
                   {/* Action Buttons - Larger and more spaced */}
                   <div className="flex items-center gap-2 shrink-0">
