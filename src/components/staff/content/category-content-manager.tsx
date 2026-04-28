@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useMemo, useCallback } from "react";
-import { Plus, Search, Edit, Trash2, Send, Globe, Clock, FileText, XCircle, CheckCircle, Image as ImageIcon, Music, RefreshCw, HelpCircle, ChevronDown, ChevronUp, Circle, Save, X, Loader2 } from "lucide-react";
+import { Plus, Search, Edit, Trash2, Send, Globe, Clock, FileText, XCircle, CheckCircle, Image as ImageIcon, Music, RefreshCw, HelpCircle, ChevronDown, ChevronUp, Circle, Save, X, Loader2, Lock, AlertTriangle } from "lucide-react";
 import { TopicFormModal } from "./topic-form-modal";
 import { useToast } from "@/components/ui/toast-container";
 
@@ -161,7 +161,6 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [editingTopic, setEditingTopic] = useState<Topic | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<number | null>(null);
-  const [expandedTopicId, setExpandedTopicId] = useState<number | null>(null);
 
   useEffect(() => { fetchTopics(); }, [categoryId]);
 
@@ -186,7 +185,7 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
     <div className="space-y-4">
       <div className="bg-white border-2 border-black p-5" style={{ boxShadow: "4px 4px 0 #000" }}>
         <div className="flex items-center justify-between mb-4">
-          <div><h1 className="text-2xl font-black">{categoryName}</h1><p className="text-xs text-zinc-500 mt-0.5">Click the purple Questions button on any topic to manage its questions</p></div>
+          <div><h1 className="text-2xl font-black">{categoryName}</h1><p className="text-xs text-zinc-500 mt-0.5">Create and manage topics for this category</p></div>
           <div className="flex gap-2">
             <button onClick={fetchTopics} className="p-2.5 border-2 border-black hover:bg-gray-100" title="Refresh"><RefreshCw size={16} /></button>
             <button onClick={() => setShowCreateModal(true)} className="bg-green-400 border-2 border-black px-4 py-2.5 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center gap-2 text-sm"><Plus size={16} /> New Topic</button>
@@ -239,7 +238,7 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
                     {(topic.status === "published" || topic.status === "approved") && (
                       <div className="bg-blue-50 border-l-4 border-blue-500 px-3 py-2 mt-2">
                         <div className="flex items-start gap-2">
-                          <span className="text-lg shrink-0">🔒</span>
+                          <Lock size={16} className="text-blue-600 shrink-0 mt-0.5" />
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-black text-blue-900 uppercase mb-0.5">
                               Published - Read Only
@@ -257,11 +256,11 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
                       <div className="bg-red-50 border-l-4 border-red-500 px-4 py-3 mt-2 animate-pulse">
                         <div className="flex items-start gap-3">
                           <div className="p-1.5 bg-red-500 rounded-full shrink-0">
-                            <XCircle size={16} className="text-white" />
+                            <AlertTriangle size={16} className="text-white" />
                           </div>
                           <div className="flex-1 min-w-0">
                             <p className="text-xs font-black text-red-900 uppercase mb-1.5 flex items-center gap-2">
-                              <span>⚠️ Admin Feedback - Please Fix:</span>
+                              <span>Admin Feedback - Please Fix</span>
                             </p>
                             <p className="text-sm text-red-900 font-bold leading-relaxed bg-white border-2 border-red-300 p-2 rounded">
                               {topic.rejectionReason || topic.rejection_reason}
@@ -293,13 +292,13 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
                       <span className={`px-3 py-1.5 text-xs font-black uppercase inline-flex items-center gap-1.5 shrink-0 cursor-help ${S_STYLE[topic.status]}`}>
                         {S_ICON[topic.status]} 
                         {S_LABEL[topic.status]}
-                        <span className="text-[10px]">ⓘ</span>
+                        <HelpCircle size={10} />
                       </span>
                       {/* Tooltip on hover */}
                       <div className="absolute bottom-full right-0 mb-2 hidden group-hover:block z-50 w-80">
                         <div className="bg-red-600 text-white p-4 rounded-lg shadow-2xl border-2 border-black">
                           <div className="flex items-start gap-2 mb-2">
-                            <XCircle size={16} className="shrink-0 mt-0.5" />
+                            <AlertTriangle size={16} className="shrink-0 mt-0.5" />
                             <p className="font-black text-xs uppercase">Admin Feedback:</p>
                           </div>
                           <p className="text-sm leading-relaxed">
@@ -318,17 +317,6 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
                   
                   {/* Action Buttons - Larger and more spaced */}
                   <div className="flex items-center gap-2 shrink-0">
-                    {/* Questions button - always visible but read-only for published */}
-                    <button 
-                      onClick={() => setExpandedTopicId(expandedTopicId === topic.id ? null : topic.id)} 
-                      className={`px-3 py-2 border-2 border-black text-xs font-black inline-flex items-center gap-1.5 transition-all ${expandedTopicId === topic.id ? "bg-purple-600 text-white shadow-[2px_2px_0_#000]" : "bg-purple-100 hover:bg-purple-200 text-purple-800 hover:shadow-[2px_2px_0_#000]"}`}
-                      title="View Questions"
-                    >
-                      <HelpCircle size={14} /> 
-                      Questions 
-                      {expandedTopicId === topic.id ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
-                    </button>
-                    
                     {/* Edit button - only for draft, rejected, or pending */}
                     {(topic.status === "draft" || topic.status === "rejected" || topic.status === "pending") && (
                       <button 
@@ -382,15 +370,12 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
                     {/* Read-only indicator for published/approved */}
                     {(topic.status === "published" || topic.status === "approved") && (
                       <div className="px-3 py-2 bg-gray-100 border-2 border-gray-400 text-xs font-bold text-gray-600 inline-flex items-center gap-1.5">
-                        <span className="text-lg">🔒</span>
+                        <Lock size={14} />
                         Read Only
                       </div>
                     )}
                   </div>
                 </div>
-                
-                {/* Expanded Questions Panel */}
-                {expandedTopicId === topic.id && <QuestionsPanel topicId={topic.id} topicStatus={topic.status} isStaff={true} />}
               </div>
             ))}
           </div>

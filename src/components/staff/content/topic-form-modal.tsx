@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { X, Send, Eye } from "lucide-react";
+import { X, Send, Eye, Lock } from "lucide-react";
 import { MediaSelector } from "../media/media-selector";
 import { useToast } from "@/components/ui/toast-container";
 
@@ -164,7 +164,9 @@ export function TopicFormModal({
           {isReadOnly && (
             <div className="bg-gray-100 border-4 border-gray-500 p-6">
               <div className="flex items-start gap-4">
-                <span className="text-4xl">🔒</span>
+                <div className="p-3 bg-gray-500 border-2 border-black">
+                  <Lock size={32} className="text-white" />
+                </div>
                 <div className="flex-1">
                   <p className="text-xl font-black text-gray-900 mb-2">
                     This Topic is Published - Read Only
