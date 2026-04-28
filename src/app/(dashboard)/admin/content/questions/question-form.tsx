@@ -38,6 +38,7 @@ export function QuestionForm({ question, onClose, onSave }: QuestionFormProps) {
   const [loadingTopics, setLoadingTopics] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+  const [activeLang, setActiveLang] = useState<"en" | "km">("en");
 
   // Load categories
   useEffect(() => {
@@ -164,9 +165,25 @@ export function QuestionForm({ question, onClose, onSave }: QuestionFormProps) {
       <div className="bg-white border-4 border-black shadow-[8px_8px_0_#000] w-full max-w-3xl max-h-[90vh] flex flex-col">
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b-2 border-black bg-amber-400">
-          <h2 className="text-xl font-black text-black">
-            {question ? "Edit Question" : "Add New Question"}
-          </h2>
+          <div className="flex items-center gap-4">
+            <h2 className="text-xl font-black text-black">
+              {question ? "Edit Question" : "Add New Question"}
+            </h2>
+            <div className="flex bg-white border-2 border-black font-bold text-sm overflow-hidden shadow-[2px_2px_0_#000]">
+              <button
+                onClick={() => setActiveLang("en")}
+                className={`px-3 py-1 ${activeLang === "en" ? "bg-black text-white" : "hover:bg-gray-100 text-black"}`}
+              >
+                English
+              </button>
+              <button
+                onClick={() => setActiveLang("km")}
+                className={`px-3 py-1 border-l-2 border-black ${activeLang === "km" ? "bg-black text-white" : "hover:bg-gray-100 text-black"}`}
+              >
+                Khmer
+              </button>
+            </div>
+          </div>
           <button
             onClick={onClose}
             className="w-8 h-8 border-2 border-black bg-red-400 flex items-center justify-center hover:bg-red-300 transition-colors shadow-[2px_2px_0_#000] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]"
@@ -292,15 +309,28 @@ export function QuestionForm({ question, onClose, onSave }: QuestionFormProps) {
               <label className="block text-sm font-black text-black uppercase tracking-wider">
                 Question <span className="text-red-500">*</span>
               </label>
-              <textarea
-                name="questionEn"
-                value={formData.questionEn}
-                onChange={handleChange}
-                required
-                rows={2}
-                className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:bg-yellow-50 focus:ring-2 ring-black font-medium text-sm"
-                placeholder="E.g., What does this sign mean?"
-              />
+              {activeLang === "en" ? (
+                <textarea
+                  name="questionEn"
+                  value={formData.questionEn}
+                  onChange={handleChange}
+                  required
+                  rows={2}
+                  className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:bg-yellow-50 focus:ring-2 ring-black font-medium text-sm"
+                  placeholder="E.g., What does this sign mean?"
+                />
+              ) : (
+                <textarea
+                  name="questionKm"
+                  value={formData.questionKm}
+                  onChange={handleChange}
+                  required
+                  rows={2}
+                  className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:bg-yellow-50 focus:ring-2 ring-black text-sm"
+                  style={{ fontFamily: "Siemreap, sans-serif" }}
+                  placeholder="ឧទាហរណ៍៖ តើសញ្ញានេះមានន័យដូចម្តេច?"
+                />
+              )}
             </div>
 
             {/* Answers Section */}
@@ -350,32 +380,35 @@ export function QuestionForm({ question, onClose, onSave }: QuestionFormProps) {
                     )}
                     
                     <div className="flex-1 space-y-2">
-                      <input
-                        type={formData.questionType === "slider" ? "number" : "text"}
-                        value={answer.answerEn}
-                        onChange={(e) => handleAnswerChange(index, "answerEn", e.target.value)}
-                        required
-                        placeholder={
-                          formData.questionType === "type_answer" ? "Acceptable answer variation..." :
-                          formData.questionType === "slider" ? "Numeric Value" :
-                          `Option ${index + 1} (English)`
-                        }
-                        className={`w-full px-3 py-2 border-2 border-black focus:outline-none text-sm font-medium ${answer.isCorrect || ["type_answer", "puzzle", "slider"].includes(formData.questionType) ? 'bg-green-100' : 'bg-white'}`}
-                        disabled={formData.questionType === "true_false"}
-                      />
-                      <input
-                        type={formData.questionType === "slider" ? "number" : "text"}
-                        value={answer.answerKm}
-                        onChange={(e) => handleAnswerChange(index, "answerKm", e.target.value)}
-                        placeholder={
-                          formData.questionType === "type_answer" ? "Acceptable answer variation (Khmer)..." :
-                          formData.questionType === "slider" ? "Numeric Value (Khmer)" :
-                          `Option ${index + 1} (Khmer)`
-                        }
-                        className={`w-full px-3 py-2 border-2 border-black focus:outline-none text-sm ${answer.isCorrect || ["type_answer", "puzzle", "slider"].includes(formData.questionType) ? 'bg-green-100' : 'bg-white'}`}
-                        style={{ fontFamily: "Siemreap, sans-serif" }}
-                        disabled={formData.questionType === "true_false"}
-                      />
+                      {activeLang === "en" ? (
+                        <input
+                          type={formData.questionType === "slider" ? "number" : "text"}
+                          value={answer.answerEn}
+                          onChange={(e) => handleAnswerChange(index, "answerEn", e.target.value)}
+                          required
+                          placeholder={
+                            formData.questionType === "type_answer" ? "Acceptable answer variation..." :
+                            formData.questionType === "slider" ? "Numeric Value" :
+                            `Option ${index + 1} (English)`
+                          }
+                          className={`w-full px-3 py-2 border-2 border-black focus:outline-none text-sm font-medium ${answer.isCorrect || ["type_answer", "puzzle", "slider"].includes(formData.questionType) ? 'bg-green-100' : 'bg-white'}`}
+                          disabled={formData.questionType === "true_false"}
+                        />
+                      ) : (
+                        <input
+                          type={formData.questionType === "slider" ? "number" : "text"}
+                          value={answer.answerKm}
+                          onChange={(e) => handleAnswerChange(index, "answerKm", e.target.value)}
+                          placeholder={
+                            formData.questionType === "type_answer" ? "Acceptable answer variation (Khmer)..." :
+                            formData.questionType === "slider" ? "Numeric Value (Khmer)" :
+                            `Option ${index + 1} (Khmer)`
+                          }
+                          className={`w-full px-3 py-2 border-2 border-black focus:outline-none text-sm ${answer.isCorrect || ["type_answer", "puzzle", "slider"].includes(formData.questionType) ? 'bg-green-100' : 'bg-white'}`}
+                          style={{ fontFamily: "Siemreap, sans-serif" }}
+                          disabled={formData.questionType === "true_false"}
+                        />
+                      )}
                     </div>
                     {formData.questionType !== "true_false" && answers.length > (formData.questionType === "type_answer" ? 1 : 2) && formData.questionType !== "slider" && (
                       <button type="button" onClick={() => removeAnswer(index)} className="p-2 border-2 border-black bg-red-100 text-red-600 hover:bg-red-200 mt-2 shadow-[2px_2px_0_#000] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]" title="Remove">
