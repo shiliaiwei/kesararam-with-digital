@@ -162,7 +162,6 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
   const [editingTopic, setEditingTopic] = useState<Topic | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<number | null>(null);
   const [expandedTopicId, setExpandedTopicId] = useState<number | null>(null);
-  const [expandedRejectionId, setExpandedRejectionId] = useState<number | null>(null);
 
   useEffect(() => { fetchTopics(); }, [categoryId]);
 
@@ -209,17 +208,6 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
           <div>
             {filtered.map(topic => (
               <div key={topic.id} className="border-b-2 border-black last:border-b-0 relative">
-                {/* Rejection Banner */}
-                {topic.status === "rejected" && (topic.rejectionReason || topic.rejection_reason) && (
-                  <div className="bg-red-500 text-white px-6 py-3 text-sm font-black flex items-center gap-3 border-b-2 border-black">
-                    <XCircle size={18} />
-                    <span>REJECTED</span>
-                    <span className="flex-1 text-xs font-bold opacity-90">
-                      Click the REJECTED badge below to see admin feedback →
-                    </span>
-                  </div>
-                )}
-                
                 {/* Main Content Row */}
                 <div className="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 transition-colors">
                   {/* Image - Larger */}
@@ -246,6 +234,24 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
                         </span>
                       )}
                     </div>
+                    
+                    {/* Rejection Reason - Always visible for rejected topics */}
+                    {topic.status === "rejected" && (topic.rejectionReason || topic.rejection_reason) && (
+                      <div className="bg-red-50 border-l-4 border-red-500 px-3 py-2 mt-2">
+                        <div className="flex items-start gap-2">
+                          <XCircle size={14} className="text-red-600 shrink-0 mt-0.5" />
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-black text-red-900 uppercase mb-1">
+                              Admin Feedback:
+                            </p>
+                            <p className="text-sm text-red-800 font-medium leading-relaxed">
+                              {topic.rejectionReason || topic.rejection_reason}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    
                     <div className="flex items-center gap-3 flex-wrap">
                       <span className="text-xs font-mono text-zinc-500 bg-zinc-100 px-2 py-0.5 rounded">
                         #{topic.id}
@@ -262,23 +268,11 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
                     </div>
                   </div>
                   
-                  {/* Status Badge - Clickable for rejected items */}
-                  {topic.status === "rejected" && (topic.rejectionReason || topic.rejection_reason) ? (
-                    <button
-                      onClick={() => setExpandedRejectionId(expandedRejectionId === topic.id ? null : topic.id)}
-                      className={`px-3 py-1.5 text-xs font-black uppercase inline-flex items-center gap-1.5 shrink-0 transition-all ${S_STYLE[topic.status]} hover:shadow-[2px_2px_0_#000] cursor-pointer`}
-                      title="Click to see rejection reason"
-                    >
-                      {S_ICON[topic.status]} 
-                      {S_LABEL[topic.status]}
-                      {expandedRejectionId === topic.id ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
-                    </button>
-                  ) : (
-                    <span className={`px-3 py-1.5 text-xs font-black uppercase inline-flex items-center gap-1.5 shrink-0 ${S_STYLE[topic.status]}`}>
-                      {S_ICON[topic.status]} 
-                      {S_LABEL[topic.status]}
-                    </span>
-                  )}
+                  {/* Status Badge */}
+                  <span className={`px-3 py-1.5 text-xs font-black uppercase inline-flex items-center gap-1.5 shrink-0 ${S_STYLE[topic.status]}`}>
+                    {S_ICON[topic.status]} 
+                    {S_LABEL[topic.status]}
+                  </span>
                   
                   {/* Action Buttons - Larger and more spaced */}
                   <div className="flex items-center gap-2 shrink-0">
@@ -338,39 +332,6 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
                     )}
                   </div>
                 </div>
-                
-                {/* Expanded Rejection Reason */}
-                {expandedRejectionId === topic.id && (topic.rejectionReason || topic.rejection_reason) && (
-                  <div className="bg-red-50 border-t-2 border-red-300 px-6 py-4">
-                    <div className="flex items-start gap-3">
-                      <div className="p-2 bg-red-500 border-2 border-black shrink-0">
-                        <XCircle size={20} className="text-white" />
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="font-black text-sm text-red-900 mb-2 uppercase">
-                          Admin Feedback - Why This Was Rejected:
-                        </h4>
-                        <div className="bg-white border-2 border-red-400 p-4 rounded">
-                          <p className="text-sm text-red-800 leading-relaxed font-medium">
-                            {topic.rejectionReason || topic.rejection_reason}
-                          </p>
-                        </div>
-                        <div className="mt-3 flex items-center gap-2">
-                          <button
-                            onClick={() => setEditingTopic(topic)}
-                            className="px-4 py-2 bg-yellow-400 border-2 border-black font-black text-xs hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2"
-                          >
-                            <Edit size={14} />
-                            Fix & Resubmit
-                          </button>
-                          <span className="text-xs text-red-600 font-bold">
-                            ← Edit your topic based on admin feedback, then submit again
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
                 
                 {/* Expanded Questions Panel */}
                 {expandedTopicId === topic.id && <QuestionsPanel topicId={topic.id} topicStatus={topic.status} isStaff={true} />}
