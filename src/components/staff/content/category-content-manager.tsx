@@ -202,33 +202,129 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
         </div>
       </div>
       <div className="bg-white border-2 border-black overflow-hidden" style={{ boxShadow: "4px 4px 0 #000" }}>
-        {loading ? (<div className="divide-y divide-gray-100">{[1,2,3].map(i => (<div key={i} className="p-4 flex gap-3 animate-pulse"><div className="w-12 h-12 bg-gray-100 shrink-0" /><div className="flex-1 space-y-2"><div className="h-4 bg-gray-100 w-2/3" /><div className="h-3 bg-gray-100 w-1/3" /></div></div>))}</div>)
+        {loading ? (<div className="divide-y-2 divide-gray-200">{[1,2,3].map(i => (<div key={i} className="px-6 py-4 flex gap-4 animate-pulse"><div className="w-20 h-20 bg-gray-200 border-2 border-gray-300 shrink-0" /><div className="flex-1 space-y-3"><div className="h-5 bg-gray-200 w-2/3 rounded" /><div className="flex gap-2"><div className="h-4 bg-gray-100 w-16 rounded" /><div className="h-4 bg-gray-100 w-24 rounded" /><div className="h-4 bg-gray-100 w-20 rounded" /></div></div><div className="flex gap-2"><div className="h-8 w-24 bg-gray-200 rounded" /><div className="h-8 w-8 bg-gray-200 rounded" /></div></div>))}</div>)
         : filtered.length === 0 ? (<div className="p-12 text-center"><Globe size={40} className="mx-auto mb-3 text-zinc-300" /><p className="font-bold text-zinc-500 mb-4">No topics found</p><button onClick={() => setShowCreateModal(true)} className="bg-green-400 border-2 border-black px-5 py-2.5 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center gap-2 text-sm"><Plus size={16} /> Create Topic</button></div>)
         : (
           <div>
             {filtered.map(topic => (
-              <div key={topic.id} className="border-b-2 border-black last:border-b-0">
-                <div className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors">
-                  {topic.status === "rejected" && (topic.rejectionReason || topic.rejection_reason) && (
-                    <div className="absolute left-0 right-0 top-0 bg-red-500 text-white px-4 py-2 text-xs font-black flex items-center gap-2 z-10">
-                      <XCircle size={14} />
-                      <span>REJECTED:</span>
-                      <span className="flex-1">{topic.rejectionReason || topic.rejection_reason}</span>
-                    </div>
-                  )}
-                  <div className={`w-11 h-11 shrink-0 border border-gray-200 bg-gray-50 flex items-center justify-center overflow-hidden ${topic.status === "rejected" ? "mt-10" : ""}`}>{(topic.primaryImageUrl || topic.primary_image_url) ? <img src={(topic.primaryImageUrl || topic.primary_image_url) as string} alt="" className="w-full h-full object-cover" /> : <ImageIcon size={18} className="text-gray-300" />}</div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap"><span className="font-bold text-sm truncate">{topic.nameEn || topic.name_en}</span>{(topic.audioUrlEn || topic.audio_url_en) && <Music size={11} className="text-purple-400 shrink-0" />}</div>
-                    <div className="flex items-center gap-2 mt-0.5"><span className="text-[10px] font-mono text-zinc-400">#{topic.id}</span>{(topic.subGroup || topic.sub_group) && <span className="text-[10px] text-zinc-500">{topic.subGroup || topic.sub_group}</span>}<span className="text-[10px] text-zinc-400">{topic.questionCount ?? topic.question_count ?? 0} Q</span></div>
+              <div key={topic.id} className="border-b-2 border-black last:border-b-0 relative">
+                {/* Rejection Banner */}
+                {topic.status === "rejected" && (topic.rejectionReason || topic.rejection_reason) && (
+                  <div className="bg-red-500 text-white px-6 py-3 text-sm font-black flex items-center gap-3 border-b-2 border-black">
+                    <XCircle size={18} />
+                    <span>REJECTED:</span>
+                    <span className="flex-1">{topic.rejectionReason || topic.rejection_reason}</span>
                   </div>
-                  <span className={`px-2 py-0.5 text-[10px] font-black uppercase inline-flex items-center gap-1 shrink-0 ${S_STYLE[topic.status]}`}>{S_ICON[topic.status]} {S_LABEL[topic.status]}</span>
-                  <div className={`flex items-center gap-1.5 shrink-0 ${topic.status === "rejected" ? "mt-10" : ""}`}>
-                    <button onClick={() => setExpandedTopicId(expandedTopicId === topic.id ? null : topic.id)} className={`px-2.5 py-1.5 border-2 border-black text-[10px] font-black inline-flex items-center gap-1 transition-all ${expandedTopicId === topic.id ? "bg-purple-600 text-white" : "bg-purple-100 hover:bg-purple-200 text-purple-800"}`}><HelpCircle size={12} /> Questions {expandedTopicId === topic.id ? <ChevronUp size={11} /> : <ChevronDown size={11} />}</button>
-                    <button onClick={() => setEditingTopic(topic)} className="p-1.5 border-2 border-black hover:bg-yellow-100 transition-all" title="Edit Topic"><Edit size={14} /></button>
-                    {(topic.status === "draft" || topic.status === "rejected") && <button onClick={() => handleSubmit(topic.id)} className="p-1.5 border-2 border-black bg-green-100 hover:bg-green-200 transition-all" title="Submit for review"><Send size={14} /></button>}
-                    {(topic.status === "draft" || topic.status === "rejected") && (deleteConfirm === topic.id ? (<div className="flex gap-1"><button onClick={() => handleDelete(topic.id)} className="px-2 py-1 text-[10px] font-black bg-red-500 text-white border-2 border-black">Yes</button><button onClick={() => setDeleteConfirm(null)} className="px-2 py-1 text-[10px] font-black bg-white border-2 border-black">No</button></div>) : (<button onClick={() => setDeleteConfirm(topic.id)} className="p-1.5 border-2 border-black hover:bg-red-100 transition-all" title="Delete"><Trash2 size={14} /></button>))}
+                )}
+                
+                {/* Main Content Row */}
+                <div className="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 transition-colors">
+                  {/* Image - Larger */}
+                  <div className="w-20 h-20 shrink-0 border-2 border-gray-300 bg-gray-50 flex items-center justify-center overflow-hidden">
+                    {(topic.primaryImageUrl || topic.primary_image_url) ? (
+                      <img 
+                        src={(topic.primaryImageUrl || topic.primary_image_url) as string} 
+                        alt="" 
+                        className="w-full h-full object-contain p-1" 
+                      />
+                    ) : (
+                      <ImageIcon size={32} className="text-gray-300" />
+                    )}
+                  </div>
+                  
+                  {/* Content - More spacious */}
+                  <div className="flex-1 min-w-0 space-y-1.5">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="font-black text-base">{topic.nameEn || topic.name_en}</span>
+                      {(topic.audioUrlEn || topic.audio_url_en) && (
+                        <span className="px-2 py-0.5 bg-purple-100 border border-purple-300 rounded-sm inline-flex items-center gap-1">
+                          <Music size={12} className="text-purple-600" />
+                          <span className="text-[10px] font-bold text-purple-700">Audio</span>
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <span className="text-xs font-mono text-zinc-500 bg-zinc-100 px-2 py-0.5 rounded">
+                        #{topic.id}
+                      </span>
+                      {(topic.subGroup || topic.sub_group) && (
+                        <span className="text-xs font-bold text-zinc-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded">
+                          {topic.subGroup || topic.sub_group}
+                        </span>
+                      )}
+                      <span className="text-xs font-bold text-zinc-500 inline-flex items-center gap-1">
+                        <HelpCircle size={12} />
+                        {topic.questionCount ?? topic.question_count ?? 0} Questions
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {/* Status Badge */}
+                  <span className={`px-3 py-1.5 text-xs font-black uppercase inline-flex items-center gap-1.5 shrink-0 ${S_STYLE[topic.status]}`}>
+                    {S_ICON[topic.status]} 
+                    {S_LABEL[topic.status]}
+                  </span>
+                  
+                  {/* Action Buttons - Larger and more spaced */}
+                  <div className="flex items-center gap-2 shrink-0">
+                    <button 
+                      onClick={() => setExpandedTopicId(expandedTopicId === topic.id ? null : topic.id)} 
+                      className={`px-3 py-2 border-2 border-black text-xs font-black inline-flex items-center gap-1.5 transition-all ${expandedTopicId === topic.id ? "bg-purple-600 text-white shadow-[2px_2px_0_#000]" : "bg-purple-100 hover:bg-purple-200 text-purple-800 hover:shadow-[2px_2px_0_#000]"}`}
+                      title="Manage Questions"
+                    >
+                      <HelpCircle size={14} /> 
+                      Questions 
+                      {expandedTopicId === topic.id ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
+                    </button>
+                    
+                    <button 
+                      onClick={() => setEditingTopic(topic)} 
+                      className="p-2 border-2 border-black bg-yellow-100 hover:bg-yellow-200 hover:shadow-[2px_2px_0_#000] transition-all" 
+                      title="Edit Topic"
+                    >
+                      <Edit size={16} />
+                    </button>
+                    
+                    {(topic.status === "draft" || topic.status === "rejected") && (
+                      <button 
+                        onClick={() => handleSubmit(topic.id)} 
+                        className="p-2 border-2 border-black bg-green-100 hover:bg-green-200 hover:shadow-[2px_2px_0_#000] transition-all" 
+                        title="Submit for review"
+                      >
+                        <Send size={16} />
+                      </button>
+                    )}
+                    
+                    {(topic.status === "draft" || topic.status === "rejected") && (
+                      deleteConfirm === topic.id ? (
+                        <div className="flex gap-1.5">
+                          <button 
+                            onClick={() => handleDelete(topic.id)} 
+                            className="px-3 py-1.5 text-xs font-black bg-red-500 text-white border-2 border-black hover:shadow-[2px_2px_0_#000]"
+                          >
+                            Confirm
+                          </button>
+                          <button 
+                            onClick={() => setDeleteConfirm(null)} 
+                            className="px-3 py-1.5 text-xs font-black bg-white border-2 border-black hover:shadow-[2px_2px_0_#000]"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      ) : (
+                        <button 
+                          onClick={() => setDeleteConfirm(topic.id)} 
+                          className="p-2 border-2 border-black bg-red-100 hover:bg-red-200 hover:shadow-[2px_2px_0_#000] transition-all" 
+                          title="Delete"
+                        >
+                          <Trash2 size={16} />
+                        </button>
+                      )
+                    )}
                   </div>
                 </div>
+                
+                {/* Expanded Questions Panel */}
                 {expandedTopicId === topic.id && <QuestionsPanel topicId={topic.id} topicStatus={topic.status} isStaff={true} />}
               </div>
             ))}
