@@ -652,3 +652,69 @@ For questions or support, contact the development team.
 ---
 
 *This documentation consolidates all project documentation files into a single reference guide. Individual documentation files remain in the repository for historical context and detailed technical specifications.*
+
+
+
+
+
+
+# Question Types & Scoring Logic
+
+This document outlines how to create each Question Type in the admin panel and details the backend point calculation system required for the live game engine.
+
+## Creating Question Types
+
+When adding questions in the Admin panel, use the new **Bilingual Toggle (English | Khmer)** at the top of the form to switch between language inputs. This ensures both languages are populated cleanly without cluttering the screen.
+
+### 1. Quiz (Multiple Choice)
+- **What it is:** Standard 4-option multiple choice question.
+- **How to create:** Select "Quiz". Enter the question. Fill in 4 options and click the radio button next to the **one** correct answer.
+
+### 2. True or False
+- **What it is:** A binary choice question.
+- **How to create:** Select "True or False". The system will automatically generate "True/ពិត" and "False/ខុស" options. Select the correct one.
+
+### 3. Type Answer
+- **What it is:** Students must type the answer themselves.
+- **How to create:** Select "Type answer". Add as many variations of the correct answer as possible (e.g., "Apple", "apple", "APPLE"). The backend will check if the student's typed string matches *any* of these options.
+
+### 4. Puzzle
+- **What it is:** Students drag and drop items into the correct sequence.
+- **How to create:** Select "Puzzle". Add the items in the **exact correct order from top to bottom**. The numbers on the left (1, 2, 3, 4) indicate the correct final sequence.
+
+### 5. Slider
+- **What it is:** Students select a number on a sliding scale.
+- **How to create:** Select "Slider". Enter the exact correct numeric value in the answer box. 
+
+### 6. Pin Answer (Target Map)
+- **What it is:** Students drop a pin on an image.
+- **How to create:** Select "Pin Answer". Currently operates using the `image_selection` framework. Future implementations will require X/Y coordinate tracking on an uploaded image map.
+
+---
+
+## Game Engine Scoring & Streaks
+
+> [!IMPORTANT]
+> **Solo Mode & Non-Users:**
+> Points and streaks are **not recorded** in the database for solo gameplay or unauthenticated users. Scoring is only formally calculated and persisted during **Live Game Mode**.
+
+### 1. Base Score Calculation
+Points are calculated when the `/api/game/evaluate` endpoint confirms a correct answer. The base score is determined by the question's set points multiplier and the time taken to answer.
+
+- **Standard Points (Multiplier 1):** Max 1000 points.
+- **Double Points (Multiplier 2):** Max 2000 points.
+- **No Points (Multiplier 0):** 0 points.
+
+### 2. Streak Bonus System
+When a user answers multiple questions correctly in a row, they earn a streak bonus. This bonus scales based on the **Difficulty** of the question answered.
+
+The point bonus added to their total score is calculated as:
+- **Easy:** Base Score + `(Streak Count * 1)`
+- **Medium:** Base Score + `(Streak Count * 2)`
+- **Hard:** Base Score + `(Streak Count * 3)`
+
+**Example:**
+If a student is on a 3-answer streak and gets a Medium question correct:
+*They receive the standard time-based score + a bonus of 6 points (3 streak * 2 medium).*
+
+If the student answers incorrectly, the streak count resets to 0.
