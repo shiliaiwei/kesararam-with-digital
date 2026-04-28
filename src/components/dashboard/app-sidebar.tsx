@@ -42,6 +42,7 @@ const adminNav: NavItem[] = [
     label: "Content", icon: BookOpen, color: "#22c55e",
     children: [
       { label: "Overview", href: "/admin/content" },
+      { label: "Topic Questions", href: "/admin/content/questions" },
       { label: "Traffic Signs", href: "/admin/content/road-sign" },
       { label: "Road Traffic Law", href: "/admin/content/road-traffic" },
       { label: "Right of Way", href: "/admin/content/priority" },

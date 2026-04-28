@@ -264,6 +264,7 @@ export const questions = pgTable("questions", {
     .references(() => topics.id, { onDelete: "cascade" }),
   contentId: integer("content_id")
     .references(() => contentItems.id, { onDelete: "cascade" }),
+  questionType: text("question_type").notNull().default("quiz"), // quiz | flashcard | challenge | practice
   questionEn: text("question_en").notNull(),
   questionKm: text("question_km").notNull().default(""),
   hintEn: text("hint_en"),
@@ -277,6 +278,7 @@ export const questions = pgTable("questions", {
   difficulty: text("difficulty").default("medium"),
   status: text("status").default("draft"),
   sortOrder: integer("sort_order").default(0).notNull(),
+  createdBy: integer("created_by").references(() => users.id),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 

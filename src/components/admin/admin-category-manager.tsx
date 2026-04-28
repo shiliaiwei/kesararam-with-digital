@@ -229,6 +229,12 @@ export function AdminCategoryManager({ categoryId, categoryName, categorySlug }:
                           <Eye size={14} />
                         </button>
 
+                        {/* Manage Questions */}
+                        <a href={`/admin/content/questions?topicId=${topic.id}`}
+                          className="p-1.5 border-2 border-black hover:bg-purple-100 flex items-center justify-center" title="Manage Questions">
+                          <HelpCircle size={14} className="text-purple-600" />
+                        </a>
+
                         {/* Admin Edit — any status */}
                         <button onClick={() => setEditingTopic(topic)}
                           className="p-1.5 border-2 border-black hover:bg-yellow-100" title="Edit">
