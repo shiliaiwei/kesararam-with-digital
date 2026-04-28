@@ -42,12 +42,17 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
 
   if (loading) {
     return (
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-12 gap-4">
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-10 gap-3">
         {Array.from({ length: 12 }).map((_, i) => (
           <div
             key={i}
-            className="aspect-square bg-white border-2 border-black animate-pulse"
-            style={{ boxShadow: "4px 4px 0 #000" }}
+            className="bg-white border-2 border-black animate-pulse"
+            style={{ 
+              boxShadow: "3px 3px 0 #000",
+              aspectRatio: "1 / 1",
+              minHeight: "100px",
+              maxHeight: "150px"
+            }}
           />
         ))}
       </div>
@@ -80,23 +85,25 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
           <button
             key={sign.id}
             onClick={() => setSelectedSign(sign)}
-            className="bg-white border-2 border-black hover:shadow-[4px_4px_0_#000] transition-all duration-200 group overflow-hidden"
+            className="bg-white border-2 border-black hover:bg-yellow-400 hover:border-black hover:shadow-[4px_4px_0_#000] transition-all duration-200 group overflow-hidden relative"
             style={{ 
               boxShadow: "3px 3px 0 #000",
               aspectRatio: "1 / 1",
-              minHeight: "100px"
+              minHeight: "100px",
+              maxHeight: "150px"
             }}
           >
-            <div className="relative w-full h-full flex items-center justify-center p-3">
-              <Image
-                src={sign.imageUrl}
-                alt={kh ? sign.titleKm : sign.titleEn}
-                fill
-                sizes="(max-width: 640px) 33vw, (max-width: 768px) 25vw, (max-width: 1024px) 14vw, 10vw"
-                className="object-contain group-hover:scale-110 transition-transform duration-200"
-                style={{ padding: "8px" }}
-                unoptimized
-              />
+            <div className="absolute inset-0 flex items-center justify-center p-3">
+              <div className="relative w-full h-full">
+                <Image
+                  src={sign.imageUrl}
+                  alt={kh ? sign.titleKm : sign.titleEn}
+                  fill
+                  sizes="(max-width: 640px) 33vw, (max-width: 768px) 25vw, (max-width: 1024px) 14vw, 10vw"
+                  className="object-contain group-hover:scale-105 transition-transform duration-200"
+                  unoptimized
+                />
+              </div>
             </div>
           </button>
         ))}
