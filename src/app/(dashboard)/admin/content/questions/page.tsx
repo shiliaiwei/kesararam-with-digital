@@ -138,8 +138,12 @@ export default function AdminQuestionsPage() {
           className="px-4 py-2 border-2 border-black font-medium text-sm focus:outline-none focus:bg-yellow-50"
         >
           <option value="all">All Types</option>
-          <option value="mcq">Multiple Choice</option>
+          <option value="mcq">Quiz (MCQ)</option>
           <option value="true_false">True / False</option>
+          <option value="type_answer">Type Answer</option>
+          <option value="puzzle">Puzzle</option>
+          <option value="slider">Slider</option>
+          <option value="pin_answer">Pin Answer</option>
           <option value="guess_pic">Guess Picture</option>
           <option value="multi_select">Multi-Select</option>
         </select>

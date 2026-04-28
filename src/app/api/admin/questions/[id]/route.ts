@@ -24,6 +24,8 @@ export async function PUT(
       hintEn,
       hintKm,
       difficulty,
+      timeLimit,
+      pointsMultiplier,
       status,
       answers: requestAnswers,
     } = body;
@@ -39,6 +41,8 @@ export async function PUT(
           hintEn,
           hintKm,
           difficulty,
+          timeLimit: timeLimit ? parseInt(timeLimit, 10) : undefined,
+          pointsMultiplier: pointsMultiplier !== undefined ? parseInt(pointsMultiplier, 10) : undefined,
           status,
         })
         .where(eq(questions.id, parseInt(id, 10)))

@@ -276,6 +276,8 @@ export const questions = pgTable("questions", {
   audioUrlKm: text("audio_url_km"),
   audioSourceKm: text("audio_source_km").default("url"),
   difficulty: text("difficulty").default("medium"),
+  timeLimit: integer("time_limit").default(20),
+  pointsMultiplier: integer("points_multiplier").default(1),
   status: text("status").default("draft"),
   sortOrder: integer("sort_order").default(0).notNull(),
   createdBy: integer("created_by").references(() => users.id),

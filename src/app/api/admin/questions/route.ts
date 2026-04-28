@@ -69,6 +69,8 @@ export async function POST(request: NextRequest) {
       hintEn,
       hintKm,
       difficulty,
+      timeLimit,
+      pointsMultiplier,
       status,
       answers: requestAnswers,
     } = body;
@@ -104,6 +106,8 @@ export async function POST(request: NextRequest) {
           hintEn,
           hintKm,
           difficulty: difficulty || "medium",
+          timeLimit: timeLimit ? parseInt(timeLimit, 10) : 20,
+          pointsMultiplier: pointsMultiplier ? parseInt(pointsMultiplier, 10) : 1,
           status: status || "published",
           createdBy: session.id,
         })
