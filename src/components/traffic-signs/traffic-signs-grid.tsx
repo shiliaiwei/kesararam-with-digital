@@ -47,13 +47,10 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
           <div
             key={i}
             className="bg-white border-2 border-black animate-pulse"
-            style={{ 
-              boxShadow: "3px 3px 0 #000",
-              aspectRatio: "1 / 1",
-              minHeight: "100px",
-              maxHeight: "150px"
-            }}
-          />
+            style={{ boxShadow: "3px 3px 0 #000" }}
+          >
+            <div className="w-full" style={{ paddingBottom: "100%" }} />
+          </div>
         ))}
       </div>
     );
@@ -82,30 +79,27 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
       {/* Responsive Grid - Uniform Card Sizes */}
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-10 gap-3">
         {signs.map((sign) => (
-          <button
+          <div
             key={sign.id}
+            className="bg-white border-2 border-black hover:bg-yellow-400 hover:shadow-[4px_4px_0_#000] transition-all duration-200 group cursor-pointer"
+            style={{ boxShadow: "3px 3px 0 #000" }}
             onClick={() => setSelectedSign(sign)}
-            className="bg-white border-2 border-black hover:bg-yellow-400 hover:border-black hover:shadow-[4px_4px_0_#000] transition-all duration-200 group overflow-hidden relative"
-            style={{ 
-              boxShadow: "3px 3px 0 #000",
-              aspectRatio: "1 / 1",
-              minHeight: "100px",
-              maxHeight: "150px"
-            }}
           >
-            <div className="absolute inset-0 flex items-center justify-center p-3">
-              <div className="relative w-full h-full">
+            {/* Square image container with padding-bottom trick */}
+            <div className="relative w-full overflow-hidden" style={{ paddingBottom: "100%" }}>
+              <div className="absolute inset-0 p-3 flex items-center justify-center">
                 <Image
                   src={sign.imageUrl}
                   alt={kh ? sign.titleKm : sign.titleEn}
                   fill
                   sizes="(max-width: 640px) 33vw, (max-width: 768px) 25vw, (max-width: 1024px) 14vw, 10vw"
                   className="object-contain group-hover:scale-105 transition-transform duration-200"
+                  style={{ padding: "12px" }}
                   unoptimized
                 />
               </div>
             </div>
-          </button>
+          </div>
         ))}
       </div>
 
