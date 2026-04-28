@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { X, Save } from "lucide-react";
+import { X, Save, Plus, Trash2 } from "lucide-react";
 
 interface QuestionFormProps {
   question?: any;
@@ -11,8 +11,9 @@ interface QuestionFormProps {
 
 export function QuestionForm({ question, onClose, onSave }: QuestionFormProps) {
   const [formData, setFormData] = useState({
+    categoryId: "",
     topicId: question?.topicId?.toString() || "",
-    questionType: question?.questionType || "quiz",
+    questionType: question?.questionType || "mcq",
     questionEn: question?.questionEn || "",
     questionKm: question?.questionKm || "",
     hintEn: question?.hintEn || "",
@@ -20,39 +21,137 @@ export function QuestionForm({ question, onClose, onSave }: QuestionFormProps) {
     difficulty: question?.difficulty || "medium",
     status: question?.status || "published",
   });
-  const [topics, setTopics] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [saving, setSaving] = useState(false);
+  
+  // Default answers based on question type
+  const [answers, setAnswers] = useState<any[]>(question?.answers || [
+    { answerEn: "", isCorrect: true },
+    { answerEn: "", isCorrect: false },
+    { answerEn: "", isCorrect: false },
+    { answerEn: "", isCorrect: false },
+  ]);
 
+  const [categories, setCategories] = useState<any[]>([]);
+  const [topics, setTopics] = useState<any[]>([]);
+  const [loadingCats, setLoadingCats] = useState(true);
+  const [loadingTopics, setLoadingTopics] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
+
+  // Load categories
   useEffect(() => {
-    // Fetch only published (public) topics
-    fetch("/api/public/topics?status=published")
+    fetch("/api/categories")
       .then((res) => res.json())
       .then((data) => {
-        setTopics(data.topics || []);
-        setLoading(false);
+        setCategories(data || []);
+        setLoadingCats(false);
       })
       .catch((err) => {
-        console.error("Failed to load topics", err);
-        setLoading(false);
+        console.error("Failed to load categories", err);
+        setLoadingCats(false);
       });
   }, []);
+
+  // Load topics when category changes or initially if topicId exists
+  useEffect(() => {
+    const fetchTopics = async (catId?: string) => {
+      setLoadingTopics(true);
+      let url = "/api/public/topics?status=published";
+      if (catId) url += `&categoryId=${catId}`;
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        setTopics(data.topics || []);
+      } catch (err) {
+        console.error("Failed to load topics", err);
+      } finally {
+        setLoadingTopics(false);
+      }
+    };
+
+    if (formData.categoryId) {
+      fetchTopics(formData.categoryId);
+    } else {
+      fetchTopics();
+    }
+  }, [formData.categoryId]);
+
+  // Adjust answers when question type changes
+  useEffect(() => {
+    if (question && question.questionType === formData.questionType) return; // Retain existing on initial load
+    
+    if (formData.questionType === "true_false") {
+      setAnswers([
+        { answerEn: "True", isCorrect: true },
+        { answerEn: "False", isCorrect: false },
+      ]);
+    } else if (["mcq", "guess_pic", "multi_select"].includes(formData.questionType)) {
+      setAnswers([
+        { answerEn: "", isCorrect: true },
+        { answerEn: "", isCorrect: false },
+        { answerEn: "", isCorrect: false },
+        { answerEn: "", isCorrect: false },
+      ]);
+    }
+  }, [formData.questionType]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleAnswerChange = (index: number, field: string, value: any) => {
+    setAnswers(prev => {
+      const newAnswers = [...prev];
+      if (field === "isCorrect" && formData.questionType !== "multi_select") {
+        // Single correct answer types
+        newAnswers.forEach((a, i) => { a.isCorrect = (i === index); });
+      } else {
+        newAnswers[index] = { ...newAnswers[index], [field]: value };
+      }
+      return newAnswers;
+    });
+  };
+
+  const addAnswer = () => {
+    setAnswers(prev => [...prev, { answerEn: "", isCorrect: false }]);
+  };
+
+  const removeAnswer = (index: number) => {
+    setAnswers(prev => prev.filter((_, i) => i !== index));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
     setSaving(true);
-    await onSave(formData);
-    setSaving(false);
+    
+    try {
+      // Validate answers
+      if (answers.length === 0) {
+        throw new Error("You must provide at least one answer.");
+      }
+      if (!answers.some(a => a.isCorrect)) {
+        throw new Error("You must select at least one correct answer.");
+      }
+      
+      const payload = {
+        ...formData,
+        answers: answers.map(a => ({
+          ...a,
+          answerType: formData.questionType === "guess_pic" ? "image_selection" : "multiple_choice"
+        }))
+      };
+      
+      await onSave(payload);
+    } catch (err: any) {
+      setError(err.message || "An error occurred");
+      setSaving(false); // Only set false on error, parent unmounts on success
+    }
   };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white border-4 border-black shadow-[8px_8px_0_#000] w-full max-w-2xl max-h-[90vh] flex flex-col">
+      <div className="bg-white border-4 border-black shadow-[8px_8px_0_#000] w-full max-w-3xl max-h-[90vh] flex flex-col">
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b-2 border-black bg-amber-400">
           <h2 className="text-xl font-black text-black">
@@ -68,142 +167,175 @@ export function QuestionForm({ question, onClose, onSave }: QuestionFormProps) {
 
         {/* Content */}
         <div className="p-6 overflow-y-auto flex-1">
-          {loading ? (
-            <div className="text-center py-8 font-bold animate-pulse">Loading topics...</div>
-          ) : (
-            <form id="question-form" onSubmit={handleSubmit} className="space-y-6">
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="block text-sm font-black text-black uppercase tracking-wider">
-                    Topic (Public Only) <span className="text-red-500">*</span>
-                  </label>
-                  <select
-                    name="topicId"
-                    value={formData.topicId}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:bg-yellow-50 focus:ring-2 ring-black font-medium text-sm"
-                  >
-                    <option value="" disabled>Select a linked topic</option>
-                    {topics.map((t) => (
-                      <option key={t.id} value={t.id}>
-                        {t.nameEn} ({t.topicCode})
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block text-sm font-black text-black uppercase tracking-wider">
-                    Question Type <span className="text-red-500">*</span>
-                  </label>
-                  <select
-                    name="questionType"
-                    value={formData.questionType}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:bg-yellow-50 focus:ring-2 ring-black font-medium text-sm capitalize"
-                  >
-                    <option value="quiz">Quiz</option>
-                    <option value="flashcard">Flashcard</option>
-                    <option value="challenge">Challenge</option>
-                    <option value="practice">Practice</option>
-                  </select>
-                </div>
+          {error && (
+            <div className="mb-4 p-3 bg-red-100 border-2 border-red-500 text-red-700 font-bold text-sm">
+              {error}
+            </div>
+          )}
+          
+          <form id="question-form" onSubmit={handleSubmit} className="space-y-6">
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="block text-sm font-black text-black uppercase tracking-wider">
+                  Category Filter
+                </label>
+                <select
+                  name="categoryId"
+                  value={formData.categoryId}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:bg-yellow-50 focus:ring-2 ring-black font-medium text-sm"
+                  disabled={loadingCats}
+                >
+                  <option value="">All Categories</option>
+                  {categories.map((c) => (
+                    <option key={c.id} value={c.id}>{c.titleEn}</option>
+                  ))}
+                </select>
               </div>
 
               <div className="space-y-2">
                 <label className="block text-sm font-black text-black uppercase tracking-wider">
-                  Question (English) <span className="text-red-500">*</span>
+                  Topic <span className="text-red-500">*</span>
                 </label>
-                <textarea
-                  name="questionEn"
-                  value={formData.questionEn}
+                <select
+                  name="topicId"
+                  value={formData.topicId}
                   onChange={handleChange}
                   required
-                  rows={2}
                   className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:bg-yellow-50 focus:ring-2 ring-black font-medium text-sm"
-                  placeholder="E.g., What does this sign mean?"
-                />
+                  disabled={loadingTopics}
+                >
+                  <option value="" disabled>
+                    {loadingTopics ? "Loading topics..." : "Select a linked topic"}
+                  </option>
+                  {topics.map((t) => (
+                    <option key={t.id} value={t.id}>
+                      {t.nameEn} ({t.topicCode})
+                    </option>
+                  ))}
+                </select>
               </div>
+            </div>
 
+            <div className="space-y-2">
+              <label className="block text-sm font-black text-black uppercase tracking-wider">
+                Question Type <span className="text-red-500">*</span>
+              </label>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                {[
+                  { id: "mcq", label: "Multiple Choice" },
+                  { id: "true_false", label: "True / False" },
+                  { id: "guess_pic", label: "Guess Picture" },
+                  { id: "multi_select", label: "Multi-Select" }
+                ].map(type => (
+                  <label key={type.id} className={`flex items-center justify-center p-2 border-2 border-black cursor-pointer font-bold text-xs transition-colors ${formData.questionType === type.id ? 'bg-purple-300 shadow-[2px_2px_0_#000]' : 'bg-gray-50 hover:bg-gray-100'}`}>
+                    <input
+                      type="radio"
+                      name="questionType"
+                      value={type.id}
+                      checked={formData.questionType === type.id}
+                      onChange={handleChange}
+                      className="sr-only"
+                    />
+                    {type.label}
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="block text-sm font-black text-black uppercase tracking-wider">
+                Question <span className="text-red-500">*</span>
+              </label>
+              <textarea
+                name="questionEn"
+                value={formData.questionEn}
+                onChange={handleChange}
+                required
+                rows={2}
+                className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:bg-yellow-50 focus:ring-2 ring-black font-medium text-sm"
+                placeholder="E.g., What does this sign mean?"
+              />
+            </div>
+
+            {/* Answers Section */}
+            <div className="space-y-3 bg-zinc-50 p-4 border-2 border-black">
+              <div className="flex items-center justify-between">
+                <label className="block text-sm font-black text-black uppercase tracking-wider">
+                  Answers <span className="text-red-500">*</span>
+                </label>
+                {formData.questionType !== "true_false" && (
+                  <button type="button" onClick={addAnswer} className="text-xs font-bold bg-white border border-black px-2 py-1 flex items-center gap-1 hover:bg-gray-100">
+                    <Plus size={12} /> Add Option
+                  </button>
+                )}
+              </div>
+              
+              <div className="space-y-2">
+                {answers.map((answer, index) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <div className="flex-shrink-0">
+                      <input
+                        type={formData.questionType === "multi_select" ? "checkbox" : "radio"}
+                        name="correctAnswer"
+                        checked={answer.isCorrect}
+                        onChange={(e) => handleAnswerChange(index, "isCorrect", e.target.checked)}
+                        className="w-5 h-5 cursor-pointer"
+                        title="Mark as correct"
+                      />
+                    </div>
+                    <input
+                      type="text"
+                      value={answer.answerEn}
+                      onChange={(e) => handleAnswerChange(index, "answerEn", e.target.value)}
+                      required
+                      placeholder={`Option ${index + 1}`}
+                      className={`flex-1 px-3 py-2 border-2 border-black focus:outline-none text-sm font-medium ${answer.isCorrect ? 'bg-green-100' : 'bg-white'}`}
+                      disabled={formData.questionType === "true_false"}
+                    />
+                    {formData.questionType !== "true_false" && answers.length > 2 && (
+                      <button type="button" onClick={() => removeAnswer(index)} className="p-2 border-2 border-black bg-red-100 text-red-600 hover:bg-red-200" title="Remove">
+                        <Trash2 size={16} />
+                      </button>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label className="block text-sm font-black text-black uppercase tracking-wider">
-                  Question (Khmer)
+                  Difficulty
                 </label>
-                <textarea
-                  name="questionKm"
-                  value={formData.questionKm}
+                <select
+                  name="difficulty"
+                  value={formData.difficulty}
                   onChange={handleChange}
-                  rows={2}
-                  className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:bg-yellow-50 focus:ring-2 ring-black text-sm"
-                  style={{ fontFamily: "Siemreap, sans-serif" }}
-                  placeholder="E.g., តើសញ្ញានេះមានន័យដូចម្តេច?"
-                />
+                  className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:bg-yellow-50 focus:ring-2 ring-black font-medium text-sm capitalize"
+                >
+                  <option value="easy">Easy (100 pts)</option>
+                  <option value="medium">Medium (200 pts)</option>
+                  <option value="hard">Hard (300 pts)</option>
+                </select>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="block text-sm font-black text-black uppercase tracking-wider">
-                    Hint (English)
-                  </label>
-                  <input
-                    type="text"
-                    name="hintEn"
-                    value={formData.hintEn}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:bg-yellow-50 focus:ring-2 ring-black font-medium text-sm"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-black text-black uppercase tracking-wider">
-                    Hint (Khmer)
-                  </label>
-                  <input
-                    type="text"
-                    name="hintKm"
-                    value={formData.hintKm}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:bg-yellow-50 focus:ring-2 ring-black text-sm"
-                    style={{ fontFamily: "Siemreap, sans-serif" }}
-                  />
-                </div>
+              <div className="space-y-2">
+                <label className="block text-sm font-black text-black uppercase tracking-wider">
+                  Status
+                </label>
+                <select
+                  name="status"
+                  value={formData.status}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:bg-yellow-50 focus:ring-2 ring-black font-medium text-sm capitalize"
+                >
+                  <option value="published">Published</option>
+                  <option value="draft">Draft</option>
+                </select>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label className="block text-sm font-black text-black uppercase tracking-wider">
-                    Difficulty
-                  </label>
-                  <select
-                    name="difficulty"
-                    value={formData.difficulty}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:bg-yellow-50 focus:ring-2 ring-black font-medium text-sm capitalize"
-                  >
-                    <option value="easy">Easy</option>
-                    <option value="medium">Medium</option>
-                    <option value="hard">Hard</option>
-                  </select>
-                </div>
-                <div className="space-y-2">
-                  <label className="block text-sm font-black text-black uppercase tracking-wider">
-                    Status
-                  </label>
-                  <select
-                    name="status"
-                    value={formData.status}
-                    onChange={handleChange}
-                    className="w-full px-3 py-2 border-2 border-black focus:outline-none focus:bg-yellow-50 focus:ring-2 ring-black font-medium text-sm capitalize"
-                  >
-                    <option value="published">Published</option>
-                    <option value="draft">Draft</option>
-                  </select>
-                </div>
-              </div>
-            </form>
-          )}
+            </div>
+          </form>
         </div>
 
         {/* Footer */}
@@ -218,7 +350,7 @@ export function QuestionForm({ question, onClose, onSave }: QuestionFormProps) {
           <button
             type="submit"
             form="question-form"
-            disabled={saving || loading}
+            disabled={saving || loadingCats}
             className="flex items-center gap-2 px-4 py-2 border-2 border-black font-bold text-sm bg-blue-400 hover:bg-blue-300 transition-colors shadow-[2px_2px_0_#000] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Save size={16} />

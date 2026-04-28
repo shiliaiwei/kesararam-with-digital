@@ -138,10 +138,10 @@ export default function AdminQuestionsPage() {
           className="px-4 py-2 border-2 border-black font-medium text-sm focus:outline-none focus:bg-yellow-50"
         >
           <option value="all">All Types</option>
-          <option value="quiz">Quiz</option>
-          <option value="flashcard">Flashcard</option>
-          <option value="challenge">Challenge</option>
-          <option value="practice">Practice</option>
+          <option value="mcq">Multiple Choice</option>
+          <option value="true_false">True / False</option>
+          <option value="guess_pic">Guess Picture</option>
+          <option value="multi_select">Multi-Select</option>
         </select>
         <div className="text-sm text-zinc-600 font-bold whitespace-nowrap">
           {filteredQuestions.length} questions

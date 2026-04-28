@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { questions, topics, users } from "@/db/schema";
-import { eq, desc } from "drizzle-orm";
+import { questions, answers, topics, users } from "@/db/schema";
+import { eq, desc, inArray, count } from "drizzle-orm";
 import { getSession } from "@/lib/auth";
 
 export async function GET(request: NextRequest) {
@@ -30,7 +30,20 @@ export async function GET(request: NextRequest) {
       .orderBy(desc(questions.createdAt));
 
     const results = await query;
-    return NextResponse.json({ questions: results });
+    
+    // Fetch answers for all questions
+    const questionIds = results.map(r => r.question.id);
+    let allAnswers: typeof answers.$inferSelect[] = [];
+    if (questionIds.length > 0) {
+      allAnswers = await db.select().from(answers).where(inArray(answers.questionId, questionIds));
+    }
+
+    const formattedResults = results.map(r => ({
+      ...r,
+      answers: allAnswers.filter(a => a.questionId === r.question.id).sort((a, b) => a.sortOrder - b.sortOrder),
+    }));
+
+    return NextResponse.json({ questions: formattedResults });
   } catch (error) {
     console.error("Error fetching questions:", error);
     return NextResponse.json(
@@ -57,6 +70,7 @@ export async function POST(request: NextRequest) {
       hintKm,
       difficulty,
       status,
+      answers: requestAnswers,
     } = body;
 
     if (!topicId || !questionEn) {
@@ -66,22 +80,51 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const [newQuestion] = await db
-      .insert(questions)
-      .values({
-        topicId: parseInt(topicId, 10),
-        questionType: questionType || "quiz",
-        questionEn,
-        questionKm: questionKm || "",
-        hintEn,
-        hintKm,
-        difficulty: difficulty || "medium",
-        status: status || "published",
-        createdBy: session.id,
-      })
-      .returning();
+    // Check limit
+    const [{ qCount }] = await db
+      .select({ qCount: count() })
+      .from(questions)
+      .where(eq(questions.topicId, parseInt(topicId, 10)));
+      
+    if (qCount >= 5) {
+      return NextResponse.json(
+        { error: "A topic can have a maximum of 5 questions." },
+        { status: 400 }
+      );
+    }
 
-    return NextResponse.json({ question: newQuestion }, { status: 201 });
+    const result = await db.transaction(async (tx) => {
+      const [newQuestion] = await tx
+        .insert(questions)
+        .values({
+          topicId: parseInt(topicId, 10),
+          questionType: questionType || "mcq",
+          questionEn,
+          questionKm: questionKm || "",
+          hintEn,
+          hintKm,
+          difficulty: difficulty || "medium",
+          status: status || "published",
+          createdBy: session.id,
+        })
+        .returning();
+
+      if (requestAnswers && Array.isArray(requestAnswers) && requestAnswers.length > 0) {
+        const answersToInsert = requestAnswers.map((a: any, i: number) => ({
+          questionId: newQuestion.id,
+          answerType: a.answerType || "multiple_choice",
+          answerEn: a.answerEn || "",
+          answerKm: a.answerKm || "",
+          isCorrect: !!a.isCorrect,
+          sortOrder: i,
+        }));
+        await tx.insert(answers).values(answersToInsert);
+      }
+      
+      return newQuestion;
+    });
+
+    return NextResponse.json({ question: result }, { status: 201 });
   } catch (error) {
     console.error("Error creating question:", error);
     return NextResponse.json(
