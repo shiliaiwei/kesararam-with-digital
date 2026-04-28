@@ -74,22 +74,27 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
 
   return (
     <>
-      {/* 12-Column Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-12 gap-4">
+      {/* Responsive Grid - Uniform Card Sizes */}
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-10 gap-3">
         {signs.map((sign) => (
           <button
             key={sign.id}
             onClick={() => setSelectedSign(sign)}
-            className="aspect-square bg-white border-2 border-black hover:shadow-[6px_6px_0_#000] transition-all duration-200 group overflow-hidden"
-            style={{ boxShadow: "4px 4px 0 #000" }}
+            className="bg-white border-2 border-black hover:shadow-[4px_4px_0_#000] transition-all duration-200 group overflow-hidden"
+            style={{ 
+              boxShadow: "3px 3px 0 #000",
+              aspectRatio: "1 / 1",
+              minHeight: "100px"
+            }}
           >
-            <div className="relative w-full h-full flex items-center justify-center p-2">
+            <div className="relative w-full h-full flex items-center justify-center p-3">
               <Image
                 src={sign.imageUrl}
                 alt={kh ? sign.titleKm : sign.titleEn}
                 fill
-                sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 16vw, 8vw"
-                className="object-contain p-2 group-hover:scale-105 transition-transform duration-200"
+                sizes="(max-width: 640px) 33vw, (max-width: 768px) 25vw, (max-width: 1024px) 14vw, 10vw"
+                className="object-contain group-hover:scale-110 transition-transform duration-200"
+                style={{ padding: "8px" }}
                 unoptimized
               />
             </div>

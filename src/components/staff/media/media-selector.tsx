@@ -11,6 +11,7 @@ interface MediaSelectorProps {
   source: "url" | "cloudinary";
   onChange: (url: string, source: "url" | "cloudinary") => void;
   placeholder?: string;
+  audioLanguage?: "en" | "km"; // For filtering audio files by language
 }
 
 export function MediaSelector({
@@ -20,6 +21,7 @@ export function MediaSelector({
   source,
   onChange,
   placeholder,
+  audioLanguage,
 }: MediaSelectorProps) {
   const [showBrowser, setShowBrowser] = useState(false);
   const [inputMode, setInputMode] = useState<"url" | "cloudinary">(source || "cloudinary");
@@ -186,6 +188,7 @@ export function MediaSelector({
           onSelect={handleCloudinarySelect}
           onClose={() => setShowBrowser(false)}
           currentUrl={value}
+          audioLanguage={audioLanguage}
         />
       )}
     </div>

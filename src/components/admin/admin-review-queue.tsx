@@ -34,6 +34,7 @@ export function AdminReviewQueue() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
+  const [typeFilter, setTypeFilter] = useState("");
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
   const [stats, setStats] = useState({
     pending: 0,
@@ -43,7 +44,7 @@ export function AdminReviewQueue() {
 
   useEffect(() => {
     fetchTopics();
-  }, [categoryFilter, search]);
+  }, [categoryFilter, typeFilter, search]);
 
   const fetchTopics = async () => {
     setLoading(true);
@@ -53,6 +54,7 @@ export function AdminReviewQueue() {
       });
 
       if (categoryFilter) params.append("categoryId", categoryFilter);
+      if (typeFilter) params.append("type", typeFilter);
       if (search) params.append("search", search);
 
       const response = await fetch(`/api/admin/review/topics?${params}`);
@@ -178,7 +180,7 @@ export function AdminReviewQueue() {
         </div>
 
         {/* Filters */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Search */}
           <div>
             <div className="relative">
@@ -188,7 +190,7 @@ export function AdminReviewQueue() {
               />
               <input
                 type="text"
-                placeholder="Search topics..."
+                placeholder="Search by name or code..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="w-full pl-10 pr-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
@@ -210,6 +212,17 @@ export function AdminReviewQueue() {
                 </option>
               ))}
             </select>
+          </div>
+
+          {/* Type/Group Filter */}
+          <div>
+            <input
+              type="text"
+              placeholder="Filter by type/group..."
+              value={typeFilter}
+              onChange={(e) => setTypeFilter(e.target.value)}
+              className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
+            />
           </div>
         </div>
       </div>

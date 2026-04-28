@@ -21,6 +21,7 @@ interface CloudinarySelectorModalProps {
   onSelect: (url: string) => void;
   onClose: () => void;
   currentUrl?: string;
+  audioLanguage?: "en" | "km"; // For filtering audio files by language
 }
 
 type SortField = "name" | "date" | "size";
@@ -31,6 +32,7 @@ export function CloudinarySelectorModal({
   onSelect,
   onClose,
   currentUrl,
+  audioLanguage,
 }: CloudinarySelectorModalProps) {
   const [assets, setAssets] = useState<CloudinaryAsset[]>([]);
   const [loading, setLoading] = useState(true);
@@ -77,6 +79,15 @@ export function CloudinarySelectorModal({
   const displayed = useMemo(() => {
     let list = assets;
 
+    // Audio language filtering: .mp3 for English, .ogg for Khmer
+    if (type === "audio" && audioLanguage) {
+      if (audioLanguage === "en") {
+        list = list.filter((a) => a.format === "mp3");
+      } else if (audioLanguage === "km") {
+        list = list.filter((a) => a.format === "ogg");
+      }
+    }
+
     // Folder filter
     if (selectedFolder !== "all") {
       list = list.filter((a) => (a.folder || "root") === selectedFolder);
@@ -106,7 +117,7 @@ export function CloudinarySelectorModal({
     });
 
     return list;
-  }, [assets, search, selectedFolder, sortField, sortDir]);
+  }, [assets, search, selectedFolder, sortField, sortDir, type, audioLanguage]);
 
   const toggleSort = (field: SortField) => {
     if (sortField === field) {
@@ -144,6 +155,11 @@ export function CloudinarySelectorModal({
               </h2>
               <p className="text-xs font-bold text-black/60">
                 {loading ? "Loading..." : `${assets.length} total assets`}
+                {type === "audio" && audioLanguage && (
+                  <span className="ml-2 px-2 py-0.5 bg-blue-500 text-white rounded text-[10px]">
+                    {audioLanguage === "en" ? "MP3 only (English)" : "OGG only (Khmer)"}
+                  </span>
+                )}
               </p>
             </div>
           </div>

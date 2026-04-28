@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { X, Send } from "lucide-react";
+import { X, Send, Eye } from "lucide-react";
 import { MediaSelector } from "../media/media-selector";
 import { useToast } from "@/components/ui/toast-container";
 
@@ -50,6 +50,7 @@ export function TopicFormModal({
 }: TopicFormModalProps) {
   const { showToast } = useToast();
   const [loading, setLoading] = useState(false);
+  const [showReviewPanel, setShowReviewPanel] = useState(false);
   const [formData, setFormData] = useState({
     categoryId: propCategoryId || initialData?.categoryId || initialData?.category_id || 1,
     topicCode: initialData?.topicCode || initialData?.topic_code || "",
@@ -183,7 +184,8 @@ export function TopicFormModal({
                   categoryId: parseInt(e.target.value),
                   subGroup: "" // Reset sub-group when category changes
                 }))}
-                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
+                disabled={!isAdmin && !!propCategoryId} // Lock category for staff when coming from category page
+                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-gray-100 disabled:cursor-not-allowed"
               >
                 {CATEGORIES.map((cat) => (
                   <option key={cat.id} value={cat.id}>
@@ -191,6 +193,11 @@ export function TopicFormModal({
                   </option>
                 ))}
               </select>
+              {!isAdmin && !!propCategoryId && (
+                <p className="text-xs text-blue-600 mt-1 font-bold">
+                  ℹ️ Category is locked based on your selection from the left panel
+                </p>
+              )}
             </div>
 
             <div>
@@ -346,6 +353,7 @@ export function TopicFormModal({
                 label="Audio (English)"
                 value={formData.audioUrlEn}
                 source={formData.audioSourceEn as "url" | "cloudinary"}
+                audioLanguage="en"
                 onChange={(url, source) =>
                   setFormData((prev) => ({
                     ...prev,
@@ -360,6 +368,7 @@ export function TopicFormModal({
                 label="Audio (Khmer)"
                 value={formData.audioUrlKm}
                 source={formData.audioSourceKm as "url" | "cloudinary"}
+                audioLanguage="km"
                 onChange={(url, source) =>
                   setFormData((prev) => ({
                     ...prev,
@@ -375,12 +384,12 @@ export function TopicFormModal({
         {/* Actions */}
         <div className="border-t-4 border-black p-6 bg-gray-50 flex gap-4">
           <button
-            onClick={handleSubmit}
-            disabled={loading}
-            className="flex-1 bg-green-400 border-2 border-black px-6 py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
+            onClick={() => setShowReviewPanel(true)}
+            type="button"
+            className="flex-1 bg-blue-400 border-2 border-black px-6 py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center justify-center gap-2"
           >
-            <Send size={20} />
-            {loading ? "Submitting..." : "Submit for Review"}
+            <Eye size={20} />
+            Review Before Submit
           </button>
 
           <button
@@ -393,6 +402,164 @@ export function TopicFormModal({
           </button>
         </div>
       </div>
+
+      {/* Review Panel Modal */}
+      {showReviewPanel && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4 overflow-y-auto">
+          <div
+            className="bg-white border-4 border-black max-w-3xl w-full max-h-[90vh] overflow-y-auto"
+            style={{ boxShadow: "12px 12px 0 #000" }}
+          >
+            {/* Review Header */}
+            <div className="sticky top-0 bg-green-400 border-b-4 border-black p-6 flex items-center justify-between z-10">
+              <h2 className="text-2xl font-black">Review Your Submission</h2>
+              <button
+                onClick={() => setShowReviewPanel(false)}
+                className="p-2 bg-white border-2 border-black hover:shadow-[2px_2px_0_#000] transition-all"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            {/* Review Content */}
+            <div className="p-6 space-y-6">
+              {/* Basic Info */}
+              <div className="border-2 border-black p-4 bg-gray-50">
+                <h3 className="font-black text-lg mb-3">Basic Information</h3>
+                <div className="space-y-2 text-sm">
+                  <div className="grid grid-cols-3 gap-2">
+                    <span className="font-bold">Category:</span>
+                    <span className="col-span-2">{CATEGORIES.find(c => c.id === formData.categoryId)?.name}</span>
+                  </div>
+                  {formData.subGroup && (
+                    <div className="grid grid-cols-3 gap-2">
+                      <span className="font-bold">Type:</span>
+                      <span className="col-span-2">{formData.subGroup}</span>
+                    </div>
+                  )}
+                  {formData.topicCode && (
+                    <div className="grid grid-cols-3 gap-2">
+                      <span className="font-bold">Code:</span>
+                      <span className="col-span-2 font-mono">{formData.topicCode}</span>
+                    </div>
+                  )}
+                  <div className="grid grid-cols-3 gap-2">
+                    <span className="font-bold">Name (EN):</span>
+                    <span className="col-span-2">{formData.nameEn || <em className="text-red-500">Missing</em>}</span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2">
+                    <span className="font-bold">Name (KH):</span>
+                    <span className="col-span-2">{formData.nameKm || <em className="text-red-500">Missing</em>}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Descriptions */}
+              <div className="border-2 border-black p-4 bg-gray-50">
+                <h3 className="font-black text-lg mb-3">Descriptions</h3>
+                <div className="space-y-3">
+                  <div>
+                    <span className="font-bold text-sm block mb-1">English:</span>
+                    <p className="text-sm text-gray-700 bg-white border border-gray-300 p-2 rounded">
+                      {formData.descriptionEn || <em className="text-red-500">Missing</em>}
+                    </p>
+                  </div>
+                  <div>
+                    <span className="font-bold text-sm block mb-1">Khmer:</span>
+                    <p className="text-sm text-gray-700 bg-white border border-gray-300 p-2 rounded">
+                      {formData.descriptionKm || <em className="text-red-500">Missing</em>}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Media */}
+              <div className="border-2 border-black p-4 bg-gray-50">
+                <h3 className="font-black text-lg mb-3">Media Resources</h3>
+                <div className="space-y-3">
+                  {/* Image */}
+                  <div>
+                    <span className="font-bold text-sm block mb-2">Image:</span>
+                    {formData.primaryImageUrl ? (
+                      <div className="border-2 border-black p-2 bg-white">
+                        <img 
+                          src={formData.primaryImageUrl} 
+                          alt="Preview" 
+                          className="w-full h-48 object-contain"
+                        />
+                        <p className="text-xs text-gray-500 mt-1 truncate">{formData.primaryImageUrl}</p>
+                      </div>
+                    ) : (
+                      <p className="text-sm text-gray-500 italic">No image provided</p>
+                    )}
+                  </div>
+
+                  {/* Audio English */}
+                  <div>
+                    <span className="font-bold text-sm block mb-1">Audio (English):</span>
+                    {formData.audioUrlEn ? (
+                      <div className="bg-white border border-gray-300 p-2 rounded">
+                        <audio controls className="w-full h-8">
+                          <source src={formData.audioUrlEn} />
+                        </audio>
+                        <p className="text-xs text-gray-500 mt-1 truncate">{formData.audioUrlEn}</p>
+                      </div>
+                    ) : (
+                      <p className="text-sm text-gray-500 italic">No audio provided</p>
+                    )}
+                  </div>
+
+                  {/* Audio Khmer */}
+                  <div>
+                    <span className="font-bold text-sm block mb-1">Audio (Khmer):</span>
+                    {formData.audioUrlKm ? (
+                      <div className="bg-white border border-gray-300 p-2 rounded">
+                        <audio controls className="w-full h-8">
+                          <source src={formData.audioUrlKm} />
+                        </audio>
+                        <p className="text-xs text-gray-500 mt-1 truncate">{formData.audioUrlKm}</p>
+                      </div>
+                    ) : (
+                      <p className="text-sm text-gray-500 italic">No audio provided</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Validation Warning */}
+              {(!formData.nameEn || !formData.nameKm || !formData.descriptionEn || !formData.descriptionKm) && (
+                <div className="bg-red-50 border-2 border-red-500 p-4">
+                  <p className="font-bold text-red-900 mb-2">⚠️ Missing Required Fields</p>
+                  <p className="text-sm text-red-800">
+                    Please fill in all required fields (marked with *) before submitting.
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Review Actions */}
+            <div className="border-t-4 border-black p-6 bg-gray-50 flex gap-4">
+              <button
+                onClick={handleSubmit}
+                disabled={loading || !formData.nameEn || !formData.nameKm || !formData.descriptionEn || !formData.descriptionKm}
+                className="flex-1 bg-green-400 border-2 border-black px-6 py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center gap-2"
+              >
+                <Send size={20} />
+                {loading ? "Submitting..." : "Confirm & Submit"}
+              </button>
+
+              <button
+                onClick={() => setShowReviewPanel(false)}
+                type="button"
+                className="bg-white border-2 border-black px-6 py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center justify-center gap-2"
+              >
+                <X size={20} />
+                Back to Edit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
