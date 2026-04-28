@@ -241,25 +241,25 @@ export function TrafficSignsCatalogue() {
               <button
                 key={topic.id}
                 onClick={() => handleTopicClick(topic)}
-                className="group bg-white border-2 border-black hover:shadow-[4px_4px_0_#000] transition-all flex flex-col"
+                className="group bg-white border-2 border-black hover:shadow-[4px_4px_0_#000] transition-all flex flex-col h-full"
               >
                 {/* Image Only */}
-                <div className="aspect-square p-3 md:p-4 flex items-center justify-center">
+                <div className="relative w-full overflow-hidden bg-white" style={{ paddingBottom: "100%" }}>
                   {topic.primary_image_url ? (
                     <img
                       src={topic.primary_image_url}
                       alt={topic.topic_code}
-                      className="w-full h-full object-contain"
+                      className="absolute inset-0 w-full h-full object-contain p-3 md:p-4 group-hover:scale-105 transition-transform duration-200"
                     />
                   ) : (
-                    <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                    <div className="absolute inset-0 w-full h-full bg-gray-100 flex items-center justify-center">
                       <span className="text-3xl md:text-4xl">🚦</span>
                     </div>
                   )}
                 </div>
                 {/* Code Only */}
-                <div className="border-t-2 border-black p-2 bg-zinc-50">
-                  <div className="font-mono text-xs font-bold text-center text-zinc-700">
+                <div className="border-t-2 border-black p-2 bg-zinc-50 mt-auto w-full">
+                  <div className="font-mono text-xs font-bold text-center text-zinc-700 group-hover:text-black transition-colors">
                     {topic.topic_code}
                   </div>
                 </div>
