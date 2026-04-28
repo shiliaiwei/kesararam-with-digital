@@ -235,6 +235,23 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
                       )}
                     </div>
                     
+                    {/* Read-only notice for published/approved topics */}
+                    {(topic.status === "published" || topic.status === "approved") && (
+                      <div className="bg-blue-50 border-l-4 border-blue-500 px-3 py-2 mt-2">
+                        <div className="flex items-start gap-2">
+                          <span className="text-lg shrink-0">🔒</span>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-black text-blue-900 uppercase mb-0.5">
+                              Published - Read Only
+                            </p>
+                            <p className="text-xs text-blue-800 font-medium">
+                              This topic is live. Only administrators can send it back for editing.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    
                     {/* Rejection Reason - Always visible for rejected topics */}
                     {topic.status === "rejected" && (topic.rejectionReason || topic.rejection_reason) && (
                       <div className="bg-red-50 border-l-4 border-red-500 px-3 py-2 mt-2">
@@ -276,24 +293,29 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
                   
                   {/* Action Buttons - Larger and more spaced */}
                   <div className="flex items-center gap-2 shrink-0">
+                    {/* Questions button - always visible but read-only for published */}
                     <button 
                       onClick={() => setExpandedTopicId(expandedTopicId === topic.id ? null : topic.id)} 
                       className={`px-3 py-2 border-2 border-black text-xs font-black inline-flex items-center gap-1.5 transition-all ${expandedTopicId === topic.id ? "bg-purple-600 text-white shadow-[2px_2px_0_#000]" : "bg-purple-100 hover:bg-purple-200 text-purple-800 hover:shadow-[2px_2px_0_#000]"}`}
-                      title="Manage Questions"
+                      title="View Questions"
                     >
                       <HelpCircle size={14} /> 
                       Questions 
                       {expandedTopicId === topic.id ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
                     </button>
                     
-                    <button 
-                      onClick={() => setEditingTopic(topic)} 
-                      className="p-2 border-2 border-black bg-yellow-100 hover:bg-yellow-200 hover:shadow-[2px_2px_0_#000] transition-all" 
-                      title="Edit Topic"
-                    >
-                      <Edit size={16} />
-                    </button>
+                    {/* Edit button - only for draft, rejected, or pending */}
+                    {(topic.status === "draft" || topic.status === "rejected" || topic.status === "pending") && (
+                      <button 
+                        onClick={() => setEditingTopic(topic)} 
+                        className="p-2 border-2 border-black bg-yellow-100 hover:bg-yellow-200 hover:shadow-[2px_2px_0_#000] transition-all" 
+                        title="Edit Topic"
+                      >
+                        <Edit size={16} />
+                      </button>
+                    )}
                     
+                    {/* Submit button - only for draft or rejected */}
                     {(topic.status === "draft" || topic.status === "rejected") && (
                       <button 
                         onClick={() => handleSubmit(topic.id)} 
@@ -304,6 +326,7 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
                       </button>
                     )}
                     
+                    {/* Delete button - only for draft or rejected */}
                     {(topic.status === "draft" || topic.status === "rejected") && (
                       deleteConfirm === topic.id ? (
                         <div className="flex gap-1.5">
@@ -329,6 +352,14 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
                           <Trash2 size={16} />
                         </button>
                       )
+                    )}
+                    
+                    {/* Read-only indicator for published/approved */}
+                    {(topic.status === "published" || topic.status === "approved") && (
+                      <div className="px-3 py-2 bg-gray-100 border-2 border-gray-400 text-xs font-bold text-gray-600 inline-flex items-center gap-1.5">
+                        <span className="text-lg">🔒</span>
+                        Read Only
+                      </div>
                     )}
                   </div>
                 </div>

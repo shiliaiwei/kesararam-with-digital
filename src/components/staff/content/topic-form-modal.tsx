@@ -51,6 +51,11 @@ export function TopicFormModal({
   const { showToast } = useToast();
   const [loading, setLoading] = useState(false);
   const [showReviewPanel, setShowReviewPanel] = useState(false);
+  
+  // Check if topic is published/approved and user is not admin
+  const isPublished = initialData && (initialData.status === "published" || initialData.status === "approved");
+  const isReadOnly = isPublished && !isAdmin;
+  
   const [formData, setFormData] = useState({
     categoryId: propCategoryId || initialData?.categoryId || initialData?.category_id || 1,
     topicCode: initialData?.topicCode || initialData?.topic_code || "",
@@ -155,8 +160,28 @@ export function TopicFormModal({
 
         {/* Form */}
         <div className="p-6 space-y-6">
+          {/* Read-Only Warning for Published Topics */}
+          {isReadOnly && (
+            <div className="bg-gray-100 border-4 border-gray-500 p-6">
+              <div className="flex items-start gap-4">
+                <span className="text-4xl">🔒</span>
+                <div className="flex-1">
+                  <p className="text-xl font-black text-gray-900 mb-2">
+                    This Topic is Published - Read Only
+                  </p>
+                  <p className="text-sm text-gray-700 font-medium mb-3">
+                    This topic is currently live and visible to users. Staff members cannot edit published content.
+                  </p>
+                  <p className="text-sm text-gray-700 font-bold">
+                    Only administrators can send this topic back to you for editing.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+          
           {/* Info Banner for Road Traffic */}
-          {formData.categoryId === 2 && (
+          {formData.categoryId === 2 && !isReadOnly && (
             <div className="bg-blue-50 border-2 border-blue-400 p-4">
               <p className="text-sm font-bold text-blue-900 mb-2">
                 📝 Road Traffic Law Content
@@ -206,7 +231,8 @@ export function TopicFormModal({
                 name="subGroup"
                 value={formData.subGroup}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
+                disabled={isReadOnly}
+                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-gray-100 disabled:cursor-not-allowed"
               >
                 <option value="">Select Type</option>
                 {SUB_GROUPS[currentCategorySlug]?.map((sg) => (
@@ -224,7 +250,8 @@ export function TopicFormModal({
                 name="topicCode"
                 value={formData.topicCode}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
+                disabled={isReadOnly}
+                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-gray-100 disabled:cursor-not-allowed"
                 placeholder="e.g., RS-W-001, RT-SL-040, PR-INT-001"
               />
               <p className="text-xs text-zinc-600 mt-1">
@@ -241,8 +268,9 @@ export function TopicFormModal({
                 name="nameEn"
                 value={formData.nameEn}
                 onChange={handleChange}
+                disabled={isReadOnly}
                 required
-                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
+                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-gray-100 disabled:cursor-not-allowed"
                 placeholder={formData.nameEn ? "" : "e.g., Stop Sign, Speed Limit 40 km/h"}
               />
             </div>
@@ -256,8 +284,9 @@ export function TopicFormModal({
                 name="nameKm"
                 value={formData.nameKm}
                 onChange={handleChange}
+                disabled={isReadOnly}
                 required
-                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
+                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-gray-100 disabled:cursor-not-allowed"
                 placeholder={formData.nameKm ? "" : "ឧ. សញ្ញាឈប់, កំណត់ល្បឿន ៤០ គ.ម/ម"}
               />
             </div>
@@ -275,9 +304,10 @@ export function TopicFormModal({
                 name="descriptionEn"
                 value={formData.descriptionEn}
                 onChange={handleChange}
+                disabled={isReadOnly}
                 required
                 rows={4}
-                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] resize-none"
+                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
                 placeholder={formData.descriptionEn ? "" : "Enter description in English"}
               />
             </div>
@@ -290,9 +320,10 @@ export function TopicFormModal({
                 name="descriptionKm"
                 value={formData.descriptionKm}
                 onChange={handleChange}
+                disabled={isReadOnly}
                 required
                 rows={4}
-                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] resize-none"
+                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
                 placeholder={formData.descriptionKm ? "" : "បញ្ចូលការពិពណ៌នាជាភាសាខ្មែរ"}
               />
             </div>
@@ -383,23 +414,36 @@ export function TopicFormModal({
 
         {/* Actions */}
         <div className="border-t-4 border-black p-6 bg-gray-50 flex gap-4">
-          <button
-            onClick={() => setShowReviewPanel(true)}
-            type="button"
-            className="flex-1 bg-blue-400 border-2 border-black px-6 py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center justify-center gap-2"
-          >
-            <Eye size={20} />
-            Review Before Submit
-          </button>
+          {!isReadOnly ? (
+            <>
+              <button
+                onClick={() => setShowReviewPanel(true)}
+                type="button"
+                className="flex-1 bg-blue-400 border-2 border-black px-6 py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center justify-center gap-2"
+              >
+                <Eye size={20} />
+                Review Before Submit
+              </button>
 
-          <button
-            onClick={onClose}
-            type="button"
-            className="bg-white border-2 border-black px-6 py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center justify-center gap-2"
-          >
-            <X size={20} />
-            Cancel
-          </button>
+              <button
+                onClick={onClose}
+                type="button"
+                className="bg-white border-2 border-black px-6 py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center justify-center gap-2"
+              >
+                <X size={20} />
+                Cancel
+              </button>
+            </>
+          ) : (
+            <button
+              onClick={onClose}
+              type="button"
+              className="flex-1 bg-gray-400 border-2 border-black px-6 py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center justify-center gap-2"
+            >
+              <X size={20} />
+              Close
+            </button>
+          )}
         </div>
       </div>
 
