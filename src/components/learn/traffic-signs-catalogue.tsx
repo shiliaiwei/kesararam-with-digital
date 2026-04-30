@@ -174,8 +174,8 @@ function DetailPanel({
           {description && (
             <p
               className={`text-sm leading-relaxed transition-all duration-300 ${playing
-                  ? "bg-yellow-300/60 text-black font-bold px-2 py-1 -mx-2 rounded-sm"
-                  : "text-zinc-700"
+                ? "bg-yellow-300/60 text-black font-bold px-2 py-1 -mx-2 rounded-sm"
+                : "text-zinc-700"
                 }`}
               style={kf}
             >
@@ -198,10 +198,10 @@ function DetailPanel({
                 onClick={toggleAudio}
                 disabled={loadingAudio}
                 className={`inline-flex items-center gap-2 px-4 py-2 border-2 border-black font-black text-sm transition-all ${loadingAudio
-                    ? "bg-zinc-100 text-zinc-400 cursor-wait"
-                    : playing
-                      ? "bg-black text-yellow-400 shadow-[3px_3px_0_#ca8a04]"
-                      : "bg-white hover:bg-yellow-400 shadow-[3px_3px_0_#000] hover:shadow-[3px_3px_0_#ca8a04]"
+                  ? "bg-zinc-100 text-zinc-400 cursor-wait"
+                  : playing
+                    ? "bg-black text-yellow-400 shadow-[3px_3px_0_#ca8a04]"
+                    : "bg-white hover:bg-yellow-400 shadow-[3px_3px_0_#000] hover:shadow-[3px_3px_0_#ca8a04]"
                   }`}
                 style={kf}
               >
@@ -385,61 +385,50 @@ export function TrafficSignsCatalogue() {
             )}
           </div>
 
-          {/* Tag pills */}
-          <div className="space-y-2.5">
-            <div className="flex flex-wrap gap-2 items-center">
-              <button
-                onClick={() => handleFilterChange("")}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black transition-all ${subGroupFilter === "" && !search
-                    ? "bg-black text-yellow-400 shadow-[2px_2px_0_#ca8a04]"
-                    : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
-                  }`}
-                style={kf}
-              >
-                {t.all}
-                <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-sm ${subGroupFilter === "" && !search ? "bg-yellow-400 text-black" : "bg-zinc-100 text-zinc-600"}`}>
-                  {topics.length}
-                </span>
-              </button>
-            </div>
+          {/* Tag pills — single scrollable row, hashtag style */}
+          <div
+            className="flex items-center gap-1.5 overflow-x-auto py-0.5"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {/* All Signs */}
+            <button
+              onClick={() => handleFilterChange("")}
+              className={`inline-flex items-center gap-1 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${subGroupFilter === "" && !search
+                  ? "bg-black text-yellow-400 shadow-[2px_2px_0_#ca8a04]"
+                  : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
+                }`}
+              style={kf}
+            >
+              <span className="opacity-50">#</span>{t.all}
+              <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ml-0.5 ${subGroupFilter === "" && !search ? "bg-yellow-400 text-black" : "bg-zinc-100 text-zinc-600"}`}>
+                {topics.length}
+              </span>
+            </button>
 
-            {(() => {
-              const sections: string[] = [];
-              availableGroups.forEach(sg => { if (!sections.includes(sg.section)) sections.push(sg.section); });
-              return sections.map(section => {
-                const sectionGroups = availableGroups.filter(sg => sg.section === section);
-                const sectionKm = sectionGroups[0]?.sectionKm || section;
-                return (
-                  <div key={section} className="flex flex-wrap gap-2 items-center">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 w-full sm:w-auto shrink-0" style={kf}>
-                      {isKh ? sectionKm : section}
+            <span className="w-px h-4 bg-zinc-300 shrink-0 mx-0.5" />
+
+            {availableGroups.map(sg => {
+              const isActive = subGroupFilter === sg.key && !search;
+              const count = countMap[sg.key] || 0;
+              return (
+                <button
+                  key={sg.key}
+                  onClick={() => handleFilterChange(sg.key)}
+                  className={`inline-flex items-center gap-1 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${isActive
+                      ? "bg-yellow-400 border-black shadow-[2px_2px_0_#000]"
+                      : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
+                    }`}
+                  style={kf}
+                >
+                  <span className="opacity-40">#</span>{isKh ? sg.km : sg.en}
+                  {count > 0 && (
+                    <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ml-0.5 ${isActive ? "bg-black text-yellow-400" : "bg-zinc-100 text-zinc-600"}`}>
+                      {count}
                     </span>
-                    {sectionGroups.map(sg => {
-                      const isActive = subGroupFilter === sg.key && !search;
-                      const count = countMap[sg.key] || 0;
-                      return (
-                        <button
-                          key={sg.key}
-                          onClick={() => handleFilterChange(sg.key)}
-                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black transition-all ${isActive
-                              ? "bg-yellow-400 shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
-                              : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
-                            }`}
-                          style={kf}
-                        >
-                          {isKh ? sg.km : sg.en}
-                          {count > 0 && (
-                            <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-sm ${isActive ? "bg-black text-yellow-400" : "bg-zinc-100 text-zinc-600"}`}>
-                              {count}
-                            </span>
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
-                );
-              });
-            })()}
+                  )}
+                </button>
+              );
+            })}
           </div>
 
           {/* Result count + reset */}
@@ -498,8 +487,8 @@ export function TrafficSignsCatalogue() {
                     onClick={() => handleTopicClick(topic)}
                     aria-expanded={isSelected}
                     className={`group border-2 transition-all duration-150 flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 ${isSelected
-                        ? "border-yellow-400 bg-yellow-400 shadow-[4px_4px_0_#ca8a04]"
-                        : "border-black bg-white hover:border-yellow-400 hover:bg-yellow-400 hover:shadow-[4px_4px_0_#ca8a04]"
+                      ? "border-yellow-400 bg-yellow-400 shadow-[4px_4px_0_#ca8a04]"
+                      : "border-black bg-white hover:border-yellow-400 hover:bg-yellow-400 hover:shadow-[4px_4px_0_#ca8a04]"
                       }`}
                   >
                     <div className="relative w-full overflow-hidden" style={{ paddingBottom: "100%" }}>
