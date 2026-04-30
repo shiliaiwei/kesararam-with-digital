@@ -59,3 +59,12 @@ This project implements the following security controls:
 ## Acknowledgements
 
 We appreciate all responsible disclosures. Contributors who report valid security issues will be acknowledged in our release notes (with their permission).
+
+
+Test Your Security
+Headers: https://securityheaders.com/?q=kesararamwithdigital.tech
+SSL: https://www.ssllabs.com/ssltest/
+CSP: https://csp-evaluator.withgoogle.com/
+GitHub Security
+Alerts: https://github.com/shiliaiwei/kesararam/security
+Dependabot: https://github.com/shiliaiwei/kesararam/security/dependabot
