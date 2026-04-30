@@ -22,38 +22,50 @@ export function MapboxTrafficMap({
 
   useEffect(() => {
     if (!mapContainerRef.current) return;
+    if (mapRef.current) return; // already initialized
 
-    let map: any;
+    let cancelled = false;
 
     const initMap = async () => {
       try {
-        // Dynamically import mapbox-gl to avoid SSR issues
+        // 1. Load mapbox-gl JS
         const mapboxgl = (await import("mapbox-gl")).default;
 
-        // Import CSS
-        await import("mapbox-gl/dist/mapbox-gl.css");
+        if (cancelled) return;
 
+        // 2. Inject Mapbox CSS into <head> once
+        if (!document.getElementById("mapbox-gl-css")) {
+          const link = document.createElement("link");
+          link.id = "mapbox-gl-css";
+          link.rel = "stylesheet";
+          link.href = "https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css";
+          document.head.appendChild(link);
+        }
+
+        // 3. Set token
         mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN!;
 
-        map = new mapboxgl.Map({
+        // 4. Create map — container must have explicit pixel size
+        const map = new mapboxgl.Map({
           container: mapContainerRef.current!,
           style: "mapbox://styles/mapbox/streets-v12",
           center: [lon, lat],
-          zoom: zoom,
+          zoom,
           attributionControl: false,
+          trackResize: true,
         });
 
-        // Store ref for style switching
         mapRef.current = map;
 
         map.on("load", () => {
-          // ── Traffic congestion layer ──────────────────────────────
+          if (cancelled) return;
+
+          // ── Traffic layer ─────────────────────────────────────────
           map.addSource("mapbox-traffic", {
             type: "vector",
             url: "mapbox://mapbox.mapbox-traffic-v1",
           });
 
-          // Traffic congestion fill (colored roads)
           map.addLayer({
             id: "traffic-congestion",
             type: "line",
@@ -61,71 +73,66 @@ export function MapboxTrafficMap({
             "source-layer": "traffic",
             paint: {
               "line-width": [
-                "interpolate",
-                ["linear"],
-                ["zoom"],
+                "interpolate", ["linear"], ["zoom"],
                 10, 2,
                 14, 5,
                 18, 8,
               ],
               "line-color": [
-                "match",
-                ["get", "congestion"],
-                "low",    "#22c55e",   // green  – smooth
-                "moderate", "#eab308", // yellow – moderate
-                "heavy",  "#ef4444",   // red    – heavy
-                "severe", "#7f1d1d",   // dark   – stopped
-                "#94a3b8",             // default gray
+                "match", ["get", "congestion"],
+                "low",      "#22c55e",
+                "moderate", "#eab308",
+                "heavy",    "#ef4444",
+                "severe",   "#7f1d1d",
+                "#94a3b8",
               ],
-              "line-opacity": 0.85,
+              "line-opacity": 0.9,
             },
           });
 
-          // ── Marker for Phnom Penh ─────────────────────────────────
+          // ── Marker ────────────────────────────────────────────────
           const el = document.createElement("div");
-          el.className = "mapbox-marker";
           el.style.cssText = `
-            width: 20px;
-            height: 20px;
-            background: #ef4444;
-            border: 3px solid #fff;
-            border-radius: 50%;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-            cursor: pointer;
+            width:18px; height:18px;
+            background:#ef4444;
+            border:3px solid #fff;
+            border-radius:50%;
+            box-shadow:0 2px 8px rgba(0,0,0,.5);
+            cursor:pointer;
           `;
 
           new mapboxgl.Marker({ element: el })
             .setLngLat([lon, lat])
             .setPopup(
               new mapboxgl.Popup({ offset: 25 }).setHTML(
-                `<div style="font-family:sans-serif;font-size:13px;font-weight:700;padding:4px 8px;">
-                  📍 Phnom Penh, Cambodia
-                </div>`
+                `<strong style="font-size:13px">📍 Phnom Penh, Cambodia</strong>`
               )
             )
             .addTo(map);
 
-          // ── Attribution ───────────────────────────────────────────
+          // ── Controls ──────────────────────────────────────────────
+          map.addControl(new mapboxgl.NavigationControl(), "top-right");
+          map.addControl(new mapboxgl.FullscreenControl(), "top-right");
           map.addControl(
             new mapboxgl.AttributionControl({ compact: true }),
             "bottom-right"
           );
 
-          // ── Navigation controls ───────────────────────────────────
-          map.addControl(new mapboxgl.NavigationControl(), "top-right");
-
-          // ── Fullscreen ────────────────────────────────────────────
-          map.addControl(new mapboxgl.FullscreenControl(), "top-right");
+          // Force resize so tiles fill the container
+          map.resize();
 
           setMapLoaded(true);
         });
 
         map.on("error", (e: any) => {
+          if (cancelled) return;
           console.error("Mapbox error:", e);
-          setError("Map failed to load. Check your access token.");
+          setError("Map failed to load. Please check your access token.");
           setMapLoaded(true);
         });
+
       } catch (err) {
+        if (cancelled) return;
         console.error("Mapbox init error:", err);
         setError("Failed to initialize map.");
         setMapLoaded(true);
@@ -135,69 +142,69 @@ export function MapboxTrafficMap({
     initMap();
 
     return () => {
-      if (map) map.remove();
+      cancelled = true;
+      if (mapRef.current) {
+        mapRef.current.remove();
+        mapRef.current = null;
+      }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Switch between streets and satellite style
+  // ── Style toggle ────────────────────────────────────────────────────
+  const addTrafficLayer = (map: any) => {
+    if (!map.getSource("mapbox-traffic")) {
+      map.addSource("mapbox-traffic", {
+        type: "vector",
+        url: "mapbox://mapbox.mapbox-traffic-v1",
+      });
+    }
+    if (!map.getLayer("traffic-congestion")) {
+      map.addLayer({
+        id: "traffic-congestion",
+        type: "line",
+        source: "mapbox-traffic",
+        "source-layer": "traffic",
+        paint: {
+          "line-width": [
+            "interpolate", ["linear"], ["zoom"],
+            10, 2, 14, 5, 18, 8,
+          ],
+          "line-color": [
+            "match", ["get", "congestion"],
+            "low",      "#22c55e",
+            "moderate", "#eab308",
+            "heavy",    "#ef4444",
+            "severe",   "#7f1d1d",
+            "#94a3b8",
+          ],
+          "line-opacity": 0.9,
+        },
+      });
+    }
+  };
+
   const toggleStyle = () => {
     if (!mapRef.current) return;
     const next = mapStyle === "streets" ? "satellite" : "streets";
     setMapStyle(next);
-    const styleUrl =
+    mapRef.current.setStyle(
       next === "streets"
         ? "mapbox://styles/mapbox/streets-v12"
-        : "mapbox://styles/mapbox/satellite-streets-v12";
-    mapRef.current.setStyle(styleUrl);
-
-    // Re-add traffic layer after style change
-    mapRef.current.once("style.load", () => {
-      const map = mapRef.current;
-      if (!map.getSource("mapbox-traffic")) {
-        map.addSource("mapbox-traffic", {
-          type: "vector",
-          url: "mapbox://mapbox.mapbox-traffic-v1",
-        });
-      }
-      if (!map.getLayer("traffic-congestion")) {
-        map.addLayer({
-          id: "traffic-congestion",
-          type: "line",
-          source: "mapbox-traffic",
-          "source-layer": "traffic",
-          paint: {
-            "line-width": [
-              "interpolate", ["linear"], ["zoom"],
-              10, 2, 14, 5, 18, 8,
-            ],
-            "line-color": [
-              "match", ["get", "congestion"],
-              "low",      "#22c55e",
-              "moderate", "#eab308",
-              "heavy",    "#ef4444",
-              "severe",   "#7f1d1d",
-              "#94a3b8",
-            ],
-            "line-opacity": 0.85,
-          },
-        });
-      }
-    });
+        : "mapbox://styles/mapbox/satellite-streets-v12"
+    );
+    mapRef.current.once("style.load", () => addTrafficLayer(mapRef.current));
   };
 
-  const handleRetry = () => {
-    setError(null);
-    setMapLoaded(false);
-    window.location.reload();
-  };
+  const handleRetry = () => window.location.reload();
 
   return (
     <div className="bg-white border-4 border-black shadow-[8px_8px_0_#000] overflow-hidden">
+
       {/* ── Header ─────────────────────────────────────────────────── */}
       <div className="bg-red-500 border-b-4 border-black px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-white border-2 border-black flex items-center justify-center">
+          <div className="w-10 h-10 bg-white border-2 border-black flex items-center justify-center shrink-0">
             <Navigation size={20} className="text-red-500" />
           </div>
           <div>
@@ -209,7 +216,6 @@ export function MapboxTrafficMap({
         </div>
 
         <div className="flex items-center gap-2">
-          {/* Style toggle */}
           {mapLoaded && !error && (
             <button
               onClick={toggleStyle}
@@ -219,8 +225,6 @@ export function MapboxTrafficMap({
               {mapStyle === "streets" ? "Satellite" : "Streets"}
             </button>
           )}
-
-          {/* Live badge */}
           <div className="flex items-center gap-2 bg-white border-2 border-black px-3 py-1.5">
             <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
             <span className="text-xs font-black uppercase">Live</span>
@@ -228,14 +232,19 @@ export function MapboxTrafficMap({
         </div>
       </div>
 
-      {/* ── Map Container ──────────────────────────────────────────── */}
-      <div className="relative w-full" style={{ height: "500px" }}>
-        {/* Mapbox renders into this div */}
-        <div ref={mapContainerRef} className="absolute inset-0" />
+      {/* ── Map ────────────────────────────────────────────────────── */}
+      {/* Outer div sets the visible height; inner div is the Mapbox target */}
+      <div className="relative w-full" style={{ height: 500 }}>
 
-        {/* Loading overlay */}
+        {/* Mapbox GL renders here — must have explicit pixel dimensions */}
+        <div
+          ref={mapContainerRef}
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
+        />
+
+        {/* Loading */}
         {!mapLoaded && !error && (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10">
+          <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10 pointer-events-none">
             <div className="text-center">
               <div className="w-12 h-12 border-4 border-black border-t-red-500 rounded-full animate-spin mx-auto mb-4" />
               <p className="text-sm font-bold text-gray-600">Loading traffic data...</p>
@@ -244,7 +253,7 @@ export function MapboxTrafficMap({
           </div>
         )}
 
-        {/* Error overlay */}
+        {/* Error */}
         {error && (
           <div className="absolute inset-0 flex items-center justify-center bg-red-50 z-10">
             <div className="text-center p-6">
@@ -276,14 +285,12 @@ export function MapboxTrafficMap({
             </p>
           </div>
         </div>
-
-        {/* Legend */}
         <div className="flex items-center gap-5 flex-wrap">
           {[
-            { color: "bg-green-500",  label: "Smooth" },
+            { color: "bg-green-500",  label: "Smooth"   },
             { color: "bg-yellow-500", label: "Moderate" },
-            { color: "bg-red-500",    label: "Heavy" },
-            { color: "bg-red-900",    label: "Stopped" },
+            { color: "bg-red-500",    label: "Heavy"    },
+            { color: "bg-red-900",    label: "Stopped"  },
           ].map(({ color, label }) => (
             <div key={label} className="flex items-center gap-2">
               <div className={`w-5 h-1.5 ${color} border border-black`} />
