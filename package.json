@@ -15,7 +15,8 @@
     "security:audit": "npm audit --audit-level=moderate",
     "security:check": "bash scripts/check-secrets.sh",
     "security:install-hooks": "bash scripts/install-git-hooks.sh",
-    "security:full": "npm run security:audit && npm run security:check && npm run lint && npm run test"
+    "security:full": "npm run security:audit && npm run security:check && npm run lint && npm run test",
+    "security:generate-jwt": "node scripts/generate-jwt-secret.js"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
