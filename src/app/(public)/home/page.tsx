@@ -83,7 +83,7 @@ export default function HomePage() {
                   : "View live traffic conditions, accidents, and road alerts to travel safely"}
               </p>
             </div>
-            <MapboxTrafficMap lat={13.41013} lon={103.94728} zoom={12} />
+            <MapboxTrafficMap lat={11.5564} lon={104.9282} zoom={13} />
           </div>
         </div>
       </section>

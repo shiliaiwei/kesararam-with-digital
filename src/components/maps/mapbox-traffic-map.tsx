@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AlertTriangle, Navigation, RefreshCw, Layers } from "lucide-react";
+import { AlertTriangle, Navigation, RefreshCw, Layers, ShieldAlert, Car, TriangleAlert, Info } from "lucide-react";
 
 interface MapboxTrafficMapProps {
   lat?: number;
@@ -9,9 +9,57 @@ interface MapboxTrafficMapProps {
   zoom?: number;
 }
 
+// ── Static road safety alerts for Cambodia ──────────────────────────────────
+const ROAD_ALERTS = [
+  {
+    id: 1,
+    type: "accident",
+    icon: Car,
+    color: "bg-red-500",
+    textColor: "text-red-700",
+    bgColor: "bg-red-50 border-red-300",
+    title: "Accident Risk Zone",
+    desc: "National Road 6 — High accident frequency near Skun intersection. Drive carefully.",
+    time: "Active Alert",
+  },
+  {
+    id: 2,
+    type: "congestion",
+    icon: AlertTriangle,
+    color: "bg-yellow-500",
+    textColor: "text-yellow-700",
+    bgColor: "bg-yellow-50 border-yellow-300",
+    title: "Heavy Congestion",
+    desc: "Phnom Penh city center — Rush hour traffic. Expect delays on Monivong Blvd.",
+    time: "Peak Hours: 7–9am, 5–7pm",
+  },
+  {
+    id: 3,
+    type: "road",
+    icon: TriangleAlert,
+    color: "bg-orange-500",
+    textColor: "text-orange-700",
+    bgColor: "bg-orange-50 border-orange-300",
+    title: "Road Construction",
+    desc: "National Road 4 — Lane closure near Kampong Speu. Reduce speed to 40km/h.",
+    time: "Ongoing",
+  },
+  {
+    id: 4,
+    type: "safety",
+    icon: ShieldAlert,
+    color: "bg-blue-500",
+    textColor: "text-blue-700",
+    bgColor: "bg-blue-50 border-blue-300",
+    title: "Safety Reminder",
+    desc: "Wear seatbelts at all times. Drunk driving enforcement active on all major roads.",
+    time: "Always Active",
+  },
+];
+
 export function MapboxTrafficMap({
-  lat = 13.41013,
-  lon = 103.94728,
+  lat = 11.5564,
+  lon = 104.9282,
   zoom = 12,
 }: MapboxTrafficMapProps) {
   const mapContainerRef = useRef<HTMLDivElement>(null);
@@ -22,18 +70,16 @@ export function MapboxTrafficMap({
 
   useEffect(() => {
     if (!mapContainerRef.current) return;
-    if (mapRef.current) return; // already initialized
+    if (mapRef.current) return;
 
     let cancelled = false;
 
     const initMap = async () => {
       try {
-        // 1. Load mapbox-gl JS
         const mapboxgl = (await import("mapbox-gl")).default;
-
         if (cancelled) return;
 
-        // 2. Inject Mapbox CSS into <head> once
+        // Inject Mapbox CSS once
         if (!document.getElementById("mapbox-gl-css")) {
           const link = document.createElement("link");
           link.id = "mapbox-gl-css";
@@ -42,10 +88,8 @@ export function MapboxTrafficMap({
           document.head.appendChild(link);
         }
 
-        // 3. Set token
         mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN!;
 
-        // 4. Create map — container must have explicit pixel size
         const map = new mapboxgl.Map({
           container: mapContainerRef.current!,
           style: "mapbox://styles/mapbox/streets-v12",
@@ -60,7 +104,7 @@ export function MapboxTrafficMap({
         map.on("load", () => {
           if (cancelled) return;
 
-          // ── Traffic layer ─────────────────────────────────────────
+          // Traffic layer
           map.addSource("mapbox-traffic", {
             type: "vector",
             url: "mapbox://mapbox.mapbox-traffic-v1",
@@ -74,9 +118,7 @@ export function MapboxTrafficMap({
             paint: {
               "line-width": [
                 "interpolate", ["linear"], ["zoom"],
-                10, 2,
-                14, 5,
-                18, 8,
+                10, 2, 14, 5, 18, 8,
               ],
               "line-color": [
                 "match", ["get", "congestion"],
@@ -90,27 +132,7 @@ export function MapboxTrafficMap({
             },
           });
 
-          // ── Marker ────────────────────────────────────────────────
-          const el = document.createElement("div");
-          el.style.cssText = `
-            width:18px; height:18px;
-            background:#ef4444;
-            border:3px solid #fff;
-            border-radius:50%;
-            box-shadow:0 2px 8px rgba(0,0,0,.5);
-            cursor:pointer;
-          `;
-
-          new mapboxgl.Marker({ element: el })
-            .setLngLat([lon, lat])
-            .setPopup(
-              new mapboxgl.Popup({ offset: 25 }).setHTML(
-                `<strong style="font-size:13px">📍 Phnom Penh, Cambodia</strong>`
-              )
-            )
-            .addTo(map);
-
-          // ── Controls ──────────────────────────────────────────────
+          // Controls only — NO marker/pin
           map.addControl(new mapboxgl.NavigationControl(), "top-right");
           map.addControl(new mapboxgl.FullscreenControl(), "top-right");
           map.addControl(
@@ -118,9 +140,7 @@ export function MapboxTrafficMap({
             "bottom-right"
           );
 
-          // Force resize so tiles fill the container
           map.resize();
-
           setMapLoaded(true);
         });
 
@@ -151,7 +171,6 @@ export function MapboxTrafficMap({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // ── Style toggle ────────────────────────────────────────────────────
   const addTrafficLayer = (map: any) => {
     if (!map.getSource("mapbox-traffic")) {
       map.addSource("mapbox-traffic", {
@@ -196,8 +215,6 @@ export function MapboxTrafficMap({
     mapRef.current.once("style.load", () => addTrafficLayer(mapRef.current));
   };
 
-  const handleRetry = () => window.location.reload();
-
   return (
     <div className="bg-white border-4 border-black shadow-[8px_8px_0_#000] overflow-hidden">
 
@@ -233,16 +250,12 @@ export function MapboxTrafficMap({
       </div>
 
       {/* ── Map ────────────────────────────────────────────────────── */}
-      {/* Outer div sets the visible height; inner div is the Mapbox target */}
-      <div className="relative w-full" style={{ height: 500 }}>
-
-        {/* Mapbox GL renders here — must have explicit pixel dimensions */}
+      <div className="relative w-full" style={{ height: 480 }}>
         <div
           ref={mapContainerRef}
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
         />
 
-        {/* Loading */}
         {!mapLoaded && !error && (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10 pointer-events-none">
             <div className="text-center">
@@ -253,7 +266,6 @@ export function MapboxTrafficMap({
           </div>
         )}
 
-        {/* Error */}
         {error && (
           <div className="absolute inset-0 flex items-center justify-center bg-red-50 z-10">
             <div className="text-center p-6">
@@ -263,7 +275,7 @@ export function MapboxTrafficMap({
               <p className="text-lg font-black text-red-900 mb-2">Map Failed to Load</p>
               <p className="text-sm text-red-700 mb-4">{error}</p>
               <button
-                onClick={handleRetry}
+                onClick={() => window.location.reload()}
                 className="bg-red-500 text-white border-2 border-black px-6 py-2 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center gap-2"
               >
                 <RefreshCw size={16} />
@@ -274,31 +286,83 @@ export function MapboxTrafficMap({
         )}
       </div>
 
-      {/* ── Footer / Legend ────────────────────────────────────────── */}
-      <div className="bg-yellow-400 border-t-4 border-black px-6 py-4">
-        <div className="flex items-start gap-3 mb-3">
-          <AlertTriangle size={20} className="shrink-0 mt-0.5" />
-          <div>
-            <p className="text-sm font-black mb-0.5">Stay Safe on the Road</p>
-            <p className="text-xs font-medium text-black/80">
-              Real-time traffic conditions for Phnom Penh and surrounding areas.
-            </p>
+      {/* ── Traffic Legend ─────────────────────────────────────────── */}
+      <div className="bg-yellow-400 border-t-4 border-black px-6 py-3 flex items-center gap-6 flex-wrap">
+        <div className="flex items-center gap-2">
+          <Info size={16} className="shrink-0" />
+          <span className="text-xs font-black uppercase">Traffic Legend:</span>
+        </div>
+        {[
+          { color: "bg-green-500",  label: "Smooth"   },
+          { color: "bg-yellow-500", label: "Moderate" },
+          { color: "bg-red-500",    label: "Heavy"    },
+          { color: "bg-red-900",    label: "Stopped"  },
+        ].map(({ color, label }) => (
+          <div key={label} className="flex items-center gap-2">
+            <div className={`w-5 h-1.5 ${color} border border-black`} />
+            <span className="text-xs font-bold">{label}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* ── Road Alerts Panel ──────────────────────────────────────── */}
+      <div className="border-t-4 border-black">
+        {/* Alert header */}
+        <div className="bg-black px-6 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <ShieldAlert size={18} className="text-yellow-400" />
+            <span className="text-sm font-black text-white uppercase tracking-widest">
+              Traffic &amp; Road Safety Alerts
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse" />
+            <span className="text-xs font-bold text-yellow-400 uppercase">Live Updates</span>
           </div>
         </div>
-        <div className="flex items-center gap-5 flex-wrap">
-          {[
-            { color: "bg-green-500",  label: "Smooth"   },
-            { color: "bg-yellow-500", label: "Moderate" },
-            { color: "bg-red-500",    label: "Heavy"    },
-            { color: "bg-red-900",    label: "Stopped"  },
-          ].map(({ color, label }) => (
-            <div key={label} className="flex items-center gap-2">
-              <div className={`w-5 h-1.5 ${color} border border-black`} />
-              <span className="text-xs font-bold">{label}</span>
-            </div>
-          ))}
+
+        {/* Alert cards grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-0 divide-y-2 sm:divide-y-0 sm:divide-x-0 divide-black">
+          {ROAD_ALERTS.map((alert, i) => {
+            const Icon = alert.icon;
+            return (
+              <div
+                key={alert.id}
+                className={`flex items-start gap-4 px-5 py-4 border-black ${
+                  // add right border on left column items, bottom border on all
+                  i % 2 === 0 ? "sm:border-r-2" : ""
+                } ${i < 2 ? "border-b-2" : ""}`}
+              >
+                {/* Icon badge */}
+                <div className={`w-10 h-10 ${alert.color} border-2 border-black flex items-center justify-center shrink-0`}>
+                  <Icon size={18} className="text-white" />
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                    <span className="text-sm font-black">{alert.title}</span>
+                    <span className={`text-[10px] font-black px-2 py-0.5 border border-black ${alert.color} text-white uppercase`}>
+                      {alert.time}
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-600 leading-relaxed">{alert.desc}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Bottom safety tip */}
+        <div className="bg-gray-50 border-t-2 border-black px-6 py-3 flex items-center gap-3">
+          <AlertTriangle size={16} className="text-yellow-600 shrink-0" />
+          <p className="text-xs text-gray-600">
+            <span className="font-black text-black">Stay Alert:</span>{" "}
+            Always follow traffic signs, keep safe distance, and never use your phone while driving.
+          </p>
         </div>
       </div>
+
     </div>
   );
 }
