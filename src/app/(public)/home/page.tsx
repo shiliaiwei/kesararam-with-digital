@@ -3,7 +3,7 @@
 import { RoadSigns3DHero } from "@/components/hero/road-signs-3d-hero";
 import { SponsorsMarquee } from "@/components/sections/sponsors-marquee";
 import { CategoryGrid } from "@/components/categories/category-grid";
-import { WazeLiveMap } from "@/components/maps/waze-live-map";
+import { GoogleTrafficMap } from "@/components/maps/google-traffic-map";
 import { useLang } from "@/context/lang-context";
 import { t } from "@/lib/translations";
 
@@ -83,7 +83,7 @@ export default function HomePage() {
                   : "View live traffic conditions, accidents, and road alerts to travel safely"}
               </p>
             </div>
-            <WazeLiveMap lat={13.41013} lon={103.94728} zoom={12} />
+            <GoogleTrafficMap lat={13.41013} lon={103.94728} zoom={12} />
           </div>
         </div>
       </section>
