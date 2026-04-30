@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Kantumruy_Pro, Siemreap } from "next/font/google";
-import Script from "next/script";
 import { Toaster } from "@/components/ui/sonner";
 import { LangProvider } from "@/context/lang-context";
 import { ErrorDebugPanel } from "@/components/ErrorDebugPanel";
@@ -85,11 +84,6 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/brand/kwd-green_ofhdec.png" />
       </head>
       <body className={`${inter.variable} ${kantumruy.variable} ${siemreap.variable} font-sans antialiased overflow-x-hidden`}>
-        {/* Preload Google Maps API for instant map loading */}
-        <Script
-          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
-          strategy="lazyOnload"
-        />
         <LangProvider>
           {children}
           <Toaster richColors closeButton />
