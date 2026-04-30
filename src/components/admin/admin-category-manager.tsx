@@ -10,6 +10,53 @@ import { TopicReviewModal } from "./topic-review-modal";
 import { TopicFormModal } from "@/components/staff/content/topic-form-modal";
 import { useToast } from "@/components/ui/toast-container";
 
+// ── Inline reject dialog (no browser prompt) ─────────────────────────────────
+function RejectDialog({
+  topicName,
+  onConfirm,
+  onCancel,
+}: {
+  topicName: string;
+  onConfirm: (reason: string) => void;
+  onCancel: () => void;
+}) {
+  const [reason, setReason] = useState("");
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <div
+        className="bg-white border-2 border-black w-full max-w-md p-6 space-y-4"
+        style={{ boxShadow: "6px 6px 0 #000" }}
+      >
+        <h2 className="text-xl font-black">Reject Topic</h2>
+        <p className="text-sm text-zinc-600 font-medium">{topicName}</p>
+        <textarea
+          autoFocus
+          rows={4}
+          placeholder="Provide a clear rejection reason for the staff member..."
+          value={reason}
+          onChange={(e) => setReason(e.target.value)}
+          className="w-full border-2 border-black p-3 font-medium resize-none focus:outline-none focus:shadow-[2px_2px_0_#000]"
+        />
+        <div className="flex gap-3 justify-end">
+          <button
+            onClick={onCancel}
+            className="px-4 py-2 border-2 border-black font-bold hover:shadow-[2px_2px_0_#000] transition-all"
+          >
+            Cancel
+          </button>
+          <button
+            disabled={!reason.trim()}
+            onClick={() => onConfirm(reason.trim())}
+            className="px-4 py-2 border-2 border-black bg-red-400 font-bold hover:shadow-[2px_2px_0_#000] transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            Reject
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 interface Topic {
   id: number;
   topic_code: string; topicCode?: string;
@@ -42,10 +89,10 @@ interface AdminCategoryManagerProps {
 
 const STATUS_STYLE: Record<string, string> = {
   published: "bg-blue-300 text-blue-900 border border-blue-500",
-  pending:   "bg-yellow-300 text-yellow-900 border border-yellow-500",
-  approved:  "bg-green-300 text-green-900 border border-green-500",
-  draft:     "bg-gray-200 text-gray-800 border border-gray-400",
-  rejected:  "bg-red-300 text-red-900 border border-red-500",
+  pending: "bg-yellow-300 text-yellow-900 border border-yellow-500",
+  approved: "bg-green-300 text-green-900 border border-green-500",
+  draft: "bg-gray-200 text-gray-800 border border-gray-400",
+  rejected: "bg-red-300 text-red-900 border border-red-500",
 };
 const STATUS_LABEL: Record<string, string> = {
   published: "Public", pending: "Under Review", approved: "Approved",
@@ -64,6 +111,7 @@ export function AdminCategoryManager({ categoryId, categoryName, categorySlug }:
   const [editingTopic, setEditingTopic] = useState<Topic | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<number | null>(null);
   const [requestEditConfirm, setRequestEditConfirm] = useState<number | null>(null);
+  const [rejectTarget, setRejectTarget] = useState<Topic | null>(null);
 
   const subGroups = [...new Set(topics.map(t => t.sub_group).filter(Boolean))] as string[];
   const stats = ALL_STATUSES.reduce((acc, s) => { acc[s] = topics.filter(t => t.status === s).length; return acc; }, {} as Record<string, number>);
@@ -121,7 +169,7 @@ export function AdminCategoryManager({ categoryId, categoryName, categorySlug }:
     if (search.trim()) {
       const q = search.toLowerCase();
       return (t.name_en || t.nameEn || "").toLowerCase().includes(q) ||
-             (t.topic_code || t.topicCode || "").toLowerCase().includes(q);
+        (t.topic_code || t.topicCode || "").toLowerCase().includes(q);
     }
     return true;
   });
@@ -251,7 +299,7 @@ export function AdminCategoryManager({ categoryId, categoryName, categorySlug }:
 
                         {/* Reject pending */}
                         {topic.status === "pending" && (
-                          <button onClick={() => { const r = prompt("Rejection reason:"); if (r) handleReject(topic.id, r); }}
+                          <button onClick={() => setRejectTarget(topic)}
                             className="p-1.5 border-2 border-black bg-red-400 hover:shadow-[2px_2px_0_#000]" title="Reject">
                             <X size={14} />
                           </button>
@@ -325,6 +373,18 @@ export function AdminCategoryManager({ categoryId, categoryName, categorySlug }:
           isAdmin={true}
           onClose={() => setEditingTopic(null)}
           onSuccess={() => { setEditingTopic(null); fetchTopics(); }}
+        />
+      )}
+
+      {/* Inline Reject Dialog */}
+      {rejectTarget && (
+        <RejectDialog
+          topicName={rejectTarget.name_en || rejectTarget.nameEn || ""}
+          onConfirm={(reason) => {
+            handleReject(rejectTarget.id, reason);
+            setRejectTarget(null);
+          }}
+          onCancel={() => setRejectTarget(null)}
         />
       )}
     </div>
