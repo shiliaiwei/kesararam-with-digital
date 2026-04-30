@@ -2,9 +2,9 @@ name: CodeQL Security Analysis
 
 on:
   push:
-    branches: [main]
+    branches: [main, docs]
   pull_request:
-    branches: [main]
+    branches: [main, docs]
   schedule:
     # Run every Wednesday at 08:00 UTC
     - cron: "0 8 * * 3"
