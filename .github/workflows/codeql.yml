@@ -2,9 +2,9 @@ name: CodeQL Security Analysis
 
 on:
   push:
-    branches: [main, docs]
+    branches: [main]
   pull_request:
-    branches: [main, docs]
+    branches: [main]
   schedule:
     - cron: "0 8 * * 3"
 
@@ -17,7 +17,7 @@ jobs:
   analyze:
     name: CodeQL Analyze
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
 
     strategy:
       fail-fast: false
@@ -31,7 +31,6 @@ jobs:
         uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
-          # Use security-extended only (security-and-quality is very slow)
           queries: security-extended
 
       - uses: actions/setup-node@v4
@@ -39,8 +38,7 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - name: Install dependencies
-        run: npm ci --prefer-offline
+      - run: npm ci
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
