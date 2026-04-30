@@ -208,8 +208,8 @@ function DetailPanel({
           {description && (
             <p
               className={`text-sm leading-relaxed transition-all duration-300 ${playing
-                  ? "bg-yellow-300/60 text-black font-bold px-2 py-1 -mx-2 rounded-sm"
-                  : "text-zinc-700"
+                ? "bg-yellow-300/60 text-black font-bold px-2 py-1 -mx-2 rounded-sm"
+                : "text-zinc-700"
                 }`}
               style={kf}
             >
@@ -231,10 +231,10 @@ function DetailPanel({
               <button
                 onClick={handleAudio}
                 className={`inline-flex items-center gap-2 px-4 py-2 border-2 border-black font-black text-sm transition-all select-none ${loadingAudio
-                    ? "bg-zinc-100 text-zinc-400 cursor-wait"
-                    : playing
-                      ? "bg-black text-yellow-400 shadow-[3px_3px_0_#ca8a04] hover:bg-zinc-800"
-                      : "bg-white hover:bg-yellow-400 shadow-[3px_3px_0_#000] hover:shadow-[3px_3px_0_#ca8a04]"
+                  ? "bg-zinc-100 text-zinc-400 cursor-wait"
+                  : playing
+                    ? "bg-black text-yellow-400 shadow-[3px_3px_0_#ca8a04] hover:bg-zinc-800"
+                    : "bg-white hover:bg-yellow-400 shadow-[3px_3px_0_#000] hover:shadow-[3px_3px_0_#ca8a04]"
                   }`}
                 style={kf}
               >
@@ -344,7 +344,6 @@ export function TrafficSignsCatalogue() {
     setSubGroupFilter(key);
     setSelectedTopic(null);
     setSelectedQuestions([]);
-    setTimeout(() => gridRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
   };
 
   useEffect(() => { fetchTopics(); }, []);
@@ -436,8 +435,8 @@ export function TrafficSignsCatalogue() {
                   key={sg.key}
                   onClick={() => handleFilterChange(sg.key)}
                   className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${isActive
-                      ? "bg-yellow-400 border-black shadow-[2px_2px_0_#000]"
-                      : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
+                    ? "bg-yellow-400 border-black shadow-[2px_2px_0_#000]"
+                    : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
                     }`}
                   style={kf}
                 >
@@ -458,8 +457,8 @@ export function TrafficSignsCatalogue() {
             <button
               onClick={() => handleFilterChange("")}
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${subGroupFilter === "" && !search
-                  ? "bg-black text-yellow-400 shadow-[2px_2px_0_#ca8a04]"
-                  : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
+                ? "bg-black text-yellow-400 shadow-[2px_2px_0_#ca8a04]"
+                : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
                 }`}
               style={kf}
             >
@@ -526,8 +525,8 @@ export function TrafficSignsCatalogue() {
                     onClick={() => handleTopicClick(topic)}
                     aria-expanded={isSelected}
                     className={`group border-2 transition-all duration-150 flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 ${isSelected
-                        ? "border-yellow-400 bg-yellow-400 shadow-[4px_4px_0_#ca8a04]"
-                        : "border-black bg-white hover:border-yellow-400 hover:bg-yellow-400 hover:shadow-[4px_4px_0_#ca8a04]"
+                      ? "border-yellow-400 bg-yellow-400 shadow-[4px_4px_0_#ca8a04]"
+                      : "border-black bg-white hover:border-yellow-400 hover:bg-yellow-400 hover:shadow-[4px_4px_0_#ca8a04]"
                       }`}
                   >
                     <div className="relative w-full overflow-hidden" style={{ paddingBottom: "100%" }}>
