@@ -87,7 +87,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${kantumruy.variable} ${siemreap.variable} font-sans antialiased overflow-x-hidden`}>
         {/* Preload Google Maps API for instant map loading */}
         <Script
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
           strategy="lazyOnload"
         />
         <LangProvider>

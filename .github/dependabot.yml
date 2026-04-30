@@ -6,10 +6,36 @@ updates:
       interval: "weekly"
       day: "monday"
       time: "09:00"
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 10
     labels:
       - "dependencies"
       - "security"
+    # Group related packages to reduce PR noise
+    groups:
+      hono-packages:
+        patterns:
+          - "hono"
+          - "@hono/*"
+      vitest-packages:
+        patterns:
+          - "vitest"
+          - "@vitest/*"
+      next-ecosystem:
+        patterns:
+          - "next-intl"
+          - "next-themes"
+          - "next-cloudinary"
+      drizzle-packages:
+        patterns:
+          - "drizzle-*"
+      eslint-packages:
+        patterns:
+          - "eslint"
+          - "eslint-*"
+          - "@eslint/*"
+      types-packages:
+        patterns:
+          - "@types/*"
     ignore:
       - dependency-name: "next"
         update-types: ["version-update:semver-major"]

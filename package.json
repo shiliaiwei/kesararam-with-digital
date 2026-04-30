@@ -11,7 +11,11 @@
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "db:migrate": "tsx scripts/migrate.ts",
-    "db:verify": "tsx scripts/verify-migration.ts"
+    "db:verify": "tsx scripts/verify-migration.ts",
+    "security:audit": "npm audit --audit-level=moderate",
+    "security:check": "bash scripts/check-secrets.sh",
+    "security:install-hooks": "bash scripts/install-git-hooks.sh",
+    "security:full": "npm run security:audit && npm run security:check && npm run lint && npm run test"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
@@ -27,16 +31,16 @@
     "clsx": "^2.1.1",
     "dotenv": "^17.3.1",
     "drizzle-kit": "^0.31.9",
-    "drizzle-orm": "^0.45.1",
+    "drizzle-orm": "^0.45.2",
     "googleapis": "^171.4.0",
     "groq-sdk": "^0.37.0",
     "gsap": "^3.14.2",
     "jose": "^6.2.1",
     "lightgallery": "^2.9.0",
     "lucide-react": "^0.577.0",
-    "next": "16.2.2",
+    "next": "16.2.4",
     "next-cloudinary": "^6.17.5",
-    "next-intl": "^4.8.3",
+    "next-intl": "^4.9.1",
     "next-themes": "^0.4.6",
     "openai": "^6.27.0",
     "react": "19.2.3",
@@ -56,13 +60,19 @@
     "@types/node": "^20.19.37",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@vitest/ui": "^4.1.0",
+    "@vitest/ui": "^3.2.0",
     "eslint": "^9",
-    "eslint-config-next": "16.1.6",
-    "fast-check": "^4.6.0",
+    "eslint-config-next": "16.2.4",
+    "fast-check": "^3.23.2",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
     "typescript": "^5",
-    "vitest": "^4.1.0"
+    "vitest": "^3.2.0"
+  },
+  "overrides": {
+    "esbuild": ">=0.25.0",
+    "postcss": ">=8.5.10",
+    "hono": ">=4.12.14",
+    "@hono/node-server": ">=1.19.13"
   }
 }

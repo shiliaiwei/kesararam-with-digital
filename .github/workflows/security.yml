@@ -1,0 +1,100 @@
+name: Security & Quality CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    # Run every Monday at 09:00 UTC to catch new advisories
+    - cron: "0 9 * * 1"
+
+permissions:
+  contents: read
+  security-events: write
+  pull-requests: read
+
+jobs:
+  # ─── 1. Dependency Security Audit ─────────────────────────────────────────
+  audit:
+    name: npm audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run npm audit (fail on high or critical)
+        run: npm audit --audit-level=high
+
+  # ─── 2. Lint ──────────────────────────────────────────────────────────────
+  lint:
+    name: ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+  # ─── 3. Unit Tests ────────────────────────────────────────────────────────
+  test:
+    name: Vitest Unit Tests
+    runs-on: ubuntu-latest
+    env:
+      # Provide dummy env vars so Next.js doesn't crash during test collection
+      DATABASE_URL: "postgresql://test:test@localhost:5432/test"
+      NEXTAUTH_SECRET: "ci-secret-placeholder"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm run test
+
+  # ─── 4. TypeScript Type Check ─────────────────────────────────────────────
+  typecheck:
+    name: TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: TypeScript type check
+        run: npx tsc --noEmit
