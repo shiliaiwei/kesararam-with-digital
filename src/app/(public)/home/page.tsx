@@ -3,6 +3,7 @@
 import { RoadSigns3DHero } from "@/components/hero/road-signs-3d-hero";
 import { SponsorsMarquee } from "@/components/sections/sponsors-marquee";
 import { CategoryGrid } from "@/components/categories/category-grid";
+import { WazeLiveMap } from "@/components/maps/waze-live-map";
 import { useLang } from "@/context/lang-context";
 import { t } from "@/lib/translations";
 
@@ -49,7 +50,7 @@ export default function HomePage() {
             </div>
             <h2 className="text-4xl font-black" style={khFont}>{tr.howTitle}</h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6 mb-16">
             {[
               { step: "01", title: tr.step1Title, desc: tr.step1Desc, color: "#eab308" },
               { step: "02", title: tr.step2Title, desc: tr.step2Desc, color: "#22c55e" },
@@ -65,6 +66,24 @@ export default function HomePage() {
                 <p className="text-sm text-zinc-600 leading-relaxed" style={khFont}>{desc}</p>
               </div>
             ))}
+          </div>
+
+          {/* Live Traffic Map */}
+          <div className="mt-16">
+            <div className="mb-8 text-center">
+              <div className="inline-block bg-red-500 text-white text-xs font-black tracking-widest uppercase px-3 py-1.5 rounded-none mb-3">
+                {kh ? "ផែនទីចរាចរណ៍ផ្ទាល់" : "Live Traffic"}
+              </div>
+              <h2 className="text-3xl font-black mb-2" style={khFont}>
+                {kh ? "ស្ថានភាពចរាចរណ៍ពេលនេះ" : "Real-Time Road Safety"}
+              </h2>
+              <p className="text-sm text-zinc-600 max-w-2xl mx-auto" style={khFont}>
+                {kh 
+                  ? "មើលស្ថានភាពចរាចរណ៍ផ្ទាល់ គ្រោះថ្នាក់ និងការព្រមានផ្លូវ ដើម្បីធ្វើដំណើរប្រកបដោយសុវត្ថិភាព"
+                  : "View live traffic conditions, accidents, and road alerts to travel safely"}
+              </p>
+            </div>
+            <WazeLiveMap lat={13.41013} lon={103.94728} zoom={12} />
           </div>
         </div>
       </section>
