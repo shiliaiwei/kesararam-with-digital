@@ -1,0 +1,845 @@
+============================================================
+Category: សិទ្ធិអាទិភាព (Priority)
+Total Questions: 70
+============================================================
+
+Q1. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ទៅមុន បន្ទាប់មក #២
+  2. #១ និង #២ មានសិទ្ធិទៅព្រមគ្នា
+  3. #២ទៅមុន បន្ទាប់មក #១ ✓
+
+Q1. What does this sign stand for?
+  1. Vehicle 1 departs first, next vehicle 2
+  2. Vehicle 1 and 2 have priority to depart at the same time.
+  3. Vehicle 2 departs first, then vehicle 1 ✓
+
+------------------------------------------------------------
+
+Q2. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ទៅមុន បន្ទាប់មក #២ទៅតាមក្រោយ ✓
+  2. #២ ទៅមុន បន្ទាប់មក #១
+  3. #១ និង #២ទៅព្រមគ្នា
+
+Q2. What does this sign stand for?
+  1. First vehicle 1 then followed by motorcylce 2. ✓
+  2. First number 2, then 1.
+  3. NUmber 1 and 2 together leave at the same time.
+
+------------------------------------------------------------
+
+Q3. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #២ ចេញទៅមុន បន្ទាប់មក #៣ រួច #១ ទៅតាមក្រោយ
+  2. #២ ទៅមុន បន្ទាប់មក #១ រួច #៣ ✓
+  3. #១ និង #៣ទៅព្រមគ្នា បន្ទាប់មក #២
+
+Q3. What does this sign stand for?
+  1. First vehicle 2, next motorcycle 3, then followed by vehicle 1
+  2. First number 2, next 1, and then 3. ✓
+  3. First number 1 and 3 together leave at the same time, then 2.
+
+------------------------------------------------------------
+
+Q4. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ចេញទៅមុន បន្ទាប់មក #២ទៅតាមក្រោយ ✓
+  2. #២ ទៅមុន បន្ទាប់មក #១
+  3. #១ និង #២ ទៅព្រមគ្នា
+
+Q4. What does this sign stand for?
+  1. First vehicle 1 then followed by motorcycle 2. ✓
+  2. First number 2 then 1.
+  3. Number 1 and 2 together leave at the same time.
+
+------------------------------------------------------------
+
+Q5. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ចេញទៅមុន បន្ទាប់មក #២ រួច #៣ ទៅតាមក្រោយ
+  2. #៣ ទៅមុន បន្ទាប់មក #២ និង #១
+  3. #២បត់ឆ្វេងទៅមុន បន្ទាប់មក #១ រួច #៣ ✓
+
+Q5. What does this sign stand for?
+  1. First vehicle 1, next vehicle 2, then followed motorcycle 3
+  2. First number 3, then 2 and 1.
+  3. First left turn vehicle 2, then 1 and 3 ✓
+
+------------------------------------------------------------
+
+Q6. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ចេញទៅមុន បន្ទាប់មក #៤ រួច #៣ និង #២ ទៅតាមក្រោយ
+  2. #១និង #៣ ទៅព្រមគ្នា បន្ទាប់មក #៤ និង #២
+  3. #៤ទៅមុន #២បត់ឆ្វេងបន្ទាប់ រួច #១ និង #៣ទៅព្រមគ្នា ✓
+
+Q6. What does this sign stand for?
+  1. First vehicle 1, next vehicle 4, then vehicle 3 followed by motorcycle 2
+  2. First number 1 and 3 together leave at the same time, then 4 and 2.
+  3. First number 4, next left turn number 2, then 1 and 3 together leave at the same time. ✓
+
+------------------------------------------------------------
+
+Q7. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ទៅមុន បន្ទាប់មក #៣ រួច #២  ទៅតាមក្រោយ
+  2. #១ ទៅមុន បន្ទាប់មក #២ រួច #៣ ✓
+  3. #៣ និង #១ ទៅមុនព្រមគ្នា បន្ទាប់មក #២
+
+Q7. What does this sign stand for?
+  1. First vehicle 1, next motorcylce 3, then followed by motorcycle 2.
+  2. number 1 and number 2 go together, and then 3. ✓
+  3. First number 3 and 1 together leave at the same time, then 2.
+
+------------------------------------------------------------
+
+Q8. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ចេញទៅមុន #២បត់ឆ្វេងទៅបន្ទាប់ និង #៣ចេញទៅតាមក្រោយ
+  2. #១ និង #2 ទៅព្រមគ្នា រួចហើយ #3 ✓
+  3. #១ និង #៣ទៅព្រមគ្នា បន្ទាប់មក #២
+
+Q8. What does this sign stand for?
+  1. First vehicle 1, next left turn motorcycle 2, and then followed by motorcycle 3.
+  2. First number 2, next 3, and then 1. ✓
+  3. Number 1 and 3 together leave at the same time, then 2.
+
+------------------------------------------------------------
+
+Q9. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #២ចេញទៅមុន បន្ទាប់មក #១ និង #៣ ទៅតាមក្រោយ
+  2. #៣ ទៅមុន បន្ទាប់មក #២ រួច #១
+  3. #១ និង #៣ទៅព្រមគ្នា រួច #២ ✓
+
+Q9. What does this sign stand for?
+  1. First motorcycle 2, then followed by vehicles 1 and 3.
+  2. First number 3, next 2, and then 1.
+  3. Number 1 and 3 together leave at the same time, then 2. ✓
+
+------------------------------------------------------------
+
+Q10. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ទៅមុន បន្ទាប់មក #២ រួច #៣
+  2. #២ ទៅមុន បន្ទាប់មក #៣ រួច #១ ✓
+  3. #៣ទៅមុន បន្ទាប់មក #២ រួច #១
+
+Q10. What does this sign stand for?
+  1. First vehicle 1, next motorcycle 2, and then vehicle 3.
+  2. First number 2, next 3, and then 1. ✓
+  3. First number 3, next 2, and then 1.
+
+------------------------------------------------------------
+
+Q11. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #៣ និង #២ចេញទៅព្រមគ្នា បន្ទាប់មក #១ ទៅតាមក្រោយ
+  2. #១ និង #២ ទៅព្រមគ្នា បន្ទាប់មក #៣ ✓
+  3. #២ទៅមុន បន្ទាប់មក #១ រួច #៣បត់ឆ្វេង
+
+Q11. What does this sign stand for?
+  1. First motorcycle 3 and 2 together leave at the same time, then followed by vehicle 1.
+  2. Number 1 and 2 together leave at the same time, then 3. ✓
+  3. First number 2, next 1, and then number 3 turns left.
+
+------------------------------------------------------------
+
+Q12. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ និង #២ចេញទៅព្រមគ្នា រួច #៣ ទៅតាមក្រាយ ✓
+  2. #២ ទៅមុន បន្ទាប់មក #៣ រួច #១
+  3. #៣និង #១ទៅព្រមគ្នា រួច #២
+
+Q12. What does this sign stand for?
+  1. vehicle 1 and 2 together leave at the same time, then followed by motorcycle 3. ✓
+  2. First number 2, next 3, and then 1.
+  3. Number 1 and 3 together leave at the same time, then 2.
+
+------------------------------------------------------------
+
+Q13. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ចេញទៅមុន បន្ទាប់មក #២ រួច #៣ បត់ឆ្វេងទៅតាមក្រោយ ✓
+  2. #១ ទៅមុន បន្ទាប់មក #៣ រួច #២
+  3. #១ និង #៣ទៅមុន បន្ទាប់មក #២
+
+Q13. What does this sign stand for?
+  1. First vehicle 1, next motorcycle 2, and then followed by left turn motorcycle 3. ✓
+  2. First number 1, next 3, and then 2.
+  3. First number 1 and 3, then 2.
+
+------------------------------------------------------------
+
+Q14. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ និង #៣ចេញទៅព្រមគ្នា បន្ទាប់មក #២ និង #៤ទៅតាមក្រោយ ✓
+  2. #២ និង #៤ ទៅព្រមគ្នា បន្ទាប់មក #១ និង #៣
+  3. #១ទៅមុន បន្ទាប់មក #៤ រួច #៣ និង #២
+
+Q14. What does this sign stand for?
+  1. First vehicle 1 and 3 together leave at the same time, and then followed motrocycle 2 and 4. ✓
+  2. First number 2 and 4 together leave at the same time, then number 1 and 3.
+  3. First number 1, next 4, and then 3 and 2.
+
+------------------------------------------------------------
+
+Q15. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ចេញទៅមុន បន្ទាប់មក #២ រួច #៣ ទៅតាមក្រោយ
+  2. #២ ទៅមុន បន្ទាប់មក #១ រួច #៣ ✓
+  3. #៣ទៅមុន បន្ទាប់មក #២ រួច #១
+
+Q15. What does this sign stand for?
+  1. First vehicle 1, next vehicle 2, then followed motorcycle 3.
+  2. First number 2, next 1, and then 3. ✓
+  3. First number 3, next 2, and then 1.
+
+------------------------------------------------------------
+
+Q16. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ចេញទៅមុន បន្ទាប់ #២ ហើយ #៣បត់ឆ្វេង ទៅបន្ទាប់ រួច #៤ទៅតាមក្រោយ ✓
+  2. #២ និង #៤ ទៅព្រមគ្នា បន្ទាប់មក #១ និង #៣
+  3. #១ទៅមុន បន្ទាប់មក #៣ រួច #២ និង #៤ទៅព្រមគ្នា
+
+Q16. What does this sign stand for?
+  1. First motorcycle 1, next motorcycle 2, and left turn motorcycle 3, and then followed by vehicle 4. ✓
+  2. Number 2 and 4 together leave at the same time, then 1 and 3.
+  3. First number 1, next 3, then number 2 and 4 together leave at the same time.
+
+------------------------------------------------------------
+
+Q17. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #២ទៅមុន បន្ទាប់មក #៣ រួច #៤ និង #១ ទៅតាមក្រោយ
+  2. #៣ និង #១ ទៅព្រមគ្នា បន្ទាប់មក #២ និង #៤
+  3. #២ និង #៤ទៅព្រមគ្នា រួច #១ និង #៣បត់ឆ្វេងតាមក្រោយ ✓
+
+Q17. What does this sign stand for?
+  1. First motorcycle 2, next vehicle 3, and then followed by motorcycle 4 and vehicle 1.
+  2. Number 3 and 1 together leave at the same time then number 2 and 4.
+  3. Number 2 and 4 together leave at the same time then followed by left turn number 1 and 3 . ✓
+
+------------------------------------------------------------
+
+Q18. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ចេញទៅមុន បន្ទាប់មក #២ រួច #៣ ទៅតាមក្រោយ
+  2. #៣ ទៅមុន បន្ទាប់មក #២ រួច #១ ✓
+  3. #៣ និង #១ទៅព្រមគ្នា រួច #២ ទៅតាមក្រោយ
+
+Q18. What does this sign stand for?
+  1. First vehicle 1, next vehicle 2 followed by motorcycle 3.
+  2. First number 3, next 2, and then 1. ✓
+  3. Number 3 and 1 together leave at the same time, then followed by number 4.
+
+------------------------------------------------------------
+
+Q19. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #២ចេញទៅមុន បន្ទាប់មក #១ រួច #៤ និង #៣ ទៅតាមក្រោយ
+  2. #២ ចេញទៅមុន បន្ទាប់ #៤  បន្ទាប់មក #៣ និងចុងក្រោយ #១ ✓
+  3. #២ និង #៣ទៅមុន បន្ទាប់មក #១ និង #៤បត់ឆ្វេង តាមក្រោយ
+
+Q19. What does this sign stand for?
+  1. First motorcycle 2, next vehicle 1, then followed by motorcycle 4 and vehicle 3.
+  2. number 2 go first, then number 4, and then number 3 followed by number 1 ✓
+  3. First number 2 and 3, then followed by number 1 and 4.
+
+------------------------------------------------------------
+
+Q20. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ និង #៣ទៅមុន បន្ទាប់មក #២ ទៅតាមក្រោយ
+  2. #៣ ទៅមុន បន្ទាប់មក #២ រួច #១
+  3. #១ទៅមុន  #២បត់ឆ្វេងទៅបន្ទាប់ រួច #៣ ✓
+
+Q20. What does this sign stand for?
+  1. First vehicle 1 and 3 then followed by motorcycle 2.
+  2. First number 3, next 2, and then 1.
+  3. First number 1, next left turn number 2, and then number 3. ✓
+
+------------------------------------------------------------
+
+Q21. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ចេញទៅមុន បន្ទាប់មក #២ រួច #៣ ទៅតាមក្រោយ
+  2. #៣ ទៅមុន បន្ទាប់មក #២ រួច #១ ✓
+  3. #៣ទៅមុន បន្ទាប់មក #១ រួច #២
+
+Q21. What does this sign stand for?
+  1. First vehicle 1, next motorcycle 2, then followed by motorcycle 3.
+  2. First number 3, next 2, and then 1. ✓
+  3. First number 3, next 1, and then number 2.
+
+------------------------------------------------------------
+
+Q22. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #៣ ត្រូវចេញទៅមុន បន្ទាប់មក #២ រួច #១ ចេញតាមក្រោយ
+  2. #១ត្រូវចេញមុនរួចរង់ចាំ #២ទៅផុតនិង #៣ទៅបន្ទាប់ ទើប #១ ✓
+  3. #៣និង #១ទៅព្រមគ្នារួច #២ ចេញតាមក្រោយ
+
+Q22. What does this sign stand for?
+  1. Vehicle 3 depart first, next vehicle 2, vehicle 1 is the last one.
+  2. First vehicle 1, next vehicle 2, next vehicle 3, then vehicle 1. ✓
+  3. First vehicle 3 and 1 together depart at the same time and next vehicle 2.
+
+------------------------------------------------------------
+
+Q23. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ទៅមុន បន្ទាប់មក #២
+  2. #២ទៅមុន បន្ទាប់មក #១ ✓
+  3. #១ និង #២ ទៅព្រមគ្នា
+
+Q23. What does this sign stand for?
+  1. First vehicle 1 and then vehicle 2
+  2. First number 2 and then number 1 ✓
+  3. number 1 and 2 together leave at the same time.
+
+------------------------------------------------------------
+
+Q24. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #៣ត្រូវចេញទៅមុន បន្ទាប់មក #២ បត់ឆ្វេងរួច #១ ចេញតាមក្រោយ ✓
+  2. #១ទៅមុន បន្ទាប់មក #៣ រួច #២
+  3. #១ទៅមុនបន្ទាប់មក #២បត់ រួច #៣
+
+Q24. What does this sign stand for?
+  1. First vehicle 3, next vehicle 2 turns left, and then vehicle 1 ✓
+  2. First number 1, next number 3 and then vehicle 2
+  3. First number 1, next number 2 turns, then number 3
+
+------------------------------------------------------------
+
+Q25. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ទៅមុន #២ ចេញតាមក្រោយ
+  2. #២ទៅមុន បន្ទាប់មក #១ ✓
+  3. #១ និង #២ទៅព្រមគ្នា
+
+Q25. What does this sign stand for?
+  1. First vehicle 1then vehicle 2 follows
+  2. First number 2 and then number 1 ✓
+  3. Number 1 and 2 together leave at the same time
+
+------------------------------------------------------------
+
+Q26. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ និង #៣ ចេញទៅព្រមគ្នា ទើប #២និង #៤ ចេញ ✓
+  2. #២ និង #៤ ទៅព្រមគ្នា បន្ទាប់មក #១ និង #៣
+  3. #៣ទៅមុនបន្ទាប់មក #២ រួច #១និង #៤
+
+Q26. What does this sign stand for?
+  1. Vehicles 1 and 3 together leave at the same time, vehicle 2 and 4 follow ✓
+  2. Vehicle 2 and 4 together leave at the same time then vehicles 1 and 3
+  3. First vehicle 3, next 2, and then 1 and 4
+
+------------------------------------------------------------
+
+Q27. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #២ ត្រូវទៅមុន បន្ទាប់មក #១ បត់ឆ្វេង រួច #៣ ✓
+  2. #២ទៅមុន បន្ទាប់មក #៣ រួច #១
+  3. #២ទៅមុន បន្ទាប់ #៣និង #១ចេញព្រមគ្នា
+
+Q27. What does this sign stand for?
+  1. First vehicle 2, next vehicle 1 turns left, then vehicle 3. ✓
+  2. First vehicle 2, next vehicle 3, and then vehicle 1
+  3. First vehicle 2, then vehicles 3 and 1 together at the same time.
+
+------------------------------------------------------------
+
+Q28. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #២ ចេញទៅមុន បន្ទាប់មក #៣ រួច #១
+  2. #១ និង #៣ទៅព្រមគ្នា បន្ទាប់មក #២
+  3. #២ទៅមុន #១បត់ឆ្វេងទៅបន្ទាប់ និង #៣ ✓
+
+Q28. What does this sign stand for?
+  1. First vehicle 2, next vehicle 3, and then vehicle 1
+  2. First vehicle 2 and 3 together at the same time, then vehicle 1
+  3. First vehicle 2; next left turn vehicle 1, and then vehicle 3. ✓
+
+------------------------------------------------------------
+
+Q29. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ចេញទៅមុន បន្ទាប់មក #២ និង #៣ ទៅតាមក្រាយ
+  2. #៣ទៅមុន បន្ទាប់មក #២ និង #១
+  3. #២បត់ឆ្វេងទៅមុន បន្ទាប់មក #១ និង #៣បត់ឆ្វេង ✓
+
+Q29. What does this sign stand for?
+  1. First vehicle 1 then 2 and 3 follow
+  2. First number 3 then 2 and 1
+  3. First left turn number 2, next 1 and 3 turn right ✓
+
+------------------------------------------------------------
+
+Q30. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #២ ត្រូវទៅមុន បន្ទាប់មក #៣ រួច #៤ ទៅបន្ទាប់ ហើយ #១
+  2. #៣ និង #១ ទៅមុន បន្ទាប់មក #២ និង #៤
+  3. #២ និង #៤ ទៅព្រមគ្នា ហើយ #១ និង #៣ បត់ឆ្វេងពីក្រោយគ្នា ✓
+
+Q30. What does this sign stand for?
+  1. First vehicle 2, next vehicle 3, next 4 and then vehicle 1
+  2. First number 3 and 1, then 2 and 4
+  3. Number 2 and 4 together leave at the same time, then vehicles 1 and 3 turn left one after another ✓
+
+------------------------------------------------------------
+
+Q31. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ត្រូវចេញទៅមុន បន្ទាប់មក #៣ រួច #២ បត់ឆ្វេង
+  2. #១ទៅមុន #២បត់ឆ្វេងទៅ បន្ទាប់មក #៣
+  3. #៣ទៅមុន បន្ទាប់មក #២បត់ឆ្វេង រួច #១ ចេញតាមក្រោយ ✓
+
+Q31. What does this sign stand for?
+  1. First vehicle 1, next vehicle 3, and then left turn vehicle 2.
+  2. First vehicle 1, next left turn vehicle 2, and then vehicle 3
+  3. First vehicle 3, next vehicle 2 turns left, then vehicle 1  ✓
+
+------------------------------------------------------------
+
+Q32. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ទៅមុន #២ ចេញតាមក្រោយ
+  2. #២ទៅមុន បន្ទាប់មក #១បត់ឆ្វេង ✓
+  3. #១ និង #២ទៅព្រមគ្នា
+
+Q32. What does this sign stand for?
+  1. First vehicle 1 then vehicle 2
+  2. First vehicle 2, then vehicle 1 turns left. ✓
+  3. Vehicle 1 and 2 together depart at the same time.
+
+------------------------------------------------------------
+
+Q33. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ និង #៣ ចេញទៅព្រមគ្នា ទើប #២ និង #៤ ចេញ ✓
+  2. #២ និង #៤ ទៅព្រមគ្នា ទើប #១និង #៣
+  3. #៣ទៅមុន បន្ទាប់មក #២ រួច #១និង #៤
+
+Q33. What does this sign stand for?
+  1. Vehicles 1 and 3 leave together at the same time, then vehicle 2 and 4 ✓
+  2. Vehicles 2 and 4 leave together at the same time then vehicles 1 and 3
+  3. First vehicle 3, next vehicle 2, and then vehicle 1 and 4
+
+------------------------------------------------------------
+
+Q34. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ចេញទៅមុន បន្ទាប់មក #២ ✓
+  2. #២ចេញទៅមុន បន្ទាប់មក #១
+  3. #១ និង #២ ទៅព្រមគ្នា
+
+Q34. What does this sign stand for?
+  1. First vehicle 1 then vehicle 2 ✓
+  2. First vehicle 2, then vehicle 1
+  3. Vehicles 1 and 2 leave together at the same time.
+
+------------------------------------------------------------
+
+Q35. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ចេញទៅមុន បន្ទាប់មក #២ រួច #៣ បត់ឆ្វេង ហើយ #៤ ✓
+  2. #២ និង #៤ទៅព្រមគ្នា បន្ទាប់មក #១ និង #៣
+  3. #១ទៅមុន បន្ទាប់មក #៣បត់ឆ្វេង រួច #២ និង #៤ទៅព្រមគ្នា
+
+Q35. What does this sign stand for?
+  1. First vehicle 1, next 2, next 3 turns left, and then vehicle 4 ✓
+  2. First number 2 and 4 together leave at the same time then 1 and 3
+  3. First number 1, next 3 turns left, then 2 and 4 together leave at the same time.
+
+------------------------------------------------------------
+
+Q36. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #២ បត់ស្ដាំចេញទៅមុន បន្ទាប់មក #១ បត់ឆ្វេង រួច #៤ និង #៣
+  2. #២ និង #៣ ទៅមុន បន្ទាប់មក #១ និង #៤
+  3. #២បត់ស្ដាំទៅមុន #៤បត់ឆ្វេង បន្ទាប់ #៣ រួច #១បត់ឆ្វេង ✓
+
+Q36. What does this sign stand for?
+  1. First right turn vehicle 2, next left turn vehicle 1, and then vehicles 4 and 3
+  2. First number 2 and 3, then 1 and 4
+  3. First right turn number 2, next left turn number 4, then 3, and at last number 1 turns left ✓
+
+------------------------------------------------------------
+
+Q37. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #២ ត្រូវទៅមុន បន្ទាប់មក #៣ និង #១
+  2. #៣ និង #១ទៅមុន បន្ទាប់មក #២
+  3. #៣ទៅមុន រួចចាំ #២ បន្ទាប់មក #១ទៅ                                    ទើប #៣ ✓
+
+Q37. What does this sign stand for?
+  1. First vehicle 2 then vehicle 3 and 1
+  2. First number 3 and 1 then 2
+  3. First number 3, then waiting for 2, next 1, and then 3 ✓
+
+------------------------------------------------------------
+
+Q38. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #៣ ចេញទៅមុន #២ បត់ឆ្វេងទៅបន្ទាប់ រួច #១ ✓
+  2. #៣ និង #១ទៅមុន បន្ទាប់មក #២
+  3. #២ទៅមុន បន្ទាប់មក #១ និង #៣
+
+Q38. What does this sign stand for?
+  1. First vehicle 3, next vehicle 2 turn left, and then vehicle 1 ✓
+  2. First vehicle 3 and 1 then vehicle 2
+  3. First vehicle 2 then 1 and 3
+
+------------------------------------------------------------
+
+Q39. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #៣ និង #២ ចេញទៅមុន បន្ទាប់មក #៤ និង #១
+  2. #២ និង #១ទៅព្រមគ្នា បន្ទាប់មក #៣ និង #៤
+  3. #២ និង #៤ ទៅព្រមគ្នា បន្ទាប់មក #៣បត់ស្ដាំ់ #១បត់ឆ្វេង ✓
+
+Q39. What does this sign stand for?
+  1. First vehicles 3 and 2 then 4 and 1
+  2. First number 2 and 1 together leave at the same time then 3 and 4
+  3. First vehicles 2 and 4 together leave at the same time, then vehicle 3 turns right and vehicle 1 turns left ✓
+
+------------------------------------------------------------
+
+Q40. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #៣ និង #២ ចេញទៅព្រមគ្នា បន្ទាប់មក #១
+  2. #១ និង #២ ទៅព្រមគ្នា បន្ទាប់មក #៣ ✓
+  3. #២ទៅមុន បន្ទាប់មក #៣ និង #១
+
+Q40. What does this sign stand for?
+  1. Vehicle 3 and 2 leave together at the same time then vehicle 1
+  2. Vehicle 1 and 2 leave together at the same time then vehicle 3 ✓
+  3. First vehicle 2, next vehicle 3 and 1.
+
+------------------------------------------------------------
+
+Q41. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ចេញទៅមុន បន្ទាប់មក #៤ រួច #៣ និង #២
+  2. #១ និង #៣ ទៅព្រមគ្នា បន្ទាប់មក #៤ និង #២
+  3. #៤ ទៅមុន #២ បត់ឆ្វេងបន្ទាប់ រួច #១ និង #៣ទៅព្រមគ្នា ✓
+
+Q41. What does this sign stand for?
+  1. First vehicle 1, next vehicle 4, and then vehicles 3 and 2
+  2. First number 1 and 3 together leave at the same time, then 4 and 2
+  3. First number 4, number 2 turns left, then 1 and 3 together leave at the same time ✓
+
+------------------------------------------------------------
+
+Q42. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ចេញទៅមុន បន្ទាប់មក #២ រួច #៣ ហើយ #៤ ✓
+  2. #២ និង #៤ ទៅព្រមគ្នា បន្ទាប់មក #១ និង #៣
+  3. #១ទៅមុន បន្ទាប់មក #៣ រួច #២ និង #៤ទៅព្រមគ្នា
+
+Q42. What does this sign stand for?
+  1. First vehicle 1, next 2, and then vehicles 3 and 4 ✓
+  2. First number 2 and 4 together leave at the same time then 1 and 3
+  3. First number 1, next 3, and then 2 and 4 together leave at the same time
+
+------------------------------------------------------------
+
+Q43. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #២ ទៅមុខត្រង់ទៅមុនរួច #១ បត់ឆ្វេងទៅក្រោយ ✓
+  2. #១ ទៅមុន រួច #២
+  3. #១ និង #២ ទៅព្រមគ្នា
+
+Q43. What does this sign stand for?
+  1. First vehicle 2 goes straight ahead then followed by vehicle 1 turns left ✓
+  2. First number 1 then 2
+  3. Number 1 and 2 together leave at the same time
+
+------------------------------------------------------------
+
+Q44. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #៣ និង #១ចេញទៅមុនបត់ពីក្រោយគ្នា រួច #២ ✓
+  2. #២ទៅមុន បន្ទាប់មក #១ និងលខ៣
+  3. #៣ទៅមុន បន្ទាប់មក #២  រួច #១បត់ឆ្វេង
+
+Q44. What does this sign stand for?
+  1. vehicle 3 and vehicle 1 leave first and turning one after another, then vehicle 2. ✓
+  2. number 2 first leaves and then 1 and 3
+  3. number 3 first leave, Number 2 next, and then number 1 turns left
+
+------------------------------------------------------------
+
+Q45. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ចេញទៅមុន បន្ទាប់មក #២ រួច #៣
+  2. #៣ ទៅមុន បន្ទាប់មក #២ និង #១
+  3. #២ បត់ឆ្វេងមុន បន្ទាប់មក #១ និង #៣ ✓
+
+Q45. What does this sign stand for?
+  1. First vehicle 1, next vehicle 2 and then number 3
+  2. First vehicle 3 then vehicles 2 and 1
+  3. First left turn vehicle 2 then number 1 and 3 ✓
+
+------------------------------------------------------------
+
+Q46. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ចេញទៅមុន #២ បត់ឆ្វេងទៅបន្ទាប់ និង #៣ចេញ ✓
+  2. #២ និង #៣ទៅព្រមគ្នា បន្ទាប់មក #១
+  3. #១ និង #៣ទៅព្រមគ្នា បន្ទាប់មក #២
+
+Q46. What does this sign stand for?
+  1. First vehicle 1, next left turn vehicle 2, then vehicle 3 ✓
+  2. First number 2 and 3 together leave at the same time then 1.
+  3. First number 1 and 3 together leave at the same time then 2.
+
+------------------------------------------------------------
+
+Q47. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ចេញទៅមុន បន្ទាប់មក #២ រួច #៣
+  2. #៣ ទៅមុន បន្ទាប់មក #២បត់ឆ្វេង រួច #១ ✓
+  3. #៣ទៅមុន បន្ទាប់មក #១បត់ឆ្វេង រួច #២
+
+Q47. What does this sign stand for?
+  1. Vehicle 1 leaves first, next vehicle 2, and then vehicle 3.
+  2. First number 3, next number 2 turns left, and then number 1 ✓
+  3. First number 3, next number 1 turns left, and then vehicle 2
+
+------------------------------------------------------------
+
+Q48. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #២ ចេញទៅមុន បន្ទាប់មក #៣ រួច #១
+  2. #៣ និង #១ ទៅមុន បន្ទាប់មក #២ ✓
+  3. #៣ទៅមុន បន្ទាប់មក #២ រួច #១
+
+Q48. What does this sign stand for?
+  1. First vehicle 2, next vehicle 3 and then vehicle 1
+  2. First number 3 and 1, then number 2 ✓
+  3. First number 3, next number 2, and then number 1 
+
+------------------------------------------------------------
+
+Q49. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #៣ និង #២ចេញទៅព្រមគ្នា បន្ទាប់មក #១
+  2. #១ និង #២ទៅព្រមគ្នា បន្ទាប់មក #៣ ✓
+  3. #២ទៅមុន បន្ទាប់មក #៣ និង #១ទៅព្រមគ្នា
+
+Q49. What does this sign stand for?
+  1. First vehicles 3 and 2 together leave at the same time then vehicle 1
+  2. First number 1 and 2 then 3 ✓
+  3. First number 2, then 3 and 1 together leave at the same time
+
+------------------------------------------------------------
+
+Q50. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ បត់ឆ្វេងទៅមុន បន្ទាប់មក #២ ✓
+  2. #២ទៅមុន បន្ទាប់មក #១
+  3. #១ និង #២ ទៅព្រមគ្នា
+
+Q50. What does this sign stand for?
+  1. First left turn vehicle 1 the vehicle 2 ✓
+  2. First number 2 then 1
+  3. Number 1 and 2 together leave at the same time
+
+------------------------------------------------------------
+
+Q51. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #៣ ត្រូវចេញទៅមុន បន្ទាប់មក #២រួច #១
+  2. #៣ទៅមុន បន្ទាប់មក #១ និង #២ ✓
+  3. #១ទៅមុន ចាំ #៣ និង #២ទៅផុត ទើប #១
+
+Q51. What does this sign stand for?
+  1. First vehicle 3, next vehicle 2, and then vehicle 1
+  2. First number 3 then 1 and 2 ✓
+  3. First number 1, after number 3 and 2 is number 1.
+
+------------------------------------------------------------
+
+Q52. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ចេញទៅមុន បន្ទាប់មក #២ និង #៣ ទៅតាមក្រាយ
+  2. #៣ទៅមុន បន្ទាប់មក #២ និង #១
+  3. #២ បត់ឆ្វេងទៅមុន បន្ទាប់មក #១ រួច #៣បត់ឆ្វេង ✓
+
+Q52. What does this sign stand for?
+  1. First vehicle 1 then followed by 2 and 3
+  2. First number 3 then 2 and 1
+  3. First left turn number 2, next 1, and then 3 turns left ✓
+
+------------------------------------------------------------
+
+Q53. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #២ ត្រូវទៅមុន បន្ទាប់មក #៣ រួច #៤ ទៅបន្ទាប់ ហើយ #១
+  2. #៣ និង #១ ទៅមុន បន្ទាប់មក #២ និង #៤
+  3. #២ និង #៤ ទៅព្រមគ្នា ហើយ #១ និង #៣ បត់ឆ្វេងពីក្រោយគ្នា ✓
+
+Q53. What does this sign stand for?
+  1. First vehcle1, next 3, next 4, and then 1
+  2. First number 3 and 1, then 2 and 4
+  3. First number 2 and 4 together leave at the same time, then 1 and 3 turn left one after another ✓
+
+------------------------------------------------------------
+
+Q54. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ និង #៣ ទៅមុន បន្ទាប់មក #២
+  2. #៣ ទៅមុន បន្ទាប់មក #២ រួច #១
+  3. #១ទៅមុន បន្ទាប់មក #២ និង #៣ ✓
+
+Q54. What does this sign stand for?
+  1. First vehicles 1 and 3 then vehicle 2
+  2. First number 3, next 2, and then 1
+  3. First number 1, then 2 and 3 ✓
+
+------------------------------------------------------------
+
+Q55. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ចេញទៅមុន បន្ទាប់មក #២ និង #៣ ✓
+  2. #៣ ទៅមុន បន្ទាប់មក #២ រួច #១
+  3. #២ទៅមុន បន្ទាប់មក #១និង #៣
+
+Q55. What does this sign stand for?
+  1. First vehicle1 then 2 and 3 ✓
+  2. First number 3, then 2 and 1
+  3. First number 2, then 1 and 3
+
+------------------------------------------------------------
+
+Q56. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #២ បត់ស្ដាំចេញទៅមុន បន្ទាប់មក #១ បត់ឆ្វេង រួច #៤ និង #៣
+  2. #២ និង #៣ ទៅមុន បន្ទាប់មក #១ និង #៤បត់ឆ្វេង
+  3. #២ បត់ស្ដាំមុន #៤ បត់ឆ្វេងទៅបន្ទាប់ រួច #៣ និង #១ ✓
+
+Q56. What does this sign stand for?
+  1. First right turn vehicle 2, next left turn vehicle 1, and then vehicles 4 and 3
+  2. First number 2 and 3, then number 1 and 4 turn left
+  3. First right turn number 2, next left turn number 4, then number 3 and 1 ✓
+
+------------------------------------------------------------
+
+Q57. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ និង #៣ ចេញទៅមុន ហើយ #២
+  2. #១ចេញមុនរង់ចាំ #២ និង #៣ទៅផុត ទើប #១ ទៅបាន ✓
+  3. #២ទៅមុន បន្ទាប់មក #១ និង #៣បត់ឆ្វេង
+
+Q57. What does this sign stand for?
+  1. First vehicles 1 and 3 then vehicle 2
+  2. First number 1, after 2 and 3 alread left, then 1 moves on  ✓
+  3. First number 2, then 1 and 3 turn left
+
+------------------------------------------------------------
+
+Q58. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ចេញទៅមុន បន្ទាប់មក #៤ រួច #៣ ហើយ #២
+  2. #១ និង #៣ទៅព្រមគ្នា បន្ទាប់មក #៤ រួច #២
+  3. #៤ទៅមុន #២បត់ឆ្វេងបន្ទាប់ រួច #១ និង #៣ទៅព្រមគ្នា ✓
+
+Q58. What does this sign stand for?
+  1. First vehicle 1, next 4, next 3, and then 2
+  2. First number 1 and 3 together leave at the same time, next 4, and then 2
+  3. First number 4, next vehicle 2 turns left, and then 1 and 3 together at the same time ✓
+
+------------------------------------------------------------
+
+Q59. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ចេញទៅមុន បន្ទាប់មក #២ រួច #៣ ✓
+  2. #៣ ទៅមុន បន្ទាប់មក #២ រួច #១
+  3. #១ និង #៣ទៅមុន រួច #២
+
+Q59. What does this sign stand for?
+  1. First vehicle 1, next 2, and the 3 ✓
+  2. First number 3, next 2 , and then1
+  3. First number 1 and 3 then 2
+
+------------------------------------------------------------
+
+Q60. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ចេញទៅមុន បន្ទាប់មក #២ រួច #៣
+  2. #៣ ទៅមុន បន្ទាប់មក #២ រួច #១ ✓
+  3. #២ និង #៣ទៅព្រមគ្នា រួច #១
+
+Q60. What does this sign stand for?
+  1. First vehicle 1, next 2, and then 3
+  2. First number 3, next 2, and then 1 ✓
+  3. First number 2 and 3 together at the same time, then 1
+
+------------------------------------------------------------
+
+Q61. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #៣ ចេញទៅមុន បន្ទាប់មក #៤ រួច #១និង #២
+  2. #៣ ទៅមុន បន្ទាប់មក #១ រួច #៤ និង #២ ✓
+  3. #៣ និង #២ទៅដំណាលគ្នា រួច #៤ និង #១
+
+Q61. What does this sign stand for?
+  1. First vehicle 3, next 4, and then 1 and 2
+  2. First number 3, next 1, and then 4 and 2 ✓
+  3. Number 3 and 2 leave together at the same time, then 2 and 1.
+
+------------------------------------------------------------
+
+Q62. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ និង #២ ចេញទៅព្រមគ្នា បន្ទាប់មក #៣បត់ឆ្វេង ✓
+  2. #៣ ទៅមុន បន្ទាប់មក #១ និង #២
+  3. #២ និង #៣ ចេញទៅព្រមគ្នា បន្ទាប់មក #១
+
+Q62. What does this sign stand for?
+  1. First vehicles 1 and 2 together leave at the same time, then vehicle 3 turns left ✓
+  2. First number 3, then 1 and 2.
+  3. Vehicle 2 and 3 together leave at the same time, then 1.
+
+------------------------------------------------------------
+
+Q63. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ បត់ស្ដាំទៅមុន #២ បត់ឆ្វេងទៅបន្ទាប់ រួច #៣ ✓
+  2. #១ និង #៣ ទៅព្រមគ្នា រួច #២
+  3. #៣ និង #២ទៅព្រមគ្នា រួច #១
+
+Q63. What does this sign stand for?
+  1. First right turn vehicle 1, next left turn vehicle 2, then vehicle 3 ✓
+  2. First number 1 and 3 together leave at the same time, then 2.
+  3. Number 3 and 2 together leave at the same tiem, then 1.
+
+------------------------------------------------------------
+
+Q64. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ចេញទៅព្រមគ្នាជាមួយ #៣ រួច #២
+  2. #១ ទៅមុន បន្ទាប់មក #២ រួច #៣ ✓
+  3. #៣ទៅមុន បន្ទាប់មក #២ រួច #១
+
+Q64. What does this sign stand for?
+  1. First vehicles 1 and 3 together leave at the same time, then 2.
+  2. First number 1, next 2, and then 3 ✓
+  3. First number 3, next 2, and the 1.
+
+------------------------------------------------------------
+
+Q65. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ចេញទៅមុន បន្ទាប់មក #២ រួច #៣
+  2. #២ ទៅមុន បន្ទាប់មក #៣ រួច #១ ✓
+  3. #៣និង #២ទៅព្រមគ្នា រួច #១
+
+Q65. What does this sign stand for?
+  1. First vehicle 1, next 2, and then 3.
+  2. First vehicle 2, next 3, and then 1. ✓
+  3. Number 3 and 2 together leave at the same tiem then 1.
+
+------------------------------------------------------------
+
+Q66. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #៣ និង #១ ទៅព្រមគ្នា រួច #២
+  2. #២ ទៅមុន បន្ទាប់មក #៣ រួច #១ ✓
+  3. #១ទៅមុន #២ និង #៣បត់ឆ្វេង
+
+Q66. What does this sign stand for?
+  1. Vehicle 3 and 1 together leave at the same time, then 2.
+  2. First number 2, next 3, and then 1. ✓
+  3. First number 1. number 2 and 3 turn left.
+
+------------------------------------------------------------
+
+Q67. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ចេញទៅមុន បន្ទាប់មក #២ រួច #៣
+  2. #៣ ទៅមុន បន្ទាប់មក #២ រួច #១ ✓
+  3. #១ និង #៣ទៅមុន រួច #២
+
+Q67. What does this sign stand for?
+  1. First vehicle 1, next 2, and then 3
+  2. First number 3, next 2 , and then1. ✓
+  3. First number 1 and 3, then 2.
+
+------------------------------------------------------------
+
+Q68. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ និង #២ចេញទៅព្រមគ្នា បន្ទាប់មក #៣ បត់ឆ្វេង ✓
+  2. #៣ ទៅមុន បន្ទាប់មក #១ និង #២
+  3. #២ និង #៣ទៅព្រមគ្នា បន្ទាប់មក #១
+
+Q68. What does this sign stand for?
+  1. First vehicle 1 and 2 leave together at the same time, then vehicle 3 turns left . ✓
+  2. First number 3, then 1 and 2.
+  3. Number 2 and 3 together leave at the same time, then 1.
+
+------------------------------------------------------------
+
+Q69. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #៣ ចេញទៅមុន បន្ទាប់មក #២ រួច #១
+  2. #១ និង #៣ ទៅព្រមគ្នា បន្ទាប់ #២
+  3. #១ទៅមុន ចាំ #២ បន្ទាប់ #៣ ✓
+
+Q69. What does this sign stand for?
+  1. vehicle 3 first leave, Number 2 next , and then Number 1.
+  2. Number 1 and 3 leave at the same time, then 2.
+  3. Number 1 leaves first, vehicle 2 next and then 3.  ✓
+
+------------------------------------------------------------
+
+Q70. ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+  1. #១ ចេញទៅមុន បន្ទាប់មក #២ ✓
+  2. #២ទៅមុន បន្ទាប់មក #១
+  3. #១ និង #២ ទៅព្រមគ្នា
+
+Q70. What does this sign stand for?
+  1. Vehicle 1 departs first, next vehicle 2 ✓
+  2. Vehicle 2 departs first, then vehicle 1
+  3. Vehicle 1 and 2 depart at the same time.
+
+------------------------------------------------------------
+
