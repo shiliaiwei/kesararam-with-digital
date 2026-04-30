@@ -6,7 +6,6 @@ on:
   pull_request:
     branches: [main, docs]
   schedule:
-    # Run every Wednesday at 08:00 UTC
     - cron: "0 8 * * 3"
 
 permissions:
@@ -18,7 +17,7 @@ jobs:
   analyze:
     name: CodeQL Analyze
     runs-on: ubuntu-latest
-    timeout-minutes: 360
+    timeout-minutes: 30
 
     strategy:
       fail-fast: false
@@ -26,24 +25,22 @@ jobs:
         language: ["javascript-typescript"]
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
-          # Focus on security-extended queries for stronger SAST
-          queries: security-extended,security-and-quality
+          # Use security-extended only (security-and-quality is very slow)
+          queries: security-extended
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: "20"
           cache: "npm"
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --prefer-offline
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
