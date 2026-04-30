@@ -61,15 +61,16 @@ export async function GET(
   }
 }
 
-// POST - Create a new question
+// POST - Create a new question — ADMIN ONLY
 export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await getSession();
-    if (!session?.id || session.role !== "staff") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    // Staff cannot add questions — only admin can
+    if (!session?.id || session.role !== "admin") {
+      return NextResponse.json({ error: "Only admins can add questions to topics" }, { status: 403 });
     }
 
     const { id: topicId } = await params;

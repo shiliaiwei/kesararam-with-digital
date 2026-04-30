@@ -2,15 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { sql } from "@/lib/db";
 
-// PUT - Update a question and its answers
+// PUT - Update a question and its answers — ADMIN ONLY
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string; qid: string }> }
 ) {
   try {
     const session = await getSession();
-    if (!session?.id || (session.role !== "staff" && session.role !== "admin")) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (!session?.id || session.role !== "admin") {
+      return NextResponse.json({ error: "Only admins can edit questions" }, { status: 403 });
     }
 
     const { id: topicId, qid } = await params;
@@ -55,15 +55,15 @@ export async function PUT(
   }
 }
 
-// DELETE - Delete a question and its answers
+// DELETE - Delete a question and its answers — ADMIN ONLY
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string; qid: string }> }
 ) {
   try {
     const session = await getSession();
-    if (!session?.id || (session.role !== "staff" && session.role !== "admin")) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (!session?.id || session.role !== "admin") {
+      return NextResponse.json({ error: "Only admins can delete questions" }, { status: 403 });
     }
 
     const { id: topicId, qid } = await params;
