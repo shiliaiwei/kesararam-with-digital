@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Search, ArrowLeft } from "lucide-react";
-import { SignDetailPopup } from "./sign-detail-popup";
+import { Search, ArrowLeft, X, Volume2 } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 
 interface Topic {
@@ -19,7 +18,26 @@ interface Topic {
   audio_url_km: string;
 }
 
-const SUB_GROUPS = ["Arrows Markings", "Buildup Area Boundary Signs", "Direction Signs", "Informative Signs", "Longitudinal Markings", "Mandatory Signs", "Other Road Markings", "Priority Signs", "Prohibitory Signs", "Sign Posts", "Street Name Signs", "Supplementary Signs", "Temporary Signs", "Traffic Lights", "Traffic Police Signals", "Transverse Markings", "Warning Signs"];
+// Ordered per official Cambodian traffic sign PDF (ក→ខ→គ→ឃ)
+const SUB_GROUPS = [
+  "Prohibitory Signs",
+  "Mandatory Signs",
+  "Priority Signs",
+  "Warning Signs",
+  "Temporary Signs",
+  "Direction Signs",
+  "Buildup Area Boundary Signs",
+  "Street Name Signs",
+  "Informative Signs",
+  "Supplementary Signs",
+  "Sign Posts",
+  "Transverse Markings",
+  "Longitudinal Markings",
+  "Arrows Markings",
+  "Other Road Markings",
+  "Traffic Lights",
+  "Traffic Police Signals",
+];
 
 export function TrafficSignsCatalogue() {
   const { lang } = useLang();
@@ -30,15 +48,25 @@ export function TrafficSignsCatalogue() {
   const [subGroupFilter, setSubGroupFilter] = useState("");
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
   const [selectedQuestions, setSelectedQuestions] = useState<any[]>([]);
+  const [loadingQuestions, setLoadingQuestions] = useState(false);
 
   const handleTopicClick = async (topic: Topic) => {
+    // Toggle: clicking the same sign closes it
+    if (selectedTopic?.id === topic.id) {
+      setSelectedTopic(null);
+      setSelectedQuestions([]);
+      return;
+    }
     setSelectedTopic(topic);
+    setLoadingQuestions(true);
     try {
       const res = await fetch(`/api/public/topics/${topic.id}/questions`);
       const data = await res.json();
       setSelectedQuestions(data.questions || []);
     } catch {
       setSelectedQuestions([]);
+    } finally {
+      setLoadingQuestions(false);
     }
   };
 
@@ -217,66 +245,189 @@ export function TrafficSignsCatalogue() {
         </div>
       </div>
 
-      {/* Signs Grid - Only Image + Code */}
+      {/* Signs Grid - inline expand on click */}
       <div className="max-w-7xl mx-auto px-4 pb-12">
         {loading ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3 md:gap-4">
             {Array.from({ length: 16 }).map((_, i) => (
-              <div
-                key={i}
-                className="aspect-square bg-gray-200 border-2 border-black animate-pulse"
-              />
+              <div key={i} className="aspect-square bg-gray-200 border-2 border-black animate-pulse" />
             ))}
           </div>
         ) : filteredTopics.length === 0 ? (
-          <div
-            className="bg-white border-2 border-black p-12 text-center"
-            style={{ boxShadow: "4px 4px 0 #000" }}
-          >
+          <div className="bg-white border-2 border-black p-12 text-center" style={{ boxShadow: "4px 4px 0 #000" }}>
             <p className="text-zinc-600 font-bold">{t.noSigns}</p>
           </div>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-3 md:gap-4">
-            {filteredTopics.map((topic) => (
-              <button
-                key={topic.id}
-                onClick={() => handleTopicClick(topic)}
-                className="group bg-white border-2 border-black hover:shadow-[4px_4px_0_#000] transition-all flex flex-col h-full"
-              >
-                {/* Image Only */}
-                <div className="relative w-full overflow-hidden bg-white" style={{ paddingBottom: "100%" }}>
-                  {topic.primary_image_url ? (
-                    <img
-                      src={topic.primary_image_url}
-                      alt={topic.topic_code}
-                      className="absolute inset-0 w-full h-full object-contain p-3 md:p-4 group-hover:scale-105 transition-transform duration-200"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 w-full h-full bg-gray-100 flex items-center justify-center">
-                      <span className="text-3xl md:text-4xl">🚦</span>
+            {filteredTopics.map((topic, idx) => {
+              const isSelected = selectedTopic?.id === topic.id;
+              const COLS = 8;
+              const isLastInRow = (idx + 1) % COLS === 0 || idx === filteredTopics.length - 1;
+              const selectedIdx = selectedTopic ? filteredTopics.findIndex(t => t.id === selectedTopic.id) : -1;
+              const showPanelAfter =
+                selectedTopic &&
+                selectedIdx >= 0 &&
+                idx >= selectedIdx &&
+                Math.floor(idx / COLS) === Math.floor(selectedIdx / COLS) &&
+                isLastInRow;
+
+              return (
+                <>
+                  <button
+                    key={topic.id}
+                    onClick={() => handleTopicClick(topic)}
+                    aria-expanded={isSelected}
+                    className={`group border-2 transition-all duration-150 flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 ${isSelected
+                      ? "border-yellow-400 bg-yellow-400 shadow-[4px_4px_0_#ca8a04]"
+                      : "border-black bg-white hover:border-yellow-400 hover:bg-yellow-400 hover:shadow-[4px_4px_0_#ca8a04]"
+                      }`}
+                  >
+                    {/* Image */}
+                    <div className="relative w-full overflow-hidden" style={{ paddingBottom: "100%" }}>
+                      {topic.primary_image_url ? (
+                        <img
+                          src={topic.primary_image_url}
+                          alt={topic.topic_code}
+                          className="absolute inset-0 w-full h-full object-contain p-3 md:p-4 group-hover:scale-105 transition-transform duration-200"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+                          <span className="text-3xl">🚦</span>
+                        </div>
+                      )}
+                    </div>
+                    {/* Code */}
+                    <div className={`border-t-2 p-2 w-full transition-colors ${isSelected ? "border-yellow-500 bg-yellow-500" : "border-black bg-zinc-50 group-hover:border-yellow-500 group-hover:bg-yellow-500"
+                      }`}>
+                      <div className="font-mono text-xs font-black text-center text-black">
+                        {topic.topic_code}
+                      </div>
+                    </div>
+                  </button>
+
+                  {/* Inline detail panel after last card in selected row */}
+                  {showPanelAfter && selectedTopic && (
+                    <div
+                      key={`panel-${selectedTopic.id}`}
+                      className="col-span-full border-4 border-yellow-400 bg-white"
+                      style={{ boxShadow: "6px 6px 0 #000" }}
+                    >
+                      {/* Panel header */}
+                      <div className="flex items-center justify-between px-5 py-3 bg-yellow-400 border-b-2 border-black">
+                        <div className="flex items-center gap-3 flex-wrap">
+                          <span className="font-mono text-xs font-black bg-black text-yellow-400 px-2 py-0.5">
+                            {selectedTopic.topic_code}
+                          </span>
+                          {selectedTopic.sub_group && (
+                            <span className="text-xs font-bold text-black/70">{selectedTopic.sub_group}</span>
+                          )}
+                        </div>
+                        <button
+                          onClick={() => { setSelectedTopic(null); setSelectedQuestions([]); }}
+                          className="p-1.5 bg-white border-2 border-black hover:bg-black hover:text-white transition-all"
+                        >
+                          <X size={14} />
+                        </button>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-0">
+                        {/* Image */}
+                        <div className="flex items-center justify-center p-6 border-b-2 md:border-b-0 md:border-r-2 border-black bg-zinc-50">
+                          {selectedTopic.primary_image_url && (
+                            <img
+                              src={selectedTopic.primary_image_url}
+                              alt={selectedTopic.name_en}
+                              className="object-contain max-h-40 max-w-full"
+                            />
+                          )}
+                        </div>
+
+                        {/* Content */}
+                        <div className="p-5 space-y-3">
+                          <h2 className="text-2xl font-black">{selectedTopic.name_en}</h2>
+                          <p className="text-lg text-zinc-600" style={{ fontFamily: "Siemreap, sans-serif" }}>
+                            {selectedTopic.name_km}
+                          </p>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+                            <div>
+                              <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">English</p>
+                              <p className="text-sm text-zinc-700 leading-relaxed">{selectedTopic.description_en || "—"}</p>
+                            </div>
+                            <div>
+                              <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">ខ្មែរ</p>
+                              <p className="text-sm text-zinc-700 leading-relaxed" style={{ fontFamily: "Siemreap, sans-serif" }}>
+                                {selectedTopic.description_km || "—"}
+                              </p>
+                            </div>
+                          </div>
+                          {selectedTopic.law_reference && (
+                            <div className="bg-blue-50 border-2 border-blue-200 px-3 py-2 text-xs text-blue-800">
+                              <span className="font-black uppercase block mb-0.5">Law Reference</span>
+                              {selectedTopic.law_reference}
+                            </div>
+                          )}
+                          {/* Audio */}
+                          {(selectedTopic.audio_url_en || selectedTopic.audio_url_km) && (
+                            <div className="flex gap-2 flex-wrap pt-1">
+                              {selectedTopic.audio_url_en && (
+                                <button
+                                  onClick={() => new Audio(selectedTopic.audio_url_en).play()}
+                                  className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-black bg-white hover:bg-yellow-400 font-black text-xs shadow-[2px_2px_0_#000] transition-all"
+                                >
+                                  <Volume2 size={13} /> EN Audio
+                                </button>
+                              )}
+                              {selectedTopic.audio_url_km && (
+                                <button
+                                  onClick={() => new Audio(selectedTopic.audio_url_km).play()}
+                                  className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-black bg-white hover:bg-yellow-400 font-black text-xs shadow-[2px_2px_0_#000] transition-all"
+                                  style={{ fontFamily: "Siemreap, sans-serif" }}
+                                >
+                                  <Volume2 size={13} /> ចាក់សំឡេង
+                                </button>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Related questions */}
+                      {loadingQuestions ? (
+                        <div className="border-t-2 border-black px-5 py-4 text-xs font-bold text-zinc-400">Loading questions...</div>
+                      ) : selectedQuestions.length > 0 && (
+                        <div className="border-t-2 border-black px-5 py-4 space-y-2">
+                          <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-3">
+                            Related Questions ({selectedQuestions.length})
+                          </p>
+                          {selectedQuestions.map((q: any, i: number) => (
+                            <details key={q.id} className="border-2 border-black group/q">
+                              <summary className="px-4 py-3 flex items-start gap-3 cursor-pointer hover:bg-zinc-50 list-none">
+                                <span className="font-black text-[10px] bg-black text-white px-1.5 py-0.5 shrink-0 mt-0.5">Q{i + 1}</span>
+                                <span className="font-bold text-sm flex-1">{q.question_en}</span>
+                              </summary>
+                              <div className="border-t-2 border-black bg-zinc-50 p-3 space-y-2">
+                                {q.answers?.map((a: any, ai: number) => (
+                                  <div key={a.id} className={`px-3 py-2 border-2 text-sm flex gap-2 ${a.is_correct ? "bg-green-100 border-green-500" : "bg-white border-zinc-200"}`}>
+                                    <span className="font-bold shrink-0">{String.fromCharCode(65 + ai)}.</span>
+                                    <span className="flex-1">{a.answer_en}</span>
+                                    {a.is_correct && <span className="text-green-600 font-black text-xs">✓</span>}
+                                  </div>
+                                ))}
+                              </div>
+                            </details>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   )}
-                </div>
-                {/* Code Only */}
-                <div className="border-t-2 border-black p-2 bg-zinc-50 mt-auto w-full">
-                  <div className="font-mono text-xs font-bold text-center text-zinc-700 group-hover:text-black transition-colors">
-                    {topic.topic_code}
-                  </div>
-                </div>
-              </button>
-            ))}
+                </>
+              );
+            })}
           </div>
         )}
       </div>
 
-      {/* Sign Detail Popup */}
-      {selectedTopic && (
-        <SignDetailPopup
-          topic={selectedTopic}
-          questions={selectedQuestions}
-          onClose={() => { setSelectedTopic(null); setSelectedQuestions([]); }}
-        />
-      )}
+      {/* Remove old modal — replaced by inline panel above */}
     </div>
   );
 }
