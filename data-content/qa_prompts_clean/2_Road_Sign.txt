@@ -1,0 +1,1679 @@
+======================================================================
+Category : Road Sign
+ID Prefix: RSG
+Total    : 186 questions
+======================================================================
+
+[RSG-Q001]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): អនុញ្ញាតឱ្យបន្ដដំណើរ បើគ្មានឧបសគ្គនៅខាងមុខ
+
+Q (EN): What does this sign stand for?
+A (EN): Going straight permitted if no any obstacle
+
+----------------------------------------------------------------------
+
+[RSG-Q002]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): គំនូសសញ្ញាទោលពណ៌លឿង ស តាមបណ្ដោយគែមចិញ្ចើមផ្លូវសំរាប់ហាមចត
+
+Q (EN): What does this sign stand for?
+A (EN): Yellow-white single line alongside the edge of the pavement for no parking
+
+----------------------------------------------------------------------
+
+[RSG-Q003]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): អនុញ្ញាតឲ្យអ្នកបើកបរតាមទិសមើលឃើញនគរបាលចរាចរណ៍ពីចំហៀងខ្លួនបន្តដំណើរ
+
+Q (EN): What does this sign stand for?
+A (EN): Allowing drivers to follow as seeing the traffic police from the side
+
+----------------------------------------------------------------------
+
+[RSG-Q004]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ចូលទីប្រជុំជនក្រុងភ្នំពេញ
+
+Q (EN): What does this sign stand for?
+A (EN): Phnom Penh built-up area
+
+----------------------------------------------------------------------
+
+[RSG-Q005]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ចប់ផ្លូវទោចក្រយានធ្វើចរាចរណ៍
+
+Q (EN): What does this sign stand for?
+A (EN): End of compulsory bicycles
+
+----------------------------------------------------------------------
+
+[RSG-Q006]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): បញ្ជាឱ្យប្រុងប្រយ័ត្ន និងឈប់ បើយានមិនទាន់ដល់ផ្លូវខ្វែង
+
+Q (EN): What does this sign stand for?
+A (EN): Compulsory caution and stop if the vehicles not getting to the intersection
+
+----------------------------------------------------------------------
+
+[RSG-Q007]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): គំនូសសញ្ញាទោលពណ៌ក្រហម ស តាមបណ្ដោយគែមចិញ្ចើមផ្លូវសម្រាប់ការហាមឈប់
+
+Q (EN): What does this sign stand for?
+A (EN): The single red-white line along the roadside for not standing
+
+----------------------------------------------------------------------
+
+[RSG-Q008]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះទោចក្រយានយន្ដដែលមានសណ្ដោងរ៉ឺម៉ក ឬរទេះ
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for motorcycle drawn vehicles or trolleys
+
+----------------------------------------------------------------------
+
+[RSG-Q009]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): បញ្ជាឱ្យឈប់
+
+Q (EN): What does this sign stand for?
+A (EN): Complusory stop
+
+----------------------------------------------------------------------
+
+[RSG-Q010]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): យានបត់ឆ្វេង តម្រូវឱ្យឈប់
+
+Q (EN): What does this sign stand for?
+A (EN): Left turn vehicles, compulsory stop
+
+----------------------------------------------------------------------
+
+[RSG-Q011]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): បញ្ជាឱ្យប្រុងប្រយ័ត្ន និងឈប់ បើយានមិនទាន់ចូលដល់ផ្លូវខ្វែង
+
+Q (EN): What does this sign stand for?
+A (EN): Compulsory caution and stop if the vehicles not getting to the intersection
+
+----------------------------------------------------------------------
+
+[RSG-Q012]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រាប់ការចូលដល់ព្រំប្រទល់ ខេត្ដកំពង់ចាម
+
+Q (EN): What does this sign stand for?
+A (EN): Showing the entry of Kompong Cham boundary
+
+----------------------------------------------------------------------
+
+[RSG-Q013]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): អនុញ្ញាតឱ្យបន្ដដំណើរទៅមុខ បើសិនជាយានចូលដល់ផ្លូវខ្វែងហើយ
+
+Q (EN): What does this sign stand for?
+A (EN): Allow to move ahead if the vehicle has already moved into the intersection.
+
+----------------------------------------------------------------------
+
+[RSG-Q014]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): តម្រូវឱ្យយានជំនិះគ្រប់ប្រភេទបត់ឆ្វេងនៅខាងមុខផ្លាកសញ្ញា
+
+Q (EN): What does this sign stand for?
+A (EN): Compulsory all vehicles turn left in front of the sign.
+
+----------------------------------------------------------------------
+
+[RSG-Q015]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ចប់ព្រំប្រទល់ខេត្ដកំពង់ចាម
+
+Q (EN): What does this sign stand for?
+A (EN): End Konpong Cham Province
+
+----------------------------------------------------------------------
+
+[RSG-Q016]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះរទេះដែលអូសទាញដោយសត្វ
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for animal drawn vehicles
+
+----------------------------------------------------------------------
+
+[RSG-Q017]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): បញ្ជាឱ្យអែបស្ដាំ
+
+Q (EN): What does this sign stand for?
+A (EN): Mandatory drive along closed to the right side.
+
+----------------------------------------------------------------------
+
+[RSG-Q018]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): អនុញ្ញាតឱ្យបត់ឆ្វេង
+
+Q (EN): What does this sign stand for?
+A (EN): Left turn permitted
+
+----------------------------------------------------------------------
+
+[RSG-Q019]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ចប់ផ្លូវសំខាន់មានសិទ្ឋិ
+
+Q (EN): What does this sign stand for?
+A (EN): End of main road with priority
+
+----------------------------------------------------------------------
+
+[RSG-Q020]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះប្រភេទដឹកទំនិញធុនធំមានសណ្ដោងរ៉ឺម៉ក
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for large-sized truck towing a trailer.
+
+----------------------------------------------------------------------
+
+[RSG-Q021]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): បញ្ជាឱ្យបន្ដដំណើរទៅមុខចំពោះអ្នកបើកបរតាមទិសមើលឃើញនគរបាលចរាចរណ៍ពីចំហៀងខ្លួន
+
+Q (EN): What does this sign stand for?
+A (EN): Mandatory move on ahead for drivers driving and seeing the traffic police from the side
+
+----------------------------------------------------------------------
+
+[RSG-Q022]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះទោចក្រយាន
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for bicycles
+
+----------------------------------------------------------------------
+
+[RSG-Q023]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ចប់ទីប្រជុំជនក្រុងភ្នំពេញ
+
+Q (EN): What does this sign stand for?
+A (EN): End Phnom Penh built-up area
+
+----------------------------------------------------------------------
+
+[RSG-Q024]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមថ្មើរជើងឆ្លងកាត់
+
+Q (EN): What does this sign stand for?
+A (EN): No pedestrians crossing
+
+----------------------------------------------------------------------
+
+[RSG-Q025]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): បញ្ជាឱ្យឈប់ចំពោះអ្នកបើកបរតាមទិសដែលមើលឃើញនគរបាលចរាចរណ៍ចំពីមុខ ឬពីក្រោយ
+
+Q (EN): What does this sign stand for?
+A (EN): Mandatory stop for drivers driving on the direction and seening traffic police side or from the back
+
+----------------------------------------------------------------------
+
+[RSG-Q026]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវបំបែកកែងទៅឆ្វេង និងកែងទៅស្ដាំ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of staggered junction on the left and staggered junction on the right.
+
+----------------------------------------------------------------------
+
+[RSG-Q027]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមយានជំនិះគ្រប់ប្រភេទបត់ឆ្វេង
+
+Q (EN): What does this sign stand for?
+A (EN): No left turn for all vehicles.
+
+----------------------------------------------------------------------
+
+[RSG-Q028]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): កន្លែងសំរាកកំសាន្ដ
+
+Q (EN): What does this sign stand for?
+A (EN): Rest area
+
+----------------------------------------------------------------------
+
+[RSG-Q029]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចតចំពោះយានជំនិះនៅថ្ងៃសេស
+
+Q (EN): What does this sign stand for?
+A (EN): No parking on odd days
+
+----------------------------------------------------------------------
+
+[RSG-Q030]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមយានយន្តធុនធំដូចគ្នាបើកបរទុកចន្លោះសុវត្ថិភាព តិចជាង ១០០ម៉ែត្រ
+
+Q (EN): What does this sign stand for?
+A (EN): No less than 100m of distance limt for the same large-sized vehicles.
+
+----------------------------------------------------------------------
+
+[RSG-Q031]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ផ្លូវសំរាប់តែថ្មើរជើងធ្វើចរាចរណ៍
+
+Q (EN): What does this sign stand for?
+A (EN): Compulsary foot path
+
+----------------------------------------------------------------------
+
+[RSG-Q032]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ផ្ដល់សិទ្ឋិអាទិភាពឲ្យយានមកពីទិសផ្ទុយ
+
+Q (EN): What does this sign stand for?
+A (EN): Give way to all traffic from the opposite direction
+
+----------------------------------------------------------------------
+
+[RSG-Q033]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានរង្វង់មូល
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of roundabout ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q034]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្ន ខាងមុខមានការដ្ឋានចាប់ផ្ដើមពីផ្លាកនេះទៅ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of road work ahead from this sign
+
+----------------------------------------------------------------------
+
+[RSG-Q035]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ផ្លូវបិទ ចំពោះយានជំនិះគ្រប់ប្រភេទ
+
+Q (EN): What does this sign stand for?
+A (EN): Road closed for all vehicles
+
+----------------------------------------------------------------------
+
+[RSG-Q036]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្ន ខាងមុខអាចមានកុមារឆ្លងកាត់
+
+Q (EN): What does this sign stand for?
+A (EN): Be aware of children crossing ahead, probably.
+
+----------------------------------------------------------------------
+
+[RSG-Q037]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខអាចមានទោចក្រយានឆ្លងកាត់
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of bicycles crossing ahead.
+
+----------------------------------------------------------------------
+
+[RSG-Q038]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): សណ្ឋាគារ ឬផ្ទះសំណាក់
+
+Q (EN): What does this sign stand for?
+A (EN): Hotel or guesthouse
+
+----------------------------------------------------------------------
+
+[RSG-Q039]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): គំនូសសញ្ញាតាមបណ្ដោយទ្រូងផ្លូវសំរាប់បែងចែកគន្លងផ្លូវចរាចរណ៍នៅជិតផ្លូវប្រសព្វហាមឆ្លងកាត់ប្ដូរគន្លងផ្លូវ
+
+Q (EN): What does this sign stand for?
+A (EN): Marking signs along the road to separate traffic lanes closed to the intersections, do not change the lane.
+
+----------------------------------------------------------------------
+
+[RSG-Q040]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ចប់ការហាមជែងរវាងប្រភេទដឹកទំនិញធុនធំដូចគ្នា
+
+Q (EN): What does this sign stand for?
+A (EN): End of no overtaking of same large-sized trucks
+
+----------------------------------------------------------------------
+
+[RSG-Q041]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវកែងបត់ស្ដាំ រួចកែងបត់ឆ្វេង
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of staggered junction, right turn first ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q042]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): កន្លែងសង្គ្រោះបន្ទាន់
+
+Q (EN): What does this sign stand for?
+A (EN): Emergancy area.
+
+----------------------------------------------------------------------
+
+[RSG-Q043]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នមានផ្លូវបំបែកទៅខាងស្ដាំនៅខាងមុខ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of road junction on the right ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q044]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបត់ឆ្វេងត្រង់ផ្លូវប្រសព្វខាងមុខ
+
+Q (EN): What does this sign stand for?
+A (EN): Require all vehicles turn right at the intersection ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q045]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខអាចមានខ្យល់បក់ខ្លាំង
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of cross wind ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q046]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ចប់ផ្លូវសំរាប់ដឹកអ្នកដំណើរធ្វើចរាចរណ៍
+
+Q (EN): What does this sign stand for?
+A (EN): End of compulsary large-sized buses
+
+----------------------------------------------------------------------
+
+[RSG-Q047]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): កន្លែងមានធុងដាក់សំរាម
+
+Q (EN): What does this sign stand for?
+A (EN): Litter bin
+
+----------------------------------------------------------------------
+
+[RSG-Q048]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះទោចក្រយានយន្ដ
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for motorcycles
+
+----------------------------------------------------------------------
+
+[RSG-Q049]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវរួមតូច
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of carriage way narrows ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q050]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): កន្លែងរំកិលទូកចុះទឹក
+
+Q (EN): What does this sign stand for?
+A (EN): Boat ramp area
+
+----------------------------------------------------------------------
+
+[RSG-Q051]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): កំណត់ល្បឿនអតិបរមា៦០គីឡូម៉ែត្រក្នុង១ម៉ោង
+
+Q (EN): What does this sign stand for?
+A (EN): Maximum speed limit of 60km/h
+
+----------------------------------------------------------------------
+
+[RSG-Q052]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ផ្លូវសំរាប់តែថ្មើរជើង និងទោចក្រយានធ្វើចរាចរណ៍
+
+Q (EN): What does this sign stand for?
+A (EN): Compulsary foot path and bicycle track
+
+----------------------------------------------------------------------
+
+[RSG-Q053]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវកោងទៅស្ដាំ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of right bend ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q054]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះយានជំនិះដែលមានទម្ងន់ផ្ទុកលើភ្លៅនីមួយៗលើសពី២តោន
+
+Q (EN): What does this sign stand for?
+A (EN): No vehicles having overal weight on axle exceeding the specified weight of 2T
+
+----------------------------------------------------------------------
+
+[RSG-Q055]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខអាចមានមនុស្សពិការឆ្លងកាត់
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of disabled people crossing ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q056]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): កន្លែងចតយានជំនិះ
+
+Q (EN): What does this sign stand for?
+A (EN): Parking area
+
+----------------------------------------------------------------------
+
+[RSG-Q057]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នផ្លូវខ្វែងខាងមុខ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of intersection ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q058]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមជែងយានយន្ដគ្រប់ប្រភេទ លើកលែងតែទោចក្រយានយន្ដ
+
+Q (EN): What does this sign stand for?
+A (EN): No overtaking for all vehicles except motorcycles
+
+----------------------------------------------------------------------
+
+[RSG-Q059]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): គំនូសសញ្ញាទោលជាប់តាមបណ្ដោយទ្រូងផ្លូវបែងចែក ទិសចរាចរណ៍ ជាពីរផ្ទុយគ្នា ហាមបើកបរឆ្លងកាត់ឬជែង
+
+Q (EN): What does this sign stand for?
+A (EN): No driving across or overtaking on the solid line, dividing the road into two opposite traffic directions.
+
+----------------------------------------------------------------------
+
+[RSG-Q060]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមបត់ស្ដាំ
+
+Q (EN): What does this sign stand for?
+A (EN): No right turn
+
+----------------------------------------------------------------------
+
+[RSG-Q061]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): មន្ទីរពេទ្យ
+
+Q (EN): What does this sign stand for?
+A (EN): Hospital
+
+----------------------------------------------------------------------
+
+[RSG-Q062]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះយានជំនិះទម្ងន់សរុបលើសពី៨តោន
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for vehicles loaded more than 8T
+
+----------------------------------------------------------------------
+
+[RSG-Q063]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចតពីថ្ងៃទី១៦ដល់ថ្ងៃទី៣១
+
+Q (EN): What does this sign stand for?
+A (EN): No parking from 16th to 31st
+
+----------------------------------------------------------------------
+
+[RSG-Q064]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចតចំពោះយានជំនិះគ្រប់ប្រភេទ
+
+Q (EN): What does this sign stand for?
+A (EN): No parking for all vehicles
+
+----------------------------------------------------------------------
+
+[RSG-Q065]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខអាចមានសត្វពាហនៈឆ្លងកាត់
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of animal crossing ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q066]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): មានសិទ្ធិអាទិភាពលើយានមកពីទិសផ្ទុយ
+
+Q (EN): What does this sign stand for?
+A (EN): Priority over all traffic from the opposite direction
+
+----------------------------------------------------------------------
+
+[RSG-Q067]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវរថភ្លើងឆ្លងកាត់ដោយគ្មានរបាំងការពារ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of railway crossing without barriers ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q068]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបើកបរងាកឬវាងទៅឆ្វេង
+
+Q (EN): What does this sign stand for?
+A (EN): Require all vehicles detour to the left
+
+----------------------------------------------------------------------
+
+[RSG-Q069]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះយានជំនិះគ្រប់ប្រភេទ
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for all vehicles
+
+----------------------------------------------------------------------
+
+[RSG-Q070]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ផ្លូវឯកទិស
+
+Q (EN): What does this sign stand for?
+A (EN): One way traffic
+
+----------------------------------------------------------------------
+
+[RSG-Q071]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខជាចុងផ្លូវជាប់មាត់ទឹក
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of road end of quayside.
+
+----------------------------------------------------------------------
+
+[RSG-Q072]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នផ្លូវទួលខាងមុខ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of road hump ahead.
+
+----------------------------------------------------------------------
+
+[RSG-Q073]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ផ្លូវសំរាប់តែរទេះអូសទាញដោយសត្វធ្វើចរាចរណ៍
+
+Q (EN): What does this sign stand for?
+A (EN): Compulsory animal drawn vehicles.
+
+----------------------------------------------------------------------
+
+[RSG-Q074]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ចប់ផ្លូវសំខាន់មានសិទ្ឋិ
+
+Q (EN): What does this sign stand for?
+A (EN): End of main road.
+
+----------------------------------------------------------------------
+
+[RSG-Q075]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលយានជំនិះដែលមានកំពស់គិតទាំងបន្ទុកលើសពី៣,៥០ម៉ែត្រ
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for vehicles having over all height exceeding 3.5m including loading
+
+----------------------------------------------------------------------
+
+[RSG-Q076]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): គំនូសសញ្ញាភ្លោះជាប់តាមបណ្ដោយទ្រូងផ្លូវបែងចែកទិសចរាចរណ៍ជាពីរផ្ទុយគ្នាហាមបើកបរឆ្លងកាត់ឬជែង
+
+Q (EN): What does this sign stand for?
+A (EN): Double solid lines driving the road into two opposite traffic directions, no driving across or overtaking.
+
+----------------------------------------------------------------------
+
+[RSG-Q077]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមយានជំនិះគ្រប់ប្រភេទបត់ត្រឡប់ក្រោយ
+
+Q (EN): What does this sign stand for?
+A (EN): No back turn for all vehicles.
+
+----------------------------------------------------------------------
+
+[RSG-Q078]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រុងប្រយ័ត្នខាងមុខអាចមានសត្វព្រៃឆ្លងកាត់ញឹកញាប់
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of often wild animals crossing
+
+----------------------------------------------------------------------
+
+[RSG-Q079]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ចប់ផ្លូវសំរាប់អ្នកថ្មើរជើង និងទោចក្រយានធ្វើចរាចរណ៍
+
+Q (EN): What does this sign stand for?
+A (EN): End of compulsory pedestrians path and bicycles track.
+
+----------------------------------------------------------------------
+
+[RSG-Q080]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវកោងទៅឆ្វេង
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of left bend ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q081]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): កន្លែងបោះតង់កំសាន្ដ
+
+Q (EN): What does this sign stand for?
+A (EN): Rest camping area
+
+----------------------------------------------------------------------
+
+[RSG-Q082]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ចប់ការកំណត់ល្បឿន៦០គីឡូម៉ែត្រក្នុងមួយម៉ោង
+
+Q (EN): What does this sign stand for?
+A (EN): End of speed limit of 60km/h
+
+----------------------------------------------------------------------
+
+[RSG-Q083]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ចំណតបង់ប្រាក់
+
+Q (EN): What does this sign stand for?
+A (EN): pay parking area
+
+----------------------------------------------------------------------
+
+[RSG-Q084]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវរួមតូចនៅខាងឆ្វេង
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of carriage way narrows on the left ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q085]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ចប់ការហាមជែងចំពោះយានយន្ដគ្រប់ប្រភេទ
+
+Q (EN): What does this sign stand for?
+A (EN): End of no overtaking for all vehicles
+
+----------------------------------------------------------------------
+
+[RSG-Q086]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវទឹករលក
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of waving road ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q087]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): គំនូសសញ្ញាបែងចែកទ្រូងផ្លូវពីរទិសផ្ទុយគ្នា អ្នកបើកបរខាងគំនូសជាប់ហាមឆ្លងកាត់ ហើយខាងគំនូសដាច់ៗ អាចឆ្លងកាត់បាន
+
+Q (EN): What does this sign stand for?
+A (EN): Markings dividing road into two opposite traffic directions, no crossing for drivers on the solid line side; but on the broking line side.
+
+----------------------------------------------------------------------
+
+[RSG-Q088]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): កន្លែងសំរាប់ថ្មើរជើងឆ្លងកាត់
+
+Q (EN): What does this sign stand for?
+A (EN): Pedestrians crossing area
+
+----------------------------------------------------------------------
+
+[RSG-Q089]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ទីស្នាក់ការគយត្រួតពិនិត្យ និងបង់ពន្ធទំនិញ
+
+Q (EN): What does this sign stand for?
+A (EN): Customs and tax inspection office
+
+----------------------------------------------------------------------
+
+[RSG-Q090]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខអាចរអិល ពិសេសនៅពេលភ្លៀង
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of slippery ahead, especially wet day.
+
+----------------------------------------------------------------------
+
+[RSG-Q091]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): កន្លែងចតរ៉ឺម៉កកំសាន្ដ
+
+Q (EN): What does this sign stand for?
+A (EN): Tourist trailers parking area.
+
+----------------------------------------------------------------------
+
+[RSG-Q092]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវរួមតូចនៅខាងស្ដាំ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of carriage way narrows on the right ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q093]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): តម្រូវឱ្យយានជំនិះគ្រប់ប្រភេទបើកបរក្នុងល្បឿនយ៉ាងតិច៣០គីឡូម៉ែត្រក្នុងមួយម៉ោង
+
+Q (EN): What does this sign stand for?
+A (EN): Require all drivers of all vehicles drive at the speed of 30km/h, at least.
+
+----------------------------------------------------------------------
+
+[RSG-Q094]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមយានយន្តធុនតូចដូចគ្នាបើកបរទុកចន្លោះសុវត្ថិភាពតិចជាង៧០ម៉ែត្រ
+
+Q (EN): What does this sign stand for?
+A (EN): No less than 70m left of distance limit for the same small-sized vehicles.
+
+----------------------------------------------------------------------
+
+[RSG-Q095]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមប្រភេទដឹកទំនិញធុនធំជែងយានយន្ដផ្សេងៗទៀតលើកលែងតែទោចក្រយានយន្ដ
+
+Q (EN): What does this sign stand for?
+A (EN): No overtaking of large-sized trucks over other vehicles except motorcycles.
+
+----------------------------------------------------------------------
+
+[RSG-Q096]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នមានផ្លូវកោងទៅស្ដាំ ហើយផ្លូវកោងទៅឆ្វេងនៅខាងមុខ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of right bend then left bend ahead.
+
+----------------------------------------------------------------------
+
+[RSG-Q097]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះយានជំនិះដែលមាន ទទឹងសរុបគិតទាំងបន្ទុកលើសពី ២,២ម៉ែត្រ
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for vehicles having over all width exceeding 2.2m including loading
+
+----------------------------------------------------------------------
+
+[RSG-Q098]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): មានភេសជ្ជៈដ្ឋាន
+
+Q (EN): What does this sign stand for?
+A (EN): Cafeteria
+
+----------------------------------------------------------------------
+
+[RSG-Q099]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): គំនូសសញ្ញាទោលដាច់ៗតាមបណ្ដោយទ្រូងផ្លូវបែងចែកទិសចរាចរណ៍ជាពីរផ្ទុយគ្នាអាចបើកបរឆ្លងកាត់ឬជែងបាន
+
+Q (EN): What does this sign stand for?
+A (EN): Single broken line along the center of the road dividing the road into two opposite traffic directions, can be crossed or overtaken
+
+----------------------------------------------------------------------
+
+[RSG-Q100]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះទោចក្រយាន-ទោចក្រយានយន្ដ និងត្រីចក្រយាន
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for bicycles, motorcycles, and tricycles
+
+----------------------------------------------------------------------
+
+[RSG-Q101]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចតយានជំនិះគ្រប់ប្រភេទនៅថ្ងៃគត់គូរ
+
+Q (EN): What does this sign stand for?
+A (EN): No parking on even days for all vehicles.
+
+----------------------------------------------------------------------
+
+[RSG-Q102]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): កន្លែងមានទឹកបរិភោគ
+
+Q (EN): What does this sign stand for?
+A (EN): Drinking water area
+
+----------------------------------------------------------------------
+
+[RSG-Q103]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវកែងទៅឆ្វេង
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of a road sharp junction on the left.
+
+----------------------------------------------------------------------
+
+[RSG-Q104]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ផ្លូវសំរាប់តែដឹកអ្នកដំណើរធ្វើចរាចរណ៍
+
+Q (EN): What does this sign stand for?
+A (EN): Compulsory buses and passenger cars
+
+----------------------------------------------------------------------
+
+[RSG-Q105]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវកោងបត់បែនច្រើនសារ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of winding road ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q106]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបត់ស្ដាំត្រង់ផ្លូវប្រសព្វខាងមុខ
+
+Q (EN): What does this sign stand for?
+A (EN): Require all vehicles turn right at the intersection ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q107]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានដុំថ្មក្រាលលើទ្រូងផ្លូវខ្ទាត
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of loose stones ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q108]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): កន្លែងមានកំពង់ចម្លងដោយសាឡាង
+
+Q (EN): What does this sign stand for?
+A (EN): Ferry area.
+
+----------------------------------------------------------------------
+
+[RSG-Q109]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមជែងចំពោះប្រភេទដឹកទំនិញធុនធំដូចគ្នា
+
+Q (EN): What does this sign stand for?
+A (EN): No overtaking for the same large-sized tracks.
+
+----------------------------------------------------------------------
+
+[RSG-Q110]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): គំនូសសញ្ញាតាមបណ្ដោយទ្រូងផ្លូវ សំរាប់បែងចែកគន្លងផ្លូវចរាចរណ៍ អ្នកបើកបរអាចឆ្លងកាត់ប្ដូរគន្លងផ្លូវបាន
+
+Q (EN): What does this sign stand for?
+A (EN): Single line along the road dividing into lanes, drivers can cross or change the lane.
+
+----------------------------------------------------------------------
+
+[RSG-Q111]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): គ្រោះថ្នាក់ផ្សេងៗ
+
+Q (EN): What does this sign stand for?
+A (EN): Dangers
+
+----------------------------------------------------------------------
+
+[RSG-Q112]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ចប់ផ្លូវសំរាប់ថ្មើរជើងធ្វើចរាចរណ៍
+
+Q (EN): What does this sign stand for?
+A (EN): End of pedestrians
+
+----------------------------------------------------------------------
+
+[RSG-Q113]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះយានយន្ដគ្រប់ប្រភេទលើកលែងតែទោចក្រយានយន្ដ
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for all vehicles except motorcycles
+
+----------------------------------------------------------------------
+
+[RSG-Q114]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): អនុញ្ញាតឲ្យជិះទោចក្រយានទន្ទឹមគ្នា
+
+Q (EN): What does this sign stand for?
+A (EN): Abreast traveling permited for bicycles
+
+----------------------------------------------------------------------
+
+[RSG-Q115]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវកែងបត់ឆ្វេង រួចកែងបត់ស្ដាំ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of road sharp junction on the left then on the right.
+
+----------------------------------------------------------------------
+
+[RSG-Q116]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ផ្លូវសំរាប់តែទោចក្រយានធ្វើចរាចរណ៍
+
+Q (EN): What does this sign stand for?
+A (EN): Compulsory bicycles
+
+----------------------------------------------------------------------
+
+[RSG-Q117]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវបំបែកទៅខាងឆ្វេង
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of road junction on the left
+
+----------------------------------------------------------------------
+
+[RSG-Q118]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទធ្វើចរាចរណ៍ទៅមុខត្រង់ ឬបត់ស្ដាំ
+
+Q (EN): What does this sign stand for?
+A (EN): Require all vehicles keep going ahead or turn right
+
+----------------------------------------------------------------------
+
+[RSG-Q119]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះយានយន្ដដឹកផលិតផលងាយផ្ទុះ ឬឆេះ
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for vehicles loading explosive or inflammable goods
+
+----------------------------------------------------------------------
+
+[RSG-Q120]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្ននៅខាងមុខមានភ្លើងសញ្ញាចរាចរណ៍
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of the traffic light ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q121]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): កន្លែងផ្ដល់សេវាទូរស័ព្ទសាធារណៈ
+
+Q (EN): What does this sign stand for?
+A (EN): Public phone service area
+
+----------------------------------------------------------------------
+
+[RSG-Q122]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមស៊ីផ្លេចំពោះយានយន្ដគ្រប់ប្រភេទ
+
+Q (EN): What does this sign stand for?
+A (EN): No horn for all vehicles
+
+----------------------------------------------------------------------
+
+[RSG-Q123]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): គំនូសសញ្ញាជាប់ទោលតាមបណ្ដោយជាយផ្លូវសំរាប់កំណត់ជាយផ្លូវឲ្យយានជំនិះធ្វើចរាចរណ៍
+
+Q (EN): What does this sign stand for?
+A (EN): A single solid line along roadside for edge line for traffic
+
+----------------------------------------------------------------------
+
+[RSG-Q124]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះប្រភេទដឹកទំនិញធុនធំ
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for all large-sized trucks
+
+----------------------------------------------------------------------
+
+[RSG-Q125]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទធ្វើចរាចរណ៍ទៅមុខត្រង់ ឬបត់ឆ្វេង
+
+Q (EN): What does this sign stand for?
+A (EN): Require all vehicles go straight ahead or turn left
+
+----------------------------------------------------------------------
+
+[RSG-Q126]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): កន្លែងផ្ដល់ព័ត៌មាន
+
+Q (EN): What does this sign stand for?
+A (EN): Information area
+
+----------------------------------------------------------------------
+
+[RSG-Q127]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវបំបែករាងអ៊ីការិច
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of Y-intersection ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q128]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ខាងមុខជាផ្លូវទាល់
+
+Q (EN): What does this sign stand for?
+A (EN): No through road
+
+----------------------------------------------------------------------
+
+[RSG-Q129]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នផ្លូវប្រសព្វខាងមុខ មានផ្លាកសញ្ញាឈប់
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of intersection ahead with stop sign
+
+----------------------------------------------------------------------
+
+[RSG-Q130]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ចប់ផ្លូវទោចក្រយានធ្វើចរាចរណ៍
+
+Q (EN): What does this sign stand for?
+A (EN): End of bicycles traffic
+
+----------------------------------------------------------------------
+
+[RSG-Q131]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នផ្លូវបត់ស្ដាំខាងមុខ មានរថភ្លើងឆ្លងកាត់
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of right turn ahead with railroad crossing
+
+----------------------------------------------------------------------
+
+[RSG-Q132]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ចប់ការហាមស៊ីផ្លេចំពោះយានជំនិះគ្រប់ប្រភេទ
+
+Q (EN): What does this sign stand for?
+A (EN): End of no horn for all vehicles
+
+----------------------------------------------------------------------
+
+[RSG-Q133]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): គំនូសសញ្ញាទោលពណ៌ក្រហម ស តាមបណ្ដោយគែមចិញ្ចើមផ្លូវសំរាប់ការហាមឈប់
+
+Q (EN): What does this sign stand for?
+A (EN): Red-white curb markings for no standing
+
+----------------------------------------------------------------------
+
+[RSG-Q134]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះទោចក្រយានយន្ដដែលមានសណ្ដោងរ៉ឺម៉ក ឬរទេះ
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for motorcycle drawn vehicles
+
+----------------------------------------------------------------------
+
+[RSG-Q135]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នផ្លូវបត់ឆ្វេងខាងមុខ មានផ្លូវរថភ្លើងឆ្លងកាត់
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of left turn having railroad crossing
+
+----------------------------------------------------------------------
+
+[RSG-Q136]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): អ្នកបើកបរត្រូវតែឈប់ទោះមានឬគ្មានយានជំនិះឆ្លងកាត់ខាងមុខក៏ដោយ
+
+Q (EN): What does this sign stand for?
+A (EN): Drivers shall stop even though there are vehicles crossing or not ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q137]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវបំបែករាងអក្សរតេ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of T-intersection ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q138]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបត់ស្ដាំនៅខាងមុខផ្លាកសញ្ញា
+
+Q (EN): What does this sign stand for?
+A (EN): Require all vehicles turn right in front of the sign
+
+----------------------------------------------------------------------
+
+[RSG-Q139]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នផ្លូវប្រសព្វខាងមុខ មានផ្លាកសញ្ញាផ្ដល់សិទ្ធិអាទិភាពឲ្យគេ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of intersection ahead having give way sign.
+
+----------------------------------------------------------------------
+
+[RSG-Q140]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ស្ថានីយ៍ប្រេងឥន្ធនៈ
+
+Q (EN): What does this sign stand for?
+A (EN): Filling station
+
+----------------------------------------------------------------------
+
+[RSG-Q141]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះដឹកអ្នកដំណើរធុនធំ
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for large-sized passenger buses
+
+----------------------------------------------------------------------
+
+[RSG-Q142]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ផ្លូវបត់ស្ដាំជាផ្លូវទាល់
+
+Q (EN): What does this sign stand for?
+A (EN): Right turn road is a no through road
+
+----------------------------------------------------------------------
+
+[RSG-Q143]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ផ្លូវបត់ឆ្វេងជាផ្លូវទាល់
+
+Q (EN): What does this sign stand for?
+A (EN): Left turn road is an ending road
+
+----------------------------------------------------------------------
+
+[RSG-Q144]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវបំបែកកែងទៅខាងឆ្វេង
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of ahead having sharp road junction on the left
+
+----------------------------------------------------------------------
+
+[RSG-Q145]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបត់ឆ្វេងនៅខាងមុខផ្លាកសញ្ញា
+
+Q (EN): What does this sign stand for?
+A (EN): Require all vehicles turn left in front of the sign
+
+----------------------------------------------------------------------
+
+[RSG-Q146]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ផ្លូវបាត់សិទ្ធិនៅត្រង់ផ្លូវប្រសព្វអ្នកបើកបរត្រូវបន្ថយល្បឿន បើផ្លូវទំនេរអាចឆ្លងកាត់បាន
+
+Q (EN): What does this sign stand for?
+A (EN): End of priority at the intersection,slow down, cross if available
+
+----------------------------------------------------------------------
+
+[RSG-Q147]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានរថភ្លើងឆ្លងកាត់ដោយមានរបាំងការពារ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of ahead having a train crossing with barriers
+
+----------------------------------------------------------------------
+
+[RSG-Q148]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះរទេះដែលអូសដោយសត្វ
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for animal drawn vehicles
+
+----------------------------------------------------------------------
+
+[RSG-Q149]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានទ្រូងផ្លូវបែកជាពីរ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of ahead having road split into two
+
+----------------------------------------------------------------------
+
+[RSG-Q150]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ស្ថានីយ៍ប្រេងឥន្ធនៈ និងជួសជុលយានយន្ដ
+
+Q (EN): What does this sign stand for?
+A (EN): Filling station and repair
+
+----------------------------------------------------------------------
+
+[RSG-Q151]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះយានយន្ដគ្រប់ប្រភេទ
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for all motor vehicles
+
+----------------------------------------------------------------------
+
+[RSG-Q152]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): គំនូសសញ្ញាពណ៍លឿងឆ្នូតបញ្ឆិតទ្រូងផ្លូវសំរាប់តម្រឹមគន្លងផ្លូវដែលមានចរាចរណ៍ពីរទិស ផ្ទុយគ្នា
+
+Q (EN): What does this sign stand for?
+A (EN): Acute yellow stripes of the road for aligning the lanes having two-way opposite traffic
+
+----------------------------------------------------------------------
+
+[RSG-Q153]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបត់ស្ដាំ ឬបត់ឆ្វេង
+
+Q (EN): What does this sign stand for?
+A (EN): Require all vehicles turn right or left
+
+----------------------------------------------------------------------
+
+[RSG-Q154]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): គំនូសសញ្ញាពណ៌លឿងរាងមុខព្រួញលើទ្រូងផ្លូវសំរាប់តម្រឹមគន្លងផ្លូវដែលមានចរាចរណ៍តែមួយទិស
+
+Q (EN): What does this sign stand for?
+A (EN): The yellow arrow on the road for aligning the lanes having one-way traffic
+
+----------------------------------------------------------------------
+
+[RSG-Q155]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះទោចក្រយាន
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for bicycles
+
+----------------------------------------------------------------------
+
+[RSG-Q156]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ចាប់ផ្ដើមចូលផ្លូវយន្តបថ (ផ្លូវល្បឿនលឿន)
+
+Q (EN): What does this sign stand for?
+A (EN): Start of express-way
+
+----------------------------------------------------------------------
+
+[RSG-Q157]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវបំបែកកែងទៅខាងស្ដាំ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of road sharp conjunction on the right ahea
+
+----------------------------------------------------------------------
+
+[RSG-Q158]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): យានដ្ឋានជួសជុល
+
+Q (EN): What does this sign stand for?
+A (EN): Garage station
+
+----------------------------------------------------------------------
+
+[RSG-Q159]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវធ្វើចរាចរណ៍ពីរទិស
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of two-way traffic zone opposite ahead.
+
+----------------------------------------------------------------------
+
+[RSG-Q160]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ផ្លូវបាត់សិទ្ធិនៅត្រង់រង្វង់មូល
+
+Q (EN): What does this sign stand for?
+A (EN): End of road priority at the roundabout
+
+----------------------------------------------------------------------
+
+[RSG-Q161]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវឡើងចំណោត
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of steep ascent ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q162]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមអូស ឬរុញរទេះចូល
+
+Q (EN): What does this sign stand for?
+A (EN): No hand carts in.
+
+----------------------------------------------------------------------
+
+[RSG-Q163]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខចប់ទ្រូងផ្លូវបែកជាពីរ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of end of road split into two ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q164]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): គំនូសសញ្ញាពណ៌លឿងរាងធ្មេញរណាប្រើកំណត់ទីកន្លែងសំរាប់ឡានក្រុងឈប់
+
+Q (EN): What does this sign stand for?
+A (EN): yellow tooth-saws-shaped markings using for defining bus stop area
+
+----------------------------------------------------------------------
+
+[RSG-Q165]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវបំបែកកែងទៅស្ដាំនិងកែងទៅឆ្វេង
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of staggered junction, right turn first
+
+----------------------------------------------------------------------
+
+[RSG-Q166]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវចុះចំណោត
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of steep descent ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q167]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ភោជនីយដ្ឋាន
+
+Q (EN): What does this sign stand for?
+A (EN): Restaurant
+
+----------------------------------------------------------------------
+
+[RSG-Q168]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): សំរាប់សំគាល់ផ្លូវធំ មានផ្លូវតូចឆ្លងកាត់
+
+Q (EN): What does this sign stand for?
+A (EN): To mark a main road having a road crossing
+
+----------------------------------------------------------------------
+
+[RSG-Q169]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): កន្លែងមានព្រលានយន្ដហោះ
+
+Q (EN): What does this sign stand for?
+A (EN): Airport
+
+----------------------------------------------------------------------
+
+[RSG-Q170]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះយានយន្ដកសិកម្មគ្រប់ប្រភេទ
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for all agricultural vehicles
+
+----------------------------------------------------------------------
+
+[RSG-Q171]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខអាចមានយន្ដហោះ ហោះកាត់ញឹកញាប់យ៉ាងទាបពីលើ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of low flying air craft over very often
+
+----------------------------------------------------------------------
+
+[RSG-Q172]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមឈប់ចំពោះយានជំនិះគ្រប់ប្រភេទ
+
+Q (EN): What does this sign stand for?
+A (EN): No standing for all vehicles
+
+----------------------------------------------------------------------
+
+[RSG-Q173]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានថ្មធ្លាក់ ឬមានដុំថ្មលើទ្រូងផ្លូវ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of falling racks or having rocks on the road ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q174]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): កន្លែងបោះតង់និងចតរ៉ឺម៉កកំសាន្ដ
+
+Q (EN): What does this sign stand for?
+A (EN): Camping area and tour tricycle parking
+
+----------------------------------------------------------------------
+
+[RSG-Q175]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នមានផ្លូវកោងទៅឆ្វេង ហើយកោងទៅស្ដាំនៅខាងមុខ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of right bend first ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q176]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): គំនូសសញ្ញាបែងចែកទ្រូងផ្លូវពីរទិសចរាចរណ៍ផ្ទុយគ្នា អ្នកបើកបរខាងគំនូសដាច់ៗអាចឆ្លងកាត់បានហើយហាមខាងគំនូសជាប់
+
+Q (EN): What does this sign stand for?
+A (EN): Markings dividing road into two opposite traffic directions, drivers on the broken line side can cross, but not for the solid line side
+
+----------------------------------------------------------------------
+
+[RSG-Q177]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបើកបរងាកឬវាងទៅស្ដាំ
+
+Q (EN): What does this sign stand for?
+A (EN): Require all vehicles turn or detour to the right
+
+----------------------------------------------------------------------
+
+[RSG-Q178]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខមានផ្លូវកែងបត់ទៅស្ដាំ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of staggered road on the right ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q179]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ហាមចូលចំពោះយានជំនិះដែលមានបណ្ដោយសរុបគិតទាំងបន្ទុកលើសពី១០ម៉ែត្រ
+
+Q (EN): What does this sign stand for?
+A (EN): No entry for vehicles having over all length exceeding 10m including loading
+
+----------------------------------------------------------------------
+
+[RSG-Q180]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): កន្លែងមានទួលកាត់ទទឹងផ្លូវ
+
+Q (EN): What does this sign stand for?
+A (EN): Road hump crossing
+
+----------------------------------------------------------------------
+
+[RSG-Q181]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ចប់ការហាមប្រភេទដឹកទំនិញធុនធំ ជែងយានយន្ដផ្សេងៗទៀត
+
+Q (EN): What does this sign stand for?
+A (EN): End of no overtaking of large-sized trucks over other vehicles
+
+----------------------------------------------------------------------
+
+[RSG-Q182]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ចប់ការកំណត់ល្បឿនអប្បបរមា៣០គីឡូម៉ែត្រក្នុងមួយម៉ោង
+
+Q (EN): What does this sign stand for?
+A (EN): End of maximum speed limit of 30km/h
+
+----------------------------------------------------------------------
+
+[RSG-Q183]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): សំគាល់ផ្លូវសំខាន់មានសិទ្ធិអាទិភាព
+
+Q (EN): What does this sign stand for?
+A (EN): Noticed as the main road.
+
+----------------------------------------------------------------------
+
+[RSG-Q184]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នមានដុំថ្មក្រាលលើទ្រូងផ្លូវចាប់ពីផ្លាកសញ្ញានេះទៅ
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of the stones from this sign.
+
+----------------------------------------------------------------------
+
+[RSG-Q185]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ប្រយ័ត្នខាងមុខអាចមានថ្មើរជើងឆ្លងកាត់
+
+Q (EN): What does this sign stand for?
+A (EN): Beware of pedestrians ahead
+
+----------------------------------------------------------------------
+
+[RSG-Q186]
+Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+A (KH): ផ្លូវបិទចំពោះអ្នកប្រើប្រាស់ផ្លូវគ្រប់ប្រភេទ
+
+Q (EN): What does this sign stand for?
+A (EN): Road closed for all road users
+
+----------------------------------------------------------------------

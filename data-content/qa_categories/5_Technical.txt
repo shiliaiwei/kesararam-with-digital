@@ -1,0 +1,463 @@
+============================================================
+Category: បច្ចេកទេសយានយន្ត (Technical)
+Total Questions: 38
+============================================================
+
+Q1. តើអ្នកត្រួតពិនិត្យកម្រិតប្រេងម៉ាស៊ីនដូចម្ដេច ?
+  1. កម្រិតប្រេងម៉ាស៊ីន ត្រូវស្ថិតនៅក្រោមគំនូសអប្បបរមា
+  2. កម្រិតប្រេងម៉ាស៊ីន ត្រូវស្ថិតនៅត្រង់ចន្លោះគំនូសអប្បបរមា និងអតិបរមា ✓
+  3. ស្ថិតលើគំនូសអតិបរមា
+
+Q1. How shall you check engine oil?
+  1. The level of the engine oil must be below the minimum marking.
+  2. The level of engine oil must be between minimum and maximum markings ✓
+  3. Must be above maximum marking.
+
+------------------------------------------------------------
+
+Q2. តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ស៊ីផ្លេ ?
+  1. ពណ៌របស់ស៊ីផ្លេ
+  2. ភាពកខ្វក់របស់វា
+  3. ភាពដំណើរការល្អរបស់វា ✓
+
+Q2. What shall you check at the horn?
+  1. Color of the horn.
+  2. The dirtiness of it.
+  3. Well work of it. ✓
+
+------------------------------------------------------------
+
+Q3. តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចច្រវ៉ាក់ ?
+  1. ភាពរឹងមាំនៃច្រវ៉ាក់
+  2. ភាពកខ្វក់នៃច្រវ៉ាក់
+  3. តឹងល្មម មិនធូរ ឬមិនតឹងពេក ត្រូវមានជាតិប្រេងរំអិលជានិច្ច ✓
+
+Q3. What shall you check at the chain?
+  1. The hardiness of it.
+  2. The dirtiness of it.
+  3. tight enough, no loose, or not too tight, must be always with oil. ✓
+
+------------------------------------------------------------
+
+Q4. តើអ្នកត្រូវត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចធុងទឹក ?
+  1. ភាពកខ្វក់របស់ទឹក
+  2. សីតុណ្ហភាពទឹក
+  3. កំរិតទឹកក្នុងធុង ✓
+
+Q4. What shall you check at the water tank?
+  1. The dirtiness of the water
+  2. water’s temperature
+  3. The level of water in the tank ✓
+
+------------------------------------------------------------
+
+Q5. តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចផ្លិតទឹក ?
+  1. ភាពលេចជ្រាបរបស់ផ្លិតទឹក
+  2. ដំណើការ និង ជូតទឹកបានស្អាតល្អ ✓
+  3. ពណ៌របស់ផ្លិតទឹក
+
+Q5. What shall you check at the water fan?
+  1. The leakage of the water fan
+  2. The process and the wipe the water well ✓
+  3. Color of the water fan
+
+------------------------------------------------------------
+
+Q6. តើច្បាប់កំណត់ឱ្យជម្រៅក្រឡាសំបកកៅស៊ូកង់សឹកនៅសល់យ៉ាងតិចប៉ុន្មានមីលីម៉ែត្រដែលត្រូវប្ដូរចេញ ?
+  1. យ៉ាងតិច ១ម.ម ✓
+  2. យ៉ាងតិច ០,៧ម.ម 
+  3. យ៉ាងតិច ០,៥ម.ម 
+
+Q6. According to the law, the depth of the motorcycle’s tyre tread after eroded, how many millimetres, at least, are they left need to be changed? 
+  1. At least 1mm ✓
+  2. At least 0.7mm
+  3. At least 0.5mm
+
+------------------------------------------------------------
+
+Q7. តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចប្រេងម៉ាស៊ីន ?
+  1. ភាពលេចជ្រាប និងត្រូវឱ្យមានតាមកម្រិតកំណត់ ✓
+  2. សីតុណ្ហភាពប្រេងម៉ាស៊ីន
+  3. ពណ៌ប្រេងម៉ាស៊ីន
+
+Q7. What shall you check at the oil point?
+  1. The leakage and the existence of the specified level. ✓
+  2. The oil temperature.
+  3. The color of the oil.
+
+------------------------------------------------------------
+
+Q8. តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចង្កៀងភ្លើងសញ្ញា ?
+  1. ពណ៌អំពូលភ្លើងសញ្ញា
+  2. ភាពដំណើរការល្អ ឬភាពខូច ឬកខ្វក់ ✓
+  3. ប្រភេទនៃចង្កៀង
+
+Q8. What shall you check at the sign lights?
+  1. The color of the bulbs of the sign lights.
+  2. Being well-processed or broken or dirty. ✓
+  3. Types of lights.
+
+------------------------------------------------------------
+
+Q9. តើអ្នកត្រួតពិនិត្យដូចម្ដេច នៅលើកញ្ចក់មើលក្រោយ ?
+  1. ពណ៌កញ្ចក់មើលក្រោយ
+  2. ត្រូវមានសភាពច្បាស់ល្អ និងដាក់ឱ្យត្រូវទីតាំង ✓
+  3. ភាពរឹងមាំនៃកញ្ចក់មើលក្រោយ
+
+Q9. What shall you check on the wing mirrors?
+  1. The color of the wing mirrors.
+  2. Clearliness and right position. ✓
+  3. The hardiness of the wing mirrors.
+
+------------------------------------------------------------
+
+Q10. តើអ្នកត្រួតពិនិត្យកំរិតប្រេងហ្វ្រាំងដូចម្ដេច ?
+  1. កំរិតប្រេងហ្វ្រាំង ត្រូវស្ថិតនៅក្រោមគំនូសអប្បបរមា
+  2. កំរិតប្រេងហ្វ្រាំង ត្រូវស្ថិតនៅត្រង់ចន្លោះគំនូសអប្បបរមា និងអតិបរមា ✓
+  3. កំរិតប្រេងហ្វ្រាំង ស្ថិតនៅលើគំនូសអតិបរមា
+
+Q10. How shall you check the level of brake oil?
+  1. The level of brake oil must be below the minimum marking.
+  2. The level of brake oil must be between minimum and maximum markings ✓
+  3. The level of brake oil is above maximum marking.
+
+------------------------------------------------------------
+
+Q11. ក្នុងពេលធ្វើដំណើរ តើអ្នកត្រូវត្រួតពិនិត្យអ្វីខ្លះ ?
+  1. កំរិតទឹក កំរិតប្រេងម៉ាស៊ីន និងកំរិតទឹកលាងកញ្ចក់
+  2. ដំណើរការនាឡិកាសីតុណ្ហភាពទឹក នាឡិកាសាកអាគុយ និងសញ្ញាហ្វ្រាំង ព្រមទាំងសំពាធប្រេងម៉ាស៊ីន ✓
+  3. ពិនិត្យមើលសភាពកង់
+
+Q11. While travelling, what shall you check?
+  1. The level of water, engine oil, and mirror-washed water
+  2. Water temperature device process , battery recharged device, and brake signal, including engine oil pressure. ✓
+  3. Check the status of the wheels.
+
+------------------------------------------------------------
+
+Q12. តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចអាគុយទឹក ?
+  1. មើលដង់ស៊ីតេអាគុយ
+  2. មើលចំនួនវ៉ុលរបស់អាគុយ
+  3. កំរិតទឹកអាគុយ ✓
+
+Q12. What shall you check at the liquid battery?
+  1. Check the density of the battery
+  2. Check the voltage of the battery
+  3. The level of the water of battery. ✓
+
+------------------------------------------------------------
+
+Q13. តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចសំបកកៅស៊ូកង់ ?
+  1. សំពាធខ្យល់ ភាពសឹក ប៉ោង ប្រេះ មុត ✓
+  2. ភាពលេចជ្រាបទឹក
+  3. ភាពរឹងល្អនៃសំបកកៅស៊ូកង់
+
+Q13. What shall you check at the tyres?
+  1. Air pressure, erosion, swellings, cracked, and punch.  ✓
+  2. The leakage of the water
+  3. The hardness of the tyres
+
+------------------------------------------------------------
+
+Q14. តើអ្នកពិនិត្យអ្វី នៅលើខ្នងកង់ ?
+  1. ភាពកខ្វក់នៃខ្នងកង់
+  2. ភាពប្រេះ ស្រាំ ឬប៉ោង
+  3. ភាពធូកាំនៃខ្នងកង់ ✓
+
+Q14. What shall you check on the motorcycle’s wheels?
+  1. The dirtiness of the wheels.
+  2. Being cracked or swelling
+  3. The looseness of the radius of the wheels. ✓
+
+------------------------------------------------------------
+
+Q15. តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចហ្វ្រាំង ?
+  1. ភាពកខ្វក់នៃហ្វ្រាំង
+  2. ភាពរឹងមាំនៃហ្វ្រាំង
+  3. ហ្សឺ និងដំណើរការហ្វ្រាំងដៃ ហ្វ្រាំងជើង ✓
+
+Q15. What shall you check at the brakes?
+  1. The dirtiness of the brakes.
+  2. The hardiness of the brakes.
+  3. The level of properly work of brake system ✓
+
+------------------------------------------------------------
+
+Q16. តើអ្នកត្រួតពិនិត្យដូចម្ដេច ចំពោះខ្ចៅ និងប៊ូឡុង ?
+  1. ត្រូវមានសភាពតឹងល្អ ✓
+  2. ពណ៌ខ្ចៅ និងប៊ូឡុង
+  3. ភាពទាន់សម័យស្អាតរបស់ខ្ចៅ និងប៊ូឡុង
+
+Q16. How shall you check on nuts and bolts?
+  1. Shall be good tight. ✓
+  2. The color of nuts and bolts.
+  3. Modern nuts and bolts.
+
+------------------------------------------------------------
+
+Q17. តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់កុងទ័រល្បឿន ?
+  1. លេខរបស់កុងទ័រល្បឿន
+  2. ភាពកខ្វក់របស់វា
+  3. ការដំណើរការល្អរបស់វា ✓
+
+Q17. What shall you check at the speedometer?
+  1. The digits of the speedometer.
+  2. The dirtiness of it.
+  3. The process of it. ✓
+
+------------------------------------------------------------
+
+Q18. តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចដៃចង្កូត ?
+  1. ភាពកខ្វក់របស់វា
+  2. ភាពរឹងមាំល្អរបស់វា ✓
+  3. ទ្រង់ទ្រាយរបស់វា
+
+Q18. What shall you check at the motorcycle’s steering?
+  1. The dirtiness of it.
+  2. The hardiness of it. ✓
+  3. The softness of it.
+
+------------------------------------------------------------
+
+Q19. តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ម៉ាស៊ីន ?
+  1. ភាពរឹងមាំរបស់ម៉ាស៊ីន
+  2. ពណ៌របស់ម៉ាស៊ីន
+  3. ភាពលេចជ្រាបប្រេងម៉ាស៊ីន និងកម្រិតប្រេងម៉ាស៊ីន ✓
+
+Q19. What shall you check at the motorcycle’s engine?
+  1. The hardiness of the engine.
+  2. The color of the engine.
+  3. The leakage of oil and the level of engine oil. ✓
+
+------------------------------------------------------------
+
+Q20. នៅរៀងរាល់ពេល មុននឹងចូលក្នុងរថយន្ត អ្នកត្រូវត្រួតពិនិត្យអ្វីខ្លះ ?
+  1. មើលប្រព័ន្ធប្រេងឥន្ធនៈ
+  2. មើលកង់កុំឲ្យធូរ និងភ្លើងចង្កៀងត្រូវឲ្យស្អាតជានិច្ច ✓
+  3. មើលប្រព័ន្ធទឹក
+
+Q20. What shall you check every time before getting into the car?
+  1. Check the fuel system.
+  2. Check the wheels not to be flat and the lights must be cleaned all time. ✓
+  3. Check the water system
+
+------------------------------------------------------------
+
+Q21. តើភាពសឹករបស់សំបកកង់រថយន្តគ្រួសារ ត្រូវឲ្យនៅសល់ជំរៅក្រឡាយ៉ាងតិចប៉ុន្មាន មីលីមែត្រ?
+  1. ០,៥ ម.ម
+  2. ១,០ ម.ម
+  3. ១,៦ ម.ម ✓
+
+Q21. How many millimeters, at least, of the tyres’ depth to be left for the family car?
+
+  1. 0.5 mm
+  2. 1.0mm
+  3. 1.6mm ✓
+
+------------------------------------------------------------
+
+Q22. តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចចង្កូត ?
+  1. ភាពលេចជ្រាបទឹក និងខ្យល់
+  2. ភាពស្អាត
+  3. ភាពរឹងមាំ និង មិនត្រូវឲ្យតឹងពេលកាច់ចង្កូត ✓
+
+Q22. What shall you check at the steer?
+  1. The leakage of the water and air.
+  2. Cleanliness
+  3. Hardiness and not to be tight to steer. ✓
+
+------------------------------------------------------------
+
+Q23. តើគម្លាតដងឆ័ត្រហ្វ្រាំង ត្រូវធ្វើការកែតម្រូវចាប់ពីប្រវែងប៉ុន្មានមីលីម៉ែត្រ ?
+  1. លើសពី១០មីលីម៉ែត្រ
+  2. លើសពី ២០មីលីម៉ែត្រ ✓
+  3. លើសពី ៣០មីលីម៉ែត្រ
+
+Q23. From how many millimeters of the gape of brake pedal need to be adjusted? 
+
+  1. More than 10mm
+  2. More than 20mm ✓
+  3. More than 30mm
+
+------------------------------------------------------------
+
+Q24. ក្នុងករណីហ្វ្រាំងប្រើបូមប្រេង តើអ្នកដឹងប្រេងលេចខ្លាំងដោយសារអ្វី ?
+  1. ដោយសារទាញហ្វ្រាំងដៃមិនសូវស៊ី
+  2. ដោយសារជាន់ហ្វ្រាំងជើងមិនសូវស៊ី
+  3. ដោយបញ្ឆេះម៉ាស៊ីន រួចជាន់ឈ្នាន់ហ្វ្រាំង ដោយឈ្នាន់ឆ្លាក់កើយដល់ក្ដារឈ្នាន់ ✓
+
+Q24. In case the brakes using oil pump, how do you realize the oil leaks a lot?
+  1. By applying handbrake and not work well
+  2. By applying footbrake and not work well.
+  3. By starting the engine then applying the brake pedal, falling on brake pedal board. ✓
+
+------------------------------------------------------------
+
+Q25. តើនៅត្រង់ស្នូលថ្ពក់ថាសវិល អ្នកត្រូវពិនិត្យអ្វីសំខាន់ជាងគេ ?
+  1. ភាពច្រេះស៊ីស្នូល
+  2. ភាពកោងរបស់ស្នូល
+  3. ភាពរមួលរបស់ស្នូល ✓
+
+Q25. At the core of the ......what are the main things to be checked?
+  1. The rust of the core
+  2. The bend of the core.
+  3. The twist of the core. ✓
+
+------------------------------------------------------------
+
+Q26. តើនៅត្រង់ជន្ទាស អ្នកត្រួតពិនិត្យអ្វីជាសំខាន់ ?
+  1. ភាពលេចជ្រាបប្រេងលើជន្ទាស
+  2. ភាពលេចជ្រាបទឹកលើជន្ទាស
+  3. ភាពប្រេះស្រាំ បាក់ ឬរំកិល ✓
+
+Q26. What should you take care on the car’s chassis?
+  1. Leakage of the oil
+  2. Leakage of water
+  3. breaking a part ✓
+
+------------------------------------------------------------
+
+Q27. តើនៅត្រង់ទ្វារនៃរថយន្ត អ្នកត្រួតពិនិត្យអ្វីជាសំខាន់ ?
+  1. ភាពកខ្វក់នៃកញ្ចក់ទ្វារ
+  2. គន្លឹះ ឬសោទ្វារ ✓
+  3. ការបិទកញ្ចក់ទ្វារមិនជិតល្អ
+
+Q27. What is the main check at the doors of the car?
+  1. The dirtiness of the doors’ glasses.
+  2. Bolt or door key ✓
+  3. The doors’ glasses closed not well.
+
+------------------------------------------------------------
+
+Q28. ចំពោះធុងប្រេងឥន្ធនៈ តើអ្នកត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ ?
+  1. ភាពកខ្វក់ នៃប្រេងឥន្ធនៈ
+  2. ភាពកខ្វក់ នៃធុងប្រេងឥន្ធនៈ
+  3. ភាពលេច ឬជ្រាប ✓
+
+Q28. What is the main check at the fuel tank?
+  1. The dirtiness of the fuel.
+  2. The dirtiness of the fuel tank.
+  3. The leakage of the fuel tank. ✓
+
+------------------------------------------------------------
+
+Q29. តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វី ត្រង់កាឡេរថយន្ត ?
+  1. ភាពប្រេះស្រាំ ឬកោង ✓
+  2. ភាពរឹងមាំ
+  3. ភាពកខ្វក់
+
+Q29. What shall you check at the drive shaft of the vehicle?
+  1. The state of being cracked or bend ✓
+  2. The hardiness
+  3. The dirtiness
+
+------------------------------------------------------------
+
+Q30. តើនៅត្រង់ថាសវិល (ប្លាតូហ៊្វម) អ្នកត្រូវពិនិត្យអ្វីសំខាន់ជាងគេ ?
+  1. ភាពលេចជ្រាបខ្យល់
+  2. ភាពលេចជ្រាបទឹក
+  3. ភាពប្រេះស្រាំ ឬសឹកខ្លាំង ✓
+
+Q30. What should you check on the vehicle’s wheels?
+  1. The leakage of air.
+  2. The leakage of water.
+  3. The state of being cracked or eroded ✓
+
+------------------------------------------------------------
+
+Q31. កៅស៊ូកង់នៃរថយន្ត អ្នកត្រួតពិនិត្យអ្វីជាចាំបាច់ ?
+  1. ក្រឡាសំបកកង់
+  2. ភាពសឹក ធូរ តឹង ឬប្រេះ ✓
+  3. ភាពបោរនៃថាសកង់
+
+Q31. What is the necessary check at the tyres?
+  1. The tread of the tyres
+  2. Erosion, looseness, tightness, or being cracked. ✓
+  3. The state of being buckled wheels
+
+------------------------------------------------------------
+
+Q32. នៅពេលអ្នកធ្វើដំណើរ ប្រហែលប៉ុន្មានម៉ោងត្រូវឈប់ត្រួតពិនិត្យគ្រឿងថ្ពក់សណ្ដោងសឺមីរ៉ឺម៉ក ឬរ៉ឺម៉ក ?
+  1. ប្រហែល ៣ម៉ោង ✓
+  2. ប្រហែល ៥ម៉ោង
+  3. ប្រហែល ៧ម៉ោង
+
+Q32. While driving, how long shall you need to check the semi trailer-towed hooks or trailer?
+  1. About 3 hours ✓
+  2. About 5 hours
+  3. About 7 hours
+
+------------------------------------------------------------
+
+Q33. តើគម្លាតដងឆ័ត្រហ្វ្រាំង ត្រូវធ្វើការកែតម្រូវមកត្រឹមប្រវែងប្រហែលប៉ុន្មានមីលីម៉ែត្រទើបត្រឹមត្រូវ ?
+  1. ១០មីលីម៉ែត្រ
+  2. ១៣មីលីម៉ែត្រ ✓
+  3. ២៥មីលីម៉ែត្រ
+
+Q33. How long, in millimetres, is the gape of a brake pedal needed adjusting to be accurately? 
+  1. 10mm
+  2. 13mm ✓
+  3. 25mm
+
+------------------------------------------------------------
+
+Q34. បើរង្វង់ដៃចង្កូតមានបន្ទាត់ផ្ចឹត០,៥០ម៉ែត្រ តើហ្សឺចង្កូតត្រូវរក្សាប៉ុន្មាន ?
+  1. មិនលើសពី ១០ដឺក្រេ ✓
+  2. មិនលើសពី ២០ដឺក្រេ
+  3. មិនលើសពី ៣០ដឺក្រេ
+
+Q34. If the steering wheel with a diameter of 0.5m, how many degrees is ...... steering wheel left?
+  1. Not more than 10 degrees ✓
+  2. Not more than 20 degrees
+  3. Not more than 30 degrees
+
+------------------------------------------------------------
+
+Q35. តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ ចំពោះដៃចង្កូត និងដងចង្កូត ?
+  1. ភាពលេចជ្រាបប្រេង
+  2. ភាពធូររលុងឬជាប់គាំង ភាពប្រេះស្រាំឬបាក់ ✓
+  3. ភាពកោង ឬវៀច
+
+Q35. What are the main check at the steering wheel and steering pedal?
+  1. The leakage of oil
+  2. The looseness or stickiness, being cracked or broken. ✓
+  3. The state of being curved or crooked.
+
+------------------------------------------------------------
+
+Q36. តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ នៃធុងអាគុយ ?
+  1. ភាពកខ្វក់នៃធុងអាគុយ
+  2. ភាពជាប់ និងកំរិតទឹកអាគុយ ✓
+  3. ភាពមិនជាប់ល្អ រវាងក្បាលអាគុយនិងក្រចាប់ខ្សែភ្លើង
+
+Q36. What is the main check of battery case?
+  1. The dirtiness of battery case.
+  2. The quality and the level of water of the battery. ✓
+  3. The unwell inconsisency between the terminal posts and the battery alligator clips
+
+------------------------------------------------------------
+
+Q37. តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វី ចំពោះសាក់ស៊ីរថយន្ត ?
+  1. ភាពប្រេះស្រាំ កោង ឬបាក់ ✓
+  2. ភាពទន់រលាស់ នៃសាក់ស៊ី
+  3. ភាពរឹងមាំ នៃសាក់ស៊ី
+
+Q37. What shall drivers check for the vehicle’s chassis?
+  1. The state of being cracked, bend, or broken. ✓
+  2. The flexibility of the chassis.
+  3. The hardiness of the chassis.
+
+------------------------------------------------------------
+
+Q38. តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចភ្លើងបំភ្លឺផ្លូវ (ហ្វា-កូត ) ?
+  1. ភាពភ្លឺថ្លា និងដំណើរការរបស់វា ✓
+  2. ភាពលេចជ្រាបទឹក
+  3. ភាពលេចជ្រាបប្រេង
+
+Q38. What shall drivers check at the road light, headlights and coating lights?
+  1. The clearness and the process of them. ✓
+  2. The leakage of water.
+  3. The leakage of oil.
+
+------------------------------------------------------------
+
