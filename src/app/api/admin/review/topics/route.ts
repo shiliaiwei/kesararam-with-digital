@@ -13,6 +13,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const categoryId = searchParams.get("categoryId");
     const search = searchParams.get("search");
+    const creator = searchParams.get("creator");
     const status = searchParams.get("status") || "pending";
 
     // Build WHERE conditions safely using Drizzle sql
@@ -25,6 +26,10 @@ export async function GET(request: NextRequest) {
     if (search) {
       const likeSearch = `%${search}%`;
       conditions = sql`${conditions} AND (t.name_en ILIKE ${likeSearch} OR t.name_km ILIKE ${likeSearch} OR t.topic_code ILIKE ${likeSearch})`;
+    }
+
+    if (creator) {
+      conditions = sql`${conditions} AND u.display_name = ${creator}`;
     }
 
     const result = await db.execute(sql`
