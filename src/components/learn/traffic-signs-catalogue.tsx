@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
-import { Search, ArrowLeft, X, Volume2, Square } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Search, ArrowLeft, X, Volume2 } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 
 interface Topic {
@@ -18,28 +18,36 @@ interface Topic {
   audio_url_km: string;
 }
 
-// ── Sub-group definitions with Khmer labels (PDF order) ──────────────────────
-const SUB_GROUPS: { key: string; en: string; km: string; section: string; sectionKm: string }[] = [
-  { key: "Prohibitory Signs", en: "Prohibitory", km: "ហាមឃាត់", section: "Regulatory Signs", sectionKm: "សញ្ញានិយតកម្ម" },
-  { key: "Mandatory Signs", en: "Mandatory", km: "បង្គាប់", section: "Regulatory Signs", sectionKm: "សញ្ញានិយតកម្ម" },
-  { key: "Priority Signs", en: "Priority", km: "អាទិភាព", section: "Regulatory Signs", sectionKm: "សញ្ញានិយតកម្ម" },
-  { key: "Warning Signs", en: "Warning", km: "ព្រមាន", section: "Warning Signs", sectionKm: "សញ្ញាព្រមាន" },
-  { key: "Temporary Signs", en: "Temporary", km: "បណ្ដោះអាសន្ន", section: "Warning Signs", sectionKm: "សញ្ញាព្រមាន" },
-  { key: "Direction Signs", en: "Direction", km: "ទិសដៅ", section: "Informative Signs", sectionKm: "សញ្ញាផ្ដល់ព័ត៌មាន" },
-  { key: "Buildup Area Boundary Signs", en: "Area Boundary", km: "ព្រំដែនតំបន់", section: "Informative Signs", sectionKm: "សញ្ញាផ្ដល់ព័ត៌មាន" },
-  { key: "Street Name Signs", en: "Street Name", km: "ឈ្មោះផ្លូវវិថី", section: "Informative Signs", sectionKm: "សញ្ញាផ្ដល់ព័ត៌មាន" },
-  { key: "Informative Signs", en: "Informative", km: "ព័ត៌មាន", section: "Informative Signs", sectionKm: "សញ្ញាផ្ដល់ព័ត៌មាន" },
-  { key: "Supplementary Signs", en: "Supplementary", km: "បន្ថែម", section: "Other Signs", sectionKm: "សញ្ញាផ្សេងទៀត" },
-  { key: "Sign Posts", en: "Sign Posts", km: "បង្គោលសញ្ញា", section: "Other Signs", sectionKm: "សញ្ញាផ្សេងទៀត" },
-  { key: "Transverse Markings", en: "Transverse", km: "ចំណារឆ្លងកាត់", section: "Road Markings", sectionKm: "ចំណារផ្លូវវិថី" },
-  { key: "Longitudinal Markings", en: "Longitudinal", km: "ចំណារបណ្ដោយ", section: "Road Markings", sectionKm: "ចំណារផ្លូវវិថី" },
-  { key: "Arrows Markings", en: "Arrows", km: "ចំណារព្រួញ", section: "Road Markings", sectionKm: "ចំណារផ្លូវវិថី" },
-  { key: "Other Road Markings", en: "Other Markings", km: "ចំណារផ្សេងទៀត", section: "Road Markings", sectionKm: "ចំណារផ្លូវវិថី" },
-  { key: "Traffic Lights", en: "Traffic Lights", km: "ភ្លើងសញ្ញា", section: "Traffic Signals", sectionKm: "ភ្លើងសញ្ញាចរាចរណ៍" },
-  { key: "Traffic Police Signals", en: "Police Signals", km: "សញ្ញាប៉ូលិស", section: "Police Signals", sectionKm: "សញ្ញាប៉ូលិស" },
+const SUB_GROUPS: { key: string; en: string; km: string }[] = [
+  { key: "Prohibitory Signs", en: "Prohibitory", km: "ហាមឃាត់" },
+  { key: "Mandatory Signs", en: "Mandatory", km: "បង្គាប់" },
+  { key: "Priority Signs", en: "Priority", km: "អាទិភាព" },
+  { key: "Warning Signs", en: "Warning", km: "ព្រមាន" },
+  { key: "Temporary Signs", en: "Temporary", km: "បណ្ដោះអាសន្ន" },
+  { key: "Direction Signs", en: "Direction", km: "ទិសដៅ" },
+  { key: "Buildup Area Boundary Signs", en: "Area Boundary", km: "ព្រំដែនតំបន់" },
+  { key: "Street Name Signs", en: "Street Name", km: "ឈ្មោះផ្លូវវិថី" },
+  { key: "Informative Signs", en: "Informative", km: "ព័ត៌មាន" },
+  { key: "Supplementary Signs", en: "Supplementary", km: "បន្ថែម" },
+  { key: "Sign Posts", en: "Sign Posts", km: "បង្គោលសញ្ញា" },
+  { key: "Transverse Markings", en: "Transverse", km: "ចំណារឆ្លងកាត់" },
+  { key: "Longitudinal Markings", en: "Longitudinal", km: "ចំណារបណ្ដោយ" },
+  { key: "Arrows Markings", en: "Arrows", km: "ចំណារព្រួញ" },
+  { key: "Other Road Markings", en: "Other Markings", km: "ចំណារផ្សេងទៀត" },
+  { key: "Traffic Lights", en: "Traffic Lights", km: "ភ្លើងសញ្ញា" },
+  { key: "Traffic Police Signals", en: "Police Signals", km: "សញ្ញាប៉ូលិស" },
 ];
 
-const DEFAULT_FILTER = "Prohibitory Signs";
+// Alternating default: odd visits → Priority, even → Prohibitory
+function getDefaultFilter(): string {
+  try {
+    const count = parseInt(sessionStorage.getItem("kwd_road_sign_visits") || "0", 10) + 1;
+    sessionStorage.setItem("kwd_road_sign_visits", String(count));
+    return count % 2 === 1 ? "Priority Signs" : "Prohibitory Signs";
+  } catch {
+    return "Priority Signs";
+  }
+}
 
 const UI = {
   en: {
@@ -52,7 +60,7 @@ const UI = {
     relatedQ: "Related Questions",
     loadingQ: "Loading questions...",
     playAudio: "Play Audio",
-    stopAudio: "Stop",
+    stopAudio: "Stop Audio",
     reset: "Reset",
   },
   kh: {
@@ -65,12 +73,12 @@ const UI = {
     relatedQ: "សំណួរពាក់ព័ន្ធ",
     loadingQ: "កំពុងផ្ទុកសំណួរ...",
     playAudio: "ចាក់សំឡេង",
-    stopAudio: "ឈប់",
+    stopAudio: "ឈប់សំឡេង",
     reset: "កំណត់ឡើងវិញ",
   },
 } as const;
 
-// ── Detail Panel — single language, single audio, yellow highlight ────────────
+// ── Detail Panel ──────────────────────────────────────────────────────────────
 function DetailPanel({
   topic, questions, loadingQuestions, isKh, kf, t, onClose,
 }: {
@@ -84,48 +92,74 @@ function DetailPanel({
 }) {
   const [playing, setPlaying] = useState(false);
   const [loadingAudio, setLoadingAudio] = useState(false);
+  // Use a ref so the stop handler always has the current audio instance
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const playingRef = useRef(false);
 
   const name = isKh ? topic.name_km : topic.name_en;
   const description = isKh ? topic.description_km : topic.description_en;
   const audioUrl = isKh ? topic.audio_url_km : topic.audio_url_en;
   const subGroupLabel = SUB_GROUPS.find(s => s.key === topic.sub_group);
 
-  // Stop audio when panel closes or topic changes
+  // Cleanup when topic changes or panel unmounts
   useEffect(() => {
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
+        audioRef.current.src = "";
         audioRef.current = null;
       }
-      setPlaying(false);
+      playingRef.current = false;
     };
   }, [topic.id]);
 
-  const toggleAudio = useCallback(() => {
+  const handleAudio = () => {
     if (!audioUrl) return;
 
-    if (playing) {
-      audioRef.current?.pause();
-      if (audioRef.current) audioRef.current.currentTime = 0;
+    // STOP — audio is playing or loading
+    if (playingRef.current || loadingAudio) {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.src = "";
+        audioRef.current = null;
+      }
+      playingRef.current = false;
       setPlaying(false);
       setLoadingAudio(false);
       return;
     }
 
+    // PLAY — create fresh audio element
     const audio = new Audio(audioUrl);
     audioRef.current = audio;
     setLoadingAudio(true);
 
-    audio.oncanplaythrough = () => {
-      audio.play();
+    audio.addEventListener("canplaythrough", () => {
+      audio.play().catch(() => {
+        setLoadingAudio(false);
+        setPlaying(false);
+        playingRef.current = false;
+      });
       setLoadingAudio(false);
       setPlaying(true);
-    };
-    audio.onended = () => { setPlaying(false); setLoadingAudio(false); };
-    audio.onerror = () => { setPlaying(false); setLoadingAudio(false); };
+      playingRef.current = true;
+    }, { once: true });
+
+    audio.addEventListener("ended", () => {
+      setPlaying(false);
+      playingRef.current = false;
+      audioRef.current = null;
+    }, { once: true });
+
+    audio.addEventListener("error", () => {
+      setPlaying(false);
+      setLoadingAudio(false);
+      playingRef.current = false;
+      audioRef.current = null;
+    }, { once: true });
+
     audio.load();
-  }, [audioUrl, playing]);
+  };
 
   return (
     <div className="col-span-full border-4 border-yellow-400 bg-white" style={{ boxShadow: "6px 6px 0 #000" }}>
@@ -159,9 +193,9 @@ function DetailPanel({
           )}
         </div>
 
-        {/* Content — single language */}
+        {/* Content */}
         <div className="p-5 space-y-3">
-          {/* Title — highlight yellow when playing */}
+          {/* Title — yellow highlight when playing */}
           <h2
             className={`text-2xl font-black leading-tight transition-all duration-300 ${playing ? "bg-yellow-300/60 px-1 -mx-1 rounded-sm" : ""
               }`}
@@ -170,12 +204,12 @@ function DetailPanel({
             {name}
           </h2>
 
-          {/* Description — highlight yellow when playing */}
+          {/* Description — yellow highlight when playing */}
           {description && (
             <p
               className={`text-sm leading-relaxed transition-all duration-300 ${playing
-                ? "bg-yellow-300/60 text-black font-bold px-2 py-1 -mx-2 rounded-sm"
-                : "text-zinc-700"
+                  ? "bg-yellow-300/60 text-black font-bold px-2 py-1 -mx-2 rounded-sm"
+                  : "text-zinc-700"
                 }`}
               style={kf}
             >
@@ -191,17 +225,16 @@ function DetailPanel({
             </div>
           )}
 
-          {/* Single audio button */}
+          {/* Audio button */}
           {audioUrl && (
             <div className="pt-1">
               <button
-                onClick={toggleAudio}
-                disabled={loadingAudio}
-                className={`inline-flex items-center gap-2 px-4 py-2 border-2 border-black font-black text-sm transition-all ${loadingAudio
-                  ? "bg-zinc-100 text-zinc-400 cursor-wait"
-                  : playing
-                    ? "bg-black text-yellow-400 shadow-[3px_3px_0_#ca8a04]"
-                    : "bg-white hover:bg-yellow-400 shadow-[3px_3px_0_#000] hover:shadow-[3px_3px_0_#ca8a04]"
+                onClick={handleAudio}
+                className={`inline-flex items-center gap-2 px-4 py-2 border-2 border-black font-black text-sm transition-all select-none ${loadingAudio
+                    ? "bg-zinc-100 text-zinc-400 cursor-wait"
+                    : playing
+                      ? "bg-black text-yellow-400 shadow-[3px_3px_0_#ca8a04] hover:bg-zinc-800"
+                      : "bg-white hover:bg-yellow-400 shadow-[3px_3px_0_#000] hover:shadow-[3px_3px_0_#ca8a04]"
                   }`}
                 style={kf}
               >
@@ -281,7 +314,8 @@ export function TrafficSignsCatalogue() {
   const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [subGroupFilter, setSubGroupFilter] = useState<string>(DEFAULT_FILTER);
+  // Initialise with alternating default (runs once on mount)
+  const [subGroupFilter, setSubGroupFilter] = useState<string>(() => getDefaultFilter());
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
   const [selectedQuestions, setSelectedQuestions] = useState<any[]>([]);
   const [loadingQuestions, setLoadingQuestions] = useState(false);
@@ -342,11 +376,14 @@ export function TrafficSignsCatalogue() {
   };
 
   const availableKeys = new Set(topics.map(tp => tp.sub_group));
+  // Category tags — all except "All Signs" which goes at the end
   const availableGroups = SUB_GROUPS.filter(sg => availableKeys.has(sg.key));
   const countMap = topics.reduce<Record<string, number>>((acc, tp) => {
     acc[tp.sub_group] = (acc[tp.sub_group] || 0) + 1;
     return acc;
   }, {});
+
+  const isDefaultFilter = subGroupFilter === "Priority Signs" || subGroupFilter === "Prohibitory Signs";
 
   return (
     <div className="min-h-screen bg-white">
@@ -368,7 +405,7 @@ export function TrafficSignsCatalogue() {
         <div className="bg-white border-2 border-black p-4" style={{ boxShadow: "4px 4px 0 #000" }}>
 
           {/* Search */}
-          <div className="relative mb-4">
+          <div className="relative mb-3">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={18} />
             <input
               type="text"
@@ -385,28 +422,12 @@ export function TrafficSignsCatalogue() {
             )}
           </div>
 
-          {/* Tag pills — single scrollable row, hashtag style */}
+          {/* Tag pills — single scrollable row, "All Signs" at the end */}
           <div
             className="flex items-center gap-1.5 overflow-x-auto py-0.5"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
           >
-            {/* All Signs */}
-            <button
-              onClick={() => handleFilterChange("")}
-              className={`inline-flex items-center gap-1 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${subGroupFilter === "" && !search
-                  ? "bg-black text-yellow-400 shadow-[2px_2px_0_#ca8a04]"
-                  : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
-                }`}
-              style={kf}
-            >
-              <span className="opacity-50">#</span>{t.all}
-              <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ml-0.5 ${subGroupFilter === "" && !search ? "bg-yellow-400 text-black" : "bg-zinc-100 text-zinc-600"}`}>
-                {topics.length}
-              </span>
-            </button>
-
-            <span className="w-px h-4 bg-zinc-300 shrink-0 mx-0.5" />
-
+            {/* Category tags first */}
             {availableGroups.map(sg => {
               const isActive = subGroupFilter === sg.key && !search;
               const count = countMap[sg.key] || 0;
@@ -414,21 +435,39 @@ export function TrafficSignsCatalogue() {
                 <button
                   key={sg.key}
                   onClick={() => handleFilterChange(sg.key)}
-                  className={`inline-flex items-center gap-1 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${isActive
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${isActive
                       ? "bg-yellow-400 border-black shadow-[2px_2px_0_#000]"
                       : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
                     }`}
                   style={kf}
                 >
-                  <span className="opacity-40">#</span>{isKh ? sg.km : sg.en}
+                  {isKh ? sg.km : sg.en}
                   {count > 0 && (
-                    <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ml-0.5 ${isActive ? "bg-black text-yellow-400" : "bg-zinc-100 text-zinc-600"}`}>
+                    <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ${isActive ? "bg-black text-yellow-400" : "bg-zinc-100 text-zinc-600"}`}>
                       {count}
                     </span>
                   )}
                 </button>
               );
             })}
+
+            {/* Divider before "All Signs" */}
+            <span className="w-px h-4 bg-zinc-300 shrink-0 mx-0.5" />
+
+            {/* All Signs — at the end */}
+            <button
+              onClick={() => handleFilterChange("")}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${subGroupFilter === "" && !search
+                  ? "bg-black text-yellow-400 shadow-[2px_2px_0_#ca8a04]"
+                  : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
+                }`}
+              style={kf}
+            >
+              {t.all}
+              <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ${subGroupFilter === "" && !search ? "bg-yellow-400 text-black" : "bg-zinc-100 text-zinc-600"}`}>
+                {topics.length}
+              </span>
+            </button>
           </div>
 
           {/* Result count + reset */}
@@ -441,9 +480,9 @@ export function TrafficSignsCatalogue() {
                 </span>
               )}
             </p>
-            {(subGroupFilter !== DEFAULT_FILTER || search) && (
+            {(!isDefaultFilter || search) && (
               <button
-                onClick={() => { setSubGroupFilter(DEFAULT_FILTER); setSearch(""); setSelectedTopic(null); }}
+                onClick={() => { setSubGroupFilter(getDefaultFilter()); setSearch(""); setSelectedTopic(null); }}
                 className="text-xs font-bold text-zinc-400 hover:text-black underline"
                 style={kf}
               >
@@ -487,8 +526,8 @@ export function TrafficSignsCatalogue() {
                     onClick={() => handleTopicClick(topic)}
                     aria-expanded={isSelected}
                     className={`group border-2 transition-all duration-150 flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 ${isSelected
-                      ? "border-yellow-400 bg-yellow-400 shadow-[4px_4px_0_#ca8a04]"
-                      : "border-black bg-white hover:border-yellow-400 hover:bg-yellow-400 hover:shadow-[4px_4px_0_#ca8a04]"
+                        ? "border-yellow-400 bg-yellow-400 shadow-[4px_4px_0_#ca8a04]"
+                        : "border-black bg-white hover:border-yellow-400 hover:bg-yellow-400 hover:shadow-[4px_4px_0_#ca8a04]"
                       }`}
                   >
                     <div className="relative w-full overflow-hidden" style={{ paddingBottom: "100%" }}>
