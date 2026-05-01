@@ -421,12 +421,30 @@ export function TrafficSignsCatalogue() {
             )}
           </div>
 
-          {/* Tag pills — single scrollable row, "All Signs" at the end */}
+          {/* Tag pills — single scrollable row, "All Signs" first */}
           <div
             className="flex items-center gap-1.5 overflow-x-auto py-0.5"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
           >
-            {/* Category tags first */}
+            {/* All Signs — first */}
+            <button
+              onClick={() => handleFilterChange("")}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${subGroupFilter === "" && !search
+                ? "bg-black text-yellow-400 shadow-[2px_2px_0_#ca8a04]"
+                : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
+                }`}
+              style={kf}
+            >
+              {t.all}
+              <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ${subGroupFilter === "" && !search ? "bg-yellow-400 text-black" : "bg-zinc-100 text-zinc-600"}`}>
+                {topics.length}
+              </span>
+            </button>
+
+            {/* Divider */}
+            <span className="w-px h-4 bg-zinc-300 shrink-0 mx-0.5" />
+
+            {/* Category tags */}
             {availableGroups.map(sg => {
               const isActive = subGroupFilter === sg.key && !search;
               const count = countMap[sg.key] || 0;
@@ -449,24 +467,6 @@ export function TrafficSignsCatalogue() {
                 </button>
               );
             })}
-
-            {/* Divider before "All Signs" */}
-            <span className="w-px h-4 bg-zinc-300 shrink-0 mx-0.5" />
-
-            {/* All Signs — at the end */}
-            <button
-              onClick={() => handleFilterChange("")}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${subGroupFilter === "" && !search
-                ? "bg-black text-yellow-400 shadow-[2px_2px_0_#ca8a04]"
-                : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
-                }`}
-              style={kf}
-            >
-              {t.all}
-              <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ${subGroupFilter === "" && !search ? "bg-yellow-400 text-black" : "bg-zinc-100 text-zinc-600"}`}>
-                {topics.length}
-              </span>
-            </button>
           </div>
 
           {/* Result count + reset */}
