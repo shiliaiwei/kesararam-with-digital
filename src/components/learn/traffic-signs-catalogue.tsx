@@ -38,15 +38,9 @@ const SUB_GROUPS: { key: string; en: string; km: string }[] = [
   { key: "Traffic Police Signals", en: "Police Signals", km: "សញ្ញាប៉ូលិស" },
 ];
 
-// Alternating default: odd visits → Priority, even → Prohibitory
+// Default: show all signs on entry. User can tap a tag to filter.
 function getDefaultFilter(): string {
-  try {
-    const count = parseInt(sessionStorage.getItem("kwd_road_sign_visits") || "0", 10) + 1;
-    sessionStorage.setItem("kwd_road_sign_visits", String(count));
-    return count % 2 === 1 ? "Priority Signs" : "Prohibitory Signs";
-  } catch {
-    return "Priority Signs";
-  }
+  return "";
 }
 
 const UI = {
@@ -382,7 +376,7 @@ export function TrafficSignsCatalogue() {
     return acc;
   }, {});
 
-  const isDefaultFilter = subGroupFilter === "Priority Signs" || subGroupFilter === "Prohibitory Signs";
+  const isDefaultFilter = subGroupFilter === "";
 
   return (
     <div className="min-h-screen bg-white">
