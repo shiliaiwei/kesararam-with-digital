@@ -1,131 +1,105 @@
 ======================================================================
+
+
 Category : Loading
 ID Prefix: LDG
 Total    : 14 questions
 ======================================================================
 
-[LDG-Q001]
-Q (KH): ក្នុងការផ្ទុកទំនិញ តើអនុញ្ញាតឲ្យបន្ទុកលយទៅខាងក្រោយរថយន្ត ប្រវែងប៉ុន្មានដោយមានចងក្រណាត់ពណ៌ក្រហមនៅខាងចុងបន្ទុក?
-A (KH): អនុញ្ញាតឲ្យបន្ទុកលយហួសទៅខាងក្រោយបានត្រឹម ៣ ម៉ែត្រ
-
-Q (EN): Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?
-A (EN): 03m
-
+LDG-Q001
+[curious] ក្នុងការផ្ទុកទំនិញ តើអនុញ្ញាតឲ្យបន្ទុកលយទៅខាងក្រោយរថយន្ត ប្រវែងប៉ុន្មានដោយមានចងក្រណាត់ពណ៌ក្រហមនៅខាងចុងបន្ទុក?
+[guiding] ចម្លើយគឺ [assured] អនុញ្ញាតឲ្យបន្ទុកលយហួសទៅខាងក្រោយបានត្រឹម ៣ ម៉ែត្រ
+[curious] Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?
+[guiding] The answer is [assured] 03m
 ----------------------------------------------------------------------
 
-[LDG-Q002]
-Q (KH): បើរថយន្តមានទទឹងប្រវែង ២,៥ ម៉ែត្រ តើអនុញ្ញាតឲ្យបន្ទុកលយហួសទៅសងខាងរថយន្តប្រវែងប៉ុន្មាន ?
-A (KH): មិនអនុញ្ញាតឲ្យបន្ទុកលយហួសទៅសងខាងឡើយ
-
-Q (EN): If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?
-A (EN): Not allow at all.
-
+LDG-Q002
+[thoughtful] បើរថយន្តមានទទឹងប្រវែង ២,៥ ម៉ែត្រ តើអនុញ្ញាតឲ្យបន្ទុកលយហួសទៅសងខាងរថយន្តប្រវែងប៉ុន្មាន ?
+[helpful] ចម្លើយគឺ [clear] មិនអនុញ្ញាតឲ្យបន្ទុកលយហួសទៅសងខាងឡើយ
+[thoughtful] If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?
+[helpful] The answer is [clear] Not allow at all.
 ----------------------------------------------------------------------
 
-[LDG-Q003]
-Q (KH): ក្នុងការបើកបរនៅលើផ្លូវជាតិ #៤ តើទំងន់សរុបអតិបរមារបស់រថយន្តដែលមានភ្លៅ ៣ (កង់១០) ត្រូវអនុញ្ញាតត្រឹមប៉ុន្មានតោន ?
-A (KH): ២៥ តោន
-
-Q (EN): Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?
-A (EN): 25T
-
+LDG-Q003
+[wondering] ក្នុងការបើកបរនៅលើផ្លូវជាតិ #៤ តើទំងន់សរុបអតិបរមារបស់រថយន្តដែលមានភ្លៅ ៣ (កង់១០) ត្រូវអនុញ្ញាតត្រឹមប៉ុន្មានតោន ?
+[supportive] ចម្លើយគឺ [definitive] ២៥ តោន
+[wondering] Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?
+[supportive] The answer is [definitive] 25T
 ----------------------------------------------------------------------
 
-[LDG-Q004]
-Q (KH): ក្នុងការបើកបរនៅលើផ្លូវជាតិ #៤ តើទំងន់សរុបអតិបរមារបស់រថយន្តដែលមានភ្លៅ ៤ (កង់១២) ត្រូវអនុញ្ញាតត្រឹមប៉ុន្មានតោន ?
-A (KH): ៣៥ តោន
-
-Q (EN): Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?
-A (EN): 35T
-
+LDG-Q004
+[inquiring] ក្នុងការបើកបរនៅលើផ្លូវជាតិ #៤ តើទំងន់សរុបអតិបរមារបស់រថយន្តដែលមានភ្លៅ ៤ (កង់១២) ត្រូវអនុញ្ញាតត្រឹមប៉ុន្មានតោន ?
+[encouraging] ចម្លើយគឺ [certain] ៣៥ តោន
+[inquiring] Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?
+[encouraging] The answer is [certain] 35T
 ----------------------------------------------------------------------
 
-[LDG-Q005]
-Q (KH): ក្នុងការបើកបរនៅលើផ្លូវជាតិ #៤ តើទំងន់សរុបអតិបរមារបស់រថយន្តដែលមានភ្លៅ ៥ (កង់១៦) ត្រូវអនុញ្ញាតត្រឹមប៉ុន្មានតោន ?
-A (KH): ៤០ តោន
-
-Q (EN): Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?
-A (EN): 40T
-
+LDG-Q005
+[intrigue] ក្នុងការបើកបរនៅលើផ្លូវជាតិ #៤ តើទំងន់សរុបអតិបរមារបស់រថយន្តដែលមានភ្លៅ ៥ (កង់១៦) ត្រូវអនុញ្ញាតត្រឹមប៉ុន្មានតោន ?
+[inspiration] ចម្លើយគឺ [confident] ៤០ តោន
+[intrigue] Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?
+[inspiration] The answer is [confident] 40T
 ----------------------------------------------------------------------
 
-[LDG-Q006]
-Q (KH): ក្នុងការផ្ទុកទំនិញ តើអនុញ្ញាតឲ្យបន្ទុកលយហួសទៅខាងក្រោយរថយន្តប្រវែងប៉ុន្មានដោយគ្មានដាក់សញ្ញាអ្វីសំគាល់ ?
-A (KH): អនុញ្ញាតឲ្យលយទៅខាងក្រោយត្រឹម ១ ម៉ែត្រ
-
-Q (EN): Loading goods, how long protruded to the back of vehicle is allowed without sign?
-A (EN): 01m
-
+LDG-Q006
+[curious] ក្នុងការផ្ទុកទំនិញ តើអនុញ្ញាតឲ្យបន្ទុកលយហួសទៅខាងក្រោយរថយន្តប្រវែងប៉ុន្មានដោយគ្មានដាក់សញ្ញាអ្វីសំគាល់ ?
+[guiding] ចម្លើយគឺ [assured] អនុញ្ញាតឲ្យលយទៅខាងក្រោយត្រឹម ១ ម៉ែត្រ
+[curious] Loading goods, how long protruded to the back of vehicle is allowed without sign?
+[guiding] The answer is [assured] 01m
 ----------------------------------------------------------------------
 
-[LDG-Q007]
-Q (KH): ក្នុងការផ្ទុកទំនិញ តើអនុញ្ញាតឲ្យបន្ទុកមានកំពស់ប្រវែងប៉ុន្មានម៉ែត្រពីដី ?
-A (KH): មិនលើសពី ៤,២០ ម៉ែត្រ
-
-Q (EN): Loading goods, how high of goods from the earth is allowed?
-A (EN): Not more than 4.20m
-
+LDG-Q007
+[thoughtful] ក្នុងការផ្ទុកទំនិញ តើអនុញ្ញាតឲ្យបន្ទុកមានកំពស់ប្រវែងប៉ុន្មានម៉ែត្រពីដី ?
+[helpful] ចម្លើយគឺ [clear] មិនលើសពី ៤,២០ ម៉ែត្រ
+[thoughtful] Loading goods, how high of goods from the earth is allowed?
+[helpful] The answer is [clear] Not more than 4.20m
 ----------------------------------------------------------------------
 
-[LDG-Q008]
-Q (KH): តើទំងន់អតិបរមាសង្កត់លើភ្លៅទោលនីមួយៗ (កង់៤) នៃរថយន្ត ឬ រ៉ឺម៉ក ត្រូវអនុញ្ញាតត្រឹមប៉ុន្មាន ?
-A (KH): ១០ តោន
-
-Q (EN): What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?
-A (EN): 10T
-
+LDG-Q008
+[wondering] តើទំងន់អតិបរមាសង្កត់លើភ្លៅទោលនីមួយៗ (កង់៤) នៃរថយន្ត ឬ រ៉ឺម៉ក ត្រូវអនុញ្ញាតត្រឹមប៉ុន្មាន ?
+[supportive] ចម្លើយគឺ [definitive] ១០ តោន
+[wondering] What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?
+[supportive] The answer is [definitive] 10T
 ----------------------------------------------------------------------
 
-[LDG-Q009]
-Q (KH): ក្នុងការបើកបរនៅលើផ្លូវជាតិ #៤ តើទំងន់សរុបអតិបរមារបស់រថយន្តដែលមានភ្លៅ ២ (កង់៦) ត្រូវអនុញ្ញាតត្រឹមប៉ុន្មាន?
-A (KH): ១៦ តោន
-
-Q (EN): Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?
-A (EN): 16T
-
+LDG-Q009
+[inquiring] ក្នុងការបើកបរនៅលើផ្លូវជាតិ #៤ តើទំងន់សរុបអតិបរមារបស់រថយន្តដែលមានភ្លៅ ២ (កង់៦) ត្រូវអនុញ្ញាតត្រឹមប៉ុន្មាន?
+[encouraging] ចម្លើយគឺ [certain] ១៦ តោន
+[inquiring] Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?
+[encouraging] The answer is [certain] 16T
 ----------------------------------------------------------------------
 
-[LDG-Q010]
-Q (KH): តើទំងន់អតិបរមាសង្កត់លើភ្លៅភ្លោះ (កង់៨) នៃរថយន្ត ឬរ៉ឺម៉កត្រូវអនុញ្ញាតត្រឹមប៉ុន្មាន ?
-A (KH): ១៩តោន
-
-Q (EN): What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?
-A (EN): 19T
-
+LDG-Q010
+[intrigue] តើទំងន់អតិបរមាសង្កត់លើភ្លៅភ្លោះ (កង់៨) នៃរថយន្ត ឬរ៉ឺម៉កត្រូវអនុញ្ញាតត្រឹមប៉ុន្មាន ?
+[inspiration] ចម្លើយគឺ [confident] ១៩តោន
+[intrigue] What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?
+[inspiration] The answer is [confident] 19T
 ----------------------------------------------------------------------
 
-[LDG-Q011]
-Q (KH): ក្នុងការផ្ទុកទំនិញដែលមានទំហំតូចហើយធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកយ៉ាងដូចម្ដេច ?
-A (KH): ត្រូវផ្ទុកទំនិញឲ្យស្ថិត ចំកណ្ដាល នៃតួទ្រុងក្រោយ
-
-Q (EN): Loading small goods but heavy, how shall you arrange to load?
-A (EN): Load in the center of the vehicle.
-
+LDG-Q011
+[curious] ក្នុងការផ្ទុកទំនិញដែលមានទំហំតូចហើយធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកយ៉ាងដូចម្ដេច ?
+[guiding] ចម្លើយគឺ [assured] ត្រូវផ្ទុកទំនិញឲ្យស្ថិត ចំកណ្ដាល នៃតួទ្រុងក្រោយ
+[curious] Loading small goods but heavy, how shall you arrange to load?
+[guiding] The answer is [assured] Load in the center of the vehicle.
 ----------------------------------------------------------------------
 
-[LDG-Q012]
-Q (KH): ចំពោះរថយន្តដឹកអង្គធាតុគ្រោះថ្នាក់ ដូចជា ហ្គាស ប្រេងឥន្ធនៈ តើត្រូវមានដាក់អ្វីជាសញ្ញាសំគាល់ ?
-A (KH): ត្រូវដាក់ផ្លាកសញ្ញាសំគាល់អង្គធាតុនោះ
-
-Q (EN): For vehicle loading accident substance like gas or fuel, what sign shall install to notice?
-A (EN): Install the sign of the substance.
-
+LDG-Q012
+[thoughtful] ចំពោះរថយន្តដឹកអង្គធាតុគ្រោះថ្នាក់ ដូចជា ហ្គាស ប្រេងឥន្ធនៈ តើត្រូវមានដាក់អ្វីជាសញ្ញាសំគាល់ ?
+[helpful] ចម្លើយគឺ [clear] ត្រូវដាក់ផ្លាកសញ្ញាសំគាល់អង្គធាតុនោះ
+[thoughtful] For vehicle loading accident substance like gas or fuel, what sign shall install to notice?
+[helpful] The answer is [clear] Install the sign of the substance.
 ----------------------------------------------------------------------
 
-[LDG-Q013]
-Q (KH): តើទំងន់អតិបរមាសង្កត់លើភ្លៅទោលខាងមុខ (កង់ ២ ) នៃរថយន្តត្រូវអនុញ្ញាតត្រឹមប៉ុន្មាន ?
-A (KH): ៦តោន
-
-Q (EN): What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?
-A (EN): 6T
-
+LDG-Q013
+[wondering] តើទំងន់អតិបរមាសង្កត់លើភ្លៅទោលខាងមុខ (កង់ ២ ) នៃរថយន្តត្រូវអនុញ្ញាតត្រឹមប៉ុន្មាន ?
+[supportive] ចម្លើយគឺ [definitive] ៦តោន
+[wondering] What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?
+[supportive] The answer is [definitive] 6T
 ----------------------------------------------------------------------
 
-[LDG-Q014]
-Q (KH): ក្នុងការផ្ទុកទំនិញ តើអនុញ្ញាតឲ្យបន្ទុកលយហួសទៅមុខរថយន្តប្រវែងប៉ុន្មានម៉ែត្រ ?
-A (KH): មិនអនុញ្ញាតឲ្យផ្ទុកលយហួសទៅខាងមុខទេ
-
-Q (EN): Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?
-A (EN): Not allow at all.
-
+LDG-Q014
+[inquiring] ក្នុងការផ្ទុកទំនិញ តើអនុញ្ញាតឲ្យបន្ទុកលយហួសទៅមុខរថយន្តប្រវែងប៉ុន្មានម៉ែត្រ ?
+[encouraging] ចម្លើយគឺ [certain] មិនអនុញ្ញាតឲ្យផ្ទុកលយហួសទៅខាងមុខទេ
+[inquiring] Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?
+[encouraging] The answer is [certain] Not allow at all.
 ----------------------------------------------------------------------

@@ -1,347 +1,273 @@
 ======================================================================
+
+
 Category : Technical
 ID Prefix: TCH
 Total    : 38 questions
 ======================================================================
 
-[TCH-Q001]
-Q (KH): តើអ្នកត្រួតពិនិត្យកម្រិតប្រេងម៉ាស៊ីនដូចម្ដេច ?
-A (KH): កម្រិតប្រេងម៉ាស៊ីន ត្រូវស្ថិតនៅត្រង់ចន្លោះគំនូសអប្បបរមា និងអតិបរមា
-
-Q (EN): How shall you check engine oil?
-A (EN): The level of engine oil must be between minimum and maximum markings
-
+TCH-Q001
+[curious] តើអ្នកត្រួតពិនិត្យកម្រិតប្រេងម៉ាស៊ីនដូចម្ដេច ?
+[guiding] ចម្លើយគឺ [assured] កម្រិតប្រេងម៉ាស៊ីន ត្រូវស្ថិតនៅត្រង់ចន្លោះគំនូសអប្បបរមា និងអតិបរមា
+[curious] How shall you check engine oil?
+[guiding] The answer is [assured] The level of engine oil must be between minimum and maximum markings
 ----------------------------------------------------------------------
 
-[TCH-Q002]
-Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ស៊ីផ្លេ ?
-A (KH): ភាពដំណើរការល្អរបស់វា
-
-Q (EN): What shall you check at the horn?
-A (EN): Well work of it.
-
+TCH-Q002
+[thoughtful] តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ស៊ីផ្លេ ?
+[helpful] ចម្លើយគឺ [clear] ភាពដំណើរការល្អរបស់វា
+[thoughtful] What shall you check at the horn?
+[helpful] The answer is [clear] Well work of it.
 ----------------------------------------------------------------------
 
-[TCH-Q003]
-Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចច្រវ៉ាក់ ?
-A (KH): តឹងល្មម មិនធូរ ឬមិនតឹងពេក ត្រូវមានជាតិប្រេងរំអិលជានិច្ច
-
-Q (EN): What shall you check at the chain?
-A (EN): tight enough, no loose, or not too tight, must be always with oil.
-
+TCH-Q003
+[wondering] តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចច្រវ៉ាក់ ?
+[supportive] ចម្លើយគឺ [definitive] តឹងល្មម មិនធូរ ឬមិនតឹងពេក ត្រូវមានជាតិប្រេងរំអិលជានិច្ច
+[wondering] What shall you check at the chain?
+[supportive] The answer is [definitive] tight enough, no loose, or not too tight, must be always with oil.
 ----------------------------------------------------------------------
 
-[TCH-Q004]
-Q (KH): តើអ្នកត្រូវត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចធុងទឹក ?
-A (KH): កំរិតទឹកក្នុងធុង
-
-Q (EN): What shall you check at the water tank?
-A (EN): The level of water in the tank
-
+TCH-Q004
+[inquiring] តើអ្នកត្រូវត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចធុងទឹក ?
+[encouraging] ចម្លើយគឺ [certain] កំរិតទឹកក្នុងធុង
+[inquiring] What shall you check at the water tank?
+[encouraging] The answer is [certain] The level of water in the tank
 ----------------------------------------------------------------------
 
-[TCH-Q005]
-Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចផ្លិតទឹក ?
-A (KH): ដំណើការ និង ជូតទឹកបានស្អាតល្អ
-
-Q (EN): What shall you check at the water fan?
-A (EN): The process and the wipe the water well
-
+TCH-Q005
+[intrigue] តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចផ្លិតទឹក ?
+[inspiration] ចម្លើយគឺ [confident] ដំណើការ និង ជូតទឹកបានស្អាតល្អ
+[intrigue] What shall you check at the water fan?
+[inspiration] The answer is [confident] The process and the wipe the water well
 ----------------------------------------------------------------------
 
-[TCH-Q006]
-Q (KH): តើច្បាប់កំណត់ឱ្យជម្រៅក្រឡាសំបកកៅស៊ូកង់សឹកនៅសល់យ៉ាងតិចប៉ុន្មានមីលីម៉ែត្រដែលត្រូវប្ដូរចេញ ?
-A (KH): យ៉ាងតិច ១ម.ម
-
-Q (EN): According to the law, the depth of the motorcycle’s tyre tread after eroded, how many millimetres, at least, are they left need to be changed?
-A (EN): At least 1mm
-
+TCH-Q006
+[curious] តើច្បាប់កំណត់ឱ្យជម្រៅក្រឡាសំបកកៅស៊ូកង់សឹកនៅសល់យ៉ាងតិចប៉ុន្មានមីលីម៉ែត្រដែលត្រូវប្ដូរចេញ ?
+[guiding] ចម្លើយគឺ [assured] យ៉ាងតិច ១ម.ម
+[curious] According to the law, the depth of the motorcycle’s tyre tread after eroded, how many millimetres, at least, are they left need to be changed?
+[guiding] The answer is [assured] At least 1mm
 ----------------------------------------------------------------------
 
-[TCH-Q007]
-Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចប្រេងម៉ាស៊ីន ?
-A (KH): ភាពលេចជ្រាប និងត្រូវឱ្យមានតាមកម្រិតកំណត់
-
-Q (EN): What shall you check at the oil point?
-A (EN): The leakage and the existence of the specified level.
-
+TCH-Q007
+[thoughtful] តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចប្រេងម៉ាស៊ីន ?
+[helpful] ចម្លើយគឺ [clear] ភាពលេចជ្រាប និងត្រូវឱ្យមានតាមកម្រិតកំណត់
+[thoughtful] What shall you check at the oil point?
+[helpful] The answer is [clear] The leakage and the existence of the specified level.
 ----------------------------------------------------------------------
 
-[TCH-Q008]
-Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចង្កៀងភ្លើងសញ្ញា ?
-A (KH): ភាពដំណើរការល្អ ឬភាពខូច ឬកខ្វក់
-
-Q (EN): What shall you check at the sign lights?
-A (EN): Being well-processed or broken or dirty.
-
+TCH-Q008
+[wondering] តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចង្កៀងភ្លើងសញ្ញា ?
+[supportive] ចម្លើយគឺ [definitive] ភាពដំណើរការល្អ ឬភាពខូច ឬកខ្វក់
+[wondering] What shall you check at the sign lights?
+[supportive] The answer is [definitive] Being well-processed or broken or dirty.
 ----------------------------------------------------------------------
 
-[TCH-Q009]
-Q (KH): តើអ្នកត្រួតពិនិត្យដូចម្ដេច នៅលើកញ្ចក់មើលក្រោយ ?
-A (KH): ត្រូវមានសភាពច្បាស់ល្អ និងដាក់ឱ្យត្រូវទីតាំង
-
-Q (EN): What shall you check on the wing mirrors?
-A (EN): Clearliness and right position.
-
+TCH-Q009
+[inquiring] តើអ្នកត្រួតពិនិត្យដូចម្ដេច នៅលើកញ្ចក់មើលក្រោយ ?
+[encouraging] ចម្លើយគឺ [certain] ត្រូវមានសភាពច្បាស់ល្អ និងដាក់ឱ្យត្រូវទីតាំង
+[inquiring] What shall you check on the wing mirrors?
+[encouraging] The answer is [certain] Clearliness and right position.
 ----------------------------------------------------------------------
 
-[TCH-Q010]
-Q (KH): តើអ្នកត្រួតពិនិត្យកំរិតប្រេងហ្វ្រាំងដូចម្ដេច ?
-A (KH): កំរិតប្រេងហ្វ្រាំង ត្រូវស្ថិតនៅត្រង់ចន្លោះគំនូសអប្បបរមា និងអតិបរមា
-
-Q (EN): How shall you check the level of brake oil?
-A (EN): The level of brake oil must be between minimum and maximum markings
-
+TCH-Q010
+[intrigue] តើអ្នកត្រួតពិនិត្យកំរិតប្រេងហ្វ្រាំងដូចម្ដេច ?
+[inspiration] ចម្លើយគឺ [confident] កំរិតប្រេងហ្វ្រាំង ត្រូវស្ថិតនៅត្រង់ចន្លោះគំនូសអប្បបរមា និងអតិបរមា
+[intrigue] How shall you check the level of brake oil?
+[inspiration] The answer is [confident] The level of brake oil must be between minimum and maximum markings
 ----------------------------------------------------------------------
 
-[TCH-Q011]
-Q (KH): ក្នុងពេលធ្វើដំណើរ តើអ្នកត្រូវត្រួតពិនិត្យអ្វីខ្លះ ?
-A (KH): ដំណើរការនាឡិកាសីតុណ្ហភាពទឹក នាឡិកាសាកអាគុយ និងសញ្ញាហ្វ្រាំង ព្រមទាំងសំពាធប្រេងម៉ាស៊ីន
-
-Q (EN): While travelling, what shall you check?
-A (EN): Water temperature device process , battery recharged device, and brake signal, including engine oil pressure.
-
+TCH-Q011
+[curious] ក្នុងពេលធ្វើដំណើរ តើអ្នកត្រូវត្រួតពិនិត្យអ្វីខ្លះ ?
+[guiding] ចម្លើយគឺ [assured] ដំណើរការនាឡិកាសីតុណ្ហភាពទឹក នាឡិកាសាកអាគុយ និងសញ្ញាហ្វ្រាំង ព្រមទាំងសំពាធប្រេងម៉ាស៊ីន
+[curious] While travelling, what shall you check?
+[guiding] The answer is [assured] Water temperature device process , battery recharged device, and brake signal, including engine oil pressure.
 ----------------------------------------------------------------------
 
-[TCH-Q012]
-Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចអាគុយទឹក ?
-A (KH): កំរិតទឹកអាគុយ
-
-Q (EN): What shall you check at the liquid battery?
-A (EN): The level of the water of battery.
-
+TCH-Q012
+[thoughtful] តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចអាគុយទឹក ?
+[helpful] ចម្លើយគឺ [clear] កំរិតទឹកអាគុយ
+[thoughtful] What shall you check at the liquid battery?
+[helpful] The answer is [clear] The level of the water of battery.
 ----------------------------------------------------------------------
 
-[TCH-Q013]
-Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចសំបកកៅស៊ូកង់ ?
-A (KH): សំពាធខ្យល់ ភាពសឹក ប៉ោង ប្រេះ មុត
-
-Q (EN): What shall you check at the tyres?
-A (EN): Air pressure, erosion, swellings, cracked, and punch.
-
+TCH-Q013
+[wondering] តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចសំបកកៅស៊ូកង់ ?
+[supportive] ចម្លើយគឺ [definitive] សំពាធខ្យល់ ភាពសឹក ប៉ោង ប្រេះ មុត
+[wondering] What shall you check at the tyres?
+[supportive] The answer is [definitive] Air pressure, erosion, swellings, cracked, and punch.
 ----------------------------------------------------------------------
 
-[TCH-Q014]
-Q (KH): តើអ្នកពិនិត្យអ្វី នៅលើខ្នងកង់ ?
-A (KH): ភាពធូកាំនៃខ្នងកង់
-
-Q (EN): What shall you check on the motorcycle’s wheels?
-A (EN): The looseness of the radius of the wheels.
-
+TCH-Q014
+[inquiring] តើអ្នកពិនិត្យអ្វី នៅលើខ្នងកង់ ?
+[encouraging] ចម្លើយគឺ [certain] ភាពធូកាំនៃខ្នងកង់
+[inquiring] What shall you check on the motorcycle’s wheels?
+[encouraging] The answer is [certain] The looseness of the radius of the wheels.
 ----------------------------------------------------------------------
 
-[TCH-Q015]
-Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចហ្វ្រាំង ?
-A (KH): ហ្សឺ និងដំណើរការហ្វ្រាំងដៃ ហ្វ្រាំងជើង
-
-Q (EN): What shall you check at the brakes?
-A (EN): The level of properly work of brake system
-
+TCH-Q015
+[intrigue] តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចហ្វ្រាំង ?
+[inspiration] ចម្លើយគឺ [confident] ហ្សឺ និងដំណើរការហ្វ្រាំងដៃ ហ្វ្រាំងជើង
+[intrigue] What shall you check at the brakes?
+[inspiration] The answer is [confident] The level of properly work of brake system
 ----------------------------------------------------------------------
 
-[TCH-Q016]
-Q (KH): តើអ្នកត្រួតពិនិត្យដូចម្ដេច ចំពោះខ្ចៅ និងប៊ូឡុង ?
-A (KH): ត្រូវមានសភាពតឹងល្អ
-
-Q (EN): How shall you check on nuts and bolts?
-A (EN): Shall be good tight.
-
+TCH-Q016
+[curious] តើអ្នកត្រួតពិនិត្យដូចម្ដេច ចំពោះខ្ចៅ និងប៊ូឡុង ?
+[guiding] ចម្លើយគឺ [assured] ត្រូវមានសភាពតឹងល្អ
+[curious] How shall you check on nuts and bolts?
+[guiding] The answer is [assured] Shall be good tight.
 ----------------------------------------------------------------------
 
-[TCH-Q017]
-Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់កុងទ័រល្បឿន ?
-A (KH): ការដំណើរការល្អរបស់វា
-
-Q (EN): What shall you check at the speedometer?
-A (EN): The process of it.
-
+TCH-Q017
+[thoughtful] តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់កុងទ័រល្បឿន ?
+[helpful] ចម្លើយគឺ [clear] ការដំណើរការល្អរបស់វា
+[thoughtful] What shall you check at the speedometer?
+[helpful] The answer is [clear] The process of it.
 ----------------------------------------------------------------------
 
-[TCH-Q018]
-Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចដៃចង្កូត ?
-A (KH): ភាពរឹងមាំល្អរបស់វា
-
-Q (EN): What shall you check at the motorcycle’s steering?
-A (EN): The hardiness of it.
-
+TCH-Q018
+[wondering] តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចដៃចង្កូត ?
+[supportive] ចម្លើយគឺ [definitive] ភាពរឹងមាំល្អរបស់វា
+[wondering] What shall you check at the motorcycle’s steering?
+[supportive] The answer is [definitive] The hardiness of it.
 ----------------------------------------------------------------------
 
-[TCH-Q019]
-Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ម៉ាស៊ីន ?
-A (KH): ភាពលេចជ្រាបប្រេងម៉ាស៊ីន និងកម្រិតប្រេងម៉ាស៊ីន
-
-Q (EN): What shall you check at the motorcycle’s engine?
-A (EN): The leakage of oil and the level of engine oil.
-
+TCH-Q019
+[inquiring] តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ម៉ាស៊ីន ?
+[encouraging] ចម្លើយគឺ [certain] ភាពលេចជ្រាបប្រេងម៉ាស៊ីន និងកម្រិតប្រេងម៉ាស៊ីន
+[inquiring] What shall you check at the motorcycle’s engine?
+[encouraging] The answer is [certain] The leakage of oil and the level of engine oil.
 ----------------------------------------------------------------------
 
-[TCH-Q020]
-Q (KH): នៅរៀងរាល់ពេល មុននឹងចូលក្នុងរថយន្ត អ្នកត្រូវត្រួតពិនិត្យអ្វីខ្លះ ?
-A (KH): មើលកង់កុំឲ្យធូរ និងភ្លើងចង្កៀងត្រូវឲ្យស្អាតជានិច្ច
-
-Q (EN): What shall you check every time before getting into the car?
-A (EN): Check the wheels not to be flat and the lights must be cleaned all time.
-
+TCH-Q020
+[intrigue] នៅរៀងរាល់ពេល មុននឹងចូលក្នុងរថយន្ត អ្នកត្រូវត្រួតពិនិត្យអ្វីខ្លះ ?
+[inspiration] ចម្លើយគឺ [confident] មើលកង់កុំឲ្យធូរ និងភ្លើងចង្កៀងត្រូវឲ្យស្អាតជានិច្ច
+[intrigue] What shall you check every time before getting into the car?
+[inspiration] The answer is [confident] Check the wheels not to be flat and the lights must be cleaned all time.
 ----------------------------------------------------------------------
 
-[TCH-Q021]
-Q (KH): តើភាពសឹករបស់សំបកកង់រថយន្តគ្រួសារ ត្រូវឲ្យនៅសល់ជំរៅក្រឡាយ៉ាងតិចប៉ុន្មាន មីលីមែត្រ?
-A (KH): ១,៦ ម.ម
-
-Q (EN): How many millimeters, at least, of the tyres’ depth to be left for the family car?
-A (EN): 1.6mm
-
+TCH-Q021
+[curious] តើភាពសឹករបស់សំបកកង់រថយន្តគ្រួសារ ត្រូវឲ្យនៅសល់ជំរៅក្រឡាយ៉ាងតិចប៉ុន្មាន មីលីមែត្រ?
+[guiding] ចម្លើយគឺ [assured] ១,៦ ម.ម
+[curious] How many millimeters, at least, of the tyres’ depth to be left for the family car?
+[guiding] The answer is [assured] 1.6mm
 ----------------------------------------------------------------------
 
-[TCH-Q022]
-Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចចង្កូត ?
-A (KH): ភាពរឹងមាំ និង មិនត្រូវឲ្យតឹងពេលកាច់ចង្កូត
-
-Q (EN): What shall you check at the steer?
-A (EN): Hardiness and not to be tight to steer.
-
+TCH-Q022
+[thoughtful] តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចចង្កូត ?
+[helpful] ចម្លើយគឺ [clear] ភាពរឹងមាំ និង មិនត្រូវឲ្យតឹងពេលកាច់ចង្កូត
+[thoughtful] What shall you check at the steer?
+[helpful] The answer is [clear] Hardiness and not to be tight to steer.
 ----------------------------------------------------------------------
 
-[TCH-Q023]
-Q (KH): តើគម្លាតដងឆ័ត្រហ្វ្រាំង ត្រូវធ្វើការកែតម្រូវចាប់ពីប្រវែងប៉ុន្មានមីលីម៉ែត្រ ?
-A (KH): លើសពី ២០មីលីម៉ែត្រ
-
-Q (EN): From how many millimeters of the gape of brake pedal need to be adjusted?
-A (EN): More than 20mm
-
+TCH-Q023
+[wondering] តើគម្លាតដងឆ័ត្រហ្វ្រាំង ត្រូវធ្វើការកែតម្រូវចាប់ពីប្រវែងប៉ុន្មានមីលីម៉ែត្រ ?
+[supportive] ចម្លើយគឺ [definitive] លើសពី ២០មីលីម៉ែត្រ
+[wondering] From how many millimeters of the gape of brake pedal need to be adjusted?
+[supportive] The answer is [definitive] More than 20mm
 ----------------------------------------------------------------------
 
-[TCH-Q024]
-Q (KH): ក្នុងករណីហ្វ្រាំងប្រើបូមប្រេង តើអ្នកដឹងប្រេងលេចខ្លាំងដោយសារអ្វី ?
-A (KH): ដោយបញ្ឆេះម៉ាស៊ីន រួចជាន់ឈ្នាន់ហ្វ្រាំង ដោយឈ្នាន់ឆ្លាក់កើយដល់ក្ដារឈ្នាន់
-
-Q (EN): In case the brakes using oil pump, how do you realize the oil leaks a lot?
-A (EN): By starting the engine then applying the brake pedal, falling on brake pedal board.
-
+TCH-Q024
+[inquiring] ក្នុងករណីហ្វ្រាំងប្រើបូមប្រេង តើអ្នកដឹងប្រេងលេចខ្លាំងដោយសារអ្វី ?
+[encouraging] ចម្លើយគឺ [certain] ដោយបញ្ឆេះម៉ាស៊ីន រួចជាន់ឈ្នាន់ហ្វ្រាំង ដោយឈ្នាន់ឆ្លាក់កើយដល់ក្ដារឈ្នាន់
+[inquiring] In case the brakes using oil pump, how do you realize the oil leaks a lot?
+[encouraging] The answer is [certain] By starting the engine then applying the brake pedal, falling on brake pedal board.
 ----------------------------------------------------------------------
 
-[TCH-Q025]
-Q (KH): តើនៅត្រង់ស្នូលថ្ពក់ថាសវិល អ្នកត្រូវពិនិត្យអ្វីសំខាន់ជាងគេ ?
-A (KH): ភាពរមួលរបស់ស្នូល
-
-Q (EN): At the core of the ......what are the main things to be checked?
-A (EN): The twist of the core.
-
+TCH-Q025
+[intrigue] តើនៅត្រង់ស្នូលថ្ពក់ថាសវិល អ្នកត្រូវពិនិត្យអ្វីសំខាន់ជាងគេ ?
+[inspiration] ចម្លើយគឺ [confident] ភាពរមួលរបស់ស្នូល
+[intrigue] At the core of the ......what are the main things to be checked?
+[inspiration] The answer is [confident] The twist of the core.
 ----------------------------------------------------------------------
 
-[TCH-Q026]
-Q (KH): តើនៅត្រង់ជន្ទាស អ្នកត្រួតពិនិត្យអ្វីជាសំខាន់ ?
-A (KH): ភាពប្រេះស្រាំ បាក់ ឬរំកិល
-
-Q (EN): What should you take care on the car’s chassis?
-A (EN): breaking a part
-
+TCH-Q026
+[curious] តើនៅត្រង់ជន្ទាស អ្នកត្រួតពិនិត្យអ្វីជាសំខាន់ ?
+[guiding] ចម្លើយគឺ [assured] ភាពប្រេះស្រាំ បាក់ ឬរំកិល
+[curious] What should you take care on the car’s chassis?
+[guiding] The answer is [assured] breaking a part
 ----------------------------------------------------------------------
 
-[TCH-Q027]
-Q (KH): តើនៅត្រង់ទ្វារនៃរថយន្ត អ្នកត្រួតពិនិត្យអ្វីជាសំខាន់ ?
-A (KH): គន្លឹះ ឬសោទ្វារ
-
-Q (EN): What is the main check at the doors of the car?
-A (EN): Bolt or door key
-
+TCH-Q027
+[thoughtful] តើនៅត្រង់ទ្វារនៃរថយន្ត អ្នកត្រួតពិនិត្យអ្វីជាសំខាន់ ?
+[helpful] ចម្លើយគឺ [clear] គន្លឹះ ឬសោទ្វារ
+[thoughtful] What is the main check at the doors of the car?
+[helpful] The answer is [clear] Bolt or door key
 ----------------------------------------------------------------------
 
-[TCH-Q028]
-Q (KH): ចំពោះធុងប្រេងឥន្ធនៈ តើអ្នកត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ ?
-A (KH): ភាពលេច ឬជ្រាប
-
-Q (EN): What is the main check at the fuel tank?
-A (EN): The leakage of the fuel tank.
-
+TCH-Q028
+[wondering] ចំពោះធុងប្រេងឥន្ធនៈ តើអ្នកត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ ?
+[supportive] ចម្លើយគឺ [definitive] ភាពលេច ឬជ្រាប
+[wondering] What is the main check at the fuel tank?
+[supportive] The answer is [definitive] The leakage of the fuel tank.
 ----------------------------------------------------------------------
 
-[TCH-Q029]
-Q (KH): តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វី ត្រង់កាឡេរថយន្ត ?
-A (KH): ភាពប្រេះស្រាំ ឬកោង
-
-Q (EN): What shall you check at the drive shaft of the vehicle?
-A (EN): The state of being cracked or bend
-
+TCH-Q029
+[inquiring] តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វី ត្រង់កាឡេរថយន្ត ?
+[encouraging] ចម្លើយគឺ [certain] ភាពប្រេះស្រាំ ឬកោង
+[inquiring] What shall you check at the drive shaft of the vehicle?
+[encouraging] The answer is [certain] The state of being cracked or bend
 ----------------------------------------------------------------------
 
-[TCH-Q030]
-Q (KH): តើនៅត្រង់ថាសវិល (ប្លាតូហ៊្វម) អ្នកត្រូវពិនិត្យអ្វីសំខាន់ជាងគេ ?
-A (KH): ភាពប្រេះស្រាំ ឬសឹកខ្លាំង
-
-Q (EN): What should you check on the vehicle’s wheels?
-A (EN): The state of being cracked or eroded
-
+TCH-Q030
+[intrigue] តើនៅត្រង់ថាសវិល (ប្លាតូហ៊្វម) អ្នកត្រូវពិនិត្យអ្វីសំខាន់ជាងគេ ?
+[inspiration] ចម្លើយគឺ [confident] ភាពប្រេះស្រាំ ឬសឹកខ្លាំង
+[intrigue] What should you check on the vehicle’s wheels?
+[inspiration] The answer is [confident] The state of being cracked or eroded
 ----------------------------------------------------------------------
 
-[TCH-Q031]
-Q (KH): កៅស៊ូកង់នៃរថយន្ត អ្នកត្រួតពិនិត្យអ្វីជាចាំបាច់ ?
-A (KH): ភាពសឹក ធូរ តឹង ឬប្រេះ
-
-Q (EN): What is the necessary check at the tyres?
-A (EN): Erosion, looseness, tightness, or being cracked.
-
+TCH-Q031
+[curious] កៅស៊ូកង់នៃរថយន្ត អ្នកត្រួតពិនិត្យអ្វីជាចាំបាច់ ?
+[guiding] ចម្លើយគឺ [assured] ភាពសឹក ធូរ តឹង ឬប្រេះ
+[curious] What is the necessary check at the tyres?
+[guiding] The answer is [assured] Erosion, looseness, tightness, or being cracked.
 ----------------------------------------------------------------------
 
-[TCH-Q032]
-Q (KH): នៅពេលអ្នកធ្វើដំណើរ ប្រហែលប៉ុន្មានម៉ោងត្រូវឈប់ត្រួតពិនិត្យគ្រឿងថ្ពក់សណ្ដោងសឺមីរ៉ឺម៉ក ឬរ៉ឺម៉ក ?
-A (KH): ប្រហែល ៣ម៉ោង
-
-Q (EN): While driving, how long shall you need to check the semi trailer-towed hooks or trailer?
-A (EN): About 3 hours
-
+TCH-Q032
+[thoughtful] នៅពេលអ្នកធ្វើដំណើរ ប្រហែលប៉ុន្មានម៉ោងត្រូវឈប់ត្រួតពិនិត្យគ្រឿងថ្ពក់សណ្ដោងសឺមីរ៉ឺម៉ក ឬរ៉ឺម៉ក ?
+[helpful] ចម្លើយគឺ [clear] ប្រហែល ៣ម៉ោង
+[thoughtful] While driving, how long shall you need to check the semi trailer-towed hooks or trailer?
+[helpful] The answer is [clear] About 3 hours
 ----------------------------------------------------------------------
 
-[TCH-Q033]
-Q (KH): តើគម្លាតដងឆ័ត្រហ្វ្រាំង ត្រូវធ្វើការកែតម្រូវមកត្រឹមប្រវែងប្រហែលប៉ុន្មានមីលីម៉ែត្រទើបត្រឹមត្រូវ ?
-A (KH): ១៣មីលីម៉ែត្រ
-
-Q (EN): How long, in millimetres, is the gape of a brake pedal needed adjusting to be accurately?
-A (EN): 13mm
-
+TCH-Q033
+[wondering] តើគម្លាតដងឆ័ត្រហ្វ្រាំង ត្រូវធ្វើការកែតម្រូវមកត្រឹមប្រវែងប្រហែលប៉ុន្មានមីលីម៉ែត្រទើបត្រឹមត្រូវ ?
+[supportive] ចម្លើយគឺ [definitive] ១៣មីលីម៉ែត្រ
+[wondering] How long, in millimetres, is the gape of a brake pedal needed adjusting to be accurately?
+[supportive] The answer is [definitive] 13mm
 ----------------------------------------------------------------------
 
-[TCH-Q034]
-Q (KH): បើរង្វង់ដៃចង្កូតមានបន្ទាត់ផ្ចឹត០,៥០ម៉ែត្រ តើហ្សឺចង្កូតត្រូវរក្សាប៉ុន្មាន ?
-A (KH): មិនលើសពី ១០ដឺក្រេ
-
-Q (EN): If the steering wheel with a diameter of 0.5m, how many degrees is ...... steering wheel left?
-A (EN): Not more than 10 degrees
-
+TCH-Q034
+[inquiring] បើរង្វង់ដៃចង្កូតមានបន្ទាត់ផ្ចឹត០,៥០ម៉ែត្រ តើហ្សឺចង្កូតត្រូវរក្សាប៉ុន្មាន ?
+[encouraging] ចម្លើយគឺ [certain] មិនលើសពី ១០ដឺក្រេ
+[inquiring] If the steering wheel with a diameter of 0.5m, how many degrees is ...... steering wheel left?
+[encouraging] The answer is [certain] Not more than 10 degrees
 ----------------------------------------------------------------------
 
-[TCH-Q035]
-Q (KH): តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ ចំពោះដៃចង្កូត និងដងចង្កូត ?
-A (KH): ភាពធូររលុងឬជាប់គាំង ភាពប្រេះស្រាំឬបាក់
-
-Q (EN): What are the main check at the steering wheel and steering pedal?
-A (EN): The looseness or stickiness, being cracked or broken.
-
+TCH-Q035
+[intrigue] តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ ចំពោះដៃចង្កូត និងដងចង្កូត ?
+[inspiration] ចម្លើយគឺ [confident] ភាពធូររលុងឬជាប់គាំង ភាពប្រេះស្រាំឬបាក់
+[intrigue] What are the main check at the steering wheel and steering pedal?
+[inspiration] The answer is [confident] The looseness or stickiness, being cracked or broken.
 ----------------------------------------------------------------------
 
-[TCH-Q036]
-Q (KH): តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ នៃធុងអាគុយ ?
-A (KH): ភាពជាប់ និងកំរិតទឹកអាគុយ
-
-Q (EN): What is the main check of battery case?
-A (EN): The quality and the level of water of the battery.
-
+TCH-Q036
+[curious] តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ នៃធុងអាគុយ ?
+[guiding] ចម្លើយគឺ [assured] ភាពជាប់ និងកំរិតទឹកអាគុយ
+[curious] What is the main check of battery case?
+[guiding] The answer is [assured] The quality and the level of water of the battery.
 ----------------------------------------------------------------------
 
-[TCH-Q037]
-Q (KH): តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វី ចំពោះសាក់ស៊ីរថយន្ត ?
-A (KH): ភាពប្រេះស្រាំ កោង ឬបាក់
-
-Q (EN): What shall drivers check for the vehicle’s chassis?
-A (EN): The state of being cracked, bend, or broken.
-
+TCH-Q037
+[thoughtful] តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វី ចំពោះសាក់ស៊ីរថយន្ត ?
+[helpful] ចម្លើយគឺ [clear] ភាពប្រេះស្រាំ កោង ឬបាក់
+[thoughtful] What shall drivers check for the vehicle’s chassis?
+[helpful] The answer is [clear] The state of being cracked, bend, or broken.
 ----------------------------------------------------------------------
 
-[TCH-Q038]
-Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចភ្លើងបំភ្លឺផ្លូវ (ហ្វា-កូត ) ?
-A (KH): ភាពភ្លឺថ្លា និងដំណើរការរបស់វា
-
-Q (EN): What shall drivers check at the road light, headlights and coating lights?
-A (EN): The clearness and the process of them.
-
+TCH-Q038
+[wondering] តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចភ្លើងបំភ្លឺផ្លូវ (ហ្វា-កូត ) ?
+[supportive] ចម្លើយគឺ [definitive] ភាពភ្លឺថ្លា និងដំណើរការរបស់វា
+[wondering] What shall drivers check at the road light, headlights and coating lights?
+[supportive] The answer is [definitive] The clearness and the process of them.
 ----------------------------------------------------------------------

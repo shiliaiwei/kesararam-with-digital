@@ -1,1734 +1,1352 @@
 ======================================================================
+
+
 Category : Road Traffic
 ID Prefix: RTL
 Total    : 192 questions
 ======================================================================
 
-[RTL-Q001]
-Q (KH): តើអ្នកបើកបរអាចជែងគ្នាលើស្ពានបានដែរឬទេ ?
-A (KH): ហាមជែង
-
-Q (EN): Can drivers overtake each other on the bridge?
-A (EN): No overtaking
-
+RTL-Q001
+[curious] តើអ្នកបើកបរអាចជែងគ្នាលើស្ពានបានដែរឬទេ ?
+[guiding] ចម្លើយគឺ [assured] ហាមជែង
+[curious] Can drivers overtake each other on the bridge?
+[guiding] The answer is [assured] No overtaking
 ----------------------------------------------------------------------
 
-[RTL-Q002]
-Q (KH): តើបណ្ណបើកបរទោចក្រយានយន្ដ និងត្រីចក្រយានយន្ដ មានប៉ុន្មានប្រភេទ ?
-A (KH): មាន១ប្រភេទ គឺ ប្រភេទ ក មានទំហំស៊ីឡាំងចាប់ពី ១២៥cc ឡើងទៅ
-
-Q (EN): How many kinds of bicycle and tricycle driver licenses are there?
-A (EN): There is one kind. It is A with cylinder rank from 125 cc and over.
-
+RTL-Q002
+[thoughtful] តើបណ្ណបើកបរទោចក្រយានយន្ដ និងត្រីចក្រយានយន្ដ មានប៉ុន្មានប្រភេទ ?
+[helpful] ចម្លើយគឺ [clear] មាន១ប្រភេទ គឺ ប្រភេទ ក មានទំហំស៊ីឡាំងចាប់ពី ១២៥cc ឡើងទៅ
+[thoughtful] How many kinds of bicycle and tricycle driver licenses are there?
+[helpful] The answer is [clear] There is one kind. It is A with cylinder rank from 125 cc and over.
 ----------------------------------------------------------------------
 
-[RTL-Q003]
-Q (KH): ក្នុងទីប្រជុំជន តើការកំណត់ល្បឿនអតិបរមា សម្រាប់ទោចក្រយានយន្ដប៉ុន្មាន ?
-A (KH): ៣០ គ.ម ក្នុងមួយម៉ោង
-
-Q (EN): What is the maximum speed limit (km/h) of bicycle in built-up area?
-A (EN): 30km/h
-
+RTL-Q003
+[wondering] ក្នុងទីប្រជុំជន តើការកំណត់ល្បឿនអតិបរមា សម្រាប់ទោចក្រយានយន្ដប៉ុន្មាន ?
+[supportive] ចម្លើយគឺ [definitive] ៣០ គ.ម ក្នុងមួយម៉ោង
+[wondering] What is the maximum speed limit (km/h) of bicycle in built-up area?
+[supportive] The answer is [definitive] 30km/h
 ----------------------------------------------------------------------
 
-[RTL-Q004]
-Q (KH): នៅពេលបត់ឆ្វេង ឬបត់ស្ដាំ តើអ្នកបើកបរទោចក្រយានយន្ដឱ្យសញ្ញាបត់ឆ្វេង ឬស្ដាំជាដំណឹងចម្ងាយយ៉ាងតិច ប៉ុន្មានម៉ែត្រពីផ្លូវបត់ ឬផ្លូវប្រសព្វ ?
-A (KH): យ៉ាងតិច ២០ ម៉ែត្រ
-
-Q (EN): How far in meters, at least, do motorcycle drivers give a turn sign before turning left or right from the turn road or the intersection?
-A (EN): At least 20m
-
+RTL-Q004
+[inquiring] នៅពេលបត់ឆ្វេង ឬបត់ស្ដាំ តើអ្នកបើកបរទោចក្រយានយន្ដឱ្យសញ្ញាបត់ឆ្វេង ឬស្ដាំជាដំណឹងចម្ងាយយ៉ាងតិច ប៉ុន្មានម៉ែត្រពីផ្លូវបត់ ឬផ្លូវប្រសព្វ ?
+[encouraging] ចម្លើយគឺ [certain] យ៉ាងតិច ២០ ម៉ែត្រ
+[inquiring] How far in meters, at least, do motorcycle drivers give a turn sign before turning left or right from the turn road or the intersection?
+[encouraging] The answer is [certain] At least 20m
 ----------------------------------------------------------------------
 
-[RTL-Q005]
-Q (KH): នៅក្រៅទីប្រជុំជន ចំណែកទ្រូងផ្លូវសម្រាប់ និងប្រើប្រាស់តែមួយរួមគ្នា តើត្រូវជែងនៅខាងណា ?
-A (KH): ត្រូវជែង នៅខាងឆ្វេងដៃ
-
-Q (EN): Outside the built-up area, a division of the road is used by motorcycles and vehicles together, which side shall drivers overtake the vehicles?
-A (EN): Overtake on the left side
-
+RTL-Q005
+[intrigue] នៅក្រៅទីប្រជុំជន ចំណែកទ្រូងផ្លូវសម្រាប់ និងប្រើប្រាស់តែមួយរួមគ្នា តើត្រូវជែងនៅខាងណា ?
+[inspiration] ចម្លើយគឺ [confident] ត្រូវជែង នៅខាងឆ្វេងដៃ
+[intrigue] Outside the built-up area, a division of the road is used by motorcycles and vehicles together, which side shall drivers overtake the vehicles?
+[inspiration] The answer is [confident] Overtake on the left side
 ----------------------------------------------------------------------
 
-[RTL-Q006]
-Q (KH): នៅលើផ្លូវប្រសព្វ ដែលពុំមានផ្លាកសញ្ញាមានសិទ្ធិអាទិភាព តើអ្នកបើកបរយានណាមានសិទ្ធិទៅមុន ?
-A (KH): អ្នកបើកបរយាន មកពីខាងស្ដាំដៃរបស់ខ្លួនមានសិទ្ធិទៅមុន
-
-Q (EN): At the intersection without priority sign, which driver has priority to go first?
-A (EN): The driver from the right
-
+RTL-Q006
+[curious] នៅលើផ្លូវប្រសព្វ ដែលពុំមានផ្លាកសញ្ញាមានសិទ្ធិអាទិភាព តើអ្នកបើកបរយានណាមានសិទ្ធិទៅមុន ?
+[guiding] ចម្លើយគឺ [assured] អ្នកបើកបរយាន មកពីខាងស្ដាំដៃរបស់ខ្លួនមានសិទ្ធិទៅមុន
+[curious] At the intersection without priority sign, which driver has priority to go first?
+[guiding] The answer is [assured] The driver from the right
 ----------------------------------------------------------------------
 
-[RTL-Q007]
-Q (KH): នៅពេលថ្ងៃ ដែលមានភ្លៀងធ្លាក់ខ្លាំង ឬ ចុះអ័ព្វ តើអ្នកបើកបរ ត្រូវបើកភ្លើងអ្វី ?
-A (KH): ត្រូវបើកភ្លើង កូត
-
-Q (EN): What light do motorists turn on in the daytime with heavy rain or fog?
-A (EN): Coating light
-
+RTL-Q007
+[thoughtful] នៅពេលថ្ងៃ ដែលមានភ្លៀងធ្លាក់ខ្លាំង ឬ ចុះអ័ព្វ តើអ្នកបើកបរ ត្រូវបើកភ្លើងអ្វី ?
+[helpful] ចម្លើយគឺ [clear] ត្រូវបើកភ្លើង កូត
+[thoughtful] What light do motorists turn on in the daytime with heavy rain or fog?
+[helpful] The answer is [clear] Coating light
 ----------------------------------------------------------------------
 
-[RTL-Q008]
-Q (KH): នៅក្នុងទីប្រជុំជន អ្នកបើកបរក្នុងល្បឿន ៣០ គ.ម ក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពប៉ុន្មានម៉ែត្រ ?
-A (KH): យ៉ាងតិច ៩ ម៉ែត្រ
-
-Q (EN): In the built-up area, you are driving at the speed of 30km/h, how long of a distance limit for motorcycles shall you leave?
-A (EN): At least 9m
-
+RTL-Q008
+[wondering] នៅក្នុងទីប្រជុំជន អ្នកបើកបរក្នុងល្បឿន ៣០ គ.ម ក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពប៉ុន្មានម៉ែត្រ ?
+[supportive] ចម្លើយគឺ [definitive] យ៉ាងតិច ៩ ម៉ែត្រ
+[wondering] In the built-up area, you are driving at the speed of 30km/h, how long of a distance limit for motorcycles shall you leave?
+[supportive] The answer is [definitive] At least 9m
 ----------------------------------------------------------------------
 
-[RTL-Q009]
-Q (KH): ពេលជៀសគ្នា នៅលើផ្លូវចោតហើយចង្អៀត តើយានជំនិះណាមួយមានសិទ្ធិទៅមុន ?
-A (KH): ទុកឱ្យ យានជំនិះ ឡើងចំណោតទៅមុន
-
-Q (EN): Avoiding each other on a steep, narrow road, which vehicle has priority to go first?
-A (EN): The one is moving up.
-
+RTL-Q009
+[inquiring] ពេលជៀសគ្នា នៅលើផ្លូវចោតហើយចង្អៀត តើយានជំនិះណាមួយមានសិទ្ធិទៅមុន ?
+[encouraging] ចម្លើយគឺ [certain] ទុកឱ្យ យានជំនិះ ឡើងចំណោតទៅមុន
+[inquiring] Avoiding each other on a steep, narrow road, which vehicle has priority to go first?
+[encouraging] The answer is [certain] The one is moving up.
 ----------------------------------------------------------------------
 
-[RTL-Q010]
-Q (KH): តើច្បាប់អនុញ្ញាតឱ្យសណ្ដោងរ៉ឺម៉ក ផ្ទុកទំនិញបានប៉ុន្នានគីឡូក្រាម ?
-A (KH): មិនឱ្យ លើសពី ៣០០ គីឡូក្រាម
-
-Q (EN): In accordance with law, at what weight of trail loaded can a motorcycle carry?
-A (EN): Not more than 300kg
-
+RTL-Q010
+[intrigue] តើច្បាប់អនុញ្ញាតឱ្យសណ្ដោងរ៉ឺម៉ក ផ្ទុកទំនិញបានប៉ុន្នានគីឡូក្រាម ?
+[inspiration] ចម្លើយគឺ [confident] មិនឱ្យ លើសពី ៣០០ គីឡូក្រាម
+[intrigue] In accordance with law, at what weight of trail loaded can a motorcycle carry?
+[inspiration] The answer is [confident] Not more than 300kg
 ----------------------------------------------------------------------
 
-[RTL-Q011]
-Q (KH): និយមន័យ «គន្លងផ្លូវ» ?
-A (KH): ចំណែកមួយនៃទ្រូងផ្លូវ ខណ្ឌដោយគំនូសឬបរិក្ខារបែងចំណែកផ្លូវតាមបណ្ដោយទ្រូងផ្លូវ មានទទឹងគ្រប់គ្រាន់អាចធ្វើចរាចរណ៍បានមួយជួរ
-
-Q (EN): The definition of ’lane’?
-A (EN): A part of the road barrier by markings or materials separating road along the road with leaving sufficient width for one line traffic
-
+RTL-Q011
+[curious] និយមន័យ «គន្លងផ្លូវ» ?
+[guiding] ចម្លើយគឺ [assured] ចំណែកមួយនៃទ្រូងផ្លូវ ខណ្ឌដោយគំនូសឬបរិក្ខារបែងចំណែកផ្លូវតាមបណ្ដោយទ្រូងផ្លូវ មានទទឹងគ្រប់គ្រាន់អាចធ្វើចរាចរណ៍បានមួយជួរ
+[curious] The definition of ’lane’?
+[guiding] The answer is [assured] A part of the road barrier by markings or materials separating road along the road with leaving sufficient width for one line traffic
 ----------------------------------------------------------------------
 
-[RTL-Q012]
-Q (KH): អ្នកបើកបរចេញពីផ្លូវលំ ឬដី និងអ្នកបើកបរលើផ្លូវជាតិ តើអ្នកបើកបរណាមានសិទ្ធិទៅមុន ?
-A (KH): អ្នកបើកបរ លើផ្លូវជាតិមានសិទ្ធិទៅមុន
-
-Q (EN): One is driving from the trail or red road, another one is driving on National Road. which one is more prioritized to go first?
-A (EN): The one is on the Natinal Road.
-
+RTL-Q012
+[thoughtful] អ្នកបើកបរចេញពីផ្លូវលំ ឬដី និងអ្នកបើកបរលើផ្លូវជាតិ តើអ្នកបើកបរណាមានសិទ្ធិទៅមុន ?
+[helpful] ចម្លើយគឺ [clear] អ្នកបើកបរ លើផ្លូវជាតិមានសិទ្ធិទៅមុន
+[thoughtful] One is driving from the trail or red road, another one is driving on National Road. which one is more prioritized to go first?
+[helpful] The answer is [clear] The one is on the Natinal Road.
 ----------------------------------------------------------------------
 
-[RTL-Q013]
-Q (KH): នៅពេលជែង តើត្រូវទុកចន្លោះគម្លាតប៉ុន្មានម៉ែត្រពីយានដែលអ្នកត្រូវជែង ?
-A (KH): យ៉ាងតិច ១ ម៉ែត្រ
-
-Q (EN): What space from the one overtaken shall drivers leave when overtaking?
-A (EN): At least 1.00m
-
+RTL-Q013
+[wondering] នៅពេលជែង តើត្រូវទុកចន្លោះគម្លាតប៉ុន្មានម៉ែត្រពីយានដែលអ្នកត្រូវជែង ?
+[supportive] ចម្លើយគឺ [definitive] យ៉ាងតិច ១ ម៉ែត្រ
+[wondering] What space from the one overtaken shall drivers leave when overtaking?
+[supportive] The answer is [definitive] At least 1.00m
 ----------------------------------------------------------------------
 
-[RTL-Q014]
-Q (KH): តើច្បាប់អនុញ្ញាតឱ្យរ៉ឺម៉កដែលមានពូកទទឹងពីរទល់មុខគ្នា ផ្ទុកមនុស្សប៉ុន្មាននាក់ ?
-A (KH): មិនឱ្យលើសពី ៤ នាក់
-
-Q (EN): How many people can a trailer with two seats opposite each other accommodates in accordance with the law?
-A (EN): Not more than 4 persons
-
+RTL-Q014
+[inquiring] តើច្បាប់អនុញ្ញាតឱ្យរ៉ឺម៉កដែលមានពូកទទឹងពីរទល់មុខគ្នា ផ្ទុកមនុស្សប៉ុន្មាននាក់ ?
+[encouraging] ចម្លើយគឺ [certain] មិនឱ្យលើសពី ៤ នាក់
+[inquiring] How many people can a trailer with two seats opposite each other accommodates in accordance with the law?
+[encouraging] The answer is [certain] Not more than 4 persons
 ----------------------------------------------------------------------
 
-[RTL-Q015]
-Q (KH): នៅក្រៅទីប្រជុំជន ពេលបើកបរក្នុងល្បឿន៧០គម/ម ត្រូវរក្សាទុកចន្លោះសុវត្ថិភាព ប៉ុន្មានម៉ែត្រ ?
-A (KH): យ៉ាងតិច ៤២ ម៉ែត្រ
-
-Q (EN): What is a distance limit for each vehicle shall you leave when you are driving at the speed of 70km/h outside built-up area?
-A (EN): At least 42m
-
+RTL-Q015
+[intrigue] នៅក្រៅទីប្រជុំជន ពេលបើកបរក្នុងល្បឿន៧០គម/ម ត្រូវរក្សាទុកចន្លោះសុវត្ថិភាព ប៉ុន្មានម៉ែត្រ ?
+[inspiration] ចម្លើយគឺ [confident] យ៉ាងតិច ៤២ ម៉ែត្រ
+[intrigue] What is a distance limit for each vehicle shall you leave when you are driving at the speed of 70km/h outside built-up area?
+[inspiration] The answer is [confident] At least 42m
 ----------------------------------------------------------------------
 
-[RTL-Q016]
-Q (KH): ដូចម្ដេច ដែលហៅថា អ្នកប្រើប្រាស់ផ្លូវ?
-A (KH): ជាអ្នកបើកបរយានជំនិះ និងអ្នកថ្មើរជើង ដែលធ្វើដំណើរលើផ្លូវ
-
-Q (EN): What is the road user?
-A (EN): The drivers of vehicles and pedestrians who travel on the road.
-
+RTL-Q016
+[curious] ដូចម្ដេច ដែលហៅថា អ្នកប្រើប្រាស់ផ្លូវ?
+[guiding] ចម្លើយគឺ [assured] ជាអ្នកបើកបរយានជំនិះ និងអ្នកថ្មើរជើង ដែលធ្វើដំណើរលើផ្លូវ
+[curious] What is the road user?
+[guiding] The answer is [assured] The drivers of vehicles and pedestrians who travel on the road.
 ----------------------------------------------------------------------
 
-[RTL-Q017]
-Q (KH): តើអ្នកបើកបរទោចក្រយានយន្ដ អាចបើកបរទន្ទឹមគ្នានៅលើគន្លងផ្លូវតែមួយ បានឬទេ?
-A (KH): ហាមបើកបរទន្ទឹមគ្នា
-
-Q (EN): Can motorists drive up with a breast travelling on the same lane?
-A (EN): No driving up along side.
-
+RTL-Q017
+[thoughtful] តើអ្នកបើកបរទោចក្រយានយន្ដ អាចបើកបរទន្ទឹមគ្នានៅលើគន្លងផ្លូវតែមួយ បានឬទេ?
+[helpful] ចម្លើយគឺ [clear] ហាមបើកបរទន្ទឹមគ្នា
+[thoughtful] Can motorists drive up with a breast travelling on the same lane?
+[helpful] The answer is [clear] No driving up along side.
 ----------------------------------------------------------------------
 
-[RTL-Q018]
-Q (KH): ពេលជួបប្រទះផ្លាកសញ្ញាហាមចត តើអ្នកបើកបរអាចឈប់បានឬទេ?
-A (KH): អាចឈប់បាន
-
-Q (EN): When seeing a ’no-parking sign’, can drivers stop?
-A (EN): Can
-
+RTL-Q018
+[wondering] ពេលជួបប្រទះផ្លាកសញ្ញាហាមចត តើអ្នកបើកបរអាចឈប់បានឬទេ?
+[supportive] ចម្លើយគឺ [definitive] អាចឈប់បាន
+[wondering] When seeing a ’no-parking sign’, can drivers stop?
+[supportive] The answer is [definitive] Can
 ----------------------------------------------------------------------
 
-[RTL-Q019]
-Q (KH): នៅលើគំនូសថ្មើរជើងឆ្លងកាត់ តើអ្នកបើកបរអាចឈប់បានឬទេ?
-A (KH): ហាមឈប់
-
-Q (EN): On the zebra walking line, can drivers stop on it?
-A (EN): No stopping
-
+RTL-Q019
+[inquiring] នៅលើគំនូសថ្មើរជើងឆ្លងកាត់ តើអ្នកបើកបរអាចឈប់បានឬទេ?
+[encouraging] ចម្លើយគឺ [certain] ហាមឈប់
+[inquiring] On the zebra walking line, can drivers stop on it?
+[encouraging] The answer is [certain] No stopping
 ----------------------------------------------------------------------
 
-[RTL-Q020]
-Q (KH): នៅពេលអ្នកបើកបរទោចក្រយានយន្ដ និងត្រីចក្រយានយន្ដ ជួបអ្នកថ្មើរជើងដែលកំពុងឆ្លងកាត់ទ្រូងផ្លូវ គ្មានគំនូសសញ្ញាសម្រាប់ថ្មើរជើងឆ្លងកាត់ តើអ្នកត្រូវធ្វើដូចម្ដេចខ្លះ?
-A (KH): ហាមធ្វើឱ្យអាក់ខាន ឬរាំងស្ទះដល់ថ្មើរជើងធ្វើដំណើរ
-
-Q (EN): What shall you do when you see pedestrians crossing the road without zebra?
-A (EN): Do not distrupt the pedestrians
-
+RTL-Q020
+[intrigue] នៅពេលអ្នកបើកបរទោចក្រយានយន្ដ និងត្រីចក្រយានយន្ដ ជួបអ្នកថ្មើរជើងដែលកំពុងឆ្លងកាត់ទ្រូងផ្លូវ គ្មានគំនូសសញ្ញាសម្រាប់ថ្មើរជើងឆ្លងកាត់ តើអ្នកត្រូវធ្វើដូចម្ដេចខ្លះ?
+[inspiration] ចម្លើយគឺ [confident] ហាមធ្វើឱ្យអាក់ខាន ឬរាំងស្ទះដល់ថ្មើរជើងធ្វើដំណើរ
+[intrigue] What shall you do when you see pedestrians crossing the road without zebra?
+[inspiration] The answer is [confident] Do not distrupt the pedestrians
 ----------------------------------------------------------------------
 
-[RTL-Q021]
-Q (KH): តើទោចក្រយានយន្ដអនុញ្ញាតឱ្យផ្ទុកមនុស្សចំនួនប៉ុន្មាននាក់ ?
-A (KH): អនុញ្ញាតឱ្យផ្ទុកមនុស្សពេញវ័យបាន២នាក់ និងអាចបន្ថែមបានកុមារម្នាក់
-
-Q (EN): How many persons can a motorcycle accommodate, due to the law?
-A (EN): Two adults and one child
-
+RTL-Q021
+[curious] តើទោចក្រយានយន្ដអនុញ្ញាតឱ្យផ្ទុកមនុស្សចំនួនប៉ុន្មាននាក់ ?
+[guiding] ចម្លើយគឺ [assured] អនុញ្ញាតឱ្យផ្ទុកមនុស្សពេញវ័យបាន២នាក់ និងអាចបន្ថែមបានកុមារម្នាក់
+[curious] How many persons can a motorcycle accommodate, due to the law?
+[guiding] The answer is [assured] Two adults and one child
 ----------------------------------------------------------------------
 
-[RTL-Q022]
-Q (KH): តើសញ្ញាចរាចរណ៍ មានប៉ុន្មានប្រភេទ អ្វីខ្លះ ?
-A (KH): មានបួនប្រភេទ គឺ ភ្លើងសញ្ញាចរាចរណ៍-ផ្លាកសញ្ញាចរាចរណ៍-គំនូសសញ្ញាចរាចរណ៍ និងសញ្ញាបញ្ជារបស់ភ្នាក់ងារនគរបាលចរាចរណ៍
-
-Q (EN): How many kinds of traffic signs are there? What are they?
-A (EN): There are 4 kinds. There are traffic lights, traffic signs, traffic markings, and direction signs from traffic plice officers.
-
+RTL-Q022
+[thoughtful] តើសញ្ញាចរាចរណ៍ មានប៉ុន្មានប្រភេទ អ្វីខ្លះ ?
+[helpful] ចម្លើយគឺ [clear] មានបួនប្រភេទ គឺ ភ្លើងសញ្ញាចរាចរណ៍-ផ្លាកសញ្ញាចរាចរណ៍-គំនូសសញ្ញាចរាចរណ៍ និងសញ្ញាបញ្ជារបស់ភ្នាក់ងារនគរបាលចរាចរណ៍
+[thoughtful] How many kinds of traffic signs are there? What are they?
+[helpful] The answer is [clear] There are 4 kinds. There are traffic lights, traffic signs, traffic markings, and direction signs from traffic plice officers.
 ----------------------------------------------------------------------
 
-[RTL-Q023]
-Q (KH): នៅលើទ្រូងផ្លូវដែលគ្មាន ឬមានគំនូសបែងចែកទ្រូងផ្លូវជាពីរទិសផ្ទុយគ្នា តើអ្នកបើកបរទោចក្រយានយន្ដត្រូវបើកដូចម្ដេច ?
-A (KH): បើកបរអែបស្ដាំកៀកនឹងចិញ្ចើមផ្លូវ
-
-Q (EN): On a road with or without road-divided markings into two opposite traffic directions, how shall motorists drive?
-A (EN): Drive alongside the right closed to the sidewalk.
-
+RTL-Q023
+[wondering] នៅលើទ្រូងផ្លូវដែលគ្មាន ឬមានគំនូសបែងចែកទ្រូងផ្លូវជាពីរទិសផ្ទុយគ្នា តើអ្នកបើកបរទោចក្រយានយន្ដត្រូវបើកដូចម្ដេច ?
+[supportive] ចម្លើយគឺ [definitive] បើកបរអែបស្ដាំកៀកនឹងចិញ្ចើមផ្លូវ
+[wondering] On a road with or without road-divided markings into two opposite traffic directions, how shall motorists drive?
+[supportive] The answer is [definitive] Drive alongside the right closed to the sidewalk.
 ----------------------------------------------------------------------
 
-[RTL-Q024]
-Q (KH): នៅក្នុងទីក្រុងឬប្រជុំជន មានបែងចែកទ្រូងផ្លូវជា២ទិសចរាចរណ៍ ហើយទិសម្ខាងមាន២គន្លងផ្លូវ តើអ្នកបើកបរទោចក្រយានយន្ដ ត្រូវបើកបរនៅគន្លងផ្លូវណា ?
-A (KH): នៅគន្លងផ្លូវខាងស្ដាំ
-
-Q (EN): In the city or the built-up area, road with two opposite traffic directions, two lanes for each side, which lane do motorists drive on?
-A (EN): On the right lane
-
+RTL-Q024
+[inquiring] នៅក្នុងទីក្រុងឬប្រជុំជន មានបែងចែកទ្រូងផ្លូវជា២ទិសចរាចរណ៍ ហើយទិសម្ខាងមាន២គន្លងផ្លូវ តើអ្នកបើកបរទោចក្រយានយន្ដ ត្រូវបើកបរនៅគន្លងផ្លូវណា ?
+[encouraging] ចម្លើយគឺ [certain] នៅគន្លងផ្លូវខាងស្ដាំ
+[inquiring] In the city or the built-up area, road with two opposite traffic directions, two lanes for each side, which lane do motorists drive on?
+[encouraging] The answer is [certain] On the right lane
 ----------------------------------------------------------------------
 
-[RTL-Q025]
-Q (KH): តើការប្រើប្រាស់ ស៊ីផ្លេ ត្រូវបានអនុញ្ញាត នៅពេលណាខ្លះ ?
-A (KH): ពេលថ្ងៃ
-
-Q (EN): When is horn allowed to honk?
-A (EN): At the daytime
-
+RTL-Q025
+[intrigue] តើការប្រើប្រាស់ ស៊ីផ្លេ ត្រូវបានអនុញ្ញាត នៅពេលណាខ្លះ ?
+[inspiration] ចម្លើយគឺ [confident] ពេលថ្ងៃ
+[intrigue] When is horn allowed to honk?
+[inspiration] The answer is [confident] At the daytime
 ----------------------------------------------------------------------
 
-[RTL-Q026]
-Q (KH): តើអ្នកបើកបរយានជំនិះគ្រប់ប្រភេទ ត្រូវជៀសគ្នាទៅខាងណា ?
-A (KH): ត្រូវជៀសគ្នា នៅខាងស្ដាំរបស់ខ្លួន
-
-Q (EN): At which side do all drivers for all kinds of vehicles avoid each other?
-A (EN): On the right hand side
-
+RTL-Q026
+[curious] តើអ្នកបើកបរយានជំនិះគ្រប់ប្រភេទ ត្រូវជៀសគ្នាទៅខាងណា ?
+[guiding] ចម្លើយគឺ [assured] ត្រូវជៀសគ្នា នៅខាងស្ដាំរបស់ខ្លួន
+[curious] At which side do all drivers for all kinds of vehicles avoid each other?
+[guiding] The answer is [assured] On the right hand side
 ----------------------------------------------------------------------
 
-[RTL-Q027]
-Q (KH): តើយានជំនិះគ្រប់ប្រភេទ អាចឈប់ ឬចតលើគំនូសសញ្ញាសម្រាប់ថ្មើរជើងឆ្លងកាត់បាន ឬទេ ?
-A (KH): ហាមឈប់ ឬចតយានជំនិះពីលើជាដាច់ខាត
-
-Q (EN): Can all kinds of vehicles stop or park on the zebra?
-A (EN): Don’t park or stop on the zebra.
-
+RTL-Q027
+[thoughtful] តើយានជំនិះគ្រប់ប្រភេទ អាចឈប់ ឬចតលើគំនូសសញ្ញាសម្រាប់ថ្មើរជើងឆ្លងកាត់បាន ឬទេ ?
+[helpful] ចម្លើយគឺ [clear] ហាមឈប់ ឬចតយានជំនិះពីលើជាដាច់ខាត
+[thoughtful] Can all kinds of vehicles stop or park on the zebra?
+[helpful] The answer is [clear] Don’t park or stop on the zebra.
 ----------------------------------------------------------------------
 
-[RTL-Q028]
-Q (KH): នៅពេលបើកបរគ្រប់ប្រភេទ តើច្បាប់មានតម្រូវឱ្យពាក់មួកសុវត្ថិភាពដែរ ឬទេ ?
-A (KH): ត្រូវតែពាក់មួកសុវត្ថិភាព
-
-Q (EN): Does the law require motorists of all kinds of motorcycles wear helmet when driving?
-A (EN): Shall wear helmet
-
+RTL-Q028
+[wondering] នៅពេលបើកបរគ្រប់ប្រភេទ តើច្បាប់មានតម្រូវឱ្យពាក់មួកសុវត្ថិភាពដែរ ឬទេ ?
+[supportive] ចម្លើយគឺ [definitive] ត្រូវតែពាក់មួកសុវត្ថិភាព
+[wondering] Does the law require motorists of all kinds of motorcycles wear helmet when driving?
+[supportive] The answer is [definitive] Shall wear helmet
 ----------------------------------------------------------------------
 
-[RTL-Q029]
-Q (KH): ពេលអ្នកបើកបរជួបប្រទះផ្លាកសញ្ញាហាមបត់ឆ្វេង តើអាចបត់ត្រឡប់ក្រោយបានឬទេ?
-A (KH): មិនបានទេ
-
-Q (EN): Can you turn back when you see a sign of ’no turn left sign’?
-A (EN): Cannot
-
+RTL-Q029
+[inquiring] ពេលអ្នកបើកបរជួបប្រទះផ្លាកសញ្ញាហាមបត់ឆ្វេង តើអាចបត់ត្រឡប់ក្រោយបានឬទេ?
+[encouraging] ចម្លើយគឺ [certain] មិនបានទេ
+[inquiring] Can you turn back when you see a sign of ’no turn left sign’?
+[encouraging] The answer is [certain] Cannot
 ----------------------------------------------------------------------
 
-[RTL-Q030]
-Q (KH): នៅពេលអ្នកកំពុងបើកបរទោចក្រយានយន្ដ អាចនិយាយទូរស័ព្ទបានឬទេប្រសិនបើគ្មានឧបករណ៏ទំនាក់ទំនង?
-A (KH): មិនបាន
-
-Q (EN): Can you call or answer the phone while driving a motorcycle if you do not have any earphones?
-A (EN): Cannot
-
+RTL-Q030
+[intrigue] នៅពេលអ្នកកំពុងបើកបរទោចក្រយានយន្ដ អាចនិយាយទូរស័ព្ទបានឬទេប្រសិនបើគ្មានឧបករណ៏ទំនាក់ទំនង?
+[inspiration] ចម្លើយគឺ [confident] មិនបាន
+[intrigue] Can you call or answer the phone while driving a motorcycle if you do not have any earphones?
+[inspiration] The answer is [confident] Cannot
 ----------------------------------------------------------------------
 
-[RTL-Q031]
-Q (KH): បើមានបណ្ណបើកបរប្រភេទ ខ (ធុនតូច) តើអាចបើកបរប្រភេទ ក បានឬទេ ?
-A (KH): បើកបរមិនបានទេ
-
-Q (EN): You have a driver license B type (small size vehicle)
+RTL-Q031
+[curious] បើមានបណ្ណបើកបរប្រភេទ ខ (ធុនតូច) តើអាចបើកបរប្រភេទ ក បានឬទេ ?
+[guiding] ចម្លើយគឺ [assured] បើកបរមិនបានទេ
+[curious] You have a driver license B type (small size vehicle)
 , can you drive a motorcycle of A type?
-A (EN): Cannot
-
+[guiding] The answer is [assured] Cannot
 ----------------------------------------------------------------------
-
-[RTL-Q032]
-Q (KH): នៅក្រៅទីប្រជុំជន តើត្រូវឈប់ ឬចតនៅទីកន្លែងដូចម្ដេច ?
-A (KH): ត្រូវឈប់ ឬ ចតនៅលើជាយផ្លូវ
 
-Q (EN): Outside built-up area, how do motorists stop or park their motorcycles?
-A (EN): Stop or park on the roadside.
-
+RTL-Q032
+[thoughtful] នៅក្រៅទីប្រជុំជន តើត្រូវឈប់ ឬចតនៅទីកន្លែងដូចម្ដេច ?
+[helpful] ចម្លើយគឺ [clear] ត្រូវឈប់ ឬ ចតនៅលើជាយផ្លូវ
+[thoughtful] Outside built-up area, how do motorists stop or park their motorcycles?
+[helpful] The answer is [clear] Stop or park on the roadside.
 ----------------------------------------------------------------------
-
-[RTL-Q033]
-Q (KH): តើប្រជាពលរដ្ឋមានអាយុចាប់ពីប៉ុន្មានឆ្នាំឡើងទៅ ទើបមានសិទ្ធិបើកបរទោចក្រយានយន្ដ ដែលមានទំហំស៊ីឡាំងចាប់ពី ១២៥សេសេ ចុះក្រោម ?
-A (KH): ១៥ ឆ្នាំ ពេញបរិបូរណ៍
-
-Q (EN): How old is a citizen can drive a motorcycle with cylinder size 125cc and under?
-A (EN): 15
 
+RTL-Q033
+[wondering] តើប្រជាពលរដ្ឋមានអាយុចាប់ពីប៉ុន្មានឆ្នាំឡើងទៅ ទើបមានសិទ្ធិបើកបរទោចក្រយានយន្ដ ដែលមានទំហំស៊ីឡាំងចាប់ពី ១២៥សេសេ ចុះក្រោម ?
+[supportive] ចម្លើយគឺ [definitive] ១៥ ឆ្នាំ ពេញបរិបូរណ៍
+[wondering] How old is a citizen can drive a motorcycle with cylinder size 125cc and under?
+[supportive] The answer is [definitive] 15
 ----------------------------------------------------------------------
 
-[RTL-Q034]
-Q (KH): នៅក្រៅទីប្រជុំជន តើការកំណត់ល្បឿន អតិបរមា សម្រាប់ទោចក្រយានយន្ដប៉ុន្មាន ?
-A (KH): ៧០ គីឡូម៉ែត្រ ក្នុងមួយម៉ោង
-
-Q (EN): What is the maximum speed limit of motorists outside built-up area?
-A (EN): 70km/h
-
+RTL-Q034
+[inquiring] នៅក្រៅទីប្រជុំជន តើការកំណត់ល្បឿន អតិបរមា សម្រាប់ទោចក្រយានយន្ដប៉ុន្មាន ?
+[encouraging] ចម្លើយគឺ [certain] ៧០ គីឡូម៉ែត្រ ក្នុងមួយម៉ោង
+[inquiring] What is the maximum speed limit of motorists outside built-up area?
+[encouraging] The answer is [certain] 70km/h
 ----------------------------------------------------------------------
 
-[RTL-Q035]
-Q (KH): តើច្បាប់ចរាចរណ៍ផ្លូវគោក ហាមពិសាជាតិស្រវឹងដែលមានអត្រាជាតិអាកុលចាប់ពី ប៉ុន្មានមីលីក្រាម ក្នុងមួយលីត្រខ្យល់?
-A (KH): ចាប់ពី ០,២៥ មីលីក្រាមក្នុងមួយលីត្រខ្យល់
-
-Q (EN): According to the road traffic law, at what rate of alcohol in milligram per liter of air is forbidden?
-A (EN): From 0.25mg per liter of air
-
+RTL-Q035
+[intrigue] តើច្បាប់ចរាចរណ៍ផ្លូវគោក ហាមពិសាជាតិស្រវឹងដែលមានអត្រាជាតិអាកុលចាប់ពី ប៉ុន្មានមីលីក្រាម ក្នុងមួយលីត្រខ្យល់?
+[inspiration] ចម្លើយគឺ [confident] ចាប់ពី ០,២៥ មីលីក្រាមក្នុងមួយលីត្រខ្យល់
+[intrigue] According to the road traffic law, at what rate of alcohol in milligram per liter of air is forbidden?
+[inspiration] The answer is [confident] From 0.25mg per liter of air
 ----------------------------------------------------------------------
-
-[RTL-Q036]
-Q (KH): តើអ្នកបើកបរទោចក្រយានយន្ដ ឬត្រីចក្រយានយន្ដ អាចជែងខាងស្ដាំ បានឬទេ?
-A (KH): បាន! លើកលែងតែយានដែលអ្នកត្រូវជែងនោះ កំពុងធ្វើសញ្ញាប្ដូរទិសខាងឆ្វេង ហើយឈប់ ឬត្រៀមបត់ឆ្វេង
 
-Q (EN): Can motorists or tricycle drivers overtake on the right?
-A (EN): Can overtake unless vehicle you are overtaking has been redirected the sign to the left and stop signs, or be ready to turn left
-
+RTL-Q036
+[curious] តើអ្នកបើកបរទោចក្រយានយន្ដ ឬត្រីចក្រយានយន្ដ អាចជែងខាងស្ដាំ បានឬទេ?
+[guiding] ចម្លើយគឺ [assured] បាន! លើកលែងតែយានដែលអ្នកត្រូវជែងនោះ កំពុងធ្វើសញ្ញាប្ដូរទិសខាងឆ្វេង ហើយឈប់ ឬត្រៀមបត់ឆ្វេង
+[curious] Can motorists or tricycle drivers overtake on the right?
+[guiding] The answer is [assured] Can overtake unless vehicle you are overtaking has been redirected the sign to the left and stop signs, or be ready to turn left
 ----------------------------------------------------------------------
-
-[RTL-Q037]
-Q (KH): នៅលើមហាវិថីក្នុងទីប្រជុំជន តើយានជំនិះគ្រប់ប្រភេទ ត្រូវឈប់ដាក់មនុស្សឡើង ឬចុះ នៅចម្ងាយប៉ុន្មានម៉ែត្រ ពីផ្លូវប្រសព្វ?
-A (KH): យ៉ាងតិច ១០ ម៉ែត្រ
 
-Q (EN): How far from the intersections shall you stop to drop and pick up passengers on the road in built-up area?
-A (EN): At least 10m
-
+RTL-Q037
+[thoughtful] នៅលើមហាវិថីក្នុងទីប្រជុំជន តើយានជំនិះគ្រប់ប្រភេទ ត្រូវឈប់ដាក់មនុស្សឡើង ឬចុះ នៅចម្ងាយប៉ុន្មានម៉ែត្រ ពីផ្លូវប្រសព្វ?
+[helpful] ចម្លើយគឺ [clear] យ៉ាងតិច ១០ ម៉ែត្រ
+[thoughtful] How far from the intersections shall you stop to drop and pick up passengers on the road in built-up area?
+[helpful] The answer is [clear] At least 10m
 ----------------------------------------------------------------------
-
-[RTL-Q038]
-Q (KH): នៅពេលអ្នកបើកបរទោចក្រយានយន្ដ និងត្រីចក្រយានយន្ដ ជួបអ្នកថ្មើរជើងដែលរៀប ឬកំពុងឆ្លងកាត់ទ្រូងផ្លូវ ដែលកន្លែងនោះមានគំនូសសញ្ញាសម្រាប់ថ្មើរជើងឆ្លងកាត់ តើអ្នកត្រូវធ្វើដូចម្ដេចខ្លះ?
-A (KH): ត្រូវឈប់នៅមុខគំនូសសញ្ញាសម្រាប់ថ្មើរជើងឆ្លងកាត់ ដើម្បីទុកឱ្យថ្មើរជើងឆ្លងកាត់ផុតសិន
-
-Q (EN): How shall you do when you, motorists or tricycle drivers, see pedestrians are crossing or being ready to cross on the zebra?
-A (EN): Stop in front of the zebra and let them cross.
 
+RTL-Q038
+[wondering] នៅពេលអ្នកបើកបរទោចក្រយានយន្ដ និងត្រីចក្រយានយន្ដ ជួបអ្នកថ្មើរជើងដែលរៀប ឬកំពុងឆ្លងកាត់ទ្រូងផ្លូវ ដែលកន្លែងនោះមានគំនូសសញ្ញាសម្រាប់ថ្មើរជើងឆ្លងកាត់ តើអ្នកត្រូវធ្វើដូចម្ដេចខ្លះ?
+[supportive] ចម្លើយគឺ [definitive] ត្រូវឈប់នៅមុខគំនូសសញ្ញាសម្រាប់ថ្មើរជើងឆ្លងកាត់ ដើម្បីទុកឱ្យថ្មើរជើងឆ្លងកាត់ផុតសិន
+[wondering] How shall you do when you, motorists or tricycle drivers, see pedestrians are crossing or being ready to cross on the zebra?
+[supportive] The answer is [definitive] Stop in front of the zebra and let them cross.
 ----------------------------------------------------------------------
 
-[RTL-Q039]
-Q (KH): អ្នកមានបណ្ណបើកបរប្រភេទ គ តើមានសិទ្ទិបើកបរប្រភេទ ក បានឬទេ ?
-A (KH): មិនបានទេ
-
-Q (EN): You have a driver license of type C. Can you drive a motorcycle of type A?
-A (EN): Cannot
-
+RTL-Q039
+[inquiring] អ្នកមានបណ្ណបើកបរប្រភេទ គ តើមានសិទ្ទិបើកបរប្រភេទ ក បានឬទេ ?
+[encouraging] ចម្លើយគឺ [certain] មិនបានទេ
+[inquiring] You have a driver license of type C. Can you drive a motorcycle of type A?
+[encouraging] The answer is [certain] Cannot
 ----------------------------------------------------------------------
 
-[RTL-Q040]
-Q (KH): នៅពេលចរាចរណ៍ចង្អៀតខ្លាំង យាននៅគន្លងខាងស្ដាំលឿនជាងយាននៅគន្លងខាងឆ្វេង តើចាត់ទុកជាការជែងដែរឬទេ?
-A (KH): មិនចាត់ទុកជាការជែងទេ
-
-Q (EN): When there is too much traffic, a vehicle on the right lane is faster than the one on the left lane, is it considered as an overtaking behavior?
-A (EN): No, it isn’t.
-
+RTL-Q040
+[intrigue] នៅពេលចរាចរណ៍ចង្អៀតខ្លាំង យាននៅគន្លងខាងស្ដាំលឿនជាងយាននៅគន្លងខាងឆ្វេង តើចាត់ទុកជាការជែងដែរឬទេ?
+[inspiration] ចម្លើយគឺ [confident] មិនចាត់ទុកជាការជែងទេ
+[intrigue] When there is too much traffic, a vehicle on the right lane is faster than the one on the left lane, is it considered as an overtaking behavior?
+[inspiration] The answer is [confident] No, it isn’t.
 ----------------------------------------------------------------------
-
-[RTL-Q041]
-Q (KH): តើអ្នកបើកបរទោចក្រយានយន្ដ ត្រីចក្រយានយន្ដ ត្រូវឈប់ ឬចតប៉ុន្មានម៉ែត្រពីមុខ និងពីក្រោយផ្លាកសញ្ញាកន្លែងរបស់ឡានក្រុងឈប់?
-A (KH): យ៉ាងតិច ១០ ម៉ែត្រ
 
-Q (EN): How far from the front or behind the ’bus-stop sign’ shall motorists or tricycle drivers stop or park?
-A (EN): At least 10m
-
+RTL-Q041
+[curious] តើអ្នកបើកបរទោចក្រយានយន្ដ ត្រីចក្រយានយន្ដ ត្រូវឈប់ ឬចតប៉ុន្មានម៉ែត្រពីមុខ និងពីក្រោយផ្លាកសញ្ញាកន្លែងរបស់ឡានក្រុងឈប់?
+[guiding] ចម្លើយគឺ [assured] យ៉ាងតិច ១០ ម៉ែត្រ
+[curious] How far from the front or behind the ’bus-stop sign’ shall motorists or tricycle drivers stop or park?
+[guiding] The answer is [assured] At least 10m
 ----------------------------------------------------------------------
-
-[RTL-Q042]
-Q (KH): តើអ្នកបើកបរត្រីចក្រយានយន្ត និងទោចក្រយានយន្តសណ្តោងរ៉ឺម៉ក ត្រូវពាក់មួកសុវត្ថិភាពដែរឬទេ ?
-A (KH): ពាក់មួកសុវត្ថិភាពគ្រប់ប្រភេទអ្នកបើកបរ គ្រប់កាលៈទេសៈ
 
-Q (EN): Shall motobike drivers and tri-cycles drives with trailers wear helmets?
-A (EN): Drivers shall wear all kinds of helmets and all circumstances.
-
+RTL-Q042
+[thoughtful] តើអ្នកបើកបរត្រីចក្រយានយន្ត និងទោចក្រយានយន្តសណ្តោងរ៉ឺម៉ក ត្រូវពាក់មួកសុវត្ថិភាពដែរឬទេ ?
+[helpful] ចម្លើយគឺ [clear] ពាក់មួកសុវត្ថិភាពគ្រប់ប្រភេទអ្នកបើកបរ គ្រប់កាលៈទេសៈ
+[thoughtful] Shall motobike drivers and tri-cycles drives with trailers wear helmets?
+[helpful] The answer is [clear] Drivers shall wear all kinds of helmets and all circumstances.
 ----------------------------------------------------------------------
-
-[RTL-Q043]
-Q (KH): នៅក្នុងទីប្រជុំជន តើអ្នកបើកបរ និងអ្នករួមដំណើរជិះកៅអីមុខនៃយាន ត្រូវពាក់ខ្សែក្រវាត់សុវត្ថិភាពដែរឬទេ ?
-A (KH): ពាក់ខ្សែក្រវាត់សុវត្ថិភាពទាំងអ្នកបើកបរ និងអ្នករួមដំណើរខាងមុខ
-
-Q (EN): In built-up area, shall driver and passenger sitting at the front seat of the car wear seatbelt or not?
-A (EN): Need to wear all.
 
+RTL-Q043
+[wondering] នៅក្នុងទីប្រជុំជន តើអ្នកបើកបរ និងអ្នករួមដំណើរជិះកៅអីមុខនៃយាន ត្រូវពាក់ខ្សែក្រវាត់សុវត្ថិភាពដែរឬទេ ?
+[supportive] ចម្លើយគឺ [definitive] ពាក់ខ្សែក្រវាត់សុវត្ថិភាពទាំងអ្នកបើកបរ និងអ្នករួមដំណើរខាងមុខ
+[wondering] In built-up area, shall driver and passenger sitting at the front seat of the car wear seatbelt or not?
+[supportive] The answer is [definitive] Need to wear all.
 ----------------------------------------------------------------------
 
-[RTL-Q044]
-Q (KH): តើផ្លាកសញ្ញាបន្ថែមពីក្រោម មានទ្រង់ទ្រាយដូចម្ដេច ?
-A (KH): មានរាងបួនជ្រុងទ្រវែង ផ្ទៃពណ៌ស មានរូបសញ្ញា និងអក្សរឬ លេខពណ៌ខ្មៅ
-
-Q (EN): What shape is the below additional sign?
-A (EN): Rectangle, white surface with a sign and black charactor or number.
-
+RTL-Q044
+[inquiring] តើផ្លាកសញ្ញាបន្ថែមពីក្រោម មានទ្រង់ទ្រាយដូចម្ដេច ?
+[encouraging] ចម្លើយគឺ [certain] មានរាងបួនជ្រុងទ្រវែង ផ្ទៃពណ៌ស មានរូបសញ្ញា និងអក្សរឬ លេខពណ៌ខ្មៅ
+[inquiring] What shape is the below additional sign?
+[encouraging] The answer is [certain] Rectangle, white surface with a sign and black charactor or number.
 ----------------------------------------------------------------------
 
-[RTL-Q045]
-Q (KH): តើអាចបើកបរយានជំនិះ ឆ្លងកាត់ ឈប់ ឬចតពីលើគំនូសសញ្ញាតម្រឹមគន្លងផ្លូវបានឬទេ ?
-A (KH): មិនបាន
-
-Q (EN): Can drivers drive across, stop, or park on the lane-aligned markings or not?
-A (EN): Cannot.
-
+RTL-Q045
+[intrigue] តើអាចបើកបរយានជំនិះ ឆ្លងកាត់ ឈប់ ឬចតពីលើគំនូសសញ្ញាតម្រឹមគន្លងផ្លូវបានឬទេ ?
+[inspiration] ចម្លើយគឺ [confident] មិនបាន
+[intrigue] Can drivers drive across, stop, or park on the lane-aligned markings or not?
+[inspiration] The answer is [confident] Cannot.
 ----------------------------------------------------------------------
-
-[RTL-Q046]
-Q (KH): ជិតដល់ផ្លូវធំរួមតូច ឬចង្អៀត តើអ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?
-A (KH): បន្ថយល្បឿន ឬឈប់ ទុកឲ្យយានជំនិះមកដល់ផ្លូវតូចចង្អៀតទៅមុន
 
-Q (EN): Close to the main road, small or narrow,path, what does the driver have to do?
-A (EN): Slow down or stop, let vehicles arriving narrow road move ahead.
-
+RTL-Q046
+[curious] ជិតដល់ផ្លូវធំរួមតូច ឬចង្អៀត តើអ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?
+[guiding] ចម្លើយគឺ [assured] បន្ថយល្បឿន ឬឈប់ ទុកឲ្យយានជំនិះមកដល់ផ្លូវតូចចង្អៀតទៅមុន
+[curious] Close to the main road, small or narrow,path, what does the driver have to do?
+[guiding] The answer is [assured] Slow down or stop, let vehicles arriving narrow road move ahead.
 ----------------------------------------------------------------------
-
-[RTL-Q047]
-Q (KH): តើភ្លើងសញ្ញាចរាចរណ៍មានប៉ុន្មានពណ៌ ?
-A (KH): ៣ ពណ៌
 
-Q (EN): How many colours of the traffic light?
-A (EN): 3 colours
-
+RTL-Q047
+[thoughtful] តើភ្លើងសញ្ញាចរាចរណ៍មានប៉ុន្មានពណ៌ ?
+[helpful] ចម្លើយគឺ [clear] ៣ ពណ៌
+[thoughtful] How many colours of the traffic light?
+[helpful] The answer is [clear] 3 colours
 ----------------------------------------------------------------------
-
-[RTL-Q048]
-Q (KH): នៅពេលភ្លើងសញ្ញាចរាចរណ៍បញ្ចេញពន្លឺក្រហម តើអ្នកបើកបរយានជំនិះគ្រប់ប្រភេទត្រូវធ្វើដូចម្តេច?
-A (KH): ឈប់នៅមុខគំនូសជាប់ពណ៌ស កាត់ទទឹងផ្លូវ ឬមុខគំនូសសម្រាប់ថ្មើរជើង
-
-Q (EN): What do drivers do when the traffic light is red?
-A (EN): Stop in front of white solid line across the street or in front of the zebra.
 
+RTL-Q048
+[wondering] នៅពេលភ្លើងសញ្ញាចរាចរណ៍បញ្ចេញពន្លឺក្រហម តើអ្នកបើកបរយានជំនិះគ្រប់ប្រភេទត្រូវធ្វើដូចម្តេច?
+[supportive] ចម្លើយគឺ [definitive] ឈប់នៅមុខគំនូសជាប់ពណ៌ស កាត់ទទឹងផ្លូវ ឬមុខគំនូសសម្រាប់ថ្មើរជើង
+[wondering] What do drivers do when the traffic light is red?
+[supportive] The answer is [definitive] Stop in front of white solid line across the street or in front of the zebra.
 ----------------------------------------------------------------------
 
-[RTL-Q049]
-Q (KH): នៅកន្លែងមានរង្វង់មូល ឬខឿនបែងចែកទ្រូងផ្លូវ តើអ្នកបើកបរត្រូវវាងទៅខាងណា ?
-A (KH): ត្រូវវាងទៅខាងស្ដាំ
-
-Q (EN): At the roundabout or road-dividing stones, at which side do drivers detour to?
-A (EN): Detour to the right hand side.
-
+RTL-Q049
+[inquiring] នៅកន្លែងមានរង្វង់មូល ឬខឿនបែងចែកទ្រូងផ្លូវ តើអ្នកបើកបរត្រូវវាងទៅខាងណា ?
+[encouraging] ចម្លើយគឺ [certain] ត្រូវវាងទៅខាងស្ដាំ
+[inquiring] At the roundabout or road-dividing stones, at which side do drivers detour to?
+[encouraging] The answer is [certain] Detour to the right hand side.
 ----------------------------------------------------------------------
 
-[RTL-Q050]
-Q (KH): តើអ្នកបើកបរអាចបើកបរយានជំនិះទន្ទឹមគ្នានៅលើទ្រូងផ្លូវ ឬគន្លងផ្លូវតែមួយបានទេ ?
-A (KH): មិនបានទេ
-
-Q (EN): Can drivers drive up with a breast traveling on the road or on the same lane?
-A (EN): Cannot.
-
+RTL-Q050
+[intrigue] តើអ្នកបើកបរអាចបើកបរយានជំនិះទន្ទឹមគ្នានៅលើទ្រូងផ្លូវ ឬគន្លងផ្លូវតែមួយបានទេ ?
+[inspiration] ចម្លើយគឺ [confident] មិនបានទេ
+[intrigue] Can drivers drive up with a breast traveling on the road or on the same lane?
+[inspiration] The answer is [confident] Cannot.
 ----------------------------------------------------------------------
-
-[RTL-Q051]
-Q (KH): តើអាចប្រើខ្សែសណ្ដោងចំពោះយានជំនិះដែលមានទម្ងន់សរុបលើសពី ៥តោន បានដែរឬទេ ?
-A (KH): ហាមប្រើខ្សែសណ្ដោង
 
-Q (EN): Can driver are allowed to use ropes to tow any vehicle with a total weight from more than 5 tons aqward?
-A (EN): No using towing cable.
-
+RTL-Q051
+[curious] តើអាចប្រើខ្សែសណ្ដោងចំពោះយានជំនិះដែលមានទម្ងន់សរុបលើសពី ៥តោន បានដែរឬទេ ?
+[guiding] ចម្លើយគឺ [assured] ហាមប្រើខ្សែសណ្ដោង
+[curious] Can driver are allowed to use ropes to tow any vehicle with a total weight from more than 5 tons aqward?
+[guiding] The answer is [assured] No using towing cable.
 ----------------------------------------------------------------------
-
-[RTL-Q052]
-Q (KH): តើអាចសណ្ដោងយានជំនិះលើសពីមួយគ្រឿង ឬសណ្ដោងយានជំនិះដែលមាន សណ្ដោងរ៉ឺម៉ក ឬសឺមីរ៉ឺម៉ក បានដែរឬទេ ?
-A (KH): ហាមសណ្ដោង
 
-Q (EN): Can more than one vehicle or vehicle with trailer(s) or semi-trailer(s) be trailed?
-A (EN): No trailing.
-
+RTL-Q052
+[thoughtful] តើអាចសណ្ដោងយានជំនិះលើសពីមួយគ្រឿង ឬសណ្ដោងយានជំនិះដែលមាន សណ្ដោងរ៉ឺម៉ក ឬសឺមីរ៉ឺម៉ក បានដែរឬទេ ?
+[helpful] ចម្លើយគឺ [clear] ហាមសណ្ដោង
+[thoughtful] Can more than one vehicle or vehicle with trailer(s) or semi-trailer(s) be trailed?
+[helpful] The answer is [clear] No trailing.
 ----------------------------------------------------------------------
-
-[RTL-Q053]
-Q (KH): រថយន្តមានសណ្ដោងរ៉ឺម៉ក តើត្រូវដាក់អ្វី មានរាងដូចម្ដេច នៅត្រង់ផ្នែកណានៃរថយន្ត ?
-A (KH): មានសញ្ញាត្រីកោណសមបាតជាកញ្ចក់ចាំងពន្លឺពណ៍លឿង ដាក់នៅខាងមុខអមសងខាងផ្លាកលេខនិងខាងក្រោយនៃរ៉ឺម៉ក
-
-Q (EN): Vehicle with trailer, what shall be put? of what shape? and at what part of the vehicle?
-A (EN): Having glass equalateral triangles with reflecting in yellow, installed at the front, both sides of the plate number and at the back of the trail.
 
+RTL-Q053
+[wondering] រថយន្តមានសណ្ដោងរ៉ឺម៉ក តើត្រូវដាក់អ្វី មានរាងដូចម្ដេច នៅត្រង់ផ្នែកណានៃរថយន្ត ?
+[supportive] ចម្លើយគឺ [definitive] មានសញ្ញាត្រីកោណសមបាតជាកញ្ចក់ចាំងពន្លឺពណ៍លឿង ដាក់នៅខាងមុខអមសងខាងផ្លាកលេខនិងខាងក្រោយនៃរ៉ឺម៉ក
+[wondering] Vehicle with trailer, what shall be put? of what shape? and at what part of the vehicle?
+[supportive] The answer is [definitive] Having glass equalateral triangles with reflecting in yellow, installed at the front, both sides of the plate number and at the back of the trail.
 ----------------------------------------------------------------------
 
-[RTL-Q054]
-Q (KH): តើអាចសណ្ដោងទោចក្រយានឬទោចក្រយានយន្ដ បានដែរឬទេ ?
-A (KH): ហាមសណ្ដោង
-
-Q (EN): Can bicycle or motorcycle be towed?
-A (EN): No towing
-
+RTL-Q054
+[inquiring] តើអាចសណ្ដោងទោចក្រយានឬទោចក្រយានយន្ដ បានដែរឬទេ ?
+[encouraging] ចម្លើយគឺ [certain] ហាមសណ្ដោង
+[inquiring] Can bicycle or motorcycle be towed?
+[encouraging] The answer is [certain] No towing
 ----------------------------------------------------------------------
 
-[RTL-Q055]
-Q (KH): តើអាចសណ្ដោងយានយន្ដដែលមានអ្នកដំណើរនៅក្នុងនោះ បានដែរឬទេ ?
-A (KH): ហាមសណ្ដោង
-
-Q (EN): Can vehicle with passengers inside be towed?
-A (EN): No towing.
-
+RTL-Q055
+[intrigue] តើអាចសណ្ដោងយានយន្ដដែលមានអ្នកដំណើរនៅក្នុងនោះ បានដែរឬទេ ?
+[inspiration] ចម្លើយគឺ [confident] ហាមសណ្ដោង
+[intrigue] Can vehicle with passengers inside be towed?
+[inspiration] The answer is [confident] No towing.
 ----------------------------------------------------------------------
-
-[RTL-Q056]
-Q (KH): តើអ្នកបើកបរ ត្រូវធ្វើដូចម្តេចនៅពេលរថយន្តក្រុងកំពុងឈប់ដាក់អ្នកដំណើរឡើងចុះ ?
-A (KH): បើកបរបន្ថយល្បឿន បើចាំបាច់ត្រូវឈប់
 
-Q (EN): What shall drivers do while stopping to pick up or drop down passengers?
-A (EN): Slow down or stop as necessary.
-
+RTL-Q056
+[curious] តើអ្នកបើកបរ ត្រូវធ្វើដូចម្តេចនៅពេលរថយន្តក្រុងកំពុងឈប់ដាក់អ្នកដំណើរឡើងចុះ ?
+[guiding] ចម្លើយគឺ [assured] បើកបរបន្ថយល្បឿន បើចាំបាច់ត្រូវឈប់
+[curious] What shall drivers do while stopping to pick up or drop down passengers?
+[guiding] The answer is [assured] Slow down or stop as necessary.
 ----------------------------------------------------------------------
-
-[RTL-Q057]
-Q (KH): អ្នកបើកបរលើផ្លូវមានថ្មខ្ទាត តើត្រូវប្រុងប្រយ័ត្នដូចម្ដេច ?
-A (KH): ត្រូវបើកយឺតៗកុំឲ្យថ្មខ្ទាតទៅលើយានជំនិះដទៃ
 
-Q (EN): How shall drivers pay attention while driving on the loose gravel road?
-A (EN): Drive slowly not to get gravels throw onto other vehicles.
-
+RTL-Q057
+[thoughtful] អ្នកបើកបរលើផ្លូវមានថ្មខ្ទាត តើត្រូវប្រុងប្រយ័ត្នដូចម្ដេច ?
+[helpful] ចម្លើយគឺ [clear] ត្រូវបើកយឺតៗកុំឲ្យថ្មខ្ទាតទៅលើយានជំនិះដទៃ
+[thoughtful] How shall drivers pay attention while driving on the loose gravel road?
+[helpful] The answer is [clear] Drive slowly not to get gravels throw onto other vehicles.
 ----------------------------------------------------------------------
-
-[RTL-Q058]
-Q (KH): តើល្បឿនបើកបរអតិបរមានៅក្នុងទីប្រជុំជន សម្រាប់ទោចក្រយានយន្ត បានកំណតប៉ុន្មានគីឡូម៉ែត្រក្នុងមួយម៉ោង ?
-A (KH): ៣០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
-
-Q (EN): What is a maximum speed limit, km/h, in built-up area for motorcycle?
-A (EN): 30 km/h
 
+RTL-Q058
+[wondering] តើល្បឿនបើកបរអតិបរមានៅក្នុងទីប្រជុំជន សម្រាប់ទោចក្រយានយន្ត បានកំណតប៉ុន្មានគីឡូម៉ែត្រក្នុងមួយម៉ោង ?
+[supportive] ចម្លើយគឺ [definitive] ៣០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+[wondering] What is a maximum speed limit, km/h, in built-up area for motorcycle?
+[supportive] The answer is [definitive] 30 km/h
 ----------------------------------------------------------------------
 
-[RTL-Q059]
-Q (KH): តើការកំណត់ល្បឿនបើកបរអតិបរមានៅក្នុងទីប្រជុំជន សម្រាប់រថយន្តប៉ុន្មានគីឡូម៉ែត្រក្នុងមួយម៉ោង ?
-A (KH): ៤០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
-
-Q (EN): What is a maximum speed limit, km/h, in built-up area need to be limited for cars?
-A (EN): 40 km/h
-
+RTL-Q059
+[inquiring] តើការកំណត់ល្បឿនបើកបរអតិបរមានៅក្នុងទីប្រជុំជន សម្រាប់រថយន្តប៉ុន្មានគីឡូម៉ែត្រក្នុងមួយម៉ោង ?
+[encouraging] ចម្លើយគឺ [certain] ៤០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+[inquiring] What is a maximum speed limit, km/h, in built-up area need to be limited for cars?
+[encouraging] The answer is [certain] 40 km/h
 ----------------------------------------------------------------------
 
-[RTL-Q060]
-Q (KH): ល្បឿនបើកបរអតិបរមានៅក្រៅទីប្រជុំជន សម្រាប់ទោចក្រយានយន្ត ទំហំស៊ីឡាំងលើសពី ១២៥ សង់ទីម៉ែត្រគូប
-A (KH): ៧០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
-
-Q (EN): The maximum speed limit, km/h, outside built-up area for motorcycle with cylinder of more than 125 cubic centimeters .
-A (EN): 70 km/h
-
+RTL-Q060
+[intrigue] ល្បឿនបើកបរអតិបរមានៅក្រៅទីប្រជុំជន សម្រាប់ទោចក្រយានយន្ត ទំហំស៊ីឡាំងលើសពី ១២៥ សង់ទីម៉ែត្រគូប
+[inspiration] ចម្លើយគឺ [confident] ៧០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+[intrigue] The maximum speed limit, km/h, outside built-up area for motorcycle with cylinder of more than 125 cubic centimeters .
+[inspiration] The answer is [confident] 70 km/h
 ----------------------------------------------------------------------
-
-[RTL-Q061]
-Q (KH): តើការកំណត់ល្បឿនបើកបរអតិបរមានៅក្រៅទីប្រជុំជន ៨០ គីឡូម៉ែត្រក្នុងមួយម៉ោង សម្រាប់ប្រភេទ​យានយន្តអ្វីខ្លះ ?
-A (KH): សម្រាប់ធុនស្រាល និងដឹកអ្នកដំណើរ
 
-Q (EN): For what kind of vehicles is limited the maximum speed limit of 80 km/h outside built-up area?
-A (EN): Light-duty vehicles and passenger vehicles
-
+RTL-Q061
+[curious] តើការកំណត់ល្បឿនបើកបរអតិបរមានៅក្រៅទីប្រជុំជន ៨០ គីឡូម៉ែត្រក្នុងមួយម៉ោង សម្រាប់ប្រភេទ​យានយន្តអ្វីខ្លះ ?
+[guiding] ចម្លើយគឺ [assured] សម្រាប់ធុនស្រាល និងដឹកអ្នកដំណើរ
+[curious] For what kind of vehicles is limited the maximum speed limit of 80 km/h outside built-up area?
+[guiding] The answer is [assured] Light-duty vehicles and passenger vehicles
 ----------------------------------------------------------------------
-
-[RTL-Q062]
-Q (KH): តើរថយន្តដឹកទំនិញអាចឈប់ ឬចត នៅជិតបង្គោលផ្លាកសញ្ញាចរាចរណ៍បានឬទេ ?
-A (KH): ហាមឈប់ ឬចត
 
-Q (EN): Can trucks stop or park nearby traffic sign posts?
-A (EN): No parking or stopping.
-
+RTL-Q062
+[thoughtful] តើរថយន្តដឹកទំនិញអាចឈប់ ឬចត នៅជិតបង្គោលផ្លាកសញ្ញាចរាចរណ៍បានឬទេ ?
+[helpful] ចម្លើយគឺ [clear] ហាមឈប់ ឬចត
+[thoughtful] Can trucks stop or park nearby traffic sign posts?
+[helpful] The answer is [clear] No parking or stopping.
 ----------------------------------------------------------------------
-
-[RTL-Q063]
-Q (KH): ផ្លូវមានភក់ ឬទឹកដក់ តើអ្នកបើកបរត្រូវប្រុងប្រយ័ត្នដូចម្ដេច ចំពោះអ្នកថ្មើរជើង ?
-A (KH): បន្ថយល្បឿនប្រយ័ត្នកុំឲ្យខ្ទាតភក់លើអ្នកថ្មើជើង
-
-Q (EN): Roads with mud or water, how shall drivers pay attention toward pedestrians?
-A (EN): Slow down not to splash mud or water onto the pedestrians
 
+RTL-Q063
+[wondering] ផ្លូវមានភក់ ឬទឹកដក់ តើអ្នកបើកបរត្រូវប្រុងប្រយ័ត្នដូចម្ដេច ចំពោះអ្នកថ្មើរជើង ?
+[supportive] ចម្លើយគឺ [definitive] បន្ថយល្បឿនប្រយ័ត្នកុំឲ្យខ្ទាតភក់លើអ្នកថ្មើជើង
+[wondering] Roads with mud or water, how shall drivers pay attention toward pedestrians?
+[supportive] The answer is [definitive] Slow down not to splash mud or water onto the pedestrians
 ----------------------------------------------------------------------
 
-[RTL-Q064]
-Q (KH): តើម្ចាស់យានជំនិះអាចបំពាក់ភ្លើងបំភ្លឺឬភ្លើងលំអរផ្សេងៗទៀតក្រៅពីការកំណត់លក្ខណៈបច្ចេកទេសរបស់យានជំនិះបានឬទេ ?
-A (KH): ហាមបំពាក់បន្ថែម
-
-Q (EN): Can vehicle owner install or decorate lights besite technical setting?
-A (EN): No installing.
-
+RTL-Q064
+[inquiring] តើម្ចាស់យានជំនិះអាចបំពាក់ភ្លើងបំភ្លឺឬភ្លើងលំអរផ្សេងៗទៀតក្រៅពីការកំណត់លក្ខណៈបច្ចេកទេសរបស់យានជំនិះបានឬទេ ?
+[encouraging] ចម្លើយគឺ [certain] ហាមបំពាក់បន្ថែម
+[inquiring] Can vehicle owner install or decorate lights besite technical setting?
+[encouraging] The answer is [certain] No installing.
 ----------------------------------------------------------------------
 
-[RTL-Q065]
-Q (KH): ល្បឿនបើកបរអតិបរមានៅក្រៅទីប្រជុំជន សម្រាប់ត្រីចក្រយានយន្ត ឬទោចក្រយានយន្តសណ្តោងរ៉ឺម៉ក
-A (KH): ៤០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
-
-Q (EN): The maximum speed limit of tricycle and trailer drawn motorcycle.
-A (EN): 40 km/h
-
+RTL-Q065
+[intrigue] ល្បឿនបើកបរអតិបរមានៅក្រៅទីប្រជុំជន សម្រាប់ត្រីចក្រយានយន្ត ឬទោចក្រយានយន្តសណ្តោងរ៉ឺម៉ក
+[inspiration] ចម្លើយគឺ [confident] ៤០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+[intrigue] The maximum speed limit of tricycle and trailer drawn motorcycle.
+[inspiration] The answer is [confident] 40 km/h
 ----------------------------------------------------------------------
-
-[RTL-Q066]
-Q (KH): តើអ្នកបើកបរអាចជែងគ្នានៅត្រង់ផ្លូវកាត់ផ្លូវរថភ្លើងដែលគ្មានរបាំងការពារ បានដែរឬទេ ?
-A (KH): ហាមជែង
 
-Q (EN): Can drivers overtake each other at the road crossing the railway with no barriers?
-A (EN): No overtaking.
-
+RTL-Q066
+[curious] តើអ្នកបើកបរអាចជែងគ្នានៅត្រង់ផ្លូវកាត់ផ្លូវរថភ្លើងដែលគ្មានរបាំងការពារ បានដែរឬទេ ?
+[guiding] ចម្លើយគឺ [assured] ហាមជែង
+[curious] Can drivers overtake each other at the road crossing the railway with no barriers?
+[guiding] The answer is [assured] No overtaking.
 ----------------------------------------------------------------------
-
-[RTL-Q067]
-Q (KH): តើការកំណត់ល្បឿនបើកបរអតិបរមានៅក្រៅទីប្រជុំជន ៧០ គីឡូម៉ែត្រក្នុងមួយម៉ោង សម្រាប់ប្រភេទយានយន្តអ្វីខ្លះ ?
-A (KH): ទោចក្រយានយន្ដដែលមានទំហំស៊ីឡាំងលើសពី ១២៥ សង់ទីម៉ែត្រគូប និងដឹកទំនិញធុនធ្ងន់
 
-Q (EN): For what kinds of vehicles is the maximum speed limit at 70km/h outside built-up area?
-A (EN): Motorcycles with more than 125 cubic centimeters cylinder and heavy-duty trucks.
-
+RTL-Q067
+[thoughtful] តើការកំណត់ល្បឿនបើកបរអតិបរមានៅក្រៅទីប្រជុំជន ៧០ គីឡូម៉ែត្រក្នុងមួយម៉ោង សម្រាប់ប្រភេទយានយន្តអ្វីខ្លះ ?
+[helpful] ចម្លើយគឺ [clear] ទោចក្រយានយន្ដដែលមានទំហំស៊ីឡាំងលើសពី ១២៥ សង់ទីម៉ែត្រគូប និងដឹកទំនិញធុនធ្ងន់
+[thoughtful] For what kinds of vehicles is the maximum speed limit at 70km/h outside built-up area?
+[helpful] The answer is [clear] Motorcycles with more than 125 cubic centimeters cylinder and heavy-duty trucks.
 ----------------------------------------------------------------------
-
-[RTL-Q068]
-Q (KH): ពេលទៅជិតដល់ស្ពានឬជិតដល់ផ្លូវរថភ្លើងឆ្លងកាត់ តើអ្នកបើកបរត្រូវធ្វើដូចម្តេច ?
-A (KH): បន្ថយល្បឿន
-
-Q (EN): What shall drivers do when approach the bridge or railway crossing?
-A (EN): Slow down.
 
+RTL-Q068
+[wondering] ពេលទៅជិតដល់ស្ពានឬជិតដល់ផ្លូវរថភ្លើងឆ្លងកាត់ តើអ្នកបើកបរត្រូវធ្វើដូចម្តេច ?
+[supportive] ចម្លើយគឺ [definitive] បន្ថយល្បឿន
+[wondering] What shall drivers do when approach the bridge or railway crossing?
+[supportive] The answer is [definitive] Slow down.
 ----------------------------------------------------------------------
 
-[RTL-Q069]
-Q (KH): តើអ្នកបើកបរយានជំនិះគ្រប់ប្រភេទ ត្រូវជែងទៅខាងណា ?
-A (KH): ខាងឆ្វេង
-
-Q (EN): Which side shall all drivers of all kinds of vehicles overtake?
-A (EN): The left side
-
+RTL-Q069
+[inquiring] តើអ្នកបើកបរយានជំនិះគ្រប់ប្រភេទ ត្រូវជែងទៅខាងណា ?
+[encouraging] ចម្លើយគឺ [certain] ខាងឆ្វេង
+[inquiring] Which side shall all drivers of all kinds of vehicles overtake?
+[encouraging] The answer is [certain] The left side
 ----------------------------------------------------------------------
 
-[RTL-Q070]
-Q (KH): តើក្នុងករណីណាដែលអ្នកបើកបរអាចជែងទៅខាងស្ដាំបាន ?
-A (KH): យានដែលត្រូវជែងនោះ ឲ្យសញ្ញាប្ដូរទិសខាងឆ្វេង ហើយឈប់ ឬត្រៀមបត់ឆ្វេង
-
-Q (EN): In what case can drivers overtake on the right hand side?
-A (EN): The overtaking vehicle gave left sign and then stop or ready to turn left.
-
+RTL-Q070
+[intrigue] តើក្នុងករណីណាដែលអ្នកបើកបរអាចជែងទៅខាងស្ដាំបាន ?
+[inspiration] ចម្លើយគឺ [confident] យានដែលត្រូវជែងនោះ ឲ្យសញ្ញាប្ដូរទិសខាងឆ្វេង ហើយឈប់ ឬត្រៀមបត់ឆ្វេង
+[intrigue] In what case can drivers overtake on the right hand side?
+[inspiration] The answer is [confident] The overtaking vehicle gave left sign and then stop or ready to turn left.
 ----------------------------------------------------------------------
-
-[RTL-Q071]
-Q (KH): ចំណុចសំខាន់បំផុតសំរាប់សុវត្ថិភាពរបស់យានយន្តមានអ្វីខ្លះ ?
-A (KH): មានកង់ ហ្វ្រាំង ចង្កូត និងគ្រឿងបំភ្លឺ
 
-Q (EN): What are the most important safe factors of vehicle?
-A (EN): Wheels, brakes, steering wheel, and lights
-
+RTL-Q071
+[curious] ចំណុចសំខាន់បំផុតសំរាប់សុវត្ថិភាពរបស់យានយន្តមានអ្វីខ្លះ ?
+[guiding] ចម្លើយគឺ [assured] មានកង់ ហ្វ្រាំង ចង្កូត និងគ្រឿងបំភ្លឺ
+[curious] What are the most important safe factors of vehicle?
+[guiding] The answer is [assured] Wheels, brakes, steering wheel, and lights
 ----------------------------------------------------------------------
-
-[RTL-Q072]
-Q (KH): នៅពេលអ្នកបើកបរជួបផ្លាកសញ្ញាហាមឈប់ តើអាចចតបានឬទេ ?
-A (KH): មិនអាចចតបានទេ
 
-Q (EN): Can drivers park when seeing no stopping sign?
-A (EN): Cannot park
-
+RTL-Q072
+[thoughtful] នៅពេលអ្នកបើកបរជួបផ្លាកសញ្ញាហាមឈប់ តើអាចចតបានឬទេ ?
+[helpful] ចម្លើយគឺ [clear] មិនអាចចតបានទេ
+[thoughtful] Can drivers park when seeing no stopping sign?
+[helpful] The answer is [clear] Cannot park
 ----------------------------------------------------------------------
-
-[RTL-Q073]
-Q (KH): ផ្លូវដែលមានទិសចរាចរណ៍ពីរផ្ទុយគ្នា តើអ្នកបើកបរយានជំនិះត្រូវឈប់ ឬចតយ៉ាងដូចម្ដេច ?
-A (KH): ត្រូវឈប់ ឬចតខាងស្ដាំដៃតាមទិសចរាចរណ៍របស់ខ្លួន
-
-Q (EN): A road with two opposite traffic directions, how shall drivers park or stop the vehicle?
-A (EN): Park or stop on the right, at its own traffic direction.
 
+RTL-Q073
+[wondering] ផ្លូវដែលមានទិសចរាចរណ៍ពីរផ្ទុយគ្នា តើអ្នកបើកបរយានជំនិះត្រូវឈប់ ឬចតយ៉ាងដូចម្ដេច ?
+[supportive] ចម្លើយគឺ [definitive] ត្រូវឈប់ ឬចតខាងស្ដាំដៃតាមទិសចរាចរណ៍របស់ខ្លួន
+[wondering] A road with two opposite traffic directions, how shall drivers park or stop the vehicle?
+[supportive] The answer is [definitive] Park or stop on the right, at its own traffic direction.
 ----------------------------------------------------------------------
 
-[RTL-Q074]
-Q (KH): ក្នុងករណីទ្រូងផ្លូវចង្អៀតមិនអាចជៀសគ្នាបានរវាងយានធុនស្រាល និងយានធុនធ្ងន់ តើយានណាមួយត្រូវថយក្រោយ ?
-A (KH): យានធុនស្រាលត្រូវថយក្រោយ
-
-Q (EN): In case the narrow roadway and cannot avoid each other between light-duty vehicle and heavy-duty vehicle, which one need to move backward?
-A (EN): The light-duty vehicle
-
+RTL-Q074
+[inquiring] ក្នុងករណីទ្រូងផ្លូវចង្អៀតមិនអាចជៀសគ្នាបានរវាងយានធុនស្រាល និងយានធុនធ្ងន់ តើយានណាមួយត្រូវថយក្រោយ ?
+[encouraging] ចម្លើយគឺ [certain] យានធុនស្រាលត្រូវថយក្រោយ
+[inquiring] In case the narrow roadway and cannot avoid each other between light-duty vehicle and heavy-duty vehicle, which one need to move backward?
+[encouraging] The answer is [certain] The light-duty vehicle
 ----------------------------------------------------------------------
 
-[RTL-Q075]
-Q (KH): លើផ្លូវរថភ្លើង តើអ្នកបើកបរអាចឈប់បានដែរឬទេ ?
-A (KH): មិនអាចឈប់បានទេ
-
-Q (EN): Can drivers stop on the railway?
-A (EN): No, they cannot.
-
+RTL-Q075
+[intrigue] លើផ្លូវរថភ្លើង តើអ្នកបើកបរអាចឈប់បានដែរឬទេ ?
+[inspiration] ចម្លើយគឺ [confident] មិនអាចឈប់បានទេ
+[intrigue] Can drivers stop on the railway?
+[inspiration] The answer is [confident] No, they cannot.
 ----------------------------------------------------------------------
-
-[RTL-Q076]
-Q (KH): និយមន័យ «អ្នកបើកបរ» ?
-A (KH): អ្នកបញ្ជាយានជំនិះគិតទាំងអ្នកជិះសត្វ អ្នកដឹកសត្វ និងអ្នកបរសត្វ នៅលើផ្លូវ
 
-Q (EN): The definition of a ’driver’?
-A (EN): The persons who operate the vehicles including an animal rider, an animal walker, and person who walk the animals on the road.
-
+RTL-Q076
+[curious] និយមន័យ «អ្នកបើកបរ» ?
+[guiding] ចម្លើយគឺ [assured] អ្នកបញ្ជាយានជំនិះគិតទាំងអ្នកជិះសត្វ អ្នកដឹកសត្វ និងអ្នកបរសត្វ នៅលើផ្លូវ
+[curious] The definition of a ’driver’?
+[guiding] The answer is [assured] The persons who operate the vehicles including an animal rider, an animal walker, and person who walk the animals on the road.
 ----------------------------------------------------------------------
-
-[RTL-Q077]
-Q (KH): និយមន័យ «ឈប់» ?
-A (KH): ការនៅស្ងៀមនៃយានជំនិះលើទ្រូងផ្លូវមួយរយៈពេលខ្លី ដែលមានអ្នកបើកបរ ស្ថិតនៅជាប់នឹងចង្កូតឬក្បែរយានជំនិះ
 
-Q (EN): The definition of ’stopping’?
-A (EN): Not moving vehicle on the road for a short, while a driver is at the steering wheel or nearby the vehicle.
-
+RTL-Q077
+[thoughtful] និយមន័យ «ឈប់» ?
+[helpful] ចម្លើយគឺ [clear] ការនៅស្ងៀមនៃយានជំនិះលើទ្រូងផ្លូវមួយរយៈពេលខ្លី ដែលមានអ្នកបើកបរ ស្ថិតនៅជាប់នឹងចង្កូតឬក្បែរយានជំនិះ
+[thoughtful] The definition of ’stopping’?
+[helpful] The answer is [clear] Not moving vehicle on the road for a short, while a driver is at the steering wheel or nearby the vehicle.
 ----------------------------------------------------------------------
-
-[RTL-Q078]
-Q (KH): និយមន័យ «ចត» ?
-A (KH): ការទុកឲ្យយានជំនិះនៅស្ងៀមក្នុងរយៈពេលយូរឬឆាប់ ដែលអ្នកបើកបរអាចដើរចោលយានជំនិះរបស់ខ្លួនបាន
-
-Q (EN): The definition of ’Parking’?
-A (EN): Not moving vehicle for a short time or long time while a driver walk away from his/her own vehicle.
 
+RTL-Q078
+[wondering] និយមន័យ «ចត» ?
+[supportive] ចម្លើយគឺ [definitive] ការទុកឲ្យយានជំនិះនៅស្ងៀមក្នុងរយៈពេលយូរឬឆាប់ ដែលអ្នកបើកបរអាចដើរចោលយានជំនិះរបស់ខ្លួនបាន
+[wondering] The definition of ’Parking’?
+[supportive] The answer is [definitive] Not moving vehicle for a short time or long time while a driver walk away from his/her own vehicle.
 ----------------------------------------------------------------------
 
-[RTL-Q079]
-Q (KH): និយមន័យ «ផ្លូវថ្នល់» ?
-A (KH): តួផ្លូវ ទ្រូងផ្លូវ ជាយផ្លូវ ឬចិញ្ចើមផ្លូវ ស្ពាន ស្ពានអាកាស ស្ពានរំលង ផ្លូវរូង និងកំពង់ចម្លងតភ្ជាប់ផ្លូវថ្នល់
-
-Q (EN): The definition of ’road’?
-A (EN): is a road,​ roadway, roadsides, sidewalks, bridge, skybridge, bridge across the road, tunnel, ferry way linked to the road.
-
+RTL-Q079
+[inquiring] និយមន័យ «ផ្លូវថ្នល់» ?
+[encouraging] ចម្លើយគឺ [certain] តួផ្លូវ ទ្រូងផ្លូវ ជាយផ្លូវ ឬចិញ្ចើមផ្លូវ ស្ពាន ស្ពានអាកាស ស្ពានរំលង ផ្លូវរូង និងកំពង់ចម្លងតភ្ជាប់ផ្លូវថ្នល់
+[inquiring] The definition of ’road’?
+[encouraging] The answer is [certain] is a road,​ roadway, roadsides, sidewalks, bridge, skybridge, bridge across the road, tunnel, ferry way linked to the road.
 ----------------------------------------------------------------------
 
-[RTL-Q080]
-Q (KH): និយមន័យ «រថយន្តគ្រួសារ» ?
-A (KH): រថយន្តផ្ទុកអ្នកដំណើរមិនលើសពី៩នាក់រួមទាំងអ្នកបើកបរ
-
-Q (EN): The definition of ’family vehicle’?
-A (EN): Vehicle accommodates not more than 9 passengers including driver.
-
+RTL-Q080
+[intrigue] និយមន័យ «រថយន្តគ្រួសារ» ?
+[inspiration] ចម្លើយគឺ [confident] រថយន្តផ្ទុកអ្នកដំណើរមិនលើសពី៩នាក់រួមទាំងអ្នកបើកបរ
+[intrigue] The definition of ’family vehicle’?
+[inspiration] The answer is [confident] Vehicle accommodates not more than 9 passengers including driver.
 ----------------------------------------------------------------------
-
-[RTL-Q081]
-Q (KH): និយមន័យ «រថយន្តដឹកជញ្ជូនអ្នកដំណើរធុនធំ» ?
-A (KH): ផ្ទុកមនុស្សលើសពី ២០នាក់ រួមទាំងអ្នកបើកបរ
 
-Q (EN): The definition of ’large-sized passenger vehicle’?
-A (EN): Vehicle accommodates more than 20 people, including the driver.
-
+RTL-Q081
+[curious] និយមន័យ «រថយន្តដឹកជញ្ជូនអ្នកដំណើរធុនធំ» ?
+[guiding] ចម្លើយគឺ [assured] ផ្ទុកមនុស្សលើសពី ២០នាក់ រួមទាំងអ្នកបើកបរ
+[curious] The definition of ’large-sized passenger vehicle’?
+[guiding] The answer is [assured] Vehicle accommodates more than 20 people, including the driver.
 ----------------------------------------------------------------------
-
-[RTL-Q082]
-Q (KH): តើអ្នកអាចប្រើប្រាស់ស៊ីផ្លេខ្យល់នៅក្នុងទីក្រុង ឬទីប្រជុំជនបានឬទេ ?
-A (KH): ហាមប្រើប្រាស់
 
-Q (EN): Can you use air horn in the city or in the built-up area?
-A (EN): No using.
-
+RTL-Q082
+[thoughtful] តើអ្នកអាចប្រើប្រាស់ស៊ីផ្លេខ្យល់នៅក្នុងទីក្រុង ឬទីប្រជុំជនបានឬទេ ?
+[helpful] ចម្លើយគឺ [clear] ហាមប្រើប្រាស់
+[thoughtful] Can you use air horn in the city or in the built-up area?
+[helpful] The answer is [clear] No using.
 ----------------------------------------------------------------------
-
-[RTL-Q083]
-Q (KH): មុននឹងជែងយានជំនិះនៅខាងមុខ តើអ្នកបើកបរត្រូវធ្វើអ្វីខ្លះ ?
-A (KH): ត្រូវដឹងច្បាស់ថាការជែងនេះមិនបណ្ដាលឲ្យមានគ្រោះថ្នាក់អ្វីឡើយ ហើយប្រើភ្លើងសញ្ញាប្ដូរទិសខាង ឆ្វេង ដើម្បីធ្វើការសុំជែង
-
-Q (EN): Before overtaking the front vehicle, what shall drivers do?
-A (EN): Knowing that the overtaking not cause any accident, and turn on the left turn light for overtaking.
 
+RTL-Q083
+[wondering] មុននឹងជែងយានជំនិះនៅខាងមុខ តើអ្នកបើកបរត្រូវធ្វើអ្វីខ្លះ ?
+[supportive] ចម្លើយគឺ [definitive] ត្រូវដឹងច្បាស់ថាការជែងនេះមិនបណ្ដាលឲ្យមានគ្រោះថ្នាក់អ្វីឡើយ ហើយប្រើភ្លើងសញ្ញាប្ដូរទិសខាង ឆ្វេង ដើម្បីធ្វើការសុំជែង
+[wondering] Before overtaking the front vehicle, what shall drivers do?
+[supportive] The answer is [definitive] Knowing that the overtaking not cause any accident, and turn on the left turn light for overtaking.
 ----------------------------------------------------------------------
 
-[RTL-Q084]
-Q (KH): នៅពេលជែង តើអ្នកបើកបរត្រូវទុកចន្លោះពីយានមួយទៀតយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?
-A (KH): ១ ម៉ែត្រ
-
-Q (EN): At least how many meters away from another vehicle shall drivers leave when overtaking?
-A (EN): 1 m
-
+RTL-Q084
+[inquiring] នៅពេលជែង តើអ្នកបើកបរត្រូវទុកចន្លោះពីយានមួយទៀតយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?
+[encouraging] ចម្លើយគឺ [certain] ១ ម៉ែត្រ
+[inquiring] At least how many meters away from another vehicle shall drivers leave when overtaking?
+[encouraging] The answer is [certain] 1 m
 ----------------------------------------------------------------------
 
-[RTL-Q085]
-Q (KH): តើអ្នកបើកបរអាចជែងគ្នាជាបីជួរ(ជែងលើដែលកំពុងជែងគ្នា) បានដែរឬទេ ?
-A (KH): ហាមជែង
-
-Q (EN): Can drivers overtake by three lines (overtake over another vehicle overtaking)?
-A (EN): Don’t overtake
-
+RTL-Q085
+[intrigue] តើអ្នកបើកបរអាចជែងគ្នាជាបីជួរ(ជែងលើដែលកំពុងជែងគ្នា) បានដែរឬទេ ?
+[inspiration] ចម្លើយគឺ [confident] ហាមជែង
+[intrigue] Can drivers overtake by three lines (overtake over another vehicle overtaking)?
+[inspiration] The answer is [confident] Don’t overtake
 ----------------------------------------------------------------------
-
-[RTL-Q086]
-Q (KH): នៅលើផ្លូវក្រៅទីប្រជុំជន តើយានជំនិះរបស់អ្នកត្រូវចត ឬឈប់យ៉ាងដូចម្ដេច ?
-A (KH): ត្រូវឈប់ ឬចតលើជាយផ្លូវខាងស្ដាំតាមទិសចរាចរណ៍
 
-Q (EN): How shall you stop or park your vehicle on the road outside towns or densely populated areas?
-A (EN): Stop or park on the right roadside at its own traffic direction
-
+RTL-Q086
+[curious] នៅលើផ្លូវក្រៅទីប្រជុំជន តើយានជំនិះរបស់អ្នកត្រូវចត ឬឈប់យ៉ាងដូចម្ដេច ?
+[guiding] ចម្លើយគឺ [assured] ត្រូវឈប់ ឬចតលើជាយផ្លូវខាងស្ដាំតាមទិសចរាចរណ៍
+[curious] How shall you stop or park your vehicle on the road outside towns or densely populated areas?
+[guiding] The answer is [assured] Stop or park on the right roadside at its own traffic direction
 ----------------------------------------------------------------------
-
-[RTL-Q087]
-Q (KH): តើអ្នកបើកបរអាចជែងនៅជិតឬកន្លែងផ្លូវបត់ ផ្លូវខ្វែង ផ្លូវរអិល បានដែរឬទេ ?
-A (KH): ហាមជែង
 
-Q (EN): Can drivers overtake nearby or at a turn road or intersection or a slippery road?
-A (EN): No overtaking.
-
+RTL-Q087
+[thoughtful] តើអ្នកបើកបរអាចជែងនៅជិតឬកន្លែងផ្លូវបត់ ផ្លូវខ្វែង ផ្លូវរអិល បានដែរឬទេ ?
+[helpful] ចម្លើយគឺ [clear] ហាមជែង
+[thoughtful] Can drivers overtake nearby or at a turn road or intersection or a slippery road?
+[helpful] The answer is [clear] No overtaking.
 ----------------------------------------------------------------------
-
-[RTL-Q088]
-Q (KH): តាមបណ្ដាយផ្លូវមានគំនូសសញ្ញាភ្លោះពណ៌លឿងមួយជាប់ និងមួយដាច់ៗសំរាប់បែងចែកជាពីរទិសចរាចរណ៍ផ្ទុយគ្នា តើអ្នកបើកបរ នៅកៀកគំនូសណាមួយអាចឆ្លងកាត់ ឬជែងបាន ?
-A (KH): អ្នកបើកបរនៅជាប់គំនូសដាច់ៗ អាចឆ្លងកាត់ ឬជែងបាន
-
-Q (EN): Along the road with double yellow lines, one is solid line and another is break line, dividing into two opposite traffic directions, which line that a driver closed to can cross or overtake?
-A (EN): Driver who is closed to break line can cross or overtake.
 
+RTL-Q088
+[wondering] តាមបណ្ដាយផ្លូវមានគំនូសសញ្ញាភ្លោះពណ៌លឿងមួយជាប់ និងមួយដាច់ៗសំរាប់បែងចែកជាពីរទិសចរាចរណ៍ផ្ទុយគ្នា តើអ្នកបើកបរ នៅកៀកគំនូសណាមួយអាចឆ្លងកាត់ ឬជែងបាន ?
+[supportive] ចម្លើយគឺ [definitive] អ្នកបើកបរនៅជាប់គំនូសដាច់ៗ អាចឆ្លងកាត់ ឬជែងបាន
+[wondering] Along the road with double yellow lines, one is solid line and another is break line, dividing into two opposite traffic directions, which line that a driver closed to can cross or overtake?
+[supportive] The answer is [definitive] Driver who is closed to break line can cross or overtake.
 ----------------------------------------------------------------------
 
-[RTL-Q089]
-Q (KH): តើផ្លាកសញ្ញាបំបម្រាម មានរាងដូចម្ដេច ?
-A (KH): មានរាងមូលជាយព័ទ្ឋជុំវិញពីរជាន់ ជាយក្នុងក្រាស់ពណ៌ក្រហម ជាយក្រៅស្ដើងពណ៌សសញ្ញាខាងក្នុងជាទូទៅពណ៌ខ្មៅ
-
-Q (EN): What is the shape of prohibitory sign?
-A (EN): Round shap, two-layer surrounded edge - thick red inside edge, white thin outside edge- Inside sign generally is black.
-
+RTL-Q089
+[inquiring] តើផ្លាកសញ្ញាបំបម្រាម មានរាងដូចម្ដេច ?
+[encouraging] ចម្លើយគឺ [certain] មានរាងមូលជាយព័ទ្ឋជុំវិញពីរជាន់ ជាយក្នុងក្រាស់ពណ៌ក្រហម ជាយក្រៅស្ដើងពណ៌សសញ្ញាខាងក្នុងជាទូទៅពណ៌ខ្មៅ
+[inquiring] What is the shape of prohibitory sign?
+[encouraging] The answer is [certain] Round shap, two-layer surrounded edge - thick red inside edge, white thin outside edge- Inside sign generally is black.
 ----------------------------------------------------------------------
 
-[RTL-Q090]
-Q (KH): មុនបត់ស្ដាំ ឬបត់ឆ្វេង តើអ្នកត្រូវអោយភ្លើងសញ្ញាប៉ុន្មានម៉ែត្រពីផ្លូវប្រសព្វ ឬកន្លែងដែលត្រូវបត់?
-A (KH): យ៉ាងតិច២០ម៉ែត្រ
-
-Q (EN): How far from the intersection or the turn road shall you give a turn light sing?
-A (EN): At least 20 m
-
+RTL-Q090
+[intrigue] មុនបត់ស្ដាំ ឬបត់ឆ្វេង តើអ្នកត្រូវអោយភ្លើងសញ្ញាប៉ុន្មានម៉ែត្រពីផ្លូវប្រសព្វ ឬកន្លែងដែលត្រូវបត់?
+[inspiration] ចម្លើយគឺ [confident] យ៉ាងតិច២០ម៉ែត្រ
+[intrigue] How far from the intersection or the turn road shall you give a turn light sing?
+[inspiration] The answer is [confident] At least 20 m
 ----------------------------------------------------------------------
-
-[RTL-Q091]
-Q (KH): នៅពេលរថយន្ត ដែលមានទម្ងន់សរុបលើសពី៥តោនឡើងទៅ ខូចម៉ាស៊ីនពុំអាចជុសជុលបាន តើអ្នកត្រូវប្រើឧបករណ៍អ្វីដើម្បីថ្ពក់សណ្ដោង ?
-A (KH): ត្រូវប្រើដងដែក
 
-Q (EN): When a vehicle with a total weight of more than 5T and broken, cannot be repaired, what material shall you use to hook and tow?
-A (EN): Use the long metal
-
+RTL-Q091
+[curious] នៅពេលរថយន្ត ដែលមានទម្ងន់សរុបលើសពី៥តោនឡើងទៅ ខូចម៉ាស៊ីនពុំអាចជុសជុលបាន តើអ្នកត្រូវប្រើឧបករណ៍អ្វីដើម្បីថ្ពក់សណ្ដោង ?
+[guiding] ចម្លើយគឺ [assured] ត្រូវប្រើដងដែក
+[curious] When a vehicle with a total weight of more than 5T and broken, cannot be repaired, what material shall you use to hook and tow?
+[guiding] The answer is [assured] Use the long metal
 ----------------------------------------------------------------------
-
-[RTL-Q092]
-Q (KH): និយមន័យ «រថយន្តដឹកជញ្ជូនអ្នកដំណើរធុនតូច» ?
-A (KH): ផ្ទុកមនុស្សចាប់ពី ១០ ដល់ ២០នាក់ រួមទាំងអ្នកបើកបរ
 
-Q (EN): The definition of ’small-sized passenger vehicle’?
-A (EN): Vehicle accommodates passengers ranging from 10 to 20, including the driver.
-
+RTL-Q092
+[thoughtful] និយមន័យ «រថយន្តដឹកជញ្ជូនអ្នកដំណើរធុនតូច» ?
+[helpful] ចម្លើយគឺ [clear] ផ្ទុកមនុស្សចាប់ពី ១០ ដល់ ២០នាក់ រួមទាំងអ្នកបើកបរ
+[thoughtful] The definition of ’small-sized passenger vehicle’?
+[helpful] The answer is [clear] Vehicle accommodates passengers ranging from 10 to 20, including the driver.
 ----------------------------------------------------------------------
-
-[RTL-Q093]
-Q (KH): និយមន័យ «រថយន្តធុនស្រាល» ?
-A (KH): ដែលមានទម្ងន់សរុបអតិបរមាមិនលើសពី ៣,៥ តោន
-
-Q (EN): The definition of ’Light-Duty Vehicle’?
-A (EN): The vehicle with total maximum weight of not more than 3.5T.
 
+RTL-Q093
+[wondering] និយមន័យ «រថយន្តធុនស្រាល» ?
+[supportive] ចម្លើយគឺ [definitive] ដែលមានទម្ងន់សរុបអតិបរមាមិនលើសពី ៣,៥ តោន
+[wondering] The definition of ’Light-Duty Vehicle’?
+[supportive] The answer is [definitive] The vehicle with total maximum weight of not more than 3.5T.
 ----------------------------------------------------------------------
 
-[RTL-Q094]
-Q (KH): នៅពេលឡើងរថយន្ត មុននឹងចេញដំណើរ ត្រូវធ្វើដូចម្ដេច ?
-A (KH): ពិនិត្យទីតាំងកៅអី និងកព្ចាក់ ខ្សែក្រវាត់ ចង្កឹះ លេខ ដេម៉ារ័រ ភ្លើងសញ្ញាមុខក្រោយ ដាក់ លេខ ហ្វ្រាំងដៃ ចេញដំណើរយឺតៗ
-
-Q (EN): Getting on the vehicle, before departure, what shall you do?
-A (EN): - Adjust the seat position and the winding mirrow, - Wear seat belt, check gear shift, start the engine to check the front and back light signs, engage the gear, - Release the front brake, and - Depart slowly.
-
+RTL-Q094
+[inquiring] នៅពេលឡើងរថយន្ត មុននឹងចេញដំណើរ ត្រូវធ្វើដូចម្ដេច ?
+[encouraging] ចម្លើយគឺ [certain] ពិនិត្យទីតាំងកៅអី និងកព្ចាក់ ខ្សែក្រវាត់ ចង្កឹះ លេខ ដេម៉ារ័រ ភ្លើងសញ្ញាមុខក្រោយ ដាក់ លេខ ហ្វ្រាំងដៃ ចេញដំណើរយឺតៗ
+[inquiring] Getting on the vehicle, before departure, what shall you do?
+[encouraging] The answer is [certain] - Adjust the seat position and the winding mirrow, - Wear seat belt, check gear shift, start the engine to check the front and back light signs, engage the gear, - Release the front brake, and - Depart slowly.
 ----------------------------------------------------------------------
 
-[RTL-Q095]
-Q (KH): នៅលើទ្រូងផ្លូវឯកទិស តើអ្នកបើកបរអាចធ្វើការបត់ត្រឡប់ក្រោយយានជំនិះរបស់ខ្លួន បានឬទេ ?
-A (KH): ហាមបត់ត្រឡប់ក្រោយ
-
-Q (EN): Can driver turn back his/her car on one-way traffic direction road?
-A (EN): No turning back.
-
+RTL-Q095
+[intrigue] នៅលើទ្រូងផ្លូវឯកទិស តើអ្នកបើកបរអាចធ្វើការបត់ត្រឡប់ក្រោយយានជំនិះរបស់ខ្លួន បានឬទេ ?
+[inspiration] ចម្លើយគឺ [confident] ហាមបត់ត្រឡប់ក្រោយ
+[intrigue] Can driver turn back his/her car on one-way traffic direction road?
+[inspiration] The answer is [confident] No turning back.
 ----------------------------------------------------------------------
-
-[RTL-Q096]
-Q (KH): តើអ្នកបើកបរត្រូវចត ឬឈប់យានជំនិះចម្ងាយប៉ុន្មានម៉ែត្រពីផ្លូវបត់ ឬផ្លូវប្រសព្វ ?
-A (KH): យ៉ាងតិច ៥ ម៉ែត្រ និងមហាវិថីយ៉ាងតិច ១០ម៉ែត្រ
 
-Q (EN): How far from the intersection or turn road shall you park or stop your vehicle?
-A (EN): At least 5m, and 10m for Boulevard.
-
+RTL-Q096
+[curious] តើអ្នកបើកបរត្រូវចត ឬឈប់យានជំនិះចម្ងាយប៉ុន្មានម៉ែត្រពីផ្លូវបត់ ឬផ្លូវប្រសព្វ ?
+[guiding] ចម្លើយគឺ [assured] យ៉ាងតិច ៥ ម៉ែត្រ និងមហាវិថីយ៉ាងតិច ១០ម៉ែត្រ
+[curious] How far from the intersection or turn road shall you park or stop your vehicle?
+[guiding] The answer is [assured] At least 5m, and 10m for Boulevard.
 ----------------------------------------------------------------------
-
-[RTL-Q097]
-Q (KH): តើអ្នកបើកបរយានជំនិះគ្រប់ប្រភេទ ត្រូវជៀសគ្នាដោយប្រកាន់យកខាងណា ?
-A (KH): ប្រកាន់យកខាងស្តាំដៃរៀងៗខ្លួន
 
-Q (EN): On what side shall drivers avoid each other?
-A (EN): On the right side by each.
-
+RTL-Q097
+[thoughtful] តើអ្នកបើកបរយានជំនិះគ្រប់ប្រភេទ ត្រូវជៀសគ្នាដោយប្រកាន់យកខាងណា ?
+[helpful] ចម្លើយគឺ [clear] ប្រកាន់យកខាងស្តាំដៃរៀងៗខ្លួន
+[thoughtful] On what side shall drivers avoid each other?
+[helpful] The answer is [clear] On the right side by each.
 ----------------------------------------------------------------------
-
-[RTL-Q098]
-Q (KH): មុននឹងចូលក្នុងរថយន្ត ដើម្បីបើកបរថយក្រោយ តើអ្នកត្រូវធ្វើអ្វីខ្លះ?
-A (KH): ត្រូវមើលផ្នែកខាងក្រោយឲ្យបានច្បាស់សិន បើគ្មានឧបសគ្គទើបចូលបើកយឺតៗថយក្រោយដោយប្រុងប្រយ័ត្ន
-
-Q (EN): Before getting in your vehicle to move backward, what shall you do?
-A (EN): Look behind of the vehicle carefully, make sure nothing to happen, then get into the vehicle and drive backward slowly and carefully.
 
+RTL-Q098
+[wondering] មុននឹងចូលក្នុងរថយន្ត ដើម្បីបើកបរថយក្រោយ តើអ្នកត្រូវធ្វើអ្វីខ្លះ?
+[supportive] ចម្លើយគឺ [definitive] ត្រូវមើលផ្នែកខាងក្រោយឲ្យបានច្បាស់សិន បើគ្មានឧបសគ្គទើបចូលបើកយឺតៗថយក្រោយដោយប្រុងប្រយ័ត្ន
+[wondering] Before getting in your vehicle to move backward, what shall you do?
+[supportive] The answer is [definitive] Look behind of the vehicle carefully, make sure nothing to happen, then get into the vehicle and drive backward slowly and carefully.
 ----------------------------------------------------------------------
 
-[RTL-Q099]
-Q (KH): តើអ្នកអាចឈប់ ឬ ចត លើគំនូសសញ្ញាសំរាប់ថ្មើរជើងឆ្លងកាត់បានឬទេ ?
-A (KH): ហាមឈប់ ឬចតពីលើ
-
-Q (EN): Can you park or stop your vehicle on the zebra?
-A (EN): No stopping or parking on the zebra.
-
+RTL-Q099
+[inquiring] តើអ្នកអាចឈប់ ឬ ចត លើគំនូសសញ្ញាសំរាប់ថ្មើរជើងឆ្លងកាត់បានឬទេ ?
+[encouraging] ចម្លើយគឺ [certain] ហាមឈប់ ឬចតពីលើ
+[inquiring] Can you park or stop your vehicle on the zebra?
+[encouraging] The answer is [certain] No stopping or parking on the zebra.
 ----------------------------------------------------------------------
 
-[RTL-Q100]
-Q (KH): ក្រៅទីប្រជុំជន តើការកំណត់ល្បឿនអតិបរមា សំរាប់រថយន្តគ្រួសារប៉ុន្មានគីឡូម៉ែត្រក្នុងមួយម៉ោង ?
-A (KH): ៨០គ.ម​ ក្នុងមួយម៉ោង
-
-Q (EN): Outside town or densely populated area what maximum speed limit ( km/h) shall family vehicle drive?
-A (EN): 80km/h
-
+RTL-Q100
+[intrigue] ក្រៅទីប្រជុំជន តើការកំណត់ល្បឿនអតិបរមា សំរាប់រថយន្តគ្រួសារប៉ុន្មានគីឡូម៉ែត្រក្នុងមួយម៉ោង ?
+[inspiration] ចម្លើយគឺ [confident] ៨០គ.ម​ ក្នុងមួយម៉ោង
+[intrigue] Outside town or densely populated area what maximum speed limit ( km/h) shall family vehicle drive?
+[inspiration] The answer is [confident] 80km/h
 ----------------------------------------------------------------------
-
-[RTL-Q101]
-Q (KH): និយមន័យ «រថយន្តធុនធ្ងន់» ?
-A (KH): ដែលមានទម្ងន់សរុបអតិបរមាលើសពី ៣,៥ តោន ឡើងទៅ
 
-Q (EN): The definition of ’heavy-duty vehicle’?
-A (EN): The vehicle with total maximum weight of more than 3.5T.
-
+RTL-Q101
+[curious] និយមន័យ «រថយន្តធុនធ្ងន់» ?
+[guiding] ចម្លើយគឺ [assured] ដែលមានទម្ងន់សរុបអតិបរមាលើសពី ៣,៥ តោន ឡើងទៅ
+[curious] The definition of ’heavy-duty vehicle’?
+[guiding] The answer is [assured] The vehicle with total maximum weight of more than 3.5T.
 ----------------------------------------------------------------------
-
-[RTL-Q102]
-Q (KH): នៅក្នុងទីក្រុង ឬទីប្រជុំជន តើការឈប់ ឬចតរថយន្តនៅលើទ្រូងផ្លូវមានចំងាយប៉ុន្មាន ពីគែមចិញ្ចើមផ្លូវ ?
-A (KH): មិនលើសពី២៥សង់ទីម៉ែត្រ
 
-Q (EN): How far, on the roadway, from the curve markings shall drivers stop or park in the city or built-up area?
-A (EN): Not more than 25cm
-
+RTL-Q102
+[thoughtful] នៅក្នុងទីក្រុង ឬទីប្រជុំជន តើការឈប់ ឬចតរថយន្តនៅលើទ្រូងផ្លូវមានចំងាយប៉ុន្មាន ពីគែមចិញ្ចើមផ្លូវ ?
+[helpful] ចម្លើយគឺ [clear] មិនលើសពី២៥សង់ទីម៉ែត្រ
+[thoughtful] How far, on the roadway, from the curve markings shall drivers stop or park in the city or built-up area?
+[helpful] The answer is [clear] Not more than 25cm
 ----------------------------------------------------------------------
-
-[RTL-Q103]
-Q (KH): ពេលដល់ផ្លូវប្រសព្វដែលមានដាក់ផ្លាកសញ្ញា“ឈប់”តើអ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?
-A (KH): ចាំបាច់ត្រូវតែឈប់ទោះបីផ្លូវខាងមុខមានឬគ្មានយានជំនិះធ្វើចរាចរណ៍ក៍ដោយ
-
-Q (EN): Getting to the intersection with sign ’STOP’, what shall drivers do?
-A (EN): Must stop even though there is traffic or not at the front.
 
+RTL-Q103
+[wondering] ពេលដល់ផ្លូវប្រសព្វដែលមានដាក់ផ្លាកសញ្ញា“ឈប់”តើអ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?
+[supportive] ចម្លើយគឺ [definitive] ចាំបាច់ត្រូវតែឈប់ទោះបីផ្លូវខាងមុខមានឬគ្មានយានជំនិះធ្វើចរាចរណ៍ក៍ដោយ
+[wondering] Getting to the intersection with sign ’STOP’, what shall drivers do?
+[supportive] The answer is [definitive] Must stop even though there is traffic or not at the front.
 ----------------------------------------------------------------------
 
-[RTL-Q104]
-Q (KH): ពេលឮស៊ីរ៉ែនរថយន្តដែលមានសិទ្ធិអាទិភាព តើអ្នកត្រូវធ្ធើដូចម្ដេច ?
-A (KH): ត្រូវឲ្យសញ្ញាអែបស្តាំ បន្ថយល្បឿនឬឈប់អែបស្តាំទុកសិទ្ធិយានស៊ឺរែនទៅមុន
-
-Q (EN): Hearing the siren of a vehicle with priority, what shall you do?
-A (EN): Give a right​ sign, slow down or stop at the right side, to prioritize siren vehicle goes ahead.
-
+RTL-Q104
+[inquiring] ពេលឮស៊ីរ៉ែនរថយន្តដែលមានសិទ្ធិអាទិភាព តើអ្នកត្រូវធ្ធើដូចម្ដេច ?
+[encouraging] ចម្លើយគឺ [certain] ត្រូវឲ្យសញ្ញាអែបស្តាំ បន្ថយល្បឿនឬឈប់អែបស្តាំទុកសិទ្ធិយានស៊ឺរែនទៅមុន
+[inquiring] Hearing the siren of a vehicle with priority, what shall you do?
+[encouraging] The answer is [certain] Give a right​ sign, slow down or stop at the right side, to prioritize siren vehicle goes ahead.
 ----------------------------------------------------------------------
 
-[RTL-Q105]
-Q (KH): និយមន័យ «ចិញ្ចើមផ្លូវ» ?
-A (KH): ផ្នែកសងខាងនៃទ្រូងផ្លូវក្នុងទីប្រជុំជ​ន ទុកសម្រាប់ថ្មើរជើង ដាំដើមឈើ និងបង្កប់បរិក្ខារបម្រើផលប្រយោជន៍សាធារណៈ
-
-Q (EN): The definition of ’sidewalks’?
-A (EN): Both sides of the roadways for pedestrians, planting trees, and embedding equipment for public services.
-
+RTL-Q105
+[intrigue] និយមន័យ «ចិញ្ចើមផ្លូវ» ?
+[inspiration] ចម្លើយគឺ [confident] ផ្នែកសងខាងនៃទ្រូងផ្លូវក្នុងទីប្រជុំជ​ន ទុកសម្រាប់ថ្មើរជើង ដាំដើមឈើ និងបង្កប់បរិក្ខារបម្រើផលប្រយោជន៍សាធារណៈ
+[intrigue] The definition of ’sidewalks’?
+[inspiration] The answer is [confident] Both sides of the roadways for pedestrians, planting trees, and embedding equipment for public services.
 ----------------------------------------------------------------------
-
-[RTL-Q106]
-Q (KH): ផ្លាកសញ្ញាគ្រោះថ្នាក់មានទ្រង់ទ្រាយដូចម្ដេច ?
-A (KH): រាងជាការ៉េមានអង្កត់ទ្រូងមួយជាខ្សែឈរមានជាយពីរជាន់ ជាយពណ៍ខ្មៅក្រាស់និងជាយក្រៅពណ៍សស្តើងផ្ទៃក្នុងពណ៍លឿងរូបឬសញ្ញាពណ៍ខ្មៅ
 
-Q (EN): What shape is a danger sign?
-A (EN): Square shap with one vertical diagonal, bouble layers edge, thick black layer, thin white outer edge, yellow inner background and black sign or picture.
-
+RTL-Q106
+[curious] ផ្លាកសញ្ញាគ្រោះថ្នាក់មានទ្រង់ទ្រាយដូចម្ដេច ?
+[guiding] ចម្លើយគឺ [assured] រាងជាការ៉េមានអង្កត់ទ្រូងមួយជាខ្សែឈរមានជាយពីរជាន់ ជាយពណ៍ខ្មៅក្រាស់និងជាយក្រៅពណ៍សស្តើងផ្ទៃក្នុងពណ៍លឿងរូបឬសញ្ញាពណ៍ខ្មៅ
+[curious] What shape is a danger sign?
+[guiding] The answer is [assured] Square shap with one vertical diagonal, bouble layers edge, thick black layer, thin white outer edge, yellow inner background and black sign or picture.
 ----------------------------------------------------------------------
-
-[RTL-Q107]
-Q (KH): តើអ្នកបើកបរអាចជែងគ្នានៅលើស្ពានបានដែរឬទេ ?
-A (KH): មិនអាចជែងបានជាដាច់ខាត
 
-Q (EN): Can drive overtake on the bridge?
-A (EN): Absolutely cannot
-
+RTL-Q107
+[thoughtful] តើអ្នកបើកបរអាចជែងគ្នានៅលើស្ពានបានដែរឬទេ ?
+[helpful] ចម្លើយគឺ [clear] មិនអាចជែងបានជាដាច់ខាត
+[thoughtful] Can drive overtake on the bridge?
+[helpful] The answer is [clear] Absolutely cannot
 ----------------------------------------------------------------------
-
-[RTL-Q108]
-Q (KH): នៅពេលយប់ក្រៅទីប្រជុំជនគ្មានចង្កៀងអគ្គីសនីបំភ្លឺ យានជំនិះជួបគ្នា តើអ្នកបើកបរត្រូវប្រើភ្លើងអ្វី ?
-A (KH): ត្រូវបិទភ្លើងហ្វា ហើយបើកភ្លើងកូតវិញ
-
-Q (EN): What kinds of lights (coating lights, headlights, semi lights) do drivers use when meet each other outside built-up area without electricity, at night?
-A (EN): Turn off headlights and turn on coating lights.
 
+RTL-Q108
+[wondering] នៅពេលយប់ក្រៅទីប្រជុំជនគ្មានចង្កៀងអគ្គីសនីបំភ្លឺ យានជំនិះជួបគ្នា តើអ្នកបើកបរត្រូវប្រើភ្លើងអ្វី ?
+[supportive] ចម្លើយគឺ [definitive] ត្រូវបិទភ្លើងហ្វា ហើយបើកភ្លើងកូតវិញ
+[wondering] What kinds of lights (coating lights, headlights, semi lights) do drivers use when meet each other outside built-up area without electricity, at night?
+[supportive] The answer is [definitive] Turn off headlights and turn on coating lights.
 ----------------------------------------------------------------------
 
-[RTL-Q109]
-Q (KH): មុននឹងបត់ស្ដាំ ឬឆ្វេង តើត្រូវឲ្យភ្លើងសញ្ញា ប៉ុន្មានម៉ែត្រ ពីចំណុចត្រូវបត់ ?
-A (KH): ត្រូវឲ្យភ្លើងសញ្ញាបត់ចម្ងាយ យ៉ាងតិច ២០ ម៉ែត្រ
-
-Q (EN): Before turning left or right, how far from a turned area shall you give a turn light?
-A (EN): At least 20 meters
-
+RTL-Q109
+[inquiring] មុននឹងបត់ស្ដាំ ឬឆ្វេង តើត្រូវឲ្យភ្លើងសញ្ញា ប៉ុន្មានម៉ែត្រ ពីចំណុចត្រូវបត់ ?
+[encouraging] ចម្លើយគឺ [certain] ត្រូវឲ្យភ្លើងសញ្ញាបត់ចម្ងាយ យ៉ាងតិច ២០ ម៉ែត្រ
+[inquiring] Before turning left or right, how far from a turned area shall you give a turn light?
+[encouraging] The answer is [certain] At least 20 meters
 ----------------------------------------------------------------------
-
-[RTL-Q110]
-Q (KH): តើកុមារដែលមានអាយុក្រោម ១០ឆ្នាំ អាចឲ្យអង្គុយនៅកៅអីមុខនៃរថយន្តបានដែរឬទេ ?
-A (KH): មិនអាចអង្គុយបានទេ
 
-Q (EN): Can a child under 10 years old sit at the front seat, in the cabin?
-A (EN): Can
-
+RTL-Q110
+[intrigue] តើកុមារដែលមានអាយុក្រោម ១០ឆ្នាំ អាចឲ្យអង្គុយនៅកៅអីមុខនៃរថយន្តបានដែរឬទេ ?
+[inspiration] ចម្លើយគឺ [confident] មិនអាចអង្គុយបានទេ
+[intrigue] Can a child under 10 years old sit at the front seat, in the cabin?
+[inspiration] The answer is [confident] Can
 ----------------------------------------------------------------------
-
-[RTL-Q111]
-Q (KH): បើអ្នកបើកបរក្រៅក្រុងក្នុងល្បឿន ៩០ គីឡូម៉ែត្រក្នុងមួយម៉ោង តើពេលជាន់ហ្វ្រាំងអាចឈប់ចំងាយប៉ុន្មានម៉ែត្រនៅលើផ្លូវស្ងួត និង ប៉ុន្មានម៉ែត្រនៅលើផ្លូវសើម ឬ រអិល ?
-A (KH): ៨១ ម៉ែត្រ នៅលើផ្លូវស្ងួត និង១២០ម៉ែត្រ នៅលើផ្លូវសើម
-
-Q (EN): If you are driving at the speed of 90km/h, how far can you stop your vehicle since you apply the brake, on the dry road? on the wet road?
-A (EN): 81m on the dry road and 120m on the wet road
 
+RTL-Q111
+[curious] បើអ្នកបើកបរក្រៅក្រុងក្នុងល្បឿន ៩០ គីឡូម៉ែត្រក្នុងមួយម៉ោង តើពេលជាន់ហ្វ្រាំងអាចឈប់ចំងាយប៉ុន្មានម៉ែត្រនៅលើផ្លូវស្ងួត និង ប៉ុន្មានម៉ែត្រនៅលើផ្លូវសើម ឬ រអិល ?
+[guiding] ចម្លើយគឺ [assured] ៨១ ម៉ែត្រ នៅលើផ្លូវស្ងួត និង១២០ម៉ែត្រ នៅលើផ្លូវសើម
+[curious] If you are driving at the speed of 90km/h, how far can you stop your vehicle since you apply the brake, on the dry road? on the wet road?
+[guiding] The answer is [assured] 81m on the dry road and 120m on the wet road
 ----------------------------------------------------------------------
 
-[RTL-Q112]
-Q (KH): តើព្រះរាជាណាចក្រកម្ពុជា ច្បាប់អនុញ្ញាតឲ្យប្រជាពលរដ្ឋអាយុប៉ុន្មាន មានសិទ្ធិប្រឡងបើកបររថយន្តប្រភេទធុនតូចបាន ?
-A (KH): មានអាយុ ១៨ ឆ្នាំ ឡើងទៅ
-
-Q (EN): In accordance with the Cambodian law, at what age can a citizen take a test for driver license for light-duty vehicle?
-A (EN): 18 and up
-
+RTL-Q112
+[thoughtful] តើព្រះរាជាណាចក្រកម្ពុជា ច្បាប់អនុញ្ញាតឲ្យប្រជាពលរដ្ឋអាយុប៉ុន្មាន មានសិទ្ធិប្រឡងបើកបររថយន្តប្រភេទធុនតូចបាន ?
+[helpful] ចម្លើយគឺ [clear] មានអាយុ ១៨ ឆ្នាំ ឡើងទៅ
+[thoughtful] In accordance with the Cambodian law, at what age can a citizen take a test for driver license for light-duty vehicle?
+[helpful] The answer is [clear] 18 and up
 ----------------------------------------------------------------------
 
-[RTL-Q113]
-Q (KH): នៅលើទ្រូងផ្លូវមានទិសចរាចរណ៍ពីរ ដែលគ្មានគំនូសសញ្ញាបែងចែកទិសចរាចរណ៍ តើអ្នកបើកបរត្រូវប្រើប្រាស់ទ្រូងផ្លូវដូចម្តេច ?
-A (KH): ត្រូវប្រើប្រាស់ពាក់កណ្ដាលទ្រូងផ្លូវផ្នែកខាងស្ដាំ ដោយបើកបរកៀកទៅខាងស្ដាំ
-
-Q (EN): On the roadway with two traffic directions, no sign divided the traffic directions, how shall drivers use the the road?
-A (EN): Drive on the half right side of the road, by driving along to the right side.
-
+RTL-Q113
+[wondering] នៅលើទ្រូងផ្លូវមានទិសចរាចរណ៍ពីរ ដែលគ្មានគំនូសសញ្ញាបែងចែកទិសចរាចរណ៍ តើអ្នកបើកបរត្រូវប្រើប្រាស់ទ្រូងផ្លូវដូចម្តេច ?
+[supportive] ចម្លើយគឺ [definitive] ត្រូវប្រើប្រាស់ពាក់កណ្ដាលទ្រូងផ្លូវផ្នែកខាងស្ដាំ ដោយបើកបរកៀកទៅខាងស្ដាំ
+[wondering] On the roadway with two traffic directions, no sign divided the traffic directions, how shall drivers use the the road?
+[supportive] The answer is [definitive] Drive on the half right side of the road, by driving along to the right side.
 ----------------------------------------------------------------------
-
-[RTL-Q114]
-Q (KH): តើអ្នកបើកបរ ត្រូវប្រើភ្លើងអ្វីខ្លះនៅពេលដែលមានភ្លៀងខ្លាំង នៅក្នុងទីប្រជុំជន ?
-A (KH): ភ្លើងកូត
 
-Q (EN): While heavy rain falling, in city or built-up area, what lights shall drivers turn on?
-A (EN): Coating light
-
+RTL-Q114
+[inquiring] តើអ្នកបើកបរ ត្រូវប្រើភ្លើងអ្វីខ្លះនៅពេលដែលមានភ្លៀងខ្លាំង នៅក្នុងទីប្រជុំជន ?
+[encouraging] ចម្លើយគឺ [certain] ភ្លើងកូត
+[inquiring] While heavy rain falling, in city or built-up area, what lights shall drivers turn on?
+[encouraging] The answer is [certain] Coating light
 ----------------------------------------------------------------------
-
-[RTL-Q115]
-Q (KH): បើមានរថយន្តនៅពីក្រោយសុំជែង តើអ្នកត្រូវធ្វើដូចម្ដេច  ?
-A (KH): បើខាងមុខគ្មានឧបសគ្គ ត្រូវឲ្យសញ្ញាបត់ស្ដាំ បន្ថយល្បឿន និងអែបស្ដាំជាសញ្ញាអនុញ្ញាតឲ្យខាងក្រោយអាចជែងបាន
 
-Q (EN): What shall you do when there is a running car behind get to overtake you?
-A (EN): If available, give the right turn sign, slow down, and a bit move to the right side as a sign to let it overtakes.
-
+RTL-Q115
+[intrigue] បើមានរថយន្តនៅពីក្រោយសុំជែង តើអ្នកត្រូវធ្វើដូចម្ដេច  ?
+[inspiration] ចម្លើយគឺ [confident] បើខាងមុខគ្មានឧបសគ្គ ត្រូវឲ្យសញ្ញាបត់ស្ដាំ បន្ថយល្បឿន និងអែបស្ដាំជាសញ្ញាអនុញ្ញាតឲ្យខាងក្រោយអាចជែងបាន
+[intrigue] What shall you do when there is a running car behind get to overtake you?
+[inspiration] The answer is [confident] If available, give the right turn sign, slow down, and a bit move to the right side as a sign to let it overtakes.
 ----------------------------------------------------------------------
-
-[RTL-Q116]
-Q (KH): នៅលើទ្រូងផ្លូវមានទិសចរាចរណ៍ពីរ ហើយមានគំនូសបែងចែកទ្រូងផ្លូវ តើអ្នកបើកបរត្រូវប្រកាន់យក ចំណែកផ្លូវខាងណា ?
-A (KH): ត្រូវប្រកាន់យកចំណែកផ្លូវខាងស្ដាំ
-
-Q (EN): On the road with two traffic directions and having a marking dividing the road, which part of the road shall drivers drive on?
-A (EN): Drive on the right hand side.
 
+RTL-Q116
+[curious] នៅលើទ្រូងផ្លូវមានទិសចរាចរណ៍ពីរ ហើយមានគំនូសបែងចែកទ្រូងផ្លូវ តើអ្នកបើកបរត្រូវប្រកាន់យក ចំណែកផ្លូវខាងណា ?
+[guiding] ចម្លើយគឺ [assured] ត្រូវប្រកាន់យកចំណែកផ្លូវខាងស្ដាំ
+[curious] On the road with two traffic directions and having a marking dividing the road, which part of the road shall drivers drive on?
+[guiding] The answer is [assured] Drive on the right hand side.
 ----------------------------------------------------------------------
 
-[RTL-Q117]
-Q (KH): រថយន្តប្រភេទណាខ្លះ មានសិទ្ធិអាទិភាព ជាងគេនៅលើទ្រូងផ្លូវសាធារណៈ ?
-A (KH): ពន្លត់អគ្គីភ័យ > សង្គ្រោះបន្ទាន់ > នគរបាល យោធា អាវុធហត្ថ
-
-Q (EN): What kinds of vehicles have more priority on the public road?
-A (EN): Fire truck > ambulance > police car, military car, gendarmarie car
-
+RTL-Q117
+[thoughtful] រថយន្តប្រភេទណាខ្លះ មានសិទ្ធិអាទិភាព ជាងគេនៅលើទ្រូងផ្លូវសាធារណៈ ?
+[helpful] ចម្លើយគឺ [clear] ពន្លត់អគ្គីភ័យ > សង្គ្រោះបន្ទាន់ > នគរបាល យោធា អាវុធហត្ថ
+[thoughtful] What kinds of vehicles have more priority on the public road?
+[helpful] The answer is [clear] Fire truck > ambulance > police car, military car, gendarmarie car
 ----------------------------------------------------------------------
 
-[RTL-Q118]
-Q (KH): យានជំនិះពីរជួបគ្នាមួយនៅក្នុងខ្សែរង្វង់មូល (មួយទៅក្រៅខ្សែរង្វង់មូល) គ្មានផ្លាកសញ្ញាបញ្ជាទិស តើមួយណាមានសិទ្ធិអាទិភាព ?
-A (KH): យានមកពីស្ដាំដៃ
-
-Q (EN): Two vehicles at the roundabout, one is inside the roundabout and another one is outside, no mandatory direction sign, which vehicle is prioritized?
-A (EN): The vehicle from the right hand.
-
+RTL-Q118
+[wondering] យានជំនិះពីរជួបគ្នាមួយនៅក្នុងខ្សែរង្វង់មូល (មួយទៅក្រៅខ្សែរង្វង់មូល) គ្មានផ្លាកសញ្ញាបញ្ជាទិស តើមួយណាមានសិទ្ធិអាទិភាព ?
+[supportive] ចម្លើយគឺ [definitive] យានមកពីស្ដាំដៃ
+[wondering] Two vehicles at the roundabout, one is inside the roundabout and another one is outside, no mandatory direction sign, which vehicle is prioritized?
+[supportive] The answer is [definitive] The vehicle from the right hand.
 ----------------------------------------------------------------------
-
-[RTL-Q119]
-Q (KH): លើផ្លូវមានចរាចរណ៍ច្រើន ហើយត្រូវបត់ត្រទ្បប់ក្រោយ តើត្រូវធ្វើដូចម្ដេច?
-A (KH): ត្រូវមានការប្រុងប្រយ័ត្ន ដោយធ្វើការបត់ត្រទ្បប់ក្រោយ តាមបច្ចេកទេសបើកបរ
 
-Q (EN): On the road having a lot of traffic and you must turn back, how shall you do?
-A (EN): Be careful of make U-turn or reverse by driving techniques.
-
+RTL-Q119
+[inquiring] លើផ្លូវមានចរាចរណ៍ច្រើន ហើយត្រូវបត់ត្រទ្បប់ក្រោយ តើត្រូវធ្វើដូចម្ដេច?
+[encouraging] ចម្លើយគឺ [certain] ត្រូវមានការប្រុងប្រយ័ត្ន ដោយធ្វើការបត់ត្រទ្បប់ក្រោយ តាមបច្ចេកទេសបើកបរ
+[inquiring] On the road having a lot of traffic and you must turn back, how shall you do?
+[encouraging] The answer is [certain] Be careful of make U-turn or reverse by driving techniques.
 ----------------------------------------------------------------------
-
-[RTL-Q120]
-Q (KH): ផ្លូវខ្វែងមានសិទ្ធិស្មើគ្នា តើត្រូវទុកសិទ្ធិអាទិភាពឲ្យយានជំនិះមកពីស្ដាំដៃ ឬ មកពីឆ្វេងដៃទៅមុន ?
-A (KH): ស្ដាំដៃ
 
-Q (EN): On the intersection with the same priority, shall drivers leave priority to the left hand vehicle go first or the right one?
-A (EN): The right one
-
+RTL-Q120
+[intrigue] ផ្លូវខ្វែងមានសិទ្ធិស្មើគ្នា តើត្រូវទុកសិទ្ធិអាទិភាពឲ្យយានជំនិះមកពីស្ដាំដៃ ឬ មកពីឆ្វេងដៃទៅមុន ?
+[inspiration] ចម្លើយគឺ [confident] ស្ដាំដៃ
+[intrigue] On the intersection with the same priority, shall drivers leave priority to the left hand vehicle go first or the right one?
+[inspiration] The answer is [confident] The right one
 ----------------------------------------------------------------------
-
-[RTL-Q121]
-Q (KH): និយមន័យ «យានយន្តុបករណ៍» ?
-A (KH): យានយន្ដពិសេសមានឧបករណ៍គ្រឿងចក្រ បំពាក់បន្ថែម គ្មានផ្ទុកមនុស្ស ឬទំនិញនៅក្រៅកាប៊ីន
-
-Q (EN): The definition of ’vehicle’
-A (EN): Special vehicles, with additional machinery equipped, without people and goods outside the cabin.
 
+RTL-Q121
+[curious] និយមន័យ «យានយន្តុបករណ៍» ?
+[guiding] ចម្លើយគឺ [assured] យានយន្ដពិសេសមានឧបករណ៍គ្រឿងចក្រ បំពាក់បន្ថែម គ្មានផ្ទុកមនុស្ស ឬទំនិញនៅក្រៅកាប៊ីន
+[curious] The definition of ’vehicle’
+[guiding] The answer is [assured] Special vehicles, with additional machinery equipped, without people and goods outside the cabin.
 ----------------------------------------------------------------------
 
-[RTL-Q122]
-Q (KH): លើផ្លូវដែលគ្មានភ្លើងអគ្គីសនី អ្នកកំពុងបើកបរប្រើភ្លើងហ្វា ហើយត្រូវប្ដូរភ្លើងទៅកូតវិញ តើត្រូវប្រុងប្រយ័ត្នដូចម្តេច ?
-A (KH): ត្រូវបន្ថយល្បឿនព្រោះមើលមិនបានឆ្ងាយ
-
-Q (EN): On the road, no electricity, you’re driving using headlights and switch to coating light. How shall you pay attention?
-A (EN): Slow down, as looking no further.
-
+RTL-Q122
+[thoughtful] លើផ្លូវដែលគ្មានភ្លើងអគ្គីសនី អ្នកកំពុងបើកបរប្រើភ្លើងហ្វា ហើយត្រូវប្ដូរភ្លើងទៅកូតវិញ តើត្រូវប្រុងប្រយ័ត្នដូចម្តេច ?
+[helpful] ចម្លើយគឺ [clear] ត្រូវបន្ថយល្បឿនព្រោះមើលមិនបានឆ្ងាយ
+[thoughtful] On the road, no electricity, you’re driving using headlights and switch to coating light. How shall you pay attention?
+[helpful] The answer is [clear] Slow down, as looking no further.
 ----------------------------------------------------------------------
 
-[RTL-Q123]
-Q (KH): ក្នុងករណីទ្រូងផ្លូវចង្អៀត មិនអាចជៀសគ្នាបាន តើយានជំនិះណាមួយត្រូវថយក្រោយ
-A (KH): យានដឹកទំនិញ
-
-Q (EN): In case  a roadway is too narrow to allow two vehicles to pass, which vehicle shall reverse to give away?
-A (EN): Cargo truck
-
+RTL-Q123
+[wondering] ក្នុងករណីទ្រូងផ្លូវចង្អៀត មិនអាចជៀសគ្នាបាន តើយានជំនិះណាមួយត្រូវថយក្រោយ
+[supportive] ចម្លើយគឺ [definitive] យានដឹកទំនិញ
+[wondering] In case  a roadway is too narrow to allow two vehicles to pass, which vehicle shall reverse to give away?
+[supportive] The answer is [definitive] Cargo truck
 ----------------------------------------------------------------------
-
-[RTL-Q124]
-Q (KH): តើក្មេងចាប់ពីអាយុប៉ុន្មានឆ្នាំឡើងទៅ ទើបអនុញ្ញាតឲ្យអង្គុយ នៅកៅអីផ្នែកខាងមុខក្បែរអ្នកបើកបរ ?
-A (KH): ត្រូវមានអាយុចាប់ពី ១០ឆ្នាំ ពេញបរិបូរណ៍ឡើងទៅ
 
-Q (EN): At what age and over of children can be allowed to sit in the front seat next to the driver?
-A (EN): 10 and over
-
+RTL-Q124
+[inquiring] តើក្មេងចាប់ពីអាយុប៉ុន្មានឆ្នាំឡើងទៅ ទើបអនុញ្ញាតឲ្យអង្គុយ នៅកៅអីផ្នែកខាងមុខក្បែរអ្នកបើកបរ ?
+[encouraging] ចម្លើយគឺ [certain] ត្រូវមានអាយុចាប់ពី ១០ឆ្នាំ ពេញបរិបូរណ៍ឡើងទៅ
+[inquiring] At what age and over of children can be allowed to sit in the front seat next to the driver?
+[encouraging] The answer is [certain] 10 and over
 ----------------------------------------------------------------------
-
-[RTL-Q125]
-Q (KH): ពេលជៀសគ្នានៅលើផ្លូវចោតហើយចង្អៀត តើយានជំនិះណាត្រូវទៅមុន ?
-A (KH): យានជំនិះឡើងចំណោទ
 
-Q (EN): Avoiding each other on a steep and narrow road, which vehicle shall go first?
-A (EN): The one is moving up
-
+RTL-Q125
+[intrigue] ពេលជៀសគ្នានៅលើផ្លូវចោតហើយចង្អៀត តើយានជំនិះណាត្រូវទៅមុន ?
+[inspiration] ចម្លើយគឺ [confident] យានជំនិះឡើងចំណោទ
+[intrigue] Avoiding each other on a steep and narrow road, which vehicle shall go first?
+[inspiration] The answer is [confident] The one is moving up
 ----------------------------------------------------------------------
-
-[RTL-Q126]
-Q (KH): នៅលើស្ពានចង្អៀត ដែលបើកបរបានតែមួយគ្រឿង យានយន្តប្រភេទណាត្រូវទៅមុន ?
-A (KH): យានយន្ដធុនស្រាល
-
-Q (EN): When vehicles are passing on the narrow bridge with only one vehicle availble, which vehicle shall go first?
-A (EN): The light-duty vehicle
 
+RTL-Q126
+[curious] នៅលើស្ពានចង្អៀត ដែលបើកបរបានតែមួយគ្រឿង យានយន្តប្រភេទណាត្រូវទៅមុន ?
+[guiding] ចម្លើយគឺ [assured] យានយន្ដធុនស្រាល
+[curious] When vehicles are passing on the narrow bridge with only one vehicle availble, which vehicle shall go first?
+[guiding] The answer is [assured] The light-duty vehicle
 ----------------------------------------------------------------------
 
-[RTL-Q127]
-Q (KH): នៅពេលបើកបរឆ្លងកាត់ផ្លូវរថភ្លើង តើអ្នកបើកបរត្រូវធ្វើដូចម្តេច ?
-A (KH): បន្ថយល្បឿន
-
-Q (EN): Driving across the railway, how shall drivers do?
-A (EN): Slow down.
-
+RTL-Q127
+[thoughtful] នៅពេលបើកបរឆ្លងកាត់ផ្លូវរថភ្លើង តើអ្នកបើកបរត្រូវធ្វើដូចម្តេច ?
+[helpful] ចម្លើយគឺ [clear] បន្ថយល្បឿន
+[thoughtful] Driving across the railway, how shall drivers do?
+[helpful] The answer is [clear] Slow down.
 ----------------------------------------------------------------------
 
-[RTL-Q128]
-Q (KH): នៅពេលរថភ្លើងបន្លឺសញ្ញាជិតមកដល់ តើអ្នកបើកបរត្រូវឈប់ចម្ងាយយ៉ាងតិចប៉ុន្មានម៉ែត្រ ពីរបាឬរបាំង ?
-A (KH): ចម្ងាយ ២ ម៉ែត្រ
-
-Q (EN): When the train sirens and comes closer, how far, at least, shall you stop your vehicle from the barrier?
-A (EN): 2m
-
+RTL-Q128
+[wondering] នៅពេលរថភ្លើងបន្លឺសញ្ញាជិតមកដល់ តើអ្នកបើកបរត្រូវឈប់ចម្ងាយយ៉ាងតិចប៉ុន្មានម៉ែត្រ ពីរបាឬរបាំង ?
+[supportive] ចម្លើយគឺ [definitive] ចម្ងាយ ២ ម៉ែត្រ
+[wondering] When the train sirens and comes closer, how far, at least, shall you stop your vehicle from the barrier?
+[supportive] The answer is [definitive] 2m
 ----------------------------------------------------------------------
-
-[RTL-Q129]
-Q (KH): និយមន័យ «រ៉ឺម៉ក» ?
-A (KH): យានសម្រាប់ថ្ពក់ជាមួយរថយន្ត
 
-Q (EN): The definition of ’trailer’?
-A (EN): Trailer for hooking up with a vehicle.
-
+RTL-Q129
+[inquiring] និយមន័យ «រ៉ឺម៉ក» ?
+[encouraging] ចម្លើយគឺ [certain] យានសម្រាប់ថ្ពក់ជាមួយរថយន្ត
+[inquiring] The definition of ’trailer’?
+[encouraging] The answer is [certain] Trailer for hooking up with a vehicle.
 ----------------------------------------------------------------------
-
-[RTL-Q130]
-Q (KH): ផ្លាកសញ្ញាបញ្ជាមានទ្រង់ទ្រាយដូចម្ដេច ?
-A (KH): ផ្លាកសញ្ញាបញ្ជារាងមូល ជាយពណ៌សព័ទ្ធជុំវិញផ្ទៃក្នុងពណ៌ខៀវ និងមានរូប ឬសញ្ញាសំគាល់ខាងក្នុងពណ៌ស
 
-Q (EN): What shape is a mandatory sign?
-A (EN): Circle with whit edge surrounded, the inside surface is blue. There is a white sign or a note in the zone.
-
+RTL-Q130
+[intrigue] ផ្លាកសញ្ញាបញ្ជាមានទ្រង់ទ្រាយដូចម្ដេច ?
+[inspiration] ចម្លើយគឺ [confident] ផ្លាកសញ្ញាបញ្ជារាងមូល ជាយពណ៌សព័ទ្ធជុំវិញផ្ទៃក្នុងពណ៌ខៀវ និងមានរូប ឬសញ្ញាសំគាល់ខាងក្នុងពណ៌ស
+[intrigue] What shape is a mandatory sign?
+[inspiration] The answer is [confident] Circle with whit edge surrounded, the inside surface is blue. There is a white sign or a note in the zone.
 ----------------------------------------------------------------------
-
-[RTL-Q131]
-Q (KH): នៅពេលរថភ្លើងបន្លឺសញ្ញាជិតមកដល់ តើអ្នកបើកបរត្រូវឈប់ចម្ងាយយ៉ាងតិចប៉ុន្មានម៉ែត្រ ពីផ្លូវរថភ្លើង ?
-A (KH): ចម្ងាយ ៥ ម៉ែត្រ
-
-Q (EN): When the train sirens and comes closer, how far from the railway shall you stop?
-A (EN): 5m
 
+RTL-Q131
+[curious] នៅពេលរថភ្លើងបន្លឺសញ្ញាជិតមកដល់ តើអ្នកបើកបរត្រូវឈប់ចម្ងាយយ៉ាងតិចប៉ុន្មានម៉ែត្រ ពីផ្លូវរថភ្លើង ?
+[guiding] ចម្លើយគឺ [assured] ចម្ងាយ ៥ ម៉ែត្រ
+[curious] When the train sirens and comes closer, how far from the railway shall you stop?
+[guiding] The answer is [assured] 5m
 ----------------------------------------------------------------------
 
-[RTL-Q132]
-Q (KH): នៅពេលរថយន្តអ្នកបុកមនុស្ស ឬប៉ះនឹងអ្នកធ្វើចរាចរណ៍លើផ្លូវសាធារណៈ តើអ្នកត្រូវធ្វើដូចម្ដេច ?
-A (KH): ឈប់យាន ចុះជួយសង្គ្រោះ និងផ្ដល់ដំណឹងដល់ភ្នាក់ងារនគរបាលចរាចរណ៍ដែលនៅជិតបំផុត
-
-Q (EN): When your vehicle hit a person or others having traffic on the road, what shall you do?
-A (EN): Get off the vehicle and recure and inform to the nearby traffic police
-
+RTL-Q132
+[thoughtful] នៅពេលរថយន្តអ្នកបុកមនុស្ស ឬប៉ះនឹងអ្នកធ្វើចរាចរណ៍លើផ្លូវសាធារណៈ តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+[helpful] ចម្លើយគឺ [clear] ឈប់យាន ចុះជួយសង្គ្រោះ និងផ្ដល់ដំណឹងដល់ភ្នាក់ងារនគរបាលចរាចរណ៍ដែលនៅជិតបំផុត
+[thoughtful] When your vehicle hit a person or others having traffic on the road, what shall you do?
+[helpful] The answer is [clear] Get off the vehicle and recure and inform to the nearby traffic police
 ----------------------------------------------------------------------
 
-[RTL-Q133]
-Q (KH): នៅពេលយានជំនិះខូចគាំង ឬត្រូវបង្ខំឲ្យឈប់ ឬចតនៅលើទ្រូងផ្លូវក្រៅទីប្រជុំជន តើអ្នកបើកបរត្រូវ ប្រើភ្លើងសញ្ញាអាសន្ន និងដាក់សញ្ញាត្រីកោណចម្ងាយប៉ុន្មានយ៉ាងតិច?
-A (KH): ៣០ម៉ែត្រ ពីយានដែលអាចមើលឃើញយ៉ាងតិច ១០០ម៉ែត្រ
-
-Q (EN): When your vehicle goes wrong and force to stop or park on the road outside built-up area, how far, at least, from the vehicle shall you put the agency light or triangle sign?
-A (EN): 30m from the vehicle which can be seen at least from 100m
-
+RTL-Q133
+[wondering] នៅពេលយានជំនិះខូចគាំង ឬត្រូវបង្ខំឲ្យឈប់ ឬចតនៅលើទ្រូងផ្លូវក្រៅទីប្រជុំជន តើអ្នកបើកបរត្រូវ ប្រើភ្លើងសញ្ញាអាសន្ន និងដាក់សញ្ញាត្រីកោណចម្ងាយប៉ុន្មានយ៉ាងតិច?
+[supportive] ចម្លើយគឺ [definitive] ៣០ម៉ែត្រ ពីយានដែលអាចមើលឃើញយ៉ាងតិច ១០០ម៉ែត្រ
+[wondering] When your vehicle goes wrong and force to stop or park on the road outside built-up area, how far, at least, from the vehicle shall you put the agency light or triangle sign?
+[supportive] The answer is [definitive] 30m from the vehicle which can be seen at least from 100m
 ----------------------------------------------------------------------
-
-[RTL-Q134]
-Q (KH): បើរថយន្តអ្នកខូចកណ្ដាលទ្រូងផ្លូវសាធារណៈ តើអ្នកត្រូវធ្វើដូចម្ដេច ?
-A (KH): ខ្ញុំត្រូវរុញទៅអែបខាងស្ដាំ ទើបធ្វើការជួសជុល បើគ្មានផ្លូវគ្រប់គ្រាន់ខ្ញុំត្រូវដាក់សញ្ញាឲ្យដំណឹង
 
-Q (EN): If your vehicle was broken down on the roadway. What shall you do?
-A (EN): I need to push my vehicle to the right side and repair. If the case is not available, I shall place the sign to alert.
-
+RTL-Q134
+[inquiring] បើរថយន្តអ្នកខូចកណ្ដាលទ្រូងផ្លូវសាធារណៈ តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+[encouraging] ចម្លើយគឺ [certain] ខ្ញុំត្រូវរុញទៅអែបខាងស្ដាំ ទើបធ្វើការជួសជុល បើគ្មានផ្លូវគ្រប់គ្រាន់ខ្ញុំត្រូវដាក់សញ្ញាឲ្យដំណឹង
+[inquiring] If your vehicle was broken down on the roadway. What shall you do?
+[encouraging] The answer is [certain] I need to push my vehicle to the right side and repair. If the case is not available, I shall place the sign to alert.
 ----------------------------------------------------------------------
-
-[RTL-Q135]
-Q (KH): នៅក្នុងទីប្រជុំជន តើអ្នកបើកបរត្រូវឈប់ ឬចតយានជំនិះ យ៉ាងតិចចម្ងាយប៉ុន្មានម៉ែត្រ ពីផ្លូវប្រសព្វ ឬផ្លូវបត់ ឬផ្លូវកោង ?
-A (KH): ចម្ងាយ ៥ ម៉ែត្រ
 
-Q (EN): Inside the built-up area, how far, at least, from the intersection, or turn road, or bend road, shall you stop or park your vehicle?
-A (EN): 5m
-
+RTL-Q135
+[intrigue] នៅក្នុងទីប្រជុំជន តើអ្នកបើកបរត្រូវឈប់ ឬចតយានជំនិះ យ៉ាងតិចចម្ងាយប៉ុន្មានម៉ែត្រ ពីផ្លូវប្រសព្វ ឬផ្លូវបត់ ឬផ្លូវកោង ?
+[inspiration] ចម្លើយគឺ [confident] ចម្ងាយ ៥ ម៉ែត្រ
+[intrigue] Inside the built-up area, how far, at least, from the intersection, or turn road, or bend road, shall you stop or park your vehicle?
+[inspiration] The answer is [confident] 5m
 ----------------------------------------------------------------------
-
-[RTL-Q136]
-Q (KH): នៅក្រៅទីប្រជុំជន តើអ្នកបើកបរត្រូវឈប់ ឬចតយានជំនិះ យ៉ាងតិចប៉ុន្មានម៉ែត្រ ពីផ្លូវប្រសព្វ ឬផ្លូវបត់ ឬផ្លូវកោង ?
-A (KH): ចម្ងាយ ១០ ម៉ែត្រ
-
-Q (EN): Outside built-up area, how far, at least, from the intersection, or turn road, or bend road, shall you stop or park your vehicle?
-A (EN): 10m
 
+RTL-Q136
+[curious] នៅក្រៅទីប្រជុំជន តើអ្នកបើកបរត្រូវឈប់ ឬចតយានជំនិះ យ៉ាងតិចប៉ុន្មានម៉ែត្រ ពីផ្លូវប្រសព្វ ឬផ្លូវបត់ ឬផ្លូវកោង ?
+[guiding] ចម្លើយគឺ [assured] ចម្ងាយ ១០ ម៉ែត្រ
+[curious] Outside built-up area, how far, at least, from the intersection, or turn road, or bend road, shall you stop or park your vehicle?
+[guiding] The answer is [assured] 10m
 ----------------------------------------------------------------------
 
-[RTL-Q137]
-Q (KH): តើអ្នកបើកបរអាចប្រើសូរស័ព្ទ ស៊ីផ្លេ នៅពេលណា? កន្លែងណា?
-A (KH): ពេលថ្ងៃ ពេលសុំជែង និងមិនត្រូវប្រើនៅជិតមន្ទីពេទ្យឬកន្លែងណាមានសញ្ញាហាមស៊ីផ្លេ
-
-Q (EN): When and where can drivers honk the horn?
-A (EN): At day time, when overtake, not to honk near the hospital or anywhere with no-horn sign.
-
+RTL-Q137
+[thoughtful] តើអ្នកបើកបរអាចប្រើសូរស័ព្ទ ស៊ីផ្លេ នៅពេលណា? កន្លែងណា?
+[helpful] ចម្លើយគឺ [clear] ពេលថ្ងៃ ពេលសុំជែង និងមិនត្រូវប្រើនៅជិតមន្ទីពេទ្យឬកន្លែងណាមានសញ្ញាហាមស៊ីផ្លេ
+[thoughtful] When and where can drivers honk the horn?
+[helpful] The answer is [clear] At day time, when overtake, not to honk near the hospital or anywhere with no-horn sign.
 ----------------------------------------------------------------------
 
-[RTL-Q138]
-Q (KH): តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះ ចម្ងាយប៉ុន្មានម៉ែត្រ ពីមុខគំនូសឆ្នូតកាត់ទទឹងទ្រូងផ្លូវ សម្រាប់ថ្មើរជើងឆ្លងកាត់ ?
-A (KH): យ៉ាងតិច ៥ ម៉ែត្រ
-
-Q (EN): How far from the zebra can drivers stop or park vehicle?
-A (EN): At least 5m
-
+RTL-Q138
+[wondering] តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះ ចម្ងាយប៉ុន្មានម៉ែត្រ ពីមុខគំនូសឆ្នូតកាត់ទទឹងទ្រូងផ្លូវ សម្រាប់ថ្មើរជើងឆ្លងកាត់ ?
+[supportive] ចម្លើយគឺ [definitive] យ៉ាងតិច ៥ ម៉ែត្រ
+[wondering] How far from the zebra can drivers stop or park vehicle?
+[supportive] The answer is [definitive] At least 5m
 ----------------------------------------------------------------------
-
-[RTL-Q139]
-Q (KH): តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះ ចម្ងាយប៉ុន្មានម៉ែត្រ ពីផ្លូវរថភ្លើងឆ្លងកាត់ ?
-A (KH): យ៉ាងតិច ២០ ម៉ែត្រ
 
-Q (EN): How far from the railroad crossing can drivers stop or park vehicle?
-A (EN): At least 20m
-
+RTL-Q139
+[inquiring] តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះ ចម្ងាយប៉ុន្មានម៉ែត្រ ពីផ្លូវរថភ្លើងឆ្លងកាត់ ?
+[encouraging] ចម្លើយគឺ [certain] យ៉ាងតិច ២០ ម៉ែត្រ
+[inquiring] How far from the railroad crossing can drivers stop or park vehicle?
+[encouraging] The answer is [certain] At least 20m
 ----------------------------------------------------------------------
-
-[RTL-Q140]
-Q (KH): នៅពេលជែងរួច តើអ្នកត្រូវប្រុងប្រយ័ត្នអ្វីខ្លះ ?
-A (KH): ពេលជែងរួចត្រូវធ្វើសញ្ញាប្ដូរទិសទៅស្ដាំ ដើម្បីឲ្យដំណឹងថាត្រូវចូលក្នុងចរន្ដចរាចរណ៍ដើមវិញដោយប្រយ័ត្ន
 
-Q (EN): After overtaking, how shall you pay attention?
-A (EN): After overtaking, you shall give changing direction sign to the right to alert that you move to current traffic with care.
-
+RTL-Q140
+[intrigue] នៅពេលជែងរួច តើអ្នកត្រូវប្រុងប្រយ័ត្នអ្វីខ្លះ ?
+[inspiration] ចម្លើយគឺ [confident] ពេលជែងរួចត្រូវធ្វើសញ្ញាប្ដូរទិសទៅស្ដាំ ដើម្បីឲ្យដំណឹងថាត្រូវចូលក្នុងចរន្ដចរាចរណ៍ដើមវិញដោយប្រយ័ត្ន
+[intrigue] After overtaking, how shall you pay attention?
+[inspiration] The answer is [confident] After overtaking, you shall give changing direction sign to the right to alert that you move to current traffic with care.
 ----------------------------------------------------------------------
-
-[RTL-Q141]
-Q (KH): នៅក្នុងទីក្រុង ឬទីប្រជុំជន តើចិញ្ចើមផ្លូវមានតួនាទីសំខាន់សំរាប់ធ្វើអ្វី ?
-A (KH): សំរាប់ថ្មើរជើងធ្វើដំណើរ
-
-Q (EN): Inside or outside the city or built-up area, what do pavements play important roles for?
-A (EN): For walking
 
+RTL-Q141
+[curious] នៅក្នុងទីក្រុង ឬទីប្រជុំជន តើចិញ្ចើមផ្លូវមានតួនាទីសំខាន់សំរាប់ធ្វើអ្វី ?
+[guiding] ចម្លើយគឺ [assured] សំរាប់ថ្មើរជើងធ្វើដំណើរ
+[curious] Inside or outside the city or built-up area, what do pavements play important roles for?
+[guiding] The answer is [assured] For walking
 ----------------------------------------------------------------------
 
-[RTL-Q142]
-Q (KH): តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះ ចម្ងាយប៉ុន្មានម៉ែត្រ ពីមុខ និងពីក្រោយទីតាំងបូមទឹករបស់យានពន្លត់អគ្គិភ័យ ?
-A (KH): យ៉ាងតិច ១០ ម៉ែត្រ
-
-Q (EN): How far from the front or behind the pump shuttle of firetrucks can you stop or park your vehicle?
-A (EN): At least 10m
-
+RTL-Q142
+[thoughtful] តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះ ចម្ងាយប៉ុន្មានម៉ែត្រ ពីមុខ និងពីក្រោយទីតាំងបូមទឹករបស់យានពន្លត់អគ្គិភ័យ ?
+[helpful] ចម្លើយគឺ [clear] យ៉ាងតិច ១០ ម៉ែត្រ
+[thoughtful] How far from the front or behind the pump shuttle of firetrucks can you stop or park your vehicle?
+[helpful] The answer is [clear] At least 10m
 ----------------------------------------------------------------------
 
-[RTL-Q143]
-Q (KH): តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះជាពីរជួរទន្ទឹមគ្នា បានដែរឬទេ ?
-A (KH): មិនអាចឈប់ ឬចតបានទេ
-
-Q (EN): Can drivers stop or park vehicles within two lines?
-A (EN): Cannot
-
+RTL-Q143
+[wondering] តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះជាពីរជួរទន្ទឹមគ្នា បានដែរឬទេ ?
+[supportive] ចម្លើយគឺ [definitive] មិនអាចឈប់ ឬចតបានទេ
+[wondering] Can drivers stop or park vehicles within two lines?
+[supportive] The answer is [definitive] Cannot
 ----------------------------------------------------------------------
-
-[RTL-Q144]
-Q (KH): តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះនៅលើទ្រូងផ្លូវថ្នល់ បានប៉ុន្មានម៉ោង ?
-A (KH): មិនលើសពី ២៤ ម៉ោង
 
-Q (EN): How long can drivers stop or park vehicle on the roadway?
-A (EN): Not more than 24h
-
+RTL-Q144
+[inquiring] តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះនៅលើទ្រូងផ្លូវថ្នល់ បានប៉ុន្មានម៉ោង ?
+[encouraging] ចម្លើយគឺ [certain] មិនលើសពី ២៤ ម៉ោង
+[inquiring] How long can drivers stop or park vehicle on the roadway?
+[encouraging] The answer is [certain] Not more than 24h
 ----------------------------------------------------------------------
-
-[RTL-Q145]
-Q (KH): និយមន័យ «សឺមីរ៉ឺម៉ក» ?
-A (KH): យានសម្រាប់ថ្ពក់ជាប់នឹងក្បាលសណ្ដោង
 
-Q (EN): The definition of ’semi-trailer’?
-A (EN): Vehicle for hooking up to the head of towing vehicle.
-
+RTL-Q145
+[intrigue] និយមន័យ «សឺមីរ៉ឺម៉ក» ?
+[inspiration] ចម្លើយគឺ [confident] យានសម្រាប់ថ្ពក់ជាប់នឹងក្បាលសណ្ដោង
+[intrigue] The definition of ’semi-trailer’?
+[inspiration] The answer is [confident] Vehicle for hooking up to the head of towing vehicle.
 ----------------------------------------------------------------------
-
-[RTL-Q146]
-Q (KH): រថយន្តមួយកំពុងធ្វើចរាចរណ៍នៅលើផ្លូវជាតិ និងរថយន្តមួយទៀតចេញពីផ្លូវលំ តើរថយន្តណាមួយមានសិទ្ធិអាទិភាព ?
-A (KH): កំពុងធ្វើចរាចរណ៍នៅលើផ្លូវជាតិ មានសិទ្ធិអាទិភាព
-
-Q (EN): One vehicle is moving on the national road and another one from the trail. Which one is prioritized?
-A (EN): The one is moving on the national road
 
+RTL-Q146
+[curious] រថយន្តមួយកំពុងធ្វើចរាចរណ៍នៅលើផ្លូវជាតិ និងរថយន្តមួយទៀតចេញពីផ្លូវលំ តើរថយន្តណាមួយមានសិទ្ធិអាទិភាព ?
+[guiding] ចម្លើយគឺ [assured] កំពុងធ្វើចរាចរណ៍នៅលើផ្លូវជាតិ មានសិទ្ធិអាទិភាព
+[curious] One vehicle is moving on the national road and another one from the trail. Which one is prioritized?
+[guiding] The answer is [assured] The one is moving on the national road
 ----------------------------------------------------------------------
 
-[RTL-Q147]
-Q (KH): គំនូសសញ្ញាភ្លោះជាប់សំរាប់បែងចែកទ្រូងផ្លូវជាពីរទិសចរាចរណ៍ផ្ទុយគ្នា តើអ្នកអាចបើកបរឆ្លងកាត់ ឬជាន់ពីលើបានឬទេ ?
-A (KH): ហាមបើកបរជាន់ ឬឆ្លងកាត់
-
-Q (EN): Can you drive on or across the double solid lines dividing the road into two opposite traffic direction?
-A (EN): Don’t drive on or across the markings.
-
+RTL-Q147
+[thoughtful] គំនូសសញ្ញាភ្លោះជាប់សំរាប់បែងចែកទ្រូងផ្លូវជាពីរទិសចរាចរណ៍ផ្ទុយគ្នា តើអ្នកអាចបើកបរឆ្លងកាត់ ឬជាន់ពីលើបានឬទេ ?
+[helpful] ចម្លើយគឺ [clear] ហាមបើកបរជាន់ ឬឆ្លងកាត់
+[thoughtful] Can you drive on or across the double solid lines dividing the road into two opposite traffic direction?
+[helpful] The answer is [clear] Don’t drive on or across the markings.
 ----------------------------------------------------------------------
 
-[RTL-Q148]
-Q (KH): តាមបណ្ដោយផ្លូវមានគំនូសសញ្ញាភ្លោះពណ៌លឿងមួយជាប់ និងមួយដាច់ៗបែងចែកជាពីរទិសចរាចរណ៍ផ្ទុយគ្នា តើអ្នកបើកបរ នៅកៀកគំនូសសញ្ញាណាមួយអាចឆ្លងកាត់ ឬជែងបាន ?
-A (KH): នៅកៀកគំនូសដាច់ៗ អាចឆ្លងកាត់ ឬជែងបាន
-
-Q (EN): Along the road with double yellow markings, one is solid and another one is broken, dividing the road into two opposite traffic directions, which line does the vehicle closed to have priority to cross?
-A (EN): The vehicle closed to the break line has priority to cross.
-
+RTL-Q148
+[wondering] តាមបណ្ដោយផ្លូវមានគំនូសសញ្ញាភ្លោះពណ៌លឿងមួយជាប់ និងមួយដាច់ៗបែងចែកជាពីរទិសចរាចរណ៍ផ្ទុយគ្នា តើអ្នកបើកបរ នៅកៀកគំនូសសញ្ញាណាមួយអាចឆ្លងកាត់ ឬជែងបាន ?
+[supportive] ចម្លើយគឺ [definitive] នៅកៀកគំនូសដាច់ៗ អាចឆ្លងកាត់ ឬជែងបាន
+[wondering] Along the road with double yellow markings, one is solid and another one is broken, dividing the road into two opposite traffic directions, which line does the vehicle closed to have priority to cross?
+[supportive] The answer is [definitive] The vehicle closed to the break line has priority to cross.
 ----------------------------------------------------------------------
-
-[RTL-Q149]
-Q (KH): ផ្លាកសញ្ញាចរាចរណ៍ មានប៉ុន្មានក្រុម ?
-A (KH): ១០ ក្រុមគឺ ផ្លាកសញ្ញាបំរាម បញ្ជា សិទ្ធិអាទិភាព គ្រោះថ្នាក់ បណ្តោះអាសន្ន បង្ហាញទិសដៅ ប្រាប់ទីប្រជុំជននិងព្រំប្រទល់តំបន់ ប្រាប់ឈ្មោះផ្លូវ ផ្លាកសញ្ញាផ្តល់ដំណឹង ផ្លាកសញ្ញា...
 
-Q (EN): How many groups of traffic signs are there?
-A (EN): There are 10 groups. Those are prohibitory signs, mandatory signs, prority signs, danger signs, temporary signs, direction indicating signs, indicating built-up area, and border signs, road name signs, service signs, and ...
-
+RTL-Q149
+[inquiring] ផ្លាកសញ្ញាចរាចរណ៍ មានប៉ុន្មានក្រុម ?
+[encouraging] ចម្លើយគឺ [certain] ១០ ក្រុមគឺ ផ្លាកសញ្ញាបំរាម បញ្ជា សិទ្ធិអាទិភាព គ្រោះថ្នាក់ បណ្តោះអាសន្ន បង្ហាញទិសដៅ ប្រាប់ទីប្រជុំជននិងព្រំប្រទល់តំបន់ ប្រាប់ឈ្មោះផ្លូវ ផ្លាកសញ្ញាផ្តល់ដំណឹង ផ្លាកសញ្ញា...
+[inquiring] How many groups of traffic signs are there?
+[encouraging] The answer is [certain] There are 10 groups. Those are prohibitory signs, mandatory signs, prority signs, danger signs, temporary signs, direction indicating signs, indicating built-up area, and border signs, road name signs, service signs, and ...
 ----------------------------------------------------------------------
-
-[RTL-Q150]
-Q (KH): គំនូសសញ្ញាទោល-ជាប់-បែងចែកទ្រូងផ្លូវជា ២ទិសចរាចរណ៍ផ្ទុយគ្នា តើអាចបើកបរឆ្លងកាត់បានទេ ?
-A (KH): ហាមបើកបរជាន់ ឬឆ្លងកាត់
-
-Q (EN): A single solid line dividing the road into two opposite traffic directions, can you drive across?
-A (EN): No driving over it or across it.
 
+RTL-Q150
+[intrigue] គំនូសសញ្ញាទោល-ជាប់-បែងចែកទ្រូងផ្លូវជា ២ទិសចរាចរណ៍ផ្ទុយគ្នា តើអាចបើកបរឆ្លងកាត់បានទេ ?
+[inspiration] ចម្លើយគឺ [confident] ហាមបើកបរជាន់ ឬឆ្លងកាត់
+[intrigue] A single solid line dividing the road into two opposite traffic directions, can you drive across?
+[inspiration] The answer is [confident] No driving over it or across it.
 ----------------------------------------------------------------------
 
-[RTL-Q151]
-Q (KH): ពេលចតរថយន្ត មុននឹងចុះពីរថយន្ត តើអ្នកត្រូវធ្វើយ៉ាងដូចម្ដេចខ្លះ ?
-A (KH): ត្រូវទាញហ្វ្រាំងដៃ ពន្លត់ម៉ាស៊ីន មើលមុខក្រោយ ទើបពុំបណ្ដាលឱ្យមានគ្រោះថ្នាក់
-
-Q (EN): After you park your vehicle, what shall you do before getting off?
-A (EN): Apply the hand brake, turn off the engine, look at the back and the front, so that there is no accidence accured.
-
+RTL-Q151
+[curious] ពេលចតរថយន្ត មុននឹងចុះពីរថយន្ត តើអ្នកត្រូវធ្វើយ៉ាងដូចម្ដេចខ្លះ ?
+[guiding] ចម្លើយគឺ [assured] ត្រូវទាញហ្វ្រាំងដៃ ពន្លត់ម៉ាស៊ីន មើលមុខក្រោយ ទើបពុំបណ្ដាលឱ្យមានគ្រោះថ្នាក់
+[curious] After you park your vehicle, what shall you do before getting off?
+[guiding] The answer is [assured] Apply the hand brake, turn off the engine, look at the back and the front, so that there is no accidence accured.
 ----------------------------------------------------------------------
-
-[RTL-Q152]
-Q (KH): នៅពេលកំពុងបើកបរ ពេលនោះហ្វ្រាំងជើងរថយន្តខូច តើអ្នកត្រូវធ្វើដូចម្ដេច ?
-A (KH): បន្ថយល្បឿនដោយដាក់ លេខតាមលំដាប់ពីធំដល់តូចពេលល្បឿនចុះខ្សោយត្រូវទាញហ្វ្រាំងដៃជួយ
 
-Q (EN): While driving, the car’s brake broken, what shall you do?
-A (EN): Slow down by engaging the gear from top level to down level. When the speed slow down, you apply the hand brake to help
-
+RTL-Q152
+[thoughtful] នៅពេលកំពុងបើកបរ ពេលនោះហ្វ្រាំងជើងរថយន្តខូច តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+[helpful] ចម្លើយគឺ [clear] បន្ថយល្បឿនដោយដាក់ លេខតាមលំដាប់ពីធំដល់តូចពេលល្បឿនចុះខ្សោយត្រូវទាញហ្វ្រាំងដៃជួយ
+[thoughtful] While driving, the car’s brake broken, what shall you do?
+[helpful] The answer is [clear] Slow down by engaging the gear from top level to down level. When the speed slow down, you apply the hand brake to help
 ----------------------------------------------------------------------
-
-[RTL-Q153]
-Q (KH): តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះ ចម្ងាយប៉ុន្មានម៉ែត្រ ពីមុខ និងពីក្រោយផ្លាកសញ្ញាកន្លែងរបស់ឡានក្រុងឈប់ ?
-A (KH): យ៉ាងតិច ១០ ម៉ែត្រ
 
-Q (EN): How far can you stop or park your vehicle at the front or behind the bus stop area?
-A (EN): At least 10m
-
+RTL-Q153
+[wondering] តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះ ចម្ងាយប៉ុន្មានម៉ែត្រ ពីមុខ និងពីក្រោយផ្លាកសញ្ញាកន្លែងរបស់ឡានក្រុងឈប់ ?
+[supportive] ចម្លើយគឺ [definitive] យ៉ាងតិច ១០ ម៉ែត្រ
+[wondering] How far can you stop or park your vehicle at the front or behind the bus stop area?
+[supportive] The answer is [definitive] At least 10m
 ----------------------------------------------------------------------
-
-[RTL-Q154]
-Q (KH): តើអ្នកបើកបរអាចចតយានជំនិះ ចម្ងាយប៉ុន្មានម៉ែត្រពីមុខ ឬពីក្រោយដែលឈប់ ឬចត បន្ដកន្ទុយគ្នា ?
-A (KH): យ៉ាងតិច ១ ម៉ែត្រ
-
-Q (EN): How far can you stop or park your vehicle at the front or behind the vehicles stop or park one after another?
-A (EN): At least 1m
 
+RTL-Q154
+[inquiring] តើអ្នកបើកបរអាចចតយានជំនិះ ចម្ងាយប៉ុន្មានម៉ែត្រពីមុខ ឬពីក្រោយដែលឈប់ ឬចត បន្ដកន្ទុយគ្នា ?
+[encouraging] ចម្លើយគឺ [certain] យ៉ាងតិច ១ ម៉ែត្រ
+[inquiring] How far can you stop or park your vehicle at the front or behind the vehicles stop or park one after another?
+[encouraging] The answer is [certain] At least 1m
 ----------------------------------------------------------------------
 
-[RTL-Q155]
-Q (KH): នៅពេលយប់មានភ្លើងហ្វារថយន្តចាំងពីមុខ តើអ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?
-A (KH): បើកបរក្នុងល្បឿនសមល្មមហើយអែបស្តាំបំផុត
-
-Q (EN): What shall you do when there is a headlight of a vehicle from the front, at night?
-A (EN): Drive in a moderate speed and move to the right side as much as possible.
-
+RTL-Q155
+[intrigue] នៅពេលយប់មានភ្លើងហ្វារថយន្តចាំងពីមុខ តើអ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?
+[inspiration] ចម្លើយគឺ [confident] បើកបរក្នុងល្បឿនសមល្មមហើយអែបស្តាំបំផុត
+[intrigue] What shall you do when there is a headlight of a vehicle from the front, at night?
+[inspiration] The answer is [confident] Drive in a moderate speed and move to the right side as much as possible.
 ----------------------------------------------------------------------
 
-[RTL-Q156]
-Q (KH): តើអ្នកបើកបរត្រូវបើកភ្លើងបំភ្លឺផ្លូវក្នុងករណីណាខ្លះ ?
-A (KH): ត្រូវបើកភ្លើងបំភ្លឺ ពីព្រលប់ដល់ពេលភ្លឺមើលឃើញច្បាស់ ឬពេលមានភ្លៀង និងចុះអ័ព្វមិនអាចមើលឃើញអ្វីច្បាស់
-
-Q (EN): In what cases, shall drivers turn on the street light?
-A (EN): Turn on the street lingting from dusk until dawn that we can see clearly or when it is raining or fogging that we cannot see clearly.
-
+RTL-Q156
+[curious] តើអ្នកបើកបរត្រូវបើកភ្លើងបំភ្លឺផ្លូវក្នុងករណីណាខ្លះ ?
+[guiding] ចម្លើយគឺ [assured] ត្រូវបើកភ្លើងបំភ្លឺ ពីព្រលប់ដល់ពេលភ្លឺមើលឃើញច្បាស់ ឬពេលមានភ្លៀង និងចុះអ័ព្វមិនអាចមើលឃើញអ្វីច្បាស់
+[curious] In what cases, shall drivers turn on the street light?
+[guiding] The answer is [assured] Turn on the street lingting from dusk until dawn that we can see clearly or when it is raining or fogging that we cannot see clearly.
 ----------------------------------------------------------------------
-
-[RTL-Q157]
-Q (KH): សញ្ញាចរាចរណ៍ផ្លូវគោក រួមមានអ្វីខ្លះ ?
-A (KH): ផ្លាកសញ្ញា ភ្លើងសញ្ញា គំនូសសញ្ញា សញ្ញាបញ្ជារបស់ភ្នាក់ងារចរាចរណ៍ និងសញ្ញាផ្សេងៗទៀត
 
-Q (EN): What are the road traffic signs?
-A (EN): sign, light sign, mandatory sign of traffic police agents and other signs.
-
+RTL-Q157
+[thoughtful] សញ្ញាចរាចរណ៍ផ្លូវគោក រួមមានអ្វីខ្លះ ?
+[helpful] ចម្លើយគឺ [clear] ផ្លាកសញ្ញា ភ្លើងសញ្ញា គំនូសសញ្ញា សញ្ញាបញ្ជារបស់ភ្នាក់ងារចរាចរណ៍ និងសញ្ញាផ្សេងៗទៀត
+[thoughtful] What are the road traffic signs?
+[helpful] The answer is [clear] sign, light sign, mandatory sign of traffic police agents and other signs.
 ----------------------------------------------------------------------
-
-[RTL-Q158]
-Q (KH): អ្នកបើកបរនៅលើផ្លូវមានភក់ ទឹកដក់ ហើយមានថ្មើរជើងដើរនៅជិតទីនោះ តើអ្នកត្រូវធ្វើដូចម្ដេច ?
-A (KH): ខ្ញុំត្រូវបើកយឺតៗ ធ្វើយ៉ាងណាកុំឲ្យខ្ទាតទឹកភក់ ទៅលើអ្នកថ្មើរជើងដែលដើរជិតនោះ
 
-Q (EN): Roads with mud or water, and pedestrians are walking nearby, what shall drivers do?
-A (EN): Slow down and make sure that there is no water or mud splashes over the pedestrians.
-
+RTL-Q158
+[wondering] អ្នកបើកបរនៅលើផ្លូវមានភក់ ទឹកដក់ ហើយមានថ្មើរជើងដើរនៅជិតទីនោះ តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+[supportive] ចម្លើយគឺ [definitive] ខ្ញុំត្រូវបើកយឺតៗ ធ្វើយ៉ាងណាកុំឲ្យខ្ទាតទឹកភក់ ទៅលើអ្នកថ្មើរជើងដែលដើរជិតនោះ
+[wondering] Roads with mud or water, and pedestrians are walking nearby, what shall drivers do?
+[supportive] The answer is [definitive] Slow down and make sure that there is no water or mud splashes over the pedestrians.
 ----------------------------------------------------------------------
-
-[RTL-Q159]
-Q (KH): ក្នុងទីក្រុង ឬទីប្រជុំជន នៅលើផ្លូវដែលមានទិសចរាចរណ៍ពីរផ្ទុយគ្នា តើអ្នកអាចចតរថយន្តជាពីរជួរបានឬទេ ?
-A (KH): ហាមចតពីរជួរ
-
-Q (EN): In the city or built-up area, the road with two opposite traffic directions, can you park within two lines?
-A (EN): No parking in two lines
 
+RTL-Q159
+[inquiring] ក្នុងទីក្រុង ឬទីប្រជុំជន នៅលើផ្លូវដែលមានទិសចរាចរណ៍ពីរផ្ទុយគ្នា តើអ្នកអាចចតរថយន្តជាពីរជួរបានឬទេ ?
+[encouraging] ចម្លើយគឺ [certain] ហាមចតពីរជួរ
+[inquiring] In the city or built-up area, the road with two opposite traffic directions, can you park within two lines?
+[encouraging] The answer is [certain] No parking in two lines
 ----------------------------------------------------------------------
 
-[RTL-Q160]
-Q (KH): និយមន័យ «ជាយផ្លូវ» ?
-A (KH): ផ្នែកសងខាងនៃទ្រូងផ្លូវនៅក្រៅទីប្រជុំជន ដែលយានជំនិះអាចចតនៅទីនោះបានក្នុងករណីចាំបាច់
-
-Q (EN): The definition of ’roadsides’?
-A (EN): The both sides of the road outside built-up where vehicles can be parked as necessary
-
+RTL-Q160
+[intrigue] និយមន័យ «ជាយផ្លូវ» ?
+[inspiration] ចម្លើយគឺ [confident] ផ្នែកសងខាងនៃទ្រូងផ្លូវនៅក្រៅទីប្រជុំជន ដែលយានជំនិះអាចចតនៅទីនោះបានក្នុងករណីចាំបាច់
+[intrigue] The definition of ’roadsides’?
+[inspiration] The answer is [confident] The both sides of the road outside built-up where vehicles can be parked as necessary
 ----------------------------------------------------------------------
 
-[RTL-Q161]
-Q (KH): លំដាប់សិទ្ធិអាទិភាព ត្រូវបានកំណត់ដូចម្តេចទើបត្រឹមត្រូវ ?
-A (KH): សញ្ញាបញ្ជារបស់ភ្នាក់ងារចរាចរណ៍ ភ្លើងសញ្ញាចរាចរណ៍ គំនូសសញ្ញាចរាចរណ៍ ផ្លាកសញ្ញាចរាចរណ៍ និងបទប្បញ្ញតិចរាចរណ៍
-
-Q (EN): How is the accurate order of priority rights determined?
-A (EN): Traffic police agents’ mandatory signs, traffic lights, traffic markings, traffic signs, and traffic regulations.
-
+RTL-Q161
+[curious] លំដាប់សិទ្ធិអាទិភាព ត្រូវបានកំណត់ដូចម្តេចទើបត្រឹមត្រូវ ?
+[guiding] ចម្លើយគឺ [assured] សញ្ញាបញ្ជារបស់ភ្នាក់ងារចរាចរណ៍ ភ្លើងសញ្ញាចរាចរណ៍ គំនូសសញ្ញាចរាចរណ៍ ផ្លាកសញ្ញាចរាចរណ៍ និងបទប្បញ្ញតិចរាចរណ៍
+[curious] How is the accurate order of priority rights determined?
+[guiding] The answer is [assured] Traffic police agents’ mandatory signs, traffic lights, traffic markings, traffic signs, and traffic regulations.
 ----------------------------------------------------------------------
-
-[RTL-Q162]
-Q (KH): តើភ្លើងហ្វា អនុញ្ញាតឲ្យប្រើនៅពេលណា ? កន្លែងណា ?
-A (KH): ភ្លើងហ្វា អនុញ្ញាតឲ្យប្រើនៅពេលយប់ស្ងាត់ គ្មានអគ្គីសនីបំភ្លឺផ្លូវ និងប្រើឆ្លាស់គ្នាជាមួយភ្លើងកូតនៅពេលសុំជែង
 
-Q (EN): Where and when are headlights allowed to use?
-A (EN): At night, no electricity, and alternatively use with coating light to seek for overtaking.
-
+RTL-Q162
+[thoughtful] តើភ្លើងហ្វា អនុញ្ញាតឲ្យប្រើនៅពេលណា ? កន្លែងណា ?
+[helpful] ចម្លើយគឺ [clear] ភ្លើងហ្វា អនុញ្ញាតឲ្យប្រើនៅពេលយប់ស្ងាត់ គ្មានអគ្គីសនីបំភ្លឺផ្លូវ និងប្រើឆ្លាស់គ្នាជាមួយភ្លើងកូតនៅពេលសុំជែង
+[thoughtful] Where and when are headlights allowed to use?
+[helpful] The answer is [clear] At night, no electricity, and alternatively use with coating light to seek for overtaking.
 ----------------------------------------------------------------------
-
-[RTL-Q163]
-Q (KH): តើអ្នកបើកបរត្រូវធ្វើដូចម្ដេច នៅពេលថ្មើរជើងកំពុងឆ្លងកាត់ឬរៀបឆ្លងកាត់ នៅកន្លែងដែលមានគំនូសសញ្ញាសំរាប់ថ្មើរជើង ?
-A (KH): ត្រូវឈប់
 
-Q (EN): What shall drivers do when pedestrians crossing or ready to cross at the zebra?
-A (EN): Stop
-
+RTL-Q163
+[wondering] តើអ្នកបើកបរត្រូវធ្វើដូចម្ដេច នៅពេលថ្មើរជើងកំពុងឆ្លងកាត់ឬរៀបឆ្លងកាត់ នៅកន្លែងដែលមានគំនូសសញ្ញាសំរាប់ថ្មើរជើង ?
+[supportive] ចម្លើយគឺ [definitive] ត្រូវឈប់
+[wondering] What shall drivers do when pedestrians crossing or ready to cross at the zebra?
+[supportive] The answer is [definitive] Stop
 ----------------------------------------------------------------------
-
-[RTL-Q164]
-Q (KH): ក្នុងករណីរថយន្តរបស់អ្នកត្រូវខូចគាំងនៅលើផ្លូវរថភ្លើង តើអ្នកត្រូវធ្វើដូចម្ដេច ?
-A (KH): ខ្ញុំត្រូវរកគ្រប់មធ្យោបាយធ្វើយ៉ាងណាកុំឲ្យមានឧបសគ្គដល់រថភ្លើង ឬត្រូវឲ្យដំណឹងដល់ភ្នាក់ងារផ្លូវដែកដែលនៅជិតបំផុត
-
-Q (EN): In case your vehicle went wrong on the railroad crossing, what shall you do?
-A (EN): Find ways not to have obsticle to the train or inform to the nearest railroad agents.
 
+RTL-Q164
+[inquiring] ក្នុងករណីរថយន្តរបស់អ្នកត្រូវខូចគាំងនៅលើផ្លូវរថភ្លើង តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+[encouraging] ចម្លើយគឺ [certain] ខ្ញុំត្រូវរកគ្រប់មធ្យោបាយធ្វើយ៉ាងណាកុំឲ្យមានឧបសគ្គដល់រថភ្លើង ឬត្រូវឲ្យដំណឹងដល់ភ្នាក់ងារផ្លូវដែកដែលនៅជិតបំផុត
+[inquiring] In case your vehicle went wrong on the railroad crossing, what shall you do?
+[encouraging] The answer is [certain] Find ways not to have obsticle to the train or inform to the nearest railroad agents.
 ----------------------------------------------------------------------
 
-[RTL-Q165]
-Q (KH): នៅពេលជួបប្រទះផ្លាកសញ្ញាហាមចត តើអ្នកអាចឈប់បានឬទេ ?
-A (KH): អាចឈប់បាន
-
-Q (EN): Seeing the ’no parking’ sign, can you stop?
-A (EN): Can
-
+RTL-Q165
+[intrigue] នៅពេលជួបប្រទះផ្លាកសញ្ញាហាមចត តើអ្នកអាចឈប់បានឬទេ ?
+[inspiration] ចម្លើយគឺ [confident] អាចឈប់បាន
+[intrigue] Seeing the ’no parking’ sign, can you stop?
+[inspiration] The answer is [confident] Can
 ----------------------------------------------------------------------
 
-[RTL-Q166]
-Q (KH): នៅលើស្ពាន បើមាន គោ ក្របី ឬសត្វពាហនៈ កំពុងឆ្លងកាត់ តើអ្នកបើកបរត្រូវធ្វើយ៉ាងណា ?
-A (KH): បន្ថយល្បឿនឬឈប់បើចាំបាច់ត្រូវថយរថយន្តមកក្រោយទាល់តែសត្វទៅផុត
-
-Q (EN): What shall drivers do on the bridge where the cattles or animals are crossing?
-A (EN): Slow down or stop, if necessary move backward to let those animals move away
-
+RTL-Q166
+[curious] នៅលើស្ពាន បើមាន គោ ក្របី ឬសត្វពាហនៈ កំពុងឆ្លងកាត់ តើអ្នកបើកបរត្រូវធ្វើយ៉ាងណា ?
+[guiding] ចម្លើយគឺ [assured] បន្ថយល្បឿនឬឈប់បើចាំបាច់ត្រូវថយរថយន្តមកក្រោយទាល់តែសត្វទៅផុត
+[curious] What shall drivers do on the bridge where the cattles or animals are crossing?
+[guiding] The answer is [assured] Slow down or stop, if necessary move backward to let those animals move away
 ----------------------------------------------------------------------
-
-[RTL-Q167]
-Q (KH): ការបើកបរយានជំនិះក្នុងព្រះរាជាណាចក្រកម្ពុជា ត្រូវប្រកាន់ខាងណា ?
-A (KH): ប្រកាន់ស្ដាំ
 
-Q (EN): On what side in Cambodia shall people keep driving?
-A (EN): On the right hand side
-
+RTL-Q167
+[thoughtful] ការបើកបរយានជំនិះក្នុងព្រះរាជាណាចក្រកម្ពុជា ត្រូវប្រកាន់ខាងណា ?
+[helpful] ចម្លើយគឺ [clear] ប្រកាន់ស្ដាំ
+[thoughtful] On what side in Cambodia shall people keep driving?
+[helpful] The answer is [clear] On the right hand side
 ----------------------------------------------------------------------
-
-[RTL-Q168]
-Q (KH): តើអ្នកបើកបរយានយន្តចាប់ពីទំហំស៊ីឡាំងប៉ុន្មានសង់ទីម៉ែត្រគូប ឡើងទៅ ទើបតម្រូវឲ្យមានបណ្ណបើកបរ ?
-A (KH): ១២៥ សង់ទីម៉ែត្រគូប ឡើងទៅ
 
-Q (EN): In what cubic centimeters of vehicle’s cylinder are drivers required to have a driver license?
-A (EN): 125 cubic centimeters and up.
-
+RTL-Q168
+[wondering] តើអ្នកបើកបរយានយន្តចាប់ពីទំហំស៊ីឡាំងប៉ុន្មានសង់ទីម៉ែត្រគូប ឡើងទៅ ទើបតម្រូវឲ្យមានបណ្ណបើកបរ ?
+[supportive] ចម្លើយគឺ [definitive] ១២៥ សង់ទីម៉ែត្រគូប ឡើងទៅ
+[wondering] In what cubic centimeters of vehicle’s cylinder are drivers required to have a driver license?
+[supportive] The answer is [definitive] 125 cubic centimeters and up.
 ----------------------------------------------------------------------
-
-[RTL-Q169]
-Q (KH): តើអ្នកបើកបរយានយន្ត មានអត្រាជាតិអាល់កុលកម្រិតប៉ុន្មានត្រូវហាមឃាត់ ?
-A (KH): ចាប់ពី ០,២៥ មីលីក្រាមក្នុងមួយលីត្រខ្យល់ ឬពី ០,៥០ ក្រាមក្នុងមួយលីត្រឈាមឡើងទៅ
-
-Q (EN): How much alcohol rate taken are drivers prohibited?
-A (EN): Ranging from 0.25 mg per liter of the air, or 0.5g per liter of blood, and up.
 
+RTL-Q169
+[inquiring] តើអ្នកបើកបរយានយន្ត មានអត្រាជាតិអាល់កុលកម្រិតប៉ុន្មានត្រូវហាមឃាត់ ?
+[encouraging] ចម្លើយគឺ [certain] ចាប់ពី ០,២៥ មីលីក្រាមក្នុងមួយលីត្រខ្យល់ ឬពី ០,៥០ ក្រាមក្នុងមួយលីត្រឈាមឡើងទៅ
+[inquiring] How much alcohol rate taken are drivers prohibited?
+[encouraging] The answer is [certain] Ranging from 0.25 mg per liter of the air, or 0.5g per liter of blood, and up.
 ----------------------------------------------------------------------
 
-[RTL-Q170]
-Q (KH): ផ្លាកសញ្ញាហាមចតនៅតាមដងផ្លូវ មានអាទិភាពដូចម្ដេច ?
-A (KH): មានអាទិភាពពីផ្លាកសញ្ញា រហូតដល់ផ្លូវខ្វែងទី១ខាងក្រោយផ្លាកសញ្ញា
-
-Q (EN): How shall no parking sign on the street have priority?
-A (EN): Have priority from the sign until the first cross roads behind the signs
-
+RTL-Q170
+[intrigue] ផ្លាកសញ្ញាហាមចតនៅតាមដងផ្លូវ មានអាទិភាពដូចម្ដេច ?
+[inspiration] ចម្លើយគឺ [confident] មានអាទិភាពពីផ្លាកសញ្ញា រហូតដល់ផ្លូវខ្វែងទី១ខាងក្រោយផ្លាកសញ្ញា
+[intrigue] How shall no parking sign on the street have priority?
+[inspiration] The answer is [confident] Have priority from the sign until the first cross roads behind the signs
 ----------------------------------------------------------------------
 
-[RTL-Q171]
-Q (KH): តើអាចប្រើទូរស័ព្ទបានដែរឬទេ នៅពេលកំពុងបើកបរយានជំនិះ ?
-A (KH): អាចប្រើបាន ប្រសិនបើមានឧបករណ៍សំឡេងភ្ជាប់
-
-Q (EN): Can drivers talk on phone while driving?
-A (EN): You can use if you have headphones.
-
+RTL-Q171
+[curious] តើអាចប្រើទូរស័ព្ទបានដែរឬទេ នៅពេលកំពុងបើកបរយានជំនិះ ?
+[guiding] ចម្លើយគឺ [assured] អាចប្រើបាន ប្រសិនបើមានឧបករណ៍សំឡេងភ្ជាប់
+[curious] Can drivers talk on phone while driving?
+[guiding] The answer is [assured] You can use if you have headphones.
 ----------------------------------------------------------------------
-
-[RTL-Q172]
-Q (KH): នៅក្នុងទីក្រុង ឬទីប្រជុំជន រថយន្តធុនតូចត្រូវបានកំរិតល្បឿនអតិបរិមាប៉ុន្មានគីឡូម៉ែត្រក្នុងមួយម៉ោង ?
-A (KH): មិនលើសពី ៤០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
 
-Q (EN): In the town or populated area, what is the maximum speed limit, in kilometers per hour, for light vehicles?
-A (EN): Not more than 40 km/h
-
+RTL-Q172
+[thoughtful] នៅក្នុងទីក្រុង ឬទីប្រជុំជន រថយន្តធុនតូចត្រូវបានកំរិតល្បឿនអតិបរិមាប៉ុន្មានគីឡូម៉ែត្រក្នុងមួយម៉ោង ?
+[helpful] ចម្លើយគឺ [clear] មិនលើសពី ៤០ គីឡូម៉ែត្រក្នុងមួយម៉ោង
+[thoughtful] In the town or populated area, what is the maximum speed limit, in kilometers per hour, for light vehicles?
+[helpful] The answer is [clear] Not more than 40 km/h
 ----------------------------------------------------------------------
-
-[RTL-Q173]
-Q (KH): នៅចំណុចកណ្ដាល នៃទ្រូងផ្លូវប្រសព្វ ហើយអ្នក កំពុងធ្វើភ្លើងសញ្ញាបត់ឆ្វេង ខណៈមានរថយន្តជាច្រើនជាប់គ្នារដឹកមកពីទិសផ្ទុយគ្នា តើត្រូវធ្វើដូចម្ដេច ?
-A (KH): មិនត្រូវបត់ឆ្វេងភ្លាមទេ ត្រូវបន្ថយល្បឿន បើចាំបាច់ឈប់ ឲ្យយានមកពីមុខទៅផុតអស់ទើប បត់ឆ្វេងដោយប្រុងប្រយ័ត្ន
 
-Q (EN): In the center of the roads intersection, and you’re switching on the left turn light, while many vehicles lining from the opposite direction, what shall you do?
-A (EN): Do not turn left immediately, slow down, stop your vehicle as necessary, let the vehicle from the front (opposite direction) moves ahead and then turn left carefully.
-
+RTL-Q173
+[wondering] នៅចំណុចកណ្ដាល នៃទ្រូងផ្លូវប្រសព្វ ហើយអ្នក កំពុងធ្វើភ្លើងសញ្ញាបត់ឆ្វេង ខណៈមានរថយន្តជាច្រើនជាប់គ្នារដឹកមកពីទិសផ្ទុយគ្នា តើត្រូវធ្វើដូចម្ដេច ?
+[supportive] ចម្លើយគឺ [definitive] មិនត្រូវបត់ឆ្វេងភ្លាមទេ ត្រូវបន្ថយល្បឿន បើចាំបាច់ឈប់ ឲ្យយានមកពីមុខទៅផុតអស់ទើប បត់ឆ្វេងដោយប្រុងប្រយ័ត្ន
+[wondering] In the center of the roads intersection, and you’re switching on the left turn light, while many vehicles lining from the opposite direction, what shall you do?
+[supportive] The answer is [definitive] Do not turn left immediately, slow down, stop your vehicle as necessary, let the vehicle from the front (opposite direction) moves ahead and then turn left carefully.
 ----------------------------------------------------------------------
-
-[RTL-Q174]
-Q (KH): នៅពេលមានថ្មើរជើងឆ្លងកាត់នៅជិតកៀកនឹងកន្លែងផ្លូវប្រសព្វ តើអ្នកបើកបរត្រូវធ្វើដូចម្តេច ?
-A (KH): ឈប់ឲ្យថ្មើរជើងកំពុងឆ្លងកាត់ ឬរៀបនឹងឆ្លងកាត់ទៅមុន
-
-Q (EN): What shall drivers do when there is a pedestrian crossing nearby the intersection?
-A (EN): Stop in order to get pedestrian crossed first
 
+RTL-Q174
+[inquiring] នៅពេលមានថ្មើរជើងឆ្លងកាត់នៅជិតកៀកនឹងកន្លែងផ្លូវប្រសព្វ តើអ្នកបើកបរត្រូវធ្វើដូចម្តេច ?
+[encouraging] ចម្លើយគឺ [certain] ឈប់ឲ្យថ្មើរជើងកំពុងឆ្លងកាត់ ឬរៀបនឹងឆ្លងកាត់ទៅមុន
+[inquiring] What shall drivers do when there is a pedestrian crossing nearby the intersection?
+[encouraging] The answer is [certain] Stop in order to get pedestrian crossed first
 ----------------------------------------------------------------------
 
-[RTL-Q175]
-Q (KH): ពេលថ្មើរជើងឆ្លងកាត់នៅកន្លែងដែល មានគំនូសថ្មើរជើងឆ្លងកាត់ គ្មានភ្លើងសញ្ញាចរាចរណ៍ ឬគ្មានភ្នាក់ងារបញ្ជាចរាចរណ៍នៅទីនោះ តើអ្នកបើកបរត្រូវធ្វើដូចម្តេច ?
-A (KH): បន្ថយល្បឿន ឬឈប់ ដើម្បីឲ្យថ្មើរជើងកំពុងឆ្លងកាត់ ឬរៀបនឹងឆ្លងកាត់ទៅមុន
-
-Q (EN): What shall drivers do at the zebra where pedestrians are crossing, without traffic light and traffic police agents?
-A (EN): Slow down or stop to get pedestrians crossed the road.
-
+RTL-Q175
+[intrigue] ពេលថ្មើរជើងឆ្លងកាត់នៅកន្លែងដែល មានគំនូសថ្មើរជើងឆ្លងកាត់ គ្មានភ្លើងសញ្ញាចរាចរណ៍ ឬគ្មានភ្នាក់ងារបញ្ជាចរាចរណ៍នៅទីនោះ តើអ្នកបើកបរត្រូវធ្វើដូចម្តេច ?
+[inspiration] ចម្លើយគឺ [confident] បន្ថយល្បឿន ឬឈប់ ដើម្បីឲ្យថ្មើរជើងកំពុងឆ្លងកាត់ ឬរៀបនឹងឆ្លងកាត់ទៅមុន
+[intrigue] What shall drivers do at the zebra where pedestrians are crossing, without traffic light and traffic police agents?
+[inspiration] The answer is [confident] Slow down or stop to get pedestrians crossed the road.
 ----------------------------------------------------------------------
 
-[RTL-Q176]
-Q (KH): តើអ្នកបើកបរយានយន្តអាចប្រើភ្លើងហ្វានៅពេលណា ?
-A (KH): ពេលយប់នៅលើទ្រូងផ្លូវដែលគ្មានអគ្គិសនីបំភ្លឺ ឬសុំជែងដោយប្រើឆ្លាស់គ្នាជាមួយភ្លើងកូត
-
-Q (EN): When can drivers use headlight?
-A (EN): At night on the road without electricity or for overtaking by using alternatively with coating light.
-
+RTL-Q176
+[curious] តើអ្នកបើកបរយានយន្តអាចប្រើភ្លើងហ្វានៅពេលណា ?
+[guiding] ចម្លើយគឺ [assured] ពេលយប់នៅលើទ្រូងផ្លូវដែលគ្មានអគ្គិសនីបំភ្លឺ ឬសុំជែងដោយប្រើឆ្លាស់គ្នាជាមួយភ្លើងកូត
+[curious] When can drivers use headlight?
+[guiding] The answer is [assured] At night on the road without electricity or for overtaking by using alternatively with coating light.
 ----------------------------------------------------------------------
-
-[RTL-Q177]
-Q (KH): តើអ្នកបើកបរយានយន្តអាចប្រើភ្លើងកូតនៅពេលណា ?
-A (KH): ពេលយប់ ឬពេលថ្ងៃកាលណា (មើលមិនឃើញច្បាស់) ឬពេលសុំជែងដោយប្រើឆ្លាស់គ្នាជាមួយភ្លើងហ្វា
 
-Q (EN): When can drives use coating light?
-A (EN): At night or the day time when we cannot see clearly or when overtaking by using alternatively with headlight.
-
+RTL-Q177
+[thoughtful] តើអ្នកបើកបរយានយន្តអាចប្រើភ្លើងកូតនៅពេលណា ?
+[helpful] ចម្លើយគឺ [clear] ពេលយប់ ឬពេលថ្ងៃកាលណា (មើលមិនឃើញច្បាស់) ឬពេលសុំជែងដោយប្រើឆ្លាស់គ្នាជាមួយភ្លើងហ្វា
+[thoughtful] When can drives use coating light?
+[helpful] The answer is [clear] At night or the day time when we cannot see clearly or when overtaking by using alternatively with headlight.
 ----------------------------------------------------------------------
-
-[RTL-Q178]
-Q (KH): ពេលឈប់ឬចតយានយន្តនៅលើទ្រូងផ្លូវពេលយប់ដែលគ្មានភ្លើងអគ្គិសនីបំភ្លឺ តើអ្នកបើកបរត្រូវប្រើភ្លើងអ្វីខ្លះ ?
-A (KH): ភ្លើងទីតាំង ភ្លើងក្រហម និងភ្លើងបំភ្លឺផ្លាកលេខ
 
-Q (EN): What lights shall you use when you stop or park your vehicle on the road without electricity, at night?
-A (EN): Location light, red light, and plate number light
-
+RTL-Q178
+[wondering] ពេលឈប់ឬចតយានយន្តនៅលើទ្រូងផ្លូវពេលយប់ដែលគ្មានភ្លើងអគ្គិសនីបំភ្លឺ តើអ្នកបើកបរត្រូវប្រើភ្លើងអ្វីខ្លះ ?
+[supportive] ចម្លើយគឺ [definitive] ភ្លើងទីតាំង ភ្លើងក្រហម និងភ្លើងបំភ្លឺផ្លាកលេខ
+[wondering] What lights shall you use when you stop or park your vehicle on the road without electricity, at night?
+[supportive] The answer is [definitive] Location light, red light, and plate number light
 ----------------------------------------------------------------------
-
-[RTL-Q179]
-Q (KH): នៅពេលមានទំនិញធ្លាក់លើទ្រូងផ្លូវ ហើយមិនអាចលើកទំនិញនោះបានភ្លាមៗ តើអ្នកបើកបរត្រូវប្រាប់ដំណឹងដល់អ្នកបើកបរផ្សេងទៀត ដោយរបៀបណា ?
-A (KH): ដាក់សញ្ញាត្រីកោណនៅចម្ងាយយ៉ាងតិច ៣០ ម៉ែត្រ ពីទំនិញនោះ
-
-Q (EN): How shall you inform to other drivers when there was some goods felt down on the road and you could not pick up immediately?
-A (EN): Place triangle sign 30m from the fallen cargos.
 
+RTL-Q179
+[inquiring] នៅពេលមានទំនិញធ្លាក់លើទ្រូងផ្លូវ ហើយមិនអាចលើកទំនិញនោះបានភ្លាមៗ តើអ្នកបើកបរត្រូវប្រាប់ដំណឹងដល់អ្នកបើកបរផ្សេងទៀត ដោយរបៀបណា ?
+[encouraging] ចម្លើយគឺ [certain] ដាក់សញ្ញាត្រីកោណនៅចម្ងាយយ៉ាងតិច ៣០ ម៉ែត្រ ពីទំនិញនោះ
+[inquiring] How shall you inform to other drivers when there was some goods felt down on the road and you could not pick up immediately?
+[encouraging] The answer is [certain] Place triangle sign 30m from the fallen cargos.
 ----------------------------------------------------------------------
 
-[RTL-Q180]
-Q (KH): តើអ្នកបើកបរយានយន្តអាចប្រើស៊ីផ្លេនៅពេលណា ?
-A (KH): ពេលថ្ងៃ
-
-Q (EN): When can drivers honk the horn?
-A (EN): At the day time
-
+RTL-Q180
+[intrigue] តើអ្នកបើកបរយានយន្តអាចប្រើស៊ីផ្លេនៅពេលណា ?
+[inspiration] ចម្លើយគឺ [confident] ពេលថ្ងៃ
+[intrigue] When can drivers honk the horn?
+[inspiration] The answer is [confident] At the day time
 ----------------------------------------------------------------------
 
-[RTL-Q181]
-Q (KH): តើស៊ីផ្លេខ្យល់ត្រូវហាមប្រើនៅកន្លែងណាខ្លះ?
-A (KH): ទីក្រុង ទីប្រជុំជន និងជិតមន្ទីរពេទ្យ
-
-Q (EN): Where is air horn forbidden to honk?
-A (EN): In the city, downtown, and near the hospital
-
+RTL-Q181
+[curious] តើស៊ីផ្លេខ្យល់ត្រូវហាមប្រើនៅកន្លែងណាខ្លះ?
+[guiding] ចម្លើយគឺ [assured] ទីក្រុង ទីប្រជុំជន និងជិតមន្ទីរពេទ្យ
+[curious] Where is air horn forbidden to honk?
+[guiding] The answer is [assured] In the city, downtown, and near the hospital
 ----------------------------------------------------------------------
-
-[RTL-Q182]
-Q (KH): ភ្លើងសញ្ញាពិសេសមានពណ៌អ្វីខ្លះ ?
-A (KH): ខៀវ ក្រហម និងលឿងទុំ
 
-Q (EN): What colors are the special light signs?
-A (EN): Blue, red, and yellow
-
+RTL-Q182
+[thoughtful] ភ្លើងសញ្ញាពិសេសមានពណ៌អ្វីខ្លះ ?
+[helpful] ចម្លើយគឺ [clear] ខៀវ ក្រហម និងលឿងទុំ
+[thoughtful] What colors are the special light signs?
+[helpful] The answer is [clear] Blue, red, and yellow
 ----------------------------------------------------------------------
-
-[RTL-Q183]
-Q (KH): ពេលជួបយានដែលបញ្ចេញភ្លើងសញ្ញាពិសេសពណ៌លឿងទុំកំពុងបំពេញភារកិច្ច តើអ្នកបើកបរត្រូធ្វើដូចម្តេច ?
-A (KH): ប្រុងប្រយ័ត្នក្នុងការជៀស និងជែងយាននេះ
 
-Q (EN): When seeing a vehicle lighting a special light of dark yellow in duty, what shall drivers do?
-A (EN): Pay attention in avoiding and overtaking that vehicle
-
+RTL-Q183
+[wondering] ពេលជួបយានដែលបញ្ចេញភ្លើងសញ្ញាពិសេសពណ៌លឿងទុំកំពុងបំពេញភារកិច្ច តើអ្នកបើកបរត្រូធ្វើដូចម្តេច ?
+[supportive] ចម្លើយគឺ [definitive] ប្រុងប្រយ័ត្នក្នុងការជៀស និងជែងយាននេះ
+[wondering] When seeing a vehicle lighting a special light of dark yellow in duty, what shall drivers do?
+[supportive] The answer is [definitive] Pay attention in avoiding and overtaking that vehicle
 ----------------------------------------------------------------------
-
-[RTL-Q184]
-Q (KH): នៅពេលជួបយានមានសិទ្ធិអាទិភាពកំពុងបំពេញភារកិច្ចដោយ ប្រើភ្លើងសញ្ញាពិសេស និងសញ្ញាសូរសព្ទពិសេស តើអ្នកបើកបរត្រូវធ្វើដូចម្តេច?
-A (KH): បន្ថយល្បឿន អែបទៅខាងស្ដាំ ឬឈប់
-
-Q (EN): What shall you do when you meet vehicle with priority in duty using special light sign and special siren?
-A (EN): Slow down and move to the right side.
 
+RTL-Q184
+[inquiring] នៅពេលជួបយានមានសិទ្ធិអាទិភាពកំពុងបំពេញភារកិច្ចដោយ ប្រើភ្លើងសញ្ញាពិសេស និងសញ្ញាសូរសព្ទពិសេស តើអ្នកបើកបរត្រូវធ្វើដូចម្តេច?
+[encouraging] ចម្លើយគឺ [certain] បន្ថយល្បឿន អែបទៅខាងស្ដាំ ឬឈប់
+[inquiring] What shall you do when you meet vehicle with priority in duty using special light sign and special siren?
+[encouraging] The answer is [certain] Slow down and move to the right side.
 ----------------------------------------------------------------------
 
-[RTL-Q185]
-Q (KH): បណ្ណបើកបរជាតិសម្រាប់បើកបរយានយន្តក្នុងព្រះរាជាណាចក្រកម្ពុជា មានប៉ុន្មានប្រភេទ?
-A (KH): ៥ ប្រភេទ
-
-Q (EN): How many kinds of national lisences, for driving in Cambodia, are there?
-A (EN): 5 kinds
-
+RTL-Q185
+[intrigue] បណ្ណបើកបរជាតិសម្រាប់បើកបរយានយន្តក្នុងព្រះរាជាណាចក្រកម្ពុជា មានប៉ុន្មានប្រភេទ?
+[inspiration] ចម្លើយគឺ [confident] ៥ ប្រភេទ
+[intrigue] How many kinds of national lisences, for driving in Cambodia, are there?
+[inspiration] The answer is [confident] 5 kinds
 ----------------------------------------------------------------------
 
-[RTL-Q186]
-Q (KH): តើទោចក្រយានយន្តអាចផ្ទុកមនុស្សបានប៉ុន្មាននាក់ ?
-A (KH): អាចផ្ទុកមនុស្ស ២នាក់ និងបន្ថែមកុមារ ១នាក់
-
-Q (EN): How many people can a motorcycle allow to load?
-A (EN): 2 persons and one child.
-
+RTL-Q186
+[curious] តើទោចក្រយានយន្តអាចផ្ទុកមនុស្សបានប៉ុន្មាននាក់ ?
+[guiding] ចម្លើយគឺ [assured] អាចផ្ទុកមនុស្ស ២នាក់ និងបន្ថែមកុមារ ១នាក់
+[curious] How many people can a motorcycle allow to load?
+[guiding] The answer is [assured] 2 persons and one child.
 ----------------------------------------------------------------------
-
-[RTL-Q187]
-Q (KH): ប្រជាពលរដ្ឋដែលមានអាយុ ១៨ឆ្នាំពេញបរិបូរណ៍ តើអាចប្រឡងយកបណ្ណបើកបរយានយន្តប្រភេទណាខ្លះ?
-A (KH): ក និង ខ
 
-Q (EN): Which kinds of driver licenses can a citizen take a test for when he/she is 18?
-A (EN): A and B
-
+RTL-Q187
+[thoughtful] ប្រជាពលរដ្ឋដែលមានអាយុ ១៨ឆ្នាំពេញបរិបូរណ៍ តើអាចប្រឡងយកបណ្ណបើកបរយានយន្តប្រភេទណាខ្លះ?
+[helpful] ចម្លើយគឺ [clear] ក និង ខ
+[thoughtful] Which kinds of driver licenses can a citizen take a test for when he/she is 18?
+[helpful] The answer is [clear] A and B
 ----------------------------------------------------------------------
-
-[RTL-Q188]
-Q (KH): ប្រជាពលរដ្ឋដែលមានអាយុ ២២ឆ្នាំពេញបរិបូរណ៍ តើអាចប្រឡងយកបណ្ណបើកបរយានយន្តប្រភេទណាខ្លះ?
-A (KH): ក ខ និង គ
 
-Q (EN): Which kinds of driver licenses can a citizen take a test for when he/she is 22?
-A (EN): A, B, and C
-
+RTL-Q188
+[wondering] ប្រជាពលរដ្ឋដែលមានអាយុ ២២ឆ្នាំពេញបរិបូរណ៍ តើអាចប្រឡងយកបណ្ណបើកបរយានយន្តប្រភេទណាខ្លះ?
+[supportive] ចម្លើយគឺ [definitive] ក ខ និង គ
+[wondering] Which kinds of driver licenses can a citizen take a test for when he/she is 22?
+[supportive] The answer is [definitive] A, B, and C
 ----------------------------------------------------------------------
-
-[RTL-Q189]
-Q (KH): ប្រជាពលរដ្ឋដែលមានអាយុ ២៤ឆ្នាំពេញបរិបូរណ៍ តើអាចប្រឡងយកបណ្ណបើកបរយានយន្តប្រភេទណាខ្លះ?
-A (KH): ក ខ គ ឃ និង ង
-
-Q (EN): Which kinds of driver licenses can a citizen take a test for when he/she is 24?
-A (EN): A, B, C, D, and E
 
+RTL-Q189
+[inquiring] ប្រជាពលរដ្ឋដែលមានអាយុ ២៤ឆ្នាំពេញបរិបូរណ៍ តើអាចប្រឡងយកបណ្ណបើកបរយានយន្តប្រភេទណាខ្លះ?
+[encouraging] ចម្លើយគឺ [certain] ក ខ គ ឃ និង ង
+[inquiring] Which kinds of driver licenses can a citizen take a test for when he/she is 24?
+[encouraging] The answer is [certain] A, B, C, D, and E
 ----------------------------------------------------------------------
 
-[RTL-Q190]
-Q (KH): តើអ្នកបើកបរយានយន្ត មានអត្រាជាតិអាល់កុលកម្រិតប៉ុន្មាន ត្រូវផ្តន្ទាទោសដាក់ពន្ធនាគារ ?
-A (KH): អត្រាជាតិអាល់កុលចាប់ពី ០,៤០ មីលីក្រាមក្នុងមួយលីត្រខ្យល់ ឡើងទៅ
-
-Q (EN): How many rate of alcohol taken is a driver sentenced to jail?
-A (EN): 0.40ml per liter of the air and over.
-
+RTL-Q190
+[intrigue] តើអ្នកបើកបរយានយន្ត មានអត្រាជាតិអាល់កុលកម្រិតប៉ុន្មាន ត្រូវផ្តន្ទាទោសដាក់ពន្ធនាគារ ?
+[inspiration] ចម្លើយគឺ [confident] អត្រាជាតិអាល់កុលចាប់ពី ០,៤០ មីលីក្រាមក្នុងមួយលីត្រខ្យល់ ឡើងទៅ
+[intrigue] How many rate of alcohol taken is a driver sentenced to jail?
+[inspiration] The answer is [confident] 0.40ml per liter of the air and over.
 ----------------------------------------------------------------------
-
-[RTL-Q191]
-Q (KH): តើអ្នកបើកបរ និងអ្នករួមដំណើរតាមទោចក្រយានយន្ត ត្រូវពាក់មួកសុវត្ថិភាពដែរឬទេ ?
-A (KH): ពាក់មួកសុវត្ថិភាពទាំងអ្នកបើកបរ និងអ្នករួមដំណើរ
 
-Q (EN): Shall the driver and passenger(s) on motorcycle wear helmet or not?
-A (EN): Both driver and passenger(s).
-
+RTL-Q191
+[curious] តើអ្នកបើកបរ និងអ្នករួមដំណើរតាមទោចក្រយានយន្ត ត្រូវពាក់មួកសុវត្ថិភាពដែរឬទេ ?
+[guiding] ចម្លើយគឺ [assured] ពាក់មួកសុវត្ថិភាពទាំងអ្នកបើកបរ និងអ្នករួមដំណើរ
+[curious] Shall the driver and passenger(s) on motorcycle wear helmet or not?
+[guiding] The answer is [assured] Both driver and passenger(s).
 ----------------------------------------------------------------------
-
-[RTL-Q192]
-Q (KH): ពេលចតរថយន្ត ត្រូវមានការប្រុងប្រយ័ត្នយ៉ាងដូចម្ដេច ?
-A (KH): ចតស្តាំដៃតាមទិសចរាចរណ៍និងមិនរំខានដល់អ្នកប្រើប្រាស់ផ្លូវឬចតនៅចំណតរថយន្តត្រូវដាក់ហ្វ្រាំងដៃ
-
-Q (EN): How do you pay attention while parking your vehicle?
-A (EN): Park on the right hand side parallelling the traffic direction, not bother the other drivers on the same road, or park at the parking with hand brake.
 
+RTL-Q192
+[thoughtful] ពេលចតរថយន្ត ត្រូវមានការប្រុងប្រយ័ត្នយ៉ាងដូចម្ដេច ?
+[helpful] ចម្លើយគឺ [clear] ចតស្តាំដៃតាមទិសចរាចរណ៍និងមិនរំខានដល់អ្នកប្រើប្រាស់ផ្លូវឬចតនៅចំណតរថយន្តត្រូវដាក់ហ្វ្រាំងដៃ
+[thoughtful] How do you pay attention while parking your vehicle?
+[helpful] The answer is [clear] Park on the right hand side parallelling the traffic direction, not bother the other drivers on the same road, or park at the parking with hand brake.
 ----------------------------------------------------------------------

@@ -1,140 +1,112 @@
 ======================================================================
+
+
 Category : Emergency
 ID Prefix: EMG
 Total    : 15 questions
 ======================================================================
 
-[EMG-Q001]
-Q (KH): នៅពេលជនរងគ្រោះមានរបួសហូរឈាមខ្លាំង តើអាចជួយឃាត់ឈាមដូចម្ដេច ?
-A (KH): ត្រូវយកក្រណាត់ ឬបង់សស្អាតរុំជុំវិញមុខរបួសរិតឲ្យតឹងបន្ដិច
-
-Q (EN): When a victim having wound with blooding, how can you help stop blooding?
-A (EN): Use good cloth or bandage to tight around the wound, fasten a bit tightly.
-
+EMG-Q001
+[curious] នៅពេលជនរងគ្រោះមានរបួសហូរឈាមខ្លាំង តើអាចជួយឃាត់ឈាមដូចម្ដេច ?
+[guiding] ចម្លើយគឺ [assured] ត្រូវយកក្រណាត់ ឬបង់សស្អាតរុំជុំវិញមុខរបួសរិតឲ្យតឹងបន្ដិច
+[curious] When a victim having wound with blooding, how can you help stop blooding?
+[guiding] The answer is [assured] Use good cloth or bandage to tight around the wound, fasten a bit tightly.
 ----------------------------------------------------------------------
 
-[EMG-Q002]
-Q (KH): នៅពេលមានជនរងគ្រោះថ្នាក់ចរាចរណ៍តើមានចំនុចសំខាន់ៗអ្វីខ្លះ ដែលអ្នកធ្វើការត្រួតពិនិត្យ ដើម្បីជួយជនរងគ្រោះ ?
-A (KH): ការសន្លប់ បាត់ដង្ហើម គ្មានជីពចរ ហូរឈាម និងបាក់ឆ្អឹង
-
-Q (EN): When there is someone has an accident, what are main points needed to check to help him or her?
-A (EN): Unconsciousness, no breathing, no pulse, blooding, and bone break.
-
+EMG-Q002
+[thoughtful] នៅពេលមានជនរងគ្រោះថ្នាក់ចរាចរណ៍តើមានចំនុចសំខាន់ៗអ្វីខ្លះ ដែលអ្នកធ្វើការត្រួតពិនិត្យ ដើម្បីជួយជនរងគ្រោះ ?
+[helpful] ចម្លើយគឺ [clear] ការសន្លប់ បាត់ដង្ហើម គ្មានជីពចរ ហូរឈាម និងបាក់ឆ្អឹង
+[thoughtful] When there is someone has an accident, what are main points needed to check to help him or her?
+[helpful] The answer is [clear] Unconsciousness, no breathing, no pulse, blooding, and bone break.
 ----------------------------------------------------------------------
 
-[EMG-Q003]
-Q (KH): តើអ្នកដឹងថាជីពចរជនរងគ្រោះមិនដើរដោយសារអ្វី ?
-A (KH): ដោយប្រើអារម្មណ៍ម្រាមដៃចុចត្រង់ចំហៀងក
-
-Q (EN): How do you realize that the victim’s pulse does not work?
-A (EN): By using fingers to press at the a side of the neck.
-
+EMG-Q003
+[wondering] តើអ្នកដឹងថាជីពចរជនរងគ្រោះមិនដើរដោយសារអ្វី ?
+[supportive] ចម្លើយគឺ [definitive] ដោយប្រើអារម្មណ៍ម្រាមដៃចុចត្រង់ចំហៀងក
+[wondering] How do you realize that the victim’s pulse does not work?
+[supportive] The answer is [definitive] By using fingers to press at the a side of the neck.
 ----------------------------------------------------------------------
 
-[EMG-Q004]
-Q (KH): តើអ្នកដឹងថាជនរងគ្រោះបាត់ដង្ហើមដោយសារអ្វី ?
-A (KH): ជនរងគ្រោះមិនមានចលនាឡើងចុះ ហើយមាត់និងច្រមុះគ្មានខ្យល់ចេញចូល
-
-Q (EN): How do you realize that the victim is not breathing?
-A (EN): The victim does not have movement up and down and no breathing through mouth and nose.
-
+EMG-Q004
+[inquiring] តើអ្នកដឹងថាជនរងគ្រោះបាត់ដង្ហើមដោយសារអ្វី ?
+[encouraging] ចម្លើយគឺ [certain] ជនរងគ្រោះមិនមានចលនាឡើងចុះ ហើយមាត់និងច្រមុះគ្មានខ្យល់ចេញចូល
+[inquiring] How do you realize that the victim is not breathing?
+[encouraging] The answer is [certain] The victim does not have movement up and down and no breathing through mouth and nose.
 ----------------------------------------------------------------------
 
-[EMG-Q005]
-Q (KH): តើអ្នកអាចដឹងថាជនរងគ្រោះបាក់ដៃ ឬបាក់ជើងយ៉ាងដូចម្ដេច ?
-A (KH): ដឹងដោយសារជនរងគ្រោះឈឺចាប់ខ្លាំងនៅត្រង់ដៃ ឬជើងនៅពេលចង់កំរើកលើកដៃ ឬជើង
-
-Q (EN): How do you realize that the victim got broken arm(s) or leg(s)?
-A (EN): Realizing that the victim gets a lot of hurt at the arms and legs when he/she want to move his/her them.
-
+EMG-Q005
+[intrigue] តើអ្នកអាចដឹងថាជនរងគ្រោះបាក់ដៃ ឬបាក់ជើងយ៉ាងដូចម្ដេច ?
+[inspiration] ចម្លើយគឺ [confident] ដឹងដោយសារជនរងគ្រោះឈឺចាប់ខ្លាំងនៅត្រង់ដៃ ឬជើងនៅពេលចង់កំរើកលើកដៃ ឬជើង
+[intrigue] How do you realize that the victim got broken arm(s) or leg(s)?
+[inspiration] The answer is [confident] Realizing that the victim gets a lot of hurt at the arms and legs when he/she want to move his/her them.
 ----------------------------------------------------------------------
 
-[EMG-Q006]
-Q (KH): នៅពេលជនរងគ្រោះបាត់ដង្ហើម និងជីពចរមិនដើរ តើត្រូវជួយធ្វើចលនាបេះដូងដូចម្ដេច ?
-A (KH): ត្រូវម៉ាស្សា ១៥ដង និង ផ្លុំ២ដង
-
-Q (EN): When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?
-A (EN): Massage 15 times and 2 times of mouth-to-mouth resuscitation
-
+EMG-Q006
+[curious] នៅពេលជនរងគ្រោះបាត់ដង្ហើម និងជីពចរមិនដើរ តើត្រូវជួយធ្វើចលនាបេះដូងដូចម្ដេច ?
+[guiding] ចម្លើយគឺ [assured] ត្រូវម៉ាស្សា ១៥ដង និង ផ្លុំ២ដង
+[curious] When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?
+[guiding] The answer is [assured] Massage 15 times and 2 times of mouth-to-mouth resuscitation
 ----------------------------------------------------------------------
 
-[EMG-Q007]
-Q (KH): បើជនរងគ្រោះសន្លប់អ្នកបានទះស្មា ហើយនៅតែមិនដឹងខ្លួន តើអ្នកត្រូវជួយជនរងគ្រោះដូចម្ដេច ?
-A (KH): ត្រូវដាក់ដេកបែរខ្នងចំហៀង និងផ្អៀងក្បាលដើម្បីងាយស្រួលឲ្យខ្យល់ឆ្លងកាត់
-
-Q (EN): If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?
-A (EN): Let him/her lie down or let him/her incline to one side so that the air can easily get through
-
+EMG-Q007
+[thoughtful] បើជនរងគ្រោះសន្លប់អ្នកបានទះស្មា ហើយនៅតែមិនដឹងខ្លួន តើអ្នកត្រូវជួយជនរងគ្រោះដូចម្ដេច ?
+[helpful] ចម្លើយគឺ [clear] ត្រូវដាក់ដេកបែរខ្នងចំហៀង និងផ្អៀងក្បាលដើម្បីងាយស្រួលឲ្យខ្យល់ឆ្លងកាត់
+[thoughtful] If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?
+[helpful] The answer is [clear] Let him/her lie down or let him/her incline to one side so that the air can easily get through
 ----------------------------------------------------------------------
 
-[EMG-Q008]
-Q (KH): បើជនរងគ្រោះបាត់ដង្ហើម តើអ្នកអាចជួយជនរងគ្រោះនោះយ៉ាងដូចម្ដេច ?
-A (KH): ត្រូវធ្វើចលនាបេះដូងដោយផ្លុំខ្យល់ចូលតាមមាត់ជនរងគ្រោះ និងយកដៃទាំងពីរសង្កត់ទ្រូង
-
-Q (EN): If the victim is not breathing, how can you help him or her?
-A (EN): Do the CPR by blowing the air in through the victim’s mouth and press his or her chest by two hands.
-
+EMG-Q008
+[wondering] បើជនរងគ្រោះបាត់ដង្ហើម តើអ្នកអាចជួយជនរងគ្រោះនោះយ៉ាងដូចម្ដេច ?
+[supportive] ចម្លើយគឺ [definitive] ត្រូវធ្វើចលនាបេះដូងដោយផ្លុំខ្យល់ចូលតាមមាត់ជនរងគ្រោះ និងយកដៃទាំងពីរសង្កត់ទ្រូង
+[wondering] If the victim is not breathing, how can you help him or her?
+[supportive] The answer is [definitive] Do the CPR by blowing the air in through the victim’s mouth and press his or her chest by two hands.
 ----------------------------------------------------------------------
 
-[EMG-Q009]
-Q (KH): តើអ្នកអាចជួយជនរងគ្រោះបាត់ដង្ហើមក្នុងរយៈពេលប៉ុន្មាននាទី ?
-A (KH): ក្នុងរយៈពេល ០២ ទៅ ៣ នាទី
-
-Q (EN): How many minutes can you help victim with no breathing?
-A (EN): 2 to 3 minutes
-
+EMG-Q009
+[inquiring] តើអ្នកអាចជួយជនរងគ្រោះបាត់ដង្ហើមក្នុងរយៈពេលប៉ុន្មាននាទី ?
+[encouraging] ចម្លើយគឺ [certain] ក្នុងរយៈពេល ០២ ទៅ ៣ នាទី
+[inquiring] How many minutes can you help victim with no breathing?
+[encouraging] The answer is [certain] 2 to 3 minutes
 ----------------------------------------------------------------------
 
-[EMG-Q010]
-Q (KH): បើជនរងគ្រោះបាត់ដង្ហើម តើអ្នកត្រូវការផ្លុំខ្យល់បញ្ជូលតាមមាត់ជនរងគ្រោះប៉ុន្មានដងក្នុង ១នាទី ?
-A (KH): ប្រហែល ១៥ដង ក្នុង១នាទី
-
-Q (EN): If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?
-A (EN): About 15 times per minute
-
+EMG-Q010
+[intrigue] បើជនរងគ្រោះបាត់ដង្ហើម តើអ្នកត្រូវការផ្លុំខ្យល់បញ្ជូលតាមមាត់ជនរងគ្រោះប៉ុន្មានដងក្នុង ១នាទី ?
+[inspiration] ចម្លើយគឺ [confident] ប្រហែល ១៥ដង ក្នុង១នាទី
+[intrigue] If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?
+[inspiration] The answer is [confident] About 15 times per minute
 ----------------------------------------------------------------------
 
-[EMG-Q011]
-Q (KH): នៅពេលជនរងគ្រោះបាត់ដង្ហើម និងជីពចរមិនដើរ ហើយអ្នកមានតែម្នាក់ឯង តើត្រូវសង្កត់ធ្វើចលនាបេះដូង និងផ្លុំខ្យល់ដូចម្ដេច ?
-A (KH): ត្រូវសង្កត់១៥ដង និងផ្លុំ២ដង
-
-Q (EN): When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?
-A (EN): Press 15 times and blow 2 times
-
+EMG-Q011
+[curious] នៅពេលជនរងគ្រោះបាត់ដង្ហើម និងជីពចរមិនដើរ ហើយអ្នកមានតែម្នាក់ឯង តើត្រូវសង្កត់ធ្វើចលនាបេះដូង និងផ្លុំខ្យល់ដូចម្ដេច ?
+[guiding] ចម្លើយគឺ [assured] ត្រូវសង្កត់១៥ដង និងផ្លុំ២ដង
+[curious] When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?
+[guiding] The answer is [assured] Press 15 times and blow 2 times
 ----------------------------------------------------------------------
 
-[EMG-Q012]
-Q (KH): តើអ្នកអាចប៉ះពាល់អ្នករងគ្រោះថ្នាក់ចរាចរណ៍ បានឬទេ ?
-A (KH): បាន ដោយជួយតាមវិធីសង្គ្រោះបន្ទាន់
-
-Q (EN): Can you touch an accident victim?
-A (EN): Yes, by helping through First Aids.
-
+EMG-Q012
+[thoughtful] តើអ្នកអាចប៉ះពាល់អ្នករងគ្រោះថ្នាក់ចរាចរណ៍ បានឬទេ ?
+[helpful] ចម្លើយគឺ [clear] បាន ដោយជួយតាមវិធីសង្គ្រោះបន្ទាន់
+[thoughtful] Can you touch an accident victim?
+[helpful] The answer is [clear] Yes, by helping through First Aids.
 ----------------------------------------------------------------------
 
-[EMG-Q013]
-Q (KH): បើដឹងថាជនរងគ្រោះបាក់ដៃ តើអ្នកត្រូវធ្វើយ៉ាងដូចម្ដេច ?
-A (KH): ត្រូវទុកដៃបាក់ឲ្យស្ងៀម រួចប្រើបន្ទះដែក ឬឈើអបដៃរួចចងក្រណាត់ ឬក្រមាពាក់នឹងក ដើម្បីជួយទ្រដៃ
-
-Q (EN): Realizing the victim got broken arm, how shall you do?
-A (EN): Leave the broken arm with no moving then use metal or wooden board to splint the arm, and then tie with cloth or scaft at the neck to suport the broken arm.
-
+EMG-Q013
+[wondering] បើដឹងថាជនរងគ្រោះបាក់ដៃ តើអ្នកត្រូវធ្វើយ៉ាងដូចម្ដេច ?
+[supportive] ចម្លើយគឺ [definitive] ត្រូវទុកដៃបាក់ឲ្យស្ងៀម រួចប្រើបន្ទះដែក ឬឈើអបដៃរួចចងក្រណាត់ ឬក្រមាពាក់នឹងក ដើម្បីជួយទ្រដៃ
+[wondering] Realizing the victim got broken arm, how shall you do?
+[supportive] The answer is [definitive] Leave the broken arm with no moving then use metal or wooden board to splint the arm, and then tie with cloth or scaft at the neck to suport the broken arm.
 ----------------------------------------------------------------------
 
-[EMG-Q014]
-Q (KH): តើរយៈពេលបាត់ដង្ហើមប៉ុន្មាននាទី ដែលធ្វើឲ្យជនរងគ្រោះស្លាប់ ?
-A (KH): ចាប់ពី ៥នាទី ឡើងទៅ
-
-Q (EN): How many minutes of no breathing does it cause the victim dead?
-A (EN): From 5 minutes and up.
-
+EMG-Q014
+[inquiring] តើរយៈពេលបាត់ដង្ហើមប៉ុន្មាននាទី ដែលធ្វើឲ្យជនរងគ្រោះស្លាប់ ?
+[encouraging] ចម្លើយគឺ [certain] ចាប់ពី ៥នាទី ឡើងទៅ
+[inquiring] How many minutes of no breathing does it cause the victim dead?
+[encouraging] The answer is [certain] From 5 minutes and up.
 ----------------------------------------------------------------------
 
-[EMG-Q015]
-Q (KH): បើជនរងគ្រោះបាត់ដង្ហើម និងជីពចរមិនដើរ តើអ្នកអាចជួយជនរងគ្រោះនោះដូចម្ដេច ?
-A (KH): ត្រូវផ្លុំខ្យល់ចូលតាមមាត់ជនរងគ្រោះ និងយកដៃទាំងពីរសង្កត់ទ្រូង
-
-Q (EN): If victim no breathing and the pulse no working, how can you help?
-A (EN): Blow the air in through his or her mouth and bring the two hands press his or her chest.
-
+EMG-Q015
+[intrigue] បើជនរងគ្រោះបាត់ដង្ហើម និងជីពចរមិនដើរ តើអ្នកអាចជួយជនរងគ្រោះនោះដូចម្ដេច ?
+[inspiration] ចម្លើយគឺ [confident] ត្រូវផ្លុំខ្យល់ចូលតាមមាត់ជនរងគ្រោះ និងយកដៃទាំងពីរសង្កត់ទ្រូង
+[intrigue] If victim no breathing and the pulse no working, how can you help?
+[inspiration] The answer is [confident] Blow the air in through his or her mouth and bring the two hands press his or her chest.
 ----------------------------------------------------------------------

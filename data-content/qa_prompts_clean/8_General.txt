@@ -1,113 +1,91 @@
 ======================================================================
+
+
 Category : General
 ID Prefix: GNL
 Total    : 12 questions
 ======================================================================
 
-[GNL-Q001]
-Q (KH): តើអ្នកណាខ្លះដែលអាចឆ្លងមេរោគអេដស៍ ?
-A (KH): មនុស្សគ្រប់រូប
-
-Q (EN): Who can be infected HIV?
-A (EN): Everyone
-
+GNL-Q001
+[curious] តើអ្នកណាខ្លះដែលអាចឆ្លងមេរោគអេដស៍ ?
+[guiding] ចម្លើយគឺ [assured] មនុស្សគ្រប់រូប
+[curious] Who can be infected HIV?
+[guiding] The answer is [assured] Everyone
 ----------------------------------------------------------------------
 
-[GNL-Q002]
-Q (KH): តើមេរោគអេដស៍ ឆ្លងតាមរបៀបណា ?
-A (KH): តាមការរួមភេទ, ប្រើម្ជុលរួមគ្នា, ការបញ្ចូលឈាមដែលមានមេរោគ, ពីម្ដាយទៅកូន
-
-Q (EN): How can HIV infect?
-A (EN): Through sex, shared needles, contaminated blood transfusions, and from mother to child
-
+GNL-Q002
+[thoughtful] តើមេរោគអេដស៍ ឆ្លងតាមរបៀបណា ?
+[helpful] ចម្លើយគឺ [clear] តាមការរួមភេទ, ប្រើម្ជុលរួមគ្នា, ការបញ្ចូលឈាមដែលមានមេរោគ, ពីម្ដាយទៅកូន
+[thoughtful] How can HIV infect?
+[helpful] The answer is [clear] Through sex, shared needles, contaminated blood transfusions, and from mother to child
 ----------------------------------------------------------------------
 
-[GNL-Q003]
-Q (KH): រហូតមកដល់បច្ចុប្បន្ននេះ តើមានថ្នាំសំរាប់ព្យាបាលមេរោគអេដស៍/ជម្ងឺអេដស៍ អោយជាសះស្បើយដែរ ឬទេ ?
-A (KH): មិនមាន
-
-Q (EN): Up to now, is there a medicine that can cure the HIV/AIDS?
-A (EN): No, there isn’t.
-
+GNL-Q003
+[wondering] រហូតមកដល់បច្ចុប្បន្ននេះ តើមានថ្នាំសំរាប់ព្យាបាលមេរោគអេដស៍/ជម្ងឺអេដស៍ អោយជាសះស្បើយដែរ ឬទេ ?
+[supportive] ចម្លើយគឺ [definitive] មិនមាន
+[wondering] Up to now, is there a medicine that can cure the HIV/AIDS?
+[supportive] The answer is [definitive] No, there isn’t.
 ----------------------------------------------------------------------
 
-[GNL-Q004]
-Q (KH): តើយើងអាចដឹងថា នរណាម្នាក់មានផ្ទុកមេរោគអេដស៍ ដោយវិធីណា ?
-A (KH): តាមការពិនិត្យឈាមរកមេរោគអេដស៍
-
-Q (EN): How can you realize that someone have HIV?
-A (EN): By testing the blood.
-
+GNL-Q004
+[inquiring] តើយើងអាចដឹងថា នរណាម្នាក់មានផ្ទុកមេរោគអេដស៍ ដោយវិធីណា ?
+[encouraging] ចម្លើយគឺ [certain] តាមការពិនិត្យឈាមរកមេរោគអេដស៍
+[inquiring] How can you realize that someone have HIV?
+[encouraging] The answer is [certain] By testing the blood.
 ----------------------------------------------------------------------
 
-[GNL-Q005]
-Q (KH): តើវិធានការណាមួយ ដែលអាចបង្ការខ្លួនអ្នកមិនឲ្យឆ្លងមេរោគអេដស៍ និងជំងឺកាមរោគ ?
-A (KH): រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេល
-
-Q (EN): Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?
-A (EN): Have sex with condom properly and all time
-
+GNL-Q005
+[intrigue] តើវិធានការណាមួយ ដែលអាចបង្ការខ្លួនអ្នកមិនឲ្យឆ្លងមេរោគអេដស៍ និងជំងឺកាមរោគ ?
+[inspiration] ចម្លើយគឺ [confident] រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេល
+[intrigue] Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?
+[inspiration] The answer is [confident] Have sex with condom properly and all time
 ----------------------------------------------------------------------
 
-[GNL-Q006]
-Q (KH): តើជម្ងឺណាមួយ ដែលជួយជម្រុញដល់ការចម្លងមេរោគអេដស៍ ?
-A (KH): ជម្ងឺកាមរោគ
-
-Q (EN): What disease that can push to infect HIV?
-A (EN): Sexually transmitted disease
-
+GNL-Q006
+[curious] តើជម្ងឺណាមួយ ដែលជួយជម្រុញដល់ការចម្លងមេរោគអេដស៍ ?
+[guiding] ចម្លើយគឺ [assured] ជម្ងឺកាមរោគ
+[curious] What disease that can push to infect HIV?
+[guiding] The answer is [assured] Sexually transmitted disease
 ----------------------------------------------------------------------
 
-[GNL-Q007]
-Q (KH): តើអ្នកផ្ទុកមេរោគអេដស៍ ត្រូវបានអនុញ្ញាតឲ្យប្រឡងយក បណ្ណបើកបរដែរឬទេ?
-A (KH): ត្រូវបានអនុញ្ញាត
-
-Q (EN): Is a person with HIV allowed to take a test for driver license?
-A (EN): Yes
-
+GNL-Q007
+[thoughtful] តើអ្នកផ្ទុកមេរោគអេដស៍ ត្រូវបានអនុញ្ញាតឲ្យប្រឡងយក បណ្ណបើកបរដែរឬទេ?
+[helpful] ចម្លើយគឺ [clear] ត្រូវបានអនុញ្ញាត
+[thoughtful] Is a person with HIV allowed to take a test for driver license?
+[helpful] The answer is [clear] Yes
 ----------------------------------------------------------------------
 
-[GNL-Q008]
-Q (KH): នៅពេលដឹងថា អ្នកបើកបរ មានផ្ទុកមេរោគអេដស៍ តើអ្នកហ៊ានជិះរថយន្តនោះដែរឬទេ ?
-A (KH): ហ៊ានជិះ
-
-Q (EN): Realizing the driver with HIV, dare you ride on that car?
-A (EN): Dare
-
+GNL-Q008
+[wondering] នៅពេលដឹងថា អ្នកបើកបរ មានផ្ទុកមេរោគអេដស៍ តើអ្នកហ៊ានជិះរថយន្តនោះដែរឬទេ ?
+[supportive] ចម្លើយគឺ [definitive] ហ៊ានជិះ
+[wondering] Realizing the driver with HIV, dare you ride on that car?
+[supportive] The answer is [definitive] Dare
 ----------------------------------------------------------------------
 
-[GNL-Q009]
-Q (KH): នៅពេលដឹងថា ខ្លួនអ្នកមានផ្ទុកមេរោគអេដស៍ តើអ្នកត្រូវប្រកាន់យកការប្រព្រឹត្ដណាមួយ ?
-A (KH): រួមភេទដោយប្រើស្រោមអនាម័យត្រឹមត្រូវ និងគ្រប់ពេល
-
-Q (EN): Realizing that you have HIV, what practice shall you choose?
-A (EN): Have sex using condom properly and all time.
-
+GNL-Q009
+[inquiring] នៅពេលដឹងថា ខ្លួនអ្នកមានផ្ទុកមេរោគអេដស៍ តើអ្នកត្រូវប្រកាន់យកការប្រព្រឹត្ដណាមួយ ?
+[encouraging] ចម្លើយគឺ [certain] រួមភេទដោយប្រើស្រោមអនាម័យត្រឹមត្រូវ និងគ្រប់ពេល
+[inquiring] Realizing that you have HIV, what practice shall you choose?
+[encouraging] The answer is [certain] Have sex using condom properly and all time.
 ----------------------------------------------------------------------
 
-[GNL-Q010]
-Q (KH): តើការធ្វើតេស្ដឈាមរកមេរោគអេដស៍ ឈរលើគោលការណ៍អ្វី ?
-A (KH): ដោយស្ម័គ្រចិត្ដ រក្សាការសំងាត់ មានការផ្ដល់ប្រឹក្សា
-
-Q (EN): On what principle is blood testing for HIV conducted?
-A (EN): Voluntary, confidential, and counseling
-
+GNL-Q010
+[intrigue] តើការធ្វើតេស្ដឈាមរកមេរោគអេដស៍ ឈរលើគោលការណ៍អ្វី ?
+[inspiration] ចម្លើយគឺ [confident] ដោយស្ម័គ្រចិត្ដ រក្សាការសំងាត់ មានការផ្ដល់ប្រឹក្សា
+[intrigue] On what principle is blood testing for HIV conducted?
+[inspiration] The answer is [confident] Voluntary, confidential, and counseling
 ----------------------------------------------------------------------
 
-[GNL-Q011]
-Q (KH): បើអ្នកដឹងថា នរណាម្នាក់មានផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការ តើអ្នកត្រូវធ្វើដូចម្ដេច ?
-A (KH): រក្សាអោយធ្វើការធម្មតា
-
-Q (EN): Realizing someone with HIV at your workplace, what shall you do?
-A (EN): Let him or her work as usual.
-
+GNL-Q011
+[curious] បើអ្នកដឹងថា នរណាម្នាក់មានផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការ តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+[guiding] ចម្លើយគឺ [assured] រក្សាអោយធ្វើការធម្មតា
+[curious] Realizing someone with HIV at your workplace, what shall you do?
+[guiding] The answer is [assured] Let him or her work as usual.
 ----------------------------------------------------------------------
 
-[GNL-Q012]
-Q (KH): តើអ្នកត្រូវធ្វើដូចម្ដេចចំពោះអ្នករងគ្រោះដោយសារមេរោគអេដស៍?
-A (KH): ផ្ដល់ការគាំទ្រ និងមិនរើសអើង
-
-Q (EN): How shall you do toward a victim of HIV?
-A (EN): Suport and not discrimination
-
+GNL-Q012
+[thoughtful] តើអ្នកត្រូវធ្វើដូចម្ដេចចំពោះអ្នករងគ្រោះដោយសារមេរោគអេដស៍?
+[helpful] ចម្លើយគឺ [clear] ផ្ដល់ការគាំទ្រ និងមិនរើសអើង
+[thoughtful] How shall you do toward a victim of HIV?
+[helpful] The answer is [clear] Suport and not discrimination
 ----------------------------------------------------------------------
