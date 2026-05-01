@@ -577,7 +577,7 @@ export function TrafficSignsCatalogue() {
                       onClose={() => { setSelectedTopic(null); setSelectedQuestions([]); }}
                     />
                   )}
-                </>
+                </Fragment>
               );
             })}
           </div>

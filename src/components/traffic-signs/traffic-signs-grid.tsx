@@ -160,10 +160,10 @@ function SignDetailPanel({
                 onClick={toggleAudio}
                 disabled={loadingAudio}
                 className={`inline-flex items-center gap-2 px-4 py-2 border-2 border-black font-black text-sm transition-all ${loadingAudio
-                    ? "bg-zinc-100 text-zinc-400 cursor-wait"
-                    : playing
-                      ? "bg-black text-yellow-400 shadow-[3px_3px_0_#ca8a04]"
-                      : "bg-white hover:bg-yellow-400 shadow-[3px_3px_0_#000] hover:shadow-[3px_3px_0_#ca8a04]"
+                  ? "bg-zinc-100 text-zinc-400 cursor-wait"
+                  : playing
+                    ? "bg-black text-yellow-400 shadow-[3px_3px_0_#ca8a04]"
+                    : "bg-white hover:bg-yellow-400 shadow-[3px_3px_0_#000] hover:shadow-[3px_3px_0_#ca8a04]"
                   }`}
                 style={kf}
               >
@@ -267,8 +267,8 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
         <button
           onClick={() => { setSubGroupFilter(""); setSelectedSign(null); }}
           className={`px-3 py-1.5 border-2 border-black text-xs font-black transition-all ${!subGroupFilter
-              ? "bg-black text-yellow-400 shadow-[2px_2px_0_#ca8a04]"
-              : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
+            ? "bg-black text-yellow-400 shadow-[2px_2px_0_#ca8a04]"
+            : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
             }`}
         >
           {isKh ? "ទាំងអស់" : "All"}
@@ -278,8 +278,8 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
             key={sg.key}
             onClick={() => { setSubGroupFilter(sg.key); setSelectedSign(null); }}
             className={`px-3 py-1.5 border-2 border-black text-xs font-black transition-all ${subGroupFilter === sg.key
-                ? "bg-yellow-400 shadow-[2px_2px_0_#000]"
-                : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
+              ? "bg-yellow-400 shadow-[2px_2px_0_#000]"
+              : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
               }`}
           >
             {sg.label}
@@ -311,8 +311,8 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
               <button
                 onClick={() => handleSignClick(sign)}
                 className={`group border-2 transition-all duration-150 flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 ${isSelected
-                    ? "border-yellow-400 bg-yellow-400 shadow-[4px_4px_0_#ca8a04]"
-                    : "border-black bg-white hover:border-yellow-400 hover:bg-yellow-400 hover:shadow-[4px_4px_0_#ca8a04]"
+                  ? "border-yellow-400 bg-yellow-400 shadow-[4px_4px_0_#ca8a04]"
+                  : "border-black bg-white hover:border-yellow-400 hover:bg-yellow-400 hover:shadow-[4px_4px_0_#ca8a04]"
                   }`}
                 aria-expanded={isSelected}
                 aria-label={isKh ? sign.titleKm : sign.titleEn}
@@ -349,7 +349,7 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
                   lang={lang}
                 />
               )}
-            </>
+            </Fragment>
           );
         })}
       </div>
