@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Fragment } from "react";
 import Image from "next/image";
 import { Volume2, X, ChevronDown, ChevronUp } from "lucide-react";
 import { useLang } from "@/context/lang-context";
@@ -56,11 +56,24 @@ function SignDetailPanel({
   const [playing, setPlaying] = useState(false);
   const [loadingAudio, setLoadingAudio] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const isKh = lang === "kh";
   const kf = isKh ? { fontFamily: "Siemreap, sans-serif" } : {};
   const name = isKh ? sign.titleKm : sign.titleEn;
   const description = isKh ? sign.descriptionKm : sign.descriptionEn;
   const audioUrl = isKh ? sign.audioUrlKm : sign.audioUrlEn;
+
+  useEffect(() => {
+    // Scroll the panel into view when opened or sign changes
+    const timer = setTimeout(() => {
+      if (panelRef.current) {
+        // block: 'nearest' is usually less jumpy than 'center' or 'start', 
+        // but 'center' ensures it's clearly visible. Let's use 'nearest'.
+        panelRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [sign.id]);
 
   const toggleAudio = () => {
     const el = audioRef.current;
@@ -83,8 +96,9 @@ function SignDetailPanel({
 
   return (
     <div
+      ref={panelRef}
       className="col-span-full border-4 border-yellow-400 bg-white"
-      style={{ boxShadow: "6px 6px 0 #000" }}
+      style={{ boxShadow: "6px 6px 0 #000", scrollMarginTop: "100px" }}
     >
       <div className="flex items-center justify-between px-5 py-3 bg-yellow-400 border-b-2 border-black">
         <div className="flex items-center gap-3">
@@ -175,10 +189,23 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
   const [subGroupFilter, setSubGroupFilter] = useState("");
   const { lang } = useLang();
   const isKh = lang === "kh";
+  const [cols, setCols] = useState(10); // Dynamic columns based on screen width
 
   useEffect(() => {
     if (!initialSigns.length) fetchSigns();
-  }, []);
+
+    const updateCols = () => {
+      if (window.innerWidth >= 1280) setCols(10); // xl
+      else if (window.innerWidth >= 1024) setCols(8); // lg
+      else if (window.innerWidth >= 768) setCols(6); // md
+      else if (window.innerWidth >= 640) setCols(4); // sm
+      else setCols(3); // default (matches grid-cols-3)
+    };
+
+    updateCols();
+    window.addEventListener("resize", updateCols);
+    return () => window.removeEventListener("resize", updateCols);
+  }, [initialSigns.length]);
 
   const fetchSigns = async () => {
     try {
@@ -232,7 +259,6 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
   }
 
   // Build rows: inject the detail panel after the row that contains the selected sign
-  const COLS = 10; // matches xl:grid-cols-10 — used to find row boundary
 
   return (
     <div className="space-y-4">
@@ -271,19 +297,18 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
         {filtered.map((sign, idx) => {
           const isSelected = selectedSign?.id === sign.id;
           // Inject panel after the row containing the selected sign
-          const isLastInRow = (idx + 1) % COLS === 0 || idx === filtered.length - 1;
+          const isLastInRow = (idx + 1) % cols === 0 || idx === filtered.length - 1;
           const selectedIdx = selectedSign ? filtered.findIndex(s => s.id === selectedSign.id) : -1;
           const showPanelAfter =
             selectedSign &&
             selectedIdx >= 0 &&
             idx >= selectedIdx &&
-            (Math.floor(idx / COLS) === Math.floor(selectedIdx / COLS)) &&
+            (Math.floor(idx / cols) === Math.floor(selectedIdx / cols)) &&
             isLastInRow;
 
           return (
-            <>
+            <Fragment key={sign.id}>
               <button
-                key={sign.id}
                 onClick={() => handleSignClick(sign)}
                 className={`group border-2 transition-all duration-150 flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 ${isSelected
                     ? "border-yellow-400 bg-yellow-400 shadow-[4px_4px_0_#ca8a04]"

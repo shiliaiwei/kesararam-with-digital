@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Fragment } from "react";
 import { Search, ArrowLeft, X, Volume2 } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 
@@ -89,6 +89,16 @@ function DetailPanel({
   // Use a ref so the stop handler always has the current audio instance
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const playingRef = useRef(false);
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (panelRef.current) {
+        panelRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [topic.id]);
 
   const name = isKh ? topic.name_km : topic.name_en;
   const description = isKh ? topic.description_km : topic.description_en;
@@ -156,7 +166,7 @@ function DetailPanel({
   };
 
   return (
-    <div className="col-span-full border-4 border-yellow-400 bg-white" style={{ boxShadow: "6px 6px 0 #000" }}>
+    <div ref={panelRef} className="col-span-full border-4 border-yellow-400 bg-white" style={{ boxShadow: "6px 6px 0 #000", scrollMarginTop: "100px" }}>
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-3 bg-yellow-400 border-b-2 border-black">
         <div className="flex items-center gap-3 flex-wrap">
@@ -314,6 +324,19 @@ export function TrafficSignsCatalogue() {
   const [selectedQuestions, setSelectedQuestions] = useState<any[]>([]);
   const [loadingQuestions, setLoadingQuestions] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
+  const [cols, setCols] = useState(8);
+
+  useEffect(() => {
+    const updateCols = () => {
+      if (window.innerWidth >= 1024) setCols(8); // lg
+      else if (window.innerWidth >= 768) setCols(6); // md
+      else if (window.innerWidth >= 640) setCols(4); // sm
+      else setCols(3); // default (matches grid-cols-3)
+    };
+    updateCols();
+    window.addEventListener("resize", updateCols);
+    return () => window.removeEventListener("resize", updateCols);
+  }, []);
 
   const handleTopicClick = async (topic: Topic) => {
     if (selectedTopic?.id === topic.id) {
@@ -502,20 +525,18 @@ export function TrafficSignsCatalogue() {
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
             {filteredTopics.map((topic, idx) => {
               const isSelected = selectedTopic?.id === topic.id;
-              const COLS = 8;
-              const isLastInRow = (idx + 1) % COLS === 0 || idx === filteredTopics.length - 1;
+              const isLastInRow = (idx + 1) % cols === 0 || idx === filteredTopics.length - 1;
               const selectedIdx = selectedTopic ? filteredTopics.findIndex(tp => tp.id === selectedTopic.id) : -1;
               const showPanelAfter =
                 selectedTopic &&
                 selectedIdx >= 0 &&
                 idx >= selectedIdx &&
-                Math.floor(idx / COLS) === Math.floor(selectedIdx / COLS) &&
+                Math.floor(idx / cols) === Math.floor(selectedIdx / cols) &&
                 isLastInRow;
 
               return (
-                <>
+                <Fragment key={topic.id}>
                   <button
-                    key={topic.id}
                     onClick={() => handleTopicClick(topic)}
                     aria-expanded={isSelected}
                     className={`group border-2 transition-all duration-150 flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 ${isSelected
