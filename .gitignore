@@ -48,3 +48,13 @@ next-env.d.ts
 /src/app/(dashboard)/admin/strapi-categories/
 /src/app/(dashboard)/admin/strapi-lessons/
 /src/app/(dashboard)/admin/strapi-quizzes/
+
+# temporary files and scripts
+*.log
+__*.log
+_*.mjs
+_*.js
+test-*.js
+test-*.mjs
+*.pyc
+__pycache__/
