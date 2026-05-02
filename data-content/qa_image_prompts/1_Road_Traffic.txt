@@ -1712,6 +1712,7 @@ IMAGE PROMPT:
   visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical
   Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 
+
 RTL-Q076
 Q (KH): និយមន័យ «អ្នកបើកបរ» ?
   1. អ្នកបញ្ជាយានយន្ដនៅលើផ្លូវ
@@ -1734,6 +1735,11 @@ IMAGE PROMPT:
   authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
   architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
   characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
+
+
+
+
+
 
 RTL-Q077
 Q (KH): និយមន័យ «ឈប់» ?
@@ -2933,6 +2939,12 @@ IMAGE PROMPT:
   Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
   tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
   cinematic lighting, sharp details.
+
+
+
+
+
+
 
 RTL-Q129
 Q (KH): និយមន័យ «រ៉ឺម៉ក» ?
