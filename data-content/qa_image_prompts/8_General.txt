@@ -18,12 +18,13 @@ Q (EN): Who can be infected HIV?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Who can
+  be infected health condition? - Everyone. The traffic signs MUST match this specific scenario and
+  question. Show road markings, traffic signs (symbols only, absolutely no text on signs), and
+  personnel/people. Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
+  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic
+  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 
 GNL-Q002
 Q (KH): តើមេរោគអេដស៍ ឆ្លងតាមរបៀបណា ?
@@ -39,12 +40,14 @@ Q (EN): How can HIV infect?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: How can
+  health condition infect? - Through intimate contact, shared needles, contaminated injury
+  transfusions, and from mother to child. The traffic signs MUST match this specific scenario and
+  question. Show road markings, traffic signs (symbols only, absolutely no text on signs), and
+  personnel/people. Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
+  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic
+  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 
 GNL-Q003
 Q (KH): រហូតមកដល់បច្ចុប្បន្ននេះ តើមានថ្នាំសំរាប់ព្យាបាលមេរោគអេដស៍/ជម្ងឺអេដស៍ អោយជាសះស្បើយដែរ ឬទេ ?
@@ -60,12 +63,14 @@ Q (EN): Up to now, is there a medicine that can cure the HIV/AIDS?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Up to
+  now, is there a medicine that can cure the health condition/health condition? - No, there isn’t..
+  The traffic signs MUST match this specific scenario and question. Show road markings, traffic
+  signs (symbols only, absolutely no text on signs), and personnel/people. Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 
 GNL-Q004
 Q (KH): តើយើងអាចដឹងថា នរណាម្នាក់មានផ្ទុកមេរោគអេដស៍ ដោយវិធីណា ?
@@ -81,12 +86,13 @@ Q (EN): How can you realize that someone have HIV?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: How can
+  you realize that someone have health condition? - By testing the injury.. The traffic signs MUST
+  match this specific scenario and question. Show road markings, traffic signs (symbols only,
+  absolutely no text on signs), and personnel/people. Cambodian characters (driver / pedestrian /
+  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
+  Cambodian architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 
 GNL-Q005
 Q (KH): តើវិធានការណាមួយ ដែលអាចបង្ការខ្លួនអ្នកមិនឲ្យឆ្លងមេរោគអេដស៍ និងជំងឺកាមរោគ ?
@@ -102,12 +108,14 @@ Q (EN): Are any measures that can prevent yourself from being infected with HIV 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Are any
+  measures that can prevent yourself from being infected with health condition and intimate contact
+  transmitted diseases? - Have intimate contact with condom properly and all time. The traffic signs
+  MUST match this specific scenario and question. Show road markings, traffic signs (symbols only,
+  absolutely no text on signs), and personnel/people. Cambodian characters (driver / pedestrian /
+  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
+  Cambodian architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 
 GNL-Q006
 Q (KH): តើជម្ងឺណាមួយ ដែលជួយជម្រុញដល់ការចម្លងមេរោគអេដស៍ ?
@@ -123,8 +131,10 @@ Q (EN): What disease that can push to infect HIV?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: What
+  disease that can push to infect health condition? - intimate contact transmitted disease. The
+  traffic signs MUST match this specific scenario and question. Show road markings, traffic signs
+  (symbols only, absolutely no text on signs), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
@@ -144,12 +154,13 @@ Q (EN): Is a person with HIV allowed to take a test for driver license?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Is a
+  person with health condition allowed to take a test for driver license? - Yes. The traffic signs
+  MUST match this specific scenario and question. Show road markings, traffic signs (symbols only,
+  absolutely no text on signs), and personnel/people. Cambodian characters (driver / pedestrian /
+  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
+  Cambodian architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 
 GNL-Q008
 Q (KH): នៅពេលដឹងថា អ្នកបើកបរ មានផ្ទុកមេរោគអេដស៍ តើអ្នកហ៊ានជិះរថយន្តនោះដែរឬទេ ?
@@ -165,12 +176,13 @@ Q (EN): Realizing the driver with HIV, dare you ride on that car?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details:
+  Realizing the driver with health condition, dare you ride on that car? - Dare. The traffic signs
+  MUST match this specific scenario and question. Show road markings, traffic signs (symbols only,
+  absolutely no text on signs), and personnel/people. Cambodian characters (driver / pedestrian /
+  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
+  Cambodian architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 
 GNL-Q009
 Q (KH): នៅពេលដឹងថា ខ្លួនអ្នកមានផ្ទុកមេរោគអេដស៍ តើអ្នកត្រូវប្រកាន់យកការប្រព្រឹត្ដណាមួយ ?
@@ -186,12 +198,14 @@ Q (EN): Realizing that you have HIV, what practice shall you choose?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details:
+  Realizing that you have health condition, what practice shall you choose? - Have intimate contact
+  using condom properly and all time.. The traffic signs MUST match this specific scenario and
+  question. Show road markings, traffic signs (symbols only, absolutely no text on signs), and
+  personnel/people. Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
+  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic
+  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 
 GNL-Q010
 Q (KH): តើការធ្វើតេស្ដឈាមរកមេរោគអេដស៍ ឈរលើគោលការណ៍អ្វី ?
@@ -207,12 +221,14 @@ Q (EN): On what principle is blood testing for HIV conducted?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: On what
+  principle is injury testing for health condition conducted? - Voluntary, confidential, and
+  counseling. The traffic signs MUST match this specific scenario and question. Show road markings,
+  traffic signs (symbols only, absolutely no text on signs), and personnel/people. Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 
 GNL-Q011
 Q (KH): បើអ្នកដឹងថា នរណាម្នាក់មានផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការ តើអ្នកត្រូវធ្វើដូចម្ដេច ?
@@ -228,12 +244,14 @@ Q (EN): Realizing someone with HIV at your workplace, what shall you do?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details:
+  Realizing someone with health condition at your workplace, what shall you do? - Let him or her
+  work as usual.. The traffic signs MUST match this specific scenario and question. Show road
+  markings, traffic signs (symbols only, absolutely no text on signs), and personnel/people.
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 
 GNL-Q012
 Q (KH): តើអ្នកត្រូវធ្វើដូចម្ដេចចំពោះអ្នករងគ្រោះដោយសារមេរោគអេដស៍?
@@ -249,8 +267,10 @@ Q (EN): How shall you do toward a victim of HIV?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: How
+  shall you do toward a person of health condition? - Suport and not discrimination. The traffic
+  signs MUST match this specific scenario and question. Show road markings, traffic signs (symbols
+  only, absolutely no text on signs), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,

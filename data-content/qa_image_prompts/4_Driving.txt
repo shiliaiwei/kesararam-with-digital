@@ -18,12 +18,13 @@ Q (EN): What is an accident to be known in driving?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: What is
+  an incident to be known in driving? - Road and road users.. The traffic signs MUST match this
+  specific scenario and question. Show road markings, traffic signs (symbols only, absolutely no
+  text on signs), and personnel/people. Cambodian characters (driver / pedestrian / officer) in
+  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
+  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 
 DRV-Q002
 Q (KH): នៅពេលដឹងថាកង់បែក ឬ ធ្លាយ តើអ្នកត្រូវធ្វើដូចម្ដេច ?
@@ -39,12 +40,14 @@ Q (EN): Knowing a wheel is flat, what shall you do?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Knowing
+  a wheel is flat, what shall you do? - Slow down, firmly hold the steering wheel or/and steer
+  follow the lane.. The traffic signs MUST match this specific scenario and question. Show road
+  markings, traffic signs (symbols only, absolutely no text on signs), and personnel/people.
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 
 DRV-Q003
 Q (KH): ប្រើអាំព្រីយ៉ា តើការដាក់ លេខឡើង និងការដាក់ លេខចុះ អ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?
@@ -60,12 +63,14 @@ Q (EN): Motorcycle using clutch lever, how shall drivers do to change gear shift
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details:
+  Motorcycle using clutch lever, how shall drivers do to change gear shift up or down? - Press the
+  clutch. The traffic signs MUST match this specific scenario and question. Show road markings,
+  traffic signs (symbols only, absolutely no text on signs), and personnel/people. Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 
 DRV-Q004
 Q (KH): ការប្រើល្បឿន៣០គីឡូម៉ែត្រក្នុងមួយម៉ោងនៅលើផ្លូវស្ងួតរាបស្មើ របស់អ្នកមានសំបកកង់ល្អ និងមានហ្វ្រាំងល្អ តើចម្ងាយចាប់ហ្វ្រាំងប្រហែលប៉ុន្មាន ?
@@ -81,12 +86,14 @@ Q (EN): Driving at the speed of 30km/h on the flat, dry road, your motorcycle ha
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Driving
+  at the speed of 30km/h on the flat, dry road, your motorcycle has good condition of brakes and
+  tires, how far is a braking distance? - About 10m. The traffic signs MUST match this specific
+  scenario and question. Show road markings, traffic signs (symbols only, absolutely no text on
+  signs), and personnel/people. Cambodian characters (driver / pedestrian / officer) in authentic
+  Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture
+  visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical
+  Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 
 DRV-Q005
 Q (KH): នៅក្នុងទីប្រជុំជន អ្នកប្រើល្បឿន២០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?
@@ -102,12 +109,14 @@ Q (EN): Inside a built-up area, you drive your motorcycle at 20km/h. How far at 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Inside
+  a built-up area, you drive your motorcycle at 20km/h. How far at least do you leave distance limit
+  for motorcycles? - At least 6m. The traffic signs MUST match this specific scenario and question.
+  Show road markings, traffic signs (symbols only, absolutely no text on signs), and
+  personnel/people. Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
+  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic
+  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 
 DRV-Q006
 Q (KH): មុននឹងបើកបរចូលផ្លូវកោង តើអ្នកត្រូវធ្វើដូចម្ដេច ?
@@ -123,12 +132,14 @@ Q (EN): Before driving your motorcycle into a bend road, what shall you do?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Before
+  driving your motorcycle into a bend road, what shall you do? - Slow down properly to a bend road
+  status and drive very closed to the right side.. The traffic signs MUST match this specific
+  scenario and question. Show road markings, traffic signs (symbols only, absolutely no text on
+  signs), and personnel/people. Cambodian characters (driver / pedestrian / officer) in authentic
+  Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture
+  visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical
+  Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 
 DRV-Q007
 Q (KH): មូលហេតុអ្វីខ្លះដែលធ្វើឲ្យរថយន្តរអិលរេ ?
@@ -144,12 +155,14 @@ Q (EN): What is the reason making the vehicles swerve off?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: What is
+  the reason making the vehicles swerve off? - Pun on the brake firmly, steer strongly, more speed
+  up, or drive very fast.. The traffic signs MUST match this specific scenario and question. Show
+  road markings, traffic signs (symbols only, absolutely no text on signs), and personnel/people.
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 
 DRV-Q008
 Q (KH): តើការប្រើភ្លើងហ្វ្រាំង ជាការចាំបាច់ដែរឬទេ ?
@@ -165,12 +178,14 @@ Q (EN): Is it necessary to use brake light?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Is it
+  necessary to use brake light? - Yes, it is. It is necessary to inform drivers behind about the
+  slowing down or stopping. The traffic signs MUST match this specific scenario and question. Show
+  road markings, traffic signs (symbols only, absolutely no text on signs), and personnel/people.
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 
 DRV-Q009
 Q (KH): នៅពេលរថយន្តអ្នករអិលរេនៅលើផ្លូវស្ងួត តើអ្នកត្រូវធ្វើដូចម្ដេច ?
@@ -186,12 +201,14 @@ Q (EN): When your vehicle is swerving off on a dry road, what shall you do?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: When
+  your vehicle is swerving off on a dry road, what shall you do? - Slow down and no need to apply
+  the brake.. The traffic signs MUST match this specific scenario and question. Show road markings,
+  traffic signs (symbols only, absolutely no text on signs), and personnel/people. Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 
 DRV-Q010
 Q (KH): នៅពេលហ្វ្រាំងខូច តើអ្នកត្រូវធ្វើដូចម្ដេច ?
@@ -207,12 +224,14 @@ Q (EN): What shall you do when the brake is broken?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: What
+  shall you do when the brake is broken? - Engage the gear down orderly, apply hand brake gentlely,
+  and seek for parking area.. The traffic signs MUST match this specific scenario and question. Show
+  road markings, traffic signs (symbols only, absolutely no text on signs), and personnel/people.
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 
 DRV-Q011
 Q (KH): នៅពេលយប់ ក្នុងពេលជួបយានយន្តមកពីទិសផ្ទុយ តើអ្នកត្រូវទំលាក់ភ្លើងហ្វាមកកូតវិញ ក្នុងចំងាយប៉ុន្មាន ?
@@ -228,12 +247,14 @@ Q (EN): At night, seeing a vehicle from the opposite traffic direction, at what 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: At
+  night, seeing a vehicle from the opposite traffic direction, at what distance from it shall you
+  cast to coat light from headlight? - About 160m. The traffic signs MUST match this specific
+  scenario and question. Show road markings, traffic signs (symbols only, absolutely no text on
+  signs), and personnel/people. Cambodian characters (driver / pedestrian / officer) in authentic
+  Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture
+  visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical
+  Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 
 DRV-Q012
 Q (KH): នៅក្នុងការបើកបរកាត់ភ្លៀងខ្លាំង ឬ កាត់ទឹកជ្រៅ តើធ្វើដូចម្ដេច ដើម្បីឲ្យហ្វ្រាំងឆាប់ស្ងួត ?
@@ -249,12 +270,14 @@ Q (EN): Driving in heavy rain or in deep water, how shall you do to get the brak
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Driving
+  in heavy rain or in deep water, how shall you do to get the brake dried up quickly? - Apply the
+  brake to dry the brakes up.. The traffic signs MUST match this specific scenario and question.
+  Show road markings, traffic signs (symbols only, absolutely no text on signs), and
+  personnel/people. Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
+  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic
+  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 
 DRV-Q013
 Q (KH): ក្នុងការបើកបរនៅពេលអាកាសធាតុក្ដៅខ្លាំង តើកង់រថយន្តមានសភាពដូចម្ដេច ?
@@ -270,8 +293,10 @@ Q (EN): Driving in an extremely hot weather, what are the tires of vehicle?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Driving
+  in an extremely hot weather, what are the tires of vehicle? - The tires are tight.. The traffic
+  signs MUST match this specific scenario and question. Show road markings, traffic signs (symbols
+  only, absolutely no text on signs), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
@@ -291,12 +316,15 @@ Q (EN): Applying the brake while moving down a descent steep, one apply and rele
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details:
+  Applying the brake while moving down a descent steep, one apply and release alternatively, another
+  one apply firmly without releasing, which one make the brake hotter? - Applying and releasing
+  alternatively.. The traffic signs MUST match this specific scenario and question. Show road
+  markings, traffic signs (symbols only, absolutely no text on signs), and personnel/people.
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 
 DRV-Q015
 Q (KH): នៅពេលបើកចូលផ្លូវកោង តើកំលាំងអ្វីដែលអាចធ្វើឲ្យរថយន្តក្រឡាប់ ?
@@ -312,8 +340,10 @@ Q (EN): When driving into a bend road, what forces can make your vehicle turn ov
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: When
+  driving into a bend road, what forces can make your vehicle turn over? - Centrifugal force. The
+  traffic signs MUST match this specific scenario and question. Show road markings, traffic signs
+  (symbols only, absolutely no text on signs), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
@@ -333,12 +363,14 @@ Q (EN): Engaging the gear shift down then your motorcycle twitches and the back 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details:
+  Engaging the gear shift down then your motorcycle twitches and the back wheel is stuck, what does
+  it cause? - Caused by the failure of slowing down suffiently. The traffic signs MUST match this
+  specific scenario and question. Show road markings, traffic signs (symbols only, absolutely no
+  text on signs), and personnel/people. Cambodian characters (driver / pedestrian / officer) in
+  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
+  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 
 DRV-Q017
 Q (KH): នៅក្នុងទីប្រជុំជន អ្នកប្រើល្បឿន៣០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?
@@ -354,12 +386,14 @@ Q (EN): Inside a built-up area, you drive your motorcycle at 30km/h. How far at 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Inside
+  a built-up area, you drive your motorcycle at 30km/h. How far at least do you leave distance limit
+  for motorcycles? - At least 9m. The traffic signs MUST match this specific scenario and question.
+  Show road markings, traffic signs (symbols only, absolutely no text on signs), and
+  personnel/people. Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
+  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic
+  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 
 DRV-Q018
 Q (KH): តើការបើកបរ ត្រូវចាំបាច់ឱ្យសញ្ញាជាដំណឹង ដែរឬទេ ?
@@ -375,12 +409,14 @@ Q (EN): Driving a motorcycle, is it necessary to give serviced signs?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Driving
+  a motorcycle, is it necessary to give serviced signs? - Yes, it is. It is necessary to inform
+  others to get to know your purposes. The traffic signs MUST match this specific scenario and
+  question. Show road markings, traffic signs (symbols only, absolutely no text on signs), and
+  personnel/people. Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
+  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic
+  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 
 DRV-Q019
 Q (KH): ដើម្បីជៀសវាងការរអិលនៅលើផ្លូវដែលមានខ្សាច់ ឬថ្មតូចៗ តើអ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?
@@ -396,12 +432,14 @@ Q (EN): To avoid slippery on a sandy or stony road, how shall drivers do?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: To
+  avoid slippery on a sandy or stony road, how shall drivers do? - Slow down, hold the steer firmly,
+  not to apply the brakes or engage the gear down or turn sharply. The traffic signs MUST match this
+  specific scenario and question. Show road markings, traffic signs (symbols only, absolutely no
+  text on signs), and personnel/people. Cambodian characters (driver / pedestrian / officer) in
+  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
+  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 
 DRV-Q020
 Q (KH): ដើម្បីបន្ថយល្បឿន ឬឈប់ឱ្យមានប្រសិទ្ធភាព តើអ្នកត្រូវប្រើហ្វ្រាំងអ្វី ?
@@ -417,12 +455,14 @@ Q (EN): To slow down or stop effectively, what brake do you put on?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: To slow
+  down or stop effectively, what brake do you put on? - Put on the footbrake (back brake) and
+  handbrake (front brake). The traffic signs MUST match this specific scenario and question. Show
+  road markings, traffic signs (symbols only, absolutely no text on signs), and personnel/people.
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 
 DRV-Q021
 Q (KH): ការប្រើល្បឿន៧០គីឡូម៉ែត្រក្នុងមួយម៉ោងនៅលើផ្លូវរាបស្មើ ប្រភេទប្រុស (លើសពី១២៥ ឡើងទៅ) របស់អ្នកមាន សំបកកង់ល្អ និងមានហ្វ្រាំងល្អ តើចម្ងាយចាប់ហ្វ្រាំងប្រហែលប៉ុន្មាន ?
@@ -438,8 +478,11 @@ Q (EN): Driving at the speed of 70km/h on the smooth road, your man-styled motor
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Driving
+  at the speed of 70km/h on the smooth road, your man-styled motorcycles (more than 125cc and up)
+  have good condition in tires and brakes. What is the braking distance? - About 50m. The traffic
+  signs MUST match this specific scenario and question. Show road markings, traffic signs (symbols
+  only, absolutely no text on signs), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
@@ -459,12 +502,14 @@ Q (EN): Driving on a small stony road or sandy area, can it make your motorcycle
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Driving
+  on a small stony road or sandy area, can it make your motorcycle slippery? - Yes, it can when you
+  speed up and steer firmly. The traffic signs MUST match this specific scenario and question. Show
+  road markings, traffic signs (symbols only, absolutely no text on signs), and personnel/people.
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 
 DRV-Q023
 Q (KH): នៅក្រៅទីប្រជុំជន អ្នកបើកបរល្បឿន៤០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវថែរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ?
@@ -480,12 +525,14 @@ Q (EN): Outside a built-up area, you are driving at the speed of 40km/h. How far
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Outside
+  a built-up area, you are driving at the speed of 40km/h. How far, in meter, do you leave a
+  distance limit? - At least 24m. The traffic signs MUST match this specific scenario and question.
+  Show road markings, traffic signs (symbols only, absolutely no text on signs), and
+  personnel/people. Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
+  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic
+  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 
 DRV-Q024
 Q (KH): នៅក្រៅទីប្រជុំជន អ្នកបើកបរល្បឿន៦០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវថែរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ?
@@ -501,12 +548,14 @@ Q (EN): Outside a built-up area, you are driving at the speed of 60km/h. How far
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Outside
+  a built-up area, you are driving at the speed of 60km/h. How far, in meter, do you leave a
+  distance limit? - At least 36m. The traffic signs MUST match this specific scenario and question.
+  Show road markings, traffic signs (symbols only, absolutely no text on signs), and
+  personnel/people. Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
+  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic
+  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 
 DRV-Q025
 Q (KH): ការប្រើល្បឿន៥០គីឡូម៉ែត្រក្នុងមួយម៉ោងនៅលើផ្លូវរាបស្មើ របស់អ្នកមានសំបកកង់ល្អ និងមានហ្វ្រាំងល្អ តើចម្ងាយ ឈប់ប្រហែលប៉ុន្មាន ?
@@ -522,12 +571,14 @@ Q (EN): Driving at the speed of 50km/h on a smooth, your motorcycle has brakes a
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Driving
+  at the speed of 50km/h on a smooth, your motorcycle has brakes and tires in good condition, what
+  is a stopping distance, probably? - About 25m. The traffic signs MUST match this specific scenario
+  and question. Show road markings, traffic signs (symbols only, absolutely no text on signs), and
+  personnel/people. Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
+  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic
+  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 
 DRV-Q026
 Q (KH): នៅក្រៅទីប្រជុំជន អ្នកប្រើល្បឿន៥០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?
@@ -543,12 +594,14 @@ Q (EN): Outside a built-up area, you are driving at the speed of 50km/h. How far
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Outside
+  a built-up area, you are driving at the speed of 50km/h. How far at least, in meter, do you leave
+  a distance limit? - At least 30m. The traffic signs MUST match this specific scenario and
+  question. Show road markings, traffic signs (symbols only, absolutely no text on signs), and
+  personnel/people. Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
+  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic
+  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 
 DRV-Q027
 Q (KH): តើការបើកបរ ត្រូវមើលទៅមុខយ៉ាងដូចម្ដេច ?
@@ -564,8 +617,11 @@ Q (EN): Driving a motorcycle, how do you look to the front?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Driving
+  a motorcycle, how do you look to the front? - Look ahead in far distance to know the situation of
+  bending road, ascent, descent, and look at the light signs of drivers in the front.. The traffic
+  signs MUST match this specific scenario and question. Show road markings, traffic signs (symbols
+  only, absolutely no text on signs), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
@@ -585,12 +641,14 @@ Q (EN): Driving a motorcycle, the back wheel is slippery due to applying the bra
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Driving
+  a motorcycle, the back wheel is slippery due to applying the brake, how shall you do? - Turn to
+  the slippery direction. The traffic signs MUST match this specific scenario and question. Show
+  road markings, traffic signs (symbols only, absolutely no text on signs), and personnel/people.
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 
 DRV-Q029
 Q (KH): ពេលបើកបរ ហើយចង្កូតញាក់ តើបណ្ដាលមកពីអ្វី?
@@ -606,8 +664,11 @@ Q (EN): Driving a motorcycle and the steer shakes, what does it cause?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Driving
+  a motorcycle and the steer shakes, what does it cause? - Buckled wheels, loose radius, loose ball
+  bearing, flat, or loaded too heavy at the back and steering ball bearing is improperly.. The
+  traffic signs MUST match this specific scenario and question. Show road markings, traffic signs
+  (symbols only, absolutely no text on signs), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
@@ -627,12 +688,14 @@ Q (EN): What distances do you take into calculating the stopping distance of veh
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: What
+  distances do you take into calculating the stopping distance of vehicle? - Reaction distance and
+  braking distance.. The traffic signs MUST match this specific scenario and question. Show road
+  markings, traffic signs (symbols only, absolutely no text on signs), and personnel/people.
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 
 DRV-Q031
 Q (KH): ដើម្បីសំរួលការដាក់ លេខឡើង ឬចុះតើត្រូវផ្ដាច់អំព្រីយ៉ាប៉ុន្មានដង ?
@@ -648,12 +711,14 @@ Q (EN): To adjust the gear up and down with ease, how many times shall you disco
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: To
+  adjust the gear up and down with ease, how many times shall you disconnect clutch? - two times.
+  The traffic signs MUST match this specific scenario and question. Show road markings, traffic
+  signs (symbols only, absolutely no text on signs), and personnel/people. Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 
 DRV-Q032
 Q (KH): តើមូលហេតុសំខាន់ៗអ្វីខ្លះ ដែលធ្វើឲ្យហ្វ្រាំងឆាប់កើនកំដៅនៅពេលជាន់ហ្វ្រាំង ?
@@ -669,12 +734,14 @@ Q (EN): What are the main reasons that make the brake get hotter quickly when br
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: What
+  are the main reasons that make the brake get hotter quickly when braking? - Over load and drive
+  extremly fast.. The traffic signs MUST match this specific scenario and question. Show road
+  markings, traffic signs (symbols only, absolutely no text on signs), and personnel/people.
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 
 DRV-Q033
 Q (KH): បើទម្ងន់ និងល្បឿនកើនពីរដងរួមគ្នា តើចម្ងាយឈប់កើនឡើងប៉ុន្មានដង ?
@@ -690,12 +757,14 @@ Q (EN): If the speed and weight increase twice together, how many times does the
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: If the
+  speed and weight increase twice together, how many times does the stopping distance increase,
+  accordingly? - 8 times. The traffic signs MUST match this specific scenario and question. Show
+  road markings, traffic signs (symbols only, absolutely no text on signs), and personnel/people.
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 
 DRV-Q034
 Q (KH): ដើម្បីមើលទៅមុខឲ្យបានឆ្ងាយគ្រប់គ្រាន់ តើអ្នកត្រូវការមើលក្នុងចម្ងាយប៉ុន្មានវិនាទី ?
@@ -711,12 +780,14 @@ Q (EN): To look ahead for long distance enough, how many seconds shall you need 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: To look
+  ahead for long distance enough, how many seconds shall you need to look to it? - 12 to 15 seconds.
+  The traffic signs MUST match this specific scenario and question. Show road markings, traffic
+  signs (symbols only, absolutely no text on signs), and personnel/people. Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 
 DRV-Q035
 Q (KH): តើអ្នកបើកបររថយន្តធុនធ្ងន់លើសពី ៣,៥តោន ឬប្រវែងបណ្ដោយលើសពី ៧ម៉ែត្រ បើកបរបន្តកន្ទុយគ្នា ក្នុងល្បឿនដូចគ្នា ត្រូវទុកចន្លោះសុវត្ថិភាពប៉ុន្មានម៉ែត្រ?
@@ -732,8 +803,11 @@ Q (EN): What distance limit for large-sized trucks, with more than 3.5T or more 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: What
+  distance limit for large-sized trucks, with more than 3.5T or more than 7m in length driving in
+  queue one after another and at the same speed, shall drivers leave? - At least 50m. The traffic
+  signs MUST match this specific scenario and question. Show road markings, traffic signs (symbols
+  only, absolutely no text on signs), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
@@ -753,12 +827,13 @@ Q (EN): What is the brake’s temperature taken as warning?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: What is
+  the brake’s temperature taken as warning? - 400 celsius. The traffic signs MUST match this
+  specific scenario and question. Show road markings, traffic signs (symbols only, absolutely no
+  text on signs), and personnel/people. Cambodian characters (driver / pedestrian / officer) in
+  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
+  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 
 DRV-Q037
 Q (KH): បើទម្ងន់កើនឡើងពីរដង តើចម្ងាយឈប់កើនឡើងប៉ុន្មានដង ?
@@ -774,8 +849,10 @@ Q (EN): If the weight increases twice, how many times does the stopping distance
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: If the
+  weight increases twice, how many times does the stopping distance increase? - Two times. The
+  traffic signs MUST match this specific scenario and question. Show road markings, traffic signs
+  (symbols only, absolutely no text on signs), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
@@ -795,8 +872,10 @@ Q (EN): If the speed increases twice, how many times does the stopping distance 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: If the
+  speed increases twice, how many times does the stopping distance increase? - Four times. The
+  traffic signs MUST match this specific scenario and question. Show road markings, traffic signs
+  (symbols only, absolutely no text on signs), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
@@ -816,12 +895,14 @@ Q (EN): Driving on the wet road, how many percentages do drivers decrease​ spe
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Driving
+  on the wet road, how many percentages do drivers decrease​ speed compared to dry road? - 1/3 on
+  the dry road. The traffic signs MUST match this specific scenario and question. Show road
+  markings, traffic signs (symbols only, absolutely no text on signs), and personnel/people.
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 
 DRV-Q040
 Q (KH): តើមូលហេតុអ្វីខ្លះដែលធ្វើឲ្យកង់រអិលរេនៅពេលបើកបរលើផ្លូវស្ងួត ?
@@ -837,12 +918,14 @@ Q (EN): What are reasons that make the wheels swerve off when driving on the dry
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: What
+  are reasons that make the wheels swerve off when driving on the dry road? - Speed up, drive very
+  fast, apply the brake firmly, and steer firmly.. The traffic signs MUST match this specific
+  scenario and question. Show road markings, traffic signs (symbols only, absolutely no text on
+  signs), and personnel/people. Cambodian characters (driver / pedestrian / officer) in authentic
+  Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture
+  visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical
+  Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 
 DRV-Q041
 Q (KH): តើមូលហេតុអ្វី ដែលធ្វើឱ្យកង់ក្រោយរអិល ?
@@ -858,12 +941,13 @@ Q (EN): What are reasons that make the back wheels slippery?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: What
+  are reasons that make the back wheels slippery? - Speed up a lot. The traffic signs MUST match
+  this specific scenario and question. Show road markings, traffic signs (symbols only, absolutely
+  no text on signs), and personnel/people. Cambodian characters (driver / pedestrian / officer) in
+  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
+  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 
 DRV-Q042
 Q (KH): តើមូលហេតុអ្វី ដែលធ្វើឲ្យកង់មុខរអិល​រេ ?
@@ -879,8 +963,10 @@ Q (EN): What are reasons that make front wheels slippery?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: What
+  are reasons that make front wheels slippery? - Drive too fast on a road is not flat. The traffic
+  signs MUST match this specific scenario and question. Show road markings, traffic signs (symbols
+  only, absolutely no text on signs), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
@@ -900,8 +986,10 @@ Q (EN): Driving outside built-up area, how far of distance limit do you leave?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Driving
+  outside built-up area, how far of distance limit do you leave? - At least 2 minute. The traffic
+  signs MUST match this specific scenario and question. Show road markings, traffic signs (symbols
+  only, absolutely no text on signs), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
@@ -921,12 +1009,14 @@ Q (EN): How many meters of a stopping distance for small-sized vehicles at the s
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: How
+  many meters of a stopping distance for small-sized vehicles at the speed of 90km/h? - About 81m.
+  The traffic signs MUST match this specific scenario and question. Show road markings, traffic
+  signs (symbols only, absolutely no text on signs), and personnel/people. Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 
 DRV-Q045
 Q (KH): ក្នុងការបើកបរនៅក្រៅទីប្រជុំជន តើអ្នកត្រូវទុកចន្លោះសុវត្ថិភាពប៉ុន្មានវិនាទី ?
@@ -942,12 +1032,13 @@ Q (EN): While driving, wow many minutes of the safety distance?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: While
+  driving, wow many minutes of the safety distance? - At least 2 second. The traffic signs MUST
+  match this specific scenario and question. Show road markings, traffic signs (symbols only,
+  absolutely no text on signs), and personnel/people. Cambodian characters (driver / pedestrian /
+  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
+  Cambodian architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 
 DRV-Q046
 Q (KH): នៅលើផ្លូវសើម តើចំងាយចាប់ហ្វ្រាំងកើនឡើងប៉ុន្មានដង ?
@@ -963,12 +1054,13 @@ Q (EN): On a wet road, how many times does braking distance increase?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: On a
+  wet road, how many times does braking distance increase? - 2 times. The traffic signs MUST match
+  this specific scenario and question. Show road markings, traffic signs (symbols only, absolutely
+  no text on signs), and personnel/people. Cambodian characters (driver / pedestrian / officer) in
+  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
+  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 
 DRV-Q047
 Q (KH): មុនបើកបរចេញដំណើរ តើអ្នកត្រូវឱ្យសញ្ញាជាដំណឹងប៉ុន្មានវិនាទី ?
@@ -984,8 +1076,10 @@ Q (EN): Before departure, how many seconds shall you give information sign?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Before
+  departure, how many seconds shall you give information sign? - At least 5 seconds.. The traffic
+  signs MUST match this specific scenario and question. Show road markings, traffic signs (symbols
+  only, absolutely no text on signs), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
@@ -1005,12 +1099,13 @@ Q (EN): How long do healthy drivers need
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: How
+  long do healthy drivers need - 1 minute. The traffic signs MUST match this specific scenario and
+  question. Show road markings, traffic signs (symbols only, absolutely no text on signs), and
+  personnel/people. Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
+  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic
+  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 
 DRV-Q049
 Q (KH): មុននិងចូលក្នុងរថយន្ត ដើម្បីចាប់ផ្ដើមបើកបរថយក្រោយ តើអ្នកត្រូវធ្វើអ្វីខ្លះ ?
@@ -1026,12 +1121,14 @@ Q (EN): Before getting into the vehicle in order to drive backward, what shall d
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
-  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
-  sharp details.
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Before
+  getting into the vehicle in order to drive backward, what shall drivers do? - Look to the back of
+  the vehicle clearly, give signals, and drive backward slowly. The traffic signs MUST match this
+  specific scenario and question. Show road markings, traffic signs (symbols only, absolutely no
+  text on signs), and personnel/people. Cambodian characters (driver / pedestrian / officer) in
+  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
+  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 
 DRV-Q050
 Q (KH): នៅពេលបត់ឆ្វេង ឬ ស្ដាំ តើអ្នកបើកបរត្រូវឲ្យសញ្ញាបត់ចំងាយយ៉ាងតិចប៉ុន្មានម៉ែត្រពីផ្លូវបត់ ?
@@ -1047,8 +1144,10 @@ Q (EN): Turning left or right, how far at least do you give a turn sign from the
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
-  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  motorists — Cambodian urban or suburban environment, daytime. Activity and Action Details: Turning
+  left or right, how far at least do you give a turn sign from the turning road? - At least 20m. The
+  traffic signs MUST match this specific scenario and question. Show road markings, traffic signs
+  (symbols only, absolutely no text on signs), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
