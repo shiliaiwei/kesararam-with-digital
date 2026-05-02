@@ -18,15 +18,12 @@ Q (EN): How shall you check engine oil?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: How shall you check engine oil? The focus is on the appropriate action: The level of engine
-  oil must be between minimum and maximum markings. Show road markings and traffic signs with
-  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q002
 Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ស៊ីផ្លេ ?
@@ -41,16 +38,13 @@ Q (EN): What shall you check at the horn?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What shall you check at the horn? The focus is on the appropriate
-  action: Well work of it.. Show road markings and traffic signs with English text labels ONLY
-  (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 TCH-Q003
 Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចច្រវ៉ាក់ ?
@@ -66,15 +60,12 @@ Q (EN): What shall you check at the chain?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: What shall you check at the chain? The focus is on the appropriate action: tight enough, no
-  loose, or not too tight, must be always with oil.. Show road markings and traffic signs with
-  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q004
 Q (KH): តើអ្នកត្រូវត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចធុងទឹក ?
@@ -89,16 +80,13 @@ Q (EN): What shall you check at the water tank?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What shall you check at the water tank? The focus is on the
-  appropriate action: The level of water in the tank. Show road markings and traffic signs with
-  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q005
 Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចផ្លិតទឹក ?
@@ -113,16 +101,13 @@ Q (EN): What shall you check at the water fan?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What shall you check at the water fan? The focus is on the appropriate
-  action: The process and the wipe the water well. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q006
 Q (KH): តើច្បាប់កំណត់ឱ្យជម្រៅក្រឡាសំបកកៅស៊ូកង់សឹកនៅសល់យ៉ាងតិចប៉ុន្មានមីលីម៉ែត្រដែលត្រូវប្ដូរចេញ ?
@@ -137,17 +122,13 @@ Q (EN): According to the law, the depth of the motorcycle’s tyre tread after e
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: According to the law, the depth of the motorcycle’s tyre tread after
-  eroded, how many millimetres, at least, are they left need to be changed? The focus is on the
-  appropriate action: At least 1mm. Show road markings and traffic signs with English text labels
-  ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 TCH-Q007
 Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចប្រេងម៉ាស៊ីន ?
@@ -162,16 +143,13 @@ Q (EN): What shall you check at the oil point?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What shall you check at the oil point? The focus is on the appropriate
-  action: The leakage and the existence of the specified level.. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q008
 Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចង្កៀងភ្លើងសញ្ញា ?
@@ -186,16 +164,13 @@ Q (EN): What shall you check at the sign lights?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What shall you check at the sign lights? The focus is on the
-  appropriate action: Being well-processed or broken or dirty.. Show road markings and traffic signs
-  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q009
 Q (KH): តើអ្នកត្រួតពិនិត្យដូចម្ដេច នៅលើកញ្ចក់មើលក្រោយ ?
@@ -210,16 +185,13 @@ Q (EN): What shall you check on the wing mirrors?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What shall you check on the wing mirrors? The focus is on the
-  appropriate action: Clearliness and right position.. Show road markings and traffic signs with
-  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q010
 Q (KH): តើអ្នកត្រួតពិនិត្យកំរិតប្រេងហ្វ្រាំងដូចម្ដេច ?
@@ -235,15 +207,12 @@ Q (EN): How shall you check the level of brake oil?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: How shall you check the level of brake oil? The focus is on the appropriate action: The
-  level of brake oil must be between minimum and maximum markings. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q011
 Q (KH): ក្នុងពេលធ្វើដំណើរ តើអ្នកត្រូវត្រួតពិនិត្យអ្វីខ្លះ ?
@@ -258,17 +227,13 @@ Q (EN): While travelling, what shall you check?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: While travelling, what shall you check? The focus is on the
-  appropriate action: Water temperature device process , battery recharged device, and brake signal,
-  including engine oil pressure.. Show road markings and traffic signs with English text labels ONLY
-  (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 TCH-Q012
 Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចអាគុយទឹក ?
@@ -283,16 +248,13 @@ Q (EN): What shall you check at the liquid battery?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What shall you check at the liquid battery? The focus is on the
-  appropriate action: The level of the water of battery.. Show road markings and traffic signs with
-  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q013
 Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចសំបកកៅស៊ូកង់ ?
@@ -307,16 +269,13 @@ Q (EN): What shall you check at the tyres?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What shall you check at the tyres? The focus is on the appropriate
-  action: Air pressure, erosion, swellings, cracked, and punch.. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q014
 Q (KH): តើអ្នកពិនិត្យអ្វី នៅលើខ្នងកង់ ?
@@ -331,16 +290,13 @@ Q (EN): What shall you check on the motorcycle’s wheels?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What shall you check on the motorcycle’s wheels? The focus is on the
-  appropriate action: The looseness of the radius of the wheels.. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q015
 Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចហ្វ្រាំង ?
@@ -355,16 +311,13 @@ Q (EN): What shall you check at the brakes?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What shall you check at the brakes? The focus is on the appropriate
-  action: The level of properly work of brake system. Show road markings and traffic signs with
-  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q016
 Q (KH): តើអ្នកត្រួតពិនិត្យដូចម្ដេច ចំពោះខ្ចៅ និងប៊ូឡុង ?
@@ -379,16 +332,13 @@ Q (EN): How shall you check on nuts and bolts?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: How shall you check on nuts and bolts? The focus is on the appropriate
-  action: Shall be good tight.. Show road markings and traffic signs with English text labels ONLY
-  (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 TCH-Q017
 Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់កុងទ័រល្បឿន ?
@@ -403,16 +353,13 @@ Q (EN): What shall you check at the speedometer?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What shall you check at the speedometer? The focus is on the
-  appropriate action: The process of it.. Show road markings and traffic signs with English text
-  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 TCH-Q018
 Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចដៃចង្កូត ?
@@ -427,16 +374,13 @@ Q (EN): What shall you check at the motorcycle’s steering?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What shall you check at the motorcycle’s steering? The focus is on the
-  appropriate action: The hardiness of it.. Show road markings and traffic signs with English text
-  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 TCH-Q019
 Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ម៉ាស៊ីន ?
@@ -452,15 +396,12 @@ Q (EN): What shall you check at the motorcycle’s engine?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: What shall you check at the motorcycle’s engine? The focus is on the appropriate action:
-  The leakage of oil and the level of engine oil.. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q020
 Q (KH): នៅរៀងរាល់ពេល មុននឹងចូលក្នុងរថយន្ត អ្នកត្រូវត្រួតពិនិត្យអ្វីខ្លះ ?
@@ -476,15 +417,12 @@ Q (EN): What shall you check every time before getting into the car?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: What shall you check every time before getting into the car? The focus is on the
-  appropriate action: Check the wheels not to be flat and the lights must be cleaned all time.. Show
-  road markings and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer
-  script in the image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer
-  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible,
-  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K, professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q021
 Q (KH): តើភាពសឹករបស់សំបកកង់រថយន្តគ្រួសារ ត្រូវឲ្យនៅសល់ជំរៅក្រឡាយ៉ាងតិចប៉ុន្មាន មីលីមែត្រ?
@@ -499,16 +437,13 @@ Q (EN): How many millimeters, at least, of the tyres’ depth to be left for the
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: How many millimeters, at least, of the tyres’ depth to be left for the
-  family car? The focus is on the appropriate action: 1.6mm. Show road markings and traffic signs
-  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q022
 Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចចង្កូត ?
@@ -523,16 +458,13 @@ Q (EN): What shall you check at the steer?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What shall you check at the steer? The focus is on the appropriate
-  action: Hardiness and not to be tight to steer.. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q023
 Q (KH): តើគម្លាតដងឆ័ត្រហ្វ្រាំង ត្រូវធ្វើការកែតម្រូវចាប់ពីប្រវែងប៉ុន្មានមីលីម៉ែត្រ ?
@@ -547,16 +479,13 @@ Q (EN): From how many millimeters of the gape of brake pedal need to be adjusted
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: From how many millimeters of the gape of brake pedal need to be
-  adjusted? The focus is on the appropriate action: More than 20mm. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q024
 Q (KH): ក្នុងករណីហ្វ្រាំងប្រើបូមប្រេង តើអ្នកដឹងប្រេងលេចខ្លាំងដោយសារអ្វី ?
@@ -571,17 +500,13 @@ Q (EN): In case the brakes using oil pump, how do you realize the oil leaks a lo
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: In case the brakes using oil pump, how do you realize the oil leaks a
-  lot? The focus is on the appropriate action: By starting the engine then applying the brake pedal,
-  falling on brake pedal board.. Show road markings and traffic signs with English text labels ONLY
-  (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 TCH-Q025
 Q (KH): តើនៅត្រង់ស្នូលថ្ពក់ថាសវិល អ្នកត្រូវពិនិត្យអ្វីសំខាន់ជាងគេ ?
@@ -596,16 +521,13 @@ Q (EN): At the core of the ......what are the main things to be checked?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: At the core of the ......what are the main things to be checked? The
-  focus is on the appropriate action: The twist of the core.. Show road markings and traffic signs
-  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q026
 Q (KH): តើនៅត្រង់ជន្ទាស អ្នកត្រួតពិនិត្យអ្វីជាសំខាន់ ?
@@ -620,16 +542,13 @@ Q (EN): What should you take care on the car’s chassis?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What should you take care on the car’s chassis? The focus is on the
-  appropriate action: breaking a part. Show road markings and traffic signs with English text labels
-  ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 TCH-Q027
 Q (KH): តើនៅត្រង់ទ្វារនៃរថយន្ត អ្នកត្រួតពិនិត្យអ្វីជាសំខាន់ ?
@@ -644,16 +563,13 @@ Q (EN): What is the main check at the doors of the car?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What is the main check at the doors of the car? The focus is on the
-  appropriate action: Bolt or door key. Show road markings and traffic signs with English text
-  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 TCH-Q028
 Q (KH): ចំពោះធុងប្រេងឥន្ធនៈ តើអ្នកត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ ?
@@ -668,16 +584,13 @@ Q (EN): What is the main check at the fuel tank?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What is the main check at the fuel tank? The focus is on the
-  appropriate action: The leakage of the fuel tank.. Show road markings and traffic signs with
-  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q029
 Q (KH): តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វី ត្រង់កាឡេរថយន្ត ?
@@ -692,16 +605,13 @@ Q (EN): What shall you check at the drive shaft of the vehicle?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What shall you check at the drive shaft of the vehicle? The focus is
-  on the appropriate action: The state of being cracked or bend. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q030
 Q (KH): តើនៅត្រង់ថាសវិល (ប្លាតូហ៊្វម) អ្នកត្រូវពិនិត្យអ្វីសំខាន់ជាងគេ ?
@@ -716,16 +626,13 @@ Q (EN): What should you check on the vehicle’s wheels?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What should you check on the vehicle’s wheels? The focus is on the
-  appropriate action: The state of being cracked or eroded. Show road markings and traffic signs
-  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q031
 Q (KH): កៅស៊ូកង់នៃរថយន្ត អ្នកត្រួតពិនិត្យអ្វីជាចាំបាច់ ?
@@ -740,16 +647,13 @@ Q (EN): What is the necessary check at the tyres?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What is the necessary check at the tyres? The focus is on the
-  appropriate action: Erosion, looseness, tightness, or being cracked.. Show road markings and
-  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q032
 Q (KH): នៅពេលអ្នកធ្វើដំណើរ ប្រហែលប៉ុន្មានម៉ោងត្រូវឈប់ត្រួតពិនិត្យគ្រឿងថ្ពក់សណ្ដោងសឺមីរ៉ឺម៉ក ឬរ៉ឺម៉ក ?
@@ -765,15 +669,12 @@ Q (EN): While driving, how long shall you need to check the semi trailer-towed h
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: While driving, how long shall you need to check the semi trailer-towed hooks or trailer?
-  The focus is on the appropriate action: About 3 hours. Show road markings and traffic signs with
-  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q033
 Q (KH): តើគម្លាតដងឆ័ត្រហ្វ្រាំង ត្រូវធ្វើការកែតម្រូវមកត្រឹមប្រវែងប្រហែលប៉ុន្មានមីលីម៉ែត្រទើបត្រឹមត្រូវ ?
@@ -788,16 +689,13 @@ Q (EN): How long, in millimetres, is the gape of a brake pedal needed adjusting 
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: How long, in millimetres, is the gape of a brake pedal needed
-  adjusting to be accurately? The focus is on the appropriate action: 13mm. Show road markings and
-  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q034
 Q (KH): បើរង្វង់ដៃចង្កូតមានបន្ទាត់ផ្ចឹត០,៥០ម៉ែត្រ តើហ្សឺចង្កូតត្រូវរក្សាប៉ុន្មាន ?
@@ -813,15 +711,12 @@ Q (EN): If the steering wheel with a diameter of 0.5m, how many degrees is .....
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: If the steering wheel with a diameter of 0.5m, how many degrees is ...... steering wheel
-  left? The focus is on the appropriate action: Not more than 10 degrees. Show road markings and
-  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q035
 Q (KH): តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ ចំពោះដៃចង្កូត និងដងចង្កូត ?
@@ -837,15 +732,12 @@ Q (EN): What are the main check at the steering wheel and steering pedal?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: What are the main check at the steering wheel and steering pedal? The focus is on the
-  appropriate action: The looseness or stickiness, being cracked or broken.. Show road markings and
-  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q036
 Q (KH): តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ នៃធុងអាគុយ ?
@@ -860,16 +752,13 @@ Q (EN): What is the main check of battery case?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What is the main check of battery case? The focus is on the
-  appropriate action: The quality and the level of water of the battery.. Show road markings and
-  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q037
 Q (KH): តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វី ចំពោះសាក់ស៊ីរថយន្ត ?
@@ -884,16 +773,13 @@ Q (EN): What shall drivers check for the vehicle’s chassis?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  vehicle mechanical inspection scene at a Cambodian roadside garage, Khmer mechanic in work clothes
-  with tools, natural daylight, Cambodian shop-house architecture in background. Visual context
-  involves a situation where: What shall drivers check for the vehicle’s chassis? The focus is on
-  the appropriate action: The state of being cracked, bend, or broken.. Show road markings and
-  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 TCH-Q038
 Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចភ្លើងបំភ្លឺផ្លូវ (ហ្វា-កូត ) ?
@@ -909,12 +795,9 @@ Q (EN): What shall drivers check at the road light, headlights and coating light
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: What shall drivers check at the road light, headlights and coating lights? The focus is on
-  the appropriate action: The clearness and the process of them.. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.

@@ -17,16 +17,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: Vehicle 2 departs first, then vehicle 1. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q002
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -41,16 +38,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First vehicle 1 then followed by motorcylce 2.. Show road markings and traffic signs with
-  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q003
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -65,16 +59,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First number 2, next 1, and then 3.. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q004
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -89,16 +80,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First vehicle 1 then followed by motorcycle 2.. Show road markings and traffic signs with
-  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q005
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -113,16 +101,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: 3. First left turn vehicle 2, then 1 and 3. Show road markings and traffic signs with
-  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q006
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -138,15 +123,12 @@ Q (EN): What does this sign stand for?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: What does this sign stand for? The focus is on the appropriate action: 3. First number 4,
-  next left turn number 2, then 1 and 3 together leave at the same time.. Show road markings and
-  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q007
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -161,16 +143,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: 2. number 1 and number 2 go together, and then 3.. Show road markings and traffic signs
-  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q008
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -185,16 +164,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: 2. First number 2, next 3, and then 1.. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q009
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -209,16 +185,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: 3. Number 1 and 3 together leave at the same time, then 2.. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q010
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -233,16 +206,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: 2. First number 2, next 3, and then 1.. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q011
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -257,16 +227,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: 2. Number 1 and 2 together leave at the same time, then 3.. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q012
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -282,15 +249,12 @@ Q (EN): What does this sign stand for?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: What does this sign stand for? The focus is on the appropriate action: vehicle 1 and 2
-  together leave at the same time, then followed by motorcycle 3.. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q013
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -306,15 +270,12 @@ Q (EN): What does this sign stand for?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: What does this sign stand for? The focus is on the appropriate action: First vehicle 1,
-  next motorcycle 2, and then followed by left turn motorcycle 3.. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q014
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -329,16 +290,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First vehicle 1 and 3 together leave at the same time, and then followed motrocycle 2 and
-  4.. Show road markings and traffic signs with English text labels ONLY (absolutely no Khmer text,
-  no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in authentic
-  Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture
-  visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical
-  Khmer clothing, 4K, professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q015
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -353,16 +311,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: 2. First number 2, next 1, and then 3.. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q016
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -377,16 +332,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First motorcycle 1, next motorcycle 2, and left turn motorcycle 3, and then followed by
-  vehicle 4.. Show road markings and traffic signs with English text labels ONLY (absolutely no
-  Khmer text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q017
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -402,15 +354,12 @@ Q (EN): What does this sign stand for?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: What does this sign stand for? The focus is on the appropriate action: 3. Number 2 and 4
-  together leave at the same time then followed by left turn number 1 and 3 .. Show road markings
-  and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q018
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -425,16 +374,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: 2. First number 3, next 2, and then 1.. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q019
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -449,16 +395,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: 2. number 2 go first, then number 4, and then number 3 followed by number 1. Show road
-  markings and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer
-  script in the image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer
-  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible,
-  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K, professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q020
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -473,16 +416,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: 3. First number 1, next left turn number 2, and then number 3.. Show road markings and
-  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q021
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -497,16 +437,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: 2. First number 3, next 2, and then 1.. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q022
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -521,16 +458,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First vehicle 1, next vehicle 2, next vehicle 3, then vehicle 1.. Show road markings and
-  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q023
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -545,16 +479,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First number 2 and then number 1. Show road markings and traffic signs with English text
-  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 PRT-Q024
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -569,16 +500,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First vehicle 3, next vehicle 2 turns left, and then vehicle 1. Show road markings and
-  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q025
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -593,16 +521,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First number 2 and then number 1. Show road markings and traffic signs with English text
-  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 PRT-Q026
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -617,16 +542,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: Vehicles 1 and 3 together leave at the same time, vehicle 2 and 4 follow. Show road
-  markings and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer
-  script in the image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer
-  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible,
-  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K, professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q027
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -641,16 +563,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First vehicle 2, next vehicle 1 turns left, then vehicle 3.. Show road markings and
-  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q028
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -665,16 +584,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First vehicle 2; next left turn vehicle 1, and then vehicle 3.. Show road markings and
-  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q029
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -689,16 +605,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First left turn number 2, next 1 and 3 turn right. Show road markings and traffic signs
-  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q030
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -713,16 +626,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: Number 2 and 4 together leave at the same time, then vehicles 1 and 3 turn left one after
-  another. Show road markings and traffic signs with English text labels ONLY (absolutely no Khmer
-  text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q031
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -737,16 +647,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First vehicle 3, next vehicle 2 turns left, then vehicle 1. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q032
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -761,16 +668,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First vehicle 2, then vehicle 1 turns left.. Show road markings and traffic signs with
-  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q033
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -785,16 +689,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: Vehicles 1 and 3 leave together at the same time, then vehicle 2 and 4. Show road markings
-  and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q034
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -809,16 +710,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First vehicle 1 then vehicle 2. Show road markings and traffic signs with English text
-  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 PRT-Q035
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -833,16 +731,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First vehicle 1, next 2, next 3 turns left, and then vehicle 4. Show road markings and
-  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q036
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -857,16 +752,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First right turn number 2, next left turn number 4, then 3, and at last number 1 turns
-  left. Show road markings and traffic signs with English text labels ONLY (absolutely no Khmer
-  text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q037
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -881,16 +773,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First number 3, then waiting for 2, next 1, and then 3. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q038
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -905,16 +794,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First vehicle 3, next vehicle 2 turn left, and then vehicle 1. Show road markings and
-  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q039
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -929,17 +815,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First vehicles 2 and 4 together leave at the same time, then vehicle 3 turns right and
-  vehicle 1 turns left. Show road markings and traffic signs with English text labels ONLY
-  (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 PRT-Q040
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -954,16 +836,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: Vehicle 1 and 2 leave together at the same time then vehicle 3. Show road markings and
-  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q041
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -979,15 +858,12 @@ Q (EN): What does this sign stand for?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: What does this sign stand for? The focus is on the appropriate action: First number 4,
-  number 2 turns left, then 1 and 3 together leave at the same time. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q042
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1002,16 +878,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First vehicle 1, next 2, and then vehicles 3 and 4. Show road markings and traffic signs
-  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q043
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1027,15 +900,12 @@ Q (EN): What does this sign stand for?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: What does this sign stand for? The focus is on the appropriate action: First vehicle 2 goes
-  straight ahead then followed by vehicle 1 turns left. Show road markings and traffic signs with
-  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q044
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1051,15 +921,12 @@ Q (EN): What does this sign stand for?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: What does this sign stand for? The focus is on the appropriate action: vehicle 3 and
-  vehicle 1 leave first and turning one after another, then vehicle 2.. Show road markings and
-  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q045
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1074,16 +941,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First left turn vehicle 2 then number 1 and 3. Show road markings and traffic signs with
-  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q046
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1098,16 +962,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First vehicle 1, next left turn vehicle 2, then vehicle 3. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q047
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1122,16 +983,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: 2. First number 3, next number 2 turns left, and then number 1. Show road markings and
-  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q048
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1146,16 +1004,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First number 3 and 1, then number 2. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q049
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1170,16 +1025,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First number 1 and 2 then 3. Show road markings and traffic signs with English text labels
-  ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 PRT-Q050
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1194,16 +1046,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First left turn vehicle 1 the vehicle 2. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q051
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1218,16 +1067,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First number 3 then 1 and 2. Show road markings and traffic signs with English text labels
-  ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 PRT-Q052
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1242,16 +1088,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First left turn number 2, next 1, and then 3 turns left. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q053
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1266,16 +1109,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First number 2 and 4 together leave at the same time, then 1 and 3 turn left one after
-  another. Show road markings and traffic signs with English text labels ONLY (absolutely no Khmer
-  text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q054
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1290,16 +1130,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First number 1, then 2 and 3. Show road markings and traffic signs with English text
-  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 PRT-Q055
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1314,16 +1151,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First vehicle1 then 2 and 3. Show road markings and traffic signs with English text labels
-  ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 PRT-Q056
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1338,16 +1172,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First right turn number 2, next left turn number 4, then number 3 and 1. Show road
-  markings and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer
-  script in the image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer
-  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible,
-  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K, professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q057
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1362,16 +1193,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First number 1, after 2 and 3 alread left, then 1 moves on. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q058
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1387,15 +1215,12 @@ Q (EN): What does this sign stand for?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: What does this sign stand for? The focus is on the appropriate action: First number 4, next
-  vehicle 2 turns left, and then 1 and 3 together at the same time. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q059
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1410,16 +1235,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First vehicle 1, next 2, and the 3. Show road markings and traffic signs with English text
-  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 PRT-Q060
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1434,16 +1256,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First number 3, next 2, and then 1. Show road markings and traffic signs with English text
-  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 PRT-Q061
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1458,16 +1277,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First number 3, next 1, and then 4 and 2. Show road markings and traffic signs with
-  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q062
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1483,15 +1299,12 @@ Q (EN): What does this sign stand for?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: What does this sign stand for? The focus is on the appropriate action: First vehicles 1 and
-  2 together leave at the same time, then vehicle 3 turns left. Show road markings and traffic signs
-  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q063
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1506,16 +1319,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First right turn vehicle 1, next left turn vehicle 2, then vehicle 3. Show road markings
-  and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q064
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1530,16 +1340,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: 2. First number 1, next 2, and then 3. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q065
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1554,16 +1361,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: 2. First vehicle 2, next 3, and then 1.. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q066
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1578,16 +1382,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: 2. First number 2, next 3, and then 1.. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q067
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1602,16 +1403,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: First number 3, next 2 , and then1.. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q068
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1627,15 +1425,12 @@ Q (EN): What does this sign stand for?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: What does this sign stand for? The focus is on the appropriate action: First vehicle 1 and
-  2 leave together at the same time, then vehicle 3 turns left .. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q069
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1650,16 +1445,13 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: 3. Number 1 leaves first, vehicle 2 next and then 3.. Show road markings and traffic signs
-  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 PRT-Q070
 Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -1674,13 +1466,10 @@ Q (EN): What does this sign stand for?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
-  context involves a situation where: What does this sign stand for? The focus is on the appropriate
-  action: Vehicle 1 departs first, next vehicle 2. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.

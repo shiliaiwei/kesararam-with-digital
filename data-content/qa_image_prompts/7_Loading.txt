@@ -17,16 +17,13 @@ Q (EN): Loading goods, how long is allowed to load protruded to the back of the 
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  loading and unloading scene on a Cambodian road or market area, cargo truck, Cambodian workers in
-  typical Khmer work clothes, daytime. Visual context involves a situation where: Loading goods, how
-  long is allowed to load protruded to the back of the truck with red cloth at the end? The focus is
-  on the appropriate action: 03m. Show road markings and traffic signs with English text labels ONLY
-  (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 LDG-Q002
 Q (KH): បើរថយន្តមានទទឹងប្រវែង ២,៥ ម៉ែត្រ តើអនុញ្ញាតឲ្យបន្ទុកលយហួសទៅសងខាងរថយន្តប្រវែងប៉ុន្មាន ?
@@ -41,16 +38,13 @@ Q (EN): If the width of the vehicle is 2.5m, how long is allowed to load goods p
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  loading and unloading scene on a Cambodian road or market area, cargo truck, Cambodian workers in
-  typical Khmer work clothes, daytime. Visual context involves a situation where: If the width of
-  the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?
-  The focus is on the appropriate action: Not allow at all.. Show road markings and traffic signs
-  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 LDG-Q003
 Q (KH): ក្នុងការបើកបរនៅលើផ្លូវជាតិ #៤ តើទំងន់សរុបអតិបរមារបស់រថយន្តដែលមានភ្លៅ ៣ (កង់១០) ត្រូវអនុញ្ញាតត្រឹមប៉ុន្មានតោន ?
@@ -65,16 +59,13 @@ Q (EN): Driving on National road 4, how many tons is a maximum weight of vehicle
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  loading and unloading scene on a Cambodian road or market area, cargo truck, Cambodian workers in
-  typical Khmer work clothes, daytime. Visual context involves a situation where: Driving on
-  National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels)
-  allowed? The focus is on the appropriate action: 25T. Show road markings and traffic signs with
-  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 LDG-Q004
 Q (KH): ក្នុងការបើកបរនៅលើផ្លូវជាតិ #៤ តើទំងន់សរុបអតិបរមារបស់រថយន្តដែលមានភ្លៅ ៤ (កង់១២) ត្រូវអនុញ្ញាតត្រឹមប៉ុន្មានតោន ?
@@ -89,16 +80,13 @@ Q (EN): Driving on National road 4, how many tons is a maximum weight of vehicle
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  loading and unloading scene on a Cambodian road or market area, cargo truck, Cambodian workers in
-  typical Khmer work clothes, daytime. Visual context involves a situation where: Driving on
-  National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels)
-  allowed? The focus is on the appropriate action: 35T. Show road markings and traffic signs with
-  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 LDG-Q005
 Q (KH): ក្នុងការបើកបរនៅលើផ្លូវជាតិ #៤ តើទំងន់សរុបអតិបរមារបស់រថយន្តដែលមានភ្លៅ ៥ (កង់១៦) ត្រូវអនុញ្ញាតត្រឹមប៉ុន្មានតោន ?
@@ -113,16 +101,13 @@ Q (EN): Driving on National road 4, how many tons is a maximum weight of vehicle
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  loading and unloading scene on a Cambodian road or market area, cargo truck, Cambodian workers in
-  typical Khmer work clothes, daytime. Visual context involves a situation where: Driving on
-  National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels)
-  allowed? The focus is on the appropriate action: 40T. Show road markings and traffic signs with
-  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 LDG-Q006
 Q (KH): ក្នុងការផ្ទុកទំនិញ តើអនុញ្ញាតឲ្យបន្ទុកលយហួសទៅខាងក្រោយរថយន្តប្រវែងប៉ុន្មានដោយគ្មានដាក់សញ្ញាអ្វីសំគាល់ ?
@@ -137,15 +122,13 @@ Q (EN): Loading goods, how long protruded to the back of vehicle is allowed with
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  loading and unloading scene on a Cambodian road or market area, cargo truck, Cambodian workers in
-  typical Khmer work clothes, daytime. Visual context involves a situation where: Loading goods, how
-  long protruded to the back of vehicle is allowed without sign? The focus is on the appropriate
-  action: 01m. Show road markings and traffic signs with English text labels ONLY (absolutely no
-  Khmer text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 LDG-Q007
 Q (KH): ក្នុងការផ្ទុកទំនិញ តើអនុញ្ញាតឲ្យបន្ទុកមានកំពស់ប្រវែងប៉ុន្មានម៉ែត្រពីដី ?
@@ -160,15 +143,13 @@ Q (EN): Loading goods, how high of goods from the earth is allowed?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  loading and unloading scene on a Cambodian road or market area, cargo truck, Cambodian workers in
-  typical Khmer work clothes, daytime. Visual context involves a situation where: Loading goods, how
-  high of goods from the earth is allowed? The focus is on the appropriate action: Not more than
-  4.20m. Show road markings and traffic signs with English text labels ONLY (absolutely no Khmer
-  text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 LDG-Q008
 Q (KH): តើទំងន់អតិបរមាសង្កត់លើភ្លៅទោលនីមួយៗ (កង់៤) នៃរថយន្ត ឬ រ៉ឺម៉ក ត្រូវអនុញ្ញាតត្រឹមប៉ុន្មាន ?
@@ -183,15 +164,13 @@ Q (EN): What is maximum weight on each axle (four wheels) of vehicle or trailer 
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  loading and unloading scene on a Cambodian road or market area, cargo truck, Cambodian workers in
-  typical Khmer work clothes, daytime. Visual context involves a situation where: What is maximum
-  weight on each axle (four wheels) of vehicle or trailer allowed? The focus is on the appropriate
-  action: 10T. Show road markings and traffic signs with English text labels ONLY (absolutely no
-  Khmer text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 LDG-Q009
 Q (KH): ក្នុងការបើកបរនៅលើផ្លូវជាតិ #៤ តើទំងន់សរុបអតិបរមារបស់រថយន្តដែលមានភ្លៅ ២ (កង់៦) ត្រូវអនុញ្ញាតត្រឹមប៉ុន្មាន?
@@ -206,16 +185,13 @@ Q (EN): Driving on National road 4, how many tons is a maximum weight of vehicle
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  loading and unloading scene on a Cambodian road or market area, cargo truck, Cambodian workers in
-  typical Khmer work clothes, daytime. Visual context involves a situation where: Driving on
-  National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?
-  The focus is on the appropriate action: 16T. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 LDG-Q010
 Q (KH): តើទំងន់អតិបរមាសង្កត់លើភ្លៅភ្លោះ (កង់៨) នៃរថយន្ត ឬរ៉ឺម៉កត្រូវអនុញ្ញាតត្រឹមប៉ុន្មាន ?
@@ -230,15 +206,13 @@ Q (EN): What is maximum weight on twin axles (eight wheels) of vehicle or traile
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  loading and unloading scene on a Cambodian road or market area, cargo truck, Cambodian workers in
-  typical Khmer work clothes, daytime. Visual context involves a situation where: What is maximum
-  weight on twin axles (eight wheels) of vehicle or trailer allowed? The focus is on the appropriate
-  action: 19T. Show road markings and traffic signs with English text labels ONLY (absolutely no
-  Khmer text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 LDG-Q011
 Q (KH): ក្នុងការផ្ទុកទំនិញដែលមានទំហំតូចហើយធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកយ៉ាងដូចម្ដេច ?
@@ -253,16 +227,13 @@ Q (EN): Loading small goods but heavy, how shall you arrange to load?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  loading and unloading scene on a Cambodian road or market area, cargo truck, Cambodian workers in
-  typical Khmer work clothes, daytime. Visual context involves a situation where: Loading small
-  goods but heavy, how shall you arrange to load? The focus is on the appropriate action: Load in
-  the center of the vehicle.. Show road markings and traffic signs with English text labels ONLY
-  (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 LDG-Q012
 Q (KH): ចំពោះរថយន្តដឹកអង្គធាតុគ្រោះថ្នាក់ ដូចជា ហ្គាស ប្រេងឥន្ធនៈ តើត្រូវមានដាក់អ្វីជាសញ្ញាសំគាល់ ?
@@ -277,16 +248,13 @@ Q (EN): For vehicle loading accident substance like gas or fuel, what sign shall
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  loading and unloading scene on a Cambodian road or market area, cargo truck, Cambodian workers in
-  typical Khmer work clothes, daytime. Visual context involves a situation where: For vehicle
-  loading incident substance like gas or fuel, what sign shall install to notice? The focus is on
-  the appropriate action: Install the sign of the substance.. Show road markings and traffic signs
-  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 LDG-Q013
 Q (KH): តើទំងន់អតិបរមាសង្កត់លើភ្លៅទោលខាងមុខ (កង់ ២ ) នៃរថយន្តត្រូវអនុញ្ញាតត្រឹមប៉ុន្មាន ?
@@ -301,16 +269,13 @@ Q (EN): What is maximum weight on the front single axles (two wheels) of vehicle
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  loading and unloading scene on a Cambodian road or market area, cargo truck, Cambodian workers in
-  typical Khmer work clothes, daytime. Visual context involves a situation where: What is maximum
-  weight on the front single axles (two wheels) of vehicle or trailer allowed? The focus is on the
-  appropriate action: 6T. Show road markings and traffic signs with English text labels ONLY
-  (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 LDG-Q014
 Q (KH): ក្នុងការផ្ទុកទំនិញ តើអនុញ្ញាតឲ្យបន្ទុកលយហួសទៅមុខរថយន្តប្រវែងប៉ុន្មានម៉ែត្រ ?
@@ -325,13 +290,10 @@ Q (EN): Loading goods, how many meters is allowed to load goods protruded to the
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  loading and unloading scene on a Cambodian road or market area, cargo truck, Cambodian workers in
-  typical Khmer work clothes, daytime. Visual context involves a situation where: Loading goods, how
-  many meters is allowed to load goods protruded to the front of the vehicle? The focus is on the
-  appropriate action: Not allow at all.. Show road markings and traffic signs with English text
-  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------

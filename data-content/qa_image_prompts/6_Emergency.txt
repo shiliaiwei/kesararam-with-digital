@@ -17,17 +17,13 @@ Q (EN): When a victim having wound with blooding, how can you help stop blooding
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  emergency situation on a Cambodian road, ambulance or police car with flashing lights, Cambodian
-  bystanders in Khmer attire, dramatic golden-hour lighting, urgent atmosphere. Visual context
-  involves a situation where: When a person having affected area with injury, how can you help stop
-  injury? The focus is on the appropriate action: Use good cloth or bandage to tight around the
-  affected area, fasten a bit tightly.. Show road markings and traffic signs with English text
-  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 EMG-Q002
 Q (KH): នៅពេលមានជនរងគ្រោះថ្នាក់ចរាចរណ៍តើមានចំនុចសំខាន់ៗអ្វីខ្លះ ដែលអ្នកធ្វើការត្រួតពិនិត្យ ដើម្បីជួយជនរងគ្រោះ ?
@@ -42,17 +38,13 @@ Q (EN): When there is someone has an accident, what are main points needed to ch
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  emergency situation on a Cambodian road, ambulance or police car with flashing lights, Cambodian
-  bystanders in Khmer attire, dramatic golden-hour lighting, urgent atmosphere. Visual context
-  involves a situation where: When there is someone has an incident, what are main points needed to
-  check to help him or her? The focus is on the appropriate action: Unconsciousness, no breathing,
-  no pulse, injury, and fracture.. Show road markings and traffic signs with English text labels
-  ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 EMG-Q003
 Q (KH): តើអ្នកដឹងថាជីពចរជនរងគ្រោះមិនដើរដោយសារអ្វី ?
@@ -68,15 +60,12 @@ Q (EN): How do you realize that the victim’s pulse does not work?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: How do you realize that the person’s pulse does not work? The focus is on the appropriate
-  action: By using fingers to press at the a side of the neck.. Show road markings and traffic signs
-  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 EMG-Q004
 Q (KH): តើអ្នកដឹងថាជនរងគ្រោះបាត់ដង្ហើមដោយសារអ្វី ?
@@ -91,16 +80,13 @@ Q (EN): How do you realize that the victim is not breathing?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  emergency situation on a Cambodian road, ambulance or police car with flashing lights, Cambodian
-  bystanders in Khmer attire, dramatic golden-hour lighting, urgent atmosphere. Visual context
-  involves a situation where: How do you realize that the person is not breathing? The focus is on
-  the appropriate action: The person does not have movement up and down and no breathing through
-  mouth and nose.. Show road markings and traffic signs with English text labels ONLY (absolutely no
-  Khmer text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 EMG-Q005
 Q (KH): តើអ្នកអាចដឹងថាជនរងគ្រោះបាក់ដៃ ឬបាក់ជើងយ៉ាងដូចម្ដេច ?
@@ -115,17 +101,13 @@ Q (EN): How do you realize that the victim got broken arm(s) or leg(s)?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  emergency situation on a Cambodian road, ambulance or police car with flashing lights, Cambodian
-  bystanders in Khmer attire, dramatic golden- hour lighting, urgent atmosphere. Visual context
-  involves a situation where: How do you realize that the person got broken arm(s) or leg(s)? The
-  focus is on the appropriate action: Realizing that the person gets a lot of hurt at the arms and
-  legs when he/she want to move his/her them.. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 EMG-Q006
 Q (KH): នៅពេលជនរងគ្រោះបាត់ដង្ហើម និងជីពចរមិនដើរ តើត្រូវជួយធ្វើចលនាបេះដូងដូចម្ដេច ?
@@ -140,17 +122,13 @@ Q (EN): When the victim cannot breathe and the pulse does not work, how do yo
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  emergency situation on a Cambodian road, ambulance or police car with flashing lights, Cambodian
-  bystanders in Khmer attire, dramatic golden- hour lighting, urgent atmosphere. Visual context
-  involves a situation where: When the person cannot breathe and the pulse does not work, how do you
-  help cardiopulmonary resuscitation (CPR)? The focus is on the appropriate action: Massage 15 times
-  and 2 times of mouth-to-mouth resuscitation. Show road markings and traffic signs with English
-  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 EMG-Q007
 Q (KH): បើជនរងគ្រោះសន្លប់អ្នកបានទះស្មា ហើយនៅតែមិនដឹងខ្លួន តើអ្នកត្រូវជួយជនរងគ្រោះដូចម្ដេច ?
@@ -165,17 +143,13 @@ Q (EN): If victim is unconscious. How can you help if you touch his/her shoul
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  emergency situation on a Cambodian road, ambulance or police car with flashing lights, Cambodian
-  bystanders in Khmer attire, dramatic golden-hour lighting, urgent atmosphere. Visual context
-  involves a situation where: If person is unconscious. How can you help if you touch his/her
-  shoulders but he/she is till unconscious? The focus is on the appropriate action: Let him/her lie
-  down or let him/her incline to one side so that the air can easily get through. Show road markings
-  and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 EMG-Q008
 Q (KH): បើជនរងគ្រោះបាត់ដង្ហើម តើអ្នកអាចជួយជនរងគ្រោះនោះយ៉ាងដូចម្ដេច ?
@@ -190,17 +164,13 @@ Q (EN): If the victim is not breathing, how can you help him or her?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  emergency situation on a Cambodian road, ambulance or police car with flashing lights, Cambodian
-  bystanders in Khmer attire, dramatic golden-hour lighting, urgent atmosphere. Visual context
-  involves a situation where: If the person is not breathing, how can you help him or her? The focus
-  is on the appropriate action: Do the CPR by blowing the air in through the person’s mouth and
-  press his or her chest by two hands.. Show road markings and traffic signs with English text
-  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 EMG-Q009
 Q (KH): តើអ្នកអាចជួយជនរងគ្រោះបាត់ដង្ហើមក្នុងរយៈពេលប៉ុន្មាននាទី ?
@@ -215,16 +185,13 @@ Q (EN): How many minutes can you help victim with no breathing?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  emergency situation on a Cambodian road, ambulance or police car with flashing lights, Cambodian
-  bystanders in Khmer attire, dramatic golden- hour lighting, urgent atmosphere. Visual context
-  involves a situation where: How many minutes can you help person with no breathing? The focus is
-  on the appropriate action: 2 to 3 minutes. Show road markings and traffic signs with English text
-  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
 
 EMG-Q010
 Q (KH): បើជនរងគ្រោះបាត់ដង្ហើម តើអ្នកត្រូវការផ្លុំខ្យល់បញ្ជូលតាមមាត់ជនរងគ្រោះប៉ុន្មានដងក្នុង ១នាទី ?
@@ -239,16 +206,13 @@ Q (EN): If the victim is not breathing, how many times per minutes shall you blo
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  emergency situation on a Cambodian road, ambulance or police car with flashing lights, Cambodian
-  bystanders in Khmer attire, dramatic golden-hour lighting, urgent atmosphere. Visual context
-  involves a situation where: If the person is not breathing, how many times per minutes shall you
-  blow the air in through his or her mouth? The focus is on the appropriate action: About 15 times
-  per minute. Show road markings and traffic signs with English text labels ONLY (absolutely no
-  Khmer text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 EMG-Q011
 Q (KH): នៅពេលជនរងគ្រោះបាត់ដង្ហើម និងជីពចរមិនដើរ ហើយអ្នកមានតែម្នាក់ឯង តើត្រូវសង្កត់ធ្វើចលនាបេះដូង និងផ្លុំខ្យល់ដូចម្ដេច ?
@@ -263,16 +227,13 @@ Q (EN): When victim not breathing and pulse not working and you are alone, how s
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  emergency situation on a Cambodian road, ambulance or police car with flashing lights, Cambodian
-  bystanders in Khmer attire, dramatic golden-hour lighting, urgent atmosphere. Visual context
-  involves a situation where: When person not breathing and pulse not working and you are alone, how
-  shall you do PCR and blow the air in? The focus is on the appropriate action: Press 15 times and
-  blow 2 times. Show road markings and traffic signs with English text labels ONLY (absolutely no
-  Khmer text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 EMG-Q012
 Q (KH): តើអ្នកអាចប៉ះពាល់អ្នករងគ្រោះថ្នាក់ចរាចរណ៍ បានឬទេ ?
@@ -287,16 +248,13 @@ Q (EN): Can you touch an accident victim?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  emergency situation on a Cambodian road, ambulance or police car with flashing lights, Cambodian
-  bystanders in Khmer attire, dramatic golden- hour lighting, urgent atmosphere. Visual context
-  involves a situation where: Can you touch an incident person? The focus is on the appropriate
-  action: Yes, by helping through First health condition.. Show road markings and traffic signs with
-  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
-  lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 EMG-Q013
 Q (KH): បើដឹងថាជនរងគ្រោះបាក់ដៃ តើអ្នកត្រូវធ្វើយ៉ាងដូចម្ដេច ?
@@ -312,16 +270,12 @@ Q (EN): Realizing the victim got broken arm, how shall you do?
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
-  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
-  where: Realizing the person got broken arm, how shall you do? The focus is on the appropriate
-  action: Leave the broken arm with no moving then use metal or wooden board to splint the arm, and
-  then tie with cloth or scaft at the neck to suport the broken arm.. Show road markings and traffic
-  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
-  cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 EMG-Q014
 Q (KH): តើរយៈពេលបាត់ដង្ហើមប៉ុន្មាននាទី ដែលធ្វើឲ្យជនរងគ្រោះស្លាប់ ?
@@ -336,16 +290,13 @@ Q (EN): How many minutes of no breathing does it cause the victim dead?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  emergency situation on a Cambodian road, ambulance or police car with flashing lights, Cambodian
-  bystanders in Khmer attire, dramatic golden-hour lighting, urgent atmosphere. Visual context
-  involves a situation where: How many minutes of no breathing does it cause the person
-  unresponsive? The focus is on the appropriate action: From 5 minutes and up.. Show road markings
-  and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
-  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
-  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
-  professional, cinematic lighting, sharp details.
-----------------------------------------------------------------------
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 
 EMG-Q015
 Q (KH): បើជនរងគ្រោះបាត់ដង្ហើម និងជីពចរមិនដើរ តើអ្នកអាចជួយជនរងគ្រោះនោះដូចម្ដេច ?
@@ -360,14 +311,10 @@ Q (EN): If victim no breathing and the pulse no working, how can you help?
 
 IMAGE PROMPT:
   Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
-  emergency situation on a Cambodian road, ambulance or police car with flashing lights, Cambodian
-  bystanders in Khmer attire, dramatic golden-hour lighting, urgent atmosphere. Visual context
-  involves a situation where: If person no breathing and the pulse no working, how can you help? The
-  focus is on the appropriate action: Blow the air in through his or her mouth and bring the two
-  hands press his or her chest.. Show road markings and traffic signs with English text labels ONLY
-  (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Show road markings, traffic signs
+  (symbols only, absolutely no text), and personnel/people. Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
-----------------------------------------------------------------------
