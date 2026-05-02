@@ -50,14 +50,14 @@ PRT-Q006
 
 PRT-Q007
 [thoughtful] ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
-[helpful] ចម្លើយគឺ [clear] #១ ទៅមុន បន្ទាប់មក #២ រួច #៣
+[helpful] ចម្លើយគឺ [clear] #១ និង #២ ទៅព្រមគ្នា រួច #៣
 [thoughtful] What does this sign stand for?
 [helpful] The answer is [clear] number 1 and number 2 go together, and then 3.
 ----------------------------------------------------------------------
 
 PRT-Q008
 [wondering] ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
-[supportive] ចម្លើយគឺ [definitive] #១ និង #2 ទៅព្រមគ្នា រួចហើយ #3
+[supportive] ចម្លើយគឺ [definitive] #២ ទៅមុន បន្ទាប់មក #៣ រួច #១
 [wondering] What does this sign stand for?
 [supportive] The answer is [definitive] First number 2, next 3, and then 1.
 ----------------------------------------------------------------------
@@ -204,7 +204,7 @@ PRT-Q028
 
 PRT-Q029
 [inquiring] ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
-[encouraging] ចម្លើយគឺ [certain] #២បត់ឆ្វេងទៅមុន បន្ទាប់មក #១ និង #៣បត់ឆ្វេង
+[encouraging] ចម្លើយគឺ [certain] #២បត់ឆ្វេងទៅមុន បន្ទាប់មក #១ និង #៣បត់ស្ដាំ
 [inquiring] What does this sign stand for?
 [encouraging] The answer is [certain] First left turn number 2, next 1 and 3 turn right
 ----------------------------------------------------------------------

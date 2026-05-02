@@ -309,7 +309,7 @@ RSG-Q043
 
 RSG-Q044
 [inquiring] ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
-[encouraging] ចម្លើយគឺ [certain] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបត់ឆ្វេងត្រង់ផ្លូវប្រសព្វខាងមុខ
+[encouraging] ចម្លើយគឺ [certain] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបត់ស្ដាំត្រង់ផ្លូវប្រសព្វខាងមុខ
 [inquiring] What does this sign stand for?
 [encouraging] The answer is [certain] Require all vehicles turn right at the intersection ahead
 ----------------------------------------------------------------------
@@ -1226,7 +1226,7 @@ RSG-Q174
 
 RSG-Q175
 [intrigue] ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
-[inspiration] ចម្លើយគឺ [confident] ប្រយ័ត្នមានផ្លូវកោងទៅឆ្វេង ហើយកោងទៅស្ដាំនៅខាងមុខ
+[inspiration] ចម្លើយគឺ [confident] ប្រយ័ត្នខាងមុខមានផ្លូវកោងទៅស្ដាំ ហើយកោងទៅឆ្វេង
 [intrigue] What does this sign stand for?
 [inspiration] The answer is [confident] Beware of right bend first ahead
 ----------------------------------------------------------------------
@@ -1275,7 +1275,7 @@ RSG-Q181
 
 RSG-Q182
 [thoughtful] ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
-[helpful] ចម្លើយគឺ [clear] ចប់ការកំណត់ល្បឿនអប្បបរមា៣០គីឡូម៉ែត្រក្នុងមួយម៉ោង
+[helpful] ចម្លើយគឺ [clear] ចប់ការកំណត់ល្បឿនអតិបរមា៣០គីឡូម៉ែត្រក្នុងមួយម៉ោង
 [thoughtful] What does this sign stand for?
 [helpful] The answer is [clear] End of maximum speed limit of 30km/h
 ----------------------------------------------------------------------

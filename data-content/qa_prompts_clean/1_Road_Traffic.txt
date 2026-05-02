@@ -772,7 +772,7 @@ RTL-Q109
 
 RTL-Q110
 [intrigue] តើកុមារដែលមានអាយុក្រោម ១០ឆ្នាំ អាចឲ្យអង្គុយនៅកៅអីមុខនៃរថយន្តបានដែរឬទេ ?
-[inspiration] ចម្លើយគឺ [confident] មិនអាចអង្គុយបានទេ
+[inspiration] ចម្លើយគឺ [confident] អាចបាន
 [intrigue] Can a child under 10 years old sit at the front seat, in the cabin?
 [inspiration] The answer is [confident] Can
 ----------------------------------------------------------------------

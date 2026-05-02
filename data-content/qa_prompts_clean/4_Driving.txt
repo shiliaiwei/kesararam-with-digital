@@ -337,7 +337,7 @@ DRV-Q047
 
 DRV-Q048
 [wondering] តើអ្នកបើកបរដែលមានសុខភាពធម្មតា ត្រូវការរយៈពេលធ្វើប្រតិកម្មប៉ុន្មានវិនាទី ?
-[supportive] ចម្លើយគឺ [definitive] ១ វិនាទី
+[supportive] ចម្លើយគឺ [definitive] ១ នាទី
 [wondering] How long do healthy drivers need
 [supportive] The answer is [definitive] 1 minute
 ----------------------------------------------------------------------
