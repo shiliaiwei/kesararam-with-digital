@@ -16,16 +16,15 @@ Q (EN): Who can be infected HIV?
   3. Protitutes
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Who can be infected HIV?" Correct answer:
-  "Everyone". Scene: general Cambodian road safety awareness scene, diverse road users — pedestrians,
-  cyclists and motorists — Cambodian urban or suburban environment, daytime. Depict the correct
-  behavior — Everyone. Show road markings, traffic signs with English text labels and Khmer script,
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels written
-  in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
-  lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: Who can be infected health condition? The focus is on the appropriate action: Everyone.
+  Show road markings and traffic signs with English text labels ONLY (absolutely no Khmer text, no
+  Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in authentic
+  Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture
+  visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical
+  Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 GNL-Q002
@@ -40,17 +39,16 @@ Q (EN): How can HIV infect?
   3. Through sex, shared needles, contaminated blood transfusions, and from mother to child ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "How can HIV infect?" Correct answer: "Through
-  sex, shared needles, contaminated blood transfusions, and from mother to child". Scene: general
-  Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and motorists —
-  Cambodian urban or suburban environment, daytime. Depict the correct behavior — Through sex, shared
-  needles, contaminated blood transfusions, and from mother to child. Show road markings, traffic
-  signs with English text labels and Khmer script, Cambodian characters (driver / pedestrian /
-  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
-  Cambodian architecture visible, road signs and labels written in English with Khmer script below,
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: How can health condition infect? The focus is on the appropriate action: Through intimate
+  contact, shared needles, contaminated injury transfusions, and from mother to child. Show road
+  markings and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer
+  script in the image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer
+  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible,
   authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 GNL-Q003
@@ -65,16 +63,16 @@ Q (EN): Up to now, is there a medicine that can cure the HIV/AIDS?
   3. Traditional medicine can cure the disease.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Up to now, is there a medicine that can cure
-  the HIV/AIDS?" Correct answer: "No, there isn’t.". Scene: general Cambodian road safety awareness
-  scene, diverse road users — pedestrians, cyclists and motorists — Cambodian urban or suburban
-  environment, daytime. Depict the correct behavior — No, there isn’t. Show road markings, traffic
-  signs with English text labels and Khmer script, Cambodian characters (driver / pedestrian /
-  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
-  Cambodian architecture visible, road signs and labels written in English with Khmer script below,
-  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: Up to now, is there a medicine that can cure the health condition/health condition? The
+  focus is on the appropriate action: No, there isn’t.. Show road markings and traffic signs with
+  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 GNL-Q004
@@ -89,16 +87,16 @@ Q (EN): How can you realize that someone have HIV?
   3. By testing the blood. ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "How can you realize that someone have HIV?"
-  Correct answer: "By testing the blood.". Scene: general Cambodian road safety awareness scene,
-  diverse road users — pedestrians, cyclists and motorists — Cambodian urban or suburban environment,
-  daytime. Depict the correct behavior — By testing the blood. Show road markings, traffic signs with
-  English text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, road signs and labels written in English with Khmer script below, authentic
-  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K
-  ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: How can you realize that someone have health condition? The focus is on the appropriate
+  action: By testing the injury.. Show road markings and traffic signs with English text labels ONLY
+  (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 GNL-Q005
@@ -113,17 +111,17 @@ Q (EN): Are any measures that can prevent yourself from being infected with HIV 
   3. Have sex with many partners.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Are any measures that can prevent yourself
-  from being infected with HIV and sexually transmitted diseases?" Correct answer: "Have sex with
-  condom properly and all time". Scene: general Cambodian road safety awareness scene, diverse road
-  users — pedestrians, cyclists and motorists — Cambodian urban or suburban environment, daytime.
-  Depict the correct behavior — Have sex with condom properly and all time. Show road markings,
-  traffic signs with English text labels and Khmer script, Cambodian characters (driver / pedestrian /
-  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
-  Cambodian architecture visible, road signs and labels written in English with Khmer script below,
-  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: Are any measures that can prevent yourself from being infected with health condition and
+  intimate contact transmitted diseases? The focus is on the appropriate action: Have intimate
+  contact with condom properly and all time. Show road markings and traffic signs with English text
+  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
+  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 GNL-Q006
@@ -138,16 +136,16 @@ Q (EN): What disease that can push to infect HIV?
   3. diabetes
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What disease that can push to infect HIV?"
-  Correct answer: "Sexually transmitted disease". Scene: general Cambodian road safety awareness
-  scene, diverse road users — pedestrians, cyclists and motorists — Cambodian urban or suburban
-  environment, daytime. Depict the correct behavior — Sexually transmitted disease. Show road
-  markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: What disease that can push to infect health condition? The focus is on the appropriate
+  action: intimate contact transmitted disease. Show road markings and traffic signs with English
+  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 GNL-Q007
@@ -162,16 +160,16 @@ Q (EN): Is a person with HIV allowed to take a test for driver license?
   3. Wait until the disease is recovered.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Is a person with HIV allowed to take a test
-  for driver license?" Correct answer: "Yes". Scene: general Cambodian road safety awareness scene,
-  diverse road users — pedestrians, cyclists and motorists — Cambodian urban or suburban environment,
-  daytime. Depict the correct behavior — Yes. Show road markings, traffic signs with English text
-  labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer
-  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, road
-  signs and labels written in English with Khmer script below, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic
-  render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: Is a person with health condition allowed to take a test for driver license? The focus is
+  on the appropriate action: Yes. Show road markings and traffic signs with English text labels ONLY
+  (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 GNL-Q008
@@ -186,16 +184,16 @@ Q (EN): Realizing the driver with HIV, dare you ride on that car?
   3. Share the information to others.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Realizing the driver with HIV, dare you ride
-  on that car?" Correct answer: "Dare". Scene: general Cambodian road safety awareness scene, diverse
-  road users — pedestrians, cyclists and motorists — Cambodian urban or suburban environment, daytime.
-  Depict the correct behavior — Dare. Show road markings, traffic signs with English text labels and
-  Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
-  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs
-  and labels written in English with Khmer script below, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic
-  render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: Realizing the driver with health condition, dare you ride on that car? The focus is on the
+  appropriate action: Dare. Show road markings and traffic signs with English text labels ONLY
+  (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 GNL-Q009
@@ -210,17 +208,16 @@ Q (EN): Realizing that you have HIV, what practice shall you choose?
   3. Do not care about looking after the health.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Realizing that you have HIV, what practice
-  shall you choose?" Correct answer: "Have sex using condom properly and all time.". Scene: general
-  Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and motorists —
-  Cambodian urban or suburban environment, daytime. Depict the correct behavior — Have sex using
-  condom properly and all time. Show road markings, traffic signs with English text labels and Khmer
-  script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels
-  written in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
-  lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: Realizing that you have health condition, what practice shall you choose? The focus is on
+  the appropriate action: Have intimate contact using condom properly and all time.. Show road
+  markings and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer
+  script in the image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer
+  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible,
+  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
+  clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 GNL-Q010
@@ -235,17 +232,16 @@ Q (EN): On what principle is blood testing for HIV conducted?
   3. Force to do so.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "On what principle is blood testing for HIV
-  conducted?" Correct answer: "Voluntary, confidential, and counseling". Scene: general Cambodian road
-  safety awareness scene, diverse road users — pedestrians, cyclists and motorists — Cambodian urban
-  or suburban environment, daytime. Depict the correct behavior — Voluntary, confidential, and
-  counseling. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: On what principle is injury testing for health condition conducted? The focus is on the
+  appropriate action: Voluntary, confidential, and counseling. Show road markings and traffic signs
+  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
   characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 GNL-Q011
@@ -260,16 +256,16 @@ Q (EN): Realizing someone with HIV at your workplace, what shall you do?
   3. Let him or her work as usual. ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Realizing someone with HIV at your workplace,
-  what shall you do?" Correct answer: "Let him or her work as usual.". Scene: general Cambodian road
-  safety awareness scene, diverse road users — pedestrians, cyclists and motorists — Cambodian urban
-  or suburban environment, daytime. Depict the correct behavior — Let him or her work as usual. Show
-  road markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: Realizing someone with health condition at your workplace, what shall you do? The focus is
+  on the appropriate action: Let him or her work as usual.. Show road markings and traffic signs
+  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 GNL-Q012
@@ -284,14 +280,14 @@ Q (EN): How shall you do toward a victim of HIV?
   3. The state is in charge of this case.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "How shall you do toward a victim of HIV?"
-  Correct answer: "Suport and not discrimination". Scene: general Cambodian road safety awareness
-  scene, diverse road users — pedestrians, cyclists and motorists — Cambodian urban or suburban
-  environment, daytime. Depict the correct behavior — Suport and not discrimination. Show road
-  markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: How shall you do toward a person of health condition? The focus is on the appropriate
+  action: Suport and not discrimination. Show road markings and traffic signs with English text
+  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
+  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------

@@ -16,16 +16,16 @@ Q (EN): What is an accident to be known in driving?
   3. Road and road users. ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What is an accident to be known in driving?"
-  Correct answer: "Road and road users.". Scene: driver's-eye view inside a vehicle on a Cambodian
-  road, dashboard and steering wheel visible, Cambodian rural landscape through windshield, warm
-  afternoon daylight. Depict the correct behavior — Road and road users. Show road markings, traffic
-  signs with English text labels and Khmer script, Cambodian characters (driver / pedestrian /
-  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
-  Cambodian architecture visible, road signs and labels written in English with Khmer script below,
-  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: What is an incident to be known in driving? The focus is on the appropriate
+  action: Road and road users.. Show road markings and traffic signs with English text labels ONLY
+  (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q002
@@ -40,17 +40,16 @@ Q (EN): Knowing a wheel is flat, what shall you do?
   3. Slow down, firmly hold the steering wheel or/and steer follow the lane. ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Knowing a wheel is flat, what shall you do?"
-  Correct answer: "Slow down, firmly hold the steering wheel or/and steer follow the lane.". Scene:
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
-  Cambodian rural landscape through windshield, warm afternoon daylight. Depict the correct behavior —
-  Slow down, firmly hold the steering wheel or/and steer follow the lane. Show road markings, traffic
-  signs with English text labels and Khmer script, Cambodian characters (driver / pedestrian /
-  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
-  Cambodian architecture visible, road signs and labels written in English with Khmer script below,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: Knowing a wheel is flat, what shall you do? The focus is on the appropriate
+  action: Slow down, firmly hold the steering wheel or/and steer follow the lane.. Show road
+  markings and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer
+  script in the image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer
+  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible,
   authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q003
@@ -65,17 +64,16 @@ Q (EN): Motorcycle using clutch lever, how shall drivers do to change gear shift
   3. Press both the brake and the clutch
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Motorcycle using clutch lever, how shall
-  drivers do to change gear shift up or down?" Correct answer: "Press the clutch". Scene: driver's-eye
-  view inside a vehicle on a Cambodian road, dashboard and steering wheel visible, Cambodian rural
-  landscape through windshield, warm afternoon daylight. Depict the correct behavior — Press the
-  clutch. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: Motorcycle using clutch lever, how shall drivers do to change gear shift up or
+  down? The focus is on the appropriate action: Press the clutch. Show road markings and traffic
+  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q004
@@ -90,17 +88,16 @@ Q (EN): Driving at the speed of 30km/h on the flat, dry road, your motorcycle ha
   3. About 20m
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Driving at the speed of 30km/h on the flat,
-  dry road, your motorcycle has good condition of brakes and tires, how far is a braking distance?"
-  Correct answer: "About 10m". Scene: driver's-eye view inside a vehicle on a Cambodian road,
-  dashboard and steering wheel visible, Cambodian rural landscape through windshield, warm afternoon
-  daylight. Depict the correct behavior — About 10m. Show road markings, traffic signs with English
-  text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic
-  Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture
-  visible, road signs and labels written in English with Khmer script below, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD
-  photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: Driving at the speed of 30km/h on the flat, dry road, your motorcycle has good
+  condition of brakes and tires, how far is a braking distance? The focus is on the appropriate
+  action: About 10m. Show road markings and traffic signs with English text labels ONLY (absolutely
+  no Khmer text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer)
+  in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
+  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q005
@@ -115,17 +112,16 @@ Q (EN): Inside a built-up area, you drive your motorcycle at 20km/h. How far at 
   3. At least 6m ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Inside a built-up area, you drive your
-  motorcycle at 20km/h. How far at least do you leave distance limit for motorcycles?" Correct answer:
-  "At least 6m". Scene: driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering
-  wheel visible, Cambodian rural landscape through windshield, warm afternoon daylight. Depict the
-  correct behavior — At least 6m. Show road markings, traffic signs with English text labels and Khmer
-  script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels
-  written in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
-  lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: Inside a built-up area, you drive your motorcycle at 20km/h. How far at least do you leave
+  distance limit for motorcycles? The focus is on the appropriate action: At least 6m. Show road
+  markings and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer
+  script in the image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer
+  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible,
+  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
+  clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q006
@@ -140,18 +136,16 @@ Q (EN): Before driving your motorcycle into a bend road, what shall you do?
   3. Speed up to get through it quickly
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Before driving your motorcycle into a bend
-  road, what shall you do?" Correct answer: "Slow down properly to a bend road status and drive very
-  closed to the right side.". Scene: driver's-eye view inside a vehicle on a Cambodian road, dashboard
-  and steering wheel visible, Cambodian rural landscape through windshield, warm afternoon daylight.
-  Depict the correct behavior — Slow down properly to a bend road status and drive very closed to the
-  right side. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: Before driving your motorcycle into a bend road, what shall you do? The focus is
+  on the appropriate action: Slow down properly to a bend road status and drive very closed to the
+  right side.. Show road markings and traffic signs with English text labels ONLY (absolutely no
+  Khmer text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
+  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
+  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q007
@@ -166,17 +160,16 @@ Q (EN): What is the reason making the vehicles swerve off?
   3. Very sharp bend.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What is the reason making the vehicles swerve
-  off?" Correct answer: "Pun on the brake firmly, steer strongly, more speed up, or drive very fast.".
-  Scene: driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
-  Cambodian rural landscape through windshield, warm afternoon daylight. Depict the correct behavior —
-  Pun on the brake firmly, steer strongly, more speed up, or drive very fast. Show road markings,
-  traffic signs with English text labels and Khmer script, Cambodian characters (driver / pedestrian /
-  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
-  Cambodian architecture visible, road signs and labels written in English with Khmer script below,
-  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: What is the reason making the vehicles swerve off? The focus is on the
+  appropriate action: Pun on the brake firmly, steer strongly, more speed up, or drive very fast..
+  Show road markings and traffic signs with English text labels ONLY (absolutely no Khmer text, no
+  Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in authentic
+  Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture
+  visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical
+  Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q008
@@ -191,17 +184,16 @@ Q (EN): Is it necessary to use brake light?
   3. Either has or not
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Is it necessary to use brake light?" Correct
-  answer: "Yes, it is. It is necessary to inform drivers behind about the slowing down or stopping".
-  Scene: driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
-  Cambodian rural landscape through windshield, warm afternoon daylight. Depict the correct behavior —
-  Yes, it is. It is necessary to inform drivers behind about the slowing down or stopping. Show road
-  markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: Is it necessary to use brake light? The focus is on the appropriate action: Yes,
+  it is. It is necessary to inform drivers behind about the slowing down or stopping. Show road
+  markings and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer
+  script in the image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer
+  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible,
+  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
+  clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q009
@@ -216,17 +208,16 @@ Q (EN): When your vehicle is swerving off on a dry road, what shall you do?
   3. Speed up and no need to apply the brake.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "When your vehicle is swerving off on a dry
-  road, what shall you do?" Correct answer: "Slow down and no need to apply the brake.". Scene:
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
-  Cambodian rural landscape through windshield, warm afternoon daylight. Depict the correct behavior —
-  Slow down and no need to apply the brake. Show road markings, traffic signs with English text labels
-  and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
-  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs
-  and labels written in English with Khmer script below, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic
-  render, cinematic lighting, sharp details.
-
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: When your vehicle is swerving off on a dry road, what shall you do? The focus is
+  on the appropriate action: Slow down and no need to apply the brake.. Show road markings and
+  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q010
@@ -241,17 +232,16 @@ Q (EN): What shall you do when the brake is broken?
   3. Do nothing and wait until it stops by itself.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What shall you do when the brake is broken?"
-  Correct answer: "Engage the gear down orderly, apply hand brake gentlely, and seek for parking
-  area.". Scene: driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel
-  visible, Cambodian rural landscape through windshield, warm afternoon daylight. Depict the correct
-  behavior — Engage the gear down orderly, apply hand brake gentlely, and seek for parking area. Show
-  road markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: What shall you do when the brake is broken? The focus is on the appropriate action: Engage
+  the gear down orderly, apply hand brake gentlely, and seek for parking area.. Show road markings
+  and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q011
@@ -266,17 +256,16 @@ Q (EN): At night, seeing a vehicle from the opposite traffic direction, at what 
   3. About 160m ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "At night, seeing a vehicle from the opposite
-  traffic direction, at what distance from it shall you cast to coat light from headlight?" Correct
-  answer: "About 160m". Scene: driver's-eye view inside a vehicle on a Cambodian road, dashboard and
-  steering wheel visible, Cambodian rural landscape through windshield, warm afternoon daylight.
-  Depict the correct behavior — About 160m. Show road markings, traffic signs with English text labels
-  and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
-  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs
-  and labels written in English with Khmer script below, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic
-  render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: At night, seeing a vehicle from the opposite traffic direction, at what distance
+  from it shall you cast to coat light from headlight? The focus is on the appropriate action: About
+  160m. Show road markings and traffic signs with English text labels ONLY (absolutely no Khmer
+  text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
+  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
+  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q012
@@ -291,17 +280,16 @@ Q (EN): Driving in heavy rain or in deep water, how shall you do to get the brak
   3. Apply the brake to dry the brakes up. ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Driving in heavy rain or in deep water, how
-  shall you do to get the brake dried up quickly?" Correct answer: "Apply the brake to dry the brakes
-  up.". Scene: driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel
-  visible, Cambodian rural landscape through windshield, warm afternoon daylight. Depict the correct
-  behavior — Apply the brake to dry the brakes up. Show road markings, traffic signs with English text
-  labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer
-  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, road
-  signs and labels written in English with Khmer script below, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic
-  render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: Driving in heavy rain or in deep water, how shall you do to get the brake dried up quickly?
+  The focus is on the appropriate action: Apply the brake to dry the brakes up.. Show road markings
+  and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q013
@@ -316,16 +304,16 @@ Q (EN): Driving in an extremely hot weather, what are the tires of vehicle?
   3. They are normal.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Driving in an extremely hot weather, what are
-  the tires of vehicle?" Correct answer: "The tires are tight.". Scene: driver's-eye view inside a
-  vehicle on a Cambodian road, dashboard and steering wheel visible, Cambodian rural landscape through
-  windshield, warm afternoon daylight. Depict the correct behavior — The tires are tight. Show road
-  markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: Driving in an extremely hot weather, what are the tires of vehicle? The focus is
+  on the appropriate action: The tires are tight.. Show road markings and traffic signs with English
+  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q014
@@ -340,18 +328,17 @@ Q (EN): Applying the brake while moving down a descent steep, one apply and rele
   3. The same.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Applying the brake while moving down a descent
-  steep, one apply and release alternatively, another one apply firmly without releasing, which one
-  make the brake hotter?" Correct answer: "Applying and releasing alternatively.". Scene: driver's-eye
-  view inside a vehicle on a Cambodian road, dashboard and steering wheel visible, Cambodian rural
-  landscape through windshield, warm afternoon daylight. Depict the correct behavior — Applying and
-  releasing alternatively. Show road markings, traffic signs with English text labels and Khmer
-  script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels
-  written in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
-  lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: Applying the brake while moving down a descent steep, one apply and release
+  alternatively, another one apply firmly without releasing, which one make the brake hotter? The
+  focus is on the appropriate action: Applying and releasing alternatively.. Show road markings and
+  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q015
@@ -366,16 +353,16 @@ Q (EN): When driving into a bend road, what forces can make your vehicle turn ov
   3. Human’s energy
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "When driving into a bend road, what forces can
-  make your vehicle turn over?" Correct answer: "Centrifugal force". Scene: driver's-eye view inside a
-  vehicle on a Cambodian road, dashboard and steering wheel visible, Cambodian rural landscape through
-  windshield, warm afternoon daylight. Depict the correct behavior — Centrifugal force. Show road
-  markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: When driving into a bend road, what forces can make your vehicle turn over? The
+  focus is on the appropriate action: Centrifugal force. Show road markings and traffic signs with
+  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q016
@@ -390,17 +377,17 @@ Q (EN): Engaging the gear shift down then your motorcycle twitches and the back 
   3. Caused by the failure of slowing down suffiently ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Engaging the gear shift down then your
-  motorcycle twitches and the back wheel is stuck, what does it cause?" Correct answer: "Caused by the
-  failure of slowing down suffiently". Scene: driver's-eye view inside a vehicle on a Cambodian road,
-  dashboard and steering wheel visible, Cambodian rural landscape through windshield, warm afternoon
-  daylight. Depict the correct behavior — Caused by the failure of slowing down suffiently. Show road
-  markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver /
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: Engaging the gear shift down then your motorcycle twitches and the back wheel is
+  stuck, what does it cause? The focus is on the appropriate action: Caused by the failure of
+  slowing down suffiently. Show road markings and traffic signs with English text labels ONLY
+  (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
   pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q017
@@ -415,17 +402,16 @@ Q (EN): Inside a built-up area, you drive your motorcycle at 30km/h. How far at 
   3. At least 9m ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Inside a built-up area, you drive your
-  motorcycle at 30km/h. How far at least do you leave distance limit for motorcycles?" Correct answer:
-  "At least 9m". Scene: driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering
-  wheel visible, Cambodian rural landscape through windshield, warm afternoon daylight. Depict the
-  correct behavior — At least 9m. Show road markings, traffic signs with English text labels and Khmer
-  script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels
-  written in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
-  lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: Inside a built-up area, you drive your motorcycle at 30km/h. How far at least do you leave
+  distance limit for motorcycles? The focus is on the appropriate action: At least 9m. Show road
+  markings and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer
+  script in the image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer
+  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible,
+  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
+  clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q018
@@ -440,17 +426,16 @@ Q (EN): Driving a motorcycle, is it necessary to give serviced signs?
   3. Yes, it is. It is necessary to inform others to get to know your purposes ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Driving a motorcycle, is it necessary to give
-  serviced signs?" Correct answer: "Yes, it is. It is necessary to inform others to get to know your
-  purposes". Scene: driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering
-  wheel visible, Cambodian rural landscape through windshield, warm afternoon daylight. Depict the
-  correct behavior — Yes, it is. It is necessary to inform others to get to know your purposes. Show
-  road markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: Driving a motorcycle, is it necessary to give serviced signs? The focus is on the
+  appropriate action: Yes, it is. It is necessary to inform others to get to know your purposes.
+  Show road markings and traffic signs with English text labels ONLY (absolutely no Khmer text, no
+  Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in authentic
+  Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture
+  visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical
+  Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q019
@@ -465,18 +450,17 @@ Q (EN): To avoid slippery on a sandy or stony road, how shall drivers do?
   3. Slow down, hold the steer firmly, not to apply the brakes or engage the gear down or turn sharply ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "To avoid slippery on a sandy or stony road,
-  how shall drivers do?" Correct answer: "Slow down, hold the steer firmly, not to apply the brakes or
-  engage the gear down or turn sharply". Scene: driver's-eye view inside a vehicle on a Cambodian
-  road, dashboard and steering wheel visible, Cambodian rural landscape through windshield, warm
-  afternoon daylight. Depict the correct behavior — Slow down, hold the steer firmly, not to apply the
-  brakes or engage the gear down or turn sharply. Show road markings, traffic signs with English text
-  labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer
-  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, road
-  signs and labels written in English with Khmer script below, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic
-  render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: To avoid slippery on a sandy or stony road, how shall drivers do? The focus is on
+  the appropriate action: Slow down, hold the steer firmly, not to apply the brakes or engage the
+  gear down or turn sharply. Show road markings and traffic signs with English text labels ONLY
+  (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q020
@@ -491,17 +475,16 @@ Q (EN): To slow down or stop effectively, what brake do you put on?
   3. Put on only handbrake (front brake)
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "To slow down or stop effectively, what brake
-  do you put on?" Correct answer: "Put on the footbrake (back brake) and handbrake (front brake)".
-  Scene: driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
-  Cambodian rural landscape through windshield, warm afternoon daylight. Depict the correct behavior —
-  Put on the footbrake (back brake) and handbrake (front brake). Show road markings, traffic signs
-  with English text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, road signs and labels written in English with Khmer script below, authentic
-  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K
-  ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: To slow down or stop effectively, what brake do you put on? The focus is on the
+  appropriate action: Put on the footbrake (back brake) and handbrake (front brake). Show road
+  markings and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer
+  script in the image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer
+  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible,
+  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
+  clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q021
@@ -516,17 +499,17 @@ Q (EN): Driving at the speed of 70km/h on the smooth road, your man-styled motor
   3. About 70m
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Driving at the speed of 70km/h on the smooth
-  road, your man-styled motorcycles (more than 125cc and up) have good condition in tires and brakes.
-  What is the braking distance?" Correct answer: "About 50m". Scene: driver's-eye view inside a
-  vehicle on a Cambodian road, dashboard and steering wheel visible, Cambodian rural landscape through
-  windshield, warm afternoon daylight. Depict the correct behavior — About 50m. Show road markings,
-  traffic signs with English text labels and Khmer script, Cambodian characters (driver / pedestrian /
-  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
-  Cambodian architecture visible, road signs and labels written in English with Khmer script below,
-  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: Driving at the speed of 70km/h on the smooth road, your man-styled motorcycles
+  (more than 125cc and up) have good condition in tires and brakes. What is the braking distance?
+  The focus is on the appropriate action: About 50m. Show road markings and traffic signs with
+  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q022
@@ -541,17 +524,16 @@ Q (EN): Driving on a small stony road or sandy area, can it make your motorcycle
   3. It is slippery when you overload.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Driving on a small stony road or sandy area,
-  can it make your motorcycle slippery?" Correct answer: "Yes, it can when you speed up and steer
-  firmly". Scene: driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel
-  visible, Cambodian rural landscape through windshield, warm afternoon daylight. Depict the correct
-  behavior — Yes, it can when you speed up and steer firmly. Show road markings, traffic signs with
-  English text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, road signs and labels written in English with Khmer script below, authentic
-  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K
-  ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: Driving on a small stony road or sandy area, can it make your motorcycle slippery? The
+  focus is on the appropriate action: Yes, it can when you speed up and steer firmly. Show road
+  markings and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer
+  script in the image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer
+  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible,
+  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
+  clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q023
@@ -566,17 +548,16 @@ Q (EN): Outside a built-up area, you are driving at the speed of 40km/h. How far
   3. At least 12
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Outside a built-up area, you are driving at
-  the speed of 40km/h. How far, in meter, do you leave a distance limit?" Correct answer: "At least
-  24m". Scene: driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel
-  visible, Cambodian rural landscape through windshield, warm afternoon daylight. Depict the correct
-  behavior — At least 24m. Show road markings, traffic signs with English text labels and Khmer
-  script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels
-  written in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
-  lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: Outside a built-up area, you are driving at the speed of 40km/h. How far, in meter, do you
+  leave a distance limit? The focus is on the appropriate action: At least 24m. Show road markings
+  and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q024
@@ -591,17 +572,16 @@ Q (EN): Outside a built-up area, you are driving at the speed of 60km/h. How far
   3. At least 46m
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Outside a built-up area, you are driving at
-  the speed of 60km/h. How far, in meter, do you leave a distance limit?" Correct answer: "At least
-  36m". Scene: driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel
-  visible, Cambodian rural landscape through windshield, warm afternoon daylight. Depict the correct
-  behavior — At least 36m. Show road markings, traffic signs with English text labels and Khmer
-  script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels
-  written in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
-  lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: Outside a built-up area, you are driving at the speed of 60km/h. How far, in meter, do you
+  leave a distance limit? The focus is on the appropriate action: At least 36m. Show road markings
+  and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q025
@@ -616,17 +596,16 @@ Q (EN): Driving at the speed of 50km/h on a smooth, your motorcycle has brakes a
   3. About 45m
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Driving at the speed of 50km/h on a smooth,
-  your motorcycle has brakes and tires in good condition, what is a stopping distance, probably?"
-  Correct answer: "About 25m". Scene: driver's-eye view inside a vehicle on a Cambodian road,
-  dashboard and steering wheel visible, Cambodian rural landscape through windshield, warm afternoon
-  daylight. Depict the correct behavior — About 25m. Show road markings, traffic signs with English
-  text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic
-  Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture
-  visible, road signs and labels written in English with Khmer script below, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD
-  photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: Driving at the speed of 50km/h on a smooth, your motorcycle has brakes and tires
+  in good condition, what is a stopping distance, probably? The focus is on the appropriate action:
+  About 25m. Show road markings and traffic signs with English text labels ONLY (absolutely no Khmer
+  text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
+  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
+  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q026
@@ -641,17 +620,16 @@ Q (EN): Outside a built-up area, you are driving at the speed of 50km/h. How far
   3. At least 35m
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Outside a built-up area, you are driving at
-  the speed of 50km/h. How far at least, in meter, do you leave a distance limit?" Correct answer: "At
-  least 30m". Scene: driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering
-  wheel visible, Cambodian rural landscape through windshield, warm afternoon daylight. Depict the
-  correct behavior — At least 30m. Show road markings, traffic signs with English text labels and
-  Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
-  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs
-  and labels written in English with Khmer script below, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic
-  render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: Outside a built-up area, you are driving at the speed of 50km/h. How far at least, in
+  meter, do you leave a distance limit? The focus is on the appropriate action: At least 30m. Show
+  road markings and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer
+  script in the image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer
+  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible,
+  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
+  clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q027
@@ -666,19 +644,17 @@ Q (EN): Driving a motorcycle, how do you look to the front?
   3. Look at markings along the road
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Driving a motorcycle, how do you look to the
-  front?" Correct answer: "Look ahead in far distance to know the situation of bending road, ascent,
-  descent, and look at the light signs of drivers in the front.". Scene: driver's-eye view inside a
-  vehicle on a Cambodian road, dashboard and steering wheel visible, Cambodian rural landscape through
-  windshield, warm afternoon daylight. Depict the correct behavior — Look ahead in far distance to
-  know the situation of bending road, ascent, descent, and look at the light signs of drivers in the
-  front. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: Driving a motorcycle, how do you look to the front? The focus is on the
+  appropriate action: Look ahead in far distance to know the situation of bending road, ascent,
+  descent, and look at the light signs of drivers in the front.. Show road markings and traffic
+  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q028
@@ -693,17 +669,16 @@ Q (EN): Driving a motorcycle, the back wheel is slippery due to applying the bra
   3. Apply the brake more firmly
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Driving a motorcycle, the back wheel is
-  slippery due to applying the brake, how shall you do?" Correct answer: "Turn to the slippery
-  direction". Scene: driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering
-  wheel visible, Cambodian rural landscape through windshield, warm afternoon daylight. Depict the
-  correct behavior — Turn to the slippery direction. Show road markings, traffic signs with English
-  text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic
-  Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture
-  visible, road signs and labels written in English with Khmer script below, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD
-  photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: Driving a motorcycle, the back wheel is slippery due to applying the brake, how shall you
+  do? The focus is on the appropriate action: Turn to the slippery direction. Show road markings and
+  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q029
@@ -718,19 +693,17 @@ Q (EN): Driving a motorcycle and the steer shakes, what does it cause?
   3. Engage the gear shift improperly.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Driving a motorcycle and the steer shakes,
-  what does it cause?" Correct answer: "Buckled wheels, loose radius, loose ball bearing, flat, or
-  loaded too heavy at the back and steering ball bearing is improperly.". Scene: driver's-eye view
-  inside a vehicle on a Cambodian road, dashboard and steering wheel visible, Cambodian rural
-  landscape through windshield, warm afternoon daylight. Depict the correct behavior — Buckled wheels,
-  loose radius, loose ball bearing, flat, or loaded too heavy at the back and steering ball bearing is
-  improperly. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: Driving a motorcycle and the steer shakes, what does it cause? The focus is on
+  the appropriate action: Buckled wheels, loose radius, loose ball bearing, flat, or loaded too
+  heavy at the back and steering ball bearing is improperly.. Show road markings and traffic signs
+  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
   characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q030
@@ -745,17 +718,16 @@ Q (EN): What distances do you take into calculating the stopping distance of veh
   3. Traveling distance and braking distance.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What distances do you take into calculating
-  the stopping distance of vehicle?" Correct answer: "Reaction distance and braking distance.". Scene:
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
-  Cambodian rural landscape through windshield, warm afternoon daylight. Depict the correct behavior —
-  Reaction distance and braking distance. Show road markings, traffic signs with English text labels
-  and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
-  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs
-  and labels written in English with Khmer script below, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic
-  render, cinematic lighting, sharp details.
-
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: What distances do you take into calculating the stopping distance of vehicle? The
+  focus is on the appropriate action: Reaction distance and braking distance.. Show road markings
+  and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q031
@@ -770,16 +742,16 @@ Q (EN): To adjust the gear up and down with ease, how many times shall you disco
   3. three times
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "To adjust the gear up and down with ease, how
-  many times shall you disconnect clutch?" Correct answer: "two times". Scene: driver's-eye view
-  inside a vehicle on a Cambodian road, dashboard and steering wheel visible, Cambodian rural
-  landscape through windshield, warm afternoon daylight. Depict the correct behavior — two times. Show
-  road markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: To adjust the gear up and down with ease, how many times shall you disconnect
+  clutch? The focus is on the appropriate action: two times. Show road markings and traffic signs
+  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q032
@@ -794,17 +766,16 @@ Q (EN): What are the main reasons that make the brake get hotter quickly when br
   3. Steer firmly while driving.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What are the main reasons that make the brake
-  get hotter quickly when braking?" Correct answer: "Over load and drive extremly fast.". Scene:
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
-  Cambodian rural landscape through windshield, warm afternoon daylight. Depict the correct behavior —
-  Over load and drive extremly fast. Show road markings, traffic signs with English text labels and
-  Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
-  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs
-  and labels written in English with Khmer script below, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic
-  render, cinematic lighting, sharp details.
-
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: What are the main reasons that make the brake get hotter quickly when braking?
+  The focus is on the appropriate action: Over load and drive extremly fast.. Show road markings and
+  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q033
@@ -819,17 +790,16 @@ Q (EN): If the speed and weight increase twice together, how many times does the
   3. 8 times ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "If the speed and weight increase twice
-  together, how many times does the stopping distance increase, accordingly?" Correct answer: "8
-  times". Scene: driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel
-  visible, Cambodian rural landscape through windshield, warm afternoon daylight. Depict the correct
-  behavior — 8 times. Show road markings, traffic signs with English text labels and Khmer script,
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels written
-  in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
-  lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: If the speed and weight increase twice together, how many times does the stopping distance
+  increase, accordingly? The focus is on the appropriate action: 8 times. Show road markings and
+  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q034
@@ -844,17 +814,16 @@ Q (EN): To look ahead for long distance enough, how many seconds shall you need 
   3. 12 to 15 seconds ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "To look ahead for long distance enough, how
-  many seconds shall you need to look to it?" Correct answer: "12 to 15 seconds". Scene: driver's-eye
-  view inside a vehicle on a Cambodian road, dashboard and steering wheel visible, Cambodian rural
-  landscape through windshield, warm afternoon daylight. Depict the correct behavior — 12 to 15
-  seconds. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: To look ahead for long distance enough, how many seconds shall you need to look
+  to it? The focus is on the appropriate action: 12 to 15 seconds. Show road markings and traffic
+  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q035
@@ -869,17 +838,17 @@ Q (EN): What distance limit for large-sized trucks, with more than 3.5T or more 
   3. At least 60m
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What distance limit for large-sized trucks,
-  with more than 3.5T or more than 7m in length driving in queue one after another and at the same
-  speed, shall drivers leave?" Correct answer: "At least 50m". Scene: driver's-eye view inside a
-  vehicle on a Cambodian road, dashboard and steering wheel visible, Cambodian rural landscape through
-  windshield, warm afternoon daylight. Depict the correct behavior — At least 50m. Show road markings,
-  traffic signs with English text labels and Khmer script, Cambodian characters (driver / pedestrian /
-  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
-  Cambodian architecture visible, road signs and labels written in English with Khmer script below,
-  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: What distance limit for large-sized trucks, with more than 3.5T or more than 7m
+  in length driving in queue one after another and at the same speed, shall drivers leave? The focus
+  is on the appropriate action: At least 50m. Show road markings and traffic signs with English text
+  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
+  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q036
@@ -894,16 +863,16 @@ Q (EN): What is the brake’s temperature taken as warning?
   3. 400 celsius ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What is the brake’s temperature taken as
-  warning?" Correct answer: "400 celsius". Scene: driver's-eye view inside a vehicle on a Cambodian
-  road, dashboard and steering wheel visible, Cambodian rural landscape through windshield, warm
-  afternoon daylight. Depict the correct behavior — 400 celsius. Show road markings, traffic signs
-  with English text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, road signs and labels written in English with Khmer script below, authentic
-  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K
-  ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: What is the brake’s temperature taken as warning? The focus is on the appropriate
+  action: 400 celsius. Show road markings and traffic signs with English text labels ONLY
+  (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q037
@@ -918,16 +887,16 @@ Q (EN): If the weight increases twice, how many times does the stopping distance
   3. Four times
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "If the weight increases twice, how many times
-  does the stopping distance increase?" Correct answer: "Two times". Scene: driver's-eye view inside a
-  vehicle on a Cambodian road, dashboard and steering wheel visible, Cambodian rural landscape through
-  windshield, warm afternoon daylight. Depict the correct behavior — Two times. Show road markings,
-  traffic signs with English text labels and Khmer script, Cambodian characters (driver / pedestrian /
-  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
-  Cambodian architecture visible, road signs and labels written in English with Khmer script below,
-  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: If the weight increases twice, how many times does the stopping distance
+  increase? The focus is on the appropriate action: Two times. Show road markings and traffic signs
+  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q038
@@ -942,16 +911,16 @@ Q (EN): If the speed increases twice, how many times does the stopping distance 
   3. Four times ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "If the speed increases twice, how many times
-  does the stopping distance increase?" Correct answer: "Four times". Scene: driver's-eye view inside
-  a vehicle on a Cambodian road, dashboard and steering wheel visible, Cambodian rural landscape
-  through windshield, warm afternoon daylight. Depict the correct behavior — Four times. Show road
-  markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: If the speed increases twice, how many times does the stopping distance increase?
+  The focus is on the appropriate action: Four times. Show road markings and traffic signs with
+  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q039
@@ -966,17 +935,16 @@ Q (EN): Driving on the wet road, how many percentages do drivers decrease​ spe
   3. 1/4 on the dry road
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Driving on the wet road, how many percentages
-  do drivers decrease​ speed compared to dry road?" Correct answer: "1/3 on the dry road". Scene:
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
   driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
-  Cambodian rural landscape through windshield, warm afternoon daylight. Depict the correct behavior —
-  1/3 on the dry road. Show road markings, traffic signs with English text labels and Khmer script,
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels written
-  in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
-  lighting, sharp details.
-
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: Driving on the wet road, how many percentages do drivers decrease​ speed compared
+  to dry road? The focus is on the appropriate action: 1/3 on the dry road. Show road markings and
+  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q040
@@ -991,17 +959,16 @@ Q (EN): What are reasons that make the wheels swerve off when driving on the dry
   3. Speed up, drive very fast, apply the brake firmly, and steer firmly. ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What are reasons that make the wheels swerve
-  off when driving on the dry road?" Correct answer: "Speed up, drive very fast, apply the brake
-  firmly, and steer firmly.". Scene: driver's-eye view inside a vehicle on a Cambodian road, dashboard
-  and steering wheel visible, Cambodian rural landscape through windshield, warm afternoon daylight.
-  Depict the correct behavior — Speed up, drive very fast, apply the brake firmly, and steer firmly.
-  Show road markings, traffic signs with English text labels and Khmer script, Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, road signs and labels written in English with
-  Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: What are reasons that make the wheels swerve off when driving on the dry road?
+  The focus is on the appropriate action: Speed up, drive very fast, apply the brake firmly, and
+  steer firmly.. Show road markings and traffic signs with English text labels ONLY (absolutely no
+  Khmer text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
+  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
+  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q041
@@ -1016,16 +983,16 @@ Q (EN): What are reasons that make the back wheels slippery?
   3. Steer swervedly
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What are reasons that make the back wheels
-  slippery?" Correct answer: "Speed up a lot". Scene: driver's-eye view inside a vehicle on a
-  Cambodian road, dashboard and steering wheel visible, Cambodian rural landscape through windshield,
-  warm afternoon daylight. Depict the correct behavior — Speed up a lot. Show road markings, traffic
-  signs with English text labels and Khmer script, Cambodian characters (driver / pedestrian /
-  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
-  Cambodian architecture visible, road signs and labels written in English with Khmer script below,
-  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: What are reasons that make the back wheels slippery? The focus is on the
+  appropriate action: Speed up a lot. Show road markings and traffic signs with English text labels
+  ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q042
@@ -1040,17 +1007,16 @@ Q (EN): What are reasons that make front wheels slippery?
   3. Turning the steering wheel too fast
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What are reasons that make front wheels
-  slippery?" Correct answer: "Drive too fast on a road is not flat". Scene: driver's-eye view inside a
-  vehicle on a Cambodian road, dashboard and steering wheel visible, Cambodian rural landscape through
-  windshield, warm afternoon daylight. Depict the correct behavior — Drive too fast on a road is not
-  flat. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: What are reasons that make front wheels slippery? The focus is on the appropriate
+  action: Drive too fast on a road is not flat. Show road markings and traffic signs with English
+  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q043
@@ -1065,16 +1031,16 @@ Q (EN): Driving outside built-up area, how far of distance limit do you leave?
   3. At least 3 minute
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Driving outside built-up area, how far of
-  distance limit do you leave?" Correct answer: "At least 2 minute". Scene: driver's-eye view inside a
-  vehicle on a Cambodian road, dashboard and steering wheel visible, Cambodian rural landscape through
-  windshield, warm afternoon daylight. Depict the correct behavior — At least 2 minute. Show road
-  markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: Driving outside built-up area, how far of distance limit do you leave? The focus
+  is on the appropriate action: At least 2 minute. Show road markings and traffic signs with English
+  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q044
@@ -1089,16 +1055,16 @@ Q (EN): How many meters of a stopping distance for small-sized vehicles at the s
   3. About 81m ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "How many meters of a stopping distance for
-  small-sized vehicles at the speed of 90km/h?" Correct answer: "About 81m". Scene: driver's-eye view
-  inside a vehicle on a Cambodian road, dashboard and steering wheel visible, Cambodian rural
-  landscape through windshield, warm afternoon daylight. Depict the correct behavior — About 81m. Show
-  road markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: How many meters of a stopping distance for small-sized vehicles at the speed of
+  90km/h? The focus is on the appropriate action: About 81m. Show road markings and traffic signs
+  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q045
@@ -1113,16 +1079,16 @@ Q (EN): While driving, wow many minutes of the safety distance?
   3. At least 3 second
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "While driving, wow many minutes of the safety
-  distance?" Correct answer: "At least 2 second". Scene: driver's-eye view inside a vehicle on a
-  Cambodian road, dashboard and steering wheel visible, Cambodian rural landscape through windshield,
-  warm afternoon daylight. Depict the correct behavior — At least 2 second. Show road markings,
-  traffic signs with English text labels and Khmer script, Cambodian characters (driver / pedestrian /
-  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
-  Cambodian architecture visible, road signs and labels written in English with Khmer script below,
-  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: While driving, wow many minutes of the safety distance? The focus is on the
+  appropriate action: At least 2 second. Show road markings and traffic signs with English text
+  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
+  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q046
@@ -1137,16 +1103,16 @@ Q (EN): On a wet road, how many times does braking distance increase?
   3. 4 times
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "On a wet road, how many times does braking
-  distance increase?" Correct answer: "2 times". Scene: driver's-eye view inside a vehicle on a
-  Cambodian road, dashboard and steering wheel visible, Cambodian rural landscape through windshield,
-  warm afternoon daylight. Depict the correct behavior — 2 times. Show road markings, traffic signs
-  with English text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, road signs and labels written in English with Khmer script below, authentic
-  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K
-  ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: On a wet road, how many times does braking distance increase? The focus is on the
+  appropriate action: 2 times. Show road markings and traffic signs with English text labels ONLY
+  (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q047
@@ -1161,16 +1127,16 @@ Q (EN): Before departure, how many seconds shall you give information sign?
   3. At least 5 seconds. ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Before departure, how many seconds shall you
-  give information sign?" Correct answer: "At least 5 seconds.". Scene: driver's-eye view inside a
-  vehicle on a Cambodian road, dashboard and steering wheel visible, Cambodian rural landscape through
-  windshield, warm afternoon daylight. Depict the correct behavior — At least 5 seconds. Show road
-  markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: Before departure, how many seconds shall you give information sign? The focus is
+  on the appropriate action: At least 5 seconds.. Show road markings and traffic signs with English
+  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q048
@@ -1185,16 +1151,15 @@ Q (EN): How long do healthy drivers need
   3. 3 minute
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "How long do healthy drivers need" Correct
-  answer: "1 minute". Scene: driver's-eye view inside a vehicle on a Cambodian road, dashboard and
-  steering wheel visible, Cambodian rural landscape through windshield, warm afternoon daylight.
-  Depict the correct behavior — 1 minute. Show road markings, traffic signs with English text labels
-  and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
-  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs
-  and labels written in English with Khmer script below, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic
-  render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: How long do healthy drivers need The focus is on the appropriate action: 1
+  minute. Show road markings and traffic signs with English text labels ONLY (absolutely no Khmer
+  text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
+  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
+  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q049
@@ -1209,18 +1174,17 @@ Q (EN): Before getting into the vehicle in order to drive backward, what shall d
   3. Look to the right side of the vehicle clearly, give signals, and dirve backward slowly
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Before getting into the vehicle in order to
-  drive backward, what shall drivers do?" Correct answer: "Look to the back of the vehicle clearly,
-  give signals, and drive backward slowly". Scene: driver's-eye view inside a vehicle on a Cambodian
-  road, dashboard and steering wheel visible, Cambodian rural landscape through windshield, warm
-  afternoon daylight. Depict the correct behavior — Look to the back of the vehicle clearly, give
-  signals, and drive backward slowly. Show road markings, traffic signs with English text labels and
-  Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
-  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs
-  and labels written in English with Khmer script below, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic
-  render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: Before getting into the vehicle in order to drive backward, what shall drivers
+  do? The focus is on the appropriate action: Look to the back of the vehicle clearly, give signals,
+  and drive backward slowly. Show road markings and traffic signs with English text labels ONLY
+  (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 DRV-Q050
@@ -1235,14 +1199,14 @@ Q (EN): Turning left or right, how far at least do you give a turn sign from the
   3. At least 20m ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "Turning left or right, how far at least do you
-  give a turn sign from the turning road?" Correct answer: "At least 20m". Scene: driver's-eye view
-  inside a vehicle on a Cambodian road, dashboard and steering wheel visible, Cambodian rural
-  landscape through windshield, warm afternoon daylight. Depict the correct behavior — At least 20m.
-  Show road markings, traffic signs with English text labels and Khmer script, Cambodian characters
-  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
-  identity, traditional Cambodian architecture visible, road signs and labels written in English with
-  Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  driver's-eye view inside a vehicle on a Cambodian road, dashboard and steering wheel visible,
+  Cambodian rural landscape through windshield, warm afternoon daylight. Visual context involves a
+  situation where: Turning left or right, how far at least do you give a turn sign from the turning
+  road? The focus is on the appropriate action: At least 20m. Show road markings and traffic signs
+  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------

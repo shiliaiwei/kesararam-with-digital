@@ -16,17 +16,16 @@ Q (EN): What does this sign stand for?
   3. Vehicle 2 departs first, then vehicle 1 ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "Vehicle 2 departs first, then vehicle 1". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — Vehicle 2 departs first,
-  then vehicle 1. Show road markings, traffic signs with English text labels and Khmer script,
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels written
-  in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: Vehicle 2 departs first, then vehicle 1. Show road markings and traffic signs with English
+  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
   lighting, sharp details.
-
 ----------------------------------------------------------------------
 
 PRT-Q002
@@ -41,17 +40,16 @@ Q (EN): What does this sign stand for?
   3. NUmber 1 and 2 together leave at the same time.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle 1 then followed by motorcylce 2.". Scene: Cambodian road intersection with
-  multiple vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First vehicle 1 then
-  followed by motorcylce 2. Show road markings, traffic signs with English text labels and Khmer
-  script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels
-  written in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First vehicle 1 then followed by motorcylce 2.. Show road markings and traffic signs with
+  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
   lighting, sharp details.
-
 ----------------------------------------------------------------------
 
 PRT-Q003
@@ -66,17 +64,16 @@ Q (EN): What does this sign stand for?
   3. First number 1 and 3 together leave at the same time, then 2.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 2, next 1, and then 3.". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First number 2, next 1, and
-  then 3. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First number 2, next 1, and then 3.. Show road markings and traffic signs with English
+  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q004
@@ -91,17 +88,16 @@ Q (EN): What does this sign stand for?
   3. Number 1 and 2 together leave at the same time.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle 1 then followed by motorcycle 2.". Scene: Cambodian road intersection with
-  multiple vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First vehicle 1 then
-  followed by motorcycle 2. Show road markings, traffic signs with English text labels and Khmer
-  script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels
-  written in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First vehicle 1 then followed by motorcycle 2.. Show road markings and traffic signs with
+  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
   lighting, sharp details.
-
 ----------------------------------------------------------------------
 
 PRT-Q005
@@ -116,17 +112,16 @@ Q (EN): What does this sign stand for?
   3. First left turn vehicle 2, then 1 and 3 ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First left turn vehicle 2, then 1 and 3". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First left turn vehicle 2,
-  then 1 and 3. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: 3. First left turn vehicle 2, then 1 and 3. Show road markings and traffic signs with
+  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
   characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q006
@@ -141,18 +136,16 @@ Q (EN): What does this sign stand for?
   3. First number 4, next left turn number 2, then 1 and 3 together leave at the same time. ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 4, next left turn number 2, then 1 and 3 together leave at the same time.".
-  Scene: Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Depict the
-  correct behavior — First number 4, next left turn number 2, then 1 and 3 together leave at the same
-  time. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: What does this sign stand for? The focus is on the appropriate action: 3. First number 4,
+  next left turn number 2, then 1 and 3 together leave at the same time.. Show road markings and
+  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q007
@@ -167,17 +160,16 @@ Q (EN): What does this sign stand for?
   3. First number 3 and 1 together leave at the same time, then 2.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "number 1 and number 2 go together, and then 3.". Scene: Cambodian road intersection with
-  multiple vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — number 1 and number 2 go
-  together, and then 3. Show road markings, traffic signs with English text labels and Khmer script,
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels written
-  in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: 2. number 1 and number 2 go together, and then 3.. Show road markings and traffic signs
+  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
   lighting, sharp details.
-
 ----------------------------------------------------------------------
 
 PRT-Q008
@@ -192,17 +184,16 @@ Q (EN): What does this sign stand for?
   3. Number 1 and 3 together leave at the same time, then 2.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 2, next 3, and then 1.". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First number 2, next 3, and
-  then 1. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: 2. First number 2, next 3, and then 1.. Show road markings and traffic signs with English
+  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q009
@@ -217,17 +208,16 @@ Q (EN): What does this sign stand for?
   3. Number 1 and 3 together leave at the same time, then 2. ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "Number 1 and 3 together leave at the same time, then 2.". Scene: Cambodian road
-  intersection with multiple vehicles approaching from different directions, Cambodian traffic police
-  officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior — Number 1
-  and 3 together leave at the same time, then 2. Show road markings, traffic signs with English text
-  labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer
-  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, road
-  signs and labels written in English with Khmer script below, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic
-  render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: 3. Number 1 and 3 together leave at the same time, then 2.. Show road markings and traffic
+  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q010
@@ -242,17 +232,16 @@ Q (EN): What does this sign stand for?
   3. First number 3, next 2, and then 1.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 2, next 3, and then 1.". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First number 2, next 3, and
-  then 1. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: 2. First number 2, next 3, and then 1.. Show road markings and traffic signs with English
+  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q011
@@ -267,17 +256,16 @@ Q (EN): What does this sign stand for?
   3. First number 2, next 1, and then number 3 turns left.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "Number 1 and 2 together leave at the same time, then 3.". Scene: Cambodian road
-  intersection with multiple vehicles approaching from different directions, Cambodian traffic police
-  officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior — Number 1
-  and 2 together leave at the same time, then 3. Show road markings, traffic signs with English text
-  labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer
-  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, road
-  signs and labels written in English with Khmer script below, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic
-  render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: 2. Number 1 and 2 together leave at the same time, then 3.. Show road markings and traffic
+  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q012
@@ -292,17 +280,16 @@ Q (EN): What does this sign stand for?
   3. Number 1 and 3 together leave at the same time, then 2.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "vehicle 1 and 2 together leave at the same time, then followed by motorcycle 3.". Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions, Cambodian
-  traffic police officer in uniform directing traffic, daytime clear blue sky. Depict the correct
-  behavior — vehicle 1 and 2 together leave at the same time, then followed by motorcycle 3. Show road
-  markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: What does this sign stand for? The focus is on the appropriate action: vehicle 1 and 2
+  together leave at the same time, then followed by motorcycle 3.. Show road markings and traffic
+  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q013
@@ -317,17 +304,16 @@ Q (EN): What does this sign stand for?
   3. First number 1 and 3, then 2.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle 1, next motorcycle 2, and then followed by left turn motorcycle 3.". Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions, Cambodian
-  traffic police officer in uniform directing traffic, daytime clear blue sky. Depict the correct
-  behavior — First vehicle 1, next motorcycle 2, and then followed by left turn motorcycle 3. Show
-  road markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: What does this sign stand for? The focus is on the appropriate action: First vehicle 1,
+  next motorcycle 2, and then followed by left turn motorcycle 3.. Show road markings and traffic
+  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q014
@@ -342,18 +328,16 @@ Q (EN): What does this sign stand for?
   3. First number 1, next 4, and then 3 and 2.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle 1 and 3 together leave at the same time, and then followed motrocycle 2 and
-  4.". Scene: Cambodian road intersection with multiple vehicles approaching from different
-  directions, Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky.
-  Depict the correct behavior — First vehicle 1 and 3 together leave at the same time, and then
-  followed motrocycle 2 and 4. Show road markings, traffic signs with English text labels and Khmer
-  script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels
-  written in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
-  lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First vehicle 1 and 3 together leave at the same time, and then followed motrocycle 2 and
+  4.. Show road markings and traffic signs with English text labels ONLY (absolutely no Khmer text,
+  no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in authentic
+  Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture
+  visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical
+  Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q015
@@ -368,17 +352,16 @@ Q (EN): What does this sign stand for?
   3. First number 3, next 2, and then 1.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 2, next 1, and then 3.". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First number 2, next 1, and
-  then 3. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: 2. First number 2, next 1, and then 3.. Show road markings and traffic signs with English
+  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q016
@@ -393,18 +376,16 @@ Q (EN): What does this sign stand for?
   3. First number 1, next 3, then number 2 and 4 together leave at the same time.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First motorcycle 1, next motorcycle 2, and left turn motorcycle 3, and then followed by
-  vehicle 4.". Scene: Cambodian road intersection with multiple vehicles approaching from different
-  directions, Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky.
-  Depict the correct behavior — First motorcycle 1, next motorcycle 2, and left turn motorcycle 3, and
-  then followed by vehicle 4. Show road markings, traffic signs with English text labels and Khmer
-  script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels
-  written in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
-  lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First motorcycle 1, next motorcycle 2, and left turn motorcycle 3, and then followed by
+  vehicle 4.. Show road markings and traffic signs with English text labels ONLY (absolutely no
+  Khmer text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
+  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
+  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q017
@@ -419,18 +400,16 @@ Q (EN): What does this sign stand for?
   3. Number 2 and 4 together leave at the same time then followed by left turn number 1 and 3 . ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "Number 2 and 4 together leave at the same time then followed by left turn number 1 and 3
-  .". Scene: Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Depict the
-  correct behavior — Number 2 and 4 together leave at the same time then followed by left turn number
-  1 and 3 . Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: What does this sign stand for? The focus is on the appropriate action: 3. Number 2 and 4
+  together leave at the same time then followed by left turn number 1 and 3 .. Show road markings
+  and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q018
@@ -445,17 +424,16 @@ Q (EN): What does this sign stand for?
   3. Number 3 and 1 together leave at the same time, then followed by number 4.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 3, next 2, and then 1.". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First number 3, next 2, and
-  then 1. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: 2. First number 3, next 2, and then 1.. Show road markings and traffic signs with English
+  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q019
@@ -470,17 +448,16 @@ Q (EN): What does this sign stand for?
   3. First number 2 and 3, then followed by number 1 and 4.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "number 2 go first, then number 4, and then number 3 followed by number 1". Scene: Cambodian
-  road intersection with multiple vehicles approaching from different directions, Cambodian traffic
-  police officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior —
-  number 2 go first, then number 4, and then number 3 followed by number 1. Show road markings,
-  traffic signs with English text labels and Khmer script, Cambodian characters (driver / pedestrian /
-  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
-  Cambodian architecture visible, road signs and labels written in English with Khmer script below,
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: 2. number 2 go first, then number 4, and then number 3 followed by number 1. Show road
+  markings and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer
+  script in the image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer
+  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible,
   authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q020
@@ -495,17 +472,16 @@ Q (EN): What does this sign stand for?
   3. First number 1, next left turn number 2, and then number 3. ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 1, next left turn number 2, and then number 3.". Scene: Cambodian road
-  intersection with multiple vehicles approaching from different directions, Cambodian traffic police
-  officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior — First
-  number 1, next left turn number 2, and then number 3. Show road markings, traffic signs with English
-  text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic
-  Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture
-  visible, road signs and labels written in English with Khmer script below, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD
-  photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: 3. First number 1, next left turn number 2, and then number 3.. Show road markings and
+  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q021
@@ -520,17 +496,16 @@ Q (EN): What does this sign stand for?
   3. First number 3, next 1, and then number 2.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 3, next 2, and then 1.". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First number 3, next 2, and
-  then 1. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: 2. First number 3, next 2, and then 1.. Show road markings and traffic signs with English
+  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q022
@@ -545,17 +520,16 @@ Q (EN): What does this sign stand for?
   3. First vehicle 3 and 1 together depart at the same time and next vehicle 2.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle 1, next vehicle 2, next vehicle 3, then vehicle 1.". Scene: Cambodian road
-  intersection with multiple vehicles approaching from different directions, Cambodian traffic police
-  officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior — First
-  vehicle 1, next vehicle 2, next vehicle 3, then vehicle 1. Show road markings, traffic signs with
-  English text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, road signs and labels written in English with Khmer script below, authentic
-  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K
-  ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First vehicle 1, next vehicle 2, next vehicle 3, then vehicle 1.. Show road markings and
+  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q023
@@ -570,17 +544,16 @@ Q (EN): What does this sign stand for?
   3. number 1 and 2 together leave at the same time.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 2 and then number 1". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First number 2 and then
-  number 1. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First number 2 and then number 1. Show road markings and traffic signs with English text
+  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
+  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q024
@@ -595,17 +568,16 @@ Q (EN): What does this sign stand for?
   3. First number 1, next number 2 turns, then number 3
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle 3, next vehicle 2 turns left, and then vehicle 1". Scene: Cambodian road
-  intersection with multiple vehicles approaching from different directions, Cambodian traffic police
-  officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior — First
-  vehicle 3, next vehicle 2 turns left, and then vehicle 1. Show road markings, traffic signs with
-  English text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, road signs and labels written in English with Khmer script below, authentic
-  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K
-  ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First vehicle 3, next vehicle 2 turns left, and then vehicle 1. Show road markings and
+  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q025
@@ -620,17 +592,16 @@ Q (EN): What does this sign stand for?
   3. Number 1 and 2 together leave at the same time
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 2 and then number 1". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First number 2 and then
-  number 1. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First number 2 and then number 1. Show road markings and traffic signs with English text
+  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
+  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q026
@@ -645,17 +616,16 @@ Q (EN): What does this sign stand for?
   3. First vehicle 3, next 2, and then 1 and 4
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "Vehicles 1 and 3 together leave at the same time, vehicle 2 and 4 follow". Scene: Cambodian
-  road intersection with multiple vehicles approaching from different directions, Cambodian traffic
-  police officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior —
-  Vehicles 1 and 3 together leave at the same time, vehicle 2 and 4 follow. Show road markings,
-  traffic signs with English text labels and Khmer script, Cambodian characters (driver / pedestrian /
-  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
-  Cambodian architecture visible, road signs and labels written in English with Khmer script below,
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: Vehicles 1 and 3 together leave at the same time, vehicle 2 and 4 follow. Show road
+  markings and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer
+  script in the image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer
+  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible,
   authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q027
@@ -670,17 +640,16 @@ Q (EN): What does this sign stand for?
   3. First vehicle 2, then vehicles 3 and 1 together at the same time.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle 2, next vehicle 1 turns left, then vehicle 3.". Scene: Cambodian road
-  intersection with multiple vehicles approaching from different directions, Cambodian traffic police
-  officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior — First
-  vehicle 2, next vehicle 1 turns left, then vehicle 3. Show road markings, traffic signs with English
-  text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic
-  Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture
-  visible, road signs and labels written in English with Khmer script below, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD
-  photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First vehicle 2, next vehicle 1 turns left, then vehicle 3.. Show road markings and
+  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q028
@@ -695,17 +664,16 @@ Q (EN): What does this sign stand for?
   3. First vehicle 2; next left turn vehicle 1, and then vehicle 3. ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle 2; next left turn vehicle 1, and then vehicle 3.". Scene: Cambodian road
-  intersection with multiple vehicles approaching from different directions, Cambodian traffic police
-  officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior — First
-  vehicle 2; next left turn vehicle 1, and then vehicle 3. Show road markings, traffic signs with
-  English text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, road signs and labels written in English with Khmer script below, authentic
-  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K
-  ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First vehicle 2; next left turn vehicle 1, and then vehicle 3.. Show road markings and
+  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q029
@@ -720,17 +688,16 @@ Q (EN): What does this sign stand for?
   3. First left turn number 2, next 1 and 3 turn right ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First left turn number 2, next 1 and 3 turn right". Scene: Cambodian road intersection with
-  multiple vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First left turn number 2,
-  next 1 and 3 turn right. Show road markings, traffic signs with English text labels and Khmer
-  script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels
-  written in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First left turn number 2, next 1 and 3 turn right. Show road markings and traffic signs
+  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
   lighting, sharp details.
-
 ----------------------------------------------------------------------
 
 PRT-Q030
@@ -745,18 +712,16 @@ Q (EN): What does this sign stand for?
   3. Number 2 and 4 together leave at the same time, then vehicles 1 and 3 turn left one after another ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "Number 2 and 4 together leave at the same time, then vehicles 1 and 3 turn left one after
-  another". Scene: Cambodian road intersection with multiple vehicles approaching from different
-  directions, Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky.
-  Depict the correct behavior — Number 2 and 4 together leave at the same time, then vehicles 1 and 3
-  turn left one after another. Show road markings, traffic signs with English text labels and Khmer
-  script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels
-  written in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
-  lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: Number 2 and 4 together leave at the same time, then vehicles 1 and 3 turn left one after
+  another. Show road markings and traffic signs with English text labels ONLY (absolutely no Khmer
+  text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
+  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
+  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q031
@@ -771,17 +736,16 @@ Q (EN): What does this sign stand for?
   3. First vehicle 3, next vehicle 2 turns left, then vehicle 1  ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle 3, next vehicle 2 turns left, then vehicle 1". Scene: Cambodian road
-  intersection with multiple vehicles approaching from different directions, Cambodian traffic police
-  officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior — First
-  vehicle 3, next vehicle 2 turns left, then vehicle 1. Show road markings, traffic signs with English
-  text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic
-  Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture
-  visible, road signs and labels written in English with Khmer script below, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD
-  photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First vehicle 3, next vehicle 2 turns left, then vehicle 1. Show road markings and traffic
+  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q032
@@ -796,17 +760,16 @@ Q (EN): What does this sign stand for?
   3. Vehicle 1 and 2 together depart at the same time.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle 2, then vehicle 1 turns left.". Scene: Cambodian road intersection with
-  multiple vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First vehicle 2, then
-  vehicle 1 turns left. Show road markings, traffic signs with English text labels and Khmer script,
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels written
-  in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First vehicle 2, then vehicle 1 turns left.. Show road markings and traffic signs with
+  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
   lighting, sharp details.
-
 ----------------------------------------------------------------------
 
 PRT-Q033
@@ -821,17 +784,16 @@ Q (EN): What does this sign stand for?
   3. First vehicle 3, next vehicle 2, and then vehicle 1 and 4
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "Vehicles 1 and 3 leave together at the same time, then vehicle 2 and 4". Scene: Cambodian
-  road intersection with multiple vehicles approaching from different directions, Cambodian traffic
-  police officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior —
-  Vehicles 1 and 3 leave together at the same time, then vehicle 2 and 4. Show road markings, traffic
-  signs with English text labels and Khmer script, Cambodian characters (driver / pedestrian /
-  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
-  Cambodian architecture visible, road signs and labels written in English with Khmer script below,
-  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: Vehicles 1 and 3 leave together at the same time, then vehicle 2 and 4. Show road markings
+  and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q034
@@ -846,16 +808,16 @@ Q (EN): What does this sign stand for?
   3. Vehicles 1 and 2 leave together at the same time.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle 1 then vehicle 2". Scene: Cambodian road intersection with multiple vehicles
-  approaching from different directions, Cambodian traffic police officer in uniform directing
-  traffic, daytime clear blue sky. Depict the correct behavior — First vehicle 1 then vehicle 2. Show
-  road markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First vehicle 1 then vehicle 2. Show road markings and traffic signs with English text
+  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
   / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q035
@@ -870,17 +832,16 @@ Q (EN): What does this sign stand for?
   3. First number 1, next 3 turns left, then 2 and 4 together leave at the same time.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle 1, next 2, next 3 turns left, and then vehicle 4". Scene: Cambodian road
-  intersection with multiple vehicles approaching from different directions, Cambodian traffic police
-  officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior — First
-  vehicle 1, next 2, next 3 turns left, and then vehicle 4. Show road markings, traffic signs with
-  English text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, road signs and labels written in English with Khmer script below, authentic
-  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K
-  ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First vehicle 1, next 2, next 3 turns left, and then vehicle 4. Show road markings and
+  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q036
@@ -895,18 +856,16 @@ Q (EN): What does this sign stand for?
   3. First right turn number 2, next left turn number 4, then 3, and at last number 1 turns left ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First right turn number 2, next left turn number 4, then 3, and at last number 1 turns
-  left". Scene: Cambodian road intersection with multiple vehicles approaching from different
-  directions, Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky.
-  Depict the correct behavior — First right turn number 2, next left turn number 4, then 3, and at
-  last number 1 turns left. Show road markings, traffic signs with English text labels and Khmer
-  script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels
-  written in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
-  lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First right turn number 2, next left turn number 4, then 3, and at last number 1 turns
+  left. Show road markings and traffic signs with English text labels ONLY (absolutely no Khmer
+  text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
+  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
+  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q037
@@ -921,17 +880,16 @@ Q (EN): What does this sign stand for?
   3. First number 3, then waiting for 2, next 1, and then 3 ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 3, then waiting for 2, next 1, and then 3". Scene: Cambodian road intersection
-  with multiple vehicles approaching from different directions, Cambodian traffic police officer in
-  uniform directing traffic, daytime clear blue sky. Depict the correct behavior — First number 3,
-  then waiting for 2, next 1, and then 3. Show road markings, traffic signs with English text labels
-  and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
-  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs
-  and labels written in English with Khmer script below, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic
-  render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First number 3, then waiting for 2, next 1, and then 3. Show road markings and traffic
+  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q038
@@ -946,17 +904,16 @@ Q (EN): What does this sign stand for?
   3. First vehicle 2 then 1 and 3
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle 3, next vehicle 2 turn left, and then vehicle 1". Scene: Cambodian road
-  intersection with multiple vehicles approaching from different directions, Cambodian traffic police
-  officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior — First
-  vehicle 3, next vehicle 2 turn left, and then vehicle 1. Show road markings, traffic signs with
-  English text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, road signs and labels written in English with Khmer script below, authentic
-  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K
-  ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First vehicle 3, next vehicle 2 turn left, and then vehicle 1. Show road markings and
+  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q039
@@ -971,18 +928,17 @@ Q (EN): What does this sign stand for?
   3. First vehicles 2 and 4 together leave at the same time, then vehicle 3 turns right and vehicle 1 turns left ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicles 2 and 4 together leave at the same time, then vehicle 3 turns right and
-  vehicle 1 turns left". Scene: Cambodian road intersection with multiple vehicles approaching from
-  different directions, Cambodian traffic police officer in uniform directing traffic, daytime clear
-  blue sky. Depict the correct behavior — First vehicles 2 and 4 together leave at the same time, then
-  vehicle 3 turns right and vehicle 1 turns left. Show road markings, traffic signs with English text
-  labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer
-  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, road
-  signs and labels written in English with Khmer script below, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic
-  render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First vehicles 2 and 4 together leave at the same time, then vehicle 3 turns right and
+  vehicle 1 turns left. Show road markings and traffic signs with English text labels ONLY
+  (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q040
@@ -997,17 +953,16 @@ Q (EN): What does this sign stand for?
   3. First vehicle 2, next vehicle 3 and 1.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "Vehicle 1 and 2 leave together at the same time then vehicle 3". Scene: Cambodian road
-  intersection with multiple vehicles approaching from different directions, Cambodian traffic police
-  officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior — Vehicle
-  1 and 2 leave together at the same time then vehicle 3. Show road markings, traffic signs with
-  English text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, road signs and labels written in English with Khmer script below, authentic
-  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K
-  ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: Vehicle 1 and 2 leave together at the same time then vehicle 3. Show road markings and
+  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q041
@@ -1022,17 +977,16 @@ Q (EN): What does this sign stand for?
   3. First number 4, number 2 turns left, then 1 and 3 together leave at the same time ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 4, number 2 turns left, then 1 and 3 together leave at the same time". Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions, Cambodian
-  traffic police officer in uniform directing traffic, daytime clear blue sky. Depict the correct
-  behavior — First number 4, number 2 turns left, then 1 and 3 together leave at the same time. Show
-  road markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: What does this sign stand for? The focus is on the appropriate action: First number 4,
+  number 2 turns left, then 1 and 3 together leave at the same time. Show road markings and traffic
+  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q042
@@ -1047,17 +1001,16 @@ Q (EN): What does this sign stand for?
   3. First number 1, next 3, and then 2 and 4 together leave at the same time
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle 1, next 2, and then vehicles 3 and 4". Scene: Cambodian road intersection
-  with multiple vehicles approaching from different directions, Cambodian traffic police officer in
-  uniform directing traffic, daytime clear blue sky. Depict the correct behavior — First vehicle 1,
-  next 2, and then vehicles 3 and 4. Show road markings, traffic signs with English text labels and
-  Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire.
-  Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs
-  and labels written in English with Khmer script below, authentic Southeast Asian tropical
-  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic
-  render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First vehicle 1, next 2, and then vehicles 3 and 4. Show road markings and traffic signs
+  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q043
@@ -1072,17 +1025,16 @@ Q (EN): What does this sign stand for?
   3. Number 1 and 2 together leave at the same time
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle 2 goes straight ahead then followed by vehicle 1 turns left". Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions, Cambodian
-  traffic police officer in uniform directing traffic, daytime clear blue sky. Depict the correct
-  behavior — First vehicle 2 goes straight ahead then followed by vehicle 1 turns left. Show road
-  markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver /
-  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: What does this sign stand for? The focus is on the appropriate action: First vehicle 2 goes
+  straight ahead then followed by vehicle 1 turns left. Show road markings and traffic signs with
+  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q044
@@ -1097,17 +1049,16 @@ Q (EN): What does this sign stand for?
   3. number 3 first leave, Number 2 next, and then number 1 turns left
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "vehicle 3 and vehicle 1 leave first and turning one after another, then vehicle 2.". Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions, Cambodian
-  traffic police officer in uniform directing traffic, daytime clear blue sky. Depict the correct
-  behavior — vehicle 3 and vehicle 1 leave first and turning one after another, then vehicle 2. Show
-  road markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: What does this sign stand for? The focus is on the appropriate action: vehicle 3 and
+  vehicle 1 leave first and turning one after another, then vehicle 2.. Show road markings and
+  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q045
@@ -1122,17 +1073,16 @@ Q (EN): What does this sign stand for?
   3. First left turn vehicle 2 then number 1 and 3 ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First left turn vehicle 2 then number 1 and 3". Scene: Cambodian road intersection with
-  multiple vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First left turn vehicle 2
-  then number 1 and 3. Show road markings, traffic signs with English text labels and Khmer script,
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels written
-  in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First left turn vehicle 2 then number 1 and 3. Show road markings and traffic signs with
+  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
   lighting, sharp details.
-
 ----------------------------------------------------------------------
 
 PRT-Q046
@@ -1147,17 +1097,16 @@ Q (EN): What does this sign stand for?
   3. First number 1 and 3 together leave at the same time then 2.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle 1, next left turn vehicle 2, then vehicle 3". Scene: Cambodian road
-  intersection with multiple vehicles approaching from different directions, Cambodian traffic police
-  officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior — First
-  vehicle 1, next left turn vehicle 2, then vehicle 3. Show road markings, traffic signs with English
-  text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic
-  Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture
-  visible, road signs and labels written in English with Khmer script below, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD
-  photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First vehicle 1, next left turn vehicle 2, then vehicle 3. Show road markings and traffic
+  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q047
@@ -1172,17 +1121,16 @@ Q (EN): What does this sign stand for?
   3. First number 3, next number 1 turns left, and then vehicle 2
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 3, next number 2 turns left, and then number 1". Scene: Cambodian road
-  intersection with multiple vehicles approaching from different directions, Cambodian traffic police
-  officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior — First
-  number 3, next number 2 turns left, and then number 1. Show road markings, traffic signs with
-  English text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in
-  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
-  architecture visible, road signs and labels written in English with Khmer script below, authentic
-  Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K
-  ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: 2. First number 3, next number 2 turns left, and then number 1. Show road markings and
+  traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q048
@@ -1197,17 +1145,16 @@ Q (EN): What does this sign stand for?
   3. First number 3, next number 2, and then number 1 
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 3 and 1, then number 2". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First number 3 and 1, then
-  number 2. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First number 3 and 1, then number 2. Show road markings and traffic signs with English
+  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q049
@@ -1222,16 +1169,16 @@ Q (EN): What does this sign stand for?
   3. First number 2, then 3 and 1 together leave at the same time
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 1 and 2 then 3". Scene: Cambodian road intersection with multiple vehicles
-  approaching from different directions, Cambodian traffic police officer in uniform directing
-  traffic, daytime clear blue sky. Depict the correct behavior — First number 1 and 2 then 3. Show
-  road markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First number 1 and 2 then 3. Show road markings and traffic signs with English text labels
+  ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q050
@@ -1246,17 +1193,16 @@ Q (EN): What does this sign stand for?
   3. Number 1 and 2 together leave at the same time
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First left turn vehicle 1 the vehicle 2". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First left turn vehicle 1
-  the vehicle 2. Show road markings, traffic signs with English text labels and Khmer script,
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels written
-  in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First left turn vehicle 1 the vehicle 2. Show road markings and traffic signs with English
+  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
   lighting, sharp details.
-
 ----------------------------------------------------------------------
 
 PRT-Q051
@@ -1271,16 +1217,16 @@ Q (EN): What does this sign stand for?
   3. First number 1, after number 3 and 2 is number 1.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 3 then 1 and 2". Scene: Cambodian road intersection with multiple vehicles
-  approaching from different directions, Cambodian traffic police officer in uniform directing
-  traffic, daytime clear blue sky. Depict the correct behavior — First number 3 then 1 and 2. Show
-  road markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First number 3 then 1 and 2. Show road markings and traffic signs with English text labels
+  ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q052
@@ -1295,17 +1241,16 @@ Q (EN): What does this sign stand for?
   3. First left turn number 2, next 1, and then 3 turns left ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First left turn number 2, next 1, and then 3 turns left". Scene: Cambodian road
-  intersection with multiple vehicles approaching from different directions, Cambodian traffic police
-  officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior — First
-  left turn number 2, next 1, and then 3 turns left. Show road markings, traffic signs with English
-  text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic
-  Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture
-  visible, road signs and labels written in English with Khmer script below, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD
-  photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First left turn number 2, next 1, and then 3 turns left. Show road markings and traffic
+  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q053
@@ -1320,18 +1265,16 @@ Q (EN): What does this sign stand for?
   3. First number 2 and 4 together leave at the same time, then 1 and 3 turn left one after another ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 2 and 4 together leave at the same time, then 1 and 3 turn left one after
-  another". Scene: Cambodian road intersection with multiple vehicles approaching from different
-  directions, Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky.
-  Depict the correct behavior — First number 2 and 4 together leave at the same time, then 1 and 3
-  turn left one after another. Show road markings, traffic signs with English text labels and Khmer
-  script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels
-  written in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
-  lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First number 2 and 4 together leave at the same time, then 1 and 3 turn left one after
+  another. Show road markings and traffic signs with English text labels ONLY (absolutely no Khmer
+  text, no Khmer script in the image). Cambodian characters (driver / pedestrian / officer) in
+  authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian
+  architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
+  characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q054
@@ -1346,16 +1289,16 @@ Q (EN): What does this sign stand for?
   3. First number 1, then 2 and 3 ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 1, then 2 and 3". Scene: Cambodian road intersection with multiple vehicles
-  approaching from different directions, Cambodian traffic police officer in uniform directing
-  traffic, daytime clear blue sky. Depict the correct behavior — First number 1, then 2 and 3. Show
-  road markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First number 1, then 2 and 3. Show road markings and traffic signs with English text
+  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
   / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q055
@@ -1370,16 +1313,16 @@ Q (EN): What does this sign stand for?
   3. First number 2, then 1 and 3
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle1 then 2 and 3". Scene: Cambodian road intersection with multiple vehicles
-  approaching from different directions, Cambodian traffic police officer in uniform directing
-  traffic, daytime clear blue sky. Depict the correct behavior — First vehicle1 then 2 and 3. Show
-  road markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First vehicle1 then 2 and 3. Show road markings and traffic signs with English text labels
+  ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver /
+  pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q056
@@ -1394,17 +1337,16 @@ Q (EN): What does this sign stand for?
   3. First right turn number 2, next left turn number 4, then number 3 and 1 ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First right turn number 2, next left turn number 4, then number 3 and 1". Scene: Cambodian
-  road intersection with multiple vehicles approaching from different directions, Cambodian traffic
-  police officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior —
-  First right turn number 2, next left turn number 4, then number 3 and 1. Show road markings, traffic
-  signs with English text labels and Khmer script, Cambodian characters (driver / pedestrian /
-  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
-  Cambodian architecture visible, road signs and labels written in English with Khmer script below,
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First right turn number 2, next left turn number 4, then number 3 and 1. Show road
+  markings and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer
+  script in the image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer
+  attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible,
   authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  clothing, 4K, professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q057
@@ -1419,17 +1361,16 @@ Q (EN): What does this sign stand for?
   3. First number 2, then 1 and 3 turn left
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 1, after 2 and 3 alread left, then 1 moves on". Scene: Cambodian road
-  intersection with multiple vehicles approaching from different directions, Cambodian traffic police
-  officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior — First
-  number 1, after 2 and 3 alread left, then 1 moves on. Show road markings, traffic signs with English
-  text labels and Khmer script, Cambodian characters (driver / pedestrian / officer) in authentic
-  Khmer attire. Cambodian setting, Khmer cultural identity, traditional Cambodian architecture
-  visible, road signs and labels written in English with Khmer script below, authentic Southeast Asian
-  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K ultra-HD
-  photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First number 1, after 2 and 3 alread left, then 1 moves on. Show road markings and traffic
+  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q058
@@ -1444,18 +1385,16 @@ Q (EN): What does this sign stand for?
   3. First number 4, next vehicle 2 turns left, and then 1 and 3 together at the same time ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 4, next vehicle 2 turns left, and then 1 and 3 together at the same time".
-  Scene: Cambodian road intersection with multiple vehicles approaching from different directions,
-  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Depict the
-  correct behavior — First number 4, next vehicle 2 turns left, and then 1 and 3 together at the same
-  time. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: What does this sign stand for? The focus is on the appropriate action: First number 4, next
+  vehicle 2 turns left, and then 1 and 3 together at the same time. Show road markings and traffic
+  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q059
@@ -1470,17 +1409,16 @@ Q (EN): What does this sign stand for?
   3. First number 1 and 3 then 2
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle 1, next 2, and the 3". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First vehicle 1, next 2,
-  and the 3. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First vehicle 1, next 2, and the 3. Show road markings and traffic signs with English text
+  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
+  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q060
@@ -1495,17 +1433,16 @@ Q (EN): What does this sign stand for?
   3. First number 2 and 3 together at the same time, then 1
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 3, next 2, and then 1". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First number 3, next 2, and
-  then 1. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First number 3, next 2, and then 1. Show road markings and traffic signs with English text
+  labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters (driver
+  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
+  traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
+  realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
+  sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q061
@@ -1520,17 +1457,16 @@ Q (EN): What does this sign stand for?
   3. Number 3 and 2 leave together at the same time, then 2 and 1.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 3, next 1, and then 4 and 2". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First number 3, next 1, and
-  then 4 and 2. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First number 3, next 1, and then 4 and 2. Show road markings and traffic signs with
+  English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
   characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q062
@@ -1545,17 +1481,16 @@ Q (EN): What does this sign stand for?
   3. Vehicle 2 and 3 together leave at the same time, then 1.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicles 1 and 2 together leave at the same time, then vehicle 3 turns left". Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions, Cambodian
-  traffic police officer in uniform directing traffic, daytime clear blue sky. Depict the correct
-  behavior — First vehicles 1 and 2 together leave at the same time, then vehicle 3 turns left. Show
-  road markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: What does this sign stand for? The focus is on the appropriate action: First vehicles 1 and
+  2 together leave at the same time, then vehicle 3 turns left. Show road markings and traffic signs
+  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q063
@@ -1570,17 +1505,16 @@ Q (EN): What does this sign stand for?
   3. Number 3 and 2 together leave at the same tiem, then 1.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First right turn vehicle 1, next left turn vehicle 2, then vehicle 3". Scene: Cambodian
-  road intersection with multiple vehicles approaching from different directions, Cambodian traffic
-  police officer in uniform directing traffic, daytime clear blue sky. Depict the correct behavior —
-  First right turn vehicle 1, next left turn vehicle 2, then vehicle 3. Show road markings, traffic
-  signs with English text labels and Khmer script, Cambodian characters (driver / pedestrian /
-  officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
-  Cambodian architecture visible, road signs and labels written in English with Khmer script below,
-  authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer
-  clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First right turn vehicle 1, next left turn vehicle 2, then vehicle 3. Show road markings
+  and traffic signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the
+  image). Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
+  setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast
+  Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
+  professional, cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q064
@@ -1595,17 +1529,16 @@ Q (EN): What does this sign stand for?
   3. First number 3, next 2, and the 1.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 1, next 2, and then 3". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First number 1, next 2, and
-  then 3. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: 2. First number 1, next 2, and then 3. Show road markings and traffic signs with English
+  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q065
@@ -1620,17 +1553,16 @@ Q (EN): What does this sign stand for?
   3. Number 3 and 2 together leave at the same tiem then 1.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle 2, next 3, and then 1.". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First vehicle 2, next 3,
-  and then 1. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: 2. First vehicle 2, next 3, and then 1.. Show road markings and traffic signs with English
+  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q066
@@ -1645,17 +1577,16 @@ Q (EN): What does this sign stand for?
   3. First number 1. number 2 and 3 turn left.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 2, next 3, and then 1.". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First number 2, next 3, and
-  then 1. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: 2. First number 2, next 3, and then 1.. Show road markings and traffic signs with English
+  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q067
@@ -1670,17 +1601,16 @@ Q (EN): What does this sign stand for?
   3. First number 1 and 3, then 2.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First number 3, next 2 , and then1.". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — First number 3, next 2 ,
-  and then1. Show road markings, traffic signs with English text labels and Khmer script, Cambodian
-  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
-  cultural identity, traditional Cambodian architecture visible, road signs and labels written in
-  English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian
-  characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp
-  details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: First number 3, next 2 , and then1.. Show road markings and traffic signs with English
+  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
+  lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q068
@@ -1695,17 +1625,16 @@ Q (EN): What does this sign stand for?
   3. Number 2 and 3 together leave at the same time, then 1.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "First vehicle 1 and 2 leave together at the same time, then vehicle 3 turns left .". Scene:
-  Cambodian road intersection with multiple vehicles approaching from different directions, Cambodian
-  traffic police officer in uniform directing traffic, daytime clear blue sky. Depict the correct
-  behavior — First vehicle 1 and 2 leave together at the same time, then vehicle 3 turns left . Show
-  road markings, traffic signs with English text labels and Khmer script, Cambodian characters (driver
-  / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity,
-  traditional Cambodian architecture visible, road signs and labels written in English with Khmer
-  script below, authentic Southeast Asian tropical atmosphere, realistic Cambodian characters in
-  typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic lighting, sharp details.
-
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  general Cambodian road safety awareness scene, diverse road users — pedestrians, cyclists and
+  motorists — Cambodian urban or suburban environment, daytime. Visual context involves a situation
+  where: What does this sign stand for? The focus is on the appropriate action: First vehicle 1 and
+  2 leave together at the same time, then vehicle 3 turns left .. Show road markings and traffic
+  signs with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image).
+  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
+  Khmer cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian
+  tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional,
+  cinematic lighting, sharp details.
 ----------------------------------------------------------------------
 
 PRT-Q069
@@ -1720,17 +1649,16 @@ Q (EN): What does this sign stand for?
   3. Number 1 leaves first, vehicle 2 next and then 3.  ✓
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "Number 1 leaves first, vehicle 2 next and then 3.". Scene: Cambodian road intersection with
-  multiple vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — Number 1 leaves first,
-  vehicle 2 next and then 3. Show road markings, traffic signs with English text labels and Khmer
-  script, Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian
-  setting, Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels
-  written in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: 3. Number 1 leaves first, vehicle 2 next and then 3.. Show road markings and traffic signs
+  with English text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian
+  characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer
+  cultural identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
   lighting, sharp details.
-
 ----------------------------------------------------------------------
 
 PRT-Q070
@@ -1745,15 +1673,14 @@ Q (EN): What does this sign stand for?
   3. Vehicle 1 and 2 depart at the same time.
 
 IMAGE PROMPT:
-  Photorealistic image for Cambodian road traffic Q&A: "What does this sign stand for?" Correct
-  answer: "Vehicle 1 departs first, next vehicle 2". Scene: Cambodian road intersection with multiple
-  vehicles approaching from different directions, Cambodian traffic police officer in uniform
-  directing traffic, daytime clear blue sky. Depict the correct behavior — Vehicle 1 departs first,
-  next vehicle 2. Show road markings, traffic signs with English text labels and Khmer script,
-  Cambodian characters (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting,
-  Khmer cultural identity, traditional Cambodian architecture visible, road signs and labels written
-  in English with Khmer script below, authentic Southeast Asian tropical atmosphere, realistic
-  Cambodian characters in typical Khmer clothing, 4K ultra-HD photorealistic render, cinematic
+  Professional, 4K ultra-HD photorealistic image representing Cambodian road traffic safety. Scene:
+  Cambodian road intersection with multiple vehicles approaching from different directions,
+  Cambodian traffic police officer in uniform directing traffic, daytime clear blue sky. Visual
+  context involves a situation where: What does this sign stand for? The focus is on the appropriate
+  action: Vehicle 1 departs first, next vehicle 2. Show road markings and traffic signs with English
+  text labels ONLY (absolutely no Khmer text, no Khmer script in the image). Cambodian characters
+  (driver / pedestrian / officer) in authentic Khmer attire. Cambodian setting, Khmer cultural
+  identity, traditional Cambodian architecture visible, authentic Southeast Asian tropical
+  atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic
   lighting, sharp details.
-
 ----------------------------------------------------------------------
