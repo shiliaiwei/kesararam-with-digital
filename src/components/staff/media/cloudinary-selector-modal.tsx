@@ -79,12 +79,20 @@ export function CloudinarySelectorModal({
   const displayed = useMemo(() => {
     let list = assets;
 
-    // Audio language filtering: .mp3 for English, .ogg for Khmer
-    if (type === "audio" && audioLanguage) {
+    // Audio language filtering: match by filename containing "ENGLISH" or "KHMER"
+    // Accepts all audio formats (wav, mp3, ogg, etc.)
+    // Applied only when no manual search is active, so search always works freely
+    if (type === "audio" && audioLanguage && !search.trim()) {
       if (audioLanguage === "en") {
-        list = list.filter((a) => a.format === "mp3");
+        list = list.filter((a) => {
+          const name = (a.filename + " " + a.public_id).toUpperCase();
+          return name.includes("ENGLISH");
+        });
       } else if (audioLanguage === "km") {
-        list = list.filter((a) => a.format === "ogg");
+        list = list.filter((a) => {
+          const name = (a.filename + " " + a.public_id).toUpperCase();
+          return name.includes("KHMER");
+        });
       }
     }
 
@@ -93,10 +101,10 @@ export function CloudinarySelectorModal({
       list = list.filter((a) => (a.folder || "root") === selectedFolder);
     }
 
-    // Search — match against filename OR full public_id
+    // Search — match against filename OR full public_id (case-insensitive, no language pre-filter)
     if (search.trim()) {
       const q = search.trim().toLowerCase();
-      list = list.filter(
+      list = assets.filter(
         (a) =>
           a.filename.toLowerCase().includes(q) ||
           a.public_id.toLowerCase().includes(q)
@@ -157,7 +165,7 @@ export function CloudinarySelectorModal({
                 {loading ? "Loading..." : `${assets.length} total assets`}
                 {type === "audio" && audioLanguage && (
                   <span className="ml-2 px-2 py-0.5 bg-blue-500 text-white rounded text-[10px]">
-                    {audioLanguage === "en" ? "MP3 only (English)" : "OGG only (Khmer)"}
+                    {audioLanguage === "en" ? "English files (-ENGLISH)" : "Khmer files (-KHMER)"}
                   </span>
                 )}
               </p>
@@ -215,9 +223,11 @@ export function CloudinarySelectorModal({
           {/* Sort + Count */}
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-zinc-500">
-              {search || selectedFolder !== "all"
+              {search.trim()
                 ? `${displayed.length} of ${assets.length} shown`
-                : `${assets.length} ${type}(s)`}
+                : selectedFolder !== "all"
+                  ? `${displayed.length} of ${assets.length} shown`
+                  : `${displayed.length} ${type}(s)`}
             </span>
             <div className="flex items-center gap-1">
               <span className="text-xs font-bold text-zinc-500 mr-1">Sort:</span>
@@ -225,11 +235,10 @@ export function CloudinarySelectorModal({
                 <button
                   key={f}
                   onClick={() => toggleSort(f)}
-                  className={`px-2 py-1 text-xs font-black border-2 border-black transition-all inline-flex items-center gap-1 ${
-                    sortField === f
-                      ? "bg-black text-white"
-                      : "bg-white hover:bg-zinc-100"
-                  }`}
+                  className={`px-2 py-1 text-xs font-black border-2 border-black transition-all inline-flex items-center gap-1 ${sortField === f
+                    ? "bg-black text-white"
+                    : "bg-white hover:bg-zinc-100"
+                    }`}
                 >
                   {f}
                   {sortField === f && (
@@ -285,11 +294,10 @@ export function CloudinarySelectorModal({
                     key={asset.public_id}
                     onClick={() => setSelectedUrl(asset.secure_url)}
                     title={asset.filename}
-                    className={`relative aspect-square border-2 transition-all group overflow-hidden ${
-                      isSelected
-                        ? "border-green-500 ring-4 ring-green-400 shadow-[4px_4px_0_#22c55e]"
-                        : "border-black hover:shadow-[4px_4px_0_#000] hover:border-zinc-600"
-                    }`}
+                    className={`relative aspect-square border-2 transition-all group overflow-hidden ${isSelected
+                      ? "border-green-500 ring-4 ring-green-400 shadow-[4px_4px_0_#22c55e]"
+                      : "border-black hover:shadow-[4px_4px_0_#000] hover:border-zinc-600"
+                      }`}
                   >
                     {type === "image" ? (
                       <img
