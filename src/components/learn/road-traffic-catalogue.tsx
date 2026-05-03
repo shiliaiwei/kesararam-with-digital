@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Search, ArrowLeft, ChevronDown, ChevronUp, Play, Pause } from "lucide-react";
+import { useState, useEffect, useRef, Fragment } from "react";
+import { Search, ArrowLeft, X, Volume2, ChevronDown } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 
 interface Topic {
@@ -18,6 +18,13 @@ interface Topic {
   primary_image_url: string | null;
 }
 
+interface Answer {
+  id: number;
+  answer_en: string;
+  answer_km: string;
+  is_correct: boolean;
+}
+
 interface Question {
   id: number;
   topic_id: number;
@@ -26,473 +33,558 @@ interface Question {
   hint_en: string;
   hint_km: string;
   image_url: string | null;
+  audio_url_en?: string;
+  audio_url_km?: string;
   answers: Answer[];
 }
 
-interface Answer {
-  id: number;
-  answer_en: string;
-  answer_km: string;
-  is_correct: boolean;
+const SUB_GROUPS: { key: string; en: string; km: string }[] = [
+  { key: "Traffic Rules", en: "Traffic Rules", km: "វិធាន" },
+  { key: "Speed Limits", en: "Speed Limits", km: "ល្បឿន" },
+  { key: "Parking", en: "Parking", km: "ចត" },
+  { key: "Overtaking", en: "Overtaking", km: "ជែង" },
+];
+
+const UI = {
+  en: {
+    back: "Back to Categories",
+    search: "Search questions...",
+    all: "All Questions",
+    showing: "Showing", of: "of", questions: "questions",
+    noQ: "No questions found",
+    reset: "Reset",
+    answer: "Answer",
+    hint: "Hint",
+    lawRef: "Law Reference",
+    playAudio: "Play Audio",
+    stopAudio: "Stop",
+    tapHint: "Tap any card to see the answer",
+  },
+  kh: {
+    back: "ត្រឡប់ទៅប្រភេទ",
+    search: "ស្វែងរកសំណួរ...",
+    all: "សំណួរទាំងអស់",
+    showing: "បង្ហាញ", of: "នៃ", questions: "សំណួរ",
+    noQ: "រកមិនឃើញសំណួរ",
+    reset: "កំណត់ឡើងវិញ",
+    answer: "ចម្លើយ",
+    hint: "ힰ",
+    lawRef: "ឯកសារយោងច្បាប់",
+    playAudio: "ចាក់សំឡេង",
+    stopAudio: "ឈប់",
+    tapHint: "ចុចលើប័ណ្ណដើម្បីមើលចម្លើយ",
+  },
+} as const;
+
+// ── Flat list of all questions with their topic attached ──────────────────────
+interface FlatQuestion extends Question {
+  topic: Topic;
 }
 
-const SUB_GROUPS = ["Traffic Rules", "Speed Limits", "Parking", "Overtaking"];
+// ── Detail Panel (opens inline after the row, like road-sign) ─────────────────
+function DetailPanel({
+  item, isKh, kf, t, onClose,
+}: {
+  item: FlatQuestion;
+  isKh: boolean;
+  kf: React.CSSProperties;
+  t: typeof UI.en;
+  onClose: () => void;
+}) {
+  const panelRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const playingRef = useRef(false);
+  const [playing, setPlaying] = useState(false);
+  const [loadingAudio, setLoadingAudio] = useState(false);
 
-export function RoadTrafficCatalogue() {
-  const { lang } = useLang();
-  const [topics, setTopics] = useState<Topic[]>([]);
-  const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
-  const [subGroupFilter, setSubGroupFilter] = useState("");
-  const [questions, setQuestions] = useState<Record<number, Question[]>>({});
-  const [playingAudio, setPlayingAudio] = useState<number | null>(null);
-  const [expandedQuestions, setExpandedQuestions] = useState<Record<number, boolean>>({});
-  const [expandedTopics, setExpandedTopics] = useState<Record<number, boolean>>({});
-
-  const translations = {
-    en: {
-      category: "KNOWLEDGE CATEGORY",
-      title: "Road Traffic Law",
-      titleKm: "ច្បាប់ចរាចរណ៍ផ្លូវ",
-      description: "Learn essential road traffic laws and regulations in Cambodia. Study law articles, case studies, and Q&A to understand your responsibilities as a road user.",
-      backButton: "Back to Categories",
-      searchPlaceholder: "Search by topic...",
-      allTypes: "All Types",
-      showing: "Showing",
-      of: "of",
-      topics: "topics",
-      noTopics: "No topics found",
-      questions: "Questions",
-      playAudio: "Play Audio",
-      lawReference: "Law Reference",
-    },
-    kh: {
-      category: "ប្រភេទចំណេះដឹង",
-      title: "ច្បាប់ចរាចរណ៍ផ្លូវ",
-      titleKm: "Road Traffic Law",
-      description: "រៀនច្បាប់ និងបទប្បញ្ញត្តិចរាចរណ៍ផ្លូវសំខាន់ៗនៅកម្ពុជា។ សិក្សាអត្ថបទច្បាប់ ករណីសិក្សា និងសំណួរ-ចម្លើយ ដើម្បីយល់ពីទំនួលខុសត្រូវរបស់អ្នកក្នុងនាមជាអ្នកប្រើប្រាស់ផ្លូវ។",
-      backButton: "ត្រឡប់ទៅប្រភេទ",
-      searchPlaceholder: "ស្វែងរកតាមប្រធានបទ...",
-      allTypes: "ប្រភេទទាំងអស់",
-      showing: "បង្ហាញ",
-      of: "នៃ",
-      topics: "ប្រធានបទ",
-      noTopics: "រកមិនឃើញប្រធានបទ",
-      questions: "សំណួរ",
-      playAudio: "ចាក់សំឡេង",
-      lawReference: "ឯកសារយោងច្បាប់",
-    },
-  };
-
-  const t = translations[lang] || translations.en;
-
+  // Scroll panel into view
   useEffect(() => {
-    fetchTopics();
-    // Fetch questions for all topics on mount
-  }, []);
+    const timer = setTimeout(() => {
+      panelRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }, 80);
+    return () => clearTimeout(timer);
+  }, [item.id]);
 
+  // Cleanup audio on unmount / item change
   useEffect(() => {
-    // Fetch questions for all topics when topics are loaded
-    if (topics.length > 0) {
-      topics.forEach(topic => {
-        fetchQuestions(topic.id);
-      });
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.src = "";
+        audioRef.current = null;
+      }
+      playingRef.current = false;
+    };
+  }, [item.id]);
+
+  const audioUrl = isKh
+    ? (item.audio_url_km || item.topic.audio_url_km)
+    : (item.audio_url_en || item.topic.audio_url_en);
+
+  const correctAnswer = item.answers.find((a) => a.is_correct);
+  const subGroup = SUB_GROUPS.find((s) => s.key === item.topic.sub_group);
+
+  const handleAudio = () => {
+    if (!audioUrl) return;
+    if (playingRef.current || loadingAudio) {
+      audioRef.current?.pause();
+      if (audioRef.current) { audioRef.current.src = ""; audioRef.current = null; }
+      playingRef.current = false;
+      setPlaying(false);
+      setLoadingAudio(false);
+      return;
     }
-  }, [topics]);
-
-  useEffect(() => {
-    filterTopics();
-  }, [topics, search, subGroupFilter]);
-
-  const fetchTopics = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch("/api/public/topics?categoryId=2&status=published");
-      const data = await response.json();
-      setTopics(data.topics || []);
-    } catch (error) {
-      console.error("Error fetching topics:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchQuestions = async (topicId: number) => {
-    if (questions[topicId]) return;
-
-    try {
-      const response = await fetch(`/api/public/topics/${topicId}/questions`);
-      const data = await response.json();
-      setQuestions((prev) => ({
-        ...prev,
-        [topicId]: data.questions || [],
-      }));
-    } catch (error) {
-      console.error("Error fetching questions:", error);
-    }
-  };
-
-  const filterTopics = () => {
-    let filtered = [...topics];
-
-    if (search) {
-      filtered = filtered.filter(
-        (t) =>
-          t.name_en.toLowerCase().includes(search.toLowerCase()) ||
-          t.name_km.includes(search) ||
-          t.topic_code.toLowerCase().includes(search.toLowerCase()) ||
-          t.description_en.toLowerCase().includes(search.toLowerCase()) ||
-          t.description_km.includes(search)
-      );
-    }
-
-    if (subGroupFilter) {
-      filtered = filtered.filter((t) => t.sub_group === subGroupFilter);
-    }
-
-    setFilteredTopics(filtered);
-  };
-
-  const toggleTopic = (topicId: number) => {
-    setExpandedTopics(prev => ({
-      ...prev,
-      [topicId]: !prev[topicId]
-    }));
-  };
-
-  const toggleQuestion = (questionId: number) => {
-    setExpandedQuestions(prev => ({
-      ...prev,
-      [questionId]: !prev[questionId]
-    }));
-  };
-
-  const toggleAudio = (topicId: number) => {
-    if (playingAudio === topicId) {
-      setPlayingAudio(null);
-    } else {
-      setPlayingAudio(topicId);
-    }
+    const audio = new Audio(audioUrl);
+    audioRef.current = audio;
+    setLoadingAudio(true);
+    audio.addEventListener("canplaythrough", () => {
+      audio.play().catch(() => { setLoadingAudio(false); setPlaying(false); playingRef.current = false; });
+      setLoadingAudio(false);
+      setPlaying(true);
+      playingRef.current = true;
+    }, { once: true });
+    audio.addEventListener("ended", () => { setPlaying(false); playingRef.current = false; audioRef.current = null; }, { once: true });
+    audio.addEventListener("error", () => { setPlaying(false); setLoadingAudio(false); playingRef.current = false; audioRef.current = null; }, { once: true });
+    audio.load();
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header Banner */}
-      <div
-        className="bg-blue-400 border-b-4 border-black"
-        style={{ boxShadow: "0 4px 0 #000" }}
-      >
-        <div className="max-w-7xl mx-auto px-4 py-12">
-          <div className="flex items-start justify-between gap-8">
-            <div className="flex-1">
-              <div className="inline-block bg-black text-white px-3 py-1 font-bold text-sm mb-4">
-                {t.category}
-              </div>
-              <h1 className="text-4xl md:text-5xl font-black mb-2">{t.title}</h1>
-              <h2 className="text-xl md:text-2xl font-bold mb-4">{t.titleKm}</h2>
-              <p className="text-base md:text-lg max-w-2xl">
-                {t.description}
-              </p>
-            </div>
-
-            {/* Category Illustration */}
-            <div className="hidden lg:block flex-shrink-0">
-              <div
-                className="w-40 h-40 xl:w-48 xl:h-48 bg-white border-4 border-black flex items-center justify-center"
-                style={{ boxShadow: "8px 8px 0 #000" }}
-              >
-                <svg
-                  viewBox="0 0 100 100"
-                  className="w-28 h-28 xl:w-32 xl:h-32"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                >
-                  <circle cx="50" cy="50" r="35" />
-                  <path d="M 30 50 L 70 50 M 50 30 L 50 70" />
-                </svg>
-              </div>
-            </div>
-          </div>
+    <div
+      ref={panelRef}
+      className="col-span-full border-4 border-yellow-400 bg-white"
+      style={{ boxShadow: "6px 6px 0 #000", scrollMarginTop: "100px" }}
+    >
+      {/* Panel header */}
+      <div className="flex items-center justify-between px-5 py-3 bg-yellow-400 border-b-2 border-black">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="font-mono text-xs font-black bg-black text-yellow-400 px-2 py-0.5">
+            {item.topic.topic_code}
+          </span>
+          {subGroup && (
+            <span className="text-xs font-bold text-black/70" style={kf}>
+              {isKh ? subGroup.km : subGroup.en}
+            </span>
+          )}
         </div>
-      </div>
-
-      {/* Back Button */}
-      <div className="max-w-7xl mx-auto px-4 py-6">
         <button
-          onClick={() => window.history.back()}
-          className="bg-white border-2 border-black px-4 py-2 font-bold hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2"
+          onClick={onClose}
+          className="p-1.5 bg-white border-2 border-black hover:bg-black hover:text-white transition-all"
+          aria-label="Close"
         >
-          <ArrowLeft size={20} />
-          {t.backButton}
+          <X size={14} />
         </button>
       </div>
 
-      {/* Filters & Search */}
-      <div className="max-w-7xl mx-auto px-4 pb-6">
-        <div
-          className="bg-white border-2 border-black p-4"
-          style={{ boxShadow: "4px 4px 0 #000" }}
-        >
-          <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
-            <div className="md:col-span-6">
-              <div className="relative">
-                <Search
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"
-                  size={20}
-                />
-                <input
-                  type="text"
-                  placeholder={t.searchPlaceholder}
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-                />
-              </div>
-            </div>
+      {/* Body */}
+      <div className="p-5 space-y-4">
 
-            <div className="md:col-span-4">
-              <select
-                value={subGroupFilter}
-                onChange={(e) => setSubGroupFilter(e.target.value)}
-                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-              >
-                <option value="">{t.allTypes}</option>
-                {SUB_GROUPS.map((sg) => (
-                  <option key={sg} value={sg}>
-                    {sg}
-                  </option>
-                ))}
-              </select>
-            </div>
+        {/* Question */}
+        <p className="font-black text-base md:text-lg leading-snug" style={kf}>
+          {isKh ? item.question_km : item.question_en}
+        </p>
+
+        {/* Image (if any) */}
+        {item.image_url && (
+          <div className="border-2 border-black overflow-hidden">
+            <img
+              src={item.image_url}
+              alt="Question scenario"
+              className="w-full object-cover"
+              style={{ aspectRatio: "16/9" }}
+            />
+          </div>
+        )}
+
+        {/* Answer */}
+        {correctAnswer && (
+          <div className="bg-green-50 border-2 border-green-500 px-4 py-3">
+            <p className="text-[10px] font-black uppercase tracking-widest text-green-600 mb-1" style={kf}>
+              {t.answer}
+            </p>
+            <p className="font-black text-base text-green-900" style={kf}>
+              {isKh ? correctAnswer.answer_km : correctAnswer.answer_en}
+            </p>
+          </div>
+        )}
+
+        {/* Hint */}
+        {(item.hint_en || item.hint_km) && (
+          <div className="bg-blue-50 border-2 border-blue-300 px-4 py-3">
+            <p className="text-[10px] font-black uppercase tracking-widest text-blue-500 mb-1" style={kf}>
+              💡 {t.hint}
+            </p>
+            <p className="text-sm text-blue-900" style={kf}>
+              {isKh ? item.hint_km : item.hint_en}
+            </p>
+          </div>
+        )}
+
+        {/* Law reference */}
+        {item.topic.law_reference && (
+          <div className="bg-amber-50 border-2 border-amber-300 px-4 py-3">
+            <p className="text-[10px] font-black uppercase tracking-widest text-amber-600 mb-1" style={kf}>
+              {t.lawRef}
+            </p>
+            <p className="text-xs font-mono text-amber-900" style={kf}>
+              {item.topic.law_reference}
+            </p>
+          </div>
+        )}
+
+        {/* Audio */}
+        {audioUrl && (
+          <button
+            onClick={handleAudio}
+            className={`inline-flex items-center gap-2 px-4 py-2.5 border-2 border-black font-black text-sm transition-all select-none ${loadingAudio
+                ? "bg-zinc-100 text-zinc-400 cursor-wait"
+                : playing
+                  ? "bg-black text-yellow-400 shadow-[3px_3px_0_#ca8a04] hover:bg-zinc-800"
+                  : "bg-white hover:bg-yellow-400 shadow-[3px_3px_0_#000] hover:shadow-[3px_3px_0_#ca8a04]"
+              }`}
+            style={kf}
+          >
+            {loadingAudio ? (
+              <>
+                <span className="flex gap-0.5 items-end h-3">
+                  {[60, 100, 75].map((h, i) => (
+                    <span key={i} className="w-1 bg-zinc-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 120}ms` }} />
+                  ))}
+                </span>
+                {isKh ? "កំពុងផ្ទុក..." : "Loading..."}
+              </>
+            ) : playing ? (
+              <>
+                <span className="flex gap-0.5 items-end h-3">
+                  {[60, 100, 75, 90].map((h, i) => (
+                    <span key={i} className="w-1 bg-yellow-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />
+                  ))}
+                </span>
+                {t.stopAudio}
+              </>
+            ) : (
+              <>
+                <Volume2 size={15} />
+                {t.playAudio}
+              </>
+            )}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ── Question Card ─────────────────────────────────────────────────────────────
+function QuestionCard({
+  item, isSelected, isKh, kf, onClick,
+}: {
+  item: FlatQuestion;
+  isSelected: boolean;
+  isKh: boolean;
+  kf: React.CSSProperties;
+  onClick: () => void;
+}) {
+  const subGroup = SUB_GROUPS.find((s) => s.key === item.topic.sub_group);
+
+  return (
+    <button
+      onClick={onClick}
+      aria-expanded={isSelected}
+      className={`group w-full text-left border-2 transition-all duration-150 flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400 ${isSelected
+          ? "border-yellow-400 bg-yellow-400 shadow-[4px_4px_0_#ca8a04]"
+          : "border-black bg-white hover:border-yellow-400 hover:bg-yellow-50 hover:shadow-[4px_4px_0_#ca8a04]"
+        }`}
+    >
+      {/* Card body */}
+      <div className="flex-1 p-3 md:p-4 space-y-2">
+        {/* Code + subgroup badges */}
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <span className={`font-mono text-[9px] font-black px-1.5 py-0.5 border ${isSelected ? "bg-black text-yellow-400 border-black" : "bg-zinc-100 border-zinc-300 text-zinc-500"
+            }`}>
+            {item.topic.topic_code}
+          </span>
+          {subGroup && (
+            <span className={`text-[9px] font-bold px-1.5 py-0.5 border ${isSelected ? "bg-yellow-500 border-yellow-600 text-black" : "bg-blue-50 border-blue-200 text-blue-700"
+              }`} style={kf}>
+              {isKh ? subGroup.km : subGroup.en}
+            </span>
+          )}
+        </div>
+
+        {/* Question text */}
+        <p className={`text-xs md:text-sm font-bold leading-snug line-clamp-3 ${isSelected ? "text-black" : "text-zinc-800 group-hover:text-black"
+          }`} style={kf}>
+          {isKh ? item.question_km : item.question_en}
+        </p>
+      </div>
+
+      {/* Footer — tap indicator */}
+      <div className={`border-t-2 px-3 py-1.5 w-full flex items-center justify-between transition-colors ${isSelected ? "border-yellow-500 bg-yellow-500" : "border-black bg-zinc-50 group-hover:border-yellow-500 group-hover:bg-yellow-100"
+        }`}>
+        <span className={`text-[9px] font-black uppercase tracking-wide ${isSelected ? "text-black" : "text-zinc-400"}`} style={kf}>
+          {isSelected ? (isKh ? "បិទ" : "Close") : (isKh ? "ចុចមើល" : "Tap to reveal")}
+        </span>
+        <ChevronDown
+          size={12}
+          className={`transition-transform duration-200 ${isSelected ? "rotate-180 text-black" : "text-zinc-400"}`}
+        />
+      </div>
+    </button>
+  );
+}
+
+// ── Main Catalogue ────────────────────────────────────────────────────────────
+export function RoadTrafficCatalogue() {
+  const { lang } = useLang();
+  const isKh = lang === "kh";
+  const kf = isKh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const t = isKh ? UI.kh : UI.en;
+
+  const [topics, setTopics] = useState<Topic[]>([]);
+  const [allQuestions, setAllQuestions] = useState<FlatQuestion[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [subGroupFilter, setSubGroupFilter] = useState("");
+  const [selectedItem, setSelectedItem] = useState<FlatQuestion | null>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const [cols, setCols] = useState(3);
+
+  // Track responsive column count
+  useEffect(() => {
+    const update = () => {
+      if (window.innerWidth >= 1024) setCols(4);
+      else if (window.innerWidth >= 768) setCols(3);
+      else if (window.innerWidth >= 640) setCols(2);
+      else setCols(1);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  // Fetch topics then all their questions
+  useEffect(() => {
+    const load = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch("/api/public/topics?categoryId=2&status=published");
+        const data = await res.json();
+        const fetchedTopics: Topic[] = data.topics || [];
+        setTopics(fetchedTopics);
+
+        // Fetch questions for all topics in parallel
+        const results = await Promise.all(
+          fetchedTopics.map((topic) =>
+            fetch(`/api/public/topics/${topic.id}/questions`)
+              .then((r) => r.json())
+              .then((d) =>
+                (d.questions || []).map((q: Question) => ({ ...q, topic }))
+              )
+              .catch(() => [])
+          )
+        );
+        setAllQuestions(results.flat());
+      } catch (e) {
+        console.error(e);
+      } finally {
+        setLoading(false);
+      }
+    };
+    load();
+  }, []);
+
+  // Filtered list
+  const filtered = allQuestions.filter((item) => {
+    const matchSearch = !search.trim() || (
+      item.question_en.toLowerCase().includes(search.toLowerCase()) ||
+      item.question_km.includes(search) ||
+      item.topic.topic_code.toLowerCase().includes(search.toLowerCase())
+    );
+    const matchGroup = !subGroupFilter || item.topic.sub_group === subGroupFilter;
+    return matchSearch && matchGroup;
+  });
+
+  const handleCardClick = (item: FlatQuestion) => {
+    setSelectedItem(selectedItem?.id === item.id ? null : item);
+  };
+
+  const handleFilterChange = (key: string) => {
+    setSubGroupFilter(key);
+    setSelectedItem(null);
+  };
+
+  // Count per sub_group
+  const countMap = allQuestions.reduce<Record<string, number>>((acc, q) => {
+    acc[q.topic.sub_group] = (acc[q.topic.sub_group] || 0) + 1;
+    return acc;
+  }, {});
+
+  const availableGroups = SUB_GROUPS.filter((sg) => countMap[sg.key]);
+  const isDefaultFilter = subGroupFilter === "" && !search.trim();
+
+  return (
+    <div className="min-h-screen bg-white">
+
+      {/* Back button */}
+      <div className="max-w-7xl mx-auto px-4 pt-4 pb-2">
+        <button
+          onClick={() => window.history.back()}
+          className="bg-white border-2 border-black px-4 py-2 font-bold hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2 text-sm"
+          style={kf}
+        >
+          <ArrowLeft size={16} />
+          {t.back}
+        </button>
+      </div>
+
+      {/* ── Filter + Search bar ───────────────────────────────────── */}
+      <div className="max-w-7xl mx-auto px-4 pb-4">
+        <div className="bg-white border-2 border-black p-4" style={{ boxShadow: "4px 4px 0 #000" }}>
+
+          {/* Search */}
+          <div className="relative mb-3">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={18} />
+            <input
+              type="text"
+              placeholder={t.search}
+              value={search}
+              onChange={(e) => { setSearch(e.target.value); setSubGroupFilter(""); setSelectedItem(null); }}
+              className="w-full pl-10 pr-9 py-2.5 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] text-sm"
+              style={kf}
+            />
+            {search && (
+              <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-black">
+                <X size={15} />
+              </button>
+            )}
           </div>
 
-          <div className="mt-4 text-sm font-bold text-zinc-600">
-            {t.showing} {filteredTopics.length} {t.of} {topics.length} {t.topics}
+          {/* Tag pills */}
+          <div
+            className="flex items-center gap-1.5 overflow-x-auto py-0.5"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
+          >
+            {/* All */}
+            <button
+              onClick={() => handleFilterChange("")}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${subGroupFilter === "" && !search
+                  ? "bg-black text-yellow-400 shadow-[2px_2px_0_#ca8a04]"
+                  : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
+                }`}
+              style={kf}
+            >
+              {t.all}
+              <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ${subGroupFilter === "" && !search ? "bg-yellow-400 text-black" : "bg-zinc-100 text-zinc-600"
+                }`}>
+                {allQuestions.length}
+              </span>
+            </button>
+
+            <span className="w-px h-4 bg-zinc-300 shrink-0 mx-0.5" />
+
+            {availableGroups.map((sg) => {
+              const isActive = subGroupFilter === sg.key && !search;
+              return (
+                <button
+                  key={sg.key}
+                  onClick={() => handleFilterChange(sg.key)}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${isActive
+                      ? "bg-yellow-400 border-black shadow-[2px_2px_0_#000]"
+                      : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
+                    }`}
+                  style={kf}
+                >
+                  {isKh ? sg.km : sg.en}
+                  <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ${isActive ? "bg-black text-yellow-400" : "bg-zinc-100 text-zinc-600"
+                    }`}>
+                    {countMap[sg.key] || 0}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Count + reset */}
+          <div className="mt-3 pt-3 border-t border-zinc-200 flex items-center justify-between">
+            <p className="text-xs font-bold text-zinc-500" style={kf}>
+              {t.showing} <span className="text-black font-black">{filtered.length}</span> {t.of} {allQuestions.length} {t.questions}
+              {subGroupFilter && !search && (
+                <span className="ml-2 text-yellow-700">
+                  — {isKh ? SUB_GROUPS.find((s) => s.key === subGroupFilter)?.km : SUB_GROUPS.find((s) => s.key === subGroupFilter)?.en}
+                </span>
+              )}
+            </p>
+            {!isDefaultFilter && (
+              <button
+                onClick={() => { setSubGroupFilter(""); setSearch(""); setSelectedItem(null); }}
+                className="text-xs font-bold text-zinc-400 hover:text-black underline"
+                style={kf}
+              >
+                {t.reset}
+              </button>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Topics List */}
-      <div className="max-w-7xl mx-auto px-4 pb-12">
+      {/* ── Questions Grid ────────────────────────────────────────── */}
+      <div className="max-w-7xl mx-auto px-4 pb-12" ref={gridRef}>
         {loading ? (
-          <div className="space-y-3">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <div
-                key={i}
-                className="bg-white border-2 border-black p-6 animate-pulse"
-                style={{ boxShadow: "4px 4px 0 #000" }}
-              >
-                <div className="h-6 bg-gray-200 w-3/4 mb-3"></div>
-                <div className="h-4 bg-gray-200 w-1/2"></div>
-              </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            {Array.from({ length: 12 }).map((_, i) => (
+              <div key={i} className="h-32 bg-gray-200 border-2 border-black animate-pulse" />
             ))}
           </div>
-        ) : filteredTopics.length === 0 ? (
-          <div
-            className="bg-white border-2 border-black p-12 text-center"
-            style={{ boxShadow: "4px 4px 0 #000" }}
-          >
-            <p className="text-zinc-600 font-bold">{t.noTopics}</p>
+        ) : filtered.length === 0 ? (
+          <div className="bg-white border-2 border-black p-12 text-center" style={{ boxShadow: "4px 4px 0 #000" }}>
+            <p className="text-zinc-600 font-bold" style={kf}>{t.noQ}</p>
           </div>
         ) : (
-          <div className="space-y-4">
-            {filteredTopics.map((topic) => (
-              <div
-                key={topic.id}
-                className="bg-white border-2 border-black"
-                style={{ boxShadow: "4px 4px 0 #000" }}
-              >
-                {/* Topic Header - Clickable */}
-                <button
-                  onClick={() => toggleTopic(topic.id)}
-                  className="w-full p-4 md:p-6 flex items-start justify-between hover:bg-gray-50 transition-all text-left"
-                >
-                  <div className="flex-1 min-w-0 pr-4">
-                    <div className="flex items-center gap-2 mb-2 flex-wrap">
-                      <span className="text-xs font-mono bg-zinc-100 border border-black px-2 py-1 whitespace-nowrap">
-                        {topic.topic_code}
-                      </span>
-                      {topic.sub_group && (
-                        <span className="text-xs font-bold bg-blue-100 border border-blue-400 px-2 py-1 whitespace-nowrap">
-                          {topic.sub_group}
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="text-lg md:text-xl font-black break-words">
-                      {lang === "en" ? topic.name_en : topic.name_km}
-                    </h3>
-                  </div>
-                  
-                  {expandedTopics[topic.id] ? (
-                    <ChevronUp size={24} className="flex-shrink-0" />
-                  ) : (
-                    <ChevronDown size={24} className="flex-shrink-0" />
-                  )}
-                </button>
+          <>
+            {/* Tap hint */}
+            <p className="text-xs font-bold text-zinc-400 mb-3 text-center" style={kf}>
+              👆 {t.tapHint}
+            </p>
 
-                {/* Topic Content - Collapsible */}
-                {expandedTopics[topic.id] && (
-                  <div className="border-t-2 border-black bg-gray-50 p-4 md:p-6">
-                    {/* Topic Image - 16:9 only */}
-                    {topic.primary_image_url && (
-                      <div className="mb-4 md:mb-6">
-                        <img
-                          src={topic.primary_image_url}
-                          alt={lang === "en" ? topic.name_en : topic.name_km}
-                          className="w-full max-w-3xl border-2 border-black object-cover"
-                          style={{ aspectRatio: '16/9' }}
-                          onError={(e) => {
-                            // Hide image if it fails to load or doesn't meet requirements
-                            e.currentTarget.style.display = 'none';
-                          }}
-                        />
-                      </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+              {filtered.map((item, idx) => {
+                const isSelected = selectedItem?.id === item.id;
+                const isLastInRow = (idx + 1) % cols === 0 || idx === filtered.length - 1;
+                const selectedIdx = selectedItem
+                  ? filtered.findIndex((q) => q.id === selectedItem.id)
+                  : -1;
+                const showPanelAfter =
+                  selectedItem &&
+                  selectedIdx >= 0 &&
+                  idx >= selectedIdx &&
+                  Math.floor(idx / cols) === Math.floor(selectedIdx / cols) &&
+                  isLastInRow;
+
+                return (
+                  <Fragment key={item.id}>
+                    <QuestionCard
+                      item={item}
+                      isSelected={isSelected}
+                      isKh={isKh}
+                      kf={kf}
+                      onClick={() => handleCardClick(item)}
+                    />
+
+                    {showPanelAfter && selectedItem && (
+                      <DetailPanel
+                        key={`panel-${selectedItem.id}`}
+                        item={selectedItem}
+                        isKh={isKh}
+                        kf={kf}
+                        t={t}
+                        onClose={() => setSelectedItem(null)}
+                      />
                     )}
-
-                    {/* Description */}
-                    <p className="text-sm md:text-base text-zinc-700 mb-4 md:mb-6 break-words whitespace-pre-wrap">
-                      {lang === "en" ? topic.description_en : topic.description_km}
-                    </p>
-
-                    {/* Audio Player */}
-                    {((lang === "en" && topic.audio_url_en) || (lang === "kh" && topic.audio_url_km)) && (
-                      <div className="mb-6">
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleAudio(topic.id);
-                          }}
-                          className="bg-blue-400 border-2 border-black px-4 py-2 font-bold hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2"
-                        >
-                          {playingAudio === topic.id ? <Pause size={18} /> : <Play size={18} />}
-                          {t.playAudio}
-                        </button>
-                        {playingAudio === topic.id && (
-                          <audio
-                            key={`audio-${topic.id}-${lang}`}
-                            src={lang === "en" ? topic.audio_url_en : topic.audio_url_km}
-                            autoPlay
-                            onEnded={() => setPlayingAudio(null)}
-                            onError={() => setPlayingAudio(null)}
-                            className="hidden"
-                          />
-                        )}
-                      </div>
-                    )}
-
-                    {/* Law Reference */}
-                    {topic.law_reference && (
-                      <div className="mb-4 md:mb-6 p-3 md:p-4 bg-amber-50 border-2 border-amber-600">
-                        <p className="text-xs md:text-sm font-bold text-amber-900 mb-2">
-                          {t.lawReference}
-                        </p>
-                        <p className="text-xs md:text-sm font-mono text-amber-800 break-words">
-                          {topic.law_reference}
-                        </p>
-                      </div>
-                    )}
-
-                    {/* Questions Section - Collapsible Individual Questions */}
-                    {questions[topic.id] && questions[topic.id].length > 0 && (
-                      <div>
-                        <h4 className="font-black text-base md:text-lg mb-4">
-                          {t.questions}
-                        </h4>
-                        <div className="space-y-3">
-                          {questions[topic.id].map((q, index) => (
-                            <div
-                              key={q.id}
-                              className="bg-white border-2 border-black"
-                            >
-                              {/* Question Header - Clickable */}
-                              <button
-                                onClick={() => toggleQuestion(q.id)}
-                                className="w-full p-3 md:p-4 flex items-start justify-between hover:bg-gray-100 transition-all text-left"
-                              >
-                                <div className="flex items-start gap-2 md:gap-3 flex-1 min-w-0 pr-2">
-                                  <span className="font-black text-xs md:text-sm bg-black text-white px-2 py-1 flex-shrink-0">
-                                    Q{index + 1}
-                                  </span>
-                                  <p className="font-bold text-sm md:text-base break-words overflow-wrap-anywhere">
-                                    {lang === "en" ? q.question_en : q.question_km}
-                                  </p>
-                                </div>
-                                {expandedQuestions[q.id] ? (
-                                  <ChevronUp size={20} className="flex-shrink-0" />
-                                ) : (
-                                  <ChevronDown size={20} className="flex-shrink-0" />
-                                )}
-                              </button>
-
-                              {/* Question Details - Expanded */}
-                              {expandedQuestions[q.id] && (
-                                <div className="border-t-2 border-black bg-gray-50 p-3 md:p-4">
-                                  {/* Question Image - Landscape */}
-                                  {q.image_url && (
-                                    <div className="mb-4">
-                                      <img
-                                        src={q.image_url}
-                                        alt="Question scenario"
-                                        className="w-full border-2 border-black object-cover"
-                                        style={{ aspectRatio: '16/9' }}
-                                      />
-                                    </div>
-                                  )}
-
-                                  {/* Answers */}
-                                  <div className="space-y-2 mb-4">
-                                    {q.answers.map((a, aIndex) => (
-                                      <div
-                                        key={a.id}
-                                        className={`p-2 md:p-3 border-2 ${
-                                          a.is_correct
-                                            ? "bg-green-100 border-green-600"
-                                            : "bg-white border-gray-300"
-                                        }`}
-                                      >
-                                        <div className="flex items-start gap-2">
-                                          <span className="font-bold flex-shrink-0 text-sm md:text-base">
-                                            {String.fromCharCode(65 + aIndex)}.
-                                          </span>
-                                          <span className="flex-1 text-sm md:text-base break-words overflow-wrap-anywhere">
-                                            {lang === "en" ? a.answer_en : a.answer_km}
-                                          </span>
-                                          {a.is_correct && (
-                                            <span className="text-green-600 font-bold text-sm flex-shrink-0">
-                                              ✓
-                                            </span>
-                                          )}
-                                        </div>
-                                      </div>
-                                    ))}
-                                  </div>
-
-                                  {/* Hint */}
-                                  {(q.hint_en || q.hint_km) && (
-                                    <div className="p-3 bg-blue-50 border-2 border-blue-400">
-                                      <p className="text-xs md:text-sm font-bold text-blue-900 mb-1">
-                                        💡 Hint
-                                      </p>
-                                      <p className="text-xs md:text-sm text-blue-800 break-words overflow-wrap-anywhere">
-                                        {lang === "en" ? q.hint_en : q.hint_km}
-                                      </p>
-                                    </div>
-                                  )}
-                                </div>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+                  </Fragment>
+                );
+              })}
+            </div>
+          </>
         )}
       </div>
     </div>
