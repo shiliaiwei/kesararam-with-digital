@@ -20,9 +20,9 @@ interface Topic {
 
 const SUB_GROUPS: { key: string; en: string; km: string }[] = [
   { key: "Traffic Rules", en: "Traffic Rules", km: "វិធានចរាចរ" },
-  { key: "Speed Limits",  en: "Speed Limits",  km: "ល្បឿន" },
-  { key: "Parking",       en: "Parking",       km: "ចត" },
-  { key: "Overtaking",    en: "Overtaking",    km: "ជែង" },
+  { key: "Speed Limits", en: "Speed Limits", km: "ល្បឿន" },
+  { key: "Parking", en: "Parking", km: "ចត" },
+  { key: "Overtaking", en: "Overtaking", km: "ជែង" },
 ];
 
 const UI = {
@@ -103,8 +103,7 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
   const audioUrl = isKh ? (topic.audio_url_km || topic.audio_url_en) : (topic.audio_url_en || topic.audio_url_km);
   const { playing, loading, toggle } = useAudio(audioUrl || null);
 
-  const question = isKh ? topic.name_km : topic.name_en;
-  const answer   = isKh ? topic.description_km : topic.description_en;
+  const answer = isKh ? topic.description_km : topic.description_en;
   const subGroup = SUB_GROUPS.find((s) => s.key === topic.sub_group);
 
   return (
@@ -128,20 +127,13 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
           <div className="border-2 border-black overflow-hidden w-full max-w-md">
             <img
               src={topic.primary_image_url}
-              alt={question}
+              alt={isKh ? topic.name_km : topic.name_en}
               className="w-full object-cover"
               style={{ maxHeight: "220px", objectPosition: "center" }}
             />
           </div>
         </div>
       )}
-
-      {/* Question text — highlighted yellow when audio plays */}
-      <div className={`mx-4 mt-4 px-4 py-3 rounded transition-all duration-300 ${playing ? "bg-yellow-300" : "bg-zinc-50 border border-zinc-200"}`}>
-        <p className={`text-base md:text-lg font-black leading-relaxed ${playing ? "text-black" : "text-zinc-800"}`} style={kf}>
-          {question}
-        </p>
-      </div>
 
       {/* Answer — highlighted yellow when audio plays */}
       {answer && (
@@ -168,19 +160,18 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
         <div className="px-4 pt-4 pb-5">
           <button
             onClick={toggle}
-            className={`w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3 border-2 border-black font-black text-sm transition-all select-none ${
-              loading ? "bg-zinc-100 text-zinc-400 cursor-wait"
+            className={`w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3 border-2 border-black font-black text-sm transition-all select-none ${loading ? "bg-zinc-100 text-zinc-400 cursor-wait"
               : playing ? "bg-black text-yellow-400 shadow-[4px_4px_0_#ca8a04]"
-              : "bg-white hover:bg-yellow-400 shadow-[4px_4px_0_#000] hover:shadow-[4px_4px_0_#ca8a04]"
-            }`}
+                : "bg-white hover:bg-yellow-400 shadow-[4px_4px_0_#000] hover:shadow-[4px_4px_0_#ca8a04]"
+              }`}
             style={kf}
           >
             {loading ? (
-              <><span className="flex gap-0.5 items-end h-4">{[60,100,75].map((h,i)=><span key={i} className="w-1 bg-zinc-400 rounded-sm animate-pulse" style={{height:`${h}%`,animationDelay:`${i*120}ms`}}/>)}</span>{isKh?"កំពុងផ្ទុក...":"Loading..."}</>
+              <><span className="flex gap-0.5 items-end h-4">{[60, 100, 75].map((h, i) => <span key={i} className="w-1 bg-zinc-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 120}ms` }} />)}</span>{isKh ? "កំពុងផ្ទុក..." : "Loading..."}</>
             ) : playing ? (
-              <><span className="flex gap-0.5 items-end h-4">{[60,100,75,90,55].map((h,i)=><span key={i} className="w-1 bg-yellow-400 rounded-sm animate-pulse" style={{height:`${h}%`,animationDelay:`${i*100}ms`}}/>)}</span>{t.stopAudio}</>
+              <><span className="flex gap-0.5 items-end h-4">{[60, 100, 75, 90, 55].map((h, i) => <span key={i} className="w-1 bg-yellow-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />)}</span>{t.stopAudio}</>
             ) : (
-              <><Volume2 size={18}/>{t.playAudio}</>
+              <><Volume2 size={18} />{t.playAudio}</>
             )}
           </button>
         </div>
@@ -250,12 +241,12 @@ export function RoadTrafficCatalogue() {
             </div>
             <div className="hidden md:flex shrink-0 w-32 h-32 bg-white border-4 border-black items-center justify-center" style={{ boxShadow: "6px 6px 0 #000" }}>
               <svg viewBox="0 0 100 100" className="w-20 h-20" fill="none" stroke="currentColor" strokeWidth="3">
-                <rect x="15" y="20" width="70" height="60" rx="2"/>
-                <line x1="15" y1="38" x2="85" y2="38"/>
-                <line x1="35" y1="20" x2="35" y2="80"/>
-                <circle cx="25" cy="29" r="3" fill="currentColor"/>
-                <circle cx="50" cy="55" r="8"/>
-                <line x1="50" y1="47" x2="50" y2="55"/>
+                <rect x="15" y="20" width="70" height="60" rx="2" />
+                <line x1="15" y1="38" x2="85" y2="38" />
+                <line x1="35" y1="20" x2="35" y2="80" />
+                <circle cx="25" cy="29" r="3" fill="currentColor" />
+                <circle cx="50" cy="55" r="8" />
+                <line x1="50" y1="47" x2="50" y2="55" />
               </svg>
             </div>
           </div>
@@ -300,11 +291,10 @@ export function RoadTrafficCatalogue() {
           <div className="flex items-center gap-1.5 overflow-x-auto py-0.5" style={{ scrollbarWidth: "none" } as React.CSSProperties}>
             <button
               onClick={() => { setSubGroupFilter(""); setExpandedTopic(null); }}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${
-                !subGroupFilter && !search
-                  ? "bg-black text-yellow-400 shadow-[2px_2px_0_#ca8a04]"
-                  : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
-              }`}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${!subGroupFilter && !search
+                ? "bg-black text-yellow-400 shadow-[2px_2px_0_#ca8a04]"
+                : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
+                }`}
               style={kf}
             >
               {t.all}
@@ -319,9 +309,8 @@ export function RoadTrafficCatalogue() {
                 <button
                   key={sg.key}
                   onClick={() => { setSubGroupFilter(sg.key); setExpandedTopic(null); }}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${
-                    isActive ? "bg-yellow-400 border-black shadow-[2px_2px_0_#000]" : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
-                  }`}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${isActive ? "bg-yellow-400 border-black shadow-[2px_2px_0_#000]" : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
+                    }`}
                   style={kf}
                 >
                   {isKh ? sg.km : sg.en}
