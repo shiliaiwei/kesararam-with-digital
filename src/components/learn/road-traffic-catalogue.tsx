@@ -18,26 +18,6 @@ interface Topic {
   primary_image_url: string | null;
 }
 
-interface Answer {
-  id: number;
-  answer_en: string;
-  answer_km: string;
-  is_correct: boolean;
-}
-
-interface Question {
-  id: number;
-  topic_id: number;
-  question_en: string;
-  question_km: string;
-  hint_en: string;
-  hint_km: string;
-  image_url: string | null;
-  audio_url_en?: string;
-  audio_url_km?: string;
-  answers: Answer[];
-}
-
 const SUB_GROUPS: { key: string; en: string; km: string }[] = [
   { key: "Traffic Rules", en: "Traffic Rules", km: "វិធានចរាចរ" },
   { key: "Speed Limits",  en: "Speed Limits",  km: "ល្បឿន" },
@@ -57,14 +37,10 @@ const UI = {
     showing: "Showing", of: "of", topics: "topics",
     noTopics: "No topics found",
     reset: "Reset",
-    questions: "Questions",
     answer: "Answer",
-    hint: "Hint",
     lawRef: "Law Reference",
     playAudio: "Play Audio",
     stopAudio: "Stop",
-    loadingQ: "Loading questions...",
-    tapReveal: "Tap a question to see the answer",
   },
   kh: {
     category: "ប្រភេទចំណេះដឹង",
@@ -77,23 +53,20 @@ const UI = {
     showing: "បង្ហាញ", of: "នៃ", topics: "ប្រធានបទ",
     noTopics: "រកមិនឃើញប្រធានបទ",
     reset: "កំណត់ឡើងវិញ",
-    questions: "សំណួរ",
     answer: "ចម្លើយ",
-    hint: "ힰ",
     lawRef: "ឯកសារយោងច្បាប់",
     playAudio: "ចាក់សំឡេង",
     stopAudio: "ឈប់",
-    loadingQ: "កំពុងផ្ទុកសំណួរ...",
-    tapReveal: "ចុចលើសំណួរដើម្បីមើលចម្លើយ",
   },
 } as const;
 
-// ── Audio button used inside question detail ──────────────────────────────────
+// ── Audio button ──────────────────────────────────────────────────────────────
 function AudioButton({ url, isKh, t }: { url: string; isKh: boolean; t: typeof UI.en }) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const playingRef = useRef(false);
   const [playing, setPlaying] = useState(false);
   const [loadingAudio, setLoadingAudio] = useState(false);
+  const kf = isKh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
   useEffect(() => {
     return () => {
@@ -120,8 +93,6 @@ function AudioButton({ url, isKh, t }: { url: string; isKh: boolean; t: typeof U
     audio.addEventListener("error", () => { setPlaying(false); setLoadingAudio(false); playingRef.current = false; audioRef.current = null; }, { once: true });
     audio.load();
   };
-
-  const kf = isKh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
   return (
     <button
@@ -155,15 +126,8 @@ export function RoadTrafficCatalogue() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [subGroupFilter, setSubGroupFilter] = useState("");
-  // questions cache: topicId -> Question[]
-  const [questionsCache, setQuestionsCache] = useState<Record<number, Question[]>>({});
-  const [loadingQuestions, setLoadingQuestions] = useState<Record<number, boolean>>({});
-  // expanded topic
   const [expandedTopic, setExpandedTopic] = useState<number | null>(null);
-  // expanded question (shows answer)
-  const [expandedQuestion, setExpandedQuestion] = useState<number | null>(null);
 
-  // Fetch topics once
   useEffect(() => {
     setLoading(true);
     fetch("/api/public/topics?categoryId=2&status=published")
@@ -173,33 +137,10 @@ export function RoadTrafficCatalogue() {
       .finally(() => setLoading(false));
   }, []);
 
-  // Lazy-load questions when a topic is expanded
-  const expandTopic = async (topicId: number) => {
-    if (expandedTopic === topicId) {
-      setExpandedTopic(null);
-      setExpandedQuestion(null);
-      return;
-    }
-    setExpandedTopic(topicId);
-    setExpandedQuestion(null);
-    if (questionsCache[topicId]) return; // already loaded
-    setLoadingQuestions((prev) => ({ ...prev, [topicId]: true }));
-    try {
-      const res = await fetch(`/api/public/topics/${topicId}/questions`);
-      const data = await res.json();
-      setQuestionsCache((prev) => ({ ...prev, [topicId]: data.questions || [] }));
-    } catch {
-      setQuestionsCache((prev) => ({ ...prev, [topicId]: [] }));
-    } finally {
-      setLoadingQuestions((prev) => ({ ...prev, [topicId]: false }));
-    }
+  const toggleTopic = (id: number) => {
+    setExpandedTopic(expandedTopic === id ? null : id);
   };
 
-  const toggleQuestion = (qId: number) => {
-    setExpandedQuestion(expandedQuestion === qId ? null : qId);
-  };
-
-  // Filter topics
   const filtered = topics.filter((tp) => {
     const matchSearch = !search.trim() || (
       tp.name_en.toLowerCase().includes(search.toLowerCase()) ||
@@ -232,7 +173,6 @@ export function RoadTrafficCatalogue() {
               <h2 className="text-lg md:text-xl font-bold mb-4 opacity-80" style={kf}>{t.titleKm}</h2>
               <p className="text-sm md:text-base max-w-2xl opacity-90" style={kf}>{t.desc}</p>
             </div>
-            {/* Icon box */}
             <div className="hidden lg:flex shrink-0 w-36 h-36 xl:w-44 xl:h-44 bg-white border-4 border-black items-center justify-center" style={{ boxShadow: "8px 8px 0 #000" }}>
               <svg viewBox="0 0 100 100" className="w-24 h-24" fill="none" stroke="currentColor" strokeWidth="3">
                 <rect x="15" y="20" width="70" height="60" rx="2"/>
@@ -262,7 +202,6 @@ export function RoadTrafficCatalogue() {
       {/* ── Filter + Search bar ───────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 pb-5">
         <div className="bg-white border-2 border-black p-4" style={{ boxShadow: "4px 4px 0 #000" }}>
-
           {/* Search */}
           <div className="relative mb-3">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={18} />
@@ -270,7 +209,7 @@ export function RoadTrafficCatalogue() {
               type="text"
               placeholder={t.search}
               value={search}
-              onChange={(e) => { setSearch(e.target.value); setSubGroupFilter(""); setExpandedTopic(null); setExpandedQuestion(null); }}
+              onChange={(e) => { setSearch(e.target.value); setSubGroupFilter(""); setExpandedTopic(null); }}
               className="w-full pl-10 pr-9 py-2.5 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] text-sm"
               style={kf}
             />
@@ -281,11 +220,10 @@ export function RoadTrafficCatalogue() {
             )}
           </div>
 
-          {/* Tag pills — same style as road-sign */}
+          {/* Tag pills */}
           <div className="flex items-center gap-1.5 overflow-x-auto py-0.5" style={{ scrollbarWidth: "none" } as React.CSSProperties}>
-            {/* All */}
             <button
-              onClick={() => { setSubGroupFilter(""); setExpandedTopic(null); setExpandedQuestion(null); }}
+              onClick={() => { setSubGroupFilter(""); setExpandedTopic(null); }}
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${
                 !subGroupFilter && !search
                   ? "bg-black text-yellow-400 shadow-[2px_2px_0_#ca8a04]"
@@ -306,7 +244,7 @@ export function RoadTrafficCatalogue() {
               return (
                 <button
                   key={sg.key}
-                  onClick={() => { setSubGroupFilter(sg.key); setExpandedTopic(null); setExpandedQuestion(null); }}
+                  onClick={() => { setSubGroupFilter(sg.key); setExpandedTopic(null); }}
                   className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${
                     isActive
                       ? "bg-yellow-400 border-black shadow-[2px_2px_0_#000]"
@@ -335,7 +273,7 @@ export function RoadTrafficCatalogue() {
             </p>
             {!isDefaultFilter && (
               <button
-                onClick={() => { setSubGroupFilter(""); setSearch(""); setExpandedTopic(null); setExpandedQuestion(null); }}
+                onClick={() => { setSubGroupFilter(""); setSearch(""); setExpandedTopic(null); }}
                 className="text-xs font-bold text-zinc-400 hover:text-black underline"
                 style={kf}
               >
@@ -346,12 +284,12 @@ export function RoadTrafficCatalogue() {
         </div>
       </div>
 
-      {/* ── Topics + Questions List ───────────────────────────────── */}
+      {/* ── Topics List ───────────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 pb-16">
         {loading ? (
           <div className="space-y-3">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="h-16 bg-gray-200 border-2 border-black animate-pulse" style={{ boxShadow: "4px 4px 0 #000" }} />
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div key={i} className="h-14 bg-gray-200 border-2 border-black animate-pulse" style={{ boxShadow: "4px 4px 0 #000" }} />
             ))}
           </div>
         ) : filtered.length === 0 ? (
@@ -362,8 +300,6 @@ export function RoadTrafficCatalogue() {
           <div className="space-y-3">
             {filtered.map((topic) => {
               const isOpen = expandedTopic === topic.id;
-              const qs = questionsCache[topic.id] || [];
-              const isLoadingQ = loadingQuestions[topic.id];
               const subGroup = SUB_GROUPS.find((s) => s.key === topic.sub_group);
               const audioUrl = isKh ? topic.audio_url_km : topic.audio_url_en;
 
@@ -373,12 +309,12 @@ export function RoadTrafficCatalogue() {
                   className="bg-white border-2 border-black"
                   style={{ boxShadow: "4px 4px 0 #000" }}
                 >
-                  {/* ── Topic row — click to expand ── */}
+                  {/* ── Question row (tap to expand) ── */}
                   <button
-                    onClick={() => expandTopic(topic.id)}
+                    onClick={() => toggleTopic(topic.id)}
                     className={`w-full flex items-center justify-between gap-3 px-4 py-4 text-left transition-colors ${isOpen ? "bg-blue-400" : "hover:bg-blue-50"}`}
                   >
-                    <div className="flex items-center gap-2 flex-wrap min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap min-w-0 flex-1">
                       <span className={`font-mono text-[10px] font-black px-2 py-0.5 border shrink-0 ${isOpen ? "bg-black text-yellow-400 border-black" : "bg-zinc-100 border-zinc-300 text-zinc-500"}`}>
                         {topic.topic_code}
                       </span>
@@ -387,7 +323,7 @@ export function RoadTrafficCatalogue() {
                           {isKh ? subGroup.km : subGroup.en}
                         </span>
                       )}
-                      <span className={`font-black text-sm md:text-base truncate ${isOpen ? "text-black" : "text-zinc-900"}`} style={kf}>
+                      <span className={`font-black text-sm md:text-base ${isOpen ? "text-black" : "text-zinc-900"}`} style={kf}>
                         {isKh ? topic.name_km : topic.name_en}
                       </span>
                     </div>
@@ -397,119 +333,58 @@ export function RoadTrafficCatalogue() {
                     }
                   </button>
 
-                  {/* ── Expanded topic content ── */}
+                  {/* ── Answer panel (shown on tap) ── */}
                   {isOpen && (
                     <div className="border-t-2 border-black">
 
-                      {/* Topic image */}
+                      {/* Image — contained, not full bleed */}
                       {topic.primary_image_url && (
-                        <div className="border-b-2 border-black">
-                          <img
-                            src={topic.primary_image_url}
-                            alt={isKh ? topic.name_km : topic.name_en}
-                            className="w-full object-cover max-h-64"
-                          />
+                        <div className="px-4 pt-4">
+                          <div className="border-2 border-black overflow-hidden inline-block w-full max-w-lg">
+                            <img
+                              src={topic.primary_image_url}
+                              alt={isKh ? topic.name_km : topic.name_en}
+                              className="w-full object-cover"
+                              style={{ maxHeight: "240px" }}
+                            />
+                          </div>
                         </div>
                       )}
 
-                      {/* Description + audio */}
-                      <div className="px-4 py-4 bg-zinc-50 border-b-2 border-black space-y-3">
-                        {(topic.description_en || topic.description_km) && (
-                          <p className="text-sm text-zinc-700 leading-relaxed" style={kf}>
-                            {isKh ? topic.description_km : topic.description_en}
-                          </p>
-                        )}
-                        {topic.law_reference && (
+                      {/* Answer (description) */}
+                      {(topic.description_en || topic.description_km) && (
+                        <div className="px-4 pt-4">
+                          <div className="bg-green-50 border-2 border-green-500 px-4 py-3">
+                            <p className="text-[9px] font-black uppercase tracking-widest text-green-600 mb-1" style={kf}>
+                              {t.answer}
+                            </p>
+                            <p className="font-black text-sm md:text-base text-green-900" style={kf}>
+                              {isKh ? topic.description_km : topic.description_en}
+                            </p>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Law reference */}
+                      {topic.law_reference && (
+                        <div className="px-4 pt-3">
                           <div className="bg-amber-50 border-2 border-amber-300 px-3 py-2">
-                            <p className="text-[10px] font-black uppercase tracking-widest text-amber-600 mb-0.5" style={kf}>{t.lawRef}</p>
+                            <p className="text-[9px] font-black uppercase tracking-widest text-amber-600 mb-0.5" style={kf}>{t.lawRef}</p>
                             <p className="text-xs font-mono text-amber-900" style={kf}>{topic.law_reference}</p>
                           </div>
-                        )}
-                        {audioUrl && <AudioButton url={audioUrl} isKh={isKh} t={t} />}
-                      </div>
+                        </div>
+                      )}
 
-                      {/* Questions */}
-                      <div className="px-4 py-4 space-y-2">
-                        <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-3" style={kf}>
-                          {t.questions} {qs.length > 0 && `(${qs.length})`}
-                        </p>
+                      {/* Audio */}
+                      {audioUrl && (
+                        <div className="px-4 pt-3 pb-4">
+                          <AudioButton url={audioUrl} isKh={isKh} t={t} />
+                        </div>
+                      )}
 
-                        {isLoadingQ ? (
-                          <div className="space-y-2">
-                            {[1,2,3].map((i) => <div key={i} className="h-12 bg-gray-200 border-2 border-black animate-pulse" />)}
-                          </div>
-                        ) : qs.length === 0 ? (
-                          <p className="text-xs text-zinc-400 font-bold" style={kf}>{t.loadingQ}</p>
-                        ) : (
-                          <>
-                            <p className="text-[10px] text-zinc-400 mb-2" style={kf}>👆 {t.tapReveal}</p>
-                            <div className="space-y-2">
-                              {qs.map((q, qi) => {
-                                const isQOpen = expandedQuestion === q.id;
-                                const correct = q.answers.find((a) => a.is_correct);
-                                const qAudio = isKh ? q.audio_url_km : q.audio_url_en;
-
-                                return (
-                                  <div key={q.id} className={`border-2 transition-all ${isQOpen ? "border-yellow-400" : "border-black"}`}>
-                                    {/* Question row */}
-                                    <button
-                                      onClick={() => toggleQuestion(q.id)}
-                                      className={`w-full flex items-start gap-3 px-3 py-3 text-left transition-colors ${isQOpen ? "bg-yellow-400" : "hover:bg-yellow-50"}`}
-                                    >
-                                      <span className={`font-black text-[10px] px-1.5 py-0.5 shrink-0 mt-0.5 ${isQOpen ? "bg-black text-yellow-400" : "bg-black text-white"}`}>
-                                        Q{qi + 1}
-                                      </span>
-                                      <span className="font-bold text-sm flex-1 leading-snug" style={kf}>
-                                        {isKh ? q.question_km : q.question_en}
-                                      </span>
-                                      {isQOpen
-                                        ? <ChevronUp size={16} className="shrink-0 mt-0.5 text-black" />
-                                        : <ChevronDown size={16} className="shrink-0 mt-0.5 text-zinc-400" />
-                                      }
-                                    </button>
-
-                                    {/* Answer panel */}
-                                    {isQOpen && (
-                                      <div className="border-t-2 border-black bg-white p-3 space-y-3">
-                                        {/* Question image */}
-                                        {q.image_url && (
-                                          <img
-                                            src={q.image_url}
-                                            alt="Question"
-                                            className="w-full border-2 border-black object-cover"
-                                            style={{ aspectRatio: "16/9" }}
-                                          />
-                                        )}
-
-                                        {/* Correct answer */}
-                                        {correct && (
-                                          <div className="bg-green-50 border-2 border-green-500 px-3 py-2">
-                                            <p className="text-[9px] font-black uppercase tracking-widest text-green-600 mb-1" style={kf}>{t.answer}</p>
-                                            <p className="font-black text-sm text-green-900" style={kf}>
-                                              {isKh ? correct.answer_km : correct.answer_en}
-                                            </p>
-                                          </div>
-                                        )}
-
-                                        {/* Hint */}
-                                        {(q.hint_en || q.hint_km) && (
-                                          <div className="bg-blue-50 border-2 border-blue-300 px-3 py-2">
-                                            <p className="text-[9px] font-black uppercase tracking-widest text-blue-500 mb-1" style={kf}>💡 {t.hint}</p>
-                                            <p className="text-xs text-blue-900" style={kf}>{isKh ? q.hint_km : q.hint_en}</p>
-                                          </div>
-                                        )}
-
-                                        {/* Per-question audio */}
-                                        {qAudio && <AudioButton url={qAudio} isKh={isKh} t={t} />}
-                                      </div>
-                                    )}
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          </>
-                        )}
-                      </div>
+                      {!topic.primary_image_url && !topic.description_en && !topic.description_km && !audioUrl && (
+                        <div className="px-4 py-4" />
+                      )}
                     </div>
                   )}
                 </div>
