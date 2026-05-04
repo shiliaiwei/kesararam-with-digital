@@ -12,14 +12,6 @@
         {
           "key": "Cache-Control",
           "value": "no-store, no-cache, must-revalidate"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
         }
       ]
     },
@@ -41,14 +33,6 @@
         {
           "key": "Permissions-Policy",
           "value": "camera=(), microphone=(), geolocation=()"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        },
-        {
-          "key": "Strict-Transport-Security",
-          "value": "max-age=31536000; includeSubDomains"
         }
       ]
     }
@@ -57,32 +41,5 @@
     "src/app/api/**": {
       "maxDuration": 30
     }
-  },
-  "redirects": [
-    {
-      "source": "/wp-admin/:path*",
-      "destination": "/404",
-      "permanent": false
-    },
-    {
-      "source": "/wp-login.php",
-      "destination": "/404",
-      "permanent": false
-    },
-    {
-      "source": "/xmlrpc.php",
-      "destination": "/404",
-      "permanent": false
-    },
-    {
-      "source": "/.env",
-      "destination": "/404",
-      "permanent": false
-    },
-    {
-      "source": "/phpmyadmin/:path*",
-      "destination": "/404",
-      "permanent": false
-    }
-  ]
+  }
 }
