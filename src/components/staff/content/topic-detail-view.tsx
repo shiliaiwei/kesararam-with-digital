@@ -2,27 +2,30 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Send, Trash2, CheckCircle, XCircle, Clock, HelpCircle, FileText } from "lucide-react";
+import { ArrowLeft, Send, Trash2, CheckCircle, XCircle, Clock, HelpCircle, FileText, Image as ImageIcon, Volume2 } from "lucide-react";
 import { QuestionsManager } from "./questions-manager";
 
+// API returns camelCase from Drizzle ORM
 interface Topic {
   id: number;
-  topic_code: string;
-  category_id: number;
-  name_en: string;
-  name_km: string;
-  description_en: string;
-  description_km: string;
-  primary_image_url: string | null;
-  sub_group: string | null;
-  audio_url_en: string | null;
-  audio_url_km: string | null;
+  topicCode: string;
+  categoryId: number;
+  nameEn: string;
+  nameKm: string;
+  descriptionEn: string;
+  descriptionKm: string;
+  primaryImageUrl: string | null;
+  subGroup: string | null;
+  audioUrlEn: string | null;
+  audioUrlKm: string | null;
+  lawReference: string | null;
   status: string;
-  rejection_reason: string | null;
-  created_at: string;
-  updated_at: string;
-  submitted_at: string | null;
-  reviewed_at: string | null;
+  rejectionReason?: string | null;
+  createdAt: string;
+  updatedAt: string;
+  submittedAt?: string | null;
+  reviewedAt?: string | null;
+  categoryName?: string | null;
 }
 
 interface TopicDetailViewProps {
@@ -30,15 +33,23 @@ interface TopicDetailViewProps {
   topicId: number;
 }
 
-const STATUS_CONFIG: Record<string, { label: string; color: string; icon: any }> = {
-  draft:     { label: "Draft",        color: "bg-gray-300 text-gray-900",   icon: Clock },
-  pending:   { label: "Under Review", color: "bg-yellow-300 text-yellow-900", icon: Clock },
-  approved:  { label: "Approved",     color: "bg-green-300 text-green-900",  icon: CheckCircle },
-  published: { label: "Published",    color: "bg-blue-300 text-blue-900",    icon: CheckCircle },
-  rejected:  { label: "Rejected",     color: "bg-red-300 text-red-900",      icon: XCircle },
+const STATUS_CONFIG: Record<string, { label: string; color: string; icon: React.ElementType }> = {
+  draft: { label: "Draft", color: "bg-zinc-200 text-zinc-900", icon: FileText },
+  pending: { label: "Under Review", color: "bg-yellow-300 text-yellow-900", icon: Clock },
+  approved: { label: "Approved", color: "bg-green-300 text-green-900", icon: CheckCircle },
+  published: { label: "Published", color: "bg-blue-300 text-blue-900", icon: CheckCircle },
+  rejected: { label: "Rejected", color: "bg-red-300 text-red-900", icon: XCircle },
+  inactive: { label: "Inactive", color: "bg-zinc-200 text-zinc-600", icon: XCircle },
 };
 
-type Tab = "details" | "questions";
+function fmt(d: string | null | undefined): string | null {
+  if (!d) return null;
+  const date = new Date(d);
+  if (isNaN(date.getTime())) return null;
+  return date.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+}
+
+type Tab = "questions" | "details";
 
 export function TopicDetailView({ categorySlug, topicId }: TopicDetailViewProps) {
   const router = useRouter();
@@ -91,10 +102,12 @@ export function TopicDetailView({ categorySlug, topicId }: TopicDetailViewProps)
 
   const statusConfig = STATUS_CONFIG[topic.status] ?? STATUS_CONFIG.draft;
   const StatusIcon = statusConfig.icon;
-  const canEdit = topic.status !== "pending";
+  const canSubmit = topic.status === "draft" || topic.status === "rejected";
+  const canDelete = topic.status === "draft";
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 max-w-4xl">
+
       {/* Top bar */}
       <div className="flex items-center justify-between flex-wrap gap-2">
         <button
@@ -104,11 +117,11 @@ export function TopicDetailView({ categorySlug, topicId }: TopicDetailViewProps)
           <ArrowLeft size={16} /> Back
         </button>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-black uppercase border-2 border-black ${statusConfig.color}`}>
             <StatusIcon size={13} /> {statusConfig.label}
           </span>
-          {canEdit && (topic.status === "draft" || topic.status === "rejected") && (
+          {canSubmit && (
             <button
               onClick={handleSubmit}
               className="bg-green-400 border-2 border-black px-4 py-2 font-bold text-sm hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2"
@@ -116,37 +129,66 @@ export function TopicDetailView({ categorySlug, topicId }: TopicDetailViewProps)
               <Send size={15} /> Submit for Review
             </button>
           )}
-          {topic.status === "draft" && (
+          {canDelete && (
             <button
               onClick={handleDelete}
-              className="bg-red-100 border-2 border-black px-3 py-2 font-bold text-sm hover:bg-red-200 transition-all inline-flex items-center gap-2"
+              className="bg-red-100 border-2 border-black px-3 py-2 font-bold text-sm hover:bg-red-200 transition-all inline-flex items-center gap-2 text-red-700"
             >
-              <Trash2 size={15} />
+              <Trash2 size={15} /> Delete
             </button>
           )}
         </div>
       </div>
 
-      {/* Topic title card */}
-      <div className="bg-white border-2 border-black px-5 py-4" style={{ boxShadow: "4px 4px 0 #000" }}>
-        <div className="flex items-start gap-4">
-          {topic.primary_image_url && (
-            <img src={topic.primary_image_url} alt="" className="w-16 h-16 object-contain border-2 border-black shrink-0" />
+      {/* Topic header card */}
+      <div className="bg-white border-2 border-black" style={{ boxShadow: "4px 4px 0 #000" }}>
+        <div className="flex items-stretch">
+          {topic.primaryImageUrl && (
+            <div className="w-24 md:w-32 shrink-0 border-r-2 border-black bg-zinc-50 flex items-center justify-center p-3">
+              <img
+                src={topic.primaryImageUrl}
+                alt={topic.nameEn}
+                className="object-contain max-h-24 max-w-full"
+              />
+            </div>
           )}
-          <div className="flex-1 min-w-0">
-            <p className="text-[10px] font-mono text-zinc-400 mb-0.5">{topic.topic_code}</p>
-            <h1 className="text-xl font-black">{topic.name_en}</h1>
-            {topic.name_km && <p className="text-sm text-zinc-600">{topic.name_km}</p>}
-            {topic.sub_group && (
-              <span className="inline-block mt-1 px-2 py-0.5 text-[10px] font-black border border-black bg-zinc-100">
-                {topic.sub_group}
+          <div className="flex-1 min-w-0 px-5 py-4">
+            <div className="flex items-center gap-2 mb-2 flex-wrap">
+              <span className="font-mono text-[10px] font-black bg-zinc-100 border border-zinc-300 px-1.5 py-0.5 text-zinc-500">
+                {topic.topicCode}
               </span>
+              {topic.categoryName && (
+                <span className="text-[10px] font-bold text-zinc-500 border border-zinc-200 px-1.5 py-0.5 bg-zinc-50">
+                  {topic.categoryName}
+                </span>
+              )}
+              {topic.subGroup && (
+                <span className="text-[10px] font-black border border-black bg-zinc-100 px-2 py-0.5">
+                  {topic.subGroup}
+                </span>
+              )}
+              {topic.primaryImageUrl && (
+                <span className="inline-flex items-center gap-0.5 text-[10px] text-blue-500 font-bold">
+                  <ImageIcon size={10} /> Image
+                </span>
+              )}
+              {(topic.audioUrlEn || topic.audioUrlKm) && (
+                <span className="inline-flex items-center gap-0.5 text-[10px] text-purple-500 font-bold">
+                  <Volume2 size={10} /> Audio
+                </span>
+              )}
+            </div>
+            <h1 className="text-xl md:text-2xl font-black leading-snug">{topic.nameEn}</h1>
+            {topic.nameKm && (
+              <p className="text-sm text-zinc-600 mt-0.5" style={{ fontFamily: "Siemreap, sans-serif" }}>
+                {topic.nameKm}
+              </p>
             )}
           </div>
         </div>
-        {topic.status === "rejected" && topic.rejection_reason && (
-          <div className="mt-3 bg-red-50 border-2 border-red-400 px-3 py-2 text-xs font-bold text-red-800">
-            Rejected: {topic.rejection_reason}
+        {topic.status === "rejected" && topic.rejectionReason && (
+          <div className="border-t-2 border-red-400 bg-red-50 px-5 py-3 text-sm font-bold text-red-800">
+            ✗ Admin feedback: {topic.rejectionReason}
           </div>
         )}
       </div>
@@ -155,81 +197,90 @@ export function TopicDetailView({ categorySlug, topicId }: TopicDetailViewProps)
       <div className="flex border-b-2 border-black">
         <button
           onClick={() => setTab("questions")}
-          className={`px-5 py-2.5 font-black text-sm uppercase border-r-2 border-black inline-flex items-center gap-2 transition-colors ${
-            tab === "questions" ? "bg-yellow-400" : "bg-white hover:bg-yellow-50"
-          }`}
+          className={`px-5 py-2.5 font-black text-sm uppercase border-r-2 border-black inline-flex items-center gap-2 transition-colors ${tab === "questions" ? "bg-yellow-400" : "bg-white hover:bg-yellow-50"
+            }`}
         >
           <HelpCircle size={15} /> Questions
         </button>
         <button
           onClick={() => setTab("details")}
-          className={`px-5 py-2.5 font-black text-sm uppercase inline-flex items-center gap-2 transition-colors ${
-            tab === "details" ? "bg-yellow-400" : "bg-white hover:bg-yellow-50"
-          }`}
+          className={`px-5 py-2.5 font-black text-sm uppercase inline-flex items-center gap-2 transition-colors ${tab === "details" ? "bg-yellow-400" : "bg-white hover:bg-yellow-50"
+            }`}
         >
           <FileText size={15} /> Details
         </button>
       </div>
 
-      {/* Tab content */}
+      {/* Questions tab */}
       {tab === "questions" && (
         <QuestionsManager topicId={topic.id} topicStatus={topic.status} />
       )}
 
+      {/* Details tab */}
       {tab === "details" && (
-        <div className="bg-white border-2 border-black p-6 space-y-5" style={{ boxShadow: "4px 4px 0 #000" }}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="bg-white border-2 border-black p-6 space-y-6" style={{ boxShadow: "4px 4px 0 #000" }}>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <span className="text-xs font-black uppercase text-zinc-500 block mb-1">Description (English)</span>
-              <p className="text-sm whitespace-pre-wrap">{topic.description_en || "—"}</p>
+              <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 block mb-2">Answer (English)</span>
+              <p className="text-sm leading-relaxed whitespace-pre-wrap text-zinc-800">
+                {topic.descriptionEn || "—"}
+              </p>
             </div>
             <div>
-              <span className="text-xs font-black uppercase text-zinc-500 block mb-1">Description (Khmer)</span>
-              <p className="text-sm whitespace-pre-wrap">{topic.description_km || "—"}</p>
+              <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 block mb-2">Answer (Khmer)</span>
+              <p className="text-sm leading-relaxed whitespace-pre-wrap text-zinc-800" style={{ fontFamily: "Siemreap, sans-serif" }}>
+                {topic.descriptionKm || "—"}
+              </p>
             </div>
           </div>
 
-          {(topic.audio_url_en || topic.audio_url_km) && (
+          {topic.lawReference && (
+            <div className="bg-amber-50 border-2 border-amber-300 px-4 py-3">
+              <span className="text-[10px] font-black uppercase tracking-widest text-amber-600 block mb-1">Law Reference</span>
+              <p className="text-sm font-mono text-amber-900">{topic.lawReference}</p>
+            </div>
+          )}
+
+          {(topic.audioUrlEn || topic.audioUrlKm) && (
             <div>
-              <span className="text-xs font-black uppercase text-zinc-500 block mb-2">Audio</span>
+              <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 block mb-3">Audio</span>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {topic.audio_url_en && (
-                  <div>
-                    <p className="text-xs font-bold mb-1">English</p>
-                    <audio controls className="w-full"><source src={topic.audio_url_en} /></audio>
+                {topic.audioUrlEn && (
+                  <div className="border-2 border-black p-3">
+                    <p className="text-xs font-black uppercase mb-2">English</p>
+                    <audio controls className="w-full">
+                      <source src={topic.audioUrlEn} />
+                    </audio>
                   </div>
                 )}
-                {topic.audio_url_km && (
-                  <div>
-                    <p className="text-xs font-bold mb-1">Khmer</p>
-                    <audio controls className="w-full"><source src={topic.audio_url_km} /></audio>
+                {topic.audioUrlKm && (
+                  <div className="border-2 border-black p-3">
+                    <p className="text-xs font-black uppercase mb-2">Khmer</p>
+                    <audio controls className="w-full">
+                      <source src={topic.audioUrlKm} />
+                    </audio>
                   </div>
                 )}
               </div>
             </div>
           )}
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t-2 border-zinc-200 text-xs">
-            <div>
-              <span className="font-black uppercase text-zinc-500 block">Created</span>
-              <p className="mt-0.5">{new Date(topic.created_at).toLocaleDateString()}</p>
+          <div className="pt-4 border-t-2 border-zinc-100">
+            <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 block mb-3">Timeline</span>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+              {[
+                { label: "Created", val: fmt(topic.createdAt) },
+                { label: "Updated", val: fmt(topic.updatedAt) },
+                { label: "Submitted", val: fmt(topic.submittedAt) },
+                { label: "Reviewed", val: fmt(topic.reviewedAt) },
+              ].map(({ label, val }) => (
+                <div key={label}>
+                  <span className="font-black uppercase text-zinc-400 block">{label}</span>
+                  <p className="mt-0.5 font-bold text-zinc-700">{val ?? "—"}</p>
+                </div>
+              ))}
             </div>
-            <div>
-              <span className="font-black uppercase text-zinc-500 block">Updated</span>
-              <p className="mt-0.5">{new Date(topic.updated_at).toLocaleDateString()}</p>
-            </div>
-            {topic.submitted_at && (
-              <div>
-                <span className="font-black uppercase text-zinc-500 block">Submitted</span>
-                <p className="mt-0.5">{new Date(topic.submitted_at).toLocaleDateString()}</p>
-              </div>
-            )}
-            {topic.reviewed_at && (
-              <div>
-                <span className="font-black uppercase text-zinc-500 block">Reviewed</span>
-                <p className="mt-0.5">{new Date(topic.reviewed_at).toLocaleDateString()}</p>
-              </div>
-            )}
           </div>
         </div>
       )}
