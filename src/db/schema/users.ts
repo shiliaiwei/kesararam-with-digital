@@ -7,6 +7,7 @@ import {
   boolean,
   pgEnum,
 } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
 
 export const roleEnum = pgEnum("role", ["student", "teacher", "admin", "staff"]);
 
@@ -59,3 +60,37 @@ export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
 export type Class = typeof classes.$inferSelect;
 export type ClassEnrollment = typeof classEnrollments.$inferSelect;
+
+/**
+ * Relations for classes
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const classesRelations = relations(classes, ({ one, many }: any) => ({
+  teacher: one(users, {
+    fields: [classes.teacherId],
+    references: [users.id],
+  }),
+  enrollments: many(classEnrollments),
+}));
+
+/**
+ * Relations for class enrollments
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const classEnrollmentsRelations = relations(
+  classEnrollments,
+  ({ one }: any) => ({
+    class: one(classes, {
+      fields: [classEnrollments.classId],
+      references: [classes.id],
+    }),
+    student: one(users, {
+      fields: [classEnrollments.studentId],
+      references: [users.id],
+    }),
+    enrolledByUser: one(users, {
+      fields: [classEnrollments.enrolledBy],
+      references: [users.id],
+    }),
+  })
+);
