@@ -20,27 +20,32 @@ export async function GET() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    // Get all sessions from last 30 days with user info
-    const recentSessions = await db
-      .select({
-        id: sessions.id,
-        userId: sessions.userId,
-        username: users.username,
-        email: users.email,
-        displayName: users.displayName,
-        role: users.role,
-        ipAddress: sessions.ipAddress,
-        userAgent: sessions.userAgent,
-        isActive: sessions.isActive,
-        loginAt: sessions.loginAt,
-        logoutAt: sessions.logoutAt,
-        lastActivityAt: sessions.lastActivityAt,
-      })
-      .from(sessions)
-      .innerJoin(users, eq(sessions.userId, users.id))
-      .where(gte(sessions.loginAt, thirtyDaysAgo))
-      .orderBy(desc(sessions.loginAt))
-      .limit(50);
+    let recentSessions: any[] = [];
+    try {
+      recentSessions = await db
+        .select({
+          id: sessions.id,
+          userId: sessions.userId,
+          username: users.username,
+          email: users.email,
+          displayName: users.displayName,
+          role: users.role,
+          ipAddress: sessions.ipAddress,
+          userAgent: sessions.userAgent,
+          isActive: sessions.isActive,
+          loginAt: sessions.loginAt,
+          logoutAt: sessions.logoutAt,
+          lastActivityAt: sessions.lastActivityAt,
+        })
+        .from(sessions)
+        .innerJoin(users, eq(sessions.userId, users.id))
+        .where(gte(sessions.loginAt, thirtyDaysAgo))
+        .orderBy(desc(sessions.loginAt))
+        .limit(50);
+    } catch (sessionErr) {
+      // sessions table may not exist yet — return empty metrics gracefully
+      console.warn("[login-metrics] sessions table unavailable:", sessionErr);
+    }
 
     // Calculate metrics
     const totalLogins = recentSessions.length;

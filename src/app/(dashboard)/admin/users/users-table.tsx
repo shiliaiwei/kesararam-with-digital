@@ -3,7 +3,7 @@
 import { useState, useEffect, useTransition, useCallback } from "react";
 import {
   Search, Plus, Edit3, Trash2, Eye, UserCheck, UserX,
-  RefreshCw, Activity, Wifi, WifiOff, Crown, X,
+  RefreshCw, Activity, Wifi, Clock, Crown, X,
 } from "lucide-react";
 import { createUser, updateUser, deleteUser, toggleUserActive } from "@/app/actions/users";
 import { toast } from "sonner";
