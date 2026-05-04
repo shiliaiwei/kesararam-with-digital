@@ -36,6 +36,10 @@ updates:
       types-packages:
         patterns:
           - "@types/*"
+      security-packages:
+        patterns:
+          - "postcss"
+          - "esbuild"
     ignore:
       - dependency-name: "next"
         update-types: ["version-update:semver-major"]
