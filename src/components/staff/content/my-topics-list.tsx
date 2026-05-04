@@ -96,7 +96,7 @@ function TopicCard({
   setDeleteConfirm: (id: number | null) => void;
 }) {
   const [expanded, setExpanded] = useState(false);
-  const s = STATUS[topic.status];
+  const s = STATUS[topic.status] ?? STATUS.draft;
   const StatusIcon = s.icon;
   const cat = CATEGORIES[topic.categoryId];
 
@@ -111,9 +111,9 @@ function TopicCard({
 
         {/* Status stripe */}
         <div className={`w-1.5 shrink-0 ${topic.status === "approved" ? "bg-green-500"
-            : topic.status === "pending" ? "bg-yellow-400"
-              : topic.status === "rejected" ? "bg-red-500"
-                : "bg-zinc-300"
+          : topic.status === "pending" ? "bg-yellow-400"
+            : topic.status === "rejected" ? "bg-red-500"
+              : "bg-zinc-300"
           }`} />
 
         {/* Content */}
