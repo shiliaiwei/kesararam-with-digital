@@ -1,5 +1,6 @@
 import { db } from "../../lib/db";
-import { subscriptions, users, type Subscription, type NewSubscription, PLAN_FEATURES } from "../schema/subscriptions";
+import { subscriptions, type Subscription, type NewSubscription, PLAN_FEATURES } from "../schema/subscriptions";
+import { users } from "../schema/users";
 import { eq, and, or, lt, gt, isNull, desc } from "drizzle-orm";
 
 /**
