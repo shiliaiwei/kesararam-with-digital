@@ -28,6 +28,7 @@
     "@tanstack/react-table": "^8.21.3",
     "@types/mapbox-gl": "3.4.1",
     "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "class-variance-authority": "^0.7.1",
     "cloudinary": "^2.9.0",
     "clsx": "^2.1.1",

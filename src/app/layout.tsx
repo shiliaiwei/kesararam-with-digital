@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { LangProvider } from "@/context/lang-context";
 import { ErrorDebugPanel } from "@/components/ErrorDebugPanel";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const inter = Inter({
@@ -90,6 +91,7 @@ export default function RootLayout({
           <ErrorDebugPanel />
         </LangProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
