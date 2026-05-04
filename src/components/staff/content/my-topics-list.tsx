@@ -41,6 +41,8 @@ const STATUS = {
   draft: { label: "Draft", icon: FileText, bg: "bg-zinc-100", border: "border-zinc-400", text: "text-zinc-700", dot: "bg-zinc-400" },
   pending: { label: "Pending", icon: Clock, bg: "bg-yellow-100", border: "border-yellow-500", text: "text-yellow-800", dot: "bg-yellow-400 animate-pulse" },
   approved: { label: "Approved", icon: CheckCircle, bg: "bg-green-100", border: "border-green-500", text: "text-green-800", dot: "bg-green-500" },
+  published: { label: "Published", icon: CheckCircle, bg: "bg-blue-100", border: "border-blue-500", text: "text-blue-800", dot: "bg-blue-500" },
+  inactive: { label: "Inactive", icon: XCircle, bg: "bg-zinc-100", border: "border-zinc-300", text: "text-zinc-500", dot: "bg-zinc-300" },
   rejected: { label: "Rejected", icon: XCircle, bg: "bg-red-100", border: "border-red-500", text: "text-red-800", dot: "bg-red-500" },
 } as const;
 
@@ -304,7 +306,7 @@ export function MyTopicsList() {
           total: list.length,
           draft: list.filter((t) => t.status === "draft").length,
           pending: list.filter((t) => t.status === "pending").length,
-          approved: list.filter((t) => t.status === "approved").length,
+          approved: list.filter((t) => t.status === "approved" || t.status === "published").length,
           rejected: list.filter((t) => t.status === "rejected").length,
         });
       }
@@ -330,7 +332,11 @@ export function MyTopicsList() {
     } catch { showToast("Failed to submit", "error"); }
   };
 
-  const filtered = statusFilter === "all" ? topics : topics.filter((t) => t.status === statusFilter);
+  const filtered = statusFilter === "all"
+    ? topics
+    : statusFilter === "approved"
+      ? topics.filter((t) => t.status === "approved" || t.status === "published")
+      : topics.filter((t) => t.status === statusFilter);
 
   return (
     <div className="space-y-6">

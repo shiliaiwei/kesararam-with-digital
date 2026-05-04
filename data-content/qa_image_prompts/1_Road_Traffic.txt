@@ -2946,6 +2946,13 @@ IMAGE PROMPT:
 
 
 
+
+
+
+
+
+
+
 RTL-Q129
 Q (KH): និយមន័យ «រ៉ឺម៉ក» ?
   1. យានសម្រាប់ថ្ពក់ជាមួយរថយន្ត ✓
@@ -3108,6 +3115,9 @@ IMAGE PROMPT:
   Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
   professional, cinematic lighting, sharp details.
 
+
+
+
 RTL-Q136
 Q (KH): នៅក្រៅទីប្រជុំជន តើអ្នកបើកបរត្រូវឈប់ ឬចតយានជំនិះ យ៉ាងតិចប៉ុន្មានម៉ែត្រ ពីផ្លូវប្រសព្វ ឬផ្លូវបត់ ឬផ្លូវកោង ?
   1. ចម្ងាយ ៥ ម៉ែត្រ
@@ -3153,6 +3163,12 @@ IMAGE PROMPT:
   Cambodian setting, Khmer cultural identity, traditional Cambodian architecture visible, authentic
   Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
   professional, cinematic lighting, sharp details.
+
+
+
+
+
+
 
 RTL-Q138
 Q (KH): តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះ ចម្ងាយប៉ុន្មានម៉ែត្រ ពីមុខគំនូសឆ្នូតកាត់ទទឹងទ្រូងផ្លូវ សម្រាប់ថ្មើរជើងឆ្លងកាត់ ?
@@ -3289,6 +3305,9 @@ IMAGE PROMPT:
   architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
   characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 
+
+
+
 RTL-Q144
 Q (KH): តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះនៅលើទ្រូងផ្លូវថ្នល់ បានប៉ុន្មានម៉ោង ?
   1. មិនលើសពី ២៤ ម៉ោង ✓
@@ -3333,6 +3352,9 @@ IMAGE PROMPT:
   traditional Cambodian architecture visible, authentic Southeast Asian tropical atmosphere,
   realistic Cambodian characters in typical Khmer clothing, 4K, professional, cinematic lighting,
   sharp details.
+
+
+
 
 RTL-Q146
 Q (KH): រថយន្តមួយកំពុងធ្វើចរាចរណ៍នៅលើផ្លូវជាតិ និងរថយន្តមួយទៀតចេញពីផ្លូវលំ តើរថយន្តណាមួយមានសិទ្ធិអាទិភាព ?
@@ -3452,6 +3474,12 @@ IMAGE PROMPT:
   Southeast Asian tropical atmosphere, realistic Cambodian characters in typical Khmer clothing, 4K,
   professional, cinematic lighting, sharp details.
 
+
+
+
+
+
+
 RTL-Q151
 Q (KH): ពេលចតរថយន្ត មុននឹងចុះពីរថយន្ត តើអ្នកត្រូវធ្វើយ៉ាងដូចម្ដេចខ្លះ ?
   1. ត្រូវទាញហ្វ្រាំងដៃ ពន្លត់ម៉ាស៊ីន មើលមុខក្រោយ ទើបពុំបណ្ដាលឱ្យមានគ្រោះថ្នាក់ ✓
@@ -3497,6 +3525,9 @@ IMAGE PROMPT:
   officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
   Cambodian architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
   characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
+
+
+
 
 RTL-Q153
 Q (KH): តើអ្នកបើកបរអាចឈប់ ឬចតយានជំនិះ ចម្ងាយប៉ុន្មានម៉ែត្រ ពីមុខ និងពីក្រោយផ្លាកសញ្ញាកន្លែងរបស់ឡានក្រុងឈប់ ?

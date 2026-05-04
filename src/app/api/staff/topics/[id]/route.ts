@@ -46,7 +46,13 @@ export async function GET(
     const topic = rows[0];
     if (!topic) return NextResponse.json({ error: "Topic not found" }, { status: 404 });
 
-    if (session.role !== "admin" && topic.createdBy !== Number(session.id)) {
+    // Staff can view their own topics OR any approved/published topic
+    if (
+      session.role !== "admin" &&
+      topic.createdBy !== Number(session.id) &&
+      topic.status !== "approved" &&
+      topic.status !== "published"
+    ) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
