@@ -29,42 +29,52 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
 
             if (!ctx) throw new Error('Canvas not supported');
 
-            // Background
+            // Clean white background
             ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, 1920, 1080);
 
-            // Header background
-            ctx.fillStyle = '#f3f4f6';
-            ctx.fillRect(0, 0, 1920, 120);
-
-            // Load logo
+            // Load KWD black logo
             const logo = new Image();
             logo.crossOrigin = 'anonymous';
             await new Promise((resolve, reject) => {
                 logo.onload = resolve;
-                logo.onerror = () => resolve(null); // Continue even if logo fails
-                logo.src = '/brand/kwd-gray.png';
-                setTimeout(reject, 3000);
+                logo.onerror = () => resolve(null);
+                logo.src = 'https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg';
+                setTimeout(() => resolve(null), 3000);
             }).catch(() => null);
 
+            // Header section with logo and sign code
             if (logo.complete && logo.naturalWidth > 0) {
-                ctx.globalAlpha = 0.7;
-                ctx.drawImage(logo, 60, 30, 120, 60);
-                ctx.globalAlpha = 1.0;
+                ctx.drawImage(logo, 60, 40, 80, 40);
             }
 
-            // Header text
+            // Sign code in header (top right)
             ctx.fillStyle = '#000000';
-            ctx.font = 'bold 32px Arial, sans-serif';
-            ctx.fillText(topic.topic_code, 200, 75);
-
-            // Website URL
-            ctx.fillStyle = '#666666';
-            ctx.font = 'bold 20px Arial, sans-serif';
+            ctx.font = 'bold 32px system-ui, Arial, sans-serif';
             ctx.textAlign = 'right';
-            ctx.fillText('kesararamwithdigital.tech', 1860, 70);
+            ctx.fillText(topic.topic_code, 1860, 70);
 
-            // Load sign image
+            // Website URL in header (top right, smaller)
+            ctx.fillStyle = '#666666';
+            ctx.font = '16px system-ui, Arial, sans-serif';
+            ctx.textAlign = 'right';
+            ctx.fillText('kesararamwithdigital.tech', 1860, 95);
+
+            // Main content area - Sign image with border (left side)
+            const signBoxX = 80;
+            const signBoxY = 160;
+            const signBoxSize = 300;
+
+            // Sign border (black frame)
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(signBoxX, signBoxY, signBoxSize, signBoxSize);
+
+            // White background inside frame
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(signBoxX + 3, signBoxY + 3, signBoxSize - 6, signBoxSize - 6);
+
+            // Load and draw sign image
             if (topic.primary_image_url) {
                 const signImg = new Image();
                 signImg.crossOrigin = 'anonymous';
@@ -75,69 +85,102 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                     setTimeout(reject, 5000);
                 });
 
-                // Draw sign with border
-                ctx.strokeStyle = '#000000';
-                ctx.lineWidth = 4;
-                ctx.strokeRect(60, 180, 400, 400);
-                ctx.fillStyle = '#f9fafb';
-                ctx.fillRect(64, 184, 392, 392);
-
-                // Center the sign image
+                // Center the sign image within the frame
+                const padding = 20;
+                const maxSize = signBoxSize - (padding * 2);
                 const imgAspect = signImg.width / signImg.height;
-                let drawWidth = 360;
-                let drawHeight = 360;
+                let drawWidth = maxSize;
+                let drawHeight = maxSize;
+
                 if (imgAspect > 1) {
                     drawHeight = drawWidth / imgAspect;
                 } else {
                     drawWidth = drawHeight * imgAspect;
                 }
-                const x = 260 - drawWidth / 2;
-                const y = 380 - drawHeight / 2;
+
+                const x = signBoxX + (signBoxSize - drawWidth) / 2;
+                const y = signBoxY + (signBoxSize - drawHeight) / 2;
                 ctx.drawImage(signImg, x, y, drawWidth, drawHeight);
             }
 
-            // Sign name
+            // Sign title (right side of image)
             const name = isKh ? topic.name_km : topic.name_en;
             ctx.fillStyle = '#000000';
-            ctx.font = 'bold 56px Arial, sans-serif';
+            ctx.font = 'bold 48px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
-            const nameText = name.length > 30 ? name.substring(0, 30) + '...' : name;
-            ctx.fillText(nameText, 520, 250);
 
-            // Description
+            // Handle long titles
+            const maxTitleWidth = 1400;
+            let titleText = name;
+            let titleMetrics = ctx.measureText(titleText);
+            if (titleMetrics.width > maxTitleWidth) {
+                // Try to fit by reducing font size
+                ctx.font = 'bold 36px system-ui, Arial, sans-serif';
+                titleMetrics = ctx.measureText(titleText);
+                if (titleMetrics.width > maxTitleWidth) {
+                    // Truncate if still too long
+                    titleText = name.substring(0, 50) + '...';
+                }
+            }
+
+            ctx.fillText(titleText, 420, 220);
+
+            // Description (right side, below title)
             const description = isKh ? topic.description_km : topic.description_en;
             if (description) {
-                ctx.fillStyle = '#374151';
-                ctx.font = '28px Arial, sans-serif';
+                ctx.fillStyle = '#333333';
+                ctx.font = '24px system-ui, Arial, sans-serif';
+                ctx.textAlign = 'left';
+
+                // Word wrap description
                 const words = description.split(' ');
                 let line = '';
-                let y = 320;
+                let y = 280;
+                const maxWidth = 1400;
+                const lineHeight = 35;
+                let lineCount = 0;
+                const maxLines = 8;
+
                 for (let word of words) {
+                    if (lineCount >= maxLines) break;
+
                     const testLine = line + word + ' ';
                     const metrics = ctx.measureText(testLine);
-                    if (metrics.width > 1300 && line !== '') {
-                        ctx.fillText(line, 520, y);
+
+                    if (metrics.width > maxWidth && line !== '') {
+                        ctx.fillText(line.trim(), 420, y);
                         line = word + ' ';
-                        y += 40;
-                        if (y > 500) break;
+                        y += lineHeight;
+                        lineCount++;
                     } else {
                         line = testLine;
                     }
                 }
-                ctx.fillText(line, 520, y);
+
+                if (lineCount < maxLines && line.trim()) {
+                    ctx.fillText(line.trim(), 420, y);
+                }
             }
 
-            // Footer
-            ctx.fillStyle = '#e5e7eb';
-            ctx.fillRect(0, 960, 1920, 120);
-            ctx.fillStyle = '#9ca3af';
-            ctx.font = '18px Arial, sans-serif';
-            ctx.textAlign = 'left';
-            ctx.fillText('Downloaded from kesararamwithdigital.tech', 60, 1020);
-            ctx.textAlign = 'right';
-            ctx.fillText(new Date().toLocaleDateString(), 1860, 1020);
+            // Footer section
+            const footerY = 1020;
 
-            // Download
+            // Credits (bottom left)
+            ctx.fillStyle = '#888888';
+            ctx.font = '16px system-ui, Arial, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('Downloaded from https://www.kesararamwithdigital.tech/learn/road-sign', 60, footerY);
+
+            // Date (bottom right)
+            ctx.textAlign = 'right';
+            const currentDate = new Date().toLocaleDateString(isKh ? 'km-KH' : 'en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            });
+            ctx.fillText(currentDate, 1860, footerY);
+
+            // Download the image
             canvas.toBlob((blob) => {
                 if (!blob) throw new Error('Failed to create image');
                 const url = URL.createObjectURL(blob);
@@ -161,8 +204,8 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             onClick={handleSave}
             disabled={saving}
             className={`inline-flex items-center gap-1 px-2 py-1 border-2 border-black font-bold text-[10px] transition-all ${saving
-                    ? "bg-zinc-100 text-zinc-400 cursor-wait"
-                    : "bg-yellow-400 hover:bg-yellow-500 shadow-[2px_2px_0_#000]"
+                ? "bg-zinc-100 text-zinc-400 cursor-wait"
+                : "bg-yellow-400 hover:bg-yellow-500 shadow-[2px_2px_0_#000]"
                 }`}
             title={isKh ? "រក្សាទុកកាត" : "Save Card"}
         >
