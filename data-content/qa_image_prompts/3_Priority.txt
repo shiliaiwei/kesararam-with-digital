@@ -10,6 +10,7 @@ Q (KH): ផ្លាកសញ្ញានេះមានន័យដូចម្
   2. #១ និង #២ មានសិទ្ធិទៅព្រមគ្នា
   3. #២ទៅមុន បន្ទាប់មក #១ ✓
 
+
 Q (EN): What does this sign stand for?
   1. Vehicle 1 departs first, next vehicle 2
   2. Vehicle 1 and 2 have priority to depart at the same time.
