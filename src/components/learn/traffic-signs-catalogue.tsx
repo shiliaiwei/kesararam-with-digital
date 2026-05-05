@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef, Fragment } from "react";
-import { Search, ArrowLeft, X, Volume2, Download, Printer, Share2 } from "lucide-react";
+import { Search, ArrowLeft, X, Volume2, Download } from "lucide-react";
 import { useLang } from "@/context/lang-context";
+import { SaveCardButton } from "./save-card-button";
 
 interface Topic {
   id: number;
@@ -86,12 +87,10 @@ function DetailPanel({
 }) {
   const [playing, setPlaying] = useState(false);
   const [loadingAudio, setLoadingAudio] = useState(false);
-  const [exporting, setExporting] = useState(false);
   // Use a ref so the stop handler always has the current audio instance
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const playingRef = useRef(false);
   const panelRef = useRef<HTMLDivElement>(null);
-  const exportCanvasRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -335,6 +334,7 @@ function DetailPanel({
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-3 bg-yellow-400 border-b-2 border-black">
         <div className="flex items-center gap-3 flex-wrap">
+          <SaveCardButton topic={topic} isKh={isKh} />
           <span className="font-mono text-xs font-black bg-black text-yellow-400 px-2 py-0.5">
             {topic.topic_code}
           </span>
@@ -435,57 +435,6 @@ function DetailPanel({
             </div>
           )}
 
-          {/* Export buttons */}
-          <div className="pt-2 border-t-2 border-zinc-200 mt-4">
-            <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-2" style={kf}>
-              {isKh ? "រក្សាទុក & ចែករំលែក" : "Save & Share"}
-            </p>
-            <div className="flex flex-wrap gap-2">
-              <button
-                onClick={() => handleExport('download')}
-                disabled={exporting}
-                className={`inline-flex items-center gap-2 px-4 py-2 border-2 border-black font-black text-sm transition-all ${exporting
-                    ? "bg-zinc-100 text-zinc-400 cursor-wait"
-                    : "bg-blue-400 hover:bg-blue-500 shadow-[3px_3px_0_#000] hover:shadow-[3px_3px_0_#1e40af]"
-                  }`}
-                style={kf}
-              >
-                <Download size={15} />
-                {isKh ? "ទាញយក" : "Download"}
-              </button>
-
-              <button
-                onClick={() => handleExport('print')}
-                disabled={exporting}
-                className={`inline-flex items-center gap-2 px-4 py-2 border-2 border-black font-black text-sm transition-all ${exporting
-                    ? "bg-zinc-100 text-zinc-400 cursor-wait"
-                    : "bg-green-400 hover:bg-green-500 shadow-[3px_3px_0_#000] hover:shadow-[3px_3px_0_#15803d]"
-                  }`}
-                style={kf}
-              >
-                <Printer size={15} />
-                {isKh ? "បោះពុម្ព" : "Print"}
-              </button>
-
-              <button
-                onClick={() => handleExport('share')}
-                disabled={exporting}
-                className={`inline-flex items-center gap-2 px-4 py-2 border-2 border-black font-black text-sm transition-all ${exporting
-                    ? "bg-zinc-100 text-zinc-400 cursor-wait"
-                    : "bg-purple-400 hover:bg-purple-500 shadow-[3px_3px_0_#000] hover:shadow-[3px_3px_0_#6b21a8]"
-                  }`}
-                style={kf}
-              >
-                <Share2 size={15} />
-                {isKh ? "ចែករំលែក" : "Share"}
-              </button>
-            </div>
-            {exporting && (
-              <p className="text-xs text-zinc-500 mt-2 font-medium" style={kf}>
-                {isKh ? "កំពុងបង្កើតរូបភាព..." : "Generating image..."}
-              </p>
-            )}
-          </div>
         </div>
       </div>
 
