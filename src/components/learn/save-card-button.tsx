@@ -133,7 +133,7 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             // SPLIT LAYOUT - Sign image on LEFT, Title/Description on RIGHT
             const contentStartY = 220;
             const signAreaSize = 380;
-            const borderRadius = 3; // 3% radius
+            const borderRadius = 10; // 10% radius
             const shadowOffset = 8;
 
             // LEFT SIDE - Sign image centered vertically
@@ -156,10 +156,16 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
                 ctx.fillRect(signAreaX + shadowOffset, signAreaY + shadowOffset, signAreaSize, signAreaSize);
 
-                // Background card - Dark color (#322e2b) with rounded corners
-                ctx.fillStyle = '#322e2b';
+                // Background card - YELLOW brand color (#ffd700) with rounded corners
+                ctx.fillStyle = '#ffd700';
                 roundRect(ctx, signAreaX, signAreaY, signAreaSize, signAreaSize, borderRadius);
                 ctx.fill();
+
+                // Black border
+                ctx.strokeStyle = '#000000';
+                ctx.lineWidth = 3;
+                roundRect(ctx, signAreaX, signAreaY, signAreaSize, signAreaSize, borderRadius);
+                ctx.stroke();
 
                 // White background inside for image
                 ctx.fillStyle = '#ffffff';
@@ -183,15 +189,15 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                     ctx.drawImage(signImg, x, y, drawWidth, drawHeight);
                 }
 
-                // Sign code below image - centered on left side
-                ctx.fillStyle = '#25c1a4';
+                // Sign code below image - centered on left side - BLACK color
+                ctx.fillStyle = '#000000';
                 ctx.font = 'bold 36px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'center';
                 const signCodeX = signAreaX + signAreaSize / 2;
                 ctx.fillText(topic.topic_code, signCodeX, signAreaY + signAreaSize + 60);
 
-                // Tag below code - sub_group category
-                ctx.fillStyle = '#ffffff';
+                // Tag below code - sub_group category - TEAL background with BLACK text
+                ctx.fillStyle = '#25c1a4';
                 ctx.font = 'bold 16px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'center';
 
@@ -205,11 +211,11 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
 
                 // Tag background with rounded corners
                 ctx.fillStyle = '#25c1a4';
-                roundRect(ctx, tagX, tagY, tagWidth, tagHeight, 2);
+                roundRect(ctx, tagX, tagY, tagWidth, tagHeight, 5);
                 ctx.fill();
 
-                // Tag text
-                ctx.fillStyle = '#ffffff';
+                // Tag text - BLACK
+                ctx.fillStyle = '#000000';
                 ctx.font = 'bold 14px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'center';
                 ctx.fillText(tagText, signCodeX, tagY + 22);
@@ -220,7 +226,7 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             const rightStartY = 250;
             const maxRightWidth = 1250;
 
-            // Title (right side) - Khmer first if available, then English
+            // Title (right side) - CAPITALS, Teal color (#25c1a4)
             const titleKh = topic.name_km;
             const titleEn = topic.name_en;
             const titleToUse = isKh ? titleKh : titleEn;
@@ -229,8 +235,8 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             ctx.font = 'bold 48px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
 
-            // Handle long titles with proper wrapping
-            const titleWords = titleToUse.split(' ');
+            // Handle long titles with proper wrapping - UPPERCASE
+            const titleWords = titleToUse.toUpperCase().split(' ');
             let titleLine = '';
             let titleLineY = rightStartY;
             const titleLineHeight = 60;
@@ -251,13 +257,13 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 ctx.fillText(titleLine.trim(), rightStartX, titleLineY);
             }
 
-            // Description (right side, below title) - WHITE text
+            // Description (right side, below title) - BLACK text
             const descriptionKh = topic.description_km;
             const descriptionEn = topic.description_en;
             const descriptionToUse = isKh ? descriptionKh : descriptionEn;
 
             if (descriptionToUse) {
-                ctx.fillStyle = '#ffffff';
+                ctx.fillStyle = '#000000';
                 ctx.font = '24px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'left';
 
@@ -300,14 +306,15 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             ctx.lineTo(1820, hrY);
             ctx.stroke();
 
-            // Bilingual promotional message - Khmer FIRST
+            // Bilingual promotional message - POWERFUL PSYCHOLOGY - Khmer FIRST
             const footerY = 980;
             ctx.fillStyle = '#25c1a4';
             ctx.font = 'bold 16px system-ui, Arial, sans-serif';
             ctx.textAlign = 'center';
 
-            const promoTextKh = 'រៀនសញ្ញាចរាចរណ៍ បង្កើតចំណេះដឹងសុវត្ថិភាពពេញមួយជីវិត';
-            const promoTextEn = 'Learn traffic signs, build safety knowledge for life';
+            // More powerful psychological messages
+            const promoTextKh = 'រៀនសញ្ញាចរាចរណ៍ ដើម្បីរក្សាជីវិត និងគ្រួសាររបស់អ្នក';
+            const promoTextEn = 'Master traffic signs. Protect your life and loved ones.';
 
             // Khmer first
             ctx.fillText(promoTextKh, 960, footerY);
