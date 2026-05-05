@@ -55,16 +55,10 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             ctx.fillText(topic.topic_code, 1860, 80);
 
             // Website URL (top-right, below sign code)
-            ctx.fillStyle = '#000000';
-            ctx.font = '18px system-ui, Arial, sans-serif';
-            ctx.textAlign = 'right';
-            ctx.fillText('kesararamwithdigital.tech', 1860, 110);
-
-            // Current page URL (top-right, below website)
             ctx.fillStyle = '#666666';
             ctx.font = '16px system-ui, Arial, sans-serif';
             ctx.textAlign = 'right';
-            ctx.fillText('https://www.kesararamwithdigital.tech/learn/road-sign', 1860, 135);
+            ctx.fillText('kesararamwithdigital.tech', 1860, 110);
 
             // Load and draw sign image (center-left, NO BORDERS)
             if (topic.primary_image_url) {
@@ -171,14 +165,14 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             // Footer section
             const footerY = 1020;
 
-            // Credits (bottom left) - bilingual
-            ctx.fillStyle = '#000000';
+            // Promotional text (bottom left) - psychological words to encourage learning
+            ctx.fillStyle = '#888888';
             ctx.font = '18px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
-            const creditText = isKh
-                ? 'ទាញយកពី https://www.kesararamwithdigital.tech/learn/road-sign'
-                : 'Downloaded from https://www.kesararamwithdigital.tech/learn/road-sign';
-            ctx.fillText(creditText, 60, footerY);
+            const promoText = isKh
+                ? 'ចាប់ផ្តើមរៀនបើកបរប្រកបដោយសុវត្ថិភាព និងជោគជ័យ - kesararamwithdigital.tech'
+                : 'Start your safe and successful driving journey - kesararamwithdigital.tech';
+            ctx.fillText(promoText, 60, footerY);
 
             // Date (bottom right) - full format in both languages
             ctx.textAlign = 'right';
