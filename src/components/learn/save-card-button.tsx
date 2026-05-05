@@ -308,20 +308,23 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             ctx.font = 'bold 16px system-ui, Arial, sans-serif';
             ctx.textAlign = 'center';
 
-            // Updated powerful psychological messages
+            // Updated powerful psychological messages with "Protect your life and loved ones"
             const promoTextKh = 'រៀនសញ្ញាចរាចរណ៍ បង្កើតចំណេះដឹងសុវត្ថិភាពពេញមួយជីវិត';
-            const promoTextEn = 'Learn traffic signs, build safety knowledge for life';
+            const promoTextEn = 'Protect your life and loved ones.';
+            const promoTextEn2 = 'Learn traffic signs, build safety knowledge for life';
 
             // Khmer first
             ctx.fillText(promoTextKh, 960, footerY);
-            // English second
+            // English - Protect your life and loved ones
             ctx.fillText(promoTextEn, 960, footerY + 30);
+            // English - Learn traffic signs
+            ctx.fillText(promoTextEn2, 960, footerY + 55);
 
             // Website link at bottom - Lighter tint
             ctx.fillStyle = '#5dd9c1';
             ctx.font = 'bold 14px system-ui, Arial, sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText(`kesararamwithdigital.tech/learn/${categorySlug}`, 960, footerY + 65);
+            ctx.fillText(`kesararamwithdigital.tech/learn/${categorySlug}`, 960, footerY + 95);
 
             // Add QR code placeholder in bottom-right corner
             // QR code would be generated server-side and embedded as image
@@ -329,7 +332,7 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             ctx.fillStyle = '#25c1a4';
             ctx.font = 'bold 12px system-ui, Arial, sans-serif';
             ctx.textAlign = 'right';
-            ctx.fillText('Scan QR to learn more', 1800, footerY + 65);
+            ctx.fillText('Scan QR to learn more', 1800, footerY + 95);
 
             // Download with branded filename: PWD3-R3-00-KWD.png
             const brandedFilename = `${topic.topic_code}-KWD.png`;

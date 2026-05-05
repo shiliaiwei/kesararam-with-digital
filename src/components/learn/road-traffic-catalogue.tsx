@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Search, ArrowLeft, X, Volume2, ChevronDown, ChevronUp } from "lucide-react";
+import { Search, ArrowLeft, X, Volume2, ChevronDown, ChevronUp, Shuffle } from "lucide-react";
 import { useLang } from "@/context/lang-context";
+import { SaveCardButton } from "./save-card-button";
 
 interface Topic {
   id: number;
@@ -41,6 +42,8 @@ const UI = {
     lawRef: "Law Reference",
     playAudio: "Play Audio",
     stopAudio: "Stop",
+    randomize: "Randomize Order",
+    sequential: "Sequential Order",
   },
   kh: {
     category: "ប្រភេទចំណេះដឹង",
@@ -57,6 +60,8 @@ const UI = {
     lawRef: "ឯកសារយោងច្បាប់",
     playAudio: "ចាក់សំឡេង",
     stopAudio: "ឈប់",
+    randomize: "លំដាប់ចៃដន្យ",
+    sequential: "លំដាប់ស្វាគមន៍",
   },
 } as const;
 
@@ -192,12 +197,24 @@ export function RoadTrafficCatalogue() {
   const [search, setSearch] = useState("");
   const [subGroupFilter, setSubGroupFilter] = useState("");
   const [expandedTopic, setExpandedTopic] = useState<number | null>(null);
+  const [isRandomized, setIsRandomized] = useState(false);
+  const [questionNumbers, setQuestionNumbers] = useState<Record<number, number>>({});
 
   useEffect(() => {
     setLoading(true);
     fetch("/api/public/topics?categoryId=2&status=published")
       .then((r) => r.json())
-      .then((d) => setTopics(d.topics || []))
+      .then((d) => {
+        const topicsData = d.topics || [];
+        setTopics(topicsData);
+
+        // Create sequential numbering for all topics
+        const numbers: Record<number, number> = {};
+        topicsData.forEach((topic: Topic, index: number) => {
+          numbers[topic.id] = index + 1;
+        });
+        setQuestionNumbers(numbers);
+      })
       .catch(console.error)
       .finally(() => setLoading(false));
   }, []);
@@ -206,7 +223,12 @@ export function RoadTrafficCatalogue() {
     setExpandedTopic(expandedTopic === id ? null : id);
   };
 
-  const filtered = topics.filter((tp) => {
+  const toggleRandomize = () => {
+    setIsRandomized(!isRandomized);
+    setExpandedTopic(null);
+  };
+
+  let filtered = topics.filter((tp) => {
     const q = search.trim().toLowerCase();
     const matchSearch = !q || (
       tp.name_en.toLowerCase().includes(q) ||
@@ -216,6 +238,11 @@ export function RoadTrafficCatalogue() {
     const matchGroup = !subGroupFilter || tp.sub_group === subGroupFilter;
     return matchSearch && matchGroup;
   });
+
+  // Apply randomization if enabled
+  if (isRandomized) {
+    filtered = [...filtered].sort(() => Math.random() - 0.5);
+  }
 
   const countMap = topics.reduce<Record<string, number>>((acc, tp) => {
     acc[tp.sub_group] = (acc[tp.sub_group] || 0) + 1;
@@ -322,20 +349,34 @@ export function RoadTrafficCatalogue() {
             })}
           </div>
 
-          {/* Count + reset */}
-          <div className="mt-3 pt-3 border-t border-zinc-200 flex items-center justify-between">
+          {/* Count + reset + randomize */}
+          <div className="mt-3 pt-3 border-t border-zinc-200 flex items-center justify-between gap-3 flex-wrap">
             <p className="text-xs font-bold text-zinc-500" style={kf}>
               {t.showing} <span className="text-black font-black">{filtered.length}</span> {t.of} {topics.length} {t.topics}
             </p>
-            {!isDefaultFilter && (
+            <div className="flex items-center gap-2">
               <button
-                onClick={() => { setSubGroupFilter(""); setSearch(""); setExpandedTopic(null); }}
-                className="text-xs font-bold text-zinc-400 hover:text-black underline"
+                onClick={toggleRandomize}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap transition-all ${isRandomized
+                  ? "bg-yellow-400 border-black shadow-[2px_2px_0_#000]"
+                  : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
+                  }`}
                 style={kf}
+                title={isKh ? "លំដាប់ចៃដន្យ" : "Randomize order"}
               >
-                {t.reset}
+                <Shuffle size={14} />
+                {isRandomized ? t.sequential : t.randomize}
               </button>
-            )}
+              {!isDefaultFilter && (
+                <button
+                  onClick={() => { setSubGroupFilter(""); setSearch(""); setExpandedTopic(null); }}
+                  className="text-xs font-bold text-zinc-400 hover:text-black underline"
+                  style={kf}
+                >
+                  {t.reset}
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -354,27 +395,33 @@ export function RoadTrafficCatalogue() {
           </div>
         ) : (
           <div className="space-y-3">
-            {filtered.map((topic) => {
+            {filtered.map((topic, displayIndex) => {
               const isOpen = expandedTopic === topic.id;
               const question = isKh ? topic.name_km : topic.name_en;
+              const questionNumber = isRandomized ? displayIndex + 1 : questionNumbers[topic.id] || displayIndex + 1;
 
               return (
                 <div
                   key={topic.id}
                   className={`border-2 border-black transition-all ${isOpen ? "shadow-[6px_6px_0_#1d4ed8]" : "shadow-[4px_4px_0_#000]"} bg-white`}
                 >
-                  {/* ── Question row — ONLY question text, no badges ── */}
+                  {/* ── Question row — with numbering ── */}
                   <button
                     onClick={() => toggleTopic(topic.id)}
                     className={`w-full flex items-start justify-between gap-3 px-4 py-4 md:py-5 text-left transition-colors ${isOpen ? "bg-blue-400" : "hover:bg-blue-50"}`}
                   >
-                    {/* Question text — full, no truncation */}
-                    <p
-                      className={`font-black text-base md:text-lg leading-snug flex-1 ${isOpen ? "text-black" : "text-zinc-900"}`}
-                      style={kf}
-                    >
-                      {question}
-                    </p>
+                    {/* Question number + text */}
+                    <div className="flex-1 flex items-start gap-3">
+                      <span className="font-black text-lg md:text-xl text-blue-600 shrink-0 pt-0.5 min-w-[40px]">
+                        {questionNumber}.
+                      </span>
+                      <p
+                        className={`font-black text-base md:text-lg leading-snug ${isOpen ? "text-black" : "text-zinc-900"}`}
+                        style={kf}
+                      >
+                        {question}
+                      </p>
+                    </div>
                     <span className="shrink-0 mt-0.5">
                       {isOpen
                         ? <ChevronUp size={22} className="text-black" />
@@ -385,7 +432,13 @@ export function RoadTrafficCatalogue() {
 
                   {/* ── Answer panel ── */}
                   {isOpen && (
-                    <AnswerCard topic={topic} isKh={isKh} t={t} />
+                    <>
+                      <AnswerCard topic={topic} isKh={isKh} t={t} />
+                      {/* Save Card Button */}
+                      <div className="px-4 py-3 border-t-2 border-black bg-blue-50 flex justify-end">
+                        <SaveCardButton topic={topic} isKh={isKh} />
+                      </div>
+                    </>
                   )}
                 </div>
               );
