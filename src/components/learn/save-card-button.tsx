@@ -49,7 +49,7 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 ctx.stroke();
             }
 
-            // Load KWD logo for top-left corner
+            // Load KWD logo for top-left corner (BIGGER)
             const logo = new Image();
             logo.crossOrigin = 'anonymous';
 
@@ -60,16 +60,10 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 setTimeout(() => resolve(), 2000);
             });
 
-            // Draw KWD logo at top-left (bigger size - 120x120)
+            // Draw KWD logo at top-left (BIGGER - 160x160)
             if (logo.complete && logo.naturalWidth > 0) {
-                ctx.drawImage(logo, 40, 30, 120, 120);
+                ctx.drawImage(logo, 40, 20, 160, 160);
             }
-
-            // KWD Logo link text below logo
-            ctx.fillStyle = '#06b6d4';
-            ctx.font = 'bold 16px system-ui, Arial, sans-serif';
-            ctx.textAlign = 'left';
-            ctx.fillText('kesararamwithdigital.tech/learn/road-signs', 40, 175);
 
             // Map sub_group to category URL slug (all 8 categories)
             const getCategorySlug = (subGroup: string): string => {
@@ -124,14 +118,14 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             // SPLIT LAYOUT - Sign image on LEFT, Title/Description on RIGHT
             const contentStartY = 220;
             const signAreaSize = 380;
-            const borderWidth = 20;
+            const borderRadius = 3; // 3% radius
             const shadowOffset = 8;
 
             // LEFT SIDE - Sign image centered vertically
             const signAreaX = 100;
             const signAreaY = contentStartY;
 
-            // Load and draw sign image with neo-brutalism style
+            // Load and draw sign image with rounded corners
             if (topic.primary_image_url) {
                 const signImg = new Image();
                 signImg.crossOrigin = 'anonymous';
@@ -145,25 +139,23 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
 
                 // Drop shadow effect (dark)
                 ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
-                ctx.fillRect(signAreaX + shadowOffset, signAreaY + shadowOffset, signAreaSize + (borderWidth * 2), signAreaSize + (borderWidth * 2));
+                ctx.fillRect(signAreaX + shadowOffset, signAreaY + shadowOffset, signAreaSize, signAreaSize);
 
-                // Outer border - KWD Cyan (neo-brutalism style)
-                ctx.fillStyle = '#06b6d4';
-                ctx.fillRect(signAreaX, signAreaY, signAreaSize + (borderWidth * 2), signAreaSize + (borderWidth * 2));
+                // Background card - Dark color (#322e2b) with rounded corners
+                ctx.fillStyle = '#322e2b';
+                this.roundRect(ctx, signAreaX, signAreaY, signAreaSize, signAreaSize, borderRadius);
+                ctx.fill();
 
-                // Inner border - KWD Blue accent
-                ctx.fillStyle = '#3b82f6';
-                ctx.fillRect(signAreaX + 4, signAreaY + 4, signAreaSize + (borderWidth * 2) - 8, signAreaSize + (borderWidth * 2) - 8);
-
-                // White background inside border
+                // White background inside for image
                 ctx.fillStyle = '#ffffff';
-                ctx.fillRect(signAreaX + borderWidth, signAreaY + borderWidth, signAreaSize, signAreaSize);
+                this.roundRect(ctx, signAreaX + 10, signAreaY + 10, signAreaSize - 20, signAreaSize - 20, borderRadius);
+                ctx.fill();
 
                 // Center the sign image
                 if (signImg.complete && signImg.naturalWidth > 0) {
                     const imgAspect = signImg.width / signImg.height;
-                    let drawWidth = signAreaSize;
-                    let drawHeight = signAreaSize;
+                    let drawWidth = signAreaSize - 20;
+                    let drawHeight = signAreaSize - 20;
 
                     if (imgAspect > 1) {
                         drawHeight = drawWidth / imgAspect;
@@ -171,17 +163,17 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                         drawWidth = drawHeight * imgAspect;
                     }
 
-                    const x = signAreaX + borderWidth + (signAreaSize - drawWidth) / 2;
-                    const y = signAreaY + borderWidth + (signAreaSize - drawHeight) / 2;
+                    const x = signAreaX + 10 + (signAreaSize - 20 - drawWidth) / 2;
+                    const y = signAreaY + 10 + (signAreaSize - 20 - drawHeight) / 2;
                     ctx.drawImage(signImg, x, y, drawWidth, drawHeight);
                 }
 
                 // Sign code below image - centered on left side
-                ctx.fillStyle = '#06b6d4';
+                ctx.fillStyle = '#25c1a4';
                 ctx.font = 'bold 36px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'center';
-                const signCodeX = signAreaX + borderWidth + signAreaSize / 2;
-                ctx.fillText(topic.topic_code, signCodeX, signAreaY + signAreaSize + borderWidth * 2 + 60);
+                const signCodeX = signAreaX + signAreaSize / 2;
+                ctx.fillText(topic.topic_code, signCodeX, signAreaY + signAreaSize + 60);
             }
 
             // RIGHT SIDE - Title and Description
@@ -189,14 +181,17 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             const rightStartY = 250;
             const maxRightWidth = 1250;
 
-            // Title (right side)
-            const name = isKh ? topic.name_km : topic.name_en;
-            ctx.fillStyle = '#000000';
+            // Title (right side) - Khmer first if available, then English
+            const titleKh = topic.name_km;
+            const titleEn = topic.name_en;
+            const titleToUse = isKh ? titleKh : titleEn;
+
+            ctx.fillStyle = '#25c1a4';
             ctx.font = 'bold 48px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
 
             // Handle long titles with proper wrapping
-            const titleWords = name.split(' ');
+            const titleWords = titleToUse.split(' ');
             let titleLine = '';
             let titleLineY = rightStartY;
             const titleLineHeight = 60;
@@ -217,15 +212,18 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 ctx.fillText(titleLine.trim(), rightStartX, titleLineY);
             }
 
-            // Description (right side, below title)
-            const description = isKh ? topic.description_km : topic.description_en;
-            if (description) {
-                ctx.fillStyle = '#374151';
+            // Description (right side, below title) - WHITE text
+            const descriptionKh = topic.description_km;
+            const descriptionEn = topic.description_en;
+            const descriptionToUse = isKh ? descriptionKh : descriptionEn;
+
+            if (descriptionToUse) {
+                ctx.fillStyle = '#ffffff';
                 ctx.font = '24px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'left';
 
                 // Word wrap description
-                const words = description.split(' ');
+                const words = descriptionToUse.split(' ');
                 let line = '';
                 let y = titleLineY + 70;
                 const maxWidth = maxRightWidth;
@@ -254,50 +252,34 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 }
             }
 
-            // Horizontal line separator (neo-brutalism style)
+            // Horizontal line separator - Tint lighter variation of #25c1a4
             const hrY = 920;
-            ctx.strokeStyle = '#06b6d4';
+            ctx.strokeStyle = '#5dd9c1'; // Lighter tint of #25c1a4
             ctx.lineWidth = 3;
             ctx.beginPath();
             ctx.moveTo(100, hrY);
             ctx.lineTo(1820, hrY);
             ctx.stroke();
 
-            // Bilingual promotional message
+            // Bilingual promotional message - Khmer FIRST
             const footerY = 980;
-            ctx.fillStyle = '#f97316';
+            ctx.fillStyle = '#25c1a4';
             ctx.font = 'bold 16px system-ui, Arial, sans-serif';
             ctx.textAlign = 'center';
 
-            const promoTextEn = 'Learn traffic signs, build safety knowledge for life';
             const promoTextKh = 'រៀនសញ្ញាចរាចរណ៍ បង្កើតចំណេះដឹងសុវត្ថិភាពពេញមួយជីវិត';
+            const promoTextEn = 'Learn traffic signs, build safety knowledge for life';
 
-            ctx.fillText(promoTextEn, 960, footerY);
-            ctx.fillText(promoTextKh, 960, footerY + 30);
+            // Khmer first
+            ctx.fillText(promoTextKh, 960, footerY);
+            // English second
+            ctx.fillText(promoTextEn, 960, footerY + 30);
 
-            // Website link at bottom
-            ctx.fillStyle = '#3b82f6';
+            // Website link at bottom - Lighter tint
+            ctx.fillStyle = '#5dd9c1';
             ctx.font = 'bold 14px system-ui, Arial, sans-serif';
             ctx.textAlign = 'center';
             ctx.fillText(`kesararamwithdigital.tech/learn/${categorySlug}`, 960, footerY + 65);
-
-            // Add small KWD logo in bottom-right corner as watermark
-            const smallLogo = new Image();
-            smallLogo.crossOrigin = 'anonymous';
-
-            await new Promise<void>((resolve) => {
-                smallLogo.onload = () => resolve();
-                smallLogo.onerror = () => resolve();
-                smallLogo.src = 'https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg';
-                setTimeout(() => resolve(), 2000);
-            });
-
-            // Draw small logo in bottom-right corner (60x60 size)
-            if (smallLogo.complete && smallLogo.naturalWidth > 0) {
-                const logoSize = 60;
-                const logoPadding = 20;
-                ctx.drawImage(smallLogo, 1920 - logoSize - logoPadding, 1080 - logoSize - logoPadding, logoSize, logoSize);
-            }
 
             // Download with branded filename: PWD3-R3-00-KWD.png
             const brandedFilename = `${topic.topic_code}-KWD.png`;
@@ -319,6 +301,21 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             setSaving(false);
         }
     };
+
+    // Helper function to draw rounded rectangles
+    private roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number) {
+        ctx.beginPath();
+        ctx.moveTo(x + radius, y);
+        ctx.lineTo(x + width - radius, y);
+        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+        ctx.lineTo(x + width, y + height - radius);
+        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+        ctx.lineTo(x + radius, y + height);
+        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+        ctx.lineTo(x, y + radius);
+        ctx.quadraticCurveTo(x, y, x + radius, y);
+        ctx.closePath();
+    }
 
     return (
         <button
