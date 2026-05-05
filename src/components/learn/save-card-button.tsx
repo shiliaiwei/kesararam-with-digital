@@ -29,9 +29,25 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
 
             if (!ctx) throw new Error('Canvas not supported');
 
-            // Pure white background
+            // Premium white background
             ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, 1920, 1080);
+
+            // Add subtle grid pattern for premium look
+            ctx.strokeStyle = 'rgba(6, 182, 212, 0.08)';
+            ctx.lineWidth = 1;
+            for (let i = 0; i < 1920; i += 40) {
+                ctx.beginPath();
+                ctx.moveTo(i, 0);
+                ctx.lineTo(i, 1080);
+                ctx.stroke();
+            }
+            for (let i = 0; i < 1080; i += 40) {
+                ctx.beginPath();
+                ctx.moveTo(0, i);
+                ctx.lineTo(1920, i);
+                ctx.stroke();
+            }
 
             // Map sub_group to category URL slug (all 8 categories)
             const getCategorySlug = (subGroup: string): string => {
@@ -92,19 +108,22 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             const categorySlug = getCategorySlug(topic.sub_group);
             const categoryUrl = `kesararamwithdigital.tech/learn/${categorySlug}`;
 
-            // Sign code and URL (top-right)
-            ctx.fillStyle = '#000000';
-            ctx.font = 'bold 36px system-ui, Arial, sans-serif';
-            ctx.textAlign = 'right';
-            ctx.fillText(topic.topic_code, 1860, 80);
+            // Header section with brand colors
+            const headerY = 60;
 
-            // Category URL (top-right, below sign code) - gray color
-            ctx.fillStyle = '#666666';
-            ctx.font = '16px system-ui, Arial, sans-serif';
+            // Sign code (top-right) - KWD Cyan accent
+            ctx.fillStyle = '#06b6d4';
+            ctx.font = 'bold 48px system-ui, Arial, sans-serif';
             ctx.textAlign = 'right';
-            ctx.fillText(categoryUrl, 1860, 110);
+            ctx.fillText(topic.topic_code, 1860, headerY);
 
-            // Load and draw sign image (center-left, NO BORDERS)
+            // Category URL (top-right, below sign code) - KWD Blue
+            ctx.fillStyle = '#3b82f6';
+            ctx.font = 'bold 18px system-ui, Arial, sans-serif';
+            ctx.textAlign = 'right';
+            ctx.fillText(categoryUrl, 1860, headerY + 40);
+
+            // Load and draw sign image with premium border
             if (topic.primary_image_url) {
                 const signImg = new Image();
                 signImg.crossOrigin = 'anonymous';
@@ -115,22 +134,30 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                     setTimeout(reject, 5000);
                 });
 
-                // Sign image area (center-left, with light blue border)
+                // Premium card frame with KWD brand colors
                 const signAreaX = 100;
                 const signAreaY = 200;
                 const signAreaSize = 400;
-                const borderWidth = 20;
-                const borderColor = '#ADD8E6'; // Light blue
+                const borderWidth = 24;
+                const shadowOffset = 8;
 
-                // Draw light blue border around the sign area
-                ctx.fillStyle = borderColor;
+                // Drop shadow effect (dark)
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+                ctx.fillRect(signAreaX - borderWidth + shadowOffset, signAreaY - borderWidth + shadowOffset, signAreaSize + (borderWidth * 2), signAreaSize + (borderWidth * 2));
+
+                // Outer border - KWD Cyan (premium brand color)
+                ctx.fillStyle = '#06b6d4';
                 ctx.fillRect(signAreaX - borderWidth, signAreaY - borderWidth, signAreaSize + (borderWidth * 2), signAreaSize + (borderWidth * 2));
 
-                // Draw white background inside border
+                // Inner border - KWD Blue accent
+                ctx.fillStyle = '#3b82f6';
+                ctx.fillRect(signAreaX - borderWidth + 4, signAreaY - borderWidth + 4, signAreaSize + (borderWidth * 2) - 8, signAreaSize + (borderWidth * 2) - 8);
+
+                // White background inside border
                 ctx.fillStyle = '#ffffff';
                 ctx.fillRect(signAreaX, signAreaY, signAreaSize, signAreaSize);
 
-                // Center the sign image (no borders, white background)
+                // Center the sign image
                 const imgAspect = signImg.width / signImg.height;
                 let drawWidth = signAreaSize;
                 let drawHeight = signAreaSize;
@@ -182,7 +209,7 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             // Description (right side, below title) - bilingual
             const description = isKh ? topic.description_km : topic.description_en;
             if (description) {
-                ctx.fillStyle = '#000000';
+                ctx.fillStyle = '#374151';
                 ctx.font = '28px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'left';
 
@@ -216,19 +243,21 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 }
             }
 
-            // Footer section
+            // Footer section with premium styling
             const footerY = 1020;
 
-            // Promotional text (bottom left) - learning focused
-            ctx.fillStyle = '#888888';
-            ctx.font = '18px system-ui, Arial, sans-serif';
+            // Promotional text (bottom left) - learning focused with KWD Orange
+            ctx.fillStyle = '#f97316';
+            ctx.font = 'bold 18px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
             const promoText = isKh
                 ? 'រៀនសញ្ញាចរាចរណ៍ បង្កើតចំណេះដឹងសុវត្ថិភាពពេញមួយជីវិត - kesararamwithdigital.tech'
                 : 'Learn traffic signs, build safety knowledge for life - kesararamwithdigital.tech';
             ctx.fillText(promoText, 60, footerY);
 
-            // Date (bottom right) - full format in both languages
+            // Date (bottom right) - full format in both languages with KWD Green
+            ctx.fillStyle = '#22c55e';
+            ctx.font = 'bold 18px system-ui, Arial, sans-serif';
             ctx.textAlign = 'right';
             const currentDate = new Date();
             let dateText = '';
