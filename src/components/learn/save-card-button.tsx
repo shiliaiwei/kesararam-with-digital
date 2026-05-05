@@ -267,6 +267,23 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
 
             ctx.fillText(dateText, 1860, footerY);
 
+            // Add small KWD logo in bottom-right corner as watermark
+            const smallLogo = new Image();
+            smallLogo.crossOrigin = 'anonymous';
+            await new Promise((resolve, reject) => {
+                smallLogo.onload = resolve;
+                smallLogo.onerror = () => resolve(null);
+                smallLogo.src = 'https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg';
+                setTimeout(() => resolve(null), 3000);
+            }).catch(() => null);
+
+            // Draw small logo in bottom-right corner (60x60 size)
+            if (smallLogo.complete && smallLogo.naturalWidth > 0) {
+                const logoSize = 60;
+                const logoPadding = 20;
+                ctx.drawImage(smallLogo, 1920 - logoSize - logoPadding, 1080 - logoSize - logoPadding, logoSize, logoSize);
+            }
+
             // Download with branded filename: PWD3-R3-00-KWD.png
             const brandedFilename = `${topic.topic_code}-KWD.png`;
 
