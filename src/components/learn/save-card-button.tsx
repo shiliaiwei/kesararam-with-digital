@@ -52,12 +52,13 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             // Load KWD logo for top-left corner
             const logo = new Image();
             logo.crossOrigin = 'anonymous';
-            await new Promise((resolve, reject) => {
-                logo.onload = resolve;
-                logo.onerror = () => resolve(null);
+
+            await new Promise<void>((resolve) => {
+                logo.onload = () => resolve();
+                logo.onerror = () => resolve();
                 logo.src = 'https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg';
-                setTimeout(() => resolve(null), 3000);
-            }).catch(() => null);
+                setTimeout(() => resolve(), 2000);
+            });
 
             // Draw KWD logo at top-left (bigger size - 120x120)
             if (logo.complete && logo.naturalWidth > 0) {
@@ -120,29 +121,27 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
 
             const categorySlug = getCategorySlug(topic.sub_group);
 
-            // CENTERED POSTER LAYOUT
-            const centerX = 960; // Canvas center
+            // SPLIT LAYOUT - Sign image on LEFT, Title/Description on RIGHT
             const contentStartY = 220;
+            const signAreaSize = 380;
+            const borderWidth = 20;
+            const shadowOffset = 8;
+
+            // LEFT SIDE - Sign image centered vertically
+            const signAreaX = 100;
+            const signAreaY = contentStartY;
 
             // Load and draw sign image with neo-brutalism style
             if (topic.primary_image_url) {
                 const signImg = new Image();
                 signImg.crossOrigin = 'anonymous';
-                await new Promise((resolve, reject) => {
-                    signImg.onload = resolve;
-                    signImg.onerror = reject;
+
+                await new Promise<void>((resolve) => {
+                    signImg.onload = () => resolve();
+                    signImg.onerror = () => resolve();
                     signImg.src = topic.primary_image_url;
-                    setTimeout(reject, 5000);
+                    setTimeout(() => resolve(), 3000);
                 });
-
-                // Neo-brutalism card frame with KWD brand colors
-                const signAreaSize = 380;
-                const borderWidth = 20;
-                const shadowOffset = 8;
-
-                // Calculate centered position
-                const signAreaX = centerX - (signAreaSize + borderWidth * 2) / 2;
-                const signAreaY = contentStartY;
 
                 // Drop shadow effect (dark)
                 ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
@@ -161,48 +160,53 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 ctx.fillRect(signAreaX + borderWidth, signAreaY + borderWidth, signAreaSize, signAreaSize);
 
                 // Center the sign image
-                const imgAspect = signImg.width / signImg.height;
-                let drawWidth = signAreaSize;
-                let drawHeight = signAreaSize;
+                if (signImg.complete && signImg.naturalWidth > 0) {
+                    const imgAspect = signImg.width / signImg.height;
+                    let drawWidth = signAreaSize;
+                    let drawHeight = signAreaSize;
 
-                if (imgAspect > 1) {
-                    drawHeight = drawWidth / imgAspect;
-                } else {
-                    drawWidth = drawHeight * imgAspect;
+                    if (imgAspect > 1) {
+                        drawHeight = drawWidth / imgAspect;
+                    } else {
+                        drawWidth = drawHeight * imgAspect;
+                    }
+
+                    const x = signAreaX + borderWidth + (signAreaSize - drawWidth) / 2;
+                    const y = signAreaY + borderWidth + (signAreaSize - drawHeight) / 2;
+                    ctx.drawImage(signImg, x, y, drawWidth, drawHeight);
                 }
 
-                const x = signAreaX + borderWidth + (signAreaSize - drawWidth) / 2;
-                const y = signAreaY + borderWidth + (signAreaSize - drawHeight) / 2;
-                ctx.drawImage(signImg, x, y, drawWidth, drawHeight);
-
-                // Sign code below image - centered
+                // Sign code below image - centered on left side
                 ctx.fillStyle = '#06b6d4';
                 ctx.font = 'bold 36px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'center';
-                ctx.fillText(topic.topic_code, centerX, signAreaY + signAreaSize + borderWidth * 2 + 60);
+                const signCodeX = signAreaX + borderWidth + signAreaSize / 2;
+                ctx.fillText(topic.topic_code, signCodeX, signAreaY + signAreaSize + borderWidth * 2 + 60);
             }
 
-            // Title (centered below sign code)
+            // RIGHT SIDE - Title and Description
+            const rightStartX = 600;
+            const rightStartY = 250;
+            const maxRightWidth = 1250;
+
+            // Title (right side)
             const name = isKh ? topic.name_km : topic.name_en;
             ctx.fillStyle = '#000000';
             ctx.font = 'bold 48px system-ui, Arial, sans-serif';
-            ctx.textAlign = 'center';
+            ctx.textAlign = 'left';
 
-            const titleY = contentStartY + signAreaSize + borderWidth * 2 + 120;
-
-            // Handle long titles with proper wrapping - centered
+            // Handle long titles with proper wrapping
             const titleWords = name.split(' ');
             let titleLine = '';
-            let titleLineY = titleY;
+            let titleLineY = rightStartY;
             const titleLineHeight = 60;
-            const maxTitleWidth = 1400;
 
             for (let word of titleWords) {
                 const testLine = titleLine + word + ' ';
                 const metrics = ctx.measureText(testLine);
 
-                if (metrics.width > maxTitleWidth && titleLine !== '') {
-                    ctx.fillText(titleLine.trim(), centerX, titleLineY);
+                if (metrics.width > maxRightWidth && titleLine !== '') {
+                    ctx.fillText(titleLine.trim(), rightStartX, titleLineY);
                     titleLine = word + ' ';
                     titleLineY += titleLineHeight;
                 } else {
@@ -210,24 +214,24 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 }
             }
             if (titleLine.trim()) {
-                ctx.fillText(titleLine.trim(), centerX, titleLineY);
+                ctx.fillText(titleLine.trim(), rightStartX, titleLineY);
             }
 
-            // Description (centered below title)
+            // Description (right side, below title)
             const description = isKh ? topic.description_km : topic.description_en;
             if (description) {
                 ctx.fillStyle = '#374151';
                 ctx.font = '24px system-ui, Arial, sans-serif';
-                ctx.textAlign = 'center';
+                ctx.textAlign = 'left';
 
-                // Word wrap description - centered
+                // Word wrap description
                 const words = description.split(' ');
                 let line = '';
                 let y = titleLineY + 70;
-                const maxWidth = 1400;
+                const maxWidth = maxRightWidth;
                 const lineHeight = 38;
                 let lineCount = 0;
-                const maxLines = 6;
+                const maxLines = 8;
 
                 for (let word of words) {
                     if (lineCount >= maxLines) break;
@@ -236,7 +240,7 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                     const metrics = ctx.measureText(testLine);
 
                     if (metrics.width > maxWidth && line !== '') {
-                        ctx.fillText(line.trim(), centerX, y);
+                        ctx.fillText(line.trim(), rightStartX, y);
                         line = word + ' ';
                         y += lineHeight;
                         lineCount++;
@@ -246,7 +250,7 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 }
 
                 if (lineCount < maxLines && line.trim()) {
-                    ctx.fillText(line.trim(), centerX, y);
+                    ctx.fillText(line.trim(), rightStartX, y);
                 }
             }
 
@@ -268,24 +272,25 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             const promoTextEn = 'Learn traffic signs, build safety knowledge for life';
             const promoTextKh = 'រៀនសញ្ញាចរាចរណ៍ បង្កើតចំណេះដឹងសុវត្ថិភាពពេញមួយជីវិត';
 
-            ctx.fillText(promoTextEn, centerX, footerY);
-            ctx.fillText(promoTextKh, centerX, footerY + 30);
+            ctx.fillText(promoTextEn, 960, footerY);
+            ctx.fillText(promoTextKh, 960, footerY + 30);
 
             // Website link at bottom
             ctx.fillStyle = '#3b82f6';
             ctx.font = 'bold 14px system-ui, Arial, sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText(`kesararamwithdigital.tech/learn/${categorySlug}`, centerX, footerY + 65);
+            ctx.fillText(`kesararamwithdigital.tech/learn/${categorySlug}`, 960, footerY + 65);
 
             // Add small KWD logo in bottom-right corner as watermark
             const smallLogo = new Image();
             smallLogo.crossOrigin = 'anonymous';
-            await new Promise((resolve, reject) => {
-                smallLogo.onload = resolve;
-                smallLogo.onerror = () => resolve(null);
+
+            await new Promise<void>((resolve) => {
+                smallLogo.onload = () => resolve();
+                smallLogo.onerror = () => resolve();
                 smallLogo.src = 'https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg';
-                setTimeout(() => resolve(null), 3000);
-            }).catch(() => null);
+                setTimeout(() => resolve(), 2000);
+            });
 
             // Draw small logo in bottom-right corner (60x60 size)
             if (smallLogo.complete && smallLogo.naturalWidth > 0) {
