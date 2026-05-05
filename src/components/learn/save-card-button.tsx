@@ -387,14 +387,25 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             ctx.fillText(`kesararamwithdigital.tech/learn/${categorySlug}`, 960, footerY + 95);
 
             // Add QR code in bottom-right corner
-            // Generate QR code using the helper function
-            const qrUrl = `https://www.kesararamwithdigital.tech/learn/${categorySlug}`;
-            const qrCanvas = generateQRCodeCanvas(qrUrl, 120);
+            // Load actual QR code image
+            const qrCodeImg = new Image();
+            qrCodeImg.crossOrigin = 'anonymous';
+
+            await new Promise<void>((resolve) => {
+                qrCodeImg.onload = () => resolve();
+                qrCodeImg.onerror = () => resolve();
+                qrCodeImg.src = 'https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/qrcode-kwd_abc123.png';
+                setTimeout(() => resolve(), 2000);
+            });
 
             // Draw QR code on main canvas
             const qrX = 1680;
             const qrY = 920;
-            ctx.drawImage(qrCanvas, qrX, qrY, 120, 120);
+            const qrSize = 120;
+
+            if (qrCodeImg.complete && qrCodeImg.naturalWidth > 0) {
+                ctx.drawImage(qrCodeImg, qrX, qrY, qrSize, qrSize);
+            }
 
             // Add QR label
             ctx.fillStyle = '#ff0050';
