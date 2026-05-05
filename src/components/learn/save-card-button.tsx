@@ -3,6 +3,21 @@
 import { useState } from "react";
 import { Download } from "lucide-react";
 
+// Helper function to draw rounded rectangles
+function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number) {
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+    ctx.lineTo(x + width, y + height - radius);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.lineTo(x + radius, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
+}
+
 interface SaveCardButtonProps {
     topic: {
         topic_code: string;
@@ -143,12 +158,12 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
 
                 // Background card - Dark color (#322e2b) with rounded corners
                 ctx.fillStyle = '#322e2b';
-                this.roundRect(ctx, signAreaX, signAreaY, signAreaSize, signAreaSize, borderRadius);
+                roundRect(ctx, signAreaX, signAreaY, signAreaSize, signAreaSize, borderRadius);
                 ctx.fill();
 
                 // White background inside for image
                 ctx.fillStyle = '#ffffff';
-                this.roundRect(ctx, signAreaX + 10, signAreaY + 10, signAreaSize - 20, signAreaSize - 20, borderRadius);
+                roundRect(ctx, signAreaX + 10, signAreaY + 10, signAreaSize - 20, signAreaSize - 20, borderRadius);
                 ctx.fill();
 
                 // Center the sign image
@@ -301,6 +316,21 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             setSaving(false);
         }
     };
+
+    // Helper function to draw rounded rectangles
+    private roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number) {
+        ctx.beginPath();
+        ctx.moveTo(x + radius, y);
+        ctx.lineTo(x + width - radius, y);
+        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+        ctx.lineTo(x + width, y + height - radius);
+        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+        ctx.lineTo(x + radius, y + height);
+        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+        ctx.lineTo(x, y + radius);
+        ctx.quadraticCurveTo(x, y, x + radius, y);
+        ctx.closePath();
+    }
 
     // Helper function to draw rounded rectangles
     private roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number) {
