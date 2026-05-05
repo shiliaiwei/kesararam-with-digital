@@ -239,32 +239,6 @@ export function RoadTrafficCatalogue() {
   return (
     <div className="min-h-screen bg-white">
 
-      {/* ── Blue Header ───────────────────────────────────────────── */}
-      <div className="bg-blue-400 border-b-4 border-black" style={{ boxShadow: "0 4px 0 #000" }}>
-        <div className="max-w-4xl mx-auto px-4 py-10 md:py-14">
-          <div className="flex items-start justify-between gap-6">
-            <div className="flex-1">
-              <div className="inline-block bg-black text-white px-3 py-1 font-bold text-xs mb-4" style={kf}>
-                {t.category}
-              </div>
-              <h1 className="text-4xl md:text-5xl font-black mb-1" style={kf}>{t.title}</h1>
-              <h2 className="text-lg font-bold mb-3 opacity-70" style={kf}>{t.titleKm}</h2>
-              <p className="text-sm max-w-xl opacity-80" style={kf}>{t.desc}</p>
-            </div>
-            <div className="hidden md:flex shrink-0 w-32 h-32 bg-white border-4 border-black items-center justify-center" style={{ boxShadow: "6px 6px 0 #000" }}>
-              <svg viewBox="0 0 100 100" className="w-20 h-20" fill="none" stroke="currentColor" strokeWidth="3">
-                <rect x="15" y="20" width="70" height="60" rx="2" />
-                <line x1="15" y1="38" x2="85" y2="38" />
-                <line x1="35" y1="20" x2="35" y2="80" />
-                <circle cx="25" cy="29" r="3" fill="currentColor" />
-                <circle cx="50" cy="55" r="8" />
-                <line x1="50" y1="47" x2="50" y2="55" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* ── Back Button ───────────────────────────────────────────── */}
       <div className="max-w-4xl mx-auto px-4 py-5">
         <button
