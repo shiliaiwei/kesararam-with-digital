@@ -22,7 +22,7 @@ interface Topic {
 const SUB_GROUPS: { key: string; en: string; km: string }[] = [
   { key: "Intersections", en: "Intersections", km: "ផ្លូវប្រសព្វ" },
   { key: "Roundabouts", en: "Roundabouts", km: "រង្វង់ចរាចរ" },
-  { key: "Pedestrian Crossings", en: "Pedestrian Crossings", km: "ឆ្លងកាត់보행者" },
+  { key: "Pedestrian Crossings", en: "Pedestrian Crossings", km: "ឆ្លងកាត់ដើម្បីឈានដល់" },
 ];
 
 const UI = {
