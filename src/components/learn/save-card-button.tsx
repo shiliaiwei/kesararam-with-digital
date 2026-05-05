@@ -49,10 +49,30 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 ctx.stroke();
             }
 
+            // Load KWD logo for top-left corner
+            const logo = new Image();
+            logo.crossOrigin = 'anonymous';
+            await new Promise((resolve, reject) => {
+                logo.onload = resolve;
+                logo.onerror = () => resolve(null);
+                logo.src = 'https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg';
+                setTimeout(() => resolve(null), 3000);
+            }).catch(() => null);
+
+            // Draw KWD logo at top-left (bigger size - 120x120)
+            if (logo.complete && logo.naturalWidth > 0) {
+                ctx.drawImage(logo, 40, 30, 120, 120);
+            }
+
+            // KWD Logo link text below logo
+            ctx.fillStyle = '#06b6d4';
+            ctx.font = 'bold 16px system-ui, Arial, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('kesararamwithdigital.tech/learn/road-signs', 40, 175);
+
             // Map sub_group to category URL slug (all 8 categories)
             const getCategorySlug = (subGroup: string): string => {
                 const categoryMap: Record<string, string> = {
-                    // Road Sign category
                     'Prohibitory Signs': 'road-sign',
                     'Mandatory Signs': 'road-sign',
                     'Priority Signs': 'road-sign',
@@ -70,33 +90,26 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                     'Other Road Markings': 'road-sign',
                     'Traffic Lights': 'road-sign',
                     'Traffic Police Signals': 'road-sign',
-                    // Road Traffic category
                     'Traffic Rules': 'road-traffic',
                     'Speed Limits': 'road-traffic',
                     'Parking': 'road-traffic',
                     'Overtaking': 'road-traffic',
-                    // Priority category
                     'Intersections': 'priority',
                     'Roundabouts': 'priority',
                     'Pedestrian Crossings': 'priority',
-                    // Driving category
                     'Basic Maneuvers': 'driving',
                     'Advanced Techniques': 'driving',
                     'Defensive Driving': 'driving',
-                    // Technical category
                     'Engine': 'technical',
                     'Brakes': 'technical',
                     'Lights': 'technical',
                     'Safety Systems': 'technical',
-                    // Loading People Goods category
                     'Weight Limits': 'loading-people-goods',
                     'Passenger Safety': 'loading-people-goods',
                     'Cargo Securing': 'loading-people-goods',
-                    // General Knowledge category
                     'Road Safety': 'general-knowledge',
                     'Environmental': 'general-knowledge',
                     'Legal': 'general-knowledge',
-                    // Emergency category
                     'Accidents': 'emergency',
                     'Breakdowns': 'emergency',
                     'First Aid': 'emergency',
@@ -106,24 +119,12 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             };
 
             const categorySlug = getCategorySlug(topic.sub_group);
-            const categoryUrl = `kesararamwithdigital.tech/learn/${categorySlug}`;
 
-            // Header section with brand colors
-            const headerY = 60;
+            // CENTERED POSTER LAYOUT
+            const centerX = 960; // Canvas center
+            const contentStartY = 220;
 
-            // Sign code (top-right) - KWD Cyan accent
-            ctx.fillStyle = '#06b6d4';
-            ctx.font = 'bold 48px system-ui, Arial, sans-serif';
-            ctx.textAlign = 'right';
-            ctx.fillText(topic.topic_code, 1860, headerY);
-
-            // Category URL (top-right, below sign code) - KWD Blue
-            ctx.fillStyle = '#3b82f6';
-            ctx.font = 'bold 18px system-ui, Arial, sans-serif';
-            ctx.textAlign = 'right';
-            ctx.fillText(categoryUrl, 1860, headerY + 40);
-
-            // Load and draw sign image with premium border
+            // Load and draw sign image with neo-brutalism style
             if (topic.primary_image_url) {
                 const signImg = new Image();
                 signImg.crossOrigin = 'anonymous';
@@ -134,28 +135,30 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                     setTimeout(reject, 5000);
                 });
 
-                // Premium card frame with KWD brand colors
-                const signAreaX = 100;
-                const signAreaY = 200;
-                const signAreaSize = 400;
-                const borderWidth = 24;
+                // Neo-brutalism card frame with KWD brand colors
+                const signAreaSize = 380;
+                const borderWidth = 20;
                 const shadowOffset = 8;
+
+                // Calculate centered position
+                const signAreaX = centerX - (signAreaSize + borderWidth * 2) / 2;
+                const signAreaY = contentStartY;
 
                 // Drop shadow effect (dark)
                 ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
-                ctx.fillRect(signAreaX - borderWidth + shadowOffset, signAreaY - borderWidth + shadowOffset, signAreaSize + (borderWidth * 2), signAreaSize + (borderWidth * 2));
+                ctx.fillRect(signAreaX + shadowOffset, signAreaY + shadowOffset, signAreaSize + (borderWidth * 2), signAreaSize + (borderWidth * 2));
 
-                // Outer border - KWD Cyan (premium brand color)
+                // Outer border - KWD Cyan (neo-brutalism style)
                 ctx.fillStyle = '#06b6d4';
-                ctx.fillRect(signAreaX - borderWidth, signAreaY - borderWidth, signAreaSize + (borderWidth * 2), signAreaSize + (borderWidth * 2));
+                ctx.fillRect(signAreaX, signAreaY, signAreaSize + (borderWidth * 2), signAreaSize + (borderWidth * 2));
 
                 // Inner border - KWD Blue accent
                 ctx.fillStyle = '#3b82f6';
-                ctx.fillRect(signAreaX - borderWidth + 4, signAreaY - borderWidth + 4, signAreaSize + (borderWidth * 2) - 8, signAreaSize + (borderWidth * 2) - 8);
+                ctx.fillRect(signAreaX + 4, signAreaY + 4, signAreaSize + (borderWidth * 2) - 8, signAreaSize + (borderWidth * 2) - 8);
 
                 // White background inside border
                 ctx.fillStyle = '#ffffff';
-                ctx.fillRect(signAreaX, signAreaY, signAreaSize, signAreaSize);
+                ctx.fillRect(signAreaX + borderWidth, signAreaY + borderWidth, signAreaSize, signAreaSize);
 
                 // Center the sign image
                 const imgAspect = signImg.width / signImg.height;
@@ -168,59 +171,63 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                     drawWidth = drawHeight * imgAspect;
                 }
 
-                const x = signAreaX + (signAreaSize - drawWidth) / 2;
-                const y = signAreaY + (signAreaSize - drawHeight) / 2;
+                const x = signAreaX + borderWidth + (signAreaSize - drawWidth) / 2;
+                const y = signAreaY + borderWidth + (signAreaSize - drawHeight) / 2;
                 ctx.drawImage(signImg, x, y, drawWidth, drawHeight);
+
+                // Sign code below image - centered
+                ctx.fillStyle = '#06b6d4';
+                ctx.font = 'bold 36px system-ui, Arial, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(topic.topic_code, centerX, signAreaY + signAreaSize + borderWidth * 2 + 60);
             }
 
-            // Title (right side) - bilingual based on user language
+            // Title (centered below sign code)
             const name = isKh ? topic.name_km : topic.name_en;
             ctx.fillStyle = '#000000';
-            ctx.font = 'bold 52px system-ui, Arial, sans-serif';
-            ctx.textAlign = 'left';
+            ctx.font = 'bold 48px system-ui, Arial, sans-serif';
+            ctx.textAlign = 'center';
 
-            // Handle long titles with proper wrapping
-            const titleStartX = 550;
-            const titleStartY = 250;
-            const maxTitleWidth = 1300;
+            const titleY = contentStartY + signAreaSize + borderWidth * 2 + 120;
 
-            // Split title into words for wrapping
+            // Handle long titles with proper wrapping - centered
             const titleWords = name.split(' ');
             let titleLine = '';
-            let titleY = titleStartY;
-            const titleLineHeight = 65;
+            let titleLineY = titleY;
+            const titleLineHeight = 60;
+            const maxTitleWidth = 1400;
 
             for (let word of titleWords) {
                 const testLine = titleLine + word + ' ';
                 const metrics = ctx.measureText(testLine);
 
                 if (metrics.width > maxTitleWidth && titleLine !== '') {
-                    ctx.fillText(titleLine.trim(), titleStartX, titleY);
+                    ctx.fillText(titleLine.trim(), centerX, titleLineY);
                     titleLine = word + ' ';
-                    titleY += titleLineHeight;
+                    titleLineY += titleLineHeight;
                 } else {
                     titleLine = testLine;
                 }
             }
             if (titleLine.trim()) {
-                ctx.fillText(titleLine.trim(), titleStartX, titleY);
+                ctx.fillText(titleLine.trim(), centerX, titleLineY);
             }
 
-            // Description (right side, below title) - bilingual
+            // Description (centered below title)
             const description = isKh ? topic.description_km : topic.description_en;
             if (description) {
                 ctx.fillStyle = '#374151';
-                ctx.font = '28px system-ui, Arial, sans-serif';
-                ctx.textAlign = 'left';
+                ctx.font = '24px system-ui, Arial, sans-serif';
+                ctx.textAlign = 'center';
 
-                // Word wrap description
+                // Word wrap description - centered
                 const words = description.split(' ');
                 let line = '';
-                let y = titleY + 80; // Start below title
-                const maxWidth = 1300;
-                const lineHeight = 40;
+                let y = titleLineY + 70;
+                const maxWidth = 1400;
+                const lineHeight = 38;
                 let lineCount = 0;
-                const maxLines = 10;
+                const maxLines = 6;
 
                 for (let word of words) {
                     if (lineCount >= maxLines) break;
@@ -229,7 +236,7 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                     const metrics = ctx.measureText(testLine);
 
                     if (metrics.width > maxWidth && line !== '') {
-                        ctx.fillText(line.trim(), titleStartX, y);
+                        ctx.fillText(line.trim(), centerX, y);
                         line = word + ' ';
                         y += lineHeight;
                         lineCount++;
@@ -239,57 +246,36 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 }
 
                 if (lineCount < maxLines && line.trim()) {
-                    ctx.fillText(line.trim(), titleStartX, y);
+                    ctx.fillText(line.trim(), centerX, y);
                 }
             }
 
-            // Footer section with premium styling
-            const footerY = 1020;
+            // Horizontal line separator (neo-brutalism style)
+            const hrY = 920;
+            ctx.strokeStyle = '#06b6d4';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(100, hrY);
+            ctx.lineTo(1820, hrY);
+            ctx.stroke();
 
-            // Promotional text (bottom left) - learning focused with KWD Orange
+            // Bilingual promotional message
+            const footerY = 980;
             ctx.fillStyle = '#f97316';
-            ctx.font = 'bold 18px system-ui, Arial, sans-serif';
-            ctx.textAlign = 'left';
-            const promoText = isKh
-                ? 'រៀនសញ្ញាចរាចរណ៍ បង្កើតចំណេះដឹងសុវត្ថិភាពពេញមួយជីវិត - kesararamwithdigital.tech'
-                : 'Learn traffic signs, build safety knowledge for life - kesararamwithdigital.tech';
-            ctx.fillText(promoText, 60, footerY);
+            ctx.font = 'bold 16px system-ui, Arial, sans-serif';
+            ctx.textAlign = 'center';
 
-            // Date (bottom right) - full format in both languages with KWD Green
-            ctx.fillStyle = '#22c55e';
-            ctx.font = 'bold 18px system-ui, Arial, sans-serif';
-            ctx.textAlign = 'right';
-            const currentDate = new Date();
-            let dateText = '';
+            const promoTextEn = 'Learn traffic signs, build safety knowledge for life';
+            const promoTextKh = 'រៀនសញ្ញាចរាចរណ៍ បង្កើតចំណេះដឹងសុវត្ថិភាពពេញមួយជីវិត';
 
-            if (isKh) {
-                // Khmer date format: ខែមករា ០៥, ២០២៦
-                const khmerMonths = [
-                    'មករា', 'កុម្ភៈ', 'មីនា', 'មេសា', 'ឧសភា', 'មិថុនា',
-                    'កក្កដា', 'សីហា', 'កញ្ញា', 'តុលា', 'វិច្ឆិកា', 'ធ្នូ'
-                ];
-                const khmerNumerals = ['០', '១', '២', '៣', '៤', '៥', '៦', '៧', '៨', '៩'];
+            ctx.fillText(promoTextEn, centerX, footerY);
+            ctx.fillText(promoTextKh, centerX, footerY + 30);
 
-                const month = khmerMonths[currentDate.getMonth()];
-                const day = currentDate.getDate().toString().split('').map(d => khmerNumerals[parseInt(d)]).join('');
-                const year = currentDate.getFullYear().toString().split('').map(d => khmerNumerals[parseInt(d)]).join('');
-
-                dateText = `ខែ${month} ${day}, ${year}`;
-            } else {
-                // English date format: January 05, 2026
-                const englishMonths = [
-                    'January', 'February', 'March', 'April', 'May', 'June',
-                    'July', 'August', 'September', 'October', 'November', 'December'
-                ];
-
-                const month = englishMonths[currentDate.getMonth()];
-                const day = currentDate.getDate().toString().padStart(2, '0');
-                const year = currentDate.getFullYear();
-
-                dateText = `${month} ${day}, ${year}`;
-            }
-
-            ctx.fillText(dateText, 1860, footerY);
+            // Website link at bottom
+            ctx.fillStyle = '#3b82f6';
+            ctx.font = 'bold 14px system-ui, Arial, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(`kesararamwithdigital.tech/learn/${categorySlug}`, centerX, footerY + 65);
 
             // Add small KWD logo in bottom-right corner as watermark
             const smallLogo = new Image();
