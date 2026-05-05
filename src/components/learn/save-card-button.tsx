@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { Download } from "lucide-react";
+import { useState, useRef } from "react";
+import { Download, Volume2 } from "lucide-react";
 
 // Helper function to draw rounded rectangles
 function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number) {
@@ -27,12 +27,68 @@ interface SaveCardButtonProps {
         description_km: string;
         primary_image_url: string;
         sub_group: string;
+        audio_url_en?: string;
+        audio_url_km?: string;
     };
     isKh: boolean;
 }
 
 export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
     const [saving, setSaving] = useState(false);
+    const [playing, setPlaying] = useState(false);
+    const [loadingAudio, setLoadingAudio] = useState(false);
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+    const playingRef = useRef(false);
+
+    const audioUrl = isKh ? (topic.audio_url_km || topic.audio_url_en) : (topic.audio_url_en || topic.audio_url_km);
+
+    const handleAudio = () => {
+        if (!audioUrl) return;
+
+        // STOP — audio is playing or loading
+        if (playingRef.current || loadingAudio) {
+            if (audioRef.current) {
+                audioRef.current.pause();
+                audioRef.current.src = "";
+                audioRef.current = null;
+            }
+            playingRef.current = false;
+            setPlaying(false);
+            setLoadingAudio(false);
+            return;
+        }
+
+        // PLAY — create fresh audio element
+        const audio = new Audio(audioUrl);
+        audioRef.current = audio;
+        setLoadingAudio(true);
+
+        audio.addEventListener("canplaythrough", () => {
+            audio.play().catch(() => {
+                setLoadingAudio(false);
+                setPlaying(false);
+                playingRef.current = false;
+            });
+            setLoadingAudio(false);
+            setPlaying(true);
+            playingRef.current = true;
+        }, { once: true });
+
+        audio.addEventListener("ended", () => {
+            setPlaying(false);
+            playingRef.current = false;
+            audioRef.current = null;
+        }, { once: true });
+
+        audio.addEventListener("error", () => {
+            setPlaying(false);
+            setLoadingAudio(false);
+            playingRef.current = false;
+            audioRef.current = null;
+        }, { once: true });
+
+        audio.load();
+    };
 
     const handleSave = async () => {
         setSaving(true);
@@ -368,17 +424,35 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
     };
 
     return (
-        <button
-            onClick={handleSave}
-            disabled={saving}
-            className={`inline-flex items-center gap-1 px-2 py-1 border-2 border-black font-bold text-[10px] transition-all ${saving
-                ? "bg-zinc-100 text-zinc-400 cursor-wait"
-                : "bg-yellow-400 hover:bg-yellow-500 shadow-[2px_2px_0_#000]"
-                }`}
-            title={isKh ? "រក្សាទុកកាត" : "Save Card"}
-        >
-            <Download size={12} />
-            {isKh ? "រក្សាទុក" : "Save Card"}
-        </button>
+        <div className="inline-flex items-center gap-2">
+            {audioUrl && (
+                <button
+                    onClick={handleAudio}
+                    disabled={loadingAudio}
+                    className={`inline-flex items-center gap-1 px-2 py-1 border-2 border-black font-bold text-[10px] transition-all ${loadingAudio
+                        ? "bg-zinc-100 text-zinc-400 cursor-wait"
+                        : playing
+                            ? "bg-black text-yellow-400 shadow-[2px_2px_0_#ca8a04]"
+                            : "bg-white hover:bg-yellow-400 shadow-[2px_2px_0_#000]"
+                        }`}
+                    title={isKh ? "ចាក់សំឡេង" : "Play Audio"}
+                >
+                    <Volume2 size={12} />
+                    {isKh ? "ចាក់" : "Play"}
+                </button>
+            )}
+            <button
+                onClick={handleSave}
+                disabled={saving}
+                className={`inline-flex items-center gap-1 px-2 py-1 border-2 border-black font-bold text-[10px] transition-all ${saving
+                    ? "bg-zinc-100 text-zinc-400 cursor-wait"
+                    : "bg-yellow-400 hover:bg-yellow-500 shadow-[2px_2px_0_#000]"
+                    }`}
+                title={isKh ? "រក្សាទុកកាត" : "Save Card"}
+            >
+                <Download size={12} />
+                {isKh ? "រក្សាទុក" : "Save Card"}
+            </button>
+        </div>
     );
 }
