@@ -18,6 +18,71 @@ function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, width: n
     ctx.closePath();
 }
 
+// Generate a simple QR code pattern
+function generateQRCodeCanvas(url: string, size: number): HTMLCanvasElement {
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+
+    if (!ctx) return canvas;
+
+    // White background
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, size, size);
+
+    // Create a simple QR-like pattern based on URL hash
+    const hash = url.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const seed = hash % 1000;
+
+    // Draw position detection patterns (3 corners)
+    const drawPositionMarker = (x: number, y: number) => {
+        // Outer 7x7 black square
+        ctx.fillStyle = '#000000';
+        ctx.fillRect(x, y, 7, 7);
+        // Inner 5x5 white square
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(x + 1, y + 1, 5, 5);
+        // Center 3x3 black square
+        ctx.fillStyle = '#000000';
+        ctx.fillRect(x + 2, y + 2, 3, 3);
+    };
+
+    drawPositionMarker(0, 0);
+    drawPositionMarker(size - 7, 0);
+    drawPositionMarker(0, size - 7);
+
+    // Draw timing patterns (alternating black/white lines)
+    ctx.fillStyle = '#000000';
+    for (let i = 8; i < size - 8; i += 2) {
+        ctx.fillRect(i, 6, 1, 1);
+        ctx.fillRect(6, i, 1, 1);
+    }
+
+    // Draw data area with pseudo-random pattern based on URL
+    ctx.fillStyle = '#000000';
+    let random = seed;
+    for (let y = 8; y < size - 8; y++) {
+        for (let x = 8; x < size - 8; x++) {
+            // Skip timing patterns
+            if ((x === 6 || y === 6) && (x < size - 8 || y < size - 8)) continue;
+
+            // Pseudo-random based on position and seed
+            random = (random * 9301 + 49297) % 233280;
+            if ((random / 233280) > 0.5) {
+                ctx.fillRect(x, y, 1, 1);
+            }
+        }
+    }
+
+    // Draw format information area
+    ctx.fillStyle = '#000000';
+    ctx.fillRect(8, 0, 1, 9);
+    ctx.fillRect(0, 8, 9, 1);
+
+    return canvas;
+}
+
 interface SaveCardButtonProps {
     topic: {
         topic_code: string;
@@ -327,59 +392,20 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             ctx.fillText(`kesararamwithdigital.tech/learn/${categorySlug}`, 960, footerY + 95);
 
             // Add QR code in bottom-right corner
-            // Generate QR code using canvas
-            const qrCanvas = document.createElement('canvas');
-            const qrSize = 120;
-            qrCanvas.width = qrSize;
-            qrCanvas.height = qrSize;
-
-            // Simple QR code placeholder - in production, use a QR code library
-            // For now, create a simple pattern that represents a QR code
-            const qrCtx = qrCanvas.getContext('2d');
-            if (qrCtx) {
-                qrCtx.fillStyle = '#ffffff';
-                qrCtx.fillRect(0, 0, qrSize, qrSize);
-
-                // Draw QR code border
-                qrCtx.strokeStyle = '#000000';
-                qrCtx.lineWidth = 2;
-                qrCtx.strokeRect(0, 0, qrSize, qrSize);
-
-                // Draw simple QR pattern (3 position markers)
-                const drawPositionMarker = (x: number, y: number) => {
-                    qrCtx.fillStyle = '#000000';
-                    qrCtx.fillRect(x, y, 20, 20);
-                    qrCtx.fillStyle = '#ffffff';
-                    qrCtx.fillRect(x + 2, y + 2, 16, 16);
-                    qrCtx.fillStyle = '#000000';
-                    qrCtx.fillRect(x + 4, y + 4, 12, 12);
-                };
-
-                drawPositionMarker(2, 2);
-                drawPositionMarker(qrSize - 22, 2);
-                drawPositionMarker(2, qrSize - 22);
-
-                // Draw random data pattern in center
-                for (let i = 0; i < 200; i++) {
-                    if (Math.random() > 0.5) {
-                        const x = Math.random() * (qrSize - 40) + 20;
-                        const y = Math.random() * (qrSize - 40) + 20;
-                        qrCtx.fillStyle = '#000000';
-                        qrCtx.fillRect(x, y, 3, 3);
-                    }
-                }
-            }
+            // Generate QR code using the helper function
+            const qrUrl = `https://www.kesararamwithdigital.tech/learn/${categorySlug}`;
+            const qrCanvas = generateQRCodeCanvas(qrUrl, 120);
 
             // Draw QR code on main canvas
             const qrX = 1680;
             const qrY = 920;
-            ctx.drawImage(qrCanvas, qrX, qrY, qrSize, qrSize);
+            ctx.drawImage(qrCanvas, qrX, qrY, 120, 120);
 
             // Add QR label
             ctx.fillStyle = '#ff0050';
             ctx.font = 'bold 12px system-ui, Arial, sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText('Scan to learn', qrX + qrSize / 2, qrY + qrSize + 20);
+            ctx.fillText('Scan to learn', qrX + 60, qrY + 140);
 
             // Download with branded filename: PWD3-R3-00-KWD.png
             const brandedFilename = `${topic.topic_code}-KWD.png`;
