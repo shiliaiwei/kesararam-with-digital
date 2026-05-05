@@ -304,6 +304,13 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             ctx.fillText(promoTextEn, 960, footerStartY + 32);
             ctx.fillText(promoTextEn2, 960, footerStartY + 58);
 
+            // Link below quote - GRAY 25%
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+            ctx.font = 'bold 12px system-ui, Arial, sans-serif';
+            ctx.textAlign = 'center';
+            const linkUrl = `kesararamwithdigital.tech/learn/${categorySlug}`;
+            ctx.fillText(linkUrl, 960, footerStartY + 85);
+
             // Copyright section with KWD logo - bottom left
             const copyrightY = 1010;
 
