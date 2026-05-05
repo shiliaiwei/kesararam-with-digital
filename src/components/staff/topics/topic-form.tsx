@@ -36,7 +36,7 @@ const CATEGORIES = [
 const SUB_GROUPS: Record<string, string[]> = {
   "road-sign": ["Arrows Markings", "Buildup Area Boundary Signs", "Direction Signs", "Informative Signs", "Longitudinal Markings", "Mandatory Signs", "Other Road Markings", "Priority Signs", "Prohibitory Signs", "Sign Posts", "Street Name Signs", "Supplementary Signs", "Temporary Signs", "Traffic Lights", "Traffic Police Signals", "Transverse Markings", "Warning Signs"],
   "road-traffic": ["Traffic Rules", "Speed Limits", "Parking", "Overtaking"],
-  "priority": ["Intersections", "Roundabouts", "Pedestrian Crossings"],
+  "priority": ["Intersections", "Intersection Priority – Left Turn", "Intersection Priority – Sequential", "Intersection Priority – Simultaneous", "Roundabouts", "Pedestrian Crossings"],
   "driving": ["Basic Maneuvers", "Advanced Techniques", "Defensive Driving"],
   "technical": ["Engine", "Brakes", "Lights", "Safety Systems"],
   "loading-people-goods": ["Weight Limits", "Passenger Safety", "Cargo Securing"],
@@ -113,14 +113,14 @@ export function TopicForm({ initialData }: { initialData?: any }) {
 
       if (response.ok) {
         const { topic } = await response.json();
-        
+
         if (submitForReview && !initialData) {
           // Submit immediately after creation
           await fetch(`/api/staff/topics/${topic.id}/submit`, {
             method: "POST",
           });
         }
-        
+
         router.push("/staff/topics");
       } else {
         const data = await response.json();
