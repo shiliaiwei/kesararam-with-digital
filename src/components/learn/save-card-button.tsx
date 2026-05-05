@@ -18,71 +18,6 @@ function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, width: n
     ctx.closePath();
 }
 
-// Generate a simple QR code pattern
-function generateQRCodeCanvas(url: string, size: number): HTMLCanvasElement {
-    const canvas = document.createElement('canvas');
-    canvas.width = size;
-    canvas.height = size;
-    const ctx = canvas.getContext('2d');
-
-    if (!ctx) return canvas;
-
-    // White background
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, size, size);
-
-    // Create a simple QR-like pattern based on URL hash
-    const hash = url.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    const seed = hash % 1000;
-
-    // Draw position detection patterns (3 corners)
-    const drawPositionMarker = (x: number, y: number) => {
-        // Outer 7x7 black square
-        ctx.fillStyle = '#000000';
-        ctx.fillRect(x, y, 7, 7);
-        // Inner 5x5 white square
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(x + 1, y + 1, 5, 5);
-        // Center 3x3 black square
-        ctx.fillStyle = '#000000';
-        ctx.fillRect(x + 2, y + 2, 3, 3);
-    };
-
-    drawPositionMarker(0, 0);
-    drawPositionMarker(size - 7, 0);
-    drawPositionMarker(0, size - 7);
-
-    // Draw timing patterns (alternating black/white lines)
-    ctx.fillStyle = '#000000';
-    for (let i = 8; i < size - 8; i += 2) {
-        ctx.fillRect(i, 6, 1, 1);
-        ctx.fillRect(6, i, 1, 1);
-    }
-
-    // Draw data area with pseudo-random pattern based on URL
-    ctx.fillStyle = '#000000';
-    let random = seed;
-    for (let y = 8; y < size - 8; y++) {
-        for (let x = 8; x < size - 8; x++) {
-            // Skip timing patterns
-            if ((x === 6 || y === 6) && (x < size - 8 || y < size - 8)) continue;
-
-            // Pseudo-random based on position and seed
-            random = (random * 9301 + 49297) % 233280;
-            if ((random / 233280) > 0.5) {
-                ctx.fillRect(x, y, 1, 1);
-            }
-        }
-    }
-
-    // Draw format information area
-    ctx.fillStyle = '#000000';
-    ctx.fillRect(8, 0, 1, 9);
-    ctx.fillRect(0, 8, 9, 1);
-
-    return canvas;
-}
-
 interface SaveCardButtonProps {
     topic: {
         topic_code: string;
@@ -109,27 +44,27 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
 
             if (!ctx) throw new Error('Canvas not supported');
 
-            // Premium white background
-            ctx.fillStyle = '#ffffff';
+            // Dark GitHub background color (#0d1117)
+            ctx.fillStyle = '#0d1117';
             ctx.fillRect(0, 0, 1920, 1080);
 
-            // Add subtle grid pattern for premium look
-            ctx.strokeStyle = 'rgba(6, 182, 212, 0.08)';
+            // Add subtle grid pattern for visual interest
+            ctx.strokeStyle = 'rgba(48, 54, 61, 0.3)';
             ctx.lineWidth = 1;
-            for (let i = 0; i < 1920; i += 40) {
+            for (let i = 0; i < 1920; i += 60) {
                 ctx.beginPath();
                 ctx.moveTo(i, 0);
                 ctx.lineTo(i, 1080);
                 ctx.stroke();
             }
-            for (let i = 0; i < 1080; i += 40) {
+            for (let i = 0; i < 1080; i += 60) {
                 ctx.beginPath();
                 ctx.moveTo(0, i);
                 ctx.lineTo(1920, i);
                 ctx.stroke();
             }
 
-            // Load KWD logo for top-left corner (BIGGER)
+            // Load KWD logo for top-left corner
             const logo = new Image();
             logo.crossOrigin = 'anonymous';
 
@@ -140,12 +75,12 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 setTimeout(() => resolve(), 2000);
             });
 
-            // Draw KWD logo at top-left (BIGGER - 160x160)
+            // Draw KWD logo at top-left (smaller, 120x120)
             if (logo.complete && logo.naturalWidth > 0) {
-                ctx.drawImage(logo, 40, 20, 160, 160);
+                ctx.drawImage(logo, 40, 20, 120, 120);
             }
 
-            // Map sub_group to category URL slug (all 8 categories)
+            // Map sub_group to category URL slug
             const getCategorySlug = (subGroup: string): string => {
                 const categoryMap: Record<string, string> = {
                     'Prohibitory Signs': 'road-sign',
@@ -195,14 +130,15 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
 
             const categorySlug = getCategorySlug(topic.sub_group);
 
-            // SPLIT LAYOUT - Sign image on LEFT, Title/Description on RIGHT
-            const contentStartY = 200;
-            const signAreaSize = 420;
-            const borderRadius = 10;
+            // PSYCHOLOGICAL EYE-TRACKING DESIGN
+            // Primary focus: Sign image (LEFT, LARGE, PROMINENT)
+            // Secondary focus: Title (RIGHT, LARGE, TEAL)
+            // Tertiary focus: Description (RIGHT, MEDIUM)
 
-            // LEFT SIDE - Sign image centered vertically
-            const signAreaX = 80;
-            const signAreaY = contentStartY;
+            const signAreaSize = 500;
+            const signAreaX = 100;
+            const signAreaY = 200;
+            const borderRadius = 15;
 
             // Load and draw sign image with rounded corners
             if (topic.primary_image_url) {
@@ -216,23 +152,26 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                     setTimeout(() => resolve(), 3000);
                 });
 
-                // NO SHADOW - Removed for cleaner focus on image
+                // Draw subtle glow effect around image (eye-catching)
+                ctx.fillStyle = 'rgba(255, 215, 0, 0.1)';
+                roundRect(ctx, signAreaX - 10, signAreaY - 10, signAreaSize + 20, signAreaSize + 20, borderRadius + 5);
+                ctx.fill();
 
                 // Background card - YELLOW brand color (#ffd700) with rounded corners
                 ctx.fillStyle = '#ffd700';
                 roundRect(ctx, signAreaX, signAreaY, signAreaSize, signAreaSize, borderRadius);
                 ctx.fill();
 
-                // YELLOW background inside for image (same as outer)
+                // YELLOW background inside for image
                 ctx.fillStyle = '#ffd700';
-                roundRect(ctx, signAreaX + 10, signAreaY + 10, signAreaSize - 20, signAreaSize - 20, borderRadius);
+                roundRect(ctx, signAreaX + 15, signAreaY + 15, signAreaSize - 30, signAreaSize - 30, borderRadius);
                 ctx.fill();
 
                 // Center the sign image
                 if (signImg.complete && signImg.naturalWidth > 0) {
                     const imgAspect = signImg.width / signImg.height;
-                    let drawWidth = signAreaSize - 20;
-                    let drawHeight = signAreaSize - 20;
+                    let drawWidth = signAreaSize - 30;
+                    let drawHeight = signAreaSize - 30;
 
                     if (imgAspect > 1) {
                         drawHeight = drawWidth / imgAspect;
@@ -240,62 +179,61 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                         drawWidth = drawHeight * imgAspect;
                     }
 
-                    const x = signAreaX + 10 + (signAreaSize - 20 - drawWidth) / 2;
-                    const y = signAreaY + 10 + (signAreaSize - 20 - drawHeight) / 2;
+                    const x = signAreaX + 15 + (signAreaSize - 30 - drawWidth) / 2;
+                    const y = signAreaY + 15 + (signAreaSize - 30 - drawHeight) / 2;
                     ctx.drawImage(signImg, x, y, drawWidth, drawHeight);
                 }
 
-                // Sign code below image - centered on left side - BLACK color
-                ctx.fillStyle = '#000000';
-                ctx.font = 'bold 36px system-ui, Arial, sans-serif';
+                // Sign code below image - centered on left side - VIBRANT RED
+                ctx.fillStyle = '#ff0050';
+                ctx.font = 'bold 40px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'center';
                 const signCodeX = signAreaX + signAreaSize / 2;
-                ctx.fillText(topic.topic_code, signCodeX, signAreaY + signAreaSize + 60);
+                ctx.fillText(topic.topic_code, signCodeX, signAreaY + signAreaSize + 70);
 
                 // Tag below code - sub_group category - TEAL background with BLACK text
                 ctx.fillStyle = '#25c1a4';
                 ctx.font = 'bold 16px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'center';
 
-                // Draw tag background
                 const tagText = topic.sub_group;
                 const tagMetrics = ctx.measureText(tagText);
-                const tagWidth = tagMetrics.width + 20;
-                const tagHeight = 32;
+                const tagWidth = tagMetrics.width + 24;
+                const tagHeight = 36;
                 const tagX = signCodeX - tagWidth / 2;
-                const tagY = signAreaY + signAreaSize + 90;
+                const tagY = signAreaY + signAreaSize + 100;
 
                 // Tag background with rounded corners
                 ctx.fillStyle = '#25c1a4';
-                roundRect(ctx, tagX, tagY, tagWidth, tagHeight, 5);
+                roundRect(ctx, tagX, tagY, tagWidth, tagHeight, 6);
                 ctx.fill();
 
                 // Tag text - BLACK
                 ctx.fillStyle = '#000000';
                 ctx.font = 'bold 14px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'center';
-                ctx.fillText(tagText, signCodeX, tagY + 22);
+                ctx.fillText(tagText, signCodeX, tagY + 24);
             }
 
-            // RIGHT SIDE - Title and Description (LARGER, MORE PROMINENT)
-            const rightStartX = 580;
+            // RIGHT SIDE - Title and Description (SECONDARY FOCUS)
+            const rightStartX = 700;
             const rightStartY = 220;
-            const maxRightWidth = 1280;
+            const maxRightWidth = 1150;
 
-            // Title (right side) - CAPITALS, Teal color (#25c1a4), LARGER
+            // Title (right side) - CAPITALS, Teal color (#25c1a4), VERY LARGE
             const titleKh = topic.name_km;
             const titleEn = topic.name_en;
             const titleToUse = isKh ? titleKh : titleEn;
 
             ctx.fillStyle = '#25c1a4';
-            ctx.font = 'bold 56px system-ui, Arial, sans-serif';
+            ctx.font = 'bold 64px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
 
             // Handle long titles with proper wrapping - UPPERCASE
             const titleWords = titleToUse.toUpperCase().split(' ');
             let titleLine = '';
             let titleLineY = rightStartY;
-            const titleLineHeight = 70;
+            const titleLineHeight = 80;
 
             for (let word of titleWords) {
                 const testLine = titleLine + word + ' ';
@@ -313,24 +251,24 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 ctx.fillText(titleLine.trim(), rightStartX, titleLineY);
             }
 
-            // Description (right side, below title) - BLACK text, LARGER
+            // Description (right side, below title) - WHITE text for contrast on dark background
             const descriptionKh = topic.description_km;
             const descriptionEn = topic.description_en;
             const descriptionToUse = isKh ? descriptionKh : descriptionEn;
 
             if (descriptionToUse) {
-                ctx.fillStyle = '#000000';
-                ctx.font = 'bold 28px system-ui, Arial, sans-serif';
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 26px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'left';
 
                 // Word wrap description
                 const words = descriptionToUse.split(' ');
                 let line = '';
-                let y = titleLineY + 80;
+                let y = titleLineY + 90;
                 const maxWidth = maxRightWidth;
-                const lineHeight = 42;
+                const lineHeight = 40;
                 let lineCount = 0;
-                const maxLines = 8;
+                const maxLines = 6;
 
                 for (let word of words) {
                     if (lineCount >= maxLines) break;
@@ -353,10 +291,10 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 }
             }
 
-            // Horizontal line separator - Using brand color #ff0050
+            // Horizontal line separator - Vibrant Red
             const hrY = 920;
             ctx.strokeStyle = '#ff0050';
-            ctx.lineWidth = 3;
+            ctx.lineWidth = 4;
             ctx.beginPath();
             ctx.moveTo(100, hrY);
             ctx.lineTo(1820, hrY);
@@ -368,37 +306,31 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             ctx.font = 'bold 16px system-ui, Arial, sans-serif';
             ctx.textAlign = 'center';
 
-            // Updated powerful psychological messages with "Protect your life and loved ones"
             const promoTextKh = 'រៀនសញ្ញាចរាចរណ៍ បង្កើតចំណេះដឹងសុវត្ថិភាពពេញមួយជីវិត';
             const promoTextEn = 'Protect your life and loved ones.';
             const promoTextEn2 = 'Learn traffic signs, build safety knowledge for life';
 
-            // Khmer first
             ctx.fillText(promoTextKh, 960, footerY);
-            // English - Protect your life and loved ones
             ctx.fillText(promoTextEn, 960, footerY + 30);
-            // English - Learn traffic signs
             ctx.fillText(promoTextEn2, 960, footerY + 55);
 
-            // Website link at bottom - Same color as promotional message
+            // Website link at bottom
             ctx.fillStyle = '#ff0050';
             ctx.font = 'bold 14px system-ui, Arial, sans-serif';
             ctx.textAlign = 'center';
             ctx.fillText(`kesararamwithdigital.tech/learn/${categorySlug}`, 960, footerY + 95);
 
-            // Add QR code in bottom-right corner
-            // Load actual QR code image
+            // Add QR code in bottom-right corner - USE LOCAL FILE
             const qrCodeImg = new Image();
             qrCodeImg.crossOrigin = 'anonymous';
 
             await new Promise<void>((resolve) => {
                 qrCodeImg.onload = () => resolve();
                 qrCodeImg.onerror = () => resolve();
-                qrCodeImg.src = 'https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/qrcode-kwd_abc123.png';
+                qrCodeImg.src = '/brand/qrcode-kwd.png';
                 setTimeout(() => resolve(), 2000);
             });
 
-            // Draw QR code on main canvas
             const qrX = 1680;
             const qrY = 920;
             const qrSize = 120;
@@ -413,7 +345,7 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             ctx.textAlign = 'center';
             ctx.fillText('Scan to learn', qrX + 60, qrY + 140);
 
-            // Download with branded filename: PWD3-R3-00-KWD.png
+            // Download with branded filename
             const brandedFilename = `${topic.topic_code}-KWD.png`;
 
             canvas.toBlob((blob) => {
