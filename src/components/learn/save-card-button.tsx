@@ -48,17 +48,44 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 ctx.drawImage(logo, 60, 40);
             }
 
-            // Sign code (top-right)
+            // Map sub_group to category URL slug
+            const getCategorySlug = (subGroup: string): string => {
+                const categoryMap: Record<string, string> = {
+                    'Prohibitory Signs': 'road-sign',
+                    'Mandatory Signs': 'road-sign',
+                    'Priority Signs': 'road-sign',
+                    'Warning Signs': 'road-sign',
+                    'Temporary Signs': 'road-sign',
+                    'Direction Signs': 'road-sign',
+                    'Buildup Area Boundary Signs': 'road-sign',
+                    'Street Name Signs': 'road-sign',
+                    'Informative Signs': 'road-sign',
+                    'Supplementary Signs': 'road-sign',
+                    'Sign Posts': 'road-sign',
+                    'Transverse Markings': 'road-sign',
+                    'Longitudinal Markings': 'road-sign',
+                    'Arrows Markings': 'road-sign',
+                    'Other Road Markings': 'road-sign',
+                    'Traffic Lights': 'road-sign',
+                    'Traffic Police Signals': 'road-sign',
+                };
+                return categoryMap[subGroup] || 'road-sign';
+            };
+
+            const categorySlug = getCategorySlug(topic.sub_group);
+            const categoryUrl = `kesararamwithdigital.tech/learn/${categorySlug}`;
+
+            // Sign code and URL (top-right)
             ctx.fillStyle = '#000000';
             ctx.font = 'bold 36px system-ui, Arial, sans-serif';
             ctx.textAlign = 'right';
             ctx.fillText(topic.topic_code, 1860, 80);
 
-            // Website URL (top-right, below sign code)
+            // Category URL (top-right, below sign code) - gray color
             ctx.fillStyle = '#666666';
             ctx.font = '16px system-ui, Arial, sans-serif';
             ctx.textAlign = 'right';
-            ctx.fillText('kesararamwithdigital.tech', 1860, 110);
+            ctx.fillText(categoryUrl, 1860, 110);
 
             // Load and draw sign image (center-left, NO BORDERS)
             if (topic.primary_image_url) {
@@ -165,13 +192,13 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             // Footer section
             const footerY = 1020;
 
-            // Promotional text (bottom left) - psychological words to encourage learning
+            // Promotional text (bottom left) - learning focused
             ctx.fillStyle = '#888888';
             ctx.font = '18px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
             const promoText = isKh
-                ? 'ចាប់ផ្តើមរៀនបើកបរប្រកបដោយសុវត្ថិភាព និងជោគជ័យ - kesararamwithdigital.tech'
-                : 'Start your safe and successful driving journey - kesararamwithdigital.tech';
+                ? 'រៀនសញ្ញាចរាចរណ៍ បង្កើតចំណេះដឹងសុវត្ថិភាពពេញមួយជីវិត - kesararamwithdigital.tech'
+                : 'Learn traffic signs, build safety knowledge for life - kesararamwithdigital.tech';
             ctx.fillText(promoText, 60, footerY);
 
             // Date (bottom right) - full format in both languages
