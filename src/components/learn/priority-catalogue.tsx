@@ -21,6 +21,9 @@ interface Topic {
 
 const SUB_GROUPS: { key: string; en: string; km: string }[] = [
   { key: "Intersections", en: "Intersections", km: "ផ្លូវប្រសព្វ" },
+  { key: "Intersection Priority – Left Turn", en: "Left Turn", km: "ឆ្វេងលាក់" },
+  { key: "Intersection Priority – Sequential", en: "Sequential", km: "ឈានដល់លំដាប់" },
+  { key: "Intersection Priority – Simultaneous", en: "Simultaneous", km: "ក្នុងពេលដំណាលគ្នា" },
   { key: "Roundabouts", en: "Roundabouts", km: "រង្វង់ចរាចរ" },
   { key: "Pedestrian Crossings", en: "Pedestrian Crossings", km: "ឆ្លងកាត់ដើម្បីឈានដល់" },
 ];

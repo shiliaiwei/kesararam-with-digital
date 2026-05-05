@@ -9,7 +9,7 @@ interface Answer { id?: number; answerEn: string; answerKm: string; isCorrect: b
 interface Question { id: number; question_en: string; question_km: string; hint_en: string | null; image_url: string | null; difficulty: string; answers: Answer[]; }
 interface CategoryContentManagerProps { categoryId: number; categoryName: string; categorySlug: string; requiresImage?: boolean; requiresAudio?: boolean; }
 
-const SUB_GROUPS: Record<string, string[]> = { "road-sign": ["Arrows Markings", "Buildup Area Boundary Signs", "Direction Signs", "Informative Signs", "Longitudinal Markings", "Mandatory Signs", "Other Road Markings", "Priority Signs", "Prohibitory Signs", "Sign Posts", "Street Name Signs", "Supplementary Signs", "Temporary Signs", "Traffic Lights", "Traffic Police Signals", "Transverse Markings", "Warning Signs"], "road-traffic": ["Traffic Rules","Speed Limits","Parking","Overtaking"], "priority": ["Intersections","Roundabouts","Pedestrian Crossings"], "driving": ["Basic Maneuvers","Advanced Techniques","Defensive Driving"], "technical": ["Engine","Brakes","Lights","Safety Systems"], "loading-people-goods": ["Weight Limits","Passenger Safety","Cargo Securing"], "general-knowledge": ["Road Safety","Environmental","Legal"], "emergency": ["Accidents","Breakdowns","First Aid","Emergency Contacts"] };
+const SUB_GROUPS: Record<string, string[]> = { "road-sign": ["Arrows Markings", "Buildup Area Boundary Signs", "Direction Signs", "Informative Signs", "Longitudinal Markings", "Mandatory Signs", "Other Road Markings", "Priority Signs", "Prohibitory Signs", "Sign Posts", "Street Name Signs", "Supplementary Signs", "Temporary Signs", "Traffic Lights", "Traffic Police Signals", "Transverse Markings", "Warning Signs"], "road-traffic": ["Traffic Rules", "Speed Limits", "Parking", "Overtaking"], "priority": ["Intersections", "Intersection Priority – Left Turn", "Intersection Priority – Sequential", "Intersection Priority – Simultaneous", "Roundabouts", "Pedestrian Crossings"], "driving": ["Basic Maneuvers", "Advanced Techniques", "Defensive Driving"], "technical": ["Engine", "Brakes", "Lights", "Safety Systems"], "loading-people-goods": ["Weight Limits", "Passenger Safety", "Cargo Securing"], "general-knowledge": ["Road Safety", "Environmental", "Legal"], "emergency": ["Accidents", "Breakdowns", "First Aid", "Emergency Contacts"] };
 const S_ICON: Record<string, React.ReactNode> = { published: <Globe size={11} className="text-blue-600" />, pending: <Clock size={11} className="text-yellow-600" />, approved: <CheckCircle size={11} className="text-green-600" />, draft: <FileText size={11} className="text-gray-500" />, rejected: <XCircle size={11} className="text-red-600" /> };
 const S_STYLE: Record<string, string> = { published: "bg-blue-100 text-blue-800 border border-blue-300", pending: "bg-yellow-100 text-yellow-800 border border-yellow-300", approved: "bg-green-100 text-green-800 border border-green-300", draft: "bg-gray-100 text-gray-700 border border-gray-300", rejected: "bg-red-100 text-red-800 border border-red-300" };
 const S_LABEL: Record<string, string> = { published: "Public", pending: "Review", approved: "Approved", draft: "Draft", rejected: "Rejected" };
@@ -94,7 +94,7 @@ function QuestionsPanel({ topicId, topicStatus, isStaff = true }: { topicId: num
   useEffect(() => { load(); }, [load]);
   const del = async (qid: number) => { await fetch(`/api/staff/topics/${topicId}/questions/${qid}`, { method: "DELETE" }); setDelConfirm(null); load(); };
   const canEdit = topicStatus !== "pending" && !isStaff; // Only admin can edit questions
-  
+
   return (
     <div className="border-t-2 border-black bg-zinc-50">
       <div className="flex items-center justify-between px-4 py-2.5 border-b border-zinc-200">
@@ -106,46 +106,46 @@ function QuestionsPanel({ topicId, topicStatus, isStaff = true }: { topicId: num
       {showCreate && <QuestionForm topicId={topicId} onSave={() => { setShowCreate(false); load(); }} onCancel={() => setShowCreate(false)} />}
       <div className="p-3 space-y-1.5">
         {loading ? <p className="text-xs text-zinc-400 font-bold py-3 text-center">Loading questions...</p>
-        : questions.length === 0 && !showCreate ? (
-          <div className="text-center py-6 border-2 border-dashed border-purple-200">
-            <p className="text-xs font-bold text-zinc-500 mb-2">No questions yet for this topic</p>
-            {canEdit && <button onClick={() => setShowCreate(true)} className="bg-purple-500 text-white border-2 border-black px-4 py-1.5 text-xs font-black hover:shadow-[2px_2px_0_#000] inline-flex items-center gap-1.5"><Plus size={12} /> Create First Question</button>}
-          </div>
-        ) : questions.map((q, idx) => (
-          <div key={q.id} className="border-2 border-black bg-white">
-            {editingId === q.id ? <QuestionForm topicId={topicId} initial={q} onSave={() => { setEditingId(null); load(); }} onCancel={() => setEditingId(null)} /> : (
-              <>
-                <div className="flex items-center gap-2 px-3 py-2 cursor-pointer hover:bg-purple-50" onClick={() => setExpandedId(expandedId === q.id ? null : q.id)}>
-                  <span className="w-5 h-5 shrink-0 bg-purple-600 text-white text-[10px] font-black flex items-center justify-center">{idx + 1}</span>
-                  <div className="flex-1 min-w-0"><p className="text-sm font-bold truncate">{q.question_en}</p>{q.question_km && <p className="text-[10px] text-zinc-500 truncate">{q.question_km}</p>}</div>
-                  <span className={`px-1.5 py-0.5 text-[10px] font-black border ${DIFF_C[q.difficulty] ?? DIFF_C.medium}`}>{q.difficulty}</span>
-                  <span className="text-[10px] text-zinc-400 font-bold shrink-0">{q.answers?.length ?? 0} ans</span>
-                  {expandedId === q.id ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
-                </div>
-                {expandedId === q.id && (
-                  <div className="border-t-2 border-black px-3 py-2 bg-gray-50 space-y-2">
-                    {q.image_url && <img src={q.image_url} alt="" className="h-20 object-contain border border-black" />}
-                    <div className="grid grid-cols-2 gap-1.5">
-                      {q.answers?.map((a, ai) => (
-                        <div key={ai} className={`flex items-center gap-1.5 px-2 py-1.5 border-2 text-xs font-bold ${a.isCorrect ? "border-green-500 bg-green-50 text-green-900" : "border-zinc-300 bg-white text-zinc-600"}`}>
-                          {a.isCorrect ? <CheckCircle size={11} className="text-green-600 shrink-0" /> : <Circle size={11} className="text-zinc-400 shrink-0" />}
-                          <span className="truncate">{a.answerEn}</span>
-                        </div>
-                      ))}
-                    </div>
-                    {q.hint_en && <p className="text-[10px] text-zinc-500 italic">Hint: {q.hint_en}</p>}
-                    {canEdit && (
-                      <div className="flex gap-1.5 pt-1">
-                        <button onClick={() => { setEditingId(q.id); setExpandedId(null); }} className="px-2.5 py-1 border-2 border-black bg-yellow-100 hover:bg-yellow-200 text-[10px] font-black inline-flex items-center gap-1"><Edit size={11} /> Edit</button>
-                        {delConfirm === q.id ? (<><button onClick={() => del(q.id)} className="px-2.5 py-1 border-2 border-black bg-red-500 text-white text-[10px] font-black">Confirm</button><button onClick={() => setDelConfirm(null)} className="px-2.5 py-1 border-2 border-black bg-white text-[10px] font-black">Cancel</button></>) : (<button onClick={() => setDelConfirm(q.id)} className="px-2.5 py-1 border-2 border-black bg-red-100 hover:bg-red-200 text-[10px] font-black inline-flex items-center gap-1"><Trash2 size={11} /> Delete</button>)}
-                      </div>
-                    )}
+          : questions.length === 0 && !showCreate ? (
+            <div className="text-center py-6 border-2 border-dashed border-purple-200">
+              <p className="text-xs font-bold text-zinc-500 mb-2">No questions yet for this topic</p>
+              {canEdit && <button onClick={() => setShowCreate(true)} className="bg-purple-500 text-white border-2 border-black px-4 py-1.5 text-xs font-black hover:shadow-[2px_2px_0_#000] inline-flex items-center gap-1.5"><Plus size={12} /> Create First Question</button>}
+            </div>
+          ) : questions.map((q, idx) => (
+            <div key={q.id} className="border-2 border-black bg-white">
+              {editingId === q.id ? <QuestionForm topicId={topicId} initial={q} onSave={() => { setEditingId(null); load(); }} onCancel={() => setEditingId(null)} /> : (
+                <>
+                  <div className="flex items-center gap-2 px-3 py-2 cursor-pointer hover:bg-purple-50" onClick={() => setExpandedId(expandedId === q.id ? null : q.id)}>
+                    <span className="w-5 h-5 shrink-0 bg-purple-600 text-white text-[10px] font-black flex items-center justify-center">{idx + 1}</span>
+                    <div className="flex-1 min-w-0"><p className="text-sm font-bold truncate">{q.question_en}</p>{q.question_km && <p className="text-[10px] text-zinc-500 truncate">{q.question_km}</p>}</div>
+                    <span className={`px-1.5 py-0.5 text-[10px] font-black border ${DIFF_C[q.difficulty] ?? DIFF_C.medium}`}>{q.difficulty}</span>
+                    <span className="text-[10px] text-zinc-400 font-bold shrink-0">{q.answers?.length ?? 0} ans</span>
+                    {expandedId === q.id ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
                   </div>
-                )}
-              </>
-            )}
-          </div>
-        ))}
+                  {expandedId === q.id && (
+                    <div className="border-t-2 border-black px-3 py-2 bg-gray-50 space-y-2">
+                      {q.image_url && <img src={q.image_url} alt="" className="h-20 object-contain border border-black" />}
+                      <div className="grid grid-cols-2 gap-1.5">
+                        {q.answers?.map((a, ai) => (
+                          <div key={ai} className={`flex items-center gap-1.5 px-2 py-1.5 border-2 text-xs font-bold ${a.isCorrect ? "border-green-500 bg-green-50 text-green-900" : "border-zinc-300 bg-white text-zinc-600"}`}>
+                            {a.isCorrect ? <CheckCircle size={11} className="text-green-600 shrink-0" /> : <Circle size={11} className="text-zinc-400 shrink-0" />}
+                            <span className="truncate">{a.answerEn}</span>
+                          </div>
+                        ))}
+                      </div>
+                      {q.hint_en && <p className="text-[10px] text-zinc-500 italic">Hint: {q.hint_en}</p>}
+                      {canEdit && (
+                        <div className="flex gap-1.5 pt-1">
+                          <button onClick={() => { setEditingId(q.id); setExpandedId(null); }} className="px-2.5 py-1 border-2 border-black bg-yellow-100 hover:bg-yellow-200 text-[10px] font-black inline-flex items-center gap-1"><Edit size={11} /> Edit</button>
+                          {delConfirm === q.id ? (<><button onClick={() => del(q.id)} className="px-2.5 py-1 border-2 border-black bg-red-500 text-white text-[10px] font-black">Confirm</button><button onClick={() => setDelConfirm(null)} className="px-2.5 py-1 border-2 border-black bg-white text-[10px] font-black">Cancel</button></>) : (<button onClick={() => setDelConfirm(q.id)} className="px-2.5 py-1 border-2 border-black bg-red-100 hover:bg-red-200 text-[10px] font-black inline-flex items-center gap-1"><Trash2 size={11} /> Delete</button>)}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </>
+              )}
+            </div>
+          ))}
       </div>
     </div>
   );
@@ -201,185 +201,185 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
         </div>
       </div>
       <div className="bg-white border-2 border-black overflow-hidden" style={{ boxShadow: "4px 4px 0 #000" }}>
-        {loading ? (<div className="divide-y-2 divide-gray-200">{[1,2,3].map(i => (<div key={i} className="px-6 py-4 flex gap-4 animate-pulse"><div className="w-20 h-20 bg-gray-200 border-2 border-gray-300 shrink-0" /><div className="flex-1 space-y-3"><div className="h-5 bg-gray-200 w-2/3 rounded" /><div className="flex gap-2"><div className="h-4 bg-gray-100 w-16 rounded" /><div className="h-4 bg-gray-100 w-24 rounded" /><div className="h-4 bg-gray-100 w-20 rounded" /></div></div><div className="flex gap-2"><div className="h-8 w-24 bg-gray-200 rounded" /><div className="h-8 w-8 bg-gray-200 rounded" /></div></div>))}</div>)
-        : filtered.length === 0 ? (<div className="p-12 text-center"><Globe size={40} className="mx-auto mb-3 text-zinc-300" /><p className="font-bold text-zinc-500 mb-4">No topics found</p><button onClick={() => setShowCreateModal(true)} className="bg-green-400 border-2 border-black px-5 py-2.5 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center gap-2 text-sm"><Plus size={16} /> Create Topic</button></div>)
-        : (
-          <div>
-            {filtered.map(topic => (
-              <div key={topic.id} className="border-b-2 border-black last:border-b-0 relative">
-                {/* Main Content Row */}
-                <div className="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 transition-colors">
-                  {/* Image - Larger */}
-                  <div className="w-20 h-20 shrink-0 border-2 border-gray-300 bg-gray-50 flex items-center justify-center overflow-hidden">
-                    {(topic.primaryImageUrl || topic.primary_image_url) ? (
-                      <img 
-                        src={(topic.primaryImageUrl || topic.primary_image_url) as string} 
-                        alt="" 
-                        className="w-full h-full object-contain p-1" 
-                      />
-                    ) : (
-                      <ImageIcon size={32} className="text-gray-300" />
-                    )}
-                  </div>
-                  
-                  {/* Content - More spacious */}
-                  <div className="flex-1 min-w-0 space-y-1.5">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-black text-base">{topic.nameEn || topic.name_en}</span>
-                      {(topic.audioUrlEn || topic.audio_url_en) && (
-                        <span className="px-2 py-0.5 bg-purple-100 border border-purple-300 rounded-sm inline-flex items-center gap-1">
-                          <Music size={12} className="text-purple-600" />
-                          <span className="text-[10px] font-bold text-purple-700">Audio</span>
-                        </span>
-                      )}
-                    </div>
-                    
-                    {/* Read-only notice for published/approved topics */}
-                    {(topic.status === "published" || topic.status === "approved") && (
-                      <div className="bg-blue-50 border-l-4 border-blue-500 px-3 py-2 mt-2">
-                        <div className="flex items-start gap-2">
-                          <Lock size={16} className="text-blue-600 shrink-0 mt-0.5" />
-                          <div className="flex-1 min-w-0">
-                            <p className="text-xs font-black text-blue-900 uppercase mb-0.5">
-                              Published - Read Only
-                            </p>
-                            <p className="text-xs text-blue-800 font-medium">
-                              This topic is live. Only administrators can send it back for editing.
-                            </p>
+        {loading ? (<div className="divide-y-2 divide-gray-200">{[1, 2, 3].map(i => (<div key={i} className="px-6 py-4 flex gap-4 animate-pulse"><div className="w-20 h-20 bg-gray-200 border-2 border-gray-300 shrink-0" /><div className="flex-1 space-y-3"><div className="h-5 bg-gray-200 w-2/3 rounded" /><div className="flex gap-2"><div className="h-4 bg-gray-100 w-16 rounded" /><div className="h-4 bg-gray-100 w-24 rounded" /><div className="h-4 bg-gray-100 w-20 rounded" /></div></div><div className="flex gap-2"><div className="h-8 w-24 bg-gray-200 rounded" /><div className="h-8 w-8 bg-gray-200 rounded" /></div></div>))}</div>)
+          : filtered.length === 0 ? (<div className="p-12 text-center"><Globe size={40} className="mx-auto mb-3 text-zinc-300" /><p className="font-bold text-zinc-500 mb-4">No topics found</p><button onClick={() => setShowCreateModal(true)} className="bg-green-400 border-2 border-black px-5 py-2.5 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center gap-2 text-sm"><Plus size={16} /> Create Topic</button></div>)
+            : (
+              <div>
+                {filtered.map(topic => (
+                  <div key={topic.id} className="border-b-2 border-black last:border-b-0 relative">
+                    {/* Main Content Row */}
+                    <div className="flex items-center gap-4 px-6 py-4 hover:bg-gray-50 transition-colors">
+                      {/* Image - Larger */}
+                      <div className="w-20 h-20 shrink-0 border-2 border-gray-300 bg-gray-50 flex items-center justify-center overflow-hidden">
+                        {(topic.primaryImageUrl || topic.primary_image_url) ? (
+                          <img
+                            src={(topic.primaryImageUrl || topic.primary_image_url) as string}
+                            alt=""
+                            className="w-full h-full object-contain p-1"
+                          />
+                        ) : (
+                          <ImageIcon size={32} className="text-gray-300" />
+                        )}
+                      </div>
+
+                      {/* Content - More spacious */}
+                      <div className="flex-1 min-w-0 space-y-1.5">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="font-black text-base">{topic.nameEn || topic.name_en}</span>
+                          {(topic.audioUrlEn || topic.audio_url_en) && (
+                            <span className="px-2 py-0.5 bg-purple-100 border border-purple-300 rounded-sm inline-flex items-center gap-1">
+                              <Music size={12} className="text-purple-600" />
+                              <span className="text-[10px] font-bold text-purple-700">Audio</span>
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Read-only notice for published/approved topics */}
+                        {(topic.status === "published" || topic.status === "approved") && (
+                          <div className="bg-blue-50 border-l-4 border-blue-500 px-3 py-2 mt-2">
+                            <div className="flex items-start gap-2">
+                              <Lock size={16} className="text-blue-600 shrink-0 mt-0.5" />
+                              <div className="flex-1 min-w-0">
+                                <p className="text-xs font-black text-blue-900 uppercase mb-0.5">
+                                  Published - Read Only
+                                </p>
+                                <p className="text-xs text-blue-800 font-medium">
+                                  This topic is live. Only administrators can send it back for editing.
+                                </p>
+                              </div>
+                            </div>
                           </div>
+                        )}
+
+                        {/* Rejection Reason - Always visible for rejected topics */}
+                        {topic.status === "rejected" && (topic.rejectionReason || topic.rejection_reason) && (
+                          <div className="bg-red-50 border-l-4 border-red-500 px-4 py-3 mt-2 animate-pulse">
+                            <div className="flex items-start gap-3">
+                              <div className="p-1.5 bg-red-500 rounded-full shrink-0">
+                                <AlertTriangle size={16} className="text-white" />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <p className="text-xs font-black text-red-900 uppercase mb-1.5 flex items-center gap-2">
+                                  <span>Admin Feedback - Please Fix</span>
+                                </p>
+                                <p className="text-sm text-red-900 font-bold leading-relaxed bg-white border-2 border-red-300 p-2 rounded">
+                                  {topic.rejectionReason || topic.rejection_reason}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        <div className="flex items-center gap-3 flex-wrap">
+                          <span className="text-xs font-mono text-zinc-500 bg-zinc-100 px-2 py-0.5 rounded">
+                            #{topic.id}
+                          </span>
+                          {(topic.subGroup || topic.sub_group) && (
+                            <span className="text-xs font-bold text-zinc-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded">
+                              {topic.subGroup || topic.sub_group}
+                            </span>
+                          )}
+                          <span className="text-xs font-bold text-zinc-500 inline-flex items-center gap-1">
+                            <HelpCircle size={12} />
+                            {topic.questionCount ?? topic.question_count ?? 0} Questions
+                          </span>
                         </div>
                       </div>
-                    )}
-                    
-                    {/* Rejection Reason - Always visible for rejected topics */}
-                    {topic.status === "rejected" && (topic.rejectionReason || topic.rejection_reason) && (
-                      <div className="bg-red-50 border-l-4 border-red-500 px-4 py-3 mt-2 animate-pulse">
-                        <div className="flex items-start gap-3">
-                          <div className="p-1.5 bg-red-500 rounded-full shrink-0">
-                            <AlertTriangle size={16} className="text-white" />
+
+                      {/* Status Badge */}
+                      {topic.status === "rejected" && (topic.rejectionReason || topic.rejection_reason) ? (
+                        <div className="relative group">
+                          <span className={`px-3 py-1.5 text-xs font-black uppercase inline-flex items-center gap-1.5 shrink-0 cursor-help ${S_STYLE[topic.status]}`}>
+                            {S_ICON[topic.status]}
+                            {S_LABEL[topic.status]}
+                            <HelpCircle size={10} />
+                          </span>
+                          {/* Tooltip on hover */}
+                          <div className="absolute bottom-full right-0 mb-2 hidden group-hover:block z-50 w-80">
+                            <div className="bg-red-600 text-white p-4 rounded-lg shadow-2xl border-2 border-black">
+                              <div className="flex items-start gap-2 mb-2">
+                                <AlertTriangle size={16} className="shrink-0 mt-0.5" />
+                                <p className="font-black text-xs uppercase">Admin Feedback:</p>
+                              </div>
+                              <p className="text-sm leading-relaxed">
+                                {topic.rejectionReason || topic.rejection_reason}
+                              </p>
+                              <div className="absolute bottom-0 right-4 transform translate-y-1/2 rotate-45 w-3 h-3 bg-red-600 border-r-2 border-b-2 border-black"></div>
+                            </div>
                           </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-xs font-black text-red-900 uppercase mb-1.5 flex items-center gap-2">
-                              <span>Admin Feedback - Please Fix</span>
-                            </p>
-                            <p className="text-sm text-red-900 font-bold leading-relaxed bg-white border-2 border-red-300 p-2 rounded">
-                              {topic.rejectionReason || topic.rejection_reason}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                    
-                    <div className="flex items-center gap-3 flex-wrap">
-                      <span className="text-xs font-mono text-zinc-500 bg-zinc-100 px-2 py-0.5 rounded">
-                        #{topic.id}
-                      </span>
-                      {(topic.subGroup || topic.sub_group) && (
-                        <span className="text-xs font-bold text-zinc-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded">
-                          {topic.subGroup || topic.sub_group}
-                        </span>
-                      )}
-                      <span className="text-xs font-bold text-zinc-500 inline-flex items-center gap-1">
-                        <HelpCircle size={12} />
-                        {topic.questionCount ?? topic.question_count ?? 0} Questions
-                      </span>
-                    </div>
-                  </div>
-                  
-                  {/* Status Badge */}
-                  {topic.status === "rejected" && (topic.rejectionReason || topic.rejection_reason) ? (
-                    <div className="relative group">
-                      <span className={`px-3 py-1.5 text-xs font-black uppercase inline-flex items-center gap-1.5 shrink-0 cursor-help ${S_STYLE[topic.status]}`}>
-                        {S_ICON[topic.status]} 
-                        {S_LABEL[topic.status]}
-                        <HelpCircle size={10} />
-                      </span>
-                      {/* Tooltip on hover */}
-                      <div className="absolute bottom-full right-0 mb-2 hidden group-hover:block z-50 w-80">
-                        <div className="bg-red-600 text-white p-4 rounded-lg shadow-2xl border-2 border-black">
-                          <div className="flex items-start gap-2 mb-2">
-                            <AlertTriangle size={16} className="shrink-0 mt-0.5" />
-                            <p className="font-black text-xs uppercase">Admin Feedback:</p>
-                          </div>
-                          <p className="text-sm leading-relaxed">
-                            {topic.rejectionReason || topic.rejection_reason}
-                          </p>
-                          <div className="absolute bottom-0 right-4 transform translate-y-1/2 rotate-45 w-3 h-3 bg-red-600 border-r-2 border-b-2 border-black"></div>
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <span className={`px-3 py-1.5 text-xs font-black uppercase inline-flex items-center gap-1.5 shrink-0 ${S_STYLE[topic.status]}`}>
-                      {S_ICON[topic.status]} 
-                      {S_LABEL[topic.status]}
-                    </span>
-                  )}
-                  
-                  {/* Action Buttons - Larger and more spaced */}
-                  <div className="flex items-center gap-2 shrink-0">
-                    {/* Edit button - only for draft, rejected, or pending */}
-                    {(topic.status === "draft" || topic.status === "rejected" || topic.status === "pending") && (
-                      <button 
-                        onClick={() => setEditingTopic(topic)} 
-                        className="p-2 border-2 border-black bg-yellow-100 hover:bg-yellow-200 hover:shadow-[2px_2px_0_#000] transition-all" 
-                        title="Edit Topic"
-                      >
-                        <Edit size={16} />
-                      </button>
-                    )}
-                    
-                    {/* Submit button - only for draft or rejected */}
-                    {(topic.status === "draft" || topic.status === "rejected") && (
-                      <button 
-                        onClick={() => handleSubmit(topic.id)} 
-                        className="p-2 border-2 border-black bg-green-100 hover:bg-green-200 hover:shadow-[2px_2px_0_#000] transition-all" 
-                        title="Submit for review"
-                      >
-                        <Send size={16} />
-                      </button>
-                    )}
-                    
-                    {/* Delete button - only for draft or rejected */}
-                    {(topic.status === "draft" || topic.status === "rejected") && (
-                      deleteConfirm === topic.id ? (
-                        <div className="flex gap-1.5">
-                          <button 
-                            onClick={() => handleDelete(topic.id)} 
-                            className="px-3 py-1.5 text-xs font-black bg-red-500 text-white border-2 border-black hover:shadow-[2px_2px_0_#000]"
-                          >
-                            Confirm
-                          </button>
-                          <button 
-                            onClick={() => setDeleteConfirm(null)} 
-                            className="px-3 py-1.5 text-xs font-black bg-white border-2 border-black hover:shadow-[2px_2px_0_#000]"
-                          >
-                            Cancel
-                          </button>
                         </div>
                       ) : (
-                        <button 
-                          onClick={() => setDeleteConfirm(topic.id)} 
-                          className="p-2 border-2 border-black bg-red-100 hover:bg-red-200 hover:shadow-[2px_2px_0_#000] transition-all" 
-                          title="Delete"
-                        >
-                          <Trash2 size={16} />
-                        </button>
-                      )
-                    )}
-                    
-                    {/* Read-only indicator for published/approved */}
-                    {(topic.status === "published" || topic.status === "approved") && (
-                      <div className="px-3 py-2 bg-gray-100 border-2 border-gray-400 text-xs font-bold text-gray-600 inline-flex items-center gap-1.5">
-                        <Lock size={14} />
-                        Read Only
+                        <span className={`px-3 py-1.5 text-xs font-black uppercase inline-flex items-center gap-1.5 shrink-0 ${S_STYLE[topic.status]}`}>
+                          {S_ICON[topic.status]}
+                          {S_LABEL[topic.status]}
+                        </span>
+                      )}
+
+                      {/* Action Buttons - Larger and more spaced */}
+                      <div className="flex items-center gap-2 shrink-0">
+                        {/* Edit button - only for draft, rejected, or pending */}
+                        {(topic.status === "draft" || topic.status === "rejected" || topic.status === "pending") && (
+                          <button
+                            onClick={() => setEditingTopic(topic)}
+                            className="p-2 border-2 border-black bg-yellow-100 hover:bg-yellow-200 hover:shadow-[2px_2px_0_#000] transition-all"
+                            title="Edit Topic"
+                          >
+                            <Edit size={16} />
+                          </button>
+                        )}
+
+                        {/* Submit button - only for draft or rejected */}
+                        {(topic.status === "draft" || topic.status === "rejected") && (
+                          <button
+                            onClick={() => handleSubmit(topic.id)}
+                            className="p-2 border-2 border-black bg-green-100 hover:bg-green-200 hover:shadow-[2px_2px_0_#000] transition-all"
+                            title="Submit for review"
+                          >
+                            <Send size={16} />
+                          </button>
+                        )}
+
+                        {/* Delete button - only for draft or rejected */}
+                        {(topic.status === "draft" || topic.status === "rejected") && (
+                          deleteConfirm === topic.id ? (
+                            <div className="flex gap-1.5">
+                              <button
+                                onClick={() => handleDelete(topic.id)}
+                                className="px-3 py-1.5 text-xs font-black bg-red-500 text-white border-2 border-black hover:shadow-[2px_2px_0_#000]"
+                              >
+                                Confirm
+                              </button>
+                              <button
+                                onClick={() => setDeleteConfirm(null)}
+                                className="px-3 py-1.5 text-xs font-black bg-white border-2 border-black hover:shadow-[2px_2px_0_#000]"
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                          ) : (
+                            <button
+                              onClick={() => setDeleteConfirm(topic.id)}
+                              className="p-2 border-2 border-black bg-red-100 hover:bg-red-200 hover:shadow-[2px_2px_0_#000] transition-all"
+                              title="Delete"
+                            >
+                              <Trash2 size={16} />
+                            </button>
+                          )
+                        )}
+
+                        {/* Read-only indicator for published/approved */}
+                        {(topic.status === "published" || topic.status === "approved") && (
+                          <div className="px-3 py-2 bg-gray-100 border-2 border-gray-400 text-xs font-bold text-gray-600 inline-flex items-center gap-1.5">
+                            <Lock size={14} />
+                            Read Only
+                          </div>
+                        )}
                       </div>
-                    )}
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
-        )}
+            )}
       </div>
       {(showCreateModal || editingTopic) && <TopicFormModal categoryId={categoryId} categorySlug={categorySlug} requiresImage={requiresImage} requiresAudio={requiresAudio} initialData={editingTopic} onClose={() => { setShowCreateModal(false); setEditingTopic(null); }} onSuccess={() => { setShowCreateModal(false); setEditingTopic(null); fetchTopics(); }} />}
     </div>

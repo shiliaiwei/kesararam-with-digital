@@ -146,6 +146,9 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                     'Parking': 'road-traffic',
                     'Overtaking': 'road-traffic',
                     'Intersections': 'priority',
+                    'Intersection Priority – Left Turn': 'priority',
+                    'Intersection Priority – Sequential': 'priority',
+                    'Intersection Priority – Simultaneous': 'priority',
                     'Roundabouts': 'priority',
                     'Pedestrian Crossings': 'priority',
                     'Basic Maneuvers': 'driving',
@@ -431,8 +434,8 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                     onClick={handleAudio}
                     disabled={loadingAudio}
                     className={`inline-flex items-center gap-1 border-2 border-black font-bold transition-all ${size === 'lg' ? 'px-4 py-2 text-sm' :
-                            size === 'sm' ? 'px-1.5 py-0.5 text-[8px]' :
-                                'px-2 py-1 text-[10px]'
+                        size === 'sm' ? 'px-1.5 py-0.5 text-[8px]' :
+                            'px-2 py-1 text-[10px]'
                         } ${loadingAudio
                             ? "bg-zinc-100 text-zinc-400 cursor-wait"
                             : playing
@@ -449,8 +452,8 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                 onClick={handleSave}
                 disabled={saving}
                 className={`inline-flex items-center gap-1 border-2 border-black font-bold transition-all ${size === 'lg' ? 'px-3 py-1.5 text-xs' :
-                        size === 'sm' ? 'px-1 py-0.5 text-[8px]' :
-                            'px-2 py-1 text-[10px]'
+                    size === 'sm' ? 'px-1 py-0.5 text-[8px]' :
+                        'px-2 py-1 text-[10px]'
                     } ${saving
                         ? "bg-zinc-100 text-zinc-400 cursor-wait"
                         : "bg-yellow-400 hover:bg-yellow-500 shadow-[2px_2px_0_#000]"

@@ -30,7 +30,7 @@ const CATEGORIES = [
 const SUB_GROUPS: Record<string, string[]> = {
   "road-sign": ["Arrows Markings", "Buildup Area Boundary Signs", "Direction Signs", "Informative Signs", "Longitudinal Markings", "Mandatory Signs", "Other Road Markings", "Priority Signs", "Prohibitory Signs", "Sign Posts", "Street Name Signs", "Supplementary Signs", "Temporary Signs", "Traffic Lights", "Traffic Police Signals", "Transverse Markings", "Warning Signs"],
   "road-traffic": ["Traffic Rules", "Speed Limits", "Parking", "Overtaking"],
-  "priority": ["Intersections", "Roundabouts", "Pedestrian Crossings"],
+  "priority": ["Intersections", "Intersection Priority – Left Turn", "Intersection Priority – Sequential", "Intersection Priority – Simultaneous", "Roundabouts", "Pedestrian Crossings"],
   "driving": ["Basic Maneuvers", "Advanced Techniques", "Defensive Driving"],
   "technical": ["Engine", "Brakes", "Lights", "Safety Systems"],
   "loading-people-goods": ["Weight Limits", "Passenger Safety", "Cargo Securing"],
@@ -51,11 +51,11 @@ export function TopicFormModal({
   const { showToast } = useToast();
   const [loading, setLoading] = useState(false);
   const [showReviewPanel, setShowReviewPanel] = useState(false);
-  
+
   // Check if topic is published/approved and user is not admin
   const isPublished = initialData && (initialData.status === "published" || initialData.status === "approved");
   const isReadOnly = isPublished && !isAdmin;
-  
+
   const [formData, setFormData] = useState({
     categoryId: propCategoryId || initialData?.categoryId || initialData?.category_id || 1,
     topicCode: initialData?.topicCode || initialData?.topic_code || "",
@@ -109,8 +109,8 @@ export function TopicFormModal({
       const baseUrl = isAdmin && initialData
         ? `/api/admin/topics/${initialData.id}`
         : initialData
-        ? `/api/staff/topics/${initialData.id}`
-        : "/api/staff/topics";
+          ? `/api/staff/topics/${initialData.id}`
+          : "/api/staff/topics";
       const method = initialData ? "PUT" : "POST";
 
       const response = await fetch(baseUrl, {
@@ -121,8 +121,8 @@ export function TopicFormModal({
 
       if (response.ok) {
         showToast(
-          initialData 
-            ? "Topic updated and submitted for review" 
+          initialData
+            ? "Topic updated and submitted for review"
             : "Topic created and submitted for review",
           "success"
         );
@@ -181,7 +181,7 @@ export function TopicFormModal({
               </div>
             </div>
           )}
-          
+
           {/* Info Banner for Road Traffic */}
           {formData.categoryId === 2 && !isReadOnly && (
             <div className="bg-blue-50 border-2 border-blue-400 p-4">
@@ -189,7 +189,7 @@ export function TopicFormModal({
                 📝 Road Traffic Law Content
               </p>
               <p className="text-sm text-blue-800">
-                For Road Traffic Law, you need to add questions after creating the topic. 
+                For Road Traffic Law, you need to add questions after creating the topic.
                 Questions will appear on the public learn page for users to study.
               </p>
             </div>
@@ -206,8 +206,8 @@ export function TopicFormModal({
               <select
                 name="categoryId"
                 value={formData.categoryId}
-                onChange={(e) => setFormData(prev => ({ 
-                  ...prev, 
+                onChange={(e) => setFormData(prev => ({
+                  ...prev,
                   categoryId: parseInt(e.target.value),
                   subGroup: "" // Reset sub-group when category changes
                 }))}
@@ -528,9 +528,9 @@ export function TopicFormModal({
                     <span className="font-bold text-sm block mb-2">Image:</span>
                     {formData.primaryImageUrl ? (
                       <div className="border-2 border-black p-2 bg-white">
-                        <img 
-                          src={formData.primaryImageUrl} 
-                          alt="Preview" 
+                        <img
+                          src={formData.primaryImageUrl}
+                          alt="Preview"
                           className="w-full h-48 object-contain"
                         />
                         <p className="text-xs text-gray-500 mt-1 truncate">{formData.primaryImageUrl}</p>
