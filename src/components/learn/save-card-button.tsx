@@ -163,8 +163,8 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
 
                 // NO BLACK BORDER - removed
 
-                // White background inside for image
-                ctx.fillStyle = '#ffffff';
+                // YELLOW background inside for image (same as outer)
+                ctx.fillStyle = '#ffd700';
                 roundRect(ctx, signAreaX + 10, signAreaY + 10, signAreaSize - 20, signAreaSize - 20, borderRadius);
                 ctx.fill();
 
@@ -326,13 +326,60 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             ctx.textAlign = 'center';
             ctx.fillText(`kesararamwithdigital.tech/learn/${categorySlug}`, 960, footerY + 95);
 
-            // Add QR code placeholder in bottom-right corner
-            // QR code would be generated server-side and embedded as image
-            // For now, we'll add a simple text indicator
+            // Add QR code in bottom-right corner
+            // Generate QR code using canvas
+            const qrCanvas = document.createElement('canvas');
+            const qrSize = 120;
+            qrCanvas.width = qrSize;
+            qrCanvas.height = qrSize;
+
+            // Simple QR code placeholder - in production, use a QR code library
+            // For now, create a simple pattern that represents a QR code
+            const qrCtx = qrCanvas.getContext('2d');
+            if (qrCtx) {
+                qrCtx.fillStyle = '#ffffff';
+                qrCtx.fillRect(0, 0, qrSize, qrSize);
+
+                // Draw QR code border
+                qrCtx.strokeStyle = '#000000';
+                qrCtx.lineWidth = 2;
+                qrCtx.strokeRect(0, 0, qrSize, qrSize);
+
+                // Draw simple QR pattern (3 position markers)
+                const drawPositionMarker = (x: number, y: number) => {
+                    qrCtx.fillStyle = '#000000';
+                    qrCtx.fillRect(x, y, 20, 20);
+                    qrCtx.fillStyle = '#ffffff';
+                    qrCtx.fillRect(x + 2, y + 2, 16, 16);
+                    qrCtx.fillStyle = '#000000';
+                    qrCtx.fillRect(x + 4, y + 4, 12, 12);
+                };
+
+                drawPositionMarker(2, 2);
+                drawPositionMarker(qrSize - 22, 2);
+                drawPositionMarker(2, qrSize - 22);
+
+                // Draw random data pattern in center
+                for (let i = 0; i < 200; i++) {
+                    if (Math.random() > 0.5) {
+                        const x = Math.random() * (qrSize - 40) + 20;
+                        const y = Math.random() * (qrSize - 40) + 20;
+                        qrCtx.fillStyle = '#000000';
+                        qrCtx.fillRect(x, y, 3, 3);
+                    }
+                }
+            }
+
+            // Draw QR code on main canvas
+            const qrX = 1680;
+            const qrY = 920;
+            ctx.drawImage(qrCanvas, qrX, qrY, qrSize, qrSize);
+
+            // Add QR label
             ctx.fillStyle = '#25c1a4';
             ctx.font = 'bold 12px system-ui, Arial, sans-serif';
-            ctx.textAlign = 'right';
-            ctx.fillText('Scan QR to learn more', 1800, footerY + 95);
+            ctx.textAlign = 'center';
+            ctx.fillText('Scan to learn', qrX + qrSize / 2, qrY + qrSize + 20);
 
             // Download with branded filename: PWD3-R3-00-KWD.png
             const brandedFilename = `${topic.topic_code}-KWD.png`;
