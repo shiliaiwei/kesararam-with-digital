@@ -48,22 +48,6 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, 1920, 1080);
 
-            // Add subtle grid pattern for visual interest - light gray on white
-            ctx.strokeStyle = 'rgba(200, 200, 200, 0.2)';
-            ctx.lineWidth = 1;
-            for (let i = 0; i < 1920; i += 60) {
-                ctx.beginPath();
-                ctx.moveTo(i, 0);
-                ctx.lineTo(i, 1080);
-                ctx.stroke();
-            }
-            for (let i = 0; i < 1080; i += 60) {
-                ctx.beginPath();
-                ctx.moveTo(0, i);
-                ctx.lineTo(1920, i);
-                ctx.stroke();
-            }
-
             // Load KWD logo for top-left corner
             const logo = new Image();
             logo.crossOrigin = 'anonymous';
