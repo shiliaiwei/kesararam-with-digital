@@ -1,4 +1,5 @@
 PRT-Q001
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -11,7 +12,9 @@ The answer is (intersection type and passing order):
 Vehicle 2 departs first, then vehicle 1. Follow the displayed order one by one to avoid conflict at the intersection.
 
 
+
 PRT-Q002
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -25,6 +28,7 @@ First vehicle 1 then followed by motorcycle 2. Follow the displayed order one by
 
 
 PRT-Q003
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -38,6 +42,7 @@ First number 2, next 1, and then 3. Follow the displayed order one by one to avo
 
 
 PRT-Q004
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -51,6 +56,7 @@ First vehicle 1 then followed by motorcycle 2. Follow the displayed order one by
 
 
 PRT-Q005
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -64,6 +70,7 @@ First left turn vehicle 2, then 1 and 3. Pay extra attention to left-turn confli
 
 
 PRT-Q006
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -77,6 +84,7 @@ First number 4, next left turn number 2, then 1 and 3 together leave at the same
 
 
 PRT-Q007
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -90,6 +98,7 @@ number 1 and number 2 go together, and then 3. Follow the displayed order one by
 
 
 PRT-Q008
+[Simultaneous]
 Category: Intersection Priority - Simultaneous
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -103,6 +112,7 @@ First number 2, next 3, and then 1. Non-conflicting vehicles may proceed togethe
 
 
 PRT-Q009
+[Simultaneous]
 Category: Intersection Priority - Simultaneous
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -116,6 +126,7 @@ Number 1 and 3 together leave at the same time, then 2. Non-conflicting vehicles
 
 
 PRT-Q010
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -129,6 +140,7 @@ First number 2, next 3, and then 1. Follow the displayed order one by one to avo
 
 
 PRT-Q011
+[Simultaneous]
 Category: Intersection Priority - Simultaneous
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -142,6 +154,7 @@ Number 1 and 2 together leave at the same time, then 3. Non-conflicting vehicles
 
 
 PRT-Q012
+[Simultaneous]
 Category: Intersection Priority - Simultaneous
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -155,6 +168,7 @@ vehicle 1 and 2 together leave at the same time, then followed by motorcycle 3. 
 
 
 PRT-Q013
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -168,6 +182,7 @@ First vehicle 1, next motorcycle 2, and then followed by left turn motorcycle 3.
 
 
 PRT-Q014
+[Simultaneous]
 Category: Intersection Priority - Simultaneous
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -181,6 +196,7 @@ First vehicle 1 and 3 together leave at the same time, and then followed motorcy
 
 
 PRT-Q015
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -194,6 +210,7 @@ First number 2, next 1, and then 3. Follow the displayed order one by one to avo
 
 
 PRT-Q016
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -207,6 +224,7 @@ First motorcycle 1, next motorcycle 2, and left turn motorcycle 3, and then foll
 
 
 PRT-Q017
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -220,6 +238,7 @@ Number 2 and 4 together leave at the same time then followed by left turn number
 
 
 PRT-Q018
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -233,6 +252,7 @@ First number 3, next 2, and then 1. Follow the displayed order one by one to avo
 
 
 PRT-Q019
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -246,6 +266,7 @@ number 2 go first, then number 4, and then number 3 followed by number 1. Follow
 
 
 PRT-Q020
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -259,6 +280,7 @@ First number 1, next left turn number 2, and then number 3. Pay extra attention 
 
 
 PRT-Q021
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -272,6 +294,7 @@ First number 3, next 2, and then 1. Follow the displayed order one by one to avo
 
 
 PRT-Q022
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -285,6 +308,7 @@ First vehicle 1, next vehicle 2, next vehicle 3, then vehicle 1. Follow the disp
 
 
 PRT-Q023
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -298,6 +322,7 @@ First number 2 and then number 1. Follow the displayed order one by one to avoid
 
 
 PRT-Q024
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -311,6 +336,7 @@ First vehicle 3, next vehicle 2 turns left, and then vehicle 1. Pay extra attent
 
 
 PRT-Q025
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -324,6 +350,7 @@ First number 2 and then number 1. Follow the displayed order one by one to avoid
 
 
 PRT-Q026
+[Simultaneous]
 Category: Intersection Priority - Simultaneous
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -337,6 +364,7 @@ Vehicles 1 and 3 together leave at the same time, vehicle 2 and 4 follow. Non-co
 
 
 PRT-Q027
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -350,6 +378,7 @@ First vehicle 2, next vehicle 1 turns left, then vehicle 3. Pay extra attention 
 
 
 PRT-Q028
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -363,6 +392,7 @@ First vehicle 2; next left turn vehicle 1, and then vehicle 3. Pay extra attenti
 
 
 PRT-Q029
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -376,6 +406,7 @@ First left turn number 2, next 1 and 3 turn right. Pay extra attention to left-t
 
 
 PRT-Q030
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -389,6 +420,7 @@ Number 2 and 4 together leave at the same time, then vehicles 1 and 3 turn left.
 
 
 PRT-Q031
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -402,6 +434,7 @@ First vehicle 3, next vehicle 2 turns left, then vehicle 1. Pay extra attention 
 
 
 PRT-Q032
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -415,6 +448,7 @@ First vehicle 2, then vehicle 1 turns left. Pay extra attention to left-turn con
 
 
 PRT-Q033
+[Simultaneous]
 Category: Intersection Priority - Simultaneous
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -428,6 +462,7 @@ Vehicles 1 and 3 leave together at the same time, then vehicle 2 and 4. Non-conf
 
 
 PRT-Q034
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -441,6 +476,7 @@ First vehicle 1 then vehicle 2. Follow the displayed order one by one to avoid c
 
 
 PRT-Q035
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -454,6 +490,7 @@ First vehicle 1, next 2, next 3 turns left, and then vehicle 4. Pay extra attent
 
 
 PRT-Q036
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -467,6 +504,7 @@ First right turn number 2, next left turn number 4, then 3, and at last number 1
 
 
 PRT-Q037
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -480,6 +518,7 @@ First number 3, then waiting for 2, next 1, and then 3. Follow the displayed ord
 
 
 PRT-Q038
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -493,6 +532,7 @@ First vehicle 3, next vehicle 2 turn left, and then vehicle 1. Pay extra attenti
 
 
 PRT-Q039
+[Simultaneous]
 Category: Intersection Priority - Simultaneous
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -506,6 +546,7 @@ First vehicles 2 and 4 together leave at the same time, then vehicle 3 turns rig
 
 
 PRT-Q040
+[Simultaneous]
 Category: Intersection Priority - Simultaneous
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -519,6 +560,7 @@ Vehicle 1 and 2 leave together at the same time then vehicle 3. Non-conflicting 
 
 
 PRT-Q041
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -532,6 +574,7 @@ First number 4, number 2 turns left, then 1 and 3 together leave at the same tim
 
 
 PRT-Q042
+[Simultaneous]
 Category: Intersection Priority - Simultaneous
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -545,6 +588,7 @@ First vehicle 1, next 2, and then vehicles 3 and 4. Non-conflicting vehicles may
 
 
 PRT-Q043
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -558,6 +602,7 @@ First vehicle 2 goes straight ahead then followed by vehicle 1 turns left. Pay e
 
 
 PRT-Q044
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -571,6 +616,7 @@ vehicle 3 and vehicle 1 leave first and turning one after another, then vehicle 
 
 
 PRT-Q045
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -584,6 +630,7 @@ First left turn vehicle 2 then number 1 and 3. Pay extra attention to left-turn 
 
 
 PRT-Q046
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -597,6 +644,7 @@ First vehicle 1, next left turn vehicle 2, then vehicle 3. Pay extra attention t
 
 
 PRT-Q047
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -610,6 +658,7 @@ First number 3, next number 2 turns left, and then number 1. Pay extra attention
 
 
 PRT-Q048
+[Simultaneous]
 Category: Intersection Priority - Simultaneous
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -623,6 +672,7 @@ First number 3 and 1, then number 2. Non-conflicting vehicles may proceed togeth
 
 
 PRT-Q049
+[Simultaneous]
 Category: Intersection Priority - Simultaneous
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -636,6 +686,7 @@ First number 1 and 2 then 3. Non-conflicting vehicles may proceed together, then
 
 
 PRT-Q050
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -649,6 +700,7 @@ First left turn vehicle 1 the vehicle 2. Pay extra attention to left-turn confli
 
 
 PRT-Q051
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -662,6 +714,7 @@ First number 3 then 1 and 2. Follow the displayed order one by one to avoid conf
 
 
 PRT-Q052
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -675,6 +728,7 @@ First left turn number 2, next 1, and then 3 turns left. Pay extra attention to 
 
 
 PRT-Q053
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -688,6 +742,7 @@ First number 2 and 4 together leave at the same time, then 1 and 3 turn left one
 
 
 PRT-Q054
+[Simultaneous]
 Category: Intersection Priority - Simultaneous
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -701,6 +756,7 @@ First number 1, then 2 and 3. Non-conflicting vehicles may proceed together, the
 
 
 PRT-Q055
+[Simultaneous]
 Category: Intersection Priority - Simultaneous
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -714,6 +770,7 @@ First vehicle1 then 2 and 3. Non-conflicting vehicles may proceed together, then
 
 
 PRT-Q056
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -727,6 +784,7 @@ First right turn number 2, next left turn number 4, then number 3 and 1. Pay ext
 
 
 PRT-Q057
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -740,6 +798,7 @@ First number 1, after 2 and 3 alread left, then 1 moves on. Follow the displayed
 
 
 PRT-Q058
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -753,6 +812,7 @@ First number 4, next vehicle 2 turns left, and then 1 and 3 together at the same
 
 
 PRT-Q059
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -766,6 +826,7 @@ First vehicle 1, next 2, and the 3. Follow the displayed order one by one to avo
 
 
 PRT-Q060
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -779,6 +840,7 @@ First number 3, next 2, and then 1. Follow the displayed order one by one to avo
 
 
 PRT-Q061
+[Simultaneous]
 Category: Intersection Priority - Simultaneous
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -792,6 +854,7 @@ First number 3, next 1, and then 4 and 2. Non-conflicting vehicles may proceed t
 
 
 PRT-Q062
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -805,6 +868,7 @@ First vehicles 1 and 2 together leave at the same time, then vehicle 3 turns lef
 
 
 PRT-Q063
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -818,6 +882,7 @@ First right turn vehicle 1, next left turn vehicle 2, then vehicle 3. Pay extra 
 
 
 PRT-Q064
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -831,6 +896,7 @@ First number 1, next 2, and then 3. Follow the displayed order one by one to avo
 
 
 PRT-Q065
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -844,6 +910,7 @@ First vehicle 2, next 3, and then 1. Follow the displayed order one by one to av
 
 
 PRT-Q066
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -857,6 +924,7 @@ First number 2, next 3, and then 1. Follow the displayed order one by one to avo
 
 
 PRT-Q067
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -870,6 +938,7 @@ First number 3, next 2 , and then1. Follow the displayed order one by one to avo
 
 
 PRT-Q068
+[Left Turn]
 Category: Intersection Priority - Left Turn
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -883,6 +952,7 @@ First vehicle 1 and 2 leave together at the same time, then vehicle 3 turns left
 
 
 PRT-Q069
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
@@ -896,6 +966,7 @@ Number 1 leaves first, vehicle 2 next and then 3. Follow the displayed order one
 
 
 PRT-Q070
+[Sequential]
 Category: Intersection Priority - Sequential
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
 ចម្លើយគឺ 
