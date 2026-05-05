@@ -101,6 +101,8 @@ The platform follows a neo-brutalist design approach inspired by road markings a
 --gray: #a8a8a8      /* Secondary borders */
 --white: #ffffff     /* Backgrounds */
 --green-dark: #006747 /* Active states */
+
+#25c1a4 brilliant 
 ```
 
 ### Component Standards
