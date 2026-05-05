@@ -189,6 +189,30 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 ctx.textAlign = 'center';
                 const signCodeX = signAreaX + signAreaSize / 2;
                 ctx.fillText(topic.topic_code, signCodeX, signAreaY + signAreaSize + 60);
+
+                // Tag below code - sub_group category
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 16px system-ui, Arial, sans-serif';
+                ctx.textAlign = 'center';
+
+                // Draw tag background
+                const tagText = topic.sub_group;
+                const tagMetrics = ctx.measureText(tagText);
+                const tagWidth = tagMetrics.width + 20;
+                const tagHeight = 32;
+                const tagX = signCodeX - tagWidth / 2;
+                const tagY = signAreaY + signAreaSize + 90;
+
+                // Tag background with rounded corners
+                ctx.fillStyle = '#25c1a4';
+                roundRect(ctx, tagX, tagY, tagWidth, tagHeight, 2);
+                ctx.fill();
+
+                // Tag text
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 14px system-ui, Arial, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(tagText, signCodeX, tagY + 22);
             }
 
             // RIGHT SIDE - Title and Description
@@ -316,36 +340,6 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             setSaving(false);
         }
     };
-
-    // Helper function to draw rounded rectangles
-    private roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number) {
-        ctx.beginPath();
-        ctx.moveTo(x + radius, y);
-        ctx.lineTo(x + width - radius, y);
-        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-        ctx.lineTo(x + width, y + height - radius);
-        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-        ctx.lineTo(x + radius, y + height);
-        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-        ctx.lineTo(x, y + radius);
-        ctx.quadraticCurveTo(x, y, x + radius, y);
-        ctx.closePath();
-    }
-
-    // Helper function to draw rounded rectangles
-    private roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number) {
-        ctx.beginPath();
-        ctx.moveTo(x + radius, y);
-        ctx.lineTo(x + width - radius, y);
-        ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-        ctx.lineTo(x + width, y + height - radius);
-        ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-        ctx.lineTo(x + radius, y + height);
-        ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-        ctx.lineTo(x, y + radius);
-        ctx.quadraticCurveTo(x, y, x + radius, y);
-        ctx.closePath();
-    }
 
     return (
         <button
