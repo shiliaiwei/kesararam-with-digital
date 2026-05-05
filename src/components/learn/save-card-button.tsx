@@ -291,17 +291,17 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 }
             }
 
-            // Horizontal line separator - Vibrant Red
+            // Horizontal line separator - TEAL (matching QR code color)
             const hrY = 900;
-            ctx.strokeStyle = '#ff0050';
-            ctx.lineWidth = 3;
+            ctx.strokeStyle = '#25c1a4';
+            ctx.lineWidth = 4;
             ctx.beginPath();
             ctx.moveTo(100, hrY);
             ctx.lineTo(1820, hrY);
             ctx.stroke();
 
             // Footer section with beautiful styling
-            const footerStartY = 920;
+            const footerStartY = 930;
 
             // Add subtle background for quote section
             ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
@@ -332,17 +332,11 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 ctx.drawImage(logo, 80, copyrightY - 25, 50, 50);
             }
 
-            // Copyright text - WHITE
+            // Copyright text - WHITE - 2026
             ctx.fillStyle = '#ffffff';
             ctx.font = 'bold 13px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
-            ctx.fillText('© 2024 KWD. All rights reserved.', 150, copyrightY + 8);
-
-            // Website link at bottom right - WHITE
-            ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 13px system-ui, Arial, sans-serif';
-            ctx.textAlign = 'right';
-            ctx.fillText(`kesararamwithdigital.tech/learn/${categorySlug}`, 1820, copyrightY + 8);
+            ctx.fillText('© 2026 KWD. All rights reserved.', 150, copyrightY + 8);
 
             // Add QR code in bottom-right corner - USE LOCAL FILE
             const qrCodeImg = new Image();
@@ -355,19 +349,13 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 setTimeout(() => resolve(), 2000);
             });
 
-            const qrX = 1650;
-            const qrY = 900;
+            const qrX = 1680;
+            const qrY = 920;
             const qrSize = 120;
 
             if (qrCodeImg.complete && qrCodeImg.naturalWidth > 0) {
                 ctx.drawImage(qrCodeImg, qrX, qrY, qrSize, qrSize);
             }
-
-            // Add QR label - WHITE
-            ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 12px system-ui, Arial, sans-serif';
-            ctx.textAlign = 'center';
-            ctx.fillText('Scan to learn', qrX + 60, qrY + 140);
 
             // Download with branded filename
             const brandedFilename = `${topic.topic_code}-KWD.png`;
