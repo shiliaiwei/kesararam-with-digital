@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Search, ArrowLeft, X, Volume2, ChevronDown, ChevronUp, Shuffle } from "lucide-react";
+import { Search, ArrowLeft, X, Volume2, ChevronDown, ChevronUp } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { SaveCardButton } from "./save-card-button";
 
@@ -42,8 +42,6 @@ const UI = {
     lawRef: "Law Reference",
     playAudio: "Play Audio",
     stopAudio: "Stop",
-    randomize: "Randomize Order",
-    sequential: "Sequential Order",
   },
   kh: {
     category: "ប្រភេទចំណេះដឹង",
@@ -60,8 +58,6 @@ const UI = {
     lawRef: "ឯកសារយោងច្បាប់",
     playAudio: "ចាក់សំឡេង",
     stopAudio: "ឈប់",
-    randomize: "លំដាប់ចៃដន្យ",
-    sequential: "លំដាប់ស្វាគមន៍",
   },
 } as const;
 
@@ -197,7 +193,6 @@ export function RoadTrafficCatalogue() {
   const [search, setSearch] = useState("");
   const [subGroupFilter, setSubGroupFilter] = useState("");
   const [expandedTopic, setExpandedTopic] = useState<number | null>(null);
-  const [isRandomized, setIsRandomized] = useState(false);
   const [questionNumbers, setQuestionNumbers] = useState<Record<number, number>>({});
 
   useEffect(() => {
@@ -223,12 +218,7 @@ export function RoadTrafficCatalogue() {
     setExpandedTopic(expandedTopic === id ? null : id);
   };
 
-  const toggleRandomize = () => {
-    setIsRandomized(!isRandomized);
-    setExpandedTopic(null);
-  };
-
-  let filtered = topics.filter((tp) => {
+  const filtered = topics.filter((tp) => {
     const q = search.trim().toLowerCase();
     const matchSearch = !q || (
       tp.name_en.toLowerCase().includes(q) ||
@@ -238,11 +228,6 @@ export function RoadTrafficCatalogue() {
     const matchGroup = !subGroupFilter || tp.sub_group === subGroupFilter;
     return matchSearch && matchGroup;
   });
-
-  // Apply randomization if enabled
-  if (isRandomized) {
-    filtered = [...filtered].sort(() => Math.random() - 0.5);
-  }
 
   const countMap = topics.reduce<Record<string, number>>((acc, tp) => {
     acc[tp.sub_group] = (acc[tp.sub_group] || 0) + 1;
@@ -349,34 +334,20 @@ export function RoadTrafficCatalogue() {
             })}
           </div>
 
-          {/* Count + reset + randomize */}
-          <div className="mt-3 pt-3 border-t border-zinc-200 flex items-center justify-between gap-3 flex-wrap">
+          {/* Count + reset */}
+          <div className="mt-3 pt-3 border-t border-zinc-200 flex items-center justify-between">
             <p className="text-xs font-bold text-zinc-500" style={kf}>
               {t.showing} <span className="text-black font-black">{filtered.length}</span> {t.of} {topics.length} {t.topics}
             </p>
-            <div className="flex items-center gap-2">
+            {!isDefaultFilter && (
               <button
-                onClick={toggleRandomize}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap transition-all ${isRandomized
-                  ? "bg-yellow-400 border-black shadow-[2px_2px_0_#000]"
-                  : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
-                  }`}
+                onClick={() => { setSubGroupFilter(""); setSearch(""); setExpandedTopic(null); }}
+                className="text-xs font-bold text-zinc-400 hover:text-black underline"
                 style={kf}
-                title={isKh ? "លំដាប់ចៃដន្យ" : "Randomize order"}
               >
-                <Shuffle size={14} />
-                {isRandomized ? t.sequential : t.randomize}
+                {t.reset}
               </button>
-              {!isDefaultFilter && (
-                <button
-                  onClick={() => { setSubGroupFilter(""); setSearch(""); setExpandedTopic(null); }}
-                  className="text-xs font-bold text-zinc-400 hover:text-black underline"
-                  style={kf}
-                >
-                  {t.reset}
-                </button>
-              )}
-            </div>
+            )}
           </div>
         </div>
       </div>
@@ -398,7 +369,7 @@ export function RoadTrafficCatalogue() {
             {filtered.map((topic, displayIndex) => {
               const isOpen = expandedTopic === topic.id;
               const question = isKh ? topic.name_km : topic.name_en;
-              const questionNumber = isRandomized ? displayIndex + 1 : questionNumbers[topic.id] || displayIndex + 1;
+              const questionNumber = questionNumbers[topic.id] || displayIndex + 1;
 
               return (
                 <div

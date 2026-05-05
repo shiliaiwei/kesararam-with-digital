@@ -292,33 +292,57 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             }
 
             // Horizontal line separator - Vibrant Red
-            const hrY = 920;
+            const hrY = 900;
             ctx.strokeStyle = '#ff0050';
-            ctx.lineWidth = 4;
+            ctx.lineWidth = 3;
             ctx.beginPath();
             ctx.moveTo(100, hrY);
             ctx.lineTo(1820, hrY);
             ctx.stroke();
 
-            // Bilingual promotional message - POWERFUL PSYCHOLOGY - Khmer FIRST
-            const footerY = 980;
-            ctx.fillStyle = '#ff0050';
-            ctx.font = 'bold 16px system-ui, Arial, sans-serif';
+            // Footer section with beautiful styling
+            const footerStartY = 920;
+
+            // Add subtle background for quote section
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+            ctx.fillRect(80, footerStartY - 15, 1760, 95);
+
+            // Bilingual promotional message - WHITE text with 70% opacity
             ctx.textAlign = 'center';
 
+            // Khmer text - larger and bold - WHITE 70%
+            ctx.font = 'bold 22px system-ui, Arial, sans-serif';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
             const promoTextKh = 'រៀនសញ្ញាចរាចរណ៍ បង្កើតចំណេះដឹងសុវត្ថិភាពពេញមួយជីវិត';
+            ctx.fillText(promoTextKh, 960, footerStartY);
+
+            // English text - slightly smaller - WHITE 70%
+            ctx.font = 'bold 18px system-ui, Arial, sans-serif';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
             const promoTextEn = 'Protect your life and loved ones.';
             const promoTextEn2 = 'Learn traffic signs, build safety knowledge for life';
+            ctx.fillText(promoTextEn, 960, footerStartY + 32);
+            ctx.fillText(promoTextEn2, 960, footerStartY + 58);
 
-            ctx.fillText(promoTextKh, 960, footerY);
-            ctx.fillText(promoTextEn, 960, footerY + 30);
-            ctx.fillText(promoTextEn2, 960, footerY + 55);
+            // Copyright section with KWD logo - bottom left
+            const copyrightY = 1010;
 
-            // Website link at bottom
-            ctx.fillStyle = '#ff0050';
-            ctx.font = 'bold 14px system-ui, Arial, sans-serif';
-            ctx.textAlign = 'center';
-            ctx.fillText(`kesararamwithdigital.tech/learn/${categorySlug}`, 960, footerY + 95);
+            // Draw KWD logo small version for copyright (50x50)
+            if (logo.complete && logo.naturalWidth > 0) {
+                ctx.drawImage(logo, 80, copyrightY - 25, 50, 50);
+            }
+
+            // Copyright text - WHITE
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 13px system-ui, Arial, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('© 2024 KWD. All rights reserved.', 150, copyrightY + 8);
+
+            // Website link at bottom right - WHITE
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 13px system-ui, Arial, sans-serif';
+            ctx.textAlign = 'right';
+            ctx.fillText(`kesararamwithdigital.tech/learn/${categorySlug}`, 1820, copyrightY + 8);
 
             // Add QR code in bottom-right corner - USE LOCAL FILE
             const qrCodeImg = new Image();
@@ -331,16 +355,16 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 setTimeout(() => resolve(), 2000);
             });
 
-            const qrX = 1680;
-            const qrY = 920;
+            const qrX = 1650;
+            const qrY = 900;
             const qrSize = 120;
 
             if (qrCodeImg.complete && qrCodeImg.naturalWidth > 0) {
                 ctx.drawImage(qrCodeImg, qrX, qrY, qrSize, qrSize);
             }
 
-            // Add QR label
-            ctx.fillStyle = '#ff0050';
+            // Add QR label - WHITE
+            ctx.fillStyle = '#ffffff';
             ctx.font = 'bold 12px system-ui, Arial, sans-serif';
             ctx.textAlign = 'center';
             ctx.fillText('Scan to learn', qrX + 60, qrY + 140);
