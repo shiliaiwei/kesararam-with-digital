@@ -293,9 +293,9 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 }
             }
 
-            // Horizontal line separator - Tint lighter variation of #25c1a4
+            // Horizontal line separator - Using brand color #ff0050
             const hrY = 920;
-            ctx.strokeStyle = '#5dd9c1'; // Lighter tint of #25c1a4
+            ctx.strokeStyle = '#ff0050';
             ctx.lineWidth = 3;
             ctx.beginPath();
             ctx.moveTo(100, hrY);
@@ -304,7 +304,7 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
 
             // Bilingual promotional message - POWERFUL PSYCHOLOGY - Khmer FIRST
             const footerY = 980;
-            ctx.fillStyle = '#25c1a4';
+            ctx.fillStyle = '#ff0050';
             ctx.font = 'bold 16px system-ui, Arial, sans-serif';
             ctx.textAlign = 'center';
 
@@ -320,8 +320,8 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             // English - Learn traffic signs
             ctx.fillText(promoTextEn2, 960, footerY + 55);
 
-            // Website link at bottom - Lighter tint
-            ctx.fillStyle = '#5dd9c1';
+            // Website link at bottom - Same color as promotional message
+            ctx.fillStyle = '#ff0050';
             ctx.font = 'bold 14px system-ui, Arial, sans-serif';
             ctx.textAlign = 'center';
             ctx.fillText(`kesararamwithdigital.tech/learn/${categorySlug}`, 960, footerY + 95);
@@ -376,7 +376,7 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             ctx.drawImage(qrCanvas, qrX, qrY, qrSize, qrSize);
 
             // Add QR label
-            ctx.fillStyle = '#25c1a4';
+            ctx.fillStyle = '#ff0050';
             ctx.font = 'bold 12px system-ui, Arial, sans-serif';
             ctx.textAlign = 'center';
             ctx.fillText('Scan to learn', qrX + qrSize / 2, qrY + qrSize + 20);
