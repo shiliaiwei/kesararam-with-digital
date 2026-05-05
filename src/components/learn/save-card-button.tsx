@@ -44,12 +44,12 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
 
             if (!ctx) throw new Error('Canvas not supported');
 
-            // Dark GitHub background color (#0d1117)
-            ctx.fillStyle = '#0d1117';
+            // WHITE background
+            ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, 1920, 1080);
 
-            // Add subtle grid pattern for visual interest
-            ctx.strokeStyle = 'rgba(48, 54, 61, 0.3)';
+            // Add subtle grid pattern for visual interest - light gray on white
+            ctx.strokeStyle = 'rgba(200, 200, 200, 0.2)';
             ctx.lineWidth = 1;
             for (let i = 0; i < 1920; i += 60) {
                 ctx.beginPath();
@@ -251,13 +251,13 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 ctx.fillText(titleLine.trim(), rightStartX, titleLineY);
             }
 
-            // Description (right side, below title) - WHITE text for contrast on dark background
+            // Description (right side, below title) - BLACK text for contrast on white background
             const descriptionKh = topic.description_km;
             const descriptionEn = topic.description_en;
             const descriptionToUse = isKh ? descriptionKh : descriptionEn;
 
             if (descriptionToUse) {
-                ctx.fillStyle = '#ffffff';
+                ctx.fillStyle = '#000000';
                 ctx.font = 'bold 26px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'left';
 
@@ -303,22 +303,22 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             // Footer section with beautiful styling
             const footerStartY = 930;
 
-            // Add subtle background for quote section
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+            // Add subtle background for quote section - light gray
+            ctx.fillStyle = 'rgba(240, 240, 240, 0.5)';
             ctx.fillRect(80, footerStartY - 15, 1760, 95);
 
-            // Bilingual promotional message - WHITE text with 70% opacity
+            // Bilingual promotional message - BLACK text on white background
             ctx.textAlign = 'center';
 
-            // Khmer text - larger and bold - WHITE 70%
+            // Khmer text - larger and bold - BLACK
             ctx.font = 'bold 22px system-ui, Arial, sans-serif';
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+            ctx.fillStyle = '#000000';
             const promoTextKh = 'រៀនសញ្ញាចរាចរណ៍ បង្កើតចំណេះដឹងសុវត្ថិភាពពេញមួយជីវិត';
             ctx.fillText(promoTextKh, 960, footerStartY);
 
-            // English text - slightly smaller - WHITE 70%
+            // English text - slightly smaller - BLACK
             ctx.font = 'bold 18px system-ui, Arial, sans-serif';
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+            ctx.fillStyle = '#000000';
             const promoTextEn = 'Protect your life and loved ones.';
             const promoTextEn2 = 'Learn traffic signs, build safety knowledge for life';
             ctx.fillText(promoTextEn, 960, footerStartY + 32);
@@ -332,8 +332,8 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 ctx.drawImage(logo, 80, copyrightY - 25, 50, 50);
             }
 
-            // Copyright text - WHITE - 2026
-            ctx.fillStyle = '#ffffff';
+            // Copyright text - BLACK
+            ctx.fillStyle = '#000000';
             ctx.font = 'bold 13px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
             ctx.fillText('© 2026 KWD. All rights reserved.', 150, copyrightY + 8);
