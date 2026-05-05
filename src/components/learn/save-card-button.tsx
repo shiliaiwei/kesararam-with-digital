@@ -196,13 +196,12 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             const categorySlug = getCategorySlug(topic.sub_group);
 
             // SPLIT LAYOUT - Sign image on LEFT, Title/Description on RIGHT
-            const contentStartY = 220;
-            const signAreaSize = 380;
-            const borderRadius = 10; // 10% radius
-            const shadowOffset = 8;
+            const contentStartY = 200;
+            const signAreaSize = 420;
+            const borderRadius = 10;
 
             // LEFT SIDE - Sign image centered vertically
-            const signAreaX = 100;
+            const signAreaX = 80;
             const signAreaY = contentStartY;
 
             // Load and draw sign image with rounded corners
@@ -217,16 +216,12 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                     setTimeout(() => resolve(), 3000);
                 });
 
-                // Drop shadow effect (dark)
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
-                ctx.fillRect(signAreaX + shadowOffset, signAreaY + shadowOffset, signAreaSize, signAreaSize);
+                // NO SHADOW - Removed for cleaner focus on image
 
                 // Background card - YELLOW brand color (#ffd700) with rounded corners
                 ctx.fillStyle = '#ffd700';
                 roundRect(ctx, signAreaX, signAreaY, signAreaSize, signAreaSize, borderRadius);
                 ctx.fill();
-
-                // NO BLACK BORDER - removed
 
                 // YELLOW background inside for image (same as outer)
                 ctx.fillStyle = '#ffd700';
@@ -282,25 +277,25 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 ctx.fillText(tagText, signCodeX, tagY + 22);
             }
 
-            // RIGHT SIDE - Title and Description
-            const rightStartX = 600;
-            const rightStartY = 250;
-            const maxRightWidth = 1250;
+            // RIGHT SIDE - Title and Description (LARGER, MORE PROMINENT)
+            const rightStartX = 580;
+            const rightStartY = 220;
+            const maxRightWidth = 1280;
 
-            // Title (right side) - CAPITALS, Teal color (#25c1a4)
+            // Title (right side) - CAPITALS, Teal color (#25c1a4), LARGER
             const titleKh = topic.name_km;
             const titleEn = topic.name_en;
             const titleToUse = isKh ? titleKh : titleEn;
 
             ctx.fillStyle = '#25c1a4';
-            ctx.font = 'bold 48px system-ui, Arial, sans-serif';
+            ctx.font = 'bold 56px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
 
             // Handle long titles with proper wrapping - UPPERCASE
             const titleWords = titleToUse.toUpperCase().split(' ');
             let titleLine = '';
             let titleLineY = rightStartY;
-            const titleLineHeight = 60;
+            const titleLineHeight = 70;
 
             for (let word of titleWords) {
                 const testLine = titleLine + word + ' ';
@@ -318,22 +313,22 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 ctx.fillText(titleLine.trim(), rightStartX, titleLineY);
             }
 
-            // Description (right side, below title) - BLACK text
+            // Description (right side, below title) - BLACK text, LARGER
             const descriptionKh = topic.description_km;
             const descriptionEn = topic.description_en;
             const descriptionToUse = isKh ? descriptionKh : descriptionEn;
 
             if (descriptionToUse) {
                 ctx.fillStyle = '#000000';
-                ctx.font = '24px system-ui, Arial, sans-serif';
+                ctx.font = 'bold 28px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'left';
 
                 // Word wrap description
                 const words = descriptionToUse.split(' ');
                 let line = '';
-                let y = titleLineY + 70;
+                let y = titleLineY + 80;
                 const maxWidth = maxRightWidth;
-                const lineHeight = 38;
+                const lineHeight = 42;
                 let lineCount = 0;
                 const maxLines = 8;
 
