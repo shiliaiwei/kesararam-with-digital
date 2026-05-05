@@ -48,9 +48,10 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 ctx.drawImage(logo, 60, 40);
             }
 
-            // Map sub_group to category URL slug
+            // Map sub_group to category URL slug (all 8 categories)
             const getCategorySlug = (subGroup: string): string => {
                 const categoryMap: Record<string, string> = {
+                    // Road Sign category
                     'Prohibitory Signs': 'road-sign',
                     'Mandatory Signs': 'road-sign',
                     'Priority Signs': 'road-sign',
@@ -68,6 +69,37 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                     'Other Road Markings': 'road-sign',
                     'Traffic Lights': 'road-sign',
                     'Traffic Police Signals': 'road-sign',
+                    // Road Traffic category
+                    'Traffic Rules': 'road-traffic',
+                    'Speed Limits': 'road-traffic',
+                    'Parking': 'road-traffic',
+                    'Overtaking': 'road-traffic',
+                    // Priority category
+                    'Intersections': 'priority',
+                    'Roundabouts': 'priority',
+                    'Pedestrian Crossings': 'priority',
+                    // Driving category
+                    'Basic Maneuvers': 'driving',
+                    'Advanced Techniques': 'driving',
+                    'Defensive Driving': 'driving',
+                    // Technical category
+                    'Engine': 'technical',
+                    'Brakes': 'technical',
+                    'Lights': 'technical',
+                    'Safety Systems': 'technical',
+                    // Loading People Goods category
+                    'Weight Limits': 'loading-people-goods',
+                    'Passenger Safety': 'loading-people-goods',
+                    'Cargo Securing': 'loading-people-goods',
+                    // General Knowledge category
+                    'Road Safety': 'general-knowledge',
+                    'Environmental': 'general-knowledge',
+                    'Legal': 'general-knowledge',
+                    // Emergency category
+                    'Accidents': 'emergency',
+                    'Breakdowns': 'emergency',
+                    'First Aid': 'emergency',
+                    'Emergency Contacts': 'emergency',
                 };
                 return categoryMap[subGroup] || 'road-sign';
             };
