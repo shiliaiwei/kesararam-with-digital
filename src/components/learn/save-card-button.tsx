@@ -204,12 +204,12 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             const rightStartY = 220;
             const maxRightWidth = 1150;
 
-            // Title (right side) - CAPITALS, Teal color (#25c1a4), VERY LARGE
+            // Title (right side) - CAPITALS, BLACK color, VERY LARGE
             const titleKh = topic.name_km;
             const titleEn = topic.name_en;
             const titleToUse = isKh ? titleKh : titleEn;
 
-            ctx.fillStyle = '#25c1a4';
+            ctx.fillStyle = '#000000';
             ctx.font = 'bold 64px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
 
@@ -235,13 +235,13 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 ctx.fillText(titleLine.trim(), rightStartX, titleLineY);
             }
 
-            // Description (right side, below title) - BLACK text for contrast on white background
+            // Description (right side, below title) - TEAL text (#25c1a4)
             const descriptionKh = topic.description_km;
             const descriptionEn = topic.description_en;
             const descriptionToUse = isKh ? descriptionKh : descriptionEn;
 
             if (descriptionToUse) {
-                ctx.fillStyle = '#000000';
+                ctx.fillStyle = '#25c1a4';
                 ctx.font = 'bold 26px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'left';
 
@@ -287,10 +287,6 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             // Footer section with beautiful styling
             const footerStartY = 930;
 
-            // Add subtle background for quote section - light gray
-            ctx.fillStyle = 'rgba(240, 240, 240, 0.5)';
-            ctx.fillRect(80, footerStartY - 15, 1760, 95);
-
             // Bilingual promotional message - BLACK text on white background
             ctx.textAlign = 'center';
 
@@ -311,13 +307,15 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             // Copyright section with KWD logo - bottom left
             const copyrightY = 1010;
 
-            // Draw KWD logo small version for copyright (50x50)
+            // Draw KWD logo small version for copyright (50x50) - GRAY 30%
             if (logo.complete && logo.naturalWidth > 0) {
+                ctx.globalAlpha = 0.3;
                 ctx.drawImage(logo, 80, copyrightY - 25, 50, 50);
+                ctx.globalAlpha = 1.0;
             }
 
-            // Copyright text - BLACK
-            ctx.fillStyle = '#000000';
+            // Copyright text - GRAY 30%
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
             ctx.font = 'bold 13px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
             ctx.fillText('© 2026 KWD. All rights reserved.', 150, copyrightY + 8);
