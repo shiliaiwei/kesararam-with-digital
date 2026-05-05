@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, Fragment } from "react";
-import { Search, ArrowLeft, X, Volume2 } from "lucide-react";
+import { Search, ArrowLeft, X, Volume2, Download, Printer, Share2 } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 
 interface Topic {
@@ -86,10 +86,12 @@ function DetailPanel({
 }) {
   const [playing, setPlaying] = useState(false);
   const [loadingAudio, setLoadingAudio] = useState(false);
+  const [exporting, setExporting] = useState(false);
   // Use a ref so the stop handler always has the current audio instance
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const playingRef = useRef(false);
   const panelRef = useRef<HTMLDivElement>(null);
+  const exportCanvasRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -163,6 +165,169 @@ function DetailPanel({
     }, { once: true });
 
     audio.load();
+  };
+
+  // Export as landscape image (1920x1080)
+  const handleExport = async (action: 'download' | 'print' | 'share') => {
+    setExporting(true);
+    try {
+      // Dynamically import html2canvas
+      const html2canvas = (await import('html2canvas')).default;
+
+      // Create a temporary canvas element
+      const canvas = document.createElement('div');
+      canvas.style.position = 'fixed';
+      canvas.style.left = '-9999px';
+      canvas.style.width = '1920px';
+      canvas.style.height = '1080px';
+      canvas.style.background = 'white';
+      canvas.style.padding = '60px';
+      canvas.style.boxSizing = 'border-box';
+
+      // Build the content
+      canvas.innerHTML = `
+        <div style="width: 100%; height: 100%; display: flex; flex-direction: column; font-family: ${isKh ? 'Siemreap, sans-serif' : 'system-ui, sans-serif'};">
+          <!-- Header with logo -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+            <div style="display: flex; align-items: center; gap: 20px;">
+              <img src="/brand/kwd-gray.png" alt="KWD" style="height: 60px; opacity: 0.7;" />
+              <div>
+                <div style="font-size: 14px; font-weight: bold; color: #666; text-transform: uppercase; letter-spacing: 1px;">
+                  ${isKh ? 'សញ្ញាចរាចរណ៍' : 'Traffic Sign'}
+                </div>
+                <div style="font-size: 24px; font-weight: 900; color: #000; margin-top: 4px;">
+                  ${topic.topic_code}
+                </div>
+              </div>
+            </div>
+            <div style="text-align: right; color: #666; font-size: 14px;">
+              <div style="font-weight: bold;">kesararamwithdigital.tech</div>
+              <div style="font-size: 12px; margin-top: 4px;">${isKh ? 'រៀនបើកបរ ប្រកបដោយសុវត្ថិភាព' : 'Learn to Drive Safely'}</div>
+            </div>
+          </div>
+          
+          <!-- Main content -->
+          <div style="flex: 1; display: flex; gap: 60px; align-items: center;">
+            <!-- Sign image -->
+            <div style="flex-shrink: 0; width: 400px; height: 400px; display: flex; align-items: center; justify-content: center; background: #f9fafb; border: 4px solid #000; padding: 40px;">
+              <img src="${topic.primary_image_url}" alt="${name}" style="max-width: 100%; max-height: 100%; object-fit: contain;" crossorigin="anonymous" />
+            </div>
+            
+            <!-- Text content -->
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 24px;">
+              <div>
+                <div style="font-size: 48px; font-weight: 900; line-height: 1.2; color: #000; margin-bottom: 16px;">
+                  ${name}
+                </div>
+                ${description ? `
+                  <div style="font-size: 24px; line-height: 1.6; color: #374151;">
+                    ${description}
+                  </div>
+                ` : ''}
+              </div>
+              
+              ${subGroupLabel ? `
+                <div style="display: inline-block; background: #fef3c7; border: 3px solid #000; padding: 12px 24px; font-size: 18px; font-weight: bold;">
+                  ${isKh ? subGroupLabel.km : subGroupLabel.en}
+                </div>
+              ` : ''}
+              
+              ${topic.law_reference ? `
+                <div style="background: #dbeafe; border: 3px solid #3b82f6; padding: 16px 20px; font-size: 16px; color: #1e40af;">
+                  <div style="font-weight: 900; text-transform: uppercase; margin-bottom: 8px; font-size: 14px;">
+                    ${isKh ? 'ឯកសារយោងច្បាប់' : 'Law Reference'}
+                  </div>
+                  <div>${topic.law_reference}</div>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+          
+          <!-- Footer -->
+          <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #e5e7eb; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #9ca3af;">
+            <div>${isKh ? 'ទាញយកពី' : 'Downloaded from'} <strong style="color: #000;">kesararamwithdigital.tech</strong></div>
+            <div>${new Date().toLocaleDateString(isKh ? 'km-KH' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(canvas);
+
+      // Wait for images to load
+      const images = canvas.querySelectorAll('img');
+      await Promise.all(
+        Array.from(images).map(img => {
+          if (img.complete) return Promise.resolve();
+          return new Promise((resolve, reject) => {
+            img.onload = resolve;
+            img.onerror = reject;
+            // Add timeout
+            setTimeout(reject, 5000);
+          });
+        })
+      );
+
+      // Generate canvas
+      const generatedCanvas = await html2canvas(canvas, {
+        width: 1920,
+        height: 1080,
+        scale: 1,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#ffffff',
+      });
+
+      document.body.removeChild(canvas);
+
+      // Convert to blob
+      const blob = await new Promise<Blob>((resolve) => {
+        generatedCanvas.toBlob((b) => resolve(b!), 'image/png', 1.0);
+      });
+
+      const filename = `${topic.topic_code}-${name.replace(/[^a-zA-Z0-9]/g, '-')}.png`;
+
+      if (action === 'download') {
+        // Download
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(url);
+      } else if (action === 'print') {
+        // Print
+        const url = URL.createObjectURL(blob);
+        const printWindow = window.open(url);
+        if (printWindow) {
+          printWindow.onload = () => {
+            printWindow.print();
+          };
+        }
+      } else if (action === 'share') {
+        // Share
+        if (navigator.share && navigator.canShare) {
+          const file = new File([blob], filename, { type: 'image/png' });
+          if (navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              title: `${topic.topic_code} - ${name}`,
+              text: description || name,
+              files: [file],
+            });
+          } else {
+            // Fallback to download
+            handleExport('download');
+          }
+        } else {
+          // Fallback to download
+          handleExport('download');
+        }
+      }
+    } catch (error) {
+      console.error('Export failed:', error);
+      alert(isKh ? 'មានបញ្ហាក្នុងការទាញយក' : 'Failed to export image');
+    } finally {
+      setExporting(false);
+    }
   };
 
   return (
@@ -269,6 +434,58 @@ function DetailPanel({
               </button>
             </div>
           )}
+
+          {/* Export buttons */}
+          <div className="pt-2 border-t-2 border-zinc-200 mt-4">
+            <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-2" style={kf}>
+              {isKh ? "រក្សាទុក & ចែករំលែក" : "Save & Share"}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => handleExport('download')}
+                disabled={exporting}
+                className={`inline-flex items-center gap-2 px-4 py-2 border-2 border-black font-black text-sm transition-all ${exporting
+                    ? "bg-zinc-100 text-zinc-400 cursor-wait"
+                    : "bg-blue-400 hover:bg-blue-500 shadow-[3px_3px_0_#000] hover:shadow-[3px_3px_0_#1e40af]"
+                  }`}
+                style={kf}
+              >
+                <Download size={15} />
+                {isKh ? "ទាញយក" : "Download"}
+              </button>
+
+              <button
+                onClick={() => handleExport('print')}
+                disabled={exporting}
+                className={`inline-flex items-center gap-2 px-4 py-2 border-2 border-black font-black text-sm transition-all ${exporting
+                    ? "bg-zinc-100 text-zinc-400 cursor-wait"
+                    : "bg-green-400 hover:bg-green-500 shadow-[3px_3px_0_#000] hover:shadow-[3px_3px_0_#15803d]"
+                  }`}
+                style={kf}
+              >
+                <Printer size={15} />
+                {isKh ? "បោះពុម្ព" : "Print"}
+              </button>
+
+              <button
+                onClick={() => handleExport('share')}
+                disabled={exporting}
+                className={`inline-flex items-center gap-2 px-4 py-2 border-2 border-black font-black text-sm transition-all ${exporting
+                    ? "bg-zinc-100 text-zinc-400 cursor-wait"
+                    : "bg-purple-400 hover:bg-purple-500 shadow-[3px_3px_0_#000] hover:shadow-[3px_3px_0_#6b21a8]"
+                  }`}
+                style={kf}
+              >
+                <Share2 size={15} />
+                {isKh ? "ចែករំលែក" : "Share"}
+              </button>
+            </div>
+            {exporting && (
+              <p className="text-xs text-zinc-500 mt-2 font-medium" style={kf}>
+                {isKh ? "កំពុងបង្កើតរូបភាព..." : "Generating image..."}
+              </p>
+            )}
+          </div>
         </div>
       </div>
 
