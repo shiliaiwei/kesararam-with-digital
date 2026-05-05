@@ -161,11 +161,7 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 roundRect(ctx, signAreaX, signAreaY, signAreaSize, signAreaSize, borderRadius);
                 ctx.fill();
 
-                // Black border
-                ctx.strokeStyle = '#000000';
-                ctx.lineWidth = 3;
-                roundRect(ctx, signAreaX, signAreaY, signAreaSize, signAreaSize, borderRadius);
-                ctx.stroke();
+                // NO BLACK BORDER - removed
 
                 // White background inside for image
                 ctx.fillStyle = '#ffffff';
@@ -312,9 +308,9 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             ctx.font = 'bold 16px system-ui, Arial, sans-serif';
             ctx.textAlign = 'center';
 
-            // More powerful psychological messages
-            const promoTextKh = 'រៀនសញ្ញាចរាចរណ៍ ដើម្បីរក្សាជីវិត និងគ្រួសាររបស់អ្នក';
-            const promoTextEn = 'Master traffic signs. Protect your life and loved ones.';
+            // Updated powerful psychological messages
+            const promoTextKh = 'រៀនសញ្ញាចរាចរណ៍ បង្កើតចំណេះដឹងសុវត្ថិភាពពេញមួយជីវិត';
+            const promoTextEn = 'Learn traffic signs, build safety knowledge for life';
 
             // Khmer first
             ctx.fillText(promoTextKh, 960, footerY);
@@ -326,6 +322,14 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             ctx.font = 'bold 14px system-ui, Arial, sans-serif';
             ctx.textAlign = 'center';
             ctx.fillText(`kesararamwithdigital.tech/learn/${categorySlug}`, 960, footerY + 65);
+
+            // Add QR code placeholder in bottom-right corner
+            // QR code would be generated server-side and embedded as image
+            // For now, we'll add a simple text indicator
+            ctx.fillStyle = '#25c1a4';
+            ctx.font = 'bold 12px system-ui, Arial, sans-serif';
+            ctx.textAlign = 'right';
+            ctx.fillText('Scan QR to learn more', 1800, footerY + 65);
 
             // Download with branded filename: PWD3-R3-00-KWD.png
             const brandedFilename = `${topic.topic_code}-KWD.png`;
