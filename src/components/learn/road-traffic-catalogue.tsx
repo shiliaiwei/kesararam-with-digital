@@ -381,7 +381,7 @@ export function RoadTrafficCatalogue() {
                       <AnswerCard topic={topic} isKh={isKh} t={t} />
                       {/* Save Card Button */}
                       <div className="px-4 py-3 border-t-2 border-black bg-blue-50 flex justify-end">
-                        <SaveCardButton topic={topic} isKh={isKh} />
+                        <SaveCardButton topic={topic} isKh={isKh} size="lg" />
                       </div>
                     </>
                   )}

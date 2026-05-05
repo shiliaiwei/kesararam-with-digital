@@ -81,7 +81,6 @@ function DetailPanel({
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-3 bg-yellow-400 border-b-2 border-black">
         <div className="flex items-center gap-3 flex-wrap">
-          <SaveCardButton topic={topic} isKh={isKh} />
           <span className="font-mono text-xs font-black bg-black text-yellow-400 px-2 py-0.5">
             {topic.topic_code}
           </span>
@@ -110,7 +109,7 @@ function DetailPanel({
         </div>
 
         {/* Content */}
-        <div className="p-5 space-y-3">
+        <div className="p-5 space-y-3 flex flex-col">
           <h2 className="text-2xl font-black leading-tight" style={kf}>
             {name}
           </h2>
@@ -127,6 +126,11 @@ function DetailPanel({
               <span style={kf}>{topic.law_reference}</span>
             </div>
           )}
+
+          {/* Buttons at bottom right */}
+          <div className="mt-auto flex items-center justify-end gap-2 pt-4">
+            <SaveCardButton topic={topic} isKh={isKh} size="lg" />
+          </div>
         </div>
       </div>
     </div>

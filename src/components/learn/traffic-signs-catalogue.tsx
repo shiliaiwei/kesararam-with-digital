@@ -334,7 +334,6 @@ function DetailPanel({
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-3 bg-yellow-400 border-b-2 border-black">
         <div className="flex items-center gap-3 flex-wrap">
-          <SaveCardButton topic={topic} isKh={isKh} />
           <span className="font-mono text-xs font-black bg-black text-yellow-400 px-2 py-0.5">
             {topic.topic_code}
           </span>
@@ -363,7 +362,7 @@ function DetailPanel({
         </div>
 
         {/* Content */}
-        <div className="p-5 space-y-3">
+        <div className="p-5 space-y-3 flex flex-col">
           {/* Title — yellow highlight when playing */}
           <h2
             className={`text-2xl font-black leading-tight transition-all duration-300 ${playing ? "bg-yellow-300/60 px-1 -mx-1 rounded-sm" : ""
@@ -394,47 +393,10 @@ function DetailPanel({
             </div>
           )}
 
-          {/* Audio button */}
-          {audioUrl && (
-            <div className="pt-1">
-              <button
-                onClick={handleAudio}
-                className={`inline-flex items-center gap-2 px-4 py-2 border-2 border-black font-black text-sm transition-all select-none ${loadingAudio
-                  ? "bg-zinc-100 text-zinc-400 cursor-wait"
-                  : playing
-                    ? "bg-black text-yellow-400 shadow-[3px_3px_0_#ca8a04] hover:bg-zinc-800"
-                    : "bg-white hover:bg-yellow-400 shadow-[3px_3px_0_#000] hover:shadow-[3px_3px_0_#ca8a04]"
-                  }`}
-                style={kf}
-              >
-                {loadingAudio ? (
-                  <>
-                    <span className="flex gap-0.5 items-end h-3">
-                      {[60, 100, 75].map((h, i) => (
-                        <span key={i} className="w-1 bg-zinc-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 120}ms` }} />
-                      ))}
-                    </span>
-                    {isKh ? "កំពុងផ្ទុក..." : "Loading..."}
-                  </>
-                ) : playing ? (
-                  <>
-                    <span className="flex gap-0.5 items-end h-3">
-                      {[60, 100, 75, 90].map((h, i) => (
-                        <span key={i} className="w-1 bg-yellow-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />
-                      ))}
-                    </span>
-                    {t.stopAudio}
-                  </>
-                ) : (
-                  <>
-                    <Volume2 size={15} />
-                    {t.playAudio}
-                  </>
-                )}
-              </button>
-            </div>
-          )}
-
+          {/* Buttons at bottom right */}
+          <div className="mt-auto flex items-center justify-end gap-2 pt-4">
+            <SaveCardButton topic={topic} isKh={isKh} size="lg" />
+          </div>
         </div>
       </div>
 

@@ -31,9 +31,10 @@ interface SaveCardButtonProps {
         audio_url_km?: string;
     };
     isKh: boolean;
+    size?: 'sm' | 'md' | 'lg';
 }
 
-export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
+export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps) {
     const [saving, setSaving] = useState(false);
     const [playing, setPlaying] = useState(false);
     const [loadingAudio, setLoadingAudio] = useState(false);
@@ -429,28 +430,34 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                 <button
                     onClick={handleAudio}
                     disabled={loadingAudio}
-                    className={`inline-flex items-center gap-1 px-2 py-1 border-2 border-black font-bold text-[10px] transition-all ${loadingAudio
-                        ? "bg-zinc-100 text-zinc-400 cursor-wait"
-                        : playing
-                            ? "bg-black text-yellow-400 shadow-[2px_2px_0_#ca8a04]"
-                            : "bg-white hover:bg-yellow-400 shadow-[2px_2px_0_#000]"
+                    className={`inline-flex items-center gap-1 border-2 border-black font-bold transition-all ${size === 'lg' ? 'px-4 py-2 text-sm' :
+                            size === 'sm' ? 'px-1.5 py-0.5 text-[8px]' :
+                                'px-2 py-1 text-[10px]'
+                        } ${loadingAudio
+                            ? "bg-zinc-100 text-zinc-400 cursor-wait"
+                            : playing
+                                ? "bg-black text-yellow-400 shadow-[2px_2px_0_#ca8a04]"
+                                : "bg-white hover:bg-yellow-400 shadow-[2px_2px_0_#000]"
                         }`}
                     title={isKh ? "ចាក់សំឡេង" : "Play Audio"}
                 >
-                    <Volume2 size={12} />
+                    <Volume2 size={size === 'lg' ? 16 : size === 'sm' ? 10 : 12} />
                     {isKh ? "ចាក់" : "Play"}
                 </button>
             )}
             <button
                 onClick={handleSave}
                 disabled={saving}
-                className={`inline-flex items-center gap-1 px-2 py-1 border-2 border-black font-bold text-[10px] transition-all ${saving
-                    ? "bg-zinc-100 text-zinc-400 cursor-wait"
-                    : "bg-yellow-400 hover:bg-yellow-500 shadow-[2px_2px_0_#000]"
+                className={`inline-flex items-center gap-1 border-2 border-black font-bold transition-all ${size === 'lg' ? 'px-3 py-1.5 text-xs' :
+                        size === 'sm' ? 'px-1 py-0.5 text-[8px]' :
+                            'px-2 py-1 text-[10px]'
+                    } ${saving
+                        ? "bg-zinc-100 text-zinc-400 cursor-wait"
+                        : "bg-yellow-400 hover:bg-yellow-500 shadow-[2px_2px_0_#000]"
                     }`}
                 title={isKh ? "រក្សាទុកកាត" : "Save Card"}
             >
-                <Download size={12} />
+                <Download size={size === 'lg' ? 14 : size === 'sm' ? 9 : 12} />
                 {isKh ? "រក្សាទុក" : "Save Card"}
             </button>
         </div>
