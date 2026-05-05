@@ -287,18 +287,18 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             // Footer section with beautiful styling
             const footerStartY = 930;
 
-            // Bilingual promotional message - BLACK text on white background
+            // Bilingual promotional message - WHITE text (70% opacity) on white background
             ctx.textAlign = 'center';
 
-            // Khmer text - larger and bold - BLACK
+            // Khmer text - larger and bold - WHITE 70%
             ctx.font = 'bold 22px system-ui, Arial, sans-serif';
-            ctx.fillStyle = '#000000';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
             const promoTextKh = 'រៀនសញ្ញាចរាចរណ៍ បង្កើតចំណេះដឹងសុវត្ថិភាពពេញមួយជីវិត';
             ctx.fillText(promoTextKh, 960, footerStartY);
 
-            // English text - slightly smaller - BLACK
+            // English text - slightly smaller - WHITE 70%
             ctx.font = 'bold 18px system-ui, Arial, sans-serif';
-            ctx.fillStyle = '#000000';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
             const promoTextEn = 'Protect your life and loved ones.';
             const promoTextEn2 = 'Learn traffic signs, build safety knowledge for life';
             ctx.fillText(promoTextEn, 960, footerStartY + 32);
