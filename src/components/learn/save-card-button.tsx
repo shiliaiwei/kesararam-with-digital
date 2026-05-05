@@ -33,21 +33,6 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
             ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, 1920, 1080);
 
-            // Load KWD logo at full size (no resize)
-            const logo = new Image();
-            logo.crossOrigin = 'anonymous';
-            await new Promise((resolve, reject) => {
-                logo.onload = resolve;
-                logo.onerror = () => resolve(null);
-                logo.src = 'https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg';
-                setTimeout(() => resolve(null), 3000);
-            }).catch(() => null);
-
-            // Draw KWD logo at full original size (top-left)
-            if (logo.complete && logo.naturalWidth > 0) {
-                ctx.drawImage(logo, 60, 40);
-            }
-
             // Map sub_group to category URL slug (all 8 categories)
             const getCategorySlug = (subGroup: string): string => {
                 const categoryMap: Record<string, string> = {
@@ -130,12 +115,22 @@ export function SaveCardButton({ topic, isKh }: SaveCardButtonProps) {
                     setTimeout(reject, 5000);
                 });
 
-                // Sign image area (center-left, no borders)
+                // Sign image area (center-left, with light blue border)
                 const signAreaX = 100;
                 const signAreaY = 200;
                 const signAreaSize = 400;
+                const borderWidth = 20;
+                const borderColor = '#ADD8E6'; // Light blue
 
-                // Center the sign image (no borders, no background)
+                // Draw light blue border around the sign area
+                ctx.fillStyle = borderColor;
+                ctx.fillRect(signAreaX - borderWidth, signAreaY - borderWidth, signAreaSize + (borderWidth * 2), signAreaSize + (borderWidth * 2));
+
+                // Draw white background inside border
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(signAreaX, signAreaY, signAreaSize, signAreaSize);
+
+                // Center the sign image (no borders, white background)
                 const imgAspect = signImg.width / signImg.height;
                 let drawWidth = signAreaSize;
                 let drawHeight = signAreaSize;
