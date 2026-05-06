@@ -102,7 +102,10 @@ function useAudio(url: string | null) {
 // ── Expanded answer card ──────────────────────────────────────────────────────
 function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof UI.en }) {
   const kf = isKh ? { fontFamily: "Siemreap, sans-serif" } : {};
-  const audioUrl = isKh ? (topic.audio_url_km || topic.audio_url_en) : (topic.audio_url_en || topic.audio_url_km);
+  // Always try both languages so audio shows even if one URL is missing
+  const audioUrlEn = topic.audio_url_en || "";
+  const audioUrlKm = topic.audio_url_km || "";
+  const audioUrl = isKh ? (audioUrlKm || audioUrlEn) : (audioUrlEn || audioUrlKm);
   const { playing, loading, toggle } = useAudio(audioUrl || null);
 
   const answer = isKh ? topic.description_km : topic.description_en;
@@ -111,51 +114,45 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
   return (
     <div className="border-t-2 border-black bg-white">
 
-      {/* ── Meta strip: code + subgroup ── */}
-      <div className="px-3 pt-2 pb-1 flex items-center gap-2">
-        <span className="font-mono text-[9px] font-black bg-zinc-100 border border-zinc-300 text-zinc-400 px-1.5 py-0.5 rounded">
+      {/* ── Meta strip: code + subgroup — 24px min height, readable ── */}
+      <div className="px-4 pt-3 pb-2 flex items-center gap-2 flex-wrap">
+        <span className="font-mono text-xs font-black bg-zinc-100 border-2 border-zinc-300 text-zinc-600 px-2 py-1 rounded leading-none">
           {topic.topic_code}
         </span>
         {subGroup && (
-          <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-wider" style={kf}>
+          <span className="text-xs font-bold bg-zinc-100 border border-zinc-300 text-zinc-500 px-2 py-1 rounded uppercase tracking-wide leading-none" style={kf}>
             {isKh ? subGroup.km : subGroup.en}
           </span>
         )}
       </div>
 
-      {/* ── Image — full width, capped at 200px ── */}
+      {/* ── Image — full width, fully responsive, no height cap ── */}
       {topic.primary_image_url && (
-        <div className="overflow-hidden" style={{ maxHeight: "200px" }}>
+        <div className="w-full">
           <img
             src={topic.primary_image_url}
             alt={isKh ? topic.name_km : topic.name_en}
-            className="w-full object-cover"
-            style={{ maxHeight: "200px" }}
+            className="w-full h-auto block"
           />
         </div>
       )}
 
-      <div className="px-3 pb-3">
-        {/* ── Title ── */}
-        <p className="text-sm font-black leading-snug text-black mt-2 mb-2" style={kf}>
-          {isKh ? topic.name_km : topic.name_en}
-        </p>
-
+      <div className="px-4 pb-4 pt-3">
         {/* ── Answer zone ── */}
         {answer && (
           <div className={`rounded overflow-hidden border transition-all duration-300 ${playing ? "border-yellow-400" : "border-emerald-400"}`}>
-            <div className={`px-2 py-1 flex items-center gap-2 transition-colors duration-300 ${playing ? "bg-yellow-400" : "bg-emerald-500"}`}>
-              <span className="text-[8px] font-black uppercase tracking-widest text-white" style={kf}>{t.answer}</span>
+            <div className={`px-3 py-1.5 flex items-center gap-2 transition-colors duration-300 ${playing ? "bg-yellow-400" : "bg-emerald-500"}`}>
+              <span className="text-[10px] font-black uppercase tracking-widest text-white" style={kf}>{t.answer}</span>
               {playing && (
-                <span className="flex gap-0.5 items-end h-2.5 ml-auto">
+                <span className="flex gap-0.5 items-end h-3 ml-auto">
                   {[60, 100, 75, 90, 55].map((h, i) => (
                     <span key={i} className="w-0.5 bg-black rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />
                   ))}
                 </span>
               )}
             </div>
-            <div className={`px-3 py-2 transition-colors duration-300 ${playing ? "bg-yellow-50" : "bg-emerald-50"}`}>
-              <p className={`font-bold text-sm leading-snug ${playing ? "text-black" : "text-emerald-900"}`} style={kf}>
+            <div className={`px-3 py-3 transition-colors duration-300 ${playing ? "bg-yellow-50" : "bg-emerald-50"}`}>
+              <p className={`font-bold text-sm leading-relaxed ${playing ? "text-black" : "text-emerald-900"}`} style={kf}>
                 {answer}
               </p>
             </div>
@@ -164,22 +161,22 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
 
         {/* ── Law reference ── */}
         {topic.law_reference && (
-          <div className="mt-1.5 rounded overflow-hidden border border-amber-300">
-            <div className="bg-amber-400 px-2 py-0.5">
-              <p className="text-[8px] font-black uppercase tracking-widest text-amber-900" style={kf}>{t.lawRef}</p>
+          <div className="mt-2 rounded overflow-hidden border border-amber-300">
+            <div className="bg-amber-400 px-3 py-1">
+              <p className="text-[10px] font-black uppercase tracking-widest text-amber-900" style={kf}>{t.lawRef}</p>
             </div>
-            <div className="bg-amber-50 px-2 py-1.5">
-              <p className="text-[11px] font-mono text-amber-900" style={kf}>{topic.law_reference}</p>
+            <div className="bg-amber-50 px-3 py-2">
+              <p className="text-xs font-mono text-amber-900" style={kf}>{topic.law_reference}</p>
             </div>
           </div>
         )}
 
-        {/* ── Audio button ── */}
-        {audioUrl && (
-          <div className="mt-2">
+        {/* ── Audio button — always shown if any audio URL exists ── */}
+        {(audioUrlEn || audioUrlKm) && (
+          <div className="mt-3">
             <button
               onClick={toggle}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black font-black text-xs transition-all select-none rounded ${loading ? "bg-zinc-100 text-zinc-400 cursor-wait"
+              className={`inline-flex items-center gap-2 px-4 py-2 border-2 border-black font-black text-xs transition-all select-none rounded ${loading ? "bg-zinc-100 text-zinc-400 cursor-wait"
                 : playing ? "bg-black text-yellow-400"
                   : "bg-white hover:bg-yellow-400"
                 }`}
@@ -190,7 +187,7 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
               ) : playing ? (
                 <><span className="flex gap-0.5 items-end h-3">{[60, 100, 75, 90, 55].map((h, i) => <span key={i} className="w-0.5 bg-yellow-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />)}</span>{t.stopAudio}</>
               ) : (
-                <><Volume2 size={13} />{t.playAudio}</>
+                <><Volume2 size={14} />{t.playAudio}</>
               )}
             </button>
           </div>
@@ -296,7 +293,7 @@ export function RoadTrafficCatalogue() {
       />
 
       {/* ── Filter + Search ───────────────────────────────────────── */}
-      <div className="max-w-4xl mx-auto px-4 pb-5">
+      <div className="max-w-4xl mx-auto px-4 pt-5 pb-5">
         <div className="bg-white border-2 border-black p-4" style={{ boxShadow: "4px 4px 0 #000" }}>
 
           {/* Search */}
