@@ -17,7 +17,6 @@ function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: numbe
     ctx.closePath();
 }
 
-// Word-wrap helper
 function wrapText(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, maxWidth: number, lineHeight: number, maxLines = 99): number {
     const words = text.split(' ');
     let line = '';
@@ -56,24 +55,63 @@ interface SaveCardButtonProps {
     size?: 'sm' | 'md' | 'lg';
 }
 
-const CATEGORY_SLUG: Record<string, string> = {
-    'Prohibitory Signs': 'road-sign', 'Mandatory Signs': 'road-sign', 'Priority Signs': 'road-sign',
-    'Warning Signs': 'road-sign', 'Temporary Signs': 'road-sign', 'Direction Signs': 'road-sign',
-    'Buildup Area Boundary Signs': 'road-sign', 'Street Name Signs': 'road-sign',
-    'Informative Signs': 'road-sign', 'Supplementary Signs': 'road-sign', 'Sign Posts': 'road-sign',
-    'Transverse Markings': 'road-sign', 'Longitudinal Markings': 'road-sign',
-    'Arrows Markings': 'road-sign', 'Other Road Markings': 'road-sign',
-    'Traffic Lights': 'road-sign', 'Traffic Police Signals': 'road-sign',
-    'Traffic Rules': 'road-traffic', 'Speed Limits': 'road-traffic', 'Parking': 'road-traffic', 'Overtaking': 'road-traffic',
-    'Intersections': 'priority', 'Intersection Priority – Left Turn': 'priority',
-    'Intersection Priority – Sequential': 'priority', 'Intersection Priority – Simultaneous': 'priority',
-    'Roundabouts': 'priority', 'Pedestrian Crossings': 'priority',
-    'Basic Maneuvers': 'driving', 'Advanced Techniques': 'driving', 'Defensive Driving': 'driving',
-    'Engine': 'technical', 'Brakes': 'technical', 'Lights': 'technical', 'Safety Systems': 'technical',
-    'Weight Limits': 'loading-people-goods', 'Passenger Safety': 'loading-people-goods', 'Cargo Securing': 'loading-people-goods',
-    'Road Safety': 'general-knowledge', 'Environmental': 'general-knowledge', 'Legal': 'general-knowledge',
-    'Accidents': 'emergency', 'Breakdowns': 'emergency', 'First Aid': 'emergency', 'Emergency Contacts': 'emergency',
+// Category accent colours — matches web UI per category
+const CATEGORY_CONFIG: Record<string, { slug: string; accent: string; accentDark: string; label: string; quote: string }> = {
+    // Road Signs — yellow
+    'Prohibitory Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
+    'Mandatory Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
+    'Priority Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
+    'Warning Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
+    'Temporary Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
+    'Direction Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
+    'Buildup Area Boundary Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
+    'Street Name Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
+    'Informative Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
+    'Supplementary Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
+    'Sign Posts': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
+    'Transverse Markings': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
+    'Longitudinal Markings': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
+    'Arrows Markings': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
+    'Other Road Markings': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
+    'Traffic Lights': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
+    'Traffic Police Signals': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
+    // Road Traffic — blue
+    'Traffic Rules': { slug: 'road-traffic', accent: '#3b82f6', accentDark: '#1d4ed8', label: 'Road Traffic Law', quote: 'Rules protect everyone on the road.' },
+    'Speed Limits': { slug: 'road-traffic', accent: '#3b82f6', accentDark: '#1d4ed8', label: 'Road Traffic Law', quote: 'Rules protect everyone on the road.' },
+    'Parking': { slug: 'road-traffic', accent: '#3b82f6', accentDark: '#1d4ed8', label: 'Road Traffic Law', quote: 'Rules protect everyone on the road.' },
+    'Overtaking': { slug: 'road-traffic', accent: '#3b82f6', accentDark: '#1d4ed8', label: 'Road Traffic Law', quote: 'Rules protect everyone on the road.' },
+    // Priority — orange
+    'Intersections': { slug: 'priority', accent: '#f97316', accentDark: '#c2410c', label: 'Right of Way', quote: 'Priority saves lives at every crossing.' },
+    'Intersection Priority – Left Turn': { slug: 'priority', accent: '#f97316', accentDark: '#c2410c', label: 'Right of Way', quote: 'Priority saves lives at every crossing.' },
+    'Intersection Priority – Sequential': { slug: 'priority', accent: '#f97316', accentDark: '#c2410c', label: 'Right of Way', quote: 'Priority saves lives at every crossing.' },
+    'Intersection Priority – Simultaneous': { slug: 'priority', accent: '#f97316', accentDark: '#c2410c', label: 'Right of Way', quote: 'Priority saves lives at every crossing.' },
+    'Roundabouts': { slug: 'priority', accent: '#f97316', accentDark: '#c2410c', label: 'Right of Way', quote: 'Priority saves lives at every crossing.' },
+    'Pedestrian Crossings': { slug: 'priority', accent: '#f97316', accentDark: '#c2410c', label: 'Right of Way', quote: 'Priority saves lives at every crossing.' },
+    // Driving — green
+    'Basic Maneuvers': { slug: 'driving', accent: '#22c55e', accentDark: '#15803d', label: 'Driving Skills', quote: 'Skill and confidence, every kilometre.' },
+    'Advanced Techniques': { slug: 'driving', accent: '#22c55e', accentDark: '#15803d', label: 'Driving Skills', quote: 'Skill and confidence, every kilometre.' },
+    'Defensive Driving': { slug: 'driving', accent: '#22c55e', accentDark: '#15803d', label: 'Driving Skills', quote: 'Skill and confidence, every kilometre.' },
+    // Technical — indigo
+    'Engine': { slug: 'technical', accent: '#6366f1', accentDark: '#4338ca', label: 'Vehicle Technology', quote: 'Understand your machine. Drive smarter.' },
+    'Brakes': { slug: 'technical', accent: '#6366f1', accentDark: '#4338ca', label: 'Vehicle Technology', quote: 'Understand your machine. Drive smarter.' },
+    'Lights': { slug: 'technical', accent: '#6366f1', accentDark: '#4338ca', label: 'Vehicle Technology', quote: 'Understand your machine. Drive smarter.' },
+    'Safety Systems': { slug: 'technical', accent: '#6366f1', accentDark: '#4338ca', label: 'Vehicle Technology', quote: 'Understand your machine. Drive smarter.' },
+    // Loading — cyan
+    'Weight Limits': { slug: 'loading-people-goods', accent: '#06b6d4', accentDark: '#0e7490', label: 'Loading People & Goods', quote: 'Safe loads, safe roads.' },
+    'Passenger Safety': { slug: 'loading-people-goods', accent: '#06b6d4', accentDark: '#0e7490', label: 'Loading People & Goods', quote: 'Safe loads, safe roads.' },
+    'Cargo Securing': { slug: 'loading-people-goods', accent: '#06b6d4', accentDark: '#0e7490', label: 'Loading People & Goods', quote: 'Safe loads, safe roads.' },
+    // General — purple
+    'Road Safety': { slug: 'general-knowledge', accent: '#a855f7', accentDark: '#7e22ce', label: 'General Knowledge', quote: 'Knowledge is the safest vehicle.' },
+    'Environmental': { slug: 'general-knowledge', accent: '#a855f7', accentDark: '#7e22ce', label: 'General Knowledge', quote: 'Knowledge is the safest vehicle.' },
+    'Legal': { slug: 'general-knowledge', accent: '#a855f7', accentDark: '#7e22ce', label: 'General Knowledge', quote: 'Knowledge is the safest vehicle.' },
+    // Emergency — red
+    'Accidents': { slug: 'emergency', accent: '#ef4444', accentDark: '#b91c1c', label: 'Emergency', quote: 'Stay calm. Act fast. Save lives.' },
+    'Breakdowns': { slug: 'emergency', accent: '#ef4444', accentDark: '#b91c1c', label: 'Emergency', quote: 'Stay calm. Act fast. Save lives.' },
+    'First Aid': { slug: 'emergency', accent: '#ef4444', accentDark: '#b91c1c', label: 'Emergency', quote: 'Stay calm. Act fast. Save lives.' },
+    'Emergency Contacts': { slug: 'emergency', accent: '#ef4444', accentDark: '#b91c1c', label: 'Emergency', quote: 'Stay calm. Act fast. Save lives.' },
 };
+
+const DEFAULT_CONFIG = { slug: 'learn', accent: '#eab308', accentDark: '#ca8a04', label: 'Learn', quote: 'Learn. Play. Pass.' };
 
 export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps) {
     const [saving, setSaving] = useState(false);
@@ -81,31 +119,19 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
     const handleSave = async () => {
         setSaving(true);
         try {
-            // ── Canvas: 1200 × 675 (16:9, social-share friendly) ──────────────────
+            // ── Canvas: 1200 × 675 (16:9) ─────────────────────────────────────────
             const W = 1200, H = 675;
             const canvas = document.createElement('canvas');
             canvas.width = W; canvas.height = H;
             const ctx = canvas.getContext('2d');
             if (!ctx) throw new Error('Canvas not supported');
 
-            const slug = CATEGORY_SLUG[topic.sub_group] || 'learn';
+            const cfg = CATEGORY_CONFIG[topic.sub_group] || DEFAULT_CONFIG;
             const siteUrl = 'kesararamwithdigital.tech';
+            const title = isKh ? topic.name_km : topic.name_en;
+            const answer = isKh ? topic.description_km : topic.description_en;
 
-            // ── 1. WHITE background ───────────────────────────────────────────────
-            ctx.fillStyle = '#ffffff';
-            ctx.fillRect(0, 0, W, H);
-
-            // ── 2. BLACK outer border (neobrutalist) ──────────────────────────────
-            ctx.strokeStyle = '#000000';
-            ctx.lineWidth = 6;
-            ctx.strokeRect(3, 3, W - 6, H - 6);
-
-            // ── 3. YELLOW top accent bar ──────────────────────────────────────────
-            ctx.fillStyle = '#eab308';
-            ctx.fillRect(3, 3, W - 6, 8);
-
-            // ── 4. Load assets in parallel ────────────────────────────────────────
-            const loadImg = (src: string, timeout = 3000) => new Promise<HTMLImageElement | null>((resolve) => {
+            const loadImg = (src: string, timeout = 4000) => new Promise<HTMLImageElement | null>((resolve) => {
                 const img = new Image(); img.crossOrigin = 'anonymous';
                 const t = setTimeout(() => resolve(null), timeout);
                 img.onload = () => { clearTimeout(t); resolve(img); };
@@ -116,158 +142,191 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             const [logo, qr, topicImg] = await Promise.all([
                 loadImg('https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg'),
                 loadImg('/brand/qrcode-kwd.png'),
-                topic.primary_image_url ? loadImg(topic.primary_image_url, 5000) : Promise.resolve(null),
+                topic.primary_image_url ? loadImg(topic.primary_image_url, 6000) : Promise.resolve(null),
             ]);
 
-            // ── 5. LEFT COLUMN — image area (x: 20..460, y: 20..H-20) ────────────
-            const imgX = 20, imgY = 20, imgW = 440, imgH = H - 40;
+            // ── 1. Background ─────────────────────────────────────────────────────
+            ctx.fillStyle = '#f9fafb';
+            ctx.fillRect(0, 0, W, H);
 
+            // ── 2. Left panel — dark bg ───────────────────────────────────────────
+            const leftW = 460;
+            ctx.fillStyle = '#111827'; // gray-900
+            ctx.fillRect(0, 0, leftW, H);
+
+            // Accent stripe on left edge
+            ctx.fillStyle = cfg.accent;
+            ctx.fillRect(0, 0, 8, H);
+
+            // ── 3. Category label pill (top-left) ─────────────────────────────────
+            ctx.fillStyle = cfg.accent;
+            ctx.font = 'bold 11px system-ui, Arial, sans-serif';
+            ctx.textAlign = 'left';
+            const catLabel = isKh ? cfg.label : cfg.label.toUpperCase();
+            const catW = ctx.measureText(catLabel).width + 24;
+            roundRect(ctx, 20, 20, catW, 26, 4);
+            ctx.fill();
+            ctx.fillStyle = '#000';
+            ctx.font = 'bold 11px system-ui, Arial, sans-serif';
+            ctx.fillText(catLabel, 32, 37);
+
+            // ── 4. Topic code badge ───────────────────────────────────────────────
+            ctx.fillStyle = 'rgba(255,255,255,0.08)';
+            ctx.font = 'bold 13px monospace';
+            ctx.textAlign = 'left';
+            ctx.fillText(topic.topic_code, 20, 72);
+
+            // ── 5. Image area (centered in left panel) ────────────────────────────
             if (topicImg) {
-                // Image background card — black border + shadow
-                ctx.fillStyle = '#f4f4f5'; // zinc-100
-                roundRect(ctx, imgX, imgY, imgW, imgH, 8);
+                const imgAreaX = 20, imgAreaY = 90, imgAreaW = leftW - 40, imgAreaH = H - 90 - 110;
+                // White card behind image
+                ctx.fillStyle = '#ffffff';
+                roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 6);
                 ctx.fill();
-                ctx.strokeStyle = '#000'; ctx.lineWidth = 3;
-                roundRect(ctx, imgX, imgY, imgW, imgH, 8);
-                ctx.stroke();
-                // Shadow
-                ctx.fillStyle = '#000';
-                roundRect(ctx, imgX + 6, imgY + 6, imgW, imgH, 8);
-                ctx.fill();
-                // Re-draw card on top
-                ctx.fillStyle = '#f4f4f5';
-                roundRect(ctx, imgX, imgY, imgW, imgH, 8);
-                ctx.fill();
-                ctx.strokeStyle = '#000'; ctx.lineWidth = 3;
-                roundRect(ctx, imgX, imgY, imgW, imgH, 8);
+                ctx.strokeStyle = cfg.accent; ctx.lineWidth = 3;
+                roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 6);
                 ctx.stroke();
 
-                // Draw image centered inside card with padding
-                // Image takes up 20% of card height (centered), rest is whitespace
-                const pad = 20;
-                const maxW = imgW - pad * 2;
-                const maxH = Math.floor((imgH - pad * 2) * 0.20); // 20% of available height
+                // Draw image centered, filling most of the card
+                const pad = 24;
+                const maxW = imgAreaW - pad * 2, maxH = imgAreaH - pad * 2;
                 const aspect = topicImg.naturalWidth / topicImg.naturalHeight;
                 let dw = maxW, dh = maxW / aspect;
                 if (dh > maxH) { dh = maxH; dw = maxH * aspect; }
-                const dx = imgX + pad + (maxW - dw) / 2;
-                const dy = imgY + pad + ((imgH - pad * 2) * 0.5 - dh / 2); // vertically centered in upper 70%
+                const dx = imgAreaX + pad + (maxW - dw) / 2;
+                const dy = imgAreaY + pad + (maxH - dh) / 2;
                 ctx.drawImage(topicImg, dx, dy, dw, dh);
 
-                // AI disclaimer — bottom of image card, 30% cap width
-                const disclaimerText = isKh ? '⚠ រូបភាពបង្កើតដោយ AI' : '⚠ AI-generated image';
-                const disclaimerMaxW = imgW * 0.30; // 30% of card width
-                ctx.font = 'bold 10px system-ui, Arial, sans-serif';
-                ctx.fillStyle = 'rgba(0,0,0,0.45)';
+                // AI disclaimer — very subtle, bottom of image card
+                ctx.fillStyle = 'rgba(255,255,255,0.18)';
+                ctx.font = '9px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'center';
-                // Clip text to 30% width
-                ctx.save();
-                ctx.rect(imgX + imgW / 2 - disclaimerMaxW / 2, imgY + imgH - 28, disclaimerMaxW, 20);
-                ctx.clip();
-                ctx.fillText(disclaimerText, imgX + imgW / 2, imgY + imgH - 14);
-                ctx.restore();
+                ctx.fillText(isKh ? 'AI-generated image' : 'AI-generated image', imgAreaX + imgAreaW / 2, imgAreaY + imgAreaH - 8);
             } else {
-                // Placeholder card
-                ctx.fillStyle = '#fef9c3';
-                roundRect(ctx, imgX, imgY, imgW, imgH, 8);
+                // Placeholder
+                ctx.fillStyle = 'rgba(255,255,255,0.06)';
+                roundRect(ctx, 20, 90, leftW - 40, H - 200, 6);
                 ctx.fill();
-                ctx.strokeStyle = '#000'; ctx.lineWidth = 3;
-                roundRect(ctx, imgX, imgY, imgW, imgH, 8);
-                ctx.stroke();
-                ctx.fillStyle = '#000'; ctx.font = 'bold 48px system-ui, Arial, sans-serif';
+                ctx.fillStyle = cfg.accent;
+                ctx.font = 'bold 48px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'center';
-                ctx.fillText('📷', imgX + imgW / 2, imgY + imgH / 2 + 16);
+                ctx.fillText('🚦', leftW / 2, H / 2);
             }
 
-            // ── 6. RIGHT COLUMN — content (x: 480..W-20) ─────────────────────────
-            const rx = 480, ry = 28, rw = W - rx - 20;
+            // ── 6. Right panel content ────────────────────────────────────────────
+            const rx = leftW + 36, ry = 32, rw = W - rx - 32;
 
-            // 6a. KNOWLEDGE CATEGORY badge
-            ctx.fillStyle = '#000';
-            ctx.font = 'bold 11px system-ui, Arial, sans-serif';
-            ctx.textAlign = 'left';
-            const badgeText = 'KNOWLEDGE CATEGORY';
-            const bw = ctx.measureText(badgeText).width + 20;
-            ctx.fillRect(rx, ry, bw, 22);
-            ctx.fillStyle = '#eab308';
-            ctx.font = 'bold 11px system-ui, Arial, sans-serif';
-            ctx.fillText(badgeText, rx + 10, ry + 15);
-
-            // 6b. Topic code + subgroup — small, muted
-            ctx.fillStyle = 'rgba(0,0,0,0.25)';
-            ctx.font = 'bold 12px monospace';
-            ctx.textAlign = 'left';
-            const metaText = topic.sub_group ? `${topic.topic_code} · ${topic.sub_group}` : topic.topic_code;
-            ctx.fillText(metaText, rx, ry + 44);
-
-            // 6c. Title — large, black, bold
-            const title = isKh ? topic.name_km : topic.name_en;
-            ctx.fillStyle = '#000';
-            ctx.font = 'bold 36px system-ui, Arial, sans-serif';
-            ctx.textAlign = 'left';
-            const titleLines = wrapText(ctx, title, rx, ry + 72, rw, 46, 3);
-            const titleBottom = ry + 72 + titleLines * 46;
-
-            // 6d. Answer label bar
-            const answerLabelY = titleBottom + 16;
-            ctx.fillStyle = '#000';
-            ctx.fillRect(rx, answerLabelY, rw, 26);
-            ctx.fillStyle = '#eab308';
+            // 6a. KNOWLEDGE CATEGORY micro-label
+            ctx.fillStyle = cfg.accentDark;
             ctx.font = 'bold 10px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
-            ctx.fillText('ANSWER', rx + 8, answerLabelY + 17);
+            ctx.fillText('KNOWLEDGE CATEGORY', rx, ry + 12);
 
-            // 6e. Answer text — inside a light box
-            const answerBoxY = answerLabelY + 26;
-            const answer = isKh ? topic.description_km : topic.description_en;
-            const answerBoxH = 100;
-            ctx.fillStyle = '#fafafa';
+            // 6b. Accent underline
+            ctx.fillStyle = cfg.accent;
+            ctx.fillRect(rx, ry + 18, 48, 3);
+
+            // 6c. Title — large, black, bold
+            ctx.fillStyle = '#111827';
+            ctx.font = 'bold 38px system-ui, Arial, sans-serif';
+            const titleLines = wrapText(ctx, title, rx, ry + 62, rw, 48, 3);
+            const titleBottom = ry + 62 + titleLines * 48;
+
+            // 6d. Topic code + subgroup — muted
+            ctx.fillStyle = 'rgba(0,0,0,0.3)';
+            ctx.font = '12px monospace';
+            const metaText = topic.sub_group ? `${topic.topic_code}  ·  ${topic.sub_group}` : topic.topic_code;
+            ctx.fillText(metaText, rx, titleBottom + 18);
+
+            // 6e. Divider
+            ctx.fillStyle = cfg.accent;
+            ctx.fillRect(rx, titleBottom + 30, rw, 3);
+
+            // 6f. DESCRIPTION label bar
+            const descLabelY = titleBottom + 44;
+            ctx.fillStyle = '#22c55e'; // emerald — matches web UI description bar
+            ctx.fillRect(rx, descLabelY, rw, 24);
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 9px system-ui, Arial, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('DESCRIPTION', rx + 10, descLabelY + 16);
+
+            // 6g. Answer text box
+            const answerBoxY = descLabelY + 24;
+            const answerBoxH = 110;
+            ctx.fillStyle = '#f0fdf4'; // emerald-50
             ctx.fillRect(rx, answerBoxY, rw, answerBoxH);
-            ctx.strokeStyle = '#000'; ctx.lineWidth = 2;
+            ctx.strokeStyle = '#86efac'; ctx.lineWidth = 2; // emerald-300
             ctx.strokeRect(rx, answerBoxY, rw, answerBoxH);
             if (answer) {
-                ctx.fillStyle = '#000';
-                ctx.font = 'bold 18px system-ui, Arial, sans-serif';
+                ctx.fillStyle = '#14532d'; // emerald-900
+                ctx.font = 'bold 17px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'left';
-                wrapText(ctx, answer, rx + 10, answerBoxY + 26, rw - 20, 26, 3);
+                wrapText(ctx, answer, rx + 12, answerBoxY + 28, rw - 24, 26, 3);
             }
 
-            // ── 7. FOOTER BAR ─────────────────────────────────────────────────────
-            const footerY = H - 90;
-            ctx.fillStyle = '#000';
-            ctx.fillRect(0, footerY, W, 90);
+            // 6h. Quote
+            const quoteY = answerBoxY + answerBoxH + 20;
+            ctx.fillStyle = cfg.accent;
+            ctx.font = 'italic bold 14px Georgia, serif';
+            ctx.textAlign = 'left';
+            ctx.fillText(`"${cfg.quote}"`, rx, quoteY);
 
-            // Logo in footer
+            // ── 7. Footer bar ─────────────────────────────────────────────────────
+            const footerH = 80;
+            const footerY = H - footerH;
+
+            // Footer bg — dark
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, footerY, W, footerH);
+
+            // Accent top border on footer
+            ctx.fillStyle = cfg.accent;
+            ctx.fillRect(0, footerY, W, 4);
+
+            // Logo
             if (logo) {
+                ctx.globalAlpha = 0.95;
+                ctx.drawImage(logo, 20, footerY + 14, 44, 44);
                 ctx.globalAlpha = 1;
-                ctx.drawImage(logo, 20, footerY + 15, 52, 52);
             }
 
             // Brand name
-            ctx.fillStyle = '#eab308';
-            ctx.font = 'bold 18px system-ui, Arial, sans-serif';
+            ctx.fillStyle = cfg.accent;
+            ctx.font = 'bold 16px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
-            ctx.fillText('KESARARAM WITH DIGITAL', 84, footerY + 32);
+            ctx.fillText('KESARARAM WITH DIGITAL', 76, footerY + 30);
 
-            // Promo text
-            ctx.fillStyle = 'rgba(255,255,255,0.6)';
-            ctx.font = '12px system-ui, Arial, sans-serif';
+            // Tagline
+            ctx.fillStyle = 'rgba(255,255,255,0.55)';
+            ctx.font = '11px system-ui, Arial, sans-serif';
             ctx.fillText(isKh
                 ? 'រៀនបើកបរ ប្រកបដោយសុវត្ថិភាព — Learn to drive safely'
                 : 'Master Cambodia\'s driving theory — Learn. Play. Pass.',
-                84, footerY + 52);
+                76, footerY + 50);
 
             // URL
-            ctx.fillStyle = 'rgba(255,255,255,0.35)';
-            ctx.font = 'bold 11px system-ui, Arial, sans-serif';
-            ctx.fillText(`${siteUrl}/learn/${slug}`, 84, footerY + 70);
+            ctx.fillStyle = 'rgba(255,255,255,0.3)';
+            ctx.font = 'bold 10px system-ui, Arial, sans-serif';
+            ctx.fillText(`${siteUrl}/learn/${cfg.slug}`, 76, footerY + 68);
 
-            // QR code — bottom right
+            // Copyright
+            ctx.fillStyle = 'rgba(255,255,255,0.25)';
+            ctx.font = '10px system-ui, Arial, sans-serif';
+            ctx.textAlign = 'right';
+            ctx.fillText(`© ${new Date().getFullYear()} Kesararam With Digital. All rights reserved.`, W - (qr ? 110 : 20), footerY + 68);
+
+            // QR code
             if (qr) {
-                ctx.drawImage(qr, W - 100, footerY + 5, 80, 80);
+                ctx.drawImage(qr, W - 96, footerY + 4, 72, 72);
             }
 
-            // ── 8. Download ───────────────────────────────────────────────────────
+            // ── 8. Outer border ───────────────────────────────────────────────────
+            ctx.strokeStyle = '#000';
+            ctx.lineWidth = 4;
+            ctx.strokeRect(2, 2, W - 4, H - 4);
+
+            // ── 9. Download ───────────────────────────────────────────────────────
             canvas.toBlob((blob) => {
                 if (!blob) throw new Error('Failed to create image');
                 const url = URL.createObjectURL(blob);

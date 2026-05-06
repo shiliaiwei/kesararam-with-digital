@@ -55,6 +55,33 @@ const UI = {
   },
 } as const;
 
+// ── Image with skeleton loader + stable height + AI disclaimer ───────────────
+function ImageWithSkeleton({ src, alt }: { src: string; alt: string }) {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <div className="relative w-full flex items-center justify-center" style={{ height: "240px" }}>
+      {!loaded && (
+        <div className="absolute inset-0 bg-zinc-100 animate-pulse" />
+      )}
+      <img
+        src={src}
+        alt={alt}
+        onLoad={() => setLoaded(true)}
+        className={`max-h-full max-w-full object-contain transition-opacity duration-300 ${loaded ? "opacity-100" : "opacity-0"}`}
+        style={{ maxHeight: "220px" }}
+      />
+      {loaded && (
+        <span
+          className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] font-medium text-black/10 pointer-events-none select-none"
+          style={{ filter: "blur(0.4px)", whiteSpace: "nowrap" }}
+        >
+          AI-generated image
+        </span>
+      )}
+    </div>
+  );
+}
+
 function DetailPanel({
   topic, isKh, kf, t, onClose,
 }: {
@@ -163,13 +190,8 @@ function DetailPanel({
 
         {/* ── ZONE 1: Visual anchor — full width image ── */}
         {topic.primary_image_url && (
-          <div className="bg-white flex items-center justify-center" style={{ maxHeight: "240px", minHeight: "120px" }}>
-            <img
-              src={topic.primary_image_url}
-              alt={name}
-              className="w-full h-full object-contain"
-              style={{ maxHeight: "240px" }}
-            />
+          <div className="bg-white flex items-center justify-center relative" style={{ height: "240px" }}>
+            <ImageWithSkeleton src={topic.primary_image_url} alt={name} />
           </div>
         )}
 
@@ -214,6 +236,7 @@ function DetailPanel({
 
           {/* ── Audio + Save row ── */}
           <div className="mt-2 flex items-center justify-between gap-2">
+            <SaveCardButton topic={topic} isKh={isKh} size="lg" />
             {audioUrl && (
               <button
                 onClick={handleAudio}
@@ -232,7 +255,6 @@ function DetailPanel({
                 )}
               </button>
             )}
-            <SaveCardButton topic={topic} isKh={isKh} size="lg" />
           </div>
         </div>
       </div>
@@ -472,7 +494,7 @@ export function PriorityCatalogue() {
                     </div>
                     <div className={`border-t-2 px-1 py-1.5 w-full transition-colors ${isSelected ? "border-yellow-500 bg-yellow-500" : "border-black bg-zinc-50 group-hover:border-yellow-500 group-hover:bg-yellow-500"
                       }`}>
-                      <div className="font-mono text-[9px] font-black text-center text-black leading-none">
+                      <div className="font-mono text-[9px] font-black text-center text-black leading-none opacity-50">
                         {topic.topic_code}
                       </div>
                     </div>
