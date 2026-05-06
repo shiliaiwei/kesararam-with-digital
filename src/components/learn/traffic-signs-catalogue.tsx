@@ -427,18 +427,18 @@ function DetailPanel({
             {audioUrl && (
               <button
                 onClick={handleAudio}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black font-black text-xs transition-all select-none rounded ${loadingAudio ? "bg-zinc-100 text-zinc-400 cursor-wait"
+                className={`inline-flex items-center gap-2 px-5 py-2.5 border-2 border-black font-black text-sm transition-all select-none ${loadingAudio ? "bg-zinc-100 text-zinc-400 cursor-wait"
                   : playing ? "bg-black text-yellow-400"
-                    : "bg-white hover:bg-yellow-400"
+                    : "bg-yellow-400 hover:bg-yellow-500 text-black shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000]"
                   }`}
                 style={kf}
               >
                 {loadingAudio ? (
                   <><span className="flex gap-0.5 items-end h-3">{[60, 100, 75].map((h, i) => <span key={i} className="w-0.5 bg-zinc-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 120}ms` }} />)}</span>{isKh ? "ផ្ទុក..." : "Loading..."}</>
                 ) : playing ? (
-                  <><span className="flex gap-0.5 items-end h-3">{[60, 100, 75, 90, 55].map((h, i) => <span key={i} className="w-0.5 bg-yellow-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />)}</span>{t.stopAudio}</>
+                  <><span className="flex gap-0.5 items-end h-4">{[60, 100, 75, 90, 55].map((h, i) => <span key={i} className="w-0.5 bg-yellow-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />)}</span>{t.stopAudio}</>
                 ) : (
-                  <><Volume2 size={13} />{t.playAudio}</>
+                  <><Volume2 size={16} />{t.playAudio}</>
                 )}
               </button>
             )}

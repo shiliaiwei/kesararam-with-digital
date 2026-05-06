@@ -136,6 +136,11 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
       )}
 
       <div className="px-4 pb-4 pt-3">
+        {/* ── Question title — centered ── */}
+        <p className="text-base font-black text-black text-center mb-3 leading-snug" style={kf}>
+          {isKh ? topic.name_km : topic.name_en}
+        </p>
+
         {/* Answer zone — orange theme */}
         {answer && (
           <div className="rounded overflow-hidden border border-orange-400">
@@ -176,15 +181,15 @@ function FooterRow({ topic, isKh, t, accentPlay, accentStop }: {
   const { playing, loading, toggle } = useAudio(audioUrl || null);
   return (
     <div className="px-3 py-2 border-t border-zinc-100 bg-zinc-50 flex items-center justify-between gap-2">
-      {/* Save — left */}
+      {/* Save — left (icon only) */}
       <SaveCardButton topic={topic} isKh={isKh} size="lg" />
-      {/* Audio — right */}
+      {/* Audio — right (prominent) */}
       {(audioUrlEn || audioUrlKm) ? (
         <button onClick={toggle} style={kf}
-          className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black font-black text-xs transition-all select-none ${loading ? "bg-zinc-100 text-zinc-400 cursor-wait" : playing ? `bg-black ${accentStop}` : `bg-white ${accentPlay}`}`}>
+          className={`inline-flex items-center gap-2 px-5 py-2.5 border-2 border-black font-black text-sm transition-all select-none ${loading ? "bg-zinc-100 text-zinc-400 cursor-wait" : playing ? `bg-black ${accentStop}` : `${accentPlay} text-black shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000]`}`}>
           {loading ? (<><span className="flex gap-0.5 items-end h-3">{[60, 100, 75].map((h, i) => <span key={i} className="w-0.5 bg-zinc-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 120}ms` }} />)}</span>{isKh ? "ផ្ទុក..." : "Loading..."}</>)
-            : playing ? (<><span className="flex gap-0.5 items-end h-3">{[60, 100, 75, 90, 55].map((h, i) => <span key={i} className="w-0.5 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms`, background: 'currentColor' }} />)}</span>{t.stopAudio}</>)
-              : (<><Volume2 size={13} />{t.playAudio}</>)}
+            : playing ? (<><span className="flex gap-0.5 items-end h-4">{[60, 100, 75, 90, 55].map((h, i) => <span key={i} className="w-0.5 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms`, background: 'currentColor' }} />)}</span>{t.stopAudio}</>)
+              : (<><Volume2 size={16} />{t.playAudio}</>)}
         </button>
       ) : <span />}
     </div>

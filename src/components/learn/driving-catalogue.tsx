@@ -140,6 +140,11 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
       )}
 
       <div className="px-4 pb-4 pt-3">
+        {/* ── Question title — centered ── */}
+        <p className="text-base font-black text-black text-center mb-3 leading-snug" style={kf}>
+          {isKh ? topic.name_km : topic.name_en}
+        </p>
+
         {/* Answer zone */}
         {answer && (
           <div className={`rounded overflow-hidden border transition-all duration-300 ${playing ? "border-yellow-400" : "border-emerald-400"}`}>
@@ -173,24 +178,24 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
           </div>
         )}
 
-        {/* Save + Audio row — Save left, Audio right */}
+        {/* Save + Audio row — Save left (icon), Audio right (prominent) */}
         <div className="mt-3 flex items-center justify-between gap-2">
           <SaveCardButton topic={topic} isKh={isKh} size="lg" />
           {(audioUrlEn || audioUrlKm) && (
             <button
               onClick={toggle}
-              className={`inline-flex items-center gap-2 px-4 py-2 border-2 border-black font-black text-xs transition-all select-none rounded ${loading ? "bg-zinc-100 text-zinc-400 cursor-wait"
+              className={`inline-flex items-center gap-2 px-5 py-2.5 border-2 border-black font-black text-sm transition-all select-none ${loading ? "bg-zinc-100 text-zinc-400 cursor-wait"
                 : playing ? "bg-black text-green-400"
-                  : "bg-white hover:bg-green-400"
+                  : "bg-green-400 hover:bg-green-500 text-black shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000]"
                 }`}
               style={kf}
             >
               {loading ? (
                 <><span className="flex gap-0.5 items-end h-3">{[60, 100, 75].map((h, i) => <span key={i} className="w-0.5 bg-zinc-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 120}ms` }} />)}</span>{isKh ? "ផ្ទុក..." : "Loading..."}</>
               ) : playing ? (
-                <><span className="flex gap-0.5 items-end h-3">{[60, 100, 75, 90, 55].map((h, i) => <span key={i} className="w-0.5 bg-green-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />)}</span>{t.stopAudio}</>
+                <><span className="flex gap-0.5 items-end h-4">{[60, 100, 75, 90, 55].map((h, i) => <span key={i} className="w-0.5 bg-green-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />)}</span>{t.stopAudio}</>
               ) : (
-                <><Volume2 size={14} />{t.playAudio}</>
+                <><Volume2 size={16} />{t.playAudio}</>
               )}
             </button>
           )}
