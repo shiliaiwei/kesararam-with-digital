@@ -121,14 +121,14 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
         )}
       </div>
 
-      {/* ── Image — capped height so card stays compact ── */}
+      {/* ── Image — full width, capped at 200px ── */}
       {topic.primary_image_url && (
-        <div className="overflow-hidden" style={{ maxHeight: "160px" }}>
+        <div className="overflow-hidden" style={{ maxHeight: "200px" }}>
           <img
             src={topic.primary_image_url}
             alt={isKh ? topic.name_km : topic.name_en}
             className="w-full object-cover"
-            style={{ maxHeight: "160px" }}
+            style={{ maxHeight: "200px" }}
           />
         </div>
       )}

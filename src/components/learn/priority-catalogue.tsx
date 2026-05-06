@@ -184,12 +184,12 @@ function DetailPanel({
 
         {/* ── ZONE 2: Visual anchor — full width image ── */}
         {topic.primary_image_url && (
-          <div className="overflow-hidden" style={{ maxHeight: "160px" }}>
+          <div className="bg-white flex items-center justify-center" style={{ maxHeight: "240px", minHeight: "120px" }}>
             <img
               src={topic.primary_image_url}
               alt={name}
-              className="w-full object-cover"
-              style={{ maxHeight: "160px" }}
+              className="w-full h-full object-contain"
+              style={{ maxHeight: "240px" }}
             />
           </div>
         )}

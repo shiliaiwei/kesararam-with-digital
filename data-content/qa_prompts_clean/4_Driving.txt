@@ -349,6 +349,7 @@ DRV-Q049
 [encouraging] The answer is [certain] Look to the back of the vehicle clearly, give signals, and drive backward slowly
 ----------------------------------------------------------------------
 
+
 DRV-Q050
 [intrigue] នៅពេលបត់ឆ្វេង ឬ ស្ដាំ តើអ្នកបើកបរត្រូវឲ្យសញ្ញាបត់ចំងាយយ៉ាងតិចប៉ុន្មានម៉ែត្រពីផ្លូវបត់ ?
 [inspiration] ចម្លើយគឺ [confident] យ៉ាងតិច ២០ ម៉ែត្រ

@@ -215,6 +215,10 @@ Outside a built-up area, you are driving at the speed of 50km/h. How far at leas
 The answer is At least 30m
 ----------------------------------------------------------------------
 
+
+
+
+
 DRV-Q027
 Sub-group: Advanced Techniques
 តើការបើកបរ ត្រូវមើលទៅមុខយ៉ាងដូចម្ដេច ?
@@ -326,6 +330,8 @@ Sub-group: Defensive Driving
 What are reasons that make the wheels swerve off when driving on the dry road?
 The answer is Speed up, drive very fast, apply the brake firmly, and steer firmly.
 ----------------------------------------------------------------------
+
+
 
 DRV-Q041
 Sub-group: Defensive Driving
