@@ -136,6 +136,13 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
         </div>
       )}
 
+      {/* ── Title — prominent, above answer ── */}
+      <div className="mx-4 mt-4">
+        <h2 className="text-2xl md:text-3xl font-black leading-tight text-black" style={kf}>
+          {isKh ? topic.name_km : topic.name_en}
+        </h2>
+      </div>
+
       {/* ── ZONE 3: Answer — green = correct/safe (color psychology) ── */}
       {answer && (
         <div className={`mx-4 mt-3 rounded-lg overflow-hidden border-2 transition-all duration-300 ${playing ? "border-yellow-400 shadow-[0_0_0_3px_rgba(250,204,21,0.25)]" : "border-emerald-400"
