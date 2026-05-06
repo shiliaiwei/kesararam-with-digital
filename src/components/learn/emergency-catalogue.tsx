@@ -96,13 +96,18 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
   const subGroup = SUB_GROUPS.find((s) => s.key === topic.sub_group);
   return (
     <div className="border-t-2 border-black bg-white">
-      <div className="px-4 pt-3 pb-2 flex items-center gap-2 flex-wrap">
-        <span className="font-mono text-xs font-black bg-zinc-100 border-2 border-zinc-300 text-zinc-600 px-2 py-1 rounded leading-none">{topic.topic_code}</span>
-        {subGroup && <span className="text-xs font-bold bg-zinc-100 border border-zinc-300 text-zinc-500 px-2 py-1 rounded uppercase tracking-wide leading-none" style={kf}>{isKh ? subGroup.km : subGroup.en}</span>}
+      <div className="px-4 pt-2 pb-1">
+        <span className="text-[10px] font-mono font-bold text-zinc-900/20 select-none">
+          {topic.topic_code}{subGroup ? ` · ${isKh ? subGroup.km : subGroup.en}` : ""}
+        </span>
       </div>
       {topic.primary_image_url && (
-        <div className="w-full">
-          <img src={topic.primary_image_url} alt={isKh ? topic.name_km : topic.name_en} className="w-full h-auto block" />
+        <div className="w-full relative">
+          <img src={topic.primary_image_url} alt={isKh ? topic.name_km : topic.name_en} className="w-full h-auto block select-none pointer-events-none" draggable={false} onContextMenu={(e) => e.preventDefault()} />
+          <div className="absolute bottom-0 left-0 right-0 bg-blue-600/90 px-3 py-1.5 flex items-center gap-1.5">
+            <svg className="w-3 h-3 text-white shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" /></svg>
+            <p className="text-[10px] text-white font-bold leading-tight" style={kf}>{isKh ? "រូបភាពនេះបង្កើតដោយ AI — អាចមិនត្រូវនឹងចម្លើយពិតប្រាកដ" : "AI-generated image for illustration only — may not exactly match the answer"}</p>
+          </div>
         </div>
       )}
       <div className="px-4 pb-4 pt-3">
