@@ -211,6 +211,7 @@ export function RoadTrafficCatalogue() {
   const [questionNumbers, setQuestionNumbers] = useState<Record<number, number>>({});
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setLoading(true);
     fetch("/api/public/topics?categoryId=2&status=published")
       .then((r) => r.json())
@@ -252,7 +253,7 @@ export function RoadTrafficCatalogue() {
   const isDefaultFilter = !subGroupFilter && !search.trim();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-4">
 
       {/* ── Filter + Search ───────────────────────────────────────── */}
       <div className="max-w-4xl mx-auto px-4 pt-5 pb-5">

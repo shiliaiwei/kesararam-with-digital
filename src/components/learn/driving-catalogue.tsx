@@ -209,6 +209,7 @@ export function DrivingCatalogue() {
   const [questionNumbers, setQuestionNumbers] = useState<Record<number, number>>({});
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setLoading(true);
     fetch("/api/public/topics?categoryId=4&status=published")
       .then((r) => r.json())
@@ -250,7 +251,7 @@ export function DrivingCatalogue() {
   const isDefaultFilter = !subGroupFilter && !search.trim();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-4">
 
       {/* ── Filter + Search ───────────────────────────────────────── */}
       <div className="max-w-4xl mx-auto px-4 pb-5">

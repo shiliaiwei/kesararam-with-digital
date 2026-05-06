@@ -70,15 +70,6 @@ function DetailPanel({
   const playingRef = useRef(false);
   const panelRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (panelRef.current) {
-        panelRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      }
-    }, 100);
-    return () => clearTimeout(timer);
-  }, [topic.id]);
-
   const name = isKh ? topic.name_km : topic.name_en;
   const description = isKh ? topic.description_km : topic.description_en;
   const audioUrl = isKh ? topic.audio_url_km : topic.audio_url_en;
@@ -301,7 +292,7 @@ export function PriorityCatalogue() {
     setSelectedTopic(null);
   };
 
-  useEffect(() => { fetchTopics(); }, []);
+  useEffect(() => { window.scrollTo(0, 0); fetchTopics(); }, []);
 
   useEffect(() => {
     let filtered = [...topics];
@@ -339,7 +330,7 @@ export function PriorityCatalogue() {
   const isDefaultFilter = subGroupFilter === "";
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pt-4">
 
       {/* Filter Tag Bar */}
       <div className="max-w-7xl mx-auto px-4 pb-4">
