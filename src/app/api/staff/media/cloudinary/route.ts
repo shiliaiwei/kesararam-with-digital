@@ -33,14 +33,26 @@ export async function GET(request: NextRequest) {
     const allowedFormats = ALLOWED_FORMATS[type] || ALLOWED_FORMATS.image;
 
     try {
-      // Fetch all resources — search/filter is done client-side
-      const result = await cloudinary.api.resources({
-        type: "upload",
-        resource_type: resourceType,
-        max_results: 500,
-      });
+      // Fetch ALL resources using pagination (Cloudinary max_results cap is 500 per page)
+      let allResources: any[] = [];
+      let nextCursor: string | undefined = undefined;
 
-      if (!result || !result.resources) {
+      do {
+        const params: any = {
+          type: "upload",
+          resource_type: resourceType,
+          max_results: 500,
+        };
+        if (nextCursor) params.next_cursor = nextCursor;
+
+        const result = await cloudinary.api.resources(params);
+
+        if (!result || !result.resources) break;
+        allResources = allResources.concat(result.resources);
+        nextCursor = result.next_cursor;
+      } while (nextCursor);
+
+      if (allResources.length === 0) {
         return NextResponse.json({
           assets: [],
           total: 0,
@@ -48,7 +60,7 @@ export async function GET(request: NextRequest) {
       }
 
       // Filter by allowed formats and transform — skip 0-byte broken assets
-      const assets = result.resources
+      const assets = allResources
         .filter((resource: any) => {
           const format = (resource.format || "").toLowerCase();
           if (!allowedFormats.includes(format)) return false;
@@ -59,7 +71,7 @@ export async function GET(request: NextRequest) {
           const pathParts = resource.public_id.split("/");
           const filename = pathParts.pop() || resource.public_id;
           const folder = pathParts.length > 0 ? pathParts.join("/") : "root";
-          
+
           return {
             public_id: resource.public_id,
             secure_url: resource.secure_url,
@@ -75,7 +87,7 @@ export async function GET(request: NextRequest) {
           };
         });
 
-      console.log(`Found ${assets.length} ${type} assets (filtered from ${result.resources.length})`);
+      console.log(`Found ${assets.length} ${type} assets (fetched ${allResources.length} total from Cloudinary)`);
 
       // Set no-cache headers
       const response = NextResponse.json({
@@ -91,9 +103,9 @@ export async function GET(request: NextRequest) {
     } catch (err: any) {
       console.error("Failed to fetch resources:", err.message);
       return NextResponse.json(
-        { 
+        {
           error: err.message || "Failed to fetch assets",
-          assets: [] 
+          assets: []
         },
         { status: 500 }
       );
@@ -101,9 +113,9 @@ export async function GET(request: NextRequest) {
   } catch (error: any) {
     console.error("Error in staff media cloudinary API:", error);
     return NextResponse.json(
-      { 
-        error: error.message || "Failed to fetch assets", 
-        assets: [] 
+      {
+        error: error.message || "Failed to fetch assets",
+        assets: []
       },
       { status: 500 }
     );

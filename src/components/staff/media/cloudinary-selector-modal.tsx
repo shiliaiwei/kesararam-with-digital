@@ -101,10 +101,11 @@ export function CloudinarySelectorModal({
       list = list.filter((a) => (a.folder || "root") === selectedFolder);
     }
 
-    // Search — match against filename OR full public_id (case-insensitive, no language pre-filter)
+    // Search — match against filename OR full public_id (case-insensitive)
+    // NOTE: search is applied AFTER folder filter so folder selection is respected
     if (search.trim()) {
       const q = search.trim().toLowerCase();
-      list = assets.filter(
+      list = list.filter(
         (a) =>
           a.filename.toLowerCase().includes(q) ||
           a.public_id.toLowerCase().includes(q)
