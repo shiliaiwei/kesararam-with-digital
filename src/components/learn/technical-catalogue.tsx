@@ -252,7 +252,7 @@ export function TechnicalCatalogue() {
       {/* ── Back to Categories ─────────────────────────────────────── */}
       <div className="max-w-4xl mx-auto px-4 pb-3">
         <a
-          href="/learn"
+          href="/learn#categories"
           className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-black bg-white font-black text-xs hover:bg-yellow-400 transition-all shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000]"
           style={kf}
         >

@@ -21,10 +21,10 @@ const CATEGORIES = [
 ] as const;
 
 const STATS = [
-  { value: "500+", labelEn: "Questions",    labelKh: "សំណួរ",          color: "#eab308" },
-  { value: "8",    labelEn: "Categories",   labelKh: "ប្រភេទ",          color: "#3b82f6" },
-  { value: "3",    labelEn: "Study Modes",  labelKh: "របៀបរៀន",         color: "#22c55e" },
-  { value: "KH/EN",labelEn: "Bilingual",    labelKh: "ពីរភាសា",         color: "#a855f7" },
+  { value: "500+", labelEn: "Questions", labelKh: "សំណួរ", color: "#eab308" },
+  { value: "8", labelEn: "Categories", labelKh: "ប្រភេទ", color: "#3b82f6" },
+  { value: "3", labelEn: "Study Modes", labelKh: "របៀបរៀន", color: "#22c55e" },
+  { value: "KH/EN", labelEn: "Bilingual", labelKh: "ពីរភាសា", color: "#a855f7" },
 ];
 
 export default function LearnPage() {
@@ -150,7 +150,7 @@ export default function LearnPage() {
       </div>
 
       {/* ── Categories ── */}
-      <div className="dot-bg py-16">
+      <div id="categories" className="dot-bg py-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <div>

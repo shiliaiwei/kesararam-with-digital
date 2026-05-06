@@ -70,10 +70,11 @@ function ImageWithSkeleton({ src, alt }: { src: string; alt: string }) {
         className={`max-h-full max-w-full object-contain transition-opacity duration-300 ${loaded ? "opacity-100" : "opacity-0"}`}
         style={{ maxHeight: "220px" }}
       />
+      {/* AI disclaimer — 9% opacity, blurred, no background, centered on image */}
       {loaded && (
         <span
-          className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] font-medium text-black/10 pointer-events-none select-none"
-          style={{ filter: "blur(0.4px)", whiteSpace: "nowrap" }}
+          className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[9px] font-medium text-black pointer-events-none select-none"
+          style={{ opacity: 0.09, filter: "blur(0.3px)", whiteSpace: "nowrap" }}
         >
           AI-generated image
         </span>
@@ -196,8 +197,8 @@ function DetailPanel({
         )}
 
         <div className="px-3 pb-3">
-          {/* ── Title ── */}
-          <p className="text-sm font-black leading-snug text-black mt-2 mb-2" style={kf}>
+          {/* ── Title — centered ── */}
+          <p className="text-sm font-black leading-snug text-black mt-2 mb-2 text-center" style={kf}>
             {name}
           </p>
 
@@ -345,7 +346,7 @@ export function PriorityCatalogue() {
       {/* ── Back to Categories ─────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 pb-3">
         <a
-          href="/learn"
+          href="/learn#categories"
           className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-black bg-white font-black text-xs hover:bg-yellow-400 transition-all shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000]"
           style={kf}
         >
