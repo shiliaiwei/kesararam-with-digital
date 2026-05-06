@@ -346,19 +346,7 @@ function DetailPanel({
       {/* Body */}
       <div className="border-t-2 border-black bg-white">
 
-        {/* ── ZONE 1: Context strip — code + category (low visual weight) ── */}
-        <div className="px-4 pt-3 pb-1 flex items-center gap-2">
-          <span className="font-mono text-[10px] font-black bg-zinc-100 border border-zinc-300 text-zinc-500 px-2 py-0.5 rounded">
-            {topic.topic_code}
-          </span>
-          {subGroupLabel && (
-            <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider" style={kf}>
-              {isKh ? subGroupLabel.km : subGroupLabel.en}
-            </span>
-          )}
-        </div>
-
-        {/* ── ZONE 2: Visual anchor — full width image ── */}
+        {/* ── ZONE 1: Visual anchor — full width image ── */}
         {topic.primary_image_url && (
           <div className="bg-white flex items-center justify-center" style={{ maxHeight: "240px", minHeight: "120px" }}>
             <img
@@ -565,6 +553,18 @@ export function TrafficSignsCatalogue() {
 
   return (
     <div className="min-h-screen bg-white pt-4">
+
+      {/* ── Back to Categories ─────────────────────────────────────── */}
+      <div className="max-w-7xl mx-auto px-4 pb-3">
+        <a
+          href="/learn"
+          className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-black bg-white font-black text-xs hover:bg-yellow-400 transition-all shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000]"
+          style={kf}
+        >
+          <ArrowLeft size={13} />
+          {t.backButton}
+        </a>
+      </div>
 
       {/* ── Filter Tag Bar ─────────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 pb-4">

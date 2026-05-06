@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useMemo } from "react";
-import { Search, X, Volume2, ChevronDown, ChevronUp } from "lucide-react";
+import { Search, ArrowLeft, X, Volume2, ChevronDown, ChevronUp } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { SaveCardButton } from "./save-card-button";
 
@@ -101,11 +101,6 @@ function useAudio(url: string | null) {
 // ── Answer card ───────────────────────────────────────────────────────────────
 function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof UI.en }) {
   const kf = isKh ? { fontFamily: "Siemreap, sans-serif" } : {};
-  const audioUrlEn = topic.audio_url_en || "";
-  const audioUrlKm = topic.audio_url_km || "";
-  const audioUrl = isKh ? (audioUrlKm || audioUrlEn) : (audioUrlEn || audioUrlKm);
-  const { playing, loading, toggle } = useAudio(audioUrl || null);
-
   const answer = isKh ? topic.description_km : topic.description_en;
   const subGroup = SUB_GROUPS.find((s) => s.key === topic.sub_group);
 
@@ -143,21 +138,12 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
       <div className="px-4 pb-4 pt-3">
         {/* Answer zone — orange theme */}
         {answer && (
-          <div className={`rounded overflow-hidden border transition-all duration-300 ${playing ? "border-yellow-400" : "border-orange-400"}`}>
-            <div className={`px-3 py-1.5 flex items-center gap-2 transition-colors duration-300 ${playing ? "bg-yellow-400" : "bg-orange-500"}`}>
+          <div className="rounded overflow-hidden border border-orange-400">
+            <div className="px-3 py-1.5 bg-orange-500">
               <span className="text-[10px] font-black uppercase tracking-widest text-white" style={kf}>{t.answer}</span>
-              {playing && (
-                <span className="flex gap-0.5 items-end h-3 ml-auto">
-                  {[60, 100, 75, 90, 55].map((h, i) => (
-                    <span key={i} className="w-0.5 bg-black rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />
-                  ))}
-                </span>
-              )}
             </div>
-            <div className={`px-3 py-3 transition-colors duration-300 ${playing ? "bg-yellow-50" : "bg-orange-50"}`}>
-              <p className={`font-bold text-sm leading-relaxed ${playing ? "text-black" : "text-orange-900"}`} style={kf}>
-                {answer}
-              </p>
+            <div className="px-3 py-3 bg-orange-50">
+              <p className="font-bold text-sm leading-relaxed text-orange-900" style={kf}>{answer}</p>
             </div>
           </div>
         )}
@@ -173,29 +159,32 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
             </div>
           </div>
         )}
-
-        {/* Audio button — always shown if any audio URL exists */}
-        {(audioUrlEn || audioUrlKm) && (
-          <div className="mt-3">
-            <button
-              onClick={toggle}
-              className={`inline-flex items-center gap-2 px-4 py-2 border-2 border-black font-black text-xs transition-all select-none rounded ${loading ? "bg-zinc-100 text-zinc-400 cursor-wait"
-                : playing ? "bg-black text-orange-400"
-                  : "bg-white hover:bg-orange-400"
-                }`}
-              style={kf}
-            >
-              {loading ? (
-                <><span className="flex gap-0.5 items-end h-3">{[60, 100, 75].map((h, i) => <span key={i} className="w-0.5 bg-zinc-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 120}ms` }} />)}</span>{isKh ? "ផ្ទុក..." : "Loading..."}</>
-              ) : playing ? (
-                <><span className="flex gap-0.5 items-end h-3">{[60, 100, 75, 90, 55].map((h, i) => <span key={i} className="w-0.5 bg-orange-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />)}</span>{t.stopAudio}</>
-              ) : (
-                <><Volume2 size={14} />{t.playAudio}</>
-              )}
-            </button>
-          </div>
-        )}
       </div>
+    </div>
+  );
+}
+
+// ── Footer row: audio LEFT, save RIGHT ───────────────────────────────────────
+function FooterRow({ topic, isKh, t, accentPlay, accentStop }: {
+  topic: Topic; isKh: boolean; t: typeof UI.en;
+  accentPlay: string; accentStop: string;
+}) {
+  const kf = isKh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const audioUrlEn = topic.audio_url_en || "";
+  const audioUrlKm = topic.audio_url_km || "";
+  const audioUrl = isKh ? (audioUrlKm || audioUrlEn) : (audioUrlEn || audioUrlKm);
+  const { playing, loading, toggle } = useAudio(audioUrl || null);
+  return (
+    <div className="px-3 py-2 border-t border-zinc-100 bg-zinc-50 flex items-center justify-between gap-2">
+      {(audioUrlEn || audioUrlKm) ? (
+        <button onClick={toggle} style={kf}
+          className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black font-black text-xs transition-all select-none ${loading ? "bg-zinc-100 text-zinc-400 cursor-wait" : playing ? `bg-black ${accentStop}` : `bg-white ${accentPlay}`}`}>
+          {loading ? (<><span className="flex gap-0.5 items-end h-3">{[60, 100, 75].map((h, i) => <span key={i} className="w-0.5 bg-zinc-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 120}ms` }} />)}</span>{isKh ? "ផ្ទុក..." : "Loading..."}</>)
+            : playing ? (<><span className="flex gap-0.5 items-end h-3">{[60, 100, 75, 90, 55].map((h, i) => <span key={i} className="w-0.5 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms`, background: 'currentColor' }} />)}</span>{t.stopAudio}</>)
+              : (<><Volume2 size={13} />{t.playAudio}</>)}
+        </button>
+      ) : <span />}
+      <SaveCardButton topic={topic} isKh={isKh} size="lg" />
     </div>
   );
 }
@@ -257,6 +246,18 @@ export function TechnicalCatalogue() {
 
   return (
     <div className="min-h-screen bg-white pt-4">
+
+      {/* ── Back to Categories ─────────────────────────────────────── */}
+      <div className="max-w-4xl mx-auto px-4 pb-3">
+        <a
+          href="/learn"
+          className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-black bg-white font-black text-xs hover:bg-yellow-400 transition-all shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000]"
+          style={kf}
+        >
+          <ArrowLeft size={13} />
+          {t.back}
+        </a>
+      </div>
 
       {/* ── Filter + Search ───────────────────────────────────────── */}
       <div className="max-w-4xl mx-auto px-4 pb-5">
@@ -385,9 +386,7 @@ export function TechnicalCatalogue() {
                   {isOpen && (
                     <>
                       <AnswerCard topic={topic} isKh={isKh} t={t} />
-                      <div className="px-3 py-2 border-t border-zinc-100 bg-zinc-50 flex items-center justify-end">
-                        <SaveCardButton topic={topic} isKh={isKh} size="lg" />
-                      </div>
+                      <FooterRow topic={topic} isKh={isKh} t={t} accentPlay="hover:bg-orange-400" accentStop="text-orange-400" />
                     </>
                   )}
                 </div>

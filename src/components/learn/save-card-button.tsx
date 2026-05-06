@@ -3,19 +3,41 @@
 import { useState } from "react";
 import { Download } from "lucide-react";
 
-// Helper function to draw rounded rectangles
-function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, radius: number) {
+function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
     ctx.beginPath();
-    ctx.moveTo(x + radius, y);
-    ctx.lineTo(x + width - radius, y);
-    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-    ctx.lineTo(x + width, y + height - radius);
-    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-    ctx.lineTo(x + radius, y + height);
-    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-    ctx.lineTo(x, y + radius);
-    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
     ctx.closePath();
+}
+
+// Word-wrap helper
+function wrapText(ctx: CanvasRenderingContext2D, text: string, x: number, y: number, maxWidth: number, lineHeight: number, maxLines = 99): number {
+    const words = text.split(' ');
+    let line = '';
+    let lineCount = 0;
+    for (const word of words) {
+        if (lineCount >= maxLines) break;
+        const test = line + word + ' ';
+        if (ctx.measureText(test).width > maxWidth && line !== '') {
+            ctx.fillText(line.trim(), x, y + lineCount * lineHeight);
+            line = word + ' ';
+            lineCount++;
+        } else {
+            line = test;
+        }
+    }
+    if (lineCount < maxLines && line.trim()) {
+        ctx.fillText(line.trim(), x, y + lineCount * lineHeight);
+        lineCount++;
+    }
+    return lineCount;
 }
 
 interface SaveCardButtonProps {
@@ -34,339 +56,230 @@ interface SaveCardButtonProps {
     size?: 'sm' | 'md' | 'lg';
 }
 
+const CATEGORY_SLUG: Record<string, string> = {
+    'Prohibitory Signs': 'road-sign', 'Mandatory Signs': 'road-sign', 'Priority Signs': 'road-sign',
+    'Warning Signs': 'road-sign', 'Temporary Signs': 'road-sign', 'Direction Signs': 'road-sign',
+    'Buildup Area Boundary Signs': 'road-sign', 'Street Name Signs': 'road-sign',
+    'Informative Signs': 'road-sign', 'Supplementary Signs': 'road-sign', 'Sign Posts': 'road-sign',
+    'Transverse Markings': 'road-sign', 'Longitudinal Markings': 'road-sign',
+    'Arrows Markings': 'road-sign', 'Other Road Markings': 'road-sign',
+    'Traffic Lights': 'road-sign', 'Traffic Police Signals': 'road-sign',
+    'Traffic Rules': 'road-traffic', 'Speed Limits': 'road-traffic', 'Parking': 'road-traffic', 'Overtaking': 'road-traffic',
+    'Intersections': 'priority', 'Intersection Priority – Left Turn': 'priority',
+    'Intersection Priority – Sequential': 'priority', 'Intersection Priority – Simultaneous': 'priority',
+    'Roundabouts': 'priority', 'Pedestrian Crossings': 'priority',
+    'Basic Maneuvers': 'driving', 'Advanced Techniques': 'driving', 'Defensive Driving': 'driving',
+    'Engine': 'technical', 'Brakes': 'technical', 'Lights': 'technical', 'Safety Systems': 'technical',
+    'Weight Limits': 'loading-people-goods', 'Passenger Safety': 'loading-people-goods', 'Cargo Securing': 'loading-people-goods',
+    'Road Safety': 'general-knowledge', 'Environmental': 'general-knowledge', 'Legal': 'general-knowledge',
+    'Accidents': 'emergency', 'Breakdowns': 'emergency', 'First Aid': 'emergency', 'Emergency Contacts': 'emergency',
+};
+
 export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps) {
     const [saving, setSaving] = useState(false);
 
     const handleSave = async () => {
         setSaving(true);
         try {
+            // ── Canvas: 1200 × 675 (16:9, social-share friendly) ──────────────────
+            const W = 1200, H = 675;
             const canvas = document.createElement('canvas');
-            canvas.width = 1920;
-            canvas.height = 1080;
+            canvas.width = W; canvas.height = H;
             const ctx = canvas.getContext('2d');
-
             if (!ctx) throw new Error('Canvas not supported');
 
-            // WHITE background
+            const slug = CATEGORY_SLUG[topic.sub_group] || 'learn';
+            const siteUrl = 'kesararamwithdigital.tech';
+
+            // ── 1. WHITE background ───────────────────────────────────────────────
             ctx.fillStyle = '#ffffff';
-            ctx.fillRect(0, 0, 1920, 1080);
+            ctx.fillRect(0, 0, W, H);
 
-            // Load KWD logo for top-left corner
-            const logo = new Image();
-            logo.crossOrigin = 'anonymous';
+            // ── 2. BLACK outer border (neobrutalist) ──────────────────────────────
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 6;
+            ctx.strokeRect(3, 3, W - 6, H - 6);
 
-            await new Promise<void>((resolve) => {
-                logo.onload = () => resolve();
-                logo.onerror = () => resolve();
-                logo.src = 'https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg';
-                setTimeout(() => resolve(), 2000);
+            // ── 3. YELLOW top accent bar ──────────────────────────────────────────
+            ctx.fillStyle = '#eab308';
+            ctx.fillRect(3, 3, W - 6, 8);
+
+            // ── 4. Load assets in parallel ────────────────────────────────────────
+            const loadImg = (src: string, timeout = 3000) => new Promise<HTMLImageElement | null>((resolve) => {
+                const img = new Image(); img.crossOrigin = 'anonymous';
+                const t = setTimeout(() => resolve(null), timeout);
+                img.onload = () => { clearTimeout(t); resolve(img); };
+                img.onerror = () => { clearTimeout(t); resolve(null); };
+                img.src = src;
             });
 
-            // Draw KWD logo at top-left (smaller, 120x120)
-            if (logo.complete && logo.naturalWidth > 0) {
-                ctx.drawImage(logo, 40, 20, 120, 120);
+            const [logo, qr, topicImg] = await Promise.all([
+                loadImg('https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg'),
+                loadImg('/brand/qrcode-kwd.png'),
+                topic.primary_image_url ? loadImg(topic.primary_image_url, 5000) : Promise.resolve(null),
+            ]);
+
+            // ── 5. LEFT COLUMN — image area (x: 20..460, y: 20..H-20) ────────────
+            const imgX = 20, imgY = 20, imgW = 440, imgH = H - 40;
+
+            if (topicImg) {
+                // Image background card — black border + shadow
+                ctx.fillStyle = '#f4f4f5'; // zinc-100
+                roundRect(ctx, imgX, imgY, imgW, imgH, 8);
+                ctx.fill();
+                ctx.strokeStyle = '#000'; ctx.lineWidth = 3;
+                roundRect(ctx, imgX, imgY, imgW, imgH, 8);
+                ctx.stroke();
+                // Shadow
+                ctx.fillStyle = '#000';
+                roundRect(ctx, imgX + 6, imgY + 6, imgW, imgH, 8);
+                ctx.fill();
+                // Re-draw card on top
+                ctx.fillStyle = '#f4f4f5';
+                roundRect(ctx, imgX, imgY, imgW, imgH, 8);
+                ctx.fill();
+                ctx.strokeStyle = '#000'; ctx.lineWidth = 3;
+                roundRect(ctx, imgX, imgY, imgW, imgH, 8);
+                ctx.stroke();
+
+                // Draw image centered inside card with padding
+                // Image takes up 20% of card height (centered), rest is whitespace
+                const pad = 20;
+                const maxW = imgW - pad * 2;
+                const maxH = Math.floor((imgH - pad * 2) * 0.20); // 20% of available height
+                const aspect = topicImg.naturalWidth / topicImg.naturalHeight;
+                let dw = maxW, dh = maxW / aspect;
+                if (dh > maxH) { dh = maxH; dw = maxH * aspect; }
+                const dx = imgX + pad + (maxW - dw) / 2;
+                const dy = imgY + pad + ((imgH - pad * 2) * 0.5 - dh / 2); // vertically centered in upper 70%
+                ctx.drawImage(topicImg, dx, dy, dw, dh);
+
+                // AI disclaimer — bottom of image card, 30% cap width
+                const disclaimerText = isKh ? '⚠ រូបភាពបង្កើតដោយ AI' : '⚠ AI-generated image';
+                const disclaimerMaxW = imgW * 0.30; // 30% of card width
+                ctx.font = 'bold 10px system-ui, Arial, sans-serif';
+                ctx.fillStyle = 'rgba(0,0,0,0.45)';
+                ctx.textAlign = 'center';
+                // Clip text to 30% width
+                ctx.save();
+                ctx.rect(imgX + imgW / 2 - disclaimerMaxW / 2, imgY + imgH - 28, disclaimerMaxW, 20);
+                ctx.clip();
+                ctx.fillText(disclaimerText, imgX + imgW / 2, imgY + imgH - 14);
+                ctx.restore();
+            } else {
+                // Placeholder card
+                ctx.fillStyle = '#fef9c3';
+                roundRect(ctx, imgX, imgY, imgW, imgH, 8);
+                ctx.fill();
+                ctx.strokeStyle = '#000'; ctx.lineWidth = 3;
+                roundRect(ctx, imgX, imgY, imgW, imgH, 8);
+                ctx.stroke();
+                ctx.fillStyle = '#000'; ctx.font = 'bold 48px system-ui, Arial, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('📷', imgX + imgW / 2, imgY + imgH / 2 + 16);
             }
 
-            // Map sub_group to category URL slug
-            const getCategorySlug = (subGroup: string): string => {
-                const categoryMap: Record<string, string> = {
-                    'Prohibitory Signs': 'road-sign',
-                    'Mandatory Signs': 'road-sign',
-                    'Priority Signs': 'road-sign',
-                    'Warning Signs': 'road-sign',
-                    'Temporary Signs': 'road-sign',
-                    'Direction Signs': 'road-sign',
-                    'Buildup Area Boundary Signs': 'road-sign',
-                    'Street Name Signs': 'road-sign',
-                    'Informative Signs': 'road-sign',
-                    'Supplementary Signs': 'road-sign',
-                    'Sign Posts': 'road-sign',
-                    'Transverse Markings': 'road-sign',
-                    'Longitudinal Markings': 'road-sign',
-                    'Arrows Markings': 'road-sign',
-                    'Other Road Markings': 'road-sign',
-                    'Traffic Lights': 'road-sign',
-                    'Traffic Police Signals': 'road-sign',
-                    'Traffic Rules': 'road-traffic',
-                    'Speed Limits': 'road-traffic',
-                    'Parking': 'road-traffic',
-                    'Overtaking': 'road-traffic',
-                    'Intersections': 'priority',
-                    'Intersection Priority – Left Turn': 'priority',
-                    'Intersection Priority – Sequential': 'priority',
-                    'Intersection Priority – Simultaneous': 'priority',
-                    'Roundabouts': 'priority',
-                    'Pedestrian Crossings': 'priority',
-                    'Basic Maneuvers': 'driving',
-                    'Advanced Techniques': 'driving',
-                    'Defensive Driving': 'driving',
-                    'Engine': 'technical',
-                    'Brakes': 'technical',
-                    'Lights': 'technical',
-                    'Safety Systems': 'technical',
-                    'Weight Limits': 'loading-people-goods',
-                    'Passenger Safety': 'loading-people-goods',
-                    'Cargo Securing': 'loading-people-goods',
-                    'Road Safety': 'general-knowledge',
-                    'Environmental': 'general-knowledge',
-                    'Legal': 'general-knowledge',
-                    'Accidents': 'emergency',
-                    'Breakdowns': 'emergency',
-                    'First Aid': 'emergency',
-                    'Emergency Contacts': 'emergency',
-                };
-                return categoryMap[subGroup] || 'road-sign';
-            };
+            // ── 6. RIGHT COLUMN — content (x: 480..W-20) ─────────────────────────
+            const rx = 480, ry = 28, rw = W - rx - 20;
 
-            const categorySlug = getCategorySlug(topic.sub_group);
-
-            // PSYCHOLOGICAL EYE-TRACKING DESIGN
-            // Primary focus: Sign image (LEFT, LARGE, PROMINENT)
-            // Secondary focus: Title (RIGHT, LARGE, TEAL)
-            // Tertiary focus: Description (RIGHT, MEDIUM)
-
-            const signAreaSize = 500;
-            const signAreaX = 100;
-            const signAreaY = 200;
-            const borderRadius = 15;
-
-            // Load and draw sign image with rounded corners
-            if (topic.primary_image_url) {
-                const signImg = new Image();
-                signImg.crossOrigin = 'anonymous';
-
-                await new Promise<void>((resolve) => {
-                    signImg.onload = () => resolve();
-                    signImg.onerror = () => resolve();
-                    signImg.src = topic.primary_image_url;
-                    setTimeout(() => resolve(), 3000);
-                });
-
-                // Draw subtle glow effect around image (eye-catching)
-                ctx.fillStyle = 'rgba(255, 215, 0, 0.1)';
-                roundRect(ctx, signAreaX - 10, signAreaY - 10, signAreaSize + 20, signAreaSize + 20, borderRadius + 5);
-                ctx.fill();
-
-                // Background card - YELLOW brand color (#ffd700) with rounded corners
-                ctx.fillStyle = '#ffd700';
-                roundRect(ctx, signAreaX, signAreaY, signAreaSize, signAreaSize, borderRadius);
-                ctx.fill();
-
-                // YELLOW background inside for image
-                ctx.fillStyle = '#ffd700';
-                roundRect(ctx, signAreaX + 15, signAreaY + 15, signAreaSize - 30, signAreaSize - 30, borderRadius);
-                ctx.fill();
-
-                // Center the sign image
-                if (signImg.complete && signImg.naturalWidth > 0) {
-                    const imgAspect = signImg.width / signImg.height;
-                    let drawWidth = signAreaSize - 30;
-                    let drawHeight = signAreaSize - 30;
-
-                    if (imgAspect > 1) {
-                        drawHeight = drawWidth / imgAspect;
-                    } else {
-                        drawWidth = drawHeight * imgAspect;
-                    }
-
-                    const x = signAreaX + 15 + (signAreaSize - 30 - drawWidth) / 2;
-                    const y = signAreaY + 15 + (signAreaSize - 30 - drawHeight) / 2;
-                    ctx.drawImage(signImg, x, y, drawWidth, drawHeight);
-                }
-
-                // Sign code below image - centered on left side - VIBRANT RED
-                ctx.fillStyle = '#ff0050';
-                ctx.font = 'bold 40px system-ui, Arial, sans-serif';
-                ctx.textAlign = 'center';
-                const signCodeX = signAreaX + signAreaSize / 2;
-                ctx.fillText(topic.topic_code, signCodeX, signAreaY + signAreaSize + 70);
-
-                // Tag below code - sub_group category - TEAL background with BLACK text
-                ctx.fillStyle = '#25c1a4';
-                ctx.font = 'bold 16px system-ui, Arial, sans-serif';
-                ctx.textAlign = 'center';
-
-                const tagText = topic.sub_group;
-                const tagMetrics = ctx.measureText(tagText);
-                const tagWidth = tagMetrics.width + 24;
-                const tagHeight = 36;
-                const tagX = signCodeX - tagWidth / 2;
-                const tagY = signAreaY + signAreaSize + 100;
-
-                // Tag background with rounded corners
-                ctx.fillStyle = '#25c1a4';
-                roundRect(ctx, tagX, tagY, tagWidth, tagHeight, 6);
-                ctx.fill();
-
-                // Tag text - BLACK
-                ctx.fillStyle = '#000000';
-                ctx.font = 'bold 14px system-ui, Arial, sans-serif';
-                ctx.textAlign = 'center';
-                ctx.fillText(tagText, signCodeX, tagY + 24);
-            }
-
-            // RIGHT SIDE - Title and Description (SECONDARY FOCUS)
-            const rightStartX = 700;
-            const rightStartY = 220;
-            const maxRightWidth = 1150;
-
-            // Title (right side) - CAPITALS, BLACK color, VERY LARGE
-            const titleKh = topic.name_km;
-            const titleEn = topic.name_en;
-            const titleToUse = isKh ? titleKh : titleEn;
-
-            ctx.fillStyle = '#000000';
-            ctx.font = 'bold 64px system-ui, Arial, sans-serif';
+            // 6a. KNOWLEDGE CATEGORY badge
+            ctx.fillStyle = '#000';
+            ctx.font = 'bold 11px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
+            const badgeText = 'KNOWLEDGE CATEGORY';
+            const bw = ctx.measureText(badgeText).width + 20;
+            ctx.fillRect(rx, ry, bw, 22);
+            ctx.fillStyle = '#eab308';
+            ctx.font = 'bold 11px system-ui, Arial, sans-serif';
+            ctx.fillText(badgeText, rx + 10, ry + 15);
 
-            // Handle long titles with proper wrapping - UPPERCASE
-            const titleWords = titleToUse.toUpperCase().split(' ');
-            let titleLine = '';
-            let titleLineY = rightStartY;
-            const titleLineHeight = 80;
+            // 6b. Topic code + subgroup — small, muted
+            ctx.fillStyle = 'rgba(0,0,0,0.25)';
+            ctx.font = 'bold 12px monospace';
+            ctx.textAlign = 'left';
+            const metaText = topic.sub_group ? `${topic.topic_code} · ${topic.sub_group}` : topic.topic_code;
+            ctx.fillText(metaText, rx, ry + 44);
 
-            for (let word of titleWords) {
-                const testLine = titleLine + word + ' ';
-                const metrics = ctx.measureText(testLine);
+            // 6c. Title — large, black, bold
+            const title = isKh ? topic.name_km : topic.name_en;
+            ctx.fillStyle = '#000';
+            ctx.font = 'bold 36px system-ui, Arial, sans-serif';
+            ctx.textAlign = 'left';
+            const titleLines = wrapText(ctx, title, rx, ry + 72, rw, 46, 3);
+            const titleBottom = ry + 72 + titleLines * 46;
 
-                if (metrics.width > maxRightWidth && titleLine !== '') {
-                    ctx.fillText(titleLine.trim(), rightStartX, titleLineY);
-                    titleLine = word + ' ';
-                    titleLineY += titleLineHeight;
-                } else {
-                    titleLine = testLine;
-                }
-            }
-            if (titleLine.trim()) {
-                ctx.fillText(titleLine.trim(), rightStartX, titleLineY);
-            }
+            // 6d. Answer label bar
+            const answerLabelY = titleBottom + 16;
+            ctx.fillStyle = '#000';
+            ctx.fillRect(rx, answerLabelY, rw, 26);
+            ctx.fillStyle = '#eab308';
+            ctx.font = 'bold 10px system-ui, Arial, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('ANSWER', rx + 8, answerLabelY + 17);
 
-            // Description (right side, below title) - TEAL text (#25c1a4)
-            const descriptionKh = topic.description_km;
-            const descriptionEn = topic.description_en;
-            const descriptionToUse = isKh ? descriptionKh : descriptionEn;
-
-            if (descriptionToUse) {
-                ctx.fillStyle = '#25c1a4';
-                ctx.font = 'bold 26px system-ui, Arial, sans-serif';
+            // 6e. Answer text — inside a light box
+            const answerBoxY = answerLabelY + 26;
+            const answer = isKh ? topic.description_km : topic.description_en;
+            const answerBoxH = 100;
+            ctx.fillStyle = '#fafafa';
+            ctx.fillRect(rx, answerBoxY, rw, answerBoxH);
+            ctx.strokeStyle = '#000'; ctx.lineWidth = 2;
+            ctx.strokeRect(rx, answerBoxY, rw, answerBoxH);
+            if (answer) {
+                ctx.fillStyle = '#000';
+                ctx.font = 'bold 18px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'left';
-
-                // Word wrap description
-                const words = descriptionToUse.split(' ');
-                let line = '';
-                let y = titleLineY + 90;
-                const maxWidth = maxRightWidth;
-                const lineHeight = 40;
-                let lineCount = 0;
-                const maxLines = 6;
-
-                for (let word of words) {
-                    if (lineCount >= maxLines) break;
-
-                    const testLine = line + word + ' ';
-                    const metrics = ctx.measureText(testLine);
-
-                    if (metrics.width > maxWidth && line !== '') {
-                        ctx.fillText(line.trim(), rightStartX, y);
-                        line = word + ' ';
-                        y += lineHeight;
-                        lineCount++;
-                    } else {
-                        line = testLine;
-                    }
-                }
-
-                if (lineCount < maxLines && line.trim()) {
-                    ctx.fillText(line.trim(), rightStartX, y);
-                }
+                wrapText(ctx, answer, rx + 10, answerBoxY + 26, rw - 20, 26, 3);
             }
 
-            // Horizontal line separator - TEAL (matching QR code color)
-            const hrY = 900;
-            ctx.strokeStyle = '#25c1a4';
-            ctx.lineWidth = 4;
-            ctx.beginPath();
-            ctx.moveTo(100, hrY);
-            ctx.lineTo(1820, hrY);
-            ctx.stroke();
+            // ── 7. FOOTER BAR ─────────────────────────────────────────────────────
+            const footerY = H - 90;
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, footerY, W, 90);
 
-            // Footer section with beautiful styling
-            const footerStartY = 930;
+            // Logo in footer
+            if (logo) {
+                ctx.globalAlpha = 1;
+                ctx.drawImage(logo, 20, footerY + 15, 52, 52);
+            }
 
-            // Bilingual promotional message - WHITE text (70% opacity) on white background
-            ctx.textAlign = 'center';
-
-            // Khmer text - larger and bold - WHITE 70%
-            ctx.font = 'bold 22px system-ui, Arial, sans-serif';
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-            const promoTextKh = 'រៀនសញ្ញាចរាចរណ៍ បង្កើតចំណេះដឹងសុវត្ថិភាពពេញមួយជីវិត';
-            ctx.fillText(promoTextKh, 960, footerStartY);
-
-            // English text - slightly smaller - WHITE 70%
+            // Brand name
+            ctx.fillStyle = '#eab308';
             ctx.font = 'bold 18px system-ui, Arial, sans-serif';
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-            const promoTextEn = 'Protect your life and loved ones.';
-            const promoTextEn2 = 'Learn traffic signs, build safety knowledge for life';
-            ctx.fillText(promoTextEn, 960, footerStartY + 32);
-            ctx.fillText(promoTextEn2, 960, footerStartY + 58);
-
-            // Link below quote - GRAY 25%
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
-            ctx.font = 'bold 12px system-ui, Arial, sans-serif';
-            ctx.textAlign = 'center';
-            const linkUrl = `kesararamwithdigital.tech/learn/${categorySlug}`;
-            ctx.fillText(linkUrl, 960, footerStartY + 85);
-
-            // Copyright section with KWD logo - bottom left
-            const copyrightY = 1010;
-
-            // Draw KWD logo small version for copyright (50x50) - GRAY 30%
-            if (logo.complete && logo.naturalWidth > 0) {
-                ctx.globalAlpha = 0.3;
-                ctx.drawImage(logo, 80, copyrightY - 25, 50, 50);
-                ctx.globalAlpha = 1.0;
-            }
-
-            // Copyright text - GRAY 30%
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
-            ctx.font = 'bold 13px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
-            ctx.fillText('© 2026 KWD. All rights reserved.', 150, copyrightY + 8);
+            ctx.fillText('KESARARAM WITH DIGITAL', 84, footerY + 32);
 
-            // Add QR code in bottom-right corner - USE LOCAL FILE
-            const qrCodeImg = new Image();
-            qrCodeImg.crossOrigin = 'anonymous';
+            // Promo text
+            ctx.fillStyle = 'rgba(255,255,255,0.6)';
+            ctx.font = '12px system-ui, Arial, sans-serif';
+            ctx.fillText(isKh
+                ? 'រៀនបើកបរ ប្រកបដោយសុវត្ថិភាព — Learn to drive safely'
+                : 'Master Cambodia\'s driving theory — Learn. Play. Pass.',
+                84, footerY + 52);
 
-            await new Promise<void>((resolve) => {
-                qrCodeImg.onload = () => resolve();
-                qrCodeImg.onerror = () => resolve();
-                qrCodeImg.src = '/brand/qrcode-kwd.png';
-                setTimeout(() => resolve(), 2000);
-            });
+            // URL
+            ctx.fillStyle = 'rgba(255,255,255,0.35)';
+            ctx.font = 'bold 11px system-ui, Arial, sans-serif';
+            ctx.fillText(`${siteUrl}/learn/${slug}`, 84, footerY + 70);
 
-            const qrX = 1680;
-            const qrY = 920;
-            const qrSize = 120;
-
-            if (qrCodeImg.complete && qrCodeImg.naturalWidth > 0) {
-                ctx.drawImage(qrCodeImg, qrX, qrY, qrSize, qrSize);
+            // QR code — bottom right
+            if (qr) {
+                ctx.drawImage(qr, W - 100, footerY + 5, 80, 80);
             }
 
-            // Download with branded filename
-            const brandedFilename = `${topic.topic_code}-KWD.png`;
-
+            // ── 8. Download ───────────────────────────────────────────────────────
             canvas.toBlob((blob) => {
                 if (!blob) throw new Error('Failed to create image');
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = brandedFilename;
+                a.download = `${topic.topic_code}-KWD.png`;
                 a.click();
                 URL.revokeObjectURL(url);
             }, 'image/png', 1.0);
 
-        } catch (error) {
-            console.error('Save failed:', error);
+        } catch (err) {
+            console.error('Save failed:', err);
             alert(isKh ? 'មានបញ្ហាក្នុងការរក្សាទុក' : 'Failed to save card');
         } finally {
             setSaving(false);
@@ -377,17 +290,17 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
         <button
             onClick={handleSave}
             disabled={saving}
-            className={`inline-flex items-center gap-1 border-2 border-black font-bold transition-all ${size === 'lg' ? 'px-3 py-1.5 text-xs' :
-                size === 'sm' ? 'px-1 py-0.5 text-[8px]' :
-                    'px-2 py-1 text-[10px]'
+            className={`inline-flex items-center gap-1.5 border-2 border-black font-black transition-all ${size === 'lg' ? 'px-4 py-2 text-xs' :
+                size === 'sm' ? 'px-2 py-1 text-[9px]' :
+                    'px-3 py-1.5 text-[10px]'
                 } ${saving
-                    ? "bg-zinc-100 text-zinc-400 cursor-wait"
-                    : "bg-yellow-400 hover:bg-yellow-500 shadow-[2px_2px_0_#000]"
+                    ? 'bg-zinc-100 text-zinc-400 cursor-wait'
+                    : 'bg-yellow-400 hover:bg-yellow-300 shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000]'
                 }`}
-            title={isKh ? "រក្សាទុកកាត" : "Save Card"}
+            title={isKh ? 'រក្សាទុកកាត' : 'Save Card'}
         >
-            <Download size={size === 'lg' ? 14 : size === 'sm' ? 9 : 12} />
-            {isKh ? "រក្សាទុក" : "Save Card"}
+            <Download size={size === 'lg' ? 13 : size === 'sm' ? 9 : 11} />
+            {saving ? (isKh ? 'កំពុងរក្សា...' : 'Saving...') : (isKh ? 'រក្សាទុក' : 'Save Card')}
         </button>
     );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useMemo } from "react";
-import { Search, X, Volume2, ChevronDown, ChevronUp } from "lucide-react";
+import { Search, ArrowLeft, X, Volume2, ChevronDown, ChevronUp } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { SaveCardButton } from "./save-card-button";
 
@@ -39,6 +39,7 @@ const UI = {
     lawRef: "Law Reference",
     playAudio: "Play Audio",
     stopAudio: "Stop",
+    back: "Back to Categories",
   },
   kh: {
     title: "ចំណេះដឹងទូទៅ",
@@ -53,6 +54,7 @@ const UI = {
     lawRef: "ឯកសារយោងច្បាប់",
     playAudio: "ចាក់សំឡេង",
     stopAudio: "ឈប់",
+    back: "ត្រឡប់ទៅប្រភេទ",
   },
 } as const;
 
@@ -162,6 +164,18 @@ export function GeneralKnowledgeCatalogue() {
 
   return (
     <div className="min-h-screen bg-white pt-4">
+
+      {/* ── Back to Categories ─────────────────────────────────────── */}
+      <div className="max-w-4xl mx-auto px-4 pb-3">
+        <a
+          href="/learn"
+          className="inline-flex items-center gap-2 px-3 py-1.5 border-2 border-black bg-white font-black text-xs hover:bg-yellow-400 transition-all shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000]"
+          style={kf}
+        >
+          <ArrowLeft size={13} />
+          {t.back}
+        </a>
+      </div>
 
       <div className="max-w-4xl mx-auto px-4 pt-5 pb-5">
         <div className="bg-white border-2 border-black p-4" style={{ boxShadow: "4px 4px 0 #000" }}>
