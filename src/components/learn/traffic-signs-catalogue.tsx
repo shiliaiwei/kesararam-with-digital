@@ -369,86 +369,77 @@ function DetailPanel({
 
         {/* ── ZONE 2: Visual anchor — full width image ── */}
         {topic.primary_image_url && (
-          <div className="mt-3">
+          <div className="overflow-hidden" style={{ maxHeight: "160px" }}>
             <img
               src={topic.primary_image_url}
               alt={name}
               className="w-full object-cover"
+              style={{ maxHeight: "160px" }}
             />
           </div>
         )}
 
-        {/* ── Title — prominent, above description ── */}
-        <div className="mx-4 mt-4">
-          <h2 className="text-2xl md:text-3xl font-black leading-tight text-black" style={kf}>
+        <div className="px-3 pb-3">
+          {/* ── Title ── */}
+          <p className="text-sm font-black leading-snug text-black mt-2 mb-2" style={kf}>
             {name}
-          </h2>
-        </div>
+          </p>
 
-        {/* ── ZONE 3: Description — green = information (color psychology) ── */}
-        {description && (
-          <div className={`mx-4 mt-3 rounded-lg overflow-hidden border-2 transition-all duration-300 ${playing ? "border-yellow-400 shadow-[0_0_0_3px_rgba(250,204,21,0.25)]" : "border-emerald-400"
-            }`}>
-            {/* Label bar */}
-            <div className={`px-3 py-1.5 flex items-center gap-2 transition-colors duration-300 ${playing ? "bg-yellow-400" : "bg-emerald-500"
-              }`}>
-              <span className="text-[9px] font-black uppercase tracking-widest text-white" style={kf}>
-                {isKh ? "ពិពណ៌នា" : "Description"}
-              </span>
-              {playing && (
-                <span className="flex gap-0.5 items-end h-3 ml-auto">
-                  {[60, 100, 75, 90, 55].map((h, i) => (
-                    <span key={i} className="w-0.5 bg-black rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />
-                  ))}
-                </span>
-              )}
+          {/* ── Description zone ── */}
+          {description && (
+            <div className={`rounded overflow-hidden border transition-all duration-300 ${playing ? "border-yellow-400" : "border-emerald-400"}`}>
+              <div className={`px-2 py-1 flex items-center gap-2 transition-colors duration-300 ${playing ? "bg-yellow-400" : "bg-emerald-500"}`}>
+                <span className="text-[8px] font-black uppercase tracking-widest text-white" style={kf}>{isKh ? "ពិពណ៌នា" : "Description"}</span>
+                {playing && (
+                  <span className="flex gap-0.5 items-end h-2.5 ml-auto">
+                    {[60, 100, 75, 90, 55].map((h, i) => (
+                      <span key={i} className="w-0.5 bg-black rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />
+                    ))}
+                  </span>
+                )}
+              </div>
+              <div className={`px-3 py-2 transition-colors duration-300 ${playing ? "bg-yellow-50" : "bg-emerald-50"}`}>
+                <p className={`font-bold text-sm leading-snug ${playing ? "text-black" : "text-emerald-900"}`} style={kf}>
+                  {description}
+                </p>
+              </div>
             </div>
-            {/* Description text */}
-            <div className={`px-4 py-3 transition-colors duration-300 ${playing ? "bg-yellow-50" : "bg-emerald-50"}`}>
-              <p className={`font-black text-base md:text-lg leading-relaxed ${playing ? "text-black" : "text-emerald-900"}`} style={kf}>
-                {description}
-              </p>
+          )}
+
+          {/* ── Law reference ── */}
+          {topic.law_reference && (
+            <div className="mt-1.5 rounded overflow-hidden border border-amber-300">
+              <div className="bg-amber-400 px-2 py-0.5">
+                <p className="text-[8px] font-black uppercase tracking-widest text-amber-900" style={kf}>{t.lawRef}</p>
+              </div>
+              <div className="bg-amber-50 px-2 py-1.5">
+                <p className="text-[11px] font-mono text-amber-900" style={kf}>{topic.law_reference}</p>
+              </div>
             </div>
+          )}
+
+          {/* ── Audio + Save row ── */}
+          <div className="mt-2 flex items-center justify-between gap-2">
+            {audioUrl && (
+              <button
+                onClick={handleAudio}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black font-black text-xs transition-all select-none rounded ${loadingAudio ? "bg-zinc-100 text-zinc-400 cursor-wait"
+                  : playing ? "bg-black text-yellow-400"
+                    : "bg-white hover:bg-yellow-400"
+                  }`}
+                style={kf}
+              >
+                {loadingAudio ? (
+                  <><span className="flex gap-0.5 items-end h-3">{[60, 100, 75].map((h, i) => <span key={i} className="w-0.5 bg-zinc-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 120}ms` }} />)}</span>{isKh ? "ផ្ទុក..." : "Loading..."}</>
+                ) : playing ? (
+                  <><span className="flex gap-0.5 items-end h-3">{[60, 100, 75, 90, 55].map((h, i) => <span key={i} className="w-0.5 bg-yellow-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />)}</span>{t.stopAudio}</>
+                ) : (
+                  <><Volume2 size={13} />{t.playAudio}</>
+                )}
+              </button>
+            )}
+            <SaveCardButton topic={topic} isKh={isKh} size="lg" />
           </div>
-        )}
-
-        {/* ── ZONE 4: Law reference — amber = caution/important (color psychology) ── */}
-        {topic.law_reference && (
-          <div className="mx-4 mt-2 rounded-lg overflow-hidden border border-amber-300">
-            <div className="bg-amber-400 px-3 py-1">
-              <p className="text-[9px] font-black uppercase tracking-widest text-amber-900" style={kf}>{t.lawRef}</p>
-            </div>
-            <div className="bg-amber-50 px-3 py-2">
-              <p className="text-xs font-mono text-amber-900" style={kf}>{topic.law_reference}</p>
-            </div>
-          </div>
-        )}
-
-        {/* ── ZONE 5: Audio — single listen button ── */}
-        {audioUrl && (
-          <div className="px-4 pt-4 pb-5">
-            <button
-              onClick={handleAudio}
-              className={`w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3 border-2 border-black font-black text-sm transition-all select-none rounded-lg ${loadingAudio ? "bg-zinc-100 text-zinc-400 cursor-wait"
-                : playing ? "bg-black text-yellow-400 shadow-[4px_4px_0_#ca8a04]"
-                  : "bg-white hover:bg-yellow-400 shadow-[4px_4px_0_#000] hover:shadow-[4px_4px_0_#ca8a04]"
-                }`}
-              style={kf}
-            >
-              {loadingAudio ? (
-                <><span className="flex gap-0.5 items-end h-4">{[60, 100, 75].map((h, i) => <span key={i} className="w-1 bg-zinc-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 120}ms` }} />)}</span>{isKh ? "កំពុងផ្ទុក..." : "Loading..."}</>
-              ) : playing ? (
-                <><span className="flex gap-0.5 items-end h-4">{[60, 100, 75, 90, 55].map((h, i) => <span key={i} className="w-1 bg-yellow-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />)}</span>{t.stopAudio}</>
-              ) : (
-                <><Volume2 size={18} />{t.playAudio}</>
-              )}
-            </button>
-          </div>
-        )}
-
-        {/* ── Save Card Button ── */}
-        <div className="px-4 pb-5 flex items-center justify-end gap-2">
-          <SaveCardButton topic={topic} isKh={isKh} size="lg" />
         </div>
       </div>
 
