@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Search, ArrowLeft, X, Volume2, ChevronDown, ChevronUp } from "lucide-react";
+import { Search, X, Volume2, ChevronDown, ChevronUp } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { SaveCardButton } from "./save-card-button";
+import { CategoryHero, CategoryHeroConfig } from "./category-hero";
 
 interface Topic {
   id: number;
@@ -198,6 +199,33 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
   );
 }
 
+// ── Category hero config ─────────────────────────────────────────────────────
+const HERO_CONFIG: CategoryHeroConfig = {
+  heroBg: "bg-green-400",
+  titleColor: "text-black",
+  subtitleColor: "text-black/60",
+  descColor: "text-black/80",
+  iconShadow: "shadow-[6px_6px_0_#000]",
+  pillActiveBg: "bg-black",
+  pillActiveText: "text-green-400",
+  pillBadgeBg: "bg-green-400",
+  pillBadgeText: "text-black",
+  pillHoverBg: "hover:bg-green-400",
+  emoji: "🚗",
+  icon: (
+    <svg viewBox="0 0 100 100" className="w-20 h-20 md:w-24 md:h-24" fill="none" stroke="currentColor" strokeWidth="2">
+      <rect x="15" y="40" width="70" height="30" rx="4" fill="#4ade80" stroke="#000" strokeWidth="3" />
+      <path d="M 25 40 L 35 25 L 65 25 L 75 40" fill="#86efac" stroke="#000" strokeWidth="2" />
+      <circle cx="30" cy="72" r="8" fill="#000" />
+      <circle cx="70" cy="72" r="8" fill="#000" />
+      <circle cx="30" cy="72" r="4" fill="#4ade80" />
+      <circle cx="70" cy="72" r="4" fill="#4ade80" />
+      <rect x="38" y="28" width="10" height="10" fill="#bfdbfe" stroke="#000" strokeWidth="1.5" />
+      <rect x="52" y="28" width="10" height="10" fill="#bfdbfe" stroke="#000" strokeWidth="1.5" />
+    </svg>
+  ),
+};
+
 // ── Main Catalogue ────────────────────────────────────────────────────────────
 export function DrivingCatalogue() {
   const { lang } = useLang();
@@ -256,17 +284,19 @@ export function DrivingCatalogue() {
   return (
     <div className="min-h-screen bg-white">
 
-      {/* ── Back Button ───────────────────────────────────────────── */}
-      <div className="max-w-4xl mx-auto px-4 py-5">
-        <button
-          onClick={() => window.history.back()}
-          className="bg-white border-2 border-black px-4 py-2 font-bold hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2 text-sm"
-          style={kf}
-        >
-          <ArrowLeft size={16} />
-          {t.back}
-        </button>
-      </div>
+      {/* ── Hero ──────────────────────────────────────────────────── */}
+      <CategoryHero
+        config={HERO_CONFIG}
+        titleEn={UI.en.title}
+        titleKm={UI.kh.title}
+        descEn={UI.en.desc}
+        descKm={UI.kh.desc}
+        totalCount={topics.length}
+        filteredCount={filtered.length}
+        itemLabelEn="questions"
+        itemLabelKm="សំណួរ"
+        onBack={() => window.history.back()}
+      />
 
       {/* ── Filter + Search ───────────────────────────────────────── */}
       <div className="max-w-4xl mx-auto px-4 pb-5">

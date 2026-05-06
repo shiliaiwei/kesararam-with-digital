@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Search, ArrowLeft, ChevronDown, ChevronUp, Play, Pause, Phone, AlertTriangle } from "lucide-react";
+import { useState, useEffect, useRef, useMemo } from "react";
+import { Search, X, Volume2, ChevronDown, ChevronUp, Phone } from "lucide-react";
 import { useLang } from "@/context/lang-context";
+import { SaveCardButton } from "./save-card-button";
+import { CategoryHero, CategoryHeroConfig } from "./category-hero";
 
 interface Topic {
   id: number;
@@ -18,523 +20,280 @@ interface Topic {
   primary_image_url: string | null;
 }
 
-interface Question {
-  id: number;
-  topic_id: number;
-  question_en: string;
-  question_km: string;
-  hint_en: string;
-  hint_km: string;
-  image_url: string | null;
-  answers: Answer[];
+const SUB_GROUPS: { key: string; en: string; km: string }[] = [
+  { key: "Accidents", en: "Accidents", km: "គ្រោះថ្នាក់" },
+  { key: "Breakdowns", en: "Breakdowns", km: "ខូចខាត" },
+  { key: "First Aid", en: "First Aid", km: "ជំនួយបឋម" },
+  { key: "Emergency Contacts", en: "Emergency Contacts", km: "ទំនាក់ទំនងអាសន្ន" },
+];
+
+const EMERGENCY_CONTACTS = [
+  { name_en: "Police", name_km: "ប៉ូលីស", number: "117", color: "bg-blue-500" },
+  { name_en: "Ambulance", name_km: "រថយន្តសង្គ្រោះ", number: "119", color: "bg-red-500" },
+  { name_en: "Fire Service", name_km: "ពន្លត់អគ្គីភ័យ", number: "118", color: "bg-orange-500" },
+  { name_en: "Traffic Police", name_km: "ប៉ូលីសចរាចរណ៍", number: "012 999 999", color: "bg-yellow-500" },
+];
+
+const UI = {
+  en: {
+    title: "Emergency",
+    titleKm: "ពេលអាសន្ន",
+    desc: "Emergency procedures, contacts, and protocols for road incidents. Learn how to respond to accidents, breakdowns, and provide first aid.",
+    search: "Search questions...",
+    all: "All",
+    showing: "Showing", of: "of", questions: "questions",
+    noQuestions: "No questions found",
+    reset: "Reset",
+    answer: "Answer",
+    lawRef: "Law Reference",
+    playAudio: "Play Audio",
+    stopAudio: "Stop",
+    emergencyContacts: "🚨 Emergency Contacts",
+  },
+  kh: {
+    title: "ពេលអាសន្ន",
+    titleKm: "Emergency",
+    desc: "នីតិវិធីអាសន្ន ទំនាក់ទំនង និងពិធីការសម្រាប់ឧប្បត្តិហេតុផ្លូវ។ រៀនពីរបៀបឆ្លើយតបចំពោះគ្រោះថ្នាក់ ការខូចខាត និងផ្តល់ជំនួយបឋម។",
+    search: "ស្វែងរកសំណួរ...",
+    all: "ទាំងអស់",
+    showing: "បង្ហាញ", of: "នៃ", questions: "សំណួរ",
+    noQuestions: "រកមិនឃើញសំណួរ",
+    reset: "កំណត់ឡើងវិញ",
+    answer: "ចម្លើយ",
+    lawRef: "ឯកសារយោងច្បាប់",
+    playAudio: "ចាក់សំឡេង",
+    stopAudio: "ឈប់",
+    emergencyContacts: "🚨 លេខទូរស័ព្ទអាសន្ន",
+  },
+} as const;
+
+const HERO_CONFIG: CategoryHeroConfig = {
+  heroBg: "bg-red-500",
+  titleColor: "text-white",
+  subtitleColor: "text-white/70",
+  descColor: "text-white/80",
+  iconShadow: "shadow-[6px_6px_0_#000]",
+  pillActiveBg: "bg-white",
+  pillActiveText: "text-red-600",
+  pillBadgeBg: "bg-red-400",
+  pillBadgeText: "text-white",
+  pillHoverBg: "hover:bg-red-400",
+  emoji: "🚨",
+  icon: (
+    <svg viewBox="0 0 100 100" className="w-20 h-20 md:w-24 md:h-24" fill="none" strokeWidth="2">
+      <polygon points="50,15 90,80 10,80" fill="#fca5a5" stroke="#000" strokeWidth="3" strokeLinejoin="round" />
+      <line x1="50" y1="38" x2="50" y2="60" stroke="#000" strokeWidth="5" strokeLinecap="round" />
+      <circle cx="50" cy="70" r="4" fill="#000" />
+    </svg>
+  ),
+};
+
+function useAudio(url: string | null) {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const playingRef = useRef(false);
+  const [playing, setPlaying] = useState(false);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    return () => { if (audioRef.current) { audioRef.current.pause(); audioRef.current.src = ""; audioRef.current = null; } playingRef.current = false; };
+  }, [url]);
+  const toggle = () => {
+    if (!url) return;
+    if (playingRef.current || loading) { audioRef.current?.pause(); if (audioRef.current) { audioRef.current.src = ""; audioRef.current = null; } playingRef.current = false; setPlaying(false); setLoading(false); return; }
+    const audio = new Audio(url); audioRef.current = audio; setLoading(true);
+    audio.addEventListener("canplaythrough", () => { audio.play().catch(() => { setLoading(false); setPlaying(false); playingRef.current = false; }); setLoading(false); setPlaying(true); playingRef.current = true; }, { once: true });
+    audio.addEventListener("ended", () => { setPlaying(false); playingRef.current = false; audioRef.current = null; }, { once: true });
+    audio.addEventListener("error", () => { setPlaying(false); setLoading(false); playingRef.current = false; audioRef.current = null; }, { once: true });
+    audio.load();
+  };
+  return { playing, loading, toggle };
 }
 
-interface Answer {
-  id: number;
-  answer_en: string;
-  answer_km: string;
-  is_correct: boolean;
+function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof UI.en }) {
+  const kf = isKh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const audioUrl = isKh ? (topic.audio_url_km || topic.audio_url_en) : (topic.audio_url_en || topic.audio_url_km);
+  const { playing, loading, toggle } = useAudio(audioUrl || null);
+  const answer = isKh ? topic.description_km : topic.description_en;
+  const subGroup = SUB_GROUPS.find((s) => s.key === topic.sub_group);
+  return (
+    <div className="border-t-2 border-black bg-white">
+      <div className="px-3 pt-2 pb-1 flex items-center gap-2">
+        <span className="font-mono text-[9px] font-black bg-zinc-100 border border-zinc-300 text-zinc-400 px-1.5 py-0.5 rounded">{topic.topic_code}</span>
+        {subGroup && <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-wider" style={kf}>{isKh ? subGroup.km : subGroup.en}</span>}
+      </div>
+      {topic.primary_image_url && (
+        <div className="overflow-hidden" style={{ maxHeight: "200px" }}>
+          <img src={topic.primary_image_url} alt={isKh ? topic.name_km : topic.name_en} className="w-full object-cover" style={{ maxHeight: "200px" }} />
+        </div>
+      )}
+      <div className="px-3 pb-3">
+        <p className="text-sm font-black leading-snug text-black mt-2 mb-2" style={kf}>{isKh ? topic.name_km : topic.name_en}</p>
+        {answer && (
+          <div className={`rounded overflow-hidden border transition-all duration-300 ${playing ? "border-yellow-400" : "border-red-400"}`}>
+            <div className={`px-2 py-1 flex items-center gap-2 transition-colors duration-300 ${playing ? "bg-yellow-400" : "bg-red-500"}`}>
+              <span className="text-[8px] font-black uppercase tracking-widest text-white" style={kf}>{t.answer}</span>
+              {playing && <span className="flex gap-0.5 items-end h-2.5 ml-auto">{[60, 100, 75, 90, 55].map((h, i) => <span key={i} className="w-0.5 bg-black rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />)}</span>}
+            </div>
+            <div className={`px-3 py-2 transition-colors duration-300 ${playing ? "bg-yellow-50" : "bg-red-50"}`}>
+              <p className={`font-bold text-sm leading-snug ${playing ? "text-black" : "text-red-900"}`} style={kf}>{answer}</p>
+            </div>
+          </div>
+        )}
+        {topic.law_reference && (
+          <div className="mt-1.5 rounded overflow-hidden border border-amber-300">
+            <div className="bg-amber-400 px-2 py-0.5"><p className="text-[8px] font-black uppercase tracking-widest text-amber-900" style={kf}>{t.lawRef}</p></div>
+            <div className="bg-amber-50 px-2 py-1.5"><p className="text-[11px] font-mono text-amber-900" style={kf}>{topic.law_reference}</p></div>
+          </div>
+        )}
+        {audioUrl && (
+          <div className="mt-2">
+            <button onClick={toggle} className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black font-black text-xs transition-all select-none rounded ${loading ? "bg-zinc-100 text-zinc-400 cursor-wait" : playing ? "bg-black text-red-400" : "bg-white hover:bg-red-400"}`} style={kf}>
+              {loading ? (<><span className="flex gap-0.5 items-end h-3">{[60, 100, 75].map((h, i) => <span key={i} className="w-0.5 bg-zinc-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 120}ms` }} />)}</span>{isKh ? "ផ្ទុក..." : "Loading..."}</>) : playing ? (<><span className="flex gap-0.5 items-end h-3">{[60, 100, 75, 90, 55].map((h, i) => <span key={i} className="w-0.5 bg-red-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />)}</span>{t.stopAudio}</>) : (<><Volume2 size={13} />{t.playAudio}</>)}
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
-
-const SUB_GROUPS = ["Accidents", "Breakdowns", "First Aid", "Emergency Contacts"];
 
 export function EmergencyCatalogue() {
   const { lang } = useLang();
+  const isKh = lang === "kh";
+  const kf = isKh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const t = isKh ? UI.kh : UI.en;
+
   const [topics, setTopics] = useState<Topic[]>([]);
-  const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [subGroupFilter, setSubGroupFilter] = useState("");
-  const [questions, setQuestions] = useState<Record<number, Question[]>>({});
-  const [playingAudio, setPlayingAudio] = useState<number | null>(null);
-  const [expandedQuestions, setExpandedQuestions] = useState<Record<number, boolean>>({});
-  const [expandedTopics, setExpandedTopics] = useState<Record<number, boolean>>({});
-
-  const translations = {
-    en: {
-      category: "KNOWLEDGE CATEGORY",
-      title: "Emergency Situations",
-      titleKm: "ស្ថានភាពអាសន្ន",
-      description: "Emergency procedures, contacts, and protocols for road incidents. Learn how to respond to accidents, breakdowns, and provide first aid.",
-      backButton: "Back to Categories",
-      searchPlaceholder: "Search by topic...",
-      allTypes: "All Types",
-      showing: "Showing",
-      of: "of",
-      topics: "topics",
-      noTopics: "No topics found",
-      questions: "Questions",
-      playAudio: "Play Audio",
-      lawReference: "Law Reference",
-      emergencyContacts: "Emergency Contacts",
-      police: "Police",
-      ambulance: "Ambulance",
-      fireService: "Fire Service",
-      trafficPolice: "Traffic Police",
-    },
-    kh: {
-      category: "ប្រភេទចំណេះដឹង",
-      title: "ស្ថានភាពអាសន្ន",
-      titleKm: "Emergency Situations",
-      description: "នីតិវិធីអាសន្ន ទំនាក់ទំនង និងពិធីការសម្រាប់ឧប្បត្តិហេតុផ្លូវ។ រៀនពីរបៀបឆ្លើយតបចំពោះគ្រោះថ្នាក់ ការខូចខាត និងផ្តល់ជំនួយបឋម។",
-      backButton: "ត្រឡប់ទៅប្រភេទ",
-      searchPlaceholder: "ស្វែងរកតាមប្រធានបទ...",
-      allTypes: "ប្រភេទទាំងអស់",
-      showing: "បង្ហាញ",
-      of: "នៃ",
-      topics: "ប្រធានបទ",
-      noTopics: "រកមិនឃើញប្រធានបទ",
-      questions: "សំណួរ",
-      playAudio: "ចាក់សំឡេង",
-      lawReference: "ឯកសារយោងច្បាប់",
-      emergencyContacts: "លេខទូរស័ព្ទអាសន្ន",
-      police: "ប៉ូលីស",
-      ambulance: "រថយន្តសង្គ្រោះ",
-      fireService: "ពន្លត់អគ្គីភ័យ",
-      trafficPolice: "ប៉ូលីសចរាចរណ៍",
-    },
-  };
-
-  const t = translations[lang] || translations.en;
-
-  // Emergency contacts
-  const emergencyContacts = [
-    { id: 1, name_en: "Police", name_km: "ប៉ូលីស", number: "117" },
-    { id: 2, name_en: "Ambulance", name_km: "រថយន្តសង្គ្រោះ", number: "119" },
-    { id: 3, name_en: "Fire Service", name_km: "ពន្លត់អគ្គីភ័យ", number: "118" },
-    { id: 4, name_en: "Traffic Police", name_km: "ប៉ូលីសចរាចរណ៍", number: "012 999 999" },
-  ];
+  const [expandedTopic, setExpandedTopic] = useState<number | null>(null);
+  const [questionNumbers, setQuestionNumbers] = useState<Record<number, number>>({});
 
   useEffect(() => {
-    fetchTopics();
+    setLoading(true);
+    fetch("/api/public/topics?categoryId=8&status=published")
+      .then((r) => r.json())
+      .then((d) => {
+        const data = d.topics || [];
+        setTopics(data);
+        const nums: Record<number, number> = {};
+        data.forEach((tp: Topic, i: number) => { nums[tp.id] = i + 1; });
+        setQuestionNumbers(nums);
+      })
+      .catch(console.error)
+      .finally(() => setLoading(false));
   }, []);
 
-  useEffect(() => {
-    if (topics.length > 0) {
-      topics.forEach(topic => {
-        fetchQuestions(topic.id);
-      });
-    }
-  }, [topics]);
+  const filtered = useMemo(() => topics.filter((tp) => {
+    const q = search.trim().toLowerCase();
+    const matchSearch = !q || tp.name_en.toLowerCase().includes(q) || tp.name_km.includes(search.trim()) || tp.topic_code.toLowerCase().includes(q);
+    const matchGroup = !subGroupFilter || tp.sub_group === subGroupFilter;
+    return matchSearch && matchGroup;
+  }), [topics, search, subGroupFilter]);
 
-  useEffect(() => {
-    filterTopics();
-  }, [topics, search, subGroupFilter]);
-
-  const fetchTopics = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch("/api/public/topics?categoryId=8&status=published");
-      const data = await response.json();
-      setTopics(data.topics || []);
-    } catch (error) {
-      console.error("Error fetching topics:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchQuestions = async (topicId: number) => {
-    if (questions[topicId]) return;
-
-    try {
-      const response = await fetch(`/api/public/topics/${topicId}/questions`);
-      const data = await response.json();
-      setQuestions((prev) => ({
-        ...prev,
-        [topicId]: data.questions || [],
-      }));
-    } catch (error) {
-      console.error("Error fetching questions:", error);
-    }
-  };
-
-  const filterTopics = () => {
-    let filtered = [...topics];
-
-    if (search) {
-      filtered = filtered.filter(
-        (t) =>
-          t.name_en.toLowerCase().includes(search.toLowerCase()) ||
-          t.name_km.includes(search) ||
-          t.topic_code.toLowerCase().includes(search.toLowerCase()) ||
-          t.description_en.toLowerCase().includes(search.toLowerCase()) ||
-          t.description_km.includes(search)
-      );
-    }
-
-    if (subGroupFilter) {
-      filtered = filtered.filter((t) => t.sub_group === subGroupFilter);
-    }
-
-    setFilteredTopics(filtered);
-  };
-
-  const toggleTopic = (topicId: number) => {
-    setExpandedTopics(prev => ({
-      ...prev,
-      [topicId]: !prev[topicId]
-    }));
-  };
-
-  const toggleQuestion = (questionId: number) => {
-    setExpandedQuestions(prev => ({
-      ...prev,
-      [questionId]: !prev[questionId]
-    }));
-  };
-
-  const toggleAudio = (topicId: number) => {
-    if (playingAudio === topicId) {
-      setPlayingAudio(null);
-    } else {
-      setPlayingAudio(topicId);
-    }
-  };
+  const countMap = useMemo(() => topics.reduce<Record<string, number>>((acc, tp) => { acc[tp.sub_group] = (acc[tp.sub_group] || 0) + 1; return acc; }, {}), [topics]);
+  const availableGroups = SUB_GROUPS.filter((sg) => countMap[sg.key]);
+  const isDefaultFilter = !subGroupFilter && !search.trim();
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header Banner */}
-      <div
-        className="bg-red-500 border-b-4 border-black"
-        style={{ boxShadow: "0 4px 0 #000" }}
-      >
-        <div className="max-w-7xl mx-auto px-4 py-12">
-          <div className="flex items-start justify-between gap-8">
-            <div className="flex-1">
-              <div className="inline-block bg-black text-white px-3 py-1 font-bold text-sm mb-4">
-                {t.category}
-              </div>
-              <h1 className="text-4xl md:text-5xl font-black mb-2 text-white">{t.title}</h1>
-              <h2 className="text-xl md:text-2xl font-bold mb-4 text-white">{t.titleKm}</h2>
-              <p className="text-base md:text-lg max-w-2xl text-white">
-                {t.description}
-              </p>
-            </div>
 
-            {/* Category Illustration */}
-            <div className="hidden lg:block flex-shrink-0">
-              <div
-                className="w-40 h-40 xl:w-48 xl:h-48 bg-white border-4 border-black flex items-center justify-center"
-                style={{ boxShadow: "8px 8px 0 #000" }}
-              >
-                <AlertTriangle className="w-28 h-28 xl:w-32 xl:h-32 text-red-500" strokeWidth={3} />
+      <CategoryHero
+        config={HERO_CONFIG}
+        titleEn={UI.en.title} titleKm={UI.kh.title}
+        descEn={UI.en.desc} descKm={UI.kh.desc}
+        totalCount={topics.length} filteredCount={filtered.length}
+        itemLabelEn="questions" itemLabelKm="សំណួរ"
+        onBack={() => window.history.back()}
+      />
+
+      {/* ── Emergency contacts strip ──────────────────────────────── */}
+      <div className="max-w-4xl mx-auto px-4 pt-5 pb-2">
+        <p className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2" style={kf}>{t.emergencyContacts}</p>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          {EMERGENCY_CONTACTS.map((c) => (
+            <a key={c.number} href={`tel:${c.number.replace(/\s/g, "")}`}
+              className="flex items-center gap-2 border-2 border-black bg-white hover:shadow-[2px_2px_0_#000] transition-all px-3 py-2">
+              <div className={`w-8 h-8 ${c.color} border-2 border-black flex items-center justify-center shrink-0`}>
+                <Phone size={14} className="text-white" />
               </div>
-            </div>
-          </div>
+              <div className="min-w-0">
+                <p className="text-[10px] font-bold text-zinc-600 truncate" style={kf}>{isKh ? c.name_km : c.name_en}</p>
+                <p className="text-sm font-black text-black">{c.number}</p>
+              </div>
+            </a>
+          ))}
         </div>
       </div>
 
-      {/* Back Button */}
-      <div className="max-w-7xl mx-auto px-4 py-6">
-        <button
-          onClick={() => window.history.back()}
-          className="bg-white border-2 border-black px-4 py-2 font-bold hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2"
-        >
-          <ArrowLeft size={20} />
-          {t.backButton}
-        </button>
-      </div>
-
-      {/* Emergency Contacts Section */}
-      <div className="max-w-7xl mx-auto px-4 pb-6">
-        <div
-          className="bg-red-50 border-2 border-red-500 p-4 md:p-6"
-          style={{ boxShadow: "4px 4px 0 #000" }}
-        >
-          <div className="flex items-center gap-2 mb-4">
-            <Phone className="text-red-600" size={24} />
-            <h3 className="font-black text-lg">{t.emergencyContacts}</h3>
+      {/* ── Filter + Search ───────────────────────────────────────── */}
+      <div className="max-w-4xl mx-auto px-4 pb-5 pt-3">
+        <div className="bg-white border-2 border-black p-4" style={{ boxShadow: "4px 4px 0 #000" }}>
+          <div className="relative mb-3">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={18} />
+            <input type="text" placeholder={t.search} value={search}
+              onChange={(e) => { setSearch(e.target.value); setSubGroupFilter(""); setExpandedTopic(null); }}
+              className="w-full pl-10 pr-9 py-2.5 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] text-sm" style={kf} />
+            {search && <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-black"><X size={15} /></button>}
           </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {emergencyContacts.map((contact) => (
-              <a
-                key={contact.id}
-                href={`tel:${contact.number.replace(/\s/g, '')}`}
-                className="p-4 bg-white border-2 border-black hover:bg-red-100 hover:shadow-[2px_2px_0_#000] transition-all"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="flex-shrink-0 w-10 h-10 bg-red-500 border-2 border-black flex items-center justify-center">
-                    <Phone size={20} className="text-white" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-bold text-sm break-words">
-                      {lang === "en" ? contact.name_en : contact.name_km}
-                    </p>
-                    <p className="text-lg font-black text-red-600">
-                      {contact.number}
-                    </p>
-                  </div>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Filters & Search */}
-      <div className="max-w-7xl mx-auto px-4 pb-6">
-        <div
-          className="bg-white border-2 border-black p-4"
-          style={{ boxShadow: "4px 4px 0 #000" }}
-        >
-          <div className="grid grid-cols-1 md:grid-cols-10 gap-4">
-            <div className="md:col-span-6">
-              <div className="relative">
-                <Search
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400"
-                  size={20}
-                />
-                <input
-                  type="text"
-                  placeholder={t.searchPlaceholder}
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-                />
-              </div>
-            </div>
-
-            <div className="md:col-span-4">
-              <select
-                value={subGroupFilter}
-                onChange={(e) => setSubGroupFilter(e.target.value)}
-                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-              >
-                <option value="">{t.allTypes}</option>
-                {SUB_GROUPS.map((sg) => (
-                  <option key={sg} value={sg}>
-                    {sg}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          <div className="mt-4 text-sm font-bold text-zinc-600">
-            {t.showing} {filteredTopics.length} {t.of} {topics.length} {t.topics}
-          </div>
-        </div>
-      </div>
-
-      {/* Topics List */}
-      <div className="max-w-7xl mx-auto px-4 pb-12">
-        {loading ? (
-          <div className="space-y-3">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <div
-                key={i}
-                className="bg-white border-2 border-black p-6 animate-pulse"
-                style={{ boxShadow: "4px 4px 0 #000" }}
-              >
-                <div className="h-6 bg-gray-200 w-3/4 mb-3"></div>
-                <div className="h-4 bg-gray-200 w-1/2"></div>
-              </div>
-            ))}
-          </div>
-        ) : filteredTopics.length === 0 ? (
-          <div
-            className="bg-white border-2 border-black p-12 text-center"
-            style={{ boxShadow: "4px 4px 0 #000" }}
-          >
-            <p className="text-zinc-600 font-bold">{t.noTopics}</p>
-          </div>
-        ) : (
-          <div className="space-y-4">
-            {filteredTopics.map((topic) => (
-              <div
-                key={topic.id}
-                className="bg-white border-2 border-black"
-                style={{ boxShadow: "4px 4px 0 #000" }}
-              >
-                {/* Topic Header - Clickable */}
-                <button
-                  onClick={() => toggleTopic(topic.id)}
-                  className="w-full p-4 md:p-6 flex items-start justify-between hover:bg-gray-50 transition-all text-left"
-                >
-                  <div className="flex-1 min-w-0 pr-4">
-                    <div className="flex items-center gap-2 mb-2 flex-wrap">
-                      <span className="text-xs font-mono bg-zinc-100 border border-black px-2 py-1 whitespace-nowrap">
-                        {topic.topic_code}
-                      </span>
-                      {topic.sub_group && (
-                        <span className="text-xs font-bold bg-red-100 border border-red-400 px-2 py-1 whitespace-nowrap">
-                          {topic.sub_group}
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="text-lg md:text-xl font-black break-words">
-                      {lang === "en" ? topic.name_en : topic.name_km}
-                    </h3>
-                  </div>
-                  
-                  {expandedTopics[topic.id] ? (
-                    <ChevronUp size={24} className="flex-shrink-0" />
-                  ) : (
-                    <ChevronDown size={24} className="flex-shrink-0" />
-                  )}
+          <div className="flex items-center gap-1.5 overflow-x-auto py-0.5" style={{ scrollbarWidth: "none" } as React.CSSProperties}>
+            <button onClick={() => { setSubGroupFilter(""); setExpandedTopic(null); }}
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${!subGroupFilter && !search ? "bg-black text-red-400 shadow-[2px_2px_0_#b91c1c]" : "bg-white hover:bg-red-400 hover:shadow-[2px_2px_0_#000]"}`} style={kf}>
+              {t.all}
+              <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ${!subGroupFilter && !search ? "bg-red-400 text-black" : "bg-zinc-100 text-zinc-600"}`}>{topics.length}</span>
+            </button>
+            <span className="w-px h-4 bg-zinc-300 shrink-0 mx-0.5" />
+            {availableGroups.map((sg) => {
+              const isActive = subGroupFilter === sg.key && !search;
+              return (
+                <button key={sg.key} onClick={() => { setSubGroupFilter(sg.key); setExpandedTopic(null); }}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${isActive ? "bg-red-400 border-black shadow-[2px_2px_0_#000]" : "bg-white hover:bg-red-400 hover:shadow-[2px_2px_0_#000]"}`} style={kf}>
+                  {isKh ? sg.km : sg.en}
+                  <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ${isActive ? "bg-black text-red-400" : "bg-zinc-100 text-zinc-600"}`}>{countMap[sg.key] || 0}</span>
                 </button>
+              );
+            })}
+          </div>
+          <div className="mt-3 pt-3 border-t border-zinc-200 flex items-center justify-between">
+            <p className="text-xs font-bold text-zinc-500" style={kf}>{t.showing} <span className="text-black font-black">{filtered.length}</span> {t.of} {topics.length} {t.questions}</p>
+            {!isDefaultFilter && <button onClick={() => { setSubGroupFilter(""); setSearch(""); setExpandedTopic(null); }} className="text-xs font-bold text-zinc-400 hover:text-black underline" style={kf}>{t.reset}</button>}
+          </div>
+        </div>
+      </div>
 
-                {/* Topic Content - Collapsible */}
-                {expandedTopics[topic.id] && (
-                  <div className="border-t-2 border-black bg-gray-50 p-4 md:p-6">
-                    {/* Topic Image - 16:9 only */}
-                    {topic.primary_image_url && (
-                      <div className="mb-4 md:mb-6">
-                        <img
-                          src={topic.primary_image_url}
-                          alt={lang === "en" ? topic.name_en : topic.name_km}
-                          className="w-full max-w-3xl border-2 border-black object-cover"
-                          style={{ aspectRatio: '16/9' }}
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                          }}
-                        />
+      {/* ── Questions List ────────────────────────────────────────── */}
+      <div className="max-w-4xl mx-auto px-4 pb-16">
+        {loading ? (
+          <div className="space-y-3">{Array.from({ length: 8 }).map((_, i) => <div key={i} className="h-16 bg-gray-200 border-2 border-black animate-pulse" style={{ boxShadow: "4px 4px 0 #000" }} />)}</div>
+        ) : filtered.length === 0 ? (
+          <div className="bg-white border-2 border-black p-12 text-center" style={{ boxShadow: "4px 4px 0 #000" }}><p className="text-zinc-600 font-bold" style={kf}>{t.noQuestions}</p></div>
+        ) : (
+          <div className="space-y-3">
+            {filtered.map((topic, displayIndex) => {
+              const isOpen = expandedTopic === topic.id;
+              const question = isKh ? topic.name_km : topic.name_en;
+              const questionNumber = questionNumbers[topic.id] || displayIndex + 1;
+              return (
+                <div key={topic.id} className={`border-2 border-black transition-all ${isOpen ? "shadow-[6px_6px_0_#ef4444]" : "shadow-[4px_4px_0_#000]"} bg-white`}>
+                  <button onClick={() => setExpandedTopic(isOpen ? null : topic.id)}
+                    className={`w-full flex items-start justify-between gap-3 px-4 py-4 md:py-5 text-left transition-colors ${isOpen ? "bg-red-400" : "hover:bg-red-50"}`}>
+                    <div className="flex-1 flex items-start gap-3">
+                      <span className="font-black text-lg md:text-xl text-red-600 shrink-0 pt-0.5 min-w-[40px]">{questionNumber}.</span>
+                      <p className={`font-black text-base md:text-lg leading-snug ${isOpen ? "text-black" : "text-zinc-900"}`} style={kf}>{question}</p>
+                    </div>
+                    <span className="shrink-0 mt-0.5">{isOpen ? <ChevronUp size={22} className="text-black" /> : <ChevronDown size={22} className="text-zinc-400" />}</span>
+                  </button>
+                  {isOpen && (
+                    <>
+                      <AnswerCard topic={topic} isKh={isKh} t={t} />
+                      <div className="px-3 py-2 border-t border-zinc-100 bg-zinc-50 flex items-center justify-end">
+                        <SaveCardButton topic={topic} isKh={isKh} size="lg" />
                       </div>
-                    )}
-
-                    {/* Description */}
-                    <p className="text-sm md:text-base text-zinc-700 mb-4 md:mb-6 break-words whitespace-pre-wrap">
-                      {lang === "en" ? topic.description_en : topic.description_km}
-                    </p>
-
-                    {/* Audio Player */}
-                    {((lang === "en" && topic.audio_url_en) || (lang === "kh" && topic.audio_url_km)) && (
-                      <div className="mb-4 md:mb-6">
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleAudio(topic.id);
-                          }}
-                          className="bg-red-500 text-white border-2 border-black px-4 py-2 font-bold hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2"
-                        >
-                          {playingAudio === topic.id ? <Pause size={18} /> : <Play size={18} />}
-                          {t.playAudio}
-                        </button>
-                        {playingAudio === topic.id && (
-                          <audio
-                            key={`audio-${topic.id}-${lang}`}
-                            src={lang === "en" ? topic.audio_url_en : topic.audio_url_km}
-                            autoPlay
-                            onEnded={() => setPlayingAudio(null)}
-                            onError={() => setPlayingAudio(null)}
-                            className="hidden"
-                          />
-                        )}
-                      </div>
-                    )}
-
-                    {/* Law Reference */}
-                    {topic.law_reference && (
-                      <div className="mb-4 md:mb-6 p-3 md:p-4 bg-amber-50 border-2 border-amber-600">
-                        <p className="text-xs md:text-sm font-bold text-amber-900 mb-2">
-                          {t.lawReference}
-                        </p>
-                        <p className="text-xs md:text-sm font-mono text-amber-800 break-words">
-                          {topic.law_reference}
-                        </p>
-                      </div>
-                    )}
-
-                    {/* Questions Section - Collapsible Individual Questions */}
-                    {questions[topic.id] && questions[topic.id].length > 0 && (
-                      <div>
-                        <h4 className="font-black text-base md:text-lg mb-4">
-                          {t.questions}
-                        </h4>
-                        <div className="space-y-3">
-                          {questions[topic.id].map((q, index) => (
-                            <div
-                              key={q.id}
-                              className="bg-white border-2 border-black"
-                            >
-                              {/* Question Header - Clickable */}
-                              <button
-                                onClick={() => toggleQuestion(q.id)}
-                                className="w-full p-3 md:p-4 flex items-start justify-between hover:bg-gray-100 transition-all text-left"
-                              >
-                                <div className="flex items-start gap-2 md:gap-3 flex-1 min-w-0 pr-2">
-                                  <span className="font-black text-xs md:text-sm bg-black text-white px-2 py-1 flex-shrink-0">
-                                    Q{index + 1}
-                                  </span>
-                                  <p className="font-bold text-sm md:text-base break-words overflow-wrap-anywhere">
-                                    {lang === "en" ? q.question_en : q.question_km}
-                                  </p>
-                                </div>
-                                {expandedQuestions[q.id] ? (
-                                  <ChevronUp size={20} className="flex-shrink-0" />
-                                ) : (
-                                  <ChevronDown size={20} className="flex-shrink-0" />
-                                )}
-                              </button>
-
-                              {/* Question Details - Expanded */}
-                              {expandedQuestions[q.id] && (
-                                <div className="border-t-2 border-black bg-gray-50 p-3 md:p-4">
-                                  {/* Question Image */}
-                                  {q.image_url && (
-                                    <div className="mb-4">
-                                      <img
-                                        src={q.image_url}
-                                        alt="Emergency scenario"
-                                        className="w-full border-2 border-black object-cover"
-                                        style={{ aspectRatio: '16/9' }}
-                                      />
-                                    </div>
-                                  )}
-
-                                  {/* Answers */}
-                                  <div className="space-y-2 mb-4">
-                                    {q.answers.map((a, aIndex) => (
-                                      <div
-                                        key={a.id}
-                                        className={`p-2 md:p-3 border-2 ${
-                                          a.is_correct
-                                            ? "bg-green-100 border-green-600"
-                                            : "bg-white border-gray-300"
-                                        }`}
-                                      >
-                                        <div className="flex items-start gap-2">
-                                          <span className="font-bold flex-shrink-0 text-sm md:text-base">
-                                            {String.fromCharCode(65 + aIndex)}.
-                                          </span>
-                                          <span className="flex-1 text-sm md:text-base break-words overflow-wrap-anywhere">
-                                            {lang === "en" ? a.answer_en : a.answer_km}
-                                          </span>
-                                          {a.is_correct && (
-                                            <span className="text-green-600 font-bold text-sm flex-shrink-0">
-                                              ✓
-                                            </span>
-                                          )}
-                                        </div>
-                                      </div>
-                                    ))}
-                                  </div>
-
-                                  {/* Hint */}
-                                  {(q.hint_en || q.hint_km) && (
-                                    <div className="p-3 bg-blue-50 border-2 border-blue-400">
-                                      <p className="text-xs md:text-sm font-bold text-blue-900 mb-1">
-                                        💡 Hint
-                                      </p>
-                                      <p className="text-xs md:text-sm text-blue-800 break-words overflow-wrap-anywhere">
-                                        {lang === "en" ? q.hint_en : q.hint_km}
-                                      </p>
-                                    </div>
-                                  )}
-                                </div>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            ))}
+                    </>
+                  )}
+                </div>
+              );
+            })}
           </div>
         )}
       </div>

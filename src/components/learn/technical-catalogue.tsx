@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef, useMemo } from "react";
-import { Search, ArrowLeft, X, Volume2, ChevronDown, ChevronUp } from "lucide-react";
+import { Search, X, Volume2, ChevronDown, ChevronUp } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { SaveCardButton } from "./save-card-button";
+import { CategoryHero, CategoryHeroConfig } from "./category-hero";
 
 interface Topic {
   id: number;
@@ -179,8 +180,8 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
             <button
               onClick={toggle}
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black font-black text-xs transition-all select-none rounded ${loading ? "bg-zinc-100 text-zinc-400 cursor-wait"
-                  : playing ? "bg-black text-orange-400"
-                    : "bg-white hover:bg-orange-400"
+                : playing ? "bg-black text-orange-400"
+                  : "bg-white hover:bg-orange-400"
                 }`}
               style={kf}
             >
@@ -198,6 +199,28 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
     </div>
   );
 }
+
+// ── Category hero config ─────────────────────────────────────────────────────
+const HERO_CONFIG: CategoryHeroConfig = {
+  heroBg: "bg-orange-400",
+  titleColor: "text-black",
+  subtitleColor: "text-black/60",
+  descColor: "text-black/80",
+  iconShadow: "shadow-[6px_6px_0_#000]",
+  pillActiveBg: "bg-black",
+  pillActiveText: "text-orange-400",
+  pillBadgeBg: "bg-orange-400",
+  pillBadgeText: "text-black",
+  pillHoverBg: "hover:bg-orange-400",
+  emoji: "🔧",
+  icon: (
+    <svg viewBox="0 0 100 100" className="w-20 h-20 md:w-24 md:h-24" fill="none" stroke="currentColor" strokeWidth="2">
+      <circle cx="50" cy="50" r="30" stroke="#000" strokeWidth="3" />
+      <circle cx="50" cy="50" r="15" fill="#f97316" stroke="#000" strokeWidth="2" />
+      <path d="M 50 20 L 50 35 M 50 65 L 50 80 M 20 50 L 35 50 M 65 50 L 80 50" stroke="#000" strokeWidth="3" />
+    </svg>
+  ),
+};
 
 // ── Main Catalogue ────────────────────────────────────────────────────────────
 export function TechnicalCatalogue() {
@@ -256,53 +279,19 @@ export function TechnicalCatalogue() {
   return (
     <div className="min-h-screen bg-white">
 
-      {/* ── Hero Banner ───────────────────────────────────────────── */}
-      <div className="bg-orange-400 border-b-4 border-black" style={{ boxShadow: "0 4px 0 #000" }}>
-        <div className="max-w-4xl mx-auto px-4 py-10 md:py-14">
-          <div className="flex items-start justify-between gap-8">
-            <div className="flex-1">
-              <div className="inline-block bg-black text-white px-3 py-1 font-black text-xs tracking-widest uppercase mb-4" style={kf}>
-                {t.category}
-              </div>
-              <h1 className="text-4xl md:text-5xl font-black text-black leading-tight mb-1" style={kf}>
-                {t.title}
-              </h1>
-              <h2 className="text-lg md:text-xl font-bold text-black/70 mb-4" style={kf}>
-                {t.titleKm}
-              </h2>
-              <p className="text-sm md:text-base text-black/80 max-w-xl leading-relaxed" style={kf}>
-                {t.desc}
-              </p>
-            </div>
-
-            {/* Category icon */}
-            <div className="hidden lg:flex flex-shrink-0">
-              <div
-                className="w-36 h-36 xl:w-44 xl:h-44 bg-white border-4 border-black flex items-center justify-center"
-                style={{ boxShadow: "8px 8px 0 #000" }}
-              >
-                <svg viewBox="0 0 100 100" className="w-24 h-24 xl:w-28 xl:h-28" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="50" cy="50" r="30" stroke="#000" strokeWidth="3" />
-                  <circle cx="50" cy="50" r="15" fill="#f97316" stroke="#000" strokeWidth="2" />
-                  <path d="M 50 20 L 50 35 M 50 65 L 50 80 M 20 50 L 35 50 M 65 50 L 80 50" stroke="#000" strokeWidth="3" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* ── Back Button ───────────────────────────────────────────── */}
-      <div className="max-w-4xl mx-auto px-4 py-5">
-        <button
-          onClick={() => window.history.back()}
-          className="bg-white border-2 border-black px-4 py-2 font-bold hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2 text-sm"
-          style={kf}
-        >
-          <ArrowLeft size={16} />
-          {t.back}
-        </button>
-      </div>
+      {/* ── Hero ──────────────────────────────────────────────────── */}
+      <CategoryHero
+        config={HERO_CONFIG}
+        titleEn={UI.en.title}
+        titleKm={UI.kh.title}
+        descEn={UI.en.desc}
+        descKm={UI.kh.desc}
+        totalCount={topics.length}
+        filteredCount={filtered.length}
+        itemLabelEn="questions"
+        itemLabelKm="សំណួរ"
+        onBack={() => window.history.back()}
+      />
 
       {/* ── Filter + Search ───────────────────────────────────────── */}
       <div className="max-w-4xl mx-auto px-4 pb-5">
@@ -331,8 +320,8 @@ export function TechnicalCatalogue() {
             <button
               onClick={() => { setSubGroupFilter(""); setExpandedTopic(null); }}
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${!subGroupFilter && !search
-                  ? "bg-black text-orange-400 shadow-[2px_2px_0_#c2410c]"
-                  : "bg-white hover:bg-orange-400 hover:shadow-[2px_2px_0_#000]"
+                ? "bg-black text-orange-400 shadow-[2px_2px_0_#c2410c]"
+                : "bg-white hover:bg-orange-400 hover:shadow-[2px_2px_0_#000]"
                 }`}
               style={kf}
             >

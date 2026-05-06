@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Search, ArrowLeft, X, Volume2, ChevronDown, ChevronUp } from "lucide-react";
+import { Search, X, Volume2, ChevronDown, ChevronUp } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { SaveCardButton } from "./save-card-button";
+import { CategoryHero, CategoryHeroConfig } from "./category-hero";
 
 interface Topic {
   id: number;
@@ -199,6 +200,29 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
   );
 }
 
+// ── Category hero config ─────────────────────────────────────────────────────
+const HERO_CONFIG: CategoryHeroConfig = {
+  heroBg: "bg-blue-500",
+  titleColor: "text-white",
+  subtitleColor: "text-white/70",
+  descColor: "text-white/80",
+  iconShadow: "shadow-[6px_6px_0_#000]",
+  pillActiveBg: "bg-white",
+  pillActiveText: "text-blue-600",
+  pillBadgeBg: "bg-blue-400",
+  pillBadgeText: "text-white",
+  pillHoverBg: "hover:bg-blue-400",
+  emoji: "⚖️",
+  icon: (
+    <svg viewBox="0 0 100 100" className="w-20 h-20 md:w-24 md:h-24" fill="none" stroke="currentColor" strokeWidth="2">
+      <rect x="30" y="20" width="40" height="55" rx="2" fill="#bfdbfe" stroke="#000" strokeWidth="3" />
+      <path d="M 35 32 L 65 32 M 35 42 L 65 42 M 35 52 L 65 52 M 35 62 L 55 62" stroke="#000" strokeWidth="2" />
+      <circle cx="68" cy="62" r="10" fill="#3b82f6" stroke="#000" strokeWidth="2" />
+      <path d="M 64 62 L 67 65 L 72 59" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ),
+};
+
 // ── Main Catalogue ────────────────────────────────────────────────────────────
 export function RoadTrafficCatalogue() {
   const { lang } = useLang();
@@ -257,17 +281,19 @@ export function RoadTrafficCatalogue() {
   return (
     <div className="min-h-screen bg-white">
 
-      {/* ── Back Button ───────────────────────────────────────────── */}
-      <div className="max-w-4xl mx-auto px-4 py-5">
-        <button
-          onClick={() => window.history.back()}
-          className="bg-white border-2 border-black px-4 py-2 font-bold hover:shadow-[2px_2px_0_#000] transition-all inline-flex items-center gap-2 text-sm"
-          style={kf}
-        >
-          <ArrowLeft size={16} />
-          {t.back}
-        </button>
-      </div>
+      {/* ── Hero ──────────────────────────────────────────────────── */}
+      <CategoryHero
+        config={HERO_CONFIG}
+        titleEn={UI.en.title}
+        titleKm={UI.kh.title}
+        descEn={UI.en.desc}
+        descKm={UI.kh.desc}
+        totalCount={topics.length}
+        filteredCount={filtered.length}
+        itemLabelEn="questions"
+        itemLabelKm="សំណួរ"
+        onBack={() => window.history.back()}
+      />
 
       {/* ── Filter + Search ───────────────────────────────────────── */}
       <div className="max-w-4xl mx-auto px-4 pb-5">
