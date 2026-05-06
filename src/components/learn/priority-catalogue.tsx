@@ -195,13 +195,6 @@ function DetailPanel({
           </div>
         )}
 
-        {/* ── Title — prominent, above description ── */}
-        <div className="mx-4 mt-4">
-          <h2 className="text-2xl md:text-3xl font-black leading-tight text-black" style={kf}>
-            {name}
-          </h2>
-        </div>
-
         {/* ── ZONE 3: Description — green = information (color psychology) ── */}
         {description && (
           <div className={`mx-4 mt-3 rounded-lg overflow-hidden border-2 transition-all duration-300 ${playing ? "border-yellow-400 shadow-[0_0_0_3px_rgba(250,204,21,0.25)]" : "border-emerald-400"
@@ -266,10 +259,7 @@ function DetailPanel({
         )}
 
         {/* ── Save Card Button ── */}
-        <div className="px-4 pb-5 flex items-center justify-between gap-2">
-          <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider" style={kf}>
-            {isKh ? "រក្សាទុកដើម្បីពិនិត្យឡើងវិញ" : "Save to review later"}
-          </p>
+        <div className="px-4 pb-5 flex items-center justify-end gap-2">
           <SaveCardButton topic={topic} isKh={isKh} size="lg" />
         </div>
       </div>

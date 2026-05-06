@@ -136,13 +136,6 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
         </div>
       )}
 
-      {/* ── Title — prominent, above answer ── */}
-      <div className="mx-4 mt-4">
-        <h2 className="text-2xl md:text-3xl font-black leading-tight text-black" style={kf}>
-          {isKh ? topic.name_km : topic.name_en}
-        </h2>
-      </div>
-
       {/* ── ZONE 3: Answer — green = correct/safe (color psychology) ── */}
       {answer && (
         <div className={`mx-4 mt-3 rounded-lg overflow-hidden border-2 transition-all duration-300 ${playing ? "border-yellow-400 shadow-[0_0_0_3px_rgba(250,204,21,0.25)]" : "border-emerald-400"
@@ -406,10 +399,7 @@ export function RoadTrafficCatalogue() {
                     <>
                       <AnswerCard topic={topic} isKh={isKh} t={t} />
                       {/* Save Card action bar */}
-                      <div className="px-4 py-3 border-t-2 border-black bg-zinc-50 flex items-center justify-between gap-2">
-                        <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider" style={kf}>
-                          {isKh ? "រក្សាទុកដើម្បីពិនិត្យឡើងវិញ" : "Save to review later"}
-                        </p>
+                      <div className="px-4 py-3 border-t-2 border-black bg-zinc-50 flex items-center justify-end gap-2">
                         <SaveCardButton topic={topic} isKh={isKh} size="lg" />
                       </div>
                     </>
