@@ -91,7 +91,7 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
           {topic.topic_code}{subGroup ? ` · ${isKh ? subGroup.km : subGroup.en}` : ""}
         </span>
       </div>
-      {topic.primary_image_url && <div className="w-full relative"><img src={topic.primary_image_url} alt={isKh ? topic.name_km : topic.name_en} className="w-full h-auto block select-none pointer-events-none" draggable={false} onContextMenu={(e) => e.preventDefault()} /><div className="absolute bottom-0 left-0 right-0 bg-blue-600/90 px-3 py-1.5 flex items-center gap-1.5"><svg className="w-3 h-3 text-white shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" /></svg><p className="text-[10px] text-white font-bold leading-tight" style={kf}>{isKh ? "រូបភាពនេះបង្កើតដោយ AI — អាចមិនត្រូវនឹងចម្លើយពិតប្រាកដ" : "AI-generated image for illustration only — may not exactly match the answer"}</p></div></div>}
+      {topic.primary_image_url && <div className="w-full relative"><img src={topic.primary_image_url} alt={isKh ? topic.name_km : topic.name_en} className="w-full h-auto block select-none pointer-events-none" draggable={false} onContextMenu={(e) => e.preventDefault()} /><span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[9px] font-medium text-black pointer-events-none select-none" style={{ opacity: 0.09, whiteSpace: "nowrap" }}>AI-generated image</span></div>}
       <div className="px-4 pb-4 pt-3">
         {/* ── Question title — centered ── */}
         <p className="text-base font-black text-black text-center mb-3 leading-snug" style={kf}>
