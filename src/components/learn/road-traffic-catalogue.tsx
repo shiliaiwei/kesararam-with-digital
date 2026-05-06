@@ -110,58 +110,77 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
   return (
     <div className="border-t-2 border-black bg-white">
 
-      {/* Meta info — 25% opacity, small, not distracting */}
-      <div className="px-4 pt-3 flex items-center gap-2 opacity-30">
-        <span className="font-mono text-[10px] font-black bg-zinc-200 px-1.5 py-0.5">
+      {/* ── ZONE 1: Context strip — code + category (low visual weight) ── */}
+      <div className="px-4 pt-3 pb-1 flex items-center gap-2">
+        <span className="font-mono text-[10px] font-black bg-zinc-100 border border-zinc-300 text-zinc-500 px-2 py-0.5 rounded">
           {topic.topic_code}
         </span>
         {subGroup && (
-          <span className="text-[10px] font-bold" style={kf}>
+          <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider" style={kf}>
             {isKh ? subGroup.km : subGroup.en}
           </span>
         )}
       </div>
 
-      {/* Image — centered, max 320px tall, never full bleed */}
+      {/* ── ZONE 2: Visual anchor — image with blue left border (attention cue) ── */}
       {topic.primary_image_url && (
-        <div className="flex justify-center px-4 pt-4">
-          <div className="border-2 border-black overflow-hidden w-full max-w-md">
+        <div className="mx-4 mt-3">
+          <div className="border-l-4 border-blue-500 overflow-hidden bg-zinc-50 border border-zinc-200 rounded-r-lg">
             <img
               src={topic.primary_image_url}
               alt={isKh ? topic.name_km : topic.name_en}
               className="w-full object-cover"
-              style={{ maxHeight: "220px", objectPosition: "center" }}
+              style={{ maxHeight: "240px", objectPosition: "center" }}
             />
           </div>
         </div>
       )}
 
-      {/* Answer — highlighted yellow when audio plays */}
+      {/* ── ZONE 3: Answer — green = correct/safe (color psychology) ── */}
       {answer && (
-        <div className={`mx-4 mt-3 px-4 py-3 border-2 rounded transition-all duration-300 ${playing ? "bg-yellow-200 border-yellow-400" : "bg-green-50 border-green-400"}`}>
-          <p className="text-[9px] font-black uppercase tracking-widest mb-1 opacity-60" style={kf}>
-            {t.answer}
-          </p>
-          <p className={`font-black text-base md:text-lg leading-relaxed ${playing ? "text-black" : "text-green-900"}`} style={kf}>
-            {answer}
-          </p>
+        <div className={`mx-4 mt-3 rounded-lg overflow-hidden border-2 transition-all duration-300 ${playing ? "border-yellow-400 shadow-[0_0_0_3px_rgba(250,204,21,0.25)]" : "border-emerald-400"
+          }`}>
+          {/* Label bar */}
+          <div className={`px-3 py-1.5 flex items-center gap-2 transition-colors duration-300 ${playing ? "bg-yellow-400" : "bg-emerald-500"
+            }`}>
+            <span className="text-[9px] font-black uppercase tracking-widest text-white" style={kf}>
+              {t.answer}
+            </span>
+            {playing && (
+              <span className="flex gap-0.5 items-end h-3 ml-auto">
+                {[60, 100, 75, 90, 55].map((h, i) => (
+                  <span key={i} className="w-0.5 bg-black rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />
+                ))}
+              </span>
+            )}
+          </div>
+          {/* Answer text */}
+          <div className={`px-4 py-3 transition-colors duration-300 ${playing ? "bg-yellow-50" : "bg-emerald-50"}`}>
+            <p className={`font-black text-base md:text-lg leading-relaxed ${playing ? "text-black" : "text-emerald-900"}`} style={kf}>
+              {answer}
+            </p>
+          </div>
         </div>
       )}
 
-      {/* Law reference — subtle */}
+      {/* ── ZONE 4: Law reference — amber = caution/important (color psychology) ── */}
       {topic.law_reference && (
-        <div className="mx-4 mt-3 px-3 py-2 bg-amber-50 border border-amber-200 opacity-70">
-          <p className="text-[9px] font-black uppercase tracking-widest text-amber-600 mb-0.5" style={kf}>{t.lawRef}</p>
-          <p className="text-xs font-mono text-amber-900" style={kf}>{topic.law_reference}</p>
+        <div className="mx-4 mt-2 rounded-lg overflow-hidden border border-amber-300">
+          <div className="bg-amber-400 px-3 py-1">
+            <p className="text-[9px] font-black uppercase tracking-widest text-amber-900" style={kf}>{t.lawRef}</p>
+          </div>
+          <div className="bg-amber-50 px-3 py-2">
+            <p className="text-xs font-mono text-amber-900" style={kf}>{topic.law_reference}</p>
+          </div>
         </div>
       )}
 
-      {/* Audio button */}
+      {/* ── ZONE 5: Audio — single listen button ── */}
       {audioUrl && (
         <div className="px-4 pt-4 pb-5">
           <button
             onClick={toggle}
-            className={`w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3 border-2 border-black font-black text-sm transition-all select-none ${loading ? "bg-zinc-100 text-zinc-400 cursor-wait"
+            className={`w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3 border-2 border-black font-black text-sm transition-all select-none rounded-lg ${loading ? "bg-zinc-100 text-zinc-400 cursor-wait"
               : playing ? "bg-black text-yellow-400 shadow-[4px_4px_0_#ca8a04]"
                 : "bg-white hover:bg-yellow-400 shadow-[4px_4px_0_#000] hover:shadow-[4px_4px_0_#ca8a04]"
               }`}
@@ -379,8 +398,11 @@ export function RoadTrafficCatalogue() {
                   {isOpen && (
                     <>
                       <AnswerCard topic={topic} isKh={isKh} t={t} />
-                      {/* Save Card Button */}
-                      <div className="px-4 py-3 border-t-2 border-black bg-blue-50 flex justify-end">
+                      {/* Save Card action bar */}
+                      <div className="px-4 py-3 border-t-2 border-black bg-zinc-50 flex items-center justify-between gap-2">
+                        <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider" style={kf}>
+                          {isKh ? "រក្សាទុកដើម្បីពិនិត្យឡើងវិញ" : "Save to review later"}
+                        </p>
                         <SaveCardButton topic={topic} isKh={isKh} size="lg" />
                       </div>
                     </>
