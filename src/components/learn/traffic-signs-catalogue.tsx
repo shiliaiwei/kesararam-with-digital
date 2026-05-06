@@ -367,18 +367,23 @@ function DetailPanel({
           )}
         </div>
 
-        {/* ── ZONE 2: Visual anchor — image with blue left border (attention cue) ── */}
+        {/* ── ZONE 2: Visual anchor — full width image ── */}
         {topic.primary_image_url && (
-          <div className="mx-4 mt-3">
-            <div className="border-l-4 border-blue-500 overflow-hidden bg-zinc-50 border border-zinc-200 rounded-r-lg p-4 flex items-center justify-center" style={{ minHeight: "200px" }}>
-              <img
-                src={topic.primary_image_url}
-                alt={name}
-                className="object-contain max-h-48 max-w-full"
-              />
-            </div>
+          <div className="mt-3">
+            <img
+              src={topic.primary_image_url}
+              alt={name}
+              className="w-full object-cover"
+            />
           </div>
         )}
+
+        {/* ── Title — prominent, above description ── */}
+        <div className="mx-4 mt-4">
+          <h2 className="text-2xl md:text-3xl font-black leading-tight text-black" style={kf}>
+            {name}
+          </h2>
+        </div>
 
         {/* ── ZONE 3: Description — green = information (color psychology) ── */}
         {description && (

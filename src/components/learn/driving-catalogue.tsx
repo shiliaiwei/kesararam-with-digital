@@ -121,19 +121,23 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
         )}
       </div>
 
-      {/* ── ZONE 2: Visual anchor — image with green left border (attention cue) ── */}
+      {/* ── ZONE 2: Visual anchor — full width image ── */}
       {topic.primary_image_url && (
-        <div className="mx-4 mt-3">
-          <div className="border-l-4 border-green-500 overflow-hidden bg-zinc-50 border border-zinc-200 rounded-r-lg">
-            <img
-              src={topic.primary_image_url}
-              alt={isKh ? topic.name_km : topic.name_en}
-              className="w-full object-cover"
-              style={{ maxHeight: "240px", objectPosition: "center" }}
-            />
-          </div>
+        <div className="mt-3">
+          <img
+            src={topic.primary_image_url}
+            alt={isKh ? topic.name_km : topic.name_en}
+            className="w-full object-cover"
+          />
         </div>
       )}
+
+      {/* ── Title — prominent, above answer ── */}
+      <div className="mx-4 mt-4">
+        <h2 className="text-2xl md:text-3xl font-black leading-tight text-black" style={kf}>
+          {isKh ? topic.name_km : topic.name_en}
+        </h2>
+      </div>
 
       {/* ── ZONE 3: Answer — green = correct/safe (color psychology) ── */}
       {answer && (
