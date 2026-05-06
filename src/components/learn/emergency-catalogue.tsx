@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import { Search, X, Volume2, ChevronDown, ChevronUp, Phone } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { SaveCardButton } from "./save-card-button";
-import { CategoryHero, CategoryHeroConfig } from "./category-hero";
 
 interface Topic {
   id: number;
@@ -66,27 +65,6 @@ const UI = {
     emergencyContacts: "🚨 លេខទូរស័ព្ទអាសន្ន",
   },
 } as const;
-
-const HERO_CONFIG: CategoryHeroConfig = {
-  heroBg: "bg-red-500",
-  titleColor: "text-white",
-  subtitleColor: "text-white/70",
-  descColor: "text-white/80",
-  iconShadow: "shadow-[6px_6px_0_#000]",
-  pillActiveBg: "bg-white",
-  pillActiveText: "text-red-600",
-  pillBadgeBg: "bg-red-400",
-  pillBadgeText: "text-white",
-  pillHoverBg: "hover:bg-red-400",
-  emoji: "🚨",
-  icon: (
-    <svg viewBox="0 0 100 100" className="w-20 h-20 md:w-24 md:h-24" fill="none" strokeWidth="2">
-      <polygon points="50,15 90,80 10,80" fill="#fca5a5" stroke="#000" strokeWidth="3" strokeLinejoin="round" />
-      <line x1="50" y1="38" x2="50" y2="60" stroke="#000" strokeWidth="5" strokeLinecap="round" />
-      <circle cx="50" cy="70" r="4" fill="#000" />
-    </svg>
-  ),
-};
 
 function useAudio(url: string | null) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -198,15 +176,6 @@ export function EmergencyCatalogue() {
 
   return (
     <div className="min-h-screen bg-white">
-
-      <CategoryHero
-        config={HERO_CONFIG}
-        titleEn={UI.en.title} titleKm={UI.kh.title}
-        descEn={UI.en.desc} descKm={UI.kh.desc}
-        totalCount={topics.length} filteredCount={filtered.length}
-        itemLabelEn="questions" itemLabelKm="សំណួរ"
-        onBack={() => window.history.back()}
-      />
 
       {/* ── Emergency contacts strip ──────────────────────────────── */}
       <div className="max-w-4xl mx-auto px-4 pt-5 pb-2">

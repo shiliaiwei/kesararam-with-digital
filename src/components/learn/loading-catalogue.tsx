@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import { Search, X, Volume2, ChevronDown, ChevronUp } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { SaveCardButton } from "./save-card-button";
-import { CategoryHero, CategoryHeroConfig } from "./category-hero";
 
 interface Topic {
   id: number;
@@ -56,32 +55,6 @@ const UI = {
     stopAudio: "ឈប់",
   },
 } as const;
-
-const HERO_CONFIG: CategoryHeroConfig = {
-  heroBg: "bg-cyan-500",
-  titleColor: "text-white",
-  subtitleColor: "text-white/70",
-  descColor: "text-white/80",
-  iconShadow: "shadow-[6px_6px_0_#000]",
-  pillActiveBg: "bg-white",
-  pillActiveText: "text-cyan-600",
-  pillBadgeBg: "bg-cyan-400",
-  pillBadgeText: "text-white",
-  pillHoverBg: "hover:bg-cyan-400",
-  emoji: "📦",
-  icon: (
-    <svg viewBox="0 0 100 100" className="w-20 h-20 md:w-24 md:h-24" fill="none" strokeWidth="2">
-      <rect x="22" y="45" width="56" height="30" rx="3" fill="#a5f3fc" stroke="#000" strokeWidth="3" />
-      <circle cx="34" cy="77" r="8" fill="#000" />
-      <circle cx="66" cy="77" r="8" fill="#000" />
-      <circle cx="34" cy="77" r="4" fill="#06b6d4" />
-      <circle cx="66" cy="77" r="4" fill="#06b6d4" />
-      <path d="M 28 45 L 34 33 L 66 33 L 72 45" fill="#cffafe" stroke="#000" strokeWidth="2" />
-      <rect x="38" y="22" width="24" height="11" rx="2" fill="#fbbf24" stroke="#000" strokeWidth="2" />
-      <path d="M 44 27 L 56 27" stroke="#000" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  ),
-};
 
 function useAudio(url: string | null) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -187,15 +160,6 @@ export function LoadingCatalogue() {
 
   return (
     <div className="min-h-screen bg-white">
-
-      <CategoryHero
-        config={HERO_CONFIG}
-        titleEn={UI.en.title} titleKm={UI.kh.title}
-        descEn={UI.en.desc} descKm={UI.kh.desc}
-        totalCount={topics.length} filteredCount={filtered.length}
-        itemLabelEn="questions" itemLabelKm="សំណួរ"
-        onBack={() => window.history.back()}
-      />
 
       <div className="max-w-4xl mx-auto px-4 pt-5 pb-5">
         <div className="bg-white border-2 border-black p-4" style={{ boxShadow: "4px 4px 0 #000" }}>

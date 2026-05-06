@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, Fragment } from "react";
 import { Search, ArrowLeft, X, Volume2 } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { SaveCardButton } from "./save-card-button";
-import { CategoryHero, CategoryHeroConfig } from "./category-hero";
 
 interface Topic {
   id: number;
@@ -268,29 +267,6 @@ export function PriorityCatalogue() {
   const kf = isKh ? { fontFamily: "Siemreap, sans-serif" } : {};
   const t = isKh ? UI.kh : UI.en;
 
-  const HERO_CONFIG: CategoryHeroConfig = {
-    heroBg: "bg-yellow-400",
-    titleColor: "text-black",
-    subtitleColor: "text-black/60",
-    descColor: "text-black/80",
-    iconShadow: "shadow-[6px_6px_0_#000]",
-    pillActiveBg: "bg-black",
-    pillActiveText: "text-yellow-400",
-    pillBadgeBg: "bg-yellow-400",
-    pillBadgeText: "text-black",
-    pillHoverBg: "hover:bg-yellow-400",
-    emoji: "🚦",
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-20 h-20 md:w-24 md:h-24" fill="none" strokeWidth="2">
-        <rect x="40" y="10" width="20" height="70" rx="3" fill="#fef08a" stroke="#000" strokeWidth="3" />
-        <circle cx="50" cy="25" r="7" fill="#ef4444" stroke="#000" strokeWidth="2" />
-        <circle cx="50" cy="45" r="7" fill="#f59e0b" stroke="#000" strokeWidth="2" />
-        <circle cx="50" cy="65" r="7" fill="#22c55e" stroke="#000" strokeWidth="2" />
-        <rect x="35" y="78" width="30" height="8" rx="2" fill="#000" />
-      </svg>
-    ),
-  };
-
   const [topics, setTopics] = useState<Topic[]>([]);
   const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
   const [loading, setLoading] = useState(true);
@@ -364,16 +340,6 @@ export function PriorityCatalogue() {
 
   return (
     <div className="min-h-screen bg-white">
-
-      {/* ── Hero ──────────────────────────────────────────────────── */}
-      <CategoryHero
-        config={HERO_CONFIG}
-        titleEn={UI.en.title} titleKm={UI.kh.title}
-        descEn={UI.en.desc} descKm={UI.kh.desc}
-        totalCount={topics.length} filteredCount={filteredTopics.length}
-        itemLabelEn="scenarios" itemLabelKm="ស្ថានភាព"
-        onBack={() => window.history.back()}
-      />
 
       {/* Filter Tag Bar */}
       <div className="max-w-7xl mx-auto px-4 pb-4">

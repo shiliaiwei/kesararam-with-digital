@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import { Search, X, Volume2, ChevronDown, ChevronUp } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { SaveCardButton } from "./save-card-button";
-import { CategoryHero, CategoryHeroConfig } from "./category-hero";
 
 interface Topic {
   id: number;
@@ -196,28 +195,6 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
   );
 }
 
-// ── Category hero config ─────────────────────────────────────────────────────
-const HERO_CONFIG: CategoryHeroConfig = {
-  heroBg: "bg-orange-400",
-  titleColor: "text-black",
-  subtitleColor: "text-black/60",
-  descColor: "text-black/80",
-  iconShadow: "shadow-[6px_6px_0_#000]",
-  pillActiveBg: "bg-black",
-  pillActiveText: "text-orange-400",
-  pillBadgeBg: "bg-orange-400",
-  pillBadgeText: "text-black",
-  pillHoverBg: "hover:bg-orange-400",
-  emoji: "🔧",
-  icon: (
-    <svg viewBox="0 0 100 100" className="w-20 h-20 md:w-24 md:h-24" fill="none" stroke="currentColor" strokeWidth="2">
-      <circle cx="50" cy="50" r="30" stroke="#000" strokeWidth="3" />
-      <circle cx="50" cy="50" r="15" fill="#f97316" stroke="#000" strokeWidth="2" />
-      <path d="M 50 20 L 50 35 M 50 65 L 50 80 M 20 50 L 35 50 M 65 50 L 80 50" stroke="#000" strokeWidth="3" />
-    </svg>
-  ),
-};
-
 // ── Main Catalogue ────────────────────────────────────────────────────────────
 export function TechnicalCatalogue() {
   const { lang } = useLang();
@@ -274,20 +251,6 @@ export function TechnicalCatalogue() {
 
   return (
     <div className="min-h-screen bg-white">
-
-      {/* ── Hero ──────────────────────────────────────────────────── */}
-      <CategoryHero
-        config={HERO_CONFIG}
-        titleEn={UI.en.title}
-        titleKm={UI.kh.title}
-        descEn={UI.en.desc}
-        descKm={UI.kh.desc}
-        totalCount={topics.length}
-        filteredCount={filtered.length}
-        itemLabelEn="questions"
-        itemLabelKm="សំណួរ"
-        onBack={() => window.history.back()}
-      />
 
       {/* ── Filter + Search ───────────────────────────────────────── */}
       <div className="max-w-4xl mx-auto px-4 pb-5">

@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, Fragment } from "react";
 import { Search, ArrowLeft, X, Volume2, Download } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { SaveCardButton } from "./save-card-button";
-import { CategoryHero, CategoryHeroConfig } from "./category-hero";
 
 interface Topic {
   id: number;
@@ -486,30 +485,6 @@ export function TrafficSignsCatalogue() {
   const kf = isKh ? { fontFamily: "Siemreap, sans-serif" } : {};
   const t = isKh ? UI.kh : UI.en;
 
-  const HERO_CONFIG: CategoryHeroConfig = {
-    heroBg: "bg-black",
-    titleColor: "text-yellow-400",
-    subtitleColor: "text-white/60",
-    descColor: "text-white/70",
-    iconShadow: "shadow-[6px_6px_0_#ca8a04]",
-    pillActiveBg: "bg-yellow-400",
-    pillActiveText: "text-black",
-    pillBadgeBg: "bg-black",
-    pillBadgeText: "text-yellow-400",
-    pillHoverBg: "hover:bg-yellow-400",
-    emoji: "🚸",
-    icon: (
-      <svg viewBox="0 0 100 100" className="w-20 h-20 md:w-24 md:h-24" fill="none" strokeWidth="2">
-        <polygon points="50,10 90,75 10,75" fill="#fef08a" stroke="#000" strokeWidth="3" strokeLinejoin="round" />
-        <circle cx="50" cy="35" r="5" fill="#000" />
-        <line x1="50" y1="43" x2="50" y2="60" stroke="#000" strokeWidth="4" strokeLinecap="round" />
-        <line x1="40" y1="50" x2="60" y2="50" stroke="#000" strokeWidth="4" strokeLinecap="round" />
-        <line x1="50" y1="60" x2="44" y2="70" stroke="#000" strokeWidth="4" strokeLinecap="round" />
-        <line x1="50" y1="60" x2="56" y2="70" stroke="#000" strokeWidth="4" strokeLinecap="round" />
-      </svg>
-    ),
-  };
-
   const [topics, setTopics] = useState<Topic[]>([]);
   const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
   const [loading, setLoading] = useState(true);
@@ -599,17 +574,6 @@ export function TrafficSignsCatalogue() {
 
   return (
     <div className="min-h-screen bg-white">
-
-      {/* ── Hero ──────────────────────────────────────────────────── */}
-      <CategoryHero
-        config={HERO_CONFIG}
-        titleEn="Traffic Signs" titleKm="សញ្ញាចរាចរណ៍"
-        descEn="Identify and understand all official road signs used in Cambodia. Learn their meanings, categories, and legal requirements."
-        descKm="ស្គាល់ និងយល់ពីសញ្ញាផ្លូវផ្លូវការទាំងអស់ដែលប្រើនៅកម្ពុជា។ រៀនអំពីអត្ថន័យ ប្រភេទ និងតម្រូវការច្បាប់របស់ពួកគេ។"
-        totalCount={topics.length} filteredCount={filteredTopics.length}
-        itemLabelEn="signs" itemLabelKm="សញ្ញា"
-        onBack={() => window.history.back()}
-      />
 
       {/* ── Filter Tag Bar ─────────────────────────────────────────── */}
       <div className="max-w-7xl mx-auto px-4 pb-4">
