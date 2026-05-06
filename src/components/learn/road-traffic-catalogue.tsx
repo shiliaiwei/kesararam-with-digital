@@ -176,7 +176,9 @@ function FooterRow({ topic, isKh, t, accentPlay, accentStop }: {
   const { playing, loading, toggle } = useAudio(audioUrl || null);
   return (
     <div className="px-3 py-2 border-t border-zinc-100 bg-zinc-50 flex items-center justify-between gap-2">
-      {/* Audio — left */}
+      {/* Save — left */}
+      <SaveCardButton topic={topic} isKh={isKh} size="lg" />
+      {/* Audio — right */}
       {(audioUrlEn || audioUrlKm) ? (
         <button onClick={toggle} style={kf}
           className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black font-black text-xs transition-all select-none ${loading ? "bg-zinc-100 text-zinc-400 cursor-wait"
@@ -188,8 +190,6 @@ function FooterRow({ topic, isKh, t, accentPlay, accentStop }: {
               : (<><Volume2 size={13} />{t.playAudio}</>)}
         </button>
       ) : <span />}
-      {/* Save — right */}
-      <SaveCardButton topic={topic} isKh={isKh} size="lg" />
     </div>
   );
 }

@@ -173,9 +173,10 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
           </div>
         )}
 
-        {/* Audio button — always shown if any audio URL exists */}
-        {(audioUrlEn || audioUrlKm) && (
-          <div className="mt-3">
+        {/* Save + Audio row — Save left, Audio right */}
+        <div className="mt-3 flex items-center justify-between gap-2">
+          <SaveCardButton topic={topic} isKh={isKh} size="lg" />
+          {(audioUrlEn || audioUrlKm) && (
             <button
               onClick={toggle}
               className={`inline-flex items-center gap-2 px-4 py-2 border-2 border-black font-black text-xs transition-all select-none rounded ${loading ? "bg-zinc-100 text-zinc-400 cursor-wait"
@@ -192,8 +193,8 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
                 <><Volume2 size={14} />{t.playAudio}</>
               )}
             </button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
@@ -398,9 +399,6 @@ export function DrivingCatalogue() {
                   {isOpen && (
                     <>
                       <AnswerCard topic={topic} isKh={isKh} t={t} />
-                      <div className="px-3 py-2 border-t border-zinc-100 bg-zinc-50 flex items-center justify-end">
-                        <SaveCardButton topic={topic} isKh={isKh} size="lg" />
-                      </div>
                     </>
                   )}
                 </div>

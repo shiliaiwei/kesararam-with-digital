@@ -130,13 +130,15 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
             <div className="bg-amber-50 px-3 py-2"><p className="text-xs font-mono text-amber-900" style={kf}>{topic.law_reference}</p></div>
           </div>
         )}
-        {(audioUrlEn || audioUrlKm) && (
-          <div className="mt-3">
+        {/* Save + Audio row — Save left, Audio right */}
+        <div className="mt-3 flex items-center justify-between gap-2">
+          <SaveCardButton topic={topic} isKh={isKh} size="lg" />
+          {(audioUrlEn || audioUrlKm) && (
             <button onClick={toggle} className={`inline-flex items-center gap-2 px-4 py-2 border-2 border-black font-black text-xs transition-all select-none rounded ${loading ? "bg-zinc-100 text-zinc-400 cursor-wait" : playing ? "bg-black text-red-400" : "bg-white hover:bg-red-400"}`} style={kf}>
               {loading ? (<><span className="flex gap-0.5 items-end h-3">{[60, 100, 75].map((h, i) => <span key={i} className="w-0.5 bg-zinc-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 120}ms` }} />)}</span>{isKh ? "ផ្ទុក..." : "Loading..."}</>) : playing ? (<><span className="flex gap-0.5 items-end h-3">{[60, 100, 75, 90, 55].map((h, i) => <span key={i} className="w-0.5 bg-red-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />)}</span>{t.stopAudio}</>) : (<><Volume2 size={14} />{t.playAudio}</>)}
             </button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
@@ -276,9 +278,6 @@ export function EmergencyCatalogue() {
                   {isOpen && (
                     <>
                       <AnswerCard topic={topic} isKh={isKh} t={t} />
-                      <div className="px-3 py-2 border-t border-zinc-100 bg-zinc-50 flex items-center justify-end">
-                        <SaveCardButton topic={topic} isKh={isKh} size="lg" />
-                      </div>
                     </>
                   )}
                 </div>

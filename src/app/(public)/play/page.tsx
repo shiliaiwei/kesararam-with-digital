@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { gsap } from "gsap";
@@ -105,18 +105,18 @@ function IconExamSimulation({ animated }: { animated?: boolean }) {
 const GAME_MODE_ICONS = [IconQuickQuiz, IconSpeedRound, IconSignChallenge, IconMixedBattle, IconDailyChallenge, IconExamSimulation];
 
 const GAME_MODES = [
-  { id: "quick-quiz",      title: "Quick Quiz",      titleKh: "សំណួរលឿន",       desc: "10 random questions across all categories.",     descKh: "សំណួរចៃដន្យ ១០",        color: "#eab308", accent: "#ca8a04", href: "/play/solo?mode=quick-quiz",      badge: "10Q · 30s", cta: "Play Now →",  ctaKh: "លេងឥឡូវ" },
-  { id: "speed-round",     title: "Speed Round",     titleKh: "វគ្គល្បឿន",       desc: "Fast MCQ only — tap fast, score big.",           descKh: "MCQ លឿន — ចុចឆាប់",       color: "#ef4444", accent: "#b91c1c", href: "/play/solo?mode=speed-round",     badge: "20Q · 15s", cta: "Go Fast →",   ctaKh: "ចូលប្រកួត" },
-  { id: "sign-challenge",  title: "Sign Challenge",  titleKh: "ប្រឡងសញ្ញា",     desc: "Identify traffic signs from images only.",       descKh: "ស្គាល់សញ្ញាចរាចរ",         color: "#3b82f6", accent: "#1d4ed8", href: "/play/solo?mode=sign-challenge",  badge: "15Q · 20s", cta: "Challenge →", ctaKh: "ប្រឡង" },
-  { id: "mixed-battle",    title: "Mixed Battle",    titleKh: "ប្រកួតចម្រុះ",   desc: "All categories, all question types.",            descKh: "ប្រភេទទាំង ៨",             color: "#a855f7", accent: "#7e22ce", href: "/play/solo?mode=mixed-battle",    badge: "20Q · 30s", cta: "Battle! →",   ctaKh: "ប្រកួត" },
-  { id: "daily-challenge", title: "Daily Challenge", titleKh: "បញ្ហាប្រចាំថ្ងៃ", desc: "New questions every day. Build your streak.",    descKh: "សំណួរថ្មីរៀងរាល់ថ្ងៃ",     color: "#22c55e", accent: "#15803d", href: "/play/solo?mode=daily-challenge", badge: "15Q · 30s", cta: "Daily →",     ctaKh: "ប្រចាំថ្ងៃ" },
-  { id: "exam-simulation", title: "Exam Simulation", titleKh: "ត្រាប់តាមប្រឡង", desc: "40 questions mirroring the real Cambodia exam.", descKh: "ស្រដៀងប្រឡងពិត",           color: "#f97316", accent: "#c2410c", href: "/play/solo?mode=exam-simulation", badge: "40Q · 45s", cta: "Simulate →",  ctaKh: "ត្រាប់តាម" },
+  { id: "quick-quiz", title: "Quick Quiz", titleKh: "សំណួរលឿន", desc: "10 random questions across all categories.", descKh: "សំណួរចៃដន្យ ១០", color: "#eab308", accent: "#ca8a04", href: "/play/solo?mode=quick-quiz", badge: "10Q · 30s", cta: "Play Now →", ctaKh: "លេងឥឡូវ" },
+  { id: "speed-round", title: "Speed Round", titleKh: "វគ្គល្បឿន", desc: "Fast MCQ only — tap fast, score big.", descKh: "MCQ លឿន — ចុចឆាប់", color: "#ef4444", accent: "#b91c1c", href: "/play/solo?mode=speed-round", badge: "20Q · 15s", cta: "Go Fast →", ctaKh: "ចូលប្រកួត" },
+  { id: "sign-challenge", title: "Sign Challenge", titleKh: "ប្រឡងសញ្ញា", desc: "Identify traffic signs from images only.", descKh: "ស្គាល់សញ្ញាចរាចរ", color: "#3b82f6", accent: "#1d4ed8", href: "/play/solo?mode=sign-challenge", badge: "15Q · 20s", cta: "Challenge →", ctaKh: "ប្រឡង" },
+  { id: "mixed-battle", title: "Mixed Battle", titleKh: "ប្រកួតចម្រុះ", desc: "All categories, all question types.", descKh: "ប្រភេទទាំង ៨", color: "#a855f7", accent: "#7e22ce", href: "/play/solo?mode=mixed-battle", badge: "20Q · 30s", cta: "Battle! →", ctaKh: "ប្រកួត" },
+  { id: "daily-challenge", title: "Daily Challenge", titleKh: "បញ្ហាប្រចាំថ្ងៃ", desc: "New questions every day. Build your streak.", descKh: "សំណួរថ្មីរៀងរាល់ថ្ងៃ", color: "#22c55e", accent: "#15803d", href: "/play/solo?mode=daily-challenge", badge: "15Q · 30s", cta: "Daily →", ctaKh: "ប្រចាំថ្ងៃ" },
+  { id: "exam-simulation", title: "Exam Simulation", titleKh: "ត្រាប់តាមប្រឡង", desc: "40 questions mirroring the real Cambodia exam.", descKh: "ស្រដៀងប្រឡងពិត", color: "#f97316", accent: "#c2410c", href: "/play/solo?mode=exam-simulation", badge: "40Q · 45s", cta: "Simulate →", ctaKh: "ត្រាប់តាម" },
 ];
 
 const STATS = [
-  { value: "500+", labelEn: "Questions",   labelKh: "សំណួរ",      color: "#eab308" },
-  { value: "6",    labelEn: "Game Modes",  labelKh: "របៀបលេង",    color: "#ef4444" },
-  { value: "8",    labelEn: "Categories",  labelKh: "ប្រភេទ",      color: "#3b82f6" },
+  { value: "500+", labelEn: "Questions", labelKh: "សំណួរ", color: "#eab308" },
+  { value: "6", labelEn: "Game Modes", labelKh: "របៀបលេង", color: "#ef4444" },
+  { value: "8", labelEn: "Categories", labelKh: "ប្រភេទ", color: "#3b82f6" },
   { value: "Live", labelEn: "Multiplayer", labelKh: "ប្រកួតផ្ទាល់", color: "#22c55e" },
 ];
 
@@ -131,22 +131,6 @@ function GameModeCard({ mode, index, kh, khFont }: {
   const cardRef = useRef<HTMLAnchorElement>(null);
   const [hovered, setHovered] = useState(false);
   const IconComp = GAME_MODE_ICONS[index];
-
-  const playSound = useCallback(() => {
-    try {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-      const ctx = new AudioCtx();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain); gain.connect(ctx.destination);
-      osc.type = "triangle";
-      osc.frequency.setValueAtTime(380 + index * 55, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(560 + index * 55, ctx.currentTime + 0.12);
-      gain.gain.setValueAtTime(0.06, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
-      osc.start(); osc.stop(ctx.currentTime + 0.18);
-    } catch { /* silent */ }
-  }, [index]);
 
   useEffect(() => {
     if (!cardRef.current) return;
@@ -170,7 +154,7 @@ function GameModeCard({ mode, index, kh, khFont }: {
         background: hovered ? mode.color : "#fff",
         border: "3px solid #000",
       }}
-      onMouseEnter={() => { setHovered(true); playSound(); }}
+      onMouseEnter={() => { setHovered(true); }}
       onMouseLeave={() => setHovered(false)}
     >
       {/* Full-color header band */}
