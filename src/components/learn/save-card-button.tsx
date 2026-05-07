@@ -132,6 +132,23 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             const title = isKh ? topic.name_km : topic.name_en;
             const answer = isKh ? topic.description_km : topic.description_en;
 
+            // ── Force-load brand fonts so canvas ignores device fonts ─────────────
+            const loadFont = async (name: string, url: string) => {
+                try {
+                    const f = new FontFace(name, `url(${url})`);
+                    const loaded = await f.load();
+                    document.fonts.add(loaded);
+                } catch { /* fallback silently */ }
+            };
+            await Promise.all([
+                loadFont('Inter', 'https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2'),
+                loadFont('Siemreap', 'https://fonts.gstatic.com/s/siemreap/v30/Gg82N5oFbgLvHAfNl2YbnA.woff2'),
+            ]);
+            // Font helpers — always use brand fonts, never device fonts
+            const fontEN = (size: number, weight = 'bold') => `${weight} ${size}px Inter, system-ui, Arial, sans-serif`;
+            const fontKH = (size: number, weight = 'bold') => `${weight} ${size}px Siemreap, Inter, sans-serif`;
+            const font = (size: number, weight = 'bold') => isKh ? fontKH(size, weight) : fontEN(size, weight);
+
             const loadImg = (src: string, timeout = 4000) => new Promise<HTMLImageElement | null>((resolve) => {
                 const img = new Image(); img.crossOrigin = 'anonymous';
                 const t = setTimeout(() => resolve(null), timeout);
@@ -161,7 +178,7 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
 
             // ── 3. Category label pill (top-left) — Premium badge ─────────────────
             ctx.fillStyle = cfg.accent;
-            ctx.font = 'bold 12px system-ui, Arial, sans-serif';
+            ctx.font = fontEN(12);
             ctx.textAlign = 'left';
             const catLabel = isKh ? cfg.label : cfg.label.toUpperCase();
             const catW = ctx.measureText(catLabel).width + 28;
@@ -173,12 +190,12 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             roundRect(ctx, 24, 24, catW, 32, 6);
             ctx.stroke();
             ctx.fillStyle = '#000';
-            ctx.font = 'bold 12px system-ui, Arial, sans-serif';
+            ctx.font = fontEN(12);
             ctx.fillText(catLabel, 38, 44);
 
             // ── 4. Topic code badge — Subtle, professional ────────────────────────
             ctx.fillStyle = cfg.accentDark;
-            ctx.font = 'bold 11px monospace';
+            ctx.font = fontEN(11);
             ctx.textAlign = 'left';
             ctx.fillText(topic.topic_code, 24, 76);
 
@@ -219,7 +236,7 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                 // AI disclaimer — only for categories that use AI-generated images
                 if (cfg.slug !== 'road-sign' && cfg.slug !== 'priority') {
                     ctx.fillStyle = 'rgba(0,0,0,0.25)';
-                    ctx.font = '9px system-ui, Arial, sans-serif';
+                    ctx.font = fontEN(9, 'normal');
                     ctx.textAlign = 'center';
                     ctx.fillText('AI-generated image', imgAreaX + imgAreaW / 2, imgAreaY + imgAreaH - 12);
                 }
@@ -234,7 +251,7 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                 roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 8);
                 ctx.stroke();
                 ctx.fillStyle = cfg.accent;
-                ctx.font = 'bold 64px system-ui, Arial, sans-serif';
+                ctx.font = fontEN(64);
                 ctx.textAlign = 'center';
                 ctx.fillText('🚦', imgAreaX + imgAreaW / 2, imgAreaY + imgAreaH / 2 + 20);
             }
@@ -244,9 +261,8 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
 
             // 6a. KNOWLEDGE CATEGORY micro-label — Premium styling
             ctx.fillStyle = cfg.accentDark;
-            ctx.font = 'bold 11px system-ui, Arial, sans-serif';
+            ctx.font = fontEN(11);
             ctx.textAlign = 'left';
-            ctx.letterSpacing = '0.1em';
             ctx.fillText('KNOWLEDGE CATEGORY', rx, ry + 14);
 
             // 6b. Accent underline — Bold brand element
@@ -255,13 +271,13 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
 
             // 6c. Title — Large, bold, premium hierarchy
             ctx.fillStyle = '#000000';
-            ctx.font = 'bold 42px system-ui, Arial, sans-serif';
+            ctx.font = font(42);
             const titleLines = wrapText(ctx, title, rx, ry + 72, rw, 52, 3);
             const titleBottom = ry + 72 + titleLines * 52;
 
             // 6d. Topic code + subgroup — Professional metadata
             ctx.fillStyle = 'rgba(0,0,0,0.4)';
-            ctx.font = 'bold 13px monospace';
+            ctx.font = fontEN(13);
             const metaText = topic.sub_group ? `${topic.topic_code}  ·  ${topic.sub_group}` : topic.topic_code;
             ctx.fillText(metaText, rx, titleBottom + 22);
 
@@ -278,7 +294,7 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             ctx.lineWidth = 2;
             ctx.strokeRect(rx, descLabelY, rw, 28);
             ctx.fillStyle = '#fff';
-            ctx.font = 'bold 11px system-ui, Arial, sans-serif';
+            ctx.font = fontEN(11);
             ctx.textAlign = 'left';
             ctx.fillText('DESCRIPTION', rx + 14, descLabelY + 18);
 
@@ -292,7 +308,7 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             ctx.strokeRect(rx, answerBoxY, rw, answerBoxH);
             if (answer) {
                 ctx.fillStyle = '#14532d'; // emerald-900
-                ctx.font = 'bold 18px system-ui, Arial, sans-serif';
+                ctx.font = font(18);
                 ctx.textAlign = 'left';
                 wrapText(ctx, answer, rx + 16, answerBoxY + 32, rw - 32, 28, 3);
             }
@@ -300,7 +316,7 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             // 6h. Quote — Education-focused, premium typography
             const quoteY = answerBoxY + answerBoxH + 28;
             ctx.fillStyle = cfg.accentDark;
-            ctx.font = 'italic bold 16px Georgia, serif';
+            ctx.font = isKh ? fontKH(15, 'bold') : `italic bold 16px Inter, Georgia, serif`;
             ctx.textAlign = 'left';
             ctx.fillText(`"${cfg.quote}"`, rx, quoteY);
 
@@ -325,13 +341,13 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
 
             // Brand name — Bold, black, premium
             ctx.fillStyle = '#000000';
-            ctx.font = 'bold 18px system-ui, Arial, sans-serif';
+            ctx.font = fontEN(18);
             ctx.textAlign = 'left';
             ctx.fillText('KESARARAM WITH DIGITAL', 88, footerY + 36);
 
             // Tagline — Education-focused
             ctx.fillStyle = 'rgba(0,0,0,0.6)';
-            ctx.font = '12px system-ui, Arial, sans-serif';
+            ctx.font = isKh ? fontKH(12, 'normal') : fontEN(12, 'normal');
             ctx.fillText(isKh
                 ? 'ចំណេះដឹងសុវត្ថិភាពចរាចរ — Learn. Know the signs. Pass.'
                 : 'Master Cambodia\'s driving theory — Learn. Know the signs. Pass.',
@@ -339,12 +355,12 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
 
             // URL — Professional, readable
             ctx.fillStyle = 'rgba(0,0,0,0.4)';
-            ctx.font = 'bold 11px system-ui, Arial, sans-serif';
+            ctx.font = fontEN(11);
             ctx.fillText(`${siteUrl}/learn/${cfg.slug}`, 88, footerY + 74);
 
             // Copyright — Professional
             ctx.fillStyle = 'rgba(0,0,0,0.35)';
-            ctx.font = '10px system-ui, Arial, sans-serif';
+            ctx.font = fontEN(10, 'normal');
             ctx.textAlign = 'right';
             ctx.fillText(`© ${new Date().getFullYear()} Kesararam With Digital. All rights reserved.`, W - (qr ? 110 : 28), footerY + 74);
 
@@ -359,16 +375,7 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                 ctx.drawImage(qr, W - 96, footerY + 10, 68, 68);
             }
 
-            // ── 8. Outer border — Neo-brutalism premium frame ─────────────────────
-            ctx.strokeStyle = '#000';
-            ctx.lineWidth = 6;
-            ctx.strokeRect(3, 3, W - 6, H - 6);
-            // Inner accent border
-            ctx.strokeStyle = cfg.accent;
-            ctx.lineWidth = 2;
-            ctx.strokeRect(9, 9, W - 18, H - 18);
-
-            // ── 9. Download ───────────────────────────────────────────────────────
+            // ── 8. Download ───────────────────────────────────────────────────────
             canvas.toBlob((blob) => {
                 if (!blob) throw new Error('Failed to create image');
                 const url = URL.createObjectURL(blob);
