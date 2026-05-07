@@ -5,6 +5,7 @@ import { LangProvider } from "@/context/lang-context";
 import { ErrorDebugPanel } from "@/components/ErrorDebugPanel";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GoogleAnalytics } from "@/components/google-analytics";
 import "./globals.css";
 
 const inter = Inter({
@@ -85,6 +86,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/brand/kwd-green_ofhdec.png" />
       </head>
       <body className={`${inter.variable} ${kantumruy.variable} ${siemreap.variable} font-sans antialiased overflow-x-hidden`}>
+        <GoogleAnalytics />
         <LangProvider>
           {children}
           <Toaster richColors closeButton />
