@@ -130,9 +130,9 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
           />
           <span
             className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[9px] font-medium text-black pointer-events-none select-none"
-            style={{ opacity: 0.30, whiteSpace: "nowrap" }}
+            style={{ opacity: 0.50, whiteSpace: "nowrap" }}
           >
-            AI-generated image
+            ⚠ AI illustration — may not reflect real-world appearance
           </span>
         </div>
       )}

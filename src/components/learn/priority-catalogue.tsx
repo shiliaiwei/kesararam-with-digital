@@ -55,7 +55,7 @@ const UI = {
   },
 } as const;
 
-// ── Image with skeleton loader + stable height + AI disclaimer ───────────────
+// ── Image with skeleton loader + stable height ───────────────────────────────
 function ImageWithSkeleton({ src, alt }: { src: string; alt: string }) {
   const [loaded, setLoaded] = useState(false);
   return (
@@ -70,15 +70,6 @@ function ImageWithSkeleton({ src, alt }: { src: string; alt: string }) {
         className={`max-h-full max-w-full object-contain transition-opacity duration-300 ${loaded ? "opacity-100" : "opacity-0"}`}
         style={{ maxHeight: "220px" }}
       />
-      {/* AI disclaimer — 9% opacity, blurred, no background, centered on image */}
-      {loaded && (
-        <span
-          className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[9px] font-medium text-black pointer-events-none select-none"
-          style={{ opacity: 0.09, filter: "blur(0.3px)", whiteSpace: "nowrap" }}
-        >
-          AI-generated image
-        </span>
-      )}
     </div>
   );
 }
