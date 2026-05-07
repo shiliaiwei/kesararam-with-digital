@@ -56,62 +56,63 @@ interface SaveCardButtonProps {
 }
 
 // Category accent colours — matches web UI per category
-const CATEGORY_CONFIG: Record<string, { slug: string; accent: string; accentDark: string; label: string; quote: string }> = {
+// Updated with education-focused quotes and premium design psychology
+const CATEGORY_CONFIG: Record<string, { slug: string; accent: string; accentDark: string; bgLight: string; label: string; quote: string }> = {
     // Road Signs — yellow
-    'Prohibitory Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
-    'Mandatory Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
-    'Priority Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
-    'Warning Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
-    'Temporary Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
-    'Direction Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
-    'Buildup Area Boundary Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
-    'Street Name Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
-    'Informative Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
-    'Supplementary Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
-    'Sign Posts': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
-    'Transverse Markings': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
-    'Longitudinal Markings': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
-    'Arrows Markings': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
-    'Other Road Markings': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
-    'Traffic Lights': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
-    'Traffic Police Signals': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', label: 'Traffic Signs', quote: 'Know the sign. Own the road.' },
+    'Prohibitory Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', bgLight: '#fef9c3', label: 'Traffic Signs', quote: 'Education starts with knowing the signs.' },
+    'Mandatory Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', bgLight: '#fef9c3', label: 'Traffic Signs', quote: 'Education starts with knowing the signs.' },
+    'Priority Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', bgLight: '#fef9c3', label: 'Traffic Signs', quote: 'Education starts with knowing the signs.' },
+    'Warning Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', bgLight: '#fef9c3', label: 'Traffic Signs', quote: 'Education starts with knowing the signs.' },
+    'Temporary Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', bgLight: '#fef9c3', label: 'Traffic Signs', quote: 'Education starts with knowing the signs.' },
+    'Direction Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', bgLight: '#fef9c3', label: 'Traffic Signs', quote: 'Education starts with knowing the signs.' },
+    'Buildup Area Boundary Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', bgLight: '#fef9c3', label: 'Traffic Signs', quote: 'Education starts with knowing the signs.' },
+    'Street Name Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', bgLight: '#fef9c3', label: 'Traffic Signs', quote: 'Education starts with knowing the signs.' },
+    'Informative Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', bgLight: '#fef9c3', label: 'Traffic Signs', quote: 'Education starts with knowing the signs.' },
+    'Supplementary Signs': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', bgLight: '#fef9c3', label: 'Traffic Signs', quote: 'Education starts with knowing the signs.' },
+    'Sign Posts': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', bgLight: '#fef9c3', label: 'Traffic Signs', quote: 'Education starts with knowing the signs.' },
+    'Transverse Markings': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', bgLight: '#fef9c3', label: 'Traffic Signs', quote: 'Education starts with knowing the signs.' },
+    'Longitudinal Markings': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', bgLight: '#fef9c3', label: 'Traffic Signs', quote: 'Education starts with knowing the signs.' },
+    'Arrows Markings': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', bgLight: '#fef9c3', label: 'Traffic Signs', quote: 'Education starts with knowing the signs.' },
+    'Other Road Markings': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', bgLight: '#fef9c3', label: 'Traffic Signs', quote: 'Education starts with knowing the signs.' },
+    'Traffic Lights': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', bgLight: '#fef9c3', label: 'Traffic Signs', quote: 'Education starts with knowing the signs.' },
+    'Traffic Police Signals': { slug: 'road-sign', accent: '#eab308', accentDark: '#ca8a04', bgLight: '#fef9c3', label: 'Traffic Signs', quote: 'Education starts with knowing the signs.' },
     // Road Traffic — blue
-    'Traffic Rules': { slug: 'road-traffic', accent: '#3b82f6', accentDark: '#1d4ed8', label: 'Road Traffic Law', quote: 'Rules protect everyone on the road.' },
-    'Speed Limits': { slug: 'road-traffic', accent: '#3b82f6', accentDark: '#1d4ed8', label: 'Road Traffic Law', quote: 'Rules protect everyone on the road.' },
-    'Parking': { slug: 'road-traffic', accent: '#3b82f6', accentDark: '#1d4ed8', label: 'Road Traffic Law', quote: 'Rules protect everyone on the road.' },
-    'Overtaking': { slug: 'road-traffic', accent: '#3b82f6', accentDark: '#1d4ed8', label: 'Road Traffic Law', quote: 'Rules protect everyone on the road.' },
+    'Traffic Rules': { slug: 'road-traffic', accent: '#3b82f6', accentDark: '#1d4ed8', bgLight: '#dbeafe', label: 'Road Traffic Law', quote: 'Learn the rules. Protect every life.' },
+    'Speed Limits': { slug: 'road-traffic', accent: '#3b82f6', accentDark: '#1d4ed8', bgLight: '#dbeafe', label: 'Road Traffic Law', quote: 'Learn the rules. Protect every life.' },
+    'Parking': { slug: 'road-traffic', accent: '#3b82f6', accentDark: '#1d4ed8', bgLight: '#dbeafe', label: 'Road Traffic Law', quote: 'Learn the rules. Protect every life.' },
+    'Overtaking': { slug: 'road-traffic', accent: '#3b82f6', accentDark: '#1d4ed8', bgLight: '#dbeafe', label: 'Road Traffic Law', quote: 'Learn the rules. Protect every life.' },
     // Priority — orange
-    'Intersections': { slug: 'priority', accent: '#f97316', accentDark: '#c2410c', label: 'Right of Way', quote: 'Priority saves lives at every crossing.' },
-    'Intersection Priority – Left Turn': { slug: 'priority', accent: '#f97316', accentDark: '#c2410c', label: 'Right of Way', quote: 'Priority saves lives at every crossing.' },
-    'Intersection Priority – Sequential': { slug: 'priority', accent: '#f97316', accentDark: '#c2410c', label: 'Right of Way', quote: 'Priority saves lives at every crossing.' },
-    'Intersection Priority – Simultaneous': { slug: 'priority', accent: '#f97316', accentDark: '#c2410c', label: 'Right of Way', quote: 'Priority saves lives at every crossing.' },
-    'Roundabouts': { slug: 'priority', accent: '#f97316', accentDark: '#c2410c', label: 'Right of Way', quote: 'Priority saves lives at every crossing.' },
-    'Pedestrian Crossings': { slug: 'priority', accent: '#f97316', accentDark: '#c2410c', label: 'Right of Way', quote: 'Priority saves lives at every crossing.' },
+    'Intersections': { slug: 'priority', accent: '#f97316', accentDark: '#c2410c', bgLight: '#ffedd5', label: 'Right of Way', quote: 'Know priority. Save lives at crossings.' },
+    'Intersection Priority – Left Turn': { slug: 'priority', accent: '#f97316', accentDark: '#c2410c', bgLight: '#ffedd5', label: 'Right of Way', quote: 'Know priority. Save lives at crossings.' },
+    'Intersection Priority – Sequential': { slug: 'priority', accent: '#f97316', accentDark: '#c2410c', bgLight: '#ffedd5', label: 'Right of Way', quote: 'Know priority. Save lives at crossings.' },
+    'Intersection Priority – Simultaneous': { slug: 'priority', accent: '#f97316', accentDark: '#c2410c', bgLight: '#ffedd5', label: 'Right of Way', quote: 'Know priority. Save lives at crossings.' },
+    'Roundabouts': { slug: 'priority', accent: '#f97316', accentDark: '#c2410c', bgLight: '#ffedd5', label: 'Right of Way', quote: 'Know priority. Save lives at crossings.' },
+    'Pedestrian Crossings': { slug: 'priority', accent: '#f97316', accentDark: '#c2410c', bgLight: '#ffedd5', label: 'Right of Way', quote: 'Know priority. Save lives at crossings.' },
     // Driving — green
-    'Basic Maneuvers': { slug: 'driving', accent: '#22c55e', accentDark: '#15803d', label: 'Driving Skills', quote: 'Skill and confidence, every kilometre.' },
-    'Advanced Techniques': { slug: 'driving', accent: '#22c55e', accentDark: '#15803d', label: 'Driving Skills', quote: 'Skill and confidence, every kilometre.' },
-    'Defensive Driving': { slug: 'driving', accent: '#22c55e', accentDark: '#15803d', label: 'Driving Skills', quote: 'Skill and confidence, every kilometre.' },
+    'Basic Maneuvers': { slug: 'driving', accent: '#22c55e', accentDark: '#15803d', bgLight: '#dcfce7', label: 'Driving Skills', quote: 'Master skills through education.' },
+    'Advanced Techniques': { slug: 'driving', accent: '#22c55e', accentDark: '#15803d', bgLight: '#dcfce7', label: 'Driving Skills', quote: 'Master skills through education.' },
+    'Defensive Driving': { slug: 'driving', accent: '#22c55e', accentDark: '#15803d', bgLight: '#dcfce7', label: 'Driving Skills', quote: 'Master skills through education.' },
     // Technical — indigo
-    'Engine': { slug: 'technical', accent: '#6366f1', accentDark: '#4338ca', label: 'Vehicle Technology', quote: 'Understand your machine. Drive smarter.' },
-    'Brakes': { slug: 'technical', accent: '#6366f1', accentDark: '#4338ca', label: 'Vehicle Technology', quote: 'Understand your machine. Drive smarter.' },
-    'Lights': { slug: 'technical', accent: '#6366f1', accentDark: '#4338ca', label: 'Vehicle Technology', quote: 'Understand your machine. Drive smarter.' },
-    'Safety Systems': { slug: 'technical', accent: '#6366f1', accentDark: '#4338ca', label: 'Vehicle Technology', quote: 'Understand your machine. Drive smarter.' },
+    'Engine': { slug: 'technical', accent: '#6366f1', accentDark: '#4338ca', bgLight: '#e0e7ff', label: 'Vehicle Technology', quote: 'Technical knowledge builds confidence.' },
+    'Brakes': { slug: 'technical', accent: '#6366f1', accentDark: '#4338ca', bgLight: '#e0e7ff', label: 'Vehicle Technology', quote: 'Technical knowledge builds confidence.' },
+    'Lights': { slug: 'technical', accent: '#6366f1', accentDark: '#4338ca', bgLight: '#e0e7ff', label: 'Vehicle Technology', quote: 'Technical knowledge builds confidence.' },
+    'Safety Systems': { slug: 'technical', accent: '#6366f1', accentDark: '#4338ca', bgLight: '#e0e7ff', label: 'Vehicle Technology', quote: 'Technical knowledge builds confidence.' },
     // Loading — cyan
-    'Weight Limits': { slug: 'loading-people-goods', accent: '#06b6d4', accentDark: '#0e7490', label: 'Loading People & Goods', quote: 'Safe loads, safe roads.' },
-    'Passenger Safety': { slug: 'loading-people-goods', accent: '#06b6d4', accentDark: '#0e7490', label: 'Loading People & Goods', quote: 'Safe loads, safe roads.' },
-    'Cargo Securing': { slug: 'loading-people-goods', accent: '#06b6d4', accentDark: '#0e7490', label: 'Loading People & Goods', quote: 'Safe loads, safe roads.' },
+    'Weight Limits': { slug: 'loading-people-goods', accent: '#06b6d4', accentDark: '#0e7490', bgLight: '#cffafe', label: 'Loading People & Goods', quote: 'Learn safe loading. Protect passengers.' },
+    'Passenger Safety': { slug: 'loading-people-goods', accent: '#06b6d4', accentDark: '#0e7490', bgLight: '#cffafe', label: 'Loading People & Goods', quote: 'Learn safe loading. Protect passengers.' },
+    'Cargo Securing': { slug: 'loading-people-goods', accent: '#06b6d4', accentDark: '#0e7490', bgLight: '#cffafe', label: 'Loading People & Goods', quote: 'Learn safe loading. Protect passengers.' },
     // General — purple
-    'Road Safety': { slug: 'general-knowledge', accent: '#a855f7', accentDark: '#7e22ce', label: 'General Knowledge', quote: 'Knowledge is the safest vehicle.' },
-    'Environmental': { slug: 'general-knowledge', accent: '#a855f7', accentDark: '#7e22ce', label: 'General Knowledge', quote: 'Knowledge is the safest vehicle.' },
-    'Legal': { slug: 'general-knowledge', accent: '#a855f7', accentDark: '#7e22ce', label: 'General Knowledge', quote: 'Knowledge is the safest vehicle.' },
+    'Road Safety': { slug: 'general-knowledge', accent: '#a855f7', accentDark: '#7e22ce', bgLight: '#f3e8ff', label: 'General Knowledge', quote: 'Education is the foundation of safety.' },
+    'Environmental': { slug: 'general-knowledge', accent: '#a855f7', accentDark: '#7e22ce', bgLight: '#f3e8ff', label: 'General Knowledge', quote: 'Education is the foundation of safety.' },
+    'Legal': { slug: 'general-knowledge', accent: '#a855f7', accentDark: '#7e22ce', bgLight: '#f3e8ff', label: 'General Knowledge', quote: 'Education is the foundation of safety.' },
     // Emergency — red
-    'Accidents': { slug: 'emergency', accent: '#ef4444', accentDark: '#b91c1c', label: 'Emergency', quote: 'Stay calm. Act fast. Save lives.' },
-    'Breakdowns': { slug: 'emergency', accent: '#ef4444', accentDark: '#b91c1c', label: 'Emergency', quote: 'Stay calm. Act fast. Save lives.' },
-    'First Aid': { slug: 'emergency', accent: '#ef4444', accentDark: '#b91c1c', label: 'Emergency', quote: 'Stay calm. Act fast. Save lives.' },
-    'Emergency Contacts': { slug: 'emergency', accent: '#ef4444', accentDark: '#b91c1c', label: 'Emergency', quote: 'Stay calm. Act fast. Save lives.' },
+    'Accidents': { slug: 'emergency', accent: '#ef4444', accentDark: '#b91c1c', bgLight: '#fee2e2', label: 'Emergency', quote: 'Know emergency response. Save lives.' },
+    'Breakdowns': { slug: 'emergency', accent: '#ef4444', accentDark: '#b91c1c', bgLight: '#fee2e2', label: 'Emergency', quote: 'Know emergency response. Save lives.' },
+    'First Aid': { slug: 'emergency', accent: '#ef4444', accentDark: '#b91c1c', bgLight: '#fee2e2', label: 'Emergency', quote: 'Know emergency response. Save lives.' },
+    'Emergency Contacts': { slug: 'emergency', accent: '#ef4444', accentDark: '#b91c1c', bgLight: '#fee2e2', label: 'Emergency', quote: 'Know emergency response. Save lives.' },
 };
 
-const DEFAULT_CONFIG = { slug: 'learn', accent: '#eab308', accentDark: '#ca8a04', label: 'Learn', quote: 'Learn. Play. Pass.' };
+const DEFAULT_CONFIG = { slug: 'learn', accent: '#eab308', accentDark: '#ca8a04', bgLight: '#fef9c3', label: 'Learn', quote: 'Learn. Play. Pass.' };
 
 export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps) {
     const [saving, setSaving] = useState(false);
@@ -145,50 +146,68 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                 topic.primary_image_url ? loadImg(topic.primary_image_url, 6000) : Promise.resolve(null),
             ]);
 
-            // ── 1. Background ─────────────────────────────────────────────────────
-            ctx.fillStyle = '#f9fafb';
+            // ── 1. Background — Premium light gradient ────────────────────────────
+            ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, W, H);
 
-            // ── 2. Left panel — dark bg ───────────────────────────────────────────
+            // ── 2. Left panel — Category brand color (light) ─────────────────────
             const leftW = 460;
-            ctx.fillStyle = '#111827'; // gray-900
+            ctx.fillStyle = cfg.bgLight;
             ctx.fillRect(0, 0, leftW, H);
 
-            // Accent stripe on left edge
+            // Accent stripe on left edge — bold brand color
             ctx.fillStyle = cfg.accent;
-            ctx.fillRect(0, 0, 8, H);
+            ctx.fillRect(0, 0, 12, H);
 
-            // ── 3. Category label pill (top-left) ─────────────────────────────────
+            // ── 3. Category label pill (top-left) — Premium badge ─────────────────
             ctx.fillStyle = cfg.accent;
-            ctx.font = 'bold 11px system-ui, Arial, sans-serif';
+            ctx.font = 'bold 12px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
             const catLabel = isKh ? cfg.label : cfg.label.toUpperCase();
-            const catW = ctx.measureText(catLabel).width + 24;
-            roundRect(ctx, 20, 20, catW, 26, 4);
+            const catW = ctx.measureText(catLabel).width + 28;
+            roundRect(ctx, 24, 24, catW, 32, 6);
             ctx.fill();
+            // Neo-brutalism shadow
+            ctx.strokeStyle = '#000';
+            ctx.lineWidth = 2;
+            roundRect(ctx, 24, 24, catW, 32, 6);
+            ctx.stroke();
             ctx.fillStyle = '#000';
-            ctx.font = 'bold 11px system-ui, Arial, sans-serif';
-            ctx.fillText(catLabel, 32, 37);
+            ctx.font = 'bold 12px system-ui, Arial, sans-serif';
+            ctx.fillText(catLabel, 38, 44);
 
-            // ── 4. Topic code badge ───────────────────────────────────────────────
-            ctx.fillStyle = 'rgba(255,255,255,0.08)';
-            ctx.font = 'bold 13px monospace';
+            // ── 4. Topic code badge — Subtle, professional ────────────────────────
+            ctx.fillStyle = cfg.accentDark;
+            ctx.font = 'bold 11px monospace';
             ctx.textAlign = 'left';
-            ctx.fillText(topic.topic_code, 20, 72);
+            ctx.fillText(topic.topic_code, 24, 76);
 
-            // ── 5. Image area (centered in left panel) ────────────────────────────
+            // ── 5. Image area (centered in left panel) — Premium card ─────────────
             if (topicImg) {
-                const imgAreaX = 20, imgAreaY = 90, imgAreaW = leftW - 40, imgAreaH = H - 90 - 110;
-                // White card behind image
+                const imgAreaX = 24, imgAreaY = 96, imgAreaW = leftW - 48, imgAreaH = H - 96 - 120;
+                // White premium card with shadow
                 ctx.fillStyle = '#ffffff';
-                roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 6);
+                roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 8);
                 ctx.fill();
-                ctx.strokeStyle = cfg.accent; ctx.lineWidth = 3;
-                roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 6);
+                // Neo-brutalism border
+                ctx.strokeStyle = '#000';
+                ctx.lineWidth = 4;
+                roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 8);
+                ctx.stroke();
+                // Hard shadow (Neo-brutalism)
+                ctx.fillStyle = 'rgba(0,0,0,0.15)';
+                ctx.fillRect(imgAreaX + 6, imgAreaY + 6, imgAreaW, imgAreaH);
+                // Redraw white card on top
+                ctx.fillStyle = '#ffffff';
+                roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 8);
+                ctx.fill();
+                ctx.strokeStyle = '#000';
+                ctx.lineWidth = 4;
+                roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 8);
                 ctx.stroke();
 
                 // Draw image centered, filling most of the card
-                const pad = 24;
+                const pad = 28;
                 const maxW = imgAreaW - pad * 2, maxH = imgAreaH - pad * 2;
                 const aspect = topicImg.naturalWidth / topicImg.naturalHeight;
                 let dw = maxW, dh = maxW / aspect;
@@ -197,134 +216,155 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                 const dy = imgAreaY + pad + (maxH - dh) / 2;
                 ctx.drawImage(topicImg, dx, dy, dw, dh);
 
-                // AI disclaimer — very subtle, bottom of image card
-                ctx.fillStyle = 'rgba(255,255,255,0.18)';
+                // AI disclaimer — subtle, bottom of image card
+                ctx.fillStyle = 'rgba(0,0,0,0.25)';
                 ctx.font = '9px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'center';
-                ctx.fillText(isKh ? 'AI-generated image' : 'AI-generated image', imgAreaX + imgAreaW / 2, imgAreaY + imgAreaH - 8);
+                ctx.fillText(isKh ? 'AI-generated image' : 'AI-generated image', imgAreaX + imgAreaW / 2, imgAreaY + imgAreaH - 12);
             } else {
-                // Placeholder
-                ctx.fillStyle = 'rgba(255,255,255,0.06)';
-                roundRect(ctx, 20, 90, leftW - 40, H - 200, 6);
+                // Placeholder with premium styling
+                const imgAreaX = 24, imgAreaY = 96, imgAreaW = leftW - 48, imgAreaH = H - 96 - 120;
+                ctx.fillStyle = '#ffffff';
+                roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 8);
                 ctx.fill();
+                ctx.strokeStyle = '#000';
+                ctx.lineWidth = 4;
+                roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 8);
+                ctx.stroke();
                 ctx.fillStyle = cfg.accent;
-                ctx.font = 'bold 48px system-ui, Arial, sans-serif';
+                ctx.font = 'bold 64px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'center';
-                ctx.fillText('🚦', leftW / 2, H / 2);
+                ctx.fillText('🚦', imgAreaX + imgAreaW / 2, imgAreaY + imgAreaH / 2 + 20);
             }
 
-            // ── 6. Right panel content ────────────────────────────────────────────
-            const rx = leftW + 36, ry = 32, rw = W - rx - 32;
+            // ── 6. Right panel content — Premium hierarchy ────────────────────────
+            const rx = leftW + 44, ry = 40, rw = W - rx - 40;
 
-            // 6a. KNOWLEDGE CATEGORY micro-label
+            // 6a. KNOWLEDGE CATEGORY micro-label — Premium styling
             ctx.fillStyle = cfg.accentDark;
-            ctx.font = 'bold 10px system-ui, Arial, sans-serif';
+            ctx.font = 'bold 11px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
-            ctx.fillText('KNOWLEDGE CATEGORY', rx, ry + 12);
+            ctx.letterSpacing = '0.1em';
+            ctx.fillText('KNOWLEDGE CATEGORY', rx, ry + 14);
 
-            // 6b. Accent underline
+            // 6b. Accent underline — Bold brand element
             ctx.fillStyle = cfg.accent;
-            ctx.fillRect(rx, ry + 18, 48, 3);
+            ctx.fillRect(rx, ry + 22, 64, 4);
 
-            // 6c. Title — large, black, bold
-            ctx.fillStyle = '#111827';
-            ctx.font = 'bold 38px system-ui, Arial, sans-serif';
-            const titleLines = wrapText(ctx, title, rx, ry + 62, rw, 48, 3);
-            const titleBottom = ry + 62 + titleLines * 48;
+            // 6c. Title — Large, bold, premium hierarchy
+            ctx.fillStyle = '#000000';
+            ctx.font = 'bold 42px system-ui, Arial, sans-serif';
+            const titleLines = wrapText(ctx, title, rx, ry + 72, rw, 52, 3);
+            const titleBottom = ry + 72 + titleLines * 52;
 
-            // 6d. Topic code + subgroup — muted
-            ctx.fillStyle = 'rgba(0,0,0,0.3)';
-            ctx.font = '12px monospace';
+            // 6d. Topic code + subgroup — Professional metadata
+            ctx.fillStyle = 'rgba(0,0,0,0.4)';
+            ctx.font = 'bold 13px monospace';
             const metaText = topic.sub_group ? `${topic.topic_code}  ·  ${topic.sub_group}` : topic.topic_code;
-            ctx.fillText(metaText, rx, titleBottom + 18);
+            ctx.fillText(metaText, rx, titleBottom + 22);
 
-            // 6e. Divider
+            // 6e. Divider — Strong visual separator
             ctx.fillStyle = cfg.accent;
-            ctx.fillRect(rx, titleBottom + 30, rw, 3);
+            ctx.fillRect(rx, titleBottom + 36, rw, 4);
 
-            // 6f. DESCRIPTION label bar
-            const descLabelY = titleBottom + 44;
-            ctx.fillStyle = '#22c55e'; // emerald — matches web UI description bar
-            ctx.fillRect(rx, descLabelY, rw, 24);
+            // 6f. DESCRIPTION label bar — Premium design
+            const descLabelY = titleBottom + 52;
+            ctx.fillStyle = '#22c55e'; // emerald — trust signal
+            ctx.fillRect(rx, descLabelY, rw, 28);
+            // Neo-brutalism border
+            ctx.strokeStyle = '#000';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(rx, descLabelY, rw, 28);
             ctx.fillStyle = '#fff';
-            ctx.font = 'bold 9px system-ui, Arial, sans-serif';
+            ctx.font = 'bold 11px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
-            ctx.fillText('DESCRIPTION', rx + 10, descLabelY + 16);
+            ctx.fillText('DESCRIPTION', rx + 14, descLabelY + 18);
 
-            // 6g. Answer text box
-            const answerBoxY = descLabelY + 24;
-            const answerBoxH = 110;
+            // 6g. Answer text box — Premium card
+            const answerBoxY = descLabelY + 28;
+            const answerBoxH = 120;
             ctx.fillStyle = '#f0fdf4'; // emerald-50
             ctx.fillRect(rx, answerBoxY, rw, answerBoxH);
-            ctx.strokeStyle = '#86efac'; ctx.lineWidth = 2; // emerald-300
+            ctx.strokeStyle = '#000';
+            ctx.lineWidth = 3;
             ctx.strokeRect(rx, answerBoxY, rw, answerBoxH);
             if (answer) {
                 ctx.fillStyle = '#14532d'; // emerald-900
-                ctx.font = 'bold 17px system-ui, Arial, sans-serif';
+                ctx.font = 'bold 18px system-ui, Arial, sans-serif';
                 ctx.textAlign = 'left';
-                wrapText(ctx, answer, rx + 12, answerBoxY + 28, rw - 24, 26, 3);
+                wrapText(ctx, answer, rx + 16, answerBoxY + 32, rw - 32, 28, 3);
             }
 
-            // 6h. Quote
-            const quoteY = answerBoxY + answerBoxH + 20;
-            ctx.fillStyle = cfg.accent;
-            ctx.font = 'italic bold 14px Georgia, serif';
+            // 6h. Quote — Education-focused, premium typography
+            const quoteY = answerBoxY + answerBoxH + 28;
+            ctx.fillStyle = cfg.accentDark;
+            ctx.font = 'italic bold 16px Georgia, serif';
             ctx.textAlign = 'left';
             ctx.fillText(`"${cfg.quote}"`, rx, quoteY);
 
-            // ── 7. Footer bar ─────────────────────────────────────────────────────
-            const footerH = 80;
+            // ── 7. Footer bar — Premium brand section ─────────────────────────────
+            const footerH = 88;
             const footerY = H - footerH;
 
-            // Footer bg — dark
-            ctx.fillStyle = '#000';
+            // Footer bg — White with brand accent
+            ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, footerY, W, footerH);
 
-            // Accent top border on footer
+            // Accent top border on footer — Bold brand stripe
             ctx.fillStyle = cfg.accent;
-            ctx.fillRect(0, footerY, W, 4);
+            ctx.fillRect(0, footerY, W, 6);
 
-            // Logo
+            // Logo — Premium placement
             if (logo) {
-                ctx.globalAlpha = 0.95;
-                ctx.drawImage(logo, 20, footerY + 14, 44, 44);
+                ctx.globalAlpha = 1;
+                ctx.drawImage(logo, 28, footerY + 18, 48, 48);
                 ctx.globalAlpha = 1;
             }
 
-            // Brand name
-            ctx.fillStyle = cfg.accent;
-            ctx.font = 'bold 16px system-ui, Arial, sans-serif';
+            // Brand name — Bold, black, premium
+            ctx.fillStyle = '#000000';
+            ctx.font = 'bold 18px system-ui, Arial, sans-serif';
             ctx.textAlign = 'left';
-            ctx.fillText('KESARARAM WITH DIGITAL', 76, footerY + 30);
+            ctx.fillText('KESARARAM WITH DIGITAL', 88, footerY + 36);
 
-            // Tagline
-            ctx.fillStyle = 'rgba(255,255,255,0.55)';
-            ctx.font = '11px system-ui, Arial, sans-serif';
+            // Tagline — Education-focused
+            ctx.fillStyle = 'rgba(0,0,0,0.6)';
+            ctx.font = '12px system-ui, Arial, sans-serif';
             ctx.fillText(isKh
-                ? 'រៀនបើកបរ ប្រកបដោយសុវត្ថិភាព — Learn to drive safely'
-                : 'Master Cambodia\'s driving theory — Learn. Play. Pass.',
-                76, footerY + 50);
+                ? 'ចំណេះដឹងសុវត្ថិភាពចរាចរ — Learn. Know the signs. Pass.'
+                : 'Master Cambodia\'s driving theory — Learn. Know the signs. Pass.',
+                88, footerY + 56);
 
-            // URL
-            ctx.fillStyle = 'rgba(255,255,255,0.3)';
-            ctx.font = 'bold 10px system-ui, Arial, sans-serif';
-            ctx.fillText(`${siteUrl}/learn/${cfg.slug}`, 76, footerY + 68);
+            // URL — Professional, readable
+            ctx.fillStyle = 'rgba(0,0,0,0.4)';
+            ctx.font = 'bold 11px system-ui, Arial, sans-serif';
+            ctx.fillText(`${siteUrl}/learn/${cfg.slug}`, 88, footerY + 74);
 
-            // Copyright
-            ctx.fillStyle = 'rgba(255,255,255,0.25)';
+            // Copyright — Professional
+            ctx.fillStyle = 'rgba(0,0,0,0.35)';
             ctx.font = '10px system-ui, Arial, sans-serif';
             ctx.textAlign = 'right';
-            ctx.fillText(`© ${new Date().getFullYear()} Kesararam With Digital. All rights reserved.`, W - (qr ? 110 : 20), footerY + 68);
+            ctx.fillText(`© ${new Date().getFullYear()} Kesararam With Digital. All rights reserved.`, W - (qr ? 110 : 28), footerY + 74);
 
-            // QR code
+            // QR code — Premium placement with white background
             if (qr) {
-                ctx.drawImage(qr, W - 96, footerY + 4, 72, 72);
+                // White background for QR
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(W - 100, footerY + 6, 76, 76);
+                ctx.strokeStyle = '#000';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(W - 100, footerY + 6, 76, 76);
+                ctx.drawImage(qr, W - 96, footerY + 10, 68, 68);
             }
 
-            // ── 8. Outer border ───────────────────────────────────────────────────
+            // ── 8. Outer border — Neo-brutalism premium frame ─────────────────────
             ctx.strokeStyle = '#000';
-            ctx.lineWidth = 4;
-            ctx.strokeRect(2, 2, W - 4, H - 4);
+            ctx.lineWidth = 6;
+            ctx.strokeRect(3, 3, W - 6, H - 6);
+            // Inner accent border
+            ctx.strokeStyle = cfg.accent;
+            ctx.lineWidth = 2;
+            ctx.strokeRect(9, 9, W - 18, H - 18);
 
             // ── 9. Download ───────────────────────────────────────────────────────
             canvas.toBlob((blob) => {
