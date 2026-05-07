@@ -216,11 +216,13 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                 const dy = imgAreaY + pad + (maxH - dh) / 2;
                 ctx.drawImage(topicImg, dx, dy, dw, dh);
 
-                // AI disclaimer — subtle, bottom of image card
-                ctx.fillStyle = 'rgba(0,0,0,0.25)';
-                ctx.font = '9px system-ui, Arial, sans-serif';
-                ctx.textAlign = 'center';
-                ctx.fillText(isKh ? 'AI-generated image' : 'AI-generated image', imgAreaX + imgAreaW / 2, imgAreaY + imgAreaH - 12);
+                // AI disclaimer — only for categories that use AI-generated images
+                if (cfg.slug !== 'road-sign' && cfg.slug !== 'priority') {
+                    ctx.fillStyle = 'rgba(0,0,0,0.25)';
+                    ctx.font = '9px system-ui, Arial, sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('AI-generated image', imgAreaX + imgAreaW / 2, imgAreaY + imgAreaH - 12);
+                }
             } else {
                 // Placeholder with premium styling
                 const imgAreaX = 24, imgAreaY = 96, imgAreaW = leftW - 48, imgAreaH = H - 96 - 120;
