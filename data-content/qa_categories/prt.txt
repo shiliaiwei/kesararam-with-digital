@@ -207,6 +207,8 @@ The answer is:
 First motorcycle 1, next motorcycle 2, and left turn motorcycle 3, and then followed by motorcycle 4. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
 
 
+
+
 PRT-Q017
 [Left Turn]
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -296,6 +298,8 @@ What does this sign stand for?
 The answer is:
  
 First number 2 and then number 1. Follow the displayed order one by one to avoid conflict at the intersection.
+
+
 
 
 PRT-Q024
@@ -532,6 +536,8 @@ The answer is:
 First number 4, number 2 turns left, then 1 and 3 together leave at the same time. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
 
 
+
+
 PRT-Q042
 [Simultaneous]
 ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
@@ -608,6 +614,8 @@ What does this sign stand for?
 The answer is:
  
 First number 3, next number 2 turns left, and then number 1. Pay extra attention to left-turn conflict points and follow the displayed priority order carefully.
+
+
 
 
 PRT-Q048

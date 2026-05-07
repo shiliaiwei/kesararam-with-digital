@@ -1,0 +1,123 @@
+======================================================================
+
+
+Category : Loading
+ID Prefix: LDG
+Total : 14 questions
+
+Sub-groups:
+  - Weight Limits      → Q003, Q004, Q005, Q008, Q009, Q010, Q013
+  - Cargo Securing     → Q001, Q002, Q006, Q007, Q011, Q012, Q014
+======================================================================
+
+LDG-Q001
+Sub-group: Cargo Securing
+ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានត្រូវបានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?
+ចម្លើយគឺ ០៣ ម
+Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?
+The answer is 03m
+----------------------------------------------------------------------
+
+LDG-Q002
+Sub-group: Cargo Securing
+ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានត្រូវបានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងនៃឡាន?
+ចម្លើយគឺ មិនអនុញ្ញាតទាល់តែសោះ។
+If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?
+The answer is Not allow at all.
+----------------------------------------------------------------------
+
+LDG-Q003
+Sub-group: Weight Limits
+បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?
+ចម្លើយគឺ ២៥ ត
+Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?
+The answer is 25T
+----------------------------------------------------------------------
+
+LDG-Q004
+Sub-group: Weight Limits
+បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) ត្រូវបានអនុញ្ញាត?
+ចម្លើយគឺ ៣៥ ត
+Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?
+The answer is 35T
+----------------------------------------------------------------------
+
+LDG-Q005
+Sub-group: Weight Limits
+បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?
+ចម្លើយគឺ 40T
+Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?
+The answer is 40T
+----------------------------------------------------------------------
+
+LDG-Q006
+Sub-group: Cargo Securing
+ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?
+ចម្លើយគឺ ០១ម
+Loading goods, how long protruded to the back of vehicle is allowed without sign?
+The answer is 01m
+----------------------------------------------------------------------
+
+LDG-Q007
+Sub-group: Cargo Securing
+ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?
+ចម្លើយគឺ មិនលើសពី 4.20 ម។
+Loading goods, how high of goods from the earth is allowed?
+The answer is Not more than 4.20m
+----------------------------------------------------------------------
+
+LDG-Q008
+Sub-group: Weight Limits
+តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) នៃយានជំនិះ ឬរ៉ឺម៉កត្រូវបានអនុញ្ញាត?
+ចម្លើយគឺ 10T
+What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?
+The answer is 10T
+----------------------------------------------------------------------
+
+LDG-Q009
+Sub-group: Weight Limits
+បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?
+ចម្លើយគឺ ១៦ ត
+Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?
+The answer is 16T
+----------------------------------------------------------------------
+
+LDG-Q010
+Sub-group: Weight Limits
+តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) នៃយានជំនិះ ឬរ៉ឺម៉កត្រូវបានអនុញ្ញាត?
+ចម្លើយគឺ ១៩ ត
+What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?
+The answer is 19T
+----------------------------------------------------------------------
+
+LDG-Q011
+Sub-group: Cargo Securing
+ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?
+ចម្លើយគឺ ផ្ទុកនៅកណ្តាលរថយន្ត។
+Loading small goods but heavy, how shall you arrange to load?
+The answer is Load in the center of the vehicle.
+----------------------------------------------------------------------
+
+LDG-Q012
+Sub-group: Cargo Securing
+ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?
+ចម្លើយគឺ ដំឡើងសញ្ញានៃសារធាតុ។
+For vehicle loading accident substance like gas or fuel, what sign shall install to notice?
+The answer is Install the sign of the substance.
+----------------------------------------------------------------------
+
+LDG-Q013
+Sub-group: Weight Limits
+តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) នៃយានជំនិះ ឬសណ្តោងត្រូវបានអនុញ្ញាត?
+ចម្លើយគឺ 6T
+What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?
+The answer is 6T
+----------------------------------------------------------------------
+
+LDG-Q014
+Sub-group: Cargo Securing
+ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?
+ចម្លើយគឺ មិនអនុញ្ញាតទាល់តែសោះ។
+Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?
+The answer is Not allow at all.
+----------------------------------------------------------------------

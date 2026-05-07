@@ -4,9 +4,14 @@
 Category : Loading
 ID Prefix: LDG
 Total    : 14 questions
+
+Sub-groups:
+  - Weight Limits      → Q003, Q004, Q005, Q008, Q009, Q010, Q013
+  - Cargo Securing     → Q001, Q002, Q006, Q007, Q011, Q012, Q014
 ======================================================================
 
 LDG-Q001
+Sub-group: Cargo Securing
 [curious] ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានត្រូវបានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?
 [guiding] ចម្លើយគឺ [assured] ០៣ ម
 [curious] Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?
@@ -14,6 +19,7 @@ LDG-Q001
 ----------------------------------------------------------------------
 
 LDG-Q002
+Sub-group: Cargo Securing
 [thoughtful] ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានត្រូវបានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងនៃឡាន?
 [helpful] ចម្លើយគឺ [clear] មិនអនុញ្ញាតទាល់តែសោះ។
 [thoughtful] If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?
@@ -21,6 +27,7 @@ LDG-Q002
 ----------------------------------------------------------------------
 
 LDG-Q003
+Sub-group: Weight Limits
 [wondering] បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?
 [supportive] ចម្លើយគឺ [definitive] ២៥ ត
 [wondering] Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?
@@ -28,6 +35,7 @@ LDG-Q003
 ----------------------------------------------------------------------
 
 LDG-Q004
+Sub-group: Weight Limits
 [inquiring] បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) ត្រូវបានអនុញ្ញាត?
 [encouraging] ចម្លើយគឺ [certain] ៣៥ ត
 [inquiring] Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?
@@ -35,6 +43,7 @@ LDG-Q004
 ----------------------------------------------------------------------
 
 LDG-Q005
+Sub-group: Weight Limits
 [intrigue] បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?
 [inspiration] ចម្លើយគឺ [confident] 40T
 [intrigue] Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?
@@ -42,6 +51,7 @@ LDG-Q005
 ----------------------------------------------------------------------
 
 LDG-Q006
+Sub-group: Cargo Securing
 [curious] ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?
 [guiding] ចម្លើយគឺ [assured] ០១ម
 [curious] Loading goods, how long protruded to the back of vehicle is allowed without sign?
@@ -49,6 +59,7 @@ LDG-Q006
 ----------------------------------------------------------------------
 
 LDG-Q007
+Sub-group: Cargo Securing
 [thoughtful] ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?
 [helpful] ចម្លើយគឺ [clear] មិនលើសពី 4.20 ម។
 [thoughtful] Loading goods, how high of goods from the earth is allowed?
@@ -56,6 +67,7 @@ LDG-Q007
 ----------------------------------------------------------------------
 
 LDG-Q008
+Sub-group: Weight Limits
 [wondering] តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) នៃយានជំនិះ ឬរ៉ឺម៉កត្រូវបានអនុញ្ញាត?
 [supportive] ចម្លើយគឺ [definitive] 10T
 [wondering] What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?
@@ -63,6 +75,7 @@ LDG-Q008
 ----------------------------------------------------------------------
 
 LDG-Q009
+Sub-group: Weight Limits
 [inquiring] បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?
 [encouraging] ចម្លើយគឺ [certain] ១៦ ត
 [inquiring] Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?
@@ -70,6 +83,7 @@ LDG-Q009
 ----------------------------------------------------------------------
 
 LDG-Q010
+Sub-group: Weight Limits
 [intrigue] តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) នៃយានជំនិះ ឬរ៉ឺម៉កត្រូវបានអនុញ្ញាត?
 [inspiration] ចម្លើយគឺ [confident] ១៩ ត
 [intrigue] What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?
@@ -77,6 +91,7 @@ LDG-Q010
 ----------------------------------------------------------------------
 
 LDG-Q011
+Sub-group: Cargo Securing
 [curious] ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?
 [guiding] ចម្លើយគឺ [assured] ផ្ទុកនៅកណ្តាលរថយន្ត។
 [curious] Loading small goods but heavy, how shall you arrange to load?
@@ -84,6 +99,7 @@ LDG-Q011
 ----------------------------------------------------------------------
 
 LDG-Q012
+Sub-group: Cargo Securing
 [thoughtful] ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?
 [helpful] ចម្លើយគឺ [clear] ដំឡើងសញ្ញានៃសារធាតុ។
 [thoughtful] For vehicle loading accident substance like gas or fuel, what sign shall install to notice?
@@ -91,6 +107,7 @@ LDG-Q012
 ----------------------------------------------------------------------
 
 LDG-Q013
+Sub-group: Weight Limits
 [wondering] តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) នៃយានជំនិះ ឬសណ្តោងត្រូវបានអនុញ្ញាត?
 [supportive] ចម្លើយគឺ [definitive] 6T
 [wondering] What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?
@@ -98,6 +115,7 @@ LDG-Q013
 ----------------------------------------------------------------------
 
 LDG-Q014
+Sub-group: Cargo Securing
 [inquiring] ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?
 [encouraging] ចម្លើយគឺ [certain] មិនអនុញ្ញាតទាល់តែសោះ។
 [inquiring] Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?

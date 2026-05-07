@@ -4,6 +4,7 @@ ID Prefix: TCH
 Total    : 38 questions
 ======================================================================
 
+
 TCH-Q001
 Q (KH): តើអ្នកត្រួតពិនិត្យកម្រិតប្រេងម៉ាស៊ីនដូចម្ដេច ?
   1. កម្រិតប្រេងម៉ាស៊ីន ត្រូវស្ថិតនៅក្រោមគំនូសអប្បបរមា
@@ -184,6 +185,8 @@ IMAGE PROMPT:
   Cambodian architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
   characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
 
+
+
 TCH-Q009
 Q (KH): តើអ្នកត្រួតពិនិត្យដូចម្ដេច នៅលើកញ្ចក់មើលក្រោយ ?
   1. ពណ៌កញ្ចក់មើលក្រោយ
@@ -273,6 +276,10 @@ IMAGE PROMPT:
   officer) in authentic Khmer attire. Cambodian setting, Khmer cultural identity, traditional
   Cambodian architecture visible, authentic Southeast Asian tropical atmosphere, realistic Cambodian
   characters in typical Khmer clothing, 4K, professional, cinematic lighting, sharp details.
+
+
+
+
 
 TCH-Q013
 Q (KH): តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចសំបកកៅស៊ូកង់ ?
