@@ -247,7 +247,10 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                     ctx.fillStyle = 'rgba(0,0,0,0.25)';
                     ctx.font = fontEN(9, 'normal');
                     ctx.textAlign = 'center';
-                    ctx.fillText('AI-generated image', imgAreaX + imgAreaW / 2, imgAreaY + imgAreaH - 12);
+                    const disclaimerText = isKh
+                        ? 'រូបភាពបង្កើតដោយ AI · គ្រាន់តែជារូបភាពយោង'
+                        : 'AI-generated image · Reference illustration only';
+                    ctx.fillText(disclaimerText, imgAreaX + imgAreaW / 2, imgAreaY + imgAreaH - 12);
                 }
             } else {
                 // Placeholder with premium styling
