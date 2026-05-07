@@ -133,20 +133,29 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             const answer = isKh ? topic.description_km : topic.description_en;
 
             // ── Force-load brand fonts so canvas ignores device fonts ─────────────
-            const loadFont = async (name: string, url: string) => {
+            const loadFont = async (name: string, url: string, weight = 'normal') => {
                 try {
-                    const f = new FontFace(name, `url(${url})`);
+                    const f = new FontFace(name, `url(${url})`, { weight });
                     const loaded = await f.load();
                     document.fonts.add(loaded);
-                } catch { /* fallback silently */ }
+                    return true;
+                } catch (e) {
+                    console.warn(`Failed to load font ${name}:`, e);
+                    return false;
+                }
             };
+
+            // Load multiple weights of Google Sans for Khmer
             await Promise.all([
-                loadFont('Inter', 'https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2'),
-                loadFont('Google Sans', '/Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.ttf'),
+                loadFont('Inter', 'https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2', 'bold'),
+                loadFont('GoogleSansKhmer', '/Google_Sans/static/GoogleSans-Bold.ttf', 'bold'),
+                loadFont('GoogleSansKhmer', '/Google_Sans/static/GoogleSans-Regular.ttf', 'normal'),
+                loadFont('GoogleSansKhmer', '/Google_Sans/static/GoogleSans-Medium.ttf', '500'),
             ]);
+
             // Font helpers — always use brand fonts, never device fonts
             const fontEN = (size: number, weight = 'bold') => `${weight} ${size}px Inter, system-ui, Arial, sans-serif`;
-            const fontKH = (size: number, weight = 'bold') => `${weight} ${size}px "Google Sans", Inter, sans-serif`;
+            const fontKH = (size: number, weight = 'bold') => `${weight} ${size}px GoogleSansKhmer, "Google Sans", Inter, sans-serif`;
             const font = (size: number, weight = 'bold') => isKh ? fontKH(size, weight) : fontEN(size, weight);
 
             const loadImg = (src: string, timeout = 4000) => new Promise<HTMLImageElement | null>((resolve) => {
