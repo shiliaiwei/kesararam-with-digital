@@ -132,7 +132,7 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
             className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[9px] font-medium text-black pointer-events-none select-none"
             style={{ opacity: 0.30, whiteSpace: "nowrap" }}
           >
-            AI-generated image · Not a real road situation
+            {isKh ? 'រូបភាពបង្កើតដោយ AI · គ្រាន់តែជារូបភាពយោង' : 'AI-generated image · Reference illustration only'}
           </span>
         </div>
       )}
