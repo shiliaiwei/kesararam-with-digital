@@ -211,26 +211,18 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             // ── 5. Image area (centered in left panel) — Premium card ─────────────
             if (topicImg) {
                 const imgAreaX = 24, imgAreaY = 96, imgAreaW = leftW - 48, imgAreaH = H - 96 - 120;
-                // White premium card with shadow
+
+                // Brand color shadow (Neo-brutalism)
+                ctx.fillStyle = cfg.accent;
+                ctx.globalAlpha = 0.3;
+                roundRect(ctx, imgAreaX + 6, imgAreaY + 6, imgAreaW, imgAreaH, 8);
+                ctx.fill();
+                ctx.globalAlpha = 1;
+
+                // White premium card
                 ctx.fillStyle = '#ffffff';
                 roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 8);
                 ctx.fill();
-                // Neo-brutalism border
-                ctx.strokeStyle = '#000';
-                ctx.lineWidth = 4;
-                roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 8);
-                ctx.stroke();
-                // Hard shadow (Neo-brutalism)
-                ctx.fillStyle = 'rgba(0,0,0,0.15)';
-                ctx.fillRect(imgAreaX + 6, imgAreaY + 6, imgAreaW, imgAreaH);
-                // Redraw white card on top
-                ctx.fillStyle = '#ffffff';
-                roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 8);
-                ctx.fill();
-                ctx.strokeStyle = '#000';
-                ctx.lineWidth = 4;
-                roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 8);
-                ctx.stroke();
 
                 // Draw image centered, filling most of the card
                 const pad = 28;
@@ -255,13 +247,19 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             } else {
                 // Placeholder with premium styling
                 const imgAreaX = 24, imgAreaY = 96, imgAreaW = leftW - 48, imgAreaH = H - 96 - 120;
+
+                // Brand color shadow
+                ctx.fillStyle = cfg.accent;
+                ctx.globalAlpha = 0.3;
+                roundRect(ctx, imgAreaX + 6, imgAreaY + 6, imgAreaW, imgAreaH, 8);
+                ctx.fill();
+                ctx.globalAlpha = 1;
+
+                // White card
                 ctx.fillStyle = '#ffffff';
                 roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 8);
                 ctx.fill();
-                ctx.strokeStyle = '#000';
-                ctx.lineWidth = 4;
-                roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 8);
-                ctx.stroke();
+
                 ctx.fillStyle = cfg.accent;
                 ctx.font = fontEN(64);
                 ctx.textAlign = 'center';
@@ -269,7 +267,7 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             }
 
             // ── 6. Right panel content — Premium hierarchy ────────────────────────
-            const rx = leftW + 44, ry = 40, rw = W - rx - 40;
+            const rx = leftW + 44, ry = 40, rw = W - rx - 44;
 
             // 6a. KNOWLEDGE CATEGORY micro-label — Premium styling
             ctx.fillStyle = cfg.accentDark;
@@ -281,11 +279,11 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             ctx.fillStyle = cfg.accent;
             ctx.fillRect(rx, ry + 22, 64, 4);
 
-            // 6c. Title — Large, bold, premium hierarchy
+            // 6c. Title — Large, bold, premium hierarchy with proper wrapping
             ctx.fillStyle = '#000000';
-            ctx.font = font(42);
-            const titleLines = wrapText(ctx, title, rx, ry + 72, rw, 52, 3);
-            const titleBottom = ry + 72 + titleLines * 52;
+            ctx.font = font(38);
+            const titleLines = wrapText(ctx, title, rx, ry + 68, rw, 46, 3);
+            const titleBottom = ry + 68 + titleLines * 46;
 
             // 6d. Topic code + subgroup — Professional metadata
             ctx.fillStyle = 'rgba(0,0,0,0.4)';
