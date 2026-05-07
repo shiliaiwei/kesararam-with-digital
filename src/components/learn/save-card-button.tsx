@@ -142,7 +142,7 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             };
             await Promise.all([
                 loadFont('Inter', 'https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2'),
-                loadFont('Google Sans', 'https://fonts.gstatic.com/s/googlesans/v58/4Ua_rENHsxJlGDuGo1OIlJfC6l_24rlCK1Yo_Iqcsih3SAyH6cAwhX9RFD48TE63OOYKtrwEIJllpyk.woff2'),
+                loadFont('Google Sans', '/Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.ttf'),
             ]);
             // Font helpers — always use brand fonts, never device fonts
             const fontEN = (size: number, weight = 'bold') => `${weight} ${size}px Inter, system-ui, Arial, sans-serif`;
@@ -357,14 +357,8 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             ctx.textAlign = 'right';
             ctx.fillText(`© ${new Date().getFullYear()} Kesararam With Digital. All rights reserved.`, W - (qr ? 110 : 28), footerY + 74);
 
-            // QR code — Premium placement with white background
+            // QR code — Premium placement without border
             if (qr) {
-                // White background for QR
-                ctx.fillStyle = '#ffffff';
-                ctx.fillRect(W - 100, footerY + 6, 76, 76);
-                ctx.strokeStyle = '#000';
-                ctx.lineWidth = 2;
-                ctx.strokeRect(W - 100, footerY + 6, 76, 76);
                 ctx.drawImage(qr, W - 96, footerY + 10, 68, 68);
             }
 
