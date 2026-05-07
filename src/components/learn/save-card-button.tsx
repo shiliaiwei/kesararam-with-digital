@@ -142,11 +142,11 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             };
             await Promise.all([
                 loadFont('Inter', 'https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2'),
-                loadFont('Siemreap', 'https://fonts.gstatic.com/s/siemreap/v30/Gg82N5oFbgLvHAfNl2YbnA.woff2'),
+                loadFont('Google Sans', 'https://fonts.gstatic.com/s/googlesans/v58/4Ua_rENHsxJlGDuGo1OIlJfC6l_24rlCK1Yo_Iqcsih3SAyH6cAwhX9RFD48TE63OOYKtrwEIJllpyk.woff2'),
             ]);
             // Font helpers — always use brand fonts, never device fonts
             const fontEN = (size: number, weight = 'bold') => `${weight} ${size}px Inter, system-ui, Arial, sans-serif`;
-            const fontKH = (size: number, weight = 'bold') => `${weight} ${size}px Siemreap, Inter, sans-serif`;
+            const fontKH = (size: number, weight = 'bold') => `${weight} ${size}px "Google Sans", Inter, sans-serif`;
             const font = (size: number, weight = 'bold') => isKh ? fontKH(size, weight) : fontEN(size, weight);
 
             const loadImg = (src: string, timeout = 4000) => new Promise<HTMLImageElement | null>((resolve) => {
@@ -312,13 +312,6 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                 ctx.textAlign = 'left';
                 wrapText(ctx, answer, rx + 16, answerBoxY + 32, rw - 32, 28, 3);
             }
-
-            // 6h. Quote — Education-focused, premium typography
-            const quoteY = answerBoxY + answerBoxH + 28;
-            ctx.fillStyle = cfg.accentDark;
-            ctx.font = isKh ? fontKH(15, 'bold') : `italic bold 16px Inter, Georgia, serif`;
-            ctx.textAlign = 'left';
-            ctx.fillText(`"${cfg.quote}"`, rx, quoteY);
 
             // ── 7. Footer bar — Premium brand section ─────────────────────────────
             const footerH = 88;
