@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState, useCallback } from "react";
+import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -387,25 +387,6 @@ export function AnimatedCategoryCard({
 
   const IconScene = ICON_SCENES[slug];
 
-  // Subtle hover sound via Web Audio API
-  const playHoverSound = useCallback(() => {
-    try {
-      const ctx = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(520, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(680, ctx.currentTime + 0.08);
-      gain.gain.setValueAtTime(0.06, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
-      osc.start(ctx.currentTime);
-      osc.stop(ctx.currentTime + 0.12);
-    } catch {
-      // Audio not available — silently skip
-    }
-  }, []);
 
   // ScrollTrigger entrance animation
   useEffect(() => {
@@ -450,7 +431,7 @@ export function AnimatedCategoryCard({
         transition: "box-shadow 0.25s ease",
         willChange: "transform",
       }}
-      onMouseEnter={() => { setIsHovered(true); playHoverSound(); }}
+      onMouseEnter={() => { setIsHovered(true); }}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* ── Animated cover header ── */}
