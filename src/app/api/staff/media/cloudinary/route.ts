@@ -27,55 +27,50 @@ export async function GET(request: NextRequest) {
 
     const { searchParams } = new URL(request.url);
     const type = searchParams.get("type") || "image";
-    const search = searchParams.get("search") || "";
-    const folder = searchParams.get("folder") || "";
-    const maxResults = parseInt(searchParams.get("max_results") || "100", 10); // Reduced from 500
 
     // Determine resource type for Cloudinary API
     const resourceType = type === "video" ? "video" : type === "audio" ? "video" : "image";
     const allowedFormats = ALLOWED_FORMATS[type] || ALLOWED_FORMATS.image;
 
     try {
-      // Build optimized query parameters
-      const params: any = {
-        type: "upload",
-        resource_type: resourceType,
-        max_results: Math.min(maxResults, 100), // Cap at 100 for faster response
-        prefix: folder || undefined, // Filter by folder if provided
-      };
+      // Fetch ALL resources using pagination (Cloudinary max_results cap is 500 per page)
+      let allResources: any[] = [];
+      let nextCursor: string | undefined = undefined;
 
-      // Add search expression if provided
-      if (search) {
-        params.search = search;
-      }
+      do {
+        const params: any = {
+          type: "upload",
+          resource_type: resourceType,
+          max_results: 500,
+        };
+        if (nextCursor) params.next_cursor = nextCursor;
 
-      // Single optimized fetch (no pagination loop for faster initial load)
-      const result = await cloudinary.api.resources(params);
+        const result = await cloudinary.api.resources(params);
 
-      if (!result || !result.resources || result.resources.length === 0) {
+        if (!result || !result.resources) break;
+        allResources = allResources.concat(result.resources);
+        nextCursor = result.next_cursor;
+      } while (nextCursor);
+
+      if (allResources.length === 0) {
         return NextResponse.json({
           assets: [],
           total: 0,
-          has_more: false,
         });
       }
 
       // Filter by allowed formats and transform — skip 0-byte broken assets
-      const assets = result.resources
+      const assets = allResources
         .filter((resource: any) => {
           const format = (resource.format || "").toLowerCase();
           if (!allowedFormats.includes(format)) return false;
           if ((resource.bytes || 0) === 0) return false;
-          // Client-side search filter if Cloudinary search didn't work
-          if (search && !resource.public_id.toLowerCase().includes(search.toLowerCase())) {
-            return false;
-          }
           return true;
         })
         .map((resource: any) => {
           const pathParts = resource.public_id.split("/");
           const filename = pathParts.pop() || resource.public_id;
-          const folderPath = pathParts.length > 0 ? pathParts.join("/") : "root";
+          const folder = pathParts.length > 0 ? pathParts.join("/") : "root";
 
           return {
             public_id: resource.public_id,
@@ -88,20 +83,21 @@ export async function GET(request: NextRequest) {
             bytes: resource.bytes,
             created_at: resource.created_at,
             filename,
-            folder: folderPath,
+            folder,
           };
         });
 
-      console.log(`Found ${assets.length} ${type} assets (search: "${search}", folder: "${folder}")`);
+      console.log(`Found ${assets.length} ${type} assets (fetched ${allResources.length} total from Cloudinary)`);
 
-      // Set cache headers for 5 minutes (faster subsequent loads)
+      // Set no-cache headers
       const response = NextResponse.json({
         assets,
         total: assets.length,
-        has_more: !!result.next_cursor,
       });
 
-      response.headers.set("Cache-Control", "public, s-maxage=300, stale-while-revalidate=600");
+      response.headers.set("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0");
+      response.headers.set("Pragma", "no-cache");
+      response.headers.set("Expires", "0");
 
       return response;
     } catch (err: any) {
