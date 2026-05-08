@@ -44,8 +44,12 @@ export function CloudinarySelectorModal({
   const [sortDir, setSortDir] = useState<SortDir>("asc");
 
   useEffect(() => {
-    fetchAssets();
-  }, [type]);
+    // Debounced search - wait 300ms after user stops typing
+    const timer = setTimeout(() => {
+      fetchAssets();
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [type, search]);
 
   const fetchAssets = async () => {
     setLoading(true);
@@ -53,10 +57,12 @@ export function CloudinarySelectorModal({
     try {
       const params = new URLSearchParams({
         type,
+        search: search.trim(),
+        max_results: "100", // Limit for faster loading
         _t: Date.now().toString(),
       });
       const res = await fetch(`/api/staff/media/cloudinary?${params}`, {
-        cache: "no-store",
+        cache: "force-cache", // Use cache for faster subsequent loads
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to load");
