@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { X, Plus, Trash2, Lightbulb, AlertCircle, CheckCircle, Zap, RefreshCw, Clipboard, Settings } from "lucide-react";
+import { X, Plus, Trash2, Lightbulb, AlertCircle, CheckCircle, Zap, RefreshCw, Clipboard, Settings, Image as ImageIcon } from "lucide-react";
 import { useToast } from "@/components/ui/toast-container";
 
 interface QuestionFormModalProps {
@@ -25,9 +25,9 @@ const Q_TYPES = [
 ];
 
 const DIFF = [
-    { value: "easy", label: "Easy", color: "#22c55e", pts: 1 },
-    { value: "medium", label: "Medium", color: "#f59e0b", pts: 2 },
-    { value: "hard", label: "Hard", color: "#ef4444", pts: 3 },
+    { value: "easy", label: "Easy", color: "#22c55e", pts: 1, desc: "Basic recall" },
+    { value: "medium", label: "Medium", color: "#f59e0b", pts: 2, desc: "Application" },
+    { value: "hard", label: "Hard", color: "#ef4444", pts: 3, desc: "Critical thinking" },
 ];
 
 // Categories that support image-match (road signs & priority)
