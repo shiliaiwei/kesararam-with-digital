@@ -85,8 +85,18 @@ export async function PUT(
     if (!existing[0]) return NextResponse.json({ error: "Topic not found" }, { status: 404 });
 
     const t = existing[0];
-    if (session.role !== "admin" && t.createdBy !== Number(session.id)) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+
+    // Admin can edit anything
+    // Staff can edit:
+    // - Their own content (any status)
+    // - ANY rejected content (even if created by disabled staff)
+    if (session.role !== "admin") {
+      const isOwner = t.createdBy === Number(session.id);
+      const isRejected = t.status === "rejected";
+
+      if (!isOwner && !isRejected) {
+        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      }
     }
 
     const body = await request.json();
@@ -151,11 +161,23 @@ export async function DELETE(
     if (!existing[0]) return NextResponse.json({ error: "Topic not found" }, { status: 404 });
 
     const t = existing[0];
-    if (session.role !== "admin" && t.createdBy !== Number(session.id)) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-    }
-    if (session.role !== "admin" && t.status !== "draft") {
-      return NextResponse.json({ error: "Can only delete draft content" }, { status: 400 });
+
+    // Admin can delete anything
+    // Staff can delete:
+    // - Their own draft/rejected content
+    // - ANY rejected content (even if created by disabled staff)
+    if (session.role !== "admin") {
+      const isOwner = t.createdBy === Number(session.id);
+      const isRejected = t.status === "rejected";
+      const isDraft = t.status === "draft";
+
+      if (!isOwner && !isRejected) {
+        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      }
+
+      if (isOwner && !isDraft && !isRejected) {
+        return NextResponse.json({ error: "Can only delete draft or rejected content" }, { status: 400 });
+      }
     }
 
     await sql`DELETE FROM topics WHERE id = ${topicId}`;
