@@ -100,10 +100,19 @@ export default function SoloPage() {
   async function startGame() {
     if (!selectedCats.length) { setError(kh ? "ជ្រើសរើសប្រភេទ" : "Select a category"); return; }
     setError("");
-    setPhase({ name: "loading" });
-    answersRef.current = [];
+
+    // Clear ALL in-game state before starting — prevents stale state from previous game
+    if (advanceTimerRef.current) {
+      clearTimeout(advanceTimerRef.current);
+      advanceTimerRef.current = null;
+    }
+    setSelectedId(null);
+    setShowCorrect(false);
     setMyScore(0);
     setMyStreak(0);
+    answersRef.current = [];
+
+    setPhase({ name: "loading" });
 
     try {
       const res = await fetch("/api/game/solo", {
@@ -425,7 +434,19 @@ export default function SoloPage() {
 
           <div className="flex gap-3">
             <button
-              onClick={() => { setPhase({ name: "setup" }); setMyScore(0); setMyStreak(0); }}
+              onClick={() => {
+                // Clear ALL stale state before going back to setup
+                if (advanceTimerRef.current) {
+                  clearTimeout(advanceTimerRef.current);
+                  advanceTimerRef.current = null;
+                }
+                setSelectedId(null);
+                setShowCorrect(false);
+                setMyScore(0);
+                setMyStreak(0);
+                answersRef.current = [];
+                setPhase({ name: "setup" });
+              }}
               className="flex-1 py-4 bg-white text-black font-black border-2 border-black flex items-center justify-center gap-2"
               style={{ boxShadow: "3px 3px 0 #000", ...khFont }}
             >

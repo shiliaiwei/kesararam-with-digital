@@ -222,19 +222,23 @@ export function QuestionManagementPanel() {
         setSearch("");
         setTypeFilter("all");
         setDiffFilter("all");
+        // Show loading state
+        setQuestions([]);
         // Fetch fresh questions for this topic from API
         try {
             const res = await fetch(`/api/admin/questions?topicId=${topic.id}`);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
             const data = await res.json();
             const qs = Array.isArray(data.questions) ? data.questions : [];
             setQuestions(qs);
-            // Also update allQuestions to include any new ones
-            setAllQuestions(prev => {
-                const existingIds = new Set(prev.map(q => q.id));
-                const newOnes = qs.filter((q: Question) => !existingIds.has(q.id));
-                return [...prev.filter(q => q.topicId !== topic.id), ...qs];
-            });
-        } catch {
+            // Merge into allQuestions
+            setAllQuestions(prev => [
+                ...prev.filter(q => q.topicId !== topic.id),
+                ...qs
+            ]);
+        } catch (err) {
+            console.error("Failed to fetch topic questions:", err);
+            // Fallback to cached
             setQuestions(allQuestions.filter(q => q.topicId === topic.id));
         }
     };
