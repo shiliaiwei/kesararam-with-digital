@@ -17,6 +17,7 @@ import { useToast } from "@/components/ui/toast-container";
 
 interface QuestionFormModalProps {
     initialData?: any;
+    preSelectedTopic?: any;
     onClose: () => void;
     onSuccess: () => void;
 }
@@ -85,7 +86,7 @@ const DIFFICULTY_LEVELS = [
     { value: "hard", label: "Hard", color: "#ef4444", description: "Analysis and critical thinking" },
 ];
 
-export function QuestionFormModal({ initialData, onClose, onSuccess }: QuestionFormModalProps) {
+export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSuccess }: QuestionFormModalProps) {
     const { showToast } = useToast();
     const [loading, setLoading] = useState(false);
     const [categories, setCategories] = useState<Category[]>([]);
@@ -93,8 +94,8 @@ export function QuestionFormModal({ initialData, onClose, onSuccess }: QuestionF
     const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
 
     // Form state
-    const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
-    const [selectedTopic, setSelectedTopic] = useState<number | null>(null);
+    const [selectedCategory, setSelectedCategory] = useState<number | null>(preSelectedTopic?.categoryId || null);
+    const [selectedTopic, setSelectedTopic] = useState<number | null>(preSelectedTopic?.id || null);
     const [questionType, setQuestionType] = useState("mcq");
     const [difficulty, setDifficulty] = useState("medium");
     const [questionEn, setQuestionEn] = useState("");
@@ -106,6 +107,8 @@ export function QuestionFormModal({ initialData, onClose, onSuccess }: QuestionF
         { id: "1", answerEn: "", answerKm: "", isCorrect: false },
         { id: "2", answerEn: "", answerKm: "", isCorrect: false },
     ]);
+
+    const isTopicPreSelected = !!preSelectedTopic;
 
     useEffect(() => {
         fetchCategories();
@@ -273,6 +276,14 @@ export function QuestionFormModal({ initialData, onClose, onSuccess }: QuestionF
                             <span className="bg-blue-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm">1</span>
                             Select Category & Topic
                         </h3>
+                        {isTopicPreSelected && (
+                            <div className="mb-3 p-3 bg-green-100 border-2 border-green-400">
+                                <p className="text-sm font-bold text-green-800 flex items-center gap-2">
+                                    <CheckCircle size={16} />
+                                    Topic pre-selected: <span className="text-black">{preSelectedTopic.nameEn}</span>
+                                </p>
+                            </div>
+                        )}
                         <div className="grid grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-bold mb-2">Category *</label>
@@ -282,8 +293,9 @@ export function QuestionFormModal({ initialData, onClose, onSuccess }: QuestionF
                                         setSelectedCategory(Number(e.target.value));
                                         setSelectedTopic(null);
                                     }}
-                                    className="w-full px-3 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
+                                    className="w-full px-3 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-gray-100 disabled:cursor-not-allowed"
                                     required
+                                    disabled={isTopicPreSelected}
                                 >
                                     <option value="">Choose category...</option>
                                     {categories.map(cat => (
@@ -296,8 +308,8 @@ export function QuestionFormModal({ initialData, onClose, onSuccess }: QuestionF
                                 <select
                                     value={selectedTopic || ""}
                                     onChange={(e) => setSelectedTopic(Number(e.target.value))}
-                                    className="w-full px-3 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-                                    disabled={!selectedCategory}
+                                    className="w-full px-3 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-gray-100 disabled:cursor-not-allowed"
+                                    disabled={!selectedCategory || isTopicPreSelected}
                                     required
                                 >
                                     <option value="">Choose topic...</option>
@@ -307,7 +319,7 @@ export function QuestionFormModal({ initialData, onClose, onSuccess }: QuestionF
                                         </option>
                                     ))}
                                 </select>
-                                {selectedCategory && filteredTopics.length === 0 && (
+                                {selectedCategory && filteredTopics.length === 0 && !isTopicPreSelected && (
                                     <p className="text-xs text-red-600 mt-1 font-bold">
                                         No approved topics in this category
                                     </p>
@@ -347,8 +359,8 @@ export function QuestionFormModal({ initialData, onClose, onSuccess }: QuestionF
                                                 }
                                             }}
                                             className={`p-3 border-2 border-black text-left transition-all ${questionType === type.value
-                                                    ? "bg-yellow-400 shadow-[3px_3px_0_#000]"
-                                                    : "bg-white hover:shadow-[2px_2px_0_#000]"
+                                                ? "bg-yellow-400 shadow-[3px_3px_0_#000]"
+                                                : "bg-white hover:shadow-[2px_2px_0_#000]"
                                                 }`}
                                         >
                                             <div className="font-black text-sm">{type.label}</div>
@@ -368,8 +380,8 @@ export function QuestionFormModal({ initialData, onClose, onSuccess }: QuestionF
                                             type="button"
                                             onClick={() => setDifficulty(level.value)}
                                             className={`p-3 border-2 border-black text-center transition-all ${difficulty === level.value
-                                                    ? "shadow-[3px_3px_0_#000]"
-                                                    : "bg-white hover:shadow-[2px_2px_0_#000]"
+                                                ? "shadow-[3px_3px_0_#000]"
+                                                : "bg-white hover:shadow-[2px_2px_0_#000]"
                                                 }`}
                                             style={{
                                                 backgroundColor: difficulty === level.value ? level.color : "#ffffff",
@@ -490,8 +502,8 @@ export function QuestionFormModal({ initialData, onClose, onSuccess }: QuestionF
                                                 type="button"
                                                 onClick={() => toggleCorrectAnswer(answer.id!)}
                                                 className={`w-6 h-6 border-2 border-black flex items-center justify-center transition-all ${answer.isCorrect
-                                                        ? "bg-green-500"
-                                                        : "bg-white hover:bg-gray-100"
+                                                    ? "bg-green-500"
+                                                    : "bg-white hover:bg-gray-100"
                                                     }`}
                                                 title="Mark as correct"
                                             >

@@ -25,7 +25,9 @@ import {
     Tag,
     ArrowUpDown,
     Users,
-    User
+    User,
+    List,
+    BookOpen
 } from "lucide-react";
 import { QuestionFormModal } from "./question-form-modal";
 import { useToast } from "@/components/ui/toast-container";
@@ -96,6 +98,7 @@ export function QuestionManagementPanel() {
     const { showToast } = useToast();
     const [questions, setQuestions] = useState<Question[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
+    const [topics, setTopics] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("all");
@@ -106,9 +109,12 @@ export function QuestionManagementPanel() {
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [editingQuestion, setEditingQuestion] = useState<Question | null>(null);
     const [deleteConfirm, setDeleteConfirm] = useState<number | null>(null);
+    const [selectedTopicForQuestion, setSelectedTopicForQuestion] = useState<any | null>(null);
+    const [showTopicList, setShowTopicList] = useState(false);
 
     useEffect(() => {
         fetchCategories();
+        fetchTopics();
         fetchQuestions();
     }, []);
 
@@ -119,6 +125,16 @@ export function QuestionManagementPanel() {
             setCategories(Array.isArray(data.categories) ? data.categories : []);
         } catch (error) {
             console.error("Failed to fetch categories:", error);
+        }
+    };
+
+    const fetchTopics = async () => {
+        try {
+            const res = await fetch("/api/admin/topics?status=approved");
+            const data = await res.json();
+            setTopics(Array.isArray(data.topics) ? data.topics : []);
+        } catch (error) {
+            console.error("Failed to fetch topics:", error);
         }
     };
 
@@ -161,6 +177,18 @@ export function QuestionManagementPanel() {
         } catch {
             showToast("Failed to delete question", "error");
         }
+    };
+
+    const handleAddQuestionToTopic = (topic: any) => {
+        setSelectedTopicForQuestion(topic);
+        setShowCreateModal(true);
+        setShowTopicList(false);
+    };
+
+    const handleCloseModal = () => {
+        setShowCreateModal(false);
+        setEditingQuestion(null);
+        setSelectedTopicForQuestion(null);
     };
 
     // Ensure questions is always an array before filtering
@@ -226,6 +254,15 @@ export function QuestionManagementPanel() {
                         </p>
                     </div>
                     <div className="flex gap-3">
+                        <button
+                            onClick={() => setShowTopicList(!showTopicList)}
+                            className={`px-4 py-3 border-2 border-black font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center gap-2 ${showTopicList ? "bg-blue-400" : "bg-white"
+                                }`}
+                            title="Browse Topics"
+                        >
+                            <List size={20} />
+                            {showTopicList ? "Hide Topics" : "Browse Topics"}
+                        </button>
                         <button
                             onClick={fetchQuestions}
                             className="p-3 border-2 border-black bg-white hover:bg-gray-100 hover:shadow-[2px_2px_0_#000] transition-all"
@@ -403,6 +440,69 @@ export function QuestionManagementPanel() {
                 </div>
             </div>
 
+            {/* Topic List Panel */}
+            {showTopicList && (
+                <div className="bg-white border-4 border-black p-6 shadow-[6px_6px_0_#000]">
+                    <div className="flex items-center justify-between mb-4">
+                        <h2 className="text-2xl font-black">Browse Topics by Category</h2>
+                        <p className="text-sm text-zinc-600 font-bold">
+                            Click on a topic to add questions
+                        </p>
+                    </div>
+
+                    <div className="space-y-4">
+                        {categories.map((category) => {
+                            const categoryTopics = topics.filter(t => t.categoryId === category.id);
+                            if (categoryTopics.length === 0) return null;
+
+                            return (
+                                <div key={category.id} className="border-2 border-black">
+                                    <div className="bg-gradient-to-r from-purple-400 to-pink-400 border-b-2 border-black p-3">
+                                        <div className="flex items-center gap-2">
+                                            <FolderTree size={20} className="text-black" />
+                                            <h3 className="text-lg font-black text-black">{category.titleEn}</h3>
+                                            <span className="ml-auto bg-white border-2 border-black px-2 py-1 text-xs font-black">
+                                                {categoryTopics.length} topics
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="p-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                                        {categoryTopics.map((topic) => {
+                                            const questionCount = questions.filter(q => q.topicId === topic.id).length;
+                                            return (
+                                                <button
+                                                    key={topic.id}
+                                                    onClick={() => handleAddQuestionToTopic(topic)}
+                                                    className="bg-white border-2 border-black p-3 hover:bg-yellow-100 hover:shadow-[3px_3px_0_#000] transition-all text-left group"
+                                                >
+                                                    <div className="flex items-start justify-between mb-2">
+                                                        <BookOpen size={16} className="text-zinc-600 group-hover:text-black" />
+                                                        <span className="bg-blue-100 border border-blue-300 px-2 py-0.5 text-xs font-bold text-blue-800">
+                                                            {questionCount} Q
+                                                        </span>
+                                                    </div>
+                                                    <div className="font-black text-sm text-black mb-1 line-clamp-2">
+                                                        {topic.nameEn}
+                                                    </div>
+                                                    <div className="text-xs text-zinc-500 font-medium">
+                                                        {topic.topicCode}
+                                                    </div>
+                                                    <div className="mt-2 pt-2 border-t border-zinc-200">
+                                                        <span className="text-xs font-bold text-green-600 group-hover:text-green-700">
+                                                            + Add Question
+                                                        </span>
+                                                    </div>
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            )}
+
             {/* Stats */}
             <div className="grid grid-cols-4 gap-4">
                 <div className="bg-white border-2 border-black p-4 shadow-[3px_3px_0_#000]">
@@ -569,13 +669,10 @@ export function QuestionManagementPanel() {
             {(showCreateModal || editingQuestion) && (
                 <QuestionFormModal
                     initialData={editingQuestion}
-                    onClose={() => {
-                        setShowCreateModal(false);
-                        setEditingQuestion(null);
-                    }}
+                    preSelectedTopic={selectedTopicForQuestion}
+                    onClose={handleCloseModal}
                     onSuccess={() => {
-                        setShowCreateModal(false);
-                        setEditingQuestion(null);
+                        handleCloseModal();
                         fetchQuestions();
                     }}
                 />
