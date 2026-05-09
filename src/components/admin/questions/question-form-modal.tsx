@@ -657,6 +657,7 @@ const JSON_TEMPLATE = `[
     "type": "mcq",
     "diff": "easy",
     "hint": "Look for speed limit signs",
+    "image": "auto",
     "answers": [
       { "a": "40 km/h", "akm": "៤០ គ.ម/ម", "correct": true },
       { "a": "60 km/h", "akm": "៦០ គ.ម/ម" },
@@ -665,13 +666,36 @@ const JSON_TEMPLATE = `[
     ]
   },
   {
-    "q": "Is it allowed to overtake on a pedestrian crossing?",
+    "q": "This sign is a street name sign.",
+    "qkm": "សញ្ញានេះជាសញ្ញាឈ្មោះផ្លូវ។",
     "type": "true-false",
-    "diff": "medium",
+    "diff": "easy",
+    "image": "auto",
     "answers": [
-      { "a": "True", "akm": "ពិត" },
-      { "a": "False", "akm": "មិនពិត", "correct": true }
+      { "a": "True", "akm": "ពិត", "correct": true },
+      { "a": "False", "akm": "មិនពិត" }
     ]
+  },
+  {
+    "q": "Which statements are TRUE about this sign?",
+    "qkm": "ចំណុចណាខ្លះជាការពិតអំពីសញ្ញានេះ?",
+    "type": "multi-select",
+    "diff": "medium",
+    "image": "auto",
+    "answers": [
+      { "a": "It identifies a road name", "akm": "វាកំណត់ឈ្មោះផ្លូវ", "correct": true },
+      { "a": "It helps drivers navigate", "akm": "វាជួយអ្នកបើកបរធ្វើដំណើរ", "correct": true },
+      { "a": "It shows the speed limit", "akm": "វាបង្ហាញល្បឿនកំណត់" },
+      { "a": "It is an informational sign", "akm": "វាជាសញ្ញាព័ត៌មាន", "correct": true }
+    ]
+  },
+  {
+    "q": "Which image shows the correct sign for this topic?",
+    "qkm": "រូបភាពណាបង្ហាញសញ្ញាត្រឹមត្រូវសម្រាប់ប្រធានបទនេះ?",
+    "type": "image-match",
+    "diff": "medium",
+    "image": "auto",
+    "answers": []
   }
 ]`;
 
@@ -707,14 +731,54 @@ function JsonImportMode({ topicId, topicData, catId, isPreSelected, preSelectedT
         setImporting(true);
         const res: { q: string; ok: boolean; err?: string }[] = [];
 
+        // Pre-fetch distractor images once if any image-match questions exist
+        let distractorImages: string[] = [];
+        const hasImageMatch = parsed.some(item => (item.type || item.questionType) === "image-match");
+        if (hasImageMatch && (catId || localCatId)) {
+            try {
+                const cid = catId || localCatId;
+                const exclude = topicData?.primaryImageUrl || "";
+                const dr = await fetch(`/api/admin/distractor-images?categoryId=${cid}&exclude=${encodeURIComponent(exclude)}`);
+                if (dr.ok) {
+                    const dd = await dr.json();
+                    distractorImages = dd.images || [];
+                }
+            } catch { }
+        }
+
         for (const item of parsed) {
             try {
-                const answers = (item.answers || []).map((a: any) => ({
-                    answerEn: a.a || a.answerEn || "",
-                    answerKm: a.akm || a.answerKm || "",
-                    isCorrect: a.correct === true,
-                    imageUrl: a.imageUrl || null,
-                }));
+                const qType = item.type || item.questionType || "mcq";
+                const topicImg = topicData?.primaryImageUrl || "";
+
+                // Build answers — handle "auto" image for image-match
+                let answers = (item.answers || []).map((a: any, idx: number) => {
+                    let imgUrl = a.imageUrl || a.img || null;
+                    // "auto" = use topic image for correct, distractors for others
+                    if (imgUrl === "auto" || (qType === "image-match" && !imgUrl)) {
+                        if (a.correct) {
+                            imgUrl = topicImg;
+                        } else {
+                            imgUrl = distractorImages[idx] || distractorImages[idx - 1] || "";
+                        }
+                    }
+                    return {
+                        answerEn: a.a || a.answerEn || "",
+                        answerKm: a.akm || a.answerKm || "",
+                        isCorrect: a.correct === true,
+                        imageUrl: imgUrl,
+                    };
+                });
+
+                // If image-match with no answers defined, auto-build from topic + distractors
+                if (qType === "image-match" && answers.length === 0) {
+                    answers = [
+                        { answerEn: topicData?.nameEn || "Correct", answerKm: topicData?.nameKm || "", isCorrect: true, imageUrl: topicImg },
+                        ...distractorImages.slice(0, 3).map((img, i) => ({
+                            answerEn: `Option ${i + 2}`, answerKm: "", isCorrect: false, imageUrl: img,
+                        })),
+                    ];
+                }
 
                 const payload = {
                     topicId: tid,
@@ -722,9 +786,9 @@ function JsonImportMode({ topicId, topicData, catId, isPreSelected, preSelectedT
                     questionKm: item.qkm || item.questionKm || "",
                     hintEn: item.hint || item.hintEn || "",
                     hintKm: item.hintKm || "",
-                    imageUrl: item.image || item.imageUrl || topicData?.primaryImageUrl || "",
+                    imageUrl: item.image === "auto" ? topicImg : (item.image || item.imageUrl || topicImg),
                     difficulty: item.diff || item.difficulty || "medium",
-                    pointsMultiplier: { easy: 1, medium: 2, hard: 3 }[item.diff || item.difficulty || "medium"] || 2,
+                    pointsMultiplier: ({ easy: 1, medium: 2, hard: 3 } as Record<string, number>)[item.diff || item.difficulty || "medium"] || 2,
                     answers,
                 };
 
