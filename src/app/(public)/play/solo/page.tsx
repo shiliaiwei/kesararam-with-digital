@@ -94,7 +94,7 @@ export default function SoloPage() {
         setCategories(d.categories ?? []);
         if (d.categories?.length) setSelectedCats([d.categories[0].id]);
       })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   async function startGame() {
@@ -184,6 +184,9 @@ export default function SoloPage() {
 
   function handleTimeout() {
     if (phase.name !== "playing" || selectedId !== null) return;
+    // Guard: question must have been active for at least 1 second
+    const activeMs = Date.now() - phase.startedAt;
+    if (activeMs < 1000) return;
     setSelectedId(-1); // sentinel for timeout
     setShowCorrect(true);
     setMyStreak(0);
@@ -245,7 +248,7 @@ export default function SoloPage() {
                   {kh ? "ការជូនដំណឹង" : "Guest Mode"}
                 </div>
                 <div className="text-xs text-orange-800" style={khFont}>
-                  {kh 
+                  {kh
                     ? "អ្នកកំពុងលេងក្នុងរបៀបភ្ញៀវ។ ពិន្ទុរបស់អ្នកនឹងមិនត្រូវបានរក្សាទុក។ សូមចូលគណនីដើម្បីរក្សាពិន្ទុនិងប្រវត្តិរបស់អ្នក។"
                     : "You're playing in guest mode. Your scores won't be saved. Please log in to save your scores and track your progress."}
                 </div>
