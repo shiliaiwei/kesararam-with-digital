@@ -86,6 +86,7 @@ export function QuestionManagementPanel() {
 
     // Topic filters
     const [topicStatusFilter, setTopicStatusFilter] = useState("all");
+    const [topicSubGroupFilter, setTopicSubGroupFilter] = useState("all");
     const [topicSearch, setTopicSearch] = useState("");
 
     // Modal
@@ -183,6 +184,7 @@ export function QuestionManagementPanel() {
         setTypeFilter("all");
         setDiffFilter("all");
         setTopicStatusFilter("all");
+        setTopicSubGroupFilter("all");
         setTopicSearch("");
     };
 
@@ -314,8 +316,15 @@ export function QuestionManagementPanel() {
             {/* VIEW: Topics in a category */}
             {view === "topics" && activeCategory && (() => {
                 const catTopics = topics.filter(t => t.categoryId === activeCategory.id);
+
+                // Derive unique subGroups for this category
+                const subGroups = Array.from(
+                    new Set(catTopics.map(t => t.subGroup).filter(Boolean))
+                ).sort() as string[];
+
                 const filtered = catTopics
                     .filter(t => topicStatusFilter === "all" || t.status === topicStatusFilter)
+                    .filter(t => topicSubGroupFilter === "all" || t.subGroup === topicSubGroupFilter)
                     .filter(t => {
                         if (!topicSearch) return true;
                         const s = topicSearch.toLowerCase();
@@ -324,6 +333,7 @@ export function QuestionManagementPanel() {
                             || t.topicCode?.toLowerCase().includes(s)
                             || String(t.id).includes(s);
                     });
+
                 const statusTags = [
                     { value: "all", label: "All", bg: "bg-yellow-400" },
                     { value: "approved", label: "Approved", bg: "bg-green-400" },
@@ -331,10 +341,12 @@ export function QuestionManagementPanel() {
                     { value: "draft", label: "Draft", bg: "bg-zinc-300" },
                     { value: "rejected", label: "Rejected", bg: "bg-red-400" },
                 ];
+
                 return (
                     <div className="space-y-3">
                         {/* Stats + filter bar */}
-                        <div className="bg-white border-2 border-black p-3 shadow-[2px_2px_0_#000]">
+                        <div className="bg-white border-2 border-black p-3 shadow-[2px_2px_0_#000] space-y-3">
+                            {/* Row 1: Stats + Status filters + Search */}
                             <div className="flex items-center gap-3 flex-wrap">
                                 <div className="flex items-center gap-4 flex-shrink-0">
                                     <div>
@@ -345,19 +357,28 @@ export function QuestionManagementPanel() {
                                         <span className="text-2xl font-black text-blue-600">{getCategoryQCount(activeCategory.id)}</span>
                                         <span className="text-xs font-bold text-zinc-500 ml-1">Questions</span>
                                     </div>
+                                    <div>
+                                        <span className="text-2xl font-black text-zinc-400">{filtered.length}</span>
+                                        <span className="text-xs font-bold text-zinc-500 ml-1">Showing</span>
+                                    </div>
                                 </div>
+
+                                {/* Status filters */}
                                 <div className="flex items-center gap-1 flex-wrap">
+                                    <span className="text-xs font-black text-zinc-400 uppercase mr-1">Status:</span>
                                     {statusTags.map(tag => {
                                         const count = tag.value === "all" ? catTopics.length : catTopics.filter(t => t.status === tag.value).length;
                                         const isActive = topicStatusFilter === tag.value;
                                         return (
                                             <button key={tag.value} onClick={() => setTopicStatusFilter(tag.value)}
-                                                className={`px-3 py-1 border-2 border-black text-xs font-black transition-all ${isActive ? `${tag.bg} shadow-[2px_2px_0_#000]` : "bg-white hover:bg-gray-50"}`}>
-                                                {tag.label} <span className="font-medium text-zinc-600">({count})</span>
+                                                className={`px-2.5 py-1 border-2 border-black text-xs font-black transition-all ${isActive ? `${tag.bg} shadow-[2px_2px_0_#000]` : "bg-white hover:bg-gray-50"}`}>
+                                                {tag.label} <span className="font-medium text-zinc-500">({count})</span>
                                             </button>
                                         );
                                     })}
                                 </div>
+
+                                {/* Search */}
                                 <div className="relative ml-auto">
                                     <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 text-zinc-400" size={14} />
                                     <input type="text" placeholder="Search ID, code, name..." value={topicSearch}
@@ -365,6 +386,34 @@ export function QuestionManagementPanel() {
                                         className="pl-8 pr-3 py-1.5 border-2 border-black text-xs font-medium focus:outline-none w-48" />
                                 </div>
                             </div>
+
+                            {/* Row 2: SubGroup / Tag filters */}
+                            {subGroups.length > 0 && (
+                                <div className="flex items-center gap-1 flex-wrap pt-2 border-t border-zinc-200">
+                                    <span className="text-xs font-black text-zinc-400 uppercase mr-1">Tag:</span>
+                                    <button
+                                        onClick={() => setTopicSubGroupFilter("all")}
+                                        className={`px-2.5 py-1 border-2 border-black text-xs font-black transition-all ${topicSubGroupFilter === "all" ? "bg-black text-white shadow-[2px_2px_0_#000]" : "bg-white hover:bg-gray-50"}`}
+                                    >
+                                        All Tags
+                                        <span className="ml-1 font-medium opacity-70">({catTopics.length})</span>
+                                    </button>
+                                    {subGroups.map(sg => {
+                                        const count = catTopics.filter(t => t.subGroup === sg).length;
+                                        const isActive = topicSubGroupFilter === sg;
+                                        return (
+                                            <button
+                                                key={sg}
+                                                onClick={() => setTopicSubGroupFilter(sg)}
+                                                className={`px-2.5 py-1 border-2 border-black text-xs font-bold transition-all ${isActive ? "bg-purple-400 shadow-[2px_2px_0_#000]" : "bg-white hover:bg-purple-50"}`}
+                                            >
+                                                {sg}
+                                                <span className="ml-1 font-medium text-zinc-500">({count})</span>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            )}
                         </div>
 
                         {filtered.length === 0 ? (
@@ -399,16 +448,20 @@ export function QuestionManagementPanel() {
                                                     </td>
                                                     <td className="px-3 py-2.5">
                                                         <div className="font-bold text-sm text-black">{topic.nameEn}</div>
-                                                        {topic.subGroup && <div className="text-xs text-zinc-400 italic">{topic.subGroup}</div>}
+                                                        {topic.subGroup && (
+                                                            <span className="inline-block mt-1 text-xs font-bold px-2 py-0.5 bg-purple-100 border border-purple-300 text-purple-700">
+                                                                {topic.subGroup}
+                                                            </span>
+                                                        )}
                                                     </td>
                                                     <td className="px-3 py-2.5">
                                                         <div className="text-sm text-zinc-700">{topic.nameKm || <span className="text-zinc-300 italic text-xs">—</span>}</div>
                                                     </td>
                                                     <td className="px-3 py-2.5">
                                                         <span className={`text-xs font-black px-2 py-1 border border-black ${topic.status === "approved" ? "bg-green-100 text-green-800" :
-                                                                topic.status === "pending" ? "bg-yellow-100 text-yellow-800" :
-                                                                    topic.status === "rejected" ? "bg-red-100 text-red-800" :
-                                                                        "bg-zinc-100 text-zinc-600"}`}>
+                                                            topic.status === "pending" ? "bg-yellow-100 text-yellow-800" :
+                                                                topic.status === "rejected" ? "bg-red-100 text-red-800" :
+                                                                    "bg-zinc-100 text-zinc-600"}`}>
                                                             {topic.status}
                                                         </span>
                                                     </td>
