@@ -36,11 +36,11 @@ const nextConfig: NextConfig = {
             value: [
               "default-src 'self'",
               // 'unsafe-inline' required for Next.js; 'unsafe-eval' required by Mapbox GL JS (WebGL)
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://api.mapbox.com https://events.mapbox.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://api.mapbox.com https://events.mapbox.com https://www.googletagmanager.com https://www.google-analytics.com",
               "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://api.mapbox.com",
               "font-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com",
-              "img-src 'self' data: blob: https://res.cloudinary.com https://cdn.jsdelivr.net https://raw.githubusercontent.com https://cdnjs.cloudflare.com https://api.mapbox.com https://*.mapbox.com",
-              "connect-src 'self' https://*.neon.tech https://api.cloudinary.com https://cdn.jsdelivr.net https://res.cloudinary.com https://api.mapbox.com https://events.mapbox.com https://*.mapbox.com",
+              "img-src 'self' data: blob: https://res.cloudinary.com https://cdn.jsdelivr.net https://raw.githubusercontent.com https://cdnjs.cloudflare.com https://api.mapbox.com https://*.mapbox.com https://www.google-analytics.com https://www.googletagmanager.com",
+              "connect-src 'self' https://*.neon.tech https://api.cloudinary.com https://cdn.jsdelivr.net https://res.cloudinary.com https://api.mapbox.com https://events.mapbox.com https://*.mapbox.com https://www.google-analytics.com https://www.googletagmanager.com https://analytics.google.com",
               "media-src 'self' https://res.cloudinary.com",
               "worker-src 'self' blob:",
               "frame-src 'none'",
