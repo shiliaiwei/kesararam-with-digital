@@ -23,12 +23,19 @@ export async function POST(
       return NextResponse.json({ error: "Topic not found" }, { status: 404 });
     }
 
-    // Staff can only submit their own content
-    if (
-      session.role !== "admin" &&
-      topic.created_by !== Number(session.id)
-    ) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    // Admin can submit anything
+    // Staff can submit:
+    // - Their own content (any status)
+    // - ANY rejected content (even if created by another staff)
+    // - ANY draft content (even if created by another staff)
+    if (session.role !== "admin") {
+      const isOwner = topic.created_by === Number(session.id);
+      const isRejected = topic.status === "rejected";
+      const isDraft = topic.status === "draft";
+
+      if (!isOwner && !isRejected && !isDraft) {
+        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+      }
     }
 
     // Check if at least one question exists

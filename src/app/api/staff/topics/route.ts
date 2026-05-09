@@ -27,13 +27,14 @@ export async function GET(request: NextRequest) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const conditions: any[] = [];
 
-    // Staff can see: their own content OR any rejected content
+    // Staff can see: their own content OR any rejected/draft content
     // Admin can see: everything
     if (ownOnly) {
       conditions.push(
         or(
           eq(topics.createdBy, userId),
-          eq(topics.status, "rejected")
+          eq(topics.status, "rejected"),
+          eq(topics.status, "draft")
         )
       );
     }
