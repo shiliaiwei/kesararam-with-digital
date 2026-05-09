@@ -14,19 +14,21 @@ export async function GET(request: NextRequest) {
         const categoryId = searchParams.get("categoryId");
 
         let query = `
-      SELECT 
-        t.id,
-        t.topic_code as "topicCode",
-        t.name_en as "nameEn",
-        t.name_km as "nameKm",
-        t.category_id as "categoryId",
-        c.title_en as "categoryName",
-        t.status,
-        t.created_at as "createdAt"
-      FROM topics t
-      LEFT JOIN categories c ON t.category_id = c.id
-      WHERE 1=1
-    `;
+            SELECT 
+                t.id,
+                t.topic_code as "topicCode",
+                t.name_en as "nameEn",
+                t.name_km as "nameKm",
+                t.category_id as "categoryId",
+                c.title_en as "categoryName",
+                c.slug as "categorySlug",
+                t.status,
+                t.sub_group as "subGroup",
+                t.created_at as "createdAt"
+            FROM topics t
+            LEFT JOIN categories c ON t.category_id = c.id
+            WHERE 1=1
+        `;
 
         const params: any[] = [];
 
@@ -40,13 +42,13 @@ export async function GET(request: NextRequest) {
             params.push(Number(categoryId));
         }
 
-        query += ` ORDER BY c.sort_order, t.sort_order, t.name_en`;
+        query += ` ORDER BY c.sort_order ASC, t.sort_order ASC, t.name_en ASC`;
 
         const topics = await sql.unsafe(query, params);
 
         return NextResponse.json({
             topics: Array.isArray(topics) ? topics : [],
-            total: topics.length
+            total: Array.isArray(topics) ? topics.length : 0
         });
     } catch (error) {
         console.error("[GET /api/admin/topics]", error);

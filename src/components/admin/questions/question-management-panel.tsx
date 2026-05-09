@@ -98,7 +98,8 @@ export function QuestionManagementPanel() {
         try {
             const res = await fetch("/api/categories");
             const data = await res.json();
-            const cats = Array.isArray(data.categories) ? data.categories : [];
+            // API returns array directly (not { categories: [] })
+            const cats = Array.isArray(data) ? data : (Array.isArray(data.categories) ? data.categories : []);
             setCategories(cats);
             // Expand all by default
             setExpandedCategories(new Set(cats.map((c: Category) => c.id)));
@@ -331,81 +332,138 @@ export function QuestionManagementPanel() {
             {/* Main Layout: Sidebar + Content */}
             <div className="flex gap-4 min-h-0">
                 {/* Left Sidebar: Category + Topic Tree */}
-                <div className="w-64 flex-shrink-0 bg-white border-4 border-black shadow-[4px_4px_0_#000] overflow-y-auto" style={{ maxHeight: "calc(100vh - 220px)" }}>
-                    <div className="p-3 border-b-2 border-black bg-black">
-                        <h2 className="text-xs font-black text-white uppercase tracking-wider">Categories & Topics</h2>
+                <div className="w-72 flex-shrink-0 bg-white border-4 border-black shadow-[4px_4px_0_#000] flex flex-col" style={{ maxHeight: "calc(100vh - 220px)" }}>
+                    <div className="p-3 border-b-2 border-black bg-black flex-shrink-0">
+                        <h2 className="text-xs font-black text-white uppercase tracking-wider">8 Categories & Topics</h2>
                     </div>
 
-                    {/* All */}
-                    <button
-                        onClick={() => { setCategoryFilter("all"); setSelectedTopic(null); }}
-                        className={`w-full text-left px-3 py-2 text-xs font-black border-b border-zinc-200 transition-all ${categoryFilter === "all" && !selectedTopic ? "bg-yellow-400" : "hover:bg-yellow-50"}`}
-                    >
-                        All Categories
-                    </button>
-
-                    {categories.map((category) => {
-                        const catTopics = topics.filter(t => t.categoryId === category.id);
-                        const isExpanded = expandedCategories.has(category.id);
-                        const isCatActive = categoryFilter === String(category.id);
-                        const catQCount = safeQuestions.filter(q => q.categoryId === category.id).length;
-
-                        return (
-                            <div key={category.id} className="border-b border-zinc-200">
-                                {/* Category Row */}
-                                <div className={`flex items-center gap-1 transition-all ${isCatActive && !selectedTopic ? "bg-yellow-400" : "hover:bg-yellow-50"}`}>
+                    {/* Tag filter bar */}
+                    <div className="p-2 border-b-2 border-black bg-zinc-50 flex-shrink-0">
+                        <div className="flex items-center gap-1 flex-wrap">
+                            {[
+                                { value: "all", label: "All" },
+                                { value: "solo", label: "Solo" },
+                                { value: "live", label: "Live" },
+                                { value: "easy", label: "Easy" },
+                                { value: "medium", label: "Med" },
+                                { value: "hard", label: "Hard" },
+                            ].map(tag => {
+                                const isActive = (tag.value === "all" && gameModeFilter === "all" && difficultyFilter === "all")
+                                    || gameModeFilter === tag.value
+                                    || difficultyFilter === tag.value;
+                                return (
                                     <button
-                                        onClick={() => toggleCategory(category.id)}
-                                        className="p-2 flex-shrink-0"
+                                        key={tag.value}
+                                        onClick={() => {
+                                            if (tag.value === "all") { setGameModeFilter("all"); setDifficultyFilter("all"); }
+                                            else if (tag.value === "solo" || tag.value === "live") setGameModeFilter(tag.value);
+                                            else setDifficultyFilter(tag.value);
+                                        }}
+                                        className={`px-2 py-0.5 border border-black text-xs font-bold transition-all ${isActive ? "bg-yellow-400" : "bg-white hover:bg-yellow-50"}`}
                                     >
-                                        {isExpanded
-                                            ? <ChevronDown size={14} className="text-zinc-600" />
-                                            : <ChevronRight size={14} className="text-zinc-600" />
-                                        }
+                                        {tag.label}
                                     </button>
-                                    <button
-                                        onClick={() => { setCategoryFilter(String(category.id)); setSelectedTopic(null); }}
-                                        className="flex-1 text-left py-2 pr-2"
-                                    >
-                                        <div className="text-xs font-black text-black">{category.titleEn}</div>
-                                        <div className="text-xs text-zinc-500">{catTopics.length} topics · {catQCount} Q</div>
-                                    </button>
-                                </div>
+                                );
+                            })}
+                        </div>
+                    </div>
 
-                                {/* Topics under category */}
-                                {isExpanded && catTopics.map((topic) => {
-                                    const qCount = getTopicQuestionCount(topic.id);
-                                    const isTopicActive = selectedTopic?.id === topic.id;
-                                    return (
-                                        <div
-                                            key={topic.id}
-                                            className={`flex items-center justify-between pl-7 pr-2 py-1.5 border-t border-zinc-100 cursor-pointer transition-all group ${isTopicActive ? "bg-yellow-300" : "hover:bg-yellow-50"}`}
-                                        >
+                    {/* Scrollable list */}
+                    <div className="overflow-y-auto flex-1">
+                        {/* All */}
+                        <button
+                            onClick={() => { setCategoryFilter("all"); setSelectedTopic(null); }}
+                            className={`w-full text-left px-3 py-2 text-xs font-black border-b-2 border-black transition-all ${categoryFilter === "all" && !selectedTopic ? "bg-yellow-400" : "hover:bg-yellow-50"}`}
+                        >
+                            All Categories
+                            <span className="ml-1 text-zinc-500 font-medium">({safeQuestions.length} Q)</span>
+                        </button>
+
+                        {categories.length === 0 ? (
+                            <div className="p-4 text-xs text-zinc-400 text-center">Loading categories...</div>
+                        ) : (
+                            categories.map((category) => {
+                                const catTopics = topics.filter(t => t.categoryId === category.id);
+                                const isExpanded = expandedCategories.has(category.id);
+                                const isCatActive = categoryFilter === String(category.id);
+                                const catQCount = safeQuestions.filter(q => q.categoryId === category.id).length;
+
+                                return (
+                                    <div key={category.id} className="border-b border-zinc-200">
+                                        {/* Category Row */}
+                                        <div className={`flex items-center transition-all ${isCatActive && !selectedTopic ? "bg-yellow-400" : "hover:bg-yellow-50"}`}>
                                             <button
-                                                onClick={() => { setSelectedTopic(topic); setCategoryFilter(String(category.id)); }}
-                                                className="flex-1 text-left"
+                                                onClick={() => toggleCategory(category.id)}
+                                                className="p-2 flex-shrink-0 hover:bg-black/10"
                                             >
-                                                <div className="text-xs font-bold text-black line-clamp-1">{topic.nameEn}</div>
-                                                <div className="text-xs text-zinc-400">{topic.topicCode}</div>
+                                                {isExpanded
+                                                    ? <ChevronDown size={13} className="text-zinc-600" />
+                                                    : <ChevronRight size={13} className="text-zinc-600" />
+                                                }
                                             </button>
-                                            <div className="flex items-center gap-1 flex-shrink-0">
-                                                <span className={`text-xs font-black px-1.5 py-0.5 border border-black ${qCount > 0 ? "bg-blue-100 text-blue-800" : "bg-zinc-100 text-zinc-500"}`}>
-                                                    {qCount}
-                                                </span>
-                                                <button
-                                                    onClick={(e) => { e.stopPropagation(); setSelectedTopic(topic); setShowCreateModal(true); }}
-                                                    className="opacity-0 group-hover:opacity-100 p-1 bg-green-400 border border-black hover:shadow-[1px_1px_0_#000] transition-all"
-                                                    title="Add question to this topic"
-                                                >
-                                                    <Plus size={11} />
-                                                </button>
-                                            </div>
+                                            <button
+                                                onClick={() => { setCategoryFilter(String(category.id)); setSelectedTopic(null); }}
+                                                className="flex-1 text-left py-2 pr-2"
+                                            >
+                                                <div className="text-xs font-black text-black">{category.titleEn}</div>
+                                                <div className="text-xs text-zinc-400">
+                                                    {catTopics.length} topics · <span className="font-bold text-blue-600">{catQCount} Q</span>
+                                                </div>
+                                            </button>
+                                            {/* Quick add to category */}
+                                            <button
+                                                onClick={() => { setCategoryFilter(String(category.id)); setSelectedTopic(null); setShowCreateModal(true); }}
+                                                className="mr-2 p-1 bg-green-400 border border-black opacity-0 hover:opacity-100 group-hover:opacity-100 hover:shadow-[1px_1px_0_#000] transition-all"
+                                                title="Add question to this category"
+                                            >
+                                                <Plus size={11} />
+                                            </button>
                                         </div>
-                                    );
-                                })}
-                            </div>
-                        );
-                    })}
+
+                                        {/* Topics under category */}
+                                        {isExpanded && (
+                                            <div className="bg-zinc-50">
+                                                {catTopics.length === 0 ? (
+                                                    <div className="pl-8 py-2 text-xs text-zinc-400 italic">No topics yet</div>
+                                                ) : (
+                                                    catTopics.map((topic) => {
+                                                        const qCount = getTopicQuestionCount(topic.id);
+                                                        const isTopicActive = selectedTopic?.id === topic.id;
+                                                        return (
+                                                            <div
+                                                                key={topic.id}
+                                                                className={`flex items-center justify-between pl-7 pr-2 py-1.5 border-t border-zinc-100 transition-all group/topic ${isTopicActive ? "bg-yellow-300 border-l-4 border-l-yellow-500" : "hover:bg-yellow-50"}`}
+                                                            >
+                                                                <button
+                                                                    onClick={() => { setSelectedTopic(topic); setCategoryFilter(String(category.id)); }}
+                                                                    className="flex-1 text-left min-w-0"
+                                                                >
+                                                                    <div className="text-xs font-bold text-black line-clamp-1">{topic.nameEn}</div>
+                                                                    <div className="text-xs text-zinc-400">{topic.topicCode}</div>
+                                                                </button>
+                                                                <div className="flex items-center gap-1 flex-shrink-0 ml-1">
+                                                                    <span className={`text-xs font-black px-1.5 py-0.5 border border-black ${qCount > 0 ? "bg-blue-100 text-blue-700" : "bg-zinc-100 text-zinc-400"}`}>
+                                                                        {qCount}
+                                                                    </span>
+                                                                    <button
+                                                                        onClick={(e) => { e.stopPropagation(); setSelectedTopic(topic); setShowCreateModal(true); }}
+                                                                        className="opacity-0 group-hover/topic:opacity-100 p-1 bg-green-400 border border-black hover:shadow-[1px_1px_0_#000] transition-all"
+                                                                        title="Add question to this topic"
+                                                                    >
+                                                                        <Plus size={11} />
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        );
+                                                    })
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })
+                        )}
+                    </div>
                 </div>
 
                 {/* Right: Stats + Table */}
