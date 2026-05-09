@@ -103,6 +103,7 @@ export async function POST(request: NextRequest) {
       hintKm,
       imageUrl,
       difficulty,
+      pointsMultiplier,
       answers,
     } = body;
 
@@ -117,10 +118,10 @@ export async function POST(request: NextRequest) {
     const questionResult = await sql`
       INSERT INTO questions (
         topic_id, question_en, question_km, hint_en, hint_km,
-        image_url, difficulty, created_by, created_at
+        image_url, difficulty, points_multiplier, created_by, created_at
       ) VALUES (
         ${topicId}, ${questionEn}, ${questionKm || ""}, ${hintEn || null}, ${hintKm || null},
-        ${imageUrl || null}, ${difficulty || "medium"}, ${session.id}, NOW()
+        ${imageUrl || null}, ${difficulty || "medium"}, ${pointsMultiplier || 1}, ${session.id}, NOW()
       )
       RETURNING id
     `;
