@@ -60,9 +60,9 @@ export async function GET(request: NextRequest) {
     const questions = await sql.unsafe(query, params);
 
     // Filter by type if specified (post-query since it's computed)
-    let filteredQuestions = questions;
+    let filteredQuestions = questions || [];
     if (type && type !== "all") {
-      filteredQuestions = questions.filter((q: any) => q.questionType === type);
+      filteredQuestions = filteredQuestions.filter((q: any) => q.questionType === type);
     }
 
     return NextResponse.json({ questions: filteredQuestions });

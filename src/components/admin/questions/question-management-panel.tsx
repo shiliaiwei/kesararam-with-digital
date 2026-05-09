@@ -61,10 +61,13 @@ export function QuestionManagementPanel() {
 
             const res = await fetch(`/api/admin/questions?${params}`);
             const data = await res.json();
-            setQuestions(data.questions || []);
+
+            // Ensure questions is always an array
+            setQuestions(Array.isArray(data.questions) ? data.questions : []);
         } catch (error) {
             console.error("Failed to fetch questions:", error);
             showToast("Failed to load questions", "error");
+            setQuestions([]); // Set empty array on error
         } finally {
             setLoading(false);
         }
@@ -151,8 +154,8 @@ export function QuestionManagementPanel() {
                                 key={type.value}
                                 onClick={() => setTypeFilter(type.value)}
                                 className={`px-3 py-1.5 border-2 border-black text-xs font-black transition-all inline-flex items-center gap-1.5 ${typeFilter === type.value
-                                        ? "bg-yellow-400 shadow-[2px_2px_0_#000]"
-                                        : "bg-white hover:bg-yellow-50"
+                                    ? "bg-yellow-400 shadow-[2px_2px_0_#000]"
+                                    : "bg-white hover:bg-yellow-50"
                                     }`}
                             >
                                 <span>{type.icon}</span>
@@ -168,8 +171,8 @@ export function QuestionManagementPanel() {
                                 key={level.value}
                                 onClick={() => setDifficultyFilter(level.value)}
                                 className={`px-3 py-1.5 border-2 border-black text-xs font-black transition-all ${difficultyFilter === level.value
-                                        ? "shadow-[2px_2px_0_#000]"
-                                        : "bg-white hover:shadow-[1px_1px_0_#000]"
+                                    ? "shadow-[2px_2px_0_#000]"
+                                    : "bg-white hover:shadow-[1px_1px_0_#000]"
                                     }`}
                                 style={{
                                     backgroundColor: difficultyFilter === level.value ? level.color : "#ffffff",

@@ -38,11 +38,11 @@ const adminNav: NavItem[] = [
   { label: "Review Queue", href: "/admin/review", icon: AlertCircle, color: "#f59e0b" },
   { label: "Users", href: "/admin/users", icon: Users, color: "#3b82f6" },
   { label: "Subscriptions", href: "/admin/subscriptions", icon: CreditCard, color: "#f59e0b" },
+  { label: "Questions", href: "/admin/questions", icon: ScrollText, color: "#8b5cf6" },
   {
     label: "Content", icon: BookOpen, color: "#22c55e",
     children: [
       { label: "Overview", href: "/admin/content" },
-      { label: "Topic Questions", href: "/admin/content/questions" },
       { label: "Traffic Signs", href: "/admin/content/road-sign" },
       { label: "Road Traffic Law", href: "/admin/content/road-traffic" },
       { label: "Right of Way", href: "/admin/content/priority" },
@@ -104,9 +104,9 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
 
   // Plan config for teacher badge
   const planConfig: Record<string, { label: string; icon: typeof Zap; color: string; bg: string }> = {
-    free:        { label: "Free",        icon: Zap,       color: "#6b7280", bg: "#f4f4f5" },
-    teacher_pro: { label: "Teacher Pro", icon: Crown,     color: "#d97706", bg: "#fef3c7" },
-    school:      { label: "School",      icon: Building2, color: "#7c3aed", bg: "#f5f3ff" },
+    free: { label: "Free", icon: Zap, color: "#6b7280", bg: "#f4f4f5" },
+    teacher_pro: { label: "Teacher Pro", icon: Crown, color: "#d97706", bg: "#fef3c7" },
+    school: { label: "School", icon: Building2, color: "#7c3aed", bg: "#f5f3ff" },
   };
   const pc = planConfig[plan] ?? planConfig.free;
   const PlanIcon = pc.icon;
@@ -203,11 +203,10 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
           </h2>
           <Link
             href={profileHref}
-            className={`w-full flex items-center gap-2 p-2.5 border-2 border-black transition-all duration-100 ${
-              pathname.includes("/profile")
+            className={`w-full flex items-center gap-2 p-2.5 border-2 border-black transition-all duration-100 ${pathname.includes("/profile")
                 ? "bg-yellow-400 shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
                 : "bg-white hover:bg-yellow-50 hover:shadow-[1px_1px_0_#000]"
-            }`}
+              }`}
           >
             <div className="w-6 h-6 border-2 border-black bg-blue-500 flex items-center justify-center shadow-[1px_1px_0_#000]">
               <User size={12} className="text-black" />
@@ -235,11 +234,10 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
                   <div key={item.label}>
                     <button
                       onClick={() => toggleExpand(item.label)}
-                      className={`w-full flex items-center justify-between gap-2 p-2.5 border-2 border-black transition-all duration-100 ${
-                        hasActiveChild
+                      className={`w-full flex items-center justify-between gap-2 p-2.5 border-2 border-black transition-all duration-100 ${hasActiveChild
                           ? "bg-yellow-100 shadow-[1px_1px_0_#000]"
                           : "bg-white hover:bg-yellow-50 hover:shadow-[1px_1px_0_#000]"
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center gap-2">
                         <div
@@ -267,11 +265,10 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
                             <Link
                               key={child.href}
                               href={child.href}
-                              className={`block p-2 text-xs font-bold border-l-2 border-black transition-all ${
-                                isActive
+                              className={`block p-2 text-xs font-bold border-l-2 border-black transition-all ${isActive
                                   ? "bg-yellow-400 pl-3"
                                   : "bg-gray-50 hover:bg-yellow-50 hover:pl-3"
-                              }`}
+                                }`}
                             >
                               {child.label}
                             </Link>
@@ -289,11 +286,10 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
                 <Link
                   key={item.href}
                   href={item.href!}
-                  className={`flex items-center gap-2 p-2.5 border-2 border-black transition-all duration-100 ${
-                    isActive
+                  className={`flex items-center gap-2 p-2.5 border-2 border-black transition-all duration-100 ${isActive
                       ? "bg-yellow-400 shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
                       : "bg-white hover:bg-yellow-50 hover:shadow-[1px_1px_0_#000]"
-                  }`}
+                    }`}
                 >
                   <div
                     className="w-6 h-6 border-2 border-black flex items-center justify-center shadow-[1px_1px_0_#000]"
