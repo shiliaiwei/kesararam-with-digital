@@ -13,7 +13,7 @@ const SUB_GROUPS: Record<string, string[]> = { "road-sign": ["Arrows Markings", 
 const S_ICON: Record<string, React.ReactNode> = { published: <Globe size={11} className="text-blue-600" />, pending: <Clock size={11} className="text-yellow-600" />, approved: <CheckCircle size={11} className="text-green-600" />, draft: <FileText size={11} className="text-gray-500" />, rejected: <XCircle size={11} className="text-red-600" /> };
 const S_STYLE: Record<string, string> = { published: "bg-blue-100 text-blue-800 border border-blue-300", pending: "bg-yellow-100 text-yellow-800 border border-yellow-300", approved: "bg-green-100 text-green-800 border border-green-300", draft: "bg-gray-100 text-gray-700 border border-gray-300", rejected: "bg-red-100 text-red-800 border border-red-300" };
 const S_LABEL: Record<string, string> = { published: "Public", pending: "Review", approved: "Approved", draft: "Draft", rejected: "Rejected" };
-const ALL_ST = ["published", "pending", "approved", "rejected"] as const;
+const ALL_ST = ["published", "pending", "approved", "draft", "rejected"] as const;
 const BLANK = (): Answer => ({ answerEn: "", answerKm: "", isCorrect: false, imageUrl: "" });
 const DIFF_C: Record<string, string> = { easy: "bg-green-100 text-green-800 border-green-300", medium: "bg-yellow-100 text-yellow-800 border-yellow-300", hard: "bg-red-100 text-red-800 border-red-300" };
 
