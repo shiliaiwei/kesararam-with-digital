@@ -13,6 +13,7 @@ export async function GET(request: NextRequest) {
     const type = searchParams.get("type");
     const difficulty = searchParams.get("difficulty");
     const search = searchParams.get("search");
+    const categoryId = searchParams.get("categoryId");
 
     // Build query with filters
     let query = `
@@ -24,6 +25,7 @@ export async function GET(request: NextRequest) {
         q.difficulty,
         q.created_at as "createdAt",
         t.name_en as "topicName",
+        t.category_id as "categoryId",
         c.title_en as "categoryName",
         COUNT(a.id)::int as "answerCount",
         CASE 
@@ -41,6 +43,11 @@ export async function GET(request: NextRequest) {
 
     const params: any[] = [];
 
+    if (categoryId) {
+      query += ` AND t.category_id = $${params.length + 1}`;
+      params.push(Number(categoryId));
+    }
+
     if (search) {
       query += ` AND (q.question_en ILIKE $${params.length + 1} OR q.question_km ILIKE $${params.length + 1} OR t.name_en ILIKE $${params.length + 1})`;
       params.push(`%${search}%`);
@@ -52,23 +59,31 @@ export async function GET(request: NextRequest) {
     }
 
     query += `
-      GROUP BY q.id, t.name_en, c.title_en
+      GROUP BY q.id, t.name_en, t.category_id, c.title_en
       ORDER BY q.created_at DESC
       LIMIT 500
     `;
 
     const questions = await sql.unsafe(query, params);
 
+    // Ensure questions is always an array
+    let filteredQuestions = Array.isArray(questions) ? questions : [];
+
     // Filter by type if specified (post-query since it's computed)
-    let filteredQuestions = questions || [];
     if (type && type !== "all") {
       filteredQuestions = filteredQuestions.filter((q: any) => q.questionType === type);
     }
 
-    return NextResponse.json({ questions: filteredQuestions });
+    return NextResponse.json({
+      questions: filteredQuestions,
+      total: filteredQuestions.length
+    });
   } catch (error) {
     console.error("[GET /api/admin/questions]", error);
-    return NextResponse.json({ error: "Failed to fetch questions" }, { status: 500 });
+    return NextResponse.json({
+      error: "Failed to fetch questions",
+      questions: [] // Always return empty array on error
+    }, { status: 500 });
   }
 }
 
