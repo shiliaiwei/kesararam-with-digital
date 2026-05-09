@@ -127,6 +127,28 @@ export function QuestionManagementPanel() {
         }
     };
 
+    // Refresh just the questions (faster, no full reload)
+    const refreshQuestions = async (topicIdFilter?: number) => {
+        try {
+            const url = topicIdFilter
+                ? `/api/admin/questions?topicId=${topicIdFilter}`
+                : `/api/admin/questions`;
+            const res = await fetch(url);
+            const data = await res.json();
+            const qs = Array.isArray(data.questions) ? data.questions : [];
+            if (topicIdFilter) {
+                setQuestions(qs);
+                setAllQuestions(prev => [
+                    ...prev.filter(q => q.topicId !== topicIdFilter),
+                    ...qs
+                ]);
+            } else {
+                setAllQuestions(qs);
+                setQuestions(qs);
+            }
+        } catch { }
+    };
+
     const handleDelete = async (id: number) => {
         try {
             const res = await fetch(`/api/admin/questions/${id}`, { method: "DELETE" });
@@ -151,7 +173,12 @@ export function QuestionManagementPanel() {
 
     const handleSuccess = () => {
         handleCloseModal();
-        fetchAll();
+        // Refresh questions for current topic or all
+        if (activeTopic) {
+            refreshQuestions(activeTopic.id);
+        } else {
+            refreshQuestions();
+        }
     };
 
     // Derived counts
@@ -279,7 +306,7 @@ export function QuestionManagementPanel() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                    <button onClick={fetchAll} className="p-2 border-2 border-black bg-white hover:bg-gray-100 hover:shadow-[2px_2px_0_#000] transition-all" title="Refresh">
+                    <button onClick={() => activeTopic ? refreshQuestions(activeTopic.id) : fetchAll()} className="p-2 border-2 border-black bg-white hover:bg-gray-100 hover:shadow-[2px_2px_0_#000] transition-all" title="Refresh">
                         <RefreshCw size={16} />
                     </button>
                     {(view === "topics" || view === "questions") && (
