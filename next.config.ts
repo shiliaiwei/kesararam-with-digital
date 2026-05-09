@@ -20,17 +20,17 @@ const nextConfig: NextConfig = {
       {
         source: "/(.*)",
         headers: [
-          { key: "X-Frame-Options",               value: "DENY" },
-          { key: "X-Content-Type-Options",         value: "nosniff" },
-          { key: "X-DNS-Prefetch-Control",         value: "on" },
-          { key: "Referrer-Policy",                value: "strict-origin-when-cross-origin" },
-          { key: "Permissions-Policy",             value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()" },
-          { key: "Strict-Transport-Security",      value: "max-age=63072000; includeSubDomains; preload" },
-          { key: "X-XSS-Protection",               value: "1; mode=block" },
-          { key: "Server",                         value: "KWD-Server" },
-          { key: "Cross-Origin-Opener-Policy",     value: "same-origin" },
-          { key: "Cross-Origin-Resource-Policy",   value: "cross-origin" },
-          { key: "Cross-Origin-Embedder-Policy",   value: "unsafe-none" },
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-DNS-Prefetch-Control", value: "on" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()" },
+          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
+          { key: "X-XSS-Protection", value: "1; mode=block" },
+          { key: "Server", value: "KWD-Server" },
+          { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+          { key: "Cross-Origin-Resource-Policy", value: "cross-origin" },
+          { key: "Cross-Origin-Embedder-Policy", value: "unsafe-none" },
           {
             key: "Content-Security-Policy",
             value: [
@@ -51,6 +51,57 @@ const nextConfig: NextConfig = {
             ].join("; "),
           },
         ],
+      },
+    ];
+  },
+  async redirects() {
+    return [
+      // Redirect old category URLs to /learn/[category]
+      {
+        source: "/road-traffic",
+        destination: "/learn/road-traffic",
+        permanent: true,
+      },
+      {
+        source: "/road-sign",
+        destination: "/learn/road-sign",
+        permanent: true,
+      },
+      {
+        source: "/priority",
+        destination: "/learn/priority",
+        permanent: true,
+      },
+      {
+        source: "/driving",
+        destination: "/learn/driving",
+        permanent: true,
+      },
+      {
+        source: "/technical",
+        destination: "/learn/technical",
+        permanent: true,
+      },
+      {
+        source: "/emergency",
+        destination: "/learn/emergency",
+        permanent: true,
+      },
+      {
+        source: "/loading-people-goods",
+        destination: "/learn/loading-people-goods",
+        permanent: true,
+      },
+      {
+        source: "/general-knowledge",
+        destination: "/learn/general-knowledge",
+        permanent: true,
+      },
+      // Redirect /about to /home (if /about doesn't exist)
+      {
+        source: "/forum",
+        destination: "/home",
+        permanent: false,
       },
     ];
   },
