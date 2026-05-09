@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { X, Plus, Trash2, Lightbulb, AlertCircle, CheckCircle, ImageIcon, Zap, RefreshCw } from "lucide-react";
+import { X, Plus, Trash2, Lightbulb, AlertCircle, CheckCircle, Zap, RefreshCw, Clipboard, Settings } from "lucide-react";
 import { useToast } from "@/components/ui/toast-container";
 
 interface QuestionFormModalProps {
@@ -15,20 +15,21 @@ interface Category { id: number; slug: string; titleEn: string; }
 interface Topic { id: number; topicCode: string; nameEn: string; nameKm: string; categoryId: number; primaryImageUrl?: string; categorySlug?: string; }
 interface Answer { id: string; answerEn: string; answerKm: string; isCorrect: boolean; imageUrl?: string; }
 
-// Scoring standard: easy=1, medium=2, hard=3
 const SCORE_MAP: Record<string, number> = { easy: 1, medium: 2, hard: 3 };
 
 const Q_TYPES = [
-    { value: "mcq", label: "Multiple Choice", desc: "One correct answer", min: 2, max: 5, multi: false, hasImage: false },
-    { value: "true-false", label: "True / False", desc: "Binary choice", min: 2, max: 2, multi: false, hasImage: false },
-    { value: "multi-select", label: "Multi-Select", desc: "Multiple correct answers", min: 3, max: 5, multi: true, hasImage: false },
-    { value: "image-match", label: "Image Match", desc: "Pick the correct image", min: 2, max: 4, multi: false, hasImage: true },
+    { value: "mcq", label: "Multiple Choice", desc: "One correct answer", min: 2, max: 5, multi: false },
+    { value: "true-false", label: "True / False", desc: "Binary choice", min: 2, max: 2, multi: false },
+    { value: "multi-select", label: "Multi-Select", desc: "Multiple correct answers", min: 3, max: 5, multi: true },
+    { value: "image-match", label: "Image Match", desc: "Pick the correct image", min: 2, max: 4, multi: false },
 ];
 
 const DIFF = [
-    { value: "easy", label: "Easy", color: "#22c55e", pts: 1, desc: "Basic recall" },
-    { value: "medium", label: "Medium", color: "#f59e0b", pts: 2, desc: "Application" },
-    { value: "hard", label: "Hard", color: "#ef4444", pts: 3, desc: "Critical thinking" },
+    { value: "easy", label: "Easy", color: "#22c55e", pts: 1 },
+    { value: "medium", label: "Medium", color: "#f59e0b", pts: 2 },
+    { value: "hard", label: "Hard", color: "#ef4444", pts: 3 },
+];
+{ value: "hard", label: "Hard", color: "#ef4444", pts: 3, desc: "Critical thinking" },
 ];
 
 // Categories that support image-match (road signs & priority)
@@ -37,6 +38,7 @@ const IMAGE_MATCH_SLUGS = ["road-sign", "priority"];
 export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSuccess }: QuestionFormModalProps) {
     const { showToast } = useToast();
     const [saving, setSaving] = useState(false);
+    const [mode, setMode] = useState<"quick" | "full">("quick"); // default: quick paste mode
     const [categories, setCategories] = useState<Category[]>([]);
     const [topics, setTopics] = useState<Topic[]>([]);
     const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
@@ -206,12 +208,61 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
         finally { setSaving(false); }
     };
 
+    // ── Quick mode state ──
+    const [quickText, setQuickText] = useState("");
+    const [quickAnswers, setQuickAnswers] = useState<{ text: string; correct: boolean }[]>([]);
+    const [quickDiff, setQuickDiff] = useState("medium");
+
+    const parseQuickText = (text: string) => {
+        const lines = text.split("\n").map(l => l.trim()).filter(Boolean);
+        return lines.map(line => ({
+            text: line.replace(/^[*✓✔►\-•]\s*/, "").trim(),
+            correct: /^[*✓✔►]/.test(line),
+        }));
+    };
+
+    const handleQuickPaste = (text: string) => {
+        setQuickText(text);
+        setQuickAnswers(parseQuickText(text));
+    };
+
+    const toggleQuickCorrect = (i: number) => {
+        setQuickAnswers(prev => prev.map((a, idx) => ({ ...a, correct: idx === i })));
+    };
+
+    const handleQuickSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!topicId) { showToast("Select a topic first", "error"); return; }
+        if (!qEn.trim()) { showToast("Enter the question text", "error"); return; }
+        if (quickAnswers.length < 2) { showToast("Add at least 2 answers (one per line)", "error"); return; }
+        if (!quickAnswers.some(a => a.correct)) { showToast("Click an answer to mark it correct", "error"); return; }
+        setSaving(true);
+        try {
+            const payload = {
+                topicId, questionEn: qEn, questionKm: qKm,
+                difficulty: quickDiff, pointsMultiplier: SCORE_MAP[quickDiff],
+                imageUrl: topicData?.primaryImageUrl || "",
+                answers: quickAnswers.map(a => ({ answerEn: a.text, answerKm: "", isCorrect: a.correct, imageUrl: null })),
+            };
+            const res = await fetch("/api/admin/questions", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+            if (res.ok) {
+                showToast("Question created!", "success");
+                setQEn(""); setQKm(""); setQuickText(""); setQuickAnswers([]);
+                onSuccess();
+            } else {
+                const d = await res.json();
+                showToast(d.error || "Failed to save", "error");
+            }
+        } catch { showToast("Failed to save", "error"); }
+        finally { setSaving(false); }
+    };
+
     return (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
             <div className="bg-white border-4 border-black w-full max-w-3xl max-h-[92vh] overflow-y-auto shadow-[12px_12px_0_#000] flex flex-col">
 
                 {/* Header */}
-                <div className="bg-green-400 border-b-4 border-black px-5 py-4 flex items-center justify-between sticky top-0 z-10 flex-shrink-0">
+                <div className="bg-green-400 border-b-4 border-black px-5 py-3 flex items-center justify-between sticky top-0 z-10 flex-shrink-0">
                     <div>
                         <h2 className="text-xl font-black">{initialData ? "Edit Question" : "Create Question"}</h2>
                         {isPreSelected && (
@@ -221,244 +272,343 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                             </p>
                         )}
                     </div>
-                    <button onClick={onClose} className="p-2 bg-white border-2 border-black hover:shadow-[2px_2px_0_#000] transition-all"><X size={20} /></button>
-                </div>
-
-                <form onSubmit={handleSubmit} className="p-5 space-y-4 flex-1">
-
-                    {/* ── STEP 1: Topic (only if not pre-selected) ── */}
-                    {!isPreSelected && (
-                        <div className="grid grid-cols-2 gap-3">
-                            <div>
-                                <label className="block text-xs font-black uppercase mb-1">Category *</label>
-                                <select value={catId || ""} onChange={e => { setCatId(Number(e.target.value)); setTopicId(null); setTopicData(null); }}
-                                    className="w-full px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none" required>
-                                    <option value="">Choose category...</option>
-                                    {categories.map(c => <option key={c.id} value={c.id}>{c.titleEn}</option>)}
-                                </select>
-                            </div>
-                            <div>
-                                <label className="block text-xs font-black uppercase mb-1">Topic *</label>
-                                <select value={topicId || ""} onChange={e => handleTopicChange(Number(e.target.value))}
-                                    className="w-full px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none disabled:bg-gray-100"
-                                    disabled={!catId} required>
-                                    <option value="">Choose topic...</option>
-                                    {filteredTopics.map(t => <option key={t.id} value={t.id}>{t.nameEn} ({t.topicCode})</option>)}
-                                </select>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* ── STEP 2: Type + Difficulty (side by side) ── */}
-                    <div className="grid grid-cols-2 gap-4">
-                        {/* Question Type */}
-                        <div>
-                            <label className="block text-xs font-black uppercase mb-2">Question Type *</label>
-                            <div className="grid grid-cols-2 gap-2">
-                                {Q_TYPES.map(t => {
-                                    const disabled = t.value === "image-match" && !canUseImageMatch;
-                                    return (
-                                        <button key={t.value} type="button"
-                                            onClick={() => !disabled && handleTypeChange(t.value)}
-                                            disabled={disabled}
-                                            title={disabled ? "Only for Road Signs & Priority categories" : ""}
-                                            className={`p-2.5 border-2 border-black text-left transition-all ${qType === t.value ? "bg-yellow-400 shadow-[2px_2px_0_#000]" : disabled ? "bg-zinc-100 opacity-50 cursor-not-allowed" : "bg-white hover:shadow-[2px_2px_0_#000]"}`}>
-                                            <div className="font-black text-xs">{t.label}</div>
-                                            <div className="text-xs text-zinc-500 mt-0.5">{t.desc}</div>
-                                        </button>
-                                    );
-                                })}
-                            </div>
-                        </div>
-
-                        {/* Difficulty */}
-                        <div>
-                            <label className="block text-xs font-black uppercase mb-2">Difficulty & Points *</label>
-                            <div className="space-y-2">
-                                {DIFF.map(d => (
-                                    <button key={d.value} type="button" onClick={() => setDiff(d.value)}
-                                        className={`w-full p-2.5 border-2 border-black text-left flex items-center justify-between transition-all ${diff === d.value ? "shadow-[2px_2px_0_#000]" : "bg-white hover:shadow-[1px_1px_0_#000]"}`}
-                                        style={{ backgroundColor: diff === d.value ? d.color : "#fff", color: diff === d.value ? "#fff" : "#000" }}>
-                                        <div>
-                                            <span className="font-black text-sm">{d.label}</span>
-                                            <span className={`text-xs ml-2 ${diff === d.value ? "text-white/80" : "text-zinc-500"}`}>{d.desc}</span>
-                                        </div>
-                                        <span className={`font-black text-sm px-2 py-0.5 border border-black ${diff === d.value ? "bg-white/20" : "bg-zinc-100"}`}>
-                                            +{d.pts} pt{d.pts > 1 ? "s" : ""}
-                                        </span>
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* ── STEP 3: Question Text ── */}
-                    <div className="grid grid-cols-2 gap-3">
-                        <div>
-                            <label className="block text-xs font-black uppercase mb-1">Question (English) *</label>
-                            <textarea value={qEn} onChange={e => setQEn(e.target.value)} required
-                                className="w-full px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none min-h-[80px] resize-none"
-                                placeholder="Enter question in English..." />
-                        </div>
-                        <div>
-                            <label className="block text-xs font-black uppercase mb-1">Question (Khmer)</label>
-                            <textarea value={qKm} onChange={e => setQKm(e.target.value)}
-                                className="w-full px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none min-h-[80px] resize-none"
-                                placeholder="បញ្ចូលសំណួរជាភាសាខ្មែរ..." />
-                        </div>
-                    </div>
-
-                    {/* ── Question Image (auto-linked from topic) ── */}
-                    <div>
-                        <label className="block text-xs font-black uppercase mb-1 flex items-center gap-1">
-                            <ImageIcon size={13} /> Question Image
-                            {topicData?.primaryImageUrl && (
-                                <span className="ml-1 text-xs font-bold text-green-600 flex items-center gap-1">
-                                    <Zap size={11} /> Auto-linked from topic
-                                </span>
-                            )}
-                        </label>
-                        <div className="flex gap-2">
-                            <input type="url" value={imageUrl} onChange={e => setImageUrl(e.target.value)}
-                                className="flex-1 px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none"
-                                placeholder="https://... (auto-filled from topic)" />
-                            {topicData?.primaryImageUrl && (
-                                <button type="button" onClick={() => setImageUrl(topicData.primaryImageUrl!)}
-                                    className="px-3 py-2 border-2 border-black bg-green-100 hover:bg-green-200 text-xs font-bold flex items-center gap-1 transition-all">
-                                    <RefreshCw size={13} /> Reset
+                    <div className="flex items-center gap-2">
+                        {!initialData && (
+                            <div className="flex border-2 border-black overflow-hidden">
+                                <button type="button" onClick={() => setMode("quick")}
+                                    className={`px-3 py-1.5 text-xs font-black flex items-center gap-1 transition-all ${mode === "quick" ? "bg-black text-white" : "bg-white hover:bg-gray-100"}`}>
+                                    <Clipboard size={13} /> Quick
                                 </button>
-                            )}
-                        </div>
-                        {imageUrl && (
-                            <div className="mt-2 flex items-center gap-2">
-                                <img src={imageUrl} alt="preview" className="h-16 w-16 object-cover border-2 border-black" onError={e => (e.currentTarget.style.display = "none")} />
-                                <span className="text-xs text-zinc-500 font-medium">Preview</span>
+                                <button type="button" onClick={() => setMode("full")}
+                                    className={`px-3 py-1.5 text-xs font-black flex items-center gap-1 transition-all ${mode === "full" ? "bg-black text-white" : "bg-white hover:bg-gray-100"}`}>
+                                    <Settings size={13} /> Full
+                                </button>
                             </div>
                         )}
+                        <button onClick={onClose} className="p-2 bg-white border-2 border-black hover:shadow-[2px_2px_0_#000] transition-all"><X size={20} /></button>
                     </div>
+                </div>
 
-                    {/* ── Hint ── */}
-                    <div className="bg-yellow-50 border-2 border-yellow-400 p-3">
-                        <div className="flex items-center gap-1 mb-2">
-                            <Lightbulb size={14} className="text-yellow-700" />
-                            <span className="text-xs font-black text-yellow-900 uppercase">Learning Hint (Optional)</span>
-                        </div>
-                        <div className="grid grid-cols-2 gap-2">
-                            <input type="text" value={hintEn} onChange={e => setHintEn(e.target.value)}
-                                className="px-3 py-2 border-2 border-yellow-400 text-sm font-medium focus:outline-none"
-                                placeholder="Hint in English..." />
-                            <input type="text" value={hintKm} onChange={e => setHintKm(e.target.value)}
-                                className="px-3 py-2 border-2 border-yellow-400 text-sm font-medium focus:outline-none"
-                                placeholder="ជំនួយជាភាសាខ្មែរ..." />
-                        </div>
-                    </div>
-
-                    {/* ── STEP 4: Answers ── */}
-                    <div className="border-2 border-black">
-                        <div className="bg-black text-white px-4 py-2.5 flex items-center justify-between">
-                            <span className="text-sm font-black uppercase">
-                                Answer Options
-                                <span className="ml-2 font-medium text-white/60 text-xs">
-                                    {selectedType.multi ? "Select all correct" : "Select one correct"}
-                                </span>
-                            </span>
-                            {answers.length < selectedType.max && qType !== "true-false" && (
-                                <button type="button" onClick={addAnswer}
-                                    className="px-3 py-1 bg-green-400 border border-white text-black font-black text-xs hover:bg-green-300 transition-all flex items-center gap-1">
-                                    <Plus size={13} /> Add
-                                </button>
-                            )}
-                        </div>
-
-                        <div className="divide-y divide-zinc-200">
-                            {answers.map((ans, i) => (
-                                <div key={ans.id} className={`flex items-start gap-3 p-3 ${ans.isCorrect ? "bg-green-50" : "bg-white"}`}>
-                                    {/* Correct toggle */}
-                                    <button type="button" onClick={() => toggleCorrect(ans.id)}
-                                        className={`mt-1 w-7 h-7 flex-shrink-0 border-2 border-black flex items-center justify-center transition-all ${ans.isCorrect ? "bg-green-500" : "bg-white hover:bg-gray-100"}`}>
-                                        {ans.isCorrect ? <CheckCircle size={15} className="text-white" /> : <span className="text-xs font-black text-zinc-400">{String.fromCharCode(65 + i)}</span>}
-                                    </button>
-
-                                    <div className="flex-1 space-y-1.5">
-                                        {qType === "image-match" ? (
-                                            /* Image match: show image preview + label */
-                                            <div className="flex items-center gap-2">
-                                                {ans.imageUrl ? (
-                                                    <img src={ans.imageUrl} alt="" className="h-14 w-14 object-cover border-2 border-black flex-shrink-0" />
-                                                ) : (
-                                                    <div className="h-14 w-14 border-2 border-dashed border-zinc-300 flex items-center justify-center flex-shrink-0">
-                                                        <ImageIcon size={20} className="text-zinc-300" />
-                                                    </div>
-                                                )}
-                                                <div className="flex-1 space-y-1">
-                                                    <input type="url" value={ans.imageUrl || ""} onChange={e => updateAnswer(ans.id, "imageUrl", e.target.value)}
-                                                        className="w-full px-2 py-1.5 border-2 border-black text-xs font-medium focus:outline-none"
-                                                        placeholder="Image URL..." />
-                                                    <input type="text" value={ans.answerEn} onChange={e => updateAnswer(ans.id, "answerEn", e.target.value)}
-                                                        className="w-full px-2 py-1.5 border border-zinc-300 text-xs font-medium focus:outline-none"
-                                                        placeholder="Label (English)" />
-                                                </div>
-                                            </div>
-                                        ) : (
-                                            /* Text answers */
-                                            <div className="grid grid-cols-2 gap-2">
-                                                <input type="text" value={ans.answerEn} onChange={e => updateAnswer(ans.id, "answerEn", e.target.value)}
-                                                    className="px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none"
-                                                    placeholder="English *" required
-                                                    disabled={qType === "true-false"} />
-                                                <input type="text" value={ans.answerKm} onChange={e => updateAnswer(ans.id, "answerKm", e.target.value)}
-                                                    className="px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none"
-                                                    placeholder="ខ្មែរ"
-                                                    disabled={qType === "true-false"} />
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    {answers.length > selectedType.min && qType !== "true-false" && (
-                                        <button type="button" onClick={() => removeAnswer(ans.id)}
-                                            className="mt-1 p-1.5 border-2 border-black bg-red-100 hover:bg-red-200 transition-all flex-shrink-0">
-                                            <Trash2 size={13} />
-                                        </button>
-                                    )}
+                {/* ── QUICK MODE ── */}
+                {mode === "quick" && !initialData && (
+                    <form onSubmit={handleQuickSubmit} className="p-5 space-y-4">
+                        {!isPreSelected && (
+                            <div className="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label className="block text-xs font-black uppercase mb-1">Category *</label>
+                                    <select value={catId || ""} onChange={e => { setCatId(Number(e.target.value)); setTopicId(null); setTopicData(null); }}
+                                        className="w-full px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none" required>
+                                        <option value="">Choose category...</option>
+                                        {categories.map(c => <option key={c.id} value={c.id}>{c.titleEn}</option>)}
+                                    </select>
                                 </div>
+                                <div>
+                                    <label className="block text-xs font-black uppercase mb-1">Topic *</label>
+                                    <select value={topicId || ""} onChange={e => handleTopicChange(Number(e.target.value))}
+                                        className="w-full px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none disabled:bg-gray-100"
+                                        disabled={!catId} required>
+                                        <option value="">Choose topic...</option>
+                                        {filteredTopics.map(t => <option key={t.id} value={t.id}>{t.nameEn} ({t.topicCode})</option>)}
+                                    </select>
+                                </div>
+                            </div>
+                        )}
+
+                        <div>
+                            <label className="block text-xs font-black uppercase mb-1">Question *</label>
+                            <textarea value={qEn} onChange={e => setQEn(e.target.value)} required
+                                className="w-full px-3 py-2.5 border-2 border-black text-sm font-medium focus:outline-none min-h-[70px] resize-none"
+                                placeholder="Paste or type your question here..." />
+                        </div>
+
+                        <div>
+                            <label className="block text-xs font-black uppercase mb-1">
+                                Answers — one per line
+                                <span className="ml-2 text-zinc-400 font-medium normal-case text-xs">Start with * to mark correct answer</span>
+                            </label>
+                            <textarea value={quickText} onChange={e => handleQuickPaste(e.target.value)}
+                                className="w-full px-3 py-2.5 border-2 border-black text-sm font-mono focus:outline-none min-h-[100px] resize-none"
+                                placeholder={"* 30 km/h\n50 km/h\n60 km/h\n80 km/h"} />
+                        </div>
+
+                        {quickAnswers.length > 0 && (
+                            <div className="border-2 border-black overflow-hidden">
+                                <div className="bg-black text-white px-3 py-2 text-xs font-black uppercase">
+                                    Click to mark correct answer
+                                </div>
+                                <div className="divide-y divide-zinc-200">
+                                    {quickAnswers.map((a, i) => (
+                                        <button key={i} type="button" onClick={() => toggleQuickCorrect(i)}
+                                            className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all ${a.correct ? "bg-green-100" : "bg-white hover:bg-yellow-50"}`}>
+                                            <div className={`w-6 h-6 flex-shrink-0 border-2 border-black flex items-center justify-center font-black text-xs ${a.correct ? "bg-green-500 text-white" : "bg-white text-zinc-400"}`}>
+                                                {a.correct ? <CheckCircle size={14} /> : String.fromCharCode(65 + i)}
+                                            </div>
+                                            <span className={`text-sm font-bold flex-1 ${a.correct ? "text-green-800" : "text-black"}`}>{a.text}</span>
+                                            {a.correct && <span className="text-xs font-black text-green-600">CORRECT</span>}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        <div className="flex items-center gap-2">
+                            <span className="text-xs font-black uppercase text-zinc-500">Difficulty:</span>
+                            {DIFF.map(d => (
+                                <button key={d.value} type="button" onClick={() => setQuickDiff(d.value)}
+                                    className={`px-3 py-1.5 border-2 border-black text-xs font-black transition-all ${quickDiff === d.value ? "shadow-[2px_2px_0_#000]" : "bg-white hover:shadow-[1px_1px_0_#000]"}`}
+                                    style={{ backgroundColor: quickDiff === d.value ? d.color : "#fff", color: quickDiff === d.value ? "#fff" : "#000" }}>
+                                    {d.label} +{d.pts}pt
+                                </button>
                             ))}
                         </div>
 
-                        {/* Tip */}
-                        <div className="px-4 py-2 bg-blue-50 border-t border-blue-200 flex items-center gap-2">
-                            <AlertCircle size={13} className="text-blue-600 flex-shrink-0" />
-                            <span className="text-xs font-bold text-blue-800">
-                                {qType === "image-match"
-                                    ? "Correct image is auto-linked from the topic. Add 3 distractor images from the same category."
-                                    : qType === "multi-select"
-                                        ? "Click the checkbox to mark multiple correct answers."
-                                        : "Click the letter button to mark the correct answer."}
-                            </span>
+                        <div className="flex justify-end gap-3 pt-2 border-t-2 border-black">
+                            <button type="button" onClick={onClose} className="px-5 py-2.5 border-2 border-black bg-white font-black text-sm hover:shadow-[2px_2px_0_#000] transition-all">Cancel</button>
+                            <button type="submit" disabled={saving} className="px-5 py-2.5 border-2 border-black bg-green-400 font-black text-sm hover:shadow-[4px_4px_0_#000] transition-all disabled:opacity-50">
+                                {saving ? "Saving..." : "Create Question"}
+                            </button>
                         </div>
-                    </div>
+                    </form>
+                )}
 
-                    {/* ── Score preview ── */}
-                    <div className="flex items-center gap-3 p-3 bg-zinc-50 border-2 border-zinc-300">
-                        <Zap size={16} className="text-yellow-600" />
-                        <span className="text-xs font-black text-zinc-600 uppercase">Score Preview:</span>
-                        <span className="text-sm font-black" style={{ color: selectedDiff.color }}>
-                            +{selectedDiff.pts} point{selectedDiff.pts > 1 ? "s" : ""} per correct answer
-                        </span>
-                        <span className="text-xs text-zinc-400 font-medium">· Streak bonus applies in live mode</span>
-                    </div>
+                {/* ── FULL MODE ── */}
+                {(mode === "full" || initialData) && (
+                    <form onSubmit={handleSubmit} className="p-5 space-y-4 flex-1">
 
-                    {/* ── Actions ── */}
-                    <div className="flex justify-end gap-3 pt-2 border-t-2 border-black">
-                        <button type="button" onClick={onClose}
-                            className="px-5 py-2.5 border-2 border-black bg-white font-black text-sm hover:shadow-[2px_2px_0_#000] transition-all">
-                            Cancel
-                        </button>
-                        <button type="submit" disabled={saving}
-                            className="px-5 py-2.5 border-2 border-black bg-green-400 font-black text-sm hover:shadow-[4px_4px_0_#000] transition-all disabled:opacity-50">
-                            {saving ? "Saving..." : initialData ? "Update Question" : "Create Question"}
-                        </button>
-                    </div>
-                </form>
+                        {/* ── STEP 1: Topic (only if not pre-selected) ── */}
+                        {!isPreSelected && (
+                            <div className="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label className="block text-xs font-black uppercase mb-1">Category *</label>
+                                    <select value={catId || ""} onChange={e => { setCatId(Number(e.target.value)); setTopicId(null); setTopicData(null); }}
+                                        className="w-full px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none" required>
+                                        <option value="">Choose category...</option>
+                                        {categories.map(c => <option key={c.id} value={c.id}>{c.titleEn}</option>)}
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-black uppercase mb-1">Topic *</label>
+                                    <select value={topicId || ""} onChange={e => handleTopicChange(Number(e.target.value))}
+                                        className="w-full px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none disabled:bg-gray-100"
+                                        disabled={!catId} required>
+                                        <option value="">Choose topic...</option>
+                                        {filteredTopics.map(t => <option key={t.id} value={t.id}>{t.nameEn} ({t.topicCode})</option>)}
+                                    </select>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* ── STEP 2: Type + Difficulty (side by side) ── */}
+                        <div className="grid grid-cols-2 gap-4">
+                            {/* Question Type */}
+                            <div>
+                                <label className="block text-xs font-black uppercase mb-2">Question Type *</label>
+                                <div className="grid grid-cols-2 gap-2">
+                                    {Q_TYPES.map(t => {
+                                        const disabled = t.value === "image-match" && !canUseImageMatch;
+                                        return (
+                                            <button key={t.value} type="button"
+                                                onClick={() => !disabled && handleTypeChange(t.value)}
+                                                disabled={disabled}
+                                                title={disabled ? "Only for Road Signs & Priority categories" : ""}
+                                                className={`p-2.5 border-2 border-black text-left transition-all ${qType === t.value ? "bg-yellow-400 shadow-[2px_2px_0_#000]" : disabled ? "bg-zinc-100 opacity-50 cursor-not-allowed" : "bg-white hover:shadow-[2px_2px_0_#000]"}`}>
+                                                <div className="font-black text-xs">{t.label}</div>
+                                                <div className="text-xs text-zinc-500 mt-0.5">{t.desc}</div>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+
+                            {/* Difficulty */}
+                            <div>
+                                <label className="block text-xs font-black uppercase mb-2">Difficulty & Points *</label>
+                                <div className="space-y-2">
+                                    {DIFF.map(d => (
+                                        <button key={d.value} type="button" onClick={() => setDiff(d.value)}
+                                            className={`w-full p-2.5 border-2 border-black text-left flex items-center justify-between transition-all ${diff === d.value ? "shadow-[2px_2px_0_#000]" : "bg-white hover:shadow-[1px_1px_0_#000]"}`}
+                                            style={{ backgroundColor: diff === d.value ? d.color : "#fff", color: diff === d.value ? "#fff" : "#000" }}>
+                                            <div>
+                                                <span className="font-black text-sm">{d.label}</span>
+                                                <span className={`text-xs ml-2 ${diff === d.value ? "text-white/80" : "text-zinc-500"}`}>{d.desc}</span>
+                                            </div>
+                                            <span className={`font-black text-sm px-2 py-0.5 border border-black ${diff === d.value ? "bg-white/20" : "bg-zinc-100"}`}>
+                                                +{d.pts} pt{d.pts > 1 ? "s" : ""}
+                                            </span>
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* ── STEP 3: Question Text ── */}
+                        <div className="grid grid-cols-2 gap-3">
+                            <div>
+                                <label className="block text-xs font-black uppercase mb-1">Question (English) *</label>
+                                <textarea value={qEn} onChange={e => setQEn(e.target.value)} required
+                                    className="w-full px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none min-h-[80px] resize-none"
+                                    placeholder="Enter question in English..." />
+                            </div>
+                            <div>
+                                <label className="block text-xs font-black uppercase mb-1">Question (Khmer)</label>
+                                <textarea value={qKm} onChange={e => setQKm(e.target.value)}
+                                    className="w-full px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none min-h-[80px] resize-none"
+                                    placeholder="បញ្ចូលសំណួរជាភាសាខ្មែរ..." />
+                            </div>
+                        </div>
+
+                        {/* ── Question Image (auto-linked from topic) ── */}
+                        <div>
+                            <label className="block text-xs font-black uppercase mb-1 flex items-center gap-1">
+                                <ImageIcon size={13} /> Question Image
+                                {topicData?.primaryImageUrl && (
+                                    <span className="ml-1 text-xs font-bold text-green-600 flex items-center gap-1">
+                                        <Zap size={11} /> Auto-linked from topic
+                                    </span>
+                                )}
+                            </label>
+                            <div className="flex gap-2">
+                                <input type="url" value={imageUrl} onChange={e => setImageUrl(e.target.value)}
+                                    className="flex-1 px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none"
+                                    placeholder="https://... (auto-filled from topic)" />
+                                {topicData?.primaryImageUrl && (
+                                    <button type="button" onClick={() => setImageUrl(topicData.primaryImageUrl!)}
+                                        className="px-3 py-2 border-2 border-black bg-green-100 hover:bg-green-200 text-xs font-bold flex items-center gap-1 transition-all">
+                                        <RefreshCw size={13} /> Reset
+                                    </button>
+                                )}
+                            </div>
+                            {imageUrl && (
+                                <div className="mt-2 flex items-center gap-2">
+                                    <img src={imageUrl} alt="preview" className="h-16 w-16 object-cover border-2 border-black" onError={e => (e.currentTarget.style.display = "none")} />
+                                    <span className="text-xs text-zinc-500 font-medium">Preview</span>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* ── Hint ── */}
+                        <div className="bg-yellow-50 border-2 border-yellow-400 p-3">
+                            <div className="flex items-center gap-1 mb-2">
+                                <Lightbulb size={14} className="text-yellow-700" />
+                                <span className="text-xs font-black text-yellow-900 uppercase">Learning Hint (Optional)</span>
+                            </div>
+                            <div className="grid grid-cols-2 gap-2">
+                                <input type="text" value={hintEn} onChange={e => setHintEn(e.target.value)}
+                                    className="px-3 py-2 border-2 border-yellow-400 text-sm font-medium focus:outline-none"
+                                    placeholder="Hint in English..." />
+                                <input type="text" value={hintKm} onChange={e => setHintKm(e.target.value)}
+                                    className="px-3 py-2 border-2 border-yellow-400 text-sm font-medium focus:outline-none"
+                                    placeholder="ជំនួយជាភាសាខ្មែរ..." />
+                            </div>
+                        </div>
+
+                        {/* ── STEP 4: Answers ── */}
+                        <div className="border-2 border-black">
+                            <div className="bg-black text-white px-4 py-2.5 flex items-center justify-between">
+                                <span className="text-sm font-black uppercase">
+                                    Answer Options
+                                    <span className="ml-2 font-medium text-white/60 text-xs">
+                                        {selectedType.multi ? "Select all correct" : "Select one correct"}
+                                    </span>
+                                </span>
+                                {answers.length < selectedType.max && qType !== "true-false" && (
+                                    <button type="button" onClick={addAnswer}
+                                        className="px-3 py-1 bg-green-400 border border-white text-black font-black text-xs hover:bg-green-300 transition-all flex items-center gap-1">
+                                        <Plus size={13} /> Add
+                                    </button>
+                                )}
+                            </div>
+
+                            <div className="divide-y divide-zinc-200">
+                                {answers.map((ans, i) => (
+                                    <div key={ans.id} className={`flex items-start gap-3 p-3 ${ans.isCorrect ? "bg-green-50" : "bg-white"}`}>
+                                        {/* Correct toggle */}
+                                        <button type="button" onClick={() => toggleCorrect(ans.id)}
+                                            className={`mt-1 w-7 h-7 flex-shrink-0 border-2 border-black flex items-center justify-center transition-all ${ans.isCorrect ? "bg-green-500" : "bg-white hover:bg-gray-100"}`}>
+                                            {ans.isCorrect ? <CheckCircle size={15} className="text-white" /> : <span className="text-xs font-black text-zinc-400">{String.fromCharCode(65 + i)}</span>}
+                                        </button>
+
+                                        <div className="flex-1 space-y-1.5">
+                                            {qType === "image-match" ? (
+                                                /* Image match: show image preview + label */
+                                                <div className="flex items-center gap-2">
+                                                    {ans.imageUrl ? (
+                                                        <img src={ans.imageUrl} alt="" className="h-14 w-14 object-cover border-2 border-black flex-shrink-0" />
+                                                    ) : (
+                                                        <div className="h-14 w-14 border-2 border-dashed border-zinc-300 flex items-center justify-center flex-shrink-0">
+                                                            <ImageIcon size={20} className="text-zinc-300" />
+                                                        </div>
+                                                    )}
+                                                    <div className="flex-1 space-y-1">
+                                                        <input type="url" value={ans.imageUrl || ""} onChange={e => updateAnswer(ans.id, "imageUrl", e.target.value)}
+                                                            className="w-full px-2 py-1.5 border-2 border-black text-xs font-medium focus:outline-none"
+                                                            placeholder="Image URL..." />
+                                                        <input type="text" value={ans.answerEn} onChange={e => updateAnswer(ans.id, "answerEn", e.target.value)}
+                                                            className="w-full px-2 py-1.5 border border-zinc-300 text-xs font-medium focus:outline-none"
+                                                            placeholder="Label (English)" />
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                /* Text answers */
+                                                <div className="grid grid-cols-2 gap-2">
+                                                    <input type="text" value={ans.answerEn} onChange={e => updateAnswer(ans.id, "answerEn", e.target.value)}
+                                                        className="px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none"
+                                                        placeholder="English *" required
+                                                        disabled={qType === "true-false"} />
+                                                    <input type="text" value={ans.answerKm} onChange={e => updateAnswer(ans.id, "answerKm", e.target.value)}
+                                                        className="px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none"
+                                                        placeholder="ខ្មែរ"
+                                                        disabled={qType === "true-false"} />
+                                                </div>
+                                            )}
+                                        </div>
+
+                                        {answers.length > selectedType.min && qType !== "true-false" && (
+                                            <button type="button" onClick={() => removeAnswer(ans.id)}
+                                                className="mt-1 p-1.5 border-2 border-black bg-red-100 hover:bg-red-200 transition-all flex-shrink-0">
+                                                <Trash2 size={13} />
+                                            </button>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Tip */}
+                            <div className="px-4 py-2 bg-blue-50 border-t border-blue-200 flex items-center gap-2">
+                                <AlertCircle size={13} className="text-blue-600 flex-shrink-0" />
+                                <span className="text-xs font-bold text-blue-800">
+                                    {qType === "image-match"
+                                        ? "Correct image is auto-linked from the topic. Add 3 distractor images from the same category."
+                                        : qType === "multi-select"
+                                            ? "Click the checkbox to mark multiple correct answers."
+                                            : "Click the letter button to mark the correct answer."}
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* ── Score preview ── */}
+                        <div className="flex items-center gap-3 p-3 bg-zinc-50 border-2 border-zinc-300">
+                            <Zap size={16} className="text-yellow-600" />
+                            <span className="text-xs font-black text-zinc-600 uppercase">Score Preview:</span>
+                            <span className="text-sm font-black" style={{ color: selectedDiff.color }}>
+                                +{selectedDiff.pts} point{selectedDiff.pts > 1 ? "s" : ""} per correct answer
+                            </span>
+                            <span className="text-xs text-zinc-400 font-medium">· Streak bonus applies in live mode</span>
+                        </div>
+
+                        {/* ── Actions ── */}
+                        <div className="flex justify-end gap-3 pt-2 border-t-2 border-black">
+                            <button type="button" onClick={onClose}
+                                className="px-5 py-2.5 border-2 border-black bg-white font-black text-sm hover:shadow-[2px_2px_0_#000] transition-all">
+                                Cancel
+                            </button>
+                            <button type="submit" disabled={saving}
+                                className="px-5 py-2.5 border-2 border-black bg-green-400 font-black text-sm hover:shadow-[4px_4px_0_#000] transition-all disabled:opacity-50">
+                                {saving ? "Saving..." : initialData ? "Update Question" : "Create Question"}
+                            </button>
+                        </div>
+                    </form>
+                )}
             </div>
         </div>
     );

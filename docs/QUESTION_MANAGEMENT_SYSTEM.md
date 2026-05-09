@@ -52,7 +52,7 @@ A comprehensive question creation and management system designed with psychologi
 4. **Image Matching**
    - Visual recognition
    - 2-4 options with images
-   - Best for: Sign recognition, visual identification
+   - Best for: Sign recognition, visual identification choose image one correct, and auto original url image with that topic slected and 3 other image randome next that qestion was made, and guide image is only in roads-signs and priority page, are avavlble for guse image ,
 
 #### Difficulty Levels (3 Levels)
 1. **Easy (Green)** - Basic recall and recognition
@@ -69,7 +69,7 @@ A comprehensive question creation and management system designed with psychologi
    - Complex scenarios
    - Multiple factors
    - Decision making
-
+for the score and point in live stream game mode is logical easy +1 for streak, hard +3 meduim +2 auto, and make it standard 
 ### Step 3: Question Content
 - **Bilingual Support**: English + Khmer
 - **Question Text**: Main question (required in English)
