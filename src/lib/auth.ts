@@ -1,20 +1,23 @@
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
-export type UserRole = "student" | "teacher" | "admin";
+export type UserRole = "student" | "teacher" | "admin" | "staff";
 
 export interface JWTPayload {
   id: number;
   email: string;
   name: string;
   role: UserRole;
+  avatar?: string | null;
   iat?: number;
   exp?: number;
 }
 
-const secret = new TextEncoder().encode(
-  process.env.JWT_SECRET ?? "kwd-fallback-secret",
-);
+function getSecret(): Uint8Array {
+  const jwtSecret = process.env.JWT_SECRET;
+  if (!jwtSecret) throw new Error("JWT_SECRET environment variable is required");
+  return new TextEncoder().encode(jwtSecret);
+}
 
 export async function signToken(payload: Omit<JWTPayload, "iat" | "exp">) {
   const expiresIn = payload.role === "student" ? "7d" : "8h";
@@ -22,12 +25,12 @@ export async function signToken(payload: Omit<JWTPayload, "iat" | "exp">) {
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setExpirationTime(expiresIn)
-    .sign(secret);
+    .sign(getSecret());
 }
 
 export async function verifyToken(token: string): Promise<JWTPayload | null> {
   try {
-    const { payload } = await jwtVerify(token, secret);
+    const { payload } = await jwtVerify(token, getSecret());
     return payload as unknown as JWTPayload;
   } catch {
     return null;
@@ -44,9 +47,11 @@ export async function getSession(): Promise<JWTPayload | null> {
 export function getRedirectUrl(role: UserRole): string {
   switch (role) {
     case "teacher":
-      return "https://dashboard.kesararamwithdigital.tech/teacher/overview";
+      return "https://dashboard.kesararamwithdigital.tech/teacher/classes";
     case "admin":
-      return "https://dashboard.kesararamwithdigital.tech/admin/overview";
+      return "https://dashboard.kesararamwithdigital.tech/admin/users";
+    case "staff":
+      return "https://dashboard.kesararamwithdigital.tech/staff/content";
     default:
       return "/profile/student";
   }

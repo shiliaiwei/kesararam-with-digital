@@ -126,7 +126,7 @@ export function Hero() {
                 <div className="flex items-center gap-3 mt-3 mb-6">
                   <div className="w-12 h-12 flex items-center justify-center overflow-hidden flex-shrink-0">
                     <Image
-                      src="https://raw.githubusercontent.com/kesararam/kesararam/refs/heads/main/brand/lgo.png"
+                      src="/logo.svg"
                       alt="KWD"
                       width={48}
                       height={48}

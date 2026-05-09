@@ -1,0 +1,3 @@
+ALTER TABLE "leaderboard_entries" ALTER COLUMN "period_start" SET DATA TYPE date;--> statement-breakpoint
+ALTER TABLE "user_progress" ADD CONSTRAINT "user_progress_user_id_content_id_unique" UNIQUE("user_id","content_id");--> statement-breakpoint
+ALTER TABLE "leaderboard_entries" ADD CONSTRAINT "leaderboard_entries_student_id_category_id_period_period_start_unique" UNIQUE("student_id","category_id","period","period_start");

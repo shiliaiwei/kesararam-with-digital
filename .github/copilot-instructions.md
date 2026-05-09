@@ -38,3 +38,44 @@ Next.js 16, TypeScript, Tailwind CSS v4, shadcn/ui, Drizzle ORM, Neon Postgres, 
 
 Run migrations: `npx drizzle-kit push`
 Generate: `npx drizzle-kit generate`
+
+#a8a8a8 #006747 #ffffff
+
+## Dashboard Components — Neo-Brutalist
+
+### Road Markings Admin
+
+Design and manage road markings with strict neo-brutalist styling:
+
+**Curbs Markings**
+
+- Border: `border-2 border-[#a8a8a8]`
+- Shadow: `shadow-[4px_4px_0_#000]`
+- Background: `bg-[#ffffff]`
+- Accent: `#006747` for active states
+
+**Signals Markings**
+
+- Border: `border-2 border-[#a8a8a8]`
+- Shadow: `shadow-[4px_4px_0_#000]`
+- Highlight color: `#3b82f6` for signal indicators
+
+**Longitudinal Markings**
+
+- Border: `border-2 border-[#a8a8a8]`
+- Shadow: `shadow-[4px_4px_0_#000]`
+- Warning state: `#f97316` for caution zones
+
+**Caution Border**
+
+- Border: `border-2 border-[#ef4444]`
+- Shadow: `shadow-[4px_4px_0_#000]`
+- Background: `bg-[#fda4af]` for alerts
+
+### Styling Rules
+
+- **All elements**: `border-2 border-[#a8a8a8]` minimum
+- **Interactive elements**: Add `shadow-[4px_4px_0_#000]`
+- **No border-radius** — sharp corners only
+- **No gradients** — solid colors exclusively
+- **No emoji** in labels or descriptions

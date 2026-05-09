@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { Youtube, Facebook, Twitter, Github, Send, Mail } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { t } from "@/lib/translations";
 
@@ -10,12 +11,12 @@ export function Footer() {
   const tr = t[lang].footer;
   const nav = t[lang].nav;
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
   const LEARN_LINKS = [
-    { label: kh ? "ស្ញ្ញាចរាចរ" : "Traffic Signs", href: "/road-sign" },
-    { label: kh ? "ច្បាប់ចរាចរណ៍" : "Road Traffic Law", href: "/road-traffic" },
-    { label: kh ? "សិទ្ធិដំណើរ" : "Right of Way", href: "/priority" },
+    { label: kh ? "សញ្ញាចរាចរ" : "Traffic Signs", href: "/road-sign" },
+    { label: kh ? "ច្បាប់ចរាចរ" : "Road Traffic Law", href: "/road-traffic" },
+    { label: kh ? "សិទ្ធិអាទិភាព" : "Right of Way", href: "/priority" },
     { label: kh ? "ជំនាញបើកបរ" : "Driving Skills", href: "/driving" },
     { label: kh ? "ប្រភេទទាំងអស់" : "All Categories", href: "/home" },
   ];
@@ -25,62 +26,36 @@ export function Footer() {
     { label: nav.suarAI, href: "/suar/ai" },
     { label: nav.about, href: "/about" },
     { label: nav.login, href: "/login" },
+    { label: kh ? "ម៉ាករបស់យើង" : "Brand Guideline", href: "/brand" },
   ];
 
   return (
     <footer className="bg-white text-black border-t-4 border-black">
-      {/* Caution tape */}
       <div className="caution-tape" />
 
       <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-          {/* Brand */}
-          <div className="md:col-span-1 flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 flex items-center justify-center overflow-hidden">
-                <Image
-                  src="https://raw.githubusercontent.com/kesararam/kesararam/refs/heads/main/brand/lgo.png"
-                  alt="KWD"
-                  width={40}
-                  height={40}
-                  className="object-contain"
-                  unoptimized
-                />
-              </div>
-              <div>
-                <p className="font-black text-lg leading-none">KWD</p>
-                <p className="text-[9px] text-zinc-400 tracking-widest">
-                  Kesararam. with. digital.
-                </p>
-              </div>
-            </div>
-            <p className="text-sm text-zinc-700 leading-relaxed" style={khFont}>
-              {tr.tagline}
-            </p>
-            <p
-              className="text-xs text-zinc-500"
-              style={{ fontFamily: "Siemreap, sans-serif" }}
-            >
-              វេទិកាបហ្វឹករៀនបើករថយន្ត — ភាសាខ្មែរ
-            </p>
-          </div>
 
-          {/* Learn */}
+        <div className="flex flex-col items-center mb-14">
+          <div className="w-28 h-28 mb-4 flex items-center justify-center">
+            <Image src="https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg" alt="KWD" width={112} height={112} className="object-contain w-full h-full" unoptimized />
+          </div>
+          <p className="text-sm font-bold text-zinc-700 leading-relaxed text-center max-w-md" style={kf}>
+            {tr.tagline}
+          </p>
+          <p className="text-xs text-zinc-500 mt-2 text-center" style={{ fontFamily: "Siemreap, sans-serif" }}>
+            {"រៀន"} {"\u2014"} {"ប្រកួត"} {"\u2014"} {"ការពារជីវិត"}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-14">
           <div>
-            <h4
-              className="font-black text-sm text-yellow-600 tracking-widest uppercase mb-4"
-              style={khFont}
-            >
+            <h4 className="font-black text-xs text-yellow-600 tracking-widest uppercase mb-4 border-b-2 border-black pb-2" style={kf}>
               {tr.learnTitle}
             </h4>
             <ul className="flex flex-col gap-2">
               {LEARN_LINKS.map(({ label, href }) => (
                 <li key={href}>
-                  <Link
-                    href={href}
-                    className="text-sm text-zinc-600 hover:text-black hover:underline transition-colors"
-                    style={khFont}
-                  >
+                  <Link href={href} className="text-sm text-zinc-600 hover:text-black font-medium transition-colors" style={kf}>
                     {label}
                   </Link>
                 </li>
@@ -88,22 +63,14 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Platform */}
           <div>
-            <h4
-              className="font-black text-sm text-cyan-600 tracking-widest uppercase mb-4"
-              style={khFont}
-            >
+            <h4 className="font-black text-xs text-cyan-600 tracking-widest uppercase mb-4 border-b-2 border-black pb-2" style={kf}>
               {tr.platformTitle}
             </h4>
             <ul className="flex flex-col gap-2">
               {PLATFORM_LINKS.map(({ label, href }) => (
                 <li key={href}>
-                  <Link
-                    href={href}
-                    className="text-sm text-zinc-600 hover:text-black hover:underline transition-colors"
-                    style={khFont}
-                  >
+                  <Link href={href} className="text-sm text-zinc-600 hover:text-black font-medium transition-colors" style={kf}>
                     {label}
                   </Link>
                 </li>
@@ -111,28 +78,51 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h4
-              className="font-black text-sm text-green-600 tracking-widest uppercase mb-4"
-              style={khFont}
-            >
-              {tr.contactTitle}
+            <h4 className="font-black text-xs text-green-600 tracking-widest uppercase mb-4 border-b-2 border-black pb-2" style={kf}>
+              {tr.contactTitle || (kh ? "ទំនាក់ទំនង" : "Contact")}
             </h4>
-            <ul className="flex flex-col gap-2 text-sm text-zinc-600">
-              <li>kesararamwithdigital.tech</li>
-              <li>Cambodia</li>
+            
+            <div className="flex flex-wrap gap-2 mb-6">
+              <a href="mailto:srievi@tuta.io" className="flex items-center justify-center w-8 h-8 border-[1.5px] border-black bg-zinc-200 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all" aria-label="Email">
+                <Mail className="w-4 h-4" />
+              </a>
+              <a href="https://t.me/srievi" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-8 h-8 border-[1.5px] border-black bg-zinc-200 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all" aria-label="Telegram">
+                <Send className="w-4 h-4" />
+              </a>
+              <a href="#" className="flex items-center justify-center w-8 h-8 border-[1.5px] border-black bg-zinc-200 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all" aria-label="YouTube">
+                <Youtube className="w-4 h-4" />
+              </a>
+              <a href="https://web.facebook.com/kesararamprimaryschool" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-8 h-8 border-[1.5px] border-black bg-zinc-200 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all" aria-label="Facebook">
+                <Facebook className="w-4 h-4" />
+              </a>
+              <a href="https://github.com/shiliaiwei/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-8 h-8 border-[1.5px] border-black bg-zinc-200 text-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all" aria-label="GitHub">
+                <Github className="w-4 h-4" />
+              </a>
+            </div>
+
+            <ul className="flex flex-col gap-2">
+              <li>
+                <Link href="/privacy" className="text-sm text-zinc-600 hover:text-black font-medium transition-colors" style={kf}>
+                  {kh ? "គោលការណ៍ភាពឯកជន" : "Privacy Policy"}
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="text-sm text-zinc-600 hover:text-black font-medium transition-colors" style={kf}>
+                  {kh ? "លក្ខខណ្ឌប្រើប្រាស់" : "Terms of Service"}
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t-2 border-zinc-200 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-          <p className="text-xs text-zinc-500">
-            &copy; {new Date().getFullYear()} Kesararam With Digital. All rights
-            reserved.
+        <div className="border-t-2 border-zinc-200 pt-6 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          <p className="text-xs text-zinc-500 font-medium" style={kf}>
+            &copy; {new Date().getFullYear()} Kesararam With Digital.{" "}
+            {kh ? "រក្សាសិទ្ធិគ្រប់យ៉ាង" : "All rights reserved."}
           </p>
-          <p className="text-xs text-zinc-400">
-            Built for Cambodian road safety education.
+          <p className="text-xs text-zinc-400 font-medium" style={kf}>
+            {kh ? "បង្កើតសម្រាប់ការអប់រំសុវត្ថិភាពចរាចរណ៍កម្ពុជា" : "Built for Cambodian road safety education."}
           </p>
         </div>
       </div>

@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html> 
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=5.0, initial-scale=1.0" />
+		<meta name="theme-color" content="#474747">
+		
+		<title>Photopea Gallery</title>
+		
+		<style>		
+			body, button, input, textarea, select {  font-family: "Open Sans", "Segoe UI",  sans-serif;  color:white;  }
+			
+			body {  background-color: #27272c;  }
+			
+			#cap { 
+				font-size:1.2em;
+				padding:0 2% 1em 2%; 
+				color:#e6e6e6;
+			}
+			#cap a { color:inherit;  text-decoration:none;  }
+			#cap p { margin-bottom:1.5em;  line-height:1.5em;  }
+			#cap .btn {  font-weight:bold;  color:white;  background-color:rgba(0,0,0,0.15);  border:2px solid #3482f6; cursor:pointer; font-size:1.3em; padding:0.4em 1em 0.5em 1em;  border-radius:500px;  display:inline-block;  margin:30px 0 30px 12px;  transition: box-shadow .3s;  }
+			#cap .btn:hover {  box-shadow: 0 0 30px #3482f6;  }
+			#cap h1 { text-align:center;  font-size: 4em;  margin:0.5em 0 0 0;  }
+			
+			#cap img {  box-shadow:0 0 30px rgba(0,0,0,0.4);  }
+			
+			#mid {  max-width:1100px;  margin:0px auto;  text-align:center;  }
+			#bar {  padding:0.4em 0;  line-height:2.5em;  }
+			#bar a {  text-decoration:none;  font-weight:normal;  margin:0 10px;  bottom:4px;  position:relative;  }
+		</style>		
+	</head>
+	
+	<body onload="go()">				
+		<script>
+			var cap, desc, id, url, locURL, fname;
+			function go() {
+				id = window.location.href.split("/").pop();
+				url="https://f000.backblazeb2.com/file/jpgshared/"+id;
+				
+				cap = document.getElementById("mid");
+				desc= document.createElement("span");
+				
+				cap.appendChild(desc);
+				
+				var a = document.createElement("a");  a.setAttribute("class","btn");
+				a.textContent = "Edit";
+				a.setAttribute("target","_blank");
+				a.setAttribute("href","//www.photopea.com#"+encodeURIComponent(JSON.stringify({files:[url]})));
+				cap.appendChild(a);
+				
+				var d = document.createElement("button");  d.setAttribute("class","btn");
+				d.textContent = "Download";
+				d.setAttribute("onclick","download()");
+				cap.appendChild(d);
+				
+				cap.appendChild(document.createElement("br"));
+				
+				var img = document.createElement("img");
+				img.setAttribute("src",url);
+				img.setAttribute("style","max-width:100%;  min-width:60%;");
+				cap.appendChild(img);
+				
+				var request = new XMLHttpRequest();
+				request.open("GET", url, true);
+				//request.setRequestHeader("Range", "bytes=0-1024");
+				request.responseType = "arraybuffer";
+				request.onload = function(e){resp(e.target.response);};
+				request.send();
+				
+				fetch("//www.photopea.com/papi/img/update.php?act=4&id="+id);
+			}
+			function resp(ab) {
+				var data = new Uint8Array(ab), fmt=(data[0]==255 ? "jpg" : (data[0]==82 ? "webp" : "png"));  //console.log(data);
+				var pp = (fmt=="jpg" ? jpegProps(data) : (fmt=="webp" ? webpProps(data) : pngProps(data)));
+				desc.textContent = fmt.toUpperCase()+" "+pp.w+" × "+pp.h+" px "+PrintBytes(data.length)+ " ";
+				
+				fname = id+"."+fmt;
+				locURL = URL.createObjectURL(new Blob([ab], { "type": "image/"+fmt }));
+			}
+			function download() {
+				var link = document.createElement("a");
+				link.style.display = "none";
+				document.body.appendChild( link );
+
+				link.href = locURL;
+				link.download = fname;
+				link.click();
+			}
+			function jpegProps(data) {          // data is an array of bytes
+				var off = 0;
+				while(off<data.length) {
+					while(data[off]==0xff) off++;
+					var mrkr = data[off];  off++;
+					
+					if(mrkr==0xd8) continue;    // SOI
+					if(mrkr==0xd9) break;       // EOI
+					if(0xd0<=mrkr && mrkr<=0xd7) continue;
+					if(mrkr==0x01) continue;    // TEM
+					
+					var len = (data[off]<<8) | data[off+1];  off+=2;  
+					
+					if(mrkr==0xc0) return {
+						bpc : data[off],     // precission (bits per channel)
+						h   : (data[off+1]<<8) | data[off+2],
+						w   : (data[off+3]<<8) | data[off+4],
+						cps : data[off+5]    // number of color components
+					}
+					off+=len-2;
+				}
+			}
+			function readI24 (d,o) {  return (d[o+2]*256+d[o+1])*256+d[o];  }
+			function readI16 (d,o) {  return d[o+1]*256+d[o];  }
+			function webpProps(data) {  
+				var off = 0;
+				for(var i=0; i<64; i++) if(readText(data,i)=="VP8X") return {  w:readI24(data,i+12)+1,  h:readI24(data,i+15)+1  };
+				for(var i=0; i<64; i++) if(readText(data,i)=="VP8 ") return {  w:readI16(data,i+14)  ,  h:readI16(data,i+16)    };
+			}
+			function readUint(d,o) {  return ((d[o]*256+d[o+1])*256+d[o+2])*256+d[o+3];  }
+			function readText(d,o) {  var s="";  for(var i=0; i<4; i++) s+=String.fromCharCode(d[o+i]);  return s;  }
+			function pngProps(data) {
+				var off = 8;
+				while(off<data.length) {
+					var len = readUint(data,off);
+					var typ = readText(data,off+4);  //console.log(typ,len);
+					if(typ=="IHDR") return {w:readUint(data,off+8), h:readUint(data,off+12)};
+					off+=4+4+len+4;
+				}
+			}
+			function PrintBytes(bs) {
+				//var bs = this.cimage.byteLength;
+				//var zrs=0;  while((bs>>>(zrs+10))!=0) zrs+=10;
+				var bst = bs.toString(2);
+				var zrs=0; while(zrs+10<bst.length) zrs+=10;
+				var num = (bs/Math.pow(2,zrs)).toFixed(1);
+				if(num.endsWith(".0")) num=num.slice(0,-2);
+				
+				var ext = ["B","KB","MB","GB","TB","PB"][Math.floor(zrs/10)];
+				return num+" "+ext;
+			}
+		</script>
+		
+		<div id="cap">
+			<div id="bar">
+				<img style="width:36px; height:auto; margin:0 6px -6px 0" width="512" height="512" src="//www.photopea.com/promo/icon512.png" alt="Photopea logo" /> 
+				<b style="font-size:34px;  margin-right:20px">Photopea Image Sharing</b>
+				<!--
+				<a target="_blank" href="//www.photopea.com/learn" title="Learn photo editing">Learn</a>
+				<a target="_blank" href="//www.photopea.com/tuts"  title="Graphics tutorials">Tutorials</a>
+				<a target="_blank" href="//www.photopea.com/templates" title="Free PSD templates">Templates</a>
+				<a target="_blank" href="//www.photopea.com/api"  title="Insert a photo editor into your product">API</a>
+				-->
+			</div>
+			<div id="mid">
+			</div>
+			
+		
+		</div>
+	</body>
+
+</html>

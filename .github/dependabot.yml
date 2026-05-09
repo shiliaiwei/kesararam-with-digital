@@ -1,0 +1,49 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "security"
+    # Group related packages to reduce PR noise
+    groups:
+      hono-packages:
+        patterns:
+          - "hono"
+          - "@hono/*"
+      vitest-packages:
+        patterns:
+          - "vitest"
+          - "@vitest/*"
+      next-ecosystem:
+        patterns:
+          - "next-intl"
+          - "next-themes"
+          - "next-cloudinary"
+      drizzle-packages:
+        patterns:
+          - "drizzle-*"
+      eslint-packages:
+        patterns:
+          - "eslint"
+          - "eslint-*"
+          - "@eslint/*"
+      types-packages:
+        patterns:
+          - "@types/*"
+      security-packages:
+        patterns:
+          - "postcss"
+          - "esbuild"
+    ignore:
+      - dependency-name: "next"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]

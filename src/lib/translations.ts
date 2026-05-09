@@ -17,7 +17,7 @@ export const t = {
       headline1: "Master Every",
       headline2: "Road Sign.",
       headline3: "Pass Your Exam.",
-      subtitle: "ស្គាល់ស្ញ្ញាចរាចរណ៍ — ប្រឡងជោគជ័យ",
+      subtitle: "ស្គាល់សញ្ញាចរាចរ — ប្រឡងជោគជ័យ",
       desc: "Study traffic signs, road laws, and driving theory with interactive quizzes, flashcards, and live challenge sessions — in both Khmer and English.",
       startLearning: "Start Learning",
       createAccount: "Create Account",
@@ -73,7 +73,7 @@ export const t = {
     // Footer
     footer: {
       tagline:
-        "A Cambodian driving knowledge platform helping students prepare for the mandatory driving theory exam.",
+        "Master Cambodia's road rules. Ace the theory exam. Drive with confidence.",
       learnTitle: "Learn",
       platformTitle: "Platform",
       contactTitle: "Contact",
@@ -88,26 +88,26 @@ export const t = {
       play: "លេង",
       leaderboard: "ចំណាត់ថ្នាក់",
       suarAI: "សួរ AI",
-      about: "អំពី",
-      login: "ចូល",
+      about: "អំពីយើង",
+      login: "ចូលគណនី",
     },
 
     // Hero
     hero: {
-      badge: "វេទិការបព្រឹត្តនៃការបើកបរ — កម្ពុជា",
+      badge: "វេទិកាបើកបរ និងស្គាល់សញ្ញាចរាចរ — កម្ពុជា",
       headline1: "ស្គាល់គ្រប់",
-      headline2: "ស្ញ្ញាផ្លូវវិថី.",
-      headline3: "ជ្រើសប្រឡងជោគជ័យ.",
-      subtitle: "ស្គាល់ស្ញ្ញាចរាចរណ៍ — ប្រឡងជោគជ័យ",
-      desc: "រៀនស្ញ្ញាចរាចរណ៍ ច្បាប់ផ្លូវវិថី និងទ្រឹស្ដីបើកបរ ជាមួយតេស្ត ប័ណ្ណ និងសម័យប្រកួតផ្ទាល់ — ជាភាសាខ្មែរ និងអង់គ្លេស.",
-      startLearning: "ចាប់ផ្ដើម",
+      headline2: "សញ្ញាចរាចរ.",
+      headline3: "ប្រឡងជោគជ័យ.",
+      subtitle: "ស្គាល់សញ្ញាចរាចរ — ប្រឡងជោគជ័យ",
+      desc: "រៀនសញ្ញាចរាចរ ច្បាប់ផ្លូវវិថី និងទ្រឹស្ដីបើកបរ និងស្គាល់សញ្ញាចរាចរ ជាមួយតេស្ត ប័ណ្ណ និងវគ្គប្រកួតផ្ទាល់ — ជាភាសាខ្មែរ និងអង់គ្លេស.",
+      startLearning: "ចាប់ផ្ដើមរៀន",
       createAccount: "បង្កើតគណនី",
       stats: {
         categories: "ប្រភេទចំណេះដឹង",
         questions: "សំណួរហ្វឹកហ្វឺន",
         roles: "តួនាទីអ្នកប្រើ",
       },
-      cardProgress: "វឌ្ឍនភាពស្ញ្ញាចរាចរណ៍",
+      cardProgress: "វឌ្ឍនភាពសញ្ញាចរាចរ",
       signs: {
         stop: "ឈប់",
         caution: "ប្រយ័ត្ន",
@@ -124,36 +124,36 @@ export const t = {
       sectionTitle1: "ចំណេះដឹង",
       sectionTitle2: "ប្រភេទ",
       sectionDesc:
-        "ប្រាំបីប្រធានបទគ្របដណ្ដប់ទាំងអស់ ដែលអ្នកត្រូវការ សម្រាប់ប្រឡងទ្រឹស្ដីបើកបរ.",
+        "ប្រាំបីប្រធានបទ គ្របដណ្ដប់ចំណេះដឹងទាំងអស់ ដែលអ្នកត្រូវការ សម្រាប់ការបើកបរ និងស្គាល់សញ្ញាចរាចរ.",
       studyNow: "រៀនឥឡូវ",
     },
 
     // Home page sections
     home: {
       statStudents: "សិស្សប្រើប្រាស់",
-      statAreas: "ការ​ណ​ ​ចំ​ណេ​ញ",
+      statAreas: "ផ្នែកចំណេះដឹង",
       statQuestions: "សំណួរហ្វឹកហ្វឺន",
-      statLive: "ប្រឡង​ផ្ទាល់",
+      statLive: "ប្រឡងផ្ទាល់",
       howBadge: "របៀបដំណើរការ",
-      howTitle: "បីជំហានឆ្ពោះទៅការឆ្លងប្រឡង",
-      step1Title: "រុករកប្រភេទ",
+      howTitle: "បីជំហាន ឆ្ពោះទៅការប្រឡងជោគជ័យ",
+      step1Title: "ស្វែងរកប្រភេទ",
       step1Desc:
-        "រុករកប្រភេទចំណេះដឹងទាំង ៨។ រៀននៅក្នុងមេរៀនរៀបចំ ស្ញ្ញា និងឯកសារយោង.",
+        "ស្វែងរកប្រភេទចំណេះដឹងទាំង ៨។ រៀនតាមមេរៀន សញ្ញាចរាចរ និងឯកសារយោង.",
       step2Title: "រៀន និងហ្វឹកហ្វឺន",
       step2Desc:
-        "ប្រើប្រាស់ប័ណ្ណ តេស្ត និង Suar AI ដើម្បីពង្រឹងការយល់ដឹងរបស់អ្នក ជាភាសាខ្មែរ ឬអង់គ្លេស.",
+        "ប្រើប្រាស់ប័ណ្ណ តេស្ត និង Suar AI ដើម្បីពង្រឹងការយល់ដឹង ជាភាសាខ្មែរ ឬអង់គ្លេស.",
       step3Title: "ចូលរួមប្រកួតផ្ទាល់",
       step3Desc:
-        "ប្រកួតក្នុងវគ្គប្រឡងផ្ទាល់ដែលគ្រប់គ្រងដោយគ្រូ។ ទទួលពិន្ទុ ចូលក្នុងតារាងចំណាត់ថ្នាក់ និងទទួលរង្វាន់.",
-      ctaTitle: "រួចរាល់ ចាប់ផ្ដើមត្រៀមប្រឡង?",
-      ctaSubtitle: "ចូលរៀន — ចូលប្រកួត — ជោគជ័យ",
-      ctaExplore: "រុករកស្ញ្ញាចរាចរណ៍",
+        "ប្រកួតក្នុងវគ្គប្រឡងផ្ទាល់ ដែលគ្រប់គ្រងដោយគ្រូ។ ទទួលពិន្ទុ ចូលក្នុងតារាងចំណាត់ថ្នាក់ និងទទួលរង្វាន់.",
+      ctaTitle: "ត្រៀមខ្លួន ចាប់ផ្ដើមត្រៀមប្រឡង?",
+      ctaSubtitle: "រៀន — ប្រកួត — ការពារជីវិត",
+      ctaExplore: "ស្វែងរកសញ្ញាចរាចរ",
       ctaRegister: "បង្កើតគណនីឥតគិតថ្លៃ",
     },
 
     // Footer
     footer: {
-      tagline: "វេទិកាបហ្វឹករៀនបើករថយន្ត ដែលជួយសិស្សត្រៀមប្រឡងទ្រឹស្ដី.",
+      tagline: "ស្ទាត់ច្បាប់ចរាចរ — ប្រឡងជោគជ័យ — បើកបរ និងស្គាល់សញ្ញាចរាចរ ដោយទំនុកចិត្ត។",
       learnTitle: "រៀន",
       platformTitle: "វេទិកា",
       contactTitle: "ទំនាក់ទំនង",
