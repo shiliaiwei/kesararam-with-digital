@@ -26,7 +26,18 @@ export async function GET(request: NextRequest) {
     // Build conditions
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const conditions: any[] = [];
-    if (ownOnly) conditions.push(eq(topics.createdBy, userId));
+
+    // Staff can see: their own content OR any rejected content
+    // Admin can see: everything
+    if (ownOnly) {
+      conditions.push(
+        or(
+          eq(topics.createdBy, userId),
+          eq(topics.status, "rejected")
+        )
+      );
+    }
+
     if (categoryId) conditions.push(eq(topics.categoryId, parseInt(categoryId)));
     if (status) conditions.push(eq(topics.status, status as "draft" | "pending" | "approved" | "rejected"));
     if (search) {
