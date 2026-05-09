@@ -90,11 +90,13 @@ export async function PUT(
     // Staff can edit:
     // - Their own content (any status)
     // - ANY rejected content (even if created by disabled staff)
+    // - ANY draft content (even if created by disabled staff)
     if (session.role !== "admin") {
       const isOwner = t.createdBy === Number(session.id);
       const isRejected = t.status === "rejected";
+      const isDraft = t.status === "draft";
 
-      if (!isOwner && !isRejected) {
+      if (!isOwner && !isRejected && !isDraft) {
         return NextResponse.json({ error: "Forbidden" }, { status: 403 });
       }
     }
@@ -166,12 +168,13 @@ export async function DELETE(
     // Staff can delete:
     // - Their own draft/rejected content
     // - ANY rejected content (even if created by disabled staff)
+    // - ANY draft content (even if created by disabled staff)
     if (session.role !== "admin") {
       const isOwner = t.createdBy === Number(session.id);
       const isRejected = t.status === "rejected";
       const isDraft = t.status === "draft";
 
-      if (!isOwner && !isRejected) {
+      if (!isOwner && !isRejected && !isDraft) {
         return NextResponse.json({ error: "Forbidden" }, { status: 403 });
       }
 
