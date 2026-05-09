@@ -66,14 +66,19 @@ export async function PUT(
 
     // Create new answers
     if (answers && answers.length > 0) {
+      const hasImages = answers.some((a: any) => a.imageUrl);
+      const multiCorrect = answers.filter((a: any) => a.isCorrect).length > 1;
+      const defaultType = hasImages ? "image_selection" : multiCorrect ? "checkbox" : "multiple_choice";
+
       for (let i = 0; i < answers.length; i++) {
         const answer = answers[i];
+        const aType = answer.imageUrl ? "image_selection" : defaultType;
         await sql`
           INSERT INTO answers (
-            question_id, answer_en, answer_km, is_correct,
+            question_id, answer_type, answer_en, answer_km, is_correct,
             image_url, sort_order, created_at
           ) VALUES (
-            ${questionId}, ${answer.answerEn}, ${answer.answerKm || ""},
+            ${questionId}, ${aType}, ${answer.answerEn}, ${answer.answerKm || ""},
             ${answer.isCorrect || false}, ${answer.imageUrl || null},
             ${i}, NOW()
           )
