@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
-import { sql } from "@/lib/db";
+import { db, sql } from "@/lib/db";
+import { questions, answers, topics, categories } from "@/db/schema";
+import { eq, and, ilike, or, count, inArray } from "drizzle-orm";
 
 export async function GET(request: NextRequest) {
   try {
@@ -16,72 +18,90 @@ export async function GET(request: NextRequest) {
     const categoryId = searchParams.get("categoryId");
     const topicId = searchParams.get("topicId");
 
-    const params: any[] = [];
-    const conditions: string[] = [];
+    // Build where conditions
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const conditions: any[] = [];
 
-    if (categoryId) {
-      params.push(Number(categoryId));
-      conditions.push(`t.category_id = $${params.length}`);
-    }
-
-    if (topicId) {
-      params.push(Number(topicId));
-      conditions.push(`q.topic_id = $${params.length}`);
-    }
-
+    if (topicId) conditions.push(eq(questions.topicId, Number(topicId)));
+    if (difficulty && difficulty !== "all") conditions.push(eq(questions.difficulty, difficulty));
     if (search) {
-      params.push(`%${search}%`);
-      const p = `$${params.length}`;
-      conditions.push(`(q.question_en ILIKE ${p} OR q.question_km ILIKE ${p} OR t.name_en ILIKE ${p})`);
+      conditions.push(or(
+        ilike(questions.questionEn, `%${search}%`),
+        ilike(questions.questionKm, `%${search}%`),
+      ));
     }
 
-    if (difficulty && difficulty !== "all") {
-      params.push(difficulty);
-      conditions.push(`q.difficulty = $${params.length}`);
+    const where = conditions.length > 0 ? and(...conditions) : undefined;
+
+    // Fetch questions with topic + category info
+    const rows = await db
+      .select({
+        id: questions.id,
+        topicId: questions.topicId,
+        questionEn: questions.questionEn,
+        questionKm: questions.questionKm,
+        difficulty: questions.difficulty,
+        createdAt: questions.createdAt,
+        topicName: topics.nameEn,
+        categoryId: topics.categoryId,
+        categoryName: categories.titleEn,
+      })
+      .from(questions)
+      .leftJoin(topics, eq(questions.topicId, topics.id))
+      .leftJoin(categories, eq(topics.categoryId, categories.id))
+      .where(
+        categoryId
+          ? and(where, eq(topics.categoryId, Number(categoryId)))
+          : where
+      )
+      .orderBy(questions.createdAt)
+      .limit(500);
+
+    if (rows.length === 0) {
+      return NextResponse.json({ questions: [], total: 0 });
     }
 
-    const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(" AND ")}` : "";
+    // Fetch answer counts for all questions
+    const qIds = rows.map(r => r.id);
+    const answerCounts = await db
+      .select({
+        questionId: answers.questionId,
+        answerCount: count(answers.id),
+        hasImage: sql<boolean>`bool_or(${answers.imageUrl} IS NOT NULL)`,
+        correctCount: sql<number>`count(*) filter (where ${answers.isCorrect} = true)`,
+        isTrueFalse: sql<boolean>`count(*) = 2 AND bool_and(${answers.answerEn} IN ('True','False','true','false'))`,
+      })
+      .from(answers)
+      .where(inArray(answers.questionId, qIds))
+      .groupBy(answers.questionId);
 
-    const query = `
-      SELECT 
-        q.id,
-        q.topic_id        AS "topicId",
-        q.question_en     AS "questionEn",
-        q.question_km     AS "questionKm",
-        q.difficulty,
-        q.created_at      AS "createdAt",
-        t.name_en         AS "topicName",
-        t.category_id     AS "categoryId",
-        c.title_en        AS "categoryName",
-        COUNT(a.id)::int  AS "answerCount",
-        CASE
-          WHEN COUNT(a.id) = 2
-               AND COUNT(a.id) FILTER (WHERE a.answer_en IN ('True','False')) = 2
-            THEN 'true-false'
-          WHEN COUNT(a.id) FILTER (WHERE a.is_correct = true) > 1
-            THEN 'multi-select'
-          WHEN COUNT(a.id) FILTER (WHERE a.image_url IS NOT NULL) > 0
-            THEN 'image-match'
-          ELSE 'mcq'
-        END AS "questionType"
-      FROM questions q
-      LEFT JOIN topics    t ON q.topic_id    = t.id
-      LEFT JOIN categories c ON t.category_id = c.id
-      LEFT JOIN answers   a ON q.id          = a.question_id
-      ${whereClause}
-      GROUP BY q.id, t.name_en, t.category_id, c.title_en
-      ORDER BY q.created_at DESC
-      LIMIT 500
-    `;
+    const countMap = new Map(answerCounts.map(a => [a.questionId, a]));
 
-    const rows = await sql.unsafe(query, params);
-    let filteredQuestions = Array.isArray(rows) ? rows : [];
+    const result = rows.map(q => {
+      const ac = countMap.get(q.id);
+      const ansCount = Number(ac?.answerCount ?? 0);
+      const hasImage = Boolean(ac?.hasImage);
+      const correctCount = Number(ac?.correctCount ?? 0);
+      const isTF = Boolean(ac?.isTrueFalse);
 
-    if (type && type !== "all") {
-      filteredQuestions = filteredQuestions.filter((q: any) => q.questionType === type);
-    }
+      let questionType = "mcq";
+      if (isTF && ansCount === 2) questionType = "true-false";
+      else if (correctCount > 1) questionType = "multi-select";
+      else if (hasImage) questionType = "image-match";
 
-    return NextResponse.json({ questions: filteredQuestions, total: filteredQuestions.length });
+      return {
+        ...q,
+        answerCount: ansCount,
+        questionType,
+      };
+    });
+
+    // Filter by type if specified
+    const filtered = type && type !== "all"
+      ? result.filter(q => q.questionType === type)
+      : result;
+
+    return NextResponse.json({ questions: filtered, total: filtered.length });
   } catch (error: any) {
     console.error("[GET /api/admin/questions]", error?.message ?? error);
     return NextResponse.json({ error: "Failed to fetch questions", questions: [] }, { status: 500 });
@@ -96,18 +116,18 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { topicId, questionEn, questionKm, hintEn, hintKm, imageUrl, difficulty, pointsMultiplier, answers } = body;
+    const { topicId, questionEn, questionKm, hintEn, hintKm, imageUrl, difficulty, pointsMultiplier, answers: answerList } = body;
 
-    if (!topicId || !questionEn || !answers || answers.length < 2) {
+    if (!topicId || !questionEn || !answerList || answerList.length < 2) {
       return NextResponse.json({ error: "Missing required fields: topicId, questionEn, and at least 2 answers" }, { status: 400 });
     }
 
-    if (!answers.some((a: any) => a.isCorrect)) {
+    if (!answerList.some((a: any) => a.isCorrect)) {
       return NextResponse.json({ error: "At least one answer must be marked correct" }, { status: 400 });
     }
 
-    const hasImages = answers.some((a: any) => a.imageUrl);
-    const multiCorrect = answers.filter((a: any) => a.isCorrect).length > 1;
+    const hasImages = answerList.some((a: any) => a.imageUrl);
+    const multiCorrect = answerList.filter((a: any) => a.isCorrect).length > 1;
     let answerType = "multiple_choice";
     if (hasImages) answerType = "image_selection";
     else if (multiCorrect) answerType = "checkbox";
@@ -127,8 +147,8 @@ export async function POST(request: NextRequest) {
 
     const questionId = questionResult[0].id;
 
-    for (let i = 0; i < answers.length; i++) {
-      const answer = answers[i];
+    for (let i = 0; i < answerList.length; i++) {
+      const answer = answerList[i];
       const aType = answer.imageUrl ? "image_selection" : answerType;
       await sql`
         INSERT INTO answers (
