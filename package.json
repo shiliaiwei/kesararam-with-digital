@@ -75,9 +75,21 @@
     "vitest": "^3.2.0"
   },
   "overrides": {
-    "esbuild": ">=0.27.7",
+    "path-to-regexp": ">=8.0.0",
+    "esbuild": ">=0.24.2",
     "postcss": ">=8.4.49",
-    "hono": ">=4.12.14",
-    "@hono/node-server": ">=1.19.13"
+    "hono": ">=4.6.15",
+    "@hono/node-server": ">=1.19.13",
+    "ip-address": ">=9.0.5",
+    "jsbn": ">=1.2.0"
+  },
+  "resolutions": {
+    "path-to-regexp": ">=8.0.0",
+    "esbuild": ">=0.24.2",
+    "postcss": ">=8.4.49",
+    "hono": ">=4.6.15",
+    "@hono/node-server": ">=1.19.13",
+    "ip-address": ">=9.0.5",
+    "jsbn": ">=1.2.0"
   }
 }
