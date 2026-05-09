@@ -734,11 +734,12 @@ function JsonImportMode({ topicId, topicData, catId, isPreSelected, preSelectedT
         // Pre-fetch distractor images once if any image-match questions exist
         let distractorImages: string[] = [];
         const hasImageMatch = parsed.some(item => (item.type || item.questionType) === "image-match");
-        if (hasImageMatch && (catId || localCatId)) {
+        // Use catId from props (pre-selected) OR local state
+        const effectiveCatId = catId || localCatId || topicData?.categoryId;
+        if (hasImageMatch && effectiveCatId) {
             try {
-                const cid = catId || localCatId;
                 const exclude = topicData?.primaryImageUrl || "";
-                const dr = await fetch(`/api/admin/distractor-images?categoryId=${cid}&exclude=${encodeURIComponent(exclude)}`);
+                const dr = await fetch(`/api/admin/distractor-images?categoryId=${effectiveCatId}&exclude=${encodeURIComponent(exclude)}`);
                 if (dr.ok) {
                     const dd = await dr.json();
                     distractorImages = dd.images || [];
@@ -772,12 +773,25 @@ function JsonImportMode({ topicId, topicData, catId, isPreSelected, preSelectedT
 
                 // If image-match with no answers defined, auto-build from topic + distractors
                 if (qType === "image-match" && answers.length === 0) {
-                    answers = [
-                        { answerEn: topicData?.nameEn || "Correct", answerKm: topicData?.nameKm || "", isCorrect: true, imageUrl: topicImg },
-                        ...distractorImages.slice(0, 3).map((img, i) => ({
-                            answerEn: `Option ${i + 2}`, answerKm: "", isCorrect: false, imageUrl: img,
-                        })),
-                    ];
+                    const correctImg = topicImg;
+                    const dists = distractorImages.slice(0, 3);
+
+                    // If no distractors available, fall back to text-based MCQ style
+                    if (dists.length === 0) {
+                        answers = [
+                            { answerEn: topicData?.nameEn || "This sign", answerKm: topicData?.nameKm || "", isCorrect: true, imageUrl: correctImg || null },
+                            { answerEn: "Different sign A", answerKm: "", isCorrect: false, imageUrl: null },
+                            { answerEn: "Different sign B", answerKm: "", isCorrect: false, imageUrl: null },
+                            { answerEn: "Different sign C", answerKm: "", isCorrect: false, imageUrl: null },
+                        ];
+                    } else {
+                        answers = [
+                            { answerEn: topicData?.nameEn || "Correct", answerKm: topicData?.nameKm || "", isCorrect: true, imageUrl: correctImg },
+                            ...dists.map((img, i) => ({
+                                answerEn: `Option ${i + 2}`, answerKm: "", isCorrect: false, imageUrl: img,
+                            })),
+                        ];
+                    }
                 }
 
                 const payload = {
