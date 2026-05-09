@@ -37,15 +37,15 @@ export async function POST(req: NextRequest) {
     .innerJoin(topics, eq(questions.topicId, topics.id))
     .where(
       and(
-        inArray(questions.status, ["approved", "draft"]), // Allow draft for testing
+        inArray(questions.status, ["approved", "draft", "published"]), // Include all non-rejected
         inArray(topics.categoryId, categoryIds),
         difficulty !== "mixed" ? eq(questions.difficulty, difficulty) : undefined
       )
     );
 
   if (allQuestions.length === 0) {
-    return NextResponse.json({ 
-      error: "No questions found for selected categories" 
+    return NextResponse.json({
+      error: "No questions found for selected categories"
     }, { status: 404 });
   }
 
@@ -66,6 +66,7 @@ export async function POST(req: NextRequest) {
 
     compatible = allQuestions.filter((q) => {
       const cnt = countMap.get(q.id) ?? 0;
+      if (cnt === 0) return false; // Skip questions with no answers
       const gt = mapContentToGameType({
         answerCount: cnt,
         hasImage: !!q.imageUrl,
@@ -76,8 +77,8 @@ export async function POST(req: NextRequest) {
   }
 
   if (compatible.length === 0) {
-    return NextResponse.json({ 
-      error: `No compatible questions for "${gameMode}" mode` 
+    return NextResponse.json({
+      error: `No compatible questions for "${gameMode}" mode`
     }, { status: 404 });
   }
 
@@ -93,10 +94,10 @@ export async function POST(req: NextRequest) {
   const allAnswers =
     selectedIds.length > 0
       ? await db
-          .select()
-          .from(answers)
-          .where(inArray(answers.questionId, selectedIds))
-          .orderBy(answers.sortOrder)
+        .select()
+        .from(answers)
+        .where(inArray(answers.questionId, selectedIds))
+        .orderBy(answers.sortOrder)
       : [];
 
   const answersByQ = new Map<number, typeof allAnswers>();

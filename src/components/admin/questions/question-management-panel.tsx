@@ -188,14 +188,28 @@ export function QuestionManagementPanel() {
         setTopicSearch("");
     };
 
-    // Navigate to topic questions
-    const openTopic = (topic: Topic) => {
+    // Navigate to topic questions — always fetch fresh from API
+    const openTopic = async (topic: Topic) => {
         setActiveTopic(topic);
         setView("questions");
-        setQuestions(allQuestions.filter(q => q.topicId === topic.id));
         setSearch("");
         setTypeFilter("all");
         setDiffFilter("all");
+        // Fetch fresh questions for this topic from API
+        try {
+            const res = await fetch(`/api/admin/questions?topicId=${topic.id}`);
+            const data = await res.json();
+            const qs = Array.isArray(data.questions) ? data.questions : [];
+            setQuestions(qs);
+            // Also update allQuestions to include any new ones
+            setAllQuestions(prev => {
+                const existingIds = new Set(prev.map(q => q.id));
+                const newOnes = qs.filter((q: Question) => !existingIds.has(q.id));
+                return [...prev.filter(q => q.topicId !== topic.id), ...qs];
+            });
+        } catch {
+            setQuestions(allQuestions.filter(q => q.topicId === topic.id));
+        }
     };
 
     const goBack = () => {

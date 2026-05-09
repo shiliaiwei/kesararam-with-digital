@@ -14,6 +14,7 @@ export async function GET(request: NextRequest) {
     const difficulty = searchParams.get("difficulty");
     const search = searchParams.get("search");
     const categoryId = searchParams.get("categoryId");
+    const topicId = searchParams.get("topicId");
 
     let query = `
       SELECT 
@@ -45,6 +46,11 @@ export async function GET(request: NextRequest) {
     if (categoryId) {
       query += ` AND t.category_id = $${params.length + 1}`;
       params.push(Number(categoryId));
+    }
+
+    if (topicId) {
+      query += ` AND q.topic_id = $${params.length + 1}`;
+      params.push(Number(topicId));
     }
 
     if (search) {
