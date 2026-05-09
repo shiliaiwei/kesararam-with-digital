@@ -84,6 +84,10 @@ export function QuestionManagementPanel() {
     const [typeFilter, setTypeFilter] = useState("all");
     const [diffFilter, setDiffFilter] = useState("all");
 
+    // Topic filters
+    const [topicStatusFilter, setTopicStatusFilter] = useState("all");
+    const [topicSearch, setTopicSearch] = useState("");
+
     // Modal
     const [showModal, setShowModal] = useState(false);
     const [editingQuestion, setEditingQuestion] = useState<Question | null>(null);
@@ -178,6 +182,8 @@ export function QuestionManagementPanel() {
         setSearch("");
         setTypeFilter("all");
         setDiffFilter("all");
+        setTopicStatusFilter("all");
+        setTopicSearch("");
     };
 
     // Navigate to topic questions
@@ -306,99 +312,128 @@ export function QuestionManagementPanel() {
             )}
 
             {/* VIEW: Topics in a category */}
-            {view === "topics" && activeCategory && (
-                <div className="space-y-3">
-                    {/* Category stats bar */}
-                    <div className="bg-white border-2 border-black p-3 flex items-center gap-6 shadow-[2px_2px_0_#000]">
-                        <div>
-                            <span className="text-2xl font-black text-black">{getCategoryTopicCount(activeCategory.id)}</span>
-                            <span className="text-xs font-bold text-zinc-500 ml-1">Topics</span>
+            {view === "topics" && activeCategory && (() => {
+                const catTopics = topics.filter(t => t.categoryId === activeCategory.id);
+                const filtered = catTopics
+                    .filter(t => topicStatusFilter === "all" || t.status === topicStatusFilter)
+                    .filter(t => {
+                        if (!topicSearch) return true;
+                        const s = topicSearch.toLowerCase();
+                        return t.nameEn?.toLowerCase().includes(s)
+                            || t.nameKm?.toLowerCase().includes(s)
+                            || t.topicCode?.toLowerCase().includes(s)
+                            || String(t.id).includes(s);
+                    });
+                const statusTags = [
+                    { value: "all", label: "All", bg: "bg-yellow-400" },
+                    { value: "approved", label: "Approved", bg: "bg-green-400" },
+                    { value: "pending", label: "Pending", bg: "bg-orange-300" },
+                    { value: "draft", label: "Draft", bg: "bg-zinc-300" },
+                    { value: "rejected", label: "Rejected", bg: "bg-red-400" },
+                ];
+                return (
+                    <div className="space-y-3">
+                        {/* Stats + filter bar */}
+                        <div className="bg-white border-2 border-black p-3 shadow-[2px_2px_0_#000]">
+                            <div className="flex items-center gap-3 flex-wrap">
+                                <div className="flex items-center gap-4 flex-shrink-0">
+                                    <div>
+                                        <span className="text-2xl font-black text-black">{catTopics.length}</span>
+                                        <span className="text-xs font-bold text-zinc-500 ml-1">Topics</span>
+                                    </div>
+                                    <div>
+                                        <span className="text-2xl font-black text-blue-600">{getCategoryQCount(activeCategory.id)}</span>
+                                        <span className="text-xs font-bold text-zinc-500 ml-1">Questions</span>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-1 flex-wrap">
+                                    {statusTags.map(tag => {
+                                        const count = tag.value === "all" ? catTopics.length : catTopics.filter(t => t.status === tag.value).length;
+                                        const isActive = topicStatusFilter === tag.value;
+                                        return (
+                                            <button key={tag.value} onClick={() => setTopicStatusFilter(tag.value)}
+                                                className={`px-3 py-1 border-2 border-black text-xs font-black transition-all ${isActive ? `${tag.bg} shadow-[2px_2px_0_#000]` : "bg-white hover:bg-gray-50"}`}>
+                                                {tag.label} <span className="font-medium text-zinc-600">({count})</span>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                                <div className="relative ml-auto">
+                                    <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 text-zinc-400" size={14} />
+                                    <input type="text" placeholder="Search ID, code, name..." value={topicSearch}
+                                        onChange={e => setTopicSearch(e.target.value)}
+                                        className="pl-8 pr-3 py-1.5 border-2 border-black text-xs font-medium focus:outline-none w-48" />
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <span className="text-2xl font-black text-blue-600">{getCategoryQCount(activeCategory.id)}</span>
-                            <span className="text-xs font-bold text-zinc-500 ml-1">Questions</span>
-                        </div>
-                        <div className="ml-auto">
-                            <button
-                                onClick={() => setShowModal(true)}
-                                className="bg-green-400 border-2 border-black px-4 py-2 font-black text-sm hover:shadow-[3px_3px_0_#000] transition-all inline-flex items-center gap-2"
-                            >
-                                <Plus size={15} />
-                                Add Question to Category
-                            </button>
-                        </div>
-                    </div>
 
-                    {/* Topics list */}
-                    {topics.filter(t => t.categoryId === activeCategory.id).length === 0 ? (
-                        <div className="bg-white border-2 border-black p-12 text-center shadow-[2px_2px_0_#000]">
-                            <BookOpen size={40} className="mx-auto mb-3 text-zinc-300" />
-                            <p className="font-black text-zinc-500">No topics in this category yet</p>
-                        </div>
-                    ) : (
-                        <div className="bg-white border-2 border-black overflow-hidden shadow-[4px_4px_0_#000]">
-                            <table className="w-full">
-                                <thead className="bg-black text-white">
-                                    <tr>
-                                        <th className="px-4 py-3 text-left text-xs font-black uppercase">Topic</th>
-                                        <th className="px-4 py-3 text-left text-xs font-black uppercase w-24">Code</th>
-                                        <th className="px-4 py-3 text-left text-xs font-black uppercase w-20">Status</th>
-                                        <th className="px-4 py-3 text-center text-xs font-black uppercase w-24">Questions</th>
-                                        <th className="px-4 py-3 text-left text-xs font-black uppercase w-32">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-zinc-200">
-                                    {topics
-                                        .filter(t => t.categoryId === activeCategory.id)
-                                        .map(topic => {
+                        {filtered.length === 0 ? (
+                            <div className="bg-white border-2 border-black p-12 text-center shadow-[2px_2px_0_#000]">
+                                <BookOpen size={40} className="mx-auto mb-3 text-zinc-300" />
+                                <p className="font-black text-zinc-500">No topics found</p>
+                            </div>
+                        ) : (
+                            <div className="bg-white border-2 border-black overflow-hidden shadow-[4px_4px_0_#000]">
+                                <table className="w-full">
+                                    <thead className="bg-black text-white">
+                                        <tr>
+                                            <th className="px-3 py-2.5 text-left text-xs font-black uppercase w-12">ID</th>
+                                            <th className="px-3 py-2.5 text-left text-xs font-black uppercase w-28">Code</th>
+                                            <th className="px-3 py-2.5 text-left text-xs font-black uppercase">English</th>
+                                            <th className="px-3 py-2.5 text-left text-xs font-black uppercase">Khmer</th>
+                                            <th className="px-3 py-2.5 text-left text-xs font-black uppercase w-24">Status</th>
+                                            <th className="px-3 py-2.5 text-center text-xs font-black uppercase w-16">Q</th>
+                                            <th className="px-3 py-2.5 text-left text-xs font-black uppercase w-24">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-zinc-200">
+                                        {filtered.map(topic => {
                                             const qCount = getTopicQCount(topic.id);
                                             return (
-                                                <tr key={topic.id} className="hover:bg-yellow-50 transition-colors group">
-                                                    <td className="px-4 py-3">
-                                                        <div className="font-black text-sm text-black">{topic.nameEn}</div>
-                                                        {topic.nameKm && <div className="text-xs text-zinc-400">{topic.nameKm}</div>}
+                                                <tr key={topic.id} className="hover:bg-yellow-50 transition-colors">
+                                                    <td className="px-3 py-2.5">
+                                                        <span className="text-xs font-black text-zinc-400">#{topic.id}</span>
+                                                    </td>
+                                                    <td className="px-3 py-2.5">
+                                                        <span className="text-xs font-mono font-bold text-zinc-700 bg-zinc-100 px-2 py-1 border border-zinc-300 whitespace-nowrap">{topic.topicCode}</span>
+                                                    </td>
+                                                    <td className="px-3 py-2.5">
+                                                        <div className="font-bold text-sm text-black">{topic.nameEn}</div>
                                                         {topic.subGroup && <div className="text-xs text-zinc-400 italic">{topic.subGroup}</div>}
                                                     </td>
-                                                    <td className="px-4 py-3">
-                                                        <span className="text-xs font-mono font-bold text-zinc-600 bg-zinc-100 px-2 py-1 border border-zinc-300">{topic.topicCode}</span>
+                                                    <td className="px-3 py-2.5">
+                                                        <div className="text-sm text-zinc-700">{topic.nameKm || <span className="text-zinc-300 italic text-xs">—</span>}</div>
                                                     </td>
-                                                    <td className="px-4 py-3">
+                                                    <td className="px-3 py-2.5">
                                                         <span className={`text-xs font-black px-2 py-1 border border-black ${topic.status === "approved" ? "bg-green-100 text-green-800" :
                                                                 topic.status === "pending" ? "bg-yellow-100 text-yellow-800" :
                                                                     topic.status === "rejected" ? "bg-red-100 text-red-800" :
-                                                                        "bg-zinc-100 text-zinc-600"
-                                                            }`}>
+                                                                        "bg-zinc-100 text-zinc-600"}`}>
                                                             {topic.status}
                                                         </span>
                                                     </td>
-                                                    <td className="px-4 py-3 text-center">
-                                                        <button
-                                                            onClick={() => openTopic(topic)}
-                                                            className={`inline-flex items-center gap-1 px-3 py-1.5 border-2 border-black font-black text-sm transition-all hover:shadow-[2px_2px_0_#000] ${qCount > 0 ? "bg-blue-400 text-black" : "bg-zinc-100 text-zinc-600"
-                                                                }`}
-                                                        >
-                                                            {qCount}
-                                                            <ChevronRight size={14} />
+                                                    <td className="px-3 py-2.5 text-center">
+                                                        <button onClick={() => openTopic(topic)}
+                                                            className={`inline-flex items-center gap-1 px-3 py-1 border-2 border-black font-black text-sm transition-all hover:shadow-[2px_2px_0_#000] ${qCount > 0 ? "bg-blue-400 text-black" : "bg-zinc-100 text-zinc-500"}`}>
+                                                            {qCount}<ChevronRight size={13} />
                                                         </button>
                                                     </td>
-                                                    <td className="px-4 py-3">
-                                                        <button
-                                                            onClick={() => { setActiveTopic(topic); setShowModal(true); }}
-                                                            className="inline-flex items-center gap-1 px-3 py-1.5 bg-green-400 border-2 border-black font-black text-xs hover:shadow-[2px_2px_0_#000] transition-all"
-                                                        >
-                                                            <Plus size={13} />
-                                                            Add Question
+                                                    <td className="px-3 py-2.5">
+                                                        <button onClick={() => { setActiveTopic(topic); setShowModal(true); }}
+                                                            className="inline-flex items-center gap-1 px-3 py-1.5 bg-green-400 border-2 border-black font-black text-xs hover:shadow-[2px_2px_0_#000] transition-all">
+                                                            <Plus size={12} />Add Q
                                                         </button>
                                                     </td>
                                                 </tr>
                                             );
                                         })}
-                                </tbody>
-                            </table>
-                        </div>
-                    )}
-                </div>
-            )}
+                                    </tbody>
+                                </table>
+                            </div>
+                        )}
+                    </div>
+                );
+            })()}
 
             {/* VIEW: Questions in a topic */}
             {view === "questions" && activeTopic && (

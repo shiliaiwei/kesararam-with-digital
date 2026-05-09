@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
-import { sql } from "@/lib/db";
+import { db } from "@/lib/db";
+import { topics, categories, users } from "@/db/schema";
+import { eq, desc, ilike, and, or, count } from "drizzle-orm";
 
 export async function GET(request: NextRequest) {
     try {
@@ -10,51 +12,53 @@ export async function GET(request: NextRequest) {
         }
 
         const { searchParams } = new URL(request.url);
-        const status = searchParams.get("status");
         const categoryId = searchParams.get("categoryId");
+        const status = searchParams.get("status");
+        const search = searchParams.get("search");
 
-        let query = `
-            SELECT 
-                t.id,
-                t.topic_code as "topicCode",
-                t.name_en as "nameEn",
-                t.name_km as "nameKm",
-                t.category_id as "categoryId",
-                c.title_en as "categoryName",
-                c.slug as "categorySlug",
-                t.status,
-                t.sub_group as "subGroup",
-                t.created_at as "createdAt"
-            FROM topics t
-            LEFT JOIN categories c ON t.category_id = c.id
-            WHERE 1=1
-        `;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const conditions: any[] = [];
 
-        const params: any[] = [];
-
-        if (status) {
-            query += ` AND t.status = $${params.length + 1}`;
-            params.push(status);
+        if (categoryId) conditions.push(eq(topics.categoryId, parseInt(categoryId)));
+        if (status) conditions.push(eq(topics.status, status as "draft" | "pending" | "approved" | "rejected"));
+        if (search) {
+            conditions.push(
+                or(
+                    ilike(topics.nameEn, `%${search}%`),
+                    ilike(topics.nameKm, `%${search}%`),
+                    ilike(topics.topicCode, `%${search}%`),
+                )
+            );
         }
 
-        if (categoryId) {
-            query += ` AND t.category_id = $${params.length + 1}`;
-            params.push(Number(categoryId));
-        }
+        const where = conditions.length > 0 ? and(...conditions) : undefined;
 
-        query += ` ORDER BY c.sort_order ASC, t.sort_order ASC, t.name_en ASC`;
-
-        const topics = await sql.unsafe(query, params);
+        const rows = await db
+            .select({
+                id: topics.id,
+                topicCode: topics.topicCode,
+                categoryId: topics.categoryId,
+                nameEn: topics.nameEn,
+                nameKm: topics.nameKm,
+                subGroup: topics.subGroup,
+                status: topics.status,
+                createdAt: topics.createdAt,
+                categoryName: categories.titleEn,
+                categorySlug: categories.slug,
+                creatorName: users.displayName,
+            })
+            .from(topics)
+            .leftJoin(categories, eq(topics.categoryId, categories.id))
+            .leftJoin(users, eq(topics.createdBy, users.id))
+            .where(where)
+            .orderBy(categories.sortOrder, topics.sortOrder, topics.nameEn);
 
         return NextResponse.json({
-            topics: Array.isArray(topics) ? topics : [],
-            total: Array.isArray(topics) ? topics.length : 0
+            topics: rows,
+            total: rows.length,
         });
     } catch (error) {
         console.error("[GET /api/admin/topics]", error);
-        return NextResponse.json({
-            error: "Failed to fetch topics",
-            topics: []
-        }, { status: 500 });
+        return NextResponse.json({ error: "Failed to fetch topics", topics: [] }, { status: 500 });
     }
 }
