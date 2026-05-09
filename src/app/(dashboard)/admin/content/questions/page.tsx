@@ -1,12 +1,15 @@
-"use client";
+import { Metadata } from "next";
+import { QuestionManagementPanel } from "@/components/admin/questions/question-management-panel";
 
-import { Suspense } from "react";
-import AdminQuestionsClient from "./questions-client";
+export const metadata: Metadata = {
+  title: "Topic Questions | Admin Dashboard",
+  description: "Manage questions for all topics across categories",
+};
 
-export default function Page() {
+export default function AdminQuestionsPage() {
   return (
-    <Suspense fallback={<div className="p-6 font-bold text-zinc-500">Loading...</div>}>
-      <AdminQuestionsClient />
-    </Suspense>
+    <div className="p-6 space-y-6">
+      <QuestionManagementPanel />
+    </div>
   );
 }

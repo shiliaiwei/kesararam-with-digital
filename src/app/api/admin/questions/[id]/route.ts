@@ -1,8 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
-import { questions, answers } from "@/db/schema";
-import { eq } from "drizzle-orm";
 import { getSession } from "@/lib/auth";
+import { sql } from "@/lib/db";
+
+export async function DELETE(
+  _request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const session = await getSession();
+    if (!session?.id || session.role !== "admin") {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const { id } = await params;
+    const questionId = parseInt(id);
+
+    // Delete question (answers will cascade delete)
+    await sql`DELETE FROM questions WHERE id = ${questionId}`;
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("[DELETE /api/admin/questions/[id]]", error);
+    return NextResponse.json({ error: "Failed to delete question" }, { status: 500 });
+  }
+}
 
 export async function PUT(
   request: NextRequest,
@@ -10,116 +31,59 @@ export async function PUT(
 ) {
   try {
     const session = await getSession();
-    if (!session || session.role !== "admin") {
+    if (!session?.id || session.role !== "admin") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     const { id } = await params;
+    const questionId = parseInt(id);
     const body = await request.json();
+
     const {
-      topicId,
-      questionType,
       questionEn,
       questionKm,
       hintEn,
       hintKm,
+      imageUrl,
       difficulty,
-      timeLimit,
-      pointsMultiplier,
-      status,
-      answers: requestAnswers,
+      answers,
     } = body;
 
-    const result = await db.transaction(async (tx) => {
-      const [updatedQuestion] = await tx
-        .update(questions)
-        .set({
-          topicId: topicId ? parseInt(topicId, 10) : undefined,
-          questionType,
-          questionEn,
-          questionKm,
-          hintEn,
-          hintKm,
-          difficulty,
-          timeLimit: timeLimit ? parseInt(timeLimit, 10) : undefined,
-          pointsMultiplier: pointsMultiplier !== undefined ? parseInt(pointsMultiplier, 10) : undefined,
-          status,
-        })
-        .where(eq(questions.id, parseInt(id, 10)))
-        .returning();
+    // Update question
+    await sql`
+      UPDATE questions SET
+        question_en = ${questionEn},
+        question_km = ${questionKm || ""},
+        hint_en = ${hintEn || null},
+        hint_km = ${hintKm || null},
+        image_url = ${imageUrl || null},
+        difficulty = ${difficulty || "medium"}
+      WHERE id = ${questionId}
+    `;
 
-      if (!updatedQuestion) {
-        return null;
+    // Delete old answers
+    await sql`DELETE FROM answers WHERE question_id = ${questionId}`;
+
+    // Create new answers
+    if (answers && answers.length > 0) {
+      for (let i = 0; i < answers.length; i++) {
+        const answer = answers[i];
+        await sql`
+          INSERT INTO answers (
+            question_id, answer_en, answer_km, is_correct,
+            image_url, sort_order, created_at
+          ) VALUES (
+            ${questionId}, ${answer.answerEn}, ${answer.answerKm || ""},
+            ${answer.isCorrect || false}, ${answer.imageUrl || null},
+            ${i}, NOW()
+          )
+        `;
       }
-
-      if (requestAnswers && Array.isArray(requestAnswers)) {
-        // Delete old answers
-        await tx.delete(answers).where(eq(answers.questionId, updatedQuestion.id));
-
-        // Insert new answers
-        if (requestAnswers.length > 0) {
-          const answersToInsert = requestAnswers.map((a: any, i: number) => ({
-            questionId: updatedQuestion.id,
-            answerType: a.answerType || "multiple_choice",
-            answerEn: a.answerEn || "",
-            answerKm: a.answerKm || "",
-            isCorrect: !!a.isCorrect,
-            sortOrder: i,
-          }));
-          await tx.insert(answers).values(answersToInsert);
-        }
-      }
-
-      return updatedQuestion;
-    });
-
-    if (!result) {
-      return NextResponse.json(
-        { error: "Question not found" },
-        { status: 404 }
-      );
-    }
-
-    return NextResponse.json({ question: result });
-  } catch (error) {
-    console.error("Error updating question:", error);
-    return NextResponse.json(
-      { error: "Failed to update question" },
-      { status: 500 }
-    );
-  }
-}
-
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  try {
-    const session = await getSession();
-    if (!session || session.role !== "admin") {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const { id } = await params;
-
-    const [deletedQuestion] = await db
-      .delete(questions)
-      .where(eq(questions.id, parseInt(id, 10)))
-      .returning();
-
-    if (!deletedQuestion) {
-      return NextResponse.json(
-        { error: "Question not found" },
-        { status: 404 }
-      );
     }
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Error deleting question:", error);
-    return NextResponse.json(
-      { error: "Failed to delete question" },
-      { status: 500 }
-    );
+    console.error("[PUT /api/admin/questions/[id]]", error);
+    return NextResponse.json({ error: "Failed to update question" }, { status: 500 });
   }
 }
