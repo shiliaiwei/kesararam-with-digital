@@ -42,14 +42,17 @@ function AnimatedLogoText() {
   }, []);
 
   return (
-    <div className="font-black text-[10px] uppercase tracking-widest text-black leading-none flex flex-col">
+    <div className="font-black text-[10px] uppercase tracking-widest text-black leading-none flex flex-col" style={{ width: "120px" }}>
       <span>KESARARAM.</span>
       <span>WITH.</span>
-      <span
-        key={index}
-        className="inline-block animate-in slide-in-from-right-4 fade-in duration-500 text-zinc-400 whitespace-nowrap"
-      >
-        {ANIMATED_WORDS[index]}
+      {/* Fixed-height container prevents CLS when word changes */}
+      <span className="block overflow-hidden" style={{ height: "12px" }}>
+        <span
+          key={index}
+          className="inline-block animate-in slide-in-from-right-4 fade-in duration-500 text-zinc-400 whitespace-nowrap"
+        >
+          {ANIMATED_WORDS[index]}
+        </span>
       </span>
     </div>
   );

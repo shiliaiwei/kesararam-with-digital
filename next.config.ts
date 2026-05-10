@@ -2,11 +2,15 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  compress: true,
   typescript: {
-    // TypeScript errors are caught in CI — don't block Vercel builds
     ignoreBuildErrors: true,
   },
   images: {
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 31536000, // 1 year for images
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
       { protocol: "https", hostname: "raw.githubusercontent.com" },
       { protocol: "https", hostname: "**.neon.tech" },
@@ -35,7 +39,6 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              // 'unsafe-inline' required for Next.js; 'unsafe-eval' required by Mapbox GL JS (WebGL)
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://api.mapbox.com https://events.mapbox.com https://www.googletagmanager.com https://www.google-analytics.com",
               "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://api.mapbox.com",
               "font-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com",
@@ -50,6 +53,32 @@ const nextConfig: NextConfig = {
               "upgrade-insecure-requests",
             ].join("; "),
           },
+        ],
+      },
+      // Long-term cache for static assets
+      {
+        source: "/_next/static/(.*)",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      // Cache public images for 1 year
+      {
+        source: "/brand/(.*)",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        source: "/avatar/(.*)",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        source: "/Google_Sans/(.*)",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
       },
     ];

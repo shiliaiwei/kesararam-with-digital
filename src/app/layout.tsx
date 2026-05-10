@@ -84,6 +84,11 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="32x32" href="/brand/kwd-green_ofhdec.png" />
         <link rel="apple-touch-icon" href="/brand/kwd-green_ofhdec.png" />
         <link rel="shortcut icon" href="/brand/kwd-green_ofhdec.png" />
+        {/* Preconnect to Cloudinary — reduces LCP for sign images */}
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        {/* Preconnect to Google Fonts */}
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className={`${inter.variable} ${kantumruy.variable} ${siemreap.variable} font-sans antialiased overflow-x-hidden`}>
         <GoogleAnalytics />
