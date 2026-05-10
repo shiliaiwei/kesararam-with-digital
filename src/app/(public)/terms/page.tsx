@@ -13,61 +13,61 @@ const CATEGORIES: Category[] = [
     key: "dev",
     label: { en: "Development", kh: "ការអភិវឌ្ឍន៍" },
     tools: [
-      { name: "GitHub",          fa: "fa-brands fa-github",            sub: "Version Control", use: { en: "Source code hosting and collaboration",        kh: "ការបង្ហោះ និងសហការកូដ" } },
-      { name: "Git",             fa: "fa-brands fa-git-alt",           sub: "Version Control", use: { en: "Distributed version control system",           kh: "ការគ្រប់គ្រងកំណែ" } },
-      { name: "VS Code",         fa: "fa-solid fa-code",               sub: "Editor",          use: { en: "Primary code editor for all development",      kh: "កម្មវិធីកែកូដចម្បង" } },
-      { name: "Next.js",         fa: "fa-brands fa-react",             sub: "Framework",       use: { en: "React full-stack framework powering the app",  kh: "ក្របខ័ណ្ឌ React full-stack" } },
-      { name: "TypeScript",      fa: "fa-solid fa-t",                  sub: "Language",        use: { en: "Statically typed JavaScript for reliability",  kh: "JavaScript ដែលមានប្រភេទ" } },
-      { name: "Tailwind CSS",    fa: "fa-solid fa-wind",               sub: "Styling",         use: { en: "Utility-first CSS framework for UI",           kh: "ក្របខ័ណ្ឌ CSS" } },
-      { name: "Neon DB",         fa: "fa-solid fa-database",           sub: "Database",        use: { en: "Serverless PostgreSQL — all user & content data", kh: "មូលដ្ឋានទិន្នន័យ PostgreSQL" } },
-      { name: "Vercel",          fa: "fa-solid fa-cloud-arrow-up",     sub: "Hosting",         use: { en: "Deployment and hosting platform",              kh: "វេទិកាដាក់ពង្រាយ" } },
-      { name: "Cloudinary",      fa: "fa-solid fa-cloud",              sub: "Media CDN",       use: { en: "Media storage and CDN delivery for all assets", kh: "ការផ្ទុករូបភាព CDN" } },
-      { name: "Firebase Studio", fa: "fa-brands fa-google",            sub: "Platform",        use: { en: "Google app development platform",              kh: "វេទិកា Google" } },
+      { name: "GitHub", fa: "fa-brands fa-github", sub: "Version Control", use: { en: "Source code hosting and collaboration", kh: "ការបង្ហោះ និងសហការកូដ" } },
+      { name: "Git", fa: "fa-brands fa-git-alt", sub: "Version Control", use: { en: "Distributed version control system", kh: "ការគ្រប់គ្រងកំណែ" } },
+      { name: "VS Code", fa: "fa-solid fa-code", sub: "Editor", use: { en: "Primary code editor for all development", kh: "កម្មវិធីកែកូដចម្បង" } },
+      { name: "Next.js", fa: "fa-brands fa-react", sub: "Framework", use: { en: "React full-stack framework powering the app", kh: "ក្របខ័ណ្ឌ React full-stack" } },
+      { name: "TypeScript", fa: "fa-solid fa-t", sub: "Language", use: { en: "Statically typed JavaScript for reliability", kh: "JavaScript ដែលមានប្រភេទ" } },
+      { name: "Tailwind CSS", fa: "fa-solid fa-wind", sub: "Styling", use: { en: "Utility-first CSS framework for UI", kh: "ក្របខ័ណ្ឌ CSS" } },
+      { name: "Neon DB", fa: "fa-solid fa-database", sub: "Database", use: { en: "Serverless PostgreSQL — all user & content data", kh: "មូលដ្ឋានទិន្នន័យ PostgreSQL" } },
+      { name: "Vercel", fa: "fa-solid fa-cloud-arrow-up", sub: "Hosting", use: { en: "Deployment and hosting platform", kh: "វេទិកាដាក់ពង្រាយ" } },
+      { name: "Cloudinary", fa: "fa-solid fa-cloud", sub: "Media CDN", use: { en: "Media storage and CDN delivery for all assets", kh: "ការផ្ទុករូបភាព CDN" } },
+      { name: "Firebase Studio", fa: "fa-brands fa-google", sub: "Platform", use: { en: "Google app development platform", kh: "វេទិកា Google" } },
     ],
   },
   {
     key: "design",
     label: { en: "Design", kh: "ការរចនា" },
     tools: [
-      { name: "Figma",           fa: "fa-brands fa-figma",             sub: "UI Design",       use: { en: "UI design and prototyping",                    kh: "ការរចនា UI" } },
-      { name: "Affinity Designer", fa: "fa-solid fa-pen-nib",          sub: "Graphics",        use: { en: "Vector and raster graphic design",             kh: "ការរចនាក្រាហ្វិក" } },
-      { name: "Vector Magic",    fa: "fa-solid fa-wand-magic-sparkles",sub: "Conversion",      use: { en: "Bitmap to vector — all 577 traffic sign images", kh: "បំប្លែង bitmap ទៅ vector" } },
+      { name: "Figma", fa: "fa-brands fa-figma", sub: "UI Design", use: { en: "UI design and prototyping", kh: "ការរចនា UI" } },
+      { name: "Affinity Designer", fa: "fa-solid fa-pen-nib", sub: "Graphics", use: { en: "Vector and raster graphic design", kh: "ការរចនាក្រាហ្វិក" } },
+      { name: "Vector Magic", fa: "fa-solid fa-wand-magic-sparkles", sub: "Conversion", use: { en: "Bitmap to vector — all 577 traffic sign images", kh: "បំប្លែង bitmap ទៅ vector" } },
     ],
   },
   {
     key: "ai",
     label: { en: "AI & Research Tools", kh: "AI និងឧបករណ៍ស្រាវជ្រាវ" },
     tools: [
-      { name: "Claude AI",       fa: "fa-solid fa-robot",              sub: "Code & Content",  use: { en: "Code generation, content drafting, research",  kh: "AI ជំនួយការកូដ និងខ្លឹមសារ" } },
-      { name: "ChatGPT",         fa: "fa-brands fa-openai",            sub: "Research",        use: { en: "Research and writing assistance",              kh: "AI ស្រាវជ្រាវ និងសរសេរ" } },
-      { name: "Gemini",          fa: "fa-brands fa-google",            sub: "Multimodal",      use: { en: "Google multimodal AI model",                   kh: "Google AI multimodal" } },
-      { name: "GitHub Copilot",  fa: "fa-solid fa-microchip",          sub: "Code",            use: { en: "AI code completion inside the editor",         kh: "AI បំពេញកូដ" } },
-      { name: "Kiro",            fa: "fa-solid fa-star",               sub: "IDE",             use: { en: "AI-powered IDE assistant for development",     kh: "AI IDE assistant" } },
-      { name: "Grok",            fa: "fa-brands fa-x-twitter",         sub: "Research",        use: { en: "AI reasoning and analysis tool",               kh: "AI វិភាគ" } },
-      { name: "Kimi AI",         fa: "fa-solid fa-brain",              sub: "Research",        use: { en: "Long-context AI assistant",                    kh: "AI context វែង" } },
-      { name: "DeepSeek",        fa: "fa-solid fa-magnifying-glass",   sub: "Code",            use: { en: "Open-source AI model for coding",              kh: "AI open-source" } },
-      { name: "Qwen",            fa: "fa-solid fa-language",           sub: "Multilingual",    use: { en: "Alibaba multilingual AI model",                kh: "AI ពហុភាសា" } },
-      { name: "NotebookLM",      fa: "fa-solid fa-book-open",          sub: "Research",        use: { en: "Google AI research notebook",                  kh: "AI notebook" } },
-      { name: "Google AI Studio",fa: "fa-brands fa-google",            sub: "Playground",      use: { en: "Google AI model playground",                   kh: "Google AI playground" } },
-      { name: "v0 by Vercel",    fa: "fa-solid fa-layer-group",        sub: "UI Gen",          use: { en: "AI UI component generator",                    kh: "AI UI generator" } },
+      { name: "Claude AI", fa: "fa-solid fa-robot", sub: "Code & Content", use: { en: "Code generation, content drafting, research", kh: "AI ជំនួយការកូដ និងខ្លឹមសារ" } },
+      { name: "ChatGPT", fa: "fa-brands fa-openai", sub: "Research", use: { en: "Research and writing assistance", kh: "AI ស្រាវជ្រាវ និងសរសេរ" } },
+      { name: "Gemini", fa: "fa-brands fa-google", sub: "Multimodal", use: { en: "Google multimodal AI model", kh: "Google AI multimodal" } },
+      { name: "GitHub Copilot", fa: "fa-solid fa-microchip", sub: "Code", use: { en: "AI code completion inside the editor", kh: "AI បំពេញកូដ" } },
+      { name: "Kiro", fa: "fa-solid fa-star", sub: "IDE", use: { en: "AI-powered IDE assistant for development", kh: "AI IDE assistant" } },
+      { name: "Grok", fa: "fa-brands fa-x-twitter", sub: "Research", use: { en: "AI reasoning and analysis tool", kh: "AI វិភាគ" } },
+      { name: "Kimi AI", fa: "fa-solid fa-brain", sub: "Research", use: { en: "Long-context AI assistant", kh: "AI context វែង" } },
+      { name: "DeepSeek", fa: "fa-solid fa-magnifying-glass", sub: "Code", use: { en: "Open-source AI model for coding", kh: "AI open-source" } },
+      { name: "Qwen", fa: "fa-solid fa-language", sub: "Multilingual", use: { en: "Alibaba multilingual AI model", kh: "AI ពហុភាសា" } },
+      { name: "NotebookLM", fa: "fa-solid fa-book-open", sub: "Research", use: { en: "Google AI research notebook", kh: "AI notebook" } },
+      { name: "Google AI Studio", fa: "fa-brands fa-google", sub: "Playground", use: { en: "Google AI model playground", kh: "Google AI playground" } },
+      { name: "v0 by Vercel", fa: "fa-solid fa-layer-group", sub: "UI Gen", use: { en: "AI UI component generator", kh: "AI UI generator" } },
     ],
   },
   {
     key: "media",
     label: { en: "Media & Audio", kh: "មេឌៀ និងសំឡេង" },
     tools: [
-      { name: "ElevenLabs",      fa: "fa-solid fa-microphone",         sub: "Voice AI",        use: { en: "AI voice generation for English narration",    kh: "AI សំឡេងអង់គ្លេស" } },
-      { name: "Khmer Audio",     fa: "fa-solid fa-headphones",         sub: "Original",        use: { en: "Original Khmer narration recorded by team",    kh: "សំឡេងខ្មែរដើម ថតដោយក្រុម" } },
+      { name: "ElevenLabs", fa: "fa-solid fa-microphone", sub: "Voice AI", use: { en: "AI voice generation for English narration", kh: "AI សំឡេងអង់គ្លេស" } },
+      { name: "Khmer Audio", fa: "fa-solid fa-headphones", sub: "Original", use: { en: "Original Khmer narration recorded by team", kh: "សំឡេងខ្មែរដើម ថតដោយក្រុម" } },
     ],
   },
   {
     key: "ref",
     label: { en: "Reference & Community", kh: "ឯកសារយោង និងសហគមន៍" },
     tools: [
-      { name: "MPWT Cambodia",   fa: "fa-solid fa-building-columns",   sub: "Authority",       use: { en: "Official Cambodian driving regulation authority", kh: "អាជ្ញាធរបទប្បញ្ញត្តិបើកបរ" } },
-      { name: "MOI Driving App", fa: "fa-solid fa-car",                sub: "Reference",       use: { en: "Official MOI driving theory exam app",         kh: "ឯកសារយោងប្រឡងបើកបរ" } },
-      { name: "YouTube",         fa: "fa-brands fa-youtube",           sub: "Video",           use: { en: "Video reference and research",                 kh: "ឯកសារយោងវីដេអូ" } },
-      { name: "Kahoot",          fa: "fa-solid fa-gamepad",            sub: "Inspiration",     use: { en: "Inspiration for live quiz mechanics",          kh: "ការបំផុស quiz" } },
+      { name: "MPWT Cambodia", fa: "fa-solid fa-building-columns", sub: "Authority", use: { en: "Official Cambodian driving regulation authority", kh: "អាជ្ញាធរបទប្បញ្ញត្តិបើកបរ" } },
+      { name: "MOI Driving App", fa: "fa-solid fa-car", sub: "Reference", use: { en: "Official MOI driving theory exam app", kh: "ឯកសារយោងប្រឡងបើកបរ" } },
+      { name: "YouTube", fa: "fa-brands fa-youtube", sub: "Video", use: { en: "Video reference and research", kh: "ឯកសារយោងវីដេអូ" } },
+      { name: "Kahoot", fa: "fa-solid fa-gamepad", sub: "Inspiration", use: { en: "Inspiration for live quiz mechanics", kh: "ការបំផុស quiz" } },
     ],
   },
 ];
@@ -371,30 +371,30 @@ export default function TermsPage() {
   const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
   const l = {
-    badge:        kh ? "ឯកសារច្បាប់" : "Legal Document",
-    title:        kh ? "លក្ខខណ្ឌប្រើប្រាស់" : "Terms of Service",
-    subtitle:     kh ? "ធ្វើបច្ចុប្បន្នភាព: មេសា ២០២៦ — KWD · Technovation Girls 2026 · ក្រុម #50777 · Junior Division · សៀមរាប, កម្ពុជា"
-                     : "Last updated: April 2026 — KWD · Technovation Girls 2026 · Team #50777 · Junior Division · Siem Reap, Cambodia",
-    privBtn:      kh ? "គោលការណ៍ភាពឯកជន" : "Privacy Policy",
-    aboutBtn:     kh ? "អំពី KWD" : "About KWD",
-    pricingBtn:   kh ? "តម្លៃ" : "Pricing",
-    builtTitle:   kh ? "បង្កើតដោយប្រើ" : "Built With",
-    builtSub:     kh ? "ឧបករណ៍ បច្ចេកវិទ្យា និងវេទិកាទាំងអស់ដែលបានប្រើក្នុងការបង្កើតគម្រោងនេះ។"
-                     : "Every tool, technology, and platform that shaped this project.",
-    usedFor:      kh ? "ប្រើសម្រាប់" : "Used for",
-    bibTitle:     kh ? "ឯកសារយោង" : "Bibliography",
-    bibSub:       kh ? "ប្រភពផ្លូវការ ការស្រាវជ្រាវ និងឯកសារយោងទាំងអស់ដែលប្រើក្នុងការបង្កើត KWD"
-                     : "All official sources, research, and references used in building KWD — Technovation Girls 2026 Submission",
-    payTitle:     kh ? "វិធីទូទាត់ដែលទទួលយក" : "Accepted Payment Methods",
-    paySub:       kh ? "ការជាវ Teacher Pro និង School Plan ទទួលយកការទូទាត់ខាងក្រោម"
-                     : "Teacher Pro and School Plan subscriptions accept the following payment methods",
-    subTitle:     kh ? "លក្ខខណ្ឌការជាវ" : "Subscription Terms",
-    adoptTitle:   kh ? "ផែនការទទួលយកអ្នកប្រើ" : "User Adoption Plan",
-    adoptSub:     kh ? "The Way of Safety — KWD · Technovation Girls 2026 · ក្រុម #50777 · Junior Division · មេសា ២០២៦"
-                     : "The Way of Safety — KWD · Technovation Girls 2026 · Team #50777 · Junior Division · April 2026",
-    impactTitle:  kh ? "ផលប៉ះពាល់ដែលរំពឹងទុក" : "Expected Impact",
-    footer:       kh ? "២០២៦ KWD — Kesararam With Digital · សាលាបឋមសិក្សាកេសរារាម · Technovation Girls Cambodia"
-                     : "2026 KWD — Kesararam With Digital · Kesararam Primary School · Technovation Girls Cambodia",
+    badge: kh ? "ឯកសារច្បាប់" : "Legal Document",
+    title: kh ? "លក្ខខណ្ឌប្រើប្រាស់" : "Terms of Service",
+    subtitle: kh ? "ធ្វើបច្ចុប្បន្នភាព: មេសា ២០២៦ — KWD · Technovation Girls 2026 · ក្រុម #50777 · Junior Division · សៀមរាប, កម្ពុជា"
+      : "Last updated: April 2026 — KWD · Technovation Girls 2026 · Team #50777 · Junior Division · Siem Reap, Cambodia",
+    privBtn: kh ? "គោលការណ៍ភាពឯកជន" : "Privacy Policy",
+    aboutBtn: kh ? "អំពី KWD" : "About KWD",
+    pricingBtn: kh ? "តម្លៃ" : "Pricing",
+    builtTitle: kh ? "បង្កើតដោយប្រើ" : "Built With",
+    builtSub: kh ? "ឧបករណ៍ បច្ចេកវិទ្យា និងវេទិកាទាំងអស់ដែលបានប្រើក្នុងការបង្កើតគម្រោងនេះ។"
+      : "Every tool, technology, and platform that shaped this project.",
+    usedFor: kh ? "ប្រើសម្រាប់" : "Used for",
+    bibTitle: kh ? "ឯកសារយោង" : "Bibliography",
+    bibSub: kh ? "ប្រភពផ្លូវការ ការស្រាវជ្រាវ និងឯកសារយោងទាំងអស់ដែលប្រើក្នុងការបង្កើត KWD"
+      : "All official sources, research, and references used in building KWD — Technovation Girls 2026 Submission",
+    payTitle: kh ? "វិធីទូទាត់ដែលទទួលយក" : "Accepted Payment Methods",
+    paySub: kh ? "ការជាវ Teacher Pro និង School Plan ទទួលយកការទូទាត់ខាងក្រោម"
+      : "Teacher Pro and School Plan subscriptions accept the following payment methods",
+    subTitle: kh ? "លក្ខខណ្ឌការជាវ" : "Subscription Terms",
+    adoptTitle: kh ? "ផែនការទទួលយកអ្នកប្រើ" : "User Adoption Plan",
+    adoptSub: kh ? "The Way of Safety — KWD · Technovation Girls 2026 · ក្រុម #50777 · Junior Division · មេសា ២០២៦"
+      : "The Way of Safety — KWD · Technovation Girls 2026 · Team #50777 · Junior Division · April 2026",
+    impactTitle: kh ? "ផលប៉ះពាល់ដែលរំពឹងទុក" : "Expected Impact",
+    footer: kh ? "២០២៦ KWD — Kesararam With Digital · សាលាបឋមសិក្សាកេសរារាម · Technovation Girls Cambodia"
+      : "2026 KWD — Kesararam With Digital · Kesararam Primary School · Technovation Girls Cambodia",
   };
 
   const sections = kh ? TERMS_SECTIONS.kh : TERMS_SECTIONS.en;
@@ -410,7 +410,7 @@ export default function TermsPage() {
 
           {/* Logo */}
           <div className="flex justify-center mb-10">
-            <Image src="/brand/kwd-black-nobg_zicjml.svg" alt="KWD" width={72} height={72} className="object-contain" unoptimized />
+            <Image src="https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg" alt="KWD" width={72} height={72} className="object-contain" unoptimized />
           </div>
 
           {/* Header */}
@@ -512,10 +512,10 @@ export default function TermsPage() {
             <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-4">
               {[
                 { stat: "1,200+", label: { en: "Active Students", kh: "សិស្សសកម្ម" } },
-                { stat: "8",      label: { en: "Knowledge Areas", kh: "ផ្នែកចំណេះដឹង" } },
-                { stat: "2",      label: { en: "Languages (KH & EN)", kh: "ភាសា (ខ្មែរ & អង់គ្លេស)" } },
-                { stat: "Free",   label: { en: "Always for Students", kh: "ឥតគិតថ្លៃសម្រាប់សិស្ស" } },
-                { stat: "SDG 4",  label: { en: "Quality Education", kh: "ការអប់រំប្រកបដោយគុណភាព" } },
+                { stat: "8", label: { en: "Knowledge Areas", kh: "ផ្នែកចំណេះដឹង" } },
+                { stat: "2", label: { en: "Languages (KH & EN)", kh: "ភាសា (ខ្មែរ & អង់គ្លេស)" } },
+                { stat: "Free", label: { en: "Always for Students", kh: "ឥតគិតថ្លៃសម្រាប់សិស្ស" } },
+                { stat: "SDG 4", label: { en: "Quality Education", kh: "ការអប់រំប្រកបដោយគុណភាព" } },
                 { stat: "SDG 11", label: { en: "Sustainable Cities", kh: "ទីក្រុងប្រកបដោយចីរភាព" } },
               ].map((item) => (
                 <div key={item.stat} className="border-2 border-black p-4 text-center" style={{ boxShadow: "3px 3px 0 #000" }}>
@@ -600,7 +600,7 @@ export default function TermsPage() {
           {/* Footer */}
           <div className="border-t border-black/10 pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <Image src="/brand/kwd-black-nobg_zicjml.svg" alt="KWD" width={24} height={24} className="object-contain opacity-40" unoptimized />
+              <Image src="https://res.cloudinary.com/dpgivqzrl/image/upload/v1775283913/kwd-black-nobg_zicjml.svg" alt="KWD" width={24} height={24} className="object-contain opacity-40" unoptimized />
               <p className="text-xs text-zinc-400 font-medium" style={kf}>{l.footer}</p>
             </div>
             <div className="flex gap-4 text-xs font-bold">
