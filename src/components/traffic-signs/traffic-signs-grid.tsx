@@ -6,6 +6,12 @@ import { Volume2, X, ChevronDown, ChevronUp } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import type { TrafficSign } from "@/db/schema";
 
+// ── Cloudinary thumbnail optimizer ───────────────────────────────────────────
+function cloudinaryThumb(url: string, width = 120): string {
+  if (!url || !url.includes("res.cloudinary.com")) return url;
+  return url.replace("/upload/", `/upload/f_auto,q_auto:good,w_${width},c_limit/`);
+}
+
 // ── Sub-group order matches the official Cambodian traffic sign PDF ───────────
 // ក. Traffic Signs: Regulatory → Warning → Informative → Supplementary → Guide Post
 // ខ. Road Markings: Transverse → Longitudinal → Arrow → Other
@@ -321,12 +327,14 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
                 <div className="relative w-full overflow-hidden" style={{ paddingBottom: "100%" }}>
                   <div className="absolute inset-0 p-2 flex items-center justify-center">
                     <Image
-                      src={sign.imageUrl}
+                      src={cloudinaryThumb(sign.imageUrl, 120)}
                       alt={isKh ? sign.titleKm : sign.titleEn}
                       fill
                       sizes="(max-width: 640px) 33vw, (max-width: 768px) 25vw, 10vw"
                       className="object-contain group-hover:scale-105 transition-transform duration-200"
                       style={{ padding: "8px" }}
+                      loading={idx < 8 ? "eager" : "lazy"}
+                      priority={idx < 8}
                       unoptimized
                     />
                   </div>

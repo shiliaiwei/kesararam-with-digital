@@ -35,9 +35,16 @@ export async function GET(request: NextRequest) {
       ORDER BY t.sort_order, t.created_at DESC
     `);
 
-    return NextResponse.json({
-      topics: result.rows,
-    });
+    return NextResponse.json(
+      { topics: result.rows },
+      {
+        headers: {
+          // Cache at Vercel edge for 5 minutes, stale-while-revalidate for 1 hour
+          // Signs don't change often — this eliminates DB hits for most requests
+          "Cache-Control": "public, s-maxage=300, stale-while-revalidate=3600",
+        },
+      }
+    );
   } catch (error) {
     console.error("Error fetching public topics:", error);
     return NextResponse.json(

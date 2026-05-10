@@ -73,12 +73,20 @@ const UI = {
   },
 } as const;
 
+// ── Cloudinary thumbnail optimizer ───────────────────────────────────────────
+// Transforms full-res Cloudinary URLs into small, optimized thumbnails.
+// For a 120px grid cell, we only need ~120px wide images — not 1200px originals.
+function cloudinaryThumb(url: string, width = 120): string {
+  if (!url || !url.includes("res.cloudinary.com")) return url;
+  // Insert transformation before /upload/
+  return url.replace("/upload/", `/upload/f_auto,q_auto:good,w_${width},c_limit/`);
+}
+
 // ── Image with skeleton loader + stable height + AI disclaimer ───────────────
 function ImageWithSkeleton({ src, alt }: { src: string; alt: string }) {
   const [loaded, setLoaded] = useState(false);
   return (
     <div className="relative w-full h-full flex items-center justify-center" style={{ height: "240px" }}>
-      {/* Skeleton shown until image loads */}
       {!loaded && (
         <div className="absolute inset-0 bg-zinc-100 animate-pulse" />
       )}
@@ -86,6 +94,8 @@ function ImageWithSkeleton({ src, alt }: { src: string; alt: string }) {
         src={src}
         alt={alt}
         onLoad={() => setLoaded(true)}
+        loading="lazy"
+        decoding="async"
         className={`max-h-full max-w-full object-contain transition-opacity duration-300 ${loaded ? "opacity-100" : "opacity-0"}`}
         style={{ maxHeight: "220px" }}
       />
@@ -698,6 +708,8 @@ export function TrafficSignsCatalogue() {
                 idx >= selectedIdx &&
                 Math.floor(idx / cols) === Math.floor(selectedIdx / cols) &&
                 isLastInRow;
+              // First 8 images are above the fold — load eagerly, rest lazy
+              const isAboveFold = idx < 8;
 
               return (
                 <Fragment key={topic.id}>
@@ -712,8 +724,13 @@ export function TrafficSignsCatalogue() {
                     <div className="relative w-full overflow-hidden" style={{ paddingBottom: "100%" }}>
                       {topic.primary_image_url ? (
                         <img
-                          src={topic.primary_image_url}
+                          src={cloudinaryThumb(topic.primary_image_url, 120)}
                           alt={topic.topic_code}
+                          loading={isAboveFold ? "eager" : "lazy"}
+                          decoding="async"
+                          fetchPriority={isAboveFold ? "high" : "low"}
+                          width={120}
+                          height={120}
                           className="absolute inset-0 w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-200"
                         />
                       ) : (
