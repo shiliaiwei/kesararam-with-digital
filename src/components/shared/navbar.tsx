@@ -278,14 +278,17 @@ export function Navbar({ session }: NavbarProps) {
             )}
           </div>
 
-          {/* Mobile hamburger */}
-          <button
-            className="md:hidden ml-auto p-1.5 border-2 border-black bg-white shadow-[2px_2px_0_#000] active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          >
-            {mobileOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
-          </button>
+          {/* Mobile: LangSwitcher always visible + hamburger */}
+          <div className="md:hidden ml-auto flex items-center gap-2">
+            <LangSwitcher />
+            <button
+              className="p-1.5 border-2 border-black bg-white shadow-[2px_2px_0_#000] active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            >
+              {mobileOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
+            </button>
+          </div>
         </nav>
       </header>
 
@@ -368,7 +371,7 @@ export function Navbar({ session }: NavbarProps) {
               )}
 
               <div className="mt-2 flex justify-center">
-                <LangSwitcher />
+                {/* LangSwitcher moved to header bar — always visible next to menu toggle */}
               </div>
               {/* Mobile upgrade button */}
               <button
