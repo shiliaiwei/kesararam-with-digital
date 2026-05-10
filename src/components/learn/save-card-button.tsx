@@ -129,14 +129,9 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
 
             const cfg = CATEGORY_CONFIG[topic.sub_group] || DEFAULT_CONFIG;
             const siteUrl = 'kesararamwithdigital.tech';
-            // Card always shows both languages
-            const titlePrimary = isKh ? topic.name_km : topic.name_en;
-            const titleSecondary = isKh ? topic.name_en : topic.name_km;
-            const descPrimary = isKh ? topic.description_km : topic.description_en;
-            const descSecondary = isKh ? topic.description_en : topic.description_km;
-            // Keep legacy vars for compat
-            const title = titlePrimary;
-            const answer = descPrimary;
+            // Card shows only the selected language (same as web UI)
+            const title = isKh ? topic.name_km : topic.name_en;
+            const answer = isKh ? topic.description_km : topic.description_en;
 
             // ── Force-load brand fonts so canvas ignores device fonts ─────────────
             const loadFont = async (name: string, url: string, weight = 'normal') => {
@@ -285,36 +280,26 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             ctx.fillStyle = cfg.accent;
             ctx.fillRect(rx, ry + 22, 64, 4);
 
-            // 6c. Title — Primary language large, secondary language smaller below
+            // 6c. Title — selected language only, large and bold
             ctx.fillStyle = '#000000';
-            ctx.font = font(36);
-            const titleLines = wrapText(ctx, titlePrimary, rx, ry + 68, rw, 44, 3);
-            const titleBottom = ry + 68 + titleLines * 44;
-
-            // Secondary language title (smaller, muted)
-            let secondaryTitleBottom = titleBottom;
-            if (titleSecondary && titleSecondary !== titlePrimary) {
-                ctx.fillStyle = 'rgba(0,0,0,0.45)';
-                ctx.font = isKh ? fontEN(18, 'normal') : fontKH(18, 'normal');
-                const secLines = wrapText(ctx, titleSecondary, rx, titleBottom + 20, rw, 26, 2);
-                secondaryTitleBottom = titleBottom + 20 + secLines * 26;
-            }
+            ctx.font = font(38);
+            const titleLines = wrapText(ctx, title, rx, ry + 68, rw, 46, 3);
+            const titleBottom = ry + 68 + titleLines * 46;
 
             // 6d. Topic code + subgroup — Professional metadata
             ctx.fillStyle = 'rgba(0,0,0,0.4)';
             ctx.font = fontEN(13);
             const metaText = topic.sub_group ? `${topic.topic_code}  ·  ${topic.sub_group}` : topic.topic_code;
-            ctx.fillText(metaText, rx, secondaryTitleBottom + 22);
+            ctx.fillText(metaText, rx, titleBottom + 22);
 
             // 6e. Divider — Strong visual separator
             ctx.fillStyle = cfg.accent;
-            ctx.fillRect(rx, secondaryTitleBottom + 36, rw, 4);
+            ctx.fillRect(rx, titleBottom + 36, rw, 4);
 
             // 6f. DESCRIPTION label bar — Premium design
-            const descLabelY = secondaryTitleBottom + 52;
-            ctx.fillStyle = '#22c55e'; // emerald — trust signal
+            const descLabelY = titleBottom + 52;
+            ctx.fillStyle = '#22c55e';
             ctx.fillRect(rx, descLabelY, rw, 28);
-            // Neo-brutalism border
             ctx.strokeStyle = '#000';
             ctx.lineWidth = 2;
             ctx.strokeRect(rx, descLabelY, rw, 28);
@@ -323,29 +308,19 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             ctx.textAlign = 'left';
             ctx.fillText('DESCRIPTION', rx + 14, descLabelY + 18);
 
-            // 6g. Description box — both languages stacked
+            // 6g. Description text box — selected language only
             const answerBoxY = descLabelY + 28;
-            const answerBoxH = 148;
-            ctx.fillStyle = '#f0fdf4'; // emerald-50
+            const answerBoxH = 120;
+            ctx.fillStyle = '#f0fdf4';
             ctx.fillRect(rx, answerBoxY, rw, answerBoxH);
             ctx.strokeStyle = '#000';
             ctx.lineWidth = 3;
             ctx.strokeRect(rx, answerBoxY, rw, answerBoxH);
-
-            // Primary language description
-            if (descPrimary) {
-                ctx.fillStyle = '#14532d'; // emerald-900
-                ctx.font = font(16);
+            if (answer) {
+                ctx.fillStyle = '#14532d';
+                ctx.font = font(18);
                 ctx.textAlign = 'left';
-                const primLines = wrapText(ctx, descPrimary, rx + 16, answerBoxY + 26, rw - 32, 24, 2);
-                const primBottom = answerBoxY + 26 + primLines * 24;
-
-                // Secondary language description (muted, smaller)
-                if (descSecondary && descSecondary !== descPrimary) {
-                    ctx.fillStyle = 'rgba(20,83,45,0.55)';
-                    ctx.font = isKh ? fontEN(13, 'normal') : fontKH(13, 'normal');
-                    wrapText(ctx, descSecondary, rx + 16, primBottom + 10, rw - 32, 20, 2);
-                }
+                wrapText(ctx, answer, rx + 16, answerBoxY + 32, rw - 32, 28, 3);
             }
 
             // ── 7. Footer bar — Premium brand section ─────────────────────────────
