@@ -128,40 +128,16 @@ export function SignDetailPopup({ topic, questions = [], onClose }: SignDetailPo
           </div>
 
           <div className="px-5 pt-2 pb-1">
-            <p className="text-[9px] font-black uppercase tracking-widest text-amber-600 mb-1">
-              Sign Category
-            </p>
-            <h2 className="text-xl sm:text-2xl font-black leading-tight text-black break-words"
-              style={{ wordBreak: "break-word", overflowWrap: "anywhere" }}>
-              {topic.name_en}
+            <h2 className={`text-2xl sm:text-3xl leading-tight break-words ${hl}`} style={kf}>
+              {name}
             </h2>
-            {topic.name_km && topic.name_km !== topic.name_en && (
-              <p className="text-base font-bold leading-snug text-zinc-500 mt-1 break-words"
-                style={{ fontFamily: "Siemreap, sans-serif", wordBreak: "break-word", overflowWrap: "anywhere" }}>
-                {topic.name_km}
-              </p>
-            )}
           </div>
 
-          {(topic.description_en || topic.description_km) && (
-            <div className="mx-5 mt-2 mb-3 rounded overflow-hidden border border-emerald-400">
-              <div className="bg-emerald-500 px-3 py-1.5">
-                <span className="text-[9px] font-black uppercase tracking-widest text-white">Description</span>
-              </div>
-              <div className="bg-emerald-50 px-4 py-3 space-y-2">
-                {topic.description_en && (
-                  <p className="text-sm font-medium leading-relaxed text-emerald-900 break-words"
-                    style={{ wordBreak: "break-word", overflowWrap: "anywhere" }}>
-                    {topic.description_en}
-                  </p>
-                )}
-                {topic.description_km && (
-                  <p className="text-sm font-medium leading-relaxed text-emerald-900 break-words"
-                    style={{ fontFamily: "Siemreap, sans-serif", wordBreak: "break-word", overflowWrap: "anywhere" }}>
-                    {topic.description_km}
-                  </p>
-                )}
-              </div>
+          {description && (
+            <div className="px-5 pt-1 pb-4">
+              <p className={`text-sm sm:text-base leading-relaxed break-words whitespace-pre-wrap ${hlDesc}`} style={kf}>
+                {description}
+              </p>
             </div>
           )}
 
@@ -180,10 +156,10 @@ export function SignDetailPopup({ topic, questions = [], onClose }: SignDetailPo
                 onClick={toggleAudio}
                 disabled={loading}
                 className={`w-full py-3 font-black text-sm inline-flex items-center justify-center gap-2.5 border-2 border-black select-none ${loading
-                    ? "bg-zinc-100 text-zinc-400 cursor-wait"
-                    : playing
-                      ? "bg-black text-yellow-400 shadow-[4px_4px_0_#ca8a04]"
-                      : "bg-white text-black shadow-[4px_4px_0_#000] hover:bg-yellow-400 hover:shadow-[4px_4px_0_#ca8a04]"
+                  ? "bg-zinc-100 text-zinc-400 cursor-wait"
+                  : playing
+                    ? "bg-black text-yellow-400 shadow-[4px_4px_0_#ca8a04]"
+                    : "bg-white text-black shadow-[4px_4px_0_#000] hover:bg-yellow-400 hover:shadow-[4px_4px_0_#ca8a04]"
                   }`}
                 style={kf}
               >

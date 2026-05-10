@@ -133,39 +133,22 @@ function SignDetailPanel({
         </div>
 
         {/* Content */}
-        <div className="p-5 space-y-3 min-w-0">
-          {/* Sign category label */}
-          <p className="text-[9px] font-black uppercase tracking-widest text-amber-600">Sign Category</p>
+        <div className="p-5 space-y-3">
+          <h2 className="text-2xl font-black leading-tight">{name}</h2>
+          <p className="text-lg text-zinc-600" style={{ fontFamily: "Siemreap, sans-serif" }}>
+            {isKh ? sign.titleEn : sign.titleKm}
+          </p>
 
-          {/* Title — both languages */}
-          <div>
-            <h2 className="text-xl font-black leading-tight break-words" style={{ wordBreak: "break-word", overflowWrap: "anywhere" }}>
-              {sign.titleEn}
-            </h2>
-            {sign.titleKm && sign.titleKm !== sign.titleEn && (
-              <p className="text-base text-zinc-500 mt-0.5 break-words" style={{ fontFamily: "Siemreap, sans-serif", wordBreak: "break-word", overflowWrap: "anywhere" }}>
-                {sign.titleKm}
-              </p>
-            )}
-          </div>
-
-          {/* Description — both languages in one green box */}
-          {(sign.descriptionEn || sign.descriptionKm) && (
+          {/* Description — current language only */}
+          {description && (
             <div className="rounded overflow-hidden border border-emerald-400">
               <div className="bg-emerald-500 px-3 py-1.5">
                 <span className="text-[9px] font-black uppercase tracking-widest text-white">Description</span>
               </div>
-              <div className="bg-emerald-50 px-3 py-2.5 space-y-2">
-                {sign.descriptionEn && (
-                  <p className="text-sm text-emerald-900 leading-relaxed break-words" style={{ wordBreak: "break-word", overflowWrap: "anywhere" }}>
-                    {sign.descriptionEn}
-                  </p>
-                )}
-                {sign.descriptionKm && (
-                  <p className="text-sm text-emerald-900 leading-relaxed break-words" style={{ fontFamily: "Siemreap, sans-serif", wordBreak: "break-word", overflowWrap: "anywhere" }}>
-                    {sign.descriptionKm}
-                  </p>
-                )}
+              <div className="bg-emerald-50 px-3 py-2.5">
+                <p className="text-sm text-emerald-900 leading-relaxed" style={kf}>
+                  {description}
+                </p>
               </div>
             </div>
           )}

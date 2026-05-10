@@ -374,23 +374,16 @@ function DetailPanel({
         )}
 
         <div className="px-3 pb-3">
-          {/* ── Title — both languages ── */}
-          <div className="mt-2 mb-2">
-            <p className="text-sm font-black leading-snug text-black text-center break-words overflow-wrap-anywhere" style={{ wordBreak: "break-word", overflowWrap: "anywhere" }}>
-              {topic.name_en}
-            </p>
-            {topic.name_km && topic.name_km !== topic.name_en && (
-              <p className="text-xs font-bold leading-snug text-zinc-500 text-center mt-0.5 break-words" style={{ fontFamily: "Siemreap, sans-serif", wordBreak: "break-word", overflowWrap: "anywhere" }}>
-                {topic.name_km}
-              </p>
-            )}
-          </div>
+          {/* ── Title — current language only ── */}
+          <p className="text-sm font-black leading-snug text-black mt-2 mb-2 text-center" style={kf}>
+            {name}
+          </p>
 
-          {/* ── Description zone — always show both languages ── */}
-          {(topic.description_en || topic.description_km) && (
+          {/* ── Description zone — current language only ── */}
+          {description && (
             <div className={`rounded overflow-hidden border transition-all duration-300 ${playing ? "border-yellow-400" : "border-emerald-400"}`}>
               <div className={`px-2 py-1 flex items-center gap-2 transition-colors duration-300 ${playing ? "bg-yellow-400" : "bg-emerald-500"}`}>
-                <span className="text-[8px] font-black uppercase tracking-widest text-white">Description</span>
+                <span className="text-[8px] font-black uppercase tracking-widest text-white" style={kf}>{isKh ? "ពិពណ៌នា" : "Description"}</span>
                 {playing && (
                   <span className="flex gap-0.5 items-end h-2.5 ml-auto">
                     {[60, 100, 75, 90, 55].map((h, i) => (
@@ -399,19 +392,10 @@ function DetailPanel({
                   </span>
                 )}
               </div>
-              <div className={`px-3 py-2 space-y-2 transition-colors duration-300 ${playing ? "bg-yellow-50" : "bg-emerald-50"}`}>
-                {topic.description_en && (
-                  <p className={`font-bold text-sm leading-relaxed break-words ${playing ? "text-black" : "text-emerald-900"}`}
-                    style={{ wordBreak: "break-word", overflowWrap: "anywhere" }}>
-                    {topic.description_en}
-                  </p>
-                )}
-                {topic.description_km && (
-                  <p className={`font-bold text-sm leading-relaxed break-words ${playing ? "text-black" : "text-emerald-900"}`}
-                    style={{ fontFamily: "Siemreap, sans-serif", wordBreak: "break-word", overflowWrap: "anywhere" }}>
-                    {topic.description_km}
-                  </p>
-                )}
+              <div className={`px-3 py-2 transition-colors duration-300 ${playing ? "bg-yellow-50" : "bg-emerald-50"}`}>
+                <p className={`font-bold text-sm leading-snug ${playing ? "text-black" : "text-emerald-900"}`} style={kf}>
+                  {description}
+                </p>
               </div>
             </div>
           )}
