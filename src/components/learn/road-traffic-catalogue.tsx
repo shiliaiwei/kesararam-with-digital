@@ -28,7 +28,7 @@ const SUB_GROUPS: { key: string; en: string; km: string }[] = [
 
 const UI = {
   en: {
-    category: "KNOWLEDGE CATEGORY",
+    category: "SIGN CATEGORY",
     title: "Road Traffic Law",
     titleKm: "ច្បាប់ចរាចរណ៍ផ្លូវ",
     desc: "Learn essential road traffic laws and regulations in Cambodia.",

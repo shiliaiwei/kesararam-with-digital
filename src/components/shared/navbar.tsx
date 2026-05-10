@@ -14,6 +14,7 @@ import type { JWTPayload } from "@/lib/auth";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
 import { Crown } from "lucide-react";
 import { UpgradeModal } from "@/components/pricing/upgrade-modal";
+import { RankBadge as TierBadge } from "@/components/shared/rank-label";
 
 interface NavbarProps {
   session?: JWTPayload | null;
@@ -56,6 +57,7 @@ function AnimatedLogoText() {
 
 function ProfileMenu({ session, kh }: { session: JWTPayload; kh: boolean }) {
   const [open, setOpen] = useState(false);
+  const [lifetimePoints, setLifetimePoints] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -67,6 +69,15 @@ function ProfileMenu({ session, kh }: { session: JWTPayload; kh: boolean }) {
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
+
+  // Fetch points when menu opens (only for students)
+  useEffect(() => {
+    if (!open || session.role !== "student") return;
+    fetch("/api/user/stats")
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d?.stats?.lifetimePoints) setLifetimePoints(d.stats.lifetimePoints); })
+      .catch(() => { });
+  }, [open, session.role]);
 
   const dashboardHref =
     session.role === "admin"
@@ -119,16 +130,21 @@ function ProfileMenu({ session, kh }: { session: JWTPayload; kh: boolean }) {
             <p className="text-[10px] text-zinc-500 truncate">
               {session.email}
             </p>
-            <span
-              className="inline-block mt-1 text-[9px] font-bold uppercase tracking-widest px-2 py-0.5"
-              style={{
-                background: roleColor,
-                color: "#fff",
-                borderRadius: "0px",
-              }}
-            >
-              {session.role}
-            </span>
+            <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+              <span
+                className="inline-block text-[9px] font-bold uppercase tracking-widest px-2 py-0.5"
+                style={{
+                  background: roleColor,
+                  color: "#fff",
+                  borderRadius: "0px",
+                }}
+              >
+                {session.role}
+              </span>
+              {session.role === "student" && lifetimePoints > 0 && (
+                <TierBadge lifetimePoints={lifetimePoints} size="xs" lang={kh ? "kh" : "en"} />
+              )}
+            </div>
           </div>
           <div className="py-1">
             {(session.role === "admin" || session.role === "teacher" || session.role === "staff") && (

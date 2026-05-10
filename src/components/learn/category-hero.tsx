@@ -91,7 +91,7 @@ export function CategoryHero({
                         {/* Category label pill */}
                         <div className="inline-flex items-center gap-1.5 bg-black text-white text-[10px] font-black tracking-widest uppercase px-2.5 py-1 mb-3" style={kf}>
                             <span>{config.emoji}</span>
-                            {isKh ? "ប្រភេទចំណេះដឹង" : "KNOWLEDGE CATEGORY"}
+                            {isKh ? "ប្រភេទចំណេះដឹង" : "SIGN CATEGORY"}
                         </div>
 
                         {/* Main title — largest element, first eye stop */}

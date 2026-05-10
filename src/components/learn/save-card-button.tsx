@@ -269,11 +269,11 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             // ── 6. Right panel content — Premium hierarchy ────────────────────────
             const rx = leftW + 44, ry = 40, rw = W - rx - 44;
 
-            // 6a. KNOWLEDGE CATEGORY micro-label — Premium styling
+            // 6a. Sign Category micro-label — Premium styling
             ctx.fillStyle = cfg.accentDark;
             ctx.font = fontEN(11);
             ctx.textAlign = 'left';
-            ctx.fillText('KNOWLEDGE CATEGORY', rx, ry + 14);
+            ctx.fillText('SIGN CATEGORY', rx, ry + 14);
 
             // 6b. Accent underline — Bold brand element
             ctx.fillStyle = cfg.accent;
