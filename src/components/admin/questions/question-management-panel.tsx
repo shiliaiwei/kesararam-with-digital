@@ -124,6 +124,9 @@ export function QuestionManagementPanel() {
         }
     }, []);
 
+    // Loading state for topic questions fetch
+    const [topicQLoading, setTopicQLoading] = useState(false);
+
     useEffect(() => {
         fetchAll();
     }, []);
@@ -274,8 +277,10 @@ export function QuestionManagementPanel() {
         setTypeFilter("all");
         setDiffFilter("all");
         setQuestions([]);
+        setTopicQLoading(true);
         try {
-            const res = await fetch(`/api/admin/questions?topicId=${topic.id}`);
+            // No limit — fetch ALL questions for this topic
+            const res = await fetch(`/api/admin/questions?topicId=${topic.id}&limit=9999`);
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             const data = await res.json();
             const qs = Array.isArray(data.questions) ? data.questions : [];
@@ -284,11 +289,12 @@ export function QuestionManagementPanel() {
                 ...prev.filter(q => q.topicId !== topic.id),
                 ...qs
             ]);
-            // Refresh DB counts for this topic
             fetchQCounts();
         } catch (err) {
             console.error("Failed to fetch topic questions:", err);
             setQuestions(allQuestions.filter(q => q.topicId === topic.id));
+        } finally {
+            setTopicQLoading(false);
         }
     };
 
@@ -649,13 +655,31 @@ export function QuestionManagementPanel() {
                                     <option value="multi-select">Multi-Select</option>
                                 </select>
 
-                                {/* Difficulty filter */}
-                                <select value={diffFilter} onChange={e => setDiffFilter(e.target.value)} className="px-2 py-1.5 border-2 border-black text-xs font-bold bg-white focus:outline-none">
-                                    <option value="all">All Levels</option>
-                                    <option value="easy">Easy</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="hard">Hard</option>
-                                </select>
+                                {/* Difficulty filter — pill buttons */}
+                                <div className="flex items-center gap-1">
+                                    {[
+                                        { value: "all", label: "All", bg: "bg-black", text: "text-white" },
+                                        { value: "easy", label: "Easy", bg: "bg-green-400", text: "text-black" },
+                                        { value: "medium", label: "Medium", bg: "bg-amber-400", text: "text-black" },
+                                        { value: "hard", label: "Hard", bg: "bg-red-500", text: "text-white" },
+                                    ].map(d => (
+                                        <button
+                                            key={d.value}
+                                            onClick={() => setDiffFilter(d.value)}
+                                            className={`px-2.5 py-1.5 border-2 border-black text-xs font-black transition-all ${diffFilter === d.value
+                                                ? `${d.bg} ${d.text} shadow-[2px_2px_0_#000]`
+                                                : "bg-white text-zinc-500 hover:bg-zinc-100"
+                                                }`}
+                                        >
+                                            {d.label}
+                                            {d.value !== "all" && (
+                                                <span className="ml-1 opacity-70">
+                                                    ({qCounts[activeTopic.id]?.[d.value as keyof TopicQCount] ?? questions.filter(q => q.difficulty === d.value).length})
+                                                </span>
+                                            )}
+                                        </button>
+                                    ))}
+                                </div>
 
                                 <button
                                     onClick={() => setShowModal(true)}
@@ -669,7 +693,12 @@ export function QuestionManagementPanel() {
                     </div>
 
                     {/* Questions list */}
-                    {filteredQuestions.length === 0 ? (
+                    {topicQLoading ? (
+                        <div className="bg-white border-2 border-black p-12 text-center shadow-[2px_2px_0_#000]">
+                            <div className="inline-block w-8 h-8 border-4 border-black border-t-transparent rounded-full animate-spin mb-3" />
+                            <p className="font-bold text-zinc-500 text-sm">Loading questions...</p>
+                        </div>
+                    ) : filteredQuestions.length === 0 ? (
                         <div className="bg-white border-2 border-black p-12 text-center shadow-[2px_2px_0_#000]">
                             <HelpCircle size={40} className="mx-auto mb-3 text-zinc-300" />
                             <p className="font-black text-zinc-500 mb-1">No questions yet</p>

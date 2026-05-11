@@ -17,6 +17,9 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get("search");
     const categoryId = searchParams.get("categoryId");
     const topicId = searchParams.get("topicId");
+    // When fetching for a specific topic, no limit needed — topics have bounded question counts
+    const limitParam = searchParams.get("limit");
+    const limit = limitParam ? parseInt(limitParam) : topicId ? 9999 : 500;
 
     // Build where conditions
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -55,7 +58,7 @@ export async function GET(request: NextRequest) {
           : where
       )
       .orderBy(questions.createdAt)
-      .limit(500);
+      .limit(limit);
 
     if (rows.length === 0) {
       return NextResponse.json({ questions: [], total: 0 });
