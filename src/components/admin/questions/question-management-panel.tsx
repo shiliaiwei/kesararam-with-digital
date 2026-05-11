@@ -15,6 +15,7 @@ interface Question {
     questionKm: string;
     questionType: string;
     difficulty: string;
+    status: string;
     answerCount: number;
     createdAt: string;
 }
@@ -95,6 +96,7 @@ export function QuestionManagementPanel() {
     const [search, setSearch] = useState("");
     const [typeFilter, setTypeFilter] = useState("all");
     const [diffFilter, setDiffFilter] = useState("all");
+    const [statusFilter, setStatusFilter] = useState("all");
 
     // Topic filters
     const [topicStatusFilter, setTopicStatusFilter] = useState("all");
@@ -247,6 +249,7 @@ export function QuestionManagementPanel() {
     const filteredQuestions = questions.filter(q => {
         if (typeFilter !== "all" && q.questionType !== typeFilter) return false;
         if (diffFilter !== "all" && q.difficulty !== diffFilter) return false;
+        if (statusFilter !== "all" && q.status !== statusFilter) return false;
         if (search) {
             const s = search.toLowerCase();
             return q.questionEn?.toLowerCase().includes(s) || q.topicName?.toLowerCase().includes(s);
@@ -276,6 +279,7 @@ export function QuestionManagementPanel() {
         setSearch("");
         setTypeFilter("all");
         setDiffFilter("all");
+        setStatusFilter("all");
         setQuestions([]);
         setTopicQLoading(true);
         try {
@@ -655,28 +659,36 @@ export function QuestionManagementPanel() {
                                     <option value="multi-select">Multi-Select</option>
                                 </select>
 
-                                {/* Difficulty filter — pill buttons */}
-                                <div className="flex items-center gap-1">
+                                {/* Difficulty pills */}
+                                <div className="flex items-center gap-1 flex-wrap">
                                     {[
                                         { value: "all", label: "All", bg: "bg-black", text: "text-white" },
                                         { value: "easy", label: "Easy", bg: "bg-green-400", text: "text-black" },
                                         { value: "medium", label: "Medium", bg: "bg-amber-400", text: "text-black" },
                                         { value: "hard", label: "Hard", bg: "bg-red-500", text: "text-white" },
                                     ].map(d => (
-                                        <button
-                                            key={d.value}
-                                            onClick={() => setDiffFilter(d.value)}
-                                            className={`px-2.5 py-1.5 border-2 border-black text-xs font-black transition-all ${diffFilter === d.value
-                                                ? `${d.bg} ${d.text} shadow-[2px_2px_0_#000]`
-                                                : "bg-white text-zinc-500 hover:bg-zinc-100"
-                                                }`}
-                                        >
+                                        <button key={d.value} onClick={() => setDiffFilter(d.value)}
+                                            className={`px-2.5 py-1.5 border-2 border-black text-xs font-black transition-all ${diffFilter === d.value ? `${d.bg} ${d.text} shadow-[2px_2px_0_#000]` : "bg-white text-zinc-500 hover:bg-zinc-100"}`}>
                                             {d.label}
-                                            {d.value !== "all" && (
-                                                <span className="ml-1 opacity-70">
-                                                    ({qCounts[activeTopic.id]?.[d.value as keyof TopicQCount] ?? questions.filter(q => q.difficulty === d.value).length})
-                                                </span>
-                                            )}
+                                            {d.value !== "all" && <span className="ml-1 opacity-70">({questions.filter(q => q.difficulty === d.value).length})</span>}
+                                        </button>
+                                    ))}
+                                </div>
+
+                                {/* Status pills */}
+                                <div className="flex items-center gap-1 flex-wrap">
+                                    {[
+                                        { value: "all", label: "All Status" },
+                                        { value: "published", label: "Published", color: "#22c55e" },
+                                        { value: "approved", label: "Approved", color: "#3b82f6" },
+                                        { value: "draft", label: "Draft", color: "#71717a" },
+                                        { value: "pending", label: "Pending", color: "#f59e0b" },
+                                    ].map(s => (
+                                        <button key={s.value} onClick={() => setStatusFilter(s.value)}
+                                            className={`px-2.5 py-1.5 border-2 border-black text-xs font-black transition-all ${statusFilter === s.value ? "shadow-[2px_2px_0_#000]" : "bg-white text-zinc-500 hover:bg-zinc-100"}`}
+                                            style={statusFilter === s.value && s.color ? { backgroundColor: s.color, color: "#fff" } : {}}>
+                                            {s.label}
+                                            {s.value !== "all" && <span className="ml-1 opacity-70">({questions.filter(q => q.status === s.value).length})</span>}
                                         </button>
                                     ))}
                                 </div>
@@ -718,21 +730,29 @@ export function QuestionManagementPanel() {
                                     <tr>
                                         <th className="px-4 py-3 text-left text-xs font-black uppercase">#</th>
                                         <th className="px-4 py-3 text-left text-xs font-black uppercase">Question</th>
-                                        <th className="px-4 py-3 text-left text-xs font-black uppercase w-28">Type</th>
+                                        <th className="px-4 py-3 text-left text-xs font-black uppercase w-24">Type</th>
                                         <th className="px-4 py-3 text-left text-xs font-black uppercase w-20">Level</th>
-                                        <th className="px-4 py-3 text-left text-xs font-black uppercase w-16">Ans</th>
-                                        <th className="px-4 py-3 text-left text-xs font-black uppercase w-24">Actions</th>
+                                        <th className="px-4 py-3 text-left text-xs font-black uppercase w-24">Status</th>
+                                        <th className="px-4 py-3 text-left text-xs font-black uppercase w-12">Ans</th>
+                                        <th className="px-4 py-3 text-left text-xs font-black uppercase w-28">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-zinc-200">
                                     {filteredQuestions.map((q, i) => {
                                         const TypeIcon = TYPE_ICONS[q.questionType] || Layers;
+                                        const statusColors: Record<string, string> = {
+                                            published: "#22c55e",
+                                            approved: "#3b82f6",
+                                            draft: "#71717a",
+                                            pending: "#f59e0b",
+                                            rejected: "#ef4444",
+                                        };
                                         return (
                                             <tr key={q.id} className="hover:bg-yellow-50 transition-colors">
                                                 <td className="px-4 py-3 text-xs font-black text-zinc-400">{i + 1}</td>
                                                 <td className="px-4 py-3">
-                                                    <div className="text-sm font-bold text-black line-clamp-2">{q.questionEn}</div>
-                                                    {q.questionKm && <div className="text-xs text-zinc-400 line-clamp-1 mt-0.5">{q.questionKm}</div>}
+                                                    <div className="text-sm font-bold text-black">{q.questionEn}</div>
+                                                    {q.questionKm && <div className="text-xs text-zinc-400 mt-0.5">{q.questionKm}</div>}
                                                 </td>
                                                 <td className="px-4 py-3">
                                                     <span className="inline-flex items-center gap-1 px-2 py-1 bg-blue-50 border border-blue-200 text-xs font-bold text-blue-700">
@@ -744,6 +764,35 @@ export function QuestionManagementPanel() {
                                                     <span className="inline-block px-2 py-1 border border-black text-xs font-black text-white" style={{ backgroundColor: DIFF_COLORS[q.difficulty] || "#6b7280" }}>
                                                         {q.difficulty?.toUpperCase()}
                                                     </span>
+                                                </td>
+                                                <td className="px-4 py-3">
+                                                    {/* Quick status toggle */}
+                                                    <select
+                                                        value={q.status || "draft"}
+                                                        onChange={async (e) => {
+                                                            const newStatus = e.target.value;
+                                                            try {
+                                                                await fetch(`/api/admin/questions/${q.id}/status`, {
+                                                                    method: "PATCH",
+                                                                    headers: { "Content-Type": "application/json" },
+                                                                    body: JSON.stringify({ status: newStatus }),
+                                                                });
+                                                                setQuestions(prev => prev.map(x => x.id === q.id ? { ...x, status: newStatus } : x));
+                                                                setAllQuestions(prev => prev.map(x => x.id === q.id ? { ...x, status: newStatus } : x));
+                                                                showToast(`Status → ${newStatus}`, "success");
+                                                            } catch {
+                                                                showToast("Failed to update status", "error");
+                                                            }
+                                                        }}
+                                                        className="text-xs font-black px-2 py-1 border-2 border-black focus:outline-none"
+                                                        style={{ backgroundColor: statusColors[q.status || "draft"] || "#71717a", color: "#fff" }}
+                                                    >
+                                                        <option value="draft">Draft</option>
+                                                        <option value="pending">Pending</option>
+                                                        <option value="approved">Approved</option>
+                                                        <option value="published">Published</option>
+                                                        <option value="rejected">Rejected</option>
+                                                    </select>
                                                 </td>
                                                 <td className="px-4 py-3 text-xs font-bold text-zinc-600">{q.answerCount}</td>
                                                 <td className="px-4 py-3">

@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
-import { db, sql } from "@/lib/db";
-import { questions, answers, topics, categories } from "@/db/schema";
-import { eq, and, ilike, or, count, inArray } from "drizzle-orm";
+import { sql } from "@/lib/db";
 
 export async function GET(request: NextRequest) {
   try {
@@ -17,75 +15,48 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get("search");
     const categoryId = searchParams.get("categoryId");
     const topicId = searchParams.get("topicId");
-    // When fetching for a specific topic, no limit needed — topics have bounded question counts
     const limitParam = searchParams.get("limit");
     const limit = limitParam ? parseInt(limitParam) : topicId ? 9999 : 500;
 
-    // Build where conditions
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const conditions: any[] = [];
+    // Build raw SQL — avoids any Drizzle ORM schema mismatch
+    const rows = await sql`
+      SELECT
+        q.id,
+        q.topic_id        AS "topicId",
+        q.question_en     AS "questionEn",
+        q.question_km     AS "questionKm",
+        q.difficulty,
+        q.status,
+        q.created_at      AS "createdAt",
+        t.name_en         AS "topicName",
+        t.category_id     AS "categoryId",
+        c.title_en        AS "categoryName",
+        -- answer stats
+        COUNT(a.id)::int                                                        AS "answerCount",
+        BOOL_OR(a.image_url IS NOT NULL)                                        AS "hasImage",
+        COUNT(a.id) FILTER (WHERE a.is_correct = true)::int                     AS "correctCount",
+        (COUNT(a.id) = 2 AND BOOL_AND(a.answer_en IN ('True','False','true','false'))) AS "isTrueFalse"
+      FROM questions q
+      LEFT JOIN topics    t ON t.id = q.topic_id
+      LEFT JOIN categories c ON c.id = t.category_id
+      LEFT JOIN answers   a ON a.question_id = q.id
+      WHERE TRUE
+        ${topicId ? sql`AND q.topic_id = ${parseInt(topicId)}` : sql``}
+        ${categoryId ? sql`AND t.category_id = ${parseInt(categoryId)}` : sql``}
+        ${difficulty && difficulty !== "all" ? sql`AND q.difficulty = ${difficulty}` : sql``}
+        ${search ? sql`AND (q.question_en ILIKE ${'%' + search + '%'} OR q.question_km ILIKE ${'%' + search + '%'})` : sql``}
+      GROUP BY q.id, q.topic_id, q.question_en, q.question_km, q.difficulty, q.status, q.created_at,
+               t.name_en, t.category_id, c.title_en
+      ORDER BY q.created_at ASC
+      LIMIT ${limit}
+    `;
 
-    if (topicId) conditions.push(eq(questions.topicId, Number(topicId)));
-    if (difficulty && difficulty !== "all") conditions.push(eq(questions.difficulty, difficulty));
-    if (search) {
-      conditions.push(or(
-        ilike(questions.questionEn, `%${search}%`),
-        ilike(questions.questionKm, `%${search}%`),
-      ));
-    }
-
-    const where = conditions.length > 0 ? and(...conditions) : undefined;
-
-    // Fetch questions with topic + category info
-    const rows = await db
-      .select({
-        id: questions.id,
-        topicId: questions.topicId,
-        questionEn: questions.questionEn,
-        questionKm: questions.questionKm,
-        difficulty: questions.difficulty,
-        createdAt: questions.createdAt,
-        topicName: topics.nameEn,
-        categoryId: topics.categoryId,
-        categoryName: categories.titleEn,
-      })
-      .from(questions)
-      .leftJoin(topics, eq(questions.topicId, topics.id))
-      .leftJoin(categories, eq(topics.categoryId, categories.id))
-      .where(
-        categoryId
-          ? and(where, eq(topics.categoryId, Number(categoryId)))
-          : where
-      )
-      .orderBy(questions.createdAt)
-      .limit(limit);
-
-    if (rows.length === 0) {
-      return NextResponse.json({ questions: [], total: 0 });
-    }
-
-    // Fetch answer counts for all questions
-    const qIds = rows.map(r => r.id);
-    const answerCounts = await db
-      .select({
-        questionId: answers.questionId,
-        answerCount: count(answers.id),
-        hasImage: sql<boolean>`bool_or(${answers.imageUrl} IS NOT NULL)`,
-        correctCount: sql<number>`count(*) filter (where ${answers.isCorrect} = true)`,
-        isTrueFalse: sql<boolean>`count(*) = 2 AND bool_and(${answers.answerEn} IN ('True','False','true','false'))`,
-      })
-      .from(answers)
-      .where(inArray(answers.questionId, qIds))
-      .groupBy(answers.questionId);
-
-    const countMap = new Map(answerCounts.map(a => [a.questionId, a]));
-
-    const result = rows.map(q => {
-      const ac = countMap.get(q.id);
-      const ansCount = Number(ac?.answerCount ?? 0);
-      const hasImage = Boolean(ac?.hasImage);
-      const correctCount = Number(ac?.correctCount ?? 0);
-      const isTF = Boolean(ac?.isTrueFalse);
+    // Derive question type from answer stats
+    const result = rows.map((q: any) => {
+      const ansCount = Number(q.answerCount ?? 0);
+      const hasImage = Boolean(q.hasImage);
+      const correctCount = Number(q.correctCount ?? 0);
+      const isTF = Boolean(q.isTrueFalse);
 
       let questionType = "mcq";
       if (isTF && ansCount === 2) questionType = "true-false";
@@ -93,7 +64,16 @@ export async function GET(request: NextRequest) {
       else if (hasImage) questionType = "image-match";
 
       return {
-        ...q,
+        id: Number(q.id),
+        topicId: Number(q.topicId),
+        questionEn: q.questionEn,
+        questionKm: q.questionKm,
+        difficulty: q.difficulty || "medium",
+        status: q.status || "draft",
+        createdAt: q.createdAt,
+        topicName: q.topicName,
+        categoryId: q.categoryId ? Number(q.categoryId) : null,
+        categoryName: q.categoryName,
         answerCount: ansCount,
         questionType,
       };
@@ -101,7 +81,7 @@ export async function GET(request: NextRequest) {
 
     // Filter by type if specified
     const filtered = type && type !== "all"
-      ? result.filter(q => q.questionType === type)
+      ? result.filter((q: any) => q.questionType === type)
       : result;
 
     return NextResponse.json({ questions: filtered, total: filtered.length });
