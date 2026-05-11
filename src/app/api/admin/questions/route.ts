@@ -35,7 +35,10 @@ export async function GET(request: NextRequest) {
         COUNT(a.id)::int                                                        AS "answerCount",
         BOOL_OR(a.image_url IS NOT NULL)                                        AS "hasImage",
         COUNT(a.id) FILTER (WHERE a.is_correct = true)::int                     AS "correctCount",
-        (COUNT(a.id) = 2 AND BOOL_AND(a.answer_en IN ('True','False','true','false'))) AS "isTrueFalse"
+        COALESCE(
+          (COUNT(a.id) = 2 AND BOOL_AND(a.answer_en IN ('True','False','true','false'))),
+          false
+        )                                                                        AS "isTrueFalse"
       FROM questions q
       LEFT JOIN topics    t ON t.id = q.topic_id
       LEFT JOIN categories c ON c.id = t.category_id
