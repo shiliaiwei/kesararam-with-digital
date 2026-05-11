@@ -99,7 +99,7 @@ export function Footer() {
               </a>
 
               {/* Telegram — blue */}
-              <a href="https://t.me/srievi" target="_blank" rel="noopener noreferrer"
+              <a href="https://t.me/kesararamwithdigital" target="_blank" rel="noopener noreferrer"
                 className="group relative flex items-center justify-center w-10 h-10 border-2 border-black transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5"
                 style={{ background: "#0088cc", boxShadow: "3px 3px 0 #000" }}
                 aria-label="Telegram">
