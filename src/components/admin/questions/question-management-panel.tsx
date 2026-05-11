@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Plus, Search, RefreshCw, Edit, Trash2, HelpCircle, ChevronRight, ArrowLeft, BookOpen, CircleDot, CheckCheck, Type, Puzzle, Images, MapPin, CheckSquare, Layers } from "lucide-react";
 import { QuestionFormModal } from "./question-form-modal";
 import { useToast } from "@/components/ui/toast-container";
@@ -34,6 +34,14 @@ interface Topic {
     categoryName: string;
     subGroup?: string;
     status: string;
+}
+
+// Real-time question count per topic from the DB
+interface TopicQCount {
+    total: number;
+    easy: number;
+    medium: number;
+    hard: number;
 }
 
 const DIFF_COLORS: Record<string, string> = {
@@ -74,6 +82,10 @@ export function QuestionManagementPanel() {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [allQuestions, setAllQuestions] = useState<Question[]>([]);
 
+    // Real-time question counts from DB (topicId → counts)
+    const [qCounts, setQCounts] = useState<Record<number, TopicQCount>>({});
+    const [countsLoading, setCountsLoading] = useState(false);
+
     // Navigation
     const [view, setView] = useState<View>("categories");
     const [activeCategory, setActiveCategory] = useState<Category | null>(null);
@@ -95,6 +107,22 @@ export function QuestionManagementPanel() {
     const [deleteConfirm, setDeleteConfirm] = useState<number | null>(null);
 
     const [loading, setLoading] = useState(true);
+
+    // Fetch real-time question counts from DB
+    const fetchQCounts = useCallback(async (categoryId?: number) => {
+        setCountsLoading(true);
+        try {
+            const url = categoryId
+                ? `/api/admin/topics/question-counts?categoryId=${categoryId}`
+                : `/api/admin/topics/question-counts`;
+            const res = await fetch(url);
+            if (!res.ok) return;
+            const data = await res.json();
+            setQCounts(prev => ({ ...prev, ...(data.counts || {}) }));
+        } catch { /* silent */ } finally {
+            setCountsLoading(false);
+        }
+    }, []);
 
     useEffect(() => {
         fetchAll();
@@ -120,6 +148,9 @@ export function QuestionManagementPanel() {
             setTopics(tops);
             setAllQuestions(qs);
             setQuestions(qs);
+
+            // Fetch real-time counts from DB (separate query, accurate regardless of limit)
+            fetchQCounts();
         } catch (e) {
             showToast("Failed to load data", "error");
         } finally {
@@ -146,6 +177,8 @@ export function QuestionManagementPanel() {
                 setAllQuestions(qs);
                 setQuestions(qs);
             }
+            // Always refresh DB counts after any question change
+            fetchQCounts(topicIdFilter ? undefined : undefined);
         } catch { }
     };
 
@@ -158,6 +191,8 @@ export function QuestionManagementPanel() {
                 const updated = allQuestions.filter(q => q.id !== id);
                 setAllQuestions(updated);
                 setQuestions(updated.filter(q => activeTopic ? q.topicId === activeTopic.id : true));
+                // Refresh DB counts after deletion
+                fetchQCounts();
             } else {
                 showToast("Failed to delete", "error");
             }
@@ -181,12 +216,26 @@ export function QuestionManagementPanel() {
         }
     };
 
-    // Derived counts
+    // Derived counts — use real DB counts from qCounts, fall back to client-side
     const getTopicQCount = (topicId: number) =>
-        allQuestions.filter(q => q.topicId === topicId).length;
+        qCounts[topicId]?.total ?? allQuestions.filter(q => q.topicId === topicId).length;
 
-    const getCategoryQCount = (categoryId: number) =>
-        allQuestions.filter(q => q.categoryId === categoryId).length;
+    const getTopicQBreakdown = (topicId: number): TopicQCount =>
+        qCounts[topicId] ?? {
+            total: allQuestions.filter(q => q.topicId === topicId).length,
+            easy: allQuestions.filter(q => q.topicId === topicId && q.difficulty === "easy").length,
+            medium: allQuestions.filter(q => q.topicId === topicId && q.difficulty === "medium").length,
+            hard: allQuestions.filter(q => q.topicId === topicId && q.difficulty === "hard").length,
+        };
+
+    const getCategoryQCount = (categoryId: number) => {
+        const catTopicIds = topics.filter(t => t.categoryId === categoryId).map(t => t.id);
+        const fromDB = catTopicIds.reduce((sum, tid) => sum + (qCounts[tid]?.total ?? 0), 0);
+        // If DB counts loaded, use them; otherwise fall back to client-side
+        return Object.keys(qCounts).length > 0
+            ? fromDB
+            : allQuestions.filter(q => q.categoryId === categoryId).length;
+    };
 
     const getCategoryTopicCount = (categoryId: number) =>
         topics.filter(t => t.categoryId === categoryId).length;
@@ -213,6 +262,8 @@ export function QuestionManagementPanel() {
         setTopicStatusFilter("all");
         setTopicSubGroupFilter("all");
         setTopicSearch("");
+        // Fetch fresh counts for this category
+        fetchQCounts(cat.id);
     };
 
     // Navigate to topic questions — always fetch fresh from API
@@ -222,23 +273,21 @@ export function QuestionManagementPanel() {
         setSearch("");
         setTypeFilter("all");
         setDiffFilter("all");
-        // Show loading state
         setQuestions([]);
-        // Fetch fresh questions for this topic from API
         try {
             const res = await fetch(`/api/admin/questions?topicId=${topic.id}`);
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             const data = await res.json();
             const qs = Array.isArray(data.questions) ? data.questions : [];
             setQuestions(qs);
-            // Merge into allQuestions
             setAllQuestions(prev => [
                 ...prev.filter(q => q.topicId !== topic.id),
                 ...qs
             ]);
+            // Refresh DB counts for this topic
+            fetchQCounts();
         } catch (err) {
             console.error("Failed to fetch topic questions:", err);
-            // Fallback to cached
             setQuestions(allQuestions.filter(q => q.topicId === topic.id));
         }
     };
@@ -512,8 +561,12 @@ export function QuestionManagementPanel() {
                                                     </td>
                                                     <td className="px-3 py-2.5 text-center">
                                                         <button onClick={() => openTopic(topic)}
-                                                            className={`inline-flex items-center gap-1 px-3 py-1 border-2 border-black font-black text-sm transition-all hover:shadow-[2px_2px_0_#000] ${qCount > 0 ? "bg-blue-400 text-black" : "bg-zinc-100 text-zinc-500"}`}>
-                                                            {qCount}<ChevronRight size={13} />
+                                                            className={`inline-flex items-center gap-1 px-3 py-1 border-2 border-black font-black text-sm transition-all hover:shadow-[2px_2px_0_#000] ${getTopicQCount(topic.id) > 0 ? "bg-blue-400 text-black" : "bg-zinc-100 text-zinc-500"}`}>
+                                                            {countsLoading && !qCounts[topic.id]
+                                                                ? <span className="w-3 h-3 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                                                                : getTopicQCount(topic.id)
+                                                            }
+                                                            <ChevronRight size={13} />
                                                         </button>
                                                     </td>
                                                     <td className="px-3 py-2.5">
@@ -539,21 +592,37 @@ export function QuestionManagementPanel() {
                     {/* Topic stats + filters */}
                     <div className="bg-white border-2 border-black p-3 shadow-[2px_2px_0_#000]">
                         <div className="flex items-center gap-4 flex-wrap">
-                            {/* Stats */}
-                            <div className="flex items-center gap-4">
-                                <div>
-                                    <span className="text-2xl font-black text-black">{filteredQuestions.length}</span>
-                                    <span className="text-xs font-bold text-zinc-500 ml-1">Questions</span>
-                                </div>
-                                {["easy", "medium", "hard"].map(d => (
-                                    <div key={d}>
-                                        <span className="text-lg font-black" style={{ color: DIFF_COLORS[d] }}>
-                                            {filteredQuestions.filter(q => q.difficulty === d).length}
-                                        </span>
-                                        <span className="text-xs font-bold text-zinc-500 ml-1 capitalize">{d}</span>
+                            {/* Stats — real DB counts */}
+                            {(() => {
+                                const dbCount = getTopicQBreakdown(activeTopic.id);
+                                return (
+                                    <div className="flex items-center gap-4">
+                                        <div className="flex flex-col">
+                                            <span className="text-2xl font-black text-black leading-none">{dbCount.total}</span>
+                                            <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wide">Questions</span>
+                                        </div>
+                                        {[
+                                            { key: "easy", label: "Easy", color: "#22c55e" },
+                                            { key: "medium", label: "Medium", color: "#f59e0b" },
+                                            { key: "hard", label: "Hard", color: "#ef4444" },
+                                        ].map(d => (
+                                            <div key={d.key} className="flex flex-col">
+                                                <span className="text-xl font-black leading-none" style={{ color: d.color }}>
+                                                    {dbCount[d.key as keyof TopicQCount]}
+                                                </span>
+                                                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wide">{d.label}</span>
+                                            </div>
+                                        ))}
+                                        {/* Showing (filtered) */}
+                                        {(typeFilter !== "all" || diffFilter !== "all" || search) && (
+                                            <div className="flex flex-col border-l border-zinc-200 pl-4">
+                                                <span className="text-xl font-black leading-none text-zinc-400">{filteredQuestions.length}</span>
+                                                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wide">Showing</span>
+                                            </div>
+                                        )}
                                     </div>
-                                ))}
-                            </div>
+                                );
+                            })()}
 
                             <div className="flex items-center gap-2 ml-auto flex-wrap">
                                 {/* Search */}
