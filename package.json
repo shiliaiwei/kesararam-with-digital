@@ -43,7 +43,7 @@
     "lightgallery": "^2.9.0",
     "lucide-react": "^0.577.0",
     "mapbox-gl": "3.23.0",
-    "next": "16.2.4",
+    "next": "^15.0.3",
     "next-cloudinary": "^6.17.5",
     "next-intl": "^4.9.1",
     "next-themes": "^0.4.6",
@@ -67,7 +67,7 @@
     "@types/react-dom": "^19",
     "@vitest/ui": "^3.2.0",
     "eslint": "^9",
-    "eslint-config-next": "16.2.4",
+    "eslint-config-next": "^15.0.3",
     "fast-check": "^3.23.2",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
@@ -81,7 +81,8 @@
     "hono": ">=4.6.15",
     "@hono/node-server": ">=1.19.13",
     "ip-address": ">=9.0.5",
-    "jsbn": ">=1.2.0"
+    "jsbn": ">=1.2.0",
+    "fast-uri": ">=3.0.1"
   },
   "resolutions": {
     "path-to-regexp": ">=8.0.0",
@@ -90,6 +91,7 @@
     "hono": ">=4.6.15",
     "@hono/node-server": ">=1.19.13",
     "ip-address": ">=9.0.5",
-    "jsbn": ">=1.2.0"
+    "jsbn": ">=1.2.0",
+    "fast-uri": ">=3.0.1"
   }
 }

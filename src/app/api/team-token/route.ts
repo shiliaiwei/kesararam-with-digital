@@ -13,7 +13,11 @@ const store = new Map<string, { id: string; expiresAt: number }>();
 function randomCode() {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // no ambiguous chars
   let c = "";
-  for (let i = 0; i < 6; i++) c += chars[Math.floor(Math.random() * chars.length)];
+  const randomValues = new Uint32Array(6);
+  crypto.getRandomValues(randomValues);
+  for (let i = 0; i < 6; i++) {
+    c += chars[randomValues[i] % chars.length];
+  }
   return c;
 }
 

@@ -19,8 +19,10 @@ import { eq, or } from "drizzle-orm";
 function generateRoomCode(): string {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   let code = "";
+  const randomValues = new Uint32Array(6);
+  crypto.getRandomValues(randomValues);
   for (let i = 0; i < 6; i++) {
-    code += chars.charAt(Math.floor(Math.random() * chars.length));
+    code += chars.charAt(randomValues[i] % chars.length);
   }
   return code;
 }

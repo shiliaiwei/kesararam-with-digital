@@ -5,6 +5,12 @@ import { getSession } from "@/lib/auth";
 import { GAME_MODE_TYPES, mapContentToGameType } from "@/lib/game-engine";
 import { eq, and, inArray, sql } from "drizzle-orm";
 
+function getSecureRandom(): number {
+  const arr = new Uint32Array(1);
+  crypto.getRandomValues(arr);
+  return arr[0] / (0xffffffff + 1);
+}
+
 export async function POST(req: NextRequest) {
   // Solo mode works for both authenticated and non-authenticated users
   const user = await getSession();
@@ -84,7 +90,7 @@ export async function POST(req: NextRequest) {
 
   // Fisher-Yates shuffle — truly random, prevents students seeing same order
   for (let i = compatible.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(getSecureRandom() * (i + 1));
     [compatible[i], compatible[j]] = [compatible[j], compatible[i]];
   }
   const shuffled = compatible.slice(0, questionCount);
@@ -131,7 +137,7 @@ export async function POST(req: NextRequest) {
       gameType: gt,
       difficulty: q.difficulty,
       answers: ans
-        .map(a => ({ ...a, _r: Math.random() }))
+        .map(a => ({ ...a, _r: getSecureRandom() }))
         .sort((a, b) => a._r - b._r)
         .map(({ _r, ...a }) => ({
           id: a.id,

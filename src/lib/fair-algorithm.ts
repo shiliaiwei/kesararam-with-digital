@@ -134,11 +134,17 @@ function groupBySubtopic(
   return grouped;
 }
 
+function getSecureRandom(): number {
+  const arr = new Uint32Array(1);
+  crypto.getRandomValues(arr);
+  return arr[0] / (0xffffffff + 1);
+}
+
 /**
  * Random sample from array without replacement
  */
 function randomSample<T>(array: T[], count: number): T[] {
-  const shuffled = [...array].sort(() => Math.random() - 0.5);
+  const shuffled = [...array].sort(() => getSecureRandom() - 0.5);
   return shuffled.slice(0, Math.min(count, array.length));
 }
 
@@ -148,7 +154,7 @@ function randomSample<T>(array: T[], count: number): T[] {
 function shuffle<T>(array: T[]): T[] {
   const result = [...array];
   for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(getSecureRandom() * (i + 1));
     [result[i], result[j]] = [result[j], result[i]];
   }
   return result;
