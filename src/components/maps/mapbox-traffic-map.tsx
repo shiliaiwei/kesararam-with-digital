@@ -227,7 +227,9 @@ export function MapboxTrafficMap({
           map.addControl(new mapboxgl.NavigationControl(), "top-right");
           map.addControl(new mapboxgl.FullscreenControl(), "top-right");
           map.addControl(new mapboxgl.AttributionControl({ compact: true }), "bottom-right");
-          map.resize();
+          requestAnimationFrame(() => {
+            if (mapRef.current) map.resize();
+          });
           setMapLoaded(true);
         });
 
@@ -299,6 +301,7 @@ export function MapboxTrafficMap({
           {mapLoaded && !error && (
             <button
               onClick={toggleStyle}
+              aria-label="Toggle map style"
               className="flex items-center gap-1 sm:gap-1.5 bg-white border-2 border-black px-2 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-black hover:bg-yellow-400 transition-colors"
               style={kf}
             >
@@ -338,6 +341,7 @@ export function MapboxTrafficMap({
               <p className="text-xs text-red-700 mb-3">{error}</p>
               <button
                 onClick={() => window.location.reload()}
+                aria-label="Retry loading map"
                 className="bg-red-500 text-white border-2 border-black px-4 py-2 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center gap-2 text-sm"
                 style={kf}
               >

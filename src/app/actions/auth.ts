@@ -178,12 +178,19 @@ export async function loginAction(
     maxAge: user.role === "student" ? 7 * 24 * 60 * 60 : 8 * 60 * 60,
   });
 
-  // Return the redirect URL — client handles navigation (supports external URLs)
   const redirectParam = (formData.get("redirect") as string) ?? "";
-  const redirectTo =
-    redirectParam.startsWith("https://") || redirectParam.startsWith("/")
-      ? redirectParam
-      : getRedirectUrl(user.role);
+  
+  let redirectTo = getRedirectUrl(user.role);
+  if (redirectParam) {
+    if (redirectParam.startsWith("/") && !redirectParam.startsWith("//")) {
+      redirectTo = redirectParam;
+    } else if (
+      redirectParam.startsWith("https://kesararamwithdigital.tech") ||
+      redirectParam.startsWith("https://dashboard.kesararamwithdigital.tech")
+    ) {
+      redirectTo = redirectParam;
+    }
+  }
 
   return { error: "", redirectTo };
 }

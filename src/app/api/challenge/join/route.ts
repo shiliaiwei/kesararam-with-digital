@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { sessions, sessionParticipants } from "@/db/schema/quizzes";
 import { getSession } from "@/lib/auth";
 import { eq, and } from "drizzle-orm";
+import { rateLimit, getClientIP, createRateLimitResponse } from "@/lib/simple-rate-limit";
 
 /**
  * POST /api/challenge/join
@@ -14,6 +15,13 @@ import { eq, and } from "drizzle-orm";
  */
 export async function POST(request: NextRequest) {
   try {
+    // 0. Apply rate limiting (5 attempts per minute per IP)
+    const ip = getClientIP(request);
+    const limit = rateLimit(`join:${ip}`, 5, 60000);
+    if (!limit.success) {
+      return createRateLimitResponse(limit.resetTime);
+    }
+
     // 1. Authenticate user
     const session = await getSession();
     if (!session) {

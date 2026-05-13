@@ -93,5 +93,10 @@
     "ip-address": ">=9.0.5",
     "jsbn": ">=1.2.0",
     "fast-uri": ">=3.0.1"
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }

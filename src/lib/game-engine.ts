@@ -15,18 +15,19 @@ export interface ScoreResult {
 }
 
 /**
- * New scoring system based on difficulty:
- * - Easy: 1 point base
- * - Medium: 2 points base
- * - Hard: 3 points base
+ * New scoring system based on difficulty (Scaled for precision):
+ * - Easy: 500 points base
+ * - Medium: 1000 points base
+ * - Hard: 1500 points base
  * 
  * Streak bonus:
- * - 2-3 correct: +1 point
- * - 4-5 correct: +2 points
- * - 6+ correct: +3 points
+ * - 2-3 correct: +100 points
+ * - 4-5 correct: +200 points
+ * - 6+ correct: +300 points
  * 
- * Speed bonus (optional, based on scoring mode):
- * - Percentage of remaining time as bonus
+ * Speed bonus (only in speed mode):
+ * - Scaled linearly up to the baseScore based on remaining time.
+ * - Suspiciously fast answers (< 500ms response time) receive 0 speed/streak bonus.
  */
 export function calculateScore(params: {
   isCorrect: boolean;
@@ -38,28 +39,38 @@ export function calculateScore(params: {
 }): ScoreResult {
   if (!params.isCorrect) return { baseScore: 0, speedBonus: 0, streakBonus: 0, totalPoints: 0 };
 
-  // Base score by difficulty
+  // 1. Base score by difficulty
   const difficultyPoints: Record<string, number> = {
-    easy: 1,
-    medium: 2,
-    hard: 3,
+    easy: 500,
+    medium: 1000,
+    hard: 1500,
   };
-  const baseScore = difficultyPoints[params.difficulty?.toLowerCase() || "medium"] || 2;
+  const baseScore = difficultyPoints[params.difficulty?.toLowerCase() || "medium"] || 1000;
 
-  // Speed bonus (only in speed mode)
-  const speedBonus =
-    params.scoringMode === "speed"
-      ? Math.floor(baseScore * (params.remainingTimeMs / params.totalTimeMs))
-      : 0;
+  // 2. Sanitize Inputs & Detect Suspicious Behavior
+  // Clamp to prevent exploit values
+  const safeRemaining = Math.max(0, Math.min(params.remainingTimeMs, params.totalTimeMs));
+  const responseTimeMs = params.totalTimeMs - safeRemaining;
+  
+  // If answered impossibly fast (< 500ms), it's likely a script or lucky mash.
+  const isSuspicious = responseTimeMs < 500;
 
-  // Streak bonus
+  // 3. Speed bonus (only in speed mode, penalized if suspicious)
+  let speedBonus = 0;
+  if (params.scoringMode === "speed" && !isSuspicious && params.totalTimeMs > 0) {
+    speedBonus = Math.floor(baseScore * (safeRemaining / params.totalTimeMs));
+  }
+
+  // 4. Streak bonus (penalized if suspicious)
   let streakBonus = 0;
-  if (params.currentStreak >= 6) {
-    streakBonus = 3;
-  } else if (params.currentStreak >= 4) {
-    streakBonus = 2;
-  } else if (params.currentStreak >= 2) {
-    streakBonus = 1;
+  if (!isSuspicious) {
+    if (params.currentStreak >= 6) {
+      streakBonus = 300;
+    } else if (params.currentStreak >= 4) {
+      streakBonus = 200;
+    } else if (params.currentStreak >= 2) {
+      streakBonus = 100;
+    }
   }
 
   return {

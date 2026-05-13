@@ -490,16 +490,24 @@ export function TrafficSignsCatalogue() {
   const t = isKh ? UI.kh : UI.en;
 
   const [topics, setTopics] = useState<Topic[]>([]);
-  const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [search, setSearch] = useState("");
-  // Initialise with alternating default (runs once on mount)
-  const [subGroupFilter, setSubGroupFilter] = useState<string>(() => getDefaultFilter());
+  const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [subGroupFilter, setSubGroupFilter] = useState<string>("");
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
   const [selectedQuestions, setSelectedQuestions] = useState<any[]>([]);
   const [loadingQuestions, setLoadingQuestions] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
   const [cols, setCols] = useState(8);
+
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
+  const [aggregates, setAggregates] = useState<{ total: number; subGroups: Record<string, number>; filteredTotal: number }>({
+    total: 0,
+    subGroups: {},
+    filteredTotal: 0
+  });
 
   useEffect(() => {
     const updateCols = () => {
@@ -534,46 +542,56 @@ export function TrafficSignsCatalogue() {
 
   const handleFilterChange = (key: string) => {
     setSubGroupFilter(key);
-    setSelectedTopic(null);
-    setSelectedQuestions([]);
   };
 
-  useEffect(() => { window.scrollTo(0, 0); fetchTopics(); }, []);
-
+  // Debounce search input
   useEffect(() => {
-    let filtered = [...topics];
-    if (search.trim()) {
-      const q = search.toLowerCase();
-      filtered = filtered.filter(
-        tp => tp.name_en.toLowerCase().includes(q) ||
-          tp.name_km.includes(search) ||
-          tp.topic_code.toLowerCase().includes(q)
-      );
-    }
-    if (subGroupFilter) {
-      filtered = filtered.filter(tp => tp.sub_group === subGroupFilter);
-    }
-    setFilteredTopics(filtered);
-  }, [topics, search, subGroupFilter]);
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [search]);
 
-  const fetchTopics = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch("/api/public/topics?categoryId=1&status=published");
-      const data = await res.json();
-      setTopics(data.topics || []);
-    } catch (e) { console.error(e); }
-    finally { setLoading(false); }
-  };
+  // Fetch topics whenever page, debouncedSearch, or subGroupFilter changes
+  useEffect(() => {
+    const fetchTopics = async () => {
+      if (page === 1) setLoading(true);
+      else setLoadingMore(true);
 
-  const availableKeys = new Set(topics.map(tp => tp.sub_group));
-  // Category tags — all except "All Signs" which goes at the end
-  const availableGroups = SUB_GROUPS.filter(sg => availableKeys.has(sg.key));
-  const countMap = topics.reduce<Record<string, number>>((acc, tp) => {
-    acc[tp.sub_group] = (acc[tp.sub_group] || 0) + 1;
-    return acc;
-  }, {});
+      try {
+        const params = new URLSearchParams({ categoryId: "1", status: "published", page: page.toString(), limit: "40" });
+        if (debouncedSearch) params.append("search", debouncedSearch);
+        if (subGroupFilter) params.append("subGroup", subGroupFilter);
 
+        const res = await fetch(`/api/public/topics?${params.toString()}`);
+        const data = await res.json();
+        
+        if (page === 1) {
+          setTopics(data.topics || []);
+        } else {
+          setTopics(prev => [...prev, ...(data.topics || [])]);
+        }
+        
+        if (data.aggregates) setAggregates(data.aggregates);
+        setHasMore(data.pagination?.hasMore || false);
+      } catch (e) { 
+        console.error(e); 
+      } finally { 
+        setLoading(false);
+        setLoadingMore(false);
+      }
+    };
+    fetchTopics();
+  }, [page, debouncedSearch, subGroupFilter]);
+
+  // Reset page when filter or search changes
+  useEffect(() => {
+    setPage(1);
+    setSelectedTopic(null);
+  }, [debouncedSearch, subGroupFilter]);
+
+  const availableGroups = SUB_GROUPS.filter(sg => aggregates.subGroups[sg.key] > 0);
+  const countMap = aggregates.subGroups;
   const isDefaultFilter = subGroupFilter === "";
 
   return (
@@ -613,11 +631,8 @@ export function TrafficSignsCatalogue() {
             )}
           </div>
 
-          {/* Tag pills — single scrollable row, "All Signs" first */}
-          <div
-            className="flex items-center gap-1.5 overflow-x-auto py-0.5"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
-          >
+          {/* Tag pills — wrapped lines so you don't have to scroll */}
+          <div className="flex flex-wrap items-center gap-1.5 py-0.5">
             {/* All Signs — first */}
             <button
               onClick={() => handleFilterChange("")}
@@ -629,7 +644,7 @@ export function TrafficSignsCatalogue() {
             >
               {t.all}
               <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ${subGroupFilter === "" && !search ? "bg-yellow-400 text-black" : "bg-zinc-100 text-zinc-600"}`}>
-                {topics.length}
+                {aggregates.total}
               </span>
             </button>
 
@@ -664,7 +679,7 @@ export function TrafficSignsCatalogue() {
           {/* Result count + reset */}
           <div className="mt-3 pt-3 border-t border-zinc-200 flex items-center justify-between">
             <p className="text-xs font-bold text-zinc-500" style={kf}>
-              {t.showing} <span className="text-black font-black">{filteredTopics.length}</span> {t.of} {topics.length} {t.signs}
+              {t.showing} <span className="text-black font-black">{aggregates.filteredTotal}</span> {t.of} {aggregates.total} {t.signs}
               {subGroupFilter && !search && (
                 <span className="ml-2 text-yellow-700">
                   — {isKh ? SUB_GROUPS.find(s => s.key === subGroupFilter)?.km : SUB_GROUPS.find(s => s.key === subGroupFilter)?.en}
@@ -698,10 +713,10 @@ export function TrafficSignsCatalogue() {
           </div>
         ) : (
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
-            {filteredTopics.map((topic, idx) => {
+            {topics.map((topic, idx) => {
               const isSelected = selectedTopic?.id === topic.id;
-              const isLastInRow = (idx + 1) % cols === 0 || idx === filteredTopics.length - 1;
-              const selectedIdx = selectedTopic ? filteredTopics.findIndex(tp => tp.id === selectedTopic.id) : -1;
+              const isLastInRow = (idx + 1) % cols === 0 || idx === topics.length - 1;
+              const selectedIdx = selectedTopic ? topics.findIndex(tp => tp.id === selectedTopic.id) : -1;
               const showPanelAfter =
                 selectedTopic &&
                 selectedIdx >= 0 &&
@@ -762,6 +777,24 @@ export function TrafficSignsCatalogue() {
                 </Fragment>
               );
             })}
+          </div>
+        )}
+
+        {/* Load More Button */}
+        {hasMore && !loading && (
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={() => setPage(p => p + 1)}
+              disabled={loadingMore}
+              className={`px-8 py-3 border-2 border-black font-black uppercase tracking-widest text-sm transition-all ${
+                loadingMore 
+                  ? "bg-zinc-100 text-zinc-400 cursor-wait" 
+                  : "bg-yellow-400 text-black shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-y-0.5"
+              }`}
+              style={kf}
+            >
+              {loadingMore ? "..." : (isKh ? "បង្ហាញច្រើនទៀត" : "Tap See More")}
+            </button>
           </div>
         )}
       </div>
