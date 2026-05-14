@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get("search");
     const subGroup = searchParams.get("subGroup");
     const page = Math.max(1, parseInt(searchParams.get("page") || "1"));
-    const limit = Math.max(1, parseInt(searchParams.get("limit") || "40"));
+    const limit = Math.max(1, parseInt(searchParams.get("limit") || "50"));
     const offset = (page - 1) * limit;
 
     // 1. Base conditions for both queries

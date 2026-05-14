@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, Fragment } from "react";
-import { Search, ArrowLeft, X, Volume2, Download } from "lucide-react";
+import { Search, ArrowLeft, X, Volume2, Download, ChevronDown } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { SaveCardButton } from "./save-card-button";
 
@@ -566,7 +566,7 @@ export function TrafficSignsCatalogue() {
       else setLoadingMore(true);
 
       try {
-        const params = new URLSearchParams({ categoryId: "1", status: "published", page: page.toString(), limit: "40" });
+        const params = new URLSearchParams({ categoryId: "1", status: "published", page: page.toString(), limit: "50" });
         if (debouncedSearch) params.append("search", debouncedSearch);
         if (subGroupFilter) params.append("subGroup", subGroupFilter);
 
@@ -602,12 +602,7 @@ export function TrafficSignsCatalogue() {
     .filter(sg => aggregates.subGroups[sg.key] > 0)
     .sort((a, b) => (aggregates.subGroups[b.key] || 0) - (aggregates.subGroups[a.key] || 0));
   const countMap = aggregates.subGroups;
-  const rangeMap = aggregates.subGroupRanges || {};
   const isDefaultFilter = subGroupFilter === "";
-
-  // Helper: shorten a topic_code to just the last numeric segment for display
-  // e.g. "PM03-04-12" → "03-04-12" or just the full code
-  const shortCode = (code: string) => code ? code.replace(/^[A-Z]+-?/, "") : "";
 
   return (
     <div className="min-h-screen bg-white pt-4">
@@ -666,32 +661,24 @@ export function TrafficSignsCatalogue() {
             {/* Divider */}
             <span className="w-px h-4 bg-zinc-300 shrink-0 mx-0.5" />
 
-            {/* Category tags — sorted largest count → smallest */}
+            {/* Category tags — sorted largest count → smallest, label + count only */}
             {availableGroups.map(sg => {
               const isActive = subGroupFilter === sg.key && !search;
               const count = countMap[sg.key] || 0;
-              const range = rangeMap[sg.key];
               return (
                 <button
                   key={sg.key}
                   onClick={() => handleFilterChange(sg.key)}
-                  className={`inline-flex flex-col items-start gap-0 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${isActive
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${isActive
                     ? "bg-yellow-400 border-black shadow-[2px_2px_0_#000]"
                     : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
                     }`}
                   style={kf}
                 >
-                  <span className="inline-flex items-center gap-1.5">
-                    {isKh ? sg.km : sg.en}
-                    {count > 0 && (
-                      <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ${isActive ? "bg-black text-yellow-400" : "bg-zinc-100 text-zinc-600"}`}>
-                        {count}
-                      </span>
-                    )}
-                  </span>
-                  {range && range.min && range.max && range.min !== range.max && (
-                    <span className={`text-[8px] font-mono font-medium leading-none mt-0.5 opacity-60`}>
-                      {shortCode(range.min)} → {shortCode(range.max)}
+                  {isKh ? sg.km : sg.en}
+                  {count > 0 && (
+                    <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ${isActive ? "bg-black text-yellow-400" : "bg-zinc-100 text-zinc-600"}`}>
+                      {count}
                     </span>
                   )}
                 </button>
@@ -832,7 +819,7 @@ export function TrafficSignsCatalogue() {
               {loadingMore ? (
                 <><span className="flex gap-0.5 items-end h-4">{[60,100,75,90,55].map((h,i) => <span key={i} className="w-0.5 bg-zinc-400 rounded-sm animate-pulse" style={{height:`${h}%`,animationDelay:`${i*100}ms`}}/>)}</span>{isKh ? "កំពុងផ្ទុក..." : "Loading..."}</>
               ) : (
-                <>{isKh ? "🔽 បង្ហាញច្រើនទៀត" : "🔽 See More"}</>
+                <><ChevronDown size={16} />{isKh ? "បង្ហាញច្រើនទៀត" : "See More"}</>
               )}
             </button>
           </div>
