@@ -93,7 +93,7 @@ export async function GET(request: NextRequest) {
 
     // The filtered_count tells us how many items match the current search/filter
     const filteredTotal = result.rows.length > 0 ? parseInt(result.rows[0].filtered_count as string) : 0;
-    const topics = result.rows.map(({ filtered_count, ...topic }) => topic);
+    const topics = result.rows.map(({ filtered_count, ...topic }: { filtered_count: unknown; [key: string]: unknown }) => topic);
 
     return NextResponse.json(
       { 
