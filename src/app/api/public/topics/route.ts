@@ -19,10 +19,10 @@ export async function GET(request: NextRequest) {
       conditions = sql`${conditions} AND t.category_id = ${parseInt(categoryId)}`;
     }
 
-    // 2. Fetch Aggregates (total count and counts by subGroup)
+    // 2. Fetch Aggregates (total count, counts by subGroup, and code ranges)
     // We do this BEFORE adding search/subGroup filters so the UI always has the total baseline counts
     const aggResult = await db.execute(sql`
-      SELECT sub_group, COUNT(*) as count 
+      SELECT sub_group, COUNT(*) as count, MIN(topic_code) as min_code, MAX(topic_code) as max_code
       FROM topics t 
       WHERE ${conditions} 
       GROUP BY sub_group
@@ -30,10 +30,15 @@ export async function GET(request: NextRequest) {
 
     let total = 0;
     const subGroupCounts: Record<string, number> = {};
+    const subGroupRanges: Record<string, { min: string; max: string }> = {};
     for (const row of aggResult.rows) {
       const count = parseInt(row.count as string);
       if (row.sub_group) {
         subGroupCounts[row.sub_group as string] = count;
+        subGroupRanges[row.sub_group as string] = {
+          min: row.min_code as string,
+          max: row.max_code as string,
+        };
       }
       total += count;
     }
@@ -48,6 +53,33 @@ export async function GET(request: NextRequest) {
     }
 
     // 4. Fetch Paginated Topics
+    // When viewing "All Signs" (no subGroup filter, no search), order by a custom priority:
+    // Informative → Supplementary → Priority → Warning → Temporary → Area/Street →
+    // then Prohibitory → rest → markings/lights/police (alphabetical within each group)
+    const orderExpr = (!subGroup && !search)
+      ? sql`
+          CASE t.sub_group
+            WHEN 'Informative Signs'             THEN 1
+            WHEN 'Supplementary Signs'           THEN 2
+            WHEN 'Priority Signs'                THEN 3
+            WHEN 'Warning Signs'                 THEN 4
+            WHEN 'Temporary Signs'               THEN 5
+            WHEN 'Buildup Area Boundary Signs'   THEN 6
+            WHEN 'Street Name Signs'             THEN 7
+            WHEN 'Prohibitory Signs'             THEN 8
+            WHEN 'Mandatory Signs'               THEN 9
+            WHEN 'Direction Signs'               THEN 10
+            WHEN 'Sign Posts'                    THEN 11
+            WHEN 'Transverse Markings'           THEN 12
+            WHEN 'Longitudinal Markings'         THEN 13
+            WHEN 'Arrows Markings'               THEN 14
+            WHEN 'Other Road Markings'           THEN 15
+            WHEN 'Traffic Lights'                THEN 16
+            WHEN 'Traffic Police Signals'        THEN 17
+            ELSE 99
+          END ASC, t.topic_code ASC`
+      : sql`t.topic_code ASC, t.sort_order ASC`;
+
     const result = await db.execute(sql`
       SELECT 
         t.id, t.topic_code, t.name_en, t.name_km, t.description_en, t.description_km, 
@@ -55,7 +87,7 @@ export async function GET(request: NextRequest) {
         t.category_id, t.status, COUNT(*) OVER() AS filtered_count
       FROM topics t
       WHERE ${conditions}
-      ORDER BY t.topic_code ASC, t.sort_order ASC
+      ORDER BY ${orderExpr}
       LIMIT ${limit} OFFSET ${offset}
     `);
 
@@ -69,6 +101,7 @@ export async function GET(request: NextRequest) {
         aggregates: {
           total,
           subGroups: subGroupCounts,
+          subGroupRanges,
           filteredTotal
         },
         pagination: {
@@ -79,8 +112,6 @@ export async function GET(request: NextRequest) {
       },
       {
         headers: {
-          // Since the results now depend on many query params, caching at the edge is tricky.
-          // For now, we will cache heavily but vary by query string (Vercel handles this by default).
           "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
         },
       }

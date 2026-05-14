@@ -117,6 +117,7 @@ function DetailPanel({
 }) {
   const [playing, setPlaying] = useState(false);
   const [loadingAudio, setLoadingAudio] = useState(false);
+  const [exporting, setExporting] = useState(false);
   // Use a ref so the stop handler always has the current audio instance
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const playingRef = useRef(false);
@@ -503,9 +504,15 @@ export function TrafficSignsCatalogue() {
 
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
-  const [aggregates, setAggregates] = useState<{ total: number; subGroups: Record<string, number>; filteredTotal: number }>({
+  const [aggregates, setAggregates] = useState<{
+    total: number;
+    subGroups: Record<string, number>;
+    subGroupRanges: Record<string, { min: string; max: string }>;
+    filteredTotal: number;
+  }>({
     total: 0,
     subGroups: {},
+    subGroupRanges: {},
     filteredTotal: 0
   });
 
@@ -590,9 +597,17 @@ export function TrafficSignsCatalogue() {
     setSelectedTopic(null);
   }, [debouncedSearch, subGroupFilter]);
 
-  const availableGroups = SUB_GROUPS.filter(sg => aggregates.subGroups[sg.key] > 0);
+  // Sort tags: largest count → smallest (as requested)
+  const availableGroups = SUB_GROUPS
+    .filter(sg => aggregates.subGroups[sg.key] > 0)
+    .sort((a, b) => (aggregates.subGroups[b.key] || 0) - (aggregates.subGroups[a.key] || 0));
   const countMap = aggregates.subGroups;
+  const rangeMap = aggregates.subGroupRanges || {};
   const isDefaultFilter = subGroupFilter === "";
+
+  // Helper: shorten a topic_code to just the last numeric segment for display
+  // e.g. "PM03-04-12" → "03-04-12" or just the full code
+  const shortCode = (code: string) => code ? code.replace(/^[A-Z]+-?/, "") : "";
 
   return (
     <div className="min-h-screen bg-white pt-4">
@@ -651,24 +666,32 @@ export function TrafficSignsCatalogue() {
             {/* Divider */}
             <span className="w-px h-4 bg-zinc-300 shrink-0 mx-0.5" />
 
-            {/* Category tags */}
+            {/* Category tags — sorted largest count → smallest */}
             {availableGroups.map(sg => {
               const isActive = subGroupFilter === sg.key && !search;
               const count = countMap[sg.key] || 0;
+              const range = rangeMap[sg.key];
               return (
                 <button
                   key={sg.key}
                   onClick={() => handleFilterChange(sg.key)}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${isActive
+                  className={`inline-flex flex-col items-start gap-0 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${isActive
                     ? "bg-yellow-400 border-black shadow-[2px_2px_0_#000]"
                     : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
                     }`}
                   style={kf}
                 >
-                  {isKh ? sg.km : sg.en}
-                  {count > 0 && (
-                    <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ${isActive ? "bg-black text-yellow-400" : "bg-zinc-100 text-zinc-600"}`}>
-                      {count}
+                  <span className="inline-flex items-center gap-1.5">
+                    {isKh ? sg.km : sg.en}
+                    {count > 0 && (
+                      <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ${isActive ? "bg-black text-yellow-400" : "bg-zinc-100 text-zinc-600"}`}>
+                        {count}
+                      </span>
+                    )}
+                  </span>
+                  {range && range.min && range.max && range.min !== range.max && (
+                    <span className={`text-[8px] font-mono font-medium leading-none mt-0.5 opacity-60`}>
+                      {shortCode(range.min)} → {shortCode(range.max)}
                     </span>
                   )}
                 </button>
@@ -707,7 +730,7 @@ export function TrafficSignsCatalogue() {
               <div key={i} className="aspect-square bg-gray-200 border-2 border-black animate-pulse" />
             ))}
           </div>
-        ) : filteredTopics.length === 0 ? (
+        ) : topics.length === 0 ? (
           <div className="bg-white border-2 border-black p-12 text-center" style={{ boxShadow: "4px 4px 0 #000" }}>
             <p className="text-zinc-600 font-bold" style={kf}>{t.noSigns}</p>
           </div>
@@ -780,21 +803,46 @@ export function TrafficSignsCatalogue() {
           </div>
         )}
 
-        {/* Load More Button */}
+        {/* See More Pagination */}
         {hasMore && !loading && (
-          <div className="mt-8 flex justify-center">
+          <div className="mt-8 flex flex-col items-center gap-2">
+            {/* Progress indicator */}
+            <p className="text-xs font-bold text-zinc-400" style={kf}>
+              {isKh
+                ? <>បង្ហាញ <span className="text-black font-black">{topics.length}</span> / {aggregates.filteredTotal} សញ្ញា</>  
+                : <>Showing <span className="text-black font-black">{topics.length}</span> of {aggregates.filteredTotal} signs</>}
+            </p>
+            {/* Progress bar */}
+            <div className="w-48 h-1.5 bg-zinc-200 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-yellow-400 rounded-full transition-all duration-500"
+                style={{ width: `${Math.min(100, Math.round((topics.length / (aggregates.filteredTotal || 1)) * 100))}%` }}
+              />
+            </div>
             <button
               onClick={() => setPage(p => p + 1)}
               disabled={loadingMore}
-              className={`px-8 py-3 border-2 border-black font-black uppercase tracking-widest text-sm transition-all ${
+              className={`mt-2 inline-flex items-center gap-2 px-8 py-3 border-2 border-black font-black uppercase tracking-widest text-sm transition-all select-none ${
                 loadingMore 
                   ? "bg-zinc-100 text-zinc-400 cursor-wait" 
-                  : "bg-yellow-400 text-black shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-y-0.5"
+                  : "bg-yellow-400 text-black shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[2px_2px_0_#000]"
               }`}
               style={kf}
             >
-              {loadingMore ? "..." : (isKh ? "បង្ហាញច្រើនទៀត" : "Tap See More")}
+              {loadingMore ? (
+                <><span className="flex gap-0.5 items-end h-4">{[60,100,75,90,55].map((h,i) => <span key={i} className="w-0.5 bg-zinc-400 rounded-sm animate-pulse" style={{height:`${h}%`,animationDelay:`${i*100}ms`}}/>)}</span>{isKh ? "កំពុងផ្ទុក..." : "Loading..."}</>
+              ) : (
+                <>{isKh ? "🔽 បង្ហាញច្រើនទៀត" : "🔽 See More"}</>
+              )}
             </button>
+          </div>
+        )}
+        {/* All loaded indicator */}
+        {!hasMore && !loading && topics.length > 0 && aggregates.filteredTotal > 40 && (
+          <div className="mt-8 flex justify-center">
+            <p className="text-xs font-bold text-zinc-400 border-t border-zinc-200 pt-3" style={kf}>
+              {isKh ? `✓ បង្ហាញទាំងអស់ ${topics.length} សញ្ញា` : `✓ All ${topics.length} signs loaded`}
+            </p>
           </div>
         )}
       </div>
