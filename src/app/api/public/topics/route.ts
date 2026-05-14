@@ -52,34 +52,7 @@ export async function GET(request: NextRequest) {
       conditions = sql`${conditions} AND t.sub_group = ${subGroup}`;
     }
 
-    // 4. Fetch Paginated Topics
-    // When viewing "All Signs" (no subGroup filter, no search), order by a custom priority:
-    // Informative → Supplementary → Priority → Warning → Temporary → Area/Street →
-    // then Prohibitory → rest → markings/lights/police (alphabetical within each group)
-    const orderExpr = (!subGroup && !search)
-      ? sql`
-          CASE t.sub_group
-            WHEN 'Informative Signs'             THEN 1
-            WHEN 'Supplementary Signs'           THEN 2
-            WHEN 'Priority Signs'                THEN 3
-            WHEN 'Warning Signs'                 THEN 4
-            WHEN 'Temporary Signs'               THEN 5
-            WHEN 'Buildup Area Boundary Signs'   THEN 6
-            WHEN 'Street Name Signs'             THEN 7
-            WHEN 'Prohibitory Signs'             THEN 8
-            WHEN 'Mandatory Signs'               THEN 9
-            WHEN 'Direction Signs'               THEN 10
-            WHEN 'Sign Posts'                    THEN 11
-            WHEN 'Transverse Markings'           THEN 12
-            WHEN 'Longitudinal Markings'         THEN 13
-            WHEN 'Arrows Markings'               THEN 14
-            WHEN 'Other Road Markings'           THEN 15
-            WHEN 'Traffic Lights'                THEN 16
-            WHEN 'Traffic Police Signals'        THEN 17
-            ELSE 99
-          END ASC, t.topic_code ASC`
-      : sql`t.topic_code ASC, t.sort_order ASC`;
-
+    // 4. Fetch Paginated Topics — always ordered by topic_code ASC (01 → last)
     const result = await db.execute(sql`
       SELECT 
         t.id, t.topic_code, t.name_en, t.name_km, t.description_en, t.description_km, 
@@ -87,7 +60,7 @@ export async function GET(request: NextRequest) {
         t.category_id, t.status, COUNT(*) OVER() AS filtered_count
       FROM topics t
       WHERE ${conditions}
-      ORDER BY ${orderExpr}
+      ORDER BY t.topic_code ASC
       LIMIT ${limit} OFFSET ${offset}
     `);
 
