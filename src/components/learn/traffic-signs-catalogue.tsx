@@ -602,9 +602,6 @@ export function TrafficSignsCatalogue() {
     .filter(sg => aggregates.subGroups[sg.key] > 0)
     .sort((a, b) => (aggregates.subGroups[b.key] || 0) - (aggregates.subGroups[a.key] || 0));
   const countMap = aggregates.subGroups;
-  const rangeMap = aggregates.subGroupRanges || {};
-  // Strip leading alpha prefix for compact display: "PM01-R1-18" → "01-R1-18"
-  const shortCode = (c: string) => c ? c.replace(/^[A-Z]+0*/, "") : "";
   const isDefaultFilter = subGroupFilter === "";
 
   return (
@@ -664,35 +661,24 @@ export function TrafficSignsCatalogue() {
             {/* Divider */}
             <span className="w-px h-4 bg-zinc-300 shrink-0 mx-0.5" />
 
-            {/* Category tags — sorted largest count → smallest, label + count + code range */}
+            {/* Category tags — label + count only */}
             {availableGroups.map(sg => {
               const isActive = subGroupFilter === sg.key && !search;
               const count = countMap[sg.key] || 0;
-              const range = rangeMap[sg.key];
-              const showRange = range && range.min && range.max;
               return (
                 <button
                   key={sg.key}
                   onClick={() => handleFilterChange(sg.key)}
-                  className={`inline-flex flex-col items-start gap-0 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${isActive
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${isActive
                     ? "bg-yellow-400 border-black shadow-[2px_2px_0_#000]"
                     : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
                     }`}
                   style={kf}
                 >
-                  {/* Label + count */}
-                  <span className="inline-flex items-center gap-1.5">
-                    {isKh ? sg.km : sg.en}
-                    {count > 0 && (
-                      <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ${isActive ? "bg-black text-yellow-400" : "bg-zinc-100 text-zinc-600"}`}>
-                        {count}
-                      </span>
-                    )}
-                  </span>
-                  {/* Code range */}
-                  {showRange && (
-                    <span className="font-mono text-[8px] font-medium opacity-50 leading-none mt-0.5">
-                      {shortCode(range.min)} – {shortCode(range.max)}
+                  {isKh ? sg.km : sg.en}
+                  {count > 0 && (
+                    <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ${isActive ? "bg-black text-yellow-400" : "bg-zinc-100 text-zinc-600"}`}>
+                      {count}
                     </span>
                   )}
                 </button>
