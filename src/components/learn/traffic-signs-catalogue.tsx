@@ -302,7 +302,7 @@ function DetailPanel({
 
       // Convert to blob
       const blob = await new Promise<Blob>((resolve) => {
-        generatedCanvas.toBlob((b) => resolve(b!), 'image/png', 1.0);
+        generatedCanvas.toBlob((b: Blob | null) => resolve(b!), 'image/png', 1.0);
       });
 
       const filename = `${topic.topic_code}-${name.replace(/[^a-zA-Z0-9]/g, '-')}.png`;
