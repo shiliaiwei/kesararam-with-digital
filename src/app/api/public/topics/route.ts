@@ -52,17 +52,39 @@ export async function GET(request: NextRequest) {
       conditions = sql`${conditions} AND t.sub_group = ${subGroup}`;
     }
 
-    // 4. Fetch Paginated Topics — always ordered by topic_code ASC (01 → last)
-    const result = await db.execute(sql`
-      SELECT 
-        t.id, t.topic_code, t.name_en, t.name_km, t.description_en, t.description_km, 
-        t.primary_image_url, t.sub_group, t.law_reference, t.audio_url_en, t.audio_url_km, 
-        t.category_id, t.status, COUNT(*) OVER() AS filtered_count
-      FROM topics t
-      WHERE ${conditions}
-      ORDER BY t.topic_code ASC
-      LIMIT ${limit} OFFSET ${offset}
-    `);
+    // 4. Fetch Paginated Topics
+    // • "All Signs" (no subGroup filter, no search):
+    //   JOIN a per-group count subquery → ORDER BY group_count DESC, topic_code ASC
+    //   This means Warning (49) comes first, then Prohibitory (45), … within each group 01→last
+    // • Category filter active or search active:
+    //   plain topic_code ASC
+    const result = (!subGroup && !search)
+      ? await db.execute(sql`
+          SELECT 
+            t.id, t.topic_code, t.name_en, t.name_km, t.description_en, t.description_km, 
+            t.primary_image_url, t.sub_group, t.law_reference, t.audio_url_en, t.audio_url_km, 
+            t.category_id, t.status, COUNT(*) OVER() AS filtered_count
+          FROM topics t
+          JOIN (
+            SELECT sub_group, COUNT(*) AS grp_count
+            FROM topics
+            WHERE status = ${status}
+            GROUP BY sub_group
+          ) gc ON t.sub_group = gc.sub_group
+          WHERE ${conditions}
+          ORDER BY gc.grp_count DESC, t.topic_code ASC
+          LIMIT ${limit} OFFSET ${offset}
+        `)
+      : await db.execute(sql`
+          SELECT 
+            t.id, t.topic_code, t.name_en, t.name_km, t.description_en, t.description_km, 
+            t.primary_image_url, t.sub_group, t.law_reference, t.audio_url_en, t.audio_url_km, 
+            t.category_id, t.status, COUNT(*) OVER() AS filtered_count
+          FROM topics t
+          WHERE ${conditions}
+          ORDER BY t.topic_code ASC
+          LIMIT ${limit} OFFSET ${offset}
+        `);
 
     // The filtered_count tells us how many items match the current search/filter
     const filteredTotal = result.rows.length > 0 ? parseInt(result.rows[0].filtered_count as string) : 0;
