@@ -1,0 +1,293 @@
+========================================================================
+  DATABASE BACKUP - DIRECT FETCH FROM NEON POSTGRESQL
+========================================================================
+  Generated    : 2026-05-16 16:51:31
+  Database     : Neon PostgreSQL (ep-rapid-glitter-am81r7j8)
+  Category ID  : 7
+  Category No  : 7
+  Slug         : general-knowledge
+  Title (EN)   : General Knowledge
+  Title (KM)   : ចំណេះដឹងទូទៅ
+  Topics Found : 12
+  Content Items: 0
+========================================================================
+
+========================================================================
+  SECTION A: TOPICS WITH QUESTIONS AND ANSWERS
+  (Source tables: topics, questions, answers)
+========================================================================
+
+------------------------------------------------------------------------
+TOPIC 001
+------------------------------------------------------------------------
+  CODE          : GNL-Q001
+  SUB-GROUP     : Road Safety
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  Who can be infected HIV?
+  NAME (KM) : តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?
+
+  DESCRIPTION (EN):
+    The answer is Everyone
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ គ្រប់គ្នា
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778165954/GNL-Q001_iz044c.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 002
+------------------------------------------------------------------------
+  CODE          : GNL-Q002
+  SUB-GROUP     : Road Safety
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  How can HIV infect?
+  NAME (KM) : តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?
+
+  DESCRIPTION (EN):
+    The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778165959/GNL-Q002_oro5do.png
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 003
+------------------------------------------------------------------------
+  CODE          : GNL-Q003
+  SUB-GROUP     : Road Safety
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  Up to now, is there a medicine that can cure the HIV/AIDS?
+  NAME (KM) : មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?
+
+  DESCRIPTION (EN):
+    The answer is No, there isn't.
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ទេ វាមិនមានទេ។
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778165958/GNL-Q003_apshtd.png
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 004
+------------------------------------------------------------------------
+  CODE          : GNL-Q004
+  SUB-GROUP     : Road Safety
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  How can you realize that someone have HIV?
+  NAME (KM) : តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?
+
+  DESCRIPTION (EN):
+    The answer is By testing the blood.
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ដោយការធ្វើតេស្តឈាម។
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778165956/GNL-Q004_b41kxu.png
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 005
+------------------------------------------------------------------------
+  CODE          : GNL-Q005
+  SUB-GROUP     : Road Safety
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?
+  NAME (KM) : តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?
+
+  DESCRIPTION (EN):
+    The answer is Have sex with condom properly and all time
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778165956/GNL-Q005_vgea5w.png
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 006
+------------------------------------------------------------------------
+  CODE          : GNL-Q006
+  SUB-GROUP     : Road Safety
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  What disease that can push to infect HIV?
+  NAME (KM) : តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?
+
+  DESCRIPTION (EN):
+    The answer is Sexually transmitted disease
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ជំងឺកាមរោគ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778165955/GNL-Q006_ne29va.png
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 007
+------------------------------------------------------------------------
+  CODE          : GNL-Q007
+  SUB-GROUP     : Legal
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  Is a person with HIV allowed to take a test for driver license?
+  NAME (KM) : តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?
+
+  DESCRIPTION (EN):
+    The answer is Yes
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ បាទ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778165955/GNL-Q007_zukjo2.png
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 008
+------------------------------------------------------------------------
+  CODE          : GNL-Q008
+  SUB-GROUP     : Road Safety
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  Realizing the driver with HIV, dare you ride on that car?
+  NAME (KM) : ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?
+
+  DESCRIPTION (EN):
+    The answer is Dare
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ហ៊ាន
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778165960/GNL-Q008_tunk7k.png
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 009
+------------------------------------------------------------------------
+  CODE          : GNL-Q009
+  SUB-GROUP     : Road Safety
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  Realizing that you have HIV, what practice shall you choose?
+  NAME (KM) : ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?
+
+  DESCRIPTION (EN):
+    The answer is Have sex using condom properly and all time.
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778165959/GNL-Q009_v3xt2r.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 010
+------------------------------------------------------------------------
+  CODE          : GNL-Q010
+  SUB-GROUP     : Legal
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  On what principle is blood testing for HIV conducted?
+  NAME (KM) : តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?
+
+  DESCRIPTION (EN):
+    The answer is Voluntary, confidential, and counseling
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778165957/GNL-Q010_kccqkl.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 011
+------------------------------------------------------------------------
+  CODE          : GNL-Q011
+  SUB-GROUP     : Road Safety
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  Realizing someone with HIV at your workplace, what shall you do?
+  NAME (KM) : ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?
+
+  DESCRIPTION (EN):
+    The answer is Let him or her work as usual.
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778165956/GNL-Q011_dzq7bs.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 012
+------------------------------------------------------------------------
+  CODE          : GNL-Q012
+  SUB-GROUP     : Road Safety
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  How shall you do toward a victim of HIV?
+  NAME (KM) : តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?
+
+  DESCRIPTION (EN):
+    The answer is Suport and not discrimination
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ គាំទ្រនិងមិនរើសអើង
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778165959/GNL-Q012_itc7rd.jpg
+
+  (No questions linked to this topic)
+
+
+========================================================================
+  SECTION B: CONTENT ITEMS
+  (Source table: content_items)
+========================================================================
+
+  (No records found in the 'content_items' table for this category)
+
+========================================================================
+  END OF BACKUP
+========================================================================
