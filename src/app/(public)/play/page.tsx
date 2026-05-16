@@ -107,58 +107,75 @@ function GameModeCard({ mode, index, kh, khFont }: {
   return (
     <Link
       href={mode.href}
-      className="group relative flex flex-col overflow-hidden bg-white border-[3px] border-black transition-all duration-200 hover:-translate-y-2 hover:-translate-x-2 active:scale-95 active:translate-x-0 active:translate-y-0"
-      style={{
-        boxShadow: "8px 8px 0 #000",
-      }}
+      className="group relative flex flex-col h-full bg-white rounded-3xl p-6 md:p-8 border border-zinc-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:border-zinc-200 active:scale-[0.98]"
     >
-      {/* Full-color header band */}
-      <div
-        className="relative flex items-center justify-between px-4 pt-4 pb-3 border-b-[3px] border-black transition-colors duration-200"
-        style={{ backgroundColor: mode.color }}
-      >
-        {/* Big icon left */}
-        <div className="w-16 h-16 flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
-             style={{ filter: "drop-shadow(3px 3px 0 rgba(0,0,0,0.3))" }}>
-          <IconComp />
+      {/* Decorative subtle background gradient on hover */}
+      <div 
+        className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-[0.03] transition-opacity duration-300 pointer-events-none"
+        style={{ background: `radial-gradient(circle at top right, ${mode.color}, transparent 70%)` }}
+      />
+
+      {/* Header Row */}
+      <div className="relative flex justify-between items-start mb-8 z-10">
+        <div className="w-16 h-16 flex-shrink-0 transition-transform duration-500 cubic-bezier(0.34,1.56,0.64,1) group-hover:scale-110 group-hover:-rotate-6">
+          {/* Subtle colored glow behind icon */}
+          <div className="absolute inset-0 rounded-full blur-xl opacity-30" style={{ backgroundColor: mode.color }} />
+          <div className="relative w-full h-full">
+            <IconComp />
+          </div>
         </div>
-        
-        {/* Badges Right */}
+
+        {/* Clean Badges */}
         <div className="flex flex-col items-end gap-2">
           {mode.tag && (
-            <div 
-              className="text-[10px] font-black px-2 py-0.5 border-2 border-black text-white tracking-widest uppercase shadow-[2px_2px_0_#000]"
+            <span 
+              className="px-3 py-1 rounded-full text-[10px] font-black tracking-widest text-white uppercase shadow-sm"
               style={{ backgroundColor: mode.tagColor }}
             >
               {mode.tag}
-            </div>
+            </span>
           )}
-          <div className="text-xs font-black px-2.5 py-1 bg-black text-white border-2 border-black tracking-wider"
-               style={{ color: mode.color }}>
+          <span 
+            className="text-xs font-bold px-3 py-1 rounded-full bg-zinc-50 text-zinc-500 border border-zinc-100 transition-colors group-hover:border-zinc-200 group-hover:text-zinc-700"
+          >
             {mode.badge}
-          </div>
+          </span>
         </div>
       </div>
 
-      {/* Content area */}
-      <div className="flex flex-col flex-1 px-4 pt-4 pb-4 gap-2 bg-white group-hover:bg-zinc-50 transition-colors duration-200">
-        <h3 className="text-2xl font-black leading-tight text-black" style={khFont}>
+      {/* Content */}
+      <div className="relative flex flex-col flex-1 z-10">
+        <h3 className="text-2xl font-black text-zinc-900 tracking-tight mb-3 transition-colors duration-300" style={khFont}>
           {kh ? mode.titleKh : mode.title}
         </h3>
-        <p className="text-sm leading-relaxed text-zinc-600 font-bold mb-4" style={khFont}>
+        <p className="text-[15px] leading-relaxed text-zinc-500 font-medium mb-8 flex-1" style={khFont}>
           {kh ? mode.descKh : mode.desc}
         </p>
 
-        {/* CTA */}
+        {/* Clean Modern CTA Button */}
         <div className="mt-auto">
           <div
-            className="w-full flex items-center justify-center gap-2 py-3 font-black text-sm border-[3px] border-black bg-white group-hover:bg-black group-hover:text-white transition-colors duration-200"
-            style={{ boxShadow: "4px 4px 0 #000" }}
+            className="w-full flex items-center justify-between px-6 py-4 rounded-2xl font-bold text-sm transition-all duration-300 overflow-hidden relative border"
+            style={{
+              backgroundColor: "transparent",
+              borderColor: `${mode.color}40`,
+            }}
           >
-            <span style={khFont}>{kh ? mode.ctaKh : mode.cta}</span>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="group-hover:translate-x-1 transition-transform duration-200">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+            {/* Hover sweep background */}
+            <div 
+              className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+              style={{ backgroundColor: mode.color }}
+            />
+            
+            <span className="relative z-10" style={{ color: "#18181b", ...khFont }}>{kh ? mode.ctaKh : mode.cta}</span>
+            <div 
+              className="relative z-10 w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:translate-x-1"
+              style={{ backgroundColor: mode.color, color: "#fff", boxShadow: `0 2px 10px ${mode.color}60` }}
+            >
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M4 8h8M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
           </div>
         </div>
       </div>
