@@ -123,14 +123,78 @@ export const GAME_MODE_TYPES: Record<string, string[]> = {
   "exam-simulation": ["mcq", "true_false"],
 };
 
-export const GAME_MODE_CONFIG: Record<
-  string,
-  { questionCount: number; timePerQuestion: number; label: string; labelKm: string; color: string }
-> = {
-  "quick-quiz": { questionCount: 10, timePerQuestion: 30, label: "Quick Quiz", labelKm: "សំណួរលឿន", color: "#eab308" },
-  "speed-round": { questionCount: 20, timePerQuestion: 15, label: "Speed Round", labelKm: "វគ្គល្បឿន", color: "#ef4444" },
-  "sign-challenge": { questionCount: 15, timePerQuestion: 20, label: "Sign Challenge", labelKm: "ប្រឡងសញ្ញា", color: "#3b82f6" },
-  "mixed-battle": { questionCount: 20, timePerQuestion: 30, label: "Mixed Battle", labelKm: "ប្រយុទ្ធចម្រុះ", color: "#a855f7" },
-  "daily-challenge": { questionCount: 15, timePerQuestion: 30, label: "Daily Challenge", labelKm: "បញ្ហាប្រចាំថ្ងៃ", color: "#22c55e" },
-  "exam-simulation": { questionCount: 40, timePerQuestion: 45, label: "Exam Simulation", labelKm: "ត្រាប់តាមប្រឡង", color: "#f97316" },
+export interface GameModeConfig {
+  /** Default question count shown when user first picks this mode */
+  defaultQuestionCount: number;
+  /** Options the user can choose from */
+  allowedQuestionCounts: number[];
+  timePerQuestion: number;
+  label: string;
+  labelKm: string;
+  color: string;
+  description: string;
+  descriptionKm: string;
+}
+
+export const GAME_MODE_CONFIG: Record<string, GameModeConfig> = {
+  "quick-quiz": {
+    defaultQuestionCount: 10,
+    allowedQuestionCounts: [5, 10, 15, 20],
+    timePerQuestion: 30,
+    label: "Quick Quiz",
+    labelKm: "សំណួរលឿន",
+    color: "#eab308",
+    description: "Pick any number of questions at your own pace.",
+    descriptionKm: "ជ្រើសសំណួរតាមចិត្ត ហ្វឹកហាត់ស្ងប់ស្ងាត់",
+  },
+  "speed-round": {
+    defaultQuestionCount: 20,
+    allowedQuestionCounts: [10, 15, 20, 30],
+    timePerQuestion: 15,
+    label: "Speed Round",
+    labelKm: "វគ្គល្បឿន",
+    color: "#ef4444",
+    description: "Fast answers only — 15 seconds per question.",
+    descriptionKm: "ឆ្លើយលឿន ១៥វិនាទីក្នុងមួយសំណួរ",
+  },
+  "sign-challenge": {
+    defaultQuestionCount: 15,
+    allowedQuestionCounts: [5, 10, 15, 20, 30],
+    timePerQuestion: 20,
+    label: "Sign Challenge",
+    labelKm: "ប្រឡងសញ្ញា",
+    color: "#3b82f6",
+    description: "Traffic sign image questions only.",
+    descriptionKm: "សំណួរតែសញ្ញាចរាចរណ៍",
+  },
+  "mixed-battle": {
+    defaultQuestionCount: 20,
+    allowedQuestionCounts: [10, 20, 30, 40],
+    timePerQuestion: 30,
+    label: "Mixed Battle",
+    labelKm: "ប្រយុទ្ធចម្រុះ",
+    color: "#a855f7",
+    description: "All question types mixed together.",
+    descriptionKm: "ចម្រុះប្រភេទសំណួរទាំងអស់",
+  },
+  "daily-challenge": {
+    defaultQuestionCount: 15,
+    allowedQuestionCounts: [10, 15, 20],
+    timePerQuestion: 30,
+    label: "Daily Challenge",
+    labelKm: "បញ្ហាប្រចាំថ្ងៃ",
+    color: "#22c55e",
+    description: "A fresh set of questions every day.",
+    descriptionKm: "សំណួរថ្មីរៀងរាល់ថ្ងៃ",
+  },
+  "exam-simulation": {
+    defaultQuestionCount: 40,
+    allowedQuestionCounts: [20, 30, 40],
+    timePerQuestion: 45,
+    label: "Exam Simulation",
+    labelKm: "ត្រាប់តាមប្រឡង",
+    color: "#f97316",
+    description: "Simulate the real driving licence exam.",
+    descriptionKm: "ហ្វឹកប្រឡងបណ្ណបើកបរពិតប្រាកដ",
+  },
 };

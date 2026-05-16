@@ -69,6 +69,9 @@ export default function SoloPage() {
   const [categories, setCategories] = useState<{ id: number; titleEn: string; titleKm: string }[]>([]);
   const [selectedCats, setSelectedCats] = useState<number[]>([]);
   const [difficulty, setDifficulty] = useState("mixed");
+  const [questionCount, setQuestionCount] = useState<number>(
+    GAME_MODE_CONFIG[searchParams.get("mode") ?? "quick-quiz"]?.defaultQuestionCount ?? 10
+  );
   const [error, setError] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const [myScore, setMyScore] = useState(0);
@@ -107,7 +110,7 @@ export default function SoloPage() {
         body: JSON.stringify({
           categoryIds: selectedCats,
           difficulty,
-          questionCount: GAME_MODE_CONFIG[selectedMode]?.questionCount ?? 10,
+          questionCount,
           timePerQuestion: GAME_MODE_CONFIG[selectedMode]?.timePerQuestion ?? 30,
           gameMode: selectedMode,
         }),
@@ -238,12 +241,47 @@ export default function SoloPage() {
             <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-3" style={khFont}>{kh ? "របៀបលេង" : "Game Mode"}</div>
             <div className="grid grid-cols-2 gap-3">
               {GAME_MODES.map(m => (
-                <button key={m.id} onClick={() => setSelectedMode(m.id)} className="p-4 border-2 border-black text-left transition-all duration-100"
+                <button key={m.id} onClick={() => {
+                  setSelectedMode(m.id);
+                  setQuestionCount(m.defaultQuestionCount);
+                }} className="p-4 border-2 border-black text-left transition-all duration-100"
                   style={{ backgroundColor: selectedMode === m.id ? m.color : "#fff", boxShadow: selectedMode === m.id ? "4px 4px 0 #000" : "2px 2px 0 #000", transform: selectedMode === m.id ? "translate(-2px,-2px)" : undefined }}>
                   <div className="font-black text-sm text-black" style={khFont}>{kh ? m.labelKm : m.label}</div>
-                  <div className="text-xs text-black/60 mt-0.5">{m.questionCount}Q · {m.timePerQuestion}s</div>
+                  <div className="text-xs text-black/60 mt-0.5" style={khFont}>{kh ? m.descriptionKm : m.description}</div>
                 </button>
               ))}
+            </div>
+          </div>
+
+          <div>
+            <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2" style={khFont}>
+              {kh ? "ចំនួនសំណួរ" : "Number of Questions"}
+            </div>
+            <div className="text-xs text-zinc-400 mb-3" style={khFont}>
+              {kh ? `ជ្រើស ${(GAME_MODE_CONFIG[selectedMode]?.allowedQuestionCounts ?? [10]).join(", ")} សំណួរ` : `Choose from ${(GAME_MODE_CONFIG[selectedMode]?.allowedQuestionCounts ?? [10]).join(", ")} questions`}
+            </div>
+            <div className="flex gap-2 flex-wrap">
+              {(GAME_MODE_CONFIG[selectedMode]?.allowedQuestionCounts ?? [10]).map(n => (
+                <button
+                  key={n}
+                  onClick={() => setQuestionCount(n)}
+                  className="w-14 h-14 border-2 border-black font-black text-lg transition-all duration-100"
+                  style={{
+                    backgroundColor: questionCount === n ? "#000" : "#fff",
+                    color: questionCount === n ? "#ffd700" : "#000",
+                    boxShadow: questionCount === n ? "3px 3px 0 #ffd700" : "2px 2px 0 #000",
+                    transform: questionCount === n ? "translate(-1px,-1px)" : undefined,
+                  }}
+                >
+                  {n}
+                </button>
+              ))}
+            </div>
+            <div className="mt-2 text-xs text-zinc-500" style={khFont}>
+              {kh
+                ? `ជ្រើស: ${questionCount} សំណួរ · ${GAME_MODE_CONFIG[selectedMode]?.timePerQuestion ?? 30}វិ/សំណួរ`
+                : `Selected: ${questionCount} questions · ${GAME_MODE_CONFIG[selectedMode]?.timePerQuestion ?? 30}s per question`
+              }
             </div>
           </div>
 
