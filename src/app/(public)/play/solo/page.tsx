@@ -7,7 +7,7 @@ import { CountdownTimer } from "@/components/game/CountdownTimer";
 import { AnswerGrid } from "@/components/game/AnswerGrid";
 import { sounds } from "@/lib/game-sounds";
 import { GAME_MODE_CONFIG } from "@/lib/game-engine";
-import { Zap, Flame, ChevronRight, RotateCcw, Volume2, VolumeX } from "lucide-react";
+import { Zap, Flame, ChevronRight, RotateCcw, Volume2, VolumeX, X } from "lucide-react";
 
 interface SoloQuestion {
   id: number;
@@ -394,7 +394,7 @@ export default function SoloPage() {
   const effectiveLang = lang as "en" | "kh";
 
   return (
-    <div className="game-dot-bg min-h-screen flex flex-col" style={{ userSelect: "none" }}>
+    <div className="game-dot-bg fixed inset-0 z-50 flex flex-col" style={{ userSelect: "none" }}>
       <div className="relative z-10 flex items-center justify-between px-4 py-3 bg-black/80 backdrop-blur-sm border-b-2 border-yellow-400">
         <div className="flex items-center gap-3">
           <span className="text-yellow-400 font-black text-xs uppercase tracking-widest" style={khFont}>
@@ -418,6 +418,9 @@ export default function SoloPage() {
               <span className="font-black text-white text-xs">x{myStreak}</span>
             </div>
           )}
+          <button onClick={() => { resetGameState(); setPhase({ name: "setup" }); }} className="ml-2 text-zinc-500 hover:text-red-500 transition-colors" title={kh ? "បោះបង់" : "Quit Game"}>
+            <X size={24} strokeWidth={3} />
+          </button>
         </div>
       </div>
 

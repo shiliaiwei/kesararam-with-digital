@@ -99,13 +99,19 @@ export function AnswerGrid({
               <Icon size={14} className="text-white" />
             </span>
             {isImagePick && ans.imageUrl ? (
-              <div className="flex flex-col gap-1 flex-1 min-w-0">
+              <div className="flex flex-1 items-center justify-center bg-white/20 p-2 rounded-sm border border-white/30 h-28 relative">
                 <img
                   src={ans.imageUrl}
                   alt={text}
-                  className="w-full h-20 object-contain border border-white/30"
+                  className="w-full h-full object-contain drop-shadow-md"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    if (e.currentTarget.nextElementSibling) {
+                      (e.currentTarget.nextElementSibling as HTMLElement).style.display = 'block';
+                    }
+                  }}
                 />
-                <span className="text-sm truncate">{text}</span>
+                <span className="text-sm leading-tight hidden text-center">{text} (Image Broken)</span>
               </div>
             ) : (
               <span className="flex-1 text-sm leading-tight">{text}</span>
