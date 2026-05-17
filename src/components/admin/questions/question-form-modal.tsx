@@ -328,6 +328,7 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                         </div>
 
                         {!isPreSelected && (
+                            <div className="grid grid-cols-2 gap-3">
                                 <div>
                                     <label className="block text-xs font-black uppercase mb-1">Category *</label>
                                     <select value={catId || ""} onChange={e => { setCatId(Number(e.target.value)); setTopicId(null); setTopicData(null); }}
