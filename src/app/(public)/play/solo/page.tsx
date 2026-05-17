@@ -396,17 +396,9 @@ export default function SoloPage() {
   return (
     <div className="game-dot-bg fixed inset-0 z-50 flex flex-col" style={{ userSelect: "none" }}>
       <div className="relative z-10 flex items-center justify-between px-4 py-3 bg-black/80 backdrop-blur-sm border-b-2 border-yellow-400">
-        <div className="flex items-center gap-3">
-          <span className="text-yellow-400 font-black text-xs uppercase tracking-widest" style={khFont}>
-            {kh ? GAME_MODE_CONFIG[phase.session.gameMode]?.labelKm : GAME_MODE_CONFIG[phase.session.gameMode]?.label}
-          </span>
-          <span className="text-zinc-400 font-bold text-[10px] uppercase border border-zinc-600 px-1.5 py-0.5 rounded-sm bg-zinc-800/50">
-            {q.difficulty || "mixed"}
-          </span>
-          <button onClick={() => setMuted(m => !m)} className="text-zinc-400 hover:text-white transition-colors" title={muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}>
-            {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-          </button>
-        </div>
+        <span className="text-yellow-400 font-black text-xs uppercase tracking-widest" style={khFont}>
+          {kh ? GAME_MODE_CONFIG[phase.session.gameMode]?.labelKm : GAME_MODE_CONFIG[phase.session.gameMode]?.label}
+        </span>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5 bg-yellow-400 border-2 border-black px-3 py-1" style={{ boxShadow: "2px 2px 0 #000" }}>
             <Zap size={12} className="text-black" />
@@ -430,10 +422,18 @@ export default function SoloPage() {
       </div>
 
       <div className="relative z-10 flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full justify-center overflow-y-auto min-h-0">
-        <div className="flex items-center justify-between">
-          <span className="text-zinc-400 text-xs font-black uppercase tracking-widest" style={khFont}>
-            {kh ? `${phase.qIndex + 1}/${phase.session.questions.length}` : `Q ${phase.qIndex + 1} / ${phase.session.questions.length}`}
-          </span>
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-3">
+            <span className="text-zinc-400 text-sm font-black uppercase tracking-widest bg-zinc-800/80 px-2 py-1 rounded border border-zinc-700" style={khFont}>
+              {kh ? `${phase.qIndex + 1}/${phase.session.questions.length}` : `Q ${phase.qIndex + 1} / ${phase.session.questions.length}`}
+            </span>
+            <span className="text-yellow-500 font-black text-xs uppercase bg-yellow-500/10 px-2 py-1 rounded border border-yellow-500/30 shadow-sm" style={khFont}>
+              {q.difficulty || "mixed"}
+            </span>
+            <button onClick={() => setMuted(m => !m)} className="p-1.5 rounded bg-zinc-800/80 border border-zinc-700 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all" title={muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}>
+              {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+            </button>
+          </div>
           <CountdownTimer
             endsAt={phase.endsAt}
             totalSeconds={phase.session.timePerQuestion}
@@ -448,8 +448,8 @@ export default function SoloPage() {
           </div>
         )}
 
-        <div className="bg-zinc-900/80 backdrop-blur-sm border-2 border-zinc-700 p-4 text-white font-black text-base sm:text-lg leading-snug break-words"
-          style={{ boxShadow: "3px 3px 0 #ffd700", ...khFont }}>
+        <div className="bg-zinc-900/90 backdrop-blur-md border-2 border-zinc-600 p-6 sm:p-8 rounded-lg text-white font-black text-xl sm:text-2xl md:text-3xl leading-snug break-words text-center shadow-lg"
+          style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)", ...khFont }}>
           {effectiveLang === "kh" ? q.questionKm || q.questionEn : q.questionEn}
         </div>
 
