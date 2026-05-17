@@ -85,22 +85,20 @@ export function AnswerGrid({
               }
             }}
             type="button"
-            className={`relative flex items-center transition-all duration-150 active:scale-95 text-left font-black text-white ${isImagePick
-                ? "p-1 border-4 overflow-hidden aspect-square justify-center rounded-lg"
+            className={`relative flex items-center transition-all duration-300 ease-out active:scale-95 text-left font-black text-white ${isImagePick
+                ? "overflow-hidden aspect-square justify-center rounded-2xl bg-white"
                 : "gap-3 p-4 border-2 border-black rounded-none"
               }`}
             style={isImagePick ? {
               opacity,
-              backgroundColor: isCorrect ? "#22c55e" : isWrong ? "#ef4444" : "#fff",
-              borderColor: isCorrect ? "#16a34a" : isWrong ? "#dc2626" : isSelected && correctId === null ? "#fbbf24" : "#000",
               boxShadow: isCorrect
-                ? "0 0 0 3px #16a34a, 4px 4px 0 #000"
+                ? "0 0 0 4px #22c55e, 0 10px 30px rgba(34,197,94,0.4)"
                 : isWrong
-                  ? "0 0 0 3px #dc2626, 4px 4px 0 #000"
+                  ? "0 0 0 4px #ef4444, 0 10px 30px rgba(239,68,68,0.4)"
                   : isSelected && correctId === null
-                    ? "0 0 0 3px #fbbf24, 4px 4px 0 #000"
-                    : "3px 3px 0 #000",
-              transform: isSelected && correctId === null ? "translate(-2px,-2px) scale(1.03)" : undefined,
+                    ? "0 0 0 4px #eab308, 0 10px 30px rgba(234,179,8,0.25)"
+                    : "0 4px 20px rgba(0,0,0,0.1)",
+              transform: isSelected && correctId === null ? "translateY(-4px) scale(1.02)" : isCorrect ? "scale(1.05)" : "scale(1)",
             } : {
               backgroundColor: bgColor,
               borderColor: borderColor,
@@ -117,11 +115,12 @@ export function AnswerGrid({
             )}
 
             {isImagePick && ans.imageUrl ? (
-              <div className="w-full h-full flex items-center justify-center relative">
+              <div className="w-full h-full flex items-center justify-center p-4 relative bg-white rounded-2xl">
                 <img
                   src={ans.imageUrl}
                   alt={text}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain drop-shadow-sm transition-transform duration-300"
+                  style={{ transform: (isSelected || isCorrect) ? "scale(1.05)" : "scale(1)" }}
                   onError={(e) => {
                     e.currentTarget.style.display = "none";
                     const sib = e.currentTarget.nextElementSibling as HTMLElement | null;
@@ -129,36 +128,37 @@ export function AnswerGrid({
                   }}
                 />
                 {/* Fallback text if image fails */}
-                <span className="text-xs leading-tight hidden items-center justify-center text-center text-black px-2 absolute inset-0 bg-zinc-100">
+                <span className="text-xs leading-tight hidden items-center justify-center text-center text-black px-4 absolute inset-0 bg-zinc-50 rounded-2xl">
                   {text}
                 </span>
-                {/* Correct overlay — green tick */}
+                {/* Correct overlay — green tick & subtle green tint */}
                 {isCorrect && (
-                  <span className="absolute top-1 right-1 w-7 h-7 rounded-full bg-green-500 border-2 border-white flex items-center justify-center text-white font-black text-sm z-10 shadow-lg">
-                    ✓
-                  </span>
+                  <>
+                    <div className="absolute inset-0 bg-green-500/5 rounded-2xl pointer-events-none" />
+                    <span className="absolute top-3 right-3 w-8 h-8 rounded-full bg-green-500 border border-white/50 flex items-center justify-center text-white font-black text-lg shadow-[0_4px_12px_rgba(34,197,94,0.6)] z-10 scale-in-center">
+                      ✓
+                    </span>
+                  </>
                 )}
-                {/* Wrong overlay — red cross */}
+                {/* Wrong overlay — red cross & subtle red tint */}
                 {isWrong && (
-                  <span className="absolute top-1 right-1 w-7 h-7 rounded-full bg-red-500 border-2 border-white flex items-center justify-center text-white font-black text-sm z-10 shadow-lg">
-                    ✗
-                  </span>
+                  <>
+                    <div className="absolute inset-0 bg-red-500/5 rounded-2xl pointer-events-none" />
+                    <span className="absolute top-3 right-3 w-8 h-8 rounded-full bg-red-500 border border-white/50 flex items-center justify-center text-white font-black text-lg shadow-[0_4px_12px_rgba(239,68,68,0.6)] z-10 scale-in-center">
+                      ✗
+                    </span>
+                  </>
                 )}
-                {/* Answer label A/B/C/D at bottom */}
-                <span className="absolute bottom-0 left-0 right-0 text-[9px] font-black text-center py-0.5 px-1 truncate"
-                  style={{ background: "rgba(0,0,0,0.55)", color: "#fff" }}>
-                  {style.label}
-                </span>
               </div>
             ) : isImagePick && !ans.imageUrl ? (
               /* No image — show text fallback */
-              <div className="w-full h-full flex items-center justify-center bg-zinc-100 relative">
-                <span className="text-xs font-bold text-black text-center px-2 leading-tight">{text}</span>
+              <div className="w-full h-full flex items-center justify-center bg-zinc-50 relative rounded-2xl">
+                <span className="text-sm font-bold text-black text-center px-4 leading-tight">{text}</span>
                 {isCorrect && (
-                  <span className="absolute top-1 right-1 w-7 h-7 rounded-full bg-green-500 border-2 border-white flex items-center justify-center text-white font-black text-sm z-10">✓</span>
+                  <span className="absolute top-3 right-3 w-8 h-8 rounded-full bg-green-500 border border-white/50 flex items-center justify-center text-white font-black text-lg shadow-[0_4px_12px_rgba(34,197,94,0.6)] z-10">✓</span>
                 )}
                 {isWrong && (
-                  <span className="absolute top-1 right-1 w-7 h-7 rounded-full bg-red-500 border-2 border-white flex items-center justify-center text-white font-black text-sm z-10">✗</span>
+                  <span className="absolute top-3 right-3 w-8 h-8 rounded-full bg-red-500 border border-white/50 flex items-center justify-center text-white font-black text-lg shadow-[0_4px_12px_rgba(239,68,68,0.6)] z-10">✗</span>
                 )}
               </div>
             ) : (
