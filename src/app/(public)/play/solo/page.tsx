@@ -442,7 +442,7 @@ export default function SoloPage() {
           />
         </div>
 
-        {q.imageUrl && (
+        {q.imageUrl && q.gameType !== "image_pick" && (
           <div className="border-2 border-black bg-white flex items-center justify-center p-4" style={{ minHeight: 180 }}>
             <img src={q.imageUrl} alt="question" className="max-h-44 w-auto object-contain" />
           </div>
