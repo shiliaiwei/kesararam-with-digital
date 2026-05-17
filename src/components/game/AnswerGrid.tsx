@@ -86,15 +86,17 @@ export function AnswerGrid({
             }}
             type="button"
             className={`relative flex items-center transition-all duration-100 active:scale-95 text-left font-black text-white ${
-              isImagePick ? "p-0 border-4 rounded-xl overflow-hidden aspect-square justify-center" : "gap-3 p-4 border-2 border-black rounded-none"
+              isImagePick ? "p-0 bg-transparent border-0 overflow-visible aspect-square justify-center" : "gap-3 p-4 border-2 border-black rounded-none"
             }`}
-            style={{
-              backgroundColor: isImagePick ? "#000" : bgColor,
-              borderColor: isImagePick ? (isSelected ? "#ffd700" : "transparent") : borderColor,
+            style={isImagePick ? {
               opacity,
-              boxShadow: isImagePick 
-                ? (isSelected && correctId === null ? "0 0 0 4px #ffd700" : "0 8px 20px rgba(0,0,0,0.3)") 
-                : (isSelected && correctId === null ? "4px 4px 0 #fff" : "4px 4px 0 #000"),
+              transform: isSelected && correctId === null ? "scale(1.05)" : undefined,
+              filter: isSelected && correctId === null ? "drop-shadow(0 0 10px #ffd700)" : "drop-shadow(0 4px 6px rgba(0,0,0,0.3))",
+            } : {
+              backgroundColor: bgColor,
+              borderColor: borderColor,
+              opacity,
+              boxShadow: isSelected && correctId === null ? "4px 4px 0 #fff" : "4px 4px 0 #000",
               transform: isSelected && correctId === null ? "translate(-2px,-2px) scale(1.02)" : undefined,
               fontFamily: lang === "kh" ? "Siemreap, sans-serif" : undefined,
             }}
@@ -106,11 +108,11 @@ export function AnswerGrid({
             )}
             
             {isImagePick && ans.imageUrl ? (
-              <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-white">
+              <div className="w-full h-full flex items-center justify-center">
                 <img
                   src={ans.imageUrl}
                   alt={text}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                     if (e.currentTarget.nextElementSibling) {
