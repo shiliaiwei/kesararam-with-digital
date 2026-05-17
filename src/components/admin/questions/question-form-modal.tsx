@@ -796,7 +796,7 @@ function JsonImportMode({ topicId, topicData, catId, isPreSelected, preSelectedT
                     questionKm: item.qkm || item.questionKm || "",
                     hintEn: item.hint || item.hintEn || "",
                     hintKm: item.hintKm || "",
-                    imageUrl: item.image === "auto" ? topicImg : (item.image || item.imageUrl || topicImg),
+                    imageUrl: item.image === "auto" ? topicImg : (item.image || item.imageUrl || null),
                     difficulty: item.diff || item.difficulty || "medium",
                     pointsMultiplier: ({ easy: 1, medium: 2, hard: 3 } as Record<string, number>)[item.diff || item.difficulty || "medium"] || 2,
                     answers,
