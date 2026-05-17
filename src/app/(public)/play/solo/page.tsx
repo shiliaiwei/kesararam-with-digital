@@ -53,7 +53,7 @@ type Phase =
   | { name: "setup" }
   | { name: "loading" }
   | { name: "playing"; session: SoloSession; qIndex: number; endsAt: string; startedAt: number; selectedId: number | null; showCorrect: boolean }
-  | { name: "results"; result: ResultData };
+  | { name: "results"; session: SoloSession; result: ResultData; answers: AnswerRecord[] };
 
 const GAME_MODES = Object.entries(GAME_MODE_CONFIG).map(([id, cfg]) => ({ id, ...cfg }));
 
@@ -198,10 +198,10 @@ export default function SoloPage() {
         body: JSON.stringify({ sessionId: session.sessionId, answers: answersRef.current, timeTakenSeconds, gameMode: session.gameMode, difficulty }),
       });
       const result = await res.json();
-      setPhase({ name: "results", result: { ...result, totalScore: finalScore, personalBest: Math.max(result.personalBest ?? 0, finalScore) } });
+      setPhase({ name: "results", session, answers: answersRef.current, result: { ...result, totalScore: finalScore, personalBest: Math.max(result.personalBest ?? 0, finalScore) } });
       if (!muted) sounds.podium();
     } catch {
-      setPhase({ name: "results", result: { totalScore: finalScore, accuracyPercentage: 0, timeTakenSeconds, correctAnswers: 0, totalQuestions: session.questions.length, personalBest: finalScore, isNewPersonalBest: false, perQuestion: [] } });
+      setPhase({ name: "results", session, answers: answersRef.current, result: { totalScore: finalScore, accuracyPercentage: 0, timeTakenSeconds, correctAnswers: 0, totalQuestions: session.questions.length, personalBest: finalScore, isNewPersonalBest: false, perQuestion: [] } });
     }
   }
   completeGameRef.current = completeGame;
@@ -370,6 +370,75 @@ export default function SoloPage() {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Detailed Question Review */}
+          <div className="mt-2 space-y-4">
+            <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2" style={khFont}>
+              {kh ? "ពិនិត្យមើលចម្លើយរបស់អ្នកឡើងវិញ" : "Review Your Answers"}
+            </div>
+            
+            {phase.session.questions.map((q, i) => {
+              const record = phase.answers.find((a) => a.questionId === q.id);
+              if (!record) return null;
+              
+              const isCorrect = record.isCorrect;
+              const selectedAnswer = q.answers.find(a => a.id === record.answerId);
+              const correctAnswer = q.answers.find(a => a.isCorrect);
+              
+              return (
+                <div key={q.id} className={`border-2 border-black p-4 bg-white`} style={{ boxShadow: "3px 3px 0 #000" }}>
+                  <div className="flex items-start gap-3 mb-3">
+                    <div 
+                      className="shrink-0 w-6 h-6 flex items-center justify-center text-white font-black text-xs border-2 border-black"
+                      style={{ backgroundColor: isCorrect ? "#22c55e" : "#ef4444" }}
+                    >
+                      {i + 1}
+                    </div>
+                    <div className="font-bold text-sm leading-snug" style={khFont}>
+                      {kh ? (q.questionKm || q.questionEn) : q.questionEn}
+                    </div>
+                  </div>
+                  
+                  {/* Hide images if image_pick, else show */}
+                  {q.imageUrl && q.gameType !== "image_pick" && (
+                    <div className="mb-3 border-2 border-zinc-200 p-2 flex justify-center bg-zinc-50">
+                      <img src={q.imageUrl} alt="Question" className="max-h-24 w-auto object-contain" />
+                    </div>
+                  )}
+
+                  <div className="space-y-2 ml-9">
+                    {/* Selected Answer */}
+                    <div className={`p-2 border-2 border-black text-sm flex gap-2 items-center ${isCorrect ? 'bg-green-100' : 'bg-red-100'}`} style={khFont}>
+                      <span className="font-black shrink-0">{isCorrect ? '✓' : '✗'}</span>
+                      <span className="font-bold">
+                        {kh ? "អ្នកជ្រើសរើស:" : "You chose:"}
+                      </span>
+                      {selectedAnswer ? (
+                        <>
+                          {selectedAnswer.imageUrl && <img src={selectedAnswer.imageUrl} className="h-6 w-auto" alt="Answer" />}
+                          <span className="flex-1 line-clamp-2">{kh ? (selectedAnswer.answerKm || selectedAnswer.answerEn) : selectedAnswer.answerEn}</span>
+                        </>
+                      ) : (
+                        <span className="text-zinc-500 italic">{kh ? "អស់ម៉ោង" : "Time out"}</span>
+                      )}
+                    </div>
+                    
+                    {/* Show Correct Answer if they were wrong */}
+                    {!isCorrect && correctAnswer && (
+                      <div className={`p-2 border-2 border-black bg-green-100 text-sm flex gap-2 items-center`} style={khFont}>
+                        <span className="font-black shrink-0 text-green-600">✓</span>
+                        <span className="font-bold">
+                          {kh ? "ចម្លើយត្រូវ:" : "Correct answer:"}
+                        </span>
+                        {correctAnswer.imageUrl && <img src={correctAnswer.imageUrl} className="h-6 w-auto" alt="Answer" />}
+                        <span className="flex-1 line-clamp-2">{kh ? (correctAnswer.answerKm || correctAnswer.answerEn) : correctAnswer.answerEn}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
           <div className="flex gap-3">
             <button onClick={() => { resetGameState(); setPhase({ name: "setup" }); }}

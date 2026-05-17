@@ -499,6 +499,7 @@ export function TrafficSignsCatalogue() {
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
   const [selectedQuestions, setSelectedQuestions] = useState<any[]>([]);
   const [loadingQuestions, setLoadingQuestions] = useState(false);
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
   const [cols, setCols] = useState(8);
 
@@ -641,11 +642,27 @@ export function TrafficSignsCatalogue() {
             )}
           </div>
 
+          {/* Mobile Filter Toggle */}
+          <button
+            onClick={() => setShowMobileFilters(!showMobileFilters)}
+            className="md:hidden w-full flex items-center justify-between px-3 py-2 border-2 border-black bg-zinc-50 font-black text-sm mb-3 focus:outline-none"
+            style={kf}
+          >
+            <span className="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+              {isKh ? "ត្រងប្រភេទសញ្ញា" : "Filter Categories"}
+              {subGroupFilter && !search && (
+                <span className="bg-yellow-400 text-black px-1.5 py-0.5 rounded-full text-[10px] ml-1">1</span>
+              )}
+            </span>
+            <ChevronDown size={16} className={`transition-transform ${showMobileFilters ? "rotate-180" : ""}`} />
+          </button>
+
           {/* Tag pills — wrapped lines so you don't have to scroll */}
-          <div className="flex flex-wrap items-center gap-1.5 py-0.5">
+          <div className={`${showMobileFilters ? "flex" : "hidden"} md:flex flex-wrap items-center gap-1.5 py-0.5`}>
             {/* All Signs — first */}
             <button
-              onClick={() => handleFilterChange("")}
+              onClick={() => { handleFilterChange(""); setShowMobileFilters(false); }}
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${subGroupFilter === "" && !search
                 ? "bg-black text-yellow-400 shadow-[2px_2px_0_#ca8a04]"
                 : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
@@ -668,7 +685,7 @@ export function TrafficSignsCatalogue() {
               return (
                 <button
                   key={sg.key}
-                  onClick={() => handleFilterChange(sg.key)}
+                  onClick={() => { handleFilterChange(sg.key); setShowMobileFilters(false); }}
                   className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${isActive
                     ? "bg-yellow-400 border-black shadow-[2px_2px_0_#000]"
                     : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
