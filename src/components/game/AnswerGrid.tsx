@@ -85,25 +85,32 @@ export function AnswerGrid({
               }
             }}
             type="button"
-            className="relative flex items-center gap-3 p-4 border-2 border-black rounded-none font-black text-white text-left transition-all duration-100 active:scale-95"
+            className={`relative flex items-center transition-all duration-100 active:scale-95 text-left font-black text-white ${
+              isImagePick ? "p-0 border-4 rounded-xl overflow-hidden aspect-square justify-center" : "gap-3 p-4 border-2 border-black rounded-none"
+            }`}
             style={{
-              backgroundColor: bgColor,
-              borderColor,
+              backgroundColor: isImagePick ? "#000" : bgColor,
+              borderColor: isImagePick ? (isSelected ? "#ffd700" : "transparent") : borderColor,
               opacity,
-              boxShadow: isSelected && correctId === null ? "4px 4px 0 #fff" : "4px 4px 0 #000",
-              transform: isSelected && correctId === null ? "translate(-2px,-2px)" : undefined,
+              boxShadow: isImagePick 
+                ? (isSelected && correctId === null ? "0 0 0 4px #ffd700" : "0 8px 20px rgba(0,0,0,0.3)") 
+                : (isSelected && correctId === null ? "4px 4px 0 #fff" : "4px 4px 0 #000"),
+              transform: isSelected && correctId === null ? "translate(-2px,-2px) scale(1.02)" : undefined,
               fontFamily: lang === "kh" ? "Siemreap, sans-serif" : undefined,
             }}
           >
-            <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center border-2 border-white/50 rounded-none">
-              <Icon size={14} className="text-white" />
-            </span>
+            {!isImagePick && (
+              <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center border-2 border-white/50 rounded-none">
+                <Icon size={14} className="text-white" />
+              </span>
+            )}
+            
             {isImagePick && ans.imageUrl ? (
-              <div className="flex flex-1 items-center justify-center h-32 relative overflow-hidden rounded-md bg-transparent border-0 p-0">
+              <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-white">
                 <img
                   src={ans.imageUrl}
                   alt={text}
-                  className="w-full h-full object-cover shadow-lg"
+                  className="w-full h-full object-cover"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                     if (e.currentTarget.nextElementSibling) {
@@ -111,14 +118,15 @@ export function AnswerGrid({
                     }
                   }}
                 />
-                <span className="text-sm leading-tight hidden text-center">{text} (Image Broken)</span>
+                <span className="text-sm leading-tight hidden text-center text-black px-2">{text} (Image Broken)</span>
               </div>
-            ) : (
-              <span className="flex-1 text-sm leading-tight">{text}</span>
+            ) : !isImagePick && (
+              <span className="flex-1 text-sm sm:text-base leading-tight">{text}</span>
             )}
+            
             {isCorrect && (
-              <span className="absolute top-1 right-2 text-white text-xs font-black">
-                +
+              <span className={`absolute ${isImagePick ? "top-2 right-2 w-8 h-8 rounded-full bg-green-500 border-2 border-white flex items-center justify-center" : "top-1 right-2"} text-white font-black z-10`}>
+                {isImagePick ? "✓" : "+"}
               </span>
             )}
           </button>
