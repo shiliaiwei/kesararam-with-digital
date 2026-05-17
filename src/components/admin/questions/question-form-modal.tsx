@@ -38,7 +38,7 @@ const IMAGE_MATCH_SLUGS = ["road-sign", "priority"];
 export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSuccess }: QuestionFormModalProps) {
     const { showToast } = useToast();
     const [saving, setSaving] = useState(false);
-    const [mode, setMode] = useState<"quick" | "full" | "json">("quick");
+    const [mode, setMode] = useState<"form" | "json">("json");
     const [categories, setCategories] = useState<Category[]>([]);
     const [topics, setTopics] = useState<Topic[]>([]);
     const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
@@ -327,17 +327,13 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                     <div className="flex items-center gap-2">
                         {!initialData && (
                             <div className="flex border-2 border-black overflow-hidden">
-                                <button type="button" onClick={() => setMode("quick")}
-                                    className={`px-3 py-1.5 text-xs font-black flex items-center gap-1 transition-all ${mode === "quick" ? "bg-black text-white" : "bg-white hover:bg-gray-100"}`}>
-                                    <Clipboard size={13} /> Quick
-                                </button>
                                 <button type="button" onClick={() => setMode("json")}
-                                    className={`px-3 py-1.5 text-xs font-black flex items-center gap-1 transition-all border-l-2 border-black ${mode === "json" ? "bg-black text-white" : "bg-white hover:bg-gray-100"}`}>
+                                    className={`px-3 py-1.5 text-xs font-black flex items-center gap-1 transition-all ${mode === "json" ? "bg-black text-white" : "bg-white hover:bg-gray-100"}`}>
                                     <Zap size={13} /> JSON
                                 </button>
-                                <button type="button" onClick={() => setMode("full")}
-                                    className={`px-3 py-1.5 text-xs font-black flex items-center gap-1 transition-all border-l-2 border-black ${mode === "full" ? "bg-black text-white" : "bg-white hover:bg-gray-100"}`}>
-                                    <Settings size={13} /> Full
+                                <button type="button" onClick={() => setMode("form")}
+                                    className={`px-3 py-1.5 text-xs font-black flex items-center gap-1 transition-all border-l-2 border-black ${mode === "form" ? "bg-black text-white" : "bg-white hover:bg-gray-100"}`}>
+                                    <Settings size={13} /> Manual Builder
                                 </button>
                             </div>
                         )}
@@ -345,103 +341,6 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                     </div>
                 </div>
 
-                {/* ── QUICK MODE ── */}
-                {mode === "quick" && !initialData && (
-                    <form onSubmit={handleQuickSubmit} className="p-5 space-y-4">
-                        <div>
-                            <label className="block text-xs font-black uppercase mb-1">Question Type *</label>
-                            <div className="grid grid-cols-3 gap-2">
-                                {Q_TYPES.map(t => (
-                                    <button key={t.value} type="button" onClick={() => { handleTypeChange(t.value); setQuickAnswers(parseQuickText(quickText, t.value)); }}
-                                        className={`p-2 border-2 border-black text-left transition-all ${qType === t.value ? "bg-yellow-400 shadow-[2px_2px_0_#000]" : "bg-white hover:shadow-[2px_2px_0_#000]"}`}>
-                                        <div className="font-black text-[10px]">{t.label}</div>
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
-                        {!isPreSelected && (
-                            <div className="grid grid-cols-2 gap-3">
-                                <div>
-                                    <label className="block text-xs font-black uppercase mb-1">Category *</label>
-                                    <select value={catId || ""} onChange={e => { setCatId(Number(e.target.value)); setTopicId(null); setTopicData(null); }}
-                                        className="w-full px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none" required>
-                                        <option value="">Choose category...</option>
-                                        {categories.map(c => <option key={c.id} value={c.id}>{c.titleEn}</option>)}
-                                    </select>
-                                </div>
-                                <div>
-                                    <label className="block text-xs font-black uppercase mb-1">Topic *</label>
-                                    <select value={topicId || ""} onChange={e => handleTopicChange(Number(e.target.value))}
-                                        className="w-full px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none disabled:bg-gray-100"
-                                        disabled={!catId} required>
-                                        <option value="">Choose topic...</option>
-                                        {filteredTopics.map(t => <option key={t.id} value={t.id}>{t.nameEn} ({t.topicCode})</option>)}
-                                    </select>
-                                </div>
-                            </div>
-                        )}
-
-                        <div>
-                            <label className="block text-xs font-black uppercase mb-1">Question *</label>
-                            <textarea value={qEn} onChange={e => setQEn(e.target.value)} required
-                                className="w-full px-3 py-2.5 border-2 border-black text-sm font-medium focus:outline-none min-h-[70px] resize-none"
-                                placeholder="Paste or type your question here..." />
-                        </div>
-
-                        <div>
-                            <label className="block text-xs font-black uppercase mb-1">
-                                Answers — one per line
-                                <span className="ml-2 text-zinc-400 font-medium normal-case text-xs">
-                                    {qType === "MATCHING" ? "Enter pairs separated by = (e.g. Red = Stop)" : 
-                                     qType === "FILL_BLANK" ? "Enter the correct word(s)" : 
-                                     "Start with * to mark correct answer"}
-                                </span>
-                            </label>
-                            <textarea value={quickText} onChange={e => handleQuickPaste(e.target.value)}
-                                className="w-full px-3 py-2.5 border-2 border-black text-sm font-mono focus:outline-none min-h-[100px] resize-none"
-                                placeholder={"* 30 km/h\n50 km/h\n60 km/h\n80 km/h"} />
-                        </div>
-
-                        {quickAnswers.length > 0 && (
-                            <div className="border-2 border-black overflow-hidden">
-                                <div className="bg-black text-white px-3 py-2 text-xs font-black uppercase">
-                                    Click to mark correct answer
-                                </div>
-                                <div className="divide-y divide-zinc-200">
-                                    {quickAnswers.map((a, i) => (
-                                        <button key={i} type="button" onClick={() => toggleQuickCorrect(i)}
-                                            className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all ${a.correct ? "bg-green-100" : "bg-white hover:bg-yellow-50"}`}>
-                                            <div className={`w-6 h-6 flex-shrink-0 border-2 border-black flex items-center justify-center font-black text-xs ${a.correct ? "bg-green-500 text-white" : "bg-white text-zinc-400"}`}>
-                                                {a.correct ? <CheckCircle size={14} /> : String.fromCharCode(65 + i)}
-                                            </div>
-                                            <span className={`text-sm font-bold flex-1 ${a.correct ? "text-green-800" : "text-black"}`}>{a.text}</span>
-                                            {a.correct && <span className="text-xs font-black text-green-600">CORRECT</span>}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        <div className="flex items-center gap-2">
-                            <span className="text-xs font-black uppercase text-zinc-500">Difficulty:</span>
-                            {DIFF.map(d => (
-                                <button key={d.value} type="button" onClick={() => setQuickDiff(d.value)}
-                                    className={`px-3 py-1.5 border-2 border-black text-xs font-black transition-all ${quickDiff === d.value ? "shadow-[2px_2px_0_#000]" : "bg-white hover:shadow-[1px_1px_0_#000]"}`}
-                                    style={{ backgroundColor: quickDiff === d.value ? d.color : "#fff", color: quickDiff === d.value ? "#fff" : "#000" }}>
-                                    {d.label} +{d.pts}pt
-                                </button>
-                            ))}
-                        </div>
-
-                        <div className="flex justify-end gap-3 pt-2 border-t-2 border-black">
-                            <button type="button" onClick={onClose} className="px-5 py-2.5 border-2 border-black bg-white font-black text-sm hover:shadow-[2px_2px_0_#000] transition-all">Cancel</button>
-                            <button type="submit" disabled={saving} className="px-5 py-2.5 border-2 border-black bg-green-400 font-black text-sm hover:shadow-[4px_4px_0_#000] transition-all disabled:opacity-50">
-                                {saving ? "Saving..." : "Create Question"}
-                            </button>
-                        </div>
-                    </form>
-                )}
 
                 {/* ── JSON MODE ── */}
                 {mode === "json" && !initialData && <JsonImportMode
