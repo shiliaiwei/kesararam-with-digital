@@ -99,11 +99,11 @@ export function AnswerGrid({
               <Icon size={14} className="text-white" />
             </span>
             {isImagePick && ans.imageUrl ? (
-              <div className="flex flex-1 items-center justify-center bg-white/20 p-2 rounded-sm border border-white/30 h-28 relative">
+              <div className="flex flex-1 items-center justify-center h-32 relative overflow-hidden rounded-md bg-transparent border-0 p-0">
                 <img
                   src={ans.imageUrl}
                   alt={text}
-                  className="w-full h-full object-contain drop-shadow-md"
+                  className="w-full h-full object-cover shadow-lg"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                     if (e.currentTarget.nextElementSibling) {
