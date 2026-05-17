@@ -83,10 +83,41 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
 
     // Auto-load distractor images for image-match
     useEffect(() => {
-        if (qType === "IMAGE_BASED" && catId && canUseImageMatch) {
+        const canUseImageMatchEffect = IMAGE_MATCH_SLUGS.includes(categories.find(c => c.id === catId)?.slug || "");
+        if (qType === "IMAGE_BASED" && catId && canUseImageMatchEffect) {
             fetchDistractors();
         }
-    }, [qType, catId]);
+    }, [qType, catId, categories]);
+
+    // Auto-link question image to correct answer if it's empty
+    useEffect(() => {
+        if (qType === "IMAGE_BASED" && imageUrl) {
+            setAnswers(prev => {
+                const updated = prev.map(a => 
+                    (a.isCorrect && !a.imageUrl) ? { ...a, imageUrl } : a
+                );
+                return JSON.stringify(prev) !== JSON.stringify(updated) ? updated : prev;
+            });
+        }
+    }, [imageUrl, qType]);
+
+    // Auto-fill distractor answers when distImages load
+    useEffect(() => {
+        if (qType === "IMAGE_BASED" && distImages.length > 0) {
+            setAnswers(prev => {
+                const newAnswers = [...prev];
+                let distIndex = 0;
+                let changed = false;
+                for (let i = 0; i < newAnswers.length; i++) {
+                    if (!newAnswers[i].isCorrect && !newAnswers[i].imageUrl && distIndex < distImages.length) {
+                        newAnswers[i] = { ...newAnswers[i], imageUrl: distImages[distIndex++] };
+                        changed = true;
+                    }
+                }
+                return changed ? newAnswers : prev;
+            });
+        }
+    }, [distImages, qType]);
 
     const fetchCategories = async () => {
         try {
@@ -129,15 +160,17 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                 { id: "2", answerEn: "False", answerKm: "មិនពិត", isCorrect: false },
             ]);
         } else if (type === "IMAGE_BASED") {
-            const correct = topicData?.primaryImageUrl || "";
+            const correct = topicData?.primaryImageUrl || imageUrl || "";
             const dists = distImages.slice(0, 3);
             const all = [
                 { id: "1", answerEn: topicData?.nameEn || "Correct", answerKm: topicData?.nameKm || "", isCorrect: true, imageUrl: correct },
                 ...dists.map((img, i) => ({ id: String(i + 2), answerEn: `Option ${i + 2}`, answerKm: "", isCorrect: false, imageUrl: img })),
             ];
             setAnswers(all.length >= 2 ? all : [
-                { id: "1", answerEn: "", answerKm: "", isCorrect: true, imageUrl: correct },
-                { id: "2", answerEn: "", answerKm: "", isCorrect: false, imageUrl: "" },
+                { id: "1", answerEn: topicData?.nameEn || "Correct", answerKm: topicData?.nameKm || "", isCorrect: true, imageUrl: correct },
+                { id: "2", answerEn: "Option 2", answerKm: "", isCorrect: false, imageUrl: "" },
+                { id: "3", answerEn: "Option 3", answerKm: "", isCorrect: false, imageUrl: "" },
+                { id: "4", answerEn: "Option 4", answerKm: "", isCorrect: false, imageUrl: "" },
             ]);
         } else if (type === "MATCHING") {
             setAnswers([
