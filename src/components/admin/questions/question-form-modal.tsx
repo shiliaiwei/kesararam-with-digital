@@ -18,10 +18,12 @@ interface Answer { id: string; answerEn: string; answerKm: string; isCorrect: bo
 const SCORE_MAP: Record<string, number> = { easy: 1, medium: 2, hard: 3 };
 
 const Q_TYPES = [
-    { value: "mcq", label: "Multiple Choice", desc: "One correct answer", min: 2, max: 5, multi: false },
-    { value: "true-false", label: "True / False", desc: "Binary choice", min: 2, max: 2, multi: false },
-    { value: "multi-select", label: "Multi-Select", desc: "Multiple correct answers", min: 3, max: 5, multi: true },
-    { value: "image-match", label: "Image Match", desc: "Pick the correct image", min: 2, max: 4, multi: false },
+    { value: "MCQ_SINGLE", label: "Multiple Choice", desc: "One correct answer", min: 2, max: 5, multi: false },
+    { value: "MCQ_MULTIPLE", label: "Multi-Select", desc: "Multiple correct answers", min: 3, max: 5, multi: true },
+    { value: "TRUE_FALSE", label: "True / False", desc: "Binary choice", min: 2, max: 2, multi: false },
+    { value: "IMAGE_BASED", label: "Image Based", desc: "Visual scenario", min: 2, max: 4, multi: false },
+    { value: "MATCHING", label: "Matching", desc: "Match items from two sets", min: 2, max: 6, multi: false },
+    { value: "FILL_BLANK", label: "Fill in the Blank", desc: "Missing word(s)", min: 1, max: 5, multi: false },
 ];
 
 const DIFF = [
@@ -48,7 +50,7 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
     const [catId, setCatId] = useState<number | null>(preSelectedTopic?.categoryId || null);
     const [topicId, setTopicId] = useState<number | null>(preSelectedTopic?.id || null);
     const [topicData, setTopicData] = useState<Topic | null>(preSelectedTopic || null);
-    const [qType, setQType] = useState("mcq");
+    const [qType, setQType] = useState("MCQ_SINGLE");
     const [diff, setDiff] = useState("medium");
     const [qEn, setQEn] = useState("");
     const [qKm, setQKm] = useState("");
@@ -81,7 +83,7 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
 
     // Auto-load distractor images for image-match
     useEffect(() => {
-        if (qType === "image-match" && catId && canUseImageMatch) {
+        if (qType === "IMAGE_BASED" && catId && canUseImageMatch) {
             fetchDistractors();
         }
     }, [qType, catId]);
@@ -121,14 +123,12 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
 
     const handleTypeChange = (type: string) => {
         setQType(type);
-        const t = Q_TYPES.find(q => q.value === type)!;
-        if (type === "true-false") {
+        if (type === "TRUE_FALSE") {
             setAnswers([
                 { id: "1", answerEn: "True", answerKm: "ពិត", isCorrect: false },
                 { id: "2", answerEn: "False", answerKm: "មិនពិត", isCorrect: false },
             ]);
-        } else if (type === "image-match") {
-            // Pre-fill correct answer with topic image, 3 distractors
+        } else if (type === "IMAGE_BASED") {
             const correct = topicData?.primaryImageUrl || "";
             const dists = distImages.slice(0, 3);
             const all = [
@@ -138,6 +138,15 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
             setAnswers(all.length >= 2 ? all : [
                 { id: "1", answerEn: "", answerKm: "", isCorrect: true, imageUrl: correct },
                 { id: "2", answerEn: "", answerKm: "", isCorrect: false, imageUrl: "" },
+            ]);
+        } else if (type === "MATCHING") {
+            setAnswers([
+                { id: "1", answerEn: "Left 1 = Right 1", answerKm: "", isCorrect: true },
+                { id: "2", answerEn: "Left 2 = Right 2", answerKm: "", isCorrect: true },
+            ]);
+        } else if (type === "FILL_BLANK") {
+            setAnswers([
+                { id: "1", answerEn: "", answerKm: "", isCorrect: true },
             ]);
         } else {
             setAnswers([
@@ -173,7 +182,7 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
         e.preventDefault();
         if (!topicId) { showToast("Select a topic", "error"); return; }
         if (!qEn.trim()) { showToast("Enter question in English", "error"); return; }
-        if (qType !== "image-match" && answers.some(a => !a.answerEn.trim())) { showToast("Fill all answer fields", "error"); return; }
+        if (qType !== "IMAGE_BASED" && answers.some(a => !a.answerEn.trim())) { showToast("Fill all answer fields", "error"); return; }
         if (!answers.some(a => a.isCorrect)) { showToast("Mark at least one correct answer", "error"); return; }
 
         setSaving(true);
@@ -211,17 +220,29 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
     const [quickAnswers, setQuickAnswers] = useState<{ text: string; correct: boolean }[]>([]);
     const [quickDiff, setQuickDiff] = useState("medium");
 
-    const parseQuickText = (text: string) => {
+    const parseQuickText = (text: string, type: string) => {
         const lines = text.split("\n").map(l => l.trim()).filter(Boolean);
-        return lines.map(line => ({
-            text: line.replace(/^[*✓✔►\-•]\s*/, "").trim(),
-            correct: /^[*✓✔►]/.test(line),
-        }));
+        if (type === "MATCHING") {
+            return lines.map(line => ({ text: line, correct: true }));
+        } else if (type === "FILL_BLANK") {
+            return lines.map(line => ({ text: line, correct: true }));
+        } else if (type === "TRUE_FALSE") {
+            // Usually we pre-fill, but if they paste, we can just take it
+            return lines.map(line => ({
+                text: line.replace(/^[*✓✔►\-•]\s*/, "").trim(),
+                correct: /^[*✓✔►]/.test(line),
+            }));
+        } else {
+            return lines.map(line => ({
+                text: line.replace(/^[*✓✔►\-•]\s*/, "").trim(),
+                correct: /^[*✓✔►]/.test(line),
+            }));
+        }
     };
 
     const handleQuickPaste = (text: string) => {
         setQuickText(text);
-        setQuickAnswers(parseQuickText(text));
+        setQuickAnswers(parseQuickText(text, qType));
     };
 
     const toggleQuickCorrect = (i: number) => {
@@ -294,8 +315,19 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                 {/* ── QUICK MODE ── */}
                 {mode === "quick" && !initialData && (
                     <form onSubmit={handleQuickSubmit} className="p-5 space-y-4">
+                        <div>
+                            <label className="block text-xs font-black uppercase mb-1">Question Type *</label>
+                            <div className="grid grid-cols-3 gap-2">
+                                {Q_TYPES.map(t => (
+                                    <button key={t.value} type="button" onClick={() => { handleTypeChange(t.value); setQuickAnswers(parseQuickText(quickText, t.value)); }}
+                                        className={`p-2 border-2 border-black text-left transition-all ${qType === t.value ? "bg-yellow-400 shadow-[2px_2px_0_#000]" : "bg-white hover:shadow-[2px_2px_0_#000]"}`}>
+                                        <div className="font-black text-[10px]">{t.label}</div>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
                         {!isPreSelected && (
-                            <div className="grid grid-cols-2 gap-3">
                                 <div>
                                     <label className="block text-xs font-black uppercase mb-1">Category *</label>
                                     <select value={catId || ""} onChange={e => { setCatId(Number(e.target.value)); setTopicId(null); setTopicData(null); }}
@@ -326,7 +358,11 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                         <div>
                             <label className="block text-xs font-black uppercase mb-1">
                                 Answers — one per line
-                                <span className="ml-2 text-zinc-400 font-medium normal-case text-xs">Start with * to mark correct answer</span>
+                                <span className="ml-2 text-zinc-400 font-medium normal-case text-xs">
+                                    {qType === "MATCHING" ? "Enter pairs separated by = (e.g. Red = Stop)" : 
+                                     qType === "FILL_BLANK" ? "Enter the correct word(s)" : 
+                                     "Start with * to mark correct answer"}
+                                </span>
                             </label>
                             <textarea value={quickText} onChange={e => handleQuickPaste(e.target.value)}
                                 className="w-full px-3 py-2.5 border-2 border-black text-sm font-mono focus:outline-none min-h-[100px] resize-none"
@@ -528,7 +564,7 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                                     {selectedType.multi ? "Select all correct" : "Select one correct"}
                                 </span>
                             </span>
-                            {answers.length < selectedType.max && qType !== "true-false" && (
+                            {answers.length < selectedType.max && qType !== "TRUE_FALSE" && (
                                 <button type="button" onClick={addAnswer}
                                     className="px-3 py-1 bg-green-400 border border-white text-black font-black text-xs hover:bg-green-300 transition-all flex items-center gap-1">
                                     <Plus size={13} /> Add
@@ -540,13 +576,13 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                             {answers.map((ans, i) => (
                                 <div key={ans.id} className={`flex items-start gap-3 p-3 ${ans.isCorrect ? "bg-green-50" : "bg-white"}`}>
                                     {/* Correct toggle */}
-                                    <button type="button" onClick={() => toggleCorrect(ans.id)}
-                                        className={`mt-1 w-7 h-7 flex-shrink-0 border-2 border-black flex items-center justify-center transition-all ${ans.isCorrect ? "bg-green-500" : "bg-white hover:bg-gray-100"}`}>
-                                        {ans.isCorrect ? <CheckCircle size={15} className="text-white" /> : <span className="text-xs font-black text-zinc-400">{String.fromCharCode(65 + i)}</span>}
+                                    <button type="button" onClick={() => { if(qType !== "MATCHING" && qType !== "FILL_BLANK") toggleCorrect(ans.id); }}
+                                        className={`mt-1 w-7 h-7 flex-shrink-0 border-2 border-black flex items-center justify-center transition-all ${(ans.isCorrect || qType === "MATCHING" || qType === "FILL_BLANK") ? "bg-green-500" : "bg-white hover:bg-gray-100"}`}>
+                                        {(ans.isCorrect || qType === "MATCHING" || qType === "FILL_BLANK") ? <CheckCircle size={15} className="text-white" /> : <span className="text-xs font-black text-zinc-400">{String.fromCharCode(65 + i)}</span>}
                                     </button>
 
                                     <div className="flex-1 space-y-1.5">
-                                        {qType === "image-match" ? (
+                                        {qType === "IMAGE_BASED" ? (
                                             /* Image match: show image preview + label */
                                             <div className="flex items-center gap-2">
                                                 {ans.imageUrl ? (
@@ -567,20 +603,40 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                                             </div>
                                         ) : (
                                             /* Text answers */
-                                            <div className="grid grid-cols-2 gap-2">
-                                                <input type="text" value={ans.answerEn} onChange={e => updateAnswer(ans.id, "answerEn", e.target.value)}
-                                                    className="px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none"
-                                                    placeholder="English *" required
-                                                    disabled={qType === "true-false"} />
-                                                <input type="text" value={ans.answerKm} onChange={e => updateAnswer(ans.id, "answerKm", e.target.value)}
-                                                    className="px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none"
-                                                    placeholder="ខ្មែរ"
-                                                    disabled={qType === "true-false"} />
-                                            </div>
+                                            qType === "MATCHING" ? (
+                                                <div className="grid grid-cols-2 gap-2">
+                                                    <input type="text" value={ans.answerEn} onChange={e => updateAnswer(ans.id, "answerEn", e.target.value)}
+                                                        className="px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none"
+                                                        placeholder="Left Item *" required />
+                                                    <input type="text" value={ans.answerKm} onChange={e => updateAnswer(ans.id, "answerKm", e.target.value)}
+                                                        className="px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none"
+                                                        placeholder="Right Item *" required />
+                                                </div>
+                                            ) : qType === "FILL_BLANK" ? (
+                                                <div className="grid grid-cols-2 gap-2">
+                                                    <input type="text" value={ans.answerEn} onChange={e => updateAnswer(ans.id, "answerEn", e.target.value)}
+                                                        className="px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none"
+                                                        placeholder="Accepted Word (English) *" required />
+                                                    <input type="text" value={ans.answerKm} onChange={e => updateAnswer(ans.id, "answerKm", e.target.value)}
+                                                        className="px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none"
+                                                        placeholder="Accepted Word (Khmer)" />
+                                                </div>
+                                            ) : (
+                                                <div className="grid grid-cols-2 gap-2">
+                                                    <input type="text" value={ans.answerEn} onChange={e => updateAnswer(ans.id, "answerEn", e.target.value)}
+                                                        className="px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none"
+                                                        placeholder="English *" required
+                                                        disabled={qType === "TRUE_FALSE"} />
+                                                    <input type="text" value={ans.answerKm} onChange={e => updateAnswer(ans.id, "answerKm", e.target.value)}
+                                                        className="px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none"
+                                                        placeholder="ខ្មែរ"
+                                                        disabled={qType === "TRUE_FALSE"} />
+                                                </div>
+                                            )
                                         )}
                                     </div>
 
-                                    {answers.length > selectedType.min && qType !== "true-false" && (
+                                    {answers.length > selectedType.min && qType !== "TRUE_FALSE" && (
                                         <button type="button" onClick={() => removeAnswer(ans.id)}
                                             className="mt-1 p-1.5 border-2 border-black bg-red-100 hover:bg-red-200 transition-all flex-shrink-0">
                                             <Trash2 size={13} />
@@ -594,11 +650,15 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                         <div className="px-4 py-2 bg-blue-50 border-t border-blue-200 flex items-center gap-2">
                             <AlertCircle size={13} className="text-blue-600 flex-shrink-0" />
                             <span className="text-xs font-bold text-blue-800">
-                                {qType === "image-match"
+                                {qType === "IMAGE_BASED"
                                     ? "Correct image is auto-linked from the topic. Add 3 distractor images from the same category."
-                                    : qType === "multi-select"
+                                    : qType === "MCQ_MULTIPLE"
                                         ? "Click the checkbox to mark multiple correct answers."
-                                        : "Click the letter button to mark the correct answer."}
+                                        : qType === "MATCHING"
+                                            ? "Enter matching pairs. Left and right sides will be shuffled automatically."
+                                            : qType === "FILL_BLANK"
+                                                ? "Enter all accepted valid words for the blank."
+                                                : "Click the letter button to mark the correct answer."}
                             </span>
                         </div>
                     </div>
@@ -653,49 +713,36 @@ interface JsonImportModeProps {
 const JSON_TEMPLATE = `[
   {
     "q": "What is the maximum speed limit in a built-up area?",
-    "qkm": "ល្បឿនកំណត់អតិបរមានៅក្នុងតំបន់ដែលមានប្រជាជនរស់នៅ?",
-    "type": "mcq",
+    "type": "MCQ_SINGLE",
     "diff": "easy",
-    "hint": "Look for speed limit signs",
-    "image": "auto",
     "answers": [
-      { "a": "40 km/h", "akm": "៤០ គ.ម/ម", "correct": true },
-      { "a": "60 km/h", "akm": "៦០ គ.ម/ម" },
-      { "a": "80 km/h", "akm": "៨០ គ.ម/ម" },
-      { "a": "100 km/h", "akm": "១០០ គ.ម/ម" }
+      { "a": "40 km/h", "correct": true },
+      { "a": "60 km/h" }
     ]
   },
   {
     "q": "This sign is a street name sign.",
-    "qkm": "សញ្ញានេះជាសញ្ញាឈ្មោះផ្លូវ។",
-    "type": "true-false",
-    "diff": "easy",
-    "image": "auto",
+    "type": "TRUE_FALSE",
     "answers": [
-      { "a": "True", "akm": "ពិត", "correct": true },
-      { "a": "False", "akm": "មិនពិត" }
+      { "a": "True", "correct": true },
+      { "a": "False" }
     ]
   },
   {
-    "q": "Which statements are TRUE about this sign?",
-    "qkm": "ចំណុចណាខ្លះជាការពិតអំពីសញ្ញានេះ?",
-    "type": "multi-select",
+    "q": "Match the sign color to its meaning.",
+    "type": "MATCHING",
     "diff": "medium",
-    "image": "auto",
     "answers": [
-      { "a": "It identifies a road name", "akm": "វាកំណត់ឈ្មោះផ្លូវ", "correct": true },
-      { "a": "It helps drivers navigate", "akm": "វាជួយអ្នកបើកបរធ្វើដំណើរ", "correct": true },
-      { "a": "It shows the speed limit", "akm": "វាបង្ហាញល្បឿនកំណត់" },
-      { "a": "It is an informational sign", "akm": "វាជាសញ្ញាព័ត៌មាន", "correct": true }
+      { "a": "Red", "akm": "Stop", "correct": true },
+      { "a": "Green", "akm": "Go", "correct": true }
     ]
   },
   {
-    "q": "Which image shows the correct sign for this topic?",
-    "qkm": "រូបភាពណាបង្ហាញសញ្ញាត្រឹមត្រូវសម្រាប់ប្រធានបទនេះ?",
-    "type": "image-match",
-    "diff": "medium",
-    "image": "auto",
-    "answers": []
+    "q": "You must ___ at a red light.",
+    "type": "FILL_BLANK",
+    "answers": [
+      { "a": "stop", "correct": true }
+    ]
   }
 ]`;
 
@@ -733,7 +780,7 @@ function JsonImportMode({ topicId, topicData, catId, isPreSelected, preSelectedT
 
         // Pre-fetch distractor images once if any image-match questions exist
         let distractorImages: string[] = [];
-        const hasImageMatch = parsed.some(item => (item.type || item.questionType) === "image-match");
+        const hasImageMatch = parsed.some(item => (item.type || item.questionType) === "IMAGE_BASED");
         // Use catId from props (pre-selected) OR local state
         const effectiveCatId = catId || localCatId || topicData?.categoryId;
         if (hasImageMatch && effectiveCatId) {
@@ -749,14 +796,14 @@ function JsonImportMode({ topicId, topicData, catId, isPreSelected, preSelectedT
 
         for (const item of parsed) {
             try {
-                const qType = item.type || item.questionType || "mcq";
+                const qType = item.type || item.questionType || "MCQ_SINGLE";
                 const topicImg = topicData?.primaryImageUrl || "";
 
                 // Build answers — handle "auto" image for image-match
                 let answers = (item.answers || []).map((a: any, idx: number) => {
                     let imgUrl = a.imageUrl || a.img || null;
                     // "auto" = use topic image for correct, distractors for others
-                    if (imgUrl === "auto" || (qType === "image-match" && !imgUrl)) {
+                    if (imgUrl === "auto" || (qType === "IMAGE_BASED" && !imgUrl)) {
                         if (a.correct) {
                             imgUrl = topicImg;
                         } else {
@@ -772,7 +819,7 @@ function JsonImportMode({ topicId, topicData, catId, isPreSelected, preSelectedT
                 });
 
                 // If image-match with no answers defined, auto-build from topic + distractors
-                if (qType === "image-match" && answers.length === 0) {
+                if (qType === "IMAGE_BASED" && answers.length === 0) {
                     const correctImg = topicImg;
                     const dists = distractorImages.slice(0, 3);
 
@@ -870,7 +917,7 @@ function JsonImportMode({ topicId, topicData, catId, isPreSelected, preSelectedT
                 <div className="space-y-0.5 text-xs">
                     <div><span className="text-yellow-400">"q"</span>: <span className="text-green-300">"Question in English"</span> <span className="text-zinc-500">// required</span></div>
                     <div><span className="text-yellow-400">"qkm"</span>: <span className="text-green-300">"សំណួរជាខ្មែរ"</span> <span className="text-zinc-500">// optional</span></div>
-                    <div><span className="text-yellow-400">"type"</span>: <span className="text-green-300">"mcq"</span> <span className="text-zinc-500">// mcq | true-false | multi-select</span></div>
+                    <div><span className="text-yellow-400">"type"</span>: <span className="text-green-300">"MCQ_SINGLE"</span> <span className="text-zinc-500">// MCQ_SINGLE | MCQ_MULTIPLE | TRUE_FALSE | IMAGE_BASED | MATCHING | FILL_BLANK</span></div>
                     <div><span className="text-yellow-400">"diff"</span>: <span className="text-green-300">"easy"</span> <span className="text-zinc-500">// easy | medium | hard</span></div>
                     <div><span className="text-yellow-400">"hint"</span>: <span className="text-green-300">"Hint text"</span> <span className="text-zinc-500">// optional</span></div>
                     <div><span className="text-yellow-400">"answers"</span>: [&#123; <span className="text-yellow-400">"a"</span>: <span className="text-green-300">"Answer"</span>, <span className="text-yellow-400">"akm"</span>: <span className="text-green-300">"ចម្លើយ"</span>, <span className="text-yellow-400">"correct"</span>: <span className="text-blue-400">true</span> &#125;]</div>
