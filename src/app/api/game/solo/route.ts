@@ -63,19 +63,20 @@ export async function POST(req: NextRequest) {
       .select({
         questionId: answers.questionId,
         count: sql<number>`count(*)::int`,
+        hasImage: sql<boolean>`bool_or(${answers.imageUrl} is not null)`,
       })
       .from(answers)
       .where(inArray(answers.questionId, qIds))
       .groupBy(answers.questionId);
 
-    const countMap = new Map(answerCounts.map((a) => [a.questionId, a.count]));
+    const countMap = new Map(answerCounts.map((a) => [a.questionId, { count: a.count, hasImage: a.hasImage }]));
 
     compatible = allQuestions.filter((q) => {
-      const cnt = countMap.get(q.id) ?? 0;
-      if (cnt === 0) return false; // Skip questions with no answers
+      const stats = countMap.get(q.id);
+      if (!stats || stats.count === 0) return false; // Skip questions with no answers
       const gt = mapContentToGameType({
-        answerCount: cnt,
-        hasImage: !!q.imageUrl,
+        answerCount: stats.count,
+        hasImage: stats.hasImage,
         hasAudio: !!(q.audioUrlEn || q.audioUrlKm),
       });
       return allowedTypes.includes(gt);
@@ -124,7 +125,7 @@ export async function POST(req: NextRequest) {
     const ans = answersByQ.get(q.id) ?? [];
     const gt = mapContentToGameType({
       answerCount: ans.length,
-      hasImage: !!q.imageUrl,
+      hasImage: ans.some(a => !!a.imageUrl),
       hasAudio: !!(q.audioUrlEn || q.audioUrlKm),
     });
     return {
