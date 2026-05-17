@@ -7,7 +7,7 @@ import { CountdownTimer } from "@/components/game/CountdownTimer";
 import { AnswerGrid } from "@/components/game/AnswerGrid";
 import { sounds } from "@/lib/game-sounds";
 import { GAME_MODE_CONFIG } from "@/lib/game-engine";
-import { Zap, Flame, ChevronRight, RotateCcw } from "lucide-react";
+import { Zap, Flame, ChevronRight, RotateCcw, Volume2, VolumeX } from "lucide-react";
 
 interface SoloQuestion {
   id: number;
@@ -396,9 +396,17 @@ export default function SoloPage() {
   return (
     <div className="game-dot-bg min-h-screen flex flex-col" style={{ userSelect: "none" }}>
       <div className="relative z-10 flex items-center justify-between px-4 py-3 bg-black/80 backdrop-blur-sm border-b-2 border-yellow-400">
-        <span className="text-yellow-400 font-black text-xs uppercase tracking-widest" style={khFont}>
-          {kh ? GAME_MODE_CONFIG[phase.session.gameMode]?.labelKm : GAME_MODE_CONFIG[phase.session.gameMode]?.label}
-        </span>
+        <div className="flex items-center gap-3">
+          <span className="text-yellow-400 font-black text-xs uppercase tracking-widest" style={khFont}>
+            {kh ? GAME_MODE_CONFIG[phase.session.gameMode]?.labelKm : GAME_MODE_CONFIG[phase.session.gameMode]?.label}
+          </span>
+          <span className="text-zinc-400 font-bold text-[10px] uppercase border border-zinc-600 px-1.5 py-0.5 rounded-sm bg-zinc-800/50">
+            {q.difficulty || "mixed"}
+          </span>
+          <button onClick={() => setMuted(m => !m)} className="text-zinc-400 hover:text-white transition-colors" title={muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}>
+            {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+          </button>
+        </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5 bg-yellow-400 border-2 border-black px-3 py-1" style={{ boxShadow: "2px 2px 0 #000" }}>
             <Zap size={12} className="text-black" />
@@ -418,7 +426,7 @@ export default function SoloPage() {
           style={{ width: `${((phase.qIndex + 1) / phase.session.questions.length) * 100}%` }} />
       </div>
 
-      <div className="relative z-10 flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full">
+      <div className="relative z-10 flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full justify-center overflow-y-auto min-h-0">
         <div className="flex items-center justify-between">
           <span className="text-zinc-400 text-xs font-black uppercase tracking-widest" style={khFont}>
             {kh ? `${phase.qIndex + 1}/${phase.session.questions.length}` : `Q ${phase.qIndex + 1} / ${phase.session.questions.length}`}
@@ -451,12 +459,6 @@ export default function SoloPage() {
           gameType={q.gameType}
           onSelect={handleSelect}
         />
-      </div>
-
-      <div className="relative z-10 px-4 py-2 bg-black/80 border-t border-zinc-800 flex justify-end">
-        <button onClick={() => setMuted(m => !m)} className="text-zinc-500 hover:text-white text-xs font-bold transition-colors" style={khFont}>
-          {muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}
-        </button>
       </div>
     </div>
   );
