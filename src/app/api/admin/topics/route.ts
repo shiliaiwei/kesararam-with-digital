@@ -40,6 +40,7 @@ export async function GET(request: NextRequest) {
                 categoryId: topics.categoryId,
                 nameEn: topics.nameEn,
                 nameKm: topics.nameKm,
+                primaryImageUrl: topics.primaryImageUrl,
                 subGroup: topics.subGroup,
                 status: topics.status,
                 createdAt: topics.createdAt,
