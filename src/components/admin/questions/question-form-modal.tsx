@@ -526,9 +526,25 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                                                     </div>
                                                 )}
                                                 <div className="flex-1 space-y-1">
-                                                    <input type="url" value={ans.imageUrl || ""} onChange={e => updateAnswer(ans.id, "imageUrl", e.target.value)}
-                                                        className="w-full px-2 py-1.5 border-2 border-black text-xs font-medium focus:outline-none"
-                                                        placeholder="Image URL..." />
+                                                    <div className="flex gap-1">
+                                                        <select
+                                                            value={ans.imageUrl === topicData?.primaryImageUrl ? "correct" : distImages.includes(ans.imageUrl || "") ? ans.imageUrl : (ans.imageUrl ? "custom" : "")}
+                                                            onChange={e => {
+                                                                const val = e.target.value;
+                                                                if (val === "correct") updateAnswer(ans.id, "imageUrl", topicData?.primaryImageUrl || "");
+                                                                else if (val !== "custom" && val !== "") updateAnswer(ans.id, "imageUrl", val);
+                                                            }}
+                                                            className="w-24 px-1 py-1 border-2 border-black text-xs font-bold focus:outline-none flex-shrink-0 bg-zinc-50"
+                                                        >
+                                                            <option value="">Select...</option>
+                                                            {topicData?.primaryImageUrl && <option value="correct">Correct Sign</option>}
+                                                            {distImages.map((img, idx) => <option key={idx} value={img}>Random {idx + 1}</option>)}
+                                                            <option value="custom">Custom</option>
+                                                        </select>
+                                                        <input type="url" value={ans.imageUrl || ""} onChange={e => updateAnswer(ans.id, "imageUrl", e.target.value)}
+                                                            className="w-full px-2 py-1.5 border-2 border-black text-xs font-medium focus:outline-none"
+                                                            placeholder="Or paste URL..." />
+                                                    </div>
                                                     <input type="text" value={ans.answerEn} onChange={e => updateAnswer(ans.id, "answerEn", e.target.value)}
                                                         className="w-full px-2 py-1.5 border border-zinc-300 text-xs font-medium focus:outline-none"
                                                         placeholder="Label (English)" />
