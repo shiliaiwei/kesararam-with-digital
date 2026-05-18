@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
       { protocol: "https", hostname: "raw.githubusercontent.com" },
+      { protocol: "https", hostname: "avatars.githubusercontent.com" },
       { protocol: "https", hostname: "**.neon.tech" },
       { protocol: "https", hostname: "res.cloudinary.com" },
       { protocol: "https", hostname: "cdn.jsdelivr.net" },
@@ -45,7 +46,7 @@ const nextConfig: NextConfig = {
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://api.mapbox.com https://events.mapbox.com https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com",
               "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://api.mapbox.com",
               "font-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com",
-              "img-src 'self' data: blob: https://res.cloudinary.com https://cdn.jsdelivr.net https://raw.githubusercontent.com https://cdnjs.cloudflare.com https://api.mapbox.com https://*.mapbox.com https://www.google-analytics.com https://www.googletagmanager.com",
+              "img-src 'self' data: blob: https://res.cloudinary.com https://cdn.jsdelivr.net https://raw.githubusercontent.com https://avatars.githubusercontent.com https://cdnjs.cloudflare.com https://api.mapbox.com https://*.mapbox.com https://www.google-analytics.com https://www.googletagmanager.com",
               "connect-src 'self' https://*.neon.tech https://api.cloudinary.com https://cdn.jsdelivr.net https://res.cloudinary.com https://api.mapbox.com https://events.mapbox.com https://*.mapbox.com https://www.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://ssl.google-analytics.com",
               "media-src 'self' https://res.cloudinary.com",
               "worker-src 'self' blob:",

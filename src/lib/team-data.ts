@@ -154,7 +154,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     division: "University Student",
     school: "Kesararam With Digital",
     location: "Krong Siem Reap, Siem Reap Province, Cambodia",
-    imageUrl: "https://github.com/shiliaiwei.png",
+    imageUrl: "https://avatars.githubusercontent.com/u/70220432?v=4",
     vsid: "VSID-2026-M02",
     cardNo: "CM50777002",
     enrolled: "2025",

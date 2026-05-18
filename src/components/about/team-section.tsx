@@ -13,7 +13,7 @@ const STUDENTS = [
 
 const MENTORS = [
   { id: "VSID-2026-M01", name: "PHEAP PISETH", fullName: "PHEAP PISETH", role: "Teacher & Program Lead", image: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248421/904da627410290a5ae64edr_xtkjjp.png" },
-  { id: "VSID-2026-M02", name: "史力爱卫", fullName: "史力爱卫", role: "Design, Technical / Project Mgmt", image: "https://github.com/shiliaiwei.png" },
+  { id: "VSID-2026-M02", name: "史力爱卫", fullName: "史力爱卫", role: "Design, Technical / Project Mgmt", image: "https://avatars.githubusercontent.com/u/70220432?v=4" },
 ];
 
 interface Member { id: string; name: string; fullName: string; role: string; image?: string; }
