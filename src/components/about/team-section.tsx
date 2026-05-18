@@ -98,13 +98,6 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
               <div className="bg-white p-2 shrink-0">
                 <QRCode value={qrLink} size={96} level="L" />
               </div>
-            ) : member.image ? (
-              <img
-                src={member.image}
-                alt={member.name}
-                className="w-full object-cover object-top"
-                style={{ minHeight: 120, maxHeight: 140 }}
-              />
             ) : (
               <div className="flex flex-col items-center justify-center gap-3 py-6 opacity-40 w-full h-full">
                 <img src="/brand/kwd-black-text.png" alt="Logo" className="w-16 h-8 object-contain mx-auto brightness-0 invert" />
