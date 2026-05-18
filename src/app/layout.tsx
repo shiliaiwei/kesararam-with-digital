@@ -34,13 +34,17 @@ export const metadata: Metadata = {
     template: "%s | KWD",
   },
   description:
-    "Cambodian driving knowledge and licensing education platform. Master traffic signs, road laws, and driving theory.",
+    "Most students fail not because they're not smart — but because no one made learning easy. KWD is Cambodia's free bilingual education platform that turns complex knowledge into something anyone can understand, remember, and use.",
   keywords: [
-    "driving theory",
+    "education platform",
     "Cambodia",
-    "traffic signs",
-    "road safety",
+    "bilingual learning",
+    "interactive learning",
     "KWD",
+    "knowledge",
+    "students",
+    "free learning",
+    "Khmer education",
   ],
   metadataBase: new URL("https://www.kesararamwithdigital.tech"),
   alternates: {
@@ -50,8 +54,8 @@ export const metadata: Metadata = {
     siteName: "KWD — Kesararam With Digital",
     locale: "en_US",
     type: "website",
-    title: "KWD — Kesararam With Digital",
-    description: "Master Cambodia's road rules and driving theory with our interactive learning platform.",
+    title: "KWD — Learn Anything. Understand Everything.",
+    description: "Most students fail not because they're not smart — but because no one made learning easy. KWD changes that. Free, bilingual, built for Cambodia.",
     images: [{
       url: "/brand/kwd-green_ofhdec.png",
       width: 1200,
@@ -61,8 +65,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "KWD — Kesararam With Digital",
-    description: "Master Cambodia's road rules and driving theory with our interactive learning platform.",
+    title: "KWD — Learn Anything. Understand Everything.",
+    description: "Most students fail not because they're not smart — but because no one made learning easy. KWD changes that. Free, bilingual, built for Cambodia.",
     images: ["/brand/kwd-green_ofhdec.png"],
   },
 };
