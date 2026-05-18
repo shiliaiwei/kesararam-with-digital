@@ -146,7 +146,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: "shiliaiwei",
-    name: "SHILIAI WEI",
+    name: "史力爱卫",
     nameKh: "ស្រុី វី",
     role: "mentor",
     specialty: "University Student · Design, Technical & Project Management",
