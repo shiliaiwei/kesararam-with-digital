@@ -46,7 +46,7 @@ const MEMBERS: Record<string, {
   },
   "VSID-2026-M02": {
     lastName: "史力爱卫", fullName: "史力爱卫", role: "Design, Technical & Project Management", type: "mentor",
-    photo: "https://avatars.githubusercontent.com/shiliaiwei",
+    photo: "https://github.com/shiliaiwei.png",
     contributions: ["Advised on software architecture", "Reviewed code quality", "Supported project management"],
     quote: "Build with intention. Ship with confidence.",
   },
