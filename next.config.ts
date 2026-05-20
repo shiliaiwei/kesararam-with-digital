@@ -22,6 +22,14 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      // Serve .well-known files as plain text, no redirects
+      {
+        source: "/.well-known/:file",
+        headers: [
+          { key: "Content-Type", value: "text/plain" },
+          { key: "Cache-Control", value: "no-cache" },
+        ],
+      },
       {
         source: "/(.*)",
         headers: [
