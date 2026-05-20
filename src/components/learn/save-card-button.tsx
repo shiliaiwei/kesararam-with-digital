@@ -120,8 +120,8 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
     const handleSave = async () => {
         setSaving(true);
         try {
-            // ── Canvas: 1200 × 675 (16:9) ─────────────────────────────────────────
-            const W = 1200, H = 675;
+            // ── Canvas: 1200 × 900 — taller to fit full description ───────────────
+            const W = 1200, H = 900;
             const canvas = document.createElement('canvas');
             canvas.width = W; canvas.height = H;
             const ctx = canvas.getContext('2d');
@@ -129,6 +129,7 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
 
             const cfg = CATEGORY_CONFIG[topic.sub_group] || DEFAULT_CONFIG;
             const siteUrl = 'kesararamwithdigital.tech';
+            // Card shows only the selected language (same as web UI)
             const title = isKh ? topic.name_km : topic.name_en;
             const answer = isKh ? topic.description_km : topic.description_en;
 
@@ -145,7 +146,6 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                 }
             };
 
-            // Load multiple weights of Google Sans for Khmer
             await Promise.all([
                 loadFont('Inter', 'https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2', 'bold'),
                 loadFont('GoogleSansKhmer', '/Google_Sans/static/GoogleSans-Bold.ttf', 'bold'),
@@ -153,7 +153,6 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                 loadFont('GoogleSansKhmer', '/Google_Sans/static/GoogleSans-Medium.ttf', '500'),
             ]);
 
-            // Font helpers — always use brand fonts, never device fonts
             const fontEN = (size: number, weight = 'bold') => `${weight} ${size}px Inter, system-ui, Arial, sans-serif`;
             const fontKH = (size: number, weight = 'bold') => `${weight} ${size}px GoogleSansKhmer, "Google Sans", Inter, sans-serif`;
             const font = (size: number, weight = 'bold') => isKh ? fontKH(size, weight) : fontEN(size, weight);
@@ -172,20 +171,71 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                 topic.primary_image_url ? loadImg(topic.primary_image_url, 6000) : Promise.resolve(null),
             ]);
 
-            // ── 1. Background — Premium light gradient ────────────────────────────
+            // ── Layout constants ──────────────────────────────────────────────────
+            const footerH = 88;
+            const leftW = 420;
+            const rx = leftW + 44, ry = 40, rw = W - rx - 44;
+
+            // ── Pre-measure description to calculate dynamic height ───────────────
+            // We need to know how many lines the description takes BEFORE drawing
+            // so we can size the box correctly.
+            const descFontSize = 16;
+            const descLineH = 26;
+            const descPadX = 16, descPadY = 20;
+
+            // Measure title lines
+            ctx.font = font(34);
+            const titleLineH = 44;
+            // Count title lines by simulating wrapText
+            const countLines = (text: string, maxW: number, fontSize: number, lh: number, fnt: string): number => {
+                ctx.font = fnt;
+                const words = text.split(' ');
+                let line = '', count = 0;
+                for (const word of words) {
+                    const test = line + word + ' ';
+                    if (ctx.measureText(test).width > maxW && line !== '') {
+                        count++;
+                        line = word + ' ';
+                    } else {
+                        line = test;
+                    }
+                }
+                if (line.trim()) count++;
+                return count;
+            };
+
+            const titleLineCount = countLines(title, rw, 34, titleLineH, font(34));
+            const titleBottom = ry + 68 + titleLineCount * titleLineH;
+
+            // Measure description lines (no cap — show ALL text)
+            const descLineCount = answer
+                ? countLines(answer, rw - descPadX * 2, descFontSize, descLineH, font(descFontSize, 'normal'))
+                : 0;
+            const descBoxH = descLineCount > 0
+                ? descPadY * 2 + descLineCount * descLineH
+                : 0;
+
+            // Calculate total right-panel content height needed
+            const descLabelY = titleBottom + 52;
+            const answerBoxY = descLabelY + 28;
+            const contentBottom = answerBoxY + descBoxH + 20;
+
+            // Dynamic canvas height: enough for content + footer, minimum 675
+            const neededH = Math.max(675, contentBottom + footerH + 20);
+            canvas.height = neededH;
+            const FH = neededH; // final height
+
+            // ── 1. Background ─────────────────────────────────────────────────────
             ctx.fillStyle = '#ffffff';
-            ctx.fillRect(0, 0, W, H);
+            ctx.fillRect(0, 0, W, FH);
 
-            // ── 2. Left panel — Category brand color (light) ─────────────────────
-            const leftW = 460;
+            // ── 2. Left panel ─────────────────────────────────────────────────────
             ctx.fillStyle = cfg.bgLight;
-            ctx.fillRect(0, 0, leftW, H);
-
-            // Accent stripe on left edge — bold brand color
+            ctx.fillRect(0, 0, leftW, FH);
             ctx.fillStyle = cfg.accent;
-            ctx.fillRect(0, 0, 12, H);
+            ctx.fillRect(0, 0, 12, FH);
 
-            // ── 3. Category label pill (top-left) — Premium badge ─────────────────
+            // ── 3. Category label pill ────────────────────────────────────────────
             ctx.fillStyle = cfg.accent;
             ctx.font = fontEN(12);
             ctx.textAlign = 'left';
@@ -193,7 +243,6 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             const catW = ctx.measureText(catLabel).width + 28;
             roundRect(ctx, 24, 24, catW, 32, 6);
             ctx.fill();
-            // Neo-brutalism shadow
             ctx.strokeStyle = '#000';
             ctx.lineWidth = 2;
             roundRect(ctx, 24, 24, catW, 32, 6);
@@ -202,29 +251,28 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             ctx.font = fontEN(12);
             ctx.fillText(catLabel, 38, 44);
 
-            // ── 4. Topic code badge — Subtle, professional ────────────────────────
+            // ── 4. Topic code ─────────────────────────────────────────────────────
             ctx.fillStyle = cfg.accentDark;
             ctx.font = fontEN(11);
             ctx.textAlign = 'left';
             ctx.fillText(topic.topic_code, 24, 76);
 
-            // ── 5. Image area (centered in left panel) — Premium card ─────────────
-            if (topicImg) {
-                const imgAreaX = 24, imgAreaY = 96, imgAreaW = leftW - 48, imgAreaH = H - 96 - 120;
+            // ── 5. Image area ─────────────────────────────────────────────────────
+            const imgAreaX = 24, imgAreaY = 96;
+            const imgAreaW = leftW - 48;
+            // Image takes up to 60% of left panel height, leaving room for footer
+            const imgAreaH = Math.min(FH - 96 - footerH - 40, 480);
 
-                // Brand color shadow (Neo-brutalism)
+            if (topicImg) {
                 ctx.fillStyle = cfg.accent;
                 ctx.globalAlpha = 0.3;
                 roundRect(ctx, imgAreaX + 6, imgAreaY + 6, imgAreaW, imgAreaH, 8);
                 ctx.fill();
                 ctx.globalAlpha = 1;
-
-                // White premium card
                 ctx.fillStyle = '#ffffff';
                 roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 8);
                 ctx.fill();
 
-                // Draw image centered, filling most of the card
                 const pad = 28;
                 const maxW = imgAreaW - pad * 2, maxH = imgAreaH - pad * 2;
                 const aspect = topicImg.naturalWidth / topicImg.naturalHeight;
@@ -234,72 +282,60 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
                 const dy = imgAreaY + pad + (maxH - dh) / 2;
                 ctx.drawImage(topicImg, dx, dy, dw, dh);
 
-                // AI disclaimer — only for categories that use AI-generated images
                 if (cfg.slug !== 'road-sign' && cfg.slug !== 'priority') {
                     ctx.fillStyle = 'rgba(0,0,0,0.25)';
                     ctx.font = fontEN(9, 'normal');
                     ctx.textAlign = 'center';
-                    const disclaimerText = isKh
-                        ? 'រូបភាពបង្កើតដោយ AI · គ្រាន់តែជារូបភាពយោង'
-                        : 'AI-generated image · Reference illustration only';
-                    ctx.fillText(disclaimerText, imgAreaX + imgAreaW / 2, imgAreaY + imgAreaH - 12);
+                    ctx.fillText(
+                        isKh ? 'រូបភាពបង្កើតដោយ AI · គ្រាន់តែជារូបភាពយោង' : 'AI-generated image · Reference illustration only',
+                        imgAreaX + imgAreaW / 2, imgAreaY + imgAreaH - 12
+                    );
                 }
             } else {
-                // Placeholder with premium styling
-                const imgAreaX = 24, imgAreaY = 96, imgAreaW = leftW - 48, imgAreaH = H - 96 - 120;
-
-                // Brand color shadow
                 ctx.fillStyle = cfg.accent;
                 ctx.globalAlpha = 0.3;
                 roundRect(ctx, imgAreaX + 6, imgAreaY + 6, imgAreaW, imgAreaH, 8);
                 ctx.fill();
                 ctx.globalAlpha = 1;
-
-                // White card
                 ctx.fillStyle = '#ffffff';
                 roundRect(ctx, imgAreaX, imgAreaY, imgAreaW, imgAreaH, 8);
                 ctx.fill();
-
                 ctx.fillStyle = cfg.accent;
                 ctx.font = fontEN(64);
                 ctx.textAlign = 'center';
                 ctx.fillText('🚦', imgAreaX + imgAreaW / 2, imgAreaY + imgAreaH / 2 + 20);
             }
 
-            // ── 6. Right panel content — Premium hierarchy ────────────────────────
-            const rx = leftW + 44, ry = 40, rw = W - rx - 44;
+            // ── 6. Right panel ────────────────────────────────────────────────────
 
-            // 6a. KNOWLEDGE CATEGORY micro-label — Premium styling
+            // 6a. SIGN CATEGORY micro-label
             ctx.fillStyle = cfg.accentDark;
             ctx.font = fontEN(11);
             ctx.textAlign = 'left';
-            ctx.fillText('KNOWLEDGE CATEGORY', rx, ry + 14);
+            ctx.fillText('SIGN CATEGORY', rx, ry + 14);
 
-            // 6b. Accent underline — Bold brand element
+            // 6b. Accent underline
             ctx.fillStyle = cfg.accent;
             ctx.fillRect(rx, ry + 22, 64, 4);
 
-            // 6c. Title — Large, bold, premium hierarchy with proper wrapping
+            // 6c. Title — full text, no line cap
             ctx.fillStyle = '#000000';
-            ctx.font = font(38);
-            const titleLines = wrapText(ctx, title, rx, ry + 68, rw, 46, 3);
-            const titleBottom = ry + 68 + titleLines * 46;
+            ctx.font = font(34);
+            wrapText(ctx, title, rx, ry + 68, rw, titleLineH, 99);
 
-            // 6d. Topic code + subgroup — Professional metadata
+            // 6d. Metadata
             ctx.fillStyle = 'rgba(0,0,0,0.4)';
             ctx.font = fontEN(13);
             const metaText = topic.sub_group ? `${topic.topic_code}  ·  ${topic.sub_group}` : topic.topic_code;
             ctx.fillText(metaText, rx, titleBottom + 22);
 
-            // 6e. Divider — Strong visual separator
+            // 6e. Divider
             ctx.fillStyle = cfg.accent;
             ctx.fillRect(rx, titleBottom + 36, rw, 4);
 
-            // 6f. DESCRIPTION label bar — Premium design
-            const descLabelY = titleBottom + 52;
-            ctx.fillStyle = '#22c55e'; // emerald — trust signal
+            // 6f. DESCRIPTION label bar
+            ctx.fillStyle = '#22c55e';
             ctx.fillRect(rx, descLabelY, rw, 28);
-            // Neo-brutalism border
             ctx.strokeStyle = '#000';
             ctx.lineWidth = 2;
             ctx.strokeRect(rx, descLabelY, rw, 28);
@@ -308,66 +344,54 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             ctx.textAlign = 'left';
             ctx.fillText('DESCRIPTION', rx + 14, descLabelY + 18);
 
-            // 6g. Answer text box — Premium card
-            const answerBoxY = descLabelY + 28;
-            const answerBoxH = 120;
-            ctx.fillStyle = '#f0fdf4'; // emerald-50
-            ctx.fillRect(rx, answerBoxY, rw, answerBoxH);
-            ctx.strokeStyle = '#000';
-            ctx.lineWidth = 3;
-            ctx.strokeRect(rx, answerBoxY, rw, answerBoxH);
-            if (answer) {
-                ctx.fillStyle = '#14532d'; // emerald-900
-                ctx.font = font(18);
+            // 6g. Description box — dynamic height, full text, no truncation
+            if (answer && descBoxH > 0) {
+                ctx.fillStyle = '#f0fdf4';
+                ctx.fillRect(rx, answerBoxY, rw, descBoxH);
+                ctx.strokeStyle = '#000';
+                ctx.lineWidth = 3;
+                ctx.strokeRect(rx, answerBoxY, rw, descBoxH);
+                ctx.fillStyle = '#14532d';
+                ctx.font = font(descFontSize, 'normal');
                 ctx.textAlign = 'left';
-                wrapText(ctx, answer, rx + 16, answerBoxY + 32, rw - 32, 28, 3);
+                // No maxLines cap — show ALL text
+                wrapText(ctx, answer, rx + descPadX, answerBoxY + descPadY + descLineH - 6, rw - descPadX * 2, descLineH, 99);
             }
 
-            // ── 7. Footer bar — Premium brand section ─────────────────────────────
-            const footerH = 88;
-            const footerY = H - footerH;
-
-            // Footer bg — White with brand accent
+            // ── 7. Footer ─────────────────────────────────────────────────────────
+            const footerY = FH - footerH;
             ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, footerY, W, footerH);
-
-            // Accent top border on footer — Bold brand stripe
             ctx.fillStyle = cfg.accent;
             ctx.fillRect(0, footerY, W, 6);
 
-            // Logo — Premium placement
             if (logo) {
                 ctx.globalAlpha = 1;
                 ctx.drawImage(logo, 28, footerY + 18, 48, 48);
-                ctx.globalAlpha = 1;
             }
 
-            // Brand name — Bold, black, premium
             ctx.fillStyle = '#000000';
             ctx.font = fontEN(18);
             ctx.textAlign = 'left';
             ctx.fillText('KESARARAM WITH DIGITAL', 88, footerY + 36);
 
-            // Tagline — Education-focused
             ctx.fillStyle = 'rgba(0,0,0,0.6)';
             ctx.font = isKh ? fontKH(12, 'normal') : fontEN(12, 'normal');
-            ctx.fillText(isKh
-                ? 'ចំណេះដឹងសុវត្ថិភាពចរាចរ — Learn. Know the signs. Pass.'
-                : 'Master Cambodia\'s driving theory — Learn. Know the signs. Pass.',
-                88, footerY + 56);
+            ctx.fillText(
+                isKh ? 'ចំណេះដឹងសុវត្ថិភាពចរាចរ — Learn. Know the signs. Pass.'
+                    : "Master Cambodia's driving theory — Learn. Know the signs. Pass.",
+                88, footerY + 56
+            );
 
-            // URL — Professional, readable
             ctx.fillStyle = 'rgba(0,0,0,0.4)';
             ctx.font = fontEN(11);
             ctx.fillText(`${siteUrl}/learn/${cfg.slug}`, 88, footerY + 74);
 
-            // Copyright — Professional
             ctx.fillStyle = 'rgba(0,0,0,0.35)';
             ctx.font = fontEN(10, 'normal');
             ctx.textAlign = 'right';
             ctx.fillText(`© ${new Date().getFullYear()} Kesararam With Digital. All rights reserved.`, W - (qr ? 110 : 28), footerY + 74);
 
-            // QR code — Premium placement without border
             if (qr) {
                 ctx.drawImage(qr, W - 96, footerY + 10, 68, 68);
             }

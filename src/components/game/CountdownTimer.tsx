@@ -14,11 +14,16 @@ export function CountdownTimer({ endsAt, totalSeconds, onExpire, muted }: Countd
   const [remaining, setRemaining] = useState(totalSeconds);
   const expiredRef = useRef(false);
   const onExpireRef = useRef(onExpire);
+  const mountedAtRef = useRef(Date.now());
   onExpireRef.current = onExpire;
 
   useEffect(() => {
     expiredRef.current = false;
+    mountedAtRef.current = Date.now();
     const end = new Date(endsAt).getTime();
+
+    // Minimum 1.5s before expire can fire — prevents accidental immediate trigger
+    const MIN_ACTIVE_MS = 1500;
 
     const tick = () => {
       const now = Date.now();
@@ -30,15 +35,23 @@ export function CountdownTimer({ endsAt, totalSeconds, onExpire, muted }: Countd
         else if (left > 5) sounds.countdown_tick();
       }
 
-      if (left === 0 && !expiredRef.current) {
+      const activeMs = now - mountedAtRef.current;
+      if (left === 0 && !expiredRef.current && activeMs >= MIN_ACTIVE_MS) {
         expiredRef.current = true;
         onExpireRef.current?.();
       }
     };
 
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
+    const intervalRef = { id: 0 as ReturnType<typeof setInterval> };
+    const initTimeout = setTimeout(() => {
+      tick();
+      intervalRef.id = setInterval(tick, 1000);
+    }, 200);
+
+    return () => {
+      clearTimeout(initTimeout);
+      clearInterval(intervalRef.id);
+    };
   }, [endsAt, muted]);
 
   const pct = totalSeconds > 0 ? remaining / totalSeconds : 0;
@@ -48,8 +61,8 @@ export function CountdownTimer({ endsAt, totalSeconds, onExpire, muted }: Countd
   const color = urgent
     ? "#ef4444"
     : warning
-    ? "#f97316"
-    : "#22c55e";
+      ? "#f97316"
+      : "#22c55e";
 
   const circumference = 2 * Math.PI * 28;
   const dashOffset = circumference * (1 - pct);

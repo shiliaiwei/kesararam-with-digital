@@ -45,8 +45,8 @@ const MEMBERS: Record<string, {
     quote: "Teaching is not filling a bucket — it is lighting a fire.",
   },
   "VSID-2026-M02": {
-    lastName: "WEI", fullName: "SHILIAI WEI", role: "Design, Technical & Project Management", type: "mentor",
-    photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1775248420/07d5d96b3f0a8af7743f3b4053ba18dr_ydb0zm.png",
+    lastName: "史力爱卫", fullName: "史力爱卫", role: "Design, Technical & Project Management", type: "mentor",
+    photo: "https://avatars.githubusercontent.com/u/70220432?v=4",
     contributions: ["Advised on software architecture", "Reviewed code quality", "Supported project management"],
     quote: "Build with intention. Ship with confidence.",
   },
@@ -145,7 +145,7 @@ export default function TeamMemberPage() {
 
           {/* FUI Brand Logo */}
           <div className="absolute top-4 right-4 z-20">
-             <img src="/brand/kwd-black-text.png" alt="KWD" className="h-4 opacity-50 brightness-0 invert object-contain" />
+            <img src="/brand/kwd-black-text.png" alt="KWD" className="h-4 opacity-50 brightness-0 invert object-contain" />
           </div>
 
           {/* Top color bar */}

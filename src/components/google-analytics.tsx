@@ -3,7 +3,7 @@
 import Script from "next/script";
 
 export function GoogleAnalytics() {
-    const GA_MEASUREMENT_ID = "G-WBL3KSCAL";
+    const GA_MEASUREMENT_ID = "G-J62L8X381K";
 
     return (
         <>

@@ -4,16 +4,16 @@ import { useState, useEffect, useCallback } from "react";
 import QRCode from "react-qr-code";
 
 const STUDENTS = [
-  { id: "VSID-2026-001", name: "D. YIN",      fullName: "D.YIN",      role: "Voice Reading · Team Lead" },
-  { id: "VSID-2026-002", name: "C. KANIKA",   fullName: "C.KANIKA",   role: "Content & Research" },
-  { id: "VSID-2026-003", name: "R. NEUN",     fullName: "R.NEUN",     role: "UI/UX Design" },
-  { id: "VSID-2026-004", name: "L. MANY",     fullName: "L.MANY",     role: "QA & Testing" },
+  { id: "VSID-2026-001", name: "D. YIN", fullName: "D.YIN", role: "Voice Reading · Team Lead" },
+  { id: "VSID-2026-002", name: "C. KANIKA", fullName: "C.KANIKA", role: "Content & Research" },
+  { id: "VSID-2026-003", name: "R. NEUN", fullName: "R.NEUN", role: "UI/UX Design" },
+  { id: "VSID-2026-004", name: "L. MANY", fullName: "L.MANY", role: "QA & Testing" },
   { id: "VSID-2026-005", name: "S. RUNAMARA", fullName: "S.RUNAMARA", role: "QA & Testing" },
 ];
 
 const MENTORS = [
   { id: "VSID-2026-M01", name: "PHEAP PISETH", fullName: "PHEAP PISETH", role: "Teacher & Program Lead", image: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248421/904da627410290a5ae64edr_xtkjjp.png" },
-  { id: "VSID-2026-M02", name: "SHILIAI WEI",  fullName: "SHILIAI WEI",  role: "Design, Technical / Project Mgmt", image: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248420/07d5d96b3f0a8af7743f3b4053ba18dr_ydb0zm.png" },
+  { id: "VSID-2026-M02", name: "史力爱卫", fullName: "史力爱卫", role: "Design, Technical / Project Mgmt", image: "https://avatars.githubusercontent.com/u/70220432?v=4" },
 ];
 
 interface Member { id: string; name: string; fullName: string; role: string; image?: string; }
@@ -29,7 +29,7 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
 
   const handleReveal = useCallback(async () => {
     setLoading(true);
-    
+
     try {
       const res = await fetch(`/api/team-token?id=${member.id}`);
       const { code } = await res.json();
@@ -95,9 +95,9 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
             style={{ background: "#0a0a0a", border: `1px solid ${accent}30`, minHeight: 120 }}
           >
             {revealed && qrLink ? (
-                <div className="bg-white p-2 shrink-0">
-                  <QRCode value={qrLink} size={96} level="L" />
-                </div>
+              <div className="bg-white p-2 shrink-0">
+                <QRCode value={qrLink} size={96} level="L" />
+              </div>
             ) : (
               <div className="flex flex-col items-center justify-center gap-3 py-6 opacity-40 w-full h-full">
                 <img src="/brand/kwd-black-text.png" alt="Logo" className="w-16 h-8 object-contain mx-auto brightness-0 invert" />

@@ -6,6 +6,12 @@ import { Volume2, X, ChevronDown, ChevronUp } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import type { TrafficSign } from "@/db/schema";
 
+// ── Cloudinary thumbnail optimizer ───────────────────────────────────────────
+function cloudinaryThumb(url: string, width = 120): string {
+  if (!url || !url.includes("res.cloudinary.com")) return url;
+  return url.replace("/upload/", `/upload/f_auto,q_auto:good,w_${width},c_limit/`);
+}
+
 // ── Sub-group order matches the official Cambodian traffic sign PDF ───────────
 // ក. Traffic Signs: Regulatory → Warning → Informative → Supplementary → Guide Post
 // ខ. Road Markings: Transverse → Longitudinal → Arrow → Other
@@ -134,24 +140,24 @@ function SignDetailPanel({
 
         {/* Content */}
         <div className="p-5 space-y-3">
-          <h2 className="text-2xl font-black leading-tight">{sign.titleEn}</h2>
+          <h2 className="text-2xl font-black leading-tight">{name}</h2>
           <p className="text-lg text-zinc-600" style={{ fontFamily: "Siemreap, sans-serif" }}>
-            {sign.titleKm}
+            {isKh ? sign.titleEn : sign.titleKm}
           </p>
 
-          {/* Description */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">English</p>
-              <p className="text-sm text-zinc-700 leading-relaxed">{sign.descriptionEn || "—"}</p>
+          {/* Description — current language only */}
+          {description && (
+            <div className="rounded overflow-hidden border border-emerald-400">
+              <div className="bg-emerald-500 px-3 py-1.5">
+                <span className="text-[9px] font-black uppercase tracking-widest text-white">Description</span>
+              </div>
+              <div className="bg-emerald-50 px-3 py-2.5">
+                <p className="text-sm text-emerald-900 leading-relaxed" style={kf}>
+                  {description}
+                </p>
+              </div>
             </div>
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-1">ខ្មែរ</p>
-              <p className="text-sm text-zinc-700 leading-relaxed" style={{ fontFamily: "Siemreap, sans-serif" }}>
-                {sign.descriptionKm || "—"}
-              </p>
-            </div>
-          </div>
+          )}
 
           {/* Audio */}
           {audioUrl && (
@@ -321,12 +327,14 @@ export function TrafficSignsGrid({ initialSigns = [] }: TrafficSignsGridProps) {
                 <div className="relative w-full overflow-hidden" style={{ paddingBottom: "100%" }}>
                   <div className="absolute inset-0 p-2 flex items-center justify-center">
                     <Image
-                      src={sign.imageUrl}
+                      src={cloudinaryThumb(sign.imageUrl, 120)}
                       alt={isKh ? sign.titleKm : sign.titleEn}
                       fill
                       sizes="(max-width: 640px) 33vw, (max-width: 768px) 25vw, 10vw"
                       className="object-contain group-hover:scale-105 transition-transform duration-200"
                       style={{ padding: "8px" }}
+                      loading={idx < 8 ? "eager" : "lazy"}
+                      priority={idx < 8}
                       unoptimized
                     />
                   </div>

@@ -155,13 +155,12 @@ export function SignDetailPopup({ topic, questions = [], onClose }: SignDetailPo
               <button
                 onClick={toggleAudio}
                 disabled={loading}
-                className={`w-full py-3 font-black text-sm inline-flex items-center justify-center gap-2.5 border-2 border-black select-none ${
-                  loading
-                    ? "bg-zinc-100 text-zinc-400 cursor-wait"
-                    : playing
+                className={`w-full py-3 font-black text-sm inline-flex items-center justify-center gap-2.5 border-2 border-black select-none ${loading
+                  ? "bg-zinc-100 text-zinc-400 cursor-wait"
+                  : playing
                     ? "bg-black text-yellow-400 shadow-[4px_4px_0_#ca8a04]"
                     : "bg-white text-black shadow-[4px_4px_0_#000] hover:bg-yellow-400 hover:shadow-[4px_4px_0_#ca8a04]"
-                }`}
+                  }`}
                 style={kf}
               >
                 {loading ? (
@@ -229,9 +228,8 @@ export function SignDetailPopup({ topic, questions = [], onClose }: SignDetailPo
                       {q.answers.map((a: Answer, ai: number) => (
                         <div
                           key={a.id}
-                          className={`px-3 py-2 border-2 text-sm flex gap-2 ${
-                            a.is_correct ? "bg-green-100 border-green-500" : "bg-white border-zinc-200"
-                          }`}
+                          className={`px-3 py-2 border-2 text-sm flex gap-2 ${a.is_correct ? "bg-green-100 border-green-500" : "bg-white border-zinc-200"
+                            }`}
                         >
                           <span className="font-bold shrink-0">{String.fromCharCode(65 + ai)}.</span>
                           <span className="flex-1 break-words" style={kf}>

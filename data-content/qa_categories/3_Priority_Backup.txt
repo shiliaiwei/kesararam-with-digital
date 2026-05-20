@@ -1,0 +1,1056 @@
+==============================================================
+      CATEGORY 3: PRIORITY - BACKUP DATA      
+==============================================================
+This file contains a structured backup of the questions,
+showing the direct relationship between Khmer and English.
+
+--- [ CODE: CAT3-001 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ទៅមុន បន្ទាប់មក #២
+     [EN] Vehicle 1 departs first, next vehicle 2
+  2. [KM] #១ និង #២ មានសិទ្ធិទៅព្រមគ្នា
+     [EN] Vehicle 1 and 2 have priority to depart at the same time.
+  3. [KM] #២ទៅមុន បន្ទាប់មក #១
+     [EN] Vehicle 2 departs first, then vehicle 1
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-002 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ទៅមុន បន្ទាប់មក #២ទៅតាមក្រោយ
+     [EN] First vehicle 1 then followed by motorcylce 2.
+     << CORRECT ANSWER >>
+  2. [KM] #២ ទៅមុន បន្ទាប់មក #១
+     [EN] First number 2, then 1.
+  3. [KM] #១ និង #២ទៅព្រមគ្នា
+     [EN] NUmber 1 and 2 together leave at the same time.
+
+==============================================================
+
+--- [ CODE: CAT3-003 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #២ ចេញទៅមុន បន្ទាប់មក #៣ រួច #១ ទៅតាមក្រោយ
+     [EN] First vehicle 2, next motorcycle 3, then followed by vehicle 1
+  2. [KM] #២ ទៅមុន បន្ទាប់មក #១ រួច #៣
+     [EN] First number 2, next 1, and then 3.
+     << CORRECT ANSWER >>
+  3. [KM] #១ និង #៣ទៅព្រមគ្នា បន្ទាប់មក #២
+     [EN] First number 1 and 3 together leave at the same time, then 2.
+
+==============================================================
+
+--- [ CODE: CAT3-004 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ចេញទៅមុន បន្ទាប់មក #២ទៅតាមក្រោយ
+     [EN] First vehicle 1 then followed by motorcycle 2.
+     << CORRECT ANSWER >>
+  2. [KM] #២ ទៅមុន បន្ទាប់មក #១
+     [EN] First number 2 then 1.
+  3. [KM] #១ និង #២ ទៅព្រមគ្នា
+     [EN] Number 1 and 2 together leave at the same time.
+
+==============================================================
+
+--- [ CODE: CAT3-005 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ចេញទៅមុន បន្ទាប់មក #២ រួច #៣ ទៅតាមក្រោយ
+     [EN] First vehicle 1, next vehicle 2, then followed motorcycle 3
+  2. [KM] #៣ ទៅមុន បន្ទាប់មក #២ និង #១
+     [EN] First number 3, then 2 and 1.
+  3. [KM] #២បត់ឆ្វេងទៅមុន បន្ទាប់មក #១ រួច #៣
+     [EN] First left turn vehicle 2, then 1 and 3
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-006 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ចេញទៅមុន បន្ទាប់មក #៤ រួច #៣ និង #២ ទៅតាមក្រោយ
+     [EN] First vehicle 1, next vehicle 4, then vehicle 3 followed by motorcycle 2
+  2. [KM] #១និង #៣ ទៅព្រមគ្នា បន្ទាប់មក #៤ និង #២
+     [EN] First number 1 and 3 together leave at the same time, then 4 and 2.
+  3. [KM] #៤ទៅមុន #២បត់ឆ្វេងបន្ទាប់ រួច #១ និង #៣ទៅព្រមគ្នា
+     [EN] First number 4, next left turn number 2, then 1 and 3 together leave at the same time.
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-007 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ទៅមុន បន្ទាប់មក #៣ រួច #២  ទៅតាមក្រោយ
+     [EN] First vehicle 1, next motorcylce 3, then followed by motorcycle 2.
+  2. [KM] #១ ទៅមុន បន្ទាប់មក #២ រួច #៣
+     [EN] number 1 and number 2 go together, and then 3.
+     << CORRECT ANSWER >>
+  3. [KM] #៣ និង #១ ទៅមុនព្រមគ្នា បន្ទាប់មក #២
+     [EN] First number 3 and 1 together leave at the same time, then 2.
+
+==============================================================
+
+--- [ CODE: CAT3-008 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ចេញទៅមុន #២បត់ឆ្វេងទៅបន្ទាប់ និង #៣ចេញទៅតាមក្រោយ
+     [EN] First vehicle 1, next left turn motorcycle 2, and then followed by motorcycle 3.
+  2. [KM] #១ និង #2 ទៅព្រមគ្នា រួចហើយ #3
+     [EN] First number 2, next 3, and then 1.
+     << CORRECT ANSWER >>
+  3. [KM] #១ និង #៣ទៅព្រមគ្នា បន្ទាប់មក #២
+     [EN] Number 1 and 3 together leave at the same time, then 2.
+
+==============================================================
+
+--- [ CODE: CAT3-009 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #២ចេញទៅមុន បន្ទាប់មក #១ និង #៣ ទៅតាមក្រោយ
+     [EN] First motorcycle 2, then followed by vehicles 1 and 3.
+  2. [KM] #៣ ទៅមុន បន្ទាប់មក #២ រួច #១
+     [EN] First number 3, next 2, and then 1.
+  3. [KM] #១ និង #៣ទៅព្រមគ្នា រួច #២
+     [EN] Number 1 and 3 together leave at the same time, then 2.
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-010 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ទៅមុន បន្ទាប់មក #២ រួច #៣
+     [EN] First vehicle 1, next motorcycle 2, and then vehicle 3.
+  2. [KM] #២ ទៅមុន បន្ទាប់មក #៣ រួច #១
+     [EN] First number 2, next 3, and then 1.
+     << CORRECT ANSWER >>
+  3. [KM] #៣ទៅមុន បន្ទាប់មក #២ រួច #១
+     [EN] First number 3, next 2, and then 1.
+
+==============================================================
+
+--- [ CODE: CAT3-011 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #៣ និង #២ចេញទៅព្រមគ្នា បន្ទាប់មក #១ ទៅតាមក្រោយ
+     [EN] First motorcycle 3 and 2 together leave at the same time, then followed by vehicle 1.
+  2. [KM] #១ និង #២ ទៅព្រមគ្នា បន្ទាប់មក #៣
+     [EN] Number 1 and 2 together leave at the same time, then 3.
+     << CORRECT ANSWER >>
+  3. [KM] #២ទៅមុន បន្ទាប់មក #១ រួច #៣បត់ឆ្វេង
+     [EN] First number 2, next 1, and then number 3 turns left.
+
+==============================================================
+
+--- [ CODE: CAT3-012 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ និង #២ចេញទៅព្រមគ្នា រួច #៣ ទៅតាមក្រាយ
+     [EN] vehicle 1 and 2 together leave at the same time, then followed by motorcycle 3.
+     << CORRECT ANSWER >>
+  2. [KM] #២ ទៅមុន បន្ទាប់មក #៣ រួច #១
+     [EN] First number 2, next 3, and then 1.
+  3. [KM] #៣និង #១ទៅព្រមគ្នា រួច #២
+     [EN] Number 1 and 3 together leave at the same time, then 2.
+
+==============================================================
+
+--- [ CODE: CAT3-013 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ចេញទៅមុន បន្ទាប់មក #២ រួច #៣ បត់ឆ្វេងទៅតាមក្រោយ
+     [EN] First vehicle 1, next motorcycle 2, and then followed by left turn motorcycle 3.
+     << CORRECT ANSWER >>
+  2. [KM] #១ ទៅមុន បន្ទាប់មក #៣ រួច #២
+     [EN] First number 1, next 3, and then 2.
+  3. [KM] #១ និង #៣ទៅមុន បន្ទាប់មក #២
+     [EN] First number 1 and 3, then 2.
+
+==============================================================
+
+--- [ CODE: CAT3-014 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ និង #៣ចេញទៅព្រមគ្នា បន្ទាប់មក #២ និង #៤ទៅតាមក្រោយ
+     [EN] First vehicle 1 and 3 together leave at the same time, and then followed motrocycle 2 and 4.
+     << CORRECT ANSWER >>
+  2. [KM] #២ និង #៤ ទៅព្រមគ្នា បន្ទាប់មក #១ និង #៣
+     [EN] First number 2 and 4 together leave at the same time, then number 1 and 3.
+  3. [KM] #១ទៅមុន បន្ទាប់មក #៤ រួច #៣ និង #២
+     [EN] First number 1, next 4, and then 3 and 2.
+
+==============================================================
+
+--- [ CODE: CAT3-015 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ចេញទៅមុន បន្ទាប់មក #២ រួច #៣ ទៅតាមក្រោយ
+     [EN] First vehicle 1, next vehicle 2, then followed motorcycle 3.
+  2. [KM] #២ ទៅមុន បន្ទាប់មក #១ រួច #៣
+     [EN] First number 2, next 1, and then 3.
+     << CORRECT ANSWER >>
+  3. [KM] #៣ទៅមុន បន្ទាប់មក #២ រួច #១
+     [EN] First number 3, next 2, and then 1.
+
+==============================================================
+
+--- [ CODE: CAT3-016 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ចេញទៅមុន បន្ទាប់ #២ ហើយ #៣បត់ឆ្វេង ទៅបន្ទាប់ រួច #៤ទៅតាមក្រោយ
+     [EN] First motorcycle 1, next motorcycle 2, and left turn motorcycle 3, and then followed by vehicle 4.
+     << CORRECT ANSWER >>
+  2. [KM] #២ និង #៤ ទៅព្រមគ្នា បន្ទាប់មក #១ និង #៣
+     [EN] Number 2 and 4 together leave at the same time, then 1 and 3.
+  3. [KM] #១ទៅមុន បន្ទាប់មក #៣ រួច #២ និង #៤ទៅព្រមគ្នា
+     [EN] First number 1, next 3, then number 2 and 4 together leave at the same time.
+
+==============================================================
+
+--- [ CODE: CAT3-017 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #២ទៅមុន បន្ទាប់មក #៣ រួច #៤ និង #១ ទៅតាមក្រោយ
+     [EN] First motorcycle 2, next vehicle 3, and then followed by motorcycle 4 and vehicle 1.
+  2. [KM] #៣ និង #១ ទៅព្រមគ្នា បន្ទាប់មក #២ និង #៤
+     [EN] Number 3 and 1 together leave at the same time then number 2 and 4.
+  3. [KM] #២ និង #៤ទៅព្រមគ្នា រួច #១ និង #៣បត់ឆ្វេងតាមក្រោយ
+     [EN] Number 2 and 4 together leave at the same time then followed by left turn number 1 and 3 .
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-018 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ចេញទៅមុន បន្ទាប់មក #២ រួច #៣ ទៅតាមក្រោយ
+     [EN] First vehicle 1, next vehicle 2 followed by motorcycle 3.
+  2. [KM] #៣ ទៅមុន បន្ទាប់មក #២ រួច #១
+     [EN] First number 3, next 2, and then 1.
+     << CORRECT ANSWER >>
+  3. [KM] #៣ និង #១ទៅព្រមគ្នា រួច #២ ទៅតាមក្រោយ
+     [EN] Number 3 and 1 together leave at the same time, then followed by number 4.
+
+==============================================================
+
+--- [ CODE: CAT3-019 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #២ចេញទៅមុន បន្ទាប់មក #១ រួច #៤ និង #៣ ទៅតាមក្រោយ
+     [EN] First motorcycle 2, next vehicle 1, then followed by motorcycle 4 and vehicle 3.
+  2. [KM] #២ ចេញទៅមុន បន្ទាប់ #៤  បន្ទាប់មក #៣ និងចុងក្រោយ #១
+     [EN] number 2 go first, then number 4, and then number 3 followed by number 1
+     << CORRECT ANSWER >>
+  3. [KM] #២ និង #៣ទៅមុន បន្ទាប់មក #១ និង #៤បត់ឆ្វេង តាមក្រោយ
+     [EN] First number 2 and 3, then followed by number 1 and 4.
+
+==============================================================
+
+--- [ CODE: CAT3-020 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ និង #៣ទៅមុន បន្ទាប់មក #២ ទៅតាមក្រោយ
+     [EN] First vehicle 1 and 3 then followed by motorcycle 2.
+  2. [KM] #៣ ទៅមុន បន្ទាប់មក #២ រួច #១
+     [EN] First number 3, next 2, and then 1.
+  3. [KM] #១ទៅមុន  #២បត់ឆ្វេងទៅបន្ទាប់ រួច #៣
+     [EN] First number 1, next left turn number 2, and then number 3.
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-021 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ចេញទៅមុន បន្ទាប់មក #២ រួច #៣ ទៅតាមក្រោយ
+     [EN] First vehicle 1, next motorcycle 2, then followed by motorcycle 3.
+  2. [KM] #៣ ទៅមុន បន្ទាប់មក #២ រួច #១
+     [EN] First number 3, next 2, and then 1.
+     << CORRECT ANSWER >>
+  3. [KM] #៣ទៅមុន បន្ទាប់មក #១ រួច #២
+     [EN] First number 3, next 1, and then number 2.
+
+==============================================================
+
+--- [ CODE: CAT3-022 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #៣ ត្រូវចេញទៅមុន បន្ទាប់មក #២ រួច #១ ចេញតាមក្រោយ
+     [EN] Vehicle 3 depart first, next vehicle 2, vehicle 1 is the last one.
+  2. [KM] #១ត្រូវចេញមុនរួចរង់ចាំ #២ទៅផុតនិង #៣ទៅបន្ទាប់ ទើប #១
+     [EN] First vehicle 1, next vehicle 2, next vehicle 3, then vehicle 1.
+     << CORRECT ANSWER >>
+  3. [KM] #៣និង #១ទៅព្រមគ្នារួច #២ ចេញតាមក្រោយ
+     [EN] First vehicle 3 and 1 together depart at the same time and next vehicle 2.
+
+==============================================================
+
+--- [ CODE: CAT3-023 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ទៅមុន បន្ទាប់មក #២
+     [EN] First vehicle 1 and then vehicle 2
+  2. [KM] #២ទៅមុន បន្ទាប់មក #១
+     [EN] First number 2 and then number 1
+     << CORRECT ANSWER >>
+  3. [KM] #១ និង #២ ទៅព្រមគ្នា
+     [EN] number 1 and 2 together leave at the same time.
+
+==============================================================
+
+--- [ CODE: CAT3-024 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #៣ត្រូវចេញទៅមុន បន្ទាប់មក #២ បត់ឆ្វេងរួច #១ ចេញតាមក្រោយ
+     [EN] First vehicle 3, next vehicle 2 turns left, and then vehicle 1
+     << CORRECT ANSWER >>
+  2. [KM] #១ទៅមុន បន្ទាប់មក #៣ រួច #២
+     [EN] First number 1, next number 3 and then vehicle 2
+  3. [KM] #១ទៅមុនបន្ទាប់មក #២បត់ រួច #៣
+     [EN] First number 1, next number 2 turns, then number 3
+
+==============================================================
+
+--- [ CODE: CAT3-025 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ទៅមុន #២ ចេញតាមក្រោយ
+     [EN] First vehicle 1then vehicle 2 follows
+  2. [KM] #២ទៅមុន បន្ទាប់មក #១
+     [EN] First number 2 and then number 1
+     << CORRECT ANSWER >>
+  3. [KM] #១ និង #២ទៅព្រមគ្នា
+     [EN] Number 1 and 2 together leave at the same time
+
+==============================================================
+
+--- [ CODE: CAT3-026 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ និង #៣ ចេញទៅព្រមគ្នា ទើប #២និង #៤ ចេញ
+     [EN] Vehicles 1 and 3 together leave at the same time, vehicle 2 and 4 follow
+     << CORRECT ANSWER >>
+  2. [KM] #២ និង #៤ ទៅព្រមគ្នា បន្ទាប់មក #១ និង #៣
+     [EN] Vehicle 2 and 4 together leave at the same time then vehicles 1 and 3
+  3. [KM] #៣ទៅមុនបន្ទាប់មក #២ រួច #១និង #៤
+     [EN] First vehicle 3, next 2, and then 1 and 4
+
+==============================================================
+
+--- [ CODE: CAT3-027 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #២ ត្រូវទៅមុន បន្ទាប់មក #១ បត់ឆ្វេង រួច #៣
+     [EN] First vehicle 2, next vehicle 1 turns left, then vehicle 3.
+     << CORRECT ANSWER >>
+  2. [KM] #២ទៅមុន បន្ទាប់មក #៣ រួច #១
+     [EN] First vehicle 2, next vehicle 3, and then vehicle 1
+  3. [KM] #២ទៅមុន បន្ទាប់ #៣និង #១ចេញព្រមគ្នា
+     [EN] First vehicle 2, then vehicles 3 and 1 together at the same time.
+
+==============================================================
+
+--- [ CODE: CAT3-028 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #២ ចេញទៅមុន បន្ទាប់មក #៣ រួច #១
+     [EN] First vehicle 2, next vehicle 3, and then vehicle 1
+  2. [KM] #១ និង #៣ទៅព្រមគ្នា បន្ទាប់មក #២
+     [EN] First vehicle 2 and 3 together at the same time, then vehicle 1
+  3. [KM] #២ទៅមុន #១បត់ឆ្វេងទៅបន្ទាប់ និង #៣
+     [EN] First vehicle 2; next left turn vehicle 1, and then vehicle 3.
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-029 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ចេញទៅមុន បន្ទាប់មក #២ និង #៣ ទៅតាមក្រាយ
+     [EN] First vehicle 1 then 2 and 3 follow
+  2. [KM] #៣ទៅមុន បន្ទាប់មក #២ និង #១
+     [EN] First number 3 then 2 and 1
+  3. [KM] #២បត់ឆ្វេងទៅមុន បន្ទាប់មក #១ និង #៣បត់ឆ្វេង
+     [EN] First left turn number 2, next 1 and 3 turn right
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-030 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #២ ត្រូវទៅមុន បន្ទាប់មក #៣ រួច #៤ ទៅបន្ទាប់ ហើយ #១
+     [EN] First vehicle 2, next vehicle 3, next 4 and then vehicle 1
+  2. [KM] #៣ និង #១ ទៅមុន បន្ទាប់មក #២ និង #៤
+     [EN] First number 3 and 1, then 2 and 4
+  3. [KM] #២ និង #៤ ទៅព្រមគ្នា ហើយ #១ និង #៣ បត់ឆ្វេងពីក្រោយគ្នា
+     [EN] Number 2 and 4 together leave at the same time, then vehicles 1 and 3 turn left one after another
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-031 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ត្រូវចេញទៅមុន បន្ទាប់មក #៣ រួច #២ បត់ឆ្វេង
+     [EN] First vehicle 1, next vehicle 3, and then left turn vehicle 2.
+  2. [KM] #១ទៅមុន #២បត់ឆ្វេងទៅ បន្ទាប់មក #៣
+     [EN] First vehicle 1, next left turn vehicle 2, and then vehicle 3
+  3. [KM] #៣ទៅមុន បន្ទាប់មក #២បត់ឆ្វេង រួច #១ ចេញតាមក្រោយ
+     [EN] First vehicle 3, next vehicle 2 turns left, then vehicle 1 
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-032 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ទៅមុន #២ ចេញតាមក្រោយ
+     [EN] First vehicle 1 then vehicle 2
+  2. [KM] #២ទៅមុន បន្ទាប់មក #១បត់ឆ្វេង
+     [EN] First vehicle 2, then vehicle 1 turns left.
+     << CORRECT ANSWER >>
+  3. [KM] #១ និង #២ទៅព្រមគ្នា
+     [EN] Vehicle 1 and 2 together depart at the same time.
+
+==============================================================
+
+--- [ CODE: CAT3-033 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ និង #៣ ចេញទៅព្រមគ្នា ទើប #២ និង #៤ ចេញ
+     [EN] Vehicles 1 and 3 leave together at the same time, then vehicle 2 and 4
+     << CORRECT ANSWER >>
+  2. [KM] #២ និង #៤ ទៅព្រមគ្នា ទើប #១និង #៣
+     [EN] Vehicles 2 and 4 leave together at the same time then vehicles 1 and 3
+  3. [KM] #៣ទៅមុន បន្ទាប់មក #២ រួច #១និង #៤
+     [EN] First vehicle 3, next vehicle 2, and then vehicle 1 and 4
+
+==============================================================
+
+--- [ CODE: CAT3-034 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ចេញទៅមុន បន្ទាប់មក #២
+     [EN] First vehicle 1 then vehicle 2
+     << CORRECT ANSWER >>
+  2. [KM] #២ចេញទៅមុន បន្ទាប់មក #១
+     [EN] First vehicle 2, then vehicle 1
+  3. [KM] #១ និង #២ ទៅព្រមគ្នា
+     [EN] Vehicles 1 and 2 leave together at the same time.
+
+==============================================================
+
+--- [ CODE: CAT3-035 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ចេញទៅមុន បន្ទាប់មក #២ រួច #៣ បត់ឆ្វេង ហើយ #៤
+     [EN] First vehicle 1, next 2, next 3 turns left, and then vehicle 4
+     << CORRECT ANSWER >>
+  2. [KM] #២ និង #៤ទៅព្រមគ្នា បន្ទាប់មក #១ និង #៣
+     [EN] First number 2 and 4 together leave at the same time then 1 and 3
+  3. [KM] #១ទៅមុន បន្ទាប់មក #៣បត់ឆ្វេង រួច #២ និង #៤ទៅព្រមគ្នា
+     [EN] First number 1, next 3 turns left, then 2 and 4 together leave at the same time.
+
+==============================================================
+
+--- [ CODE: CAT3-036 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #២ បត់ស្ដាំចេញទៅមុន បន្ទាប់មក #១ បត់ឆ្វេង រួច #៤ និង #៣
+     [EN] First right turn vehicle 2, next left turn vehicle 1, and then vehicles 4 and 3
+  2. [KM] #២ និង #៣ ទៅមុន បន្ទាប់មក #១ និង #៤
+     [EN] First number 2 and 3, then 1 and 4
+  3. [KM] #២បត់ស្ដាំទៅមុន #៤បត់ឆ្វេង បន្ទាប់ #៣ រួច #១បត់ឆ្វេង
+     [EN] First right turn number 2, next left turn number 4, then 3, and at last number 1 turns left
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-037 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #២ ត្រូវទៅមុន បន្ទាប់មក #៣ និង #១
+     [EN] First vehicle 2 then vehicle 3 and 1
+  2. [KM] #៣ និង #១ទៅមុន បន្ទាប់មក #២
+     [EN] First number 3 and 1 then 2
+  3. [KM] #៣ទៅមុន រួចចាំ #២ បន្ទាប់មក #១ទៅ                                    ទើប #៣
+     [EN] First number 3, then waiting for 2, next 1, and then 3
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-038 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #៣ ចេញទៅមុន #២ បត់ឆ្វេងទៅបន្ទាប់ រួច #១
+     [EN] First vehicle 3, next vehicle 2 turn left, and then vehicle 1
+     << CORRECT ANSWER >>
+  2. [KM] #៣ និង #១ទៅមុន បន្ទាប់មក #២
+     [EN] First vehicle 3 and 1 then vehicle 2
+  3. [KM] #២ទៅមុន បន្ទាប់មក #១ និង #៣
+     [EN] First vehicle 2 then 1 and 3
+
+==============================================================
+
+--- [ CODE: CAT3-039 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #៣ និង #២ ចេញទៅមុន បន្ទាប់មក #៤ និង #១
+     [EN] First vehicles 3 and 2 then 4 and 1
+  2. [KM] #២ និង #១ទៅព្រមគ្នា បន្ទាប់មក #៣ និង #៤
+     [EN] First number 2 and 1 together leave at the same time then 3 and 4
+  3. [KM] #២ និង #៤ ទៅព្រមគ្នា បន្ទាប់មក #៣បត់ស្ដាំ់ #១បត់ឆ្វេង
+     [EN] First vehicles 2 and 4 together leave at the same time, then vehicle 3 turns right and vehicle 1 turns left
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-040 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #៣ និង #២ ចេញទៅព្រមគ្នា បន្ទាប់មក #១
+     [EN] Vehicle 3 and 2 leave together at the same time then vehicle 1
+  2. [KM] #១ និង #២ ទៅព្រមគ្នា បន្ទាប់មក #៣
+     [EN] Vehicle 1 and 2 leave together at the same time then vehicle 3
+     << CORRECT ANSWER >>
+  3. [KM] #២ទៅមុន បន្ទាប់មក #៣ និង #១
+     [EN] First vehicle 2, next vehicle 3 and 1.
+
+==============================================================
+
+--- [ CODE: CAT3-041 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ចេញទៅមុន បន្ទាប់មក #៤ រួច #៣ និង #២
+     [EN] First vehicle 1, next vehicle 4, and then vehicles 3 and 2
+  2. [KM] #១ និង #៣ ទៅព្រមគ្នា បន្ទាប់មក #៤ និង #២
+     [EN] First number 1 and 3 together leave at the same time, then 4 and 2
+  3. [KM] #៤ ទៅមុន #២ បត់ឆ្វេងបន្ទាប់ រួច #១ និង #៣ទៅព្រមគ្នា
+     [EN] First number 4, number 2 turns left, then 1 and 3 together leave at the same time
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-042 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ចេញទៅមុន បន្ទាប់មក #២ រួច #៣ ហើយ #៤
+     [EN] First vehicle 1, next 2, and then vehicles 3 and 4
+     << CORRECT ANSWER >>
+  2. [KM] #២ និង #៤ ទៅព្រមគ្នា បន្ទាប់មក #១ និង #៣
+     [EN] First number 2 and 4 together leave at the same time then 1 and 3
+  3. [KM] #១ទៅមុន បន្ទាប់មក #៣ រួច #២ និង #៤ទៅព្រមគ្នា
+     [EN] First number 1, next 3, and then 2 and 4 together leave at the same time
+
+==============================================================
+
+--- [ CODE: CAT3-043 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #២ ទៅមុខត្រង់ទៅមុនរួច #១ បត់ឆ្វេងទៅក្រោយ
+     [EN] First vehicle 2 goes straight ahead then followed by vehicle 1 turns left
+     << CORRECT ANSWER >>
+  2. [KM] #១ ទៅមុន រួច #២
+     [EN] First number 1 then 2
+  3. [KM] #១ និង #២ ទៅព្រមគ្នា
+     [EN] Number 1 and 2 together leave at the same time
+
+==============================================================
+
+--- [ CODE: CAT3-044 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #៣ និង #១ចេញទៅមុនបត់ពីក្រោយគ្នា រួច #២
+     [EN] vehicle 3 and vehicle 1 leave first and turning one after another, then vehicle 2.
+     << CORRECT ANSWER >>
+  2. [KM] #២ទៅមុន បន្ទាប់មក #១ និងលខ៣
+     [EN] number 2 first leaves and then 1 and 3
+  3. [KM] #៣ទៅមុន បន្ទាប់មក #២  រួច #១បត់ឆ្វេង
+     [EN] number 3 first leave, Number 2 next, and then number 1 turns left
+
+==============================================================
+
+--- [ CODE: CAT3-045 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ចេញទៅមុន បន្ទាប់មក #២ រួច #៣
+     [EN] First vehicle 1, next vehicle 2 and then number 3
+  2. [KM] #៣ ទៅមុន បន្ទាប់មក #២ និង #១
+     [EN] First vehicle 3 then vehicles 2 and 1
+  3. [KM] #២ បត់ឆ្វេងមុន បន្ទាប់មក #១ និង #៣
+     [EN] First left turn vehicle 2 then number 1 and 3
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-046 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ចេញទៅមុន #២ បត់ឆ្វេងទៅបន្ទាប់ និង #៣ចេញ
+     [EN] First vehicle 1, next left turn vehicle 2, then vehicle 3
+     << CORRECT ANSWER >>
+  2. [KM] #២ និង #៣ទៅព្រមគ្នា បន្ទាប់មក #១
+     [EN] First number 2 and 3 together leave at the same time then 1.
+  3. [KM] #១ និង #៣ទៅព្រមគ្នា បន្ទាប់មក #២
+     [EN] First number 1 and 3 together leave at the same time then 2.
+
+==============================================================
+
+--- [ CODE: CAT3-047 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ចេញទៅមុន បន្ទាប់មក #២ រួច #៣
+     [EN] Vehicle 1 leaves first, next vehicle 2, and then vehicle 3.
+  2. [KM] #៣ ទៅមុន បន្ទាប់មក #២បត់ឆ្វេង រួច #១
+     [EN] First number 3, next number 2 turns left, and then number 1
+     << CORRECT ANSWER >>
+  3. [KM] #៣ទៅមុន បន្ទាប់មក #១បត់ឆ្វេង រួច #២
+     [EN] First number 3, next number 1 turns left, and then vehicle 2
+
+==============================================================
+
+--- [ CODE: CAT3-048 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #២ ចេញទៅមុន បន្ទាប់មក #៣ រួច #១
+     [EN] First vehicle 2, next vehicle 3 and then vehicle 1
+  2. [KM] #៣ និង #១ ទៅមុន បន្ទាប់មក #២
+     [EN] First number 3 and 1, then number 2
+     << CORRECT ANSWER >>
+  3. [KM] #៣ទៅមុន បន្ទាប់មក #២ រួច #១
+     [EN] First number 3, next number 2, and then number 1 
+
+==============================================================
+
+--- [ CODE: CAT3-049 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #៣ និង #២ចេញទៅព្រមគ្នា បន្ទាប់មក #១
+     [EN] First vehicles 3 and 2 together leave at the same time then vehicle 1
+  2. [KM] #១ និង #២ទៅព្រមគ្នា បន្ទាប់មក #៣
+     [EN] First number 1 and 2 then 3
+     << CORRECT ANSWER >>
+  3. [KM] #២ទៅមុន បន្ទាប់មក #៣ និង #១ទៅព្រមគ្នា
+     [EN] First number 2, then 3 and 1 together leave at the same time
+
+==============================================================
+
+--- [ CODE: CAT3-050 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ បត់ឆ្វេងទៅមុន បន្ទាប់មក #២
+     [EN] First left turn vehicle 1 the vehicle 2
+     << CORRECT ANSWER >>
+  2. [KM] #២ទៅមុន បន្ទាប់មក #១
+     [EN] First number 2 then 1
+  3. [KM] #១ និង #២ ទៅព្រមគ្នា
+     [EN] Number 1 and 2 together leave at the same time
+
+==============================================================
+
+--- [ CODE: CAT3-051 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #៣ ត្រូវចេញទៅមុន បន្ទាប់មក #២រួច #១
+     [EN] First vehicle 3, next vehicle 2, and then vehicle 1
+  2. [KM] #៣ទៅមុន បន្ទាប់មក #១ និង #២
+     [EN] First number 3 then 1 and 2
+     << CORRECT ANSWER >>
+  3. [KM] #១ទៅមុន ចាំ #៣ និង #២ទៅផុត ទើប #១
+     [EN] First number 1, after number 3 and 2 is number 1.
+
+==============================================================
+
+--- [ CODE: CAT3-052 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ចេញទៅមុន បន្ទាប់មក #២ និង #៣ ទៅតាមក្រាយ
+     [EN] First vehicle 1 then followed by 2 and 3
+  2. [KM] #៣ទៅមុន បន្ទាប់មក #២ និង #១
+     [EN] First number 3 then 2 and 1
+  3. [KM] #២ បត់ឆ្វេងទៅមុន បន្ទាប់មក #១ រួច #៣បត់ឆ្វេង
+     [EN] First left turn number 2, next 1, and then 3 turns left
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-053 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #២ ត្រូវទៅមុន បន្ទាប់មក #៣ រួច #៤ ទៅបន្ទាប់ ហើយ #១
+     [EN] First vehcle1, next 3, next 4, and then 1
+  2. [KM] #៣ និង #១ ទៅមុន បន្ទាប់មក #២ និង #៤
+     [EN] First number 3 and 1, then 2 and 4
+  3. [KM] #២ និង #៤ ទៅព្រមគ្នា ហើយ #១ និង #៣ បត់ឆ្វេងពីក្រោយគ្នា
+     [EN] First number 2 and 4 together leave at the same time, then 1 and 3 turn left one after another
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-054 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ និង #៣ ទៅមុន បន្ទាប់មក #២
+     [EN] First vehicles 1 and 3 then vehicle 2
+  2. [KM] #៣ ទៅមុន បន្ទាប់មក #២ រួច #១
+     [EN] First number 3, next 2, and then 1
+  3. [KM] #១ទៅមុន បន្ទាប់មក #២ និង #៣
+     [EN] First number 1, then 2 and 3
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-055 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ចេញទៅមុន បន្ទាប់មក #២ និង #៣
+     [EN] First vehicle1 then 2 and 3
+     << CORRECT ANSWER >>
+  2. [KM] #៣ ទៅមុន បន្ទាប់មក #២ រួច #១
+     [EN] First number 3, then 2 and 1
+  3. [KM] #២ទៅមុន បន្ទាប់មក #១និង #៣
+     [EN] First number 2, then 1 and 3
+
+==============================================================
+
+--- [ CODE: CAT3-056 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #២ បត់ស្ដាំចេញទៅមុន បន្ទាប់មក #១ បត់ឆ្វេង រួច #៤ និង #៣
+     [EN] First right turn vehicle 2, next left turn vehicle 1, and then vehicles 4 and 3
+  2. [KM] #២ និង #៣ ទៅមុន បន្ទាប់មក #១ និង #៤បត់ឆ្វេង
+     [EN] First number 2 and 3, then number 1 and 4 turn left
+  3. [KM] #២ បត់ស្ដាំមុន #៤ បត់ឆ្វេងទៅបន្ទាប់ រួច #៣ និង #១
+     [EN] First right turn number 2, next left turn number 4, then number 3 and 1
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-057 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ និង #៣ ចេញទៅមុន ហើយ #២
+     [EN] First vehicles 1 and 3 then vehicle 2
+  2. [KM] #១ចេញមុនរង់ចាំ #២ និង #៣ទៅផុត ទើប #១ ទៅបាន
+     [EN] First number 1, after 2 and 3 alread left, then 1 moves on 
+     << CORRECT ANSWER >>
+  3. [KM] #២ទៅមុន បន្ទាប់មក #១ និង #៣បត់ឆ្វេង
+     [EN] First number 2, then 1 and 3 turn left
+
+==============================================================
+
+--- [ CODE: CAT3-058 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ចេញទៅមុន បន្ទាប់មក #៤ រួច #៣ ហើយ #២
+     [EN] First vehicle 1, next 4, next 3, and then 2
+  2. [KM] #១ និង #៣ទៅព្រមគ្នា បន្ទាប់មក #៤ រួច #២
+     [EN] First number 1 and 3 together leave at the same time, next 4, and then 2
+  3. [KM] #៤ទៅមុន #២បត់ឆ្វេងបន្ទាប់ រួច #១ និង #៣ទៅព្រមគ្នា
+     [EN] First number 4, next vehicle 2 turns left, and then 1 and 3 together at the same time
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-059 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ចេញទៅមុន បន្ទាប់មក #២ រួច #៣
+     [EN] First vehicle 1, next 2, and the 3
+     << CORRECT ANSWER >>
+  2. [KM] #៣ ទៅមុន បន្ទាប់មក #២ រួច #១
+     [EN] First number 3, next 2 , and then1
+  3. [KM] #១ និង #៣ទៅមុន រួច #២
+     [EN] First number 1 and 3 then 2
+
+==============================================================
+
+--- [ CODE: CAT3-060 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ចេញទៅមុន បន្ទាប់មក #២ រួច #៣
+     [EN] First vehicle 1, next 2, and then 3
+  2. [KM] #៣ ទៅមុន បន្ទាប់មក #២ រួច #១
+     [EN] First number 3, next 2, and then 1
+     << CORRECT ANSWER >>
+  3. [KM] #២ និង #៣ទៅព្រមគ្នា រួច #១
+     [EN] First number 2 and 3 together at the same time, then 1
+
+==============================================================
+
+--- [ CODE: CAT3-061 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #៣ ចេញទៅមុន បន្ទាប់មក #៤ រួច #១និង #២
+     [EN] First vehicle 3, next 4, and then 1 and 2
+  2. [KM] #៣ ទៅមុន បន្ទាប់មក #១ រួច #៤ និង #២
+     [EN] First number 3, next 1, and then 4 and 2
+     << CORRECT ANSWER >>
+  3. [KM] #៣ និង #២ទៅដំណាលគ្នា រួច #៤ និង #១
+     [EN] Number 3 and 2 leave together at the same time, then 2 and 1.
+
+==============================================================
+
+--- [ CODE: CAT3-062 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ និង #២ ចេញទៅព្រមគ្នា បន្ទាប់មក #៣បត់ឆ្វេង
+     [EN] First vehicles 1 and 2 together leave at the same time, then vehicle 3 turns left
+     << CORRECT ANSWER >>
+  2. [KM] #៣ ទៅមុន បន្ទាប់មក #១ និង #២
+     [EN] First number 3, then 1 and 2.
+  3. [KM] #២ និង #៣ ចេញទៅព្រមគ្នា បន្ទាប់មក #១
+     [EN] Vehicle 2 and 3 together leave at the same time, then 1.
+
+==============================================================
+
+--- [ CODE: CAT3-063 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ បត់ស្ដាំទៅមុន #២ បត់ឆ្វេងទៅបន្ទាប់ រួច #៣
+     [EN] First right turn vehicle 1, next left turn vehicle 2, then vehicle 3
+     << CORRECT ANSWER >>
+  2. [KM] #១ និង #៣ ទៅព្រមគ្នា រួច #២
+     [EN] First number 1 and 3 together leave at the same time, then 2.
+  3. [KM] #៣ និង #២ទៅព្រមគ្នា រួច #១
+     [EN] Number 3 and 2 together leave at the same tiem, then 1.
+
+==============================================================
+
+--- [ CODE: CAT3-064 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ចេញទៅព្រមគ្នាជាមួយ #៣ រួច #២
+     [EN] First vehicles 1 and 3 together leave at the same time, then 2.
+  2. [KM] #១ ទៅមុន បន្ទាប់មក #២ រួច #៣
+     [EN] First number 1, next 2, and then 3
+     << CORRECT ANSWER >>
+  3. [KM] #៣ទៅមុន បន្ទាប់មក #២ រួច #១
+     [EN] First number 3, next 2, and the 1.
+
+==============================================================
+
+--- [ CODE: CAT3-065 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ចេញទៅមុន បន្ទាប់មក #២ រួច #៣
+     [EN] First vehicle 1, next 2, and then 3.
+  2. [KM] #២ ទៅមុន បន្ទាប់មក #៣ រួច #១
+     [EN] First vehicle 2, next 3, and then 1.
+     << CORRECT ANSWER >>
+  3. [KM] #៣និង #២ទៅព្រមគ្នា រួច #១
+     [EN] Number 3 and 2 together leave at the same tiem then 1.
+
+==============================================================
+
+--- [ CODE: CAT3-066 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #៣ និង #១ ទៅព្រមគ្នា រួច #២
+     [EN] Vehicle 3 and 1 together leave at the same time, then 2.
+  2. [KM] #២ ទៅមុន បន្ទាប់មក #៣ រួច #១
+     [EN] First number 2, next 3, and then 1.
+     << CORRECT ANSWER >>
+  3. [KM] #១ទៅមុន #២ និង #៣បត់ឆ្វេង
+     [EN] First number 1. number 2 and 3 turn left.
+
+==============================================================
+
+--- [ CODE: CAT3-067 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ចេញទៅមុន បន្ទាប់មក #២ រួច #៣
+     [EN] First vehicle 1, next 2, and then 3
+  2. [KM] #៣ ទៅមុន បន្ទាប់មក #២ រួច #១
+     [EN] First number 3, next 2 , and then1.
+     << CORRECT ANSWER >>
+  3. [KM] #១ និង #៣ទៅមុន រួច #២
+     [EN] First number 1 and 3, then 2.
+
+==============================================================
+
+--- [ CODE: CAT3-068 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ និង #២ចេញទៅព្រមគ្នា បន្ទាប់មក #៣ បត់ឆ្វេង
+     [EN] First vehicle 1 and 2 leave together at the same time, then vehicle 3 turns left .
+     << CORRECT ANSWER >>
+  2. [KM] #៣ ទៅមុន បន្ទាប់មក #១ និង #២
+     [EN] First number 3, then 1 and 2.
+  3. [KM] #២ និង #៣ទៅព្រមគ្នា បន្ទាប់មក #១
+     [EN] Number 2 and 3 together leave at the same time, then 1.
+
+==============================================================
+
+--- [ CODE: CAT3-069 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #៣ ចេញទៅមុន បន្ទាប់មក #២ រួច #១
+     [EN] vehicle 3 first leave, Number 2 next , and then Number 1.
+  2. [KM] #១ និង #៣ ទៅព្រមគ្នា បន្ទាប់ #២
+     [EN] Number 1 and 3 leave at the same time, then 2.
+  3. [KM] #១ទៅមុន ចាំ #២ បន្ទាប់ #៣
+     [EN] Number 1 leaves first, vehicle 2 next and then 3. 
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT3-070 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] #១ ចេញទៅមុន បន្ទាប់មក #២
+     [EN] Vehicle 1 departs first, next vehicle 2
+     << CORRECT ANSWER >>
+  2. [KM] #២ទៅមុន បន្ទាប់មក #១
+     [EN] Vehicle 2 departs first, then vehicle 1
+  3. [KM] #១ និង #២ ទៅព្រមគ្នា
+     [EN] Vehicle 1 and 2 depart at the same time.
+
+==============================================================
+

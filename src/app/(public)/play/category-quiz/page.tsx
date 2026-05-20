@@ -70,7 +70,7 @@ type Phase =
   | { name: "select" }
   | { name: "loading"; category: Category }
   | { name: "playing"; session: SoloSession; category: Category; qIndex: number; endsAt: string; startedAt: number }
-  | { name: "results"; result: ResultData };
+  | { name: "results"; session: SoloSession; result: ResultData; answers: AnswerRecord[] };
 
 // ─── Category icons by slug ──────────────────────────────────────────────────
 
@@ -356,6 +356,7 @@ export default function CategoryQuizPage() {
 
     setPhase({
       name: "results",
+      session,
       result: {
         totalScore: finalScore,
         accuracyPercentage: accuracy,
@@ -372,6 +373,7 @@ export default function CategoryQuizPage() {
           timeTakenMs: a.timeTakenMs,
         })),
       },
+      answers: answersRef.current,
     });
     if (!muted) sounds.podium();
   }
@@ -550,6 +552,75 @@ export default function CategoryQuizPage() {
             </div>
           </div>
 
+          {/* Detailed Question Review */}
+          <div className="mt-2 space-y-4">
+            <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2" style={khFont}>
+              {kh ? "ពិនិត្យមើលចម្លើយរបស់អ្នកឡើងវិញ" : "Review Your Answers"}
+            </div>
+            
+            {phase.session.questions.map((q, i) => {
+              const record = phase.answers.find((a) => a.questionId === q.id);
+              if (!record) return null;
+              
+              const isCorrect = record.isCorrect;
+              const selectedAnswer = q.answers.find(a => a.id === record.answerId);
+              const correctAnswer = q.answers.find(a => a.isCorrect);
+              
+              return (
+                <div key={q.id} className={`border-2 border-black p-4 bg-white`} style={{ boxShadow: "3px 3px 0 #000" }}>
+                  <div className="flex items-start gap-3 mb-3">
+                    <div 
+                      className="shrink-0 w-6 h-6 flex items-center justify-center text-white font-black text-xs border-2 border-black"
+                      style={{ backgroundColor: isCorrect ? "#22c55e" : "#ef4444" }}
+                    >
+                      {i + 1}
+                    </div>
+                    <div className="font-bold text-sm leading-snug" style={khFont}>
+                      {kh ? (q.questionKm || q.questionEn) : q.questionEn}
+                    </div>
+                  </div>
+                  
+                  {/* Hide images if image_pick, else show */}
+                  {q.imageUrl && q.gameType !== "image_pick" && (
+                    <div className="mb-3 border-2 border-zinc-200 p-2 flex justify-center bg-zinc-50">
+                      <img src={q.imageUrl} alt="Question" className="max-h-24 w-auto object-contain" />
+                    </div>
+                  )}
+
+                  <div className="space-y-2 ml-9">
+                    {/* Selected Answer */}
+                    <div className={`p-2 border-2 border-black text-sm flex gap-2 items-center ${isCorrect ? 'bg-green-100' : 'bg-red-100'}`} style={khFont}>
+                      <span className="font-black shrink-0">{isCorrect ? '✓' : '✗'}</span>
+                      <span className="font-bold">
+                        {kh ? "អ្នកជ្រើសរើស:" : "You chose:"}
+                      </span>
+                      {selectedAnswer ? (
+                        <>
+                          {selectedAnswer.imageUrl && <img src={selectedAnswer.imageUrl} className="h-6 w-auto" alt="Answer" />}
+                          <span className="flex-1 line-clamp-2">{kh ? (selectedAnswer.answerKm || selectedAnswer.answerEn) : selectedAnswer.answerEn}</span>
+                        </>
+                      ) : (
+                        <span className="text-zinc-500 italic">{kh ? "អស់ម៉ោង" : "Time out"}</span>
+                      )}
+                    </div>
+                    
+                    {/* Show Correct Answer if they were wrong */}
+                    {!isCorrect && correctAnswer && (
+                      <div className={`p-2 border-2 border-black bg-green-100 text-sm flex gap-2 items-center`} style={khFont}>
+                        <span className="font-black shrink-0 text-green-600">✓</span>
+                        <span className="font-bold">
+                          {kh ? "ចម្លើយត្រូវ:" : "Correct answer:"}
+                        </span>
+                        {correctAnswer.imageUrl && <img src={correctAnswer.imageUrl} className="h-6 w-auto" alt="Answer" />}
+                        <span className="flex-1 line-clamp-2">{kh ? (correctAnswer.answerKm || correctAnswer.answerEn) : correctAnswer.answerEn}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
           {/* Performance message */}
           <div
             className="border-2 border-black p-4 text-center"
@@ -660,7 +731,7 @@ export default function CategoryQuizPage() {
         </div>
 
         {/* Image */}
-        {q.imageUrl && (
+        {q.imageUrl && q.gameType !== "image_pick" && (
           <div className="border-2 border-black bg-white flex items-center justify-center p-4" style={{ minHeight: 180 }}>
             <img src={q.imageUrl} alt="question" className="max-h-44 w-auto object-contain" />
           </div>

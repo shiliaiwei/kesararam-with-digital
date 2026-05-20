@@ -1,0 +1,303 @@
+TCH-Q028
+Engine
+What is the main check at the fuel tank?
+ចំពោះធុងប្រេងឥន្ធនៈ តើអ្នកត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ ?
+The answer is The leakage of the fuel tank.
+ចម្លើយគឺ ភាពលេច ឬជ្រាប
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083818/TCH-Q028_weq8ce.jpg
+
+TCH-Q030
+Brakes
+What should you check on the vehicle's wheels?
+តើនៅត្រង់ថាសវិល (ប្លាតូហ៊្វម) អ្នកត្រូវពិនិត្យអ្វីសំខាន់ជាងគេ ?
+The answer is The state of being cracked or eroded
+ចម្លើយគឺ ភាពប្រេះស្រាំ ឬសឹកខ្លាំង
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083824/TCH-Q030_xv0adl.jpg
+
+TCH-Q001
+Engine
+How shall you check engine oil?
+តើអ្នកត្រួតពិនិត្យកម្រិតប្រេងម៉ាស៊ីនដូចម្ដេច ?
+The answer is The level of engine oil must be between minimum and maximum markings
+ចម្លើយគឺ កម្រិតប្រេងម៉ាស៊ីន ត្រូវស្ថិតនៅត្រង់ចន្លោះគំនូសអប្បបរមា និងអតិបរមា
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083822/TCH-Q001_ooz4zs.jpg
+
+TCH-Q002
+Safety Systems
+What shall you check at the horn?
+តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ស៊ីផ្លេ ?
+The answer is Well work of it.
+ចម្លើយគឺ ភាពដំណើរការល្អរបស់វា
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083820/TCH-Q002_a3jlea.jpg
+
+TCH-Q003
+Engine
+What shall you check at the chain?
+តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចច្រវ៉ាក់ ?
+The answer is tight enough, no loose, or not too tight, must be always with oil.
+ចម្លើយគឺ តឹងល្មម មិនធូរ ឬមិនតឹងពេក ត្រូវមានជាតិប្រេងរំអិលជានិច្ច
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083820/TCH-Q003_o0jgjj.jpg
+
+TCH-Q004
+Engine
+What shall you check at the water tank?
+តើអ្នកត្រូវត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចធុងទឹក ?
+The answer is The level of water in the tank
+ចម្លើយគឺ កំរិតទឹកក្នុងធុង
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083818/TCH-Q004_clpjgm.jpg
+
+TCH-Q005
+Safety Systems
+What shall you check at the water fan?
+តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចផ្លិតទឹក ?
+The answer is The process and the wipe the water well
+ចម្លើយគឺ ដំណើការ និង ជូតទឹកបានស្អាតល្អ
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083815/TCH-Q005_e5qfim.jpg
+
+TCH-Q006
+Safety Systems
+According to the law, the depth of the motorcycle's tyre tread after eroded, how many millimetres, at least, are they left need to be changed?
+តើច្បាប់កំណត់ឱ្យជម្រៅក្រឡាសំបកកៅស៊ូកង់សឹកនៅសល់យ៉ាងតិចប៉ុន្មានមីលីម៉ែត្រដែលត្រូវប្ដូរចេញ ?
+The answer is At least 1mm
+ចម្លើយគឺ យ៉ាងតិច ១ម.ម
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083825/TCH-Q006_msv2j2.jpg
+
+TCH-Q007
+Engine
+What shall you check at the oil point?
+តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចប្រេងម៉ាស៊ីន ?
+The answer is The leakage and the existence of the specified level.
+ចម្លើយគឺ ភាពលេចជ្រាប និងត្រូវឱ្យមានតាមកម្រិតកំណត់
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083823/TCH-Q007_jw3wnq.jpg
+
+TCH-Q008
+Lights
+What shall you check at the sign lights?
+តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចង្កៀងភ្លើងសញ្ញា ?
+The answer is Being well-processed or broken or dirty.
+ចម្លើយគឺ ភាពដំណើរការល្អ ឬភាពខូច ឬកខ្វក់
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083818/TCH-Q008_jyania.jpg
+
+TCH-Q009
+Safety Systems
+What shall you check on the wing mirrors?
+តើអ្នកត្រួតពិនិត្យដូចម្ដេច នៅលើកញ្ចក់មើលក្រោយ ?
+The answer is Clearliness and right position.
+ចម្លើយគឺ ត្រូវមានសភាពច្បាស់ល្អ និងដាក់ឱ្យត្រូវទីតាំង
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083816/TCH-Q009_xsgxvc.jpg
+
+TCH-Q010
+Brakes
+How shall you check the level of brake oil?
+តើអ្នកត្រួតពិនិត្យកំរិតប្រេងហ្វ្រាំងដូចម្ដេច ?
+The answer is The level of brake oil must be between minimum and maximum markings
+ចម្លើយគឺ កំរិតប្រេងហ្វ្រាំង ត្រូវស្ថិតនៅត្រង់ចន្លោះគំនូសអប្បបរមា និងអតិបរមា
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083824/TCH-Q010_ffi0eo.jpg
+
+TCH-Q011
+Engine
+While travelling, what shall you check?
+ក្នុងពេលធ្វើដំណើរ តើអ្នកត្រូវត្រួតពិនិត្យអ្វីខ្លះ ?
+The answer is Water temperature device process , battery recharged device, and brake signal, including engine oil pressure.
+ចម្លើយគឺ ដំណើរការនាឡិកាសីតុណ្ហភាពទឹក នាឡិកាសាកអាគុយ និងសញ្ញាហ្វ្រាំង ព្រមទាំងសំពាធប្រេងម៉ាស៊ីន
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083824/TCH-Q011_sohrcm.jpg
+
+TCH-Q012
+Engine
+What shall you check at the liquid battery?
+តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចអាគុយទឹក ?
+The answer is The level of the water of battery.
+ចម្លើយគឺ កំរិតទឹកអាគុយ
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083818/TCH-Q012_pw2zgc.jpg
+
+TCH-Q013
+Safety Systems
+What shall you check at the tyres?
+តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចសំបកកៅស៊ូកង់ ?
+The answer is Air pressure, erosion, swellings, cracked, and punch.
+ចម្លើយគឺ សំពាធខ្យល់ ភាពសឹក ប៉ោង ប្រេះ មុត
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083816/TCH-Q013_twry9s.jpg
+
+TCH-Q014
+Safety Systems
+What shall you check on the motorcycle's wheels?
+តើអ្នកពិនិត្យអ្វី នៅលើខ្នងកង់ ?
+The answer is The looseness of the radius of the wheels.
+ចម្លើយគឺ ភាពធូកាំនៃខ្នងកង់
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083821/TCH-Q014_aulikn.jpg
+
+TCH-Q015
+Brakes
+What shall you check at the brakes?
+តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចហ្វ្រាំង ?
+The answer is The level of properly work of brake system
+ចម្លើយគឺ ហ្សឺ និងដំណើរការហ្វ្រាំងដៃ ហ្វ្រាំងជើង
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083819/TCH-Q015_oxbzhi.jpg
+
+TCH-Q016
+Safety Systems
+How shall you check on nuts and bolts?
+តើអ្នកត្រួតពិនិត្យដូចម្ដេច ចំពោះខ្ចៅ និងប៊ូឡុង ?
+The answer is Shall be good tight.
+ចម្លើយគឺ ត្រូវមានសភាពតឹងល្អ
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083822/TCH-Q016_uucyme.jpg
+
+TCH-Q017
+Safety Systems
+What shall you check at the speedometer?
+តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់កុងទ័រល្បឿន ?
+The answer is The process of it.
+ចម្លើយគឺ ការដំណើរការល្អរបស់វា
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083822/TCH-Q017_sxfnwx.jpg
+
+TCH-Q018
+Safety Systems
+What shall you check at the motorcycle's steering?
+តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចដៃចង្កូត ?
+The answer is The hardiness of it.
+ចម្លើយគឺ ភាពរឹងមាំល្អរបស់វា
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083821/TCH-Q018_frdokn.jpg
+
+TCH-Q019
+Engine
+What shall you check at the motorcycle's engine?
+តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ម៉ាស៊ីន ?
+The answer is The leakage of oil and the level of engine oil.
+ចម្លើយគឺ ភាពលេចជ្រាបប្រេងម៉ាស៊ីន និងកម្រិតប្រេងម៉ាស៊ីន
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083819/TCH-Q019_dpkcjh.jpg
+
+TCH-Q020
+Safety Systems
+What shall you check every time before getting into the car?
+នៅរៀងរាល់ពេល មុននឹងចូលក្នុងរថយន្ត អ្នកត្រូវត្រួតពិនិត្យអ្វីខ្លះ ?
+The answer is Check the wheels not to be flat and the lights must be cleaned all time.
+ចម្លើយគឺ មើលកង់កុំឲ្យធូរ និងភ្លើងចង្កៀងត្រូវឲ្យស្អាតជានិច្ច
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083822/TCH-Q020_rck0y3.jpg
+
+TCH-Q021
+Safety Systems
+How many millimeters, at least, of the tyres' depth to be left for the family car?
+តើភាពសឹករបស់សំបកកង់រថយន្តគ្រួសារ ត្រូវឲ្យនៅសល់ជំរៅក្រឡាយ៉ាងតិចប៉ុន្មាន មីលីមែត្រ?
+The answer is 1.6mm
+ចម្លើយគឺ ១,៦ ម.ម
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083822/TCH-Q021_quxrs4.jpg
+
+TCH-Q022
+Safety Systems
+What shall you check at the steer?
+តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចចង្កូត ?
+The answer is Hardiness and not to be tight to steer.
+ចម្លើយគឺ ភាពរឹងមាំ និង មិនត្រូវឲ្យតឹងពេលកាច់ចង្កូត
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083821/TCH-Q022_ovwjks.jpg
+
+TCH-Q023
+Brakes
+From how many millimeters of the gape of brake pedal need to be adjusted?
+តើគម្លាតដងឆ័ត្រហ្វ្រាំង ត្រូវធ្វើការកែតម្រូវចាប់ពីប្រវែងប៉ុន្មានមីលីម៉ែត្រ ?
+The answer is More than 20mm
+ចម្លើយគឺ លើសពី ២០មីលីម៉ែត្រ
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083819/TCH-Q023_s3ct1d.jpg
+
+TCH-Q024
+Brakes
+In case the brakes using oil pump, how do you realize the oil leaks a lot?
+ក្នុងករណីហ្វ្រាំងប្រើបូមប្រេង តើអ្នកដឹងប្រេងលេចខ្លាំងដោយសារអ្វី ?
+The answer is By starting the engine then applying the brake pedal, falling on brake pedal board.
+ចម្លើយគឺ ដោយបញ្ឆេះម៉ាស៊ីន រួចជាន់ឈ្នាន់ហ្វ្រាំង ដោយឈ្នាន់ឆ្លាក់កើយដល់ក្ដារឈ្នាន់
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083817/TCH-Q024_cmgdsx.jpg
+
+TCH-Q025
+Brakes
+At the core of the ......what are the main things to be checked?
+តើនៅត្រង់ស្នូលថ្ពក់ថាសវិល អ្នកត្រូវពិនិត្យអ្វីសំខាន់ជាងគេ ?
+The answer is The twist of the core.
+ចម្លើយគឺ ភាពរមួលរបស់ស្នូល
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083816/TCH-Q025_jihthi.jpg
+
+TCH-Q026
+Safety Systems
+What should you take care on the car's chassis?
+តើនៅត្រង់ជន្ទាស អ្នកត្រួតពិនិត្យអ្វីជាសំខាន់ ?
+The answer is breaking a part
+ចម្លើយគឺ ភាពប្រេះស្រាំ បាក់ ឬរំកិល
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083824/TCH-Q026_abyymh.jpg
+
+TCH-Q027
+Safety Systems
+What is the main check at the doors of the car?
+តើនៅត្រង់ទ្វារនៃរថយន្ត អ្នកត្រួតពិនិត្យអ្វីជាសំខាន់ ?
+The answer is Bolt or door key
+ចម្លើយគឺ គន្លឹះ ឬសោទ្វារ
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083824/TCH-Q027_zbherv.jpg
+
+TCH-Q029
+Safety Systems
+What shall you check at the drive shaft of the vehicle?
+តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វី ត្រង់កាឡេរថយន្ត ?
+The answer is The state of being cracked or bend
+ចម្លើយគឺ ភាពប្រេះស្រាំ ឬកោង
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083816/TCH-Q029_nc0pqu.jpg
+
+TCH-Q031
+Safety Systems
+What is the necessary check at the tyres?
+កៅស៊ូកង់នៃរថយន្ត អ្នកត្រួតពិនិត្យអ្វីជាចាំបាច់ ?
+The answer is Erosion, looseness, tightness, or being cracked.
+ចម្លើយគឺ ភាពសឹក ធូរ តឹង ឬប្រេះ
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083824/TCH-Q031_aha0ap.jpg
+
+TCH-Q032
+Safety Systems
+While driving, how long shall you need to check the semi trailer-towed hooks or trailer?
+នៅពេលអ្នកធ្វើដំណើរ ប្រហែលប៉ុន្មានម៉ោងត្រូវឈប់ត្រួតពិនិត្យគ្រឿងថ្ពក់សណ្ដោងសឺមីរ៉ឺម៉ក ឬរ៉ឺម៉ក ?
+The answer is About 3 hours
+ចម្លើយគឺ ប្រហែល ៣ម៉ោង
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083817/TCH-Q032_rovtly.jpg
+
+TCH-Q033
+Brakes
+How long, in millimetres, is the gape of a brake pedal needed adjusting to be accurately?
+តើគម្លាតដងឆ័ត្រហ្វ្រាំង ត្រូវធ្វើការកែតម្រូវមកត្រឹមប្រវែងប្រហែលប៉ុន្មានមីលីម៉ែត្រទើបត្រឹមត្រូវ ?
+The answer is 13mm
+ចម្លើយគឺ ១៣មីលីម៉ែត្រ
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083816/TCH-Q033_utnsry.jpg
+
+TCH-Q034
+Safety Systems
+If the steering wheel with a diameter of 0.5m, how many degrees is ...... steering wheel left?
+បើរង្វង់ដៃចង្កូតមានបន្ទាត់ផ្ចឹត០,៥០ម៉ែត្រ តើហ្សឺចង្កូតត្រូវរក្សាប៉ុន្មាន ?
+The answer is Not more than 10 degrees
+ចម្លើយគឺ មិនលើសពី ១០ដឺក្រេ
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083821/TCH-Q034_kqxqr0.jpg
+
+TCH-Q035
+Safety Systems
+What are the main check at the steering wheel and steering pedal?
+តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ ចំពោះដៃចង្កូត និងដងចង្កូត ?
+The answer is The looseness or stickiness, being cracked or broken.
+ចម្លើយគឺ ភាពធូររលុងឬជាប់គាំង ភាពប្រេះស្រាំឬបាក់
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083819/TCH-Q035_zovcc9.jpg
+
+TCH-Q036
+Safety Systems
+What is the main check of battery case?
+តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វីជាសំខាន់ នៃធុងអាគុយ ?
+The answer is The quality and the level of water of the battery.
+ចម្លើយគឺ ភាពជាប់ និងកំរិតទឹកអាគុយ
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083822/TCH-Q036_uuwn4h.jpg
+
+TCH-Q037
+Safety Systems
+What shall drivers check for the vehicle's chassis?
+តើអ្នកបើកបរត្រូវត្រួតពិនិត្យអ្វី ចំពោះសាក់ស៊ីរថយន្ត ?
+The answer is The state of being cracked, bend, or broken.
+ចម្លើយគឺ ភាពប្រេះស្រាំ កោង ឬបាក់
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083821/TCH-Q037_xahrrg.jpg
+
+TCH-Q038
+Lights
+What shall drivers check at the road light, headlights and coating lights?
+តើអ្នកត្រួតពិនិត្យអ្វី នៅត្រង់ចំណុចភ្លើងបំភ្លឺផ្លូវ (ហ្វា-កូត ) ?
+The answer is The clearness and the process of them.
+ចម្លើយគឺ ភាពភ្លឺថ្លា និងដំណើរការរបស់វា
+https://res.cloudinary.com/dpgivqzrl/image/upload/v1778083820/TCH-Q038_pm86jq.jpg

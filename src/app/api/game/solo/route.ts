@@ -5,6 +5,12 @@ import { getSession } from "@/lib/auth";
 import { GAME_MODE_TYPES, mapContentToGameType } from "@/lib/game-engine";
 import { eq, and, inArray, sql } from "drizzle-orm";
 
+function getSecureRandom(): number {
+  const arr = new Uint32Array(1);
+  crypto.getRandomValues(arr);
+  return arr[0] / (0xffffffff + 1);
+}
+
 export async function POST(req: NextRequest) {
   // Solo mode works for both authenticated and non-authenticated users
   const user = await getSession();
@@ -37,15 +43,15 @@ export async function POST(req: NextRequest) {
     .innerJoin(topics, eq(questions.topicId, topics.id))
     .where(
       and(
-        inArray(questions.status, ["approved", "draft"]), // Allow draft for testing
+        inArray(questions.status, ["approved", "draft", "published"]), // Include all non-rejected
         inArray(topics.categoryId, categoryIds),
         difficulty !== "mixed" ? eq(questions.difficulty, difficulty) : undefined
       )
     );
 
   if (allQuestions.length === 0) {
-    return NextResponse.json({ 
-      error: "No questions found for selected categories" 
+    return NextResponse.json({
+      error: "No questions found for selected categories"
     }, { status: 404 });
   }
 
@@ -57,18 +63,20 @@ export async function POST(req: NextRequest) {
       .select({
         questionId: answers.questionId,
         count: sql<number>`count(*)::int`,
+        hasImage: sql<boolean>`bool_or(${answers.imageUrl} is not null)`,
       })
       .from(answers)
       .where(inArray(answers.questionId, qIds))
       .groupBy(answers.questionId);
 
-    const countMap = new Map(answerCounts.map((a) => [a.questionId, a.count]));
+    const countMap = new Map(answerCounts.map((a) => [a.questionId, { count: a.count, hasImage: a.hasImage }]));
 
     compatible = allQuestions.filter((q) => {
-      const cnt = countMap.get(q.id) ?? 0;
+      const stats = countMap.get(q.id);
+      if (!stats || stats.count === 0) return false; // Skip questions with no answers
       const gt = mapContentToGameType({
-        answerCount: cnt,
-        hasImage: !!q.imageUrl,
+        answerCount: stats.count,
+        hasImage: stats.hasImage,
         hasAudio: !!(q.audioUrlEn || q.audioUrlKm),
       });
       return allowedTypes.includes(gt);
@@ -76,14 +84,14 @@ export async function POST(req: NextRequest) {
   }
 
   if (compatible.length === 0) {
-    return NextResponse.json({ 
-      error: `No compatible questions for "${gameMode}" mode` 
+    return NextResponse.json({
+      error: `No compatible questions for "${gameMode}" mode`
     }, { status: 404 });
   }
 
   // Fisher-Yates shuffle — truly random, prevents students seeing same order
   for (let i = compatible.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(getSecureRandom() * (i + 1));
     [compatible[i], compatible[j]] = [compatible[j], compatible[i]];
   }
   const shuffled = compatible.slice(0, questionCount);
@@ -93,10 +101,10 @@ export async function POST(req: NextRequest) {
   const allAnswers =
     selectedIds.length > 0
       ? await db
-          .select()
-          .from(answers)
-          .where(inArray(answers.questionId, selectedIds))
-          .orderBy(answers.sortOrder)
+        .select()
+        .from(answers)
+        .where(inArray(answers.questionId, selectedIds))
+        .orderBy(answers.sortOrder)
       : [];
 
   const answersByQ = new Map<number, typeof allAnswers>();
@@ -117,7 +125,7 @@ export async function POST(req: NextRequest) {
     const ans = answersByQ.get(q.id) ?? [];
     const gt = mapContentToGameType({
       answerCount: ans.length,
-      hasImage: !!q.imageUrl,
+      hasImage: ans.some(a => !!a.imageUrl),
       hasAudio: !!(q.audioUrlEn || q.audioUrlKm),
     });
     return {
@@ -130,7 +138,7 @@ export async function POST(req: NextRequest) {
       gameType: gt,
       difficulty: q.difficulty,
       answers: ans
-        .map(a => ({ ...a, _r: Math.random() }))
+        .map(a => ({ ...a, _r: getSecureRandom() }))
         .sort((a, b) => a._r - b._r)
         .map(({ _r, ...a }) => ({
           id: a.id,

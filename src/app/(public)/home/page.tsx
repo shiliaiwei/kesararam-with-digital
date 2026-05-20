@@ -3,7 +3,12 @@
 import { RoadSigns3DHero } from "@/components/hero/road-signs-3d-hero";
 import { SponsorsMarquee } from "@/components/sections/sponsors-marquee";
 import { CategoryGrid } from "@/components/categories/category-grid";
-import { MapboxTrafficMap } from "@/components/maps/mapbox-traffic-map";
+import dynamic from "next/dynamic";
+
+const MapboxTrafficMap = dynamic(
+  () => import("@/components/maps/mapbox-traffic-map").then((mod) => mod.MapboxTrafficMap),
+  { ssr: false, loading: () => <div className="h-[300px] w-full flex items-center justify-center bg-gray-100 border-4 border-black">Loading map...</div> }
+);
 import { useLang } from "@/context/lang-context";
 import { t } from "@/lib/translations";
 
@@ -26,10 +31,10 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
             {[
-              { value: "1,200+", label: tr.statStudents, color: "#eab308" },
-              { value: "8",      label: tr.statAreas,    color: "#06b6d4" },
-              { value: "500+",   label: tr.statQuestions, color: "#22c55e" },
-              { value: "Real-time", label: tr.statLive,  color: "#ef4444" },
+              { value: "1,200+", label: tr.statStudents, color: "#ca8a04" },
+              { value: "8",      label: tr.statAreas,    color: "#0891b2" },
+              { value: "500+",   label: tr.statQuestions, color: "#16a34a" },
+              { value: "Real-time", label: tr.statLive,  color: "#dc2626" },
             ].map(({ value, label, color }) => (
               <div key={label}
                 className="bg-white border-2 border-black rounded-none p-6 shadow-[4px_4px_0_#000] flex flex-col gap-1">

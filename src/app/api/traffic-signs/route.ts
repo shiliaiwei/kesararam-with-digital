@@ -32,7 +32,14 @@ export async function GET(request: NextRequest) {
       filtered = filtered.filter((s) => s.category === category);
     }
 
-    return NextResponse.json({ signs: filtered });
+    return NextResponse.json(
+      { signs: filtered },
+      {
+        headers: {
+          "Cache-Control": "public, s-maxage=300, stale-while-revalidate=3600",
+        },
+      }
+    );
   } catch (error) {
     console.error("Error fetching traffic signs:", error);
     return NextResponse.json(

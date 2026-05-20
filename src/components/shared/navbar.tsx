@@ -14,6 +14,7 @@ import type { JWTPayload } from "@/lib/auth";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
 import { Crown } from "lucide-react";
 import { UpgradeModal } from "@/components/pricing/upgrade-modal";
+import { RankBadge as TierBadge } from "@/components/shared/rank-label";
 
 interface NavbarProps {
   session?: JWTPayload | null;
@@ -41,14 +42,17 @@ function AnimatedLogoText() {
   }, []);
 
   return (
-    <div className="font-black text-[10px] uppercase tracking-widest text-black leading-none flex flex-col">
+    <div className="font-black text-[10px] uppercase tracking-widest text-black leading-none flex flex-col" style={{ width: "120px" }}>
       <span>KESARARAM.</span>
       <span>WITH.</span>
-      <span
-        key={index}
-        className="inline-block animate-in slide-in-from-right-4 fade-in duration-500 text-zinc-400 whitespace-nowrap"
-      >
-        {ANIMATED_WORDS[index]}
+      {/* Fixed-height container prevents CLS when word changes */}
+      <span className="block overflow-hidden" style={{ height: "12px" }}>
+        <span
+          key={index}
+          className="inline-block animate-in slide-in-from-right-4 fade-in duration-500 text-zinc-400 whitespace-nowrap"
+        >
+          {ANIMATED_WORDS[index]}
+        </span>
       </span>
     </div>
   );
@@ -56,6 +60,7 @@ function AnimatedLogoText() {
 
 function ProfileMenu({ session, kh }: { session: JWTPayload; kh: boolean }) {
   const [open, setOpen] = useState(false);
+  const [lifetimePoints, setLifetimePoints] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -67,6 +72,15 @@ function ProfileMenu({ session, kh }: { session: JWTPayload; kh: boolean }) {
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
+
+  // Fetch points when menu opens (only for students)
+  useEffect(() => {
+    if (!open || session.role !== "student") return;
+    fetch("/api/user/stats")
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d?.stats?.lifetimePoints) setLifetimePoints(d.stats.lifetimePoints); })
+      .catch(() => { });
+  }, [open, session.role]);
 
   const dashboardHref =
     session.role === "admin"
@@ -119,16 +133,21 @@ function ProfileMenu({ session, kh }: { session: JWTPayload; kh: boolean }) {
             <p className="text-[10px] text-zinc-500 truncate">
               {session.email}
             </p>
-            <span
-              className="inline-block mt-1 text-[9px] font-bold uppercase tracking-widest px-2 py-0.5"
-              style={{
-                background: roleColor,
-                color: "#fff",
-                borderRadius: "0px",
-              }}
-            >
-              {session.role}
-            </span>
+            <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+              <span
+                className="inline-block text-[9px] font-bold uppercase tracking-widest px-2 py-0.5"
+                style={{
+                  background: roleColor,
+                  color: "#fff",
+                  borderRadius: "0px",
+                }}
+              >
+                {session.role}
+              </span>
+              {session.role === "student" && lifetimePoints > 0 && (
+                <TierBadge lifetimePoints={lifetimePoints} size="xs" lang={kh ? "kh" : "en"} />
+              )}
+            </div>
           </div>
           <div className="py-1">
             {(session.role === "admin" || session.role === "teacher" || session.role === "staff") && (
@@ -262,14 +281,17 @@ export function Navbar({ session }: NavbarProps) {
             )}
           </div>
 
-          {/* Mobile hamburger */}
-          <button
-            className="md:hidden ml-auto p-1.5 border-2 border-black bg-white shadow-[2px_2px_0_#000] active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          >
-            {mobileOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
-          </button>
+          {/* Mobile: LangSwitcher always visible + hamburger */}
+          <div className="md:hidden ml-auto flex items-center gap-2">
+            <LangSwitcher />
+            <button
+              className="p-1.5 border-2 border-black bg-white shadow-[2px_2px_0_#000] active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            >
+              {mobileOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
+            </button>
+          </div>
         </nav>
       </header>
 
@@ -352,7 +374,7 @@ export function Navbar({ session }: NavbarProps) {
               )}
 
               <div className="mt-2 flex justify-center">
-                <LangSwitcher />
+                {/* LangSwitcher moved to header bar — always visible next to menu toggle */}
               </div>
               {/* Mobile upgrade button */}
               <button

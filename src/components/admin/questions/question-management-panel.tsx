@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Plus, Search, Filter, RefreshCw, Edit, Trash2, Eye, HelpCircle } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { Plus, Search, RefreshCw, Edit, Trash2, HelpCircle, ChevronRight, ArrowLeft, BookOpen, CircleDot, CheckCheck, Type, Puzzle, Images, MapPin, CheckSquare, Layers } from "lucide-react";
 import { QuestionFormModal } from "./question-form-modal";
 import { useToast } from "@/components/ui/toast-container";
 
@@ -10,67 +10,181 @@ interface Question {
     topicId: number;
     topicName: string;
     categoryName: string;
+    categoryId: number;
     questionEn: string;
     questionKm: string;
     questionType: string;
     difficulty: string;
+    status: string;
     answerCount: number;
     createdAt: string;
 }
 
-const QUESTION_TYPES = [
-    { value: "all", label: "All Types", icon: "📋" },
-    { value: "mcq", label: "Quiz (MCQ)", icon: "📝" },
-    { value: "true-false", label: "True / False", icon: "✓✗" },
-    { value: "type-answer", label: "Type Answer", icon: "⌨️" },
-    { value: "puzzle", label: "Puzzle", icon: "🧩" },
-    { value: "image-match", label: "Image Matching", icon: "🖼️" },
-    { value: "pin-location", label: "Pin Answer", icon: "📍" },
-    { value: "multi-select", label: "Multi-Select", icon: "☑️" },
-];
+interface Category {
+    id: number;
+    slug: string;
+    titleEn: string;
+}
 
-const DIFFICULTY_LEVELS = [
-    { value: "all", label: "All Levels", color: "#6b7280" },
-    { value: "easy", label: "Easy", color: "#22c55e" },
-    { value: "medium", label: "Medium", color: "#f59e0b" },
-    { value: "hard", label: "Hard", color: "#ef4444" },
-];
+interface Topic {
+    id: number;
+    topicCode: string;
+    nameEn: string;
+    nameKm: string;
+    categoryId: number;
+    categoryName: string;
+    subGroup?: string;
+    status: string;
+}
+
+// Real-time question count per topic from the DB
+interface TopicQCount {
+    total: number;
+    easy: number;
+    medium: number;
+    hard: number;
+}
+
+const DIFF_COLORS: Record<string, string> = {
+    easy: "#22c55e",
+    medium: "#f59e0b",
+    hard: "#ef4444",
+};
+
+const TYPE_ICONS: Record<string, any> = {
+    mcq: CircleDot,
+    "true-false": CheckCheck,
+    "type-answer": Type,
+    puzzle: Puzzle,
+    "image-match": Images,
+    "pin-location": MapPin,
+    "multi-select": CheckSquare,
+};
+
+const TYPE_LABELS: Record<string, string> = {
+    mcq: "MCQ",
+    "true-false": "True/False",
+    "type-answer": "Type Answer",
+    puzzle: "Puzzle",
+    "image-match": "Image Match",
+    "pin-location": "Pin Location",
+    "multi-select": "Multi-Select",
+};
+
+// View states: "categories" | "topics" | "questions"
+type View = "categories" | "topics" | "questions";
 
 export function QuestionManagementPanel() {
     const { showToast } = useToast();
+
+    // Data
+    const [categories, setCategories] = useState<Category[]>([]);
+    const [topics, setTopics] = useState<Topic[]>([]);
     const [questions, setQuestions] = useState<Question[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [allQuestions, setAllQuestions] = useState<Question[]>([]);
+
+    // Real-time question counts from DB (topicId → counts)
+    const [qCounts, setQCounts] = useState<Record<number, TopicQCount>>({});
+    const [countsLoading, setCountsLoading] = useState(false);
+
+    // Navigation
+    const [view, setView] = useState<View>("categories");
+    const [activeCategory, setActiveCategory] = useState<Category | null>(null);
+    const [activeTopic, setActiveTopic] = useState<Topic | null>(null);
+
+    // Filters (only for questions view)
     const [search, setSearch] = useState("");
     const [typeFilter, setTypeFilter] = useState("all");
-    const [difficultyFilter, setDifficultyFilter] = useState("all");
-    const [showCreateModal, setShowCreateModal] = useState(false);
+    const [diffFilter, setDiffFilter] = useState("all");
+    const [statusFilter, setStatusFilter] = useState("all");
+
+    // Topic filters
+    const [topicStatusFilter, setTopicStatusFilter] = useState("all");
+    const [topicSubGroupFilter, setTopicSubGroupFilter] = useState("all");
+    const [topicSearch, setTopicSearch] = useState("");
+
+    // Modal
+    const [showModal, setShowModal] = useState(false);
     const [editingQuestion, setEditingQuestion] = useState<Question | null>(null);
     const [deleteConfirm, setDeleteConfirm] = useState<number | null>(null);
 
-    useEffect(() => {
-        fetchQuestions();
+    const [loading, setLoading] = useState(true);
+
+    // Fetch real-time question counts from DB
+    const fetchQCounts = useCallback(async (categoryId?: number) => {
+        setCountsLoading(true);
+        try {
+            const url = categoryId
+                ? `/api/admin/topics/question-counts?categoryId=${categoryId}`
+                : `/api/admin/topics/question-counts`;
+            const res = await fetch(url);
+            if (!res.ok) return;
+            const data = await res.json();
+            setQCounts(prev => ({ ...prev, ...(data.counts || {}) }));
+        } catch { /* silent */ } finally {
+            setCountsLoading(false);
+        }
     }, []);
 
-    const fetchQuestions = async () => {
+    // Loading state for topic questions fetch
+    const [topicQLoading, setTopicQLoading] = useState(false);
+
+    useEffect(() => {
+        fetchAll();
+    }, []);
+
+    const fetchAll = async () => {
         setLoading(true);
         try {
-            const params = new URLSearchParams();
-            if (typeFilter !== "all") params.append("type", typeFilter);
-            if (difficultyFilter !== "all") params.append("difficulty", difficultyFilter);
-            if (search) params.append("search", search);
+            const [catRes, topicRes, qRes] = await Promise.all([
+                fetch("/api/categories"),
+                fetch("/api/admin/topics"),
+                fetch("/api/admin/questions"),
+            ]);
+            const catData = await catRes.json();
+            const topicData = await topicRes.json();
+            const qData = await qRes.json();
 
-            const res = await fetch(`/api/admin/questions?${params}`);
-            const data = await res.json();
+            const cats = Array.isArray(catData) ? catData : (catData.categories || []);
+            const tops = Array.isArray(topicData) ? topicData : (topicData.topics || []);
+            const qs = Array.isArray(qData) ? qData : (qData.questions || []);
 
-            // Ensure questions is always an array
-            setQuestions(Array.isArray(data.questions) ? data.questions : []);
-        } catch (error) {
-            console.error("Failed to fetch questions:", error);
-            showToast("Failed to load questions", "error");
-            setQuestions([]); // Set empty array on error
+            setCategories(cats);
+            setTopics(tops);
+            setAllQuestions(qs);
+            setQuestions(qs);
+
+            // Fetch real-time counts from DB (separate query, accurate regardless of limit)
+            fetchQCounts();
+        } catch (e) {
+            showToast("Failed to load data", "error");
         } finally {
             setLoading(false);
         }
+    };
+
+    // Refresh just the questions (faster, no full reload)
+    const refreshQuestions = async (topicIdFilter?: number) => {
+        try {
+            const url = topicIdFilter
+                ? `/api/admin/questions?topicId=${topicIdFilter}`
+                : `/api/admin/questions`;
+            const res = await fetch(url);
+            const data = await res.json();
+            const qs = Array.isArray(data.questions) ? data.questions : [];
+            if (topicIdFilter) {
+                setQuestions(qs);
+                setAllQuestions(prev => [
+                    ...prev.filter(q => q.topicId !== topicIdFilter),
+                    ...qs
+                ]);
+            } else {
+                setAllQuestions(qs);
+                setQuestions(qs);
+            }
+            // Always refresh DB counts after any question change
+            fetchQCounts(topicIdFilter ? undefined : undefined);
+        } catch { }
     };
 
     const handleDelete = async (id: number) => {
@@ -79,288 +193,642 @@ export function QuestionManagementPanel() {
             if (res.ok) {
                 showToast("Question deleted", "success");
                 setDeleteConfirm(null);
-                fetchQuestions();
+                const updated = allQuestions.filter(q => q.id !== id);
+                setAllQuestions(updated);
+                setQuestions(updated.filter(q => activeTopic ? q.topicId === activeTopic.id : true));
+                // Refresh DB counts after deletion
+                fetchQCounts();
             } else {
-                const data = await res.json();
-                showToast(data.error || "Failed to delete", "error");
+                showToast("Failed to delete", "error");
             }
         } catch {
             showToast("Failed to delete question", "error");
         }
     };
 
-    const filteredQuestions = questions.filter((q) => {
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setEditingQuestion(null);
+    };
+
+    const handleSuccess = () => {
+        handleCloseModal();
+        // Refresh questions for current topic or all
+        if (activeTopic) {
+            refreshQuestions(activeTopic.id);
+        } else {
+            refreshQuestions();
+        }
+    };
+
+    // Derived counts — use real DB counts from qCounts, fall back to client-side
+    const getTopicQCount = (topicId: number) =>
+        qCounts[topicId]?.total ?? allQuestions.filter(q => q.topicId === topicId).length;
+
+    const getTopicQBreakdown = (topicId: number): TopicQCount =>
+        qCounts[topicId] ?? {
+            total: allQuestions.filter(q => q.topicId === topicId).length,
+            easy: allQuestions.filter(q => q.topicId === topicId && q.difficulty === "easy").length,
+            medium: allQuestions.filter(q => q.topicId === topicId && q.difficulty === "medium").length,
+            hard: allQuestions.filter(q => q.topicId === topicId && q.difficulty === "hard").length,
+        };
+
+    const getCategoryQCount = (categoryId: number) => {
+        const catTopicIds = topics.filter(t => t.categoryId === categoryId).map(t => t.id);
+        const fromDB = catTopicIds.reduce((sum, tid) => sum + (qCounts[tid]?.total ?? 0), 0);
+        // If DB counts loaded, use them; otherwise fall back to client-side
+        return Object.keys(qCounts).length > 0
+            ? fromDB
+            : allQuestions.filter(q => q.categoryId === categoryId).length;
+    };
+
+    const getCategoryTopicCount = (categoryId: number) =>
+        topics.filter(t => t.categoryId === categoryId).length;
+
+    // Filtered questions for topic view
+    const filteredQuestions = questions.filter(q => {
         if (typeFilter !== "all" && q.questionType !== typeFilter) return false;
-        if (difficultyFilter !== "all" && q.difficulty !== difficultyFilter) return false;
+        if (diffFilter !== "all" && q.difficulty !== diffFilter) return false;
+        if (statusFilter !== "all" && q.status !== statusFilter) return false;
         if (search) {
-            const query = search.toLowerCase();
-            return (
-                q.questionEn.toLowerCase().includes(query) ||
-                q.questionKm.toLowerCase().includes(query) ||
-                q.topicName.toLowerCase().includes(query)
-            );
+            const s = search.toLowerCase();
+            return q.questionEn?.toLowerCase().includes(s) || q.topicName?.toLowerCase().includes(s);
         }
         return true;
     });
 
+    // Navigate to category topics
+    const openCategory = (cat: Category) => {
+        setActiveCategory(cat);
+        setActiveTopic(null);
+        setView("topics");
+        setSearch("");
+        setTypeFilter("all");
+        setDiffFilter("all");
+        setTopicStatusFilter("all");
+        setTopicSubGroupFilter("all");
+        setTopicSearch("");
+        // Fetch fresh counts for this category
+        fetchQCounts(cat.id);
+    };
+
+    // Navigate to topic questions — always fetch fresh from API
+    const openTopic = async (topic: Topic) => {
+        setActiveTopic(topic);
+        setView("questions");
+        setSearch("");
+        setTypeFilter("all");
+        setDiffFilter("all");
+        setStatusFilter("all");
+        setQuestions([]);
+        setTopicQLoading(true);
+        try {
+            // No limit — fetch ALL questions for this topic
+            const res = await fetch(`/api/admin/questions?topicId=${topic.id}&limit=9999`);
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const data = await res.json();
+            const qs = Array.isArray(data.questions) ? data.questions : [];
+            setQuestions(qs);
+            setAllQuestions(prev => [
+                ...prev.filter(q => q.topicId !== topic.id),
+                ...qs
+            ]);
+            fetchQCounts();
+        } catch (err) {
+            console.error("Failed to fetch topic questions:", err);
+            setQuestions(allQuestions.filter(q => q.topicId === topic.id));
+        } finally {
+            setTopicQLoading(false);
+        }
+    };
+
+    const goBack = () => {
+        if (view === "questions") {
+            setView("topics");
+            setActiveTopic(null);
+        } else {
+            setView("categories");
+            setActiveCategory(null);
+        }
+    };
+
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center h-64">
+                <div className="text-center">
+                    <div className="inline-block w-10 h-10 border-4 border-black border-t-transparent rounded-full animate-spin mb-3" />
+                    <p className="font-bold text-zinc-500 text-sm">Loading...</p>
+                </div>
+            </div>
+        );
+    }
+
     return (
-        <div className="space-y-6">
+        <div className="space-y-4">
             {/* Header */}
-            <div className="bg-white border-4 border-black p-6 shadow-[6px_6px_0_#000]">
-                <div className="flex items-center justify-between mb-4">
+            <div className="bg-white border-4 border-black p-4 shadow-[4px_4px_0_#000] flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                    {view !== "categories" && (
+                        <button
+                            onClick={goBack}
+                            className="p-2 border-2 border-black bg-white hover:bg-gray-100 hover:shadow-[2px_2px_0_#000] transition-all"
+                        >
+                            <ArrowLeft size={18} />
+                        </button>
+                    )}
                     <div>
-                        <h1 className="text-3xl font-black text-black mb-1">Topic Questions</h1>
-                        <p className="text-sm text-zinc-600 font-bold">
-                            Admin-only: manage questions linked to topics
-                        </p>
-                    </div>
-                    <div className="flex gap-3">
-                        <button
-                            onClick={fetchQuestions}
-                            className="p-3 border-2 border-black bg-white hover:bg-gray-100 hover:shadow-[2px_2px_0_#000] transition-all"
-                            title="Refresh"
-                        >
-                            <RefreshCw size={18} />
-                        </button>
-                        <button
-                            onClick={() => setShowCreateModal(true)}
-                            className="bg-green-400 border-2 border-black px-5 py-3 font-black hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center gap-2"
-                        >
-                            <Plus size={20} />
-                            Add Question
-                        </button>
-                    </div>
-                </div>
-
-                {/* Filters */}
-                <div className="space-y-3">
-                    {/* Search */}
-                    <div className="relative">
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400" size={18} />
-                        <input
-                            type="text"
-                            placeholder="Search questions or topics..."
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                            className="w-full pl-12 pr-4 py-3 border-2 border-black text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-                        />
-                    </div>
-
-                    {/* Type Filter */}
-                    <div className="flex items-center gap-2 flex-wrap">
-                        <Filter size={16} className="text-zinc-500" />
-                        {QUESTION_TYPES.map((type) => (
-                            <button
-                                key={type.value}
-                                onClick={() => setTypeFilter(type.value)}
-                                className={`px-3 py-1.5 border-2 border-black text-xs font-black transition-all inline-flex items-center gap-1.5 ${typeFilter === type.value
-                                    ? "bg-yellow-400 shadow-[2px_2px_0_#000]"
-                                    : "bg-white hover:bg-yellow-50"
-                                    }`}
-                            >
-                                <span>{type.icon}</span>
-                                {type.label}
+                        {/* Breadcrumb */}
+                        <div className="flex items-center gap-1 text-xs text-zinc-500 font-bold mb-0.5">
+                            <button onClick={() => { setView("categories"); setActiveCategory(null); setActiveTopic(null); }} className="hover:text-black">
+                                All Categories
                             </button>
-                        ))}
-                    </div>
-
-                    {/* Difficulty Filter */}
-                    <div className="flex items-center gap-2 flex-wrap">
-                        {DIFFICULTY_LEVELS.map((level) => (
-                            <button
-                                key={level.value}
-                                onClick={() => setDifficultyFilter(level.value)}
-                                className={`px-3 py-1.5 border-2 border-black text-xs font-black transition-all ${difficultyFilter === level.value
-                                    ? "shadow-[2px_2px_0_#000]"
-                                    : "bg-white hover:shadow-[1px_1px_0_#000]"
-                                    }`}
-                                style={{
-                                    backgroundColor: difficultyFilter === level.value ? level.color : "#ffffff",
-                                    color: difficultyFilter === level.value ? "#ffffff" : "#000000",
-                                }}
-                            >
-                                {level.label}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-4 gap-4">
-                <div className="bg-white border-2 border-black p-4 shadow-[3px_3px_0_#000]">
-                    <div className="text-3xl font-black text-black">{questions.length}</div>
-                    <div className="text-xs font-bold text-zinc-500 uppercase">Total Questions</div>
-                </div>
-                <div className="bg-white border-2 border-black p-4 shadow-[3px_3px_0_#000]">
-                    <div className="text-3xl font-black text-green-600">
-                        {questions.filter((q) => q.difficulty === "easy").length}
-                    </div>
-                    <div className="text-xs font-bold text-zinc-500 uppercase">Easy</div>
-                </div>
-                <div className="bg-white border-2 border-black p-4 shadow-[3px_3px_0_#000]">
-                    <div className="text-3xl font-black text-yellow-600">
-                        {questions.filter((q) => q.difficulty === "medium").length}
-                    </div>
-                    <div className="text-xs font-bold text-zinc-500 uppercase">Medium</div>
-                </div>
-                <div className="bg-white border-2 border-black p-4 shadow-[3px_3px_0_#000]">
-                    <div className="text-3xl font-black text-red-600">
-                        {questions.filter((q) => q.difficulty === "hard").length}
-                    </div>
-                    <div className="text-xs font-bold text-zinc-500 uppercase">Hard</div>
-                </div>
-            </div>
-
-            {/* Questions Table */}
-            <div className="bg-white border-2 border-black overflow-hidden shadow-[4px_4px_0_#000]">
-                {loading ? (
-                    <div className="p-12 text-center">
-                        <div className="inline-block w-12 h-12 border-4 border-black border-t-transparent rounded-full animate-spin" />
-                        <p className="mt-4 font-bold text-zinc-500">Loading questions...</p>
-                    </div>
-                ) : filteredQuestions.length === 0 ? (
-                    <div className="p-12 text-center">
-                        <HelpCircle size={48} className="mx-auto mb-4 text-zinc-300" />
-                        <p className="font-black text-zinc-500 mb-2">No questions found</p>
-                        <p className="text-sm text-zinc-400 mb-4">
-                            {search || typeFilter !== "all" || difficultyFilter !== "all"
-                                ? "Try adjusting your filters"
-                                : "Create your first question to get started"}
-                        </p>
-                        {!search && typeFilter === "all" && difficultyFilter === "all" && (
-                            <button
-                                onClick={() => setShowCreateModal(true)}
-                                className="bg-green-400 border-2 border-black px-5 py-2.5 font-black hover:shadow-[3px_3px_0_#000] transition-all inline-flex items-center gap-2"
-                            >
-                                <Plus size={16} />
-                                Create First Question
-                            </button>
+                            {activeCategory && (
+                                <>
+                                    <ChevronRight size={12} />
+                                    <button onClick={() => { setView("topics"); setActiveTopic(null); }} className="hover:text-black">
+                                        {activeCategory.titleEn}
+                                    </button>
+                                </>
+                            )}
+                            {activeTopic && (
+                                <>
+                                    <ChevronRight size={12} />
+                                    <span className="text-black">{activeTopic.nameEn}</span>
+                                </>
+                            )}
+                        </div>
+                        <h1 className="text-xl font-black text-black">
+                            {view === "categories" && "Topic Questions"}
+                            {view === "topics" && activeCategory?.titleEn}
+                            {view === "questions" && activeTopic?.nameEn}
+                        </h1>
+                        {view === "questions" && activeTopic && (
+                            <p className="text-xs text-zinc-500 font-medium">{activeTopic.topicCode} · {activeCategory?.titleEn}</p>
                         )}
                     </div>
-                ) : (
-                    <div className="overflow-x-auto">
-                        <table className="w-full">
-                            <thead className="bg-yellow-400 border-b-2 border-black">
-                                <tr>
-                                    <th className="px-4 py-3 text-left text-xs font-black uppercase border-r-2 border-black">
-                                        Topic
-                                    </th>
-                                    <th className="px-4 py-3 text-left text-xs font-black uppercase border-r-2 border-black">
-                                        Question
-                                    </th>
-                                    <th className="px-4 py-3 text-left text-xs font-black uppercase border-r-2 border-black">
-                                        Type
-                                    </th>
-                                    <th className="px-4 py-3 text-left text-xs font-black uppercase border-r-2 border-black">
-                                        Difficulty
-                                    </th>
-                                    <th className="px-4 py-3 text-left text-xs font-black uppercase border-r-2 border-black">
-                                        Answers
-                                    </th>
-                                    <th className="px-4 py-3 text-left text-xs font-black uppercase">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y-2 divide-black">
-                                {filteredQuestions.map((question) => {
-                                    const typeInfo = QUESTION_TYPES.find((t) => t.value === question.questionType);
-                                    const diffInfo = DIFFICULTY_LEVELS.find((d) => d.value === question.difficulty);
+                </div>
 
-                                    return (
-                                        <tr key={question.id} className="hover:bg-yellow-50 transition-colors">
-                                            <td className="px-4 py-3 border-r-2 border-black">
-                                                <div className="text-sm font-bold text-black">{question.topicName}</div>
-                                                <div className="text-xs text-zinc-500">{question.categoryName}</div>
-                                            </td>
-                                            <td className="px-4 py-3 border-r-2 border-black">
-                                                <div className="text-sm font-bold text-black line-clamp-2">
-                                                    {question.questionEn}
-                                                </div>
-                                                {question.questionKm && (
-                                                    <div className="text-xs text-zinc-500 line-clamp-1">
-                                                        {question.questionKm}
-                                                    </div>
-                                                )}
-                                            </td>
-                                            <td className="px-4 py-3 border-r-2 border-black">
-                                                <span className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 border border-blue-300 text-xs font-bold text-blue-800">
-                                                    <span>{typeInfo?.icon}</span>
-                                                    {typeInfo?.label || question.questionType}
-                                                </span>
-                                            </td>
-                                            <td className="px-4 py-3 border-r-2 border-black">
-                                                <span
-                                                    className="inline-block px-2 py-1 border-2 border-black text-xs font-black"
-                                                    style={{
-                                                        backgroundColor: diffInfo?.color || "#6b7280",
-                                                        color: "#ffffff",
-                                                    }}
-                                                >
-                                                    {question.difficulty.toUpperCase()}
-                                                </span>
-                                            </td>
-                                            <td className="px-4 py-3 border-r-2 border-black">
-                                                <span className="text-sm font-bold text-black">
-                                                    {question.answerCount} answers
-                                                </span>
-                                            </td>
-                                            <td className="px-4 py-3">
-                                                <div className="flex items-center gap-2">
-                                                    <button
-                                                        onClick={() => setEditingQuestion(question)}
-                                                        className="p-2 border-2 border-black bg-yellow-100 hover:bg-yellow-200 hover:shadow-[2px_2px_0_#000] transition-all"
-                                                        title="Edit"
-                                                    >
-                                                        <Edit size={14} />
-                                                    </button>
-                                                    {deleteConfirm === question.id ? (
-                                                        <div className="flex gap-1">
-                                                            <button
-                                                                onClick={() => handleDelete(question.id)}
-                                                                className="px-2 py-1 text-xs font-black bg-red-500 text-white border-2 border-black"
-                                                            >
-                                                                Confirm
-                                                            </button>
-                                                            <button
-                                                                onClick={() => setDeleteConfirm(null)}
-                                                                className="px-2 py-1 text-xs font-black bg-white border-2 border-black"
-                                                            >
-                                                                Cancel
-                                                            </button>
-                                                        </div>
-                                                    ) : (
-                                                        <button
-                                                            onClick={() => setDeleteConfirm(question.id)}
-                                                            className="p-2 border-2 border-black bg-red-100 hover:bg-red-200 hover:shadow-[2px_2px_0_#000] transition-all"
-                                                            title="Delete"
-                                                        >
-                                                            <Trash2 size={14} />
-                                                        </button>
-                                                    )}
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>
-                        </table>
-                    </div>
-                )}
+                <div className="flex items-center gap-2">
+                    <button onClick={() => activeTopic ? refreshQuestions(activeTopic.id) : fetchAll()} className="p-2 border-2 border-black bg-white hover:bg-gray-100 hover:shadow-[2px_2px_0_#000] transition-all" title="Refresh">
+                        <RefreshCw size={16} />
+                    </button>
+                    {(view === "topics" || view === "questions") && (
+                        <button
+                            onClick={() => setShowModal(true)}
+                            className="bg-green-400 border-2 border-black px-4 py-2 font-black text-sm hover:shadow-[4px_4px_0_#000] transition-all inline-flex items-center gap-2"
+                        >
+                            <Plus size={16} />
+                            Add Question
+                        </button>
+                    )}
+                </div>
             </div>
 
-            {/* Modals */}
-            {(showCreateModal || editingQuestion) && (
+            {/* VIEW: Categories */}
+            {view === "categories" && (
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    {categories.map((cat, i) => {
+                        const topicCount = getCategoryTopicCount(cat.id);
+                        const qCount = getCategoryQCount(cat.id);
+                        const colors = [
+                            "bg-blue-400", "bg-purple-400", "bg-green-400", "bg-yellow-400",
+                            "bg-orange-400", "bg-pink-400", "bg-teal-400", "bg-red-400"
+                        ];
+                        return (
+                            <button
+                                key={cat.id}
+                                onClick={() => openCategory(cat)}
+                                className="bg-white border-4 border-black p-5 text-left hover:shadow-[6px_6px_0_#000] hover:-translate-y-0.5 transition-all group"
+                            >
+                                <div className={`w-10 h-10 ${colors[i % colors.length]} border-2 border-black flex items-center justify-center font-black text-lg mb-3`}>
+                                    {i + 1}
+                                </div>
+                                <div className="font-black text-sm text-black mb-2 leading-tight">{cat.titleEn}</div>
+                                <div className="flex items-center gap-3 mt-auto">
+                                    <span className="text-xs font-bold text-zinc-500">{topicCount} topics</span>
+                                    <span className="text-xs font-black text-blue-600">{qCount} Q</span>
+                                </div>
+                                <div className="mt-3 flex items-center gap-1 text-xs font-black text-zinc-400 group-hover:text-black transition-colors">
+                                    View topics <ChevronRight size={12} />
+                                </div>
+                            </button>
+                        );
+                    })}
+                </div>
+            )}
+
+            {/* VIEW: Topics in a category */}
+            {view === "topics" && activeCategory && (() => {
+                const catTopics = topics.filter(t => t.categoryId === activeCategory.id);
+
+                // Derive unique subGroups for this category
+                const subGroups = Array.from(
+                    new Set(catTopics.map(t => t.subGroup).filter(Boolean))
+                ).sort() as string[];
+
+                const filtered = catTopics
+                    .filter(t => topicStatusFilter === "all" || t.status === topicStatusFilter)
+                    .filter(t => topicSubGroupFilter === "all" || t.subGroup === topicSubGroupFilter)
+                    .filter(t => {
+                        if (!topicSearch) return true;
+                        const s = topicSearch.toLowerCase();
+                        return t.nameEn?.toLowerCase().includes(s)
+                            || t.nameKm?.toLowerCase().includes(s)
+                            || t.topicCode?.toLowerCase().includes(s)
+                            || String(t.id).includes(s);
+                    });
+
+                const statusTags = [
+                    { value: "all", label: "All", bg: "bg-yellow-400" },
+                    { value: "approved", label: "Approved", bg: "bg-green-400" },
+                    { value: "pending", label: "Pending", bg: "bg-orange-300" },
+                    { value: "draft", label: "Draft", bg: "bg-zinc-300" },
+                    { value: "rejected", label: "Rejected", bg: "bg-red-400" },
+                ];
+
+                return (
+                    <div className="space-y-3">
+                        {/* Stats + filter bar */}
+                        <div className="bg-white border-2 border-black p-3 shadow-[2px_2px_0_#000] space-y-3">
+                            {/* Row 1: Stats + Status filters + Search */}
+                            <div className="flex items-center gap-3 flex-wrap">
+                                <div className="flex items-center gap-4 flex-shrink-0">
+                                    <div>
+                                        <span className="text-2xl font-black text-black">{catTopics.length}</span>
+                                        <span className="text-xs font-bold text-zinc-500 ml-1">Topics</span>
+                                    </div>
+                                    <div>
+                                        <span className="text-2xl font-black text-blue-600">{getCategoryQCount(activeCategory.id)}</span>
+                                        <span className="text-xs font-bold text-zinc-500 ml-1">Questions</span>
+                                    </div>
+                                    <div>
+                                        <span className="text-2xl font-black text-zinc-400">{filtered.length}</span>
+                                        <span className="text-xs font-bold text-zinc-500 ml-1">Showing</span>
+                                    </div>
+                                </div>
+
+                                {/* Status filters */}
+                                <div className="flex items-center gap-1 flex-wrap">
+                                    <span className="text-xs font-black text-zinc-400 uppercase mr-1">Status:</span>
+                                    {statusTags.map(tag => {
+                                        const count = tag.value === "all" ? catTopics.length : catTopics.filter(t => t.status === tag.value).length;
+                                        const isActive = topicStatusFilter === tag.value;
+                                        return (
+                                            <button key={tag.value} onClick={() => setTopicStatusFilter(tag.value)}
+                                                className={`px-2.5 py-1 border-2 border-black text-xs font-black transition-all ${isActive ? `${tag.bg} shadow-[2px_2px_0_#000]` : "bg-white hover:bg-gray-50"}`}>
+                                                {tag.label} <span className="font-medium text-zinc-500">({count})</span>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+
+                                {/* Search */}
+                                <div className="relative ml-auto">
+                                    <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 text-zinc-400" size={14} />
+                                    <input type="text" placeholder="Search ID, code, name..." value={topicSearch}
+                                        onChange={e => setTopicSearch(e.target.value)}
+                                        className="pl-8 pr-3 py-1.5 border-2 border-black text-xs font-medium focus:outline-none w-48" />
+                                </div>
+                            </div>
+
+                            {/* Row 2: SubGroup / Tag filters */}
+                            {subGroups.length > 0 && (
+                                <div className="flex items-center gap-1 flex-wrap pt-2 border-t border-zinc-200">
+                                    <span className="text-xs font-black text-zinc-400 uppercase mr-1">Tag:</span>
+                                    <button
+                                        onClick={() => setTopicSubGroupFilter("all")}
+                                        className={`px-2.5 py-1 border-2 border-black text-xs font-black transition-all ${topicSubGroupFilter === "all" ? "bg-black text-white shadow-[2px_2px_0_#000]" : "bg-white hover:bg-gray-50"}`}
+                                    >
+                                        All Tags
+                                        <span className="ml-1 font-medium opacity-70">({catTopics.length})</span>
+                                    </button>
+                                    {subGroups.map(sg => {
+                                        const count = catTopics.filter(t => t.subGroup === sg).length;
+                                        const isActive = topicSubGroupFilter === sg;
+                                        return (
+                                            <button
+                                                key={sg}
+                                                onClick={() => setTopicSubGroupFilter(sg)}
+                                                className={`px-2.5 py-1 border-2 border-black text-xs font-bold transition-all ${isActive ? "bg-purple-400 shadow-[2px_2px_0_#000]" : "bg-white hover:bg-purple-50"}`}
+                                            >
+                                                {sg}
+                                                <span className="ml-1 font-medium text-zinc-500">({count})</span>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            )}
+                        </div>
+
+                        {filtered.length === 0 ? (
+                            <div className="bg-white border-2 border-black p-12 text-center shadow-[2px_2px_0_#000]">
+                                <BookOpen size={40} className="mx-auto mb-3 text-zinc-300" />
+                                <p className="font-black text-zinc-500">No topics found</p>
+                            </div>
+                        ) : (
+                            <div className="bg-white border-2 border-black overflow-hidden shadow-[4px_4px_0_#000]">
+                                <table className="w-full">
+                                    <thead className="bg-black text-white">
+                                        <tr>
+                                            <th className="px-3 py-2.5 text-left text-xs font-black uppercase w-12">ID</th>
+                                            <th className="px-3 py-2.5 text-left text-xs font-black uppercase w-28">Code</th>
+                                            <th className="px-3 py-2.5 text-left text-xs font-black uppercase">English</th>
+                                            <th className="px-3 py-2.5 text-left text-xs font-black uppercase">Khmer</th>
+                                            <th className="px-3 py-2.5 text-left text-xs font-black uppercase w-24">Status</th>
+                                            <th className="px-3 py-2.5 text-center text-xs font-black uppercase w-16">Q</th>
+                                            <th className="px-3 py-2.5 text-left text-xs font-black uppercase w-24">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-zinc-200">
+                                        {filtered.map(topic => {
+                                            const qCount = getTopicQCount(topic.id);
+                                            return (
+                                                <tr key={topic.id} className="hover:bg-yellow-50 transition-colors">
+                                                    <td className="px-3 py-2.5">
+                                                        <span className="text-xs font-black text-zinc-400">#{topic.id}</span>
+                                                    </td>
+                                                    <td className="px-3 py-2.5">
+                                                        <span className="text-xs font-mono font-bold text-zinc-700 bg-zinc-100 px-2 py-1 border border-zinc-300 whitespace-nowrap">{topic.topicCode}</span>
+                                                    </td>
+                                                    <td className="px-3 py-2.5">
+                                                        <div className="font-bold text-sm text-black">{topic.nameEn}</div>
+                                                        {topic.subGroup && (
+                                                            <span className="inline-block mt-1 text-xs font-bold px-2 py-0.5 bg-purple-100 border border-purple-300 text-purple-700">
+                                                                {topic.subGroup}
+                                                            </span>
+                                                        )}
+                                                    </td>
+                                                    <td className="px-3 py-2.5">
+                                                        <div className="text-sm text-zinc-700">{topic.nameKm || <span className="text-zinc-300 italic text-xs">—</span>}</div>
+                                                    </td>
+                                                    <td className="px-3 py-2.5">
+                                                        <span className={`text-xs font-black px-2 py-1 border border-black ${topic.status === "approved" ? "bg-green-100 text-green-800" :
+                                                            topic.status === "pending" ? "bg-yellow-100 text-yellow-800" :
+                                                                topic.status === "rejected" ? "bg-red-100 text-red-800" :
+                                                                    "bg-zinc-100 text-zinc-600"}`}>
+                                                            {topic.status}
+                                                        </span>
+                                                    </td>
+                                                    <td className="px-3 py-2.5 text-center">
+                                                        <button onClick={() => openTopic(topic)}
+                                                            className={`inline-flex items-center gap-1 px-3 py-1 border-2 border-black font-black text-sm transition-all hover:shadow-[2px_2px_0_#000] ${getTopicQCount(topic.id) > 0 ? "bg-blue-400 text-black" : "bg-zinc-100 text-zinc-500"}`}>
+                                                            {countsLoading && !qCounts[topic.id]
+                                                                ? <span className="w-3 h-3 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                                                                : getTopicQCount(topic.id)
+                                                            }
+                                                            <ChevronRight size={13} />
+                                                        </button>
+                                                    </td>
+                                                    <td className="px-3 py-2.5">
+                                                        <button onClick={() => { setActiveTopic(topic); setShowModal(true); }}
+                                                            className="inline-flex items-center gap-1 px-3 py-1.5 bg-green-400 border-2 border-black font-black text-xs hover:shadow-[2px_2px_0_#000] transition-all">
+                                                            <Plus size={12} />Add Q
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </tbody>
+                                </table>
+                            </div>
+                        )}
+                    </div>
+                );
+            })()}
+
+            {/* VIEW: Questions in a topic */}
+            {view === "questions" && activeTopic && (
+                <div className="space-y-3">
+                    {/* Topic stats + filters */}
+                    <div className="bg-white border-2 border-black p-3 shadow-[2px_2px_0_#000]">
+                        <div className="flex items-center gap-4 flex-wrap">
+                            {/* Stats — real DB counts */}
+                            {(() => {
+                                const dbCount = getTopicQBreakdown(activeTopic.id);
+                                return (
+                                    <div className="flex items-center gap-4">
+                                        <div className="flex flex-col">
+                                            <span className="text-2xl font-black text-black leading-none">{dbCount.total}</span>
+                                            <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wide">Questions</span>
+                                        </div>
+                                        {[
+                                            { key: "easy", label: "Easy", color: "#22c55e" },
+                                            { key: "medium", label: "Medium", color: "#f59e0b" },
+                                            { key: "hard", label: "Hard", color: "#ef4444" },
+                                        ].map(d => (
+                                            <div key={d.key} className="flex flex-col">
+                                                <span className="text-xl font-black leading-none" style={{ color: d.color }}>
+                                                    {dbCount[d.key as keyof TopicQCount]}
+                                                </span>
+                                                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wide">{d.label}</span>
+                                            </div>
+                                        ))}
+                                        {/* Showing (filtered) */}
+                                        {(typeFilter !== "all" || diffFilter !== "all" || search) && (
+                                            <div className="flex flex-col border-l border-zinc-200 pl-4">
+                                                <span className="text-xl font-black leading-none text-zinc-400">{filteredQuestions.length}</span>
+                                                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wide">Showing</span>
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })()}
+
+                            <div className="flex items-center gap-2 ml-auto flex-wrap">
+                                {/* Search */}
+                                <div className="relative">
+                                    <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 text-zinc-400" size={14} />
+                                    <input
+                                        type="text"
+                                        placeholder="Search..."
+                                        value={search}
+                                        onChange={e => setSearch(e.target.value)}
+                                        className="pl-8 pr-3 py-1.5 border-2 border-black text-xs font-medium focus:outline-none w-40"
+                                    />
+                                </div>
+
+                                {/* Type filter */}
+                                <select value={typeFilter} onChange={e => setTypeFilter(e.target.value)} className="px-2 py-1.5 border-2 border-black text-xs font-bold bg-white focus:outline-none">
+                                    <option value="all">All Types</option>
+                                    <option value="mcq">MCQ</option>
+                                    <option value="true-false">True/False</option>
+                                    <option value="type-answer">Type Answer</option>
+                                    <option value="puzzle">Puzzle</option>
+                                    <option value="image-match">Image Match</option>
+                                    <option value="pin-location">Pin Location</option>
+                                    <option value="multi-select">Multi-Select</option>
+                                </select>
+
+                                {/* Difficulty pills */}
+                                <div className="flex items-center gap-1 flex-wrap">
+                                    {[
+                                        { value: "all", label: "All", bg: "bg-black", text: "text-white" },
+                                        { value: "easy", label: "Easy", bg: "bg-green-400", text: "text-black" },
+                                        { value: "medium", label: "Medium", bg: "bg-amber-400", text: "text-black" },
+                                        { value: "hard", label: "Hard", bg: "bg-red-500", text: "text-white" },
+                                    ].map(d => (
+                                        <button key={d.value} onClick={() => setDiffFilter(d.value)}
+                                            className={`px-2.5 py-1.5 border-2 border-black text-xs font-black transition-all ${diffFilter === d.value ? `${d.bg} ${d.text} shadow-[2px_2px_0_#000]` : "bg-white text-zinc-500 hover:bg-zinc-100"}`}>
+                                            {d.label}
+                                            {d.value !== "all" && <span className="ml-1 opacity-70">({questions.filter(q => q.difficulty === d.value).length})</span>}
+                                        </button>
+                                    ))}
+                                </div>
+
+                                {/* Status pills */}
+                                <div className="flex items-center gap-1 flex-wrap">
+                                    {[
+                                        { value: "all", label: "All Status" },
+                                        { value: "published", label: "Published", color: "#22c55e" },
+                                        { value: "approved", label: "Approved", color: "#3b82f6" },
+                                        { value: "draft", label: "Draft", color: "#71717a" },
+                                        { value: "pending", label: "Pending", color: "#f59e0b" },
+                                    ].map(s => (
+                                        <button key={s.value} onClick={() => setStatusFilter(s.value)}
+                                            className={`px-2.5 py-1.5 border-2 border-black text-xs font-black transition-all ${statusFilter === s.value ? "shadow-[2px_2px_0_#000]" : "bg-white text-zinc-500 hover:bg-zinc-100"}`}
+                                            style={statusFilter === s.value && s.color ? { backgroundColor: s.color, color: "#fff" } : {}}>
+                                            {s.label}
+                                            {s.value !== "all" && <span className="ml-1 opacity-70">({questions.filter(q => q.status === s.value).length})</span>}
+                                        </button>
+                                    ))}
+                                </div>
+
+                                <button
+                                    onClick={() => setShowModal(true)}
+                                    className="bg-green-400 border-2 border-black px-3 py-1.5 font-black text-xs hover:shadow-[3px_3px_0_#000] transition-all inline-flex items-center gap-1"
+                                >
+                                    <Plus size={14} />
+                                    Add Question
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Questions list */}
+                    {topicQLoading ? (
+                        <div className="bg-white border-2 border-black p-12 text-center shadow-[2px_2px_0_#000]">
+                            <div className="inline-block w-8 h-8 border-4 border-black border-t-transparent rounded-full animate-spin mb-3" />
+                            <p className="font-bold text-zinc-500 text-sm">Loading questions...</p>
+                        </div>
+                    ) : filteredQuestions.length === 0 ? (
+                        <div className="bg-white border-2 border-black p-12 text-center shadow-[2px_2px_0_#000]">
+                            <HelpCircle size={40} className="mx-auto mb-3 text-zinc-300" />
+                            <p className="font-black text-zinc-500 mb-1">No questions yet</p>
+                            <p className="text-xs text-zinc-400 mb-4">Be the first to add a question to this topic</p>
+                            <button
+                                onClick={() => setShowModal(true)}
+                                className="bg-green-400 border-2 border-black px-4 py-2 font-black text-sm hover:shadow-[3px_3px_0_#000] transition-all inline-flex items-center gap-2"
+                            >
+                                <Plus size={15} />
+                                Add First Question
+                            </button>
+                        </div>
+                    ) : (
+                        <div className="bg-white border-2 border-black overflow-hidden shadow-[4px_4px_0_#000]">
+                            <table className="w-full">
+                                <thead className="bg-black text-white">
+                                    <tr>
+                                        <th className="px-4 py-3 text-left text-xs font-black uppercase">#</th>
+                                        <th className="px-4 py-3 text-left text-xs font-black uppercase">Question</th>
+                                        <th className="px-4 py-3 text-left text-xs font-black uppercase w-24">Type</th>
+                                        <th className="px-4 py-3 text-left text-xs font-black uppercase w-20">Level</th>
+                                        <th className="px-4 py-3 text-left text-xs font-black uppercase w-24">Status</th>
+                                        <th className="px-4 py-3 text-left text-xs font-black uppercase w-12">Ans</th>
+                                        <th className="px-4 py-3 text-left text-xs font-black uppercase w-28">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-zinc-200">
+                                    {filteredQuestions.map((q, i) => {
+                                        const TypeIcon = TYPE_ICONS[q.questionType] || Layers;
+                                        const statusColors: Record<string, string> = {
+                                            published: "#22c55e",
+                                            approved: "#3b82f6",
+                                            draft: "#71717a",
+                                            pending: "#f59e0b",
+                                            rejected: "#ef4444",
+                                        };
+                                        return (
+                                            <tr key={q.id} className="hover:bg-yellow-50 transition-colors">
+                                                <td className="px-4 py-3 text-xs font-black text-zinc-400">{i + 1}</td>
+                                                <td className="px-4 py-3">
+                                                    <div className="text-sm font-bold text-black">{q.questionEn}</div>
+                                                    {q.questionKm && <div className="text-xs text-zinc-400 mt-0.5">{q.questionKm}</div>}
+                                                </td>
+                                                <td className="px-4 py-3">
+                                                    <span className="inline-flex items-center gap-1 px-2 py-1 bg-blue-50 border border-blue-200 text-xs font-bold text-blue-700">
+                                                        <TypeIcon size={12} />
+                                                        {TYPE_LABELS[q.questionType] || q.questionType}
+                                                    </span>
+                                                </td>
+                                                <td className="px-4 py-3">
+                                                    <span className="inline-block px-2 py-1 border border-black text-xs font-black text-white" style={{ backgroundColor: DIFF_COLORS[q.difficulty] || "#6b7280" }}>
+                                                        {q.difficulty?.toUpperCase()}
+                                                    </span>
+                                                </td>
+                                                <td className="px-4 py-3">
+                                                    {/* Quick status toggle */}
+                                                    <select
+                                                        value={q.status || "draft"}
+                                                        onChange={async (e) => {
+                                                            const newStatus = e.target.value;
+                                                            try {
+                                                                await fetch(`/api/admin/questions/${q.id}/status`, {
+                                                                    method: "PATCH",
+                                                                    headers: { "Content-Type": "application/json" },
+                                                                    body: JSON.stringify({ status: newStatus }),
+                                                                });
+                                                                setQuestions(prev => prev.map(x => x.id === q.id ? { ...x, status: newStatus } : x));
+                                                                setAllQuestions(prev => prev.map(x => x.id === q.id ? { ...x, status: newStatus } : x));
+                                                                showToast(`Status → ${newStatus}`, "success");
+                                                            } catch {
+                                                                showToast("Failed to update status", "error");
+                                                            }
+                                                        }}
+                                                        className="text-xs font-black px-2 py-1 border-2 border-black focus:outline-none"
+                                                        style={{ backgroundColor: statusColors[q.status || "draft"] || "#71717a", color: "#fff" }}
+                                                    >
+                                                        <option value="draft">Draft</option>
+                                                        <option value="pending">Pending</option>
+                                                        <option value="approved">Approved</option>
+                                                        <option value="published">Published</option>
+                                                        <option value="rejected">Rejected</option>
+                                                    </select>
+                                                </td>
+                                                <td className="px-4 py-3 text-xs font-bold text-zinc-600">{q.answerCount}</td>
+                                                <td className="px-4 py-3">
+                                                    <div className="flex items-center gap-1">
+                                                        <button onClick={() => setEditingQuestion(q)} className="p-1.5 border-2 border-black bg-yellow-100 hover:bg-yellow-200 hover:shadow-[2px_2px_0_#000] transition-all" title="Edit">
+                                                            <Edit size={13} />
+                                                        </button>
+                                                        {deleteConfirm === q.id ? (
+                                                            <div className="flex gap-1">
+                                                                <button onClick={() => handleDelete(q.id)} className="px-2 py-1 text-xs font-black bg-red-500 text-white border border-black">Yes</button>
+                                                                <button onClick={() => setDeleteConfirm(null)} className="px-2 py-1 text-xs font-black bg-white border border-black">No</button>
+                                                            </div>
+                                                        ) : (
+                                                            <button onClick={() => setDeleteConfirm(q.id)} className="p-1.5 border-2 border-black bg-red-100 hover:bg-red-200 hover:shadow-[2px_2px_0_#000] transition-all" title="Delete">
+                                                                <Trash2 size={13} />
+                                                            </button>
+                                                        )}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        );
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                </div>
+            )}
+
+            {/* Modal */}
+            {(showModal || editingQuestion) && (
                 <QuestionFormModal
                     initialData={editingQuestion}
-                    onClose={() => {
-                        setShowCreateModal(false);
-                        setEditingQuestion(null);
-                    }}
-                    onSuccess={() => {
-                        setShowCreateModal(false);
-                        setEditingQuestion(null);
-                        fetchQuestions();
-                    }}
+                    preSelectedTopic={activeTopic}
+                    onClose={handleCloseModal}
+                    onSuccess={handleSuccess}
                 />
             )}
         </div>

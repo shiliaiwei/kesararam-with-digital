@@ -3,6 +3,34 @@ import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { contentItems, staffActivityMetrics } from "@/db/schema/content";
 import { eq, and, desc, sql, or, like } from "drizzle-orm";
+import { z } from "zod";
+
+const contentSchema = z.object({
+  categoryId: z.union([z.string(), z.number()]).transform(v => parseInt(String(v))),
+  type: z.string().min(1),
+  titleEn: z.string().min(1),
+  titleKm: z.string().optional().default(""),
+  descriptionEn: z.string().optional().default(""),
+  descriptionKm: z.string().optional().default(""),
+  imageUrl: z.string().optional().nullable(),
+  audioUrlEn: z.string().optional().nullable(),
+  audioUrlKm: z.string().optional().nullable(),
+  questionEn: z.string().optional().default(""),
+  questionKm: z.string().optional().default(""),
+  answerEn: z.string().optional().default(""),
+  answerKm: z.string().optional().default(""),
+  scorePoints: z.number().optional().default(10),
+  timeLimit: z.number().optional().default(30),
+  difficulty: z.string().optional().nullable(),
+  subtopic: z.string().optional().nullable(),
+  sortOrder: z.number().optional().default(0),
+  videoUrl: z.string().optional().nullable(),
+  logoUrl: z.string().optional().nullable(),
+  brandUrl: z.string().optional().nullable(),
+  resourceType: z.string().optional().default("qa"),
+  tags: z.array(z.string()).optional().default([]),
+  metadata: z.any().optional().nullable(),
+});
 
 // GET /api/staff/content - List staff's own content
 export async function GET(request: NextRequest) {
@@ -94,72 +122,48 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const {
-      categoryId,
-      type,
-      titleEn,
-      titleKm,
-      descriptionEn,
-      descriptionKm,
-      imageUrl,
-      audioUrlEn,
-      audioUrlKm,
-      questionEn,
-      questionKm,
-      answerEn,
-      answerKm,
-      scorePoints,
-      timeLimit,
-      difficulty,
-      subtopic,
-      sortOrder,
-      videoUrl,
-      logoUrl,
-      brandUrl,
-      resourceType,
-      tags,
-      metadata,
-    } = body;
-
-    // Validate required fields
-    if (!categoryId || !type || !titleEn) {
+    const result = contentSchema.safeParse(body);
+    
+    if (!result.success) {
       return NextResponse.json(
-        { error: "Missing required fields" },
+        { error: "Validation Error", details: result.error.format() },
         { status: 400 }
       );
     }
+    
+    const data = result.data;
 
     // Create content
     const [newContent] = await db
       .insert(contentItems)
       .values({
-        categoryId,
-        type,
+        categoryId: data.categoryId,
+        type: data.type,
         status: "pending",
-        titleEn,
-        titleKm: titleKm || "",
-        descriptionEn: descriptionEn || "",
-        descriptionKm: descriptionKm || "",
-        imageUrl,
-        audioUrlEn,
-        audioUrlKm,
-        questionEn: questionEn || "",
-        questionKm: questionKm || "",
-        answerEn: answerEn || "",
-        answerKm: answerKm || "",
-        scorePoints: scorePoints || 10,
-        timeLimit: timeLimit || 30,
-        difficulty,
-        subtopic,
-        sortOrder: sortOrder || 0,
+        titleEn: data.titleEn,
+        titleKm: data.titleKm,
+        descriptionEn: data.descriptionEn,
+        descriptionKm: data.descriptionKm,
+        imageUrl: data.imageUrl,
+        audioUrlEn: data.audioUrlEn,
+        audioUrlKm: data.audioUrlKm,
+        questionEn: data.questionEn,
+        questionKm: data.questionKm,
+        answerEn: data.answerEn,
+        answerKm: data.answerKm,
+        scorePoints: data.scorePoints,
+        timeLimit: data.timeLimit,
+        difficulty: data.difficulty,
+        subtopic: data.subtopic,
+        sortOrder: data.sortOrder,
         isActive: false,
         createdBy: session.id,
-        videoUrl,
-        logoUrl,
-        brandUrl,
-        resourceType: resourceType || "qa",
-        tags: tags || [],
-        metadata: metadata ? JSON.stringify(metadata) : null,
+        videoUrl: data.videoUrl,
+        logoUrl: data.logoUrl,
+        brandUrl: data.brandUrl,
+        resourceType: data.resourceType,
+        tags: data.tags,
+        metadata: data.metadata ? JSON.stringify(data.metadata) : null,
       })
       .returning();
 
@@ -168,8 +172,8 @@ export async function POST(request: NextRequest) {
       staffId: session.id,
       actionType: "create",
       contentId: newContent.id,
-      categoryId,
-      metadata: JSON.stringify({ type, titleEn }),
+      categoryId: data.categoryId,
+      metadata: JSON.stringify({ type: data.type, titleEn: data.titleEn }),
     });
 
     return NextResponse.json({ content: newContent }, { status: 201 });

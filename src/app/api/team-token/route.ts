@@ -4,6 +4,7 @@
  * Expires in 60 seconds. Short URL = easy QR scanning.
  */
 import { NextRequest, NextResponse } from "next/server";
+import { rateLimit, getClientIP, createRateLimitResponse } from "@/lib/simple-rate-limit";
 
 const TTL = 60 * 1000; // 1 minute
 
@@ -13,7 +14,11 @@ const store = new Map<string, { id: string; expiresAt: number }>();
 function randomCode() {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // no ambiguous chars
   let c = "";
-  for (let i = 0; i < 6; i++) c += chars[Math.floor(Math.random() * chars.length)];
+  const randomValues = new Uint32Array(6);
+  crypto.getRandomValues(randomValues);
+  for (let i = 0; i < 6; i++) {
+    c += chars[randomValues[i] % chars.length];
+  }
   return c;
 }
 
@@ -26,6 +31,10 @@ function cleanup() {
 
 // GET /api/team-token?id=VSID-2026-001 — generate short code
 export async function GET(req: NextRequest) {
+  const ip = getClientIP(req);
+  const limit = rateLimit(`team-token:${ip}`, 10, 60000); // 10 per minute
+  if (!limit.success) return createRateLimitResponse(limit.resetTime);
+
   const id = req.nextUrl.searchParams.get("id");
   if (!id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
 
@@ -42,6 +51,10 @@ export async function GET(req: NextRequest) {
 
 // POST /api/team-token — verify short code
 export async function POST(req: NextRequest) {
+  const ip = getClientIP(req);
+  const limit = rateLimit(`team-token-verify:${ip}`, 20, 60000); // 20 per minute
+  if (!limit.success) return createRateLimitResponse(limit.resetTime);
+
   const { code } = await req.json().catch(() => ({}));
   if (!code) return NextResponse.json({ valid: false }, { status: 400 });
 

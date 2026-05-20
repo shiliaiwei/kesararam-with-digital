@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, Fragment } from "react";
-import { Search, ArrowLeft, X, Volume2, Download } from "lucide-react";
+import { Search, ArrowLeft, X, Volume2, Download, ChevronDown } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { SaveCardButton } from "./save-card-button";
 
@@ -73,12 +73,20 @@ const UI = {
   },
 } as const;
 
+// ── Cloudinary thumbnail optimizer ───────────────────────────────────────────
+// Transforms full-res Cloudinary URLs into small, optimized thumbnails.
+// For a 120px grid cell, we only need ~120px wide images — not 1200px originals.
+function cloudinaryThumb(url: string, width = 120): string {
+  if (!url || !url.includes("res.cloudinary.com")) return url;
+  // Insert transformation before /upload/
+  return url.replace("/upload/", `/upload/f_auto,q_auto:good,w_${width},c_limit/`);
+}
+
 // ── Image with skeleton loader + stable height + AI disclaimer ───────────────
 function ImageWithSkeleton({ src, alt }: { src: string; alt: string }) {
   const [loaded, setLoaded] = useState(false);
   return (
     <div className="relative w-full h-full flex items-center justify-center" style={{ height: "240px" }}>
-      {/* Skeleton shown until image loads */}
       {!loaded && (
         <div className="absolute inset-0 bg-zinc-100 animate-pulse" />
       )}
@@ -86,6 +94,8 @@ function ImageWithSkeleton({ src, alt }: { src: string; alt: string }) {
         src={src}
         alt={alt}
         onLoad={() => setLoaded(true)}
+        loading="lazy"
+        decoding="async"
         className={`max-h-full max-w-full object-contain transition-opacity duration-300 ${loaded ? "opacity-100" : "opacity-0"}`}
         style={{ maxHeight: "220px" }}
       />
@@ -102,11 +112,12 @@ function DetailPanel({
   loadingQuestions: boolean;
   isKh: boolean;
   kf: React.CSSProperties;
-  t: typeof UI.en;
+  t: typeof UI.en | typeof UI.kh;
   onClose: () => void;
 }) {
   const [playing, setPlaying] = useState(false);
   const [loadingAudio, setLoadingAudio] = useState(false);
+  const [exporting, setExporting] = useState(false);
   // Use a ref so the stop handler always has the current audio instance
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const playingRef = useRef(false);
@@ -291,7 +302,7 @@ function DetailPanel({
 
       // Convert to blob
       const blob = await new Promise<Blob>((resolve) => {
-        generatedCanvas.toBlob((b) => resolve(b!), 'image/png', 1.0);
+        generatedCanvas.toBlob((b: Blob | null) => resolve(b!), 'image/png', 1.0);
       });
 
       const filename = `${topic.topic_code}-${name.replace(/[^a-zA-Z0-9]/g, '-')}.png`;
@@ -374,12 +385,12 @@ function DetailPanel({
         )}
 
         <div className="px-3 pb-3">
-          {/* ── Title — centered ── */}
+          {/* ── Title — current language only ── */}
           <p className="text-sm font-black leading-snug text-black mt-2 mb-2 text-center" style={kf}>
             {name}
           </p>
 
-          {/* ── Description zone ── */}
+          {/* ── Description zone — current language only ── */}
           {description && (
             <div className={`rounded overflow-hidden border transition-all duration-300 ${playing ? "border-yellow-400" : "border-emerald-400"}`}>
               <div className={`px-2 py-1 flex items-center gap-2 transition-colors duration-300 ${playing ? "bg-yellow-400" : "bg-emerald-500"}`}>
@@ -480,16 +491,31 @@ export function TrafficSignsCatalogue() {
   const t = isKh ? UI.kh : UI.en;
 
   const [topics, setTopics] = useState<Topic[]>([]);
-  const [filteredTopics, setFilteredTopics] = useState<Topic[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [search, setSearch] = useState("");
-  // Initialise with alternating default (runs once on mount)
-  const [subGroupFilter, setSubGroupFilter] = useState<string>(() => getDefaultFilter());
+  const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [subGroupFilter, setSubGroupFilter] = useState<string>("");
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
   const [selectedQuestions, setSelectedQuestions] = useState<any[]>([]);
   const [loadingQuestions, setLoadingQuestions] = useState(false);
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
   const [cols, setCols] = useState(8);
+
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
+  const [aggregates, setAggregates] = useState<{
+    total: number;
+    subGroups: Record<string, number>;
+    subGroupRanges: Record<string, { min: string; max: string }>;
+    filteredTotal: number;
+  }>({
+    total: 0,
+    subGroups: {},
+    subGroupRanges: {},
+    filteredTotal: 0
+  });
 
   useEffect(() => {
     const updateCols = () => {
@@ -524,46 +550,59 @@ export function TrafficSignsCatalogue() {
 
   const handleFilterChange = (key: string) => {
     setSubGroupFilter(key);
-    setSelectedTopic(null);
-    setSelectedQuestions([]);
   };
 
-  useEffect(() => { window.scrollTo(0, 0); fetchTopics(); }, []);
-
+  // Debounce search input
   useEffect(() => {
-    let filtered = [...topics];
-    if (search.trim()) {
-      const q = search.toLowerCase();
-      filtered = filtered.filter(
-        tp => tp.name_en.toLowerCase().includes(q) ||
-          tp.name_km.includes(search) ||
-          tp.topic_code.toLowerCase().includes(q)
-      );
-    }
-    if (subGroupFilter) {
-      filtered = filtered.filter(tp => tp.sub_group === subGroupFilter);
-    }
-    setFilteredTopics(filtered);
-  }, [topics, search, subGroupFilter]);
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [search]);
 
-  const fetchTopics = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch("/api/public/topics?categoryId=1&status=published");
-      const data = await res.json();
-      setTopics(data.topics || []);
-    } catch (e) { console.error(e); }
-    finally { setLoading(false); }
-  };
+  // Fetch topics whenever page, debouncedSearch, or subGroupFilter changes
+  useEffect(() => {
+    const fetchTopics = async () => {
+      if (page === 1) setLoading(true);
+      else setLoadingMore(true);
 
-  const availableKeys = new Set(topics.map(tp => tp.sub_group));
-  // Category tags — all except "All Signs" which goes at the end
-  const availableGroups = SUB_GROUPS.filter(sg => availableKeys.has(sg.key));
-  const countMap = topics.reduce<Record<string, number>>((acc, tp) => {
-    acc[tp.sub_group] = (acc[tp.sub_group] || 0) + 1;
-    return acc;
-  }, {});
+      try {
+        const params = new URLSearchParams({ categoryId: "1", status: "published", page: page.toString(), limit: "50" });
+        if (debouncedSearch) params.append("search", debouncedSearch);
+        if (subGroupFilter) params.append("subGroup", subGroupFilter);
 
+        const res = await fetch(`/api/public/topics?${params.toString()}`);
+        const data = await res.json();
+        
+        if (page === 1) {
+          setTopics(data.topics || []);
+        } else {
+          setTopics(prev => [...prev, ...(data.topics || [])]);
+        }
+        
+        if (data.aggregates) setAggregates(data.aggregates);
+        setHasMore(data.pagination?.hasMore || false);
+      } catch (e) { 
+        console.error(e); 
+      } finally { 
+        setLoading(false);
+        setLoadingMore(false);
+      }
+    };
+    fetchTopics();
+  }, [page, debouncedSearch, subGroupFilter]);
+
+  // Reset page when filter or search changes
+  useEffect(() => {
+    setPage(1);
+    setSelectedTopic(null);
+  }, [debouncedSearch, subGroupFilter]);
+
+  // Sort tags: largest count → smallest (as requested)
+  const availableGroups = SUB_GROUPS
+    .filter(sg => aggregates.subGroups[sg.key] > 0)
+    .sort((a, b) => (aggregates.subGroups[b.key] || 0) - (aggregates.subGroups[a.key] || 0));
+  const countMap = aggregates.subGroups;
   const isDefaultFilter = subGroupFilter === "";
 
   return (
@@ -603,14 +642,27 @@ export function TrafficSignsCatalogue() {
             )}
           </div>
 
-          {/* Tag pills — single scrollable row, "All Signs" first */}
-          <div
-            className="flex items-center gap-1.5 overflow-x-auto py-0.5"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
+          {/* Mobile Filter Toggle */}
+          <button
+            onClick={() => setShowMobileFilters(!showMobileFilters)}
+            className="md:hidden w-full flex items-center justify-between px-3 py-2 border-2 border-black bg-zinc-50 font-black text-sm mb-3 focus:outline-none"
+            style={kf}
           >
+            <span className="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+              {isKh ? "ត្រងប្រភេទសញ្ញា" : "Filter Categories"}
+              {subGroupFilter && !search && (
+                <span className="bg-yellow-400 text-black px-1.5 py-0.5 rounded-full text-[10px] ml-1">1</span>
+              )}
+            </span>
+            <ChevronDown size={16} className={`transition-transform ${showMobileFilters ? "rotate-180" : ""}`} />
+          </button>
+
+          {/* Tag pills — wrapped lines so you don't have to scroll */}
+          <div className={`${showMobileFilters ? "flex" : "hidden"} md:flex flex-wrap items-center gap-1.5 py-0.5`}>
             {/* All Signs — first */}
             <button
-              onClick={() => handleFilterChange("")}
+              onClick={() => { handleFilterChange(""); setShowMobileFilters(false); }}
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${subGroupFilter === "" && !search
                 ? "bg-black text-yellow-400 shadow-[2px_2px_0_#ca8a04]"
                 : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
@@ -619,21 +671,21 @@ export function TrafficSignsCatalogue() {
             >
               {t.all}
               <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ${subGroupFilter === "" && !search ? "bg-yellow-400 text-black" : "bg-zinc-100 text-zinc-600"}`}>
-                {topics.length}
+                {aggregates.total}
               </span>
             </button>
 
             {/* Divider */}
             <span className="w-px h-4 bg-zinc-300 shrink-0 mx-0.5" />
 
-            {/* Category tags */}
+            {/* Category tags — label + count only */}
             {availableGroups.map(sg => {
               const isActive = subGroupFilter === sg.key && !search;
               const count = countMap[sg.key] || 0;
               return (
                 <button
                   key={sg.key}
-                  onClick={() => handleFilterChange(sg.key)}
+                  onClick={() => { handleFilterChange(sg.key); setShowMobileFilters(false); }}
                   className={`inline-flex items-center gap-1.5 px-3 py-1.5 border-2 border-black text-xs font-black whitespace-nowrap shrink-0 rounded-full transition-all ${isActive
                     ? "bg-yellow-400 border-black shadow-[2px_2px_0_#000]"
                     : "bg-white hover:bg-yellow-400 hover:shadow-[2px_2px_0_#000]"
@@ -654,7 +706,7 @@ export function TrafficSignsCatalogue() {
           {/* Result count + reset */}
           <div className="mt-3 pt-3 border-t border-zinc-200 flex items-center justify-between">
             <p className="text-xs font-bold text-zinc-500" style={kf}>
-              {t.showing} <span className="text-black font-black">{filteredTopics.length}</span> {t.of} {topics.length} {t.signs}
+              {t.showing} <span className="text-black font-black">{aggregates.filteredTotal}</span> {t.of} {aggregates.total} {t.signs}
               {subGroupFilter && !search && (
                 <span className="ml-2 text-yellow-700">
                   — {isKh ? SUB_GROUPS.find(s => s.key === subGroupFilter)?.km : SUB_GROUPS.find(s => s.key === subGroupFilter)?.en}
@@ -682,22 +734,24 @@ export function TrafficSignsCatalogue() {
               <div key={i} className="aspect-square bg-gray-200 border-2 border-black animate-pulse" />
             ))}
           </div>
-        ) : filteredTopics.length === 0 ? (
+        ) : topics.length === 0 ? (
           <div className="bg-white border-2 border-black p-12 text-center" style={{ boxShadow: "4px 4px 0 #000" }}>
             <p className="text-zinc-600 font-bold" style={kf}>{t.noSigns}</p>
           </div>
         ) : (
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
-            {filteredTopics.map((topic, idx) => {
+            {topics.map((topic, idx) => {
               const isSelected = selectedTopic?.id === topic.id;
-              const isLastInRow = (idx + 1) % cols === 0 || idx === filteredTopics.length - 1;
-              const selectedIdx = selectedTopic ? filteredTopics.findIndex(tp => tp.id === selectedTopic.id) : -1;
+              const isLastInRow = (idx + 1) % cols === 0 || idx === topics.length - 1;
+              const selectedIdx = selectedTopic ? topics.findIndex(tp => tp.id === selectedTopic.id) : -1;
               const showPanelAfter =
                 selectedTopic &&
                 selectedIdx >= 0 &&
                 idx >= selectedIdx &&
                 Math.floor(idx / cols) === Math.floor(selectedIdx / cols) &&
                 isLastInRow;
+              // First 8 images are above the fold — load eagerly, rest lazy
+              const isAboveFold = idx < 8;
 
               return (
                 <Fragment key={topic.id}>
@@ -712,8 +766,13 @@ export function TrafficSignsCatalogue() {
                     <div className="relative w-full overflow-hidden" style={{ paddingBottom: "100%" }}>
                       {topic.primary_image_url ? (
                         <img
-                          src={topic.primary_image_url}
+                          src={cloudinaryThumb(topic.primary_image_url, 120)}
                           alt={topic.topic_code}
+                          loading={isAboveFold ? "eager" : "lazy"}
+                          decoding="async"
+                          fetchPriority={isAboveFold ? "high" : "low"}
+                          width={120}
+                          height={120}
                           className="absolute inset-0 w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-200"
                         />
                       ) : (
@@ -745,6 +804,49 @@ export function TrafficSignsCatalogue() {
                 </Fragment>
               );
             })}
+          </div>
+        )}
+
+        {/* See More Pagination */}
+        {hasMore && !loading && (
+          <div className="mt-8 flex flex-col items-center gap-2">
+            {/* Progress indicator */}
+            <p className="text-xs font-bold text-zinc-400" style={kf}>
+              {isKh
+                ? <>បង្ហាញ <span className="text-black font-black">{topics.length}</span> / {aggregates.filteredTotal} សញ្ញា</>  
+                : <>Showing <span className="text-black font-black">{topics.length}</span> of {aggregates.filteredTotal} signs</>}
+            </p>
+            {/* Progress bar */}
+            <div className="w-48 h-1.5 bg-zinc-200 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-yellow-400 rounded-full transition-all duration-500"
+                style={{ width: `${Math.min(100, Math.round((topics.length / (aggregates.filteredTotal || 1)) * 100))}%` }}
+              />
+            </div>
+            <button
+              onClick={() => setPage(p => p + 1)}
+              disabled={loadingMore}
+              className={`mt-2 inline-flex items-center gap-2 px-8 py-3 border-2 border-black font-black uppercase tracking-widest text-sm transition-all select-none ${
+                loadingMore 
+                  ? "bg-zinc-100 text-zinc-400 cursor-wait" 
+                  : "bg-yellow-400 text-black shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[2px_2px_0_#000]"
+              }`}
+              style={kf}
+            >
+              {loadingMore ? (
+                <><span className="flex gap-0.5 items-end h-4">{[60,100,75,90,55].map((h,i) => <span key={i} className="w-0.5 bg-zinc-400 rounded-sm animate-pulse" style={{height:`${h}%`,animationDelay:`${i*100}ms`}}/>)}</span>{isKh ? "កំពុងផ្ទុក..." : "Loading..."}</>
+              ) : (
+                <><ChevronDown size={16} />{isKh ? "បង្ហាញច្រើនទៀត" : "See More"}</>
+              )}
+            </button>
+          </div>
+        )}
+        {/* All loaded indicator */}
+        {!hasMore && !loading && topics.length > 0 && aggregates.filteredTotal > 40 && (
+          <div className="mt-8 flex justify-center">
+            <p className="text-xs font-bold text-zinc-400 border-t border-zinc-200 pt-3" style={kf}>
+              {isKh ? `✓ បង្ហាញទាំងអស់ ${topics.length} សញ្ញា` : `✓ All ${topics.length} signs loaded`}
+            </p>
           </div>
         )}
       </div>

@@ -70,9 +70,9 @@ export function CategoryPageShell({
           <div className="flex items-center gap-6">
             {/* Character image on the left */}
             <div className="hidden md:block flex-shrink-0">
-              <div 
+              <div
                 className="w-32 h-32 rounded-none overflow-hidden bg-white relative"
-                style={{ 
+                style={{
                   boxShadow: "4px 4px 0 #000",
                   border: "4px solid #000",
                   background: "repeating-linear-gradient(45deg, #000, #000 8px, #fbbf24 8px, #fbbf24 16px)"
@@ -93,11 +93,11 @@ export function CategoryPageShell({
 
             {/* Content */}
             <div className="flex flex-col gap-2 flex-1">
-              <span 
+              <span
                 className="text-xs font-black tracking-widest uppercase bg-black text-white px-3 py-1.5 rounded-none w-fit"
                 style={khFont}
               >
-                {kh ? "ប្រភេទចំណេះដឹង" : "Knowledge Category"}
+                {kh ? "ប្រភេទចំណេះដឹង" : "Sign Category"}
               </span>
               <h1 className="text-4xl md:text-5xl font-black text-black leading-tight">
                 {kh ? titleKh : titleEn}
@@ -156,7 +156,7 @@ export function CategoryPageShell({
               {kh ? "មិនទាន់មានមាតិកា" : "No content yet"}
             </h3>
             <p className="text-sm text-zinc-500" style={khFont}>
-              {kh 
+              {kh
                 ? "អ្នកគ្រប់គ្រងនឹងបោះពុម្ពមាតិកាសម្រាប់ប្រភេទនេះឆាប់ៗនេះ។"
                 : "An administrator will publish content for this category soon. Check back later."}
             </p>

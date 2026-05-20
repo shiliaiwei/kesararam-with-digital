@@ -7,6 +7,8 @@ import { eq } from "drizzle-orm";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
 import { ProfileEditor } from "@/components/profile/profile-editor";
 import { StudentProfileStats } from "@/components/profile/student-profile-stats";
+import { RankBadge as TierBadge, RankProgressBar, RankShowcase } from "@/components/shared/rank-label";
+import { getRank } from "@/lib/rank-utils";
 
 export const metadata: Metadata = {
   title: "My Profile — KWD Quiz",
@@ -36,11 +38,11 @@ export default async function StudentProfilePage() {
     avatar: null,
     avatarChangedAt: null,
   };
-  
+
   let highestScore = 0;
   let totalGamesPlayed = 0;
   let lifetimePoints = 0;
-  
+
   try {
     // Try to fetch user data - only select columns that definitely exist
     const result = await db
@@ -54,7 +56,7 @@ export default async function StudentProfilePage() {
       .from(users)
       .where(eq(users.id, session.id))
       .limit(1);
-    
+
     if (result && result.length > 0) {
       user = {
         displayName: result[0].displayName ?? session.name,
@@ -64,7 +66,7 @@ export default async function StudentProfilePage() {
         avatarChangedAt: result[0].avatarChangedAt,
       };
     }
-    
+
     // Try to get stats separately - these columns might not exist yet
     try {
       const statsResult = await db
@@ -76,7 +78,7 @@ export default async function StudentProfilePage() {
         .from(users)
         .where(eq(users.id, session.id))
         .limit(1);
-      
+
       if (statsResult && statsResult.length > 0) {
         highestScore = statsResult[0].highestScore || 0;
         totalGamesPlayed = statsResult[0].totalGamesPlayed || 0;
@@ -90,6 +92,7 @@ export default async function StudentProfilePage() {
   }
 
   const name = user?.displayName ?? user?.username ?? session.name;
+  const tier = getRank(lifetimePoints);
 
   return (
     <div className="min-h-screen dot-bg py-10">
@@ -103,14 +106,22 @@ export default async function StudentProfilePage() {
             overflow: "hidden",
           }}
         >
-          {/* Road curb stripe */}
+          {/* Tier-colored top stripe */}
           <div
             style={{
               height: "6px",
-              background:
-                "repeating-linear-gradient(90deg,#eab308 0,#eab308 20px,#000 20px,#000 40px)",
+              background: tier.borderGradient,
+              backgroundSize: "300% 300%",
+              animation: tier.animated ? "rankShimmer 2s ease infinite" : undefined,
             }}
           />
+          <style>{`
+            @keyframes rankShimmer {
+              0%   { background-position: 0% 50%; }
+              50%  { background-position: 100% 50%; }
+              100% { background-position: 0% 50%; }
+            }
+          `}</style>
           <div
             style={{
               padding: "24px",
@@ -119,12 +130,27 @@ export default async function StudentProfilePage() {
               gap: "20px",
             }}
           >
-            <AvatarDisplay
-              avatar={user?.avatar ?? null}
-              name={name}
-              size={80}
-              radius={0}
-            />
+            {/* Avatar with tier ring */}
+            <div
+              style={{
+                padding: 4,
+                borderRadius: "50%",
+                background: tier.borderGradient,
+                backgroundSize: tier.animated ? "300% 300%" : "100%",
+                animation: tier.animated ? "rankShimmer 2s ease infinite" : undefined,
+                flexShrink: 0,
+                boxShadow: tier.animated ? `0 0 16px ${tier.glow}88` : undefined,
+              }}
+            >
+              <div style={{ borderRadius: "50%", overflow: "hidden", background: "#fff", padding: 2 }}>
+                <AvatarDisplay
+                  avatar={user?.avatar ?? null}
+                  name={name}
+                  size={80}
+                  radius={0}
+                />
+              </div>
+            </div>
             <div>
               <h1
                 style={{
@@ -141,23 +167,30 @@ export default async function StudentProfilePage() {
               >
                 {user?.email}
               </p>
-              <span
-                style={{
-                  display: "inline-block",
-                  marginTop: "8px",
-                  padding: "2px 10px",
-                  fontSize: "11px",
-                  fontWeight: 900,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                  background: "#3b82f6",
-                  color: "#fff",
-                  border: "2px solid #000",
-                  boxShadow: "2px 2px 0 #000",
-                }}
-              >
-                Student
-              </span>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "8px", flexWrap: "wrap" }}>
+                <span
+                  style={{
+                    display: "inline-block",
+                    padding: "2px 10px",
+                    fontSize: "11px",
+                    fontWeight: 900,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
+                    background: "#3b82f6",
+                    color: "#fff",
+                    border: "2px solid #000",
+                    boxShadow: "2px 2px 0 #000",
+                  }}
+                >
+                  Student
+                </span>
+                {/* Tier badge */}
+                <TierBadge lifetimePoints={lifetimePoints} size="sm" />
+              </div>
+              {/* Progress to next tier */}
+              <div style={{ marginTop: "10px", width: "200px" }}>
+                <RankProgressBar lifetimePoints={lifetimePoints} compact />
+              </div>
             </div>
           </div>
         </div>
@@ -169,6 +202,32 @@ export default async function StudentProfilePage() {
           initialTotalGamesPlayed={totalGamesPlayed}
           initialLifetimePoints={lifetimePoints}
         />
+
+        {/* ── Rank Tier Map ── */}
+        <div
+          style={{
+            background: "#ffffff",
+            border: "2px solid #000",
+            boxShadow: "4px 4px 0 #000",
+            padding: "20px",
+          }}
+        >
+          <div style={{ marginBottom: "12px" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
+              <span style={{ fontSize: "10px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em", color: "#71717a" }}>
+                Rank Tiers
+              </span>
+              <TierBadge lifetimePoints={lifetimePoints} size="xs" />
+            </div>
+            <p style={{ fontSize: "11px", color: "#71717a", margin: 0 }}>
+              Earn more points in live games to unlock higher tiers and exclusive profile effects.
+            </p>
+          </div>
+          <RankProgressBar lifetimePoints={lifetimePoints} />
+          <div style={{ marginTop: "16px" }}>
+            <RankShowcase lifetimePoints={lifetimePoints} />
+          </div>
+        </div>
 
         {/* ── Edit profile ── */}
         <div>

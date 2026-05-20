@@ -1,0 +1,2796 @@
+==============================================================
+      CATEGORY 2: ROAD SIGN - BACKUP DATA      
+==============================================================
+This file contains a structured backup of the questions,
+showing the direct relationship between Khmer and English.
+
+--- [ CODE: CAT2-001 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] អនុញ្ញាតឱ្យបន្ដដំណើរទៅមុខទោះបីជាមានឧបសគ្គក៏ដោយ
+     [EN] Going straight permitted even though having obstacles
+  2. [KM] ត្រូវប្រុងប្រយ័ត្ន និងឈប់
+     [EN] Caution and stop
+  3. [KM] អនុញ្ញាតឱ្យបន្ដដំណើរ បើគ្មានឧបសគ្គនៅខាងមុខ
+     [EN] Going straight permitted if no any obstacle
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-002 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] គំនូសសញ្ញាទោលពណ៌លឿង ស តាមបណ្ដោយចិញ្ចើមផ្លូវសំរាប់អ្នកថ្មើរជើងធ្វើចរាចរណ៍
+     [EN] Yellow-white single line alongside the pavements for pedestrians walk
+  2. [KM] គំនូសសញ្ញាទោលពត៌លឿង ស តាមបណ្ដោយចិញ្ចើមផ្លូវសំរាប់ឲ្យយានជំនិះចត
+     [EN] Yellow-white single line alongside the pavement for parking vehicles
+  3. [KM] គំនូសសញ្ញាទោលពណ៌លឿង ស តាមបណ្ដោយគែមចិញ្ចើមផ្លូវសំរាប់ហាមចត
+     [EN] Yellow-white single line alongside the edge of the pavement for no parking
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-003 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] យានយន្ដត្រូវឈប់នៅខាងឆ្វេងតាមទិសចរាចរណ៍
+     [EN] Vehicles shall stop on the left as traffic direction
+  2. [KM] អនុញ្ញាតឲ្យអ្នកបើកបរតាមទិសមើលឃើញនគរបាលចរាចរណ៍ពីចំហៀងខ្លួនបន្តដំណើរ
+     [EN] Allowing drivers to follow as seeing the traffic police from the side
+     << CORRECT ANSWER >>
+  3. [KM] ហាមទៅតាមទិសតាមដៃនគរបាលចរាចរណ៍
+     [EN] No following the traffic police signal
+
+==============================================================
+
+--- [ CODE: CAT2-004 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ចូលព្រំប្រទល់ក្រុងភ្នំពេញ
+     [EN] Phnom Penh Capital City
+  2. [KM] ចប់ព្រំប្រទល់ក្រុងភ្នំពេញ
+     [EN] End of Phnom Penh Capital City
+  3. [KM] ចូលទីប្រជុំជនក្រុងភ្នំពេញ
+     [EN] Phnom Penh built-up area
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-005 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវសម្រាប់តែទោចក្រយានធ្វើចរាចរណ៍
+     [EN] Compulsory bicycles
+  2. [KM] ចប់ផ្លូវទោចក្រយានធ្វើចរាចរណ៍
+     [EN] End of compulsory bicycles
+     << CORRECT ANSWER >>
+  3. [KM] ហាមទោចក្រយានធ្វើចរាចរណ៍
+     [EN] No bicycles
+
+==============================================================
+
+--- [ CODE: CAT2-006 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] បញ្ជាឱ្យឈប់
+     [EN] Compulsory stop
+  2. [KM] បញ្ជាឲ្យប្រុងប្រយ័ត្ន និងឈប់ទោះបីជាយានចូលដល់ផ្លូវខ្វែងក៏ដោយ
+     [EN] Compulsory caution and stop even though the vehicles moving into the intersection
+  3. [KM] បញ្ជាឱ្យប្រុងប្រយ័ត្ន និងឈប់ បើយានមិនទាន់ដល់ផ្លូវខ្វែង
+     [EN] Compulsory caution and stop if the vehicles not getting to the intersection
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-007 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] គំនូសសញ្ញាទោលពណ៌ក្រហម ស បណ្ដោយចិញ្ចើមផ្លូវសម្រាប់អ្នកថ្មើរជើងធ្វើចរាចរណ៍
+     [EN] The single red-white line along the sidewalk for pedestrians
+  2. [KM] គំនូសសញ្ញាទោលពណ៌ក្រហម ស តាមបណ្ដោយចិញ្ចើមផ្លូវសម្រាប់ឲ្យយានជំនិះចត
+     [EN] The single red-white line along the sidewalk for parking
+  3. [KM] គំនូសសញ្ញាទោលពណ៌ក្រហម ស តាមបណ្ដោយគែមចិញ្ចើមផ្លូវសម្រាប់ការហាមឈប់
+     [EN] The single red-white line along the roadside for not standing
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-008 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចូលចំពោះទោចក្រយានយន្ដដែលធ្វើអាជីវកម្ម
+     [EN] No entry for business motorcycles
+  2. [KM] ហាមចូលចំពោះទោចក្រយានយន្ដដែលមានសណ្ដោងរ៉ឺម៉ក ឬរទេះ
+     [EN] No entry for motorcycle drawn vehicles or trolleys
+     << CORRECT ANSWER >>
+  3. [KM] ផ្លូវសម្រាប់ទោចក្រយានយន្ដដែលមានសណ្ដោងរ៉ឺម៉ក ឬរទេះធ្វើចរាចរណ៍
+     [EN] Complusory motorcycle drawn vehicles or trolleys
+
+==============================================================
+
+--- [ CODE: CAT2-009 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] បញ្ជាឱ្យអែបស្ដាំ
+     [EN] Compulsory drive along side to the right
+  2. [KM] បញ្ជាឱ្យបន្ថយល្បឿន
+     [EN] Compulsory slow down
+  3. [KM] បញ្ជាឱ្យឈប់
+     [EN] Complusory stop
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-010 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] តំរូវឱ្យបត់ឆ្វេង
+     [EN] Complusory turn left
+  2. [KM] យានបត់ឆ្វេង តម្រូវឱ្យឈប់
+     [EN] Left turn vehicles, compulsory stop
+     << CORRECT ANSWER >>
+  3. [KM] អាចបត់ឆ្វេងបានដោយប្រុងប្រយ័ត្ន
+     [EN] Can turn left with care
+
+==============================================================
+
+--- [ CODE: CAT2-011 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] បញ្ជាឱ្យឈប់ ទោះបីជាយានចូលដល់ផ្លូវខ្វែងក៏ដោយ
+     [EN] Compulsory stop even though the vehicles moving into the intersection
+  2. [KM] បញ្ជាឱ្យបន្ដដំណើរទៅមុខ
+     [EN] Compulsory moving on
+  3. [KM] បញ្ជាឱ្យប្រុងប្រយ័ត្ន និងឈប់ បើយានមិនទាន់ចូលដល់ផ្លូវខ្វែង
+     [EN] Compulsory caution and stop if the vehicles not getting to the intersection
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-012 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រាប់ទិសដៅទៅ ខេត្ដកំពង់ចាម
+     [EN] Direction sign to Kompong Cham Province
+  2. [KM] ប្រាប់ការចូលដល់ព្រំប្រទល់ ខេត្ដកំពង់ចាម
+     [EN] Showing the entry of Kompong Cham boundary
+     << CORRECT ANSWER >>
+  3. [KM] ប្រាប់ការចូលដល់ទីប្រជុំជន ខេត្ដកំពង់ចាម
+     [EN] Showing the entry of Kompong Cham built-up
+
+==============================================================
+
+--- [ CODE: CAT2-013 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ត្រូវប្រយ័ត្នឈប់ទោះជាយានចូលដល់ផ្លូវខ្វែងក៏ដោយ
+     [EN] Caution and stop even though the vehicles is moving into the intersection
+  2. [KM] ត្រូវបង្កើនល្បឿន
+     [EN] Speed up
+  3. [KM] អនុញ្ញាតឱ្យបន្ដដំណើរទៅមុខ បើសិនជាយានចូលដល់ផ្លូវខ្វែងហើយ
+     [EN] Allow to move ahead if the vehicle has already moved into the intersection.
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-014 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] តម្រូវឱ្យយានជំនិះគ្រប់ប្រភេទបត់ឆ្វេងនៅខាងមុខផ្លាកសញ្ញា
+     [EN] Compulsory all vehicles turn left in front of the sign.
+     << CORRECT ANSWER >>
+  2. [KM] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបត់ស្ដាំនៅត្រង់ផ្លូវខ្វែងខាងមុខ
+     [EN] Compulsory all vehicles turn right at the intersection.
+  3. [KM] ហាមបត់ឆ្វេង ព្រោះខាងមុខមានឧបសគ្គ
+     [EN] No left turn because there is an obsticle ahead.
+
+==============================================================
+
+--- [ CODE: CAT2-015 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ចប់ទីប្រជុំជនខេត្ដកំពង់ចាម
+     [EN] End Kompong Cham built-up area
+  2. [KM] ចប់ព្រំប្រទល់ខេត្ដកំពង់ចាម
+     [EN] End Konpong Cham Province
+     << CORRECT ANSWER >>
+  3. [KM] ចូលព្រំប្រទល់ខេត្ដកំពង់ចាម
+     [EN] The entry of Kompong Cham boundary
+
+==============================================================
+
+--- [ CODE: CAT2-016 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវសំរាប់តែរទេះសេះធ្វើចរាចរណ៍
+     [EN] Compulsory horse carts
+  2. [KM] ហាមចូលចំពោះរទេះសេះ
+     [EN] No entry for horse cart
+  3. [KM] ហាមចូលចំពោះរទេះដែលអូសទាញដោយសត្វ
+     [EN] No entry for animal drawn vehicles
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-017 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] បញ្ជាឱ្យឈប់
+     [EN] Mandatory stop
+  2. [KM] បញ្ជាឱ្យបន្ថយល្បឿន
+     [EN] Mandatory slow down
+  3. [KM] បញ្ជាឱ្យអែបស្ដាំ
+     [EN] Mandatory drive along closed to the right side.
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-018 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមបត់ឆ្វេង
+     [EN] No left turn
+  2. [KM] អនុញ្ញាតឱ្យបត់ឆ្វេង
+     [EN] Left turn permitted
+     << CORRECT ANSWER >>
+  3. [KM] អនុញ្ញាតឱ្យបត់ឆ្វេង និងទៅមុខត្រង់ដោយប្រុងប្រយ័ត្ន
+     [EN] Left turn permitted and go straight ahead with care.
+
+==============================================================
+
+--- [ CODE: CAT2-019 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ចប់ផ្លូវសំខាន់មានសិទ្ឋិ
+     [EN] End of main road with priority
+     << CORRECT ANSWER >>
+  2. [KM] ប្រយ័ត្នគ្រោះថ្នាក់ខាងមុខមានផ្លូវតូចឆ្លងកាត់
+     [EN] Beware of accident having a crossing road ahead
+  3. [KM] ចាប់ផ្ដើមផ្លូវសំខាន់មានសិទ្ឋិ
+     [EN] The start of main road with priority
+
+==============================================================
+
+--- [ CODE: CAT2-020 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] អនុញ្ញាតឲ្យចូលចំពោះប្រភេទដឹកទំនិញធុនធំមានសណ្ដោងរ៉ឺម៉ក
+     [EN] Be allowed to enter for large-sized trucks towing a trailer.
+  2. [KM] ហាមចូលចំពោះប្រភេទដឹកទំនិញធុនធំមានសណ្ដោងរ៉ឺម៉ក
+     [EN] No entry for large-sized truck towing a trailer.
+     << CORRECT ANSWER >>
+  3. [KM] រោងជាងជួសជុលប្រភេទដឹកទំនិញធុនធំមានសណ្ដោងរ៉ឺម៉ក
+     [EN] Large-sized truck garage with drawn trailer.
+
+==============================================================
+
+--- [ CODE: CAT2-021 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] បញ្ជាឱ្យឈប់
+     [EN] Mandatory stop
+  2. [KM] បញ្ជាឱ្យបន្ថយល្បឿន និងប្រុងប្រយ័ត្ន
+     [EN] Mandatory slow down and beware of
+  3. [KM] បញ្ជាឱ្យបន្ដដំណើរទៅមុខចំពោះអ្នកបើកបរតាមទិសមើលឃើញនគរបាលចរាចរណ៍ពីចំហៀងខ្លួន
+     [EN] Mandatory move on ahead for drivers driving and seeing the traffic police from the side
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-022 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវសម្រាប់តែទោចក្រយានធ្វើចរាចរណ៍
+     [EN] Compulsory bicycles
+  2. [KM] ហាមចូលចំពោះទោចក្រយាន
+     [EN] No entry for bicycles
+     << CORRECT ANSWER >>
+  3. [KM] ហាមឈប់ ឬចតចំពោះទោចក្រយាន
+     [EN] No standing and parking for bicylces
+
+==============================================================
+
+--- [ CODE: CAT2-023 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ចប់ព្រំប្រទល់ក្រុងភ្នំពេញ
+     [EN] End of Phnom Penh Boundary
+  2. [KM] ចូលព្រំប្រទល់ក្រុងភ្នំពេញ
+     [EN] The entry of Phnom Penh
+  3. [KM] ចប់ទីប្រជុំជនក្រុងភ្នំពេញ
+     [EN] End Phnom Penh built-up area
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-024 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមថ្មើរជើងឈរ
+     [EN] No pedestrians standing
+  2. [KM] តម្រូវឱ្យថ្មើរជើងឈរ
+     [EN] Compulsory pedestrians stand
+  3. [KM] ហាមថ្មើរជើងឆ្លងកាត់
+     [EN] No pedestrians crossing
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-025 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] បញ្ជាឱ្យឈប់ចំពោះអ្នកបើកបរតាមទិសដែលមើលឃើញនគរបាលចរាចរណ៍ចំពីមុខ ឬពីក្រោយ
+     [EN] Mandatory stop for drivers driving on the direction and seening traffic police side or from the back
+     << CORRECT ANSWER >>
+  2. [KM] បញ្ជាឱ្យបត់ឆ្វេង
+     [EN] Mandatory turn left
+  3. [KM] បញ្ជាឱ្យប្រុងប្រយ័ត្ន និងបន្ថយល្បឿន
+     [EN] Mandatory caution and slow down
+
+==============================================================
+
+--- [ CODE: CAT2-026 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានបង្គោលភ្លើង
+     [EN] Beware of the light post ahead.
+  2. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវបំបែកទៅខាងស្ដាំ
+     [EN] Beware of a road junction on the right ahead.
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវបំបែកកែងទៅឆ្វេង និងកែងទៅស្ដាំ
+     [EN] Beware of staggered junction on the left and staggered junction on the right.
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-027 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមយានជំនិះគ្រប់ប្រភេទបត់ស្ដាំ
+     [EN] No right turn for all vehicles.
+  2. [KM] ប្រយ័ត្នផ្លូវកោងបត់ឆ្វេង
+     [EN] Beware of bend road to the left.
+  3. [KM] ហាមយានជំនិះគ្រប់ប្រភេទបត់ឆ្វេង
+     [EN] No left turn for all vehicles.
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-028 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] កន្លែងអង្គុយរង់ចាំឡានក្រុង
+     [EN] Waing for bus area.
+  2. [KM] កន្លែងសំរាកកំសាន្ដ
+     [EN] Rest area
+     << CORRECT ANSWER >>
+  3. [KM] កន្លែងដាំដើមឈើ
+     [EN] Plantation area
+
+==============================================================
+
+--- [ CODE: CAT2-029 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចតចំពោះយានជំនិះនៅថ្ងៃសេស
+     [EN] No parking on odd days
+     << CORRECT ANSWER >>
+  2. [KM] ហាមឈប់ ចំពោះយានជំនិះគ្រប់ប្រភេទនៅថ្ងៃសេស
+     [EN] No stopping for all vehicles on odd days
+  3. [KM] ហាមចូលចំពោះយានជំនិះនៅថ្ងៃសេស
+     [EN] No entry on odd days
+
+==============================================================
+
+--- [ CODE: CAT2-030 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] យានយន្តធុនធំបើកបរពីក្រោយគ្នាទុកចន្លោះសុវត្ថិភាព យ៉ាងច្រើនត្រឹម ១០០ម៉ែត្រ
+     [EN] Large-sized vehicles driven one after another shall keep distance limit at least 100m.
+  2. [KM] ហាមយានយន្តធុនធំដូចគ្នាបើកបរទុកចន្លោះសុវត្ថិភាព តិចជាង ១០០ម៉ែត្រ
+     [EN] No less than 100m of distance limt for the same large-sized vehicles.
+     << CORRECT ANSWER >>
+  3. [KM] ហាមចតយានយន្តធុនធំដូចគ្នា ក្នុងចម្ងាយ ១០០ម៉ែត្រ
+     [EN] No parking for the same large-sized vehicles at a distance of 100m.
+
+==============================================================
+
+--- [ CODE: CAT2-031 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវសំរាប់តែថ្មើរជើងធ្វើចរាចរណ៍
+     [EN] Compulsary foot path
+     << CORRECT ANSWER >>
+  2. [KM] ប្រយ័ត្នអាចមានក្មេងដឹកដៃមនុស្សខ្វាក់ដើរឆ្លងកាត់ផ្លូវ
+     [EN] Beware of probably having an invisible person led by a child crossing
+  3. [KM] កន្លែងលេងកំសាន្ដដោយថ្មើរជើង
+     [EN] Pedestrian playground
+
+==============================================================
+
+--- [ CODE: CAT2-032 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវមានទិសចរាចរណ៍ពីរផ្ទុយគ្នា
+     [EN] Two-way traffic zone opposite.
+  2. [KM] មានសិទ្ឋិអាទិភាពលើយានមកពីទិសផ្ទុយ
+     [EN] Priority over all traffic from the opposite direction
+  3. [KM] ផ្ដល់សិទ្ឋិអាទិភាពឲ្យយានមកពីទិសផ្ទុយ
+     [EN] Give way to all traffic from the opposite direction
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-033 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវកោងបត់ឆ្វេង
+     [EN] Beware of left bend ahead
+  2. [KM] ប្រយ័ត្នខាងមុខមានរង្វង់មូល
+     [EN] Beware of roundabout ahead
+     << CORRECT ANSWER >>
+  3. [KM] ហាមបើកបរយានជុំវិញរង្វង់មូល
+     [EN] No driving around the roundabout
+
+==============================================================
+
+--- [ CODE: CAT2-034 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្ន ខាងមុខមានកន្លែងជីកយករ៉ែ
+     [EN] Beware of mine digging ahead
+  2. [KM] ប្រយ័ត្ន ខាងមុខមានកន្លែងផលិតអំបិល
+     [EN] Beware of salt produced area ahead
+  3. [KM] ប្រយ័ត្ន ខាងមុខមានការដ្ឋានចាប់ផ្ដើមពីផ្លាកនេះទៅ
+     [EN] Beware of road work ahead from this sign
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-035 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវបិទ ចំពោះយានជំនិះគ្រប់ប្រភេទ
+     [EN] Road closed for all vehicles
+     << CORRECT ANSWER >>
+  2. [KM] ផ្លូវបិទ ចំពោះអ្នកប្រីប្រាស់ផ្លូវគ្រប់ប្រភេទ
+     [EN] Road closed for all road users
+  3. [KM] ផ្លូវបិទចំពោះយានយន្តដឹកផលិតផលងាយឆេះ ឬផ្ទុះ
+     [EN] Road closed for vehicles loading inflammable or explosable goods
+
+==============================================================
+
+--- [ CODE: CAT2-036 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្ន ខាងមុខអាចមានថ្មើរជើងឆ្លងកាត់
+     [EN] Beware of pedestrians crossing ahead, probably.
+  2. [KM] ប្រយ័ត្ន ខាងមុខអាចមានកុមារឆ្លងកាត់
+     [EN] Be aware of children crossing ahead, probably.
+     << CORRECT ANSWER >>
+  3. [KM] ប្រយ័ត្ន ខាងមុខអាចមានកុមារដឹកដៃមនុស្សពិការភ្នែកឆ្លងកាត់
+     [EN] Be aware of invisible person led by a child ahead
+
+==============================================================
+
+--- [ CODE: CAT2-037 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមទោចក្រយានធ្វើចរាចរណ៍
+     [EN] No cycling
+  2. [KM] ប្រយ័ត្នខាងមុខអាចមានទោចក្រយានឆ្លងកាត់
+     [EN] Beware of bicycles crossing ahead.
+     << CORRECT ANSWER >>
+  3. [KM] ផ្លូវសំរាប់ទោចក្រយានធ្វើចរាចរណ៍
+     [EN] Compulsory bicycles
+
+==============================================================
+
+--- [ CODE: CAT2-038 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] សណ្ឋាគារ ឬផ្ទះសំណាក់
+     [EN] Hotel or guesthouse
+     << CORRECT ANSWER >>
+  2. [KM] កន្លែងមានលក់គ្រែ
+     [EN] Bed selling area.
+  3. [KM] មន្ទីរពេទ្យ
+     [EN] Hospital
+
+==============================================================
+
+--- [ CODE: CAT2-039 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] គំនូសសញ្ញាតាមបណ្ដោយទ្រូងផ្លូវសំរាប់បែងចែកគន្លងផ្លូវចរាចរណ៍អ្នកបើកបរអាចឆ្លងកាត់ ប្ដូរគន្លងផ្លូវបាន
+     [EN] Marking signs along the road to separate traffic lanes, drivers can drive across.
+  2. [KM] គំនូសសញ្ញាតាមបណ្ដោយទ្រូងផ្លូវសំរាប់បែងចែកទ្រូងផ្លូវជាពីរទិសចរាចរណ៍ផ្ទុយគ្នាហាមបើកបរឆ្លងកាត់
+     [EN] Marking signs along the road to seperate the road into two-way opposite traffic directions, no driving across.
+  3. [KM] គំនូសសញ្ញាតាមបណ្ដោយទ្រូងផ្លូវសំរាប់បែងចែកគន្លងផ្លូវចរាចរណ៍នៅជិតផ្លូវប្រសព្វហាមឆ្លងកាត់ប្ដូរគន្លងផ្លូវ
+     [EN] Marking signs along the road to separate traffic lanes closed to the intersections, do not change the lane.
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-040 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចំពោះការជែងរវាងប្រភេទដឹកទំនិញធុនធំដូចគ្នា
+     [EN] No overtaking for the same large-sized trucks
+  2. [KM] ចប់ការហាមជែងរវាងប្រភេទដឹកទំនិញធុនធំដូចគ្នា
+     [EN] End of no overtaking of same large-sized trucks
+     << CORRECT ANSWER >>
+  3. [KM] ហាមចត ឬឈប់ទន្ទឹមគ្នាជាពីរជួរ
+     [EN] No parking or stopping alongside in two lines
+
+==============================================================
+
+--- [ CODE: CAT2-041 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវកោងបត់ស្ដាំ រួចកោងបត់ឆ្វេង
+     [EN] Beware of right bend and then left bend ahead
+  2. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវកែងបត់ស្ដាំ រួចកែងបត់ឆ្វេង
+     [EN] Beware of staggered junction, right turn first ahead
+     << CORRECT ANSWER >>
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវកែងបត់ស្ដាំ រួចទៅមុខត្រង់
+     [EN] Beware of sharp right turn and straight ahead
+
+==============================================================
+
+--- [ CODE: CAT2-042 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] កន្លែងសង្គ្រោះបន្ទាន់
+     [EN] Emergancy area.
+     << CORRECT ANSWER >>
+  2. [KM] កន្លែងកាកបាទក្រហម
+     [EN] Red cross area
+  3. [KM] ផ្លូវបំបែកជាបួន
+     [EN] Four-direction intersection
+
+==============================================================
+
+--- [ CODE: CAT2-043 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នមានផ្លូវបំបែកទៅខាងស្ដាំនៅខាងមុខ
+     [EN] Beware of road junction on the right ahead
+     << CORRECT ANSWER >>
+  2. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវបំបែកទៅឆ្វេង
+     [EN] Beware of road junction on the left ahead.
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវជំរាលទៅស្ដាំ
+     [EN] Beware of steep road to the right ahead.
+
+==============================================================
+
+--- [ CODE: CAT2-044 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទឈប់ ឬចតនៅខាងឆ្វេងដៃ
+     [EN] Require all vehicles stop or park on the left
+  2. [KM] ហាមយានជំនិះគ្រប់ប្រភេទបត់ឆ្វេងនៅត្រង់ផ្លូវប្រសព្វខាងមុខ
+     [EN] No left turn for all vehicles at the intersection ahead
+  3. [KM] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបត់ឆ្វេងត្រង់ផ្លូវប្រសព្វខាងមុខ
+     [EN] Require all vehicles turn right at the intersection ahead
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-045 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានព្រលានយន្ដហោះ
+     [EN] Beware of airport ahead
+  2. [KM] ប្រយ័ត្នខាងមុខអាចមានខ្យល់បក់ខ្លាំង
+     [EN] Beware of cross wind ahead
+     << CORRECT ANSWER >>
+  3. [KM] ប្រយ័ត្នខាងមុខជាកន្លែងបង្ហោះខ្លែង
+     [EN] Beware of kite flying area ahead
+
+==============================================================
+
+--- [ CODE: CAT2-046 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវសំរាប់តែដឹកអ្នកដំណើរធ្វើចរាចរណ៍
+     [EN] Compulsary road for large-sized buses
+  2. [KM] ហាមដឹកអ្នកដំណើរធ្វើចរាចរណ៍
+     [EN] No large-sized buses
+  3. [KM] ចប់ផ្លូវសំរាប់ដឹកអ្នកដំណើរធ្វើចរាចរណ៍
+     [EN] End of compulsary large-sized buses
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-047 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] កន្លែងសំរាប់បរិចាកអំណោយមនុស្សធម៌
+     [EN] Donation area
+  2. [KM] កន្លែងមានធុងដាក់សំរាម
+     [EN] Litter bin
+     << CORRECT ANSWER >>
+  3. [KM] កន្លែងសំរាប់ផ្ញើរសម្ភារៈដោយបង់ថ្លៃឈ្នួល
+     [EN] Pay looked after things area
+
+==============================================================
+
+--- [ CODE: CAT2-048 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមឈប់ ចំពោះទោចក្រយានយន្ដ
+     [EN] No bicycle parking
+  2. [KM] ហាមចត ចំពោះទោចក្រយានយន្ដ
+     [EN] No motorcycle parking
+  3. [KM] ហាមចូលចំពោះទោចក្រយានយន្ដ
+     [EN] No entry for motorcycles
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-049 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវទាល់
+     [EN] Beware of no through road ahead
+  2. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវរួមតូច
+     [EN] Beware of carriage way narrows ahead
+     << CORRECT ANSWER >>
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវតូចរីកធំ
+     [EN] Beware of carriage way broaden ahead
+
+==============================================================
+
+--- [ CODE: CAT2-050 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] កន្លែងរំកិលទូកចុះទឹក
+     [EN] Boat ramp area
+     << CORRECT ANSWER >>
+  2. [KM] កន្លែងជួសជុលទូក-កាណូត
+     [EN] Boat repair area
+  3. [KM] កំពង់ដទូក-កាណូត
+     [EN] Ferries
+
+==============================================================
+
+--- [ CODE: CAT2-051 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចូលយានយន្ដដឹកទំនិញលើសពី៦០តោន
+     [EN] No entry for trucks loaded more than 60T
+  2. [KM] កំណត់ល្បឿនអតិបរមា៦០គីឡូម៉ែត្រក្នុង១ម៉ោង
+     [EN] Maximum speed limit of 60km/h
+     << CORRECT ANSWER >>
+  3. [KM] ចប់កំណត់ល្បឿនអតិបរមា៦០គីឡូម៉ែត្រក្នុង១ម៉ោង
+     [EN] End of maximum speed limit of 60km/h
+
+==============================================================
+
+--- [ CODE: CAT2-052 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវសំរាប់តែថ្មើរជើង និងទោចក្រយានធ្វើចរាចរណ៍
+     [EN] Compulsary foot path and bicycle track
+     << CORRECT ANSWER >>
+  2. [KM] ហាមថ្មើរជើង និងទោចក្រយានធ្វើចរាចរណ៍
+     [EN] No pedestrians and bicycles
+  3. [KM] ចប់ផ្លូវសំរាប់ថ្មើរជើង និងទោចក្រយានធ្វើចរាចរណ៍
+     [EN] End of compulsary foot path and bicycle track
+
+==============================================================
+
+--- [ CODE: CAT2-053 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវឡើងភ្នំ
+     [EN] Beware of steep ascent
+  2. [KM] ហាមបត់ស្ដាំ
+     [EN] No right turn
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវកោងទៅស្ដាំ
+     [EN] Beware of right bend ahead
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-054 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ក្លឹបកីឡាលើកទម្ងន់
+     [EN] Weight lift gym
+  2. [KM] ផ្លូវសំរាប់យានជំនិះមានទម្ងន់ផ្ទុកលើភ្លៅលើសពី២តោន
+     [EN] Vehicles having overal weight on axle exceeding the specified weight of 2T
+  3. [KM] ហាមចូលចំពោះយានជំនិះដែលមានទម្ងន់ផ្ទុកលើភ្លៅនីមួយៗលើសពី២តោន
+     [EN] No vehicles having overal weight on axle exceeding the specified weight of 2T
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-055 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានកន្លែងក្មេងអង្គុយលេងកម្សាន្ត
+     [EN] Beware of sitting ground of kids ahead
+  2. [KM] ប្រយ័ត្នខាងមុខអាចមានមនុស្សពិការឆ្លងកាត់
+     [EN] Beware of disabled people crossing ahead
+     << CORRECT ANSWER >>
+  3. [KM] ប្រយ័ត្នខាងមុខមានរោងចក្រកាត់ដេរសំលៀកបំពាក់
+     [EN] Beware of garment factory ahead
+
+==============================================================
+
+--- [ CODE: CAT2-056 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ចំណតឡានក្រុង
+     [EN] Bus station
+  2. [KM] ចំណតបង់ប្រាក់
+     [EN] Pay bus station
+  3. [KM] កន្លែងចតយានជំនិះ
+     [EN] Parking area
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-057 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានមន្ទីរពេទ្យ
+     [EN] Beware of hospital ahead
+  2. [KM] ប្រយ័ត្នខាងមុខមានកាកបាទក្រហម
+     [EN] Beware of red cross ahead
+  3. [KM] ប្រយ័ត្នផ្លូវខ្វែងខាងមុខ
+     [EN] Beware of intersection ahead
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-058 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមបើកទន្ទឹមគ្នា
+     [EN] No abreast travelling permitted.
+  2. [KM] ហាមជែងយានយន្ដគ្រប់ប្រភេទ លើកលែងតែទោចក្រយានយន្ដ
+     [EN] No overtaking for all vehicles except motorcycles
+     << CORRECT ANSWER >>
+  3. [KM] មានសិទ្ធិអាទិភាពលើយានមកពីទិសផ្ទុយ
+     [EN] Priority over all traffic from the opposite direction
+
+==============================================================
+
+--- [ CODE: CAT2-059 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] គំនូសសញ្ញាទោលតាមបណ្តោយទ្រូងផ្លូវបែងចែកទិសចរាចរណ៍ពីផ្ទុយគ្នាអាចបើកបរឆ្លងកាត់ឬជែងបាន
+     [EN] A single solid line dividing the road into two opposite traffic directions. Drivers can drive across or overtake.
+  2. [KM] គំនូសសញ្ញាទោលជាប់តាមបណ្ដោយទ្រូងផ្លូវបែងចែក ទិសចរាចរណ៍ ជាពីរផ្ទុយគ្នា ហាមបើកបរឆ្លងកាត់ឬជែង
+     [EN] No driving across or overtaking on the solid line, dividing the road into two opposite traffic directions.
+     << CORRECT ANSWER >>
+  3. [KM] គំនូសសញ្ញាទោលជាប់តាមបណ្ដោយទ្រូងផ្លូវបែងចែក គន្លងផ្លូវជាពីរ
+     [EN] A single solid line along the center of the road dividing the road into two lanes.
+
+==============================================================
+
+--- [ CODE: CAT2-060 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នផ្លូវកោងទៅស្ដាំ
+     [EN] Beware of right bend.
+  2. [KM] ហាមបត់ស្ដាំ
+     [EN] No right turn
+     << CORRECT ANSWER >>
+  3. [KM] ហាមបត់ឆ្វេង
+     [EN] No left turn
+
+==============================================================
+
+--- [ CODE: CAT2-061 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] សណ្ឋាគារ
+     [EN] Hotel
+  2. [KM] មន្ទីរពេទ្យ
+     [EN] Hospital
+     << CORRECT ANSWER >>
+  3. [KM] ផ្លូវពីរកាត់ភ្ជាប់គ្នា
+     [EN] Two roads connected
+
+==============================================================
+
+--- [ CODE: CAT2-062 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចូលចំពោះយានជំនិះទម្ងន់សរុបលើសពី៨តោន
+     [EN] No entry for vehicles loaded more than 8T
+     << CORRECT ANSWER >>
+  2. [KM] កំណត់ទំងន់សង្កត់លើភ្លៅនីមួយៗត្រឹម ៨ តោន
+     [EN] weight limit on each axle within 8T
+  3. [KM] កំណត់ទំងន់ទទេត្រឹម ៨ តោន
+     [EN] Empty vehicle weight limit within 8T
+
+==============================================================
+
+--- [ CODE: CAT2-063 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចតពីថ្ងៃទី១៦ដល់ថ្ងៃទី៣១
+     [EN] No parking from 16th to 31st
+     << CORRECT ANSWER >>
+  2. [KM] ហាមឈប់ពីថ្ងៃទី១៦ដល់ថ្ងៃទី៣១
+     [EN] No stopping from 16th to 31st
+  3. [KM] ហាមចូលពីថ្ងៃទី១៦ដល់ថ្ងៃទី៣១
+     [EN] No entry from 16th to 31st
+
+==============================================================
+
+--- [ CODE: CAT2-064 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមឈប់ចំពោះយានជំនិះគ្រប់ប្រភេទ
+     [EN] No stopping for all vehicles
+  2. [KM] ហាមចតចំពោះយានជំនិះគ្រប់ប្រភេទ
+     [EN] No parking for all vehicles
+     << CORRECT ANSWER >>
+  3. [KM] ហាមចតចំពោះធុនទេសចរណ៍
+     [EN] No parking for tourist vehicles
+
+==============================================================
+
+--- [ CODE: CAT2-065 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមសត្វពាហនៈ ឆ្លងកាត់
+     [EN] No animal crossing
+  2. [KM] មានកសិដ្ឋានចិញ្ចឹមគោ
+     [EN] Cattle xing
+  3. [KM] ប្រយ័ត្នខាងមុខអាចមានសត្វពាហនៈឆ្លងកាត់
+     [EN] Beware of animal crossing ahead
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-066 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវសំខាន់មានសិទ្ធិ
+     [EN] Priority main road
+  2. [KM] ផ្ដល់សិទ្ធិអាទិភាពឲ្យយានមកពីទិសផ្ទុយ
+     [EN] Give way to all traffic from the opposite direction
+  3. [KM] មានសិទ្ធិអាទិភាពលើយានមកពីទិសផ្ទុយ
+     [EN] Priority over all traffic from the opposite direction
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-067 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នចំណតឡានក្រុង
+     [EN] Beware of bus stop
+  2. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវរថភ្លើងឆ្លងកាត់ដោយគ្មានរបាំងការពារ
+     [EN] Beware of railway crossing without barriers ahead
+     << CORRECT ANSWER >>
+  3. [KM] ប្រយ័ត្នផ្លូវមានត្រាក់ទ័រឆ្លងកាត់
+     [EN] Beware of tractor crossing
+
+==============================================================
+
+--- [ CODE: CAT2-068 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបើកបរងាកឬវាងទៅឆ្វេង
+     [EN] Require all vehicles detour to the left
+     << CORRECT ANSWER >>
+  2. [KM] ត្រូវឲ្យយានជំនិះបើកបរងាកឬវាងទៅស្ដាំ
+     [EN] Require all vehicles detour to the right
+  3. [KM] ហាមបើកបរងាក ឬវាងទៅឆ្វេង
+     [EN] No detouring to the left
+
+==============================================================
+
+--- [ CODE: CAT2-069 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចតយានជំនិះ
+     [EN] No parking
+  2. [KM] ហាមចូលគ្រប់ប្រភេទ
+     [EN] No entry for all cars.
+  3. [KM] ហាមចូលចំពោះយានជំនិះគ្រប់ប្រភេទ
+     [EN] No entry for all vehicles
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-070 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] តម្រូវទៅមុខត្រង់
+     [EN] Go straight ahea
+  2. [KM] ផ្លូវឯកទិស
+     [EN] One way traffic
+     << CORRECT ANSWER >>
+  3. [KM] ប្រយ័ត្នគ្រោះថ្នាក់ផ្សេងៗ
+     [EN] Beware of dangers
+
+==============================================================
+
+--- [ CODE: CAT2-071 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខជាចុងផ្លូវជាប់មាត់ទឹក
+     [EN] Beware of road end of quayside.
+     << CORRECT ANSWER >>
+  2. [KM] កន្លែងលាង
+     [EN] Car wash
+  3. [KM] ហាមចតនៅមាត់ទឹក
+     [EN] No car parking on the quayside.
+
+==============================================================
+
+--- [ CODE: CAT2-072 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នផ្លូវមានភ្នំនៅខាងមុខ
+     [EN] Beware of a mountain ahead.
+  2. [KM] ប្រយ័ត្នមានផ្លូវរលាក់ខាងមុខ
+     [EN] Beware of rough road ahead
+  3. [KM] ប្រយ័ត្នផ្លូវទួលខាងមុខ
+     [EN] Beware of road hump ahead.
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-073 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមរទេះគោធ្វើចរាចរណ៍
+     [EN] No animal drawn vehicle
+  2. [KM] ប្រយ័ត្នមានរទេះគោឆ្លងកាត់នៅខាងមុខ
+     [EN] Beware of cow cart crossing ahead
+  3. [KM] ផ្លូវសំរាប់តែរទេះអូសទាញដោយសត្វធ្វើចរាចរណ៍
+     [EN] Compulsory animal drawn vehicles.
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-074 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ចប់ផ្លូវសំខាន់មានសិទ្ឋិ
+     [EN] End of main road.
+     << CORRECT ANSWER >>
+  2. [KM] ប្រយ័ត្នគ្រោះថ្នាក់ខាងមុខមានផ្លូវតូចឆ្លងកាត់
+     [EN] Beware of accident ahead, having crossing road
+  3. [KM] ចាប់ផ្ដើមផ្លូវសំខាន់មានសិទ្ឋិ
+     [EN] The start of main road.
+
+==============================================================
+
+--- [ CODE: CAT2-075 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចូលយានជំនិះបណ្ដោយគិតទាំងបន្ទុកលើសពី៣,៥០ម៉ែត្រ
+     [EN] No entry for vehicles having over all length exceeding 3.5m including loading
+  2. [KM] អនុញ្ញាតឲ្យចូលយានជំនិះមានកំពស់គិតទាំងបន្ទុកលើសពី៣,៥០ម៉ែត្រ
+     [EN] Allow to enter for vehicles having over all weight preceeding 3.50m including loading
+  3. [KM] ហាមចូលយានជំនិះដែលមានកំពស់គិតទាំងបន្ទុកលើសពី៣,៥០ម៉ែត្រ
+     [EN] No entry for vehicles having over all height exceeding 3.5m including loading
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-076 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] គំនូសសញ្ញាភ្លោះតាមបណ្ដោយទ្រូងផ្លូវបែងចែកទិសចរាចរណ៍ពីរផ្ទុយគ្នាអាចបើកបរឆ្លងកាត់ឬជែងបាន
+     [EN] Double lines driving the road into two opposite traffic directions, drivers can drive across or overtake.
+  2. [KM] គំនូសសញ្ញាភ្លោះជាប់តាមបណ្ដោយទ្រូងផ្លូវបែងចែកទិសចរាចរណ៍ជាពីរផ្ទុយគ្នាហាមបើកបរឆ្លងកាត់ឬជែង
+     [EN] Double solid lines driving the road into two opposite traffic directions, no driving across or overtaking.
+     << CORRECT ANSWER >>
+  3. [KM] គំនូសសញ្ញាភ្លោះជាប់តាមបណ្ដោយទ្រូងផ្លូវបែងចែកទិសចរាចរណ៍ជាពីរផ្ទុយគ្នាអាចបើកបរលើបាន
+     [EN] Double solid lines driving the road into two opposite traffic directions, drivers can drive on them.
+
+==============================================================
+
+--- [ CODE: CAT2-077 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមយានជំនិះគ្រប់ប្រភេទបត់ទៅខាងឆ្វេង
+     [EN] No left turn for all vehicles.
+  2. [KM] ហាមយានជំនិះគ្រប់ប្រភេទបត់ត្រឡប់ក្រោយ
+     [EN] No back turn for all vehicles.
+     << CORRECT ANSWER >>
+  3. [KM] ហាមយានជំនិះគ្រប់ប្រភេទបត់ស្ដាំ
+     [EN] No right turn for all vehicles.
+
+==============================================================
+
+--- [ CODE: CAT2-078 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រុងប្រយ័ត្នខាងមុខអាចមានសត្វព្រៃឆ្លងកាត់ញឹកញាប់
+     [EN] Beware of often wild animals crossing
+     << CORRECT ANSWER >>
+  2. [KM] កន្លែងសួនសត្វព្រៃ
+     [EN] Wild animal zoo
+  3. [KM] កន្លែងលក់សត្វព្រៃ
+     [EN] Wild animals sold area
+
+==============================================================
+
+--- [ CODE: CAT2-079 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវសំរាប់អ្នកថ្មើរជើង និងទោចក្រយានធ្វើចរាចរណ៍
+     [EN] Compulsory pedestrinas path and bicycles track
+  2. [KM] ចប់ផ្លូវសំរាប់អ្នកថ្មើរជើង និងទោចក្រយានធ្វើចរាចរណ៍
+     [EN] End of compulsory pedestrians path and bicycles track.
+     << CORRECT ANSWER >>
+  3. [KM] ហាមថ្មើរជើង និងទោចក្រយានធ្វើចរាចរណ៍
+     [EN] No traffic of pedestrians and bicycles
+
+==============================================================
+
+--- [ CODE: CAT2-080 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមអ្នកបើកបរបត់ទៅឆ្វេង
+     [EN] No left turn
+  2. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវឡើងទូលខ្ពស់
+     [EN] Beware of up hill ahead
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវកោងទៅឆ្វេង
+     [EN] Beware of left bend ahead
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-081 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] កន្លែងបោះជំរុំជនភៀសខ្លួន
+     [EN] Refugee camping area
+  2. [KM] កន្លែងបោះតង់កំសាន្ដ
+     [EN] Rest camping area
+     << CORRECT ANSWER >>
+  3. [KM] បោះជំរុំកងកម្លាំងប្រដាប់អាវុធ
+     [EN] Force camping area.
+
+==============================================================
+
+--- [ CODE: CAT2-082 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមយានយន្ដគ្រប់ប្រភេទបើកបរលើសល្បឿន៦០គីឡូម៉ែត្រក្នុងមួយម៉ោង
+     [EN] No more than 60km/h for all vehicles
+  2. [KM] ចប់ការហាមយានគ្រប់ប្រភេទផ្ទុកទម្ងន់សរុបអតិបរមា៦០តោនធ្វើចរាចរណ៍
+     [EN] End of no vehicles having total maximum weight limit of 60T
+  3. [KM] ចប់ការកំណត់ល្បឿន៦០គីឡូម៉ែត្រក្នុងមួយម៉ោង
+     [EN] End of speed limit of 60km/h
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-083 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ចំណតឡានក្រុង
+     [EN] Bus stop
+  2. [KM] ចំណតបង់ប្រាក់
+     [EN] pay parking area
+     << CORRECT ANSWER >>
+  3. [KM] ហាមចតយានជំនិះ
+     [EN] No parking
+
+==============================================================
+
+--- [ CODE: CAT2-084 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវរួមតូចនៅខាងឆ្វេង
+     [EN] Beware of carriage way narrows on the left ahead
+     << CORRECT ANSWER >>
+  2. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវទាល់
+     [EN] Beware of no through road ahead
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវរីកធំខាងឆ្វេង
+     [EN] Beware of carriage way broadens on left ahead
+
+==============================================================
+
+--- [ CODE: CAT2-085 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមជែងយានយន្ដគ្រប់ប្រភេទ លើកលែងតែទោចក្រយានយន្ដ
+     [EN] No overtaking for all vehicles except motorcycles
+  2. [KM] ចប់ការហាមជែងចំពោះយានយន្ដគ្រប់ប្រភេទ
+     [EN] End of no overtaking for all vehicles
+     << CORRECT ANSWER >>
+  3. [KM] ចប់ការហាមបើកបរទន្ទឹមគ្នា
+     [EN] End of abreast driving.
+
+==============================================================
+
+--- [ CODE: CAT2-086 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវឡើងចុះភ្នំ
+     [EN] Beware of up and down the hill ahead
+  2. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវទឹករលក
+     [EN] Beware of waving road ahead
+     << CORRECT ANSWER >>
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវបុកចំជ្រលងភ្នំ
+     [EN] Beware of the road right straight to a valley ahead.
+
+==============================================================
+
+--- [ CODE: CAT2-087 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] គំនូសសញ្ញាបែងចែកទ្រូងផ្លូវពីរទិសផ្ទុយគ្នា ហាមអ្នកបើកបរឆ្លងកាត់ ឬជាន់ ឬជែងទាំងពីរខាង
+     [EN] Markings dividing road into two opposite traffic directions, no driving across, over, or overtaking for both sides
+  2. [KM] គំនូសសញ្ញាបែងចែកទ្រូងផ្លូវពីរទិសផ្ទុយគ្នា អ្នកបើកបរខាងគំនូសជាប់ហាមឆ្លងកាត់ ហើយខាងគំនូសដាច់ៗ អាចឆ្លងកាត់បាន
+     [EN] Markings dividing road into two opposite traffic directions, no crossing for drivers on the solid line side; but on the broking line side.
+     << CORRECT ANSWER >>
+  3. [KM] គំនូសសញ្ញាបែងចែកទ្រូងផ្លូវពីរទិសផ្ទុយគ្នា អ្នកបើកបរអាចឆ្លងកាត់​ ជាន់ ឬជែងបានទាំងពីរខាង
+     [EN] Markings dividing road into two opposite traffic directions, drivers on both sides can drive across, over, or overtake.
+
+==============================================================
+
+--- [ CODE: CAT2-088 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] កន្លែងសំរាប់កំសាន្ដដោយថ្មើរជើង
+     [EN] Recreation by foot arera
+  2. [KM] កន្លែងសំរាប់ថ្មើរជើងឆ្លងកាត់
+     [EN] Pedestrians crossing area
+     << CORRECT ANSWER >>
+  3. [KM] កន្លែងសំរាប់ហាត់ប្រាណ
+     [EN] Exercise area
+
+==============================================================
+
+--- [ CODE: CAT2-089 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ទីស្នាក់ការគយត្រួតពិនិត្យ និងបង់ពន្ធទំនិញ
+     [EN] Customs and tax inspection office
+     << CORRECT ANSWER >>
+  2. [KM] ហាមចូលយានយន្ដ
+     [EN] No cars entry
+  3. [KM] ហាមចតយានយន្ដ
+     [EN] No parking
+
+==============================================================
+
+--- [ CODE: CAT2-090 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខអាចរអិល ពិសេសនៅពេលភ្លៀង
+     [EN] Beware of slippery ahead, especially wet day.
+     << CORRECT ANSWER >>
+  2. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវបត់ទៅឆ្វេង រួចបត់ទៅស្ដាំ
+     [EN] Beware of left turn then right turn ahead.
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវទឹកលិច
+     [EN] Beware of flooded road ahead
+
+==============================================================
+
+--- [ CODE: CAT2-091 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] កន្លែងជួសជុលកន្ទុយរ៉ឺម៉កសណ្ដោង
+     [EN] Trailers repaired area
+  2. [KM] កន្លែងបន្ទោរបង់
+     [EN] Toilets
+  3. [KM] កន្លែងចតរ៉ឺម៉កកំសាន្ដ
+     [EN] Tourist trailers parking area.
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-092 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវភ្លោះ
+     [EN] Beware of twin roads ahead
+  2. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវរីកធំខាងស្ដាំ
+     [EN] Beware of carriage way broadens on the right ahead
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវរួមតូចនៅខាងស្ដាំ
+     [EN] Beware of carriage way narrows on the right ahead
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-093 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] តម្រូវឱ្យយានជំនិះគ្រប់ប្រភេទបើកបរក្នុងល្បឿនយ៉ាងតិច៣០គីឡូម៉ែត្រក្នុងមួយម៉ោង
+     [EN] Require all drivers of all vehicles drive at the speed of 30km/h, at least.
+     << CORRECT ANSWER >>
+  2. [KM] តម្រូវយានជំនិះគ្រប់ប្រភេទផ្ទុកទម្ងន់សរុបអតិបរមា៣០តោនធ្វើចរាចរណ៍
+     [EN] Require all vehicles loaded a total maximum weight limit of 30T
+  3. [KM] ចប់ការហាមយានយន្ដគ្រប់ប្រភេទបើកបរក្នុងល្បឿន៣០គីឡូម៉ែត្រក្នុងមួយម៉ោង
+     [EN] End of speed limit of 30km/h
+
+==============================================================
+
+--- [ CODE: CAT2-094 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] យានយន្តធុនតូចដូចគ្នាត្រូវទុកចន្លោះសុវត្ថិភាពយ៉ាងច្រើនត្រឹម៧០ម៉ែត្រ
+     [EN] Maximum distance limit for the same vehicles of 70m left.
+  2. [KM] ហាមយានយន្តធុនតូចដូចគ្នាបើកបរទុកចន្លោះសុវត្ថិភាពតិចជាង៧០ម៉ែត្រ
+     [EN] No less than 70m left of distance limit for the same small-sized vehicles.
+     << CORRECT ANSWER >>
+  3. [KM] ហាមយានយន្តធុនតូចដូចគ្នាបើកលើសល្បឿន៧០គីឡូម៉ែត្រក្នុងមួយម៉ោង
+     [EN] No the same small-sized vehicles driven more than 70km/h
+
+==============================================================
+
+--- [ CODE: CAT2-095 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមប្រភេទធុនធំជែងធុនធំដូចគ្នា
+     [EN] No overtaking of large-sized vehicles over another large-sized vehicles
+  2. [KM] ហាមប្រភេទដឹកទំនិញធុនធំជែងយានយន្ដផ្សេងៗទៀតលើកលែងតែទោចក្រយានយន្ដ
+     [EN] No overtaking of large-sized trucks over other vehicles except motorcycles.
+     << CORRECT ANSWER >>
+  3. [KM] ហាមបើកបរទន្ទឹមគ្នា
+     [EN] No abreast driving permited.
+
+==============================================================
+
+--- [ CODE: CAT2-096 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នមានផ្លូវទឹករលកនៅខាងមុខ
+     [EN] Beware of dump road ahead
+  2. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវឡើងចុះភ្នំ
+     [EN] Beware of down hill ahead
+  3. [KM] ប្រយ័ត្នមានផ្លូវកោងទៅស្ដាំ ហើយផ្លូវកោងទៅឆ្វេងនៅខាងមុខ
+     [EN] Beware of right bend then left bend ahead.
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-097 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចូលចំពោះយានជំនិះដែលមាន ទទឹងសរុបគិតទាំងបន្ទុកលើសពី ២,២ម៉ែត្រ
+     [EN] No entry for vehicles having over all width exceeding 2.2m including loading
+     << CORRECT ANSWER >>
+  2. [KM] ហាមចូលចំពោះយានជំនិះដែលមាន បណ្ដោយសរុបគិតទាំងបន្ទុកលើសពី ២,២ម៉ែត្រ
+     [EN] No entry for vehicles having over all length exceeding 2.2m including loading
+  3. [KM] ហាមចូលចំពោះយានជំនិះដែលមាន កំពស់សរុបគិតទាំងបន្ទុកលើសពី ២,២ម៉ែត្រ
+     [EN] No entry for vehicles having over all height exceeding 2.2m including loading
+
+==============================================================
+
+--- [ CODE: CAT2-098 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាងលក់ចាននិងពែងតែ
+     [EN] plates and cups shop.
+  2. [KM] សិប្បកម្មផលិតប៉ាន់និងពែងតែ
+     [EN] Handcraft producing teapots and cups.
+  3. [KM] មានភេសជ្ជៈដ្ឋាន
+     [EN] Cafeteria
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-099 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] គំនូសសញ្ញាទោលដាច់ៗតាមបណ្ដោយទ្រូងផ្លូវបែងចែកទិសចរាចរណ៍ជាពីរផ្ទុយគ្នាអាចបើកបរឆ្លងកាត់ឬជែងបាន
+     [EN] Single broken line along the center of the road dividing the road into two opposite traffic directions, can be crossed or overtaken
+     << CORRECT ANSWER >>
+  2. [KM] គំនូសសញ្ញាទោលដាច់ៗតាមបណ្ដោយទ្រូងផ្លូវបែងចែកទិសចរាចរណ៍ជាពីរផ្ទុយគ្នាហាមបើកបរឆ្លងកាត់ឬជែងពីលើ
+     [EN] Single broken line along the center of the road dividing the road into two opposite traffic directions, cannot be crossed overtaken
+  3. [KM] គំនូសសញ្ញាទោលដាច់ៗតាមបណ្ដោយទ្រូងផ្លូវបែងចែកគន្លងផ្លូវជាពីរ
+     [EN] Single broken line along the center of the road dividing the road into two lanes.
+
+==============================================================
+
+--- [ CODE: CAT2-100 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចត ឬឈប់ចំពោះទោចក្រយាន-ទោចក្រយានយន្ដ និងត្រីចក្រយាន
+     [EN] No parking or standing for bicycles, motorcycles, and tricycles
+  2. [KM] ផ្លូវសំរាប់ទោចក្រយាន-ទោចក្រយានយន្ដ និងត្រីចក្រយានធ្វើចរាចរណ៍
+     [EN] Road for bicyckes, motorcycles, and tricycles
+  3. [KM] ហាមចូលចំពោះទោចក្រយាន-ទោចក្រយានយន្ដ និងត្រីចក្រយាន
+     [EN] No entry for bicycles, motorcycles, and tricycles
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-101 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចតយានជំនិះគ្រប់ប្រភេទនៅថ្ងៃគត់គូរ
+     [EN] No parking on even days for all vehicles.
+     << CORRECT ANSWER >>
+  2. [KM] ហាមឈប់ថ្ងៃគត់គូរ
+     [EN] No stopping on even days
+  3. [KM] ហាមចត
+     [EN] No parking
+
+==============================================================
+
+--- [ CODE: CAT2-102 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] រោងចក្រផលិតទឹកសុទ្ធ
+     [EN] Drinking water factory
+  2. [KM] កន្លែងមានលក់ឧបករណ៍ផលិតទឹក
+     [EN] Selling water- produced materials area
+  3. [KM] កន្លែងមានទឹកបរិភោគ
+     [EN] Drinking water area
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-103 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវកែងហាមបត់ឆ្វេង
+     [EN] Beware of sharp road junction ahead, no left turn
+  2. [KM] ប្រយ័ត្នខាងមុខចប់ផ្លូវកែងបត់ទៅឆ្វេង
+     [EN] Beware of end of sharp road junction on left turn
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវកែងទៅឆ្វេង
+     [EN] Beware of a road sharp junction on the left.
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-104 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវសំរាប់តែដឹកអ្នកដំណើរធ្វើចរាចរណ៍
+     [EN] Compulsory buses and passenger cars
+     << CORRECT ANSWER >>
+  2. [KM] កន្លែងចំណតឡានក្រុង
+     [EN] Bus stop area
+  3. [KM] ចប់ផ្លូវសំរាប់ដឹកអ្នកដំណើរធ្វើចរាចរណ៍
+     [EN] End of compulsory buses and passenger cars.
+
+==============================================================
+
+--- [ CODE: CAT2-105 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវទឹករលក
+     [EN] Bewarer of dump road ahead
+  2. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវកោងបត់បែនច្រើនសារ
+     [EN] Beware of winding road ahead
+     << CORRECT ANSWER >>
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវរអិល
+     [EN] Beware of slippery road ahead
+
+==============================================================
+
+--- [ CODE: CAT2-106 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមយានជំនិះគ្រប់ប្រភេទបត់ស្ដាំនៅត្រង់ផ្លូវប្រសព្វខាងមុខ
+     [EN] No right turn of all vehicles at the intersection ahead
+  2. [KM] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទឈប់ ឬចតនៅខាងស្ដាំដៃនៅត្រង់ផ្លូវប្រសព្វខាងមុខ
+     [EN] Require all vehicles park or stand on the right hand at the intersection ahead
+  3. [KM] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបត់ស្ដាំត្រង់ផ្លូវប្រសព្វខាងមុខ
+     [EN] Require all vehicles turn right at the intersection ahead
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-107 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានដុំថ្មក្រាលលើទ្រូងផ្លូវខ្ទាត
+     [EN] Beware of loose stones ahead
+     << CORRECT ANSWER >>
+  2. [KM] ប្រយ័ត្នខាងមុខលើទ្រូងផ្លូវមានទឹកសាច
+     [EN] Beware of water splashing ahead
+  3. [KM] ប្រយ័ត្នខាងមុខលើទ្រូងផ្លូវមានរអិល
+     [EN] Beware of slippery road ahead
+
+==============================================================
+
+--- [ CODE: CAT2-108 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ឃ្លាំងលក់
+     [EN] Car warehouse
+  2. [KM] កន្លែងមានកំពង់ចម្លងដោយសាឡាង
+     [EN] Ferry area.
+     << CORRECT ANSWER >>
+  3. [KM] កន្លែងមាននាវាដឹកទំនិញឆ្លងកាត់
+     [EN] Cargo ship crossing
+
+==============================================================
+
+--- [ CODE: CAT2-109 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមធុនធំចត ឬឈប់ជាពីរជួរ
+     [EN] No large-sized vehicles standing or parking in two lines
+  2. [KM] មានសិទ្ធិអាទិភាពលើយានមកពីទិសផ្ទុយ
+     [EN] Priority over all traffic from the opposite direction
+  3. [KM] ហាមជែងចំពោះប្រភេទដឹកទំនិញធុនធំដូចគ្នា
+     [EN] No overtaking for the same large-sized tracks.
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-110 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] គំនូសសញ្ញាតាមបណ្ដោយទ្រូងផ្លូវ សំរាប់បែងចែកគន្លងផ្លូវចរាចរណ៍ អ្នកបើកបរអាចឆ្លងកាត់ប្ដូរគន្លងផ្លូវបាន
+     [EN] Single line along the road dividing into lanes, drivers can cross or change the lane.
+     << CORRECT ANSWER >>
+  2. [KM] គំនូសសញ្ញាតាមបណ្ដោយទ្រូងផ្លូវ សំរាប់បែងចែកទ្រូងផ្លូវជាពីរទិសចរាចរណ៍ផ្ទុយគ្នា អាចឆ្លងកាត់បាន
+     [EN] Single line along the road dividing the road into two opposite directions, drivers can drive across.
+  3. [KM] គំនូសសញ្ញាតាមបណ្ដោយទ្រូងផ្លូវ សំរាប់បែងចែកគន្លងផ្លូវចរាចរណ៍ នៅជិតផ្លូវប្រសព្វ
+     [EN] Single line along the road for dividing lanes nearby the intersection
+
+==============================================================
+
+--- [ CODE: CAT2-111 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] គ្រោះថ្នាក់ផ្សេងៗ
+     [EN] Dangers
+     << CORRECT ANSWER >>
+  2. [KM] ប្រយ័ត្ន ផ្លូវធំរួមតូចនិងមានរង្វង់មូលពីខាងមុខ
+     [EN] Beware of carriageway narrows and roundabout ahead
+  3. [KM] ប្រយ័ត្នគ្រោះថ្នាក់មានថ្មធ្លាក់ពីលើ
+     [EN] Beware of danger of falling rocks
+
+==============================================================
+
+--- [ CODE: CAT2-112 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវសំរាប់តែថ្មើរជើងធ្វើចរាចរណ៍
+     [EN] compulsory track for pedestrians
+  2. [KM] ហាមថ្មើរជើងធ្វើចរាចរណ៍
+     [EN] No pedestrians
+  3. [KM] ចប់ផ្លូវសំរាប់ថ្មើរជើងធ្វើចរាចរណ៍
+     [EN] End of pedestrians
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-113 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចូលចំពោះធុនតូច លើកលែងតែទោចក្រយានយន្ដ
+     [EN] No entry for small-sized vehicles except motorcycles
+  2. [KM] ហាមចូលចំពោះយានយន្ដគ្រប់ប្រភេទលើកលែងតែទោចក្រយានយន្ដ
+     [EN] No entry for all vehicles except motorcycles
+     << CORRECT ANSWER >>
+  3. [KM] ហាមឈប់ ឬចតធុនតូច
+     [EN] No standing or parking for small-sized vehicles
+
+==============================================================
+
+--- [ CODE: CAT2-114 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] អនុញ្ញាតឲ្យជិះទោចក្រយានទន្ទឹមគ្នា
+     [EN] Abreast traveling permited for bicycles
+     << CORRECT ANSWER >>
+  2. [KM] អនុញ្ញាតឲ្យជិះទោចក្រយានយន្ដទន្ទឹមគ្នា
+     [EN] Abreast traveling permited for motorcycles
+  3. [KM] កន្លែងប្រណាំងទោចក្រយានយន្ដ
+     [EN] Motorcycle racing area
+
+==============================================================
+
+--- [ CODE: CAT2-115 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវកោងបត់ឆ្វេង រួចកោងបត់ស្ដាំ
+     [EN] Beware of left bend then right bend
+  2. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវកែងបត់ឆ្វេង រួចកែងបត់ស្ដាំ
+     [EN] Beware of road sharp junction on the left then on the right.
+     << CORRECT ANSWER >>
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវកែងបត់ស្ដាំ រួចទៅមុខត្រង់
+     [EN] Beware of road sharp junction on the right then go straight ahead
+
+==============================================================
+
+--- [ CODE: CAT2-116 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ចប់ផ្លូវទោចក្រយានធ្វើចរាចរណ៍
+     [EN] End of bicycles traffic
+  2. [KM] ផ្លូវសំរាប់តែទោចក្រយានធ្វើចរាចរណ៍
+     [EN] Compulsory bicycles
+     << CORRECT ANSWER >>
+  3. [KM] ហាមទោចក្រយានធ្វើចរាចរណ៍៍
+     [EN] No bicycles traffic
+
+==============================================================
+
+--- [ CODE: CAT2-117 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នមានផ្លូវបំបែកទៅខាងស្ដាំនៅខាងមុខ
+     [EN] Beware of road junction on the right ahead
+  2. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវបំបែកទៅខាងឆ្វេង
+     [EN] Beware of road junction on the left
+     << CORRECT ANSWER >>
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវជំរាលទៅឆ្វេង
+     [EN] Beware of road steep down on the left
+
+==============================================================
+
+--- [ CODE: CAT2-118 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទធ្វើចរាចរណ៍ទៅមុខត្រង់ ឬបត់ស្ដាំ
+     [EN] Require all vehicles keep going ahead or turn right
+     << CORRECT ANSWER >>
+  2. [KM] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទឈប់ ឬចតនៅខាងមុខ ឬនៅខាងស្ដាំ
+     [EN] Require vehicles stop or park at the front or turn right
+  3. [KM] ហាម យានជំនិះគ្រប់ប្រភេទធ្វើចរាចរណ៍ទៅមុខត្រង់ ឬបត់ស្ដាំ
+     [EN] No going straight ahead or turn right for all vehicles
+
+==============================================================
+
+--- [ CODE: CAT2-119 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវធ្វើចរាចរណ៍បានតែយានយន្ដដឹកផលិតផលងាយផ្ទុះ ឬឆេះ
+     [EN] Road only for vehicles loading explosive or inflammable goods.
+  2. [KM] ហាមចត ឬឈប់ចំពោះយានយន្ដដឹកផលិតផលងាយផ្ទុះ ឬឆេះ
+     [EN] No parking or stopping for vehicles loading explosive or inflammable goods
+  3. [KM] ហាមចូលចំពោះយានយន្ដដឹកផលិតផលងាយផ្ទុះ ឬឆេះ
+     [EN] No entry for vehicles loading explosive or inflammable goods
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-120 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចតនៅជិតភ្លើងសញ្ញាចរាចរណ៍
+     [EN] No parking nearby the traffic light
+  2. [KM] ប្រយ័ត្ននៅខាងមុខមានភ្លើងសញ្ញាចរាចរណ៍
+     [EN] Beware of the traffic light ahead
+     << CORRECT ANSWER >>
+  3. [KM] ហាមឈប់នៅជិតភ្លើងសញ្ញាចរាចរណ៍
+     [EN] No standing nearby the traffic light
+
+==============================================================
+
+--- [ CODE: CAT2-121 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] កន្លែងជួសជុលទូរស័ព្ទ
+     [EN] Phone repaired shop
+  2. [KM] កន្លែងមានលក់ទូរស័ព្ទ
+     [EN] Phone shop
+  3. [KM] កន្លែងផ្ដល់សេវាទូរស័ព្ទសាធារណៈ
+     [EN] Public phone service area
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-122 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ចប់ការហាមស៊ីផ្លេចំពោះយានយន្ដគ្រប់ប្រភេទ
+     [EN] End of no horn for all vehicles
+  2. [KM] ហាមបំពងសម្លេងតាមឧបករណ៍ឧឃោសនស័ព្ទ
+     [EN] No voicing through other speakers
+  3. [KM] ហាមស៊ីផ្លេចំពោះយានយន្ដគ្រប់ប្រភេទ
+     [EN] No horn for all vehicles
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-123 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] គំនូសសញ្ញាជាប់ទោលតាមបណ្ដោយជាយផ្លូវសំរាប់កំណត់ជាយផ្លូវឲ្យយានជំនិះធ្វើចរាចរណ៍
+     [EN] A single solid line along roadside for edge line for traffic
+     << CORRECT ANSWER >>
+  2. [KM] គំនូសសញ្ញាតាមបណ្ដោយផ្លូវសំរាប់បែងចែកទ្រូងផ្លូវជាពីរទិសចរាចរណ៍ផ្ទុយគ្នា
+     [EN] A marking along the road dividing the road into two opposite directions
+  3. [KM] គំនូសសញ្ញាកាត់ទទឹងផ្លូវសំរាប់ឲ្យយានជំនិះឈប់នៅត្រឹមមុខគំនូសនេះ
+     [EN] A road cross marking to stop vehicles at the right front of it
+
+==============================================================
+
+--- [ CODE: CAT2-124 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចតចំពោះប្រភេទដឹកទំនិញធុនធំ
+     [EN] No parking for all large-sized trucks.
+  2. [KM] ផ្លូវសំរាប់ប្រភេទដឹកទំនិញធុនធំ
+     [EN] Compulsory large-sized trucks
+  3. [KM] ហាមចូលចំពោះប្រភេទដឹកទំនិញធុនធំ
+     [EN] No entry for all large-sized trucks
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-125 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទធ្វើចរាចរណ៍ទៅមុខត្រង់ ឬបត់ឆ្វេង
+     [EN] Require all vehicles go straight ahead or turn left
+     << CORRECT ANSWER >>
+  2. [KM] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទឈប់ ឬចតនៅខាងមុខ ឬនៅខាងឆ្វេង
+     [EN] Require all vehicles stop or park at the front or on the left
+  3. [KM] ហាម យានជំនិះគ្រប់ប្រភេទធ្វើចរាចរណ៍ទៅមុខត្រង់ ឬបត់ឆ្វេង
+     [EN] No going straight ahead or turn left for all vehicles
+
+==============================================================
+
+--- [ CODE: CAT2-126 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] កន្លែងផ្ដល់ព័ត៌មាន
+     [EN] Information area
+     << CORRECT ANSWER >>
+  2. [KM] កន្លែងមានរោងជាងដំដែក
+     [EN] Forging workshop
+  3. [KM] ផ្លូវមានរង្វង់មូលនៅខាងមុខ
+     [EN] Roundabout ahead
+
+==============================================================
+
+--- [ CODE: CAT2-127 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចតនៅផ្លូវបំបែករាងអ៊ីការិច នៅខាងមុខ
+     [EN] No parking at Y-intersection ahead
+  2. [KM] ហាមឈប់នៅផ្លូវបំបែករាងអ៊ីការិច នៅខាងមុខ
+     [EN] No stopping at Y-intersection ahead
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវបំបែករាងអ៊ីការិច
+     [EN] Beware of Y-intersection ahead
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-128 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវខាងមុខមានទន្លេកាត់
+     [EN] River crossing ahead
+  2. [KM] ខាងមុខជាផ្លូវទាល់
+     [EN] No through road
+     << CORRECT ANSWER >>
+  3. [KM] ផ្លូវខាងមុខត្រង់មានស្ថានីយ៍ពន្លត់អគ្គីភ័យ
+     [EN] Fire station ahead
+
+==============================================================
+
+--- [ CODE: CAT2-129 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នត្រូវតែឈប់សិន ព្រោះមានផ្លាកសញ្ញាឈប់
+     [EN] Beware of and stop first as having stop sign.
+  2. [KM] ប្រយ័ត្នផ្លូវប្រសព្វខាងមុខ មានផ្លាកសញ្ញាឈប់
+     [EN] Beware of intersection ahead with stop sign
+     << CORRECT ANSWER >>
+  3. [KM] ប្រយ័ត្នហាមឈប់នៅផ្លូវប្រសព្វខាងមុខ
+     [EN] Beware of end of no stopping at the intersection ahead
+
+==============================================================
+
+--- [ CODE: CAT2-130 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវសំរាប់តែទោចក្រយានធ្វើចរាចរណ៍
+     [EN] Compulsory bicycles
+  2. [KM] ចប់ផ្លូវទោចក្រយានធ្វើចរាចរណ៍
+     [EN] End of bicycles traffic
+     << CORRECT ANSWER >>
+  3. [KM] ហាមទោចក្រយានធ្វើចរាចរណ៍
+     [EN] No bicycles traffic
+
+==============================================================
+
+--- [ CODE: CAT2-131 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នផ្លូវបត់ស្ដាំខាងមុខ ត្រូវដាច់ដោយទឹកជំនន់
+     [EN] Beware of right turn ahead cut by flood
+  2. [KM] ប្រយ័ត្នផ្លូវបត់ស្ដាំខាងមុខ មានស្ពានឆ្លងកាត់
+     [EN] Beware of right turn ahead with bridge crossing
+  3. [KM] ប្រយ័ត្នផ្លូវបត់ស្ដាំខាងមុខ មានរថភ្លើងឆ្លងកាត់
+     [EN] Beware of right turn ahead with railroad crossing
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-132 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ចប់ការហាមស៊ីផ្លេចំពោះយានជំនិះគ្រប់ប្រភេទ
+     [EN] End of no horn for all vehicles
+     << CORRECT ANSWER >>
+  2. [KM] ហាមបំពងសម្លេងតាមឧបករណ៍ឧឃោសនស័ព្ទ
+     [EN] No voicing through other speakers
+  3. [KM] ហាមស៊ីផ្លេចំពោះយានយន្ដគ្រប់ប្រភេទ
+     [EN] No horn for all vehicles
+
+==============================================================
+
+--- [ CODE: CAT2-133 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] គំនូសសញ្ញាទោលពណ៌ក្រហម ស តាមបណ្ដោយចិញ្ចើមផ្លូវសំរាប់អ្នកថ្មើរជើងធ្វើចរាចរណ៍
+     [EN] Red-white curb markings for pedestrians
+  2. [KM] គំនូសសញ្ញាទោលពណ៌ក្រហម ស តាមបណ្ដោយចិញ្ចើមផ្លូវសំរាប់យានជំនិះចត
+     [EN] Red-white curb markings for vehicles
+  3. [KM] គំនូសសញ្ញាទោលពណ៌ក្រហម ស តាមបណ្ដោយគែមចិញ្ចើមផ្លូវសំរាប់ការហាមឈប់
+     [EN] Red-white curb markings for no standing
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-134 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចូលចំពោះទោចក្រយានយន្ដដែលធ្វើអាជីវកម្ម
+     [EN] No entry for business motorcycles
+  2. [KM] ហាមចូលចំពោះទោចក្រយានយន្ដដែលមានសណ្ដោងរ៉ឺម៉ក ឬរទេះ
+     [EN] No entry for motorcycle drawn vehicles
+     << CORRECT ANSWER >>
+  3. [KM] ផ្លូវសំរាប់ទោចក្រយានយន្ដដែលមានសណ្ដោងរ៉ឺម៉ក ឬរទេះធ្វើចរាចរណ៍
+     [EN] Compulsory motorcycle drawn vehicles
+
+==============================================================
+
+--- [ CODE: CAT2-135 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នផ្លូវបត់ឆ្វេងខាងមុខ ត្រូវដាច់ដោយទឹកជំនន់
+     [EN] Beware of left turn cut by flood ahead
+  2. [KM] ប្រយ័ត្នផ្លូវបត់ឆ្វេងខាងមុខ មានផ្លូវរថភ្លើងឆ្លងកាត់
+     [EN] Beware of left turn having railroad crossing
+     << CORRECT ANSWER >>
+  3. [KM] ប្រយ័ត្នផ្លូវបត់ឆ្វេងខាងមុខ មានស្ពានឆ្លងកាត់
+     [EN] Beware of left turn having bridge crossing
+
+==============================================================
+
+--- [ CODE: CAT2-136 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] អ្នកបើកបរត្រូវតែឈប់ទោះមានឬគ្មានយានជំនិះឆ្លងកាត់ខាងមុខក៏ដោយ
+     [EN] Drivers shall stop even though there are vehicles crossing or not ahead
+     << CORRECT ANSWER >>
+  2. [KM] អ្នកបើកបរត្រូវឈប់ ប្រសិនបើផ្លូវដែលត្រូវឆ្លងកាត់នោះទំនេរពុំបាច់ឈប់ទេ
+     [EN] Drivers shall stop if the crossed road is not available to stop
+  3. [KM] អ្នកបើកបរអាចបន្ដដំណើរបានទោះបីផ្លូវខាងមុខនោះមានយានជំនិះផ្សេងៗទៀតក៏ដោយ
+     [EN] Drivers can keep moving even though there are vehicles ahead
+
+==============================================================
+
+--- [ CODE: CAT2-137 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្ន មានផ្លូវទាល់នៅខាងមុខ
+     [EN] Beware of no through road ahead
+  2. [KM] ហាមចត ឬឈប់យានជំនិះគ្រប់ប្រភេទនៅផ្លូវបំបែករាងអក្សរតេ
+     [EN] No parking or standing for all vehicles at T-intersection
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវបំបែករាងអក្សរតេ
+     [EN] Beware of T-intersection ahead
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-138 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបត់ស្ដាំនៅខាងមុខផ្លាកសញ្ញា
+     [EN] Require all vehicles turn right in front of the sign
+     << CORRECT ANSWER >>
+  2. [KM] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបត់ស្ដាំ
+     [EN] Require all vehicles turn right
+  3. [KM] ហាមបត់ស្ដាំ ព្រោះខាងមុខផ្លូវដាច់
+     [EN] No right turn, cut road ahead
+
+==============================================================
+
+--- [ CODE: CAT2-139 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នផ្លូវប្រសព្វខាងមុខមានផ្លាកសញ្ញាឲ្យយានមកពីទិសផ្ទុយមានសិទ្ធិអាទិភាព
+     [EN] Beware of intersection ahead with a sign giving priority for vehicles from opposite direction
+  2. [KM] ប្រយ័ត្នផ្លូវប្រសព្វខាងមុខ មានផ្លាកសញ្ញាផ្ដល់សិទ្ធិអាទិភាពឲ្យគេ
+     [EN] Beware of intersection ahead having give way sign.
+     << CORRECT ANSWER >>
+  3. [KM] ប្រយ័ត្ននៅផ្លូវប្រសព្វខាងមុខ តម្រូវឱ្យបន្ថយល្បឿន
+     [EN] Beware of intersection ahead require to slow down
+
+==============================================================
+
+--- [ CODE: CAT2-140 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] កន្លែងមានទូរស័ព្ទ
+     [EN] Phone
+  2. [KM] កន្លែងមានបញ្ចូលខ្យល់កង់យានយន្ដ
+     [EN] Ventilation area
+  3. [KM] ស្ថានីយ៍ប្រេងឥន្ធនៈ
+     [EN] Filling station
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-141 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ចំណតដឹកអ្នកដំណើរ
+     [EN] Passenger bus station
+  2. [KM] ផ្លូវសំរាប់តែដឹកអ្នកដំណើរធុនធំ
+     [EN] Compulsory large-sized passenger buses
+  3. [KM] ហាមចូលចំពោះដឹកអ្នកដំណើរធុនធំ
+     [EN] No entry for large-sized passenger buses
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-142 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវបត់ស្ដាំចូលទៅរោងចក្រអគ្គិសនី
+     [EN] Right turn road into electricity factory
+  2. [KM] ផ្លូវបត់ស្ដាំជាផ្លូវទាល់
+     [EN] Right turn road is a no through road
+     << CORRECT ANSWER >>
+  3. [KM] ផ្លូវបត់ស្ដាំមានស្ថានីយ៍ពន្លត់អគ្គីភ័យ
+     [EN] Right turn road having fire station
+
+==============================================================
+
+--- [ CODE: CAT2-143 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវបត់ឆ្វេងចូលទៅរោងចក្រអគ្គិសនី
+     [EN] Left turn road into electricity factory
+  2. [KM] ផ្លូវបត់ឆ្វេងជាផ្លូវទាល់
+     [EN] Left turn road is an ending road
+     << CORRECT ANSWER >>
+  3. [KM] ផ្លូវបត់ឆ្វេងមានស្ថាននីយ៍ពន្លត់អគ្គីភ័យ
+     [EN] Left turn road having fire station
+
+==============================================================
+
+--- [ CODE: CAT2-144 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវទាល់នៅខាងស្ដាំ
+     [EN] Beware of ahead having no through road on the right
+  2. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវបំបែកកែងទៅខាងឆ្វេង
+     [EN] Beware of ahead having sharp road junction on the left
+     << CORRECT ANSWER >>
+  3. [KM] ហាមចត ឬឈប់នៅផ្លូវបំបែកកែងទៅឆ្វេងនៅខាងមុខ
+     [EN] No parking or standing at sharp road junction on the left ahead
+
+==============================================================
+
+--- [ CODE: CAT2-145 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបត់ឆ្វេងនៅខាងមុខផ្លាកសញ្ញា
+     [EN] Require all vehicles turn left in front of the sign
+     << CORRECT ANSWER >>
+  2. [KM] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបត់ស្ដាំ
+     [EN] Require all vehicles turn right
+  3. [KM] ហាមបត់ឆ្វេង ព្រោះមុខមានផ្លូវដាច់
+     [EN] No left turn, cut road ahead
+
+==============================================================
+
+--- [ CODE: CAT2-146 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវបាត់សិទ្ធិនៅត្រង់ផ្លូវប្រសព្វអ្នកបើកបរត្រូវបន្ថយល្បឿន បើផ្លូវទំនេរអាចឆ្លងកាត់បាន
+     [EN] End of priority at the intersection,slow down, cross if available
+     << CORRECT ANSWER >>
+  2. [KM] ផ្លូវមានរាងជាត្រីកោណ
+     [EN] Triangle roads
+  3. [KM] ផ្លូវមានសិទ្ធិអាទិភាពលើយានដែលមកពីទិសផ្ទុយនៅត្រង់ផ្លូវប្រសព្វ
+     [EN] Priority over all traffic from the opposite direction at intersection
+
+==============================================================
+
+--- [ CODE: CAT2-147 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានរបាំងការពារផ្លូវដាច់ដោយគ្រោះធម្មជាតិ
+     [EN] Beware of ahead having barriers preventing a cut road by disaster
+  2. [KM] ប្រយ័ត្នខាងមុខមានរបងការពារកសិដ្ឋានចិញ្ចឹមសត្វ
+     [EN] Beware of ahead having fens preventing ranch
+  3. [KM] ប្រយ័ត្នខាងមុខមានរថភ្លើងឆ្លងកាត់ដោយមានរបាំងការពារ
+     [EN] Beware of ahead having a train crossing with barriers
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-148 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវសំរាប់តែរទេះសេះធ្វើចរាចរណ៍
+     [EN] Compulsory horse carts
+  2. [KM] ហាមចូលចំពោះតែរទេះសេះ
+     [EN] No entry for horse carts
+  3. [KM] ហាមចូលចំពោះរទេះដែលអូសដោយសត្វ
+     [EN] No entry for animal drawn vehicles
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-149 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានទ្រូងផ្លូវបែកជាពីរ
+     [EN] Beware of ahead having road split into two
+     << CORRECT ANSWER >>
+  2. [KM] ប្រយ័ត្នខាងមុខចប់ទ្រូងផ្លូវបែកជាពីរ
+     [EN] Beware of ahead end of road split into two
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវឯកទិសឆ្លងកាត់
+     [EN] Beware of ahead having one way traffic crossing
+
+==============================================================
+
+--- [ CODE: CAT2-150 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] កន្លែងជួសជុលទូរស័ព្ទ
+     [EN] Phone repairing shop
+  2. [KM] ស្ថានីយ៍ប្រេងឥន្ធនៈ និងជួសជុលយានយន្ដ
+     [EN] Filling station and repair
+     << CORRECT ANSWER >>
+  3. [KM] កន្លែងជួសជុលនិងបូមខ្យល់កង់រថយន្តធុនតូចនិងទោចក្រយានយន្ដ
+     [EN] Repair and ventilate cars and motorcycles
+
+==============================================================
+
+--- [ CODE: CAT2-151 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចូលចំពោះយានយន្ដគ្រប់ប្រភេទ
+     [EN] No entry for all motor vehicles
+     << CORRECT ANSWER >>
+  2. [KM] ហាមចូលចំពោះយានជំនិះគ្រប់ប្រភេទ
+     [EN] No entry for all vehicles
+  3. [KM] ហាមចូលចំពោះធុនតូចនិងទោចក្រយានយន្ដ
+     [EN] No entry for cars and motorcycles
+
+==============================================================
+
+--- [ CODE: CAT2-152 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] គំនូសសញ្ញាពណ៍លឿងឆ្នូតបញ្ឆិតទ្រូងផ្លូវសំរាប់តម្រឹមគន្លងផ្លូវអាចបើកបរឆ្លងកាត់ ជាន់ ឬចតពីលើបាន
+     [EN] Acute yellow stripes of the road for aligning the lanes, drivers can drive across, over, or park on
+  2. [KM] គំនូសសញ្ញាពណ៍លឿងឆ្នូតបញ្ឆិតទ្រូងផ្លូវសំរាប់តម្រឹមគន្លងផ្លូវដែលមានចរាចរណ៍តែ មួយទិស
+     [EN] Acute yellow stripes of the road for aligning the lanes having one way traffic
+  3. [KM] គំនូសសញ្ញាពណ៍លឿងឆ្នូតបញ្ឆិតទ្រូងផ្លូវសំរាប់តម្រឹមគន្លងផ្លូវដែលមានចរាចរណ៍ពីរទិស ផ្ទុយគ្នា
+     [EN] Acute yellow stripes of the road for aligning the lanes having two-way opposite traffic
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-153 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ខាងមុខជាផ្លូវទាល់
+     [EN] Ahead is no through road
+  2. [KM] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបត់ស្ដាំ ឬបត់ឆ្វេង
+     [EN] Require all vehicles turn right or left
+     << CORRECT ANSWER >>
+  3. [KM] ហាមចតឬឈប់នៅផ្លូវទាល់ខាងមុខ
+     [EN] No parking or standing no through road ahead
+
+==============================================================
+
+--- [ CODE: CAT2-154 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] គំនូសសញ្ញាពណ៌លឿងរាងមុខព្រួញលើទ្រូងផ្លូវសំរាប់តម្រឹមគន្លងផ្លូវ
+     [EN] The yellow arrow on the road for aligning the lanes
+  2. [KM] គំនូសសញ្ញាពណ៌លឿងរាងមុខព្រួញលើទ្រូងផ្លូវសំរាប់តម្រឹមគន្លងផ្លូវដែលមានចរាចរណ៍តែមួយទិស
+     [EN] The yellow arrow on the road for aligning the lanes having one-way traffic
+     << CORRECT ANSWER >>
+  3. [KM] គំនូសសញ្ញាពណ៌លឿងរាងមុខព្រួញលើទ្រូងផ្លូវសំរាប់តម្រឹមគន្លងផ្លូវដែលមានចរាចរណ៍ពីទិសផ្ទុយគ្នា
+     [EN] The yellow arrow on the road for aligning the lanes having two-way traffic
+
+==============================================================
+
+--- [ CODE: CAT2-155 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវសំរាប់តែទោចក្រយានធ្វើចរាចរណ៍
+     [EN] Compulsory bicycles
+  2. [KM] ហាមចូលចំពោះទោចក្រយាន
+     [EN] No entry for bicycles
+     << CORRECT ANSWER >>
+  3. [KM] ហាមឈប់ ឬចតចំពោះទោចក្រយាន
+     [EN] No standing or parking for bicycles
+
+==============================================================
+
+--- [ CODE: CAT2-156 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ចាប់ផ្ដើមចូលផ្លូវយន្តបថ (ផ្លូវល្បឿនលឿន)
+     [EN] Start of express-way
+     << CORRECT ANSWER >>
+  2. [KM] ផ្លូវមានរបាពីលើ
+     [EN] Over barriers road
+  3. [KM] ផ្លូវភ្លោះមានរបាពីលើ
+     [EN] Over barriers twin road
+
+==============================================================
+
+--- [ CODE: CAT2-157 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវទាល់នៅខាងស្ដាំ
+     [EN] Beware of ahead having no through road on the right
+  2. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវបំបែកកែងទៅខាងស្ដាំ
+     [EN] Beware of road sharp conjunction on the right ahea
+     << CORRECT ANSWER >>
+  3. [KM] ហាមចត ឬឈប់នៅផ្លូវបំបែកកែងទៅស្ដាំនៅខាងមុខ
+     [EN] No parking or standing at road junction on the right ahead 
+
+==============================================================
+
+--- [ CODE: CAT2-158 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] កន្លែងលក់ឧបករណ៍ជួសជុល
+     [EN] Repair store
+  2. [KM] យានដ្ឋានជួសជុល
+     [EN] Garage station
+     << CORRECT ANSWER >>
+  3. [KM] រោងជាងជួសជុលម៉ាស៊ីនភ្លើង
+     [EN] Generator repair station
+
+==============================================================
+
+--- [ CODE: CAT2-159 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមយានយន្ដធ្វើចរាចរណ៍ពីរទិសផ្ទុយគ្នា
+     [EN] No vehicles travelling on two directions oppositely.
+  2. [KM] ចប់ផ្លូវធ្វើចរាចរណ៍ពីរទិសផ្ទុយគ្នា
+     [EN] End of two-way traffic zone opposite.
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវធ្វើចរាចរណ៍ពីរទិស
+     [EN] Beware of two-way traffic zone opposite ahead.
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-160 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវបាត់សិទ្ធិនៅត្រង់ផ្លូវប្រសព្វ
+     [EN] End of road priority at the intersection
+  2. [KM] ផ្លូវបាត់សិទ្ធិនៅត្រង់រង្វង់មូល
+     [EN] End of road priority at the roundabout
+     << CORRECT ANSWER >>
+  3. [KM] ផ្លូវមានសិទ្ធិអាទិភាពលើយាននៅក្នុងរង្វង់មូល
+     [EN] Priory road over all traffic in the roundabout
+
+==============================================================
+
+--- [ CODE: CAT2-161 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវឡើងចំណោត
+     [EN] Beware of steep ascent ahead
+     << CORRECT ANSWER >>
+  2. [KM] ប្រយ័ត្នខាងមុខផ្លូវចុះចំណោត
+     [EN] Beware of steep descent ahead
+  3. [KM] កន្លែងលាង
+     [EN] Car wash area
+
+==============================================================
+
+--- [ CODE: CAT2-162 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវសំរាប់អ្នកអូស ឬរុញរទេះធ្វើចរាចរណ៍
+     [EN] Compulsory hand carts.
+  2. [KM] ហាមចត ឬឈប់រទេះរុញ ឬអូសដោយសត្វ
+     [EN] No parking or standing foranimal drawn or pushed carts.
+  3. [KM] ហាមអូស ឬរុញរទេះចូល
+     [EN] No hand carts in.
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-163 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានទ្រូងផ្លូវបែកជាពីរ
+     [EN] Beware of road split into two ahead
+  2. [KM] ប្រយ័ត្នខាងមុខចប់ទ្រូងផ្លូវបែកជាពីរ
+     [EN] Beware of end of road split into two ahead
+     << CORRECT ANSWER >>
+  3. [KM] ប្រយ័ត្នខាងមុខមានរង្វង់មូលកណ្ដាលផ្លូវ
+     [EN] Beware of roundabout right in the ceter of the road ahead
+
+==============================================================
+
+--- [ CODE: CAT2-164 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] គំនូសសញ្ញាពណ៌លឿងរាងធ្មេញរណាប្រើកំណត់ទីកន្លែងសំរាប់ឡានក្រុងឈប់
+     [EN] yellow tooth-saws-shaped markings using for defining bus stop area
+     << CORRECT ANSWER >>
+  2. [KM] គំនូសសញ្ញាពណ៌លឿងរាងធ្មេញរណាប្រើសំរាប់កំណត់ទីកន្លែងចតលើទ្រូងផ្លូវ
+     [EN] yellow tooth-saws-shaped markings using for defining vehicle park area on the road
+  3. [KM] គំនូសសញ្ញាពណ៌លឿងរាងធ្មេញរណាប្រើសំរាប់កំណត់ទីកន្លែងឈប់លើទ្រូងផ្លូវ
+     [EN] yellow tooth-saws-shaped markings using for defining vehicle stop area on the road
+
+==============================================================
+
+--- [ CODE: CAT2-165 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចតផ្លូវបំបែកកែងទៅស្ដាំនិងបំបែកកែងទៅឆ្វេង
+     [EN] No parking at a road sharp junction ont the right and on the left
+  2. [KM] ហាមឈប់ផ្លូវបំបែកកែងទៅស្ដាំនិងបំបែកកែងទៅឆ្វេង
+     [EN] No stopping at a road sharp junction on the right and on the left
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវបំបែកកែងទៅស្ដាំនិងកែងទៅឆ្វេង
+     [EN] Beware of staggered junction, right turn first
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-166 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវចុះចំណោត
+     [EN] Beware of steep descent ahead
+     << CORRECT ANSWER >>
+  2. [KM] ប្រយ័ត្នខាងមុខផ្លូវឡើងចំណោត
+     [EN] Beware of steep ascent ahead
+  3. [KM] កន្លែងចុះកំពង់ចម្លង
+     [EN] Ferry
+
+==============================================================
+
+--- [ CODE: CAT2-167 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] សិប្បកម្មផលិតស្លាបព្រានិងសម
+     [EN] Spoons and forks handicraft
+  2. [KM] កន្លែងលក់ផលិតផលស្លាបព្រា និងសម
+     [EN] Spoons and forks shop
+  3. [KM] ភោជនីយដ្ឋាន
+     [EN] Restaurant
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-168 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខអាចមានគ្រោះថ្នាក់ដោយចៃដន្យ
+     [EN] Beware of ahead can have occational accident
+  2. [KM] សំរាប់សំគាល់ផ្លូវធំ មានផ្លូវតូចឆ្លងកាត់
+     [EN] To mark a main road having a road crossing
+     << CORRECT ANSWER >>
+  3. [KM] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបន្ដដំណើរទៅមុខត្រង់
+     [EN] Compulsory all vehicles keep moving straight ahead
+
+==============================================================
+
+--- [ CODE: CAT2-169 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចតយានយន្ដជិតព្រលានយន្ដហោះ
+     [EN] No parking near the airport
+  2. [KM] កន្លែងមានព្រលានយន្ដហោះ
+     [EN] Airport
+     << CORRECT ANSWER >>
+  3. [KM] ហាមឈប់យានយន្ដជិតព្រលានយន្ដហោះ
+     [EN] No stopping near the airport
+
+==============================================================
+
+--- [ CODE: CAT2-170 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចូលចំពោះយានយន្ដកសិកម្មគ្រប់ប្រភេទ
+     [EN] No entry for all agricultural vehicles
+     << CORRECT ANSWER >>
+  2. [KM] ហាមចត ឬឈប់ ចំពោះយានយន្ដកសិកម្ម
+     [EN] No parking or standing for agricultrual vehicles
+  3. [KM] កន្លែងជួសជុលយានយន្ដសិកម្ម
+     [EN] Agricultural vehicle repair
+
+==============================================================
+
+--- [ CODE: CAT2-171 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខអាចមានយន្ដហោះ ហោះកាត់ញឹកញាប់យ៉ាងទាបពីលើ
+     [EN] Beware of low flying air craft over very often
+     << CORRECT ANSWER >>
+  2. [KM] ប្រយ័ត្នខាងមុខមានព្រលានយន្ដហោះ
+     [EN] Beware of airport
+  3. [KM] ហាមឈប់ ឬចតនៅជិតព្រលានយន្ដហោះ
+     [EN] No standing or parking nearby the airport
+
+==============================================================
+
+--- [ CODE: CAT2-172 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចតចំពោះយានជំនិះគ្រប់ប្រភេទ
+     [EN] No parking for all vehicles
+  2. [KM] ហាមឈប់ចំពោះយានជំនិះគ្រប់ប្រភេទ
+     [EN] No standing for all vehicles
+     << CORRECT ANSWER >>
+  3. [KM] ហាមចតចំពោះធុនដឹកទំនិញ
+     [EN] No parking for all trucks
+
+==============================================================
+
+--- [ CODE: CAT2-173 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានថ្មខ្ទាត
+     [EN] Beware of loose stones ahead
+  2. [KM] ប្រយ័ត្នខាងមុខមានច្រាំងបាក់ដី
+     [EN] Bewarer of river banks collapsed ahead
+  3. [KM] ប្រយ័ត្នខាងមុខមានថ្មធ្លាក់ ឬមានដុំថ្មលើទ្រូងផ្លូវ
+     [EN] Beware of falling racks or having rocks on the road ahead
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-174 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] កន្លែងមានជួលសំពត់តង់និងកន្ទុយរ៉ឺម៉ក
+     [EN] Tents and trailers for rent area
+  2. [KM] កន្លែងបោះតង់និងចតរ៉ឺម៉កកំសាន្ដ
+     [EN] Camping area and tour tricycle parking
+     << CORRECT ANSWER >>
+  3. [KM] រោងជាងជួសជុលកន្ទុយរ៉ឺម៉ក
+     [EN] Trailer repair
+
+==============================================================
+
+--- [ CODE: CAT2-175 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នផ្លូវកោងបត់បែនច្រើនសារនៅខាងមុខ
+     [EN] Beware of winding road ahead
+  2. [KM] ប្រយ័ត្នមានផ្លូវកោងទៅឆ្វេង ហើយកោងទៅស្ដាំនៅខាងមុខ
+     [EN] Beware of right bend first ahead
+     << CORRECT ANSWER >>
+  3. [KM] ប្រយ័ត្នផ្លូវរអិល
+     [EN] Beware of slippery road ahead
+
+==============================================================
+
+--- [ CODE: CAT2-176 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] គំនូសសញ្ញាបែងចែកទ្រូងផ្លូវពីរទិសចរាចរណ៍ផ្ទុយគ្នា ហាមអ្នកបើកបរឆ្លងកាត់ ឬជាន់ ឬជែង
+     [EN] Markings dividing road into two opposite traffic directions, no driving across, on, or overtaking
+  2. [KM] គំនូសសញ្ញាបែងចែកទ្រូងផ្លូវពីរទិសចរាចរណ៍ផ្ទុយគ្នា អ្នកបើកបរខាងគំនូសដាច់ៗអាចឆ្លងកាត់បានហើយហាមខាងគំនូសជាប់
+     [EN] Markings dividing road into two opposite traffic directions, drivers on the broken line side can cross, but not for the solid line side
+     << CORRECT ANSWER >>
+  3. [KM] គំនូសសញ្ញាបែងចែកទ្រូងផ្លូវពីរទិសចរាចរណ៍ផ្ទុយគ្នា អ្នកបើកបរអាចឆ្លងកាត់ ជាន់ ឬជែងបាន
+     [EN] Markings dividing road into two opposite traffic directions, drivers can cross, drive on, or overtake.
+
+==============================================================
+
+--- [ CODE: CAT2-177 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបើកបរងាកឬវាងទៅស្ដាំ
+     [EN] Require all vehicles turn or detour to the right
+     << CORRECT ANSWER >>
+  2. [KM] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបើកបរងាកឬវាងទៅឆ្វេង
+     [EN] Require all vehicles turn or detour to the left
+  3. [KM] ហាមយានជំនិះគ្រប់ប្រភេទបើកបរងាក ឬវាងទៅស្ដាំ
+     [EN] No turning or detouring to the right for all vehicles
+
+==============================================================
+
+--- [ CODE: CAT2-178 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវកែងបត់ឆ្វេង
+     [EN] Beware of staggered road on the left ahead
+  2. [KM] ប្រយ័ត្នហាមបត់ស្ដាំនៅផ្លូវកែងខាងមុខ
+     [EN] Caution! no right turn at a staggered road ahead
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវកែងបត់ទៅស្ដាំ
+     [EN] Beware of staggered road on the right ahead
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT2-179 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ហាមចូលចំពោះយានជំនិះដែលមានបណ្ដោយសរុបគិតទាំងបន្ទុកលើសពី១០ម៉ែត្រ
+     [EN] No entry for vehicles having over all length exceeding 10m including loading
+     << CORRECT ANSWER >>
+  2. [KM] ហាមចូល​ចំពោះយានយន្តដឹកទំនិញធុនធំដែលមានបណ្ដោយសរុបគិតទាំងបន្ទុកលើសពី១០ម៉ែត្រ
+     [EN] No entry for large-sized trucks having over all length exceeding 10m incliuding loading
+  3. [KM] ហាមចតចំពោះយានយន្តដឹកទំនិញធុនធំដែលមានបណ្ដោយលើសពី១០ម៉ែត្រ
+     [EN] No parking for large-sized trucks having over all length exceeding 10m
+
+==============================================================
+
+--- [ CODE: CAT2-180 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវរលាក់
+     [EN] Dumpy road
+  2. [KM] កន្លែងមានទួលកាត់ទទឹងផ្លូវ
+     [EN] Road hump crossing
+     << CORRECT ANSWER >>
+  3. [KM] ផ្លូវបុកចំភ្នំ
+     [EN] Road straight right to the mountain
+
+==============================================================
+
+--- [ CODE: CAT2-181 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ចប់ការហាមប្រភេទដឹកទំនិញធុនតូច ជែងធុនទេសចរណ៍
+     [EN] End of no overtaking of small-sized trucks over tour buses
+  2. [KM] ចប់ការហាមប្រភេទដឹកទំនិញធុនធំ ជែងយានយន្ដផ្សេងៗទៀត
+     [EN] End of no overtaking of large-sized trucks over other vehicles
+     << CORRECT ANSWER >>
+  3. [KM] ចប់ការហាមប្រភេទដឹកទំនិញជែងធុនតូច
+     [EN] End of no overtaking of trucks over small-sized vehicles
+
+==============================================================
+
+--- [ CODE: CAT2-182 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ចប់ការកំណត់ល្បឿនអប្បបរមា៣០គីឡូម៉ែត្រក្នុងមួយម៉ោង
+     [EN] End of maximum speed limit of 30km/h
+     << CORRECT ANSWER >>
+  2. [KM] ហាមបើកបរល្បឿនលើសពី៣០គីឡូម៉ែត្រក្នុងមួយម៉ោង
+     [EN] No driving at the speed of more than 30km/h
+  3. [KM] តម្រូវឲ្យយានជំនិះគ្រប់ប្រភេទបើកបរក្នុងល្បឿនតិចជាង៣០គីឡូម៉ែត្រក្នុងមួយម៉ោង
+     [EN] Require all vehicles driving at the speed of less than 30km/h
+
+==============================================================
+
+--- [ CODE: CAT2-183 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] សំគាល់ផ្លូវបាត់សិទ្ធិអាទិភាព
+     [EN] Noticed as the end of priority road
+  2. [KM] សំគាល់ផ្លូវសំខាន់មានសិទ្ធិអាទិភាព
+     [EN] Noticed as the main road.
+     << CORRECT ANSWER >>
+  3. [KM] សំគាល់ផ្លូវមានគ្រោះថ្នាក់
+     [EN] Noticed as dangerous road.
+
+==============================================================
+
+--- [ CODE: CAT2-184 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ចប់ផ្លូវមានក្រាលដុំថ្ម
+     [EN] End of the road with bumpy stones
+  2. [KM] ប្រយ័ត្នមានដុំថ្មក្រាលលើទ្រូងផ្លូវចាប់ពីផ្លាកសញ្ញានេះទៅ
+     [EN] Beware of the stones from this sign.
+     << CORRECT ANSWER >>
+  3. [KM] ហាមចូលយានយន្ដលើទ្រូងផ្លូវចាប់ពីផ្លាកសញ្ញានេះទៅ
+     [EN] No entry onto the road from this sign
+
+==============================================================
+
+--- [ CODE: CAT2-185 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ប្រយ័ត្នខាងមុខអាចមានថ្មើរជើងឆ្លងកាត់
+     [EN] Beware of pedestrians ahead
+     << CORRECT ANSWER >>
+  2. [KM] ប្រយ័ត្នខាងមុខមានកន្លែងហាត់កីឡាអត្ដពលកម្ម
+     [EN] Beware of a gym ahead
+  3. [KM] ប្រយ័ត្នខាងមុខមានផ្លូវសំរាប់អ្នកពិការភ្នែកធ្វើចរាចរណ៍
+     [EN] Beware of a road for invisible persons ahead
+
+==============================================================
+
+--- [ CODE: CAT2-186 ] ---
+QUESTION (Khmer):   ផ្លាកសញ្ញានេះមានន័យដូចម្តេច?
+QUESTION (English): What does this sign stand for?
+
+OPTIONS:
+  1. [KM] ផ្លូវបិទចំពោះយានយន្ដគ្រប់ប្រភេទ
+     [EN] Road closed for all vehicles
+  2. [KM] ផ្លូវបិទចំពោះអ្នកប្រើប្រាស់ផ្លូវគ្រប់ប្រភេទ
+     [EN] Road closed for all road users
+     << CORRECT ANSWER >>
+  3. [KM] ហាមចូលចំពោះយានជំនិះគ្រប់ប្រភេទ
+     [EN] No entry for all vehicles
+
+==============================================================
+

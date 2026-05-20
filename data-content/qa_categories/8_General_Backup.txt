@@ -1,0 +1,186 @@
+==============================================================
+      CATEGORY 8: GENERAL - BACKUP DATA      
+==============================================================
+This file contains a structured backup of the questions,
+showing the direct relationship between Khmer and English.
+
+--- [ CODE: CAT8-001 ] ---
+QUESTION (Khmer):   តើអ្នកណាខ្លះដែលអាចឆ្លងមេរោគអេដស៍ ?
+QUESTION (English): Who can be infected HIV?
+
+OPTIONS:
+  1. [KM] មន្ដ្រីរាជការ នគរបាល យោធា
+     [EN] Officers, Police, soldiers
+  2. [KM] មនុស្សគ្រប់រូប
+     [EN] Everyone
+     << CORRECT ANSWER >>
+  3. [KM] ស្ដ្រីរកស៊ីផ្លូវភេទ
+     [EN] Protitutes
+
+==============================================================
+
+--- [ CODE: CAT8-002 ] ---
+QUESTION (Khmer):   តើមេរោគអេដស៍ ឆ្លងតាមរបៀបណា ?
+QUESTION (English): How can HIV infect?
+
+OPTIONS:
+  1. [KM] តាមមូសខាំ ឬសត្វល្អិតខាំ ការប្រើប្រាស់បង្គន់ បន្ទប់ទឹករួមគ្នា
+     [EN] By mosquito or insect, using a toilet and bathroom together.
+  2. [KM] តាមការថើបគ្នា ចាប់ដៃគ្នា ហូបបាយរួមគ្នា
+     [EN] By kissing, shaking hands, and having meal together.
+  3. [KM] តាមការរួមភេទ, ប្រើម្ជុលរួមគ្នា, ការបញ្ចូលឈាមដែលមានមេរោគ, ពីម្ដាយទៅកូន
+     [EN] Through sex, shared needles, contaminated blood transfusions, and from mother to child
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT8-003 ] ---
+QUESTION (Khmer):   រហូតមកដល់បច្ចុប្បន្ននេះ តើមានថ្នាំសំរាប់ព្យាបាលមេរោគអេដស៍/ជម្ងឺអេដស៍ អោយជាសះស្បើយដែរ ឬទេ ?
+QUESTION (English): Up to now, is there a medicine that can cure the HIV/AIDS?
+
+OPTIONS:
+  1. [KM] មាន
+     [EN] Yes, there is.
+  2. [KM] មិនមាន
+     [EN] No, there isn’t.
+     << CORRECT ANSWER >>
+  3. [KM] ថ្នាំបុរាណអាចព្យាបាលបាន
+     [EN] Traditional medicine can cure the disease.
+
+==============================================================
+
+--- [ CODE: CAT8-004 ] ---
+QUESTION (Khmer):   តើយើងអាចដឹងថា នរណាម្នាក់មានផ្ទុកមេរោគអេដស៍ ដោយវិធីណា ?
+QUESTION (English): How can you realize that someone have HIV?
+
+OPTIONS:
+  1. [KM] តាមការពិនិត្យមើលប្រដាប់បន្ដពូជ
+     [EN] By examinating of the reproductive organ.
+  2. [KM] តាមការពិនិត្យមើលរូបរាងខាងក្រៅ (ស្គមស្គាំង ដំបៅពេញខ្លួន)
+     [EN] By examinating the outlook (thin and sores cover all the body)
+  3. [KM] តាមការពិនិត្យឈាមរកមេរោគអេដស៍
+     [EN] By testing the blood.
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT8-005 ] ---
+QUESTION (Khmer):   តើវិធានការណាមួយ ដែលអាចបង្ការខ្លួនអ្នកមិនឲ្យឆ្លងមេរោគអេដស៍ និងជំងឺកាមរោគ ?
+QUESTION (English): Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?
+
+OPTIONS:
+  1. [KM] រួមភេទជាមួយអ្នកដែលមើលទៅឃើញថាមានសុខភាពល្អ
+     [EN] Have sex with someone looked healthy.
+  2. [KM] រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេល
+     [EN] Have sex with condom properly and all time
+     << CORRECT ANSWER >>
+  3. [KM] រួមភេទជាមួយដៃគូច្រើន
+     [EN] Have sex with many partners.
+
+==============================================================
+
+--- [ CODE: CAT8-006 ] ---
+QUESTION (Khmer):   តើជម្ងឺណាមួយ ដែលជួយជម្រុញដល់ការចម្លងមេរោគអេដស៍ ?
+QUESTION (English): What disease that can push to infect HIV?
+
+OPTIONS:
+  1. [KM] ជម្ងឺកាមរោគ
+     [EN] Sexually transmitted disease
+     << CORRECT ANSWER >>
+  2. [KM] ជម្ងឺរលាកក្រពះ
+     [EN] Gastrointestinal disease
+  3. [KM] ជម្ងឺទឹកនោមផ្អែម
+     [EN] diabetes
+
+==============================================================
+
+--- [ CODE: CAT8-007 ] ---
+QUESTION (Khmer):   តើអ្នកផ្ទុកមេរោគអេដស៍ ត្រូវបានអនុញ្ញាតឲ្យប្រឡងយក បណ្ណបើកបរដែរឬទេ?
+QUESTION (English): Is a person with HIV allowed to take a test for driver license?
+
+OPTIONS:
+  1. [KM] ត្រូវបានអនុញ្ញាត
+     [EN] Yes
+     << CORRECT ANSWER >>
+  2. [KM] មិនត្រូវបានអនុញ្ញាត
+     [EN] No
+  3. [KM] រង់ចាំជាសះស្បើយសិន
+     [EN] Wait until the disease is recovered.
+
+==============================================================
+
+--- [ CODE: CAT8-008 ] ---
+QUESTION (Khmer):   នៅពេលដឹងថា អ្នកបើកបរ មានផ្ទុកមេរោគអេដស៍ តើអ្នកហ៊ានជិះរថយន្តនោះដែរឬទេ ?
+QUESTION (English): Realizing the driver with HIV, dare you ride on that car?
+
+OPTIONS:
+  1. [KM] ហ៊ានជិះ
+     [EN] Dare
+     << CORRECT ANSWER >>
+  2. [KM] មិនហ៊ានជិះ
+     [EN] Not dare
+  3. [KM] ផ្ដល់ព័ត៌មានដល់អ្នកដទៃ
+     [EN] Share the information to others.
+
+==============================================================
+
+--- [ CODE: CAT8-009 ] ---
+QUESTION (Khmer):   នៅពេលដឹងថា ខ្លួនអ្នកមានផ្ទុកមេរោគអេដស៍ តើអ្នកត្រូវប្រកាន់យកការប្រព្រឹត្ដណាមួយ ?
+QUESTION (English): Realizing that you have HIV, what practice shall you choose? 
+
+OPTIONS:
+  1. [KM] រួមភេទដោយមិនបាច់ប្រើស្រោមអនាម័យ
+     [EN] Have sex without using condom.
+  2. [KM] រួមភេទដោយប្រើស្រោមអនាម័យត្រឹមត្រូវ និងគ្រប់ពេល
+     [EN] Have sex using condom properly and all time.
+     << CORRECT ANSWER >>
+  3. [KM] មិនខ្វល់ពីការថែទាំសុខភាព
+     [EN] Do not care about looking after the health.
+
+==============================================================
+
+--- [ CODE: CAT8-010 ] ---
+QUESTION (Khmer):   តើការធ្វើតេស្ដឈាមរកមេរោគអេដស៍ ឈរលើគោលការណ៍អ្វី ?
+QUESTION (English): On what principle is blood testing for HIV conducted?
+
+OPTIONS:
+  1. [KM] ដោយស្ម័គ្រចិត្ដ រក្សាការសំងាត់ មានការផ្ដល់ប្រឹក្សា
+     [EN] Voluntary, confidential, and counseling
+     << CORRECT ANSWER >>
+  2. [KM] តាមតំរូវការពីកន្លែងធ្វើការ
+     [EN] The requirement from the workplace.
+  3. [KM] តាមការបង្ខិតបង្ខំ
+     [EN] Force to do so.
+
+==============================================================
+
+--- [ CODE: CAT8-011 ] ---
+QUESTION (Khmer):   បើអ្នកដឹងថា នរណាម្នាក់មានផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការ តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+QUESTION (English): Realizing someone with HIV at your workplace, what shall you do?
+
+OPTIONS:
+  1. [KM] មិនផ្ដល់ឱកាសសំរាប់ការអប់រំ និងការតំឡើងឋានៈ
+     [EN] Do not provide opportunity for education and promoted
+  2. [KM] បញ្ឈប់ពីការងារ
+     [EN] Fired
+  3. [KM] រក្សាអោយធ្វើការធម្មតា
+     [EN] Let him or her work as usual.
+     << CORRECT ANSWER >>
+
+==============================================================
+
+--- [ CODE: CAT8-012 ] ---
+QUESTION (Khmer):   តើអ្នកត្រូវធ្វើដូចម្ដេចចំពោះអ្នករងគ្រោះដោយសារមេរោគអេដស៍?
+QUESTION (English): How shall you do toward a victim of HIV?
+
+OPTIONS:
+  1. [KM] កាត់ផ្ដាច់ទំនាក់ទំនង
+     [EN] Cut out relation.
+  2. [KM] ផ្ដល់ការគាំទ្រ និងមិនរើសអើង
+     [EN] Suport and not discrimination
+     << CORRECT ANSWER >>
+  3. [KM] រដ្ឋអ្នកដោះស្រាយ
+     [EN] The state is in charge of this case.
+
+==============================================================
+

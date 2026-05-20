@@ -3,6 +3,14 @@ import { db } from "@/lib/db";
 import { sessions } from "@/db/schema/quizzes";
 import { getSession } from "@/lib/auth";
 import { eq, or } from "drizzle-orm";
+import { z } from "zod";
+
+const createChallengeSchema = z.object({
+  categoryId: z.union([z.string(), z.number()]).transform(v => parseInt(String(v))),
+  challengeType: z.string().optional().nullable(),
+  level: z.enum(["beginner", "intermediate", "advanced"]).optional().nullable(),
+  maxStudents: z.union([z.string(), z.number()]).transform(v => parseInt(String(v))).pipe(z.number().min(1).max(100)).optional().default(40),
+});
 
 /**
  * POST /api/challenge/create
@@ -19,8 +27,10 @@ import { eq, or } from "drizzle-orm";
 function generateRoomCode(): string {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   let code = "";
+  const randomValues = new Uint32Array(6);
+  crypto.getRandomValues(randomValues);
   for (let i = 0; i < 6; i++) {
-    code += chars.charAt(Math.floor(Math.random() * chars.length));
+    code += chars.charAt(randomValues[i] % chars.length);
   }
   return code;
 }
@@ -65,46 +75,17 @@ export async function POST(request: NextRequest) {
 
     const teacherId = session.id;
 
-    // 3. Parse request body
+    // 3. Parse and validate request body
     const body = await request.json();
-    const { categoryId, challengeType, level, maxStudents } = body;
-
-    // 4. Validate required fields
-    if (!categoryId) {
+    const result = createChallengeSchema.safeParse(body);
+    if (!result.success) {
       return NextResponse.json(
-        {
-          error: "Validation Error",
-          message: "categoryId is required",
-        },
+        { error: "Validation Error", details: result.error.format() },
         { status: 400 }
       );
     }
-
-    // 5. Validate level if provided
-    if (level) {
-      const validLevels = ["beginner", "intermediate", "advanced"];
-      if (!validLevels.includes(level)) {
-        return NextResponse.json(
-          {
-            error: "Validation Error",
-            message: `Invalid level. Must be one of: ${validLevels.join(", ")}`,
-          },
-          { status: 400 }
-        );
-      }
-    }
-
-    // 6. Validate maxStudents
-    const maxStudentsValue = maxStudents ? parseInt(maxStudents) : 40;
-    if (maxStudentsValue < 1 || maxStudentsValue > 100) {
-      return NextResponse.json(
-        {
-          error: "Validation Error",
-          message: "maxStudents must be between 1 and 100",
-        },
-        { status: 400 }
-      );
-    }
+    
+    const { categoryId, challengeType, level, maxStudents } = result.data;
 
     // 7. Generate unique room code (try up to 10 times)
     let roomCode = "";
@@ -135,11 +116,11 @@ export async function POST(request: NextRequest) {
       .insert(sessions)
       .values({
         teacherId,
-        categoryId: parseInt(categoryId),
+        categoryId,
         roomCode,
         challengeType: challengeType || null,
         level: level || null,
-        maxStudents: maxStudentsValue,
+        maxStudents,
         status: "waiting",
       })
       .returning();

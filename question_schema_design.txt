@@ -1,0 +1,76 @@
+========================================================================
+DATABASE SCHEMA DESIGN: QUESTIONS & TYPES STRUCTURE
+========================================================================
+
+1. STANDARD GLOBAL STUDY TERMS FOR QUESTION TYPES
+To maintain a globally recognized educational standard for your application, we define the following standard question types:
+
+* MCQ_SINGLE   : Multiple Choice Question (One correct answer)
+* MCQ_MULTIPLE : Multiple Choice Question (Multiple correct answers)
+* TRUE_FALSE   : True / False Evaluation
+* IMAGE_BASED  : Visual / Scenario-based Question (Requires an image)
+* MATCHING     : Matching items from two sets
+* FILL_BLANK   : Fill in the missing word(s)
+
+2. DATABASE TABLES RELATIONSHIP
+This structure ensures: One Category -> Many Topics -> Many Questions -> Linked to Question Types.
+
+--- TABLE: categories ---
+- id (INT, Primary Key)
+- name_en (VARCHAR) - e.g., "Traffic Signs"
+- name_km (VARCHAR)
+- slug (VARCHAR)
+
+--- TABLE: topics ---
+- id (INT, Primary Key)
+- category_id (INT, Foreign Key -> categories.id)
+- code (VARCHAR) - e.g., "PW03-G4-03"
+- name_en (VARCHAR) - e.g., "Pedestrian Crossing Area"
+- name_km (VARCHAR)
+
+--- TABLE: question_types ---
+- id (INT, Primary Key)
+- type_code (VARCHAR) - e.g., "MCQ_SINGLE"
+- name (VARCHAR) - e.g., "Multiple Choice"
+
+--- TABLE: questions ---
+- id (INT, Primary Key)
+- topic_id (INT, Foreign Key -> topics.id)
+- question_type_id (INT, Foreign Key -> question_types.id)
+- question_text_en (TEXT)
+- question_text_km (TEXT)
+- media_url (VARCHAR) - Nullable, for IMAGE_BASED questions
+- explanation_en (TEXT) - Shown after answering
+- explanation_km (TEXT)
+
+--- TABLE: question_options (Answers) ---
+- id (INT, Primary Key)
+- question_id (INT, Foreign Key -> questions.id)
+- option_text_en (TEXT)
+- option_text_km (TEXT)
+- is_correct (BOOLEAN) - True if this is the correct answer
+
+========================================================================
+3. EXAMPLE DATA HIERARCHY
+========================================================================
+
+[Category 1] Road Signs
+ └── [Topic 1] Pedestrian Crossing Area
+      │
+      ├── [Question 1] Type: MCQ_SINGLE
+      │    - Text: What does this sign mean?
+      │    - Options: A) Parking, B) Pedestrian Crossing [Correct], C) No Entry
+      │
+      ├── [Question 2] Type: TRUE_FALSE
+      │    - Text: You must yield to pedestrians when you see this sign.
+      │    - Options: True [Correct], False
+      │
+      └── [Question 3] Type: IMAGE_BASED
+           - Text: Look at the scenario image. Who has the right of way?
+           - Options: A) Car A, B) Pedestrian [Correct]
+
+ └── [Topic 2] No Stopping Sign
+      │
+      ├── [Question 4] Type: MCQ_MULTIPLE
+      │    - Text: Which vehicles are allowed to stop here?
+      │    - Options: A) Ambulances [Correct], B) Police [Correct], C) Taxis

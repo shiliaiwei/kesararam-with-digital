@@ -34,13 +34,17 @@ export const metadata: Metadata = {
     template: "%s | KWD",
   },
   description:
-    "Cambodian driving knowledge and licensing education platform. Master traffic signs, road laws, and driving theory.",
+    "Most students fail not because they're not smart — but because no one made learning easy. KWD is Cambodia's free bilingual education platform that turns complex knowledge into something anyone can understand, remember, and use.",
   keywords: [
-    "driving theory",
+    "education platform",
     "Cambodia",
-    "traffic signs",
-    "road safety",
+    "bilingual learning",
+    "interactive learning",
     "KWD",
+    "knowledge",
+    "students",
+    "free learning",
+    "Khmer education",
   ],
   metadataBase: new URL("https://www.kesararamwithdigital.tech"),
   alternates: {
@@ -50,8 +54,8 @@ export const metadata: Metadata = {
     siteName: "KWD — Kesararam With Digital",
     locale: "en_US",
     type: "website",
-    title: "KWD — Kesararam With Digital",
-    description: "Master Cambodia's road rules and driving theory with our interactive learning platform.",
+    title: "KWD — Learn Anything. Understand Everything.",
+    description: "Most students fail not because they're not smart — but because no one made learning easy. KWD changes that. Free, bilingual, built for Cambodia.",
     images: [{
       url: "/brand/kwd-green_ofhdec.png",
       width: 1200,
@@ -61,8 +65,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "KWD — Kesararam With Digital",
-    description: "Master Cambodia's road rules and driving theory with our interactive learning platform.",
+    title: "KWD — Learn Anything. Understand Everything.",
+    description: "Most students fail not because they're not smart — but because no one made learning easy. KWD changes that. Free, bilingual, built for Cambodia.",
     images: ["/brand/kwd-green_ofhdec.png"],
   },
 };
@@ -84,6 +88,11 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="32x32" href="/brand/kwd-green_ofhdec.png" />
         <link rel="apple-touch-icon" href="/brand/kwd-green_ofhdec.png" />
         <link rel="shortcut icon" href="/brand/kwd-green_ofhdec.png" />
+        {/* Preconnect to Cloudinary — reduces LCP for sign images */}
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        {/* Preconnect to Google Fonts */}
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className={`${inter.variable} ${kantumruy.variable} ${siemreap.variable} font-sans antialiased overflow-x-hidden`}>
         <GoogleAnalytics />

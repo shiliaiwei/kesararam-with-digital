@@ -720,3 +720,56 @@ If a student is on a 3-answer streak and gets a Medium question correct:
 *They receive the standard time-based score + a bonus of 6 points (3 streak * 2 medium).*
 
 If the student answers incorrectly, the streak count resets to 0.
+
+
+
+# Kesararam Project: Comprehensive Security Report
+
+This report summarizes the security posture of the project, including an inventory of all public APIs, URL endpoints, active rate limits, and risk profiles.
+
+## 1. Action Completed: Rate Limit Execution
+As requested, I have successfully applied the previously unused `simple-rate-limit.ts` logic to the critical, public-facing endpoints that did not have native auth blocks.
+- **Challenge Join API (`/api/challenge/join`)**: Protected to prevent attackers from brute-forcing room codes or flooding game sessions.
+- **Team Token APIs (`/api/team-token`)**: Both `GET` (generate) and `POST` (verify) endpoints are now strictly rate-limited to stop bot-driven token harvesting or verification spam.
+
+## 2. API & Endpoint Inventory
+
+### Public URLs (Unauthenticated Access)
+These routes are exposed to the public and rely on Edge caching, static rendering, or rate limiting for defense:
+- `/` (Home page)
+- `/login` (Authentication portal, rate-limited internally)
+- `/leaderboard` (Displays public ranks)
+- `/api/public/topics` (Cached at the Vercel Edge, `s-maxage=300`)
+- `/api/public/topics/[id]/questions` (Cached at the Edge)
+- `/api/game/solo` (Allows public access to question generation)
+- `/api/game/categories` (Publicly lists categories)
+- `/api/team-token` (Rate-limited QR token system)
+- `/api/challenge/join` (Rate-limited entry portal for students)
+
+### Protected API Routes (Authenticated / Role-Based Access)
+These routes are strictly guarded by JWT validation and RBAC. Unauthenticated requests are rejected with a `401 Unauthorized` status.
+- `/api/admin/users` (Admin only)
+- `/api/staff/content` (Staff only, strict Zod validation)
+- `/api/challenge/create` (Staff/Admin only, strict Zod validation)
+- `/api/user/settings` (Authenticated users only)
+- `/api/content/upload` (Authenticated users only, MIME-type and size restricted)
+
+## 3. Rate Limit Inventory
+Below are the active rate limit rules protecting the application:
+
+| Endpoint | Limit Rule | Protection Mechanism | Purpose |
+|----------|------------|-----------------------|---------|
+| `/login` (`POST`) | 5 attempts / 60 seconds | Custom IP Rate Map | Stops credential stuffing and brute-force password guessing. Temporarily locks out IP. |
+| `/api/challenge/join` (`POST`) | 5 requests / 60 seconds | `simple-rate-limit.ts` | Stops bot scripts from brute-forcing active room codes or flooding active sessions. |
+| `/api/team-token` (`GET`) | 10 requests / 60 seconds | `simple-rate-limit.ts` | Prevents mass generation of QR short-codes. |
+| `/api/team-token` (`POST`) | 20 requests / 60 seconds | `simple-rate-limit.ts` | Prevents attackers from brute-forcing 6-character authentication tokens. |
+
+## 4. Summary of Residual Risks
+
+While the application is currently highly secure and follows modern best practices, here are the residual risks that exist inherently due to architecture choices:
+1. **In-Memory Rate Limiting**: The current rate limiters (both the login map and `simple-rate-limit.ts`) store IP addresses *in memory*. If deployed on serverless functions (like Vercel) or multi-node containers, the rate limit is reset on cold starts and is not shared across nodes. This means an attacker hitting different edge nodes could bypass the 5-attempt limit. 
+   - *Mitigation*: Migrate to a centralized store like Vercel KV / Redis (e.g., `@upstash/ratelimit`).
+2. **Denial of Service via Cloudinary Uploads**: While file size limits exist (5MB/10MB), an authenticated user could still upload thousands of files rapidly, potentially inflating your Cloudinary billing.
+   - *Mitigation*: Implement a Redis-backed rate limit specifically on the `/api/content/upload` endpoint per user ID.
+3. **Open Redirect Bypass**: I patched the obvious open redirect bypasses. However, attackers continuously find new encoding tricks. 
+   - *Mitigation*: If you do not explicitly need the `?redirect=` parameter to go to dynamic URLs, consider dropping it entirely and only using the static `getRedirectUrl(user.role)` logic.

@@ -13,62 +13,84 @@ export async function GET(request: NextRequest) {
     const type = searchParams.get("type");
     const difficulty = searchParams.get("difficulty");
     const search = searchParams.get("search");
+    const categoryId = searchParams.get("categoryId");
+    const topicId = searchParams.get("topicId");
+    const limitParam = searchParams.get("limit");
+    const limit = limitParam ? parseInt(limitParam) : topicId ? 9999 : 500;
 
-    // Build query with filters
-    let query = `
-      SELECT 
+    // Build raw SQL — avoids any Drizzle ORM schema mismatch
+    const rows = await sql`
+      SELECT
         q.id,
-        q.topic_id as "topicId",
-        q.question_en as "questionEn",
-        q.question_km as "questionKm",
+        q.topic_id        AS "topicId",
+        q.question_en     AS "questionEn",
+        q.question_km     AS "questionKm",
         q.difficulty,
-        q.created_at as "createdAt",
-        t.name_en as "topicName",
-        c.title_en as "categoryName",
-        COUNT(a.id)::int as "answerCount",
-        CASE 
-          WHEN COUNT(a.id) = 2 THEN 'true-false'
-          WHEN COUNT(a.id) FILTER (WHERE a.is_correct = true) > 1 THEN 'multi-select'
-          WHEN COUNT(a.id) FILTER (WHERE a.image_url IS NOT NULL) > 0 THEN 'image-match'
-          ELSE 'mcq'
-        END as "questionType"
+        q.status,
+        q.created_at      AS "createdAt",
+        t.name_en         AS "topicName",
+        t.category_id     AS "categoryId",
+        c.title_en        AS "categoryName",
+        -- answer stats
+        COUNT(a.id)::int                                                        AS "answerCount",
+        BOOL_OR(a.image_url IS NOT NULL)                                        AS "hasImage",
+        COUNT(a.id) FILTER (WHERE a.is_correct = true)::int                     AS "correctCount",
+        COALESCE(
+          (COUNT(a.id) = 2 AND BOOL_AND(a.answer_en IN ('True','False','true','false'))),
+          false
+        )                                                                        AS "isTrueFalse"
       FROM questions q
-      LEFT JOIN topics t ON q.topic_id = t.id
-      LEFT JOIN categories c ON t.category_id = c.id
-      LEFT JOIN answers a ON q.id = a.question_id
-      WHERE 1=1
+      LEFT JOIN topics    t ON t.id = q.topic_id
+      LEFT JOIN categories c ON c.id = t.category_id
+      LEFT JOIN answers   a ON a.question_id = q.id
+      WHERE TRUE
+        ${topicId ? sql`AND q.topic_id = ${parseInt(topicId)}` : sql``}
+        ${categoryId ? sql`AND t.category_id = ${parseInt(categoryId)}` : sql``}
+        ${difficulty && difficulty !== "all" ? sql`AND q.difficulty = ${difficulty}` : sql``}
+        ${search ? sql`AND (q.question_en ILIKE ${'%' + search + '%'} OR q.question_km ILIKE ${'%' + search + '%'})` : sql``}
+      GROUP BY q.id, q.topic_id, q.question_en, q.question_km, q.difficulty, q.status, q.created_at,
+               t.name_en, t.category_id, c.title_en
+      ORDER BY q.created_at ASC
+      LIMIT ${limit}
     `;
 
-    const params: any[] = [];
+    // Derive question type from answer stats
+    const result = rows.map((q: any) => {
+      const ansCount = Number(q.answerCount ?? 0);
+      const hasImage = Boolean(q.hasImage);
+      const correctCount = Number(q.correctCount ?? 0);
+      const isTF = Boolean(q.isTrueFalse);
 
-    if (search) {
-      query += ` AND (q.question_en ILIKE $${params.length + 1} OR q.question_km ILIKE $${params.length + 1} OR t.name_en ILIKE $${params.length + 1})`;
-      params.push(`%${search}%`);
-    }
+      let questionType = "mcq";
+      if (isTF && ansCount === 2) questionType = "true-false";
+      else if (correctCount > 1) questionType = "multi-select";
+      else if (hasImage) questionType = "image-match";
 
-    if (difficulty && difficulty !== "all") {
-      query += ` AND q.difficulty = $${params.length + 1}`;
-      params.push(difficulty);
-    }
+      return {
+        id: Number(q.id),
+        topicId: Number(q.topicId),
+        questionEn: q.questionEn,
+        questionKm: q.questionKm,
+        difficulty: q.difficulty || "medium",
+        status: q.status || "draft",
+        createdAt: q.createdAt,
+        topicName: q.topicName,
+        categoryId: q.categoryId ? Number(q.categoryId) : null,
+        categoryName: q.categoryName,
+        answerCount: ansCount,
+        questionType,
+      };
+    });
 
-    query += `
-      GROUP BY q.id, t.name_en, c.title_en
-      ORDER BY q.created_at DESC
-      LIMIT 500
-    `;
+    // Filter by type if specified
+    const filtered = type && type !== "all"
+      ? result.filter((q: any) => q.questionType === type)
+      : result;
 
-    const questions = await sql.unsafe(query, params);
-
-    // Filter by type if specified (post-query since it's computed)
-    let filteredQuestions = questions || [];
-    if (type && type !== "all") {
-      filteredQuestions = filteredQuestions.filter((q: any) => q.questionType === type);
-    }
-
-    return NextResponse.json({ questions: filteredQuestions });
-  } catch (error) {
-    console.error("[GET /api/admin/questions]", error);
-    return NextResponse.json({ error: "Failed to fetch questions" }, { status: 500 });
+    return NextResponse.json({ questions: filtered, total: filtered.length });
+  } catch (error: any) {
+    console.error("[GET /api/admin/questions]", error?.message ?? error);
+    return NextResponse.json({ error: "Failed to fetch questions", questions: [] }, { status: 500 });
   }
 }
 
@@ -80,56 +102,56 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const {
-      topicId,
-      questionEn,
-      questionKm,
-      hintEn,
-      hintKm,
-      imageUrl,
-      difficulty,
-      answers,
-    } = body;
+    const { topicId, questionEn, questionKm, hintEn, hintKm, imageUrl, difficulty, pointsMultiplier, answers: answerList } = body;
 
-    if (!topicId || !questionEn || !answers || answers.length < 2) {
-      return NextResponse.json(
-        { error: "Missing required fields" },
-        { status: 400 }
-      );
+    if (!topicId || !questionEn || !answerList || answerList.length < 2) {
+      return NextResponse.json({ error: "Missing required fields: topicId, questionEn, and at least 2 answers" }, { status: 400 });
     }
 
-    // Create question
+    if (!answerList.some((a: any) => a.isCorrect)) {
+      return NextResponse.json({ error: "At least one answer must be marked correct" }, { status: 400 });
+    }
+
+    const hasImages = answerList.some((a: any) => a.imageUrl);
+    const multiCorrect = answerList.filter((a: any) => a.isCorrect).length > 1;
+    let answerType = "multiple_choice";
+    if (hasImages) answerType = "image_selection";
+    else if (multiCorrect) answerType = "checkbox";
+
     const questionResult = await sql`
       INSERT INTO questions (
         topic_id, question_en, question_km, hint_en, hint_km,
-        image_url, difficulty, created_by, created_at
+        image_url, difficulty, points_multiplier, created_by, created_at
       ) VALUES (
-        ${topicId}, ${questionEn}, ${questionKm || ""}, ${hintEn || null}, ${hintKm || null},
-        ${imageUrl || null}, ${difficulty || "medium"}, ${session.id}, NOW()
+        ${topicId}, ${questionEn}, ${questionKm || ""},
+        ${hintEn || null}, ${hintKm || null},
+        ${imageUrl || null}, ${difficulty || "medium"},
+        ${pointsMultiplier || 2}, ${session.id}, NOW()
       )
       RETURNING id
     `;
 
     const questionId = questionResult[0].id;
 
-    // Create answers
-    for (let i = 0; i < answers.length; i++) {
-      const answer = answers[i];
+    for (let i = 0; i < answerList.length; i++) {
+      const answer = answerList[i];
+      const aType = answer.imageUrl ? "image_selection" : answerType;
       await sql`
         INSERT INTO answers (
-          question_id, answer_en, answer_km, is_correct,
-          image_url, sort_order, created_at
+          question_id, answer_type, answer_en, answer_km,
+          is_correct, image_url, sort_order, created_at
         ) VALUES (
-          ${questionId}, ${answer.answerEn}, ${answer.answerKm || ""},
-          ${answer.isCorrect || false}, ${answer.imageUrl || null},
+          ${questionId}, ${aType},
+          ${answer.answerEn || ""}, ${answer.answerKm || ""},
+          ${answer.isCorrect === true}, ${answer.imageUrl || null},
           ${i}, NOW()
         )
       `;
     }
 
     return NextResponse.json({ success: true, questionId }, { status: 201 });
-  } catch (error) {
-    console.error("[POST /api/admin/questions]", error);
-    return NextResponse.json({ error: "Failed to create question" }, { status: 500 });
+  } catch (error: any) {
+    console.error("[POST /api/admin/questions]", error?.message ?? error);
+    return NextResponse.json({ error: "Failed to create question", detail: error?.message }, { status: 500 });
   }
 }

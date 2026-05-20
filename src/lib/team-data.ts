@@ -146,7 +146,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: "shiliaiwei",
-    name: "SHILIAI WEI",
+    name: "史力爱卫",
     nameKh: "ស្រុី វី",
     role: "mentor",
     specialty: "University Student · Design, Technical & Project Management",
@@ -154,7 +154,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
     division: "University Student",
     school: "Kesararam With Digital",
     location: "Krong Siem Reap, Siem Reap Province, Cambodia",
-    imageUrl: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248420/07d5d96b3f0a8af7743f3b4053ba18dr_ydb0zm.png",
+    imageUrl: "https://avatars.githubusercontent.com/u/70220432?v=4",
     vsid: "VSID-2026-M02",
     cardNo: "CM50777002",
     enrolled: "2025",
