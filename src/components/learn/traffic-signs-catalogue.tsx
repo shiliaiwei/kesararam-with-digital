@@ -105,11 +105,9 @@ function ImageWithSkeleton({ src, alt }: { src: string; alt: string }) {
 
 // ── Detail Panel ──────────────────────────────────────────────────────────────
 function DetailPanel({
-  topic, questions, loadingQuestions, isKh, kf, t, onClose,
+  topic, isKh, kf, t, onClose,
 }: {
   topic: Topic;
-  questions: any[];
-  loadingQuestions: boolean;
   isKh: boolean;
   kf: React.CSSProperties;
   t: typeof UI.en | typeof UI.kh;
@@ -448,37 +446,7 @@ function DetailPanel({
         </div>
       </div>
 
-      {/* Related questions */}
-      {loadingQuestions ? (
-        <div className="border-t-2 border-black px-5 py-4 text-xs font-bold text-zinc-400" style={kf}>
-          {t.loadingQ}
-        </div>
-      ) : questions.length > 0 && (
-        <div className="border-t-2 border-black px-5 py-4 space-y-2">
-          <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-3" style={kf}>
-            {t.relatedQ} ({questions.length})
-          </p>
-          {questions.map((q: any, i: number) => (
-            <details key={q.id} className="border-2 border-black">
-              <summary className="px-4 py-3 flex items-start gap-3 cursor-pointer hover:bg-zinc-50 list-none">
-                <span className="font-black text-[10px] bg-black text-white px-1.5 py-0.5 shrink-0 mt-0.5">Q{i + 1}</span>
-                <span className="font-bold text-sm flex-1" style={kf}>
-                  {isKh ? q.question_km : q.question_en}
-                </span>
-              </summary>
-              <div className="border-t-2 border-black bg-zinc-50 p-3 space-y-2">
-                {q.answers?.map((a: any, ai: number) => (
-                  <div key={a.id} className={`px-3 py-2 border-2 text-sm flex gap-2 ${a.is_correct ? "bg-green-100 border-green-500" : "bg-white border-zinc-200"}`}>
-                    <span className="font-bold shrink-0">{String.fromCharCode(65 + ai)}.</span>
-                    <span className="flex-1" style={kf}>{isKh ? a.answer_km : a.answer_en}</span>
-                    {a.is_correct && <span className="text-green-600 font-black text-xs">✓</span>}
-                  </div>
-                ))}
-              </div>
-            </details>
-          ))}
-        </div>
-      )}
+
     </div>
   );
 }
@@ -497,8 +465,6 @@ export function TrafficSignsCatalogue() {
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [subGroupFilter, setSubGroupFilter] = useState<string>("");
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
-  const [selectedQuestions, setSelectedQuestions] = useState<any[]>([]);
-  const [loadingQuestions, setLoadingQuestions] = useState(false);
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
   const [cols, setCols] = useState(8);
@@ -532,20 +498,9 @@ export function TrafficSignsCatalogue() {
   const handleTopicClick = async (topic: Topic) => {
     if (selectedTopic?.id === topic.id) {
       setSelectedTopic(null);
-      setSelectedQuestions([]);
       return;
     }
     setSelectedTopic(topic);
-    setLoadingQuestions(true);
-    try {
-      const res = await fetch(`/api/public/topics/${topic.id}/questions`);
-      const data = await res.json();
-      setSelectedQuestions(data.questions || []);
-    } catch {
-      setSelectedQuestions([]);
-    } finally {
-      setLoadingQuestions(false);
-    }
   };
 
   const handleFilterChange = (key: string) => {
@@ -573,18 +528,18 @@ export function TrafficSignsCatalogue() {
 
         const res = await fetch(`/api/public/topics?${params.toString()}`);
         const data = await res.json();
-        
+
         if (page === 1) {
           setTopics(data.topics || []);
         } else {
           setTopics(prev => [...prev, ...(data.topics || [])]);
         }
-        
+
         if (data.aggregates) setAggregates(data.aggregates);
         setHasMore(data.pagination?.hasMore || false);
-      } catch (e) { 
-        console.error(e); 
-      } finally { 
+      } catch (e) {
+        console.error(e);
+      } finally {
         setLoading(false);
         setLoadingMore(false);
       }
@@ -793,12 +748,10 @@ export function TrafficSignsCatalogue() {
                     <DetailPanel
                       key={`panel-${selectedTopic.id}`}
                       topic={selectedTopic}
-                      questions={selectedQuestions}
-                      loadingQuestions={loadingQuestions}
                       isKh={isKh}
                       kf={kf}
                       t={t}
-                      onClose={() => { setSelectedTopic(null); setSelectedQuestions([]); }}
+                      onClose={() => setSelectedTopic(null)}
                     />
                   )}
                 </Fragment>
@@ -813,7 +766,7 @@ export function TrafficSignsCatalogue() {
             {/* Progress indicator */}
             <p className="text-xs font-bold text-zinc-400" style={kf}>
               {isKh
-                ? <>បង្ហាញ <span className="text-black font-black">{topics.length}</span> / {aggregates.filteredTotal} សញ្ញា</>  
+                ? <>បង្ហាញ <span className="text-black font-black">{topics.length}</span> / {aggregates.filteredTotal} សញ្ញា</>
                 : <>Showing <span className="text-black font-black">{topics.length}</span> of {aggregates.filteredTotal} signs</>}
             </p>
             {/* Progress bar */}
@@ -826,15 +779,14 @@ export function TrafficSignsCatalogue() {
             <button
               onClick={() => setPage(p => p + 1)}
               disabled={loadingMore}
-              className={`mt-2 inline-flex items-center gap-2 px-8 py-3 border-2 border-black font-black uppercase tracking-widest text-sm transition-all select-none ${
-                loadingMore 
-                  ? "bg-zinc-100 text-zinc-400 cursor-wait" 
-                  : "bg-yellow-400 text-black shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[2px_2px_0_#000]"
-              }`}
+              className={`mt-2 inline-flex items-center gap-2 px-8 py-3 border-2 border-black font-black uppercase tracking-widest text-sm transition-all select-none ${loadingMore
+                ? "bg-zinc-100 text-zinc-400 cursor-wait"
+                : "bg-yellow-400 text-black shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[2px_2px_0_#000]"
+                }`}
               style={kf}
             >
               {loadingMore ? (
-                <><span className="flex gap-0.5 items-end h-4">{[60,100,75,90,55].map((h,i) => <span key={i} className="w-0.5 bg-zinc-400 rounded-sm animate-pulse" style={{height:`${h}%`,animationDelay:`${i*100}ms`}}/>)}</span>{isKh ? "កំពុងផ្ទុក..." : "Loading..."}</>
+                <><span className="flex gap-0.5 items-end h-4">{[60, 100, 75, 90, 55].map((h, i) => <span key={i} className="w-0.5 bg-zinc-400 rounded-sm animate-pulse" style={{ height: `${h}%`, animationDelay: `${i * 100}ms` }} />)}</span>{isKh ? "កំពុងផ្ទុក..." : "Loading..."}</>
               ) : (
                 <><ChevronDown size={16} />{isKh ? "បង្ហាញច្រើនទៀត" : "See More"}</>
               )}
