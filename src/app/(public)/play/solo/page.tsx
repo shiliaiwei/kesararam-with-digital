@@ -13,6 +13,7 @@ interface SoloQuestion {
   id: number;
   questionEn: string;
   questionKm: string;
+  topicCode: string | null;
   imageUrl: string | null;
   audioUrlEn: string | null;
   audioUrlKm: string | null;
@@ -377,19 +378,19 @@ export default function SoloPage() {
             <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2" style={khFont}>
               {kh ? "ពិនិត្យមើលចម្លើយរបស់អ្នកឡើងវិញ" : "Review Your Answers"}
             </div>
-            
+
             {phase.session.questions.map((q, i) => {
               const record = phase.answers.find((a) => a.questionId === q.id);
               if (!record) return null;
-              
+
               const isCorrect = record.isCorrect;
               const selectedAnswer = q.answers.find(a => a.id === record.answerId);
               const correctAnswer = q.answers.find(a => a.isCorrect);
-              
+
               return (
                 <div key={q.id} className={`border-2 border-black p-4 bg-white`} style={{ boxShadow: "3px 3px 0 #000" }}>
                   <div className="flex items-start gap-3 mb-3">
-                    <div 
+                    <div
                       className="shrink-0 w-6 h-6 flex items-center justify-center text-white font-black text-xs border-2 border-black"
                       style={{ backgroundColor: isCorrect ? "#22c55e" : "#ef4444" }}
                     >
@@ -399,7 +400,7 @@ export default function SoloPage() {
                       {kh ? (q.questionKm || q.questionEn) : q.questionEn}
                     </div>
                   </div>
-                  
+
                   {/* Hide images if image_pick, else show */}
                   {q.imageUrl && q.gameType !== "image_pick" && (
                     <div className="mb-3 border-2 border-zinc-200 p-2 flex justify-center bg-zinc-50">
@@ -423,7 +424,7 @@ export default function SoloPage() {
                         <span className="text-zinc-500 italic">{kh ? "អស់ម៉ោង" : "Time out"}</span>
                       )}
                     </div>
-                    
+
                     {/* Show Correct Answer if they were wrong */}
                     {!isCorrect && correctAnswer && (
                       <div className={`p-2 border-2 border-black bg-green-100 text-sm flex gap-2 items-center`} style={khFont}>
@@ -499,6 +500,17 @@ export default function SoloPage() {
             <span className="text-yellow-500 font-black text-xs uppercase bg-yellow-500/10 px-2 py-1 rounded border border-yellow-500/30 shadow-sm" style={khFont}>
               {q.difficulty || "mixed"}
             </span>
+            {q.topicCode && (
+              <a
+                href={`/admin/questions?topicCode=${encodeURIComponent(q.topicCode.trim())}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-400 font-mono text-[10px] bg-zinc-800/80 px-2 py-1 rounded border border-zinc-700 hover:text-white hover:border-zinc-500 transition-all tracking-wider"
+                title={`Topic: ${q.topicCode.trim()} — click to view in admin`}
+              >
+                {q.topicCode.trim()}
+              </a>
+            )}
             <button onClick={() => setMuted(m => !m)} className="p-1.5 rounded bg-zinc-800/80 border border-zinc-700 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all" title={muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}>
               {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
             </button>

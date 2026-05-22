@@ -45,6 +45,7 @@ export async function POST(req: NextRequest) {
       audioUrlKm: questions.audioUrlKm,
       difficulty: questions.difficulty,
       categorySlug: categories.slug,
+      topicCode: topics.topicCode,
     })
     .from(questions)
     .innerJoin(topics, eq(questions.topicId, topics.id))
@@ -136,6 +137,7 @@ export async function POST(req: NextRequest) {
       id: q.id,
       questionEn: q.questionEn,
       questionKm: q.questionKm,
+      topicCode: q.topicCode ?? null,
       // Strip cover image for text-only categories
       imageUrl: isTextOnly ? null : (q.imageUrl ?? null),
       audioUrlEn: q.audioUrlEn ?? null,
