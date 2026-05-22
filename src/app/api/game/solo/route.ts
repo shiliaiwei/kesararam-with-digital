@@ -29,6 +29,12 @@ export async function POST(req: NextRequest) {
 
   const allowedTypes = GAME_MODE_TYPES[gameMode] ?? ["mcq", "true_false"];
 
+  // Text-only categories — no cover image should appear above the question
+  const TEXT_ONLY_SLUGS = new Set([
+    "road-traffic", "driving", "technical",
+    "loading-people-goods", "general-knowledge", "emergency",
+  ]);
+
   const allQuestions = await db
     .select({
       id: questions.id,
@@ -38,12 +44,14 @@ export async function POST(req: NextRequest) {
       audioUrlEn: questions.audioUrlEn,
       audioUrlKm: questions.audioUrlKm,
       difficulty: questions.difficulty,
+      categorySlug: categories.slug,
     })
     .from(questions)
     .innerJoin(topics, eq(questions.topicId, topics.id))
+    .innerJoin(categories, eq(topics.categoryId, categories.id))
     .where(
       and(
-        inArray(questions.status, ["approved", "draft", "published"]), // Include all non-rejected
+        inArray(questions.status, ["approved", "draft", "published"]),
         inArray(topics.categoryId, categoryIds),
         difficulty !== "mixed" ? eq(questions.difficulty, difficulty) : undefined
       )
@@ -114,15 +122,11 @@ export async function POST(req: NextRequest) {
   }
 
   // Get first category name for session record
-  const [firstCat] = await db
-    .select({ slug: categories.slug })
-    .from(categories)
-    .where(eq(categories.id, categoryIds[0]));
+  const firstCatSlug = allQuestions[0]?.categorySlug ?? "";
 
-  // For solo mode, we don't create a session in the database for non-authenticated users
-  // We just return the questions directly
   const questionsPayload = shuffled.map((q) => {
     const ans = answersByQ.get(q.id) ?? [];
+    const isTextOnly = TEXT_ONLY_SLUGS.has(q.categorySlug ?? "");
     const gt = mapContentToGameType({
       answerCount: ans.length,
       hasImage: ans.some(a => !!a.imageUrl),
@@ -132,7 +136,8 @@ export async function POST(req: NextRequest) {
       id: q.id,
       questionEn: q.questionEn,
       questionKm: q.questionKm,
-      imageUrl: q.imageUrl ?? null,
+      // Strip cover image for text-only categories
+      imageUrl: isTextOnly ? null : (q.imageUrl ?? null),
       audioUrlEn: q.audioUrlEn ?? null,
       audioUrlKm: q.audioUrlKm ?? null,
       gameType: gt,
@@ -144,7 +149,8 @@ export async function POST(req: NextRequest) {
           id: a.id,
           answerEn: a.answerEn,
           answerKm: a.answerKm,
-          imageUrl: a.imageUrl ?? null,
+          // Strip answer images for text-only categories
+          imageUrl: isTextOnly ? null : (a.imageUrl ?? null),
           isCorrect: a.isCorrect,
         })),
     };
