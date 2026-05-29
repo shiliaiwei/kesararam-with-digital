@@ -230,29 +230,27 @@ Defined in `src/lib/game-engine.ts` — `calculateScore()`.
 
 | Difficulty | Base Points |
 |---|:---:|
-| Easy | 500 |
-| Medium | 1,000 |
-| Hard | 1,500 |
+| Easy | 1 |
+| Medium | 2 |
+| Hard | 3 |
 
 ### 5.2 Speed Bonus
 
 Only applies in **speed scoring mode**.
 
 ```
-speedBonus = floor(baseScore × (remainingTimeMs / totalTimeMs))
+speedBonus = +1 if answered within the first 50% of the time limit (fast answer)
+           = 0  if answered in the second half of the time window
 ```
 
-- Maximum speed bonus = full base score (answered instantly)
-- Zero speed bonus = answered at the last millisecond
 - **Disabled** if answer was submitted in under 500ms (anti-cheat)
 
 ### 5.3 Streak Bonus
 
 | Consecutive Correct Answers | Bonus Points |
 |---|:---:|
-| 2–3 in a row | +100 |
-| 4–5 in a row | +200 |
-| 6+ in a row | +300 |
+| 2–4 in a row | +1 |
+| 5+ in a row | +2 |
 
 - **Disabled** if answer was submitted in under 500ms (anti-cheat)
 
@@ -261,6 +259,9 @@ speedBonus = floor(baseScore × (remainingTimeMs / totalTimeMs))
 ```
 totalPoints = baseScore + speedBonus + streakBonus
 ```
+
+**Maximum per question (speed mode, hard difficulty, 5+ streak):** 6 points  
+**Typical correct answer (medium, no streak/speed bonus):** 2 points
 
 ### 5.5 Scoring Modes
 
@@ -273,6 +274,11 @@ totalPoints = baseScore + speedBonus + streakBonus
 
 Answers submitted in **< 500ms** are flagged as suspicious.  
 Suspicious answers receive **0 speed bonus** and **0 streak bonus** (base score only).
+
+### 5.7 Score Authority
+
+- **Live multiplayer**: Score calculated server-side only in `/api/game/sessions/[code]/answer`
+- **Solo / Category Quiz**: Score calculated server-side in `/api/game/solo/complete`. Client shows a cosmetic display score using the same formula for real-time feedback, but the **final displayed score is always the server result**.
 
 ---
 

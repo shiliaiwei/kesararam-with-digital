@@ -35,6 +35,7 @@ interface AnswerRecord {
   answerId: number | null;
   isCorrect: boolean;
   timeTakenMs: number;
+  difficulty: string | null;
 }
 
 interface ResultData {
@@ -138,7 +139,8 @@ export default function SoloPage() {
 
   const advanceQuestion = useCallback((session: SoloSession, qIndex: number, answerId: number | null, isCorrect: boolean, timeTakenMs: number) => {
     if (advanceTimerRef.current) clearTimeout(advanceTimerRef.current);
-    answersRef.current.push({ questionId: session.questions[qIndex].id, answerId, isCorrect, timeTakenMs });
+    const q = session.questions[qIndex];
+    answersRef.current.push({ questionId: q.id, answerId, isCorrect, timeTakenMs, difficulty: q.difficulty ?? null });
 
     const nextIdx = qIndex + 1;
     if (nextIdx >= session.questions.length) {
@@ -168,9 +170,15 @@ export default function SoloPage() {
     if (isCorrect) {
       const newStreak = myStreak + 1;
       setMyStreak(newStreak);
-      const pts = 1000 + Math.floor(1000 * Math.max(0, (phase.session.timePerQuestion * 1000 - timeTakenMs) / (phase.session.timePerQuestion * 1000)));
-      const bonus = Math.floor(1000 * Math.min(Math.max(newStreak - 1, 0), 5) * 0.1);
-      setMyScore(s => s + pts + bonus);
+      // Cosmetic display score uses same difficulty-based rules as server:
+      // base = easy:1 medium:2 hard:3, speedBonus = +1 if answered in first half, streakBonus = +1 or +2
+      const diffMap: Record<string, number> = { easy: 1, medium: 2, hard: 3 };
+      const base = diffMap[q.difficulty?.toLowerCase() ?? "medium"] ?? 2;
+      const totalMs = phase.session.timePerQuestion * 1000;
+      const isSuspicious = timeTakenMs < 500;
+      const speedBonus = (!isSuspicious && (totalMs - timeTakenMs) / totalMs >= 0.5) ? 1 : 0;
+      const streakBonus = isSuspicious ? 0 : newStreak >= 5 ? 2 : newStreak >= 2 ? 1 : 0;
+      setMyScore(s => s + base + speedBonus + streakBonus);
       if (!muted) { if (newStreak > 2) sounds.streak(); else sounds.correct(); }
     } else {
       setMyStreak(0);
@@ -191,18 +199,30 @@ export default function SoloPage() {
   }
 
   async function completeGame(session: SoloSession, timeTakenSeconds: number) {
-    const finalScore = myScore;
     try {
       const res = await fetch("/api/game/solo/complete", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sessionId: session.sessionId, answers: answersRef.current, timeTakenSeconds, gameMode: session.gameMode, difficulty }),
+        body: JSON.stringify({
+          sessionId: session.sessionId,
+          answers: answersRef.current,
+          timeTakenSeconds,
+          gameMode: session.gameMode,
+          difficulty,
+          // Pass actual game timing so server can score correctly
+          timePerQuestion: session.timePerQuestion,
+          scoringMode: "speed",
+        }),
       });
       const result = await res.json();
-      setPhase({ name: "results", session, answers: answersRef.current, result: { ...result, totalScore: finalScore, personalBest: Math.max(result.personalBest ?? 0, finalScore) } });
+      // Always use the server-authoritative totalScore
+      setPhase({ name: "results", session, answers: answersRef.current, result });
       if (!muted) sounds.podium();
     } catch {
-      setPhase({ name: "results", session, answers: answersRef.current, result: { totalScore: finalScore, accuracyPercentage: 0, timeTakenSeconds, correctAnswers: 0, totalQuestions: session.questions.length, personalBest: finalScore, isNewPersonalBest: false, perQuestion: [] } });
+      // Fallback: use cosmetic display score if server fails
+      const correctCount = answersRef.current.filter(a => a.isCorrect).length;
+      const accuracy = answersRef.current.length > 0 ? Math.round((correctCount / answersRef.current.length) * 100) : 0;
+      setPhase({ name: "results", session, answers: answersRef.current, result: { totalScore: myScore, accuracyPercentage: accuracy, timeTakenSeconds, correctAnswers: correctCount, totalQuestions: session.questions.length, personalBest: myScore, isNewPersonalBest: false, perQuestion: [] } });
     }
   }
   completeGameRef.current = completeGame;

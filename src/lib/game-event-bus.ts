@@ -29,6 +29,7 @@ export interface QuestionPayload {
   imageUrl: string | null;
   audioUrlEn: string | null;
   audioUrlKm: string | null;
+  difficulty: string | null;
   gameType: "mcq" | "true_false" | "image_pick";
   answers: AnswerOption[];
 }

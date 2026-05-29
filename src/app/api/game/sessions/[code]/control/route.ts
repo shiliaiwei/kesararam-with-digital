@@ -304,6 +304,7 @@ async function getQuestionPayload(questionId: number) {
         imageUrl: questions.imageUrl,
         audioUrlEn: questions.audioUrlEn,
         audioUrlKm: questions.audioUrlKm,
+        difficulty: questions.difficulty,
       })
       .from(questions)
       .where(eq(questions.id, questionId));
@@ -344,6 +345,7 @@ async function getQuestionPayload(questionId: number) {
       imageUrl: q.imageUrl ?? null,
       audioUrlEn: q.audioUrlEn ?? null,
       audioUrlKm: q.audioUrlKm ?? null,
+      difficulty: q.difficulty ?? null,
       gameType,
       answers: ans.map(a => ({
         id: a.id,

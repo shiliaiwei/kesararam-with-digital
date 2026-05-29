@@ -14,7 +14,7 @@ import { ErrorBoundary } from "@/components/game/ErrorBoundary";
 import {
   Zap, Trophy, Users, Clock, CheckCircle, XCircle,
   Loader2, Wifi, WifiOff, BookOpen, Target, Timer, Star,
-  Maximize, Minimize
+  Maximize, Minimize, Flame
 } from "lucide-react";
 
 type GamePhase = "lobby" | "question" | "results" | "leaderboard" | "podium";
@@ -500,7 +500,7 @@ export default function StudentGamePage() {
   if (phase === "question" && currentQuestion) {
     if (!currentQuestion.answers?.length) {
       return (
-        <div className="min-h-screen flex items-center justify-center"
+        <div className="fixed inset-0 flex items-center justify-center"
           style={{ backgroundColor: "#0d0d14" }}>
           <Loader2 className="animate-spin h-10 w-10 text-yellow-400" />
         </div>
@@ -509,47 +509,104 @@ export default function StudentGamePage() {
 
     const timePerQuestion = endsAt
       ? Math.max(5, Math.round((new Date(endsAt).getTime() - Date.now()) / 1000))
-      : 30;
+      : sessionInfo?.timePerQuestion ?? 30;
+
+    // Track local score & streak from answerResult for display
+    const myScore = leaderboard.find(e => e.userId === currentUserId)?.totalScore ?? 0;
+    const myStreak = leaderboard.find(e => e.userId === currentUserId)?.currentStreak ?? 0;
 
     return (
-      <div className="min-h-screen flex flex-col"
-        style={{ backgroundColor: "#0d0d14", backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px" }}>
-        {unifiedHeader}
-        {/* Top bar */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-black/30 flex-shrink-0">
-          <div className="flex items-center gap-2 px-2.5 py-1 bg-red-600">
-            <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            <span className="text-white font-black text-xs tracking-widest">LIVE</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Trophy size={13} className="text-yellow-400" />
-            <span className="text-white font-black text-sm">
-              {questionIndex + 1} / {totalQuestions}
+      <div className="game-dot-bg fixed inset-0 z-50 flex flex-col" style={{ userSelect: "none" }}>
+
+        {/* ── Top bar — identical to solo game ── */}
+        <div className="relative z-10 flex items-center justify-between px-4 py-3 bg-black/80 backdrop-blur-sm border-b-2 border-yellow-400 flex-shrink-0">
+          {/* Left: LIVE badge + mode label */}
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-red-600 border border-red-400">
+              <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+              <span className="text-white font-black text-[10px] tracking-widest uppercase">LIVE</span>
+            </div>
+            <span className="text-yellow-400 font-black text-xs uppercase tracking-widest hidden sm:inline" style={khFont}>
+              {sessionInfo ? (MODE_LABELS[sessionInfo.gameMode] ?? sessionInfo.gameMode) : code}
             </span>
           </div>
-          {endsAt && (
-            <CountdownTimer
-              endsAt={endsAt}
-              totalSeconds={timePerQuestion}
-              onExpire={() => {}}
-            />
-          )}
-        </div>
 
-        <div className="flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full">
-          {/* Question card */}
-          <div className="border-2 border-white/15 bg-white/5 p-4 sm:p-6 flex-shrink-0">
-            {currentQuestion.imageUrl && (
-              <div className="mb-4 bg-white border-2 border-black flex items-center justify-center p-4" style={{ minHeight: 180 }}>
-                <img src={currentQuestion.imageUrl} alt="Question" className="max-h-44 w-auto object-contain" />
+          {/* Center: score + streak badges */}
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 bg-yellow-400 border-2 border-black px-3 py-1" style={{ boxShadow: "2px 2px 0 #000" }}>
+              <Zap size={12} className="text-black" />
+              <span className="font-black text-black text-sm tabular-nums">{myScore.toLocaleString()}</span>
+            </div>
+            {myStreak > 1 && (
+              <div className="flex items-center gap-1 bg-orange-500 border-2 border-black px-2 py-1" style={{ boxShadow: "2px 2px 0 #000" }}>
+                <Flame size={12} className="text-white" />
+                <span className="font-black text-white text-xs">x{myStreak}</span>
               </div>
             )}
-            <h2 className="text-white font-black text-base sm:text-xl md:text-2xl text-center leading-snug break-words hyphens-auto" style={khFont}>
-              {kh ? (currentQuestion.questionKm || currentQuestion.questionEn) : currentQuestion.questionEn}
-            </h2>
           </div>
 
-          {/* Answers */}
+          {/* Right: exit */}
+          <button
+            onClick={() => {
+              if (confirm(kh ? "តើអ្នកពិតជាចង់ចាកចេញពីហ្គេមមែនទេ?" : "Are you sure you want to exit the game?")) {
+                if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+                router.push("/play");
+              }
+            }}
+            className="flex items-center gap-1.5 px-2.5 py-1 border border-red-500/30 bg-red-950/30 hover:bg-red-900/40 text-red-400 text-xs font-black uppercase tracking-wider transition-all"
+          >
+            {kh ? "ចាកចេញ" : "Exit"}
+          </button>
+        </div>
+
+        {/* ── Progress bar ── */}
+        <div className="h-1.5 bg-zinc-800 flex-shrink-0">
+          <div
+            className="h-full bg-yellow-400 transition-all duration-500"
+            style={{ width: `${totalQuestions > 0 ? ((questionIndex + 1) / totalQuestions) * 100 : 0}%` }}
+          />
+        </div>
+
+        {/* ── Content area ── */}
+        <div className="relative z-10 flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full justify-center overflow-y-auto min-h-0">
+
+          {/* Q-index + difficulty + timer row */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <span className="text-zinc-400 text-sm font-black uppercase tracking-widest bg-zinc-800/80 px-2 py-1 rounded border border-zinc-700" style={khFont}>
+                {kh ? `${questionIndex + 1}/${totalQuestions}` : `Q ${questionIndex + 1} / ${totalQuestions}`}
+              </span>
+              {currentQuestion.difficulty && (
+                <span className="text-yellow-500 font-black text-xs uppercase bg-yellow-500/10 px-2 py-1 rounded border border-yellow-500/30" style={khFont}>
+                  {currentQuestion.difficulty}
+                </span>
+              )}
+            </div>
+            {endsAt && (
+              <CountdownTimer
+                endsAt={endsAt}
+                totalSeconds={timePerQuestion}
+                onExpire={() => {}}
+              />
+            )}
+          </div>
+
+          {/* Question image (non-image-pick) */}
+          {currentQuestion.imageUrl && currentQuestion.gameType !== "image_pick" && (
+            <div className="border-2 border-black bg-white flex items-center justify-center p-4" style={{ minHeight: 180 }}>
+              <img src={currentQuestion.imageUrl} alt="question" className="max-h-44 w-auto object-contain" />
+            </div>
+          )}
+
+          {/* Question text card — solo glassmorphism style */}
+          <div
+            className="bg-zinc-900/90 backdrop-blur-md border-2 border-zinc-600 p-6 sm:p-8 rounded-lg text-white font-black text-xl sm:text-2xl md:text-3xl leading-snug break-words text-center shadow-lg"
+            style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)", ...khFont }}
+          >
+            {kh ? (currentQuestion.questionKm || currentQuestion.questionEn) : currentQuestion.questionEn}
+          </div>
+
+          {/* Answer grid */}
           <ErrorBoundary fallback={
             <div className="text-center p-8 border border-red-500/30 bg-red-500/10">
               <XCircle className="mx-auto text-red-400 mb-3" size={32} />
@@ -568,23 +625,45 @@ export default function StudentGamePage() {
             />
           </ErrorBoundary>
 
-          {/* Answer feedback */}
+          {/* Answer feedback — solo style */}
           {answerResult && (
-            <div className={`p-5 border-2 text-center ${answerResult.isCorrect ? "border-green-400 bg-green-500/20" : "border-red-400 bg-red-500/20"}`}
-              style={{ boxShadow: answerResult.isCorrect ? "0 0 24px rgba(74,222,128,0.3)" : "0 0 24px rgba(239,68,68,0.3)" }}>
-              <div className="flex items-center justify-center gap-2 mb-2">
+            <div
+              className={`border-2 p-4 flex flex-col items-center gap-2 ${
+                answerResult.isCorrect
+                  ? "border-green-400 bg-green-500/10"
+                  : "border-red-400 bg-red-500/10"
+              }`}
+              style={{
+                boxShadow: answerResult.isCorrect
+                  ? "0 0 20px rgba(74,222,128,0.25), 3px 3px 0 rgba(74,222,128,0.4)"
+                  : "0 0 20px rgba(239,68,68,0.25), 3px 3px 0 rgba(239,68,68,0.4)",
+              }}
+            >
+              <div className="flex items-center gap-2">
                 {answerResult.isCorrect
-                  ? <CheckCircle className="text-green-400" size={28} />
-                  : <XCircle className="text-red-400" size={28} />}
-                <span className="text-white font-black text-xl" style={khFont}>
+                  ? <CheckCircle className="text-green-400" size={24} />
+                  : <XCircle className="text-red-400" size={24} />}
+                <span className="text-white font-black text-lg" style={khFont}>
                   {answerResult.isCorrect ? (kh ? "ត្រូវ!" : "Correct!") : (kh ? "មិនត្រូវ" : "Incorrect")}
                 </span>
               </div>
               {answerResult.pointsEarned > 0 && (
-                <div className="inline-block px-4 py-1.5 bg-yellow-400 border border-yellow-300">
-                  <span className="text-black font-black text-lg">+{answerResult.pointsEarned} pts</span>
+                <div
+                  className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-yellow-400 border-2 border-black"
+                  style={{ boxShadow: "3px 3px 0 #000" }}
+                >
+                  <Zap size={14} className="text-black" />
+                  <span className="text-black font-black text-base">+{answerResult.pointsEarned} pts</span>
                 </div>
               )}
+            </div>
+          )}
+
+          {/* Waiting indicator after answered */}
+          {answerSubmitted && !answerResult && (
+            <div className="flex items-center justify-center gap-2 text-zinc-400 text-sm font-bold" style={khFont}>
+              <Loader2 size={14} className="animate-spin" />
+              {kh ? "រង់ចាំ..." : "Waiting for result..."}
             </div>
           )}
         </div>

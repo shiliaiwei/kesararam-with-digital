@@ -52,6 +52,7 @@ interface AnswerRecord {
   answerId: number | null;
   isCorrect: boolean;
   timeTakenMs: number;
+  difficulty: string | null;
 }
 
 interface ResultData {
@@ -277,7 +278,8 @@ export default function CategoryQuizPage() {
   const advanceQuestion = useCallback(
     (session: SoloSession, category: Category, qIndex: number, answerId: number | null, isCorrect: boolean, timeTakenMs: number) => {
       if (advanceTimerRef.current) clearTimeout(advanceTimerRef.current);
-      answersRef.current.push({ questionId: session.questions[qIndex].id, answerId, isCorrect, timeTakenMs });
+      const q = session.questions[qIndex];
+      answersRef.current.push({ questionId: q.id, answerId, isCorrect, timeTakenMs, difficulty: q.difficulty ?? null });
 
       const nextIdx = qIndex + 1;
       if (nextIdx >= session.questions.length) {
@@ -310,13 +312,15 @@ export default function CategoryQuizPage() {
     if (isCorrect) {
       const newStreak = myStreak + 1;
       setMyStreak(newStreak);
-      const pts =
-        1000 +
-        Math.floor(
-          1000 * Math.max(0, (phase.session.timePerQuestion * 1000 - timeTakenMs) / (phase.session.timePerQuestion * 1000))
-        );
-      const bonus = Math.floor(1000 * Math.min(Math.max(newStreak - 1, 0), 5) * 0.1);
-      setMyScore((s) => s + pts + bonus);
+      // Cosmetic display score uses same difficulty-based rules as server:
+      // base = easy:1 medium:2 hard:3, speedBonus = +1 if answered in first half, streakBonus = +1 or +2
+      const diffMap: Record<string, number> = { easy: 1, medium: 2, hard: 3 };
+      const base = diffMap[q.difficulty?.toLowerCase() ?? "medium"] ?? 2;
+      const totalMs = phase.session.timePerQuestion * 1000;
+      const isSuspicious = timeTakenMs < 500;
+      const speedBonus = (!isSuspicious && (totalMs - timeTakenMs) / totalMs >= 0.5) ? 1 : 0;
+      const streakBonus = isSuspicious ? 0 : newStreak >= 5 ? 2 : newStreak >= 2 ? 1 : 0;
+      setMyScore((s) => s + base + speedBonus + streakBonus);
       if (!muted) { if (newStreak > 2) sounds.streak(); else sounds.correct(); }
     } else {
       setMyStreak(0);
@@ -335,46 +339,59 @@ export default function CategoryQuizPage() {
     advanceQuestion(phase.session, phase.category, phase.qIndex, null, false, phase.session.timePerQuestion * 1000);
   }
 
-  function completeGame(session: SoloSession, category: Category, timeTakenSeconds: number) {
-    const finalScore = myScore;
+  async function completeGame(session: SoloSession, category: Category, timeTakenSeconds: number) {
     const correct = answersRef.current.filter((a) => a.isCorrect).length;
     const total = session.questions.length;
     const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
 
-    // Try to save score (non-blocking)
-    fetch("/api/game/solo/complete", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        sessionId: session.sessionId,
+    try {
+      const res = await fetch("/api/game/solo/complete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sessionId: session.sessionId,
+          answers: answersRef.current,
+          timeTakenSeconds,
+          gameMode: "category-quiz",
+          difficulty: "mixed",
+          timePerQuestion: session.timePerQuestion,
+          scoringMode: "speed",
+        }),
+      });
+      const result = await res.json();
+      setPhase({
+        name: "results",
+        session,
+        result: {
+          ...result,
+          categoryName: kh ? category.titleKm : category.titleEn,
+        },
         answers: answersRef.current,
-        timeTakenSeconds,
-        gameMode: "category-quiz",
-        difficulty: "mixed",
-      }),
-    }).catch(() => {});
-
-    setPhase({
-      name: "results",
-      session,
-      result: {
-        totalScore: finalScore,
-        accuracyPercentage: accuracy,
-        timeTakenSeconds,
-        correctAnswers: correct,
-        totalQuestions: total,
-        personalBest: finalScore,
-        isNewPersonalBest: false,
-        categoryName: kh ? category.titleKm : category.titleEn,
-        perQuestion: answersRef.current.map((a) => ({
-          questionId: a.questionId,
-          isCorrect: a.isCorrect,
-          pointsEarned: a.isCorrect ? 1000 : 0,
-          timeTakenMs: a.timeTakenMs,
-        })),
-      },
-      answers: answersRef.current,
-    });
+      });
+    } catch {
+      // Fallback to local cosmetic score if server fails
+      setPhase({
+        name: "results",
+        session,
+        result: {
+          totalScore: myScore,
+          accuracyPercentage: accuracy,
+          timeTakenSeconds,
+          correctAnswers: correct,
+          totalQuestions: total,
+          personalBest: myScore,
+          isNewPersonalBest: false,
+          categoryName: kh ? category.titleKm : category.titleEn,
+          perQuestion: answersRef.current.map((a) => ({
+            questionId: a.questionId,
+            isCorrect: a.isCorrect,
+            pointsEarned: a.isCorrect ? 2 : 0,
+            timeTakenMs: a.timeTakenMs,
+          })),
+        },
+        answers: answersRef.current,
+      });
+    }
     if (!muted) sounds.podium();
   }
   completeGameRef.current = completeGame;
