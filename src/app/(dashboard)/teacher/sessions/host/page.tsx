@@ -457,7 +457,7 @@ export default function HostPage() {
                     };
 
                     return (
-                      <div className="grid grid-cols-2 gap-3.5">
+                      <div className="grid grid-cols-2 gap-4">
                         {GAME_MODES.map((m) => {
                           const isSelected = selectedMode === m.id;
                           const isPremium = ["mixed-battle", "daily-challenge", "exam-simulation"].includes(m.id);
@@ -477,55 +477,45 @@ export default function HostPage() {
                                   setQuestionCount(m.defaultQuestionCount);
                                 }
                               }}
-                              className="relative text-left overflow-hidden transition-all duration-300 group"
+                              className={`relative text-left overflow-hidden transition-all duration-150 border-2 border-black rounded-xl p-4 flex flex-col h-full justify-between group ${
+                                isSelected 
+                                  ? "-translate-x-1 -translate-y-1 bg-[#1e1f29]" 
+                                  : "bg-[#181922] hover:-translate-x-0.5 hover:-translate-y-0.5"
+                              }`}
                               style={{
-                                background: isSelected
-                                  ? `linear-gradient(145deg, ${m.color}20, ${m.color}05)`
-                                  : "rgba(255,255,255,0.03)",
-                                border: isSelected
-                                  ? `2.5px solid ${m.color}`
-                                  : isLocked
-                                    ? "1.5px dashed rgba(255,215,0,0.3)"
-                                    : "1.5px solid rgba(255,255,255,0.08)",
-                                borderRadius: 16,
-                                boxShadow: isSelected
-                                  ? `0 0 20px ${m.color}25, inset 0 1px 0 ${m.color}20`
-                                  : isLocked
-                                    ? "0 0 8px rgba(255,215,0,0.04)"
-                                    : "none",
-                                transform: isSelected ? "translateY(-3px)" : "translateY(0)",
-                                opacity: isLocked ? 0.85 : 1,
+                                boxShadow: isSelected 
+                                  ? `6px 6px 0px ${m.color}` 
+                                  : "3px 3px 0px #000000",
+                                borderColor: isSelected ? m.color : isLocked ? "rgba(0,0,0,0.5)" : "#000000",
+                                borderStyle: isLocked ? "dashed" : "solid",
+                                opacity: isLocked ? 0.8 : 1,
                               }}
                             >
                               {/* Background accent shape */}
-                              <div className="absolute top-0 right-0 w-16 h-16 opacity-10 transition-opacity group-hover:opacity-20"
+                              <div className="absolute top-0 right-0 w-16 h-16 opacity-10 transition-opacity group-hover:opacity-15"
                                 style={{
                                   background: m.color,
                                   clipPath: meta.accentShape,
                                   borderRadius: "0 16px 0 0",
                                 }} />
 
-                              {/* Backlight glow on hover/selected */}
-                              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                                style={{ background: `radial-gradient(circle at 10% 10%, ${m.color}15, transparent 65%)` }} />
-
-                              <div className="relative z-10 p-4 flex flex-col h-full justify-between">
+                              <div className="relative z-10 flex flex-col h-full justify-between w-full">
                                 <div>
                                   {/* Header: emoji + locks/badges */}
-                                  <div className="flex items-start justify-between mb-2.5">
+                                  <div className="flex items-start justify-between mb-3 w-full">
                                     <div className="text-2xl leading-none">{meta.emoji}</div>
                                     <div className="flex items-center gap-1.5">
                                       {isLocked && (
-                                        <div className="bg-amber-400/20 border border-amber-400/40 p-1 rounded-full animate-pulse-gold">
-                                          <Lock size={10} className="text-amber-400" />
+                                        <div className="bg-[#FFD700] border border-black p-0.5 rounded-sm shrink-0 shadow-[1px_1px_0_#000]">
+                                          <Lock size={10} className="text-black" />
                                         </div>
                                       )}
                                       {meta.badge && (
-                                        <span className="text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full"
+                                        <span className="text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded border border-black shrink-0"
                                           style={{
-                                            background: isLocked ? "rgba(255,215,0,0.15)" : `${meta.badgeColor}20`,
-                                            color: isLocked ? "#FFD700" : meta.badgeColor,
-                                            border: `1px solid ${isLocked ? "rgba(255,215,0,0.3)" : `${meta.badgeColor}40`}`,
+                                            background: isLocked ? "#FFD700" : meta.badgeColor,
+                                            color: "#000",
+                                            boxShadow: "1px 1px 0 #000",
                                           }}>
                                           {meta.badge}
                                         </span>
@@ -539,44 +529,36 @@ export default function HostPage() {
                                   </div>
 
                                   {/* Tagline */}
-                                  <div className="text-[10px] mb-3 leading-snug" style={{ color: "rgba(255,255,255,0.45)", ...khFont }}>
+                                  <div className="text-[10px] mb-4 leading-snug" style={{ color: "rgba(255,255,255,0.45)", ...khFont }}>
                                     {kh ? meta.taglineKm : meta.tagline}
                                   </div>
                                 </div>
 
                                 <div>
-                                  {/* Gamified stats chips */}
-                                  <div className="flex items-center gap-1.5 mb-2.5 flex-wrap">
-                                    <span className="text-[9px] font-black tracking-wider px-1.5 py-0.5 rounded-md"
-                                      style={{ background: "rgba(6,182,212,0.1)", color: "#06b6d4", border: "1px solid rgba(6,182,212,0.25)" }}>
+                                  {/* Gamified stats chips (Neo-Brutalist Inventory style) */}
+                                  <div className="flex items-center gap-1.5 mb-3 flex-wrap">
+                                    <span className="text-[9px] font-black tracking-wider px-1.5 py-0.5 rounded border border-black bg-[#06b6d4] text-black shadow-[1px_1px_0_#000]">
                                       {stats.xp}
                                     </span>
-                                    <span className="text-[9px] font-black tracking-wider px-1.5 py-0.5 rounded-md"
+                                    <span className="text-[9px] font-black tracking-wider px-1.5 py-0.5 rounded border border-black shadow-[1px_1px_0_#000]"
                                       style={{
-                                        background: isSelected ? `${m.color}20` : "rgba(255,255,255,0.06)",
-                                        color: isSelected ? "#fff" : "rgba(255,255,255,0.5)",
-                                        border: isSelected ? `1px solid ${m.color}50` : "1px solid rgba(255,255,255,0.1)"
+                                        background: isSelected ? m.color : "#242630",
+                                        color: isSelected ? "#000" : "#fff",
                                       }}>
                                       {kh ? stats.complexityKm : stats.complexity}
                                     </span>
                                   </div>
 
                                   {/* Config presets footer */}
-                                  <div className="flex items-center gap-1.5 border-t border-white/5 pt-2 flex-wrap">
-                                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-sm bg-white/5 text-white/45">
+                                  <div className="flex items-center gap-1.5 border-t border-black pt-2.5 flex-wrap">
+                                    <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-[#242630] text-white border border-black shadow-[1px_1px_0_#000]">
                                       {m.defaultQuestionCount}Q
                                     </span>
-                                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-sm bg-white/5 text-white/45">
+                                    <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-[#242630] text-white border border-black shadow-[1px_1px_0_#000]">
                                       {m.timePerQuestion}s/Q
                                     </span>
                                   </div>
                                 </div>
-
-                                {/* Active selection progress indicator */}
-                                {isSelected && (
-                                  <div className="absolute bottom-0 left-0 right-0 h-0.5 rounded-b-2xl"
-                                    style={{ background: `linear-gradient(90deg, ${m.color}, transparent)` }} />
-                                )}
                               </div>
                             </button>
                           );

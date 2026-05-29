@@ -490,3 +490,17 @@
   animation: floating-sparkle 3s ease-in-out infinite;
 }
 
+/* Neo-Brutalist Interactive state helper */
+.nb-interactive {
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nb-interactive:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0px #000000 !important;
+}
+.nb-interactive:active {
+  transform: translate(0px, 0px);
+  box-shadow: 2px 2px 0px #000000 !important;
+}
+
+

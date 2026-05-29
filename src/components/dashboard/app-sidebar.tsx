@@ -168,134 +168,113 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
             <>
               {/* Active Pro Plan */}
               {isProPlan && !isTrialActive && (
-                <div className="mx-3 mb-3 p-[1px] rounded-2xl overflow-hidden relative" style={{
-                  background: "linear-gradient(135deg, rgba(255,215,0,0.4), rgba(245,158,11,0.15))"
+                <div className="mx-3 mb-3 bg-[#181922] border-2 border-black p-3 rounded-xl" style={{
+                  boxShadow: "3px 3px 0px #000000"
                 }}>
-                  <div className="absolute inset-0 opacity-15 pointer-events-none blur-sm bg-gradient-to-r from-amber-400 to-transparent" />
-                  <div className="relative z-10 px-3.5 py-2.5 rounded-2xl bg-[#0c0d12]/95 flex items-center gap-2 border border-white/5">
-                    <Crown size={14} className="text-amber-400 animate-sparkle-float" />
-                    <div className="flex-1 min-w-0">
-                      <div className="text-[10px] font-black uppercase tracking-wider text-amber-400">Teacher Pro</div>
-                      <div className="text-[8px] text-white/35 font-bold uppercase tracking-widest">Active License</div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-6.5 h-6.5 rounded-lg flex items-center justify-center bg-[#FFD700] border border-black shrink-0" style={{ boxShadow: "1px 1px 0 #000" }}>
+                      <Crown size={12} className="text-black animate-sparkle-float" />
                     </div>
-                    <Sparkles size={11} className="text-amber-400/50 animate-pulse" />
+                    <div className="flex-1 min-w-0">
+                      <div className="text-[10px] font-black uppercase tracking-wider text-white">Teacher Pro</div>
+                      <div className="text-[8px] text-amber-400 font-bold uppercase tracking-widest">Active License</div>
+                    </div>
+                    <Sparkles size={11} className="text-amber-400/50 animate-pulse shrink-0" />
                   </div>
                 </div>
               )}
 
               {/* Trial Active */}
               {isTrialActive && (
-                <div className="mx-3 mb-3 p-[1px] rounded-2xl overflow-hidden relative animate-bounce-in" style={{
-                  background: isUrgent
-                    ? "linear-gradient(135deg, rgba(239, 68, 68, 0.4), rgba(239, 68, 68, 0.15))"
-                    : "linear-gradient(135deg, rgba(255, 215, 0, 0.35), rgba(245, 158, 11, 0.15))",
+                <div className="mx-3 mb-3 bg-[#181922] border-2 border-black p-3.5 rounded-xl animate-bounce-in" style={{
+                  boxShadow: isUrgent ? "3px 3px 0px #ef4444" : "3px 3px 0px #000000"
                 }}>
-                  {/* Glowing backing for Cyber Arcade feel */}
-                  <div className="absolute inset-0 opacity-20 pointer-events-none blur-md" style={{
-                    background: isUrgent
-                      ? "radial-gradient(circle, rgba(239,68,68,0.8), transparent 70%)"
-                      : "radial-gradient(circle, rgba(255,215,0,0.8), transparent 70%)",
-                  }} />
-
-                  <div className="relative z-10 px-3.5 py-3 rounded-2xl bg-[#0c0d12]/95 backdrop-blur-md">
-                    {/* Header: Badge & Status */}
-                    <div className="flex items-center gap-1.5 mb-3">
-                      <div className="flex items-center gap-1">
-                        {isUrgent ? (
-                          <Flame size={12} className="text-red-400 animate-pulse rounded-full p-0.5 bg-red-500/10" />
-                        ) : (
-                          <Crown size={12} className="text-amber-400 animate-sparkle-float" />
-                        )}
-                        <span className="text-[10px] font-black uppercase tracking-wider" style={{ color: isUrgent ? "#f87171" : "#FFD700" }}>
-                          Teacher Pro
-                        </span>
-                      </div>
-                      
-                      <span className="ml-auto text-[9px] font-black uppercase px-2 py-0.5 rounded-full" style={{
-                        background: isUrgent ? "rgba(239,68,68,0.2)" : "rgba(255,215,0,0.12)",
-                        color: isUrgent ? "#f87171" : "#FFD700",
-                        border: isUrgent ? "1px solid rgba(239,68,68,0.3)" : "1px solid rgba(255,215,0,0.25)"
-                      }}>
-                        {trialDaysLeft}d left
+                  {/* Header: Badge & Status */}
+                  <div className="flex items-center gap-1.5 mb-3">
+                    <div className="flex items-center gap-1">
+                      {isUrgent ? (
+                        <Flame size={12} className="text-red-500 animate-pulse" />
+                      ) : (
+                        <Crown size={12} className="text-amber-400" />
+                      )}
+                      <span className="text-[10px] font-black uppercase tracking-wider" style={{ color: isUrgent ? "#f87171" : "#FFD700" }}>
+                        Teacher Pro
                       </span>
                     </div>
-
-                    {/* 7-LED Indicator Panel */}
-                    <div className="mb-3">
-                      <div className="flex justify-between items-center px-0.5 mb-1.5">
-                        <span className="text-[8px] font-black text-white/30 uppercase tracking-widest">Trial Lifeline</span>
-                        <span className="text-[8px] font-black text-white/50">{trialDaysLeft}/7 DAYS</span>
-                      </div>
-                      <div className="flex gap-1 justify-between bg-black/40 p-1.5 rounded-lg border border-white/5">
-                        {Array.from({ length: 7 }).map((_, i) => {
-                          const dotIndex = i + 1;
-                          const isDotActive = dotIndex <= (trialDaysLeft ?? 0);
-                          const isUrgentDot = isDotActive && isUrgent;
-
-                          return (
-                            <div
-                              key={i}
-                              className={`h-2 flex-1 rounded-sm transition-all duration-500 ${
-                                isUrgentDot ? "animate-pulse-red-alert" : isDotActive && dotIndex === (trialDaysLeft ?? 0) ? "animate-pulse-gold" : ""
-                              }`}
-                              style={{
-                                background: isDotActive
-                                  ? isUrgent
-                                    ? "linear-gradient(to bottom, #ef4444, #b91c1c)"
-                                    : "linear-gradient(to bottom, #FFD700, #d97706)"
-                                  : "rgba(255,255,255,0.06)",
-                                border: isDotActive
-                                  ? isUrgent
-                                    ? "1px solid rgba(239,68,68,0.5)"
-                                    : "1px solid rgba(255,215,0,0.4)"
-                                  : "1px solid rgba(255,255,255,0.03)",
-                                boxShadow: isDotActive
-                                  ? isUrgent
-                                    ? "0 0 6px rgba(239,68,68,0.6)"
-                                    : "0 0 6px rgba(255,215,0,0.4)"
-                                  : "none",
-                              }}
-                              title={isDotActive ? `Day ${dotIndex} active` : `Day ${dotIndex} consumed`}
-                            />
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    {/* CTA Action */}
-                    <Link href="/pricing"
-                      className="group flex items-center justify-center gap-1.5 py-1.5 rounded-xl text-[9px] font-black uppercase tracking-wider transition-all duration-300 shimmer-sweep-btn"
-                      style={{
-                        background: isUrgent 
-                          ? "linear-gradient(135deg, #ef4444, #dc2626)" 
-                          : "linear-gradient(135deg, #FFD700, #f59e0b)",
-                        color: isUrgent ? "#fff" : "#000",
-                        boxShadow: isUrgent
-                          ? "0 4px 12px rgba(239,68,68,0.25)"
-                          : "0 4px 12px rgba(255,215,0,0.25)",
-                      }}>
-                      Upgrade Now <ArrowRight size={10} className="transition-transform group-hover:translate-x-1" />
-                    </Link>
+                    
+                    <span className="ml-auto text-[9px] font-black uppercase px-2 py-0.5 border border-black rounded-sm" style={{
+                      background: isUrgent ? "#ef4444" : "#FFD700",
+                      color: isUrgent ? "#fff" : "#000",
+                      boxShadow: "1px 1px 0 #000"
+                    }}>
+                      {trialDaysLeft}d left
+                    </span>
                   </div>
+
+                  {/* 7-LED Indicator Panel (Inventory slot style) */}
+                  <div className="mb-3.5">
+                    <div className="flex justify-between items-center mb-1.5">
+                      <span className="text-[8px] font-black text-white/40 uppercase tracking-widest">Trial Lifeline</span>
+                      <span className="text-[8px] font-black text-white/60">{trialDaysLeft}/7 DAYS</span>
+                    </div>
+                    <div className="grid grid-cols-7 gap-1 bg-[#101116] p-1.5 rounded-lg border border-black">
+                      {Array.from({ length: 7 }).map((_, i) => {
+                        const dotIndex = i + 1;
+                        const isDotActive = dotIndex <= (trialDaysLeft ?? 0);
+                        const isUrgentDot = isDotActive && isUrgent;
+
+                        return (
+                          <div
+                            key={i}
+                            className={`h-4 border border-black rounded-sm transition-all duration-300 ${
+                              isUrgentDot ? "animate-pulse-red-alert" : ""
+                            }`}
+                            style={{
+                              backgroundColor: isDotActive
+                                ? isUrgent ? "#ef4444" : "#FFD700"
+                                : "#242630",
+                              boxShadow: isDotActive
+                                ? isUrgent
+                                  ? "inset 0 1px 0 rgba(255,255,255,0.2)"
+                                  : "inset 0 1px 0 rgba(255,255,255,0.3)"
+                                : "none",
+                            }}
+                            title={isDotActive ? `Day ${dotIndex} active` : `Day ${dotIndex} consumed`}
+                          />
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* CTA Action */}
+                  <Link href="/pricing"
+                    className="group flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-wider transition-all duration-150 border-2 border-black nb-interactive"
+                    style={{
+                      background: isUrgent ? "#ef4444" : "#FFD700",
+                      color: isUrgent ? "#fff" : "#000",
+                      boxShadow: "2.5px 2.5px 0px #000000",
+                    }}>
+                    Upgrade Now <ArrowRight size={10} className="transition-transform group-hover:translate-x-0.5" />
+                  </Link>
                 </div>
               )}
 
               {/* Free Plan — upgrade nudge */}
               {plan === "free" && !isTrialActive && (
-                <div className="mx-3 mb-3 p-[1px] rounded-2xl overflow-hidden relative" style={{
-                  background: "linear-gradient(135deg, rgba(255,215,0,0.3), rgba(255,255,255,0.05))"
+                <div className="mx-3 mb-3 bg-[#181922] border-2 border-black p-3 rounded-xl" style={{
+                  boxShadow: "3px 3px 0px #000000"
                 }}>
-                  <Link href="/pricing" className="group block relative z-10 px-3.5 py-3 rounded-2xl bg-[#0c0d12]/95 hover:bg-[#111218]/95 transition-all border border-white/5">
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 rounded-lg flex items-center justify-center bg-amber-400/10 border border-amber-400/25 shrink-0 animate-sparkle-float">
-                        <Crown size={13} className="text-amber-400" />
+                  <Link href="/pricing" className="group flex items-center justify-between border-2 border-black p-2 bg-[#FFD700] rounded-lg nb-interactive text-black" style={{ boxShadow: "2px 2px 0 #000" }}>
+                    <div className="flex items-center gap-2">
+                      <div className="w-6.5 h-6.5 rounded-md flex items-center justify-center bg-black shrink-0">
+                        <Crown size={12} className="text-[#FFD700]" />
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="text-[10px] font-black uppercase tracking-wider text-amber-400">Upgrade to Pro</div>
-                        <div className="text-[8px] text-white/35 font-bold uppercase tracking-widest">Get Live Quiz Power</div>
+                      <div className="flex-1 min-w-0 text-left">
+                        <div className="text-[10px] font-black uppercase tracking-wider">Upgrade to Pro</div>
+                        <div className="text-[8px] text-black/60 font-bold uppercase tracking-widest">Get Live Quiz Power</div>
                       </div>
-                      <ArrowRight size={12} className="text-amber-400/50 transition-transform group-hover:translate-x-1 shrink-0" />
                     </div>
+                    <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5 shrink-0" />
                   </Link>
                 </div>
               )}
