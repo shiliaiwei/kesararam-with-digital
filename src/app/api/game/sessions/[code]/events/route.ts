@@ -57,25 +57,71 @@ export async function GET(
       // Send initial ping
       ctrl.enqueue(`data: ${JSON.stringify({ type: "ping" })}\n\n`);
 
-      // Send current lobby state immediately on connect
+      // Send catch-up state immediately on connect
+      // If session is active → send question_start so late/reconnecting clients catch up
+      // If session is lobby → send lobby_update as usual
       db.select()
         .from(gameParticipants)
         .where(eq(gameParticipants.sessionId, session.id))
-        .then((participants) => {
+        .then(async (participants) => {
           try {
-            ctrl.enqueue(
-              `data: ${JSON.stringify({
-                type: "lobby_update",
-                participants: participants.map((p) => ({
-                  userId: p.userId,
-                  displayName: p.displayName,
-                  avatar: p.avatar,
-                  totalScore: p.totalScore,
-                  isConnected: p.isConnected ?? true,
-                })),
-              })}\n\n`
-            );
-          } catch {}
+            if (session.status === "active" && session.questionIds?.length) {
+              // Import what we need for catch-up
+              const { questions, answers } = await import("@/db/schema/content");
+              const { mapContentToGameType } = await import("@/lib/game-engine");
+              const { eq: eqFn, asc } = await import("drizzle-orm");
+
+              const qId = session.questionIds[session.currentQuestionIndex ?? 0];
+              const [q] = await db.select({
+                id: questions.id, questionEn: questions.questionEn,
+                questionKm: questions.questionKm, imageUrl: questions.imageUrl,
+                audioUrlEn: questions.audioUrlEn, audioUrlKm: questions.audioUrlKm,
+              }).from(questions).where(eqFn(questions.id, qId));
+
+              const ans = await db.select({
+                id: answers.id, answerEn: answers.answerEn,
+                answerKm: answers.answerKm, imageUrl: answers.imageUrl,
+              }).from(answers).where(eqFn(answers.questionId, qId)).orderBy(asc(answers.sortOrder));
+
+              if (q && ans.length > 0) {
+                const endsAt = session.questionStartedAt
+                  ? new Date(session.questionStartedAt.getTime() + session.timePerQuestion * 1000).toISOString()
+                  : new Date(Date.now() + session.timePerQuestion * 1000).toISOString();
+
+                ctrl.enqueue(`data: ${JSON.stringify({
+                  type: "question_start",
+                  question: {
+                    id: q.id, questionEn: q.questionEn, questionKm: q.questionKm,
+                    imageUrl: q.imageUrl ?? null, audioUrlEn: q.audioUrlEn ?? null,
+                    audioUrlKm: q.audioUrlKm ?? null,
+                    gameType: mapContentToGameType({ answerCount: ans.length, hasImage: !!q.imageUrl, hasAudio: !!(q.audioUrlEn || q.audioUrlKm) }),
+                    answers: ans.map(a => ({ id: a.id, answerEn: a.answerEn, answerKm: a.answerKm, imageUrl: a.imageUrl ?? null })),
+                  },
+                  startsAt: session.questionStartedAt?.toISOString() ?? new Date().toISOString(),
+                  endsAt,
+                  index: session.currentQuestionIndex ?? 0,
+                  total: session.questionIds.length,
+                  catchUp: true,
+                })}\n\n`);
+                return;
+              }
+            }
+
+            if (session.status === "ended") {
+              ctrl.enqueue(`data: ${JSON.stringify({ type: "session_end", podium: [], finalLeaderboard: [] })}\n\n`);
+              return;
+            }
+
+            // Default: lobby_update
+            ctrl.enqueue(`data: ${JSON.stringify({
+              type: "lobby_update",
+              participants: participants.map((p) => ({
+                userId: p.userId, displayName: p.displayName,
+                avatar: p.avatar, totalScore: p.totalScore,
+                isConnected: p.isConnected ?? true,
+              })),
+            })}\n\n`);
+          } catch { }
         });
     },
     cancel() {
@@ -89,7 +135,7 @@ export async function GET(
             eq(gameParticipants.userId, user.id)
           )
         )
-        .catch(() => {});
+        .catch(() => { });
     },
   });
 

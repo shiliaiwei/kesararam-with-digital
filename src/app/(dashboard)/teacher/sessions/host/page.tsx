@@ -115,13 +115,43 @@ export default function HostPage() {
       });
     fetch("/api/game/sessions")
       .then((r) => r.json())
-      .then((d) => {
+      .then(async (d) => {
         const active = (d.sessions ?? []).find(
           (s: any) => s.status === "lobby" || s.status === "active" || s.status === "paused"
         );
-        if (active) setPhase({ name: "lobby", code: active.sessionCode, sessionId: active.id, participants: [] });
+        if (active) {
+          if (active.status === "lobby") {
+            setPhase({ name: "lobby", code: active.sessionCode, sessionId: active.id, participants: [] });
+          } else if (active.status === "active" || active.status === "paused") {
+            // Recover active session — fetch current state
+            try {
+              const stateRes = await fetch(`/api/game/sessions/${active.sessionCode}/state`);
+              if (stateRes.ok) {
+                const state = await stateRes.json();
+                if (state.currentQuestion) {
+                  setPhase({
+                    name: "active",
+                    code: active.sessionCode,
+                    sessionId: active.id,
+                    qIndex: state.currentQuestionIndex ?? 0,
+                    total: state.totalQuestions ?? 1,
+                    leaderboard: state.participants?.map((p: any, i: number) => ({
+                      userId: p.userId, displayName: p.displayName, avatar: p.avatar,
+                      totalScore: p.totalScore, rank: i + 1, rankChange: 0,
+                      correctAnswers: 0, currentStreak: 0,
+                    })) ?? [],
+                    question: state.currentQuestion,
+                  });
+                  return;
+                }
+              }
+            } catch { }
+            // Fallback to lobby if state fetch fails
+            setPhase({ name: "lobby", code: active.sessionCode, sessionId: active.id, participants: [] });
+          }
+        }
       })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   const activeCode = "code" in phase ? (phase as any).code : "";
@@ -137,7 +167,7 @@ export default function HostPage() {
           // Seed leaderboard from lobby participants if first question
           const prevLeaderboard = p.name === "active" ? p.leaderboard
             : p.name === "round_end" ? p.leaderboard
-            : [];
+              : [];
           return {
             name: "active",
             code: "code" in p ? (p as any).code : "",
@@ -245,26 +275,28 @@ export default function HostPage() {
           <div>
             <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2" style={khFont}>{kh ? "ប្រភេទ" : "Categories"}</div>
             <div className="flex flex-wrap gap-2">
-              {categories.map((cat) => { const sel = selectedCats.includes(cat.id); return (
-                <button key={cat.id} onClick={() => setSelectedCats((p) => sel ? p.filter((id) => id !== cat.id) : [...p, cat.id])} className="px-3 py-1.5 border-2 border-black text-sm font-bold transition-all"
-                  style={{ backgroundColor: sel ? "#000" : "#fff", color: sel ? "#ffd700" : "#000", boxShadow: "2px 2px 0 #000" }}>
-                  <span style={khFont}>{kh ? cat.titleKm : cat.titleEn}</span>
-                </button>
-              ); })}
+              {categories.map((cat) => {
+                const sel = selectedCats.includes(cat.id); return (
+                  <button key={cat.id} onClick={() => setSelectedCats((p) => sel ? p.filter((id) => id !== cat.id) : [...p, cat.id])} className="px-3 py-1.5 border-2 border-black text-sm font-bold transition-all"
+                    style={{ backgroundColor: sel ? "#000" : "#fff", color: sel ? "#ffd700" : "#000", boxShadow: "2px 2px 0 #000" }}>
+                    <span style={khFont}>{kh ? cat.titleKm : cat.titleEn}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
           <div className="grid grid-cols-3 gap-3">
             <div>
               <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2" style={khFont}>{kh ? "ពិន្ទុ" : "Scoring"}</div>
-              {["speed","equal"].map((s) => <button key={s} onClick={() => setScoringMode(s)} className="w-full py-2 border-2 border-black text-xs font-black mb-1 transition-all" style={{ backgroundColor: scoringMode===s?"#000":"#fff", color: scoringMode===s?"#ffd700":"#000", boxShadow:"2px 2px 0 #000" }}>{s==="speed"?(kh?"ល្បឿន":"Speed"):(kh?"ស្មើ":"Equal")}</button>)}
+              {["speed", "equal"].map((s) => <button key={s} onClick={() => setScoringMode(s)} className="w-full py-2 border-2 border-black text-xs font-black mb-1 transition-all" style={{ backgroundColor: scoringMode === s ? "#000" : "#fff", color: scoringMode === s ? "#ffd700" : "#000", boxShadow: "2px 2px 0 #000" }}>{s === "speed" ? (kh ? "ល្បឿន" : "Speed") : (kh ? "ស្មើ" : "Equal")}</button>)}
             </div>
             <div>
               <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2" style={khFont}>{kh ? "ភាសា" : "Language"}</div>
-              {["both","en","km"].map((l) => <button key={l} onClick={() => setLanguage(l)} className="w-full py-2 border-2 border-black text-xs font-black mb-1 transition-all" style={{ backgroundColor: language===l?"#000":"#fff", color: language===l?"#ffd700":"#000", boxShadow:"2px 2px 0 #000" }}>{l==="both"?(kh?"ទាំងពីរ":"Both"):l.toUpperCase()}</button>)}
+              {["both", "en", "km"].map((l) => <button key={l} onClick={() => setLanguage(l)} className="w-full py-2 border-2 border-black text-xs font-black mb-1 transition-all" style={{ backgroundColor: language === l ? "#000" : "#fff", color: language === l ? "#ffd700" : "#000", boxShadow: "2px 2px 0 #000" }}>{l === "both" ? (kh ? "ទាំងពីរ" : "Both") : l.toUpperCase()}</button>)}
             </div>
             <div>
               <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2" style={khFont}>{kh ? "កម្រិត" : "Difficulty"}</div>
-              {["mixed","easy","medium","hard"].map((d) => <button key={d} onClick={() => { setDifficulty(d); if (d !== "mixed" && questionCount > 20) setQuestionCount(20); }} className="w-full py-2 border-2 border-black text-xs font-black mb-1 transition-all" style={{ backgroundColor: difficulty===d?"#000":"#fff", color: difficulty===d?"#ffd700":"#000", boxShadow:"2px 2px 0 #000" }}>{d.charAt(0).toUpperCase()+d.slice(1)}</button>)}
+              {["mixed", "easy", "medium", "hard"].map((d) => <button key={d} onClick={() => { setDifficulty(d); if (d !== "mixed" && questionCount > 20) setQuestionCount(20); }} className="w-full py-2 border-2 border-black text-xs font-black mb-1 transition-all" style={{ backgroundColor: difficulty === d ? "#000" : "#fff", color: difficulty === d ? "#ffd700" : "#000", boxShadow: "2px 2px 0 #000" }}>{d.charAt(0).toUpperCase() + d.slice(1)}</button>)}
             </div>
           </div>
           {error && (
@@ -340,11 +372,11 @@ export default function HostPage() {
           <div>
             <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2" style={khFont}>{kh ? "អ្នកលេងអតិបរមា" : "Max Players"}</div>
             <div className="flex gap-2">
-              {[10,20,30,50,100].map((n) => <button key={n} onClick={() => setMaxPlayers(n)} className="flex-1 py-2 border-2 border-black text-xs font-black transition-all" style={{ backgroundColor: maxPlayers===n?"#000":"#fff", color: maxPlayers===n?"#ffd700":"#000", boxShadow:"2px 2px 0 #000" }}>{n}</button>)}
+              {[10, 20, 30, 50, 100].map((n) => <button key={n} onClick={() => setMaxPlayers(n)} className="flex-1 py-2 border-2 border-black text-xs font-black transition-all" style={{ backgroundColor: maxPlayers === n ? "#000" : "#fff", color: maxPlayers === n ? "#ffd700" : "#000", boxShadow: "2px 2px 0 #000" }}>{n}</button>)}
             </div>
           </div>
-          <button onClick={createSession} disabled={phase.name==="creating"} className="w-full py-5 bg-black text-yellow-400 font-black text-xl border-2 border-black disabled:opacity-50 flex items-center justify-center gap-2" style={{ boxShadow:"5px 5px 0 #ffd700", ...khFont }}>
-            {phase.name==="creating" ? <Loader2 size={20} className="animate-spin" /> : <Play size={20} />}
+          <button onClick={createSession} disabled={phase.name === "creating"} className="w-full py-5 bg-black text-yellow-400 font-black text-xl border-2 border-black disabled:opacity-50 flex items-center justify-center gap-2" style={{ boxShadow: "5px 5px 0 #ffd700", ...khFont }}>
+            {phase.name === "creating" ? <Loader2 size={20} className="animate-spin" /> : <Play size={20} />}
             {kh ? "បង្កើតហ្គេម" : "Create Game"}
           </button>
         </div>
@@ -363,39 +395,39 @@ export default function HostPage() {
           </div>
           <div className="flex items-center gap-2">
             <button onClick={() => { if (confirm(kh ? "បោះបង់ហ្គេមនេះ?" : "Cancel this game session?")) { control("terminate"); setTimeout(() => setPhase({ name: "setup" }), 500); } }} disabled={controlling}
-              className="flex items-center gap-2 px-4 py-3 bg-red-500 text-white font-black border-2 border-black disabled:opacity-40" style={{ boxShadow:"3px 3px 0 #000", ...khFont }}>
+              className="flex items-center gap-2 px-4 py-3 bg-red-500 text-white font-black border-2 border-black disabled:opacity-40" style={{ boxShadow: "3px 3px 0 #000", ...khFont }}>
               <Square size={16} />{kh ? "បោះបង់" : "Cancel"}
             </button>
             <button onClick={() => control("start")} disabled={controlling}
-              className="flex items-center gap-2 px-6 py-3 bg-green-500 text-white font-black border-2 border-black disabled:opacity-40" style={{ boxShadow:"3px 3px 0 #000", ...khFont }}>
+              className="flex items-center gap-2 px-6 py-3 bg-green-500 text-white font-black border-2 border-black disabled:opacity-40" style={{ boxShadow: "3px 3px 0 #000", ...khFont }}>
               <Play size={16} />{kh ? "ចាប់ផ្តើម" : "Start Game"}
             </button>
           </div>
         </div>
         {error && <div className="mb-6 border-2 border-red-500 bg-red-50 p-4"><p className="text-red-600 font-bold text-sm" style={khFont}>{error}</p></div>}
-        <div className="border-2 border-black p-6 mb-6 bg-yellow-400 flex items-center justify-between" style={{ boxShadow:"5px 5px 0 #000" }}>
+        <div className="border-2 border-black p-6 mb-6 bg-yellow-400 flex items-center justify-between" style={{ boxShadow: "5px 5px 0 #000" }}>
           <div>
             <div className="text-xs font-black uppercase tracking-widest text-black/60 mb-1" style={khFont}>{kh ? "លេខកូដបន្ទប់" : "Room Code"}</div>
             <div className="text-6xl font-black text-black tracking-widest">{phase.code}</div>
             <div className="text-sm text-black/60 mt-1" style={khFont}>{kh ? "ចូល: /play/" : "Join at: /play/"}{phase.code}</div>
           </div>
-          <button onClick={copyCode} className="flex items-center gap-2 px-4 py-3 bg-black text-white font-black border-2 border-black" style={{ boxShadow:"3px 3px 0 #ffd700" }}>
-            {copied ? <Check size={16} /> : <Copy size={16} />}{copied ? (kh?"បានចម្លង":"Copied") : (kh?"ចម្លង":"Copy")}
+          <button onClick={copyCode} className="flex items-center gap-2 px-4 py-3 bg-black text-white font-black border-2 border-black" style={{ boxShadow: "3px 3px 0 #ffd700" }}>
+            {copied ? <Check size={16} /> : <Copy size={16} />}{copied ? (kh ? "បានចម្លង" : "Copied") : (kh ? "ចម្លង" : "Copy")}
           </button>
         </div>
         <div className="flex items-center gap-2 mb-3">
           <Users size={14} className="text-zinc-500" />
-          <span className="font-black text-sm" style={khFont}>{phase.participants.length} / {maxPlayers} {kh?"នាក់":"players"}</span>
-          <div className="flex-1 h-2 bg-zinc-200 border border-black"><div className="h-full bg-green-500 transition-all" style={{ width:`${Math.min((phase.participants.length/maxPlayers)*100,100)}%` }} /></div>
+          <span className="font-black text-sm" style={khFont}>{phase.participants.length} / {maxPlayers} {kh ? "នាក់" : "players"}</span>
+          <div className="flex-1 h-2 bg-zinc-200 border border-black"><div className="h-full bg-green-500 transition-all" style={{ width: `${Math.min((phase.participants.length / maxPlayers) * 100, 100)}%` }} /></div>
         </div>
         <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
           {phase.participants.map((p) => (
-            <div key={p.userId} className="flex items-center gap-2 border-2 border-black p-2 bg-white" style={{ boxShadow:"2px 2px 0 #000" }}>
+            <div key={p.userId} className="flex items-center gap-2 border-2 border-black p-2 bg-white" style={{ boxShadow: "2px 2px 0 #000" }}>
               <div className="w-8 h-8 bg-yellow-400 border border-black flex items-center justify-center font-black text-black text-sm flex-shrink-0">{p.displayName.charAt(0).toUpperCase()}</div>
               <span className="text-sm font-bold truncate" style={khFont}>{p.displayName}</span>
             </div>
           ))}
-          {phase.participants.length === 0 && <div className="col-span-4 text-center py-8 text-zinc-400 font-bold" style={khFont}>{kh?"រង់ចាំអ្នកចូលរួម...":"Waiting for players to join..."}</div>}
+          {phase.participants.length === 0 && <div className="col-span-4 text-center py-8 text-zinc-400 font-bold" style={khFont}>{kh ? "រង់ចាំអ្នកចូលរួម..." : "Waiting for players to join..."}</div>}
         </div>
       </div>
     );
@@ -414,15 +446,15 @@ export default function HostPage() {
     const displayLeaderboard: LeaderboardEntry[] = leaderboard.length > 0
       ? leaderboard
       : lobbyParticipants.map((p, i) => ({
-          userId: p.userId,
-          displayName: p.displayName,
-          avatar: p.avatar,
-          totalScore: 0,
-          rank: i + 1,
-          rankChange: 0,
-          correctAnswers: 0,
-          currentStreak: 0,
-        }));
+        userId: p.userId,
+        displayName: p.displayName,
+        avatar: p.avatar,
+        totalScore: 0,
+        rank: i + 1,
+        rankChange: 0,
+        correctAnswers: 0,
+        currentStreak: 0,
+      }));
 
     return (
       <div
@@ -569,40 +601,40 @@ export default function HostPage() {
     return (
       <div className="max-w-2xl">
         <div className="mb-6">
-          <div className="inline-block bg-black text-yellow-400 text-xs font-black tracking-widest uppercase px-3 py-1.5 mb-3" style={khFont}>{kh?"ចប់ហ្គេម":"Game Over"}</div>
-          <h1 className="text-3xl font-black" style={khFont}>{kh?"លទ្ធផលចុងក្រោយ":"Final Results"}</h1>
+          <div className="inline-block bg-black text-yellow-400 text-xs font-black tracking-widest uppercase px-3 py-1.5 mb-3" style={khFont}>{kh ? "ចប់ហ្គេម" : "Game Over"}</div>
+          <h1 className="text-3xl font-black" style={khFont}>{kh ? "លទ្ធផលចុងក្រោយ" : "Final Results"}</h1>
         </div>
-        <div className="border-2 border-black bg-yellow-400 p-6 mb-6" style={{ boxShadow:"5px 5px 0 #000" }}>
-          <div className="text-4xl font-black text-center mb-1" style={khFont}>{phase.leaderboard.length} {kh?"អ្នកលេង":"players"}</div>
-          <div className="text-center text-sm font-bold text-black/60" style={khFont}>{kh?"បានចូលរួមក្នុងហ្គេម":"participated in this game"}</div>
+        <div className="border-2 border-black bg-yellow-400 p-6 mb-6" style={{ boxShadow: "5px 5px 0 #000" }}>
+          <div className="text-4xl font-black text-center mb-1" style={khFont}>{phase.leaderboard.length} {kh ? "អ្នកលេង" : "players"}</div>
+          <div className="text-center text-sm font-bold text-black/60" style={khFont}>{kh ? "បានចូលរួមក្នុងហ្គេម" : "participated in this game"}</div>
         </div>
         <div className="flex gap-3 mb-6">
-          <button onClick={() => router.push(`/teacher/sessions/${phase.code}/analytics`)} className="flex items-center gap-2 px-5 py-3 bg-black text-white font-black border-2 border-black" style={{ boxShadow:"3px 3px 0 #ffd700", ...khFont }}>
-            <BarChart2 size={14} />{kh?"មើលលទ្ធផល":"View Results"}
+          <button onClick={() => router.push(`/teacher/sessions/${phase.code}/analytics`)} className="flex items-center gap-2 px-5 py-3 bg-black text-white font-black border-2 border-black" style={{ boxShadow: "3px 3px 0 #ffd700", ...khFont }}>
+            <BarChart2 size={14} />{kh ? "មើលលទ្ធផល" : "View Results"}
           </button>
-          <button onClick={() => setPhase({ name: "setup" })} className="flex items-center gap-2 px-5 py-3 bg-yellow-400 text-black font-black border-2 border-black" style={{ boxShadow:"3px 3px 0 #000", ...khFont }}>
-            <ChevronRight size={14} />{kh?"ហ្គេមថ្មី":"New Game"}
+          <button onClick={() => setPhase({ name: "setup" })} className="flex items-center gap-2 px-5 py-3 bg-yellow-400 text-black font-black border-2 border-black" style={{ boxShadow: "3px 3px 0 #000", ...khFont }}>
+            <ChevronRight size={14} />{kh ? "ហ្គេមថ្មី" : "New Game"}
           </button>
         </div>
         {phase.leaderboard.length > 0 && (
           <>
-            <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-3" style={khFont}>{kh?"ចំណាត់ថ្នាក់ចុងក្រោយ":"Final Leaderboard"}</div>
+            <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-3" style={khFont}>{kh ? "ចំណាត់ថ្នាក់ចុងក្រោយ" : "Final Leaderboard"}</div>
             <div className="flex flex-col gap-2">
               {phase.leaderboard.slice(0, 10).map((entry, i) => {
-                const RANK_COLORS = ["#ffd700","#c0c0c0","#cd7f32"];
+                const RANK_COLORS = ["#ffd700", "#c0c0c0", "#cd7f32"];
                 const isTop3 = i < 3;
                 return (
-                  <div key={entry.userId} className="flex items-center gap-3 p-3 border-2 border-black" style={{ backgroundColor: isTop3?"#fff":"#f9fafb", boxShadow:"2px 2px 0 #000" }}>
-                    <div className="w-8 h-8 flex items-center justify-center border-2 border-black font-black text-sm flex-shrink-0" style={{ backgroundColor: isTop3?RANK_COLORS[i]:"#e5e7eb" }}>
+                  <div key={entry.userId} className="flex items-center gap-3 p-3 border-2 border-black" style={{ backgroundColor: isTop3 ? "#fff" : "#f9fafb", boxShadow: "2px 2px 0 #000" }}>
+                    <div className="w-8 h-8 flex items-center justify-center border-2 border-black font-black text-sm flex-shrink-0" style={{ backgroundColor: isTop3 ? RANK_COLORS[i] : "#e5e7eb" }}>
                       {isTop3 ? <Crown size={14} /> : entry.rank}
                     </div>
                     <div className="w-8 h-8 rounded-full flex items-center justify-center font-black text-xs text-white flex-shrink-0"
                       style={{ background: `hsl(${(entry.userId * 47) % 360}, 60%, 45%)` }}>
-                      {(entry.displayName||"?").slice(0,2).toUpperCase()}
+                      {(entry.displayName || "?").slice(0, 2).toUpperCase()}
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="font-black text-sm truncate" style={khFont}>{entry.displayName}</div>
-                      <div className="text-xs text-zinc-500">{entry.correctAnswers} {kh?"ត្រូវ":"correct"}</div>
+                      <div className="text-xs text-zinc-500">{entry.correctAnswers} {kh ? "ត្រូវ" : "correct"}</div>
                     </div>
                     <div className="font-black text-lg tabular-nums">{entry.totalScore.toLocaleString()}</div>
                   </div>

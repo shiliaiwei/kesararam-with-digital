@@ -30,7 +30,7 @@ async function buildLeaderboard(sessionId: number, prevRanks: Map<number, number
 
 async function syncScoresToUserProfiles(sessionId: number) {
   console.log(`[syncScoresToUserProfiles] Syncing scores for session ${sessionId}`);
-  
+
   try {
     // Get all participants with their scores
     const participants = await db
@@ -49,10 +49,10 @@ async function syncScoresToUserProfiles(sessionId: number) {
           updatedAt: new Date(),
         })
         .where(eq(users.id, participant.userId));
-      
+
       console.log(`[syncScoresToUserProfiles] Updated user ${participant.userId}: +${participant.totalScore} points`);
     }
-    
+
     console.log(`[syncScoresToUserProfiles] Successfully synced ${participants.length} user profiles`);
   } catch (error) {
     console.error("[syncScoresToUserProfiles] Error syncing scores:", error);
@@ -67,7 +67,7 @@ export async function POST(
   try {
     const { code } = await params;
     console.log(`[CONTROL] Request for session code: ${code}`);
-    
+
     const user = await getSession();
     if (!user) {
       console.log(`[CONTROL] Unauthorized - no user session`);
@@ -99,191 +99,194 @@ export async function POST(
 
     const currentStatus = session.status as GameStatus;
 
-  // ── TERMINATE (delete lobby before starting) ──────────────────────────────
-  if (action === "terminate") {
-    if (currentStatus !== "lobby")
-      return NextResponse.json({ error: "Can only terminate a lobby" }, { status: 409 });
-    await db.update(gameSessions)
-      .set({ status: "ended", endedAt: new Date() })
-      .where(eq(gameSessions.id, session.id));
-    broadcast(code.toUpperCase(), { type: "warning", message: "Session terminated by host" });
-    return NextResponse.json({ status: "ended" });
-  }
-
-  // ── START ─────────────────────────────────────────────────────────────────
-  if (action === "start") {
-    console.log(`[START] Session ${session.id}, status: ${currentStatus}, questionIds:`, session.questionIds);
-    
-    // Allow re-start if already active (idempotent)
-    if (currentStatus !== "lobby" && currentStatus !== "active")
-      return NextResponse.json({ error: `Cannot start from status: ${currentStatus}` }, { status: 409 });
-
-    if (!session.questionIds?.length) {
-      console.error(`[START] No questions in session ${session.id}`);
-      return NextResponse.json({ error: "No questions in session" }, { status: 400 });
+    // ── TERMINATE (delete lobby before starting) ──────────────────────────────
+    if (action === "terminate") {
+      if (currentStatus !== "lobby")
+        return NextResponse.json({ error: "Can only terminate a lobby" }, { status: 409 });
+      await db.update(gameSessions)
+        .set({ status: "ended", endedAt: new Date() })
+        .where(eq(gameSessions.id, session.id));
+      broadcast(code.toUpperCase(), { type: "warning", message: "Session terminated by host" });
+      return NextResponse.json({ status: "ended" });
     }
 
-    const now = new Date();
-    const firstQId = session.questionIds[0];
-    console.log(`[START] First question ID: ${firstQId}`);
+    // ── START ─────────────────────────────────────────────────────────────────
+    if (action === "start") {
+      console.log(`[START] Session ${session.id}, status: ${currentStatus}, questionIds:`, session.questionIds);
 
-    await db.update(gameSessions)
-      .set({ status: "active", startedAt: now, currentQuestionIndex: 0, questionStartedAt: now })
-      .where(eq(gameSessions.id, session.id));
+      // Allow re-start if already active (idempotent)
+      if (currentStatus !== "lobby" && currentStatus !== "active")
+        return NextResponse.json({ error: `Cannot start from status: ${currentStatus}` }, { status: 409 });
 
-    const q = await getQuestionPayload(firstQId);
-    const endsAt = new Date(now.getTime() + session.timePerQuestion * 1000);
-
-    broadcast(code.toUpperCase(), {
-      type: "question_start",
-      question: q,
-      startsAt: now.toISOString(),
-      endsAt: endsAt.toISOString(),
-      index: 0,
-      total: session.questionIds.length,
-    });
-
-    console.log(`[START] Game started successfully, broadcasting question 1/${session.questionIds.length}`);
-    return NextResponse.json({ status: "active", currentQuestionIndex: 0 });
-  }
-
-  // ── ADVANCE ───────────────────────────────────────────────────────────────
-  if (action === "advance") {
-    if (currentStatus !== "active")
-      return NextResponse.json({ error: "Session not active" }, { status: 409 });
-
-    const idx = session.currentQuestionIndex ?? 0;
-    const qIds = session.questionIds ?? [];
-    const currentQId = qIds[idx];
-    const now = new Date();
-
-    // Correct answer for reveal
-    const [correctAnswer] = await db
-      .select({ id: answers.id })
-      .from(answers)
-      .where(and(eq(answers.questionId, currentQId), eq(answers.isCorrect, true)))
-      .limit(1);
-
-    // Insert timeout records for non-answerers
-    const participants = await db.select().from(gameParticipants).where(eq(gameParticipants.sessionId, session.id));
-    const answered = await db.select({ userId: gameSessionAnswers.userId }).from(gameSessionAnswers)
-      .where(and(eq(gameSessionAnswers.sessionId, session.id), eq(gameSessionAnswers.questionId, currentQId)));
-    const answeredSet = new Set(answered.map(a => a.userId));
-
-    for (const p of participants) {
-      if (!answeredSet.has(p.userId)) {
-        try {
-          await db.insert(gameSessionAnswers).values({
-            sessionId: session.id, userId: p.userId, questionId: currentQId,
-            answerId: null, answeredAt: now, isCorrect: false,
-            speedScore: 0, streakBonus: 0, totalPoints: 0, remainingTimeMs: 0,
-          });
-          await db.update(gameParticipants).set({ currentStreak: 0 })
-            .where(and(eq(gameParticipants.sessionId, session.id), eq(gameParticipants.userId, p.userId)));
-        } catch { /* already answered */ }
+      if (!session.questionIds?.length) {
+        console.error(`[START] No questions in session ${session.id}`);
+        return NextResponse.json({ error: "No questions in session" }, { status: 400 });
       }
+
+      const now = new Date();
+      const firstQId = session.questionIds[0];
+      console.log(`[START] First question ID: ${firstQId}`);
+
+      await db.update(gameSessions)
+        .set({ status: "active", startedAt: now, currentQuestionIndex: 0, questionStartedAt: now })
+        .where(eq(gameSessions.id, session.id));
+
+      const q = await getQuestionPayload(firstQId);
+      const endsAt = new Date(now.getTime() + session.timePerQuestion * 1000);
+
+      broadcast(code.toUpperCase(), {
+        type: "question_start",
+        question: q,
+        startsAt: now.toISOString(),
+        endsAt: endsAt.toISOString(),
+        index: 0,
+        total: session.questionIds.length,
+      });
+
+      console.log(`[START] Game started successfully, broadcasting question 1/${session.questionIds.length}`);
+      return NextResponse.json({ status: "active", currentQuestionIndex: 0 });
     }
 
-    const prevRanks = new Map([...participants].sort((a, b) => b.totalScore - a.totalScore).map((p, i) => [p.userId, i + 1]));
-    const leaderboard = await buildLeaderboard(session.id, prevRanks);
+    // ── ADVANCE ───────────────────────────────────────────────────────────────
+    if (action === "advance") {
+      // Idempotent: if already ended, just return ok
+      if (currentStatus === "ended")
+        return NextResponse.json({ status: "ended" });
+      if (currentStatus !== "active")
+        return NextResponse.json({ error: "Session not active" }, { status: 409 });
 
-    broadcast(code.toUpperCase(), {
-      type: "question_end",
-      correctAnswerId: correctAnswer?.id ?? null,
-      leaderboard,
-    });
+      const idx = session.currentQuestionIndex ?? 0;
+      const qIds = session.questionIds ?? [];
+      const currentQId = qIds[idx];
+      const now = new Date();
 
-    const nextIdx = idx + 1;
+      // Correct answer for reveal
+      const [correctAnswer] = await db
+        .select({ id: answers.id })
+        .from(answers)
+        .where(and(eq(answers.questionId, currentQId), eq(answers.isCorrect, true)))
+        .limit(1);
 
-    // Last question — end game
-    if (nextIdx >= qIds.length) {
+      // Insert timeout records for non-answerers
+      const participants = await db.select().from(gameParticipants).where(eq(gameParticipants.sessionId, session.id));
+      const answered = await db.select({ userId: gameSessionAnswers.userId }).from(gameSessionAnswers)
+        .where(and(eq(gameSessionAnswers.sessionId, session.id), eq(gameSessionAnswers.questionId, currentQId)));
+      const answeredSet = new Set(answered.map(a => a.userId));
+
+      for (const p of participants) {
+        if (!answeredSet.has(p.userId)) {
+          try {
+            await db.insert(gameSessionAnswers).values({
+              sessionId: session.id, userId: p.userId, questionId: currentQId,
+              answerId: null, answeredAt: now, isCorrect: false,
+              speedScore: 0, streakBonus: 0, totalPoints: 0, remainingTimeMs: 0,
+            });
+            await db.update(gameParticipants).set({ currentStreak: 0 })
+              .where(and(eq(gameParticipants.sessionId, session.id), eq(gameParticipants.userId, p.userId)));
+          } catch { /* already answered */ }
+        }
+      }
+
+      const prevRanks = new Map([...participants].sort((a, b) => b.totalScore - a.totalScore).map((p, i) => [p.userId, i + 1]));
+      const leaderboard = await buildLeaderboard(session.id, prevRanks);
+
+      broadcast(code.toUpperCase(), {
+        type: "question_end",
+        correctAnswerId: correctAnswer?.id ?? null,
+        leaderboard,
+      });
+
+      const nextIdx = idx + 1;
+
+      // Last question — end game
+      if (nextIdx >= qIds.length) {
+        await db.update(gameSessions).set({ status: "ended", endedAt: now }).where(eq(gameSessions.id, session.id));
+        for (const entry of leaderboard) {
+          await db.update(gameParticipants).set({ rank: entry.rank })
+            .where(and(eq(gameParticipants.sessionId, session.id), eq(gameParticipants.userId, entry.userId)));
+        }
+
+        // Sync scores to user profiles for leaderboard persistence
+        await syncScoresToUserProfiles(session.id);
+
+        // Small delay so clients see question_end before session_end
+        await new Promise(r => setTimeout(r, 2000));
+        broadcast(code.toUpperCase(), { type: "session_end", podium: leaderboard.slice(0, 3), finalLeaderboard: leaderboard });
+
+        // After 30 seconds, send a final close event
+        setTimeout(() => {
+          broadcast(code.toUpperCase(), { type: "warning", message: "Session closed. Please exit." });
+        }, 30000);
+
+        return NextResponse.json({ status: "ended" });
+      }
+
+      // Next question
+      const nextQId = qIds[nextIdx];
+      const nextNow = new Date();
+      await db.update(gameSessions).set({ currentQuestionIndex: nextIdx, questionStartedAt: nextNow }).where(eq(gameSessions.id, session.id));
+      const q = await getQuestionPayload(nextQId);
+      const endsAt = new Date(nextNow.getTime() + session.timePerQuestion * 1000);
+
+      broadcast(code.toUpperCase(), {
+        type: "question_start", question: q,
+        startsAt: nextNow.toISOString(), endsAt: endsAt.toISOString(),
+        index: nextIdx, total: qIds.length,
+      });
+
+      return NextResponse.json({ status: "active", currentQuestionIndex: nextIdx });
+    }
+
+    // ── PAUSE ─────────────────────────────────────────────────────────────────
+    if (action === "pause") {
+      if (currentStatus !== "active") return NextResponse.json({ error: "Not active" }, { status: 409 });
+      await db.update(gameSessions).set({ status: "paused" }).where(eq(gameSessions.id, session.id));
+      broadcast(code.toUpperCase(), { type: "session_paused" });
+      return NextResponse.json({ status: "paused" });
+    }
+
+    // ── RESUME ────────────────────────────────────────────────────────────────
+    if (action === "resume") {
+      if (currentStatus !== "paused") return NextResponse.json({ error: "Not paused" }, { status: 409 });
+      await db.update(gameSessions).set({ status: "active" }).where(eq(gameSessions.id, session.id));
+      broadcast(code.toUpperCase(), { type: "session_resumed" });
+      return NextResponse.json({ status: "active" });
+    }
+
+    // ── END ───────────────────────────────────────────────────────────────────
+    if (action === "end") {
+      if (currentStatus === "ended") return NextResponse.json({ status: "ended" });
+      const now = new Date();
       await db.update(gameSessions).set({ status: "ended", endedAt: now }).where(eq(gameSessions.id, session.id));
+      const participants = await db.select().from(gameParticipants).where(eq(gameParticipants.sessionId, session.id));
+      const prevRanks = new Map([...participants].sort((a, b) => b.totalScore - a.totalScore).map((p, i) => [p.userId, i + 1]));
+      const leaderboard = await buildLeaderboard(session.id, prevRanks);
+
+      // Save final ranks
       for (const entry of leaderboard) {
         await db.update(gameParticipants).set({ rank: entry.rank })
           .where(and(eq(gameParticipants.sessionId, session.id), eq(gameParticipants.userId, entry.userId)));
       }
-      
+
       // Sync scores to user profiles for leaderboard persistence
       await syncScoresToUserProfiles(session.id);
-      
-      // Small delay so clients see question_end before session_end
-      await new Promise(r => setTimeout(r, 2000));
+
       broadcast(code.toUpperCase(), { type: "session_end", podium: leaderboard.slice(0, 3), finalLeaderboard: leaderboard });
-      
-      // After 30 seconds, send a final close event
+
+      // After 30 seconds, send a final close event to disconnect all clients
       setTimeout(() => {
         broadcast(code.toUpperCase(), { type: "warning", message: "Session closed. Please exit." });
       }, 30000);
-      
+
       return NextResponse.json({ status: "ended" });
     }
 
-    // Next question
-    const nextQId = qIds[nextIdx];
-    const nextNow = new Date();
-    await db.update(gameSessions).set({ currentQuestionIndex: nextIdx, questionStartedAt: nextNow }).where(eq(gameSessions.id, session.id));
-    const q = await getQuestionPayload(nextQId);
-    const endsAt = new Date(nextNow.getTime() + session.timePerQuestion * 1000);
-
-    broadcast(code.toUpperCase(), {
-      type: "question_start", question: q,
-      startsAt: nextNow.toISOString(), endsAt: endsAt.toISOString(),
-      index: nextIdx, total: qIds.length,
-    });
-
-    return NextResponse.json({ status: "active", currentQuestionIndex: nextIdx });
-  }
-
-  // ── PAUSE ─────────────────────────────────────────────────────────────────
-  if (action === "pause") {
-    if (currentStatus !== "active") return NextResponse.json({ error: "Not active" }, { status: 409 });
-    await db.update(gameSessions).set({ status: "paused" }).where(eq(gameSessions.id, session.id));
-    broadcast(code.toUpperCase(), { type: "session_paused" });
-    return NextResponse.json({ status: "paused" });
-  }
-
-  // ── RESUME ────────────────────────────────────────────────────────────────
-  if (action === "resume") {
-    if (currentStatus !== "paused") return NextResponse.json({ error: "Not paused" }, { status: 409 });
-    await db.update(gameSessions).set({ status: "active" }).where(eq(gameSessions.id, session.id));
-    broadcast(code.toUpperCase(), { type: "session_resumed" });
-    return NextResponse.json({ status: "active" });
-  }
-
-  // ── END ───────────────────────────────────────────────────────────────────
-  if (action === "end") {
-    if (currentStatus === "ended") return NextResponse.json({ status: "ended" });
-    const now = new Date();
-    await db.update(gameSessions).set({ status: "ended", endedAt: now }).where(eq(gameSessions.id, session.id));
-    const participants = await db.select().from(gameParticipants).where(eq(gameParticipants.sessionId, session.id));
-    const prevRanks = new Map([...participants].sort((a, b) => b.totalScore - a.totalScore).map((p, i) => [p.userId, i + 1]));
-    const leaderboard = await buildLeaderboard(session.id, prevRanks);
-    
-    // Save final ranks
-    for (const entry of leaderboard) {
-      await db.update(gameParticipants).set({ rank: entry.rank })
-        .where(and(eq(gameParticipants.sessionId, session.id), eq(gameParticipants.userId, entry.userId)));
-    }
-    
-    // Sync scores to user profiles for leaderboard persistence
-    await syncScoresToUserProfiles(session.id);
-    
-    broadcast(code.toUpperCase(), { type: "session_end", podium: leaderboard.slice(0, 3), finalLeaderboard: leaderboard });
-    
-    // After 30 seconds, send a final close event to disconnect all clients
-    setTimeout(() => {
-      broadcast(code.toUpperCase(), { type: "warning", message: "Session closed. Please exit." });
-    }, 30000);
-    
-    return NextResponse.json({ status: "ended" });
-  }
-
-  return NextResponse.json({ error: "Unknown action" }, { status: 400 });
+    return NextResponse.json({ error: "Unknown action" }, { status: 400 });
   } catch (error) {
     console.error("Control route error:", error);
-    return NextResponse.json({ 
-      error: "Internal server error", 
-      details: error instanceof Error ? error.message : String(error) 
+    return NextResponse.json({
+      error: "Internal server error",
+      details: error instanceof Error ? error.message : String(error)
     }, { status: 500 });
   }
 }
@@ -291,7 +294,7 @@ export async function POST(
 async function getQuestionPayload(questionId: number) {
   try {
     console.log(`[getQuestionPayload] Fetching question ${questionId}`);
-    
+
     // Explicitly select only the columns we need to avoid schema mismatch
     const [q] = await db
       .select({
@@ -304,7 +307,7 @@ async function getQuestionPayload(questionId: number) {
       })
       .from(questions)
       .where(eq(questions.id, questionId));
-      
+
     if (!q) {
       console.error(`[getQuestionPayload] Question ${questionId} not found`);
       throw new Error(`Question ${questionId} not found`);
@@ -320,18 +323,18 @@ async function getQuestionPayload(questionId: number) {
       .from(answers)
       .where(eq(answers.questionId, questionId))
       .orderBy(asc(answers.sortOrder));
-    
+
     console.log(`[getQuestionPayload] Found ${ans.length} answers for question ${questionId}`);
-    
+
     if (ans.length === 0) {
       console.error(`[getQuestionPayload] No answers found for question ${questionId}`);
       throw new Error(`No answers found for question ${questionId}`);
     }
-      
-    const gameType = mapContentToGameType({ 
-      answerCount: ans.length, 
-      hasImage: !!q.imageUrl, 
-      hasAudio: !!(q.audioUrlEn || q.audioUrlKm) 
+
+    const gameType = mapContentToGameType({
+      answerCount: ans.length,
+      hasImage: !!q.imageUrl,
+      hasAudio: !!(q.audioUrlEn || q.audioUrlKm)
     });
 
     const payload = {
@@ -342,14 +345,14 @@ async function getQuestionPayload(questionId: number) {
       audioUrlEn: q.audioUrlEn ?? null,
       audioUrlKm: q.audioUrlKm ?? null,
       gameType,
-      answers: ans.map(a => ({ 
-        id: a.id, 
-        answerEn: a.answerEn, 
-        answerKm: a.answerKm, 
-        imageUrl: a.imageUrl ?? null 
+      answers: ans.map(a => ({
+        id: a.id,
+        answerEn: a.answerEn,
+        answerKm: a.answerKm,
+        imageUrl: a.imageUrl ?? null
       })),
     };
-    
+
     console.log(`[getQuestionPayload] Returning payload:`, JSON.stringify(payload, null, 2));
     return payload;
   } catch (error) {

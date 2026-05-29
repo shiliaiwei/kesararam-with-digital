@@ -81,7 +81,8 @@ export default function StudentGamePage() {
     try {
       if (event.type === "lobby_update") {
         setParticipants(event.participants || []);
-        setPhase("lobby");
+        // Only reset to lobby if we're not already in an active game phase
+        setPhase(prev => (prev === "lobby" ? "lobby" : prev));
       } else if (event.type === "question_start") {
         if (!event.question?.answers?.length) {
           logError("Invalid question data", undefined, { event });
