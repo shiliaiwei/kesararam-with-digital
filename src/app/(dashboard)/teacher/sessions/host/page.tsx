@@ -524,7 +524,7 @@ export default function HostPage() {
                     };
 
                     const MODE_STATS: Record<string, { xp: string; complexity: string; complexityKm: string }> = {
-                      "quick-quiz": { xp: "1.0x XP", complexity: "Easy", complexityKm: "ស្រួល" },
+                      "quick-quiz": { xp: "1.0x XP", complexity: "Easy", complexityKm: "ងាយ" },
                       "speed-round": { xp: "1.5x XP", complexity: "Hard", complexityKm: "ពិបាក" },
                       "sign-challenge": { xp: "1.2x XP", complexity: "Medium", complexityKm: "មធ្យម" },
                       "mixed-battle": { xp: "2.0x XP", complexity: "Chaos", complexityKm: "ចម្រុះ" },
@@ -539,7 +539,7 @@ export default function HostPage() {
                           const isPremium = ["mixed-battle", "daily-challenge", "exam-simulation"].includes(m.id);
                           const isLocked = isPremium && subPlan === "free";
                           const meta = MODE_META[m.id] ?? { icon: "sports_esports", tagline: "", taglineKm: "", accentShape: "" };
-                          const stats = MODE_STATS[m.id] ?? { xp: "1.0x XP", complexity: "Easy", complexityKm: "ស្រួល" };
+                          const stats = MODE_STATS[m.id] ?? { xp: "1.0x XP", complexity: "Easy", complexityKm: "ងាយ" };
 
                           return (
                             <button
@@ -577,7 +577,7 @@ export default function HostPage() {
 
                               <div className="relative z-10 flex flex-col h-full justify-between w-full text-black">
                                 <div>
-                                  {/* Header: emoji + locks/badges */}
+                                  {/* Header: icon + locks/badges */}
                                   <div className="flex items-start justify-between mb-3 w-full">
                                     <span className="material-symbols-rounded text-2xl leading-none text-black">{meta.icon}</span>
                                     <div className="flex items-center gap-1.5">
@@ -601,8 +601,13 @@ export default function HostPage() {
                                   </div>
 
                                   {/* Mode name */}
-                                  <div className="font-black text-sm mb-1 leading-tight flex items-center gap-1.5 text-black" style={{ ...khFont }}>
-                                    {kh ? m.labelKm : m.label}
+                                  <div className="flex items-center gap-2 mb-1">
+                                    <span className="font-black text-sm leading-tight text-black" style={{ ...khFont }}>
+                                      {kh ? m.labelKm : m.label}
+                                    </span>
+                                    <span className="text-[8px] font-black uppercase tracking-wider px-1 border border-black bg-zinc-100" style={{ borderRadius: "0px" }}>
+                                      {kh ? stats.complexityKm : stats.complexity}
+                                    </span>
                                   </div>
 
                                   {/* Tagline */}
@@ -611,30 +616,17 @@ export default function HostPage() {
                                   </div>
                                 </div>
 
-                                <div>
-                                  {/* Gamified stats chips (Neo-Brutalist Inventory style) */}
-                                  <div className="flex items-center gap-1.5 mb-3 flex-wrap">
-                                    <span className="text-[9px] font-black tracking-wider px-1.5 py-0.5 border border-black bg-[#06b6d4] text-black shadow-[1px_1px_0_#000]" style={{ borderRadius: "0px" }}>
-                                      {stats.xp}
-                                    </span>
-                                    <span className="text-[9px] font-black tracking-wider px-1.5 py-0.5 border border-black shadow-[1px_1px_0_#000]"
-                                      style={{
-                                        borderRadius: "0px",
-                                        background: isSelected ? "#ffffff" : "#f4f4f5",
-                                        color: "#000000",
-                                      }}>
-                                      {kh ? stats.complexityKm : stats.complexity}
-                                    </span>
+                                <div className="mt-auto pt-2 border-t border-black/15 flex items-center justify-between text-[10px] font-bold text-zinc-700 w-full">
+                                  <div className="flex items-center gap-1">
+                                    <span className="material-symbols-rounded text-xs leading-none text-zinc-500">list_alt</span>
+                                    <span>{m.defaultQuestionCount}{kh ? "សំណួរ" : "Q"}</span>
                                   </div>
-
-                                  {/* Config presets footer */}
-                                  <div className="flex items-center gap-1.5 border-t border-black pt-2.5 flex-wrap">
-                                    <span className="text-[9px] font-black px-1.5 py-0.5 bg-zinc-100 text-black border border-black shadow-[1px_1px_0_#000]" style={{ borderRadius: "0px" }}>
-                                      {m.defaultQuestionCount}Q
-                                    </span>
-                                    <span className="text-[9px] font-black px-1.5 py-0.5 bg-zinc-100 text-black border border-black shadow-[1px_1px_0_#000]" style={{ borderRadius: "0px" }}>
-                                      {m.timePerQuestion}s/Q
-                                    </span>
+                                  <div className="flex items-center gap-1">
+                                    <span className="material-symbols-rounded text-xs leading-none text-zinc-500">schedule</span>
+                                    <span>{m.timePerQuestion}{kh ? "វិ" : "s"}</span>
+                                  </div>
+                                  <div className="px-1.5 py-0.5 bg-black text-white text-[8px] font-black uppercase tracking-widest animate-none" style={{ borderRadius: "0px" }}>
+                                    {stats.xp}
                                   </div>
                                 </div>
                               </div>
@@ -855,52 +847,106 @@ export default function HostPage() {
                 <GlassCard className="overflow-hidden">
                   <div className="px-5 py-4 border-b-2 border-black bg-blue-400 text-black">
                     <div className="text-xs font-bold uppercase tracking-widest mb-0.5 text-black/70">
-                      {kh ? "ការមើលជាមុន" : "Preview"}
+                      {kh ? "ការមើលមុនការរៀបចំ" : "Session Preview"}
                     </div>
-                    <div className="font-black text-black truncate" style={khFont}>
-                      {sessionName || (kh ? "ឈ្មោះវគ្គ..." : "Session name...")}
+                    <div className="font-black text-black truncate text-sm" style={khFont}>
+                      {sessionName || (kh ? "មិនទាន់ដាក់ឈ្មោះវគ្គ..." : "Untitled Session")}
                     </div>
                   </div>
-                  <div className="p-5 flex flex-col gap-4">
-                    {/* Mode preview */}
+                  <div className="p-5 flex flex-col gap-4 bg-white">
+                    {/* Mode header */}
                     <div className="p-4 border-2 border-black flex items-center gap-3 bg-zinc-50" style={{ borderRadius: "0px" }}>
-                      <div style={{ color: selectedModeConfig?.color }}>{MODE_ICONS[selectedMode]}</div>
+                      <div className="w-10 h-10 border-2 border-black flex items-center justify-center bg-white shadow-[2px_2px_0_#000]" style={{ color: selectedModeConfig?.color, borderRadius: "0px" }}>
+                        <span className="material-symbols-rounded text-2xl leading-none">
+                          {
+                            {
+                              "quick-quiz": "bolt",
+                              "speed-round": "rocket",
+                              "sign-challenge": "signpost",
+                              "mixed-battle": "swords",
+                              "daily-challenge": "calendar_today",
+                              "exam-simulation": "school"
+                            }[selectedMode] || "sports_esports"
+                          }
+                        </span>
+                      </div>
                       <div>
-                        <div className="font-black text-black text-sm" style={khFont}>
+                        <div className="font-black text-black text-base leading-tight" style={khFont}>
                           {kh ? selectedModeConfig?.labelKm : selectedModeConfig?.label}
                         </div>
-                        <div className="text-xs text-zinc-600 font-bold">
-                          {selectedModeConfig?.timePerQuestion}s / question
+                        <div className="text-xs text-zinc-500 font-bold mt-0.5">
+                          {kh ? `ល្បឿនលំនាំដើម ${selectedModeConfig?.timePerQuestion} វិនាទី` : `Default speed: ${selectedModeConfig?.timePerQuestion}s / question`}
                         </div>
                       </div>
                     </div>
 
-                    {/* Stats grid */}
-                    <div className="grid grid-cols-2 gap-2">
+                    {/* Stats List */}
+                    <div className="border-2 border-black divide-y-2 divide-black bg-white" style={{ borderRadius: "0px" }}>
                       {[
-                        { label: kh ? "សំណួរ" : "Questions", value: `${questionCount}Q` },
-                        { label: kh ? "អ្នកលេង" : "Players", value: `≤${maxPlayers}` },
-                        { label: kh ? "ពិន្ទុ" : "Scoring", value: scoringMode === "speed" ? (kh ? "ល្បឿន" : "Speed") : (kh ? "ស្មើ" : "Equal") },
-                        { label: kh ? "ភាសា" : "Language", value: language === "both" ? (kh ? "ទាំងពីរ" : "Both") : language.toUpperCase() },
-                        { label: kh ? "កម្រិត" : "Difficulty", value: difficulty.charAt(0).toUpperCase() + difficulty.slice(1) },
-                        { label: kh ? "ពេលវេលា" : "Time / Q", value: `${selectedModeConfig?.timePerQuestion}s` },
+                        { 
+                          icon: "quiz", 
+                          label: kh ? "សំណួរសរុប" : "Total Questions", 
+                          value: `${questionCount} Questions` 
+                        },
+                        { 
+                          icon: "schedule", 
+                          label: kh ? "ពេលវេលាឆ្លើយ" : "Time Per Question", 
+                          value: `${selectedModeConfig?.timePerQuestion} seconds` 
+                        },
+                        { 
+                          icon: "groups", 
+                          label: kh ? "អ្នកលេងអតិបរមា" : "Player Capacity", 
+                          value: `Max ${maxPlayers} Players` 
+                        },
+                        { 
+                          icon: "stars", 
+                          label: kh ? "ការគណនាពិន្ទុ" : "Scoring Rule", 
+                          value: scoringMode === "speed" ? (kh ? "គិតល្បឿន (Speed Bonus)" : "Speed Bonus Score") : (kh ? "ពិន្ទុស្មើគ្នា" : "Equal Points") 
+                        },
+                        { 
+                          icon: "translate", 
+                          label: kh ? "ភាសាសំណួរ" : "Language", 
+                          value: language === "both" ? "English & Khmer" : language === "en" ? "English Only" : "Khmer Only" 
+                        },
+                        { 
+                          icon: "signal_cellular_alt", 
+                          label: kh ? "កម្រិតសំណួរ" : "Difficulty", 
+                          value: difficulty.charAt(0).toUpperCase() + difficulty.slice(1),
+                          valueColor: { mixed: "#a855f7", easy: "#22c55e", medium: "#eab308", hard: "#ef4444" }[difficulty]
+                        },
                       ].map((item) => (
-                        <div key={item.label} className="p-3 border-2 border-black bg-zinc-50" style={{ borderRadius: "0px" }}>
-                          <div className="text-xs mb-0.5 text-zinc-500 font-bold">{item.label}</div>
-                          <div className="font-black text-black text-sm">{item.value}</div>
+                        <div key={item.label} className="p-3.5 flex items-center justify-between gap-4 text-black bg-white">
+                          <div className="flex items-center gap-2.5 min-w-0">
+                            <span className="material-symbols-rounded text-xl leading-none text-zinc-700 shrink-0">
+                              {item.icon}
+                            </span>
+                            <span className="text-xs font-bold text-zinc-500 uppercase tracking-wide truncate" style={khFont}>
+                              {item.label}
+                            </span>
+                          </div>
+                          <span 
+                            className="text-xs font-black text-right shrink-0" 
+                            style={{ color: item.valueColor || "#000000", ...khFont }}
+                          >
+                            {item.value}
+                          </span>
                         </div>
                       ))}
                     </div>
 
-                    {/* Categories */}
+                    {/* Selected Categories */}
                     {selectedCats.length > 0 && (
-                      <div>
-                        <div className="text-xs font-bold uppercase tracking-widest mb-2 text-zinc-600" style={khFont}>
-                          {kh ? "ប្រភេទ" : "Categories"}
+                      <div className="border-2 border-black bg-zinc-50 p-4" style={{ borderRadius: "0px" }}>
+                        <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-2.5" style={khFont}>
+                          {kh ? "ប្រភេទសំណួរដែលបានជ្រើសរើស" : "Selected Categories"}
                         </div>
                         <div className="flex flex-wrap gap-1.5">
                           {categories.filter(c => selectedCats.includes(c.id)).map(c => (
-                            <span key={c.id} className="px-2.5 py-1 text-xs font-black border-2 border-black bg-yellow-400 text-black shadow-[1px_1px_0_#000]" style={{ borderRadius: "0px" }}>
+                            <span 
+                              key={c.id} 
+                              className="px-2.5 py-1 text-[10px] font-black border border-black bg-yellow-400 text-black shadow-[1.5px_1.5px_0_#000]" 
+                              style={{ borderRadius: "0px", ...khFont }}
+                            >
                               {kh ? c.titleKm : c.titleEn}
                             </span>
                           ))}

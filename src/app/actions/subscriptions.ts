@@ -31,7 +31,7 @@ import { eq, and } from "drizzle-orm";
 export async function getCurrentSubscription() {
     try {
         const cookieStore = await cookies();
-        const token = cookieStore.get("token")?.value;
+        const token = cookieStore.get("kwd_token")?.value || cookieStore.get("token")?.value;
 
         if (!token) {
             return { error: "Unauthorized" };
@@ -42,7 +42,7 @@ export async function getCurrentSubscription() {
             return { error: "Invalid token" };
         }
 
-        const displayInfo = await getSubscriptionDisplayInfo(payload.userId);
+        const displayInfo = await getSubscriptionDisplayInfo(payload.id);
         return { subscription: displayInfo };
     } catch (error) {
         console.error("Error getting subscription:", error);
@@ -56,7 +56,7 @@ export async function getCurrentSubscription() {
 export async function getUserQuotaInfo() {
     try {
         const cookieStore = await cookies();
-        const token = cookieStore.get("token")?.value;
+        const token = cookieStore.get("kwd_token")?.value || cookieStore.get("token")?.value;
 
         if (!token) {
             return { error: "Unauthorized" };
@@ -71,15 +71,15 @@ export async function getUserQuotaInfo() {
         const userClasses = await db
             .select()
             .from(classes)
-            .where(eq(classes.teacherId, payload.userId));
+            .where(eq(classes.teacherId, payload.id));
 
         const userStudents = await db
             .select()
             .from(classEnrollments)
             .innerJoin(classes, eq(classEnrollments.classId, classes.id))
-            .where(eq(classes.teacherId, payload.userId));
+            .where(eq(classes.teacherId, payload.id));
 
-        const quota = await getUserQuota(payload.userId, {
+        const quota = await getUserQuota(payload.id, {
             classes: userClasses.length,
             students: userStudents.length,
         });
@@ -99,7 +99,7 @@ export async function checkSubscriptionAccess(
 ) {
     try {
         const cookieStore = await cookies();
-        const token = cookieStore.get("token")?.value;
+        const token = cookieStore.get("kwd_token")?.value || cookieStore.get("token")?.value;
 
         if (!token) {
             return { allowed: false, error: "Unauthorized" };
@@ -115,8 +115,8 @@ export async function checkSubscriptionAccess(
                 const userClasses = await db
                     .select()
                     .from(classes)
-                    .where(eq(classes.teacherId, payload.userId));
-                const result = await canCreateClass(payload.userId, userClasses.length);
+                    .where(eq(classes.teacherId, payload.id));
+                const result = await canCreateClass(payload.id, userClasses.length);
                 return result;
             }
 
@@ -125,13 +125,13 @@ export async function checkSubscriptionAccess(
                     .select()
                     .from(classEnrollments)
                     .innerJoin(classes, eq(classEnrollments.classId, classes.id))
-                    .where(eq(classes.teacherId, payload.userId));
-                const result = await canAddStudent(payload.userId, userStudents.length);
+                    .where(eq(classes.teacherId, payload.id));
+                const result = await canAddStudent(payload.id, userStudents.length);
                 return result;
             }
 
             case "analytics": {
-                const allowed = await canAccessAnalytics(payload.userId);
+                const allowed = await canAccessAnalytics(payload.id);
                 return {
                     allowed,
                     reason: allowed ? undefined : "Upgrade to access analytics",
@@ -139,7 +139,7 @@ export async function checkSubscriptionAccess(
             }
 
             case "customContent": {
-                const allowed = await canAccessCustomContent(payload.userId);
+                const allowed = await canAccessCustomContent(payload.id);
                 return {
                     allowed,
                     reason: allowed ? undefined : "Upgrade to create custom content",
@@ -170,7 +170,7 @@ export async function createUserSubscription(data: {
 }) {
     try {
         const cookieStore = await cookies();
-        const token = cookieStore.get("token")?.value;
+        const token = cookieStore.get("kwd_token")?.value || cookieStore.get("token")?.value;
 
         if (!token) {
             return { error: "Unauthorized" };
@@ -189,12 +189,12 @@ export async function createUserSubscription(data: {
             trialEndsAt: data.trialEndsAt || null,
             startsAt: data.startsAt || new Date(),
             endsAt: data.endsAt || null,
-            assignedBy: payload.userId,
+            assignedBy: payload.id,
             note: data.note || null,
         });
 
         await logAudit({
-            userId: payload.userId,
+            userId: payload.id,
             action: "subscription_created",
             targetType: "subscription",
             targetId: subscription.id.toString(),
@@ -225,7 +225,7 @@ export async function updateSubscription(
 ) {
     try {
         const cookieStore = await cookies();
-        const token = cookieStore.get("token")?.value;
+        const token = cookieStore.get("kwd_token")?.value || cookieStore.get("token")?.value;
 
         if (!token) {
             return { error: "Unauthorized" };
@@ -266,7 +266,7 @@ export async function updateSubscription(
         }
 
         await logAudit({
-            userId: payload.userId,
+            userId: payload.id,
             action: `subscription_${action}`,
             targetType: "subscription",
             targetId: subscriptionId.toString(),
@@ -286,7 +286,7 @@ export async function updateSubscription(
 export async function getSubscriptionHistory(userId?: number) {
     try {
         const cookieStore = await cookies();
-        const token = cookieStore.get("token")?.value;
+        const token = cookieStore.get("kwd_token")?.value || cookieStore.get("token")?.value;
 
         if (!token) {
             return { error: "Unauthorized" };
@@ -298,8 +298,8 @@ export async function getSubscriptionHistory(userId?: number) {
         }
 
         // If userId provided, check admin access
-        const targetUserId = userId || payload.userId;
-        if (targetUserId !== payload.userId && payload.role !== "admin") {
+        const targetUserId = userId || payload.id;
+        if (targetUserId !== payload.id && payload.role !== "admin") {
             return { error: "Forbidden" };
         }
 
@@ -317,7 +317,7 @@ export async function getSubscriptionHistory(userId?: number) {
 export async function getExpiringSubscriptionsList(daysAhead: number = 7) {
     try {
         const cookieStore = await cookies();
-        const token = cookieStore.get("token")?.value;
+        const token = cookieStore.get("kwd_token")?.value || cookieStore.get("token")?.value;
 
         if (!token) {
             return { error: "Unauthorized" };
@@ -342,7 +342,7 @@ export async function getExpiringSubscriptionsList(daysAhead: number = 7) {
 export async function processExpiredSubscriptions() {
     try {
         const cookieStore = await cookies();
-        const token = cookieStore.get("token")?.value;
+        const token = cookieStore.get("kwd_token")?.value || cookieStore.get("token")?.value;
 
         if (!token) {
             return { error: "Unauthorized" };
@@ -356,7 +356,7 @@ export async function processExpiredSubscriptions() {
         const count = await markExpiredSubscriptions();
 
         await logAudit({
-            userId: payload.userId,
+            userId: payload.id,
             action: "subscriptions_expired_batch",
             details: { count },
         });

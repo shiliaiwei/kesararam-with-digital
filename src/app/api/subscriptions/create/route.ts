@@ -9,7 +9,7 @@ import { logAudit } from "@/db/queries/audit";
  */
 export async function POST(request: NextRequest) {
     try {
-        const token = request.cookies.get("token")?.value;
+        const token = request.cookies.get("kwd_token")?.value || request.cookies.get("token")?.value;
         if (!token) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
@@ -53,13 +53,13 @@ export async function POST(request: NextRequest) {
             trialEndsAt: trialEndsAt ? new Date(trialEndsAt) : null,
             startsAt: startsAt ? new Date(startsAt) : new Date(),
             endsAt: endsAt ? new Date(endsAt) : null,
-            assignedBy: payload.userId,
+            assignedBy: payload.id,
             note: note || null,
         });
 
         // Log audit trail
         await logAudit({
-            userId: payload.userId,
+            userId: payload.id,
             action: "subscription_created",
             targetType: "subscription",
             targetId: subscription.id.toString(),

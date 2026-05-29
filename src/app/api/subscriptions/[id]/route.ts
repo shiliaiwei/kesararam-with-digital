@@ -16,7 +16,7 @@ export async function GET(
     { params }: { params: Promise<{ id: string }> }
 ) {
     try {
-        const token = request.cookies.get("token")?.value;
+        const token = request.cookies.get("kwd_token")?.value || request.cookies.get("token")?.value;
         if (!token) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
@@ -40,7 +40,7 @@ export async function GET(
         }
 
         // Only admin or the subscription owner can view
-        if (payload.role !== "admin" && subscription.subscription.userId !== payload.userId) {
+        if (payload.role !== "admin" && subscription.subscription.userId !== payload.id) {
             return NextResponse.json({ error: "Forbidden" }, { status: 403 });
         }
 
@@ -63,7 +63,7 @@ export async function PATCH(
     { params }: { params: Promise<{ id: string }> }
 ) {
     try {
-        const token = request.cookies.get("token")?.value;
+        const token = request.cookies.get("kwd_token")?.value || request.cookies.get("token")?.value;
         if (!token) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }

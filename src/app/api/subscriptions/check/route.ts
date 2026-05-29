@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
  */
 export async function GET(request: NextRequest) {
     try {
-        const token = request.cookies.get("token")?.value;
+        const token = request.cookies.get("kwd_token")?.value || request.cookies.get("token")?.value;
         if (!token) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
@@ -22,8 +22,8 @@ export async function GET(request: NextRequest) {
             return NextResponse.json({ error: "Invalid token" }, { status: 401 });
         }
 
-        const subscription = await getUserActiveSubscription(payload.userId);
-        const displayInfo = await getSubscriptionDisplayInfo(payload.userId);
+        const subscription = await getUserActiveSubscription(payload.id);
+        const displayInfo = await getSubscriptionDisplayInfo(payload.id);
 
         return NextResponse.json({
             hasActiveSubscription: subscription !== null,

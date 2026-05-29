@@ -12,7 +12,7 @@ import {
  */
 export async function GET(request: NextRequest) {
     try {
-        const token = request.cookies.get("token")?.value;
+        const token = request.cookies.get("kwd_token")?.value || request.cookies.get("token")?.value;
         if (!token) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
         }
 
         // Regular user: Get own subscription history
-        const history = await getUserSubscriptionHistory(payload.userId);
+        const history = await getUserSubscriptionHistory(payload.id);
         return NextResponse.json({ subscriptions: history });
     } catch (error) {
         console.error("Error fetching subscriptions:", error);
