@@ -33,7 +33,7 @@ async function main() {
     loginAttempts: 0,
   });
 
-  console.log("Admin created: vi / srievi@kwd.tech");
+  console.log("Admin created: vi / srievffdd.tech");
 }
 
 main()
