@@ -406,7 +406,7 @@ export default function StudentGamePage() {
             <CountdownTimer
               endsAt={endsAt}
               totalSeconds={timePerQuestion}
-              onExpire={() => { if (!answerSubmitted) handleAnswerSelect(0); }}
+              onExpire={() => {}}
             />
           )}
         </div>

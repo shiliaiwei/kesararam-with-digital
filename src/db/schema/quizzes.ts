@@ -64,7 +64,7 @@ export const quizAnswers = pgTable("quiz_answers", {
 });
 
 // The actual DB table for live sessions is challenge_sessions
-export const sessions = pgTable("challenge_sessions", {
+export const liveSessions = pgTable("challenge_sessions", {
   id: serial("id").primaryKey(),
   teacherId: integer("teacher_id")
     .notNull()
@@ -85,7 +85,7 @@ export const sessionParticipants = pgTable("session_participants", {
   id: serial("id").primaryKey(),
   sessionId: integer("session_id")
     .notNull()
-    .references(() => sessions.id),
+    .references(() => liveSessions.id),
   studentId: integer("student_id")
     .notNull()
     .references(() => users.id),
@@ -98,7 +98,7 @@ export const sessionAnswers = pgTable("session_answers", {
   id: serial("id").primaryKey(),
   sessionId: integer("session_id")
     .notNull()
-    .references(() => sessions.id),
+    .references(() => liveSessions.id),
   studentId: integer("student_id")
     .notNull()
     .references(() => users.id),
@@ -138,7 +138,8 @@ export const leaderboardEntries = pgTable(
 );
 
 export type Quiz = typeof quizzes.$inferSelect;
-export type Session = typeof sessions.$inferSelect;
+export type LiveSession = typeof liveSessions.$inferSelect;
+export type NewLiveSession = typeof liveSessions.$inferInsert;
 export type QuizAttempt = typeof quizAttempts.$inferSelect;
 export type NewQuizAttempt = typeof quizAttempts.$inferInsert;
 export type QuizAnswer = typeof quizAnswers.$inferSelect;

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { sessions, sessionParticipants, sessionAnswers } from "@/db/schema/quizzes";
+import { liveSessions, sessionParticipants, sessionAnswers } from "@/db/schema/quizzes";
 import { contentItems } from "@/db/schema/content";
 import { getSession } from "@/lib/auth";
 import { eq, and } from "drizzle-orm";
@@ -44,8 +44,8 @@ export async function POST(request: NextRequest) {
     // 4. Find the challenge session
     const [challengeSession] = await db
       .select()
-      .from(sessions)
-      .where(eq(sessions.id, parseInt(sessionId)));
+      .from(liveSessions)
+      .where(eq(liveSessions.id, parseInt(sessionId)));
 
     if (!challengeSession) {
       return NextResponse.json(

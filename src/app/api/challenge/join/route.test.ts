@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import fc from "fast-check";
 import { db } from "@/lib/db";
-import { sessions, sessionParticipants } from "@/db/schema/quizzes";
+import { liveSessions, sessionParticipants } from "@/db/schema/quizzes";
 import { eq } from "drizzle-orm";
 
 /**

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { sessions } from "@/db/schema/quizzes";
+import { liveSessions } from "@/db/schema/quizzes";
 import { getSession } from "@/lib/auth";
 import { eq, or } from "drizzle-orm";
 import { z } from "zod";
@@ -41,9 +41,9 @@ function generateRoomCode(): string {
 async function isRoomCodeUnique(roomCode: string): Promise<boolean> {
   const existingSessions = await db
     .select()
-    .from(sessions)
+    .from(liveSessions)
     .where(
-      eq(sessions.roomCode, roomCode)
+      eq(liveSessions.roomCode, roomCode)
     );
   
   // Check if any active or waiting sessions exist with this code
@@ -113,7 +113,7 @@ export async function POST(request: NextRequest) {
 
     // 8. Create challenge session
     const [challengeSession] = await db
-      .insert(sessions)
+      .insert(liveSessions)
       .values({
         teacherId,
         categoryId,

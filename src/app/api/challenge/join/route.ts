@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { sessions, sessionParticipants } from "@/db/schema/quizzes";
+import { liveSessions, sessionParticipants } from "@/db/schema/quizzes";
 import { getSession } from "@/lib/auth";
 import { eq, and } from "drizzle-orm";
 import { rateLimit, getClientIP, createRateLimitResponse } from "@/lib/simple-rate-limit";
@@ -51,8 +51,8 @@ export async function POST(request: NextRequest) {
     // 4. Find the challenge session by room code
     const [challengeSession] = await db
       .select()
-      .from(sessions)
-      .where(eq(sessions.roomCode, roomCode.toUpperCase()));
+      .from(liveSessions)
+      .where(eq(liveSessions.roomCode, roomCode.toUpperCase()));
 
     if (!challengeSession) {
       return NextResponse.json(

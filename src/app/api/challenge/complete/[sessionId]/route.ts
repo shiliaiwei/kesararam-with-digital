@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { sessions, sessionParticipants } from "@/db/schema/quizzes";
+import { liveSessions, sessionParticipants } from "@/db/schema/quizzes";
 import { getSession } from "@/lib/auth";
 import { eq } from "drizzle-orm";
 import { updateRankingsForAllPeriods } from "@/lib/ranking";
@@ -44,8 +44,8 @@ export async function POST(
     // 3. Find the challenge session
     const [challengeSession] = await db
       .select()
-      .from(sessions)
-      .where(eq(sessions.id, sessionIdNum));
+      .from(liveSessions)
+      .where(eq(liveSessions.id, sessionIdNum));
 
     if (!challengeSession) {
       return NextResponse.json(
@@ -100,12 +100,12 @@ export async function POST(
 
     // 8. Update session status to 'completed' and set endedAt
     await db
-      .update(sessions)
+      .update(liveSessions)
       .set({
         status: "completed",
         endedAt: new Date(),
       })
-      .where(eq(sessions.id, sessionIdNum));
+      .where(eq(liveSessions.id, sessionIdNum));
 
     // 9. Update leaderboards for each participant (all three periods)
     const categoryId = challengeSession.categoryId;

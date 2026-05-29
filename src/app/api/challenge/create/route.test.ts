@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import fc from "fast-check";
 import { db } from "@/lib/db";
-import { sessions } from "@/db/schema/quizzes";
+import { liveSessions } from "@/db/schema/quizzes";
 import { eq, or } from "drizzle-orm";
 
 /**
@@ -14,8 +14,8 @@ import { eq, or } from "drizzle-orm";
 describe("Challenge Session Room Code Uniqueness", () => {
   // Clean up test data after each test
   afterEach(async () => {
-    await db.delete(sessions).where(eq(sessions.roomCode, "TEST01"));
-    await db.delete(sessions).where(eq(sessions.roomCode, "TEST02"));
+    await db.delete(liveSessions).where(eq(liveSessions.roomCode, "TEST01"));
+    await db.delete(liveSessions).where(eq(liveSessions.roomCode, "TEST02"));
   });
 
   it("should generate unique room codes for concurrent sessions", async () => {
@@ -43,8 +43,8 @@ describe("Challenge Session Room Code Uniqueness", () => {
               // Check if room code is unique in database
               const existingSessions = await db
                 .select()
-                .from(sessions)
-                .where(eq(sessions.roomCode, roomCode));
+                .from(liveSessions)
+                .where(eq(liveSessions.roomCode, roomCode));
               
               const activeSession = existingSessions.find(
                 (s) => s.status === "waiting" || s.status === "active"
@@ -63,7 +63,7 @@ describe("Challenge Session Room Code Uniqueness", () => {
             roomCodes.add(roomCode);
 
             // Create session with unique room code
-            await db.insert(sessions).values({
+            await db.insert(liveSessions).values({
               teacherId,
               categoryId,
               roomCode,
@@ -78,11 +78,11 @@ describe("Challenge Session Room Code Uniqueness", () => {
           // Verify all sessions in database have unique room codes
           const allSessions = await db
             .select()
-            .from(sessions)
+            .from(liveSessions)
             .where(
               or(
-                eq(sessions.status, "waiting"),
-                eq(sessions.status, "active")
+                eq(liveSessions.status, "waiting"),
+                eq(liveSessions.status, "active")
               )
             );
 
@@ -93,7 +93,7 @@ describe("Challenge Session Room Code Uniqueness", () => {
 
           // Clean up created sessions
           for (const roomCode of roomCodes) {
-            await db.delete(sessions).where(eq(sessions.roomCode, roomCode));
+            await db.delete(liveSessions).where(eq(liveSessions.roomCode, roomCode));
           }
         }
       ),
@@ -114,7 +114,7 @@ describe("Challenge Session Room Code Uniqueness", () => {
 
           // Create a completed session
           const [completedSession] = await db
-            .insert(sessions)
+            .insert(liveSessions)
             .values({
               teacherId,
               categoryId,
@@ -128,8 +128,8 @@ describe("Challenge Session Room Code Uniqueness", () => {
           // since the previous one is completed
           const existingSessions = await db
             .select()
-            .from(sessions)
-            .where(eq(sessions.roomCode, roomCode));
+            .from(liveSessions)
+            .where(eq(liveSessions.roomCode, roomCode));
           
           const activeSession = existingSessions.find(
             (s) => s.status === "waiting" || s.status === "active"
@@ -139,7 +139,7 @@ describe("Challenge Session Room Code Uniqueness", () => {
 
           // Create new session with same room code
           const [newSession] = await db
-            .insert(sessions)
+            .insert(liveSessions)
             .values({
               teacherId,
               categoryId,
@@ -153,8 +153,8 @@ describe("Challenge Session Room Code Uniqueness", () => {
           expect(newSession.status).toBe("waiting");
 
           // Clean up
-          await db.delete(sessions).where(eq(sessions.id, completedSession.id));
-          await db.delete(sessions).where(eq(sessions.id, newSession.id));
+          await db.delete(liveSessions).where(eq(liveSessions.id, completedSession.id));
+          await db.delete(liveSessions).where(eq(liveSessions.id, newSession.id));
         }
       ),
       { numRuns: 100 }
@@ -175,7 +175,7 @@ describe("Challenge Session Room Code Uniqueness", () => {
 
           // Create first session
           const [firstSession] = await db
-            .insert(sessions)
+            .insert(liveSessions)
             .values({
               teacherId,
               categoryId,
@@ -188,8 +188,8 @@ describe("Challenge Session Room Code Uniqueness", () => {
           // Check if room code is unique
           const existingSessions = await db
             .select()
-            .from(sessions)
-            .where(eq(sessions.roomCode, roomCode));
+            .from(liveSessions)
+            .where(eq(liveSessions.roomCode, roomCode));
           
           const activeSession = existingSessions.find(
             (s) => s.status === "waiting" || s.status === "active"
@@ -200,7 +200,7 @@ describe("Challenge Session Room Code Uniqueness", () => {
           expect(activeSession?.roomCode).toBe(roomCode);
 
           // Clean up
-          await db.delete(sessions).where(eq(sessions.id, firstSession.id));
+          await db.delete(liveSessions).where(eq(liveSessions.id, firstSession.id));
         }
       ),
       { numRuns: 100 }

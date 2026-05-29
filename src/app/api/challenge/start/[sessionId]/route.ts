@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { sessions } from "@/db/schema/quizzes";
+import { liveSessions } from "@/db/schema/quizzes";
 import { getSession } from "@/lib/auth";
 import { eq } from "drizzle-orm";
 import { selectQuestions } from "@/lib/fair-algorithm";
@@ -44,8 +44,8 @@ export async function POST(
     // 3. Find the challenge session
     const [challengeSession] = await db
       .select()
-      .from(sessions)
-      .where(eq(sessions.id, sessionIdNum));
+      .from(liveSessions)
+      .where(eq(liveSessions.id, sessionIdNum));
 
     if (!challengeSession) {
       return NextResponse.json(
@@ -120,12 +120,12 @@ export async function POST(
 
     // 9. Update session status to 'active' and set startedAt
     await db
-      .update(sessions)
+      .update(liveSessions)
       .set({
         status: "active",
         startedAt: new Date(),
       })
-      .where(eq(sessions.id, sessionIdNum));
+      .where(eq(liveSessions.id, sessionIdNum));
 
     // 10. Return questions and session details
     return NextResponse.json({

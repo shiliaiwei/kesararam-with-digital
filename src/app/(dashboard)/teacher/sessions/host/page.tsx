@@ -24,7 +24,7 @@ const ANSWER_STYLES = [
 type HostPhase =
   | { name: "setup" }
   | { name: "creating" }
-  | { name: "lobby"; code: string; sessionId: number; participants: ParticipantInfo[] }
+  | { name: "lobby"; code: string; sessionId: number; participants: ParticipantInfo[]; gameMode: string; categories: string[]; difficulty: string; questionCount: number; timePerQuestion: number; scoringMode: string; maxPlayers: number }
   | { name: "active"; code: string; sessionId: number; qIndex: number; total: number; leaderboard: LeaderboardEntry[]; question: QuestionPayload }
   | { name: "round_end"; code: string; sessionId: number; leaderboard: LeaderboardEntry[]; qIndex: number; total: number; question: QuestionPayload; correctAnswerId: number | null }
   | { name: "ended"; code: string; sessionId: number; leaderboard: LeaderboardEntry[] };
@@ -121,7 +121,25 @@ export default function HostPage() {
         );
         if (active) {
           if (active.status === "lobby") {
-            setPhase({ name: "lobby", code: active.sessionCode, sessionId: active.id, participants: [] });
+            // Fetch info to get game details for lobby display
+            try {
+              const infoRes = await fetch(`/api/game/sessions/${active.sessionCode}/info`);
+              if (infoRes.ok) {
+                const info = await infoRes.json();
+                setPhase({
+                  name: "lobby", code: active.sessionCode, sessionId: active.id, participants: [],
+                  gameMode: info.gameMode ?? "quick-quiz",
+                  categories: [info.category?.replace(/-/g, " ") ?? "—"],
+                  difficulty: info.difficulty ?? "mixed",
+                  questionCount: info.questionCount ?? 0,
+                  timePerQuestion: info.timePerQuestion ?? 30,
+                  scoringMode: info.scoringMode ?? "speed",
+                  maxPlayers: info.maxPlayers ?? 50,
+                });
+                return;
+              }
+            } catch { }
+            setPhase({ name: "lobby", code: active.sessionCode, sessionId: active.id, participants: [], gameMode: "quick-quiz", categories: [], difficulty: "mixed", questionCount: 0, timePerQuestion: 30, scoringMode: "speed", maxPlayers: 50 });
           } else if (active.status === "active" || active.status === "paused") {
             // Recover active session — fetch current state
             try {
@@ -147,7 +165,7 @@ export default function HostPage() {
               }
             } catch { }
             // Fallback to lobby if state fetch fails
-            setPhase({ name: "lobby", code: active.sessionCode, sessionId: active.id, participants: [] });
+            setPhase({ name: "lobby", code: active.sessionCode, sessionId: active.id, participants: [], gameMode: "quick-quiz", categories: [], difficulty: "mixed", questionCount: 0, timePerQuestion: 30, scoringMode: "speed", maxPlayers: 50 });
           }
         }
       })
@@ -217,11 +235,17 @@ export default function HostPage() {
     const res = await fetch("/api/game/sessions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sessionName, categoryIds: selectedCats, difficulty, questionCount: questionCount, timePerQuestion: cfg.timePerQuestion, scoringMode, language, gameType: selectedMode, maxPlayers, allowLateJoin: true }),
+      body: JSON.stringify({ sessionName, categoryIds: selectedCats, difficulty, questionCount, timePerQuestion: cfg.timePerQuestion, scoringMode, language, gameType: selectedMode, maxPlayers, allowLateJoin: true }),
     });
     if (!res.ok) { const err = await res.json(); setError(err.error ?? "Failed"); setPhase({ name: "setup" }); return; }
     const data = await res.json();
-    setPhase({ name: "lobby", code: data.sessionCode, sessionId: data.sessionId, participants: [] });
+    const catNames = categories.filter(c => selectedCats.includes(c.id)).map(c => kh ? c.titleKm : c.titleEn);
+    setPhase({
+      name: "lobby", code: data.sessionCode, sessionId: data.sessionId, participants: [],
+      gameMode: selectedMode, categories: catNames, difficulty,
+      questionCount: data.questionCount ?? questionCount,
+      timePerQuestion: cfg.timePerQuestion, scoringMode, maxPlayers,
+    });
   }
 
   async function control(action: string) {
@@ -386,25 +410,71 @@ export default function HostPage() {
 
   // ── Lobby ──────────────────────────────────────────────────────────────────
   if (phase.name === "lobby") {
+    const modeConfig = GAME_MODE_CONFIG[phase.gameMode];
+    const catNames = phase.categories.length > 0 ? phase.categories.join(", ") : "—";
+
+    const difficultyColors: Record<string, string> = {
+      easy: "#22c55e", medium: "#eab308", hard: "#ef4444", mixed: "#a855f7"
+    };
+    const diffColor = difficultyColors[phase.difficulty] || "#a855f7";
+
     return (
-      <div className="max-w-3xl">
-        <div className="mb-6 flex items-center justify-between">
+      <div className="max-w-4xl">
+        <div className="mb-8 flex items-center justify-between">
           <div>
             <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-1" style={khFont}>{kh ? "ហ្គេមរង់ចាំ" : "Waiting Room"}</div>
-            <h1 className="text-3xl font-black" style={khFont}>{kh ? "ចូលរួម" : "Players Joining"}</h1>
+            <h1 className="text-3xl font-black" style={khFont}>{kh ? "សម្រេច ឲ្យលេង" : "Ready to Play"}</h1>
           </div>
           <div className="flex items-center gap-2">
             <button onClick={() => { if (confirm(kh ? "បោះបង់ហ្គេមនេះ?" : "Cancel this game session?")) { control("terminate"); setTimeout(() => setPhase({ name: "setup" }), 500); } }} disabled={controlling}
               className="flex items-center gap-2 px-4 py-3 bg-red-500 text-white font-black border-2 border-black disabled:opacity-40" style={{ boxShadow: "3px 3px 0 #000", ...khFont }}>
               <Square size={16} />{kh ? "បោះបង់" : "Cancel"}
             </button>
-            <button onClick={() => control("start")} disabled={controlling}
+            <button onClick={() => control("start")} disabled={controlling || phase.participants.length === 0}
               className="flex items-center gap-2 px-6 py-3 bg-green-500 text-white font-black border-2 border-black disabled:opacity-40" style={{ boxShadow: "3px 3px 0 #000", ...khFont }}>
               <Play size={16} />{kh ? "ចាប់ផ្តើម" : "Start Game"}
             </button>
           </div>
         </div>
+
         {error && <div className="mb-6 border-2 border-red-500 bg-red-50 p-4"><p className="text-red-600 font-bold text-sm" style={khFont}>{error}</p></div>}
+
+        {/* Game Details Card */}
+        <div className="border-2 border-black bg-white p-6 mb-6" style={{ boxShadow: "4px 4px 0 #000" }}>
+          <h2 className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-4" style={khFont}>{kh ? "ព័ត៌មានលម្អិត" : "Game Details"}</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="border-2 border-black p-3" style={{ boxShadow: "2px 2px 0 #000" }}>
+              <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-1" style={khFont}>{kh ? "របៀបលេង" : "Mode"}</div>
+              <div className="text-sm font-black" style={{ color: modeConfig?.color }}>{kh ? modeConfig?.labelKm : modeConfig?.label}</div>
+            </div>
+            <div className="border-2 border-black p-3" style={{ boxShadow: "2px 2px 0 #000" }}>
+              <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-1" style={khFont}>{kh ? "ប្រភេទ" : "Category"}</div>
+              <div className="text-sm font-black capitalize">{catNames}</div>
+            </div>
+            <div className="border-2 border-black p-3" style={{ boxShadow: "2px 2px 0 #000" }}>
+              <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-1" style={khFont}>{kh ? "កម្រិត" : "Difficulty"}</div>
+              <div className="text-sm font-black capitalize" style={{ color: diffColor }}>{phase.difficulty}</div>
+            </div>
+            <div className="border-2 border-black p-3" style={{ boxShadow: "2px 2px 0 #000" }}>
+              <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-1" style={khFont}>{kh ? "ពេលវេលា" : "Time / Q"}</div>
+              <div className="text-sm font-black">{phase.timePerQuestion}s</div>
+            </div>
+            <div className="border-2 border-black p-3" style={{ boxShadow: "2px 2px 0 #000" }}>
+              <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-1" style={khFont}>{kh ? "សំណួរ" : "Questions"}</div>
+              <div className="text-sm font-black">{phase.questionCount}Q</div>
+            </div>
+            <div className="border-2 border-black p-3" style={{ boxShadow: "2px 2px 0 #000" }}>
+              <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-1" style={khFont}>{kh ? "ពិន្ទុ" : "Scoring"}</div>
+              <div className="text-sm font-black capitalize">{phase.scoringMode}</div>
+            </div>
+            <div className="border-2 border-black p-3" style={{ boxShadow: "2px 2px 0 #000" }}>
+              <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-1" style={khFont}>{kh ? "អតិបរមា" : "Max Players"}</div>
+              <div className="text-sm font-black">{phase.maxPlayers}</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Room Code Card */}
         <div className="border-2 border-black p-6 mb-6 bg-yellow-400 flex items-center justify-between" style={{ boxShadow: "5px 5px 0 #000" }}>
           <div>
             <div className="text-xs font-black uppercase tracking-widest text-black/60 mb-1" style={khFont}>{kh ? "លេខកូដបន្ទប់" : "Room Code"}</div>
@@ -415,19 +485,25 @@ export default function HostPage() {
             {copied ? <Check size={16} /> : <Copy size={16} />}{copied ? (kh ? "បានចម្លង" : "Copied") : (kh ? "ចម្លង" : "Copy")}
           </button>
         </div>
-        <div className="flex items-center gap-2 mb-3">
-          <Users size={14} className="text-zinc-500" />
-          <span className="font-black text-sm" style={khFont}>{phase.participants.length} / {maxPlayers} {kh ? "នាក់" : "players"}</span>
-          <div className="flex-1 h-2 bg-zinc-200 border border-black"><div className="h-full bg-green-500 transition-all" style={{ width: `${Math.min((phase.participants.length / maxPlayers) * 100, 100)}%` }} /></div>
-        </div>
-        <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
-          {phase.participants.map((p) => (
-            <div key={p.userId} className="flex items-center gap-2 border-2 border-black p-2 bg-white" style={{ boxShadow: "2px 2px 0 #000" }}>
-              <div className="w-8 h-8 bg-yellow-400 border border-black flex items-center justify-center font-black text-black text-sm flex-shrink-0">{p.displayName.charAt(0).toUpperCase()}</div>
-              <span className="text-sm font-bold truncate" style={khFont}>{p.displayName}</span>
-            </div>
-          ))}
-          {phase.participants.length === 0 && <div className="col-span-4 text-center py-8 text-zinc-400 font-bold" style={khFont}>{kh ? "រង់ចាំអ្នកចូលរួម..." : "Waiting for players to join..."}</div>}
+
+        {/* Players Section */}
+        <div>
+          <div className="flex items-center gap-2 mb-4">
+            <Users size={16} className="font-black" />
+            <span className="font-black text-sm uppercase tracking-widest" style={khFont}>{phase.participants.length} / {phase.maxPlayers} {kh ? "នាក់" : "Players"}</span>
+          </div>
+          <div className="w-full h-2 bg-zinc-200 border-2 border-black mb-4" style={{ boxShadow: "2px 2px 0 #000" }}>
+            <div className="h-full bg-green-500 transition-all" style={{ width: `${Math.min((phase.participants.length / phase.maxPlayers) * 100, 100)}%` }} />
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
+            {phase.participants.map((p) => (
+              <div key={p.userId} className="flex items-center gap-2 border-2 border-black p-2 bg-white" style={{ boxShadow: "2px 2px 0 #000" }}>
+                <div className="w-8 h-8 bg-yellow-400 border border-black flex items-center justify-center font-black text-black text-sm flex-shrink-0">{p.displayName.charAt(0).toUpperCase()}</div>
+                <span className="text-xs font-bold truncate" style={khFont}>{p.displayName}</span>
+              </div>
+            ))}
+            {phase.participants.length === 0 && <div className="col-span-5 text-center py-8 text-zinc-400 font-bold" style={khFont}>{kh ? "រង់ចាំអ្នកចូលរួម..." : "Waiting for players to join..."}</div>}
+          </div>
         </div>
       </div>
     );

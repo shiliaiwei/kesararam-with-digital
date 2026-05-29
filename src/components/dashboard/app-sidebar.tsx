@@ -179,14 +179,19 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
                   {pc.label}
                 </span>
                 {isTrial && trialDaysLeft !== null && (
-                  <span className={`text-[9px] font-bold px-1 py-0.5 border border-current rounded ${trialDaysLeft <= 2 ? "text-red-600" : "text-amber-600"}`}>
+                  <span className={`text-[9px] font-bold px-1 py-0.5 border border-current rounded ${trialDaysLeft <= 2 ? "text-red-600 border-red-400" : "text-amber-600 border-amber-400"}`}>
                     {trialDaysLeft}d left
                   </span>
                 )}
+                {!isTrial && plan === "free" && (
+                  <span className="text-[9px] font-bold px-1 py-0.5 border border-zinc-300 text-zinc-400 rounded">
+                    Free
+                  </span>
+                )}
               </div>
-              {isTrial && (
-                <Link href="/pricing" className="text-[9px] font-black uppercase tracking-widest text-amber-600 hover:text-amber-500 border border-amber-400 px-1.5 py-0.5">
-                  Upgrade
+              {(isTrial || plan === "free") && (
+                <Link href="/pricing" className="text-[9px] font-black uppercase tracking-widest text-amber-600 hover:text-amber-500 border border-amber-400 px-1.5 py-0.5 transition-colors">
+                  Upgrade →
                 </Link>
               )}
             </div>
@@ -204,8 +209,8 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
           <Link
             href={profileHref}
             className={`w-full flex items-center gap-2 p-2.5 border-2 border-black transition-all duration-100 ${pathname.includes("/profile")
-                ? "bg-yellow-400 shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
-                : "bg-white hover:bg-yellow-50 hover:shadow-[1px_1px_0_#000]"
+              ? "bg-yellow-400 shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+              : "bg-white hover:bg-yellow-50 hover:shadow-[1px_1px_0_#000]"
               }`}
           >
             <div className="w-6 h-6 border-2 border-black bg-blue-500 flex items-center justify-center shadow-[1px_1px_0_#000]">
@@ -235,8 +240,8 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
                     <button
                       onClick={() => toggleExpand(item.label)}
                       className={`w-full flex items-center justify-between gap-2 p-2.5 border-2 border-black transition-all duration-100 ${hasActiveChild
-                          ? "bg-yellow-100 shadow-[1px_1px_0_#000]"
-                          : "bg-white hover:bg-yellow-50 hover:shadow-[1px_1px_0_#000]"
+                        ? "bg-yellow-100 shadow-[1px_1px_0_#000]"
+                        : "bg-white hover:bg-yellow-50 hover:shadow-[1px_1px_0_#000]"
                         }`}
                     >
                       <div className="flex items-center gap-2">
@@ -266,8 +271,8 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
                               key={child.href}
                               href={child.href}
                               className={`block p-2 text-xs font-bold border-l-2 border-black transition-all ${isActive
-                                  ? "bg-yellow-400 pl-3"
-                                  : "bg-gray-50 hover:bg-yellow-50 hover:pl-3"
+                                ? "bg-yellow-400 pl-3"
+                                : "bg-gray-50 hover:bg-yellow-50 hover:pl-3"
                                 }`}
                             >
                               {child.label}
@@ -287,8 +292,8 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
                   key={item.href}
                   href={item.href!}
                   className={`flex items-center gap-2 p-2.5 border-2 border-black transition-all duration-100 ${isActive
-                      ? "bg-yellow-400 shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
-                      : "bg-white hover:bg-yellow-50 hover:shadow-[1px_1px_0_#000]"
+                    ? "bg-yellow-400 shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                    : "bg-white hover:bg-yellow-50 hover:shadow-[1px_1px_0_#000]"
                     }`}
                 >
                   <div
