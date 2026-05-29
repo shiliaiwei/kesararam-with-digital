@@ -58,7 +58,7 @@ function AnimatedLogoText() {
   );
 }
 
-function ProfileMenu({ session, kh }: { session: JWTPayload; kh: boolean }) {
+function ProfileMenu({ session, kh, showUpgrade }: { session: JWTPayload; kh: boolean; showUpgrade: boolean }) {
   const [open, setOpen] = useState(false);
   const [lifetimePoints, setLifetimePoints] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
@@ -170,15 +170,19 @@ function ProfileMenu({ session, kh }: { session: JWTPayload; kh: boolean }) {
                 My Profile
               </Link>
             )}
-            <Link
-              href="/pricing"
-              className={cn("flex items-center gap-2 px-4 py-2.5 text-sm text-amber-600 hover:bg-amber-50 transition-colors", kh ? "font-kh-header" : "font-semibold")}
-              onClick={() => setOpen(false)}
-            >
-              <Crown size={14} className="text-amber-500" />
-              {kh ? "ធ្វើឱ្យប្រសើរឡើង" : "Upgrade Plan"}
-            </Link>
-            <div className="h-px bg-black/10 my-1" />
+            {showUpgrade && (
+              <>
+                <Link
+                  href="/pricing"
+                  className={cn("flex items-center gap-2 px-4 py-2.5 text-sm text-amber-600 hover:bg-amber-50 transition-colors", kh ? "font-kh-header" : "font-semibold")}
+                  onClick={() => setOpen(false)}
+                >
+                  <Crown size={14} className="text-amber-500" />
+                  {kh ? "ធ្វើឱ្យប្រសើរឡើង" : "Upgrade Plan"}
+                </Link>
+                <div className="h-px bg-black/10 my-1" />
+              </>
+            )}
             <form action={logoutAction}>
               <button
                 type="submit"
@@ -202,6 +206,26 @@ export function Navbar({ session }: NavbarProps) {
   const tr = t[lang].nav;
   const kh = lang === "kh";
   const [upgradeOpen, setUpgradeOpen] = useState(false);
+  const [subPlan, setSubPlan] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!session || session.role !== "teacher") return;
+
+    fetch("/api/subscriptions/check")
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.subscription) {
+          setSubPlan(d.subscription.plan);
+        } else {
+          setSubPlan("free");
+        }
+      })
+      .catch(() => {
+        setSubPlan("free");
+      });
+  }, [session]);
+
+  const showUpgrade = !session || (session.role === "teacher" && subPlan === "free");
 
   const NAV_ITEMS = [
     { label: tr.home, href: "/" },
@@ -259,18 +283,20 @@ export function Navbar({ session }: NavbarProps) {
           <div className="hidden md:flex items-center gap-2 ml-3 flex-shrink-0">
             <LangSwitcher />
             {/* Upgrade CTA */}
-            <button
-              onClick={() => setUpgradeOpen(true)}
-              className={cn(
-                "flex items-center gap-1.5 px-3 py-1.5 text-xs bg-amber-400 text-black border-2 border-black shadow-[2px_2px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 whitespace-nowrap uppercase tracking-wide",
-                kh ? "font-kh-header" : "font-black"
-              )}
-            >
-              <Crown size={13} />
-              {kh ? "ធ្វើឱ្យប្រសើរ" : "Upgrade"}
-            </button>
+            {showUpgrade && (
+              <button
+                onClick={() => setUpgradeOpen(true)}
+                className={cn(
+                  "flex items-center gap-1.5 px-3 py-1.5 text-xs bg-amber-400 text-black border-2 border-black shadow-[2px_2px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 whitespace-nowrap uppercase tracking-wide",
+                  kh ? "font-kh-header" : "font-black"
+                )}
+              >
+                <Crown size={13} />
+                {kh ? "ធ្វើឱ្យប្រសើរ" : "Upgrade"}
+              </button>
+            )}
             {session ? (
-              <ProfileMenu session={session} kh={kh} />
+              <ProfileMenu session={session} kh={kh} showUpgrade={showUpgrade} />
             ) : (
               <Link
                 href="/login"
@@ -377,13 +403,15 @@ export function Navbar({ session }: NavbarProps) {
                 {/* LangSwitcher moved to header bar — always visible next to menu toggle */}
               </div>
               {/* Mobile upgrade button */}
-              <button
-                onClick={() => { setMobileOpen(false); setUpgradeOpen(true); }}
-                className="flex items-center justify-center gap-2 mt-2 px-4 py-3 text-base font-black bg-amber-400 text-black border-2 border-black shadow-[4px_4px_0_#000] uppercase tracking-wide"
-              >
-                <Crown size={16} />
-                {kh ? "ធ្វើឱ្យប្រសើរឡើង" : "Upgrade Plan"}
-              </button>
+              {showUpgrade && (
+                <button
+                  onClick={() => { setMobileOpen(false); setUpgradeOpen(true); }}
+                  className="flex items-center justify-center gap-2 mt-2 px-4 py-3 text-base font-black bg-amber-400 text-black border-2 border-black shadow-[4px_4px_0_#000] uppercase tracking-wide"
+                >
+                  <Crown size={16} />
+                  {kh ? "ធ្វើឱ្យប្រសើរឡើង" : "Upgrade Plan"}
+                </button>
+              )}
             </div>
           </div>
         </div>

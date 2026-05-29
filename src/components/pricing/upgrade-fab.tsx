@@ -3,18 +3,49 @@ import { useState, useEffect } from "react";
 import { Crown, X, Check, Bot } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useLang } from "@/context/lang-context";
+import type { JWTPayload } from "@/lib/auth";
+
 const MINI = { en: ["Unlimited sessions","All 8 categories","Suar AI unlimited","Analytics & export"], kh: ["វគ្គគ្មានដែនកំណត់","ប្រភេទទាំង ៨","Suar AI គ្មានដែនកំណត់","វិភាគ និងនាំចេញ"] };
-export function UpgradeFab() {
+
+interface UpgradeFabProps {
+  session?: JWTPayload | null;
+}
+
+export function UpgradeFab({ session }: UpgradeFabProps) {
   const [expanded, setExpanded] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const [yearly, setYearly] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [subPlan, setSubPlan] = useState<string | null>(null);
   const router = useRouter();
   const { lang } = useLang();
   const kh = lang === "kh";
   const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
-  useEffect(() => { setMounted(true); }, []);
-  if (!mounted || dismissed) return null;
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!session || session.role !== "teacher") return;
+
+    fetch("/api/subscriptions/check")
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.subscription) {
+          setSubPlan(d.subscription.plan);
+        } else {
+          setSubPlan("free");
+        }
+      })
+      .catch(() => {
+        setSubPlan("free");
+      });
+  }, [session]);
+
+  const showFab = !session || (session.role === "teacher" && subPlan === "free");
+
+  if (!mounted || dismissed || !showFab) return null;
   const price = yearly ? 8 : 10;
   return (
     <div className="fixed bottom-5 right-4 sm:right-6 z-40 flex flex-col items-end gap-2">

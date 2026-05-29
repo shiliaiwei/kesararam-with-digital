@@ -14,7 +14,7 @@ export default async function PublicLayout({
       <Navbar session={session} />
       <main className="flex-1">{children}</main>
       <Footer />
-      <UpgradeFab />
+      <UpgradeFab session={session} />
     </div>
   );
 }

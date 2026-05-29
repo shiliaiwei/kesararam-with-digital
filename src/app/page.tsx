@@ -13,7 +13,7 @@ export default async function RootPage() {
         <HomePageContent />
       </main>
       <Footer />
-      <UpgradeFab />
+      <UpgradeFab session={session} />
     </div>
   );
 }
