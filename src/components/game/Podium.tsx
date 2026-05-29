@@ -35,7 +35,7 @@ function Confetti() {
   return (
     <div className="pointer-events-none fixed inset-0 overflow-hidden z-50">
       {pieces.map((p) => (
-        <div key={p.id} className="absolute top-0 rounded-sm"
+        <div key={p.id} className="absolute top-0 rounded-none border border-black"
           style={{
             left: p.left, width: p.size, height: p.size,
             backgroundColor: p.color,

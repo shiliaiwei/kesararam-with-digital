@@ -13,7 +13,8 @@ import { Podium } from "@/components/game/Podium";
 import { ErrorBoundary } from "@/components/game/ErrorBoundary";
 import {
   Zap, Trophy, Users, Clock, CheckCircle, XCircle,
-  Loader2, Wifi, WifiOff, BookOpen, Target, Timer, Star
+  Loader2, Wifi, WifiOff, BookOpen, Target, Timer, Star,
+  Maximize, Minimize
 } from "lucide-react";
 
 type GamePhase = "lobby" | "question" | "results" | "leaderboard" | "podium";
@@ -61,6 +62,27 @@ export default function StudentGamePage() {
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
   const [joining, setJoining] = useState(true);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  }, []);
+
+  const toggleFullscreen = async () => {
+    try {
+      if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen();
+      } else {
+        await document.exitFullscreen();
+      }
+    } catch (err) {
+      console.error("Error toggling fullscreen:", err);
+    }
+  };
   const [joinError, setJoinError] = useState<string | null>(null);
   const [phase, setPhase] = useState<GamePhase>("lobby");
   const [sessionInfo, setSessionInfo] = useState<SessionInfo | null>(null);
@@ -157,6 +179,43 @@ export default function StudentGamePage() {
 
   const { connected, error } = useGameSSE(code, handleSSEEvent, !joining && !joinError);
 
+  const unifiedHeader = (
+    <div className="flex items-center justify-between px-4 py-2 border-b-2 border-black bg-zinc-900 text-white w-full flex-shrink-0 z-40 relative">
+      <div className="flex items-center gap-2">
+        <button
+          onClick={() => {
+            if (confirm(kh ? "តើអ្នកពិតជាចង់ចាកចេញពីហ្គេមមែនទេ?" : "Are you sure you want to exit the game?")) {
+              if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+              router.push("/play");
+            }
+          }}
+          className="flex items-center gap-1.5 px-2.5 py-1 border border-red-500/30 bg-red-950/30 hover:bg-red-900/40 text-red-400 text-xs font-black uppercase tracking-wider transition-all"
+        >
+          {kh ? "ចាកចេញ" : "Exit"}
+        </button>
+      </div>
+
+      <div className="text-center">
+        <span className="text-zinc-400 text-[10px] font-black tracking-widest uppercase">Room: {code}</span>
+      </div>
+
+      <div className="flex items-center gap-3">
+        <button
+          onClick={toggleFullscreen}
+          className="flex items-center gap-1 px-2.5 py-1 text-xs font-black uppercase border border-yellow-500/30 bg-yellow-950/20 hover:bg-yellow-900/30 text-yellow-400 transition-all"
+        >
+          {isFullscreen ? <Minimize size={12} /> : <Maximize size={12} />}
+          {isFullscreen ? (kh ? "បង្រួម" : "Minimize") : (kh ? "ពេញអេក្រង់" : "Fullscreen")}
+        </button>
+
+        <div className={`flex items-center gap-1.5 text-xs font-bold ${connected ? "text-green-400" : "text-yellow-400"}`}>
+          {connected ? <Wifi size={12} /> : <Loader2 size={12} className="animate-spin" />}
+          <span className="hidden sm:inline">{connected ? (kh ? "ភ្ជាប់" : "Connected") : (kh ? "កំពុងភ្ជាប់..." : "Connecting...")}</span>
+        </div>
+      </div>
+    </div>
+  );
+
   const submitAnswer = useCallback(async (answerId: number) => {
     if (answerSubmitted || !currentQuestion || !code) return;
     setSelectedAnswer(answerId);
@@ -244,13 +303,7 @@ export default function StudentGamePage() {
       <div className="min-h-screen flex flex-col"
         style={{ backgroundColor: "#0d0d14", backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px" }}>
 
-        {/* Connection indicator */}
-        <div className="flex justify-end px-4 pt-3">
-          <div className={`flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold ${connected ? "text-green-400" : "text-yellow-400"}`}>
-            {connected ? <Wifi size={12} /> : <Loader2 size={12} className="animate-spin" />}
-            {connected ? (kh ? "ភ្ជាប់" : "Connected") : (kh ? "កំពុងភ្ជាប់..." : "Connecting...")}
-          </div>
-        </div>
+        {unifiedHeader}
 
         <div className="flex-1 flex flex-col items-center justify-center px-4 py-6 gap-5 max-w-lg mx-auto w-full">
 
@@ -389,7 +442,7 @@ export default function StudentGamePage() {
     return (
       <div className="min-h-screen flex flex-col"
         style={{ backgroundColor: "#0d0d14", backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px" }}>
-
+        {unifiedHeader}
         {/* Top bar */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-black/30 flex-shrink-0">
           <div className="flex items-center gap-2 px-2.5 py-1 bg-red-600">
@@ -470,9 +523,10 @@ export default function StudentGamePage() {
   // ── Results / Leaderboard ──────────────────────────────────────────────────
   if (phase === "results" || phase === "leaderboard") {
     return (
-      <div className="min-h-screen p-4"
+      <div className="min-h-screen flex flex-col"
         style={{ backgroundColor: "#0d0d14", backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px" }}>
-        <div className="max-w-lg mx-auto pt-8">
+        {unifiedHeader}
+        <div className="flex-1 p-4 max-w-lg mx-auto w-full pt-8">
           <div className="flex items-center gap-2 mb-4">
             <Trophy size={16} className="text-yellow-400" />
             <span className="text-white font-black text-sm uppercase tracking-widest" style={khFont}>
@@ -488,9 +542,10 @@ export default function StudentGamePage() {
   // ── Podium ─────────────────────────────────────────────────────────────────
   if (phase === "podium") {
     return (
-      <div className="min-h-screen p-4"
+      <div className="min-h-screen flex flex-col"
         style={{ backgroundColor: "#0d0d14", backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px" }}>
-        <div className="max-w-2xl mx-auto pt-6">
+        {unifiedHeader}
+        <div className="flex-1 p-4 max-w-2xl mx-auto w-full pt-6">
           <div className="text-center mb-6">
             <div className="inline-block px-4 py-1.5 bg-yellow-400 text-black font-black text-xs uppercase tracking-widest mb-3">
               {kh ? "ហ្គេមចប់" : "Game Over"}

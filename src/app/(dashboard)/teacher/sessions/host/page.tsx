@@ -12,7 +12,7 @@ import {
   SkipForward, Crown, TrendingUp, TrendingDown, Minus,
   Zap, Trophy, Target, Swords, BookOpen, GraduationCap,
   Settings2, Globe, Layers, ChevronUp, ChevronDown,
-  Sparkles, Rocket,
+  Sparkles, Rocket, Maximize, Minimize,
 } from "lucide-react";
 import { UpgradeButton } from "@/components/pricing/upgrade-button";
 import { UpgradeModal } from "@/components/pricing/upgrade-modal";
@@ -120,6 +120,42 @@ function SectionLabel({ children, style = {} }: { children: React.ReactNode; sty
   );
 }
 
+// ── Confetti celebration ───────────────────────────────────────────────────
+function Confetti() {
+  const pieces = Array.from({ length: 50 }, (_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    delay: `${Math.random() * 2}s`,
+    duration: `${2 + Math.random() * 2}s`,
+    color: ["#ffd700", "#ef4444", "#3b82f6", "#22c55e", "#a855f7", "#f97316"][i % 6],
+    size: `${8 + Math.random() * 12}px`,
+  }));
+
+  return (
+    <div className="pointer-events-none fixed inset-0 overflow-hidden z-50">
+      {pieces.map((p) => (
+        <div
+          key={p.id}
+          className="absolute top-0 rounded-none border border-black"
+          style={{
+            left: p.left,
+            width: p.size,
+            height: p.size,
+            backgroundColor: p.color,
+            animation: `confettiFall ${p.duration} ${p.delay} linear infinite`,
+          }}
+        />
+      ))}
+      <style>{`
+        @keyframes confettiFall {
+          0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+          100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 export default function HostPage() {
   const router = useRouter();
   const { lang } = useLang();
@@ -127,6 +163,27 @@ export default function HostPage() {
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
   const [phase, setPhase] = useState<HostPhase>({ name: "setup" });
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  }, []);
+
+  const toggleFullscreen = async () => {
+    try {
+      if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen();
+      } else {
+        await document.exitFullscreen();
+      }
+    } catch (err) {
+      console.error("Error toggling fullscreen:", err);
+    }
+  };
   const [categories, setCategories] = useState<{ id: number; titleEn: string; titleKm: string }[]>([]);
   const [selectedCats, setSelectedCats] = useState<number[]>([]);
   const [sessionName, setSessionName] = useState("");
@@ -866,7 +923,16 @@ export default function HostPage() {
                 <Square size={14} />{kh ? "បោះបង់" : "Cancel"}
               </button>
               <button
-                onClick={() => control("start")}
+                onClick={async () => {
+                  if (!document.fullscreenElement) {
+                    try {
+                      await document.documentElement.requestFullscreen();
+                    } catch (err) {
+                      console.error("Failed to enter fullscreen:", err);
+                    }
+                  }
+                  control("start");
+                }}
                 disabled={controlling || phase.participants.length === 0}
                 className="flex items-center gap-2 px-6 py-2.5 border-2 border-black bg-green-400 text-black font-black text-sm shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-50"
                 style={{ borderRadius: "0px" }}
@@ -1035,14 +1101,34 @@ export default function HostPage() {
           {/* Controls */}
           <div className="flex items-center gap-2">
             {error && <span className="text-red-600 text-xs font-black max-w-xs truncate">{error}</span>}
+            
+            {/* Fullscreen Toggle */}
             <button
-              onClick={() => { if (confirm(kh ? "បញ្ចប់ហ្គេម?" : "End session?")) control("end"); }}
+              onClick={toggleFullscreen}
+              className="flex items-center gap-1.5 px-3 py-2 border-2 border-black bg-white text-black font-black text-sm shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100"
+              style={{ borderRadius: "0px" }}
+            >
+              {isFullscreen ? <Minimize size={13} /> : <Maximize size={13} />}
+              {isFullscreen ? (kh ? "បង្រួម" : "Minimize") : (kh ? "ពង្រីក" : "Fullscreen")}
+            </button>
+
+            {/* Exit/End Game Button */}
+            <button
+              onClick={() => {
+                if (confirm(kh ? "បញ្ចប់ហ្គេម និងចាកចេញ?" : "End session and exit?")) {
+                  control("end");
+                  if (document.fullscreenElement) {
+                    document.exitFullscreen().catch(() => {});
+                  }
+                }
+              }}
               disabled={controlling}
               className="flex items-center gap-1.5 px-3 py-2 border-2 border-black bg-red-400 text-black font-black text-sm shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-40"
               style={{ borderRadius: "0px" }}
             >
-              <Square size={13} />{kh ? "បញ្ចប់" : "End"}
+              <Square size={13} />{kh ? "ចាកចេញ" : "Exit"}
             </button>
+
             <button
               onClick={() => control("advance")}
               disabled={controlling}
@@ -1152,9 +1238,59 @@ export default function HostPage() {
   // ── ENDED ──────────────────────────────────────────────────────────────────
   if (phase.name === "ended") {
     const RANK_COLORS = ["#FFD700", "#e4e4e7", "#fed7aa"];
+    const leaderboardCount = phase.leaderboard.length;
+    let podiumItems: { entry: LeaderboardEntry; rank: number; colStyle: string; emoji: string }[] = [];
+
+    if (leaderboardCount === 1) {
+      podiumItems = [
+        {
+          entry: phase.leaderboard[0],
+          rank: 1,
+          colStyle: "w-full h-32 border-2 border-black bg-yellow-400 flex flex-col items-center justify-center shadow-[4px_4px_0_#000]",
+          emoji: "🥇",
+        }
+      ];
+    } else if (leaderboardCount === 2) {
+      podiumItems = [
+        {
+          entry: phase.leaderboard[1],
+          rank: 2,
+          colStyle: "w-full h-24 border-2 border-black bg-zinc-200 flex flex-col items-center justify-center shadow-[4px_4px_0_#000]",
+          emoji: "🥈",
+        },
+        {
+          entry: phase.leaderboard[0],
+          rank: 1,
+          colStyle: "w-full h-32 border-2 border-black bg-yellow-400 flex flex-col items-center justify-center shadow-[4px_4px_0_#000]",
+          emoji: "🥇",
+        }
+      ];
+    } else if (leaderboardCount >= 3) {
+      podiumItems = [
+        {
+          entry: phase.leaderboard[1],
+          rank: 2,
+          colStyle: "w-full h-24 border-2 border-black bg-zinc-200 flex flex-col items-center justify-center shadow-[4px_4px_0_#000]",
+          emoji: "🥈",
+        },
+        {
+          entry: phase.leaderboard[0],
+          rank: 1,
+          colStyle: "w-full h-32 border-2 border-black bg-yellow-400 flex flex-col items-center justify-center shadow-[4px_4px_0_#000]",
+          emoji: "🥇",
+        },
+        {
+          entry: phase.leaderboard[2],
+          rank: 3,
+          colStyle: "w-full h-20 border-2 border-black bg-orange-300 flex flex-col items-center justify-center shadow-[4px_4px_0_#000]",
+          emoji: "🥉",
+        }
+      ];
+    }
 
     return (
-      <div className="min-h-screen dot-bg text-black pb-12">
+      <div className="min-h-screen dot-bg text-black pb-12 relative overflow-hidden">
+        <Confetti />
         <div className="relative z-10 max-w-2xl mx-auto px-6 py-12">
           {/* Game over badge */}
           <div className="text-center mb-10">
@@ -1168,26 +1304,24 @@ export default function HostPage() {
             </p>
           </div>
 
-          {/* Top 3 podium */}
-          {phase.leaderboard.length >= 3 && (
-            <div className="flex items-end justify-center gap-3 mb-8">
-              {[1, 0, 2].map((idx) => {
-                const entry = phase.leaderboard[idx];
-                if (!entry) return null;
-                const rank = idx + 1;
-                const columnStyles = [
-                  "w-full h-24 border-2 border-black bg-zinc-200 flex flex-col items-center justify-center shadow-[4px_4px_0_#000]",
-                  "w-full h-32 border-2 border-black bg-yellow-400 flex flex-col items-center justify-center shadow-[4px_4px_0_#000]",
-                  "w-full h-20 border-2 border-black bg-orange-300 flex flex-col items-center justify-center shadow-[4px_4px_0_#000]",
-                ];
+          {/* Dynamic podium */}
+          {podiumItems.length > 0 && (
+            <div className="flex items-end justify-center gap-3 md:gap-5 mb-10 max-w-lg mx-auto">
+              {podiumItems.map((item) => {
+                const entry = item.entry;
                 return (
-                  <div key={entry.userId} className="flex flex-col items-center gap-2 flex-1">
+                  <div key={entry.userId} className="flex flex-col items-center gap-2 flex-1 max-w-[130px] animate-bounce-short">
+                    {item.rank === 1 && (
+                      <div className="animate-pulse mb-1">
+                        <Crown className="text-yellow-500 fill-yellow-400" size={24} />
+                      </div>
+                    )}
                     <div className="w-12 h-12 border-2 border-black flex items-center justify-center font-black text-sm text-white" style={{ background: `hsl(${(entry.userId * 47) % 360}, 70%, 45%)`, borderRadius: "0px" }}>
                       {(entry.displayName || "?").slice(0, 2).toUpperCase()}
                     </div>
                     <div className="text-xs font-black text-center truncate w-full text-black" style={{ ...khFont }}>{entry.displayName}</div>
-                    <div className={columnStyles[idx] ?? "w-full h-20 border-2 border-black bg-white flex flex-col items-center justify-center"} style={{ borderRadius: "0px" }}>
-                      <div className="text-2xl mb-1">{idx === 0 ? "🥇" : idx === 1 ? "🥈" : "🥉"}</div>
+                    <div className={item.colStyle} style={{ borderRadius: "0px" }}>
+                      <div className="text-2xl mb-1">{item.emoji}</div>
                       <div className="font-black text-sm text-black">{entry.totalScore.toLocaleString()}</div>
                     </div>
                   </div>
@@ -1211,6 +1345,13 @@ export default function HostPage() {
               style={{ borderRadius: "0px" }}
             >
               <ChevronRight size={15} />{kh ? "ហ្គេមថ្មី" : "New Game"}
+            </button>
+            <button
+              onClick={() => router.push("/teacher/dashboard")}
+              className="flex-1 flex items-center justify-center gap-2 py-3 border-2 border-black bg-red-400 text-black font-black text-sm shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100"
+              style={{ borderRadius: "0px" }}
+            >
+              {kh ? "ចាកចេញ" : "Exit"}
             </button>
           </div>
 

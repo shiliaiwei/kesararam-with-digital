@@ -15,18 +15,17 @@ export interface ScoreResult {
 }
 
 /**
- * New scoring system based on difficulty (Scaled for precision):
- * - Easy: 500 points base
- * - Medium: 1000 points base
- * - Hard: 1500 points base
+ * New scoring system based on difficulty (Logical scaling for rewards store):
+ * - Easy: 1 point base
+ * - Medium: 2 points base
+ * - Hard: 3 points base
  * 
  * Streak bonus:
- * - 2-3 correct: +100 points
- * - 4-5 correct: +200 points
- * - 6+ correct: +300 points
+ * - 2-4 correct: +1 point
+ * - 5+ correct: +2 points
  * 
  * Speed bonus (only in speed mode):
- * - Scaled linearly up to the baseScore based on remaining time.
+ * - +1 point if user answers in the first 50% of the total question time.
  * - Suspiciously fast answers (< 500ms response time) receive 0 speed/streak bonus.
  */
 export function calculateScore(params: {
@@ -39,13 +38,13 @@ export function calculateScore(params: {
 }): ScoreResult {
   if (!params.isCorrect) return { baseScore: 0, speedBonus: 0, streakBonus: 0, totalPoints: 0 };
 
-  // 1. Base score by difficulty
+  // 1. Base score by difficulty (Scaled for logical store rewards)
   const difficultyPoints: Record<string, number> = {
-    easy: 500,
-    medium: 1000,
-    hard: 1500,
+    easy: 1,
+    medium: 2,
+    hard: 3,
   };
-  const baseScore = difficultyPoints[params.difficulty?.toLowerCase() || "medium"] || 1000;
+  const baseScore = difficultyPoints[params.difficulty?.toLowerCase() || "medium"] || 2;
 
   // 2. Sanitize Inputs & Detect Suspicious Behavior
   // Clamp to prevent exploit values
@@ -58,18 +57,19 @@ export function calculateScore(params: {
   // 3. Speed bonus (only in speed mode, penalized if suspicious)
   let speedBonus = 0;
   if (params.scoringMode === "speed" && !isSuspicious && params.totalTimeMs > 0) {
-    speedBonus = Math.floor(baseScore * (safeRemaining / params.totalTimeMs));
+    // If they answer within the first half of the time limit, they get a +1 speed point
+    if (safeRemaining / params.totalTimeMs >= 0.5) {
+      speedBonus = 1;
+    }
   }
 
   // 4. Streak bonus (penalized if suspicious)
   let streakBonus = 0;
   if (!isSuspicious) {
-    if (params.currentStreak >= 6) {
-      streakBonus = 300;
-    } else if (params.currentStreak >= 4) {
-      streakBonus = 200;
+    if (params.currentStreak >= 5) {
+      streakBonus = 2;
     } else if (params.currentStreak >= 2) {
-      streakBonus = 100;
+      streakBonus = 1;
     }
   }
 
