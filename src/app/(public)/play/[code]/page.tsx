@@ -29,6 +29,7 @@ interface SessionInfo {
   maxPlayers: number;
   questionCount: number;
   hostName: string;
+  language: string;
 }
 
 const MODE_LABELS: Record<string, string> = {
@@ -57,7 +58,7 @@ export default function StudentGamePage() {
   const params = useParams();
   const router = useRouter();
   const code = (params.code as string)?.toUpperCase();
-  const { lang } = useLang();
+  const { lang, setLang } = useLang();
   const kh = lang === "kh";
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
@@ -152,6 +153,11 @@ export default function StudentGamePage() {
         if (infoRes.ok) {
           const info = await infoRes.json();
           setSessionInfo(info);
+          if (info.language === "km") {
+            setLang("kh");
+          } else if (info.language === "en") {
+            setLang("en");
+          }
         }
 
         if (!joinRes.ok) {
@@ -384,6 +390,47 @@ export default function StudentGamePage() {
             </div>
           )}
 
+          {/* Language selector in lobby */}
+          {sessionInfo && (
+            <div className="w-full border border-white/10 bg-white/5 p-4 text-center">
+              <div className="text-white/40 text-[10px] font-black uppercase tracking-widest mb-3" style={khFont}>
+                {kh ? "ជ្រើសរើសភាសាហ្គេម" : "Game Language Selection"}
+              </div>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => {
+                    if (sessionInfo.language === "both") setLang("kh");
+                  }}
+                  disabled={sessionInfo.language !== "both"}
+                  className={`flex-1 py-3 border-2 border-black font-black text-xs transition-all duration-100 uppercase tracking-wider ${
+                    lang === "kh"
+                      ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000]"
+                      : "bg-zinc-800 text-white/50 border-white/10"
+                  } ${sessionInfo.language !== "both" ? "cursor-not-allowed opacity-60" : ""}`}
+                  style={{ borderRadius: "0px", fontFamily: "Siemreap, sans-serif" }}
+                >
+                  ខ្មែរ (Khmer)
+                  {sessionInfo.language === "km" && (kh ? " (គ្រូកំណត់)" : " (Forced)")}
+                </button>
+                <button
+                  onClick={() => {
+                    if (sessionInfo.language === "both") setLang("en");
+                  }}
+                  disabled={sessionInfo.language !== "both"}
+                  className={`flex-1 py-3 border-2 border-black font-black text-xs transition-all duration-100 uppercase tracking-wider ${
+                    lang === "en"
+                      ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000]"
+                      : "bg-zinc-800 text-white/50 border-white/10"
+                  } ${sessionInfo.language !== "both" ? "cursor-not-allowed opacity-60" : ""}`}
+                  style={{ borderRadius: "0px" }}
+                >
+                  English
+                  {sessionInfo.language === "en" && (kh ? " (គ្រូកំណត់)" : " (Forced)")}
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* Players joined */}
           <div className="w-full border border-white/10 bg-white/5 p-4">
             <div className="flex items-center gap-2 mb-3">
@@ -419,6 +466,31 @@ export default function StudentGamePage() {
             <Clock size={14} className="animate-pulse" />
             {kh ? "រង់ចាំគ្រូចាប់ផ្តើម..." : "Waiting for host to start..."}
           </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ── Fullscreen Overlay ──
+  if (phase !== "lobby" && phase !== "podium" && !isFullscreen) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-4 z-50 fixed inset-0 bg-[#0d0d14]"
+        style={{ backgroundColor: "#0d0d14", backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px" }}>
+        <div className="border-2 border-yellow-400 bg-black/80 p-8 max-w-md w-full text-center shadow-[0_0_50px_rgba(250,204,21,0.25)]">
+          <Trophy className="mx-auto text-yellow-400 mb-4 animate-bounce" size={48} />
+          <h1 className="text-2xl font-black text-white mb-3 uppercase tracking-wider" style={khFont}>
+            {kh ? "ហ្គេមកំពុងចាប់ផ្តើម!" : "Game is Starting!"}
+          </h1>
+          <p className="text-white/70 mb-6 text-sm" style={khFont}>
+            {kh ? "សូមចុចប៊ូតុងខាងក្រោមដើម្បីចូលរួមលេងពេញអេក្រង់" : "Tap the button below to enter fullscreen and start playing!"}
+          </p>
+          <button
+            onClick={toggleFullscreen}
+            className="w-full py-4 bg-yellow-400 hover:bg-yellow-300 text-black font-black border-2 border-black shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all text-sm uppercase tracking-widest"
+            style={{ borderRadius: "0px" }}
+          >
+            {kh ? "ចូលរួមលេងពេញអេក្រង់" : "Enter Fullscreen & Play"}
+          </button>
         </div>
       </div>
     );

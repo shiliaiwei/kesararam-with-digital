@@ -22,6 +22,7 @@ export async function POST(req: NextRequest) {
     scoringMode = "speed",
     gameType = "quick-quiz",
     maxPlayers = 50,
+    language = "both",
   } = body;
 
   if (!categoryIds?.length) {
@@ -143,6 +144,7 @@ export async function POST(req: NextRequest) {
       timePerQuestion,
       scoringMode,
       maxPlayers: Math.min(Math.max(maxPlayers, 1), 200),
+      language,
       status: "lobby",
     })
     .returning();

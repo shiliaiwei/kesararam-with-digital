@@ -22,6 +22,7 @@ export async function GET(
       maxPlayers: gameSessions.maxPlayers,
       questionCount: gameSessions.questionIds,
       hostId: gameSessions.hostId,
+      language: gameSessions.language,
     })
     .from(gameSessions)
     .where(eq(gameSessions.sessionCode, code.toUpperCase()));
@@ -43,5 +44,6 @@ export async function GET(
     maxPlayers: session.maxPlayers,
     questionCount: Array.isArray(session.questionCount) ? session.questionCount.length : 0,
     hostName: host?.displayName || host?.username || "Teacher",
+    language: session.language,
   });
 }

@@ -1426,7 +1426,7 @@ export default function HostPage() {
               <ChevronRight size={15} />{kh ? "ហ្គេមថ្មី" : "New Game"}
             </button>
             <button
-              onClick={() => router.push("/teacher/dashboard")}
+              onClick={() => router.push("/teacher/sessions")}
               className="flex-1 flex items-center justify-center gap-2 py-3 border-2 border-black bg-red-400 text-black font-black text-sm shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100"
               style={{ borderRadius: "0px" }}
             >

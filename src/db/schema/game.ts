@@ -19,6 +19,7 @@ export const gameSessions = pgTable(
     scoringMode: varchar("scoring_mode", { length: 20 }).notNull().default("speed"),
     timePerQuestion: integer("time_per_question").notNull().default(30),
     maxPlayers: integer("max_players").notNull().default(50),
+    language: varchar("language", { length: 10 }).notNull().default("both"),
     createdAt: timestamp("created_at").notNull().defaultNow(),
     startedAt: timestamp("started_at"),
     endedAt: timestamp("ended_at"),
