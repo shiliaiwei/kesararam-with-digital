@@ -15,6 +15,8 @@ import {
   Sparkles, Rocket,
 } from "lucide-react";
 import { UpgradeButton } from "@/components/pricing/upgrade-button";
+import { UpgradeModal } from "@/components/pricing/upgrade-modal";
+import { Lock } from "lucide-react";
 
 // ── Answer color config ────────────────────────────────────────────────────
 const ANSWER_STYLES = [
@@ -140,6 +142,22 @@ export default function HostPage() {
   const [maxPlayers, setMaxPlayers] = useState(50);
   const [lobbyParticipants, setLobbyParticipants] = useState<ParticipantInfo[]>([]);
   const [questionCount, setQuestionCount] = useState(10);
+
+  const [subPlan, setSubPlan] = useState<string>("free");
+  const [upgradeModalOpen, setUpgradeModalOpen] = useState(false);
+  const [upgradeTrigger, setUpgradeTrigger] = useState("");
+
+  // Fetch subscription plan info client-side
+  useEffect(() => {
+    fetch("/api/subscriptions/check")
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.subscription?.plan) {
+          setSubPlan(d.subscription.plan);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   // Fetch categories + check for existing active session on mount
   useEffect(() => {
@@ -370,40 +388,204 @@ export default function HostPage() {
               {/* Game Modes */}
               <GlassCard className="p-5">
                 <SectionLabel style={khFont}>{kh ? "របៀបលេង" : "Game Mode"}</SectionLabel>
-                <div className="grid grid-cols-2 gap-2.5">
-                  {GAME_MODES.map((m) => {
-                    const isSelected = selectedMode === m.id;
+                  {(() => {
+                    const MODE_META: Record<string, {
+                      emoji: string;
+                      tagline: string;
+                      taglineKm: string;
+                      accentShape: string;
+                      badge?: string;
+                      badgeColor?: string;
+                    }> = {
+                      "quick-quiz": {
+                        emoji: "⚡",
+                        tagline: "Flexible pace, any topic",
+                        taglineKm: "ល្បឿនដោយខ្លួនឯង",
+                        accentShape: "polygon(0 0,100% 0,85% 100%,0 100%)",
+                        badge: "Popular",
+                        badgeColor: "#22c55e",
+                      },
+                      "speed-round": {
+                        emoji: "🚀",
+                        tagline: "15s rapid fire — stay sharp",
+                        taglineKm: "១៥វិនាទី ឆ្លើយលឿន",
+                        accentShape: "polygon(0 0,100% 0,100% 100%,15% 100%)",
+                        badge: "Fast",
+                        badgeColor: "#ef4444",
+                      },
+                      "sign-challenge": {
+                        emoji: "🪧",
+                        tagline: "Image-based sign recognition",
+                        taglineKm: "សញ្ញាចរាចរណ៍",
+                        accentShape: "polygon(0 0,85% 0,100% 100%,0 100%)",
+                        badge: "Visual",
+                        badgeColor: "#3b82f6",
+                      },
+                      "mixed-battle": {
+                        emoji: "⚔️",
+                        tagline: "All question types, full chaos",
+                        taglineKm: "ចម្រុះសំណួរ",
+                        accentShape: "polygon(0 0,100% 0,100% 100%,0 100%)",
+                        badge: "Pro Only",
+                        badgeColor: "#ffd700",
+                      },
+                      "daily-challenge": {
+                        emoji: "📅",
+                        tagline: "Fresh questions every day",
+                        taglineKm: "ថ្មីរៀងរាល់ថ្ងៃ",
+                        accentShape: "polygon(0 0,100% 0,90% 100%,0 100%)",
+                        badge: "Pro Only",
+                        badgeColor: "#ffd700",
+                      },
+                      "exam-simulation": {
+                        emoji: "🎓",
+                        tagline: "Simulate the real licence exam",
+                        taglineKm: "ត្រាប់ប្រឡងបណ្ណ",
+                        accentShape: "polygon(10% 0,100% 0,100% 100%,0 100%)",
+                        badge: "Pro Only",
+                        badgeColor: "#ffd700",
+                      },
+                    };
+
+                    const MODE_STATS: Record<string, { xp: string; complexity: string; complexityKm: string }> = {
+                      "quick-quiz": { xp: "1.0x XP", complexity: "Easy", complexityKm: "ស្រួល" },
+                      "speed-round": { xp: "1.5x XP", complexity: "Hard", complexityKm: "ពិបាក" },
+                      "sign-challenge": { xp: "1.2x XP", complexity: "Medium", complexityKm: "មធ្យម" },
+                      "mixed-battle": { xp: "2.0x XP", complexity: "Chaos", complexityKm: "ចម្រុះ" },
+                      "daily-challenge": { xp: "1.3x XP", complexity: "Dynamic", complexityKm: "ប្រែប្រួល" },
+                      "exam-simulation": { xp: "2.5x XP", complexity: "Real Test", complexityKm: "ប្រឡងផ្លូវការ" },
+                    };
+
                     return (
-                      <button
-                        key={m.id}
-                        onClick={() => { setSelectedMode(m.id); setQuestionCount(m.defaultQuestionCount); }}
-                        className="relative p-4 rounded-xl text-left transition-all duration-200 overflow-hidden group"
-                        style={{
-                          background: isSelected ? `${m.color}22` : "rgba(255,255,255,0.04)",
-                          border: isSelected ? `1.5px solid ${m.color}` : "1.5px solid rgba(255,255,255,0.08)",
-                          boxShadow: isSelected ? `0 0 20px ${m.color}30` : "none",
-                          transform: isSelected ? "scale(1.02)" : "scale(1)",
-                        }}
-                      >
-                        {isSelected && (
-                          <div className="absolute inset-0 rounded-xl opacity-10" style={{ background: `radial-gradient(circle at 30% 50%, ${m.color}, transparent 70%)` }} />
-                        )}
-                        <div className="relative z-10">
-                          <div className="flex items-center gap-2 mb-1" style={{ color: isSelected ? m.color : "rgba(255,255,255,0.5)" }}>
-                            {MODE_ICONS[m.id]}
-                            <span className="font-black text-sm" style={{ color: isSelected ? "#fff" : "rgba(255,255,255,0.7)", ...khFont }}>
-                              {kh ? m.labelKm : m.label}
-                            </span>
-                          </div>
-                          <div className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>
-                            {m.defaultQuestionCount}Q · {m.timePerQuestion}s/Q
-                          </div>
-                        </div>
-                      </button>
+                      <div className="grid grid-cols-2 gap-3.5">
+                        {GAME_MODES.map((m) => {
+                          const isSelected = selectedMode === m.id;
+                          const isPremium = ["mixed-battle", "daily-challenge", "exam-simulation"].includes(m.id);
+                          const isLocked = isPremium && subPlan === "free";
+                          const meta = MODE_META[m.id] ?? { emoji: "🎮", tagline: "", taglineKm: "", accentShape: "" };
+                          const stats = MODE_STATS[m.id] ?? { xp: "1.0x XP", complexity: "Easy", complexityKm: "ស្រួល" };
+
+                          return (
+                            <button
+                              key={m.id}
+                              onClick={() => {
+                                if (isLocked) {
+                                  setUpgradeTrigger("advanced_modes");
+                                  setUpgradeModalOpen(true);
+                                } else {
+                                  setSelectedMode(m.id);
+                                  setQuestionCount(m.defaultQuestionCount);
+                                }
+                              }}
+                              className="relative text-left overflow-hidden transition-all duration-300 group"
+                              style={{
+                                background: isSelected
+                                  ? `linear-gradient(145deg, ${m.color}20, ${m.color}05)`
+                                  : "rgba(255,255,255,0.03)",
+                                border: isSelected
+                                  ? `2.5px solid ${m.color}`
+                                  : isLocked
+                                    ? "1.5px dashed rgba(255,215,0,0.3)"
+                                    : "1.5px solid rgba(255,255,255,0.08)",
+                                borderRadius: 16,
+                                boxShadow: isSelected
+                                  ? `0 0 20px ${m.color}25, inset 0 1px 0 ${m.color}20`
+                                  : isLocked
+                                    ? "0 0 8px rgba(255,215,0,0.04)"
+                                    : "none",
+                                transform: isSelected ? "translateY(-3px)" : "translateY(0)",
+                                opacity: isLocked ? 0.85 : 1,
+                              }}
+                            >
+                              {/* Background accent shape */}
+                              <div className="absolute top-0 right-0 w-16 h-16 opacity-10 transition-opacity group-hover:opacity-20"
+                                style={{
+                                  background: m.color,
+                                  clipPath: meta.accentShape,
+                                  borderRadius: "0 16px 0 0",
+                                }} />
+
+                              {/* Backlight glow on hover/selected */}
+                              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                                style={{ background: `radial-gradient(circle at 10% 10%, ${m.color}15, transparent 65%)` }} />
+
+                              <div className="relative z-10 p-4 flex flex-col h-full justify-between">
+                                <div>
+                                  {/* Header: emoji + locks/badges */}
+                                  <div className="flex items-start justify-between mb-2.5">
+                                    <div className="text-2xl leading-none">{meta.emoji}</div>
+                                    <div className="flex items-center gap-1.5">
+                                      {isLocked && (
+                                        <div className="bg-amber-400/20 border border-amber-400/40 p-1 rounded-full animate-pulse-gold">
+                                          <Lock size={10} className="text-amber-400" />
+                                        </div>
+                                      )}
+                                      {meta.badge && (
+                                        <span className="text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-full"
+                                          style={{
+                                            background: isLocked ? "rgba(255,215,0,0.15)" : `${meta.badgeColor}20`,
+                                            color: isLocked ? "#FFD700" : meta.badgeColor,
+                                            border: `1px solid ${isLocked ? "rgba(255,215,0,0.3)" : `${meta.badgeColor}40`}`,
+                                          }}>
+                                          {meta.badge}
+                                        </span>
+                                      )}
+                                    </div>
+                                  </div>
+
+                                  {/* Mode name */}
+                                  <div className="font-black text-sm mb-1 leading-tight flex items-center gap-1.5" style={{ color: isSelected ? "#fff" : "rgba(255,255,255,0.75)", ...khFont }}>
+                                    {kh ? m.labelKm : m.label}
+                                  </div>
+
+                                  {/* Tagline */}
+                                  <div className="text-[10px] mb-3 leading-snug" style={{ color: "rgba(255,255,255,0.45)", ...khFont }}>
+                                    {kh ? meta.taglineKm : meta.tagline}
+                                  </div>
+                                </div>
+
+                                <div>
+                                  {/* Gamified stats chips */}
+                                  <div className="flex items-center gap-1.5 mb-2.5 flex-wrap">
+                                    <span className="text-[9px] font-black tracking-wider px-1.5 py-0.5 rounded-md"
+                                      style={{ background: "rgba(6,182,212,0.1)", color: "#06b6d4", border: "1px solid rgba(6,182,212,0.25)" }}>
+                                      {stats.xp}
+                                    </span>
+                                    <span className="text-[9px] font-black tracking-wider px-1.5 py-0.5 rounded-md"
+                                      style={{
+                                        background: isSelected ? `${m.color}20` : "rgba(255,255,255,0.06)",
+                                        color: isSelected ? "#fff" : "rgba(255,255,255,0.5)",
+                                        border: isSelected ? `1px solid ${m.color}50` : "1px solid rgba(255,255,255,0.1)"
+                                      }}>
+                                      {kh ? stats.complexityKm : stats.complexity}
+                                    </span>
+                                  </div>
+
+                                  {/* Config presets footer */}
+                                  <div className="flex items-center gap-1.5 border-t border-white/5 pt-2 flex-wrap">
+                                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-sm bg-white/5 text-white/45">
+                                      {m.defaultQuestionCount}Q
+                                    </span>
+                                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-sm bg-white/5 text-white/45">
+                                      {m.timePerQuestion}s/Q
+                                    </span>
+                                  </div>
+                                </div>
+
+                                {/* Active selection progress indicator */}
+                                {isSelected && (
+                                  <div className="absolute bottom-0 left-0 right-0 h-0.5 rounded-b-2xl"
+                                    style={{ background: `linear-gradient(90deg, ${m.color}, transparent)` }} />
+                                )}
+                              </div>
+                            </button>
+                          );
+                        })}
+                      </div>
                     );
-                  })}
-                </div>
-              </GlassCard>
+                  })()}
+                </GlassCard>
+
 
               {/* Categories */}
               <GlassCard className="p-5">
@@ -672,6 +854,12 @@ export default function HostPage() {
                 </GlassCard>
               </div>
             </div>
+        <UpgradeModal
+          open={upgradeModalOpen}
+          onClose={() => setUpgradeModalOpen(false)}
+          trigger={upgradeTrigger}
+          lang={lang}
+        />
           </div>
         </div>
       </div>

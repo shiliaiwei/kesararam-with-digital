@@ -376,3 +376,117 @@
 .animate-bounce-in {
   animation: bounce-in 0.5s ease-out;
 }
+
+/* ─── KWD Cyber Arcade & HUD Styling ─── */
+
+@keyframes pulse-gold {
+  0%, 100% {
+    opacity: 0.65;
+    box-shadow: 0 0 4px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 14px rgba(255, 215, 0, 0.85);
+  }
+}
+
+@keyframes pulse-red-alert {
+  0% {
+    opacity: 0.5;
+    box-shadow: 0 0 4px rgba(239, 68, 68, 0.3);
+  }
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 16px rgba(239, 68, 68, 0.95), 0 0 4px rgba(239, 68, 68, 0.5);
+  }
+}
+
+@keyframes rotating-glow-border {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.animate-pulse-gold {
+  animation: pulse-gold 2s ease-in-out infinite;
+}
+
+.animate-pulse-red-alert {
+  animation: pulse-red-alert 0.8s ease-in-out infinite alternate;
+}
+
+/* Shimmer Sweep effect for buttons */
+.shimmer-sweep-btn {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-sweep-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 215, 0, 0.25),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: shimmer-sweep 2.5s infinite;
+  pointer-events: none;
+}
+
+/* Rotating Glow border container style */
+.cyber-rotating-border {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #0f1015;
+}
+
+.cyber-rotating-border::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  background: conic-gradient(
+    from 90deg,
+    transparent 0%,
+    rgba(255, 215, 0, 0.8) 25%,
+    transparent 50%,
+    rgba(245, 158, 11, 0.8) 75%,
+    transparent 100%
+  );
+  animation: rotating-glow-border 4s linear infinite;
+  border-radius: inherit;
+  z-index: 0;
+  pointer-events: none;
+  /* Use mask to only show the border edge */
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  padding: 1.5px; /* Border thickness */
+}
+
+/* Sparkle element floating */
+@keyframes floating-sparkle {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-4px) scale(1.2);
+    opacity: 0.8;
+  }
+}
+.animate-sparkle-float {
+  animation: floating-sparkle 3s ease-in-out infinite;
+}
+
