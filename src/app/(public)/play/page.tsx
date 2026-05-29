@@ -181,7 +181,7 @@ function GameModeCard({ mode, index, kh, khFont }: {
 
       {/* Brand Caution Tape Bottom Stripe */}
       <div className="absolute bottom-0 left-0 right-0 h-[4px] caution-tape" />
-    </div>
+    </Link>
   );
 }
 
