@@ -235,8 +235,35 @@ export function MapboxTrafficMap({
 
         map.on("error", (e: any) => {
           if (cancelled) return;
-          console.error("Mapbox error:", e);
-          setError("Map failed to load.");
+
+          // Mapbox error events often have non-enumerable props — extract carefully
+          const err = e?.error;
+          const msg: string =
+            err?.message ||
+            e?.message ||
+            (typeof e === "string" ? e : "");
+          const status: number = err?.status ?? 0;
+
+          // Non-fatal: HTTP tile errors (403/404), network failures,
+          // tile-related messages, OR completely empty/unknown error objects.
+          // An empty `msg` with status 0 almost always means a tile fetch
+          // that Mapbox already retries internally.
+          const isNonFatal =
+            status === 403 ||
+            status === 404 ||
+            msg === "" ||
+            msg.includes("Failed to fetch") ||
+            msg.includes("tile") ||
+            msg.includes("network");
+
+          if (isNonFatal) {
+            console.warn("Mapbox non-fatal warning:", msg || `status=${status}`, e);
+            return;
+          }
+
+          // Truly fatal: invalid token scope, style not found, WebGL failure
+          console.error("Mapbox fatal error:", msg, e);
+          setError(msg || "Map failed to load.");
           setMapLoaded(true);
         });
 

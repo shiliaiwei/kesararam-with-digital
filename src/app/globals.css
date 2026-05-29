@@ -264,11 +264,11 @@
 
 /* ─── Khmer Fonts ─── */
 .font-kh-header {
-  font-family: var(--font-kh-header) !important;
+  font-family: var(--font-kh-header), "Google Sans Khmer", "Google Sans", sans-serif !important;
   font-weight: 700;
 }
 .font-kh-body {
-  font-family: var(--font-kh-body) !important;
+  font-family: var(--font-kh-body), "Google Sans Khmer", "Google Sans", sans-serif !important;
 }
 
 /* ─── Active nav tab indicator ─── */
