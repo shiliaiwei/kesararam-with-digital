@@ -20,10 +20,10 @@ import { Lock } from "lucide-react";
 
 // ── Answer color config ────────────────────────────────────────────────────
 const ANSWER_STYLES = [
-  { bg: "linear-gradient(135deg,#ef4444,#dc2626)", border: "#ef4444", label: "A" },
-  { bg: "linear-gradient(135deg,#3b82f6,#2563eb)", border: "#3b82f6", label: "B" },
-  { bg: "linear-gradient(135deg,#22c55e,#16a34a)", border: "#22c55e", label: "C" },
-  { bg: "linear-gradient(135deg,#f97316,#ea580c)", border: "#f97316", label: "D" },
+  { bg: "#ef4444", border: "#000000", label: "A" },
+  { bg: "#3b82f6", border: "#000000", label: "B" },
+  { bg: "#22c55e", border: "#000000", label: "C" },
+  { bg: "#f97316", border: "#000000", label: "D" },
 ];
 
 // ── Mode icons map ─────────────────────────────────────────────────────────
@@ -46,55 +46,53 @@ type HostPhase =
 
 // ── Leaderboard row ────────────────────────────────────────────────────────
 function LiveLeaderRow({ entry, rank, showScore }: { entry: LeaderboardEntry; rank: number; showScore: boolean }) {
-  const RANK_COLORS = ["#FFD700", "#C0C0C0", "#CD7F32"];
+  const RANK_COLORS = ["#FFD700", "#e4e4e7", "#fed7aa"];
   const isTop3 = rank <= 3;
-  const rankColor = RANK_COLORS[rank - 1] ?? "#4b5563";
+  const rankColor = RANK_COLORS[rank - 1] ?? "#f4f4f5";
   const initials = (entry.displayName || "?").slice(0, 2).toUpperCase();
 
   return (
     <div
-      className="flex items-center gap-3 px-4 py-3 transition-all duration-500 group"
-      style={{
-        background: isTop3
-          ? `linear-gradient(90deg, ${rankColor}18, transparent)`
-          : "transparent",
-        borderLeft: isTop3 ? `3px solid ${rankColor}` : "3px solid transparent",
-      }}
+      className={`flex items-center gap-3 px-4 py-3 transition-all duration-300 border-b border-zinc-200 ${
+        isTop3 ? "bg-yellow-50" : "bg-white"
+      }`}
     >
       <div
-        className="w-7 h-7 flex items-center justify-center font-black text-xs flex-shrink-0 rounded-sm"
+        className="w-7 h-7 border border-black flex items-center justify-center font-black text-xs flex-shrink-0"
         style={{
-          background: isTop3 ? rankColor : "rgba(255,255,255,0.08)",
-          color: isTop3 && rank === 1 ? "#000" : "#fff",
+          borderRadius: "0px",
+          background: rankColor,
+          color: "#000000",
+          boxShadow: isTop3 ? "1px 1px 0 #000" : "none",
         }}
       >
         {isTop3 ? <Crown size={12} /> : rank}
       </div>
       <div
-        className="w-8 h-8 rounded-full flex items-center justify-center font-black text-xs flex-shrink-0 text-white border border-white/10"
-        style={{ background: `hsl(${(entry.userId * 47) % 360}, 70%, 45%)` }}
+        className="w-8 h-8 border-2 border-black flex items-center justify-center font-black text-xs flex-shrink-0 text-white"
+        style={{ background: `hsl(${(entry.userId * 47) % 360}, 70%, 45%)`, borderRadius: "0px" }}
       >
         {initials}
       </div>
-      <div className="flex-1 min-w-0">
-        <div className="font-bold text-white text-xs truncate">{entry.displayName}</div>
+      <div className="flex-1 min-w-0 text-black">
+        <div className="font-bold text-xs truncate">{entry.displayName}</div>
         {entry.currentStreak > 1 && (
-          <div className="text-orange-400 text-xs font-bold">🔥 ×{entry.currentStreak}</div>
+          <div className="text-orange-600 text-xs font-bold">🔥 ×{entry.currentStreak}</div>
         )}
       </div>
-      <div className="text-right flex-shrink-0">
+      <div className="text-right flex-shrink-0 text-black">
         {showScore ? (
           <>
-            <div className="font-black text-white text-sm tabular-nums">{entry.totalScore.toLocaleString()}</div>
+            <div className="font-black text-sm tabular-nums">{entry.totalScore.toLocaleString()}</div>
             <div className="flex items-center justify-end gap-0.5">
-              {entry.rankChange > 0 ? <TrendingUp size={9} className="text-green-400" /> : entry.rankChange < 0 ? <TrendingDown size={9} className="text-red-400" /> : <Minus size={9} className="text-white/20" />}
-              <span className={`text-xs font-bold ${entry.rankChange > 0 ? "text-green-400" : entry.rankChange < 0 ? "text-red-400" : "text-white/20"}`}>
+              {entry.rankChange > 0 ? <TrendingUp size={9} className="text-green-600" /> : entry.rankChange < 0 ? <TrendingDown size={9} className="text-red-600" /> : <Minus size={9} className="text-zinc-400" />}
+              <span className={`text-[10px] font-black ${entry.rankChange > 0 ? "text-green-600" : entry.rankChange < 0 ? "text-red-600" : "text-zinc-400"}`}>
                 {entry.rankChange !== 0 ? `${entry.rankChange > 0 ? "+" : ""}${entry.rankChange}` : "–"}
               </span>
             </div>
           </>
         ) : (
-          <div className="font-black text-white/20 text-sm">···</div>
+          <div className="font-black text-zinc-300 text-sm">···</div>
         )}
       </div>
     </div>
@@ -105,8 +103,8 @@ function LiveLeaderRow({ entry, rank, showScore }: { entry: LeaderboardEntry; ra
 function GlassCard({ children, className = "", style = {} }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) {
   return (
     <div
-      className={`rounded-2xl border border-white/10 backdrop-blur-sm ${className}`}
-      style={{ background: "rgba(255,255,255,0.04)", ...style }}
+      className={`bg-white border-2 border-black shadow-[4px_4px_0_#000] ${className}`}
+      style={{ borderRadius: "0px", ...style }}
     >
       {children}
     </div>
@@ -116,7 +114,7 @@ function GlassCard({ children, className = "", style = {} }: { children: React.R
 // ── Section label ─────────────────────────────────────────────────────────
 function SectionLabel({ children, style = {} }: { children: React.ReactNode; style?: React.CSSProperties }) {
   return (
-    <div className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: "rgba(255,255,255,0.4)", ...style }}>
+    <div className="text-xs font-black uppercase tracking-widest mb-3 text-black" style={style}>
       {children}
     </div>
   );
@@ -320,14 +318,12 @@ export default function HostPage() {
   const GAME_MODES = Object.entries(GAME_MODE_CONFIG).map(([id, cfg]) => ({ id, ...cfg }));
   const selectedModeConfig = GAME_MODE_CONFIG[selectedMode];
 
-  // ── Dark base style ────────────────────────────────────────────────────
   const darkBase: React.CSSProperties = {
     minHeight: "100vh",
     background: "#080811",
     color: "#fff",
   };
 
-  // ── SETUP PHASE ────────────────────────────────────────────────────────────
   if (phase.name === "setup" || phase.name === "creating") {
     const maxQ = difficulty === "mixed" ? 40 : 20;
     const easy = Math.round(questionCount * 0.4);
@@ -335,18 +331,12 @@ export default function HostPage() {
     const medium = questionCount - easy - hard;
 
     return (
-      <div style={darkBase}>
-        {/* Ambient glow */}
-        <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-          <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-10 blur-3xl" style={{ background: "#FFD700" }} />
-          <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full opacity-8 blur-3xl" style={{ background: "#a855f7" }} />
-        </div>
-
+      <div className="min-h-screen dot-bg text-black pb-12">
         <div className="relative z-10 max-w-6xl mx-auto px-6 py-8">
           {/* Header */}
           <div className="mb-8">
             <div className="flex items-center gap-3 mb-2">
-              <div className="flex items-center gap-2 px-3 py-1 rounded-full text-xs font-black tracking-widest uppercase" style={{ background: "rgba(255,215,0,0.15)", color: "#FFD700", border: "1px solid rgba(255,215,0,0.3)" }}>
+              <div className="flex items-center gap-2 px-3 py-1 border-2 border-black bg-yellow-400 text-black shadow-[2px_2px_0_#000] text-xs font-black tracking-widest uppercase" style={{ borderRadius: "0px" }}>
                 <Sparkles size={12} />
                 {kh ? "បង្កើតហ្គេម" : "Create Game"}
               </div>
@@ -354,7 +344,7 @@ export default function HostPage() {
             <h1 className="text-4xl font-black tracking-tight" style={{ ...khFont }}>
               {kh ? "ហ្គេមផ្ទាល់" : "Live Game Session"}
             </h1>
-            <p className="mt-1 text-sm" style={{ color: "rgba(255,255,255,0.4)", ...khFont }}>
+            <p className="mt-1 text-sm text-zinc-600 font-bold" style={{ ...khFont }}>
               {kh ? "រៀបចំ ហើយចាប់ផ្តើម" : "Configure your session and launch live"}
             </p>
           </div>
@@ -373,15 +363,11 @@ export default function HostPage() {
                   value={sessionName}
                   onChange={(e) => setSessionName(e.target.value)}
                   placeholder={kh ? "ឧ. ថ្នាក់ ១០ — សញ្ញាចរាចរណ៍" : "e.g. Class 10 - Traffic Signs"}
-                  className="w-full px-4 py-3 rounded-xl font-bold text-sm placeholder:text-white/20 outline-none transition-all focus:ring-2"
+                  className="w-full px-4 py-3 border-2 border-black font-bold text-sm bg-white text-black placeholder:text-zinc-400 outline-none shadow-[2px_2px_0_#000] focus:shadow-[4px_4px_0_#000] transition-all"
                   style={{
-                    background: "rgba(255,255,255,0.06)",
-                    border: "1px solid rgba(255,255,255,0.12)",
-                    color: "#fff",
+                    borderRadius: "0px",
                     ...khFont,
                   }}
-                  onFocus={(e) => e.target.style.borderColor = "rgba(255,215,0,0.5)"}
-                  onBlur={(e) => e.target.style.borderColor = "rgba(255,255,255,0.12)"}
                 />
               </GlassCard>
 
@@ -477,18 +463,19 @@ export default function HostPage() {
                                   setQuestionCount(m.defaultQuestionCount);
                                 }
                               }}
-                              className={`relative text-left overflow-hidden transition-all duration-150 border-2 border-black rounded-xl p-4 flex flex-col h-full justify-between group ${
+                              className={`relative text-left overflow-hidden transition-all duration-100 border-2 border-black p-4 flex flex-col h-full justify-between group ${
                                 isSelected 
-                                  ? "-translate-x-1 -translate-y-1 bg-[#1e1f29]" 
-                                  : "bg-[#181922] hover:-translate-x-0.5 hover:-translate-y-0.5"
+                                  ? "-translate-x-1 -translate-y-1" 
+                                  : "bg-white hover:-translate-x-0.5 hover:-translate-y-0.5"
                               }`}
                               style={{
+                                borderRadius: "0px",
+                                backgroundColor: isSelected ? m.color : "#ffffff",
                                 boxShadow: isSelected 
-                                  ? `6px 6px 0px ${m.color}` 
+                                  ? "6px 6px 0px #000000" 
                                   : "3px 3px 0px #000000",
-                                borderColor: isSelected ? m.color : isLocked ? "rgba(0,0,0,0.5)" : "#000000",
                                 borderStyle: isLocked ? "dashed" : "solid",
-                                opacity: isLocked ? 0.8 : 1,
+                                opacity: isLocked ? 0.6 : 1,
                               }}
                             >
                               {/* Background accent shape */}
@@ -496,23 +483,23 @@ export default function HostPage() {
                                 style={{
                                   background: m.color,
                                   clipPath: meta.accentShape,
-                                  borderRadius: "0 16px 0 0",
                                 }} />
 
-                              <div className="relative z-10 flex flex-col h-full justify-between w-full">
+                              <div className="relative z-10 flex flex-col h-full justify-between w-full text-black">
                                 <div>
                                   {/* Header: emoji + locks/badges */}
                                   <div className="flex items-start justify-between mb-3 w-full">
                                     <div className="text-2xl leading-none">{meta.emoji}</div>
                                     <div className="flex items-center gap-1.5">
                                       {isLocked && (
-                                        <div className="bg-[#FFD700] border border-black p-0.5 rounded-sm shrink-0 shadow-[1px_1px_0_#000]">
+                                        <div className="bg-[#FFD700] border-2 border-black p-0.5 shadow-[1px_1px_0_#000]" style={{ borderRadius: "0px" }}>
                                           <Lock size={10} className="text-black" />
                                         </div>
                                       )}
                                       {meta.badge && (
-                                        <span className="text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded border border-black shrink-0"
+                                        <span className="text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 border border-black shrink-0"
                                           style={{
+                                            borderRadius: "0px",
                                             background: isLocked ? "#FFD700" : meta.badgeColor,
                                             color: "#000",
                                             boxShadow: "1px 1px 0 #000",
@@ -524,12 +511,12 @@ export default function HostPage() {
                                   </div>
 
                                   {/* Mode name */}
-                                  <div className="font-black text-sm mb-1 leading-tight flex items-center gap-1.5" style={{ color: isSelected ? "#fff" : "rgba(255,255,255,0.75)", ...khFont }}>
+                                  <div className="font-black text-sm mb-1 leading-tight flex items-center gap-1.5 text-black" style={{ ...khFont }}>
                                     {kh ? m.labelKm : m.label}
                                   </div>
 
                                   {/* Tagline */}
-                                  <div className="text-[10px] mb-4 leading-snug" style={{ color: "rgba(255,255,255,0.45)", ...khFont }}>
+                                  <div className="text-[10px] mb-4 leading-snug text-zinc-600 font-bold" style={{ ...khFont }}>
                                     {kh ? meta.taglineKm : meta.tagline}
                                   </div>
                                 </div>
@@ -537,13 +524,14 @@ export default function HostPage() {
                                 <div>
                                   {/* Gamified stats chips (Neo-Brutalist Inventory style) */}
                                   <div className="flex items-center gap-1.5 mb-3 flex-wrap">
-                                    <span className="text-[9px] font-black tracking-wider px-1.5 py-0.5 rounded border border-black bg-[#06b6d4] text-black shadow-[1px_1px_0_#000]">
+                                    <span className="text-[9px] font-black tracking-wider px-1.5 py-0.5 border border-black bg-[#06b6d4] text-black shadow-[1px_1px_0_#000]" style={{ borderRadius: "0px" }}>
                                       {stats.xp}
                                     </span>
-                                    <span className="text-[9px] font-black tracking-wider px-1.5 py-0.5 rounded border border-black shadow-[1px_1px_0_#000]"
+                                    <span className="text-[9px] font-black tracking-wider px-1.5 py-0.5 border border-black shadow-[1px_1px_0_#000]"
                                       style={{
-                                        background: isSelected ? m.color : "#242630",
-                                        color: isSelected ? "#000" : "#fff",
+                                        borderRadius: "0px",
+                                        background: isSelected ? "#ffffff" : "#f4f4f5",
+                                        color: "#000000",
                                       }}>
                                       {kh ? stats.complexityKm : stats.complexity}
                                     </span>
@@ -551,10 +539,10 @@ export default function HostPage() {
 
                                   {/* Config presets footer */}
                                   <div className="flex items-center gap-1.5 border-t border-black pt-2.5 flex-wrap">
-                                    <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-[#242630] text-white border border-black shadow-[1px_1px_0_#000]">
+                                    <span className="text-[9px] font-black px-1.5 py-0.5 bg-zinc-100 text-black border border-black shadow-[1px_1px_0_#000]" style={{ borderRadius: "0px" }}>
                                       {m.defaultQuestionCount}Q
                                     </span>
-                                    <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-[#242630] text-white border border-black shadow-[1px_1px_0_#000]">
+                                    <span className="text-[9px] font-black px-1.5 py-0.5 bg-zinc-100 text-black border border-black shadow-[1px_1px_0_#000]" style={{ borderRadius: "0px" }}>
                                       {m.timePerQuestion}s/Q
                                     </span>
                                   </div>
@@ -566,7 +554,7 @@ export default function HostPage() {
                       </div>
                     );
                   })()}
-                </GlassCard>
+              </GlassCard>
 
 
               {/* Categories */}
@@ -579,14 +567,12 @@ export default function HostPage() {
                       <button
                         key={cat.id}
                         onClick={() => setSelectedCats((p) => sel ? p.filter((id) => id !== cat.id) : [...p, cat.id])}
-                        className="px-3.5 py-1.5 rounded-full text-sm font-bold transition-all duration-200"
-                        style={{
-                          background: sel ? "#FFD700" : "rgba(255,255,255,0.07)",
-                          color: sel ? "#000" : "rgba(255,255,255,0.6)",
-                          border: sel ? "1.5px solid #FFD700" : "1.5px solid rgba(255,255,255,0.1)",
-                          boxShadow: sel ? "0 0 12px rgba(255,215,0,0.3)" : "none",
-                          transform: sel ? "scale(1.05)" : "scale(1)",
-                        }}
+                        className={`px-3.5 py-1.5 text-sm font-bold border-2 border-black transition-all duration-100 ${
+                          sel 
+                            ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5" 
+                            : "bg-white text-zinc-700 hover:bg-zinc-50"
+                        }`}
+                        style={{ borderRadius: "0px" }}
                       >
                         <span style={khFont}>{kh ? cat.titleKm : cat.titleEn}</span>
                       </button>
@@ -599,19 +585,19 @@ export default function HostPage() {
               <div className="grid grid-cols-3 gap-3">
                 {/* Scoring */}
                 <GlassCard className="p-4">
-                  <div className="flex items-center gap-1.5 mb-3" style={{ color: "rgba(255,255,255,0.4)" }}>
+                  <div className="flex items-center gap-1.5 mb-3 text-zinc-600 font-bold">
                     <Zap size={12} />
                     <span className="text-xs font-black uppercase tracking-widest" style={khFont}>{kh ? "ពិន្ទុ" : "Scoring"}</span>
                   </div>
                   <div className="flex flex-col gap-1.5">
                     {["speed", "equal"].map((s) => (
                       <button key={s} onClick={() => setScoringMode(s)}
-                        className="py-2 rounded-lg text-xs font-black transition-all"
-                        style={{
-                          background: scoringMode === s ? "#FFD700" : "rgba(255,255,255,0.05)",
-                          color: scoringMode === s ? "#000" : "rgba(255,255,255,0.5)",
-                          border: scoringMode === s ? "none" : "1px solid rgba(255,255,255,0.08)",
-                        }}>
+                        className={`py-2 text-xs font-black border-2 border-black transition-all duration-100 ${
+                          scoringMode === s
+                            ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                            : "bg-white text-zinc-600 hover:bg-zinc-50"
+                        }`}
+                        style={{ borderRadius: "0px" }}>
                         {s === "speed" ? (kh ? "ល្បឿន" : "Speed") : (kh ? "ស្មើ" : "Equal")}
                       </button>
                     ))}
@@ -620,19 +606,19 @@ export default function HostPage() {
 
                 {/* Language */}
                 <GlassCard className="p-4">
-                  <div className="flex items-center gap-1.5 mb-3" style={{ color: "rgba(255,255,255,0.4)" }}>
+                  <div className="flex items-center gap-1.5 mb-3 text-zinc-600 font-bold">
                     <Globe size={12} />
                     <span className="text-xs font-black uppercase tracking-widest" style={khFont}>{kh ? "ភាសា" : "Language"}</span>
                   </div>
                   <div className="flex flex-col gap-1.5">
                     {["both", "en", "km"].map((l) => (
                       <button key={l} onClick={() => setLanguage(l)}
-                        className="py-2 rounded-lg text-xs font-black transition-all"
-                        style={{
-                          background: language === l ? "#FFD700" : "rgba(255,255,255,0.05)",
-                          color: language === l ? "#000" : "rgba(255,255,255,0.5)",
-                          border: language === l ? "none" : "1px solid rgba(255,255,255,0.08)",
-                        }}>
+                        className={`py-2 text-xs font-black border-2 border-black transition-all duration-100 ${
+                          language === l
+                            ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                            : "bg-white text-zinc-600 hover:bg-zinc-50"
+                        }`}
+                        style={{ borderRadius: "0px" }}>
                         {l === "both" ? (kh ? "ទាំងពីរ" : "Both") : l.toUpperCase()}
                       </button>
                     ))}
@@ -641,7 +627,7 @@ export default function HostPage() {
 
                 {/* Difficulty */}
                 <GlassCard className="p-4">
-                  <div className="flex items-center gap-1.5 mb-3" style={{ color: "rgba(255,255,255,0.4)" }}>
+                  <div className="flex items-center gap-1.5 mb-3 text-zinc-600 font-bold">
                     <Layers size={12} />
                     <span className="text-xs font-black uppercase tracking-widest" style={khFont}>{kh ? "កម្រិត" : "Difficulty"}</span>
                   </div>
@@ -654,11 +640,14 @@ export default function HostPage() {
                     ].map((d) => (
                       <button key={d.id}
                         onClick={() => { setDifficulty(d.id); if (d.id !== "mixed" && questionCount > 20) setQuestionCount(20); }}
-                        className="py-1.5 rounded-lg text-xs font-black transition-all"
+                        className={`py-1.5 text-xs font-black border-2 border-black transition-all duration-100 ${
+                          difficulty === d.id
+                            ? "shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5 text-black"
+                            : "bg-white text-zinc-600 hover:bg-zinc-50"
+                        }`}
                         style={{
-                          background: difficulty === d.id ? `${d.color}30` : "rgba(255,255,255,0.05)",
-                          color: difficulty === d.id ? d.color : "rgba(255,255,255,0.5)",
-                          border: difficulty === d.id ? `1px solid ${d.color}60` : "1px solid rgba(255,255,255,0.08)",
+                          borderRadius: "0px",
+                          backgroundColor: difficulty === d.id ? d.color : "#ffffff",
                         }}>
                         {d.label}
                       </button>
@@ -671,7 +660,7 @@ export default function HostPage() {
               <GlassCard className="p-5">
                 <div className="flex items-center justify-between mb-4">
                   <SectionLabel style={khFont}>{kh ? "ចំនួនសំណួរ" : "Question Count"}</SectionLabel>
-                  <div className="px-4 py-1.5 rounded-xl font-black text-lg" style={{ background: "#FFD700", color: "#000", minWidth: 56, textAlign: "center" }}>
+                  <div className="px-4 py-1.5 border-2 border-black shadow-[2px_2px_0_#000] font-black text-lg bg-yellow-400 text-black animate-none" style={{ minWidth: 56, textAlign: "center", borderRadius: "0px" }}>
                     {questionCount}
                   </div>
                 </div>
@@ -680,32 +669,32 @@ export default function HostPage() {
                   type="range" min={5} max={maxQ} step={1} value={questionCount}
                   onChange={(e) => setQuestionCount(Number(e.target.value))}
                   className="w-full mb-4 cursor-pointer"
-                  style={{ accentColor: "#FFD700" }}
+                  style={{ accentColor: "#000000" }}
                 />
                 {/* Quick picks */}
                 <div className="flex gap-2 mb-4">
                   {(difficulty === "mixed" ? [5, 10, 15, 20, 30, 40] : [5, 10, 15, 20]).map((n) => (
                     <button key={n} onClick={() => setQuestionCount(n)}
-                      className="flex-1 py-2 rounded-lg text-xs font-black transition-all"
-                      style={{
-                        background: questionCount === n ? "#FFD700" : "rgba(255,255,255,0.06)",
-                        color: questionCount === n ? "#000" : "rgba(255,255,255,0.5)",
-                        border: questionCount === n ? "none" : "1px solid rgba(255,255,255,0.08)",
-                      }}>
+                      className={`flex-1 py-2 border-2 border-black text-xs font-black transition-all duration-100 ${
+                        questionCount === n
+                          ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                          : "bg-white text-zinc-600 hover:bg-zinc-50"
+                      }`}
+                      style={{ borderRadius: "0px" }}>
                       {n}
                     </button>
                   ))}
                 </div>
                 {/* Composition preview */}
                 {difficulty === "mixed" && (
-                  <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                    <div className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: "rgba(255,255,255,0.3)", ...khFont }}>
+                  <div className="border-2 border-black bg-zinc-50 shadow-[2px_2px_0_#000] p-3" style={{ borderRadius: "0px" }}>
+                    <div className="text-xs font-bold uppercase tracking-widest mb-3 text-zinc-600" style={{ ...khFont }}>
                       {kh ? "ការបែងចែក" : "Composition"}
                     </div>
-                    <div className="flex gap-1 h-2 rounded-full overflow-hidden mb-3">
-                      <div className="h-full rounded-full bg-green-500 transition-all" style={{ width: `${(easy / questionCount) * 100}%` }} />
-                      <div className="h-full rounded-full bg-yellow-500 transition-all" style={{ width: `${(medium / questionCount) * 100}%` }} />
-                      <div className="h-full rounded-full bg-red-500 transition-all" style={{ width: `${(hard / questionCount) * 100}%` }} />
+                    <div className="flex h-3 border-2 border-black bg-white overflow-hidden mb-3" style={{ borderRadius: "0px" }}>
+                      <div className="h-full bg-green-500 transition-all" style={{ width: `${(easy / questionCount) * 100}%` }} />
+                      <div className="h-full bg-yellow-500 transition-all" style={{ width: `${(medium / questionCount) * 100}%` }} />
+                      <div className="h-full bg-red-500 transition-all" style={{ width: `${(hard / questionCount) * 100}%` }} />
                     </div>
                     <div className="grid grid-cols-3 gap-2 text-xs">
                       {[
@@ -713,10 +702,10 @@ export default function HostPage() {
                         { label: kh ? "មធ្យម" : "Medium", count: medium, color: "#eab308" },
                         { label: kh ? "លំបាក" : "Hard", count: hard, color: "#ef4444" },
                       ].map((d) => (
-                        <div key={d.label} className="flex items-center gap-1.5 font-bold" style={{ color: "rgba(255,255,255,0.5)" }}>
-                          <span className="w-2 h-2 rounded-full" style={{ background: d.color }} />
+                        <div key={d.label} className="flex items-center gap-1.5 font-bold text-zinc-600">
+                          <span className="w-2.5 h-2.5 border border-black" style={{ background: d.color }} />
                           {d.label}
-                          <span className="ml-auto font-black text-white">{d.count}</span>
+                          <span className="ml-auto font-black text-black">{d.count}</span>
                         </div>
                       ))}
                     </div>
@@ -726,19 +715,19 @@ export default function HostPage() {
 
               {/* Max Players */}
               <GlassCard className="p-5">
-                <div className="flex items-center gap-1.5 mb-3" style={{ color: "rgba(255,255,255,0.4)" }}>
+                <div className="flex items-center gap-1.5 mb-3 text-zinc-600 font-bold">
                   <Users size={13} />
                   <span className="text-xs font-black uppercase tracking-widest" style={khFont}>{kh ? "អ្នកលេងអតិបរមា" : "Max Players"}</span>
                 </div>
                 <div className="flex gap-2">
                   {[10, 20, 30, 50, 100].map((n) => (
                     <button key={n} onClick={() => setMaxPlayers(n)}
-                      className="flex-1 py-2.5 rounded-xl text-sm font-black transition-all"
-                      style={{
-                        background: maxPlayers === n ? "#FFD700" : "rgba(255,255,255,0.06)",
-                        color: maxPlayers === n ? "#000" : "rgba(255,255,255,0.5)",
-                        border: maxPlayers === n ? "none" : "1px solid rgba(255,255,255,0.08)",
-                      }}>
+                      className={`flex-1 py-2.5 border-2 border-black text-sm font-black transition-all duration-100 ${
+                        maxPlayers === n
+                          ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                          : "bg-white text-zinc-600 hover:bg-zinc-50"
+                      }`}
+                      style={{ borderRadius: "0px" }}>
                       {n}
                     </button>
                   ))}
@@ -747,7 +736,7 @@ export default function HostPage() {
 
               {/* Error */}
               {error && (
-                <div className="px-4 py-3 rounded-xl border font-bold text-sm" style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.3)", color: "#fca5a5", ...khFont }}>
+                <div className="px-4 py-3 border-2 border-black bg-red-400 text-black font-black text-sm shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px", ...khFont }}>
                   ⚠ {error}
                   {(error.toLowerCase().includes("session") || error.toLowerCase().includes("limit") || error.toLowerCase().includes("upgrade")) && (
                     <div className="mt-2"><UpgradeButton variant="banner" trigger="session_limit" lang={lang} /></div>
@@ -759,15 +748,11 @@ export default function HostPage() {
               <button
                 onClick={createSession}
                 disabled={phase.name === "creating"}
-                className="w-full py-5 rounded-2xl font-black text-xl flex items-center justify-center gap-3 transition-all duration-200 disabled:opacity-50"
+                className="w-full py-5 border-2 border-black bg-yellow-400 text-black font-black text-xl flex items-center justify-center gap-3 transition-all duration-100 hover:bg-yellow-300 shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 disabled:opacity-50 disabled:translate-x-0 disabled:translate-y-0 disabled:shadow-[4px_4px_0_#000]"
                 style={{
-                  background: "linear-gradient(135deg, #FFD700, #f59e0b)",
-                  color: "#000",
-                  boxShadow: "0 8px 32px rgba(255,215,0,0.35), 0 0 0 0 rgba(255,215,0,0)",
+                  borderRadius: "0px",
                   ...khFont,
                 }}
-                onMouseEnter={(e) => { (e.target as HTMLElement).style.boxShadow = "0 12px 40px rgba(255,215,0,0.5)"; (e.target as HTMLElement).style.transform = "translateY(-2px)"; }}
-                onMouseLeave={(e) => { (e.target as HTMLElement).style.boxShadow = "0 8px 32px rgba(255,215,0,0.35)"; (e.target as HTMLElement).style.transform = "translateY(0)"; }}
               >
                 {phase.name === "creating" ? <Loader2 size={22} className="animate-spin" /> : <Rocket size={22} />}
                 {kh ? "ចាប់ផ្តើមហ្គេម" : "Launch Game"}
@@ -778,23 +763,23 @@ export default function HostPage() {
             <div className="lg:col-span-2">
               <div className="sticky top-6">
                 <GlassCard className="overflow-hidden">
-                  <div className="px-5 py-4 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-                    <div className="text-xs font-black uppercase tracking-widest mb-0.5" style={{ color: "rgba(255,255,255,0.3)" }}>
+                  <div className="px-5 py-4 border-b-2 border-black bg-blue-400 text-black">
+                    <div className="text-xs font-bold uppercase tracking-widest mb-0.5 text-black/70">
                       {kh ? "ការមើលជាមុន" : "Preview"}
                     </div>
-                    <div className="font-black text-white truncate" style={khFont}>
+                    <div className="font-black text-black truncate" style={khFont}>
                       {sessionName || (kh ? "ឈ្មោះវគ្គ..." : "Session name...")}
                     </div>
                   </div>
                   <div className="p-5 flex flex-col gap-4">
                     {/* Mode preview */}
-                    <div className="p-4 rounded-xl flex items-center gap-3" style={{ background: `${selectedModeConfig?.color}18`, border: `1px solid ${selectedModeConfig?.color}40` }}>
+                    <div className="p-4 border-2 border-black flex items-center gap-3 bg-zinc-50" style={{ borderRadius: "0px" }}>
                       <div style={{ color: selectedModeConfig?.color }}>{MODE_ICONS[selectedMode]}</div>
                       <div>
-                        <div className="font-black text-white text-sm" style={khFont}>
+                        <div className="font-black text-black text-sm" style={khFont}>
                           {kh ? selectedModeConfig?.labelKm : selectedModeConfig?.label}
                         </div>
-                        <div className="text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>
+                        <div className="text-xs text-zinc-600 font-bold">
                           {selectedModeConfig?.timePerQuestion}s / question
                         </div>
                       </div>
@@ -810,9 +795,9 @@ export default function HostPage() {
                         { label: kh ? "កម្រិត" : "Difficulty", value: difficulty.charAt(0).toUpperCase() + difficulty.slice(1) },
                         { label: kh ? "ពេលវេលា" : "Time / Q", value: `${selectedModeConfig?.timePerQuestion}s` },
                       ].map((item) => (
-                        <div key={item.label} className="p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}>
-                          <div className="text-xs mb-0.5" style={{ color: "rgba(255,255,255,0.35)" }}>{item.label}</div>
-                          <div className="font-black text-white text-sm">{item.value}</div>
+                        <div key={item.label} className="p-3 border-2 border-black bg-zinc-50" style={{ borderRadius: "0px" }}>
+                          <div className="text-xs mb-0.5 text-zinc-500 font-bold">{item.label}</div>
+                          <div className="font-black text-black text-sm">{item.value}</div>
                         </div>
                       ))}
                     </div>
@@ -820,12 +805,12 @@ export default function HostPage() {
                     {/* Categories */}
                     {selectedCats.length > 0 && (
                       <div>
-                        <div className="text-xs font-black uppercase tracking-widest mb-2" style={{ color: "rgba(255,255,255,0.3)", ...khFont }}>
+                        <div className="text-xs font-bold uppercase tracking-widest mb-2 text-zinc-600" style={khFont}>
                           {kh ? "ប្រភេទ" : "Categories"}
                         </div>
                         <div className="flex flex-wrap gap-1.5">
                           {categories.filter(c => selectedCats.includes(c.id)).map(c => (
-                            <span key={c.id} className="px-2.5 py-1 rounded-full text-xs font-bold" style={{ background: "rgba(255,215,0,0.15)", color: "#FFD700", border: "1px solid rgba(255,215,0,0.3)" }}>
+                            <span key={c.id} className="px-2.5 py-1 text-xs font-black border-2 border-black bg-yellow-400 text-black shadow-[1px_1px_0_#000]" style={{ borderRadius: "0px" }}>
                               {kh ? c.titleKm : c.titleEn}
                             </span>
                           ))}
@@ -836,12 +821,12 @@ export default function HostPage() {
                 </GlassCard>
               </div>
             </div>
-        <UpgradeModal
-          open={upgradeModalOpen}
-          onClose={() => setUpgradeModalOpen(false)}
-          trigger={upgradeTrigger}
-          lang={lang}
-        />
+            <UpgradeModal
+              open={upgradeModalOpen}
+              onClose={() => setUpgradeModalOpen(false)}
+              trigger={upgradeTrigger}
+              lang={lang}
+            />
           </div>
         </div>
       </div>
@@ -855,24 +840,19 @@ export default function HostPage() {
     const fillPct = Math.min((phase.participants.length / phase.maxPlayers) * 100, 100);
 
     return (
-      <div style={darkBase}>
-        {/* Ambient */}
-        <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-          <div className="absolute top-0 left-0 w-full h-full" style={{ background: "radial-gradient(ellipse at 50% -20%, rgba(255,215,0,0.12) 0%, transparent 60%)" }} />
-        </div>
-
+      <div className="min-h-screen dot-bg text-black pb-12">
         <div className="relative z-10 max-w-5xl mx-auto px-6 py-8">
           {/* Header */}
           <div className="flex items-start justify-between mb-8">
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-black" style={{ background: "rgba(34,197,94,0.2)", color: "#4ade80", border: "1px solid rgba(74,222,128,0.3)" }}>
-                  <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                <div className="flex items-center gap-1.5 px-2.5 py-1 border-2 border-black bg-green-400 text-black shadow-[2px_2px_0_#000] font-black text-xs" style={{ borderRadius: "0px" }}>
+                  <div className="w-1.5 h-1.5 bg-black animate-pulse" style={{ borderRadius: "0px" }} />
                   {kh ? "ហ្គេមរង់ចាំ" : "Waiting Room"}
                 </div>
               </div>
-              <h1 className="text-4xl font-black" style={khFont}>{kh ? "រៀបចំខ្លួនលេង" : "Ready to Play"}</h1>
-              <p className="mt-1 text-sm" style={{ color: "rgba(255,255,255,0.4)", ...khFont }}>
+              <h1 className="text-4xl font-black text-black" style={khFont}>{kh ? "រៀបចំខ្លួនលេង" : "Ready to Play"}</h1>
+              <p className="mt-1 text-sm text-zinc-600 font-bold" style={{ ...khFont }}>
                 {kh ? "ចែករំលែកលេខកូដជាមួយអ្នករៀន" : "Share the room code with your students"}
               </p>
             </div>
@@ -880,16 +860,16 @@ export default function HostPage() {
               <button
                 onClick={() => { if (confirm(kh ? "បោះបង់ហ្គេមនេះ?" : "Cancel this game session?")) { control("terminate"); setTimeout(() => setPhase({ name: "setup" }), 500); } }}
                 disabled={controlling}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl font-black text-sm transition-all disabled:opacity-40"
-                style={{ background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }}
+                className="flex items-center gap-2 px-4 py-2.5 border-2 border-black bg-red-400 text-black font-black text-sm shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-50"
+                style={{ borderRadius: "0px" }}
               >
                 <Square size={14} />{kh ? "បោះបង់" : "Cancel"}
               </button>
               <button
                 onClick={() => control("start")}
                 disabled={controlling || phase.participants.length === 0}
-                className="flex items-center gap-2 px-6 py-2.5 rounded-xl font-black text-sm transition-all disabled:opacity-40"
-                style={{ background: "linear-gradient(135deg,#22c55e,#16a34a)", color: "#fff", boxShadow: "0 4px 20px rgba(34,197,94,0.4)" }}
+                className="flex items-center gap-2 px-6 py-2.5 border-2 border-black bg-green-400 text-black font-black text-sm shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-50"
+                style={{ borderRadius: "0px" }}
               >
                 {controlling ? <Loader2 size={16} className="animate-spin" /> : <Play size={16} />}
                 {kh ? "ចាប់ផ្តើម" : "Start Game"}
@@ -898,7 +878,7 @@ export default function HostPage() {
           </div>
 
           {error && (
-            <div className="mb-6 px-4 py-3 rounded-xl font-bold text-sm" style={{ background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.3)", color: "#fca5a5", ...khFont }}>
+            <div className="mb-6 px-4 py-3 border-2 border-black bg-red-400 text-black font-black text-sm shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px", ...khFont }}>
               ⚠ {error}
             </div>
           )}
@@ -906,22 +886,21 @@ export default function HostPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
             {/* ── Room Code (big) ── */}
             <div className="lg:col-span-2">
-              <div className="rounded-2xl p-8 text-center relative overflow-hidden" style={{ background: "linear-gradient(135deg, rgba(255,215,0,0.12), rgba(255,215,0,0.06))", border: "2px solid rgba(255,215,0,0.3)" }}>
-                <div className="absolute inset-0" style={{ background: "radial-gradient(circle at 50% 50%, rgba(255,215,0,0.08), transparent 70%)" }} />
+              <div className="bg-yellow-400 border-4 border-black p-8 text-center relative shadow-[6px_6px_0_#000]" style={{ borderRadius: "0px" }}>
                 <div className="relative z-10">
-                  <div className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: "rgba(255,215,0,0.6)" }}>
+                  <div className="text-xs font-black uppercase tracking-widest mb-3 text-black">
                     {kh ? "លេខកូដបន្ទប់" : "Room Code"}
                   </div>
-                  <div className="text-7xl font-black tracking-[0.15em] mb-2" style={{ color: "#FFD700", textShadow: "0 0 40px rgba(255,215,0,0.5)", letterSpacing: "0.2em" }}>
+                  <div className="text-7xl font-black tracking-[0.15em] mb-2 text-black">
                     {phase.code}
                   </div>
-                  <div className="text-sm mb-6" style={{ color: "rgba(255,255,255,0.4)" }}>
-                    {kh ? "ចូលតាម:" : "Join at:"} <span style={{ color: "rgba(255,255,255,0.7)", fontWeight: "bold" }}>kesararamwithdigital.tech/play/{phase.code}</span>
+                  <div className="text-sm mb-6 text-black/85 font-bold">
+                    {kh ? "ចូលតាម:" : "Join at:"} <span className="text-black font-black underline">kesararamwithdigital.tech/play/{phase.code}</span>
                   </div>
                   <button
                     onClick={copyCode}
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-black text-sm mx-auto transition-all"
-                    style={{ background: copied ? "rgba(34,197,94,0.2)" : "rgba(255,255,255,0.1)", color: copied ? "#4ade80" : "#fff", border: copied ? "1px solid rgba(74,222,128,0.4)" : "1px solid rgba(255,255,255,0.15)" }}
+                    className={`flex items-center gap-2 px-5 py-2.5 border-2 border-black font-black text-sm mx-auto transition-all duration-100 shadow-[2px_2px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 ${copied ? "bg-green-400 text-black" : "bg-white text-black"}`}
+                    style={{ borderRadius: "0px" }}
                   >
                     {copied ? <Check size={16} /> : <Copy size={16} />}
                     {copied ? (kh ? "បានចម្លង!" : "Copied!") : (kh ? "ចម្លងលេខកូដ" : "Copy Code")}
@@ -932,7 +911,7 @@ export default function HostPage() {
 
             {/* ── Game Details ── */}
             <GlassCard className="p-5">
-              <div className="text-xs font-black uppercase tracking-widest mb-4" style={{ color: "rgba(255,255,255,0.3)", ...khFont }}>
+              <div className="text-xs font-bold uppercase tracking-widest mb-4 text-zinc-600" style={{ ...khFont }}>
                 {kh ? "ព័ត៌មានហ្គេម" : "Game Details"}
               </div>
               <div className="flex flex-col gap-3">
@@ -944,9 +923,9 @@ export default function HostPage() {
                   { label: kh ? "ពេល/Q" : "Time/Q", value: `${phase.timePerQuestion}s` },
                   { label: kh ? "ពិន្ទុ" : "Scoring", value: phase.scoringMode },
                 ].map((item) => (
-                  <div key={item.label} className="flex items-center justify-between">
-                    <span className="text-xs font-bold" style={{ color: "rgba(255,255,255,0.35)", ...khFont }}>{item.label}</span>
-                    <span className="text-sm font-black capitalize" style={{ color: item.color || "#fff" }}>{item.value}</span>
+                  <div key={item.label} className="flex items-center justify-between border-b border-zinc-100 pb-2 last:border-0 last:pb-0">
+                    <span className="text-xs font-black text-zinc-500 uppercase tracking-wide" style={{ ...khFont }}>{item.label}</span>
+                    <span className="text-sm font-black capitalize" style={{ color: item.color || "#000" }}>{item.value}</span>
                   </div>
                 ))}
               </div>
@@ -957,48 +936,47 @@ export default function HostPage() {
           <GlassCard className="p-6">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
-                <Users size={16} style={{ color: "#FFD700" }} />
-                <span className="font-black text-sm uppercase tracking-widest" style={khFont}>
+                <Users size={16} className="text-black" />
+                <span className="font-black text-sm uppercase tracking-widest text-black" style={khFont}>
                   {phase.participants.length} / {phase.maxPlayers} {kh ? "នាក់" : "Players"}
                 </span>
               </div>
-              <div className="text-xs font-bold" style={{ color: "rgba(255,255,255,0.3)" }}>
+              <div className="text-xs font-bold text-zinc-600">
                 {Math.round(fillPct)}% {kh ? "ពេញ" : "full"}
               </div>
             </div>
             {/* Progress bar */}
-            <div className="h-1.5 rounded-full mb-5 overflow-hidden" style={{ background: "rgba(255,255,255,0.08)" }}>
-              <div className="h-full rounded-full transition-all duration-500" style={{ width: `${fillPct}%`, background: "linear-gradient(90deg,#22c55e,#4ade80)" }} />
+            <div className="h-4 border-2 border-black bg-white shadow-[1px_1px_0_#000] mb-5 overflow-hidden" style={{ borderRadius: "0px" }}>
+              <div className="h-full bg-green-400 transition-all duration-500" style={{ width: `${fillPct}%` }} />
             </div>
 
             {phase.participants.length === 0 ? (
               <div className="text-center py-12">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "rgba(255,255,255,0.05)" }}>
-                  <Users size={28} style={{ color: "rgba(255,255,255,0.2)" }} />
+                <div className="w-16 h-16 border-2 border-black bg-zinc-100 flex items-center justify-center mx-auto mb-4" style={{ borderRadius: "0px" }}>
+                  <Users size={28} className="text-black" />
                 </div>
-                <p className="font-bold text-sm" style={{ color: "rgba(255,255,255,0.3)", ...khFont }}>
+                <p className="font-bold text-sm text-zinc-500" style={{ ...khFont }}>
                   {kh ? "រង់ចាំអ្នកចូលរួម..." : "Waiting for players to join..."}
                 </p>
               </div>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5">
                 {phase.participants.map((p, i) => (
                   <div
                     key={p.userId}
-                    className="flex items-center gap-2 p-2.5 rounded-xl"
+                    className="flex items-center gap-2 p-2.5 border-2 border-black bg-zinc-50 shadow-[2px_2px_0_#000]"
                     style={{
-                      background: "rgba(255,255,255,0.05)",
-                      border: "1px solid rgba(255,255,255,0.08)",
+                      borderRadius: "0px",
                       animation: "fadeIn 0.3s ease-out",
                     }}
                   >
                     <div
-                      className="w-8 h-8 rounded-full flex items-center justify-center font-black text-sm flex-shrink-0"
-                      style={{ background: `hsl(${(p.userId * 47) % 360}, 70%, 45%)`, color: "#fff" }}
+                      className="w-8 h-8 border-2 border-black flex items-center justify-center font-black text-sm flex-shrink-0 text-white"
+                      style={{ background: `hsl(${(p.userId * 47) % 360}, 70%, 45%)`, borderRadius: "0px" }}
                     >
                       {p.displayName.charAt(0).toUpperCase()}
                     </div>
-                    <span className="text-xs font-bold truncate" style={{ color: "rgba(255,255,255,0.8)", ...khFont }}>
+                    <span className="text-xs font-black truncate text-black" style={{ ...khFont }}>
                       {p.displayName}
                     </span>
                   </div>
@@ -1031,46 +1009,45 @@ export default function HostPage() {
 
     return (
       <div
-        className="fixed inset-0 z-50 flex flex-col overflow-hidden"
+        className="fixed inset-0 z-50 flex flex-col overflow-hidden text-black bg-white"
         style={{
-          background: "#080811",
-          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
+          backgroundImage: "radial-gradient(circle, rgba(59, 130, 246, 0.1) 1px, transparent 1px)",
+          backgroundSize: "24px 24px",
         }}
       >
         {/* ── Top bar ── */}
-        <div className="flex items-center justify-between px-5 py-3 flex-shrink-0" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)", background: "rgba(0,0,0,0.5)", backdropFilter: "blur(16px)" }}>
+        <div className="flex items-center justify-between px-5 py-3 flex-shrink-0 border-b-4 border-black bg-yellow-400 text-black">
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full" style={{ background: "rgba(239,68,68,0.2)", border: "1px solid rgba(239,68,68,0.4)" }}>
-              <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-              <span className="text-red-400 font-black text-xs tracking-widest">LIVE</span>
+            <div className="flex items-center gap-1.5 px-2.5 py-1 border-2 border-black bg-red-500 text-black shadow-[2px_2px_0_#000] font-black text-xs tracking-widest" style={{ borderRadius: "0px" }}>
+              <div className="w-2 h-2 bg-black animate-pulse" style={{ borderRadius: "0px" }} />
+              <span>LIVE</span>
             </div>
-            <span className="text-white/50 text-sm font-bold" style={khFont}>
+            <span className="text-black font-black text-sm" style={khFont}>
               {kh ? `សំណួរ ${phase.qIndex + 1} / ${phase.total}` : `Q ${phase.qIndex + 1} / ${phase.total}`}
             </span>
           </div>
 
           {/* Progress */}
-          <div className="flex-1 mx-8 h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.08)" }}>
-            <div className="h-full rounded-full transition-all duration-700" style={{ width: `${progress}%`, background: "linear-gradient(90deg,#FFD700,#f59e0b)" }} />
+          <div className="flex-1 mx-8 h-4 border-2 border-black bg-white overflow-hidden" style={{ borderRadius: "0px" }}>
+            <div className="h-full bg-blue-400 transition-all duration-700" style={{ width: `${progress}%` }} />
           </div>
 
           {/* Controls */}
           <div className="flex items-center gap-2">
-            {error && <span className="text-red-400 text-xs font-bold max-w-xs truncate">{error}</span>}
+            {error && <span className="text-red-600 text-xs font-black max-w-xs truncate">{error}</span>}
             <button
               onClick={() => { if (confirm(kh ? "បញ្ចប់ហ្គេម?" : "End session?")) control("end"); }}
               disabled={controlling}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg font-black text-sm transition-all disabled:opacity-40"
-              style={{ background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.3)" }}
+              className="flex items-center gap-1.5 px-3 py-2 border-2 border-black bg-red-400 text-black font-black text-sm shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-40"
+              style={{ borderRadius: "0px" }}
             >
               <Square size={13} />{kh ? "បញ្ចប់" : "End"}
             </button>
             <button
               onClick={() => control("advance")}
               disabled={controlling}
-              className="flex items-center gap-2 px-5 py-2 rounded-lg font-black text-sm transition-all disabled:opacity-40"
-              style={{ background: "linear-gradient(135deg,#FFD700,#f59e0b)", color: "#000", boxShadow: "0 0 20px rgba(255,215,0,0.3)" }}
+              className="flex items-center gap-2 px-5 py-2 border-2 border-black bg-green-400 text-black font-black text-sm shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-40"
+              style={{ borderRadius: "0px" }}
             >
               {controlling ? <Loader2 size={15} className="animate-spin" /> : <SkipForward size={15} />}
               {isActive ? (kh ? "បន្ទាប់" : "Next") : (kh ? "សំណួរបន្ទាប់" : "Next Q")}
@@ -1085,28 +1062,28 @@ export default function HostPage() {
             <div className="w-full max-w-3xl">
               {/* Round label */}
               <div className="flex items-center justify-center gap-3 mb-6">
-                <div className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest" style={{ background: isActive ? "rgba(255,215,0,0.2)" : "rgba(34,197,94,0.2)", color: isActive ? "#FFD700" : "#4ade80", border: isActive ? "1px solid rgba(255,215,0,0.4)" : "1px solid rgba(74,222,128,0.4)" }}>
+                <div className={`px-3 py-1 border-2 border-black text-xs font-black uppercase tracking-widest shadow-[2px_2px_0_#000] ${isActive ? "bg-blue-400 text-black" : "bg-green-400 text-black"}`} style={{ borderRadius: "0px" }}>
                   {isActive ? (kh ? "សំណួរ" : "Question") : (kh ? "ចប់វគ្គ" : "Round Over")}
                 </div>
-                <span className="text-white/30 text-xs font-bold">{phase.qIndex + 1} / {phase.total}</span>
+                <span className="text-zinc-500 text-xs font-bold">{phase.qIndex + 1} / {phase.total}</span>
               </div>
 
               {/* Question text */}
               <div className="text-center mb-8">
                 {question?.imageUrl && (
-                  <img src={question.imageUrl} alt="question" className="w-32 h-32 object-cover rounded-2xl mx-auto mb-6 border-2 border-white/10" />
+                  <img src={question.imageUrl} alt="question" className="w-32 h-32 object-cover border-2 border-black shadow-[3px_3px_0_#000] mx-auto mb-6" style={{ borderRadius: "0px" }} />
                 )}
-                <div className="font-black text-3xl xl:text-4xl text-white leading-snug" style={khFont}>
+                <div className="font-black text-3xl xl:text-4xl text-black leading-snug" style={khFont}>
                   {kh && question?.questionKm ? question.questionKm : question?.questionEn}
                 </div>
                 {kh && question?.questionKm && question?.questionEn && (
-                  <div className="text-white/30 text-base font-bold mt-2">{question.questionEn}</div>
+                  <div className="text-zinc-500 text-base font-bold mt-2">{question.questionEn}</div>
                 )}
               </div>
 
               {/* Answers */}
               {answers.length > 0 && (
-                <div className={`grid gap-3 ${answers.length <= 2 ? "grid-cols-1 max-w-xl mx-auto" : "grid-cols-2"}`}>
+                <div className={`grid gap-3.5 ${answers.length <= 2 ? "grid-cols-1 max-w-xl mx-auto" : "grid-cols-2"}`}>
                   {answers.map((ans, i) => {
                     const style = ANSWER_STYLES[i % ANSWER_STYLES.length];
                     const isCorrect = correctAnswerId !== null && ans.id === correctAnswerId;
@@ -1116,18 +1093,19 @@ export default function HostPage() {
                     return (
                       <div
                         key={ans.id}
-                        className="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all duration-500"
+                        className="flex items-center gap-4 px-5 py-4 border-2 border-black transition-all duration-300"
                         style={{
-                          background: isCorrect ? "rgba(34,197,94,0.25)" : isWrong ? "rgba(255,255,255,0.03)" : style.bg,
-                          border: isCorrect ? "2px solid #4ade80" : isWrong ? "2px solid rgba(255,255,255,0.05)" : `2px solid ${style.border}40`,
+                          borderRadius: "0px",
+                          backgroundColor: isCorrect ? "#22c55e" : isWrong ? "#f4f4f5" : style.bg,
+                          color: "#000000",
                           opacity: isWrong ? 0.3 : 1,
-                          boxShadow: isCorrect ? "0 0 24px rgba(74,222,128,0.35)" : "none",
+                          boxShadow: isWrong ? "none" : "4px 4px 0px #000000",
                         }}
                       >
-                        <div className="w-9 h-9 rounded-xl flex items-center justify-center bg-black/20 font-black text-white text-base flex-shrink-0">
+                        <div className="w-9 h-9 border-2 border-black flex items-center justify-center bg-white font-black text-black text-base flex-shrink-0" style={{ borderRadius: "0px" }}>
                           {style.label}
                         </div>
-                        <span className="font-black text-white text-base leading-tight flex-1" style={khFont}>{text}</span>
+                        <span className="font-black text-black text-base leading-tight flex-1" style={khFont}>{text}</span>
                         {isCorrect && <span className="text-2xl flex-shrink-0">✅</span>}
                       </div>
                     );
@@ -1136,7 +1114,7 @@ export default function HostPage() {
               )}
 
               {!isActive && (
-                <div className="mt-6 text-center text-sm font-bold" style={{ color: "rgba(255,255,255,0.3)", ...khFont }}>
+                <div className="mt-6 text-center text-sm font-black text-zinc-500" style={{ ...khFont }}>
                   {kh ? "ចុច «សំណួរបន្ទាប់» ដើម្បីបន្ត" : "Click «Next Q» to continue"}
                 </div>
               )}
@@ -1144,19 +1122,19 @@ export default function HostPage() {
           </div>
 
           {/* Right: Leaderboard */}
-          <div className="w-72 xl:w-80 flex flex-col flex-shrink-0" style={{ borderLeft: "1px solid rgba(255,255,255,0.06)", background: "rgba(0,0,0,0.3)" }}>
-            <div className="px-4 py-3 flex items-center gap-2 flex-shrink-0" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-              <BarChart2 size={13} style={{ color: "#FFD700" }} />
-              <span className="text-white font-black text-xs uppercase tracking-widest" style={khFont}>
+          <div className="w-72 xl:w-80 flex flex-col flex-shrink-0 border-l-4 border-black bg-white">
+            <div className="px-4 py-3 flex items-center gap-2 flex-shrink-0 border-b-2 border-black bg-blue-400 text-black">
+              <BarChart2 size={13} className="text-black" />
+              <span className="text-black font-black text-xs uppercase tracking-widest" style={khFont}>
                 {kh ? "ចំណាត់ថ្នាក់" : "Live Scores"}
               </span>
-              <span className="ml-auto font-bold text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+              <span className="ml-auto font-black text-xs text-black/80 bg-white border border-black px-1.5 py-0.5 shadow-[1px_1px_0_#000]" style={{ borderRadius: "0px" }}>
                 {displayLeaderboard.length}
               </span>
             </div>
-            <div className="flex-1 overflow-y-auto divide-y" style={{ "--tw-divide-opacity": "0.05" } as any}>
+            <div className="flex-1 overflow-y-auto divide-y-2 divide-black bg-white">
               {displayLeaderboard.length === 0 ? (
-                <div className="text-center py-10 text-sm font-bold" style={{ color: "rgba(255,255,255,0.2)", ...khFont }}>
+                <div className="text-center py-10 text-sm font-bold text-zinc-500" style={{ ...khFont }}>
                   {kh ? "រង់ចាំ..." : "Waiting..."}
                 </div>
               ) : (
@@ -1173,21 +1151,19 @@ export default function HostPage() {
 
   // ── ENDED ──────────────────────────────────────────────────────────────────
   if (phase.name === "ended") {
-    const RANK_COLORS = ["#FFD700", "#C0C0C0", "#CD7F32"];
+    const RANK_COLORS = ["#FFD700", "#e4e4e7", "#fed7aa"];
 
     return (
-      <div style={darkBase}>
-        <div className="fixed inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 50% -10%, rgba(255,215,0,0.15), transparent 60%)", zIndex: 0 }} />
-
+      <div className="min-h-screen dot-bg text-black pb-12">
         <div className="relative z-10 max-w-2xl mx-auto px-6 py-12">
           {/* Game over badge */}
           <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest mb-4" style={{ background: "rgba(255,215,0,0.15)", color: "#FFD700", border: "1px solid rgba(255,215,0,0.3)" }}>
+            <div className="inline-flex items-center gap-2 px-4 py-2 border-2 border-black bg-yellow-400 text-black text-xs font-black uppercase tracking-widest mb-4 shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px" }}>
               <Trophy size={14} />
               {kh ? "ចប់ហ្គេម" : "Game Over"}
             </div>
-            <h1 className="text-4xl font-black mb-2" style={khFont}>{kh ? "លទ្ធផលចុងក្រោយ" : "Final Results"}</h1>
-            <p className="text-sm" style={{ color: "rgba(255,255,255,0.4)", ...khFont }}>
+            <h1 className="text-4xl font-black mb-2 text-black" style={khFont}>{kh ? "លទ្ធផលចុងក្រោយ" : "Final Results"}</h1>
+            <p className="text-sm text-zinc-600 font-bold" style={{ ...khFont }}>
               {phase.leaderboard.length} {kh ? "អ្នកលេងបានចូលរួម" : "players participated"}
             </p>
           </div>
@@ -1199,16 +1175,20 @@ export default function HostPage() {
                 const entry = phase.leaderboard[idx];
                 if (!entry) return null;
                 const rank = idx + 1;
-                const heights = [" h-24", "h-32", "h-20"];
+                const columnStyles = [
+                  "w-full h-24 border-2 border-black bg-zinc-200 flex flex-col items-center justify-center shadow-[4px_4px_0_#000]",
+                  "w-full h-32 border-2 border-black bg-yellow-400 flex flex-col items-center justify-center shadow-[4px_4px_0_#000]",
+                  "w-full h-20 border-2 border-black bg-orange-300 flex flex-col items-center justify-center shadow-[4px_4px_0_#000]",
+                ];
                 return (
                   <div key={entry.userId} className="flex flex-col items-center gap-2 flex-1">
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center font-black text-sm text-white border-2" style={{ background: `hsl(${(entry.userId * 47) % 360}, 70%, 45%)`, borderColor: RANK_COLORS[idx] }}>
+                    <div className="w-12 h-12 border-2 border-black flex items-center justify-center font-black text-sm text-white" style={{ background: `hsl(${(entry.userId * 47) % 360}, 70%, 45%)`, borderRadius: "0px" }}>
                       {(entry.displayName || "?").slice(0, 2).toUpperCase()}
                     </div>
-                    <div className="text-xs font-black text-center truncate w-full" style={{ color: "#fff", ...khFont }}>{entry.displayName}</div>
-                    <div className={`w-full ${heights[idx] || "h-20"} rounded-t-xl flex flex-col items-center justify-center`} style={{ background: `${RANK_COLORS[idx]}22`, border: `2px solid ${RANK_COLORS[idx]}60` }}>
+                    <div className="text-xs font-black text-center truncate w-full text-black" style={{ ...khFont }}>{entry.displayName}</div>
+                    <div className={columnStyles[idx] ?? "w-full h-20 border-2 border-black bg-white flex flex-col items-center justify-center"} style={{ borderRadius: "0px" }}>
                       <div className="text-2xl mb-1">{idx === 0 ? "🥇" : idx === 1 ? "🥈" : "🥉"}</div>
-                      <div className="font-black text-sm" style={{ color: RANK_COLORS[idx] }}>{entry.totalScore.toLocaleString()}</div>
+                      <div className="font-black text-sm text-black">{entry.totalScore.toLocaleString()}</div>
                     </div>
                   </div>
                 );
@@ -1220,15 +1200,15 @@ export default function HostPage() {
           <div className="flex gap-3 mb-8">
             <button
               onClick={() => router.push(`/teacher/sessions/${phase.code}/analytics`)}
-              className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-black text-sm transition-all"
-              style={{ background: "rgba(255,255,255,0.08)", color: "#fff", border: "1px solid rgba(255,255,255,0.15)" }}
+              className="flex-1 flex items-center justify-center gap-2 py-3 border-2 border-black bg-white text-black font-black text-sm shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100"
+              style={{ borderRadius: "0px" }}
             >
               <BarChart2 size={15} />{kh ? "មើលលទ្ធផល" : "View Results"}
             </button>
             <button
               onClick={() => setPhase({ name: "setup" })}
-              className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-black text-sm transition-all"
-              style={{ background: "linear-gradient(135deg,#FFD700,#f59e0b)", color: "#000" }}
+              className="flex-1 flex items-center justify-center gap-2 py-3 border-2 border-black bg-yellow-400 text-black font-black text-sm shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100"
+              style={{ borderRadius: "0px" }}
             >
               <ChevronRight size={15} />{kh ? "ហ្គេមថ្មី" : "New Game"}
             </button>
@@ -1237,27 +1217,27 @@ export default function HostPage() {
           {/* Full leaderboard */}
           {phase.leaderboard.length > 0 && (
             <GlassCard>
-              <div className="px-5 py-4 border-b" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-                <div className="text-xs font-black uppercase tracking-widest" style={{ color: "rgba(255,255,255,0.3)", ...khFont }}>
+              <div className="px-5 py-4 border-b-2 border-black bg-blue-400 text-black" style={{ borderRadius: "0px" }}>
+                <div className="text-xs font-black uppercase tracking-widest text-black" style={khFont}>
                   {kh ? "ចំណាត់ថ្នាក់ចុងក្រោយ" : "Final Leaderboard"}
                 </div>
               </div>
-              <div className="divide-y" style={{ "--tw-divide-opacity": "0.05" } as any}>
+              <div className="divide-y-2 divide-black bg-white" style={{ borderRadius: "0px" }}>
                 {phase.leaderboard.slice(0, 10).map((entry, i) => {
                   const isTop3 = i < 3;
                   return (
-                    <div key={entry.userId} className="flex items-center gap-3 px-5 py-3.5">
-                      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-black text-sm flex-shrink-0" style={{ background: isTop3 ? `${RANK_COLORS[i]}20` : "rgba(255,255,255,0.06)", color: isTop3 ? RANK_COLORS[i] : "rgba(255,255,255,0.4)" }}>
+                    <div key={entry.userId} className="flex items-center gap-3 px-5 py-3.5 border-b border-zinc-100 last:border-0">
+                      <div className="w-8 h-8 border-2 border-black flex items-center justify-center font-black text-sm flex-shrink-0" style={{ background: isTop3 ? RANK_COLORS[i] : "#f4f4f5", color: "#000", borderRadius: "0px" }}>
                         {isTop3 ? <Crown size={14} /> : entry.rank}
                       </div>
-                      <div className="w-8 h-8 rounded-full flex items-center justify-center font-black text-xs text-white flex-shrink-0" style={{ background: `hsl(${(entry.userId * 47) % 360}, 70%, 45%)` }}>
+                      <div className="w-8 h-8 border-2 border-black flex items-center justify-center font-black text-xs text-white flex-shrink-0" style={{ background: `hsl(${(entry.userId * 47) % 360}, 70%, 45%)`, borderRadius: "0px" }}>
                         {(entry.displayName || "?").slice(0, 2).toUpperCase()}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="font-black text-white text-sm truncate" style={khFont}>{entry.displayName}</div>
-                        <div className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>{entry.correctAnswers} {kh ? "ត្រូវ" : "correct"}</div>
+                        <div className="font-black text-black text-sm truncate" style={khFont}>{entry.displayName}</div>
+                        <div className="text-xs text-zinc-500 font-bold">{entry.correctAnswers} {kh ? "ត្រូវ" : "correct"}</div>
                       </div>
-                      <div className="font-black text-lg tabular-nums" style={{ color: isTop3 ? RANK_COLORS[i] : "#fff" }}>
+                      <div className="font-black text-lg text-black tabular-nums">
                         {entry.totalScore.toLocaleString()}
                       </div>
                     </div>
