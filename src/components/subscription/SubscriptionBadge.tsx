@@ -17,7 +17,7 @@ export function SubscriptionBadge() {
     useEffect(() => {
         getCurrentSubscription()
             .then(({ subscription }) => {
-                setSubscription(subscription);
+                if (subscription) setSubscription(subscription as any);
             })
             .finally(() => setLoading(false));
     }, []);

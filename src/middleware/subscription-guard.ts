@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyToken } from "@/lib/auth";
-import { getUserPlanTier, canAccessFeature } from "@/lib/subscription-utils";
+import { getUserPlanTier, canAccessFeature } from "@/db/queries/subscriptions";
 import { PLAN_FEATURES } from "@/db/schema/subscriptions";
 
 /**
@@ -22,7 +22,7 @@ export async function requireSubscription(
         return NextResponse.json({ error: "Invalid token" }, { status: 401 });
     }
 
-    const userPlan = await getUserPlanTier(payload.userId);
+    const userPlan = await getUserPlanTier((payload as any).userId);
     const userPriority = PLAN_FEATURES[userPlan].priority;
     const requiredPriority = PLAN_FEATURES[minPlan].priority;
 
@@ -58,7 +58,7 @@ export async function requireFeature(
         return NextResponse.json({ error: "Invalid token" }, { status: 401 });
     }
 
-    const hasAccess = await canAccessFeature(payload.userId, feature);
+    const hasAccess = await canAccessFeature((payload as any).userId, feature);
 
     if (!hasAccess) {
         return NextResponse.json(

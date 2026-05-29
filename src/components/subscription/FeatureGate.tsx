@@ -21,7 +21,7 @@ export function FeatureGate({ feature, fallback, children }: FeatureGateProps) {
         checkSubscriptionAccess(feature)
             .then((result) => {
                 setHasAccess(result.allowed);
-                setReason(result.reason);
+                setReason("reason" in result ? result.reason : ("error" in result ? result.error : undefined));
             })
             .finally(() => setLoading(false));
     }, [feature]);

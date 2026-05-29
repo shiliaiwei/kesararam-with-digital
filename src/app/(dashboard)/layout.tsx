@@ -16,11 +16,11 @@ export default async function DashboardLayout({
   if (session.role === "student") redirect("/profile/student");
 
   // Fetch plan for teacher sidebar badge
-  let planInfo = { plan: "free", isTrial: false, trialEndsAt: null as Date | null };
+  let planInfo = { plan: "free", isTrial: false, trialEndsAt: null as Date | null, endsAt: null as Date | null };
   if (session.role === "teacher") {
     try {
       const sub = await getUserSubscription(session.id);
-      planInfo = { plan: sub.plan, isTrial: sub.isTrial, trialEndsAt: sub.trialEndsAt };
+      planInfo = { plan: sub.plan, isTrial: sub.isTrial, trialEndsAt: sub.trialEndsAt, endsAt: sub.endsAt };
     } catch { /* ignore */ }
   }
 
@@ -35,6 +35,7 @@ export default async function DashboardLayout({
           plan={planInfo.plan}
           isTrial={planInfo.isTrial}
           trialEndsAt={planInfo.trialEndsAt?.toISOString() ?? null}
+          endsAt={planInfo.endsAt?.toISOString() ?? null}
         />
         <div className="flex-1 flex flex-col">
           <DashboardHeader />

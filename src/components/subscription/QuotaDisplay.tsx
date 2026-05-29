@@ -9,12 +9,12 @@ interface Quota {
     classes: {
         current: number;
         max: number;
-        remaining: number | "unlimited";
+        remaining: number | string;
     };
     students: {
         current: number;
         max: number;
-        remaining: number | "unlimited";
+        remaining: number | string;
     };
     features: {
         analytics: boolean;
@@ -48,7 +48,7 @@ export function QuotaDisplay() {
         return "bg-green-500";
     };
 
-    const formatRemaining = (remaining: number | "unlimited") => {
+    const formatRemaining = (remaining: number | string) => {
         return remaining === "unlimited" ? "∞" : remaining;
     };
 

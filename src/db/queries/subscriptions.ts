@@ -15,7 +15,10 @@ export async function getUserActiveSubscription(userId: number): Promise<Subscri
         .where(
             and(
                 eq(subscriptions.userId, userId),
-                eq(subscriptions.status, "active"),
+                or(
+                    eq(subscriptions.status, "active"),
+                    eq(subscriptions.status, "trial")
+                ),
                 or(
                     isNull(subscriptions.endsAt),
                     gt(subscriptions.endsAt, now)
@@ -25,7 +28,19 @@ export async function getUserActiveSubscription(userId: number): Promise<Subscri
         .orderBy(desc(subscriptions.createdAt))
         .limit(1);
 
-    return result[0] || null;
+    const sub = result[0];
+    if (!sub) return null;
+
+    // Auto-expire trial if past trialEndsAt
+    if (sub.isTrial && sub.trialEndsAt && new Date(sub.trialEndsAt) < now) {
+        db.update(subscriptions)
+            .set({ status: "expired", updatedAt: now })
+            .where(eq(subscriptions.id, sub.id))
+            .catch(console.error);
+        return null;
+    }
+
+    return sub;
 }
 
 /**
@@ -154,9 +169,22 @@ export async function getExpiringSubscriptions(daysAhead: number = 7) {
         .innerJoin(users, eq(subscriptions.userId, users.id))
         .where(
             and(
-                eq(subscriptions.status, "active"),
-                gt(subscriptions.endsAt, now),
-                lt(subscriptions.endsAt, futureDate)
+                or(
+                    eq(subscriptions.status, "active"),
+                    eq(subscriptions.status, "trial")
+                ),
+                or(
+                    and(
+                        eq(subscriptions.isTrial, true),
+                        gt(subscriptions.trialEndsAt, now),
+                        lt(subscriptions.trialEndsAt, futureDate)
+                    ),
+                    and(
+                        eq(subscriptions.isTrial, false),
+                        gt(subscriptions.endsAt, now),
+                        lt(subscriptions.endsAt, futureDate)
+                    )
+                )
             )
         )
         .orderBy(subscriptions.endsAt);
@@ -173,8 +201,20 @@ export async function getExpiredSubscriptions() {
         .from(subscriptions)
         .where(
             and(
-                eq(subscriptions.status, "active"),
-                lt(subscriptions.endsAt, now)
+                or(
+                    eq(subscriptions.status, "active"),
+                    eq(subscriptions.status, "trial")
+                ),
+                or(
+                    and(
+                        eq(subscriptions.isTrial, true),
+                        lt(subscriptions.trialEndsAt, now)
+                    ),
+                    and(
+                        eq(subscriptions.isTrial, false),
+                        lt(subscriptions.endsAt, now)
+                    )
+                )
             )
         );
 }
@@ -193,8 +233,20 @@ export async function markExpiredSubscriptions(): Promise<number> {
         })
         .where(
             and(
-                eq(subscriptions.status, "active"),
-                lt(subscriptions.endsAt, now)
+                or(
+                    eq(subscriptions.status, "active"),
+                    eq(subscriptions.status, "trial")
+                ),
+                or(
+                    and(
+                        eq(subscriptions.isTrial, true),
+                        lt(subscriptions.trialEndsAt, now)
+                    ),
+                    and(
+                        eq(subscriptions.isTrial, false),
+                        lt(subscriptions.endsAt, now)
+                    )
+                )
             )
         )
         .returning();
@@ -274,7 +326,10 @@ export async function getAllActiveSubscriptions() {
         .innerJoin(users, eq(subscriptions.userId, users.id))
         .where(
             and(
-                eq(subscriptions.status, "active"),
+                or(
+                    eq(subscriptions.status, "active"),
+                    eq(subscriptions.status, "trial")
+                ),
                 or(
                     isNull(subscriptions.endsAt),
                     gt(subscriptions.endsAt, now)

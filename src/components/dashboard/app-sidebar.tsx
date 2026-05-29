@@ -3,47 +3,25 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import {
-  Users,
-  BookOpen,
-  ScrollText,
-  School,
-  Tv2,
-  LogOut,
-  Images,
-  User,
-  AlertCircle,
-  Gamepad2,
-  CreditCard,
-  Crown,
-  Zap,
-  Building2,
-  Clock,
-  ChevronDown,
-  ChevronRight,
-  Sparkles,
-  ArrowRight,
-  Flame,
-} from "lucide-react";
+import { useState, useEffect } from "react";
 import { logoutAction } from "@/app/actions/auth";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
 
 interface NavItem {
   label: string;
   href?: string;
-  icon: React.ComponentType<{ className?: string; size?: number; color?: string; style?: React.CSSProperties }>;
+  icon: string;
   color: string;
   children?: { label: string; href: string }[];
 }
 
 const adminNav: NavItem[] = [
-  { label: "Review Queue", href: "/admin/review", icon: AlertCircle, color: "#f59e0b" },
-  { label: "Users", href: "/admin/users", icon: Users, color: "#3b82f6" },
-  { label: "Subscriptions", href: "/admin/subscriptions", icon: CreditCard, color: "#f59e0b" },
-  { label: "Questions", href: "/admin/questions", icon: ScrollText, color: "#8b5cf6" },
+  { label: "Review Queue", href: "/admin/review", icon: "warning", color: "#f59e0b" },
+  { label: "Users", href: "/admin/users", icon: "group", color: "#3b82f6" },
+  { label: "Subscriptions", href: "/admin/subscriptions", icon: "credit_card", color: "#f59e0b" },
+  { label: "Questions", href: "/admin/questions", icon: "description", color: "#8b5cf6" },
   {
-    label: "Content", icon: BookOpen, color: "#22c55e",
+    label: "Content", icon: "book", color: "#22c55e",
     children: [
       { label: "Overview", href: "/admin/content" },
       { label: "Traffic Signs", href: "/admin/content/road-sign" },
@@ -56,22 +34,22 @@ const adminNav: NavItem[] = [
       { label: "Emergency", href: "/admin/content/emergency" },
     ],
   },
-  { label: "Game Sessions", href: "/admin/game-sessions", icon: Gamepad2, color: "#a855f7" },
-  { label: "Media", href: "/admin/media", icon: Images, color: "#a855f7" },
-  { label: "Logs", href: "/admin/logs", icon: ScrollText, color: "#f97316" },
+  { label: "Game Sessions", href: "/admin/game-sessions", icon: "sports_esports", color: "#a855f7" },
+  { label: "Media", href: "/admin/media", icon: "image", color: "#a855f7" },
+  { label: "Logs", href: "/admin/description", icon: "description", color: "#f97316" },
 ];
 
 const teacherNav: NavItem[] = [
-  { label: "Classes", href: "/teacher/classes", icon: School, color: "#3b82f6" },
-  { label: "Sessions", href: "/teacher/sessions", icon: Tv2, color: "#22c55e" },
-  { label: "Host Game", href: "/teacher/sessions/host", icon: Gamepad2, color: "#ffd700" },
+  { label: "Classes", href: "/teacher/classes", icon: "school", color: "#3b82f6" },
+  { label: "Sessions", href: "/teacher/sessions", icon: "tv", color: "#22c55e" },
+  { label: "Host Game", href: "/teacher/sessions/host", icon: "sports_esports", color: "#ffd700" },
 ];
 
 const staffNav: NavItem[] = [
-  { label: "My Submissions", href: "/staff/submissions", icon: AlertCircle, color: "#3b82f6" },
+  { label: "My Submissions", href: "/staff/submissions", icon: "warning", color: "#3b82f6" },
   {
     label: "Content",
-    icon: BookOpen,
+    icon: "book",
     color: "#22c55e",
     children: [
       { label: "Traffic Signs", href: "/staff/content/road-sign" },
@@ -84,8 +62,8 @@ const staffNav: NavItem[] = [
       { label: "Emergency", href: "/staff/content/emergency" },
     ],
   },
-  { label: "Media", href: "/staff/media", icon: Images, color: "#a855f7" },
-  { label: "Classes", href: "/staff/classes", icon: School, color: "#3b82f6" },
+  { label: "Media", href: "/staff/media", icon: "image", color: "#a855f7" },
+  { label: "Classes", href: "/staff/classes", icon: "school", color: "#3b82f6" },
 ];
 
 interface AppSidebarProps {
@@ -96,22 +74,68 @@ interface AppSidebarProps {
   plan?: string;
   isTrial?: boolean;
   trialEndsAt?: string | null;
+  endsAt?: string | null;
 }
 
-export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial = false, trialEndsAt = null }: AppSidebarProps) {
+export function AppSidebar({
+  role,
+  name,
+  email,
+  avatar,
+  plan = "free",
+  isTrial = false,
+  trialEndsAt = null,
+  endsAt = null,
+}: AppSidebarProps) {
   const pathname = usePathname();
   const navItems = role === "admin" ? adminNav : role === "staff" ? staffNav : teacherNav;
   const profileHref = role === "admin" ? "/admin/profile" : role === "staff" ? "/staff/profile" : "/teacher/profile";
-  const roleColor = role === "admin" ? "#ef4444" : role === "staff" ? "#f59e0b" : "#22c55e";
   const [expandedItems, setExpandedItems] = useState<string[]>(["Content"]);
 
-  const trialDaysLeft = trialEndsAt
-    ? Math.max(0, Math.ceil((new Date(trialEndsAt).getTime() - Date.now()) / 86400000))
-    : null;
+  const [livePlan, setLivePlan] = useState(plan);
+  const [liveIsTrial, setLiveIsTrial] = useState(isTrial);
+  const [liveTrialEndsAt, setLiveTrialEndsAt] = useState<string | null>(trialEndsAt);
+  const [liveEndsAt, setLiveEndsAt] = useState<string | null>(endsAt);
 
-  const isProPlan = plan === "teacher_pro";
-  const isTrialActive = isTrial && trialDaysLeft !== null && trialDaysLeft > 0;
-  const isUrgent = isTrialActive && trialDaysLeft !== null && trialDaysLeft <= 3;
+  // Sync props to state if props change (just in case)
+  useEffect(() => {
+    setLivePlan(plan);
+    setLiveIsTrial(isTrial);
+    setLiveTrialEndsAt(trialEndsAt);
+    setLiveEndsAt(endsAt);
+  }, [plan, isTrial, trialEndsAt, endsAt]);
+
+  // Dynamic real-time subscription status fetch on mount
+  useEffect(() => {
+    fetch("/api/subscriptions/check")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.subscription) {
+          setLivePlan(data.subscription.plan);
+          setLiveIsTrial(data.subscription.isTrial);
+          setLiveTrialEndsAt(
+            data.subscription.trialEndsAt
+              ? new Date(data.subscription.trialEndsAt).toISOString()
+              : null
+          );
+          setLiveEndsAt(
+            data.subscription.endsAt
+              ? new Date(data.subscription.endsAt).toISOString()
+              : null
+          );
+        }
+      })
+      .catch((err) => console.error("Sidebar real-time sub check failed:", err));
+  }, []);
+
+  const daysRemaining = (() => {
+    const dateStr = liveIsTrial ? liveTrialEndsAt : liveEndsAt;
+    if (!dateStr) return null;
+    return Math.max(0, Math.ceil((new Date(dateStr).getTime() - Date.now()) / 86400000));
+  })();
+
+  const isSubscribed = livePlan === "teacher_pro" || livePlan === "school";
+  const isUrgent = isSubscribed && daysRemaining !== null && daysRemaining <= 7;
 
   function isNavItemActive(href: string) {
     const targetPath = href.split("?")[0];
@@ -126,17 +150,27 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
 
   return (
     <div className="w-64 flex flex-col h-screen sticky top-0 overflow-hidden bg-white border-r-4 border-black">
-
       {/* ── Brand Header ───────────────────────────────────────────────────── */}
       <div className="p-4 flex-shrink-0" style={{ borderBottom: "2px solid #000000" }}>
         <div className="flex items-center gap-3 mb-4">
           {/* Logo mark */}
-          <div className="w-9 h-9 flex items-center justify-center flex-shrink-0 relative overflow-hidden border-2 border-black"
-            style={{ background: "#FFD700", boxShadow: "2px 2px 0px #000" }}>
-            <Image src="/brand/kwd-black.png" alt="KWD" width={22} height={22} className="object-contain relative z-10" unoptimized />
+          <div
+            className="w-9 h-9 flex items-center justify-center flex-shrink-0 relative overflow-hidden border-2 border-black"
+            style={{ background: "#FFD700", boxShadow: "2px 2px 0px #000" }}
+          >
+            <Image
+              src="/brand/kwd-black.png"
+              alt="KWD"
+              width={22}
+              height={22}
+              className="object-contain relative z-10"
+              unoptimized
+            />
           </div>
           <div>
-            <h1 className="text-sm font-black uppercase tracking-widest text-black leading-none">KWD</h1>
+            <h1 className="text-sm font-black uppercase tracking-widest text-black leading-none">
+              KWD
+            </h1>
             <p className="text-[9px] font-black uppercase tracking-widest leading-tight mt-0.5 text-zinc-500">
               Kesararam · Digital
             </p>
@@ -144,17 +178,22 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
         </div>
 
         {/* ── User Profile Card ─────────────────────────────────────────── */}
-        <div className="rounded-xl overflow-hidden bg-white border-2 border-black" style={{ boxShadow: "3px 3px 0 #000" }}>
+        <div
+          className="overflow-hidden bg-white border-2 border-black"
+          style={{ borderRadius: "0px", boxShadow: "3px 3px 0 #000" }}
+        >
           {/* Colored top accent */}
           <div className="h-1 bg-black" />
           <div className="p-3 flex items-center gap-2.5 bg-white">
-            <div className="rounded-lg overflow-hidden flex-shrink-0 border border-black">
+            <div className="overflow-hidden flex-shrink-0 border border-black" style={{ borderRadius: "0px" }}>
               <AvatarDisplay avatar={avatar} name={name} size={32} radius={0} />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-black text-xs text-black truncate uppercase tracking-wide">{name}</h3>
+              <h3 className="font-black text-xs text-black truncate uppercase tracking-wide">
+                {name}
+              </h3>
               <span
-                className="inline-block px-1.5 py-0.5 text-[9px] font-black uppercase tracking-widest rounded-sm mt-0.5 border border-black"
+                className="inline-block px-1.5 py-0.5 text-[9px] font-black uppercase tracking-widest rounded-none mt-0.5 border border-black"
                 style={{ background: "#e5e7eb", color: "#000" }}
               >
                 {role}
@@ -162,78 +201,114 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
             </div>
           </div>
 
-          {/* ── Teacher Pro / Trial Badge ──────────────────────────────── */}
+          {/* ── Teacher Subscription Status ──────────────────────────────── */}
           {role === "teacher" && (
             <>
-              {/* Active Pro Plan */}
-              {isProPlan && !isTrialActive && (
-                <div className="mx-3 mb-3 bg-[#e8f5e9] border-2 border-black p-3 rounded-xl" style={{
-                  boxShadow: "2.5px 2.5px 0px #000000"
-                }}>
+              {/* Subscribed & Active (>7 days left or unlimited) */}
+              {isSubscribed && !isUrgent && (
+                <div
+                  className="mx-3 mb-3 bg-[#e8f5e9] border-2 border-black p-3"
+                  style={{
+                    borderRadius: "0px",
+                    boxShadow: "2.5px 2.5px 0px #000000",
+                  }}
+                >
                   <div className="flex items-center gap-2 text-black">
-                    <div className="w-6.5 h-6.5 rounded-lg flex items-center justify-center bg-[#FFD700] border border-black shrink-0" style={{ boxShadow: "1px 1px 0 #000" }}>
-                      <Crown size={12} className="text-black animate-sparkle-float" />
+                    <div
+                      className="w-7 h-7 flex items-center justify-center bg-[#FFD700] border border-black shrink-0"
+                      style={{ boxShadow: "1px 1px 0 #000" }}
+                    >
+                      <span className="material-symbols-rounded text-black" style={{ fontSize: "14px" }}>
+                        crown
+                      </span>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="text-[10px] font-black uppercase tracking-wider text-black">Teacher Pro</div>
-                      <div className="text-[8px] text-green-700 font-black uppercase tracking-widest">Active License</div>
+                      <div className="text-[10px] font-black uppercase tracking-wider text-black">
+                        {livePlan === "school" ? "School Plan" : "Teacher Pro"}
+                      </div>
+                      <div className="text-[8px] text-green-700 font-black uppercase tracking-widest">
+                        Active License
+                      </div>
                     </div>
-                    <Sparkles size={11} className="text-amber-500 animate-pulse shrink-0" />
                   </div>
                 </div>
               )}
 
-              {/* Trial Active */}
-              {isTrialActive && (
-                <div className="mx-3 mb-3 bg-white border-2 border-black p-3.5 rounded-xl animate-bounce-in" style={{
-                  boxShadow: isUrgent ? "3px 3px 0px #ef4444" : "3px 3px 0px #000000"
-                }}>
+              {/* Expiring Soon (<= 7 days left) */}
+              {isSubscribed && isUrgent && daysRemaining !== null && (
+                <div
+                  className="mx-3 mb-3 bg-white border-2 border-black p-3.5 animate-bounce-in"
+                  style={{
+                    borderRadius: "0px",
+                    boxShadow: daysRemaining <= 3 ? "3px 3px 0px #ef4444" : "3px 3px 0px #000000",
+                  }}
+                >
                   {/* Header: Badge & Status */}
                   <div className="flex items-center gap-1.5 mb-3">
                     <div className="flex items-center gap-1">
-                      {isUrgent ? (
-                        <Flame size={12} className="text-red-500 animate-pulse" />
+                      {daysRemaining <= 3 ? (
+                        <span
+                          className="material-symbols-rounded text-red-500 animate-pulse"
+                          style={{ fontSize: "14px" }}
+                        >
+                          local_fire_department
+                        </span>
                       ) : (
-                        <Crown size={12} className="text-amber-500 animate-sparkle-float" />
+                        <span className="material-symbols-rounded text-amber-500" style={{ fontSize: "14px" }}>
+                          crown
+                        </span>
                       )}
-                      <span className="text-[10px] font-black uppercase tracking-wider" style={{ color: isUrgent ? "#ef4444" : "#000" }}>
-                        Teacher Pro
+                      <span
+                        className="text-[10px] font-black uppercase tracking-wider"
+                        style={{ color: daysRemaining <= 3 ? "#ef4444" : "#000" }}
+                      >
+                        {livePlan === "school" ? "School Plan" : "Teacher Pro"}
                       </span>
                     </div>
-                    
-                    <span className="ml-auto text-[9px] font-black uppercase px-2 py-0.5 border border-black rounded-sm" style={{
-                      background: isUrgent ? "#ef4444" : "#FFD700",
-                      color: isUrgent ? "#fff" : "#000",
-                      boxShadow: "1px 1px 0 #000"
-                    }}>
-                      {trialDaysLeft}d left
+
+                    <span
+                      className="ml-auto text-[9px] font-black uppercase px-2 py-0.5 border border-black"
+                      style={{
+                        borderRadius: "0px",
+                        background: daysRemaining <= 3 ? "#ef4444" : "#FFD700",
+                        color: daysRemaining <= 3 ? "#fff" : "#000",
+                        boxShadow: "1px 1px 0 #000",
+                      }}
+                    >
+                      {daysRemaining}d left
                     </span>
                   </div>
 
                   {/* 7-LED Indicator Panel */}
                   <div className="mb-3.5">
                     <div className="flex justify-between items-center mb-1.5">
-                      <span className="text-[8px] font-black text-black/40 uppercase tracking-widest">Trial Lifeline</span>
-                      <span className="text-[8px] font-black text-black/60">{trialDaysLeft}/7 DAYS</span>
+                      <span className="text-[8px] font-black text-black/40 uppercase tracking-widest">
+                        Renewal Window
+                      </span>
+                      <span className="text-[8px] font-black text-black/60">
+                        {daysRemaining}/7 DAYS
+                      </span>
                     </div>
-                    <div className="grid grid-cols-7 gap-1 bg-[#f3f4f6] p-1.5 rounded-lg border border-black">
+                    <div className="grid grid-cols-7 gap-1 bg-[#f3f4f6] p-1.5 border border-black" style={{ borderRadius: "0px" }}>
                       {Array.from({ length: 7 }).map((_, i) => {
                         const dotIndex = i + 1;
-                        const isDotActive = dotIndex <= (trialDaysLeft ?? 0);
-                        const isUrgentDot = isDotActive && isUrgent;
+                        const isDotActive = dotIndex <= (daysRemaining ?? 0);
+                        const isUrgentDot = isDotActive && daysRemaining <= 3;
 
                         return (
                           <div
                             key={i}
-                            className={`h-4 border border-black rounded-sm transition-all duration-300 ${
+                            className={`h-4 border border-black transition-all duration-300 ${
                               isUrgentDot ? "animate-pulse-red-alert" : ""
                             }`}
                             style={{
+                              borderRadius: "0px",
                               backgroundColor: isDotActive
-                                ? isUrgent ? "#ef4444" : "#FFD700"
+                                ? daysRemaining <= 3
+                                  ? "#ef4444"
+                                  : "#FFD700"
                                 : "#e5e7eb",
                             }}
-                            title={isDotActive ? `Day ${dotIndex} active` : `Day ${dotIndex} consumed`}
                           />
                         );
                       })}
@@ -241,34 +316,62 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
                   </div>
 
                   {/* CTA Action */}
-                  <Link href="/pricing"
-                    className="group flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-wider transition-all duration-150 border-2 border-black nb-interactive"
+                  <Link
+                    href="/pricing"
+                    className="group flex items-center justify-center gap-1.5 py-1.5 text-[9px] font-black uppercase tracking-wider transition-all duration-150 border-2 border-black nb-interactive"
                     style={{
-                      background: isUrgent ? "#ef4444" : "#FFD700",
-                      color: isUrgent ? "#fff" : "#000",
+                      borderRadius: "0px",
+                      background: daysRemaining <= 3 ? "#ef4444" : "#FFD700",
+                      color: daysRemaining <= 3 ? "#fff" : "#000",
                       boxShadow: "2.5px 2.5px 0px #000000",
-                    }}>
-                    Upgrade Now <ArrowRight size={10} className="transition-transform group-hover:translate-x-0.5" />
+                    }}
+                  >
+                    Renew / Upgrade{" "}
+                    <span
+                      className="material-symbols-rounded transition-transform group-hover:translate-x-0.5"
+                      style={{ fontSize: "10px" }}
+                    >
+                      arrow_forward
+                    </span>
                   </Link>
                 </div>
               )}
 
               {/* Free Plan — upgrade nudge */}
-              {plan === "free" && !isTrialActive && (
-                <div className="mx-3 mb-3 bg-white border-2 border-black p-3 rounded-xl" style={{
-                  boxShadow: "3px 3px 0px #000000"
-                }}>
-                  <Link href="/pricing" className="group flex items-center justify-between border-2 border-black p-2 bg-[#FFD700] rounded-lg nb-interactive text-black" style={{ boxShadow: "2px 2px 0 #000" }}>
+              {livePlan === "free" && (
+                <div
+                  className="mx-3 mb-3 bg-white border-2 border-black p-3"
+                  style={{
+                    borderRadius: "0px",
+                    boxShadow: "3px 3px 0px #000000",
+                  }}
+                >
+                  <Link
+                    href="/pricing"
+                    className="group flex items-center justify-between border-2 border-black p-2 bg-[#FFD700] nb-interactive text-black"
+                    style={{ borderRadius: "0px", boxShadow: "2px 2px 0 #000" }}
+                  >
                     <div className="flex items-center gap-2">
-                      <div className="w-6.5 h-6.5 rounded-md flex items-center justify-center bg-black shrink-0">
-                        <Crown size={12} className="text-[#FFD700]" />
+                      <div className="w-6.5 h-6.5 flex items-center justify-center bg-black shrink-0">
+                        <span className="material-symbols-rounded text-[#FFD700]" style={{ fontSize: "12px" }}>
+                          crown
+                        </span>
                       </div>
                       <div className="flex-1 min-w-0 text-left">
-                        <div className="text-[10px] font-black uppercase tracking-wider">Upgrade to Pro</div>
-                        <div className="text-[8px] text-black/60 font-bold uppercase tracking-widest">Get Live Quiz Power</div>
+                        <div className="text-[10px] font-black uppercase tracking-wider">
+                          Upgrade to Pro
+                        </div>
+                        <div className="text-[8px] text-black/60 font-bold uppercase tracking-widest">
+                          Get Live Quiz Power
+                        </div>
                       </div>
                     </div>
-                    <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5 shrink-0" />
+                    <span
+                      className="material-symbols-rounded transition-transform group-hover:translate-x-0.5 shrink-0"
+                      style={{ fontSize: "12px" }}
+                    >
+                      arrow_forward
+                    </span>
                   </Link>
                 </div>
               )}
@@ -279,7 +382,6 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
 
       {/* ── Navigation ─────────────────────────────────────────────────────── */}
       <div className="flex-1 overflow-y-auto p-3 space-y-5 bg-white">
-
         {/* Account */}
         <div>
           <h2 className="text-[9px] font-black uppercase tracking-widest px-2 mb-2 text-zinc-400">
@@ -294,12 +396,15 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
             }`}
             style={{ borderRadius: "0px" }}
           >
-            <div className="w-6 h-6 border-2 border-black flex items-center justify-center flex-shrink-0" style={{ background: "#3b82f6" }}>
-              <User size={12} className="text-black" />
+            <div
+              className="w-6 h-6 border-2 border-black flex items-center justify-center flex-shrink-0"
+              style={{ background: "#3b82f6" }}
+            >
+              <span className="material-symbols-rounded text-black" style={{ fontSize: "12px" }}>
+                person
+              </span>
             </div>
-            <span className="font-bold text-xs uppercase tracking-wide">
-              My Profile
-            </span>
+            <span className="font-bold text-xs uppercase tracking-wide">My Profile</span>
           </Link>
         </div>
 
@@ -326,15 +431,28 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
                       style={{ borderRadius: "0px" }}
                     >
                       <div className="flex items-center gap-2.5">
-                        <div className="w-6 h-6 border-2 border-black flex items-center justify-center flex-shrink-0" style={{ background: item.color }}>
-                          <item.icon size={12} className="text-black" />
+                        <div
+                          className="w-6 h-6 border-2 border-black flex items-center justify-center flex-shrink-0"
+                          style={{ background: item.color }}
+                        >
+                          <span className="material-symbols-rounded text-black" style={{ fontSize: "12px" }}>
+                            {item.icon}
+                          </span>
                         </div>
                         <span className="font-bold text-xs uppercase tracking-wide">
                           {item.label}
                         </span>
                       </div>
-                      <div className="text-black">
-                        {isExpanded ? <ChevronDown size={13} /> : <ChevronRight size={13} />}
+                      <div className="text-black flex items-center">
+                        {isExpanded ? (
+                          <span className="material-symbols-rounded" style={{ fontSize: "14px" }}>
+                            keyboard_arrow_down
+                          </span>
+                        ) : (
+                          <span className="material-symbols-rounded" style={{ fontSize: "14px" }}>
+                            keyboard_arrow_right
+                          </span>
+                        )}
                       </div>
                     </button>
 
@@ -376,12 +494,15 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
                   }`}
                   style={{ borderRadius: "0px" }}
                 >
-                  <div className="w-6 h-6 border-2 border-black flex items-center justify-center flex-shrink-0" style={{ background: item.color }}>
-                    <item.icon size={12} className="text-black" />
+                  <div
+                    className="w-6 h-6 border-2 border-black flex items-center justify-center flex-shrink-0"
+                    style={{ background: item.color }}
+                  >
+                    <span className="material-symbols-rounded text-black" style={{ fontSize: "12px" }}>
+                      {item.icon}
+                    </span>
                   </div>
-                  <span className="font-bold text-xs uppercase tracking-wide">
-                    {item.label}
-                  </span>
+                  <span className="font-bold text-xs uppercase tracking-wide">{item.label}</span>
                 </Link>
               );
             })}
@@ -398,11 +519,11 @@ export function AppSidebar({ role, name, email, avatar, plan = "free", isTrial =
             style={{ borderRadius: "0px" }}
           >
             <div className="w-6 h-6 border-2 border-black bg-red-400 flex items-center justify-center flex-shrink-0">
-              <LogOut size={12} className="text-black" />
+              <span className="material-symbols-rounded text-black" style={{ fontSize: "12px" }}>
+                logout
+              </span>
             </div>
-            <span className="font-bold text-xs uppercase tracking-wide">
-              Log Out
-            </span>
+            <span className="font-bold text-xs uppercase tracking-wide">Log Out</span>
           </button>
         </form>
       </div>

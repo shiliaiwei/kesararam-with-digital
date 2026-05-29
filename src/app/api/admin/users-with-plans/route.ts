@@ -3,6 +3,9 @@
  * Admin-only.
  */
 import { NextResponse } from "next/server";
+
+export const dynamic = "force-dynamic";
+
 import { db } from "@/lib/db";
 import { users } from "@/db/schema/users";
 import { subscriptions } from "@/db/schema/subscriptions";

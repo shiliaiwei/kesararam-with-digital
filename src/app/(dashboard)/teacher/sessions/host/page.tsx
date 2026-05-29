@@ -77,7 +77,10 @@ function LiveLeaderRow({ entry, rank, showScore }: { entry: LeaderboardEntry; ra
       <div className="flex-1 min-w-0 text-black">
         <div className="font-bold text-xs truncate">{entry.displayName}</div>
         {entry.currentStreak > 1 && (
-          <div className="text-orange-600 text-xs font-bold">🔥 ×{entry.currentStreak}</div>
+          <div className="text-orange-600 text-xs font-bold flex items-center gap-0.5">
+            <span className="material-symbols-rounded text-orange-500 text-sm align-middle">local_fire_department</span>
+            ×{entry.currentStreak}
+          </div>
         )}
       </div>
       <div className="text-right flex-shrink-0 text-black">
@@ -199,6 +202,9 @@ export default function HostPage() {
   const [questionCount, setQuestionCount] = useState(10);
 
   const [subPlan, setSubPlan] = useState<string>("free");
+  const [isTrial, setIsTrial] = useState(false);
+  const [trialEndsAt, setTrialEndsAt] = useState<string | null>(null);
+  const [endsAt, setEndsAt] = useState<string | null>(null);
   const [upgradeModalOpen, setUpgradeModalOpen] = useState(false);
   const [upgradeTrigger, setUpgradeTrigger] = useState("");
 
@@ -207,12 +213,23 @@ export default function HostPage() {
     fetch("/api/subscriptions/check")
       .then((r) => r.json())
       .then((d) => {
-        if (d.subscription?.plan) {
+        if (d.subscription) {
           setSubPlan(d.subscription.plan);
+          setIsTrial(d.subscription.isTrial);
+          setTrialEndsAt(d.subscription.trialEndsAt);
+          setEndsAt(d.subscription.endsAt);
         }
       })
       .catch(() => {});
   }, []);
+
+  const subDaysLeft = (() => {
+    const dateStr = isTrial ? trialEndsAt : endsAt;
+    if (!dateStr) return null;
+    return Math.max(0, Math.ceil((new Date(dateStr).getTime() - Date.now()) / 86400000));
+  })();
+
+  const showUpgradeBanner = subPlan === "free" || (subDaysLeft !== null && subDaysLeft <= 7);
 
   // Fetch categories + check for existing active session on mount
   useEffect(() => {
@@ -407,7 +424,23 @@ export default function HostPage() {
           </div>
 
           {/* Upgrade banner */}
-          <UpgradeButton variant="banner" trigger="session_limit" lang={lang} className="mb-8" label={kh ? "ទទួលបានវគ្គគ្មានដែនកំណត់ + ប្រភេទទាំងអស់ — ធ្វើឱ្យប្រសើរឡើង" : "Get unlimited sessions + all categories — Upgrade to Teacher Pro"} />
+          {showUpgradeBanner && (
+            <UpgradeButton
+              variant="banner"
+              trigger="session_limit"
+              lang={lang}
+              className="mb-8 rounded-none border-2 border-black"
+              label={
+                subPlan !== "free"
+                  ? kh
+                    ? `គម្រោងរបស់អ្នកនឹងផុតកំណត់ក្នុងរយៈពេល ${subDaysLeft} ថ្ងៃទៀត — ធ្វើឱ្យប្រសើរឡើងឥឡូវនេះ`
+                    : `Your plan expires in ${subDaysLeft} days — Renew / Upgrade Now`
+                  : kh
+                    ? "ទទួលបានវគ្គគ្មានដែនកំណត់ + ប្រភេទទាំងអស់ — ធ្វើឱ្យប្រសើរឡើង"
+                    : "Get unlimited sessions + all categories — Upgrade to Teacher Pro"
+              }
+            />
+          )}
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
             {/* ── Left: Config form ── */}
@@ -433,7 +466,7 @@ export default function HostPage() {
                 <SectionLabel style={khFont}>{kh ? "របៀបលេង" : "Game Mode"}</SectionLabel>
                   {(() => {
                     const MODE_META: Record<string, {
-                      emoji: string;
+                      icon: string;
                       tagline: string;
                       taglineKm: string;
                       accentShape: string;
@@ -441,7 +474,7 @@ export default function HostPage() {
                       badgeColor?: string;
                     }> = {
                       "quick-quiz": {
-                        emoji: "⚡",
+                        icon: "bolt",
                         tagline: "Flexible pace, any topic",
                         taglineKm: "ល្បឿនដោយខ្លួនឯង",
                         accentShape: "polygon(0 0,100% 0,85% 100%,0 100%)",
@@ -449,7 +482,7 @@ export default function HostPage() {
                         badgeColor: "#22c55e",
                       },
                       "speed-round": {
-                        emoji: "🚀",
+                        icon: "rocket",
                         tagline: "15s rapid fire — stay sharp",
                         taglineKm: "១៥វិនាទី ឆ្លើយលឿន",
                         accentShape: "polygon(0 0,100% 0,100% 100%,15% 100%)",
@@ -457,7 +490,7 @@ export default function HostPage() {
                         badgeColor: "#ef4444",
                       },
                       "sign-challenge": {
-                        emoji: "🪧",
+                        icon: "signpost",
                         tagline: "Image-based sign recognition",
                         taglineKm: "សញ្ញាចរាចរណ៍",
                         accentShape: "polygon(0 0,85% 0,100% 100%,0 100%)",
@@ -465,7 +498,7 @@ export default function HostPage() {
                         badgeColor: "#3b82f6",
                       },
                       "mixed-battle": {
-                        emoji: "⚔️",
+                        icon: "swords",
                         tagline: "All question types, full chaos",
                         taglineKm: "ចម្រុះសំណួរ",
                         accentShape: "polygon(0 0,100% 0,100% 100%,0 100%)",
@@ -473,7 +506,7 @@ export default function HostPage() {
                         badgeColor: "#ffd700",
                       },
                       "daily-challenge": {
-                        emoji: "📅",
+                        icon: "calendar_today",
                         tagline: "Fresh questions every day",
                         taglineKm: "ថ្មីរៀងរាល់ថ្ងៃ",
                         accentShape: "polygon(0 0,100% 0,90% 100%,0 100%)",
@@ -481,7 +514,7 @@ export default function HostPage() {
                         badgeColor: "#ffd700",
                       },
                       "exam-simulation": {
-                        emoji: "🎓",
+                        icon: "school",
                         tagline: "Simulate the real licence exam",
                         taglineKm: "ត្រាប់ប្រឡងបណ្ណ",
                         accentShape: "polygon(10% 0,100% 0,100% 100%,0 100%)",
@@ -505,7 +538,7 @@ export default function HostPage() {
                           const isSelected = selectedMode === m.id;
                           const isPremium = ["mixed-battle", "daily-challenge", "exam-simulation"].includes(m.id);
                           const isLocked = isPremium && subPlan === "free";
-                          const meta = MODE_META[m.id] ?? { emoji: "🎮", tagline: "", taglineKm: "", accentShape: "" };
+                          const meta = MODE_META[m.id] ?? { icon: "sports_esports", tagline: "", taglineKm: "", accentShape: "" };
                           const stats = MODE_STATS[m.id] ?? { xp: "1.0x XP", complexity: "Easy", complexityKm: "ស្រួល" };
 
                           return (
@@ -546,7 +579,7 @@ export default function HostPage() {
                                 <div>
                                   {/* Header: emoji + locks/badges */}
                                   <div className="flex items-start justify-between mb-3 w-full">
-                                    <div className="text-2xl leading-none">{meta.emoji}</div>
+                                    <span className="material-symbols-rounded text-2xl leading-none text-black">{meta.icon}</span>
                                     <div className="flex items-center gap-1.5">
                                       {isLocked && (
                                         <div className="bg-[#FFD700] border-2 border-black p-0.5 shadow-[1px_1px_0_#000]" style={{ borderRadius: "0px" }}>
@@ -794,7 +827,7 @@ export default function HostPage() {
               {/* Error */}
               {error && (
                 <div className="px-4 py-3 border-2 border-black bg-red-400 text-black font-black text-sm shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px", ...khFont }}>
-                  ⚠ {error}
+                  <span className="material-symbols-rounded text-black mr-1 text-sm align-middle">warning</span> {error}
                   {(error.toLowerCase().includes("session") || error.toLowerCase().includes("limit") || error.toLowerCase().includes("upgrade")) && (
                     <div className="mt-2"><UpgradeButton variant="banner" trigger="session_limit" lang={lang} /></div>
                   )}

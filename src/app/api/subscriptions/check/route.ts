@@ -3,6 +3,9 @@ import { verifyToken } from "@/lib/auth";
 import { getUserActiveSubscription } from "@/db/queries/subscriptions";
 import { getSubscriptionDisplayInfo } from "@/lib/subscription-utils";
 
+export const dynamic = "force-dynamic";
+
+
 /**
  * GET /api/subscriptions/check
  * Check current user's subscription status and features
