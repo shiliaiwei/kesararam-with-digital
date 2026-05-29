@@ -820,7 +820,7 @@ export default function HostPage() {
               {error && (
                 <div className="px-4 py-3 border-2 border-black bg-red-400 text-black font-black text-sm shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px", ...khFont }}>
                   <span className="material-symbols-rounded text-black mr-1 text-sm align-middle">warning</span> {error}
-                  {(error.toLowerCase().includes("session") || error.toLowerCase().includes("limit") || error.toLowerCase().includes("upgrade")) && (
+                  {(error.toLowerCase().includes("session") || error.toLowerCase().includes("limit") || error.toLowerCase().includes("upgrade")) && subPlan === "free" && (
                     <div className="mt-2"><UpgradeButton variant="banner" trigger="session_limit" lang={lang} /></div>
                   )}
                 </div>
