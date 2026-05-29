@@ -1,4 +1,4 @@
-# 🇰🇭 KWD Platform — Kesararam With Digital
+# KWD Platform — Kesararam With Digital
 ### Cambodian Driving Knowledge & Licensing Education Platform
 
 [![Next.js Version](https://img.shields.io/badge/Next.js-15.5.18-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
@@ -10,20 +10,20 @@ Master traffic signs, road laws, and driving theory with an interactive, bilingu
 
 ---
 
-## 📚 Table of Contents
+## Table of Contents
 
-- [🚀 Quick Start](#-quick-start)
-- [🛠️ Tech Stack](#️-tech-stack)
-- [🎨 Design System](#-design-system)
-- [📁 Project Structure](#-project-structure)
-- [🎮 Game Modes & Scoring Engine](#-game-modes--scoring-engine)
-- [🔐 Security & Rate Limiting](#-security--rate-limiting)
-- [💻 Development Scripts Reference](#-development-scripts-reference)
-- [📝 Contributing & License](#-contributing--license)
+- [Quick Start](#quick-start)
+- [Tech Stack](#tech-stack)
+- [Design System](#design-system)
+- [Project Structure](#project-structure)
+- [Game Modes & Scoring Engine](#game-modes--scoring-engine)
+- [Security & Rate Limiting](#security--rate-limiting)
+- [Development Scripts Reference](#development-scripts-reference)
+- [Contributing & License](#contributing--license)
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - **Node.js**: `v18.0.0` or higher (recommended `v20+` or `v22+`)
@@ -80,7 +80,7 @@ Master traffic signs, road laws, and driving theory with an interactive, bilingu
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Core Frontend
 - **Framework**: Next.js 15 (App Router with Server Actions)
@@ -96,7 +96,7 @@ Master traffic signs, road laws, and driving theory with an interactive, bilingu
 
 ---
 
-## 🎨 Design System
+## Design System
 
 KWD follows a strict **Neo-Brutalist design philosophy** inspired by physical road safety signage and traffic-light color palettes:
 
@@ -114,7 +114,7 @@ KWD follows a strict **Neo-Brutalist design philosophy** inspired by physical ro
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 kesararam/
@@ -142,7 +142,7 @@ kesararam/
 
 ---
 
-## 🎮 Game Modes & Scoring Engine
+## Game Modes & Scoring Engine
 
 ### Interactive Question Formats
 1. **Quiz (Multiple Choice)**: Standard 4-option questions.
@@ -175,7 +175,7 @@ kesararam/
 
 ---
 
-## 🔐 Security & Rate Limiting
+## Security & Rate Limiting
 
 The platform implements robust authentication mechanisms backed by targeted rate limit thresholds to prevent bot abuse and room-code guessing:
 
@@ -193,7 +193,7 @@ The platform implements robust authentication mechanisms backed by targeted rate
 
 ---
 
-## 💻 Development Scripts Reference
+## Development Scripts Reference
 
 Execute tasks in the project root directory using `npm run <script-name>`:
 
@@ -212,7 +212,7 @@ Execute tasks in the project root directory using `npm run <script-name>`:
 
 ---
 
-## 📝 Contributing & License
+## Contributing & License
 
 1. Create a feature branch off the `docs` or `main` branches.
 2. Ensure you run `npm run lint` and `npm run test` locally to verify that all type checks pass.
