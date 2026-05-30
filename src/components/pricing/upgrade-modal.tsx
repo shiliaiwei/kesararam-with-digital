@@ -193,9 +193,21 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
 
                   {/* Price */}
                   <div className="flex items-end gap-1.5 mb-0.5 flex-wrap">
-                    <span className="text-4xl font-black text-white leading-none">${price}</span>
-                    <span className="text-white/35 text-xs mb-1" style={khFont}>{kh ? "USD/ខែ" : "USD/mo"}</span>
-                    <span className="line-through text-white/20 text-xs ml-1.5 mb-1">${stdPrice}</span>
+                    {plan.key === "teacher_pro" ? (
+                      <>
+                        <span className="text-4xl font-black text-white leading-none">${price}</span>
+                        <span className="text-white/35 text-xs mb-1" style={khFont}>{kh ? "USD/ខែ" : "USD/mo"}</span>
+                        <span className="line-through text-white/20 text-xs ml-1.5 mb-1">${stdPrice}</span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="text-3xl font-black text-white leading-none">
+                          {yearly ? "$15 - $18.75" : "$19 - $24"}
+                        </span>
+                        <span className="text-white/35 text-xs mb-1" style={khFont}>{kh ? "USD/ខែ" : "USD/mo"}</span>
+                        <span className="line-through text-white/20 text-xs ml-1.5 mb-1">${yearly ? "36.75" : "49"}</span>
+                      </>
+                    )}
                   </div>
                   <p className="text-white/35 text-xs mb-3" style={khFont}>
                     {kh ? plan.tagline.kh : plan.tagline.en}
