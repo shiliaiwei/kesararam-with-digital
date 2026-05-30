@@ -594,7 +594,7 @@ export default function StudentGamePage() {
           />
         </div>
 
-        <div className="relative z-10 flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full justify-center overflow-y-auto min-h-0">
+        <div className="relative z-10 flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full justify-start sm:justify-center overflow-y-auto min-h-0">
           <div className="flex items-center justify-between gap-2 px-2 py-1.5 w-full bg-zinc-900/60 border border-zinc-800/80 rounded-xl h-14 flex-shrink-0">
             <div className="flex items-center gap-2 overflow-x-auto no-scrollbar flex-nowrap">
               <span className="shrink-0 text-zinc-300 text-xs font-black uppercase tracking-widest bg-zinc-800 px-3 py-1.5 rounded-lg border border-zinc-700/80" style={khFont}>
