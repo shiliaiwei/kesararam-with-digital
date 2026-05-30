@@ -26,6 +26,7 @@ interface PricingCardsProps {
 
 export function PricingCards({ lang = "en" }: PricingCardsProps) {
   const [yearly, setYearly] = useState(false);
+  const [promo, setPromo] = useState(true);
   const [selectedPlan, setSelectedPlan] = useState<"teacher_pro" | "school_public" | "school_private">("teacher_pro");
   
   const kh = lang === "kh";
@@ -39,8 +40,10 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
     }
     if (planKey === "teacher_pro") {
       setSelectedPlan("teacher_pro");
-    } else if (planKey === "school") {
+    } else if (planKey === "school" || planKey === "school_public") {
       setSelectedPlan("school_public");
+    } else if (planKey === "institute" || planKey === "school_private") {
+      setSelectedPlan("school_private");
     }
 
     setTimeout(() => {
@@ -59,17 +62,29 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
     let labelKh = "";
 
     if (selectedPlan === "teacher_pro") {
-      usd = yearly ? 40 : 5;
-      labelEn = yearly ? "Teacher Pro (Annual — 4 Mos Free)" : "Teacher Pro (Monthly)";
-      labelKh = yearly ? "គ្រូ Pro (ប្រចាំឆ្នាំ — ឥតគិតថ្លៃ ៤ ខែ)" : "គ្រូ Pro (ប្រចាំខែ)";
+      usd = promo ? (yearly ? 40 : 5) : (yearly ? 80 : 10);
+      labelEn = yearly 
+        ? `Teacher Pro (Annual — ${promo ? "Promo 50% Off / " : ""}4 Mos Free)` 
+        : `Teacher Pro (Monthly${promo ? " — Promo 50% Off" : ""})`;
+      labelKh = yearly 
+        ? `គ្រូ Pro (ប្រចាំឆ្នាំ — ${promo ? "ប្រូម៉ូសិនចុះថ្លៃ ៥០% / " : ""}ឥតគិតថ្លៃ ៤ ខែ)` 
+        : `គ្រូ Pro (ប្រចាំខែ${promo ? " — ប្រូម៉ូសិនចុះថ្លៃ ៥០%" : ""})`;
     } else if (selectedPlan === "school_public") {
-      usd = yearly ? 180 : 19;
-      labelEn = yearly ? "School Public (Annual — 3 Mos Free)" : "School Public (Monthly)";
-      labelKh = yearly ? "សាលារដ្ឋ / វិទ្យាស្ថាន (ប្រចាំឆ្នាំ — ឥតគិតថ្លៃ ៣ ខែ)" : "សាលារដ្ឋ / វិទ្យាស្ថាន (ប្រចាំខែ)";
+      usd = promo ? (yearly ? 180 : 19) : (yearly ? 360 : 39);
+      labelEn = yearly 
+        ? `School Plan (Annual — ${promo ? "Promo / " : ""}3 Mos Free)` 
+        : `School Plan (Monthly${promo ? " — Promo" : ""})`;
+      labelKh = yearly 
+        ? `ផែនការសាលារៀន (ប្រចាំឆ្នាំ — ${promo ? "ប្រូម៉ូសិន / " : ""}ឥតគិតថ្លៃ ៣ ខែ)` 
+        : `ផែនការសាលារៀន (ប្រចាំខែ${promo ? " — ប្រូម៉ូសិន" : ""})`;
     } else if (selectedPlan === "school_private") {
-      usd = yearly ? 225 : 24;
-      labelEn = yearly ? "School Private (Annual — 3 Mos Free)" : "School Private (Monthly)";
-      labelKh = yearly ? "សាលាឯកជន / វិទ្យាស្ថាន (ប្រចាំឆ្នាំ — ឥតគិតថ្លៃ ៣ ខែ)" : "សាលាឯកជន / វិទ្យាស្ថាន (ប្រចាំខែ)";
+      usd = promo ? (yearly ? 225 : 24) : (yearly ? 440 : 49);
+      labelEn = yearly 
+        ? `Institute Plan (Annual — ${promo ? "Promo / " : ""}3 Mos Free)` 
+        : `Institute Plan (Monthly${promo ? " — Promo" : ""})`;
+      labelKh = yearly 
+        ? `ផែនការវិទ្យាស្ថាន (ប្រចាំឆ្នាំ — ${promo ? "ប្រូម៉ូសិន / " : ""}ឥតគិតថ្លៃ ៣ ខែ)` 
+        : `ផែនការវិទ្យាស្ថាន (ប្រចាំខែ${promo ? " — ប្រូម៉ូសិន" : ""})`;
     }
 
     return {
@@ -100,40 +115,64 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
         </p>
 
         {/* Urgency Alert Block */}
-        <div className="max-w-xl mx-auto bg-amber-500/10 border border-amber-500/30 rounded-2xl p-4 mt-6 text-sm text-amber-300 font-semibold" style={khFont}>
-          {kh 
-            ? "🔥 រួសរាន់ឡើង! បញ្ចុះតម្លៃ ៥០% លើការប្រើប្រាស់គេហទំព័រស្តង់ដាររហូតដល់ដាច់ឆ្នាំ ២០២៦។ ចុះឈ្មោះឥឡូវនេះដើម្បីរក្សាតម្លៃពិសេសនេះ!" 
-            : "🔥 Act now! 50% OFF standard usage on Web is active through end of 2026. Lock in this pricing now before rates adjust to standard!"}
-        </div>
+        {promo && (
+          <div className="max-w-xl mx-auto bg-amber-500/10 border border-amber-500/30 rounded-2xl p-4 mt-6 text-sm text-amber-300 font-semibold" style={khFont}>
+            {kh 
+              ? "🔥 រួសរាន់ឡើង! បញ្ចុះតម្លៃ ៥០% លើការប្រើប្រាស់គេហទំព័រស្តង់ដាររហូតដល់ដាច់ឆ្នាំ ២០២៦។ ចុះឈ្មោះឥឡូវនេះដើម្បីរក្សាតម្លៃពិសេសនេះ!" 
+              : "🔥 Act now! 50% OFF standard usage on Web is active through end of 2026. Lock in this pricing now before rates adjust to standard!"}
+          </div>
+        )}
 
-        {/* Yearly / Monthly toggle */}
-        <div className="flex items-center justify-center gap-3 mt-8">
-          <span className={`text-sm font-bold transition-colors ${!yearly ? "text-white" : "text-white/40"}`} style={khFont}>
-            {kh ? "ប្រចាំខែ" : "Monthly"}
-          </span>
-          <button
-            onClick={() => setYearly(!yearly)}
-            role="switch"
-            aria-checked={yearly}
-            className={`relative w-14 h-7 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${yearly ? "bg-amber-400" : "bg-white/20"}`}
-          >
-            <span className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300 ${yearly ? "translate-x-7" : "translate-x-0"}`} />
-          </button>
-          <span className={`text-sm font-bold transition-colors flex items-center gap-1.5 ${yearly ? "text-white" : "text-white/40"}`} style={khFont}>
-            {selectedPlan === "teacher_pro"
-              ? (kh ? "ប្រចាំឆ្នាំ (ឥតគិតថ្លៃ ៤ ខែ)" : "Yearly (4 Months Free!)")
-              : (kh ? "ប្រចាំឆ្នាំ (ឥតគិតថ្លៃ ៣ ខែ)" : "Yearly (3 Months Free!)")}
-            <span className="ml-1.5 text-xs bg-green-500/20 text-green-400 px-2.5 py-0.5 rounded-full font-black">
-              {selectedPlan === "teacher_pro"
-                ? (kh ? "សន្សំ ៣៣%" : "Save 33%")
-                : (kh ? "សន្សំ ២៥%" : "Save 25%")}
+        {/* Double switches for Billing Cycle and Promo Status */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8 sm:gap-12 bg-white/5 border border-white/10 rounded-2xl p-4 max-w-2xl mx-auto">
+          {/* Yearly / Monthly toggle */}
+          <div className="flex items-center gap-3">
+            <span className={`text-sm font-bold transition-colors ${!yearly ? "text-white" : "text-white/40"}`} style={khFont}>
+              {kh ? "ប្រចាំខែ" : "Monthly"}
             </span>
-          </span>
+            <button
+              onClick={() => setYearly(!yearly)}
+              role="switch"
+              aria-checked={yearly}
+              className={`relative w-14 h-7 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${yearly ? "bg-amber-400" : "bg-white/20"}`}
+            >
+              <span className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300 ${yearly ? "translate-x-7" : "translate-x-0"}`} />
+            </button>
+            <span className={`text-sm font-bold transition-colors flex items-center gap-1.5 ${yearly ? "text-white" : "text-white/40"}`} style={khFont}>
+              {kh ? "ប្រចាំឆ្នាំ" : "Yearly"}
+              <span className="ml-1 text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full font-black">
+                {kh ? "ឥតគិតថ្លៃ ៣-៤ ខែ" : "3-4 Mos Free"}
+              </span>
+            </span>
+          </div>
+
+          <div className="hidden sm:block h-6 w-px bg-white/10" />
+
+          {/* Promo Discount Toggle */}
+          <div className="flex items-center gap-3">
+            <span className={`text-sm font-bold transition-colors ${!promo ? "text-white" : "text-white/40"}`} style={khFont}>
+              {kh ? "តម្លៃធម្មតា" : "Standard Price"}
+            </span>
+            <button
+              onClick={() => setPromo(!promo)}
+              role="switch"
+              aria-checked={promo}
+              className={`relative w-14 h-7 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-400 ${promo ? "bg-green-400" : "bg-white/20"}`}
+            >
+              <span className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300 ${promo ? "translate-x-7" : "translate-x-0"}`} />
+            </button>
+            <span className={`text-sm font-bold transition-colors flex items-center gap-1.5 ${promo ? "text-white" : "text-white/40"}`} style={khFont}>
+              {kh ? "តម្លៃប្រូម៉ូសិន" : "Promo Discount"}
+              <span className="ml-1 text-xs bg-amber-400 text-black px-2 py-0.5 rounded-full font-black animate-pulse">
+                {kh ? "ចុះ ៥០%" : "50% Off"}
+              </span>
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* ── Three Pricing Cards ── */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+      {/* ── Four Pricing Cards Grid ── */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
         
         {/* Tier 1: Free */}
         <div className="bg-white/5 border border-white/10 hover:border-white/25 rounded-2xl p-6 flex flex-col transition-all duration-200 group">
@@ -208,16 +247,22 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
             <div className="flex flex-col mb-2">
               <div className="flex items-end gap-2">
                 <span className="text-4xl font-black text-white">
-                  {yearly ? "$40" : "$5"}
+                  {promo ? (yearly ? "$40" : "$5") : (yearly ? "$80" : "$10")}
                 </span>
                 <span className="text-white/50 text-sm mb-1" style={khFont}>
                   {yearly ? (kh ? "USD/ឆ្នាំ" : "USD/year") : (kh ? "USD/ខែ" : "USD/month")}
                 </span>
               </div>
               <div className="text-xs font-bold text-zinc-400 mt-1">
-                {kh ? "តម្លៃធម្មតា: " : "Standard: " }
-                <span className="line-through text-white/40">{yearly ? "$80" : "$10"}</span>
-                <span className="text-green-400 ml-2">({kh ? "ចុះ ៥០%" : "50% Off"})</span>
+                {promo ? (
+                  <>
+                    {kh ? "តម្លៃធម្មតា: " : "Standard: " }
+                    <span className="line-through text-white/40">{yearly ? "$80" : "$10"}</span>
+                    <span className="text-green-400 ml-2">({kh ? "ចុះ ៥០%" : "50% Off"})</span>
+                  </>
+                ) : (
+                  <span className="text-zinc-500">{kh ? "តម្លៃស្តង់ដារពេញ" : "Full Standard Rate"}</span>
+                )}
               </div>
             </div>
 
@@ -256,50 +301,46 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
           </div>
         </div>
 
-        {/* Tier 3: School & Institute */}
+        {/* Tier 3: School */}
         <div className="bg-white/5 border border-white/10 hover:border-white/25 rounded-2xl p-6 flex flex-col transition-all duration-200 group">
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-2">
               <Building2 size={20} className="text-purple-400" />
               <span className="text-sm font-bold text-purple-400" style={khFont}>
-                {kh ? "សាលា & វិទ្យាស្ថាន" : "School & Institute"}
+                {kh ? "សាលារៀន" : "School Plan"}
               </span>
             </div>
 
-            {/* Unified School & Institute Pricing Concept */}
-            <div className="flex flex-col gap-3 my-3 bg-purple-500/10 border border-purple-500/20 rounded-xl p-4">
-              <div className="flex justify-between items-baseline">
-                <span className="text-sm font-black text-purple-300" style={khFont}>
-                  {kh ? "សាលារដ្ឋ / វិទ្យាស្ថាន" : "Public School"}
+            {/* Price section showing standard and promo */}
+            <div className="flex flex-col mb-2">
+              <div className="flex items-end gap-2">
+                <span className="text-4xl font-black text-white">
+                  {promo ? (yearly ? "$180" : "$19") : (yearly ? "$360" : "$39")}
                 </span>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-2xl font-black text-white">${yearly ? 180 : 19}</span>
-                  <span className="text-white/40 text-xs">{yearly ? (kh ? "USD/ឆ្នាំ" : "USD/yr") : (kh ? "USD/ខែ" : "USD/mo")}</span>
-                </div>
-              </div>
-              <div className="flex justify-between items-baseline border-t border-purple-500/10 pt-3">
-                <span className="text-sm font-black text-purple-300" style={khFont}>
-                  {kh ? "សាលាឯកជន / វិទ្យាស្ថាន" : "Private School"}
+                <span className="text-white/50 text-sm mb-1" style={khFont}>
+                  {yearly ? (kh ? "USD/ឆ្នាំ" : "USD/year") : (kh ? "USD/ខែ" : "USD/month")}
                 </span>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-2xl font-black text-white">${yearly ? 225 : 24}</span>
-                  <span className="text-white/40 text-xs">{yearly ? (kh ? "USD/ឆ្នាំ" : "USD/yr") : (kh ? "USD/ខែ" : "USD/mo")}</span>
-                </div>
               </div>
-              <div className="border-t border-purple-500/10 pt-2 text-[10px] text-zinc-400 font-bold leading-normal" style={khFont}>
-                {kh 
-                  ? `តម្លៃធម្មតា៖ $49/ខែ។ សន្សំរហូតដល់ ${yearly ? "សន្សំរហូតដល់ $352/ឆ្នាំ" : "សន្សំ $30/ខែ"} (ចុះ ៥០-៦០%)`
-                  : `Standard price: $49/mo. Save up to ${yearly ? "$352/yr" : "$30/mo"} (50-60% Off)`}
+              <div className="text-xs font-bold text-zinc-400 mt-1">
+                {promo ? (
+                  <>
+                    {kh ? "តម្លៃធម្មតា: " : "Standard: " }
+                    <span className="line-through text-white/40">{yearly ? "$360" : "$39"}</span>
+                    <span className="text-green-400 ml-2">({kh ? "ចុះ ៥០%" : "50% Off"})</span>
+                  </>
+                ) : (
+                  <span className="text-zinc-500">{kh ? "តម្លៃស្តង់ដារពេញ" : "Full Standard Rate"}</span>
+                )}
               </div>
             </div>
 
-            <p className="text-white/40 text-xs mt-3" style={khFont}>
-              {kh ? "សម្រាប់សាលារៀន ស្ថាប័នអប់រំ និងសាលាបើកបរ" : "For schools, educational boards & driving schools"}
+            <p className="text-white/50 text-xs mt-2" style={khFont}>
+              {kh ? "សម្រាប់សាលារៀន និងគ្រឹះស្ថានអប់រំរដ្ឋ/ឯកជន" : "For primary, secondary & high schools"}
             </p>
           </div>
 
           <button
-            onClick={() => handleSelectPlan("school")}
+            onClick={() => handleSelectPlan("school_public")}
             className="w-full py-3 rounded-xl text-sm font-black transition-all mb-8 border border-purple-400 text-purple-300 hover:bg-purple-400/10"
             style={khFont}
           >
@@ -317,6 +358,72 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
               { en: "Admin class management dashboard", kh: "ផ្ទាំងគ្រប់គ្រងថ្នាក់ Admin" },
               { en: "Priority support & onboarding", kh: "ជំនួយអាទិភាព និងការណែនាំ" },
               { en: "Custom branding options", kh: "ជម្រើសសញ្ញាផ្ទាល់ខ្លួន" },
+            ].map((f, i) => (
+              <div key={i} className="flex items-start gap-2">
+                <Check size={14} className="text-purple-400 mt-0.5 shrink-0" />
+                <span className="text-sm text-white/80" style={khFont}>{f.kh}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Tier 4: Institute */}
+        <div className="bg-white/5 border border-white/10 hover:border-white/25 rounded-2xl p-6 flex flex-col transition-all duration-200 group">
+          <div className="mb-6">
+            <div className="flex items-center gap-2 mb-2">
+              <Building2 size={20} className="text-purple-400" />
+              <span className="text-sm font-bold text-purple-400" style={khFont}>
+                {kh ? "វិទ្យាស្ថាន" : "Institute Plan"}
+              </span>
+            </div>
+
+            {/* Price section showing standard and promo */}
+            <div className="flex flex-col mb-2">
+              <div className="flex items-end gap-2">
+                <span className="text-4xl font-black text-white">
+                  {promo ? (yearly ? "$225" : "$24") : (yearly ? "$440" : "$49")}
+                </span>
+                <span className="text-white/50 text-sm mb-1" style={khFont}>
+                  {yearly ? (kh ? "USD/ឆ្នាំ" : "USD/year") : (kh ? "USD/ខែ" : "USD/month")}
+                </span>
+              </div>
+              <div className="text-xs font-bold text-zinc-400 mt-1">
+                {promo ? (
+                  <>
+                    {kh ? "តម្លៃធម្មតា: " : "Standard: " }
+                    <span className="line-through text-white/40">{yearly ? "$440" : "$49"}</span>
+                    <span className="text-green-400 ml-2">({kh ? "ចុះ ៥០%" : "50% Off"})</span>
+                  </>
+                ) : (
+                  <span className="text-zinc-500">{kh ? "តម្លៃស្តង់ដារពេញ" : "Full Standard Rate"}</span>
+                )}
+              </div>
+            </div>
+
+            <p className="text-white/50 text-xs mt-2" style={khFont}>
+              {kh ? "សម្រាប់វិទ្យាស្ថានបណ្តុះបណ្តាល និងសាលាបើកបរ" : "For training institutes & driving schools"}
+            </p>
+          </div>
+
+          <button
+            onClick={() => handleSelectPlan("school_private")}
+            className="w-full py-3 rounded-xl text-sm font-black transition-all mb-8 border border-purple-400 text-purple-300 hover:bg-purple-400/10"
+            style={khFont}
+          >
+            {kh ? "ជ្រើសរើស ផែនការវិទ្យាស្ថាន" : "Select Institute Plan"}
+          </button>
+
+          <div className="flex flex-col gap-3 flex-1">
+            <p className="text-xs text-purple-400 uppercase tracking-widest font-black" style={khFont}>
+              {kh ? "អ្វីដែលរួមបញ្ចូល" : "What's included"}
+            </p>
+            {[
+              { en: "Everything in School Plan", kh: "អ្វីៗទាំងអស់ក្នុងផែនការសាលារៀន" },
+              { en: "Up to 30 teacher accounts", kh: "រហូតដល់ ៣០ គណនីគ្រូ" },
+              { en: "Up to 500 students per session", kh: "រហូតដល់ ៥០០ សិស្ស/វគ្គ" },
+              { en: "Advanced analytics & insights", kh: "ការវិភាគ និងទិន្នន័យកម្រិតខ្ពស់" },
+              { en: "Dedicated account manager", kh: "អ្នកគ្រប់គ្រងគណនីផ្ទាល់ខ្លួន" },
+              { en: "White-labeled portal options", kh: "ជម្រើសផតថលគ្មានស្លាក KWD" },
             ].map((f, i) => (
               <div key={i} className="flex items-start gap-2">
                 <Check size={14} className="text-purple-400 mt-0.5 shrink-0" />
@@ -345,88 +452,66 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
             </div>
           </div>
           
-          <div className="flex items-center gap-2 bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-black px-3.5 py-1.5 rounded-full" style={khFont}>
-            <span className="w-2 h-2 bg-green-400 rounded-full animate-ping" />
-            {kh ? "បញ្ចុះតម្លៃ ៥០% រួចរាល់" : "50% Discount Applied"}
-          </div>
+          {promo && (
+            <div className="flex items-center gap-2 bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-black px-3.5 py-1.5 rounded-full" style={khFont}>
+              <span className="w-2 h-2 bg-green-400 rounded-full animate-ping" />
+              {kh ? "ប្រូម៉ូសិនចុះថ្លៃត្រូវបានអនុវត្ត" : "Promo Discount Applied"}
+            </div>
+          )}
         </div>
 
         <div className="p-6 md:p-8 grid md:grid-cols-12 gap-8">
           
-          {/* Left Column: Pricing Summary & Savings (No switches!) */}
+          {/* Left Column: Interactive Selector & Invoice */}
           <div className="md:col-span-7 flex flex-col gap-6">
             <div>
               <label className="text-xs font-black uppercase text-zinc-400 tracking-wider block mb-3" style={khFont}>
-                {kh ? "១. រចនាសម្ព័ន្ធតម្លៃ និងការសន្សំសំចៃ" : "1. Pricing & Savings Summary"}
+                {kh ? "១. ជ្រើសរើសផែនការជាវ" : "1. Choose Your Plan Tier"}
               </label>
               
-              <div className="flex flex-col bg-white/5 border border-white/10 rounded-2xl p-5 gap-4">
-                {/* Teacher Pro */}
-                <div className="flex flex-col gap-1 pb-3 border-b border-white/5">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-black text-white" style={khFont}>
-                      {kh ? "គ្រូ Pro (Teacher Pro)" : "Teacher Pro"}
+              <div className="flex flex-col gap-2">
+                {[
+                  { id: "teacher_pro", label: kh ? "គ្រូ Pro (Teacher Pro)" : "Teacher Pro", color: "border-amber-400/50" },
+                  { id: "school_public", label: kh ? "សាលារៀន (School Plan)" : "School Plan", color: "border-purple-400/50" },
+                  { id: "school_private", label: kh ? "វិទ្យាស្ថាន (Institute Plan)" : "Institute Plan", color: "border-purple-400/50" }
+                ].map((plan) => (
+                  <button
+                    key={plan.id}
+                    onClick={() => setSelectedPlan(plan.id as any)}
+                    className={`flex items-center justify-between p-4 border text-left rounded-xl transition-all ${
+                      selectedPlan === plan.id 
+                        ? "bg-white/10 border-white text-white font-black scale-[1.01]" 
+                        : "bg-white/5 border-white/10 text-white/60 hover:bg-white/7"
+                    }`}
+                    style={khFont}
+                  >
+                    <span>{plan.label}</span>
+                    <span className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${selectedPlan === plan.id ? "border-amber-400" : "border-white/20"}`}>
+                      {selectedPlan === plan.id && <span className="w-2 h-2 bg-amber-400 rounded-full" />}
                     </span>
-                    <span className="text-base font-black text-amber-400">
-                      $5<span className="text-xs text-white/40">/{kh?"ខែ":"mo"}</span>
-                      {" / "}
-                      $40<span className="text-xs text-white/40">/{kh?"ឆ្នាំ":"yr"}</span>
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center text-[11px]">
-                    <span className="text-green-400 font-bold" style={khFont}>
-                      {kh ? "🔥 ចុះថ្លៃ ៥០% + ឥតគិតថ្លៃ ៤ ខែប្រចាំឆ្នាំ (សន្សំ ៣៣%)" : "🔥 50% Off + 4 Mos Free Yearly (Save 33%)"}
-                    </span>
-                    <span className="text-zinc-500 font-bold">
-                      ~20,500៛ / ~164,000៛
-                    </span>
-                  </div>
-                </div>
+                  </button>
+                ))}
+              </div>
+            </div>
 
-                {/* School & Institute - Public */}
-                <div className="flex flex-col gap-1 pb-3 border-b border-white/5">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-black text-white" style={khFont}>
-                      {kh ? "សាលារដ្ឋ & វិទ្យាស្ថាន (Public School)" : "Public School & Institute"}
-                    </span>
-                    <span className="text-base font-black text-purple-300">
-                      $19<span className="text-xs text-white/40">/{kh?"ខែ":"mo"}</span>
-                      {" / "}
-                      $180<span className="text-xs text-white/40">/{kh?"ឆ្នាំ":"yr"}</span>
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center text-[11px]">
-                    <span className="text-green-400 font-bold" style={khFont}>
-                      {kh ? "🔥 ចុះថ្លៃ ៦០% + ឥតគិតថ្លៃ ៣ ខែប្រចាំឆ្នាំ (សន្សំ ២៥%)" : "🔥 60% Off + 3 Mos Free Yearly (Save 25%)"}
-                    </span>
-                    <span className="text-zinc-500 font-bold">
-                      ~77,900៛ / ~738,000៛
-                    </span>
-                  </div>
+            {/* Dynamic Invoice details */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-5 flex flex-col gap-3">
+              <div className="text-xs font-bold text-zinc-400 uppercase tracking-widest" style={khFont}>
+                {kh ? "សេចក្តីលម្អិតនៃការទូទាត់" : "Invoice details"}
+              </div>
+              
+              <div className="flex justify-between items-center py-2 border-b border-white/5">
+                <span className="text-sm text-white/70" style={khFont}>{checkout.name}</span>
+                <span className="font-bold text-white text-lg">${checkout.usd} USD</span>
+              </div>
+              <div className="flex justify-between items-center pt-2">
+                <span className="text-base font-black text-amber-400" style={khFont}>
+                  {kh ? "ប្រាក់ត្រូវទូទាត់សរុប (KHR):" : "Total to Pay (KHR):"}
+                </span>
+                <div className="text-right">
+                  <p className="text-2xl font-black text-amber-400">~ {checkout.khr.toLocaleString()} ៛</p>
+                  <p className="text-[10px] text-zinc-500 font-bold">@ 1 USD = 4,100 KHR</p>
                 </div>
-
-                {/* School & Institute - Private */}
-                <div className="flex flex-col gap-1">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-black text-white" style={khFont}>
-                      {kh ? "សាលាឯកជន & វិទ្យាស្ថាន (Private School)" : "Private School & Institute"}
-                    </span>
-                    <span className="text-base font-black text-purple-300">
-                      $24<span className="text-xs text-white/40">/{kh?"ខែ":"mo"}</span>
-                      {" / "}
-                      $225<span className="text-xs text-white/40">/{kh?"ឆ្នាំ":"yr"}</span>
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center text-[11px]">
-                    <span className="text-green-400 font-bold" style={khFont}>
-                      {kh ? "🔥 ចុះថ្លៃ ៥០% + ឥតគិតថ្លៃ ៣ ខែប្រចាំឆ្នាំ (សន្សំ ២៥%)" : "🔥 50% Off + 3 Mos Free Yearly (Save 25%)"}
-                    </span>
-                    <span className="text-zinc-500 font-bold">
-                      ~98,400៛ / ~922,500៛
-                    </span>
-                  </div>
-                </div>
-
               </div>
             </div>
 
@@ -458,7 +543,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
               <div className="bg-transparent border border-white/10 rounded-2xl p-4 flex flex-col items-center gap-3">
                 <div className="relative w-full aspect-square overflow-hidden rounded-xl border border-white/5 bg-black/40 flex items-center justify-center">
                   <img
-                    src="/khqr.jpg"
+                    src="/khqr.png"
                     alt="KWD KHQR Code"
                     className="w-full h-full object-contain"
                   />
@@ -466,7 +551,6 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                 
                 <div className="text-center">
                   <p className="text-xs font-black text-white leading-tight">KESARARAM WITH DIGITAL</p>
-                  <p className="text-[11px] text-amber-400 font-bold mt-1">ABA Bank: 005 777 507</p>
                 </div>
               </div>
             </div>
@@ -591,16 +675,16 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
         <div className="grid md:grid-cols-2 gap-x-8 gap-y-3">
           {[
             { 
-              en: "Pricing Promotion: Standard Teacher Pro rate is $10/month. The 50% discount ($5/month) is active on Web through December 31, 2026.", 
-              kh: "ការផ្សព្វផ្សាយតម្លៃ៖ តម្លៃធម្មតាសម្រាប់គ្រូ Pro គឺ ១០ ដុល្លារ/ខែ។ ការបញ្ចុះតម្លៃ ៥០% (៥ ដុល្លារ/ខែ) មានប្រសិទ្ធភាពរហូតដល់ថ្ងៃទី ៣១ ខែធ្នូ ឆ្នាំ ២០២៦។" 
+              en: "Pricing Promotion: Standard Teacher Pro rate is $10/month. Under promo (active through end of 2026), rates are discounted by 50% ($5/month). Standard rates for School are $39/mo ($360/yr) and Institute is $49/mo ($440/yr).", 
+              kh: "ការផ្សព្វផ្សាយតម្លៃ៖ តម្លៃធម្មតាសម្រាប់គ្រូ Pro គឺ ១០ ដុល្លារ/ខែ។ ក្រោមការបញ្ចុះតម្លៃប្រូម៉ូសិន (មានប្រសិទ្ធភាពរហូតដល់ចុងឆ្នាំ ២០២៦) តម្លៃត្រូវបានបញ្ចុះ ៥០% (៥ ដុល្លារ/ខែ)។ តម្លៃធម្មតាសម្រាប់សាលារៀនគឺ ៣៩ ដុល្លារ/ខែ (៣៦០ ដុល្លារ/ឆ្នាំ) និងវិទ្យាស្ថានគឺ ៤៩ ដុល្លារ/ខែ (៤៤០ ដុល្លារ/ឆ្នាំ)។" 
             },
             { 
-              en: "Annual Package (4 Months Free for Teacher Pro): Subscribers to 1-year plans receive a 4-month free discount for Teacher Pro ($40/year promo, $80/year standard) and a 3-month free discount for School plans ($180/year public promo, $225/year private promo).", 
-              kh: "កញ្ចប់ប្រចាំឆ្នាំ (ឥតគិតថ្លៃ ៤ ខែសម្រាប់គ្រូ Pro)៖ ការជាវប្រចាំឆ្នាំទទួលបានការបញ្ចុះតម្លៃ ៤ ខែឥតគិតថ្លៃសម្រាប់គ្រូ Pro (៤០ ដុល្លារ/ឆ្នាំ) ឬ ៣ ខែឥតគិតថ្លៃសម្រាប់សាលា (១៨០/២២៥ ដុល្លារ/ឆ្នាំ)។" 
+              en: "Annual Package (4 Months Free for Teacher Pro): Subscribers to 1-year plans receive 4 months free for Teacher Pro ($40/year promo, $80/year standard) and 3 months free for School plans ($180/year promo, $360/year standard) and Institute plans ($225/year promo, $440/year standard).", 
+              kh: "កញ្ចប់ប្រចាំឆ្នាំ៖ ការជាវប្រចាំឆ្នាំទទួលបានការបញ្ចុះតម្លៃ ៤ ខែឥតគិតថ្លៃសម្រាប់គ្រូ Pro (៤០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៨០ ដុល្លារ/ឆ្នាំ ធម្មតា) និង ៣ ខែឥតគិតថ្លៃសម្រាប់សាលារៀន (១៨០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៣៦០ ដុល្លារ/ឆ្នាំ ធម្មតា) និងវិទ្យាស្ថាន (២២៥ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៤៤០ ដុល្លារ/ឆ្នាំ ធម្មតា)។" 
             },
             { 
-              en: "School & Institution Structure: Pricing covers public schools, private schools, and training institutes. Public tier is $19/mo ($180/yr), Private tier is $24/mo ($225/yr) under promo.", 
-              kh: "រចនាសម្ព័ន្ធសាលា និងស្ថាប័ន៖ តម្លៃគ្របដណ្តប់ទាំងសាលារដ្ឋ សាលាឯកជន និងវិទ្យាស្ថានបណ្តុះបណ្តាល។ ផ្នែកសាលារដ្ឋគឺ ១៩ ដុល្លារ/ខែ (១៨០ ដុល្លារ/ឆ្នាំ) និងសាលាឯកជនគឺ ២៤ ដុល្លារ/ខែ (២២៥ ដុល្លារ/ឆ្នាំ)។" 
+              en: "School & Institute Structure: Pricing covers schools and training institutes. Under promo, School plan is $19/mo ($180/yr) and Institute plan is $24/mo ($225/yr).", 
+              kh: "រចនាសម្ព័ន្ធសាលារៀន និងវិទ្យាស្ថាន៖ តម្លៃគ្របដណ្តប់ទាំងសាលារៀន និងវិទ្យាស្ថានបណ្តុះបណ្តាល។ ក្រោមតម្លៃប្រូម៉ូសិន ផែនការសាលារៀនគឺ ១៩ ដុល្លារ/ខែ (១៨០ ដុល្លារ/ឆ្នាំ) និងផែនការវិទ្យាស្ថានគឺ ២៤ ដុល្លារ/ខែ (២២៥ ដុល្លារ/ឆ្នាំ)។" 
             },
             { 
               en: "Billing & Cancellation: Subscriptions are billed monthly or annually. You can cancel at any time. Active access remains until the current cycle expires.", 
