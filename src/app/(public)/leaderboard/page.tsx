@@ -1075,8 +1075,8 @@ export default function LeaderboardPage() {
                       <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse" />
                       {kh ? "ថ្នាក់របស់អ្នក" : "Your Rank"}
                     </div>
-                    <p className="text-xs text-zinc-500" style={kf}>
-                      {kh ? "ប្រមូលពិន្ទុ → ដំឡើងថ្នាក់ → ទទួលបានស្លាកពិសេស" : "Earn points → Level up → Unlock exclusive labels"}
+                    <p className="text-xs text-zinc-500">
+                      Earn points → Level up → Unlock exclusive labels
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
