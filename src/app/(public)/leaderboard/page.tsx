@@ -21,6 +21,20 @@ import {
   Info
 } from "lucide-react";
 
+// ─── BRAND COLORS ─────────────────────────────────────────────────────────────
+const BRAND = {
+  yellow: "#eab308",
+  yellowDark: "#ca8a04",
+  red: "#ef4444",
+  blue: "#3b82f6",
+  green: "#22c55e",
+  purple: "#a855f7",
+  orange: "#f97316",
+  cyan: "#06b6d4",
+  black: "#000000",
+  white: "#ffffff",
+};
+
 // ── Types ─────────────────────────────────────────────────────────────────────
 
 interface LeaderboardUser {
