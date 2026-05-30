@@ -86,6 +86,9 @@ function Avatar({ url, name, size = 40, ring, changedAt }: {
       try {
         const data = JSON.parse(trimmed) as { face?: string; head?: string };
         if (data && (data.face || data.head)) {
+          if (data.head && !data.face) {
+            data.face = "Smile.svg";
+          }
           return data;
         }
       } catch {
@@ -248,38 +251,46 @@ function PodiumCard({ user, cfg, index, currentUser }: {
         
         {/* Creative Rank Emblem/Medal */}
         <div 
-          className="relative rounded-full flex items-center justify-center border-4 border-black shadow-[4px_4px_0_#000] overflow-hidden transition-transform duration-300 hover:rotate-12"
+          className="relative rounded-full flex items-center justify-center border-4 border-black shadow-[4px_4px_0_#000] overflow-hidden transition-transform duration-300 hover:scale-110"
           style={{ 
             width: isFirst ? 80 : 64,
             height: isFirst ? 80 : 64,
             background: cfg.pedestalBg, 
-            animation: isFirst ? "rankShimmer 3s ease infinite" : undefined,
+            animation: isFirst 
+              ? "float 3s ease-in-out infinite" 
+              : cfg.rank === 2 
+                ? "float 3.4s ease-in-out infinite" 
+                : "float 3.8s ease-in-out infinite",
           }}
         >
-          {/* Inner circle with Rank Initials & Icon */}
-          <div 
-            className="rounded-full bg-black flex flex-col items-center justify-center border-2 border-white/10 relative"
-            style={{
-              width: isFirst ? 58 : 46,
-              height: isFirst ? 58 : 46,
-            }}
-          >
-            <span 
-              className="font-black text-white font-mono leading-none tracking-tight"
+          {userAvatar && (userAvatar.trim().startsWith("{") || userAvatar.startsWith("http") || userAvatar.startsWith("/")) ? (
+            <Avatar url={userAvatar} name={name} size={isFirst ? 72 : 56} changedAt={user?.avatarChangedAt} />
+          ) : (
+            /* Inner circle with Rank Initials & Icon if no avatar */
+            <div 
+              className="rounded-full bg-black flex flex-col items-center justify-center border-2 border-white/10 relative"
               style={{
-                fontSize: isFirst ? "14px" : "11px",
+                width: isFirst ? 58 : 46,
+                height: isFirst ? 58 : 46,
               }}
             >
-              {initials}
-            </span>
-            {isFirst ? (
-              <Trophy size={isFirst ? 16 : 12} className="text-yellow-400 mt-1" />
-            ) : cfg.rank === 2 ? (
-              <Award size={isFirst ? 16 : 12} className="text-slate-300 mt-1" />
-            ) : (
-              <Star size={isFirst ? 16 : 12} className="text-orange-400 mt-1" />
-            )}
-          </div>
+              <span 
+                className="font-black text-white font-mono leading-none tracking-tight"
+                style={{
+                  fontSize: isFirst ? "14px" : "11px",
+                }}
+              >
+                {initials}
+              </span>
+              {isFirst ? (
+                <Trophy size={isFirst ? 16 : 12} className="text-yellow-400 mt-1" />
+              ) : cfg.rank === 2 ? (
+                <Award size={isFirst ? 16 : 12} className="text-slate-300 mt-1" />
+              ) : (
+                <Star size={isFirst ? 16 : 12} className="text-orange-400 mt-1" />
+              )}
+            </div>
+          )}
         </div>
 
         <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 scale-75 md:scale-100"><RankBadge rank={cfg.rank} /></div>
@@ -363,6 +374,10 @@ function ClaimBurst({ color }: { color: string }) {
         @keyframes burstOut {
           0%   { opacity:1; transform: rotate(var(--a,0deg)) translateY(0px) scale(1); }
           100% { opacity:0; transform: rotate(var(--a,0deg)) translateY(-48px) scale(0.3); }
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-5px); }
         }
       `}</style>
     </div>
