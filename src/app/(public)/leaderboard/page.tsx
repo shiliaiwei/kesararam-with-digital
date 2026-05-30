@@ -469,13 +469,27 @@ function ClaimBurst({ color }: { color: string }) {
   );
 }
 
+// Cooldown durations in milliseconds for each rank tier
+const TIER_COOLDOWNS: Record<string, number> = {
+  rookie: 365 * 24 * 60 * 60 * 1000,    // 1 year
+  debut: 365 * 24 * 60 * 60 * 1000,     // 1 year
+  gold: 182 * 24 * 60 * 60 * 1000,      // 6 months (half year)
+  platinum: 60 * 24 * 60 * 60 * 1000,   // 2 months
+  diamond: 30 * 24 * 60 * 60 * 1000,    // 1 month
+  mythic: 7 * 24 * 60 * 60 * 1000,      // 1 week
+};
+
 // ── REWARD CARD (Brutalist Premium Redesign) ──────────────────────────────────
-function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang }: {
+function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimePoints = 0 }: {
   item: typeof REWARD_ITEMS[number]; userPoints: number;
   isLoggedIn: boolean; onClaim: (item: typeof REWARD_ITEMS[number]) => void; lang: string;
+  userLifetimePoints?: number;
 }) {
   const kh = lang === "kh";
   const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+
+  const userRank = getRank(userLifetimePoints);
+  const cooldownMs = TIER_COOLDOWNS[userRank.id] ?? TIER_COOLDOWNS.rookie;
 
   const claimDataKey = `kwd_claim_data_${item.id}`;
   const [claimData, setClaimData] = useState(() => {
@@ -502,9 +516,8 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang }: {
   const claimCount = claimData.claimCount;
   const lastClaimedAt = claimData.lastClaimedAt;
 
-  const ONE_YEAR_MS = 365 * 24 * 60 * 60 * 1000;
-  const claimed = lastClaimedAt !== null && (Date.now() - lastClaimedAt < ONE_YEAR_MS);
-  const msRemaining = lastClaimedAt ? (lastClaimedAt + ONE_YEAR_MS) - Date.now() : 0;
+  const claimed = lastClaimedAt !== null && (Date.now() - lastClaimedAt < cooldownMs);
+  const msRemaining = lastClaimedAt ? (lastClaimedAt + cooldownMs) - Date.now() : 0;
   const daysRemaining = Math.max(0, Math.ceil(msRemaining / (24 * 60 * 60 * 1000)));
 
   const [hovered, setHovered] = useState(false);
@@ -736,6 +749,31 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang }: {
               style={kf}>
               <span>{kh ? `ត្រូវការ ${pointsNeeded.toLocaleString()} ពិន្ទុ` : `NEED ${pointsNeeded.toLocaleString()} PTS`}</span>
             </button>
+          )}
+        </div>
+
+        {/* Dynamic Cooldown Tier Hint (Psychology of Reward & Progress) */}
+        <div className="text-center mt-2 border-t border-zinc-100 pt-2 pointer-events-none">
+          {userRank.id === "rookie" || userRank.id === "debut" ? (
+            <span className="text-[8.5px] text-zinc-400 font-bold block leading-normal" style={kf}>
+              {kh ? "💡 ឡើងថ្នាក់មាសដើម្បីឱ្យការរង់ចាំសល់ត្រឹម ៦ខែ!" : "💡 Level up to Gold to reset claims in 6 months!"}
+            </span>
+          ) : userRank.id === "gold" ? (
+            <span className="text-[8.5px] text-yellow-600 font-extrabold block leading-normal animate-pulse" style={kf}>
+              {kh ? "⚡ ថ្នាក់មាស៖ រង់ចាំត្រឹមតែ ៦ខែប៉ុណ្ណោះ!" : "⚡ Gold Tier: Claims reset in 6 months!"}
+            </span>
+          ) : userRank.id === "platinum" ? (
+            <span className="text-[8.5px] text-sky-600 font-extrabold block leading-normal animate-pulse" style={kf}>
+              {kh ? "⚡ ថ្នាក់ប្លាទីន៖ រង់ចាំត្រឹមតែ ២ខែប៉ុណ្ណោះ!" : "⚡ Platinum Tier: Claims reset in 2 months!"}
+            </span>
+          ) : userRank.id === "diamond" ? (
+            <span className="text-[8.5px] text-cyan-600 font-extrabold block leading-normal animate-pulse" style={kf}>
+              {kh ? "⚡ ថ្នាក់ពេជ្រ៖ រង់ចាំត្រឹមតែ ១ខែប៉ុណ្ណោះ!" : "⚡ Diamond Tier: Claims reset in 1 month!"}
+            </span>
+          ) : (
+            <span className="text-[8.5px] text-pink-600 font-extrabold block leading-normal animate-pulse" style={kf}>
+              {kh ? "⚡ ថ្នាក់ព្រះ៖ រង់ចាំត្រឹមតែ ១សប្តាហ៍ប៉ុណ្ណោះ!" : "⚡ Mythic Tier: Claims reset in 1 week!"}
+            </span>
           )}
         </div>
       </div>
@@ -1065,6 +1103,7 @@ export default function LeaderboardPage() {
                     isLoggedIn={!!currentUser}
                     lang={lang}
                     onClaim={handleClaimItem}
+                    userLifetimePoints={currentUser?.lifetimePoints ?? 0}
                   />
                 ))}
               </div>
