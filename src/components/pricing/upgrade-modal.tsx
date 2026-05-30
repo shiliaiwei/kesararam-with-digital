@@ -30,7 +30,7 @@ const PLANS = [
     highlight: true,
     badge: { en: "Most Popular", kh: "ពេញនិយមបំផុត" },
     tagline: { en: "For teachers & instructors", kh: "សម្រាប់គ្រូ និងអ្នកបង្រៀន" },
-    cta: { en: "Select Teacher Pro", kh: "ជ្រើសរើស គ្រូ Pro" },
+    cta: { en: "Apply Now", kh: "ដាក់ពាក្យឥឡូវនេះ" },
     scarcity: { en: "🔥 50% Off Promo active!", kh: "🔥 ប្រូម៉ូសិនបញ្ចុះតម្លៃ ៥០%!" },
     features: [
       { en: "Unlimited live game sessions", kh: "វគ្គហ្គេមផ្ទាល់គ្មានដែនកំណត់", icon: Zap },
@@ -51,8 +51,8 @@ const PLANS = [
     highlight: false,
     badge: null,
     tagline: { en: "For schools & training centers", kh: "សម្រាប់សាលារៀន និងវិទ្យាស្ថានបណ្តុះបណ្តាល" },
-    cta: { en: "Select Plan Options", kh: "ជ្រើសរើសជម្រើសផែនការ" },
-    scarcity: { en: "🔥 School: $19/mo, Institute: $24/mo (Promo)", kh: "🔥 សាលារៀន៖ $19/ខែ, វិទ្យាស្ថាន៖ $24/ខែ" },
+    cta: { en: "Apply Now", kh: "ដាក់ពាក្យឥឡូវនេះ" },
+    scarcity: { en: "🔥 School: $19/mo, Institute: $29/mo (Promo)", kh: "🔥 សាលារៀន៖ $19/ខែ, វិទ្យាស្ថាន៖ $29/ខែ" },
     features: [
       { en: "Everything in Teacher Pro", kh: "អ្វីៗទាំងអស់ក្នុង Teacher Pro", icon: Check },
       { en: "10 to 30 teacher accounts", kh: "ពី ១០ ទៅ ៣០ គណនីគ្រូ", icon: Check },
@@ -201,17 +201,17 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
                       <div className="flex items-center justify-between text-sm">
                         <span className="text-white/50 font-bold" style={khFont}>{kh ? "ផែនការសាលារៀន" : "School Plan"}</span>
                         <div className="flex items-center gap-1.5">
-                          <span className="font-black text-white">${yearly ? 15 : 19}</span>
+                          <span className="font-black text-white">${yearly ? 14.17 : 19}</span>
                           <span className="text-white/35 text-[10px]">{kh ? "USD/ខែ" : "USD/mo"}</span>
-                          <span className="line-through text-white/20 text-[10px]">${yearly ? 30 : 39}</span>
+                          <span className="line-through text-white/20 text-[10px]">${yearly ? 29.17 : 39}</span>
                         </div>
                       </div>
                       <div className="flex items-center justify-between text-sm">
                         <span className="text-white/50 font-bold" style={khFont}>{kh ? "ផែនការវិទ្យាស្ថាន" : "Institute Plan"}</span>
                         <div className="flex items-center gap-1.5">
-                          <span className="font-black text-white">${yearly ? 18.75 : 24}</span>
+                          <span className="font-black text-white">${yearly ? 21.67 : 29}</span>
                           <span className="text-white/35 text-[10px]">{kh ? "USD/ខែ" : "USD/mo"}</span>
-                          <span className="line-through text-white/20 text-[10px]">${yearly ? 36.67 : 49}</span>
+                          <span className="line-through text-white/20 text-[10px]">${yearly ? 44.17 : 59}</span>
                         </div>
                       </div>
                     </div>

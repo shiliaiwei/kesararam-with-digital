@@ -70,7 +70,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
         ? `គ្រូ Pro (ប្រចាំឆ្នាំ — ${promo ? "ប្រូម៉ូសិនចុះថ្លៃ ៥០% / " : ""}ឥតគិតថ្លៃ ៤ ខែ)` 
         : `គ្រូ Pro (ប្រចាំខែ${promo ? " — ប្រូម៉ូសិនចុះថ្លៃ ៥០%" : ""})`;
     } else if (selectedPlan === "school_public") {
-      usd = promo ? (yearly ? 180 : 19) : (yearly ? 360 : 39);
+      usd = promo ? (yearly ? 170 : 19) : (yearly ? 350 : 39);
       labelEn = yearly 
         ? `School Plan (Annual — ${promo ? "Promo / " : ""}3 Mos Free)` 
         : `School Plan (Monthly${promo ? " — Promo" : ""})`;
@@ -78,7 +78,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
         ? `ផែនការសាលារៀន (ប្រចាំឆ្នាំ — ${promo ? "ប្រូម៉ូសិន / " : ""}ឥតគិតថ្លៃ ៣ ខែ)` 
         : `ផែនការសាលារៀន (ប្រចាំខែ${promo ? " — ប្រូម៉ូសិន" : ""})`;
     } else if (selectedPlan === "school_private") {
-      usd = promo ? (yearly ? 225 : 24) : (yearly ? 440 : 49);
+      usd = promo ? (yearly ? 260 : 29) : (yearly ? 530 : 59);
       labelEn = yearly 
         ? `Institute Plan (Annual — ${promo ? "Promo / " : ""}3 Mos Free)` 
         : `Institute Plan (Monthly${promo ? " — Promo" : ""})`;
@@ -250,7 +250,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
             className="w-full py-3 rounded-xl text-sm font-black transition-all mb-8 bg-amber-400 text-black hover:bg-amber-300 shadow-lg shadow-amber-400/20"
             style={khFont}
           >
-            {kh ? "ជ្រើសរើស គ្រូ Pro" : "Select Teacher Pro"}
+            {kh ? "ដាក់ពាក្យឥឡូវនេះ" : "Apply Now"}
           </button>
 
           <div className="flex flex-col gap-3 flex-1">
@@ -294,14 +294,14 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                 </p>
                 <div className="flex items-end gap-0.5">
                   <span className="text-2xl font-black text-white">
-                    {yearly ? "$180" : "$19"}
+                    {yearly ? "$170" : "$19"}
                   </span>
                   <span className="text-white/50 text-[9px] mb-0.5" style={khFont}>
                     {yearly ? (kh ? "USD/ឆ្នាំ" : "USD/yr") : (kh ? "USD/ខែ" : "USD/mo")}
                   </span>
                 </div>
                 <div className="text-[9px] font-bold text-zinc-500 mt-0.5">
-                  <span className="line-through text-white/30">{yearly ? "$360" : "$39"}</span>
+                  <span className="line-through text-white/30">{yearly ? "$350" : "$39"}</span>
                   <span className="text-green-400 ml-1">(-50%)</span>
                 </div>
               </div>
@@ -313,14 +313,14 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                 </p>
                 <div className="flex items-end gap-0.5">
                   <span className="text-2xl font-black text-white">
-                    {yearly ? "$225" : "$24"}
+                    {yearly ? "$260" : "$29"}
                   </span>
                   <span className="text-white/50 text-[9px] mb-0.5" style={khFont}>
                     {yearly ? (kh ? "USD/ឆ្នាំ" : "USD/yr") : (kh ? "USD/ខែ" : "USD/mo")}
                   </span>
                 </div>
                 <div className="text-[9px] font-bold text-zinc-500 mt-0.5">
-                  <span className="line-through text-white/30">{yearly ? "$440" : "$49"}</span>
+                  <span className="line-through text-white/30">{yearly ? "$530" : "$59"}</span>
                   <span className="text-green-400 ml-1">(-50%)</span>
                 </div>
               </div>
@@ -338,14 +338,14 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
               className="w-full py-2.5 rounded-xl text-xs font-black transition-all bg-purple-600 text-white hover:bg-purple-550 shadow-md shadow-purple-600/10"
               style={khFont}
             >
-              {kh ? "ជ្រើសរើស ផែនការសាលា" : "Select School Plan"}
+              {kh ? "ដាក់ពាក្យឥឡូវនេះ - ផែនការសាលារៀន" : "Apply Now - School Plan"}
             </button>
             <button
               onClick={() => handleSelectPlan("school_private")}
               className="w-full py-2.5 rounded-xl text-xs font-black transition-all border border-purple-500/40 text-purple-300 hover:bg-purple-500/10"
               style={khFont}
             >
-              {kh ? "ជ្រើសរើស ផែនការវិទ្យាស្ថាន" : "Select Institute Plan"}
+              {kh ? "ដាក់ពាក្យឥឡូវនេះ - ផែនការវិទ្យាស្ថាន" : "Apply Now - Institute Plan"}
             </button>
           </div>
 
@@ -612,16 +612,16 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
         <div className="grid md:grid-cols-2 gap-x-8 gap-y-3">
           {[
             { 
-              en: "Pricing Promotion: Standard Teacher Pro rate is $10/month. Under promo (active through end of 2026), rates are discounted by 50% ($5/month). Standard rates for School are $39/mo ($360/yr) and Institute is $49/mo ($440/yr).", 
-              kh: "ការផ្សព្វផ្សាយតម្លៃ៖ តម្លៃធម្មតាសម្រាប់គ្រូ Pro គឺ ១០ ដុល្លារ/ខែ។ ក្រោមការបញ្ចុះតម្លៃប្រូម៉ូសិន (មានប្រសិទ្ធភាពរហូតដល់ចុងឆ្នាំ ២០២៦) តម្លៃត្រូវបានបញ្ចុះ ៥០% (៥ ដុល្លារ/ខែ)។ តម្លៃធម្មតាសម្រាប់សាលារៀនគឺ ៣៩ ដុល្លារ/ខែ (៣៦០ ដុល្លារ/ឆ្នាំ) និងវិទ្យាស្ថានគឺ ៤៩ ដុល្លារ/ខែ (៤៤០ ដុល្លារ/ឆ្នាំ)។" 
+              en: "Pricing Promotion: Standard Teacher Pro rate is $10/month. Under promo (active through end of 2026), rates are discounted by 50% ($5/month). Standard rates for School are $39/mo ($350/yr) and Institute is $59/mo ($530/yr).", 
+              kh: "ការផ្សព្វផ្សាយតម្លៃ៖ តម្លៃធម្មតាសម្រាប់គ្រូ Pro គឺ ១០ ដុល្លារ/ខែ។ ក្រោមការបញ្ចុះតម្លៃប្រូម៉ូសិន (មានប្រសិទ្ធភាពរហូតដល់ចុងឆ្នាំ ២០២៦) តម្លៃត្រូវបានបញ្ចុះ ៥០% (៥ ដុល្លារ/ខែ)។ តម្លៃធម្មតាសម្រាប់សាលារៀនគឺ ៣៩ ដុល្លារ/ខែ (៣៥០ ដុល្លារ/ឆ្នាំ) និងវិទ្យាស្ថានគឺ ៥៩ ដុល្លារ/ខែ (៥៣០ ដុល្លារ/ឆ្នាំ)។" 
             },
             { 
-              en: "Annual Package (4 Months Free for Teacher Pro): Subscribers to 1-year plans receive 4 months free for Teacher Pro ($40/year promo, $80/year standard) and 3 months free for School plans ($180/year promo, $360/year standard) and Institute plans ($225/year promo, $440/year standard).", 
-              kh: "កញ្ចប់ប្រចាំឆ្នាំ៖ ការជាវប្រចាំឆ្នាំទទួលបានការបញ្ចុះតម្លៃ ៤ ខែឥតគិតថ្លៃសម្រាប់គ្រូ Pro (៤០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៨០ ដុល្លារ/ឆ្នាំ ធម្មតា) និង ៣ ខែឥតគិតថ្លៃសម្រាប់សាលារៀន (១៨០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៣៦០ ដុល្លារ/ឆ្នាំ ធម្មតា) និងវិទ្យាស្ថាន (២២៥ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៤៤០ ដុល្លារ/ឆ្នាំ ធម្មតា)។" 
+              en: "Annual Package (4 Months Free for Teacher Pro): Subscribers to 1-year plans receive 4 months free for Teacher Pro ($40/year promo, $80/year standard) and 3 months free for School plans ($170/year promo, $350/year standard) and Institute plans ($260/year promo, $530/year standard).", 
+              kh: "កញ្ចប់ប្រចាំឆ្នាំ៖ ការជាវប្រចាំឆ្នាំទទួលបានការបញ្ចុះតម្លៃ ៤ ខែឥតគិតថ្លៃសម្រាប់គ្រូ Pro (៤០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៨០ ដុល្លារ/ឆ្នាំ ធម្មតា) និង ៣ ខែឥតគិតថ្លៃសម្រាប់សាលារៀន (១៧០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៣៥០ ដុល្លារ/ឆ្នាំ ធម្មតា) និងវិទ្យាស្ថាន (២៦០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៥៣០ ដុល្លារ/ឆ្នាំ ធម្មតា)។" 
             },
             { 
-              en: "School & Institute Structure: Pricing covers schools and training institutes. Under promo, School plan is $19/mo ($180/yr) and Institute plan is $24/mo ($225/yr).", 
-              kh: "រចនាសម្ព័ន្ធសាលារៀន និងវិទ្យាស្ថាន៖ តម្លៃគ្របដណ្តប់ទាំងសាលារៀន និងវិទ្យាស្ថានបណ្តុះបណ្តាល។ ក្រោមតម្លៃប្រូម៉ូសិន ផែនការសាលារៀនគឺ ១៩ ដុល្លារ/ខែ (១៨០ ដុល្លារ/ឆ្នាំ) និងផែនការវិទ្យាស្ថានគឺ ២៤ ដុល្លារ/ខែ (២២៥ ដុល្លារ/ឆ្នាំ)។" 
+              en: "School & Institute Structure: Pricing covers schools and training institutes. Under promo, School plan is $19/mo ($170/yr) and Institute plan is $29/mo ($260/yr).", 
+              kh: "រចនាសម្ព័ន្ធសាលារៀន និងវិទ្យាស្ថាន៖ តម្លៃគ្របដណ្តប់ទាំងសាលារៀន និងវិទ្យាស្ថានបណ្តុះបណ្តាល។ ក្រោមតម្លៃប្រូម៉ូសិន ផែនការសាលារៀនគឺ ១៩ ដុល្លារ/ខែ (១៧០ ដុល្លារ/ឆ្នាំ) និងផែនការវិទ្យាស្ថានគឺ ២៩ ដុល្លារ/ខែ (២៦០ ដុល្លារ/ឆ្នាំ)។" 
             },
             { 
               en: "Billing & Cancellation: Subscriptions are billed monthly or annually. You can cancel at any time. Active access remains until the current cycle expires.", 

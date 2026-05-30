@@ -228,9 +228,9 @@ const PAYMENT_METHODS = [
 // ─── Subscription Terms ───────────────────────────────────────────────────────
 const SUB_TERMS = {
   en: [
-    "Pricing Structure: Standard Teacher Pro rate is $10/month. Under promo (active through end of 2026), rates are discounted by 50% ($5/month). Standard rates for School are $39/mo ($360/yr) and Institute is $49/mo ($440/yr).",
-    "Annual Package (4 Months Free for Teacher Pro): Subscribers to 1-year plans receive 4 months free for Teacher Pro ($40/year promo, $80/year standard) and 3 months free for School plans ($180/year promo, $360/year standard) and Institute plans ($225/year promo, $440/year standard).",
-    "School & Institute Structure: Pricing covers schools and training institutes. Under promo, School plan is $19/mo ($180/yr) and Institute plan is $24/mo ($225/yr).",
+    "Pricing Structure: Standard Teacher Pro rate is $10/month. Under promo (active through end of 2026), rates are discounted by 50% ($5/month). Standard rates for School are $39/mo ($350/yr) and Institute is $59/mo ($530/yr).",
+    "Annual Package (4 Months Free for Teacher Pro): Subscribers to 1-year plans receive 4 months free for Teacher Pro ($40/year promo, $80/year standard) and 3 months free for School plans ($170/year promo, $350/year standard) and Institute plans ($260/year promo, $530/year standard).",
+    "School & Institute Structure: Pricing covers schools and training institutes. Under promo, School plan is $19/mo ($170/yr) and Institute plan is $29/mo ($260/yr).",
     "Billing & Cancellation: Subscriptions are billed monthly or annually. Cancel anytime before the next billing cycle. Active access remains until the current cycle expires.",
     "Payment Methods: Payment is accepted via KHQR (all NBC-participating Cambodian banks), Visa, Mastercard, and PayPal.",
     "Activation & Upgrades: All upgrades are manually assigned by administrators to ensure platform safety. Setup is active within 24 hours of screenshot submission.",
@@ -239,9 +239,9 @@ const SUB_TERMS = {
     "For payment issues or billing disputes, contact kesararamwithdigital@gmail.com within 7 days of the charge.",
   ],
   kh: [
-    "រចនាសម្ព័ន្ធតម្លៃ៖ តម្លៃធម្មតាសម្រាប់គ្រូ Pro គឺ ១០ ដុល្លារ/ខែ។ ក្រោមការបញ្ចុះតម្លៃប្រូម៉ូសិន (មានប្រសិទ្ធភាពរហូតដល់ចុងឆ្នាំ ២០២៦) តម្លៃត្រូវបានបញ្ចុះ ៥០% (៥ ដុល្លារ/ខែ)។ តម្លៃធម្មតាសម្រាប់សាលារៀនគឺ ៣៩ ដុល្លារ/ខែ (៣៦០ ដុល្លារ/ឆ្នាំ) និងវិទ្យាស្ថានគឺ ៤៩ ដុល្លារ/ខែ (៤៤០ ដុល្លារ/ឆ្នាំ)។",
-    "កញ្ចប់ប្រចាំឆ្នាំ៖ ការជាវប្រចាំឆ្នាំទទួលបានការបញ្ចុះតម្លៃ ៤ ខែឥតគិតថ្លៃសម្រាប់គ្រូ Pro (៤០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៨០ ដុល្លារ/ឆ្នាំ ធម្មតា) និង ៣ ខែឥតគិតថ្លៃសម្រាប់សាលារៀន (១៨០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៣៦០ ដុល្លារ/ឆ្នាំ ធម្មតា) និងវិទ្យាស្ថាន (២២៥ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៤៤០ ដុល្លារ/ឆ្នាំ ធម្មតា)។",
-    "រចនាសម្ព័ន្ធសាលារៀន និងវិទ្យាស្ថាន៖ តម្លៃគ្របដណ្តប់ទាំងសាលារៀន និងវិទ្យាស្ថានបណ្តុះបណ្តាល។ ក្រោមតម្លៃប្រូម៉ូសិន ផែនការសាលារៀនគឺ ១៩ ដុល្លារ/ខែ (១៨០ ដុល្លារ/ឆ្នាំ) និងផែនការវិទ្យាស្ថានគឺ ២៤ ដុល្លារ/ខែ (២២៥ ដុល្លារ/ឆ្នាំ)។",
+    "រចនាសម្ព័ន្ធតម្លៃ៖ តម្លៃធម្មតាសម្រាប់គ្រូ Pro គឺ ១០ ដុល្លារ/ខែ។ ក្រោមការបញ្ចុះតម្លៃប្រូម៉ូសិន (មានប្រសិទ្ធភាពរហូតដល់ចុងឆ្នាំ ២០២៦) តម្លៃត្រូវបានបញ្ចុះ ៥០% (៥ ដុល្លារ/ខែ)។ តម្លៃធម្មតាសម្រាប់សាលារៀនគឺ ៣៩ ដុល្លារ/ខែ (៣៥០ ដុល្លារ/ឆ្នាំ) និងវិទ្យាស្ថានគឺ ៥៩ ដុល្លារ/ខែ (៥៣០ ដុល្លារ/ឆ្នាំ)។",
+    "កញ្ចប់ប្រចាំឆ្នាំ៖ ការជាវប្រចាំឆ្នាំទទួលបានការបញ្ចុះតម្លៃ ៤ ខែឥតគិតថ្លៃសម្រាប់គ្រូ Pro (៤០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៨០ ដុល្លារ/ឆ្នាំ ធម្មតា) និង ៣ ខែឥតគិតថ្លៃសម្រាប់សាលារៀន (១៧០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៣៥០ ដុល្លារ/ឆ្នាំ ធម្មតា) និងវិទ្យាស្ថាន (២៦០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៥៣០ ដុល្លារ/ឆ្នាំ ធម្មតា)។",
+    "រចនាសម្ព័ន្ធសាលារៀន និងវិទ្យាស្ថាន៖ តម្លៃគ្របដណ្តប់ទាំងសាលារៀន និងវិទ្យាស្ថានបណ្តុះបណ្តាល។ ក្រោមតម្លៃប្រូម៉ូសិន ផែនការសាលារៀនគឺ ១៩ ដុល្លារ/ខែ (១៧០ ដុល្លារ/ឆ្នាំ) និងផែនការវិទ្យាស្ថានគឺ ២៩ ដុល្លារ/ខែ (២៦០ ដុល្លារ/ឆ្នាំ)។",
     "ការទូទាត់ និងការលុបចោល៖ ការជាវត្រូវបានគិតថ្លៃប្រចាំខែ ឬប្រចាំឆ្នាំ។ អ្នកអាចលុបចោលបានគ្រប់ពេលមុនវដ្តបន្ទាប់។ ការចូលប្រើប្រាស់នៅតែមានរហូតដល់ចប់វដ្ត។",
     "វិធីទូទាត់៖ ការទូទាត់ទទួលយកតាម KHQR (ធនាគារក្នុង NBC ទាំងអស់) Visa Mastercard និង PayPal។",
     "ការធ្វើឱ្យសកម្ម៖ ការតម្លើងគណនីត្រូវបានចាត់ចែងដោយដៃដោយ Admin ដើម្បីធានាសុវត្ថិភាព។ គណនីនឹងសកម្មក្នុងរយៈពេល ២៤ ម៉ោងបន្ទាប់ពីផ្ញើវិក្កយបត្រ។",
@@ -301,7 +301,7 @@ const TERMS_SECTIONS = {
     },
     {
       heading: "6. Subscriptions & Payments",
-      body: "KWD operates on a freemium model. Students are permanently free. Teacher Pro ($10/month standard; promo $5/month through end of 2026) and School and Institute plans are available for educators. School/Institute options cover School ($19/month promo; $39/month standard) and Institute ($24/month promo; $49/month standard). Annual packages include 4 months free for Teacher Pro ($40/year promo, $80/year standard) and 3 months free for School plans ($180/year promo, $360/year standard) and Institute plans ($225/year promo, $440/year standard). Payment is accepted via KHQR (all NBC-participating Cambodian banks), Visa, Mastercard, and PayPal. Access is activated within 24 hours of confirmed payment. No refunds after access is granted, except in cases of verified technical failure. Subscriptions auto-renew unless cancelled. KWD reserves the right to update pricing with 30 days' advance notice.",
+      body: "KWD operates on a freemium model. Students are permanently free. Teacher Pro ($10/month standard; promo $5/month through end of 2026) and School and Institute plans are available for educators. School/Institute options cover School ($19/month promo; $39/month standard) and Institute ($29/month promo; $59/month standard). Annual packages include 4 months free for Teacher Pro ($40/year promo, $80/year standard) and 3 months free for School plans ($170/year promo, $350/year standard) and Institute plans ($260/year promo, $530/year standard). Payment is accepted via KHQR (all NBC-participating Cambodian banks), Visa, Mastercard, and PayPal. Access is activated within 24 hours of confirmed payment. No refunds after access is granted, except in cases of verified technical failure. Subscriptions auto-renew unless cancelled. KWD reserves the right to update pricing with 30 days' advance notice.",
     },
     {
       heading: "7. Content & AI Disclosure",
@@ -343,7 +343,7 @@ const TERMS_SECTIONS = {
     },
     {
       heading: "៦. ការជាវ និងការទូទាត់",
-      body: "KWD ដំណើរការលើគំរូ freemium។ សិស្សឥតគិតថ្លៃជាអចិន្ត្រៃយ៍។ ផែនការគ្រូ Pro ($10/ខែ តម្លៃធម្មតា; តម្លៃពិសេស $5/ខែ រហូតដល់ចុងឆ្នាំ ២០២៦) និងផែនការសាលារៀន និងវិទ្យាស្ថាន មានសម្រាប់គរុកោសល្យ។ ផែនការសាលារៀន/វិទ្យាស្ថាន រួមបញ្ចូលសាលារៀន ($19/ខែ តម្លៃពិសេស; $39/ខែ តម្លៃធម្មតា) និងវិទ្យាស្ថាន ($24/ខែ តម្លៃពិសេស; $49/ខែ តម្លៃធម្មតា)។ កញ្ចប់ប្រចាំឆ្នាំរួមបញ្ចូលការបញ្ចុះតម្លៃ ៤ ខែឥតគិតថ្លៃសម្រាប់គ្រូ Pro ($៤០/ឆ្នាំ តម្លៃពិសេស; $៨០/ឆ្នាំ តម្លៃធម្មតា) និង ៣ ខែឥតគិតថ្លៃសម្រាប់សាលារៀន ($១៨០/ឆ្នាំ តម្លៃពិសេស; $៣៦០/ឆ្នាំ តម្លៃធម្មតា) និងវិទ្យាស្ថាន ($២២៥/ឆ្នាំ តម្លៃពិសេស; $៤៤០/ឆ្នាំ តម្លៃធម្មតា)។ ការទូទាត់ទទួលយកតាម KHQR (ធនាគារ NBC ទាំងអស់) Visa Mastercard និង PayPal។ ការចូលប្រើប្រាស់ត្រូវបានបើកក្នុង ២៤ ម៉ោង។ គ្មានការសងប្រាក់វិញបន្ទាប់ពីការចូលប្រើប្រាស់ត្រូវបានផ្ដល់ លើកលែងតែករណីបច្ចេកទេស។",
+      body: "KWD ដំណើរការលើគំរូ freemium។ សិស្សឥតគិតថ្លៃជាអចិន្ត្រៃយ៍។ ផែនការគ្រូ Pro ($10/ខែ តម្លៃធម្មតា; តម្លៃពិសេស $5/ខែ រហូតដល់ចុងឆ្នាំ ២០២៦) និងផែនការសាលារៀន និងវិទ្យាស្ថាន មានសម្រាប់គរុកោសល្យ។ ផែនការសាលារៀន/វិទ្យាស្ថាន រួមបញ្ចូលសាលារៀន ($19/ខែ តម្លៃពិសេស; $39/ខែ តម្លៃធម្មតា) និងវិទ្យាស្ថាន ($29/ខែ តម្លៃពិសេស; $59/ខែ តម្លៃធម្មតា)។ កញ្ចប់ប្រចាំឆ្នាំរួមបញ្ចូលការបញ្ចុះតម្លៃ ៤ ខែឥតគិតថ្លៃសម្រាប់គ្រូ Pro ($៤០/ឆ្នាំ តម្លៃពិសេស; $៨០/ឆ្នាំ តម្លៃធម្មតា) និង ៣ ខែឥតគិតថ្លៃសម្រាប់សាលារៀន ($១៧០/ឆ្នាំ តម្លៃពិសេស; $៣៥០/ឆ្នាំ តម្លៃធម្មតា) និងវិទ្យាស្ថាន ($២៦០/ឆ្នាំ តម្លៃពិសេស; $៥៣០/ឆ្នាំ តម្លៃធម្មតា)។ ការទូទាត់ទទួលយកតាម KHQR (ធនាគារ NBC ទាំងអស់) Visa Mastercard និង PayPal។ ការចូលប្រើប្រាស់ត្រូវបានបើកក្នុង ២៤ ម៉ោង។ គ្មានការសងប្រាក់វិញបន្ទាប់ពីការចូលប្រើប្រាស់ត្រូវបានផ្ដល់ លើកលែងតែករណីបច្ចេកទេស។",
     },
     {
       heading: "៧. ខ្លឹមសារ និងការបង្ហាញ AI",
