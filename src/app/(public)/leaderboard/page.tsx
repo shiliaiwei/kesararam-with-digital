@@ -242,12 +242,49 @@ function PodiumCard({ user, cfg, index, currentUser }: {
   return (
     <div ref={cardRef} className={`relative flex flex-col items-center w-full ${cfg.order}`}>
       {isFirst && <div ref={glowRef} className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, rgba(234,179,8,0.25) 0%, transparent 70%)", opacity: 0.3 }} />}
-      <div className="relative mb-2">
+      
+      {/* Floating Avatar and Rank Badge Container */}
+      <div 
+        className="relative mb-2 flex flex-col items-center select-none"
+        style={{
+          animation: isFirst 
+            ? "floatFirst 4s ease-in-out infinite" 
+            : cfg.rank === 2 
+              ? "floatSecond 4.4s ease-in-out infinite" 
+              : "floatThird 4.8s ease-in-out infinite",
+        }}
+      >
         {isFirst && (
-          <div className="absolute -top-9 left-1/2 -translate-x-1/2 z-10 animate-bounce" style={{ animationDuration: "2s" }}>
-            <Crown size={32} className="text-yellow-400 fill-yellow-400 filter drop-shadow-[0_3px_5px_rgba(0,0,0,0.5)]" style={{ transform: "rotate(-10deg)" }} />
+          <div className="absolute -top-7 left-1/2 -translate-x-1/2 z-10">
+            <Crown size={32} className="text-yellow-400 fill-yellow-400 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] animate-bounce" style={{ animationDuration: "2s", transform: "rotate(-10deg)" }} />
           </div>
         )}
+
+        {/* Twinkling star decorations for 1st place champion */}
+        {isFirst && (
+          <>
+            <div className="absolute -left-6 top-4 text-yellow-500 pointer-events-none" style={{ animation: "twinkle 2s ease-in-out infinite" }}>
+              <Sparkles size={16} className="fill-yellow-400" />
+            </div>
+            <div className="absolute -right-6 top-8 text-yellow-500 pointer-events-none" style={{ animation: "twinkle 2.5s ease-in-out infinite 0.5s" }}>
+              <Star size={12} className="fill-yellow-400" />
+            </div>
+          </>
+        )}
+
+        {/* Spinning Medal Ring */}
+        <div 
+          className="absolute rounded-full border-2 border-dashed pointer-events-none animate-spin"
+          style={{
+            width: isFirst ? 92 : 76,
+            height: isFirst ? 92 : 76,
+            borderColor: isFirst ? "#eab308" : cfg.accentColor,
+            animationDuration: "12s",
+            opacity: 0.8,
+            top: -6,
+            boxShadow: isFirst ? "0 0 10px rgba(234,179,8,0.4)" : "none"
+          }}
+        />
         
         {/* Creative Rank Emblem/Medal */}
         <div 
@@ -256,11 +293,6 @@ function PodiumCard({ user, cfg, index, currentUser }: {
             width: isFirst ? 80 : 64,
             height: isFirst ? 80 : 64,
             background: cfg.pedestalBg, 
-            animation: isFirst 
-              ? "float 3s ease-in-out infinite" 
-              : cfg.rank === 2 
-                ? "float 3.4s ease-in-out infinite" 
-                : "float 3.8s ease-in-out infinite",
           }}
         >
           {userAvatar && (userAvatar.trim().startsWith("{") || userAvatar.startsWith("http") || userAvatar.startsWith("/")) ? (
@@ -293,27 +325,53 @@ function PodiumCard({ user, cfg, index, currentUser }: {
           )}
         </div>
 
-        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 scale-75 md:scale-100"><RankBadge rank={cfg.rank} /></div>
+        {/* Rank Badge - positioned below the profile so it never covers the face */}
+        <div className="mt-2.5 scale-75 md:scale-100 z-10 filter drop-shadow-[2px_2px_0_rgba(0,0,0,0.85)]">
+          <RankBadge rank={cfg.rank} />
+        </div>
       </div>
+
+      {/* Card Body */}
       <div 
-        className="w-full flex flex-col items-center gap-1.5 pt-6 pb-4 px-2 md:px-3 border-3 border-black mt-2 transition-transform duration-200 hover:scale-105" 
+        className="w-full flex flex-col items-center gap-1.5 pt-8 pb-4 px-2 md:px-3 border-3 border-black -mt-4 transition-transform duration-200 hover:scale-105 relative overflow-hidden" 
         style={{ 
           backgroundColor: isFirst ? "#fffbeb" : "#fff", 
           backgroundImage: isFirst 
-            ? "radial-gradient(#fef08a 1px, transparent 1px)" 
-            : "radial-gradient(#f1f5f9 1px, transparent 1px)",
+            ? "radial-gradient(#facc15 1px, transparent 1px)" 
+            : "radial-gradient(#e2e8f0 1px, transparent 1px)",
           backgroundSize: "8px 8px",
           boxShadow: isFirst 
             ? `8px 8px 0 #000, 0 0 25px rgba(234,179,8,0.25)` 
             : `4px 4px 0 #000`, 
           borderRadius: 0,
-          borderWidth: isFirst ? "4px" : "3px"
+          borderWidth: isFirst ? "4px" : "3px",
+          animation: isFirst ? "goldGlowShadow 3s ease-in-out infinite" : "none"
         }}
       >
-        <span className="font-black text-center leading-tight w-full truncate text-[10px] md:text-sm font-kh-header" style={{ color: "#000" }}>{name}</span>
+        {/* Shimmer sweep effect */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div 
+            className="absolute top-0 left-0 w-[150%] h-full opacity-20 bg-gradient-to-r from-transparent via-white to-transparent"
+            style={{
+              transform: "skewX(-25deg)",
+              animation: isFirst ? "shimmerSweep 3.5s ease-in-out infinite" : "shimmerSweep 5s ease-in-out infinite",
+            }}
+          />
+        </div>
+
+        <span className="font-black text-center leading-tight w-full truncate text-[10px] md:text-sm font-kh-header z-10" style={{ color: "#000" }}>{name}</span>
         {user && <TierBadge lifetimePoints={user.lifetimePoints} size="xs" />}
+        
+        {/* Most Value Ribbon / Tag for 1st Place */}
+        {isFirst && (
+          <div className="flex items-center gap-1 bg-yellow-400 text-black text-[8px] font-black uppercase px-2 py-0.5 border-2 border-black shadow-[2px_2px_0_#000] my-0.5 animate-pulse z-10">
+            <Sparkles size={8} className="fill-black" />
+            <span>{kh ? "រង្វាន់ធំបំផុត" : "MOST VALUE"}</span>
+          </div>
+        )}
+
         <span 
-          className="text-[8px] md:text-[9px] font-black tracking-widest uppercase px-2 py-0.5 border-2 border-black text-white"
+          className="text-[8px] md:text-[9px] font-black tracking-widest uppercase px-2 py-0.5 border-2 border-black text-white z-10"
           style={{ 
             backgroundColor: isFirst ? "#eab308" : "#000", 
             color: isFirst ? "#000" : "#fff" 
@@ -321,8 +379,8 @@ function PodiumCard({ user, cfg, index, currentUser }: {
         >
           {cfg.label}
         </span>
-        <AnimatedNumber value={user?.lifetimePoints ?? 0} className={`font-black tabular-nums ${isFirst ? "text-xl md:text-3xl" : "text-base md:text-xl"}`} style={{ color: "#000" }} />
-        <span className="text-[8px] text-zinc-500 font-bold uppercase tracking-wider">pts</span>
+        <AnimatedNumber value={user?.lifetimePoints ?? 0} className={`font-black tabular-nums z-10 ${isFirst ? "text-xl md:text-3xl" : "text-base md:text-xl"}`} style={{ color: "#000" }} />
+        <span className="text-[8px] text-zinc-500 font-bold uppercase tracking-wider z-10">pts</span>
       </div>
       <div 
         className={`w-full border-3 border-t-0 border-black ${cfg.barH}`} 
@@ -375,9 +433,34 @@ function ClaimBurst({ color }: { color: string }) {
           0%   { opacity:1; transform: rotate(var(--a,0deg)) translateY(0px) scale(1); }
           100% { opacity:0; transform: rotate(var(--a,0deg)) translateY(-48px) scale(0.3); }
         }
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-5px); }
+        @keyframes floatFirst {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        @keyframes floatSecond {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-8px) rotate(-1.5deg); }
+        }
+        @keyframes floatThird {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-6px) rotate(1deg); }
+        }
+        @keyframes shimmerSweep {
+          0% { transform: translateX(-150%) skewX(-25deg); }
+          50% { transform: translateX(150%) skewX(-25deg); }
+          100% { transform: translateX(150%) skewX(-25deg); }
+        }
+        @keyframes goldGlowShadow {
+          0%, 100% {
+            box-shadow: 8px 8px 0 #000, 0 0 15px rgba(234, 179, 8, 0.35);
+          }
+          50% {
+            box-shadow: 10px 10px 0 #000, 0 0 35px rgba(234, 179, 8, 0.7);
+          }
+        }
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.3; transform: scale(0.8); }
+          50% { opacity: 1; transform: scale(1.2) rotate(15deg); }
         }
       `}</style>
     </div>
