@@ -26,7 +26,7 @@ interface PricingCardsProps {
 
 export function PricingCards({ lang = "en" }: PricingCardsProps) {
   const [yearly, setYearly] = useState(false);
-  const [promo, setPromo] = useState(true);
+  const promo = true;
   const [selectedPlan, setSelectedPlan] = useState<"teacher_pro" | "school_public" | "school_private">("teacher_pro");
   
   const kh = lang === "kh";
@@ -123,56 +123,30 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
           </div>
         )}
 
-        {/* Double switches for Billing Cycle and Promo Status */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8 sm:gap-12 bg-white/5 border border-white/10 rounded-2xl p-4 max-w-2xl mx-auto">
-          {/* Yearly / Monthly toggle */}
-          <div className="flex items-center gap-3">
-            <span className={`text-sm font-bold transition-colors ${!yearly ? "text-white" : "text-white/40"}`} style={khFont}>
-              {kh ? "ប្រចាំខែ" : "Monthly"}
+        {/* Switch for Billing Cycle */}
+        <div className="flex items-center justify-center gap-3 mt-8 bg-white/5 border border-white/10 rounded-2xl p-4 max-w-sm mx-auto">
+          <span className={`text-sm font-bold transition-colors ${!yearly ? "text-white" : "text-white/40"}`} style={khFont}>
+            {kh ? "ប្រចាំខែ" : "Monthly"}
+          </span>
+          <button
+            onClick={() => setYearly(!yearly)}
+            role="switch"
+            aria-checked={yearly}
+            className={`relative w-14 h-7 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${yearly ? "bg-amber-400" : "bg-white/20"}`}
+          >
+            <span className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300 ${yearly ? "translate-x-7" : "translate-x-0"}`} />
+          </button>
+          <span className={`text-sm font-bold transition-colors flex items-center gap-1.5 ${yearly ? "text-white" : "text-white/40"}`} style={khFont}>
+            {kh ? "ប្រចាំឆ្នាំ" : "Yearly"}
+            <span className="ml-1 text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full font-black">
+              {kh ? "ឥតគិតថ្លៃ ៣-៤ ខែ" : "3-4 Mos Free"}
             </span>
-            <button
-              onClick={() => setYearly(!yearly)}
-              role="switch"
-              aria-checked={yearly}
-              className={`relative w-14 h-7 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${yearly ? "bg-amber-400" : "bg-white/20"}`}
-            >
-              <span className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300 ${yearly ? "translate-x-7" : "translate-x-0"}`} />
-            </button>
-            <span className={`text-sm font-bold transition-colors flex items-center gap-1.5 ${yearly ? "text-white" : "text-white/40"}`} style={khFont}>
-              {kh ? "ប្រចាំឆ្នាំ" : "Yearly"}
-              <span className="ml-1 text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full font-black">
-                {kh ? "ឥតគិតថ្លៃ ៣-៤ ខែ" : "3-4 Mos Free"}
-              </span>
-            </span>
-          </div>
-
-          <div className="hidden sm:block h-6 w-px bg-white/10" />
-
-          {/* Promo Discount Toggle */}
-          <div className="flex items-center gap-3">
-            <span className={`text-sm font-bold transition-colors ${!promo ? "text-white" : "text-white/40"}`} style={khFont}>
-              {kh ? "តម្លៃធម្មតា" : "Standard Price"}
-            </span>
-            <button
-              onClick={() => setPromo(!promo)}
-              role="switch"
-              aria-checked={promo}
-              className={`relative w-14 h-7 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-400 ${promo ? "bg-green-400" : "bg-white/20"}`}
-            >
-              <span className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300 ${promo ? "translate-x-7" : "translate-x-0"}`} />
-            </button>
-            <span className={`text-sm font-bold transition-colors flex items-center gap-1.5 ${promo ? "text-white" : "text-white/40"}`} style={khFont}>
-              {kh ? "តម្លៃប្រូម៉ូសិន" : "Promo Discount"}
-              <span className="ml-1 text-xs bg-amber-400 text-black px-2 py-0.5 rounded-full font-black animate-pulse">
-                {kh ? "ចុះ ៥០%" : "50% Off"}
-              </span>
-            </span>
-          </div>
+          </span>
         </div>
       </div>
 
-      {/* ── Four Pricing Cards Grid ── */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+      {/* ── Three Pricing Cards Grid ── */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
         
         {/* Tier 1: Free */}
         <div className="bg-white/5 border border-white/10 hover:border-white/25 rounded-2xl p-6 flex flex-col transition-all duration-200 group">
@@ -301,129 +275,92 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
           </div>
         </div>
 
-        {/* Tier 3: School */}
+        {/* Tier 3: School & Institute */}
         <div className="bg-white/5 border border-white/10 hover:border-white/25 rounded-2xl p-6 flex flex-col transition-all duration-200 group">
           <div className="mb-6">
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-2 mb-3">
               <Building2 size={20} className="text-purple-400" />
               <span className="text-sm font-bold text-purple-400" style={khFont}>
-                {kh ? "សាលារៀន" : "School Plan"}
+                {kh ? "សាលារៀន & វិទ្យាស្ថាន" : "School & Institute"}
               </span>
             </div>
 
-            {/* Price section showing standard and promo */}
-            <div className="flex flex-col mb-2">
-              <div className="flex items-end gap-2">
-                <span className="text-4xl font-black text-white">
-                  {promo ? (yearly ? "$180" : "$19") : (yearly ? "$360" : "$39")}
-                </span>
-                <span className="text-white/50 text-sm mb-1" style={khFont}>
-                  {yearly ? (kh ? "USD/ឆ្នាំ" : "USD/year") : (kh ? "USD/ខែ" : "USD/month")}
-                </span>
+            {/* Split Price Display */}
+            <div className="grid grid-cols-2 gap-4 border-b border-white/10 pb-4 mb-4">
+              {/* School Option */}
+              <div className="border-r border-white/10 pr-3">
+                <p className="text-[10px] font-black text-purple-300/80 uppercase tracking-wider mb-1" style={khFont}>
+                  {kh ? "ផែនការសាលារៀន" : "School Plan"}
+                </p>
+                <div className="flex items-end gap-0.5">
+                  <span className="text-2xl font-black text-white">
+                    {yearly ? "$180" : "$19"}
+                  </span>
+                  <span className="text-white/50 text-[9px] mb-0.5" style={khFont}>
+                    {yearly ? (kh ? "USD/ឆ្នាំ" : "USD/yr") : (kh ? "USD/ខែ" : "USD/mo")}
+                  </span>
+                </div>
+                <div className="text-[9px] font-bold text-zinc-500 mt-0.5">
+                  <span className="line-through text-white/30">{yearly ? "$360" : "$39"}</span>
+                  <span className="text-green-400 ml-1">(-50%)</span>
+                </div>
               </div>
-              <div className="text-xs font-bold text-zinc-400 mt-1">
-                {promo ? (
-                  <>
-                    {kh ? "តម្លៃធម្មតា: " : "Standard: " }
-                    <span className="line-through text-white/40">{yearly ? "$360" : "$39"}</span>
-                    <span className="text-green-400 ml-2">({kh ? "ចុះ ៥០%" : "50% Off"})</span>
-                  </>
-                ) : (
-                  <span className="text-zinc-500">{kh ? "តម្លៃស្តង់ដារពេញ" : "Full Standard Rate"}</span>
-                )}
+
+              {/* Institute Option */}
+              <div className="pl-1">
+                <p className="text-[10px] font-black text-purple-300/80 uppercase tracking-wider mb-1" style={khFont}>
+                  {kh ? "ផែនការវិទ្យាស្ថាន" : "Institute Plan"}
+                </p>
+                <div className="flex items-end gap-0.5">
+                  <span className="text-2xl font-black text-white">
+                    {yearly ? "$225" : "$24"}
+                  </span>
+                  <span className="text-white/50 text-[9px] mb-0.5" style={khFont}>
+                    {yearly ? (kh ? "USD/ឆ្នាំ" : "USD/yr") : (kh ? "USD/ខែ" : "USD/mo")}
+                  </span>
+                </div>
+                <div className="text-[9px] font-bold text-zinc-500 mt-0.5">
+                  <span className="line-through text-white/30">{yearly ? "$440" : "$49"}</span>
+                  <span className="text-green-400 ml-1">(-50%)</span>
+                </div>
               </div>
             </div>
 
-            <p className="text-white/50 text-xs mt-2" style={khFont}>
-              {kh ? "សម្រាប់សាលារៀន និងគ្រឹះស្ថានអប់រំរដ្ឋ/ឯកជន" : "For primary, secondary & high schools"}
+            <p className="text-white/50 text-xs" style={khFont}>
+              {kh ? "សម្រាប់សាលារៀន និងវិទ្យាស្ថានបណ្តុះបណ្តាលបើកបរ" : "For schools & driving education centers"}
             </p>
           </div>
 
-          <button
-            onClick={() => handleSelectPlan("school_public")}
-            className="w-full py-3 rounded-xl text-sm font-black transition-all mb-8 border border-purple-400 text-purple-300 hover:bg-purple-400/10"
-            style={khFont}
-          >
-            {kh ? "ជ្រើសរើស ផែនការសាលា" : "Select School Plan"}
-          </button>
+          {/* Action buttons stacked */}
+          <div className="flex flex-col gap-2 mb-6">
+            <button
+              onClick={() => handleSelectPlan("school_public")}
+              className="w-full py-2.5 rounded-xl text-xs font-black transition-all bg-purple-600 text-white hover:bg-purple-550 shadow-md shadow-purple-600/10"
+              style={khFont}
+            >
+              {kh ? "ជ្រើសរើស ផែនការសាលា" : "Select School Plan"}
+            </button>
+            <button
+              onClick={() => handleSelectPlan("school_private")}
+              className="w-full py-2.5 rounded-xl text-xs font-black transition-all border border-purple-500/40 text-purple-300 hover:bg-purple-500/10"
+              style={khFont}
+            >
+              {kh ? "ជ្រើសរើស ផែនការវិទ្យាស្ថាន" : "Select Institute Plan"}
+            </button>
+          </div>
 
+          {/* Combined Features */}
           <div className="flex flex-col gap-3 flex-1">
             <p className="text-xs text-purple-400 uppercase tracking-widest font-black" style={khFont}>
               {kh ? "អ្វីដែលរួមបញ្ចូល" : "What's included"}
             </p>
             {[
               { en: "Everything in Teacher Pro", kh: "អ្វីៗទាំងអស់ក្នុង Teacher Pro" },
-              { en: "Up to 10 teacher accounts", kh: "រហូតដល់ ១០ គណនីគ្រូ" },
-              { en: "Up to 200 students per session", kh: "រហូតដល់ ២០០ សិស្ស/វគ្គ" },
+              { en: "10 to 30 teacher accounts", kh: "ពី ១០ ទៅ ៣០ គណនីគ្រូ" },
+              { en: "200 to 500 students per session", kh: "ពី ២០០ ទៅ ៥០០ សិស្ស/វគ្គ" },
               { en: "Admin class management dashboard", kh: "ផ្ទាំងគ្រប់គ្រងថ្នាក់ Admin" },
               { en: "Priority support & onboarding", kh: "ជំនួយអាទិភាព និងការណែនាំ" },
-              { en: "Custom branding options", kh: "ជម្រើសសញ្ញាផ្ទាល់ខ្លួន" },
-            ].map((f, i) => (
-              <div key={i} className="flex items-start gap-2">
-                <Check size={14} className="text-purple-400 mt-0.5 shrink-0" />
-                <span className="text-sm text-white/80" style={khFont}>{f.kh}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Tier 4: Institute */}
-        <div className="bg-white/5 border border-white/10 hover:border-white/25 rounded-2xl p-6 flex flex-col transition-all duration-200 group">
-          <div className="mb-6">
-            <div className="flex items-center gap-2 mb-2">
-              <Building2 size={20} className="text-purple-400" />
-              <span className="text-sm font-bold text-purple-400" style={khFont}>
-                {kh ? "វិទ្យាស្ថាន" : "Institute Plan"}
-              </span>
-            </div>
-
-            {/* Price section showing standard and promo */}
-            <div className="flex flex-col mb-2">
-              <div className="flex items-end gap-2">
-                <span className="text-4xl font-black text-white">
-                  {promo ? (yearly ? "$225" : "$24") : (yearly ? "$440" : "$49")}
-                </span>
-                <span className="text-white/50 text-sm mb-1" style={khFont}>
-                  {yearly ? (kh ? "USD/ឆ្នាំ" : "USD/year") : (kh ? "USD/ខែ" : "USD/month")}
-                </span>
-              </div>
-              <div className="text-xs font-bold text-zinc-400 mt-1">
-                {promo ? (
-                  <>
-                    {kh ? "តម្លៃធម្មតា: " : "Standard: " }
-                    <span className="line-through text-white/40">{yearly ? "$440" : "$49"}</span>
-                    <span className="text-green-400 ml-2">({kh ? "ចុះ ៥០%" : "50% Off"})</span>
-                  </>
-                ) : (
-                  <span className="text-zinc-500">{kh ? "តម្លៃស្តង់ដារពេញ" : "Full Standard Rate"}</span>
-                )}
-              </div>
-            </div>
-
-            <p className="text-white/50 text-xs mt-2" style={khFont}>
-              {kh ? "សម្រាប់វិទ្យាស្ថានបណ្តុះបណ្តាល និងសាលាបើកបរ" : "For training institutes & driving schools"}
-            </p>
-          </div>
-
-          <button
-            onClick={() => handleSelectPlan("school_private")}
-            className="w-full py-3 rounded-xl text-sm font-black transition-all mb-8 border border-purple-400 text-purple-300 hover:bg-purple-400/10"
-            style={khFont}
-          >
-            {kh ? "ជ្រើសរើស ផែនការវិទ្យាស្ថាន" : "Select Institute Plan"}
-          </button>
-
-          <div className="flex flex-col gap-3 flex-1">
-            <p className="text-xs text-purple-400 uppercase tracking-widest font-black" style={khFont}>
-              {kh ? "អ្វីដែលរួមបញ្ចូល" : "What's included"}
-            </p>
-            {[
-              { en: "Everything in School Plan", kh: "អ្វីៗទាំងអស់ក្នុងផែនការសាលារៀន" },
-              { en: "Up to 30 teacher accounts", kh: "រហូតដល់ ៣០ គណនីគ្រូ" },
-              { en: "Up to 500 students per session", kh: "រហូតដល់ ៥០០ សិស្ស/វគ្គ" },
-              { en: "Advanced analytics & insights", kh: "ការវិភាគ និងទិន្នន័យកម្រិតខ្ពស់" },
-              { en: "Dedicated account manager", kh: "អ្នកគ្រប់គ្រងគណនីផ្ទាល់ខ្លួន" },
-              { en: "White-labeled portal options", kh: "ជម្រើសផតថលគ្មានស្លាក KWD" },
+              { en: "White-labeled portal & custom branding", kh: "ជម្រើសផតថល និងសញ្ញាផ្ទាល់ខ្លួន" },
             ].map((f, i) => (
               <div key={i} className="flex items-start gap-2">
                 <Check size={14} className="text-purple-400 mt-0.5 shrink-0" />

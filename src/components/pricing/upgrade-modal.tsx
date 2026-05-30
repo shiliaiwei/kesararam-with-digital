@@ -43,43 +43,23 @@ const PLANS = [
     ],
   },
   {
-    key: "school_public",
-    name: "School Plan",
-    nameKh: "ផែនការសាលារៀន",
+    key: "school_and_institute",
+    name: "School & Institute",
+    nameKh: "សាលា & វិទ្យាស្ថាន",
     icon: Building2,
     color: "#a855f7",
     highlight: false,
     badge: null,
-    tagline: { en: "For primary & secondary schools", kh: "សម្រាប់សាលារៀន និងការអប់រំទូទៅ" },
-    cta: { en: "Select School Plan", kh: "ជ្រើសរើស ផែនការសាលា" },
-    scarcity: { en: "🔥 Promo: $19/mo (Standard: $39/mo)", kh: "🔥 តម្លៃពិសេស៖ $19/ខែ (ធម្មតា៖ $39/ខែ)" },
+    tagline: { en: "For schools & training centers", kh: "សម្រាប់សាលារៀន និងវិទ្យាស្ថានបណ្តុះបណ្តាល" },
+    cta: { en: "Select Plan Options", kh: "ជ្រើសរើសជម្រើសផែនការ" },
+    scarcity: { en: "🔥 School: $19/mo, Institute: $24/mo (Promo)", kh: "🔥 សាលារៀន៖ $19/ខែ, វិទ្យាស្ថាន៖ $24/ខែ" },
     features: [
       { en: "Everything in Teacher Pro", kh: "អ្វីៗទាំងអស់ក្នុង Teacher Pro", icon: Check },
-      { en: "Up to 10 teacher accounts", kh: "រហូតដល់ ១០ គណនីគ្រូ", icon: Check },
-      { en: "Up to 200 students/session", kh: "រហូតដល់ ២០០ សិស្ស/វគ្គ", icon: Check },
-      { en: "Admin class management", kh: "ការគ្រប់គ្រងថ្នាក់", icon: Check },
-      { en: "Priority support", kh: "ជំនួយអាទិភាព", icon: Check },
-      { en: "Custom branding", kh: "ស្លាកផ្ទាល់ខ្លួន", icon: Check },
-    ],
-  },
-  {
-    key: "school_private",
-    name: "Institute Plan",
-    nameKh: "ផែនការវិទ្យាស្ថាន",
-    icon: Building2,
-    color: "#c084fc",
-    highlight: false,
-    badge: null,
-    tagline: { en: "For driving schools & centers", kh: "សម្រាប់វិទ្យាស្ថាន និងសាលាបើកបរ" },
-    cta: { en: "Select Institute Plan", kh: "ជ្រើសរើស ផែនការវិទ្យាស្ថាន" },
-    scarcity: { en: "🔥 Promo: $24/mo (Standard: $49/mo)", kh: "🔥 តម្លៃពិសេស៖ $24/ខែ (ធម្មតា៖ $49/ខែ)" },
-    features: [
-      { en: "Everything in School Plan", kh: "អ្វីៗទាំងអស់ក្នុងផែនការសាលារៀន", icon: Check },
-      { en: "Up to 30 teacher accounts", kh: "រហូតដល់ ៣០ គណនីគ្រូ", icon: Check },
-      { en: "Up to 500 students/session", kh: "រហូតដល់ ៥០០ សិស្ស/វគ្គ", icon: Check },
-      { en: "Advanced analytics & insights", kh: "ការវិភាគ និងទិន្នន័យកម្រិតខ្ពស់", icon: Check },
-      { en: "Dedicated account manager", kh: "អ្នកគ្រប់គ្រងគណនីផ្ទាល់ខ្លួន", icon: Check },
-      { en: "White-labeled portal options", kh: "ជម្រើសផតថលគ្មានស្លាក KWD", icon: Check },
+      { en: "10 to 30 teacher accounts", kh: "ពី ១០ ទៅ ៣០ គណនីគ្រូ", icon: Check },
+      { en: "200 to 500 students/session", kh: "ពី ២០០ ទៅ ៥០០ សិស្ស/វគ្គ", icon: Check },
+      { en: "Admin class management", kh: "ការគ្រប់គ្រងថ្នាក់ Admin", icon: Check },
+      { en: "Priority support & onboarding", kh: "ជំនួយអាទិភាព និងការណែនាំ", icon: Check },
+      { en: "White-labeled portal & branding", kh: "ជម្រើសផតថល និងសញ្ញាផ្ទាល់ខ្លួន", icon: Check },
     ],
   },
 ];
@@ -114,7 +94,7 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
       <div className="absolute inset-0 bg-black/85 backdrop-blur-lg" onClick={onClose} />
 
       {/* Sheet — slides up on mobile, centered on desktop */}
-      <div className="relative w-full sm:max-w-4xl bg-[#0c0c0c] sm:rounded-2xl rounded-t-3xl border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] overflow-hidden max-h-[95dvh] flex flex-col">
+      <div className="relative w-full sm:max-w-2xl bg-[#0c0c0c] sm:rounded-2xl rounded-t-3xl border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] overflow-hidden max-h-[95dvh] flex flex-col">
 
         {/* Ambient top glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-80 h-24 bg-amber-400/8 blur-3xl pointer-events-none" />
@@ -168,20 +148,18 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
           </div>
  
           {/* Plan cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 px-4 sm:px-6 pb-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 px-4 sm:px-6 pb-4">
             {PLANS.map((plan) => {
               const Icon = plan.icon;
               
               // Define prices based on promo
               const getPrice = (key: string, isYearly: boolean) => {
                 if (key === "teacher_pro") return isYearly ? 3.33 : 5;
-                if (key === "school_public") return isYearly ? 15 : 19;
-                return isYearly ? 18.75 : 24; // school_private
+                return 0; // Handled separately
               };
               const getStandardPrice = (key: string, isYearly: boolean) => {
                 if (key === "teacher_pro") return isYearly ? 6.67 : 10;
-                if (key === "school_public") return isYearly ? 30 : 39;
-                return isYearly ? 36.67 : 49; // school_private
+                return 0; // Handled separately
               };
 
               const price = getPrice(plan.key, yearly);
@@ -212,11 +190,32 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
                   </div>
 
                   {/* Price */}
-                  <div className="flex items-end gap-1.5 mb-0.5 flex-wrap">
-                    <span className="text-4xl font-black text-white leading-none">${price}</span>
-                    <span className="text-white/35 text-xs mb-1" style={khFont}>{kh ? "USD/ខែ" : "USD/mo"}</span>
-                    <span className="line-through text-white/20 text-xs ml-1.5 mb-1">${stdPrice}</span>
-                  </div>
+                  {plan.key === "teacher_pro" ? (
+                    <div className="flex items-end gap-1.5 mb-0.5 flex-wrap">
+                      <span className="text-4xl font-black text-white leading-none">${price}</span>
+                      <span className="text-white/35 text-xs mb-1" style={khFont}>{kh ? "USD/ខែ" : "USD/mo"}</span>
+                      <span className="line-through text-white/20 text-xs ml-1.5 mb-1">${stdPrice}</span>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col gap-1 mb-2 border-b border-white/5 pb-2">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-white/50 font-bold" style={khFont}>{kh ? "ផែនការសាលារៀន" : "School Plan"}</span>
+                        <div className="flex items-center gap-1.5">
+                          <span className="font-black text-white">${yearly ? 15 : 19}</span>
+                          <span className="text-white/35 text-[10px]">{kh ? "USD/ខែ" : "USD/mo"}</span>
+                          <span className="line-through text-white/20 text-[10px]">${yearly ? 30 : 39}</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-white/50 font-bold" style={khFont}>{kh ? "ផែនការវិទ្យាស្ថាន" : "Institute Plan"}</span>
+                        <div className="flex items-center gap-1.5">
+                          <span className="font-black text-white">${yearly ? 18.75 : 24}</span>
+                          <span className="text-white/35 text-[10px]">{kh ? "USD/ខែ" : "USD/mo"}</span>
+                          <span className="line-through text-white/20 text-[10px]">${yearly ? 36.67 : 49}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                   <p className="text-white/35 text-xs mb-3" style={khFont}>
                     {kh ? plan.tagline.kh : plan.tagline.en}
                   </p>
