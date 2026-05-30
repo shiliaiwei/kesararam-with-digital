@@ -139,14 +139,14 @@ export async function GET(
     },
   });
 
-  // Keepalive ping every 15s
+  // Keepalive ping every 10s (faster dead-connection detection)
   const pingInterval = setInterval(() => {
     try {
       broadcast(code.toUpperCase(), { type: "ping" });
     } catch {
       clearInterval(pingInterval);
     }
-  }, 15000);
+  }, 10000);
 
   req.signal.addEventListener("abort", () => {
     clearInterval(pingInterval);

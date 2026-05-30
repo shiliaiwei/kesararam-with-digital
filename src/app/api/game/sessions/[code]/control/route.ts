@@ -190,12 +190,6 @@ export async function POST(
       const prevRanks = new Map([...participants].sort((a, b) => b.totalScore - a.totalScore).map((p, i) => [p.userId, i + 1]));
       const leaderboard = await buildLeaderboard(session.id, prevRanks);
 
-      broadcast(code.toUpperCase(), {
-        type: "question_end",
-        correctAnswerId: correctAnswer?.id ?? null,
-        leaderboard,
-      });
-
       const nextIdx = idx + 1;
 
       // Last question — end game
@@ -209,24 +203,48 @@ export async function POST(
         // Sync scores to user profiles for leaderboard persistence
         await syncScoresToUserProfiles(session.id);
 
+        // Broadcast question_end first so clients see correct answer reveal
+        broadcast(code.toUpperCase(), {
+          type: "question_end",
+          correctAnswerId: correctAnswer?.id ?? null,
+          leaderboard,
+        });
+
         // Small delay so clients see question_end before session_end
-        await new Promise(r => setTimeout(r, 2000));
+        await new Promise(r => setTimeout(r, 2500));
         broadcast(code.toUpperCase(), { type: "session_end", podium: leaderboard.slice(0, 3), finalLeaderboard: leaderboard });
 
-        // After 30 seconds, send a final close event
+        // After 60 seconds, send a final close event
         setTimeout(() => {
           broadcast(code.toUpperCase(), { type: "warning", message: "Session closed. Please exit." });
-        }, 30000);
+        }, 60000);
 
         return NextResponse.json({ status: "ended" });
       }
 
-      // Next question
+      // ── Next question — complete ALL DB writes BEFORE broadcasting ──────────
       const nextQId = qIds[nextIdx];
       const nextNow = new Date();
-      await db.update(gameSessions).set({ currentQuestionIndex: nextIdx, questionStartedAt: nextNow }).where(eq(gameSessions.id, session.id));
+
+      // DB write first
+      await db.update(gameSessions)
+        .set({ currentQuestionIndex: nextIdx, questionStartedAt: nextNow })
+        .where(eq(gameSessions.id, session.id));
+
+      // Fetch next question payload
       const q = await getQuestionPayload(nextQId);
       const endsAt = new Date(nextNow.getTime() + session.timePerQuestion * 1000);
+
+      // Broadcast question_end (reveal correct answer + leaderboard)
+      broadcast(code.toUpperCase(), {
+        type: "question_end",
+        correctAnswerId: correctAnswer?.id ?? null,
+        leaderboard,
+      });
+
+      // Short guaranteed delay (800ms) so clients can animate the reveal,
+      // then atomically deliver the next question to ALL connected clients
+      await new Promise(r => setTimeout(r, 800));
 
       broadcast(code.toUpperCase(), {
         type: "question_start", question: q,

@@ -1,11 +1,14 @@
 /**
  * In-process SSE event bus.
  * Maps sessionCode → Set of active stream controllers.
+ *
+ * Key fix: dead controllers are pruned immediately on enqueue failure
+ * so stale connections never swallow future broadcast events.
  */
 
 export type SSEEvent =
   | { type: "lobby_update"; participants: ParticipantInfo[] }
-  | { type: "question_start"; question: QuestionPayload; startsAt: string; endsAt: string; index: number; total: number }
+  | { type: "question_start"; question: QuestionPayload; startsAt: string; endsAt: string; index: number; total: number; catchUp?: boolean }
   | { type: "question_end"; correctAnswerId: number | null; leaderboard: LeaderboardEntry[] }
   | { type: "leaderboard"; entries: LeaderboardEntry[] }
   | { type: "session_paused" }
@@ -32,6 +35,7 @@ export interface QuestionPayload {
   difficulty: string | null;
   gameType: "mcq" | "true_false" | "image_pick";
   answers: AnswerOption[];
+  topicCode?: string | null;
 }
 
 export interface AnswerOption {
@@ -68,15 +72,35 @@ export function broadcast(code: string, event: SSEEvent) {
   const data = `data: ${JSON.stringify(event)}\n\n`;
   const controllers = bus.get(code);
   if (!controllers) return;
+
+  const dead: ReadableStreamDefaultController[] = [];
+
   for (const ctrl of controllers) {
     try {
       ctrl.enqueue(data);
     } catch {
-      // client disconnected — will be cleaned up on close
+      // Controller is closed/errored — mark for removal
+      dead.push(ctrl);
     }
+  }
+
+  // Prune dead controllers immediately so they never block future broadcasts
+  for (const ctrl of dead) {
+    controllers.delete(ctrl);
+  }
+  if (controllers.size === 0) {
+    bus.delete(code);
   }
 }
 
 export function subscriberCount(code: string): number {
   return bus.get(code)?.size ?? 0;
+}
+
+export function getBusStats(): Record<string, number> {
+  const stats: Record<string, number> = {};
+  for (const [code, set] of bus.entries()) {
+    stats[code] = set.size;
+  }
+  return stats;
 }

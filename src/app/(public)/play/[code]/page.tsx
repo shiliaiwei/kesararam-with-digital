@@ -197,22 +197,33 @@ export default function StudentGamePage() {
   const { connected, error } = useGameSSE(code, handleSSEEvent, !joining && !joinError);
 
   const unifiedHeader = (
-    <div className="flex items-center justify-between px-6 py-3 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md text-white w-full flex-shrink-0 z-40 relative">
+    <div className="flex items-center justify-between px-4 py-2.5 border-b border-zinc-800 bg-zinc-950/90 backdrop-blur-md text-white w-full flex-shrink-0 z-40 relative">
       <div className="flex items-center gap-2">
-        <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-yellow-400 animate-pulse" />
-          <span className="text-zinc-400 text-xs font-black tracking-widest uppercase">STUDENT CLIENT</span>
-        </div>
+        <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse flex-shrink-0" />
+        <span className="text-zinc-500 text-[10px] font-black tracking-widest uppercase hidden sm:inline">STUDENT</span>
       </div>
 
       <div className="text-center">
-        <span className="text-white text-sm font-black tracking-widest bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-lg">ROOM: {code}</span>
+        <span className="text-white text-sm font-black tracking-widest bg-zinc-900 border border-zinc-800 px-4 py-1 rounded-lg">ROOM: {code}</span>
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2">
+        <button
+          onClick={() => setMuted(m => !m)}
+          className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg border text-xs font-black transition-all ${
+            muted
+              ? "bg-red-950/40 border-red-500/60 text-red-400"
+              : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
+          }`}
+          title={muted ? "Unmute" : "Mute audio"}
+        >
+          {muted ? <VolumeX size={13} /> : <Volume2 size={13} />}
+          <span className="hidden sm:inline">{muted ? (kh ? "បើកសំឡេង" : "Unmuted") : (kh ? "បិទសំឡេង" : "Muted")}</span>
+        </button>
+
         <div className={`flex items-center gap-1.5 text-xs font-black uppercase tracking-wider ${connected ? "text-green-400" : "text-yellow-400"}`}>
           {connected ? <Wifi size={12} /> : <Loader2 size={12} className="animate-spin" />}
-          <span>{connected ? (kh ? "ភ្ជាប់" : "Connected") : (kh ? "កំពុងភ្ជាប់..." : "Connecting...")}</span>
+          <span className="hidden sm:inline">{connected ? (kh ? "ភ្ជាប់" : "Live") : (kh ? ".." : "...")}</span>
         </div>
       </div>
     </div>
@@ -237,7 +248,6 @@ export default function StudentGamePage() {
 
   const handleAnswerSelect = useCallback((answerId: number) => submitAnswer(answerId), [submitAnswer]);
 
-  // ── Loading / Error states ─────────────────────────────────────────────────
   const DotBg = ({ children }: { children: React.ReactNode }) => (
     <div className="min-h-screen flex items-center justify-center p-4"
       style={{ backgroundColor: "#0d0d14", backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px" }}>
@@ -295,7 +305,6 @@ export default function StudentGamePage() {
     );
   }
 
-  // ── Lobby ──────────────────────────────────────────────────────────────────
   if (phase === "lobby") {
     const modeColor = MODE_COLORS[sessionInfo?.gameMode ?? ""] ?? "#eab308";
     const modeLabel = MODE_LABELS[sessionInfo?.gameMode ?? ""] ?? sessionInfo?.gameMode ?? "—";
@@ -308,43 +317,33 @@ export default function StudentGamePage() {
         {unifiedHeader}
 
         <div className="flex-1 flex flex-col items-center justify-center px-4 py-6 gap-5 max-w-lg mx-auto w-full">
-
-          {/* Live badge */}
           <div className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-500 bg-red-950/40 text-red-400 text-xs font-black tracking-widest shadow-[0_0_15px_rgba(239,68,68,0.25)] animate-pulse">
             <div className="w-2 h-2 rounded-full bg-red-500" />
             <span>LIVE SESSION</span>
           </div>
 
-          {/* Host + Session card */}
           <div className="w-full border border-zinc-700/50 bg-zinc-900/60 backdrop-blur-md p-8 rounded-2xl text-center relative overflow-hidden shadow-2xl"
             style={{ boxShadow: `0 10px 40px -10px rgba(0,0,0,0.7), 0 0 30px ${modeColor}15` }}>
-            {/* Ambient backdrop glow */}
             <div className="absolute -top-24 -left-24 w-48 h-48 rounded-full blur-[80px]" style={{ backgroundColor: modeColor, opacity: 0.15 }} />
             <div className="absolute -bottom-24 -right-24 w-48 h-48 rounded-full blur-[80px]" style={{ backgroundColor: modeColor, opacity: 0.15 }} />
-
             <div className="text-zinc-400 text-xs font-black uppercase tracking-widest mb-2" style={khFont}>
               {kh ? "គ្រូបង្រៀន" : "Hosted by"}
             </div>
             <div className="text-white font-black text-3xl mb-6 tracking-wide drop-shadow-md" style={khFont}>
               {sessionInfo?.hostName ?? "—"}
             </div>
-
-            {/* Room code */}
             <div className="inline-block px-8 py-4 border border-zinc-700 bg-zinc-950/80 rounded-xl mb-4 relative"
               style={{ boxShadow: `inset 0 0 20px rgba(0,0,0,0.6)` }}>
-              {/* Inner neon glow */}
               <div className="absolute inset-0 rounded-xl blur-md opacity-40 transition-opacity" style={{ backgroundColor: modeColor }} />
               <div className="relative font-black text-5xl tracking-[0.25em] pl-[0.25em]" style={{ color: modeColor, textShadow: `0 0 10px ${modeColor}80` }}>
                 {code}
               </div>
             </div>
-
             <div className="text-zinc-500 text-xs font-black uppercase tracking-wider" style={khFont}>
               {kh ? "លេខកូដចូលរួម" : "Game Code"}
             </div>
           </div>
 
-          {/* Session details grid */}
           {sessionInfo && (
             <div className="w-full grid grid-cols-2 gap-2">
               <div className="border border-zinc-800/80 bg-zinc-900/40 backdrop-blur-sm p-4 rounded-xl flex items-center gap-3 transition-all hover:border-zinc-700/60">
@@ -394,7 +393,6 @@ export default function StudentGamePage() {
             </div>
           )}
 
-          {/* Language selector in lobby */}
           {sessionInfo && (
             <div className="w-full border border-zinc-800 bg-zinc-900/40 backdrop-blur-sm p-5 rounded-2xl text-center">
               <div className="text-zinc-400 text-[10px] font-black uppercase tracking-widest mb-4" style={khFont}>
@@ -402,9 +400,7 @@ export default function StudentGamePage() {
               </div>
               <div className="flex gap-3">
                 <button
-                  onClick={() => {
-                    if (sessionInfo.language === "both") setLang("kh");
-                  }}
+                  onClick={() => { if (sessionInfo.language === "both") setLang("kh"); }}
                   disabled={sessionInfo.language !== "both"}
                   className={`flex-1 py-3.5 px-4 border rounded-xl font-black text-sm transition-all duration-200 uppercase tracking-wider flex items-center justify-center gap-2 ${
                     lang === "kh"
@@ -417,9 +413,7 @@ export default function StudentGamePage() {
                   {sessionInfo.language === "km" && <span className="text-[10px] opacity-60 font-bold">({kh ? "គ្រូកំណត់" : "Forced"})</span>}
                 </button>
                 <button
-                  onClick={() => {
-                    if (sessionInfo.language === "both") setLang("en");
-                  }}
+                  onClick={() => { if (sessionInfo.language === "both") setLang("en"); }}
                   disabled={sessionInfo.language !== "both"}
                   className={`flex-1 py-3.5 px-4 border rounded-xl font-black text-sm transition-all duration-200 uppercase tracking-wider flex items-center justify-center gap-2 ${
                     lang === "en"
@@ -434,7 +428,6 @@ export default function StudentGamePage() {
             </div>
           )}
 
-          {/* Players joined */}
           <div className="w-full border border-zinc-800 bg-zinc-900/40 backdrop-blur-sm p-5 rounded-2xl">
             <div className="flex items-center gap-2 mb-4">
               <Users size={14} className="text-zinc-500" />
@@ -464,7 +457,6 @@ export default function StudentGamePage() {
             )}
           </div>
 
-          {/* Waiting pulse */}
           <div className="flex items-center gap-2.5 text-zinc-500 text-sm font-black tracking-wide animate-pulse" style={khFont}>
             <Loader2 size={16} className="animate-spin text-yellow-400/80" />
             {kh ? "រង់ចាំគ្រូចាប់ផ្តើម..." : "Waiting for host to start..."}
@@ -474,9 +466,6 @@ export default function StudentGamePage() {
     );
   }
 
-
-
-  // ── Question ───────────────────────────────────────────────────────────────
   if (phase === "question" && currentQuestion) {
     if (!currentQuestion.answers?.length) {
       return (
@@ -491,17 +480,13 @@ export default function StudentGamePage() {
       ? Math.max(5, Math.round((new Date(endsAt).getTime() - Date.now()) / 1000))
       : sessionInfo?.timePerQuestion ?? 30;
 
-    // Track local score & streak from answerResult for display
     const myScore = leaderboard.find(e => e.userId === currentUserId)?.totalScore ?? 0;
     const myStreak = leaderboard.find(e => e.userId === currentUserId)?.currentStreak ?? 0;
 
     return (
       <div className="game-dot-bg fixed inset-0 z-50 flex flex-col" style={{ userSelect: "none" }}>
-
-        {/* ── Top bar — identical to solo game ── */}
-        <div className="relative z-10 flex items-center justify-between px-6 py-3 bg-zinc-950 border-b border-zinc-800 flex-shrink-0 h-14">
-          {/* Left: LIVE badge + mode label */}
-          <div className="flex items-center gap-2.5">
+        <div className="relative z-10 flex items-center justify-between px-4 py-2.5 bg-zinc-950 border-b border-zinc-800 flex-shrink-0 h-14">
+          <div className="flex items-center gap-2">
             <div className="flex items-center gap-1.5 px-2.5 py-1 bg-red-950/40 border border-red-500 rounded-full">
               <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
               <span className="text-red-400 font-black text-[9px] tracking-widest uppercase">LIVE</span>
@@ -511,7 +496,6 @@ export default function StudentGamePage() {
             </span>
           </div>
 
-          {/* Center/Right: score + streak badges */}
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1.5 bg-yellow-400 border border-zinc-950 px-3 py-1 rounded-lg shadow-md">
               <Zap size={12} className="text-black" />
@@ -524,9 +508,21 @@ export default function StudentGamePage() {
               </div>
             )}
           </div>
+
+          <button
+            onClick={() => setMuted(m => !m)}
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-black transition-all ${
+              muted
+                ? "bg-red-950/40 border-red-500/60 text-red-400"
+                : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
+            }`}
+            title={muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}
+          >
+            {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+            <span className="hidden sm:inline text-[10px] uppercase tracking-wider">{muted ? "Unmute" : "Mute"}</span>
+          </button>
         </div>
 
-        {/* ── Progress bar ── */}
         <div className="h-1.5 bg-zinc-800 flex-shrink-0">
           <div
             className="h-full bg-yellow-400 transition-all duration-500"
@@ -534,12 +530,9 @@ export default function StudentGamePage() {
           />
         </div>
 
-        {/* ── Content area ── */}
         <div className="relative z-10 flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full justify-center overflow-y-auto min-h-0">
-
-          {/* Q-index + difficulty + timer row (Stable row) */}
-          <div className="flex items-center justify-between gap-2 px-1 py-1 w-full bg-zinc-900/40 border border-zinc-800/80 rounded-xl h-16 flex-shrink-0">
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar flex-nowrap py-1">
+          <div className="flex items-center justify-between gap-2 px-2 py-1.5 w-full bg-zinc-900/60 border border-zinc-800/80 rounded-xl h-14 flex-shrink-0">
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar flex-nowrap">
               <span className="shrink-0 text-zinc-300 text-xs font-black uppercase tracking-widest bg-zinc-800 px-3 py-1.5 rounded-lg border border-zinc-700/80" style={khFont}>
                 {kh ? `${questionIndex + 1}/${totalQuestions}` : `Q ${questionIndex + 1} / ${totalQuestions}`}
               </span>
@@ -551,13 +544,6 @@ export default function StudentGamePage() {
                   {(currentQuestion as any).topicCode.trim()}
                 </span>
               )}
-              <button
-                onClick={() => setMuted(m => !m)}
-                className="shrink-0 p-2 rounded-lg bg-zinc-800 border border-zinc-700/80 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all"
-                title={muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}
-              >
-                {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-              </button>
             </div>
             {endsAt && (
               <div className="shrink-0 scale-90 origin-right">
@@ -571,7 +557,6 @@ export default function StudentGamePage() {
             )}
           </div>
 
-          {/* Question image (Stable height wrapper) */}
           <div className="shrink-0 w-full h-48 border border-zinc-800 bg-zinc-950/40 rounded-xl flex items-center justify-center p-3 relative overflow-hidden backdrop-blur-sm">
             {currentQuestion.imageUrl && currentQuestion.gameType !== "image_pick" ? (
               <img src={currentQuestion.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded" />
@@ -583,7 +568,6 @@ export default function StudentGamePage() {
             )}
           </div>
 
-          {/* Question text card (Stable height + centered text) */}
           <div
             className="shrink-0 w-full h-32 bg-zinc-900/90 backdrop-blur-md border-2 border-zinc-750/85 p-4 rounded-xl text-white font-black flex items-center justify-center text-center shadow-lg overflow-y-auto select-text animate-fade-in"
             style={{
@@ -598,7 +582,6 @@ export default function StudentGamePage() {
             </div>
           </div>
 
-          {/* Answer grid (Stable min-height wrapper) */}
           <div className="shrink-0 min-h-[176px]">
             <ErrorBoundary fallback={
               <div className="text-center p-8 border border-red-500/30 bg-red-500/10 rounded-xl">
@@ -619,7 +602,6 @@ export default function StudentGamePage() {
             </ErrorBoundary>
           </div>
 
-          {/* Stable Feedback / Status slot */}
           <div className="shrink-0 h-24 flex items-center justify-center w-full">
             {answerResult ? (
               <div
@@ -668,7 +650,6 @@ export default function StudentGamePage() {
     );
   }
 
-  // ── Results / Leaderboard ──────────────────────────────────────────────────
   if (phase === "results" || phase === "leaderboard") {
     return (
       <div className="min-h-screen flex flex-col"
@@ -694,13 +675,7 @@ export default function StudentGamePage() {
         style={{ backgroundColor: "#0d0d14", backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px" }}>
         {unifiedHeader}
         <div className="flex-1 p-4 max-w-2xl mx-auto w-full pt-6">
-          <div className="text-center mb-6">
-            <div className="inline-block px-4 py-1.5 bg-yellow-400 text-black font-black text-xs uppercase tracking-widest mb-3">
-              {kh ? "ហ្គេមចប់" : "Game Over"}
-            </div>
-            <h1 className="text-white font-black text-3xl" style={khFont}>{kh ? "លទ្ធផលចុងក្រោយ" : "Final Results"}</h1>
-          </div>
-          <Podium podium={podium} finalLeaderboard={leaderboard} lang={lang} currentUserId={currentUserId} onPlayAgain={() => router.push("/play")} />
+          <Podium podium={podium} finalLeaderboard={leaderboard} lang={lang} currentUserId={currentUserId} onPlayAgain={() => router.push("/play")} sessionCode={code} totalQuestions={totalQuestions} />
         </div>
       </div>
     );

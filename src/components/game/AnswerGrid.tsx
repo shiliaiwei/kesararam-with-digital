@@ -1,13 +1,13 @@
 "use client";
 
-import { Triangle, Circle, Square, Diamond } from "lucide-react";
 import type { AnswerOption } from "@/lib/game-event-bus";
 
+/** Kahoot-style answer shapes */
 const ANSWER_STYLES = [
-  { bg: "#ef4444", icon: Triangle, label: "A" },
-  { bg: "#3b82f6", icon: Circle, label: "B" },
-  { bg: "#22c55e", icon: Square, label: "C" },
-  { bg: "#f97316", icon: Diamond, label: "D" },
+  { bg: "#ef4444", hoverBg: "#dc2626", shape: "▲", label: "A", shadow: "#991b1b" },
+  { bg: "#3b82f6", hoverBg: "#2563eb", shape: "◆", label: "B", shadow: "#1d4ed8" },
+  { bg: "#22c55e", hoverBg: "#16a34a", shape: "●", label: "C", shadow: "#15803d" },
+  { bg: "#f97316", hoverBg: "#ea580c", shape: "■", label: "D", shadow: "#c2410c" },
 ];
 
 interface AnswerGridProps {
@@ -29,145 +29,126 @@ export function AnswerGrid({
   gameType,
   onSelect,
 }: AnswerGridProps) {
-  const isTrueFalse = gameType === "true_false";
-  const isImagePick = gameType === "image_pick";
-
-  const gridClass = isTrueFalse
-    ? "grid grid-cols-2 gap-4"
-    : isImagePick
-      ? "grid grid-cols-2 gap-4"
-      : "grid grid-cols-2 gap-4";
-
-  // Safety check - ensure answers is an array
   if (!Array.isArray(answers) || answers.length === 0) {
     return (
-      <div className="text-center py-8 text-white">
-        <p>Loading answers...</p>
+      <div className="text-center py-8 text-white/50 font-bold">
+        Loading answers...
       </div>
     );
   }
 
+  const isImagePick = gameType === "image_pick";
+  const khFont = lang === "kh" ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const isTwoCol = answers.length <= 2;
+
   return (
-    <div className={gridClass}>
+    <div className={`grid gap-3 ${isTwoCol ? "grid-cols-1" : "grid-cols-2"}`}>
       {answers.map((ans, i) => {
         const style = ANSWER_STYLES[i % ANSWER_STYLES.length];
-        const Icon = style.icon;
         const isSelected = selectedId === ans.id;
-        const isCorrect = correctId === ans.id;
-        const isWrong = isSelected && correctId !== null && !isCorrect;
+        const isCorrect = correctId !== null && ans.id === correctId;
+        const isWrong = correctId !== null && ans.id !== correctId;
+        const isMyWrong = isSelected && isWrong;
+        const text = lang === "kh" ? (ans.answerKm || ans.answerEn) : ans.answerEn;
 
-        let borderColor = "#000";
-        let bgColor = style.bg;
+        // Derive colors
+        let bg = style.bg;
         let opacity = 1;
+        let scale = "scale(1)";
+        let boxShadow = `0 6px 0 ${style.shadow}`;
 
         if (correctId !== null) {
           if (isCorrect) {
-            bgColor = "#22c55e";
-            borderColor = "#000";
-          } else if (isWrong) {
-            bgColor = "#ef4444";
+            bg = "#22c55e";
+            boxShadow = "0 6px 0 #15803d";
+            scale = "scale(1.03)";
+          } else if (isMyWrong) {
+            bg = "#ef4444";
+            boxShadow = "0 4px 0 #991b1b";
           } else {
-            opacity = 0.4;
+            opacity = 0.35;
+            boxShadow = "none";
           }
         } else if (isSelected) {
-          borderColor = "#fff";
+          scale = "translateY(-3px) scale(1.02)";
+          boxShadow = `0 9px 0 ${style.shadow}`;
         }
 
-        const text = lang === "kh" ? ans.answerKm || ans.answerEn : ans.answerEn;
+        if (isImagePick) {
+          return (
+            <button
+              key={ans.id}
+              disabled={disabled}
+              onClick={() => !disabled && onSelect(ans.id)}
+              type="button"
+              className="relative overflow-hidden aspect-square border-4 border-black transition-all duration-200 active:scale-95"
+              style={{
+                opacity,
+                backgroundColor: bg,
+                transform: scale,
+                boxShadow,
+              }}
+            >
+              {ans.imageUrl ? (
+                <img
+                  src={ans.imageUrl}
+                  alt={text}
+                  className="w-full h-full object-contain p-2"
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).style.display = "none";
+                  }}
+                />
+              ) : (
+                <span className="text-white font-black text-sm text-center p-2 leading-tight" style={khFont}>
+                  {text}
+                </span>
+              )}
+              {isCorrect && (
+                <span className="absolute top-2 right-2 w-8 h-8 bg-white border-2 border-black rounded-none flex items-center justify-center text-green-600 font-black text-lg">✓</span>
+              )}
+              {isMyWrong && (
+                <span className="absolute top-2 right-2 w-8 h-8 bg-white border-2 border-black rounded-none flex items-center justify-center text-red-600 font-black text-lg">✗</span>
+              )}
+            </button>
+          );
+        }
 
         return (
           <button
             key={ans.id}
             disabled={disabled}
-            onClick={() => {
-              if (!disabled && onSelect) {
-                onSelect(ans.id);
-              }
-            }}
+            onClick={() => !disabled && onSelect(ans.id)}
             type="button"
-            className={`relative flex items-center transition-all duration-300 ease-out active:scale-95 text-left font-black text-white ${isImagePick
-                ? "overflow-hidden aspect-square justify-center rounded-none bg-white border-2 border-black"
-                : "gap-3 p-4 border-2 border-black rounded-none"
-              }`}
-            style={isImagePick ? {
+            className="relative flex items-center gap-3 px-4 py-5 border-2 border-black transition-all duration-150 active:scale-95 text-left font-black text-white select-none"
+            style={{
+              backgroundColor: bg,
               opacity,
-              boxShadow: isCorrect
-                ? "4px 4px 0 #22c55e"
-                : isWrong
-                  ? "4px 4px 0 #ef4444"
-                  : isSelected && correctId === null
-                    ? "4px 4px 0 #eab308"
-                    : "4px 4px 0 #000",
-              transform: isSelected && correctId === null ? "translate(-2px,-2px) scale(1.02)" : isCorrect ? "scale(1.02)" : "scale(1)",
-            } : {
-              backgroundColor: bgColor,
-              borderColor: borderColor,
-              opacity,
-              boxShadow: isSelected && correctId === null ? "4px 4px 0 #fff" : "4px 4px 0 #000",
-              transform: isSelected && correctId === null ? "translate(-2px,-2px) scale(1.02)" : undefined,
-              fontFamily: lang === "kh" ? "Siemreap, sans-serif" : undefined,
+              transform: scale,
+              boxShadow,
+              borderRadius: "12px",
+              minHeight: "72px",
+              ...khFont,
             }}
           >
-            {!isImagePick && (
-              <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center border-2 border-white/50 rounded-none">
-                <Icon size={14} className="text-white" />
-              </span>
-            )}
+            {/* Shape icon + letter label */}
+            <span
+              className="flex-shrink-0 w-10 h-10 flex flex-col items-center justify-center bg-black/20 rounded-lg border border-white/30 gap-0.5"
+            >
+              <span className="text-white/90 text-base leading-none">{style.shape}</span>
+              <span className="text-white font-black text-[10px] tracking-wider">{style.label}</span>
+            </span>
 
-            {isImagePick && ans.imageUrl ? (
-              <div className="w-full h-full flex items-center justify-center p-4 relative bg-white rounded-none">
-                <img
-                  src={ans.imageUrl}
-                  alt={text}
-                  className="w-full h-full object-contain drop-shadow-sm transition-transform duration-300"
-                  style={{ transform: (isSelected || isCorrect) ? "scale(1.05)" : "scale(1)" }}
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                    const sib = e.currentTarget.nextElementSibling as HTMLElement | null;
-                    if (sib) sib.style.display = "flex";
-                  }}
-                />
-                {/* Fallback text if image fails */}
-                <span className="text-xs leading-tight hidden items-center justify-center text-center text-black px-4 absolute inset-0 bg-zinc-50 rounded-none">
-                  {text}
-                </span>
-                {/* Correct overlay — green tick & subtle green tint */}
-                {isCorrect && (
-                  <>
-                    <div className="absolute inset-0 bg-green-500/5 rounded-none pointer-events-none" />
-                    <span className="absolute top-3 right-3 w-8 h-8 rounded-none bg-green-500 border-2 border-black flex items-center justify-center text-white font-black text-lg shadow-[2px_2px_0_#000] z-10 scale-in-center">
-                      ✓
-                    </span>
-                  </>
-                )}
-                {/* Wrong overlay — red cross & subtle red tint */}
-                {isWrong && (
-                  <>
-                    <div className="absolute inset-0 bg-red-500/5 rounded-none pointer-events-none" />
-                    <span className="absolute top-3 right-3 w-8 h-8 rounded-none bg-red-500 border-2 border-black flex items-center justify-center text-white font-black text-lg shadow-[2px_2px_0_#000] z-10 scale-in-center">
-                      ✗
-                    </span>
-                  </>
-                )}
-              </div>
-            ) : isImagePick && !ans.imageUrl ? (
-              /* No image — show text fallback */
-              <div className="w-full h-full flex items-center justify-center bg-zinc-50 relative rounded-none">
-                <span className="text-sm font-bold text-black text-center px-4 leading-tight">{text}</span>
-                {isCorrect && (
-                  <span className="absolute top-3 right-3 w-8 h-8 rounded-none bg-green-500 border-2 border-black flex items-center justify-center text-white font-black text-lg shadow-[2px_2px_0_#000] z-10">✓</span>
-                )}
-                {isWrong && (
-                  <span className="absolute top-3 right-3 w-8 h-8 rounded-none bg-red-500 border-2 border-black flex items-center justify-center text-white font-black text-lg shadow-[2px_2px_0_#000] z-10">✗</span>
-                )}
-              </div>
-            ) : (
-              <span className="flex-1 text-sm sm:text-base leading-tight">{text}</span>
-            )}
+            {/* Answer text */}
+            <span className="flex-1 text-sm sm:text-base leading-tight text-white font-black">
+              {text}
+            </span>
 
-            {/* Correct tick for non-image answers */}
-            {!isImagePick && isCorrect && (
-              <span className="absolute top-1 right-2 text-white font-black z-10">✓</span>
+            {/* Result indicator */}
+            {isCorrect && (
+              <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-white rounded-full border-2 border-black text-green-600 font-black text-lg">✓</span>
+            )}
+            {isMyWrong && (
+              <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-white rounded-full border-2 border-black text-red-600 font-black text-lg">✗</span>
             )}
           </button>
         );

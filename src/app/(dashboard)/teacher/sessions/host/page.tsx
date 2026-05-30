@@ -207,6 +207,8 @@ export default function HostPage() {
   const [endsAt, setEndsAt] = useState<string | null>(null);
   const [upgradeModalOpen, setUpgradeModalOpen] = useState(false);
   const [upgradeTrigger, setUpgradeTrigger] = useState("");
+  const [questionCountWarning, setQuestionCountWarning] = useState<string | null>(null);
+  const [actualQuestionCount, setActualQuestionCount] = useState<number | null>(null);
 
   // Fetch subscription plan info client-side
   useEffect(() => {
@@ -237,7 +239,10 @@ export default function HostPage() {
       .then((r) => r.json())
       .then((d) => {
         setCategories(d.categories ?? []);
-        if (d.categories?.length) setSelectedCats([d.categories[0].id]);
+        // Only set a default if the user hasn't already selected something
+        if (d.categories?.length && selectedCats.length === 0) {
+          setSelectedCats([d.categories[0].id]);
+        }
       });
     fetch("/api/game/sessions")
       .then((r) => r.json())
@@ -350,8 +355,10 @@ export default function HostPage() {
 
   async function createSession() {
     if (!sessionName.trim()) { setError(kh ? "ដាក់ឈ្មោះ" : "Enter session name"); return; }
-    if (!selectedCats.length) { setError(kh ? "ជ្រើសរើសប្រភេទ" : "Select a category"); return; }
+    if (!selectedCats.length) { setError(kh ? "ជ្រើសរើសប្រភេទ" : "Select at least one category"); return; }
     setError("");
+    setQuestionCountWarning(null);
+    setActualQuestionCount(null);
     setPhase({ name: "creating" });
     const cfg = GAME_MODE_CONFIG[selectedMode];
     const res = await fetch("/api/game/sessions", {
@@ -362,6 +369,8 @@ export default function HostPage() {
     if (!res.ok) { const err = await res.json(); setError(err.error ?? "Failed"); setPhase({ name: "setup" }); return; }
     const data = await res.json();
     const catNames = categories.filter(c => selectedCats.includes(c.id)).map(c => kh ? c.titleKm : c.titleEn);
+    if (data.warning) setQuestionCountWarning(data.warning);
+    if (data.questionCount) setActualQuestionCount(data.questionCount);
     setPhase({
       name: "lobby", code: data.sessionCode, sessionId: data.sessionId, participants: [],
       gameMode: selectedMode, categories: catNames, difficulty,
@@ -641,7 +650,24 @@ export default function HostPage() {
 
               {/* Categories */}
               <GlassCard className="p-5">
-                <SectionLabel style={khFont}>{kh ? "ប្រភេទ" : "Categories"}</SectionLabel>
+                <div className="flex items-center justify-between mb-3">
+                  <SectionLabel style={khFont}>{kh ? "ប្រភេទ" : "Categories"}</SectionLabel>
+                  <button
+                    onClick={() => {
+                      if (selectedCats.length === categories.length) {
+                        setSelectedCats([]);
+                      } else {
+                        setSelectedCats(categories.map(c => c.id));
+                      }
+                    }}
+                    className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 border-2 border-black bg-zinc-100 hover:bg-yellow-400 transition-all"
+                    style={{ borderRadius: "0px" }}
+                  >
+                    {selectedCats.length === categories.length
+                      ? (kh ? "ដកជ្រើសទាំងអស់" : "Deselect All")
+                      : (kh ? "ជ្រើសទាំងអស់" : "Select All")}
+                  </button>
+                </div>
                 <div className="flex flex-wrap gap-2">
                   {categories.map((cat) => {
                     const sel = selectedCats.includes(cat.id);
@@ -661,6 +687,12 @@ export default function HostPage() {
                     );
                   })}
                 </div>
+                {selectedCats.length === 0 && (
+                  <div className="mt-3 text-xs font-black text-red-600 flex items-center gap-1.5">
+                    <span className="material-symbols-rounded text-sm">warning</span>
+                    {kh ? "ជ្រើសរើសប្រភេទយ៉ាងហោចណាស់មួយ" : "Please select at least one category"}
+                  </div>
+                )}
               </GlassCard>
 
               {/* Settings row */}
@@ -823,6 +855,13 @@ export default function HostPage() {
                   {(error.toLowerCase().includes("session") || error.toLowerCase().includes("limit") || error.toLowerCase().includes("upgrade")) && subPlan === "free" && (
                     <div className="mt-2"><UpgradeButton variant="banner" trigger="session_limit" lang={lang} /></div>
                   )}
+                </div>
+              )}
+
+              {/* Question count warning */}
+              {questionCountWarning && (
+                <div className="px-4 py-3 border-2 border-black bg-amber-300 text-black font-black text-sm shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px", ...khFont }}>
+                  <span className="material-symbols-rounded text-black mr-1 text-sm align-middle">info</span> {questionCountWarning}
                 </div>
               )}
 
