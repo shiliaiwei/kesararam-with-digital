@@ -224,6 +224,7 @@ function PodiumCard({ user, cfg, index, currentUser }: {
   const isFirst = cfg.rank === 1;
   const name = user ? (user.displayName || user.username) : "—";
   const userAvatar = (currentUser && user && user.id === currentUser.id) ? currentUser.avatar : (user?.avatar ?? null);
+  const initials = (name && name !== "—" ? name : "?").slice(0, 2).toUpperCase();
 
   useEffect(() => {
     if (!cardRef.current) return;
