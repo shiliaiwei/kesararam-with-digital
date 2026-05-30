@@ -290,7 +290,7 @@ function PodiumCard({ user, cfg, index, currentUser }: {
         
         {/* Creative Rank Emblem/Medal */}
         <div 
-          className="relative rounded-full flex items-center justify-center border-4 border-black shadow-[4px_4px_0_#000] overflow-hidden transition-transform duration-300 hover:scale-110"
+          className="relative rounded-full flex items-center justify-center border-4 border-black overflow-hidden transition-transform duration-300 hover:scale-110"
           style={{ 
             width: isFirst ? 80 : 64,
             height: isFirst ? 80 : 64,
@@ -368,7 +368,7 @@ function PodiumCard({ user, cfg, index, currentUser }: {
         {isFirst && (
           <div className="flex items-center gap-1 bg-yellow-400 text-black text-[8px] font-black uppercase px-2 py-0.5 border-2 border-black shadow-[2px_2px_0_#000] my-0.5 animate-pulse z-10">
             <Sparkles size={8} className="fill-black" />
-            <span>{kh ? "រង្វាន់ធំបំផុត" : "MOST VALUE"}</span>
+            <span>{kh ? "កំពូលជើងឯក" : "LEGENDARY"}</span>
           </div>
         )}
 
