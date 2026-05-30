@@ -419,21 +419,14 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                 {kh ? "២. ស្កែនទូទាត់តាម KHQR" : "2. Scan to Pay"}
               </label>
               
-              {/* Virtual styled QR card placeholder */}
+              {/* Actual KHQR image from public folder */}
               <div className="bg-white p-4 rounded-2xl border-2 border-zinc-200 flex flex-col items-center gap-3">
-                <div className="relative w-full aspect-square bg-[#FAF9F5] border-2 border-dashed border-zinc-300 rounded-xl flex flex-col items-center justify-center gap-2 p-4 text-center">
-                  <div className="w-12 h-12 bg-[#D92A3E] text-white flex items-center justify-center font-black rounded-lg text-xs tracking-wider shadow">KHQR</div>
-                  <p className="text-xs font-black text-zinc-800" style={kf}>
-                    {kh ? "ស្កែនទូទាត់ប្រាក់នៅទីនេះ" : "Scan to Pay Here"}
-                  </p>
-                  <p className="text-[10px] text-zinc-500 max-w-[180px] leading-tight" style={kf}>
-                    {kh ? "ប្រើប្រាស់ App ធនាគារណាមួយដើម្បីស្កែន" : "Scan using ABA, ACLEDA or any NBC app"}
-                  </p>
-                  {/* Decorative corner borders of scanner */}
-                  <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-zinc-800" />
-                  <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-zinc-800" />
-                  <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-zinc-800" />
-                  <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-zinc-800" />
+                <div className="relative w-full aspect-square overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 flex items-center justify-center">
+                  <img
+                    src="/khqr.jpg"
+                    alt="KWD KHQR Code"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 
                 <div className="text-center">
@@ -443,7 +436,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
               </div>
             </div>
 
-            {/* Verification Telegram / Email block */}
+            {/* Verification Telegram / Email block & Stripe notice */}
             <div className="flex flex-col gap-3">
               <label className="text-xs font-black uppercase text-zinc-400 tracking-wider block" style={khFont}>
                 {kh ? "៣. ផ្ញើវិក្កយបត្រដើម្បីបើកគណនី" : "3. Send Screenshot to Activate"}
@@ -473,9 +466,19 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                 </div>
               </a>
 
+              <div className="flex items-center justify-between px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-xl text-xs">
+                <span className="text-zinc-400 font-bold flex items-center gap-1.5" style={khFont}>
+                  <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
+                  {kh ? "ទូទាត់តាមកាតអន្តរជាតិ (Stripe)" : "Stripe Credit Card Payments"}
+                </span>
+                <span className="text-[9px] font-black uppercase text-blue-400 bg-blue-400/10 px-2 py-0.5 rounded-md" style={khFont}>
+                  {kh ? "ជិតមកដល់ហើយ" : "Coming Soon"}
+                </span>
+              </div>
+
               <p className="text-[10px] text-zinc-500 leading-relaxed text-center" style={khFont}>
                 {kh 
-                  ? "គណនីនឹងត្រូវបានដំណើរការក្នុងរយៈពេល ២៤ ម៉ោងបន្ទាប់ពីផ្ទៀងផ្ទាត់។" 
+                  ? "គណនីនឹងត្រូវបានដំណើរការក្នុងរយៈពេល ២៤ ម៉ោងបន្ទាប់ពីទទួលបានការបញ្ជាក់។" 
                   : "Accounts are verified and upgraded within 24 hours of receiving proof."}
               </p>
             </div>
