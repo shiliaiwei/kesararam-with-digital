@@ -317,8 +317,8 @@ function GameCard({ mode, index, kh, khFont }: {
   const [hovered, setHovered] = useState(false);
   const [pressed, setPressed] = useState(false);
 
-  // Background card alternates strictly between Yellow and Green
-  const bgColor = index % 2 === 0 ? BRAND.yellow : BRAND.green;
+  // Background card is strictly Green as requested
+  const bgColor = BRAND.green;
   const textColor = BRAND.black;
   const borderColor = BRAND.black;
 
