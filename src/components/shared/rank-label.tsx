@@ -14,6 +14,16 @@
  */
 
 import { getRank, getNextRank, tierProgress, pointsToNextRank, RANK_TIERS } from "@/lib/rank-utils";
+import { Sprout, PartyPopper, Star, Trophy, Gem, Crown } from "lucide-react";
+
+const TIER_ICONS: Record<string, React.ComponentType<any>> = {
+    rookie: Sprout,
+    debut: PartyPopper,
+    gold: Star,
+    platinum: Trophy,
+    diamond: Gem,
+    mythic: Crown,
+};
 
 // ── Keyframe styles injected once ────────────────────────────────────────────
 const RANK_KEYFRAMES = `
@@ -72,7 +82,13 @@ export function RankBadge({
                     whiteSpace: "nowrap",
                 }}
             >
-                {showEmoji && <span style={{ marginRight: sizeStyles.gap }}>{tier.emoji}</span>}
+                {showEmoji && (
+                    (() => {
+                        const Icon = TIER_ICONS[tier.id] || Star;
+                        const iconSize = size === "xs" ? 9 : size === "sm" ? 10 : 12;
+                        return <Icon size={iconSize} style={{ marginRight: sizeStyles.gap, display: "inline-block" }} />;
+                    })()
+                )}
                 {label}
             </span>
         </>
@@ -146,8 +162,12 @@ export function RankProgressBar({
         // Max tier
         return (
             <div className="flex items-center gap-1.5">
-                <span className="text-[9px] font-black" style={{ color: tier.accent }}>
-                    {tier.emoji} {isKh ? "ថ្នាក់ខ្ពស់បំផុត!" : "Max Tier!"}
+                <span className="text-[9px] font-black inline-flex items-center gap-1" style={{ color: tier.accent }}>
+                    {(() => {
+                        const Icon = TIER_ICONS[tier.id] || Star;
+                        return <Icon size={11} className="inline-block" />;
+                    })()}
+                    <span>{isKh ? "ថ្នាក់ខ្ពស់បំផុត!" : "Max Tier!"}</span>
                 </span>
             </div>
         );
@@ -157,8 +177,13 @@ export function RankProgressBar({
         <div className={compact ? "flex flex-col gap-0.5" : "flex flex-col gap-1"}>
             {!compact && (
                 <div className="flex items-center justify-between">
-                    <span className="text-[9px] font-black text-zinc-400 uppercase tracking-widest">
-                        {isKh ? "ទៅថ្នាក់" : "Next"}: {next.emoji} {isKh ? next.labelKh : next.label}
+                    <span className="text-[9px] font-black text-zinc-400 uppercase tracking-widest inline-flex items-center gap-1">
+                        <span>{isKh ? "ទៅថ្នាក់" : "Next"}:</span>
+                        {(() => {
+                            const Icon = TIER_ICONS[next.id] || Star;
+                            return <Icon size={11} className="inline-block" />;
+                        })()}
+                        <span>{isKh ? next.labelKh : next.label}</span>
                     </span>
                     <span className="text-[9px] font-black tabular-nums" style={{ color: next.accent }}>
                         {needed.toLocaleString()} {isKh ? "pts ទៀត" : "pts to go"}
@@ -178,8 +203,12 @@ export function RankProgressBar({
                 />
             </div>
             {compact && (
-                <span className="text-[8px] font-bold text-zinc-400 tabular-nums">
-                    {needed.toLocaleString()} pts → {next.emoji}
+                <span className="text-[8px] font-bold text-zinc-400 tabular-nums inline-flex items-center gap-1">
+                    <span>{needed.toLocaleString()} pts →</span>
+                    {(() => {
+                        const Icon = TIER_ICONS[next.id] || Star;
+                        return <Icon size={10} className="inline-block" />;
+                    })()}
                 </span>
             )}
         </div>
@@ -219,7 +248,10 @@ export function RankShowcase({
                                     boxShadow: isCurrent ? `0 0 12px ${tier.glow}66` : undefined,
                                 }}
                             >
-                                <span className="text-xl">{tier.emoji}</span>
+                                {(() => {
+                                    const Icon = TIER_ICONS[tier.id] || Star;
+                                    return <Icon size={22} style={{ color: unlocked ? tier.accent : "#d4d4d8" }} />;
+                                })()}
                                 <span
                                     className="text-[8px] font-black uppercase tracking-wide"
                                     style={{ color: unlocked ? tier.accent : "#a1a1aa" }}
