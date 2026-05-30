@@ -524,6 +524,65 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
 
       </div>
 
+      {/* ── Present & Future Benefits / Impact Block ── */}
+      <div className="max-w-4xl mx-auto bg-gradient-to-r from-purple-500/10 via-amber-400/5 to-transparent border border-white/10 rounded-2xl p-6 md:p-8 mb-12" style={khFont}>
+        <div className="flex items-center gap-2 mb-4">
+          <Sparkles size={22} className="text-amber-400 shrink-0" />
+          <h3 className="font-black text-white text-lg">
+            {kh ? "អត្ថប្រយោជន៍ការជាវសេវាកម្ម និងផែនការអនាគត" : "Subscription Impact & Future Roadmap"}
+          </h3>
+        </div>
+        <p className="text-xs text-white/70 mb-6 leading-relaxed">
+          {kh 
+            ? "រាល់ការជាវគាំទ្រដោយផ្ទាល់ដល់សាលាបឋមសិក្សាកេសរារាម ក្នុងការផ្តល់រង្វាន់សម្ភារៈសិក្សាដល់សិស្ស ថ្លៃសេវាកម្មម៉ាស៊ីនបម្រើ និងការស្រាវជ្រាវប្រព័ន្ធអប់រំពីរភាសា ដើម្បីជួយសិស្សរៀនច្បាប់ចរាចរណ៍កាន់តែប្រសើរ។" 
+            : "Every active subscription directly funds local school deployments (like Kesararam Primary School), student stationery rewards, server infrastructure, and bilingual road safety education research to help students master driving rules."}
+        </p>
+        
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Present Value */}
+          <div className="bg-black/35 border border-white/5 rounded-xl p-4 flex flex-col gap-2">
+            <h4 className="text-xs font-black text-amber-400 uppercase tracking-widest">
+              {kh ? "អត្ថប្រយោជន៍បច្ចុប្បន្ន (Present Benefits)" : "Active Benefits (Available Now)"}
+            </h4>
+            <ul className="flex flex-col gap-2 text-[11px] text-white/80 text-left">
+              <li className="flex items-center gap-2">
+                <span className="text-green-400">✓</span>
+                {kh ? "បើកវគ្គហ្គេមផ្ទាល់ និងគ្រប់គ្រងសិស្សគ្មានដែនកំណត់" : "Host unlimited live quiz game sessions"}
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-green-400">✓</span>
+                {kh ? "វិភាគលទ្ធផល និងទាញយករបាយការណ៍ (CSV/PDF)" : "Student analytics dashboard & CSV/PDF exports"}
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-green-400">✓</span>
+                {kh ? "Suar AI — ជំនួយការឆ្លាតវៃគ្មានដែនកំណត់" : "Suar AI tutor — unlimited learning queries"}
+              </li>
+            </ul>
+          </div>
+
+          {/* Future Value */}
+          <div className="bg-black/35 border border-white/5 rounded-xl p-4 flex flex-col gap-2">
+            <h4 className="text-xs font-black text-purple-300 uppercase tracking-wider">
+              {kh ? "ផែនការអនាគតជិតមកដល់ (Future Roadmap)" : "Future Additions (Coming Soon)"}
+            </h4>
+            <ul className="flex flex-col gap-2 text-[11px] text-white/80 text-left">
+              <li className="flex items-center gap-2">
+                <span className="text-purple-400">⚡</span>
+                {kh ? "បង្កើតវិញ្ញាបនបត្រឆ្លងកាត់ការសិក្សាផ្លូវការសម្រាប់សិស្ស" : "Automated pass certificate generation for students"}
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-purple-400">⚡</span>
+                {kh ? "ប្រព័ន្ធតាមដានវឌ្ឍនភាពការប្រឡងសាកល្បងស្វ័យប្រវត្ត" : "Automated mock-exam scoring & progress logs"}
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-purple-400">⚡</span>
+                {kh ? "ជម្រើសកែសម្រួលប្រភេទសំណួរផ្ទាល់ខ្លួនសម្រាប់គ្រូ" : "Custom quiz editor for localized teacher materials"}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       {/* ── Subscription Terms Detailed Block ── */}
       <div className="max-w-4xl mx-auto bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
         <h3 className="font-black text-white text-lg mb-4" style={khFont}>
