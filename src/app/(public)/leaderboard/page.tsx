@@ -35,30 +35,17 @@ interface LeaderboardUser {
   rank: number;
 }
 
-// ── Reward SVG icons ──────────────────────────────────────────────────────────
-
-function IconNotebook() { return <svg viewBox="0 0 40 40" fill="none" className="w-full h-full"><rect x="8" y="4" width="24" height="32" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="3" /><rect x="8" y="4" width="6" height="32" fill="#1d4ed8" /><line x1="18" y1="13" x2="28" y2="13" stroke="#1d4ed8" strokeWidth="3" strokeLinecap="round" /><line x1="18" y1="19" x2="28" y2="19" stroke="#1d4ed8" strokeWidth="3" strokeLinecap="round" /><line x1="18" y1="25" x2="24" y2="25" stroke="#1d4ed8" strokeWidth="3" strokeLinecap="round" /></svg>; }
-function IconPencil() { return <svg viewBox="0 0 40 40" fill="none" className="w-full h-full"><rect x="17" y="4" width="6" height="26" fill="#fef08a" stroke="#ca8a04" strokeWidth="3" transform="rotate(15 20 20)" /><polygon points="20,32 17,38 23,38" fill="#f97316" stroke="#000" strokeWidth="1.5" transform="rotate(15 20 20)" /><rect x="17" y="4" width="6" height="5" fill="#e4e4e7" stroke="#ca8a04" strokeWidth="2" transform="rotate(15 20 20)" /></svg>; }
-function IconPen() { return <svg viewBox="0 0 40 40" fill="none" className="w-full h-full"><rect x="18" y="3" width="5" height="22" fill="#bbf7d0" stroke="#15803d" strokeWidth="3" /><polygon points="20,34 17,25 23,25" fill="#15803d" stroke="#000" strokeWidth="1.5" /><rect x="18" y="3" width="5" height="6" fill="#6b7280" stroke="#374151" strokeWidth="2" /><circle cx="20" cy="6" r="1.5" fill="#374151" /></svg>; }
-function IconRuler() { return <svg viewBox="0 0 40 40" fill="none" className="w-full h-full"><rect x="5" y="15" width="30" height="10" fill="#fed7aa" stroke="#c2410c" strokeWidth="3" transform="rotate(-20 20 20)" />{[0, 1, 2, 3, 4, 5].map(i => <line key={i} x1={9 + i * 4} y1="17" x2={9 + i * 4} y2={i % 2 === 0 ? 21 : 19} stroke="#c2410c" strokeWidth="2" transform="rotate(-20 20 20)" />)}</svg>; }
-function IconEraser() { return <svg viewBox="0 0 40 40" fill="none" className="w-full h-full"><rect x="6" y="14" width="28" height="14" fill="#f0abfc" stroke="#7e22ce" strokeWidth="3" /><rect x="6" y="14" width="12" height="14" fill="#7e22ce" /><line x1="18" y1="14" x2="18" y2="28" stroke="#7e22ce" strokeWidth="3" /></svg>; }
-function IconHighlighter() { return <svg viewBox="0 0 40 40" fill="none" className="w-full h-full"><rect x="14" y="4" width="12" height="24" fill="#fca5a5" stroke="#b91c1c" strokeWidth="3" /><polygon points="20,36 15,28 25,28" fill="#b91c1c" stroke="#000" strokeWidth="1.5" /><rect x="14" y="4" width="12" height="7" fill="#e4e4e7" stroke="#b91c1c" strokeWidth="2" /></svg>; }
-function IconStickyNotes() { return <svg viewBox="0 0 40 40" fill="none" className="w-full h-full"><rect x="6" y="8" width="22" height="22" fill="#a5f3fc" stroke="#0e7490" strokeWidth="3" /><rect x="10" y="4" width="22" height="22" fill="#67e8f9" stroke="#0e7490" strokeWidth="3" /><line x1="14" y1="13" x2="28" y2="13" stroke="#0e7490" strokeWidth="2" strokeLinecap="round" /><line x1="14" y1="18" x2="28" y2="18" stroke="#0e7490" strokeWidth="2" strokeLinecap="round" /><line x1="14" y1="23" x2="22" y2="23" stroke="#0e7490" strokeWidth="2" strokeLinecap="round" /></svg>; }
-function IconGeometrySet() { return <svg viewBox="0 0 40 40" fill="none" className="w-full h-full"><polygon points="20,4 36,34 4,34" fill="#fbcfe8" stroke="#be185d" strokeWidth="3" /><line x1="20" y1="4" x2="20" y2="34" stroke="#be185d" strokeWidth="2" strokeLinearray="2 2" /><line x1="12" y1="19" x2="28" y2="19" stroke="#be185d" strokeWidth="2" strokeLinearray="2 2" /><circle cx="20" cy="34" r="2" fill="#be185d" /></svg>; }
-function IconStudyPlanner() { return <svg viewBox="0 0 40 40" fill="none" className="w-full h-full"><rect x="6" y="8" width="28" height="28" fill="#d9f99d" stroke="#4d7c0f" strokeWidth="3" /><rect x="6" y="8" width="28" height="8" fill="#4d7c0f" /><line x1="13" y1="4" x2="13" y2="12" stroke="#4d7c0f" strokeWidth="3" strokeLinecap="round" /><line x1="27" y1="4" x2="27" y2="12" stroke="#4d7c0f" strokeWidth="3" strokeLinecap="round" />{[0, 1, 2].map(r => [0, 1, 2].map(c => <rect key={`${r}-${c}`} x={11 + c * 8} y={20 + r * 5} width="5" height="3" fill="#4d7c0f" opacity="0.6" />))}</svg>; }
-
-const REWARD_ICONS = [IconNotebook, IconPencil, IconPen, IconRuler, IconEraser, IconHighlighter, IconStickyNotes, IconGeometrySet, IconStudyPlanner];
-
+// ── REWARD ITEMS DATA (Cleaned descriptions, Larger Typography, 4K cover image references) ──
 const REWARD_ITEMS = [
-  { id: 1, name: "Notebook", nameKh: "សៀវភៅកត់ត្រា", cost: 500, color: "#3b82f6" },
-  { id: 2, name: "Pencil", nameKh: "ខ្មៅដៃ", cost: 100, color: "#eab308" },
-  { id: 3, name: "Pen", nameKh: "ប៊ិច", cost: 150, color: "#22c55e" },
-  { id: 4, name: "Ruler", nameKh: "បន្ទាត់", cost: 200, color: "#f97316" },
-  { id: 5, name: "Eraser", nameKh: "កាំបិតលុប", cost: 80, color: "#a855f7" },
-  { id: 6, name: "Highlighter", nameKh: "ប៊ិចសម្គាល់", cost: 250, color: "#ef4444" },
-  { id: 7, name: "Sticky Notes", nameKh: "ក្រដាសសម្គាល់", cost: 300, color: "#06b6d4" },
-  { id: 8, name: "Geometry Set", nameKh: "ឧបករណ៍គណិត", cost: 800, color: "#ec4899" },
-  { id: 9, name: "Study Planner", nameKh: "ផែនការសិក្សា", cost: 1200, color: "#84cc16" },
+  { id: 1, name: "Notebook", nameKh: "សៀវភៅកត់ត្រា", cost: 500, color: "#3b82f6", image: "/rewards/notebook.png" },
+  { id: 2, name: "Pencil", nameKh: "ខ្មៅដៃ", cost: 100, color: "#eab308", image: "/rewards/pencil.png" },
+  { id: 3, name: "Pen", nameKh: "ប៊ិច", cost: 150, color: "#22c55e", image: "/rewards/pen.png" },
+  { id: 4, name: "Ruler", nameKh: "បន្ទាត់", cost: 200, color: "#f97316", image: "/rewards/ruler.png" },
+  { id: 5, name: "Eraser", nameKh: "កាំបិតលុប", cost: 80, color: "#a855f7", image: "/rewards/eraser.png" },
+  { id: 6, name: "Highlighter", nameKh: "ប៊ិចសម្គាល់", cost: 250, color: "#ef4444", image: "/rewards/highlighter.png" },
+  { id: 7, name: "Sticky Notes", nameKh: "ក្រដាសសម្គាល់", cost: 300, color: "#06b6d4", image: "/rewards/sticky_notes.png" },
+  { id: 8, name: "Geometry Set", nameKh: "ឧបករណ៍គណិត", cost: 800, color: "#ec4899", image: "/rewards/geometry_set.png" },
+  { id: 9, name: "Study Planner", nameKh: "ផែនការសិក្សា", cost: 1200, color: "#84cc16", image: "/rewards/study_planner.png" },
 ];
 
 // ── Avatar ────────────────────────────────────────────────────────────────────
@@ -206,8 +193,8 @@ function ClaimBurst({ color }: { color: string }) {
 }
 
 // ── REWARD CARD (Brutalist Premium Redesign) ──────────────────────────────────
-function RewardCard({ item, itemIndex, userPoints, isLoggedIn, onClaim, lang }: {
-  item: typeof REWARD_ITEMS[number]; itemIndex: number; userPoints: number;
+function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang }: {
+  item: typeof REWARD_ITEMS[number]; userPoints: number;
   isLoggedIn: boolean; onClaim: (item: typeof REWARD_ITEMS[number]) => void; lang: string;
 }) {
   const kh = lang === "kh";
@@ -226,7 +213,6 @@ function RewardCard({ item, itemIndex, userPoints, isLoggedIn, onClaim, lang }: 
   const rawPct = Math.min(100, (userPoints / item.cost) * 100);
   const pct = Math.round(rawPct);
   
-  const IconComp = REWARD_ICONS[itemIndex];
   const socialCount = SOCIAL_PROOF[item.id] ?? 0;
   const scarcity = SCARCITY[item.id];
   const bonusBadge = BONUS_BADGE[item.id];
@@ -253,9 +239,9 @@ function RewardCard({ item, itemIndex, userPoints, isLoggedIn, onClaim, lang }: 
   const cardShadow = claimed 
     ? "3px 3px 0 #000" 
     : hovered && canClaim
-      ? `12px 12px 0 ${BRAND.black}`
+      ? "12px 12px 0 #000"
       : isReady
-        ? `8px 8px 0 ${BRAND.black}`
+        ? "8px 8px 0 #000"
         : "4px 4px 0 #000";
 
   const cardTransform = claimed 
@@ -280,52 +266,49 @@ function RewardCard({ item, itemIndex, userPoints, isLoggedIn, onClaim, lang }: 
 
       {/* Claimed diagonal tag overlay */}
       {claimed && (
-        <div className="absolute top-4 right-[-32px] bg-black text-white text-[9px] font-black py-1.5 px-10 rotate-45 border-y border-white/20 z-10 select-none tracking-widest text-center shadow-sm">
+        <div className="absolute top-4 right-[-32px] bg-black text-white text-[9px] font-black py-1.5 px-10 rotate-45 border-y border-white/20 z-20 select-none tracking-widest text-center shadow-sm">
           {kh ? "✓ បានទទួល" : "✓ CLAIMED"}
         </div>
       )}
 
-      {/* Header Band */}
-      <div className="relative flex items-center justify-between px-3 pt-3 pb-3 border-b-3 border-black"
-        style={{ 
-          background: claimed ? "#e4e4e7" : item.color,
-          filter: claimed ? "grayscale(100%)" : "none"
-        }}>
-        
+      {/* ── Premium 4K Mockup Cover Image Header ── */}
+      <div className="relative h-44 w-full border-b-3 border-black overflow-hidden bg-zinc-100 flex items-center justify-center">
+        <img 
+          src={item.image} 
+          alt={item.name} 
+          className="w-full h-full object-cover select-none"
+          style={{ 
+            filter: claimed ? "grayscale(100%) brightness(0.9)" : "none",
+            transform: hovered && !claimed ? "scale(1.05)" : "scale(1)",
+            transition: "transform 0.25s ease, filter 0.2s ease"
+          }}
+        />
+
         {/* Lucide Badge Tag */}
         {bonusBadge && !claimed && (
-          <div className="absolute top-2 left-3 z-10 flex items-center gap-1 bg-black text-white text-[8px] font-black uppercase px-2 py-0.5 border border-black shadow-[2px_2px_0_#000]">
-            <bonusBadge.icon size={8} strokeWidth={3} className="text-yellow-400" />
+          <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 bg-black text-white text-[8px] font-black uppercase px-2 py-0.5 border-2 border-black shadow-[2px_2px_0_#000]">
+            <bonusBadge.icon size={10} strokeWidth={3.5} className="text-yellow-400" />
             <span>{bonusBadge.label}</span>
           </div>
         )}
 
-        {/* Reward custom SVG drawing inside a white grid container */}
-        <div className="w-12 h-12 flex items-center justify-center p-1.5 mt-2 bg-white border-2 border-black shadow-[2px_2px_0_#000]"
-          style={{ transform: hovered && !claimed ? "rotate(-8deg)" : "rotate(0deg)", transition: "transform 0.15s ease" }}>
-          <IconComp />
-        </div>
-
-        {/* Cost stats */}
-        <div className="flex flex-col items-end mt-2">
-          <span className="text-[8px] font-black text-black/60 uppercase tracking-widest leading-none" style={kf}>
-            {kh ? "តម្លៃពិន្ទុ" : "COST"}
-          </span>
-          <span className="text-xl font-black text-black leading-none tabular-nums mt-1 font-mono">
-            {item.cost.toLocaleString()}
-          </span>
+        {/* Points cost tag overlay in bottom-right corner of the image */}
+        <div className="absolute bottom-3 right-3 bg-yellow-400 text-black border-2 border-black px-3 py-1 font-black shadow-[3px_3px_0_#000] flex flex-col items-center leading-none"
+          style={{ filter: claimed ? "grayscale(100%)" : "none" }}>
+          <span className="text-[7px] font-black uppercase tracking-wider opacity-60">COST</span>
+          <span className="text-sm font-mono font-black mt-0.5">{item.cost.toLocaleString()}</span>
         </div>
       </div>
 
       {/* Body Details */}
-      <div className="flex flex-col gap-3 px-3.5 py-3.5 flex-1">
+      <div className="flex flex-col gap-3.5 px-3.5 py-4 flex-1">
         
-        {/* Name and Khmer translation */}
+        {/* Name and Khmer translation (ENLARGED TYPOGRAPHY) */}
         <div>
-          <span className="font-black text-sm text-black block leading-tight tracking-tight" style={kf}>
+          <span className="font-black text-xl text-black block leading-tight tracking-tight uppercase" style={kf}>
             {kh ? item.nameKh : item.name}
           </span>
-          <span className="text-[9px] text-zinc-400 font-bold block uppercase tracking-wide mt-0.5">
+          <span className="text-[10px] text-zinc-400 font-bold block uppercase tracking-wide mt-1 leading-none">
             {kh ? item.name : item.nameKh}
           </span>
         </div>
@@ -355,12 +338,12 @@ function RewardCard({ item, itemIndex, userPoints, isLoggedIn, onClaim, lang }: 
 
         {/* Progress Bar (Endowment & Goal Gradient loop) */}
         {isLoggedIn && !claimed && (
-          <div className="mt-1 border-t-2 border-dashed border-zinc-100 pt-2">
+          <div className="mt-1 border-t-2 border-dashed border-zinc-100 pt-2.5">
             <div className="flex justify-between items-center mb-1 font-mono text-[9px] font-black">
               <span className="text-zinc-500">
                 {userPoints.toLocaleString()} / {item.cost.toLocaleString()} PTS
               </span>
-              <span style={{ color: isReady ? "#22c55e" : isAlmostThere ? "#f59e0b" : BRAND.black }}>
+              <span style={{ color: isReady ? "#22c55e" : isAlmostThere ? "#f59e0b" : "#000000" }}>
                 {pct}%
               </span>
             </div>
@@ -737,7 +720,6 @@ export default function LeaderboardPage() {
                   <RewardCard
                     key={item.id}
                     item={item}
-                    itemIndex={idx}
                     userPoints={userPoints}
                     isLoggedIn={!!currentUser}
                     lang={lang}
