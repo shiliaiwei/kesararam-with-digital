@@ -14,7 +14,7 @@ import { ErrorBoundary } from "@/components/game/ErrorBoundary";
 import {
   Zap, Trophy, Users, Clock, CheckCircle, XCircle,
   Loader2, Wifi, WifiOff, BookOpen, Target, Timer, Star,
-  Maximize, Minimize, Flame
+  Maximize, Minimize, Flame, Volume2, VolumeX
 } from "lucide-react";
 
 type GamePhase = "lobby" | "question" | "results" | "leaderboard" | "podium";
@@ -64,6 +64,7 @@ export default function StudentGamePage() {
 
   const [joining, setJoining] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [muted, setMuted] = useState(false);
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -72,6 +73,16 @@ export default function StudentGamePage() {
     document.addEventListener("fullscreenchange", handleFullscreenChange);
     return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
   }, []);
+
+  useEffect(() => {
+    if (phase === "question" && typeof window !== "undefined") {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch((err) => {
+          console.warn("Fullscreen request blocked or failed:", err);
+        });
+      }
+    }
+  }, [phase]);
 
   const toggleFullscreen = async () => {
     try {
@@ -186,37 +197,22 @@ export default function StudentGamePage() {
   const { connected, error } = useGameSSE(code, handleSSEEvent, !joining && !joinError);
 
   const unifiedHeader = (
-    <div className="flex items-center justify-between px-4 py-2 border-b-2 border-black bg-zinc-900 text-white w-full flex-shrink-0 z-40 relative">
+    <div className="flex items-center justify-between px-6 py-3 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md text-white w-full flex-shrink-0 z-40 relative">
       <div className="flex items-center gap-2">
-        <button
-          onClick={() => {
-            if (confirm(kh ? "តើអ្នកពិតជាចង់ចាកចេញពីហ្គេមមែនទេ?" : "Are you sure you want to exit the game?")) {
-              if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
-              router.push("/play");
-            }
-          }}
-          className="flex items-center gap-1.5 px-2.5 py-1 border border-red-500/30 bg-red-950/30 hover:bg-red-900/40 text-red-400 text-xs font-black uppercase tracking-wider transition-all"
-        >
-          {kh ? "ចាកចេញ" : "Exit"}
-        </button>
+        <div className="flex items-center gap-2">
+          <span className="w-2.5 h-2.5 rounded-full bg-yellow-400 animate-pulse" />
+          <span className="text-zinc-400 text-xs font-black tracking-widest uppercase">STUDENT CLIENT</span>
+        </div>
       </div>
 
       <div className="text-center">
-        <span className="text-zinc-400 text-[10px] font-black tracking-widest uppercase">Room: {code}</span>
+        <span className="text-white text-sm font-black tracking-widest bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-lg">ROOM: {code}</span>
       </div>
 
       <div className="flex items-center gap-3">
-        <button
-          onClick={toggleFullscreen}
-          className="flex items-center gap-1 px-2.5 py-1 text-xs font-black uppercase border border-yellow-500/30 bg-yellow-950/20 hover:bg-yellow-900/30 text-yellow-400 transition-all"
-        >
-          {isFullscreen ? <Minimize size={12} /> : <Maximize size={12} />}
-          {isFullscreen ? (kh ? "បង្រួម" : "Minimize") : (kh ? "ពេញអេក្រង់" : "Fullscreen")}
-        </button>
-
-        <div className={`flex items-center gap-1.5 text-xs font-bold ${connected ? "text-green-400" : "text-yellow-400"}`}>
+        <div className={`flex items-center gap-1.5 text-xs font-black uppercase tracking-wider ${connected ? "text-green-400" : "text-yellow-400"}`}>
           {connected ? <Wifi size={12} /> : <Loader2 size={12} className="animate-spin" />}
-          <span className="hidden sm:inline">{connected ? (kh ? "ភ្ជាប់" : "Connected") : (kh ? "កំពុងភ្ជាប់..." : "Connecting...")}</span>
+          <span>{connected ? (kh ? "ភ្ជាប់" : "Connected") : (kh ? "កំពុងភ្ជាប់..." : "Connecting...")}</span>
         </div>
       </div>
     </div>
@@ -314,28 +310,36 @@ export default function StudentGamePage() {
         <div className="flex-1 flex flex-col items-center justify-center px-4 py-6 gap-5 max-w-lg mx-auto w-full">
 
           {/* Live badge */}
-          <div className="flex items-center gap-2 px-4 py-1.5 bg-red-600 border border-red-400">
-            <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
-            <span className="text-white font-black text-xs tracking-widest">LIVE SESSION</span>
+          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-red-500 bg-red-950/40 text-red-400 text-xs font-black tracking-widest shadow-[0_0_15px_rgba(239,68,68,0.25)] animate-pulse">
+            <div className="w-2 h-2 rounded-full bg-red-500" />
+            <span>LIVE SESSION</span>
           </div>
 
           {/* Host + Session card */}
-          <div className="w-full border-2 border-white/15 bg-white/5 p-6 text-center"
-            style={{ boxShadow: `0 0 40px ${modeColor}22` }}>
-            <div className="text-white/40 text-xs font-bold uppercase tracking-widest mb-1" style={khFont}>
+          <div className="w-full border border-zinc-700/50 bg-zinc-900/60 backdrop-blur-md p-8 rounded-2xl text-center relative overflow-hidden shadow-2xl"
+            style={{ boxShadow: `0 10px 40px -10px rgba(0,0,0,0.7), 0 0 30px ${modeColor}15` }}>
+            {/* Ambient backdrop glow */}
+            <div className="absolute -top-24 -left-24 w-48 h-48 rounded-full blur-[80px]" style={{ backgroundColor: modeColor, opacity: 0.15 }} />
+            <div className="absolute -bottom-24 -right-24 w-48 h-48 rounded-full blur-[80px]" style={{ backgroundColor: modeColor, opacity: 0.15 }} />
+
+            <div className="text-zinc-400 text-xs font-black uppercase tracking-widest mb-2" style={khFont}>
               {kh ? "គ្រូបង្រៀន" : "Hosted by"}
             </div>
-            <div className="text-white font-black text-2xl mb-4" style={khFont}>
+            <div className="text-white font-black text-3xl mb-6 tracking-wide drop-shadow-md" style={khFont}>
               {sessionInfo?.hostName ?? "—"}
             </div>
 
             {/* Room code */}
-            <div className="inline-block px-6 py-3 border-2 mb-4"
-              style={{ backgroundColor: modeColor, borderColor: modeColor, boxShadow: `0 0 24px ${modeColor}66` }}>
-              <div className="text-black font-black text-5xl tracking-[0.2em]">{code}</div>
+            <div className="inline-block px-8 py-4 border border-zinc-700 bg-zinc-950/80 rounded-xl mb-4 relative"
+              style={{ boxShadow: `inset 0 0 20px rgba(0,0,0,0.6)` }}>
+              {/* Inner neon glow */}
+              <div className="absolute inset-0 rounded-xl blur-md opacity-40 transition-opacity" style={{ backgroundColor: modeColor }} />
+              <div className="relative font-black text-5xl tracking-[0.25em] pl-[0.25em]" style={{ color: modeColor, textShadow: `0 0 10px ${modeColor}80` }}>
+                {code}
+              </div>
             </div>
 
-            <div className="text-white/40 text-xs font-bold" style={khFont}>
+            <div className="text-zinc-500 text-xs font-black uppercase tracking-wider" style={khFont}>
               {kh ? "លេខកូដចូលរួម" : "Game Code"}
             </div>
           </div>
@@ -343,47 +347,47 @@ export default function StudentGamePage() {
           {/* Session details grid */}
           {sessionInfo && (
             <div className="w-full grid grid-cols-2 gap-2">
-              <div className="border border-white/10 bg-white/5 p-3 flex items-center gap-2">
+              <div className="border border-zinc-800/80 bg-zinc-900/40 backdrop-blur-sm p-4 rounded-xl flex items-center gap-3 transition-all hover:border-zinc-700/60">
                 <BookOpen size={14} className="text-yellow-400 flex-shrink-0" />
                 <div>
-                  <div className="text-white/40 text-xs" style={khFont}>{kh ? "របៀបលេង" : "Game Mode"}</div>
+                  <div className="text-zinc-400 text-xs" style={khFont}>{kh ? "របៀបលេង" : "Game Mode"}</div>
                   <div className="text-white font-black text-sm" style={{ color: modeColor }}>{modeLabel}</div>
                 </div>
               </div>
-              <div className="border border-white/10 bg-white/5 p-3 flex items-center gap-2">
+              <div className="border border-zinc-800/80 bg-zinc-900/40 backdrop-blur-sm p-4 rounded-xl flex items-center gap-3 transition-all hover:border-zinc-700/60">
                 <Target size={14} className="text-yellow-400 flex-shrink-0" />
                 <div>
-                  <div className="text-white/40 text-xs" style={khFont}>{kh ? "ប្រភេទ" : "Category"}</div>
+                  <div className="text-zinc-400 text-xs" style={khFont}>{kh ? "ប្រភេទ" : "Category"}</div>
                   <div className="text-white font-black text-sm capitalize">{sessionInfo.category?.replace(/-/g, " ") ?? "—"}</div>
                 </div>
               </div>
-              <div className="border border-white/10 bg-white/5 p-3 flex items-center gap-2">
+              <div className="border border-zinc-800/80 bg-zinc-900/40 backdrop-blur-sm p-4 rounded-xl flex items-center gap-3 transition-all hover:border-zinc-700/60">
                 <Star size={14} className="text-yellow-400 flex-shrink-0" />
                 <div>
-                  <div className="text-white/40 text-xs" style={khFont}>{kh ? "កម្រិត" : "Difficulty"}</div>
+                  <div className="text-zinc-400 text-xs" style={khFont}>{kh ? "កម្រិត" : "Difficulty"}</div>
                   <div className="font-black text-sm capitalize" style={{ color: diffColor }}>
                     {sessionInfo.difficulty ?? "Mixed"}
                   </div>
                 </div>
               </div>
-              <div className="border border-white/10 bg-white/5 p-3 flex items-center gap-2">
+              <div className="border border-zinc-800/80 bg-zinc-900/40 backdrop-blur-sm p-4 rounded-xl flex items-center gap-3 transition-all hover:border-zinc-700/60">
                 <Timer size={14} className="text-yellow-400 flex-shrink-0" />
                 <div>
-                  <div className="text-white/40 text-xs" style={khFont}>{kh ? "ពេលវេលា" : "Time / Q"}</div>
+                  <div className="text-zinc-400 text-xs" style={khFont}>{kh ? "ពេលវេលា" : "Time / Q"}</div>
                   <div className="text-white font-black text-sm">{sessionInfo.timePerQuestion}s</div>
                 </div>
               </div>
-              <div className="border border-white/10 bg-white/5 p-3 flex items-center gap-2">
+              <div className="border border-zinc-800/80 bg-zinc-900/40 backdrop-blur-sm p-4 rounded-xl flex items-center gap-3 transition-all hover:border-zinc-700/60">
                 <Trophy size={14} className="text-yellow-400 flex-shrink-0" />
                 <div>
-                  <div className="text-white/40 text-xs" style={khFont}>{kh ? "ពិន្ទុ" : "Scoring"}</div>
+                  <div className="text-zinc-400 text-xs" style={khFont}>{kh ? "ពិន្ទុ" : "Scoring"}</div>
                   <div className="text-white font-black text-sm capitalize">{sessionInfo.scoringMode}</div>
                 </div>
               </div>
-              <div className="border border-white/10 bg-white/5 p-3 flex items-center gap-2">
+              <div className="border border-zinc-800/80 bg-zinc-900/40 backdrop-blur-sm p-4 rounded-xl flex items-center gap-3 transition-all hover:border-zinc-700/60">
                 <Zap size={14} className="text-yellow-400 flex-shrink-0" />
                 <div>
-                  <div className="text-white/40 text-xs" style={khFont}>{kh ? "សំណួរ" : "Questions"}</div>
+                  <div className="text-zinc-400 text-xs" style={khFont}>{kh ? "សំណួរ" : "Questions"}</div>
                   <div className="text-white font-black text-sm">{sessionInfo.questionCount}Q</div>
                 </div>
               </div>
@@ -392,8 +396,8 @@ export default function StudentGamePage() {
 
           {/* Language selector in lobby */}
           {sessionInfo && (
-            <div className="w-full border border-white/10 bg-white/5 p-4 text-center">
-              <div className="text-white/40 text-[10px] font-black uppercase tracking-widest mb-3" style={khFont}>
+            <div className="w-full border border-zinc-800 bg-zinc-900/40 backdrop-blur-sm p-5 rounded-2xl text-center">
+              <div className="text-zinc-400 text-[10px] font-black uppercase tracking-widest mb-4" style={khFont}>
                 {kh ? "ជ្រើសរើសភាសាហ្គេម" : "Game Language Selection"}
               </div>
               <div className="flex gap-3">
@@ -402,68 +406,67 @@ export default function StudentGamePage() {
                     if (sessionInfo.language === "both") setLang("kh");
                   }}
                   disabled={sessionInfo.language !== "both"}
-                  className={`flex-1 py-3 border-2 border-black font-black text-xs transition-all duration-100 uppercase tracking-wider ${
+                  className={`flex-1 py-3.5 px-4 border rounded-xl font-black text-sm transition-all duration-200 uppercase tracking-wider flex items-center justify-center gap-2 ${
                     lang === "kh"
-                      ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000]"
-                      : "bg-zinc-800 text-white/50 border-white/10"
-                  } ${sessionInfo.language !== "both" ? "cursor-not-allowed opacity-60" : ""}`}
-                  style={{ borderRadius: "0px", fontFamily: "Siemreap, sans-serif" }}
+                      ? "bg-yellow-400 border-yellow-400 text-black shadow-[0_4px_12px_rgba(250,204,21,0.25)] scale-[1.02]"
+                      : "bg-zinc-950 border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700"
+                  } ${sessionInfo.language !== "both" ? "cursor-not-allowed opacity-50" : ""}`}
+                  style={{ fontFamily: "Siemreap, sans-serif" }}
                 >
                   ខ្មែរ (Khmer)
-                  {sessionInfo.language === "km" && (kh ? " (គ្រូកំណត់)" : " (Forced)")}
+                  {sessionInfo.language === "km" && <span className="text-[10px] opacity-60 font-bold">({kh ? "គ្រូកំណត់" : "Forced"})</span>}
                 </button>
                 <button
                   onClick={() => {
                     if (sessionInfo.language === "both") setLang("en");
                   }}
                   disabled={sessionInfo.language !== "both"}
-                  className={`flex-1 py-3 border-2 border-black font-black text-xs transition-all duration-100 uppercase tracking-wider ${
+                  className={`flex-1 py-3.5 px-4 border rounded-xl font-black text-sm transition-all duration-200 uppercase tracking-wider flex items-center justify-center gap-2 ${
                     lang === "en"
-                      ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000]"
-                      : "bg-zinc-800 text-white/50 border-white/10"
-                  } ${sessionInfo.language !== "both" ? "cursor-not-allowed opacity-60" : ""}`}
-                  style={{ borderRadius: "0px" }}
+                      ? "bg-yellow-400 border-yellow-400 text-black shadow-[0_4px_12px_rgba(250,204,21,0.25)] scale-[1.02]"
+                      : "bg-zinc-950 border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700"
+                  } ${sessionInfo.language !== "both" ? "cursor-not-allowed opacity-50" : ""}`}
                 >
                   English
-                  {sessionInfo.language === "en" && (kh ? " (គ្រូកំណត់)" : " (Forced)")}
+                  {sessionInfo.language === "en" && <span className="text-[10px] opacity-60 font-bold">({kh ? "គ្រូកំណត់" : "Forced"})</span>}
                 </button>
               </div>
             </div>
           )}
 
           {/* Players joined */}
-          <div className="w-full border border-white/10 bg-white/5 p-4">
-            <div className="flex items-center gap-2 mb-3">
-              <Users size={13} className="text-white/50" />
-              <span className="text-white/50 text-xs font-bold uppercase tracking-widest" style={khFont}>
+          <div className="w-full border border-zinc-800 bg-zinc-900/40 backdrop-blur-sm p-5 rounded-2xl">
+            <div className="flex items-center gap-2 mb-4">
+              <Users size={14} className="text-zinc-500" />
+              <span className="text-zinc-400 text-xs font-black uppercase tracking-widest" style={khFont}>
                 {kh ? "អ្នកចូលរួម" : "Players"} · {participants.length}{sessionInfo ? ` / ${sessionInfo.maxPlayers}` : ""}
               </span>
-              <div className="flex-1 h-px bg-white/10" />
+              <div className="flex-1 h-px bg-zinc-800/80" />
             </div>
             {participants.length > 0 ? (
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 max-h-40 overflow-y-auto pr-1 no-scrollbar w-full justify-start">
                 {participants.map((p) => (
                   <div key={p.userId}
-                    className="flex items-center gap-1.5 px-2.5 py-1.5 border border-white/15 bg-white/5">
+                    className="flex items-center gap-2 px-3 py-1.5 border border-zinc-800 bg-zinc-950/60 rounded-xl">
                     <div className="w-6 h-6 rounded-full flex items-center justify-center font-black text-xs text-white flex-shrink-0"
                       style={{ background: `hsl(${(p.userId * 47) % 360}, 55%, 45%)` }}>
                       {p.displayName.charAt(0).toUpperCase()}
                     </div>
-                    <span className="text-white text-xs font-bold truncate max-w-[80px]" style={khFont}>{p.displayName}</span>
-                    {p.isConnected && <div className="w-1.5 h-1.5 rounded-full bg-green-400 flex-shrink-0" />}
+                    <span className="text-zinc-300 text-xs font-bold truncate max-w-[80px]" style={khFont}>{p.displayName}</span>
+                    <div className={`w-2 h-2 rounded-full flex-shrink-0 ${p.isConnected ? "bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.5)]" : "bg-zinc-600"}`} />
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="text-center py-4 text-white/20 text-sm font-bold" style={khFont}>
+              <div className="text-center py-4 text-zinc-600 text-sm font-bold" style={khFont}>
                 {kh ? "អ្នកទីមួយ!" : "You're the first one here!"}
               </div>
             )}
           </div>
 
           {/* Waiting pulse */}
-          <div className="flex items-center gap-2 text-white/40 text-sm font-bold" style={khFont}>
-            <Clock size={14} className="animate-pulse" />
+          <div className="flex items-center gap-2.5 text-zinc-500 text-sm font-black tracking-wide animate-pulse" style={khFont}>
+            <Loader2 size={16} className="animate-spin text-yellow-400/80" />
             {kh ? "រង់ចាំគ្រូចាប់ផ្តើម..." : "Waiting for host to start..."}
           </div>
         </div>
@@ -471,30 +474,7 @@ export default function StudentGamePage() {
     );
   }
 
-  // ── Fullscreen Overlay ──
-  if (phase !== "lobby" && phase !== "podium" && !isFullscreen) {
-    return (
-      <div className="min-h-screen flex items-center justify-center p-4 z-50 fixed inset-0 bg-[#0d0d14]"
-        style={{ backgroundColor: "#0d0d14", backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px" }}>
-        <div className="border-2 border-yellow-400 bg-black/80 p-8 max-w-md w-full text-center shadow-[0_0_50px_rgba(250,204,21,0.25)]">
-          <Trophy className="mx-auto text-yellow-400 mb-4 animate-bounce" size={48} />
-          <h1 className="text-2xl font-black text-white mb-3 uppercase tracking-wider" style={khFont}>
-            {kh ? "ហ្គេមកំពុងចាប់ផ្តើម!" : "Game is Starting!"}
-          </h1>
-          <p className="text-white/70 mb-6 text-sm" style={khFont}>
-            {kh ? "សូមចុចប៊ូតុងខាងក្រោមដើម្បីចូលរួមលេងពេញអេក្រង់" : "Tap the button below to enter fullscreen and start playing!"}
-          </p>
-          <button
-            onClick={toggleFullscreen}
-            className="w-full py-4 bg-yellow-400 hover:bg-yellow-300 text-black font-black border-2 border-black shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all text-sm uppercase tracking-widest"
-            style={{ borderRadius: "0px" }}
-          >
-            {kh ? "ចូលរួមលេងពេញអេក្រង់" : "Enter Fullscreen & Play"}
-          </button>
-        </div>
-      </div>
-    );
-  }
+
 
   // ── Question ───────────────────────────────────────────────────────────────
   if (phase === "question" && currentQuestion) {
@@ -519,44 +499,31 @@ export default function StudentGamePage() {
       <div className="game-dot-bg fixed inset-0 z-50 flex flex-col" style={{ userSelect: "none" }}>
 
         {/* ── Top bar — identical to solo game ── */}
-        <div className="relative z-10 flex items-center justify-between px-4 py-3 bg-black/80 backdrop-blur-sm border-b-2 border-yellow-400 flex-shrink-0">
+        <div className="relative z-10 flex items-center justify-between px-6 py-3 bg-zinc-950 border-b border-zinc-800 flex-shrink-0 h-14">
           {/* Left: LIVE badge + mode label */}
-          <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-red-600 border border-red-400">
-              <div className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-              <span className="text-white font-black text-[10px] tracking-widest uppercase">LIVE</span>
+          <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-red-950/40 border border-red-500 rounded-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+              <span className="text-red-400 font-black text-[9px] tracking-widest uppercase">LIVE</span>
             </div>
-            <span className="text-yellow-400 font-black text-xs uppercase tracking-widest hidden sm:inline" style={khFont}>
+            <span className="text-zinc-400 font-black text-xs uppercase tracking-widest hidden sm:inline" style={khFont}>
               {sessionInfo ? (MODE_LABELS[sessionInfo.gameMode] ?? sessionInfo.gameMode) : code}
             </span>
           </div>
 
-          {/* Center: score + streak badges */}
+          {/* Center/Right: score + streak badges */}
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5 bg-yellow-400 border-2 border-black px-3 py-1" style={{ boxShadow: "2px 2px 0 #000" }}>
+            <div className="flex items-center gap-1.5 bg-yellow-400 border border-zinc-955 px-3 py-1 rounded-lg shadow-md">
               <Zap size={12} className="text-black" />
               <span className="font-black text-black text-sm tabular-nums">{myScore.toLocaleString()}</span>
             </div>
             {myStreak > 1 && (
-              <div className="flex items-center gap-1 bg-orange-500 border-2 border-black px-2 py-1" style={{ boxShadow: "2px 2px 0 #000" }}>
-                <Flame size={12} className="text-white" />
+              <div className="flex items-center gap-1 bg-orange-500 border border-zinc-955 px-2.5 py-1 rounded-lg shadow-md">
+                <Flame size={12} className="text-white animate-pulse" />
                 <span className="font-black text-white text-xs">x{myStreak}</span>
               </div>
             )}
           </div>
-
-          {/* Right: exit */}
-          <button
-            onClick={() => {
-              if (confirm(kh ? "តើអ្នកពិតជាចង់ចាកចេញពីហ្គេមមែនទេ?" : "Are you sure you want to exit the game?")) {
-                if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
-                router.push("/play");
-              }
-            }}
-            className="flex items-center gap-1.5 px-2.5 py-1 border border-red-500/30 bg-red-950/30 hover:bg-red-900/40 text-red-400 text-xs font-black uppercase tracking-wider transition-all"
-          >
-            {kh ? "ចាកចេញ" : "Exit"}
-          </button>
         </div>
 
         {/* ── Progress bar ── */}
@@ -570,102 +537,132 @@ export default function StudentGamePage() {
         {/* ── Content area ── */}
         <div className="relative z-10 flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full justify-center overflow-y-auto min-h-0">
 
-          {/* Q-index + difficulty + timer row */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <span className="text-zinc-400 text-sm font-black uppercase tracking-widest bg-zinc-800/80 px-2 py-1 rounded border border-zinc-700" style={khFont}>
+          {/* Q-index + difficulty + timer row (Stable row) */}
+          <div className="flex items-center justify-between gap-2 px-1 py-1 w-full bg-zinc-900/40 border border-zinc-800/80 rounded-xl h-16 flex-shrink-0">
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar flex-nowrap py-1">
+              <span className="shrink-0 text-zinc-300 text-xs font-black uppercase tracking-widest bg-zinc-800 px-3 py-1.5 rounded-lg border border-zinc-700/80" style={khFont}>
                 {kh ? `${questionIndex + 1}/${totalQuestions}` : `Q ${questionIndex + 1} / ${totalQuestions}`}
               </span>
-              {currentQuestion.difficulty && (
-                <span className="text-yellow-500 font-black text-xs uppercase bg-yellow-500/10 px-2 py-1 rounded border border-yellow-500/30" style={khFont}>
-                  {currentQuestion.difficulty}
+              <span className="shrink-0 text-yellow-400 font-black text-xs uppercase bg-yellow-400/10 px-3 py-1.5 rounded-lg border border-yellow-400/30" style={khFont}>
+                {currentQuestion.difficulty || "Mixed"}
+              </span>
+              {(currentQuestion as any).topicCode && (
+                <span className="shrink-0 text-zinc-400 font-mono text-xs bg-zinc-800 px-3 py-1.5 rounded-lg border border-zinc-700/80 tracking-wider">
+                  {(currentQuestion as any).topicCode.trim()}
                 </span>
               )}
+              <button
+                onClick={() => setMuted(m => !m)}
+                className="shrink-0 p-2 rounded-lg bg-zinc-800 border border-zinc-700/80 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all"
+                title={muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}
+              >
+                {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+              </button>
             </div>
             {endsAt && (
-              <CountdownTimer
-                endsAt={endsAt}
-                totalSeconds={timePerQuestion}
-                onExpire={() => {}}
-              />
+              <div className="shrink-0 scale-90 origin-right">
+                <CountdownTimer
+                  endsAt={endsAt}
+                  totalSeconds={timePerQuestion}
+                  onExpire={() => {}}
+                  muted={muted}
+                />
+              </div>
             )}
           </div>
 
-          {/* Question image (non-image-pick) */}
-          {currentQuestion.imageUrl && currentQuestion.gameType !== "image_pick" && (
-            <div className="border-2 border-black bg-white flex items-center justify-center p-4" style={{ minHeight: 180 }}>
-              <img src={currentQuestion.imageUrl} alt="question" className="max-h-44 w-auto object-contain" />
-            </div>
-          )}
-
-          {/* Question text card — solo glassmorphism style */}
-          <div
-            className="bg-zinc-900/90 backdrop-blur-md border-2 border-zinc-600 p-6 sm:p-8 rounded-lg text-white font-black text-xl sm:text-2xl md:text-3xl leading-snug break-words text-center shadow-lg"
-            style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)", ...khFont }}
-          >
-            {kh ? (currentQuestion.questionKm || currentQuestion.questionEn) : currentQuestion.questionEn}
+          {/* Question image (Stable height wrapper) */}
+          <div className="shrink-0 w-full h-48 border border-zinc-800 bg-zinc-950/40 rounded-xl flex items-center justify-center p-3 relative overflow-hidden backdrop-blur-sm">
+            {currentQuestion.imageUrl && currentQuestion.gameType !== "image_pick" ? (
+              <img src={currentQuestion.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded" />
+            ) : (
+              <div className="flex flex-col items-center gap-2 opacity-15">
+                <BookOpen size={48} className="text-zinc-400" />
+                <span className="font-black text-[10px] tracking-wider uppercase text-zinc-400">Kesararam Quiz</span>
+              </div>
+            )}
           </div>
 
-          {/* Answer grid */}
-          <ErrorBoundary fallback={
-            <div className="text-center p-8 border border-red-500/30 bg-red-500/10">
-              <XCircle className="mx-auto text-red-400 mb-3" size={32} />
-              <p className="text-white font-bold text-sm">Failed to load answers</p>
-              <button onClick={() => window.location.reload()} className="mt-3 px-4 py-2 bg-red-500 text-white font-bold text-sm">Reload</button>
+          {/* Question text card (Stable height + centered text) */}
+          <div
+            className="shrink-0 w-full h-32 bg-zinc-900/90 backdrop-blur-md border-2 border-zinc-750/85 p-4 rounded-xl text-white font-black flex items-center justify-center text-center shadow-lg overflow-y-auto select-text animate-fade-in"
+            style={{
+              boxShadow: "0 8px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)",
+              fontSize: "clamp(1.1rem, 4vw, 1.75rem)",
+              lineHeight: "1.3",
+              ...khFont
+            }}
+          >
+            <div className="w-full max-h-full py-1">
+              {kh ? (currentQuestion.questionKm || currentQuestion.questionEn) : currentQuestion.questionEn}
             </div>
-          }>
-            <AnswerGrid
-              answers={currentQuestion.answers}
-              selectedId={selectedAnswer}
-              correctId={correctAnswerId}
-              disabled={answerSubmitted}
-              lang={lang}
-              gameType={currentQuestion.gameType}
-              onSelect={handleAnswerSelect}
-            />
-          </ErrorBoundary>
+          </div>
 
-          {/* Answer feedback — solo style */}
-          {answerResult && (
-            <div
-              className={`border-2 p-4 flex flex-col items-center gap-2 ${
-                answerResult.isCorrect
-                  ? "border-green-400 bg-green-500/10"
-                  : "border-red-400 bg-red-500/10"
-              }`}
-              style={{
-                boxShadow: answerResult.isCorrect
-                  ? "0 0 20px rgba(74,222,128,0.25), 3px 3px 0 rgba(74,222,128,0.4)"
-                  : "0 0 20px rgba(239,68,68,0.25), 3px 3px 0 rgba(239,68,68,0.4)",
-              }}
-            >
-              <div className="flex items-center gap-2">
-                {answerResult.isCorrect
-                  ? <CheckCircle className="text-green-400" size={24} />
-                  : <XCircle className="text-red-400" size={24} />}
-                <span className="text-white font-black text-lg" style={khFont}>
-                  {answerResult.isCorrect ? (kh ? "ត្រូវ!" : "Correct!") : (kh ? "មិនត្រូវ" : "Incorrect")}
-                </span>
+          {/* Answer grid (Stable min-height wrapper) */}
+          <div className="shrink-0 min-h-[176px]">
+            <ErrorBoundary fallback={
+              <div className="text-center p-8 border border-red-500/30 bg-red-500/10 rounded-xl">
+                <XCircle className="mx-auto text-red-400 mb-3" size={32} />
+                <p className="text-white font-bold text-sm">Failed to load answers</p>
+                <button onClick={() => window.location.reload()} className="mt-3 px-4 py-2 bg-red-500 text-white font-bold text-sm rounded">Reload</button>
               </div>
-              {answerResult.pointsEarned > 0 && (
-                <div
-                  className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-yellow-400 border-2 border-black"
-                  style={{ boxShadow: "3px 3px 0 #000" }}
-                >
-                  <Zap size={14} className="text-black" />
-                  <span className="text-black font-black text-base">+{answerResult.pointsEarned} pts</span>
-                </div>
-              )}
-            </div>
-          )}
+            }>
+              <AnswerGrid
+                answers={currentQuestion.answers}
+                selectedId={selectedAnswer}
+                correctId={correctAnswerId}
+                disabled={answerSubmitted}
+                lang={lang}
+                gameType={currentQuestion.gameType}
+                onSelect={handleAnswerSelect}
+              />
+            </ErrorBoundary>
+          </div>
 
-          {/* Waiting indicator after answered */}
-          {answerSubmitted && !answerResult && (
-            <div className="flex items-center justify-center gap-2 text-zinc-400 text-sm font-bold" style={khFont}>
-              <Loader2 size={14} className="animate-spin" />
-              {kh ? "រង់ចាំ..." : "Waiting for result..."}
-            </div>
-          )}
+          {/* Stable Feedback / Status slot */}
+          <div className="shrink-0 h-24 flex items-center justify-center w-full">
+            {answerResult ? (
+              <div
+                className={`w-full border-2 p-3 rounded-xl flex flex-col items-center justify-center gap-1 transition-all ${
+                  answerResult.isCorrect
+                    ? "border-green-400 bg-green-500/10"
+                    : "border-red-400 bg-red-500/10"
+                }`}
+                style={{
+                  boxShadow: answerResult.isCorrect
+                    ? "0 0 20px rgba(74,222,128,0.15), 2px 2px 0 rgba(74,222,128,0.3)"
+                    : "0 0 20px rgba(239,68,68,0.15), 2px 2px 0 rgba(239,68,68,0.3)",
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  {answerResult.isCorrect
+                    ? <CheckCircle className="text-green-400" size={20} />
+                    : <XCircle className="text-red-400" size={20} />}
+                  <span className="text-white font-black text-base" style={khFont}>
+                    {answerResult.isCorrect ? (kh ? "ត្រូវ!" : "Correct!") : (kh ? "មិនត្រូវ" : "Incorrect")}
+                  </span>
+                </div>
+                {answerResult.pointsEarned > 0 && (
+                  <div
+                    className="inline-flex items-center gap-1 px-3 py-1 bg-yellow-400 border border-black rounded-lg animate-bounce"
+                    style={{ boxShadow: "2px 2px 0 #000" }}
+                  >
+                    <Zap size={12} className="text-black" />
+                    <span className="text-black font-black text-xs">+{answerResult.pointsEarned} pts</span>
+                  </div>
+                )}
+              </div>
+            ) : answerSubmitted ? (
+              <div className="flex items-center justify-center gap-2 text-zinc-400 text-sm font-bold animate-pulse" style={khFont}>
+                <Loader2 size={16} className="animate-spin text-yellow-400" />
+                {kh ? "រង់ចាំ..." : "Waiting for result..."}
+              </div>
+            ) : (
+              <div className="text-zinc-600 text-xs font-medium tracking-wide uppercase select-none opacity-40" style={khFont}>
+                {kh ? "ជ្រើសរើសចម្លើយរបស់អ្នក" : "Choose your answer"}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );

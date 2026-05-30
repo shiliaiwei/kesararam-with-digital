@@ -305,6 +305,7 @@ async function getQuestionPayload(questionId: number) {
         audioUrlEn: questions.audioUrlEn,
         audioUrlKm: questions.audioUrlKm,
         difficulty: questions.difficulty,
+        topicCode: sql<string | null>`(SELECT topic_code FROM topics WHERE id = ${questions.topicId})`
       })
       .from(questions)
       .where(eq(questions.id, questionId));
@@ -353,6 +354,7 @@ async function getQuestionPayload(questionId: number) {
         answerKm: a.answerKm,
         imageUrl: a.imageUrl ?? null
       })),
+      topicCode: q.topicCode ?? null,
     };
 
     console.log(`[getQuestionPayload] Returning payload:`, JSON.stringify(payload, null, 2));

@@ -7,7 +7,7 @@ import { CountdownTimer } from "@/components/game/CountdownTimer";
 import { AnswerGrid } from "@/components/game/AnswerGrid";
 import { sounds } from "@/lib/game-sounds";
 import { GAME_MODE_CONFIG } from "@/lib/game-engine";
-import { Zap, Flame, ChevronRight, RotateCcw, Volume2, VolumeX, X } from "lucide-react";
+import { Zap, Flame, ChevronRight, RotateCcw, Volume2, VolumeX, X, BookOpen, CheckCircle, XCircle } from "lucide-react";
 
 interface SoloQuestion {
   id: number;
@@ -483,86 +483,143 @@ export default function SoloPage() {
   const correctId = phase.showCorrect ? (q.answers.find(a => a.isCorrect)?.id ?? null) : null;
   const effectiveLang = lang as "en" | "kh";
 
+  const isSelected = phase.selectedId !== null;
+  const selectedAns = q.answers.find(a => a.id === phase.selectedId);
+  const isCorrect = selectedAns?.isCorrect ?? false;
+  const isTimeout = phase.selectedId === -1;
+
   return (
     <div className="game-dot-bg fixed inset-0 z-50 flex flex-col" style={{ userSelect: "none" }}>
-      <div className="relative z-10 flex items-center justify-between px-4 py-3 bg-black/80 backdrop-blur-sm border-b-2 border-yellow-400">
-        <span className="text-yellow-400 font-black text-xs uppercase tracking-widest" style={khFont}>
+      <div className="relative z-10 flex items-center justify-between px-6 py-3 bg-zinc-950 border-b border-zinc-800 flex-shrink-0 h-14">
+        <span className="text-zinc-400 font-black text-xs uppercase tracking-widest" style={khFont}>
           {kh ? GAME_MODE_CONFIG[phase.session.gameMode]?.labelKm : GAME_MODE_CONFIG[phase.session.gameMode]?.label}
         </span>
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5 bg-yellow-400 border-2 border-black px-3 py-1" style={{ boxShadow: "2px 2px 0 #000" }}>
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 bg-yellow-400 border border-zinc-955 px-3 py-1 rounded-lg shadow-md">
             <Zap size={12} className="text-black" />
             <span className="font-black text-black text-sm tabular-nums">{myScore.toLocaleString()}</span>
           </div>
           {myStreak > 1 && (
-            <div className="flex items-center gap-1 bg-orange-500 border-2 border-black px-2 py-1" style={{ boxShadow: "2px 2px 0 #000" }}>
-              <Flame size={12} className="text-white" />
+            <div className="flex items-center gap-1 bg-orange-500 border border-zinc-955 px-2.5 py-1 rounded-lg shadow-md">
+              <Flame size={12} className="text-white animate-pulse" />
               <span className="font-black text-white text-xs">x{myStreak}</span>
             </div>
           )}
-          <button onClick={() => { resetGameState(); setPhase({ name: "setup" }); }} className="ml-2 text-zinc-500 hover:text-red-500 transition-colors" title={kh ? "បោះបង់" : "Quit Game"}>
-            <X size={24} strokeWidth={3} />
-          </button>
         </div>
       </div>
 
-      <div className="h-1.5 bg-zinc-800">
+      <div className="h-1.5 bg-zinc-800 flex-shrink-0">
         <div className="h-full bg-yellow-400 transition-all duration-300"
           style={{ width: `${((phase.qIndex + 1) / phase.session.questions.length) * 100}%` }} />
       </div>
 
       <div className="relative z-10 flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full justify-center overflow-y-auto min-h-0">
-        <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center gap-3">
-            <span className="text-zinc-400 text-sm font-black uppercase tracking-widest bg-zinc-800/80 px-2 py-1 rounded border border-zinc-700" style={khFont}>
+        {/* Q-index + difficulty + timer row (Stable row) */}
+        <div className="flex items-center justify-between gap-2 px-1 py-1 w-full bg-zinc-900/40 border border-zinc-800/80 rounded-xl h-16 flex-shrink-0">
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar flex-nowrap py-1">
+            <span className="shrink-0 text-zinc-300 text-xs font-black uppercase tracking-widest bg-zinc-800 px-3 py-1.5 rounded-lg border border-zinc-700/80" style={khFont}>
               {kh ? `${phase.qIndex + 1}/${phase.session.questions.length}` : `Q ${phase.qIndex + 1} / ${phase.session.questions.length}`}
             </span>
-            <span className="text-yellow-500 font-black text-xs uppercase bg-yellow-500/10 px-2 py-1 rounded border border-yellow-500/30 shadow-sm" style={khFont}>
-              {q.difficulty || "mixed"}
+            <span className="shrink-0 text-yellow-400 font-black text-xs uppercase bg-yellow-400/10 px-3 py-1.5 rounded-lg border border-yellow-400/30" style={khFont}>
+              {q.difficulty || "Mixed"}
             </span>
             {q.topicCode && (
-              <a
-                href={`/admin/questions?topicCode=${encodeURIComponent(q.topicCode.trim())}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-zinc-400 font-mono text-[10px] bg-zinc-800/80 px-2 py-1 rounded border border-zinc-700 hover:text-white hover:border-zinc-500 transition-all tracking-wider"
-                title={`Topic: ${q.topicCode.trim()} — click to view in admin`}
-              >
+              <span className="shrink-0 text-zinc-400 font-mono text-xs bg-zinc-800 px-3 py-1.5 rounded-lg border border-zinc-700/80 tracking-wider">
                 {q.topicCode.trim()}
-              </a>
+              </span>
             )}
-            <button onClick={() => setMuted(m => !m)} className="p-1.5 rounded bg-zinc-800/80 border border-zinc-700 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all" title={muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}>
+            <button
+              onClick={() => setMuted(m => !m)}
+              className="shrink-0 p-2 rounded-lg bg-zinc-800 border border-zinc-700/80 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all"
+              title={muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}
+            >
               {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
             </button>
           </div>
-          <CountdownTimer
-            endsAt={phase.endsAt}
-            totalSeconds={phase.session.timePerQuestion}
-            onExpire={handleTimeout}
-            muted={muted}
+          <div className="shrink-0 scale-90 origin-right">
+            <CountdownTimer
+              endsAt={phase.endsAt}
+              totalSeconds={phase.session.timePerQuestion}
+              onExpire={handleTimeout}
+              muted={muted}
+            />
+          </div>
+        </div>
+
+        {/* Question image (Stable height wrapper) */}
+        <div className="shrink-0 w-full h-48 border border-zinc-800 bg-zinc-950/40 rounded-xl flex items-center justify-center p-3 relative overflow-hidden backdrop-blur-sm">
+          {q.imageUrl && q.gameType !== "image_pick" ? (
+            <img src={q.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded" />
+          ) : (
+            <div className="flex flex-col items-center gap-2 opacity-15">
+              <BookOpen size={48} className="text-zinc-400" />
+              <span className="font-black text-[10px] tracking-wider uppercase text-zinc-400">Kesararam Quiz</span>
+            </div>
+          )}
+        </div>
+
+        {/* Question text card (Stable height + centered text) */}
+        <div
+          className="shrink-0 w-full h-32 bg-zinc-900/90 backdrop-blur-md border-2 border-zinc-755/85 p-4 rounded-xl text-white font-black flex items-center justify-center text-center shadow-lg overflow-y-auto select-text animate-fade-in"
+          style={{
+            boxShadow: "0 8px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)",
+            fontSize: "clamp(1.1rem, 4vw, 1.75rem)",
+            lineHeight: "1.3",
+            ...khFont
+          }}
+        >
+          <div className="w-full max-h-full py-1">
+            {effectiveLang === "kh" ? q.questionKm || q.questionEn : q.questionEn}
+          </div>
+        </div>
+
+        {/* Answer grid (Stable min-height wrapper) */}
+        <div className="shrink-0 min-h-[176px]">
+          <AnswerGrid
+            answers={q.answers}
+            selectedId={phase.selectedId === -1 ? null : phase.selectedId}
+            correctId={correctId}
+            disabled={phase.selectedId !== null}
+            lang={effectiveLang}
+            gameType={q.gameType}
+            onSelect={handleSelect}
           />
         </div>
 
-        {q.imageUrl && q.gameType !== "image_pick" && (
-          <div className="border-2 border-black bg-white flex items-center justify-center p-4" style={{ minHeight: 180 }}>
-            <img src={q.imageUrl} alt="question" className="max-h-44 w-auto object-contain" />
-          </div>
-        )}
-
-        <div className="bg-zinc-900/90 backdrop-blur-md border-2 border-zinc-600 p-6 sm:p-8 rounded-lg text-white font-black text-xl sm:text-2xl md:text-3xl leading-snug break-words text-center shadow-lg"
-          style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)", ...khFont }}>
-          {effectiveLang === "kh" ? q.questionKm || q.questionEn : q.questionEn}
+        {/* Stable Feedback / Status slot */}
+        <div className="shrink-0 h-24 flex items-center justify-center w-full">
+          {isSelected ? (
+            <div
+              className={`w-full border-2 p-3 rounded-xl flex flex-col items-center justify-center gap-1 transition-all ${
+                !isTimeout && isCorrect
+                  ? "border-green-400 bg-green-500/10"
+                  : "border-red-400 bg-red-500/10"
+              }`}
+              style={{
+                boxShadow: !isTimeout && isCorrect
+                  ? "0 0 20px rgba(74,222,128,0.15), 2px 2px 0 rgba(74,222,128,0.3)"
+                  : "0 0 20px rgba(239,68,68,0.15), 2px 2px 0 rgba(239,68,68,0.3)",
+              }}
+            >
+              <div className="flex items-center gap-2">
+                {!isTimeout && isCorrect
+                  ? <CheckCircle className="text-green-400" size={20} />
+                  : <XCircle className="text-red-400" size={20} />}
+                <span className="text-white font-black text-base" style={khFont}>
+                  {isTimeout
+                    ? (kh ? "អស់ម៉ោង!" : "Time out!")
+                    : isCorrect
+                      ? (kh ? "ត្រូវ!" : "Correct!")
+                      : (kh ? "មិនត្រូវ" : "Incorrect")}
+                </span>
+              </div>
+            </div>
+          ) : (
+            <div className="text-zinc-600 text-xs font-medium tracking-wide uppercase select-none opacity-40" style={khFont}>
+              {kh ? "ជ្រើសរើសចម្លើយរបស់អ្នក" : "Choose your answer"}
+            </div>
+          )}
         </div>
-
-        <AnswerGrid
-          answers={q.answers}
-          selectedId={phase.selectedId === -1 ? null : phase.selectedId}
-          correctId={correctId}
-          disabled={phase.selectedId !== null}
-          lang={effectiveLang}
-          gameType={q.gameType}
-          onSelect={handleSelect}
-        />
       </div>
     </div>
   );
