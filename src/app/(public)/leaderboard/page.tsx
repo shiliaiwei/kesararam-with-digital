@@ -18,7 +18,8 @@ import {
   Zap, 
   Flame, 
   Crown,
-  Info
+  Info,
+  Award
 } from "lucide-react";
 
 // ─── BRAND COLORS ─────────────────────────────────────────────────────────────
@@ -239,13 +240,47 @@ function PodiumCard({ user, cfg, index, currentUser }: {
       {isFirst && <div ref={glowRef} className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, rgba(234,179,8,0.25) 0%, transparent 70%)", opacity: 0.3 }} />}
       <div className="relative mb-2">
         {isFirst && (
-          <div className="absolute -top-7 left-1/2 -translate-x-1/2 z-10 animate-bounce" style={{ animationDuration: "2s" }}>
-            <Crown size={28} className="text-yellow-400 fill-yellow-400 filter drop-shadow-[0_3px_5px_rgba(0,0,0,0.5)]" style={{ transform: "rotate(-10deg)" }} />
+          <div className="absolute -top-9 left-1/2 -translate-x-1/2 z-10 animate-bounce" style={{ animationDuration: "2s" }}>
+            <Crown size={32} className="text-yellow-400 fill-yellow-400 filter drop-shadow-[0_3px_5px_rgba(0,0,0,0.5)]" style={{ transform: "rotate(-10deg)" }} />
           </div>
         )}
-        <RankedAvatarRing lifetimePoints={user?.lifetimePoints ?? 0} size={isFirst ? 76 : 56}>
-          <Avatar url={userAvatar} name={name} size={isFirst ? 76 : 56} changedAt={user?.avatarChangedAt} />
-        </RankedAvatarRing>
+        
+        {/* Creative Rank Emblem/Medal */}
+        <div 
+          className="relative rounded-full flex items-center justify-center border-4 border-black shadow-[4px_4px_0_#000] overflow-hidden transition-transform duration-300 hover:rotate-12"
+          style={{ 
+            width: isFirst ? 80 : 64,
+            height: isFirst ? 80 : 64,
+            background: cfg.pedestalBg, 
+            animation: isFirst ? "rankShimmer 3s ease infinite" : undefined,
+          }}
+        >
+          {/* Inner circle with Rank Initials & Icon */}
+          <div 
+            className="rounded-full bg-black flex flex-col items-center justify-center border-2 border-white/10 relative"
+            style={{
+              width: isFirst ? 58 : 46,
+              height: isFirst ? 58 : 46,
+            }}
+          >
+            <span 
+              className="font-black text-white font-mono leading-none tracking-tight"
+              style={{
+                fontSize: isFirst ? "14px" : "11px",
+              }}
+            >
+              {initials}
+            </span>
+            {isFirst ? (
+              <Trophy size={isFirst ? 16 : 12} className="text-yellow-400 mt-1" />
+            ) : cfg.rank === 2 ? (
+              <Award size={isFirst ? 16 : 12} className="text-slate-300 mt-1" />
+            ) : (
+              <Star size={isFirst ? 16 : 12} className="text-orange-400 mt-1" />
+            )}
+          </div>
+        </div>
+
         <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 scale-75 md:scale-100"><RankBadge rank={cfg.rank} /></div>
       </div>
       <div 
