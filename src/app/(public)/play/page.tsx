@@ -34,7 +34,7 @@ const BRAND = {
   white: "#ffffff",
 };
 
-// ─── GAME MODES DATA (Alternating Yellow & Green Cards) ─────────────────────────
+// ─── GAME MODES DATA (Alternating Yellow & Green Cards, Simplified Wording) ───
 const GAME_MODES = [
   {
     id: "quick-quiz",
@@ -60,8 +60,8 @@ const GAME_MODES = [
     href: "/play/solo?mode=speed-round",
     badge: "20 Qs",
     timer: "15s",
-    cta: "RUSH IN",
-    ctaKh: "ចូលប្រកួត",
+    cta: "PLAY NOW",
+    ctaKh: "លេងឥឡូវ",
     Icon: Flame,
   },
   {
@@ -74,22 +74,22 @@ const GAME_MODES = [
     href: "/play/solo?mode=sign-challenge",
     badge: "15 Qs",
     timer: "20s",
-    cta: "IDENTIFY",
-    ctaKh: "ប្រឡង",
+    cta: "PLAY NOW",
+    ctaKh: "លេងឥឡូវ",
     Icon: TriangleAlert,
   },
   {
-    id: "mixed-battle",
+    id: "mixed-practice",
     number: "04",
-    title: "Mixed Battle",
+    title: "Mixed Practice",
     titleKh: "ប្រកួតចម្រុះ",
-    desc: "All topics, all layouts. Every single traffic rule in a chaotic mix.",
+    desc: "All topics, all layouts. Every single traffic rule in a simplified mix.",
     descKh: "គ្រប់ប្រភេទសំណួរ — ប្រកួតចម្រុះ",
-    href: "/play/solo?mode=mixed-battle",
+    href: "/play/solo?mode=mixed-practice",
     badge: "20 Qs",
     timer: "30s",
-    cta: "START BATTLE",
-    ctaKh: "ប្រកួត",
+    cta: "PLAY NOW",
+    ctaKh: "លេងឥឡូវ",
     Icon: Swords,
   },
   {
@@ -102,8 +102,8 @@ const GAME_MODES = [
     href: "/play/solo?mode=daily-challenge",
     badge: "15 Qs",
     timer: "30s",
-    cta: "CLAIM TODAY",
-    ctaKh: "លេងប្រចាំថ្ងៃ",
+    cta: "PLAY NOW",
+    ctaKh: "លេងឥឡូវ",
     Icon: CalendarDays,
   },
   {
@@ -116,50 +116,50 @@ const GAME_MODES = [
     href: "/play/solo?mode=exam-simulation",
     badge: "40 Qs",
     timer: "45s",
-    cta: "SIMULATE NOW",
-    ctaKh: "ត្រាប់តាម",
+    cta: "PLAY NOW",
+    ctaKh: "លេងឥឡូវ",
     Icon: GraduationCap,
   },
   {
-    id: "survival-streak",
+    id: "survival-quiz",
     number: "07",
-    title: "Survival Mode",
+    title: "Survival Quiz",
     titleKh: "វគ្គរស់រានមានជីវិត",
     desc: "One wrong answer and it's game over. How far can you push your streak?",
     descKh: "ខុសមួយចប់ — តើអ្នកអាចឆ្លើយបានប៉ុន្មាន?",
-    href: "/play/solo?mode=survival-streak",
+    href: "/play/solo?mode=survival-quiz",
     badge: "UNLIMITED",
     timer: "20s",
-    cta: "SURVIVE",
-    ctaKh: "រស់រាន",
+    cta: "PLAY NOW",
+    ctaKh: "លេងឥឡូវ",
     Icon: Star,
   },
   {
-    id: "zen-study",
+    id: "zen-review",
     number: "08",
     title: "Zen Review",
     titleKh: "សិក្សាស្ងប់ស្ងាត់",
     desc: "No timers, no scoreboards, no stress. Just pure, relaxed learning.",
     descKh: "គ្មានម៉ោងកំណត់ — សិក្សាដោយគ្មានសម្ពាធ",
-    href: "/play/solo?mode=zen-study",
+    href: "/play/solo?mode=zen-review",
     badge: "CUSTOM Qs",
     timer: "UNTIMED",
-    cta: "RELAX & LEARN",
-    ctaKh: "រៀនសិន",
+    cta: "PLAY NOW",
+    ctaKh: "លេងឥឡូវ",
     Icon: BookOpenCheck,
   },
   {
-    id: "hardcore-boss",
+    id: "final-practice",
     number: "09",
-    title: "Boss Challenge",
+    title: "Final Practice",
     titleKh: "វគ្គពិសេសប្រឈម",
     desc: "The most confusing legal scenarios and critical traps. Master level only.",
     descKh: "សំណួរពិបាកបំផុត — សម្រាប់អ្នកជំនាញ",
-    href: "/play/solo?mode=hardcore-boss",
+    href: "/play/solo?mode=final-practice",
     badge: "25 Qs",
     timer: "25s",
-    cta: "CONQUER",
-    ctaKh: "ដោះស្រាយ",
+    cta: "PLAY NOW",
+    ctaKh: "លេងឥឡូវ",
     Icon: Trophy,
   },
 ];
@@ -317,7 +317,7 @@ function GameCard({ mode, index, kh, khFont }: {
   const [hovered, setHovered] = useState(false);
   const [pressed, setPressed] = useState(false);
 
-  // Background card alternates strictly between Yellow and Green as requested
+  // Background card alternates strictly between Yellow and Green
   const bgColor = index % 2 === 0 ? BRAND.yellow : BRAND.green;
   const textColor = BRAND.black;
   const borderColor = BRAND.black;
