@@ -31,8 +31,8 @@ const PLANS = [
     highlight: true,
     badge: { en: "Most Popular", kh: "ពេញនិយមបំផុត" },
     tagline: { en: "For teachers & instructors", kh: "សម្រាប់គ្រូ និងអ្នកបង្រៀន" },
-    cta: { en: "Try Free for 30 Days", kh: "សាកល្បងឥតគិតថ្លៃ ៣០ ថ្ងៃ" },
-    scarcity: { en: "🔥 First month free — limited offer", kh: "🔥 ខែដំបូងឥតគិតថ្លៃ — ការផ្ដល់ជូនមានកំណត់" },
+    cta: { en: "Select Teacher Pro", kh: "ជ្រើសរើស គ្រូ Pro" },
+    scarcity: { en: "🔥 50% Off Promo through end of 2026!", kh: "🔥 បញ្ចុះតម្លៃ ៥០% រហូតដល់ចុងឆ្នាំ ២០២៦!" },
     features: [
       { en: "Unlimited live game sessions", kh: "វគ្គហ្គេមផ្ទាល់គ្មានដែនកំណត់", icon: Zap },
       { en: "All 8 question categories", kh: "ប្រភេទសំណួរទាំង ៨", icon: Check },
@@ -45,16 +45,16 @@ const PLANS = [
   },
   {
     key: "school",
-    name: "School",
-    nameKh: "សាលា",
+    name: "School & Institute",
+    nameKh: "សាលា & វិទ្យាស្ថាន",
     price: 49,
     icon: Building2,
     color: "#a855f7",
     highlight: false,
     badge: null,
-    tagline: { en: "For driving schools", kh: "សម្រាប់សាលាបើកបរ" },
-    cta: { en: "Contact Us", kh: "ទំនាក់ទំនងយើង" },
-    scarcity: null,
+    tagline: { en: "For public & private boards", kh: "សម្រាប់សាលារដ្ឋ និងឯកជន" },
+    cta: { en: "Select School Plan", kh: "ជ្រើសរើស ផែនការសាលា" },
+    scarcity: { en: "🔥 Public: $19/mo, Private: $24/mo (Promo)", kh: "🔥 សាលារដ្ឋ៖ $19/ខែ, ឯកជន៖ $24/ខែ" },
     features: [
       { en: "Everything in Teacher Pro", kh: "អ្វីៗទាំងអស់ក្នុង Teacher Pro", icon: Check },
       { en: "Up to 10 teacher accounts", kh: "រហូតដល់ ១០ គណនីគ្រូ", icon: Check },
@@ -123,43 +123,49 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
             <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight mb-1" style={khFont}>
               {kh ? "បើកដោះស្រាយសក្ដានុពលពេញលេញ" : "Unlock Full Power"}
             </h2>
-            <p className="text-white/40 text-sm" style={khFont}>
+            <p className="text-white/40 text-sm mb-4" style={khFont}>
               {kh ? "សិស្សចូលរួមឥតគិតថ្លៃជានិច្ច" : "Students always join free — teachers unlock everything"}
             </p>
 
-            {triggerMsg && (
-              <div className="mt-3 text-sm text-amber-300 bg-amber-400/8 border border-amber-400/20 rounded-xl px-4 py-2.5" style={khFont}>
-                {kh ? triggerMsg.kh : triggerMsg.en}
-              </div>
-            )}
-
-            {/* Yearly toggle — premium pill style */}
-            <div className="flex items-center justify-center gap-3 mt-4">
-              <span className={`text-sm font-semibold transition-colors ${!yearly ? "text-white" : "text-white/35"}`} style={khFont}>
+            {/* Toggle switch */}
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <span className={`text-xs font-semibold transition-colors ${!yearly ? "text-white" : "text-white/35"}`} style={khFont}>
                 {kh ? "ប្រចាំខែ" : "Monthly"}
               </span>
               <button
                 onClick={() => setYearly(v => !v)}
                 role="switch"
                 aria-checked={yearly}
-                className={`relative w-12 h-6 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${yearly ? "bg-amber-400" : "bg-white/15"}`}
+                className={`relative w-9 h-5 rounded-full transition-all duration-300 ${yearly ? "bg-amber-400" : "bg-white/20"}`}
               >
-                <span className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow-md transition-transform duration-300 ${yearly ? "translate-x-6" : "translate-x-0"}`} />
+                <span className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform duration-300 ${yearly ? "translate-x-4" : "translate-x-0"}`} />
               </button>
-              <span className={`text-sm font-semibold transition-colors flex items-center gap-1.5 ${yearly ? "text-white" : "text-white/35"}`} style={khFont}>
+              <span className={`text-xs font-semibold transition-colors flex items-center gap-1.5 ${yearly ? "text-white" : "text-white/35"}`} style={khFont}>
                 {kh ? "ប្រចាំឆ្នាំ" : "Yearly"}
                 <span className="bg-green-500/20 text-green-400 text-[10px] font-black px-1.5 py-0.5 rounded-full">
-                  {kh ? "-20%" : "Save 20%"}
+                  {kh ? "-២៥%" : "Save 25%"}
                 </span>
               </span>
             </div>
           </div>
-
+ 
           {/* Plan cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 px-4 sm:px-6 pb-4">
             {PLANS.map((plan) => {
               const Icon = plan.icon;
-              const price = yearly ? Math.round(plan.price * 0.8) : plan.price;
+              
+              // Define prices based on promo
+              const getPrice = (key: string, isYearly: boolean) => {
+                if (key === "teacher_pro") return isYearly ? 3.75 : 5;
+                return isYearly ? 15 : 19; // School public base promo rate
+              };
+              const getStandardPrice = (key: string, isYearly: boolean) => {
+                if (key === "teacher_pro") return isYearly ? 7.5 : 10;
+                return isYearly ? 36.6 : 49;
+              };
+
+              const price = getPrice(plan.key, yearly);
+              const stdPrice = getStandardPrice(plan.key, yearly);
 
               return (
                 <div key={plan.key}
@@ -186,9 +192,10 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
                   </div>
 
                   {/* Price */}
-                  <div className="flex items-end gap-1 mb-0.5">
+                  <div className="flex items-end gap-1.5 mb-0.5 flex-wrap">
                     <span className="text-4xl font-black text-white leading-none">${price}</span>
                     <span className="text-white/35 text-xs mb-1" style={khFont}>{kh ? "USD/ខែ" : "USD/mo"}</span>
+                    <span className="line-through text-white/20 text-xs ml-1.5 mb-1">${stdPrice}</span>
                   </div>
                   <p className="text-white/35 text-xs mb-3" style={khFont}>
                     {kh ? plan.tagline.kh : plan.tagline.en}

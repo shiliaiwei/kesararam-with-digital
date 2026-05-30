@@ -46,7 +46,8 @@ export function UpgradeFab({ session }: UpgradeFabProps) {
   const showFab = !session || (session.role === "teacher" && subPlan === "free");
 
   if (!mounted || dismissed || !showFab) return null;
-  const price = yearly ? 8 : 10;
+  const price = yearly ? 3.75 : 5;
+  const stdPrice = yearly ? 7.5 : 10;
   return (
     <div className="fixed bottom-5 right-4 sm:right-6 z-40 flex flex-col items-end gap-2">
       {expanded && (
@@ -60,19 +61,23 @@ export function UpgradeFab({ session }: UpgradeFabProps) {
           </div>
           <div className="px-4 py-3">
             <div className="flex items-center justify-between mb-3">
-              <div className="flex items-end gap-1"><span className="text-3xl font-black text-white">${price}</span><span className="text-white/35 text-xs mb-1" style={kf}>{kh?"USD/ខែ":"USD/mo"}</span></div>
+              <div className="flex items-end gap-1">
+                <span className="text-3xl font-black text-white">${price}</span>
+                <span className="text-white/35 text-xs mb-1" style={kf}>{kh?"USD/ខែ":"USD/mo"}</span>
+                <span className="line-through text-white/20 text-xs ml-1 mb-0.5">${stdPrice}</span>
+              </div>
               <div className="flex items-center gap-1.5">
                 <span className="text-[10px] text-white/40" style={kf}>{kh?"ប្រចាំឆ្នាំ":"Yearly"}</span>
                 <button onClick={() => setYearly(v => !v)} role="switch" aria-checked={yearly} className={`relative w-9 h-5 rounded-full transition-all duration-300 ${yearly?"bg-amber-400":"bg-white/20"}`}><span className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform duration-300 ${yearly?"translate-x-4":"translate-x-0"}`} /></button>
-                {yearly && <span className="text-[10px] text-green-400 font-bold">-20%</span>}
+                {yearly && <span className="text-[10px] text-green-400 font-bold">{kh ? "-២៥%" : "-25%"}</span>}
               </div>
             </div>
-            <div className="text-[11px] text-amber-300 bg-amber-400/10 border border-amber-400/20 rounded-lg px-2.5 py-1.5 mb-3 font-semibold" style={kf}>🔥 {kh?"ខែដំបូងឥតគិតថ្លៃ — ការផ្ដល់ជូនមានកំណត់":"First month free — limited offer"}</div>
+            <div className="text-[11px] text-amber-300 bg-amber-400/10 border border-amber-400/20 rounded-lg px-2.5 py-1.5 mb-3 font-semibold" style={kf}>🔥 {kh?"បញ្ចុះតម្លៃ ៥០% — ការផ្ដល់ជូនរហូតដល់ចុងឆ្នាំ ២០២៦":"50% Off — Limited Offer through 2026"}</div>
             <div className="flex flex-col gap-1.5 mb-4">
               {(kh?MINI.kh:MINI.en).map((f,i) => (
                 <div key={i} className="flex items-center gap-2">
                   {i===2?<Bot size={11} className="text-amber-400 shrink-0"/>:<Check size={11} className="text-green-400 shrink-0"/>}
-                  <span className="text-xs text-white/60" style={kf}>{f}</span>
+                  <span className="text-xs text-white/65" style={kf}>{f}</span>
                 </div>
               ))}
             </div>
