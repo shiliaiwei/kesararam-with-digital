@@ -217,12 +217,12 @@ function OtpCodeInput({ lang }: { lang: string }) {
             onKeyDown={(e) => handleKeyDown(i, e)}
             onPaste={handlePaste}
             style={{
-              width: 50,
-              height: 62,
+              width: 44,
+              height: 56,
               border: `3px solid ${BRAND.black}`,
               background: cell ? "#fefce8" : BRAND.white,
               color: BRAND.black,
-              fontSize: 26,
+              fontSize: 22,
               fontWeight: 900,
               fontFamily: "monospace",
               textAlign: "center",
@@ -540,7 +540,7 @@ export default function PlayPage() {
                 boxShadow: `5px 5px 0 ${BRAND.black}`,
                 display: "inline-block",
               }}>
-                {kh ? "កូដបន្ទប់?" : "Room Code?"}
+                {kh ? "កូដបន្ទប់" : "Room Code"}
               </span>
             </h1>
           </div>
@@ -550,8 +550,8 @@ export default function PlayPage() {
             <div style={{
               background: BRAND.white,
               border: `4px solid ${BRAND.black}`,
-              padding: "40px 24px",
-              boxShadow: `10px 10px 0 ${BRAND.black}`,
+              padding: "24px 20px",
+              boxShadow: `6px 6px 0 ${BRAND.black}`,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -563,7 +563,7 @@ export default function PlayPage() {
                 letterSpacing: 3,
                 color: BRAND.black,
                 textAlign: "center",
-                marginBottom: 24,
+                marginBottom: 16,
               }}>
                 {kh ? "បញ្ចូលលេខកូដបន្ទប់" : "ENTER ROOM CODE"}
               </div>
