@@ -594,23 +594,24 @@ export default function StudentGamePage() {
           />
         </div>
 
-        <div className="relative z-10 flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full justify-start sm:justify-center overflow-y-auto min-h-0">
-          <div className="flex items-center justify-between gap-2 px-2 py-1.5 w-full bg-zinc-900/60 border border-zinc-800/80 rounded-xl h-14 flex-shrink-0">
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar flex-nowrap">
-              <span className="shrink-0 text-zinc-300 text-xs font-black uppercase tracking-widest bg-zinc-800 px-3 py-1.5 rounded-lg border border-zinc-700/80" style={khFont}>
+        <div className="relative z-10 flex-1 flex flex-col p-2.5 sm:p-4 gap-2.5 max-w-2xl mx-auto w-full justify-start sm:justify-center overflow-y-auto min-h-0">
+          {/* Subtle Stats Row (Low Capacity) */}
+          <div className="flex items-center justify-between gap-2 px-1 w-full bg-transparent border-0 flex-shrink-0">
+            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar flex-nowrap">
+              <span className="shrink-0 text-zinc-400 text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-zinc-900/40 px-2.5 py-1 rounded-lg border border-zinc-850" style={khFont}>
                 {kh ? `${questionIndex + 1}/${totalQuestions}` : `Q ${questionIndex + 1} / ${totalQuestions}`}
               </span>
-              <span className="shrink-0 text-yellow-400 font-black text-xs uppercase bg-yellow-400/10 px-3 py-1.5 rounded-lg border border-yellow-400/30" style={khFont}>
+              <span className="shrink-0 text-zinc-400 text-[10px] sm:text-xs font-bold uppercase bg-zinc-900/40 px-2.5 py-1 rounded-lg border border-zinc-850" style={khFont}>
                 {currentQuestion.difficulty || "Mixed"}
               </span>
               {(currentQuestion as any).topicCode && (
-                <span className="shrink-0 text-zinc-400 font-mono text-xs bg-zinc-800 px-3 py-1.5 rounded-lg border border-zinc-700/80 tracking-wider">
+                <span className="shrink-0 text-zinc-500 font-mono text-[10px] sm:text-xs bg-zinc-900/40 px-2.5 py-1 rounded-lg border border-zinc-850 tracking-wider">
                   {(currentQuestion as any).topicCode.trim()}
                 </span>
               )}
             </div>
             {endsAt && (
-              <div className="shrink-0 scale-90 origin-right">
+              <div className="shrink-0 scale-75 sm:scale-85 origin-right">
                 <CountdownTimer
                   endsAt={endsAt}
                   totalSeconds={timePerQuestion}
@@ -621,27 +622,24 @@ export default function StudentGamePage() {
             )}
           </div>
 
-          <div className="shrink-0 w-full h-48 border border-zinc-800 bg-zinc-950/40 rounded-xl flex items-center justify-center p-3 relative overflow-hidden backdrop-blur-sm">
-            {currentQuestion.imageUrl && currentQuestion.gameType !== "image_pick" ? (
+          {/* Conditional Image Box (Completely invisible if no image) */}
+          {currentQuestion.imageUrl && currentQuestion.gameType !== "image_pick" && (
+            <div className="shrink-0 w-full h-36 border border-zinc-800 bg-zinc-950/20 rounded-xl flex items-center justify-center p-2 relative overflow-hidden backdrop-blur-sm">
               <img src={currentQuestion.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded" />
-            ) : (
-              <div className="flex flex-col items-center gap-2 opacity-15">
-                <BookOpen size={48} className="text-zinc-400" />
-                <span className="font-black text-[10px] tracking-wider uppercase text-zinc-400">Kesararam Quiz</span>
-              </div>
-            )}
-          </div>
+            </div>
+          )}
 
+          {/* Dynamic Sleek Question Text Box (No Hidden Labels) */}
           <div
-            className="shrink-0 w-full h-32 bg-zinc-900/90 backdrop-blur-md border-2 border-zinc-750/85 p-4 rounded-xl text-white font-black flex items-center justify-center text-center shadow-lg overflow-y-auto select-text animate-fade-in"
+            className="shrink-0 w-full min-h-[76px] sm:min-h-[96px] h-auto bg-zinc-900/90 backdrop-blur-md border border-zinc-800 py-3 px-4 rounded-xl text-white font-bold flex items-center justify-center text-center shadow-lg animate-fade-in"
             style={{
-              boxShadow: "0 8px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)",
-              fontSize: "clamp(1.1rem, 4vw, 1.75rem)",
-              lineHeight: "1.3",
+              boxShadow: "0 6px 20px rgba(0,0,0,0.4)",
+              fontSize: "clamp(0.95rem, 3.5vw, 1.45rem)",
+              lineHeight: "1.35",
               ...khFont
             }}
           >
-            <div className="w-full max-h-full py-1">
+            <div className="w-full max-h-full py-0.5">
               {kh ? (currentQuestion.questionKm || currentQuestion.questionEn) : currentQuestion.questionEn}
             </div>
           </div>
