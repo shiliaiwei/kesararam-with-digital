@@ -297,7 +297,7 @@ function OtpCodeInput({ lang }: { lang: string }) {
   );
 }
 
-// ─── GAME MODE CARD ───────────────────────────────────────────────────────────
+// ─── GAME MODE CARD (Clean white, colored accent) ─────────────────────────────
 function GameCard({ mode, index, kh, khFont }: {
   mode: typeof GAME_MODES[number];
   index: number;
@@ -308,13 +308,13 @@ function GameCard({ mode, index, kh, khFont }: {
   const [pressed, setPressed] = useState(false);
 
   const shadow = pressed
-    ? "none"
+    ? "2px 2px 0 #000"
     : hovered
-      ? `9px 9px 0 ${mode.accentShadow}`
-      : `6px 6px 0 ${mode.accentShadow}`;
+      ? `8px 8px 0 ${mode.accentShadow}`
+      : `5px 5px 0 #000`;
 
   const transform = pressed
-    ? "translate(6px, 6px)"
+    ? "translate(3px, 3px)"
     : hovered
       ? "translate(-3px, -3px)"
       : "translate(0,0)";
@@ -333,7 +333,7 @@ function GameCard({ mode, index, kh, khFont }: {
         border: `3px solid ${BRAND.black}`,
         boxShadow: shadow,
         transform,
-        transition: "transform 0.1s cubic-bezier(0.16,1,0.3,1), box-shadow 0.1s cubic-bezier(0.16,1,0.3,1)",
+        transition: "transform 0.12s cubic-bezier(0.16,1,0.3,1), box-shadow 0.12s cubic-bezier(0.16,1,0.3,1)",
         textDecoration: "none",
         color: BRAND.black,
         position: "relative",
@@ -342,85 +342,95 @@ function GameCard({ mode, index, kh, khFont }: {
         borderRadius: 0,
       }}
     >
-      {/* Top color bar with number + emoji */}
+      {/* Colored top stripe */}
+      <div style={{ height: 6, background: mode.color, flexShrink: 0 }} />
+
+      {/* Card Header: icon box + number + badges */}
       <div style={{
-        background: mode.color,
-        borderBottom: `3px solid ${BRAND.black}`,
         padding: "20px 20px 16px",
         display: "flex",
-        justifyContent: "space-between",
         alignItems: "flex-start",
-        position: "relative",
+        justifyContent: "space-between",
+        borderBottom: `2px solid #e4e4e7`,
+        gap: 12,
       }}>
-        {/* Big number */}
-        <span style={{
-          fontSize: 52,
-          fontWeight: 900,
-          lineHeight: 1,
-          color: mode.textOnColor === BRAND.black ? "rgba(0,0,0,0.2)" : "rgba(255,255,255,0.2)",
-          fontFamily: "monospace",
-          letterSpacing: -3,
-          userSelect: "none",
+        {/* Left: icon in colored square */}
+        <div style={{
+          width: 56,
+          height: 56,
+          background: mode.color,
+          border: `3px solid ${BRAND.black}`,
+          boxShadow: `3px 3px 0 ${mode.accentShadow}`,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0,
+          color: mode.textOnColor,
+          transform: hovered ? "rotate(-6deg) scale(1.06)" : "rotate(0deg) scale(1)",
+          transition: "transform 0.2s cubic-bezier(0.34,1.56,0.64,1)",
         }}>
-          {mode.number}
-        </span>
+          <mode.Icon size={26} strokeWidth={2.5} />
+        </div>
 
-        {/* Right side: tag + timer badge */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 6, alignItems: "flex-end" }}>
-          {mode.tag && (
-            <span style={{
-              background: BRAND.black,
-              color: mode.color,
-              fontSize: 9,
-              fontWeight: 900,
-              letterSpacing: 2,
-              padding: "3px 8px",
-              border: `2px solid ${BRAND.black}`,
-              boxShadow: `2px 2px 0 ${mode.accentShadow}`,
-            }}>
-              {mode.tag}
-            </span>
-          )}
-          <div style={{
-            display: "flex",
-            gap: 6,
+        {/* Right: number + badges */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 6, flex: 1 }}>
+          {/* Ghost number */}
+          <span style={{
+            fontSize: 42,
+            fontWeight: 900,
+            lineHeight: 1,
+            color: "#e4e4e7",
+            fontFamily: "monospace",
+            letterSpacing: -2,
+            userSelect: "none",
           }}>
+            {mode.number}
+          </span>
+          {/* Badge row */}
+          <div style={{ display: "flex", gap: 5, flexWrap: "wrap", justifyContent: "flex-end" }}>
+            {mode.tag && (
+              <span style={{
+                background: mode.color,
+                color: mode.textOnColor,
+                fontSize: 9,
+                fontWeight: 900,
+                letterSpacing: 2,
+                padding: "3px 8px",
+                border: `2px solid ${BRAND.black}`,
+              }}>
+                {mode.tag}
+              </span>
+            )}
             <span style={{
-              background: mode.textOnColor === BRAND.black ? "rgba(0,0,0,0.15)" : "rgba(255,255,255,0.15)",
-              color: mode.textOnColor,
-              fontSize: 11,
-              fontWeight: 900,
+              background: "#f4f4f5",
+              color: "#3f3f46",
+              fontSize: 10,
+              fontWeight: 800,
               letterSpacing: 1,
-              padding: "4px 8px",
-              border: `2px solid ${mode.textOnColor === BRAND.black ? "rgba(0,0,0,0.2)" : "rgba(255,255,255,0.3)"}`,
+              padding: "3px 8px",
+              border: `2px solid #d4d4d8`,
+              display: "flex",
+              alignItems: "center",
+              gap: 3,
             }}>
               {mode.badge}
             </span>
             <span style={{
-              background: BRAND.black,
-              color: BRAND.white,
-              fontSize: 11,
-              fontWeight: 900,
+              background: "#f4f4f5",
+              color: "#3f3f46",
+              fontSize: 10,
+              fontWeight: 800,
               letterSpacing: 1,
-              padding: "4px 8px",
-              border: `2px solid ${BRAND.black}`,
+              padding: "3px 8px",
+              border: `2px solid #d4d4d8`,
+              display: "flex",
+              alignItems: "center",
+              gap: 3,
             }}>
-              <Clock size={10} style={{ display: "inline", verticalAlign: "middle", marginRight: 3 }} />{mode.timer}
+              <Clock size={9} />
+              {mode.timer}
             </span>
           </div>
-        </div>
-
-        {/* Icon */}
-        <div style={{
-          position: "absolute",
-          bottom: 12,
-          left: 20,
-          color: mode.textOnColor === BRAND.black ? "rgba(0,0,0,0.55)" : "rgba(255,255,255,0.55)",
-          transform: hovered ? "scale(1.15) rotate(-5deg)" : "scale(1) rotate(0deg)",
-          transition: "transform 0.2s cubic-bezier(0.34,1.56,0.64,1)",
-          display: "flex",
-        }}>
-          <mode.Icon size={28} strokeWidth={2.5} />
         </div>
       </div>
 
@@ -430,37 +440,31 @@ function GameCard({ mode, index, kh, khFont }: {
         padding: "16px 20px 20px",
         display: "flex",
         flexDirection: "column",
-        gap: 8,
-        background: hovered ? "#fafafa" : BRAND.white,
-        transition: "background 0.1s",
+        gap: 10,
       }}>
-        {/* Difficulty pill */}
-        <div style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 6,
+        {/* Difficulty */}
+        <span style={{
+          fontSize: 9,
+          fontWeight: 900,
+          letterSpacing: 3,
+          color: mode.diffColor,
+          border: `2px solid ${mode.diffColor}`,
+          padding: "2px 8px",
+          alignSelf: "flex-start",
+          background: `${mode.diffColor}18`,
         }}>
-          <span style={{
-            fontSize: 10,
-            fontWeight: 900,
-            letterSpacing: 2,
-            color: mode.diffColor,
-            border: `2px solid ${mode.diffColor}`,
-            padding: "2px 7px",
-          }}>
-            {mode.difficulty}
-          </span>
-        </div>
+          {mode.difficulty}
+        </span>
 
         {/* Title */}
         <h3 style={{
           ...khFont,
-          fontSize: 22,
+          fontSize: 20,
           fontWeight: 900,
           margin: 0,
           letterSpacing: -0.5,
-          lineHeight: 1.1,
-          color: BRAND.black,
+          lineHeight: 1.15,
+          color: "#09090b",
         }}>
           {kh ? mode.titleKh : mode.title}
         </h3>
@@ -469,55 +473,53 @@ function GameCard({ mode, index, kh, khFont }: {
         <p style={{
           ...khFont,
           fontSize: 13,
-          fontWeight: 600,
-          color: "#52525b",
+          fontWeight: 500,
+          color: "#71717a",
           margin: 0,
-          lineHeight: 1.5,
+          lineHeight: 1.55,
           flex: 1,
         }}>
           {kh ? mode.descKh : mode.desc}
         </p>
 
-        {/* CTA */}
+        {/* Colored CTA button */}
         <div style={{
-          marginTop: 12,
-          padding: "12px 20px",
-          background: hovered ? BRAND.black : BRAND.white,
-          color: hovered ? mode.color : BRAND.black,
+          marginTop: 8,
+          padding: "13px 20px",
+          background: hovered ? mode.color : BRAND.white,
+          color: hovered ? mode.textOnColor : BRAND.black,
           border: `3px solid ${BRAND.black}`,
           fontWeight: 900,
-          fontSize: 13,
+          fontSize: 12,
           letterSpacing: 2,
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
-          gap: 8,
-          transition: "background 0.1s, color 0.1s",
-          boxShadow: `3px 3px 0 ${BRAND.black}`,
+          justifyContent: "space-between",
+          transition: "background 0.12s, color 0.12s",
+          boxShadow: hovered ? `inset 0 0 0 0 transparent` : `inset 0 0 0 0 transparent`,
           borderRadius: 0,
         }}>
           <span style={khFont}>{kh ? mode.ctaKh : mode.cta}</span>
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-            <path d="M4 8h8M9 4l4 4-4 4" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <ChevronRight size={16} strokeWidth={3} />
         </div>
       </div>
 
-      {/* Popular ribbon */}
+      {/* Popular corner ribbon */}
       {mode.popular && (
         <div style={{
           position: "absolute",
-          top: 18,
-          right: -28,
+          top: 20,
+          right: -26,
           background: BRAND.red,
           color: BRAND.white,
-          fontSize: 9,
+          fontSize: 8,
           fontWeight: 900,
           letterSpacing: 2,
-          padding: "5px 36px",
+          padding: "4px 32px",
           transform: "rotate(45deg)",
           border: `2px solid ${BRAND.black}`,
           zIndex: 2,
+          boxShadow: `0 2px 0 ${BRAND.black}`,
         }}>
           POPULAR
         </div>
@@ -721,8 +723,6 @@ export default function PlayPage() {
       {/* ═══ SECTION 2: PICK YOUR MODE ════════════════════════════════════════ */}
       <section style={{
         background: BRAND.white,
-        backgroundImage: "radial-gradient(#d4d4d8 1.5px, transparent 1.5px)",
-        backgroundSize: "28px 28px",
         padding: "0",
       }}>
 
@@ -833,61 +833,87 @@ export default function PlayPage() {
           ))}
         </div>
 
-        {/* Bottom band: psychological push */}
+        {/* Bottom push band: redesigned bold black */}
         <div style={{
           borderTop: `4px solid ${BRAND.black}`,
-          background: BRAND.yellow,
-          padding: "20px 32px",
+          background: BRAND.black,
+          padding: "44px 40px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
           flexWrap: "wrap",
-          gap: 16,
+          gap: 28,
+          position: "relative",
+          overflow: "hidden",
         }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <Flame size={22} color={BRAND.black} />
-            <span style={{
+          <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 6, background: BRAND.yellow }} />
+          <div style={{ paddingLeft: 20 }}>
+            <div style={{
               ...khFont,
-              fontSize: 14,
+              fontSize: 10,
               fontWeight: 900,
-              color: BRAND.black,
-              letterSpacing: 0.5,
+              letterSpacing: 4,
+              color: BRAND.yellow,
+              marginBottom: 10,
+              textTransform: "uppercase" as const,
+            }}>
+              {kh ? "NOT SURE WHERE TO START?" : "NOT SURE WHERE TO START?"}
+            </div>
+            <div style={{
+              ...khFont,
+              fontSize: "clamp(1.2rem, 2.5vw, 1.75rem)",
+              fontWeight: 900,
+              color: BRAND.white,
+              lineHeight: 1.25,
+              letterSpacing: -0.5,
+              maxWidth: 520,
             }}>
               {kh
-                ? "ចាប់ផ្តើមជាមួយ Quick Quiz — ២ នាទី គ្រប់គ្រាន់"
-                : "Start with Quick Quiz — takes 2 minutes. No account needed."}
-            </span>
+                ? "ចាប់ផ្តើមជាមួយ Quick Quiz"
+                : <span>Start with <span style={{ color: BRAND.yellow }}>Quick Quiz</span> — just 2 minutes.</span>}
+            </div>
+            <div style={{
+              ...khFont,
+              fontSize: 13,
+              fontWeight: 500,
+              color: "rgba(255,255,255,0.35)",
+              marginTop: 8,
+            }}>
+              {kh ? "មិនត្រូវការគណនី — ១០ សំណួរ" : "No account needed. 10 questions. Zero pressure."}
+            </div>
           </div>
           <Link href="/play/solo?mode=quick-quiz" style={{
             ...khFont,
             display: "flex",
             alignItems: "center",
-            gap: 8,
-            padding: "12px 28px",
-            background: BRAND.black,
-            color: BRAND.yellow,
-            border: `3px solid ${BRAND.black}`,
+            gap: 10,
+            padding: "20px 40px",
+            background: BRAND.yellow,
+            color: BRAND.black,
+            border: `3px solid ${BRAND.yellow}`,
             fontWeight: 900,
-            fontSize: 14,
+            fontSize: 15,
             letterSpacing: 2,
             textDecoration: "none",
-            boxShadow: `5px 5px 0 ${BRAND.yellowDark}`,
-            transition: "all 0.1s",
+            boxShadow: `6px 6px 0 ${BRAND.yellowDark}`,
+            transition: "all 0.12s",
+            whiteSpace: "nowrap" as const,
           }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.transform = "translate(-3px,-3px)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = `8px 8px 0 ${BRAND.yellowDark}`;
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow = `9px 9px 0 ${BRAND.yellowDark}`;
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLAnchorElement).style.transform = "translate(0,0)";
-              (e.currentTarget as HTMLAnchorElement).style.boxShadow = `5px 5px 0 ${BRAND.yellowDark}`;
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow = `6px 6px 0 ${BRAND.yellowDark}`;
             }}
           >
-            <Play size={16} fill="currentColor" />
+            <Play size={18} fill="currentColor" />
             {kh ? "ចាប់ផ្តើមឥឡូវ" : "PLAY NOW"}
           </Link>
         </div>
       </section>
+
 
 
 
