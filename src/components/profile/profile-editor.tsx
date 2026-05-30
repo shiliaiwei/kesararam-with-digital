@@ -113,10 +113,6 @@ export function ProfileEditor({
     }
   })();
 
-  // admin/teacher → Face Expression picker
-  // student        → Hair / Head picker
-  const isStaff = role === "admin" || role === "teacher";
-
   const [face, setFace] = useState<string>(parsed.face ?? "");
   const [head, setHead] = useState<string>(parsed.head ?? "");
   const [displayName, setDisplayName] = useState(initialName);
@@ -124,6 +120,7 @@ export function ProfileEditor({
   const [error, setError] = useState("");
   const [isPending, startTransition] = useTransition();
   const [showWarning, setShowWarning] = useState(false);
+  const [activeTab, setActiveTab] = useState<"head" | "face">("head");
   const router = useRouter();
 
   // 60-day cooldown
@@ -137,15 +134,13 @@ export function ProfileEditor({
       ? Math.ceil((SIXTY_DAYS - (Date.now() - changedAt.getTime())) / 86400000)
       : 0;
 
-  const items = isStaff ? FACES : HEADS;
-  const selected = isStaff ? face : head;
-  const setItem = isStaff ? setFace : setHead;
-  const category = isStaff ? "face" : "head";
-  const tabLabel = isStaff ? "Face Expression" : "Hair / Head";
+  const items = activeTab === "face" ? FACES : HEADS;
+  const selected = activeTab === "face" ? face : head;
+  const setItem = activeTab === "face" ? setFace : setHead;
+  const category = activeTab === "face" ? "face" : "head";
 
   const avatarChanged =
-    (isStaff && face !== (parsed.face ?? "")) ||
-    (!isStaff && head !== (parsed.head ?? ""));
+    face !== (parsed.face ?? "") || head !== (parsed.head ?? "");
 
   function handleSaveClick() {
     if (avatarChanged) {
@@ -415,36 +410,53 @@ export function ProfileEditor({
           </div>
         </div>
 
-        {/* Curb marking tab label */}
-        <div style={{ display: "flex", alignItems: "stretch" }}>
-          <div
+        {/* Curb marking tab labels (interactive tabs) */}
+        <div style={{ display: "flex", gap: "6px" }}>
+          {/* Tab 1: Hair / Head */}
+          <button
+            onClick={() => setActiveTab("head")}
+            type="button"
             style={{
-              width: "6px",
-              background: `repeating-linear-gradient(180deg,${stripeClr} 0,${stripeClr} 6px,${stripeBg} 6px,${stripeBg} 12px)`,
-            }}
-          />
-          <div
-            style={{
-              background: stripeClr,
-              border: "2px solid #000",
-              borderLeft: "none",
-              padding: "5px 14px",
+              background: activeTab === "head" ? stripeClr : inputBg,
+              color: activeTab === "head" ? "#000" : labelClr,
+              border,
+              padding: "6px 16px",
+              fontSize: "11px",
+              fontWeight: 900,
+              cursor: "pointer",
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+              borderRadius: 0,
               display: "flex",
               alignItems: "center",
+              transition: "all 0.15s ease",
             }}
           >
-            <span
-              style={{
-                fontSize: "10px",
-                fontWeight: 900,
-                color: "#000",
-                textTransform: "uppercase",
-                letterSpacing: "0.12em",
-              }}
-            >
-              {tabLabel}
-            </span>
-          </div>
+            Hair / Head
+          </button>
+
+          {/* Tab 2: Face Expression */}
+          <button
+            onClick={() => setActiveTab("face")}
+            type="button"
+            style={{
+              background: activeTab === "face" ? stripeClr : inputBg,
+              color: activeTab === "face" ? "#000" : labelClr,
+              border,
+              padding: "6px 16px",
+              fontSize: "11px",
+              fontWeight: 900,
+              cursor: "pointer",
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+              borderRadius: 0,
+              display: "flex",
+              alignItems: "center",
+              transition: "all 0.15s ease",
+            }}
+          >
+            Face Expression
+          </button>
         </div>
 
         {/* Avatar grid */}
