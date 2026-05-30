@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
     .innerJoin(topics, eq(questions.topicId, topics.id))
     .where(
       and(
-        inArray(questions.status, ["approved", "draft"]),
+        inArray(questions.status, ["approved", "draft", "published"]),
         inArray(topics.categoryId, categoryIds),
         difficulty !== "mixed" ? eq(questions.difficulty, difficulty) : undefined
       )
