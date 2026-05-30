@@ -76,15 +76,76 @@ function Avatar({ url, name, size = 40, ring, changedAt }: {
   url: string | null; name: string; size?: number; ring?: string; changedAt?: string | null;
 }) {
   const [err, setErr] = useState(false);
-  const src = avatarSrc(url, changedAt);
   const initials = (name || "?").slice(0, 2).toUpperCase();
+
+  const parsed = (() => {
+    if (!url) return null;
+    const trimmed = url.trim();
+    if (trimmed.startsWith("{") && trimmed.endsWith("}")) {
+      try {
+        const data = JSON.parse(trimmed) as { face?: string; head?: string };
+        if (data && (data.face || data.head)) {
+          return data;
+        }
+      } catch {
+        return null;
+      }
+    }
+    return null;
+  })();
+
   return (
     <div className="relative flex-shrink-0 animate-fade-in" style={{ width: size, height: size }}>
       {ring && <div className="absolute inset-0 rounded-full pointer-events-none" style={{ border: `3px solid ${ring}`, margin: -3, borderRadius: "50%" }} />}
-      {src && !err
-        ? <img src={src} alt={name} onError={() => setErr(true)} className="w-full h-full object-cover rounded-full" style={{ border: "2px solid #000" }} />
-        : <div className="w-full h-full rounded-full flex items-center justify-center font-black text-white" style={{ background: "#27272a", border: "2px solid #000", fontSize: Math.round(size * 0.36) }}>{initials}</div>
-      }
+      {parsed ? (
+        <div className="w-full h-full rounded-full overflow-hidden relative flex-shrink-0" style={{ background: "#eab308", border: "2px solid #000" }}>
+          {parsed.head && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={`/avatar/head/${encodeURIComponent(parsed.head)}`}
+              alt=""
+              aria-hidden
+              className="absolute inset-0 w-full h-full object-contain"
+            />
+          )}
+          {parsed.face && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={`/avatar/face/${encodeURIComponent(parsed.face)}`}
+              alt=""
+              aria-hidden
+              className="absolute inset-0 w-full h-full object-contain"
+            />
+          )}
+        </div>
+      ) : (
+        (() => {
+          const src = avatarSrc(url, changedAt);
+          if (src && !err) {
+            return (
+              <img
+                src={src}
+                alt={name}
+                onError={() => setErr(true)}
+                className="w-full h-full object-cover rounded-full"
+                style={{ border: "2px solid #000" }}
+              />
+            );
+          }
+          return (
+            <div
+              className="w-full h-full rounded-full flex items-center justify-center font-black text-white"
+              style={{
+                background: "#27272a",
+                border: "2px solid #000",
+                fontSize: Math.round(size * 0.36),
+              }}
+            >
+              {initials}
+            </div>
+          );
+        })()
+      )}
     </div>
   );
 }
@@ -119,16 +180,49 @@ function RankBadge({ rank }: { rank: 1 | 2 | 3 }) {
 // ── Podium card ───────────────────────────────────────────────────────────────
 
 const PODIUM_CFG = [
-  { rank: 2 as const, label: "Silver", accentColor: "#94a3b8", shadowColor: "#000000", scoreColor: "#475569", barH: "h-20 md:h-28", order: "order-2 md:order-1" },
-  { rank: 1 as const, label: "Gold Champion", accentColor: "#eab308", shadowColor: "#000000", scoreColor: "#000", barH: "h-24 md:h-36", order: "order-1 md:order-2" },
-  { rank: 3 as const, label: "Bronze", accentColor: "#cd7c3a", shadowColor: "#000000", scoreColor: "#92400e", barH: "h-16 md:h-24", order: "order-3" },
+  { 
+    rank: 2 as const, 
+    label: "Silver", 
+    accentColor: "#94a3b8", 
+    pedestalBg: "repeating-linear-gradient(-45deg, #f1f5f9, #f1f5f9 8px, #cbd5e1 8px, #cbd5e1 16px)",
+    shadowColor: "#000000", 
+    scoreColor: "#475569", 
+    barH: "h-20 md:h-28", 
+    order: "order-2 md:order-1" 
+  },
+  { 
+    rank: 1 as const, 
+    label: "Gold Champion", 
+    accentColor: "#eab308", 
+    pedestalBg: "repeating-linear-gradient(-45deg, #fef08a, #fef08a 8px, #facc15 8px, #facc15 16px)",
+    shadowColor: "#000000", 
+    scoreColor: "#000", 
+    barH: "h-24 md:h-36", 
+    order: "order-1 md:order-2" 
+  },
+  { 
+    rank: 3 as const, 
+    label: "Bronze", 
+    accentColor: "#cd7c3a", 
+    pedestalBg: "repeating-linear-gradient(-45deg, #ffedd5, #ffedd5 8px, #fed7aa 8px, #fed7aa 16px)",
+    shadowColor: "#000000", 
+    scoreColor: "#92400e", 
+    barH: "h-16 md:h-24", 
+    order: "order-3" 
+  },
 ];
 
-function PodiumCard({ user, cfg, index }: { user: LeaderboardUser | undefined; cfg: typeof PODIUM_CFG[number]; index: number }) {
+function PodiumCard({ user, cfg, index, currentUser }: { 
+  user: LeaderboardUser | undefined; 
+  cfg: typeof PODIUM_CFG[number]; 
+  index: number;
+  currentUser: any | null;
+}) {
   const cardRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const isFirst = cfg.rank === 1;
   const name = user ? (user.displayName || user.username) : "—";
+  const userAvatar = (currentUser && user && user.id === currentUser.id) ? currentUser.avatar : (user?.avatar ?? null);
 
   useEffect(() => {
     if (!cardRef.current) return;
@@ -144,19 +238,52 @@ function PodiumCard({ user, cfg, index }: { user: LeaderboardUser | undefined; c
     <div ref={cardRef} className={`relative flex flex-col items-center w-full ${cfg.order}`}>
       {isFirst && <div ref={glowRef} className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, rgba(234,179,8,0.25) 0%, transparent 70%)", opacity: 0.3 }} />}
       <div className="relative mb-2">
-        <RankedAvatarRing lifetimePoints={user?.lifetimePoints ?? 0} size={isFirst ? 60 : 46}>
-          <Avatar url={user?.avatar ?? null} name={name} size={isFirst ? 60 : 46} changedAt={user?.avatarChangedAt} />
+        {isFirst && (
+          <div className="absolute -top-7 left-1/2 -translate-x-1/2 z-10 animate-bounce" style={{ animationDuration: "2s" }}>
+            <Crown size={28} className="text-yellow-400 fill-yellow-400 filter drop-shadow-[0_3px_5px_rgba(0,0,0,0.5)]" style={{ transform: "rotate(-10deg)" }} />
+          </div>
+        )}
+        <RankedAvatarRing lifetimePoints={user?.lifetimePoints ?? 0} size={isFirst ? 76 : 56}>
+          <Avatar url={userAvatar} name={name} size={isFirst ? 76 : 56} changedAt={user?.avatarChangedAt} />
         </RankedAvatarRing>
         <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 scale-75 md:scale-100"><RankBadge rank={cfg.rank} /></div>
       </div>
-      <div className="w-full flex flex-col items-center gap-1 pt-5 pb-3 px-1 md:px-2 border-3 border-black mt-1" style={{ backgroundColor: isFirst ? cfg.accentColor : "#fff", boxShadow: `4px 4px 0 ${cfg.shadowColor}`, borderRadius: 0 }}>
+      <div 
+        className="w-full flex flex-col items-center gap-1.5 pt-6 pb-4 px-2 md:px-3 border-3 border-black mt-2 transition-transform duration-200 hover:scale-105" 
+        style={{ 
+          backgroundColor: isFirst ? "#fffbeb" : "#fff", 
+          backgroundImage: isFirst 
+            ? "radial-gradient(#fef08a 1px, transparent 1px)" 
+            : "radial-gradient(#f1f5f9 1px, transparent 1px)",
+          backgroundSize: "8px 8px",
+          boxShadow: isFirst 
+            ? `8px 8px 0 #000, 0 0 25px rgba(234,179,8,0.25)` 
+            : `4px 4px 0 #000`, 
+          borderRadius: 0,
+          borderWidth: isFirst ? "4px" : "3px"
+        }}
+      >
         <span className="font-black text-center leading-tight w-full truncate text-[10px] md:text-sm font-kh-header" style={{ color: "#000" }}>{name}</span>
         {user && <TierBadge lifetimePoints={user.lifetimePoints} size="xs" />}
-        <span className="text-[8px] md:text-[9px] font-black tracking-widest uppercase px-1.5 py-0.5 border-2 border-black bg-black text-white">{cfg.label}</span>
+        <span 
+          className="text-[8px] md:text-[9px] font-black tracking-widest uppercase px-2 py-0.5 border-2 border-black text-white"
+          style={{ 
+            backgroundColor: isFirst ? "#eab308" : "#000", 
+            color: isFirst ? "#000" : "#fff" 
+          }}
+        >
+          {cfg.label}
+        </span>
         <AnimatedNumber value={user?.lifetimePoints ?? 0} className={`font-black tabular-nums ${isFirst ? "text-xl md:text-3xl" : "text-base md:text-xl"}`} style={{ color: "#000" }} />
         <span className="text-[8px] text-zinc-500 font-bold uppercase tracking-wider">pts</span>
       </div>
-      <div className={`w-full border-3 border-t-0 border-black ${cfg.barH}`} style={{ backgroundColor: cfg.accentColor, opacity: 0.15 }} />
+      <div 
+        className={`w-full border-3 border-t-0 border-black ${cfg.barH}`} 
+        style={{ 
+          background: cfg.pedestalBg,
+          boxShadow: isFirst ? "8px 0 0 #000" : "4px 0 0 #000"
+        }} 
+      />
     </div>
   );
 }
@@ -438,7 +565,7 @@ export default function LeaderboardPage() {
   const [leaderboard, setLeaderboard] = useState<LeaderboardUser[]>([]);
   const [prevRanks, setPrevRanks] = useState<Record<number, number>>({});
   const [loading, setLoading] = useState(true);
-  const [currentUser, setCurrentUser] = useState<{ id: number; lifetimePoints: number } | null>(null);
+  const [currentUser, setCurrentUser] = useState<any | null>(null);
   
   // Real-time tracking user points state
   const [userPoints, setUserPoints] = useState(0);
@@ -480,7 +607,7 @@ export default function LeaderboardPage() {
               activePoints -= item.cost;
             }
           });
-          setCurrentUser({ id: d.id, lifetimePoints }); 
+          setCurrentUser(d); 
           setUserPoints(activePoints);
         } 
       })
@@ -564,7 +691,7 @@ export default function LeaderboardPage() {
                 { cfg: PODIUM_CFG[1], user: top3[0] },
                 { cfg: PODIUM_CFG[2], user: top3[2] },
               ].map(({ cfg, user }, i) => (
-                <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} />
+                <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} currentUser={currentUser} />
               ))}
             </div>
 
@@ -601,7 +728,7 @@ export default function LeaderboardPage() {
                       </div>
                       <div className="col-span-7 flex items-center gap-2 min-w-0">
                         <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={30}>
-                          <Avatar url={user.avatar} name={user.displayName || user.username} size={30} changedAt={user.avatarChangedAt} />
+                          <Avatar url={(currentUser && user.id === currentUser.id) ? currentUser.avatar : user.avatar} name={user.displayName || user.username} size={30} changedAt={user.avatarChangedAt} />
                         </RankedAvatarRing>
                         <div className="flex flex-col min-w-0">
                           <div className="flex items-center gap-1.5 min-w-0">
