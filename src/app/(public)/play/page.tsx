@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLang } from "@/context/lang-context";
-import { Users, ChevronRight, Zap, Target, BookOpenCheck, Play, Trophy, Flame } from "lucide-react";
+import { Users, ChevronRight, Zap, Target, BookOpenCheck, Play, Trophy, Flame, Clock, Swords, CalendarDays, TriangleAlert, Star, GraduationCap } from "lucide-react";
 
 // ─── BRAND COLORS ─────────────────────────────────────────────────────────────
 const BRAND = {
@@ -37,7 +37,7 @@ const GAME_MODES = [
     timer: "30s",
     cta: "PLAY NOW",
     ctaKh: "លេងឥឡូវ",
-    emoji: "⚡",
+    Icon: Zap,
     difficulty: "EASY",
     diffColor: BRAND.green,
     popular: true,
@@ -58,7 +58,7 @@ const GAME_MODES = [
     timer: "15s",
     cta: "GO FAST",
     ctaKh: "ចូលប្រកួត",
-    emoji: "🔥",
+    Icon: Flame,
     difficulty: "HARD",
     diffColor: BRAND.red,
     popular: false,
@@ -79,7 +79,7 @@ const GAME_MODES = [
     timer: "20s",
     cta: "CHALLENGE",
     ctaKh: "ប្រឡង",
-    emoji: "🔷",
+    Icon: TriangleAlert,
     difficulty: "MEDIUM",
     diffColor: BRAND.yellow,
     popular: false,
@@ -100,7 +100,7 @@ const GAME_MODES = [
     timer: "30s",
     cta: "BATTLE",
     ctaKh: "ប្រកួត",
-    emoji: "⚔️",
+    Icon: Swords,
     difficulty: "HARD",
     diffColor: BRAND.red,
     popular: false,
@@ -121,7 +121,7 @@ const GAME_MODES = [
     timer: "30s",
     cta: "TODAY",
     ctaKh: "ប្រចាំថ្ងៃ",
-    emoji: "📅",
+    Icon: CalendarDays,
     difficulty: "MEDIUM",
     diffColor: BRAND.yellow,
     popular: false,
@@ -142,7 +142,7 @@ const GAME_MODES = [
     timer: "45s",
     cta: "SIMULATE",
     ctaKh: "ត្រាប់តាម",
-    emoji: "🎯",
+    Icon: GraduationCap,
     difficulty: "EXPERT",
     diffColor: BRAND.orange,
     popular: false,
@@ -405,22 +405,22 @@ function GameCard({ mode, index, kh, khFont }: {
               padding: "4px 8px",
               border: `2px solid ${BRAND.black}`,
             }}>
-              ⏱ {mode.timer}
+              <Clock size={10} style={{ display: "inline", verticalAlign: "middle", marginRight: 3 }} />{mode.timer}
             </span>
           </div>
         </div>
 
-        {/* Emoji big */}
+        {/* Icon */}
         <div style={{
           position: "absolute",
-          bottom: 14,
+          bottom: 12,
           left: 20,
-          fontSize: 30,
-          transform: hovered ? "scale(1.2) rotate(-5deg)" : "scale(1) rotate(0deg)",
+          color: mode.textOnColor === BRAND.black ? "rgba(0,0,0,0.55)" : "rgba(255,255,255,0.55)",
+          transform: hovered ? "scale(1.15) rotate(-5deg)" : "scale(1) rotate(0deg)",
           transition: "transform 0.2s cubic-bezier(0.34,1.56,0.64,1)",
-          userSelect: "none",
+          display: "flex",
         }}>
-          {mode.emoji}
+          <mode.Icon size={28} strokeWidth={2.5} />
         </div>
       </div>
 
@@ -526,45 +526,7 @@ function GameCard({ mode, index, kh, khFont }: {
   );
 }
 
-// ─── STAT TICKER ─────────────────────────────────────────────────────────────
-function StatTicker({ lang }: { lang: string }) {
-  const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
-  const items = [
-    { val: "500+", label: kh ? "សំណួរ" : "Questions", color: BRAND.yellow },
-    { val: "6", label: kh ? "របៀបលេង" : "Game Modes", color: BRAND.red },
-    { val: "8", label: kh ? "ប្រភេទ" : "Categories", color: BRAND.blue },
-    { val: "LIVE", label: kh ? "ប្រកួតផ្ទាល់" : "Multiplayer", color: BRAND.green },
-  ];
-  return (
-    <div style={{
-      borderTop: `4px solid ${BRAND.black}`,
-      borderBottom: `4px solid ${BRAND.black}`,
-      background: BRAND.black,
-      display: "flex",
-      overflow: "hidden",
-    }}>
-      {items.map((s, i) => (
-        <div key={i} style={{
-          flex: 1,
-          borderRight: i < items.length - 1 ? `3px solid rgba(255,255,255,0.08)` : "none",
-          padding: "18px 24px",
-          display: "flex",
-          flexDirection: "column",
-          gap: 2,
-          cursor: "default",
-        }}>
-          <span style={{ fontSize: 28, fontWeight: 900, color: s.color, lineHeight: 1, fontFamily: "monospace" }}>
-            {s.val}
-          </span>
-          <span style={{ ...khFont, fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.45)", letterSpacing: 2, textTransform: "uppercase" }}>
-            {s.label}
-          </span>
-        </div>
-      ))}
-    </div>
-  );
-}
+
 
 // ─── MAIN PAGE ────────────────────────────────────────────────────────────────
 export default function PlayPage() {
@@ -698,9 +660,9 @@ export default function PlayPage() {
               {/* Mini stats row */}
               <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
                 {[
-                  { icon: "🏆", text: kh ? "ប្រកួតផ្ទាល់" : "Real-time battle" },
-                  { icon: "👥", text: kh ? "ក្រុម" : "Multiplayer" },
-                  { icon: "⚡", text: kh ? "ភ្លាមៗ" : "Instant join" },
+                  { Icon: Trophy, text: kh ? "ប្រកួតផ្ទាល់" : "Real-time battle" },
+                  { Icon: Users, text: kh ? "ក្រុម" : "Multiplayer" },
+                  { Icon: Zap, text: kh ? "ភ្លាមៗ" : "Instant join" },
                 ].map((s, i) => (
                   <div key={i} style={{
                     display: "flex",
@@ -711,7 +673,7 @@ export default function PlayPage() {
                     fontWeight: 700,
                     ...khFont,
                   }}>
-                    <span>{s.icon}</span>
+                    <s.Icon size={13} />
                     <span>{s.text}</span>
                   </div>
                 ))}
@@ -754,8 +716,7 @@ export default function PlayPage() {
         </div>
       </section>
 
-      {/* ═══ STATS TICKER ════════════════════════════════════════════════════ */}
-      <StatTicker lang={lang} />
+
 
       {/* ═══ SECTION 2: PICK YOUR MODE ════════════════════════════════════════ */}
       <section style={{
@@ -928,66 +889,7 @@ export default function PlayPage() {
         </div>
       </section>
 
-      {/* ═══ FINAL CTA ════════════════════════════════════════════════════════ */}
-      <section style={{
-        background: BRAND.black,
-        borderTop: `4px solid ${BRAND.yellow}`,
-        padding: "60px 32px",
-        textAlign: "center",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 24,
-      }}>
-        <h2 style={{
-          ...khFont,
-          fontSize: "clamp(2rem, 4vw, 3.5rem)",
-          fontWeight: 900,
-          color: BRAND.white,
-          margin: 0,
-          letterSpacing: -1,
-        }}>
-          {kh ? "ត្រៀមខ្លួនហើយ?" : "Ready to prove yourself?"}
-        </h2>
-        <p style={{
-          ...khFont,
-          fontSize: 16,
-          fontWeight: 600,
-          color: "rgba(255,255,255,0.45)",
-          margin: 0,
-          maxWidth: 500,
-          lineHeight: 1.6,
-        }}>
-          {kh ? "រៀន — ប្រកួត — ការពារជីវិត" : "Study the theory, play the games, ace the real exam."}
-        </p>
-        <Link href="/learn" style={{
-          ...khFont,
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 10,
-          padding: "16px 40px",
-          background: BRAND.yellow,
-          color: BRAND.black,
-          border: `3px solid ${BRAND.yellow}`,
-          fontWeight: 900,
-          fontSize: 16,
-          letterSpacing: 2,
-          textDecoration: "none",
-          boxShadow: `8px 8px 0 ${BRAND.yellowDark}`,
-          transition: "all 0.1s",
-        }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.transform = "translate(-4px,-4px)";
-            (e.currentTarget as HTMLAnchorElement).style.boxShadow = `12px 12px 0 ${BRAND.yellowDark}`;
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLAnchorElement).style.transform = "translate(0,0)";
-            (e.currentTarget as HTMLAnchorElement).style.boxShadow = `8px 8px 0 ${BRAND.yellowDark}`;
-          }}
-        >
-          {kh ? "រៀនឥឡូវ →" : "START LEARNING →"}
-        </Link>
-      </section>
+
 
       {/* Responsive grid override */}
       <style>{`
