@@ -65,6 +65,21 @@ export default function StudentGamePage() {
   const [joining, setJoining] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [muted, setMuted] = useState(false);
+  const [joinError, setJoinError] = useState<string | null>(null);
+  const [phase, setPhase] = useState<GamePhase>("lobby");
+  const [sessionInfo, setSessionInfo] = useState<SessionInfo | null>(null);
+  const [currentUserId, setCurrentUserId] = useState<number | undefined>(undefined);
+  const [participants, setParticipants] = useState<ParticipantInfo[]>([]);
+  const [currentQuestion, setCurrentQuestion] = useState<QuestionPayload | null>(null);
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [totalQuestions, setTotalQuestions] = useState(0);
+  const [endsAt, setEndsAt] = useState<string | null>(null);
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [answerSubmitted, setAnswerSubmitted] = useState(false);
+  const [answerResult, setAnswerResult] = useState<{ isCorrect: boolean; pointsEarned: number } | null>(null);
+  const [correctAnswerId, setCorrectAnswerId] = useState<number | null>(null);
+  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [podium, setPodium] = useState<LeaderboardEntry[]>([]);
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -95,21 +110,6 @@ export default function StudentGamePage() {
       console.error("Error toggling fullscreen:", err);
     }
   };
-  const [joinError, setJoinError] = useState<string | null>(null);
-  const [phase, setPhase] = useState<GamePhase>("lobby");
-  const [sessionInfo, setSessionInfo] = useState<SessionInfo | null>(null);
-  const [currentUserId, setCurrentUserId] = useState<number | undefined>(undefined);
-  const [participants, setParticipants] = useState<ParticipantInfo[]>([]);
-  const [currentQuestion, setCurrentQuestion] = useState<QuestionPayload | null>(null);
-  const [questionIndex, setQuestionIndex] = useState(0);
-  const [totalQuestions, setTotalQuestions] = useState(0);
-  const [endsAt, setEndsAt] = useState<string | null>(null);
-  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  const [answerSubmitted, setAnswerSubmitted] = useState(false);
-  const [answerResult, setAnswerResult] = useState<{ isCorrect: boolean; pointsEarned: number } | null>(null);
-  const [correctAnswerId, setCorrectAnswerId] = useState<number | null>(null);
-  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
-  const [podium, setPodium] = useState<LeaderboardEntry[]>([]);
 
   const handleSSEEvent = useCallback((event: SSEEvent) => {
     try {
@@ -513,12 +513,12 @@ export default function StudentGamePage() {
 
           {/* Center/Right: score + streak badges */}
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5 bg-yellow-400 border border-zinc-955 px-3 py-1 rounded-lg shadow-md">
+            <div className="flex items-center gap-1.5 bg-yellow-400 border border-zinc-950 px-3 py-1 rounded-lg shadow-md">
               <Zap size={12} className="text-black" />
               <span className="font-black text-black text-sm tabular-nums">{myScore.toLocaleString()}</span>
             </div>
             {myStreak > 1 && (
-              <div className="flex items-center gap-1 bg-orange-500 border border-zinc-955 px-2.5 py-1 rounded-lg shadow-md">
+              <div className="flex items-center gap-1 bg-orange-500 border border-zinc-950 px-2.5 py-1 rounded-lg shadow-md">
                 <Flame size={12} className="text-white animate-pulse" />
                 <span className="font-black text-white text-xs">x{myStreak}</span>
               </div>

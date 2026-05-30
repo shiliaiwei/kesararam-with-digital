@@ -495,12 +495,12 @@ export default function SoloPage() {
           {kh ? GAME_MODE_CONFIG[phase.session.gameMode]?.labelKm : GAME_MODE_CONFIG[phase.session.gameMode]?.label}
         </span>
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 bg-yellow-400 border border-zinc-955 px-3 py-1 rounded-lg shadow-md">
+          <div className="flex items-center gap-1.5 bg-yellow-400 border border-zinc-950 px-3 py-1 rounded-lg shadow-md">
             <Zap size={12} className="text-black" />
             <span className="font-black text-black text-sm tabular-nums">{myScore.toLocaleString()}</span>
           </div>
           {myStreak > 1 && (
-            <div className="flex items-center gap-1 bg-orange-500 border border-zinc-955 px-2.5 py-1 rounded-lg shadow-md">
+            <div className="flex items-center gap-1 bg-orange-500 border border-zinc-950 px-2.5 py-1 rounded-lg shadow-md">
               <Flame size={12} className="text-white animate-pulse" />
               <span className="font-black text-white text-xs">x{myStreak}</span>
             </div>
