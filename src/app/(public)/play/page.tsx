@@ -523,42 +523,24 @@ export default function PlayPage() {
         <div className="play-hero-grid">
           {/* Left Text Column */}
           <div className="play-hero-left">
-            <div style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 8,
-              background: BRAND.yellow,
-              color: BRAND.black,
-              fontSize: 11,
-              fontWeight: 900,
-              letterSpacing: 3,
-              padding: "6px 16px",
-              border: `3px solid ${BRAND.black}`,
-              boxShadow: `4px 4px 0 ${BRAND.black}`,
-              marginBottom: 24,
-              ...khFont,
-            }}>
-              <Users size={14} strokeWidth={2.5} />
-              {kh ? "ម៉ាស៊ីនហ្គេមផ្ទាល់" : "MULTIPLAYER ARENA"}
-            </div>
-
             <h1 style={{
               ...khFont,
-              fontSize: "clamp(2.5rem, 4.5vw, 4.2rem)",
+              fontSize: "clamp(2rem, 3.8vw, 3.2rem)",
               fontWeight: 900,
               color: BRAND.black,
-              lineHeight: 1.05,
+              lineHeight: 1.1,
               margin: "0",
-              letterSpacing: "-2px",
+              letterSpacing: "-1.5px",
+              whiteSpace: "nowrap" as const,
             }}>
-              {kh ? "តើអ្នកមាន" : "Have a"}{" "}
               <span style={{ 
                 background: BRAND.yellow, 
-                padding: "0 10px", 
+                padding: "10px 20px", 
                 border: `3px solid ${BRAND.black}`,
-                boxShadow: `5px 5px 0 ${BRAND.black}`
+                boxShadow: `5px 5px 0 ${BRAND.black}`,
+                display: "inline-block",
               }}>
-                {kh ? "លេខកូដបន្ទប់?" : "Room Code?"}
+                {kh ? "កូដបន្ទប់?" : "Room Code?"}
               </span>
             </h1>
           </div>
@@ -751,7 +733,7 @@ export default function PlayPage() {
           align-items: center;
           max-width: 1200px;
           margin: 0 auto;
-          padding: 60px 24px;
+          padding: 24px 24px;
         }
 
         .play-hero-left {
@@ -812,15 +794,15 @@ export default function PlayPage() {
           }
           .play-hero-grid {
             gap: 32px;
-            padding: 48px 24px;
+            padding: 20px 24px;
           }
         }
 
         @media (max-width: 991px) {
           .play-hero-grid {
             grid-template-columns: 1fr;
-            padding: 40px 24px 48px;
-            gap: 24px;
+            padding: 20px 24px 24px;
+            gap: 20px;
           }
           .play-hero-left {
             align-items: center;
@@ -850,7 +832,7 @@ export default function PlayPage() {
             padding: 24px 16px;
           }
           .play-hero-grid {
-            padding: 28px 16px 40px;
+            padding: 16px 16px 20px;
           }
           .mode-header {
             flex-direction: column;
