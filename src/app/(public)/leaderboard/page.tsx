@@ -274,17 +274,28 @@ function PodiumCard({ user, cfg, index, currentUser }: {
           </>
         )}
 
-        {/* Spinning Medal Ring */}
+        {/* Double Orbital Rings (Redesigned Animation Style) */}
         <div 
-          className="absolute rounded-full border-2 border-dashed pointer-events-none animate-spin"
+          className="absolute rounded-full border-2 border-dashed pointer-events-none"
           style={{
             width: isFirst ? 92 : 76,
             height: isFirst ? 92 : 76,
             borderColor: isFirst ? "#eab308" : cfg.accentColor,
-            animationDuration: "12s",
-            opacity: 0.8,
+            animation: "spinCW 12s linear infinite",
+            opacity: 0.85,
             top: -6,
-            boxShadow: isFirst ? "0 0 10px rgba(234,179,8,0.4)" : "none"
+            boxShadow: isFirst ? "0 0 12px rgba(234,179,8,0.5)" : "none"
+          }}
+        />
+        <div 
+          className="absolute rounded-full border border-dotted pointer-events-none"
+          style={{
+            width: isFirst ? 100 : 84,
+            height: isFirst ? 100 : 84,
+            borderColor: isFirst ? "#ca8a04" : `${cfg.accentColor}aa`,
+            animation: "spinCCW 8s linear infinite",
+            opacity: 0.6,
+            top: -10,
           }}
         />
         
@@ -335,7 +346,7 @@ function PodiumCard({ user, cfg, index, currentUser }: {
 
       {/* Card Body */}
       <div 
-        className="w-full flex flex-col items-center gap-1.5 pt-8 pb-4 px-2 md:px-3 border-3 border-black -mt-4 transition-transform duration-200 hover:scale-105 relative overflow-hidden" 
+        className="w-full flex flex-col items-center gap-1.5 pt-8 pb-4 px-2 md:px-3 border-3 border-black -mt-4 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] relative overflow-hidden" 
         style={{ 
           backgroundColor: isFirst ? "#fffbeb" : "#fff", 
           backgroundImage: isFirst 
@@ -347,9 +358,47 @@ function PodiumCard({ user, cfg, index, currentUser }: {
             : `4px 4px 0 #000`, 
           borderRadius: 0,
           borderWidth: isFirst ? "4px" : "3px",
-          animation: isFirst ? "goldGlowShadow 3s ease-in-out infinite" : "none"
+          animation: isFirst 
+            ? "goldGlowShadow 3s ease-in-out infinite, panBackground 15s linear infinite" 
+            : "panBackground 25s linear infinite"
         }}
       >
+        {/* Rising particle fountain (Redesigned Animation Style for 1st place) */}
+        {isFirst && (
+          <div className="absolute inset-0 overflow-hidden pointer-events-none z-20">
+            <div className="absolute text-yellow-400"
+              style={{
+                left: "15%",
+                bottom: "10%",
+                animation: "floatParticle 4s ease-in-out infinite",
+                animationDelay: "0s"
+              }}
+            >
+              <Star size={10} className="fill-yellow-400" />
+            </div>
+            <div className="absolute text-yellow-400"
+              style={{
+                right: "20%",
+                bottom: "20%",
+                animation: "floatParticle 4.5s ease-in-out infinite",
+                animationDelay: "1.5s"
+              }}
+            >
+              <Sparkles size={8} className="fill-yellow-400" />
+            </div>
+            <div className="absolute text-yellow-400"
+              style={{
+                left: "45%",
+                bottom: "5%",
+                animation: "floatParticle 5s ease-in-out infinite",
+                animationDelay: "3s"
+              }}
+            >
+              <Star size={6} className="fill-yellow-400" />
+            </div>
+          </div>
+        )}
+
         {/* Shimmer sweep effect */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div 
@@ -464,19 +513,37 @@ function ClaimBurst({ color }: { color: string }) {
           0%, 100% { opacity: 0.3; transform: scale(0.8); }
           50% { opacity: 1; transform: scale(1.2) rotate(15deg); }
         }
+        @keyframes spinCW {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        @keyframes spinCCW {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(-360deg); }
+        }
+        @keyframes floatParticle {
+          0% { transform: translateY(0px) scale(0); opacity: 0; }
+          30% { opacity: 0.8; }
+          90% { opacity: 0.8; }
+          100% { transform: translateY(-80px) scale(1.2); opacity: 0; }
+        }
+        @keyframes panBackground {
+          0% { background-position: 0px 0px; }
+          100% { background-position: 32px 32px; }
+        }
       `}</style>
     </div>
   );
 }
 
-// Cooldown durations in milliseconds for each rank tier
+// Cooldown durations in milliseconds for each rank tier (Redesigned: Gold: 1.5y, Platinum: 2y, Diamond: 2.5y, Mythic: 3y)
 const TIER_COOLDOWNS: Record<string, number> = {
-  rookie: 365 * 24 * 60 * 60 * 1000,    // 1 year
-  debut: 365 * 24 * 60 * 60 * 1000,     // 1 year
-  gold: 182 * 24 * 60 * 60 * 1000,      // 6 months (half year)
-  platinum: 60 * 24 * 60 * 60 * 1000,   // 2 months
-  diamond: 30 * 24 * 60 * 60 * 1000,    // 1 month
-  mythic: 7 * 24 * 60 * 60 * 1000,      // 1 week
+  rookie: 365 * 24 * 60 * 60 * 1000,                      // 1 year
+  debut: 365 * 24 * 60 * 60 * 1000,                       // 1 year
+  gold: Math.round(1.5 * 365 * 24 * 60 * 60 * 1000),      // 1.5 years (1 year + 6 months)
+  platinum: 2 * 365 * 24 * 60 * 60 * 1000,                // 2 years
+  diamond: Math.round(2.5 * 365 * 24 * 60 * 60 * 1000),    // 2.5 years (2 years + 6 months)
+  mythic: 3 * 365 * 24 * 60 * 60 * 1000,                  // 3 years
 };
 
 // ── REWARD CARD (Brutalist Premium Redesign) ──────────────────────────────────
@@ -756,23 +823,23 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
         <div className="text-center mt-2 border-t border-zinc-100 pt-2 pointer-events-none">
           {userRank.id === "rookie" || userRank.id === "debut" ? (
             <span className="text-[8.5px] text-zinc-400 font-bold block leading-normal" style={kf}>
-              {kh ? "💡 ឡើងថ្នាក់មាសដើម្បីឱ្យការរង់ចាំសល់ត្រឹម ៦ខែ!" : "💡 Level up to Gold to reset claims in 6 months!"}
+              {kh ? "💡 ឡើងថ្នាក់មាសដើម្បីទទួលបានការប្តូររង្វាន់ឡើងវិញ (១ឆ្នាំ ៦ខែ)!" : "💡 Level up to Gold to claim items (1 year 6 months reset)!"}
             </span>
           ) : userRank.id === "gold" ? (
             <span className="text-[8.5px] text-yellow-600 font-extrabold block leading-normal animate-pulse" style={kf}>
-              {kh ? "⚡ ថ្នាក់មាស៖ រង់ចាំត្រឹមតែ ៦ខែប៉ុណ្ណោះ!" : "⚡ Gold Tier: Claims reset in 6 months!"}
+              {kh ? "⚡ ថ្នាក់មាស៖ រង្វាន់ប្តូរឡើងវិញក្នុងរយៈពេល ១ឆ្នាំ ៦ខែ!" : "⚡ Gold Tier: Claims reset in 1 year 6 months!"}
             </span>
           ) : userRank.id === "platinum" ? (
             <span className="text-[8.5px] text-sky-600 font-extrabold block leading-normal animate-pulse" style={kf}>
-              {kh ? "⚡ ថ្នាក់ប្លាទីន៖ រង់ចាំត្រឹមតែ ២ខែប៉ុណ្ណោះ!" : "⚡ Platinum Tier: Claims reset in 2 months!"}
+              {kh ? "⚡ ថ្នាក់ប្លាទីន៖ រង្វាន់ប្តូរឡើងវិញក្នុងរយៈពេល ២ឆ្នាំ!" : "⚡ Platinum Tier: Claims reset in 2 years!"}
             </span>
           ) : userRank.id === "diamond" ? (
             <span className="text-[8.5px] text-cyan-600 font-extrabold block leading-normal animate-pulse" style={kf}>
-              {kh ? "⚡ ថ្នាក់ពេជ្រ៖ រង់ចាំត្រឹមតែ ១ខែប៉ុណ្ណោះ!" : "⚡ Diamond Tier: Claims reset in 1 month!"}
+              {kh ? "⚡ ថ្នាក់ពេជ្រ៖ រង្វាន់ប្តូរឡើងវិញក្នុងរយៈពេល ២ឆ្នាំ ៦ខែ!" : "⚡ Diamond Tier: Claims reset in 2 years 6 months!"}
             </span>
           ) : (
             <span className="text-[8.5px] text-pink-600 font-extrabold block leading-normal animate-pulse" style={kf}>
-              {kh ? "⚡ ថ្នាក់ព្រះ៖ រង់ចាំត្រឹមតែ ១សប្តាហ៍ប៉ុណ្ណោះ!" : "⚡ Mythic Tier: Claims reset in 1 week!"}
+              {kh ? "⚡ ថ្នាក់ព្រះ៖ រង្វាន់ប្តូរឡើងវិញក្នុងរយៈពេល ៣ឆ្នាំ!" : "⚡ Mythic Tier: Claims reset in 3 years!"}
             </span>
           )}
         </div>
