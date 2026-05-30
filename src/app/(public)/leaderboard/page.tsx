@@ -222,6 +222,8 @@ function PodiumCard({ user, cfg, index, currentUser }: {
   index: number;
   currentUser: any | null;
 }) {
+  const { lang } = useLang();
+  const kh = lang === "kh";
   const cardRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const isFirst = cfg.rank === 1;
