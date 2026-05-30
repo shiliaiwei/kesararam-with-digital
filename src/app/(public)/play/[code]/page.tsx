@@ -11,6 +11,7 @@ import { AnswerGrid } from "@/components/game/AnswerGrid";
 import { LeaderboardPanel } from "@/components/game/LeaderboardPanel";
 import { Podium } from "@/components/game/Podium";
 import { ErrorBoundary } from "@/components/game/ErrorBoundary";
+import { RankBadge as TierBadge } from "@/components/shared/rank-label";
 import {
   Zap, Trophy, Users, Clock, CheckCircle, XCircle,
   Loader2, Wifi, WifiOff, BookOpen, Target, Timer, Star,
@@ -66,6 +67,25 @@ export default function StudentGamePage() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [muted, setMuted] = useState(false);
   const [joinError, setJoinError] = useState<string | null>(null);
+
+  const [currentUserPoints, setCurrentUserPoints] = useState<number>(0);
+  const [currentUserDisplayName, setCurrentUserDisplayName] = useState<string>("");
+
+  useEffect(() => {
+    fetch("/api/user/stats")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.stats?.lifetimePoints) {
+          setCurrentUserPoints(data.stats.lifetimePoints);
+        }
+        if (data?.user?.displayName) {
+          setCurrentUserDisplayName(data.user.displayName);
+        } else if (data?.user?.name) {
+          setCurrentUserDisplayName(data.user.name);
+        }
+      })
+      .catch(() => {});
+  }, []);
   const [phase, setPhase] = useState<GamePhase>("lobby");
   const [sessionInfo, setSessionInfo] = useState<SessionInfo | null>(null);
   const [currentUserId, setCurrentUserId] = useState<number | undefined>(undefined);
@@ -198,9 +218,16 @@ export default function StudentGamePage() {
 
   const unifiedHeader = (
     <div className="flex items-center justify-between px-4 py-2.5 border-b border-zinc-800 bg-zinc-950/90 backdrop-blur-md text-white w-full flex-shrink-0 z-40 relative">
-      <div className="flex items-center gap-2">
-        <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse flex-shrink-0" />
-        <span className="text-zinc-500 text-[10px] font-black tracking-widest uppercase hidden sm:inline">STUDENT</span>
+      <div className="flex items-center gap-2 max-w-[160px] sm:max-w-xs overflow-hidden">
+        <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse flex-shrink-0" />
+        <span className="text-zinc-200 text-xs font-black truncate hidden sm:inline" style={khFont}>
+          {currentUserDisplayName || "STUDENT"}
+        </span>
+        {currentUserPoints > 0 && (
+          <span className="shrink-0 flex items-center">
+            <TierBadge lifetimePoints={currentUserPoints} size="xs" lang={kh ? "kh" : "en"} />
+          </span>
+        )}
       </div>
 
       <div className="text-center">
@@ -519,8 +546,13 @@ export default function StudentGamePage() {
                         )}
                       </div>
                       <div className="min-w-0 flex-1">
-                        <div className={`text-xs font-bold truncate ${isMe ? "text-yellow-400 font-extrabold" : "text-zinc-300"}`} style={khFont}>
-                          {p.displayName}
+                        <div className="flex items-center gap-1 flex-wrap">
+                          <span className={`text-xs font-bold truncate ${isMe ? "text-yellow-400 font-extrabold" : "text-zinc-300"}`} style={khFont}>
+                            {p.displayName}
+                          </span>
+                          {isMe && currentUserPoints > 0 && (
+                            <TierBadge lifetimePoints={currentUserPoints} size="xs" lang={lang} />
+                          )}
                         </div>
                         <div className="text-[7.5px] text-zinc-500 font-bold uppercase tracking-widest">
                           {isMe ? (kh ? "រូបអ្នក" : "YOU") : (kh ? "បានចូល" : "READY")}
@@ -762,7 +794,7 @@ export default function StudentGamePage() {
         style={{ backgroundColor: "#0d0d14", backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px" }}>
         {unifiedHeader}
         <div className="flex-1 p-4 max-w-2xl mx-auto w-full pt-6">
-          <Podium podium={podium} finalLeaderboard={leaderboard} lang={lang} currentUserId={currentUserId} onPlayAgain={() => router.push("/play")} sessionCode={code} totalQuestions={totalQuestions} />
+          <Podium podium={podium} finalLeaderboard={leaderboard} lang={lang} currentUserId={currentUserId} onPlayAgain={() => router.push("/play")} sessionCode={code} totalQuestions={totalQuestions} currentUserPoints={currentUserPoints} />
         </div>
       </div>
     );

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Crown, Medal, Award, Star, TrendingUp, TrendingDown, Minus, Flame, Share2, Loader2 } from "lucide-react";
 import { sounds } from "@/lib/game-sounds";
 import type { LeaderboardEntry } from "@/lib/game-event-bus";
+import { RankBadge as TierBadge } from "@/components/shared/rank-label";
 
 interface PodiumProps {
   podium: LeaderboardEntry[];
@@ -13,6 +14,7 @@ interface PodiumProps {
   onPlayAgain?: () => void;
   sessionCode?: string;
   totalQuestions?: number;
+  currentUserPoints?: number;
 }
 
 const PODIUM_CONFIG = [
@@ -54,7 +56,7 @@ function Confetti() {
   );
 }
 
-export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAgain, sessionCode, totalQuestions }: PodiumProps) {
+export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAgain, sessionCode, totalQuestions, currentUserPoints }: PodiumProps) {
   const kh = lang === "kh";
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
   const [showConfetti, setShowConfetti] = useState(false);
@@ -364,14 +366,19 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
 
                 {/* Name & Subtitles */}
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-1.5 flex-wrap">
                     <span className={`text-sm font-black truncate ${isMe ? "text-yellow-400" : "text-white"}`} style={khFont}>
                       {entry.displayName}
                     </span>
                     {isMe && (
-                      <span className="text-[9px] font-black uppercase tracking-widest px-1.5 py-0.5 bg-yellow-400 text-black rounded">
-                        {kh ? "អ្នក" : "YOU"}
-                      </span>
+                      <div className="inline-flex items-center gap-1 flex-wrap">
+                        <span className="text-[9px] font-black uppercase tracking-widest px-1.5 py-0.5 bg-yellow-400 text-black rounded">
+                          {kh ? "អ្នក" : "YOU"}
+                        </span>
+                        {currentUserPoints !== undefined && currentUserPoints > 0 && (
+                          <TierBadge lifetimePoints={currentUserPoints} size="xs" lang={lang} />
+                        )}
+                      </div>
                     )}
                   </div>
                   
