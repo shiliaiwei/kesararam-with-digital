@@ -307,7 +307,100 @@ function OtpCodeInput({ lang }: { lang: string }) {
   );
 }
 
-// ─── GAME MODE CARD (Alternating Yellow/Green) ─────────────────────────────────
+// ─── PREMIUM THEMES FOR EACH GAME MODE ───────────────────────────────────────
+const MODE_THEMES: Record<string, {
+  primary: string;       // Theme color for outline, badge, button hover
+  gradient: string;      // Premium linear gradient for top illustration area
+  cardBg: string;        // Soft, elegant background color for the card body
+  iconBg: string;        // Icon box background
+  patternColor: string;  // Color for radial dot pattern
+  shadowGlow: string;    // Shadow glow for the card on hover
+  numberStroke: string;  // Stroke color for the giant background watermark number
+}> = {
+  "quick-quiz": {
+    primary: "#EAB308", // Yellow
+    gradient: "linear-gradient(135deg, #FEF08A 0%, #FDE047 50%, #CA8A04 100%)",
+    cardBg: "#FCFDF2",
+    iconBg: "#FEF08A",
+    patternColor: "rgba(234, 179, 8, 0.12)",
+    shadowGlow: "rgba(234, 179, 8, 0.25)",
+    numberStroke: "rgba(234, 179, 8, 0.08)",
+  },
+  "speed-round": {
+    primary: "#EF4444", // Red/Orange
+    gradient: "linear-gradient(135deg, #FF8A80 0%, #FF5252 50%, #D50000 100%)",
+    cardBg: "#FFF5F5",
+    iconBg: "#FFE4E6",
+    patternColor: "rgba(239, 68, 68, 0.12)",
+    shadowGlow: "rgba(239, 68, 68, 0.25)",
+    numberStroke: "rgba(239, 68, 68, 0.08)",
+  },
+  "sign-challenge": {
+    primary: "#06B6D4", // Cyan
+    gradient: "linear-gradient(135deg, #A5F3FC 0%, #22D3EE 50%, #0891B2 100%)",
+    cardBg: "#F0FDFA",
+    iconBg: "#CFFAFE",
+    patternColor: "rgba(6, 182, 212, 0.12)",
+    shadowGlow: "rgba(6, 182, 212, 0.25)",
+    numberStroke: "rgba(6, 182, 212, 0.08)",
+  },
+  "mixed-practice": {
+    primary: "#3B82F6", // Blue
+    gradient: "linear-gradient(135deg, #BFDBFE 0%, #60A5FA 50%, #2563EB 100%)",
+    cardBg: "#F0F6FF",
+    iconBg: "#DBEAFE",
+    patternColor: "rgba(59, 130, 246, 0.12)",
+    shadowGlow: "rgba(59, 130, 246, 0.25)",
+    numberStroke: "rgba(59, 130, 246, 0.08)",
+  },
+  "daily-challenge": {
+    primary: "#10B981", // Green
+    gradient: "linear-gradient(135deg, #A7F3D0 0%, #34D399 50%, #059669 100%)",
+    cardBg: "#F0FDF4",
+    iconBg: "#D1FAE5",
+    patternColor: "rgba(16, 185, 129, 0.12)",
+    shadowGlow: "rgba(16, 185, 129, 0.25)",
+    numberStroke: "rgba(16, 185, 129, 0.08)",
+  },
+  "exam-simulation": {
+    primary: "#8B5CF6", // Purple
+    gradient: "linear-gradient(135deg, #DDD6FE 0%, #A78BFA 50%, #7C3AED 100%)",
+    cardBg: "#F5F3FF",
+    iconBg: "#EDE9FE",
+    patternColor: "rgba(139, 92, 246, 0.12)",
+    shadowGlow: "rgba(139, 92, 246, 0.25)",
+    numberStroke: "rgba(139, 92, 246, 0.08)",
+  },
+  "survival-quiz": {
+    primary: "#F43F5E", // Rose/Pink
+    gradient: "linear-gradient(135deg, #FECDD3 0%, #FB7185 50%, #E11D48 100%)",
+    cardBg: "#FFF1F2",
+    iconBg: "#FFE4E6",
+    patternColor: "rgba(244, 63, 94, 0.12)",
+    shadowGlow: "rgba(244, 63, 94, 0.25)",
+    numberStroke: "rgba(244, 63, 94, 0.08)",
+  },
+  "zen-review": {
+    primary: "#14B8A6", // Teal
+    gradient: "linear-gradient(135deg, #99F6E4 0%, #2DD4BF 50%, #0D9488 100%)",
+    cardBg: "#F0FDFA",
+    iconBg: "#CCFBF1",
+    patternColor: "rgba(20, 184, 166, 0.12)",
+    shadowGlow: "rgba(20, 184, 166, 0.25)",
+    numberStroke: "rgba(20, 184, 166, 0.08)",
+  },
+  "final-practice": {
+    primary: "#F97316", // Bronze / Orange
+    gradient: "linear-gradient(135deg, #FED7AA 0%, #FDBA74 50%, #EA580C 100%)",
+    cardBg: "#FFF7ED",
+    iconBg: "#FFEDD5",
+    patternColor: "rgba(249, 115, 22, 0.12)",
+    shadowGlow: "rgba(249, 115, 22, 0.25)",
+    numberStroke: "rgba(249, 115, 22, 0.08)",
+  },
+};
+
+// ─── GAME MODE CARD (Premium & Creative Styling) ───────────────────────────────
 function GameCard({ mode, index, kh, khFont }: {
   mode: typeof GAME_MODES[number];
   index: number;
@@ -317,19 +410,20 @@ function GameCard({ mode, index, kh, khFont }: {
   const [hovered, setHovered] = useState(false);
   const [pressed, setPressed] = useState(false);
 
-  // Background card is strictly Green as requested
-  const bgColor = BRAND.green;
+  // Retrieve theme for this specific game mode (fallback to quick-quiz just in case)
+  const theme = MODE_THEMES[mode.id] || MODE_THEMES["quick-quiz"];
   const textColor = BRAND.black;
   const borderColor = BRAND.black;
 
+  // Premium double-shadow combination
   const cardShadow = pressed
-    ? `2px 2px 0 ${BRAND.black}`
+    ? `3px 3px 0 ${BRAND.black}`
     : hovered
-      ? `12px 12px 0 ${BRAND.black}`
+      ? `12px 12px 0 ${BRAND.black}, 12px 12px 24px ${theme.shadowGlow}`
       : `8px 8px 0 ${BRAND.black}`;
 
   const cardTransform = pressed
-    ? "translate(6px, 6px)"
+    ? "translate(5px, 5px)"
     : hovered
       ? "translate(-4px, -4px)"
       : "translate(0, 0)";
@@ -344,11 +438,11 @@ function GameCard({ mode, index, kh, khFont }: {
       style={{
         display: "flex",
         flexDirection: "column",
-        background: bgColor,
+        background: theme.cardBg,
         border: `4px solid ${borderColor}`,
         boxShadow: cardShadow,
         transform: cardTransform,
-        transition: "transform 0.1s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.1s cubic-bezier(0.16, 1, 0.3, 1)",
+        transition: "transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease",
         textDecoration: "none",
         color: textColor,
         position: "relative",
@@ -358,30 +452,64 @@ function GameCard({ mode, index, kh, khFont }: {
         height: "100%",
       }}
     >
+      {/* Giant Outline Watermark Number */}
+      <div style={{
+        position: "absolute",
+        right: 12,
+        bottom: 24,
+        fontSize: 100,
+        fontWeight: 900,
+        lineHeight: 1,
+        fontFamily: "Impact, 'Arial Black', sans-serif",
+        color: "transparent",
+        WebkitTextStroke: `2px ${theme.numberStroke}`,
+        pointerEvents: "none",
+        userSelect: "none",
+        zIndex: 0,
+        transition: "transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
+        transform: hovered ? "scale(1.15) translate(-4px, -4px)" : "scale(1) translate(0, 0)",
+      }}>
+        {mode.number}
+      </div>
+
       {/* Illustration Area */}
       <div style={{
         margin: "20px 20px 0",
         height: 120,
-        background: BRAND.white,
+        background: theme.gradient,
         border: `3px solid ${borderColor}`,
         position: "relative",
         overflow: "hidden",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        zIndex: 1,
       }}>
+        {/* Pattern overlay */}
         <div style={{
           position: "absolute",
           inset: 0,
-          backgroundImage: "radial-gradient(rgba(0,0,0,0.12) 1.5px, transparent 1.5px)",
+          backgroundImage: `radial-gradient(${theme.patternColor} 1.5px, transparent 1.5px)`,
           backgroundSize: "12px 12px",
-          opacity: 0.8,
+          opacity: 0.85,
         }} />
         
+        {/* Glassmorphic border ring decoration */}
+        <div style={{
+          position: "absolute",
+          width: 86,
+          height: 86,
+          borderRadius: "50%",
+          border: "2px dashed rgba(255, 255, 255, 0.3)",
+          animation: hovered ? "spin 12s linear infinite" : "none",
+          pointerEvents: "none",
+        }} />
+
+        {/* Centered Icon with dynamic hover effects */}
         <div style={{
           width: 58,
           height: 58,
-          background: bgColor,
+          background: BRAND.white,
           border: `3px solid ${borderColor}`,
           display: "flex",
           alignItems: "center",
@@ -389,44 +517,53 @@ function GameCard({ mode, index, kh, khFont }: {
           color: textColor,
           transform: hovered ? "rotate(-12deg) scale(1.12)" : "rotate(0deg)",
           transition: "transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)",
-          boxShadow: `3px 3px 0 ${borderColor}`,
+          boxShadow: hovered ? `5px 5px 0 ${borderColor}` : `3px 3px 0 ${borderColor}`,
         }}>
-          <mode.Icon size={26} strokeWidth={2.5} />
+          <mode.Icon 
+            size={26} 
+            strokeWidth={2.5}
+            style={{
+              animation: hovered ? "pulse-subtle 1.2s infinite ease-in-out" : "none",
+              color: theme.primary,
+            }}
+          />
         </div>
 
-        {/* Small count badge */}
+        {/* Small count badge (Glassmorphic) */}
         <div style={{
           position: "absolute",
           bottom: 8,
           left: 8,
-          background: BRAND.black,
+          background: "rgba(0, 0, 0, 0.72)",
+          backdropFilter: "blur(8px)",
           color: BRAND.white,
           fontSize: 9,
           fontFamily: "monospace",
           fontWeight: 900,
-          padding: "2px 6px",
-          border: `1.5px solid ${BRAND.black}`,
+          padding: "3px 8px",
+          border: "1px solid rgba(255, 255, 255, 0.15)",
         }}>
           {mode.badge}
         </div>
 
-        {/* Timer badge */}
+        {/* Timer badge (Glassmorphic) */}
         <div style={{
           position: "absolute",
           bottom: 8,
           right: 8,
-          background: BRAND.black,
+          background: "rgba(0, 0, 0, 0.72)",
+          backdropFilter: "blur(8px)",
           color: BRAND.white,
           fontSize: 9,
           fontFamily: "monospace",
           fontWeight: 900,
-          padding: "2px 6px",
+          padding: "3px 8px",
           display: "flex",
           alignItems: "center",
           gap: 3,
-          border: `1.5px solid ${BRAND.black}`,
+          border: "1px solid rgba(255, 255, 255, 0.15)",
         }}>
-          <Clock size={10} />
+          <Clock size={10} style={{ color: theme.primary }} />
           {mode.timer}
         </div>
       </div>
@@ -438,6 +575,8 @@ function GameCard({ mode, index, kh, khFont }: {
         flexDirection: "column",
         flex: 1,
         gap: 10,
+        position: "relative",
+        zIndex: 1,
       }}>
         <h3 style={{
           ...khFont,
@@ -446,6 +585,8 @@ function GameCard({ mode, index, kh, khFont }: {
           margin: 0,
           lineHeight: 1.15,
           letterSpacing: "-0.5px",
+          transition: "color 0.2s ease",
+          color: hovered ? theme.primary : textColor,
         }}>
           {kh ? mode.titleKh : mode.title}
         </h3>
@@ -454,7 +595,7 @@ function GameCard({ mode, index, kh, khFont }: {
           ...khFont,
           fontSize: 13,
           fontWeight: 600,
-          color: "rgba(0, 0, 0, 0.7)",
+          color: "rgba(0, 0, 0, 0.65)",
           margin: 0,
           lineHeight: 1.45,
           flex: 1,
@@ -466,8 +607,8 @@ function GameCard({ mode, index, kh, khFont }: {
         <div style={{
           marginTop: 8,
           padding: "12px 20px",
-          background: hovered ? BRAND.black : BRAND.white,
-          color: hovered ? BRAND.white : BRAND.black,
+          background: hovered ? theme.primary : BRAND.white,
+          color: BRAND.black,
           border: `3px solid ${borderColor}`,
           fontWeight: 900,
           fontSize: 12,
@@ -476,7 +617,7 @@ function GameCard({ mode, index, kh, khFont }: {
           alignItems: "center",
           justifyContent: "center",
           gap: 6,
-          transition: "all 0.1s",
+          transition: "all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1)",
           borderRadius: 0,
           boxShadow: hovered ? "none" : `4px 4px 0 ${borderColor}`,
           transform: hovered ? "translate(3px, 3px)" : "none",
@@ -726,6 +867,17 @@ export default function PlayPage() {
 
       {/* ─── STYLES & MEDIA QUERIES ────────────────────────────────────────────── */}
       <style>{`
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse-subtle {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.08); }
+          100% { transform: scale(1); }
+        }
+
         .play-hero-grid {
           display: grid;
           grid-template-columns: 1.1fr 0.9fr;
