@@ -238,6 +238,11 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                   <span className="text-zinc-500">{kh ? "តម្លៃស្តង់ដារពេញ" : "Full Standard Rate"}</span>
                 )}
               </div>
+              {yearly && (
+                <div className="text-xs font-bold text-green-400 mt-2 bg-green-500/10 border border-green-500/20 px-2.5 py-1 rounded-xl w-fit">
+                  {kh ? "សន្សំបាន៖ $២០/ឆ្នាំ" : "You Save: $20/year"}
+                </div>
+              )}
             </div>
 
             <p className="text-white/50 text-xs mt-2" style={khFont}>
@@ -304,6 +309,11 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                   <span className="line-through text-white/30">{yearly ? "$350" : "$39"}</span>
                   <span className="text-green-400 ml-1">(-50%)</span>
                 </div>
+                {yearly && (
+                  <div className="text-[9px] font-bold text-green-400 mt-1 bg-green-500/10 border border-green-500/20 px-1.5 py-0.5 rounded w-fit">
+                    {kh ? "សន្សំ៖ $៥៨/ឆ្នាំ" : "Save: $58/yr"}
+                  </div>
+                )}
               </div>
 
               {/* Institute Option */}
@@ -323,6 +333,11 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                   <span className="line-through text-white/30">{yearly ? "$530" : "$59"}</span>
                   <span className="text-green-400 ml-1">(-50%)</span>
                 </div>
+                {yearly && (
+                  <div className="text-[9px] font-bold text-green-400 mt-1 bg-green-500/10 border border-green-500/20 px-1.5 py-0.5 rounded w-fit">
+                    {kh ? "សន្សំ៖ $៨៨/ឆ្នាំ" : "Save: $88/yr"}
+                  </div>
+                )}
               </div>
             </div>
 

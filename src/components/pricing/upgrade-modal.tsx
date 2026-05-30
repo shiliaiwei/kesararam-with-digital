@@ -191,27 +191,44 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
 
                   {/* Price */}
                   {plan.key === "teacher_pro" ? (
-                    <div className="flex items-end gap-1.5 mb-0.5 flex-wrap">
-                      <span className="text-4xl font-black text-white leading-none">${price}</span>
-                      <span className="text-white/35 text-xs mb-1" style={khFont}>{kh ? "USD/ខែ" : "USD/mo"}</span>
-                      <span className="line-through text-white/20 text-xs ml-1.5 mb-1">${stdPrice}</span>
+                    <div className="flex flex-col mb-1">
+                      <div className="flex items-end gap-1.5 mb-0.5 flex-wrap">
+                        <span className="text-4xl font-black text-white leading-none">${price}</span>
+                        <span className="text-white/35 text-xs mb-1" style={khFont}>{kh ? "USD/ខែ" : "USD/mo"}</span>
+                        <span className="line-through text-white/20 text-xs ml-1.5 mb-1">${stdPrice}</span>
+                      </div>
+                      {yearly && (
+                        <div className="text-[10px] font-bold text-green-400 mt-1 bg-green-500/10 border border-green-500/20 px-1.5 py-0.5 rounded w-fit">
+                          {kh ? "សន្សំបាន៖ $២០/ឆ្នាំ" : "You Save: $20/yr"}
+                        </div>
+                      )}
                     </div>
                   ) : (
                     <div className="flex flex-col gap-1 mb-2 border-b border-white/5 pb-2">
                       <div className="flex items-center justify-between text-sm">
                         <span className="text-white/50 font-bold" style={khFont}>{kh ? "ផែនការសាលារៀន" : "School Plan"}</span>
-                        <div className="flex items-center gap-1.5">
-                          <span className="font-black text-white">${yearly ? 14.17 : 19}</span>
-                          <span className="text-white/35 text-[10px]">{kh ? "USD/ខែ" : "USD/mo"}</span>
-                          <span className="line-through text-white/20 text-[10px]">${yearly ? 29.17 : 39}</span>
+                        <div className="flex flex-col items-end">
+                          <div className="flex items-center gap-1.5">
+                            <span className="font-black text-white">${yearly ? 14.17 : 19}</span>
+                            <span className="text-white/35 text-[10px]">{kh ? "USD/ខែ" : "USD/mo"}</span>
+                            <span className="line-through text-white/20 text-[10px]">${yearly ? 29.17 : 39}</span>
+                          </div>
+                          {yearly && (
+                            <span className="text-[9px] font-bold text-green-400 mt-0.5">{kh ? "សន្សំ៖ $៥៨/ឆ្នាំ" : "Save: $58/yr"}</span>
+                          )}
                         </div>
                       </div>
                       <div className="flex items-center justify-between text-sm">
                         <span className="text-white/50 font-bold" style={khFont}>{kh ? "ផែនការវិទ្យាស្ថាន" : "Institute Plan"}</span>
-                        <div className="flex items-center gap-1.5">
-                          <span className="font-black text-white">${yearly ? 21.67 : 29}</span>
-                          <span className="text-white/35 text-[10px]">{kh ? "USD/ខែ" : "USD/mo"}</span>
-                          <span className="line-through text-white/20 text-[10px]">${yearly ? 44.17 : 59}</span>
+                        <div className="flex flex-col items-end">
+                          <div className="flex items-center gap-1.5">
+                            <span className="font-black text-white">${yearly ? 21.67 : 29}</span>
+                            <span className="text-white/35 text-[10px]">{kh ? "USD/ខែ" : "USD/mo"}</span>
+                            <span className="line-through text-white/20 text-[10px]">${yearly ? 44.17 : 59}</span>
+                          </div>
+                          {yearly && (
+                            <span className="text-[9px] font-bold text-green-400 mt-0.5">{kh ? "សន្សំ៖ $៨៨/ឆ្នាំ" : "Save: $88/yr"}</span>
+                          )}
                         </div>
                       </div>
                     </div>
