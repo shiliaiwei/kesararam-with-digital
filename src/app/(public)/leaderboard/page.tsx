@@ -392,11 +392,36 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang }: {
   const kh = lang === "kh";
   const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
-  const storageKey = `kwd_claimed_${item.id}`;
-  const [claimed, setClaimed] = useState(() => {
-    if (typeof window === "undefined") return false;
-    return localStorage.getItem(storageKey) === "1";
+  const claimDataKey = `kwd_claim_data_${item.id}`;
+  const [claimData, setClaimData] = useState(() => {
+    if (typeof window === "undefined") return { claimCount: 0, lastClaimedAt: null };
+    const saved = localStorage.getItem(claimDataKey);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        return {
+          claimCount: parsed.claimCount ?? 0,
+          lastClaimedAt: parsed.lastClaimedAt ?? null,
+        };
+      } catch {
+        // fall through
+      }
+    }
+    const legacyClaimed = localStorage.getItem(`kwd_claimed_${item.id}`) === "1";
+    return {
+      claimCount: legacyClaimed ? 1 : 0,
+      lastClaimedAt: legacyClaimed ? Date.now() - 365 * 24 * 60 * 60 * 1000 : null,
+    };
   });
+
+  const claimCount = claimData.claimCount;
+  const lastClaimedAt = claimData.lastClaimedAt;
+
+  const ONE_YEAR_MS = 365 * 24 * 60 * 60 * 1000;
+  const claimed = lastClaimedAt !== null && (Date.now() - lastClaimedAt < ONE_YEAR_MS);
+  const msRemaining = lastClaimedAt ? (lastClaimedAt + ONE_YEAR_MS) - Date.now() : 0;
+  const daysRemaining = Math.max(0, Math.ceil(msRemaining / (24 * 60 * 60 * 1000)));
+
   const [hovered, setHovered] = useState(false);
   const [showBurst, setShowBurst] = useState(false);
   const [pulse, setPulse] = useState(false);
@@ -420,8 +445,15 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang }: {
 
   function handleClaim() {
     if (!canClaim) return;
-    setClaimed(true);
-    localStorage.setItem(storageKey, "1");
+    const nextCount = claimCount + 1;
+    const now = Date.now();
+    const nextData = {
+      claimCount: nextCount,
+      lastClaimedAt: now,
+    };
+    localStorage.setItem(claimDataKey, JSON.stringify(nextData));
+    localStorage.setItem(`kwd_claimed_${item.id}`, "1");
+    setClaimData(nextData);
     setShowBurst(true);
     setTimeout(() => setShowBurst(false), 700);
     onClaim(item);
@@ -496,13 +528,25 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang }: {
       <div className="flex flex-col gap-3.5 px-3.5 py-4 flex-1">
         
         {/* Name and Khmer translation (ENLARGED TYPOGRAPHY) */}
-        <div>
-          <span className="font-black text-xl text-black block leading-tight tracking-tight uppercase" style={kf}>
-            {kh ? item.nameKh : item.name}
-          </span>
-          <span className="text-[10px] text-zinc-400 font-bold block uppercase tracking-wide mt-1 leading-none">
-            {kh ? item.name : item.nameKh}
-          </span>
+        <div className="flex justify-between items-start gap-2">
+          <div>
+            <span className="font-black text-xl text-black block leading-tight tracking-tight uppercase" style={kf}>
+              {kh ? item.nameKh : item.name}
+            </span>
+            <span className="text-[10px] text-zinc-400 font-bold block uppercase tracking-wide mt-1 leading-none">
+              {kh ? item.name : item.nameKh}
+            </span>
+          </div>
+          {claimCount > 0 && (
+            <div className="flex items-center gap-1 self-start bg-yellow-100 text-yellow-800 border border-yellow-200 text-[8px] font-black px-1.5 py-0.5 shadow-[1.5px_1.5px_0_#ca8a04] whitespace-nowrap">
+              <Check size={8} strokeWidth={4} />
+              <span>
+                {kh 
+                  ? `ប្តូរ៖ ${claimCount} ដង` 
+                  : `Claimed: ${claimCount}x`}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Scarcity indicator */}
@@ -568,9 +612,16 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang }: {
         {/* CTA Button */}
         <div className="mt-auto pt-1">
           {claimed ? (
-            <div className="w-full py-2.5 font-black text-xs text-center border-2 border-zinc-400 text-zinc-400 bg-zinc-100 leading-none flex items-center justify-center gap-1.5" style={kf}>
-              <Check size={12} strokeWidth={3.5} />
-              <span>{kh ? "ទទួលបានរួចហើយ" : "CLAIMED"}</span>
+            <div className="w-full py-2.5 font-black text-[10px] text-center border-2 border-zinc-400 text-zinc-400 bg-zinc-100 leading-none flex flex-col items-center justify-center gap-1" style={kf}>
+              <div className="flex items-center gap-1 justify-center">
+                <Check size={11} strokeWidth={3.5} />
+                <span>{kh ? "បានទទួលរួចហើយ" : "CLAIMED"}</span>
+              </div>
+              <span className="text-[7.5px] text-zinc-400 uppercase font-mono mt-0.5 tracking-tighter">
+                {kh 
+                  ? `ប្តូរបានម្តងទៀតក្នុង៖ ${daysRemaining} ថ្ងៃ` 
+                  : `Next claim in: ${daysRemaining}d`}
+              </span>
             </div>
           ) : !isLoggedIn ? (
             <a href="/login"
@@ -651,11 +702,24 @@ export default function LeaderboardPage() {
       .then(d => { 
         if (d && !d.error) {
           const lifetimePoints = d.lifetimePoints ?? 0;
-          // Local storage subtraction deduction logic
+          // Local storage subtraction deduction logic based on claim counts
           let activePoints = lifetimePoints;
           REWARD_ITEMS.forEach(item => {
-            if (typeof window !== "undefined" && localStorage.getItem(`kwd_claimed_${item.id}`) === "1") {
-              activePoints -= item.cost;
+            if (typeof window !== "undefined") {
+              const claimDataStr = localStorage.getItem(`kwd_claim_data_${item.id}`);
+              if (claimDataStr) {
+                try {
+                  const data = JSON.parse(claimDataStr);
+                  const count = data.claimCount ?? 0;
+                  activePoints -= item.cost * count;
+                } catch {
+                  if (localStorage.getItem(`kwd_claimed_${item.id}`) === "1") {
+                    activePoints -= item.cost;
+                  }
+                }
+              } else if (localStorage.getItem(`kwd_claimed_${item.id}`) === "1") {
+                activePoints -= item.cost;
+              }
             }
           });
           setCurrentUser(d); 
