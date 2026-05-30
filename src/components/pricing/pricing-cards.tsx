@@ -69,9 +69,9 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
     let labelKh = "";
 
     if (selectedPlan === "teacher_pro") {
-      usd = yearly ? 45 : 5;
-      labelEn = yearly ? "Teacher Pro (Annual — 3 Mos Free)" : "Teacher Pro (Monthly)";
-      labelKh = yearly ? "គ្រូ Pro (ប្រចាំឆ្នាំ — ឥតគិតថ្លៃ ៣ ខែ)" : "គ្រូ Pro (ប្រចាំខែ)";
+      usd = yearly ? 40 : 5;
+      labelEn = yearly ? "Teacher Pro (Annual — 4 Mos Free)" : "Teacher Pro (Monthly)";
+      labelKh = yearly ? "គ្រូ Pro (ប្រចាំឆ្នាំ — ឥតគិតថ្លៃ ៤ ខែ)" : "គ្រូ Pro (ប្រចាំខែ)";
     } else if (selectedPlan === "school_public") {
       usd = yearly ? 180 : 19;
       labelEn = yearly ? "School Public (Annual — 3 Mos Free)" : "School Public (Monthly)";
@@ -130,9 +130,13 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
             <span className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300 ${yearly ? "translate-x-7" : "translate-x-0"}`} />
           </button>
           <span className={`text-sm font-bold transition-colors flex items-center gap-1.5 ${yearly ? "text-white" : "text-white/40"}`} style={khFont}>
-            {kh ? "ប្រចាំឆ្នាំ (ឥតគិតថ្លៃ ៣ ខែ)" : "Yearly (3 Months Free!)"}
+            {selectedPlan === "teacher_pro"
+              ? (kh ? "ប្រចាំឆ្នាំ (ឥតគិតថ្លៃ ៤ ខែ)" : "Yearly (4 Months Free!)")
+              : (kh ? "ប្រចាំឆ្នាំ (ឥតគិតថ្លៃ ៣ ខែ)" : "Yearly (3 Months Free!)")}
             <span className="ml-1.5 text-xs bg-green-500/20 text-green-400 px-2.5 py-0.5 rounded-full font-black">
-              {kh ? "សន្សំ ២៥%" : "Save 25%"}
+              {selectedPlan === "teacher_pro"
+                ? (kh ? "សន្សំ ៣៣%" : "Save 33%")
+                : (kh ? "សន្សំ ២៥%" : "Save 25%")}
             </span>
           </span>
         </div>
@@ -214,7 +218,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
             <div className="flex flex-col mb-2">
               <div className="flex items-end gap-2">
                 <span className="text-4xl font-black text-white">
-                  {yearly ? "$45" : "$5"}
+                  {yearly ? "$40" : "$5"}
                 </span>
                 <span className="text-white/50 text-sm mb-1" style={khFont}>
                   {yearly ? (kh ? "USD/ឆ្នាំ" : "USD/year") : (kh ? "USD/ខែ" : "USD/month")}
@@ -222,7 +226,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
               </div>
               <div className="text-xs font-bold text-zinc-400 mt-1">
                 {kh ? "តម្លៃធម្មតា: " : "Standard: " }
-                <span className="line-through text-white/40">{yearly ? "$90" : "$10"}</span>
+                <span className="line-through text-white/40">{yearly ? "$80" : "$10"}</span>
                 <span className="text-green-400 ml-2">({kh ? "ចុះ ៥០%" : "50% Off"})</span>
               </div>
             </div>

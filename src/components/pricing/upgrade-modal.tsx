@@ -143,7 +143,7 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
               <span className={`text-xs font-semibold transition-colors flex items-center gap-1.5 ${yearly ? "text-white" : "text-white/35"}`} style={khFont}>
                 {kh ? "ប្រចាំឆ្នាំ" : "Yearly"}
                 <span className="bg-green-500/20 text-green-400 text-[10px] font-black px-1.5 py-0.5 rounded-full">
-                  {kh ? "-២៥%" : "Save 25%"}
+                  {kh ? "សន្សំរហូតដល់ ៣៣%" : "Save up to 33%"}
                 </span>
               </span>
             </div>
@@ -156,11 +156,11 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
               
               // Define prices based on promo
               const getPrice = (key: string, isYearly: boolean) => {
-                if (key === "teacher_pro") return isYearly ? 3.75 : 5;
+                if (key === "teacher_pro") return isYearly ? 3.33 : 5;
                 return isYearly ? 15 : 19; // School public base promo rate
               };
               const getStandardPrice = (key: string, isYearly: boolean) => {
-                if (key === "teacher_pro") return isYearly ? 7.5 : 10;
+                if (key === "teacher_pro") return isYearly ? 6.67 : 10;
                 return isYearly ? 36.6 : 49;
               };
 
