@@ -56,7 +56,7 @@ export function RankBadge({
 }) {
     const tier = getRank(lifetimePoints);
     const isKh = lang === "kh";
-    const label = isKh ? tier.labelKh : tier.label;
+    const label = tier.label;
 
     const sizeStyles = {
         xs: { fontSize: "8px", padding: "1px 5px", gap: 2 },
@@ -183,7 +183,7 @@ export function RankProgressBar({
                             const Icon = TIER_ICONS[next.id] || Star;
                             return <Icon size={11} className="inline-block" />;
                         })()}
-                        <span>{isKh ? next.labelKh : next.label}</span>
+                        <span>{next.label}</span>
                     </span>
                     <span className="text-[9px] font-black tabular-nums" style={{ color: next.accent }}>
                         {needed.toLocaleString()} {isKh ? "pts ទៀត" : "pts to go"}
@@ -231,7 +231,7 @@ export function RankShowcase({
             <style>{RANK_KEYFRAMES}</style>
             <div className="flex flex-col gap-2">
                 <p className="text-[9px] font-black uppercase tracking-widest text-zinc-400">
-                    {isKh ? "ថ្នាក់ទាំងអស់" : "All Tiers"}
+                    All Tiers
                 </p>
                 <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
                     {RANK_TIERS.map((tier) => {
@@ -256,7 +256,7 @@ export function RankShowcase({
                                     className="text-[8px] font-black uppercase tracking-wide"
                                     style={{ color: unlocked ? tier.accent : "#a1a1aa" }}
                                 >
-                                    {isKh ? tier.labelKh : tier.label}
+                                    {tier.label}
                                 </span>
                                 <span className="text-[7px] text-zinc-400 tabular-nums">
                                     {tier.minPoints === 0 ? "Start" : `${tier.minPoints.toLocaleString()} pts`}
