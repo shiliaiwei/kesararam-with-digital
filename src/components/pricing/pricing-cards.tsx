@@ -97,26 +97,26 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
   const checkout = getCheckoutDetails();
 
   return (
-    <section className="min-h-screen bg-[#0d0d0d] text-white py-16 px-4">
+    <section className="min-h-screen bg-[#0d0d0d] text-white py-8 md:py-16 px-4">
       {/* ── Header & Scarcity Promo ── */}
-      <div className="text-center mb-16">
-        <div className="inline-flex items-center gap-2 bg-amber-400/10 border border-amber-400/30 text-amber-400 text-xs font-black px-4 py-2 rounded-full mb-6 uppercase tracking-widest animate-pulse">
+      <div className="text-center mb-8 md:mb-16">
+        <div className="inline-flex items-center gap-2 bg-amber-400/10 border border-amber-400/30 text-amber-400 text-xs font-black px-3 py-1.5 md:px-4 md:py-2 rounded-full mb-4 md:mb-6 uppercase tracking-widest animate-pulse">
           <Clock size={14} className="shrink-0" />
           {kh ? "ការផ្ដល់ជូនរហូតដល់ចុងឆ្នាំ ២០២៦ 🔥 បញ្ចុះតម្លៃ ៥០%" : "LIMITED OFFER THROUGH END OF 2026 🔥 50% OFF"}
         </div>
         
-        <h1 className="text-4xl md:text-6xl font-black mb-4 tracking-tight" style={khFont}>
+        <h1 className="text-3xl md:text-6xl font-black mb-2 md:mb-4 tracking-tight" style={khFont}>
           {kh ? "ជ្រើសរើសផែនការរបស់អ្នក" : "Choose Your Plan"}
         </h1>
-        <p className="text-white/60 text-lg md:text-xl max-w-2xl mx-auto mb-4" style={khFont}>
+        <p className="text-white/60 text-sm md:text-xl max-w-2xl mx-auto mb-3 md:mb-4" style={khFont}>
           {kh
             ? "សិស្សលេងឥតគិតថ្លៃជានិច្ច។ គ្រូបង្រៀន និងសាលាបើកបរទទួលបានឧបករណ៍គ្រប់គ្រងកម្រិតខ្ពស់។"
             : "Students always play free. Teachers & driving schools get advanced coaching tools."}
         </p>
 
-        {/* Urgency Alert Block */}
+        {/* Urgency Alert Block — hidden on mobile to save space */}
         {promo && (
-          <div className="max-w-xl mx-auto bg-amber-500/10 border border-amber-500/30 rounded-2xl p-4 mt-6 text-sm text-amber-300 font-semibold" style={khFont}>
+          <div className="hidden md:block max-w-xl mx-auto bg-amber-500/10 border border-amber-500/30 rounded-2xl p-4 mt-4 text-sm text-amber-300 font-semibold" style={khFont}>
             {kh 
               ? "🔥 រួសរាន់ឡើង! បញ្ចុះតម្លៃ ៥០% លើការប្រើប្រាស់គេហទំព័រស្តង់ដាររហូតដល់ដាច់ឆ្នាំ ២០២៦។ ចុះឈ្មោះឥឡូវនេះដើម្បីរក្សាតម្លៃពិសេសនេះ!" 
               : "🔥 Act now! 50% OFF standard usage on Web is active through end of 2026. Lock in this pricing now before rates adjust to standard!"}
@@ -124,7 +124,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
         )}
 
         {/* Switch for Billing Cycle */}
-        <div className="flex items-center justify-center gap-3 mt-8 bg-white/5 border border-white/10 rounded-2xl p-4 max-w-sm mx-auto">
+        <div className="flex items-center justify-center gap-3 mt-4 md:mt-8 bg-white/5 border border-white/10 rounded-2xl p-3 md:p-4 max-w-xs md:max-w-sm mx-auto">
           <span className={`text-sm font-bold transition-colors ${!yearly ? "text-white" : "text-white/40"}`} style={khFont}>
             {kh ? "ប្រចាំខែ" : "Monthly"}
           </span>
@@ -132,24 +132,30 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
             onClick={() => setYearly(!yearly)}
             role="switch"
             aria-checked={yearly}
-            className={`relative w-14 h-7 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${yearly ? "bg-amber-400" : "bg-white/20"}`}
+            className={`relative w-12 h-6 md:w-14 md:h-7 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${yearly ? "bg-amber-400" : "bg-white/20"}`}
           >
-            <span className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300 ${yearly ? "translate-x-7" : "translate-x-0"}`} />
+            <span className={`absolute top-1 left-1 w-4 h-4 md:w-5 md:h-5 bg-white rounded-full shadow-md transition-transform duration-300 ${yearly ? "translate-x-6 md:translate-x-7" : "translate-x-0"}`} />
           </button>
           <span className={`text-sm font-bold transition-colors flex items-center gap-1.5 ${yearly ? "text-white" : "text-white/40"}`} style={khFont}>
             {kh ? "ប្រចាំឆ្នាំ" : "Yearly"}
-            <span className="ml-1 text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full font-black">
-              {kh ? "ឥតគិតថ្លៃ ៣-៤ ខែ" : "3-4 Mos Free"}
+            <span className="ml-1 text-[10px] md:text-xs bg-green-500/20 text-green-400 px-1.5 md:px-2 py-0.5 rounded-full font-black">
+              {kh ? "ឥតគិតថ្លៃ ៣-៤ ខែ" : "3-4 Free"}
             </span>
           </span>
         </div>
       </div>
 
-      {/* ── Three Pricing Cards Grid ── */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+        {/* Mobile Swipe Hint */}
+        <div className="md:hidden text-center text-xs text-white/40 mb-4 animate-pulse flex items-center justify-center gap-1.5">
+          <span>{kh ? "អូសទៅឆ្វេង ឬស្ដាំ ដើម្បីមើលផែនការទាំងអស់" : "Swipe left or right to view all plans"}</span>
+          <ArrowRight size={12} className="text-amber-400" />
+        </div>
+
+        {/* ── Three Pricing Cards Grid (Horizontal scroll on mobile, grid on desktop) ── */}
+        <div className="max-w-6xl mx-auto flex md:grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-8 md:pb-0 mb-16 px-4 -mx-4 md:mx-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         
         {/* Tier 1: Free */}
-        <div className="bg-white/5 border border-white/10 hover:border-white/25 rounded-2xl p-6 flex flex-col transition-all duration-200 group">
+        <div className="w-[85vw] md:w-auto shrink-0 snap-center bg-white/5 border border-white/10 hover:border-white/25 rounded-2xl p-5 md:p-6 flex flex-col transition-all duration-200 group">
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-2">
               <Zap size={20} className="text-zinc-400" />
@@ -204,7 +210,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
         </div>
 
         {/* Tier 2: Teacher Pro (Highlighted) */}
-        <div className="relative bg-gradient-to-b from-amber-400/15 via-amber-400/5 to-transparent border-2 border-amber-400/70 shadow-[0_0_40px_rgba(251,191,36,0.18)] hover:shadow-[0_0_60px_rgba(251,191,36,0.28)] rounded-2xl p-6 flex flex-col transition-all duration-200 group">
+        <div className="w-[85vw] md:w-auto shrink-0 snap-center relative bg-gradient-to-b from-amber-400/15 via-amber-400/5 to-transparent border-2 border-amber-400/70 shadow-[0_0_40px_rgba(251,191,36,0.18)] hover:shadow-[0_0_60px_rgba(251,191,36,0.28)] rounded-2xl p-5 md:p-6 flex flex-col transition-all duration-200 group">
           <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-amber-400 text-black text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider">
             {kh ? "ពេញនិយម" : "Most Popular"}
           </div>
@@ -281,7 +287,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
         </div>
 
         {/* Tier 3: School & Institute */}
-        <div className="bg-white/5 border border-white/10 hover:border-white/25 rounded-2xl p-6 flex flex-col transition-all duration-200 group">
+        <div className="w-[85vw] md:w-auto shrink-0 snap-center bg-white/5 border border-white/10 hover:border-white/25 rounded-2xl p-5 md:p-6 flex flex-col transition-all duration-200 group">
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-3">
               <Building2 size={20} className="text-purple-400" />
@@ -388,10 +394,10 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
       </div>
 
       {/* ── Checkout & KHQR Payment Area (Target of scroll) ── */}
-      <div id="checkout-section" className="max-w-4xl mx-auto border-2 border-black bg-zinc-950 text-white rounded-2xl overflow-hidden shadow-2xl mb-16 scroll-mt-6">
+      <div id="checkout-section" className="max-w-4xl mx-auto border-2 border-black bg-zinc-950 text-white rounded-2xl overflow-hidden shadow-2xl mb-12 scroll-mt-6">
         
         {/* Checkout Header */}
-        <div className="bg-black border-b-2 border-white/10 px-6 py-5 flex items-center justify-between flex-wrap gap-4">
+        <div className="bg-black border-b-2 border-white/10 px-4 py-4 md:px-6 md:py-5 flex items-center justify-between flex-wrap gap-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-amber-400 border-2 border-black flex items-center justify-center font-black text-black text-sm rounded-lg shadow-[3px_3px_0_rgba(255,255,255,0.15)]">QR</div>
             <div>
@@ -412,10 +418,10 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
           )}
         </div>
 
-        <div className="p-6 md:p-8 grid md:grid-cols-12 gap-8">
+        <div className="p-4 md:p-8 grid md:grid-cols-12 gap-6 md:gap-8">
           
           {/* Left Column: Interactive Selector & Invoice */}
-          <div className="md:col-span-7 flex flex-col gap-6">
+          <div className="md:col-span-7 flex flex-col gap-5 md:gap-6">
             <div>
               <label className="text-xs font-black uppercase text-zinc-400 tracking-wider block mb-3" style={khFont}>
                 {kh ? "១. ជ្រើសរើសផែនការជាវ" : "1. Choose Your Plan Tier"}
@@ -430,7 +436,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                   <button
                     key={plan.id}
                     onClick={() => setSelectedPlan(plan.id as any)}
-                    className={`flex items-center justify-between p-4 border text-left rounded-xl transition-all ${
+                    className={`flex items-center justify-between p-3 md:p-4 border text-left rounded-xl transition-all ${
                       selectedPlan === plan.id 
                         ? "bg-white/10 border-white text-white font-black scale-[1.01]" 
                         : "bg-white/5 border-white/10 text-white/60 hover:bg-white/7"
@@ -447,7 +453,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
             </div>
 
             {/* Dynamic Invoice details */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-5 flex flex-col gap-3">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-4 md:p-5 flex flex-col gap-2 md:gap-3">
               <div className="text-xs font-bold text-zinc-400 uppercase tracking-widest" style={khFont}>
                 {kh ? "សេចក្តីលម្អិតនៃការទូទាត់" : "Invoice details"}
               </div>
@@ -468,13 +474,13 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
             </div>
 
             {/* Standard Admin Assignment note based on Terms */}
-            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex items-start gap-3">
+            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 md:p-4 flex items-start gap-2.5">
               <Shield size={18} className="text-amber-400 mt-0.5 shrink-0" />
               <div className="text-left">
-                <p className="text-xs font-black text-white" style={khFont}>
+                <p className="text-[11px] md:text-xs font-black text-white" style={khFont}>
                   {kh ? "ការចាត់តាំងដោយ Admin ផ្អែកលើលក្ខខណ្ឌការជាវ" : "Standard Admin Assignment Based on Terms"}
                 </p>
-                <p className="text-[10px] text-zinc-400 mt-1 leading-relaxed" style={khFont}>
+                <p className="text-[9px] md:text-[10px] text-zinc-400 mt-1 leading-relaxed" style={khFont}>
                   {kh 
                     ? "ការតម្លើង និងដំណើរការគណនីទាំងអស់ត្រូវបានចាត់ចែងដោយដៃដោយអភិបាលក្នុងរយៈពេល ២៤ ម៉ោងបន្ទាប់ពីផ្ញើវិក្កយបត្រ ដើម្បីធានាសុវត្ថិភាព និងភាពត្រឹមត្រូវនៃប្រព័ន្ធ។" 
                     : "All upgrades are manually assigned and configured by administrators within 24 hours of payment verification based on the standard subscription terms."}
@@ -485,7 +491,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
           </div>
 
           {/* Right Column: QR Code & Activation (No white background!) */}
-          <div className="md:col-span-5 flex flex-col gap-6">
+          <div className="md:col-span-5 flex flex-col gap-5 md:gap-6">
             <div>
               <label className="text-xs font-black uppercase text-zinc-400 tracking-wider block mb-3" style={khFont}>
                 {kh ? "២. ស្កែនទូទាត់ប្រាក់តាម KHQR" : "2. Scan to Pay via KHQR"}
@@ -493,7 +499,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
               
               {/* KHQR image container - background removed */}
               <div className="bg-transparent border border-white/10 rounded-2xl p-4 flex flex-col items-center gap-3">
-                <div className="relative w-full aspect-square overflow-hidden rounded-xl border border-white/5 bg-black/40 flex items-center justify-center">
+                <div className="relative w-full max-w-[200px] aspect-square overflow-hidden rounded-xl border border-white/5 bg-black/40 flex items-center justify-center">
                   <img
                     src="/khqr.png"
                     alt="KWD KHQR Code"
@@ -517,7 +523,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                 href="https://t.me/kesararamwithdigital" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="flex items-center gap-3 px-4 py-3 bg-blue-600/10 border border-blue-500/30 rounded-xl hover:border-blue-400 transition-colors"
+                className="flex items-center gap-3 px-3 py-2.5 md:px-4 md:py-3 bg-blue-600/10 border border-blue-500/30 rounded-xl hover:border-blue-400 transition-colors"
               >
                 <MessageCircle size={18} className="text-blue-400 shrink-0" />
                 <div className="text-left">
@@ -528,7 +534,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
 
               <a 
                 href="mailto:kesararamwithdigital@gmail.com" 
-                className="flex items-center gap-3 px-4 py-3 bg-purple-600/10 border border-purple-500/30 rounded-xl hover:border-purple-400 transition-colors"
+                className="flex items-center gap-3 px-3 py-2.5 md:px-4 md:py-3 bg-purple-600/10 border border-purple-500/30 rounded-xl hover:border-purple-400 transition-colors"
               >
                 <Mail size={18} className="text-purple-400 shrink-0" />
                 <div className="text-left">
@@ -537,7 +543,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                 </div>
               </a>
 
-              <div className="flex items-center justify-between px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-xl text-xs">
+              <div className="flex items-center justify-between px-3 py-2.5 md:px-4 md:py-3 bg-zinc-900 border border-zinc-800 rounded-xl text-xs">
                 <span className="text-zinc-400 font-bold flex items-center gap-1.5" style={khFont}>
                   <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
                   {kh ? "ទូទាត់តាមកាតអន្តរជាតិ (Stripe)" : "Stripe Credit Card Payments"}
@@ -619,46 +625,55 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
         </div>
       </div>
 
-      {/* ── Subscription Terms Detailed Block ── */}
-      <div className="max-w-4xl mx-auto bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
-        <h3 className="font-black text-white text-lg mb-4" style={khFont}>
-          {kh ? "លក្ខខណ្ឌនៃការជាវសេវាកម្ម" : "Subscription Terms & Conditions"}
-        </h3>
-        <div className="grid md:grid-cols-2 gap-x-8 gap-y-3">
-          {[
-            { 
-              en: "Pricing Promotion: Standard Teacher Pro rate is $10/month. Under promo (active through end of 2026), rates are discounted by 50% ($5/month). Standard rates for School are $39/mo ($350/yr) and Institute is $59/mo ($530/yr).", 
-              kh: "ការផ្សព្វផ្សាយតម្លៃ៖ តម្លៃធម្មតាសម្រាប់គ្រូ Pro គឺ ១០ ដុល្លារ/ខែ។ ក្រោមការបញ្ចុះតម្លៃប្រូម៉ូសិន (មានប្រសិទ្ធភាពរហូតដល់ចុងឆ្នាំ ២០២៦) តម្លៃត្រូវបានបញ្ចុះ ៥០% (៥ ដុល្លារ/ខែ)។ តម្លៃធម្មតាសម្រាប់សាលារៀនគឺ ៣៩ ដុល្លារ/ខែ (៣៥០ ដុល្លារ/ឆ្នាំ) និងវិទ្យាស្ថានគឺ ៥៩ ដុល្លារ/ខែ (៥៣០ ដុល្លារ/ឆ្នាំ)។" 
-            },
-            { 
-              en: "Annual Package (4 Months Free for Teacher Pro): Subscribers to 1-year plans receive 4 months free for Teacher Pro ($40/year promo, $80/year standard) and 3 months free for School plans ($170/year promo, $350/year standard) and Institute plans ($260/year promo, $530/year standard).", 
-              kh: "កញ្ចប់ប្រចាំឆ្នាំ៖ ការជាវប្រចាំឆ្នាំទទួលបានការបញ្ចុះតម្លៃ ៤ ខែឥតគិតថ្លៃសម្រាប់គ្រូ Pro (៤០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៨០ ដុល្លារ/ឆ្នាំ ធម្មតា) និង ៣ ខែឥតគិតថ្លៃសម្រាប់សាលារៀន (១៧០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៣៥០ ដុល្លារ/ឆ្នាំ ធម្មតា) និងវិទ្យាស្ថាន (២៦០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៥៣០ ដុល្លារ/ឆ្នាំ ធម្មតា)។" 
-            },
-            { 
-              en: "School & Institute Structure: Pricing covers schools and training institutes. Under promo, School plan is $19/mo ($170/yr) and Institute plan is $29/mo ($260/yr).", 
-              kh: "រចនាសម្ព័ន្ធសាលារៀន និងវិទ្យាស្ថាន៖ តម្លៃគ្របដណ្តប់ទាំងសាលារៀន និងវិទ្យាស្ថានបណ្តុះបណ្តាល។ ក្រោមតម្លៃប្រូម៉ូសិន ផែនការសាលារៀនគឺ ១៩ ដុល្លារ/ខែ (១៧០ ដុល្លារ/ឆ្នាំ) និងផែនការវិទ្យាស្ថានគឺ ២៩ ដុល្លារ/ខែ (២៦០ ដុល្លារ/ឆ្នាំ)។" 
-            },
-            { 
-              en: "Billing & Cancellation: Subscriptions are billed monthly or annually. You can cancel at any time. Active access remains until the current cycle expires.", 
-              kh: "ការទូទាត់ និងការលុបចោល៖ ការជាវត្រូវបានគិតថ្លៃប្រចាំខែ ឬប្រចាំឆ្នាំ។ អ្នកអាចលុបចោលបានគ្រប់ពេល។ ការចូលប្រើប្រាស់នៅតែមានរហូតដល់ចប់វដ្តបច្ចុប្បន្ន។" 
-            },
-            { 
-              en: "Activation & Upgrades: Upgrades are manually assigned by administrators to ensure security and audit trails. Setup is active within 24 hours of screenshot submission.", 
-              kh: "ការធ្វើឱ្យសកម្ម៖ ការតម្លើងគណនីត្រូវបានចាត់ចែងដោយដៃដោយ Admin ដើម្បីធានាសុវត្ថិភាព។ គណនីនឹងសកម្មក្នុងរយៈពេល ២៤ ម៉ោងបន្ទាប់ពីផ្ញើវិក្កយបត្រ។" 
-            },
-            { 
-              en: "Refunds: All fees are non-refundable after platform access is configured, except in cases of technical failure verified by the team.", 
-              kh: "គោលការណ៍សងប្រាក់៖ រាល់ការបង់ប្រាក់មិនអាចដកវិញបានទេបន្ទាប់ពីគណនីត្រូវបានតម្លើង លើកលែងតែករណីមានបញ្ហាបច្ចេកទេសដែលបញ្ជាក់ដោយក្រុមការងារ។" 
-            },
-          ].map((t, i) => (
-            <div key={i} className="flex items-start gap-3 py-2 border-b border-white/5 last:border-0">
-              <span className="text-amber-400 font-black text-sm mt-0.5 shrink-0">{i + 1}.</span>
-              <p className="text-xs text-white/70 leading-relaxed" style={khFont}>{kh ? t.kh : t.en}</p>
-            </div>
-          ))}
-        </div>
+      {/* ── Subscription Terms Detailed Block (collapsible on mobile) ── */}
+      <div className="max-w-4xl mx-auto bg-white/5 border border-white/10 rounded-2xl p-4 md:p-8">
+        <details className="group">
+          <summary className="flex items-center justify-between cursor-pointer list-none select-none">
+            <h3 className="font-black text-white text-base md:text-lg" style={khFont}>
+              {kh ? "លក្ខខណ្ឌនៃការជាវសេវាកម្ម" : "Subscription Terms & Conditions"}
+            </h3>
+            <span className="flex items-center gap-1 text-[10px] font-black text-zinc-400 bg-white/10 px-2.5 py-1 rounded-xl shrink-0 ml-3">
+              {kh ? "លម្អិត" : "Details"}
+              <span className="inline-block transition-transform duration-200 group-open:rotate-180">▼</span>
+            </span>
+          </summary>
+
+          <div className="grid md:grid-cols-2 gap-x-8 gap-y-3 mt-5 pt-5 border-t border-white/10">
+            {[
+              { 
+                en: "Pricing Promotion: Standard Teacher Pro rate is $10/month. Under promo (active through end of 2026), rates are discounted by 50% ($5/month). Standard rates for School are $39/mo ($350/yr) and Institute is $59/mo ($530/yr).", 
+                kh: "ការផ្សព្វផ្សាយតម្លៃ៖ តម្លៃធម្មតាសម្រាប់គ្រូ Pro គឺ ១០ ដុល្លារ/ខែ។ ក្រោមការបញ្ចុះតម្លៃប្រូម៉ូសិន (មានប្រសិទ្ធភាពរហូតដល់ចុងឆ្នាំ ២០២៦) តម្លៃត្រូវបានបញ្ចុះ ៥០% (៥ ដុល្លារ/ខែ)។ តម្លៃធម្មតាសម្រាប់សាលារៀនគឺ ៣៩ ដុល្លារ/ខែ (៣៥០ ដុល្លារ/ឆ្នាំ) និងវិទ្យាស្ថានគឺ ៥៩ ដុល្លារ/ខែ (៥៣០ ដុល្លារ/ឆ្នាំ)។" 
+              },
+              { 
+                en: "Annual Package (4 Months Free for Teacher Pro): Subscribers to 1-year plans receive 4 months free for Teacher Pro ($40/year promo, $80/year standard) and 3 months free for School plans ($170/year promo, $350/year standard) and Institute plans ($260/year promo, $530/year standard).", 
+                kh: "កញ្ចប់ប្រចាំឆ្នាំ៖ ការជាវប្រចាំឆ្នាំទទួលបានការបញ្ចុះតម្លៃ ៤ ខែឥតគិតថ្លៃសម្រាប់គ្រូ Pro (៤០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៨០ ដុល្លារ/ឆ្នាំ ធម្មតា) និង ៣ ខែឥតគិតថ្លៃសម្រាប់សាលារៀន (១៧០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៣៥០ ដុល្លារ/ឆ្នាំ ធម្មតា) និងវិទ្យាស្ថាន (២៦០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៥៣០ ដុល្លារ/ឆ្នាំ ធម្មតា)។" 
+              },
+              { 
+                en: "School & Institute Structure: Pricing covers schools and training institutes. Under promo, School plan is $19/mo ($170/yr) and Institute plan is $29/mo ($260/yr).", 
+                kh: "រចនាសម្ព័ន្ធសាលារៀន និងវិទ្យាស្ថាន៖ តម្លៃគ្របដណ្តប់ទាំងសាលារៀន និងវិទ្យាស្ថានបណ្តុះបណ្តាល។ ក្រោមតម្លៃប្រូម៉ូសិន ផែនការសាលារៀនគឺ ១៩ ដុល្លារ/ខែ (១៧០ ដុល្លារ/ឆ្នាំ) និងផែនការវិទ្យាស្ថានគឺ ២៩ ដុល្លារ/ខែ (២៦០ ដុល្លារ/ឆ្នាំ)។" 
+              },
+              { 
+                en: "Billing & Cancellation: Subscriptions are billed monthly or annually. You can cancel at any time. Active access remains until the current cycle expires.", 
+                kh: "ការទូទាត់ និងការលុបចោល៖ ការជាវត្រូវបានគិតថ្លៃប្រចាំខែ ឬប្រចាំឆ្នាំ។ អ្នកអាចលុបចោលបានគ្រប់ពេល។ ការចូលប្រើប្រាស់នៅតែមានរហូតដល់ចប់វដ្តបច្ចុប្បន្ន។" 
+              },
+              { 
+                en: "Activation & Upgrades: Upgrades are manually assigned by administrators to ensure security and audit trails. Setup is active within 24 hours of screenshot submission.", 
+                kh: "ការធ្វើឱ្យសកម្ម៖ ការតម្លើងគណនីត្រូវបានចាត់ចែងដោយដៃដោយ Admin ដើម្បីធានាសុវត្ថិភាព។ គណនីនឹងសកម្មក្នុងរយៈពេល ២៤ ម៉ោងបន្ទាប់ពីផ្ញើវិក្កយបត្រ។" 
+              },
+              { 
+                en: "Refunds: All fees are non-refundable after platform access is configured, except in cases of technical failure verified by the team.", 
+                kh: "គោលការណ៍សងប្រាក់៖ រាល់ការបង់ប្រាក់មិនអាចដកវិញបានទេបន្ទាប់ពីគណនីត្រូវបានតម្លើង លើកលែងតែករណីមានបញ្ហាបច្ចេកទេសដែលបញ្ជាក់ដោយក្រុមការងារ។" 
+              },
+            ].map((t, i) => (
+              <div key={i} className="flex items-start gap-3 py-2 border-b border-white/5 last:border-0">
+                <span className="text-amber-400 font-black text-sm mt-0.5 shrink-0">{i + 1}.</span>
+                <p className="text-xs text-white/70 leading-relaxed" style={khFont}>{kh ? t.kh : t.en}</p>
+              </div>
+            ))}
+          </div>
+        </details>
         
-        <div className="mt-6 flex flex-wrap gap-4 pt-4 border-t border-white/5">
+        <div className="mt-4 flex flex-wrap gap-4 pt-4 border-t border-white/10">
           <Link href="/terms" className="text-xs font-black text-zinc-400 hover:text-white underline" style={khFont}>
             {kh ? "លក្ខខណ្ឌប្រើប្រាស់" : "Terms of Service"}
           </Link>
