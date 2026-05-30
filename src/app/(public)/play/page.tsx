@@ -1,347 +1,1002 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLang } from "@/context/lang-context";
-import { Users, ChevronRight, Target, BookOpenCheck } from "lucide-react";
+import { Users, ChevronRight, Zap, Target, BookOpenCheck, Play, Trophy, Flame } from "lucide-react";
 
-// ── Game mode SVG icons (Brutalist style) ──────────────────────────────
+// ─── BRAND COLORS ─────────────────────────────────────────────────────────────
+const BRAND = {
+  yellow: "#eab308",
+  yellowDark: "#ca8a04",
+  red: "#ef4444",
+  blue: "#3b82f6",
+  green: "#22c55e",
+  purple: "#a855f7",
+  orange: "#f97316",
+  black: "#000000",
+  white: "#ffffff",
+};
 
-function IconQuickQuiz() {
-  return (
-    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
-      <circle cx="40" cy="40" r="32" fill="#fef08a" stroke="#ca8a04" strokeWidth="3" />
-      <circle cx="40" cy="40" r="24" fill="#fde047" stroke="#ca8a04" strokeWidth="1.5" opacity="0.5" />
-      <text x="40" y="52" textAnchor="middle" fontSize="36" fontWeight="900" fill="#92400e" fontFamily="system-ui">?</text>
-    </svg>
-  );
-}
-
-function IconSpeedRound() {
-  return (
-    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
-      <polygon points="40,6 46,28 68,28 50,44 57,66 40,52 23,66 30,44 12,28 34,28" fill="#fca5a5" stroke="#b91c1c" strokeWidth="2.5" />
-      <polygon points="40,14 44,30 56,30 46,40 50,54 40,46 30,54 34,40 24,30 36,30" fill="#ef4444" />
-      <text x="40" y="46" textAnchor="middle" fontSize="16" fontWeight="900" fill="#fff" fontFamily="system-ui">⚡</text>
-    </svg>
-  );
-}
-
-function IconSignChallenge() {
-  return (
-    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
-      <polygon points="40,6 74,40 40,74 6,40" fill="#bfdbfe" stroke="#1d4ed8" strokeWidth="3" />
-      <polygon points="40,14 66,40 40,66 14,40" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="1" opacity="0.5" />
-      <circle cx="40" cy="36" r="5" fill="#1d4ed8" />
-      <rect x="38" y="44" width="4" height="4" rx="2" fill="#1d4ed8" />
-    </svg>
-  );
-}
-
-function IconMixedBattle() {
-  return (
-    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
-      <rect x="8" y="8" width="28" height="28" rx="5" fill="#e9d5ff" stroke="#7e22ce" strokeWidth="2.5" />
-      <rect x="44" y="8" width="28" height="28" rx="5" fill="#e9d5ff" stroke="#7e22ce" strokeWidth="2.5" />
-      <rect x="8" y="44" width="28" height="28" rx="5" fill="#e9d5ff" stroke="#7e22ce" strokeWidth="2.5" />
-      <rect x="44" y="44" width="28" height="28" rx="5" fill="#7e22ce" stroke="#7e22ce" strokeWidth="2.5" />
-      <text x="58" y="64" textAnchor="middle" fontSize="16" fill="#fff" fontWeight="900">⚔</text>
-    </svg>
-  );
-}
-
-function IconDailyChallenge() {
-  return (
-    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
-      <rect x="10" y="16" width="60" height="54" rx="5" fill="#bbf7d0" stroke="#15803d" strokeWidth="2.5" />
-      <rect x="10" y="16" width="60" height="18" rx="5" fill="#15803d" />
-      <line x1="26" y1="10" x2="26" y2="24" stroke="#15803d" strokeWidth="3" strokeLinecap="round" />
-      <line x1="54" y1="10" x2="54" y2="24" stroke="#15803d" strokeWidth="3" strokeLinecap="round" />
-      <circle cx="28" cy="46" r="5" fill="#15803d" />
-      <circle cx="52" cy="46" r="5" fill="#15803d" opacity="0.5" />
-      <circle cx="28" cy="60" r="5" fill="#15803d" opacity="0.3" />
-      <circle cx="52" cy="60" r="5" fill="#15803d" opacity="0.3" />
-    </svg>
-  );
-}
-
-function IconExamSimulation() {
-  return (
-    <svg viewBox="0 0 80 80" fill="none" className="w-full h-full">
-      <polygon points="40,4 48,28 74,28 53,44 61,68 40,53 19,68 27,44 6,28 32,28" fill="#fed7aa" stroke="#c2410c" strokeWidth="2.5" />
-      <polygon points="40,12 46,30 62,30 49,40 54,58 40,48 26,58 31,40 18,30 34,30" fill="#f97316" />
-      <circle cx="40" cy="36" r="6" fill="#fff" opacity="0.9" />
-    </svg>
-  );
-}
-
-const GAME_MODE_ICONS = [IconQuickQuiz, IconSpeedRound, IconSignChallenge, IconMixedBattle, IconDailyChallenge, IconExamSimulation];
-
+// ─── GAME MODES DATA ──────────────────────────────────────────────────────────
 const GAME_MODES = [
-  { id: "quick-quiz", tag: "HOT", tagColor: "#ef4444", title: "Quick Quiz", titleKh: "សំណួរលឿន", desc: "10 random questions across all categories.", descKh: "សំណួរចៃដន្យ ១០", color: "#eab308", accent: "#ca8a04", href: "/play/solo?mode=quick-quiz", badge: "10Q · 30s", cta: "Play Now →", ctaKh: "លេងឥឡូវ" },
-  { id: "speed-round", tag: "INTENSE", tagColor: "#a855f7", title: "Speed Round", titleKh: "វគ្គល្បឿន", desc: "Fast MCQ only — tap fast, score big.", descKh: "MCQ លឿន — ចុចឆាប់", color: "#ef4444", accent: "#b91c1c", href: "/play/solo?mode=speed-round", badge: "20Q · 15s", cta: "Go Fast →", ctaKh: "ចូលប្រកួត" },
-  { id: "sign-challenge", tag: "", tagColor: "", title: "Sign Challenge", titleKh: "ប្រឡងសញ្ញា", desc: "Identify traffic signs from images only.", descKh: "ស្គាល់សញ្ញាចរាចរ", color: "#3b82f6", accent: "#1d4ed8", href: "/play/solo?mode=sign-challenge", badge: "15Q · 20s", cta: "Challenge →", ctaKh: "ប្រឡង" },
-  { id: "mixed-battle", tag: "NEW", tagColor: "#3b82f6", title: "Mixed Battle", titleKh: "ប្រកួតចម្រុះ", desc: "All categories, all question types.", descKh: "ប្រភេទទាំង ៨", color: "#a855f7", accent: "#7e22ce", href: "/play/solo?mode=mixed-battle", badge: "20Q · 30s", cta: "Battle! →", ctaKh: "ប្រកួត" },
-  { id: "daily-challenge", tag: "DAILY", tagColor: "#22c55e", title: "Daily Challenge", titleKh: "បញ្ហាប្រចាំថ្ងៃ", desc: "New questions every day. Build your streak.", descKh: "សំណួរថ្មីរៀងរាល់ថ្ងៃ", color: "#22c55e", accent: "#15803d", href: "/play/solo?mode=daily-challenge", badge: "15Q · 30s", cta: "Daily →", ctaKh: "ប្រចាំថ្ងៃ" },
-  { id: "exam-simulation", tag: "PRO", tagColor: "#eab308", title: "Exam Simulation", titleKh: "ត្រាប់តាមប្រឡង", desc: "40 questions mirroring the real Cambodia exam.", descKh: "ស្រដៀងប្រឡងពិត", color: "#f97316", accent: "#c2410c", href: "/play/solo?mode=exam-simulation", badge: "40Q · 45s", cta: "Simulate →", ctaKh: "ត្រាប់តាម" },
+  {
+    id: "quick-quiz",
+    number: "01",
+    tag: "HOT",
+    title: "Quick Quiz",
+    titleKh: "សំណួរលឿន",
+    desc: "10 questions. All categories. No excuses.",
+    descKh: "សំណួរចៃដន្យ ១០ — សាកល្បងឥឡូវ",
+    color: BRAND.yellow,
+    textOnColor: BRAND.black,
+    accentShadow: BRAND.yellowDark,
+    href: "/play/solo?mode=quick-quiz",
+    badge: "10Q",
+    timer: "30s",
+    cta: "PLAY NOW",
+    ctaKh: "លេងឥឡូវ",
+    emoji: "⚡",
+    difficulty: "EASY",
+    diffColor: BRAND.green,
+    popular: true,
+  },
+  {
+    id: "speed-round",
+    number: "02",
+    tag: "INTENSE",
+    title: "Speed Round",
+    titleKh: "វគ្គល្បឿន",
+    desc: "Tap fast. Score big. Don't choke.",
+    descKh: "ចុចឆាប់ — ទទួលពិន្ទុ",
+    color: BRAND.red,
+    textOnColor: BRAND.white,
+    accentShadow: "#b91c1c",
+    href: "/play/solo?mode=speed-round",
+    badge: "20Q",
+    timer: "15s",
+    cta: "GO FAST",
+    ctaKh: "ចូលប្រកួត",
+    emoji: "🔥",
+    difficulty: "HARD",
+    diffColor: BRAND.red,
+    popular: false,
+  },
+  {
+    id: "sign-challenge",
+    number: "03",
+    tag: "",
+    title: "Sign Challenge",
+    titleKh: "ប្រឡងសញ្ញា",
+    desc: "Identify real traffic signs. Images only.",
+    descKh: "ស្គាល់សញ្ញាចរាចរ — រូបភាពប៉ុណ្ណោះ",
+    color: BRAND.blue,
+    textOnColor: BRAND.white,
+    accentShadow: "#1d4ed8",
+    href: "/play/solo?mode=sign-challenge",
+    badge: "15Q",
+    timer: "20s",
+    cta: "CHALLENGE",
+    ctaKh: "ប្រឡង",
+    emoji: "🔷",
+    difficulty: "MEDIUM",
+    diffColor: BRAND.yellow,
+    popular: false,
+  },
+  {
+    id: "mixed-battle",
+    number: "04",
+    tag: "NEW",
+    title: "Mixed Battle",
+    titleKh: "ប្រកួតចម្រុះ",
+    desc: "All categories. All types. One winner.",
+    descKh: "ប្រភេទទាំង ៨ — ប្រកួតពិត",
+    color: BRAND.purple,
+    textOnColor: BRAND.white,
+    accentShadow: "#7e22ce",
+    href: "/play/solo?mode=mixed-battle",
+    badge: "20Q",
+    timer: "30s",
+    cta: "BATTLE",
+    ctaKh: "ប្រកួត",
+    emoji: "⚔️",
+    difficulty: "HARD",
+    diffColor: BRAND.red,
+    popular: false,
+  },
+  {
+    id: "daily-challenge",
+    number: "05",
+    tag: "DAILY",
+    title: "Daily Challenge",
+    titleKh: "បញ្ហាប្រចាំថ្ងៃ",
+    desc: "New questions every day. Build your streak.",
+    descKh: "សំណួរថ្មីរៀងរាល់ថ្ងៃ — បង្កើតកំណត់ត្រា",
+    color: BRAND.green,
+    textOnColor: BRAND.white,
+    accentShadow: "#15803d",
+    href: "/play/solo?mode=daily-challenge",
+    badge: "15Q",
+    timer: "30s",
+    cta: "TODAY",
+    ctaKh: "ប្រចាំថ្ងៃ",
+    emoji: "📅",
+    difficulty: "MEDIUM",
+    diffColor: BRAND.yellow,
+    popular: false,
+  },
+  {
+    id: "exam-simulation",
+    number: "06",
+    tag: "PRO",
+    title: "Exam Simulation",
+    titleKh: "ត្រាប់តាមប្រឡង",
+    desc: "40 questions. Just like the real exam.",
+    descKh: "ស្រដៀងប្រឡងពិត — ៤០ សំណួរ",
+    color: BRAND.orange,
+    textOnColor: BRAND.white,
+    accentShadow: "#c2410c",
+    href: "/play/solo?mode=exam-simulation",
+    badge: "40Q",
+    timer: "45s",
+    cta: "SIMULATE",
+    ctaKh: "ត្រាប់តាម",
+    emoji: "🎯",
+    difficulty: "EXPERT",
+    diffColor: BRAND.orange,
+    popular: false,
+  },
 ];
 
-const STATS = [
-  { value: "500+", labelEn: "Questions", labelKh: "សំណួរ", color: "#eab308" },
-  { value: "6", labelEn: "Game Modes", labelKh: "របៀបលេង", color: "#ef4444" },
-  { value: "8", labelEn: "Categories", labelKh: "ប្រភេទ", color: "#3b82f6" },
-  { value: "Live", labelEn: "Multiplayer", labelKh: "ប្រកួតផ្ទាល់", color: "#22c55e" },
-];
+// ─── OTP-STYLE CODE INPUT ──────────────────────────────────────────────────────
+function OtpCodeInput({ lang }: { lang: string }) {
+  const kh = lang === "kh";
+  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const router = useRouter();
+  const [cells, setCells] = useState(["", "", "", "", "", ""]);
+  const refs = useRef<(HTMLInputElement | null)[]>([]);
 
-type GameMode = typeof GAME_MODES[number];
+  const code = cells.join("");
 
-function GameModeCard({ mode, index, kh, khFont }: {
-  mode: GameMode;
+  function handleChange(idx: number, val: string) {
+    const ch = val.replace(/[^a-zA-Z0-9]/g, "").toUpperCase().slice(-1);
+    const next = [...cells];
+    next[idx] = ch;
+    setCells(next);
+    if (ch && idx < 5) refs.current[idx + 1]?.focus();
+  }
+
+  function handleKeyDown(idx: number, e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Backspace" && !cells[idx] && idx > 0) {
+      refs.current[idx - 1]?.focus();
+    }
+    if (e.key === "Enter" && code.length === 6) join();
+  }
+
+  function handlePaste(e: React.ClipboardEvent) {
+    e.preventDefault();
+    const pasted = e.clipboardData.getData("text").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 6);
+    const next = ["", "", "", "", "", ""];
+    for (let i = 0; i < pasted.length; i++) next[i] = pasted[i];
+    setCells(next);
+    const focusIdx = Math.min(pasted.length, 5);
+    refs.current[focusIdx]?.focus();
+  }
+
+  function join() {
+    if (code.length === 6) router.push(`/play/${code}`);
+  }
+
+  const filled = cells.filter(Boolean).length;
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 24 }}>
+      {/* OTP cells */}
+      <div style={{ display: "flex", gap: 10 }}>
+        {cells.map((cell, i) => (
+          <input
+            key={i}
+            ref={(el) => { refs.current[i] = el; }}
+            value={cell}
+            maxLength={1}
+            onChange={(e) => handleChange(i, e.target.value)}
+            onKeyDown={(e) => handleKeyDown(i, e)}
+            onPaste={handlePaste}
+            style={{
+              width: 56,
+              height: 68,
+              border: `3px solid ${cell ? BRAND.yellow : "rgba(255,255,255,0.25)"}`,
+              background: cell ? "rgba(234,179,8,0.12)" : "rgba(255,255,255,0.04)",
+              color: cell ? BRAND.yellow : "rgba(255,255,255,0.3)",
+              fontSize: 28,
+              fontWeight: 900,
+              fontFamily: "monospace",
+              textAlign: "center",
+              outline: "none",
+              cursor: "text",
+              transition: "border-color 0.1s, background 0.1s, color 0.1s",
+              caretColor: BRAND.yellow,
+              letterSpacing: 2,
+              borderRadius: 0,
+            }}
+            onFocus={(e) => {
+              e.target.style.border = `3px solid ${BRAND.yellow}`;
+              e.target.style.boxShadow = `0 0 0 2px rgba(234,179,8,0.3)`;
+            }}
+            onBlur={(e) => {
+              e.target.style.boxShadow = "none";
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Progress bar */}
+      <div style={{ width: "100%", maxWidth: 406, height: 4, background: "rgba(255,255,255,0.08)", position: "relative" }}>
+        <div style={{
+          position: "absolute", left: 0, top: 0, height: "100%",
+          width: `${(filled / 6) * 100}%`,
+          background: filled === 6 ? BRAND.green : BRAND.yellow,
+          transition: "width 0.15s ease, background 0.2s"
+        }} />
+      </div>
+
+      {/* Join Button */}
+      <button
+        onClick={join}
+        disabled={code.length !== 6}
+        style={{
+          ...khFont,
+          width: "100%",
+          maxWidth: 406,
+          height: 60,
+          background: code.length === 6 ? BRAND.yellow : "rgba(255,255,255,0.06)",
+          color: code.length === 6 ? BRAND.black : "rgba(255,255,255,0.25)",
+          border: `3px solid ${code.length === 6 ? BRAND.yellow : "rgba(255,255,255,0.1)"}`,
+          fontWeight: 900,
+          fontSize: 18,
+          letterSpacing: 3,
+          cursor: code.length === 6 ? "pointer" : "not-allowed",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 10,
+          transition: "all 0.15s",
+          boxShadow: code.length === 6 ? `6px 6px 0 ${BRAND.yellowDark}` : "none",
+          borderRadius: 0,
+          position: "relative",
+          overflow: "hidden",
+        }}
+        onMouseEnter={(e) => {
+          if (code.length === 6) {
+            (e.currentTarget as HTMLButtonElement).style.transform = "translate(-3px,-3px)";
+            (e.currentTarget as HTMLButtonElement).style.boxShadow = `9px 9px 0 ${BRAND.yellowDark}`;
+          }
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLButtonElement).style.transform = "translate(0,0)";
+          (e.currentTarget as HTMLButtonElement).style.boxShadow = code.length === 6 ? `6px 6px 0 ${BRAND.yellowDark}` : "none";
+        }}
+        onMouseDown={(e) => {
+          if (code.length === 6) {
+            (e.currentTarget as HTMLButtonElement).style.transform = "translate(3px,3px)";
+            (e.currentTarget as HTMLButtonElement).style.boxShadow = "none";
+          }
+        }}
+        onMouseUp={(e) => {
+          if (code.length === 6) {
+            (e.currentTarget as HTMLButtonElement).style.transform = "translate(-3px,-3px)";
+            (e.currentTarget as HTMLButtonElement).style.boxShadow = `9px 9px 0 ${BRAND.yellowDark}`;
+          }
+        }}
+      >
+        {kh ? "ចូល" : "JOIN ROOM"}
+        <ChevronRight size={22} />
+      </button>
+    </div>
+  );
+}
+
+// ─── GAME MODE CARD ───────────────────────────────────────────────────────────
+function GameCard({ mode, index, kh, khFont }: {
+  mode: typeof GAME_MODES[number];
   index: number;
   kh: boolean;
   khFont: React.CSSProperties;
 }) {
-  const IconComp = GAME_MODE_ICONS[index];
+  const [hovered, setHovered] = useState(false);
+  const [pressed, setPressed] = useState(false);
+
+  const shadow = pressed
+    ? "none"
+    : hovered
+      ? `9px 9px 0 ${mode.accentShadow}`
+      : `6px 6px 0 ${mode.accentShadow}`;
+
+  const transform = pressed
+    ? "translate(6px, 6px)"
+    : hovered
+      ? "translate(-3px, -3px)"
+      : "translate(0,0)";
 
   return (
     <Link
       href={mode.href}
-      className="group flex flex-col h-full bg-white border-[3px] border-black transition-all duration-150 hover:-translate-y-1 hover:-translate-x-1 active:translate-x-[8px] active:translate-y-[8px] outline-none"
-      style={{ boxShadow: "8px 8px 0 #000" }}
-      onPointerDown={(e) => { e.currentTarget.style.boxShadow = "0px 0px 0 #000"; }}
-      onPointerUp={(e) => { e.currentTarget.style.boxShadow = "8px 8px 0 #000"; }}
-      onPointerLeave={(e) => { e.currentTarget.style.boxShadow = "8px 8px 0 #000"; }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => { setHovered(false); setPressed(false); }}
+      onMouseDown={() => setPressed(true)}
+      onMouseUp={() => setPressed(false)}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        background: BRAND.white,
+        border: `3px solid ${BRAND.black}`,
+        boxShadow: shadow,
+        transform,
+        transition: "transform 0.1s cubic-bezier(0.16,1,0.3,1), box-shadow 0.1s cubic-bezier(0.16,1,0.3,1)",
+        textDecoration: "none",
+        color: BRAND.black,
+        position: "relative",
+        overflow: "hidden",
+        cursor: "pointer",
+        borderRadius: 0,
+      }}
     >
-      {/* Solid Color Header Row */}
-      <div 
-        className="flex justify-between items-start p-5 border-b-[3px] border-black transition-colors duration-200"
-        style={{ backgroundColor: mode.color }}
-      >
-        <div className="w-16 h-16 flex-shrink-0 transition-transform duration-200 group-hover:scale-110 group-hover:-rotate-6"
-             style={{ filter: "drop-shadow(4px 4px 0 rgba(0,0,0,0.5))" }}>
-          <IconComp />
-        </div>
+      {/* Top color bar with number + emoji */}
+      <div style={{
+        background: mode.color,
+        borderBottom: `3px solid ${BRAND.black}`,
+        padding: "20px 20px 16px",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
+        position: "relative",
+      }}>
+        {/* Big number */}
+        <span style={{
+          fontSize: 52,
+          fontWeight: 900,
+          lineHeight: 1,
+          color: mode.textOnColor === BRAND.black ? "rgba(0,0,0,0.2)" : "rgba(255,255,255,0.2)",
+          fontFamily: "monospace",
+          letterSpacing: -3,
+          userSelect: "none",
+        }}>
+          {mode.number}
+        </span>
 
-        {/* Brutalist Arcade Badges */}
-        <div className="flex flex-col items-end gap-2">
+        {/* Right side: tag + timer badge */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 6, alignItems: "flex-end" }}>
           {mode.tag && (
-            <span 
-              className="px-2.5 py-0.5 text-[10px] font-black tracking-widest text-white uppercase border-[2px] border-black"
-              style={{ backgroundColor: mode.tagColor, boxShadow: "2px 2px 0 #000" }}
-            >
+            <span style={{
+              background: BRAND.black,
+              color: mode.color,
+              fontSize: 9,
+              fontWeight: 900,
+              letterSpacing: 2,
+              padding: "3px 8px",
+              border: `2px solid ${BRAND.black}`,
+              boxShadow: `2px 2px 0 ${mode.accentShadow}`,
+            }}>
               {mode.tag}
             </span>
           )}
-          <span 
-            className="text-xs font-black px-2.5 py-1 bg-black text-white border-[2px] border-black tracking-wider transition-colors"
-            style={{ color: mode.color, boxShadow: "2px 2px 0 #000" }}
-          >
-            {mode.badge}
-          </span>
+          <div style={{
+            display: "flex",
+            gap: 6,
+          }}>
+            <span style={{
+              background: mode.textOnColor === BRAND.black ? "rgba(0,0,0,0.15)" : "rgba(255,255,255,0.15)",
+              color: mode.textOnColor,
+              fontSize: 11,
+              fontWeight: 900,
+              letterSpacing: 1,
+              padding: "4px 8px",
+              border: `2px solid ${mode.textOnColor === BRAND.black ? "rgba(0,0,0,0.2)" : "rgba(255,255,255,0.3)"}`,
+            }}>
+              {mode.badge}
+            </span>
+            <span style={{
+              background: BRAND.black,
+              color: BRAND.white,
+              fontSize: 11,
+              fontWeight: 900,
+              letterSpacing: 1,
+              padding: "4px 8px",
+              border: `2px solid ${BRAND.black}`,
+            }}>
+              ⏱ {mode.timer}
+            </span>
+          </div>
+        </div>
+
+        {/* Emoji big */}
+        <div style={{
+          position: "absolute",
+          bottom: 14,
+          left: 20,
+          fontSize: 30,
+          transform: hovered ? "scale(1.2) rotate(-5deg)" : "scale(1) rotate(0deg)",
+          transition: "transform 0.2s cubic-bezier(0.34,1.56,0.64,1)",
+          userSelect: "none",
+        }}>
+          {mode.emoji}
         </div>
       </div>
 
-      {/* Content */}
-      <div className="flex flex-col flex-1 p-5 bg-white group-hover:bg-zinc-50 transition-colors duration-200">
-        <h3 className="text-2xl font-black text-black tracking-tight mb-2" style={khFont}>
+      {/* Body */}
+      <div style={{
+        flex: 1,
+        padding: "16px 20px 20px",
+        display: "flex",
+        flexDirection: "column",
+        gap: 8,
+        background: hovered ? "#fafafa" : BRAND.white,
+        transition: "background 0.1s",
+      }}>
+        {/* Difficulty pill */}
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 6,
+        }}>
+          <span style={{
+            fontSize: 10,
+            fontWeight: 900,
+            letterSpacing: 2,
+            color: mode.diffColor,
+            border: `2px solid ${mode.diffColor}`,
+            padding: "2px 7px",
+          }}>
+            {mode.difficulty}
+          </span>
+        </div>
+
+        {/* Title */}
+        <h3 style={{
+          ...khFont,
+          fontSize: 22,
+          fontWeight: 900,
+          margin: 0,
+          letterSpacing: -0.5,
+          lineHeight: 1.1,
+          color: BRAND.black,
+        }}>
           {kh ? mode.titleKh : mode.title}
         </h3>
-        <p className="text-[15px] leading-relaxed text-zinc-700 font-bold mb-6 flex-1" style={khFont}>
+
+        {/* Description */}
+        <p style={{
+          ...khFont,
+          fontSize: 13,
+          fontWeight: 600,
+          color: "#52525b",
+          margin: 0,
+          lineHeight: 1.5,
+          flex: 1,
+        }}>
           {kh ? mode.descKh : mode.desc}
         </p>
 
-        {/* Arcade CTA Button */}
-        <div className="mt-auto">
-          <div
-            className="w-full flex items-center justify-center gap-2 px-6 py-3 font-black text-sm border-[3px] border-black bg-white group-hover:bg-black group-hover:text-white transition-colors duration-200"
-            style={{ boxShadow: "4px 4px 0 #000" }}
-          >
-            <span style={khFont}>{kh ? mode.ctaKh : mode.cta}</span>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="group-hover:translate-x-1 transition-transform duration-200">
-              <path d="M4 8h8M9 4l4 4-4 4" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
+        {/* CTA */}
+        <div style={{
+          marginTop: 12,
+          padding: "12px 20px",
+          background: hovered ? BRAND.black : BRAND.white,
+          color: hovered ? mode.color : BRAND.black,
+          border: `3px solid ${BRAND.black}`,
+          fontWeight: 900,
+          fontSize: 13,
+          letterSpacing: 2,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 8,
+          transition: "background 0.1s, color 0.1s",
+          boxShadow: `3px 3px 0 ${BRAND.black}`,
+          borderRadius: 0,
+        }}>
+          <span style={khFont}>{kh ? mode.ctaKh : mode.cta}</span>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M4 8h8M9 4l4 4-4 4" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </div>
       </div>
+
+      {/* Popular ribbon */}
+      {mode.popular && (
+        <div style={{
+          position: "absolute",
+          top: 18,
+          right: -28,
+          background: BRAND.red,
+          color: BRAND.white,
+          fontSize: 9,
+          fontWeight: 900,
+          letterSpacing: 2,
+          padding: "5px 36px",
+          transform: "rotate(45deg)",
+          border: `2px solid ${BRAND.black}`,
+          zIndex: 2,
+        }}>
+          POPULAR
+        </div>
+      )}
     </Link>
   );
 }
 
-function JoinLiveSection({ lang }: { lang: string }) {
+// ─── STAT TICKER ─────────────────────────────────────────────────────────────
+function StatTicker({ lang }: { lang: string }) {
   const kh = lang === "kh";
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
-  const router = useRouter();
-  const [code, setCode] = useState("");
-
-  function join() {
-    const c = code.trim().toUpperCase();
-    if (c.length === 6) router.push(`/play/${c}`);
-  }
-
+  const items = [
+    { val: "500+", label: kh ? "សំណួរ" : "Questions", color: BRAND.yellow },
+    { val: "6", label: kh ? "របៀបលេង" : "Game Modes", color: BRAND.red },
+    { val: "8", label: kh ? "ប្រភេទ" : "Categories", color: BRAND.blue },
+    { val: "LIVE", label: kh ? "ប្រកួតផ្ទាល់" : "Multiplayer", color: BRAND.green },
+  ];
   return (
-    <section className="border-y-[4px] border-black bg-zinc-900 py-12">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center gap-8 justify-between">
-          <div className="flex items-center gap-4">
-            <div className="w-16 h-16 bg-yellow-400 border-[3px] border-black flex items-center justify-center flex-shrink-0"
-              style={{ boxShadow: "6px 6px 0 #ca8a04" }}>
-              <Users size={28} className="text-black" />
-            </div>
-            <div>
-              <div className="text-white font-black text-2xl" style={khFont}>
-                {kh ? "ចូលហ្គេមផ្ទាល់" : "Join a Live Game"}
-              </div>
-              <div className="text-zinc-400 text-sm font-bold mt-1" style={khFont}>
-                {kh ? "បញ្ចូលលេខកូដ ៦ ខ្ទង់" : "Enter the 6-character room code from your teacher"}
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
-            <input
-              value={code}
-              onChange={(e) => setCode(e.target.value.toUpperCase().slice(0, 6))}
-              onKeyDown={(e) => e.key === "Enter" && join()}
-              placeholder="ABC123"
-              className="w-full sm:w-48 border-[3px] border-yellow-400 bg-black text-yellow-400 px-4 py-4 font-black text-2xl tracking-widest text-center focus:outline-none placeholder:text-zinc-700 transition-colors focus:bg-zinc-950"
-            />
-            <button
-              onClick={join}
-              disabled={code.length !== 6}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 bg-yellow-400 text-black font-black border-[3px] border-yellow-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:-translate-y-1 hover:-translate-x-1 active:scale-95 active:translate-x-0 active:translate-y-0"
-              style={{ boxShadow: code.length === 6 ? "6px 6px 0 #ca8a04" : "none", ...khFont }}
-            >
-              {kh ? "ចូល" : "Join"}
-              <ChevronRight size={24} />
-            </button>
-          </div>
+    <div style={{
+      borderTop: `4px solid ${BRAND.black}`,
+      borderBottom: `4px solid ${BRAND.black}`,
+      background: BRAND.black,
+      display: "flex",
+      overflow: "hidden",
+    }}>
+      {items.map((s, i) => (
+        <div key={i} style={{
+          flex: 1,
+          borderRight: i < items.length - 1 ? `3px solid rgba(255,255,255,0.08)` : "none",
+          padding: "18px 24px",
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+          cursor: "default",
+        }}>
+          <span style={{ fontSize: 28, fontWeight: 900, color: s.color, lineHeight: 1, fontFamily: "monospace" }}>
+            {s.val}
+          </span>
+          <span style={{ ...khFont, fontSize: 10, fontWeight: 700, color: "rgba(255,255,255,0.45)", letterSpacing: 2, textTransform: "uppercase" }}>
+            {s.label}
+          </span>
         </div>
-      </div>
-    </section>
+      ))}
+    </div>
   );
 }
 
+// ─── MAIN PAGE ────────────────────────────────────────────────────────────────
 export default function PlayPage() {
   const { lang } = useLang();
   const kh = lang === "kh";
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
+  // Animated counter on first paint
+  const [tick, setTick] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setTick((n) => (n + 1) % 3), 800);
+    return () => clearInterval(t);
+  }, []);
+
+  const liveDots = ["●", "●●", "●●●"][tick];
+
   return (
-    <div className="min-h-screen bg-white text-black font-sans selection:bg-yellow-400 selection:text-black animate-fade-in-up">
-      
-      {/* Hero Section */}
-      <section
-        className="relative overflow-hidden border-b-[4px] border-black bg-[#111111]"
-      >
-        <div className="absolute inset-0 opacity-20 pointer-events-none"
-          style={{
-            backgroundImage: "linear-gradient(rgba(255,255,255,0.2) 2px, transparent 2px), linear-gradient(90deg, rgba(255,255,255,0.2) 2px, transparent 2px)",
-            backgroundSize: "60px 60px",
+    <div style={{
+      minHeight: "100vh",
+      background: BRAND.white,
+      color: BRAND.black,
+      fontFamily: "system-ui, -apple-system, sans-serif",
+      WebkitFontSmoothing: "antialiased",
+    }}>
+
+      {/* ═══ SECTION 1: JOIN A LIVE GAME — FULL BLEED HERO ═══════════════════ */}
+      <section style={{
+        background: "#0a0a0a",
+        position: "relative",
+        overflow: "hidden",
+        borderBottom: `4px solid ${BRAND.yellow}`,
+      }}>
+        {/* Grid pattern */}
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "linear-gradient(rgba(234,179,8,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(234,179,8,0.06) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+          pointerEvents: "none",
+        }} />
+
+        {/* Live indicator stripe */}
+        <div style={{
+          background: BRAND.yellow,
+          padding: "8px 0",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 12,
+          borderBottom: `3px solid ${BRAND.yellowDark}`,
+          position: "relative",
+          zIndex: 1,
+        }}>
+          <span style={{
+            fontSize: 11,
+            fontWeight: 900,
+            letterSpacing: 4,
+            color: BRAND.black,
+            ...khFont
+          }}>
+            {liveDots} {kh ? "ហ្គេមផ្ទាល់កំពុងដំណើរការ" : "LIVE GAMES RUNNING NOW"} {liveDots}
+          </span>
+        </div>
+
+        <div style={{
+          maxWidth: 1200,
+          margin: "0 auto",
+          padding: "56px 32px 64px",
+          position: "relative",
+          zIndex: 1,
+        }}>
+          {/* Two-col layout */}
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 48,
+            alignItems: "center",
           }}
-        />
-        <div className="absolute top-0 left-0 right-0 h-1.5 bg-yellow-400" />
-        
-        <div className="relative max-w-7xl mx-auto px-6 py-20 md:py-32">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10">
-            <div className="flex flex-col gap-6 max-w-2xl">
-              <div className="inline-flex items-center gap-2 bg-yellow-400 text-black text-xs font-black tracking-widest uppercase px-4 py-2 w-fit border-2 border-yellow-400 shadow-[4px_4px_0_#ca8a04]">
-                <span className="w-2.5 h-2.5 bg-black rounded-full" />
-                {kh ? "មជ្ឈមណ្ឌលហ្គេម" : "Game Center"}
+            className="play-hero-grid"
+          >
+            {/* Left: Text */}
+            <div>
+              <div style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                background: BRAND.yellow,
+                color: BRAND.black,
+                fontSize: 10,
+                fontWeight: 900,
+                letterSpacing: 3,
+                padding: "6px 14px",
+                border: `2px solid ${BRAND.yellowDark}`,
+                boxShadow: `4px 4px 0 ${BRAND.yellowDark}`,
+                marginBottom: 20,
+                ...khFont,
+              }}>
+                <Users size={13} />
+                {kh ? "ចូលហ្គេមផ្ទាល់" : "JOIN A LIVE GAME"}
               </div>
-              
-              <h1 className="text-6xl md:text-[6rem] font-black text-white leading-none tracking-tight" style={khFont}>
-                {kh ? "ប្រកួត" : "PLAY"}<span className="text-yellow-400">.</span>
+
+              <h1 style={{
+                ...khFont,
+                fontSize: "clamp(2.8rem, 5vw, 4.5rem)",
+                fontWeight: 900,
+                color: BRAND.white,
+                lineHeight: 1,
+                margin: "0 0 16px",
+                letterSpacing: -2,
+              }}>
+                {kh ? "ចូលហ្គេម" : "Got a"}{" "}
+                <span style={{ color: BRAND.yellow }}>
+                  {kh ? "ផ្ទាល់" : "Room Code?"}
+                </span>
               </h1>
-              
-              <p className="text-lg md:text-xl text-zinc-300 max-w-lg leading-relaxed font-bold" style={khFont}>
-                {kh ? "ជ្រើសរើសរបៀបលេង ហើយសាកល្បងចំណេះដឹងរបស់អ្នក" : "Choose a game mode, build your streak, and sharpen your driving theory knowledge."}
+
+              <p style={{
+                ...khFont,
+                fontSize: 16,
+                fontWeight: 600,
+                color: "rgba(255,255,255,0.55)",
+                margin: "0 0 32px",
+                lineHeight: 1.6,
+                maxWidth: 380,
+              }}>
+                {kh
+                  ? "បញ្ចូលលេខកូដ ៦ ខ្ទង់ពីគ្រូបង្រៀន ហើយចូលប្រកួតភ្លាមៗ"
+                  : "Enter the 6-character code from your teacher and jump straight into the action."}
               </p>
-              
-              <div className="flex flex-wrap gap-4 mt-4">
-                <Link href="/leaderboard"
-                  className="flex items-center gap-2 px-8 py-4 bg-yellow-400 text-black font-black border-[3px] border-yellow-400 transition-all hover:-translate-y-1 hover:-translate-x-1 active:scale-95 active:translate-x-0 active:translate-y-0"
-                  style={{ boxShadow: "6px 6px 0 #ca8a04", ...khFont }}>
-                  <Target size={20} />
-                  {kh ? "តារាងពិន្ទុ" : "Leaderboard"}
-                </Link>
-                <Link href="/learn"
-                  className="flex items-center gap-2 px-8 py-4 bg-transparent text-white font-black border-[3px] border-white/50 hover:border-white transition-all hover:-translate-y-1 hover:-translate-x-1 active:scale-95 active:translate-x-0 active:translate-y-0"
-                  style={{ boxShadow: "6px 6px 0 rgba(255,255,255,0.2)", ...khFont }}>
-                  <BookOpenCheck size={20} />
-                  {kh ? "រៀនសិន" : "Study First"}
-                </Link>
+
+              {/* Mini stats row */}
+              <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
+                {[
+                  { icon: "🏆", text: kh ? "ប្រកួតផ្ទាល់" : "Real-time battle" },
+                  { icon: "👥", text: kh ? "ក្រុម" : "Multiplayer" },
+                  { icon: "⚡", text: kh ? "ភ្លាមៗ" : "Instant join" },
+                ].map((s, i) => (
+                  <div key={i} style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 6,
+                    color: "rgba(255,255,255,0.4)",
+                    fontSize: 12,
+                    fontWeight: 700,
+                    ...khFont,
+                  }}>
+                    <span>{s.icon}</span>
+                    <span>{s.text}</span>
+                  </div>
+                ))}
               </div>
             </div>
 
-            <div className="hidden md:flex flex-col items-center justify-center w-48 h-48 border-[4px] border-yellow-400 bg-yellow-400/10 flex-shrink-0 transition-transform duration-300 hover:rotate-3"
-              style={{ boxShadow: "12px 12px 0 #ca8a04" }}>
-              <span className="text-6xl font-black text-yellow-400">6</span>
-              <span className="text-sm font-black text-white tracking-widest uppercase mt-2">
-                {kh ? "របៀបលេង" : "Modes"}
-              </span>
+            {/* Right: OTP Input */}
+            <div style={{
+              background: "rgba(255,255,255,0.03)",
+              border: `3px solid rgba(255,255,255,0.1)`,
+              padding: "40px 32px",
+              boxShadow: `8px 8px 0 rgba(234,179,8,0.15)`,
+            }}>
+              <div style={{
+                ...khFont,
+                fontSize: 11,
+                fontWeight: 900,
+                letterSpacing: 3,
+                color: "rgba(255,255,255,0.3)",
+                textAlign: "center",
+                marginBottom: 24,
+              }}>
+                {kh ? "បញ្ចូលលេខកូដ" : "ENTER ROOM CODE"}
+              </div>
+
+              <OtpCodeInput lang={lang} />
+
+              <div style={{
+                marginTop: 20,
+                textAlign: "center",
+                fontSize: 11,
+                fontWeight: 600,
+                color: "rgba(255,255,255,0.2)",
+                ...khFont,
+              }}>
+                {kh ? "លេខកូដ ៦ ខ្ទង់ ជាអក្សរ ឬ លេខ" : "6-character alphanumeric code"}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <div className="border-b-[4px] border-black bg-white py-10">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {STATS.map(({ value, labelEn, labelKh, color }) => (
-              <div key={labelEn} className="border-[3px] border-black p-6 flex flex-col gap-1 transition-transform duration-200 hover:-translate-y-1"
-                style={{ boxShadow: `6px 6px 0 ${color}` }}>
-                <span className="text-4xl font-black" style={{ color }}>{value}</span>
-                <span className="text-sm font-black text-black uppercase tracking-wider" style={khFont}>{kh ? labelKh : labelEn}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* ═══ STATS TICKER ════════════════════════════════════════════════════ */}
+      <StatTicker lang={lang} />
 
-      {/* Game Modes Grid */}
-      <section className="py-20 bg-zinc-50" style={{ backgroundImage: "radial-gradient(#d4d4d8 2px, transparent 2px)", backgroundSize: "32px 32px" }}>
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="mb-12">
-            <div className="inline-block bg-black text-white text-sm font-black tracking-widest uppercase px-4 py-2 mb-4 border-2 border-black" style={khFont}>
-              {kh ? "ជ្រើសរើសរបៀប" : "Choose Mode"}
-            </div>
-            <h2 className="text-5xl md:text-6xl font-black text-black" style={khFont}>
-              {kh ? "របៀបលេង" : "Game "}
-              <span className="underline decoration-yellow-400 decoration-8 underline-offset-4">
-                {kh ? "" : "Modes"}
-              </span>
+      {/* ═══ SECTION 2: PICK YOUR MODE ════════════════════════════════════════ */}
+      <section style={{
+        background: BRAND.white,
+        backgroundImage: "radial-gradient(#d4d4d8 1.5px, transparent 1.5px)",
+        backgroundSize: "28px 28px",
+        padding: "0",
+      }}>
+
+        {/* Section header — brutalist stamp */}
+        <div style={{
+          background: BRAND.black,
+          padding: "24px 32px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: 16,
+        }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+            <span style={{
+              ...khFont,
+              fontSize: 10,
+              fontWeight: 900,
+              letterSpacing: 4,
+              color: BRAND.yellow,
+              textTransform: "uppercase",
+            }}>
+              {kh ? "ជ្រើសរើស" : "STEP 2 — CHOOSE YOUR WEAPON"}
+            </span>
+            <h2 style={{
+              ...khFont,
+              fontSize: "clamp(1.8rem, 3vw, 2.8rem)",
+              fontWeight: 900,
+              color: BRAND.white,
+              margin: 0,
+              letterSpacing: -1,
+            }}>
+              {kh ? "ជ្រើសរបៀបលេង" : "Pick a Game Mode"}
             </h2>
           </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {GAME_MODES.map((mode, index) => (
-              <GameModeCard key={mode.id} mode={mode} index={index} kh={kh} khFont={khFont} />
-            ))}
-          </div>
-        </div>
-      </section>
 
-      <JoinLiveSection lang={lang} />
-
-      {/* Final CTA */}
-      <section className="bg-black border-t-[4px] border-yellow-400 py-20">
-        <div className="max-w-4xl mx-auto px-6 text-center flex flex-col items-center gap-6">
-          <h2 className="text-5xl md:text-6xl font-black text-white" style={khFont}>
-            {kh ? "ត្រៀមខ្លួនហើយ?" : "Ready to test yourself?"}
-          </h2>
-          <p className="text-zinc-400 text-xl font-bold" style={khFont}>
-            {kh ? "រៀន — ប្រកួត — ការពារជីវិត" : "Study the theory, play the games, pass the exam."}
-          </p>
-          <div className="flex flex-wrap gap-6 justify-center mt-6">
-            <Link href="/learn"
-              className="px-10 py-5 bg-yellow-400 text-black font-black border-[3px] border-yellow-400 text-xl transition-all hover:-translate-y-1 hover:-translate-x-1 active:scale-95 active:translate-x-0 active:translate-y-0"
-              style={{ boxShadow: "8px 8px 0 #ca8a04", ...khFont }}>
-              {kh ? "រៀនឥឡូវ →" : "Start Learning →"}
+          {/* Action pills */}
+          <div style={{ display: "flex", gap: 12 }}>
+            <Link href="/leaderboard" style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "10px 20px",
+              background: "transparent",
+              color: BRAND.white,
+              border: `2px solid rgba(255,255,255,0.2)`,
+              fontWeight: 700,
+              fontSize: 12,
+              letterSpacing: 1,
+              textDecoration: "none",
+              transition: "all 0.15s",
+              ...khFont,
+            }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.1)";
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.5)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.2)";
+              }}
+            >
+              <Trophy size={14} />
+              {kh ? "តារាងពិន្ទុ" : "Leaderboard"}
+            </Link>
+            <Link href="/learn" style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              padding: "10px 20px",
+              background: BRAND.yellow,
+              color: BRAND.black,
+              border: `2px solid ${BRAND.yellow}`,
+              fontWeight: 900,
+              fontSize: 12,
+              letterSpacing: 1,
+              textDecoration: "none",
+              transition: "all 0.15s",
+              boxShadow: `4px 4px 0 ${BRAND.yellowDark}`,
+              ...khFont,
+            }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.transform = "translate(-2px,-2px)";
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow = `6px 6px 0 ${BRAND.yellowDark}`;
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.transform = "translate(0,0)";
+                (e.currentTarget as HTMLAnchorElement).style.boxShadow = `4px 4px 0 ${BRAND.yellowDark}`;
+              }}
+            >
+              <BookOpenCheck size={14} />
+              {kh ? "រៀនសិន" : "Study First"}
             </Link>
           </div>
         </div>
+
+        {/* Cards grid */}
+        <div style={{
+          maxWidth: 1200,
+          margin: "0 auto",
+          padding: "40px 32px 64px",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+          gap: 24,
+        }}>
+          {GAME_MODES.map((mode, index) => (
+            <GameCard key={mode.id} mode={mode} index={index} kh={kh} khFont={khFont} />
+          ))}
+        </div>
+
+        {/* Bottom band: psychological push */}
+        <div style={{
+          borderTop: `4px solid ${BRAND.black}`,
+          background: BRAND.yellow,
+          padding: "20px 32px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: 16,
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <Flame size={22} color={BRAND.black} />
+            <span style={{
+              ...khFont,
+              fontSize: 14,
+              fontWeight: 900,
+              color: BRAND.black,
+              letterSpacing: 0.5,
+            }}>
+              {kh
+                ? "ចាប់ផ្តើមជាមួយ Quick Quiz — ២ នាទី គ្រប់គ្រាន់"
+                : "Start with Quick Quiz — takes 2 minutes. No account needed."}
+            </span>
+          </div>
+          <Link href="/play/solo?mode=quick-quiz" style={{
+            ...khFont,
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            padding: "12px 28px",
+            background: BRAND.black,
+            color: BRAND.yellow,
+            border: `3px solid ${BRAND.black}`,
+            fontWeight: 900,
+            fontSize: 14,
+            letterSpacing: 2,
+            textDecoration: "none",
+            boxShadow: `5px 5px 0 ${BRAND.yellowDark}`,
+            transition: "all 0.1s",
+          }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.transform = "translate(-3px,-3px)";
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow = `8px 8px 0 ${BRAND.yellowDark}`;
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.transform = "translate(0,0)";
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow = `5px 5px 0 ${BRAND.yellowDark}`;
+            }}
+          >
+            <Play size={16} fill="currentColor" />
+            {kh ? "ចាប់ផ្តើមឥឡូវ" : "PLAY NOW"}
+          </Link>
+        </div>
       </section>
+
+      {/* ═══ FINAL CTA ════════════════════════════════════════════════════════ */}
+      <section style={{
+        background: BRAND.black,
+        borderTop: `4px solid ${BRAND.yellow}`,
+        padding: "60px 32px",
+        textAlign: "center",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 24,
+      }}>
+        <h2 style={{
+          ...khFont,
+          fontSize: "clamp(2rem, 4vw, 3.5rem)",
+          fontWeight: 900,
+          color: BRAND.white,
+          margin: 0,
+          letterSpacing: -1,
+        }}>
+          {kh ? "ត្រៀមខ្លួនហើយ?" : "Ready to prove yourself?"}
+        </h2>
+        <p style={{
+          ...khFont,
+          fontSize: 16,
+          fontWeight: 600,
+          color: "rgba(255,255,255,0.45)",
+          margin: 0,
+          maxWidth: 500,
+          lineHeight: 1.6,
+        }}>
+          {kh ? "រៀន — ប្រកួត — ការពារជីវិត" : "Study the theory, play the games, ace the real exam."}
+        </p>
+        <Link href="/learn" style={{
+          ...khFont,
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 10,
+          padding: "16px 40px",
+          background: BRAND.yellow,
+          color: BRAND.black,
+          border: `3px solid ${BRAND.yellow}`,
+          fontWeight: 900,
+          fontSize: 16,
+          letterSpacing: 2,
+          textDecoration: "none",
+          boxShadow: `8px 8px 0 ${BRAND.yellowDark}`,
+          transition: "all 0.1s",
+        }}
+          onMouseEnter={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.transform = "translate(-4px,-4px)";
+            (e.currentTarget as HTMLAnchorElement).style.boxShadow = `12px 12px 0 ${BRAND.yellowDark}`;
+          }}
+          onMouseLeave={(e) => {
+            (e.currentTarget as HTMLAnchorElement).style.transform = "translate(0,0)";
+            (e.currentTarget as HTMLAnchorElement).style.boxShadow = `8px 8px 0 ${BRAND.yellowDark}`;
+          }}
+        >
+          {kh ? "រៀនឥឡូវ →" : "START LEARNING →"}
+        </Link>
+      </section>
+
+      {/* Responsive grid override */}
+      <style>{`
+        @media (max-width: 768px) {
+          .play-hero-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
