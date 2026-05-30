@@ -17,6 +17,7 @@ import {
 import { UpgradeButton } from "@/components/pricing/upgrade-button";
 import { UpgradeModal } from "@/components/pricing/upgrade-modal";
 import { Lock } from "lucide-react";
+import QRCode from "react-qr-code";
 
 // ── Answer color config ────────────────────────────────────────────────────
 const ANSWER_STYLES = [
@@ -167,6 +168,17 @@ export default function HostPage() {
 
   const [phase, setPhase] = useState<HostPhase>({ name: "setup" });
   const [isFullscreen, setIsFullscreen] = useState(false);
+
+  const lobbyCode = phase.name === "lobby" ? phase.code : "";
+  const [joinUrl, setJoinUrl] = useState<string>("");
+
+  useEffect(() => {
+    if (lobbyCode) {
+      setJoinUrl(`${window.location.origin}/play/${lobbyCode}`);
+    } else {
+      setJoinUrl("");
+    }
+  }, [lobbyCode]);
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -1068,27 +1080,52 @@ export default function HostPage() {
           )}
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-            {/* ── Room Code (big) ── */}
+            {/* ── Room Code (big) & QR Code ── */}
             <div className="lg:col-span-2">
-              <div className="bg-yellow-400 border-4 border-black p-8 text-center relative shadow-[6px_6px_0_#000]" style={{ borderRadius: "0px" }}>
-                <div className="relative z-10">
-                  <div className="text-xs font-black uppercase tracking-widest mb-3 text-black">
-                    {kh ? "លេខកូដបន្ទប់" : "Room Code"}
+              <div className="bg-yellow-400 border-4 border-black p-8 relative shadow-[6px_6px_0_#000]" style={{ borderRadius: "0px" }}>
+                <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                  {/* Left Column: Room Code Details */}
+                  <div className="md:col-span-7 text-center md:text-left">
+                    <div className="text-xs font-black uppercase tracking-widest mb-3 text-black">
+                      {kh ? "លេខកូដបន្ទប់" : "Room Code"}
+                    </div>
+                    <div className="text-6xl md:text-7xl font-black tracking-[0.15em] mb-2 text-black">
+                      {phase.code}
+                    </div>
+                    <div className="text-sm mb-6 text-black/85 font-bold">
+                      {kh ? "ចូលតាម:" : "Join at:"} <span className="text-black font-black underline">kesararamwithdigital.tech/play/{phase.code}</span>
+                    </div>
+                    <button
+                      onClick={copyCode}
+                      className={`flex items-center gap-2 px-5 py-2.5 border-2 border-black font-black text-sm mx-auto md:mx-0 transition-all duration-100 shadow-[2px_2px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 ${copied ? "bg-green-400 text-black" : "bg-white text-black"}`}
+                      style={{ borderRadius: "0px" }}
+                    >
+                      {copied ? <Check size={16} /> : <Copy size={16} />}
+                      {copied ? (kh ? "បានចម្លង!" : "Copied!") : (kh ? "ចម្លងលេខកូដ" : "Copy Code")}
+                    </button>
                   </div>
-                  <div className="text-7xl font-black tracking-[0.15em] mb-2 text-black">
-                    {phase.code}
+
+                  {/* Right Column: QR Code scanning */}
+                  <div className="md:col-span-5 flex flex-col items-center justify-center p-4 bg-white border-2 border-black shadow-[3px_3px_0_#000]" style={{ borderRadius: "0px" }}>
+                    <div className="text-[10px] font-black uppercase tracking-widest mb-3 text-black text-center" style={khFont}>
+                      {kh ? "ស្កេនដើម្បីចូលរួម" : "Scan to Join Q&A"}
+                    </div>
+                    <div className="p-2 bg-white flex items-center justify-center">
+                      {joinUrl ? (
+                        <QRCode
+                          value={joinUrl}
+                          size={130}
+                          style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                          viewBox={`0 0 256 256`}
+                        />
+                      ) : (
+                        <div className="w-[130px] h-[130px] bg-zinc-100 animate-pulse border border-zinc-200" />
+                      )}
+                    </div>
+                    <div className="text-[9px] font-bold text-zinc-500 mt-2 text-center" style={khFont}>
+                      {kh ? "ប្រើកាមេរ៉ាទូរស័ព្ទរបស់អ្នក" : "Use your mobile camera"}
+                    </div>
                   </div>
-                  <div className="text-sm mb-6 text-black/85 font-bold">
-                    {kh ? "ចូលតាម:" : "Join at:"} <span className="text-black font-black underline">kesararamwithdigital.tech/play/{phase.code}</span>
-                  </div>
-                  <button
-                    onClick={copyCode}
-                    className={`flex items-center gap-2 px-5 py-2.5 border-2 border-black font-black text-sm mx-auto transition-all duration-100 shadow-[2px_2px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 ${copied ? "bg-green-400 text-black" : "bg-white text-black"}`}
-                    style={{ borderRadius: "0px" }}
-                  >
-                    {copied ? <Check size={16} /> : <Copy size={16} />}
-                    {copied ? (kh ? "បានចម្លង!" : "Copied!") : (kh ? "ចម្លងលេខកូដ" : "Copy Code")}
-                  </button>
                 </div>
               </div>
             </div>
