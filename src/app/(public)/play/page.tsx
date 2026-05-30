@@ -297,7 +297,129 @@ function OtpCodeInput({ lang }: { lang: string }) {
   );
 }
 
-// ─── GAME MODE CARD (Clean white, colored accent) ─────────────────────────────
+// ─── OTP INPUT (LIGHT BG version) ────────────────────────────────────────────────────
+function OtpCodeInputLight({ lang }: { lang: string }) {
+  const kh = lang === "kh";
+  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const router = useRouter();
+  const [cells, setCells] = useState(["", "", "", "", "", ""]);
+  const refs = useRef<(HTMLInputElement | null)[]>([]);
+  const code = cells.join("");
+
+  function handleChange(idx: number, val: string) {
+    const ch = val.replace(/[^a-zA-Z0-9]/g, "").toUpperCase().slice(-1);
+    const next = [...cells];
+    next[idx] = ch;
+    setCells(next);
+    if (ch && idx < 5) refs.current[idx + 1]?.focus();
+  }
+  function handleKeyDown(idx: number, e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Backspace" && !cells[idx] && idx > 0) refs.current[idx - 1]?.focus();
+    if (e.key === "Enter" && code.length === 6) router.push(`/play/${code}`);
+  }
+  function handlePaste(e: React.ClipboardEvent) {
+    e.preventDefault();
+    const pasted = e.clipboardData.getData("text").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 6);
+    const next = ["", "", "", "", "", ""];
+    for (let i = 0; i < pasted.length; i++) next[i] = pasted[i];
+    setCells(next);
+    refs.current[Math.min(pasted.length, 5)]?.focus();
+  }
+  const filled = cells.filter(Boolean).length;
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
+      <div style={{ display: "flex", gap: 8 }}>
+        {cells.map((cell, i) => (
+          <input
+            key={i}
+            ref={(el) => { refs.current[i] = el; }}
+            value={cell}
+            maxLength={1}
+            onChange={(e) => handleChange(i, e.target.value)}
+            onKeyDown={(e) => handleKeyDown(i, e)}
+            onPaste={handlePaste}
+            style={{
+              width: 52,
+              height: 64,
+              border: `3px solid ${cell ? BRAND.yellow : "#d4d4d8"}`,
+              background: cell ? "#fefce8" : BRAND.white,
+              color: cell ? "#92400e" : "#a1a1aa",
+              fontSize: 26,
+              fontWeight: 900,
+              fontFamily: "monospace",
+              textAlign: "center",
+              outline: "none",
+              cursor: "text",
+              transition: "border-color 0.1s, background 0.1s",
+              caretColor: BRAND.yellow,
+              letterSpacing: 2,
+              borderRadius: 0,
+              boxShadow: cell ? `3px 3px 0 ${BRAND.yellowDark}` : `2px 2px 0 #d4d4d8`,
+            }}
+            onFocus={(e) => {
+              e.target.style.borderColor = BRAND.yellow;
+              e.target.style.boxShadow = `3px 3px 0 ${BRAND.yellowDark}`;
+            }}
+            onBlur={(e) => {
+              if (!e.target.value) {
+                e.target.style.borderColor = "#d4d4d8";
+                e.target.style.boxShadow = "2px 2px 0 #d4d4d8";
+              }
+            }}
+          />
+        ))}
+      </div>
+      <div style={{ width: "100%", maxWidth: 390, height: 4, background: "#e4e4e7", position: "relative" }}>
+        <div style={{
+          position: "absolute", left: 0, top: 0, height: "100%",
+          width: `${(filled / 6) * 100}%`,
+          background: filled === 6 ? BRAND.green : BRAND.yellow,
+          transition: "width 0.15s ease, background 0.2s",
+        }} />
+      </div>
+      <button
+        onClick={() => { if (code.length === 6) router.push(`/play/${code}`); }}
+        disabled={code.length !== 6}
+        style={{
+          ...khFont,
+          width: "100%",
+          maxWidth: 390,
+          height: 58,
+          background: code.length === 6 ? BRAND.yellow : "#f4f4f5",
+          color: code.length === 6 ? BRAND.black : "#a1a1aa",
+          border: `3px solid ${code.length === 6 ? BRAND.yellowDark : "#d4d4d8"}`,
+          fontWeight: 900,
+          fontSize: 17,
+          letterSpacing: 3,
+          cursor: code.length === 6 ? "pointer" : "not-allowed",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 10,
+          transition: "all 0.15s",
+          boxShadow: code.length === 6 ? `5px 5px 0 ${BRAND.yellowDark}` : "none",
+          borderRadius: 0,
+        }}
+        onMouseEnter={(e) => {
+          if (code.length === 6) {
+            (e.currentTarget as HTMLButtonElement).style.transform = "translate(-3px,-3px)";
+            (e.currentTarget as HTMLButtonElement).style.boxShadow = `8px 8px 0 ${BRAND.yellowDark}`;
+          }
+        }}
+        onMouseLeave={(e) => {
+          (e.currentTarget as HTMLButtonElement).style.transform = "translate(0,0)";
+          (e.currentTarget as HTMLButtonElement).style.boxShadow = code.length === 6 ? `5px 5px 0 ${BRAND.yellowDark}` : "none";
+        }}
+      >
+        {kh ? "ចូល" : "JOIN ROOM"}
+        <ChevronRight size={22} />
+      </button>
+    </div>
+  );
+}
+
+// ─── GAME MODE CARD (full color bg) ──────────────────────────────────────────────
 function GameCard({ mode, index, kh, khFont }: {
   mode: typeof GAME_MODES[number];
   index: number;
@@ -307,16 +429,22 @@ function GameCard({ mode, index, kh, khFont }: {
   const [hovered, setHovered] = useState(false);
   const [pressed, setPressed] = useState(false);
 
+  // Text color: black on yellow, white on everything else
+  const onCard = mode.textOnColor;
+  const onCardSubtle = mode.textOnColor === BRAND.black
+    ? "rgba(0,0,0,0.55)"
+    : "rgba(255,255,255,0.65)";
+
   const shadow = pressed
-    ? "2px 2px 0 #000"
+    ? `2px 2px 0 ${mode.accentShadow}`
     : hovered
-      ? `8px 8px 0 ${mode.accentShadow}`
-      : `5px 5px 0 #000`;
+      ? `10px 10px 0 ${mode.accentShadow}`
+      : `6px 6px 0 ${mode.accentShadow}`;
 
   const transform = pressed
-    ? "translate(3px, 3px)"
+    ? "translate(4px, 4px)"
     : hovered
-      ? "translate(-3px, -3px)"
+      ? "translate(-4px, -4px)"
       : "translate(0,0)";
 
   return (
@@ -329,69 +457,65 @@ function GameCard({ mode, index, kh, khFont }: {
       style={{
         display: "flex",
         flexDirection: "column",
-        background: BRAND.white,
+        background: mode.color,
         border: `3px solid ${BRAND.black}`,
         boxShadow: shadow,
         transform,
         transition: "transform 0.12s cubic-bezier(0.16,1,0.3,1), box-shadow 0.12s cubic-bezier(0.16,1,0.3,1)",
         textDecoration: "none",
-        color: BRAND.black,
+        color: onCard,
         position: "relative",
         overflow: "hidden",
         cursor: "pointer",
         borderRadius: 0,
       }}
     >
-      {/* Colored top stripe */}
-      <div style={{ height: 6, background: mode.color, flexShrink: 0 }} />
-
-      {/* Card Header: icon box + number + badges */}
+      {/* Card Header: icon box + number + badges — on card color */}
       <div style={{
         padding: "20px 20px 16px",
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "space-between",
-        borderBottom: `2px solid #e4e4e7`,
+        borderBottom: `2px solid ${mode.textOnColor === BRAND.black ? "rgba(0,0,0,0.15)" : "rgba(255,255,255,0.2)"}`,
         gap: 12,
       }}>
-        {/* Left: icon in colored square */}
+        {/* Icon in white square */}
         <div style={{
           width: 56,
           height: 56,
-          background: mode.color,
+          background: BRAND.white,
           border: `3px solid ${BRAND.black}`,
           boxShadow: `3px 3px 0 ${mode.accentShadow}`,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           flexShrink: 0,
-          color: mode.textOnColor,
-          transform: hovered ? "rotate(-6deg) scale(1.06)" : "rotate(0deg) scale(1)",
-          transition: "transform 0.2s cubic-bezier(0.34,1.56,0.64,1)",
+          color: mode.color,
+          transform: hovered ? "rotate(-8deg) scale(1.08)" : "rotate(0deg) scale(1)",
+          transition: "transform 0.22s cubic-bezier(0.34,1.56,0.64,1)",
         }}>
           <mode.Icon size={26} strokeWidth={2.5} />
         </div>
 
-        {/* Right: number + badges */}
+        {/* Right: ghost number + badges */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 6, flex: 1 }}>
-          {/* Ghost number */}
           <span style={{
-            fontSize: 42,
+            fontSize: 44,
             fontWeight: 900,
             lineHeight: 1,
-            color: "#e4e4e7",
+            color: mode.textOnColor === BRAND.black ? "rgba(0,0,0,0.15)" : "rgba(255,255,255,0.2)",
             fontFamily: "monospace",
             letterSpacing: -2,
             userSelect: "none",
           }}>
             {mode.number}
           </span>
-          {/* Badge row */}
+          {/* badges */}
           <div style={{ display: "flex", gap: 5, flexWrap: "wrap", justifyContent: "flex-end" }}>
             {mode.tag && (
               <span style={{
-                background: mode.color,
-                color: mode.textOnColor,
+                background: BRAND.black,
+                color: mode.color,
                 fontSize: 9,
                 fontWeight: 900,
                 letterSpacing: 2,
@@ -402,27 +526,24 @@ function GameCard({ mode, index, kh, khFont }: {
               </span>
             )}
             <span style={{
-              background: "#f4f4f5",
-              color: "#3f3f46",
+              background: BRAND.black,
+              color: BRAND.white,
               fontSize: 10,
               fontWeight: 800,
               letterSpacing: 1,
               padding: "3px 8px",
-              border: `2px solid #d4d4d8`,
-              display: "flex",
-              alignItems: "center",
-              gap: 3,
+              border: `2px solid ${BRAND.black}`,
             }}>
               {mode.badge}
             </span>
             <span style={{
-              background: "#f4f4f5",
-              color: "#3f3f46",
+              background: BRAND.black,
+              color: BRAND.white,
               fontSize: 10,
               fontWeight: 800,
               letterSpacing: 1,
               padding: "3px 8px",
-              border: `2px solid #d4d4d8`,
+              border: `2px solid ${BRAND.black}`,
               display: "flex",
               alignItems: "center",
               gap: 3,
@@ -434,7 +555,7 @@ function GameCard({ mode, index, kh, khFont }: {
         </div>
       </div>
 
-      {/* Body */}
+      {/* Body — full card color */}
       <div style={{
         flex: 1,
         padding: "16px 20px 20px",
@@ -442,16 +563,17 @@ function GameCard({ mode, index, kh, khFont }: {
         flexDirection: "column",
         gap: 10,
       }}>
-        {/* Difficulty */}
+        {/* Difficulty badge — white pill */}
         <span style={{
           fontSize: 9,
           fontWeight: 900,
           letterSpacing: 3,
           color: mode.diffColor,
-          border: `2px solid ${mode.diffColor}`,
-          padding: "2px 8px",
+          background: BRAND.white,
+          border: `2px solid ${BRAND.black}`,
+          padding: "3px 10px",
           alignSelf: "flex-start",
-          background: `${mode.diffColor}18`,
+          boxShadow: `2px 2px 0 ${BRAND.black}`,
         }}>
           {mode.difficulty}
         </span>
@@ -464,7 +586,8 @@ function GameCard({ mode, index, kh, khFont }: {
           margin: 0,
           letterSpacing: -0.5,
           lineHeight: 1.15,
-          color: "#09090b",
+          color: onCard,
+          textShadow: mode.textOnColor === BRAND.black ? "none" : "0 1px 2px rgba(0,0,0,0.2)",
         }}>
           {kh ? mode.titleKh : mode.title}
         </h3>
@@ -473,8 +596,8 @@ function GameCard({ mode, index, kh, khFont }: {
         <p style={{
           ...khFont,
           fontSize: 13,
-          fontWeight: 500,
-          color: "#71717a",
+          fontWeight: 600,
+          color: onCardSubtle,
           margin: 0,
           lineHeight: 1.55,
           flex: 1,
@@ -482,12 +605,12 @@ function GameCard({ mode, index, kh, khFont }: {
           {kh ? mode.descKh : mode.desc}
         </p>
 
-        {/* Colored CTA button */}
+        {/* CTA button — white with card-color text */}
         <div style={{
           marginTop: 8,
           padding: "13px 20px",
-          background: hovered ? mode.color : BRAND.white,
-          color: hovered ? mode.textOnColor : BRAND.black,
+          background: hovered ? BRAND.black : BRAND.white,
+          color: hovered ? mode.color : BRAND.black,
           border: `3px solid ${BRAND.black}`,
           fontWeight: 900,
           fontSize: 12,
@@ -496,8 +619,8 @@ function GameCard({ mode, index, kh, khFont }: {
           alignItems: "center",
           justifyContent: "space-between",
           transition: "background 0.12s, color 0.12s",
-          boxShadow: hovered ? `inset 0 0 0 0 transparent` : `inset 0 0 0 0 transparent`,
           borderRadius: 0,
+          boxShadow: `3px 3px 0 ${mode.accentShadow}`,
         }}>
           <span style={khFont}>{kh ? mode.ctaKh : mode.cta}</span>
           <ChevronRight size={16} strokeWidth={3} />
@@ -554,18 +677,18 @@ export default function PlayPage() {
       WebkitFontSmoothing: "antialiased",
     }}>
 
-      {/* ═══ SECTION 1: JOIN A LIVE GAME — FULL BLEED HERO ═══════════════════ */}
+      {/* ═══ SECTION 1: JOIN A LIVE GAME ═════════════════════════════════ */}
       <section style={{
-        background: "#0a0a0a",
+        background: BRAND.white,
         position: "relative",
         overflow: "hidden",
-        borderBottom: `4px solid ${BRAND.yellow}`,
+        borderBottom: `4px solid ${BRAND.black}`,
       }}>
-        {/* Grid pattern */}
+        {/* Subtle grid pattern on white */}
         <div style={{
           position: "absolute",
           inset: 0,
-          backgroundImage: "linear-gradient(rgba(234,179,8,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(234,179,8,0.06) 1px, transparent 1px)",
+          backgroundImage: "linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px)",
           backgroundSize: "48px 48px",
           pointerEvents: "none",
         }} />
@@ -634,7 +757,7 @@ export default function PlayPage() {
                 ...khFont,
                 fontSize: "clamp(2.8rem, 5vw, 4.5rem)",
                 fontWeight: 900,
-                color: BRAND.white,
+                color: BRAND.black,
                 lineHeight: 1,
                 margin: "0 0 16px",
                 letterSpacing: -2,
@@ -649,7 +772,7 @@ export default function PlayPage() {
                 ...khFont,
                 fontSize: 16,
                 fontWeight: 600,
-                color: "rgba(255,255,255,0.55)",
+                color: "#52525b",
                 margin: "0 0 32px",
                 lineHeight: 1.6,
                 maxWidth: 380,
@@ -670,7 +793,7 @@ export default function PlayPage() {
                     display: "flex",
                     alignItems: "center",
                     gap: 6,
-                    color: "rgba(255,255,255,0.4)",
+                    color: "#a1a1aa",
                     fontSize: 12,
                     fontWeight: 700,
                     ...khFont,
@@ -682,10 +805,10 @@ export default function PlayPage() {
               </div>
             </div>
 
-            {/* Right: OTP Input */}
+            {/* Right: OTP Input — styled for white bg */}
             <div style={{
-              background: "rgba(255,255,255,0.03)",
-              border: `3px solid rgba(255,255,255,0.1)`,
+              background: "#f4f4f5",
+              border: `3px solid ${BRAND.black}`,
               padding: "40px 32px",
               boxShadow: `8px 8px 0 rgba(234,179,8,0.15)`,
             }}>
