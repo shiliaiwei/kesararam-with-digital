@@ -669,7 +669,7 @@ export default function StudentGamePage() {
     );
   }
 
-  if (phase === "question" && currentQuestion) {
+  if ((phase === "question" || phase === "results" || phase === "leaderboard") && currentQuestion) {
     if (!currentQuestion.answers?.length) {
       return (
         <div className="fixed inset-0 flex items-center justify-center"
@@ -954,7 +954,7 @@ export default function StudentGamePage() {
                         className="w-7 h-7 flex items-center justify-center border-2 border-black font-black text-xs flex-shrink-0"
                         style={{ backgroundColor: isTop3 ? rankColors[i] : "#3f3f56", color: isTop3 ? "#000" : "#fff" }}
                       >
-                        {isTop3 ? ["🥇","🥈","🥉"][i] : entry.rank}
+                        {entry.rank}
                       </div>
 
                       {/* Name */}
@@ -963,7 +963,7 @@ export default function StudentGamePage() {
                           {entry.displayName}{isMe && <span className="ml-1 opacity-60 text-[10px]">({kh ? "អ្នក" : "you"})</span>}
                         </div>
                         {entry.currentStreak > 1 && (
-                          <div className="text-orange-500 text-[9px] font-bold">🔥 x{entry.currentStreak}</div>
+                          <div className="text-orange-500 text-[9px] font-bold">Streak x{entry.currentStreak}</div>
                         )}
                       </div>
 

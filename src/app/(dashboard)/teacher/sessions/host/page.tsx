@@ -1515,7 +1515,11 @@ export default function HostPage() {
                           {style.label}
                         </div>
                         <span className="font-black text-black text-base leading-tight flex-1" style={khFont}>{text}</span>
-                        {isCorrect && <span className="text-2xl flex-shrink-0">✅</span>}
+                        {isCorrect && (
+                          <div className="w-6 h-6 flex items-center justify-center bg-white border-2 border-black text-green-600 font-black text-sm flex-shrink-0" style={{ borderRadius: "0px" }}>
+                            ✓
+                          </div>
+                        )}
                       </div>
                     );
                   })}
