@@ -288,8 +288,6 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
       <div
         className="relative mb-2 flex flex-col items-center select-none cursor-pointer"
         onClick={() => { if (user) onSelect(user); }}
-        onMouseEnter={() => { if (user && window.matchMedia('(pointer: fine)').matches) onSelect(user); }}
-        onMouseLeave={() => { if (user && window.matchMedia('(pointer: fine)').matches) onSelect(null as any); }}
         style={{
           animation: isFirst
             ? "floatFirst 4s ease-in-out infinite"
@@ -901,6 +899,11 @@ export default function LeaderboardPage() {
   const [loading, setLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState<any | null>(null);
   const [previewUser, setPreviewUser] = useState<LeaderboardUser | null>(null);
+  const [revealDob, setRevealDob] = useState(false);
+  const handleSelectUser = (user: LeaderboardUser) => {
+    setRevealDob(false);
+    setPreviewUser(user);
+  };
 
   // Real-time tracking user points state
   const [userPoints, setUserPoints] = useState(0);
@@ -1039,7 +1042,7 @@ export default function LeaderboardPage() {
                 { cfg: PODIUM_CFG[1], user: top3[0] },
                 { cfg: PODIUM_CFG[2], user: top3[2] },
               ].map(({ cfg, user }, i) => (
-                <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} currentUser={currentUser} onSelect={setPreviewUser} />
+                <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} currentUser={currentUser} onSelect={handleSelectUser} />
               ))}
             </div>
 
@@ -1076,9 +1079,7 @@ export default function LeaderboardPage() {
                       </div>
                       <div 
                         className="col-span-7 flex items-center gap-2 min-w-0 cursor-pointer select-none"
-                        onClick={() => setPreviewUser(user)}
-                        onMouseEnter={() => { if (window.matchMedia('(pointer: fine)').matches) setPreviewUser(user); }}
-                        onMouseLeave={() => { if (window.matchMedia('(pointer: fine)').matches) setPreviewUser(null); }}
+                        onClick={() => handleSelectUser(user)}
                       >
                         <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={30}>
                           <Avatar url={(currentUser && user.id === currentUser.id) ? currentUser.avatar : user.avatar} name={user.displayName || user.username} size={30} changedAt={user.avatarChangedAt} />
@@ -1255,120 +1256,390 @@ export default function LeaderboardPage() {
         )}
       </div>
 
-      {previewUser && (
-        <div 
-          className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 cursor-pointer backdrop-blur-sm transition-all"
-          onClick={() => setPreviewUser(null)}
-        >
-          {/* Card Container */}
+      {previewUser && (() => {
+        const mockDob = String((previewUser.id * 7) % 28 + 1).padStart(2, '0') + "-" + 
+                        String((previewUser.id * 3) % 12 + 1).padStart(2, '0') + "-" + 
+                        String(2011 + (previewUser.id % 3));
+        return (
           <div 
-            className="bg-white border-4 border-black w-full max-w-sm cursor-default relative overflow-hidden transition-all"
-            style={{ 
-              boxShadow: getRank(previewUser.lifetimePoints).animated
-                ? `10px 10px 0 #000, 0 0 30px ${getRank(previewUser.lifetimePoints).glow}bb`
-                : "8px 8px 0 #000",
-              borderRadius: 0,
-              animation: "burstOut 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275)"
-            }}
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 bg-black/75 z-50 flex items-center justify-center p-4 cursor-pointer backdrop-blur-md transition-all duration-300"
+            onClick={() => setPreviewUser(null)}
           >
-            {/* Header / Top banner */}
+            {/* Inject Card Scale Animation */}
+            <style>{`
+              @keyframes cardScaleIn {
+                0% { opacity: 0; transform: scale(0.92) translateY(12px); }
+                100% { opacity: 1; transform: scale(1) translateY(0); }
+              }
+            `}</style>
+
+            {/* Physical Smart ID Card Mockup - Sharp Rectangle & Premium Brand Blend */}
             <div 
-              className="border-b-4 border-black px-5 py-4 flex items-center justify-between"
-              style={{
-                background: getRank(previewUser.lifetimePoints).labelGradient,
-                color: getRank(previewUser.lifetimePoints).textColor,
+              className="bg-white border-4 border-black w-full max-w-[330px] sm:max-w-[370px] cursor-default relative overflow-hidden transition-all rounded-none"
+              style={{ 
+                aspectRatio: "1 / 1.58",
+                boxShadow: getRank(previewUser.lifetimePoints).animated
+                  ? `14px 14px 0 #000000, 0 0 35px ${getRank(previewUser.lifetimePoints).glow}cc`
+                  : "10px 10px 0 #000000",
+                animation: "cardScaleIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards"
               }}
+              onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center gap-2">
-                <span className="text-lg">{getRank(previewUser.lifetimePoints).emoji}</span>
-                <span className="font-black text-sm uppercase tracking-wider">
-                  {lang === "kh" ? "ប្រវត្តិរូបសិស្សតំណាងខេត្ត" : "PROVINCE REPRESENTATIVE"}
+              {/* Glossy Reflective Polish Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-white/5 via-white/15 to-transparent pointer-events-none z-20" />
+              
+              {/* Holographic Security Ring Watermark */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-gradient-to-br from-cyan-400/5 via-pink-400/5 to-yellow-400/5 rounded-full blur-2xl pointer-events-none mix-blend-color-burn" />
+
+              {/* Top Seal & KWD Logo Header */}
+              <div className="px-4 pt-3.5 pb-2 flex items-center justify-between border-b-2 border-black bg-white select-none">
+                <div className="flex items-center gap-2">
+                  {/* Traditional Khmer Temple/Pagoda Seal SVG representing Kesararam */}
+                  <svg className="w-10 h-10 text-amber-500 flex-shrink-0 filter drop-shadow-sm" viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="46" stroke="#d97706" strokeWidth="2.5" fill="#fffbeb" />
+                    <circle cx="50" cy="50" r="41" stroke="#d97706" strokeWidth="0.8" strokeDasharray="3 2" />
+                    
+                    {/* Temple tiers */}
+                    <path d="M50 20 L57 44 L54 44 L54 74 L46 74 L46 44 L43 44 Z" fill="#b45309" />
+                    <path d="M37 32 L43 49 L40 49 L40 74 L34 74 L34 49 L31 49 Z" fill="#b45309" opacity="0.95" />
+                    <path d="M63 32 L69 49 L66 49 L66 74 L60 74 L60 49 L57 49 Z" fill="#b45309" opacity="0.95" />
+                    
+                    {/* Base platform */}
+                    <rect x="25" y="71" width="50" height="3" rx="0.5" fill="#b45309" />
+                    <rect x="20" y="74" width="60" height="3.5" rx="0.5" fill="#b45309" />
+                    
+                    {/* Small gold stars/decoration circles around the stupa */}
+                    <circle cx="50" cy="13" r="1.5" fill="#d97706" />
+                    <circle cx="36" cy="19" r="1.5" fill="#d97706" />
+                    <circle cx="64" cy="19" r="1.5" fill="#d97706" />
+                  </svg>
+
+                  <div className="flex flex-col leading-none">
+                    <span className="text-[8.5px] sm:text-[9.5px] font-black text-blue-900 font-kh-header block">
+                      សាលាបឋមសិក្សាកេសរារាម
+                    </span>
+                    <span className="text-[6.5px] sm:text-[7px] font-black text-zinc-500 block tracking-wider mt-0.5 font-mono">
+                      KESARARAM PRIMARY SCHOOL
+                    </span>
+                  </div>
+                </div>
+
+                {/* Right: KWD Primary Brand Logo */}
+                <div className="flex items-center gap-1.5 flex-shrink-0 bg-yellow-400 border-2 border-black px-1.5 py-0.5 shadow-[2px_2px_0_#000]">
+                  <img 
+                    src="/brand/logo.svg"
+                    alt="KWD Logo"
+                    className="w-5 h-5 object-contain"
+                  />
+                  <span className="font-black text-[10px] tracking-tight text-black font-mono">
+                    KWD
+                  </span>
+                </div>
+              </div>
+
+              {/* Middle Identity Banner */}
+              <div className="bg-[#0284c7] py-1.5 text-center border-y-2 border-black select-none relative">
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-yellow-400" />
+                <span className="text-white text-xs sm:text-sm font-black tracking-widest font-kh-header block leading-none">
+                  ប័ណ្ណសម្គាល់ខ្លួនសិស្ស
+                </span>
+                <span className="text-[7.5px] sm:text-[8px] text-white/80 font-black uppercase tracking-wider block leading-none mt-1 font-mono">
+                  STUDENT IDENTIFICATION CARD
                 </span>
               </div>
+
+              {/* Main ID Details section */}
+              <div className="px-4 py-3.5 grid grid-cols-12 gap-3.5 items-stretch bg-white relative z-10">
+                
+                {/* Left Column: Portrait + ID Number */}
+                <div className="col-span-5 flex flex-col justify-between items-center">
+                  {/* Passport Portrait Frame */}
+                  <div className="w-full aspect-[3/4] border-3 border-black bg-zinc-50 flex items-center justify-center overflow-hidden p-0.5 relative shadow-[3px_3px_0_#000]">
+                    <Avatar 
+                      url={previewUser.avatar} 
+                      name={previewUser.displayName || previewUser.username} 
+                      size={110} 
+                      changedAt={previewUser.avatarChangedAt} 
+                    />
+                    {/* Dynamic Tier Badge overlay in top corner of photo */}
+                    <div className="absolute top-1 right-1">
+                      <TierBadge lifetimePoints={previewUser.lifetimePoints} size="xs" showEmoji={false} lang={lang} />
+                    </div>
+                  </div>
+                  {/* ID Number Tag */}
+                  <div className="w-full text-center mt-3 bg-[#0284c7]/10 text-[#0284c7] border border-[#0284c7]/30 py-1 font-mono font-black text-[9px] sm:text-[10px] uppercase shadow-[2px_2px_0_#000] rounded-none">
+                    លេខ៖ KWD-{previewUser.id.toString().padStart(4, '0')}
+                  </div>
+                </div>
+
+                {/* Right Column: Key-Value student credentials */}
+                <div className="col-span-7 flex flex-col justify-between text-[9px] sm:text-[10px] leading-tight font-medium text-zinc-800 space-y-1.5">
+                  <div className="space-y-1.5 flex-1 flex flex-col justify-center">
+                    
+                    {/* Name row */}
+                    <div className="grid grid-cols-12 items-baseline border-b border-zinc-100 pb-1">
+                      <span className="col-span-5 text-[7px] sm:text-[8px] text-zinc-400 font-bold font-kh-header uppercase leading-tight">
+                        គោត្តនាម-នាម<br />Name
+                      </span>
+                      <span className="col-span-1 text-zinc-400 font-bold text-center">:</span>
+                      <span className="col-span-6 font-black text-zinc-950 font-kh-header text-[10.5px] sm:text-[12px] truncate mt-0.5">
+                        {previewUser.displayName || previewUser.username}
+                      </span>
+                    </div>
+
+                    {/* Latin Name row */}
+                    <div className="grid grid-cols-12 items-baseline border-b border-zinc-100 pb-1">
+                      <span className="col-span-5 text-[7px] sm:text-[8px] text-zinc-400 font-bold font-kh-header uppercase leading-tight">
+                        អក្សរឡាតាំង<br />Latin Name
+                      </span>
+                      <span className="col-span-1 text-zinc-400 font-bold text-center">:</span>
+                      <span className="col-span-6 font-black text-zinc-800 font-mono text-[9px] sm:text-[10px] uppercase truncate">
+                        {previewUser.username}
+                      </span>
+                    </div>
+
+                    {/* Date of Birth row */}
+                    <div className="grid grid-cols-12 items-center border-b border-zinc-100 pb-1">
+                      <span className="col-span-5 text-[7px] sm:text-[8px] text-zinc-400 font-bold font-kh-header uppercase leading-tight">
+                        ថ្ងៃ-ខែ-ឆ្នាំកំណើត<br />Date of Birth
+                      </span>
+                      <span className="col-span-1 text-zinc-400 font-bold text-center">:</span>
+                      <div className="col-span-6">
+                        <div 
+                          onClick={() => setRevealDob(!revealDob)}
+                          className="inline-flex items-center gap-1 cursor-pointer select-none bg-zinc-50 border border-zinc-200 px-1 py-0.5 rounded-none hover:bg-zinc-100 transition-colors"
+                          title={revealDob ? "Hide details" : "Tap to reveal"}
+                        >
+                          <span className={`font-mono text-[9.5px] sm:text-[10.5px] font-black tracking-wide leading-none transition-all duration-300 ${
+                            revealDob ? "text-zinc-900 filter blur-0" : "text-zinc-300/40 filter blur-[3.5px]"
+                          }`}>
+                            {revealDob ? mockDob : "09-01-2012"}
+                          </span>
+                          {revealDob ? (
+                            <Unlock size={9} className="text-zinc-400 hover:text-zinc-600" />
+                          ) : (
+                            <Lock size={9} className="text-zinc-400 hover:text-zinc-600" />
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Gender row */}
+                    <div className="grid grid-cols-12 items-baseline border-b border-zinc-100 pb-1">
+                      <span className="col-span-5 text-[7px] sm:text-[8px] text-zinc-400 font-bold font-kh-header uppercase leading-tight">
+                        ភេទ<br />Sex
+                      </span>
+                      <span className="col-span-1 text-zinc-400 font-bold text-center">:</span>
+                      <span className="col-span-6 font-bold text-zinc-800 text-[9px] sm:text-[10px] font-kh-header">
+                        {previewUser.id % 2 === 0 ? "ប្រុស / Male" : "ស្រី / Female"}
+                      </span>
+                    </div>
+
+                    {/* Grade row */}
+                    <div className="grid grid-cols-12 items-baseline border-b border-zinc-100 pb-1">
+                      <span className="col-span-5 text-[7px] sm:text-[8px] text-zinc-400 font-bold font-kh-header uppercase leading-tight">
+                        កម្រិតសិក្សា<br />Grade Level
+                      </span>
+                      <span className="col-span-1 text-zinc-400 font-bold text-center">:</span>
+                      <span className="col-span-6 font-bold text-zinc-800 text-[9px] sm:text-[10px] font-kh-header">
+                        {previewUser.gradeLevel ? `${previewUser.gradeLevel} / ថ្នាក់ទី ${previewUser.gradeLevel.replace(/\D/g, '') || '៦'}` : "ថ្នាក់ទី ៦ / Grade 6"}
+                      </span>
+                    </div>
+
+                    {/* Major row */}
+                    <div className="grid grid-cols-12 items-baseline border-b border-zinc-100 pb-1">
+                      <span className="col-span-5 text-[7px] sm:text-[8px] text-zinc-400 font-bold font-kh-header uppercase leading-tight">
+                        មុខជំនាញ<br />Study Focus
+                      </span>
+                      <span className="col-span-1 text-zinc-400 font-bold text-center">:</span>
+                      <span className="col-span-6 font-bold text-zinc-800 text-[9px] sm:text-[10px] font-kh-header truncate">
+                        {previewUser.section ? `${previewUser.section} / វេន ${previewUser.section.includes("Morning") ? "ព្រឹក" : "រសៀល"}` : "ចំណេះដឹងទូទៅ / General Ed"}
+                      </span>
+                    </div>
+
+                    {/* Generation row */}
+                    <div className="grid grid-cols-12 items-baseline">
+                      <span className="col-span-5 text-[7px] sm:text-[8px] text-zinc-400 font-bold font-kh-header uppercase leading-tight">
+                        ជំនាន់ទី<br />Generation
+                      </span>
+                      <span className="col-span-1 text-zinc-400 font-bold text-center">:</span>
+                      <span className="col-span-6 font-black text-zinc-800 text-[9.5px] sm:text-[10.5px] font-mono leading-none">
+                        ៥ / 5th
+                      </span>
+                    </div>
+
+                  </div>
+
+                  {/* Representative Points tier badge */}
+                  <div className="flex justify-between items-center border-t border-zinc-100 pt-1.5 mt-1 select-none">
+                    <span className="text-[7.5px] sm:text-[8px] font-bold text-zinc-400 uppercase tracking-wide">
+                      Tier / ពិន្ទុ
+                    </span>
+                    <span 
+                      className="px-2 py-0.5 text-[8.5px] sm:text-[9px] font-black uppercase border border-black/10 text-white select-none flex items-center gap-1 shadow-sm"
+                      style={{
+                        background: getRank(previewUser.lifetimePoints).labelGradient,
+                        color: getRank(previewUser.lifetimePoints).textColor
+                      }}
+                    >
+                      <span>{getRank(previewUser.lifetimePoints).emoji}</span>
+                      <span className="font-kh-header">{lang === "kh" ? getRank(previewUser.lifetimePoints).labelKh : getRank(previewUser.lifetimePoints).label}</span>
+                    </span>
+                  </div>
+
+                </div>
+              </div>
+
+              {/* Bottom Section: School Building Background Facade + Contactless Wave + Smart Chip */}
+              <div className="absolute bottom-0 left-0 right-0 h-32 border-t-2 border-black bg-zinc-50 overflow-hidden flex flex-col justify-end select-none">
+                
+                {/* School Building Facade Silhouette vector background */}
+                <svg className="absolute bottom-6 left-0 right-0 w-full h-24 text-zinc-100 z-0 pointer-events-none" viewBox="0 0 320 90" fill="currentColor">
+                  {/* School Building Base/Ground */}
+                  <rect x="0" y="80" width="320" height="10" fill="#e2e8f0" />
+                  
+                  {/* Left Building Facade */}
+                  <rect x="10" y="30" width="130" height="50" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="1" />
+                  {/* Roof for Left building */}
+                  <path d="M5 30 L75 12 L145 30 Z" fill="#3b82f6" stroke="#2563eb" strokeWidth="1" opacity="0.15" />
+                  <path d="M20 30 L75 16 L130 30 Z" fill="#1d4ed8" opacity="0.1" />
+                  
+                  {/* Window Grid for Left building - 4 rows, 5 columns */}
+                  <rect x="25" y="35" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="45" y="35" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="65" y="35" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="85" y="35" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="105" y="35" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+                  
+                  <rect x="25" y="46" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="45" y="46" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="65" y="46" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="85" y="46" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="105" y="46" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+                  
+                  <rect x="25" y="57" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="45" y="57" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="65" y="57" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="85" y="57" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="105" y="57" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+                  
+                  <rect x="25" y="68" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="45" y="68" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="65" y="68" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="85" y="68" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="105" y="68" width="12" height="7" fill="#cbd5e1" opacity="0.5" />
+
+                  {/* Connecting Bridge/Walkway */}
+                  <rect x="140" y="45" width="40" height="35" fill="#f1f5f9" stroke="#cbd5e1" strokeWidth="1" />
+                  <line x1="140" y1="55" x2="180" y2="55" stroke="#cbd5e1" strokeWidth="1" />
+                  <line x1="140" y1="68" x2="180" y2="68" stroke="#cbd5e1" strokeWidth="1" />
+
+                  {/* Right Building Facade */}
+                  <rect x="180" y="20" width="130" height="60" fill="#f8fafc" stroke="#cbd5e1" strokeWidth="1" />
+                  {/* Roof for Right building */}
+                  <path d="M175 20 L245 2 L315 20 Z" fill="#3b82f6" stroke="#2563eb" strokeWidth="1" opacity="0.15" />
+                  <path d="M190 20 L245 6 L300 20 Z" fill="#1d4ed8" opacity="0.1" />
+                  
+                  {/* Window Grid for Right building - 5 rows, 5 columns */}
+                  <rect x="195" y="26" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="215" y="26" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="235" y="26" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="255" y="26" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="275" y="26" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  
+                  <rect x="195" y="37" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="215" y="37" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="235" y="37" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="255" y="37" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="275" y="37" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  
+                  <rect x="195" y="48" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="215" y="48" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="235" y="48" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="255" y="48" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="275" y="48" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  
+                  <rect x="195" y="59" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="215" y="59" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="235" y="59" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="255" y="59" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="275" y="59" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  
+                  <rect x="195" y="70" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="215" y="70" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="235" y="70" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="255" y="70" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+                  <rect x="275" y="70" width="12" height="6" fill="#cbd5e1" opacity="0.5" />
+
+                  {/* Trees on the side */}
+                  <circle cx="5" cy="75" r="8" fill="#22c55e" opacity="0.1" />
+                  <circle cx="15" cy="78" r="6" fill="#16a34a" opacity="0.15" />
+                  <circle cx="315" cy="75" r="8" fill="#22c55e" opacity="0.1" />
+                </svg>
+
+                {/* Contactless waves on bottom-left */}
+                <div className="absolute bottom-8 left-4 text-blue-500 z-10 flex flex-col gap-1 items-start">
+                  <svg className="w-6.5 h-6.5 text-blue-500 animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round">
+                    <path d="M5 12a10 10 0 0 1 14 0" />
+                    <path d="M8.5 15.5a5 5 0 0 1 7 0" />
+                    <path d="M12 19a1 1 0 0 1 0 2 1 1 0 0 1 0-2" />
+                  </svg>
+                </div>
+
+                {/* Physical Smart Chip Mockup in bottom-middle */}
+                <div 
+                  className="absolute bottom-8 left-1/2 -translate-x-1/2 w-12 h-9 border border-zinc-400 bg-gradient-to-br from-amber-300 via-yellow-100 to-amber-500 z-10 shadow-sm overflow-hidden flex flex-col justify-between p-1 rounded-none"
+                  style={{
+                    borderRadius: "5px",
+                  }}
+                >
+                  {/* Chip connection pin lines */}
+                  <div className="flex justify-between h-2.5 border-b border-black/20">
+                    <div className="w-3 border-r border-black/20" />
+                    <div className="w-3 border-x border-black/20" />
+                    <div className="w-3 border-l border-black/20" />
+                  </div>
+                  <div className="flex justify-between h-2.5">
+                    <div className="w-3 border-r border-black/20" />
+                    <div className="w-3 border-x border-black/20" />
+                    <div className="w-3 border-l border-black/20" />
+                  </div>
+                </div>
+
+                {/* Scanner Barcode mockup on bottom-right */}
+                <div className="absolute bottom-7 right-4 bg-white border border-zinc-300 p-1 flex flex-col items-center z-10 shadow-sm select-none">
+                  <div className="flex gap-[1.5px] items-stretch h-5">
+                    {[1, 2, 1, 3, 1, 2, 1, 1, 3, 2, 1, 2, 1, 3, 1, 1, 2, 1].map((w, idx) => (
+                      <div 
+                        key={idx} 
+                        className="bg-black" 
+                        style={{ width: `${w}px` }} 
+                      />
+                    ))}
+                  </div>
+                  <span className="text-[5.5px] font-mono font-black mt-0.5 leading-none text-zinc-500">
+                    *KWD-{previewUser.id.toString().padStart(4, '0')}*
+                  </span>
+                </div>
+
+                {/* Bottom Stripe Footer */}
+                <div className="w-full bg-[#0284c7] py-1.5 text-center text-[7.5px] sm:text-[8px] text-white font-black uppercase tracking-widest border-t-2 border-black z-10">
+                  Kesararam with Digital © 2026 · kesararamwithdigital.tech
+                </div>
+              </div>
+
+              {/* Close cross on top right of the card overlay */}
               <button 
                 onClick={() => setPreviewUser(null)}
-                className="w-7 h-7 border-2 border-black bg-white text-black hover:bg-red-400 flex items-center justify-center font-black text-base shadow-[1.5px_1.5px_0_#000] active:translate-x-[1.5px] active:translate-y-[1.5px] active:shadow-none transition-all"
+                className="absolute top-2.5 right-2.5 w-6 h-6 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center font-black text-xs transition-all z-35 border border-white/25 hover:scale-110"
+                title="Close Card"
               >
                 ×
               </button>
             </div>
-
-            {/* Profile Avatar Ring + Name details */}
-            <div className="p-6 flex flex-col items-center text-center gap-4">
-              
-              {/* Animated avatar spotlight */}
-              <div 
-                className="relative p-1.5 rounded-full"
-                style={{
-                  background: getRank(previewUser.lifetimePoints).borderGradient,
-                  animation: getRank(previewUser.lifetimePoints).animated ? "rankShimmer 3s linear infinite" : "none",
-                  boxShadow: getRank(previewUser.lifetimePoints).animated ? `0 0 20px ${getRank(previewUser.lifetimePoints).glow}aa` : "none",
-                }}
-              >
-                <div className="bg-white rounded-full p-0.5">
-                  <Avatar url={previewUser.avatar} name={previewUser.displayName || previewUser.username} size={84} changedAt={previewUser.avatarChangedAt} />
-                </div>
-                {/* Ranking rank tag bubble */}
-                <div className="absolute -bottom-1 -right-1 bg-yellow-400 border-2 border-black font-black text-xs px-2 py-0.5 shadow-[2px_2px_0_#000] text-black">
-                  #{previewUser.rank}
-                </div>
-              </div>
-
-              {/* Student name */}
-              <div>
-                <h3 className="text-2xl font-black uppercase text-black leading-tight">
-                  {previewUser.displayName || previewUser.username}
-                </h3>
-                <span className="text-xs text-zinc-400 font-bold block mt-1">@{previewUser.username}</span>
-              </div>
-
-              {/* Province Standing Indicator (PROVINCE FOCUS) */}
-              <div className="w-full bg-black text-yellow-400 border-2 border-black px-4 py-3 flex flex-col items-center leading-tight shadow-[3px_3px_0_#000] mt-1 select-none">
-                <span className="text-[9px] font-black tracking-widest text-zinc-400 uppercase">
-                  {lang === "kh" ? "តំណាងឱ្យខេត្ត" : "REPRESENTING PROVINCE"}
-                </span>
-                <span className="text-lg font-black mt-1 uppercase tracking-tight font-kh-header">
-                  {previewUser.province ?? "General"} / {getProvinceKh(previewUser.province)}
-                </span>
-              </div>
-
-              {/* Lifetime stats grid */}
-              <div className="grid grid-cols-2 gap-3 w-full mt-2 text-left">
-                <div className="bg-zinc-50 border-2 border-black p-3 flex flex-col justify-center shadow-[2px_2px_0_#000]">
-                  <span className="text-[8px] font-black uppercase tracking-wider text-zinc-400">Lifetime Points</span>
-                  <span className="text-xl font-black text-black font-mono mt-0.5">
-                    {previewUser.lifetimePoints.toLocaleString()}
-                  </span>
-                </div>
-                <div className="bg-zinc-50 border-2 border-black p-3 flex flex-col justify-center shadow-[2px_2px_0_#000]">
-                  <span className="text-[8px] font-black uppercase tracking-wider text-zinc-400">High Score</span>
-                  <span className="text-xl font-black text-black font-mono mt-0.5">
-                    {previewUser.highestScore.toLocaleString()}
-                  </span>
-                </div>
-              </div>
-
-              {/* Exclusive rank label */}
-              <div className="w-full flex items-center justify-between border-t border-dashed border-zinc-200 pt-4 mt-2">
-                <span className="text-xs font-black text-zinc-400 uppercase">
-                  {lang === "kh" ? "ថ្នាក់ផ្តាច់មុខ" : "Exclusive Tier"}
-                </span>
-                <span 
-                  className="px-3 py-1 text-[11px] font-black uppercase border-2 border-black text-white shadow-[2px_2px_0_#000]"
-                  style={{
-                    background: getRank(previewUser.lifetimePoints).labelGradient,
-                    color: getRank(previewUser.lifetimePoints).textColor
-                  }}
-                >
-                  {getRank(previewUser.lifetimePoints).emoji} {lang === "kh" ? getRank(previewUser.lifetimePoints).labelKh : getRank(previewUser.lifetimePoints).label}
-                </span>
-              </div>
-
-            </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
     </div>
   );
 }
