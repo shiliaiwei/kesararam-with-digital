@@ -70,10 +70,17 @@ function LiveLeaderRow({ entry, rank, showScore }: { entry: LeaderboardEntry; ra
         {isTop3 ? <Crown size={12} /> : rank}
       </div>
       <div
-        className="w-8 h-8 border-2 border-black flex items-center justify-center font-black text-xs flex-shrink-0 text-white"
-        style={{ background: `hsl(${(entry.userId * 47) % 360}, 70%, 45%)`, borderRadius: "0px" }}
+        className="w-8 h-8 border-2 border-black flex items-center justify-center font-black text-xs flex-shrink-0 text-white overflow-hidden bg-white"
+        style={{ borderRadius: "0px" }}
       >
-        {initials}
+        {entry.avatar ? (
+          <img src={entry.avatar} alt={entry.displayName} className="w-full h-full object-cover" />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-white font-black"
+            style={{ background: `hsl(${(entry.userId * 47) % 360}, 70%, 45%)` }}>
+            {initials}
+          </div>
+        )}
       </div>
       <div className="flex-1 min-w-0 text-black">
         <div className="font-bold text-xs truncate">{entry.displayName}</div>
@@ -1092,15 +1099,15 @@ export default function HostPage() {
                 
                 <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center pt-2">
                   {/* Left Column: Room Code Details */}
-                  <div className="md:col-span-7 text-center md:text-left">
+                  <div className="md:col-span-7 text-center md:text-left w-full">
                     <div className="text-xs font-black uppercase tracking-widest mb-2.5 text-black">
                       {kh ? "លេខកូដបន្ទប់" : "Room Code"}
                     </div>
-                    <div className="text-6xl md:text-7xl font-black tracking-[0.2em] pl-[0.2em] mb-2.5 text-black">
+                    <div className="text-4xl sm:text-6xl md:text-7xl font-mono font-black tracking-[0.2em] pl-[0.2em] mb-2.5 text-black text-center md:text-left break-all select-all">
                       {phase.code}
                     </div>
-                    <div className="text-sm mb-6 text-black font-bold">
-                      {kh ? "ចូលតាម:" : "Join at:"} <span className="text-black font-black underline">kesararamwithdigital.tech/play/{phase.code}</span>
+                    <div className="text-sm mb-6 text-black font-bold text-center md:text-left break-words">
+                      {kh ? "ចូលតាម:" : "Join at:"} <span className="text-black font-black underline block sm:inline break-all">kesararamwithdigital.tech/play/{phase.code}</span>
                     </div>
                     <button
                       onClick={copyCode}
@@ -1217,10 +1224,16 @@ export default function HostPage() {
                     }}
                   >
                     <div
-                      className="w-8 h-8 border-2 border-black flex items-center justify-center font-black text-sm flex-shrink-0 text-white rounded-none shadow-[1px_1px_0_#000]"
-                      style={{ background: `hsl(${(p.userId * 47) % 360}, 70%, 45%)` }}
+                      className="w-8 h-8 border-2 border-black flex items-center justify-center font-black text-sm flex-shrink-0 text-white rounded-none shadow-[1px_1px_0_#000] overflow-hidden bg-white"
                     >
-                      {p.displayName.charAt(0).toUpperCase()}
+                      {p.avatar ? (
+                        <img src={p.avatar} alt={p.displayName} className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-white font-black"
+                          style={{ background: `hsl(${(p.userId * 47) % 360}, 70%, 45%)` }}>
+                          {p.displayName.charAt(0).toUpperCase()}
+                        </div>
+                      )}
                     </div>
                     <span className="text-xs font-black truncate text-black" style={{ ...khFont }}>
                       {p.displayName}
@@ -1496,8 +1509,15 @@ export default function HostPage() {
                         <Crown className="text-yellow-500 fill-yellow-400" size={24} />
                       </div>
                     )}
-                    <div className="w-12 h-12 border-2 border-black flex items-center justify-center font-black text-sm text-white" style={{ background: `hsl(${(entry.userId * 47) % 360}, 70%, 45%)`, borderRadius: "0px" }}>
-                      {(entry.displayName || "?").slice(0, 2).toUpperCase()}
+                    <div className="w-12 h-12 border-2 border-black flex items-center justify-center font-black text-sm text-white overflow-hidden bg-white shadow-[1px_1px_0_#000]" style={{ borderRadius: "0px" }}>
+                      {entry.avatar ? (
+                        <img src={entry.avatar} alt={entry.displayName} className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-white font-black"
+                          style={{ background: `hsl(${(entry.userId * 47) % 360}, 70%, 45%)` }}>
+                          {(entry.displayName || "?").slice(0, 2).toUpperCase()}
+                        </div>
+                      )}
                     </div>
                     <div className="text-xs font-black text-center truncate w-full text-black" style={{ ...khFont }}>{entry.displayName}</div>
                     <div className={item.colStyle} style={{ borderRadius: "0px" }}>
@@ -1551,8 +1571,15 @@ export default function HostPage() {
                       <div className="w-8 h-8 border-2 border-black flex items-center justify-center font-black text-sm flex-shrink-0" style={{ background: isTop3 ? RANK_COLORS[i] : "#f4f4f5", color: "#000", borderRadius: "0px" }}>
                         {isTop3 ? <Crown size={14} /> : entry.rank}
                       </div>
-                      <div className="w-8 h-8 border-2 border-black flex items-center justify-center font-black text-xs text-white flex-shrink-0" style={{ background: `hsl(${(entry.userId * 47) % 360}, 70%, 45%)`, borderRadius: "0px" }}>
-                        {(entry.displayName || "?").slice(0, 2).toUpperCase()}
+                      <div className="w-8 h-8 border-2 border-black flex items-center justify-center font-black text-xs text-white flex-shrink-0 overflow-hidden bg-white shadow-[1px_1px_0_#000]" style={{ borderRadius: "0px" }}>
+                        {entry.avatar ? (
+                          <img src={entry.avatar} alt={entry.displayName} className="w-full h-full object-cover" />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-white font-black"
+                            style={{ background: `hsl(${(entry.userId * 47) % 360}, 70%, 45%)` }}>
+                            {(entry.displayName || "?").slice(0, 2).toUpperCase()}
+                          </div>
+                        )}
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-black text-black text-sm truncate" style={khFont}>{entry.displayName}</div>

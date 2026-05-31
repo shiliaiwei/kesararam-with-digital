@@ -30,6 +30,7 @@ interface SessionInfo {
   maxPlayers: number;
   questionCount: number;
   hostName: string;
+  hostAvatar: string | null;
   language: string;
 }
 
@@ -375,11 +376,21 @@ export default function StudentGamePage() {
             <div className="absolute inset-0 opacity-[0.04] pointer-events-none"
               style={{ backgroundImage: "linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px)", backgroundSize: "20px 20px" }} />
             
-            <div className="text-black text-[10px] font-black uppercase tracking-widest mb-1.5" style={khFont}>
+            <div className="text-black text-[10px] font-black uppercase tracking-widest mb-3.5" style={khFont}>
               {kh ? "គ្រូបង្វឹក" : "INSTRUCTOR"}
             </div>
+
+            {sessionInfo?.hostAvatar ? (
+              <div className="w-16 h-16 border-4 border-black mx-auto mb-3 shadow-[4px_4px_0_#000] overflow-hidden bg-white rounded-none">
+                <img src={sessionInfo.hostAvatar} alt={sessionInfo.hostName} className="w-full h-full object-cover" />
+              </div>
+            ) : (
+              <div className="w-16 h-16 border-4 border-black mx-auto mb-3 shadow-[4px_4px_0_#000] bg-black rounded-none flex items-center justify-center text-yellow-400">
+                <Crown size={28} className="fill-yellow-400" />
+              </div>
+            )}
             
-            <div className="text-black font-black text-3xl mb-5 tracking-wide flex items-center justify-center gap-2" style={khFont}>
+            <div className="text-black font-black text-3xl mb-5 tracking-wide flex items-center justify-center gap-2 flex-wrap" style={khFont}>
               <span>{sessionInfo?.hostName ?? "—"}</span>
               <span className="bg-black text-yellow-400 px-2 py-0.5 border-2 border-black rounded-none text-[9px] font-black tracking-widest uppercase flex items-center gap-1 shrink-0">
                 <Crown size={8} className="fill-yellow-400 shrink-0 text-yellow-400" />
@@ -388,8 +399,8 @@ export default function StudentGamePage() {
             </div>
 
             {/* Glowing Big Game Code Container */}
-            <div className="inline-block px-10 py-5 border-4 border-black bg-white rounded-none shadow-[5px_5px_0_#000] mb-4 relative group cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_#000]">
-              <div className="relative font-black text-5xl tracking-[0.25em] pl-[0.25em] select-all select-none text-black">
+            <div className="block w-full px-6 py-4 border-4 border-black bg-white rounded-none shadow-[5px_5px_0_#000] mb-4 relative group cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_#000] text-center select-all">
+              <div className="font-mono font-black text-3xl sm:text-5xl tracking-[0.25em] pl-[0.25em] text-black text-center break-all select-none">
                 {code}
               </div>
             </div>
@@ -529,12 +540,18 @@ export default function StudentGamePage() {
                           ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5" 
                           : "bg-black border-zinc-800 hover:border-zinc-750"
                       }`}>
-                      {/* Neubrutalist Flat Initials Avatar */}
-                      <div className="w-8 h-8 rounded-none border-2 border-black flex items-center justify-center font-black text-xs text-white flex-shrink-0 relative shadow-[1px_1px_0_#000]"
-                        style={{ 
-                          background: `linear-gradient(135deg, hsl(${(p.userId * 61) % 360}, 70%, 45%) 0%, hsl(${(p.userId * 61 + 45) % 360}, 70%, 35%) 100%)`,
-                        }}>
-                        {p.displayName.charAt(0).toUpperCase()}
+                      {/* Neubrutalist Avatar */}
+                      <div className="w-8 h-8 rounded-none border-2 border-black flex items-center justify-center font-black text-xs text-white flex-shrink-0 relative shadow-[1px_1px_0_#000] overflow-hidden bg-white">
+                        {p.avatar ? (
+                          <img src={p.avatar} alt={p.displayName} className="w-full h-full object-cover" />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-white font-black"
+                            style={{ 
+                              background: `linear-gradient(135deg, hsl(${(p.userId * 61) % 360}, 70%, 45%) 0%, hsl(${(p.userId * 61 + 45) % 360}, 70%, 35%) 100%)`,
+                            }}>
+                            {p.displayName.charAt(0).toUpperCase()}
+                          </div>
+                        )}
                         {p.isConnected && (
                           <span className="absolute -bottom-1 -right-1 w-2.5 h-2.5 rounded-full bg-green-500 border-2 border-black" />
                         )}

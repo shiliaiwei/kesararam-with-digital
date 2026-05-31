@@ -30,7 +30,7 @@ export async function GET(
   if (!session) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   const [host] = await db
-    .select({ displayName: users.displayName, username: users.username })
+    .select({ displayName: users.displayName, username: users.username, avatar: users.avatar })
     .from(users)
     .where(eq(users.id, session.hostId));
 
@@ -44,6 +44,7 @@ export async function GET(
     maxPlayers: session.maxPlayers,
     questionCount: Array.isArray(session.questionCount) ? session.questionCount.length : 0,
     hostName: host?.displayName || host?.username || "Teacher",
+    hostAvatar: host?.avatar || null,
     language: session.language,
   });
 }

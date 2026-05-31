@@ -70,7 +70,7 @@ export async function POST(
     .from(gameParticipants)
     .where(eq(gameParticipants.sessionId, session.id));
 
-  broadcastEvent(code.toUpperCase(), {
+  await broadcastEvent(code.toUpperCase(), {
     type: "lobby_update",
     participants: allParticipants.map((p) => ({
       userId: p.userId,
