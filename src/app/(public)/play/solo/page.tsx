@@ -589,11 +589,11 @@ export default function SoloPage() {
 
         {/* Question image (Stable height wrapper - compact) */}
         <div className={`shrink-0 w-full h-32 flex items-center justify-center p-2 relative overflow-hidden rounded-none ${
-          q.imageUrl && q.gameType !== "image_pick"
+          q.imageUrl
             ? "border-2 border-black bg-zinc-950"
             : "border-2 border-transparent bg-transparent"
         }`}>
-          {q.imageUrl && q.gameType !== "image_pick" ? (
+          {q.imageUrl ? (
             <>
               <img src={q.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
               {/* Image reference label inside the box border at the bottom */}

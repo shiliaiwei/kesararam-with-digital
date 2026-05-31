@@ -792,11 +792,11 @@ export default function StudentGamePage() {
 
           {/* Question image (compact stable wrapper) */}
           <div className={`shrink-0 w-full h-32 flex items-center justify-center p-2 relative overflow-hidden rounded-none ${
-            currentQuestion.imageUrl && currentQuestion.gameType !== "image_pick"
+            currentQuestion.imageUrl
               ? "border-2 border-black bg-zinc-950"
               : "border-2 border-transparent bg-transparent"
           }`}>
-            {currentQuestion.imageUrl && currentQuestion.gameType !== "image_pick" ? (
+            {currentQuestion.imageUrl ? (
               <>
                 <img src={currentQuestion.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
                 {/* Image reference label inside the box border at the bottom */}
@@ -857,41 +857,48 @@ export default function StudentGamePage() {
 
           {/* Bottom result slot — compact, no layout shift */}
           <div className="shrink-0 h-14 flex items-center justify-center w-full">
-            {answerResult ? (
-              <div className="flex items-center gap-2">
-                {answerResult.isCorrect ? (
-                  <>
-                    <CheckCircle className="text-green-400 flex-shrink-0" size={16} />
-                    <span className="text-green-400 font-black text-sm uppercase tracking-wider" style={khFont}>
-                      {kh ? "ត្រឹមត្រូវ!" : "Correct!"}
-                    </span>
-                    {answerResult.pointsEarned > 0 && (
-                      <div
-                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-yellow-400 border-2 border-black rounded-none animate-bounce"
-                      >
-                        <Zap size={11} className="text-black" />
-                        <span className="text-black font-black text-xs">+{answerResult.pointsEarned} pts</span>
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    <XCircle className="text-red-400 flex-shrink-0" size={16} />
-                    <span className="text-red-400 font-black text-sm uppercase tracking-wider" style={khFont}>
-                      {kh ? "មិនត្រឹមត្រូវ" : "Incorrect"}
-                    </span>
-                  </>
-                )}
-              </div>
-            ) : phase === "results" ? (
-              <div className="flex items-center gap-1.5 text-red-400">
-                <XCircle size={16} className="flex-shrink-0" />
-                <span className="font-black text-sm uppercase tracking-wider" style={khFont}>
-                  {kh ? "អស់ម៉ោង!" : "Time's Up!"}
+            {phase === "results" ? (
+              answerResult ? (
+                <div className="flex items-center gap-2">
+                  {answerResult.isCorrect ? (
+                    <>
+                      <CheckCircle className="text-green-400 flex-shrink-0" size={16} />
+                      <span className="text-green-400 font-black text-sm uppercase tracking-wider" style={khFont}>
+                        {kh ? "ត្រឹមត្រូវ!" : "Correct!"}
+                      </span>
+                      {answerResult.pointsEarned > 0 && (
+                        <div
+                          className="inline-flex items-center gap-1 px-3 py-1.5 bg-yellow-400 border-2 border-black rounded-none animate-bounce"
+                        >
+                          <Zap size={11} className="text-black" />
+                          <span className="text-black font-black text-xs">+{answerResult.pointsEarned} pts</span>
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <XCircle className="text-red-400 flex-shrink-0" size={16} />
+                      <span className="text-red-400 font-black text-sm uppercase tracking-wider" style={khFont}>
+                        {kh ? "មិនត្រឹមត្រូវ" : "Incorrect"}
+                      </span>
+                    </>
+                  )}
+                </div>
+              ) : (
+                <div className="flex items-center gap-1.5 text-red-400">
+                  <XCircle size={16} className="flex-shrink-0" />
+                  <span className="font-black text-sm uppercase tracking-wider" style={khFont}>
+                    {kh ? "អស់ម៉ោង!" : "Time's Up!"}
+                  </span>
+                </div>
+              )
+            ) : answerSubmitted ? (
+              <div className="flex items-center gap-2 text-zinc-400 animate-pulse">
+                <Loader2 size={13} className="animate-spin text-yellow-400" />
+                <span className="font-bold text-[11px] uppercase tracking-wider" style={khFont}>
+                  {kh ? "បានបញ្ជូនចម្លើយ! រង់ចាំ..." : "Answer submitted! Waiting..."}
                 </span>
               </div>
-            ) : answerSubmitted ? (
-              <Loader2 size={14} className="animate-spin text-yellow-400/60" />
             ) : null}
           </div>
 

@@ -1421,7 +1421,7 @@ export default function HostPage() {
 
               {/* Question image — compact stable wrapper */}
               <div className="w-full h-32 border-2 border-black bg-white flex items-center justify-center mb-4 relative overflow-hidden shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px" }}>
-                {question?.imageUrl && question?.gameType !== "image_pick" ? (
+                {question?.imageUrl ? (
                   <>
                     <img src={question.imageUrl} alt="question" className="h-full w-auto object-contain" style={{ maxHeight: "100%", maxWidth: "100%" }} />
                     <div style={{
