@@ -758,24 +758,29 @@ export default function StudentGamePage() {
             )}
           </div>
 
-          {/* Conditional Image Box (Completely invisible if no image) */}
-          {currentQuestion.imageUrl && currentQuestion.gameType !== "image_pick" && (
-            <div className="shrink-0 w-full h-36 border border-zinc-800 bg-zinc-950/20 rounded-xl flex items-center justify-center p-2 relative overflow-hidden backdrop-blur-sm">
+          {/* Question image (Stable height wrapper) */}
+          <div className="shrink-0 w-full h-48 border border-zinc-800 bg-zinc-950/40 rounded-xl flex items-center justify-center p-3 relative overflow-hidden backdrop-blur-sm">
+            {currentQuestion.imageUrl && currentQuestion.gameType !== "image_pick" ? (
               <img src={currentQuestion.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded" />
-            </div>
-          )}
+            ) : (
+              <div className="flex flex-col items-center gap-2 opacity-15">
+                <BookOpen size={48} className="text-zinc-400" />
+                <span className="font-black text-[10px] tracking-wider uppercase text-zinc-400">Kesararam Quiz</span>
+              </div>
+            )}
+          </div>
 
-          {/* Dynamic Sleek Question Text Box (No Hidden Labels) */}
+          {/* Question text card (Stable height + centered text) */}
           <div
-            className="shrink-0 w-full min-h-[76px] sm:min-h-[96px] h-auto bg-zinc-900/90 backdrop-blur-md border border-zinc-800 py-3 px-4 rounded-xl text-white font-bold flex items-center justify-center text-center shadow-lg animate-fade-in"
+            className="shrink-0 w-full h-32 bg-zinc-900/90 backdrop-blur-md border-2 border-zinc-755/85 p-4 rounded-xl text-white font-black flex items-center justify-center text-center shadow-lg overflow-y-auto select-text animate-fade-in"
             style={{
-              boxShadow: "0 6px 20px rgba(0,0,0,0.4)",
-              fontSize: "clamp(0.95rem, 3.5vw, 1.45rem)",
-              lineHeight: "1.35",
+              boxShadow: "0 8px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)",
+              fontSize: "clamp(1.1rem, 4vw, 1.75rem)",
+              lineHeight: "1.3",
               ...khFont
             }}
           >
-            <div className="w-full max-h-full py-0.5">
+            <div className="w-full max-h-full py-1">
               {kh ? (currentQuestion.questionKm || currentQuestion.questionEn) : currentQuestion.questionEn}
             </div>
           </div>

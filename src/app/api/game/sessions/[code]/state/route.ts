@@ -49,12 +49,15 @@ export async function GET(
           hasImage: ans.some(a => !!a.imageUrl),
           hasAudio: !!(q.audioUrlEn || q.audioUrlKm),
         }),
-        answers: ans.map((a) => ({
-          id: a.id,
-          answerEn: a.answerEn,
-          answerKm: a.answerKm,
-          imageUrl: a.imageUrl,
-        })),
+        answers: ans
+          .map((a) => ({ ...a, _r: Math.random() }))
+          .sort((a, b) => a._r - b._r)
+          .map(({ _r, ...a }) => ({
+            id: a.id,
+            answerEn: a.answerEn,
+            answerKm: a.answerKm,
+            imageUrl: a.imageUrl,
+          })),
       };
     }
   }

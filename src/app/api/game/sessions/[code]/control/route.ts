@@ -388,12 +388,15 @@ async function getQuestionPayload(questionId: number) {
       audioUrlKm: q.audioUrlKm ?? null,
       difficulty: q.difficulty ?? null,
       gameType,
-      answers: ans.map(a => ({
-        id: a.id,
-        answerEn: a.answerEn,
-        answerKm: a.answerKm,
-        imageUrl: a.imageUrl ?? null
-      })),
+      answers: ans
+        .map(a => ({ ...a, _r: Math.random() }))
+        .sort((a, b) => a._r - b._r)
+        .map(({ _r, ...a }) => ({
+          id: a.id,
+          answerEn: a.answerEn,
+          answerKm: a.answerKm,
+          imageUrl: a.imageUrl ?? null
+        })),
       topicCode: topicCode ?? null,
     };
 
