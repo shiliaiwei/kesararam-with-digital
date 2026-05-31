@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLang } from "@/context/lang-context";
 import { RankBadge as TierBadge } from "@/components/shared/rank-label";
 import { 
@@ -188,12 +188,31 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
   const joinedKh = `ឆ្នាំ ${joinedYear}`;
   const joinedEn = `${joinedYear}`;
 
-  // Deterministically select 3 claimed items for the archive
-  const claimedItems = [
-    REWARD_ITEMS[student.id % REWARD_ITEMS.length],
-    REWARD_ITEMS[(student.id + 2) % REWARD_ITEMS.length],
-    REWARD_ITEMS[(student.id + 4) % REWARD_ITEMS.length],
-  ];
+  // 1. Real-time dynamic claimed rewards logic (looks at actual localStorage claims, falling back to points-afforded achievements)
+  const [claimedItems, setClaimedItems] = useState<typeof REWARD_ITEMS>([]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    // Load actual claims from localStorage
+    const claims = REWARD_ITEMS.filter(item => {
+      const claimDataStr = localStorage.getItem(`kwd_claim_data_${item.id}`);
+      return claimDataStr !== null || localStorage.getItem(`kwd_claimed_${item.id}`) === "1";
+    });
+
+    if (claims.length > 0) {
+      setClaimedItems(claims);
+    } else {
+      // Fallback: Populate deterministic rewards that this student has unlocked based on real-time points
+      const affordable = REWARD_ITEMS.filter(item => student.lifetimePoints >= item.cost);
+      if (affordable.length > 0) {
+        setClaimedItems(affordable.slice(0, 3));
+      } else {
+        // Safe standard fallback for zero points
+        setClaimedItems([REWARD_ITEMS[0], REWARD_ITEMS[1], REWARD_ITEMS[2]]);
+      }
+    }
+  }, [student.id, student.lifetimePoints]);
 
   return (
     <div 
@@ -255,7 +274,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
               <div className="px-4 py-3 flex items-center justify-between border-b-2 border-black bg-white select-none">
                 <div className="flex items-center gap-2">
                   {/* Traditional Khmer Pagoda Seal SVG */}
-                  <svg className="w-10 h-10 text-amber-500 flex-shrink-0" viewBox="0 0 100 100" fill="none">
+                  <svg className="w-12 h-12 text-amber-500 flex-shrink-0" viewBox="0 0 100 100" fill="none">
                     <circle cx="50" cy="50" r="46" stroke="#d97706" strokeWidth="2.5" fill="#fffbeb" />
                     <path d="M50 20 L57 44 L54 44 L54 74 L46 74 L46 44 L43 44 Z" fill="#b45309" />
                     <path d="M37 32 L43 49 L40 49 L40 74 L34 74 L34 49 L31 49 Z" fill="#b45309" opacity="0.9" />
@@ -264,10 +283,10 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                   </svg>
                   
                   <div className="flex flex-col leading-none">
-                    <span className="text-[9px] sm:text-[10px] font-black text-blue-900 font-kh-header block">
+                    <span className="text-[12px] sm:text-[13px] font-black text-blue-900 font-kh-header block">
                       សាលាបឋមសិក្សាកេសរារាម
                     </span>
-                    <span className="text-[6.5px] sm:text-[7.5px] font-black text-zinc-400 block tracking-wider mt-0.5 font-mono">
+                    <span className="text-[8px] sm:text-[9px] font-black text-zinc-400 block tracking-wider mt-0.5 font-mono">
                       KESARARAM PRIMARY SCHOOL
                     </span>
                   </div>
@@ -279,17 +298,17 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                   <img 
                     src="/brand/kwd-black_nobackground.png" 
                     alt="KWD Logo" 
-                    className="h-7 sm:h-8 object-contain"
+                    className="h-9 sm:h-10 object-contain"
                   />
                 </div>
               </div>
 
               {/* Blue Identification Stripe */}
               <div className="bg-[#0284c7] py-2 text-center border-y-2 border-black select-none relative">
-                <span className="text-white text-xs sm:text-sm font-black tracking-widest font-kh-header block leading-none">
+                <span className="text-white text-sm sm:text-base font-black tracking-widest font-kh-header block leading-none">
                   ប័ណ្ណសម្គាល់ខ្លួនសិស្ស
                 </span>
-                <span className="text-[7.5px] sm:text-[8px] text-white/80 font-black uppercase tracking-wider block leading-none mt-1 font-mono">
+                <span className="text-[9px] sm:text-[10px] text-white/80 font-black uppercase tracking-wider block leading-none mt-1 font-mono">
                   STUDENT IDENTIFICATION CARD
                 </span>
               </div>
@@ -304,7 +323,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                     <Avatar 
                       url={student.avatar} 
                       name={student.displayName || student.username} 
-                      size={110} 
+                      size={135} 
                       changedAt={student.avatarChangedAt} 
                     />
                   </div>
@@ -315,87 +334,87 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                   </div>
 
                   {/* ID label below tier badge */}
-                  <div className={`w-full text-center mt-0.5 text-[8.5px] sm:text-[9.5px] font-black py-0.5 bg-[#0284c7]/10 text-[#0284c7] border border-[#0284c7]/20 ${kh ? 'font-kh-header' : 'font-mono'}`}>
+                  <div className={`w-full text-center mt-0.5 text-[10px] sm:text-[11px] font-black py-0.5 bg-[#0284c7]/10 text-[#0284c7] border border-[#0284c7]/20 ${kh ? 'font-kh-header' : 'font-mono'}`}>
                     ID: KWD-{student.id.toString().padStart(4, '0')}
                   </div>
                 </div>
 
                 {/* Right Column inside Card: Credentials rows with bilingual labels */}
-                <div className={`col-span-7 flex flex-col justify-between text-[9px] sm:text-[10px] leading-tight font-medium text-zinc-800 space-y-2 ${kh ? 'font-kh-body' : 'font-english'}`}>
+                <div className={`col-span-7 flex flex-col justify-between text-xs sm:text-sm leading-normal font-medium text-zinc-800 space-y-2 ${kh ? 'font-kh-body' : 'font-english'}`}>
                   
                   {/* Name row */}
-                  <div className="grid grid-cols-12 items-baseline border-b border-zinc-100 pb-1">
-                    <span className="col-span-4 text-zinc-400 font-bold uppercase font-english">
+                  <div className="grid grid-cols-12 items-baseline border-b border-zinc-100 pb-1.5">
+                    <span className="col-span-4 text-zinc-400 font-extrabold uppercase font-english text-[9px] sm:text-[10px] tracking-wider">
                       {kh ? "ឈ្មោះ" : "NAME"}
                     </span>
-                    <span className="col-span-1 text-zinc-400 font-bold text-center font-english">:</span>
-                    <span className="col-span-7 font-black text-zinc-950 truncate">
+                    <span className="col-span-1 text-zinc-400 font-bold text-center font-english text-[9px] sm:text-[10px]">:</span>
+                    <span className="col-span-7 font-black text-zinc-950 truncate text-xs sm:text-sm">
                       {student.displayName || student.username}
                     </span>
                   </div>
 
                   {/* Role row */}
-                  <div className="grid grid-cols-12 items-baseline border-b border-zinc-100 pb-1">
-                    <span className="col-span-4 text-zinc-400 font-bold uppercase font-english">
+                  <div className="grid grid-cols-12 items-baseline border-b border-zinc-100 pb-1.5">
+                    <span className="col-span-4 text-zinc-400 font-extrabold uppercase font-english text-[9px] sm:text-[10px] tracking-wider">
                       {kh ? "តួនាទី" : "ROLE"}
                     </span>
-                    <span className="col-span-1 text-zinc-400 font-bold text-center font-english">:</span>
-                    <span className="col-span-7 font-black text-zinc-900">
+                    <span className="col-span-1 text-zinc-400 font-bold text-center font-english text-[9px] sm:text-[10px]">:</span>
+                    <span className="col-span-7 font-black text-zinc-900 text-xs sm:text-sm">
                       {kh ? "សិស្ស" : "Student"}
                     </span>
                   </div>
 
                   {/* School row */}
-                  <div className="grid grid-cols-12 items-baseline border-b border-zinc-100 pb-1">
-                    <span className="col-span-4 text-zinc-400 font-bold uppercase font-english">
+                  <div className="grid grid-cols-12 items-baseline border-b border-zinc-100 pb-1.5">
+                    <span className="col-span-4 text-zinc-400 font-extrabold uppercase font-english text-[9px] sm:text-[10px] tracking-wider">
                       {kh ? "សាលា" : "SCHOOL"}
                     </span>
-                    <span className="col-span-1 text-zinc-400 font-bold text-center font-english">:</span>
-                    <span className="col-span-7 font-black text-zinc-900 truncate">
+                    <span className="col-span-1 text-zinc-400 font-bold text-center font-english text-[9px] sm:text-[10px]">:</span>
+                    <span className="col-span-7 font-black text-zinc-900 truncate text-xs sm:text-sm">
                       {kh ? "កេសរារាម" : "Kesararam"}
                     </span>
                   </div>
 
                   {/* Grade Level */}
-                  <div className="grid grid-cols-12 items-baseline border-b border-zinc-100 pb-1">
-                    <span className="col-span-4 text-zinc-400 font-bold uppercase font-english">
+                  <div className="grid grid-cols-12 items-baseline border-b border-zinc-100 pb-1.5">
+                    <span className="col-span-4 text-zinc-400 font-extrabold uppercase font-english text-[9px] sm:text-[10px] tracking-wider">
                       {kh ? "ថ្នាក់" : "GRADE"}
                     </span>
-                    <span className="col-span-1 text-zinc-400 font-bold text-center font-english">:</span>
-                    <span className="col-span-7 font-black text-zinc-900">
+                    <span className="col-span-1 text-zinc-400 font-bold text-center font-english text-[9px] sm:text-[10px]">:</span>
+                    <span className="col-span-7 font-black text-zinc-900 text-xs sm:text-sm">
                       {kh ? gradeKh : gradeEn}
                     </span>
                   </div>
 
                   {/* Province Standings */}
-                  <div className="grid grid-cols-12 items-baseline border-b border-zinc-100 pb-1">
-                    <span className="col-span-4 text-zinc-400 font-bold uppercase font-english">
+                  <div className="grid grid-cols-12 items-baseline border-b border-zinc-100 pb-1.5">
+                    <span className="col-span-4 text-zinc-400 font-extrabold uppercase font-english text-[9px] sm:text-[10px] tracking-wider">
                       {kh ? "ខេត្ត" : "PROVINCE"}
                     </span>
-                    <span className="col-span-1 text-zinc-400 font-bold text-center font-english">:</span>
-                    <span className="col-span-7 font-black text-zinc-900">
+                    <span className="col-span-1 text-zinc-400 font-bold text-center font-english text-[9px] sm:text-[10px]">:</span>
+                    <span className="col-span-7 font-black text-zinc-900 text-xs sm:text-sm">
                       {kh ? getProvinceKh(student.province) : (student.province ?? "Siem Reap")}
                     </span>
                   </div>
 
                   {/* Current Points */}
-                  <div className="grid grid-cols-12 items-baseline border-b border-zinc-100 pb-1">
-                    <span className="col-span-4 text-zinc-400 font-bold uppercase font-english">
+                  <div className="grid grid-cols-12 items-baseline border-b border-zinc-100 pb-1.5">
+                    <span className="col-span-4 text-zinc-400 font-extrabold uppercase font-english text-[9px] sm:text-[10px] tracking-wider">
                       {kh ? "ពិន្ទុសរុប" : "POINTS"}
                     </span>
-                    <span className="col-span-1 text-zinc-400 font-bold text-center font-english">:</span>
-                    <span className="col-span-7 font-black text-emerald-600 font-mono">
+                    <span className="col-span-1 text-zinc-400 font-bold text-center font-english text-[9px] sm:text-[10px]">:</span>
+                    <span className="col-span-7 font-black text-emerald-600 font-mono text-xs sm:text-sm">
                       {student.lifetimePoints.toLocaleString()} PTS
                     </span>
                   </div>
 
                   {/* Joined Date (Year only) */}
-                  <div className="grid grid-cols-12 items-baseline">
-                    <span className="col-span-4 text-zinc-400 font-bold uppercase font-english">
+                  <div className="grid grid-cols-12 items-baseline pb-1.5">
+                    <span className="col-span-4 text-zinc-400 font-extrabold uppercase font-english text-[9px] sm:text-[10px] tracking-wider">
                       {kh ? "ឆ្នាំចូលរួម" : "JOINED"}
                     </span>
-                    <span className="col-span-1 text-zinc-400 font-bold text-center font-english">:</span>
-                    <span className="col-span-7 font-black text-zinc-900">
+                    <span className="col-span-1 text-zinc-400 font-bold text-center font-english text-[9px] sm:text-[10px]">:</span>
+                    <span className="col-span-7 font-black text-zinc-900 text-xs sm:text-sm">
                       {kh ? joinedKh : joinedEn}
                     </span>
                   </div>
@@ -405,7 +424,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
 
               {/* Footer line */}
               <div className="absolute bottom-0 left-0 right-0 h-10 border-t border-zinc-200 select-none z-10 flex flex-col justify-end">
-                <div className="w-full bg-[#0284c7] py-1 text-center text-[7.5px] sm:text-[8px] text-white font-black uppercase tracking-widest border-t-2 border-black">
+                <div className="w-full bg-[#0284c7] py-2.5 text-center text-[10px] sm:text-[11px] text-white font-black uppercase tracking-widest border-t-2 border-black">
                   Kesararam with Digital © 2026 · kesararamwithdigital.tech
                 </div>
               </div>
@@ -474,36 +493,70 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
               </h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {claimedItems.map((item, idx) => (
-                  <div 
-                    key={idx} 
-                    className="border border-zinc-200 p-3 bg-zinc-50 relative overflow-hidden flex items-center gap-3"
-                  >
-                    {/* Item Image */}
-                    <div className="w-12 h-12 bg-white border border-zinc-200 flex-shrink-0 flex items-center justify-center p-1">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={item.image} alt={item.name} className="w-full h-full object-contain" />
+                {claimedItems.length > 0 ? (
+                  claimedItems.map((item, idx) => (
+                    <div 
+                      key={idx} 
+                      className="border border-zinc-200 p-3 bg-zinc-50 relative overflow-hidden flex items-center gap-3 animate-fade-in"
+                    >
+                      {/* Item Image */}
+                      <div className="w-12 h-12 bg-white border border-zinc-200 flex-shrink-0 flex items-center justify-center p-1">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={item.image} alt={item.name} className="w-full h-full object-contain" />
+                      </div>
+                      {/* Item Details */}
+                      <div className="flex-1 min-w-0">
+                        <p className={`font-black text-xs text-zinc-950 truncate ${kh ? 'font-kh-header' : 'font-stack-notch'}`}>
+                          {kh ? item.nameKh : item.name}
+                        </p>
+                        <p className="font-bold text-[9px] text-zinc-400 font-mono mt-0.5 font-english">
+                          {item.cost} PTS
+                        </p>
+                        <span className={`inline-flex items-center gap-0.5 px-1 py-0.5 bg-green-100 text-green-700 text-[8px] font-black uppercase mt-1 border border-green-200 ${kh ? 'font-kh-header' : 'font-stack-notch'}`}>
+                          <CheckCircle2 size={8} />
+                          {kh ? "បានប្តូរ" : "CLAIMED"}
+                        </span>
+                      </div>
                     </div>
-                    {/* Item Details */}
-                    <div className="flex-1 min-w-0">
-                      <p className={`font-black text-xs text-zinc-950 truncate ${kh ? 'font-kh-header' : 'font-stack-notch'}`}>
-                        {kh ? item.nameKh : item.name}
-                      </p>
-                      <p className="font-bold text-[9px] text-zinc-400 font-mono mt-0.5 font-english">
-                        {item.cost} PTS
-                      </p>
-                      <span className={`inline-flex items-center gap-0.5 px-1 py-0.5 bg-green-100 text-green-700 text-[8px] font-black uppercase mt-1 border border-green-200 ${kh ? 'font-kh-header' : 'font-stack-notch'}`}>
-                        <CheckCircle2 size={8} />
-                        {kh ? "បានប្តូរ" : "CLAIMED"}
-                      </span>
-                    </div>
+                  ))
+                ) : (
+                  <div className="col-span-2 text-center py-6 text-zinc-400 text-xs font-semibold">
+                    {kh ? "មិនទាន់មានការប្តូររង្វាន់នៅឡើយទេ" : "No rewards claimed yet"}
                   </div>
-                ))}
+                )}
               </div>
             </div>
 
           </div>
 
+        </div>
+
+        {/* ── Brand-like Navigation Footer (Stunning brutalist premium footer block) ── */}
+        <div 
+          className="w-full border-t-3 border-black pt-8 mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 items-center text-zinc-500 font-english select-none"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-2">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src="/brand/kwd-black_nobackground.png" 
+                alt="KWD Logo" 
+                className="h-6 object-contain filter grayscale opacity-60" 
+              />
+              <span className="font-black text-[11px] tracking-widest text-zinc-400">KESARARAM WITH DIGITAL</span>
+            </div>
+            <p className="text-[10px] text-zinc-400 font-medium">
+              Empowering primary education through interactive, digitized gamified learning metrics.
+            </p>
+          </div>
+          
+          <div className="flex flex-wrap gap-4 md:justify-end text-xs font-black uppercase tracking-wider">
+            <button onClick={() => router.push('/leaderboard')} className="hover:text-black transition-colors">Leaderboard</button>
+            <button onClick={() => router.push('/learn')} className="hover:text-black transition-colors">Learn</button>
+            <button onClick={() => router.push('/play/solo')} className="hover:text-black transition-colors">Solo Play</button>
+            <button onClick={() => router.push('/')} className="hover:text-black transition-colors">Home</button>
+          </div>
         </div>
 
       </div>
