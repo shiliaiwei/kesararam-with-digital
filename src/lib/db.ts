@@ -6,7 +6,7 @@ import * as schema from "@/db/schema";
 
 let _initialized = false;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-let _db: any = null;
+let _db: ReturnType<typeof drizzle<typeof schema>> | null = null;
 let _sql: NeonQueryFunction<false, false> | null = null;
 
 function init() {
@@ -23,7 +23,8 @@ function init() {
 export const db: ReturnType<typeof drizzle<typeof schema>> = new Proxy({} as any, {
   get(_, prop) {
     init();
-    return _db[prop];
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    return (_db as any)[prop];
   },
 });
 
@@ -38,28 +39,26 @@ export const db: ReturnType<typeof drizzle<typeof schema>> = new Proxy({} as any
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const sql: NeonQueryFunction<false, false> = new Proxy(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ((...args: any[]) => {
+  ((...args: unknown[]) => {
     init();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return (_sql as any)(...args);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+    return (_sql as any)(...args as any[]);
+  }) as unknown as NeonQueryFunction<false, false>,
   {
     // Property access: sql.transaction, sql.unsafe, etc.
     get(_target, prop, receiver) {
       init();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const val = (_sql as any)[prop];
       if (typeof val === "function") return val.bind(_sql);
       return val;
     },
     // Function call: sql`...` tagged template
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    apply(_target, _thisArg, args: any[]) {
+    apply(_target, _thisArg, args: unknown[]) {
       init();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return (_sql as any)(...args);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any
+      return (_sql as any)(...args as any[]);
     },
   }
 );

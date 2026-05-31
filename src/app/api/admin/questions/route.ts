@@ -55,7 +55,11 @@ export async function GET(request: NextRequest) {
     `;
 
     // Derive question type from answer stats
-    const result = rows.map((q: any) => {
+    type Row = Record<string, unknown> & {
+      id: number; questionEn: string; questionKm?: string; topicId?: number; topicName?: string; categoryId?: number; categoryName?: string; answerCount?: number; hasImage?: boolean; correctCount?: number; isTrueFalse?: boolean; difficulty?: string; status?: string; createdAt?: string;
+    };
+
+    const result = (rows as Row[]).map((q) => {
       const ansCount = Number(q.answerCount ?? 0);
       const hasImage = Boolean(q.hasImage);
       const correctCount = Number(q.correctCount ?? 0);
@@ -84,7 +88,7 @@ export async function GET(request: NextRequest) {
 
     // Filter by type if specified
     const filtered = type && type !== "all"
-      ? result.filter((q: any) => q.questionType === type)
+      ? result.filter((q) => q.questionType === type)
       : result;
 
     return NextResponse.json({ questions: filtered, total: filtered.length });
