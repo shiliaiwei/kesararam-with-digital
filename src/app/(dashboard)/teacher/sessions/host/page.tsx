@@ -232,6 +232,8 @@ export default function HostPage() {
     return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
   }, []);
 
+
+
   const toggleFullscreen = async () => {
     try {
       if (!document.fullscreenElement) {
@@ -362,7 +364,28 @@ export default function HostPage() {
   const handleSSEEvent = useCallback((event: SSEEvent) => {
     if (event.type === "lobby_update") {
       setLobbyParticipants(event.participants);
-      setPhase((p) => p.name === "lobby" ? { ...p, participants: event.participants } : p);
+      if (event.forceLobby && activeCode) {
+        fetch(`/api/game/sessions/${activeCode}/info`)
+          .then((r) => r.json())
+          .then((info) => {
+            setPhase((p) => ({
+              name: "lobby",
+              code: activeCode,
+              sessionId: "sessionId" in p ? (p as any).sessionId : 0,
+              participants: event.participants,
+              gameMode: info.gameMode ?? "quick-quiz",
+              categories: [info.category?.replace(/-/g, " ") ?? "—"],
+              difficulty: info.difficulty ?? "mixed",
+              questionCount: info.questionCount ?? 0,
+              timePerQuestion: info.timePerQuestion ?? 30,
+              scoringMode: info.scoringMode ?? "speed",
+              maxPlayers: info.maxPlayers ?? 50,
+            }));
+          })
+          .catch(() => {});
+      } else {
+        setPhase((p) => p.name === "lobby" ? { ...p, participants: event.participants } : p);
+      }
     }
     if (event.type === "question_start") {
       setPhase((p) => {
@@ -406,7 +429,7 @@ export default function HostPage() {
         leaderboard: event.finalLeaderboard,
       }));
     }
-  }, []);
+  }, [activeCode]);
 
   useGameRealtime(activeCode, handleSSEEvent, !!activeCode);
 
@@ -436,18 +459,67 @@ export default function HostPage() {
     });
   }
 
-  async function control(action: string) {
+  async function control(action: string, currentPhase?: string) {
     if (controlling || !("code" in phase)) return;
     setControlling(true); setError("");
     try {
       const res = await fetch(`/api/game/sessions/${(phase as any).code}/control`, {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action }),
+        body: JSON.stringify({ action, currentPhase }),
       });
       if (!res.ok) { const e = await res.json().catch(() => ({ error: "Unknown" })); setError(sanitizeError(e.details || e.error) || `Failed to ${action}`); }
     } catch (err) { setError(`Network error: ${err instanceof Error ? err.message : "Unknown"}`); }
     finally { setControlling(false); }
   }
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const activeEl = document.activeElement;
+      if (activeEl) {
+        const tagName = activeEl.tagName.toUpperCase();
+        if (tagName === "INPUT" || tagName === "TEXTAREA" || activeEl.getAttribute("contenteditable") === "true") {
+          return;
+        }
+      }
+
+      if (controlling) return;
+
+      const key = event.key;
+
+      if (key === " " || key === "Enter" || key === "ArrowRight") {
+        if (phase.name === "lobby") {
+          if (phase.participants && phase.participants.length > 0) {
+            event.preventDefault();
+            if (!document.fullscreenElement) {
+              document.documentElement.requestFullscreen().catch(() => {});
+            }
+            control("start");
+          }
+        } else if (phase.name === "active") {
+          event.preventDefault();
+          control("reveal");
+        } else if (phase.name === "round_end") {
+          event.preventDefault();
+          control("advance");
+        }
+      }
+
+      if (key === "ArrowLeft" || key === "Backspace") {
+        if (phase.name === "active") {
+          event.preventDefault();
+          control("back", "active");
+        } else if (phase.name === "round_end") {
+          event.preventDefault();
+          control("back", "round_end");
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [phase, controlling]);
 
   function copyCode() {
     if (!joinUrl) return;

@@ -61,6 +61,63 @@ async function syncScoresToUserProfiles(sessionId: number) {
   }
 }
 
+async function syncParticipantScoresFromAnswers(sessionId: number) {
+  const participants = await db
+    .select()
+    .from(gameParticipants)
+    .where(eq(gameParticipants.sessionId, sessionId));
+
+  const answersList = await db
+    .select()
+    .from(gameSessionAnswers)
+    .where(eq(gameSessionAnswers.sessionId, sessionId));
+
+  const answersByUser = new Map<number, typeof answersList>();
+  for (const ans of answersList) {
+    if (!answersByUser.has(ans.userId)) {
+      answersByUser.set(ans.userId, []);
+    }
+    answersByUser.get(ans.userId)!.push(ans);
+  }
+
+  for (const p of participants) {
+    const userAnswers = answersByUser.get(p.userId) ?? [];
+    
+    let totalScore = 0;
+    let correctAnswers = 0;
+    for (const ans of userAnswers) {
+      totalScore += ans.totalPoints;
+      if (ans.isCorrect) {
+        correctAnswers += 1;
+      }
+    }
+
+    const sortedAnswers = [...userAnswers].sort((a, b) => a.answeredAt.getTime() - b.answeredAt.getTime());
+    let currentStreak = 0;
+    for (const ans of sortedAnswers) {
+      if (ans.isCorrect) {
+        currentStreak += 1;
+      } else {
+        currentStreak = 0;
+      }
+    }
+
+    await db
+      .update(gameParticipants)
+      .set({
+        totalScore,
+        correctAnswers,
+        currentStreak,
+      })
+      .where(
+        and(
+          eq(gameParticipants.sessionId, sessionId),
+          eq(gameParticipants.userId, p.userId)
+        )
+      );
+  }
+}
+
 export async function POST(
   req: NextRequest,
   { params }: { params: Promise<{ code: string }> }
@@ -95,7 +152,7 @@ export async function POST(
     }
 
     const body = await req.json();
-    const { action } = body as { action: "start" | "advance" | "pause" | "reveal" | "resume" | "end" | "terminate" };
+    const { action } = body as { action: "start" | "advance" | "pause" | "reveal" | "resume" | "end" | "terminate" | "back" };
     console.log(`[CONTROL] Action: ${action}`);
 
     const currentStatus = session.status as GameStatus;
@@ -196,6 +253,151 @@ export async function POST(
       });
 
       return NextResponse.json({ status: "active", currentQuestionIndex: idx, revealed: true });
+    }
+
+    // ── BACK (Go backward: revert reveal or decrement question index or go back to lobby) ──
+    if (action === "back") {
+      const { currentPhase } = body as { currentPhase?: "active" | "round_end" };
+      console.log(`[BACK] Session ${session.id}, status: ${currentStatus}, currentQuestionIndex: ${session.currentQuestionIndex}, currentPhase: ${currentPhase}`);
+
+      if (currentStatus !== "active") {
+        return NextResponse.json({ error: "Session not active" }, { status: 409 });
+      }
+
+      const idx = session.currentQuestionIndex ?? 0;
+      const qIds = session.questionIds ?? [];
+      const now = new Date();
+
+      if (currentPhase === "round_end") {
+        // ── Case 1: Revert from round_end (revealed) to active of the SAME question ──
+        const currentQId = qIds[idx];
+        
+        // 1. Delete answers for this question
+        await db
+          .delete(gameSessionAnswers)
+          .where(
+            and(
+              eq(gameSessionAnswers.sessionId, session.id),
+              eq(gameSessionAnswers.questionId, currentQId)
+            )
+          );
+
+        // 2. Recalculate and sync participant scores
+        await syncParticipantScoresFromAnswers(session.id);
+
+        // 3. Reset questionStartedAt so the timer starts fresh
+        await db
+          .update(gameSessions)
+          .set({ questionStartedAt: now })
+          .where(eq(gameSessions.id, session.id));
+
+        // 4. Fetch question payload
+        const q = await getQuestionPayload(currentQId);
+        const endsAt = new Date(now.getTime() + session.timePerQuestion * 1000);
+
+        // 5. Broadcast question_start to make students see the question again
+        await broadcastEvent(code.toUpperCase(), {
+          type: "question_start",
+          question: q,
+          startsAt: now.toISOString(),
+          endsAt: endsAt.toISOString(),
+          index: idx,
+          total: qIds.length,
+        });
+
+        return NextResponse.json({ status: "active", currentQuestionIndex: idx });
+      } else {
+        // ── Case 2: Go back from active question screen to previous state ──
+        if (idx === 0) {
+          // ── Case 2a: If on the FIRST question, go back to LOBBY ──
+          const currentQId = qIds[0];
+          
+          // 1. Delete answers for the first question
+          await db
+            .delete(gameSessionAnswers)
+            .where(
+              and(
+                eq(gameSessionAnswers.sessionId, session.id),
+                eq(gameSessionAnswers.questionId, currentQId)
+              )
+            );
+
+          // 2. Recalculate scores
+          await syncParticipantScoresFromAnswers(session.id);
+
+          // 3. Set status to lobby
+          await db
+            .update(gameSessions)
+            .set({ status: "lobby", currentQuestionIndex: 0, questionStartedAt: null, startedAt: null })
+            .where(eq(gameSessions.id, session.id));
+
+          // 4. Fetch participants
+          const participants = await db
+            .select()
+            .from(gameParticipants)
+            .where(eq(gameParticipants.sessionId, session.id));
+
+          // 5. Broadcast lobby_update forcing clients to lobby
+          await broadcastEvent(code.toUpperCase(), {
+            type: "lobby_update",
+            forceLobby: true,
+            participants: participants.map((p) => ({
+              userId: p.userId,
+              displayName: p.displayName,
+              avatar: p.avatar,
+              totalScore: p.totalScore,
+              isConnected: p.isConnected ?? true,
+            })),
+          });
+
+          return NextResponse.json({ status: "lobby", currentQuestionIndex: 0 });
+        } else {
+          // ── Case 2b: If on question > 0, go back to previous question's round_end phase ──
+          const prevIdx = idx - 1;
+          const prevQId = qIds[prevIdx];
+          const currentQId = qIds[idx];
+
+          // 1. Delete answers for the current question (so when they advance to it again, it's fresh)
+          await db
+            .delete(gameSessionAnswers)
+            .where(
+              and(
+                eq(gameSessionAnswers.sessionId, session.id),
+                eq(gameSessionAnswers.questionId, currentQId)
+              )
+            );
+
+          // 2. Recalculate and sync participant scores
+          await syncParticipantScoresFromAnswers(session.id);
+
+          // 3. Update currentQuestionIndex in database to the previous index
+          await db
+            .update(gameSessions)
+            .set({ currentQuestionIndex: prevIdx })
+            .where(eq(gameSessions.id, session.id));
+
+          // 4. Correct answer for the previous question
+          const [correctAnswer] = await db
+            .select({ id: answers.id })
+            .from(answers)
+            .where(and(eq(answers.questionId, prevQId), eq(answers.isCorrect, true)))
+            .limit(1);
+
+          // 5. Build leaderboard
+          const participants = await db.select().from(gameParticipants).where(eq(gameParticipants.sessionId, session.id));
+          const prevRanks = new Map([...participants].sort((a, b) => b.totalScore - a.totalScore).map((p, i) => [p.userId, i + 1]));
+          const leaderboard = await buildLeaderboard(session.id, prevRanks);
+
+          // 6. Broadcast question_end for the previous question index
+          await broadcastEvent(code.toUpperCase(), {
+            type: "question_end",
+            correctAnswerId: correctAnswer?.id ?? null,
+            leaderboard,
+          });
+
+          return NextResponse.json({ status: "active", currentQuestionIndex: prevIdx });
+        }
+      }
     }
 
     // ── ADVANCE (Increment index and broadcast next question_start cleanly) ───────────────────

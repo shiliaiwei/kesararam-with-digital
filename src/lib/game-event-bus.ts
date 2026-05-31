@@ -7,7 +7,7 @@
  */
 
 export type SSEEvent =
-  | { type: "lobby_update"; participants: ParticipantInfo[] }
+  | { type: "lobby_update"; participants: ParticipantInfo[]; forceLobby?: boolean }
   | { type: "question_start"; question: QuestionPayload; startsAt: string; endsAt: string; index: number; total: number; catchUp?: boolean }
   | { type: "question_end"; correctAnswerId: number | null; leaderboard: LeaderboardEntry[] }
   | { type: "leaderboard"; entries: LeaderboardEntry[] }

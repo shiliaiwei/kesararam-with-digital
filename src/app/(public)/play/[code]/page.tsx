@@ -209,8 +209,15 @@ export default function StudentGamePage() {
     try {
       if (event.type === "lobby_update") {
         setParticipants(event.participants || []);
-        // Only reset to lobby if we're not already in an active game phase
-        setPhase(prev => (prev === "lobby" ? "lobby" : prev));
+        if (event.forceLobby) {
+          setSelectedAnswer(null);
+          setAnswerSubmitted(false);
+          setAnswerResult(null);
+          setCorrectAnswerId(null);
+          setPhase("lobby");
+        } else {
+          setPhase(prev => (prev === "lobby" ? "lobby" : prev));
+        }
       } else if (event.type === "question_start") {
         if (!event.question?.answers?.length) {
           logError("Invalid question data", undefined, { event });
