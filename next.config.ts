@@ -55,7 +55,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://api.mapbox.com",
               "font-src 'self' data: https://cdnjs.cloudflare.com https://fonts.gstatic.com",
               "img-src 'self' data: blob: https://res.cloudinary.com https://cdn.jsdelivr.net https://raw.githubusercontent.com https://avatars.githubusercontent.com https://cdnjs.cloudflare.com https://api.mapbox.com https://*.mapbox.com https://www.google-analytics.com https://www.googletagmanager.com",
-              "connect-src 'self' https://*.neon.tech https://api.cloudinary.com https://cdn.jsdelivr.net https://res.cloudinary.com https://api.mapbox.com https://events.mapbox.com https://*.mapbox.com https://www.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://ssl.google-analytics.com",
+              "connect-src 'self' wss://*.pusher.com https://*.pusher.com https://*.neon.tech https://api.cloudinary.com https://cdn.jsdelivr.net https://res.cloudinary.com https://api.mapbox.com https://events.mapbox.com https://*.mapbox.com https://www.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://ssl.google-analytics.com",
               "media-src 'self' https://res.cloudinary.com",
               "worker-src 'self' blob:",
               "frame-src 'none'",
