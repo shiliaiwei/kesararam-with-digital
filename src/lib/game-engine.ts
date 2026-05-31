@@ -35,7 +35,6 @@ export function calculateScore(params: {
   remainingTimeMs: number;
   totalTimeMs: number;
   currentStreak: number;
-  targetGroup?: string | null;
 }): ScoreResult {
   if (!params.isCorrect) return { baseScore: 0, speedBonus: 0, streakBonus: 0, totalPoints: 0 };
 
@@ -55,45 +54,20 @@ export function calculateScore(params: {
   // If answered impossibly fast (< 500ms), it's likely a script or lucky mash.
   const isSuspicious = responseTimeMs < 500;
 
-  const group = params.targetGroup || "university";
-  const isKid = group === "kid_k6" || group === "kid_k12";
-
   // 3. Speed bonus (only in speed mode, penalized if suspicious)
   let speedBonus = 0;
   if (params.scoringMode === "speed" && !isSuspicious && params.totalTimeMs > 0) {
-    if (isKid) {
-      // Pedagogical: Low time pressure, award speed bonus if answered within first 85% of time
-      if (safeRemaining / params.totalTimeMs >= 0.15) {
-        speedBonus = 1;
-      }
-    } else if (group === "professional") {
-      // Cognitive challenge: Decisiveness penalty. No speed bonus if answered in last 20% of time
-      if (safeRemaining / params.totalTimeMs >= 0.20) {
-        // Linear scale speed bonus up to +3 points
-        speedBonus = Math.round((safeRemaining / params.totalTimeMs) * 3);
-      }
-    } else {
-      // University / standard linear scaling speed bonus up to +3 points
-      speedBonus = Math.round((safeRemaining / params.totalTimeMs) * 3);
-    }
+    // Standard linear scaling speed bonus up to +3 points
+    speedBonus = Math.round((safeRemaining / params.totalTimeMs) * 3);
   }
 
   // 4. Streak bonus (penalized if suspicious)
   let streakBonus = 0;
   if (!isSuspicious) {
-    if (isKid) {
-      // Positive reinforcement: Double the streak bonus to motivate kids
-      if (params.currentStreak >= 5) {
-        streakBonus = 4;
-      } else if (params.currentStreak >= 2) {
-        streakBonus = 2;
-      }
-    } else {
-      if (params.currentStreak >= 5) {
-        streakBonus = 2;
-      } else if (params.currentStreak >= 2) {
-        streakBonus = 1;
-      }
+    if (params.currentStreak >= 5) {
+      streakBonus = 2;
+    } else if (params.currentStreak >= 2) {
+      streakBonus = 1;
     }
   }
 

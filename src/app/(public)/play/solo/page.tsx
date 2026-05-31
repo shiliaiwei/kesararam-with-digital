@@ -79,7 +79,6 @@ export default function SoloPage() {
   const [categories, setCategories] = useState<{ id: number; titleEn: string; titleKm: string }[]>([]);
   const [selectedCats, setSelectedCats] = useState<number[]>([]);
   const [difficulty, setDifficulty] = useState("mixed");
-  const [targetGroup, setTargetGroup] = useState<string>("university");
   const [questionCount, setQuestionCount] = useState<number>(
     GAME_MODE_CONFIG[searchParams.get("mode") ?? "quick-quiz"]?.defaultQuestionCount ?? 10
   );
@@ -124,7 +123,6 @@ export default function SoloPage() {
           questionCount,
           timePerQuestion: GAME_MODE_CONFIG[selectedMode]?.timePerQuestion ?? 30,
           gameMode: selectedMode,
-          targetGroup,
         }),
       });
       if (!res.ok) {
@@ -222,7 +220,6 @@ export default function SoloPage() {
           // Pass actual game timing so server can score correctly
           timePerQuestion: session.timePerQuestion,
           scoringMode: "speed",
-          targetGroup,
         }),
       });
       const result = await res.json();
@@ -340,27 +337,6 @@ export default function SoloPage() {
                 <button key={d.id} onClick={() => setDifficulty(d.id)} className="flex-1 py-2 border-2 border-black text-sm font-black transition-all duration-100 rounded-none"
                   style={{ backgroundColor: difficulty === d.id ? "#000" : "#fff", color: difficulty === d.id ? "#ffd700" : "#000", boxShadow: "2px 2px 0 #000" }}>
                   <span style={khFont}>{kh ? d.km : d.en}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-3" style={khFont}>{kh ? "គោលដៅអ្នកលេង" : "Target Audience"}</div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              {[
-                { id: "kid_k6", en: "Kid (K-6)", km: "ក្មេង K-6" },
-                { id: "kid_k12", en: "Kid (K-12)", km: "ក្មេង K-12" },
-                { id: "university", en: "University", km: "និស្សិត" },
-                { id: "professional", en: "Professional", km: "ជំនាញ" }
-              ].map(t => (
-                <button key={t.id} onClick={() => setTargetGroup(t.id)} className="py-2 border-2 border-black text-sm font-black transition-all duration-100 rounded-none"
-                  style={{
-                    backgroundColor: targetGroup === t.id ? "#000" : "#fff",
-                    color: targetGroup === t.id ? "#ffd700" : "#000",
-                    boxShadow: "2px 2px 0 #000",
-                  }}>
-                  <span style={khFont}>{kh ? t.km : t.en}</span>
                 </button>
               ))}
             </div>
@@ -594,8 +570,8 @@ export default function SoloPage() {
 
         {/* Question image (Stable height wrapper - compact) */}
         <div className={`shrink-0 w-full h-48 flex items-center justify-center p-2 relative overflow-hidden rounded-none ${q.imageUrl
-            ? "border-2 border-black bg-zinc-950"
-            : "border-2 border-transparent bg-transparent"
+          ? "border-2 border-black bg-zinc-950"
+          : "border-2 border-transparent bg-transparent"
           }`}>
           {q.imageUrl ? (
             <img src={q.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
@@ -634,8 +610,8 @@ export default function SoloPage() {
           {isSelected ? (
             <div
               className={`w-full border-2 p-3 rounded-none flex flex-col items-center justify-center gap-1 transition-all ${!isTimeout && isCorrect
-                  ? "border-green-400 bg-green-500/10"
-                  : "border-red-400 bg-red-500/10"
+                ? "border-green-400 bg-green-500/10"
+                : "border-red-400 bg-red-500/10"
                 }`}
             >
               <div className="flex items-center gap-2">

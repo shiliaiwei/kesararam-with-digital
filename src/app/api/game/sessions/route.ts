@@ -24,7 +24,6 @@ export async function POST(req: NextRequest) {
     gameType = "quick-quiz",
     maxPlayers = 50,
     language = "both",
-    targetGroup = "university",
   } = body;
 
   if (!categoryIds?.length) {
@@ -106,53 +105,10 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Filter/prioritize questions based on targetGroup
-  let targetedQuestions = compatible;
-
-  if (targetGroup === "kid_k6") {
-    // Kid (K-6): Focus on low difficulty, prioritize image-based questions
-    let filtered = compatible.filter(q => {
-      const isEasy = q.difficulty === "easy" || q.difficulty === "beginner" || !q.difficulty;
-      return isEasy;
-    });
-
-    if (filtered.length > 0) {
-      targetedQuestions = filtered;
-    }
-
-    // Sort so questions with images are placed first
-    targetedQuestions.sort((a, b) => {
-      const aImg = !!a.imageUrl ? 1 : 0;
-      const bImg = !!b.imageUrl ? 1 : 0;
-      return bImg - aImg;
-    });
-  } else if (targetGroup === "kid_k12") {
-    // Kid (K-12): Prioritize signs and basic driving rules (easy/medium difficulty)
-    let filtered = compatible.filter(q => q.difficulty === "easy" || q.difficulty === "medium" || !q.difficulty);
-    if (filtered.length > 0) {
-      targetedQuestions = filtered;
-    }
-  } else if (targetGroup === "university") {
-    // University: standard full theory (medium/hard difficulty prioritized)
-    let filtered = compatible.filter(q => q.difficulty === "medium" || q.difficulty === "hard");
-    if (filtered.length >= questionCount) {
-      targetedQuestions = filtered;
-    }
-  } else if (targetGroup === "professional") {
-    // Professional: technical driving rules, priority rules, hard/advanced difficulty
-    let filtered = compatible.filter(q => q.difficulty === "hard" || q.difficulty === "advanced");
-    if (filtered.length < questionCount) {
-      filtered = compatible.filter(q => q.difficulty === "hard" || q.difficulty === "medium");
-    }
-    if (filtered.length > 0) {
-      targetedQuestions = filtered;
-    }
-  }
-
   // Use the new truly random selection algorithm
   // This ensures unpredictable question selection that changes every time
   const selectedQuestions = selectRandomQuestions({
-    questions: targetedQuestions.map(q => ({
+    questions: compatible.map(q => ({
       ...q,
       categoryId: categoryIds[0], // Will be properly mapped from the query
     })),
@@ -198,7 +154,6 @@ export async function POST(req: NextRequest) {
       maxPlayers: Math.min(Math.max(maxPlayers, 1), 200),
       language,
       status: "lobby",
-      targetGroup,
     })
     .returning();
 
