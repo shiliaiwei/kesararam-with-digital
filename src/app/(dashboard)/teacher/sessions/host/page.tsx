@@ -45,6 +45,34 @@ type HostPhase =
   | { name: "round_end"; code: string; sessionId: number; leaderboard: LeaderboardEntry[]; qIndex: number; total: number; question: QuestionPayload; correctAnswerId: number | null }
   | { name: "ended"; code: string; sessionId: number; leaderboard: LeaderboardEntry[] };
 
+interface NeubrutalistAvatarProps {
+  src: string | null | undefined;
+  initials: string;
+  userId: number;
+}
+
+function NeubrutalistAvatar({ src, initials, userId }: NeubrutalistAvatarProps) {
+  const [failed, setFailed] = useState(false);
+
+  if (!src || failed) {
+    return (
+      <div className="w-full h-full flex items-center justify-center text-white font-black"
+        style={{ background: `hsl(${(userId * 47) % 360}, 70%, 45%)` }}>
+        {initials}
+      </div>
+    );
+  }
+
+  return (
+    <img 
+      src={src} 
+      alt={initials} 
+      className="w-full h-full object-cover" 
+      onError={() => setFailed(true)} 
+    />
+  );
+}
+
 // ── Leaderboard row ────────────────────────────────────────────────────────
 function LiveLeaderRow({ entry, rank, showScore }: { entry: LeaderboardEntry; rank: number; showScore: boolean }) {
   const RANK_COLORS = ["#FFD700", "#e4e4e7", "#fed7aa"];
@@ -73,14 +101,7 @@ function LiveLeaderRow({ entry, rank, showScore }: { entry: LeaderboardEntry; ra
         className="w-8 h-8 border-2 border-black flex items-center justify-center font-black text-xs flex-shrink-0 text-white overflow-hidden bg-white"
         style={{ borderRadius: "0px" }}
       >
-        {entry.avatar ? (
-          <img src={entry.avatar} alt={entry.displayName} className="w-full h-full object-cover" />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-white font-black"
-            style={{ background: `hsl(${(entry.userId * 47) % 360}, 70%, 45%)` }}>
-            {initials}
-          </div>
-        )}
+        <NeubrutalistAvatar src={entry.avatar} initials={initials} userId={entry.userId} />
       </div>
       <div className="flex-1 min-w-0 text-black">
         <div className="font-bold text-xs truncate">{entry.displayName}</div>
@@ -181,7 +202,8 @@ export default function HostPage() {
 
   useEffect(() => {
     if (lobbyCode) {
-      setJoinUrl(`${window.location.origin}/play/${lobbyCode}`);
+      const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://kesararamwithdigital.tech";
+      setJoinUrl(`${baseUrl}/play/${lobbyCode}`);
     } else {
       setJoinUrl("");
     }
@@ -412,8 +434,8 @@ export default function HostPage() {
   }
 
   function copyCode() {
-    if (!("code" in phase)) return;
-    navigator.clipboard.writeText((phase as any).code);
+    if (!joinUrl) return;
+    navigator.clipboard.writeText(joinUrl);
     setCopied(true); setTimeout(() => setCopied(false), 2000);
   }
 
@@ -1099,27 +1121,27 @@ export default function HostPage() {
                 
                 <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center pt-2">
                   {/* Left Column: Room Code Details */}
-                  <div className="md:col-span-7 text-center md:text-left w-full">
+                  <div className="md:col-span-8 text-center md:text-left w-full">
                     <div className="text-xs font-black uppercase tracking-widest mb-2.5 text-black">
                       {kh ? "លេខកូដបន្ទប់" : "Room Code"}
                     </div>
-                    <div className="text-4xl sm:text-6xl md:text-7xl font-mono font-black tracking-[0.2em] pl-[0.2em] mb-2.5 text-black text-center md:text-left break-all select-all">
+                    <div className="text-4xl sm:text-6xl md:text-7xl font-mono font-black tracking-[0.12em] sm:tracking-[0.2em] pl-[0.12em] sm:pl-[0.2em] mb-2.5 text-black text-center md:text-left break-all select-all">
                       {phase.code}
                     </div>
                     <div className="text-sm mb-6 text-black font-bold text-center md:text-left break-words">
-                      {kh ? "ចូលតាម:" : "Join at:"} <span className="text-black font-black underline block sm:inline break-all">kesararamwithdigital.tech/play/{phase.code}</span>
+                      {kh ? "ចូលតាម:" : "Join at:"} <span className="text-black font-black underline block sm:inline break-all">{joinUrl.replace(/^https?:\/\//, "")}</span>
                     </div>
                     <button
                       onClick={copyCode}
                       className={`flex items-center gap-2 px-5 py-3 border-4 border-black font-black text-sm mx-auto md:mx-0 transition-all duration-100 shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#000] active:translate-y-0 active:shadow-[1px_1px_0_#000] rounded-none cursor-pointer ${copied ? "bg-emerald-400 text-black" : "bg-white text-black"}`}
                     >
                       {copied ? <Check size={16} /> : <Copy size={16} />}
-                      {copied ? (kh ? "បានចម្លង!" : "Copied!") : (kh ? "ចម្លងលេខកូដ" : "Copy Code")}
+                      {copied ? (kh ? "បានចម្លង!" : "Copied!") : (kh ? "ចម្លងតំណភ្ជាប់" : "Copy Link")}
                     </button>
                   </div>
 
                   {/* Right Column: QR Code scanning */}
-                  <div className="md:col-span-5 flex flex-col items-center justify-center p-5 bg-white border-4 border-black shadow-[4px_4px_0_#000] rounded-none">
+                  <div className="md:col-span-4 flex flex-col items-center justify-center p-5 bg-white border-4 border-black shadow-[4px_4px_0_#000] rounded-none">
                     <div className="text-[10px] font-black uppercase tracking-widest mb-3.5 text-black text-center" style={khFont}>
                       {kh ? "ស្កេនដើម្បីចូលរួម" : "Scan to Join Q&A"}
                     </div>
@@ -1171,16 +1193,21 @@ export default function HostPage() {
                   { label: kh ? "សំណួរ" : "Questions", value: `${phase.questionCount}Q` },
                   { label: kh ? "ពេល/Q" : "Time/Q", value: `${phase.timePerQuestion}s` },
                   { label: kh ? "ពិន្ទុ" : "Scoring", value: phase.scoringMode },
-                ].map((item) => (
-                  <div key={item.label} className="flex items-center justify-between border-b-2 border-zinc-100 pb-3 last:border-0 last:pb-0">
-                    <span className="text-xs font-black text-zinc-400 uppercase tracking-wider" style={{ ...khFont }}>{item.label}</span>
-                    {item.customValue ? (
-                      item.customValue
-                    ) : (
-                      <span className="text-sm font-black capitalize text-black">{item.value}</span>
-                    )}
-                  </div>
-                ))}
+                ].map((item) => {
+                  const isCategory = item.label === (kh ? "ប្រភេទ" : "Category");
+                  return (
+                    <div key={item.label} className={`border-b-2 border-zinc-100 pb-3 last:border-0 last:pb-0 flex ${isCategory ? "flex-col items-start gap-1 text-left" : "items-center justify-between"}`}>
+                      <span className="text-xs font-black text-zinc-400 uppercase tracking-wider" style={{ ...khFont }}>{item.label}</span>
+                      {item.customValue ? (
+                        item.customValue
+                      ) : (
+                        <span className={`text-sm font-black capitalize text-black ${isCategory ? "text-left leading-normal" : "text-right"}`}>
+                          {item.value}
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -1226,14 +1253,7 @@ export default function HostPage() {
                     <div
                       className="w-8 h-8 border-2 border-black flex items-center justify-center font-black text-sm flex-shrink-0 text-white rounded-none shadow-[1px_1px_0_#000] overflow-hidden bg-white"
                     >
-                      {p.avatar ? (
-                        <img src={p.avatar} alt={p.displayName} className="w-full h-full object-cover" />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-white font-black"
-                          style={{ background: `hsl(${(p.userId * 47) % 360}, 70%, 45%)` }}>
-                          {p.displayName.charAt(0).toUpperCase()}
-                        </div>
-                      )}
+                      <NeubrutalistAvatar src={p.avatar} initials={p.displayName.charAt(0).toUpperCase()} userId={p.userId} />
                     </div>
                     <span className="text-xs font-black truncate text-black" style={{ ...khFont }}>
                       {p.displayName}
@@ -1510,14 +1530,7 @@ export default function HostPage() {
                       </div>
                     )}
                     <div className="w-12 h-12 border-2 border-black flex items-center justify-center font-black text-sm text-white overflow-hidden bg-white shadow-[1px_1px_0_#000]" style={{ borderRadius: "0px" }}>
-                      {entry.avatar ? (
-                        <img src={entry.avatar} alt={entry.displayName} className="w-full h-full object-cover" />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-white font-black"
-                          style={{ background: `hsl(${(entry.userId * 47) % 360}, 70%, 45%)` }}>
-                          {(entry.displayName || "?").slice(0, 2).toUpperCase()}
-                        </div>
-                      )}
+                      <NeubrutalistAvatar src={entry.avatar} initials={(entry.displayName || "?").slice(0, 2).toUpperCase()} userId={entry.userId} />
                     </div>
                     <div className="text-xs font-black text-center truncate w-full text-black" style={{ ...khFont }}>{entry.displayName}</div>
                     <div className={item.colStyle} style={{ borderRadius: "0px" }}>
@@ -1572,14 +1585,7 @@ export default function HostPage() {
                         {isTop3 ? <Crown size={14} /> : entry.rank}
                       </div>
                       <div className="w-8 h-8 border-2 border-black flex items-center justify-center font-black text-xs text-white flex-shrink-0 overflow-hidden bg-white shadow-[1px_1px_0_#000]" style={{ borderRadius: "0px" }}>
-                        {entry.avatar ? (
-                          <img src={entry.avatar} alt={entry.displayName} className="w-full h-full object-cover" />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center text-white font-black"
-                            style={{ background: `hsl(${(entry.userId * 47) % 360}, 70%, 45%)` }}>
-                            {(entry.displayName || "?").slice(0, 2).toUpperCase()}
-                          </div>
-                        )}
+                        <NeubrutalistAvatar src={entry.avatar} initials={(entry.displayName || "?").slice(0, 2).toUpperCase()} userId={entry.userId} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-black text-black text-sm truncate" style={khFont}>{entry.displayName}</div>

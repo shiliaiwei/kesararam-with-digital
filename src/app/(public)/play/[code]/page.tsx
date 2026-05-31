@@ -56,6 +56,59 @@ const DIFF_COLORS: Record<string, string> = {
   easy: "#22c55e", medium: "#eab308", hard: "#ef4444", mixed: "#a855f7",
 };
 
+interface NeubrutalistAvatarProps {
+  src: string | null | undefined;
+  initials: string;
+  userId: number;
+}
+
+function NeubrutalistAvatar({ src, initials, userId }: NeubrutalistAvatarProps) {
+  const [failed, setFailed] = useState(false);
+
+  if (!src || failed) {
+    return (
+      <div className="w-full h-full flex items-center justify-center text-white font-black"
+        style={{ 
+          background: `linear-gradient(135deg, hsl(${(userId * 61) % 360}, 70%, 45%) 0%, hsl(${(userId * 61 + 45) % 360}, 70%, 35%) 100%)`,
+        }}>
+        {initials}
+      </div>
+    );
+  }
+
+  return (
+    <img 
+      src={src} 
+      alt={initials} 
+      className="w-full h-full object-cover" 
+      onError={() => setFailed(true)} 
+    />
+  );
+}
+
+function TeacherAvatar({ src, name }: { src: string | null | undefined; name: string }) {
+  const [failed, setFailed] = useState(false);
+  
+  if (!src || failed) {
+    return (
+      <div className="w-16 h-16 border-4 border-black mx-auto mb-3 shadow-[4px_4px_0_#000] bg-black rounded-none flex items-center justify-center text-yellow-400">
+        <Crown size={28} className="fill-yellow-400" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-16 h-16 border-4 border-black mx-auto mb-3 shadow-[4px_4px_0_#000] overflow-hidden bg-white rounded-none">
+      <img 
+        src={src} 
+        alt={name} 
+        className="w-full h-full object-cover" 
+        onError={() => setFailed(true)} 
+      />
+    </div>
+  );
+}
+
 export default function StudentGamePage() {
   const params = useParams();
   const router = useRouter();
@@ -380,15 +433,7 @@ export default function StudentGamePage() {
               {kh ? "គ្រូបង្វឹក" : "INSTRUCTOR"}
             </div>
 
-            {sessionInfo?.hostAvatar ? (
-              <div className="w-16 h-16 border-4 border-black mx-auto mb-3 shadow-[4px_4px_0_#000] overflow-hidden bg-white rounded-none">
-                <img src={sessionInfo.hostAvatar} alt={sessionInfo.hostName} className="w-full h-full object-cover" />
-              </div>
-            ) : (
-              <div className="w-16 h-16 border-4 border-black mx-auto mb-3 shadow-[4px_4px_0_#000] bg-black rounded-none flex items-center justify-center text-yellow-400">
-                <Crown size={28} className="fill-yellow-400" />
-              </div>
-            )}
+            <TeacherAvatar src={sessionInfo?.hostAvatar} name={sessionInfo?.hostName ?? "Teacher"} />
             
             <div className="text-black font-black text-3xl mb-5 tracking-wide flex items-center justify-center gap-2 flex-wrap" style={khFont}>
               <span>{sessionInfo?.hostName ?? "—"}</span>
@@ -542,16 +587,7 @@ export default function StudentGamePage() {
                       }`}>
                       {/* Neubrutalist Avatar */}
                       <div className="w-8 h-8 rounded-none border-2 border-black flex items-center justify-center font-black text-xs text-white flex-shrink-0 relative shadow-[1px_1px_0_#000] overflow-hidden bg-white">
-                        {p.avatar ? (
-                          <img src={p.avatar} alt={p.displayName} className="w-full h-full object-cover" />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center text-white font-black"
-                            style={{ 
-                              background: `linear-gradient(135deg, hsl(${(p.userId * 61) % 360}, 70%, 45%) 0%, hsl(${(p.userId * 61 + 45) % 360}, 70%, 35%) 100%)`,
-                            }}>
-                            {p.displayName.charAt(0).toUpperCase()}
-                          </div>
-                        )}
+                        <NeubrutalistAvatar src={p.avatar} initials={p.displayName.charAt(0).toUpperCase()} userId={p.userId} />
                         {p.isConnected && (
                           <span className="absolute -bottom-1 -right-1 w-2.5 h-2.5 rounded-full bg-green-500 border-2 border-black" />
                         )}
