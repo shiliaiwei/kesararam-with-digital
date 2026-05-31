@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
     }
 
     try {
-      const options: any = {
+      const options: Record<string, unknown> = {
         type: "upload",
         resource_type: resourceType,
         max_results: maxResults,
@@ -58,29 +58,30 @@ export async function GET(request: NextRequest) {
       }
 
       // Transform and filter resources - exclude PDFs and broken/empty assets
-      const resources = result.resources
-        .filter((resource: any) => {
-          const format = (resource.format || "").toLowerCase();
+      const resources = (result.resources || [])
+        .filter((resource: Record<string, unknown>) => {
+          const format = String(resource.format ?? "").toLowerCase();
           if (!ALLOWED_FORMATS.includes(format)) return false;
           // Skip 0-byte assets (broken/corrupted)
-          if ((resource.bytes || 0) === 0) return false;
+          if (Number(resource.bytes ?? 0) === 0) return false;
           return true;
         })
-        .map((resource: any) => ({
-          public_id: resource.public_id,
-          secure_url: resource.secure_url,
-          format: resource.format,
-          width: resource.width,
-          height: resource.height,
-          bytes: resource.bytes,
-          created_at: resource.created_at,
-          resource_type: resource.resource_type,
-          type: resource.type,
-          folder: resource.public_id.includes("/") 
-            ? resource.public_id.substring(0, resource.public_id.lastIndexOf("/"))
-            : "root",
-          filename: resource.public_id.split("/").pop() || resource.public_id,
-        }));
+        .map((resource: Record<string, unknown>) => {
+          const public_id = String(resource.public_id ?? "");
+          return {
+            public_id,
+            secure_url: String(resource.secure_url ?? ""),
+            format: String(resource.format ?? ""),
+            width: Number(resource.width ?? 0),
+            height: Number(resource.height ?? 0),
+            bytes: Number(resource.bytes ?? 0),
+            created_at: String(resource.created_at ?? ""),
+            resource_type: String(resource.resource_type ?? ""),
+            type: String(resource.type ?? ""),
+            folder: public_id.includes("/") ? public_id.substring(0, public_id.lastIndexOf("/")) : "root",
+            filename: public_id.split("/").pop() || public_id,
+          };
+        });
 
       console.log(`Found ${resources.length} resources (filtered from ${result.resources.length})`);
 

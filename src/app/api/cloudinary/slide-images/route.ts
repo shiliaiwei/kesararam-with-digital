@@ -78,7 +78,7 @@ export async function GET() {
     // Try to fetch from kwd/ folder
     console.log("Fetching from kwd/ folder...");
     
-    let result: any = null;
+    let result: Record<string, any> | null = null;
     
     try {
       result = await cloudinary.api.resources({
@@ -113,8 +113,9 @@ export async function GET() {
     }
 
     // Filter for only the specific 100 slide images
-    const filteredResources = result.resources.filter((resource: any) => {
-      const filename = resource.public_id.split('/').pop();
+    const filteredResources = (result.resources || []).filter((resource: Record<string, unknown>) => {
+      const public_id = String(resource.public_id ?? "");
+      const filename = public_id.split('/').pop() || "";
       return slideImageFilenames.includes(filename);
     });
 
@@ -124,7 +125,7 @@ export async function GET() {
     const resourcesToUse = filteredResources.length > 0 ? filteredResources : result.resources;
 
     // Extract URLs
-    let imageUrls = resourcesToUse.map((resource: any) => resource.secure_url);
+    let imageUrls = resourcesToUse.map((resource: Record<string, unknown>) => String(resource.secure_url ?? ""));
 
     // Randomize the order using Fisher-Yates shuffle algorithm
     for (let i = imageUrls.length - 1; i > 0; i--) {
@@ -139,17 +140,13 @@ export async function GET() {
       total: imageUrls.length,
       source: `kwd/ folder (${imageUrls.length} images, randomized)`,
     });
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error fetching Slide images:", error);
-    console.error("Error details:", {
-      message: error.message,
-      http_code: error.http_code,
-      error: error.error,
-    });
+    const errMsg = error instanceof Error ? error.message : String(error);
     return NextResponse.json(
       { 
-        error: error.message || "Failed to fetch images",
-        details: error.error?.message || "",
+        error: errMsg || "Failed to fetch images",
+        details: "",
         images: [],
       },
       { status: 500 }
