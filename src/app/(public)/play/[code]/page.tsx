@@ -730,7 +730,7 @@ export default function StudentGamePage() {
           />
         </div>
 
-        <div className="relative z-10 flex-1 flex flex-col p-2.5 sm:p-4 gap-2.5 max-w-2xl mx-auto w-full justify-start sm:justify-center overflow-y-auto min-h-0">
+        <div className="relative z-10 flex-1 flex flex-col p-2.5 sm:p-4 gap-2 max-w-2xl mx-auto w-full justify-start sm:justify-center overflow-hidden min-h-0">
           {/* Subtle Stats Row (Low Capacity) */}
           <div className="flex items-center justify-between gap-2 px-1 w-full bg-transparent border-0 flex-shrink-0">
             <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar flex-nowrap">
@@ -805,67 +805,109 @@ export default function StudentGamePage() {
             </ErrorBoundary>
           </div>
 
-          <div className="shrink-0 h-24 flex items-center justify-center w-full">
-            {answerResult ? (
-              <div
-                className={`w-full border-2 p-3 rounded-xl flex flex-col items-center justify-center gap-1 transition-all ${
-                  answerResult.isCorrect
-                    ? "border-green-400 bg-green-500/10"
-                    : "border-red-400 bg-red-500/10"
-                }`}
-                style={{
-                  boxShadow: answerResult.isCorrect
-                    ? "0 0 20px rgba(74,222,128,0.15), 2px 2px 0 rgba(74,222,128,0.3)"
-                    : "0 0 20px rgba(239,68,68,0.15), 2px 2px 0 rgba(239,68,68,0.3)",
-                }}
-              >
-                <div className="flex items-center gap-2">
-                  {answerResult.isCorrect
-                    ? <CheckCircle className="text-green-400" size={20} />
-                    : <XCircle className="text-red-400" size={20} />}
-                  <span className="text-white font-black text-base" style={khFont}>
-                    {answerResult.isCorrect ? (kh ? "ត្រូវ!" : "Correct!") : (kh ? "មិនត្រូវ" : "Incorrect")}
-                  </span>
-                </div>
-                {answerResult.pointsEarned > 0 && (
-                  <div
-                    className="inline-flex items-center gap-1 px-3 py-1 bg-yellow-400 border border-black rounded-lg animate-bounce"
-                    style={{ boxShadow: "2px 2px 0 #000" }}
-                  >
-                    <Zap size={12} className="text-black" />
-                    <span className="text-black font-black text-xs">+{answerResult.pointsEarned} pts</span>
-                  </div>
+          {/* Bottom result slot — compact, no layout shift */}
+          <div className="shrink-0 h-14 flex items-center justify-center w-full">
+            {phase === "results" ? null : answerResult ? (
+              <div className="flex items-center gap-2">
+                {answerResult.isCorrect ? (
+                  <>
+                    <CheckCircle className="text-green-400 flex-shrink-0" size={16} />
+                    {answerResult.pointsEarned > 0 && (
+                      <div
+                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-yellow-400 border-2 border-black rounded-lg animate-bounce"
+                        style={{ boxShadow: "2px 2px 0 #000" }}
+                      >
+                        <Zap size={11} className="text-black" />
+                        <span className="text-black font-black text-xs">+{answerResult.pointsEarned} pts</span>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <XCircle className="text-red-400 flex-shrink-0" size={16} />
                 )}
               </div>
             ) : answerSubmitted ? (
-              <div className="flex items-center justify-center gap-2 text-zinc-400 text-sm font-bold animate-pulse" style={khFont}>
-                <Loader2 size={16} className="animate-spin text-yellow-400" />
-                {kh ? "រង់ចាំ..." : "Waiting for result..."}
-              </div>
-            ) : (
-              <div className="text-zinc-600 text-xs font-medium tracking-wide uppercase select-none opacity-40" style={khFont}>
-                {kh ? "ជ្រើសរើសចម្លើយរបស់អ្នក" : "Choose your answer"}
-              </div>
-            )}
+              <Loader2 size={14} className="animate-spin text-yellow-400/60" />
+            ) : null}
           </div>
-        </div>
-      </div>
-    );
-  }
 
-  if (phase === "results" || phase === "leaderboard") {
-    return (
-      <div className="min-h-screen flex flex-col"
-        style={{ backgroundColor: "#0d0d14", backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px" }}>
-        {unifiedHeader}
-        <div className="flex-1 p-4 max-w-lg mx-auto w-full pt-8">
-          <div className="flex items-center gap-2 mb-4">
-            <Trophy size={16} className="text-yellow-400" />
-            <span className="text-white font-black text-sm uppercase tracking-widest" style={khFont}>
-              {kh ? "ចំណាត់ថ្នាក់" : "Leaderboard"}
-            </span>
-          </div>
-          <LeaderboardPanel entries={leaderboard} lang={lang} />
+          {/* Round leaderboard overlay — shown during results AND leaderboard phases */}
+          {(phase === "results" || phase === "leaderboard") && (
+            <div className="absolute inset-0 z-20 flex flex-col" style={{ backgroundColor: "rgba(13,13,20,0.97)" }}>
+              {/* Header */}
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-zinc-800 flex-shrink-0">
+                <Trophy size={14} className="text-yellow-400" />
+                <span className="text-white font-black text-xs uppercase tracking-widest" style={khFont}>
+                  {kh ? "ចំណាត់ថ្នាក់" : "Round Rankings"}
+                </span>
+                <span className="ml-auto text-zinc-500 text-[10px] font-bold uppercase tracking-wider">
+                  {kh ? `${questionIndex + 1}/${totalQuestions}` : `Q ${questionIndex + 1} / ${totalQuestions}`}
+                </span>
+              </div>
+
+              {/* Leaderboard — no scroll, centered on current user */}
+              <div className="flex-1 overflow-hidden flex flex-col justify-center px-3 py-2 gap-1.5">
+                {leaderboard.slice(0, 8).map((entry, i) => {
+                  const isMe = entry.userId === currentUserId;
+                  const isTop3 = i < 3;
+                  const rankColors = ["#ffd700", "#c0c0c0", "#cd7f32"];
+                  return (
+                    <div
+                      key={entry.userId}
+                      className={`flex items-center gap-2.5 px-3 py-2 border-2 border-black rounded-none transition-all duration-300 ${
+                        isMe ? "ring-2 ring-yellow-400 ring-offset-1 ring-offset-zinc-950" : ""
+                      }`}
+                      style={{
+                        backgroundColor: isMe ? "#ffd700" : isTop3 ? "#ffffff" : "#1c1c28",
+                        boxShadow: isMe ? "3px 3px 0 #000" : "2px 2px 0 #000",
+                        transform: isMe ? "scale(1.02)" : undefined,
+                        color: isMe || isTop3 ? "#000" : "#fff",
+                      }}
+                    >
+                      {/* Rank badge */}
+                      <div
+                        className="w-7 h-7 flex items-center justify-center border-2 border-black font-black text-xs flex-shrink-0"
+                        style={{ backgroundColor: isTop3 ? rankColors[i] : "#3f3f56", color: isTop3 ? "#000" : "#fff" }}
+                      >
+                        {isTop3 ? ["🥇","🥈","🥉"][i] : entry.rank}
+                      </div>
+
+                      {/* Name */}
+                      <div className="flex-1 min-w-0">
+                        <div className="font-black text-xs truncate" style={khFont}>
+                          {entry.displayName}{isMe && <span className="ml-1 opacity-60 text-[10px]">({kh ? "អ្នក" : "you"})</span>}
+                        </div>
+                        {entry.currentStreak > 1 && (
+                          <div className="text-orange-500 text-[9px] font-bold">🔥 x{entry.currentStreak}</div>
+                        )}
+                      </div>
+
+                      {/* Score + rank change */}
+                      <div className="text-right flex-shrink-0">
+                        <div className="font-black text-sm tabular-nums">{entry.totalScore.toLocaleString()}</div>
+                        <div className={`text-[9px] font-bold flex items-center justify-end gap-0.5 ${
+                          entry.rankChange > 0 ? "text-green-500" : entry.rankChange < 0 ? "text-red-400" : "text-zinc-500"
+                        }`}>
+                          {entry.rankChange > 0 ? "▲" : entry.rankChange < 0 ? "▼" : "—"}
+                          {entry.rankChange !== 0 && Math.abs(entry.rankChange)}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Waiting for next question */}
+              <div className="flex-shrink-0 py-3 text-center">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-zinc-700 rounded-xl">
+                  <Loader2 size={12} className="animate-spin text-yellow-400" />
+                  <span className="text-zinc-400 text-[10px] font-bold uppercase tracking-widest" style={khFont}>
+                    {kh ? "រង់ចាំសំណួរបន្ទាប់..." : "Waiting for next question..."}
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );
