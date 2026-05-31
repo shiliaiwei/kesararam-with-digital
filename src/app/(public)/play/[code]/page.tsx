@@ -173,6 +173,7 @@ export default function StudentGamePage() {
   const [correctAnswerId, setCorrectAnswerId] = useState<number | null>(null);
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [podium, setPodium] = useState<LeaderboardEntry[]>([]);
+  const [resultsTab, setResultsTab] = useState<"result" | "leaderboard">("result");
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -223,11 +224,13 @@ export default function StudentGamePage() {
         setAnswerSubmitted(false);
         setAnswerResult(null);
         setCorrectAnswerId(null);
+        setResultsTab("result");
         setPhase("question");
         if (!mutedRef.current) sounds.question_start();
       } else if (event.type === "question_end") {
         setCorrectAnswerId(event.correctAnswerId);
         setLeaderboard(event.leaderboard || []);
+        setResultsTab("result");
         setPhase("results");
         if (!mutedRef.current) sounds.question_end();
       } else if (event.type === "leaderboard") {
@@ -758,6 +761,35 @@ export default function StudentGamePage() {
             )}
           </div>
 
+          {phase === "results" && (
+            <div className="flex gap-2 w-full bg-zinc-900 border-2 border-black p-1.5 rounded-none flex-shrink-0">
+              <button
+                type="button"
+                onClick={() => setResultsTab("result")}
+                className={`flex-1 py-1.5 text-xs font-black uppercase tracking-wider transition-all rounded-none ${
+                  resultsTab === "result"
+                    ? "bg-yellow-400 text-black border border-black"
+                    : "bg-transparent text-zinc-400 hover:text-white"
+                }`}
+                style={khFont}
+              >
+                {kh ? "លទ្ធផលខ្ញុំ" : "My Result"}
+              </button>
+              <button
+                type="button"
+                onClick={() => setResultsTab("leaderboard")}
+                className={`flex-1 py-1.5 text-xs font-black uppercase tracking-wider transition-all rounded-none ${
+                  resultsTab === "leaderboard"
+                    ? "bg-blue-400 text-black border border-black"
+                    : "bg-transparent text-zinc-400 hover:text-white"
+                }`}
+                style={khFont}
+              >
+                {kh ? "ចំណាត់ថ្នាក់" : "Rankings"}
+              </button>
+            </div>
+          )}
+
           {/* Question image (compact stable wrapper) */}
           <div className={`shrink-0 w-full h-32 flex items-center justify-center p-2 relative overflow-hidden rounded-none ${
             currentQuestion.imageUrl && currentQuestion.gameType !== "image_pick"
@@ -825,11 +857,14 @@ export default function StudentGamePage() {
 
           {/* Bottom result slot — compact, no layout shift */}
           <div className="shrink-0 h-14 flex items-center justify-center w-full">
-            {phase === "results" ? null : answerResult ? (
+            {answerResult ? (
               <div className="flex items-center gap-2">
                 {answerResult.isCorrect ? (
                   <>
                     <CheckCircle className="text-green-400 flex-shrink-0" size={16} />
+                    <span className="text-green-400 font-black text-sm uppercase tracking-wider" style={khFont}>
+                      {kh ? "ត្រឹមត្រូវ!" : "Correct!"}
+                    </span>
                     {answerResult.pointsEarned > 0 && (
                       <div
                         className="inline-flex items-center gap-1 px-3 py-1.5 bg-yellow-400 border-2 border-black rounded-none animate-bounce"
@@ -840,16 +875,28 @@ export default function StudentGamePage() {
                     )}
                   </>
                 ) : (
-                  <XCircle className="text-red-400 flex-shrink-0" size={16} />
+                  <>
+                    <XCircle className="text-red-400 flex-shrink-0" size={16} />
+                    <span className="text-red-400 font-black text-sm uppercase tracking-wider" style={khFont}>
+                      {kh ? "មិនត្រឹមត្រូវ" : "Incorrect"}
+                    </span>
+                  </>
                 )}
+              </div>
+            ) : phase === "results" ? (
+              <div className="flex items-center gap-1.5 text-red-400">
+                <XCircle size={16} className="flex-shrink-0" />
+                <span className="font-black text-sm uppercase tracking-wider" style={khFont}>
+                  {kh ? "អស់ម៉ោង!" : "Time's Up!"}
+                </span>
               </div>
             ) : answerSubmitted ? (
               <Loader2 size={14} className="animate-spin text-yellow-400/60" />
             ) : null}
           </div>
 
-          {/* Round leaderboard overlay — shown during results AND leaderboard phases */}
-          {(phase === "results" || phase === "leaderboard") && (
+          {/* Round leaderboard overlay — shown during results (if rankings tab active) AND leaderboard phases */}
+          {(phase === "leaderboard" || (phase === "results" && resultsTab === "leaderboard")) && (
             <div className="absolute inset-0 z-20 flex flex-col" style={{ backgroundColor: "rgba(13,13,20,0.97)" }}>
               {/* Header */}
               <div className="flex items-center gap-2 px-4 py-3 border-b border-zinc-800 flex-shrink-0">
@@ -857,9 +904,23 @@ export default function StudentGamePage() {
                 <span className="text-white font-black text-xs uppercase tracking-widest" style={khFont}>
                   {kh ? "ចំណាត់ថ្នាក់" : "Round Rankings"}
                 </span>
-                <span className="ml-auto text-zinc-500 text-[10px] font-bold uppercase tracking-wider">
-                  {kh ? `${questionIndex + 1}/${totalQuestions}` : `Q ${questionIndex + 1} / ${totalQuestions}`}
-                </span>
+
+                {phase === "results" && (
+                  <button
+                    type="button"
+                    onClick={() => setResultsTab("result")}
+                    className="ml-auto px-2.5 py-1 bg-yellow-400 text-black border border-black font-black text-[9px] uppercase tracking-wider hover:bg-yellow-300 transition-colors"
+                    style={{ borderRadius: "0px" }}
+                  >
+                    {kh ? "មើលសំណួរ" : "View Question"}
+                  </button>
+                )}
+
+                {phase !== "results" && (
+                  <span className="ml-auto text-zinc-500 text-[10px] font-bold uppercase tracking-wider">
+                    {kh ? `${questionIndex + 1}/${totalQuestions}` : `Q ${questionIndex + 1} / ${totalQuestions}`}
+                  </span>
+                )}
               </div>
 
               {/* Leaderboard — no scroll, centered on current user */}
