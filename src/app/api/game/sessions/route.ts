@@ -4,6 +4,7 @@ import { gameSessions } from "@/db/schema/game";
 import { questions, answers, topics, categories } from "@/db/schema/content";
 import { getSession } from "@/lib/auth";
 import { generateSessionCode, GAME_MODE_TYPES, mapContentToGameType } from "@/lib/game-engine";
+import { selectRandomQuestions } from "@/lib/question-selector";
 import { enforceSessionCreation, getUserSubscription } from "@/lib/subscription";
 import { eq, and, inArray, sql } from "drizzle-orm";
 
@@ -148,13 +149,20 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // Fisher-Yates shuffle — prevents students seeing same question order
-  for (let i = targetedQuestions.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [targetedQuestions[i], targetedQuestions[j]] = [targetedQuestions[j], targetedQuestions[i]];
-  }
-  const shuffled = targetedQuestions.slice(0, questionCount);
-  const questionIds = shuffled.map((q) => q.id);
+  // Use the new truly random selection algorithm
+  // This ensures unpredictable question selection that changes every time
+  const selectedQuestions = selectRandomQuestions({
+    questions: targetedQuestions.map(q => ({
+      ...q,
+      categoryId: categoryIds[0], // Will be properly mapped from the query
+    })),
+    questionCount,
+    categoryIds,
+    userId: user.id,
+    sessionTime: Date.now(),
+  });
+
+  const questionIds = selectedQuestions.map((q) => q.id);
 
   // Get first category name for the session record
   const [firstCat] = await db

@@ -58,12 +58,9 @@ type Phase =
   | { name: "results"; session: SoloSession; result: ResultData; answers: AnswerRecord[] };
 
 const HIDDEN_MODES = new Set([
-  "daily-challenge",
-  "exam-simulation",
   "survival-quiz",
   "zen-review",
   "final-practice",
-  "mixed-practice",
 ]);
 
 const GAME_MODES = Object.entries(GAME_MODE_CONFIG)
@@ -358,10 +355,10 @@ export default function SoloPage() {
                 { id: "professional", en: "Professional", km: "ជំនាញ" }
               ].map(t => (
                 <button key={t.id} onClick={() => setTargetGroup(t.id)} className="py-2 border-2 border-black text-sm font-black transition-all duration-100 rounded-none"
-                  style={{ 
-                    backgroundColor: targetGroup === t.id ? "#000" : "#fff", 
-                    color: targetGroup === t.id ? "#ffd700" : "#000", 
-                    boxShadow: "2px 2px 0 #000", 
+                  style={{
+                    backgroundColor: targetGroup === t.id ? "#000" : "#fff",
+                    color: targetGroup === t.id ? "#ffd700" : "#000",
+                    boxShadow: "2px 2px 0 #000",
                   }}>
                   <span style={khFont}>{kh ? t.km : t.en}</span>
                 </button>
@@ -596,11 +593,10 @@ export default function SoloPage() {
         </div>
 
         {/* Question image (Stable height wrapper - compact) */}
-        <div className={`shrink-0 w-full h-48 flex items-center justify-center p-2 relative overflow-hidden rounded-none ${
-          q.imageUrl
+        <div className={`shrink-0 w-full h-48 flex items-center justify-center p-2 relative overflow-hidden rounded-none ${q.imageUrl
             ? "border-2 border-black bg-zinc-950"
             : "border-2 border-transparent bg-transparent"
-        }`}>
+          }`}>
           {q.imageUrl ? (
             <img src={q.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
           ) : null}
@@ -637,11 +633,10 @@ export default function SoloPage() {
         <div className="shrink-0 h-24 flex items-center justify-center w-full">
           {isSelected ? (
             <div
-              className={`w-full border-2 p-3 rounded-none flex flex-col items-center justify-center gap-1 transition-all ${
-                !isTimeout && isCorrect
+              className={`w-full border-2 p-3 rounded-none flex flex-col items-center justify-center gap-1 transition-all ${!isTimeout && isCorrect
                   ? "border-green-400 bg-green-500/10"
                   : "border-red-400 bg-red-500/10"
-              }`}
+                }`}
             >
               <div className="flex items-center gap-2">
                 {!isTimeout && isCorrect

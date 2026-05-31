@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { questions, answers, topics, categories } from "@/db/schema/content";
 import { getSession } from "@/lib/auth";
 import { GAME_MODE_TYPES, mapContentToGameType } from "@/lib/game-engine";
+import { selectRandomQuestions } from "@/lib/question-selector";
 import { eq, and, inArray, sql } from "drizzle-orm";
 
 function getSecureRandom(): number {
@@ -26,12 +27,9 @@ export async function POST(req: NextRequest) {
   } = body;
 
   const HIDDEN_MODES = new Set([
-    "daily-challenge",
-    "exam-simulation",
     "survival-quiz",
     "zen-review",
     "final-practice",
-    "mixed-practice",
   ]);
 
   if (HIDDEN_MODES.has(gameMode)) {
@@ -155,15 +153,21 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // Fisher-Yates shuffle — truly random, prevents students seeing same order
-  for (let i = targetedQuestions.length - 1; i > 0; i--) {
-    const j = Math.floor(getSecureRandom() * (i + 1));
-    [targetedQuestions[i], targetedQuestions[j]] = [targetedQuestions[j], targetedQuestions[i]];
-  }
-  const shuffled = targetedQuestions.slice(0, questionCount);
+  // Use the new truly random selection algorithm
+  // This ensures unpredictable question selection that changes every time
+  const selectedQuestions = selectRandomQuestions({
+    questions: targetedQuestions.map(q => ({
+      ...q,
+      categoryId: categoryIds[0], // Will be properly mapped from the query
+    })),
+    questionCount,
+    categoryIds,
+    userId: user?.id,
+    sessionTime: Date.now(),
+  });
 
   // Fetch answers for each question
-  const selectedIds = shuffled.map((q) => q.id);
+  const selectedIds = selectedQuestions.map((q) => q.id);
   const allAnswers =
     selectedIds.length > 0
       ? await db
@@ -182,7 +186,7 @@ export async function POST(req: NextRequest) {
   // Get first category name for session record
   const firstCatSlug = allQuestions[0]?.categorySlug ?? "";
 
-  const questionsPayload = shuffled.map((q) => {
+  const questionsPayload = selectedQuestions.map((q) => {
     const ans = answersByQ.get(q.id) ?? [];
     const isTextOnly = TEXT_ONLY_SLUGS.has(q.categorySlug ?? "");
     const gt = mapContentToGameType({

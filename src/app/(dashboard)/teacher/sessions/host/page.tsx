@@ -32,9 +32,7 @@ const MODE_ICONS: Record<string, React.ReactNode> = {
   "quick-quiz": <Zap size={18} />,
   "speed-round": <Rocket size={18} />,
   "sign-challenge": <Target size={18} />,
-  "mixed-battle": <Swords size={18} />,
-  "daily-challenge": <BookOpen size={18} />,
-  "exam-simulation": <GraduationCap size={18} />,
+  "mixed-practice": <Swords size={18} />,
 };
 
 type HostPhase =
@@ -64,11 +62,11 @@ function NeubrutalistAvatar({ src, initials, userId }: NeubrutalistAvatarProps) 
   }
 
   return (
-    <img 
-      src={src} 
-      alt={initials} 
-      className="w-full h-full object-cover" 
-      onError={() => setFailed(true)} 
+    <img
+      src={src}
+      alt={initials}
+      className="w-full h-full object-cover"
+      onError={() => setFailed(true)}
     />
   );
 }
@@ -97,9 +95,8 @@ function LiveLeaderRow({ entry, rank, showScore }: { entry: LeaderboardEntry; ra
 
   return (
     <div
-      className={`flex items-center gap-3 px-4 py-3 transition-all duration-300 border-b border-zinc-200 ${
-        isTop3 ? "bg-yellow-50" : "bg-white"
-      }`}
+      className={`flex items-center gap-3 px-4 py-3 transition-all duration-300 border-b border-zinc-200 ${isTop3 ? "bg-yellow-50" : "bg-white"
+        }`}
     >
       <div
         className="w-7 h-7 border border-black flex items-center justify-center font-black text-xs flex-shrink-0"
@@ -281,7 +278,7 @@ export default function HostPage() {
           setEndsAt(d.subscription.endsAt);
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   const subDaysLeft = (() => {
@@ -382,7 +379,7 @@ export default function HostPage() {
               maxPlayers: info.maxPlayers ?? 50,
             }));
           })
-          .catch(() => {});
+          .catch(() => { });
       } else {
         setPhase((p) => p.name === "lobby" ? { ...p, participants: event.participants } : p);
       }
@@ -491,7 +488,7 @@ export default function HostPage() {
           if (phase.participants && phase.participants.length > 0) {
             event.preventDefault();
             if (!document.fullscreenElement) {
-              document.documentElement.requestFullscreen().catch(() => {});
+              document.documentElement.requestFullscreen().catch(() => { });
             }
             control("start");
           }
@@ -528,12 +525,9 @@ export default function HostPage() {
   }
 
   const HIDDEN_MODES = new Set([
-    "daily-challenge",
-    "exam-simulation",
     "survival-quiz",
     "zen-review",
     "final-practice",
-    "mixed-practice",
   ]);
 
   const GAME_MODES = Object.entries(GAME_MODE_CONFIG)
@@ -613,178 +607,159 @@ export default function HostPage() {
               {/* Game Modes */}
               <GlassCard className="p-5">
                 <SectionLabel style={khFont}>{kh ? "របៀបលេង" : "Game Mode"}</SectionLabel>
-                  {(() => {
-                    const MODE_META: Record<string, {
-                      icon: string;
-                      tagline: string;
-                      taglineKm: string;
-                      accentShape: string;
-                      badge?: string;
-                      badgeColor?: string;
-                    }> = {
-                      "quick-quiz": {
-                        icon: "bolt",
-                        tagline: "Flexible pace, any topic",
-                        taglineKm: "ល្បឿនដោយខ្លួនឯង",
-                        accentShape: "polygon(0 0,100% 0,85% 100%,0 100%)",
-                        badge: "Popular",
-                        badgeColor: "#22c55e",
-                      },
-                      "speed-round": {
-                        icon: "rocket",
-                        tagline: "15s rapid fire — stay sharp",
-                        taglineKm: "១៥វិនាទី ឆ្លើយលឿន",
-                        accentShape: "polygon(0 0,100% 0,100% 100%,15% 100%)",
-                        badge: "Fast",
-                        badgeColor: "#ef4444",
-                      },
-                      "sign-challenge": {
-                        icon: "signpost",
-                        tagline: "Image-based sign recognition",
-                        taglineKm: "សញ្ញាចរាចរណ៍",
-                        accentShape: "polygon(0 0,85% 0,100% 100%,0 100%)",
-                        badge: "Visual",
-                        badgeColor: "#3b82f6",
-                      },
-                      "mixed-battle": {
-                        icon: "swords",
-                        tagline: "All question types, full chaos",
-                        taglineKm: "ចម្រុះសំណួរ",
-                        accentShape: "polygon(0 0,100% 0,100% 100%,0 100%)",
-                        badge: "Pro Only",
-                        badgeColor: "#ffd700",
-                      },
-                      "daily-challenge": {
-                        icon: "calendar_today",
-                        tagline: "Fresh questions every day",
-                        taglineKm: "ថ្មីរៀងរាល់ថ្ងៃ",
-                        accentShape: "polygon(0 0,100% 0,90% 100%,0 100%)",
-                        badge: "Pro Only",
-                        badgeColor: "#ffd700",
-                      },
-                      "exam-simulation": {
-                        icon: "school",
-                        tagline: "Simulate the real licence exam",
-                        taglineKm: "ត្រាប់ប្រឡងបណ្ណ",
-                        accentShape: "polygon(10% 0,100% 0,100% 100%,0 100%)",
-                        badge: "Pro Only",
-                        badgeColor: "#ffd700",
-                      },
-                    };
+                {(() => {
+                  const MODE_META: Record<string, {
+                    icon: string;
+                    tagline: string;
+                    taglineKm: string;
+                    accentShape: string;
+                    badge?: string;
+                    badgeColor?: string;
+                  }> = {
+                    "quick-quiz": {
+                      icon: "bolt",
+                      tagline: "Flexible pace, any topic",
+                      taglineKm: "ល្បឿនដោយខ្លួនឯង",
+                      accentShape: "polygon(0 0,100% 0,85% 100%,0 100%)",
+                      badge: "Popular",
+                      badgeColor: "#22c55e",
+                    },
+                    "speed-round": {
+                      icon: "rocket",
+                      tagline: "15s rapid fire — stay sharp",
+                      taglineKm: "១៥វិនាទី ឆ្លើយលឿន",
+                      accentShape: "polygon(0 0,100% 0,100% 100%,15% 100%)",
+                      badge: "Fast",
+                      badgeColor: "#ef4444",
+                    },
+                    "sign-challenge": {
+                      icon: "signpost",
+                      tagline: "Image-based sign recognition",
+                      taglineKm: "សញ្ញាចរាចរណ៍",
+                      accentShape: "polygon(0 0,85% 0,100% 100%,0 100%)",
+                      badge: "Visual",
+                      badgeColor: "#3b82f6",
+                    },
+                    "mixed-practice": {
+                      icon: "swords",
+                      tagline: "All question types, full practice",
+                      taglineKm: "ហ្វឹកហាត់ចម្រុះ",
+                      accentShape: "polygon(0 0,100% 0,100% 100%,0 100%)",
+                      badge: "Mixed",
+                      badgeColor: "#a855f7",
+                    },
+                  };
 
-                    const MODE_STATS: Record<string, { xp: string; complexity: string; complexityKm: string }> = {
-                      "quick-quiz": { xp: "1.0x XP", complexity: "Easy", complexityKm: "ងាយ" },
-                      "speed-round": { xp: "1.5x XP", complexity: "Hard", complexityKm: "ពិបាក" },
-                      "sign-challenge": { xp: "1.2x XP", complexity: "Medium", complexityKm: "មធ្យម" },
-                      "mixed-battle": { xp: "2.0x XP", complexity: "Chaos", complexityKm: "ចម្រុះ" },
-                      "daily-challenge": { xp: "1.3x XP", complexity: "Dynamic", complexityKm: "ប្រែប្រួល" },
-                      "exam-simulation": { xp: "2.5x XP", complexity: "Real Test", complexityKm: "ប្រឡងផ្លូវការ" },
-                    };
+                  const MODE_STATS: Record<string, { xp: string; complexity: string; complexityKm: string }> = {
+                    "quick-quiz": { xp: "1.0x XP", complexity: "Easy", complexityKm: "ងាយ" },
+                    "speed-round": { xp: "1.5x XP", complexity: "Hard", complexityKm: "ពិបាក" },
+                    "sign-challenge": { xp: "1.2x XP", complexity: "Medium", complexityKm: "មធ្យម" },
+                    "mixed-practice": { xp: "2.0x XP", complexity: "Mixed", complexityKm: "ចម្រុះ" },
+                  };
 
-                    return (
-                      <div className="grid grid-cols-2 gap-4">
-                        {GAME_MODES.map((m) => {
-                          const isSelected = selectedMode === m.id;
-                          const isPremium = ["mixed-battle", "daily-challenge", "exam-simulation"].includes(m.id);
-                          const isLocked = isPremium && subPlan === "free";
-                          const meta = MODE_META[m.id] ?? { icon: "sports_esports", tagline: "", taglineKm: "", accentShape: "" };
-                          const stats = MODE_STATS[m.id] ?? { xp: "1.0x XP", complexity: "Easy", complexityKm: "ងាយ" };
+                  return (
+                    <div className="grid grid-cols-2 gap-4">
+                      {GAME_MODES.map((m) => {
+                        const isSelected = selectedMode === m.id;
+                        const isPremium = false; // All modes are now free
+                        const isLocked = false;
+                        const meta = MODE_META[m.id] ?? { icon: "sports_esports", tagline: "", taglineKm: "", accentShape: "" };
+                        const stats = MODE_STATS[m.id] ?? { xp: "1.0x XP", complexity: "Easy", complexityKm: "ងាយ" };
 
-                          return (
-                            <button
-                              key={m.id}
-                              onClick={() => {
-                                if (isLocked) {
-                                  setUpgradeTrigger("advanced_modes");
-                                  setUpgradeModalOpen(true);
-                                } else {
-                                  setSelectedMode(m.id);
-                                  setQuestionCount(m.defaultQuestionCount);
-                                }
-                              }}
-                              className={`relative text-left overflow-hidden transition-all duration-100 border-2 border-black p-4 flex flex-col h-full justify-between group ${
-                                isSelected 
-                                  ? "-translate-x-1 -translate-y-1" 
-                                  : "bg-white hover:-translate-x-0.5 hover:-translate-y-0.5"
+                        return (
+                          <button
+                            key={m.id}
+                            onClick={() => {
+                              if (isLocked) {
+                                setUpgradeTrigger("advanced_modes");
+                                setUpgradeModalOpen(true);
+                              } else {
+                                setSelectedMode(m.id);
+                                setQuestionCount(m.defaultQuestionCount);
+                              }
+                            }}
+                            className={`relative text-left overflow-hidden transition-all duration-100 border-2 border-black p-4 flex flex-col h-full justify-between group ${isSelected
+                              ? "-translate-x-1 -translate-y-1"
+                              : "bg-white hover:-translate-x-0.5 hover:-translate-y-0.5"
                               }`}
+                            style={{
+                              borderRadius: "0px",
+                              backgroundColor: isSelected ? m.color : "#ffffff",
+                              boxShadow: isSelected
+                                ? "6px 6px 0px #000000"
+                                : "3px 3px 0px #000000",
+                              borderStyle: isLocked ? "dashed" : "solid",
+                              opacity: isLocked ? 0.6 : 1,
+                            }}
+                          >
+                            {/* Background accent shape */}
+                            <div className="absolute top-0 right-0 w-16 h-16 opacity-10 transition-opacity group-hover:opacity-15"
                               style={{
-                                borderRadius: "0px",
-                                backgroundColor: isSelected ? m.color : "#ffffff",
-                                boxShadow: isSelected 
-                                  ? "6px 6px 0px #000000" 
-                                  : "3px 3px 0px #000000",
-                                borderStyle: isLocked ? "dashed" : "solid",
-                                opacity: isLocked ? 0.6 : 1,
-                              }}
-                            >
-                              {/* Background accent shape */}
-                              <div className="absolute top-0 right-0 w-16 h-16 opacity-10 transition-opacity group-hover:opacity-15"
-                                style={{
-                                  background: m.color,
-                                  clipPath: meta.accentShape,
-                                }} />
+                                background: m.color,
+                                clipPath: meta.accentShape,
+                              }} />
 
-                              <div className="relative z-10 flex flex-col h-full justify-between w-full text-black">
-                                <div>
-                                  {/* Header: icon + locks/badges */}
-                                  <div className="flex items-start justify-between mb-3 w-full">
-                                    <span className="material-symbols-rounded text-2xl leading-none text-black">{meta.icon}</span>
-                                    <div className="flex items-center gap-1.5">
-                                      {isLocked && (
-                                        <div className="bg-[#FFD700] border-2 border-black p-0.5 shadow-[1px_1px_0_#000]" style={{ borderRadius: "0px" }}>
-                                          <Lock size={10} className="text-black" />
-                                        </div>
-                                      )}
-                                      {meta.badge && (
-                                        <span className="text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 border border-black shrink-0"
-                                          style={{
-                                            borderRadius: "0px",
-                                            background: isLocked ? "#FFD700" : meta.badgeColor,
-                                            color: "#000",
-                                            boxShadow: "1px 1px 0 #000",
-                                          }}>
-                                          {meta.badge}
-                                        </span>
-                                      )}
-                                    </div>
-                                  </div>
-
-                                  {/* Mode name */}
-                                  <div className="flex items-center gap-2 mb-1">
-                                    <span className="font-black text-sm leading-tight text-black" style={{ ...khFont }}>
-                                      {kh ? m.labelKm : m.label}
-                                    </span>
-                                    <span className="text-[8px] font-black uppercase tracking-wider px-1 border border-black bg-zinc-100" style={{ borderRadius: "0px" }}>
-                                      {kh ? stats.complexityKm : stats.complexity}
-                                    </span>
-                                  </div>
-
-                                  {/* Tagline */}
-                                  <div className="text-[10px] mb-4 leading-snug text-zinc-600 font-bold" style={{ ...khFont }}>
-                                    {kh ? meta.taglineKm : meta.tagline}
+                            <div className="relative z-10 flex flex-col h-full justify-between w-full text-black">
+                              <div>
+                                {/* Header: icon + locks/badges */}
+                                <div className="flex items-start justify-between mb-3 w-full">
+                                  <span className="material-symbols-rounded text-2xl leading-none text-black">{meta.icon}</span>
+                                  <div className="flex items-center gap-1.5">
+                                    {isLocked && (
+                                      <div className="bg-[#FFD700] border-2 border-black p-0.5 shadow-[1px_1px_0_#000]" style={{ borderRadius: "0px" }}>
+                                        <Lock size={10} className="text-black" />
+                                      </div>
+                                    )}
+                                    {meta.badge && (
+                                      <span className="text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 border border-black shrink-0"
+                                        style={{
+                                          borderRadius: "0px",
+                                          background: isLocked ? "#FFD700" : meta.badgeColor,
+                                          color: "#000",
+                                          boxShadow: "1px 1px 0 #000",
+                                        }}>
+                                        {meta.badge}
+                                      </span>
+                                    )}
                                   </div>
                                 </div>
 
-                                <div className="mt-auto pt-2 border-t border-black/15 flex items-center justify-between text-[10px] font-bold text-zinc-700 w-full">
-                                  <div className="flex items-center gap-1">
-                                    <span className="material-symbols-rounded text-xs leading-none text-zinc-500">list_alt</span>
-                                    <span>{m.defaultQuestionCount}{kh ? "សំណួរ" : "Q"}</span>
-                                  </div>
-                                  <div className="flex items-center gap-1">
-                                    <span className="material-symbols-rounded text-xs leading-none text-zinc-500">schedule</span>
-                                    <span>{m.timePerQuestion}{kh ? "វិ" : "s"}</span>
-                                  </div>
-                                  <div className="px-1.5 py-0.5 bg-black text-white text-[8px] font-black uppercase tracking-widest animate-none" style={{ borderRadius: "0px" }}>
-                                    {stats.xp}
-                                  </div>
+                                {/* Mode name */}
+                                <div className="flex items-center gap-2 mb-1">
+                                  <span className="font-black text-sm leading-tight text-black" style={{ ...khFont }}>
+                                    {kh ? m.labelKm : m.label}
+                                  </span>
+                                  <span className="text-[8px] font-black uppercase tracking-wider px-1 border border-black bg-zinc-100" style={{ borderRadius: "0px" }}>
+                                    {kh ? stats.complexityKm : stats.complexity}
+                                  </span>
+                                </div>
+
+                                {/* Tagline */}
+                                <div className="text-[10px] mb-4 leading-snug text-zinc-600 font-bold" style={{ ...khFont }}>
+                                  {kh ? meta.taglineKm : meta.tagline}
                                 </div>
                               </div>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    );
-                  })()}
+
+                              <div className="mt-auto pt-2 border-t border-black/15 flex items-center justify-between text-[10px] font-bold text-zinc-700 w-full">
+                                <div className="flex items-center gap-1">
+                                  <span className="material-symbols-rounded text-xs leading-none text-zinc-500">list_alt</span>
+                                  <span>{m.defaultQuestionCount}{kh ? "សំណួរ" : "Q"}</span>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                  <span className="material-symbols-rounded text-xs leading-none text-zinc-500">schedule</span>
+                                  <span>{m.timePerQuestion}{kh ? "វិ" : "s"}</span>
+                                </div>
+                                <div className="px-1.5 py-0.5 bg-black text-white text-[8px] font-black uppercase tracking-widest animate-none" style={{ borderRadius: "0px" }}>
+                                  {stats.xp}
+                                </div>
+                              </div>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  );
+                })()}
               </GlassCard>
 
 
@@ -815,11 +790,10 @@ export default function HostPage() {
                       <button
                         key={cat.id}
                         onClick={() => setSelectedCats((p) => sel ? p.filter((id) => id !== cat.id) : [...p, cat.id])}
-                        className={`px-3.5 py-1.5 text-sm font-bold border-2 border-black transition-all duration-100 ${
-                          sel 
-                            ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5" 
-                            : "bg-white text-zinc-700 hover:bg-zinc-50"
-                        }`}
+                        className={`px-3.5 py-1.5 text-sm font-bold border-2 border-black transition-all duration-100 ${sel
+                          ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                          : "bg-white text-zinc-700 hover:bg-zinc-50"
+                          }`}
                         style={{ borderRadius: "0px" }}
                       >
                         <span style={khFont}>{kh ? cat.titleKm : cat.titleEn}</span>
@@ -846,11 +820,10 @@ export default function HostPage() {
                   <div className="flex flex-col gap-1.5">
                     {["speed", "equal"].map((s) => (
                       <button key={s} onClick={() => setScoringMode(s)}
-                        className={`py-2 text-xs font-black border-2 border-black transition-all duration-100 ${
-                          scoringMode === s
-                            ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
-                            : "bg-white text-zinc-600 hover:bg-zinc-50"
-                        }`}
+                        className={`py-2 text-xs font-black border-2 border-black transition-all duration-100 ${scoringMode === s
+                          ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                          : "bg-white text-zinc-600 hover:bg-zinc-50"
+                          }`}
                         style={{ borderRadius: "0px" }}>
                         {s === "speed" ? (kh ? "ល្បឿន" : "Speed") : (kh ? "ស្មើ" : "Equal")}
                       </button>
@@ -867,11 +840,10 @@ export default function HostPage() {
                   <div className="flex flex-col gap-1.5">
                     {["both", "en", "km"].map((l) => (
                       <button key={l} onClick={() => setLanguage(l)}
-                        className={`py-2 text-xs font-black border-2 border-black transition-all duration-100 ${
-                          language === l
-                            ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
-                            : "bg-white text-zinc-600 hover:bg-zinc-50"
-                        }`}
+                        className={`py-2 text-xs font-black border-2 border-black transition-all duration-100 ${language === l
+                          ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                          : "bg-white text-zinc-600 hover:bg-zinc-50"
+                          }`}
                         style={{ borderRadius: "0px" }}>
                         {l === "both" ? (kh ? "ទាំងពីរ" : "Both") : l.toUpperCase()}
                       </button>
@@ -894,11 +866,10 @@ export default function HostPage() {
                     ].map((d) => (
                       <button key={d.id}
                         onClick={() => { setDifficulty(d.id); if (d.id !== "mixed" && questionCount > 20) setQuestionCount(20); }}
-                        className={`py-1.5 text-xs font-black border-2 border-black transition-all duration-100 ${
-                          difficulty === d.id
-                            ? "shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5 text-black"
-                            : "bg-white text-zinc-600 hover:bg-zinc-50"
-                        }`}
+                        className={`py-1.5 text-xs font-black border-2 border-black transition-all duration-100 ${difficulty === d.id
+                          ? "shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5 text-black"
+                          : "bg-white text-zinc-600 hover:bg-zinc-50"
+                          }`}
                         style={{
                           borderRadius: "0px",
                           backgroundColor: difficulty === d.id ? d.color : "#ffffff",
@@ -924,11 +895,10 @@ export default function HostPage() {
                     ].map((t) => (
                       <button key={t.id}
                         onClick={() => setTargetGroup(t.id)}
-                        className={`py-1.5 text-xs font-black border-2 border-black transition-all duration-100 ${
-                          targetGroup === t.id
-                            ? "shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5 text-black"
-                            : "bg-white text-zinc-600 hover:bg-zinc-50"
-                        }`}
+                        className={`py-1.5 text-xs font-black border-2 border-black transition-all duration-100 ${targetGroup === t.id
+                          ? "shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5 text-black"
+                          : "bg-white text-zinc-600 hover:bg-zinc-50"
+                          }`}
                         style={{
                           borderRadius: "0px",
                           backgroundColor: targetGroup === t.id ? t.color : "#ffffff",
@@ -959,11 +929,10 @@ export default function HostPage() {
                 <div className="flex gap-2 mb-4">
                   {(difficulty === "mixed" ? [5, 10, 15, 20, 30, 40] : [5, 10, 15, 20]).map((n) => (
                     <button key={n} onClick={() => setQuestionCount(n)}
-                      className={`flex-1 py-2 border-2 border-black text-xs font-black transition-all duration-100 ${
-                        questionCount === n
-                          ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
-                          : "bg-white text-zinc-600 hover:bg-zinc-50"
-                      }`}
+                      className={`flex-1 py-2 border-2 border-black text-xs font-black transition-all duration-100 ${questionCount === n
+                        ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                        : "bg-white text-zinc-600 hover:bg-zinc-50"
+                        }`}
                       style={{ borderRadius: "0px" }}>
                       {n}
                     </button>
@@ -1006,11 +975,10 @@ export default function HostPage() {
                 <div className="flex gap-2">
                   {[10, 20, 30, 50, 100].map((n) => (
                     <button key={n} onClick={() => setMaxPlayers(n)}
-                      className={`flex-1 py-2.5 border-2 border-black text-sm font-black transition-all duration-100 ${
-                        maxPlayers === n
-                          ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
-                          : "bg-white text-zinc-600 hover:bg-zinc-50"
-                      }`}
+                      className={`flex-1 py-2.5 border-2 border-black text-sm font-black transition-all duration-100 ${maxPlayers === n
+                        ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                        : "bg-white text-zinc-600 hover:bg-zinc-50"
+                        }`}
                       style={{ borderRadius: "0px" }}>
                       {n}
                     </button>
@@ -1072,9 +1040,7 @@ export default function HostPage() {
                               "quick-quiz": "bolt",
                               "speed-round": "rocket",
                               "sign-challenge": "signpost",
-                              "mixed-battle": "swords",
-                              "daily-challenge": "calendar_today",
-                              "exam-simulation": "school"
+                              "mixed-practice": "swords"
                             }[selectedMode] || "sports_esports"
                           }
                         </span>
@@ -1092,40 +1058,40 @@ export default function HostPage() {
                     {/* Stats List */}
                     <div className="border-2 border-black divide-y-2 divide-black bg-white" style={{ borderRadius: "0px" }}>
                       {[
-                        { 
-                          icon: "quiz", 
-                          label: kh ? "សំណួរសរុប" : "Total Questions", 
-                          value: `${questionCount} Questions` 
+                        {
+                          icon: "quiz",
+                          label: kh ? "សំណួរសរុប" : "Total Questions",
+                          value: `${questionCount} Questions`
                         },
-                        { 
-                          icon: "schedule", 
-                          label: kh ? "ពេលវេលាឆ្លើយ" : "Time Per Question", 
-                          value: `${selectedModeConfig?.timePerQuestion} seconds` 
+                        {
+                          icon: "schedule",
+                          label: kh ? "ពេលវេលាឆ្លើយ" : "Time Per Question",
+                          value: `${selectedModeConfig?.timePerQuestion} seconds`
                         },
-                        { 
-                          icon: "groups", 
-                          label: kh ? "អ្នកលេងអតិបរមា" : "Player Capacity", 
-                          value: `Max ${maxPlayers} Players` 
+                        {
+                          icon: "groups",
+                          label: kh ? "អ្នកលេងអតិបរមា" : "Player Capacity",
+                          value: `Max ${maxPlayers} Players`
                         },
-                        { 
-                          icon: "stars", 
-                          label: kh ? "ការគណនាពិន្ទុ" : "Scoring Rule", 
-                          value: scoringMode === "speed" ? (kh ? "គិតល្បឿន (Speed Bonus)" : "Speed Bonus Score") : (kh ? "ពិន្ទុស្មើគ្នា" : "Equal Points") 
+                        {
+                          icon: "stars",
+                          label: kh ? "ការគណនាពិន្ទុ" : "Scoring Rule",
+                          value: scoringMode === "speed" ? (kh ? "គិតល្បឿន (Speed Bonus)" : "Speed Bonus Score") : (kh ? "ពិន្ទុស្មើគ្នា" : "Equal Points")
                         },
-                        { 
-                          icon: "translate", 
-                          label: kh ? "ភាសាសំណួរ" : "Language", 
-                          value: language === "both" ? "English & Khmer" : language === "en" ? "English Only" : "Khmer Only" 
+                        {
+                          icon: "translate",
+                          label: kh ? "ភាសាសំណួរ" : "Language",
+                          value: language === "both" ? "English & Khmer" : language === "en" ? "English Only" : "Khmer Only"
                         },
-                        { 
-                          icon: "signal_cellular_alt", 
-                          label: kh ? "កម្រិតសំណួរ" : "Difficulty", 
+                        {
+                          icon: "signal_cellular_alt",
+                          label: kh ? "កម្រិតសំណួរ" : "Difficulty",
                           value: difficulty.charAt(0).toUpperCase() + difficulty.slice(1),
                           valueColor: { mixed: "#a855f7", easy: "#22c55e", medium: "#eab308", hard: "#ef4444" }[difficulty]
                         },
-                        { 
-                          icon: "school", 
-                          label: kh ? "គោលដៅអ្នកលេង" : "Target Group", 
+                        {
+                          icon: "school",
+                          label: kh ? "គោលដៅអ្នកលេង" : "Target Group",
                           value: { kid_k6: "Kid (K-6)", kid_k12: "Kid (K-12)", university: "University", professional: "Professional" }[targetGroup] || "University",
                           valueColor: { kid_k6: "#22c55e", kid_k12: "#3b82f6", university: "#a855f7", professional: "#f97316" }[targetGroup]
                         },
@@ -1139,8 +1105,8 @@ export default function HostPage() {
                               {item.label}
                             </span>
                           </div>
-                          <span 
-                            className="text-xs font-black text-right shrink-0" 
+                          <span
+                            className="text-xs font-black text-right shrink-0"
                             style={{ color: item.valueColor || "#000000", ...khFont }}
                           >
                             {item.value}
@@ -1157,9 +1123,9 @@ export default function HostPage() {
                         </div>
                         <div className="flex flex-wrap gap-1.5">
                           {categories.filter(c => selectedCats.includes(c.id)).map(c => (
-                            <span 
-                              key={c.id} 
-                              className="px-2.5 py-1 text-[10px] font-black border border-black bg-yellow-400 text-black shadow-[1.5px_1.5px_0_#000]" 
+                            <span
+                              key={c.id}
+                              className="px-2.5 py-1 text-[10px] font-black border border-black bg-yellow-400 text-black shadow-[1.5px_1.5px_0_#000]"
                               style={{ borderRadius: "0px", ...khFont }}
                             >
                               {kh ? c.titleKm : c.titleEn}
@@ -1251,9 +1217,9 @@ export default function HostPage() {
             <div className="lg:col-span-2">
               <div className="bg-yellow-400 border-4 border-black p-8 relative shadow-[8px_8px_0_#000] rounded-none">
                 {/* Diagonal warning stripes pattern bar on top */}
-                <div className="absolute top-0 left-0 right-0 h-2 pointer-events-none" 
+                <div className="absolute top-0 left-0 right-0 h-2 pointer-events-none"
                   style={{ backgroundImage: "repeating-linear-gradient(-45deg, #000, #000 8px, #eab308 8px, #eab308 16px)" }} />
-                
+
                 <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center pt-2">
                   {/* Left Column: Room Code Details */}
                   <div className="md:col-span-8 text-center md:text-left w-full">
@@ -1304,8 +1270,8 @@ export default function HostPage() {
               </div>
               <div className="flex flex-col gap-4">
                 {[
-                  { 
-                    label: kh ? "របៀប" : "Mode", 
+                  {
+                    label: kh ? "របៀប" : "Mode",
                     customValue: (
                       <span className="text-xs font-black px-2 py-0.5 border-2 border-black rounded-none shadow-[1.5px_1.5px_0_#000] text-black" style={{ backgroundColor: modeConfig?.color || "#fbbf24" }}>
                         {kh ? modeConfig?.labelKm : modeConfig?.label}
@@ -1313,10 +1279,10 @@ export default function HostPage() {
                     )
                   },
                   { label: kh ? "ប្រភេទ" : "Category", value: catNames },
-                  { 
-                    label: kh ? "កម្រិត" : "Difficulty", 
+                  {
+                    label: kh ? "កម្រិត" : "Difficulty",
                     customValue: (
-                      <span className="text-xs font-black px-2 py-0.5 border-2 border-black rounded-none shadow-[1.5px_1.5px_0_#000] text-white" 
+                      <span className="text-xs font-black px-2 py-0.5 border-2 border-black rounded-none shadow-[1.5px_1.5px_0_#000] text-white"
                         style={{ backgroundColor: { mixed: "#a855f7", easy: "#10b981", medium: "#f59e0b", hard: "#ef4444" }[phase.difficulty] || "#000" }}>
                         {phase.difficulty.charAt(0).toUpperCase() + phase.difficulty.slice(1)}
                       </span>
@@ -1357,7 +1323,7 @@ export default function HostPage() {
                 {Math.round(fillPct)}% {kh ? "ពេញ" : "full"}
               </div>
             </div>
-            
+
             {/* Neubrutalist Progress bar */}
             <div className="h-6 border-4 border-black bg-white shadow-[2px_2px_0_#000] mb-6 overflow-hidden rounded-none">
               <div className="h-full bg-emerald-400 border-r-4 border-black transition-all duration-500 animate-pulse" style={{ width: `${fillPct}%` }} />
@@ -1446,7 +1412,7 @@ export default function HostPage() {
           {/* Controls */}
           <div className="flex items-center gap-2">
             {error && <span className="text-red-600 text-xs font-black max-w-xs truncate">{error}</span>}
-            
+
             {/* Fullscreen Toggle */}
             <button
               onClick={toggleFullscreen}
@@ -1463,7 +1429,7 @@ export default function HostPage() {
                 if (confirm(kh ? "បញ្ចប់ហ្គេម និងចាកចេញ?" : "End session and exit?")) {
                   control("end");
                   if (document.fullscreenElement) {
-                    document.exitFullscreen().catch(() => {});
+                    document.exitFullscreen().catch(() => { });
                   }
                 }
               }}

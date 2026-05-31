@@ -51,7 +51,7 @@ export function calculateScore(params: {
   // Clamp to prevent exploit values
   const safeRemaining = Math.max(0, Math.min(params.remainingTimeMs, params.totalTimeMs));
   const responseTimeMs = params.totalTimeMs - safeRemaining;
-  
+
   // If answered impossibly fast (< 500ms), it's likely a script or lucky mash.
   const isSuspicious = responseTimeMs < 500;
 
@@ -142,9 +142,7 @@ export const GAME_MODE_TYPES: Record<string, string[]> = {
   "quick-quiz": ["mcq", "true_false"],
   "speed-round": ["mcq"],
   "sign-challenge": ["image_pick"],
-  "mixed-battle": ["mcq", "true_false", "image_pick"],
-  "daily-challenge": ["mcq", "true_false", "image_pick"],
-  "exam-simulation": ["mcq", "true_false"],
+  "mixed-practice": ["mcq", "true_false", "image_pick"],
 };
 
 export interface GameModeConfig {
@@ -191,34 +189,14 @@ export const GAME_MODE_CONFIG: Record<string, GameModeConfig> = {
     description: "Traffic sign image questions only.",
     descriptionKm: "សំណួរតែសញ្ញាចរាចរណ៍",
   },
-  "mixed-battle": {
+  "mixed-practice": {
     defaultQuestionCount: 20,
     allowedQuestionCounts: [10, 20, 30, 40],
     timePerQuestion: 30,
-    label: "Mixed Battle",
-    labelKm: "ប្រយុទ្ធចម្រុះ",
+    label: "Mixed Practice",
+    labelKm: "ហ្វឹកហាត់ចម្រុះ",
     color: "#a855f7",
     description: "All question types mixed together.",
     descriptionKm: "ចម្រុះប្រភេទសំណួរទាំងអស់",
-  },
-  "daily-challenge": {
-    defaultQuestionCount: 15,
-    allowedQuestionCounts: [10, 15, 20],
-    timePerQuestion: 30,
-    label: "Daily Challenge",
-    labelKm: "បញ្ហាប្រចាំថ្ងៃ",
-    color: "#22c55e",
-    description: "A fresh set of questions every day.",
-    descriptionKm: "សំណួរថ្មីរៀងរាល់ថ្ងៃ",
-  },
-  "exam-simulation": {
-    defaultQuestionCount: 40,
-    allowedQuestionCounts: [20, 30, 40],
-    timePerQuestion: 45,
-    label: "Exam Simulation",
-    labelKm: "ត្រាប់តាមប្រឡង",
-    color: "#f97316",
-    description: "Simulate the real driving licence exam.",
-    descriptionKm: "ហ្វឹកប្រឡងបណ្ណបើកបរពិតប្រាកដ",
   },
 };

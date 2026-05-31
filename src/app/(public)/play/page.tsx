@@ -4,20 +4,20 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLang } from "@/context/lang-context";
-import { 
-  Users, 
-  ChevronRight, 
-  Zap, 
-  BookOpenCheck, 
-  Play, 
-  Trophy, 
-  Flame, 
-  Clock, 
-  Swords, 
-  CalendarDays, 
-  TriangleAlert, 
-  Star, 
-  GraduationCap 
+import {
+  Users,
+  ChevronRight,
+  Zap,
+  BookOpenCheck,
+  Play,
+  Trophy,
+  Flame,
+  Clock,
+  Swords,
+  CalendarDays,
+  TriangleAlert,
+  Star,
+  GraduationCap
 } from "lucide-react";
 
 // ─── BRAND COLORS ─────────────────────────────────────────────────────────────
@@ -77,6 +77,20 @@ const GAME_MODES = [
     cta: "PLAY NOW",
     ctaKh: "លេងឥឡូវ",
     Icon: TriangleAlert,
+  },
+  {
+    id: "mixed-practice",
+    number: "04",
+    title: "Mixed Practice",
+    titleKh: "ហ្វឹកហាត់ចម្រុះ",
+    desc: "All question types mixed together. Complete practice experience.",
+    descKh: "ចម្រុះប្រភេទសំណួរទាំងអស់ — ហ្វឹកហាត់ពេញលេញ",
+    href: "/play/solo?mode=mixed-practice",
+    badge: "20 Qs",
+    timer: "30s",
+    cta: "PLAY NOW",
+    ctaKh: "លេងឥឡូវ",
+    Icon: Swords,
   },
 ];
 
@@ -260,9 +274,17 @@ const MODE_THEMES: Record<string, {
     shadowGlow: "rgba(6, 182, 212, 0.25)",
     numberStroke: "rgba(6, 182, 212, 0.08)",
   },
-  // Note: UI-only modes removed: mixed-practice, daily-challenge, exam-simulation,
-  // survival-quiz, zen-review, final-practice. Server/game-engine definitions
-  // remain intact — this change only hides them from the public Play page.
+  "mixed-practice": {
+    primary: "#A855F7", // Purple
+    gradient: "linear-gradient(135deg, #E9D5FF 0%, #C084FC 50%, #9333EA 100%)",
+    cardBg: "#FAF5FF",
+    iconBg: "#F3E8FF",
+    patternColor: "rgba(168, 85, 247, 0.12)",
+    shadowGlow: "rgba(168, 85, 247, 0.25)",
+    numberStroke: "rgba(168, 85, 247, 0.08)",
+  },
+  // Note: Only 4 game modes are active: quick-quiz, speed-round, sign-challenge, mixed-practice
+  // Other modes (survival-quiz, zen-review, final-practice) are hidden.
 };
 
 // ─── GAME MODE CARD (Premium & Creative Styling) ───────────────────────────────
@@ -358,7 +380,7 @@ function GameCard({ mode, index, kh, khFont }: {
           backgroundSize: "12px 12px",
           opacity: 0.85,
         }} />
-        
+
         {/* Glassmorphic border ring decoration */}
         <div style={{
           position: "absolute",
@@ -384,8 +406,8 @@ function GameCard({ mode, index, kh, khFont }: {
           transition: "transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)",
           boxShadow: hovered ? `5px 5px 0 ${borderColor}` : `3px 3px 0 ${borderColor}`,
         }}>
-          <mode.Icon 
-            size={26} 
+          <mode.Icon
+            size={26}
             strokeWidth={2.5}
             style={{
               animation: hovered ? "pulse-subtle 1.2s infinite ease-in-out" : "none",
@@ -509,7 +531,7 @@ export default function PlayPage() {
       fontFamily: "system-ui, -apple-system, sans-serif",
       WebkitFontSmoothing: "antialiased",
     }}>
-      
+
       {/* ═══ SECTION 1: JOIN A LIVE GAME (HERO) ══════════════════════════ */}
       <section style={{
         background: BRAND.white,
@@ -539,9 +561,9 @@ export default function PlayPage() {
               letterSpacing: "-1.5px",
               whiteSpace: "nowrap" as const,
             }}>
-              <span style={{ 
-                background: BRAND.yellow, 
-                padding: "10px 20px", 
+              <span style={{
+                background: BRAND.yellow,
+                padding: "10px 20px",
                 border: `3px solid ${BRAND.black}`,
                 boxShadow: `5px 5px 0 ${BRAND.black}`,
                 display: "inline-block",
@@ -630,7 +652,7 @@ export default function PlayPage() {
               <Trophy size={16} strokeWidth={2.5} />
               {kh ? "តារាងពិន្ទុ" : "Leaderboard"}
             </Link>
-            
+
             <Link href="/learn" style={{
               display: "flex",
               alignItems: "center",
@@ -672,7 +694,7 @@ export default function PlayPage() {
         {/* ═══ SECTION 3: QUICK QUIZ CALL TO ACTION ═══════════════════════ */}
         <div className="bottom-cta-card">
           <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 8, background: BRAND.yellow }} />
-          
+
           <div style={{ paddingLeft: 12 }}>
             <div style={{
               ...khFont,
@@ -781,7 +803,7 @@ export default function PlayPage() {
 
         .card-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(4, 1fr);
           gap: 32px;
           max-width: 1200px;
           margin: 0 auto;

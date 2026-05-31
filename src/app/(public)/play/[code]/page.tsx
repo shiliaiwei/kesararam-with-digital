@@ -39,18 +39,14 @@ const MODE_LABELS: Record<string, string> = {
   "quick-quiz": "Quick Quiz",
   "speed-round": "Speed Round",
   "sign-challenge": "Sign Challenge",
-  "mixed-battle": "Mixed Battle",
-  "daily-challenge": "Daily Challenge",
-  "exam-simulation": "Exam Simulation",
+  "mixed-practice": "Mixed Practice",
 };
 
 const MODE_COLORS: Record<string, string> = {
   "quick-quiz": "#eab308",
   "speed-round": "#ef4444",
   "sign-challenge": "#3b82f6",
-  "mixed-battle": "#a855f7",
-  "daily-challenge": "#22c55e",
-  "exam-simulation": "#f97316",
+  "mixed-practice": "#a855f7",
 };
 
 const DIFF_COLORS: Record<string, string> = {
@@ -69,7 +65,7 @@ function NeubrutalistAvatar({ src, initials, userId }: NeubrutalistAvatarProps) 
   if (!src || failed) {
     return (
       <div className="w-full h-full flex items-center justify-center text-white font-black"
-        style={{ 
+        style={{
           background: `linear-gradient(135deg, hsl(${(userId * 61) % 360}, 70%, 45%) 0%, hsl(${(userId * 61 + 45) % 360}, 70%, 35%) 100%)`,
         }}>
         {initials}
@@ -78,18 +74,18 @@ function NeubrutalistAvatar({ src, initials, userId }: NeubrutalistAvatarProps) 
   }
 
   return (
-    <img 
-      src={src} 
-      alt={initials} 
-      className="w-full h-full object-cover" 
-      onError={() => setFailed(true)} 
+    <img
+      src={src}
+      alt={initials}
+      className="w-full h-full object-cover"
+      onError={() => setFailed(true)}
     />
   );
 }
 
 function TeacherAvatar({ src, name }: { src: string | null | undefined; name: string }) {
   const [failed, setFailed] = useState(false);
-  
+
   if (!src || failed) {
     return (
       <div className="w-16 h-16 border-4 border-black mx-auto mb-3 shadow-[4px_4px_0_#000] bg-black rounded-none flex items-center justify-center text-yellow-400">
@@ -100,11 +96,11 @@ function TeacherAvatar({ src, name }: { src: string | null | undefined; name: st
 
   return (
     <div className="w-16 h-16 border-4 border-black mx-auto mb-3 shadow-[4px_4px_0_#000] overflow-hidden bg-white rounded-none">
-      <img 
-        src={src} 
-        alt={name} 
-        className="w-full h-full object-cover" 
-        onError={() => setFailed(true)} 
+      <img
+        src={src}
+        alt={name}
+        className="w-full h-full object-cover"
+        onError={() => setFailed(true)}
       />
     </div>
   );
@@ -157,7 +153,7 @@ export default function StudentGamePage() {
           setCurrentUserDisplayName(data.user.name);
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
   const [phase, setPhase] = useState<GamePhase>("lobby");
   const [sessionInfo, setSessionInfo] = useState<SessionInfo | null>(null);
@@ -327,11 +323,10 @@ export default function StudentGamePage() {
       <div className="flex items-center gap-2">
         <button
           onClick={() => setMuted(m => !m)}
-          className={`flex items-center gap-1 px-2.5 py-1.5 rounded-none border text-xs font-black transition-all ${
-            muted
+          className={`flex items-center gap-1 px-2.5 py-1.5 rounded-none border text-xs font-black transition-all ${muted
               ? "bg-red-950/40 border-red-500/60 text-red-400"
               : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
-          }`}
+            }`}
           title={muted ? "Unmute" : "Mute audio"}
         >
           {muted ? <VolumeX size={13} /> : <Volume2 size={13} />}
@@ -436,12 +431,12 @@ export default function StudentGamePage() {
 
     return (
       <div className="min-h-screen flex flex-col relative overflow-hidden animate-fade-in"
-        style={{ 
+        style={{
           backgroundColor: "#0d0d10",
           backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)",
           backgroundSize: "28px 28px"
         }}>
-        
+
         {/* Neon Ambient Grid Backglows */}
         <div className="absolute top-[-10%] left-[-20%] w-[60%] h-[40%] rounded-none blur-[150px] opacity-[0.1] pointer-events-none" style={{ backgroundColor: "#fbbf24" }} />
         <div className="absolute bottom-[-10%] right-[-20%] w-[60%] h-[40%] rounded-none blur-[150px] opacity-[0.1] pointer-events-none" style={{ backgroundColor: "#f43f5e" }} />
@@ -452,7 +447,7 @@ export default function StudentGamePage() {
 
         {/* Scrollable container with high-impact neubrutalist cards */}
         <div className="relative z-10 flex-1 overflow-y-auto no-scrollbar px-4.5 py-6 flex flex-col items-center justify-start gap-5 max-w-lg mx-auto w-full">
-          
+
           {/* Header Status Badge */}
           <div className="flex items-center gap-2 px-3 py-1.5 border-2 border-black bg-red-500 text-black text-[10px] font-black tracking-widest uppercase shadow-[3px_3px_0_#000] select-none rounded-none animate-pulse">
             <span className="w-1.5 h-1.5 bg-black animate-ping" />
@@ -465,13 +460,13 @@ export default function StudentGamePage() {
             {/* Retro grid accent on the card itself */}
             <div className="absolute inset-0 opacity-[0.04] pointer-events-none"
               style={{ backgroundImage: "linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px)", backgroundSize: "20px 20px" }} />
-            
+
             <div className="text-black text-[10px] font-black uppercase tracking-widest mb-3.5" style={khFont}>
               {kh ? "គ្រូបង្វឹក" : "INSTRUCTOR"}
             </div>
 
             <TeacherAvatar src={sessionInfo?.hostAvatar} name={sessionInfo?.hostName ?? "Teacher"} />
-            
+
             <div className="text-black font-black text-3xl mb-5 tracking-wide flex items-center justify-center gap-2 flex-wrap" style={khFont}>
               <span>{sessionInfo?.hostName ?? "—"}</span>
               <span className="bg-black text-yellow-400 px-2 py-0.5 border-2 border-black rounded-none text-[9px] font-black tracking-widest uppercase flex items-center gap-1 shrink-0">
@@ -486,7 +481,7 @@ export default function StudentGamePage() {
                 {code}
               </div>
             </div>
-            
+
             <div className="text-black text-[9px] font-black uppercase tracking-widest" style={khFont}>
               {kh ? "លេខកូដចូលបន្ទប់លេង" : "GAME JOIN CODE"}
             </div>
@@ -505,7 +500,7 @@ export default function StudentGamePage() {
                   <div className="font-black text-xs truncate" style={khFont}>{modeLabel}</div>
                 </div>
               </div>
-              
+
               {/* Category */}
               <div className="border-4 border-black bg-blue-400 shadow-[4px_4px_0_#000] p-4 rounded-none flex items-center gap-3 transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#000]">
                 <div className="p-2 bg-white border-2 border-black rounded-none flex-shrink-0 shadow-[1px_1px_0_#000]">
@@ -516,7 +511,7 @@ export default function StudentGamePage() {
                   <div className="font-black text-xs capitalize truncate" style={khFont}>{sessionInfo.category?.replace(/-/g, " ") ?? "—"}</div>
                 </div>
               </div>
-              
+
               {/* Difficulty */}
               <div className="border-4 border-black bg-purple-400 shadow-[4px_4px_0_#000] p-4 rounded-none flex items-center gap-3 transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#000]">
                 <div className="p-2 bg-white border-2 border-black rounded-none flex-shrink-0 shadow-[1px_1px_0_#000]">
@@ -529,7 +524,7 @@ export default function StudentGamePage() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Time per Question */}
               <div className="border-4 border-black bg-emerald-400 shadow-[4px_4px_0_#000] p-4 rounded-none flex items-center gap-3 transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#000]">
                 <div className="p-2 bg-white border-2 border-black rounded-none flex-shrink-0 shadow-[1px_1px_0_#000]">
@@ -540,7 +535,7 @@ export default function StudentGamePage() {
                   <div className="font-black text-xs">{sessionInfo.timePerQuestion}s</div>
                 </div>
               </div>
-              
+
               {/* Scoring */}
               <div className="border-4 border-black bg-orange-400 shadow-[4px_4px_0_#000] p-4 rounded-none flex items-center gap-3 transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#000]">
                 <div className="p-2 bg-white border-2 border-black rounded-none flex-shrink-0 shadow-[1px_1px_0_#000]">
@@ -551,7 +546,7 @@ export default function StudentGamePage() {
                   <div className="font-black text-xs capitalize" style={khFont}>{sessionInfo.scoringMode}</div>
                 </div>
               </div>
-              
+
               {/* Questions count */}
               <div className="border-4 border-black bg-pink-400 shadow-[4px_4px_0_#000] p-4 rounded-none flex items-center gap-3 transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#000]">
                 <div className="p-2 bg-white border-2 border-black rounded-none flex-shrink-0 shadow-[1px_1px_0_#000]">
@@ -575,11 +570,10 @@ export default function StudentGamePage() {
                 <button
                   onClick={() => { if (sessionInfo.language === "both") setLang("kh"); }}
                   disabled={sessionInfo.language !== "both"}
-                  className={`flex-1 py-3 px-4 border-2 border-black rounded-none font-black text-xs transition-all uppercase tracking-wider flex items-center justify-center gap-1.5 ${
-                    lang === "kh"
+                  className={`flex-1 py-3 px-4 border-2 border-black rounded-none font-black text-xs transition-all uppercase tracking-wider flex items-center justify-center gap-1.5 ${lang === "kh"
                       ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5"
                       : "bg-black border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 hover:bg-zinc-850"
-                  } ${sessionInfo.language !== "both" ? "cursor-not-allowed opacity-50" : ""}`}
+                    } ${sessionInfo.language !== "both" ? "cursor-not-allowed opacity-50" : ""}`}
                   style={{ fontFamily: "Siemreap, sans-serif" }}
                 >
                   ខ្មែរ (Khmer)
@@ -588,11 +582,10 @@ export default function StudentGamePage() {
                 <button
                   onClick={() => { if (sessionInfo.language === "both") setLang("en"); }}
                   disabled={sessionInfo.language !== "both"}
-                  className={`flex-1 py-3 px-4 border-2 border-black rounded-none font-black text-xs transition-all uppercase tracking-wider flex items-center justify-center gap-1.5 ${
-                    lang === "en"
+                  className={`flex-1 py-3 px-4 border-2 border-black rounded-none font-black text-xs transition-all uppercase tracking-wider flex items-center justify-center gap-1.5 ${lang === "en"
                       ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5"
                       : "bg-black border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 hover:bg-zinc-850"
-                  } ${sessionInfo.language !== "both" ? "cursor-not-allowed opacity-50" : ""}`}
+                    } ${sessionInfo.language !== "both" ? "cursor-not-allowed opacity-50" : ""}`}
                 >
                   English
                   {sessionInfo.language === "en" && <span className="text-[8px] opacity-60 font-bold">({kh ? "គ្រូ" : "Locked"})</span>}
@@ -610,18 +603,17 @@ export default function StudentGamePage() {
               </span>
               <div className="flex-1 h-[2px] bg-zinc-800 ml-2" />
             </div>
-            
+
             {participants.length > 0 ? (
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 w-full max-h-48 overflow-y-auto no-scrollbar">
                 {participants.map((p) => {
                   const isMe = p.userId === currentUserId;
                   return (
                     <div key={p.userId}
-                      className={`flex items-center gap-2.5 p-2.5 border-2 border-black transition-all duration-300 rounded-none shadow-[2px_2px_0_#000] ${
-                        isMe 
-                          ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5" 
+                      className={`flex items-center gap-2.5 p-2.5 border-2 border-black transition-all duration-300 rounded-none shadow-[2px_2px_0_#000] ${isMe
+                          ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5"
                           : "bg-black border-zinc-800 hover:border-zinc-750"
-                      }`}>
+                        }`}>
                       {/* Neubrutalist Avatar */}
                       <div className="w-8 h-8 rounded-none border-2 border-black flex items-center justify-center font-black text-xs text-white flex-shrink-0 relative shadow-[1px_1px_0_#000] overflow-hidden bg-white">
                         <NeubrutalistAvatar src={p.avatar} initials={p.displayName.charAt(0).toUpperCase()} userId={p.userId} />
@@ -666,7 +658,7 @@ export default function StudentGamePage() {
             </div>
 
             {/* Premium Retro Warning Stripes Strip on loader */}
-            <div className="absolute bottom-0 left-0 right-0 h-2" 
+            <div className="absolute bottom-0 left-0 right-0 h-2"
               style={{
                 backgroundImage: "repeating-linear-gradient(-45deg, #fbbf24, #fbbf24 10px, #000 10px, #000 20px)"
               }} />
@@ -721,11 +713,10 @@ export default function StudentGamePage() {
 
           <button
             onClick={() => setMuted(m => !m)}
-            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-none border text-xs font-black transition-all ${
-              muted
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-none border text-xs font-black transition-all ${muted
                 ? "bg-red-950/40 border-red-500/60 text-red-400"
                 : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
-            }`}
+              }`}
             title={muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}
           >
             {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
@@ -761,7 +752,7 @@ export default function StudentGamePage() {
                 <CountdownTimer
                   endsAt={endsAt}
                   totalSeconds={timePerQuestion}
-                  onExpire={() => {}}
+                  onExpire={() => { }}
                   muted={muted}
                 />
               </div>
@@ -771,11 +762,10 @@ export default function StudentGamePage() {
 
 
           {/* Question image (compact stable wrapper) */}
-          <div className={`shrink-0 w-full h-48 flex items-center justify-center p-2 relative overflow-hidden rounded-none ${
-            currentQuestion.imageUrl
+          <div className={`shrink-0 w-full h-48 flex items-center justify-center p-2 relative overflow-hidden rounded-none ${currentQuestion.imageUrl
               ? "border-2 border-black bg-zinc-950"
               : "border-2 border-transparent bg-transparent"
-          }`}>
+            }`}>
             {currentQuestion.imageUrl ? (
               <img src={currentQuestion.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
             ) : null}
