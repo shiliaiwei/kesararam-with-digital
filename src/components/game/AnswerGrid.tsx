@@ -109,24 +109,6 @@ export function AnswerGrid({
                 outline: "none",
               }}
             >
-              {/* Reference ID at top-left inside box border */}
-              <div style={{
-                position: "absolute",
-                top: "4px",
-                left: "4px",
-                fontSize: "7px",
-                fontWeight: 900,
-                color: "#18181b",
-                backgroundColor: "#f4f4f5",
-                border: "1px solid #18181b",
-                padding: "1px 3.5px",
-                textTransform: "uppercase",
-                letterSpacing: "0.05em",
-                zIndex: 10,
-              }}>
-                Ref: OPT-{cfg.label}
-              </div>
-
               {/* Colored top band — ABCD identity */}
               <div style={{
                 height: "4px",
@@ -168,9 +150,9 @@ export function AnswerGrid({
               <div style={{
                 backgroundColor: isCorrect ? CORRECT_BG : isMyWrong ? WRONG_BG : cfg.bg,
                 color: "#ffffff",
-                fontSize: "9px",
-                fontWeight: 900,
-                padding: "4.5px 8px",
+                fontSize: "10px",
+                fontWeight: 955,
+                padding: "5.5px 8px",
                 width: "100%",
                 textAlign: "left",
                 flexShrink: 0,
@@ -180,8 +162,7 @@ export function AnswerGrid({
                 letterSpacing: "0.02em",
                 ...khFont,
               }}>
-                <span style={{ marginRight: "6px", opacity: 0.85 }}>{cfg.shape} {cfg.label}</span>
-                {text}
+                <span style={{ marginRight: "6px", opacity: 0.95 }}>{cfg.shape} {cfg.label}</span>
               </div>
 
               {/* Result badge */}

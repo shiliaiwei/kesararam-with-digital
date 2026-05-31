@@ -1494,7 +1494,7 @@ export default function HostPage() {
                             onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                           />
                           {isCorrect && <span className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center bg-green-500 border-2 border-white text-white font-black text-sm shadow-[1px_1px_0_#000]">✓</span>}
-                          <div className="absolute bottom-0 left-0 right-0 text-center text-[9px] font-black text-white py-0.5 px-1 truncate" style={{ backgroundColor: style.bg }}>{text}</div>
+                          <div className="absolute bottom-0 left-0 right-0 text-center text-[10px] font-black text-white py-0.5 px-1 truncate" style={{ backgroundColor: style.bg }}>{style.label}</div>
                         </div>
                       );
                     }

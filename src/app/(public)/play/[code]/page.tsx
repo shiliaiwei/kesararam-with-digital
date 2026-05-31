@@ -759,48 +759,46 @@ export default function StudentGamePage() {
           </div>
 
           {/* Question image (compact stable wrapper) */}
-          <div className="shrink-0 w-full h-32 border-2 border-black bg-zinc-950 flex items-center justify-center p-2 relative overflow-hidden rounded-none">
+          <div className={`shrink-0 w-full h-32 flex items-center justify-center p-2 relative overflow-hidden rounded-none ${
+            currentQuestion.imageUrl && currentQuestion.gameType !== "image_pick"
+              ? "border-2 border-black bg-zinc-950"
+              : "border-2 border-transparent bg-transparent"
+          }`}>
             {currentQuestion.imageUrl && currentQuestion.gameType !== "image_pick" ? (
-              <img src={currentQuestion.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
-            ) : (
-              <div className="flex flex-col items-center gap-2 opacity-15">
-                <BookOpen size={48} className="text-zinc-400" />
-                <span className="font-black text-[10px] tracking-wider uppercase text-zinc-400">Kesararam Quiz</span>
-              </div>
-            )}
-
-            {/* Image reference label inside the box border at the bottom */}
-            {currentQuestion.imageUrl && currentQuestion.gameType !== "image_pick" && (
-              <div style={{
-                position: "absolute",
-                bottom: 0,
-                right: 0,
-                backgroundColor: "rgba(0,0,0,0.85)",
-                color: "#e4e4e7",
-                fontSize: "7.5px",
-                fontWeight: 900,
-                padding: "2px 6px",
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                fontFamily: "monospace",
-                borderLeft: "2px solid #000",
-                borderTop: "2px solid #000",
-              }}>
-                Ref: {currentQuestion.topicCode ? currentQuestion.topicCode.trim() : `KWD-Q${currentQuestion.id}`}
-              </div>
-            )}
+              <>
+                <img src={currentQuestion.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
+                {/* Image reference label inside the box border at the bottom */}
+                <div style={{
+                  position: "absolute",
+                  bottom: 0,
+                  right: 0,
+                  backgroundColor: "rgba(0,0,0,0.85)",
+                  color: "#e4e4e7",
+                  fontSize: "7.5px",
+                  fontWeight: 900,
+                  padding: "2px 6px",
+                  letterSpacing: "0.05em",
+                  textTransform: "uppercase",
+                  fontFamily: "monospace",
+                  borderLeft: "2px solid #000",
+                  borderTop: "2px solid #000",
+                }}>
+                  Ref: {currentQuestion.topicCode ? currentQuestion.topicCode.trim() : `KWD-Q${currentQuestion.id}`}
+                </div>
+              </>
+            ) : null}
           </div>
 
           {/* Question text card (compact) */}
           <div
-            className="shrink-0 w-full min-h-[5rem] max-h-24 bg-zinc-900 border-2 border-black p-3 rounded-none text-white font-black flex items-center justify-center text-center overflow-y-auto select-text animate-fade-in"
+            className="shrink-0 w-full min-h-[5rem] h-auto bg-zinc-900 border-2 border-black p-4 rounded-none text-white font-black flex items-center justify-center text-center select-text animate-fade-in"
             style={{
               fontSize: "clamp(1.1rem, 4vw, 1.75rem)",
               lineHeight: "1.3",
               ...khFont
             }}
           >
-            <div className="w-full max-h-full py-1">
+            <div className="w-full py-1">
               {kh ? (currentQuestion.questionKm || currentQuestion.questionEn) : currentQuestion.questionEn}
             </div>
           </div>
