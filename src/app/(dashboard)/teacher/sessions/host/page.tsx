@@ -1358,7 +1358,7 @@ export default function HostPage() {
             </button>
 
             <button
-              onClick={() => control("advance")}
+              onClick={() => control(isActive ? "reveal" : "advance")}
               disabled={controlling}
               className="flex items-center gap-2 px-5 py-2 border-2 border-black bg-green-400 text-black font-black text-sm shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-40"
               style={{ borderRadius: "0px" }}

@@ -95,7 +95,7 @@ export async function POST(
     }
 
     const body = await req.json();
-    const { action } = body as { action: "start" | "advance" | "pause" | "resume" | "end" | "terminate" };
+    const { action } = body as { action: "start" | "advance" | "pause" | "reveal" | "resume" | "end" | "terminate" };
     console.log(`[CONTROL] Action: ${action}`);
 
     const currentStatus = session.status as GameStatus;
@@ -148,11 +148,8 @@ export async function POST(
       return NextResponse.json({ status: "active", currentQuestionIndex: 0 });
     }
 
-    // ── ADVANCE ───────────────────────────────────────────────────────────────
-    if (action === "advance") {
-      // Idempotent: if already ended, just return ok
-      if (currentStatus === "ended")
-        return NextResponse.json({ status: "ended" });
+    // ── REVEAL (Reveal answer & rankings for current question without moving index) ───────────
+    if (action === "reveal") {
       if (currentStatus !== "active")
         return NextResponse.json({ error: "Session not active" }, { status: 409 });
 
@@ -191,11 +188,37 @@ export async function POST(
       const prevRanks = new Map([...participants].sort((a, b) => b.totalScore - a.totalScore).map((p, i) => [p.userId, i + 1]));
       const leaderboard = await buildLeaderboard(session.id, prevRanks);
 
-      const nextIdx = idx + 1;
+      // Broadcast question_end so clients see the correct answer + round leaderboard
+      await broadcastEvent(code.toUpperCase(), {
+        type: "question_end",
+        correctAnswerId: correctAnswer?.id ?? null,
+        leaderboard,
+      });
 
-      // Last question — end game
+      return NextResponse.json({ status: "active", currentQuestionIndex: idx, revealed: true });
+    }
+
+    // ── ADVANCE (Increment index and broadcast next question_start cleanly) ───────────────────
+    if (action === "advance") {
+      // Idempotent: if already ended, just return ok
+      if (currentStatus === "ended")
+        return NextResponse.json({ status: "ended" });
+      if (currentStatus !== "active")
+        return NextResponse.json({ error: "Session not active" }, { status: 409 });
+
+      const idx = session.currentQuestionIndex ?? 0;
+      const qIds = session.questionIds ?? [];
+      const nextIdx = idx + 1;
+      const now = new Date();
+
+      // Last question — end game and render final Podium
       if (nextIdx >= qIds.length) {
         await db.update(gameSessions).set({ status: "ended", endedAt: now }).where(eq(gameSessions.id, session.id));
+        
+        const participants = await db.select().from(gameParticipants).where(eq(gameParticipants.sessionId, session.id));
+        const prevRanks = new Map([...participants].sort((a, b) => b.totalScore - a.totalScore).map((p, i) => [p.userId, i + 1]));
+        const leaderboard = await buildLeaderboard(session.id, prevRanks);
+
         for (const entry of leaderboard) {
           await db.update(gameParticipants).set({ rank: entry.rank })
             .where(and(eq(gameParticipants.sessionId, session.id), eq(gameParticipants.userId, entry.userId)));
@@ -204,21 +227,13 @@ export async function POST(
         // Sync scores to user profiles for leaderboard persistence
         await syncScoresToUserProfiles(session.id);
 
-        // Broadcast question_end first so clients see correct answer reveal
-        await broadcastEvent(code.toUpperCase(), {
-          type: "question_end",
-          correctAnswerId: correctAnswer?.id ?? null,
-          leaderboard,
-        });
-
-        // Small delay so clients see question_end before session_end
-        await new Promise(r => setTimeout(r, 2500));
+        // Broadcast session_end to transition players cleanly to final podium
         await broadcastEvent(code.toUpperCase(), { type: "session_end", podium: leaderboard.slice(0, 3), finalLeaderboard: leaderboard });
 
-        // After 60 seconds, send a final close event
+        // After 30 seconds, send a final close event
         setTimeout(async () => {
           await broadcastEvent(code.toUpperCase(), { type: "warning", message: "Session closed. Please exit." });
-        }, 60000);
+        }, 30000);
 
         return NextResponse.json({ status: "ended" });
       }
@@ -236,17 +251,7 @@ export async function POST(
       const q = await getQuestionPayload(nextQId);
       const endsAt = new Date(nextNow.getTime() + session.timePerQuestion * 1000);
 
-      // Broadcast question_end (reveal correct answer + leaderboard)
-      await broadcastEvent(code.toUpperCase(), {
-        type: "question_end",
-        correctAnswerId: correctAnswer?.id ?? null,
-        leaderboard,
-      });
-
-      // Short guaranteed delay (800ms) so clients can animate the reveal,
-      // then atomically deliver the next question to ALL connected clients
-      await new Promise(r => setTimeout(r, 800));
-
+      // Start the next question for all clients without visual glitches
       await broadcastEvent(code.toUpperCase(), {
         type: "question_start", question: q,
         startsAt: nextNow.toISOString(), endsAt: endsAt.toISOString(),
