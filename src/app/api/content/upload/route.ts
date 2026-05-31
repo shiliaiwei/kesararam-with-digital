@@ -106,7 +106,7 @@ export async function POST(request: NextRequest) {
     const size = typeof res.bytes === 'number' ? res.bytes : Number(res.bytes ?? 0);
     const width = typeof res.width === 'number' ? res.width : Number(res.width ?? 0);
     const height = typeof res.height === 'number' ? res.height : Number(res.height ?? 0);
-    const resourceType = String(res.resource_type ?? "");
+    const uploadedResourceType = String(res.resource_type ?? "");
 
     return NextResponse.json({
       url,
@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
       size,
       width,
       height,
-      resourceType,
+      resourceType: uploadedResourceType,
     });
   } catch (error: unknown) {
     console.error("Upload error:", error);
