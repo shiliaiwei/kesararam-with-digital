@@ -22,6 +22,7 @@ export async function GET() {
       lifetimePoints: users.lifetimePoints,
       highestScore: users.highestScore,
       totalGamesPlayed: users.totalGamesPlayed,
+      claimedRewards: users.claimedRewards,
     })
     .from(users)
     .where(eq(users.id, session.id))

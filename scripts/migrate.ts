@@ -36,7 +36,8 @@ async function migrate() {
       ADD COLUMN IF NOT EXISTS province TEXT,
       ADD COLUMN IF NOT EXISTS grade_level TEXT,
       ADD COLUMN IF NOT EXISTS section TEXT,
-      ADD COLUMN IF NOT EXISTS parent_contact TEXT
+      ADD COLUMN IF NOT EXISTS parent_contact TEXT,
+      ADD COLUMN IF NOT EXISTS claimed_rewards TEXT DEFAULT '[]' NOT NULL
     `;
     await sql`
       ALTER TABLE classes 

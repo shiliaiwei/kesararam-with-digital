@@ -37,6 +37,7 @@ export const users = pgTable("users", {
   gradeLevel: text("grade_level"),
   section: text("section"),
   parentContact: text("parent_contact"),
+  claimedRewards: text("claimed_rewards").default("[]").notNull(),
 });
 
 export const classes = pgTable("classes", {

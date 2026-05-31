@@ -68,6 +68,7 @@ export default async function PublicStudentProfilePage({ params }: Props) {
       province: users.province,
       gradeLevel: users.gradeLevel,
       section: users.section,
+      claimedRewards: users.claimedRewards,
     })
     .from(users)
     .where(and(eq(users.username, username), eq(users.isActive, true), eq(users.role, "student")))

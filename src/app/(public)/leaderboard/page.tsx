@@ -937,6 +937,31 @@ export default function LeaderboardPage() {
       .then(d => {
         if (d && !d.error) {
           const lifetimePoints = d.lifetimePoints ?? 0;
+          
+          // Sync database claims to local storage for backward compatibility & seamless updates
+          if (d.claimedRewards && typeof window !== "undefined") {
+            try {
+              const dbClaims = JSON.parse(d.claimedRewards) as Array<{ id: number; claimedAt: number }>;
+              dbClaims.forEach(claim => {
+                const claimDataKey = `kwd_claim_data_${claim.id}`;
+                const localSaved = localStorage.getItem(claimDataKey);
+                let currentCount = 1;
+                if (localSaved) {
+                  try {
+                    currentCount = Math.max(1, JSON.parse(localSaved).claimCount ?? 1);
+                  } catch {}
+                }
+                localStorage.setItem(claimDataKey, JSON.stringify({
+                  claimCount: currentCount,
+                  lastClaimedAt: claim.claimedAt
+                }));
+                localStorage.setItem(`kwd_claimed_${claim.id}`, "1");
+              });
+            } catch (err) {
+              console.error("Failed to sync database claims to localStorage:", err);
+            }
+          }
+
           // Local storage subtraction deduction logic based on claim counts
           let activePoints = lifetimePoints;
           REWARD_ITEMS.forEach(item => {
@@ -975,9 +1000,26 @@ export default function LeaderboardPage() {
   const top3 = leaderboard.slice(0, 3);
   const rest = leaderboard.slice(3);
 
-  // Claim click handler — Local Points deduction
-  const handleClaimItem = (item: typeof REWARD_ITEMS[number]) => {
+  // Claim click handler — Database claim and Local Points deduction
+  const handleClaimItem = async (item: typeof REWARD_ITEMS[number]) => {
     setUserPoints(prev => Math.max(0, prev - item.cost));
+
+    try {
+      const res = await fetch("/api/user/claim", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ itemId: item.id }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.activePoints !== undefined) {
+          setUserPoints(data.activePoints);
+        }
+      }
+    } catch (err) {
+      console.error("Failed to persist claim to database:", err);
+    }
+
     const msg = kh
       ? `🎁 "${item.nameKh}" ត្រូវបានផ្ញើទៅគ្រូរបស់អ្នក!`
       : `🎁 "${item.name}" claim sent to your teacher!`;
