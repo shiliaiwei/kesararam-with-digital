@@ -1027,28 +1027,32 @@ export default function HostPage() {
     const fillPct = Math.min((phase.participants.length / phase.maxPlayers) * 100, 100);
 
     return (
-      <div className="min-h-screen dot-bg text-black pb-12">
-        <div className="relative z-10 max-w-5xl mx-auto px-6 py-8">
+      <div className="min-h-screen text-black pb-12"
+        style={{
+          backgroundColor: "#faf9f6",
+          backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.06) 1.5px, transparent 1.5px)",
+          backgroundSize: "24px 24px"
+        }}>
+        <div className="relative z-10 max-w-5xl mx-auto px-6 py-10">
           {/* Header */}
-          <div className="flex items-start justify-between mb-8">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5 mb-8 border-b-4 border-black pb-6">
             <div>
-              <div className="flex items-center gap-2 mb-2">
-                <div className="flex items-center gap-1.5 px-2.5 py-1 border-2 border-black bg-green-400 text-black shadow-[2px_2px_0_#000] font-black text-xs" style={{ borderRadius: "0px" }}>
-                  <div className="w-1.5 h-1.5 bg-black animate-pulse" style={{ borderRadius: "0px" }} />
+              <div className="flex items-center gap-2 mb-2.5">
+                <div className="flex items-center gap-1.5 px-3 py-1 border-2 border-black bg-emerald-400 text-black shadow-[2px_2px_0_#000] font-black text-xs rounded-none animate-pulse">
+                  <div className="w-1.5 h-1.5 bg-black" style={{ borderRadius: "0px" }} />
                   {kh ? "ហ្គេមរង់ចាំ" : "Waiting Room"}
                 </div>
               </div>
-              <h1 className="text-4xl font-black text-black" style={khFont}>{kh ? "រៀបចំខ្លួនលេង" : "Ready to Play"}</h1>
+              <h1 className="text-4xl font-black text-black tracking-tight" style={khFont}>{kh ? "រៀបចំខ្លួនលេង" : "Ready to Play"}</h1>
               <p className="mt-1 text-sm text-zinc-600 font-bold" style={{ ...khFont }}>
                 {kh ? "ចែករំលែកលេខកូដជាមួយអ្នករៀន" : "Share the room code with your students"}
               </p>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 shrink-0">
               <button
                 onClick={() => { if (confirm(kh ? "បោះបង់ហ្គេមនេះ?" : "Cancel this game session?")) { control("terminate"); setTimeout(() => setPhase({ name: "setup" }), 500); } }}
                 disabled={controlling}
-                className="flex items-center gap-2 px-4 py-2.5 border-2 border-black bg-red-400 text-black font-black text-sm shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-50"
-                style={{ borderRadius: "0px" }}
+                className="flex items-center gap-2 px-5 py-3 border-4 border-black bg-red-400 text-black font-black text-sm shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-all duration-100 disabled:opacity-50 rounded-none cursor-pointer"
               >
                 <Square size={14} />{kh ? "បោះបង់" : "Cancel"}
               </button>
@@ -1064,8 +1068,7 @@ export default function HostPage() {
                   control("start");
                 }}
                 disabled={controlling || phase.participants.length === 0}
-                className="flex items-center gap-2 px-6 py-2.5 border-2 border-black bg-green-400 text-black font-black text-sm shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-50"
-                style={{ borderRadius: "0px" }}
+                className="flex items-center gap-2 px-7 py-3 border-4 border-black bg-emerald-400 text-black font-black text-sm shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-all duration-100 disabled:opacity-50 rounded-none cursor-pointer"
               >
                 {controlling ? <Loader2 size={16} className="animate-spin" /> : <Play size={16} />}
                 {kh ? "ចាប់ផ្តើម" : "Start Game"}
@@ -1074,7 +1077,7 @@ export default function HostPage() {
           </div>
 
           {error && (
-            <div className="mb-6 px-4 py-3 border-2 border-black bg-red-400 text-black font-black text-sm shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px", ...khFont }}>
+            <div className="mb-6 px-4 py-3 border-4 border-black bg-red-400 text-black font-black text-sm shadow-[3px_3px_0_#000] rounded-none" style={khFont}>
               ⚠ {error}
             </div>
           )}
@@ -1082,23 +1085,26 @@ export default function HostPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
             {/* ── Room Code (big) & QR Code ── */}
             <div className="lg:col-span-2">
-              <div className="bg-yellow-400 border-4 border-black p-8 relative shadow-[6px_6px_0_#000]" style={{ borderRadius: "0px" }}>
-                <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+              <div className="bg-yellow-400 border-4 border-black p-8 relative shadow-[8px_8px_0_#000] rounded-none">
+                {/* Diagonal warning stripes pattern bar on top */}
+                <div className="absolute top-0 left-0 right-0 h-2 pointer-events-none" 
+                  style={{ backgroundImage: "repeating-linear-gradient(-45deg, #000, #000 8px, #eab308 8px, #eab308 16px)" }} />
+                
+                <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center pt-2">
                   {/* Left Column: Room Code Details */}
                   <div className="md:col-span-7 text-center md:text-left">
-                    <div className="text-xs font-black uppercase tracking-widest mb-3 text-black">
+                    <div className="text-xs font-black uppercase tracking-widest mb-2.5 text-black">
                       {kh ? "លេខកូដបន្ទប់" : "Room Code"}
                     </div>
-                    <div className="text-6xl md:text-7xl font-black tracking-[0.15em] mb-2 text-black">
+                    <div className="text-6xl md:text-7xl font-black tracking-[0.2em] pl-[0.2em] mb-2.5 text-black">
                       {phase.code}
                     </div>
-                    <div className="text-sm mb-6 text-black/85 font-bold">
+                    <div className="text-sm mb-6 text-black font-bold">
                       {kh ? "ចូលតាម:" : "Join at:"} <span className="text-black font-black underline">kesararamwithdigital.tech/play/{phase.code}</span>
                     </div>
                     <button
                       onClick={copyCode}
-                      className={`flex items-center gap-2 px-5 py-2.5 border-2 border-black font-black text-sm mx-auto md:mx-0 transition-all duration-100 shadow-[2px_2px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 ${copied ? "bg-green-400 text-black" : "bg-white text-black"}`}
-                      style={{ borderRadius: "0px" }}
+                      className={`flex items-center gap-2 px-5 py-3 border-4 border-black font-black text-sm mx-auto md:mx-0 transition-all duration-100 shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#000] active:translate-y-0 active:shadow-[1px_1px_0_#000] rounded-none cursor-pointer ${copied ? "bg-emerald-400 text-black" : "bg-white text-black"}`}
                     >
                       {copied ? <Check size={16} /> : <Copy size={16} />}
                       {copied ? (kh ? "បានចម្លង!" : "Copied!") : (kh ? "ចម្លងលេខកូដ" : "Copy Code")}
@@ -1106,23 +1112,23 @@ export default function HostPage() {
                   </div>
 
                   {/* Right Column: QR Code scanning */}
-                  <div className="md:col-span-5 flex flex-col items-center justify-center p-4 bg-white border-2 border-black shadow-[3px_3px_0_#000]" style={{ borderRadius: "0px" }}>
-                    <div className="text-[10px] font-black uppercase tracking-widest mb-3 text-black text-center" style={khFont}>
+                  <div className="md:col-span-5 flex flex-col items-center justify-center p-5 bg-white border-4 border-black shadow-[4px_4px_0_#000] rounded-none">
+                    <div className="text-[10px] font-black uppercase tracking-widest mb-3.5 text-black text-center" style={khFont}>
                       {kh ? "ស្កេនដើម្បីចូលរួម" : "Scan to Join Q&A"}
                     </div>
-                    <div className="p-2 bg-white flex items-center justify-center">
+                    <div className="p-2 bg-white flex items-center justify-center border-2 border-black">
                       {joinUrl ? (
                         <QRCode
                           value={joinUrl}
-                          size={130}
+                          size={120}
                           style={{ height: "auto", maxWidth: "100%", width: "100%" }}
                           viewBox={`0 0 256 256`}
                         />
                       ) : (
-                        <div className="w-[130px] h-[130px] bg-zinc-100 animate-pulse border border-zinc-200" />
+                        <div className="w-[120px] h-[120px] bg-zinc-100 animate-pulse border border-zinc-200" />
                       )}
                     </div>
-                    <div className="text-[9px] font-bold text-zinc-500 mt-2 text-center" style={khFont}>
+                    <div className="text-[9px] font-bold text-zinc-500 mt-3 text-center" style={khFont}>
                       {kh ? "ប្រើកាមេរ៉ាទូរស័ព្ទរបស់អ្នក" : "Use your mobile camera"}
                     </div>
                   </div>
@@ -1131,30 +1137,49 @@ export default function HostPage() {
             </div>
 
             {/* ── Game Details ── */}
-            <GlassCard className="p-5">
-              <div className="text-xs font-bold uppercase tracking-widest mb-4 text-zinc-600" style={{ ...khFont }}>
+            <div className="border-4 border-black bg-white p-6 rounded-none shadow-[6px_6px_0_#000]">
+              <div className="text-xs font-black uppercase tracking-widest mb-4.5 text-zinc-500" style={{ ...khFont }}>
                 {kh ? "ព័ត៌មានហ្គេម" : "Game Details"}
               </div>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-4">
                 {[
-                  { label: kh ? "របៀប" : "Mode", value: kh ? modeConfig?.labelKm : modeConfig?.label, color: modeConfig?.color },
+                  { 
+                    label: kh ? "របៀប" : "Mode", 
+                    customValue: (
+                      <span className="text-xs font-black px-2 py-0.5 border-2 border-black rounded-none shadow-[1.5px_1.5px_0_#000] text-black" style={{ backgroundColor: modeConfig?.color || "#fbbf24" }}>
+                        {kh ? modeConfig?.labelKm : modeConfig?.label}
+                      </span>
+                    )
+                  },
                   { label: kh ? "ប្រភេទ" : "Category", value: catNames },
-                  { label: kh ? "កម្រិត" : "Difficulty", value: phase.difficulty.charAt(0).toUpperCase() + phase.difficulty.slice(1), color: { mixed: "#a855f7", easy: "#22c55e", medium: "#eab308", hard: "#ef4444" }[phase.difficulty] },
+                  { 
+                    label: kh ? "កម្រិត" : "Difficulty", 
+                    customValue: (
+                      <span className="text-xs font-black px-2 py-0.5 border-2 border-black rounded-none shadow-[1.5px_1.5px_0_#000] text-white" 
+                        style={{ backgroundColor: { mixed: "#a855f7", easy: "#10b981", medium: "#f59e0b", hard: "#ef4444" }[phase.difficulty] || "#000" }}>
+                        {phase.difficulty.charAt(0).toUpperCase() + phase.difficulty.slice(1)}
+                      </span>
+                    )
+                  },
                   { label: kh ? "សំណួរ" : "Questions", value: `${phase.questionCount}Q` },
                   { label: kh ? "ពេល/Q" : "Time/Q", value: `${phase.timePerQuestion}s` },
                   { label: kh ? "ពិន្ទុ" : "Scoring", value: phase.scoringMode },
                 ].map((item) => (
-                  <div key={item.label} className="flex items-center justify-between border-b border-zinc-100 pb-2 last:border-0 last:pb-0">
-                    <span className="text-xs font-black text-zinc-500 uppercase tracking-wide" style={{ ...khFont }}>{item.label}</span>
-                    <span className="text-sm font-black capitalize" style={{ color: item.color || "#000" }}>{item.value}</span>
+                  <div key={item.label} className="flex items-center justify-between border-b-2 border-zinc-100 pb-3 last:border-0 last:pb-0">
+                    <span className="text-xs font-black text-zinc-400 uppercase tracking-wider" style={{ ...khFont }}>{item.label}</span>
+                    {item.customValue ? (
+                      item.customValue
+                    ) : (
+                      <span className="text-sm font-black capitalize text-black">{item.value}</span>
+                    )}
                   </div>
                 ))}
               </div>
-            </GlassCard>
+            </div>
           </div>
 
           {/* ── Players section ── */}
-          <GlassCard className="p-6">
+          <div className="border-4 border-black bg-white p-6 rounded-none shadow-[6px_6px_0_#000]">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 <Users size={16} className="text-black" />
@@ -1162,38 +1187,38 @@ export default function HostPage() {
                   {phase.participants.length} / {phase.maxPlayers} {kh ? "នាក់" : "Players"}
                 </span>
               </div>
-              <div className="text-xs font-bold text-zinc-600">
+              <div className="text-xs font-black text-zinc-500 uppercase tracking-widest">
                 {Math.round(fillPct)}% {kh ? "ពេញ" : "full"}
               </div>
             </div>
-            {/* Progress bar */}
-            <div className="h-4 border-2 border-black bg-white shadow-[1px_1px_0_#000] mb-5 overflow-hidden" style={{ borderRadius: "0px" }}>
-              <div className="h-full bg-green-400 transition-all duration-500" style={{ width: `${fillPct}%` }} />
+            
+            {/* Neubrutalist Progress bar */}
+            <div className="h-6 border-4 border-black bg-white shadow-[2px_2px_0_#000] mb-6 overflow-hidden rounded-none">
+              <div className="h-full bg-emerald-400 border-r-4 border-black transition-all duration-500 animate-pulse" style={{ width: `${fillPct}%` }} />
             </div>
 
             {phase.participants.length === 0 ? (
-              <div className="text-center py-12">
-                <div className="w-16 h-16 border-2 border-black bg-zinc-100 flex items-center justify-center mx-auto mb-4" style={{ borderRadius: "0px" }}>
+              <div className="text-center py-12 border-4 border-dashed border-zinc-300">
+                <div className="w-16 h-16 border-4 border-black bg-zinc-50 flex items-center justify-center mx-auto mb-4 rounded-none shadow-[3px_3px_0_#000]">
                   <Users size={28} className="text-black" />
                 </div>
-                <p className="font-bold text-sm text-zinc-500" style={{ ...khFont }}>
+                <p className="font-black text-sm text-zinc-400 uppercase tracking-wider" style={{ ...khFont }}>
                   {kh ? "រង់ចាំអ្នកចូលរួម..." : "Waiting for players to join..."}
                 </p>
               </div>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3.5">
                 {phase.participants.map((p, i) => (
                   <div
                     key={p.userId}
-                    className="flex items-center gap-2 p-2.5 border-2 border-black bg-zinc-50 shadow-[2px_2px_0_#000]"
+                    className="flex items-center gap-2.5 p-3 border-4 border-black bg-white shadow-[3px_3px_0_#000] rounded-none hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#000] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0_#000] transition-all"
                     style={{
-                      borderRadius: "0px",
-                      animation: "fadeIn 0.3s ease-out",
+                      animation: "fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards",
                     }}
                   >
                     <div
-                      className="w-8 h-8 border-2 border-black flex items-center justify-center font-black text-sm flex-shrink-0 text-white"
-                      style={{ background: `hsl(${(p.userId * 47) % 360}, 70%, 45%)`, borderRadius: "0px" }}
+                      className="w-8 h-8 border-2 border-black flex items-center justify-center font-black text-sm flex-shrink-0 text-white rounded-none shadow-[1px_1px_0_#000]"
+                      style={{ background: `hsl(${(p.userId * 47) % 360}, 70%, 45%)` }}
                     >
                       {p.displayName.charAt(0).toUpperCase()}
                     </div>
@@ -1204,9 +1229,9 @@ export default function HostPage() {
                 ))}
               </div>
             )}
-          </GlassCard>
+          </div>
         </div>
-        <style>{`@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }`}</style>
+        <style>{`@keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }`}</style>
       </div>
     );
   }

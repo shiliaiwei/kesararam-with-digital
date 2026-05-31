@@ -339,139 +339,134 @@ export default function StudentGamePage() {
   }
 
   if (phase === "lobby") {
-    const modeColor = MODE_COLORS[sessionInfo?.gameMode ?? ""] ?? "#eab308";
+    const modeColor = "#fbbf24"; // Always high-contrast Neo-Brutalist Amber Yellow
     const modeLabel = MODE_LABELS[sessionInfo?.gameMode ?? ""] ?? sessionInfo?.gameMode ?? "—";
     const diffColor = DIFF_COLORS[sessionInfo?.difficulty ?? "mixed"] ?? "#a855f7";
 
     return (
       <div className="min-h-screen flex flex-col relative overflow-hidden animate-fade-in"
-        style={{ backgroundColor: "#08080c" }}>
+        style={{ 
+          backgroundColor: "#0d0d10",
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)",
+          backgroundSize: "28px 28px"
+        }}>
         
-        {/* Animated Background Glowing Orbs */}
-        <div className="absolute top-[-10%] left-[-20%] w-[60%] h-[40%] rounded-full blur-[140px] opacity-[0.07] animate-pulse pointer-events-none" style={{ backgroundColor: modeColor, animationDuration: "8s" }} />
-        <div className="absolute bottom-[-10%] right-[-20%] w-[60%] h-[40%] rounded-full blur-[140px] opacity-[0.07] animate-pulse pointer-events-none" style={{ backgroundColor: "#a855f7", animationDuration: "12s" }} />
-        <div className="absolute top-[30%] right-[10%] w-[40%] h-[30%] rounded-full blur-[160px] opacity-[0.05] pointer-events-none" style={{ backgroundColor: "#3b82f6" }} />
-
-        {/* Dynamic Dot Pattern Overlay */}
-        <div className="absolute inset-0 z-0 opacity-[0.3] pointer-events-none"
-          style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+        {/* Neon Ambient Grid Backglows */}
+        <div className="absolute top-[-10%] left-[-20%] w-[60%] h-[40%] rounded-none blur-[150px] opacity-[0.1] pointer-events-none" style={{ backgroundColor: "#fbbf24" }} />
+        <div className="absolute bottom-[-10%] right-[-20%] w-[60%] h-[40%] rounded-none blur-[150px] opacity-[0.1] pointer-events-none" style={{ backgroundColor: "#f43f5e" }} />
 
         <div className="relative z-10 w-full flex-shrink-0">
           {unifiedHeader}
         </div>
 
-        {/* Scrollable container with glassmorphic cards */}
-        <div className="relative z-10 flex-1 overflow-y-auto no-scrollbar px-4.5 py-5 flex flex-col items-center justify-start gap-4 max-w-lg mx-auto w-full">
+        {/* Scrollable container with high-impact neubrutalist cards */}
+        <div className="relative z-10 flex-1 overflow-y-auto no-scrollbar px-4.5 py-6 flex flex-col items-center justify-start gap-5 max-w-lg mx-auto w-full">
           
           {/* Header Status Badge */}
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-red-500/30 bg-red-950/20 text-red-400 text-[10px] font-black tracking-widest uppercase shadow-[0_0_15px_rgba(239,68,68,0.1)] select-none">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping" />
-            <span className="w-1.5 h-1.5 rounded-full bg-red-500 absolute" />
+          <div className="flex items-center gap-2 px-3 py-1.5 border-2 border-black bg-red-500 text-black text-[10px] font-black tracking-widest uppercase shadow-[3px_3px_0_#000] select-none rounded-none animate-pulse">
+            <span className="w-1.5 h-1.5 bg-black animate-ping" />
+            <span className="w-1.5 h-1.5 bg-black absolute" />
             <span style={khFont}>{kh ? "បន្ទប់រង់ចាំត្រៀមលេង" : "PREPARATION LOBBY"}</span>
           </div>
 
           {/* Hosted by & Game Code Console Card */}
-          <div className="w-full border border-zinc-850 bg-zinc-900/20 backdrop-blur-xl p-6 rounded-2xl text-center relative overflow-hidden shadow-2xl transition-all duration-300 hover:border-zinc-800/40"
-            style={{ borderTop: `4px solid ${modeColor}`, boxShadow: `0 20px 40px -15px rgba(0,0,0,0.8)` }}>
-            <div className="absolute -top-24 -left-24 w-48 h-48 rounded-full blur-[80px]" style={{ backgroundColor: modeColor, opacity: 0.1 }} />
-            <div className="absolute -bottom-24 -right-24 w-48 h-48 rounded-full blur-[80px]" style={{ backgroundColor: modeColor, opacity: 0.1 }} />
+          <div className="w-full border-4 border-black bg-yellow-400 p-6 rounded-none text-center relative overflow-hidden shadow-[8px_8px_0_#000] transition-all duration-300">
+            {/* Retro grid accent on the card itself */}
+            <div className="absolute inset-0 opacity-[0.04] pointer-events-none"
+              style={{ backgroundImage: "linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px)", backgroundSize: "20px 20px" }} />
             
-            <div className="text-zinc-500 text-[9px] font-black uppercase tracking-widest mb-2" style={khFont}>
+            <div className="text-black text-[10px] font-black uppercase tracking-widest mb-1.5" style={khFont}>
               {kh ? "គ្រូបង្វឹក" : "INSTRUCTOR"}
             </div>
             
-            <div className="text-white font-black text-3xl mb-6 tracking-wide flex items-center justify-center gap-2" style={khFont}>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-200 to-zinc-400">{sessionInfo?.hostName ?? "—"}</span>
-              <span className="bg-yellow-400/10 text-yellow-400 px-2 py-0.5 border border-yellow-400/20 rounded-md text-[9px] font-black tracking-widest uppercase flex items-center gap-1 shrink-0">
-                <Crown size={8} className="fill-yellow-400 shrink-0" />
+            <div className="text-black font-black text-3xl mb-5 tracking-wide flex items-center justify-center gap-2" style={khFont}>
+              <span>{sessionInfo?.hostName ?? "—"}</span>
+              <span className="bg-black text-yellow-400 px-2 py-0.5 border-2 border-black rounded-none text-[9px] font-black tracking-widest uppercase flex items-center gap-1 shrink-0">
+                <Crown size={8} className="fill-yellow-400 shrink-0 text-yellow-400" />
                 {kh ? "គ្រូ" : "TEACHER"}
               </span>
             </div>
 
             {/* Glowing Big Game Code Container */}
-            <div className="inline-block px-10 py-5 border border-zinc-800/80 bg-zinc-950/70 rounded-2xl mb-4 relative group cursor-pointer transition-all active:scale-[0.98]">
-              {/* Pulsing Neon Backglow */}
-              <div className="absolute inset-0 rounded-2xl blur-md opacity-20 transition-opacity group-hover:opacity-35" style={{ backgroundColor: modeColor }} />
-              
-              <div className="relative font-black text-5xl tracking-[0.25em] pl-[0.25em] select-all select-none" 
-                style={{ color: modeColor, textShadow: `0 0 12px ${modeColor}80` }}>
+            <div className="inline-block px-10 py-5 border-4 border-black bg-white rounded-none shadow-[5px_5px_0_#000] mb-4 relative group cursor-pointer transition-all active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_#000]">
+              <div className="relative font-black text-5xl tracking-[0.25em] pl-[0.25em] select-all select-none text-black">
                 {code}
               </div>
             </div>
             
-            <div className="text-zinc-500 text-[9px] font-black uppercase tracking-widest" style={khFont}>
+            <div className="text-black text-[9px] font-black uppercase tracking-widest" style={khFont}>
               {kh ? "លេខកូដចូលបន្ទប់លេង" : "GAME JOIN CODE"}
             </div>
           </div>
 
           {/* Settings HUD Panel */}
           {sessionInfo && (
-            <div className="w-full grid grid-cols-2 gap-2 animate-fade-in">
+            <div className="w-full grid grid-cols-2 gap-3.5 animate-fade-in">
               {/* Game Mode */}
-              <div className="border border-zinc-850 bg-zinc-900/10 backdrop-blur-md p-3.5 rounded-xl flex items-center gap-3 transition-all hover:scale-[1.01] hover:border-zinc-800 shadow-md">
-                <div className="p-2 bg-zinc-950/50 border border-zinc-850 rounded-lg flex-shrink-0">
-                  <BookOpen size={14} style={{ color: modeColor }} />
+              <div className="border-4 border-black bg-amber-400 shadow-[4px_4px_0_#000] p-4 rounded-none flex items-center gap-3 transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#000]">
+                <div className="p-2 bg-white border-2 border-black rounded-none flex-shrink-0 shadow-[1px_1px_0_#000]">
+                  <BookOpen size={14} className="text-black" />
                 </div>
-                <div className="min-w-0">
-                  <div className="text-zinc-500 text-[8px] font-black uppercase tracking-wider" style={khFont}>{kh ? "របៀបលេង" : "GAME MODE"}</div>
-                  <div className="text-white font-extrabold text-xs truncate" style={{ color: modeColor }}>{modeLabel}</div>
+                <div className="min-w-0 text-black">
+                  <div className="text-black/60 text-[8px] font-black uppercase tracking-wider" style={khFont}>{kh ? "របៀបលេង" : "GAME MODE"}</div>
+                  <div className="font-black text-xs truncate" style={khFont}>{modeLabel}</div>
                 </div>
               </div>
               
               {/* Category */}
-              <div className="border border-zinc-850 bg-zinc-900/10 backdrop-blur-md p-3.5 rounded-xl flex items-center gap-3 transition-all hover:scale-[1.01] hover:border-zinc-800 shadow-md">
-                <div className="p-2 bg-zinc-950/50 border border-zinc-850 rounded-lg flex-shrink-0">
-                  <Target size={14} className="text-blue-400" />
+              <div className="border-4 border-black bg-blue-400 shadow-[4px_4px_0_#000] p-4 rounded-none flex items-center gap-3 transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#000]">
+                <div className="p-2 bg-white border-2 border-black rounded-none flex-shrink-0 shadow-[1px_1px_0_#000]">
+                  <Target size={14} className="text-black" />
                 </div>
-                <div className="min-w-0">
-                  <div className="text-zinc-500 text-[8px] font-black uppercase tracking-wider" style={khFont}>{kh ? "ប្រភេទ" : "CATEGORY"}</div>
-                  <div className="text-white font-extrabold text-xs capitalize truncate">{sessionInfo.category?.replace(/-/g, " ") ?? "—"}</div>
+                <div className="min-w-0 text-black">
+                  <div className="text-black/60 text-[8px] font-black uppercase tracking-wider" style={khFont}>{kh ? "ប្រភេទ" : "CATEGORY"}</div>
+                  <div className="font-black text-xs capitalize truncate" style={khFont}>{sessionInfo.category?.replace(/-/g, " ") ?? "—"}</div>
                 </div>
               </div>
               
               {/* Difficulty */}
-              <div className="border border-zinc-850 bg-zinc-900/10 backdrop-blur-md p-3.5 rounded-xl flex items-center gap-3 transition-all hover:scale-[1.01] hover:border-zinc-800 shadow-md">
-                <div className="p-2 bg-zinc-950/50 border border-zinc-850 rounded-lg flex-shrink-0">
-                  <Star size={14} style={{ color: diffColor }} />
+              <div className="border-4 border-black bg-purple-400 shadow-[4px_4px_0_#000] p-4 rounded-none flex items-center gap-3 transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#000]">
+                <div className="p-2 bg-white border-2 border-black rounded-none flex-shrink-0 shadow-[1px_1px_0_#000]">
+                  <Star size={14} className="text-black" />
                 </div>
-                <div className="min-w-0">
-                  <div className="text-zinc-500 text-[8px] font-black uppercase tracking-wider" style={khFont}>{kh ? "កម្រិត" : "DIFFICULTY"}</div>
-                  <div className="font-extrabold text-xs capitalize truncate" style={{ color: diffColor }}>
+                <div className="min-w-0 text-black">
+                  <div className="text-black/60 text-[8px] font-black uppercase tracking-wider" style={khFont}>{kh ? "កម្រិត" : "DIFFICULTY"}</div>
+                  <div className="font-black text-xs capitalize truncate" style={khFont}>
                     {sessionInfo.difficulty ?? "Mixed"}
                   </div>
                 </div>
               </div>
               
               {/* Time per Question */}
-              <div className="border border-zinc-850 bg-zinc-900/10 backdrop-blur-md p-3.5 rounded-xl flex items-center gap-3 transition-all hover:scale-[1.01] hover:border-zinc-800 shadow-md">
-                <div className="p-2 bg-zinc-950/50 border border-zinc-850 rounded-lg flex-shrink-0">
-                  <Timer size={14} className="text-green-400" />
+              <div className="border-4 border-black bg-emerald-400 shadow-[4px_4px_0_#000] p-4 rounded-none flex items-center gap-3 transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#000]">
+                <div className="p-2 bg-white border-2 border-black rounded-none flex-shrink-0 shadow-[1px_1px_0_#000]">
+                  <Timer size={14} className="text-black" />
                 </div>
-                <div className="min-w-0">
-                  <div className="text-zinc-500 text-[8px] font-black uppercase tracking-wider" style={khFont}>{kh ? "ពេលវេលា" : "TIME / Q"}</div>
-                  <div className="text-white font-extrabold text-xs">{sessionInfo.timePerQuestion}s</div>
+                <div className="min-w-0 text-black">
+                  <div className="text-black/60 text-[8px] font-black uppercase tracking-wider" style={khFont}>{kh ? "ពេលវេលា" : "TIME / Q"}</div>
+                  <div className="font-black text-xs">{sessionInfo.timePerQuestion}s</div>
                 </div>
               </div>
               
               {/* Scoring */}
-              <div className="border border-zinc-850 bg-zinc-900/10 backdrop-blur-md p-3.5 rounded-xl flex items-center gap-3 transition-all hover:scale-[1.01] hover:border-zinc-800 shadow-md">
-                <div className="p-2 bg-zinc-950/50 border border-zinc-850 rounded-lg flex-shrink-0">
-                  <Trophy size={14} className="text-yellow-400" />
+              <div className="border-4 border-black bg-orange-400 shadow-[4px_4px_0_#000] p-4 rounded-none flex items-center gap-3 transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#000]">
+                <div className="p-2 bg-white border-2 border-black rounded-none flex-shrink-0 shadow-[1px_1px_0_#000]">
+                  <Trophy size={14} className="text-black" />
                 </div>
-                <div className="min-w-0">
-                  <div className="text-zinc-500 text-[8px] font-black uppercase tracking-wider" style={khFont}>{kh ? "ពិន្ទុ" : "SCORING"}</div>
-                  <div className="text-white font-extrabold text-xs capitalize">{sessionInfo.scoringMode}</div>
+                <div className="min-w-0 text-black">
+                  <div className="text-black/60 text-[8px] font-black uppercase tracking-wider" style={khFont}>{kh ? "ពិន្ទុ" : "SCORING"}</div>
+                  <div className="font-black text-xs capitalize" style={khFont}>{sessionInfo.scoringMode}</div>
                 </div>
               </div>
               
               {/* Questions count */}
-              <div className="border border-zinc-850 bg-zinc-900/10 backdrop-blur-md p-3.5 rounded-xl flex items-center gap-3 transition-all hover:scale-[1.01] hover:border-zinc-800 shadow-md">
-                <div className="p-2 bg-zinc-950/50 border border-zinc-850 rounded-lg flex-shrink-0">
-                  <Zap size={14} className="text-orange-400" />
+              <div className="border-4 border-black bg-pink-400 shadow-[4px_4px_0_#000] p-4 rounded-none flex items-center gap-3 transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[5px_5px_0_#000]">
+                <div className="p-2 bg-white border-2 border-black rounded-none flex-shrink-0 shadow-[1px_1px_0_#000]">
+                  <Zap size={14} className="text-black" />
                 </div>
-                <div className="min-w-0">
-                  <div className="text-zinc-500 text-[8px] font-black uppercase tracking-wider" style={khFont}>{kh ? "សំណួរ" : "QUESTIONS"}</div>
-                  <div className="text-white font-extrabold text-xs">{sessionInfo.questionCount}Q</div>
+                <div className="min-w-0 text-black">
+                  <div className="text-black/60 text-[8px] font-black uppercase tracking-wider" style={khFont}>{kh ? "សំណួរ" : "QUESTIONS"}</div>
+                  <div className="font-black text-xs">{sessionInfo.questionCount}Q</div>
                 </div>
               </div>
             </div>
@@ -479,18 +474,18 @@ export default function StudentGamePage() {
 
           {/* Language Selection Card */}
           {sessionInfo && (
-            <div className="w-full border border-zinc-850 bg-zinc-900/20 backdrop-blur-xl p-4.5 rounded-2xl shadow-xl transition-all hover:border-zinc-800/50">
-              <div className="text-zinc-500 text-[9px] font-black uppercase tracking-widest mb-3 text-center" style={khFont}>
+            <div className="w-full border-4 border-black bg-zinc-900 p-5 rounded-none shadow-[6px_6px_0_#000] text-white">
+              <div className="text-zinc-400 text-[10px] font-black uppercase tracking-widest mb-3.5 text-center" style={khFont}>
                 {kh ? "ជ្រើសរើសភាសាក្នុងហ្គេម" : "GAME LANGUAGE SELECTION"}
               </div>
-              <div className="flex gap-2.5">
+              <div className="flex gap-3">
                 <button
                   onClick={() => { if (sessionInfo.language === "both") setLang("kh"); }}
                   disabled={sessionInfo.language !== "both"}
-                  className={`flex-1 py-2.5 px-4 border rounded-xl font-black text-[11px] transition-all duration-200 uppercase tracking-wider flex items-center justify-center gap-1.5 ${
+                  className={`flex-1 py-3 px-4 border-2 border-black rounded-none font-black text-xs transition-all uppercase tracking-wider flex items-center justify-center gap-1.5 ${
                     lang === "kh"
-                      ? "bg-yellow-400 border-yellow-400 text-black shadow-[0_4px_12px_rgba(250,204,21,0.25)] scale-[1.01]"
-                      : "bg-zinc-950 border-zinc-850 text-zinc-400 hover:text-white hover:border-zinc-800 hover:bg-zinc-900/40"
+                      ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                      : "bg-black border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 hover:bg-zinc-850"
                   } ${sessionInfo.language !== "both" ? "cursor-not-allowed opacity-50" : ""}`}
                   style={{ fontFamily: "Siemreap, sans-serif" }}
                 >
@@ -500,10 +495,10 @@ export default function StudentGamePage() {
                 <button
                   onClick={() => { if (sessionInfo.language === "both") setLang("en"); }}
                   disabled={sessionInfo.language !== "both"}
-                  className={`flex-1 py-2.5 px-4 border rounded-xl font-black text-[11px] transition-all duration-200 uppercase tracking-wider flex items-center justify-center gap-1.5 ${
+                  className={`flex-1 py-3 px-4 border-2 border-black rounded-none font-black text-xs transition-all uppercase tracking-wider flex items-center justify-center gap-1.5 ${
                     lang === "en"
-                      ? "bg-yellow-400 border-yellow-400 text-black shadow-[0_4px_12px_rgba(250,204,21,0.25)] scale-[1.01]"
-                      : "bg-zinc-950 border-zinc-850 text-zinc-400 hover:text-white hover:border-zinc-800 hover:bg-zinc-900/40"
+                      ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                      : "bg-black border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 hover:bg-zinc-850"
                   } ${sessionInfo.language !== "both" ? "cursor-not-allowed opacity-50" : ""}`}
                 >
                   English
@@ -514,47 +509,46 @@ export default function StudentGamePage() {
           )}
 
           {/* Active Players Multiplayer HUD Card */}
-          <div className="w-full border border-zinc-850 bg-zinc-900/20 backdrop-blur-xl p-4.5 rounded-2xl shadow-xl transition-all hover:border-zinc-800/50">
-            <div className="flex items-center gap-2 mb-3.5">
-              <Users size={12} className="text-zinc-500" />
-              <span className="text-zinc-400 text-[9px] font-black uppercase tracking-widest" style={khFont}>
+          <div className="w-full border-4 border-black bg-zinc-900 p-5 rounded-none shadow-[6px_6px_0_#000] text-white">
+            <div className="flex items-center gap-2 mb-4">
+              <Users size={14} className="text-zinc-400" />
+              <span className="text-zinc-300 text-[10px] font-black uppercase tracking-widest" style={khFont}>
                 {kh ? "អ្នកចូលរួមលេង" : "ACTIVE PARTICIPANTS"} · {participants.length}{sessionInfo ? ` / ${sessionInfo.maxPlayers}` : ""}
               </span>
-              <div className="flex-1 h-px bg-zinc-850/80 ml-2" />
+              <div className="flex-1 h-[2px] bg-zinc-800 ml-2" />
             </div>
             
             {participants.length > 0 ? (
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 w-full max-h-48 overflow-y-auto no-scrollbar">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 w-full max-h-48 overflow-y-auto no-scrollbar">
                 {participants.map((p) => {
                   const isMe = p.userId === currentUserId;
                   return (
                     <div key={p.userId}
-                      className={`flex items-center gap-2.5 p-2 rounded-xl border transition-all duration-300 ${
+                      className={`flex items-center gap-2.5 p-2.5 border-2 border-black transition-all duration-300 rounded-none shadow-[2px_2px_0_#000] ${
                         isMe 
-                          ? "bg-yellow-400/5 border-yellow-400/30 shadow-[0_0_12px_rgba(250,204,21,0.05)] scale-[1.01]" 
-                          : "bg-zinc-900/20 border-zinc-850 hover:border-zinc-800"
+                          ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5" 
+                          : "bg-black border-zinc-800 hover:border-zinc-750"
                       }`}>
-                      {/* Gradient Initials Avatar */}
-                      <div className="w-8 h-8 rounded-lg flex items-center justify-center font-black text-xs text-white flex-shrink-0 relative"
+                      {/* Neubrutalist Flat Initials Avatar */}
+                      <div className="w-8 h-8 rounded-none border-2 border-black flex items-center justify-center font-black text-xs text-white flex-shrink-0 relative shadow-[1px_1px_0_#000]"
                         style={{ 
-                          background: `linear-gradient(135deg, hsl(${(p.userId * 61) % 360}, 65%, 50%) 0%, hsl(${(p.userId * 61 + 45) % 360}, 65%, 35%) 100%)`,
-                          boxShadow: "0 4px 8px rgba(0,0,0,0.3)"
+                          background: `linear-gradient(135deg, hsl(${(p.userId * 61) % 360}, 70%, 45%) 0%, hsl(${(p.userId * 61 + 45) % 360}, 70%, 35%) 100%)`,
                         }}>
                         {p.displayName.charAt(0).toUpperCase()}
                         {p.isConnected && (
-                          <span className="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-green-500 border border-zinc-950 flex shadow-sm animate-pulse" />
+                          <span className="absolute -bottom-1 -right-1 w-2.5 h-2.5 rounded-full bg-green-500 border-2 border-black" />
                         )}
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-1 flex-wrap">
-                          <span className={`text-xs font-bold truncate ${isMe ? "text-yellow-400 font-extrabold" : "text-zinc-300"}`} style={khFont}>
+                          <span className={`text-xs font-black truncate ${isMe ? "text-black" : "text-zinc-200"}`} style={khFont}>
                             {p.displayName}
                           </span>
                           {isMe && currentUserPoints > 0 && (
                             <TierBadge lifetimePoints={currentUserPoints} size="xs" lang={lang} />
                           )}
                         </div>
-                        <div className="text-[7.5px] text-zinc-500 font-bold uppercase tracking-widest">
+                        <div className={`text-[7.5px] font-black uppercase tracking-widest ${isMe ? "text-black/60" : "text-zinc-500"}`}>
                           {isMe ? (kh ? "រូបអ្នក" : "YOU") : (kh ? "បានចូល" : "READY")}
                         </div>
                       </div>
@@ -563,24 +557,29 @@ export default function StudentGamePage() {
                 })}
               </div>
             ) : (
-              <div className="text-center py-6 text-zinc-500 text-xs font-bold animate-pulse" style={khFont}>
+              <div className="text-center py-6 text-zinc-500 text-xs font-black animate-pulse" style={khFont}>
                 {kh ? "អ្នកគឺគ្រាប់ពូជដំបូង! កំពុងរង់ចាំអ្នកដទៃ..." : "You're the first one here! Waiting for others..."}
               </div>
             )}
           </div>
 
           {/* Holographic Breathing Wave Loader waiting panel */}
-          <div className="w-full border border-zinc-850 bg-zinc-900/10 backdrop-blur-xl p-5 rounded-2xl text-center relative overflow-hidden shadow-xl animate-pulse">
-            <div className="w-10 h-10 border border-yellow-400/30 rounded-full flex items-center justify-center mx-auto mb-3 relative">
-              <div className="absolute inset-0 rounded-full border-2 border-yellow-400 animate-ping opacity-20" style={{ animationDuration: "2s" }} />
+          <div className="w-full border-4 border-black bg-zinc-900 p-5 rounded-none shadow-[6px_6px_0_#000] text-center relative overflow-hidden">
+            <div className="w-10 h-10 border-2 border-yellow-400 rounded-none flex items-center justify-center mx-auto mb-3 relative bg-black shadow-[2px_2px_0_#000]">
               <Loader2 size={16} className="animate-spin text-yellow-400" />
             </div>
-            <div className="text-zinc-300 text-xs font-black tracking-wide uppercase mb-0.5" style={khFont}>
+            <div className="text-zinc-200 text-xs font-black tracking-wide uppercase mb-0.5 animate-pulse" style={khFont}>
               {kh ? "កំពុងរង់ចាំអ្នករៀបចំ..." : "Waiting for Host to Launch"}
             </div>
             <div className="text-zinc-500 text-[9px] font-bold tracking-widest uppercase">
               {kh ? "ហ្គេមនឹងចាប់ផ្តើមភ្លាមៗ" : "Game will commence momentarily"}
             </div>
+
+            {/* Premium Retro Warning Stripes Strip on loader */}
+            <div className="absolute bottom-0 left-0 right-0 h-2" 
+              style={{
+                backgroundImage: "repeating-linear-gradient(-45deg, #fbbf24, #fbbf24 10px, #000 10px, #000 20px)"
+              }} />
           </div>
         </div>
       </div>
