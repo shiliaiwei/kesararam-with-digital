@@ -306,18 +306,18 @@ export default function StudentGamePage() {
 
       <div className="text-center">
         {phase === "lobby" ? (
-          <span className="text-zinc-400 text-xs font-black tracking-widest bg-zinc-900 border border-zinc-850 px-4 py-1 rounded-lg uppercase" style={khFont}>
+          <span className="text-zinc-400 text-xs font-black tracking-widest bg-zinc-900 border border-zinc-850 px-4 py-1 rounded-none uppercase" style={khFont}>
             {kh ? "បន្ទប់រង់ចាំ" : "Lobby Room"}
           </span>
         ) : (
-          <span className="text-white text-sm font-black tracking-widest bg-zinc-900 border border-zinc-800 px-4 py-1 rounded-lg">ROOM: {code}</span>
+          <span className="text-white text-sm font-black tracking-widest bg-zinc-900 border border-zinc-800 px-4 py-1 rounded-none">ROOM: {code}</span>
         )}
       </div>
 
       <div className="flex items-center gap-2">
         <button
           onClick={() => setMuted(m => !m)}
-          className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg border text-xs font-black transition-all ${
+          className={`flex items-center gap-1 px-2.5 py-1.5 rounded-none border text-xs font-black transition-all ${
             muted
               ? "bg-red-950/40 border-red-500/60 text-red-400"
               : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
@@ -684,11 +684,11 @@ export default function StudentGamePage() {
     const myStreak = leaderboard.find(e => e.userId === currentUserId)?.currentStreak ?? 0;
 
     return (
-      <div className="game-dot-bg fixed inset-0 z-50 flex flex-col" style={{ userSelect: "none" }}>
-        <div className="relative z-10 flex items-center justify-between px-4 py-2.5 bg-zinc-950 border-b border-zinc-800 flex-shrink-0 h-14">
+      <div className="game-dot-bg fixed inset-0 z-50 flex flex-col rounded-none" style={{ userSelect: "none" }}>
+        <div className="relative z-10 flex items-center justify-between px-4 py-2.5 bg-zinc-950 border-b border-zinc-800 flex-shrink-0 h-14 rounded-none">
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-red-950/40 border border-red-500 rounded-full">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-red-950/40 border border-red-500 rounded-none">
+              <span className="w-1.5 h-1.5 rounded-none bg-red-500 animate-pulse" />
               <span className="text-red-400 font-black text-[9px] tracking-widest uppercase">LIVE</span>
             </div>
             <span className="text-zinc-400 font-black text-xs uppercase tracking-widest hidden sm:inline" style={khFont}>
@@ -697,12 +697,12 @@ export default function StudentGamePage() {
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5 bg-yellow-400 border border-zinc-950 px-3 py-1 rounded-lg shadow-md">
+            <div className="flex items-center gap-1.5 bg-yellow-400 border border-zinc-950 px-3 py-1 rounded-none">
               <Zap size={12} className="text-black" />
               <span className="font-black text-black text-sm tabular-nums">{myScore.toLocaleString()}</span>
             </div>
             {myStreak > 1 && (
-              <div className="flex items-center gap-1 bg-orange-500 border border-zinc-950 px-2.5 py-1 rounded-lg shadow-md">
+              <div className="flex items-center gap-1 bg-orange-500 border border-zinc-950 px-2.5 py-1 rounded-none">
                 <Flame size={12} className="text-white animate-pulse" />
                 <span className="font-black text-white text-xs">x{myStreak}</span>
               </div>
@@ -711,7 +711,7 @@ export default function StudentGamePage() {
 
           <button
             onClick={() => setMuted(m => !m)}
-            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-black transition-all ${
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-none border text-xs font-black transition-all ${
               muted
                 ? "bg-red-950/40 border-red-500/60 text-red-400"
                 : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
@@ -734,14 +734,14 @@ export default function StudentGamePage() {
           {/* Subtle Stats Row (Low Capacity) */}
           <div className="flex items-center justify-between gap-2 px-1 w-full bg-transparent border-0 flex-shrink-0">
             <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar flex-nowrap">
-              <span className="shrink-0 text-zinc-400 text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-zinc-900/40 px-2.5 py-1 rounded-lg border border-zinc-850" style={khFont}>
+              <span className="shrink-0 text-zinc-300 text-[10px] sm:text-xs font-black uppercase tracking-wider bg-zinc-850 px-2.5 py-1 rounded-none border border-zinc-800" style={khFont}>
                 {kh ? `${questionIndex + 1}/${totalQuestions}` : `Q ${questionIndex + 1} / ${totalQuestions}`}
               </span>
-              <span className="shrink-0 text-zinc-400 text-[10px] sm:text-xs font-bold uppercase bg-zinc-900/40 px-2.5 py-1 rounded-lg border border-zinc-850" style={khFont}>
+              <span className="shrink-0 text-yellow-400 text-[10px] sm:text-xs font-black uppercase bg-yellow-400/10 px-2.5 py-1 rounded-none border border-yellow-400/30" style={khFont}>
                 {currentQuestion.difficulty || "Mixed"}
               </span>
               {(currentQuestion as any).topicCode && (
-                <span className="shrink-0 text-zinc-500 font-mono text-[10px] sm:text-xs bg-zinc-900/40 px-2.5 py-1 rounded-lg border border-zinc-850 tracking-wider">
+                <span className="shrink-0 text-zinc-400 font-mono text-[10px] sm:text-xs bg-zinc-850 px-2.5 py-1 rounded-none border border-zinc-800 tracking-wider">
                   {(currentQuestion as any).topicCode.trim()}
                 </span>
               )}
@@ -759,22 +759,42 @@ export default function StudentGamePage() {
           </div>
 
           {/* Question image (compact stable wrapper) */}
-          <div className="shrink-0 w-full h-32 border border-zinc-800 bg-zinc-950/40 rounded-xl flex items-center justify-center p-2 relative overflow-hidden backdrop-blur-sm">
+          <div className="shrink-0 w-full h-32 border-2 border-black bg-zinc-950 flex items-center justify-center p-2 relative overflow-hidden rounded-none">
             {currentQuestion.imageUrl && currentQuestion.gameType !== "image_pick" ? (
-              <img src={currentQuestion.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded" />
+              <img src={currentQuestion.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
             ) : (
               <div className="flex flex-col items-center gap-2 opacity-15">
                 <BookOpen size={48} className="text-zinc-400" />
                 <span className="font-black text-[10px] tracking-wider uppercase text-zinc-400">Kesararam Quiz</span>
               </div>
             )}
+
+            {/* Image reference label inside the box border at the bottom */}
+            {currentQuestion.imageUrl && currentQuestion.gameType !== "image_pick" && (
+              <div style={{
+                position: "absolute",
+                bottom: 0,
+                right: 0,
+                backgroundColor: "rgba(0,0,0,0.85)",
+                color: "#e4e4e7",
+                fontSize: "7.5px",
+                fontWeight: 900,
+                padding: "2px 6px",
+                letterSpacing: "0.05em",
+                textTransform: "uppercase",
+                fontFamily: "monospace",
+                borderLeft: "2px solid #000",
+                borderTop: "2px solid #000",
+              }}>
+                Ref: {currentQuestion.topicCode ? currentQuestion.topicCode.trim() : `KWD-Q${currentQuestion.id}`}
+              </div>
+            )}
           </div>
 
           {/* Question text card (compact) */}
           <div
-            className="shrink-0 w-full min-h-[5rem] max-h-24 bg-zinc-900/90 backdrop-blur-md border-2 border-zinc-755/85 p-3 rounded-xl text-white font-black flex items-center justify-center text-center shadow-lg overflow-y-auto select-text animate-fade-in"
+            className="shrink-0 w-full min-h-[5rem] max-h-24 bg-zinc-900 border-2 border-black p-3 rounded-none text-white font-black flex items-center justify-center text-center overflow-y-auto select-text animate-fade-in"
             style={{
-              boxShadow: "0 8px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)",
               fontSize: "clamp(1.1rem, 4vw, 1.75rem)",
               lineHeight: "1.3",
               ...khFont
@@ -787,10 +807,10 @@ export default function StudentGamePage() {
 
           <div className="shrink-0 min-h-[176px]">
             <ErrorBoundary fallback={
-              <div className="text-center p-8 border border-red-500/30 bg-red-500/10 rounded-xl">
+              <div className="text-center p-8 border-2 border-red-500 bg-red-500/10 rounded-none">
                 <XCircle className="mx-auto text-red-400 mb-3" size={32} />
                 <p className="text-white font-bold text-sm">Failed to load answers</p>
-                <button onClick={() => window.location.reload()} className="mt-3 px-4 py-2 bg-red-500 text-white font-bold text-sm rounded">Reload</button>
+                <button onClick={() => window.location.reload()} className="mt-3 px-4 py-2 bg-red-500 text-white font-bold text-sm rounded-none">Reload</button>
               </div>
             }>
               <AnswerGrid
@@ -814,8 +834,7 @@ export default function StudentGamePage() {
                     <CheckCircle className="text-green-400 flex-shrink-0" size={16} />
                     {answerResult.pointsEarned > 0 && (
                       <div
-                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-yellow-400 border-2 border-black rounded-lg animate-bounce"
-                        style={{ boxShadow: "2px 2px 0 #000" }}
+                        className="inline-flex items-center gap-1 px-3 py-1.5 bg-yellow-400 border-2 border-black rounded-none animate-bounce"
                       >
                         <Zap size={11} className="text-black" />
                         <span className="text-black font-black text-xs">+{answerResult.pointsEarned} pts</span>
@@ -899,7 +918,7 @@ export default function StudentGamePage() {
 
               {/* Waiting for next question */}
               <div className="flex-shrink-0 py-3 text-center">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-zinc-700 rounded-xl">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900 border-2 border-black rounded-none">
                   <Loader2 size={12} className="animate-spin text-yellow-400" />
                   <span className="text-zinc-400 text-[10px] font-bold uppercase tracking-widest" style={khFont}>
                     {kh ? "រង់ចាំសំណួរបន្ទាប់..." : "Waiting for next question..."}

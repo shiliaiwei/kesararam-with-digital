@@ -21,6 +21,7 @@ export async function POST(req: NextRequest) {
     timeTakenSeconds,
     timePerQuestion = 30,   // actual seconds per question for this game mode
     scoringMode = "speed",  // speed | equal
+    targetGroup = "university",
   } = body as {
     sessionId: number;
     answers: AnswerInput[];
@@ -29,6 +30,7 @@ export async function POST(req: NextRequest) {
     difficulty: string;
     timePerQuestion?: number;
     scoringMode?: string;
+    targetGroup?: string;
   };
 
   const totalTimeMs = timePerQuestion * 1000;
@@ -50,6 +52,7 @@ export async function POST(req: NextRequest) {
       remainingTimeMs,
       totalTimeMs,
       currentStreak: streak,
+      targetGroup,
     });
 
     totalScore += scoreResult.totalPoints;

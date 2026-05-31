@@ -23,6 +23,7 @@ export async function GET(
       questionCount: gameSessions.questionIds,
       hostId: gameSessions.hostId,
       language: gameSessions.language,
+      targetGroup: gameSessions.targetGroup,
     })
     .from(gameSessions)
     .where(eq(gameSessions.sessionCode, code.toUpperCase()));
@@ -46,5 +47,6 @@ export async function GET(
     hostName: host?.displayName || host?.username || "Teacher",
     hostAvatar: host?.avatar || null,
     language: session.language,
+    targetGroup: session.targetGroup,
   });
 }

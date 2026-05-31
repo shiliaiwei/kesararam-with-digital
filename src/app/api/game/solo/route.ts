@@ -22,6 +22,7 @@ export async function POST(req: NextRequest) {
     questionCount = 10,
     timePerQuestion = 30,
     gameMode = "quick-quiz",
+    targetGroup = "university",
   } = body;
 
   if (!categoryIds?.length)
@@ -92,18 +93,61 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  if (compatible.length === 0) {
-    return NextResponse.json({
-      error: `No compatible questions for "${gameMode}" mode`
-    }, { status: 404 });
+  // Filter/prioritize questions based on targetGroup
+  let targetedQuestions = compatible;
+
+  if (targetGroup === "kid_k6") {
+    // Kid (K-6): Focus on low difficulty, short questions, and prioritize image-based questions
+    let filtered = compatible.filter(q => {
+      const isEasy = q.difficulty === "easy" || q.difficulty === "beginner" || !q.difficulty;
+      const isShort = (q.questionEn || "").length < 80;
+      return isEasy && isShort;
+    });
+
+    if (filtered.length < questionCount) {
+      // Fallback: relax difficulty but keep it relatively short
+      filtered = compatible.filter(q => (q.questionEn || "").length < 110);
+    }
+
+    if (filtered.length > 0) {
+      targetedQuestions = filtered;
+    }
+
+    // Sort so questions with images are placed first
+    targetedQuestions.sort((a, b) => {
+      const aImg = !!a.imageUrl ? 1 : 0;
+      const bImg = !!b.imageUrl ? 1 : 0;
+      return bImg - aImg;
+    });
+  } else if (targetGroup === "kid_k12") {
+    // Kid (K-12): Prioritize signs and basic driving rules (easy/medium difficulty)
+    let filtered = compatible.filter(q => q.difficulty === "easy" || q.difficulty === "medium" || !q.difficulty);
+    if (filtered.length > 0) {
+      targetedQuestions = filtered;
+    }
+  } else if (targetGroup === "university") {
+    // University: standard full theory (medium/hard difficulty prioritized)
+    let filtered = compatible.filter(q => q.difficulty === "medium" || q.difficulty === "hard");
+    if (filtered.length >= questionCount) {
+      targetedQuestions = filtered;
+    }
+  } else if (targetGroup === "professional") {
+    // Professional: technical driving rules, priority rules, hard/advanced difficulty
+    let filtered = compatible.filter(q => q.difficulty === "hard" || q.difficulty === "advanced");
+    if (filtered.length < questionCount) {
+      filtered = compatible.filter(q => q.difficulty === "hard" || q.difficulty === "medium");
+    }
+    if (filtered.length > 0) {
+      targetedQuestions = filtered;
+    }
   }
 
   // Fisher-Yates shuffle — truly random, prevents students seeing same order
-  for (let i = compatible.length - 1; i > 0; i--) {
+  for (let i = targetedQuestions.length - 1; i > 0; i--) {
     const j = Math.floor(getSecureRandom() * (i + 1));
-    [compatible[i], compatible[j]] = [compatible[j], compatible[i]];
+    [targetedQuestions[i], targetedQuestions[j]] = [targetedQuestions[j], targetedQuestions[i]];
   }
-  const shuffled = compatible.slice(0, questionCount);
+  const shuffled = targetedQuestions.slice(0, questionCount);
 
   // Fetch answers for each question
   const selectedIds = shuffled.map((q) => q.id);
@@ -164,5 +208,6 @@ export async function POST(req: NextRequest) {
     questions: questionsPayload,
     timePerQuestion,
     gameMode,
+    targetGroup,
   });
 }

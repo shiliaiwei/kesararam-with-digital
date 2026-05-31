@@ -2,13 +2,24 @@
 
 import type { AnswerOption } from "@/lib/game-event-bus";
 
-/** Kahoot-style answer shapes */
-const ANSWER_STYLES = [
-  { bg: "#ef4444", hoverBg: "#dc2626", shape: "▲", label: "A", shadow: "#991b1b" },
-  { bg: "#3b82f6", hoverBg: "#2563eb", shape: "◆", label: "B", shadow: "#1d4ed8" },
-  { bg: "#22c55e", hoverBg: "#16a34a", shape: "●", label: "C", shadow: "#15803d" },
-  { bg: "#f97316", hoverBg: "#ea580c", shape: "■", label: "D", shadow: "#c2410c" },
+/**
+ * Kahoot-psychology 2D flat answer grid
+ * - Zero border-radius (sharp 2D UI)
+ * - Distinct color-coded tiles per psychological learning principles
+ * - White background for sign images (image_pick) so signs are clear
+ * - Shape icons aid memory encoding (▲◆●■)
+ */
+
+const ANSWER_CONFIG = [
+  { bg: "#e21b3c", label: "A", shape: "▲" }, // Red
+  { bg: "#1368ce", label: "B", shape: "◆" }, // Blue
+  { bg: "#d89e00", label: "C", shape: "●" }, // Gold
+  { bg: "#26890c", label: "D", shape: "■" }, // Green
 ];
+
+// Correct/wrong override colors
+const CORRECT_BG = "#26890c";
+const WRONG_BG   = "#e21b3c";
 
 interface AnswerGridProps {
   answers: AnswerOption[];
@@ -31,7 +42,7 @@ export function AnswerGrid({
 }: AnswerGridProps) {
   if (!Array.isArray(answers) || answers.length === 0) {
     return (
-      <div className="text-center py-8 text-white/50 font-bold">
+      <div style={{ textAlign: "center", padding: "24px", color: "rgba(255,255,255,0.4)", fontWeight: 700 }}>
         Loading answers...
       </div>
     );
@@ -39,132 +50,219 @@ export function AnswerGrid({
 
   const isImagePick = gameType === "image_pick";
   const khFont = lang === "kh" ? { fontFamily: "Siemreap, sans-serif" } : {};
-  const isTwoCol = answers.length <= 2;
+  const cols = answers.length <= 2 ? 1 : 2;
+  const revealed = correctId !== null;
 
   return (
-    <div className={`grid gap-2 sm:gap-3 ${isTwoCol ? "grid-cols-1" : "grid-cols-2"}`}>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: `repeat(${cols}, 1fr)`,
+        gap: "6px",
+      }}
+    >
       {answers.map((ans, i) => {
-        const style = ANSWER_STYLES[i % ANSWER_STYLES.length];
+        const cfg = ANSWER_CONFIG[i % ANSWER_CONFIG.length];
         const isSelected = selectedId === ans.id;
-        const isCorrect = correctId !== null && ans.id === correctId;
-        const isWrong = correctId !== null && ans.id !== correctId;
-        const isMyWrong = isSelected && isWrong;
+        const isCorrect = revealed && ans.id === correctId;
+        const isMyWrong = revealed && isSelected && !isCorrect;
+        const isOtherWrong = revealed && !isCorrect && !isMyWrong;
         const text = lang === "kh" ? (ans.answerKm || ans.answerEn) : ans.answerEn;
 
-        // Derive colors and visibility states
-        let bg = style.bg;
-        let opacity = 1;
-        let scale = "scale(1)";
-        let displayStyle: "flex" | "none" = "flex";
-        let textWeightClass = "font-bold animate-fade-in";
+        // Hide irrelevant wrong options after reveal (like Kahoot)
+        if (isOtherWrong) return null;
 
-        if (correctId !== null) {
-          if (isCorrect) {
-            bg = "#22c55e"; // Correct green
-            scale = "scale(1.02)";
-            textWeightClass = "font-black";
-          } else if (isSelected) {
-            bg = "#ef4444"; // Selected wrong red
-            scale = "scale(1.02)";
-            textWeightClass = "font-black";
-          } else {
-            // Completely hide irrelevant wrong options to focus on selected/correct ones
-            displayStyle = "none";
-            opacity = 0;
-          }
-        } else if (isSelected) {
-          scale = "scale(0.97)";
-          bg = style.hoverBg;
-        }
+        // Active tile color
+        const tileBg = isCorrect ? CORRECT_BG : isMyWrong ? WRONG_BG : cfg.bg;
+        const borderColor = isCorrect 
+          ? CORRECT_BG 
+          : isMyWrong 
+          ? WRONG_BG 
+          : isSelected && !revealed
+          ? "#ffffff"
+          : "#000000";
+        const scale = isCorrect ? "scale(1.02)" : isSelected && !revealed ? "scale(0.98)" : "scale(1)";
 
+        // ── IMAGE PICK (sign challenge) ─────────────────────────────────────
         if (isImagePick) {
           return (
             <button
               key={ans.id}
+              type="button"
               disabled={disabled}
               onClick={() => !disabled && onSelect(ans.id)}
-              type="button"
-              className="relative overflow-hidden border-2 transition-all duration-200 active:scale-95 flex flex-col items-center justify-center"
               style={{
-                display: displayStyle,
-                opacity,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "flex-start",
+                overflow: "hidden",
+                border: `3px solid ${borderColor}`,
+                borderRadius: 0,
                 backgroundColor: "#ffffff",
+                cursor: disabled ? "default" : "pointer",
                 transform: scale,
-                borderColor: isCorrect ? "#22c55e" : isMyWrong ? "#ef4444" : isSelected ? style.bg : "rgba(0,0,0,0.15)",
-                boxShadow: isCorrect
-                  ? "0 0 0 2px #22c55e"
-                  : isMyWrong
-                  ? "0 0 0 2px #ef4444"
-                  : isSelected
-                  ? `0 0 0 2px ${style.bg}`
-                  : "none",
-                borderRadius: "10px",
-                height: "108px",
+                transition: "transform 0.12s ease, border-color 0.15s",
+                position: "relative",
+                height: "115px",
+                padding: 0,
+                outline: "none",
               }}
             >
-              {/* Colored label strip at top */}
-              <div className="absolute top-0 left-0 right-0 h-1.5 rounded-t-[8px]" style={{ backgroundColor: style.bg }} />
-
-              {ans.imageUrl ? (
-                <img
-                  src={ans.imageUrl}
-                  alt={text}
-                  className="object-contain select-none pointer-events-none"
-                  style={{ height: "72px", width: "auto", maxWidth: "100%", padding: "4px 8px" }}
-                  onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).style.display = "none";
-                  }}
-                />
-              ) : (
-                <span className="text-zinc-800 text-xs sm:text-sm font-bold text-center px-2 leading-tight" style={khFont}>
-                  {text}
-                </span>
-              )}
-
-              {/* Label badge */}
-              <div className="absolute bottom-1 left-1 px-1.5 py-0 text-white font-black text-[9px] rounded" style={{ backgroundColor: style.bg, lineHeight: "1.4" }}>
-                {style.label}
+              {/* Reference ID at top-left inside box border */}
+              <div style={{
+                position: "absolute",
+                top: "4px",
+                left: "4px",
+                fontSize: "7px",
+                fontWeight: 900,
+                color: "#18181b",
+                backgroundColor: "#f4f4f5",
+                border: "1px solid #18181b",
+                padding: "1px 3.5px",
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
+                zIndex: 10,
+              }}>
+                Ref: OPT-{cfg.label}
               </div>
 
-              {isCorrect && (
-                <span className="absolute top-2 right-2 w-5 h-5 bg-green-500 border border-white rounded-full flex items-center justify-center text-white font-black text-xs shadow">✓</span>
-              )}
-              {isMyWrong && (
-                <span className="absolute top-2 right-2 w-5 h-5 bg-red-500 border border-white rounded-full flex items-center justify-center text-white font-black text-xs shadow">✗</span>
+              {/* Colored top band — ABCD identity */}
+              <div style={{
+                height: "4px",
+                width: "100%",
+                backgroundColor: isCorrect ? CORRECT_BG : isMyWrong ? WRONG_BG : cfg.bg,
+                flexShrink: 0,
+              }} />
+
+              {/* Sign image area — white background */}
+              <div style={{
+                flex: 1,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "100%",
+                backgroundColor: "#ffffff",
+                padding: "4px 6px",
+              }}>
+                {ans.imageUrl ? (
+                  <img
+                    src={ans.imageUrl}
+                    alt={text}
+                    style={{
+                      maxHeight: "62px",
+                      maxWidth: "100%",
+                      objectFit: "contain",
+                      display: "block",
+                    }}
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                  />
+                ) : (
+                  <span style={{ fontSize: "11px", fontWeight: 800, color: "#1a1a1a", textAlign: "center", padding: "0 4px", ...khFont }}>
+                    {text}
+                  </span>
+                )}
+              </div>
+
+              {/* Colored bottom label band */}
+              <div style={{
+                backgroundColor: isCorrect ? CORRECT_BG : isMyWrong ? WRONG_BG : cfg.bg,
+                color: "#ffffff",
+                fontSize: "9px",
+                fontWeight: 900,
+                padding: "4.5px 8px",
+                width: "100%",
+                textAlign: "left",
+                flexShrink: 0,
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                letterSpacing: "0.02em",
+                ...khFont,
+              }}>
+                <span style={{ marginRight: "6px", opacity: 0.85 }}>{cfg.shape} {cfg.label}</span>
+                {text}
+              </div>
+
+              {/* Result badge */}
+              {(isCorrect || isMyWrong) && (
+                <div style={{
+                  position: "absolute",
+                  top: "4px",
+                  right: "4px",
+                  width: "18px",
+                  height: "18px",
+                  backgroundColor: isCorrect ? CORRECT_BG : WRONG_BG,
+                  color: "#fff",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "11px",
+                  fontWeight: 900,
+                  borderRadius: 0,
+                  border: "1.5px solid #fff",
+                }}>
+                  {isCorrect ? "✓" : "✗"}
+                </div>
               )}
             </button>
           );
         }
 
+        // ── MCQ / TRUE-FALSE ────────────────────────────────────────────────
         return (
           <button
             key={ans.id}
+            type="button"
             disabled={disabled}
             onClick={() => !disabled && onSelect(ans.id)}
-            type="button"
-            className="relative flex items-center justify-between gap-3 px-4 py-3 border border-black/10 transition-all duration-150 active:scale-95 text-left text-white select-none"
             style={{
-              display: displayStyle,
-              backgroundColor: bg,
-              opacity,
-              transform: scale,
-              boxShadow: "none",
-              borderRadius: "10px",
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              padding: "10px 14px",
+              backgroundColor: tileBg,
+              border: `3px solid ${borderColor}`,
+              borderRadius: 0,
+              cursor: disabled ? "default" : "pointer",
               minHeight: "52px",
+              transform: scale,
+              transition: "transform 0.12s ease, background-color 0.15s",
+              outline: "none",
+              userSelect: "none",
               ...khFont,
             }}
           >
-            {/* Answer text - focused and responsive */}
-            <span className={`flex-1 text-xs sm:text-sm md:text-base leading-snug text-white ${textWeightClass}`}>
+            {/* Shape icon — Kahoot-style mnemonic */}
+            <span style={{
+              fontSize: "20px",
+              lineHeight: 1,
+              color: "rgba(255,255,255,0.85)",
+              flexShrink: 0,
+              width: "22px",
+              textAlign: "center",
+            }}>
+              {cfg.shape}
+            </span>
+
+            {/* Answer text */}
+            <span style={{
+              color: "#ffffff",
+              fontWeight: 900,
+              fontSize: "clamp(12px, 3.5vw, 16px)",
+              lineHeight: 1.25,
+              flex: 1,
+              textAlign: "left",
+            }}>
               {text}
             </span>
 
-            {/* Result indicator */}
+            {/* Result icon */}
             {isCorrect && (
-              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-white rounded-full border border-black/10 text-green-600 font-black text-xs">✓</span>
+              <span style={{ color: "#fff", fontSize: "16px", fontWeight: 900, flexShrink: 0 }}>✓</span>
             )}
             {isMyWrong && (
-              <span className="flex-shrink-0 w-6 h-6 flex items-center justify-center bg-white rounded-full border border-black/10 text-red-600 font-black text-xs">✗</span>
+              <span style={{ color: "#fff", fontSize: "16px", fontWeight: 900, flexShrink: 0 }}>✗</span>
             )}
           </button>
         );

@@ -99,6 +99,7 @@ export async function POST(
     totalTimeMs: session.timePerQuestion * 1000,
     // Pass the streak AFTER this answer so the bonus formula is correct
     currentStreak: isCorrect ? participant.currentStreak + 1 : 0,
+    targetGroup: session.targetGroup,
   });
 
   // 8. Insert answer (unique constraint prevents replay)

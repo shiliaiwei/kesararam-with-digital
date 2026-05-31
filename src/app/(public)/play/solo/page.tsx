@@ -71,6 +71,7 @@ export default function SoloPage() {
   const [categories, setCategories] = useState<{ id: number; titleEn: string; titleKm: string }[]>([]);
   const [selectedCats, setSelectedCats] = useState<number[]>([]);
   const [difficulty, setDifficulty] = useState("mixed");
+  const [targetGroup, setTargetGroup] = useState<string>("university");
   const [questionCount, setQuestionCount] = useState<number>(
     GAME_MODE_CONFIG[searchParams.get("mode") ?? "quick-quiz"]?.defaultQuestionCount ?? 10
   );
@@ -115,6 +116,7 @@ export default function SoloPage() {
           questionCount,
           timePerQuestion: GAME_MODE_CONFIG[selectedMode]?.timePerQuestion ?? 30,
           gameMode: selectedMode,
+          targetGroup,
         }),
       });
       if (!res.ok) {
@@ -212,6 +214,7 @@ export default function SoloPage() {
           // Pass actual game timing so server can score correctly
           timePerQuestion: session.timePerQuestion,
           scoringMode: "speed",
+          targetGroup,
         }),
       });
       const result = await res.json();
@@ -265,7 +268,7 @@ export default function SoloPage() {
                 <button key={m.id} onClick={() => {
                   setSelectedMode(m.id);
                   setQuestionCount(m.defaultQuestionCount);
-                }} className="p-4 border-2 border-black text-left transition-all duration-100"
+                }} className="p-4 border-2 border-black text-left transition-all duration-100 rounded-none"
                   style={{ backgroundColor: selectedMode === m.id ? m.color : "#fff", boxShadow: selectedMode === m.id ? "4px 4px 0 #000" : "2px 2px 0 #000", transform: selectedMode === m.id ? "translate(-2px,-2px)" : undefined }}>
                   <div className="font-black text-sm text-black" style={khFont}>{kh ? m.labelKm : m.label}</div>
                   <div className="text-xs text-black/60 mt-0.5" style={khFont}>{kh ? m.descriptionKm : m.description}</div>
@@ -286,7 +289,7 @@ export default function SoloPage() {
                 <button
                   key={n}
                   onClick={() => setQuestionCount(n)}
-                  className="w-14 h-14 border-2 border-black font-black text-lg transition-all duration-100"
+                  className="w-14 h-14 border-2 border-black font-black text-lg transition-all duration-100 rounded-none"
                   style={{
                     backgroundColor: questionCount === n ? "#000" : "#fff",
                     color: questionCount === n ? "#ffd700" : "#000",
@@ -313,7 +316,7 @@ export default function SoloPage() {
                 const sel = selectedCats.includes(cat.id);
                 return (
                   <button key={cat.id} onClick={() => setSelectedCats(prev => sel ? prev.filter(id => id !== cat.id) : [...prev, cat.id])}
-                    className="px-3 py-1.5 border-2 border-black text-sm font-bold transition-all duration-100"
+                    className="px-3 py-1.5 border-2 border-black text-sm font-bold transition-all duration-100 rounded-none"
                     style={{ backgroundColor: sel ? "#000" : "#fff", color: sel ? "#ffd700" : "#000", boxShadow: sel ? "2px 2px 0 #ffd700" : "2px 2px 0 #000" }}>
                     <span style={khFont}>{kh ? cat.titleKm : cat.titleEn}</span>
                   </button>
@@ -326,7 +329,7 @@ export default function SoloPage() {
             <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-3" style={khFont}>{kh ? "កម្រិត" : "Difficulty"}</div>
             <div className="flex gap-2">
               {[{ id: "mixed", en: "Mixed", km: "ចម្រុះ" }, { id: "easy", en: "Easy", km: "ងាយ" }, { id: "medium", en: "Medium", km: "មធ្យម" }, { id: "hard", en: "Hard", km: "លំបាក" }].map(d => (
-                <button key={d.id} onClick={() => setDifficulty(d.id)} className="flex-1 py-2 border-2 border-black text-sm font-black transition-all duration-100"
+                <button key={d.id} onClick={() => setDifficulty(d.id)} className="flex-1 py-2 border-2 border-black text-sm font-black transition-all duration-100 rounded-none"
                   style={{ backgroundColor: difficulty === d.id ? "#000" : "#fff", color: difficulty === d.id ? "#ffd700" : "#000", boxShadow: "2px 2px 0 #000" }}>
                   <span style={khFont}>{kh ? d.km : d.en}</span>
                 </button>
@@ -334,9 +337,30 @@ export default function SoloPage() {
             </div>
           </div>
 
+          <div>
+            <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-3" style={khFont}>{kh ? "គោលដៅអ្នកលេង" : "Target Audience"}</div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              {[
+                { id: "kid_k6", en: "Kid (K-6)", km: "ក្មេង K-6" },
+                { id: "kid_k12", en: "Kid (K-12)", km: "ក្មេង K-12" },
+                { id: "university", en: "University", km: "និស្សិត" },
+                { id: "professional", en: "Professional", km: "ជំនាញ" }
+              ].map(t => (
+                <button key={t.id} onClick={() => setTargetGroup(t.id)} className="py-2 border-2 border-black text-sm font-black transition-all duration-100 rounded-none"
+                  style={{ 
+                    backgroundColor: targetGroup === t.id ? "#000" : "#fff", 
+                    color: targetGroup === t.id ? "#ffd700" : "#000", 
+                    boxShadow: "2px 2px 0 #000", 
+                  }}>
+                  <span style={khFont}>{kh ? t.km : t.en}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
           {error && <p className="text-red-600 font-bold text-sm border-2 border-red-500 px-3 py-2" style={khFont}>{error}</p>}
 
-          <button onClick={startGame} className="w-full py-5 bg-black text-yellow-400 font-black text-xl border-2 border-black transition-all duration-100 hover:-translate-y-0.5"
+          <button onClick={startGame} className="w-full py-5 bg-black text-yellow-400 font-black text-xl border-2 border-black transition-all duration-100 hover:-translate-y-0.5 rounded-none"
             style={{ boxShadow: "5px 5px 0 #ffd700", ...khFont }}>
             {kh ? "ចាប់ផ្តើម" : "Start Game"}<ChevronRight className="inline ml-2" size={20} />
           </button>
@@ -361,10 +385,10 @@ export default function SoloPage() {
   if (phase.name === "results") {
     const r = phase.result;
     return (
-      <div className="min-h-screen bg-white">
-        <div className="bg-yellow-400 border-b-2 border-black py-8 px-6 text-center">
-          <div className="inline-block bg-black text-yellow-400 text-xs font-black tracking-widest uppercase px-3 py-1.5 mb-3" style={khFont}>{kh ? "ចប់ហ្គេម" : "Game Over"}</div>
-          {r.isNewPersonalBest && <div className="inline-block bg-black text-yellow-400 text-xs font-black px-3 py-1.5 mb-3 ml-2 border-2 border-black" style={{ boxShadow: "2px 2px 0 #000", ...khFont }}>{kh ? "ពិន្ទុខ្ពស់បំផុតថ្មី!" : "New Personal Best!"}</div>}
+      <div className="min-h-screen bg-white rounded-none">
+        <div className="bg-yellow-400 border-b-2 border-black py-8 px-6 text-center rounded-none">
+          <div className="inline-block bg-black text-yellow-400 text-xs font-black tracking-widest uppercase px-3 py-1.5 mb-3 rounded-none" style={khFont}>{kh ? "ចប់ហ្គេម" : "Game Over"}</div>
+          {r.isNewPersonalBest && <div className="inline-block bg-black text-yellow-400 text-xs font-black px-3 py-1.5 mb-3 ml-2 border-2 border-black rounded-none" style={{ ...khFont }}>{kh ? "ពិន្ទុខ្ពស់បំផុតថ្មី!" : "New Personal Best!"}</div>}
           <div className="text-6xl font-black text-black tabular-nums">{r.totalScore.toLocaleString()}</div>
           <div className="text-black/60 font-bold mt-1" style={khFont}>{kh ? "ពិន្ទុ" : "points"}</div>
         </div>
@@ -375,7 +399,7 @@ export default function SoloPage() {
               { label: kh ? "ត្រូវ" : "Correct", value: `${r.correctAnswers}/${r.totalQuestions}`, color: "#3b82f6" },
               { label: kh ? "ពេលវេលា" : "Time", value: `${r.timeTakenSeconds}s`, color: "#f97316" },
             ].map(s => (
-              <div key={s.label} className="border-2 border-black p-4 text-center" style={{ boxShadow: "3px 3px 0 #000" }}>
+              <div key={s.label} className="border-2 border-black p-4 text-center rounded-none">
                 <div className="text-2xl font-black" style={{ color: s.color }}>{s.value}</div>
                 <div className="text-xs font-bold text-zinc-500 mt-1" style={khFont}>{s.label}</div>
               </div>
@@ -385,7 +409,7 @@ export default function SoloPage() {
             <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-3" style={khFont}>{kh ? "លទ្ធផលម្តងៗ" : "Question Breakdown"}</div>
             <div className="flex gap-1.5 flex-wrap">
               {r.perQuestion.map((q, i) => (
-                <div key={q.questionId} className="w-8 h-8 border-2 border-black flex items-center justify-center text-xs font-black text-white"
+                <div key={q.questionId} className="w-8 h-8 border-2 border-black flex items-center justify-center text-xs font-black text-white rounded-none"
                   style={{ backgroundColor: q.isCorrect ? "#22c55e" : "#ef4444" }} title={`Q${i + 1}: ${q.isCorrect ? "+" + q.pointsEarned : "0"}`}>
                   {i + 1}
                 </div>
@@ -408,10 +432,10 @@ export default function SoloPage() {
               const correctAnswer = q.answers.find(a => a.isCorrect);
 
               return (
-                <div key={q.id} className={`border-2 border-black p-4 bg-white`} style={{ boxShadow: "3px 3px 0 #000" }}>
+                <div key={q.id} className="border-2 border-black p-4 bg-white rounded-none">
                   <div className="flex items-start gap-3 mb-3">
                     <div
-                      className="shrink-0 w-6 h-6 flex items-center justify-center text-white font-black text-xs border-2 border-black"
+                      className="shrink-0 w-6 h-6 flex items-center justify-center text-white font-black text-xs border-2 border-black rounded-none"
                       style={{ backgroundColor: isCorrect ? "#22c55e" : "#ef4444" }}
                     >
                       {i + 1}
@@ -423,21 +447,31 @@ export default function SoloPage() {
 
                   {/* Hide images if image_pick, else show */}
                   {q.imageUrl && q.gameType !== "image_pick" && (
-                    <div className="mb-3 border-2 border-zinc-200 p-2 flex justify-center bg-zinc-50">
-                      <img src={q.imageUrl} alt="Question" className="max-h-24 w-auto object-contain" />
+                    <div className="mb-3 border-2 border-black p-2 flex justify-center bg-zinc-50 rounded-none relative">
+                      <img src={q.imageUrl} alt="Question" className="max-h-24 w-auto object-contain rounded-none" />
+                      <div className="absolute bottom-0 right-0 bg-black/85 text-zinc-200 font-mono text-[8px] font-black px-1.5 py-0.5 border-l-2 border-t-2 border-black">
+                        Ref: {q.topicCode ? q.topicCode.trim() : `KWD-Q${q.id}`}
+                      </div>
                     </div>
                   )}
 
                   <div className="space-y-2 ml-9">
                     {/* Selected Answer */}
-                    <div className={`p-2 border-2 border-black text-sm flex gap-2 items-center ${isCorrect ? 'bg-green-100' : 'bg-red-100'}`} style={khFont}>
+                    <div className={`p-2 border-2 border-black text-sm flex gap-2 items-center rounded-none ${isCorrect ? 'bg-green-100' : 'bg-red-100'}`} style={khFont}>
                       <span className="font-black shrink-0">{isCorrect ? '✓' : '✗'}</span>
                       <span className="font-bold">
                         {kh ? "អ្នកជ្រើសរើស:" : "You chose:"}
                       </span>
                       {selectedAnswer ? (
                         <>
-                          {selectedAnswer.imageUrl && <img src={selectedAnswer.imageUrl} className="h-6 w-auto" alt="Answer" />}
+                          {selectedAnswer.imageUrl && (
+                            <div className="relative border border-black p-1 bg-white rounded-none shrink-0 flex items-center justify-center">
+                              <img src={selectedAnswer.imageUrl} className="h-6 w-auto rounded-none" alt="Answer" />
+                              <div className="absolute bottom-0 right-0 bg-black/85 text-zinc-200 font-mono text-[6px] font-black px-0.5">
+                                Ref: OPT-{selectedAnswer.id}
+                              </div>
+                            </div>
+                          )}
                           <span className="flex-1 line-clamp-2">{kh ? (selectedAnswer.answerKm || selectedAnswer.answerEn) : selectedAnswer.answerEn}</span>
                         </>
                       ) : (
@@ -447,12 +481,19 @@ export default function SoloPage() {
 
                     {/* Show Correct Answer if they were wrong */}
                     {!isCorrect && correctAnswer && (
-                      <div className={`p-2 border-2 border-black bg-green-100 text-sm flex gap-2 items-center`} style={khFont}>
+                      <div className="p-2 border-2 border-black bg-green-100 text-sm flex gap-2 items-center rounded-none" style={khFont}>
                         <span className="font-black shrink-0 text-green-600">✓</span>
                         <span className="font-bold">
                           {kh ? "ចម្លើយត្រូវ:" : "Correct answer:"}
                         </span>
-                        {correctAnswer.imageUrl && <img src={correctAnswer.imageUrl} className="h-6 w-auto" alt="Answer" />}
+                        {correctAnswer.imageUrl && (
+                          <div className="relative border border-black p-1 bg-white rounded-none shrink-0 flex items-center justify-center">
+                            <img src={correctAnswer.imageUrl} className="h-6 w-auto rounded-none" alt="Answer" />
+                            <div className="absolute bottom-0 right-0 bg-black/85 text-zinc-200 font-mono text-[6px] font-black px-0.5">
+                              Ref: OPT-{correctAnswer.id}
+                            </div>
+                          </div>
+                        )}
                         <span className="flex-1 line-clamp-2">{kh ? (correctAnswer.answerKm || correctAnswer.answerEn) : correctAnswer.answerEn}</span>
                       </div>
                     )}
@@ -463,12 +504,12 @@ export default function SoloPage() {
           </div>
           <div className="flex gap-3">
             <button onClick={() => { resetGameState(); setPhase({ name: "setup" }); }}
-              className="flex-1 py-4 bg-white text-black font-black border-2 border-black flex items-center justify-center gap-2"
-              style={{ boxShadow: "3px 3px 0 #000", ...khFont }}>
+              className="flex-1 py-4 bg-white text-black font-black border-2 border-black flex items-center justify-center gap-2 rounded-none"
+              style={{ ...khFont }}>
               <RotateCcw size={16} />{kh ? "លេងម្តងទៀត" : "Play Again"}
             </button>
-            <button onClick={() => router.push("/play")} className="flex-1 py-4 bg-black text-yellow-400 font-black border-2 border-black"
-              style={{ boxShadow: "3px 3px 0 #ffd700", ...khFont }}>
+            <button onClick={() => router.push("/play")} className="flex-1 py-4 bg-black text-yellow-400 font-black border-2 border-black rounded-none"
+              style={{ ...khFont }}>
               {kh ? "ជ្រើសរើសរបៀបផ្សេង" : "Change Mode"}
             </button>
           </div>
@@ -489,18 +530,18 @@ export default function SoloPage() {
   const isTimeout = phase.selectedId === -1;
 
   return (
-    <div className="game-dot-bg fixed inset-0 z-50 flex flex-col" style={{ userSelect: "none" }}>
-      <div className="relative z-10 flex items-center justify-between px-6 py-3 bg-zinc-950 border-b border-zinc-800 flex-shrink-0 h-14">
+    <div className="game-dot-bg fixed inset-0 z-50 flex flex-col rounded-none" style={{ userSelect: "none" }}>
+      <div className="relative z-10 flex items-center justify-between px-6 py-3 bg-zinc-950 border-b border-zinc-800 flex-shrink-0 h-14 rounded-none">
         <span className="text-zinc-400 font-black text-xs uppercase tracking-widest" style={khFont}>
           {kh ? GAME_MODE_CONFIG[phase.session.gameMode]?.labelKm : GAME_MODE_CONFIG[phase.session.gameMode]?.label}
         </span>
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 bg-yellow-400 border border-zinc-950 px-3 py-1 rounded-lg shadow-md">
+          <div className="flex items-center gap-1.5 bg-yellow-400 border border-zinc-950 px-3 py-1 rounded-none">
             <Zap size={12} className="text-black" />
             <span className="font-black text-black text-sm tabular-nums">{myScore.toLocaleString()}</span>
           </div>
           {myStreak > 1 && (
-            <div className="flex items-center gap-1 bg-orange-500 border border-zinc-950 px-2.5 py-1 rounded-lg shadow-md">
+            <div className="flex items-center gap-1 bg-orange-500 border border-zinc-950 px-2.5 py-1 rounded-none">
               <Flame size={12} className="text-white animate-pulse" />
               <span className="font-black text-white text-xs">x{myStreak}</span>
             </div>
@@ -515,22 +556,22 @@ export default function SoloPage() {
 
       <div className="relative z-10 flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full justify-start sm:justify-center overflow-y-auto min-h-0">
         {/* Q-index + difficulty + timer row (Stable row) */}
-        <div className="flex items-center justify-between gap-2 px-1 py-1 w-full bg-zinc-900/40 border border-zinc-800/80 rounded-xl h-16 flex-shrink-0">
+        <div className="flex items-center justify-between gap-2 px-3 py-2 w-full bg-zinc-900 border-2 border-black rounded-none h-16 flex-shrink-0">
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar flex-nowrap py-1">
-            <span className="shrink-0 text-zinc-300 text-xs font-black uppercase tracking-widest bg-zinc-800 px-3 py-1.5 rounded-lg border border-zinc-700/80" style={khFont}>
+            <span className="shrink-0 text-zinc-300 text-xs font-black uppercase tracking-widest bg-zinc-850 px-3 py-1.5 rounded-none border border-zinc-800" style={khFont}>
               {kh ? `${phase.qIndex + 1}/${phase.session.questions.length}` : `Q ${phase.qIndex + 1} / ${phase.session.questions.length}`}
             </span>
-            <span className="shrink-0 text-yellow-400 font-black text-xs uppercase bg-yellow-400/10 px-3 py-1.5 rounded-lg border border-yellow-400/30" style={khFont}>
+            <span className="shrink-0 text-yellow-400 font-black text-xs uppercase bg-yellow-400/10 px-3 py-1.5 rounded-none border border-yellow-400/30" style={khFont}>
               {q.difficulty || "Mixed"}
             </span>
             {q.topicCode && (
-              <span className="shrink-0 text-zinc-400 font-mono text-xs bg-zinc-800 px-3 py-1.5 rounded-lg border border-zinc-700/80 tracking-wider">
+              <span className="shrink-0 text-zinc-400 font-mono text-xs bg-zinc-850 px-3 py-1.5 rounded-none border border-zinc-800 tracking-wider">
                 {q.topicCode.trim()}
               </span>
             )}
             <button
               onClick={() => setMuted(m => !m)}
-              className="shrink-0 p-2 rounded-lg bg-zinc-800 border border-zinc-700/80 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-all"
+              className="shrink-0 p-2 rounded-none bg-zinc-850 border border-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all"
               title={muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}
             >
               {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
@@ -547,22 +588,42 @@ export default function SoloPage() {
         </div>
 
         {/* Question image (Stable height wrapper - compact) */}
-        <div className="shrink-0 w-full h-32 border border-zinc-800 bg-zinc-950/40 rounded-xl flex items-center justify-center p-2 relative overflow-hidden backdrop-blur-sm">
+        <div className="shrink-0 w-full h-32 border-2 border-black bg-zinc-950 flex items-center justify-center p-2 relative overflow-hidden rounded-none">
           {q.imageUrl && q.gameType !== "image_pick" ? (
-            <img src={q.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded" />
+            <img src={q.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
           ) : (
             <div className="flex flex-col items-center gap-2 opacity-15">
               <BookOpen size={48} className="text-zinc-400" />
               <span className="font-black text-[10px] tracking-wider uppercase text-zinc-400">Kesararam Quiz</span>
             </div>
           )}
+
+          {/* Image reference label inside the box border at the bottom */}
+          {q.imageUrl && q.gameType !== "image_pick" && (
+            <div style={{
+              position: "absolute",
+              bottom: 0,
+              right: 0,
+              backgroundColor: "rgba(0,0,0,0.85)",
+              color: "#e4e4e7",
+              fontSize: "7.5px",
+              fontWeight: 900,
+              padding: "2px 6px",
+              letterSpacing: "0.05em",
+              textTransform: "uppercase",
+              fontFamily: "monospace",
+              borderLeft: "2px solid #000",
+              borderTop: "2px solid #000",
+            }}>
+              Ref: {q.topicCode ? q.topicCode.trim() : `KWD-Q${q.id}`}
+            </div>
+          )}
         </div>
 
         {/* Question text card (compact) */}
         <div
-          className="shrink-0 w-full min-h-[5rem] max-h-24 bg-zinc-900/90 backdrop-blur-md border-2 border-zinc-755/85 p-3 rounded-xl text-white font-black flex items-center justify-center text-center shadow-lg overflow-y-auto select-text animate-fade-in"
+          className="shrink-0 w-full min-h-[5rem] max-h-24 bg-zinc-900 border-2 border-black p-3 rounded-none text-white font-black flex items-center justify-center text-center overflow-y-auto select-text animate-fade-in"
           style={{
-            boxShadow: "0 8px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)",
             fontSize: "clamp(1.1rem, 4vw, 1.75rem)",
             lineHeight: "1.3",
             ...khFont
@@ -590,16 +651,11 @@ export default function SoloPage() {
         <div className="shrink-0 h-24 flex items-center justify-center w-full">
           {isSelected ? (
             <div
-              className={`w-full border-2 p-3 rounded-xl flex flex-col items-center justify-center gap-1 transition-all ${
+              className={`w-full border-2 p-3 rounded-none flex flex-col items-center justify-center gap-1 transition-all ${
                 !isTimeout && isCorrect
                   ? "border-green-400 bg-green-500/10"
                   : "border-red-400 bg-red-500/10"
               }`}
-              style={{
-                boxShadow: !isTimeout && isCorrect
-                  ? "0 0 20px rgba(74,222,128,0.15), 2px 2px 0 rgba(74,222,128,0.3)"
-                  : "0 0 20px rgba(239,68,68,0.15), 2px 2px 0 rgba(239,68,68,0.3)",
-              }}
             >
               <div className="flex items-center gap-2">
                 {!isTimeout && isCorrect

@@ -256,6 +256,7 @@ export default function HostPage() {
   const [maxPlayers, setMaxPlayers] = useState(50);
   const [lobbyParticipants, setLobbyParticipants] = useState<ParticipantInfo[]>([]);
   const [questionCount, setQuestionCount] = useState(10);
+  const [targetGroup, setTargetGroup] = useState("university");
 
   const [subPlan, setSubPlan] = useState<string>("free");
   const [isTrial, setIsTrial] = useState(false);
@@ -420,7 +421,7 @@ export default function HostPage() {
     const res = await fetch("/api/game/sessions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sessionName, categoryIds: selectedCats, difficulty, questionCount, timePerQuestion: cfg.timePerQuestion, scoringMode, language, gameType: selectedMode, maxPlayers, allowLateJoin: true }),
+      body: JSON.stringify({ sessionName, categoryIds: selectedCats, difficulty, questionCount, timePerQuestion: cfg.timePerQuestion, scoringMode, language, gameType: selectedMode, maxPlayers, allowLateJoin: true, targetGroup }),
     });
     if (!res.ok) { const err = await res.json(); setError(sanitizeError(err.error) || "Failed"); setPhase({ name: "setup" }); return; }
     const data = await res.json();
@@ -752,7 +753,7 @@ export default function HostPage() {
               </GlassCard>
 
               {/* Settings row */}
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {/* Scoring */}
                 <GlassCard className="p-4">
                   <div className="flex items-center gap-1.5 mb-3 text-zinc-600 font-bold">
@@ -820,6 +821,36 @@ export default function HostPage() {
                           backgroundColor: difficulty === d.id ? d.color : "#ffffff",
                         }}>
                         {d.label}
+                      </button>
+                    ))}
+                  </div>
+                </GlassCard>
+
+                {/* Target Audience */}
+                <GlassCard className="p-4">
+                  <div className="flex items-center gap-1.5 mb-3 text-zinc-600 font-bold">
+                    <GraduationCap size={12} />
+                    <span className="text-xs font-black uppercase tracking-widest" style={khFont}>{kh ? "គោលដៅ" : "Target"}</span>
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    {[
+                      { id: "kid_k6", label: kh ? "ក្មេង K-6" : "Kid (K-6)", color: "#22c55e" },
+                      { id: "kid_k12", label: kh ? "ក្មេង K-12" : "Kid (K-12)", color: "#3b82f6" },
+                      { id: "university", label: kh ? "និស្សិត" : "University", color: "#a855f7" },
+                      { id: "professional", label: kh ? "ជំនាញ" : "Professional", color: "#f97316" },
+                    ].map((t) => (
+                      <button key={t.id}
+                        onClick={() => setTargetGroup(t.id)}
+                        className={`py-1.5 text-xs font-black border-2 border-black transition-all duration-100 ${
+                          targetGroup === t.id
+                            ? "shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5 text-black"
+                            : "bg-white text-zinc-600 hover:bg-zinc-50"
+                        }`}
+                        style={{
+                          borderRadius: "0px",
+                          backgroundColor: targetGroup === t.id ? t.color : "#ffffff",
+                        }}>
+                        {t.label}
                       </button>
                     ))}
                   </div>
@@ -1008,6 +1039,12 @@ export default function HostPage() {
                           label: kh ? "កម្រិតសំណួរ" : "Difficulty", 
                           value: difficulty.charAt(0).toUpperCase() + difficulty.slice(1),
                           valueColor: { mixed: "#a855f7", easy: "#22c55e", medium: "#eab308", hard: "#ef4444" }[difficulty]
+                        },
+                        { 
+                          icon: "school", 
+                          label: kh ? "គោលដៅអ្នកលេង" : "Target Group", 
+                          value: { kid_k6: "Kid (K-6)", kid_k12: "Kid (K-12)", university: "University", professional: "Professional" }[targetGroup] || "University",
+                          valueColor: { kid_k6: "#22c55e", kid_k12: "#3b82f6", university: "#a855f7", professional: "#f97316" }[targetGroup]
                         },
                       ].map((item) => (
                         <div key={item.label} className="p-3.5 flex items-center justify-between gap-4 text-black bg-white">
@@ -1385,7 +1422,26 @@ export default function HostPage() {
               {/* Question image — compact stable wrapper */}
               <div className="w-full h-32 border-2 border-black bg-white flex items-center justify-center mb-4 relative overflow-hidden shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px" }}>
                 {question?.imageUrl && question?.gameType !== "image_pick" ? (
-                  <img src={question.imageUrl} alt="question" className="h-full w-auto object-contain" style={{ maxHeight: "100%", maxWidth: "100%" }} />
+                  <>
+                    <img src={question.imageUrl} alt="question" className="h-full w-auto object-contain" style={{ maxHeight: "100%", maxWidth: "100%" }} />
+                    <div style={{
+                      position: "absolute",
+                      bottom: 0,
+                      right: 0,
+                      backgroundColor: "rgba(0,0,0,0.85)",
+                      color: "#e4e4e7",
+                      fontSize: "7.5px",
+                      fontWeight: 900,
+                      padding: "2px 6px",
+                      letterSpacing: "0.05em",
+                      textTransform: "uppercase",
+                      fontFamily: "monospace",
+                      borderLeft: "2px solid #000",
+                      borderTop: "2px solid #000",
+                    }}>
+                      Ref: {question.topicCode ? question.topicCode.trim() : `KWD-Q${question.id}`}
+                    </div>
+                  </>
                 ) : (
                   <div className="flex flex-col items-center gap-2 opacity-20">
                     <BookOpen size={48} className="text-zinc-500" />

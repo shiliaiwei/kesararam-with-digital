@@ -22,6 +22,12 @@ async function migrate() {
     
     await sql`CREATE INDEX IF NOT EXISTS users_highest_score_idx ON users(highest_score DESC)`;
     await sql`CREATE INDEX IF NOT EXISTS users_lifetime_points_idx ON users(lifetime_points DESC)`;
+
+    console.log("Running migration: add_target_group_to_sessions");
+    await sql`
+      ALTER TABLE game_sessions 
+      ADD COLUMN IF NOT EXISTS target_group VARCHAR(50) DEFAULT 'university' NOT NULL
+    `;
     
     console.log("✅ Migration completed successfully!");
   } catch (error) {
