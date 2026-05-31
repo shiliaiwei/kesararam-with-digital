@@ -1382,11 +1382,20 @@ export default function HostPage() {
                 <span className="text-zinc-500 text-xs font-bold">{phase.qIndex + 1} / {phase.total}</span>
               </div>
 
-              {/* Question text */}
-              <div className="text-center mb-8">
-                {question?.imageUrl && (
-                  <img src={question.imageUrl} alt="question" className="w-32 h-32 object-cover border-2 border-black shadow-[3px_3px_0_#000] mx-auto mb-6" style={{ borderRadius: "0px" }} />
+              {/* Question image — stable h-48 wrapper (mirrors student view) */}
+              <div className="w-full h-48 border-2 border-black bg-zinc-100 flex items-center justify-center mb-5 relative overflow-hidden shadow-[3px_3px_0_#000]" style={{ borderRadius: "0px" }}>
+                {question?.imageUrl && question?.gameType !== "image_pick" ? (
+                  <img src={question.imageUrl} alt="question" className="h-full w-auto object-contain" style={{ maxHeight: "100%", maxWidth: "100%" }} />
+                ) : (
+                  <div className="flex flex-col items-center gap-2 opacity-20">
+                    <BookOpen size={48} className="text-zinc-500" />
+                    <span className="font-black text-[10px] tracking-wider uppercase text-zinc-500">Kesararam Quiz</span>
+                  </div>
                 )}
+              </div>
+
+              {/* Question text — stable min-height card */}
+              <div className="text-center mb-8 min-h-[8rem] flex flex-col items-center justify-center px-2">
                 <div className="font-black text-3xl xl:text-4xl text-black leading-snug" style={khFont}>
                   {kh && question?.questionKm ? question.questionKm : question?.questionEn}
                 </div>
@@ -1395,7 +1404,7 @@ export default function HostPage() {
                 )}
               </div>
 
-              {/* Answers */}
+              {/* Answers — image-pick (sign images) or text */}
               {answers.length > 0 && (
                 <div className={`grid gap-3.5 ${answers.length <= 2 ? "grid-cols-1 max-w-xl mx-auto" : "grid-cols-2"}`}>
                   {answers.map((ans, i) => {
@@ -1403,6 +1412,31 @@ export default function HostPage() {
                     const isCorrect = correctAnswerId !== null && ans.id === correctAnswerId;
                     const isWrong = correctAnswerId !== null && ans.id !== correctAnswerId;
                     const text = kh ? (ans.answerKm || ans.answerEn) : ans.answerEn;
+                    const isImagePick = question?.gameType === "image_pick";
+
+                    if (isImagePick && ans.imageUrl) {
+                      return (
+                        <div
+                          key={ans.id}
+                          className="relative aspect-square border-2 border-black transition-all duration-300 flex items-center justify-center overflow-hidden"
+                          style={{
+                            borderRadius: "0px",
+                            backgroundColor: isCorrect ? "#22c55e" : isWrong ? "#f4f4f5" : style.bg,
+                            opacity: isWrong ? 0.35 : 1,
+                            boxShadow: isWrong ? "none" : "4px 4px 0px #000000",
+                          }}
+                        >
+                          <img
+                            src={ans.imageUrl}
+                            alt={text}
+                            className="w-full h-full object-contain p-2"
+                            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                          />
+                          {isCorrect && <span className="absolute top-2 right-2 w-7 h-7 flex items-center justify-center bg-white border-2 border-black text-green-600 font-black text-sm shadow-[1px_1px_0_#000]">✓</span>}
+                          <div className="absolute bottom-0 left-0 right-0 text-center text-[10px] font-black text-white bg-black/60 py-0.5 px-1 truncate" style={khFont}>{text}</div>
+                        </div>
+                      );
+                    }
 
                     return (
                       <div
