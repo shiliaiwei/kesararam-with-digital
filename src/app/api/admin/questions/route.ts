@@ -106,18 +106,19 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { topicId, questionEn, questionKm, hintEn, hintKm, imageUrl, difficulty, pointsMultiplier, answers: answerList } = body;
+    type AnswerIn = { answerEn?: string; answerKm?: string; isCorrect?: boolean; imageUrl?: string };
+    const { topicId, questionEn, questionKm, hintEn, hintKm, imageUrl, difficulty, pointsMultiplier, answers: answerList } = body as { topicId?: number; questionEn?: string; questionKm?: string; hintEn?: string; hintKm?: string; imageUrl?: string; difficulty?: string; pointsMultiplier?: number; answers?: unknown };
+    const answersArray = Array.isArray(answerList) ? (answerList as unknown[]).map(a => a as AnswerIn) : [];
 
     if (!topicId || !questionEn || !answerList || answerList.length < 2) {
       return NextResponse.json({ error: "Missing required fields: topicId, questionEn, and at least 2 answers" }, { status: 400 });
     }
 
-    if (!answerList.some((a: any) => a.isCorrect)) {
+    if (!answersArray.some((a) => a.isCorrect)) {
       return NextResponse.json({ error: "At least one answer must be marked correct" }, { status: 400 });
     }
-
-    const hasImages = answerList.some((a: any) => a.imageUrl);
-    const multiCorrect = answerList.filter((a: any) => a.isCorrect).length > 1;
+    const hasImages = answersArray.some((a) => Boolean(a.imageUrl));
+    const multiCorrect = answersArray.filter((a) => a.isCorrect).length > 1;
     let answerType = "multiple_choice";
     if (hasImages) answerType = "image_selection";
     else if (multiCorrect) answerType = "checkbox";

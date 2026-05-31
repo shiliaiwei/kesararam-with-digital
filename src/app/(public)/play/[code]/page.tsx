@@ -106,14 +106,15 @@ function TeacherAvatar({ src, name }: { src: string | null | undefined; name: st
   );
 }
 
-function sanitizeError(err: any): string {
+function sanitizeError(err: unknown): string {
   if (!err) return "";
   if (typeof err === "string") return err;
-  if (typeof err === "object") {
-    if (err.message && typeof err.message === "string") return err.message;
-    if (err.error && typeof err.error === "string") return err.error;
+  if (typeof err === "object" && err !== null) {
+    const e = err as Record<string, unknown>;
+    if (typeof e.message === "string") return e.message;
+    if (typeof e.error === "string") return e.error;
     try {
-      return JSON.stringify(err);
+      return JSON.stringify(e);
     } catch {
       return "An unexpected error occurred";
     }

@@ -23,7 +23,7 @@ export async function GET() {
       cloud_name: cloudName || "MISSING",
       api_key: apiKey ? "SET" : "MISSING",
       api_secret: apiSecret ? "SET" : "MISSING",
-    });
+      const imageUrls = selectedImages.map((resource: Record<string, unknown>) => String(resource.secure_url ?? ""));
 
     if (!cloudName || !apiKey || !apiSecret) {
       console.error("Missing Cloudinary credentials");
@@ -39,14 +39,9 @@ export async function GET() {
 
     // Fetch from kwd folder - get 8 random images for categories
     console.log("Fetching category images from kwd/ folder...");
-    const result = await cloudinary.api.resources({
-      type: "upload",
-      resource_type: "image",
-      prefix: "kwd/",
-      max_results: 100,
-    });
-
-    // Get 8 random images
+      const msg = error instanceof Error ? error.message : String(error);
+      console.error("Category images error:", msg);
+      return NextResponse.json({ error: msg || "Failed to fetch images", images: [] }, { status: 500 });
     const shuffled = [...result.resources].sort(() => 0.5 - Math.random());
     const selectedImages = shuffled.slice(0, 8);
     

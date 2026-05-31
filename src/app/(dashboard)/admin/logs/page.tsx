@@ -11,7 +11,7 @@ export default async function LogsPage() {
   const session = await getSession();
   if (!session || session.role !== "admin") redirect("/login");
 
-  let logs: any[] = [];
+  let logs: Array<Record<string, unknown>> = [];
   try {
     logs = await db
       .select({

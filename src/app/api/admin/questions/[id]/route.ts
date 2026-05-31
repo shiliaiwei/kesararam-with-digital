@@ -66,8 +66,9 @@ export async function PUT(
 
     // Create new answers
     if (answers && answers.length > 0) {
-      const hasImages = answers.some((a: any) => a.imageUrl);
-      const multiCorrect = answers.filter((a: any) => a.isCorrect).length > 1;
+      const answerArray = Array.isArray(answers) ? (answers as unknown[]).map(x => x as { imageUrl?: string; isCorrect?: boolean }) : [];
+      const hasImages = answerArray.some(a => Boolean(a.imageUrl));
+      const multiCorrect = answerArray.filter(a => a.isCorrect).length > 1;
       const defaultType = hasImages ? "image_selection" : multiCorrect ? "checkbox" : "multiple_choice";
 
       for (let i = 0; i < answers.length; i++) {

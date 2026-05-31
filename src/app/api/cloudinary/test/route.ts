@@ -49,10 +49,10 @@ export async function GET() {
       .execute();
     
     // Try to get folders (might be empty)
-    let folders: any[] = [];
+    let folders: Record<string, unknown>[] = [];
     try {
       const folderResult = await cloudinary.api.root_folders();
-      folders = folderResult.folders || [];
+      folders = Array.isArray(folderResult?.folders) ? folderResult.folders as Record<string, unknown>[] : [];
     } catch (folderError) {
       console.log('No folders found or folder API error:', folderError);
     }
@@ -69,11 +69,11 @@ export async function GET() {
       total_count: images.total_count || 0
     };
 
-    const sampleImages: SampleImage[] = images.resources?.slice(0, 3).map((img: any) => ({
-      public_id: img.public_id,
-      secure_url: img.secure_url,
-      format: img.format
-    })) || [];
+    const sampleImages: SampleImage[] = (images.resources?.slice(0, 3) || []).map((img: Record<string, unknown>) => ({
+      public_id: String(img.public_id ?? ""),
+      secure_url: String(img.secure_url ?? ""),
+      format: String(img.format ?? "")
+    }));
 
     return NextResponse.json({
       success: true,
@@ -82,7 +82,7 @@ export async function GET() {
       connection: 'OK',
       stats: stats,
       sample_images: sampleImages,
-      folders: folders.map((f: any) => f.name),
+      folders: folders.map((f) => String(f.name ?? "")),
       message: 'Cloudinary connection successful'
     });
 

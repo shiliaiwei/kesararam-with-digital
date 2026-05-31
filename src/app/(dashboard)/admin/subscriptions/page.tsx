@@ -12,8 +12,8 @@ export default async function SubscriptionsPage() {
   const session = await getSession();
   if (!session || session.role !== "admin") redirect("/login");
 
-  let rows: any[] = [];
-  let allUsers: any[] = [];
+  let rows: Array<Record<string, unknown>> = [];
+  let allUsers: Array<Record<string, unknown>> = [];
 
   // Always fetch users — separate try/catch so it never fails due to subscriptions table
   try {
