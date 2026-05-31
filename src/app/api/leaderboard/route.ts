@@ -20,6 +20,10 @@ export async function GET(req: NextRequest) {
         highestScore: users.highestScore,
         totalGamesPlayed: users.totalGamesPlayed,
         lifetimePoints: users.lifetimePoints,
+        schoolName: users.schoolName,
+        province: users.province,
+        gradeLevel: users.gradeLevel,
+        section: users.section,
       })
       .from(users)
       .where(sql`${users.isActive} = true AND ${users.role} = 'student'`)

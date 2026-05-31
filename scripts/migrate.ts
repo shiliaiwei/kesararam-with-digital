@@ -28,6 +28,24 @@ async function migrate() {
       ALTER TABLE game_sessions 
       ADD COLUMN IF NOT EXISTS target_group VARCHAR(50) DEFAULT 'university' NOT NULL
     `;
+
+    console.log("Running migration: add_school_and_class_fields");
+    await sql`
+      ALTER TABLE users 
+      ADD COLUMN IF NOT EXISTS school_name TEXT,
+      ADD COLUMN IF NOT EXISTS province TEXT,
+      ADD COLUMN IF NOT EXISTS grade_level TEXT,
+      ADD COLUMN IF NOT EXISTS section TEXT,
+      ADD COLUMN IF NOT EXISTS parent_contact TEXT
+    `;
+    await sql`
+      ALTER TABLE classes 
+      ADD COLUMN IF NOT EXISTS grade_level TEXT,
+      ADD COLUMN IF NOT EXISTS school_name TEXT,
+      ADD COLUMN IF NOT EXISTS province TEXT,
+      ADD COLUMN IF NOT EXISTS section TEXT,
+      ADD COLUMN IF NOT EXISTS status TEXT DEFAULT 'active' NOT NULL
+    `;
     
     console.log("✅ Migration completed successfully!");
   } catch (error) {

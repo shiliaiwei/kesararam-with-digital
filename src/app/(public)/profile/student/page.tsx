@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
-import { users } from "@/db/schema/users";
+import { users, classes, classEnrollments } from "@/db/schema/users";
 import { eq } from "drizzle-orm";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
 import { ProfileEditor } from "@/components/profile/profile-editor";
@@ -31,12 +31,20 @@ export default async function StudentProfilePage() {
     email: string;
     avatar: string | null;
     avatarChangedAt: Date | null;
+    schoolName: string | null;
+    province: string | null;
+    gradeLevel: string | null;
+    section: string | null;
   } = {
     displayName: session.name,
     username: session.name,
     email: session.email || "",
     avatar: null,
     avatarChangedAt: null,
+    schoolName: null,
+    province: null,
+    gradeLevel: null,
+    section: null,
   };
 
   let highestScore = 0;
@@ -44,7 +52,7 @@ export default async function StudentProfilePage() {
   let lifetimePoints = 0;
 
   try {
-    // Try to fetch user data - only select columns that definitely exist
+    // Try to fetch user data
     const result = await db
       .select({
         displayName: users.displayName,
@@ -52,6 +60,10 @@ export default async function StudentProfilePage() {
         email: users.email,
         avatar: users.avatar,
         avatarChangedAt: users.avatarChangedAt,
+        schoolName: users.schoolName,
+        province: users.province,
+        gradeLevel: users.gradeLevel,
+        section: users.section,
       })
       .from(users)
       .where(eq(users.id, session.id))
@@ -64,6 +76,10 @@ export default async function StudentProfilePage() {
         email: result[0].email,
         avatar: result[0].avatar,
         avatarChangedAt: result[0].avatarChangedAt,
+        schoolName: result[0].schoolName,
+        province: result[0].province,
+        gradeLevel: result[0].gradeLevel,
+        section: result[0].section,
       };
     }
 
@@ -89,6 +105,46 @@ export default async function StudentProfilePage() {
     }
   } catch (error) {
     console.error("Error fetching user profile:", error);
+  }
+
+  // Fetch student class details
+  let studentClassInfo: {
+    className: string;
+    section: string | null;
+    gradeLevel: string | null;
+    schoolName: string | null;
+    province: string | null;
+    teacherName: string | null;
+  } | null = null;
+
+  try {
+    const classResult = await db
+      .select({
+        className: classes.name,
+        section: classes.section,
+        gradeLevel: classes.gradeLevel,
+        schoolName: classes.schoolName,
+        province: classes.province,
+        teacherName: users.displayName,
+      })
+      .from(classEnrollments)
+      .innerJoin(classes, eq(classEnrollments.classId, classes.id))
+      .leftJoin(users, eq(classes.teacherId, users.id))
+      .where(eq(classEnrollments.studentId, session.id))
+      .limit(1);
+
+    if (classResult && classResult.length > 0) {
+      studentClassInfo = {
+        className: classResult[0].className,
+        section: classResult[0].section,
+        gradeLevel: classResult[0].gradeLevel,
+        schoolName: classResult[0].schoolName,
+        province: classResult[0].province,
+        teacherName: classResult[0].teacherName,
+      };
+    }
+  } catch (err) {
+    console.error("Failed to fetch student class info:", err);
   }
 
   const name = user?.displayName ?? user?.username ?? session.name;
@@ -202,6 +258,89 @@ export default async function StudentProfilePage() {
           initialTotalGamesPlayed={totalGamesPlayed}
           initialLifetimePoints={lifetimePoints}
         />
+
+        {/* ── Classroom Details ── */}
+        <div
+          style={{
+            background: "#ffffff",
+            border: "2px solid #000",
+            boxShadow: "4px 4px 0 #000",
+            padding: "20px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", borderBottom: "2px solid #000", paddingBottom: "10px" }}>
+            <div style={{ background: "#eab308", border: "2px solid #000", padding: "4px 8px", display: "flex", alignItems: "center" }}>
+              <span style={{ fontSize: "11px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                My Classroom / ថ្នាក់រៀនរបស់ខ្ញុំ
+              </span>
+            </div>
+          </div>
+          {studentClassInfo ? (
+            <div style={{ display: "flex", flexDirection: "column", gap: "10px", fontSize: "13px" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #f4f4f5", paddingBottom: "6px" }}>
+                <span style={{ fontWeight: 900, fontSize: "16px", color: "#3b82f6" }}>
+                  {studentClassInfo.className}
+                  {studentClassInfo.section ? ` (${studentClassInfo.section})` : ""}
+                </span>
+                <span style={{
+                  background: "#10b981",
+                  color: "#fff",
+                  padding: "2px 8px",
+                  fontSize: "10px",
+                  fontWeight: 900,
+                  border: "1.5px solid #000",
+                  textTransform: "uppercase"
+                }}>
+                  Enrolled / បានចូលរួម
+                </span>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", marginTop: "4px" }}>
+                <div>
+                  <div style={{ fontSize: "10px", fontWeight: 900, color: "#a1a1aa", textTransform: "uppercase" }}>School / សាលារៀន</div>
+                  <div style={{ fontWeight: "bold", color: "#27272a" }}>{studentClassInfo.schoolName}</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: "10px", fontWeight: 900, color: "#a1a1aa", textTransform: "uppercase" }}>Province / ខេត្ត</div>
+                  <div style={{ fontWeight: "bold", color: "#27272a" }}>{studentClassInfo.province}</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: "10px", fontWeight: 900, color: "#a1a1aa", textTransform: "uppercase" }}>Teacher / គ្រូបង្រៀន</div>
+                  <div style={{ fontWeight: "bold", color: "#27272a" }}>{studentClassInfo.teacherName ?? "—"}</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: "10px", fontWeight: 900, color: "#a1a1aa", textTransform: "uppercase" }}>Grade Level / កម្រិតថ្នាក់</div>
+                  <div style={{ fontWeight: "bold", color: "#27272a" }}>{studentClassInfo.gradeLevel}</div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div style={{ display: "flex", flexDirection: "column", gap: "8px", padding: "10px 0" }}>
+              <p style={{ fontSize: "13px", fontWeight: "bold", color: "#71717a", margin: 0 }}>
+                You are not currently enrolled in any class.
+              </p>
+              <p style={{ fontSize: "11px", color: "#a1a1aa", margin: 0 }}>
+                Please ask your teacher to add you. Verify that your school profile details below are correct:
+              </p>
+              <div style={{ background: "#f4f4f5", padding: "10px", border: "1.5px solid #000", marginTop: "4px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", fontSize: "11px" }}>
+                <div>
+                  <strong style={{ color: "#71717a" }}>School:</strong> {user.schoolName ?? "—"}
+                </div>
+                <div>
+                  <strong style={{ color: "#71717a" }}>Province:</strong> {user.province ?? "—"}
+                </div>
+                <div>
+                  <strong style={{ color: "#71717a" }}>Grade:</strong> {user.gradeLevel ?? "—"}
+                </div>
+                <div>
+                  <strong style={{ color: "#71717a" }}>Section:</strong> {user.section ?? "—"}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
 
         {/* ── Rank Tier Map ── */}
         <div

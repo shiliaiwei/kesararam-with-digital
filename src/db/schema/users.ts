@@ -32,6 +32,11 @@ export const users = pgTable("users", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
   createdBy: integer("created_by"),
+  schoolName: text("school_name"),
+  province: text("province"),
+  gradeLevel: text("grade_level"),
+  section: text("section"),
+  parentContact: text("parent_contact"),
 });
 
 export const classes = pgTable("classes", {
@@ -42,6 +47,11 @@ export const classes = pgTable("classes", {
     .references(() => users.id),
   code: text("code").notNull().unique(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+  gradeLevel: text("grade_level"),
+  schoolName: text("school_name"),
+  province: text("province"),
+  section: text("section"),
+  status: text("status").default("active").notNull(), // active, locked, archived
 });
 
 export const classEnrollments = pgTable("class_enrollments", {

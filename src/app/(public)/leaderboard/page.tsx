@@ -48,6 +48,10 @@ interface LeaderboardUser {
   totalGamesPlayed: number;
   lifetimePoints: number;
   rank: number;
+  schoolName?: string | null;
+  province?: string | null;
+  gradeLevel?: string | null;
+  section?: string | null;
 }
 
 // ── REWARD ITEMS DATA (Cleaned descriptions, Larger Typography, 4K cover image references) ──
@@ -1036,15 +1040,31 @@ export default function LeaderboardPage() {
                           <Avatar url={(currentUser && user.id === currentUser.id) ? currentUser.avatar : user.avatar} name={user.displayName || user.username} size={30} changedAt={user.avatarChangedAt} />
                         </RankedAvatarRing>
                         <div className="flex flex-col min-w-0">
-                          <div className="flex items-center gap-1.5 min-w-0">
+                          <div className="flex items-center gap-1.5 min-w-0 flex-wrap">
                             <span className="font-bold text-black text-xs md:text-sm truncate leading-tight font-kh-header">
                               {user.displayName || user.username}
                             </span>
                             <TierBadge lifetimePoints={user.lifetimePoints} size="xs" showEmoji={false} lang={lang} />
+                            {user.province && (
+                              <span className="inline-block px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wider bg-blue-100 text-blue-700 border border-blue-200">
+                                {user.province}
+                              </span>
+                            )}
+                            {user.gradeLevel && (
+                              <span className="inline-block px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wider bg-purple-100 text-purple-700 border border-purple-200">
+                                {user.gradeLevel}
+                              </span>
+                            )}
                           </div>
-                          {user.displayName && (
-                            <span className="text-[9px] text-zinc-400 truncate hidden sm:block">@{user.username}</span>
-                          )}
+                          <div className="flex items-center gap-1.5 text-[9px] text-zinc-400 truncate">
+                            {user.displayName && <span>@{user.username}</span>}
+                            {user.schoolName && (
+                              <>
+                                {user.displayName && <span>·</span>}
+                                <span className="truncate">{user.schoolName}</span>
+                              </>
+                            )}
+                          </div>
                         </div>
                       </div>
                       <span className="col-span-2 text-center text-xs font-bold text-zinc-400 tabular-nums hidden sm:block">

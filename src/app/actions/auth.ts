@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { users } from "@/db/schema";
+import { users, subscriptions } from "@/db/schema";
 import { sessions } from "@/db/schema/sessions";
 import { eq, or, and } from "drizzle-orm";
 import { signToken, getRedirectUrl } from "@/lib/auth";
@@ -228,4 +228,143 @@ export async function logoutAction() {
       ? "https://kesararamwithdigital.tech/login"
       : "/login",
   );
+}
+
+export interface RegisterState {
+  error: string;
+  success?: boolean;
+}
+
+async function autoAssignTeacherTrial(userId: number, adminId: number) {
+  try {
+    const now = new Date();
+    const trialEndsAt = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+    await db.insert(subscriptions).values({
+      userId,
+      plan: "teacher_pro",
+      status: "trial",
+      isTrial: true,
+      trialEndsAt,
+      startsAt: now,
+      endsAt: null,
+      assignedBy: adminId,
+      note: "Auto 7-day trial on account creation",
+    });
+  } catch (e) {
+    console.warn("[autoAssignTeacherTrial] skipped:", e);
+  }
+}
+
+export async function registerAction(
+  _prev: RegisterState,
+  formData: FormData,
+): Promise<RegisterState> {
+  const username = (formData.get("username") as string)?.trim().toLowerCase();
+  const email = (formData.get("email") as string)?.trim().toLowerCase();
+  const displayName = (formData.get("displayName") as string)?.trim();
+  const password = formData.get("password") as string;
+  const role = (formData.get("role") as string) || "student";
+  
+  const schoolName = (formData.get("schoolName") as string)?.trim();
+  const province = (formData.get("province") as string)?.trim();
+  const gradeLevel = (formData.get("gradeLevel") as string)?.trim();
+  const section = (formData.get("section") as string)?.trim();
+  const parentContact = (formData.get("parentContact") as string)?.trim();
+
+  if (!username || !email || !password || !role) {
+    return { error: "All required fields must be filled." };
+  }
+
+  if (role === "student") {
+    if (!schoolName || !province || !gradeLevel) {
+      return { error: "School Name, Province, and Grade are required for students." };
+    }
+  } else if (role === "teacher") {
+    if (!schoolName || !province) {
+      return { error: "School Name and Province are required for teachers." };
+    }
+  } else {
+    return { error: "Invalid role selected." };
+  }
+
+  try {
+    // Check if username or email already exists
+    const [existing] = await db
+      .select()
+      .from(users)
+      .where(or(eq(users.username, username), eq(users.email, email)))
+      .limit(1);
+
+    if (existing) {
+      return { error: "Username or email already exists." };
+    }
+
+    const [newUser] = await db.insert(users).values({
+      username,
+      email,
+      displayName: displayName || username,
+      passwordHash: hashPassword(password),
+      role: role as "student" | "teacher",
+      schoolName,
+      province,
+      gradeLevel: role === "student" ? gradeLevel : null,
+      section: section || null,
+      parentContact: role === "student" ? parentContact : null,
+      isActive: true,
+      loginAttempts: 0,
+    }).returning({
+      id: users.id,
+      email: users.email,
+      username: users.username,
+      displayName: users.displayName,
+      role: users.role,
+      avatar: users.avatar
+    });
+
+    if (role === "teacher" && newUser?.id) {
+      await autoAssignTeacherTrial(newUser.id, newUser.id);
+    }
+
+    // Automatically log user in after successful registration
+    const token = await signToken({
+      id: newUser.id,
+      email: newUser.email,
+      name: newUser.displayName ?? newUser.username,
+      role: newUser.role,
+      avatar: newUser.avatar ?? null,
+    });
+
+    const headersList = await headers();
+    const ipAddress = headersList.get("x-forwarded-for") || headersList.get("x-real-ip") || "unknown";
+    const userAgent = headersList.get("user-agent") || "unknown";
+
+    // Create session record
+    await db.insert(sessions).values({
+      userId: newUser.id,
+      token,
+      ipAddress,
+      userAgent,
+      isActive: true,
+      loginAt: new Date(),
+      lastActivityAt: new Date(),
+    });
+
+    const cookieStore = await cookies();
+    cookieStore.set("kwd_token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      domain:
+        process.env.NODE_ENV === "production"
+          ? ".kesararamwithdigital.tech"
+          : undefined,
+      maxAge: newUser.role === "student" ? 7 * 24 * 60 * 60 : 8 * 60 * 60,
+    });
+
+    return { error: "", success: true };
+  } catch (e: any) {
+    console.error("[register] failed:", e);
+    return { error: e.message || "Failed to register user." };
+  }
 }

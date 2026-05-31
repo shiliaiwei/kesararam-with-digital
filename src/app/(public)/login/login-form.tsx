@@ -112,7 +112,10 @@ function LoginFormInner() {
         </div>
 
         <p className="text-center text-xs text-zinc-500 mt-4">
-          All accounts are provided by your teacher or administrator.
+          Don't have an account? / មិនទាន់មានគណនី?{" "}
+          <Link href="/register" className="font-bold text-black hover:underline">
+            Register Here / ចុះឈ្មោះទីនេះ
+          </Link>
         </p>
       </div>
     </div>
