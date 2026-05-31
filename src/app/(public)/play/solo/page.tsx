@@ -546,8 +546,8 @@ export default function SoloPage() {
           </div>
         </div>
 
-        {/* Question image (Stable height wrapper) */}
-        <div className="shrink-0 w-full h-48 border border-zinc-800 bg-zinc-950/40 rounded-xl flex items-center justify-center p-3 relative overflow-hidden backdrop-blur-sm">
+        {/* Question image (Stable height wrapper - compact) */}
+        <div className="shrink-0 w-full h-32 border border-zinc-800 bg-zinc-950/40 rounded-xl flex items-center justify-center p-2 relative overflow-hidden backdrop-blur-sm">
           {q.imageUrl && q.gameType !== "image_pick" ? (
             <img src={q.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded" />
           ) : (
@@ -558,9 +558,9 @@ export default function SoloPage() {
           )}
         </div>
 
-        {/* Question text card (Stable height + centered text) */}
+        {/* Question text card (compact) */}
         <div
-          className="shrink-0 w-full h-32 bg-zinc-900/90 backdrop-blur-md border-2 border-zinc-755/85 p-4 rounded-xl text-white font-black flex items-center justify-center text-center shadow-lg overflow-y-auto select-text animate-fade-in"
+          className="shrink-0 w-full min-h-[5rem] max-h-24 bg-zinc-900/90 backdrop-blur-md border-2 border-zinc-755/85 p-3 rounded-xl text-white font-black flex items-center justify-center text-center shadow-lg overflow-y-auto select-text animate-fade-in"
           style={{
             boxShadow: "0 8px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)",
             fontSize: "clamp(1.1rem, 4vw, 1.75rem)",

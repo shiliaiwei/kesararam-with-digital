@@ -84,34 +84,53 @@ export function AnswerGrid({
               disabled={disabled}
               onClick={() => !disabled && onSelect(ans.id)}
               type="button"
-              className="relative overflow-hidden aspect-square border border-black/10 rounded-xl transition-all duration-200 active:scale-95"
+              className="relative overflow-hidden border-2 transition-all duration-200 active:scale-95 flex flex-col items-center justify-center"
               style={{
                 display: displayStyle,
                 opacity,
-                backgroundColor: bg,
+                backgroundColor: "#ffffff",
                 transform: scale,
-                boxShadow: "none",
+                borderColor: isCorrect ? "#22c55e" : isMyWrong ? "#ef4444" : isSelected ? style.bg : "rgba(0,0,0,0.15)",
+                boxShadow: isCorrect
+                  ? "0 0 0 2px #22c55e"
+                  : isMyWrong
+                  ? "0 0 0 2px #ef4444"
+                  : isSelected
+                  ? `0 0 0 2px ${style.bg}`
+                  : "none",
+                borderRadius: "10px",
+                height: "108px",
               }}
             >
+              {/* Colored label strip at top */}
+              <div className="absolute top-0 left-0 right-0 h-1.5 rounded-t-[8px]" style={{ backgroundColor: style.bg }} />
+
               {ans.imageUrl ? (
                 <img
                   src={ans.imageUrl}
                   alt={text}
-                  className="w-full h-full object-contain p-2"
+                  className="object-contain select-none pointer-events-none"
+                  style={{ height: "72px", width: "auto", maxWidth: "100%", padding: "4px 8px" }}
                   onError={(e) => {
                     (e.currentTarget as HTMLImageElement).style.display = "none";
                   }}
                 />
               ) : (
-                <span className="text-white text-xs sm:text-sm font-bold text-center p-2 leading-tight" style={khFont}>
+                <span className="text-zinc-800 text-xs sm:text-sm font-bold text-center px-2 leading-tight" style={khFont}>
                   {text}
                 </span>
               )}
+
+              {/* Label badge */}
+              <div className="absolute bottom-1 left-1 px-1.5 py-0 text-white font-black text-[9px] rounded" style={{ backgroundColor: style.bg, lineHeight: "1.4" }}>
+                {style.label}
+              </div>
+
               {isCorrect && (
-                <span className="absolute top-2 right-2 w-6 h-6 bg-white border border-black/10 rounded-full flex items-center justify-center text-green-600 font-black text-sm">✓</span>
+                <span className="absolute top-2 right-2 w-5 h-5 bg-green-500 border border-white rounded-full flex items-center justify-center text-white font-black text-xs shadow">✓</span>
               )}
               {isMyWrong && (
-                <span className="absolute top-2 right-2 w-6 h-6 bg-white border border-black/10 rounded-full flex items-center justify-center text-red-600 font-black text-sm">✗</span>
+                <span className="absolute top-2 right-2 w-5 h-5 bg-red-500 border border-white rounded-full flex items-center justify-center text-white font-black text-xs shadow">✗</span>
               )}
             </button>
           );

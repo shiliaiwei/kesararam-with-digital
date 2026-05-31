@@ -21,10 +21,10 @@ import QRCode from "react-qr-code";
 
 // ── Answer color config ────────────────────────────────────────────────────
 const ANSWER_STYLES = [
-  { bg: "#ef4444", border: "#000000", label: "A" },
-  { bg: "#3b82f6", border: "#000000", label: "B" },
-  { bg: "#22c55e", border: "#000000", label: "C" },
-  { bg: "#f97316", border: "#000000", label: "D" },
+  { bg: "#ef4444", border: "#000000", label: "A", shadow: "#991b1b" },
+  { bg: "#3b82f6", border: "#000000", label: "B", shadow: "#1d4ed8" },
+  { bg: "#22c55e", border: "#000000", label: "C", shadow: "#15803d" },
+  { bg: "#f97316", border: "#000000", label: "D", shadow: "#c2410c" },
 ];
 
 // ── Mode icons map ─────────────────────────────────────────────────────────
@@ -1382,8 +1382,8 @@ export default function HostPage() {
                 <span className="text-zinc-500 text-xs font-bold">{phase.qIndex + 1} / {phase.total}</span>
               </div>
 
-              {/* Question image — stable h-48 wrapper (mirrors student view) */}
-              <div className="w-full h-48 border-2 border-black bg-zinc-100 flex items-center justify-center mb-5 relative overflow-hidden shadow-[3px_3px_0_#000]" style={{ borderRadius: "0px" }}>
+              {/* Question image — compact stable wrapper */}
+              <div className="w-full h-32 border-2 border-black bg-white flex items-center justify-center mb-4 relative overflow-hidden shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px" }}>
                 {question?.imageUrl && question?.gameType !== "image_pick" ? (
                   <img src={question.imageUrl} alt="question" className="h-full w-auto object-contain" style={{ maxHeight: "100%", maxWidth: "100%" }} />
                 ) : (
@@ -1418,22 +1418,27 @@ export default function HostPage() {
                       return (
                         <div
                           key={ans.id}
-                          className="relative aspect-square border-2 border-black transition-all duration-300 flex items-center justify-center overflow-hidden"
+                          className="relative border-2 border-black transition-all duration-300 flex flex-col items-center justify-center overflow-hidden"
                           style={{
                             borderRadius: "0px",
-                            backgroundColor: isCorrect ? "#22c55e" : isWrong ? "#f4f4f5" : style.bg,
-                            opacity: isWrong ? 0.35 : 1,
-                            boxShadow: isWrong ? "none" : "4px 4px 0px #000000",
+                            backgroundColor: isCorrect ? "#f0fdf4" : isWrong ? "#fafafa" : "#ffffff",
+                            borderColor: isCorrect ? "#22c55e" : isWrong ? "#e4e4e7" : style.bg,
+                            opacity: isWrong ? 0.4 : 1,
+                            boxShadow: isWrong ? "none" : `3px 3px 0px ${style.shadow ?? "#000"}`,
+                            height: "120px",
                           }}
                         >
+                          {/* Color top strip */}
+                          <div className="absolute top-0 left-0 right-0 h-1.5" style={{ backgroundColor: isCorrect ? "#22c55e" : style.bg }} />
                           <img
                             src={ans.imageUrl}
                             alt={text}
-                            className="w-full h-full object-contain p-2"
+                            className="object-contain"
+                            style={{ height: "72px", width: "auto", maxWidth: "90%", padding: "2px 6px" }}
                             onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                           />
-                          {isCorrect && <span className="absolute top-2 right-2 w-7 h-7 flex items-center justify-center bg-white border-2 border-black text-green-600 font-black text-sm shadow-[1px_1px_0_#000]">✓</span>}
-                          <div className="absolute bottom-0 left-0 right-0 text-center text-[10px] font-black text-white bg-black/60 py-0.5 px-1 truncate" style={khFont}>{text}</div>
+                          {isCorrect && <span className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center bg-green-500 border-2 border-white text-white font-black text-sm shadow-[1px_1px_0_#000]">✓</span>}
+                          <div className="absolute bottom-0 left-0 right-0 text-center text-[9px] font-black text-white py-0.5 px-1 truncate" style={{ backgroundColor: style.bg }}>{text}</div>
                         </div>
                       );
                     }
