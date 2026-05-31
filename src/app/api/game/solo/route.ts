@@ -25,6 +25,19 @@ export async function POST(req: NextRequest) {
     targetGroup = "university",
   } = body;
 
+  const HIDDEN_MODES = new Set([
+    "daily-challenge",
+    "exam-simulation",
+    "survival-quiz",
+    "zen-review",
+    "final-practice",
+    "mixed-practice",
+  ]);
+
+  if (HIDDEN_MODES.has(gameMode)) {
+    return NextResponse.json({ error: "Mode unavailable" }, { status: 403 });
+  }
+
   if (!categoryIds?.length)
     return NextResponse.json({ error: "categoryIds required" }, { status: 400 });
 

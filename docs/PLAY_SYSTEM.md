@@ -130,34 +130,8 @@ Defined in `src/lib/game-engine.ts` — `GAME_MODE_CONFIG` and `GAME_MODE_TYPES`
 ---
 
 ### 3.5 Daily Challenge
-| Property | Value |
-|---|---|
-| **Route** | `/play/solo?mode=daily-challenge` |
-| **Label (KH)** | បញ្ហាប្រចាំថ្ងៃ |
-| **Tag** | 📅 DAILY |
-| **Color** | Green `#22c55e` |
-| **Default Questions** | 15 |
-| **Allowed Counts** | 10, 15, 20 |
-| **Time per Question** | 30 seconds |
-| **Allowed Types** | `mcq`, `true_false`, `image_pick` |
-| **Description** | A fresh set of questions every day. Build your daily streak. |
-
----
-
-### 3.6 Exam Simulation
-| Property | Value |
-|---|---|
-| **Route** | `/play/solo?mode=exam-simulation` |
-| **Label (KH)** | ត្រាប់តាមប្រឡង |
-| **Tag** | 🏆 PRO |
-| **Color** | Orange `#f97316` |
-| **Default Questions** | 40 |
-| **Allowed Counts** | 20, 30, 40 |
-| **Time per Question** | 45 seconds |
-| **Allowed Types** | `mcq`, `true_false` |
-| **Description** | Simulates the real Cambodia driving licence exam. 40 questions, longer time. |
-
----
+_Daily Challenge and Exam Simulation modes are currently hidden from the public UI and disabled for solo play._
+If you need them re-enabled later, restore their entries in the UI and remove them from the hidden list in the solo API and dashboard host picker.
 
 ### 3.7 Category Quiz *(bonus mode)*
 | Property | Value |
@@ -191,8 +165,8 @@ Defined in `src/lib/game-engine.ts` — `GAME_MODE_CONFIG` and `GAME_MODE_TYPES`
 | Speed Round | `/play/solo?mode=speed-round` | 10–30 | 15s | mcq |
 | Sign Challenge | `/play/solo?mode=sign-challenge` | 5–30 | 20s | image_pick |
 | Mixed Battle | `/play/solo?mode=mixed-battle` | 10–40 | 30s | mcq, true_false, image_pick |
-| Daily Challenge | `/play/solo?mode=daily-challenge` | 10–20 | 30s | mcq, true_false, image_pick |
-| Exam Simulation | `/play/solo?mode=exam-simulation` | 20–40 | 45s | mcq, true_false |
+| Daily Challenge | (hidden) | — | — | — |
+| Exam Simulation | (hidden) | — | — | — |
 | Category Quiz | `/play/category-quiz` | 20 | 60s | all |
 | Live Multiplayer | `/play/[code]` | host | host | all |
 
@@ -208,8 +182,7 @@ Defined in `src/lib/game-engine.ts` — `GAME_MODE_CONFIG` and `GAME_MODE_TYPES`
 ├── solo?mode=speed-round        → Speed Round solo session
 ├── solo?mode=sign-challenge     → Sign Challenge solo session
 ├── solo?mode=mixed-battle       → Mixed Battle solo session
-├── solo?mode=daily-challenge    → Daily Challenge solo session
-├── solo?mode=exam-simulation    → Exam Simulation solo session
+├── (some modes hidden)         → Daily Challenge & Exam Simulation are currently hidden from the public UI
 │
 ├── category-quiz                → Category-specific drill (pick category → play)
 │

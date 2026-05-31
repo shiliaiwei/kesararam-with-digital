@@ -57,7 +57,18 @@ type Phase =
   | { name: "playing"; session: SoloSession; qIndex: number; endsAt: string; startedAt: number; selectedId: number | null; showCorrect: boolean }
   | { name: "results"; session: SoloSession; result: ResultData; answers: AnswerRecord[] };
 
-const GAME_MODES = Object.entries(GAME_MODE_CONFIG).map(([id, cfg]) => ({ id, ...cfg }));
+const HIDDEN_MODES = new Set([
+  "daily-challenge",
+  "exam-simulation",
+  "survival-quiz",
+  "zen-review",
+  "final-practice",
+  "mixed-practice",
+]);
+
+const GAME_MODES = Object.entries(GAME_MODE_CONFIG)
+  .map(([id, cfg]) => ({ id, ...cfg }))
+  .filter((m) => !HIDDEN_MODES.has(m.id));
 
 export default function SoloPage() {
   const router = useRouter();

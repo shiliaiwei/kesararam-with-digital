@@ -527,7 +527,18 @@ export default function HostPage() {
     setCopied(true); setTimeout(() => setCopied(false), 2000);
   }
 
-  const GAME_MODES = Object.entries(GAME_MODE_CONFIG).map(([id, cfg]) => ({ id, ...cfg }));
+  const HIDDEN_MODES = new Set([
+    "daily-challenge",
+    "exam-simulation",
+    "survival-quiz",
+    "zen-review",
+    "final-practice",
+    "mixed-practice",
+  ]);
+
+  const GAME_MODES = Object.entries(GAME_MODE_CONFIG)
+    .map(([id, cfg]) => ({ id, ...cfg }))
+    .filter((m) => !HIDDEN_MODES.has(m.id));
   const selectedModeConfig = GAME_MODE_CONFIG[selectedMode];
 
   const darkBase: React.CSSProperties = {
