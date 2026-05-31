@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
     const resourceType = isAudio ? "video" : "image"; // Cloudinary uses 'video' for audio
 
     // Upload to Cloudinary
-    const result: any = await new Promise((resolve, reject) => {
+      const result: Record<string, unknown> = await new Promise((resolve, reject) => {
       cloudinary.uploader.upload_stream(
         {
           folder: folder,

@@ -38,7 +38,7 @@ export async function GET() {
     }
 
     // Get recent games (last 10) - optional
-    let recentGames: any[] = [];
+    let recentGames: Array<Record<string, unknown>> = [];
     try {
       recentGames = await db
         .select({

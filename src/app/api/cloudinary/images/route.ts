@@ -96,24 +96,14 @@ export async function GET(request: NextRequest) {
       response.headers.set("Expires", "0");
 
       return response;
-    } catch (err: any) {
-      console.error("Failed to fetch resources:", err.message);
-      return NextResponse.json(
-        { 
-          error: err.message || "Failed to fetch resources",
-          resources: [] 
-        },
-        { status: 500 }
-      );
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      console.error("Failed to fetch resources:", msg);
+      return NextResponse.json({ error: msg || "Failed to fetch resources", resources: [] }, { status: 500 });
     }
-  } catch (error: any) {
-    console.error("Error in images API:", error);
-    return NextResponse.json(
-      { 
-        error: error.message || "Failed to fetch images",
-        resources: [] 
-      },
-      { status: 500 }
-    );
+  } catch (error) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.error("Error in images API:", msg);
+    return NextResponse.json({ error: msg || "Failed to fetch images", resources: [] }, { status: 500 });
   }
 }
