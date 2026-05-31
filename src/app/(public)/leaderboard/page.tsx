@@ -5,18 +5,18 @@ import { gsap } from "gsap";
 import { useLang } from "@/context/lang-context";
 import { RankBadge as TierBadge, RankedAvatarRing, RankProgressBar, RankShowcase } from "@/components/shared/rank-label";
 import { getRank } from "@/lib/rank-utils";
-import { 
-  Trophy, 
-  Gift, 
-  Lock, 
-  Unlock, 
-  Sparkles, 
-  Star, 
-  Check, 
-  ChevronRight, 
-  User, 
-  Zap, 
-  Flame, 
+import {
+  Trophy,
+  Gift,
+  Lock,
+  Unlock,
+  Sparkles,
+  Star,
+  Check,
+  ChevronRight,
+  User,
+  Zap,
+  Flame,
   Crown,
   Info,
   Award
@@ -184,41 +184,41 @@ function RankBadge({ rank }: { rank: 1 | 2 | 3 }) {
 // ── Podium card ───────────────────────────────────────────────────────────────
 
 const PODIUM_CFG = [
-  { 
-    rank: 2 as const, 
-    label: "Silver", 
-    accentColor: "#94a3b8", 
+  {
+    rank: 2 as const,
+    label: "Silver",
+    accentColor: "#94a3b8",
     pedestalBg: "repeating-linear-gradient(-45deg, #f1f5f9, #f1f5f9 8px, #cbd5e1 8px, #cbd5e1 16px)",
-    shadowColor: "#000000", 
-    scoreColor: "#475569", 
-    barH: "h-20 md:h-28", 
-    order: "order-2 md:order-1" 
+    shadowColor: "#000000",
+    scoreColor: "#475569",
+    barH: "h-20 md:h-28",
+    order: "order-2 md:order-1"
   },
-  { 
-    rank: 1 as const, 
-    label: "Gold Champion", 
-    accentColor: "#eab308", 
+  {
+    rank: 1 as const,
+    label: "Gold Champion",
+    accentColor: "#eab308",
     pedestalBg: "repeating-linear-gradient(-45deg, #fef08a, #fef08a 8px, #facc15 8px, #facc15 16px)",
-    shadowColor: "#000000", 
-    scoreColor: "#000", 
-    barH: "h-24 md:h-36", 
-    order: "order-1 md:order-2" 
+    shadowColor: "#000000",
+    scoreColor: "#000",
+    barH: "h-24 md:h-36",
+    order: "order-1 md:order-2"
   },
-  { 
-    rank: 3 as const, 
-    label: "Bronze", 
-    accentColor: "#cd7c3a", 
+  {
+    rank: 3 as const,
+    label: "Bronze",
+    accentColor: "#cd7c3a",
     pedestalBg: "repeating-linear-gradient(-45deg, #ffedd5, #ffedd5 8px, #fed7aa 8px, #fed7aa 16px)",
-    shadowColor: "#000000", 
-    scoreColor: "#92400e", 
-    barH: "h-16 md:h-24", 
-    order: "order-3" 
+    shadowColor: "#000000",
+    scoreColor: "#92400e",
+    barH: "h-16 md:h-24",
+    order: "order-3"
   },
 ];
 
-function PodiumCard({ user, cfg, index, currentUser }: { 
-  user: LeaderboardUser | undefined; 
-  cfg: typeof PODIUM_CFG[number]; 
+function PodiumCard({ user, cfg, index, currentUser }: {
+  user: LeaderboardUser | undefined;
+  cfg: typeof PODIUM_CFG[number];
   index: number;
   currentUser: any | null;
 }) {
@@ -244,15 +244,15 @@ function PodiumCard({ user, cfg, index, currentUser }: {
   return (
     <div ref={cardRef} className={`relative flex flex-col items-center w-full ${cfg.order}`}>
       {isFirst && <div ref={glowRef} className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, rgba(234,179,8,0.25) 0%, transparent 70%)", opacity: 0.3 }} />}
-      
+
       {/* Floating Avatar and Rank Badge Container */}
-      <div 
+      <div
         className="relative mb-2 flex flex-col items-center select-none"
         style={{
-          animation: isFirst 
-            ? "floatFirst 4s ease-in-out infinite" 
-            : cfg.rank === 2 
-              ? "floatSecond 4.4s ease-in-out infinite" 
+          animation: isFirst
+            ? "floatFirst 4s ease-in-out infinite"
+            : cfg.rank === 2
+              ? "floatSecond 4.4s ease-in-out infinite"
               : "floatThird 4.8s ease-in-out infinite",
         }}
       >
@@ -275,7 +275,7 @@ function PodiumCard({ user, cfg, index, currentUser }: {
         )}
 
         {/* Double Orbital Rings (Redesigned Animation Style) */}
-        <div 
+        <div
           className="absolute rounded-full border-2 border-dashed pointer-events-none"
           style={{
             width: isFirst ? 92 : 76,
@@ -287,7 +287,7 @@ function PodiumCard({ user, cfg, index, currentUser }: {
             boxShadow: isFirst ? "0 0 12px rgba(234,179,8,0.5)" : "none"
           }}
         />
-        <div 
+        <div
           className="absolute rounded-full border border-dotted pointer-events-none"
           style={{
             width: isFirst ? 100 : 84,
@@ -298,28 +298,28 @@ function PodiumCard({ user, cfg, index, currentUser }: {
             top: -10,
           }}
         />
-        
+
         {/* Creative Rank Emblem/Medal */}
-        <div 
+        <div
           className="relative rounded-full flex items-center justify-center border-4 border-black overflow-hidden transition-transform duration-300 hover:scale-110"
-          style={{ 
+          style={{
             width: isFirst ? 80 : 64,
             height: isFirst ? 80 : 64,
-            background: cfg.pedestalBg, 
+            background: cfg.pedestalBg,
           }}
         >
           {userAvatar && (userAvatar.trim().startsWith("{") || userAvatar.startsWith("http") || userAvatar.startsWith("/")) ? (
             <Avatar url={userAvatar} name={name} size={isFirst ? 72 : 56} changedAt={user?.avatarChangedAt} />
           ) : (
             /* Inner circle with Rank Initials & Icon if no avatar */
-            <div 
+            <div
               className="rounded-full bg-black flex flex-col items-center justify-center border-2 border-white/10 relative"
               style={{
                 width: isFirst ? 58 : 46,
                 height: isFirst ? 58 : 46,
               }}
             >
-              <span 
+              <span
                 className="font-black text-white font-mono leading-none tracking-tight"
                 style={{
                   fontSize: isFirst ? "14px" : "11px",
@@ -345,21 +345,21 @@ function PodiumCard({ user, cfg, index, currentUser }: {
       </div>
 
       {/* Card Body */}
-      <div 
-        className="w-full flex flex-col items-center gap-1.5 pt-8 pb-4 px-2 md:px-3 border-3 border-black -mt-4 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] relative overflow-hidden" 
-        style={{ 
-          backgroundColor: isFirst ? "#fffbeb" : "#fff", 
-          backgroundImage: isFirst 
-            ? "radial-gradient(#facc15 1px, transparent 1px)" 
+      <div
+        className="w-full flex flex-col items-center gap-1.5 pt-8 pb-4 px-2 md:px-3 border-3 border-black -mt-4 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] relative overflow-hidden"
+        style={{
+          backgroundColor: isFirst ? "#fffbeb" : "#fff",
+          backgroundImage: isFirst
+            ? "radial-gradient(#facc15 1px, transparent 1px)"
             : "radial-gradient(#e2e8f0 1px, transparent 1px)",
           backgroundSize: "8px 8px",
-          boxShadow: isFirst 
-            ? `8px 8px 0 #000, 0 0 25px rgba(234,179,8,0.25)` 
-            : `4px 4px 0 #000`, 
+          boxShadow: isFirst
+            ? `8px 8px 0 #000, 0 0 25px rgba(234,179,8,0.25)`
+            : `4px 4px 0 #000`,
           borderRadius: 0,
           borderWidth: isFirst ? "4px" : "3px",
-          animation: isFirst 
-            ? "goldGlowShadow 3s ease-in-out infinite, panBackground 15s linear infinite" 
+          animation: isFirst
+            ? "goldGlowShadow 3s ease-in-out infinite, panBackground 15s linear infinite"
             : "panBackground 25s linear infinite"
         }}
       >
@@ -401,7 +401,7 @@ function PodiumCard({ user, cfg, index, currentUser }: {
 
         {/* Shimmer sweep effect */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div 
+          <div
             className="absolute top-0 left-0 w-[150%] h-full opacity-20 bg-gradient-to-r from-transparent via-white to-transparent"
             style={{
               transform: "skewX(-25deg)",
@@ -412,7 +412,7 @@ function PodiumCard({ user, cfg, index, currentUser }: {
 
         <span className="font-black text-center leading-tight w-full truncate text-[10px] md:text-sm font-kh-header z-10" style={{ color: "#000" }}>{name}</span>
         {user && <TierBadge lifetimePoints={user.lifetimePoints} size="xs" />}
-        
+
         {/* Most Value Ribbon / Tag for 1st Place */}
         {isFirst && (
           <div className="flex items-center gap-1 bg-yellow-400 text-black text-[8px] font-black uppercase px-2 py-0.5 border-2 border-black shadow-[2px_2px_0_#000] my-0.5 animate-pulse z-10">
@@ -421,11 +421,11 @@ function PodiumCard({ user, cfg, index, currentUser }: {
           </div>
         )}
 
-        <span 
+        <span
           className="text-[8px] md:text-[9px] font-black tracking-widest uppercase px-2 py-0.5 border-2 border-black text-white z-10"
-          style={{ 
-            backgroundColor: isFirst ? "#eab308" : "#000", 
-            color: isFirst ? "#000" : "#fff" 
+          style={{
+            backgroundColor: isFirst ? "#eab308" : "#000",
+            color: isFirst ? "#000" : "#fff"
           }}
         >
           {cfg.label}
@@ -433,12 +433,12 @@ function PodiumCard({ user, cfg, index, currentUser }: {
         <AnimatedNumber value={user?.lifetimePoints ?? 0} className={`font-black tabular-nums z-10 ${isFirst ? "text-xl md:text-3xl" : "text-base md:text-xl"}`} style={{ color: "#000" }} />
         <span className="text-[8px] text-zinc-500 font-bold uppercase tracking-wider z-10">pts</span>
       </div>
-      <div 
-        className={`w-full border-3 border-t-0 border-black ${cfg.barH}`} 
-        style={{ 
+      <div
+        className={`w-full border-3 border-t-0 border-black ${cfg.barH}`}
+        style={{
           background: cfg.pedestalBg,
           boxShadow: isFirst ? "8px 0 0 #000" : "4px 0 0 #000"
-        }} 
+        }}
       />
     </div>
   );
@@ -447,16 +447,16 @@ function PodiumCard({ user, cfg, index, currentUser }: {
 // ── Seeded fake social proof & details ───────────────────────────────────────
 const SOCIAL_PROOF: Record<number, number> = { 1: 47, 2: 112, 3: 89, 4: 63, 5: 134, 6: 38, 7: 71, 8: 19, 9: 12 };
 const SCARCITY: Record<number, number | null> = { 1: null, 2: null, 3: null, 4: null, 5: null, 6: 8, 7: null, 8: 5, 9: 3 };
-const BONUS_BADGE: Record<number, { label: string; icon: typeof Star } | null> = { 
-  1: null, 
-  2: { label: "Popular", icon: Star }, 
-  3: null, 
-  4: null, 
-  5: { label: "Hot", icon: Flame }, 
-  6: null, 
-  7: null, 
-  8: { label: "Rare", icon: Sparkles }, 
-  9: { label: "Epic", icon: Crown } 
+const BONUS_BADGE: Record<number, { label: string; icon: typeof Star } | null> = {
+  1: null,
+  2: { label: "Popular", icon: Star },
+  3: null,
+  4: null,
+  5: { label: "Hot", icon: Flame },
+  6: null,
+  7: null,
+  8: { label: "Rare", icon: Sparkles },
+  9: { label: "Epic", icon: Crown }
 };
 
 // ── Confetti effect ──────────────────────────────────────────────────────────
@@ -594,7 +594,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
   const canClaim = isLoggedIn && userPoints >= item.cost && !claimed;
   const rawPct = Math.min(100, (userPoints / item.cost) * 100);
   const pct = Math.round(rawPct);
-  
+
   const socialCount = SOCIAL_PROOF[item.id] ?? 0;
   const scarcity = SCARCITY[item.id];
   const bonusBadge = BONUS_BADGE[item.id];
@@ -625,16 +625,16 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
   }
 
   // Grayscale when claimed, colored when active
-  const cardShadow = claimed 
-    ? "3px 3px 0 #000" 
+  const cardShadow = claimed
+    ? "3px 3px 0 #000"
     : hovered && canClaim
       ? "12px 12px 0 #000"
       : isReady
         ? "8px 8px 0 #000"
         : "4px 4px 0 #000";
 
-  const cardTransform = claimed 
-    ? "none" 
+  const cardTransform = claimed
+    ? "none"
     : hovered && canClaim
       ? "translate(-4px,-4px)"
       : "translate(0,0)";
@@ -662,11 +662,11 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
 
       {/* ── Premium 4K Mockup Cover Image Header ── */}
       <div className="relative h-44 w-full border-b-3 border-black overflow-hidden bg-zinc-100 flex items-center justify-center">
-        <img 
-          src={item.image} 
-          alt={item.name} 
+        <img
+          src={item.image}
+          alt={item.name}
           className="w-full h-full object-cover select-none"
-          style={{ 
+          style={{
             filter: claimed ? "grayscale(100%) brightness(0.9)" : "none",
             transform: hovered && !claimed ? "scale(1.05)" : "scale(1)",
             transition: "transform 0.25s ease, filter 0.2s ease"
@@ -691,7 +691,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
 
       {/* Body Details */}
       <div className="flex flex-col gap-3.5 px-3.5 py-4 flex-1">
-        
+
         {/* Name and Khmer translation (ENLARGED TYPOGRAPHY) */}
         <div className="flex justify-between items-start gap-2">
           <div>
@@ -706,8 +706,8 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
             <div className="flex items-center gap-1 self-start bg-yellow-100 text-yellow-800 border border-yellow-200 text-[8px] font-black px-1.5 py-0.5 shadow-[1.5px_1.5px_0_#ca8a04] whitespace-nowrap">
               <Check size={8} strokeWidth={4} />
               <span>
-                {kh 
-                  ? `ប្តូរ៖ ${claimCount} ដង` 
+                {kh
+                  ? `ប្តូរ៖ ${claimCount} ដង`
                   : `Claimed: ${claimCount}x`}
               </span>
             </div>
@@ -748,18 +748,18 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
                 {pct}%
               </span>
             </div>
-            
+
             {/* Brutalist Flat Progress Bar */}
             <div className="relative h-2.5 bg-zinc-100 border-2 border-black overflow-hidden" style={{ borderRadius: 0 }}>
               <div className="h-full transition-all duration-500"
-                style={{ 
-                  width: `${pct}%`, 
+                style={{
+                  width: `${pct}%`,
                   background: isReady ? BRAND.green : isAlmostThere ? BRAND.yellow : item.color,
                   borderRight: pct > 0 ? "2px solid #000" : "none"
-                }} 
+                }}
               />
             </div>
-            
+
             {/* Zeigarnik Effect micro-copy */}
             {isAlmostThere && (
               <p className="text-[9px] font-black mt-1 text-center" style={{ color: BRAND.yellowDark, ...kf }}>
@@ -783,8 +783,8 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
                 <span>{kh ? "បានទទួលរួចហើយ" : "CLAIMED"}</span>
               </div>
               <span className="text-[7.5px] text-zinc-400 uppercase font-mono mt-0.5 tracking-tighter">
-                {kh 
-                  ? `ប្តូរបានម្តងទៀតក្នុង៖ ${daysRemaining} ថ្ងៃ` 
+                {kh
+                  ? `ប្តូរបានម្តងទៀតក្នុង៖ ${daysRemaining} ថ្ងៃ`
                   : `Next claim in: ${daysRemaining}d`}
               </span>
             </div>
@@ -853,12 +853,12 @@ export default function LeaderboardPage() {
   const { lang } = useLang();
   const kh = lang === "kh";
   const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
-  
+
   const [leaderboard, setLeaderboard] = useState<LeaderboardUser[]>([]);
   const [prevRanks, setPrevRanks] = useState<Record<number, number>>({});
   const [loading, setLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState<any | null>(null);
-  
+
   // Real-time tracking user points state
   const [userPoints, setUserPoints] = useState(0);
   const [claimMsg, setClaimMsg] = useState("");
@@ -886,10 +886,10 @@ export default function LeaderboardPage() {
   useEffect(() => {
     fetchLeaderboard();
     const iv = setInterval(fetchLeaderboard, 60000);
-    
+
     fetch("/api/auth/me")
       .then(r => r.ok ? r.json() : null)
-      .then(d => { 
+      .then(d => {
         if (d && !d.error) {
           const lifetimePoints = d.lifetimePoints ?? 0;
           // Local storage subtraction deduction logic based on claim counts
@@ -912,12 +912,12 @@ export default function LeaderboardPage() {
               }
             }
           });
-          setCurrentUser(d); 
+          setCurrentUser(d);
           setUserPoints(activePoints);
-        } 
+        }
       })
       .catch(() => { });
-      
+
     return () => clearInterval(iv);
   }, [fetchLeaderboard]);
 
@@ -947,7 +947,7 @@ export default function LeaderboardPage() {
       <div className="relative overflow-hidden border-b-4 border-black" style={{ background: "linear-gradient(135deg,#09090b 0%,#18181b 100%)" }}>
         <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(circle,#fff 1px,transparent 1px)", backgroundSize: "20px 20px" }} />
         <div className="absolute top-0 left-0 right-0 h-1 bg-yellow-400" />
-        
+
         <div className="relative max-w-4xl mx-auto px-4 py-8 md:py-12">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
             <div>
@@ -1010,7 +1010,7 @@ export default function LeaderboardPage() {
                   </span>
                 )}
               </div>
-              
+
               <div className="bg-white border-3 border-black overflow-hidden" style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}>
                 {/* Table Header */}
                 <div className="grid grid-cols-12 bg-black px-3 md:px-5 py-2.5 text-[9px] md:text-[10px] font-black tracking-widest text-yellow-400 uppercase border-b-2 border-black">
@@ -1077,6 +1077,7 @@ export default function LeaderboardPage() {
                     </div>
                     <p className="text-xs text-zinc-500" style={kf}>
                       Earn points → Level up → Unlock exclusive labels
+
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
@@ -1094,14 +1095,14 @@ export default function LeaderboardPage() {
             <div>
               {/* Rewards Store Hero Banner */}
               <div className="relative overflow-hidden border-3 border-black mb-6"
-                style={{ 
-                  background: "linear-gradient(135deg,#09090b 0%,#18181b 100%)", 
+                style={{
+                  background: "linear-gradient(135deg,#09090b 0%,#18181b 100%)",
                   boxShadow: "4px 4px 0 #000",
-                  borderRadius: 0 
+                  borderRadius: 0
                 }}>
                 <div className="absolute inset-0 opacity-[0.06]"
                   style={{ backgroundImage: "radial-gradient(circle,#fff 1px,transparent 1px)", backgroundSize: "16px 16px" }} />
-                
+
                 {/* Rotating floating Lucide icons instead of emojis */}
                 <div className="absolute top-4 right-8 text-yellow-400/40 select-none animate-bounce" style={{ animationDuration: "3s" }}>
                   <Gift size={32} strokeWidth={2} />

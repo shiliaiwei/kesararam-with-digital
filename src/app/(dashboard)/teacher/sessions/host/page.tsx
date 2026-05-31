@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useLang } from "@/context/lang-context";
-import { useGameSSE } from "@/hooks/use-game-sse";
+import { useGameRealtime } from "@/hooks/use-game-realtime";
 import { GAME_MODE_CONFIG } from "@/lib/game-engine";
 import type { SSEEvent, ParticipantInfo, LeaderboardEntry, QuestionPayload } from "@/lib/game-event-bus";
 import {
@@ -363,7 +363,7 @@ export default function HostPage() {
     }
   }, []);
 
-  useGameSSE(activeCode, handleSSEEvent, !!activeCode);
+  useGameRealtime(activeCode, handleSSEEvent, !!activeCode);
 
   async function createSession() {
     if (!sessionName.trim()) { setError(kh ? "ដាក់ឈ្មោះ" : "Enter session name"); return; }

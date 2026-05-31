@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useLang } from "@/context/lang-context";
-import { useGameSSE } from "@/hooks/use-game-sse";
+import { useGameRealtime } from "@/hooks/use-game-realtime";
 import type { SSEEvent, QuestionPayload, LeaderboardEntry, ParticipantInfo } from "@/lib/game-event-bus";
 import { logError } from "@/lib/error-logger";
 import { CountdownTimer } from "@/components/game/CountdownTimer";
@@ -214,7 +214,7 @@ export default function StudentGamePage() {
     joinSession();
   }, [code, router]);
 
-  const { connected, error } = useGameSSE(code, handleSSEEvent, !joining && !joinError);
+  const { connected, error } = useGameRealtime(code, handleSSEEvent, !joining && !joinError);
 
   const unifiedHeader = (
     <div className="flex items-center justify-between px-4 py-2.5 border-b border-zinc-800 bg-zinc-950/90 backdrop-blur-md text-white w-full flex-shrink-0 z-40 relative">

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { gameSessions, gameParticipants } from "@/db/schema/game";
 import { getSession } from "@/lib/auth";
-import { broadcast } from "@/lib/game-event-bus";
+import { broadcastEvent } from "@/lib/realtime-bus";
 import { eq, and } from "drizzle-orm";
 
 export async function POST(
@@ -70,7 +70,7 @@ export async function POST(
     .from(gameParticipants)
     .where(eq(gameParticipants.sessionId, session.id));
 
-  broadcast(code.toUpperCase(), {
+  broadcastEvent(code.toUpperCase(), {
     type: "lobby_update",
     participants: allParticipants.map((p) => ({
       userId: p.userId,

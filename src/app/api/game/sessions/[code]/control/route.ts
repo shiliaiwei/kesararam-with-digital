@@ -4,7 +4,8 @@ import { gameSessions, gameParticipants, gameSessionAnswers } from "@/db/schema/
 import { questions, answers } from "@/db/schema/content";
 import { users } from "@/db/schema/users";
 import { getSession } from "@/lib/auth";
-import { broadcast, LeaderboardEntry } from "@/lib/game-event-bus";
+import { LeaderboardEntry } from "@/lib/game-event-bus";
+import { broadcastEvent } from "@/lib/realtime-bus";
 import { mapContentToGameType, type GameStatus } from "@/lib/game-engine";
 import { eq, and, asc, sql } from "drizzle-orm";
 
@@ -106,7 +107,7 @@ export async function POST(
       await db.update(gameSessions)
         .set({ status: "ended", endedAt: new Date() })
         .where(eq(gameSessions.id, session.id));
-      broadcast(code.toUpperCase(), { type: "warning", message: "Session terminated by host" });
+      broadcastEvent(code.toUpperCase(), { type: "warning", message: "Session terminated by host" });
       return NextResponse.json({ status: "ended" });
     }
 
@@ -134,7 +135,7 @@ export async function POST(
       const q = await getQuestionPayload(firstQId);
       const endsAt = new Date(now.getTime() + session.timePerQuestion * 1000);
 
-      broadcast(code.toUpperCase(), {
+      broadcastEvent(code.toUpperCase(), {
         type: "question_start",
         question: q,
         startsAt: now.toISOString(),
@@ -204,7 +205,7 @@ export async function POST(
         await syncScoresToUserProfiles(session.id);
 
         // Broadcast question_end first so clients see correct answer reveal
-        broadcast(code.toUpperCase(), {
+        broadcastEvent(code.toUpperCase(), {
           type: "question_end",
           correctAnswerId: correctAnswer?.id ?? null,
           leaderboard,
@@ -212,11 +213,11 @@ export async function POST(
 
         // Small delay so clients see question_end before session_end
         await new Promise(r => setTimeout(r, 2500));
-        broadcast(code.toUpperCase(), { type: "session_end", podium: leaderboard.slice(0, 3), finalLeaderboard: leaderboard });
+        broadcastEvent(code.toUpperCase(), { type: "session_end", podium: leaderboard.slice(0, 3), finalLeaderboard: leaderboard });
 
         // After 60 seconds, send a final close event
         setTimeout(() => {
-          broadcast(code.toUpperCase(), { type: "warning", message: "Session closed. Please exit." });
+          broadcastEvent(code.toUpperCase(), { type: "warning", message: "Session closed. Please exit." });
         }, 60000);
 
         return NextResponse.json({ status: "ended" });
@@ -236,7 +237,7 @@ export async function POST(
       const endsAt = new Date(nextNow.getTime() + session.timePerQuestion * 1000);
 
       // Broadcast question_end (reveal correct answer + leaderboard)
-      broadcast(code.toUpperCase(), {
+      broadcastEvent(code.toUpperCase(), {
         type: "question_end",
         correctAnswerId: correctAnswer?.id ?? null,
         leaderboard,
@@ -246,7 +247,7 @@ export async function POST(
       // then atomically deliver the next question to ALL connected clients
       await new Promise(r => setTimeout(r, 800));
 
-      broadcast(code.toUpperCase(), {
+      broadcastEvent(code.toUpperCase(), {
         type: "question_start", question: q,
         startsAt: nextNow.toISOString(), endsAt: endsAt.toISOString(),
         index: nextIdx, total: qIds.length,
@@ -259,7 +260,7 @@ export async function POST(
     if (action === "pause") {
       if (currentStatus !== "active") return NextResponse.json({ error: "Not active" }, { status: 409 });
       await db.update(gameSessions).set({ status: "paused" }).where(eq(gameSessions.id, session.id));
-      broadcast(code.toUpperCase(), { type: "session_paused" });
+      broadcastEvent(code.toUpperCase(), { type: "session_paused" });
       return NextResponse.json({ status: "paused" });
     }
 
@@ -267,7 +268,7 @@ export async function POST(
     if (action === "resume") {
       if (currentStatus !== "paused") return NextResponse.json({ error: "Not paused" }, { status: 409 });
       await db.update(gameSessions).set({ status: "active" }).where(eq(gameSessions.id, session.id));
-      broadcast(code.toUpperCase(), { type: "session_resumed" });
+      broadcastEvent(code.toUpperCase(), { type: "session_resumed" });
       return NextResponse.json({ status: "active" });
     }
 
@@ -289,11 +290,11 @@ export async function POST(
       // Sync scores to user profiles for leaderboard persistence
       await syncScoresToUserProfiles(session.id);
 
-      broadcast(code.toUpperCase(), { type: "session_end", podium: leaderboard.slice(0, 3), finalLeaderboard: leaderboard });
+      broadcastEvent(code.toUpperCase(), { type: "session_end", podium: leaderboard.slice(0, 3), finalLeaderboard: leaderboard });
 
       // After 30 seconds, send a final close event to disconnect all clients
       setTimeout(() => {
-        broadcast(code.toUpperCase(), { type: "warning", message: "Session closed. Please exit." });
+        broadcastEvent(code.toUpperCase(), { type: "warning", message: "Session closed. Please exit." });
       }, 30000);
 
       return NextResponse.json({ status: "ended" });
