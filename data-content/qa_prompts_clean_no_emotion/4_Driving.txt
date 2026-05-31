@@ -1,0 +1,414 @@
+======================================================================
+
+
+Category : Driving
+ID Prefix: DRV
+Total : 50 questions
+Sub-groups: Basic Maneuvers, Advanced Techniques, Defensive Driving
+======================================================================
+
+DRV-Q001
+Sub-group: Basic Maneuvers
+តើអ្វីជាគ្រោះថ្នាក់ ដែលអ្នកត្រូវស្គាល់ក្នុងការបើកបរ ?
+ចម្លើយគឺ ផ្លូវ និង អ្នកប្រើប្រាស់ផ្លូវ
+What is an accident to be known in driving?
+The answer is Road and road users.
+----------------------------------------------------------------------
+
+DRV-Q002
+Sub-group: Basic Maneuvers
+នៅពេលដឹងថាកង់បែក ឬ ធ្លាយ តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+ចម្លើយគឺ ត្រូវបន្ថយល្បឿន ទប់ចង្កូតឲ្យជាប់ ឬនឹង និងកាច់ចង្កូតឲ្យត្រង់តាមគន្លងផ្លូវ
+Knowing a wheel is flat, what shall you do?
+The answer is Slow down, firmly hold the steering wheel or/and steer follow the lane.
+----------------------------------------------------------------------
+
+DRV-Q003
+Sub-group: Basic Maneuvers
+ប្រើអាំព្រីយ៉ា តើការដាក់ លេខឡើង និងការដាក់ លេខចុះ អ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?
+ចម្លើយគឺ ត្រូវចាប់អាំព្រីយ៉ា
+Motorcycle using clutch lever, how shall drivers do to change gear shift up or down?
+The answer is Press the clutch
+----------------------------------------------------------------------
+
+DRV-Q004
+Sub-group: Basic Maneuvers
+ការប្រើល្បឿន៣០គីឡូម៉ែត្រក្នុងមួយម៉ោងនៅលើផ្លូវស្ងួតរាបស្មើ របស់អ្នកមានសំបកកង់ល្អ និងមានហ្វ្រាំងល្អ តើចម្ងាយចាប់ហ្វ្រាំងប្រហែលប៉ុន្មាន ?
+ចម្លើយគឺ ប្រហែល ១០ ម៉ែត្រ
+Driving at the speed of 30km/h on the flat, dry road, your motorcycle has good condition of brakes and tires, how far is a braking distance?
+The answer is About 10m
+----------------------------------------------------------------------
+
+DRV-Q005
+Sub-group: Basic Maneuvers
+នៅក្នុងទីប្រជុំជន អ្នកប្រើល្បឿន២០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?
+ចម្លើយគឺ យ៉ាងតិច ៦ ម៉ែត្រ
+Inside a built-up area, you drive your motorcycle at 20km/h. How far at least do you leave distance limit for motorcycles?
+The answer is At least 6m
+----------------------------------------------------------------------
+
+DRV-Q006
+Sub-group: Basic Maneuvers
+មុននឹងបើកបរចូលផ្លូវកោង តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+ចម្លើយគឺ ត្រូវបន្ថយល្បឿនឲ្យសមស្របនឹងសភាពផ្លូវកោង និងបើកមកកៀកខាងស្ដាំដៃបំផុត-
+Before driving your motorcycle into a bend road, what shall you do?
+The answer is Slow down properly to a bend road status and drive very closed to the right side.
+----------------------------------------------------------------------
+
+DRV-Q007
+Sub-group: Basic Maneuvers
+មូលហេតុអ្វីខ្លះដែលធ្វើឲ្យរថយន្តរអិលរេ ?
+ចម្លើយគឺ ជាន់ហ្វ្រាំងខ្លាំង កាច់ចង្កូតខ្លាំង បង្កើនល្បឿនខ្លាំង ឬបើកបរលឿនពេក
+What is the reason making the vehicles swerve off?
+The answer is Pun on the brake firmly, steer strongly, more speed up, or drive very fast.
+----------------------------------------------------------------------
+
+DRV-Q008
+Sub-group: Basic Maneuvers
+តើការប្រើភ្លើងហ្វ្រាំង ជាការចាំបាច់ដែរឬទេ ?
+ចម្លើយគឺ ជាការចាំបាច់ ដើម្បីឲ្យអ្នកបើកបរខាងក្រោយដឹងពីការបន្ថយល្បឿន ឬឈប់
+Is it necessary to use brake light?
+The answer is Yes, it is. It is necessary to inform drivers behind about the slowing down or stopping
+----------------------------------------------------------------------
+
+DRV-Q009
+Sub-group: Basic Maneuvers
+នៅពេលរថយន្តអ្នករអិលរេនៅលើផ្លូវស្ងួត តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+ចម្លើយគឺ បន្ថយល្បឿន និងមិនត្រូវជាន់ហ្វ្រាំងទេ
+When your vehicle is swerving off on a dry road, what shall you do?
+The answer is Slow down and no need to apply the brake.
+----------------------------------------------------------------------
+
+DRV-Q010
+Sub-group: Basic Maneuvers
+នៅពេលហ្វ្រាំងខូច តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+ចម្លើយគឺ ដាក់ លេខចុះតាមលំដាប់និងចាប់ហ្វ្រាំងដៃថ្នមៗរកកន្លែងចត
+What shall you do when the brake is broken?
+The answer is Engage the gear down orderly, apply hand brake gentlely, and seek for parking area.
+----------------------------------------------------------------------
+
+DRV-Q011
+Sub-group: Basic Maneuvers
+នៅពេលយប់ ក្នុងពេលជួបយានយន្តមកពីទិសផ្ទុយ តើអ្នកត្រូវទំលាក់ភ្លើងហ្វាមកកូតវិញ ក្នុងចំងាយប៉ុន្មាន ?
+ចម្លើយគឺ ប្រហែល ១៦០ ម៉ែត្រ
+At night, seeing a vehicle from the opposite traffic direction, at what distance from it shall you cast to coat light from headlight?
+The answer is About 160m
+----------------------------------------------------------------------
+
+DRV-Q012
+Sub-group: Basic Maneuvers
+នៅក្នុងការបើកបរកាត់ភ្លៀងខ្លាំង ឬ កាត់ទឹកជ្រៅ តើធ្វើដូចម្ដេច ដើម្បីឲ្យហ្វ្រាំងឆាប់ស្ងួត ?
+ចម្លើយគឺ ត្រូវជាន់ហ្វ្រាំងសំងួតវា
+Driving in heavy rain or in deep water, how shall you do to get the brake dried up quickly?
+The answer is Apply the brake to dry the brakes up.
+----------------------------------------------------------------------
+
+DRV-Q013
+Sub-group: Basic Maneuvers
+ក្នុងការបើកបរនៅពេលអាកាសធាតុក្ដៅខ្លាំង តើកង់រថយន្តមានសភាពដូចម្ដេច ?
+ចម្លើយគឺ កង់តឹង
+Driving in an extremely hot weather, what are the tires of vehicle?
+The answer is The tires are tight.
+----------------------------------------------------------------------
+
+DRV-Q014
+Sub-group: Basic Maneuvers
+ក្នុងការជាន់ហ្វ្រាំងចុះទួលដូចគ្នា មួយជាន់ដក ៗ មួយទៀតជាន់ជាប់ តើមួយណាធ្វើឲ្យកំដៅហ្វ្រាំងកើនក្ដៅជាង ?
+ចម្លើយគឺ ការជាន់ដក ៗ
+Applying the brake while moving down a descent steep, one apply and release alternatively, another one apply firmly without releasing, which one make the brake hotter?
+The answer is Applying and releasing alternatively.
+----------------------------------------------------------------------
+
+DRV-Q015
+Sub-group: Basic Maneuvers
+នៅពេលបើកចូលផ្លូវកោង តើកំលាំងអ្វីដែលអាចធ្វើឲ្យរថយន្តក្រឡាប់ ?
+ចម្លើយគឺ កំលាំងចាកផ្ចិត
+When driving into a bend road, what forces can make your vehicle turn over?
+The answer is Centrifugal force
+----------------------------------------------------------------------
+
+DRV-Q016
+Sub-group: Basic Maneuvers
+ការដាក់ លេខចុះ ហើយរបស់អ្នកកន្ដ្រាក់ ហើយកង់ក្រោយអាចគាំង តើបណ្ដាលមកពីអ្វី ?
+ចម្លើយគឺ មកពីមិនបានបន្ថយល្បឿនឱ្យបានគ្រប់គ្រាន់
+Engaging the gear shift down then your motorcycle twitches and the back wheel is stuck, what does it cause?
+The answer is Caused by the failure of slowing down suffiently
+----------------------------------------------------------------------
+
+DRV-Q017
+Sub-group: Basic Maneuvers
+នៅក្នុងទីប្រជុំជន អ្នកប្រើល្បឿន៣០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?
+ចម្លើយគឺ យ៉ាងតិច ៩ ម៉ែត្រ
+Inside a built-up area, you drive your motorcycle at 30km/h. How far at least do you leave distance limit for motorcycles?
+The answer is At least 9m
+----------------------------------------------------------------------
+
+DRV-Q018
+Sub-group: Advanced Techniques
+តើការបើកបរ ត្រូវចាំបាច់ឱ្យសញ្ញាជាដំណឹង ដែរឬទេ ?
+ចម្លើយគឺ ចាំបាច់ត្រូវឱ្យសញ្ញាជាដំណឹងដើម្បីឱ្យអ្នកបើកបរផ្សេងៗទៀតដឹងពីបំណងរបស់យើង
+Driving a motorcycle, is it necessary to give serviced signs?
+The answer is Yes, it is. It is necessary to inform others to get to know your purposes
+----------------------------------------------------------------------
+
+DRV-Q019
+Sub-group: Advanced Techniques
+ដើម្បីជៀសវាងការរអិលនៅលើផ្លូវដែលមានខ្សាច់ ឬថ្មតូចៗ តើអ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?
+ចម្លើយគឺ ត្រូវបន្ថយល្បឿន ទប់ចង្កូតឱ្យត្រង់ មិនត្រូវចាប់ហ្វ្រាំង ឬដាក់ លេខចុះ ឬធ្វើការបត់ដោយសង្ខុញឡើយ-
+To avoid slippery on a sandy or stony road, how shall drivers do?
+The answer is Slow down, hold the steer firmly, not to apply the brakes or engage the gear down or turn sharply
+----------------------------------------------------------------------
+
+DRV-Q020
+Sub-group: Advanced Techniques
+ដើម្បីបន្ថយល្បឿន ឬឈប់ឱ្យមានប្រសិទ្ធភាព តើអ្នកត្រូវប្រើហ្វ្រាំងអ្វី ?
+ចម្លើយគឺ ត្រូវប្រើហ្វ្រាំងជើង(ហ្វ្រាំងក្រោយ) និងហ្វ្រាំងដៃ(ហ្វ្រាំងមុខ)
+To slow down or stop effectively, what brake do you put on?
+The answer is Put on the footbrake (back brake) and handbrake (front brake)
+----------------------------------------------------------------------
+
+DRV-Q021
+Sub-group: Advanced Techniques
+ការប្រើល្បឿន៧០គីឡូម៉ែត្រក្នុងមួយម៉ោងនៅលើផ្លូវរាបស្មើ ប្រភេទប្រុស (លើសពី១២៥ ឡើងទៅ) របស់អ្នកមាន សំបកកង់ល្អ និងមានហ្វ្រាំងល្អ តើចម្ងាយចាប់ហ្វ្រាំងប្រហែលប៉ុន្មាន ?
+ចម្លើយគឺ ប្រហែល ៥០ ម៉ែត្រ
+Driving at the speed of 70km/h on the smooth road, your man-styled motorcycles (more than 125cc and up) have good condition in tires and brakes. What is the braking distance?
+The answer is About 50m
+----------------------------------------------------------------------
+
+DRV-Q022
+Sub-group: Advanced Techniques
+ការបើកបរនៅលើផ្ទៃផ្លូវដែលមានថ្មតូចៗ ឬកន្លែងដែលមានខ្សាច់ តើអាចធ្វើឱ្យកង់អ្នករអិល ដែរឬទេ ?
+ចម្លើយគឺ អាចធ្វើឱ្យកង់រអិលនៅពេលបង្កើនល្បឿន ឬកាច់ចង្កូតខ្លាំង
+Driving on a small stony road or sandy area, can it make your motorcycle slippery?
+The answer is Yes, it can when you speed up and steer firmly
+----------------------------------------------------------------------
+
+DRV-Q023
+Sub-group: Advanced Techniques
+នៅក្រៅទីប្រជុំជន អ្នកបើកបរល្បឿន៤០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវថែរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ?
+ចម្លើយគឺ យ៉ាងតិច២៤ម៉ែត្រ
+Outside a built-up area, you are driving at the speed of 40km/h. How far, in meter, do you leave a distance limit?
+The answer is At least 24m
+----------------------------------------------------------------------
+
+DRV-Q024
+Sub-group: Advanced Techniques
+នៅក្រៅទីប្រជុំជន អ្នកបើកបរល្បឿន៦០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវថែរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ?
+ចម្លើយគឺ យ៉ាងតិច៣៦ម៉ែត្រ
+Outside a built-up area, you are driving at the speed of 60km/h. How far, in meter, do you leave a distance limit?
+The answer is At least 36m
+----------------------------------------------------------------------
+
+DRV-Q025
+Sub-group: Advanced Techniques
+ការប្រើល្បឿន៥០គីឡូម៉ែត្រក្នុងមួយម៉ោងនៅលើផ្លូវរាបស្មើ របស់អ្នកមានសំបកកង់ល្អ និងមានហ្វ្រាំងល្អ តើចម្ងាយ ឈប់ប្រហែលប៉ុន្មាន ?
+ចម្លើយគឺ ប្រហែល ២៥ ម៉ែត្រ
+Driving at the speed of 50km/h on a smooth, your motorcycle has brakes and tires in good condition, what is a stopping distance, probably?
+The answer is About 25m
+----------------------------------------------------------------------
+
+DRV-Q026
+Sub-group: Advanced Techniques
+នៅក្រៅទីប្រជុំជន អ្នកប្រើល្បឿន៥០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?
+ចម្លើយគឺ យ៉ាងតិច ៣០ ម៉ែត្រ
+Outside a built-up area, you are driving at the speed of 50km/h. How far at least, in meter, do you leave a distance limit?
+The answer is At least 30m
+----------------------------------------------------------------------
+
+
+
+
+
+DRV-Q027
+Sub-group: Advanced Techniques
+តើការបើកបរ ត្រូវមើលទៅមុខយ៉ាងដូចម្ដេច ?
+ចម្លើយគឺ មើលទៅមុខឲ្យបានឆ្ងាយដើម្បីដឹងពីស្ថានភាពផ្លូវកោងឡើងចុះទួលនិងមើលភ្លើងសញ្ញារបស់យានខាងមុខ
+Driving a motorcycle, how do you look to the front?
+The answer is Look ahead in far distance to know the situation of bending road, ascent, descent, and look at the light signs of drivers in the front.
+----------------------------------------------------------------------
+
+DRV-Q028
+Sub-group: Advanced Techniques
+ពេលបើកបរ ហើយកង់ក្រោយរអិលរេដោយសារការចាប់ហ្វ្រាំង តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+ចម្លើយគឺ ត្រូវកាច់ដៃចង្កូតទៅរកទិសដែលរអិលរេនោះ
+Driving a motorcycle, the back wheel is slippery due to applying the brake, how shall you do?
+The answer is Turn to the slippery direction
+----------------------------------------------------------------------
+
+DRV-Q029
+Sub-group: Advanced Techniques
+ពេលបើកបរ ហើយចង្កូតញាក់ តើបណ្ដាលមកពីអ្វី?
+ចម្លើយគឺ កង់បោរ ឬកាំរលុង បាដាងកង់រលុង កង់ធូរ ឬក៏ផ្ទុកខាងក្រោយធ្ងន់ពេក និងបាដាងចង្កូតមិនប្រក្រតី
+Driving a motorcycle and the steer shakes, what does it cause?
+The answer is Buckled wheels, loose radius, loose ball bearing, flat, or loaded too heavy at the back and steering ball bearing is improperly.
+----------------------------------------------------------------------
+
+DRV-Q030
+Sub-group: Advanced Techniques
+តើចំងាយអ្វីខ្លះ ដែលអ្នកយកមកគណនាចំងាយឈប់របស់រថយន្ត ?
+ចម្លើយគឺ ចំងាយប្រតិកម្ម និងចំងាយចាប់ហ្វ្រាំង
+What distances do you take into calculating the stopping distance of vehicle?
+The answer is Reaction distance and braking distance.
+----------------------------------------------------------------------
+
+DRV-Q031
+Sub-group: Advanced Techniques
+ដើម្បីសំរួលការដាក់ លេខឡើង ឬចុះតើត្រូវផ្ដាច់អំព្រីយ៉ាប៉ុន្មានដង ?
+ចម្លើយគឺ ២ដង
+To adjust the gear up and down with ease, how many times shall you disconnect clutch?
+The answer is two times
+----------------------------------------------------------------------
+
+DRV-Q032
+Sub-group: Advanced Techniques
+តើមូលហេតុសំខាន់ៗអ្វីខ្លះ ដែលធ្វើឲ្យហ្វ្រាំងឆាប់កើនកំដៅនៅពេលជាន់ហ្វ្រាំង ?
+ចម្លើយគឺ ផ្ទុកទំនិញហួសកំរិតកំណត់ និងបើកបរក្នុងល្បឿនលឿន
+What are the main reasons that make the brake get hotter quickly when braking?
+The answer is Over load and drive extremly fast.
+----------------------------------------------------------------------
+
+DRV-Q033
+Sub-group: Advanced Techniques
+បើទម្ងន់ និងល្បឿនកើនពីរដងរួមគ្នា តើចម្ងាយឈប់កើនឡើងប៉ុន្មានដង ?
+ចម្លើយគឺ ៨ដង
+If the speed and weight increase twice together, how many times does the stopping distance increase, accordingly?
+The answer is 8 times
+----------------------------------------------------------------------
+
+DRV-Q034
+Sub-group: Advanced Techniques
+ដើម្បីមើលទៅមុខឲ្យបានឆ្ងាយគ្រប់គ្រាន់ តើអ្នកត្រូវការមើលក្នុងចម្ងាយប៉ុន្មានវិនាទី ?
+ចម្លើយគឺ ១២ ទៅ ១៥វិនាទី
+To look ahead for long distance enough, how many seconds shall you need to look to it?
+The answer is 12 to 15 seconds
+----------------------------------------------------------------------
+
+DRV-Q035
+Sub-group: Defensive Driving
+តើអ្នកបើកបររថយន្តធុនធ្ងន់លើសពី ៣,៥តោន ឬប្រវែងបណ្ដោយលើសពី ៧ម៉ែត្រ បើកបរបន្តកន្ទុយគ្នា ក្នុងល្បឿនដូចគ្នា ត្រូវទុកចន្លោះសុវត្ថិភាពប៉ុន្មានម៉ែត្រ?
+ចម្លើយគឺ យ៉ាងតិច ៥០ម៉ែត្រ
+What distance limit for large-sized trucks, with more than 3.5T or more than 7m in length driving in queue one after another and at the same speed, shall drivers leave?
+The answer is At least 50m
+----------------------------------------------------------------------
+
+DRV-Q036
+Sub-group: Defensive Driving
+តើកំដៅនៅតំបួរហ្វ្រាំងកើនឡើងប៉ុន្មានអង្សា ទើបការជាន់ហ្វ្រាំងគ្មានប្រសិទ្ធិភាព ?
+ចម្លើយគឺ ៤០០អង្សា
+What is the brake’s temperature taken as warning?
+The answer is 400 celsius
+----------------------------------------------------------------------
+
+DRV-Q037
+Sub-group: Defensive Driving
+បើទម្ងន់កើនឡើងពីរដង តើចម្ងាយឈប់កើនឡើងប៉ុន្មានដង ?
+ចម្លើយគឺ ២​ដង
+If the weight increases twice, how many times does the stopping distance increase?
+The answer is Two times
+----------------------------------------------------------------------
+
+DRV-Q038
+Sub-group: Defensive Driving
+បើល្បឿនកើនពីរដង តើចម្ងាយឈប់កើនឡើងប៉ុន្មានដង ?
+ចម្លើយគឺ ៤ ដង
+If the speed increases twice, how many times does the stopping distance increase?
+The answer is Four times
+----------------------------------------------------------------------
+
+DRV-Q039
+Sub-group: Defensive Driving
+ក្នុងការបើកបរនៅលើផ្លូវសើម តើអ្នកបើកបរត្រូវបន្ថយល្បឿនប៉ុន្មានភាគរយលើផ្លូវស្ងួត ?
+ចម្លើយគឺ ១/៣ លើផ្លូវ ស្ងួត
+Driving on the wet road, how many percentages do drivers decrease​ speed compared to dry road?
+The answer is 1/3 on the dry road
+----------------------------------------------------------------------
+
+DRV-Q040
+Sub-group: Defensive Driving
+តើមូលហេតុអ្វីខ្លះដែលធ្វើឲ្យកង់រអិលរេនៅពេលបើកបរលើផ្លូវស្ងួត ?
+ចម្លើយគឺ បង្កើនល្បឿន-បើកបរលឿន-ចាប់ហ្វ្រាំងខ្លាំង-កាច់ចង្កូតខ្លាំង
+What are reasons that make the wheels swerve off when driving on the dry road?
+The answer is Speed up, drive very fast, apply the brake firmly, and steer firmly.
+----------------------------------------------------------------------
+
+
+
+DRV-Q041
+Sub-group: Defensive Driving
+តើមូលហេតុអ្វី ដែលធ្វើឱ្យកង់ក្រោយរអិល ?
+ចម្លើយគឺ បង្កើនល្បឿនខ្លាំងពេក
+What are reasons that make the back wheels slippery?
+The answer is Speed up a lot
+----------------------------------------------------------------------
+
+DRV-Q042
+Sub-group: Defensive Driving
+តើមូលហេតុអ្វី ដែលធ្វើឲ្យកង់មុខរអិល​រេ ?
+ចម្លើយគឺ បើកបរលឿនពេកលើផ្លូវមិនរាបស្មើ
+What are reasons that make front wheels slippery?
+The answer is Drive too fast on a road is not flat
+----------------------------------------------------------------------
+
+DRV-Q043
+Sub-group: Defensive Driving
+ក្នុងការបើកបរនៅក្រៅទីប្រជុំជន តើអ្នកត្រូវទុកចន្លោះសុវត្ថិភាពប៉ុន្មានវិនាទី ?
+ចម្លើយគឺ យ៉ាងតិច ២នាទី
+Driving outside built-up area, how far of distance limit do you leave?
+The answer is At least 2 minute
+----------------------------------------------------------------------
+
+DRV-Q044
+Sub-group: Defensive Driving
+តើចំងាយឈប់របស់រថយន្តធុនតូចក្នុងល្បឿន ៩០គ.ម ក្នុងមួយម៉ោង មានប៉ុន្មានម៉ែត្រ ?
+ចម្លើយគឺ ប្រហែល ៨១ម៉ែត្រ
+How many meters of a stopping distance for small-sized vehicles at the speed of 90km/h?
+The answer is About 81m
+----------------------------------------------------------------------
+
+DRV-Q045
+Sub-group: Defensive Driving
+ក្នុងការបើកបរនៅក្រៅទីប្រជុំជន តើអ្នកត្រូវទុកចន្លោះសុវត្ថិភាពប៉ុន្មានវិនាទី ?
+ចម្លើយគឺ យ៉ាងតិច ២ វិនាទី
+While driving, wow many minutes of the safety distance?
+The answer is At least 2 second
+----------------------------------------------------------------------
+
+DRV-Q046
+Sub-group: Defensive Driving
+នៅលើផ្លូវសើម តើចំងាយចាប់ហ្វ្រាំងកើនឡើងប៉ុន្មានដង ?
+ចម្លើយគឺ ២ ដង
+On a wet road, how many times does braking distance increase?
+The answer is 2 times
+----------------------------------------------------------------------
+
+DRV-Q047
+Sub-group: Defensive Driving
+មុនបើកបរចេញដំណើរ តើអ្នកត្រូវឱ្យសញ្ញាជាដំណឹងប៉ុន្មានវិនាទី ?
+ចម្លើយគឺ យ៉ាងតិច ៥ វិនាទី
+Before departure, how many seconds shall you give information sign?
+The answer is At least 5 seconds.
+----------------------------------------------------------------------
+
+DRV-Q048
+Sub-group: Defensive Driving
+តើអ្នកបើកបរដែលមានសុខភាពធម្មតា ត្រូវការរយៈពេលធ្វើប្រតិកម្មប៉ុន្មានវិនាទី ?
+ចម្លើយគឺ ១ នាទី
+How long do healthy drivers need
+The answer is 1 minute
+----------------------------------------------------------------------
+
+DRV-Q049
+Sub-group: Defensive Driving
+មុននិងចូលក្នុងរថយន្ត ដើម្បីចាប់ផ្ដើមបើកបរថយក្រោយ តើអ្នកត្រូវធ្វើអ្វីខ្លះ ?
+ចម្លើយគឺ ត្រូវមើលទៅខាងក្រោយឲ្យបានច្បាស់សិន រួចឲ្យសញ្ញា និងបើកយឺតៗថយក្រោយ
+Before getting into the vehicle in order to drive backward, what shall drivers do?
+The answer is Look to the back of the vehicle clearly, give signals, and drive backward slowly
+----------------------------------------------------------------------
+
+DRV-Q050
+Sub-group: Defensive Driving
+នៅពេលបត់ឆ្វេង ឬ ស្ដាំ តើអ្នកបើកបរត្រូវឲ្យសញ្ញាបត់ចំងាយយ៉ាងតិចប៉ុន្មានម៉ែត្រពីផ្លូវបត់ ?
+ចម្លើយគឺ យ៉ាងតិច ២០ ម៉ែត្រ
+Turning left or right, how far at least do you give a turn sign from the turning road?
+The answer is At least 20m
+----------------------------------------------------------------------

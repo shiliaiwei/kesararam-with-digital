@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Q&A Database Report — Kesararam</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --gray-50: #fafafa;
+            --gray-100: #f4f4f5;
+            --gray-200: #e4e4e7;
+            --gray-400: #a1a1aa;
+            --gray-600: #52525b;
+            --gray-800: #27272a;
+            --accent: #18181b;
+            --green: #16a34a;
+            --green-light: #f0fdf4;
+            --orange: #ea580c;
+            --orange-light: #fff7ed;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gray-100);
+            color: var(--black);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .page {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+    </style>
+
+    <style>
+        /* ── Header ── */
+        .header {
+            background: var(--black);
+            color: var(--white);
+            padding: 48px 48px 40px;
+            margin-bottom: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 240px;
+            height: 240px;
+            border: 40px solid rgba(255, 255, 255, 0.04);
+            border-radius: 50%;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            right: 80px;
+            width: 160px;
+            height: 160px;
+            border: 30px solid rgba(255, 255, 255, 0.03);
+            border-radius: 50%;
+        }
+
+        .header-tag {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gray-400);
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
+        }
+
+        .header-meta {
+            font-size: 13px;
+            color: var(--gray-400);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .header-meta span {
+            margin-right: 24px;
+        }
+
+        /* ── KPI Cards ── */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .kpi {
+            background: var(--white);
+            border: 1.5px solid var(--gray-200);
+            padding: 28px 24px;
+            position: relative;
+        }
+
+        .kpi-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray-400);
+            margin-bottom: 12px;
+        }
+
+        .kpi-value {
+            font-size: 38px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1;
+            color: var(--black);
+        }
+
+        .kpi-sub {
+            font-size: 12px;
+            color: var(--gray-400);
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        .kpi-accent {
+            border-top: 3px solid var(--black);
+        }
+
+        .kpi-green {
+            border-top: 3px solid var(--green);
+        }
+
+        .kpi-orange {
+            border-top: 3px solid var(--orange);
+        }
+    </style>
+
+    <style>
+        /* ── Progress Bar ── */
+        .progress-section {
+            background: var(--white);
+            border: 1.5px solid var(--gray-200);
+            padding: 32px 36px;
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gray-400);
+            margin-bottom: 24px;
+        }
+
+        .progress-bar-wrap {
+            margin-bottom: 8px;
+        }
+
+        .progress-bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar-track {
+            height: 8px;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--black);
+            transition: width 1s ease;
+        }
+
+        .progress-bar-fill.green {
+            background: var(--green);
+        }
+
+        /* ── Category Table ── */
+        .table-section {
+            background: var(--white);
+            border: 1.5px solid var(--gray-200);
+            margin-bottom: 32px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            background: var(--black);
+            color: var(--white);
+            padding: 20px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .table-header h2 {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .table-header span {
+            font-size: 12px;
+            color: var(--gray-400);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead tr {
+            background: var(--gray-50);
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        thead th {
+            padding: 14px 20px;
+            text-align: left;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray-600);
+        }
+
+        thead th.right {
+            text-align: right;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--gray-100);
+            transition: background 0.15s;
+        }
+
+        tbody tr:hover {
+            background: var(--gray-50);
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        td {
+            padding: 18px 20px;
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        td.right {
+            text-align: right;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+        }
+
+        td.bold {
+            font-weight: 700;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .badge-done {
+            background: var(--green-light);
+            color: var(--green);
+            border: 1px solid #bbf7d0;
+        }
+
+        .badge-pending {
+            background: var(--orange-light);
+            color: var(--orange);
+            border: 1px solid #fed7aa;
+        }
+
+        .num-big {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--black);
+        }
+
+        .num-zero {
+            color: var(--gray-400);
+        }
+
+        .cat-num {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: var(--black);
+            color: var(--white);
+            font-size: 10px;
+            font-weight: 900;
+            text-align: center;
+            line-height: 24px;
+            margin-right: 8px;
+        }
+
+        .slug-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--gray-400);
+            display: block;
+            margin-top: 3px;
+        }
+
+        tfoot tr {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        tfoot td {
+            padding: 16px 20px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        tfoot td.right {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 900;
+        }
+    </style>
+
+    <style>
+        /* ── Detail Cards ── */
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .detail-card {
+            background: var(--white);
+            border: 1.5px solid var(--gray-200);
+            overflow: hidden;
+        }
+
+        .detail-card-head {
+            background: var(--black);
+            color: var(--white);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .detail-card-head h3 {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-card-head .done-badge {
+            background: var(--green);
+            color: var(--white);
+            font-size: 9px;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            padding: 3px 8px;
+            text-transform: uppercase;
+        }
+
+        .detail-card-body {
+            padding: 20px 24px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--gray-100);
+            font-size: 13px;
+        }
+
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+
+        .stat-row .label {
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+
+        .stat-row .value {
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+        }
+
+        .q-types {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+
+        .q-type-tag {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 4px 8px;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            color: var(--gray-800);
+            text-transform: uppercase;
+        }
+
+        /* ── Pending Section ── */
+        .pending-section {
+            background: var(--white);
+            border: 1.5px solid var(--gray-200);
+            margin-bottom: 32px;
+            overflow: hidden;
+        }
+
+        .pending-head {
+            background: var(--gray-800);
+            color: var(--white);
+            padding: 20px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .pending-head h2 {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .pending-row {
+            display: flex;
+            align-items: center;
+            padding: 18px 32px;
+            border-bottom: 1px solid var(--gray-100);
+            gap: 20px;
+        }
+
+        .pending-row:last-child {
+            border-bottom: none;
+        }
+
+        .pending-num {
+            width: 32px;
+            height: 32px;
+            background: var(--gray-100);
+            border: 1.5px solid var(--gray-200);
+            font-size: 12px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .pending-name {
+            font-size: 14px;
+            font-weight: 700;
+            flex: 1;
+        }
+
+        .pending-slug {
+            font-size: 11px;
+            color: var(--gray-400);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .pending-est {
+            text-align: right;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--orange);
+        }
+
+        .pending-est small {
+            display: block;
+            font-size: 10px;
+            color: var(--gray-400);
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        /* ── Footer ── */
+        .footer {
+            background: var(--black);
+            color: var(--gray-400);
+            padding: 28px 36px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .footer strong {
+            color: var(--white);
+        }
+
+        .footer-right {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="page">
+
+        <!-- ── HEADER ── -->
+        <div class="header">
+            <div class="header-tag">Kesararam With Digital · Internal Report</div>
+            <h1>Q&amp;A Database<br>Insert Report</h1>
+            <div class="header-meta">
+                <span>Generated: 2026-05-22</span>
+                <span>DB: Neon PostgreSQL</span>
+                <span>ep-rapid-glitter-am81r7j8</span>
+            </div>
+        </div>
+
+        <!-- ── KPI CARDS ── -->
+        <div class="kpi-grid">
+            <div class="kpi kpi-accent">
+                <div class="kpi-label">Total Topics</div>
+                <div class="kpi-value">638</div>
+                <div class="kpi-sub">Published in DB</div>
+            </div>
+            <div class="kpi kpi-green">
+                <div class="kpi-label">Topics Covered</div>
+                <div class="kpi-value">317</div>
+                <div class="kpi-sub">49.7% complete</div>
+            </div>
+            <div class="kpi kpi-accent">
+                <div class="kpi-label">Total Questions</div>
+                <div class="kpi-value">2,328</div>
+                <div class="kpi-sub">Live in database</div>
+            </div>
+            <div class="kpi kpi-accent">
+                <div class="kpi-label">Total Answers</div>
+                <div class="kpi-value">8,078</div>
+                <div class="kpi-sub">Across all questions</div>
+            </div>
+        </div>
+
+        <!-- ── OVERALL PROGRESS ── -->
+        <div class="progress-section">
+            <div class="section-title">Overall Progress</div>
+            <div class="progress-bar-wrap">
+                <div class="progress-bar-label">
+                    <span>Topics with Questions</span>
+                    <span>317 / 638 — 49.7%</span>
+                </div>
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill" style="width:49.7%"></div>
+                </div>
+            </div>
+            <div style="margin-top:20px" class="progress-bar-wrap">
+                <div class="progress-bar-label">
+                    <span>Traffic Signs</span>
+                    <span>247 / 247 — 100%</span>
+                </div>
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill green" style="width:100%"></div>
+                </div>
+            </div>
+            <div style="margin-top:12px" class="progress-bar-wrap">
+                <div class="progress-bar-label">
+                    <span>Right of Way (Priority)</span>
+                    <span>70 / 70 — 100%</span>
+                </div>
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill green" style="width:100%"></div>
+                </div>
+            </div>
+            <div style="margin-top:12px" class="progress-bar-wrap">
+                <div class="progress-bar-label">
+                    <span>Remaining 6 Categories</span>
+                    <span>0 / 321 — 0%</span>
+                </div>
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill" style="width:0%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── CATEGORY TABLE ── -->
+        <div class="table-section">
+            <div class="table-header">
+                <h2>All Categories Breakdown</h2>
+                <span>8 categories · 638 topics</span>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Category</th>
+                        <th class="right">Topics</th>
+                        <th class="right">Covered</th>
+                        <th class="right">Missing</th>
+                        <th class="right">Questions</th>
+                        <th class="right">Answers</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="cat-num">1</span></td>
+                        <td class="bold">Traffic Signs<span class="slug-tag">road-sign</span></td>
+                        <td class="right num-big">247</td>
+                        <td class="right num-big" style="color:var(--green)">247</td>
+                        <td class="right num-zero">0</td>
+                        <td class="right num-big">6,678</td>
+                        <td class="right num-big">6,678</td>
+                        <td><span class="badge badge-done">✓ Complete</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="cat-num">2</span></td>
+                        <td class="bold">Road Traffic Law<span class="slug-tag">road-traffic</span></td>
+                        <td class="right num-big">192</td>
+                        <td class="right num-zero">0</td>
+                        <td class="right" style="color:var(--orange);font-weight:800">192</td>
+                        <td class="right num-zero">—</td>
+                        <td class="right num-zero">—</td>
+                        <td><span class="badge badge-pending">⏳ Pending</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="cat-num">3</span></td>
+                        <td class="bold">Right of Way<span class="slug-tag">priority</span></td>
+                        <td class="right num-big">70</td>
+                        <td class="right num-big" style="color:var(--green)">70</td>
+                        <td class="right num-zero">0</td>
+                        <td class="right num-big">1,400</td>
+                        <td class="right num-big">1,400</td>
+                        <td><span class="badge badge-done">✓ Complete</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="cat-num">4</span></td>
+                        <td class="bold">Driving Skills<span class="slug-tag">driving</span></td>
+                        <td class="right num-big">50</td>
+                        <td class="right num-zero">0</td>
+                        <td class="right" style="color:var(--orange);font-weight:800">50</td>
+                        <td class="right num-zero">—</td>
+                        <td class="right num-zero">—</td>
+                        <td><span class="badge badge-pending">⏳ Pending</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="cat-num">5</span></td>
+                        <td class="bold">Vehicle Technology<span class="slug-tag">technical</span></td>
+                        <td class="right num-big">38</td>
+                        <td class="right num-zero">0</td>
+                        <td class="right" style="color:var(--orange);font-weight:800">38</td>
+                        <td class="right num-zero">—</td>
+                        <td class="right num-zero">—</td>
+                        <td><span class="badge badge-pending">⏳ Pending</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="cat-num">6</span></td>
+                        <td class="bold">Loading People &amp; Goods<span class="slug-tag">loading-people-goods</span>
+                        </td>
+                        <td class="right num-big">14</td>
+                        <td class="right num-zero">0</td>
+                        <td class="right" style="color:var(--orange);font-weight:800">14</td>
+                        <td class="right num-zero">—</td>
+                        <td class="right num-zero">—</td>
+                        <td><span class="badge badge-pending">⏳ Pending</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="cat-num">7</span></td>
+                        <td class="bold">General Knowledge<span class="slug-tag">general-knowledge</span></td>
+                        <td class="right num-big">12</td>
+                        <td class="right num-zero">0</td>
+                        <td class="right" style="color:var(--orange);font-weight:800">12</td>
+                        <td class="right num-zero">—</td>
+                        <td class="right num-zero">—</td>
+                        <td><span class="badge badge-pending">⏳ Pending</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="cat-num">8</span></td>
+                        <td class="bold">Emergency<span class="slug-tag">emergency</span></td>
+                        <td class="right num-big">15</td>
+                        <td class="right num-zero">0</td>
+                        <td class="right" style="color:var(--orange);font-weight:800">15</td>
+                        <td class="right num-zero">—</td>
+                        <td class="right num-zero">—</td>
+                        <td><span class="badge badge-pending">⏳ Pending</span></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2">TOTAL</td>
+                        <td class="right">638</td>
+                        <td class="right">317</td>
+                        <td class="right">321</td>
+                        <td class="right">2,328</td>
+                        <td class="right">8,078</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <!-- ── COMPLETED DETAIL CARDS ── -->
+        <div class="detail-grid">
+            <div class="detail-card">
+                <div class="detail-card-head">
+                    <h3>CAT 01 — Traffic Signs</h3>
+                    <span class="done-badge">✓ Done</span>
+                </div>
+                <div class="detail-card-body">
+                    <div class="stat-row"><span class="label">Topics</span><span class="value">247 / 247</span></div>
+                    <div class="stat-row"><span class="label">Questions per Topic</span><span class="value">6</span>
+                    </div>
+                    <div class="stat-row"><span class="label">Total Questions</span><span class="value">6,678</span>
+                    </div>
+                    <div class="stat-row"><span class="label">Total Answers</span><span class="value">6,678</span></div>
+                    <div class="stat-row"><span class="label">Languages</span><span class="value">EN + KM</span></div>
+                    <div class="stat-row"><span class="label">Errors</span><span class="value"
+                            style="color:var(--green)">0</span></div>
+                    <div class="stat-row"><span class="label">Inserted</span><span class="value">2026-05-21</span></div>
+                    <div class="q-types">
+                        <span class="q-type-tag">MCQ Single</span>
+                        <span class="q-type-tag">MCQ Multi</span>
+                        <span class="q-type-tag">True/False</span>
+                        <span class="q-type-tag">Image Based</span>
+                        <span class="q-type-tag">Matching</span>
+                        <span class="q-type-tag">Fill Blank</span>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-card-head">
+                    <h3>CAT 03 — Right of Way</h3>
+                    <span class="done-badge">✓ Done</span>
+                </div>
+                <div class="detail-card-body">
+                    <div class="stat-row"><span class="label">Topics</span><span class="value">70 / 70</span></div>
+                    <div class="stat-row"><span class="label">Questions per Topic</span><span class="value">6</span>
+                    </div>
+                    <div class="stat-row"><span class="label">Total Questions</span><span class="value">1,400</span>
+                    </div>
+                    <div class="stat-row"><span class="label">Total Answers</span><span class="value">1,400</span></div>
+                    <div class="stat-row"><span class="label">Languages</span><span class="value">EN + KM</span></div>
+                    <div class="stat-row"><span class="label">Errors</span><span class="value"
+                            style="color:var(--green)">0</span></div>
+                    <div class="stat-row"><span class="label">Inserted</span><span class="value">2026-05-22</span></div>
+                    <div class="q-types">
+                        <span class="q-type-tag">MCQ Single</span>
+                        <span class="q-type-tag">MCQ Multi</span>
+                        <span class="q-type-tag">True/False</span>
+                        <span class="q-type-tag">Image Based</span>
+                        <span class="q-type-tag">Matching</span>
+                        <span class="q-type-tag">Fill Blank</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── PENDING SECTION ── -->
+        <div class="pending-section">
+            <div class="pending-head">
+                <h2>Pending Categories</h2>
+                <span style="font-size:12px;color:var(--gray-400);font-family:'JetBrains Mono',monospace">321 topics ·
+                    ~1,926 questions remaining</span>
+            </div>
+            <div class="pending-row">
+                <div class="pending-num">2</div>
+                <div>
+                    <div class="pending-name">Road Traffic Law</div>
+                    <div class="pending-slug">road-traffic</div>
+                </div>
+                <div class="pending-est">192 topics<small>~1,152 questions</small></div>
+            </div>
+            <div class="pending-row">
+                <div class="pending-num">4</div>
+                <div>
+                    <div class="pending-name">Driving Skills</div>
+                    <div class="pending-slug">driving</div>
+                </div>
+                <div class="pending-est">50 topics<small>~300 questions</small></div>
+            </div>
+            <div class="pending-row">
+                <div class="pending-num">5</div>
+                <div>
+                    <div class="pending-name">Vehicle Technology</div>
+                    <div class="pending-slug">technical</div>
+                </div>
+                <div class="pending-est">38 topics<small>~228 questions</small></div>
+            </div>
+            <div class="pending-row">
+                <div class="pending-num">6</div>
+                <div>
+                    <div class="pending-name">Loading People &amp; Goods</div>
+                    <div class="pending-slug">loading-people-goods</div>
+                </div>
+                <div class="pending-est">14 topics<small>~84 questions</small></div>
+            </div>
+            <div class="pending-row">
+                <div class="pending-num">7</div>
+                <div>
+                    <div class="pending-name">General Knowledge</div>
+                    <div class="pending-slug">general-knowledge</div>
+                </div>
+                <div class="pending-est">12 topics<small>~72 questions</small></div>
+            </div>
+            <div class="pending-row">
+                <div class="pending-num">8</div>
+                <div>
+                    <div class="pending-name">Emergency</div>
+                    <div class="pending-slug">emergency</div>
+                </div>
+                <div class="pending-est">15 topics<small>~90 questions</small></div>
+            </div>
+        </div>
+
+        <!-- ── FOOTER ── -->
+        <div class="footer">
+            <div><strong>Kesararam With Digital</strong> · Cambodia Driving Licence Quiz Platform</div>
+            <div class="footer-right">kesararamwithdigital.tech · 2026-05-22</div>
+        </div>
+
+    </div>
+</body>
+
+</html>

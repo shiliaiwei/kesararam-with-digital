@@ -1,0 +1,41 @@
+{
+  "nav": {
+    "home": "Home",
+    "learn": "Learn",
+    "play": "Play",
+    "leaderboard": "Leaderboard",
+    "suarAi": "Suar AI",
+    "about": "About",
+    "login": "Log In",
+    "logout": "Log Out",
+    "profile": "My Profile"
+  },
+  "hero": {
+    "badge": "Cambodia Driving Theory Platform",
+    "headline": "Master Every Road Sign. Pass Your Exam.",
+    "headlineKh": "យល់ចំហ្លុងគ្រប់标志ហើយប្រឡងជោគជ័យ",
+    "description": "Study traffic signs, road laws, and driving theory with interactive quizzes, flashcards, and live challenge sessions — in Khmer and English.",
+    "ctaPrimary": "Start Learning",
+    "ctaSecondary": "View All Categories"
+  },
+  "categories": {
+    "title": "Knowledge Categories",
+    "subtitle": "Eight subject areas covering everything you need for the Cambodia driving theory exam.",
+    "roadSign": "Traffic Signs",
+    "roadSignDesc": "Identify and understand all official road signs used in Cambodia.",
+    "roadTraffic": "Road Traffic Law",
+    "roadTrafficDesc": "Study the legal framework governing road use and user responsibilities.",
+    "priority": "Right of Way",
+    "priorityDesc": "Understand priority rules and how to handle intersections correctly.",
+    "driving": "Driving Skills",
+    "drivingDesc": "Learn proper driving techniques and best practices for road safety.",
+    "technical": "Vehicle Technology",
+    "technicalDesc": "Understand how vehicles work, safety systems, and maintenance basics.",
+    "loadingPeopleGoods": "Loading People & Goods",
+    "loadingPeopleGoodsDesc": "Rules for safe transport of passengers and cargo within legal limits.",
+    "generalKnowledge": "General Knowledge",
+    "generalKnowledgeDesc": "Essential road safety topics and broad driving knowledge.",
+    "emergency": "Emergency",
+    "emergencyDesc": "Emergency procedures, contacts, and protocols for road incidents."
+  }
+}

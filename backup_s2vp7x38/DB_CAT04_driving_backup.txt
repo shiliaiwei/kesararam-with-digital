@@ -1,0 +1,1129 @@
+========================================================================
+  DATABASE BACKUP - DIRECT FETCH FROM NEON POSTGRESQL
+========================================================================
+  Generated    : 2026-05-16 16:50:51
+  Database     : Neon PostgreSQL (ep-rapid-glitter-am81r7j8)
+  Category ID  : 4
+  Category No  : 4
+  Slug         : driving
+  Title (EN)   : Driving Skills
+  Title (KM)   : ជំនាញបើកបរ
+  Topics Found : 50
+  Content Items: 0
+========================================================================
+
+========================================================================
+  SECTION A: TOPICS WITH QUESTIONS AND ANSWERS
+  (Source tables: topics, questions, answers)
+========================================================================
+
+------------------------------------------------------------------------
+TOPIC 001
+------------------------------------------------------------------------
+  CODE          : DRV-Q001
+  SUB-GROUP     : Basic Maneuvers
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  What is an accident to be known in driving?
+  NAME (KM) : តើអ្វីជាគ្រោះថ្នាក់ ដែលអ្នកត្រូវស្គាល់ក្នុងការបើកបរ ?
+
+  DESCRIPTION (EN):
+    The answer is Road and road users.
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ផ្លូវ និង អ្នកប្រើប្រាស់ផ្លូវ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066222/DRV-Q001_shp5yc.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 002
+------------------------------------------------------------------------
+  CODE          : DRV-Q002
+  SUB-GROUP     : Basic Maneuvers
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  Knowing a wheel is flat, what shall you do?
+  NAME (KM) : នៅពេលដឹងថាកង់បែក ឬ ធ្លាយ តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+
+  DESCRIPTION (EN):
+    The answer is Slow down, firmly hold the steering wheel or/and steer follow the lane.
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ត្រូវបន្ថយល្បឿន ទប់ចង្កូតឲ្យជាប់ ឬនឹង និងកាច់ចង្កូតឲ្យត្រង់តាមគន្លងផ្លូវ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066214/DRV-Q002_a3buq2.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 003
+------------------------------------------------------------------------
+  CODE          : DRV-Q003
+  SUB-GROUP     : Basic Maneuvers
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) : Motorcycle using clutch lever, how shall drivers do to change gear shift up or down?
+  NAME (KM) : ចម្លើយគឺ ត្រូវចាប់អាំព្រីយ៉ា
+
+  DESCRIPTION (EN):
+    The answer is Press the clutch
+
+  DESCRIPTION (KM):
+    ប្រើអាំព្រីយ៉ា តើការដាក់ លេខឡើង និងការដាក់ លេខចុះ អ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066207/DRV-Q003_gbpebv.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 004
+------------------------------------------------------------------------
+  CODE          : DRV-Q004
+  SUB-GROUP     : Basic Maneuvers
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  Driving at the speed of 30km/h on the flat, dry road, your motorcycle has good condition of brakes and tires, how far is a braking distance?
+  NAME (KM) : ការប្រើល្បឿន៣០គីឡូម៉ែត្រក្នុងមួយម៉ោងនៅលើផ្លូវស្ងួតរាបស្មើ របស់អ្នកមានសំបកកង់ល្អ និងមានហ្វ្រាំងល្អ តើចម្ងាយចាប់ហ្វ្រាំងប្រហែលប៉ុន្មាន ?
+
+  DESCRIPTION (EN):
+    The answer is About 10m
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ប្រហែល ១០ ម៉ែត្រ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066222/DRV-Q004_cqbhnh.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 005
+------------------------------------------------------------------------
+  CODE          : DRV-Q005
+  SUB-GROUP     : Basic Maneuvers
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) : Inside a built-up area, you drive your motorcycle at 20km/h. How far at least do you leave distance limit for motorcycles?
+  NAME (KM) : នៅក្នុងទីប្រជុំជន អ្នកប្រើល្បឿន២០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?
+
+  DESCRIPTION (EN):
+    The answer is At least 6m
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ យ៉ាងតិច ៦ ម៉ែត្រ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066210/DRV-Q005_xivaep.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 006
+------------------------------------------------------------------------
+  CODE          : DRV-Q006
+  SUB-GROUP     : Basic Maneuvers
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :   Before driving your motorcycle into a bend road, what shall you do?
+  NAME (KM) : មុននឹងបើកបរចូលផ្លូវកោង តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+
+  DESCRIPTION (EN):
+    The answer is Slow down properly to a bend road status and drive very closed to the right side.
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ត្រូវបន្ថយល្បឿនឲ្យសមស្របនឹងសភាពផ្លូវកោង និងបើកមកកៀកខាងស្ដាំដៃបំផុត-
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066209/DRV-Q006_cdwb4n.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 007
+------------------------------------------------------------------------
+  CODE          : DRV-Q007
+  SUB-GROUP     : Basic Maneuvers
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :   What is the reason making the vehicles swerve off?
+  NAME (KM) : មូលហេតុអ្វីខ្លះដែលធ្វើឲ្យរថយន្តរអិលរេ ?
+
+  DESCRIPTION (EN):
+    The answer is Pun on the brake firmly, steer strongly, more speed up, or drive very fast.
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ជាន់ហ្វ្រាំងខ្លាំង កាច់ចង្កូតខ្លាំង បង្កើនល្បឿនខ្លាំង ឬបើកបរលឿនពេក
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066237/DRV-Q007_zdjelk.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 008
+------------------------------------------------------------------------
+  CODE          : DRV-Q008
+  SUB-GROUP     : Basic Maneuvers
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :   Is it necessary to use brake light?
+  NAME (KM) : តើការប្រើភ្លើងហ្វ្រាំង ជាការចាំបាច់ដែរឬទេ ?
+
+  DESCRIPTION (EN):
+    The answer is Yes, it is. It is necessary to inform drivers behind about the slowing down or stopping
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ជាការចាំបាច់ ដើម្បីឲ្យអ្នកបើកបរខាងក្រោយដឹងពីការបន្ថយល្បឿន ឬឈប់
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066205/DRV-Q008_mrjc30.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 009
+------------------------------------------------------------------------
+  CODE          : DRV-Q009
+  SUB-GROUP     : Basic Maneuvers
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) : When your vehicle is swerving off on a dry road, what shall you do?
+  NAME (KM) :  នៅពេលរថយន្តអ្នករអិលរេនៅលើផ្លូវស្ងួត តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+
+  DESCRIPTION (EN):
+    The answer is Slow down and no need to apply the brake.
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ បន្ថយល្បឿន និងមិនត្រូវជាន់ហ្វ្រាំងទេ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066208/DRV-Q009_b8qslk.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 010
+------------------------------------------------------------------------
+  CODE          : DRV-Q010
+  SUB-GROUP     : Basic Maneuvers
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :   What shall you do when the brake is broken?
+  NAME (KM) : នៅពេលហ្វ្រាំងខូច តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+
+  DESCRIPTION (EN):
+    The answer is Engage the gear down orderly, apply hand brake gentlely, and seek for parking area.
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ដាក់ លេខចុះតាមលំដាប់និងចាប់ហ្វ្រាំងដៃថ្នមៗរកកន្លែងចត
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066220/DRV-Q010_buc0hq.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 011
+------------------------------------------------------------------------
+  CODE          : DRV-Q011
+  SUB-GROUP     : Basic Maneuvers
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  At night, seeing a vehicle from the opposite traffic direction, at what distance from it shall you cast to coat light from headlight?
+  NAME (KM) : នៅពេលយប់ ក្នុងពេលជួបយានយន្តមកពីទិសផ្ទុយ តើអ្នកត្រូវទំលាក់ភ្លើងហ្វាមកកូតវិញ ក្នុងចំងាយប៉ុន្មាន ?
+
+  DESCRIPTION (EN):
+    The answer is About 160m
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ប្រហែល ១៦០ ម៉ែត្រ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066222/DRV-Q011_gvwjap.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 012
+------------------------------------------------------------------------
+  CODE          : DRV-Q012
+  SUB-GROUP     : Basic Maneuvers
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  Driving in heavy rain or in deep water, how shall you do to get the brake dried up quickly?
+  NAME (KM) :  នៅក្នុងការបើកបរកាត់ភ្លៀងខ្លាំង ឬ កាត់ទឹកជ្រៅ តើធ្វើដូចម្ដេច ដើម្បីឲ្យហ្វ្រាំងឆាប់ស្ងួត ?
+
+  DESCRIPTION (EN):
+    The answer is Apply the brake to dry the brakes up.
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ត្រូវជាន់ហ្វ្រាំងសំងួតវា
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066214/DRV-Q012_ljzxkk.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 013
+------------------------------------------------------------------------
+  CODE          : DRV-Q013
+  SUB-GROUP     : Basic Maneuvers
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  Driving in an extremely hot weather, what are the tires of vehicle?
+  NAME (KM) : ក្នុងការបើកបរនៅពេលអាកាសធាតុក្ដៅខ្លាំង តើកង់រថយន្តមានសភាពដូចម្ដេច ?
+
+  DESCRIPTION (EN):
+    The answer is The tires are tight.
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ កង់តឹង
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066205/DRV-Q013_eqzc3q.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 014
+------------------------------------------------------------------------
+  CODE          : DRV-Q014
+  SUB-GROUP     : Basic Maneuvers
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  Applying the brake while moving down a descent steep, one apply and release alternatively, another one apply firmly without releasing, which one make the brake hotter?
+  NAME (KM) : ក្នុងការជាន់ហ្វ្រាំងចុះទួលដូចគ្នា មួយជាន់ដក ៗ មួយទៀតជាន់ជាប់ តើមួយណាធ្វើឲ្យកំដៅហ្វ្រាំងកើនក្ដៅជាង ?
+
+  DESCRIPTION (EN):
+    The answer is Applying and releasing alternatively.
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ការជាន់ដក ៗ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066214/DRV-Q014_jomwau.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 015
+------------------------------------------------------------------------
+  CODE          : DRV-Q015
+  SUB-GROUP     : Basic Maneuvers
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  When driving into a bend road, what forces can make your vehicle turn over?
+  NAME (KM) : នៅពេលបើកចូលផ្លូវកោង តើកំលាំងអ្វីដែលអាចធ្វើឲ្យរថយន្តក្រឡាប់ ?
+
+  DESCRIPTION (EN):
+    The answer is Centrifugal force
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ កំលាំងចាកផ្ចិត
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066215/DRV-Q015_rhjszf.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 016
+------------------------------------------------------------------------
+  CODE          : DRV-Q016
+  SUB-GROUP     : Basic Maneuvers
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  Engaging the gear shift down then your motorcycle twitches and the back wheel is stuck, what does it cause?
+  NAME (KM) : ការដាក់ លេខចុះ ហើយរបស់អ្នកកន្ដ្រាក់ ហើយកង់ក្រោយអាចគាំង តើបណ្ដាលមកពីអ្វី ?
+
+  DESCRIPTION (EN):
+    The answer is Caused by the failure of slowing down suffiently
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ មកពីមិនបានបន្ថយល្បឿនឱ្យបានគ្រប់គ្រាន់
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066233/DRV-Q016_a0qn8g.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 017
+------------------------------------------------------------------------
+  CODE          : DRV-Q017
+  SUB-GROUP     : Basic Maneuvers
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) : Inside a built-up area, you drive your motorcycle at 30km/h. How far at least do you leave distance limit for motorcycles?
+  NAME (KM) : នៅក្នុងទីប្រជុំជន អ្នកប្រើល្បឿន៣០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?
+
+  DESCRIPTION (EN):
+    The answer is At least 9m
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ យ៉ាងតិច ៩ ម៉ែត្រ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066228/DRV-Q017_v3g1dk.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 018
+------------------------------------------------------------------------
+  CODE          : DRV-Q018
+  SUB-GROUP     : Advanced Techniques
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) : Driving a motorcycle, is it necessary to give serviced signs?
+  NAME (KM) :  តើការបើកបរ ត្រូវចាំបាច់ឱ្យសញ្ញាជាដំណឹង ដែរឬទេ ?
+
+  DESCRIPTION (EN):
+    The answer is Yes, it is. It is necessary to inform others to get to know your purposes
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ចាំបាច់ត្រូវឱ្យសញ្ញាជាដំណឹងដើម្បីឱ្យអ្នកបើកបរផ្សេងៗទៀតដឹងពីបំណងរបស់យើង
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066226/DRV-Q018_s2kdbq.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 019
+------------------------------------------------------------------------
+  CODE          : DRV-Q019
+  SUB-GROUP     : Advanced Techniques
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  To avoid slippery on a sandy or stony road, how shall drivers do?
+  NAME (KM) : ដើម្បីជៀសវាងការរអិលនៅលើផ្លូវដែលមានខ្សាច់ ឬថ្មតូចៗ តើអ្នកបើកបរត្រូវធ្វើដូចម្ដេច ?
+
+  DESCRIPTION (EN):
+    The answer is Slow down, hold the steer firmly, not to apply the brakes or engage the gear down or turn sharply
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ត្រូវបន្ថយល្បឿន ទប់ចង្កូតឱ្យត្រង់ មិនត្រូវចាប់ហ្វ្រាំង ឬដាក់ លេខចុះ ឬធ្វើការបត់ដោយសង្ខុញឡើយ-
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066225/DRV-Q019_oyohlz.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 020
+------------------------------------------------------------------------
+  CODE          : DRV-Q020
+  SUB-GROUP     : Advanced Techniques
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :   To slow down or stop effectively, what brake do you put on?
+  NAME (KM) : ដើម្បីបន្ថយល្បឿន ឬឈប់ឱ្យមានប្រសិទ្ធភាព តើអ្នកត្រូវប្រើហ្វ្រាំងអ្វី ?
+
+  DESCRIPTION (EN):
+    The answer is Put on the footbrake (back brake) and handbrake (front brake)
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ត្រូវប្រើហ្វ្រាំងជើង(ហ្វ្រាំងក្រោយ) និងហ្វ្រាំងដៃ(ហ្វ្រាំងមុខ)
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066205/DRV-Q020_bbkgzk.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 021
+------------------------------------------------------------------------
+  CODE          : DRV-Q021
+  SUB-GROUP     : Advanced Techniques
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :   Driving at the speed of 70km/h on the smooth road, your man-styled motorcycles (more than 125cc and up) have good condition in tires and brakes. What is the braking distance?
+  NAME (KM) : ការប្រើល្បឿន៧០គីឡូម៉ែត្រក្នុងមួយម៉ោងនៅលើផ្លូវរាបស្មើ ប្រភេទប្រុស (លើសពី១២៥ ឡើងទៅ) របស់អ្នកមាន សំបកកង់ល្អ និងមានហ្វ្រាំងល្អ តើចម្ងាយចាប់ហ្វ្រាំងប្រហែលប៉ុន្មាន ?
+
+  DESCRIPTION (EN):
+    The answer is About 50m
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ប្រហែល ៥០ ម៉ែត្រ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066220/DRV-Q021_jmepig.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 022
+------------------------------------------------------------------------
+  CODE          : DRV-Q022
+  SUB-GROUP     : Advanced Techniques
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :   Driving on a small stony road or sandy area, can it make your motorcycle slippery?
+  NAME (KM) : ការបើកបរនៅលើផ្ទៃផ្លូវដែលមានថ្មតូចៗ ឬកន្លែងដែលមានខ្សាច់ តើអាចធ្វើឱ្យកង់អ្នករអិល ដែរឬទេ ?
+
+  DESCRIPTION (EN):
+    The answer is Yes, it can when you speed up and steer firmly
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ អាចធ្វើឱ្យកង់រអិលនៅពេលបង្កើនល្បឿន ឬកាច់ចង្កូតខ្លាំង
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066212/DRV-Q022_naho7a.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 023
+------------------------------------------------------------------------
+  CODE          : DRV-Q023
+  SUB-GROUP     : Advanced Techniques
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :   Outside a built-up area, you are driving at the speed of 40km/h. How far, in meter, do you leave a distance limit?
+  NAME (KM) : នៅក្រៅទីប្រជុំជន អ្នកបើកបរល្បឿន៤០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវថែរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ?
+
+  DESCRIPTION (EN):
+    The answer is At least 24m
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ យ៉ាងតិច២៤ម៉ែត្រ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066207/DRV-Q023_a1qyuf.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 024
+------------------------------------------------------------------------
+  CODE          : DRV-Q024
+  SUB-GROUP     : Advanced Techniques
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) : Outside a built-up area, you are driving at the speed of 60km/h. How far, in meter, do you leave a distance limit?
+  NAME (KM) : នៅក្រៅទីប្រជុំជន អ្នកបើកបរល្បឿន៦០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវថែរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ?
+
+  DESCRIPTION (EN):
+    The answer is At least 36m
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ យ៉ាងតិច៣៦ម៉ែត្រ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066208/DRV-Q024_wicekv.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 025
+------------------------------------------------------------------------
+  CODE          : DRV-Q025
+  SUB-GROUP     : Advanced Techniques
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) : Driving at the speed of 50km/h on a smooth, your motorcycle has brakes and tires in good condition, what is a stopping distance, probably?
+  NAME (KM) : ការប្រើល្បឿន៥០គីឡូម៉ែត្រក្នុងមួយម៉ោងនៅលើផ្លូវរាបស្មើ របស់អ្នកមានសំបកកង់ល្អ និងមានហ្វ្រាំងល្អ តើចម្ងាយ ឈប់ប្រហែលប៉ុន្មាន ?
+
+  DESCRIPTION (EN):
+    The answer is About 25m
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ប្រហែល ២៥ ម៉ែត្រ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066226/DRV-Q025_f73z7p.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 026
+------------------------------------------------------------------------
+  CODE          : DRV-Q026
+  SUB-GROUP     : Advanced Techniques
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) : Outside a built-up area, you are driving at the speed of 50km/h. How far at least, in meter, do you leave a distance limit?
+  NAME (KM) : នៅក្រៅទីប្រជុំជន អ្នកប្រើល្បឿន៥០គីឡូម៉ែត្រក្នុងមួយម៉ោង តើអ្នកត្រូវរក្សាទុកចន្លោះសុវត្ថិភាពយ៉ាងតិចប៉ុន្មានម៉ែត្រ ?
+
+  DESCRIPTION (EN):
+    The answer is At least 30m
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ យ៉ាងតិច ៣០ ម៉ែត្រ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066207/DRV-Q026_zaom01.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 027
+------------------------------------------------------------------------
+  CODE          : DRV-Q027
+  SUB-GROUP     : Advanced Techniques
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) : Driving a motorcycle, how do you look to the front?
+  NAME (KM) : តើការបើកបរ ត្រូវមើលទៅមុខយ៉ាងដូចម្ដេច ?
+
+  DESCRIPTION (EN):
+    The answer is Look ahead in far distance to know the situation of bending road, ascent, descent, and look at the light signs of drivers in the front.
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ មើលទៅមុខឲ្យបានឆ្ងាយដើម្បីដឹងពីស្ថានភាពផ្លូវកោងឡើងចុះទួលនិងមើលភ្លើងសញ្ញារបស់យានខាងមុខ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066213/DRV-Q027_ivzqln.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 028
+------------------------------------------------------------------------
+  CODE          : DRV-Q028
+  SUB-GROUP     : Advanced Techniques
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :   Driving a motorcycle, the back wheel is slippery due to applying the brake, how shall you do?
+  NAME (KM) : ពេលបើកបរ ហើយកង់ក្រោយរអិលរេដោយសារការចាប់ហ្វ្រាំង តើអ្នកត្រូវធ្វើដូចម្ដេច ?
+
+  DESCRIPTION (EN):
+    The answer is Turn to the slippery direction
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ត្រូវកាច់ដៃចង្កូតទៅរកទិសដែលរអិលរេនោះ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066211/DRV-Q028_y5menm.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 029
+------------------------------------------------------------------------
+  CODE          : DRV-Q029
+  SUB-GROUP     : Advanced Techniques
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :   Driving a motorcycle and the steer shakes, what does it cause?
+  NAME (KM) : ពេលបើកបរ ហើយចង្កូតញាក់ តើបណ្ដាលមកពីអ្វី?
+
+  DESCRIPTION (EN):
+    The answer is Buckled wheels, loose radius, loose ball bearing, flat, or loaded too heavy at the back and steering ball bearing is improperly.
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ កង់បោរ ឬកាំរលុង បាដាងកង់រលុង កង់ធូរ ឬក៏ផ្ទុកខាងក្រោយធ្ងន់ពេក និងបាដាងចង្កូតមិនប្រក្រតី
+
+  IMAGE URL : (none)
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 030
+------------------------------------------------------------------------
+  CODE          : DRV-Q030
+  SUB-GROUP     : Advanced Techniques
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :   What distances do you take into calculating the stopping distance of vehicle?
+  NAME (KM) : តើចំងាយអ្វីខ្លះ ដែលអ្នកយកមកគណនាចំងាយឈប់របស់រថយន្ត ?
+
+  DESCRIPTION (EN):
+    The answer is Reaction distance and braking distance.
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ចំងាយប្រតិកម្ម និងចំងាយចាប់ហ្វ្រាំង
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066206/DRV-Q030_ofl16s.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 031
+------------------------------------------------------------------------
+  CODE          : DRV-Q031
+  SUB-GROUP     : Advanced Techniques
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :   To adjust the gear up and down with ease, how many times shall you disconnect clutch?
+  NAME (KM) : ដើម្បីសំរួលការដាក់ លេខឡើង ឬចុះតើត្រូវផ្ដាច់អំព្រីយ៉ាប៉ុន្មានដង ?
+
+  DESCRIPTION (EN):
+    The answer is two times
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ២ដង
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066222/DRV-Q031_xaltk9.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 032
+------------------------------------------------------------------------
+  CODE          : DRV-Q032
+  SUB-GROUP     : Advanced Techniques
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :   What are the main reasons that make the brake get hotter quickly when braking?
+  NAME (KM) : តើមូលហេតុសំខាន់ៗអ្វីខ្លះ ដែលធ្វើឲ្យហ្វ្រាំងឆាប់កើនកំដៅនៅពេលជាន់ហ្វ្រាំង ?
+
+  DESCRIPTION (EN):
+    The answer is Over load and drive extremly fast.
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ផ្ទុកទំនិញហួសកំរិតកំណត់ និងបើកបរក្នុងល្បឿនលឿន
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066209/DRV-Q032_a3nbff.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 033
+------------------------------------------------------------------------
+  CODE          : DRV-Q033
+  SUB-GROUP     : Advanced Techniques
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) : If the speed and weight increase twice together, how many times does the stopping distance increase, accordingly?
+  NAME (KM) : បើទម្ងន់ និងល្បឿនកើនពីរដងរួមគ្នា តើចម្ងាយឈប់កើនឡើងប៉ុន្មានដង ?
+
+  DESCRIPTION (EN):
+    The answer is 8 times
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ៨ដង
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066220/DRV-Q033_hfnogt.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 034
+------------------------------------------------------------------------
+  CODE          : DRV-Q034
+  SUB-GROUP     : Advanced Techniques
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  To look ahead for long distance enough, how many seconds shall you need to look to it?
+  NAME (KM) : ដើម្បីមើលទៅមុខឲ្យបានឆ្ងាយគ្រប់គ្រាន់ តើអ្នកត្រូវការមើលក្នុងចម្ងាយប៉ុន្មានវិនាទី ?
+
+  DESCRIPTION (EN):
+    The answer is 12 to 15 seconds
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ១២ ទៅ ១៥វិនាទី
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066214/DRV-Q034_aztedt.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 035
+------------------------------------------------------------------------
+  CODE          : DRV-Q035
+  SUB-GROUP     : Defensive Driving
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  What distance limit for large-sized trucks, with more than 3.5T or more than 7m in length driving in queue one after another and at the same speed, shall drivers leave?
+  NAME (KM) : តើអ្នកបើកបររថយន្តធុនធ្ងន់លើសពី ៣,៥តោន ឬប្រវែងបណ្ដោយលើសពី ៧ម៉ែត្រ បើកបរបន្តកន្ទុយគ្នា ក្នុងល្បឿនដូចគ្នា ត្រូវទុកចន្លោះសុវត្ថិភាពប៉ុន្មានម៉ែត្រ?
+
+  DESCRIPTION (EN):
+    The answer is At least 50m
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ យ៉ាងតិច ៥០ម៉ែត្រ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066220/DRV-Q035_uzoi63.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 036
+------------------------------------------------------------------------
+  CODE          : DRV-Q036
+  SUB-GROUP     : Defensive Driving
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  What is the brake’s temperature taken as warning?
+  NAME (KM) : តើកំដៅនៅតំបួរហ្វ្រាំងកើនឡើងប៉ុន្មានអង្សា ទើបការជាន់ហ្វ្រាំងគ្មានប្រសិទ្ធិភាព ?
+
+  DESCRIPTION (EN):
+    The answer is 400 celsius
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ៤០០អង្សា
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066229/DRV-Q036_gjkwmx.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 037
+------------------------------------------------------------------------
+  CODE          : DRV-Q037
+  SUB-GROUP     : Defensive Driving
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :   If the weight increases twice, how many times does the stopping distance increase?
+  NAME (KM) : បើទម្ងន់កើនឡើងពីរដង តើចម្ងាយឈប់កើនឡើងប៉ុន្មានដង ?
+
+  DESCRIPTION (EN):
+    The answer is Two times
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ២​ដង
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066236/DRV-Q037_poctts.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 038
+------------------------------------------------------------------------
+  CODE          : DRV-Q038
+  SUB-GROUP     : Defensive Driving
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :   If the speed increases twice, how many times does the stopping distance increase?
+  NAME (KM) : បើល្បឿនកើនពីរដង តើចម្ងាយឈប់កើនឡើងប៉ុន្មានដង ?
+
+  DESCRIPTION (EN):
+    The answer is Four times
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ៤ ដង
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066215/DRV-Q038_pbeoio.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 039
+------------------------------------------------------------------------
+  CODE          : DRV-Q039
+  SUB-GROUP     : Defensive Driving
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :   Driving on the wet road, how many percentages do drivers decrease​ speed compared to dry road?
+  NAME (KM) : ក្នុងការបើកបរនៅលើផ្លូវសើម តើអ្នកបើកបរត្រូវបន្ថយល្បឿនប៉ុន្មានភាគរយលើផ្លូវស្ងួត ?
+
+  DESCRIPTION (EN):
+    The answer is 1/3 on the dry road
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ១/៣ លើផ្លូវ ស្ងួត
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066229/DRV-Q039_mmj9w4.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 040
+------------------------------------------------------------------------
+  CODE          : DRV-Q040
+  SUB-GROUP     : Defensive Driving
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) : What are reasons that make the wheels swerve off when driving on the dry road?
+  NAME (KM) : តើមូលហេតុអ្វីខ្លះដែលធ្វើឲ្យកង់រអិលរេនៅពេលបើកបរលើផ្លូវស្ងួត ?
+
+  DESCRIPTION (EN):
+    The answer is Speed up, drive very fast, apply the brake firmly, and steer firmly.
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ បង្កើនល្បឿន-បើកបរលឿន-ចាប់ហ្វ្រាំងខ្លាំង-កាច់ចង្កូតខ្លាំង
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066230/DRV-Q040_curtdg.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 041
+------------------------------------------------------------------------
+  CODE          : DRV-Q041
+  SUB-GROUP     : Defensive Driving
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) : What are reasons that make the back wheels slippery?
+  NAME (KM) : តើមូលហេតុអ្វី ដែលធ្វើឱ្យកង់ក្រោយរអិល ?
+
+  DESCRIPTION (EN):
+    The answer is Speed up a lot
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ បង្កើនល្បឿនខ្លាំងពេក
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066238/DRV-Q041_ah0ry1.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 042
+------------------------------------------------------------------------
+  CODE          : DRV-Q042
+  SUB-GROUP     : Defensive Driving
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) : What are reasons that make front wheels slippery?
+  NAME (KM) : តើមូលហេតុអ្វី ដែលធ្វើឲ្យកង់មុខរអិល​រេ ?
+
+  DESCRIPTION (EN):
+    The answer is Drive too fast on a road is not flat
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ បើកបរលឿនពេកលើផ្លូវមិនរាបស្មើ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066225/DRV-Q042_og3dwq.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 043
+------------------------------------------------------------------------
+  CODE          : DRV-Q043
+  SUB-GROUP     : Defensive Driving
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  Driving outside built-up area, how far of distance limit do you leave?
+  NAME (KM) : ក្នុងការបើកបរនៅក្រៅទីប្រជុំជន តើអ្នកត្រូវទុកចន្លោះសុវត្ថិភាពប៉ុន្មានវិនាទី ?
+
+  DESCRIPTION (EN):
+    The answer is At least 2 minute
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ យ៉ាងតិច ២នាទី
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066225/DRV-Q043_ctkfm3.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 044
+------------------------------------------------------------------------
+  CODE          : DRV-Q044
+  SUB-GROUP     : Defensive Driving
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :   How many meters of a stopping distance for small-sized vehicles at the speed of 90km/h?
+  NAME (KM) : តើចំងាយឈប់របស់រថយន្តធុនតូចក្នុងល្បឿន ៩០គ.ម ក្នុងមួយម៉ោង មានប៉ុន្មានម៉ែត្រ ?
+
+  DESCRIPTION (EN):
+    The answer is About 81m
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ប្រហែល ៨១ម៉ែត្រ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066209/DRV-Q044_cdhba9.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 045
+------------------------------------------------------------------------
+  CODE          : DRV-Q045
+  SUB-GROUP     : Defensive Driving
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :   While driving, wow many minutes of the safety distance?
+  NAME (KM) : ក្នុងការបើកបរនៅក្រៅទីប្រជុំជន តើអ្នកត្រូវទុកចន្លោះសុវត្ថិភាពប៉ុន្មានវិនាទី ?
+
+  DESCRIPTION (EN):
+    The answer is At least 2 second
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ យ៉ាងតិច ២ វិនាទី
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066205/DRV-Q045_xssazd.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 046
+------------------------------------------------------------------------
+  CODE          : DRV-Q046
+  SUB-GROUP     : Defensive Driving
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :   On a wet road, how many times does braking distance increase?
+  NAME (KM) : នៅលើផ្លូវសើម តើចំងាយចាប់ហ្វ្រាំងកើនឡើងប៉ុន្មានដង ?
+
+  DESCRIPTION (EN):
+    The answer is 2 times
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ២ ដង
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066232/DRV-Q046_rtyxud.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 047
+------------------------------------------------------------------------
+  CODE          : DRV-Q047
+  SUB-GROUP     : Defensive Driving
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) : Before departure, how many seconds shall you give information sign?
+  NAME (KM) : មុនបើកបរចេញដំណើរ តើអ្នកត្រូវឱ្យសញ្ញាជាដំណឹងប៉ុន្មានវិនាទី ?
+
+  DESCRIPTION (EN):
+    The answer is At least 5 seconds.
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ យ៉ាងតិច ៥ វិនាទី
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066238/DRV-Q047_lrs70b.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 048
+------------------------------------------------------------------------
+  CODE          : DRV-Q048
+  SUB-GROUP     : Defensive Driving
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) : How long do healthy drivers need?
+  NAME (KM) : តើអ្នកបើកបរដែលមានសុខភាពធម្មតា ត្រូវការរយៈពេលធ្វើប្រតិកម្មប៉ុន្មានវិនាទី ?
+
+  DESCRIPTION (EN):
+    The answer is 1 minute
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ១ នាទី
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066208/DRV-Q048_kz4dbf.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 049
+------------------------------------------------------------------------
+  CODE          : DRV-Q049
+  SUB-GROUP     : Defensive Driving
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  Before getting into the vehicle in order to drive backward, what shall drivers do?
+  NAME (KM) : មុននិងចូលក្នុងរថយន្ត ដើម្បីចាប់ផ្ដើមបើកបរថយក្រោយ តើអ្នកត្រូវធ្វើអ្វីខ្លះ ?
+
+  DESCRIPTION (EN):
+    The answer is Look to the back of the vehicle clearly, give signals, and drive backward slowly
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ ត្រូវមើលទៅខាងក្រោយឲ្យបានច្បាស់សិន រួចឲ្យសញ្ញា និងបើកយឺតៗថយក្រោយ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066201/DRV-Q049_aga4pp.jpg
+
+  (No questions linked to this topic)
+
+
+------------------------------------------------------------------------
+TOPIC 050
+------------------------------------------------------------------------
+  CODE          : DRV-Q050
+  SUB-GROUP     : Defensive Driving
+  STATUS        : published
+  LAW REFERENCE : N/A
+
+  NAME (EN) :  Turning left or right, how far at least do you give a turn sign from the turning road?
+  NAME (KM) : នៅពេលបត់ឆ្វេង ឬ ស្ដាំ តើអ្នកបើកបរត្រូវឲ្យសញ្ញាបត់ចំងាយយ៉ាងតិចប៉ុន្មានម៉ែត្រពីផ្លូវបត់ ?
+
+  DESCRIPTION (EN):
+    The answer is At least 20m
+
+  DESCRIPTION (KM):
+    ចម្លើយគឺ យ៉ាងតិច ២០ ម៉ែត្រ
+
+  IMAGE URL : https://res.cloudinary.com/dpgivqzrl/image/upload/v1778066223/DRV-Q050_usfjzo.jpg
+
+  (No questions linked to this topic)
+
+
+========================================================================
+  SECTION B: CONTENT ITEMS
+  (Source table: content_items)
+========================================================================
+
+  (No records found in the 'content_items' table for this category)
+
+========================================================================
+  END OF BACKUP
+========================================================================
