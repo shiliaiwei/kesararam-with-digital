@@ -36,7 +36,7 @@ const adminNav: NavItem[] = [
   },
   { label: "Game Sessions", href: "/admin/game-sessions", icon: "sports_esports", color: "#a855f7" },
   { label: "Media", href: "/admin/media", icon: "image", color: "#a855f7" },
-  { label: "Logs", href: "/admin/description", icon: "description", color: "#f97316" },
+  { label: "Logs", href: "/admin/logs", icon: "description", color: "#f97316" },
 ];
 
 const teacherNav: NavItem[] = [

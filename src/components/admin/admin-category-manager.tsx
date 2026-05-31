@@ -113,8 +113,8 @@ export function AdminCategoryManager({ categoryId, categoryName, categorySlug }:
   const [requestEditConfirm, setRequestEditConfirm] = useState<number | null>(null);
   const [rejectTarget, setRejectTarget] = useState<Topic | null>(null);
 
-  const subGroups = [...new Set(topics.map(t => t.sub_group).filter(Boolean))] as string[];
-  const stats = ALL_STATUSES.reduce((acc, s) => { acc[s] = topics.filter(t => t.status === s).length; return acc; }, {} as Record<string, number>);
+  const subGroups = [...new Set((topics || []).map(t => t?.sub_group || t?.subGroup).filter(Boolean))] as string[];
+  const stats = ALL_STATUSES.reduce((acc, s) => { acc[s] = (topics || []).filter(t => (t?.status || "draft") === s).length; return acc; }, {} as Record<string, number>);
 
   useEffect(() => { fetchTopics(); }, [categoryId]);
 
@@ -255,8 +255,8 @@ export function AdminCategoryManager({ categoryId, categoryName, categorySlug }:
                     </td>
                     <td className="px-4 py-3 text-zinc-600 text-xs">{topic.sub_group || topic.subGroup || "—"}</td>
                     <td className="px-4 py-3">
-                      <span className={`px-2 py-0.5 text-[10px] font-black uppercase inline-block w-fit ${STATUS_STYLE[topic.status]}`}>
-                        {STATUS_LABEL[topic.status] || topic.status}
+                      <span className={`px-2 py-0.5 text-[10px] font-black uppercase inline-block w-fit ${STATUS_STYLE[topic.status || "draft"]}`}>
+                        {STATUS_LABEL[topic.status || "draft"] || topic.status}
                       </span>
                       {topic.status === "rejected" && (topic.rejection_reason || topic.rejectionReason) && (
                         <p className="text-[10px] text-red-600 truncate max-w-[140px] mt-0.5">

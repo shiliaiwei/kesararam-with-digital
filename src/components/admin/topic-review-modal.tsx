@@ -239,13 +239,13 @@ export function TopicReviewModal({
                       <div>{q.question_km}</div>
                     </div>
 
-                    {q.answers.length > 0 && (
+                    {(q.answers || []).length > 0 && (
                       <div>
                         <div className="text-sm font-bold text-zinc-600 mb-2">
                           Answers
                         </div>
                         <div className="space-y-1">
-                          {q.answers.map((a, aIndex) => (
+                          {(q.answers || []).map((a, aIndex) => (
                             <div
                               key={a.id}
                               className={`p-2 border-2 border-black text-sm ${
