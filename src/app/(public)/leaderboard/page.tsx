@@ -38,6 +38,40 @@ const BRAND = {
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
+const CAMBODIA_PROVINCES = [
+  { en: "Siem Reap", kh: "សៀមរាប" },
+  { en: "Phnom Penh", kh: "ភ្នំពេញ" },
+  { en: "Battambang", kh: "បាត់ដំបង" },
+  { en: "Banteay Meanchey", kh: "បន្ទាយមានជ័យ" },
+  { en: "Kampong Cham", kh: "កំពង់ចាម" },
+  { en: "Kampong Chhnang", kh: "កំពង់ឆ្នាំង" },
+  { en: "Kampong Speu", kh: "កំពង់ស្ពឺ" },
+  { en: "Kampong Thom", kh: "កំពង់ធំ" },
+  { en: "Kampot", kh: "កំពត" },
+  { en: "Kandal", kh: "កណ្តាល" },
+  { en: "Kep", kh: "កែប" },
+  { en: "Koh Kong", kh: "កោះកុង" },
+  { en: "Kratie", kh: "ក្រចេះ" },
+  { en: "Mondulkiri", kh: "មណ្ឌលគីរី" },
+  { en: "Oudar Meanchey", kh: "ឧត្តរមានជ័យ" },
+  { en: "Pailin", kh: "ប៉ៃលិន" },
+  { en: "Preah Sihanouk", kh: "ព្រះសីហនុ" },
+  { en: "Preah Vihear", kh: "ព្រះវិហារ" },
+  { en: "Prey Veng", kh: "ព្រៃវែង" },
+  { en: "Pursat", kh: "ពោធិ៍សាត់" },
+  { en: "Ratanakiri", kh: "រតនគីរី" },
+  { en: "Stung Treng", kh: "ស្ទឹងត្រែង" },
+  { en: "Svay Rieng", kh: "ស្វាយរៀង" },
+  { en: "Takeo", kh: "តាកែវ" },
+  { en: "Tboung Khmum", kh: "ត្បូងឃ្មុំ" },
+];
+
+function getProvinceKh(provinceEn: string | null | undefined): string {
+  if (!provinceEn) return "—";
+  const found = CAMBODIA_PROVINCES.find(p => p.en.toLowerCase() === provinceEn.toLowerCase());
+  return found ? found.kh : provinceEn;
+}
+
 interface LeaderboardUser {
   id: number;
   username: string;
@@ -220,11 +254,12 @@ const PODIUM_CFG = [
   },
 ];
 
-function PodiumCard({ user, cfg, index, currentUser }: {
+function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
   user: LeaderboardUser | undefined;
   cfg: typeof PODIUM_CFG[number];
   index: number;
   currentUser: any | null;
+  onSelect: (user: LeaderboardUser) => void;
 }) {
   const { lang } = useLang();
   const kh = lang === "kh";
@@ -251,7 +286,10 @@ function PodiumCard({ user, cfg, index, currentUser }: {
 
       {/* Floating Avatar and Rank Badge Container */}
       <div
-        className="relative mb-2 flex flex-col items-center select-none"
+        className="relative mb-2 flex flex-col items-center select-none cursor-pointer"
+        onClick={() => { if (user) onSelect(user); }}
+        onMouseEnter={() => { if (user && window.matchMedia('(pointer: fine)').matches) onSelect(user); }}
+        onMouseLeave={() => { if (user && window.matchMedia('(pointer: fine)').matches) onSelect(null as any); }}
         style={{
           animation: isFirst
             ? "floatFirst 4s ease-in-out infinite"
@@ -862,6 +900,7 @@ export default function LeaderboardPage() {
   const [prevRanks, setPrevRanks] = useState<Record<number, number>>({});
   const [loading, setLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState<any | null>(null);
+  const [previewUser, setPreviewUser] = useState<LeaderboardUser | null>(null);
 
   // Real-time tracking user points state
   const [userPoints, setUserPoints] = useState(0);
@@ -1000,7 +1039,7 @@ export default function LeaderboardPage() {
                 { cfg: PODIUM_CFG[1], user: top3[0] },
                 { cfg: PODIUM_CFG[2], user: top3[2] },
               ].map(({ cfg, user }, i) => (
-                <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} currentUser={currentUser} />
+                <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} currentUser={currentUser} onSelect={setPreviewUser} />
               ))}
             </div>
 
@@ -1035,7 +1074,12 @@ export default function LeaderboardPage() {
                         {moved > 0 && <span className="text-[8px] font-black text-green-500 leading-none">▲</span>}
                         {moved < 0 && <span className="text-[8px] font-black text-red-400 leading-none">▼</span>}
                       </div>
-                      <div className="col-span-7 flex items-center gap-2 min-w-0">
+                      <div 
+                        className="col-span-7 flex items-center gap-2 min-w-0 cursor-pointer select-none"
+                        onClick={() => setPreviewUser(user)}
+                        onMouseEnter={() => { if (window.matchMedia('(pointer: fine)').matches) setPreviewUser(user); }}
+                        onMouseLeave={() => { if (window.matchMedia('(pointer: fine)').matches) setPreviewUser(null); }}
+                      >
                         <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={30}>
                           <Avatar url={(currentUser && user.id === currentUser.id) ? currentUser.avatar : user.avatar} name={user.displayName || user.username} size={30} changedAt={user.avatarChangedAt} />
                         </RankedAvatarRing>
@@ -1210,6 +1254,121 @@ export default function LeaderboardPage() {
           </>
         )}
       </div>
+
+      {previewUser && (
+        <div 
+          className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 cursor-pointer backdrop-blur-sm transition-all"
+          onClick={() => setPreviewUser(null)}
+        >
+          {/* Card Container */}
+          <div 
+            className="bg-white border-4 border-black w-full max-w-sm cursor-default relative overflow-hidden transition-all"
+            style={{ 
+              boxShadow: getRank(previewUser.lifetimePoints).animated
+                ? `10px 10px 0 #000, 0 0 30px ${getRank(previewUser.lifetimePoints).glow}bb`
+                : "8px 8px 0 #000",
+              borderRadius: 0,
+              animation: "burstOut 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275)"
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header / Top banner */}
+            <div 
+              className="border-b-4 border-black px-5 py-4 flex items-center justify-between"
+              style={{
+                background: getRank(previewUser.lifetimePoints).labelGradient,
+                color: getRank(previewUser.lifetimePoints).textColor,
+              }}
+            >
+              <div className="flex items-center gap-2">
+                <span className="text-lg">{getRank(previewUser.lifetimePoints).emoji}</span>
+                <span className="font-black text-sm uppercase tracking-wider">
+                  {lang === "kh" ? "ប្រវត្តិរូបសិស្សតំណាងខេត្ត" : "PROVINCE REPRESENTATIVE"}
+                </span>
+              </div>
+              <button 
+                onClick={() => setPreviewUser(null)}
+                className="w-7 h-7 border-2 border-black bg-white text-black hover:bg-red-400 flex items-center justify-center font-black text-base shadow-[1.5px_1.5px_0_#000] active:translate-x-[1.5px] active:translate-y-[1.5px] active:shadow-none transition-all"
+              >
+                ×
+              </button>
+            </div>
+
+            {/* Profile Avatar Ring + Name details */}
+            <div className="p-6 flex flex-col items-center text-center gap-4">
+              
+              {/* Animated avatar spotlight */}
+              <div 
+                className="relative p-1.5 rounded-full"
+                style={{
+                  background: getRank(previewUser.lifetimePoints).borderGradient,
+                  animation: getRank(previewUser.lifetimePoints).animated ? "rankShimmer 3s linear infinite" : "none",
+                  boxShadow: getRank(previewUser.lifetimePoints).animated ? `0 0 20px ${getRank(previewUser.lifetimePoints).glow}aa` : "none",
+                }}
+              >
+                <div className="bg-white rounded-full p-0.5">
+                  <Avatar url={previewUser.avatar} name={previewUser.displayName || previewUser.username} size={84} changedAt={previewUser.avatarChangedAt} />
+                </div>
+                {/* Ranking rank tag bubble */}
+                <div className="absolute -bottom-1 -right-1 bg-yellow-400 border-2 border-black font-black text-xs px-2 py-0.5 shadow-[2px_2px_0_#000] text-black">
+                  #{previewUser.rank}
+                </div>
+              </div>
+
+              {/* Student name */}
+              <div>
+                <h3 className="text-2xl font-black uppercase text-black leading-tight">
+                  {previewUser.displayName || previewUser.username}
+                </h3>
+                <span className="text-xs text-zinc-400 font-bold block mt-1">@{previewUser.username}</span>
+              </div>
+
+              {/* Province Standing Indicator (PROVINCE FOCUS) */}
+              <div className="w-full bg-black text-yellow-400 border-2 border-black px-4 py-3 flex flex-col items-center leading-tight shadow-[3px_3px_0_#000] mt-1 select-none">
+                <span className="text-[9px] font-black tracking-widest text-zinc-400 uppercase">
+                  {lang === "kh" ? "តំណាងឱ្យខេត្ត" : "REPRESENTING PROVINCE"}
+                </span>
+                <span className="text-lg font-black mt-1 uppercase tracking-tight font-kh-header">
+                  {previewUser.province ?? "General"} / {getProvinceKh(previewUser.province)}
+                </span>
+              </div>
+
+              {/* Lifetime stats grid */}
+              <div className="grid grid-cols-2 gap-3 w-full mt-2 text-left">
+                <div className="bg-zinc-50 border-2 border-black p-3 flex flex-col justify-center shadow-[2px_2px_0_#000]">
+                  <span className="text-[8px] font-black uppercase tracking-wider text-zinc-400">Lifetime Points</span>
+                  <span className="text-xl font-black text-black font-mono mt-0.5">
+                    {previewUser.lifetimePoints.toLocaleString()}
+                  </span>
+                </div>
+                <div className="bg-zinc-50 border-2 border-black p-3 flex flex-col justify-center shadow-[2px_2px_0_#000]">
+                  <span className="text-[8px] font-black uppercase tracking-wider text-zinc-400">High Score</span>
+                  <span className="text-xl font-black text-black font-mono mt-0.5">
+                    {previewUser.highestScore.toLocaleString()}
+                  </span>
+                </div>
+              </div>
+
+              {/* Exclusive rank label */}
+              <div className="w-full flex items-center justify-between border-t border-dashed border-zinc-200 pt-4 mt-2">
+                <span className="text-xs font-black text-zinc-400 uppercase">
+                  {lang === "kh" ? "ថ្នាក់ផ្តាច់មុខ" : "Exclusive Tier"}
+                </span>
+                <span 
+                  className="px-3 py-1 text-[11px] font-black uppercase border-2 border-black text-white shadow-[2px_2px_0_#000]"
+                  style={{
+                    background: getRank(previewUser.lifetimePoints).labelGradient,
+                    color: getRank(previewUser.lifetimePoints).textColor
+                  }}
+                >
+                  {getRank(previewUser.lifetimePoints).emoji} {lang === "kh" ? getRank(previewUser.lifetimePoints).labelKh : getRank(previewUser.lifetimePoints).label}
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
