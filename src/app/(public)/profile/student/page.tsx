@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
-import { users } from "@/db/schema/users";
+import { users, classes } from "@/db/schema/users";
 import { eq } from "drizzle-orm";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
 import { ProfileEditor } from "@/components/profile/profile-editor";
@@ -31,12 +31,22 @@ export default async function StudentProfilePage() {
     email: string;
     avatar: string | null;
     avatarChangedAt: Date | null;
+    schoolName: string | null;
+    province: string | null;
+    gradeLevel: string | null;
+    section: string | null;
+    className: string | null;
   } = {
     displayName: session.name,
     username: session.name,
     email: session.email || "",
     avatar: null,
     avatarChangedAt: null,
+    schoolName: null,
+    province: null,
+    gradeLevel: null,
+    section: null,
+    className: null,
   };
 
   let highestScore = 0;
@@ -52,8 +62,14 @@ export default async function StudentProfilePage() {
         email: users.email,
         avatar: users.avatar,
         avatarChangedAt: users.avatarChangedAt,
+        schoolName: users.schoolName,
+        province: users.province,
+        gradeLevel: users.gradeLevel,
+        section: users.section,
+        className: classes.name,
       })
       .from(users)
+      .leftJoin(classes, eq(users.classId, classes.id))
       .where(eq(users.id, session.id))
       .limit(1);
 
@@ -64,6 +80,11 @@ export default async function StudentProfilePage() {
         email: result[0].email,
         avatar: result[0].avatar,
         avatarChangedAt: result[0].avatarChangedAt,
+        schoolName: result[0].schoolName,
+        province: result[0].province,
+        gradeLevel: result[0].gradeLevel,
+        section: result[0].section,
+        className: result[0].className,
       };
     }
 
@@ -84,7 +105,7 @@ export default async function StudentProfilePage() {
         totalGamesPlayed = statsResult[0].totalGamesPlayed || 0;
         lifetimePoints = statsResult[0].lifetimePoints || 0;
       }
-    } catch (statsError) {
+    } catch {
       console.log("Stats columns not available yet, using defaults");
     }
   } catch (error) {
@@ -184,6 +205,26 @@ export default async function StudentProfilePage() {
                 >
                   Student
                 </span>
+                {user.schoolName && (
+                  <span style={{ display: "inline-block", padding: "2px 10px", fontSize: "11px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em", background: "#ffffff", color: "#000", border: "2px solid #000", boxShadow: "2px 2px 0 #000" }}>
+                    {user.schoolName}
+                  </span>
+                )}
+                {user.province && (
+                  <span style={{ display: "inline-block", padding: "2px 10px", fontSize: "11px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em", background: "#3b82f6", color: "#fff", border: "2px solid #000", boxShadow: "2px 2px 0 #000" }}>
+                    {user.province}
+                  </span>
+                )}
+                {user.gradeLevel && (
+                  <span style={{ display: "inline-block", padding: "2px 10px", fontSize: "11px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em", background: "#22c55e", color: "#000", border: "2px solid #000", boxShadow: "2px 2px 0 #000" }}>
+                    {user.gradeLevel}
+                  </span>
+                )}
+                {user.className && (
+                  <span style={{ display: "inline-block", padding: "2px 10px", fontSize: "11px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em", background: "#facc15", color: "#000", border: "2px solid #000", boxShadow: "2px 2px 0 #000" }}>
+                    {user.className}
+                  </span>
+                )}
                 {/* Tier badge */}
                 <TierBadge lifetimePoints={lifetimePoints} size="sm" />
               </div>

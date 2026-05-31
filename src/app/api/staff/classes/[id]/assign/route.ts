@@ -2,10 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users, classes, classEnrollments } from "@/db/schema";
-import { eq, or } from "drizzle-orm";
+import { and, eq, or } from "drizzle-orm";
+import { canManageTeacherOwnedClass, classFieldsMatch } from "@/lib/class-control";
 
 function canAccess(role: string) {
-  return role === "staff" || role === "admin";
+  return role === "staff" || role === "admin" || role === "teacher";
 }
 
 export async function POST(
@@ -34,6 +35,9 @@ export async function POST(
     // Find the class
     const [cls] = await db.select().from(classes).where(eq(classes.id, classId)).limit(1);
     if (!cls) return NextResponse.json({ error: "Class not found" }, { status: 404 });
+    if (!canManageTeacherOwnedClass(session, cls.teacherId)) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
 
     // Find the student
     const [student] = await db
@@ -47,19 +51,41 @@ export async function POST(
       return NextResponse.json({ error: `User is a ${student.role}, not a student` }, { status: 400 });
     }
 
-    // Insert enrollment (ignore duplicate via ON CONFLICT)
-    await db
-      .insert(classEnrollments)
-      .values({ classId, studentId: student.id, enrolledBy: session.id })
-      .onConflictDoNothing();
+    const [profile] = await db
+      .select({
+        schoolName: users.schoolName,
+        province: users.province,
+        gradeLevel: users.gradeLevel,
+        section: users.section,
+      })
+      .from(users)
+      .where(eq(users.id, student.id))
+      .limit(1);
+
+    if (!profile || !classFieldsMatch(cls, profile)) {
+      return NextResponse.json({ error: "Student profile does not match this class" }, { status: 400 });
+    }
+
+    const [existing] = await db
+      .select({ id: classEnrollments.id })
+      .from(classEnrollments)
+      .where(and(eq(classEnrollments.classId, classId), eq(classEnrollments.studentId, student.id)))
+      .limit(1);
+
+    if (!existing) {
+      await db.insert(classEnrollments).values({ classId, studentId: student.id, enrolledBy: session.id });
+    }
+
+    await db.update(users).set({ classId, updatedAt: new Date() }).where(eq(users.id, student.id));
 
     return NextResponse.json({
       success: true,
       student: { id: student.id, email: student.email, username: student.username, displayName: student.displayName },
       class: { id: cls.id, name: cls.name, code: cls.code },
     });
-  } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unexpected error";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
 
@@ -86,13 +112,18 @@ export async function GET(
         username: users.username,
         email: users.email,
         displayName: users.displayName,
+        schoolName: users.schoolName,
+        province: users.province,
+        gradeLevel: users.gradeLevel,
+        section: users.section,
       })
       .from(classEnrollments)
       .leftJoin(users, eq(classEnrollments.studentId, users.id))
       .where(eq(classEnrollments.classId, classId));
 
     return NextResponse.json({ students: enrolled });
-  } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Unexpected error";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

@@ -6,6 +6,7 @@ import {
   timestamp,
   boolean,
   pgEnum,
+  uniqueIndex,
 } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 
@@ -18,6 +19,11 @@ export const users = pgTable("users", {
   passwordHash: text("password_hash").notNull(),
   role: roleEnum("role").notNull().default("student"),
   displayName: text("display_name"),
+  schoolName: text("school_name"),
+  province: text("province"),
+  gradeLevel: text("grade_level"),
+  section: text("section"),
+  classId: integer("class_id"),
   avatar: text("avatar"),
   avatarChangedAt: timestamp("avatar_changed_at"),
   audioMuted: boolean("audio_muted").default(false).notNull(),
@@ -37,10 +43,15 @@ export const users = pgTable("users", {
 export const classes = pgTable("classes", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
+  schoolName: text("school_name").notNull(),
+  province: text("province").notNull(),
+  gradeLevel: text("grade_level").notNull(),
+  section: text("section"),
   teacherId: integer("teacher_id")
     .notNull()
     .references(() => users.id),
   code: text("code").notNull().unique(),
+  isLocked: boolean("is_locked").default(false).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -54,7 +65,12 @@ export const classEnrollments = pgTable("class_enrollments", {
     .references(() => users.id),
   enrolledBy: integer("enrolled_by").references(() => users.id), // staff/admin who assigned
   enrolledAt: timestamp("enrolled_at").defaultNow().notNull(),
-});
+}, (table) => ({
+  classStudentUnique: uniqueIndex("class_enrollments_class_student_unique").on(
+    table.classId,
+    table.studentId
+  ),
+}));
 
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
@@ -62,10 +78,20 @@ export type Class = typeof classes.$inferSelect;
 export type ClassEnrollment = typeof classEnrollments.$inferSelect;
 
 /**
+ * Relations for users
+ */
+export const usersRelations = relations(users, ({ one, many }) => ({
+  currentClass: one(classes, {
+    fields: [users.classId],
+    references: [classes.id],
+  }),
+  enrollments: many(classEnrollments),
+}));
+
+/**
  * Relations for classes
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const classesRelations = relations(classes, ({ one, many }: any) => ({
+export const classesRelations = relations(classes, ({ one, many }) => ({
   teacher: one(users, {
     fields: [classes.teacherId],
     references: [users.id],
@@ -76,10 +102,9 @@ export const classesRelations = relations(classes, ({ one, many }: any) => ({
 /**
  * Relations for class enrollments
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const classEnrollmentsRelations = relations(
   classEnrollments,
-  ({ one }: any) => ({
+  ({ one }) => ({
     class: one(classes, {
       fields: [classEnrollments.classId],
       references: [classes.id],

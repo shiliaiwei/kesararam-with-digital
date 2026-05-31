@@ -1,25 +1,24 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { useLang } from "@/context/lang-context";
 import { RankBadge as TierBadge, RankedAvatarRing, RankProgressBar, RankShowcase } from "@/components/shared/rank-label";
-import { getRank } from "@/lib/rank-utils";
 import {
   Trophy,
   Gift,
   Lock,
-  Unlock,
   Sparkles,
   Star,
   Check,
-  ChevronRight,
-  User,
-  Zap,
   Flame,
   Crown,
   Info,
-  Award
+  Award,
+  School,
+  MapPin,
+  GraduationCap,
 } from "lucide-react";
 
 // ─── BRAND COLORS ─────────────────────────────────────────────────────────────
@@ -47,6 +46,11 @@ interface LeaderboardUser {
   highestScore: number;
   totalGamesPlayed: number;
   lifetimePoints: number;
+  schoolName: string | null;
+  province: string | null;
+  gradeLevel: string | null;
+  section: string | null;
+  className: string | null;
   rank: number;
 }
 
@@ -104,20 +108,20 @@ function Avatar({ url, name, size = 40, ring, changedAt }: {
       {parsed ? (
         <div className="w-full h-full rounded-full overflow-hidden relative flex-shrink-0" style={{ background: "#eab308", border: "2px solid #000" }}>
           {parsed.head && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            <Image
               src={`/avatar/head/${encodeURIComponent(parsed.head)}`}
               alt=""
               aria-hidden
+              fill
               className="absolute inset-0 w-full h-full object-contain"
             />
           )}
           {parsed.face && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
+            <Image
               src={`/avatar/face/${encodeURIComponent(parsed.face)}`}
               alt=""
               aria-hidden
+              fill
               className="absolute inset-0 w-full h-full object-contain"
             />
           )}
@@ -127,10 +131,11 @@ function Avatar({ url, name, size = 40, ring, changedAt }: {
           const src = avatarSrc(url, changedAt);
           if (src && !err) {
             return (
-              <img
+              <Image
                 src={src}
                 alt={name}
                 onError={() => setErr(true)}
+                fill
                 className="w-full h-full object-cover rounded-full"
                 style={{ border: "2px solid #000" }}
               />
@@ -220,7 +225,7 @@ function PodiumCard({ user, cfg, index, currentUser }: {
   user: LeaderboardUser | undefined;
   cfg: typeof PODIUM_CFG[number];
   index: number;
-  currentUser: any | null;
+  currentUser: LeaderboardUser | null;
 }) {
   const { lang } = useLang();
   const kh = lang === "kh";
@@ -412,6 +417,14 @@ function PodiumCard({ user, cfg, index, currentUser }: {
 
         <span className="font-black text-center leading-tight w-full truncate text-[10px] md:text-sm font-kh-header z-10" style={{ color: "#000" }}>{name}</span>
         {user && <TierBadge lifetimePoints={user.lifetimePoints} size="xs" />}
+        {user && (
+          <div className="flex flex-wrap justify-center gap-1 mt-1 z-10">
+            {user.schoolName && <span className="inline-flex items-center gap-1 px-1.5 py-0.5 border border-black bg-white text-[8px] font-black uppercase text-zinc-700"><School size={8} />{user.schoolName}</span>}
+            {user.province && <span className="inline-flex items-center gap-1 px-1.5 py-0.5 border border-black bg-blue-50 text-[8px] font-black uppercase text-blue-700"><MapPin size={8} />{user.province}</span>}
+            {user.gradeLevel && <span className="inline-flex items-center gap-1 px-1.5 py-0.5 border border-black bg-green-50 text-[8px] font-black uppercase text-green-700"><GraduationCap size={8} />{user.gradeLevel}</span>}
+            {isFirst && <span className="inline-flex items-center gap-1 px-1.5 py-0.5 border border-black bg-yellow-300 text-[8px] font-black uppercase text-black"><Award size={8} />Leader</span>}
+          </div>
+        )}
 
         {/* Most Value Ribbon / Tag for 1st Place */}
         {isFirst && (
@@ -662,9 +675,10 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
 
       {/* ── Premium 4K Mockup Cover Image Header ── */}
       <div className="relative h-44 w-full border-b-3 border-black overflow-hidden bg-zinc-100 flex items-center justify-center">
-        <img
+        <Image
           src={item.image}
           alt={item.name}
+          fill
           className="w-full h-full object-cover select-none"
           style={{
             filter: claimed ? "grayscale(100%) brightness(0.9)" : "none",
@@ -857,7 +871,7 @@ export default function LeaderboardPage() {
   const [leaderboard, setLeaderboard] = useState<LeaderboardUser[]>([]);
   const [prevRanks, setPrevRanks] = useState<Record<number, number>>({});
   const [loading, setLoading] = useState(true);
-  const [currentUser, setCurrentUser] = useState<any | null>(null);
+  const [currentUser, setCurrentUser] = useState<LeaderboardUser | null>(null);
 
   // Real-time tracking user points state
   const [userPoints, setUserPoints] = useState(0);
@@ -1023,7 +1037,6 @@ export default function LeaderboardPage() {
                 {rest.length > 0 ? rest.map((user) => {
                   const prev = prevRanks[user.id];
                   const moved = prev !== undefined ? prev - user.rank : 0;
-                  const tier = getRank(user.lifetimePoints);
                   return (
                     <div key={user.id} className="grid grid-cols-12 px-3 md:px-5 py-2.5 border-t border-zinc-100 hover:bg-zinc-50 transition-colors items-center">
                       <div className="col-span-1 flex items-center gap-0.5">
@@ -1041,6 +1054,28 @@ export default function LeaderboardPage() {
                               {user.displayName || user.username}
                             </span>
                             <TierBadge lifetimePoints={user.lifetimePoints} size="xs" showEmoji={false} lang={lang} />
+                          </div>
+                          <div className="flex flex-wrap gap-1 mt-1">
+                            {user.schoolName && (
+                              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 border border-black bg-white text-[9px] font-black uppercase text-zinc-700">
+                                <School size={9} /> {user.schoolName}
+                              </span>
+                            )}
+                            {user.province && (
+                              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 border border-black bg-blue-50 text-[9px] font-black uppercase text-blue-700">
+                                <MapPin size={9} /> {user.province}
+                              </span>
+                            )}
+                            {user.gradeLevel && (
+                              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 border border-black bg-green-50 text-[9px] font-black uppercase text-green-700">
+                                <GraduationCap size={9} /> {user.gradeLevel}
+                              </span>
+                            )}
+                            {user.rank === 1 && (
+                              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 border border-black bg-yellow-300 text-[9px] font-black uppercase text-black">
+                                <Award size={9} /> Leader
+                              </span>
+                            )}
                           </div>
                           {user.displayName && (
                             <span className="text-[9px] text-zinc-400 truncate hidden sm:block">@{user.username}</span>
@@ -1163,7 +1198,7 @@ export default function LeaderboardPage() {
 
               {/* Responsive Cards Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-                {REWARD_ITEMS.map((item, idx) => (
+                {REWARD_ITEMS.map((item) => (
                   <RewardCard
                     key={item.id}
                     item={item}

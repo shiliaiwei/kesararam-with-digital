@@ -17,6 +17,10 @@ interface UserRow {
   username: string;
   email: string;
   displayName: string | null;
+  schoolName?: string | null;
+  province?: string | null;
+  gradeLevel?: string | null;
+  section?: string | null;
   role: Role;
   isActive: boolean;
   isSuspended?: boolean;
@@ -127,6 +131,10 @@ function CreateUserDialog({ onSuccess }: { onSuccess: () => void }) {
             { name: "username", label: "Username *", type: "text", placeholder: "sopheak01", required: true },
             { name: "email", label: "Email *", type: "email", placeholder: "user@kwd.tech", required: true },
             { name: "displayName", label: "Display Name", type: "text", placeholder: "Sopheak Chan", required: false },
+            { name: "schoolName", label: "School Name", type: "text", placeholder: "Kesararam Primary School", required: false },
+            { name: "province", label: "Province", type: "text", placeholder: "Siem Reap", required: false },
+            { name: "gradeLevel", label: "Grade Level", type: "text", placeholder: "Grade 6", required: false },
+            { name: "section", label: "Section", type: "text", placeholder: "Morning A", required: false },
             { name: "password", label: "Password *", type: "password", placeholder: "••••••••", required: true },
           ].map(f => (
             <div key={f.name} className="space-y-1">
@@ -192,15 +200,19 @@ function EditUserDialog({ user, onSuccess }: { user: UserRow; onSuccess: () => v
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <input type="hidden" name="role" value={role} />
           <input type="hidden" name="isActive" value={String(isActive)} />
-          {[
+          {([
             { name: "email", label: "Email *", type: "email", defaultValue: user.email, required: true },
             { name: "displayName", label: "Display Name", type: "text", defaultValue: user.displayName ?? "", required: false },
+            { name: "schoolName", label: "School Name", type: "text", defaultValue: user.schoolName ?? "", required: false },
+            { name: "province", label: "Province", type: "text", defaultValue: user.province ?? "", required: false },
+            { name: "gradeLevel", label: "Grade Level", type: "text", defaultValue: user.gradeLevel ?? "", required: false },
+            { name: "section", label: "Section", type: "text", defaultValue: user.section ?? "", required: false },
             { name: "password", label: "New Password", type: "password", defaultValue: "", required: false, placeholder: "Leave blank to keep" },
-          ].map(f => (
+          ] as Array<{ name: string; label: string; type: string; defaultValue: string; required: boolean; placeholder?: string }>).map(f => (
             <div key={f.name} className="space-y-1">
               <label className="text-xs font-black uppercase tracking-widest">{f.label}</label>
               <input name={f.name} type={f.type} required={f.required} defaultValue={f.defaultValue}
-                placeholder={(f as any).placeholder}
+                placeholder={f.placeholder}
                 className="w-full p-2.5 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]" />
             </div>
           ))}
@@ -283,6 +295,10 @@ function UserDetailModal({ user, onClose }: { user: UserRow; onClose: () => void
             {[
               { label: "Email", value: user.email },
               { label: "Role", value: ROLE_CONFIG[user.role]?.label ?? user.role },
+              { label: "School", value: user.schoolName ?? "—" },
+              { label: "Province", value: user.province ?? "—" },
+              { label: "Grade", value: user.gradeLevel ?? "—" },
+              { label: "Section", value: user.section ?? "—" },
               { label: "Plan", value: PLAN_CONFIG[user.plan ?? "free"]?.label ?? "Free" },
               { label: "Status", value: user.isActive ? "Active" : "Inactive" },
               { label: "Joined", value: fmtDate(user.createdAt) },
@@ -469,6 +485,11 @@ export function UsersTable({ initialUsers }: { initialUsers: UserRow[] }) {
                         <div className="min-w-0">
                           <p className="font-black text-sm truncate">{u.displayName || u.username}</p>
                           <p className="text-xs text-zinc-500 truncate">{u.email}</p>
+                          {(u.schoolName || u.province || u.gradeLevel) && (
+                            <p className="text-[10px] font-bold uppercase tracking-wide text-zinc-400 truncate">
+                              {[u.schoolName, u.province, u.gradeLevel].filter(Boolean).join(" · ")}
+                            </p>
+                          )}
                         </div>
                       </div>
                     </td>

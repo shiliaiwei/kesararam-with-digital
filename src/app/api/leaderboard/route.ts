@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { users } from "@/db/schema/users";
-import { desc, sql } from "drizzle-orm";
+import { users, classes } from "@/db/schema/users";
+import { desc, eq, sql } from "drizzle-orm";
 
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
@@ -20,8 +20,14 @@ export async function GET(req: NextRequest) {
         highestScore: users.highestScore,
         totalGamesPlayed: users.totalGamesPlayed,
         lifetimePoints: users.lifetimePoints,
+        schoolName: users.schoolName,
+        province: users.province,
+        gradeLevel: users.gradeLevel,
+        section: users.section,
+        className: classes.name,
       })
       .from(users)
+      .leftJoin(classes, eq(users.classId, classes.id))
       .where(sql`${users.isActive} = true AND ${users.role} = 'student'`)
       .orderBy(desc(users.lifetimePoints), desc(users.highestScore))
       .limit(limit)

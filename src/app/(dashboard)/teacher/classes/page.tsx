@@ -16,12 +16,12 @@ export default async function TeacherClassesPage() {
 
   // Calculate stats
   const totalClasses = classes.length;
-  const activeClasses = classes.filter(c => c.code).length; // Classes with codes are active
+  const activeClasses = classes.filter((c) => !c.isLocked).length;
 
   const stats = [
     { label: "Total Classes", value: totalClasses.toString(), icon: School, color: "#3b82f6" },
-    { label: "Active Classes", value: activeClasses.toString(), icon: Calendar, color: "#22c55e" },
-    { label: "Join Codes", value: activeClasses.toString(), icon: Users, color: "#f97316" },
+    { label: "Open Classes", value: activeClasses.toString(), icon: Calendar, color: "#22c55e" },
+    { label: "Join Codes", value: classes.length.toString(), icon: Users, color: "#f97316" },
   ];
 
   return (
@@ -38,18 +38,17 @@ export default async function TeacherClassesPage() {
                 Classes
               </h1>
               <p className="text-sm font-bold text-zinc-600 uppercase tracking-wide">
-                Manage your classes and share join codes with students
+                Manage school, province, grade, and student enrollment from one place
               </p>
             </div>
           </div>
           
-          {/* Create Class Button */}
-          <button className="flex items-center gap-2 px-4 py-3 bg-yellow-400 border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100">
+          <div className="flex items-center gap-2 px-4 py-3 bg-yellow-400 border-2 border-black shadow-[3px_3px_0_#000]">
             <Plus size={20} className="text-black" />
             <span className="font-black text-sm uppercase tracking-wide text-black">
-              New Class
+              Create classes inside the table
             </span>
-          </button>
+          </div>
         </div>
       </div>
 
@@ -99,6 +98,11 @@ export default async function TeacherClassesPage() {
               name: c.name,
               code: c.code,
               createdAt: c.createdAt,
+              schoolName: c.schoolName,
+              province: c.province,
+              gradeLevel: c.gradeLevel,
+              section: c.section,
+              isLocked: c.isLocked,
               teacherName: c.teacherName ?? null,
               teacherEmail: c.teacherEmail ?? null,
             }))}
