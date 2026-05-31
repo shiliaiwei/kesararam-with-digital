@@ -94,7 +94,7 @@ export async function GET(
                     id: q.id, questionEn: q.questionEn, questionKm: q.questionKm,
                     imageUrl: q.imageUrl ?? null, audioUrlEn: q.audioUrlEn ?? null,
                     audioUrlKm: q.audioUrlKm ?? null,
-                    gameType: mapContentToGameType({ answerCount: ans.length, hasImage: !!q.imageUrl, hasAudio: !!(q.audioUrlEn || q.audioUrlKm) }),
+                    gameType: mapContentToGameType({ answerCount: ans.length, hasImage: ans.some(a => !!a.imageUrl), hasAudio: !!(q.audioUrlEn || q.audioUrlKm) }),
                     answers: ans.map(a => ({ id: a.id, answerEn: a.answerEn, answerKm: a.answerKm, imageUrl: a.imageUrl ?? null })),
                   },
                   startsAt: session.questionStartedAt?.toISOString() ?? new Date().toISOString(),

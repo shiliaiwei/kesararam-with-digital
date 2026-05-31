@@ -73,6 +73,21 @@ function NeubrutalistAvatar({ src, initials, userId }: NeubrutalistAvatarProps) 
   );
 }
 
+function sanitizeError(err: any): string {
+  if (!err) return "";
+  if (typeof err === "string") return err;
+  if (typeof err === "object") {
+    if (err.message && typeof err.message === "string") return err.message;
+    if (err.error && typeof err.error === "string") return err.error;
+    try {
+      return JSON.stringify(err);
+    } catch {
+      return "An unexpected error occurred";
+    }
+  }
+  return String(err);
+}
+
 // ── Leaderboard row ────────────────────────────────────────────────────────
 function LiveLeaderRow({ entry, rank, showScore }: { entry: LeaderboardEntry; rank: number; showScore: boolean }) {
   const RANK_COLORS = ["#FFD700", "#e4e4e7", "#fed7aa"];
@@ -407,7 +422,7 @@ export default function HostPage() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ sessionName, categoryIds: selectedCats, difficulty, questionCount, timePerQuestion: cfg.timePerQuestion, scoringMode, language, gameType: selectedMode, maxPlayers, allowLateJoin: true }),
     });
-    if (!res.ok) { const err = await res.json(); setError(err.error ?? "Failed"); setPhase({ name: "setup" }); return; }
+    if (!res.ok) { const err = await res.json(); setError(sanitizeError(err.error) || "Failed"); setPhase({ name: "setup" }); return; }
     const data = await res.json();
     const catNames = categories.filter(c => selectedCats.includes(c.id)).map(c => kh ? c.titleKm : c.titleEn);
     if (data.warning) setQuestionCountWarning(data.warning);
@@ -428,7 +443,7 @@ export default function HostPage() {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ action }),
       });
-      if (!res.ok) { const e = await res.json().catch(() => ({ error: "Unknown" })); setError(e.details || e.error || `Failed to ${action}`); }
+      if (!res.ok) { const e = await res.json().catch(() => ({ error: "Unknown" })); setError(sanitizeError(e.details || e.error) || `Failed to ${action}`); }
     } catch (err) { setError(`Network error: ${err instanceof Error ? err.message : "Unknown"}`); }
     finally { setControlling(false); }
   }

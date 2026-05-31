@@ -46,7 +46,7 @@ export async function GET(
         audioUrlKm: q.audioUrlKm,
         gameType: mapContentToGameType({
           answerCount: ans.length,
-          hasImage: !!q.imageUrl,
+          hasImage: ans.some(a => !!a.imageUrl),
           hasAudio: !!(q.audioUrlEn || q.audioUrlKm),
         }),
         answers: ans.map((a) => ({

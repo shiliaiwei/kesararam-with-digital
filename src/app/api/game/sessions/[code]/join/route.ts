@@ -39,7 +39,7 @@ export async function POST(
   let participant;
 
   if (alreadyIn) {
-    [participant] = await db
+    const updated = await db
       .update(gameParticipants)
       .set({ isConnected: true, lastSeenAt: new Date() })
       .where(
@@ -49,8 +49,9 @@ export async function POST(
         )
       )
       .returning();
+    participant = updated[0] || alreadyIn;
   } else {
-    [participant] = await db
+    const inserted = await db
       .insert(gameParticipants)
       .values({
         sessionId: session.id,
@@ -63,6 +64,12 @@ export async function POST(
         isConnected: true,
       })
       .returning();
+    participant = inserted[0];
+  }
+
+  if (!participant) {
+    console.error(`[JOIN] Failed to insert or update participant in session ${session.id} for user ${user.id}`);
+    return NextResponse.json({ error: "Failed to join session" }, { status: 500 });
   }
 
   const allParticipants = await db

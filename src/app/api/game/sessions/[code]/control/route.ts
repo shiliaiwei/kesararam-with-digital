@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { gameSessions, gameParticipants, gameSessionAnswers } from "@/db/schema/game";
-import { questions, answers } from "@/db/schema/content";
+import { questions, answers, topics } from "@/db/schema/content";
 import { users } from "@/db/schema/users";
 import { getSession } from "@/lib/auth";
 import { LeaderboardEntry } from "@/lib/game-event-bus";
@@ -324,7 +324,7 @@ async function getQuestionPayload(questionId: number) {
         audioUrlEn: questions.audioUrlEn,
         audioUrlKm: questions.audioUrlKm,
         difficulty: questions.difficulty,
-        topicCode: sql<string | null>`(SELECT topic_code FROM topics WHERE id = ${questions.topicId})`
+        topicId: questions.topicId,
       })
       .from(questions)
       .where(eq(questions.id, questionId));
@@ -332,6 +332,22 @@ async function getQuestionPayload(questionId: number) {
     if (!q) {
       console.error(`[getQuestionPayload] Question ${questionId} not found`);
       throw new Error(`Question ${questionId} not found`);
+    }
+
+    // Safely query the topicCode separately to avoid Neon subquery parameter binding errors
+    let topicCode = null;
+    if (q.topicId) {
+      try {
+        const [t] = await db
+          .select({ topicCode: topics.topicCode })
+          .from(topics)
+          .where(eq(topics.id, q.topicId));
+        if (t) {
+          topicCode = t.topicCode;
+        }
+      } catch (err) {
+        console.error(`[getQuestionPayload] Error fetching topicCode for topic ID ${q.topicId}:`, err);
+      }
     }
 
     const ans = await db
@@ -354,7 +370,7 @@ async function getQuestionPayload(questionId: number) {
 
     const gameType = mapContentToGameType({
       answerCount: ans.length,
-      hasImage: !!q.imageUrl,
+      hasImage: ans.some(a => !!a.imageUrl),
       hasAudio: !!(q.audioUrlEn || q.audioUrlKm)
     });
 
@@ -373,7 +389,7 @@ async function getQuestionPayload(questionId: number) {
         answerKm: a.answerKm,
         imageUrl: a.imageUrl ?? null
       })),
-      topicCode: q.topicCode ?? null,
+      topicCode: topicCode ?? null,
     };
 
     console.log(`[getQuestionPayload] Returning payload:`, JSON.stringify(payload, null, 2));

@@ -109,6 +109,21 @@ function TeacherAvatar({ src, name }: { src: string | null | undefined; name: st
   );
 }
 
+function sanitizeError(err: any): string {
+  if (!err) return "";
+  if (typeof err === "string") return err;
+  if (typeof err === "object") {
+    if (err.message && typeof err.message === "string") return err.message;
+    if (err.error && typeof err.error === "string") return err.error;
+    try {
+      return JSON.stringify(err);
+    } catch {
+      return "An unexpected error occurred";
+    }
+  }
+  return String(err);
+}
+
 export default function StudentGamePage() {
   const params = useParams();
   const router = useRouter();
@@ -249,7 +264,7 @@ export default function StudentGamePage() {
           const data = await joinRes.json();
           if (joinRes.status === 401) { router.push(`/login?redirect=/play/${code}`); return; }
           if (joinRes.status === 403 || joinRes.status === 409) { setJoining(false); return; }
-          setJoinError(data.error || "Failed to join session");
+          setJoinError(sanitizeError(data.error) || "Failed to join session");
           setJoining(false);
           return;
         }
