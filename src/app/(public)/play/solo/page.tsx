@@ -449,9 +449,6 @@ export default function SoloPage() {
                   {q.imageUrl && q.gameType !== "image_pick" && (
                     <div className="mb-3 border-2 border-black p-2 flex justify-center bg-zinc-50 rounded-none relative">
                       <img src={q.imageUrl} alt="Question" className="max-h-24 w-auto object-contain rounded-none" />
-                      <div className="absolute bottom-0 right-0 bg-black/85 text-zinc-200 font-mono text-[8px] font-black px-1.5 py-0.5 border-l-2 border-t-2 border-black">
-                        Ref: {q.topicCode ? q.topicCode.trim() : `KWD-Q${q.id}`}
-                      </div>
                     </div>
                   )}
 
@@ -588,33 +585,13 @@ export default function SoloPage() {
         </div>
 
         {/* Question image (Stable height wrapper - compact) */}
-        <div className={`shrink-0 w-full h-32 flex items-center justify-center p-2 relative overflow-hidden rounded-none ${
+        <div className={`shrink-0 w-full h-48 flex items-center justify-center p-2 relative overflow-hidden rounded-none ${
           q.imageUrl
             ? "border-2 border-black bg-zinc-950"
             : "border-2 border-transparent bg-transparent"
         }`}>
           {q.imageUrl ? (
-            <>
-              <img src={q.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
-              {/* Image reference label inside the box border at the bottom */}
-              <div style={{
-                position: "absolute",
-                bottom: 0,
-                right: 0,
-                backgroundColor: "rgba(0,0,0,0.85)",
-                color: "#e4e4e7",
-                fontSize: "7.5px",
-                fontWeight: 900,
-                padding: "2px 6px",
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                fontFamily: "monospace",
-                borderLeft: "2px solid #000",
-                borderTop: "2px solid #000",
-              }}>
-                Ref: {q.topicCode ? q.topicCode.trim() : `KWD-Q${q.id}`}
-              </div>
-            </>
+            <img src={q.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
           ) : null}
         </div>
 

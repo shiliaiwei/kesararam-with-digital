@@ -768,63 +768,16 @@ export default function StudentGamePage() {
             )}
           </div>
 
-          {phase === "results" && (
-            <div className="flex gap-2 w-full bg-zinc-900 border-2 border-black p-1.5 rounded-none flex-shrink-0">
-              <button
-                type="button"
-                onClick={() => setResultsTab("result")}
-                className={`flex-1 py-1.5 text-xs font-black uppercase tracking-wider transition-all rounded-none ${
-                  resultsTab === "result"
-                    ? "bg-yellow-400 text-black border border-black"
-                    : "bg-transparent text-zinc-400 hover:text-white"
-                }`}
-                style={khFont}
-              >
-                {kh ? "លទ្ធផលខ្ញុំ" : "My Result"}
-              </button>
-              <button
-                type="button"
-                onClick={() => setResultsTab("leaderboard")}
-                className={`flex-1 py-1.5 text-xs font-black uppercase tracking-wider transition-all rounded-none ${
-                  resultsTab === "leaderboard"
-                    ? "bg-blue-400 text-black border border-black"
-                    : "bg-transparent text-zinc-400 hover:text-white"
-                }`}
-                style={khFont}
-              >
-                {kh ? "ចំណាត់ថ្នាក់" : "Rankings"}
-              </button>
-            </div>
-          )}
+
 
           {/* Question image (compact stable wrapper) */}
-          <div className={`shrink-0 w-full h-32 flex items-center justify-center p-2 relative overflow-hidden rounded-none ${
+          <div className={`shrink-0 w-full h-48 flex items-center justify-center p-2 relative overflow-hidden rounded-none ${
             currentQuestion.imageUrl
               ? "border-2 border-black bg-zinc-950"
               : "border-2 border-transparent bg-transparent"
           }`}>
             {currentQuestion.imageUrl ? (
-              <>
-                <img src={currentQuestion.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
-                {/* Image reference label inside the box border at the bottom */}
-                <div style={{
-                  position: "absolute",
-                  bottom: 0,
-                  right: 0,
-                  backgroundColor: "rgba(0,0,0,0.85)",
-                  color: "#e4e4e7",
-                  fontSize: "7.5px",
-                  fontWeight: 900,
-                  padding: "2px 6px",
-                  letterSpacing: "0.05em",
-                  textTransform: "uppercase",
-                  fontFamily: "monospace",
-                  borderLeft: "2px solid #000",
-                  borderTop: "2px solid #000",
-                }}>
-                  Ref: {currentQuestion.topicCode ? currentQuestion.topicCode.trim() : `KWD-Q${currentQuestion.id}`}
-                </div>
-              </>
+              <img src={currentQuestion.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
             ) : null}
           </div>
 
@@ -909,97 +862,7 @@ export default function StudentGamePage() {
             ) : null}
           </div>
 
-          {/* Round leaderboard overlay — shown during results (if rankings tab active) AND leaderboard phases */}
-          {(phase === "leaderboard" || (phase === "results" && resultsTab === "leaderboard")) && (
-            <div className="absolute inset-0 z-20 flex flex-col" style={{ backgroundColor: "rgba(13,13,20,0.97)" }}>
-              {/* Header */}
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-zinc-800 flex-shrink-0">
-                <Trophy size={14} className="text-yellow-400" />
-                <span className="text-white font-black text-xs uppercase tracking-widest" style={khFont}>
-                  {kh ? "ចំណាត់ថ្នាក់" : "Round Rankings"}
-                </span>
 
-                {phase === "results" && (
-                  <button
-                    type="button"
-                    onClick={() => setResultsTab("result")}
-                    className="ml-auto px-2.5 py-1 bg-yellow-400 text-black border border-black font-black text-[9px] uppercase tracking-wider hover:bg-yellow-300 transition-colors"
-                    style={{ borderRadius: "0px" }}
-                  >
-                    {kh ? "មើលសំណួរ" : "View Question"}
-                  </button>
-                )}
-
-                {phase !== "results" && (
-                  <span className="ml-auto text-zinc-500 text-[10px] font-bold uppercase tracking-wider">
-                    {kh ? `${questionIndex + 1}/${totalQuestions}` : `Q ${questionIndex + 1} / ${totalQuestions}`}
-                  </span>
-                )}
-              </div>
-
-              {/* Leaderboard — no scroll, centered on current user */}
-              <div className="flex-1 overflow-hidden flex flex-col justify-center px-3 py-2 gap-1.5">
-                {leaderboard.slice(0, 8).map((entry, i) => {
-                  const isMe = entry.userId === currentUserId;
-                  const isTop3 = i < 3;
-                  const rankColors = ["#ffd700", "#c0c0c0", "#cd7f32"];
-                  return (
-                    <div
-                      key={entry.userId}
-                      className={`flex items-center gap-2.5 px-3 py-2 border-2 border-black rounded-none transition-all duration-300 ${
-                        isMe ? "ring-2 ring-yellow-400 ring-offset-1 ring-offset-zinc-950" : ""
-                      }`}
-                      style={{
-                        backgroundColor: isMe ? "#ffd700" : isTop3 ? "#ffffff" : "#1c1c28",
-                        boxShadow: isMe ? "3px 3px 0 #000" : "2px 2px 0 #000",
-                        transform: isMe ? "scale(1.02)" : undefined,
-                        color: isMe || isTop3 ? "#000" : "#fff",
-                      }}
-                    >
-                      {/* Rank badge */}
-                      <div
-                        className="w-7 h-7 flex items-center justify-center border-2 border-black font-black text-xs flex-shrink-0"
-                        style={{ backgroundColor: isTop3 ? rankColors[i] : "#3f3f56", color: isTop3 ? "#000" : "#fff" }}
-                      >
-                        {entry.rank}
-                      </div>
-
-                      {/* Name */}
-                      <div className="flex-1 min-w-0">
-                        <div className="font-black text-xs truncate" style={khFont}>
-                          {entry.displayName}{isMe && <span className="ml-1 opacity-60 text-[10px]">({kh ? "អ្នក" : "you"})</span>}
-                        </div>
-                        {entry.currentStreak > 1 && (
-                          <div className="text-orange-500 text-[9px] font-bold">Streak x{entry.currentStreak}</div>
-                        )}
-                      </div>
-
-                      {/* Score + rank change */}
-                      <div className="text-right flex-shrink-0">
-                        <div className="font-black text-sm tabular-nums">{entry.totalScore.toLocaleString()}</div>
-                        <div className={`text-[9px] font-bold flex items-center justify-end gap-0.5 ${
-                          entry.rankChange > 0 ? "text-green-500" : entry.rankChange < 0 ? "text-red-400" : "text-zinc-500"
-                        }`}>
-                          {entry.rankChange > 0 ? "▲" : entry.rankChange < 0 ? "▼" : "—"}
-                          {entry.rankChange !== 0 && Math.abs(entry.rankChange)}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Waiting for next question */}
-              <div className="flex-shrink-0 py-3 text-center">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900 border-2 border-black rounded-none">
-                  <Loader2 size={12} className="animate-spin text-yellow-400" />
-                  <span className="text-zinc-400 text-[10px] font-bold uppercase tracking-widest" style={khFont}>
-                    {kh ? "រង់ចាំសំណួរបន្ទាប់..." : "Waiting for next question..."}
-                  </span>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     );

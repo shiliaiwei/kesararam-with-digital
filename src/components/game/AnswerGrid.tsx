@@ -69,22 +69,32 @@ export function AnswerGrid({
         const isOtherWrong = revealed && !isCorrect && !isMyWrong;
         const text = lang === "kh" ? (ans.answerKm || ans.answerEn) : ans.answerEn;
 
-        // Hide irrelevant wrong options after reveal (like Kahoot)
-        if (isOtherWrong) return null;
-
         // Active tile color
-        const tileBg = isCorrect ? CORRECT_BG : isMyWrong ? WRONG_BG : cfg.bg;
+        const tileBg = isCorrect 
+          ? CORRECT_BG 
+          : isMyWrong 
+          ? WRONG_BG 
+          : isOtherWrong 
+          ? "#f4f4f5" 
+          : cfg.bg;
+
         const borderColor = isCorrect 
           ? CORRECT_BG 
           : isMyWrong 
           ? WRONG_BG 
+          : isOtherWrong 
+          ? "#e4e4e7" 
           : isSelected && !revealed
           ? "#ffffff"
           : "#000000";
+
         const scale = isCorrect ? "scale(1.02)" : isSelected && !revealed ? "scale(0.98)" : "scale(1)";
 
         // ── IMAGE PICK (sign challenge) ─────────────────────────────────────
         if (isImagePick) {
+          const topBandBg = isCorrect ? CORRECT_BG : isMyWrong ? WRONG_BG : isOtherWrong ? "#d4d4d8" : cfg.bg;
+          const bottomBandBg = isCorrect ? CORRECT_BG : isMyWrong ? WRONG_BG : isOtherWrong ? "#d4d4d8" : cfg.bg;
+
           return (
             <button
               key={ans.id}
@@ -107,13 +117,14 @@ export function AnswerGrid({
                 height: "115px",
                 padding: 0,
                 outline: "none",
+                opacity: isOtherWrong ? 0.35 : 1,
               }}
             >
               {/* Colored top band — ABCD identity */}
               <div style={{
                 height: "4px",
                 width: "100%",
-                backgroundColor: isCorrect ? CORRECT_BG : isMyWrong ? WRONG_BG : cfg.bg,
+                backgroundColor: topBandBg,
                 flexShrink: 0,
               }} />
 
@@ -136,6 +147,7 @@ export function AnswerGrid({
                       maxWidth: "100%",
                       objectFit: "contain",
                       display: "block",
+                      opacity: isOtherWrong ? 0.4 : 1,
                     }}
                     onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                   />
@@ -148,7 +160,7 @@ export function AnswerGrid({
 
               {/* Colored bottom label band */}
               <div style={{
-                backgroundColor: isCorrect ? CORRECT_BG : isMyWrong ? WRONG_BG : cfg.bg,
+                backgroundColor: bottomBandBg,
                 color: "#ffffff",
                 fontSize: "10px",
                 fontWeight: 955,
@@ -211,6 +223,7 @@ export function AnswerGrid({
               transition: "transform 0.12s ease, background-color 0.15s",
               outline: "none",
               userSelect: "none",
+              opacity: isOtherWrong ? 0.35 : 1,
               ...khFont,
             }}
           >
@@ -218,7 +231,7 @@ export function AnswerGrid({
             <span style={{
               fontSize: "20px",
               lineHeight: 1,
-              color: "rgba(255,255,255,0.85)",
+              color: isOtherWrong ? "rgba(24,24,27,0.7)" : "rgba(255,255,255,0.85)",
               flexShrink: 0,
               width: "22px",
               textAlign: "center",
@@ -228,7 +241,7 @@ export function AnswerGrid({
 
             {/* Answer text */}
             <span style={{
-              color: "#ffffff",
+              color: isOtherWrong ? "#18181b" : "#ffffff",
               fontWeight: 900,
               fontSize: "clamp(12px, 3.5vw, 16px)",
               lineHeight: 1.25,
@@ -240,7 +253,7 @@ export function AnswerGrid({
 
             {/* Result icon */}
             {isCorrect && (
-              <span style={{ color: "#fff", fontSize: "16px", fontWeight: 900, flexShrink: 0 }}>✓</span>
+              <span style={{ color: isOtherWrong ? "#18181b" : "#fff", fontSize: "16px", fontWeight: 900, flexShrink: 0 }}>✓</span>
             )}
             {isMyWrong && (
               <span style={{ color: "#fff", fontSize: "16px", fontWeight: 900, flexShrink: 0 }}>✗</span>

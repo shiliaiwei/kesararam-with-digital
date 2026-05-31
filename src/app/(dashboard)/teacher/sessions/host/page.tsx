@@ -1281,9 +1281,6 @@ export default function HostPage() {
                         <div className="w-[120px] h-[120px] bg-zinc-100 animate-pulse border border-zinc-200" />
                       )}
                     </div>
-                    <div className="text-[9px] font-bold text-zinc-500 mt-3 text-center" style={khFont}>
-                      {kh ? "ប្រើកាមេរ៉ាទូរស័ព្ទរបស់អ្នក" : "Use your mobile camera"}
-                    </div>
                   </div>
                 </div>
               </div>
@@ -1492,28 +1489,9 @@ export default function HostPage() {
               </div>
 
               {/* Question image — compact stable wrapper */}
-              <div className="w-full h-32 border-2 border-black bg-white flex items-center justify-center mb-4 relative overflow-hidden shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px" }}>
+              <div className="w-full h-48 border-2 border-black bg-white flex items-center justify-center mb-4 relative overflow-hidden shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px" }}>
                 {question?.imageUrl ? (
-                  <>
-                    <img src={question.imageUrl} alt="question" className="h-full w-auto object-contain" style={{ maxHeight: "100%", maxWidth: "100%" }} />
-                    <div style={{
-                      position: "absolute",
-                      bottom: 0,
-                      right: 0,
-                      backgroundColor: "rgba(0,0,0,0.85)",
-                      color: "#e4e4e7",
-                      fontSize: "7.5px",
-                      fontWeight: 900,
-                      padding: "2px 6px",
-                      letterSpacing: "0.05em",
-                      textTransform: "uppercase",
-                      fontFamily: "monospace",
-                      borderLeft: "2px solid #000",
-                      borderTop: "2px solid #000",
-                    }}>
-                      Ref: {question.topicCode ? question.topicCode.trim() : `KWD-Q${question.id}`}
-                    </div>
-                  </>
+                  <img src={question.imageUrl} alt="question" className="h-full w-auto object-contain" style={{ maxHeight: "100%", maxWidth: "100%" }} />
                 ) : (
                   <div className="flex flex-col items-center gap-2 opacity-20">
                     <BookOpen size={48} className="text-zinc-500" />
@@ -1606,29 +1584,7 @@ export default function HostPage() {
             </div>
           </div>
 
-          {/* Right: Leaderboard */}
-          <div className="w-72 xl:w-80 flex flex-col flex-shrink-0 border-l-4 border-black bg-white">
-            <div className="px-4 py-3 flex items-center gap-2 flex-shrink-0 border-b-2 border-black bg-blue-400 text-black">
-              <BarChart2 size={13} className="text-black" />
-              <span className="text-black font-black text-xs uppercase tracking-widest" style={khFont}>
-                {kh ? "ចំណាត់ថ្នាក់" : "Live Scores"}
-              </span>
-              <span className="ml-auto font-black text-xs text-black/80 bg-white border border-black px-1.5 py-0.5 shadow-[1px_1px_0_#000]" style={{ borderRadius: "0px" }}>
-                {displayLeaderboard.length}
-              </span>
-            </div>
-            <div className="flex-1 overflow-y-auto divide-y-2 divide-black bg-white">
-              {displayLeaderboard.length === 0 ? (
-                <div className="text-center py-10 text-sm font-bold text-zinc-500" style={{ ...khFont }}>
-                  {kh ? "រង់ចាំ..." : "Waiting..."}
-                </div>
-              ) : (
-                displayLeaderboard.slice(0, 20).map((entry, i) => (
-                  <LiveLeaderRow key={entry.userId} entry={entry} rank={i + 1} showScore={!isActive} />
-                ))
-              )}
-            </div>
-          </div>
+
         </div>
       </div>
     );
