@@ -44,7 +44,7 @@ export async function PUT(
     }
 
     // Update title and description from question/answer if provided
-    const updateData: any = {
+    const updateData: Record<string, unknown> = {
       ...body,
       updatedAt: new Date(),
     };

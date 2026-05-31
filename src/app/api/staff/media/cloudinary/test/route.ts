@@ -28,8 +28,9 @@ export async function GET(request: NextRequest) {
       resourceCount: result.resources?.length || 0,
       resources: result.resources || [],
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Cloudinary test error:", error);
+    const maybeErr = typeof error === 'object' && error !== null ? error as { message?: unknown; stack?: unknown } : undefined;
     return NextResponse.json(
       {
         config: {
@@ -37,8 +38,8 @@ export async function GET(request: NextRequest) {
           api_key: process.env.CLOUDINARY_API_KEY,
           api_secret: process.env.CLOUDINARY_API_SECRET ? "SET" : "MISSING",
         },
-        error: error.message,
-        stack: error.stack,
+        error: typeof maybeErr?.message === 'string' ? maybeErr.message : String(error),
+        stack: typeof maybeErr?.stack === 'string' ? maybeErr.stack : undefined,
       },
       { status: 500 }
     );

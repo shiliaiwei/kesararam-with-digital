@@ -86,14 +86,18 @@ export async function GET() {
       message: 'Cloudinary connection successful'
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Cloudinary connection test failed:', error);
-    
+
+    const maybeErr = typeof error === 'object' && error !== null ? error as { message?: unknown; http_code?: unknown } : undefined;
+    const details = typeof maybeErr?.message === 'string' ? maybeErr.message : String(error);
+    const http_code = typeof maybeErr?.http_code === 'number' ? maybeErr.http_code : 500;
+
     return NextResponse.json({
       success: false,
       error: 'Failed to connect to Cloudinary',
-      details: error.message || 'Unknown error',
-      http_code: error.http_code || 500,
+      details,
+      http_code,
       cloud_name: cloudinary.config().cloud_name,
       api_key: cloudinary.config().api_key ? 'Set' : 'Not set',
       suggestion: 'Check your API credentials and network connection'

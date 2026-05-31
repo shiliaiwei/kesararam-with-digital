@@ -92,8 +92,8 @@ export async function GET(request: NextRequest) {
       : result;
 
     return NextResponse.json({ questions: filtered, total: filtered.length });
-  } catch (error: any) {
-    console.error("[GET /api/admin/questions]", error?.message ?? error);
+  } catch (error: unknown) {
+    console.error("[GET /api/admin/questions]", error);
     return NextResponse.json({ error: "Failed to fetch questions", questions: [] }, { status: 500 });
   }
 }
@@ -155,8 +155,9 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json({ success: true, questionId }, { status: 201 });
-  } catch (error: any) {
-    console.error("[POST /api/admin/questions]", error?.message ?? error);
-    return NextResponse.json({ error: "Failed to create question", detail: error?.message }, { status: 500 });
+  } catch (error: unknown) {
+    console.error("[POST /api/admin/questions]", error);
+    const maybeErr = typeof error === 'object' && error !== null ? error as { message?: unknown } : undefined;
+    return NextResponse.json({ error: "Failed to create question", detail: typeof maybeErr?.message === 'string' ? maybeErr.message : String(error) }, { status: 500 });
   }
 }

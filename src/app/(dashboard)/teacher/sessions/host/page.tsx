@@ -71,7 +71,7 @@ function NeubrutalistAvatar({ src, initials, userId }: NeubrutalistAvatarProps) 
   );
 }
 
-function sanitizeError(err: any): string {
+function sanitizeError(err: unknown): string {
   if (!err) return "";
   if (typeof err === "string") return err;
   if (typeof err === "object") {
@@ -302,9 +302,10 @@ export default function HostPage() {
     fetch("/api/game/sessions")
       .then((r) => r.json())
       .then(async (d) => {
+        type SessionSummary = { status?: string; sessionCode?: string; id?: number };
         const active = (d.sessions ?? []).find(
-          (s: any) => s.status === "lobby" || s.status === "active" || s.status === "paused"
-        );
+              (s: SessionSummary) => s.status === "lobby" || s.status === "active" || s.status === "paused"
+            );
         if (active) {
           if (active.status === "lobby") {
             try {
@@ -337,7 +338,7 @@ export default function HostPage() {
                     sessionId: active.id,
                     qIndex: state.currentQuestionIndex ?? 0,
                     total: state.totalQuestions ?? 1,
-                    leaderboard: state.participants?.map((p: any, i: number) => ({
+                    leaderboard: state.participants?.map((p: ParticipantInfo, i: number) => ({
                       userId: p.userId, displayName: p.displayName, avatar: p.avatar,
                       totalScore: p.totalScore, rank: i + 1, rankChange: 0,
                       correctAnswers: 0, currentStreak: 0,
@@ -355,7 +356,7 @@ export default function HostPage() {
       .catch(() => { });
   }, []);
 
-  const activeCode = "code" in phase ? (phase as any).code : "";
+  const activeCode = "code" in phase ? (phase as Extract<HostPhase, { code: string }>).code : "";
 
   const handleSSEEvent = useCallback((event: SSEEvent) => {
     if (event.type === "lobby_update") {

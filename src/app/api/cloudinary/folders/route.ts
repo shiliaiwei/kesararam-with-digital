@@ -82,11 +82,12 @@ export async function GET() {
     response.headers.set("Expires", "0");
 
     return response;
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error in folders API:", error);
+    const maybeErr = typeof error === 'object' && error !== null ? error as { message?: unknown } : undefined;
     return NextResponse.json(
       { 
-        error: error.message || "Failed to fetch folders",
+        error: typeof maybeErr?.message === 'string' ? maybeErr.message : String(error) || "Failed to fetch folders",
         folders: [] 
       },
       { status: 500 }

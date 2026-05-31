@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
     const resourceType = isAudio ? "video" : "image"; // Cloudinary uses 'video' for audio
 
     // Upload to Cloudinary
-      const result: Record<string, unknown> = await new Promise((resolve, reject) => {
+    const result = await new Promise<Record<string, unknown>>((resolve, reject) => {
       cloudinary.uploader.upload_stream(
         {
           folder: folder,
@@ -99,21 +99,31 @@ export async function POST(request: NextRequest) {
       ).end(buffer);
     });
 
+    const res = result || {};
+    const url = String(res.secure_url ?? "");
+    const publicId = String(res.public_id ?? "");
+    const format = String(res.format ?? "");
+    const size = typeof res.bytes === 'number' ? res.bytes : Number(res.bytes ?? 0);
+    const width = typeof res.width === 'number' ? res.width : Number(res.width ?? 0);
+    const height = typeof res.height === 'number' ? res.height : Number(res.height ?? 0);
+    const resourceType = String(res.resource_type ?? "");
+
     return NextResponse.json({
-      url: result.secure_url,
-      publicId: result.public_id,
-      format: result.format,
-      size: result.bytes,
-      width: result.width,
-      height: result.height,
-      resourceType: result.resource_type,
+      url,
+      publicId,
+      format,
+      size,
+      width,
+      height,
+      resourceType,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Upload error:", error);
+    const maybeErr = typeof error === 'object' && error !== null ? error as { message?: unknown } : undefined;
     return NextResponse.json(
       {
         error: "Failed to upload file",
-        message: error.message || "Unknown error",
+        message: typeof maybeErr?.message === 'string' ? maybeErr.message : String(error),
       },
       { status: 500 }
     );

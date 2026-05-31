@@ -36,11 +36,12 @@ export async function PUT(
     `;
 
     // Replace answers
-    if (answers && answers.length > 0) {
+    const answerList: Record<string, unknown>[] = Array.isArray(answers) ? answers as Record<string, unknown>[] : [];
+    if (answerList.length > 0) {
       await sql`DELETE FROM answers WHERE question_id = ${qid}`;
-      const aType = answers.some((a: any) => a.imageUrl) ? 'image_selection' : answers.length === 2 ? 'multiple_choice' : 'multiple_choice';
-      for (let i = 0; i < answers.length; i++) {
-        const a = answers[i];
+      const aType = answerList.some((a) => Boolean(a['imageUrl'])) ? 'image_selection' : answerList.length === 2 ? 'multiple_choice' : 'multiple_choice';
+      for (let i = 0; i < answerList.length; i++) {
+        const a = answerList[i];
         await sql`
           INSERT INTO answers (question_id, answer_type, answer_en, answer_km, is_correct, image_url, sort_order, created_at)
           VALUES (${qid}, ${aType}, ${a.answerEn}, ${a.answerKm || ""}, ${a.isCorrect || false}, ${a.imageUrl || null}, ${i}, NOW())

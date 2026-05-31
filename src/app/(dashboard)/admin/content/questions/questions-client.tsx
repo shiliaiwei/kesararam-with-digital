@@ -31,7 +31,7 @@ export default function AdminQuestionsClient() {
     const searchParams = useSearchParams();
     const initialTopicId = searchParams.get("topicId");
 
-    const [data, setData] = useState<{ question: Question; topic: any; }[]>([]);
+    const [data, setData] = useState<{ question: Question; topic?: Question['topic'] | null }[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [typeFilter, setTypeFilter] = useState("all");
     const [topicFilter] = useState(initialTopicId || "");
