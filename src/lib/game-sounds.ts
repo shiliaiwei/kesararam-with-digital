@@ -189,3 +189,20 @@ export function playAudioUrl(url: string | null) {
     audio.play().catch(() => {});
   } catch {}
 }
+
+if (typeof window !== "undefined") {
+  const unlockAudio = () => {
+    try {
+      const ac = getCtx();
+      if (ac.state === "suspended") {
+        ac.resume();
+      }
+      window.removeEventListener("click", unlockAudio);
+      window.removeEventListener("touchstart", unlockAudio);
+      window.removeEventListener("keydown", unlockAudio);
+    } catch {}
+  };
+  window.addEventListener("click", unlockAudio, { passive: true });
+  window.addEventListener("touchstart", unlockAudio, { passive: true });
+  window.addEventListener("keydown", unlockAudio, { passive: true });
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useLang } from "@/context/lang-context";
 import { useGameRealtime } from "@/hooks/use-game-realtime";
@@ -11,6 +11,7 @@ import { AnswerGrid } from "@/components/game/AnswerGrid";
 import { LeaderboardPanel } from "@/components/game/LeaderboardPanel";
 import { Podium } from "@/components/game/Podium";
 import { ErrorBoundary } from "@/components/game/ErrorBoundary";
+import { sounds } from "@/lib/game-sounds";
 import { RankBadge as TierBadge } from "@/components/shared/rank-label";
 import {
   Zap, Trophy, Users, Clock, CheckCircle, XCircle,
@@ -137,6 +138,9 @@ export default function StudentGamePage() {
   const [muted, setMuted] = useState(false);
   const [joinError, setJoinError] = useState<string | null>(null);
 
+  const mutedRef = useRef(muted);
+  mutedRef.current = muted;
+
   const [currentUserPoints, setCurrentUserPoints] = useState<number>(0);
   const [currentUserDisplayName, setCurrentUserDisplayName] = useState<string>("");
 
@@ -220,10 +224,12 @@ export default function StudentGamePage() {
         setAnswerResult(null);
         setCorrectAnswerId(null);
         setPhase("question");
+        if (!mutedRef.current) sounds.question_start();
       } else if (event.type === "question_end") {
         setCorrectAnswerId(event.correctAnswerId);
         setLeaderboard(event.leaderboard || []);
         setPhase("results");
+        if (!mutedRef.current) sounds.question_end();
       } else if (event.type === "leaderboard") {
         setLeaderboard(event.entries || []);
         setPhase("leaderboard");
@@ -231,8 +237,7 @@ export default function StudentGamePage() {
         setPodium(event.podium || []);
         setLeaderboard(event.finalLeaderboard || []);
         setPhase("podium");
-        // Play rank-specific sound after a short delay (podium reveal handles the rest)
-        // The Podium component handles staggered rank sounds internally
+        if (!mutedRef.current) sounds.podium();
       }
     } catch (error) {
       logError("SSE event handler error", error as Error, { event });
@@ -344,6 +349,13 @@ export default function StudentGamePage() {
       if (res.ok) {
         const data = await res.json();
         setAnswerResult({ isCorrect: data.isCorrect, pointsEarned: data.pointsEarned });
+        if (!mutedRef.current) {
+          if (data.isCorrect) {
+            sounds.correct();
+          } else {
+            sounds.incorrect();
+          }
+        }
       }
     } catch { /* silent */ }
   }, [answerSubmitted, currentQuestion, code]);
