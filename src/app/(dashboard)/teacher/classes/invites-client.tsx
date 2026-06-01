@@ -66,9 +66,19 @@ export function InvitesClient({ initialCodes, classes }: InvitesClientProps) {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 mt-6 border-t-4 border-black pt-6">
+      {/* Section Title */}
+      <div>
+        <h2 className="text-2xl font-black uppercase tracking-tighter text-black">
+          Student Registration Invites
+        </h2>
+        <p className="text-sm font-bold text-zinc-550 uppercase tracking-wide">
+          Generate single-use verification keys to register and authorize your students
+        </p>
+      </div>
+
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 animate-fade-in">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {stats.map((stat) => (
           <div
             key={stat.label}
@@ -94,15 +104,15 @@ export function InvitesClient({ initialCodes, classes }: InvitesClientProps) {
       </div>
 
       {/* Main card */}
-      <div className="border-2 border-black bg-white shadow-[4px_4px_0_#000] animate-fade-in" style={{ borderRadius: "0px" }}>
+      <div className="border-2 border-black bg-white shadow-[4px_4px_0_#000]" style={{ borderRadius: "0px" }}>
         {/* Card Header */}
         <div className="border-b-2 border-black bg-amber-400 p-4 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
-            <h2 className="text-xl font-black uppercase tracking-tighter text-black">
-              Student Registration Invites
-            </h2>
-            <p className="text-sm font-bold text-black/70 uppercase tracking-wide">
-              Create and manage secure, single-use invite codes for new student Google registration.
+            <h3 className="text-lg font-black uppercase tracking-tighter text-black">
+              Invite Codes Generator
+            </h3>
+            <p className="text-xs font-bold text-black/70 uppercase tracking-wide">
+              Select a class link and generate secure code. Students auto-join the class upon register.
             </p>
           </div>
           

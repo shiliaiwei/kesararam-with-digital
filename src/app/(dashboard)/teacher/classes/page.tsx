@@ -1,9 +1,10 @@
 import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import Link from "next/link";
 import { School, Users, Calendar, Plus } from "lucide-react";
 import { getTeacherClasses } from "@/app/actions/classes";
+import { getTeacherInviteCodes } from "@/app/actions/invites";
 import { ClassesTable } from "./classes-table";
+import { InvitesClient } from "./invites-client";
 
 export const dynamic = "force-dynamic";
 
@@ -13,7 +14,25 @@ export default async function TeacherClassesPage() {
     redirect("/login");
   }
 
-  const classes = await getTeacherClasses();
+  const [classes, invitesRes] = await Promise.all([
+    getTeacherClasses(),
+    getTeacherInviteCodes()
+  ]);
+
+  const codes = invitesRes.success && invitesRes.codes ? invitesRes.codes : [];
+
+  // Serialize Date objects cleanly to match typescript client types
+  const serializedCodes = codes.map((c) => ({
+    id: c.id,
+    code: c.code,
+    isUsed: c.isUsed,
+    usedAt: c.usedAt ? new Date(c.usedAt).toISOString() : null,
+    createdAt: c.createdAt ? new Date(c.createdAt).toISOString() : new Date().toISOString(),
+    classId: (c as any).classId ?? null,
+    className: (c as any).className ?? null,
+    usedByUsername: c.usedByUsername ?? null,
+    usedByDisplayName: c.usedByDisplayName ?? null,
+  }));
 
   // Calculate stats
   const totalClasses = classes.length;
@@ -45,17 +64,6 @@ export default async function TeacherClassesPage() {
           </div>
           
           <div className="flex items-center gap-3">
-            {/* Invite Codes Link */}
-            <Link
-              href="/teacher/invites"
-              className="flex items-center gap-2 px-4 py-3 bg-[#ff8c00] border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100"
-            >
-              <span className="material-symbols-rounded text-black" style={{ fontSize: "20px" }}>vpn_key</span>
-              <span className="font-black text-sm uppercase tracking-wide text-black">
-                Invite Codes / កូដអញ្ជើញ
-              </span>
-            </Link>
-
             {/* Create Class Button */}
             <button className="flex items-center gap-2 px-4 py-3 bg-yellow-400 border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100">
               <Plus size={20} className="text-black" />
@@ -115,11 +123,22 @@ export default async function TeacherClassesPage() {
               createdAt: c.createdAt,
               teacherName: c.teacherName ?? null,
               teacherEmail: c.teacherEmail ?? null,
+              gradeLevel: c.gradeLevel ?? null,
+              schoolName: c.schoolName ?? null,
+              province: c.province ?? null,
+              section: c.section ?? null,
+              status: c.status ?? null,
             }))}
             showTeacher={session.role === "admin"}
           />
         </div>
       </div>
+
+      {/* Embedded Student Registration Invites Panel */}
+      <InvitesClient
+        initialCodes={serializedCodes}
+        classes={classes.map((cl) => ({ id: cl.id, name: cl.name }))}
+      />
     </div>
   );
 }
