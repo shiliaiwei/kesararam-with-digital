@@ -50,36 +50,31 @@ const VOICE_PRINCIPLES: { en: string; kh: string }[] = [
   { en: "Bilingual content must carry equal meaning — not literal translation.", kh: "ខ្លឹមសារពីរភាសាត្រូវមានអត្ថន័យស្មើគ្នា — មិនមែនជាការបកប្រែតាមព្យញ្ជនៈឡើយ។" },
 ];
 
-const DOWNLOAD_ASSETS: { file: string; label: { en: string; kh: string }; note: { en: string; kh: string }; format: string }[] = [
+const DOWNLOAD_ASSETS: { file: string; label: { en: string; kh: string }; note: { en: string; kh: string } }[] = [
   {
     file: "/brand/kwd-black_nobackground.png",
-    label: { en: "Primary Logo", kh: "ឡូហ្គូចម្បង" },
-    note: { en: "PNG — transparent bg, for all digital use", kh: "PNG — ផ្ទៃខាងក្រោយថ្លា សម្រាប់ការប្រើប្រាស់ឌីជីថល" },
-    format: "PNG",
+    label: { en: "Primary Logo — Black", kh: "ឡូហ្គូចម្បង — ខ្មៅ" },
+    note: { en: "Transparent background · all digital surfaces", kh: "ផ្ទៃខាងក្រោយថ្លា · គ្រប់ផ្ទៃឌីជីថល" },
   },
   {
-    file: "/brand/kwd-black-nobg.svg",
-    label: { en: "Primary Logo", kh: "ឡូហ្គូចម្បង" },
-    note: { en: "SVG — vector, scales to any size", kh: "SVG — វ៉ិចទ័រ ទំហំអាចកែបានគ្រប់ขนาด" },
-    format: "SVG",
+    file: "/brand/kwd-gray.png",
+    label: { en: "Logo — Gray", kh: "ឡូហ្គូ — ប្រផេះ" },
+    note: { en: "On white or light neutral backgrounds", kh: "លើផ្ទៃស ឬប្រផេះស្រាល" },
   },
   {
-    file: "/brand/logo.svg",
-    label: { en: "Full Logo", kh: "ឡូហ្គូពេញ" },
-    note: { en: "SVG — complete logo mark", kh: "SVG — ឡូហ្គូពេញរូប" },
-    format: "SVG",
+    file: "/brand/kwd-green.png",
+    label: { en: "Logo — Green", kh: "ឡូហ្គូ — បៃតង" },
+    note: { en: "Success states · active context", kh: "ស្ថានភាពជោគជ័យ · បរិបទសកម្ម" },
+  },
+  {
+    file: "/brand/kwd-yellow.png",
+    label: { en: "Logo — Yellow", kh: "ឡូហ្គូ — លឿង" },
+    note: { en: "Brand accent · call-to-action surfaces", kh: "ពណ៌សម្គាល់ម៉ាក · ផ្ទៃ CTA" },
   },
   {
     file: "/brand/logo.png",
-    label: { en: "Full Logo", kh: "ឡូហ្គូពេញ" },
-    note: { en: "PNG — raster export", kh: "PNG — នាំចេញជារូបភាព" },
-    format: "PNG",
-  },
-  {
-    file: "/brand/qrcode-kwd.png",
-    label: { en: "QR Code", kh: "លេខកូដ QR" },
-    note: { en: "PNG — links to kesararamwithdigital.tech", kh: "PNG — តភ្ជាប់ទៅ kesararamwithdigital.tech" },
-    format: "PNG",
+    label: { en: "Full Logo Mark", kh: "ឡូហ្គូពេញ" },
+    note: { en: "Complete logo with mark", kh: "ឡូហ្គូពេញរួមសញ្ញា" },
   },
 ];
 
@@ -192,22 +187,20 @@ export function BrandGuidelineClient() {
             </p>
             <p className="text-sm text-zinc-700 leading-relaxed font-medium" style={kf}>
               {t(
-                "The flash bolt at the center of the KWD logo is not decoration — it is a declaration. It represents ",
-                "ផ្លេកបន្ទោរនៅចំកណ្ដាលឡូហ្គូ KWD មិនមែនជាការតុបតែងឡើយ — វាជាការប្រកាស។ វាតំណាងឱ្យ "
+                "The lightning bolt at the heart of the KWD mark is not ornamental — it is the brand's core belief made visible. It stands for ",
+                "ផ្លេកបន្ទោរនៅចំកណ្ដាលនៃឡូហ្គូ KWD មិនមែនជាការតុបតែងឡើយ — វាជាជំនឿស្នូលរបស់ម៉ាកដែលបង្ហាញជារូបធាតុ។ វាតំណាងឱ្យ "
               )}
               <strong className="text-black font-black">
-                {t("Flash Learning", "ការរៀនសូត្ររហ័ស")}
+                {t("Flash Learning", "ការរៀនសូត្ររហ័ស (Flash Learning)")}
               </strong>
               {t(
-                " — the speed at which knowledge moves in the age of AI. We learn faster than ever. We work faster than ever. Automation is reshaping every industry, and those who learn quickly will lead. The flash is a promise: in the era of AI, ",
-                " — ល្បឿននៃចំណេះដឹងក្នុងយុគ AI។ យើងរៀនបានលឿនជាងពេលណាទាំងអស់។ យើងធ្វើការបានលឿនជាងពេលណាទាំងអស់។ ស្វ័យប្រវត្តិកម្មកំពុងផ្លាស់ប្ដូររាល់ឧស្សាហកម្ម ហើយអ្នកណាដែលរៀនបានលឿននឹងដឹកនាំ។ ផ្លេកនេះគឺជាការប្ដេជ្ញា៖ ក្នុងយុគ AI "
+                " — the conviction that in the age of AI, knowledge moves at the speed of light. Automation is rewriting every industry. The tools of the future belong to those who learn now. The bolt is our promise: ",
+                " — ការជឿជាក់ថា ក្នុងយុគ AI ចំណេះដឹងដំណើរការក្នុងល្បឿននៃពន្លឺ។ ស្វ័យប្រវត្តិកម្មកំពុងសរសេរឡើងវិញរាល់ឧស្សាហកម្ម។ ឧបករណ៍នៃអនាគតជារបស់អ្នកដែលរៀននៅថ្ងៃនេះ។ ផ្លេកនេះគឺជាការប្ដេជ្ញារបស់យើង៖ "
               )}
-              <strong className="text-black font-black">
-                {t("Kesararam With Digital", "Kesararam With Digital")}
-              </strong>
+              <strong className="text-black font-black">Kesararam With Digital</strong>
               {t(
-                " gives every Cambodian student the tools to learn with AI and move at the speed of now.",
-                " ផ្ដល់ឱ្យសិស្សខ្មែររាល់រូបនូវឧបករណ៍ដើម្បីរៀនជាមួយ AI និងស្ទើរបន្ទាន់ជាមួយពេលវេលា។"
+                " will always give every Cambodian student the speed, the tools, and the confidence to learn with AI — and lead what comes next.",
+                " នឹងផ្ដល់ឱ្យសិស្សខ្មែររាល់រូបនូវល្បឿន ឧបករណ៍ និងទំនុកចិត្ត ដើម្បីរៀនជាមួយ AI — និងដឹកនាំអ្វីដែលនឹងមកបន្ទាប់។"
               )}
             </p>
           </div>
@@ -245,6 +238,30 @@ export function BrandGuidelineClient() {
                   {t("For dark surfaces — apply filter: invert(1)", "សម្រាប់ផ្ទៃងងឹត — ប្រើ filter: invert(1)")}
                 </p>
               </div>
+            </div>
+          </div>
+
+          {/* Color variants */}
+          <div className="mb-10">
+            <p className="text-[9px] font-black uppercase tracking-widest text-zinc-300 mb-3" style={kf}>
+              {t("Color Variants", "វ៉ារ្យ៉ង់ពណ៌")}
+            </p>
+            <div className="grid grid-cols-3 gap-3">
+              {[
+                { src: "/brand/kwd-gray.png",   file: "kwd-gray.png",   note: t("On white / light neutral bg", "លើផ្ទៃស ឬប្រផេះស្រាល") },
+                { src: "/brand/kwd-green.png",  file: "kwd-green.png",  note: t("Success state · active", "ស្ថានភាពជោគជ័យ · សកម្ម") },
+                { src: "/brand/kwd-yellow.png", file: "kwd-yellow.png", note: t("Brand accent · CTA", "ពណ៌សម្គាល់ម៉ាក · CTA") },
+              ].map(({ src, file, note }) => (
+                <div key={file} className="rounded-xl overflow-hidden border border-black/10">
+                  <div className="h-24 flex items-center justify-center p-4 bg-white">
+                    <Image src={src} alt={file} width={80} height={80} className="object-contain max-h-14" />
+                  </div>
+                  <div className="px-2.5 py-2 bg-zinc-50 border-t border-black/8">
+                    <p className="text-[9px] font-black uppercase tracking-wide text-zinc-700 leading-tight">{file}</p>
+                    <p className="text-[8px] text-zinc-400 font-medium mt-0.5" style={kf}>{note}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -382,16 +399,10 @@ export function BrandGuidelineClient() {
           </div>
         </Section>
 
-        {/* ── 08 Download Brand Assets ── */}
-        <Section id="download" num="08" title={t("Download Brand Assets", "ទាញយកទ្រព្យសម្ភារៈម៉ាក")} kf={kf} last>
-          <p className="text-sm text-zinc-500 font-medium mb-8" style={kf}>
-            {t(
-              "Official KWD brand files — free to use under brand guidelines. Do not alter files before use.",
-              "ឯកសារម៉ាក KWD ផ្លូវការ — ឥតគិតថ្លៃ សម្រាប់ប្រើប្រាស់ស្របតាមការណែនាំម៉ាក។ កុំកែប្រែឯកសារមុនពេលប្រើ។"
-            )}
-          </p>
+        {/* ── 08 Save Logo ── */}
+        <Section id="download" num="08" title={t("Save Logo", "រក្សាទុកឡូហ្គូ")} kf={kf} last>
           <div className="space-y-3">
-            {DOWNLOAD_ASSETS.map(({ file, label, note, format }) => (
+            {DOWNLOAD_ASSETS.map(({ file, label, note }) => (
               <a
                 key={file}
                 href={file}
@@ -399,23 +410,18 @@ export function BrandGuidelineClient() {
                 className="group flex items-center justify-between gap-4 px-4 py-3 border-2 border-black/10 rounded-xl bg-white hover:border-black hover:shadow-[3px_3px_0_#000] transition-all duration-150"
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  {/* File icon */}
-                  <div className="w-9 h-9 rounded border-2 border-black/15 group-hover:border-black flex items-center justify-center flex-shrink-0 transition-colors bg-zinc-50">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <path d="M3 1h6l3 3v9H3V1z" stroke="#000" strokeWidth="1.5" strokeLinejoin="round" />
-                      <path d="M9 1v3h3" stroke="#000" strokeWidth="1.5" strokeLinejoin="round" />
-                      <path d="M5 7h4M5 9.5h3" stroke="#000" strokeWidth="1.2" strokeLinecap="round" />
-                    </svg>
+                  {/* PNG badge + thumbnail */}
+                  <div className="w-12 h-12 rounded border-2 border-black/10 group-hover:border-black flex items-center justify-center flex-shrink-0 transition-colors bg-zinc-50 overflow-hidden">
+                    <Image src={file} alt={label.en} width={36} height={36} className="object-contain" />
                   </div>
                   <div className="min-w-0">
                     <p className="text-sm font-black text-black leading-tight" style={kf}>{t(label.en, label.kh)}</p>
-                    <p className="text-[9px] text-zinc-400 font-medium mt-0.5 truncate" style={kf}>{t(note.en, note.kh)}</p>
-                    <p className="text-[9px] font-mono text-zinc-300 mt-0.5 truncate">{file}</p>
+                    <p className="text-[9px] text-zinc-400 font-medium mt-0.5" style={kf}>{t(note.en, note.kh)}</p>
+                    <p className="text-[9px] font-mono text-zinc-300 mt-0.5 truncate">{file.split("/").pop()}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 flex-shrink-0">
-                  <span className="text-[9px] font-black uppercase tracking-wide text-zinc-400 bg-zinc-100 px-2 py-0.5 rounded">{format}</span>
-                  {/* Download arrow */}
+                  <span className="text-[9px] font-black uppercase tracking-wide text-zinc-400 bg-zinc-100 px-2 py-0.5 rounded">PNG</span>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-zinc-300 group-hover:text-black transition-colors">
                     <path d="M8 3v7M5 7l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     <path d="M3 12h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -424,12 +430,6 @@ export function BrandGuidelineClient() {
               </a>
             ))}
           </div>
-          <p className="text-[9px] text-zinc-300 font-medium mt-4 text-center" style={kf}>
-            {t(
-              "All files are served from kesararamwithdigital.tech — no third-party hosting.",
-              "ឯកសារទាំងអស់ត្រូវបានផ្ដល់ជូនពី kesararamwithdigital.tech — គ្មានការបង្ហោះផ្នែកទីបី។"
-            )}
-          </p>
         </Section>
 
         {/* ── Footer ── */}
