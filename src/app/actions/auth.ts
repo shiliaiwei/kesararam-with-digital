@@ -338,16 +338,20 @@ export async function registerAction(
     const ipAddress = headersList.get("x-forwarded-for") || headersList.get("x-real-ip") || "unknown";
     const userAgent = headersList.get("user-agent") || "unknown";
 
-    // Create session record
-    await db.insert(sessions).values({
-      userId: newUser.id,
-      token,
-      ipAddress,
-      userAgent,
-      isActive: true,
-      loginAt: new Date(),
-      lastActivityAt: new Date(),
-    });
+    // Create session record (safely try/catch so db session insertion issues do not crash registration)
+    try {
+      await db.insert(sessions).values({
+        userId: newUser.id,
+        token,
+        ipAddress,
+        userAgent,
+        isActive: true,
+        loginAt: new Date(),
+        lastActivityAt: new Date(),
+      });
+    } catch (sessionErr) {
+      console.error("[registerAction] Non-fatal error creating session record:", sessionErr);
+    }
 
     const cookieStore = await cookies();
     cookieStore.set("kwd_token", token, {

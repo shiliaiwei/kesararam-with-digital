@@ -97,58 +97,8 @@ export async function GET(req: NextRequest) {
       return await establishSessionAndRedirect(existingUser, req);
     }
 
-    // New User! Registration requires a valid, unused teacher invite code.
-    // Deserialize form fields passed securely through Google's state parameter
-    let inviteCode = "";
-    let schoolName = null;
-    let province = null;
-    let gradeLevel = null;
-    let section = null;
-
-    if (state) {
-      try {
-        const decodedState = JSON.parse(Buffer.from(state, "base64url").toString("utf8"));
-        inviteCode = decodedState.code || "";
-        schoolName = decodedState.schoolName || null;
-        province = decodedState.province || null;
-        gradeLevel = decodedState.gradeLevel || null;
-        section = decodedState.section || null;
-      } catch (e) {
-        // Fallback for raw invitation codes
-        inviteCode = state;
-      }
-    }
-
-    if (!inviteCode) {
-      return NextResponse.redirect(
-        `${registerUrl}?error=${encodeURIComponent(
-          "An invitation code is required to register with Google."
-        )}`
-      );
-    }
-
-    // 4. Validate invitation code in database
-    const [codeRecord] = await db
-      .select()
-      .from(inviteCodes)
-      .where(eq(inviteCodes.code, inviteCode.trim()))
-      .limit(1);
-
-    if (!codeRecord) {
-      return NextResponse.redirect(
-        `${registerUrl}?error=${encodeURIComponent("Invalid invitation code.")}`
-      );
-    }
-
-    if (codeRecord.isUsed) {
-      return NextResponse.redirect(
-        `${registerUrl}?error=${encodeURIComponent(
-          "This invitation code has already been used."
-        )}`
-      );
-    }
-
-    // 5. Create new student user inside database transaction & consume code
+    // New User! Register cleanly with Google details.
+    // They will be gated on profile completion (/profile/student) to provide their invite code and school details before they can use the platform.
     const randomPassword = createHash("sha256")
       .update(Math.random().toString() + Date.now().toString())
       .digest("hex");
@@ -156,38 +106,24 @@ export async function GET(req: NextRequest) {
     // Clean google username (e.g. janesmith + 3 numbers)
     const derivedUsername = email.split("@")[0].replace(/[^a-zA-Z0-9]/g, "") + Math.floor(100 + Math.random() * 900);
 
-    const newUser = await db.transaction(async (tx) => {
-      const [insertedUser] = await tx
-        .insert(users)
-        .values({
-          username: derivedUsername,
-          email: email.toLowerCase(),
-          displayName: name || derivedUsername,
-          passwordHash: randomPassword,
-          googleId,
-          role: "student",
-          avatar: picture || null,
-          schoolName,
-          province,
-          gradeLevel,
-          section,
-          isActive: true,
-          loginAttempts: 0,
-        })
-        .returning();
-
-      // Mark invite code as used
-      await tx
-        .update(inviteCodes)
-        .set({
-          isUsed: true,
-          usedById: insertedUser.id,
-          usedAt: new Date(),
-        })
-        .where(eq(inviteCodes.id, codeRecord.id));
-
-      return insertedUser;
-    });
+    const [newUser] = await db
+      .insert(users)
+      .values({
+        username: derivedUsername,
+        email: email.toLowerCase(),
+        displayName: name || derivedUsername,
+        passwordHash: randomPassword,
+        googleId,
+        role: "student",
+        avatar: picture || null,
+        schoolName: null,
+        province: null,
+        gradeLevel: null,
+        section: null,
+        isActive: true,
+        loginAttempts: 0,
+      })
+      .returning();
 
     return await establishSessionAndRedirect(newUser, req);
 

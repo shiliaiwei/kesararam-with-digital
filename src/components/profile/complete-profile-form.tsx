@@ -46,6 +46,7 @@ export function CompleteProfileForm() {
   const { lang } = useLang();
   const kh = lang === "kh";
 
+  const [inviteCode, setInviteCode] = useState("");
   const [schoolName, setSchoolName] = useState("");
   const [province, setProvince] = useState("Siem Reap"); // Default to Siem Reap as requested
   const [gradeLevel, setGradeLevel] = useState("");
@@ -56,6 +57,10 @@ export function CompleteProfileForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!inviteCode.trim()) {
+      setError(kh ? "សូមបញ្ចូលលេខកូដអញ្ជើញពីគ្រូ" : "Please enter your teacher invite code.");
+      return;
+    }
     if (!schoolName.trim()) {
       setError(kh ? "សូមបញ្ចូលឈ្មោះសាលារៀន" : "Please enter your school name.");
       return;
@@ -82,18 +87,20 @@ export function CompleteProfileForm() {
           gradeLevel,
           section,
           parentContact,
+          inviteCode,
         }),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to save profile settings");
+        const errData = await response.json();
+        throw new Error(errData.error || "Failed to save profile settings");
       }
 
       // Success - reload the page to release the gate and show dashboard
       window.location.reload();
-    } catch (err) {
+    } catch (err: any) {
       console.error("Error completing profile:", err);
-      setError(kh ? "បានកើតកំហុសក្នុងការរក្សាទុកទិន្នន័យ" : "Failed to save profile details. Please try again.");
+      setError(err.message || (kh ? "បានកើតកំហុសក្នុងការរក្សាទុកទិន្នន័យ" : "Failed to save profile details. Please try again."));
     } finally {
       setLoading(false);
     }
@@ -138,6 +145,28 @@ export function CompleteProfileForm() {
                 {error}
               </div>
             )}
+
+            {/* Teacher Invite Code */}
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="inviteCode" className="text-sm font-black text-black">
+                {kh ? "លេខកូដអញ្ជើញពីគ្រូ *" : "Teacher Invite Code *"}
+              </label>
+              <input
+                type="text"
+                id="inviteCode"
+                value={inviteCode}
+                onChange={(e) => setInviteCode(e.target.value)}
+                required
+                placeholder="KWD-XXXX-YYYY"
+                className="w-full px-4 py-2.5 border-2 border-black text-sm font-black focus:outline-none focus:shadow-[2px_2px_0_#0284c7] placeholder:text-zinc-300"
+                style={{ borderRadius: "0px" }}
+              />
+              <p className="text-[10px] text-zinc-400 font-bold leading-normal">
+                {kh
+                  ? "* សូមបញ្ចូលលេខកូដអញ្ជើញដែលទទួលបានពីគ្រូបង្រៀនរបស់អ្នកដើម្បីចុះឈ្មោះចូលរៀន។"
+                  : "* Please enter the invitation code provided by your teacher."}
+              </p>
+            </div>
 
             {/* School Name */}
             <div className="flex flex-col gap-1.5">
