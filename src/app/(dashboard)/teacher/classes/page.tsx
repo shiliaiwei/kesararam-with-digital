@@ -1,5 +1,6 @@
 import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { School, Users, Calendar, Plus } from "lucide-react";
 import { getTeacherClasses } from "@/app/actions/classes";
 import { ClassesTable } from "./classes-table";
@@ -43,13 +44,26 @@ export default async function TeacherClassesPage() {
             </div>
           </div>
           
-          {/* Create Class Button */}
-          <button className="flex items-center gap-2 px-4 py-3 bg-yellow-400 border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100">
-            <Plus size={20} className="text-black" />
-            <span className="font-black text-sm uppercase tracking-wide text-black">
-              New Class
-            </span>
-          </button>
+          <div className="flex items-center gap-3">
+            {/* Invite Codes Link */}
+            <Link
+              href="/teacher/invites"
+              className="flex items-center gap-2 px-4 py-3 bg-[#ff8c00] border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100"
+            >
+              <span className="material-symbols-rounded text-black" style={{ fontSize: "20px" }}>vpn_key</span>
+              <span className="font-black text-sm uppercase tracking-wide text-black">
+                Invite Codes / កូដអញ្ជើញ
+              </span>
+            </Link>
+
+            {/* Create Class Button */}
+            <button className="flex items-center gap-2 px-4 py-3 bg-yellow-400 border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100">
+              <Plus size={20} className="text-black" />
+              <span className="font-black text-sm uppercase tracking-wide text-black">
+                New Class
+              </span>
+            </button>
+          </div>
         </div>
       </div>
 

@@ -43,7 +43,6 @@ const teacherNav: NavItem[] = [
   { label: "Classes", href: "/teacher/classes", icon: "school", color: "#3b82f6" },
   { label: "Sessions", href: "/teacher/sessions", icon: "tv", color: "#22c55e" },
   { label: "Host Game", href: "/teacher/sessions/host", icon: "sports_esports", color: "#ffd700" },
-  { label: "Invite Codes", href: "/teacher/invites", icon: "vpn_key", color: "#ff8c00" },
 ];
 
 const staffNav: NavItem[] = [
