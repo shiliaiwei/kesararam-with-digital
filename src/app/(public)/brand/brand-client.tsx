@@ -78,7 +78,33 @@ const DOWNLOAD_ASSETS: { file: string; label: { en: string; kh: string }; note: 
   },
 ];
 
-const MOCKUP_COUNT = 5;
+const MOCKUP_ASSETS: { src: string; title: { en: string; kh: string }; desc: { en: string; kh: string } }[] = [
+  {
+    src: "/brand/tote_stationery_mockup.png",
+    title: { en: "Tote & Stationery Set", kh: "កាបូបយួរ & សម្ភារៈការិយាល័យ" },
+    desc: { en: "Premium organic cotton tote and black executive stationery.", kh: "កាបូបយួរពីកប្បាសធម្មជាតិ និងសម្ភារៈការិយាល័យបែបធុរកិច្ចពណ៌ខ្មៅ។" }
+  },
+  {
+    src: "/brand/devices_brand_mockup.png",
+    title: { en: "Digital Devices Dashboard", kh: "ផ្ទាំងព័ត៌មានលើឧបករណ៍ឌីជីថល" },
+    desc: { en: "KWD responsive app dashboard on laptop and mobile screen layout.", kh: "ផ្ទាំងព័ត៌មានឆ្លើយតបកម្មវិធី KWD នៅលើអេក្រង់កុំព្យូទ័រ និងទូរស័ព្ទ។" }
+  },
+  {
+    src: "/brand/educational_blocks_mockup.png",
+    title: { en: "Educational Toys & Cards", kh: "ដុំឈើល្បែងអប់រំ & កាតសិក្សា" },
+    desc: { en: "Engraved wooden blocks and colorful traffic instruction cards.", kh: "ដុំឈើឆ្លាក់ឡូហ្គូ និងកាតរូបភាពណែនាំអំពីច្បាប់ចរាចរណ៍។" }
+  },
+  {
+    src: "/brand/mug_bottle_mockup.png",
+    title: { en: "Ceramic Mug & Metal Bottle", kh: "កែវសេរ៉ាមិច & ដបទឹកលោហៈធាតុ" },
+    desc: { en: "Minimalist matte black coffee mug and premium water container.", kh: "កែវកាហ្វេពណ៌ខ្មៅក្រើមបែបសាមញ្ញ និងដបទឹកលោហៈធាតុស្អាតប្រណីត។" }
+  },
+  {
+    src: "/brand/apparel_brand_mockup.png",
+    title: { en: "Premium Brand Apparel", kh: "សម្លៀកបំពាក់យីហោលំដាប់ខ្ពស់" },
+    desc: { en: "Embroidered organic cotton t-shirt, hoodie, and street cap.", kh: "អាវយឺតកប្បាស អាវរងាមានមួក និងមួកប៉ារ៉េប៉ាក់ឡូហ្គូប្រណីត។" }
+  }
+];
 
 export function BrandGuidelineClient() {
   const { lang } = useLang();
@@ -377,23 +403,38 @@ export function BrandGuidelineClient() {
           <p className="text-[9px] font-black uppercase tracking-widest text-zinc-300 mb-3" style={kf}>
             {t("Product Mockups", "ផលិតផលគំរូ")}
           </p>
-          <p className="text-sm text-zinc-500 font-medium mb-6" style={kf}>
+          <p className="text-sm text-zinc-500 font-medium mb-8" style={kf}>
             {t(
-              "KWD applied across physical products and brand materials — images will be added later.",
-              "KWD ដាក់លើផលិតផលជាក់ស្តែង និងសម្ភារៈម៉ាក — រូបភាពនឹងបន្ថែមនៅពេលក្រោយ។"
+              "Premium studio-quality physical mockups demonstrating the KWD branding applied consistently across diverse brand merchandise and digital platforms.",
+              "គំរូបោះពុម្ពរូបរាងជាក់ស្ដែងកម្រិតស្ទូឌីយោលំដាប់ខ្ពស់ ដែលបង្ហាញពីការប្រើប្រាស់និមិត្តសញ្ញា KWD នៅលើផលិតផលម៉ាកចម្រុះ និងឧបករណ៍បច្ចេកវិទ្យាឌីជីថលផ្សេងៗ។"
             )}
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {Array.from({ length: MOCKUP_COUNT }).map((_, i) => (
-              <div key={i} className="rounded-xl overflow-hidden border-2 border-dashed border-black/15 bg-zinc-50 h-44 flex flex-col items-center justify-center gap-2">
-                <div className="w-8 h-8 rounded border-2 border-black/15 flex items-center justify-center">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="opacity-25">
-                    <rect x="1" y="1" width="14" height="14" rx="1" stroke="#000" strokeWidth="1.5" />
-                    <path d="M1 11l4-4 3 3 3-4 4 5" stroke="#000" strokeWidth="1.5" strokeLinejoin="round" />
-                    <circle cx="11" cy="5" r="1.5" fill="#000" />
-                  </svg>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+            {MOCKUP_ASSETS.map((m, i) => (
+              <div 
+                key={i} 
+                className="group relative rounded-none border-[3px] border-black bg-white overflow-hidden shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all duration-200"
+              >
+                <div className="aspect-square relative overflow-hidden border-b-[3px] border-black bg-zinc-50">
+                  <Image 
+                    src={m.src} 
+                    alt={m.title.en} 
+                    fill 
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                  />
                 </div>
-                <p className="text-[9px] font-black uppercase tracking-widest text-black/20">Image {String(i + 1).padStart(2, "0")}</p>
+                <div className="p-4" style={kf}>
+                  <p className="text-[9px] font-black text-amber-500 uppercase tracking-widest mb-1">
+                    {t(`MOCKUP ${String(i + 1).padStart(2, "0")}`, `គំរូផលិតផល ${String(i + 1).padStart(2, "0")}`)}
+                  </p>
+                  <h3 className="text-sm font-black text-black mb-1">
+                    {t(m.title.en, m.title.kh)}
+                  </h3>
+                  <p className="text-xs text-zinc-500 font-medium leading-snug">
+                    {t(m.desc.en, m.desc.kh)}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
