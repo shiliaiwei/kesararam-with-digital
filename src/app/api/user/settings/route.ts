@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { users, inviteCodes } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { users, classes, classEnrollments } from "@/db/schema";
+import { eq, and } from "drizzle-orm";
 import { getSession } from "@/lib/auth";
 
 // GET /api/user/settings - Get user settings
@@ -25,6 +25,7 @@ export async function GET(request: NextRequest) {
     // Return user settings
     const settings = {
       displayName: user.displayName || user.username,
+      username: user.username,
       email: user.email,
       role: user.role,
       avatar: user.avatar || "",
@@ -148,25 +149,21 @@ export async function PUT(request: NextRequest) {
     if (isOnboarding) {
       const inputCode = inviteCode || body.inviteCode;
       if (!inputCode) {
-        return NextResponse.json({ error: "Teacher invitation code is required." }, { status: 400 });
+        return NextResponse.json({ error: "Teacher invitation code / Class code is required. / លេខកូដអញ្ជើញពីគ្រូ ឬលេខកូដថ្នាក់គឺចាំបាច់ត្រូវបំពេញ។" }, { status: 400 });
       }
 
-      // Validate invite code
-      const [codeRecord] = await db
+      // Validate class code
+      const [classRecord] = await db
         .select()
-        .from(inviteCodes)
-        .where(eq(inviteCodes.code, inputCode.trim()))
+        .from(classes)
+        .where(eq(classes.code, inputCode.trim()))
         .limit(1);
 
-      if (!codeRecord) {
-        return NextResponse.json({ error: "Invalid invitation code." }, { status: 400 });
+      if (!classRecord) {
+        return NextResponse.json({ error: "Class not found. Invalid teacher invitation code. / រកមិនឃើញថ្នាក់រៀននេះទេ។ លេខកូដអញ្ជើញពីគ្រូមិនត្រឹមត្រូវឡើយ។" }, { status: 400 });
       }
 
-      if (codeRecord.isUsed) {
-        return NextResponse.json({ error: "This invitation code has already been used." }, { status: 400 });
-      }
-
-      // Run profile update & invite code consumption inside database transaction
+      // Run profile update & class auto-join enrollment inside database transaction
       const updatedUser = await db.transaction(async (tx) => {
         const [u] = await tx
           .update(users)
@@ -181,14 +178,26 @@ export async function PUT(request: NextRequest) {
           .where(eq(users.id, session.id))
           .returning();
 
-        await tx
-          .update(inviteCodes)
-          .set({
-            isUsed: true,
-            usedById: session.id,
-            usedAt: new Date(),
-          })
-          .where(eq(inviteCodes.id, codeRecord.id));
+        // Check if student already enrolled in this class to avoid duplicates
+        const [existingEnrollment] = await tx
+          .select()
+          .from(classEnrollments)
+          .where(
+            and(
+              eq(classEnrollments.classId, classRecord.id),
+              eq(classEnrollments.studentId, session.id)
+            )
+          )
+          .limit(1);
+
+        if (!existingEnrollment) {
+          await tx.insert(classEnrollments).values({
+            classId: classRecord.id,
+            studentId: session.id,
+            enrolledBy: classRecord.teacherId,
+            enrolledAt: new Date(),
+          });
+        }
 
         return u;
       });

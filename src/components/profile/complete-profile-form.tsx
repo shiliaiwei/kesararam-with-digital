@@ -50,6 +50,7 @@ export function CompleteProfileForm() {
 
   const [inviteCode, setInviteCode] = useState("");
   const [displayName, setDisplayName] = useState("");
+  const [username, setUsername] = useState("");
   const [schoolName, setSchoolName] = useState("");
   const [province, setProvince] = useState("Siem Reap"); // Default to Siem Reap as requested
   const [gradeLevel, setGradeLevel] = useState("");
@@ -62,7 +63,7 @@ export function CompleteProfileForm() {
   const [prefillLoading, setPrefillLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // Pre-fill user display name from their Google session
+  // Pre-fill user display name and username from their Google session
   useEffect(() => {
     const fetchCurrent = async () => {
       try {
@@ -71,6 +72,9 @@ export function CompleteProfileForm() {
         if (data.settings) {
           if (data.settings.displayName) {
             setDisplayName(data.settings.displayName);
+          }
+          if (data.settings.username) {
+            setUsername(data.settings.username);
           }
           if (data.settings.avatar) {
             try {
@@ -316,6 +320,21 @@ export function CompleteProfileForm() {
                   {kh
                     ? "* សូមបញ្ចូលលេខកូដអញ្ជើញដែលទទួលបានពីគ្រូបង្រៀនរបស់អ្នកដើម្បីចុះឈ្មោះចូលរៀន។"
                     : "* Please enter the invitation code provided by your teacher."}
+                </p>
+              </div>
+
+              {/* Username (Auto-assigned read-only, matching admin card exactly) */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-black text-black">
+                  {kh ? "ឈ្មោះគណនី (ស្វ័យប្រវត្តិ)" : "Username (Auto-assigned)"}
+                </label>
+                <div className="w-full px-4 py-2.5 border-2 border-black bg-zinc-50 text-sm font-black text-zinc-500 font-mono" style={{ borderRadius: "0px" }}>
+                  @{username}
+                </div>
+                <p className="text-[10px] text-zinc-400 font-bold leading-normal">
+                  {kh
+                    ? "* ឈ្មោះគណនីដែលបានកំណត់ដោយប្រព័ន្ធ សម្រាប់ការស្វែងរក និងគ្រប់គ្រងគណនីរបស់អ្នក។"
+                    : "* System-generated account username for lookup and identification."}
                 </p>
               </div>
 
