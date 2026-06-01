@@ -151,6 +151,14 @@ export function CompleteProfileForm() {
       setError(kh ? "សូមបញ្ចូលលេខកូដអញ្ជើញដែលត្រឹមត្រូវ ដើម្បីទាញយកព័ត៌មានថ្នាក់ និងសាលារៀន" : "Please enter a valid invitation code to resolve class details.");
       return;
     }
+    const usernameClean = username.trim().toLowerCase();
+    if (!usernameClean || usernameClean.length < 3 || !/^[a-z0-9_]+$/.test(usernameClean)) {
+      setError(kh 
+        ? "ឈ្មោះគណនីត្រូវតែមានយ៉ាងហោចណាស់ ៣ តួអក្សរ និងអាចប្រើបានតែអក្សរតូច លេខ និងសញ្ញាគូសក្រោម (_) ប៉ុណ្ណោះ។"
+        : "Username must be at least 3 characters long and contain only lowercase letters, numbers, and underscores (_)."
+      );
+      return;
+    }
     if (!displayName.trim()) {
       setError(kh ? "សូមបញ្ចូលឈ្មោះបង្ហាញរបស់អ្នក" : "Please enter your display name.");
       return;
@@ -170,6 +178,7 @@ export function CompleteProfileForm() {
           section: resolvedClass.section || null,
           inviteCode: inviteCode.trim(),
           displayName: displayName.trim(),
+          username: usernameClean,
           avatar: JSON.stringify({ face, head }),
           isProfilePublic,
         }),
@@ -426,18 +435,30 @@ export function CompleteProfileForm() {
                 )}
               </div>
 
-              {/* Username (Auto-assigned read-only) */}
+              {/* Username (Editable) */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-sm font-black text-black">
-                  {kh ? "ឈ្មោះគណនី (ស្វ័យប្រវត្ត)" : "Username (Auto-assigned)"}
+                <label htmlFor="username" className="text-sm font-black text-black">
+                  {kh ? "ឈ្មោះគណនី *" : "Username *"}
                 </label>
-                <div className="w-full px-4 py-2.5 border-2 border-black bg-zinc-50 text-sm font-black text-zinc-500 font-mono" style={{ borderRadius: "0px" }}>
-                  @{username}
+                <div className="relative flex items-center">
+                  <span className="absolute left-4 text-sm font-black text-zinc-400 font-mono">@</span>
+                  <input
+                    type="text"
+                    id="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, ""))}
+                    required
+                    minLength={3}
+                    maxLength={30}
+                    placeholder="username"
+                    className="w-full pl-8 pr-4 py-2.5 border-2 border-black text-sm font-black focus:outline-none focus:shadow-[2px_2px_0_#0284c7] font-mono"
+                    style={{ borderRadius: "0px" }}
+                  />
                 </div>
                 <p className="text-[10px] text-zinc-400 font-bold leading-normal">
                   {kh
-                    ? "* ឈ្មោះគណនីដែលបានកំណត់ដោយប្រព័ន្ធ សម្រាប់ការស្វែងរក និងគ្រប់គ្រងគណនីរបស់អ្នក។"
-                    : "* System-generated account username for lookup and identification."}
+                    ? "* ឈ្មោះគណនីផ្ទាល់ខ្លួនរបស់អ្នកសម្រាប់ការស្វែងរក។ អាចប្រើប្រាស់បានតែ អក្សរតូច លេខ និង សញ្ញាគូសក្រោម (_) ប៉ុណ្ណោះ។"
+                    : "* Your customized account username for lookup. Only lowercase letters, numbers, and underscores (_) are allowed."}
                 </p>
               </div>
 

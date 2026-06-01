@@ -120,14 +120,14 @@ export async function PUT(request: NextRequest) {
       audioMuted: audioMuted !== undefined ? audioMuted : currentUser.audioMuted,
       schoolName: schoolName !== undefined ? schoolName : currentUser.schoolName,
       province: province !== undefined ? province : currentUser.province,
-      isProfilePublic: isProfilePublic !== undefined ? isProfilePublic : currentUser.isProfilePublic,
-      isNamePublic: isNamePublic !== undefined ? isNamePublic : currentUser.isNamePublic,
-      isUsernamePublic: isUsernamePublic !== undefined ? isUsernamePublic : currentUser.isUsernamePublic,
-      isSchoolPublic: isSchoolPublic !== undefined ? isSchoolPublic : currentUser.isSchoolPublic,
-      isProvincePublic: isProvincePublic !== undefined ? isProvincePublic : currentUser.isProvincePublic,
-      isGradePublic: isGradePublic !== undefined ? isGradePublic : currentUser.isGradePublic,
-      isSectionPublic: isSectionPublic !== undefined ? isSectionPublic : currentUser.isSectionPublic,
-      isStatsPublic: isStatsPublic !== undefined ? isStatsPublic : currentUser.isStatsPublic,
+      isProfilePublic: isProfilePublic !== undefined ? !!isProfilePublic : (currentUser.isProfilePublic ?? false),
+      isNamePublic: isNamePublic !== undefined ? !!isNamePublic : (currentUser.isNamePublic ?? false),
+      isUsernamePublic: isUsernamePublic !== undefined ? !!isUsernamePublic : (currentUser.isUsernamePublic ?? false),
+      isSchoolPublic: isSchoolPublic !== undefined ? !!isSchoolPublic : (currentUser.isSchoolPublic ?? false),
+      isProvincePublic: isProvincePublic !== undefined ? !!isProvincePublic : (currentUser.isProvincePublic ?? false),
+      isGradePublic: isGradePublic !== undefined ? !!isGradePublic : (currentUser.isGradePublic ?? false),
+      isSectionPublic: isSectionPublic !== undefined ? !!isSectionPublic : (currentUser.isSectionPublic ?? false),
+      isStatsPublic: isStatsPublic !== undefined ? !!isStatsPublic : (currentUser.isStatsPublic ?? false),
       updatedAt: new Date(),
     };
 
@@ -359,8 +359,9 @@ export async function PUT(request: NextRequest) {
     });
   } catch (error) {
     console.error("Error updating settings:", error);
+    const errorMessage = error instanceof Error ? error.message : "Failed to update settings";
     return NextResponse.json(
-      { error: "Failed to update settings" },
+      { error: errorMessage },
       { status: 500 }
     );
   }
