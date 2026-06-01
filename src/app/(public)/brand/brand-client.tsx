@@ -42,15 +42,6 @@ const MOCKUP_ASSETS: { src: string; title: { en: string; kh: string } }[] = [
   { src: "/brand/apparel_brand_mockup.png",      title: { en: "Premium Brand Apparel",        kh: "Brand Apparel" } },
 ];
 
-// ─── Logo downloads (PNG only) ─────────────────────────────────────────────
-const DOWNLOAD_ASSETS: { file: string; label: { en: string; kh: string }; note: { en: string; kh: string } }[] = [
-  { file: "/brand/kwd-black_nobackground.png", label: { en: "Primary Logo — Black",  kh: "Logo ចម្បង — ខ្មៅ"   }, note: { en: "Transparent bg · all digital surfaces", kh: "Transparent background · digital ទាំងអស់" } },
-  { file: "/brand/kwd-gray.png",               label: { en: "Logo — Gray",           kh: "Logo — ប្រផេះ"       }, note: { en: "On white or light neutral backgrounds",  kh: "លើ background ស ឬ neutral" } },
-  { file: "/brand/kwd-green.png",              label: { en: "Logo — Green",          kh: "Logo — បៃតង"        }, note: { en: "Success states · active context",        kh: "Success state · active" } },
-  { file: "/brand/kwd-yellow.png",             label: { en: "Logo — Yellow",         kh: "Logo — លឿង"         }, note: { en: "Brand accent · CTA surfaces",            kh: "Brand accent · CTA" } },
-  { file: "/brand/logo.png",                   label: { en: "Full Logo Mark",        kh: "Logo ពេញ"           }, note: { en: "Complete logo with mark",                kh: "Logo ពេញរួមសញ្ញា" } },
-];
-
 // ─── Component ────────────────────────────────────────────────────────────
 export function BrandGuidelineClient() {
   const { lang } = useLang();
@@ -301,7 +292,7 @@ export function BrandGuidelineClient() {
         </Section>
 
         {/* ════ 05 — APPLICATIONS ══════════════════════════════════════════ */}
-        <Section id="apply" num="05" title={t("Applications", "ការប្រើប្រាស់")} kf={kf}>
+        <Section id="apply" num="05" title={t("Applications", "ការប្រើប្រាស់")} kf={kf} last>
           <p className="text-sm text-zinc-500 font-medium mb-6" style={kf}>
             {t(
               "Studio-quality mockups showing KWD brand applied across merchandise and digital platforms.",
@@ -334,38 +325,6 @@ export function BrandGuidelineClient() {
           </div>
         </Section>
 
-        {/* ════ 06 — SAVE LOGO ═════════════════════════════════════════════ */}
-        <Section id="download" num="06" title={t("Save Logo", "ទាញ​យក Logo")} kf={kf} last>
-          <div className="space-y-2">
-            {DOWNLOAD_ASSETS.map(({ file, label, note }) => (
-              <a
-                key={file}
-                href={file}
-                download
-                className="group flex items-center gap-4 px-4 py-3 border-2 border-black/10 bg-white hover:border-black hover:shadow-[3px_3px_0_#000] transition-all duration-150"
-              >
-                {/* Thumbnail */}
-                <div className="w-12 h-12 border-2 border-black/10 group-hover:border-black flex items-center justify-center flex-shrink-0 bg-zinc-50 overflow-hidden transition-colors">
-                  <Image src={file} alt={label.en} width={36} height={36} className="object-contain" />
-                </div>
-                {/* Info */}
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-black text-black leading-tight" style={kf}>{t(label.en, label.kh)}</p>
-                  <p className="text-[9px] text-zinc-400 font-medium mt-0.5" style={kf}>{t(note.en, note.kh)}</p>
-                  <p className="text-[9px] font-mono text-zinc-300 mt-0.5">{file.split("/").pop()}</p>
-                </div>
-                {/* Right side */}
-                <div className="flex items-center gap-2 flex-shrink-0">
-                  <span className="text-[9px] font-black uppercase tracking-wide text-zinc-400 bg-zinc-100 px-2 py-0.5">PNG</span>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-zinc-300 group-hover:text-black transition-colors">
-                    <path d="M8 3v7M5 7l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M3 12h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
-                </div>
-              </a>
-            ))}
-          </div>
-        </Section>
 
         {/* ════ FOOTER ═════════════════════════════════════════════════════ */}
         <div className="border-t-2 border-black pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
