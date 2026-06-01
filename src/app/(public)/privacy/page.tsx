@@ -63,7 +63,7 @@ KWD supports SDG 4 (Quality Education) and SDG 11 (Sustainable Cities & Communit
 
         {/* Logo */}
         <div className="flex justify-center mb-10">
-          <Image src="/brand/kwd-black-text.png" alt="KWD" width={80} height={80} className="object-contain" unoptimized />
+          <Image src="/brand/kwd-black_nobackground.png" alt="KWD" width={80} height={80} className="object-contain" unoptimized />
         </div>
 
         {/* Header */}
@@ -96,7 +96,7 @@ KWD supports SDG 4 (Quality Education) and SDG 11 (Sustainable Cities & Communit
         {/* Footer */}
         <div className="border-t border-black/10 pt-8 mt-14 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <Image src="/brand/kwd-black-text.png" alt="KWD" width={24} height={24} className="object-contain opacity-40" unoptimized />
+            <Image src="/brand/kwd-black_nobackground.png" alt="KWD" width={24} height={24} className="object-contain opacity-40" unoptimized />
             <p className="text-xs text-zinc-400 font-medium" style={kf}>{l.footer}</p>
           </div>
           <div className="flex gap-4 text-xs font-bold">

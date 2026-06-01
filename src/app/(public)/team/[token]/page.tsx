@@ -145,7 +145,7 @@ export default function TeamMemberPage() {
 
           {/* FUI Brand Logo */}
           <div className="absolute top-4 right-4 z-20">
-            <img src="/brand/kwd-black-text.png" alt="KWD" className="h-4 opacity-50 brightness-0 invert object-contain" />
+            <img src="/brand/kwd-black_nobackground.png" alt="KWD" className="h-4 opacity-50 brightness-0 invert object-contain" />
           </div>
 
           {/* Top color bar */}

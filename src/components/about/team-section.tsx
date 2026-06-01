@@ -86,7 +86,7 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
               style={{ color: accent, borderColor: accent + "50", backgroundColor: accent + "12" }}>
               {isMentor ? "MENTOR" : "STUDENT"}
             </div>
-            <img src="/brand/kwd-black-text.png" alt="KWD" className="h-2.5 opacity-30 brightness-0 invert object-contain" />
+            <img src="/brand/kwd-black_nobackground.png" alt="KWD" className="h-2.5 opacity-30 brightness-0 invert object-contain" />
           </div>
 
           {/* QR or placeholder */}
@@ -100,7 +100,7 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center gap-3 py-6 opacity-40 w-full h-full">
-                <img src="/brand/kwd-black-text.png" alt="Logo" className="w-16 h-8 object-contain mx-auto brightness-0 invert" />
+                <img src="/brand/kwd-black_nobackground.png" alt="Logo" className="w-16 h-8 object-contain mx-auto brightness-0 invert" />
                 <span className="text-[8px] font-black uppercase tracking-widest text-center" style={{ color: accent }}>SCAN ID</span>
               </div>
             )}
