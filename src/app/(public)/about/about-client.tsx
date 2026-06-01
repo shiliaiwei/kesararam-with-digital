@@ -174,14 +174,13 @@ const CONTENT = {
       { label: "SDG Alignment", text: "Supporting SDG 4 (Quality Education) and SDG 11 (Sustainable Cities & Communities).", href: "https://sdgs.un.org/goals" },
     ],
     galleryTitle: "Our Journey",
-    gallerySubtitle: "Click any photo to view full size",
     testimonialsTitle: "What People Say",
     testimonials: [
-      { icon: "🧑‍🏫", name: "Mentor", role: "Technovation Girls Mentor", text: "These girls didn't just build an app — they built confidence. Watching them go from 'I don't know how' to 'I built this' is the most rewarding thing I've ever been part of." },
-      { icon: "📚", name: "Teacher", role: "Kesararam Primary School", text: "KWD proves that road safety education can be engaging, bilingual, and student-led. Our students are proud to see their school on a global stage." },
-      { icon: "🎓", name: "Student", role: "KWD User", text: "I used to be afraid of the driving theory exam. Now I practice every day on KWD and I feel ready. The Khmer language support makes everything so much clearer." },
-      { icon: "👮", name: "Local Police Officer", role: "Traffic Safety Department", text: "We are impressed by this platform. It asks more questions and covers more types of questions than we expected from a student project. This kind of education can genuinely reduce road accidents in our community." },
-      { icon: "👨‍👩‍👧", name: "Parent", role: "Parent of KWD Student", text: "I am so proud of this platform. My child uses it every day to study for the driving exam and has improved so much. The Khmer language makes it easy for our whole family to learn together." },
+      { icon: "school", name: "Mentor", role: "Technovation Girls Mentor", text: "These girls didn't just build an app — they built confidence. Watching them go from 'I don't know how' to 'I built this' is the most rewarding thing I've ever been part of." },
+      { icon: "menu_book", name: "Teacher", role: "Kesararam Primary School", text: "KWD proves that road safety education can be engaging, bilingual, and student-led. Our students are proud to see their school on a global stage." },
+      { icon: "face", name: "Student", role: "KWD User", text: "I used to be afraid of the driving theory exam. Now I practice every day on KWD and I feel ready. The Khmer language support makes everything so much clearer." },
+      { icon: "local_police", name: "Local Police Officer", role: "Traffic Safety Department", text: "We are impressed by this platform. It asks more questions and covers more types of questions than we expected from a student project. This kind of education can genuinely reduce road accidents in our community." },
+      { icon: "family_restroom", name: "Parent", role: "Parent of KWD Student", text: "I am so proud of this platform. My child uses it every day to study for the driving exam and has improved so much. The Khmer language makes it easy for our whole family to learn together." },
     ],
     legalTitle: "Legal & Privacy",
     legalText: "KWD is committed to protecting user privacy, especially for students. Our platform follows Technovation's safety guidelines and Cambodia's data protection principles.",
@@ -215,14 +214,13 @@ const CONTENT = {
       { label: "ស្របតាមគោលដៅ SDG", text: "គាំទ្រដល់គោលដៅអភិវឌ្ឍន៍ប្រកបដោយចីរភាព SDG 4 (ការអប់រំប្រកបដោយគុណភាព) និង SDG 11 (ទីក្រុង និងសហគមន៍ប្រកបដោយចីរភាព)។", href: "https://sdgs.un.org/goals" },
     ],
     galleryTitle: "ដំណើររបស់យើង",
-    gallerySubtitle: "ចុចលើរូបភាពណាមួយ ដើម្បីពង្រីកមើល",
     testimonialsTitle: "មតិអ្នកប្រើប្រាស់ និងសហគមន៍",
     testimonials: [
-      { icon: "🧑‍🏫", name: "គ្រូបង្វឹក (Mentor)", role: "Technovation Girls Mentor", text: "បេសកកម្មពិតប្រាកដរបស់យើង គឺការកសាងមនុស្ស រួមទន្ទឹមនឹងការបង្កើតកម្មវិធី។ ការមើលឃើញយុវនារីផ្លាស់ប្តូរឥរិយាបថពីភាពរារែក «ខ្ញុំមិនអាច» មកជាភាពម្ចាស់ការ «ខ្ញុំធ្វើបាន» គឺជាភស្តុតាងច្បាស់លាស់ថា បច្ចេកវិទ្យាបានក្លាយជាឧបករណ៍ផ្តល់អំណាចដល់ស្ត្រី ហើយនេះជាមោទនភាពដ៏ធំធេងបំផុតក្នុងនាមជាគ្រូបង្វឹក។" },
-      { icon: "📚", name: "លោកគ្រូ-អ្នកគ្រូ", role: "សាលាបឋមសិក្សាកេសរារាម", text: "គម្រោង KWD គឺជាភស្តុតាងថា ការអប់រំចរាចរណ៍មិនមែនជារឿងគួរឱ្យធុញទ្រាន់ឡើយ គឺវាអាចប្រកបដោយភាពច្នៃប្រឌិត មានពីរភាសា និងជំរុញដោយថាមពលរបស់សិស្សផ្ទាល់។ វាជាមោទនភាពដ៏ធំធេងសម្រាប់សិស្សរបស់យើង ដែលបាននាំឈ្មោះសាលារបស់ខ្លួនទៅបង្ហាញពិភពលោកនៅលើឆាកអន្តរជាតិ។" },
-      { icon: "🎓", name: "សិស្សានុសិស្ស", role: "អ្នកប្រើ KWD", text: "ពីការមិនសូវយល់ដឹងពីច្បាប់ផ្លូវថ្នល់ មកជាភាពច្បាស់លាស់រាល់ថ្ងៃជាមួយ KWD។ មេរៀនជាភាសាខ្មែរច្បាស់ៗ ងាយយល់ និងជួយឱ្យខ្ញុំយល់ដឹងពីសុវត្ថិភាពបាន ១០០%។" },
-      { icon: "👮", name: "មន្ត្រីនគរបាលចរាចរណ៍", role: "នាយកដ្ឋានសុវត្ថិភាពចរាចរ", text: "ប្រព័ន្ធសិក្សានេះពិតជាគួរឱ្យកោតសរសើរ ទាំងការរៀបចំកម្រងសំណួរ និងប្រភេទវិញ្ញាសាដ៏សម្បូរបែប ដែលមានស្តង់ដារខ្ពស់ហួសពីការរំពឹងទុកសម្រាប់គម្រោងរបស់សិស្សសាលា។ នេះជាដំណោះស្រាយអប់រំដ៏ចំគោលដៅ ដែលនឹងក្លាយជាខែលការពារ និងកាត់បន្ថយគ្រោះថ្នាក់ចរាចរណ៍ក្នុងសហគមន៍។" },
-      { icon: "👨‍👩‍👧", name: "អាណាព្យាបាលសិស្ស", role: "ឪពុកម្តាយរបស់សិស្ស KWD", text: "ខ្ញុំពិតជាមានមោទនភាពចំពោះកម្មវិធីសិក្សានេះណាស់។ កូនរបស់ខ្ញុំបានប្រើប្រាស់កម្មវិធីនេះ ដើម្បីរៀនសូត្រពីច្បាប់ចរាចរណ៍ជារៀងរាល់ថ្ងៃ ហើយគាត់យល់ដឹងបានច្រើនជាងមុន។ ម្យ៉ាងវិញទៀត ដោយសារតែកម្មវិធីនេះមានជាភាសាខ្មែរ ធ្វើឱ្យសមាជិកគ្រួសារទាំងអស់ អាចសិក្សាស្វែងយល់ជាមួយគ្នាបានយ៉ាងងាយស្រួល។" },
+      { icon: "school", name: "គ្រូណែនាំ", role: "Technovation Girls Mentor", text: "បេសកកម្មពិតប្រាកដរបស់យើង គឺការកសាងមនុស្ស រួមទន្ទឹមនឹងការបង្កើតកម្មវិធី។ ការមើលឃើញយុវនារីផ្លាស់ប្តូរឥរិយាបថពីភាពរារែក «ខ្ញុំមិនអាច» មកជាភាពម្ចាស់ការ «ខ្ញុំធ្វើបាន» គឺជាភស្តុតាងច្បាស់លាស់ថា បច្ចេកវិទ្យាបានក្លាយជាឧបករណ៍ផ្តល់អំណាចដល់ស្ត្រី ហើយនេះជាមោទនភាពដ៏ធំធេងបំផុតក្នុងនាមជាគ្រូបង្វឹក។" },
+      { icon: "menu_book", name: "លោកគ្រូ-អ្នកគ្រូ", role: "សាលាបឋមសិក្សាកេសរារាម", text: "គម្រោង KWD គឺជាភស្តុតាងថា ការអប់រំចរាចរណ៍មិនមែនជារឿងគួរឱ្យធុញទ្រាន់ឡើយ គឺវាអាចប្រកបដោយភាពច្នៃប្រឌិត មានពីរភាសា និងជំរុញដោយថាមពលរបស់សិស្សផ្ទាល់។ វាជាមោទនភាពដ៏ធំធេងសម្រាប់សិស្សរបស់យើង ដែលបាននាំឈ្មោះសាលារបស់ខ្លួនទៅបង្ហាញពិភពលោកនៅលើឆាកអន្តរជាតិ។" },
+      { icon: "face", name: "សិស្សានុសិស្ស", role: "អ្នកប្រើ KWD", text: "ពីការមិនសូវយល់ដឹងពីច្បាប់ផ្លូវថ្នល់ មកជាភាពច្បាស់លាស់រាល់ថ្ងៃជាមួយ KWD។ មេរៀនជាភាសាខ្មែរច្បាស់ៗ ងាយយល់ និងជួយឱ្យខ្ញុំយល់ដឹងពីសុវត្ថិភាពបាន ១០០%។" },
+      { icon: "local_police", name: "មន្ត្រីនគរបាលចរាចរណ៍", role: "នាយកដ្ឋានសុវត្ថិភាពចរាចរ", text: "ប្រព័ន្ធសិក្សានេះពិតជាគួរឱ្យកោតសរសើរ ទាំងការរៀបចំកម្រងសំណួរ និងប្រភេទវិញ្ញាសាដ៏សម្បូរបែប ដែលមានស្តង់ដារខ្ពស់ហួសពីការរំពឹងទុកសម្រាប់គម្រោងរបស់សិស្សសាលា។ នេះជាដំណោះស្រាយអប់រំដ៏ចំគោលដៅ ដែលនឹងក្លាយជាខែលការពារ និងកាត់បន្ថយគ្រោះថ្នាក់ចរាចរណ៍ក្នុងសហគមន៍។" },
+      { icon: "family_restroom", name: "អាណាព្យាបាលសិស្ស", role: "ឪពុកម្តាយរបស់សិស្ស KWD", text: "ខ្ញុំពិតជាមានមោទនភាពចំពោះកម្មវិធីសិក្សានេះណាស់។ កូនរបស់ខ្ញុំបានប្រើប្រាស់កម្មវិធីនេះ ដើម្បីរៀនសូត្រពីច្បាប់ចរាចរណ៍ជារៀងរាល់ថ្ងៃ ហើយគាត់យល់ដឹងបានច្រើនជាងមុន។ ម្យ៉ាងវិញទៀត ដោយសារតែកម្មវិធីនេះមានជាភាសាខ្មែរ ធ្វើឱ្យសមាជិកគ្រួសារទាំងអស់ អាចសិក្សាស្វែងយល់ជាមួយគ្នាបានយ៉ាងងាយស្រួល។" },
     ],
     legalTitle: "ច្បាប់ និងភាពឯកជន",
     legalText: "KWD ប្តេជ្ញាចិត្តយ៉ាងម៉ឺងម៉ាត់ក្នុងការការពារឯកជនភាពរបស់អ្នកប្រើប្រាស់ ជាពិសេសសិស្សានុសិស្ស។ វេទិការបស់យើងអនុវត្តតាមការណែនាំអំពីសុវត្ថិភាពរបស់ Technovation និងគោលការណ៍ការពារទិន្នន័យផ្ទាល់ខ្លួននៃព្រះរាជាណាចក្រកម្ពុជា។",
@@ -337,7 +335,6 @@ export function AboutClient() {
           <div className="flex items-end justify-between mb-5 flex-wrap gap-2">
             <div>
               <div className="inline-block bg-black text-yellow-400 text-[10px] font-black tracking-widest uppercase px-3 py-1 mb-2">{c.galleryTitle}</div>
-              <p className="text-xs text-zinc-400" style={khFont}>{c.gallerySubtitle}</p>
             </div>
           </div>
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
@@ -361,19 +358,17 @@ export function AboutClient() {
         <div>
           <div className="inline-block bg-black text-yellow-400 text-[10px] font-black tracking-widest uppercase px-3 py-1 mb-5">{c.testimonialsTitle}</div>
           <div className="grid md:grid-cols-3 gap-5">
-            {c.testimonials.map(({ name, role, text }) => {
-              const initials = name.slice(0, 2).toUpperCase();
+            {c.testimonials.map(({ icon, name, role, text }) => {
               const colors = ["#eab308", "#22c55e", "#3b82f6"];
-              const ci = c.testimonials.indexOf({ name, role, text } as typeof c.testimonials[0]);
               const color = colors[c.testimonials.findIndex(t => t.name === name)] ?? "#eab308";
               return (
               <div key={name} className="bg-white border-2 border-black p-6 flex flex-col gap-3" style={{ boxShadow:"4px 4px 0 #eab308" }}>
                 <div className="text-yellow-400 text-2xl font-black leading-none">"</div>
                 <p className="text-sm text-zinc-700 leading-relaxed flex-1 italic" style={khFont}>{text}</p>
                 <div className="border-t-2 border-black pt-3 flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full flex items-center justify-center font-black text-white text-xs flex-shrink-0 border-2 border-black"
+                  <div className="w-9 h-9 rounded-full flex items-center justify-center font-black text-white flex-shrink-0 border-2 border-black"
                     style={{ backgroundColor: color }}>
-                    {initials}
+                    <span className="material-symbols-rounded text-lg leading-none">{icon}</span>
                   </div>
                   <div>
                     <p className="font-black text-sm text-black leading-tight" style={khFont}>{name}</p>
