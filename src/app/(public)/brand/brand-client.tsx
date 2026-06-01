@@ -50,33 +50,7 @@ const VOICE_PRINCIPLES: { en: string; kh: string }[] = [
   { en: "Bilingual content must carry equal meaning — not literal translation.", kh: "ខ្លឹមសារពីរភាសាត្រូវមានអត្ថន័យស្មើគ្នា — មិនមែនជាការបកប្រែតាមព្យញ្ជនៈឡើយ។" },
 ];
 
-const DOWNLOAD_ASSETS: { file: string; label: { en: string; kh: string }; note: { en: string; kh: string } }[] = [
-  {
-    file: "/brand/kwd-black_nobackground.png",
-    label: { en: "Primary Logo — Black", kh: "ឡូហ្គូចម្បង — ខ្មៅ" },
-    note: { en: "Transparent background · all digital surfaces", kh: "ផ្ទៃខាងក្រោយថ្លា · គ្រប់ផ្ទៃឌីជីថល" },
-  },
-  {
-    file: "/brand/kwd-gray.png",
-    label: { en: "Logo — Gray", kh: "ឡូហ្គូ — ប្រផេះ" },
-    note: { en: "On white or light neutral backgrounds", kh: "លើផ្ទៃស ឬប្រផេះស្រាល" },
-  },
-  {
-    file: "/brand/kwd-green.png",
-    label: { en: "Logo — Green", kh: "ឡូហ្គូ — បៃតង" },
-    note: { en: "Success states · active context", kh: "ស្ថានភាពជោគជ័យ · បរិបទសកម្ម" },
-  },
-  {
-    file: "/brand/kwd-yellow.png",
-    label: { en: "Logo — Yellow", kh: "ឡូហ្គូ — លឿង" },
-    note: { en: "Brand accent · call-to-action surfaces", kh: "ពណ៌សម្គាល់ម៉ាក · ផ្ទៃ CTA" },
-  },
-  {
-    file: "/brand/logo.png",
-    label: { en: "Full Logo Mark", kh: "ឡូហ្គូពេញ" },
-    note: { en: "Complete logo with mark", kh: "ឡូហ្គូពេញរួមសញ្ញា" },
-  },
-];
+
 
 const MOCKUP_ASSETS: { src: string; title: { en: string; kh: string }; desc: { en: string; kh: string } }[] = [
   {
@@ -399,14 +373,14 @@ export function BrandGuidelineClient() {
         </Section>
 
         {/* ── 07 Applications ── */}
-        <Section id="apply" num="07" title={t("Applications", "ការអនុវត្ត")} kf={kf}>
+        <Section id="apply" num="07" title={t("Applications", "ការអនុវត្ត")} kf={kf} last>
           <p className="text-[9px] font-black uppercase tracking-widest text-zinc-300 mb-3" style={kf}>
             {t("Product Mockups", "ផលិតផលគំរូ")}
           </p>
           <p className="text-sm text-zinc-500 font-medium mb-8" style={kf}>
             {t(
               "Premium studio-quality physical mockups demonstrating the KWD branding applied consistently across diverse brand merchandise and digital platforms.",
-              "គំរូបោះពុម្ពរូបរាងជាក់ស្ដែងកម្រិតស្ទូឌីយោលំដាប់ខ្ពស់ ដែលបង្ហាញពីការប្រើប្រាស់និមិត្តសញ្ញា KWD នៅលើផលិតផលម៉ាកចម្រុះ និងឧបករណ៍បច្ចេកវិទ្យាឌីជីថលផ្សេងៗ។"
+              "គំរូបោះពុម្ពរូបរាងជាក់ស្ដែងកម្រិតស្ទូឌីយោលំដាប់ខ្ពស់ ដែលបង្ហាញពីការប្រើប្រាស់និមិត្តសញ្ញា KWD នៅលើផលិតផលម៉ាកចម្រុះ និងឧបករណ៍បច្គេកវិទ្យាឌីជីថលផ្សេងៗ។"
             )}
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
@@ -436,39 +410,6 @@ export function BrandGuidelineClient() {
                   </p>
                 </div>
               </div>
-            ))}
-          </div>
-        </Section>
-
-        {/* ── 08 Save Logo ── */}
-        <Section id="download" num="08" title={t("Save Logo", "រក្សាទុកឡូហ្គូ")} kf={kf} last>
-          <div className="space-y-3">
-            {DOWNLOAD_ASSETS.map(({ file, label, note }) => (
-              <a
-                key={file}
-                href={file}
-                download
-                className="group flex items-center justify-between gap-4 px-4 py-3 border-2 border-black/10 rounded-xl bg-white hover:border-black hover:shadow-[3px_3px_0_#000] transition-all duration-150"
-              >
-                <div className="flex items-center gap-3 min-w-0">
-                  {/* PNG badge + thumbnail */}
-                  <div className="w-12 h-12 rounded border-2 border-black/10 group-hover:border-black flex items-center justify-center flex-shrink-0 transition-colors bg-zinc-50 overflow-hidden">
-                    <Image src={file} alt={label.en} width={36} height={36} className="object-contain" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-sm font-black text-black leading-tight" style={kf}>{t(label.en, label.kh)}</p>
-                    <p className="text-[9px] text-zinc-400 font-medium mt-0.5" style={kf}>{t(note.en, note.kh)}</p>
-                    <p className="text-[9px] font-mono text-zinc-300 mt-0.5 truncate">{file.split("/").pop()}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 flex-shrink-0">
-                  <span className="text-[9px] font-black uppercase tracking-wide text-zinc-400 bg-zinc-100 px-2 py-0.5 rounded">PNG</span>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-zinc-300 group-hover:text-black transition-colors">
-                    <path d="M8 3v7M5 7l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M3 12h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
-                </div>
-              </a>
             ))}
           </div>
         </Section>
