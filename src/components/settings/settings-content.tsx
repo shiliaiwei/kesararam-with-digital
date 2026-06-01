@@ -195,7 +195,7 @@ export function SettingsContent() {
 
   const handleSave = async () => {
     if (daysLeft > 0) {
-      alert(`Please wait another ${daysLeft} days before saving changes. For any trouble, contact admin at kesararamwithdigital@gmail.com. / សូមរង់ចាំ ${daysLeft} ថ្ងៃទៀត មុនពេលរក្សាទុកការផ្លាស់ប្តូរ។ បើមានបញ្ហាសូមទាក់ទង kesararamwithdigital@gmail.com ។`);
+      alert(`Please wait another ${daysLeft} days before saving changes. For any trouble, contact support team at kesararamwithdigital@gmail.com. / សូមរង់ចាំ ${daysLeft} ថ្ងៃទៀត មុនពេលរក្សាទុកការផ្លាស់ប្តូរ។ បើមានបញ្ហាសូមទាក់ទងក្រុមការងារគាំទ្រតាមរយៈ kesararamwithdigital@gmail.com ។`);
       return;
     }
     setSaving(true);
@@ -288,7 +288,7 @@ export function SettingsContent() {
         <div className="bg-yellow-50 border-4 border-[#eab308] p-4 shadow-[4px_4px_0_#000] flex items-center gap-3 animate-pulse">
           <Lock className="text-[#eab308] flex-shrink-0" size={24} />
           <div className="font-bold text-sm text-black leading-relaxed">
-            For security, you must wait <span className="text-orange-600 font-black">{daysLeft} days</span> after signing up before you can modify your profile settings or email. For any trouble, contact admin at <a href="mailto:kesararamwithdigital@gmail.com" className="underline font-black hover:text-blue-700 font-mono">kesararamwithdigital@gmail.com</a>. / ដើម្បីសុវត្ថិភាព អ្នកត្រូវរង់ចាំយ៉ាងហោចណាស់ <span className="text-orange-600 font-black">{daysLeft} ថ្ងៃ</span> បន្ទាប់ពីចុះឈ្មោះ មុននឹងកែប្រែព័ត៌មានគណនី ឬអ៊ីមែល។ បើមានបញ្ហាសូមទាក់ទង <a href="mailto:kesararamwithdigital@gmail.com" className="underline font-black hover:text-blue-700 font-mono">kesararamwithdigital@gmail.com</a> ។
+            For security, you must wait <span className="text-orange-600 font-black">{daysLeft} days</span> after signing up before you can modify your profile settings or email. For any trouble, contact support team at <a href="mailto:kesararamwithdigital@gmail.com" className="underline font-black hover:text-blue-700 font-mono">kesararamwithdigital@gmail.com</a>. / ដើម្បីសុវត្ថិភាព អ្នកត្រូវរង់ចាំយ៉ាងហោចណាស់ <span className="text-orange-600 font-black">{daysLeft} ថ្ងៃ</span> បន្ទាប់ពីចុះឈ្មោះ មុននឹងកែប្រែព័ត៌មានគណនី ឬអ៊ីមែល។ បើមានបញ្ហាសូមទាក់ទងក្រុមការងារគាំទ្រ <a href="mailto:kesararamwithdigital@gmail.com" className="underline font-black hover:text-blue-700 font-mono">kesararamwithdigital@gmail.com</a> ៕
           </div>
         </div>
       )}
@@ -414,7 +414,7 @@ export function SettingsContent() {
                   <div className="bg-blue-50 border-2 border-[#0284c7] p-3 text-xs text-black font-bold flex items-center gap-2">
                     <Info className="text-[#0284c7] flex-shrink-0" size={16} />
                     <span>
-                      School and Grade information is locked. Contact your Admin to make changes. / ព័ត៌មានសាលារៀន និងកម្រិតថ្នាក់ត្រូវបានចាក់សោ។ សូមទាក់ទងអ្នកគ្រប់គ្រងដើម្បីកែប្រែ។
+                      School and Grade information is locked. Contact Support Staff to make changes. / ព័ត៌មានសាលារៀន និងកម្រិតថ្នាក់ត្រូវបានចាក់សោ។ សូមទាក់ទងក្រុមការងារគាំទ្រដើម្បីកែប្រែ។
                     </span>
                   </div>
                 )}

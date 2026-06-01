@@ -88,7 +88,7 @@ export async function PUT(request: NextRequest) {
       if (accountAgeMs < SIXTY_DAYS) {
         const daysLeft = Math.ceil((SIXTY_DAYS - accountAgeMs) / (24 * 60 * 60 * 1000));
         return NextResponse.json({
-          error: `For security, you must wait at least 60 days after signing up before you can modify your profile settings or email (${daysLeft} days remaining). For any trouble, contact admin at kesararamwithdigital@gmail.com. / ដើម្បីសុវត្ថិភាព អ្នកត្រូវរង់ចាំយ៉ាងហោចណាស់ ៦០ ថ្ងៃ បន្ទាប់ពីចុះឈ្មោះ មុននឹងកែប្រែព័ត៌មានគណនី ឬអ៊ីមែល (នៅសល់ ${daysLeft} ថ្ងៃ)។ បើមានបញ្ហាសូមទាក់ទងមកកាន់ kesararamwithdigital@gmail.com ។`
+          error: `For security, you must wait at least 60 days after signing up before you can modify your profile settings or email (${daysLeft} days remaining). For any trouble, contact support team at kesararamwithdigital@gmail.com. / ដើម្បីសុវត្ថិភាព អ្នកត្រូវរង់ចាំយ៉ាងហោចណាស់ ៦០ ថ្ងៃ បន្ទាប់ពីចុះឈ្មោះ មុននឹងកែប្រែព័ត៌មានគណនី ឬអ៊ីមែល (នៅសល់ ${daysLeft} ថ្ងៃ)។ បើមានបញ្ហាសូមទាក់ទងមកកាន់ក្រុមការងារគាំទ្រតាមរយៈ kesararamwithdigital@gmail.com ។`
         }, { status: 400 });
       }
     }
@@ -102,7 +102,7 @@ export async function PUT(request: NextRequest) {
         (section !== undefined && section !== currentUser.section)
       ) {
         return NextResponse.json({
-          error: "School and grade details are locked once onboarding is complete. Only Administrators can make changes. / ព័ត៌មានសាលារៀន និងកម្រិតថ្នាក់ត្រូវបានចាក់សោបន្ទាប់ពីការបំពេញព័ត៌មានដំបូងរួចរាល់។ មានតែអ្នកគ្រប់គ្រងប្រព័ន្ធប៉ុណ្ណោះដែលអាចផ្លាស់ប្តូរបាន។"
+          error: "School and grade details are locked once onboarding is complete. Only Support Staff can make changes. / ព័ត៌មានសាលារៀន និងកម្រិតថ្នាក់ត្រូវបានចាក់សោបន្ទាប់ពីការបំពេញព័ត៌មានដំបូងរួចរាល់។ មានតែក្រុមការងារគាំទ្រប៉ុណ្ណោះដែលអាចផ្លាស់ប្តូរបាន។"
         }, { status: 400 });
       }
     }
