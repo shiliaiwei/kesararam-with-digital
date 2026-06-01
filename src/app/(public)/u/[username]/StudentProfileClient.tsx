@@ -180,10 +180,13 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
   const { lang } = useLang();
   const kh = lang === "kh";
 
-  // Calculate grade bilingual dynamically
-  const gradeVal = student.gradeLevel ? student.gradeLevel.replace(/\D/g, '') : String((student.id % 10) + 3);
-  const gradeKh = `ថ្នាក់ទី ${gradeVal}`;
-  const gradeEn = `Grade ${gradeVal}`;
+  // Calculate grade bilingual dynamically from DB values
+  const gradeEn = student.gradeLevel || "—";
+  const gradeKh = student.gradeLevel 
+    ? (student.gradeLevel.toLowerCase().includes("grade") 
+        ? student.gradeLevel.replace(/grade\s*/i, "ថ្នាក់ទី ") 
+        : (student.gradeLevel.match(/\d+/) ? `ថ្នាក់ទី ${student.gradeLevel.match(/\d+/)?.[0]}` : student.gradeLevel))
+    : "—";
 
   // Joined year bilingual dynamically
   const joinedYear = student.createdAt ? new Date(student.createdAt).getFullYear() : 2026;
@@ -414,7 +417,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                     {kh ? "គ្រឹះស្ថានសិក្សា" : "SCHOOL"}
                   </span>
                   <span className="font-black text-zinc-900 text-sm md:text-base mt-0.5">
-                    {kh ? "សាលាបឋមសិក្សាកេសរារាម" : "Kesararam Primary School"}
+                    {student.schoolName || "—"}
                   </span>
                 </div>
 
@@ -424,7 +427,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                     {kh ? "កម្រិតថ្នាក់ / បន្ទប់" : "GRADE & SECTION"}
                   </span>
                   <span className="font-black text-zinc-900 text-sm md:text-base mt-0.5">
-                    {kh ? `${gradeKh} / ថ្នាក់ ${student.section ?? "ក"}` : `${gradeEn} / Room ${student.section ?? "A"}`}
+                    {kh ? `${gradeKh} / ថ្នាក់ ${student.section ?? "—"}` : `${gradeEn} / Room ${student.section ?? "—"}`}
                   </span>
                 </div>
 
@@ -434,7 +437,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                     {kh ? "ខេត្ត / ក្រុង" : "PROVINCE / CITY"}
                   </span>
                   <span className="font-black text-zinc-900 text-sm md:text-base mt-0.5">
-                    {kh ? getProvinceKh(student.province) : (student.province ?? "Siem Reap")}
+                    {kh ? getProvinceKh(student.province) : (student.province ?? "—")}
                   </span>
                 </div>
 
@@ -515,7 +518,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                   </span>
                   <span className={`text-base md:text-lg font-black text-zinc-950 mt-2 flex items-center gap-2 ${kh ? 'font-kh-header' : 'font-mono'}`}>
                     <School size={24} className="text-purple-500" />
-                    {kh ? `${gradeKh} (${student.section ?? "ក"})` : `${gradeEn} (Room ${student.section ?? "A"})`}
+                    {kh ? `${gradeKh} (${student.section ?? "—"})` : `${gradeEn} (Room ${student.section ?? "—"})`}
                   </span>
                 </div>
 

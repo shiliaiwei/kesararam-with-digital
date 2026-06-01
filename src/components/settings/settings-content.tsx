@@ -16,13 +16,56 @@ import {
   Clock
 } from "lucide-react";
 
+const CAMBODIA_PROVINCES = [
+  { en: "Siem Reap", kh: "សៀមរាប" },
+  { en: "Phnom Penh", kh: "ភ្នំពេញ" },
+  { en: "Battambang", kh: "បាត់ដំបង" },
+  { en: "Banteay Meanchey", kh: "បន្ទាយមានជ័យ" },
+  { en: "Kampong Cham", kh: "កំពង់ចាម" },
+  { en: "Kampong Chhnang", kh: "កំពង់ឆ្នាំង" },
+  { en: "Kampong Speu", kh: "កំពង់ស្ពឺ" },
+  { en: "Kampong Thom", kh: "កំពង់ធំ" },
+  { en: "Kampot", kh: "កំពត" },
+  { en: "Kandal", kh: "កណ្តាល" },
+  { en: "Kep", kh: "កែប" },
+  { en: "Koh Kong", kh: "កោះកុង" },
+  { en: "Kratie", kh: "ក្រចេះ" },
+  { en: "Mondulkiri", kh: "មណ្ឌលគីរី" },
+  { en: "Oudar Meanchey", kh: "ឧត្តរមានជ័យ" },
+  { en: "Pailin", kh: "ប៉ៃលិន" },
+  { en: "Preah Sihanouk", kh: "ព្រះសីហនុ" },
+  { en: "Preah Vihear", kh: "ព្រះវិហារ" },
+  { en: "Prey Veng", kh: "ព្រៃវែង" },
+  { en: "Pursat", kh: "ពោធិ៍សាត់" },
+  { en: "Ratanakiri", kh: "រតនគីរី" },
+  { en: "Stung Treng", kh: "ស្ទឹងត្រែង" },
+  { en: "Svay Rieng", kh: "ស្វាយរៀង" },
+  { en: "Takeo", kh: "តាកែវ" },
+  { en: "Tboung Khmum", kh: "ត្បូងឃ្មុំ" },
+];
+
+const GRADES = [
+  { en: "Grade 6", kh: "ថ្នាក់ទី ៦" },
+  { en: "Grade 7", kh: "ថ្នាក់ទី ៧" },
+  { en: "Grade 8", kh: "ថ្នាក់ទី ៨" },
+  { en: "Grade 9", kh: "ថ្នាក់ទី ៩" },
+  { en: "Grade 10", kh: "ថ្នាក់ទី ១០" },
+  { en: "Grade 11", kh: "ថ្នាក់ទី ១១" },
+  { en: "Grade 12", kh: "ថ្នាក់ទី ១២" },
+];
+
 interface UserSettings {
   displayName: string;
   email: string;
+  role?: string;
   avatar: string;
   audioMuted: boolean;
   language: string;
   theme: string;
+  schoolName?: string;
+  province?: string;
+  gradeLevel?: string;
+  section?: string;
   notifications: {
     email: boolean;
     push: boolean;
@@ -53,10 +96,15 @@ export function SettingsContent() {
   const [settings, setSettings] = useState<UserSettings>({
     displayName: "",
     email: "",
+    role: "student",
     avatar: "",
     audioMuted: false,
     language: "en",
     theme: "light",
+    schoolName: "",
+    province: "",
+    gradeLevel: "",
+    section: "",
     notifications: {
       email: true,
       push: true,
@@ -230,6 +278,84 @@ export function SettingsContent() {
                   placeholder="https://example.com/avatar.jpg"
                 />
               </div>
+
+              {/* School Name */}
+              <div>
+                <label className="block text-sm font-bold text-black mb-2">
+                  School Name / ឈ្មោះសាលារៀន
+                </label>
+                <input
+                  type="text"
+                  value={settings.schoolName || ""}
+                  onChange={(e) =>
+                    setSettings({ ...settings, schoolName: e.target.value })
+                  }
+                  className="w-full p-3 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
+                  placeholder="e.g. Wat Bo Primary School / សាលាបឋមសិក្សាវត្តបូ"
+                />
+              </div>
+
+              {/* Province */}
+              <div>
+                <label className="block text-sm font-bold text-black mb-2">
+                  Province / ខេត្ត-ក្រុង
+                </label>
+                <select
+                  value={settings.province || ""}
+                  onChange={(e) =>
+                    setSettings({ ...settings, province: e.target.value })
+                  }
+                  className="w-full p-3 border-2 border-black font-bold bg-white focus:outline-none focus:shadow-[2px_2px_0_#000]"
+                >
+                  <option value="" disabled>Select Province / ជ្រើសរើសខេត្ត</option>
+                  {CAMBODIA_PROVINCES.map((prov) => (
+                    <option key={prov.en} value={prov.en}>
+                      {prov.en} / {prov.kh}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Grade Level (Student only) */}
+              {settings.role === "student" && (
+                <div>
+                  <label className="block text-sm font-bold text-black mb-2">
+                    Grade Level / ថ្នាក់ទី
+                  </label>
+                  <select
+                    value={settings.gradeLevel || ""}
+                    onChange={(e) =>
+                      setSettings({ ...settings, gradeLevel: e.target.value })
+                    }
+                    className="w-full p-3 border-2 border-black font-bold bg-white focus:outline-none focus:shadow-[2px_2px_0_#000]"
+                  >
+                    <option value="" disabled>Select Grade / ជ្រើសរើសថ្នាក់</option>
+                    {GRADES.map((gr) => (
+                      <option key={gr.en} value={gr.en}>
+                        {gr.en} / {gr.kh}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
+
+              {/* Section (Student only) */}
+              {settings.role === "student" && (
+                <div>
+                  <label className="block text-sm font-bold text-black mb-2">
+                    Section / វេន
+                  </label>
+                  <input
+                    type="text"
+                    value={settings.section || ""}
+                    onChange={(e) =>
+                      setSettings({ ...settings, section: e.target.value })
+                    }
+                    className="w-full p-3 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
+                    placeholder="e.g. Morning A / ព្រឹក A"
+                  />
+                </div>
+              )}
             </div>
           </div>
         )}

@@ -47,6 +47,23 @@ async function migrate() {
       ADD COLUMN IF NOT EXISTS section TEXT,
       ADD COLUMN IF NOT EXISTS status TEXT DEFAULT 'active' NOT NULL
     `;
+
+    console.log("Running migration: add_google_id_and_invite_codes");
+    await sql`
+      ALTER TABLE users 
+      ADD COLUMN IF NOT EXISTS google_id TEXT UNIQUE
+    `;
+    await sql`
+      CREATE TABLE IF NOT EXISTS invite_codes (
+        id SERIAL PRIMARY KEY,
+        code TEXT NOT NULL UNIQUE,
+        teacher_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+        is_used BOOLEAN DEFAULT false NOT NULL,
+        used_by_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+        used_at TIMESTAMP,
+        created_at TIMESTAMP DEFAULT now() NOT NULL
+      )
+    `;
     
     console.log("✅ Migration completed successfully!");
   } catch (error) {

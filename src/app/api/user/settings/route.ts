@@ -26,8 +26,13 @@ export async function GET(request: NextRequest) {
     const settings = {
       displayName: user.displayName || user.username,
       email: user.email,
+      role: user.role,
       avatar: user.avatar || "",
       audioMuted: user.audioMuted || false,
+      schoolName: user.schoolName || "",
+      province: user.province || "",
+      gradeLevel: user.gradeLevel || "",
+      section: user.section || "",
       language: "en", // Default, can be stored in user table
       theme: "light", // Default, can be stored in user table
       notifications: {
@@ -58,17 +63,26 @@ export async function PUT(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { displayName, avatar, audioMuted } = body;
+    const { displayName, avatar, audioMuted, schoolName, province, gradeLevel, section } = body;
+
+    const updates: Record<string, any> = {
+      displayName: displayName || null,
+      avatar: avatar || null,
+      audioMuted: audioMuted || false,
+      schoolName: schoolName || null,
+      province: province || null,
+      updatedAt: new Date(),
+    };
+
+    if (session.role === "student") {
+      updates.gradeLevel = gradeLevel || null;
+      updates.section = section || null;
+    }
 
     // Update user settings
     const [updatedUser] = await db
       .update(users)
-      .set({
-        displayName: displayName || null,
-        avatar: avatar || null,
-        audioMuted: audioMuted || false,
-        updatedAt: new Date(),
-      })
+      .set(updates)
       .where(eq(users.id, session.id))
       .returning();
 
@@ -82,6 +96,10 @@ export async function PUT(request: NextRequest) {
         displayName: updatedUser.displayName,
         avatar: updatedUser.avatar,
         audioMuted: updatedUser.audioMuted,
+        schoolName: updatedUser.schoolName,
+        province: updatedUser.province,
+        gradeLevel: updatedUser.gradeLevel,
+        section: updatedUser.section,
       }
     });
   } catch (error) {
