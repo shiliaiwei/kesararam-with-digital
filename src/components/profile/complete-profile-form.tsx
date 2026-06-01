@@ -64,6 +64,51 @@ export function CompleteProfileForm() {
   const [prefillLoading, setPrefillLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const [resolvedClass, setResolvedClass] = useState<{
+    className: string;
+    schoolName: string | null;
+    province: string | null;
+    gradeLevel: string | null;
+    section: string | null;
+  } | null>(null);
+  const [lookupLoading, setLookupLoading] = useState(false);
+  const [lookupError, setLookupError] = useState("");
+
+  // Auto-resolve invite code class details
+  useEffect(() => {
+    const trimmed = inviteCode.trim();
+    if (trimmed.length < 5) {
+      setResolvedClass(null);
+      setLookupError("");
+      return;
+    }
+
+    const delayDebounce = setTimeout(async () => {
+      setLookupLoading(true);
+      setLookupError("");
+      try {
+        const response = await fetch(`/api/invite/lookup?code=${encodeURIComponent(trimmed)}`);
+        const data = await response.json();
+        if (data.error) {
+          setLookupError(data.error);
+          setResolvedClass(null);
+        } else if (data.success && data.classInfo) {
+          setResolvedClass(data.classInfo);
+          setSchoolName(data.classInfo.schoolName || "");
+          setProvince(data.classInfo.province || "");
+          setGradeLevel(data.classInfo.gradeLevel || "");
+          setSection(data.classInfo.section || "");
+        }
+      } catch (err) {
+        console.error("Error looking up code:", err);
+      } finally {
+        setLookupLoading(false);
+      }
+    }, 500);
+
+    return () => clearTimeout(delayDebounce);
+  }, [inviteCode]);
+
   // Pre-fill user display name and username from their Google session
   useEffect(() => {
     const fetchCurrent = async () => {
@@ -102,26 +147,13 @@ export function CompleteProfileForm() {
       setError(kh ? "សូមបញ្ចូលលេខកូដអញ្ជើញពីគ្រូ" : "Please enter your teacher invite code.");
       return;
     }
+    if (!resolvedClass) {
+      setError(kh ? "សូមបញ្ចូលលេខកូដអញ្ជើញដែលត្រឹមត្រូវ ដើម្បីទាញយកព័ត៌មានថ្នាក់ និងសាលារៀន" : "Please enter a valid invitation code to resolve class details.");
+      return;
+    }
     if (!displayName.trim()) {
       setError(kh ? "សូមបញ្ចូលឈ្មោះបង្ហាញរបស់អ្នក" : "Please enter your display name.");
       return;
-    }
-    
-    // Only validate school details if no inviteCode is entered (fallback)
-    const isCodeEntered = !!inviteCode.trim();
-    if (!isCodeEntered) {
-      if (!schoolName.trim()) {
-        setError(kh ? "សូមបញ្ចូលឈ្មោះសាលារៀន" : "Please enter your school name.");
-        return;
-      }
-      if (!province) {
-        setError(kh ? "សូមជ្រើសរើសខេត្ត" : "Please select a province.");
-        return;
-      }
-      if (!gradeLevel) {
-        setError(kh ? "សូមជ្រើសរើសថ្នាក់ទី" : "Please select your grade level.");
-        return;
-      }
     }
 
     setLoading(true);
@@ -132,10 +164,10 @@ export function CompleteProfileForm() {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          schoolName,
-          province,
-          gradeLevel,
-          section: section || null,
+          schoolName: resolvedClass.schoolName || "",
+          province: resolvedClass.province || "",
+          gradeLevel: resolvedClass.gradeLevel || "",
+          section: resolvedClass.section || null,
           inviteCode: inviteCode.trim(),
           displayName: displayName.trim(),
           avatar: JSON.stringify({ face, head }),
@@ -323,6 +355,21 @@ export function CompleteProfileForm() {
                   className="w-full px-4 py-2.5 border-2 border-black text-sm font-black focus:outline-none focus:shadow-[2px_2px_0_#0284c7] placeholder:text-zinc-300"
                   style={{ borderRadius: "0px" }}
                 />
+                
+                {lookupLoading && (
+                  <div className="text-xs font-bold text-zinc-500 flex items-center gap-1.5 animate-pulse mt-1">
+                    <Loader2 size={12} className="animate-spin text-[#0284c7]" />
+                    <span>{kh ? "កំពុងស្វែងរកព័ត៌មានថ្នាក់..." : "Verifying invitation code..."}</span>
+                  </div>
+                )}
+
+                {lookupError && (
+                  <div className="text-xs font-bold text-red-500 flex items-center gap-1 mt-1">
+                    <span className="material-symbols-rounded text-sm font-black">cancel</span>
+                    <span>{lookupError}</span>
+                  </div>
+                )}
+
                 <p className="text-[10px] text-zinc-400 font-bold leading-normal">
                   {kh
                     ? "* សូមបញ្ចូលលេខកូដអញ្ជើញដែលទទួលបានពីគ្រូបង្រៀនរបស់អ្នកដើម្បីចុះឈ្មោះចូលរៀន។"
@@ -330,10 +377,59 @@ export function CompleteProfileForm() {
                 </p>
               </div>
 
-              {/* Username (Auto-assigned read-only, matching admin card exactly) */}
+              {/* Inherited Class & School Details */}
+              <div className="flex flex-col gap-1.5 pt-1">
+                <label className="text-sm font-black text-black">
+                  {kh ? "ព័ត៌មានថ្នាក់ និងសាលារៀន (ស្វ័យប្រវត្ត)" : "Class & School Details (Auto-filled)"}
+                </label>
+                
+                {resolvedClass ? (
+                  <div className="border-2 border-black bg-green-50 p-4 space-y-3 shadow-[3px_3px_0_#000]">
+                    <div className="flex items-center gap-2 border-b border-green-200/50 pb-1.5 text-xs font-black text-green-800 uppercase">
+                      <span className="material-symbols-rounded text-base font-black text-green-700">check_circle</span>
+                      <span>Class Found / ថ្នាក់រៀនត្រូវបានរកឃើញ</span>
+                    </div>
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-xs font-bold text-zinc-800">
+                      <div>
+                        <span className="text-zinc-400 block uppercase text-[9px] tracking-wider">Class / ថ្នាក់រៀន</span>
+                        <span className="font-black text-black text-sm">{resolvedClass.className}</span>
+                      </div>
+                      <div>
+                        <span className="text-zinc-400 block uppercase text-[9px] tracking-wider">School / សាលារៀន</span>
+                        <span className="text-black text-sm">{resolvedClass.schoolName || "—"}</span>
+                      </div>
+                      <div>
+                        <span className="text-zinc-400 block uppercase text-[9px] tracking-wider">Province / ខេត្ត-ក្រុង</span>
+                        <span className="text-black text-sm">{resolvedClass.province || "—"}</span>
+                      </div>
+                      <div>
+                        <span className="text-zinc-400 block uppercase text-[9px] tracking-wider">Grade / ថ្នាក់ទី</span>
+                        <span className="text-black text-sm">{resolvedClass.gradeLevel || "—"}</span>
+                      </div>
+                      {resolvedClass.section && (
+                        <div className="col-span-2 border-t border-green-200/30 pt-2">
+                          <span className="text-zinc-400 block uppercase text-[9px] tracking-wider">Section / វេនសិក្សា</span>
+                          <span className="text-black text-sm">{resolvedClass.section}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="border-2 border-black border-dashed p-6 text-center bg-zinc-50 text-zinc-400 font-bold text-xs space-y-2">
+                    <span className="material-symbols-rounded text-2xl font-black text-zinc-300 block">school</span>
+                    <p>
+                      {kh
+                        ? "សូមបញ្ចូលលេខកូដអញ្ជើញពីគ្រូ ដើម្បីទាញយកព័ត៌មានថ្នាក់ និងសាលារៀនដោយស្វ័យប្រវត្តិ។"
+                        : "Enter your Teacher Invite Code to automatically load your class and school details."}
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* Username (Auto-assigned read-only) */}
               <div className="flex flex-col gap-1.5">
                 <label className="text-sm font-black text-black">
-                  {kh ? "ឈ្មោះគណនី (ស្វ័យប្រវត្តិ)" : "Username (Auto-assigned)"}
+                  {kh ? "ឈ្មោះគណនី (ស្វ័យប្រវត្ត)" : "Username (Auto-assigned)"}
                 </label>
                 <div className="w-full px-4 py-2.5 border-2 border-black bg-zinc-50 text-sm font-black text-zinc-500 font-mono" style={{ borderRadius: "0px" }}>
                   @{username}
@@ -366,85 +462,6 @@ export function CompleteProfileForm() {
                     ? "* ឈ្មោះនេះនឹងបង្ហាញលើតារាងពិន្ទុឆ្នើម និងគណនីរបស់អ្នក។"
                     : "* This name will represent you on the leaderboards and your profile."}
                 </p>
-              </div>
-
-              {/* School Name */}
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="schoolName" className="text-sm font-black text-black">
-                  {kh ? "ឈ្មោះសាលារៀន *" : "School Name *"}
-                </label>
-                <input
-                  type="text"
-                  id="schoolName"
-                  value={schoolName}
-                  onChange={(e) => setSchoolName(e.target.value)}
-                  required
-                  placeholder={kh ? "ឧ. សាលាបឋមសិក្សាកេសរារាម" : "e.g. Kesararam Primary School"}
-                  className="w-full px-4 py-2.5 border-2 border-black text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#0284c7] placeholder:text-zinc-350 font-bold"
-                  style={{ borderRadius: "0px" }}
-                />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Province */}
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="province" className="text-sm font-black text-black">
-                    {kh ? "ខេត្ត-ក្រុង *" : "Province / City *"}
-                  </label>
-                  <select
-                    id="province"
-                    value={province}
-                    onChange={(e) => setProvince(e.target.value)}
-                    required
-                    className="w-full px-4 py-2.5 border-2 border-black text-sm font-bold bg-white focus:outline-none focus:shadow-[2px_2px_0_#0284c7]"
-                    style={{ borderRadius: "0px" }}
-                  >
-                    <option value="" disabled>{kh ? "ជ្រើសរើសខេត្ត" : "Select Province"}</option>
-                    {CAMBODIA_PROVINCES.map((prov) => (
-                      <option key={prov.en} value={prov.en}>
-                        {prov.en} / {prov.kh}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/* Grade */}
-                <div className="flex flex-col gap-1.5">
-                  <label htmlFor="gradeLevel" className="text-sm font-black text-black">
-                    {kh ? "ថ្នាក់ទី *" : "Grade Level *"}
-                  </label>
-                  <select
-                    id="gradeLevel"
-                    value={gradeLevel}
-                    onChange={(e) => setGradeLevel(e.target.value)}
-                    required
-                    className="w-full px-4 py-2.5 border-2 border-black text-sm font-bold bg-white focus:outline-none focus:shadow-[2px_2px_0_#0284c7]"
-                    style={{ borderRadius: "0px" }}
-                  >
-                    <option value="" disabled>{kh ? "ជ្រើសរើសថ្នាក់" : "Select Grade"}</option>
-                    {GRADES.map((gr) => (
-                      <option key={gr.en} value={gr.en}>
-                        {gr.en} / {gr.kh}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              {/* Section */}
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="section" className="text-sm font-black text-black">
-                  {kh ? "វេនសិក្សា / បន្ទប់ (ស្រេចចិត្ត)" : "Section / Room (Optional)"}
-                </label>
-                <input
-                  type="text"
-                  id="section"
-                  value={section}
-                  onChange={(e) => setSection(e.target.value)}
-                  placeholder={kh ? "ឧ. ព្រឹក A / ថ្នាក់ទី១០A" : "e.g. Morning A / Grade 10A"}
-                  className="w-full px-4 py-2.5 border-2 border-black text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#0284c7] placeholder:text-zinc-350"
-                  style={{ borderRadius: "0px" }}
-                />
               </div>
 
 
