@@ -193,7 +193,7 @@ export default function LearnPage() {
             {kh ? "ត្រៀមខ្លួនហើយ?" : "Ready to test yourself?"}
           </h2>
           <p className="text-white/50 text-lg" style={khFont}>
-            {kh ? "រៀន — ប្រកួត — ការពារជីវិត" : "Study the theory, play the games, pass the exam."}
+            {kh ? "រៀនដើម្បីដឹង · ប្រកួតដើម្បីពូកែ · ការពារដើម្បីជីវិត" : "Learn to know, compete to excel, protect for life."}
           </p>
           <Link
             href="/play"

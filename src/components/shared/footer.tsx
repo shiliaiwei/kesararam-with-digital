@@ -42,7 +42,7 @@ export function Footer() {
             {tr.tagline}
           </p>
           <p className="text-xs text-zinc-500 mt-2 text-center" style={{ fontFamily: "Siemreap, sans-serif" }}>
-            {"រៀន"} {"\u2014"} {"ប្រកួត"} {"\u2014"} {"ការពារជីវិត"}
+            {"រៀនដើម្បីដឹង · ប្រកួតដើម្បីពូកែ · ការពារដើម្បីជីវិត"}
           </p>
         </div>
 

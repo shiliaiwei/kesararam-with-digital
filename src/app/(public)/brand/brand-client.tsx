@@ -54,17 +54,6 @@ const VOICE_PRINCIPLES: { en: string; kh: string }[] = [
   { en: "Bilingual content must carry equal meaning — not literal translation.", kh: "ខ្លឹមសារពីរភាសាត្រូវមានអត្ថន័យស្មើគ្នា — មិនមែនជាការបកប្រែតាមព្យញ្ជនៈឡើយ។" },
 ];
 
-// ─── Table of contents ─────────────────────────────────────────────────────
-const TOC: { id: string; num: string; en: string; kh: string }[] = [
-  { id: "name",     num: "01", en: "Brand Name & Meaning", kh: "ឈ្មោះ និងអត្ថន័យ" },
-  { id: "logo",     num: "02", en: "Logo", kh: "ឡូហ្គូ" },
-  { id: "color",    num: "03", en: "Color Palette", kh: "ក្រុមពណ៌" },
-  { id: "type",     num: "04", en: "Typography", kh: "ពុម្ពអក្សរ" },
-  { id: "design",   num: "05", en: "Design System", kh: "ប្រព័ន្ធរចនា" },
-  { id: "voice",    num: "06", en: "Voice & Tone", kh: "សំឡេង និងលក្ខណៈនិយាយ" },
-  { id: "apply",    num: "07", en: "Applications", kh: "ការអនុវត្ត" },
-];
-
 const MOCKUP_COUNT = 5;
 
 const CARD_FONTS: { usage: { en: string; kh: string }; font: string; note: { en: string; kh: string }; css: string }[] = [
@@ -121,7 +110,7 @@ export function BrandGuidelineClient() {
           {/* Motto / tagline */}
           <div className="mt-6 inline-flex flex-col items-center gap-1">
             <p className="text-xs font-black uppercase tracking-[0.2em] text-black" style={kf}>
-              {t("Learn — Compete — Protect lives", "រៀន — ប្រកួត — ការពារជីវិត")}
+              {t("Learn to know · Compete to excel · Protect for life", "រៀនដើម្បីដឹង · ប្រកួតដើម្បីពូកែ · ការពារដើម្បីជីវិត")}
             </p>
             <p className="text-[11px] text-zinc-400 font-medium max-w-sm" style={kf}>
               {t(
@@ -132,27 +121,7 @@ export function BrandGuidelineClient() {
           </div>
         </div>
 
-        {/* ── Table of Contents ── */}
-        <nav className="border-2 border-black rounded-2xl overflow-hidden mb-16 bg-white">
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 px-4 py-3 border-b border-black/10" style={kf}>
-            {t("Contents", "មាតិកា")}
-          </p>
-          <ul className="divide-y divide-black/5">
-            {TOC.map(({ id, num, en, kh: khLabel }) => (
-              <li key={id}>
-                <a
-                  href={`#${id}`}
-                  className="flex items-center gap-4 px-4 py-2.5 hover:bg-zinc-50 transition-colors group"
-                >
-                  <span className="text-[10px] font-black text-zinc-300 group-hover:text-amber-500 w-6">{num}</span>
-                  <span className="text-sm font-bold text-zinc-700 group-hover:text-black" style={kf}>
-                    {t(en, khLabel)}
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <div className="border-t border-black/10 mb-12" />
 
         {/* ── 01 Brand Name & Meaning ── */}
         <Section id="name" num="01" title={t("Brand Name & Meaning", "ឈ្មោះ និងអត្ថន័យ")} kf={kf}>
@@ -161,13 +130,13 @@ export function BrandGuidelineClient() {
               <strong className="text-black font-black">KWD</strong>{" "}
               {t(
                 "stands for Kesararam With Digital — a name that carries the weight of place, purpose, and transformation. Kesararam is a monastery and primary school, the oldest seat of learning in its community. The word With is not a conjunction — it is a declaration of partnership between tradition and technology. Digital is not merely a medium — it is a commitment to access, reach, and permanence.",
-                "តំណាងឱ្យ Kesararam With Digital — ឈ្មោះមួយដែលផ្ទុកទម្ងន់នៃទីកន្លែង គោលបំណង និងការផ្លាស់ប្ដូរ។ កេសរារាម គឺជាវត្ត និងសាលាបឋមសិក្សា ដែលជាមូលដ្ឋានសិក្សាចំណាស់បំផុតក្នុងសហគមន៍។ ពាក្យ With មិនមែនជាគ្រាន់តែឈ្នាប់ទេ — វាជាការប្រកាសពីភាពជាដៃគូរវាងប្រពៃណី និងបច្ចេកវិទ្យា។ Digital មិនមែនគ្រាន់តែជាមធ្យោបាយទេ — វាជាការប្ដេជ្ញាចិត្តចំពោះការចូលប្រើ ការឈានទៅដល់ និងភាពយូរអង្វែង។"
+                "តំណាងឱ្យ Kesararam With Digital — ឈ្មោះមួយនៃទីកន្លែង គោលបំណង និងការផ្លាស់ប្ដូរ។ កេសរារាម ជាឈ្មោះ អារាមមួយ និងសាលាបឋមសិក្សាផងដែរ ដែលជាមូលដ្ឋានសិក្សាចំណាស់បំផុតក្នុងសហគមន៍។ ពាក្យ With មិនមែនជាគ្រាន់តែឈ្នាប់ទេ — វាជាការប្រកាសពីភាពជាដៃគូរវាងប្រពៃណី និងបច្ចេកវិទ្យា។ Digital មិនមែនគ្រាន់តែជាមធ្យោបាយទេ — វាជាការប្ដេជ្ញាចិត្តចំពោះការចូលប្រើ ការឈានទៅដល់ និងភាពយូរអង្វែង។"
               )}
             </p>
             <p>
               {t(
                 "KWD exists because young Cambodian girls from Kesararam decided that road safety knowledge — knowledge that saves lives — should be free, interactive, and available to every student in their own language. The name asserts that education does not abandon its roots when it enters the digital age. It carries them forward.",
-                "KWD កើតមានឡើង ដោយសារក្មេងស្រីខ្មែរមកពីកេសរារាម បានសម្រេចចិត្តថា ចំណេះដឹងសុវត្ថិភាពចរាចរ — ចំណេះដឹងដែលជួយសង្គ្រោះជីវិត — គួរតែឥតគិតថ្លៃ មានលក្ខណៈអន្តរកម្ម និងអាចចូលប្រើបានសម្រាប់សិស្សគ្រប់រូបជាភាសារបស់ខ្លួន។ ឈ្មោះនេះបញ្ជាក់ថា ការអប់រំមិនបោះបង់ឫសគល់របស់ខ្លួននៅពេលឈានចូលយុគឌីជីថលឡើយ — ផ្ទុយទៅវិញ វានាំយកវាបន្តទៅមុខ។"
+                "KWD កើតមានឡើង ដោយសារក្មេងស្រីខ្មែរមកពីបឋមសិក្សាកេសរារាម បានសម្រេចចិត្តថា ចំណេះដឹងសុវត្ថិភាពចរាចរ — ចំណេះដឹងដែលជួយសង្គ្រោះជីវិត — គួរតែឥតគិតថ្លៃ មានលក្ខណៈអន្តរកម្ម និងអាចចូលប្រើបានសម្រាប់សិស្សគ្រប់រូបជាភាសារបស់ខ្លួន។ ឈ្មោះនេះបញ្ជាក់ថា ការអប់រំមិនបោះបង់ឫសគល់របស់ខ្លួននៅពេលឈានចូលយុគឌីជីថលឡើយ — ផ្ទុយទៅវិញ វានាំយកវាបន្តទៅមុខ។"
               )}
             </p>
           </div>
