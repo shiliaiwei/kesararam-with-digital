@@ -11,21 +11,25 @@ interface InviteCodeRow {
   isUsed: boolean;
   usedAt: Date | string | null;
   createdAt: Date | string;
+  classId: number | null;
+  className: string | null;
   usedByUsername: string | null;
   usedByDisplayName: string | null;
 }
 
 interface InvitesClientProps {
   initialCodes: InviteCodeRow[];
+  classes: { id: number; name: string }[];
 }
 
-export function InvitesClient({ initialCodes }: InvitesClientProps) {
+export function InvitesClient({ initialCodes, classes }: InvitesClientProps) {
   const [codes, setCodes] = useState<InviteCodeRow[]>(initialCodes);
+  const [selectedClassId, setSelectedClassId] = useState<number | null>(null);
   const [pending, startTransition] = useTransition();
 
   const handleGenerate = () => {
     startTransition(async () => {
-      const res = await generateInviteCode();
+      const res = await generateInviteCode(selectedClassId);
       if (res.error) {
         toast.error(res.error);
       } else if (res.code) {
@@ -35,6 +39,8 @@ export function InvitesClient({ initialCodes }: InvitesClientProps) {
           isUsed: res.code.isUsed,
           usedAt: res.code.usedAt,
           createdAt: res.code.createdAt,
+          classId: res.code.classId,
+          className: classes.find(cl => cl.id === res.code.classId)?.name ?? null,
           usedByUsername: null,
           usedByDisplayName: null,
         };
@@ -90,7 +96,7 @@ export function InvitesClient({ initialCodes }: InvitesClientProps) {
       {/* Main card */}
       <div className="border-2 border-black bg-white shadow-[4px_4px_0_#000] animate-fade-in" style={{ borderRadius: "0px" }}>
         {/* Card Header */}
-        <div className="border-b-2 border-black bg-amber-400 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="border-b-2 border-black bg-amber-400 p-4 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
             <h2 className="text-xl font-black uppercase tracking-tighter text-black">
               Student Registration Invites
@@ -100,18 +106,34 @@ export function InvitesClient({ initialCodes }: InvitesClientProps) {
             </p>
           </div>
           
-          <button
-            onClick={handleGenerate}
-            disabled={pending}
-            className="flex items-center justify-center gap-2 px-4 py-2.5 bg-yellow-300 hover:bg-yellow-400 disabled:opacity-60 border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] active:shadow-none hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-all font-black text-xs uppercase tracking-wider text-black"
-          >
-            {pending ? (
-              <RefreshCw size={16} className="animate-spin" />
-            ) : (
-              <Plus size={16} />
-            )}
-            {pending ? "Generating..." : "Generate Code"}
-          </button>
+          <div className="flex flex-wrap items-center gap-3">
+            <select
+              value={selectedClassId || ""}
+              onChange={(e) => setSelectedClassId(e.target.value ? Number(e.target.value) : null)}
+              className="px-3 py-2.5 border-2 border-black font-black text-xs uppercase bg-white focus:outline-none focus:shadow-[2px_2px_0_#000] min-w-[200px]"
+              style={{ borderRadius: "0px" }}
+            >
+              <option value="">No Class Link (General Invite)</option>
+              {classes.map((cl) => (
+                <option key={cl.id} value={cl.id}>
+                  Link to: {cl.name}
+                </option>
+              ))}
+            </select>
+
+            <button
+              onClick={handleGenerate}
+              disabled={pending}
+              className="flex items-center justify-center gap-2 px-4 py-2.5 bg-yellow-300 hover:bg-yellow-400 disabled:opacity-60 border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] active:shadow-none hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-all font-black text-xs uppercase tracking-wider text-black"
+            >
+              {pending ? (
+                <RefreshCw size={16} className="animate-spin" />
+              ) : (
+                <Plus size={16} />
+              )}
+              {pending ? "Generating..." : "Generate Code"}
+            </button>
+          </div>
         </div>
 
         {/* Card Content */}
@@ -126,6 +148,7 @@ export function InvitesClient({ initialCodes }: InvitesClientProps) {
                 <thead className="bg-zinc-100 border-b-2 border-black">
                   <tr>
                     <th className="px-4 py-3 text-xs font-black uppercase tracking-widest text-black">Code</th>
+                    <th className="px-4 py-3 text-xs font-black uppercase tracking-widest text-black">Linked Class</th>
                     <th className="px-4 py-3 text-xs font-black uppercase tracking-widest text-black">Status</th>
                     <th className="px-4 py-3 text-xs font-black uppercase tracking-widest text-black hidden sm:table-cell">Created At</th>
                     <th className="px-4 py-3 text-xs font-black uppercase tracking-widest text-black">Recipient</th>
@@ -151,6 +174,17 @@ export function InvitesClient({ initialCodes }: InvitesClientProps) {
                           {c.code}
                           {!c.isUsed && <Copy size={12} className="text-zinc-500" />}
                         </span>
+                      </td>
+                      
+                      {/* Linked Class */}
+                      <td className="px-4 py-3">
+                        {c.className ? (
+                          <span className="inline-block px-2.5 py-0.5 border-2 border-black bg-blue-100 text-blue-800 text-[10px] font-black uppercase shadow-[1.5px_1.5px_0_#000]">
+                            {c.className}
+                          </span>
+                        ) : (
+                          <span className="text-zinc-400 font-medium">—</span>
+                        )}
                       </td>
 
                       {/* Status */}

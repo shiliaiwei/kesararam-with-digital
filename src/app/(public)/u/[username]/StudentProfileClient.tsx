@@ -34,6 +34,13 @@ export interface SerializableStudent {
   section: string | null;
   claimedRewards: string; // JSON string
   isProfilePublic?: boolean;
+  isNamePublic?: boolean;
+  isUsernamePublic?: boolean;
+  isSchoolPublic?: boolean;
+  isProvincePublic?: boolean;
+  isGradePublic?: boolean;
+  isSectionPublic?: boolean;
+  isStatsPublic?: boolean;
 }
 
 interface StudentProfileClientProps {
@@ -180,6 +187,15 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
   const router = useRouter();
   const { lang } = useLang();
   const kh = lang === "kh";
+
+  // Individual Privacy checks (Default to true/public)
+  const isNamePublic = student.isNamePublic ?? true;
+  const isUsernamePublic = student.isUsernamePublic ?? true;
+  const isSchoolPublic = student.isSchoolPublic ?? true;
+  const isProvincePublic = student.isProvincePublic ?? true;
+  const isGradePublic = student.isGradePublic ?? true;
+  const isSectionPublic = student.isSectionPublic ?? true;
+  const isStatsPublic = student.isStatsPublic ?? true;
 
   // Calculate grade bilingual dynamically from DB values
   const gradeEn = student.gradeLevel || "—";
@@ -383,19 +399,21 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
               <div className="border-4 border-black bg-zinc-100 flex items-center justify-center overflow-hidden p-1 shadow-[4px_4px_0_#000] w-[200px] h-[260px] md:w-[240px] md:h-[312px]">
                 <Avatar 
                   url={student.avatar} 
-                  name={student.displayName || student.username} 
+                  name={isNamePublic ? (student.displayName || student.username) : (isUsernamePublic ? student.username : "Student")} 
                   size={240} 
                   changedAt={student.avatarChangedAt} 
                 />
               </div>
 
               {/* Tier Badge Directly Under Avatar */}
-              <div className="mt-6 w-full flex flex-col items-center gap-2">
-                <TierBadge lifetimePoints={student.lifetimePoints} size="sm" lang={lang} />
-                <span className="text-xs font-bold text-zinc-400 mt-1 uppercase font-mono tracking-wider">
-                  {kh ? "កម្រិតបច្ចុប្បន្ន" : "CURRENT TIER"}
-                </span>
-              </div>
+              {isStatsPublic && (
+                <div className="mt-6 w-full flex flex-col items-center gap-2">
+                  <TierBadge lifetimePoints={student.lifetimePoints} size="sm" lang={lang} />
+                  <span className="text-xs font-bold text-zinc-400 mt-1 uppercase font-mono tracking-wider">
+                    {kh ? "កម្រិតបច្ចុប្បន្ន" : "CURRENT TIER"}
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Credentials Card */}
@@ -413,7 +431,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                     {kh ? "ឈ្មោះសិស្ស" : "STUDENT NAME"}
                   </span>
                   <span className="font-black text-zinc-950 text-base md:text-lg mt-0.5">
-                    {student.displayName || student.username}
+                    {isNamePublic ? (student.displayName || student.username) : (isUsernamePublic ? student.username : (kh ? "រក្សាការសម្ងាត់" : "Private"))}
                   </span>
                 </div>
 
@@ -423,7 +441,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                     {kh ? "ឈ្មោះគណនី" : "USERNAME"}
                   </span>
                   <span className="font-extrabold text-zinc-800 text-sm md:text-base font-mono mt-0.5">
-                    @{student.username}
+                    {isUsernamePublic ? `@${student.username}` : (kh ? "@រក្សាការសម្ងាត់" : "@private")}
                   </span>
                 </div>
 
@@ -443,7 +461,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                     {kh ? "គ្រឹះស្ថានសិក្សា" : "SCHOOL"}
                   </span>
                   <span className="font-black text-zinc-900 text-sm md:text-base mt-0.5">
-                    {student.schoolName || "—"}
+                    {isSchoolPublic ? (student.schoolName || "—") : (kh ? "រក្សាការសម្ងាត់" : "Private")}
                   </span>
                 </div>
 
@@ -453,7 +471,11 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                     {kh ? "កម្រិតថ្នាក់ / បន្ទប់" : "GRADE & SECTION"}
                   </span>
                   <span className="font-black text-zinc-900 text-sm md:text-base mt-0.5">
-                    {kh ? `${gradeKh} / ថ្នាក់ ${student.section ?? "—"}` : `${gradeEn} / Room ${student.section ?? "—"}`}
+                    {isGradePublic 
+                      ? (kh 
+                          ? `${gradeKh}${isSectionPublic && student.section ? ` / ថ្នាក់ ${student.section}` : ""}` 
+                          : `${gradeEn}${isSectionPublic && student.section ? ` / Room ${student.section}` : ""}`)
+                      : (kh ? "រក្សាការសម្ងាត់" : "Private")}
                   </span>
                 </div>
 
@@ -463,19 +485,21 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                     {kh ? "ខេត្ត / ក្រុង" : "PROVINCE / CITY"}
                   </span>
                   <span className="font-black text-zinc-900 text-sm md:text-base mt-0.5">
-                    {kh ? getProvinceKh(student.province) : (student.province ?? "—")}
+                    {isProvincePublic ? (kh ? getProvinceKh(student.province) : (student.province ?? "—")) : (kh ? "រក្សាការសម្ងាត់" : "Private")}
                   </span>
                 </div>
 
                 {/* Total Points */}
-                <div className="flex flex-col border-b border-zinc-100 pb-2">
-                  <span className="text-[10px] text-zinc-400 font-extrabold uppercase font-english tracking-wider">
-                    {kh ? "ពិន្ទុសរុបដណ្ដើមបាន" : "LIFETIME POINTS"}
-                  </span>
-                  <span className="font-black text-emerald-600 font-mono text-base md:text-lg mt-0.5">
-                    {student.lifetimePoints.toLocaleString()} PTS
-                  </span>
-                </div>
+                {isStatsPublic && (
+                  <div className="flex flex-col border-b border-zinc-100 pb-2">
+                    <span className="text-[10px] text-zinc-400 font-extrabold uppercase font-english tracking-wider">
+                      {kh ? "ពិន្ទុសរុបដណ្ដើមបាន" : "LIFETIME POINTS"}
+                    </span>
+                    <span className="font-black text-emerald-600 font-mono text-base md:text-lg mt-0.5">
+                      {student.lifetimePoints.toLocaleString()} PTS
+                    </span>
+                  </div>
+                )}
 
                 {/* Joined Date */}
                 <div className="flex flex-col pb-2">
@@ -494,6 +518,25 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
 
           {/* Right Column: Statistics & Claimed Rewards Grid */}
           <div className="lg:col-span-7 flex flex-col space-y-6">
+            {!isStatsPublic ? (
+              <div className="bg-white border-4 border-black p-6 shadow-[6px_6px_0_#000] flex flex-col items-center justify-center text-center gap-4 min-h-[300px]">
+                <div className="w-16 h-16 bg-[#0284c7] border-4 border-black flex items-center justify-center shadow-[4px_4px_0_#000] text-white">
+                  <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+                <div className="space-y-1">
+                  <h4 className="text-lg font-black text-black font-kh-header">ស្ថិតិលេងហ្គេមត្រូវបានរក្សាការសម្ងាត់</h4>
+                  <p className="text-[10px] text-zinc-400 font-extrabold uppercase font-mono tracking-wider">GAME STATS ARE PRIVATE</p>
+                </div>
+                <p className="text-xs text-zinc-500 font-bold max-w-xs leading-relaxed">
+                  {kh 
+                    ? "សិស្សនេះបានកំណត់ស្ថិតិពិន្ទុ និងការប្តូររង្វាន់របស់ពួកគេជាឯកជន។" 
+                    : "This student has set their game scores and claimed rewards to private."}
+                </p>
+              </div>
+            ) : (
+              <>
             
             {/* Play Stats Box */}
             <div className="bg-white border-4 border-black p-6 shadow-[6px_6px_0_#000]">
@@ -601,7 +644,8 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                 )}
               </div>
             </div>
-
+            </>
+            )}
           </div>
 
         </div>

@@ -71,6 +71,24 @@ async function migrate() {
       ALTER TABLE users 
       ADD COLUMN IF NOT EXISTS username_changed_at TIMESTAMP
     `;
+
+    console.log("Running migration: add_class_id_to_invite_codes");
+    await sql`
+      ALTER TABLE invite_codes 
+      ADD COLUMN IF NOT EXISTS class_id INTEGER REFERENCES classes(id) ON DELETE CASCADE
+    `;
+
+    console.log("Running migration: add_individual_privacy_columns");
+    await sql`
+      ALTER TABLE users 
+      ADD COLUMN IF NOT EXISTS is_name_public BOOLEAN DEFAULT true NOT NULL,
+      ADD COLUMN IF NOT EXISTS is_username_public BOOLEAN DEFAULT true NOT NULL,
+      ADD COLUMN IF NOT EXISTS is_school_public BOOLEAN DEFAULT true NOT NULL,
+      ADD COLUMN IF NOT EXISTS is_province_public BOOLEAN DEFAULT true NOT NULL,
+      ADD COLUMN IF NOT EXISTS is_grade_public BOOLEAN DEFAULT true NOT NULL,
+      ADD COLUMN IF NOT EXISTS is_section_public BOOLEAN DEFAULT true NOT NULL,
+      ADD COLUMN IF NOT EXISTS is_stats_public BOOLEAN DEFAULT true NOT NULL
+    `;
     
     console.log("✅ Migration completed successfully!");
   } catch (error) {

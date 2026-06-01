@@ -373,8 +373,8 @@ export default async function StudentProfilePage() {
           </div>
         </div>
 
-        {/* ── Edit profile ── */}
-        <div>
+        {/* ── Edit Profile & Settings Button ── */}
+        <div style={{ marginTop: "10px" }}>
           {/* Section label with curb marker */}
           <div
             style={{
@@ -407,20 +407,33 @@ export default async function StudentProfilePage() {
                   letterSpacing: "0.12em",
                 }}
               >
-                Edit Profile
+                Edit Profile & Settings / កែប្រែព័ត៌មាន និងការកំណត់
               </span>
             </div>
           </div>
-          <ProfileEditor
-            initialName={name}
-            initialAvatar={user?.avatar ?? null}
-            initialAvatarChangedAt={
-              user?.avatarChangedAt?.toISOString() ?? null
-            }
-            role="student"
-            dark={false}
-          />
+          <a
+            href="/settings"
+            style={{
+              display: "block",
+              width: "100%",
+              textAlign: "center",
+              padding: "16px",
+              background: "#eab308",
+              color: "#000",
+              border: "3px solid #000",
+              boxShadow: "5px 5px 0 #000",
+              fontWeight: 900,
+              fontSize: "15px",
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+              textDecoration: "none",
+            }}
+            className="hover:bg-yellow-300 transition-all active:translate-x-0.5 active:translate-y-0.5 hover:shadow-[3px_3px_0_#000]"
+          >
+            Edit Profile & Privacy Settings / កែប្រែគណនី និងការកំណត់ឯកជនភាព
+          </a>
         </div>
+
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { users, classes, classEnrollments } from "@/db/schema";
+import { users, classes, classEnrollments, inviteCodes } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 import { getSession } from "@/lib/auth";
 
@@ -35,6 +35,13 @@ export async function GET(request: NextRequest) {
       gradeLevel: user.gradeLevel || "",
       section: user.section || "",
       isProfilePublic: user.isProfilePublic ?? true,
+      isNamePublic: user.isNamePublic ?? true,
+      isUsernamePublic: user.isUsernamePublic ?? true,
+      isSchoolPublic: user.isSchoolPublic ?? true,
+      isProvincePublic: user.isProvincePublic ?? true,
+      isGradePublic: user.isGradePublic ?? true,
+      isSectionPublic: user.isSectionPublic ?? true,
+      isStatsPublic: user.isStatsPublic ?? true,
       createdAt: user.createdAt.toISOString(),
       language: "en", // Default, can be stored in user table
       theme: "light", // Default, can be stored in user table
@@ -76,7 +83,7 @@ export async function PUT(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { displayName, username, email, avatar, audioMuted, schoolName, province, gradeLevel, section, isProfilePublic, inviteCode } = body;
+    const { displayName, username, email, avatar, audioMuted, schoolName, province, gradeLevel, section, isProfilePublic, isNamePublic, isUsernamePublic, isSchoolPublic, isProvincePublic, isGradePublic, isSectionPublic, isStatsPublic, inviteCode } = body;
 
     // Check if this is an onboarding student (missing school details)
     const isOnboarding = session.role === "student" && (!currentUser.schoolName || !currentUser.province || !currentUser.gradeLevel);
@@ -114,6 +121,13 @@ export async function PUT(request: NextRequest) {
       schoolName: schoolName !== undefined ? schoolName : currentUser.schoolName,
       province: province !== undefined ? province : currentUser.province,
       isProfilePublic: isProfilePublic !== undefined ? isProfilePublic : currentUser.isProfilePublic,
+      isNamePublic: isNamePublic !== undefined ? isNamePublic : currentUser.isNamePublic,
+      isUsernamePublic: isUsernamePublic !== undefined ? isUsernamePublic : currentUser.isUsernamePublic,
+      isSchoolPublic: isSchoolPublic !== undefined ? isSchoolPublic : currentUser.isSchoolPublic,
+      isProvincePublic: isProvincePublic !== undefined ? isProvincePublic : currentUser.isProvincePublic,
+      isGradePublic: isGradePublic !== undefined ? isGradePublic : currentUser.isGradePublic,
+      isSectionPublic: isSectionPublic !== undefined ? isSectionPublic : currentUser.isSectionPublic,
+      isStatsPublic: isStatsPublic !== undefined ? isStatsPublic : currentUser.isStatsPublic,
       updatedAt: new Date(),
     };
 
@@ -190,15 +204,54 @@ export async function PUT(request: NextRequest) {
         return NextResponse.json({ error: "Teacher invitation code / Class code is required. / លេខកូដអញ្ជើញពីគ្រូ ឬលេខកូដថ្នាក់គឺចាំបាច់ត្រូវបំពេញ។" }, { status: 400 });
       }
 
-      // Validate class code
-      const [classRecord] = await db
+      const trimmedCode = inputCode.trim();
+      let targetClassId: number | null = null;
+      let isInviteCodeTableMatch = false;
+      let teacherIdToEnroll: number | null = null;
+
+      // 1. Try to find in invite_codes first
+      const [inviteCodeRecord] = await db
         .select()
-        .from(classes)
-        .where(eq(classes.code, inputCode.trim()))
+        .from(inviteCodes)
+        .where(eq(inviteCodes.code, trimmedCode))
         .limit(1);
 
-      if (!classRecord) {
-        return NextResponse.json({ error: "Class not found. Invalid teacher invitation code. / រកមិនឃើញថ្នាក់រៀននេះទេ។ លេខកូដអញ្ជើញពីគ្រូមិនត្រឹមត្រូវឡើយ។" }, { status: 400 });
+      if (inviteCodeRecord) {
+        if (inviteCodeRecord.isUsed) {
+          return NextResponse.json({ error: "This invitation code has already been used. / លេខកូដអញ្ជើញនេះត្រូវបានប្រើប្រាស់រួចហើយ។" }, { status: 400 });
+        }
+        isInviteCodeTableMatch = true;
+        teacherIdToEnroll = inviteCodeRecord.teacherId;
+
+        if (inviteCodeRecord.classId) {
+          targetClassId = inviteCodeRecord.classId;
+        } else {
+          // Fallback: find the teacher's first class
+          const [firstClass] = await db
+            .select()
+            .from(classes)
+            .where(eq(classes.teacherId, inviteCodeRecord.teacherId))
+            .limit(1);
+          if (firstClass) {
+            targetClassId = firstClass.id;
+          }
+        }
+      } else {
+        // 2. Fallback: try classes.code directly
+        const [classRecord] = await db
+          .select()
+          .from(classes)
+          .where(eq(classes.code, trimmedCode))
+          .limit(1);
+
+        if (classRecord) {
+          targetClassId = classRecord.id;
+          teacherIdToEnroll = classRecord.teacherId;
+        }
+      }
+
+      if (!targetClassId) {
+        return NextResponse.json({ error: "Invalid invitation code or class code. / លេខកូដអញ្ជើញ ឬកូដថ្នាក់រៀនមិនត្រឹមត្រូវឡើយ។" }, { status: 400 });
       }
 
       // Run profile update & class auto-join enrollment inside database transaction
@@ -221,11 +274,23 @@ export async function PUT(request: NextRequest) {
         await tx.delete(classEnrollments).where(eq(classEnrollments.studentId, session.id));
 
         await tx.insert(classEnrollments).values({
-          classId: classRecord.id,
+          classId: targetClassId!,
           studentId: session.id,
-          enrolledBy: classRecord.teacherId,
+          enrolledBy: teacherIdToEnroll || session.id,
           enrolledAt: new Date(),
         });
+
+        // Mark invite code as used in the database
+        if (isInviteCodeTableMatch) {
+          await tx
+            .update(inviteCodes)
+            .set({
+              isUsed: true,
+              usedById: session.id,
+              usedAt: new Date(),
+            })
+            .where(eq(inviteCodes.code, trimmedCode));
+        }
 
         return u;
       });
@@ -242,6 +307,13 @@ export async function PUT(request: NextRequest) {
           province: updatedUser.province,
           gradeLevel: updatedUser.gradeLevel,
           section: updatedUser.section,
+          isNamePublic: updatedUser.isNamePublic,
+          isUsernamePublic: updatedUser.isUsernamePublic,
+          isSchoolPublic: updatedUser.isSchoolPublic,
+          isProvincePublic: updatedUser.isProvincePublic,
+          isGradePublic: updatedUser.isGradePublic,
+          isSectionPublic: updatedUser.isSectionPublic,
+          isStatsPublic: updatedUser.isStatsPublic,
         }
       });
     }
@@ -265,6 +337,13 @@ export async function PUT(request: NextRequest) {
         province: updatedUser.province,
         gradeLevel: updatedUser.gradeLevel,
         section: updatedUser.section,
+        isNamePublic: updatedUser.isNamePublic,
+        isUsernamePublic: updatedUser.isUsernamePublic,
+        isSchoolPublic: updatedUser.isSchoolPublic,
+        isProvincePublic: updatedUser.isProvincePublic,
+        isGradePublic: updatedUser.isGradePublic,
+        isSectionPublic: updatedUser.isSectionPublic,
+        isStatsPublic: updatedUser.isStatsPublic,
       }
     });
   } catch (error) {

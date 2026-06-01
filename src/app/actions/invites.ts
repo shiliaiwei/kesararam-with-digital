@@ -1,12 +1,12 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { inviteCodes, users } from "@/db/schema";
+import { inviteCodes, users, classes } from "@/db/schema";
 import { eq, desc } from "drizzle-orm";
 import { getSession } from "@/lib/auth";
 import { randomBytes } from "crypto";
 
-export async function generateInviteCode() {
+export async function generateInviteCode(classId?: number | null) {
   const session = await getSession();
   if (!session || session.role !== "teacher") {
     throw new Error("Unauthorized: Only teachers can generate invite codes.");
@@ -22,6 +22,7 @@ export async function generateInviteCode() {
       .values({
         code,
         teacherId: session.id,
+        classId: classId || null,
         isUsed: false,
       })
       .returning();
@@ -47,11 +48,14 @@ export async function getTeacherInviteCodes() {
         isUsed: inviteCodes.isUsed,
         usedAt: inviteCodes.usedAt,
         createdAt: inviteCodes.createdAt,
+        classId: inviteCodes.classId,
+        className: classes.name,
         usedByUsername: users.username,
         usedByDisplayName: users.displayName,
       })
       .from(inviteCodes)
       .leftJoin(users, eq(inviteCodes.usedById, users.id))
+      .leftJoin(classes, eq(inviteCodes.classId, classes.id))
       .where(eq(inviteCodes.teacherId, session.id))
       .orderBy(desc(inviteCodes.createdAt));
 

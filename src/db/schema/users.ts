@@ -41,6 +41,13 @@ export const users = pgTable("users", {
   claimedRewards: text("claimed_rewards").default("[]").notNull(),
   googleId: text("google_id").unique(),
   isProfilePublic: boolean("is_profile_public").default(true).notNull(),
+  isNamePublic: boolean("is_name_public").default(true).notNull(),
+  isUsernamePublic: boolean("is_username_public").default(true).notNull(),
+  isSchoolPublic: boolean("is_school_public").default(true).notNull(),
+  isProvincePublic: boolean("is_province_public").default(true).notNull(),
+  isGradePublic: boolean("is_grade_public").default(true).notNull(),
+  isSectionPublic: boolean("is_section_public").default(true).notNull(),
+  isStatsPublic: boolean("is_stats_public").default(true).notNull(),
 });
 
 export const classes = pgTable("classes", {
@@ -76,6 +83,8 @@ export const inviteCodes = pgTable("invite_codes", {
   teacherId: integer("teacher_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
+  classId: integer("class_id")
+    .references(() => classes.id, { onDelete: "cascade" }),
   isUsed: boolean("is_used").default(false).notNull(),
   usedById: integer("used_by_id").references(() => users.id, { onDelete: "set null" }),
   usedAt: timestamp("used_at"),
@@ -135,5 +144,9 @@ export const inviteCodesRelations = relations(inviteCodes, ({ one }: any) => ({
   usedBy: one(users, {
     fields: [inviteCodes.usedById],
     references: [users.id],
+  }),
+  class: one(classes, {
+    fields: [inviteCodes.classId],
+    references: [classes.id],
   }),
 }));

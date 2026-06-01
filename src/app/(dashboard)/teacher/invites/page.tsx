@@ -2,6 +2,7 @@ import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { Key } from "lucide-react";
 import { getTeacherInviteCodes } from "@/app/actions/invites";
+import { getTeacherClasses } from "@/app/actions/classes";
 import { InvitesClient } from "./invites-client";
 
 export const dynamic = "force-dynamic";
@@ -12,7 +13,10 @@ export default async function TeacherInvitesPage() {
     redirect("/login");
   }
 
-  const res = await getTeacherInviteCodes();
+  const [res, classesList] = await Promise.all([
+    getTeacherInviteCodes(),
+    getTeacherClasses()
+  ]);
   const codes = res.success && res.codes ? res.codes : [];
 
   // Serialize Date objects cleanly to match typescript client types
@@ -22,6 +26,8 @@ export default async function TeacherInvitesPage() {
     isUsed: c.isUsed,
     usedAt: c.usedAt ? new Date(c.usedAt).toISOString() : null,
     createdAt: c.createdAt ? new Date(c.createdAt).toISOString() : new Date().toISOString(),
+    classId: (c as any).classId ?? null,
+    className: (c as any).className ?? null,
     usedByUsername: c.usedByUsername ?? null,
     usedByDisplayName: c.usedByDisplayName ?? null,
   }));
@@ -48,7 +54,10 @@ export default async function TeacherInvitesPage() {
       </div>
 
       {/* Invites Table and Actions Container */}
-      <InvitesClient initialCodes={serializedCodes} />
+      <InvitesClient 
+        initialCodes={serializedCodes} 
+        classes={classesList.map((cl) => ({ id: cl.id, name: cl.name }))} 
+      />
     </div>
   );
 }

@@ -57,7 +57,7 @@ export function CompleteProfileForm() {
   const [section, setSection] = useState("");
   const [face, setFace] = useState("Smile.svg");
   const [head, setHead] = useState("Short 1.svg");
-  const [isProfilePublic, setIsProfilePublic] = useState(false); // Default to Private (false)
+  const [isProfilePublic, setIsProfilePublic] = useState(true); // Default to Public (true)
   const [activeAvatarTab, setActiveAvatarTab] = useState<"head" | "face">("head");
   
   const [loading, setLoading] = useState(false);
@@ -442,28 +442,7 @@ export function CompleteProfileForm() {
                 />
               </div>
 
-              {/* Public/Private Profile Choice (Default Private) */}
-              <div className="flex items-center justify-between p-4 border-2 border-black bg-zinc-50 shadow-[3px_3px_0_#000]" style={{ borderRadius: "0px" }}>
-                <div className="space-y-0.5 pr-4">
-                  <label className="text-sm font-black text-black block">
-                    {kh ? "បង្ហាញព័ត៌មានជាសាធារណៈ" : "Make Profile Public"}
-                  </label>
-                  <p className="text-[10px] text-zinc-400 font-bold leading-normal">
-                    {kh 
-                      ? "* ការបើកគណនីជាសាធារណៈ អនុញ្ញាតឲ្យសិស្សដទៃទៀតឃើញពិន្ទុ និងចំណាត់ថ្នាក់របស់អ្នកលើតារាងពិន្ទុឆ្នើម។ (ស្វ័យប្រវត្ត: ឯកជន)" 
-                      : "* Making your profile public allows other students to see your points and rank on the leaderboards. (Default: Private)"}
-                  </p>
-                </div>
-                <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
-                  <input
-                    type="checkbox"
-                    checked={isProfilePublic}
-                    onChange={(e) => setIsProfilePublic(e.target.checked)}
-                    className="sr-only peer"
-                  />
-                  <div className="w-11 h-6 bg-zinc-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#0284c7]"></div>
-                </label>
-              </div>
+
 
               {/* Actions Panel */}
               <div className="flex flex-col sm:flex-row gap-3 pt-3">

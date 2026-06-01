@@ -72,6 +72,13 @@ interface UserSettings {
   gradeLevel?: string;
   section?: string;
   isProfilePublic?: boolean;
+  isNamePublic?: boolean;
+  isUsernamePublic?: boolean;
+  isSchoolPublic?: boolean;
+  isProvincePublic?: boolean;
+  isGradePublic?: boolean;
+  isSectionPublic?: boolean;
+  isStatsPublic?: boolean;
   createdAt?: string; // Account creation timestamp
   notifications: {
     email: boolean;
@@ -114,6 +121,13 @@ export function SettingsContent() {
     gradeLevel: "",
     section: "",
     isProfilePublic: true,
+    isNamePublic: true,
+    isUsernamePublic: true,
+    isSchoolPublic: true,
+    isProvincePublic: true,
+    isGradePublic: true,
+    isSectionPublic: true,
+    isStatsPublic: true,
     createdAt: "",
     notifications: {
       email: true,
@@ -902,25 +916,140 @@ export function SettingsContent() {
             <h2 className="text-xl font-black text-black border-b-2 border-black pb-2">Privacy & Security</h2>
 
             <div className="space-y-4">
-              {/* Public/Private profile switch */}
-              <div className="flex items-center justify-between p-4 border-2 border-black bg-white" style={{ borderRadius: "0" }}>
-                <div>
-                  <h3 className="font-bold text-black">Public Profile / គណនីសាធារណៈ</h3>
-                  <p className="text-sm text-zinc-600 mt-1">
-                    Allow others to view your profile page, school details, and statistics on the leaderboard.
-                  </p>
+              <div className="p-4 border-2 border-black bg-zinc-50" style={{ borderRadius: "0" }}>
+                <h3 className="font-black text-black mb-1">Information Visibility / ការកំណត់បង្ហាញព័ត៌មាន</h3>
+                <p className="text-xs text-zinc-500 mb-4">
+                  Configure what information is visible to other students on the public leaderboard and search. / កំណត់ថាតើព័ត៌មានអ្វីខ្លះដែលអាចមើលឃើញដោយសិស្សដទៃទៀត។
+                </p>
+
+                <div className="space-y-3">
+                  {/* Name Visibility */}
+                  <div className="flex items-center justify-between p-3 border-2 border-black bg-white" style={{ borderRadius: "0" }}>
+                    <div>
+                      <h4 className="font-bold text-xs md:text-sm text-black">Display Name / ឈ្មោះបង្ហាញ</h4>
+                      <p className="text-[10px] md:text-xs text-zinc-500">Show display name on public pages. / បង្ហាញឈ្មោះនៅលើទំព័រសាធារណៈ។</p>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
+                      <input
+                        type="checkbox"
+                        checked={settings.isNamePublic ?? true}
+                        onChange={(e) => setSettings({ ...settings, isNamePublic: e.target.checked })}
+                        className="sr-only peer"
+                      />
+                      <div className="w-11 h-6 bg-zinc-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                  </div>
+
+                  {/* Username Visibility */}
+                  <div className="flex items-center justify-between p-3 border-2 border-black bg-white" style={{ borderRadius: "0" }}>
+                    <div>
+                      <h4 className="font-bold text-xs md:text-sm text-black">Username / ឈ្មោះគណនី</h4>
+                      <p className="text-[10px] md:text-xs text-zinc-500">Show username on public pages. / បង្ហាញឈ្មោះគណនីនៅលើទំព័រសា情ណៈ។</p>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
+                      <input
+                        type="checkbox"
+                        checked={settings.isUsernamePublic ?? true}
+                        onChange={(e) => setSettings({ ...settings, isUsernamePublic: e.target.checked })}
+                        className="sr-only peer"
+                      />
+                      <div className="w-11 h-6 bg-zinc-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                  </div>
+
+                  {/* School Visibility */}
+                  {settings.role === "student" && (
+                    <div className="flex items-center justify-between p-3 border-2 border-black bg-white" style={{ borderRadius: "0" }}>
+                      <div>
+                        <h4 className="font-bold text-xs md:text-sm text-black">School Name / ឈ្មោះសាលារៀន</h4>
+                        <p className="text-[10px] md:text-xs text-zinc-500">Show school name on public pages. / បង្ហាញឈ្មោះសាលារៀននៅលើទំព័រសាធារណៈ។</p>
+                      </div>
+                      <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
+                        <input
+                          type="checkbox"
+                          checked={settings.isSchoolPublic ?? true}
+                          onChange={(e) => setSettings({ ...settings, isSchoolPublic: e.target.checked })}
+                          className="sr-only peer"
+                        />
+                        <div className="w-11 h-6 bg-zinc-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                      </label>
+                    </div>
+                  )}
+
+                  {/* Province Visibility */}
+                  {settings.role === "student" && (
+                    <div className="flex items-center justify-between p-3 border-2 border-black bg-white" style={{ borderRadius: "0" }}>
+                      <div>
+                        <h4 className="font-bold text-xs md:text-sm text-black">Province / ខេត្ត-ក្រុង</h4>
+                        <p className="text-[10px] md:text-xs text-zinc-500">Show province on public pages. / បង្ហាញខេត្ត-ក្រុងនៅលើទំព័រសាធារណៈ។</p>
+                      </div>
+                      <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
+                        <input
+                          type="checkbox"
+                          checked={settings.isProvincePublic ?? true}
+                          onChange={(e) => setSettings({ ...settings, isProvincePublic: e.target.checked })}
+                          className="sr-only peer"
+                        />
+                        <div className="w-11 h-6 bg-zinc-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                      </label>
+                    </div>
+                  )}
+
+                  {/* Grade Visibility */}
+                  {settings.role === "student" && (
+                    <div className="flex items-center justify-between p-3 border-2 border-black bg-white" style={{ borderRadius: "0" }}>
+                      <div>
+                        <h4 className="font-bold text-xs md:text-sm text-black">Grade Level / កម្រិតថ្នាក់</h4>
+                        <p className="text-[10px] md:text-xs text-zinc-500">Show grade level on public pages. / បង្ហាញកម្រិតថ្នាក់នៅលើទំព័រសាធារណៈ។</p>
+                      </div>
+                      <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
+                        <input
+                          type="checkbox"
+                          checked={settings.isGradePublic ?? true}
+                          onChange={(e) => setSettings({ ...settings, isGradePublic: e.target.checked })}
+                          className="sr-only peer"
+                        />
+                        <div className="w-11 h-6 bg-zinc-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                      </label>
+                    </div>
+                  )}
+
+                  {/* Section Visibility */}
+                  {settings.role === "student" && (
+                    <div className="flex items-center justify-between p-3 border-2 border-black bg-white" style={{ borderRadius: "0" }}>
+                      <div>
+                        <h4 className="font-bold text-xs md:text-sm text-black">Section (Room) / វេនសិក្សា</h4>
+                        <p className="text-[10px] md:text-xs text-zinc-500">Show class section on public pages. / បង្ហាញវេនសិក្សានៅលើទំព័រសាធារណៈ។</p>
+                      </div>
+                      <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
+                        <input
+                          type="checkbox"
+                          checked={settings.isSectionPublic ?? true}
+                          onChange={(e) => setSettings({ ...settings, isSectionPublic: e.target.checked })}
+                          className="sr-only peer"
+                        />
+                        <div className="w-11 h-6 bg-zinc-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                      </label>
+                    </div>
+                  )}
+
+                  {/* Stats Visibility */}
+                  <div className="flex items-center justify-between p-3 border-2 border-black bg-white" style={{ borderRadius: "0" }}>
+                    <div>
+                      <h4 className="font-bold text-xs md:text-sm text-black">Game Stats & Leaderboard / ស្ថិតិហ្គេម និងតារាងពិន្ទុ</h4>
+                      <p className="text-[10px] md:text-xs text-zinc-500">Show quiz scores, rank, and claimed rewards. / បង្ហាញពិន្ទុ ចំណាត់ថ្នាក់ និងរង្វាន់ដែលទទួលបាន។</p>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
+                      <input
+                        type="checkbox"
+                        checked={settings.isStatsPublic ?? true}
+                        onChange={(e) => setSettings({ ...settings, isStatsPublic: e.target.checked })}
+                        className="sr-only peer"
+                      />
+                      <div className="w-11 h-6 bg-zinc-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                  </div>
                 </div>
-                <label className="relative inline-flex items-center cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={settings.isProfilePublic ?? true}
-                    onChange={(e) =>
-                      setSettings({ ...settings, isProfilePublic: e.target.checked })
-                    }
-                    className="sr-only peer"
-                  />
-                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                </label>
               </div>
 
               <div className="p-4 border-2 border-black bg-yellow-50" style={{ borderRadius: "0" }}>
