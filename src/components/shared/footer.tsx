@@ -10,7 +10,9 @@ export function Footer() {
   const tr = t[lang].footer;
   const nav = t[lang].nav;
   const kh = lang === "kh";
-  const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const kf = kh
+    ? { fontFamily: '"GoogleSans", "Google Sans", sans-serif', fontWeight: 700 }
+    : { fontFamily: '"StackSansNotch", sans-serif' };
 
   const LEARN_LINKS = [
     { label: kh ? "សញ្ញាចរាចរ" : "Traffic Signs", href: "/road-sign" },
@@ -41,8 +43,10 @@ export function Footer() {
           <p className="text-sm font-bold text-zinc-700 leading-relaxed text-center max-w-md" style={kf}>
             {tr.tagline}
           </p>
-          <p className="text-xs text-zinc-500 mt-2 text-center" style={{ fontFamily: "Siemreap, sans-serif" }}>
-            {"រៀនដើម្បីដឹង · ប្រកួតដើម្បីពូកែ · ការពារដើម្បីជីវិត"}
+          <p className="text-xs text-zinc-500 mt-2 text-center" style={kf}>
+            {kh
+              ? "រៀនដើម្បីដឹង·ប្រកួតដើម្បីពូកែ·ការពារដើម្បីជីវិត"
+              : "Learn to know · Compete to excel · Protect for life"}
           </p>
         </div>
 

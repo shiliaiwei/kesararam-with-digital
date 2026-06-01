@@ -5,12 +5,6 @@
 /* ─── Google Sans (from public/Google_Sans) ─── */
 @font-face {
   font-family: "GoogleSans";
-  src: url("/Google_Sans/static/GoogleSans-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-display: swap;
-}
-@font-face {
-  font-family: "GoogleSans";
   src: url("/Google_Sans/static/GoogleSans-Regular.ttf") format("truetype");
   font-weight: 400;
   font-display: swap;
@@ -20,6 +14,48 @@
   src: url("/Google_Sans/static/GoogleSans-Medium.ttf") format("truetype");
   font-weight: 500;
   font-display: swap;
+}
+@font-face {
+  font-family: "GoogleSans";
+  src: url("/Google_Sans/static/GoogleSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* ─── Stack Sans Notch (from public/Stack_Sans_Notch) ─── */
+@font-face {
+  font-family: "StackSansNotch";
+  src: url("/Stack_Sans_Notch/static/StackSansNotch-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "StackSansNotch";
+  src: url("/Stack_Sans_Notch/static/StackSansNotch-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "StackSansNotch";
+  src: url("/Stack_Sans_Notch/static/StackSansNotch-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "StackSansNotch";
+  src: url("/Stack_Sans_Notch/static/StackSansNotch-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* ─── Brand font utility classes ─── */
+.font-google-sans {
+  font-family: "GoogleSans", "Google Sans", sans-serif !important;
+  font-weight: 700;
+}
+.font-stack-notch,
+.font-english {
+  font-family: "StackSansNotch", sans-serif !important;
 }
 
 @custom-variant dark (&:is(.dark *));

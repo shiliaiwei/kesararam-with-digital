@@ -295,20 +295,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
 
   return (
     <div className="bg-zinc-50 text-zinc-900 min-h-screen py-10 px-4 md:px-8 flex flex-col items-center">
-      {/* Inject custom font faces */}
-      <style>{`
-        @font-face {
-          font-family: 'Stack_Sans_Notch';
-          src: local('Stack_Sans_Notch'), local('Stack-Sans-Notch'), local('Arial Black'), local('Arial');
-          font-weight: 900;
-        }
-        .font-stack-notch {
-          font-family: 'Stack_Sans_Notch', 'Google Sans', sans-serif !important;
-        }
-        .font-english {
-          font-family: 'Stack_Sans_Notch', 'Google Sans', sans-serif !important;
-        }
-      `}</style>
+      {/* Font faces are loaded globally via globals.css */}
 
       <div className="w-full max-w-6xl space-y-8 select-none">
         
@@ -316,13 +303,13 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
         <div className="flex items-center justify-between pb-4 border-b-2 border-black">
           <button 
             onClick={() => { router.push('/leaderboard'); }}
-            className={`flex items-center gap-2 text-sm font-black uppercase text-zinc-600 hover:text-black transition-all ${kh ? 'font-kh-header' : 'font-stack-notch'}`}
+            className={`flex items-center gap-2 text-sm font-black uppercase text-zinc-600 hover:text-black transition-all ${kh ? 'font-google-sans' : 'font-stack-notch'}`}
           >
             <ChevronLeft size={18} strokeWidth={3} />
             {kh ? "ត្រឡប់ទៅតារាងពិន្ទុ" : "BACK TO LEADERBOARD"}
           </button>
           
-          <span className={`text-[11px] font-black tracking-widest text-zinc-400 uppercase ${kh ? 'font-kh-header' : 'font-stack-notch'}`}>
+          <span className={`text-[11px] font-black tracking-widest text-zinc-400 uppercase ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
             {kh ? "ព័ត៌មានរូបសិស្សផ្លូវការ" : "OFFICIAL STUDENT PROFILE"}
           </span>
         </div>
@@ -340,7 +327,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
             </svg>
             
             <div className="space-y-1">
-              <h2 className="text-xl md:text-3xl font-black text-blue-900 font-kh-header leading-tight">
+              <h2 className="text-xl md:text-3xl font-black text-blue-900 font-google-sans leading-tight">
                 សាលាបឋមសិក្សាកេសរារាម
               </h2>
               <p className="text-xs md:text-sm font-black text-zinc-400 tracking-widest uppercase font-mono">
@@ -363,7 +350,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
         {/* 2. Blue Identification Stripe Banner */}
         <div className="bg-[#0284c7] border-4 border-black p-5 text-center shadow-[6px_6px_0_#000] relative flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="text-left space-y-1">
-            <span className="text-white text-lg md:text-2xl font-black tracking-widest font-kh-header block leading-none">
+            <span className="text-white text-lg md:text-2xl font-black tracking-widest font-google-sans block leading-none">
               ប័ណ្ណសម្គាល់ខ្លួនសិស្សផ្លូវការ
             </span>
             <span className="text-[10px] md:text-xs text-white/80 font-black uppercase tracking-wider block leading-none font-mono">
@@ -386,7 +373,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
             </div>
             
             <div className="space-y-2">
-              <h3 className="text-2xl md:text-3xl font-black text-black font-kh-header leading-tight">
+              <h3 className="text-2xl md:text-3xl font-black text-black font-google-sans leading-tight">
                 គណនីនេះជាគណនីឯកជន
               </h3>
               <p className="text-sm md:text-base font-black text-zinc-400 tracking-widest uppercase font-mono">
@@ -394,7 +381,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
               </p>
             </div>
 
-            <p className="text-zinc-600 font-bold max-w-md leading-relaxed font-kh-body">
+            <p className="text-zinc-600 font-bold max-w-md leading-relaxed font-google-sans">
               សិស្សនេះបានកំណត់ព័ត៌មានលម្អិត និងស្ថិតិលេងហ្គេមរបស់ពួកគេជាឯកជន។
               <span className="block mt-1 font-english text-xs text-zinc-500 uppercase tracking-wide">
                 This student has set their details and gaming statistics to private.
@@ -431,12 +418,12 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
 
             {/* Credentials Card */}
             <div className="bg-white border-4 border-black p-6 shadow-[6px_6px_0_#000]">
-              <h3 className={`text-base font-black uppercase tracking-widest text-zinc-400 border-b-2 border-zinc-200 pb-3 mb-4 flex items-center gap-2 ${kh ? 'font-kh-header' : 'font-stack-notch'}`}>
+              <h3 className={`text-base font-black uppercase tracking-widest text-zinc-400 border-b-2 border-zinc-200 pb-3 mb-4 flex items-center gap-2 ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
                 <UserCheck size={18} className="text-blue-500" />
                 {kh ? "អត្តសញ្ញាណសិស្ស" : "STUDENT CREDENTIALS"}
               </h3>
 
-              <div className={`space-y-3.5 text-sm md:text-base ${kh ? 'font-kh-body' : 'font-english'}`}>
+              <div className={`space-y-3.5 text-sm md:text-base ${kh ? 'font-google-sans' : 'font-english'}`}>
                 
                 {/* Display Name */}
                 <div className="flex flex-col border-b border-zinc-100 pb-2">
@@ -537,7 +524,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                   </svg>
                 </div>
                 <div className="space-y-1">
-                  <h4 className="text-lg font-black text-black font-kh-header">ស្ថិតិលេងហ្គេមត្រូវបានរក្សាការសម្ងាត់</h4>
+                  <h4 className="text-lg font-black text-black font-google-sans">ស្ថិតិលេងហ្គេមត្រូវបានរក្សាការសម្ងាត់</h4>
                   <p className="text-[10px] text-zinc-400 font-extrabold uppercase font-mono tracking-wider">GAME STATS ARE PRIVATE</p>
                 </div>
                 <p className="text-xs text-zinc-500 font-bold max-w-xs leading-relaxed">
@@ -551,7 +538,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
             
             {/* Play Stats Box */}
             <div className="bg-white border-4 border-black p-6 shadow-[6px_6px_0_#000]">
-              <h3 className={`text-base font-black uppercase tracking-widest text-zinc-400 border-b-2 border-zinc-200 pb-3 mb-6 flex items-center gap-2 ${kh ? 'font-kh-header' : 'font-stack-notch'}`}>
+              <h3 className={`text-base font-black uppercase tracking-widest text-zinc-400 border-b-2 border-zinc-200 pb-3 mb-6 flex items-center gap-2 ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
                 <Gamepad2 size={18} className="text-yellow-500" />
                 {kh ? "របាយការណ៍សកម្មភាពសិក្សា និងលេងហ្គេម" : "GAME PLAY STATISTICS"}
               </h3>
@@ -560,7 +547,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                 
                 {/* Leaderboard Rank */}
                 <div className="border-2 border-black p-4 bg-zinc-50 shadow-[3px_3px_0_#000] flex flex-col justify-center min-h-[90px]">
-                  <span className={`text-[10px] font-black uppercase tracking-wider text-zinc-400 ${kh ? 'font-kh-header' : 'font-stack-notch'}`}>
+                  <span className={`text-[10px] font-black uppercase tracking-wider text-zinc-400 ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
                     {kh ? "ចំណាត់ថ្នាក់តារាងបច្ចុប្បន្ន" : "LEADERBOARD RANK"}
                   </span>
                   <span className="text-3xl font-black text-zinc-950 font-mono mt-1.5 flex items-center gap-2">
@@ -571,7 +558,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
 
                 {/* Total Games Played */}
                 <div className="border-2 border-black p-4 bg-zinc-50 shadow-[3px_3px_0_#000] flex flex-col justify-center min-h-[90px]">
-                  <span className={`text-[10px] font-black uppercase tracking-wider text-zinc-400 ${kh ? 'font-kh-header' : 'font-stack-notch'}`}>
+                  <span className={`text-[10px] font-black uppercase tracking-wider text-zinc-400 ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
                     {kh ? "ហ្គេមបានលេងសរុប" : "TOTAL GAMES PLAYED"}
                   </span>
                   <span className="text-3xl font-black text-zinc-950 font-mono mt-1.5 flex items-center gap-2">
@@ -582,7 +569,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
 
                 {/* Highest Score */}
                 <div className="border-2 border-black p-4 bg-zinc-50 shadow-[3px_3px_0_#000] flex flex-col justify-center min-h-[90px]">
-                  <span className={`text-[10px] font-black uppercase tracking-wider text-zinc-400 ${kh ? 'font-kh-header' : 'font-stack-notch'}`}>
+                  <span className={`text-[10px] font-black uppercase tracking-wider text-zinc-400 ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
                     {kh ? "ពិន្ទុខ្ពស់បំផុតក្នុង ១ ហ្គេម" : "HIGHEST SCORE"}
                   </span>
                   <span className="text-3xl font-black text-zinc-950 font-mono mt-1.5 flex items-center gap-2">
@@ -593,10 +580,10 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
 
                 {/* Student Grade */}
                 <div className="border-2 border-black p-4 bg-zinc-50 shadow-[3px_3px_0_#000] flex flex-col justify-center min-h-[90px]">
-                  <span className={`text-[10px] font-black uppercase tracking-wider text-zinc-400 ${kh ? 'font-kh-header' : 'font-stack-notch'}`}>
+                  <span className={`text-[10px] font-black uppercase tracking-wider text-zinc-400 ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
                     {kh ? "បន្ទប់សិក្សាផ្លូវការ" : "STUDENT GRADE ROOM"}
                   </span>
-                  <span className={`text-base md:text-lg font-black text-zinc-950 mt-2 flex items-center gap-2 ${kh ? 'font-kh-header' : 'font-mono'}`}>
+                  <span className={`text-base md:text-lg font-black text-zinc-950 mt-2 flex items-center gap-2 ${kh ? 'font-google-sans' : 'font-mono'}`}>
                     <School size={24} className="text-purple-500" />
                     {kh ? `${gradeKh} (${student.section ?? "—"})` : `${gradeEn} (Room ${student.section ?? "—"})`}
                   </span>
@@ -607,7 +594,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
 
             {/* DB-Backed Claimed Rewards Archive */}
             <div className="bg-white border-4 border-black p-6 shadow-[6px_6px_0_#000]">
-              <h3 className={`text-base font-black uppercase tracking-widest text-zinc-400 border-b-2 border-zinc-200 pb-3 mb-6 flex items-center gap-2 ${kh ? 'font-kh-header' : 'font-stack-notch'}`}>
+              <h3 className={`text-base font-black uppercase tracking-widest text-zinc-400 border-b-2 border-zinc-200 pb-3 mb-6 flex items-center gap-2 ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
                 <Gift size={18} className="text-blue-500" />
                 {kh ? "ប្រវត្តិនៃការប្តូរយករង្វាន់ពិតប្រាកដ" : "CLAIMED REWARDS ARCHIVE (LIVE)"}
               </h3>
@@ -627,7 +614,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                       
                       {/* Item Details */}
                       <div className="flex-1 min-w-0">
-                        <p className={`font-black text-sm text-zinc-950 truncate ${kh ? 'font-kh-header' : 'font-stack-notch'}`}>
+                        <p className={`font-black text-sm text-zinc-950 truncate ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
                           {kh ? item.nameKh : item.name}
                         </p>
                         <p className="font-black text-[10px] text-zinc-400 font-mono mt-0.5">
@@ -635,7 +622,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                         </p>
                         
                         <div className="flex flex-col gap-1 mt-1.5">
-                          <span className={`inline-flex self-start items-center gap-0.5 px-1.5 py-0.5 bg-green-100 text-green-700 text-[8px] font-black uppercase border border-green-300 ${kh ? 'font-kh-header' : 'font-stack-notch'}`}>
+                          <span className={`inline-flex self-start items-center gap-0.5 px-1.5 py-0.5 bg-green-100 text-green-700 text-[8px] font-black uppercase border border-green-300 ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
                             <CheckCircle2 size={9} />
                             {kh ? "បានប្តូរពិតប្រាកដ" : "VERIFIED CLAIM"}
                           </span>

@@ -42,7 +42,7 @@ function AnimatedLogoText() {
   }, []);
 
   return (
-    <div className="font-black text-[10px] uppercase tracking-widest text-black leading-none flex flex-col" style={{ width: "120px" }}>
+    <div className="font-black text-[10px] uppercase tracking-widest text-black leading-none flex flex-col font-stack-notch" style={{ width: "120px" }}>
       <span>KESARARAM.</span>
       <span>WITH.</span>
       {/* Fixed-height container prevents CLS when word changes */}
@@ -59,6 +59,7 @@ function AnimatedLogoText() {
 }
 
 function ProfileMenu({ session, kh, showUpgrade }: { session: JWTPayload; kh: boolean; showUpgrade: boolean }) {
+  const brandFont = kh ? "font-google-sans" : "font-stack-notch";
   const [open, setOpen] = useState(false);
   const [lifetimePoints, setLifetimePoints] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
@@ -174,7 +175,7 @@ function ProfileMenu({ session, kh, showUpgrade }: { session: JWTPayload; kh: bo
               <>
                 <Link
                   href="/pricing"
-                  className={cn("flex items-center gap-2 px-4 py-2.5 text-sm text-amber-600 hover:bg-amber-50 transition-colors", kh ? "font-kh-header" : "font-semibold")}
+                  className={cn("flex items-center gap-2 px-4 py-2.5 text-sm text-amber-600 hover:bg-amber-50 transition-colors", brandFont)}
                   onClick={() => setOpen(false)}
                 >
                   <Crown size={14} className="text-amber-500" />
@@ -205,6 +206,7 @@ export function Navbar({ session }: NavbarProps) {
   const { lang } = useLang();
   const tr = t[lang].nav;
   const kh = lang === "kh";
+  const brandFont = kh ? "font-google-sans" : "font-stack-notch";
   const [upgradeOpen, setUpgradeOpen] = useState(false);
   const [subPlan, setSubPlan] = useState<string | null>(null);
 
@@ -267,7 +269,7 @@ export function Navbar({ session }: NavbarProps) {
                   href={href}
                   className={cn(
                     "px-3 py-1.5 text-sm border-2 transition-all duration-100 whitespace-nowrap",
-                    kh ? "font-kh-header" : "font-semibold",
+                    brandFont,
                     active
                       ? "bg-yellow-400 text-black border-black shadow-[2px_2px_0_#ca8a04]"
                       : "border-transparent text-zinc-700 hover:border-black hover:bg-yellow-300 hover:shadow-[2px_2px_0_#000]",
@@ -288,7 +290,7 @@ export function Navbar({ session }: NavbarProps) {
                 onClick={() => setUpgradeOpen(true)}
                 className={cn(
                   "flex items-center gap-1.5 px-3 py-1.5 text-xs bg-amber-400 text-black border-2 border-black shadow-[2px_2px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 whitespace-nowrap uppercase tracking-wide",
-                  kh ? "font-kh-header" : "font-black"
+                  brandFont
                 )}
               >
                 <Crown size={13} />
