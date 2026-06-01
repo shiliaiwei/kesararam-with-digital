@@ -936,6 +936,10 @@ export default function LeaderboardPage() {
       .then(r => r.ok ? r.json() : null)
       .then(d => {
         if (d && !d.error) {
+          if (d.role === "student" && (!d.schoolName || !d.province || !d.gradeLevel)) {
+            router.push("/profile/student");
+            return;
+          }
           const lifetimePoints = d.lifetimePoints ?? 0;
           
           // Sync database claims to local storage for backward compatibility & seamless updates

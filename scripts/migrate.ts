@@ -66,6 +66,12 @@ async function migrate() {
       )
     `;
     
+    console.log("Running migration: add_username_changed_at");
+    await sql`
+      ALTER TABLE users 
+      ADD COLUMN IF NOT EXISTS username_changed_at TIMESTAMP
+    `;
+    
     console.log("✅ Migration completed successfully!");
   } catch (error) {
     console.error("❌ Migration failed:", error);

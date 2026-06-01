@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
         section: users.section,
       })
       .from(users)
-      .where(sql`${users.isActive} = true AND ${users.role} = 'student'`)
+      .where(sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.schoolName} IS NOT NULL AND ${users.province} IS NOT NULL AND ${users.gradeLevel} IS NOT NULL AND ${users.isProfilePublic} = true`)
       .orderBy(desc(users.lifetimePoints), desc(users.highestScore))
       .limit(limit)
       .offset(offset);

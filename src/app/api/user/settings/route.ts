@@ -76,7 +76,7 @@ export async function PUT(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { displayName, email, avatar, audioMuted, schoolName, province, gradeLevel, section, isProfilePublic, inviteCode } = body;
+    const { displayName, username, email, avatar, audioMuted, schoolName, province, gradeLevel, section, isProfilePublic, inviteCode } = body;
 
     // Check if this is an onboarding student (missing school details)
     const isOnboarding = session.role === "student" && (!currentUser.schoolName || !currentUser.province || !currentUser.gradeLevel);
@@ -146,6 +146,44 @@ export async function PUT(request: NextRequest) {
       updates.email = emailTrimmed;
     }
 
+    // 4. Username Update, Cooldown (1 year) & Uniqueness Validation
+    if (username !== undefined && username !== currentUser.username) {
+      const usernameClean = username.trim().toLowerCase();
+      if (!usernameClean || usernameClean.length < 3 || !/^[a-zA-Z0-9_]+$/.test(usernameClean)) {
+        return NextResponse.json({
+          error: "Username must be at least 3 characters long and contain only letters, numbers, and underscores. / ឈ្មោះគណនីត្រូវតែមានយ៉ាងហោចណាស់ ៣ តួអក្សរ និងអាចប្រើបានតែអក្សរ លេខ និងសញ្ញាគូសក្រោមប៉ុណ្ណោះ។"
+        }, { status: 400 });
+      }
+
+      // Check duplicate username
+      const [existingUsernameUser] = await db
+        .select()
+        .from(users)
+        .where(eq(users.username, usernameClean))
+        .limit(1);
+
+      if (existingUsernameUser && existingUsernameUser.id !== session.id) {
+        return NextResponse.json({
+          error: "This username is already taken by another account. / ឈ្មោះគណនីនេះត្រូវបានប្រើប្រាស់ដោយគណនីផ្សេងរួចហើយ។"
+        }, { status: 400 });
+      }
+
+      // Check 1-Year Cooldown
+      if (currentUser.usernameChangedAt) {
+        const usernameAgeMs = Date.now() - new Date(currentUser.usernameChangedAt).getTime();
+        const ONE_YEAR = 365 * 24 * 60 * 60 * 1000;
+        if (usernameAgeMs < ONE_YEAR) {
+          const daysLeft = Math.ceil((ONE_YEAR - usernameAgeMs) / (24 * 60 * 60 * 1000));
+          return NextResponse.json({
+            error: `You can only change your username once every 1 year (${daysLeft} days remaining). / អ្នកអាចផ្លាស់ប្តូរឈ្មោះគណនីបានតែម្តងគត់ក្នុងរយៈពេល ១ ឆ្នាំ (នៅសល់ ${daysLeft} ថ្ងៃ)។`
+          }, { status: 400 });
+        }
+      }
+
+      updates.username = usernameClean;
+      updates.usernameChangedAt = new Date();
+    }
+
     if (isOnboarding) {
       const inputCode = inviteCode || body.inviteCode;
       if (!inputCode) {
@@ -206,6 +244,7 @@ export async function PUT(request: NextRequest) {
         success: true,
         user: {
           displayName: updatedUser.displayName,
+          username: updatedUser.username,
           email: updatedUser.email,
           avatar: updatedUser.avatar,
           audioMuted: updatedUser.audioMuted,
@@ -228,6 +267,7 @@ export async function PUT(request: NextRequest) {
       success: true,
       user: {
         displayName: updatedUser.displayName,
+        username: updatedUser.username,
         email: updatedUser.email,
         avatar: updatedUser.avatar,
         audioMuted: updatedUser.audioMuted,

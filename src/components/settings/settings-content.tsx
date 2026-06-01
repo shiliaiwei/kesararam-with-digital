@@ -60,6 +60,7 @@ const GRADES = [
 
 interface UserSettings {
   displayName: string;
+  username: string;
   email: string;
   role?: string;
   avatar: string;
@@ -101,6 +102,7 @@ interface GameStats {
 export function SettingsContent() {
   const [settings, setSettings] = useState<UserSettings>({
     displayName: "",
+    username: "",
     email: "",
     role: "student",
     avatar: "",
@@ -343,6 +345,29 @@ export function SettingsContent() {
                     placeholder="Your display name"
                     style={{ borderRadius: "0" }}
                   />
+                </div>
+
+                {/* Username (Editable, subject to 1-year cooldown limit) */}
+                <div>
+                  <label className="block text-sm font-bold text-black mb-2">
+                    Username / ឈ្មោះគណនី
+                  </label>
+                  <div className="relative">
+                    <span className="absolute left-3 top-3 text-zinc-400 font-mono font-bold">@</span>
+                    <input
+                      type="text"
+                      value={settings.username || ""}
+                      onChange={(e) =>
+                        setSettings({ ...settings, username: e.target.value })
+                      }
+                      className="w-full p-3 pl-7 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] font-mono"
+                      placeholder="username"
+                      style={{ borderRadius: "0" }}
+                    />
+                  </div>
+                  <p className="text-xs text-zinc-500 mt-1">
+                    * System username. You can change this only once every 1 year. / ឈ្មោះគណនីក្នុងប្រព័ន្ធ។ អ្នកអាចផ្លាស់ប្តូរវាបានតែម្តងគត់ក្នុងរយៈពេល ១ ឆ្នាំ។
+                  </p>
                 </div>
 
                 {/* Email Address (Fully Editable!) */}
