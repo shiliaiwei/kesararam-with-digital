@@ -266,45 +266,41 @@ export async function PUT(request: NextRequest) {
       const finalGradeLevel = classDetails?.gradeLevel || gradeLevel || currentUser.gradeLevel;
       const finalSection = classDetails?.section || section || currentUser.section;
 
-      // Run profile update & class auto-join enrollment inside database transaction
-      const updatedUser = await db.transaction(async (tx) => {
-        const [u] = await tx
-          .update(users)
-          .set({
-            ...updates,
-            schoolName: finalSchoolName,
-            province: finalProvince,
-            gradeLevel: finalGradeLevel,
-            section: finalSection || null,
-          })
-          .where(eq(users.id, session.id))
-          .returning();
+      // Neon HTTP driver does not support transactions; perform writes sequentially.
+      const [updatedUser] = await db
+        .update(users)
+        .set({
+          ...updates,
+          schoolName: finalSchoolName,
+          province: finalProvince,
+          gradeLevel: finalGradeLevel,
+          section: finalSection || null,
+        })
+        .where(eq(users.id, session.id))
+        .returning();
 
-        // Enforce single-class active enrollment policy
-        // Delete any other active class enrollments for this student to ensure they can only be in one class at a time
-        await tx.delete(classEnrollments).where(eq(classEnrollments.studentId, session.id));
+      // Enforce single-class active enrollment policy
+      // Delete any other active class enrollments for this student to ensure they can only be in one class at a time
+      await db.delete(classEnrollments).where(eq(classEnrollments.studentId, session.id));
 
-        await tx.insert(classEnrollments).values({
-          classId: targetClassId!,
-          studentId: session.id,
-          enrolledBy: teacherIdToEnroll || session.id,
-          enrolledAt: new Date(),
-        });
-
-        // Mark invite code as used in the database
-        if (isInviteCodeTableMatch) {
-          await tx
-            .update(inviteCodes)
-            .set({
-              isUsed: true,
-              usedById: session.id,
-              usedAt: new Date(),
-            })
-            .where(eq(inviteCodes.code, trimmedCode));
-        }
-
-        return u;
+      await db.insert(classEnrollments).values({
+        classId: targetClassId!,
+        studentId: session.id,
+        enrolledBy: teacherIdToEnroll || session.id,
+        enrolledAt: new Date(),
       });
+
+      // Mark invite code as used in the database
+      if (isInviteCodeTableMatch) {
+        await db
+          .update(inviteCodes)
+          .set({
+            isUsed: true,
+            usedById: session.id,
+            usedAt: new Date(),
+          })
+          .where(eq(inviteCodes.code, trimmedCode));
+      }
 
       return NextResponse.json({ 
         success: true,

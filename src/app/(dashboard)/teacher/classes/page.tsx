@@ -2,9 +2,7 @@ import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { School, Users, Calendar, Plus } from "lucide-react";
 import { getTeacherClasses } from "@/app/actions/classes";
-import { getTeacherInviteCodes } from "@/app/actions/invites";
 import { ClassesTable } from "./classes-table";
-import { InvitesClient } from "./invites-client";
 
 export const dynamic = "force-dynamic";
 
@@ -14,25 +12,7 @@ export default async function TeacherClassesPage() {
     redirect("/login");
   }
 
-  const [classes, invitesRes] = await Promise.all([
-    getTeacherClasses(),
-    getTeacherInviteCodes()
-  ]);
-
-  const codes = invitesRes.success && invitesRes.codes ? invitesRes.codes : [];
-
-  // Serialize Date objects cleanly to match typescript client types
-  const serializedCodes = codes.map((c) => ({
-    id: c.id,
-    code: c.code,
-    isUsed: c.isUsed,
-    usedAt: c.usedAt ? new Date(c.usedAt).toISOString() : null,
-    createdAt: c.createdAt ? new Date(c.createdAt).toISOString() : new Date().toISOString(),
-    classId: (c as any).classId ?? null,
-    className: (c as any).className ?? null,
-    usedByUsername: c.usedByUsername ?? null,
-    usedByDisplayName: c.usedByDisplayName ?? null,
-  }));
+  const classes = await getTeacherClasses();
 
   // Calculate stats
   const totalClasses = classes.length;
@@ -134,11 +114,6 @@ export default async function TeacherClassesPage() {
         </div>
       </div>
 
-      {/* Embedded Student Registration Invites Panel */}
-      <InvitesClient
-        initialCodes={serializedCodes}
-        classes={classes.map((cl) => ({ id: cl.id, name: cl.name }))}
-      />
     </div>
   );
 }
