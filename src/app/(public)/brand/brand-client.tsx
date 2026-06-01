@@ -35,11 +35,10 @@ const RULES: { en: string; kh: string }[] = [
 
 // ─── Product mockups ───────────────────────────────────────────────────────
 const MOCKUP_ASSETS: { src: string; title: { en: string; kh: string } }[] = [
-  { src: "/brand/tote_stationery_mockup.png",    title: { en: "Tote & Stationery Set",        kh: "កាបូប & Stationery Set" } },
-  { src: "/brand/devices_brand_mockup.png",      title: { en: "Digital Devices Dashboard",    kh: "Dashboard លើ Digital Devices" } },
-  { src: "/brand/educational_blocks_mockup.png", title: { en: "Educational Toys & Cards",     kh: "ដុំឈើ & Learning Cards" } },
-  { src: "/brand/mug_bottle_mockup.png",         title: { en: "Ceramic Mug & Metal Bottle",   kh: "Ceramic Mug & Metal Bottle" } },
-  { src: "/brand/apparel_brand_mockup.png",      title: { en: "Premium Brand Apparel",        kh: "Brand Apparel" } },
+  { src: "/brand/tote_stationery_mockup.png",    title: { en: "Tote & Stationery Set",      kh: "កាបូប & Stationery Set" } },
+  { src: "/brand/educational_blocks_mockup.png", title: { en: "Educational Toys & Cards",   kh: "ដុំឈើ & Learning Cards" } },
+  { src: "/brand/mug_bottle_mockup.png",         title: { en: "Ceramic Mug & Metal Bottle", kh: "Ceramic Mug & Metal Bottle" } },
+  { src: "/brand/apparel_brand_mockup.png",      title: { en: "Premium Brand Apparel",      kh: "Brand Apparel" } },
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────
@@ -77,17 +76,23 @@ export function BrandGuidelineClient() {
             <p className="text-xs md:text-sm text-zinc-500 font-medium max-w-lg mx-auto mb-6" style={kf}>
               {t(
                 "Visual identity, design standards, and usage rules that define KWD across every surface.",
-                "Visual identity, design standard និងច្បាប់ប្រើ ដែលកំណត់ KWD លើគ្រប់ surface។"
+                "អត្តសញ្ញាណដែលមើលឃើញ ស្តង់ដាររចនា និងច្បាប់ប្រើប្រាស់ដែលកំណត់ KWD ។"
               )}
             </p>
             {/* Motto */}
             <div className="inline-block border-2 border-black px-5 py-3 bg-amber-400 shadow-[4px_4px_0_#000]">
-              <p className="text-[11px] md:text-xs font-black uppercase tracking-[0.2em] text-black" style={kf}>
-                {t(
-                  "Learn to know · Compete to excel · Protect for life",
-                  "រៀនដើម្បីដឹង · ប្រកួតដើម្បីពូកែ · ការពារដើម្បីជីវិត"
-                )}
-              </p>
+              {kh ? (
+                <p
+                  className="text-[13px] md:text-sm text-black"
+                  style={{ fontFamily: '"GoogleSans", "Google Sans", sans-serif', fontWeight: 700 }}
+                >
+                  រៀនដើម្បីដឹង·ប្រកួតដើម្បីពូកែ·ការពារដើម្បីជីវិត
+                </p>
+              ) : (
+                <p className="text-[11px] md:text-xs font-black uppercase tracking-[0.2em] text-black">
+                  Learn to know · Compete to excel · Protect for life
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -95,39 +100,49 @@ export function BrandGuidelineClient() {
         {/* ════ 01 — BRAND NAME ════════════════════════════════════════════ */}
         <Section id="name" num="01" title={t("Brand Name & Meaning", "ឈ្មោះ Brand និងន័យ")} kf={kf}>
           <div className="space-y-5 text-sm md:text-base text-zinc-700 leading-relaxed font-medium" style={kf}>
-            <p>
-              <strong className="text-black font-black">KWD</strong>{" "}
-              {t("stands for ", "មានន័យថា ")}
-              <strong className="text-black font-black">Kesararam With Digital</strong>
-              {t(
-                " — a name that carries the weight of place, purpose, and transformation. Kesararam is a monastery and primary school — the oldest seat of learning in its community. The word With is not a conjunction — it declares partnership between tradition and technology. Digital is not a medium — it is a commitment to access, reach, and permanence.",
-                " — ឈ្មោះដែលផ្ទុកន័យនៃទីកន្លែង គោលដៅ និងការផ្លាស់ប្ដូរ។ កេសរារាម ជាវត្ត និងសាលាបឋម — ជាកន្លែងរៀនចំណាស់បំផុតក្នុងសហគមន៍។ ពាក្យ With មិនមែនជាតែឈ្នាប់ — វាប្រកាសពីភាពជាដៃគូរវាងប្រពៃណី និង technology។ Digital មិនមែនជាតែ medium — វាជាការប្ដេជ្ញាចំពោះការចូលប្រើ ការឈានដល់ និងស្ថិរភាព។"
-              )}
-            </p>
-            <p>
-              {t(
-                "KWD exists because young Cambodian women from Kesararam decided that road safety knowledge — knowledge that saves lives — should be free, interactive, and available to every student in their own language. The name asserts that education does not abandon its roots when it enters the digital age. It carries them forward.",
-                "KWD កើតឡើង ដោយយុវនារីខ្មែរពីសាលាបឋម Kesararam បានសម្រេចថា ចំណេះដឹងសុវត្ថិភាពចរាចរ — ចំណេះដឹងដែលសង្គ្រោះជីវិត — គួរឥតគិតថ្លៃ, interactive និងចូលប្រើបានជាភាសារបស់សិស្សគ្រប់រូប។ ឈ្មោះនេះបញ្ជាក់ថា ការអប់រំមិនបោះបង់ roots ពេលចូល digital age — ផ្ទុយទៅវិញ វានាំ roots ទៅមុខ។"
-              )}
-            </p>
+            {kh ? (
+              <>
+                <p>
+                  <strong className="text-black font-black">KWD</strong>{" "}
+                  មានន័យថា <strong className="text-black font-black">Kesararam With Digital</strong> — ឈ្មោះដែលផ្ទុកន័យនៃទីកន្លែង គោលដៅ និងការផ្លាស់ប្ដូរ។ កេសរារាម ជាឈ្មោះវត្ត អារាម និងសាលាបឋមសិក្សា — ជាកន្លែងរៀនចំណាស់បំផុតក្នុងសហគមន៍។ ពាក្យ With មិនមែនជាឈ្នាប់ វាប្រកាសពីភាពជាដៃគូរវាងប្រពៃណី និង technology។ ឌីជីថល (Digital) មិនមែនត្រឹមតែជាឧបករណ៍សម្រាប់ផ្សព្វផ្សាយនោះទេ — ប៉ុន្តែវាគឺជាការប្តេជ្ញាចិត្តក្នុងការផ្តល់ជូននូវ ឱកាសខិតជិត (Access) ការពង្រីកវិសាលភាព (Reach) និងនិរន្តរភាព (Permanence)។
+                </p>
+                <p>
+                  KWD ត្រូវបានបង្កើតឡើងដោយយុវនារីខ្មែរនៃសាលាបឋមសិក្សា កេសរារាម ក្រោមទស្សនវិស័យមួយថា៖ ការអប់រំអំពីសុវត្ថិភាពចរាចរណ៍ដែលសង្គ្រោះជីវិតមនុស្ស បានគួរតែផ្តល់ជូនដោយឥតគិតថ្លៃ មានលក្ខណៈអន្តរកម្ម និងងាយស្រួលចូលប្រើប្រាស់ជាភាសាកំណើតរបស់សិស្សគ្រប់រូប។ ឈ្មោះនេះបញ្ជាក់ឱ្យឃើញថា ការអប់រំមិនបានបោះបង់ចោលអត្តសញ្ញាណ និងឫសគល់វប្បធម៌នៅក្នុងយុគសម័យឌីជីថលនោះទេ — ប៉ុន្តែវាគឺជាការជំរុញឱ្យឫសគល់ទាំងនោះ កាន់តែរីកចម្រើនទៅមុខតាមបច្ចេកវិទ្យា។
+                </p>
+              </>
+            ) : (
+              <>
+                <p>
+                  <strong className="text-black font-black">KWD</strong>{" "}
+                  stands for{" "}
+                  <strong className="text-black font-black">Kesararam With Digital</strong>
+                  {" "}— a name that carries the weight of place, purpose, and transformation. Kesararam is a monastery and primary school — the oldest seat of learning in its community. The word With is not a conjunction — it declares partnership between tradition and technology. Digital is not a medium — it is a commitment to access, reach, and permanence.
+                </p>
+                <p>
+                  KWD exists because young Cambodian women from Kesararam decided that road safety knowledge — knowledge that saves lives — should be free, interactive, and available to every student in their own language. The name asserts that education does not abandon its roots when it enters the digital age. It carries them forward.
+                </p>
+              </>
+            )}
           </div>
 
           {/* Recommended usage */}
           <div className="mt-6 border-2 border-black p-5 bg-amber-50 shadow-[4px_4px_0_#000]">
             <p className="text-[10px] font-black uppercase tracking-[0.25em] text-amber-600 mb-3" style={kf}>
-              ★ {t("Recommended Usage", "ការប្រើប្រាស់ដែលណែនាំ")}
+              ★ {t("Recommended Usage", "ការប្រើប្រាស់និងការណែនាំ")}
             </p>
             <p className="text-sm font-medium text-zinc-700 leading-relaxed" style={kf}>
-              {t("Always use the full name ", "ប្រើឈ្មោះពេញ ")}
-              <strong className="text-black font-black">Kesararam With Digital</strong>
-              {t(
-                " when introducing the brand for the first time — in press, presentations, official documents, and partnerships. The abbreviation ",
-                " នៅពេលណែនាំ brand លើកដំបូង — ក្នុង press, presentation, ឯកសារផ្លូវការ និង partnership។ "
-              )}
-              <strong className="text-black font-black">KWD</strong>
-              {t(
-                " may be used in subsequent references once the full name has been established.",
-                " អាចប្រើបន្ទាប់ ក្រោយពី full name ត្រូវបានបញ្ជាក់ហើយ។"
+              {kh ? (
+                <>
+                  ត្រូវប្រើឈ្មោះពេញ <strong className="text-black font-black">«Kesararam With Digital»</strong> សម្រាប់ការណែនាំម៉ាកយីហោ (Brand) លើកដំបូង ក្នុងកម្មវិធីសារព័ត៌មាន បទបង្ហាញ ឯកសារផ្លូវការ និងដៃគូសហការ។ លោកអ្នកអាចប្រើពាក្យកាត់ <strong className="text-black font-black">«KWD»</strong> នៅផ្នែកបន្ទាប់ ក្រោយពេលដែលបានបង្ហាញឈ្មោះពេញរួច។
+                </>
+              ) : (
+                <>
+                  Always use the full name{" "}
+                  <strong className="text-black font-black">Kesararam With Digital</strong>
+                  {" "}when introducing the brand for the first time — in press, presentations, official documents, and partnerships. The abbreviation{" "}
+                  <strong className="text-black font-black">KWD</strong>
+                  {" "}may be used in subsequent references once the full name has been established.
+                </>
               )}
             </p>
           </div>
@@ -141,24 +156,28 @@ export function BrandGuidelineClient() {
             <p className="text-[10px] font-black uppercase tracking-[0.25em] text-zinc-400 mb-2" style={kf}>
               {t("Logo Meaning", "ន័យ Logo")}
             </p>
-            <p className="text-sm text-zinc-700 leading-relaxed font-medium" style={kf}>
-              {t(
-                "The lightning bolt at the heart of the KWD mark is not ornamental — it is the brand's core belief made visible. It stands for ",
-                "ផ្លេករបស់ logo KWD មិនមែនតុបតែង — វាជាជំនឿស្នូលរបស់ brand ។ វាតំណាងឱ្យ "
-              )}
-              <strong className="text-black font-black">
-                {t("Flash Learning", "Flash Learning")}
-              </strong>
-              {t(
-                " — the conviction that in the age of AI, knowledge moves at the speed of light. Automation is rewriting every industry. The tools of the future belong to those who learn now. The bolt is our promise: ",
-                " — ការជឿថា ក្នុងយុគ AI ចំណេះដឹងដំណើរក្នុងល្បឿនពន្លឺ។ Automation កំពុងផ្លាស់ប្ដូររាល់ industry។ Tool នៃអនាគតជារបស់អ្នករៀននៅពេលនេះ។ ផ្លេកនេះជាការប្ដេជ្ញា៖ "
-              )}
-              <strong className="text-black font-black">Kesararam With Digital</strong>
-              {t(
-                " will always give every Cambodian student the speed, the tools, and the confidence to learn with AI — and lead what comes next.",
-                " នឹងផ្ដល់ល្បឿន, tool និងទំនុកចិត្ត ដើម្បីរៀនជាមួយ AI — និងដឹកនាំអ្វីដែលមកបន្ទាប់។"
-              )}
-            </p>
+            {kh ? (
+              <div className="space-y-3 text-sm text-zinc-700 leading-relaxed font-medium" style={kf}>
+                <p>
+                  និមិត្តសញ្ញាផ្លេកបន្ទោរនៅលើឡូហ្គោ KWD មិនមែនជាការតុបតែងលម្អឡើយ តែវាជាទស្សនវិជ្ជាស្នូលរបស់ Brand។ វាផ្ដល់អត្ថន័យដល់{" "}
+                  <strong className="text-black font-black">Flash Learning</strong>{" "}
+                  ដោយឈរលើជំនឿថា ក្នុងយុគសម័យ AI ចំណេះដឹងត្រូវតែដើរក្នុងល្បឿននៃពន្លឺ។
+                </p>
+                <p>
+                  ស្របពេលដែល Automation កំពុងផ្លាស់ប្ដូររាល់ឧស្សាហកម្ម បច្ចេកវិទ្យានៃអនាគតជារបស់អ្នកដែលរៀនសូត្រនៅថ្ងៃនេះ។ និមិត្តសញ្ញានេះជាការប្ដេជ្ញាចិត្តរបស់{" "}
+                  <strong className="text-black font-black">Kesararam With Digital</strong>{" "}
+                  ក្នុងការផ្ដល់នូវល្បឿន ឧបករណ៍ និងទំនុកចិត្ត ដើម្បីសិក្សារួមគ្នាជាមួយ AI និងដឹកនាំការផ្លាស់ប្ដូរនាពេលខាងមុខ។
+                </p>
+              </div>
+            ) : (
+              <p className="text-sm text-zinc-700 leading-relaxed font-medium">
+                The lightning bolt at the heart of the KWD mark is not ornamental — it is the brand&apos;s core belief made visible. It stands for{" "}
+                <strong className="text-black font-black">Flash Learning</strong>
+                {" "}— the conviction that in the age of AI, knowledge moves at the speed of light. Automation is rewriting every industry. The tools of the future belong to those who learn now. The bolt is our promise:{" "}
+                <strong className="text-black font-black">Kesararam With Digital</strong>
+                {" "}will always give every Cambodian student the speed, the tools, and the confidence to learn with AI — and lead what comes next.
+              </p>
+            )}
           </div>
 
           {/* Primary + Dark */}
@@ -234,17 +253,14 @@ export function BrandGuidelineClient() {
             )}
           </p>
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
-            {COLORS.map(({ name, hex, role }) => (
-              <div key={hex} className="group cursor-default">
+            {COLORS.map(({ name, hex }) => (
+              <div key={hex}>
                 <div
-                  className="h-14 mb-2 border-[3px] border-black shadow-[3px_3px_0_#000] group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 group-hover:shadow-[5px_5px_0_#000] transition-all duration-100"
+                  className="h-14 mb-2 border-[3px] border-black shadow-[3px_3px_0_#000]"
                   style={{ background: hex }}
                 />
                 <p className="text-[10px] font-black text-black uppercase tracking-wide">{name}</p>
                 <p className="text-[9px] font-mono text-zinc-400">{hex}</p>
-                <p className="text-[8px] text-zinc-400 leading-snug mt-0.5 hidden group-hover:block" style={kf}>
-                  {t(role.en, role.kh)}
-                </p>
               </div>
             ))}
           </div>

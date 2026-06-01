@@ -2,6 +2,26 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* ─── Google Sans (from public/Google_Sans) ─── */
+@font-face {
+  font-family: "GoogleSans";
+  src: url("/Google_Sans/static/GoogleSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GoogleSans";
+  src: url("/Google_Sans/static/GoogleSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GoogleSans";
+  src: url("/Google_Sans/static/GoogleSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
