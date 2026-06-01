@@ -31,52 +31,26 @@ const RULES: { en: string; kh: string }[] = [
   { en: "Only kwd-black_nobackground.png is the approved digital logo.", kh: "មានតែ kwd-black_nobackground.png ប៉ុណ្ណោះ ដែលជាឡូហ្គូឌីជីថលផ្លូវការ។" },
 ];
 
-const DESIGN_TOKENS: { token: { en: string; kh: string }; value: { en: string; kh: string } }[] = [
-  { token: { en: "Border Radius", kh: "កាំជ្រុងស៊ុម" }, value: { en: "0px — always sharp", kh: "0px — មុតស្រួចជានិច្ច" } },
-  { token: { en: "Border Width",  kh: "កម្រាស់ស៊ុម" }, value: { en: "2px standard · 4px emphasis", kh: "2px ស្តង់ដារ · 4px រំលេច" } },
-  { token: { en: "Shadow",        kh: "ស្រមោល" }, value: { en: "4px 4px 0 #000 — hard, no blur", kh: "4px 4px 0 #000 — រឹង គ្មានព្រិល" } },
-  { token: { en: "Hover",         kh: "ពេលដាក់កណ្ដុរ" }, value: { en: "−0.5px translate · shadow 6px", kh: "ផ្លាស់ −0.5px · ស្រមោល 6px" } },
-  { token: { en: "Active",        kh: "ពេលចុច" }, value: { en: "+2px translate · shadow removed", kh: "ផ្លាស់ +2px · ដកស្រមោល" } },
-  { token: { en: "Transition",    kh: "ការផ្លាស់ប្ដូរ" }, value: { en: "100–150ms only", kh: "តែ 100–150ms ប៉ុណ្ណោះ" } },
-  { token: { en: "Gradients",     kh: "ពណ៌ជម្រាល" }, value: { en: "None — solid colors only", kh: "គ្មាន — តែពណ៌ដិតប៉ុណ្ណោះ" } },
-  { token: { en: "Motion",        kh: "ចលនា" }, value: { en: "Purposeful only", kh: "មានគោលបំណងតែប៉ុណ្ណោះ" } },
-];
-
-const VOICE_PRINCIPLES: { en: string; kh: string }[] = [
-  { en: "Write to be understood, not to impress.", kh: "សរសេរដើម្បីឱ្យគេយល់ មិនមែនដើម្បីបង្ហាញខ្លួនទេ។" },
-  { en: "Use active voice. State what the user can do.", kh: "ប្រើទម្រង់សកម្ម។ បញ្ជាក់ឱ្យច្បាស់ពីអ្វីដែលអ្នកប្រើអាចធ្វើបាន។" },
-  { en: "Error messages explain what happened and what to do next.", kh: "សារកំហុសត្រូវពន្យល់ពីអ្វីដែលបានកើតឡើង និងជំហានបន្ទាប់ដែលត្រូវធ្វើ។" },
-  { en: "Labels are short. Descriptions are complete.", kh: "ស្លាកត្រូវខ្លី។ ការពិពណ៌នាត្រូវពេញលេញ។" },
-  { en: "Bilingual content must carry equal meaning — not literal translation.", kh: "ខ្លឹមសារពីរភាសាត្រូវមានអត្ថន័យស្មើគ្នា — មិនមែនជាការបកប្រែតាមព្យញ្ជនៈឡើយ។" },
-];
-
-
-
-const MOCKUP_ASSETS: { src: string; title: { en: string; kh: string }; desc: { en: string; kh: string } }[] = [
+const MOCKUP_ASSETS: { src: string; title: { en: string; kh: string } }[] = [
   {
     src: "/brand/tote_stationery_mockup.png",
-    title: { en: "Tote & Stationery Set", kh: "កាបូបយួរ & សម្ភារៈការិយាល័យ" },
-    desc: { en: "Premium organic cotton tote and black executive stationery.", kh: "កាបូបយួរពីកប្បាសធម្មជាតិ និងសម្ភារៈការិយាល័យបែបធុរកិច្ចពណ៌ខ្មៅ។" }
+    title: { en: "Tote & Stationery Set", kh: "កាបូបយួរ & សម្ភារៈការិយាល័យ" }
   },
   {
     src: "/brand/devices_brand_mockup.png",
-    title: { en: "Digital Devices Dashboard", kh: "ផ្ទាំងព័ត៌មានលើឧបករណ៍ឌីជីថល" },
-    desc: { en: "KWD responsive app dashboard on laptop and mobile screen layout.", kh: "ផ្ទាំងព័ត៌មានឆ្លើយតបកម្មវិធី KWD នៅលើអេក្រង់កុំព្យូទ័រ និងទូរស័ព្ទ។" }
+    title: { en: "Digital Devices Dashboard", kh: "ផ្ទាំងព័ត៌មានលើឧបករណ៍ឌីជីថល" }
   },
   {
     src: "/brand/educational_blocks_mockup.png",
-    title: { en: "Educational Toys & Cards", kh: "ដុំឈើល្បែងអប់រំ & កាតសិក្សា" },
-    desc: { en: "Engraved wooden blocks and colorful traffic instruction cards.", kh: "ដុំឈើឆ្លាក់ឡូហ្គូ និងកាតរូបភាពណែនាំអំពីច្បាប់ចរាចរណ៍។" }
+    title: { en: "Educational Toys & Cards", kh: "ដុំឈើល្បែងអប់រំ & កាតសិក្សា" }
   },
   {
     src: "/brand/mug_bottle_mockup.png",
-    title: { en: "Ceramic Mug & Metal Bottle", kh: "កែវសេរ៉ាមិច & ដបទឹកលោហៈធាតុ" },
-    desc: { en: "Minimalist matte black coffee mug and premium water container.", kh: "កែវកាហ្វេពណ៌ខ្មៅក្រើមបែបសាមញ្ញ និងដបទឹកលោហៈធាតុស្អាតប្រណីត។" }
+    title: { en: "Ceramic Mug & Metal Bottle", kh: "កែវសេរ៉ាមិច & ដបទឹកលោហៈធាតុ" }
   },
   {
     src: "/brand/apparel_brand_mockup.png",
-    title: { en: "Premium Brand Apparel", kh: "សម្លៀកបំពាក់យីហោលំដាប់ខ្ពស់" },
-    desc: { en: "Embroidered organic cotton t-shirt, hoodie, and street cap.", kh: "អាវយឺតកប្បាស អាវរងាមានមួក និងមួកប៉ារ៉េប៉ាក់ឡូហ្គូប្រណីត។" }
+    title: { en: "Premium Brand Apparel", kh: "សម្លៀកបំពាក់យីហោលំដាប់ខ្ពស់" }
   }
 ];
 
@@ -328,52 +302,8 @@ export function BrandGuidelineClient() {
           </div>
         </Section>
 
-        {/* ── 05 Design System ── */}
-        <Section id="design" num="05" title={t("Design System", "ប្រព័ន្ធរចនា")} kf={kf}>
-          <p className="text-sm md:text-base text-zinc-700 leading-relaxed font-medium mb-8" style={kf}>
-            {t(
-              "KWD uses a Neo-Brutalism design language — a system built on the visual grammar of road infrastructure. Borders are structural, not decorative. Shadows are hard and directional, like the shadow cast by a road sign post. There are no gradients, no blur, no softness. The interface communicates with the same clarity that a stop sign communicates.",
-              "KWD ប្រើភាសារចនាបែប Neo-Brutalism — ប្រព័ន្ធមួយដែលបង្កើតឡើងលើវេយ្យាករណ៍រូបភាពនៃហេដ្ឋារចនាសម្ព័ន្ធផ្លូវ។ ស៊ុមមានតួនាទីជារចនាសម្ព័ន្ធ មិនមែនជាការតុបតែងទេ។ ស្រមោលរឹង និងមានទិសដៅ ប្រៀបដូចស្រមោលនៃសសរសញ្ញាចរាចរ។ គ្មានពណ៌ជម្រាល គ្មានភាពព្រិល គ្មានភាពទន់ភ្លន់ឡើយ។ ចំណុចប្រទាក់ប្រាស្រ័យទាក់ទងដោយភាពច្បាស់លាស់ ដូចជាសញ្ញាឈប់ដែរ។"
-            )}
-          </p>
-          <div className="grid grid-cols-2 gap-x-8 gap-y-4">
-            {DESIGN_TOKENS.map(({ token, value }) => (
-              <div key={token.en} className="flex flex-col gap-0.5">
-                <p className="text-[9px] font-black uppercase tracking-widest text-zinc-300" style={kf}>{t(token.en, token.kh)}</p>
-                <p className="text-sm font-bold text-black" style={kf}>{t(value.en, value.kh)}</p>
-              </div>
-            ))}
-          </div>
-        </Section>
-
-        {/* ── 06 Voice & Tone ── */}
-        <Section id="voice" num="06" title={t("Voice & Tone", "សំឡេង និងលក្ខណៈនិយាយ")} kf={kf}>
-          <div className="space-y-4 text-sm md:text-base text-zinc-700 leading-relaxed font-medium" style={kf}>
-            <p>
-              {t(
-                "KWD speaks with precision and warmth. The platform is built by young Cambodian women for students — the voice is never condescending, never bureaucratic. It is direct because road safety is direct. It is warm because learning requires trust.",
-                "KWD និយាយដោយភាពច្បាស់លាស់ និងភាពកក់ក្ដៅ។ វេទិកានេះត្រូវបានបង្កើតឡើងដោយយុវនារីខ្មែរ សម្រាប់សិស្ស — សំឡេងមិនដែលមើលងាយ ឬមានលក្ខណៈការិយាធិបតេយ្យឡើយ។ វាផ្ទាល់ ព្រោះសុវត្ថិភាពចរាចរជារឿងផ្ទាល់។ វាកក់ក្ដៅ ព្រោះការរៀនសូត្រត្រូវការទំនុកចិត្ត។"
-              )}
-            </p>
-            <p>
-              {t(
-                "In Khmer, the platform uses a respectful but accessible register — the language of a knowledgeable peer, not an authority. In English, the tone is clear, active, and free of jargon.",
-                "ជាភាសាខ្មែរ វេទិកាប្រើសម្តីដែលគួរសម ប៉ុន្តែងាយយល់ — ភាសារបស់មិត្តភក្ដិដែលមានចំណេះដឹង មិនមែនជាអាជ្ញាធរទេ។ ជាភាសាអង់គ្លេស សម្លេងនិយាយច្បាស់លាស់ សកម្ម និងគ្មានពាក្យបច្ចេកទេសស្មុគស្មាញ។"
-              )}
-            </p>
-          </div>
-          <div className="mt-6 space-y-2">
-            {VOICE_PRINCIPLES.map((p, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <span className="text-[10px] font-black text-zinc-300 mt-0.5 flex-shrink-0">{String(i + 1).padStart(2, "0")}</span>
-                <p className="text-sm text-zinc-600 font-medium leading-snug" style={kf}>{t(p.en, p.kh)}</p>
-              </div>
-            ))}
-          </div>
-        </Section>
-
-        {/* ── 07 Applications ── */}
-        <Section id="apply" num="07" title={t("Applications", "ការអនុវត្ត")} kf={kf} last>
+        {/* ── 05 Applications ── */}
+        <Section id="apply" num="05" title={t("Applications", "ការអនុវត្ត")} kf={kf} last>
           <p className="text-[9px] font-black uppercase tracking-widest text-zinc-300 mb-3" style={kf}>
             {t("Product Mockups", "ផលិតផលគំរូ")}
           </p>
@@ -402,12 +332,9 @@ export function BrandGuidelineClient() {
                   <p className="text-[9px] font-black text-amber-500 uppercase tracking-widest mb-1">
                     {t(`MOCKUP ${String(i + 1).padStart(2, "0")}`, `គំរូផលិតផល ${String(i + 1).padStart(2, "0")}`)}
                   </p>
-                  <h3 className="text-sm font-black text-black mb-1">
+                  <h3 className="text-sm font-black text-black mb-0.5">
                     {t(m.title.en, m.title.kh)}
                   </h3>
-                  <p className="text-xs text-zinc-500 font-medium leading-snug">
-                    {t(m.desc.en, m.desc.kh)}
-                  </p>
                 </div>
               </div>
             ))}
