@@ -33,6 +33,7 @@ export async function GET(request: NextRequest) {
       province: user.province || "",
       gradeLevel: user.gradeLevel || "",
       section: user.section || "",
+      isProfilePublic: user.isProfilePublic ?? true,
       language: "en", // Default, can be stored in user table
       theme: "light", // Default, can be stored in user table
       notifications: {
@@ -63,7 +64,7 @@ export async function PUT(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { displayName, avatar, audioMuted, schoolName, province, gradeLevel, section } = body;
+    const { displayName, avatar, audioMuted, schoolName, province, gradeLevel, section, isProfilePublic } = body;
 
     const updates: Record<string, any> = {
       displayName: displayName || null,
@@ -71,6 +72,7 @@ export async function PUT(request: NextRequest) {
       audioMuted: audioMuted || false,
       schoolName: schoolName || null,
       province: province || null,
+      isProfilePublic: isProfilePublic !== undefined ? isProfilePublic : true,
       updatedAt: new Date(),
     };
 

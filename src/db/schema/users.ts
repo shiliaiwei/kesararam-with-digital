@@ -39,6 +39,7 @@ export const users = pgTable("users", {
   parentContact: text("parent_contact"),
   claimedRewards: text("claimed_rewards").default("[]").notNull(),
   googleId: text("google_id").unique(),
+  isProfilePublic: boolean("is_profile_public").default(true).notNull(),
 });
 
 export const classes = pgTable("classes", {

@@ -51,7 +51,8 @@ async function migrate() {
     console.log("Running migration: add_google_id_and_invite_codes");
     await sql`
       ALTER TABLE users 
-      ADD COLUMN IF NOT EXISTS google_id TEXT UNIQUE
+      ADD COLUMN IF NOT EXISTS google_id TEXT UNIQUE,
+      ADD COLUMN IF NOT EXISTS is_profile_public BOOLEAN DEFAULT true NOT NULL
     `;
     await sql`
       CREATE TABLE IF NOT EXISTS invite_codes (

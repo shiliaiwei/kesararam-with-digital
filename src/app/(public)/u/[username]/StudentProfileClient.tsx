@@ -33,6 +33,7 @@ export interface SerializableStudent {
   gradeLevel: string | null;
   section: string | null;
   claimedRewards: string; // JSON string
+  isProfilePublic?: boolean;
 }
 
 interface StudentProfileClientProps {
@@ -347,7 +348,32 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
         </div>
 
         {/* 3. Main Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {student.isProfilePublic === false ? (
+          <div className="bg-white border-4 border-black p-8 md:p-12 text-center shadow-[6px_6px_0_#000] flex flex-col items-center justify-center gap-6 select-none animate-fade-in min-h-[300px]">
+            <div className="w-20 h-20 bg-yellow-400 border-4 border-black rounded-none flex items-center justify-center shadow-[4px_4px_0_#000] text-black">
+              <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            
+            <div className="space-y-2">
+              <h3 className="text-2xl md:text-3xl font-black text-black font-kh-header leading-tight">
+                គណនីនេះជាគណនីឯកជន
+              </h3>
+              <p className="text-sm md:text-base font-black text-zinc-400 tracking-widest uppercase font-mono">
+                THIS PROFILE IS PRIVATE
+              </p>
+            </div>
+
+            <p className="text-zinc-600 font-bold max-w-md leading-relaxed font-kh-body">
+              សិស្សនេះបានកំណត់ព័ត៌មានលម្អិត និងស្ថិតិលេងហ្គេមរបស់ពួកគេជាឯកជន។
+              <span className="block mt-1 font-english text-xs text-zinc-500 uppercase tracking-wide">
+                This student has set their details and gaming statistics to private.
+              </span>
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left Column: Portrait & Credentials */}
           <div className="lg:col-span-5 flex flex-col space-y-6">
@@ -579,6 +605,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
           </div>
 
         </div>
+      )}
 
         {/* 4. Grand Brutalist Bottom Footer Banner */}
         <div className="bg-[#0284c7] border-4 border-black p-5 text-center text-xs md:text-sm text-white font-black uppercase tracking-widest shadow-[6px_6px_0_#000] flex flex-col md:flex-row items-center justify-between gap-4">
