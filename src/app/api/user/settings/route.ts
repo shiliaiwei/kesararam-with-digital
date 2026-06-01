@@ -216,26 +216,16 @@ export async function PUT(request: NextRequest) {
           .where(eq(users.id, session.id))
           .returning();
 
-        // Check if student already enrolled in this class to avoid duplicates
-        const [existingEnrollment] = await tx
-          .select()
-          .from(classEnrollments)
-          .where(
-            and(
-              eq(classEnrollments.classId, classRecord.id),
-              eq(classEnrollments.studentId, session.id)
-            )
-          )
-          .limit(1);
+        // Enforce single-class active enrollment policy
+        // Delete any other active class enrollments for this student to ensure they can only be in one class at a time
+        await tx.delete(classEnrollments).where(eq(classEnrollments.studentId, session.id));
 
-        if (!existingEnrollment) {
-          await tx.insert(classEnrollments).values({
-            classId: classRecord.id,
-            studentId: session.id,
-            enrolledBy: classRecord.teacherId,
-            enrolledAt: new Date(),
-          });
-        }
+        await tx.insert(classEnrollments).values({
+          classId: classRecord.id,
+          studentId: session.id,
+          enrolledBy: classRecord.teacherId,
+          enrolledAt: new Date(),
+        });
 
         return u;
       });
