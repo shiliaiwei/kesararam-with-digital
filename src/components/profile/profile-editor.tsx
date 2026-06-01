@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { updateProfileAction } from "@/app/actions/profile";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
 
-const FACES = [
+export const FACES = [
   "Angry with Fang.svg",
   "Awe.svg",
   "Blank.svg",
@@ -38,7 +38,7 @@ const FACES = [
   "Very Angry.svg",
 ];
 
-const HEADS = [
+export const HEADS = [
   "Afro.svg",
   "Bangs 2.svg",
   "Bangs.svg",

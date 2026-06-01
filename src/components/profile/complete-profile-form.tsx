@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLang } from "@/context/lang-context";
-import { Loader2, Save, LogOut } from "lucide-react";
+import { Loader2, Save, LogOut, User, Palette } from "lucide-react";
+import { AvatarDisplay } from "@/components/shared/avatar-display";
+import { FACES, HEADS } from "./profile-editor";
 
 const CAMBODIA_PROVINCES = [
   { en: "Siem Reap", kh: "សៀមរាប" },
@@ -47,18 +49,56 @@ export function CompleteProfileForm() {
   const kh = lang === "kh";
 
   const [inviteCode, setInviteCode] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [schoolName, setSchoolName] = useState("");
   const [province, setProvince] = useState("Siem Reap"); // Default to Siem Reap as requested
   const [gradeLevel, setGradeLevel] = useState("");
   const [section, setSection] = useState("");
-  const [parentContact, setParentContact] = useState("");
+  const [face, setFace] = useState("Smile.svg");
+  const [head, setHead] = useState("Short 1.svg");
+  const [activeAvatarTab, setActiveAvatarTab] = useState<"head" | "face">("head");
+  
   const [loading, setLoading] = useState(false);
+  const [prefillLoading, setPrefillLoading] = useState(true);
   const [error, setError] = useState("");
+
+  // Pre-fill user display name from their Google session
+  useEffect(() => {
+    const fetchCurrent = async () => {
+      try {
+        const response = await fetch("/api/user/settings");
+        const data = await response.json();
+        if (data.settings) {
+          if (data.settings.displayName) {
+            setDisplayName(data.settings.displayName);
+          }
+          if (data.settings.avatar) {
+            try {
+              const parsed = JSON.parse(data.settings.avatar);
+              if (parsed.face) setFace(parsed.face);
+              if (parsed.head) setHead(parsed.head);
+            } catch (e) {
+              // ignore invalid parsing
+            }
+          }
+        }
+      } catch (err) {
+        console.error("Error pre-filling display name:", err);
+      } finally {
+        setPrefillLoading(false);
+      }
+    };
+    fetchCurrent();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!inviteCode.trim()) {
       setError(kh ? "សូមបញ្ចូលលេខកូដអញ្ជើញពីគ្រូ" : "Please enter your teacher invite code.");
+      return;
+    }
+    if (!displayName.trim()) {
+      setError(kh ? "សូមបញ្ចូលឈ្មោះបង្ហាញរបស់អ្នក" : "Please enter your display name.");
       return;
     }
     if (!schoolName.trim()) {
@@ -85,9 +125,10 @@ export function CompleteProfileForm() {
           schoolName,
           province,
           gradeLevel,
-          section,
-          parentContact,
-          inviteCode,
+          section: section || null,
+          inviteCode: inviteCode.trim(),
+          displayName: displayName.trim(),
+          avatar: JSON.stringify({ face, head }),
         }),
       });
 
@@ -116,122 +157,254 @@ export function CompleteProfileForm() {
     }
   };
 
+  const avatarItems = activeAvatarTab === "face" ? FACES : HEADS;
+  const selectedAvatarItem = activeAvatarTab === "face" ? face : head;
+  const setAvatarItem = activeAvatarTab === "face" ? setFace : setHead;
+  const avatarCategory = activeAvatarTab === "face" ? "face" : "head";
+
+  if (prefillLoading) {
+    return (
+      <div className="min-h-screen dot-bg flex items-center justify-center">
+        <div className="bg-white border-4 border-black p-8 shadow-[6px_6px_0_#000] flex flex-col items-center gap-3">
+          <Loader2 className="w-8 h-8 animate-spin text-[#0284c7]" />
+          <p className="font-black text-sm text-black">
+            {kh ? "កំពុងទាញយកព័ត៌មាន..." : "Loading account details..."}
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen dot-bg flex items-center justify-center px-4 py-16 select-none">
-      <div className="w-full max-w-xl animate-fade-in space-y-6">
+      <div className="w-full max-w-4xl animate-fade-in space-y-6">
         
         {/* Official Header Banner */}
         <div className="bg-[#0284c7] text-white border-4 border-black p-6 shadow-[6px_6px_0_#000]" style={{ borderRadius: "0px" }}>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <span className="material-symbols-rounded text-yellow-400 text-3xl font-black">lock_open</span>
             <div className="space-y-0.5">
               <h2 className="text-xl md:text-2xl font-black uppercase font-stack-notch">
-                {kh ? "បំពេញព័ត៌មានគណនីសិស្ស" : "Complete Student Profile"}
+                {kh ? "បង្កើតព័ត៌មានគណនីសិស្សថ្មី" : "Complete Student Profile Setup"}
               </h2>
               <p className="text-[10px] md:text-xs text-white/80 font-black uppercase tracking-wider font-mono">
-                {kh ? "សូមបំពេញព័ត៌មានខាងក្រោមមុននឹងប្រើប្រាស់ប្រព័ន្ធ" : "Please complete details before using the platform"}
+                {kh ? "សូមបំពេញព័ត៌មាន និងកំណត់រូបតំណាងខាងក្រោមមុននឹងប្រើប្រាស់ប្រព័ន្ធ" : "Please customize your character and complete details before using Kesararam"}
               </p>
             </div>
           </div>
         </div>
 
-        {/* Content Form */}
-        <div className="bg-white border-4 border-black p-6 md:p-8 shadow-[6px_6px_0_#000]" style={{ borderRadius: "0px" }}>
-          <form onSubmit={handleSubmit} className="space-y-5" autoComplete="off">
-            
-            {/* Error Banner */}
-            {error && (
-              <div className="p-3 bg-rose-100 border-2 border-rose-500 font-bold text-sm text-black shadow-[3px_3px_0_#000]" style={{ borderRadius: "0px" }}>
-                {error}
-              </div>
-            )}
+        {/* Content Panel Grid */}
+        <div className="bg-white border-4 border-black p-6 md:p-8 shadow-[6px_6px_0_#000] grid grid-cols-1 lg:grid-cols-12 gap-8" style={{ borderRadius: "0px" }}>
+          
+          {/* Left Column: Avatar Customizer (5 cols) */}
+          <div className="lg:col-span-5 flex flex-col gap-5 border-2 lg:border-r-2 lg:border-b-0 lg:border-t-0 lg:border-l-0 border-black pr-0 lg:pr-6 pb-6 lg:pb-0">
+            <div className="flex items-center gap-2 border-b-2 border-black pb-2">
+              <Palette className="w-5 h-5 text-[#0284c7]" />
+              <h3 className="font-black text-black text-sm uppercase">
+                {kh ? "១. រៀបចំរូបតំណាងរបស់អ្នក" : "1. Customize Your Avatar"}
+              </h3>
+            </div>
 
-            {/* Teacher Invite Code */}
-            <div className="flex flex-col gap-1.5">
-              <label htmlFor="inviteCode" className="text-sm font-black text-black">
-                {kh ? "លេខកូដអញ្ជើញពីគ្រូ *" : "Teacher Invite Code *"}
-              </label>
-              <input
-                type="text"
-                id="inviteCode"
-                value={inviteCode}
-                onChange={(e) => setInviteCode(e.target.value)}
-                required
-                placeholder="KWD-XXXX-YYYY"
-                className="w-full px-4 py-2.5 border-2 border-black text-sm font-black focus:outline-none focus:shadow-[2px_2px_0_#0284c7] placeholder:text-zinc-300"
-                style={{ borderRadius: "0px" }}
+            {/* Live Character Preview */}
+            <div className="flex flex-col items-center justify-center p-6 bg-zinc-50 border-2 border-black shadow-[3px_3px_0_#000] relative">
+              <AvatarDisplay
+                avatar={JSON.stringify({ face, head })}
+                name={displayName || "KWD Student"}
+                size={140}
+                radius={0}
               />
-              <p className="text-[10px] text-zinc-400 font-bold leading-normal">
-                {kh
-                  ? "* សូមបញ្ចូលលេខកូដអញ្ជើញដែលទទួលបានពីគ្រូបង្រៀនរបស់អ្នកដើម្បីចុះឈ្មោះចូលរៀន។"
-                  : "* Please enter the invitation code provided by your teacher."}
-              </p>
-            </div>
-
-            {/* School Name */}
-            <div className="flex flex-col gap-1.5">
-              <label htmlFor="schoolName" className="text-sm font-black text-black">
-                {kh ? "ឈ្មោះសាលារៀន *" : "School Name *"}
-              </label>
-              <input
-                type="text"
-                id="schoolName"
-                value={schoolName}
-                onChange={(e) => setSchoolName(e.target.value)}
-                required
-                placeholder={kh ? "ឧ. សាលាបឋមសិក្សាកេសរារាម" : "e.g. Kesararam Primary School"}
-                className="w-full px-4 py-2.5 border-2 border-black text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#0284c7] placeholder:text-zinc-350 font-bold"
-                style={{ borderRadius: "0px" }}
-              />
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Province */}
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="province" className="text-sm font-black text-black">
-                  {kh ? "ខេត្ត-ក្រុង *" : "Province / City *"}
-                </label>
-                <select
-                  id="province"
-                  value={province}
-                  onChange={(e) => setProvince(e.target.value)}
-                  required
-                  className="w-full px-4 py-2.5 border-2 border-black text-sm font-bold bg-white focus:outline-none focus:shadow-[2px_2px_0_#0284c7]"
-                  style={{ borderRadius: "0px" }}
-                >
-                  <option value="" disabled>{kh ? "ជ្រើសរើសខេត្ត" : "Select Province"}</option>
-                  {CAMBODIA_PROVINCES.map((prov) => (
-                    <option key={prov.en} value={prov.en}>
-                      {prov.en} / {prov.kh}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Grade */}
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="gradeLevel" className="text-sm font-black text-black">
-                  {kh ? "ថ្នាក់ទី *" : "Grade Level *"}
-                </label>
-                <select
-                  id="gradeLevel"
-                  value={gradeLevel}
-                  onChange={(e) => setGradeLevel(e.target.value)}
-                  required
-                  className="w-full px-4 py-2.5 border-2 border-black text-sm font-bold bg-white focus:outline-none focus:shadow-[2px_2px_0_#0284c7]"
-                  style={{ borderRadius: "0px" }}
-                >
-                  <option value="" disabled>{kh ? "ជ្រើសរើសថ្នាក់" : "Select Grade"}</option>
-                  {GRADES.map((gr) => (
-                    <option key={gr.en} value={gr.en}>
-                      {gr.en} / {gr.kh}
-                    </option>
-                  ))}
-                </select>
+              <div className="mt-4 bg-[#eab308] border-2 border-black px-4 py-1 text-xs font-black uppercase tracking-wide">
+                {kh ? "រូបតំណាងរបស់អ្នក" : "Your Avatar Character"}
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Tabs for Hair/Head vs Face Expression */}
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => setActiveAvatarTab("head")}
+                className={`flex-1 py-2 font-black text-[11px] uppercase border-2 border-black transition-all ${
+                  activeAvatarTab === "head" ? "bg-yellow-400" : "bg-white hover:bg-gray-50"
+                }`}
+                style={{ borderRadius: "0" }}
+              >
+                {kh ? "សក់ / ក្បាល" : "Hair / Head"}
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveAvatarTab("face")}
+                className={`flex-1 py-2 font-black text-[11px] uppercase border-2 border-black transition-all ${
+                  activeAvatarTab === "face" ? "bg-yellow-400" : "bg-white hover:bg-gray-50"
+                }`}
+                style={{ borderRadius: "0" }}
+              >
+                {kh ? "ទឹកមុខ" : "Face Expression"}
+              </button>
+            </div>
+
+            {/* Custom Asset Grid */}
+            <div className="border-2 border-black bg-zinc-50 p-2 overflow-y-auto max-h-[190px]">
+              <div className="grid grid-cols-4 gap-2">
+                {/* None Option */}
+                <button
+                  type="button"
+                  onClick={() => setAvatarItem("")}
+                  className={`w-full aspect-square border-2 font-black text-[9px] uppercase transition-all flex items-center justify-center ${
+                    selectedAvatarItem === "" ? "border-[#eab308] bg-yellow-100/50" : "border-zinc-200 bg-white"
+                  }`}
+                  style={{ borderRadius: "0" }}
+                >
+                  {kh ? "គ្មាន" : "None"}
+                </button>
+                
+                {avatarItems.map((item) => (
+                  <button
+                    key={item}
+                    type="button"
+                    onClick={() => setAvatarItem(item)}
+                    className={`w-full aspect-square p-1 border-2 transition-all flex items-center justify-center bg-white ${
+                      selectedAvatarItem === item ? "border-[#eab308] bg-yellow-50" : "border-zinc-200 hover:border-black"
+                    }`}
+                    style={{ borderRadius: "0" }}
+                  >
+                    <img
+                      src={`/avatar/${avatarCategory}/${encodeURIComponent(item)}`}
+                      alt={item.replace(".svg", "")}
+                      className="w-full h-full object-contain"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Onboarding Fields Form (7 cols) */}
+          <div className="lg:col-span-7">
+            <form onSubmit={handleSubmit} className="space-y-5" autoComplete="off">
+              
+              <div className="flex items-center gap-2 border-b-2 border-black pb-2">
+                <User className="w-5 h-5 text-[#0284c7]" />
+                <h3 className="font-black text-black text-sm uppercase">
+                  {kh ? "២. បំពេញព័ត៌មានផ្ទាល់ខ្លួន" : "2. Complete Profile Details"}
+                </h3>
+              </div>
+
+              {/* Error Banner */}
+              {error && (
+                <div className="p-3 bg-rose-100 border-2 border-rose-500 font-bold text-sm text-black shadow-[3px_3px_0_#000]" style={{ borderRadius: "0px" }}>
+                  {error}
+                </div>
+              )}
+
+              {/* Teacher Invite Code */}
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="inviteCode" className="text-sm font-black text-black">
+                  {kh ? "លេខកូដអញ្ជើញពីគ្រូ *" : "Teacher Invite Code *"}
+                </label>
+                <input
+                  type="text"
+                  id="inviteCode"
+                  value={inviteCode}
+                  onChange={(e) => setInviteCode(e.target.value)}
+                  required
+                  placeholder="KWD-XXXX-YYYY"
+                  className="w-full px-4 py-2.5 border-2 border-black text-sm font-black focus:outline-none focus:shadow-[2px_2px_0_#0284c7] placeholder:text-zinc-300"
+                  style={{ borderRadius: "0px" }}
+                />
+                <p className="text-[10px] text-zinc-400 font-bold leading-normal">
+                  {kh
+                    ? "* សូមបញ្ចូលលេខកូដអញ្ជើញដែលទទួលបានពីគ្រូបង្រៀនរបស់អ្នកដើម្បីចុះឈ្មោះចូលរៀន។"
+                    : "* Please enter the invitation code provided by your teacher."}
+                </p>
+              </div>
+
+              {/* Display Name */}
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="displayName" className="text-sm font-black text-black">
+                  {kh ? "ឈ្មោះបង្ហាញលើប្រព័ន្ធ *" : "Display Name *"}
+                </label>
+                <input
+                  type="text"
+                  id="displayName"
+                  value={displayName}
+                  onChange={(e) => setDisplayName(e.target.value)}
+                  required
+                  maxLength={40}
+                  placeholder={kh ? "ឧ. សុខ ម៉ារ៉ា" : "e.g. Sok Mara"}
+                  className="w-full px-4 py-2.5 border-2 border-black text-sm font-black focus:outline-none focus:shadow-[2px_2px_0_#0284c7] placeholder:text-zinc-300"
+                  style={{ borderRadius: "0px" }}
+                />
+                <p className="text-[10px] text-zinc-400 font-bold leading-normal">
+                  {kh
+                    ? "* ឈ្មោះនេះនឹងបង្ហាញលើតារាងពិន្ទុឆ្នើម និងគណនីរបស់អ្នក។"
+                    : "* This name will represent you on the leaderboards and your profile."}
+                </p>
+              </div>
+
+              {/* School Name */}
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="schoolName" className="text-sm font-black text-black">
+                  {kh ? "ឈ្មោះសាលារៀន *" : "School Name *"}
+                </label>
+                <input
+                  type="text"
+                  id="schoolName"
+                  value={schoolName}
+                  onChange={(e) => setSchoolName(e.target.value)}
+                  required
+                  placeholder={kh ? "ឧ. សាលាបឋមសិក្សាកេសរារាម" : "e.g. Kesararam Primary School"}
+                  className="w-full px-4 py-2.5 border-2 border-black text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#0284c7] placeholder:text-zinc-350 font-bold"
+                  style={{ borderRadius: "0px" }}
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Province */}
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="province" className="text-sm font-black text-black">
+                    {kh ? "ខេត្ត-ក្រុង *" : "Province / City *"}
+                  </label>
+                  <select
+                    id="province"
+                    value={province}
+                    onChange={(e) => setProvince(e.target.value)}
+                    required
+                    className="w-full px-4 py-2.5 border-2 border-black text-sm font-bold bg-white focus:outline-none focus:shadow-[2px_2px_0_#0284c7]"
+                    style={{ borderRadius: "0px" }}
+                  >
+                    <option value="" disabled>{kh ? "ជ្រើសរើសខេត្ត" : "Select Province"}</option>
+                    {CAMBODIA_PROVINCES.map((prov) => (
+                      <option key={prov.en} value={prov.en}>
+                        {prov.en} / {prov.kh}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Grade */}
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="gradeLevel" className="text-sm font-black text-black">
+                    {kh ? "ថ្នាក់ទី *" : "Grade Level *"}
+                  </label>
+                  <select
+                    id="gradeLevel"
+                    value={gradeLevel}
+                    onChange={(e) => setGradeLevel(e.target.value)}
+                    required
+                    className="w-full px-4 py-2.5 border-2 border-black text-sm font-bold bg-white focus:outline-none focus:shadow-[2px_2px_0_#0284c7]"
+                    style={{ borderRadius: "0px" }}
+                  >
+                    <option value="" disabled>{kh ? "ជ្រើសរើសថ្នាក់" : "Select Grade"}</option>
+                    {GRADES.map((gr) => (
+                      <option key={gr.en} value={gr.en}>
+                        {gr.en} / {gr.kh}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
               {/* Section */}
               <div className="flex flex-col gap-1.5">
                 <label htmlFor="section" className="text-sm font-black text-black">
@@ -248,55 +421,39 @@ export function CompleteProfileForm() {
                 />
               </div>
 
-              {/* Parent Phone */}
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="parentContact" className="text-sm font-black text-black">
-                  {kh ? "លេខទូរស័ព្ទអាណាព្យាបាល (ស្រេចចិត្ត)" : "Parent Phone (Optional)"}
-                </label>
-                <input
-                  type="text"
-                  id="parentContact"
-                  value={parentContact}
-                  onChange={(e) => setParentContact(e.target.value)}
-                  placeholder="e.g. 012 345 678"
-                  className="w-full px-4 py-2.5 border-2 border-black text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#0284c7] placeholder:text-zinc-350"
+              {/* Actions Panel */}
+              <div className="flex flex-col sm:flex-row gap-3 pt-3">
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="flex items-center justify-center gap-2 px-5 py-3 border-2 border-black bg-zinc-100 font-black text-sm hover:bg-zinc-200 active:translate-x-0.5 active:translate-y-0.5 transition-all text-zinc-800"
                   style={{ borderRadius: "0px" }}
-                />
+                >
+                  <LogOut size={16} />
+                  {kh ? "ចាកចេញ" : "Logout"}
+                </button>
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="flex-1 flex items-center justify-center gap-2 px-6 py-3 border-2 border-black bg-green-400 font-black text-sm hover:bg-green-300 shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] active:shadow-none hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-all text-black"
+                  style={{ borderRadius: "0px" }}
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 size={16} className="animate-spin" />
+                      {kh ? "កំពុងរក្សាទុក..." : "Saving..."}
+                    </>
+                  ) : (
+                    <>
+                      <Save size={16} />
+                      {kh ? "រក្សាទុកព័ត៌មានគណនី" : "Complete Profile Setup"}
+                    </>
+                  )}
+                </button>
               </div>
-            </div>
-
-            {/* Actions Panel */}
-            <div className="flex flex-col sm:flex-row gap-3 pt-3">
-              <button
-                type="button"
-                onClick={handleLogout}
-                className="flex items-center justify-center gap-2 px-5 py-3 border-2 border-black bg-zinc-100 font-black text-sm hover:bg-zinc-200 active:translate-x-0.5 active:translate-y-0.5 transition-all text-zinc-800"
-                style={{ borderRadius: "0px" }}
-              >
-                <LogOut size={16} />
-                {kh ? "ចាកចេញ" : "Logout"}
-              </button>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="flex-1 flex items-center justify-center gap-2 px-6 py-3 border-2 border-black bg-green-400 font-black text-sm hover:bg-green-300 shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] active:shadow-none hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-all text-black"
-                style={{ borderRadius: "0px" }}
-              >
-                {loading ? (
-                  <>
-                    <Loader2 size={16} className="animate-spin" />
-                    {kh ? "កំពុងរក្សាទុក..." : "Saving..."}
-                  </>
-                ) : (
-                  <>
-                    <Save size={16} />
-                    {kh ? "រក្សាទុកព័ត៌មានគណនី" : "Complete Profile Setup"}
-                  </>
-                )}
-              </button>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>
