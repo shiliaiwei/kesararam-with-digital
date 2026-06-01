@@ -4,6 +4,7 @@ import { Suspense, useState, useActionState, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { registerAction } from "@/app/actions/auth";
+import { useLang } from "@/context/lang-context";
 
 const initialState = { error: "", success: false };
 
@@ -131,6 +132,9 @@ function GuideMeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
 
 function RegisterFormInner() {
   const role = "student";
+  const { lang } = useLang();
+  const kh = lang === "kh";
+
   const [state, formAction, pending] = useActionState(
     registerAction,
     initialState
@@ -138,6 +142,7 @@ function RegisterFormInner() {
   
   const [googleError, setGoogleError] = useState("");
   const [showGuide, setShowGuide] = useState(false);
+  const [showEmailReg, setShowEmailReg] = useState(false);
   const searchParams = useSearchParams();
   const urlError = searchParams.get("error") ?? "";
 
@@ -154,43 +159,44 @@ function RegisterFormInner() {
     e.preventDefault();
     setGoogleError("");
 
-    const schoolNameEl = document.getElementById("schoolName") as HTMLInputElement;
-    const provinceEl = document.getElementById("province") as HTMLSelectElement;
-    const gradeLevelEl = document.getElementById("gradeLevel") as HTMLSelectElement;
-    const sectionEl = document.getElementById("section") as HTMLInputElement;
     const inviteCodeEl = document.getElementById("inviteCode") as HTMLInputElement;
-
-    const schoolName = schoolNameEl?.value?.trim() || "";
-    const province = provinceEl?.value || "";
-    const gradeLevel = gradeLevelEl?.value || "";
-    const section = sectionEl?.value?.trim() || "";
     const code = inviteCodeEl?.value?.trim() || "";
 
-    if (!schoolName || !province || !gradeLevel) {
-      setGoogleError("School Name, Province, and Grade are required for Google registration.");
-      return;
-    }
     if (!code) {
-      setGoogleError("A teacher invite code is required for Google registration.");
+      setGoogleError(kh ? "សូមបញ្ចូលលេខកូដអញ្ជើញពីគ្រូ *" : "A teacher invite code is required for Google registration.");
       return;
     }
 
-    if (code) {
-      const { validateInviteCodeAction } = await import("@/app/actions/invites");
-      const validateRes = await validateInviteCodeAction(code);
-      if (validateRes.error) {
-        setGoogleError(validateRes.error);
-        return;
-      }
+    // Validate invite code
+    const { validateInviteCodeAction } = await import("@/app/actions/invites");
+    const validateRes = await validateInviteCodeAction(code);
+    if (validateRes.error) {
+      setGoogleError(validateRes.error);
+      return;
     }
 
     const params = new URLSearchParams({
       inviteCode: code,
-      schoolName,
-      province,
-      gradeLevel,
-      section,
     });
+    
+    // If they filled standard registration, pass those too
+    if (showEmailReg) {
+      const schoolNameEl = document.getElementById("schoolName") as HTMLInputElement;
+      const provinceEl = document.getElementById("province") as HTMLSelectElement;
+      const gradeLevelEl = document.getElementById("gradeLevel") as HTMLSelectElement;
+      const sectionEl = document.getElementById("section") as HTMLInputElement;
+
+      const schoolName = schoolNameEl?.value?.trim() || "";
+      const province = provinceEl?.value || "";
+      const gradeLevel = gradeLevelEl?.value || "";
+      const section = sectionEl?.value?.trim() || "";
+
+      if (schoolName) params.set("schoolName", schoolName);
+      if (province) params.set("province", province);
+      if (gradeLevel) params.set("gradeLevel", gradeLevel);
+      if (section) params.set("section", section);
+    }
+
     window.location.href = `/api/auth/google?${params.toString()}`;
   };
 
@@ -228,215 +234,278 @@ function RegisterFormInner() {
         {/* Form card */}
         <div className="bg-white border-2 border-t-0 border-black rounded-none shadow-[6px_6px_0_#000] px-8 py-8">
           <form action={formAction} className="flex flex-col gap-5" autoComplete="off">
-            
             {/* hidden role input */}
             <input type="hidden" name="role" value="student" />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Username */}
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="username" className="text-sm font-bold text-black">
-                  Username / ឈ្មោះគណនី *
-                </label>
-                <input
-                  type="text"
-                  id="username"
-                  name="username"
-                  required
-                  placeholder="sopheak01"
-                  className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
-                />
-              </div>
+            {!showEmailReg ? (
+              // Clean Gated Google Flow
+              <div className="flex flex-col gap-5">
+                {/* Teacher Invite Code (Required) */}
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="inviteCode" className="text-sm font-black text-black flex items-center gap-1">
+                    {kh ? "លេខកូដអញ្ជើញពីគ្រូ *" : "Teacher Invite Code *"}
+                    <span className="text-[10px] text-blue-600 font-extrabold uppercase bg-blue-50 border border-blue-200 px-1.5 py-0.5 rounded-none leading-none">
+                      {kh ? "កូដភ្ជាប់គណនី Google" : "Gated for Google Sign-In"}
+                    </span>
+                  </label>
+                  <input
+                    type="text"
+                    id="inviteCode"
+                    name="inviteCode"
+                    required
+                    placeholder="KWD-XXXX-YYYY"
+                    className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-black focus:outline-none focus:shadow-[2px_2px_0_#0284c7] transition-all placeholder:font-bold placeholder:text-zinc-300"
+                  />
+                  <p className="text-[10px] text-zinc-400 font-bold leading-normal">
+                    {kh
+                      ? "* អ្នកត្រូវការលេខកូដអញ្ជើញដែលបង្កើតឡើងដោយគ្រូរបស់អ្នកដើម្បីចុះឈ្មោះចូលរៀន។"
+                      : "* You need a valid invitation code generated by your teacher to register."}
+                  </p>
+                </div>
 
-              {/* Email */}
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="email" className="text-sm font-bold text-black">
-                  Email / អ៊ីមែល *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  placeholder="sopheak@kwd.tech"
-                  className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
-                />
-              </div>
-            </div>
+                {/* Error message */}
+                {displayError && (
+                  <div className="px-4 py-3 bg-[#fda4af] border-2 border-red-500 rounded-none text-sm font-bold text-black shadow-[4px_4px_0_#000]">
+                    {displayError}
+                  </div>
+                )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Display Name */}
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="displayName" className="text-sm font-bold text-black">
-                  Full Name / ឈ្មោះពេញ
-                </label>
-                <input
-                  type="text"
-                  id="displayName"
-                  name="displayName"
-                  placeholder="Sopheak Chan / ចាន់ សុភ័ក្ត្រ"
-                  className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
-                />
-              </div>
-
-              {/* Password */}
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="password" className="text-sm font-bold text-black">
-                  Password / លេខសម្ងាត់ *
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  required
-                  placeholder="••••••••"
-                  className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
-                />
-              </div>
-            </div>
-
-            {/* School Name */}
-            <div className="flex flex-col gap-1.5">
-              <label htmlFor="schoolName" className="text-sm font-bold text-black">
-                School Name / ឈ្មោះសាលារៀន *
-              </label>
-              <input
-                type="text"
-                id="schoolName"
-                name="schoolName"
-                required
-                placeholder="e.g. Wat Bo Primary School / សាលាបឋមសិក្សាវត្តបូ"
-                className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
-              />
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Province Dropdown */}
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="province" className="text-sm font-bold text-black">
-                  Province / ខេត្ត-ក្រុង *
-                </label>
-                <select
-                  id="province"
-                  name="province"
-                  required
-                  defaultValue=""
-                  className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-bold bg-white focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
+                {/* Google Register Button */}
+                <button
+                  type="button"
+                  onClick={handleGoogleRegister}
+                  className="w-full py-3.5 bg-yellow-400 text-black font-black text-base border-2 border-black rounded-none shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2.5 active:translate-x-0 active:translate-y-0 active:shadow-none animate-fade-in"
                 >
-                  <option value="" disabled>Select Province / ជ្រើសរើសខេត្ត</option>
-                  {CAMBODIA_PROVINCES.map((prov) => (
-                    <option key={prov.en} value={prov.en}>
-                      {prov.en} / {prov.kh}
-                    </option>
-                  ))}
-                </select>
-              </div>
+                  <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24">
+                    <path fill="#000" d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.137 4.114-3.513 0-6.38-2.87-6.38-6.38s2.87-6.38 6.38-6.38c1.53 0 2.914.544 4.012 1.443l3.117-3.117C19.23 1.942 15.938 1 12.24 1 5.62 1 .25 6.37.25 13s5.37 12 11.99 12c7.61 0 11.94-5.36 11.94-11.99 0-.765-.085-1.5-.235-2.225H12.24z"/>
+                  </svg>
+                  {kh ? "ចុះឈ្មោះដោយប្រើប្រាស់ Google" : "Register with Google"}
+                </button>
 
-              {/* Grade Dropdown (Student only) */}
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="gradeLevel" className="text-sm font-bold text-black">
-                  Grade / ថ្នាក់ទី {role === "student" ? "*" : "(Optional)"}
-                </label>
-                <select
-                  id="gradeLevel"
-                  name="gradeLevel"
-                  required={role === "student"}
-                  defaultValue=""
-                  className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-bold bg-white focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
+                {/* Toggle Link */}
+                <button
+                  type="button"
+                  onClick={() => setShowEmailReg(true)}
+                  className="text-xs font-black text-zinc-500 hover:text-black transition-all underline mt-2 block self-center animate-fade-in"
                 >
-                  <option value="">Select Grade / ជ្រើសរើសថ្នាក់</option>
-                  {GRADES.map((gr) => (
-                    <option key={gr.en} value={gr.en}>
-                      {gr.en} / {gr.kh}
-                    </option>
-                  ))}
-                </select>
+                  {kh ? "ឬ ចុះឈ្មោះដោយប្រើប្រាស់ អ៊ីមែល និង លេខសម្ងាត់" : "Or Register with Email and Password"}
+                </button>
               </div>
-            </div>
+            ) : (
+              // Standard Email Registration Flow
+              <div className="flex flex-col gap-5 animate-fade-in">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Username */}
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="username" className="text-sm font-bold text-black">
+                      Username / ឈ្មោះគណនី *
+                    </label>
+                    <input
+                      type="text"
+                      id="username"
+                      name="username"
+                      required
+                      placeholder="sopheak01"
+                      className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
+                    />
+                  </div>
 
-            {/* Teacher Invite Code (Student only) */}
-            {role === "student" && (
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="inviteCode" className="text-sm font-bold text-black flex items-center gap-1">
-                  Teacher Invite Code / លេខកូដអញ្ជើញពីគ្រូ *
-                  <span className="text-[10px] text-blue-600 font-extrabold uppercase bg-blue-50 border border-blue-200 px-1 py-0.5 rounded-none leading-none">Gated for Google Sign-In</span>
-                </label>
-                <input
-                  type="text"
-                  id="inviteCode"
-                  name="inviteCode"
-                  required={role === "student"}
-                  placeholder="KWD-XXXX-YYYY"
-                  className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-black focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all placeholder:font-bold placeholder:text-zinc-300"
-                />
+                  {/* Email */}
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="email" className="text-sm font-bold text-black">
+                      Email / អ៊ីមែល *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      placeholder="sopheak@kwd.tech"
+                      className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Display Name */}
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="displayName" className="text-sm font-bold text-black">
+                      Full Name / ឈ្មោះពេញ
+                    </label>
+                    <input
+                      type="text"
+                      id="displayName"
+                      name="displayName"
+                      placeholder="Sopheak Chan / ចាន់ សុភ័ក្ត្រ"
+                      className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
+                    />
+                  </div>
+
+                  {/* Password */}
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="password" className="text-sm font-bold text-black">
+                      Password / លេខសម្ងាត់ *
+                    </label>
+                    <input
+                      type="password"
+                      id="password"
+                      name="password"
+                      required
+                      placeholder="••••••••"
+                      className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
+                    />
+                  </div>
+                </div>
+
+                {/* School Name */}
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="schoolName" className="text-sm font-bold text-black">
+                    School Name / ឈ្មោះសាលារៀន *
+                  </label>
+                  <input
+                    type="text"
+                    id="schoolName"
+                    name="schoolName"
+                    required
+                    placeholder="e.g. Wat Bo Primary School / សាលាបឋមសិក្សាវត្តបូ"
+                    className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Province Dropdown */}
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="province" className="text-sm font-bold text-black">
+                      Province / ខេត្ត-ក្រុង *
+                    </label>
+                    <select
+                      id="province"
+                      name="province"
+                      required
+                      defaultValue=""
+                      className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-bold bg-white focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
+                    >
+                      <option value="" disabled>Select Province / ជ្រើសរើសខេត្ត</option>
+                      {CAMBODIA_PROVINCES.map((prov) => (
+                        <option key={prov.en} value={prov.en}>
+                          {prov.en} / {prov.kh}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Grade Dropdown (Student only) */}
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="gradeLevel" className="text-sm font-bold text-black">
+                      Grade / ថ្នាក់ទី *
+                    </label>
+                    <select
+                      id="gradeLevel"
+                      name="gradeLevel"
+                      required
+                      defaultValue=""
+                      className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-bold bg-white focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
+                    >
+                      <option value="">Select Grade / ជ្រើសរើសថ្នាក់</option>
+                      {GRADES.map((gr) => (
+                        <option key={gr.en} value={gr.en}>
+                          {gr.en} / {gr.kh}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Teacher Invite Code (Student only) */}
+                <div className="flex flex-col gap-1.5">
+                  <label htmlFor="inviteCode" className="text-sm font-bold text-black flex items-center gap-1">
+                    Teacher Invite Code / លេខកូដអញ្ជើញពីគ្រូ *
+                  </label>
+                  <input
+                    type="text"
+                    id="inviteCode"
+                    name="inviteCode"
+                    required
+                    placeholder="KWD-XXXX-YYYY"
+                    className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-black focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all placeholder:font-bold placeholder:text-zinc-300"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Section */}
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="section" className="text-sm font-bold text-black">
+                      Section / វេន (Optional)
+                    </label>
+                    <input
+                      type="text"
+                      id="section"
+                      name="section"
+                      placeholder="e.g. Morning A / ព្រឹក A"
+                      className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
+                    />
+                  </div>
+
+                  {/* Parent Contact (Student only) */}
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="parentContact" className="text-sm font-bold text-black">
+                      Parent Phone / លេខទូរស័ព្ទអាណាព្យាបាល (Optional)
+                    </label>
+                    <input
+                      type="text"
+                      id="parentContact"
+                      name="parentContact"
+                      placeholder="e.g. 012 345 678"
+                      className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
+                    />
+                  </div>
+                </div>
+
+                {/* Error message */}
+                {displayError && (
+                  <div className="px-4 py-3 bg-[#fda4af] border-2 border-red-500 rounded-none text-sm font-bold text-black shadow-[4px_4px_0_#000]">
+                    {displayError}
+                  </div>
+                )}
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={pending}
+                  className="w-full py-3.5 mt-2 bg-yellow-400 text-black font-black text-base border-2 border-black rounded-none shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {pending ? "Registering / កំពុងចុះឈ្មោះ…" : "Create Account / បង្កើតគណនី"}
+                </button>
+
+                {/* Divider */}
+                <div className="flex items-center gap-2.5 my-1">
+                  <div className="flex-1 h-0.5 bg-black" />
+                  <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">or</span>
+                  <div className="flex-1 h-0.5 bg-black" />
+                </div>
+
+                {/* Google Register Button */}
+                <button
+                  type="button"
+                  onClick={handleGoogleRegister}
+                  className="w-full py-3.5 bg-white text-zinc-950 font-black text-base border-2 border-black rounded-none shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2.5 active:translate-x-0 active:translate-y-0 active:shadow-none animate-fade-in"
+                >
+                  <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24">
+                    <path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.137 4.114-3.513 0-6.38-2.87-6.38-6.38s2.87-6.38 6.38-6.38c1.53 0 2.914.544 4.012 1.443l3.117-3.117C19.23 1.942 15.938 1 12.24 1 5.62 1 .25 6.37.25 13s5.37 12 11.99 12c7.61 0 11.94-5.36 11.94-11.99 0-.765-.085-1.5-.235-2.225H12.24z"/>
+                  </svg>
+                  Register with Google
+                </button>
+
+                {/* Toggle Link */}
+                <button
+                  type="button"
+                  onClick={() => setShowEmailReg(false)}
+                  className="text-xs font-black text-zinc-500 hover:text-black transition-all underline mt-2 block self-center animate-fade-in"
+                >
+                  {kh ? "ប្រើប្រាស់ការចុះឈ្មោះរហ័សតាម Google" : "Use simplified Google Registration"}
+                </button>
               </div>
             )}
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Section */}
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="section" className="text-sm font-bold text-black">
-                  Section / វេន (Optional)
-                </label>
-                <input
-                  type="text"
-                  id="section"
-                  name="section"
-                  placeholder="e.g. Morning A / ព្រឹក A"
-                  className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all"
-                />
-              </div>
-
-              {/* Parent Contact (Student only) */}
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="parentContact" className="text-sm font-bold text-black">
-                  Parent Phone / លេខទូរស័ព្ទអាណាព្យាបាល (Optional)
-                </label>
-                <input
-                  type="text"
-                  id="parentContact"
-                  name="parentContact"
-                  disabled={role !== "student"}
-                  placeholder="e.g. 012 345 678"
-                  className="w-full px-4 py-2.5 border-2 border-black rounded-none text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#3b82f6] transition-all disabled:bg-zinc-100 disabled:cursor-not-allowed"
-                />
-              </div>
-            </div>
-
-            {/* Error message */}
-            {displayError && (
-              <div className="px-4 py-3 bg-[#fda4af] border-2 border-red-500 rounded-none text-sm font-bold text-black shadow-[4px_4px_0_#000]">
-                {displayError}
-              </div>
-            )}
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={pending}
-              className="w-full py-3.5 mt-2 bg-yellow-400 text-black font-black text-base border-2 border-black rounded-none shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              {pending ? "Registering / កំពុងចុះឈ្មោះ…" : "Create Account / បង្កើតគណនី"}
-            </button>
-
-            {/* Brutalist Divider */}
-            <div className="flex items-center gap-2.5 my-1">
-              <div className="flex-1 h-0.5 bg-black" />
-              <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">or</span>
-              <div className="flex-1 h-0.5 bg-black" />
-            </div>
-
-            {/* Google Register Button */}
-            <button
-              type="button"
-              onClick={handleGoogleRegister}
-              className="w-full py-3.5 bg-white text-zinc-950 font-black text-base border-2 border-black rounded-none shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2.5 active:translate-x-0 active:translate-y-0 active:shadow-none animate-fade-in"
-            >
-              <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24">
-                <path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.137 4.114-3.513 0-6.38-2.87-6.38-6.38s2.87-6.38 6.38-6.38c1.53 0 2.914.544 4.012 1.443l3.117-3.117C19.23 1.942 15.938 1 12.24 1 5.62 1 .25 6.37.25 13s5.37 12 11.99 12c7.61 0 11.94-5.36 11.94-11.99 0-.765-.085-1.5-.235-2.225H12.24z"/>
-              </svg>
-              Register with Google
-            </button>
           </form>
         </div>
 

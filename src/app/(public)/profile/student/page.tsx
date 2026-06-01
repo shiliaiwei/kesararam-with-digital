@@ -9,6 +9,7 @@ import { ProfileEditor } from "@/components/profile/profile-editor";
 import { StudentProfileStats } from "@/components/profile/student-profile-stats";
 import { RankBadge as TierBadge, RankProgressBar, RankShowcase } from "@/components/shared/rank-label";
 import { getRank } from "@/lib/rank-utils";
+import { CompleteProfileForm } from "@/components/profile/complete-profile-form";
 
 export const metadata: Metadata = {
   title: "My Profile — KWD Quiz",
@@ -81,6 +82,10 @@ export default async function StudentProfilePage() {
         gradeLevel: result[0].gradeLevel,
         section: result[0].section,
       };
+    }
+
+    if (!user.schoolName || !user.province || !user.gradeLevel) {
+      return <CompleteProfileForm />;
     }
 
     // Try to get stats separately - these columns might not exist yet
