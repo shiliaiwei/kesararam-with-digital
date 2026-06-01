@@ -254,17 +254,28 @@ export async function PUT(request: NextRequest) {
         return NextResponse.json({ error: "Invalid invitation code or class code. / លេខកូដអញ្ជើញ ឬកូដថ្នាក់រៀនមិនត្រឹមត្រូវឡើយ។" }, { status: 400 });
       }
 
+      // Fetch class details to inherit school, province, grade, section
+      const [classDetails] = await db
+        .select()
+        .from(classes)
+        .where(eq(classes.id, targetClassId))
+        .limit(1);
+
+      const finalSchoolName = classDetails?.schoolName || schoolName || currentUser.schoolName;
+      const finalProvince = classDetails?.province || province || currentUser.province;
+      const finalGradeLevel = classDetails?.gradeLevel || gradeLevel || currentUser.gradeLevel;
+      const finalSection = classDetails?.section || section || currentUser.section;
+
       // Run profile update & class auto-join enrollment inside database transaction
       const updatedUser = await db.transaction(async (tx) => {
         const [u] = await tx
           .update(users)
           .set({
             ...updates,
-            // Override with updated onboarding fields explicitly to ensure they are set
-            schoolName,
-            province,
-            gradeLevel,
-            section: section || null,
+            schoolName: finalSchoolName,
+            province: finalProvince,
+            gradeLevel: finalGradeLevel,
+            section: finalSection || null,
           })
           .where(eq(users.id, session.id))
           .returning();

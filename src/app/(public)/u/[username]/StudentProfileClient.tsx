@@ -88,10 +88,23 @@ const CAMBODIA_PROVINCES = [
   { en: "Tboung Khmum", kh: "ត្បូងឃ្មុំ" },
 ];
 
-function getProvinceKh(provinceEn: string | null | undefined): string {
+function getBilingualProvince(provinceEn: string | null | undefined): string {
   if (!provinceEn) return "—";
   const found = CAMBODIA_PROVINCES.find(p => p.en.toLowerCase() === provinceEn.toLowerCase());
-  return found ? found.kh : provinceEn;
+  return found ? `${found.en} / ${found.kh}` : provinceEn;
+}
+
+function getBilingualGrade(grade: string | null | undefined): string {
+  if (!grade) return "—";
+  const clean = grade.toLowerCase().replace(/\s+/g, "");
+  if (clean.includes("6")) return "Grade 6 / ថ្នាក់ទី ៦";
+  if (clean.includes("7")) return "Grade 7 / ថ្នាក់ទី ៧";
+  if (clean.includes("8")) return "Grade 8 / ថ្នាក់ទី ៨";
+  if (clean.includes("9")) return "Grade 9 / ថ្នាក់ទី ៩";
+  if (clean.includes("10")) return "Grade 10 / ថ្នាក់ទី ១០";
+  if (clean.includes("11")) return "Grade 11 / ថ្នាក់ទី ១១";
+  if (clean.includes("12")) return "Grade 12 / ថ្នាក់ទី ១២";
+  return grade;
 }
 
 function avatarSrc(url: string | null, changedAt?: string | null): string | null {
@@ -428,64 +441,62 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                 {/* Display Name */}
                 <div className="flex flex-col border-b border-zinc-100 pb-2">
                   <span className="text-[10px] text-zinc-400 font-extrabold uppercase font-english tracking-wider">
-                    {kh ? "ឈ្មោះសិស្ស" : "STUDENT NAME"}
+                    {kh ? "ឈ្មោះសិស្ស / Student Name" : "Student Name / ឈ្មោះសិស្ស"}
                   </span>
                   <span className="font-black text-zinc-950 text-base md:text-lg mt-0.5">
-                    {isNamePublic ? (student.displayName || student.username) : (isUsernamePublic ? student.username : (kh ? "រក្សាការសម្ងាត់" : "Private"))}
+                    {isNamePublic ? (student.displayName || student.username) : "Private / រក្សាការសម្ងាត់"}
                   </span>
                 </div>
 
                 {/* Username */}
                 <div className="flex flex-col border-b border-zinc-100 pb-2">
                   <span className="text-[10px] text-zinc-400 font-extrabold uppercase font-english tracking-wider">
-                    {kh ? "ឈ្មោះគណនី" : "USERNAME"}
+                    {kh ? "ឈ្មោះគណនី / Username" : "Username / ឈ្មោះគណនី"}
                   </span>
                   <span className="font-extrabold text-zinc-800 text-sm md:text-base font-mono mt-0.5">
-                    {isUsernamePublic ? `@${student.username}` : (kh ? "@រក្សាការសម្ងាត់" : "@private")}
+                    {isUsernamePublic ? `@${student.username}` : "@private / @រក្សាការសម្ងាត់"}
                   </span>
                 </div>
 
                 {/* Role */}
                 <div className="flex flex-col border-b border-zinc-100 pb-2">
                   <span className="text-[10px] text-zinc-400 font-extrabold uppercase font-english tracking-wider">
-                    {kh ? "តួនាទី" : "ROLE"}
+                    {kh ? "តួនាទី / Role" : "Role / តួនាទី"}
                   </span>
                   <span className="font-black text-zinc-900 text-sm md:text-base mt-0.5">
-                    {kh ? "សិស្សសាលាបឋមសិក្សា" : "Primary School Student"}
+                    {kh ? "សិស្សសាលាបឋមសិក្សា / Primary Student" : "Primary Student / សិស្សសាលាបឋមសិក្សា"}
                   </span>
                 </div>
 
                 {/* School */}
                 <div className="flex flex-col border-b border-zinc-100 pb-2">
                   <span className="text-[10px] text-zinc-400 font-extrabold uppercase font-english tracking-wider">
-                    {kh ? "គ្រឹះស្ថានសិក្សា" : "SCHOOL"}
+                    {kh ? "គ្រឹះស្ថានសិក្សា / School" : "School / គ្រឹះស្ថានសិក្សា"}
                   </span>
                   <span className="font-black text-zinc-900 text-sm md:text-base mt-0.5">
-                    {isSchoolPublic ? (student.schoolName || "—") : (kh ? "រក្សាការសម្ងាត់" : "Private")}
+                    {isSchoolPublic ? (student.schoolName || "—") : "Private / រក្សាការសម្ងាត់"}
                   </span>
                 </div>
 
                 {/* Grade & Section */}
                 <div className="flex flex-col border-b border-zinc-100 pb-2">
                   <span className="text-[10px] text-zinc-400 font-extrabold uppercase font-english tracking-wider">
-                    {kh ? "កម្រិតថ្នាក់ / បន្ទប់" : "GRADE & SECTION"}
+                    {kh ? "កម្រិតថ្នាក់ & បន្ទប់ / Grade & Section" : "Grade & Section / កម្រិតថ្នាក់ & បន្ទប់"}
                   </span>
                   <span className="font-black text-zinc-900 text-sm md:text-base mt-0.5">
                     {isGradePublic 
-                      ? (kh 
-                          ? `${gradeKh}${isSectionPublic && student.section ? ` / ថ្នាក់ ${student.section}` : ""}` 
-                          : `${gradeEn}${isSectionPublic && student.section ? ` / Room ${student.section}` : ""}`)
-                      : (kh ? "រក្សាការសម្ងាត់" : "Private")}
+                      ? `${getBilingualGrade(student.gradeLevel)}${isSectionPublic && student.section ? ` / Room (ថ្នាក់) ${student.section}` : ""}`
+                      : "Private / រក្សាការសម្ងាត់"}
                   </span>
                 </div>
 
                 {/* Province */}
                 <div className="flex flex-col border-b border-zinc-100 pb-2">
                   <span className="text-[10px] text-zinc-400 font-extrabold uppercase font-english tracking-wider">
-                    {kh ? "ខេត្ត / ក្រុង" : "PROVINCE / CITY"}
+                    {kh ? "ខេត្ត-ក្រុង / Province-City" : "Province-City / ខេត្ត-ក្រុង"}
                   </span>
                   <span className="font-black text-zinc-900 text-sm md:text-base mt-0.5">
-                    {isProvincePublic ? (kh ? getProvinceKh(student.province) : (student.province ?? "—")) : (kh ? "រក្សាការសម្ងាត់" : "Private")}
+                    {isProvincePublic ? getBilingualProvince(student.province) : "Private / រក្សាការសម្ងាត់"}
                   </span>
                 </div>
 
@@ -493,7 +504,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                 {isStatsPublic && (
                   <div className="flex flex-col border-b border-zinc-100 pb-2">
                     <span className="text-[10px] text-zinc-400 font-extrabold uppercase font-english tracking-wider">
-                      {kh ? "ពិន្ទុសរុបដណ្ដើមបាន" : "LIFETIME POINTS"}
+                      {kh ? "ពិន្ទុសរុប / Lifetime Points" : "Lifetime Points / ពិន្ទុសរុប"}
                     </span>
                     <span className="font-black text-emerald-600 font-mono text-base md:text-lg mt-0.5">
                       {student.lifetimePoints.toLocaleString()} PTS
@@ -504,10 +515,10 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                 {/* Joined Date */}
                 <div className="flex flex-col pb-2">
                   <span className="text-[10px] text-zinc-400 font-extrabold uppercase font-english tracking-wider">
-                    {kh ? "ឆ្នាំចូលរួមលេង" : "JOINED YEAR"}
+                    {kh ? "ឆ្នាំចូលរួមលេង / Joined Year" : "Joined Year / ឆ្នាំចូលរួមលេង"}
                   </span>
                   <span className="font-black text-zinc-900 text-sm md:text-base mt-0.5">
-                    {kh ? joinedKh : joinedEn}
+                    {joinedYear}
                   </span>
                 </div>
 

@@ -89,6 +89,19 @@ async function migrate() {
       ADD COLUMN IF NOT EXISTS is_section_public BOOLEAN DEFAULT true NOT NULL,
       ADD COLUMN IF NOT EXISTS is_stats_public BOOLEAN DEFAULT true NOT NULL
     `;
+
+    console.log("Running migration: change_individual_privacy_columns_default_to_false");
+    await sql`
+      ALTER TABLE users 
+      ALTER COLUMN is_profile_public SET DEFAULT false,
+      ALTER COLUMN is_name_public SET DEFAULT false,
+      ALTER COLUMN is_username_public SET DEFAULT false,
+      ALTER COLUMN is_school_public SET DEFAULT false,
+      ALTER COLUMN is_province_public SET DEFAULT false,
+      ALTER COLUMN is_grade_public SET DEFAULT false,
+      ALTER COLUMN is_section_public SET DEFAULT false,
+      ALTER COLUMN is_stats_public SET DEFAULT false
+    `;
     
     console.log("✅ Migration completed successfully!");
   } catch (error) {

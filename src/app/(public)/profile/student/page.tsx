@@ -256,6 +256,81 @@ export default async function StudentProfilePage() {
           </div>
         </div>
 
+        {/* ── Public Profile Link Card ── */}
+        <div
+          style={{
+            background: "#ffffff",
+            border: "2px solid #000",
+            boxShadow: "4px 4px 0 #000",
+            padding: "16px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "8px",
+          }}
+        >
+          <span style={{ fontSize: "10px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em", color: "#71717a" }}>
+            My Public Profile URL / តំណភ្ជាប់គណនីសាធារណៈ
+          </span>
+          <div style={{ display: "flex", gap: "8px", alignItems: "stretch" }}>
+            <input
+              type="text"
+              readOnly
+              value={typeof window !== "undefined" ? `${window.location.origin}/u/${user.username}` : `https://kesararamwithdigital.tech/u/${user.username}`}
+              style={{
+                flex: 1,
+                padding: "8px 12px",
+                border: "2px solid #000",
+                fontSize: "12px",
+                fontFamily: "monospace",
+                background: "#f4f4f5",
+                color: "#27272a",
+                outline: "none",
+              }}
+            />
+            <button
+              onClick={() => {
+                const url = typeof window !== "undefined" ? `${window.location.origin}/u/${user.username}` : `https://kesararamwithdigital.tech/u/${user.username}`;
+                navigator.clipboard.writeText(url);
+                alert("Profile link copied! / បានចម្លងតំណភ្ជាប់!");
+              }}
+              style={{
+                padding: "8px 16px",
+                background: "#3b82f6",
+                color: "#fff",
+                border: "2px solid #000",
+                fontWeight: 900,
+                fontSize: "11px",
+                textTransform: "uppercase",
+                cursor: "pointer",
+              }}
+              className="hover:bg-blue-600 active:translate-x-0.5 active:translate-y-0.5"
+            >
+              Copy
+            </button>
+            <a
+              href={`/u/${user.username}`}
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                padding: "8px 16px",
+                background: "#eab308",
+                color: "#000",
+                border: "2px solid #000",
+                fontWeight: 900,
+                fontSize: "11px",
+                textTransform: "uppercase",
+                textDecoration: "none",
+                textAlign: "center",
+                display: "flex",
+                alignItems: "center",
+              }}
+              className="hover:bg-yellow-400 active:translate-x-0.5 active:translate-y-0.5"
+            >
+              View
+            </a>
+          </div>
+        </div>
+
         {/* ── Stats ── */}
         <StudentProfileStats
           userId={session.id}

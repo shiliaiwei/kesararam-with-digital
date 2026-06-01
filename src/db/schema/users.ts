@@ -40,14 +40,14 @@ export const users = pgTable("users", {
   parentContact: text("parent_contact"),
   claimedRewards: text("claimed_rewards").default("[]").notNull(),
   googleId: text("google_id").unique(),
-  isProfilePublic: boolean("is_profile_public").default(true).notNull(),
-  isNamePublic: boolean("is_name_public").default(true).notNull(),
-  isUsernamePublic: boolean("is_username_public").default(true).notNull(),
-  isSchoolPublic: boolean("is_school_public").default(true).notNull(),
-  isProvincePublic: boolean("is_province_public").default(true).notNull(),
-  isGradePublic: boolean("is_grade_public").default(true).notNull(),
-  isSectionPublic: boolean("is_section_public").default(true).notNull(),
-  isStatsPublic: boolean("is_stats_public").default(true).notNull(),
+  isProfilePublic: boolean("is_profile_public").default(false).notNull(),
+  isNamePublic: boolean("is_name_public").default(false).notNull(),
+  isUsernamePublic: boolean("is_username_public").default(false).notNull(),
+  isSchoolPublic: boolean("is_school_public").default(false).notNull(),
+  isProvincePublic: boolean("is_province_public").default(false).notNull(),
+  isGradePublic: boolean("is_grade_public").default(false).notNull(),
+  isSectionPublic: boolean("is_section_public").default(false).notNull(),
+  isStatsPublic: boolean("is_stats_public").default(false).notNull(),
 });
 
 export const classes = pgTable("classes", {

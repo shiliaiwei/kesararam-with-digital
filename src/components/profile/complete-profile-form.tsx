@@ -57,7 +57,7 @@ export function CompleteProfileForm() {
   const [section, setSection] = useState("");
   const [face, setFace] = useState("Smile.svg");
   const [head, setHead] = useState("Short 1.svg");
-  const [isProfilePublic, setIsProfilePublic] = useState(true); // Default to Public (true)
+  const [isProfilePublic, setIsProfilePublic] = useState(false); // Default to Private (false)
   const [activeAvatarTab, setActiveAvatarTab] = useState<"head" | "face">("head");
   
   const [loading, setLoading] = useState(false);
@@ -106,17 +106,22 @@ export function CompleteProfileForm() {
       setError(kh ? "សូមបញ្ចូលឈ្មោះបង្ហាញរបស់អ្នក" : "Please enter your display name.");
       return;
     }
-    if (!schoolName.trim()) {
-      setError(kh ? "សូមបញ្ចូលឈ្មោះសាលារៀន" : "Please enter your school name.");
-      return;
-    }
-    if (!province) {
-      setError(kh ? "សូមជ្រើសរើសខេត្ត" : "Please select a province.");
-      return;
-    }
-    if (!gradeLevel) {
-      setError(kh ? "សូមជ្រើសរើសថ្នាក់ទី" : "Please select your grade level.");
-      return;
+    
+    // Only validate school details if no inviteCode is entered (fallback)
+    const isCodeEntered = !!inviteCode.trim();
+    if (!isCodeEntered) {
+      if (!schoolName.trim()) {
+        setError(kh ? "សូមបញ្ចូលឈ្មោះសាលារៀន" : "Please enter your school name.");
+        return;
+      }
+      if (!province) {
+        setError(kh ? "សូមជ្រើសរើសខេត្ត" : "Please select a province.");
+        return;
+      }
+      if (!gradeLevel) {
+        setError(kh ? "សូមជ្រើសរើសថ្នាក់ទី" : "Please select your grade level.");
+        return;
+      }
     }
 
     setLoading(true);
