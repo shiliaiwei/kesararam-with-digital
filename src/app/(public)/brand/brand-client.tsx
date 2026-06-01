@@ -12,14 +12,16 @@ const LOGO_PRIMARY = "/brand/kwd-black_nobackground.png";
 // ─── Color system (bilingual roles) ────────────────────────────────────────
 const COLORS: { name: string; hex: string; role: { en: string; kh: string } }[] = [
   { name: "Yellow", hex: "#eab308", role: { en: "Primary CTA, warning signs, brand accent", kh: "ប៊ូតុងសំខាន់ សញ្ញាព្រមាន និងពណ៌សម្គាល់ម៉ាក" } },
-  { name: "Black",  hex: "#000000", role: { en: "Text, borders, structural elements", kh: "អក្សរ ស៊ុម និងធាតុរចនាសម្ព័ន្ធ" } },
-  { name: "White",  hex: "#ffffff", role: { en: "Background, negative space", kh: "ផ្ទៃខាងក្រោយ និងចន្លោះទំនេរ" } },
-  { name: "Blue",   hex: "#3b82f6", role: { en: "Informational signs, links, signals", kh: "សញ្ញាព័ត៌មាន តំណភ្ជាប់ និងសញ្ញាបង្ហាញ" } },
-  { name: "Red",    hex: "#ef4444", role: { en: "Prohibitory signs, danger, stop", kh: "សញ្ញាហាមឃាត់ គ្រោះថ្នាក់ និងការឈប់" } },
-  { name: "Green",  hex: "#22c55e", role: { en: "Success, active states, go", kh: "ភាពជោគជ័យ ស្ថានភាពសកម្ម និងការអនុញ្ញាត" } },
+  { name: "Black", hex: "#000000", role: { en: "Text, borders, structural elements", kh: "អក្សរ ស៊ុម និងធាតុរចនាសម្ព័ន្ធ" } },
+  { name: "White", hex: "#ffffff", role: { en: "Background, negative space", kh: "ផ្ទៃខាងក្រោយ និងចន្លោះទំនេរ" } },
+  { name: "Blue", hex: "#3b82f6", role: { en: "Informational signs, links, signals", kh: "សញ្ញាព័ត៌មាន តំណភ្ជាប់ និងសញ្ញាបង្ហាញ" } },
+  { name: "Red", hex: "#ef4444", role: { en: "Prohibitory signs, danger, stop", kh: "សញ្ញាហាមឃាត់ គ្រោះថ្នាក់ និងការឈប់" } },
+  { name: "Green", hex: "#22c55e", role: { en: "Success, active states, go", kh: "ភាពជោគជ័យ ស្ថានភាពសកម្ម និងការអនុញ្ញាត" } },
   { name: "Orange", hex: "#f97316", role: { en: "Caution, attention, warning", kh: "ការប្រុងប្រយ័ត្ន ការយកចិត្តទុកដាក់ និងព្រមាន" } },
   { name: "Purple", hex: "#a855f7", role: { en: "Premium features, game modes", kh: "មុខងារពិសេស និងរបៀបលេងហ្គេម" } },
-  { name: "Cyan",   hex: "#06b6d4", role: { en: "Accent, highlights, info", kh: "ពណ៌រំលេច ការបញ្ជាក់ និងព័ត៌មាន" } },
+  { name: "Cyan", hex: "#06b6d4", role: { en: "Accent, highlights, info", kh: "ពណ៌រំលេច ការបញ្ជាក់ និងព័ត៌មាន" } },
+  { name: "Rose", hex: "#fda4af", role: { en: "Emergency signs, alerts, dynamic indicators", kh: "សញ្ញាអាសន្ន ការព្រមានបន្ទាន់ និងសញ្ញាបង្ហាញឌីណាមិក" } },
+  { name: "Gray", hex: "#71717a", role: { en: "System metadata, code blocks, inactive elements", kh: "ទិន្នន័យប្រព័ន្ធ ប្រអប់កូដ និងធាតុមិនសកម្ម" } },
 ];
 
 // ─── Logo usage rules (bilingual) ──────────────────────────────────────────
@@ -37,13 +39,13 @@ const RULES: { en: string; kh: string }[] = [
 // ─── Design tokens (bilingual values) ──────────────────────────────────────
 const DESIGN_TOKENS: { token: { en: string; kh: string }; value: { en: string; kh: string } }[] = [
   { token: { en: "Border Radius", kh: "កាំជ្រុងស៊ុម" }, value: { en: "0px — always sharp", kh: "0px — មុតស្រួចជានិច្ច" } },
-  { token: { en: "Border Width",  kh: "កម្រាស់ស៊ុម" }, value: { en: "2px standard · 4px emphasis", kh: "2px ស្តង់ដារ · 4px រំលេច" } },
-  { token: { en: "Shadow",        kh: "ស្រមោល" }, value: { en: "4px 4px 0 #000 — hard, no blur", kh: "4px 4px 0 #000 — រឹង គ្មានព្រិល" } },
-  { token: { en: "Hover",         kh: "ពេលដាក់កណ្ដុរ" }, value: { en: "−0.5px translate · shadow 6px", kh: "ផ្លាស់ −0.5px · ស្រមោល 6px" } },
-  { token: { en: "Active",        kh: "ពេលចុច" }, value: { en: "+2px translate · shadow removed", kh: "ផ្លាស់ +2px · ដកស្រមោល" } },
-  { token: { en: "Transition",    kh: "ការផ្លាស់ប្ដូរ" }, value: { en: "100–150ms only", kh: "តែ 100–150ms ប៉ុណ្ណោះ" } },
-  { token: { en: "Gradients",     kh: "ពណ៌ជម្រាល" }, value: { en: "None — solid colors only", kh: "គ្មាន — តែពណ៌ដិតប៉ុណ្ណោះ" } },
-  { token: { en: "Motion",        kh: "ចលនា" }, value: { en: "Purposeful only", kh: "មានគោលបំណងតែប៉ុណ្ណោះ" } },
+  { token: { en: "Border Width", kh: "កម្រាស់ស៊ុម" }, value: { en: "2px standard · 4px emphasis", kh: "2px ស្តង់ដារ · 4px រំលេច" } },
+  { token: { en: "Shadow", kh: "ស្រមោល" }, value: { en: "4px 4px 0 #000 — hard, no blur", kh: "4px 4px 0 #000 — រឹង គ្មានព្រិល" } },
+  { token: { en: "Hover", kh: "ពេលដាក់កណ្ដុរ" }, value: { en: "−0.5px translate · shadow 6px", kh: "ផ្លាស់ −0.5px · ស្រមោល 6px" } },
+  { token: { en: "Active", kh: "ពេលចុច" }, value: { en: "+2px translate · shadow removed", kh: "ផ្លាស់ +2px · ដកស្រមោល" } },
+  { token: { en: "Transition", kh: "ការផ្លាស់ប្ដូរ" }, value: { en: "100–150ms only", kh: "តែ 100–150ms ប៉ុណ្ណោះ" } },
+  { token: { en: "Gradients", kh: "ពណ៌ជម្រាល" }, value: { en: "None — solid colors only", kh: "គ្មាន — តែពណ៌ដិតប៉ុណ្ណោះ" } },
+  { token: { en: "Motion", kh: "ចលនា" }, value: { en: "Purposeful only", kh: "មានគោលបំណងតែប៉ុណ្ណោះ" } },
 ];
 
 const VOICE_PRINCIPLES: { en: string; kh: string }[] = [
@@ -136,7 +138,7 @@ export function BrandGuidelineClient() {
             <p>
               {t(
                 "KWD exists because young Cambodian girls from Kesararam decided that road safety knowledge — knowledge that saves lives — should be free, interactive, and available to every student in their own language. The name asserts that education does not abandon its roots when it enters the digital age. It carries them forward.",
-                "KWD កើតមានឡើង ដោយសារក្មេងស្រីខ្មែរមកពីបឋមសិក្សាកេសរារាម បានសម្រេចចិត្តថា ចំណេះដឹងសុវត្ថិភាពចរាចរ — ចំណេះដឹងដែលជួយសង្គ្រោះជីវិត — គួរតែឥតគិតថ្លៃ មានលក្ខណៈអន្តរកម្ម និងអាចចូលប្រើបានសម្រាប់សិស្សគ្រប់រូបជាភាសារបស់ខ្លួន។ ឈ្មោះនេះបញ្ជាក់ថា ការអប់រំមិនបោះបង់ឫសគល់របស់ខ្លួននៅពេលឈានចូលយុគឌីជីថលឡើយ — ផ្ទុយទៅវិញ វានាំយកវាបន្តទៅមុខ។"
+                "KWD កើតមានឡើង ដោយសារយុវនារីខ្មែរមកពីបឋមសិក្សាកេសរារាម បានសម្រេចចិត្តថា ចំណេះដឹងសុវត្ថិភាពចរាចរ — ចំណេះដឹងដែលជួយសង្គ្រោះជីវិត — គួរតែឥតគិតថ្លៃ មានលក្ខណៈអន្តរកម្ម និងអាចចូលប្រើបានសម្រាប់សិស្សគ្រប់រូបជាភាសារបស់ខ្លួន។ ឈ្មោះនេះបញ្ជាក់ថា ការអប់រំមិនបោះបង់ឫសគល់របស់ខ្លួននៅពេលឈានចូលយុគឌីជីថលឡើយ — ផ្ទុយទៅវិញ វានាំយកវាបន្តទៅមុខ។"
               )}
             </p>
           </div>
@@ -147,7 +149,7 @@ export function BrandGuidelineClient() {
           <p className="text-sm text-zinc-500 font-medium mb-8" style={kf}>
             {t(
               "kwd-black_nobackground.png is the primary logo — used across all surfaces. Color variants (Gray, Green, Yellow) are permitted only in specific approved contexts.",
-              "kwd-black_nobackground.png គឺជាឡូហ្គូចម្បង — ប្រើលើគ្រប់ផ្ទៃ។ វ៉ារ្យ៉ង់ពណ៌ (ប្រផេះ បៃតង លឿង) ត្រូវបានអនុញ្ញាតតែក្នុងបរិបទដែលបានយល់ព្រមជាក់លាក់ប៉ុណ្ណោះ។"
+              "kwd-black_nobackground.png គឺជាឡូហ្គូចម្បងសម្រាប់ប្រើប្រាស់លើគ្រប់ផ្ទៃការងារ។ រាល់បម្រែបម្រួលពណ៌ផ្សេងទៀត (ពណ៌ប្រផេះ បៃតង និងលឿង) ត្រូវបានអនុញ្ញាតឱ្យប្រើប្រាស់តែក្នុងករណីជាក់លាក់ដែលបានកំណត់។"
             )}
           </p>
 
@@ -187,8 +189,8 @@ export function BrandGuidelineClient() {
             </p>
             <div className="grid grid-cols-3 gap-3">
               {[
-                { src: "/brand/kwd-gray.png",   file: "kwd-gray.png",   note: t("On white / light neutral bg", "លើផ្ទៃស ឬប្រផេះ") },
-                { src: "/brand/kwd-green.png",  file: "kwd-green.png",  note: t("Success state · active", "ស្ថានភាពជោគជ័យ · សកម្ម") },
+                { src: "/brand/kwd-gray.png", file: "kwd-gray.png", note: t("On white / light neutral bg", "លើផ្ទៃស ឬប្រផេះ") },
+                { src: "/brand/kwd-green.png", file: "kwd-green.png", note: t("Success state · active", "ស្ថានភាពជោគជ័យ · សកម្ម") },
                 { src: "/brand/kwd-yellow.png", file: "kwd-yellow.png", note: t("Brand accent · CTA", "ពណ៌សម្គាល់ម៉ាក · CTA") },
               ].map(({ src, file, note }) => (
                 <div key={file} className="rounded-xl overflow-hidden border border-black/10">
@@ -228,10 +230,13 @@ export function BrandGuidelineClient() {
               "ពណ៌របស់ KWD ត្រូវបានយកមកដោយផ្ទាល់ពីប្រព័ន្ធសញ្ញាចរាចរ — ពណ៌នីមួយៗសុទ្ធតែមានអត្ថន័យ។"
             )}
           </p>
-          <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
             {COLORS.map(({ name, hex, role }) => (
               <div key={hex} className="group cursor-default">
-                <div className="h-12 rounded-lg mb-2 border border-black/8" style={{ background: hex }} />
+                <div 
+                  className="h-16 rounded-none mb-3 border-[3px] border-black shadow-[3px_3px_0_#000] group-hover:translate-x-[-2px] group-hover:translate-y-[-2px] group-hover:shadow-[5px_5px_0_#000] transition-all duration-150" 
+                  style={{ background: hex }} 
+                />
                 <p className="text-[10px] font-black text-black uppercase tracking-wide">{name}</p>
                 <p className="text-[9px] font-mono text-zinc-400">{hex}</p>
                 <p className="text-[9px] text-zinc-400 leading-snug mt-0.5 hidden group-hover:block" style={kf}>{t(role.en, role.kh)}</p>
@@ -288,7 +293,7 @@ export function BrandGuidelineClient() {
             <p>
               {t(
                 "KWD speaks with precision and warmth. The platform is built by young girls for students — the voice is never condescending, never bureaucratic. It is direct because road safety is direct. It is warm because learning requires trust.",
-                "KWD និយាយដោយភាពច្បាស់លាស់ និងភាពកក់ក្ដៅ។ វេទិកានេះត្រូវបានបង្កើតឡើងដោយក្មេងស្រី សម្រាប់សិស្ស — សំឡេងមិនដែលមើលងាយ ឬមានលក្ខណៈការិយាធិបតេយ្យឡើយ។ វាផ្ទាល់ ព្រោះសុវត្ថិភាពចរាចរជារឿងផ្ទាល់។ វាកក់ក្ដៅ ព្រោះការរៀនសូត្រត្រូវការទំនុកចិត្ត។"
+                "KWD និយាយដោយភាពច្បាស់លាស់ និងភាពកក់ក្ដៅ។ វេទិកានេះត្រូវបានបង្កើតឡើងដោយយុវនារីខ្មែរ សម្រាប់សិស្ស — សំឡេងមិនដែលមើលងាយ ឬមានលក្ខណៈការិយាធិបតេយ្យឡើយ។ វាផ្ទាល់ ព្រោះសុវត្ថិភាពចរាចរជារឿងផ្ទាល់។ វាកក់ក្ដៅ ព្រោះការរៀនសូត្រត្រូវការទំនុកចិត្ត។"
               )}
             </p>
             <p>
@@ -427,11 +432,11 @@ function Section({
 // ─── Brand card previews ───────────────────────────────────────────────────
 function BrandCard({ variant }: { variant: "light" | "dark" | "yellow" | "green-dark" | "gray" }) {
   const cfg = {
-    light:        { bg: "#ffffff", logo: LOGO_PRIMARY,           label: "text-black",      sub: "text-zinc-500",  kh: "text-black",     khSub: "text-zinc-400", divider: "bg-black/10" },
-    dark:         { bg: "#000000", logo: LOGO_PRIMARY,           label: "text-white",      sub: "text-white/50",  kh: "text-white",     khSub: "text-white/40", divider: "bg-white/15" },
-    yellow:       { bg: "#eab308", logo: "/brand/kwd-yellow.png", label: "text-black",      sub: "text-black/60",  kh: "text-black",     khSub: "text-black/50", divider: "bg-black/20" },
-    "green-dark": { bg: "#111827", logo: "/brand/kwd-green.png",  label: "text-white",      sub: "text-white/50",  kh: "text-[#22c55e]", khSub: "text-white/30", divider: "bg-white/10" },
-    gray:         { bg: "#f4f4f5", logo: "/brand/kwd-gray.png",   label: "text-zinc-500",   sub: "text-zinc-400",  kh: "text-zinc-600",  khSub: "text-zinc-400", divider: "bg-black/10" },
+    light: { bg: "#ffffff", logo: LOGO_PRIMARY, label: "text-black", sub: "text-zinc-500", kh: "text-black", khSub: "text-zinc-400", divider: "bg-black/10" },
+    dark: { bg: "#000000", logo: LOGO_PRIMARY, label: "text-white", sub: "text-white/50", kh: "text-white", khSub: "text-white/40", divider: "bg-white/15" },
+    yellow: { bg: "#eab308", logo: "/brand/kwd-yellow.png", label: "text-black", sub: "text-black/60", kh: "text-black", khSub: "text-black/50", divider: "bg-black/20" },
+    "green-dark": { bg: "#111827", logo: "/brand/kwd-green.png", label: "text-white", sub: "text-white/50", kh: "text-[#22c55e]", khSub: "text-white/30", divider: "bg-white/10" },
+    gray: { bg: "#f4f4f5", logo: "/brand/kwd-gray.png", label: "text-zinc-500", sub: "text-zinc-400", kh: "text-zinc-600", khSub: "text-zinc-400", divider: "bg-black/10" },
   }[variant];
 
   return (
