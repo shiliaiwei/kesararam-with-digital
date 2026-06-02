@@ -81,14 +81,20 @@ export function BrandGuidelineClient() {
       
       {/* ════ HERO ════════════════════════════════════════════════════════ */}
       <header className="max-w-5xl mx-auto px-6 pt-20 pb-12 border-b border-zinc-100 dark:border-zinc-800">
-        <div className="flex flex-col items-start gap-4">
-          <div className="relative w-16 h-16 border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden bg-white p-2">
+        <div className="flex flex-col items-start gap-5">
+          <div className="relative w-20 h-20 flex items-center justify-center rounded-full border-2 border-zinc-200 dark:border-zinc-800 bg-white p-3 shadow-sm hover:scale-105 transition-transform duration-200 group">
+            {/* Elegant spinning dashed accent ring */}
+            <div className="absolute inset-[-4px] rounded-full border border-dashed border-yellow-500 opacity-60 animate-spin" style={{ animationDuration: '20s' }} />
+            
+            {/* Inner Ring */}
+            <div className="absolute inset-1 rounded-full border border-zinc-100 dark:border-zinc-800/40 pointer-events-none" />
+
             <Image
               src={LOGO_PRIMARY}
               alt="KWD Logo"
-              width={64}
-              height={64}
-              className="object-contain"
+              width={52}
+              height={52}
+              className="object-contain relative z-10 transition-transform duration-300 group-hover:scale-110"
               priority
             />
           </div>
