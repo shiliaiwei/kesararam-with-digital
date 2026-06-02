@@ -43,6 +43,8 @@ export async function GET(request: NextRequest) {
       isSectionPublic: user.isSectionPublic ?? true,
       isStatsPublic: user.isStatsPublic ?? true,
       createdAt: user.createdAt.toISOString(),
+      usernameChangedAt: user.usernameChangedAt ? user.usernameChangedAt.toISOString() : null,
+      displayNameChangedAt: (user as any).displayNameChangedAt ? new Date((user as any).displayNameChangedAt).toISOString() : null,
       language: "en", // Default, can be stored in user table
       theme: "light", // Default, can be stored in user table
       notifications: {
@@ -114,8 +116,25 @@ export async function PUT(request: NextRequest) {
       }
     }
 
+    // 2b. Display name 6-month cooldown
+    const currentDisplayName = currentUser.displayName || currentUser.username;
+    const newDisplayName = displayName !== undefined ? (displayName || currentUser.username) : currentDisplayName;
+    if (displayName !== undefined && newDisplayName !== currentDisplayName) {
+      const dnChangedAt = (currentUser as any).displayNameChangedAt;
+      if (dnChangedAt) {
+        const SIX_MONTHS = 183 * 24 * 60 * 60 * 1000;
+        const elapsed = Date.now() - new Date(dnChangedAt).getTime();
+        if (elapsed < SIX_MONTHS) {
+          const daysLeft = Math.ceil((SIX_MONTHS - elapsed) / (24 * 60 * 60 * 1000));
+          return NextResponse.json({
+            error: `You can only change your display name once every 6 months (${daysLeft} days remaining). / អ្នកអាចផ្លាស់ប្តូរឈ្មោះបង្ហាញបានតែម្តងគត់ក្នុងរយៈពេល ៦ ខែ (នៅសល់ ${daysLeft} ថ្ងៃ)។`
+          }, { status: 400 });
+        }
+      }
+    }
+
     const updates: Record<string, any> = {
-      displayName: displayName !== undefined ? (displayName || currentUser.username) : (currentUser.displayName || currentUser.username),
+      displayName: newDisplayName,
       avatar: avatar !== undefined ? avatar : currentUser.avatar,
       audioMuted: audioMuted !== undefined ? audioMuted : currentUser.audioMuted,
       schoolName: schoolName !== undefined ? schoolName : currentUser.schoolName,
@@ -196,6 +215,11 @@ export async function PUT(request: NextRequest) {
 
       updates.username = usernameClean;
       updates.usernameChangedAt = new Date();
+    }
+
+    // Track displayName change timestamp
+    if (newDisplayName !== currentDisplayName) {
+      updates.displayNameChangedAt = new Date();
     }
 
     if (isOnboarding) {

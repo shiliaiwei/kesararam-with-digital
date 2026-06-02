@@ -21,6 +21,7 @@ export const users = pgTable("users", {
   avatar: text("avatar"),
   avatarChangedAt: timestamp("avatar_changed_at"),
   usernameChangedAt: timestamp("username_changed_at"),
+  displayNameChangedAt: timestamp("display_name_changed_at"),
   audioMuted: boolean("audio_muted").default(false).notNull(),
   isActive: boolean("is_active").default(true).notNull(),
   isSuspended: boolean("is_suspended").default(false).notNull(),

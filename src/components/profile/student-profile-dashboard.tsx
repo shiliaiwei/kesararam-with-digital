@@ -102,6 +102,13 @@ export function StudentProfileDashboard({
   const [privacySaving, setPrivacySaving] = useState(false);
   const [privacySaved, setPrivacySaved] = useState(false);
   const [privacyError, setPrivacyError] = useState("");
+  const [editUsername, setEditUsername] = useState(user.username);
+  const [editDisplayName, setEditDisplayName] = useState(user.displayName ?? user.username);
+  const [usernameCooldown, setUsernameCooldown] = useState<number | null>(null); // days left
+  const [displayNameCooldown, setDisplayNameCooldown] = useState<number | null>(null);
+  const [infoSaving, setInfoSaving] = useState(false);
+  const [infoSaved, setInfoSaved] = useState(false);
+  const [infoError, setInfoError] = useState("");
   const [rankStats, setRankStats] = useState({
     highestScore,
     totalGamesPlayed,
@@ -159,7 +166,7 @@ export function StudentProfileDashboard({
     saveThemeSettings(DEFAULT_THEME);
   };
 
-  // Fetch privacy settings when the edit drawer opens
+  // Fetch settings when edit drawer opens
   useEffect(() => {
     if (!isEditProfileOpen) return;
     setPrivacyLoading(true);
@@ -178,11 +185,54 @@ export function StudentProfileDashboard({
             isSectionPublic: s.isSectionPublic ?? true,
             isStatsPublic: s.isStatsPublic ?? true,
           });
+          setEditUsername(s.username ?? user.username);
+          setEditDisplayName(s.displayName ?? user.username);
+          // Calculate cooldowns
+          const ONE_YEAR = 365 * 24 * 60 * 60 * 1000;
+          const SIX_MONTHS = 183 * 24 * 60 * 60 * 1000;
+          if (s.usernameChangedAt) {
+            const elapsed = Date.now() - new Date(s.usernameChangedAt).getTime();
+            if (elapsed < ONE_YEAR) setUsernameCooldown(Math.ceil((ONE_YEAR - elapsed) / 86400000));
+            else setUsernameCooldown(null);
+          } else setUsernameCooldown(null);
+          if (s.displayNameChangedAt) {
+            const elapsed = Date.now() - new Date(s.displayNameChangedAt).getTime();
+            if (elapsed < SIX_MONTHS) setDisplayNameCooldown(Math.ceil((SIX_MONTHS - elapsed) / 86400000));
+            else setDisplayNameCooldown(null);
+          } else setDisplayNameCooldown(null);
         }
       })
       .catch(console.error)
       .finally(() => setPrivacyLoading(false));
   }, [isEditProfileOpen]);
+
+  const saveInfo = async () => {
+    setInfoSaving(true);
+    setInfoError("");
+    try {
+      const payload: Record<string, string> = {};
+      if (editDisplayName.trim() && editDisplayName.trim() !== user.displayName) {
+        payload.displayName = editDisplayName.trim();
+      }
+      if (editUsername.trim() && editUsername.trim() !== user.username) {
+        payload.username = editUsername.trim().toLowerCase();
+      }
+      if (Object.keys(payload).length === 0) { setInfoSaving(false); return; }
+      const res = await fetch("/api/user/settings", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed");
+      setInfoSaved(true);
+      setTimeout(() => setInfoSaved(false), 3000);
+    } catch (e: any) {
+      setInfoError(e.message || "Failed to save.");
+    } finally {
+      setInfoSaving(false);
+    }
+  };
 
   const savePrivacy = async () => {
     setPrivacySaving(true);
@@ -804,123 +854,225 @@ export function StudentProfileDashboard({
 
       </div>
 
-      {/* ── Edit Profile Drawer ── */}
+      {/* ── Edit Profile Drawer (Brutalist Brand Style) ── */}
       <div
         className={`fixed inset-0 z-50 transition-opacity duration-300 ${
           isEditProfileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
-        style={{ background: "rgba(0,0,0,0.5)" }}
+        style={{ background: "rgba(0,0,0,0.7)" }}
       >
         <div className="absolute inset-0" onClick={() => setIsEditProfileOpen(false)} />
         <div
-          className={`absolute right-0 top-0 h-full w-full max-w-lg bg-white dark:bg-slate-900 flex flex-col shadow-2xl transition-transform duration-300 ${
+          className={`absolute right-0 top-0 h-full w-full max-w-md flex flex-col transition-transform duration-300 ${
             isEditProfileOpen ? "translate-x-0" : "translate-x-full"
           }`}
-          style={{ color: "#0f172a" }}
+          style={{
+            background: isDark ? "#0d1117" : "#ffffff",
+            borderLeft: isDark ? "3px solid #ffffff" : "3px solid #000000",
+            color: isDark ? "#f0f2f5" : "#000000",
+          }}
         >
 
-          {/* ── Drawer Header ── */}
-          <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200 dark:border-slate-800 flex-shrink-0">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
-                <User className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-              </div>
+          {/* ── Caution stripe at top ── */}
+          <div style={{
+            height: "5px",
+            background: "repeating-linear-gradient(90deg,#eab308 0,#eab308 18px,#000 18px,#000 36px)",
+            flexShrink: 0,
+          }} />
+
+          {/* ── Header ── */}
+          <div style={{
+            display: "flex", alignItems: "center", justifyContent: "space-between",
+            padding: "14px 20px", borderBottom: isDark ? "2px solid #ffffff" : "2px solid #000000",
+            flexShrink: 0, background: isDark ? "#0d1117" : "#ffffff",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <div style={{ width: "8px", height: "8px", background: "#eab308", border: "2px solid #000", flexShrink: 0 }} />
               <div>
-                <h2 className="text-sm font-black text-slate-900 dark:text-slate-100 uppercase tracking-wide">
-                  Edit Profile
-                </h2>
-                <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">
+                <div style={{ fontSize: "13px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                  {kh ? "កែប្រែប្រវត្តិរូប" : "EDIT PROFILE"}
+                </div>
+                <div style={{ fontSize: "10px", fontWeight: 700, opacity: 0.5, letterSpacing: "0.06em", textTransform: "uppercase" }}>
                   {user.displayName ?? user.username}
-                </p>
+                </div>
               </div>
             </div>
-            <button onClick={() => setIsEditProfileOpen(false)} className="p-1.5 rounded-lg dark:text-slate-300">
-              <X className="w-5 h-5" />
+            <button onClick={() => setIsEditProfileOpen(false)} style={{ background: "transparent", border: "none", cursor: "pointer", color: isDark ? "#fff" : "#000" }}>
+              <X size={20} strokeWidth={3} />
             </button>
           </div>
 
-          {/* ── Tab Navigation ── */}
-          <div className="flex border-b border-slate-200 dark:border-slate-800 flex-shrink-0 bg-white dark:bg-slate-900">
+          {/* ── Tab navigation ── */}
+          <div style={{
+            display: "flex", borderBottom: isDark ? "2px solid rgba(255,255,255,0.15)" : "2px solid #000",
+            flexShrink: 0, background: isDark ? "#0d1117" : "#ffffff",
+          }}>
             {[
-              { id: "profile", label: "Profile", icon: User },
-              { id: "privacy", label: "Privacy", icon: Shield },
-            ].map(({ id, label, icon: Icon }) => (
+              { id: "profile", labelEn: "PROFILE", labelKh: "ប្រវត្តិរូប", icon: User },
+              { id: "privacy", labelEn: "PRIVACY", labelKh: "ឯកជនភាព", icon: Shield },
+            ].map(({ id, labelEn, labelKh: lkh, icon: Icon }) => (
               <button
                 key={id}
                 onClick={() => setDrawerTab(id as "profile" | "privacy")}
-                className={`flex items-center gap-1.5 px-5 py-3 text-sm font-bold border-b-2 transition-none ${
-                  drawerTab === id
-                    ? "border-blue-600 text-blue-600"
-                    : "border-transparent text-slate-500 dark:text-slate-400"
-                }`}
+                style={{
+                  flex: 1, padding: "10px 0", display: "flex", alignItems: "center", justifyContent: "center", gap: "6px",
+                  fontSize: "11px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.08em",
+                  cursor: "pointer", border: "none",
+                  borderBottom: drawerTab === id ? "3px solid #eab308" : "3px solid transparent",
+                  background: drawerTab === id ? (isDark ? "#1a1f2e" : "#fffbeb") : "transparent",
+                  color: drawerTab === id ? "#eab308" : (isDark ? "#9ca3af" : "#6b7280"),
+                  marginBottom: "-2px",
+                }}
               >
-                <Icon className="w-3.5 h-3.5" />
-                {label}
+                <Icon size={13} />
+                {kh ? lkh : labelEn}
               </button>
             ))}
           </div>
 
-          {/* ── Scrollable Content ── */}
-          <div className="flex-1 overflow-y-auto px-5 py-5 space-y-5">
+          {/* ── Scrollable content ── */}
+          <div style={{ flex: 1, overflowY: "auto", padding: "20px" }}>
 
             {/* ══ PROFILE TAB ══ */}
             {drawerTab === "profile" && (
-              <>
-                {/* Account Info Card */}
-                <div className="rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
-                  <div className="px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
-                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Account Info</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+
+                {/* Account fields */}
+                <div style={{ border: isDark ? "2px solid rgba(255,255,255,0.15)" : "2px solid #000", boxShadow: isDark ? "3px 3px 0 rgba(255,255,255,0.1)" : "3px 3px 0 #000" }}>
+                  {/* Section label */}
+                  <div style={{ padding: "6px 14px", background: "#eab308", borderBottom: "2px solid #000" }}>
+                    <span style={{ fontSize: "10px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em", color: "#000" }}>
+                      {kh ? "ព័ត៌មានគណនី" : "ACCOUNT INFO"}
+                    </span>
                   </div>
-                  <div className="divide-y divide-slate-100 dark:divide-slate-800">
-                    {/* Username */}
-                    <div className="flex items-center justify-between px-4 py-3">
-                      <div className="flex items-center gap-2.5 min-w-0">
-                        <AtSign className="w-4 h-4 text-slate-400 flex-shrink-0" />
-                        <div className="min-w-0">
-                          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wide">Username</p>
-                          <p className="text-sm font-bold text-slate-800 dark:text-slate-200 font-mono truncate">
-                            @{user.username}
-                          </p>
-                        </div>
-                      </div>
-                      <span className="text-[9px] font-black text-slate-400 border border-slate-200 px-1.5 py-0.5 rounded uppercase tracking-wide flex-shrink-0">
-                        System
+
+                  {/* Display Name */}
+                  <div style={{ padding: "12px 14px", borderBottom: isDark ? "1px solid rgba(255,255,255,0.1)" : "1px solid #e5e7eb" }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "6px" }}>
+                      <label style={{ fontSize: "9px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em", opacity: 0.55 }}>
+                        {kh ? "ឈ្មោះបង្ហាញ" : "DISPLAY NAME"}
+                      </label>
+                      {displayNameCooldown !== null ? (
+                        <span style={{ fontSize: "9px", fontWeight: 700, color: "#f59e0b", background: "rgba(245,158,11,0.1)", padding: "2px 6px", border: "1px solid #f59e0b" }}>
+                          🔒 {displayNameCooldown}d
+                        </span>
+                      ) : (
+                        <span style={{ fontSize: "9px", fontWeight: 700, color: "#10b981", background: "rgba(16,185,129,0.1)", padding: "2px 6px", border: "1px solid #10b981" }}>
+                          {kh ? "ផ្លាស់ប្តូរបាន" : "CAN CHANGE"}
+                        </span>
+                      )}
+                    </div>
+                    <input
+                      value={editDisplayName}
+                      onChange={(e) => setEditDisplayName(e.target.value)}
+                      disabled={displayNameCooldown !== null}
+                      maxLength={40}
+                      style={{
+                        width: "100%", padding: "8px 10px", fontSize: "14px", fontWeight: 700,
+                        border: isDark ? "2px solid rgba(255,255,255,0.2)" : "2px solid #000",
+                        background: displayNameCooldown !== null ? (isDark ? "#0d1117" : "#f5f5f0") : (isDark ? "#1a1f2e" : "#fff"),
+                        color: isDark ? "#f0f2f5" : "#000", outline: "none",
+                        opacity: displayNameCooldown !== null ? 0.6 : 1, boxSizing: "border-box",
+                      }}
+                    />
+                    {displayNameCooldown !== null && (
+                      <p style={{ fontSize: "10px", color: "#f59e0b", fontWeight: 700, marginTop: "4px" }}>
+                        {kh ? `អាចផ្លាស់ប្តូរបន្ទាប់ ${displayNameCooldown} ថ្ងៃទៀត (រៀងរាល់ ៦ ខែ)` : `Available in ${displayNameCooldown} days — changes every 6 months`}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Username */}
+                  <div style={{ padding: "12px 14px", borderBottom: isDark ? "1px solid rgba(255,255,255,0.1)" : "1px solid #e5e7eb" }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "6px" }}>
+                      <label style={{ fontSize: "9px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em", opacity: 0.55 }}>
+                        {kh ? "ឈ្មោះគណនី" : "USERNAME"}
+                      </label>
+                      {usernameCooldown !== null ? (
+                        <span style={{ fontSize: "9px", fontWeight: 700, color: "#f59e0b", background: "rgba(245,158,11,0.1)", padding: "2px 6px", border: "1px solid #f59e0b" }}>
+                          🔒 {usernameCooldown}d
+                        </span>
+                      ) : (
+                        <span style={{ fontSize: "9px", fontWeight: 700, color: "#10b981", background: "rgba(16,185,129,0.1)", padding: "2px 6px", border: "1px solid #10b981" }}>
+                          {kh ? "ផ្លាស់ប្តូរបាន" : "CAN CHANGE"}
+                        </span>
+                      )}
+                    </div>
+                    <input
+                      value={editUsername}
+                      onChange={(e) => setEditUsername(e.target.value)}
+                      disabled={usernameCooldown !== null}
+                      maxLength={30}
+                      style={{
+                        width: "100%", padding: "8px 10px", fontSize: "14px", fontWeight: 700, fontFamily: "monospace",
+                        border: isDark ? "2px solid rgba(255,255,255,0.2)" : "2px solid #000",
+                        background: usernameCooldown !== null ? (isDark ? "#0d1117" : "#f5f5f0") : (isDark ? "#1a1f2e" : "#fff"),
+                        color: isDark ? "#f0f2f5" : "#000", outline: "none",
+                        opacity: usernameCooldown !== null ? 0.6 : 1, boxSizing: "border-box",
+                      }}
+                    />
+                    {usernameCooldown !== null && (
+                      <p style={{ fontSize: "10px", color: "#f59e0b", fontWeight: 700, marginTop: "4px" }}>
+                        {kh ? `អាចផ្លាស់ប្តូរបន្ទាប់ ${usernameCooldown} ថ្ងៃទៀត (រៀងរាល់ ១ ឆ្នាំ)` : `Available in ${usernameCooldown} days — changes once per year`}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Email (read-only) */}
+                  <div style={{ padding: "12px 14px" }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "6px" }}>
+                      <label style={{ fontSize: "9px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em", opacity: 0.55 }}>
+                        {kh ? "អ៊ីមែល" : "EMAIL"}
+                      </label>
+                      <span style={{ fontSize: "9px", fontWeight: 700, opacity: 0.4, display: "flex", alignItems: "center", gap: "3px" }}>
+                        <Lock size={10} /> {kh ? "ចាក់សោ" : "LOCKED"}
                       </span>
                     </div>
-                    {/* Email */}
-                    <div className="flex items-center justify-between px-4 py-3">
-                      <div className="flex items-center gap-2.5 min-w-0">
-                        <Mail className="w-4 h-4 text-slate-400 flex-shrink-0" />
-                        <div className="min-w-0">
-                          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wide">Email</p>
-                          <p className="text-sm font-bold text-slate-800 dark:text-slate-200 truncate">{user.email}</p>
-                        </div>
-                      </div>
-                      <Lock className="w-3.5 h-3.5 text-slate-300 flex-shrink-0" />
+                    <div style={{
+                      padding: "8px 10px", fontSize: "13px", fontWeight: 600, opacity: 0.6,
+                      border: isDark ? "2px solid rgba(255,255,255,0.1)" : "2px solid rgba(0,0,0,0.15)",
+                      background: isDark ? "#0d1117" : "#f9fafb", color: isDark ? "#9ca3af" : "#6b7280",
+                      overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+                    }}>
+                      {user.email}
                     </div>
                   </div>
                 </div>
 
-                {/* View public profile link */}
-                <a
-                  href={`/u/${user.username}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 text-sm font-bold text-blue-600 dark:text-blue-400 px-1"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  View Public Profile
-                </a>
+                {/* Save info button */}
+                <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                  <button
+                    onClick={saveInfo}
+                    disabled={infoSaving}
+                    style={{
+                      padding: "12px 0", background: "#eab308", color: "#000",
+                      border: "2px solid #000", boxShadow: "4px 4px 0 #000",
+                      fontWeight: 900, fontSize: "12px", textTransform: "uppercase",
+                      letterSpacing: "0.08em", cursor: infoSaving ? "not-allowed" : "pointer",
+                      opacity: infoSaving ? 0.7 : 1, width: "100%",
+                    }}
+                  >
+                    {infoSaving ? (kh ? "កំពុងរក្សាទុក…" : "SAVING…") : (kh ? "រក្សាទុកព័ត៌មាន" : "SAVE CHANGES")}
+                  </button>
+                  {infoSaved && (
+                    <div style={{ display: "flex", alignItems: "center", gap: "6px", color: "#10b981", fontSize: "12px", fontWeight: 700 }}>
+                      <CheckCircle2 size={14} />
+                      {kh ? "បានរក្សាទុក!" : "Saved successfully!"}
+                    </div>
+                  )}
+                  {infoError && (
+                    <p style={{ color: "#ef4444", fontSize: "12px", fontWeight: 700 }}>{infoError}</p>
+                  )}
+                </div>
 
-                {/* Profile Editor (avatar + display name) */}
-                <div className="rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
-                  <div className="px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
-                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">
-                      Avatar &amp; Display Name
-                    </p>
-                    <p className="text-[10px] text-slate-400 mt-0.5">Avatar has a 60-day cooldown after each change</p>
+                {/* Avatar & Display Name via ProfileEditor */}
+                <div style={{ border: isDark ? "2px solid rgba(255,255,255,0.15)" : "2px solid #000", boxShadow: isDark ? "3px 3px 0 rgba(255,255,255,0.1)" : "3px 3px 0 #000" }}>
+                  <div style={{ padding: "6px 14px", background: "#eab308", borderBottom: "2px solid #000" }}>
+                    <span style={{ fontSize: "10px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em", color: "#000" }}>
+                      {kh ? "រូបតំណាង" : "AVATAR"} · <span style={{ fontSize: "9px" }}>{kh ? "ផ្លាស់ប្តូរបានរៀងរាល់ ៦០ ថ្ងៃ" : "CHANGES EVERY 60 DAYS"}</span>
+                    </span>
                   </div>
-                  <div className="p-4">
+                  <div style={{ padding: "14px" }}>
                     <ProfileEditor
                       initialName={user.displayName ?? user.username}
                       initialAvatar={user.avatar}
@@ -934,142 +1086,172 @@ export function StudentProfileDashboard({
                     />
                   </div>
                 </div>
-              </>
+
+              </div>
             )}
 
             {/* ══ PRIVACY TAB ══ */}
             {drawerTab === "privacy" && (
-              <>
+              <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+
                 {/* Info banner */}
-                <div className="flex items-start gap-2.5 p-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800">
-                  <Info className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                  <p className="text-[11px] text-blue-700 dark:text-blue-300 font-semibold leading-relaxed">
+                <div style={{
+                  padding: "10px 14px", background: "rgba(234,179,8,0.06)",
+                  border: "2px solid #eab308", boxShadow: "2px 2px 0 #eab308",
+                  display: "flex", gap: "10px", alignItems: "flex-start",
+                }}>
+                  <Info size={14} style={{ color: "#eab308", flexShrink: 0, marginTop: "1px" }} />
+                  <p style={{ fontSize: "11px", fontWeight: 700, lineHeight: 1.6, color: isDark ? "#fef3c7" : "#92400e" }}>
                     {kh
-                      ? "គ្រប់គ្រងអ្វីដែលអ្នកដទៃអាចមើលឃើញនៅលើប្រវត្តិរូបសាធារណៈរបស់អ្នក។"
+                      ? "គ្រប់គ្រងអ្វីដែលអ្នកដទៃអាចមើលឃើញ។ ការផ្លាស់ប្តូរមានប្រសិទ្ធភាពភ្លាម។"
                       : "Control what others can see on your public profile. Changes apply immediately."}
                   </p>
                 </div>
 
                 {privacyLoading ? (
-                  <div className="flex items-center justify-center py-10 gap-2 text-slate-400">
-                    <RefreshCw className="w-4 h-4 animate-spin" />
-                    <span className="text-sm font-semibold">Loading…</span>
+                  <div style={{ textAlign: "center", padding: "30px 0", color: isDark ? "#9ca3af" : "#6b7280" }}>
+                    <RefreshCw size={20} className="animate-spin" style={{ margin: "0 auto 8px" }} />
+                    <span style={{ fontSize: "12px", fontWeight: 700, textTransform: "uppercase" }}>Loading…</span>
                   </div>
                 ) : (
-                  <div className="space-y-3">
-
-                    {/* Master toggle */}
-                    <div className="rounded-xl border-2 overflow-hidden"
-                      style={{ borderColor: privacy.isProfilePublic ? "#3b82f6" : "#e2e8f0" }}>
-                      <div className="flex items-center justify-between px-4 py-3.5">
-                        <div className="flex items-center gap-3">
-                          <div className={`p-1.5 rounded-lg ${privacy.isProfilePublic ? "bg-blue-100 text-blue-600" : "bg-slate-100 text-slate-400"}`}>
-                            {privacy.isProfilePublic ? <Globe className="w-4 h-4" /> : <Lock className="w-4 h-4" />}
-                          </div>
+                  <>
+                    {/* Privacy toggles card */}
+                    <div style={{ border: isDark ? "2px solid rgba(255,255,255,0.15)" : "2px solid #000", boxShadow: isDark ? "3px 3px 0 rgba(255,255,255,0.1)" : "3px 3px 0 #000" }}>
+                      {/* Master toggle */}
+                      <div style={{
+                        display: "flex", alignItems: "center", justifyContent: "space-between",
+                        padding: "12px 14px", background: privacy.isProfilePublic ? "#eab308" : (isDark ? "#18181b" : "#f5f5f0"),
+                        borderBottom: isDark ? "1px solid rgba(255,255,255,0.1)" : "1px solid #000",
+                      }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                          {privacy.isProfilePublic
+                            ? <Globe size={15} style={{ color: "#000" }} />
+                            : <Lock size={15} style={{ color: isDark ? "#9ca3af" : "#6b7280" }} />
+                          }
                           <div>
-                            <p className="text-sm font-black text-slate-900 dark:text-slate-100">
-                              {kh ? "ប្រវត្តិរូបសាធារណៈ" : "Public Profile"}
-                            </p>
-                            <p className="text-[10px] text-slate-400 font-semibold">
+                            <div style={{ fontSize: "11px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.06em", color: privacy.isProfilePublic ? "#000" : undefined }}>
+                              {kh ? "ប្រវត្តិរូបសាធារណៈ" : "PUBLIC PROFILE"}
+                            </div>
+                            <div style={{ fontSize: "9px", fontWeight: 700, opacity: 0.65, color: privacy.isProfilePublic ? "#000" : undefined }}>
                               {privacy.isProfilePublic
-                                ? (kh ? "អ្នកដទៃអាចមើលឃើញប្រវត្តិរូបរបស់អ្នក" : "Anyone can view your profile")
-                                : (kh ? "ប្រវត្តិរូបត្រូវបានកំណត់ជាឯកជន" : "Profile is hidden from public")}
-                            </p>
+                                ? (kh ? "អ្នកដទៃអាចមើលឃើញ" : "Visible to everyone")
+                                : (kh ? "ត្រូវបានលាក់ជាឯកជន" : "Hidden from public")}
+                            </div>
                           </div>
                         </div>
+                        {/* Toggle switch */}
                         <button
                           onClick={() => setPrivacy({ ...privacy, isProfilePublic: !privacy.isProfilePublic })}
-                          className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${
-                            privacy.isProfilePublic ? "bg-blue-600" : "bg-slate-200 dark:bg-slate-700"
-                          }`}
+                          style={{
+                            width: "44px", height: "24px", position: "relative",
+                            background: privacy.isProfilePublic ? "#000" : (isDark ? "#374151" : "#d1d5db"),
+                            border: "2px solid #000", cursor: "pointer", flexShrink: 0,
+                          }}
                         >
-                          <span className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${
-                            privacy.isProfilePublic ? "translate-x-5" : "translate-x-0.5"
-                          }`} />
+                          <span style={{
+                            position: "absolute", top: "2px", width: "16px", height: "16px",
+                            background: privacy.isProfilePublic ? "#eab308" : "#fff",
+                            border: "1px solid #000", transition: "left 0.15s ease",
+                            left: privacy.isProfilePublic ? "22px" : "2px",
+                          }} />
                         </button>
                       </div>
+
+                      {/* Sub-toggles */}
+                      {privacy.isProfilePublic && [
+                        { field: "isNamePublic", labelEn: "SHOW FULL NAME", labelKh: "បង្ហាញឈ្មោះ" },
+                        { field: "isUsernamePublic", labelEn: "SHOW USERNAME", labelKh: "បង្ហាញឈ្មោះគណនី" },
+                        { field: "isSchoolPublic", labelEn: "SHOW SCHOOL", labelKh: "បង្ហាញសាលារៀន" },
+                        { field: "isProvincePublic", labelEn: "SHOW PROVINCE", labelKh: "បង្ហាញខេត្ត" },
+                        { field: "isGradePublic", labelEn: "SHOW GRADE", labelKh: "បង្ហាញថ្នាក់" },
+                        { field: "isSectionPublic", labelEn: "SHOW SECTION", labelKh: "បង្ហាញបន្ទប់" },
+                        { field: "isStatsPublic", labelEn: "SHOW STATS & REWARDS", labelKh: "បង្ហាញស្ថិតិ" },
+                      ].map(({ field, labelEn, labelKh: lkh }, idx, arr) => {
+                        const val = privacy[field as keyof typeof privacy] as boolean;
+                        return (
+                          <div key={field} style={{
+                            display: "flex", alignItems: "center", justifyContent: "space-between",
+                            padding: "10px 14px 10px 26px",
+                            borderBottom: idx < arr.length - 1 ? (isDark ? "1px solid rgba(255,255,255,0.06)" : "1px solid #f3f4f6") : "none",
+                          }}>
+                            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                              {val
+                                ? <Eye size={13} style={{ color: "#eab308" }} />
+                                : <EyeOff size={13} style={{ opacity: 0.35, color: isDark ? "#9ca3af" : "#6b7280" }} />
+                              }
+                              <span style={{
+                                fontSize: "11px", fontWeight: 800, textTransform: "uppercase",
+                                letterSpacing: "0.06em", opacity: val ? 1 : 0.45,
+                              }} className={kh ? "font-google-sans" : ""}>
+                                {kh ? lkh : labelEn}
+                              </span>
+                            </div>
+                            <button
+                              onClick={() => setPrivacy({ ...privacy, [field]: !val })}
+                              style={{
+                                width: "36px", height: "20px", position: "relative",
+                                background: val ? "#000" : (isDark ? "#374151" : "#d1d5db"),
+                                border: "1.5px solid #000", cursor: "pointer", flexShrink: 0,
+                              }}
+                            >
+                              <span style={{
+                                position: "absolute", top: "2px", width: "12px", height: "12px",
+                                background: val ? "#eab308" : "#fff",
+                                border: "1px solid rgba(0,0,0,0.3)", transition: "left 0.12s ease",
+                                left: val ? "19px" : "2px",
+                              }} />
+                            </button>
+                          </div>
+                        );
+                      })}
                     </div>
 
-                    {/* Sub-toggles */}
-                    {privacy.isProfilePublic && (
-                      <div className="rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden divide-y divide-slate-100 dark:divide-slate-800">
-                        <div className="px-4 py-2 bg-slate-50 dark:bg-slate-800">
-                          <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">
-                            {kh ? "ព័ត៌មានដែលបង្ហាញ" : "Visible Information"}
-                          </p>
-                        </div>
-                        {[
-                          { field: "isNamePublic", labelEn: "Show Full Name", labelKh: "បង្ហាញឈ្មោះ" },
-                          { field: "isUsernamePublic", labelEn: "Show Username", labelKh: "បង្ហាញឈ្មោះគណនី" },
-                          { field: "isSchoolPublic", labelEn: "Show School", labelKh: "បង្ហាញសាលារៀន" },
-                          { field: "isProvincePublic", labelEn: "Show Province", labelKh: "បង្ហាញខេត្ត" },
-                          { field: "isGradePublic", labelEn: "Show Grade", labelKh: "បង្ហាញថ្នាក់" },
-                          { field: "isSectionPublic", labelEn: "Show Section/Room", labelKh: "បង្ហាញបន្ទប់" },
-                          { field: "isStatsPublic", labelEn: "Show Stats & Rewards", labelKh: "បង្ហាញស្ថិតិ & រង្វាន់" },
-                        ].map(({ field, labelEn, labelKh: lkh }) => {
-                          const val = privacy[field as keyof typeof privacy] as boolean;
-                          return (
-                            <div key={field} className="flex items-center justify-between px-4 py-3">
-                              <div className="flex items-center gap-2.5">
-                                {val
-                                  ? <Eye className="w-3.5 h-3.5 text-slate-400" />
-                                  : <EyeOff className="w-3.5 h-3.5 text-slate-300" />
-                                }
-                                <span className={`text-sm font-bold ${val ? "text-slate-700 dark:text-slate-300" : "text-slate-400"} ${kh ? "font-google-sans" : ""}`}>
-                                  {kh ? lkh : labelEn}
-                                </span>
-                              </div>
-                              <button
-                                onClick={() => setPrivacy({ ...privacy, [field]: !val })}
-                                className={`relative w-10 h-5 rounded-full transition-colors flex-shrink-0 ${
-                                  val ? "bg-blue-600" : "bg-slate-200 dark:bg-slate-700"
-                                }`}
-                              >
-                                <span className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform ${
-                                  val ? "translate-x-5" : "translate-x-0.5"
-                                }`} />
-                              </button>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
-
-                    {/* Save privacy button */}
+                    {/* Save button */}
                     <button
                       onClick={savePrivacy}
                       disabled={privacySaving}
-                      className="w-full py-3 rounded-xl text-sm font-black uppercase tracking-wide text-white"
-                      style={{ background: privacySaving ? "#93c5fd" : "#3b82f6" }}
+                      style={{
+                        padding: "12px 0", background: "#eab308", color: "#000",
+                        border: "2px solid #000", boxShadow: "4px 4px 0 #000",
+                        fontWeight: 900, fontSize: "12px", textTransform: "uppercase",
+                        letterSpacing: "0.08em", cursor: privacySaving ? "not-allowed" : "pointer",
+                        opacity: privacySaving ? 0.7 : 1, width: "100%",
+                      }}
                     >
                       {privacySaving
-                        ? (kh ? "កំពុងរក្សាទុក…" : "Saving…")
-                        : (kh ? "រក្សាទុកការកំណត់" : "Save Privacy Settings")}
+                        ? (kh ? "កំពុងរក្សាទុក…" : "SAVING…")
+                        : (kh ? "រក្សាទុក" : "SAVE PRIVACY SETTINGS")}
                     </button>
                     {privacySaved && (
-                      <div className="flex items-center gap-1.5 text-emerald-600 text-sm font-bold">
-                        <CheckCircle2 className="w-4 h-4" />
-                        {kh ? "បានរក្សាទុក!" : "Saved!"}
+                      <div style={{ display: "flex", alignItems: "center", gap: "6px", color: "#10b981", fontSize: "12px", fontWeight: 700 }}>
+                        <CheckCircle2 size={14} />
+                        {kh ? "បានរក្សាទុករួចរាល់!" : "Privacy settings saved!"}
                       </div>
                     )}
                     {privacyError && (
-                      <p className="text-red-500 text-sm font-bold">{privacyError}</p>
+                      <p style={{ color: "#ef4444", fontSize: "12px", fontWeight: 700 }}>{privacyError}</p>
                     )}
-                  </div>
+                  </>
                 )}
-              </>
+              </div>
             )}
-
           </div>
 
-          {/* ── Drawer Footer ── */}
-          <div className="px-5 py-3.5 border-t border-slate-200 dark:border-slate-800 flex-shrink-0">
+          {/* ── Footer ── */}
+          <div style={{
+            padding: "12px 20px", borderTop: isDark ? "2px solid rgba(255,255,255,0.15)" : "2px solid #000",
+            flexShrink: 0, background: isDark ? "#0d1117" : "#ffffff",
+          }}>
             <a
               href="/settings"
-              className="flex items-center justify-center gap-2 w-full py-2 text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider"
+              style={{
+                display: "flex", alignItems: "center", justifyContent: "center", gap: "6px", width: "100%",
+                padding: "8px 0", fontSize: "10px", fontWeight: 900, textTransform: "uppercase",
+                letterSpacing: "0.1em", color: isDark ? "#9ca3af" : "#6b7280", textDecoration: "none",
+              }}
             >
-              <ArrowRight className="w-3.5 h-3.5" />
-              {kh ? "ការកំណត់គណនីពេញលេញ" : "Full Account Settings"}
+              <ArrowRight size={12} />
+              {kh ? "ការកំណត់គណនីពេញលេញ" : "FULL ACCOUNT SETTINGS"}
             </a>
           </div>
 
