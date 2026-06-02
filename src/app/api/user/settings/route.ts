@@ -90,8 +90,12 @@ export async function PUT(request: NextRequest) {
     // Check if this is an onboarding student (missing school details)
     const isOnboarding = session.role === "student" && (!currentUser.schoolName || !currentUser.province || !currentUser.gradeLevel);
 
-    // 1. 60-Day Cooldown Gate for non-onboarding updates
-    if (!isOnboarding) {
+    // Detect if this is a privacy-only update (safe, no 60-day restriction)
+    const PRIVACY_FIELDS = new Set(['isProfilePublic','isNamePublic','isUsernamePublic','isSchoolPublic','isProvincePublic','isGradePublic','isSectionPublic','isStatsPublic']);
+    const isPurePrivacyUpdate = Object.keys(body).every(k => PRIVACY_FIELDS.has(k));
+
+    // 1. 60-Day Cooldown Gate — only for sensitive field changes, not privacy toggles
+    if (!isOnboarding && !isPurePrivacyUpdate) {
       const accountAgeMs = Date.now() - new Date(currentUser.createdAt).getTime();
       const SIXTY_DAYS = 60 * 24 * 60 * 60 * 1000;
       if (accountAgeMs < SIXTY_DAYS) {

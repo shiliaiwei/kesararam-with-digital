@@ -256,11 +256,12 @@ export function StudentProfileDashboard({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(privacy),
       });
-      if (!res.ok) throw new Error("failed");
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || "Failed to save.");
       setPrivacySaved(true);
       setTimeout(() => setPrivacySaved(false), 3000);
-    } catch {
-      setPrivacyError("Failed to save. Please try again.");
+    } catch (e: any) {
+      setPrivacyError(e.message || "Failed to save. Please try again.");
     } finally {
       setPrivacySaving(false);
     }
@@ -490,31 +491,30 @@ export function StudentProfileDashboard({
               <div
                 className="absolute top-0 left-0 w-full"
                 style={{
-                  height: "80px",
+                  height: "96px",
                   background: theme.coverColor || "#eab308",
-                  borderBottom: isBrutalist ? "3px solid #000" : undefined,
+                  borderBottom: "3px solid #000",
                 }}
               >
-                {/* Caution stripe overlay for brutalist style */}
-                {isBrutalist && (
-                  <div style={{
-                    position: "absolute", bottom: 0, left: 0, right: 0, height: "5px",
-                    background: "repeating-linear-gradient(90deg,#000 0,#000 18px,transparent 18px,transparent 36px)",
-                  }} />
-                )}
-                {/* Edit cover button */}
+                {/* Bottom caution stripe — always on brand DNA */}
+                <div style={{
+                  position: "absolute", bottom: 0, left: 0, right: 0, height: "4px",
+                  background: "repeating-linear-gradient(90deg,rgba(0,0,0,0.25) 0,rgba(0,0,0,0.25) 12px,transparent 12px,transparent 24px)",
+                }} />
+                {/* Change cover button */}
                 <button
                   onClick={() => { setDrawerTab("profile"); setIsEditProfileOpen(true); }}
-                  className="absolute bottom-2 right-2 flex items-center gap-1 px-2 py-1 text-[10px] font-black uppercase tracking-wide"
                   style={{
-                    background: "rgba(0,0,0,0.5)", color: "#fff",
-                    border: "1px solid rgba(255,255,255,0.3)",
-                    borderRadius: isBrutalist ? "0" : "4px",
+                    position: "absolute", bottom: "8px", right: "10px",
+                    display: "flex", alignItems: "center", gap: "5px",
+                    padding: "4px 10px", cursor: "pointer",
+                    background: "rgba(0,0,0,0.55)", color: "#fff",
+                    border: "1.5px solid rgba(255,255,255,0.5)",
+                    fontSize: "10px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.08em",
                   }}
-                  title="Change cover"
                 >
                   <Camera className="w-3 h-3" />
-                  Cover
+                  {kh ? "ផ្លាស់ប្ដូរ" : "Cover"}
                 </button>
               </div>
               <style>{`
@@ -525,44 +525,58 @@ export function StudentProfileDashboard({
                 }
               `}</style>
 
-              <div className={`flex ${theme.layout === "sidebar" ? "flex-col items-center text-center" : "flex-col sm:flex-row"} gap-5 items-center`} style={{ paddingTop: "60px" }}>
-                {/* Custom Avatar Ring with Rank Showcase + Edit button */}
-                <div className="relative flex-shrink-0">
-                  <div
-                    style={{
-                      padding: tier.id === "rookie" ? 3 : 5,
+              <div
+                className={`flex ${theme.layout === "sidebar" ? "flex-col items-center text-center" : "flex-col sm:flex-row"} gap-5 items-end`}
+                style={{ paddingTop: "76px" }}
+              >
+                {/* Avatar — brand DNA: black border, tier accent ring, no border-radius on camera btn */}
+                <div className="relative flex-shrink-0" style={{ marginBottom: "4px" }}>
+                  {/* Outer tier-colored ring */}
+                  <div style={{
+                    padding: "4px",
+                    borderRadius: "50%",
+                    background: tier.borderGradient,
+                    backgroundSize: tier.animated ? "300% 300%" : "100%",
+                    animation: tier.animated && theme.glowEnabled ? "rankShimmer 3s ease infinite" : undefined,
+                  }}>
+                    {/* White gap ring */}
+                    <div style={{
+                      padding: "3px",
                       borderRadius: "50%",
-                      background: tier.borderGradient,
-                      backgroundSize: tier.animated ? "300% 300%" : "100%",
-                      animation: tier.animated && theme.glowEnabled ? "rankShimmer 3s ease infinite" : undefined,
-                      boxShadow: tier.animated && theme.glowEnabled && theme.mode === "dark"
-                        ? `0 0 25px ${tier.glow}aa`
-                        : tier.animated && theme.glowEnabled
-                          ? `0 0 15px ${tier.glow}55`
-                          : undefined,
-                    }}
-                    className="transition-shadow duration-300"
-                  >
-                    <div className="rounded-full overflow-hidden bg-white p-[3px]">
-                      <AvatarDisplay
-                        avatar={user.avatar}
-                        name={name}
-                        size={90}
-                        radius={0}
-                      />
+                      background: isDark ? "#0d1117" : "#fff",
+                    }}>
+                      {/* Black border container */}
+                      <div style={{
+                        borderRadius: "50%",
+                        overflow: "hidden",
+                        border: "2.5px solid #000",
+                      }}>
+                        <AvatarDisplay
+                          avatar={user.avatar}
+                          name={name}
+                          size={88}
+                          radius={0}
+                        />
+                      </div>
                     </div>
                   </div>
-                  {/* Camera edit button overlay */}
+                  {/* Camera button — brutalist: square, black border */}
                   <button
                     onClick={() => setIsEditProfileOpen(true)}
-                    className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center shadow-md hover:bg-blue-50 hover:border-blue-300 transition-colors"
+                    style={{
+                      position: "absolute", bottom: "2px", right: "2px",
+                      width: "24px", height: "24px",
+                      background: "#eab308", border: "2px solid #000",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      cursor: "pointer", boxShadow: "2px 2px 0 #000",
+                    }}
                     title="Edit profile picture"
                   >
-                    <Camera className="w-3.5 h-3.5 text-slate-500" />
+                    <Camera className="w-3 h-3" style={{ color: "#000" }} />
                   </button>
                 </div>
 
-                <div className="flex-1 w-full">
+                <div className="flex-1 w-full" style={{ paddingBottom: "4px" }}>
                   <div className="flex items-center gap-2 flex-wrap mb-1 justify-center sm:justify-start">
                     <h1 className="text-2xl font-black tracking-tight" style={{ color: style.colors.textMain }}>
                       {name}
