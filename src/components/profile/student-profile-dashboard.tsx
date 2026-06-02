@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import {
   Palette, Copy, Check, ExternalLink, BookOpen, GraduationCap,
   Award, Zap, Trophy, Target, Sun, Moon, Sparkles, X, RefreshCw,
-  Eye, ArrowRight, Pencil, Camera, CheckCircle2,
+  Eye, ArrowRight, Pencil, Camera, CheckCircle2, School,
   Sprout, PartyPopper, Star, Trophy as TierTrophy, Gem, Crown,
 } from "lucide-react";
 import { getRank, getNextRank, tierProgress, pointsToNextRank, RANK_TIERS } from "@/lib/rank-utils";
