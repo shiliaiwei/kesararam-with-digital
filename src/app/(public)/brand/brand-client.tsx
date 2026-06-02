@@ -67,7 +67,7 @@ export function BrandGuidelineClient() {
           if (e.isIntersecting) setActive(e.target.id);
         });
       },
-      { rootMargin: "-30% 0px -50% 0px", threshold: 0 }
+      { rootMargin: "-35% 0px -45% 0px", threshold: 0 }
     );
     SECTIONS.forEach((s) => {
       const el = document.getElementById(s.id);
@@ -79,25 +79,28 @@ export function BrandGuidelineClient() {
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-300">
       
+      {/* Floating Sticky Circular Logo wrapper (Pure CSS Zero-Height alignment) */}
+      <div className="max-w-5xl mx-auto px-6 relative h-0 pointer-events-none">
+        <div className="sticky top-6 z-50 w-20 h-20 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 bg-white p-3 shadow-md hover:scale-105 transition-all duration-200 group mt-20 pointer-events-auto">
+          {/* Inner static border */}
+          <div className="absolute inset-1 rounded-full border border-zinc-100 dark:border-zinc-800/40 pointer-events-none" />
+          
+          <Image
+            src={LOGO_PRIMARY}
+            alt="KWD Logo"
+            width={52}
+            height={52}
+            className="object-contain relative z-10 transition-transform duration-200 group-hover:scale-110"
+            priority
+          />
+        </div>
+      </div>
+
       {/* ════ HERO ════════════════════════════════════════════════════════ */}
       <header className="max-w-5xl mx-auto px-6 pt-20 pb-12 border-b border-zinc-100 dark:border-zinc-800">
         <div className="flex flex-col items-start gap-5">
-          <div className="relative w-20 h-20 flex items-center justify-center rounded-full border-2 border-zinc-200 dark:border-zinc-800 bg-white p-3 shadow-sm hover:scale-105 transition-transform duration-200 group">
-            {/* Elegant spinning dashed accent ring */}
-            <div className="absolute inset-[-4px] rounded-full border border-dashed border-yellow-500 opacity-60 animate-spin" style={{ animationDuration: '20s' }} />
-            
-            {/* Inner Ring */}
-            <div className="absolute inset-1 rounded-full border border-zinc-100 dark:border-zinc-800/40 pointer-events-none" />
-
-            <Image
-              src={LOGO_PRIMARY}
-              alt="KWD Logo"
-              width={52}
-              height={52}
-              className="object-contain relative z-10 transition-transform duration-300 group-hover:scale-110"
-              priority
-            />
-          </div>
+          {/* Spacer matching floating logo height */}
+          <div className="h-20 w-20 shrink-0" />
           
           <div className="flex items-center gap-3">
             <h1 className="text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white">KWD</h1>
