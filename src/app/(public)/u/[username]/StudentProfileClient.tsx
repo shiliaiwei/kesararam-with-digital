@@ -163,18 +163,16 @@ function Avatar({ url, name, size = 130, changedAt }: {
   );
 }
 
-function StatCard({ icon: Icon, label, value, colorClass }: {
-  icon: React.ComponentType<any>; label: string; value: string | number; colorClass: string;
+function StatCard({ icon: Icon, label, value, kh }: {
+  icon: React.ComponentType<any>; label: string; value: string | number; kh?: boolean;
 }) {
   return (
-    <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
-      <div className="flex items-start justify-between mb-3">
-        <div className={`p-2 rounded-lg ${colorClass}`}>
-          <Icon size={18} />
-        </div>
+    <div style={{ background: "#fff", border: "2px solid #000", boxShadow: "3px 3px 0 #000", padding: "16px" }}>
+      <div className="flex items-start justify-between mb-2">
+        <Icon size={18} style={{ color: "#000" }} />
       </div>
-      <p className="text-2xl font-black text-gray-900 font-mono">{value}</p>
-      <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mt-1">{label}</p>
+      <p className="text-2xl font-black text-black font-mono">{value}</p>
+      <p className={`text-[11px] font-black text-gray-500 uppercase tracking-wide mt-1 ${kh ? "font-google-sans" : ""}`}>{label}</p>
     </div>
   );
 }
@@ -422,24 +420,25 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
       {/* ── Private Profile ── */}
       {student.isProfilePublic === false ? (
         <div className="max-w-xl mx-auto px-4 py-12">
-          <div className="bg-white rounded-2xl border border-gray-200 p-10 text-center shadow-sm">
-            <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-5">
-              <Lock size={26} className="text-gray-400" />
+          <div style={{ background: "#fff", border: "3px solid #000", boxShadow: "6px 6px 0 #000", padding: "40px" }} className="text-center">
+            <div style={{ width: "72px", height: "72px", background: "#eab308", border: "3px solid #000", boxShadow: "3px 3px 0 #000" }} className="flex items-center justify-center mx-auto mb-6">
+              <Lock size={30} className="text-black" />
             </div>
-            <h3 className={`text-xl font-bold text-gray-900 mb-2 ${kh ? "font-google-sans" : ""}`}>
+            <h3 className={`text-xl font-black text-black mb-2 ${kh ? "font-google-sans" : ""}`}>
               {kh ? "គណនីនេះជាគណនីឯកជន" : "This Profile is Private"}
             </h3>
-            <p className="text-sm font-mono text-gray-400 uppercase tracking-wider mb-4">
+            <p className="text-xs font-black font-mono text-gray-400 uppercase tracking-widest mb-4">
               THIS PROFILE IS PRIVATE
             </p>
-            <p className={`text-gray-500 text-sm max-w-xs mx-auto leading-relaxed ${kh ? "font-google-sans" : ""}`}>
+            <p className={`text-gray-600 text-sm max-w-xs mx-auto leading-relaxed font-medium ${kh ? "font-google-sans" : ""}`}>
               {kh
                 ? "សិស្សនេះបានកំណត់ព័ត៌មានលម្អិត និងស្ថិតិលេងហ្គេមរបស់ពួកគេជាឯកជន។"
                 : "This student has set their details and gaming statistics to private."}
             </p>
             <button
               onClick={() => router.push("/play")}
-              className="mt-6 inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-bold shadow-sm"
+              className={`mt-6 inline-flex items-center gap-2 px-6 py-2.5 text-sm font-black uppercase ${kh ? "font-google-sans" : ""}`}
+              style={{ background: "#eab308", color: "#000", border: "2px solid #000", boxShadow: "3px 3px 0 #000" }}
             >
               <Zap size={14} />
               {kh ? "ចូលរួមប្រកួតប្រជែង" : "Join Quiz Competition"}
@@ -456,14 +455,16 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
             <div className="lg:col-span-4 space-y-4">
 
               {/* Intro card */}
-              <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">
-                  {kh ? "ប្រវត្តិ" : "Intro"}
-                </h3>
-                <div className="space-y-3 text-sm">
+              <div style={{ background: "#fff", border: "2px solid #000", boxShadow: "3px 3px 0 #000" }}>
+                <div style={{ background: "#eab308", borderBottom: "2px solid #000", padding: "6px 14px" }}>
+                  <span className={`text-[11px] font-black uppercase tracking-widest text-black ${kh ? "font-google-sans" : ""}`}>
+                    {kh ? "ប្រវត្តិ" : "Intro"}
+                  </span>
+                </div>
+                <div className="p-4 space-y-3 text-sm">
                   {isSchoolPublic && student.schoolName && (
-                    <div className="flex items-start gap-2.5 text-gray-700">
-                      <School size={17} className="text-gray-400 mt-0.5 flex-shrink-0" />
+                    <div className="flex items-start gap-2.5 text-gray-800">
+                      <School size={17} className="text-black mt-0.5 flex-shrink-0" />
                       <span className={kh ? "font-google-sans" : ""}>
                         {kh ? "រៀននៅ " : "Studies at "}
                         <strong>{student.schoolName}</strong>
@@ -471,8 +472,8 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                     </div>
                   )}
                   {isGradePublic && student.gradeLevel && (
-                    <div className="flex items-start gap-2.5 text-gray-700">
-                      <GraduationCap size={17} className="text-gray-400 mt-0.5 flex-shrink-0" />
+                    <div className="flex items-start gap-2.5 text-gray-800">
+                      <GraduationCap size={17} className="text-black mt-0.5 flex-shrink-0" />
                       <span className={kh ? "font-google-sans" : ""}>
                         <strong>
                           {kh ? gradeKh : getBilingualGrade(student.gradeLevel)}
@@ -482,13 +483,13 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                     </div>
                   )}
                   {isProvincePublic && student.province && (
-                    <div className="flex items-start gap-2.5 text-gray-700">
-                      <MapPin size={17} className="text-gray-400 mt-0.5 flex-shrink-0" />
+                    <div className="flex items-start gap-2.5 text-gray-800">
+                      <MapPin size={17} className="text-black mt-0.5 flex-shrink-0" />
                       <span className={kh ? "font-google-sans" : ""}>{getBilingualProvince(student.province)}</span>
                     </div>
                   )}
-                  <div className="flex items-start gap-2.5 text-gray-700">
-                    <Calendar size={17} className="text-gray-400 mt-0.5 flex-shrink-0" />
+                  <div className="flex items-start gap-2.5 text-gray-800">
+                    <Calendar size={17} className="text-black mt-0.5 flex-shrink-0" />
                     <span className={kh ? "font-google-sans" : ""}>
                       {kh ? `ចូលរួម ${joinedKh}` : `Joined ${joinedEn}`}
                     </span>
@@ -496,43 +497,39 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                 </div>
               </div>
 
-              {/* ID Card */}
-              <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm overflow-hidden">
+              {/* ID Card — solid blue, brand DNA */}
+              <div style={{ background: "#fff", border: "2px solid #000", boxShadow: "3px 3px 0 #000", padding: "16px" }}>
                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest font-mono mb-3">
                   Student ID
                 </p>
-                <div className="relative bg-gradient-to-r from-blue-600 to-indigo-700 rounded-xl p-4 overflow-hidden">
-                  <div className="absolute -right-6 -top-6 w-24 h-24 rounded-full border-[10px] border-white/10" />
-                  <div className="absolute -right-2 bottom-[-16px] w-16 h-16 rounded-full border-[8px] border-white/10" />
+                <div style={{ background: "#0284c7", border: "2px solid #000", padding: "16px", position: "relative", overflow: "hidden" }}>
                   <div className="flex items-center justify-between mb-3 relative z-10">
-                    <span className="text-[10px] text-white/60 font-mono uppercase tracking-wider">Official</span>
+                    <span className="text-[10px] text-white/70 font-mono uppercase tracking-wider">Official</span>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/brand/kwd-black_nobackground.png" alt="KWD" className="h-5 brightness-0 invert opacity-60" />
+                    <img src="/brand/kwd-black_nobackground.png" alt="KWD" className="h-5 brightness-0 invert opacity-80" />
                   </div>
                   <div className="text-2xl font-black text-white font-mono tracking-widest relative z-10">
                     KWD-{student.id.toString().padStart(4, "0")}
                   </div>
                   <div className="flex items-center gap-1.5 mt-2 relative z-10">
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                    <span className="text-[10px] text-white/60 font-mono uppercase tracking-wider">Active Student</span>
+                    <div className="w-2 h-2 bg-emerald-400 border border-black" />
+                    <span className="text-[10px] text-white/70 font-mono uppercase tracking-wider">Active Student</span>
                   </div>
                 </div>
               </div>
 
               {/* Tier showcase */}
               {isStatsPublic && (
-                <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm text-center">
+                <div style={{ background: "#fff", border: "2px solid #000", boxShadow: "3px 3px 0 #000", padding: "20px" }} className="text-center">
                   <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest font-mono mb-4">
                     {kh ? "កម្រិតបច្ចុប្បន្ន" : "Current Tier"}
                   </p>
                   <div className="flex justify-center">
-                    <TierBadge lifetimePoints={student.lifetimePoints} size="lg" lang={lang} />
+                    <TierBadge lifetimePoints={student.lifetimePoints} size="md" lang={lang} />
                   </div>
-                  {isStatsPublic && (
-                    <p className="text-xs text-gray-400 font-mono mt-3">
-                      {student.lifetimePoints.toLocaleString()} PTS
-                    </p>
-                  )}
+                  <p className="text-sm text-black font-black font-mono mt-3">
+                    {student.lifetimePoints.toLocaleString()} PTS
+                  </p>
                 </div>
               )}
             </div>
@@ -543,34 +540,30 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
               {/* STATS tab */}
               {activeTab === "stats" && (
                 !isStatsPublic ? (
-                  <div className="bg-white rounded-xl border border-gray-200 p-10 text-center shadow-sm">
+                  <div style={{ background: "#fff", border: "2px solid #000", boxShadow: "3px 3px 0 #000", padding: "40px" }} className="text-center">
                     <Shield size={28} className="text-gray-300 mx-auto mb-3" />
-                    <p className="font-bold text-gray-500">{kh ? "ស្ថិតិត្រូវបានរក្សាការសម្ងាត់" : "Stats are private"}</p>
+                    <p className={`font-black text-gray-500 ${kh ? "font-google-sans" : ""}`}>{kh ? "ស្ថិតិត្រូវបានរក្សាការសម្ងាត់" : "Stats are private"}</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-2 gap-3">
-                    <StatCard icon={Trophy} label={kh ? "ចំណាត់ថ្នាក់" : "Leaderboard Rank"}
-                      value={`#${rank}`} colorClass="bg-amber-50 text-amber-500" />
-                    <StatCard icon={Gamepad2} label={kh ? "ហ្គេមបានលេង" : "Games Played"}
-                      value={student.totalGamesPlayed.toLocaleString()} colorClass="bg-blue-50 text-blue-500" />
-                    <StatCard icon={Star} label={kh ? "ពិន្ទុខ្ពស់" : "Highest Score"}
-                      value={student.highestScore.toLocaleString()} colorClass="bg-yellow-50 text-yellow-500" />
-                    <StatCard icon={Zap} label={kh ? "ពិន្ទុសរុប" : "Total Points"}
-                      value={student.lifetimePoints.toLocaleString()} colorClass="bg-emerald-50 text-emerald-500" />
+                    <StatCard icon={Trophy} kh={kh} label={kh ? "ចំណាត់ថ្នាក់" : "Leaderboard Rank"} value={`#${rank}`} />
+                    <StatCard icon={Gamepad2} kh={kh} label={kh ? "ហ្គេមបានលេង" : "Games Played"} value={student.totalGamesPlayed.toLocaleString()} />
+                    <StatCard icon={Star} kh={kh} label={kh ? "ពិន្ទុខ្ពស់" : "Highest Score"} value={student.highestScore.toLocaleString()} />
+                    <StatCard icon={Zap} kh={kh} label={kh ? "ពិន្ទុសរុប" : "Total Points"} value={student.lifetimePoints.toLocaleString()} />
                   </div>
                 )
               )}
 
               {/* ABOUT tab */}
               {activeTab === "about" && (
-                <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-                  <div className="px-5 py-4 border-b border-gray-100 flex items-center gap-2">
-                    <UserCheck size={17} className="text-blue-500" />
-                    <h3 className={`text-base font-bold text-gray-900 ${kh ? "font-google-sans" : ""}`}>
+                <div style={{ background: "#fff", border: "2px solid #000", boxShadow: "3px 3px 0 #000" }}>
+                  <div style={{ background: "#eab308", borderBottom: "2px solid #000", padding: "8px 16px" }} className="flex items-center gap-2">
+                    <UserCheck size={16} className="text-black" />
+                    <h3 className={`text-sm font-black uppercase tracking-wide text-black ${kh ? "font-google-sans" : ""}`}>
                       {kh ? "ព័ត៌មានផ្ទាល់ខ្លួន" : "Student Information"}
                     </h3>
                   </div>
-                  <dl className="divide-y divide-gray-50">
+                  <dl className="divide-y divide-gray-100">
                     {[
                       {
                         label: kh ? "ឈ្មោះ" : "Name",
@@ -638,40 +631,41 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
 
               {/* REWARDS tab */}
               {activeTab === "rewards" && (
-                <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-                  <div className="px-5 py-4 border-b border-gray-100 flex items-center gap-2">
-                    <Gift size={17} className="text-blue-500" />
-                    <h3 className={`text-base font-bold text-gray-900 ${kh ? "font-google-sans" : ""}`}>
+                <div style={{ background: "#fff", border: "2px solid #000", boxShadow: "3px 3px 0 #000" }}>
+                  <div style={{ background: "#eab308", borderBottom: "2px solid #000", padding: "8px 16px" }} className="flex items-center gap-2">
+                    <Gift size={16} className="text-black" />
+                    <h3 className={`text-sm font-black uppercase tracking-wide text-black ${kh ? "font-google-sans" : ""}`}>
                       {kh ? "ប្រវត្តិនៃការប្តូររង្វាន់" : "Claimed Rewards"}
                     </h3>
                   </div>
                   {!isStatsPublic ? (
                     <div className="p-10 text-center">
                       <Shield size={28} className="text-gray-300 mx-auto mb-3" />
-                      <p className="font-bold text-gray-500 text-sm">{kh ? "ឯកជន" : "Private"}</p>
+                      <p className={`font-black text-gray-500 text-sm ${kh ? "font-google-sans" : ""}`}>{kh ? "ឯកជន" : "Private"}</p>
                     </div>
                   ) : (
                     <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {claimedItems.length > 0 ? (
                         claimedItems.map((item, idx) => (
-                          <div key={idx}
-                            className="flex items-center gap-3 p-3 rounded-lg border border-gray-100 bg-gray-50">
-                            <div className="w-12 h-12 rounded-lg bg-white border border-gray-200 flex items-center justify-center flex-shrink-0 shadow-sm">
+                          <div key={idx} className="flex items-center gap-3 p-3 bg-gray-50"
+                            style={{ border: "2px solid #000", boxShadow: "2px 2px 0 #000" }}>
+                            <div className="w-12 h-12 bg-white flex items-center justify-center flex-shrink-0"
+                              style={{ border: "2px solid #000" }}>
                               {/* eslint-disable-next-line @next/next/no-img-element */}
                               <img src={item.image} alt={item.name} className="w-8 h-8 object-contain" />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <p className={`text-sm font-bold text-gray-900 truncate ${kh ? "font-google-sans" : ""}`}>
+                              <p className={`text-sm font-black text-black truncate ${kh ? "font-google-sans" : ""}`}>
                                 {kh ? item.nameKh : item.name}
                               </p>
-                              <p className="text-xs text-gray-400 font-mono">{item.cost} PTS</p>
+                              <p className="text-xs text-gray-500 font-mono font-bold">{item.cost} PTS</p>
                               <div className="flex items-center gap-1 mt-1">
-                                <CheckCircle2 size={10} className="text-green-500" />
-                                <span className="text-[10px] text-green-600 font-bold uppercase tracking-wide">
+                                <CheckCircle2 size={10} className="text-green-600" />
+                                <span className={`text-[10px] text-green-700 font-black uppercase tracking-wide ${kh ? "font-google-sans" : ""}`}>
                                   {kh ? "បានប្តូរ" : "Claimed"}
                                 </span>
                                 {item.claimedAt && (
-                                  <span className="text-[10px] text-gray-300 font-mono ml-1">
+                                  <span className="text-[10px] text-gray-400 font-mono ml-1">
                                     · {new Date(item.claimedAt).toLocaleDateString()}
                                   </span>
                                 )}
@@ -682,7 +676,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                       ) : (
                         <div className="col-span-2 text-center py-10 text-gray-400">
                           <Gift size={28} className="mx-auto mb-2 opacity-40" />
-                          <p className="text-sm">{kh ? "មិនទាន់មានការប្តូររង្វាន់" : "No rewards claimed yet"}</p>
+                          <p className={`text-sm ${kh ? "font-google-sans" : ""}`}>{kh ? "មិនទាន់មានការប្តូររង្វាន់" : "No rewards claimed yet"}</p>
                         </div>
                       )}
                     </div>
@@ -702,7 +696,8 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
         </p>
         <button
           onClick={() => router.push("/play")}
-          className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-bold shadow-sm ${kh ? "font-google-sans" : ""}`}
+          className={`inline-flex items-center gap-2 px-6 py-2.5 text-sm font-black uppercase ${kh ? "font-google-sans" : ""}`}
+          style={{ background: "#eab308", color: "#000", border: "2px solid #000", boxShadow: "3px 3px 0 #000" }}
         >
           {kh ? "ចូលរួមប្រកួតប្រជែង" : "Join Quiz Competition"}
           <ArrowRight size={14} />
