@@ -4,17 +4,10 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useLang } from "@/context/lang-context";
 import { RankBadge as TierBadge } from "@/components/shared/rank-label";
-import { 
-  Trophy, 
-  Gift, 
-  ChevronLeft, 
-  Award, 
-  Star,
-  CheckCircle2,
-  School,
-  Gamepad2,
-  ArrowRight,
-  UserCheck
+import {
+  Trophy, Gift, ChevronLeft, Award, Star, CheckCircle2,
+  School, Gamepad2, ArrowRight, UserCheck, Share2, Lock,
+  MapPin, GraduationCap, Calendar, Check, Zap, Shield
 } from "lucide-react";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -23,16 +16,16 @@ export interface SerializableStudent {
   username: string;
   displayName: string | null;
   avatar: string | null;
-  avatarChangedAt: string | null; // ISO string
+  avatarChangedAt: string | null;
   highestScore: number;
   totalGamesPlayed: number;
   lifetimePoints: number;
-  createdAt: string; // ISO string
+  createdAt: string;
   schoolName: string | null;
   province: string | null;
   gradeLevel: string | null;
   section: string | null;
-  claimedRewards: string; // JSON string
+  claimedRewards: string;
   isProfilePublic?: boolean;
   isNamePublic?: boolean;
   isUsernamePublic?: boolean;
@@ -115,7 +108,7 @@ function avatarSrc(url: string | null, changedAt?: string | null): string | null
   return changedAt ? `${base}&v=${new Date(changedAt).getTime()}` : base;
 }
 
-function Avatar({ url, name, size = 180, changedAt }: {
+function Avatar({ url, name, size = 130, changedAt }: {
   url: string | null; name: string; size?: number; changedAt?: string | null;
 }) {
   const [err, setErr] = useState(false);
@@ -128,70 +121,60 @@ function Avatar({ url, name, size = 180, changedAt }: {
       try {
         const data = JSON.parse(trimmed) as { face?: string; head?: string };
         if (data && (data.face || data.head)) {
-          if (data.head && !data.face) {
-            data.face = "Smile.svg";
-          }
+          if (data.head && !data.face) data.face = "Smile.svg";
           return data;
         }
-      } catch {
-        return null;
-      }
+      } catch { return null; }
     }
     return null;
   })();
 
+  if (parsed) {
+    return (
+      <div className="w-full h-full relative" style={{ background: "#eab308" }}>
+        {parsed.head && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={`/avatar/head/${encodeURIComponent(parsed.head)}`} alt="" aria-hidden
+            className="absolute inset-0 w-full h-full object-contain" />
+        )}
+        {parsed.face && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
+            className="absolute inset-0 w-full h-full object-contain" />
+        )}
+      </div>
+    );
+  }
+
+  const src = avatarSrc(url, changedAt);
+  if (src && !err) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img src={src} alt={name} onError={() => setErr(true)}
+        className="w-full h-full object-cover" />
+    );
+  }
+
   return (
-    <div className="relative flex-shrink-0 animate-fade-in" style={{ width: size, height: size }}>
-      {parsed ? (
-        <div className="w-full h-full rounded-none overflow-hidden relative flex-shrink-0" style={{ background: "#eab308", border: "3px solid #000" }}>
-          {parsed.head && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={`/avatar/head/${encodeURIComponent(parsed.head)}`}
-              alt=""
-              aria-hidden
-              className="absolute inset-0 w-full h-full object-contain"
-            />
-          )}
-          {parsed.face && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={`/avatar/face/${encodeURIComponent(parsed.face)}`}
-              alt=""
-              aria-hidden
-              className="absolute inset-0 w-full h-full object-contain"
-            />
-          )}
+    <div className="w-full h-full flex items-center justify-center font-black text-white"
+      style={{ background: "#1e40af", fontSize: Math.round(size * 0.3) }}>
+      {initials}
+    </div>
+  );
+}
+
+function StatCard({ icon: Icon, label, value, colorClass }: {
+  icon: React.ComponentType<any>; label: string; value: string | number; colorClass: string;
+}) {
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm hover:shadow-md transition-shadow">
+      <div className="flex items-start justify-between mb-3">
+        <div className={`p-2 rounded-lg ${colorClass}`}>
+          <Icon size={18} />
         </div>
-      ) : (
-        (() => {
-          const src = avatarSrc(url, changedAt);
-          if (src && !err) {
-            return (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={src}
-                alt={name}
-                onError={() => setErr(true)}
-                className="w-full h-full object-cover rounded-none"
-                style={{ border: "3px solid #000" }}
-              />
-            );
-          }
-          return (
-            <div
-              className="w-full h-full rounded-none flex items-center justify-center font-black text-white"
-              style={{
-                background: "#27272a",
-                border: "3px solid #000",
-                fontSize: Math.round(size * 0.3),
-              }}
-            >
-              {initials}
-            </div>
-          );
-        })()
-      )}
+      </div>
+      <p className="text-2xl font-black text-gray-900 font-mono">{value}</p>
+      <p className="text-xs font-bold text-gray-400 uppercase tracking-wide mt-1">{label}</p>
     </div>
   );
 }
@@ -201,7 +184,12 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
   const { lang } = useLang();
   const kh = lang === "kh";
 
-  // Individual Privacy checks (Default to true/public)
+  const [activeTab, setActiveTab] = useState<"stats" | "about" | "rewards">("stats");
+  const [copied, setCopied] = useState(false);
+  const [claimedItems, setClaimedItems] = useState<Array<{
+    id: number; name: string; nameKh: string; cost: number; color: string; image: string; claimedAt: number;
+  }>>([]);
+
   const isNamePublic = student.isNamePublic ?? true;
   const isUsernamePublic = student.isUsernamePublic ?? true;
   const isSchoolPublic = student.isSchoolPublic ?? true;
@@ -210,46 +198,31 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
   const isSectionPublic = student.isSectionPublic ?? true;
   const isStatsPublic = student.isStatsPublic ?? true;
 
-  // Calculate grade bilingual dynamically from DB values
-  const gradeEn = student.gradeLevel || "—";
-  const gradeKh = student.gradeLevel 
-    ? (student.gradeLevel.toLowerCase().includes("grade") 
-        ? student.gradeLevel.replace(/grade\s*/i, "ថ្នាក់ទី ") 
+  const displayName = isNamePublic
+    ? (student.displayName || student.username)
+    : (kh ? "ឯកជន" : "Private");
+
+  const gradeKh = student.gradeLevel
+    ? (student.gradeLevel.toLowerCase().includes("grade")
+        ? student.gradeLevel.replace(/grade\s*/i, "ថ្នាក់ទី ")
         : (student.gradeLevel.match(/\d+/) ? `ថ្នាក់ទី ${student.gradeLevel.match(/\d+/)?.[0]}` : student.gradeLevel))
     : "—";
 
-  // Joined year bilingual dynamically
   const joinedYear = student.createdAt ? new Date(student.createdAt).getFullYear() : 2026;
   const joinedKh = `ឆ្នាំ ${joinedYear}`;
   const joinedEn = `${joinedYear}`;
 
-  // Real-time claims parser
   const parsedClaims = (() => {
-    try {
-      return JSON.parse(student.claimedRewards || "[]") as Array<{ id: number; claimedAt: number }>;
-    } catch {
-      return [];
-    }
+    try { return JSON.parse(student.claimedRewards || "[]") as Array<{ id: number; claimedAt: number }>; }
+    catch { return []; }
   })();
 
-  const [claimedItems, setClaimedItems] = useState<Array<{
-    id: number;
-    name: string;
-    nameKh: string;
-    cost: number;
-    color: string;
-    image: string;
-    claimedAt: number;
-  }>>([]);
-
   useEffect(() => {
-    // 1. DB-backed claims mapped to REWARD_ITEMS details
     const dbItems = parsedClaims.map(claim => {
       const item = REWARD_ITEMS.find(r => r.id === claim.id);
       return item ? { ...item, claimedAt: claim.claimedAt } : null;
     }).filter(Boolean) as any[];
 
-    // 2. Local storage claims merged for current browser sync
     const localItems = REWARD_ITEMS.filter(item => {
       const claimDataStr = localStorage.getItem(`kwd_claim_data_${item.id}`);
       return claimDataStr !== null || localStorage.getItem(`kwd_claimed_${item.id}`) === "1";
@@ -257,29 +230,20 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
       const claimDataStr = localStorage.getItem(`kwd_claim_data_${item.id}`);
       let claimedAt = Date.now();
       if (claimDataStr) {
-        try {
-          claimedAt = JSON.parse(claimDataStr).lastClaimedAt || Date.now();
-        } catch {}
+        try { claimedAt = JSON.parse(claimDataStr).lastClaimedAt || Date.now(); } catch {}
       }
       return { ...item, claimedAt };
     });
 
-    // 3. Deduplicate claims by ID
     const mergedMap = new Map<number, any>();
     dbItems.forEach(item => mergedMap.set(item.id, item));
-    localItems.forEach(item => {
-      if (!mergedMap.has(item.id)) {
-        mergedMap.set(item.id, item);
-      }
-    });
+    localItems.forEach(item => { if (!mergedMap.has(item.id)) mergedMap.set(item.id, item); });
 
     const merged = Array.from(mergedMap.values());
-
     if (merged.length > 0) {
       merged.sort((a, b) => (b.claimedAt || 0) - (a.claimedAt || 0));
       setClaimedItems(merged);
     } else {
-      // Points based fallback
       const affordable = REWARD_ITEMS.filter(item => student.lifetimePoints >= item.cost);
       if (affordable.length > 0) {
         setClaimedItems(affordable.slice(0, 3).map(item => ({ ...item, claimedAt: Date.now() })));
@@ -293,376 +257,449 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
     }
   }, [student.claimedRewards, student.lifetimePoints]);
 
+  const handleShare = async () => {
+    const url = `${window.location.origin}/u/${student.username}`;
+    await navigator.clipboard.writeText(url);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
+
+  const tabs = [
+    { id: "stats", label: kh ? "ស្ថិតិ" : "Statistics", icon: Trophy },
+    { id: "about", label: kh ? "ព័ត៌មាន" : "About", icon: UserCheck },
+    { id: "rewards", label: kh ? "រង្វាន់" : "Rewards", icon: Gift },
+  ] as const;
+
   return (
-    <div className="bg-zinc-50 text-zinc-900 min-h-screen py-10 px-4 md:px-8 flex flex-col items-center">
-      {/* Font faces are loaded globally via globals.css */}
+    <div className="min-h-screen bg-[#f0f2f5]">
 
-      <div className="w-full max-w-6xl space-y-8 select-none">
-        
-        {/* Top navigation row */}
-        <div className="flex items-center justify-between pb-4 border-b-2 border-black">
-          <button 
-            onClick={() => { router.push('/leaderboard'); }}
-            className={`flex items-center gap-2 text-sm font-black uppercase text-zinc-600 hover:text-black transition-all ${kh ? 'font-google-sans' : 'font-stack-notch'}`}
-          >
-            <ChevronLeft size={18} strokeWidth={3} />
-            {kh ? "ត្រឡប់ទៅតារាងពិន្ទុ" : "BACK TO LEADERBOARD"}
-          </button>
-          
-          <span className={`text-[11px] font-black tracking-widest text-zinc-400 uppercase ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
-            {kh ? "ព័ត៌មានរូបសិស្សផ្លូវការ" : "OFFICIAL STUDENT PROFILE"}
-          </span>
-        </div>
+      {/* Top nav */}
+      <div className="bg-white border-b border-gray-200 px-4 py-2.5 flex items-center justify-between shadow-sm">
+        <button
+          onClick={() => router.push("/leaderboard")}
+          className={`flex items-center gap-1.5 text-sm font-bold text-gray-600 hover:text-blue-600 transition-colors ${kh ? "font-google-sans" : ""}`}
+        >
+          <ChevronLeft size={18} strokeWidth={2.5} />
+          {kh ? "ត្រឡប់" : "Back"}
+        </button>
+        <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest font-mono hidden sm:block">
+          Official Student Profile
+        </span>
+        <div className="w-16" />
+      </div>
 
-        {/* 1. Grand Brutalist School Header Banner - Full Width */}
-        <div className="bg-white border-4 border-black p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-[6px_6px_0_#000]">
-          <div className="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
-            {/* Traditional Khmer Seal */}
-            <svg className="w-16 h-16 text-amber-500 flex-shrink-0 animate-fade-in" viewBox="0 0 100 100" fill="none">
-              <circle cx="50" cy="50" r="46" stroke="#d97706" strokeWidth="3" fill="#fffbeb" />
-              <path d="M50 18 L58 44 L54 44 L54 76 L46 76 L46 44 L42 44 Z" fill="#b45309" />
-              <path d="M35 32 L42 50 L39 50 L39 76 L33 76 L33 50 L30 50 Z" fill="#b45309" opacity="0.9" />
-              <path d="M65 32 L70 50 L67 50 L67 76 L61 76 L61 50 L58 50 Z" fill="#b45309" opacity="0.9" />
-              <rect x="18" y="76" width="64" height="4" rx="1" fill="#b45309" />
-            </svg>
-            
-            <div className="space-y-1">
-              <h2 className="text-xl md:text-3xl font-black text-blue-900 font-google-sans leading-tight">
-                សាលាបឋមសិក្សាកេសរារាម
-              </h2>
-              <p className="text-xs md:text-sm font-black text-zinc-400 tracking-widest uppercase font-mono">
-                KESARARAM PRIMARY SCHOOL
-              </p>
-            </div>
-          </div>
+      {/* Cover + Profile hero */}
+      <div className="bg-white shadow-sm">
 
-          {/* KWD Logo */}
-          <div className="flex-shrink-0">
+        {/* Cover photo */}
+        <div className="relative h-[200px] sm:h-[270px] bg-gradient-to-br from-sky-500 via-blue-700 to-indigo-900 overflow-hidden">
+          {/* Decorative geometric rings */}
+          <div className="absolute -right-16 -top-16 w-[280px] h-[280px] rounded-full border-[30px] border-white/10" />
+          <div className="absolute right-12 -top-20 w-[200px] h-[200px] rounded-full border-[20px] border-white/10" />
+          <div className="absolute -right-4 bottom-[-80px] w-[200px] h-[200px] rounded-full border-[20px] border-white/10" />
+          <div className="absolute left-[30%] bottom-[-60px] w-[140px] h-[140px] rounded-full border-[14px] border-white/5" />
+
+          {/* KWD logo - top right */}
+          <div className="absolute top-4 right-5 z-10">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
-              src="/brand/kwd-black_nobackground.png" 
-              alt="KWD Logo" 
-              className="h-12 md:h-16 object-contain"
+            <img
+              src="/brand/kwd-black_nobackground.png"
+              alt="KWD"
+              className="h-8 sm:h-11 brightness-0 invert opacity-60"
             />
           </div>
-        </div>
 
-        {/* 2. Blue Identification Stripe Banner */}
-        <div className="bg-[#0284c7] border-4 border-black p-5 text-center shadow-[6px_6px_0_#000] relative flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-left space-y-1">
-            <span className="text-white text-lg md:text-2xl font-black tracking-widest font-google-sans block leading-none">
-              ប័ណ្ណសម្គាល់ខ្លួនសិស្សផ្លូវការ
-            </span>
-            <span className="text-[10px] md:text-xs text-white/80 font-black uppercase tracking-wider block leading-none font-mono">
-              OFFICIAL STUDENT IDENTIFICATION PROFILE
+          {/* ID pill - top left */}
+          <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-white/15 backdrop-blur-sm border border-white/25 rounded-full px-3 py-1 z-10">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-white text-[11px] font-black font-mono tracking-wider">
+              KWD-{student.id.toString().padStart(4, "0")}
             </span>
           </div>
 
-          <div className="bg-white text-zinc-950 font-black border-2 border-black px-4 py-1.5 shadow-[3px_3px_0_#000] text-sm md:text-base font-mono">
-            ID: KWD-{student.id.toString().padStart(4, '0')}
-          </div>
-        </div>
-
-        {/* 3. Main Grid Layout */}
-        {student.isProfilePublic === false ? (
-          <div className="bg-white border-4 border-black p-8 md:p-12 text-center shadow-[6px_6px_0_#000] flex flex-col items-center justify-center gap-6 select-none animate-fade-in min-h-[300px]">
-            <div className="w-20 h-20 bg-yellow-400 border-4 border-black rounded-none flex items-center justify-center shadow-[4px_4px_0_#000] text-black">
-              <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-            </div>
-            
-            <div className="space-y-2">
-              <h3 className="text-2xl md:text-3xl font-black text-black font-google-sans leading-tight">
-                គណនីនេះជាគណនីឯកជន
-              </h3>
-              <p className="text-sm md:text-base font-black text-zinc-400 tracking-widest uppercase font-mono">
-                THIS PROFILE IS PRIVATE
-              </p>
-            </div>
-
-            <p className="text-zinc-600 font-bold max-w-md leading-relaxed font-google-sans">
-              សិស្សនេះបានកំណត់ព័ត៌មានលម្អិត និងស្ថិតិលេងហ្គេមរបស់ពួកគេជាឯកជន។
-              <span className="block mt-1 font-english text-xs text-zinc-500 uppercase tracking-wide">
-                This student has set their details and gaming statistics to private.
-              </span>
+          {/* School name - bottom, offset on desktop for avatar */}
+          <div className="absolute bottom-5 left-4 sm:left-[168px] z-10">
+            <h2 className={`text-white text-xl sm:text-2xl font-black leading-tight drop-shadow-md ${kh ? "font-google-sans" : ""}`}>
+              {kh ? "សាលាបឋមសិក្សាកេសរារាម" : "Kesararam Primary School"}
+            </h2>
+            <p className="text-white/60 text-[11px] font-mono uppercase tracking-widest mt-0.5">
+              {kh ? "KESARARAM PRIMARY SCHOOL" : "ខេត្តសៀមរាប · SIEM REAP"}
             </p>
           </div>
-        ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
-          {/* Left Column: Portrait & Credentials */}
-          <div className="lg:col-span-5 flex flex-col space-y-6">
-            
-            {/* Passport Portrait Box */}
-            <div className="bg-white border-4 border-black p-6 flex flex-col items-center justify-center shadow-[6px_6px_0_#000]">
-              <div className="border-4 border-black bg-zinc-100 flex items-center justify-center overflow-hidden p-1 shadow-[4px_4px_0_#000] w-[200px] h-[260px] md:w-[240px] md:h-[312px]">
-                <Avatar 
-                  url={student.avatar} 
-                  name={isNamePublic ? (student.displayName || student.username) : (isUsernamePublic ? student.username : "Student")} 
-                  size={240} 
-                  changedAt={student.avatarChangedAt} 
-                />
+        </div>
+
+        {/* Profile info section */}
+        <div className="relative px-4 sm:px-8">
+          {/* Avatar overlapping the cover */}
+          <div className="absolute -top-[52px] sm:-top-[64px] left-4 sm:left-8 z-10">
+            <div className="w-[104px] h-[104px] sm:w-[128px] sm:h-[128px] rounded-full overflow-hidden ring-4 ring-white shadow-lg bg-gray-100">
+              <Avatar
+                url={student.avatar}
+                name={isNamePublic ? (student.displayName || student.username) : "S"}
+                size={128}
+                changedAt={student.avatarChangedAt}
+              />
+            </div>
+          </div>
+
+          {/* Name + badges + action buttons */}
+          <div className="pt-14 sm:pt-3 sm:pl-[152px] pb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div>
+              <h1 className={`text-xl sm:text-2xl font-bold text-gray-900 leading-tight ${kh ? "font-google-sans" : ""}`}>
+                {displayName}
+              </h1>
+              <p className="text-gray-500 text-sm font-mono mt-0.5">
+                {isUsernamePublic ? `@${student.username}` : "@private"}
+              </p>
+              <div className="flex flex-wrap items-center gap-2 mt-2">
+                <TierBadge lifetimePoints={student.lifetimePoints} size="sm" lang={lang} />
+                <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-700 border border-blue-200 ${kh ? "font-google-sans" : ""}`}>
+                  <GraduationCap size={11} />
+                  {kh ? "សិស្ស" : "Student"}
+                </span>
+                {isStatsPublic && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-700 border border-amber-200 font-mono">
+                    <Trophy size={11} />
+                    #{rank}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* Action buttons */}
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <button
+                onClick={handleShare}
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold bg-blue-600 text-white hover:bg-blue-700 active:scale-95 transition-all shadow-sm ${kh ? "font-google-sans" : ""}`}
+              >
+                {copied ? <Check size={14} /> : <Share2 size={14} />}
+                {copied ? (kh ? "បានចម្លង!" : "Copied!") : (kh ? "ចែករំលែក" : "Share")}
+              </button>
+              <button
+                onClick={() => router.push("/leaderboard")}
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold bg-gray-100 text-gray-700 hover:bg-gray-200 active:scale-95 transition-all ${kh ? "font-google-sans" : ""}`}
+              >
+                <Award size={14} className="text-amber-500" />
+                {kh ? "តារាងពិន្ទុ" : "Leaderboard"}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Tab navigation */}
+        {student.isProfilePublic !== false && (
+          <div className="border-t border-gray-100 px-2 sm:px-6 flex overflow-x-auto no-scrollbar">
+            {tabs.map((tab) => {
+              const Icon = tab.icon;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex items-center gap-1.5 px-4 sm:px-5 py-3 text-sm font-bold border-b-[3px] transition-colors whitespace-nowrap flex-shrink-0 ${kh ? "font-google-sans" : ""}
+                    ${activeTab === tab.id
+                      ? "border-blue-600 text-blue-600"
+                      : "border-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                    }`}
+                >
+                  <Icon size={15} />
+                  {tab.label}
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      {/* ── Private Profile ── */}
+      {student.isProfilePublic === false ? (
+        <div className="max-w-xl mx-auto px-4 py-12">
+          <div className="bg-white rounded-2xl border border-gray-200 p-10 text-center shadow-sm">
+            <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-5">
+              <Lock size={26} className="text-gray-400" />
+            </div>
+            <h3 className={`text-xl font-bold text-gray-900 mb-2 ${kh ? "font-google-sans" : ""}`}>
+              {kh ? "គណនីនេះជាគណនីឯកជន" : "This Profile is Private"}
+            </h3>
+            <p className="text-sm font-mono text-gray-400 uppercase tracking-wider mb-4">
+              THIS PROFILE IS PRIVATE
+            </p>
+            <p className={`text-gray-500 text-sm max-w-xs mx-auto leading-relaxed ${kh ? "font-google-sans" : ""}`}>
+              {kh
+                ? "សិស្សនេះបានកំណត់ព័ត៌មានលម្អិត និងស្ថិតិលេងហ្គេមរបស់ពួកគេជាឯកជន។"
+                : "This student has set their details and gaming statistics to private."}
+            </p>
+            <button
+              onClick={() => router.push("/play")}
+              className="mt-6 inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 transition-colors shadow-sm"
+            >
+              <Zap size={14} />
+              {kh ? "ចូលរួមប្រកួតប្រជែង" : "Join Quiz Competition"}
+            </button>
+          </div>
+        </div>
+      ) : (
+
+        /* ── Main Content ── */
+        <div className="max-w-5xl mx-auto px-4 py-5">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+
+            {/* ── Left Sidebar (always visible) ── */}
+            <div className="lg:col-span-4 space-y-4">
+
+              {/* Intro card */}
+              <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
+                <h3 className="text-lg font-bold text-gray-900 mb-4">
+                  {kh ? "ប្រវត្តិ" : "Intro"}
+                </h3>
+                <div className="space-y-3 text-sm">
+                  {isSchoolPublic && student.schoolName && (
+                    <div className="flex items-start gap-2.5 text-gray-700">
+                      <School size={17} className="text-gray-400 mt-0.5 flex-shrink-0" />
+                      <span className={kh ? "font-google-sans" : ""}>
+                        {kh ? "រៀននៅ " : "Studies at "}
+                        <strong>{student.schoolName}</strong>
+                      </span>
+                    </div>
+                  )}
+                  {isGradePublic && student.gradeLevel && (
+                    <div className="flex items-start gap-2.5 text-gray-700">
+                      <GraduationCap size={17} className="text-gray-400 mt-0.5 flex-shrink-0" />
+                      <span className={kh ? "font-google-sans" : ""}>
+                        <strong>
+                          {kh ? gradeKh : getBilingualGrade(student.gradeLevel)}
+                          {isSectionPublic && student.section ? `, ${kh ? "ថ្នាក់" : "Room"} ${student.section}` : ""}
+                        </strong>
+                      </span>
+                    </div>
+                  )}
+                  {isProvincePublic && student.province && (
+                    <div className="flex items-start gap-2.5 text-gray-700">
+                      <MapPin size={17} className="text-gray-400 mt-0.5 flex-shrink-0" />
+                      <span className={kh ? "font-google-sans" : ""}>{getBilingualProvince(student.province)}</span>
+                    </div>
+                  )}
+                  <div className="flex items-start gap-2.5 text-gray-700">
+                    <Calendar size={17} className="text-gray-400 mt-0.5 flex-shrink-0" />
+                    <span className={kh ? "font-google-sans" : ""}>
+                      {kh ? `ចូលរួម ${joinedKh}` : `Joined ${joinedEn}`}
+                    </span>
+                  </div>
+                </div>
               </div>
 
-              {/* Tier Badge Directly Under Avatar */}
+              {/* ID Card */}
+              <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm overflow-hidden">
+                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest font-mono mb-3">
+                  Student ID
+                </p>
+                <div className="relative bg-gradient-to-r from-blue-600 to-indigo-700 rounded-xl p-4 overflow-hidden">
+                  <div className="absolute -right-6 -top-6 w-24 h-24 rounded-full border-[10px] border-white/10" />
+                  <div className="absolute -right-2 bottom-[-16px] w-16 h-16 rounded-full border-[8px] border-white/10" />
+                  <div className="flex items-center justify-between mb-3 relative z-10">
+                    <span className="text-[10px] text-white/60 font-mono uppercase tracking-wider">Official</span>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/brand/kwd-black_nobackground.png" alt="KWD" className="h-5 brightness-0 invert opacity-60" />
+                  </div>
+                  <div className="text-2xl font-black text-white font-mono tracking-widest relative z-10">
+                    KWD-{student.id.toString().padStart(4, "0")}
+                  </div>
+                  <div className="flex items-center gap-1.5 mt-2 relative z-10">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                    <span className="text-[10px] text-white/60 font-mono uppercase tracking-wider">Active Student</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tier showcase */}
               {isStatsPublic && (
-                <div className="mt-6 w-full flex flex-col items-center gap-2">
-                  <TierBadge lifetimePoints={student.lifetimePoints} size="sm" lang={lang} />
-                  <span className="text-xs font-bold text-zinc-400 mt-1 uppercase font-mono tracking-wider">
-                    {kh ? "កម្រិតបច្ចុប្បន្ន" : "CURRENT TIER"}
-                  </span>
+                <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm text-center">
+                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest font-mono mb-4">
+                    {kh ? "កម្រិតបច្ចុប្បន្ន" : "Current Tier"}
+                  </p>
+                  <div className="flex justify-center">
+                    <TierBadge lifetimePoints={student.lifetimePoints} size="lg" lang={lang} />
+                  </div>
+                  {isStatsPublic && (
+                    <p className="text-xs text-gray-400 font-mono mt-3">
+                      {student.lifetimePoints.toLocaleString()} PTS
+                    </p>
+                  )}
                 </div>
               )}
             </div>
 
-            {/* Credentials Card */}
-            <div className="bg-white border-4 border-black p-6 shadow-[6px_6px_0_#000]">
-              <h3 className={`text-base font-black uppercase tracking-widest text-zinc-400 border-b-2 border-zinc-200 pb-3 mb-4 flex items-center gap-2 ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
-                <UserCheck size={18} className="text-blue-500" />
-                {kh ? "អត្តសញ្ញាណសិស្ស" : "STUDENT CREDENTIALS"}
-              </h3>
+            {/* ── Right Main Content ── */}
+            <div className="lg:col-span-8 space-y-4">
 
-              <div className={`space-y-3.5 text-sm md:text-base ${kh ? 'font-google-sans' : 'font-english'}`}>
-                
-                {/* Display Name */}
-                <div className="flex flex-col border-b border-zinc-100 pb-2">
-                  <span className="text-[10px] text-zinc-400 font-extrabold uppercase font-english tracking-wider">
-                    {kh ? "ឈ្មោះសិស្ស / Student Name" : "Student Name / ឈ្មោះសិស្ស"}
-                  </span>
-                  <span className="font-black text-zinc-950 text-base md:text-lg mt-0.5">
-                    {isNamePublic ? (student.displayName || student.username) : "Private / រក្សាការសម្ងាត់"}
-                  </span>
-                </div>
-
-                {/* Username */}
-                <div className="flex flex-col border-b border-zinc-100 pb-2">
-                  <span className="text-[10px] text-zinc-400 font-extrabold uppercase font-english tracking-wider">
-                    {kh ? "ឈ្មោះគណនី / Username" : "Username / ឈ្មោះគណនី"}
-                  </span>
-                  <span className="font-extrabold text-zinc-800 text-sm md:text-base font-mono mt-0.5">
-                    {isUsernamePublic ? `@${student.username}` : "@private / @រក្សាការសម្ងាត់"}
-                  </span>
-                </div>
-
-                {/* Role */}
-                <div className="flex flex-col border-b border-zinc-100 pb-2">
-                  <span className="text-[10px] text-zinc-400 font-extrabold uppercase font-english tracking-wider">
-                    {kh ? "តួនាទី / Role" : "Role / តួនាទី"}
-                  </span>
-                  <span className="font-black text-zinc-900 text-sm md:text-base mt-0.5">
-                    {kh ? "សិស្សសាលាបឋមសិក្សា / Primary Student" : "Primary Student / សិស្សសាលាបឋមសិក្សា"}
-                  </span>
-                </div>
-
-                {/* School */}
-                <div className="flex flex-col border-b border-zinc-100 pb-2">
-                  <span className="text-[10px] text-zinc-400 font-extrabold uppercase font-english tracking-wider">
-                    {kh ? "គ្រឹះស្ថានសិក្សា / School" : "School / គ្រឹះស្ថានសិក្សា"}
-                  </span>
-                  <span className="font-black text-zinc-900 text-sm md:text-base mt-0.5">
-                    {isSchoolPublic ? (student.schoolName || "—") : "Private / រក្សាការសម្ងាត់"}
-                  </span>
-                </div>
-
-                {/* Grade & Section */}
-                <div className="flex flex-col border-b border-zinc-100 pb-2">
-                  <span className="text-[10px] text-zinc-400 font-extrabold uppercase font-english tracking-wider">
-                    {kh ? "កម្រិតថ្នាក់ & បន្ទប់ / Grade & Section" : "Grade & Section / កម្រិតថ្នាក់ & បន្ទប់"}
-                  </span>
-                  <span className="font-black text-zinc-900 text-sm md:text-base mt-0.5">
-                    {isGradePublic 
-                      ? `${getBilingualGrade(student.gradeLevel)}${isSectionPublic && student.section ? ` / Room (ថ្នាក់) ${student.section}` : ""}`
-                      : "Private / រក្សាការសម្ងាត់"}
-                  </span>
-                </div>
-
-                {/* Province */}
-                <div className="flex flex-col border-b border-zinc-100 pb-2">
-                  <span className="text-[10px] text-zinc-400 font-extrabold uppercase font-english tracking-wider">
-                    {kh ? "ខេត្ត-ក្រុង / Province-City" : "Province-City / ខេត្ត-ក្រុង"}
-                  </span>
-                  <span className="font-black text-zinc-900 text-sm md:text-base mt-0.5">
-                    {isProvincePublic ? getBilingualProvince(student.province) : "Private / រក្សាការសម្ងាត់"}
-                  </span>
-                </div>
-
-                {/* Total Points */}
-                {isStatsPublic && (
-                  <div className="flex flex-col border-b border-zinc-100 pb-2">
-                    <span className="text-[10px] text-zinc-400 font-extrabold uppercase font-english tracking-wider">
-                      {kh ? "ពិន្ទុសរុប / Lifetime Points" : "Lifetime Points / ពិន្ទុសរុប"}
-                    </span>
-                    <span className="font-black text-emerald-600 font-mono text-base md:text-lg mt-0.5">
-                      {student.lifetimePoints.toLocaleString()} PTS
-                    </span>
+              {/* STATS tab */}
+              {activeTab === "stats" && (
+                !isStatsPublic ? (
+                  <div className="bg-white rounded-xl border border-gray-200 p-10 text-center shadow-sm">
+                    <Shield size={28} className="text-gray-300 mx-auto mb-3" />
+                    <p className="font-bold text-gray-500">{kh ? "ស្ថិតិត្រូវបានរក្សាការសម្ងាត់" : "Stats are private"}</p>
                   </div>
-                )}
-
-                {/* Joined Date */}
-                <div className="flex flex-col pb-2">
-                  <span className="text-[10px] text-zinc-400 font-extrabold uppercase font-english tracking-wider">
-                    {kh ? "ឆ្នាំចូលរួមលេង / Joined Year" : "Joined Year / ឆ្នាំចូលរួមលេង"}
-                  </span>
-                  <span className="font-black text-zinc-900 text-sm md:text-base mt-0.5">
-                    {joinedYear}
-                  </span>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-
-          {/* Right Column: Statistics & Claimed Rewards Grid */}
-          <div className="lg:col-span-7 flex flex-col space-y-6">
-            {!isStatsPublic ? (
-              <div className="bg-white border-4 border-black p-6 shadow-[6px_6px_0_#000] flex flex-col items-center justify-center text-center gap-4 min-h-[300px]">
-                <div className="w-16 h-16 bg-[#0284c7] border-4 border-black flex items-center justify-center shadow-[4px_4px_0_#000] text-white">
-                  <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                </div>
-                <div className="space-y-1">
-                  <h4 className="text-lg font-black text-black font-google-sans">ស្ថិតិលេងហ្គេមត្រូវបានរក្សាការសម្ងាត់</h4>
-                  <p className="text-[10px] text-zinc-400 font-extrabold uppercase font-mono tracking-wider">GAME STATS ARE PRIVATE</p>
-                </div>
-                <p className="text-xs text-zinc-500 font-bold max-w-xs leading-relaxed">
-                  {kh 
-                    ? "សិស្សនេះបានកំណត់ស្ថិតិពិន្ទុ និងការប្តូររង្វាន់របស់ពួកគេជាឯកជន។" 
-                    : "This student has set their game scores and claimed rewards to private."}
-                </p>
-              </div>
-            ) : (
-              <>
-            
-            {/* Play Stats Box */}
-            <div className="bg-white border-4 border-black p-6 shadow-[6px_6px_0_#000]">
-              <h3 className={`text-base font-black uppercase tracking-widest text-zinc-400 border-b-2 border-zinc-200 pb-3 mb-6 flex items-center gap-2 ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
-                <Gamepad2 size={18} className="text-yellow-500" />
-                {kh ? "របាយការណ៍សកម្មភាពសិក្សា និងលេងហ្គេម" : "GAME PLAY STATISTICS"}
-              </h3>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                
-                {/* Leaderboard Rank */}
-                <div className="border-2 border-black p-4 bg-zinc-50 shadow-[3px_3px_0_#000] flex flex-col justify-center min-h-[90px]">
-                  <span className={`text-[10px] font-black uppercase tracking-wider text-zinc-400 ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
-                    {kh ? "ចំណាត់ថ្នាក់តារាងបច្ចុប្បន្ន" : "LEADERBOARD RANK"}
-                  </span>
-                  <span className="text-3xl font-black text-zinc-950 font-mono mt-1.5 flex items-center gap-2">
-                    <Trophy size={28} className="text-yellow-500 fill-yellow-400" />
-                    #{rank}
-                  </span>
-                </div>
-
-                {/* Total Games Played */}
-                <div className="border-2 border-black p-4 bg-zinc-50 shadow-[3px_3px_0_#000] flex flex-col justify-center min-h-[90px]">
-                  <span className={`text-[10px] font-black uppercase tracking-wider text-zinc-400 ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
-                    {kh ? "ហ្គេមបានលេងសរុប" : "TOTAL GAMES PLAYED"}
-                  </span>
-                  <span className="text-3xl font-black text-zinc-950 font-mono mt-1.5 flex items-center gap-2">
-                    <Award size={28} className="text-blue-500" />
-                    {student.totalGamesPlayed}
-                  </span>
-                </div>
-
-                {/* Highest Score */}
-                <div className="border-2 border-black p-4 bg-zinc-50 shadow-[3px_3px_0_#000] flex flex-col justify-center min-h-[90px]">
-                  <span className={`text-[10px] font-black uppercase tracking-wider text-zinc-400 ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
-                    {kh ? "ពិន្ទុខ្ពស់បំផុតក្នុង ១ ហ្គេម" : "HIGHEST SCORE"}
-                  </span>
-                  <span className="text-3xl font-black text-zinc-950 font-mono mt-1.5 flex items-center gap-2">
-                    <Star size={28} className="text-yellow-500 fill-yellow-400" />
-                    {student.highestScore.toLocaleString()}
-                  </span>
-                </div>
-
-                {/* Student Grade */}
-                <div className="border-2 border-black p-4 bg-zinc-50 shadow-[3px_3px_0_#000] flex flex-col justify-center min-h-[90px]">
-                  <span className={`text-[10px] font-black uppercase tracking-wider text-zinc-400 ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
-                    {kh ? "បន្ទប់សិក្សាផ្លូវការ" : "STUDENT GRADE ROOM"}
-                  </span>
-                  <span className={`text-base md:text-lg font-black text-zinc-950 mt-2 flex items-center gap-2 ${kh ? 'font-google-sans' : 'font-mono'}`}>
-                    <School size={24} className="text-purple-500" />
-                    {kh ? `${gradeKh} (${student.section ?? "—"})` : `${gradeEn} (Room ${student.section ?? "—"})`}
-                  </span>
-                </div>
-
-              </div>
-            </div>
-
-            {/* DB-Backed Claimed Rewards Archive */}
-            <div className="bg-white border-4 border-black p-6 shadow-[6px_6px_0_#000]">
-              <h3 className={`text-base font-black uppercase tracking-widest text-zinc-400 border-b-2 border-zinc-200 pb-3 mb-6 flex items-center gap-2 ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
-                <Gift size={18} className="text-blue-500" />
-                {kh ? "ប្រវត្តិនៃការប្តូរយករង្វាន់ពិតប្រាកដ" : "CLAIMED REWARDS ARCHIVE (LIVE)"}
-              </h3>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {claimedItems.length > 0 ? (
-                  claimedItems.map((item, idx) => (
-                    <div 
-                      key={idx} 
-                      className="border-2 border-black p-4 bg-zinc-50 relative overflow-hidden flex items-center gap-4 shadow-[3px_3px_0_#000] animate-fade-in"
-                    >
-                      {/* Item Image */}
-                      <div className="w-16 h-16 bg-white border-2 border-black flex-shrink-0 flex items-center justify-center p-1.5 shadow-[2px_2px_0_#000]">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={item.image} alt={item.name} className="w-full h-full object-contain" />
-                      </div>
-                      
-                      {/* Item Details */}
-                      <div className="flex-1 min-w-0">
-                        <p className={`font-black text-sm text-zinc-950 truncate ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
-                          {kh ? item.nameKh : item.name}
-                        </p>
-                        <p className="font-black text-[10px] text-zinc-400 font-mono mt-0.5">
-                          {item.cost} PTS
-                        </p>
-                        
-                        <div className="flex flex-col gap-1 mt-1.5">
-                          <span className={`inline-flex self-start items-center gap-0.5 px-1.5 py-0.5 bg-green-100 text-green-700 text-[8px] font-black uppercase border border-green-300 ${kh ? 'font-google-sans' : 'font-stack-notch'}`}>
-                            <CheckCircle2 size={9} />
-                            {kh ? "បានប្តូរពិតប្រាកដ" : "VERIFIED CLAIM"}
-                          </span>
-                          {item.claimedAt && (
-                            <span className="text-[9px] text-zinc-400 font-mono">
-                              {new Date(item.claimedAt).toLocaleDateString()}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ))
                 ) : (
-                  <div className="col-span-2 text-center py-10 border border-dashed border-zinc-300 text-zinc-400 text-sm font-bold bg-zinc-50">
-                    {kh ? "មិនទាន់មានការប្តូររង្វាន់នៅឡើយទេ" : "No rewards claimed yet"}
+                  <div className="grid grid-cols-2 gap-3">
+                    <StatCard icon={Trophy} label={kh ? "ចំណាត់ថ្នាក់" : "Leaderboard Rank"}
+                      value={`#${rank}`} colorClass="bg-amber-50 text-amber-500" />
+                    <StatCard icon={Gamepad2} label={kh ? "ហ្គេមបានលេង" : "Games Played"}
+                      value={student.totalGamesPlayed.toLocaleString()} colorClass="bg-blue-50 text-blue-500" />
+                    <StatCard icon={Star} label={kh ? "ពិន្ទុខ្ពស់" : "Highest Score"}
+                      value={student.highestScore.toLocaleString()} colorClass="bg-yellow-50 text-yellow-500" />
+                    <StatCard icon={Zap} label={kh ? "ពិន្ទុសរុប" : "Total Points"}
+                      value={student.lifetimePoints.toLocaleString()} colorClass="bg-emerald-50 text-emerald-500" />
                   </div>
-                )}
-              </div>
-            </div>
-            </>
-            )}
-          </div>
+                )
+              )}
 
+              {/* ABOUT tab */}
+              {activeTab === "about" && (
+                <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                  <div className="px-5 py-4 border-b border-gray-100 flex items-center gap-2">
+                    <UserCheck size={17} className="text-blue-500" />
+                    <h3 className={`text-base font-bold text-gray-900 ${kh ? "font-google-sans" : ""}`}>
+                      {kh ? "ព័ត៌មានផ្ទាល់ខ្លួន" : "Student Information"}
+                    </h3>
+                  </div>
+                  <dl className="divide-y divide-gray-50">
+                    {[
+                      {
+                        label: kh ? "ឈ្មោះ" : "Name",
+                        value: isNamePublic ? (student.displayName || student.username) : "Private",
+                        private: !isNamePublic,
+                      },
+                      {
+                        label: kh ? "ឈ្មោះគណនី" : "Username",
+                        value: isUsernamePublic ? `@${student.username}` : "@private",
+                        private: !isUsernamePublic,
+                        mono: true,
+                      },
+                      {
+                        label: kh ? "តួនាទី" : "Role",
+                        value: kh ? "សិស្សសាលាបឋមសិក្សា" : "Primary Student",
+                        private: false,
+                      },
+                      {
+                        label: kh ? "សាលារៀន" : "School",
+                        value: isSchoolPublic ? (student.schoolName || "—") : "Private",
+                        private: !isSchoolPublic,
+                      },
+                      {
+                        label: kh ? "ថ្នាក់" : "Grade",
+                        value: isGradePublic
+                          ? `${kh ? gradeKh : getBilingualGrade(student.gradeLevel)}${isSectionPublic && student.section ? `, ${kh ? "ថ្នាក់" : "Room"} ${student.section}` : ""}`
+                          : "Private",
+                        private: !isGradePublic,
+                      },
+                      {
+                        label: kh ? "ខេត្ត" : "Province",
+                        value: isProvincePublic ? getBilingualProvince(student.province) : "Private",
+                        private: !isProvincePublic,
+                      },
+                      {
+                        label: kh ? "ពិន្ទុ" : "Points",
+                        value: isStatsPublic ? `${student.lifetimePoints.toLocaleString()} PTS` : "Private",
+                        private: !isStatsPublic,
+                        mono: true,
+                        accent: true,
+                      },
+                      {
+                        label: kh ? "ចូលរួម" : "Joined",
+                        value: kh ? joinedKh : joinedEn,
+                        private: false,
+                      },
+                    ].map(({ label, value, private: isPrivate, mono, accent }) => (
+                      <div key={label} className="flex items-start gap-3 px-5 py-3.5">
+                        <dt className="text-xs font-bold text-gray-400 uppercase tracking-wide w-24 flex-shrink-0 mt-0.5">
+                          {label}
+                        </dt>
+                        <dd className={`flex-1 text-sm font-bold ${
+                          isPrivate ? "text-gray-400 italic" :
+                          accent ? "text-emerald-600 font-mono" :
+                          mono ? "text-gray-700 font-mono" :
+                          "text-gray-900"
+                        } ${kh && !mono && !accent ? "font-google-sans" : ""}`}>
+                          {value || "—"}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              )}
+
+              {/* REWARDS tab */}
+              {activeTab === "rewards" && (
+                <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                  <div className="px-5 py-4 border-b border-gray-100 flex items-center gap-2">
+                    <Gift size={17} className="text-blue-500" />
+                    <h3 className={`text-base font-bold text-gray-900 ${kh ? "font-google-sans" : ""}`}>
+                      {kh ? "ប្រវត្តិនៃការប្តូររង្វាន់" : "Claimed Rewards"}
+                    </h3>
+                  </div>
+                  {!isStatsPublic ? (
+                    <div className="p-10 text-center">
+                      <Shield size={28} className="text-gray-300 mx-auto mb-3" />
+                      <p className="font-bold text-gray-500 text-sm">{kh ? "ឯកជន" : "Private"}</p>
+                    </div>
+                  ) : (
+                    <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {claimedItems.length > 0 ? (
+                        claimedItems.map((item, idx) => (
+                          <div key={idx}
+                            className="flex items-center gap-3 p-3 rounded-lg border border-gray-100 bg-gray-50 hover:bg-white hover:shadow-sm transition-all">
+                            <div className="w-12 h-12 rounded-lg bg-white border border-gray-200 flex items-center justify-center flex-shrink-0 shadow-sm">
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img src={item.image} alt={item.name} className="w-8 h-8 object-contain" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className={`text-sm font-bold text-gray-900 truncate ${kh ? "font-google-sans" : ""}`}>
+                                {kh ? item.nameKh : item.name}
+                              </p>
+                              <p className="text-xs text-gray-400 font-mono">{item.cost} PTS</p>
+                              <div className="flex items-center gap-1 mt-1">
+                                <CheckCircle2 size={10} className="text-green-500" />
+                                <span className="text-[10px] text-green-600 font-bold uppercase tracking-wide">
+                                  {kh ? "បានប្តូរ" : "Claimed"}
+                                </span>
+                                {item.claimedAt && (
+                                  <span className="text-[10px] text-gray-300 font-mono ml-1">
+                                    · {new Date(item.claimedAt).toLocaleDateString()}
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="col-span-2 text-center py-10 text-gray-400">
+                          <Gift size={28} className="mx-auto mb-2 opacity-40" />
+                          <p className="text-sm">{kh ? "មិនទាន់មានការប្តូររង្វាន់" : "No rewards claimed yet"}</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
+
+            </div>
+          </div>
         </div>
       )}
 
-        {/* 4. Grand Brutalist Bottom Footer Banner */}
-        <div className="bg-[#0284c7] border-4 border-black p-5 text-center text-xs md:text-sm text-white font-black uppercase tracking-widest shadow-[6px_6px_0_#000] flex flex-col md:flex-row items-center justify-between gap-4">
-          <span>Kesararam with Digital © 2026</span>
-          <span className="font-mono">kesararamwithdigital.tech</span>
-          <button 
-            onClick={() => { router.push('/leaderboard'); }}
-            className="flex items-center gap-1.5 px-3 py-1 bg-white text-zinc-950 border-2 border-black hover:bg-yellow-300 active:translate-x-0.5 active:translate-y-0.5 transition-all text-xs font-black shadow-[2px_2px_0_#000] active:shadow-none"
-          >
-            {kh ? "ចូលរួមលេងប្រកួតប្រជែង" : "JOIN QUIZ COMPETITION"}
-            <ArrowRight size={14} />
-          </button>
-        </div>
+      {/* Footer */}
+      <footer className="mt-10 pb-10 text-center px-4">
+        <p className="text-xs text-gray-400 font-mono mb-3">
+          Kesararam with Digital © 2026 · kesararamwithdigital.tech
+        </p>
+        <button
+          onClick={() => router.push("/play")}
+          className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 active:scale-95 transition-all shadow-sm ${kh ? "font-google-sans" : ""}`}
+        >
+          {kh ? "ចូលរួមប្រកួតប្រជែង" : "Join Quiz Competition"}
+          <ArrowRight size={14} />
+        </button>
+      </footer>
 
-      </div>
     </div>
   );
 }

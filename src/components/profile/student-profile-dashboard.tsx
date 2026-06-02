@@ -1,38 +1,17 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { 
-  Palette, 
-  Settings, 
-  Copy, 
-  Check, 
-  ExternalLink, 
-  BookOpen, 
-  GraduationCap, 
-  MapPin, 
-  School, 
-  User, 
-  Award, 
-  Zap, 
-  Trophy, 
-  Target, 
-  Sun, 
-  Moon, 
-  Sparkles, 
-  X, 
-  RefreshCw, 
-  CheckCircle,
-  Layout,
-  Type,
-  Eye,
-  ArrowRight
+import {
+  Palette, Copy, Check, ExternalLink, BookOpen, GraduationCap,
+  Award, Zap, Trophy, Target, Sun, Moon, Sparkles, X, RefreshCw,
+  Eye, ArrowRight, Pencil, Camera, CheckCircle2,
+  Sprout, PartyPopper, Star, Trophy as TierTrophy, Gem, Crown,
 } from "lucide-react";
 import { getRank, getNextRank, tierProgress, pointsToNextRank, RANK_TIERS } from "@/lib/rank-utils";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
 import { RankBadge } from "@/components/shared/rank-label";
+import { ProfileEditor } from "@/components/profile/profile-editor";
 
-// ── Icons for the Rank Tiers ────────────────────────────────────────────────
-import { Sprout, PartyPopper, Star, Trophy as TierTrophy, Gem, Crown } from "lucide-react";
 const TIER_ICONS: Record<string, React.ComponentType<any>> = {
   rookie: Sprout,
   debut: PartyPopper,
@@ -110,6 +89,7 @@ export function StudentProfileDashboard({
   const [mounted, setMounted] = useState(false);
   const [copied, setCopied] = useState(false);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
+  const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
   const [rankStats, setRankStats] = useState({
     highestScore,
     totalGamesPlayed,
@@ -337,23 +317,41 @@ export function StudentProfileDashboard({
               KWD Dashboard
             </span>
           </div>
-          
-          <button
-            onClick={() => setIsPanelOpen(true)}
-            className="flex items-center gap-2 px-4 py-2 text-xs font-black uppercase transition-all duration-300 shadow-sm border"
-            style={{
-              borderRadius: isBrutalist ? "0px" : "12px",
-              background: style.colors.cardBg,
-              borderColor: isBrutalist ? "#000000" : style.colors.cardBorder,
-              color: style.colors.textMain,
-              boxShadow: isBrutalist ? "3px 3px 0 #000" : undefined,
-              transform: theme.microAnimations ? "translateY(0)" : undefined,
-            }}
-            className={`hover:scale-105 active:scale-95 flex items-center gap-2 px-4 py-2 border text-xs font-black uppercase transition-all duration-300`}
-          >
-            <Palette className="w-4 h-4" />
-            Customize Theme
-          </button>
+
+          <div className="flex items-center gap-2">
+            {/* Edit Profile button */}
+            <button
+              onClick={() => setIsEditProfileOpen(true)}
+              className={`hover:scale-105 active:scale-95 flex items-center gap-2 px-4 py-2 border text-xs font-black uppercase transition-all duration-300`}
+              style={{
+                borderRadius: isBrutalist ? "0px" : "12px",
+                background: style.colors.primary,
+                borderColor: isBrutalist ? "#000000" : "transparent",
+                color: isDark ? "#0f172a" : "#ffffff",
+                boxShadow: isBrutalist ? "3px 3px 0 #000" : undefined,
+              }}
+            >
+              <Pencil className="w-3.5 h-3.5" />
+              Edit Profile
+            </button>
+
+            {/* Customize Theme button */}
+            <button
+              onClick={() => setIsPanelOpen(true)}
+              className={`hover:scale-105 active:scale-95 flex items-center gap-2 px-4 py-2 border text-xs font-black uppercase transition-all duration-300`}
+              style={{
+                borderRadius: isBrutalist ? "0px" : "12px",
+                background: style.colors.cardBg,
+                borderColor: isBrutalist ? "#000000" : style.colors.cardBorder,
+                color: style.colors.textMain,
+                boxShadow: isBrutalist ? "3px 3px 0 #000" : undefined,
+              }}
+            >
+              <Palette className="w-4 h-4" />
+              <span className="hidden sm:inline">Customize Theme</span>
+              <span className="sm:hidden">Theme</span>
+            </button>
+          </div>
         </div>
 
         {/* Dynamic Layout Wrapper */}
@@ -394,30 +392,40 @@ export function StudentProfileDashboard({
               `}</style>
 
               <div className={`flex ${theme.layout === "sidebar" ? "flex-col items-center text-center" : "flex-col sm:flex-row"} gap-5 items-center`}>
-                {/* Custom Avatar Ring with Rank Showcase */}
-                <div
-                  style={{
-                    padding: tier.id === "rookie" ? 3 : 5,
-                    borderRadius: "50%",
-                    background: tier.borderGradient,
-                    backgroundSize: tier.animated ? "300% 300%" : "100%",
-                    animation: tier.animated && theme.glowEnabled ? "rankShimmer 3s ease infinite" : undefined,
-                    boxShadow: tier.animated && theme.glowEnabled && theme.mode === "dark" 
-                      ? `0 0 25px ${tier.glow}aa` 
-                      : tier.animated && theme.glowEnabled 
-                        ? `0 0 15px ${tier.glow}55` 
-                        : undefined,
-                  }}
-                  className="flex-shrink-0 transition-shadow duration-300"
-                >
-                  <div className="rounded-full overflow-hidden bg-white p-[3px]">
-                    <AvatarDisplay
-                      avatar={user.avatar}
-                      name={name}
-                      size={90}
-                      radius={0}
-                    />
+                {/* Custom Avatar Ring with Rank Showcase + Edit button */}
+                <div className="relative flex-shrink-0">
+                  <div
+                    style={{
+                      padding: tier.id === "rookie" ? 3 : 5,
+                      borderRadius: "50%",
+                      background: tier.borderGradient,
+                      backgroundSize: tier.animated ? "300% 300%" : "100%",
+                      animation: tier.animated && theme.glowEnabled ? "rankShimmer 3s ease infinite" : undefined,
+                      boxShadow: tier.animated && theme.glowEnabled && theme.mode === "dark"
+                        ? `0 0 25px ${tier.glow}aa`
+                        : tier.animated && theme.glowEnabled
+                          ? `0 0 15px ${tier.glow}55`
+                          : undefined,
+                    }}
+                    className="transition-shadow duration-300"
+                  >
+                    <div className="rounded-full overflow-hidden bg-white p-[3px]">
+                      <AvatarDisplay
+                        avatar={user.avatar}
+                        name={name}
+                        size={90}
+                        radius={0}
+                      />
+                    </div>
                   </div>
+                  {/* Camera edit button overlay */}
+                  <button
+                    onClick={() => setIsEditProfileOpen(true)}
+                    className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-white border-2 border-slate-200 flex items-center justify-center shadow-md hover:bg-blue-50 hover:border-blue-300 transition-colors"
+                    title="Edit profile picture"
+                  >
+                    <Camera className="w-3.5 h-3.5 text-slate-500" />
+                  </button>
                 </div>
 
                 <div className="flex-1 w-full">
@@ -861,8 +869,81 @@ export function StudentProfileDashboard({
 
       </div>
 
+      {/* ── Edit Profile Drawer ── */}
+      <div
+        className={`fixed inset-0 z-50 transition-opacity duration-300 ${
+          isEditProfileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+        style={{ background: "rgba(0, 0, 0, 0.5)" }}
+      >
+        <div className="absolute inset-0" onClick={() => setIsEditProfileOpen(false)} />
+        <div
+          className={`absolute right-0 top-0 h-full w-full max-w-lg bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 flex flex-col shadow-2xl transition-transform duration-300 ${
+            isEditProfileOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          {/* Header */}
+          <div className="flex justify-between items-center px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex-shrink-0">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
+                <Camera className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+              </div>
+              <div>
+                <h2 className="text-sm font-black uppercase text-slate-900 dark:text-slate-100">
+                  Edit Profile
+                </h2>
+                <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">
+                  Avatar · Display Name
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => setIsEditProfileOpen(false)}
+              className="p-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-slate-300 transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Quick access info banner */}
+          <div className="mx-6 mt-4 p-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 flex items-start gap-2.5 flex-shrink-0">
+            <CheckCircle2 className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+            <p className="text-[11px] text-blue-700 dark:text-blue-300 font-semibold leading-relaxed">
+              Changes save instantly. Avatar has a 60-day cooldown after each change.
+              Your public profile will update immediately.
+            </p>
+          </div>
+
+          {/* Profile Editor - scrollable content */}
+          <div className="flex-1 overflow-y-auto px-6 py-4">
+            <ProfileEditor
+              initialName={user.displayName ?? user.username}
+              initialAvatar={user.avatar}
+              initialAvatarChangedAt={
+                user.avatarChangedAt
+                  ? new Date(user.avatarChangedAt as any).toISOString()
+                  : null
+              }
+              role="student"
+              dark={theme.mode === "dark"}
+            />
+          </div>
+
+          {/* Footer: link to full settings */}
+          <div className="px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex-shrink-0">
+            <a
+              href="/settings"
+              className="flex items-center justify-center gap-2 w-full py-2 text-xs font-black uppercase text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
+            >
+              <ArrowRight className="w-3.5 h-3.5" />
+              Full Account &amp; Privacy Settings
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* ── Drawer Customizer Panel ── */}
-      <div 
+      <div
         className={`fixed inset-0 z-50 transition-opacity duration-300 ${
           isPanelOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
