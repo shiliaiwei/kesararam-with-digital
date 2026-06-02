@@ -167,7 +167,7 @@ function StatCard({ icon: Icon, label, value, colorClass }: {
   icon: React.ComponentType<any>; label: string; value: string | number; colorClass: string;
 }) {
   return (
-    <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm hover:shadow-md transition-shadow">
+    <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
       <div className="flex items-start justify-between mb-3">
         <div className={`p-2 rounded-lg ${colorClass}`}>
           <Icon size={18} />
@@ -277,7 +277,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
       <div className="bg-white border-b border-gray-200 px-4 py-2.5 flex items-center justify-between shadow-sm">
         <button
           onClick={() => router.push("/leaderboard")}
-          className={`flex items-center gap-1.5 text-sm font-bold text-gray-600 hover:text-blue-600 transition-colors ${kh ? "font-google-sans" : ""}`}
+          className={`flex items-center gap-1.5 text-sm font-bold text-gray-600 ${kh ? "font-google-sans" : ""}`}
         >
           <ChevronLeft size={18} strokeWidth={2.5} />
           {kh ? "ត្រឡប់" : "Back"}
@@ -291,38 +291,37 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
       {/* Cover + Profile hero */}
       <div className="bg-white shadow-sm">
 
-        {/* Cover photo */}
-        <div className="relative h-[200px] sm:h-[270px] bg-gradient-to-br from-sky-500 via-blue-700 to-indigo-900 overflow-hidden">
-          {/* Decorative geometric rings */}
+        {/* Cover photo — solid flat blue, no gradient */}
+        <div className="relative h-[200px] sm:h-[270px] overflow-hidden" style={{ background: "#1877f2" }}>
+          {/* Decorative circles (opacity only) */}
           <div className="absolute -right-16 -top-16 w-[280px] h-[280px] rounded-full border-[30px] border-white/10" />
           <div className="absolute right-12 -top-20 w-[200px] h-[200px] rounded-full border-[20px] border-white/10" />
           <div className="absolute -right-4 bottom-[-80px] w-[200px] h-[200px] rounded-full border-[20px] border-white/10" />
-          <div className="absolute left-[30%] bottom-[-60px] w-[140px] h-[140px] rounded-full border-[14px] border-white/5" />
 
-          {/* KWD logo - top right */}
+          {/* KWD logo — top right */}
           <div className="absolute top-4 right-5 z-10">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/brand/kwd-black_nobackground.png"
               alt="KWD"
-              className="h-8 sm:h-11 brightness-0 invert opacity-60"
+              className="h-8 sm:h-11 brightness-0 invert opacity-55"
             />
           </div>
 
-          {/* ID pill - top left */}
-          <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-white/15 backdrop-blur-sm border border-white/25 rounded-full px-3 py-1 z-10">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          {/* ID pill — top left */}
+          <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-white/15 border border-white/20 rounded-full px-3 py-1 z-10">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-300" />
             <span className="text-white text-[11px] font-black font-mono tracking-wider">
               KWD-{student.id.toString().padStart(4, "0")}
             </span>
           </div>
 
-          {/* School name - bottom, offset on desktop for avatar */}
-          <div className="absolute bottom-5 left-4 sm:left-[168px] z-10">
-            <h2 className={`text-white text-xl sm:text-2xl font-black leading-tight drop-shadow-md ${kh ? "font-google-sans" : ""}`}>
+          {/* School name — bottom center on mobile, bottom-left (offset) on desktop */}
+          <div className="absolute bottom-5 left-0 right-0 sm:left-[168px] sm:right-auto px-4 sm:px-0 z-10">
+            <h2 className={`text-white text-lg sm:text-2xl font-black leading-tight drop-shadow-sm text-center sm:text-left ${kh ? "font-google-sans" : ""}`}>
               {kh ? "សាលាបឋមសិក្សាកេសរារាម" : "Kesararam Primary School"}
             </h2>
-            <p className="text-white/60 text-[11px] font-mono uppercase tracking-widest mt-0.5">
+            <p className="text-white/55 text-[10px] font-mono uppercase tracking-widest mt-0.5 text-center sm:text-left">
               {kh ? "KESARARAM PRIMARY SCHOOL" : "ខេត្តសៀមរាប · SIEM REAP"}
             </p>
           </div>
@@ -370,14 +369,14 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
             <div className="flex items-center gap-2 flex-shrink-0">
               <button
                 onClick={handleShare}
-                className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold bg-blue-600 text-white hover:bg-blue-700 active:scale-95 transition-all shadow-sm ${kh ? "font-google-sans" : ""}`}
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold bg-blue-600 text-white shadow-sm ${kh ? "font-google-sans" : ""}`}
               >
                 {copied ? <Check size={14} /> : <Share2 size={14} />}
                 {copied ? (kh ? "បានចម្លង!" : "Copied!") : (kh ? "ចែករំលែក" : "Share")}
               </button>
               <button
                 onClick={() => router.push("/leaderboard")}
-                className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold bg-gray-100 text-gray-700 hover:bg-gray-200 active:scale-95 transition-all ${kh ? "font-google-sans" : ""}`}
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold bg-gray-100 text-gray-700 ${kh ? "font-google-sans" : ""}`}
               >
                 <Award size={14} className="text-amber-500" />
                 {kh ? "តារាងពិន្ទុ" : "Leaderboard"}
@@ -398,7 +397,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                   className={`flex items-center gap-1.5 px-4 sm:px-5 py-3 text-sm font-bold border-b-[3px] transition-colors whitespace-nowrap flex-shrink-0 ${kh ? "font-google-sans" : ""}
                     ${activeTab === tab.id
                       ? "border-blue-600 text-blue-600"
-                      : "border-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-50"
+                      : "border-transparent text-gray-600"
                     }`}
                 >
                   <Icon size={15} />
@@ -430,7 +429,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
             </p>
             <button
               onClick={() => router.push("/play")}
-              className="mt-6 inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 transition-colors shadow-sm"
+              className="mt-6 inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-bold shadow-sm"
             >
               <Zap size={14} />
               {kh ? "ចូលរួមប្រកួតប្រជែង" : "Join Quiz Competition"}
@@ -646,7 +645,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                       {claimedItems.length > 0 ? (
                         claimedItems.map((item, idx) => (
                           <div key={idx}
-                            className="flex items-center gap-3 p-3 rounded-lg border border-gray-100 bg-gray-50 hover:bg-white hover:shadow-sm transition-all">
+                            className="flex items-center gap-3 p-3 rounded-lg border border-gray-100 bg-gray-50">
                             <div className="w-12 h-12 rounded-lg bg-white border border-gray-200 flex items-center justify-center flex-shrink-0 shadow-sm">
                               {/* eslint-disable-next-line @next/next/no-img-element */}
                               <img src={item.image} alt={item.name} className="w-8 h-8 object-contain" />
@@ -693,7 +692,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
         </p>
         <button
           onClick={() => router.push("/play")}
-          className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-bold hover:bg-blue-700 active:scale-95 transition-all shadow-sm ${kh ? "font-google-sans" : ""}`}
+          className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-bold shadow-sm ${kh ? "font-google-sans" : ""}`}
         >
           {kh ? "ចូលរួមប្រកួតប្រជែង" : "Join Quiz Competition"}
           <ArrowRight size={14} />

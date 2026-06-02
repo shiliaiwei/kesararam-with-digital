@@ -32,13 +32,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const student = result[0];
     const name = student.displayName || student.username;
 
+    const desc = `View ${name}'s Student Identification Card, quiz scores, level progress, and unlocked rewards from Kesararam Primary School.`;
+    const url = `https://kesararamwithdigital.tech/u/${student.username}`;
     return {
       title: `${name} — Student Profile`,
-      description: `View ${name}'s Student Identification Card, quiz scores, level progress, and unlocked rewards from Kesararam Primary School.`,
+      description: desc,
       openGraph: {
-        title: `${name} — Student Profile`,
-        description: `View ${name}'s Student Identification Card, quiz scores, level progress, and unlocked rewards from Kesararam Primary School.`,
+        title: `${name} — KWD Student Profile`,
+        description: desc,
         type: "profile",
+        url,
+        siteName: "KWD Quiz · Kesararam With Digital",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: `${name} — KWD Student Profile`,
+        description: desc,
       },
     };
   } catch (error) {

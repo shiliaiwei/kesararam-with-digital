@@ -322,7 +322,7 @@ export function StudentProfileDashboard({
             {/* Edit Profile button */}
             <button
               onClick={() => setIsEditProfileOpen(true)}
-              className={`hover:scale-105 active:scale-95 flex items-center gap-2 px-4 py-2 border text-xs font-black uppercase transition-all duration-300`}
+              className="flex items-center gap-2 px-4 py-2 border text-xs font-black uppercase"
               style={{
                 borderRadius: isBrutalist ? "0px" : "12px",
                 background: style.colors.primary,
@@ -338,7 +338,7 @@ export function StudentProfileDashboard({
             {/* Customize Theme button */}
             <button
               onClick={() => setIsPanelOpen(true)}
-              className={`hover:scale-105 active:scale-95 flex items-center gap-2 px-4 py-2 border text-xs font-black uppercase transition-all duration-300`}
+              className="flex items-center gap-2 px-4 py-2 border text-xs font-black uppercase"
               style={{
                 borderRadius: isBrutalist ? "0px" : "12px",
                 background: style.colors.cardBg,
@@ -843,25 +843,6 @@ export function StudentProfileDashboard({
               </div>
             </div>
 
-            {/* ── Edit Settings Call-to-Action ── */}
-            <div className="flex justify-end mt-4">
-              <a
-                href="/settings"
-                style={{
-                  ...style.card,
-                  borderRadius: isBrutalist ? "0px" : "12px",
-                  background: isBrutalist ? style.colors.primary : "transparent",
-                  color: isBrutalist ? "#fff" : style.colors.primary,
-                  borderColor: isBrutalist ? "#000" : style.colors.primary,
-                  borderWidth: "2px",
-                  borderStyle: "solid",
-                }}
-                className={`flex items-center gap-2 px-6 py-3 font-black text-xs uppercase transition-all duration-300 hover:scale-[1.02] active:scale-95`}
-              >
-                <span>Edit Account & Privacy / កែប្រែគណនី</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
 
           </div>
 
