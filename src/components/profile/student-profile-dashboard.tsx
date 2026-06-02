@@ -6,6 +6,8 @@ import {
   Award, Zap, Trophy, Target, Sun, Moon, Sparkles, X, RefreshCw,
   ArrowRight, Pencil, Camera, CheckCircle2, School,
   Sprout, PartyPopper, Star, Trophy as TierTrophy, Gem, Crown,
+  Mail, AtSign, Info, ExternalLink, Globe, Lock, Eye, EyeOff,
+  User, Shield,
 } from "lucide-react";
 import { getRank, getNextRank, tierProgress, pointsToNextRank, RANK_TIERS } from "@/lib/rank-utils";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
@@ -90,6 +92,16 @@ export function StudentProfileDashboard({
   const [mounted, setMounted] = useState(false);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
+  const [drawerTab, setDrawerTab] = useState<"profile" | "privacy">("profile");
+  const [privacy, setPrivacy] = useState({
+    isProfilePublic: true, isNamePublic: true, isUsernamePublic: true,
+    isSchoolPublic: true, isProvincePublic: true, isGradePublic: true,
+    isSectionPublic: true, isStatsPublic: true,
+  });
+  const [privacyLoading, setPrivacyLoading] = useState(false);
+  const [privacySaving, setPrivacySaving] = useState(false);
+  const [privacySaved, setPrivacySaved] = useState(false);
+  const [privacyError, setPrivacyError] = useState("");
   const [rankStats, setRankStats] = useState({
     highestScore,
     totalGamesPlayed,
@@ -145,6 +157,50 @@ export function StudentProfileDashboard({
 
   const resetTheme = () => {
     saveThemeSettings(DEFAULT_THEME);
+  };
+
+  // Fetch privacy settings when the edit drawer opens
+  useEffect(() => {
+    if (!isEditProfileOpen) return;
+    setPrivacyLoading(true);
+    fetch("/api/user/settings")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.settings) {
+          const s = data.settings;
+          setPrivacy({
+            isProfilePublic: s.isProfilePublic ?? true,
+            isNamePublic: s.isNamePublic ?? true,
+            isUsernamePublic: s.isUsernamePublic ?? true,
+            isSchoolPublic: s.isSchoolPublic ?? true,
+            isProvincePublic: s.isProvincePublic ?? true,
+            isGradePublic: s.isGradePublic ?? true,
+            isSectionPublic: s.isSectionPublic ?? true,
+            isStatsPublic: s.isStatsPublic ?? true,
+          });
+        }
+      })
+      .catch(console.error)
+      .finally(() => setPrivacyLoading(false));
+  }, [isEditProfileOpen]);
+
+  const savePrivacy = async () => {
+    setPrivacySaving(true);
+    setPrivacyError("");
+    try {
+      const res = await fetch("/api/user/settings", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(privacy),
+      });
+      if (!res.ok) throw new Error("failed");
+      setPrivacySaved(true);
+      setTimeout(() => setPrivacySaved(false), 3000);
+    } catch {
+      setPrivacyError("Failed to save. Please try again.");
+    } finally {
+      setPrivacySaving(false);
+    }
   };
 
   const tier = getRank(rankStats.lifetimePoints);
@@ -304,18 +360,19 @@ export function StudentProfileDashboard({
         
         {/* Top Control Bar */}
         <div className="flex justify-between items-center w-full">
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 animate-pulse" style={{ color: style.colors.accent }} />
-            <span className="text-xs uppercase tracking-widest font-black opacity-80">
-              KWD Dashboard
+          {/* Left: user greeting */}
+          <div className="flex items-center gap-2 min-w-0">
+            <Sparkles className="w-4 h-4 flex-shrink-0 animate-pulse" style={{ color: style.colors.accent }} />
+            <span className="text-sm font-black truncate" style={{ color: style.colors.textMain }}>
+              {name}
             </span>
           </div>
 
-          <div className="flex items-center gap-2">
-            {/* Edit Profile button */}
+          <div className="flex items-center gap-2 flex-shrink-0">
+            {/* Edit Profile */}
             <button
-              onClick={() => setIsEditProfileOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 border text-xs font-black uppercase"
+              onClick={() => { setDrawerTab("profile"); setIsEditProfileOpen(true); }}
+              className="flex items-center gap-1.5 px-3 sm:px-4 py-2 border text-xs font-black uppercase"
               style={{
                 borderRadius: isBrutalist ? "0px" : "12px",
                 background: style.colors.primary,
@@ -325,13 +382,13 @@ export function StudentProfileDashboard({
               }}
             >
               <Pencil className="w-3.5 h-3.5" />
-              Edit Profile
+              <span className="hidden sm:inline">Edit Profile</span>
             </button>
 
-            {/* Customize Theme button */}
+            {/* Customize Theme */}
             <button
               onClick={() => setIsPanelOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 border text-xs font-black uppercase"
+              className="flex items-center gap-1.5 px-3 sm:px-4 py-2 border text-xs font-black uppercase"
               style={{
                 borderRadius: isBrutalist ? "0px" : "12px",
                 background: style.colors.cardBg,
@@ -341,8 +398,7 @@ export function StudentProfileDashboard({
               }}
             >
               <Palette className="w-4 h-4" />
-              <span className="hidden sm:inline">Customize Theme</span>
-              <span className="sm:hidden">Theme</span>
+              <span className="hidden sm:inline">Theme</span>
             </button>
           </div>
         </div>
@@ -753,71 +809,270 @@ export function StudentProfileDashboard({
         className={`fixed inset-0 z-50 transition-opacity duration-300 ${
           isEditProfileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
-        style={{ background: "rgba(0, 0, 0, 0.5)" }}
+        style={{ background: "rgba(0,0,0,0.5)" }}
       >
         <div className="absolute inset-0" onClick={() => setIsEditProfileOpen(false)} />
         <div
-          className={`absolute right-0 top-0 h-full w-full max-w-lg bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 flex flex-col shadow-2xl transition-transform duration-300 ${
+          className={`absolute right-0 top-0 h-full w-full max-w-lg bg-white dark:bg-slate-900 flex flex-col shadow-2xl transition-transform duration-300 ${
             isEditProfileOpen ? "translate-x-0" : "translate-x-full"
           }`}
+          style={{ color: "#0f172a" }}
         >
-          {/* Header */}
-          <div className="flex justify-between items-center px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex-shrink-0">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
-                <Camera className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+
+          {/* ── Drawer Header ── */}
+          <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200 dark:border-slate-800 flex-shrink-0">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
+                <User className="w-4 h-4 text-blue-600 dark:text-blue-400" />
               </div>
               <div>
-                <h2 className="text-sm font-black uppercase text-slate-900 dark:text-slate-100">
+                <h2 className="text-sm font-black text-slate-900 dark:text-slate-100 uppercase tracking-wide">
                   Edit Profile
                 </h2>
                 <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">
-                  Avatar · Display Name
+                  {user.displayName ?? user.username}
                 </p>
               </div>
             </div>
-            <button
-              onClick={() => setIsEditProfileOpen(false)}
-              className="p-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 dark:text-slate-300 transition-colors"
-            >
+            <button onClick={() => setIsEditProfileOpen(false)} className="p-1.5 rounded-lg dark:text-slate-300">
               <X className="w-5 h-5" />
             </button>
           </div>
 
-          {/* Quick access info banner */}
-          <div className="mx-6 mt-4 p-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 flex items-start gap-2.5 flex-shrink-0">
-            <CheckCircle2 className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
-            <p className="text-[11px] text-blue-700 dark:text-blue-300 font-semibold leading-relaxed">
-              Changes save instantly. Avatar has a 60-day cooldown after each change.
-              Your public profile will update immediately.
-            </p>
+          {/* ── Tab Navigation ── */}
+          <div className="flex border-b border-slate-200 dark:border-slate-800 flex-shrink-0 bg-white dark:bg-slate-900">
+            {[
+              { id: "profile", label: "Profile", icon: User },
+              { id: "privacy", label: "Privacy", icon: Shield },
+            ].map(({ id, label, icon: Icon }) => (
+              <button
+                key={id}
+                onClick={() => setDrawerTab(id as "profile" | "privacy")}
+                className={`flex items-center gap-1.5 px-5 py-3 text-sm font-bold border-b-2 transition-none ${
+                  drawerTab === id
+                    ? "border-blue-600 text-blue-600"
+                    : "border-transparent text-slate-500 dark:text-slate-400"
+                }`}
+              >
+                <Icon className="w-3.5 h-3.5" />
+                {label}
+              </button>
+            ))}
           </div>
 
-          {/* Profile Editor - scrollable content */}
-          <div className="flex-1 overflow-y-auto px-6 py-4">
-            <ProfileEditor
-              initialName={user.displayName ?? user.username}
-              initialAvatar={user.avatar}
-              initialAvatarChangedAt={
-                user.avatarChangedAt
-                  ? new Date(user.avatarChangedAt as any).toISOString()
-                  : null
-              }
-              role="student"
-              dark={theme.mode === "dark"}
-            />
+          {/* ── Scrollable Content ── */}
+          <div className="flex-1 overflow-y-auto px-5 py-5 space-y-5">
+
+            {/* ══ PROFILE TAB ══ */}
+            {drawerTab === "profile" && (
+              <>
+                {/* Account Info Card */}
+                <div className="rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+                  <div className="px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Account Info</p>
+                  </div>
+                  <div className="divide-y divide-slate-100 dark:divide-slate-800">
+                    {/* Username */}
+                    <div className="flex items-center justify-between px-4 py-3">
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <AtSign className="w-4 h-4 text-slate-400 flex-shrink-0" />
+                        <div className="min-w-0">
+                          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wide">Username</p>
+                          <p className="text-sm font-bold text-slate-800 dark:text-slate-200 font-mono truncate">
+                            @{user.username}
+                          </p>
+                        </div>
+                      </div>
+                      <span className="text-[9px] font-black text-slate-400 border border-slate-200 px-1.5 py-0.5 rounded uppercase tracking-wide flex-shrink-0">
+                        System
+                      </span>
+                    </div>
+                    {/* Email */}
+                    <div className="flex items-center justify-between px-4 py-3">
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <Mail className="w-4 h-4 text-slate-400 flex-shrink-0" />
+                        <div className="min-w-0">
+                          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wide">Email</p>
+                          <p className="text-sm font-bold text-slate-800 dark:text-slate-200 truncate">{user.email}</p>
+                        </div>
+                      </div>
+                      <Lock className="w-3.5 h-3.5 text-slate-300 flex-shrink-0" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* View public profile link */}
+                <a
+                  href={`/u/${user.username}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 text-sm font-bold text-blue-600 dark:text-blue-400 px-1"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  View Public Profile
+                </a>
+
+                {/* Profile Editor (avatar + display name) */}
+                <div className="rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+                  <div className="px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                      Avatar &amp; Display Name
+                    </p>
+                    <p className="text-[10px] text-slate-400 mt-0.5">Avatar has a 60-day cooldown after each change</p>
+                  </div>
+                  <div className="p-4">
+                    <ProfileEditor
+                      initialName={user.displayName ?? user.username}
+                      initialAvatar={user.avatar}
+                      initialAvatarChangedAt={
+                        user.avatarChangedAt
+                          ? new Date(user.avatarChangedAt as any).toISOString()
+                          : null
+                      }
+                      role="student"
+                      dark={theme.mode === "dark"}
+                    />
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* ══ PRIVACY TAB ══ */}
+            {drawerTab === "privacy" && (
+              <>
+                {/* Info banner */}
+                <div className="flex items-start gap-2.5 p-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800">
+                  <Info className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                  <p className="text-[11px] text-blue-700 dark:text-blue-300 font-semibold leading-relaxed">
+                    {kh
+                      ? "គ្រប់គ្រងអ្វីដែលអ្នកដទៃអាចមើលឃើញនៅលើប្រវត្តិរូបសាធារណៈរបស់អ្នក។"
+                      : "Control what others can see on your public profile. Changes apply immediately."}
+                  </p>
+                </div>
+
+                {privacyLoading ? (
+                  <div className="flex items-center justify-center py-10 gap-2 text-slate-400">
+                    <RefreshCw className="w-4 h-4 animate-spin" />
+                    <span className="text-sm font-semibold">Loading…</span>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+
+                    {/* Master toggle */}
+                    <div className="rounded-xl border-2 overflow-hidden"
+                      style={{ borderColor: privacy.isProfilePublic ? "#3b82f6" : "#e2e8f0" }}>
+                      <div className="flex items-center justify-between px-4 py-3.5">
+                        <div className="flex items-center gap-3">
+                          <div className={`p-1.5 rounded-lg ${privacy.isProfilePublic ? "bg-blue-100 text-blue-600" : "bg-slate-100 text-slate-400"}`}>
+                            {privacy.isProfilePublic ? <Globe className="w-4 h-4" /> : <Lock className="w-4 h-4" />}
+                          </div>
+                          <div>
+                            <p className="text-sm font-black text-slate-900 dark:text-slate-100">
+                              {kh ? "ប្រវត្តិរូបសាធារណៈ" : "Public Profile"}
+                            </p>
+                            <p className="text-[10px] text-slate-400 font-semibold">
+                              {privacy.isProfilePublic
+                                ? (kh ? "អ្នកដទៃអាចមើលឃើញប្រវត្តិរូបរបស់អ្នក" : "Anyone can view your profile")
+                                : (kh ? "ប្រវត្តិរូបត្រូវបានកំណត់ជាឯកជន" : "Profile is hidden from public")}
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => setPrivacy({ ...privacy, isProfilePublic: !privacy.isProfilePublic })}
+                          className={`relative w-11 h-6 rounded-full transition-colors flex-shrink-0 ${
+                            privacy.isProfilePublic ? "bg-blue-600" : "bg-slate-200 dark:bg-slate-700"
+                          }`}
+                        >
+                          <span className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${
+                            privacy.isProfilePublic ? "translate-x-5" : "translate-x-0.5"
+                          }`} />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Sub-toggles */}
+                    {privacy.isProfilePublic && (
+                      <div className="rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden divide-y divide-slate-100 dark:divide-slate-800">
+                        <div className="px-4 py-2 bg-slate-50 dark:bg-slate-800">
+                          <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                            {kh ? "ព័ត៌មានដែលបង្ហាញ" : "Visible Information"}
+                          </p>
+                        </div>
+                        {[
+                          { field: "isNamePublic", labelEn: "Show Full Name", labelKh: "បង្ហាញឈ្មោះ" },
+                          { field: "isUsernamePublic", labelEn: "Show Username", labelKh: "បង្ហាញឈ្មោះគណនី" },
+                          { field: "isSchoolPublic", labelEn: "Show School", labelKh: "បង្ហាញសាលារៀន" },
+                          { field: "isProvincePublic", labelEn: "Show Province", labelKh: "បង្ហាញខេត្ត" },
+                          { field: "isGradePublic", labelEn: "Show Grade", labelKh: "បង្ហាញថ្នាក់" },
+                          { field: "isSectionPublic", labelEn: "Show Section/Room", labelKh: "បង្ហាញបន្ទប់" },
+                          { field: "isStatsPublic", labelEn: "Show Stats & Rewards", labelKh: "បង្ហាញស្ថិតិ & រង្វាន់" },
+                        ].map(({ field, labelEn, labelKh: lkh }) => {
+                          const val = privacy[field as keyof typeof privacy] as boolean;
+                          return (
+                            <div key={field} className="flex items-center justify-between px-4 py-3">
+                              <div className="flex items-center gap-2.5">
+                                {val
+                                  ? <Eye className="w-3.5 h-3.5 text-slate-400" />
+                                  : <EyeOff className="w-3.5 h-3.5 text-slate-300" />
+                                }
+                                <span className={`text-sm font-bold ${val ? "text-slate-700 dark:text-slate-300" : "text-slate-400"} ${kh ? "font-google-sans" : ""}`}>
+                                  {kh ? lkh : labelEn}
+                                </span>
+                              </div>
+                              <button
+                                onClick={() => setPrivacy({ ...privacy, [field]: !val })}
+                                className={`relative w-10 h-5 rounded-full transition-colors flex-shrink-0 ${
+                                  val ? "bg-blue-600" : "bg-slate-200 dark:bg-slate-700"
+                                }`}
+                              >
+                                <span className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform ${
+                                  val ? "translate-x-5" : "translate-x-0.5"
+                                }`} />
+                              </button>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* Save privacy button */}
+                    <button
+                      onClick={savePrivacy}
+                      disabled={privacySaving}
+                      className="w-full py-3 rounded-xl text-sm font-black uppercase tracking-wide text-white"
+                      style={{ background: privacySaving ? "#93c5fd" : "#3b82f6" }}
+                    >
+                      {privacySaving
+                        ? (kh ? "កំពុងរក្សាទុក…" : "Saving…")
+                        : (kh ? "រក្សាទុកការកំណត់" : "Save Privacy Settings")}
+                    </button>
+                    {privacySaved && (
+                      <div className="flex items-center gap-1.5 text-emerald-600 text-sm font-bold">
+                        <CheckCircle2 className="w-4 h-4" />
+                        {kh ? "បានរក្សាទុក!" : "Saved!"}
+                      </div>
+                    )}
+                    {privacyError && (
+                      <p className="text-red-500 text-sm font-bold">{privacyError}</p>
+                    )}
+                  </div>
+                )}
+              </>
+            )}
+
           </div>
 
-          {/* Footer: link to full settings */}
-          <div className="px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex-shrink-0">
+          {/* ── Drawer Footer ── */}
+          <div className="px-5 py-3.5 border-t border-slate-200 dark:border-slate-800 flex-shrink-0">
             <a
               href="/settings"
-              className="flex items-center justify-center gap-2 w-full py-2 text-xs font-black uppercase text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors"
+              className="flex items-center justify-center gap-2 w-full py-2 text-xs font-black uppercase text-slate-400 dark:text-slate-500 tracking-wider"
             >
               <ArrowRight className="w-3.5 h-3.5" />
-              Full Account &amp; Privacy Settings
+              {kh ? "ការកំណត់គណនីពេញលេញ" : "Full Account Settings"}
             </a>
           </div>
+
         </div>
       </div>
 
