@@ -2,15 +2,16 @@
 
 import React, { useState, useEffect } from "react";
 import {
-  Palette, Copy, Check, ExternalLink, BookOpen, GraduationCap,
+  Palette, BookOpen, GraduationCap,
   Award, Zap, Trophy, Target, Sun, Moon, Sparkles, X, RefreshCw,
-  Eye, ArrowRight, Pencil, Camera, CheckCircle2, School,
+  ArrowRight, Pencil, Camera, CheckCircle2, School,
   Sprout, PartyPopper, Star, Trophy as TierTrophy, Gem, Crown,
 } from "lucide-react";
 import { getRank, getNextRank, tierProgress, pointsToNextRank, RANK_TIERS } from "@/lib/rank-utils";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
 import { RankBadge } from "@/components/shared/rank-label";
 import { ProfileEditor } from "@/components/profile/profile-editor";
+import { useLang } from "@/context/lang-context";
 
 const TIER_ICONS: Record<string, React.ComponentType<any>> = {
   rookie: Sprout,
@@ -87,7 +88,6 @@ export function StudentProfileDashboard({
   // Theme state with default initialized
   const [theme, setTheme] = useState<ThemeSettings>(DEFAULT_THEME);
   const [mounted, setMounted] = useState(false);
-  const [copied, setCopied] = useState(false);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
   const [rankStats, setRankStats] = useState({
@@ -140,15 +140,6 @@ export function StudentProfileDashboard({
     setTheme(newTheme);
     if (typeof window !== "undefined") {
       localStorage.setItem("kwd-profile-theme", JSON.stringify(newTheme));
-    }
-  };
-
-  const handleCopyLink = () => {
-    if (typeof window !== "undefined") {
-      const profileUrl = `${window.location.origin}/u/${user.username}`;
-      navigator.clipboard.writeText(profileUrl);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
     }
   };
 
@@ -264,6 +255,8 @@ export function StudentProfileDashboard({
   };
 
   const style = getThemeStyles();
+  const { lang } = useLang();
+  const kh = lang === "kh";
   const name = user?.displayName ?? user?.username ?? "Student";
 
   // Prevent flash by waiting until mounted for premium effects
@@ -488,80 +481,6 @@ export function StudentProfileDashboard({
               </div>
             </div>
 
-            {/* ── Public Profile Link Card ── */}
-            <div
-              style={{
-                ...style.card,
-                background: style.colors.cardBg,
-              }}
-              className={`p-5 transition-all duration-300 ${
-                theme.microAnimations ? "hover:translate-y-[-2px]" : ""
-              }`}
-            >
-              <h3 className="text-xs font-black uppercase tracking-wider opacity-65 mb-3 flex items-center gap-1.5">
-                <Eye className="w-4 h-4" />
-                Public Profile URL / គណនីសាធារណៈ
-              </h3>
-
-              <div className="flex flex-col sm:flex-row gap-2 items-stretch">
-                <div 
-                  className="flex-1 px-3 py-2 text-xs font-mono select-all overflow-x-auto whitespace-nowrap border flex items-center bg-slate-50 dark:bg-slate-900/50"
-                  style={{
-                    borderRadius: isBrutalist ? "0px" : "10px",
-                    borderColor: isBrutalist ? "#000000" : "rgba(0,0,0,0.1)",
-                    borderWidth: isBrutalist ? "2px" : "1px",
-                  }}
-                >
-                  {typeof window !== "undefined" ? `${window.location.origin}/u/${user.username}` : `https://kesararamwithdigital.tech/u/${user.username}`}
-                </div>
-                
-                <div className="flex gap-2">
-                  <button
-                    onClick={handleCopyLink}
-                    className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-black uppercase transition-all duration-200 border"
-                    style={{
-                      borderRadius: isBrutalist ? "0px" : "10px",
-                      borderColor: isBrutalist ? "#000000" : "transparent",
-                      borderWidth: isBrutalist ? "2px" : "1px",
-                      background: copied ? "#22c55e" : style.colors.primary,
-                      color: isDark && !copied ? "#0f172a" : "#ffffff",
-                      boxShadow: isBrutalist ? "2px 2px 0 #000" : undefined,
-                    }}
-                    className={`hover:opacity-95 active:scale-95 flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-black uppercase transition-all duration-200 border`}
-                  >
-                    {copied ? (
-                      <>
-                        <Check className="w-3.5 h-3.5" />
-                        Copied
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-3.5 h-3.5" />
-                        Copy
-                      </>
-                    )}
-                  </button>
-                  <a
-                    href={`/u/${user.username}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex-1 sm:flex-none flex items-center justify-center gap-1 px-4 py-2 text-xs font-black uppercase transition-all duration-200 border text-center decoration-none"
-                    style={{
-                      borderRadius: isBrutalist ? "0px" : "10px",
-                      borderColor: isBrutalist ? "#000" : style.colors.cardBorder,
-                      borderWidth: isBrutalist ? "2px" : "1px",
-                      background: isBrutalist ? style.colors.accent : style.colors.cardBg,
-                      color: style.colors.textMain,
-                      boxShadow: isBrutalist ? "2px 2px 0 #000" : undefined,
-                    }}
-                    className={`hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-95 flex items-center justify-center gap-1 px-4 py-2 text-xs font-black uppercase transition-all duration-200 border`}
-                  >
-                    <ExternalLink className="w-3.5 h-3.5" />
-                    View
-                  </a>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Right Column in Sidebar Layout (Width: 8/12), else normal row */}
@@ -570,37 +489,25 @@ export function StudentProfileDashboard({
             {/* ── Scoreboard Statistics Grid ── */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { 
-                  label: "Total Score", 
-                  labelKh: "ពិន្ទុសរុប",
-                  value: rankStats.lifetimePoints.toLocaleString(), 
-                  color: "#3b82f6", 
-                  bgGlow: "rgba(59, 130, 246, 0.08)",
-                  icon: Zap 
+                {
+                  label: "Total Score", labelKh: "ពិន្ទុសរុប",
+                  value: rankStats.lifetimePoints.toLocaleString(),
+                  color: "#3b82f6", bgGlow: "rgba(59, 130, 246, 0.08)", icon: Zap,
                 },
-                { 
-                  label: "Challenges", 
-                  labelKh: "ការប្រកួតប្រជែង",
-                  value: rankStats.totalGamesPlayed.toString(), 
-                  color: "#10b981", 
-                  bgGlow: "rgba(16, 185, 129, 0.08)",
-                  icon: BookOpen 
+                {
+                  label: "Challenges", labelKh: "ការប្រកួតប្រជែង",
+                  value: rankStats.totalGamesPlayed.toString(),
+                  color: "#10b981", bgGlow: "rgba(16, 185, 129, 0.08)", icon: BookOpen,
                 },
-                { 
-                  label: "Current Rank", 
-                  labelKh: "ចំណាត់ថ្នាក់បច្ចុប្បន្ន",
-                  value: rankStats.currentRank ? `#${rankStats.currentRank}` : "—", 
-                  color: "#f59e0b", 
-                  bgGlow: "rgba(245, 158, 11, 0.08)",
-                  icon: Trophy 
+                {
+                  label: "Current Rank", labelKh: "ចំណាត់ថ្នាក់បច្ចុប្បន្ន",
+                  value: rankStats.currentRank ? `#${rankStats.currentRank}` : "—",
+                  color: "#f59e0b", bgGlow: "rgba(245, 158, 11, 0.08)", icon: Trophy,
                 },
-                { 
-                  label: "Highest Score", 
-                  labelKh: "ពិន្ទុខ្ពស់បំផុត",
-                  value: rankStats.highestScore.toLocaleString(), 
-                  color: "#8b5cf6", 
-                  bgGlow: "rgba(139, 92, 246, 0.08)",
-                  icon: Target 
+                {
+                  label: "Highest Score", labelKh: "ពិន្ទុខ្ពស់បំផុត",
+                  value: rankStats.highestScore.toLocaleString(),
+                  color: "#8b5cf6", bgGlow: "rgba(139, 92, 246, 0.08)", icon: Target,
                 },
               ].map(({ label, labelKh, value, color, bgGlow, icon: Icon }) => (
                 <div
@@ -638,11 +545,8 @@ export function StudentProfileDashboard({
                   </div>
                   
                   <div className="flex flex-col gap-0.5">
-                    <span className="text-xs font-black tracking-wide uppercase opacity-75">
-                      {label}
-                    </span>
-                    <span className="text-[10px] font-semibold opacity-40 leading-none">
-                      {labelKh}
+                    <span className={`text-xs font-black tracking-wide uppercase opacity-75 ${kh ? "font-google-sans" : ""}`}>
+                      {kh ? labelKh : label}
                     </span>
                   </div>
                 </div>
@@ -668,12 +572,9 @@ export function StudentProfileDashboard({
                       <School className="w-5 h-5" />
                     </div>
                     <div>
-                      <h3 className="text-sm font-black uppercase tracking-wider text-slate-800 dark:text-slate-100 leading-tight">
-                        My Classroom
+                      <h3 className={`text-sm font-black uppercase tracking-wider text-slate-800 dark:text-slate-100 leading-tight ${kh ? "font-google-sans" : ""}`}>
+                        {kh ? "ថ្នាក់រៀនរបស់ខ្ញុំ" : "My Classroom"}
                       </h3>
-                      <p className="text-[10px] font-semibold opacity-50 leading-none">
-                        ថ្នាក់រៀនរបស់ខ្ញុំ
-                      </p>
                     </div>
                   </div>
                   
@@ -692,7 +593,7 @@ export function StudentProfileDashboard({
                       }}
                       className="shadow-sm"
                     >
-                      Enrolled / បានចូលរួម
+                      {kh ? "បានចូលរួម" : "Enrolled"}
                     </span>
                   )}
                 </div>
@@ -708,33 +609,33 @@ export function StudentProfileDashboard({
 
                     <div className="grid grid-cols-2 gap-4 text-xs">
                       <div>
-                        <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-0.5">School / សាលារៀន</div>
+                        <div className={`text-[9px] font-black text-slate-400 uppercase tracking-widest mb-0.5 ${kh ? "font-google-sans" : ""}`}>{kh ? "សាលារៀន" : "School"}</div>
                         <div className="font-bold opacity-90">{studentClassInfo.schoolName}</div>
                       </div>
                       <div>
-                        <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Province / ខេត្ត</div>
+                        <div className={`text-[9px] font-black text-slate-400 uppercase tracking-widest mb-0.5 ${kh ? "font-google-sans" : ""}`}>{kh ? "ខេត្ត" : "Province"}</div>
                         <div className="font-bold opacity-90">{studentClassInfo.province}</div>
                       </div>
                       <div>
-                        <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Teacher / គ្រូបង្រៀន</div>
+                        <div className={`text-[9px] font-black text-slate-400 uppercase tracking-widest mb-0.5 ${kh ? "font-google-sans" : ""}`}>{kh ? "គ្រូបង្រៀន" : "Teacher"}</div>
                         <div className="font-bold opacity-90">{studentClassInfo.teacherName ?? "—"}</div>
                       </div>
                       <div>
-                        <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-0.5">Grade Level / កម្រិតថ្នាក់</div>
+                        <div className={`text-[9px] font-black text-slate-400 uppercase tracking-widest mb-0.5 ${kh ? "font-google-sans" : ""}`}>{kh ? "កម្រិតថ្នាក់" : "Grade Level"}</div>
                         <div className="font-bold opacity-90">{studentClassInfo.gradeLevel}</div>
                       </div>
                     </div>
                   </div>
                 ) : (
                   <div className="flex flex-col gap-3 py-4 text-center sm:text-left">
-                    <p className="text-sm font-black opacity-80">
-                      You are not currently enrolled in any class.
+                    <p className={`text-sm font-black opacity-80 ${kh ? "font-google-sans" : ""}`}>
+                      {kh ? "អ្នកមិនទាន់បានចុះឈ្មោះក្នុងថ្នាក់ណាមួយទេ។" : "You are not currently enrolled in any class."}
                     </p>
-                    <p className="text-[11px] opacity-60">
-                      Ask your teacher for a class code. Below are your current registration details:
+                    <p className={`text-[11px] opacity-60 ${kh ? "font-google-sans" : ""}`}>
+                      {kh ? "សូមស្នើសុំលេខកូដថ្នាក់ពីគ្រូរបស់អ្នក។" : "Ask your teacher for a class code. Below are your current registration details:"}
                     </p>
-                    
-                    <div 
+
+                    <div
                       className="p-3 border flex flex-col gap-2 text-xs bg-slate-50 dark:bg-slate-900/30"
                       style={{
                         borderRadius: isBrutalist ? "0px" : "10px",
@@ -743,10 +644,10 @@ export function StudentProfileDashboard({
                       }}
                     >
                       <div className="grid grid-cols-2 gap-2 text-[11px]">
-                        <div><strong>School:</strong> {user.schoolName ?? "—"}</div>
-                        <div><strong>Province:</strong> {user.province ?? "—"}</div>
-                        <div><strong>Grade:</strong> {user.gradeLevel ?? "—"}</div>
-                        <div><strong>Section:</strong> {user.section ?? "—"}</div>
+                        <div><strong>{kh ? "សាលារៀន:" : "School:"}</strong> {user.schoolName ?? "—"}</div>
+                        <div><strong>{kh ? "ខេត្ត:" : "Province:"}</strong> {user.province ?? "—"}</div>
+                        <div><strong>{kh ? "ថ្នាក់:" : "Grade:"}</strong> {user.gradeLevel ?? "—"}</div>
+                        <div><strong>{kh ? "ក្រុម:" : "Section:"}</strong> {user.section ?? "—"}</div>
                       </div>
                     </div>
                   </div>
@@ -769,19 +670,16 @@ export function StudentProfileDashboard({
                       <Award className="w-5 h-5" />
                     </div>
                     <div>
-                      <h3 className="text-sm font-black uppercase tracking-wider text-slate-800 dark:text-slate-100 leading-tight">
-                        Rank Tiers
+                      <h3 className={`text-sm font-black uppercase tracking-wider text-slate-800 dark:text-slate-100 leading-tight ${kh ? "font-google-sans" : ""}`}>
+                        {kh ? "កម្រិតគណនីសិស្ស" : "Rank Tiers"}
                       </h3>
-                      <p className="text-[10px] font-semibold opacity-50 leading-none">
-                        កម្រិតគណនីសិស្ស
-                      </p>
                     </div>
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-4">
-                  <p className="text-[11px] opacity-75">
-                    Earn points by solving quizzes to rank up and claim prestigious borders and titles.
+                  <p className={`text-[11px] opacity-75 ${kh ? "font-google-sans" : ""}`}>
+                    {kh ? "ទទួលពិន្ទុដោយដោះស្រាយតេស្ត ដើម្បីឡើងថ្នាក់ និងទទួលរង្វាន់ប្រណីត។" : "Earn points by solving quizzes to rank up and claim prestigious borders and titles."}
                   </p>
 
                   {/* Progressive Rank Showcase Grid */}
