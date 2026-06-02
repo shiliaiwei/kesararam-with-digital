@@ -4,32 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useLang } from "@/context/lang-context";
-import {
-  Bolt,
-  Palette,
-  Type,
-  Image as ImageIcon,
-  Copy,
-  Check,
-  ExternalLink,
-  ChevronRight,
-  Info,
-  X,
-  FileText,
-  Sparkles,
-  Download,
-  LayoutGrid,
-  Maximize2,
-  CheckCircle2,
-  XCircle,
-  ChevronLeft,
-  Search,
-  BookOpen
-} from "lucide-react";
 
 const LOGO_PRIMARY = "/brand/kwd-black_nobackground.png";
 
-// ─── Color palette (Preserved) ──────────────────────────────────────────────
+// ─── Color palette ──────────────────────────────────────────────────────────
 const COLORS: { name: string; hex: string; role: { en: string; kh: string } }[] = [
   { name: "Yellow", hex: "#eab308", role: { en: "CTA button · warning signs · brand accent", kh: "CTA button · សញ្ញាព្រមាន · brand accent" } },
   { name: "Black",  hex: "#000000", role: { en: "Text · borders · structure",               kh: "អក្សរ · border · structure" } },
@@ -44,7 +22,7 @@ const COLORS: { name: string; hex: string; role: { en: string; kh: string } }[] 
   { name: "Gray",   hex: "#71717a", role: { en: "Metadata · code blocks · inactive",         kh: "Metadata · code block · inactive" } },
 ];
 
-// ─── Logo usage rules (Preserved) ───────────────────────────────────────────
+// ─── Logo usage rules ────────────────────────────────────────────────────────
 const RULES: { en: string; kh: string }[] = [
   { en: "Do not stretch, rotate, or distort the logo.",            kh: "កុំទាញ, បង្វិល ឬធ្វើ logo ខូចទ្រង់ទ្រាយ។" },
   { en: "Do not apply drop shadows, gradients, or filters.",       kh: "កុំដាក់ shadow, gradient ឬ filter លើ logo។" },
@@ -56,7 +34,7 @@ const RULES: { en: string; kh: string }[] = [
   { en: "Only kwd-black_nobackground.png is the approved logo.",   kh: "kwd-black_nobackground.png ប៉ុណ្ណោះ ជា logo digital ផ្លូវការ។" },
 ];
 
-// ─── Product mockups (Preserved) ────────────────────────────────────────────
+// ─── Product mockups ─────────────────────────────────────────────────────────
 const MOCKUP_ASSETS: { src: string; title: { en: string; kh: string } }[] = [
   { src: "/brand/tote_stationery_mockup.png",    title: { en: "Tote & Stationery Set",      kh: "កាបូប & Stationery Set" } },
   { src: "/brand/educational_blocks_mockup.png", title: { en: "Educational Toys & Cards",   kh: "ដុំឈើ & Learning Cards" } },
@@ -64,13 +42,13 @@ const MOCKUP_ASSETS: { src: string; title: { en: string; kh: string } }[] = [
   { src: "/brand/apparel_brand_mockup.png",      title: { en: "Premium Brand Apparel",      kh: "Brand Apparel" } },
 ];
 
-// ─── Section index (Preserved) ──────────────────────────────────────────────
-const SECTIONS: { id: string; num: string; icon: any; accent: string; title: { en: string; kh: string } }[] = [
-  { id: "name",  num: "01", icon: FileText,   accent: "#eab308", title: { en: "Brand Name & Meaning", kh: "ឈ្មោះ Brand និងន័យ" } },
-  { id: "logo",  num: "02", icon: Bolt,       accent: "#3b82f6", title: { en: "Logo",          kh: "Logo" } },
-  { id: "color", num: "03", icon: Palette,    accent: "#a855f7", title: { en: "Color Palette", kh: "Color Palette" } },
-  { id: "type",  num: "04", icon: Type,       accent: "#22c55e", title: { en: "Typography",    kh: "Typography" } },
-  { id: "apply", num: "05", icon: ImageIcon,  accent: "#f97316", title: { en: "Applications",  kh: "ការប្រើប្រាស់" } },
+// ─── Section index ──────────────────────────────────────────────────────────
+const SECTIONS: { id: string; num: string; title: { en: string; kh: string } }[] = [
+  { id: "name",  num: "01", title: { en: "Brand Name & Meaning", kh: "ឈ្មោះ Brand និងន័យ" } },
+  { id: "logo",  num: "02", title: { en: "Logo",          kh: "Logo" } },
+  { id: "color", num: "03", title: { en: "Color Palette", kh: "Color Palette" } },
+  { id: "type",  num: "04", title: { en: "Typography",    kh: "Typography" } },
+  { id: "apply", num: "05", title: { en: "Applications",  kh: "ការប្រើប្រាស់" } },
 ];
 
 export function BrandGuidelineClient() {
@@ -79,34 +57,7 @@ export function BrandGuidelineClient() {
   const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
   const t = (en: string, k: string) => (kh ? k : en);
 
-  // States
   const [active, setActive] = useState<string>(SECTIONS[0].id);
-  const [logoBg, setLogoBg] = useState<string>("white");
-  const [logoInvert, setLogoInvert] = useState<boolean>(false);
-  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
-  const [copiedCodeText, setCopiedCodeText] = useState<string | null>(null);
-  const [previewText, setPreviewText] = useState<string>("");
-  const [selectedMockup, setSelectedMockup] = useState<number | null>(null);
-  const [showToast, setShowToast] = useState<boolean>(false);
-  const [toastMessage, setToastMessage] = useState<string>("");
-
-  // Toast notifier
-  const triggerToast = (message: string) => {
-    setToastMessage(message);
-    setShowToast(true);
-  };
-
-  useEffect(() => {
-    if (showToast) {
-      const timer = setTimeout(() => setShowToast(false), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [showToast]);
-
-  const copyToClipboard = (text: string, label: string) => {
-    navigator.clipboard.writeText(text);
-    triggerToast(kh ? `បានចម្លង ${label} ទៅ Clipboard! ⚡` : `Copied ${label} to clipboard! ⚡`);
-  };
 
   // Scroll-spy
   useEffect(() => {
@@ -116,7 +67,7 @@ export function BrandGuidelineClient() {
           if (e.isIntersecting) setActive(e.target.id);
         });
       },
-      { rootMargin: "-20% 0px -60% 0px", threshold: 0 }
+      { rootMargin: "-30% 0px -50% 0px", threshold: 0 }
     );
     SECTIONS.forEach((s) => {
       const el = document.getElementById(s.id);
@@ -126,858 +77,276 @@ export function BrandGuidelineClient() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50/50 dark:bg-zinc-950 text-slate-900 dark:text-zinc-100 transition-colors duration-300 dot-bg">
+    <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-300">
       
-      {/* ════ HERO — Spec Cover (Sleek Pro UI & Refined DNA) ═════════════════════ */}
-      <header className="relative overflow-hidden bg-white dark:bg-zinc-900 border-b border-slate-200 dark:border-zinc-800">
-        
-        {/* Micro Caution Accent Line */}
-        <div className="absolute top-0 inset-x-0 h-1 caution-tape z-20" />
-
-        {/* Blueprint Grid Overlay (Subtle) */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.04] dark:opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)",
-            backgroundSize: "32px 32px",
-          }}
-        />
-
-        {/* Corner registration crosshairs (Crisp & Thin) */}
-        <CornerCrosshairs containerClass="absolute inset-0 p-6 sm:p-8 opacity-40 pointer-events-none" color="border-slate-300 dark:border-zinc-700" />
-
-        {/* Hero content */}
-        <div className="relative z-10 mx-auto max-w-5xl px-5 sm:px-8 pt-24 sm:pt-28 md:pt-32 pb-14 sm:pb-18 flex flex-col items-center text-center">
-          
-          {/* Logo Tile - Minimalist & Sleek */}
-          <div className="group relative mb-6 rounded-2xl border border-slate-200/80 dark:border-zinc-800 bg-white p-5 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden">
+      {/* ════ HERO ════════════════════════════════════════════════════════ */}
+      <header className="max-w-5xl mx-auto px-6 pt-20 pb-12 border-b border-zinc-100 dark:border-zinc-800">
+        <div className="flex flex-col items-start gap-4">
+          <div className="relative w-16 h-16 border border-zinc-200 dark:border-zinc-800 rounded-xl overflow-hidden bg-white p-2">
             <Image
               src={LOGO_PRIMARY}
               alt="KWD Logo"
-              width={96}
-              height={96}
-              className="object-contain w-20 h-20 sm:w-24 sm:h-24 group-hover:scale-[1.03] transition-transform duration-200"
+              width={64}
+              height={64}
+              className="object-contain"
               priority
             />
-            {/* Fine caution underline */}
-            <div className="absolute bottom-0 inset-x-0 h-[3px] caution-tape" />
+          </div>
+          
+          <div className="flex items-center gap-3">
+            <h1 className="text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-white">KWD</h1>
+            <span className="px-2 py-0.5 border border-zinc-200 dark:border-zinc-800 text-[10px] text-zinc-500 rounded-full font-mono uppercase">v1.0</span>
           </div>
 
-          {/* Eyebrow badge pills - Pro outline style */}
-          <div className="mb-5 flex flex-wrap items-center justify-center gap-2">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-yellow-500/20 bg-yellow-500/5 text-yellow-700 dark:text-yellow-400 px-3.5 py-1 text-xs font-semibold" style={kf}>
-              <span className="h-1.5 w-1.5 rounded-full bg-yellow-500 animate-pulse" />
-              <span>{t("Brand Guideline", "Brand Guideline")}</span>
-            </span>
-            <span className="rounded-full border border-slate-200 dark:border-zinc-800 bg-slate-100/50 dark:bg-zinc-800 px-3 py-1 text-xs font-semibold text-slate-500 dark:text-zinc-400">
-              v1.0
-            </span>
-            <span className="rounded-full border border-slate-200 dark:border-zinc-800 bg-slate-100/50 dark:bg-zinc-800 px-3 py-1 text-xs font-semibold text-slate-500 dark:text-zinc-400">
-              EN · ខ្មែរ
-            </span>
-          </div>
-
-          {/* Main wordmark title - Sleek Pro Font and soft drop glow */}
-          <h1
-            className="max-w-full font-black tracking-tight leading-[0.9] text-slate-900 dark:text-white select-none filter drop-shadow-sm"
-            style={{ fontSize: "clamp(4rem, 14vw, 8.5rem)" }}
-          >
-            K<span className="text-yellow-500 relative">W<span className="absolute -top-3 -right-3 text-[10px] font-mono font-normal text-slate-400 tracking-normal select-none hidden sm:inline">[DNA]</span></span>D
-          </h1>
-
-          {/* Elegant separation */}
-          <div className="mt-6 mb-6 flex items-center justify-center gap-3">
-            <div className="h-[1px] w-12 bg-slate-200 dark:bg-zinc-800" />
-            <Bolt className="w-5 h-5 text-yellow-500 shrink-0" />
-            <div className="h-[1px] w-12 bg-slate-200 dark:bg-zinc-800" />
-          </div>
-
-          {/* Description */}
-          <p className="max-w-md sm:max-w-xl text-sm sm:text-base text-slate-500 dark:text-zinc-400 font-medium leading-relaxed" style={kf}>
+          <p className="max-w-xl text-base text-zinc-500 dark:text-zinc-400 font-medium leading-relaxed" style={kf}>
             {t(
               "Visual identity, design standards, and usage rules that define KWD across every surface.",
               "អត្តសញ្ញាណដែលមើលឃើញ ស្តង់ដាររចនា និងច្បាប់ប្រើប្រាស់ដែលកំណត់ KWD ។"
             )}
           </p>
         </div>
-
-        {/* Dual Marquee strip - Refined clean layout */}
-        <div className="relative z-10 border-t border-b border-slate-100 dark:border-zinc-800 bg-slate-50/70 dark:bg-zinc-900/60 py-2.5 divide-y divide-slate-100 overflow-hidden">
-          <div className="flex select-none overflow-hidden">
-            {[0, 1].map((track) => (
-              <div
-                key={track}
-                aria-hidden={track === 1}
-                className="flex shrink-0 items-center animate-marquee"
-                style={{ ["--duration" as any]: "30s", ["--gap" as any]: "0px" }}
-              >
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <span key={i} className="flex items-center">
-                    <Bolt className="text-yellow-500 w-3.5 h-3.5 mx-6 shrink-0" />
-                    {kh ? (
-                      <span className="text-xs text-slate-600 dark:text-zinc-300 font-bold whitespace-nowrap">
-                        រៀនដើម្បីដឹង · ប្រកួតដើម្បីពូកែ · ការពារដើម្បីជីវិត
-                      </span>
-                    ) : (
-                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500 dark:text-zinc-400 whitespace-nowrap">
-                        Learn to know · Compete to excel · Protect for life
-                      </span>
-                    )}
-                  </span>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
       </header>
 
       {/* ════ MAIN CONTAINER ═══════════════════════════════════════════════ */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-
-        {/* Mobile Sticky Navigation (Clean block) */}
-        <nav className="lg:hidden sticky top-14 z-30 -mx-4 px-4 py-2.5 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md border-b border-slate-200 dark:border-zinc-800">
-          <div className="flex gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-0.5">
+      <div className="max-w-5xl mx-auto px-6 py-12">
+        <div className="grid gap-12 lg:grid-cols-[200px_1fr] items-start">
+          
+          {/* Sidebar Nav */}
+          <aside className="hidden lg:block sticky top-24 space-y-1">
             {SECTIONS.map((s) => {
               const on = active === s.id;
-              const IconComp = s.icon;
               return (
-                <button
+                <a
                   key={s.id}
-                  onClick={() => {
-                    const el = document.getElementById(s.id);
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className={`flex flex-shrink-0 items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-xs font-semibold tracking-wide transition-all ${
+                  href={`#${s.id}`}
+                  className={`block px-3 py-2 text-xs font-semibold rounded-lg transition-colors ${
                     on
-                      ? "bg-slate-900 text-white border-slate-900 dark:bg-white dark:text-black dark:border-white shadow-sm"
-                      : "bg-white text-slate-600 border-slate-200 dark:bg-zinc-900 dark:text-zinc-400 dark:border-zinc-800"
+                      ? "bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-white"
+                      : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
                   }`}
                   style={kf}
                 >
-                  <IconComp className="w-3.5 h-3.5" style={{ color: on ? s.accent : "#9ca3af" }} />
-                  <span>{t(s.title.en, s.title.kh)}</span>
-                </button>
+                  <span className="mr-2 font-mono opacity-50">{s.num}</span>
+                  {t(s.title.en, s.title.kh)}
+                </a>
               );
             })}
-          </div>
-        </nav>
-
-        {/* Split sidebar layout */}
-        <div className="grid gap-8 py-12 md:py-16 lg:grid-cols-[250px_1fr] lg:gap-12 items-start">
-          
-          {/* Desktop Left TOC (Sleek Clean Deck) */}
-          <aside className="hidden lg:block sticky top-24 z-20">
-            <div className="rounded-2xl border border-slate-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md p-4 shadow-sm space-y-1 relative">
-              <div className="px-2.5 py-1 mb-1.5">
-                <span className="text-[10px] font-bold tracking-[0.2em] text-slate-400 uppercase">{t("DOCUMENTATION", "កម្រងណែនាំ")}</span>
-              </div>
-              {SECTIONS.map((s) => {
-                const on = active === s.id;
-                const IconComp = s.icon;
-                return (
-                  <a
-                    key={s.id}
-                    href={`#${s.id}`}
-                    className={`group flex items-center justify-between rounded-xl px-3 py-2.5 transition-all duration-150 ${
-                      on
-                        ? "bg-slate-100 text-slate-900 dark:bg-zinc-800 dark:text-white font-bold"
-                        : "text-slate-500 hover:text-slate-900 hover:bg-slate-50 dark:text-zinc-400 dark:hover:text-white dark:hover:bg-zinc-800/50"
-                    }`}
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <span
-                        className="flex h-5 w-5 items-center justify-center rounded-md text-[9px] font-bold border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-900"
-                        style={{ color: on ? s.accent : "#94a3b8" }}
-                      >
-                        {s.num}
-                      </span>
-                      <span className="text-xs tracking-wide leading-tight" style={kf}>
-                        {t(s.title.en, s.title.kh)}
-                      </span>
-                    </div>
-                    <ChevronRight className={`w-3.5 h-3.5 transition-transform duration-150 ${on ? "translate-x-0.5 opacity-100" : "opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5"}`} />
-                  </a>
-                );
-              })}
-            </div>
           </aside>
 
-          {/* Content sections stack */}
-          <div className="min-w-0 space-y-12 sm:space-y-16">
+          {/* Sections Stack */}
+          <div className="space-y-16">
 
-            {/* ════ 01 — BRAND NAME ════════════════════════════════════════ */}
-            <SectionShell s={SECTIONS[0]} title={t(SECTIONS[0].title.en, SECTIONS[0].title.kh)} kf={kf}>
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 leading-relaxed">
-                
-                {/* Visual narrative panel */}
-                <div className="md:col-span-8 space-y-5 text-sm sm:text-base text-slate-600 dark:text-zinc-300 font-medium" style={kf}>
-                  {kh ? (
-                    <>
-                      <p>
-                        <strong className="text-slate-900 dark:text-white font-bold">KWD</strong>{" "}
-                        មានន័យថា <strong className="text-slate-900 dark:text-white font-bold">Kesararam With Digital</strong> — ឈ្មោះដែលផ្ទុកន័យនៃទីកន្លែង គោលដៅ និងការផ្លាស់ប្ដូរ។ កេសរារាម ជាឈ្មោះវត្ត អារាម និងសាលាបឋមសិក្សា — ជាកន្លែងរៀនចំណាស់បំផុតក្នុងសហគមន៍។ ពាក្យ With មិនមែនជាឈ្នាប់ វាប្រកាសពីភាពជាដៃគូរវាងប្រពៃណី និង technology។ ឌីជីថល (Digital) មិនមែនត្រឹមតែជាឧបករណ៍សម្រាប់ផ្សព្វផ្សាយនោះទេ — ប៉ុន្តែវាគឺជាការប្តេជ្ញាចិត្តក្នុងការផ្តល់ជូននូវ ឱកាសខិតជិត (Access) ការពង្រីកវិសាលភាព (Reach) និងនិរន្តរភាព (Permanence)។
-                      </p>
-                      <p>
-                        KWD ត្រូវបានបង្កើតឡើងដោយយុវនារីខ្មែរនៃសាលាបឋមសិក្សា កេសរារាម ក្រោមទស្សនវិស័យមួយថា៖ ការអប់រំអំពីសុវត្ថិភាពចរាចរណ៍ដែលសង្គ្រោះជីវិតមនុស្ស បានគួរតែផ្តល់ជូនដោយឥតគិតថ្លៃ មានលក្ខណៈអន្តរកម្ម និងងាយស្រួលចូលប្រើប្រាស់ជាភាសាកំណើតរបស់សិស្សគ្រប់រូប។ ឈ្មោះនេះបញ្ជាក់ឱ្យឃើញថា ការអប់រំមិនបានបោះបង់ចោលអត្តសញ្ញាណ និងឫសគល់វប្បធម៌នៅក្នុងយុគសម័យឌីជីថលនោះទេ — ប៉ុន្តែវាគឺជាការជំរុញឱ្យឫសគល់ទាំងនោះ កាន់តែរីកចម្រើនទៅមុខតាមបច្ចេកវិទ្យា។
-                      </p>
-                    </>
-                  ) : (
-                    <>
-                      <p>
-                        <strong className="text-slate-900 dark:text-white font-bold">KWD</strong>{" "}
-                        stands for{" "}
-                        <strong className="text-slate-900 dark:text-white font-bold">Kesararam With Digital</strong>
-                        {" "}— a name that carries the weight of place, purpose, and transformation. Kesararam is a monastery and primary school — the oldest seat of learning in its community. The word With is not a conjunction — it declares partnership between tradition and technology. Digital is not a medium — it is a commitment to access, reach, and permanence.
-                      </p>
-                      <p>
-                        KWD exists because young Cambodian women from Kesararam decided that road safety knowledge — knowledge that saves lives — should be free, interactive, and available to every student in their own language. The name asserts that education does not abandon its roots when it enters the digital age. It carries them forward.
-                      </p>
-                    </>
-                  )}
-                </div>
-
-                {/* Pill pillar cards */}
-                <div className="md:col-span-4 flex flex-col gap-3">
-                  {[
-                    { char: "K", label: "Kesararam", desc: t("Heritage & local roots", "កេរ្តិ៍ដំណែល និងឫសគល់ក្នុងតំបន់"), color: "text-yellow-600 bg-yellow-50 dark:bg-yellow-950/20 border-yellow-200/50" },
-                    { char: "W", label: "With", desc: t("Partnership & connection", "ភាពជាដៃគូ និងការតភ្ជាប់"), color: "text-cyan-600 bg-cyan-50 dark:bg-cyan-950/20 border-cyan-200/50" },
-                    { char: "D", label: "Digital", desc: t("AI access & permanence", "លទ្ធភាពទទួលបាន AI & និរន្តរភាព"), color: "text-purple-600 bg-purple-50 dark:bg-purple-950/20 border-purple-200/50" }
-                  ].map((pillar) => (
-                    <div key={pillar.char} className="rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-3.5 flex gap-3.5 shadow-sm hover:scale-[1.01] transition-transform">
-                      <span className={`text-lg font-bold w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border ${pillar.color}`}>{pillar.char}</span>
-                      <div>
-                        <p className="text-xs font-bold uppercase text-slate-800 dark:text-zinc-200">{pillar.label}</p>
-                        <p className="text-[10px] text-slate-400 dark:text-zinc-500 mt-0.5 leading-tight font-medium" style={kf}>
-                          {pillar.desc}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+            {/* 01 — BRAND NAME */}
+            <section id={SECTIONS[0].id} className="scroll-mt-24">
+              <div className="border-b border-zinc-100 dark:border-zinc-800 pb-3 mb-6">
+                <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest block mb-1">{SECTIONS[0].num}</span>
+                <h2 className="text-xl font-bold uppercase text-zinc-900 dark:text-white" style={kf}>
+                  {t(SECTIONS[0].title.en, SECTIONS[0].title.kh)}
+                </h2>
               </div>
-
-              {/* Recommended Usage Block - Clean Box */}
-              <div className="mt-8 relative overflow-hidden rounded-2xl border border-amber-200 dark:border-amber-900/40 bg-amber-500/[0.03] p-5 sm:p-6">
-                
-                {/* Thin top caution accent */}
-                <div className="absolute top-0 inset-x-0 h-[2px] caution-tape" />
-                
-                <p className="mb-2.5 inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-amber-600 dark:text-amber-500" style={kf}>
-                  <Sparkles className="w-3.5 h-3.5" />
-                  {t("Recommended Usage", "ការប្រើប្រាស់និងការណែនាំ")}
-                </p>
-                <p className="text-xs sm:text-sm font-semibold text-slate-600 dark:text-zinc-300 leading-relaxed" style={kf}>
-                  {kh ? (
-                    <>
-                      ត្រូវប្រើឈ្មោះពេញ <strong className="text-slate-900 dark:text-white font-semibold">«Kesararam With Digital»</strong> សម្រាប់ការណែនាំម៉ាកយីហោ (Brand) លើកដំបូង ក្នុងកម្មវិធីសារព័ត៌មាន បទបង្ហាញ ឯកសារផ្លូវការ និងដៃគូសហការ។ លោកអ្នកអាចប្រើពាក្យកាត់ <strong className="text-slate-900 dark:text-white font-semibold">«KWD»</strong> នៅផ្នែកបន្ទាប់ ក្រោយពេលដែលបានបង្ហាញឈ្មោះពេញរួច។
-                    </>
-                  ) : (
-                    <>
-                      Always use the full name{" "}
-                      <strong className="text-slate-900 dark:text-white font-semibold">Kesararam With Digital</strong>
-                      {" "}when introducing the brand for the first time — in press, presentations, official documents, and partnerships. The abbreviation{" "}
-                      <strong className="text-slate-900 dark:text-white font-semibold">KWD</strong>
-                      {" "}may be used in subsequent references once the full name has been established.
-                    </>
-                  )}
-                </p>
-              </div>
-            </SectionShell>
-
-            {/* ════ 02 — LOGO ══════════════════════════════════════════════ */}
-            <SectionShell s={SECTIONS[1]} title={t(SECTIONS[1].title.en, SECTIONS[1].title.kh)} kf={kf}>
               
-              {/* Logo Philosophy meaning banner */}
-              <div className="relative overflow-hidden rounded-2xl border border-blue-100 dark:border-blue-900/30 bg-blue-50/20 dark:bg-zinc-900/30 p-5 sm:p-6">
-                <p className="mb-3.5 inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400" style={kf}>
-                  <Bolt className="w-4 h-4 text-blue-500 animate-pulse shrink-0" />
-                  {t("Logo Meaning", "ន័យ Logo")}
-                </p>
+              <div className="space-y-4 text-sm sm:text-base text-zinc-600 dark:text-zinc-300 font-medium leading-relaxed" style={kf}>
                 {kh ? (
-                  <div className="space-y-3.5 text-xs sm:text-sm text-slate-600 dark:text-zinc-300 leading-relaxed font-semibold" style={kf}>
+                  <>
                     <p>
-                      និមិត្តសញ្ញាផ្លេកបន្ទោរនៅលើឡូហ្គោ KWD មិនមែនជាការតុបតែងលម្អឡើយ តែវាជាទស្សនវិជ្ជាស្នូលរបស់ Brand។ វាផ្ដល់អត្ថន័យដល់{" "}
-                      <strong className="text-slate-900 dark:text-white font-bold">Flash Learning</strong>{" "}
-                      ដោយឈរលើជំនឿថា ក្នុងយុគសម័យ AI ចំណេះដឹងត្រូវតែដើរក្នុងល្បឿននៃពន្លឺ។
+                      <strong>KWD</strong> មានន័យថា <strong>Kesararam With Digital</strong> — ឈ្មោះដែលផ្ទុកន័យនៃទីកន្លែង គោលដៅ និងការផ្លាស់ប្ដូរ។ កេសរារាម ជាឈ្មោះវត្ត អារាម និងសាលាបឋមសិក្សា — ជាកន្លែងរៀនចំណាស់បំផុតក្នុងសហគមន៍។ ពាក្យ With មិនមែនជាឈ្នាប់ វាប្រកាសពីភាពជាដៃគូរវាងប្រពៃណី និង technology។ ឌីជីថល (Digital) មិនមែនត្រឹមតែជាឧបករណ៍សម្រាប់ផ្សព្វផ្សាយនោះទេ — ប៉ុន្តែវាគឺជាការប្តេជ្ញាចិត្តក្នុងការផ្តល់ជូននូវ ឱកាសខិតជិត (Access) ការពង្រីកវិសាលភាព (Reach) និងនិរន្តរភាព (Permanence)។
                     </p>
                     <p>
-                      ស្របពេលដែល Automation កំពុងផ្លាស់ប្ដូររាល់ឧស្សាហកម្ម បច្ចេកវិទ្យានៃអនាគតជារបស់អ្នកដែលរៀនសូត្រនៅថ្ងៃនេះ។ និមិត្តសញ្ញានេះជាការប្ដេជ្ញាចិត្តរបស់{" "}
-                      <strong className="text-slate-900 dark:text-white font-bold">Kesararam With Digital</strong>{" "}
-                      ក្នុងការផ្ដល់នូវល្បឿន ឧបករណ៍ និងទំនុកចិត្ត ដើម្បីសិក្សារួមគ្នាជាមួយ AI និងដឹកនាំការផ្លាស់ប្ដូរនាពេលខាងមុខ។
+                      KWD ត្រូវបានបង្កើតឡើងដោយយុវនារីខ្មែរនៃសាលាបឋមសិក្សា កេសរារាម ក្រោមទស្សនវិស័យមួយថា៖ ការអប់រំអំពីសុវត្ថិភាពចរាចរណ៍ដែលសង្គ្រោះជីវិតមនុស្ស បានគួរតែផ្តល់ជូនដោយឥតគិតថ្លៃ មានលក្ខណៈអន្តរកម្ម និងងាយស្រួលចូលប្រើប្រាស់ជាភាសាកំណើតរបស់សិស្សគ្រប់រូប។ ឈ្មោះនេះបញ្ជាក់ឱ្យឃើញថា ការអប់រំមិនបានបោះបង់ចោលអត្តសញ្ញាណ និងឫសគល់វប្បធម៌នៅក្នុងយុគសម័យឌីជីថលនោះទេ — ប៉ុន្តែវាគឺជាការជំរុញឱ្យឫសគល់ទាំងនោះ កាន់តែរីកចម្រើនទៅមុខតាមបច្ចេកវិទ្យា។
                     </p>
-                  </div>
+                  </>
                 ) : (
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-zinc-300 leading-relaxed font-semibold">
-                    The lightning bolt at the heart of the KWD mark is not ornamental — it is the brand&apos;s core belief made visible. It stands for{" "}
-                    <strong className="text-slate-900 dark:text-white font-bold">Flash Learning</strong>
-                    {" "}— the conviction that in the age of AI, knowledge moves at the speed of light. Automation is rewriting every industry. The tools of the future belong to those who learn now. The bolt is our promise:{" "}
-                    <strong className="text-slate-900 dark:text-white font-bold">Kesararam With Digital</strong>
-                    {" "}will always give every Cambodian student the speed, the tools, and the confidence to learn with AI — and lead what comes next.
-                  </p>
+                  <>
+                    <p>
+                      <strong>KWD</strong> stands for <strong>Kesararam With Digital</strong> — a name that carries the weight of place, purpose, and transformation. Kesararam is a monastery and primary school — the oldest seat of learning in its community. The word With is not a conjunction — it declares partnership between tradition and technology. Digital is not a medium — it is a commitment to access, reach, and permanence.
+                    </p>
+                    <p>
+                      KWD exists because young Cambodian women from Kesararam decided that road safety knowledge — knowledge that saves lives — should be free, interactive, and available to every student in their own language. The name asserts that education does not abandon its roots when it enters the digital age. It carries them forward.
+                    </p>
+                  </>
                 )}
               </div>
 
-              {/* ─── Logo Visualizer Playground (Pro UI Console Deck) ─── */}
-              <div className="mt-8 border border-slate-200 dark:border-zinc-800 rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 shadow-sm">
+              <div className="mt-6 p-4 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800">
+                <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-1" style={kf}>{t("Recommended Usage", "ការប្រើប្រាស់និងការណែនាំ")}</p>
+                <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-medium leading-relaxed" style={kf}>
+                  {kh ? (
+                    <>ត្រូវប្រើឈ្មោះពេញ <strong>«Kesararam With Digital»</strong> សម្រាប់ការណែនាំម៉ាកយីហោ (Brand) លើកដំបូង ក្នុងកម្មវិធីសារព័ត៌មាន បទបង្ហាញ ឯកសារផ្លូវការ និងដៃគូសហការ។ លោកអ្នកអាចប្រើពាក្យកាត់ <strong>«KWD»</strong> នៅផ្នែកបន្ទាប់ ក្រោយពេលដែលបានបង្ហាញឈ្មោះពេញរួច។</>
+                  ) : (
+                    <>Always use the full name <strong>Kesararam With Digital</strong> when introducing the brand for the first time — in press, presentations, official documents, and partnerships. The abbreviation <strong>KWD</strong> may be used in subsequent references once the full name has been established.</>
+                  )}
+                </p>
+              </div>
+            </section>
+
+            {/* 02 — LOGO */}
+            <section id={SECTIONS[1].id} className="scroll-mt-24">
+              <div className="border-b border-zinc-100 dark:border-zinc-800 pb-3 mb-6">
+                <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest block mb-1">{SECTIONS[1].num}</span>
+                <h2 className="text-xl font-bold uppercase text-zinc-900 dark:text-white" style={kf}>
+                  {t(SECTIONS[1].title.en, SECTIONS[1].title.kh)}
+                </h2>
+              </div>
+
+              <div className="p-4 rounded-xl bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 mb-6 text-sm text-zinc-600 dark:text-zinc-300 font-medium leading-relaxed" style={kf}>
+                <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-2">{t("Logo Meaning", "ន័យ Logo")}</p>
+                {kh ? (
+                  <>
+                    និមិត្តសញ្ញាផ្លេកបន្ទោរនៅលើឡូហ្គោ KWD មិនមែនជាការតុបតែងលម្អឡើយ តែវាជាទស្សនវិជ្ជាស្នូលរបស់ Brand។ វាផ្ដល់អត្ថន័យដល់ <strong>Flash Learning</strong> ដោយឈរលើជំនឿថា ក្នុងយុគសម័យ AI ចំណេះដឹងត្រូវតែដើរក្នុងល្បឿននៃពន្លឺ។ ស្របពេលដែល Automation កំពុងផ្លាស់ប្ដូររាល់ឧស្សាហកម្ម បច្ចេកវិទ្យានៃអនាគតជារបស់អ្នកដែលរៀនសូត្រនៅថ្ងៃនេះ។ និមិត្តសញ្ញានេះជាការប្ដេជ្ញាចិត្តរបស់ <strong>Kesararam With Digital</strong> ក្នុងការផ្ដល់នូវល្បឿន ឧបករណ៍ និងទំនុកចិត្ត ដើម្បីសិក្សារួមគ្នាជាមួយ AI និងដឹកនាំការផ្លាស់ប្ដូរនាពេលខាងមុខ។
+                  </>
+                ) : (
+                  <>
+                    The lightning bolt at the heart of the KWD mark is not ornamental — it is the brand&apos;s core belief made visible. It stands for <strong>Flash Learning</strong> — the conviction that in the age of AI, knowledge moves at the speed of light. Automation is rewriting every industry. The tools of the future belong to those who learn now. The bolt is our promise: <strong>Kesararam With Digital</strong> will always give every Cambodian student the speed, the tools, and the confidence to learn with AI — and lead what comes next.
+                  </>
+                )}
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-4 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 flex flex-col items-center">
+                  <div className="h-28 flex items-center justify-center p-4">
+                    <Image src={LOGO_PRIMARY} alt="KWD Logo" width={80} height={80} className="object-contain" />
+                  </div>
+                  <span className="text-[10px] font-mono text-zinc-400 mt-2">kwd-black_nobackground.png</span>
+                  <span className="text-[9px] font-bold text-zinc-500 mt-1 uppercase tracking-wider">{t("On Light Backgrounds", "លើ background ភ្លឺ")}</span>
+                </div>
                 
-                {/* Visualizer header */}
-                <div className="px-5 py-3 border-b border-slate-100 dark:border-zinc-800 flex flex-wrap items-center justify-between gap-4 bg-slate-50/50 dark:bg-zinc-900/60">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-blue-500" />
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-zinc-400" style={kf}>
-                      {t("Logo Contrast Testing", "សាកល្បងឡូហ្គោអន្តរកម្ម")}
-                    </span>
+                <div className="p-4 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-zinc-950 flex flex-col items-center">
+                  <div className="h-28 flex items-center justify-center p-4">
+                    <Image src={LOGO_PRIMARY} alt="KWD Logo" width={80} height={80} className="object-contain invert" />
                   </div>
-                  
-                  {/* Selector swatches */}
-                  <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-zinc-800 p-1 rounded-full border border-slate-200/50 dark:border-zinc-800">
-                    {[
-                      { id: "white", bg: "bg-white", border: "border-slate-200" },
-                      { id: "dark", bg: "bg-slate-900", border: "border-slate-800" },
-                      { id: "yellow", bg: "bg-yellow-400", border: "border-yellow-500" },
-                      { id: "cyan", bg: "bg-cyan-400", border: "border-cyan-500" },
-                      { id: "green", bg: "bg-green-500", border: "border-green-600" },
-                      { id: "red", bg: "bg-red-500", border: "border-red-600" }
-                    ].map((btn) => (
-                      <button
-                        key={btn.id}
-                        onClick={() => setLogoBg(btn.id)}
-                        className={`w-4.5 h-4.5 rounded-full ${btn.bg} ${btn.border} border cursor-pointer transition-all duration-150 ${logoBg === btn.id ? "scale-115 ring-2 ring-slate-400 dark:ring-white shadow-sm" : "hover:scale-105 opacity-80"}`}
-                        title={btn.id}
-                      />
-                    ))}
-                  </div>
-                </div>
-
-                {/* Sandbox Frame */}
-                <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-100 dark:divide-zinc-800">
-                  
-                  {/* Logo container */}
-                  <div className={`h-60 flex flex-col items-center justify-center p-6 relative transition-colors duration-300 ${
-                    logoBg === "white" ? "bg-white" :
-                    logoBg === "dark" ? "bg-zinc-950" :
-                    logoBg === "yellow" ? "bg-yellow-400" :
-                    logoBg === "cyan" ? "bg-cyan-400" :
-                    logoBg === "green" ? "bg-green-500" : "bg-red-500"
-                  }`}>
-                    <Image
-                      src={LOGO_PRIMARY}
-                      alt="KWD Brand Logo"
-                      width={128}
-                      height={128}
-                      className={`object-contain max-h-32 transition-all duration-300 ${logoInvert ? "invert" : ""}`}
-                    />
-                    
-                    {/* Contrast badge indicator */}
-                    <div className="absolute bottom-3 left-3 px-2 py-1 bg-black/80 rounded-md text-[9px] text-white font-mono flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                      <span>{logoBg.toUpperCase()} SURFACE</span>
-                    </div>
-                  </div>
-
-                  {/* Dev resource side panel */}
-                  <div className="p-4 sm:p-5 flex flex-col justify-between bg-slate-50/30 dark:bg-zinc-900/20">
-                    <div className="space-y-4">
-                      <div>
-                        <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400">{t("ASSET FILENAME", "ឈ្មោះឯកសារ Asset")}</span>
-                        <p className="text-xs font-bold text-slate-700 dark:text-zinc-300 mt-0.5">kwd-black_nobackground.png</p>
-                      </div>
-                      
-                      {/* Interactive CSS toggle */}
-                      <div className="flex items-center justify-between border border-slate-200/60 dark:border-zinc-800 rounded-xl p-3 bg-white dark:bg-zinc-900">
-                        <div>
-                          <p className="text-xs font-bold text-slate-800 dark:text-zinc-200" style={kf}>
-                            {t("Invert Contrast (CSS)", "ប្ដូរ Contrast ឡូហ្គោ (CSS)")}
-                          </p>
-                          <p className="text-[10px] text-slate-400 font-medium mt-0.5" style={kf}>
-                            {t("Apply filter: invert(1)", "អនុវត្ត filter: invert(1)")}
-                          </p>
-                        </div>
-                        <button
-                          onClick={() => setLogoInvert(!logoInvert)}
-                          className={`w-9 h-5.5 flex items-center rounded-full p-0.5 cursor-pointer transition-colors duration-200 ${logoInvert ? "bg-blue-500" : "bg-slate-200 dark:bg-zinc-800"}`}
-                        >
-                          <span className={`w-4 h-4 bg-white rounded-full shadow-sm transform transition-transform duration-200 ${logoInvert ? "translate-x-3.5" : "translate-x-0"}`} />
-                        </button>
-                      </div>
-
-                      {/* Code Snippet Box */}
-                      <div>
-                        <div className="flex items-center justify-between mb-1.5">
-                          <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400">{t("HTML CODE", "កូដ HTML")}</span>
-                          <button
-                            onClick={() => {
-                              const code = `<img src="${LOGO_PRIMARY}" alt="KWD Logo" style="${logoInvert ? 'filter: invert(1);' : ''}" />`;
-                              copyToClipboard(code, "HTML snippet");
-                              setCopiedCodeText("html");
-                              setTimeout(() => setCopiedCodeText(null), 2000);
-                            }}
-                            className="text-[10px] font-bold uppercase text-blue-500 hover:text-blue-600 cursor-pointer flex items-center gap-1"
-                          >
-                            {copiedCodeText === "html" ? <Check className="w-3 h-3 text-green-500" /> : <Copy className="w-3 h-3" />}
-                            <span>{copiedCodeText === "html" ? t("Copied", "បានចម្លង") : t("Copy", "ចម្លង")}</span>
-                          </button>
-                        </div>
-                        <div className="rounded-xl border border-slate-200/80 dark:border-zinc-800 p-2.5 bg-zinc-950 font-mono text-[10px] sm:text-xs text-green-400 overflow-x-auto select-all">
-                          {`&lt;img src="${LOGO_PRIMARY}" alt="KWD Logo" ${logoInvert ? 'style="filter: invert(1);"' : ''} /&gt;`}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="pt-3 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-[9px] text-slate-400 font-medium mt-3">
-                      <span>{t("PNG (Lossless)", "Format ឡូហ្គោផ្លូវការ: PNG")}</span>
-                      <span>256 x 256 px</span>
-                    </div>
-                  </div>
+                  <span className="text-[10px] font-mono text-zinc-500 mt-2">kwd-black_nobackground.png (Inverted)</span>
+                  <span className="text-[9px] font-bold text-zinc-400 mt-1 uppercase tracking-wider">{t("On Dark Backgrounds", "លើ background ងងឹត")}</span>
                 </div>
               </div>
 
-              {/* ─── Color variants ─── */}
               <div className="mt-8">
-                <SubLabel kf={kf}>{t("Color Variants", "Logo Variants")}</SubLabel>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-                  {[
-                    { src: "/brand/kwd-gray.png",   file: "kwd-gray.png",   note: t("On white / light neutral", "លើ background ស ឬ neutral") },
-                    { src: "/brand/kwd-green.png",  file: "kwd-green.png",  note: t("Success · active",          "Success state · active") },
-                    { src: "/brand/kwd-yellow.png", file: "kwd-yellow.png", note: t("Brand accent · CTA",        "Brand accent · CTA") },
-                  ].map(({ src, file, note }) => (
-                    <div key={file} className="group overflow-hidden rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:shadow-md">
-                      <div className="h-28 flex items-center justify-center p-4 bg-slate-50/50 dark:bg-zinc-900/50 border-b border-slate-100 dark:border-zinc-800">
-                        <Image src={src} alt={file} width={72} height={72} className="object-contain max-h-14 group-hover:scale-102 transition-transform duration-200" />
-                      </div>
-                      <div className="px-4 py-3">
-                        <div className="flex items-center justify-between mb-1">
-                          <p className="text-[10px] font-bold uppercase tracking-wider text-slate-800 dark:text-zinc-200">{file}</p>
-                          <span className="text-[8px] font-mono text-slate-400">PNG</span>
-                        </div>
-                        <p className="text-[10px] text-slate-400 dark:text-zinc-500 font-bold" style={kf}>{note}</p>
-                      </div>
-                    </div>
+                <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-400 mb-3" style={kf}>{t("Usage Rules", "ច្បាប់ប្រើ")}</h3>
+                <ul className="space-y-2.5">
+                  {RULES.map((r, i) => (
+                    <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 font-semibold" style={kf}>
+                      <span className="text-[10px] font-mono text-zinc-400 mt-0.5 shrink-0">{(i + 1).toString().padStart(2, "0")}.</span>
+                      <span>{t(r.en, r.kh)}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
+              </div>
+            </section>
+
+            {/* 03 — COLOR PALETTE */}
+            <section id={SECTIONS[2].id} className="scroll-mt-24">
+              <div className="border-b border-zinc-100 dark:border-zinc-800 pb-3 mb-6">
+                <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest block mb-1">{SECTIONS[2].num}</span>
+                <h2 className="text-xl font-bold uppercase text-zinc-900 dark:text-white" style={kf}>
+                  {t(SECTIONS[2].title.en, SECTIONS[2].title.kh)}
+                </h2>
               </div>
 
-              {/* ─── Usage rules ─── */}
-              <div className="mt-8">
-                <SubLabel kf={kf}>{t("Usage Rules", "ច្បាប់ប្រើ")}</SubLabel>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {RULES.map((r, i) => {
-                    const ok = i >= 3 && i !== 6;
-                    return (
-                      <div key={i} className={`flex items-start gap-3 rounded-xl border p-3.5 transition-all duration-150 hover:bg-slate-50/50 ${
-                        ok 
-                          ? "border-green-200 dark:border-green-950/40 bg-green-500/[0.02] text-green-900 dark:text-green-400"
-                          : "border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-slate-700 dark:text-zinc-300"
-                      }`}>
-                        {ok ? (
-                          <CheckCircle2 className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
-                        ) : (
-                          <XCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
-                        )}
-                        <div>
-                          <p className="text-[8px] font-bold uppercase tracking-widest text-slate-400 mb-0.5">
-                            {ok ? t("DO THIS", "ត្រូវធ្វើ") : t("DON'T DO THIS", "កុំធ្វើ")}
-                          </p>
-                          <p className="text-xs font-semibold leading-relaxed" style={kf}>{t(r.en, r.kh)}</p>
-                        </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                {COLORS.map(({ name, hex, role }) => (
+                  <div key={hex} className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden shadow-sm">
+                    <div className="h-14 w-full" style={{ background: hex }} />
+                    <div className="p-3 border-t border-zinc-100 dark:border-zinc-800">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">{name}</span>
+                        <span className="text-[10px] font-mono text-zinc-400">{hex}</span>
                       </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </SectionShell>
-
-            {/* ════ 03 — COLOR PALETTE ═════════════════════════════════════ */}
-            <SectionShell s={SECTIONS[2]} title={t(SECTIONS[2].title.en, SECTIONS[2].title.kh)} kf={kf}>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 font-semibold mb-6" style={kf}>
-                {t(
-                  "KWD colors are drawn directly from the road sign system — every color carries meaning.",
-                  "ពណ៌ KWD ត្រូវបានយកចេញពីប្រព័ន្ធសញ្ញាចរាចរ — ពណ៌គ្រប់ពណ៌មានន័យ។"
-                )}
-              </p>
-              
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                {COLORS.map(({ name, hex, role }, idx) => (
-                  <div
-                    key={hex}
-                    className="group relative overflow-hidden rounded-xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm hover:scale-[1.01] transition-transform duration-150"
-                  >
-                    {/* Swatch color cap */}
-                    <div className="h-20 w-full relative" style={{ background: hex }}>
-                      {/* Copy hover block */}
-                      <button
-                        onClick={() => {
-                          copyToClipboard(hex, `Color ${name}`);
-                          setCopiedIndex(idx);
-                          setTimeout(() => setCopiedIndex(null), 2000);
-                        }}
-                        className="absolute inset-0 bg-black/35 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 flex items-center justify-center gap-1.5 text-xs text-white font-bold cursor-pointer transition-opacity duration-150"
-                      >
-                        {copiedIndex === idx ? <Check className="w-3.5 h-3.5 text-yellow-400" /> : <Copy className="w-3.5 h-3.5" />}
-                        <span className="text-[10px] uppercase font-bold tracking-wider">{copiedIndex === idx ? t("Copied!", "បានចម្លង!") : t("Copy Hex", "ចម្លង Hex")}</span>
-                      </button>
-                    </div>
-
-                    {/* Meta info panel */}
-                    <div className="px-3.5 py-3 border-t border-slate-100 dark:border-zinc-800 bg-white dark:bg-zinc-900">
-                      <div className="flex items-center justify-between gap-1 mb-1">
-                        <span className="text-[10px] font-bold text-slate-800 dark:text-zinc-200 uppercase tracking-wide">{name}</span>
-                        <span className="text-[9px] font-mono text-slate-400 dark:text-zinc-500 font-bold">{hex}</span>
-                      </div>
-                      <p className="text-[10px] leading-snug text-slate-500 dark:text-zinc-400 font-semibold" style={kf}>
-                        {t(role.en, role.kh)}
-                      </p>
+                      <p className="text-[10px] text-zinc-400 font-semibold leading-normal" style={kf}>{t(role.en, role.kh)}</p>
                     </div>
                   </div>
                 ))}
               </div>
-            </SectionShell>
+            </section>
 
-            {/* ════ 04 — TYPOGRAPHY ════════════════════════════════════════ */}
-            <SectionShell s={SECTIONS[3]} title={t(SECTIONS[3].title.en, SECTIONS[3].title.kh)} kf={kf}>
-              
-              {/* Dual Language Font Specimen Sheets */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
-                
-                {/* Inter Sheet */}
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200 dark:border-zinc-800 p-5 shadow-sm bg-white dark:bg-zinc-900">
-                  <div className="flex items-center justify-between mb-3 border-b border-slate-100 dark:border-zinc-800 pb-1.5">
-                    <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400">English Typeface</span>
-                    <span className="px-2 py-0.5 bg-slate-100 dark:bg-zinc-800 text-[8px] text-slate-600 dark:text-zinc-300 font-bold rounded uppercase">Inter</span>
-                  </div>
-                  <div className="mb-3">
-                    <p className="text-5xl font-black text-slate-900 dark:text-white leading-none tracking-tight mb-2.5">Aa</p>
-                    <p className="text-base font-bold text-slate-800 dark:text-zinc-200 mb-0.5">ABCDEFGHIJKLM</p>
-                    <p className="text-base font-medium text-slate-400 mb-3">abcdefghijklm</p>
-                  </div>
-                  <p className="text-[10px] text-slate-400 dark:text-zinc-500 font-bold leading-normal border-t border-slate-100 dark:border-zinc-800 pt-2.5" style={kf}>
+            {/* 04 — TYPOGRAPHY */}
+            <section id={SECTIONS[3].id} className="scroll-mt-24">
+              <div className="border-b border-zinc-100 dark:border-zinc-800 pb-3 mb-6">
+                <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest block mb-1">{SECTIONS[3].num}</span>
+                <h2 className="text-xl font-bold uppercase text-zinc-900 dark:text-white" style={kf}>
+                  {t(SECTIONS[3].title.en, SECTIONS[3].title.kh)}
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                <div className="p-4 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+                  <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest block border-b border-zinc-100 dark:border-zinc-850 pb-1 mb-3">English — Inter</span>
+                  <p className="text-4xl font-extrabold text-zinc-900 dark:text-white mb-2">Aa</p>
+                  <p className="text-xs text-zinc-500 leading-normal" style={kf}>
                     {t("All Latin text, UI labels, headings, body copy.", "Latin text ទាំងអស់ · label · heading · body")}
                   </p>
                 </div>
-
-                {/* Siemreap Sheet */}
-                <div className="relative overflow-hidden rounded-2xl border border-slate-200 dark:border-zinc-800 p-5 shadow-sm bg-white dark:bg-zinc-900">
-                  <div className="flex items-center justify-between mb-3 border-b border-slate-100 dark:border-zinc-800 pb-1.5">
-                    <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400">Khmer Typeface</span>
-                    <span className="px-2 py-0.5 bg-slate-100 dark:bg-zinc-800 text-[8px] text-slate-600 dark:text-zinc-300 font-bold rounded uppercase" style={{ fontFamily: "Siemreap, sans-serif" }}>សៀមរាប</span>
-                  </div>
-                  <div className="mb-3">
-                    <p className="text-5xl font-black text-slate-900 dark:text-white leading-none tracking-tight mb-2.5" style={{ fontFamily: "Siemreap, sans-serif" }}>ក ខ</p>
-                    <p className="text-base font-bold text-slate-800 dark:text-zinc-200 mb-0.5" style={{ fontFamily: "Siemreap, sans-serif" }}>គ ឃ ង ច ឆ ជ</p>
-                    <p className="text-base font-medium text-slate-400 mb-3" style={{ fontFamily: "Siemreap, sans-serif" }}>ក ខ គ ឃ ង</p>
-                  </div>
-                  <p className="text-[10px] text-slate-400 dark:text-zinc-500 font-bold leading-normal border-t border-slate-100 dark:border-zinc-800 pt-2.5" style={kf}>
+                
+                <div className="p-4 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900">
+                  <span className="text-[9px] font-bold text-zinc-400 uppercase tracking-widest block border-b border-zinc-100 dark:border-zinc-850 pb-1 mb-3">Khmer — Siemreap</span>
+                  <p className="text-4xl font-extrabold text-zinc-900 dark:text-white mb-2" style={{ fontFamily: "Siemreap, sans-serif" }}>ក ខ</p>
+                  <p className="text-xs text-zinc-500 leading-normal" style={kf}>
                     {t("All Khmer script content across the platform.", "Khmer text ទាំងអស់នៅក្នុង platform")}
                   </p>
                 </div>
               </div>
 
-              {/* ─── Typography Laboratory Playground (Clean Search Box layout) ─── */}
-              <div className="border border-slate-200 dark:border-zinc-800 rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 shadow-sm">
-                
-                {/* Lab Header */}
-                <div className="px-5 py-3 border-b border-slate-100 dark:border-zinc-800 flex items-center gap-2 bg-slate-50/50 dark:bg-zinc-900/60">
-                  <span className="w-2 h-2 rounded-full bg-green-500" />
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-zinc-400" style={kf}>
-                    {t("Typography Laboratory (Interactive)", "ពិសោធន៍ពុម្ពអក្សរ (អន្តរកម្ម)")}
-                  </span>
-                </div>
-
-                {/* Lab Input Box */}
-                <div className="p-4 bg-slate-50/30 dark:bg-zinc-900/30 border-b border-slate-100 dark:border-zinc-800">
-                  <div className="relative">
-                    <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                    <input
-                      type="text"
-                      value={previewText}
-                      onChange={(e) => setPreviewText(e.target.value)}
-                      placeholder={kh ? "សរសេរអក្សរទីនេះ ដើម្បីសាកល្បង..." : "Type custom text here to preview scales..."}
-                      className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 rounded-xl text-xs sm:text-sm font-semibold placeholder:text-zinc-400 focus:outline-none focus:ring-1 focus:ring-yellow-400 shadow-inner"
-                      style={kf}
-                    />
+              <div className="border border-zinc-200 dark:border-zinc-800 rounded-xl divide-y divide-zinc-100 dark:divide-zinc-800 bg-white dark:bg-zinc-900">
+                {[
+                  { label: "Display", size: "36px", sample: "Display Scale", weight: "font-extrabold text-2xl sm:text-3xl" },
+                  { label: "Heading", size: "24px", sample: "Heading Scale", weight: "font-extrabold text-xl sm:text-2xl" },
+                  { label: "Subheading", size: "18px", sample: "Subheading Scale", weight: "font-bold text-base sm:text-lg" },
+                  { label: "Body", size: "14px", sample: "Body Text Scale", weight: "font-medium text-xs sm:text-sm" },
+                  { label: "Label", size: "11px", sample: "LABEL SPECIMEN", weight: "font-bold text-[10px] tracking-wider uppercase" }
+                ].map((spec) => (
+                  <div key={spec.label} className="p-3 flex items-center justify-between gap-4">
+                    <span className="text-[10px] font-bold text-zinc-400 uppercase w-20 shrink-0">{spec.label}</span>
+                    <p className={`${spec.weight} text-zinc-800 dark:text-zinc-200 grow`} style={kf}>{spec.sample}</p>
+                    <span className="text-[9px] font-mono text-zinc-400">{spec.size}</span>
                   </div>
-                </div>
-
-                {/* Dynamic specimens list */}
-                <div className="divide-y divide-slate-100 dark:divide-zinc-800 bg-white dark:bg-zinc-900">
-                  {[
-                    { label: "Display",    size: "text-3xl md:text-4xl", weight: "font-black",  sample: "Display Type Scale", khSample: "Display Type Scale" },
-                    { label: "Heading",    size: "text-xl md:text-2xl", weight: "font-black",  sample: "Heading Type Scale", khSample: "Heading Type Scale" },
-                    { label: "Subheading", size: "text-lg",   weight: "font-bold",   sample: "Subheading Scale", khSample: "Subheading Scale" },
-                    { label: "Body",       size: "text-sm sm:text-base", weight: "font-medium", sample: "Body Text Scale", khSample: "Body Text Scale" },
-                    { label: "Label",      size: "text-[10px] tracking-wider", weight: "font-bold uppercase",  sample: "Label Specimen", khSample: "Label Specimen" },
-                  ].map(({ label, size, weight, sample, khSample }) => {
-                    const textToRender = previewText.trim() || (kh ? khSample : sample);
-                    return (
-                      <div key={label} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 px-5 py-3.5 hover:bg-slate-50/50 dark:hover:bg-zinc-900/30 transition-colors">
-                        <div className="w-24 shrink-0 flex items-center justify-between border-b sm:border-b-0 border-slate-100 dark:border-white/5 pb-1 sm:pb-0">
-                          <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400">{label}</span>
-                          <span className="px-2 py-0.5 bg-slate-100 dark:bg-zinc-800 border border-slate-200/50 text-[7px] font-mono text-slate-500 rounded uppercase font-bold">{size.replace('text-', '')}</span>
-                        </div>
-                        <p className={`${size} ${weight} text-slate-800 dark:text-zinc-200 leading-tight break-all`} style={kf}>
-                          {textToRender}
-                        </p>
-                      </div>
-                    );
-                  })}
-                </div>
+                ))}
               </div>
-            </SectionShell>
+            </section>
 
-            {/* ════ 05 — APPLICATIONS ══════════════════════════════════════ */}
-            <SectionShell s={SECTIONS[4]} title={t(SECTIONS[4].title.en, SECTIONS[4].title.kh)} kf={kf}>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-zinc-400 font-semibold mb-6" style={kf}>
-                {t(
-                  "Studio-quality mockups showing KWD brand applied across merchandise and digital platforms.",
-                  "Studio-quality mockup ដែលបង្ហាញ KWD brand លើ merchandise និង digital platform ផ្សេងៗ។"
-                )}
-              </p>
-              
-              {/* Responsive showcase grids with elegant floating effect */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {/* 05 — APPLICATIONS */}
+            <section id={SECTIONS[4].id} className="scroll-mt-24">
+              <div className="border-b border-zinc-100 dark:border-zinc-800 pb-3 mb-6">
+                <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest block mb-1">{SECTIONS[4].num}</span>
+                <h2 className="text-xl font-bold uppercase text-zinc-900 dark:text-white" style={kf}>
+                  {t(SECTIONS[4].title.en, SECTIONS[4].title.kh)}
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {MOCKUP_ASSETS.map((m, i) => (
-                  <div
-                    key={i}
-                    onClick={() => setSelectedMockup(i)}
-                    className="group relative cursor-pointer rounded-2xl border border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all duration-200 overflow-hidden"
-                  >
-                    {/* View Spec overlay badge */}
-                    <span className="absolute top-3 left-3 z-10 px-2 py-1 bg-black/75 rounded-md text-[8px] text-white font-mono flex items-center gap-1 shadow-sm">
-                      <Maximize2 className="w-2.5 h-2.5 text-yellow-400 animate-pulse" />
-                      <span>{t("VIEW DETAILS", "មើលលម្អិត")}</span>
-                    </span>
-
-                    {/* Mockup Image wrapper */}
-                    <div className="aspect-square relative overflow-hidden border-b border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-900/30">
+                  <div key={i} className="border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-900 overflow-hidden shadow-sm">
+                    <div className="aspect-square relative bg-zinc-50 dark:bg-zinc-900/30">
                       <Image
                         src={m.src}
                         alt={m.title.en}
                         fill
-                        className="object-cover group-hover:scale-103 transition-transform duration-300"
+                        className="object-cover"
                         sizes="(max-width: 640px) 100vw, 50vw"
                       />
                     </div>
-
-                    {/* Mockup Info Footer */}
-                    <div className="px-4.5 py-4 bg-white dark:bg-zinc-900">
-                      <p className="text-[9px] font-bold text-orange-500 dark:text-orange-400 uppercase tracking-widest mb-0.5">
-                        {t(`MOCKUP ${String(i + 1).padStart(2, "0")}`, `គំរូ ${String(i + 1).padStart(2, "0")}`)}
-                      </p>
-                      <p className="text-sm font-bold text-slate-800 dark:text-white" style={kf}>{t(m.title.en, m.title.kh)}</p>
+                    <div className="p-3">
+                      <p className="text-[9px] font-bold text-orange-500 uppercase tracking-widest">{t(`MOCKUP ${i + 1}`, `គំរូ ${i + 1}`)}</p>
+                      <p className="text-xs sm:text-sm font-bold text-zinc-800 dark:text-zinc-100 mt-0.5" style={kf}>{t(m.title.en, m.title.kh)}</p>
                     </div>
                   </div>
                 ))}
               </div>
-            </SectionShell>
+            </section>
+
           </div>
         </div>
-
-        {/* ════ IMMERSIVE MERCHANDISE LIGHTBOX (Sleek Pro Modal) ═══════ */}
-        {selectedMockup !== null && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-            {/* Absolute close tap anchor */}
-            <div className="absolute inset-0" onClick={() => setSelectedMockup(null)} />
-            
-            <div className="relative w-full max-w-4xl bg-zinc-950 border border-zinc-800 rounded-2xl overflow-hidden shadow-[0_20px_50px_-12px_rgba(0,0,0,0.8)] flex flex-col md:grid md:grid-cols-2 z-10">
-              
-              {/* Close Button */}
-              <button
-                onClick={() => setSelectedMockup(null)}
-                className="absolute top-4 right-4 z-30 w-8 h-8 rounded-full bg-black/80 border border-white/10 flex items-center justify-center text-white cursor-pointer hover:bg-white hover:text-black transition-colors"
-              >
-                <X className="w-4 h-4" />
-              </button>
-
-              {/* Lightbox image content */}
-              <div className="h-60 sm:h-80 md:h-full relative bg-zinc-900 flex items-center justify-center overflow-hidden">
-                <Image
-                  src={MOCKUP_ASSETS[selectedMockup].src}
-                  alt={MOCKUP_ASSETS[selectedMockup].title.en}
-                  fill
-                  className="object-contain p-6"
-                  priority
-                />
-                
-                {/* Left/Right navigation hooks */}
-                <div className="absolute inset-x-3 top-1/2 -translate-y-1/2 flex justify-between z-20 pointer-events-none">
-                  <button
-                    onClick={() => setSelectedMockup((prev) => (prev! === 0 ? MOCKUP_ASSETS.length - 1 : prev! - 1))}
-                    className="w-9 h-9 rounded-full bg-black/80 border border-white/10 flex items-center justify-center text-white cursor-pointer hover:bg-black pointer-events-auto transition-transform active:scale-95 shadow-sm"
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                  <button
-                    onClick={() => setSelectedMockup((prev) => (prev! === MOCKUP_ASSETS.length - 1 ? 0 : prev! + 1))}
-                    className="w-9 h-9 rounded-full bg-black/80 border border-white/10 flex items-center justify-center text-white cursor-pointer hover:bg-black pointer-events-auto transition-transform active:scale-95 shadow-sm"
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
-                </div>
-              </div>
-
-              {/* Lightbox Specifications details */}
-              <div className="p-6 md:p-8 flex flex-col justify-between text-white relative bg-zinc-950">
-                <div className="space-y-5">
-                  <div>
-                    <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-yellow-500 leading-none">
-                      {t(`MOCKUP SPECIFICATION ${selectedMockup + 1}`, `គំនូសគំរូនៃរចនាសម្ព័ន្ធទី ${selectedMockup + 1}`)}
-                    </span>
-                    <h3 className="text-lg sm:text-xl font-bold uppercase text-white mt-1.5 leading-tight" style={kf}>
-                      {t(MOCKUP_ASSETS[selectedMockup].title.en, MOCKUP_ASSETS[selectedMockup].title.kh)}
-                    </h3>
-                  </div>
-
-                  <div className="space-y-3 border-t border-b border-white/10 py-4.5 text-xs text-zinc-400 font-semibold" style={kf}>
-                    <div className="flex justify-between">
-                      <span>{t("Production Standard", "ស្តង់ដារផលិតកម្ម")}</span>
-                      <span className="text-white">Global Brand Tier-1</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>{t("Print Space Contrast", "សមាមាត្រផ្ទៃបោះពុម្ព")}</span>
-                      <span className="text-yellow-500">High Contrast Match</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>{t("Visual DNA Elements", "ធាតុផ្សំម៉ាកសញ្ញា")}</span>
-                      <span className="text-white">{t("Official Logo + Swatch", "ឡូហ្គោផ្លូវការ + ពណ៌")}</span>
-                    </div>
-                  </div>
-
-                  <div className="rounded-xl border border-white/10 p-3.5 bg-zinc-900/60 flex items-start gap-2.5">
-                    <Info className="w-4.5 h-4.5 text-cyan-400 shrink-0 mt-0.5" />
-                    <p className="text-[11px] text-zinc-400 leading-relaxed font-semibold" style={kf}>
-                      {kh 
-                        ? "គំរូទាំងនេះត្រូវបានរចនាឡើង ដើម្បីធានាឱ្យបាននូវការអនុវត្តរចនាសម្ព័ន្ធម៉ាកសញ្ញា KWD ប្រកបដោយភាពស៊ីសង្វាក់គ្នាលើគ្រប់ប្រព័ន្ធចែកចាយរូបវ័ន្ត និងឌីជីថល។"
-                        : "These mockups demonstrate official brand application constraints, ensuring consistent visual alignments across print, fabric, ceramic, and modular substrates."
-                      }
-                    </p>
-                  </div>
-                </div>
-
-                <div className="pt-4 flex justify-end gap-2.5 border-t border-white/10 mt-5">
-                  <button
-                    onClick={() => copyToClipboard(MOCKUP_ASSETS[selectedMockup].src, "mockup asset link")}
-                    className="px-3.5 py-2 border border-white/15 bg-zinc-900 rounded-lg text-[10px] font-bold uppercase tracking-wider text-white hover:bg-zinc-800 cursor-pointer flex items-center gap-1.5"
-                    style={kf}
-                  >
-                    <Copy className="w-3.5 h-3.5" />
-                    <span>{t("Copy Asset Link", "ចម្លងតំណភ្ជាប់")}</span>
-                  </button>
-                  <button
-                    onClick={() => setSelectedMockup(null)}
-                    className="px-4.5 py-2 bg-yellow-400 text-black rounded-lg text-[10px] font-bold uppercase tracking-wider hover:bg-yellow-300 cursor-pointer"
-                    style={kf}
-                  >
-                    {t("Close spec", "បិទផ្ទាំង")}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* ════ FOOTER ═══════════════════════════════════════════════════════ */}
-        <div className="border-t border-slate-200 dark:border-zinc-800 py-10 flex flex-col md:flex-row items-center justify-between gap-4 mt-12 relative overflow-hidden">
-          <div className="flex items-center gap-2.5">
-            <Image src={LOGO_PRIMARY} alt="KWD Logo" width={22} height={22} className="object-contain opacity-40 dark:opacity-30" />
-            <p className="text-xs text-slate-500 dark:text-zinc-500 font-bold" style={kf}>
-              © {new Date().getFullYear()} KWD — Kesararam With Digital. Brand Guideline v1.0
-            </p>
-          </div>
-          <div className="flex gap-5 text-xs font-semibold">
-            <Link href="/terms"   className="text-slate-500 hover:text-slate-900 dark:text-zinc-500 dark:hover:text-white transition-colors" style={kf}>{t("Terms",   "លក្ខខណ្ឌ")}</Link>
-            <Link href="/privacy" className="text-slate-500 hover:text-slate-900 dark:text-zinc-500 dark:hover:text-white transition-colors" style={kf}>{t("Privacy", "ឯកជនភាព")}</Link>
-          </div>
-        </div>
-
-      </div>
-
-      {/* ════ FLOATING TOAST NOTIFICATION ═══════════════════════════════════ */}
-      <div className={`fixed bottom-5 right-5 z-50 pointer-events-none transform transition-all duration-300 ${showToast ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}>
-        <div className="pointer-events-auto bg-black text-white dark:bg-white dark:text-black border border-slate-200/50 dark:border-zinc-800 rounded-xl px-4 py-3.5 shadow-md flex items-center gap-3 max-w-xs overflow-hidden relative">
-          <Bolt className="w-4 h-4 text-yellow-500 shrink-0 animate-bounce" />
-          <p className="text-xs font-bold leading-snug" style={kf}>
-            {toastMessage}
+        <div className="border-t border-zinc-100 dark:border-zinc-800 py-8 flex flex-col md:flex-row items-center justify-between gap-4 mt-16 text-xs text-zinc-400">
+          <p style={kf}>
+            © {new Date().getFullYear()} KWD — Kesararam With Digital. Brand Guideline v1.0
           </p>
-          <button
-            onClick={() => setShowToast(false)}
-            className="w-4 h-4 rounded-full flex items-center justify-center hover:bg-white/10 dark:hover:bg-slate-100 cursor-pointer shrink-0"
-          >
-            <X className="w-3 h-3" />
-          </button>
-        </div>
-      </div>
-
-    </div>
-  );
-}
-
-// ─── Section Shell Wrapper (Sleek outline with micro corner highlights) ────
-function SectionShell({
-  s, title, kf, children,
-}: {
-  s: { id: string; num: string; icon: any; accent: string };
-  title: string;
-  kf: React.CSSProperties;
-  children: React.ReactNode;
-}) {
-  const IconComp = s.icon;
-  return (
-    <section id={s.id} className="scroll-mt-20">
-      <div className="relative overflow-hidden rounded-2xl border border-slate-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-6 sm:p-8 md:p-10 shadow-[0_5px_20px_-10px_rgba(0,0,0,0.05)] dark:shadow-none">
-        
-        {/* Tiny clean corner indicators */}
-        <CornerCrosshairs containerClass="absolute inset-0 p-4 sm:p-5 opacity-30 pointer-events-none" color="border-slate-300 dark:border-zinc-800" />
-        
-        {/* Section header block */}
-        <div className="mb-6 flex items-center gap-3.5 border-b border-slate-100 dark:border-zinc-800 pb-4 relative z-10">
-          <span
-            className="flex h-10 w-10 items-center justify-center rounded-xl text-white shadow-sm border border-black/5"
-            style={{ background: s.accent }}
-          >
-            <IconComp className="w-5 h-5" />
-          </span>
-          <div>
-            <p className="text-[9px] font-bold uppercase tracking-[0.25em] mb-0.5" style={{ color: s.accent }}>{s.num}</p>
-            <h2 className="text-base sm:text-lg md:text-xl font-bold uppercase tracking-wider text-slate-800 dark:text-white leading-tight" style={kf}>
-              {title}
-            </h2>
+          <div className="flex gap-4">
+            <Link href="/terms" className="hover:text-zinc-800 dark:hover:text-white transition-colors" style={kf}>{t("Terms", "លក្ខខណ្ឌ")}</Link>
+            <Link href="/privacy" className="hover:text-zinc-800 dark:hover:text-white transition-colors" style={kf}>{t("Privacy", "ឯកជនភាព")}</Link>
           </div>
         </div>
-        
-        {/* Children content wrapper */}
-        <div className="relative z-10">
-          {children}
-        </div>
 
       </div>
-    </section>
-  );
-}
 
-// ─── Sub-section label ──────────────────────────────────────────────────────
-function SubLabel({ children, kf }: { children: React.ReactNode; kf: React.CSSProperties }) {
-  return (
-    <p className="mb-3 mt-5 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 dark:text-zinc-500" style={kf}>
-      <span className="h-2 w-2 rounded-full bg-yellow-500" />
-      {children}
-    </p>
-  );
-}
-
-// ─── Corner Registration Crosshairs (Sleek & Clean) ──────────────────────────
-function CornerCrosshairs({ containerClass, color }: { containerClass: string; color: string }) {
-  return (
-    <div className={`${containerClass} pointer-events-none select-none`} aria-hidden>
-      {/* Top Left */}
-      <div className={`absolute top-4 left-4 h-4 w-4 border-t border-l ${color}`} />
-      {/* Top Right */}
-      <div className={`absolute top-4 right-4 h-4 w-4 border-t border-r ${color}`} />
-      {/* Bottom Left */}
-      <div className={`absolute bottom-4 left-4 h-4 w-4 border-b border-l ${color}`} />
-      {/* Bottom Right */}
-      <div className={`absolute bottom-4 right-4 h-4 w-4 border-b border-r ${color}`} />
     </div>
   );
 }
