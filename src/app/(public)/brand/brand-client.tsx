@@ -40,15 +40,14 @@ const MOCKUP_ASSETS: { src: string; title: { en: string; kh: string } }[] = [
   { src: "/brand/kwd-mockup-stationery.png",     title: { en: "Corporate Stationery set",   kh: "គំរូឧបករណ៍ការិយាល័យ" } },
 ];
 
-// ─── Section index ──────────────────────────────────────────────────────────
-const SECTIONS: { id: string; num: string; title: { en: string; kh: string } }[] = [
-  { id: "summary", num: "01", title: { en: "Summary",                 kh: "សេចក្ដីសង្ខេប (Summary)" } },
-  { id: "name",    num: "02", title: { en: "Brand Name & Meaning",    kh: "១. ឈ្មោះ Brand និងអត្ថន័យ (Brand Name & Meaning)" } },
-  { id: "logo",    num: "03", title: { en: "Logo & Meaning",          kh: "២. និមិត្តសញ្ញា (Logo) និងអត្ថន័យ (Logo & Meaning)" } },
-  { id: "color",   num: "04", title: { en: "Color Palette",           kh: "៣. ពណ៌ (Color Palette)" } },
-  { id: "type",    num: "05", title: { en: "Typography",              kh: "៤. អក្សរ (Typography)" } },
-  { id: "dna",     num: "06", title: { en: "Design DNA (Brutalist)",  kh: "៥. ប្រព័ន្ធរចនា DNA (Design DNA — Brutalist)" } },
-  { id: "apply",   num: "07", title: { en: "Applications",            kh: "ការប្រើប្រាស់ & Mockups" } },
+// ─── Section index (Summary and section numbers removed per request) ─────────
+const SECTIONS: { id: string; title: { en: string; kh: string } }[] = [
+  { id: "name",    title: { en: "Brand Name & Meaning",    kh: "ឈ្មោះ Brand និងអត្ថន័យ" } },
+  { id: "logo",    title: { en: "Logo & Meaning",          kh: "និមិត្តសញ្ញា និងអត្ថន័យ" } },
+  { id: "color",   title: { en: "Color Palette",           kh: "ពណ៌" } },
+  { id: "type",    title: { en: "Typography",              kh: "អក្សរ" } },
+  { id: "dna",     title: { en: "Design DNA",              kh: "ប្រព័ន្ធរចនា DNA" } },
+  { id: "apply",   title: { en: "Applications",            kh: "ការប្រើប្រាស់ & Mockups" } },
 ];
 
 export function BrandGuidelineClient() {
@@ -75,7 +74,7 @@ export function BrandGuidelineClient() {
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
-  }, []);
+  }, [active]);
 
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 transition-colors duration-300 font-sans">
@@ -110,7 +109,7 @@ export function BrandGuidelineClient() {
       <div className="max-w-4xl mx-auto px-6 py-12">
         <div className="grid gap-12 lg:grid-cols-[200px_1fr] items-start">
           
-          {/* Simple Typographic Navigation (No shapes, just plain text) */}
+          {/* Simple Typographic Navigation (No shapes or numbers, just plain text) */}
           <aside className="hidden lg:block sticky top-24 space-y-3">
             {SECTIONS.map((s) => {
               const on = active === s.id;
@@ -131,38 +130,13 @@ export function BrandGuidelineClient() {
             })}
           </aside>
 
-          {/* Minimalist Typographic Content Stack (No card boxes, no shadows, just clean text layout) */}
+          {/* Minimalist Typographic Content Stack */}
           <div className="space-y-16">
 
-            {/* 01 — SUMMARY */}
-            <section id={SECTIONS[0].id} className="scroll-mt-24">
+            {/* BRAND NAME & MEANING */}
+            <section id="name" className="scroll-mt-24">
               <h2 className="text-lg font-bold text-zinc-900 dark:text-white border-b border-zinc-150 dark:border-zinc-850 pb-2 mb-4" style={kf}>
-                {t(SECTIONS[0].title.en, SECTIONS[0].title.kh)}
-              </h2>
-              
-              <div className="space-y-3 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal" style={kf}>
-                {kh ? (
-                  <ul className="space-y-2">
-                    <li>• ឈ្មោះពេញ៖ Kesararam With Digital · ពាក្យកាត់៖ KWD</li>
-                    <li>• ឡូហ្គោផ្លូវការ៖ kwd-black_nobackground.png (ខ្មៅលើផ្ទៃថ្លា)</li>
-                    <li>• ពណ៌ស្នូល៖ លឿង #eab308 · ខ្មៅ #000000 · ស #ffffff</li>
-                    <li>• រចនា DNA៖ គែមខ្មៅ មុំស្រួច ស្រមោលរឹង (Brutalist)</li>
-                  </ul>
-                ) : (
-                  <ul className="space-y-2">
-                    <li>• Full Name: Kesararam With Digital · Abbreviation: KWD</li>
-                    <li>• Official Logo: kwd-black_nobackground.png (black on transparent background)</li>
-                    <li>• Core Colors: Yellow #eab308 · Black #000000 · White #ffffff</li>
-                    <li>• Design DNA: Black borders, sharp angles, hard shadow (Brutalist)</li>
-                  </ul>
-                )}
-              </div>
-            </section>
-
-            {/* 02 — BRAND NAME & MEANING */}
-            <section id={SECTIONS[1].id} className="scroll-mt-24">
-              <h2 className="text-lg font-bold text-zinc-900 dark:text-white border-b border-zinc-150 dark:border-zinc-850 pb-2 mb-4" style={kf}>
-                {t("Brand Name & Meaning", "១. ឈ្មោះ Brand និងអត្ថន័យ (Brand Name & Meaning)")}
+                {t("Brand Name & Meaning", "ឈ្មោះ Brand និងអត្ថន័យ (Brand Name & Meaning)")}
               </h2>
               
               <div className="space-y-4 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal" style={kf}>
@@ -200,16 +174,16 @@ export function BrandGuidelineClient() {
               </div>
             </section>
 
-            {/* 03 — LOGO & MEANING */}
-            <section id={SECTIONS[2].id} className="scroll-mt-24">
+            {/* LOGO & MEANING */}
+            <section id="logo" className="scroll-mt-24">
               <h2 className="text-lg font-bold text-zinc-900 dark:text-white border-b border-zinc-150 dark:border-zinc-850 pb-2 mb-4" style={kf}>
-                {t("Logo & Meaning", "២. និមិត្តសញ្ញា (Logo) និងអត្ថន័យ (Logo & Meaning)")}
+                {t("Logo & Meaning", "និមិត្តសញ្ញា (Logo) និងអត្ថន័យ (Logo & Meaning)")}
               </h2>
 
               <div className="space-y-6 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal" style={kf}>
                 {kh ? (
                   <p>
-                    និមិត្តសញ្ញាផ្លេកបន្ទោរលើឡូហ្គោ KWD មិនមែនជាការតុបតែងលម្អឡើយ តែជាទស្សនវិជ្ជាស្នូលរបស់ម៉ាក។ វាផ្ដល់អត្ថន័យដល់ Flash Learning ដោយឈរលើជំនឿថា ក្នុងយុគ AI ចំណេះដឹងត្រូវដើរក្នុងល្បឿននៃពន្លឺ។ វាជាការប្ដេជ្ញារបស់ KWD ក្នុងការផ្ដល់ល្បឿន ឧបករណ៍ និងទំនុកចិត្ត ដើម្បីសិក្សារួមជាមួយ AI និងដឹកនាំការផ្លាស់ប្ដូរនាពេលអនាគត។
+                    និមិត្តសញ្ញាផ្លេកបន្ទោរលើឡូហ្គោ KWD មិនមែនជាការតុបតែងលម្អឡើយ តែជាទស្សនវិជ្ជាស្នូលរបស់ម៉ាក。 វាផ្ដល់អត្ថន័យដល់ Flash Learning ដោយឈរលើជំនឿថា ក្នុងយុគ AI ចំណេះដឹងត្រូវដើរក្នុងល្បឿននៃពន្លឺ។ វាជាការប្ដេជ្ញារបស់ KWD ក្នុងការផ្ដល់ល្បឿន ឧបករណ៍ និងទំនុកចិត្ត ដើម្បីសិក្សារួមជាមួយ AI និងដឹកនាំការផ្លាស់ប្ដូរនាពេលអនាគត។
                   </p>
                 ) : (
                   <p>
@@ -217,24 +191,42 @@ export function BrandGuidelineClient() {
                   </p>
                 )}
 
-                {/* Minimal Logo Display (Images stacked, no border boxes or backgrounds) */}
-                <div className="flex flex-col sm:flex-row items-center gap-8 py-4">
+                {/* Minimal Logo Display (All colors shown side-by-side, no border boxes or backgrounds) */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 py-6 border-b border-zinc-100 dark:border-zinc-900">
                   <div className="flex flex-col items-center">
-                    <Image src={LOGO_PRIMARY} alt="KWD Logo" width={80} height={80} className="object-contain dark:invert" />
-                    <span className="text-[10px] text-zinc-400 mt-2 font-mono">kwd-black_nobackground.png</span>
+                    <Image src="/brand/kwd-black_nobackground.png" alt="KWD Black Logo" width={80} height={80} className="object-contain dark:invert" />
+                    <span className="text-[10px] text-zinc-400 mt-2 font-mono text-center">kwd-black_nobackground.png</span>
+                    <span className="text-[10px] font-bold text-zinc-650 dark:text-zinc-400 mt-1">{t("Black Logo", "ឡូហ្គោពណ៌ខ្មៅ")}</span>
                   </div>
-                  
-                  <div className="text-xs text-zinc-500 max-w-sm">
-                    {kh ? (
-                      <>
-                        <strong>ទម្រង់ឡូហ្គោ៖</strong> ទម្រង់ឡូហ្គោដំណើរការទៅតាមគោលការណ៍សម្គាល់ម៉ាកយីហោ និងកំណត់ពីរបៀបដែលវាត្រូវបានយកទៅប្រើប្រាស់។ ម៉ាកយីហោធម្មតាៗតែងតែពឹងផ្អែកលើអក្សរម៉ាក (wordmark)។ ការប្រើប្រាស់ដដែលៗជួយកសាងអត្ថន័យ រហូតដល់និមិត្តសញ្ញានោះអាចឈរដោយខ្លួនឯងបាន។ ប្រព័ន្ធដែលមានភាពចាស់ទុំប្រើប្រាស់ទម្រង់វ៉ារ្យ៉ង់ច្រើនយ៉ាង អាស្រ័យលើបរិបទ និងករណីប្រើប្រាស់។ នៅពេលដែលការសម្គាល់ម៉ាកយីហោលូតលាស់ឡើង វានឹងកំណត់ថាធាតុណាមួយដែលត្រូវដើរតួឈានមុខគេ។
-                      </>
-                    ) : (
-                      <>
-                        <strong>Logo Format:</strong> A logo format follows brand recognition principles and defines how it is applied. Simple brands often rely on a wordmark. Repetition builds meaning until the symbol can stand alone. Mature systems use multiple variants depending on context and use cases. As recognition grows, it determines which element takes the lead.
-                      </>
-                    )}
+                  <div className="flex flex-col items-center">
+                    <Image src="/brand/kwd-gray.png" alt="KWD Gray Logo" width={80} height={80} className="object-contain" />
+                    <span className="text-[10px] text-zinc-400 mt-2 font-mono text-center">kwd-gray.png</span>
+                    <span className="text-[10px] font-bold text-zinc-650 dark:text-zinc-400 mt-1">{t("Gray Logo", "ឡូហ្គោពណ៌ប្រផេះ")}</span>
                   </div>
+                  <div className="flex flex-col items-center">
+                    <Image src="/brand/kwd-green.png" alt="KWD Green Logo" width={80} height={80} className="object-contain" />
+                    <span className="text-[10px] text-zinc-400 mt-2 font-mono text-center">kwd-green.png</span>
+                    <span className="text-[10px] font-bold text-zinc-650 dark:text-zinc-400 mt-1">{t("Green Logo", "ឡូហ្គោពណ៌បៃតង")}</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <div className="bg-zinc-950 p-2 rounded flex items-center justify-center w-[80px] h-[80px]">
+                      <Image src="/brand/kwd-black_nobackground.png" alt="KWD White Logo" width={72} height={72} className="object-contain invert" />
+                    </div>
+                    <span className="text-[10px] text-zinc-400 mt-2 font-mono text-center">kwd-black_nobackground.png (Inverted)</span>
+                    <span className="text-[10px] font-bold text-zinc-650 dark:text-zinc-400 mt-1">{t("White Logo", "ឡូហ្គោពណ៌ស")}</span>
+                  </div>
+                </div>
+
+                <div className="text-xs text-zinc-500 pt-2 leading-relaxed">
+                  {kh ? (
+                    <>
+                      <strong>ទម្រង់ឡូហ្គោ៖</strong> ទម្រង់ឡូហ្គោដំណើរការទៅតាមគោលការណ៍សម្គាល់ម៉ាកយីហោ និងកំណត់ពីរបៀបដែលវាត្រូវបានយកទៅប្រើប្រាស់។ ម៉ាកយីហោធម្មតាៗតែងតែពឹងផ្អែកលើអក្សរម៉ាក (wordmark)។ ការប្រើប្រាស់ដដែលៗជួយកសាងអត្ថន័យ រហូតដល់និមិត្តសញ្ញានោះអាចឈរដោយខ្លួនឯងបាន។ ប្រព័ន្ធដែលមានភាពចាស់ទុំប្រើប្រាស់ទម្រង់វ៉ារ្យ៉ង់ច្រើនយ៉ាង អាស្រ័យលើបរិបទ និងករណីប្រើប្រាស់។ នៅពេលដែលការសម្គាល់ម៉ាកយីហោលូតលាស់ឡើង វានឹងកំណត់ថាធាតុណាមួយដែលត្រូវដើរតួឈានមុខគេ។
+                    </>
+                  ) : (
+                    <>
+                      <strong>Logo Format:</strong> A logo format follows brand recognition principles and defines how it is applied. Simple brands often rely on a wordmark. Repetition builds meaning until the symbol can stand alone. Mature systems use multiple variants depending on context and use cases. As recognition grows, it determines which element takes the lead.
+                    </>
+                  )}
                 </div>
 
                 <div className="pt-2">
@@ -251,10 +243,10 @@ export function BrandGuidelineClient() {
               </div>
             </section>
 
-            {/* 04 — COLOR PALETTE */}
-            <section id={SECTIONS[3].id} className="scroll-mt-24">
+            {/* COLOR PALETTE */}
+            <section id="color" className="scroll-mt-24">
               <h2 className="text-lg font-bold text-zinc-900 dark:text-white border-b border-zinc-150 dark:border-zinc-850 pb-2 mb-4" style={kf}>
-                {t("Color Palette", "៣. ពណ៌ (Color Palette)")}
+                {t("Color Palette", "ពណ៌ (Color Palette)")}
               </h2>
 
               {/* Simple Typographic Color Swatches (Dots/Small squares + text, no card shapes) */}
@@ -273,10 +265,10 @@ export function BrandGuidelineClient() {
               </div>
             </section>
 
-            {/* 05 — TYPOGRAPHY */}
-            <section id={SECTIONS[4].id} className="scroll-mt-24">
+            {/* TYPOGRAPHY */}
+            <section id="type" className="scroll-mt-24">
               <h2 className="text-lg font-bold text-zinc-900 dark:text-white border-b border-zinc-150 dark:border-zinc-850 pb-2 mb-4" style={kf}>
-                {t("Typography", "៤. អក្សរ (Typography)")}
+                {t("Typography", "អក្សរ (Typography)")}
               </h2>
 
               <div className="space-y-6 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal" style={kf}>
@@ -309,10 +301,10 @@ export function BrandGuidelineClient() {
               </div>
             </section>
 
-            {/* 06 — DESIGN DNA */}
-            <section id={SECTIONS[5].id} className="scroll-mt-24">
+            {/* DESIGN DNA */}
+            <section id="dna" className="scroll-mt-24">
               <h2 className="text-lg font-bold text-zinc-900 dark:text-white border-b border-zinc-150 dark:border-zinc-850 pb-2 mb-4" style={kf}>
-                {t("Design DNA", "៥. ប្រព័ន្ធរចនា DNA (Design DNA — Brutalist)")}
+                {t("Design DNA", "ប្រព័ន្ធរចនា DNA (Design DNA — Brutalist)")}
               </h2>
 
               <div className="space-y-6 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal" style={kf}>
@@ -321,7 +313,7 @@ export function BrandGuidelineClient() {
                   <ul className="space-y-1 text-zinc-650 dark:text-zinc-400">
                     {kh ? (
                       <>
-                        <li>• គ្មាន border-radius — មុំទាំងអស់ស្រួច (90°)។</li>
+                        <li>• គ្មាន border-radius — មុំទាំងអស់ស្រួច (90°)。</li>
                         <li>• គែម (border) 2–3px ពណ៌ខ្មៅ #000 លើ cards ប៊ូតុង និង inputs។</li>
                         <li>• ស្រមោលរឹង (box-shadow) 3px ឬ 4px 0 #000 (offset solid shadow)។</li>
                         <li>• ខ្សែបន្ទាត់ព្រមាន (caution stripe) លឿង/ខ្មៅ ជា accent។</li>
@@ -354,10 +346,10 @@ export function BrandGuidelineClient() {
               </div>
             </section>
 
-            {/* 07 — APPLICATIONS (MOCKUPS) */}
-            <section id={SECTIONS[6].id} className="scroll-mt-24">
+            {/* APPLICATIONS (MOCKUPS) */}
+            <section id="apply" className="scroll-mt-24">
               <h2 className="text-lg font-bold text-zinc-900 dark:text-white border-b border-zinc-150 dark:border-zinc-850 pb-2 mb-4" style={kf}>
-                {t(SECTIONS[6].title.en, SECTIONS[6].title.kh)}
+                {t("Applications", "ការប្រើប្រាស់ & Mockups")}
               </h2>
 
               {/* Minimal Mockup Gallery (Clean grids, no border cards) */}
