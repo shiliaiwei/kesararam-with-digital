@@ -15,14 +15,14 @@ already in place.
 ---
 
 ## Supported Versions
-
-| Version              | Supported          |
-| -------------------- | ------------------ |
-| Latest (`main` / production) | ✅ Yes      |
-| Other branches / forks       | ❌ No       |
-
-Only the currently deployed `main` branch receives security updates. There are no
-backported fixes for older commits or branches.
+សមាជិកក្រុម:
+ដាណៃ យីន (អ្នកអានសំលេង · អ្នកដឹកនាំក្រុម)
+ចន្ថា កានិកា (មាតិការ និងការស្រាវជ្រាវ)
+រ៉ូហ្សា ន័ន (រចនា UI/UX)
+លីន ម៉ានី (ធានាគុណភាព និងតេស្ត)
+សុន រុណម៉ារ៉ា (ធានាគុណភាព និងតេស្ត)
+ភាព ពិសិដ្ឋ (គ្រូណែនាំ & Lead)
+ស្រុី វី (គ្រូណែនាំ)
 
 ---
 
