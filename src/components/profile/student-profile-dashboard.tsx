@@ -67,19 +67,7 @@ interface ThemeSettings {
   layout: LayoutStyle;
   glowEnabled: boolean;
   microAnimations: boolean;
-  coverColor: string;
 }
-
-const COVER_PRESETS = [
-  { label: "Yellow", value: "#eab308" },
-  { label: "Black", value: "#09090b" },
-  { label: "Blue", value: "#0284c7" },
-  { label: "Green", value: "#10b981" },
-  { label: "Purple", value: "#7c3aed" },
-  { label: "Red", value: "#dc2626" },
-  { label: "Orange", value: "#ea580c" },
-  { label: "Slate", value: "#475569" },
-];
 
 const DEFAULT_THEME: ThemeSettings = {
   mode: "light",
@@ -90,7 +78,6 @@ const DEFAULT_THEME: ThemeSettings = {
   layout: "grid",
   glowEnabled: true,
   microAnimations: true,
-  coverColor: "#eab308",
 };
 
 export function StudentProfileDashboard({
@@ -487,36 +474,15 @@ export function StudentProfileDashboard({
                 theme.microAnimations ? "hover:translate-y-[-2px]" : ""
               }`}
             >
-              {/* Cover banner */}
+              {/* Tier-accent top stripe */}
               <div
-                className="absolute top-0 left-0 w-full"
+                className="absolute top-0 left-0 w-full h-[5px]"
                 style={{
-                  height: "96px",
-                  background: theme.coverColor || "#eab308",
-                  borderBottom: "3px solid #000",
+                  background: tier.borderGradient,
+                  backgroundSize: "300% 300%",
+                  animation: tier.animated && theme.glowEnabled ? "rankShimmer 3s ease infinite" : undefined,
                 }}
-              >
-                {/* Bottom caution stripe — always on brand DNA */}
-                <div style={{
-                  position: "absolute", bottom: 0, left: 0, right: 0, height: "4px",
-                  background: "repeating-linear-gradient(90deg,rgba(0,0,0,0.25) 0,rgba(0,0,0,0.25) 12px,transparent 12px,transparent 24px)",
-                }} />
-                {/* Change cover button */}
-                <button
-                  onClick={() => { setDrawerTab("profile"); setIsEditProfileOpen(true); }}
-                  style={{
-                    position: "absolute", bottom: "8px", right: "10px",
-                    display: "flex", alignItems: "center", gap: "5px",
-                    padding: "4px 10px", cursor: "pointer",
-                    background: "rgba(0,0,0,0.55)", color: "#fff",
-                    border: "1.5px solid rgba(255,255,255,0.5)",
-                    fontSize: "10px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.08em",
-                  }}
-                >
-                  <Camera className="w-3 h-3" />
-                  {kh ? "ផ្លាស់ប្ដូរ" : "Cover"}
-                </button>
-              </div>
+              />
               <style>{`
                 @keyframes rankShimmer {
                   0%   { background-position: 0% 50%; }
@@ -525,58 +491,38 @@ export function StudentProfileDashboard({
                 }
               `}</style>
 
-              <div
-                className={`flex ${theme.layout === "sidebar" ? "flex-col items-center text-center" : "flex-col sm:flex-row"} gap-5 items-end`}
-                style={{ paddingTop: "76px" }}
-              >
-                {/* Avatar — brand DNA: black border, tier accent ring, no border-radius on camera btn */}
-                <div className="relative flex-shrink-0" style={{ marginBottom: "4px" }}>
-                  {/* Outer tier-colored ring */}
+              <div className={`flex ${theme.layout === "sidebar" ? "flex-col items-center text-center" : "flex-col sm:flex-row"} gap-5 items-center`}>
+                {/* Avatar — brand DNA: tier ring + black border + yellow camera btn */}
+                <div className="relative flex-shrink-0">
                   <div style={{
-                    padding: "4px",
+                    padding: tier.id === "rookie" ? 3 : 5,
                     borderRadius: "50%",
                     background: tier.borderGradient,
                     backgroundSize: tier.animated ? "300% 300%" : "100%",
                     animation: tier.animated && theme.glowEnabled ? "rankShimmer 3s ease infinite" : undefined,
                   }}>
-                    {/* White gap ring */}
-                    <div style={{
-                      padding: "3px",
-                      borderRadius: "50%",
-                      background: isDark ? "#0d1117" : "#fff",
-                    }}>
-                      {/* Black border container */}
-                      <div style={{
-                        borderRadius: "50%",
-                        overflow: "hidden",
-                        border: "2.5px solid #000",
-                      }}>
-                        <AvatarDisplay
-                          avatar={user.avatar}
-                          name={name}
-                          size={88}
-                          radius={0}
-                        />
+                    <div style={{ padding: "3px", borderRadius: "50%", background: isDark ? "#0d1117" : "#fff" }}>
+                      <div style={{ borderRadius: "50%", overflow: "hidden", border: "2.5px solid #000" }}>
+                        <AvatarDisplay avatar={user.avatar} name={name} size={88} radius={0} />
                       </div>
                     </div>
                   </div>
-                  {/* Camera button — brutalist: square, black border */}
+                  {/* Camera — square, yellow, brand DNA */}
                   <button
                     onClick={() => setIsEditProfileOpen(true)}
                     style={{
                       position: "absolute", bottom: "2px", right: "2px",
-                      width: "24px", height: "24px",
+                      width: "22px", height: "22px",
                       background: "#eab308", border: "2px solid #000",
                       display: "flex", alignItems: "center", justifyContent: "center",
                       cursor: "pointer", boxShadow: "2px 2px 0 #000",
                     }}
-                    title="Edit profile picture"
                   >
                     <Camera className="w-3 h-3" style={{ color: "#000" }} />
                   </button>
                 </div>
 
-                <div className="flex-1 w-full" style={{ paddingBottom: "4px" }}>
+                <div className="flex-1 w-full">
                   <div className="flex items-center gap-2 flex-wrap mb-1 justify-center sm:justify-start">
                     <h1 className="text-2xl font-black tracking-tight" style={{ color: style.colors.textMain }}>
                       {name}
@@ -1112,48 +1058,6 @@ export function StudentProfileDashboard({
                   {infoError && (
                     <p style={{ color: "#ef4444", fontSize: "12px", fontWeight: 700 }}>{infoError}</p>
                   )}
-                </div>
-
-                {/* Cover color picker */}
-                <div style={{ border: isDark ? "2px solid rgba(255,255,255,0.15)" : "2px solid #000", boxShadow: isDark ? "3px 3px 0 rgba(255,255,255,0.1)" : "3px 3px 0 #000" }}>
-                  <div style={{ padding: "6px 14px", background: "#eab308", borderBottom: "2px solid #000" }}>
-                    <span style={{ fontSize: "10px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em", color: "#000" }}>
-                      {kh ? "ពណ៌គម្រប" : "COVER COLOR"}
-                    </span>
-                  </div>
-                  <div style={{ padding: "14px", display: "flex", flexWrap: "wrap", gap: "8px" }}>
-                    {COVER_PRESETS.map(({ label, value }) => (
-                      <button
-                        key={value}
-                        onClick={() => saveThemeSettings({ ...theme, coverColor: value })}
-                        title={label}
-                        style={{
-                          width: "40px", height: "40px", background: value,
-                          border: theme.coverColor === value ? "3px solid #000" : "2px solid rgba(0,0,0,0.2)",
-                          boxShadow: theme.coverColor === value ? "3px 3px 0 #000" : "none",
-                          cursor: "pointer", flexShrink: 0,
-                        }}
-                      />
-                    ))}
-                    {/* Custom color */}
-                    <label title="Custom color" style={{ position: "relative", width: "40px", height: "40px", cursor: "pointer" }}>
-                      <div style={{
-                        width: "100%", height: "100%",
-                        background: `conic-gradient(red,yellow,lime,cyan,blue,magenta,red)`,
-                        border: "2px solid rgba(0,0,0,0.2)",
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                        fontSize: "16px",
-                      }}>
-                        <Palette className="w-4 h-4" style={{ color: "#fff", filter: "drop-shadow(0 0 2px #000)" }} />
-                      </div>
-                      <input
-                        type="color"
-                        value={theme.coverColor || "#eab308"}
-                        onChange={(e) => saveThemeSettings({ ...theme, coverColor: e.target.value })}
-                        style={{ position: "absolute", opacity: 0, width: "100%", height: "100%", top: 0, left: 0, cursor: "pointer" }}
-                      />
-                    </label>
-                  </div>
                 </div>
 
                 {/* Avatar & Display Name via ProfileEditor */}

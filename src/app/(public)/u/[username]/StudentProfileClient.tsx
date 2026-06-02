@@ -288,63 +288,66 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
         <div className="w-16" />
       </div>
 
-      {/* Cover + Profile hero */}
-      <div className="bg-white shadow-sm">
+      {/* ── Profile hero card — simple brand DNA ── */}
+      <div className="bg-white border-b-2 border-black">
 
-        {/* Cover photo — solid flat blue, no gradient */}
-        <div className="relative h-[200px] sm:h-[270px] overflow-hidden" style={{ background: "#1877f2" }}>
-          {/* Decorative circles (opacity only) */}
-          <div className="absolute -right-16 -top-16 w-[280px] h-[280px] rounded-full border-[30px] border-white/10" />
-          <div className="absolute right-12 -top-20 w-[200px] h-[200px] rounded-full border-[20px] border-white/10" />
-          <div className="absolute -right-4 bottom-[-80px] w-[200px] h-[200px] rounded-full border-[20px] border-white/10" />
-
-          {/* KWD logo — top right */}
-          <div className="absolute top-4 right-5 z-10">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/brand/kwd-black_nobackground.png"
-              alt="KWD"
-              className="h-8 sm:h-11 brightness-0 invert opacity-55"
-            />
+        {/* School header strip */}
+        <div style={{
+          background: "#eab308",
+          borderBottom: "2px solid #000",
+          padding: "8px 20px",
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+        }}>
+          <div className="flex items-center gap-3">
+            {/* Khmer pagoda seal */}
+            <svg className="w-7 h-7 flex-shrink-0" viewBox="0 0 100 100" fill="none">
+              <circle cx="50" cy="50" r="46" stroke="#000" strokeWidth="3" fill="#fffbeb" />
+              <path d="M50 20 L57 44 L54 44 L54 74 L46 74 L46 44 L43 44 Z" fill="#000" />
+              <path d="M37 32 L43 49 L40 49 L40 74 L34 74 L34 49 L31 49 Z" fill="#000" opacity="0.8" />
+              <path d="M63 32 L69 49 L66 49 L66 74 L60 74 L60 49 L57 49 Z" fill="#000" opacity="0.8" />
+              <rect x="20" y="74" width="60" height="4" fill="#000" />
+            </svg>
+            <div>
+              <p className={`text-black font-black text-sm leading-tight ${kh ? "font-google-sans" : ""}`}>
+                {kh ? "សាលាបឋមសិក្សាកេសរារាម" : "Kesararam Primary School"}
+              </p>
+              <p className="text-black/60 text-[10px] font-mono uppercase tracking-wider">KESARARAM · SIEM REAP</p>
+            </div>
           </div>
-
-          {/* ID pill — top left */}
-          <div className="absolute top-4 left-4 flex items-center gap-1.5 bg-white/15 border border-white/20 rounded-full px-3 py-1 z-10">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-300" />
-            <span className="text-white text-[11px] font-black font-mono tracking-wider">
+          <div className="flex items-center gap-3 flex-shrink-0">
+            <span className="text-[11px] font-black font-mono tracking-wider text-black/70 border border-black/30 px-2 py-0.5">
               KWD-{student.id.toString().padStart(4, "0")}
             </span>
-          </div>
-
-          {/* School name — bottom center on mobile, bottom-left (offset) on desktop */}
-          <div className="absolute bottom-5 left-0 right-0 sm:left-[168px] sm:right-auto px-4 sm:px-0 z-10">
-            <h2 className={`text-white text-lg sm:text-2xl font-black leading-tight drop-shadow-sm text-center sm:text-left ${kh ? "font-google-sans" : ""}`}>
-              {kh ? "សាលាបឋមសិក្សាកេសរារាម" : "Kesararam Primary School"}
-            </h2>
-            <p className="text-white/55 text-[10px] font-mono uppercase tracking-widest mt-0.5 text-center sm:text-left">
-              {kh ? "KESARARAM PRIMARY SCHOOL" : "ខេត្តសៀមរាប · SIEM REAP"}
-            </p>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/kwd-black_nobackground.png" alt="KWD" className="h-7 object-contain" />
           </div>
         </div>
 
-        {/* Profile info section */}
-        <div className="relative px-4 sm:px-8">
-          {/* Avatar overlapping the cover */}
-          <div className="absolute -top-[52px] sm:-top-[64px] left-4 sm:left-8 z-10">
-            <div className="w-[104px] h-[104px] sm:w-[128px] sm:h-[128px] rounded-full overflow-hidden ring-4 ring-white shadow-lg bg-gray-100">
-              <Avatar
-                url={student.avatar}
-                name={isNamePublic ? (student.displayName || student.username) : "S"}
-                size={128}
-                changedAt={student.avatarChangedAt}
-              />
+        {/* Profile info row */}
+        <div className="px-5 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="flex items-center gap-4">
+            {/* Avatar */}
+            <div style={{ position: "relative", flexShrink: 0 }}>
+              <div style={{
+                padding: "3px", borderRadius: "50%",
+                border: "3px solid #000",
+                background: "#fff",
+                boxShadow: "3px 3px 0 #000",
+              }}>
+                <div style={{ borderRadius: "50%", overflow: "hidden", width: "80px", height: "80px" }}>
+                  <Avatar
+                    url={student.avatar}
+                    name={isNamePublic ? (student.displayName || student.username) : "S"}
+                    size={80}
+                    changedAt={student.avatarChangedAt}
+                  />
+                </div>
+              </div>
             </div>
-          </div>
 
-          {/* Name + badges + action buttons */}
-          <div className="pt-14 sm:pt-3 sm:pl-[152px] pb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            {/* Name + badges */}
             <div>
-              <h1 className={`text-xl sm:text-2xl font-bold text-gray-900 leading-tight ${kh ? "font-google-sans" : ""}`}>
+              <h1 className={`text-xl font-black text-black leading-tight ${kh ? "font-google-sans" : ""}`}>
                 {displayName}
               </h1>
               <p className="text-gray-500 text-sm font-mono mt-0.5">
@@ -352,55 +355,62 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
               </p>
               <div className="flex flex-wrap items-center gap-2 mt-2">
                 <TierBadge lifetimePoints={student.lifetimePoints} size="sm" lang={lang} />
-                <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-700 border border-blue-200 ${kh ? "font-google-sans" : ""}`}>
+                <span className={`inline-flex items-center gap-1 text-xs font-black uppercase tracking-wide px-2 py-0.5 border-2 border-black ${kh ? "font-google-sans" : ""}`}
+                  style={{ background: "#eab308", color: "#000" }}>
                   <GraduationCap size={11} />
                   {kh ? "សិស្ស" : "Student"}
                 </span>
                 {isStatsPublic && (
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-700 border border-amber-200 font-mono">
+                  <span className="inline-flex items-center gap-1 text-xs font-black font-mono px-2 py-0.5 border-2 border-black"
+                    style={{ background: "#000", color: "#eab308" }}>
                     <Trophy size={11} />
                     #{rank}
                   </span>
                 )}
               </div>
             </div>
+          </div>
 
-            {/* Action buttons */}
-            <div className="flex items-center gap-2 flex-shrink-0">
-              <button
-                onClick={handleShare}
-                className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold bg-blue-600 text-white shadow-sm ${kh ? "font-google-sans" : ""}`}
-              >
-                {copied ? <Check size={14} /> : <Share2 size={14} />}
-                {copied ? (kh ? "បានចម្លង!" : "Copied!") : (kh ? "ចែករំលែក" : "Share")}
-              </button>
-              <button
-                onClick={() => router.push("/leaderboard")}
-                className={`flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-bold bg-gray-100 text-gray-700 ${kh ? "font-google-sans" : ""}`}
-              >
-                <Award size={14} className="text-amber-500" />
-                {kh ? "តារាងពិន្ទុ" : "Leaderboard"}
-              </button>
-            </div>
+          {/* Action buttons — brand DNA: sharp corners, black border */}
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <button
+              onClick={handleShare}
+              className={`flex items-center gap-1.5 px-4 py-2 text-sm font-black uppercase ${kh ? "font-google-sans" : ""}`}
+              style={{ background: "#eab308", border: "2px solid #000", boxShadow: "3px 3px 0 #000", color: "#000" }}
+            >
+              {copied ? <Check size={14} /> : <Share2 size={14} />}
+              {copied ? (kh ? "បានចម្លង!" : "Copied!") : (kh ? "ចែករំលែក" : "Share")}
+            </button>
+            <button
+              onClick={() => router.push("/leaderboard")}
+              className={`flex items-center gap-1.5 px-4 py-2 text-sm font-black uppercase ${kh ? "font-google-sans" : ""}`}
+              style={{ background: "#fff", border: "2px solid #000", boxShadow: "3px 3px 0 #000", color: "#000" }}
+            >
+              <Award size={14} />
+              {kh ? "តារាងពិន្ទុ" : "Rank"}
+            </button>
           </div>
         </div>
 
-        {/* Tab navigation */}
+        {/* Tab navigation — brand DNA */}
         {student.isProfilePublic !== false && (
-          <div className="border-t border-gray-100 px-2 sm:px-6 flex overflow-x-auto no-scrollbar">
+          <div style={{ borderTop: "2px solid #000", display: "flex", overflowX: "auto" }}>
             {tabs.map((tab) => {
               const Icon = tab.icon;
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-1.5 px-4 sm:px-5 py-3 text-sm font-bold border-b-[3px] transition-colors whitespace-nowrap flex-shrink-0 ${kh ? "font-google-sans" : ""}
-                    ${activeTab === tab.id
-                      ? "border-blue-600 text-blue-600"
-                      : "border-transparent text-gray-600"
-                    }`}
+                  className={`flex items-center gap-1.5 px-5 py-2.5 text-xs font-black uppercase tracking-wide whitespace-nowrap flex-shrink-0 ${kh ? "font-google-sans" : ""}`}
+                  style={{
+                    borderBottom: activeTab === tab.id ? "3px solid #eab308" : "3px solid transparent",
+                    background: activeTab === tab.id ? "#fffbeb" : "transparent",
+                    color: activeTab === tab.id ? "#000" : "#6b7280",
+                    borderRight: "1px solid rgba(0,0,0,0.08)",
+                    cursor: "pointer",
+                  }}
                 >
-                  <Icon size={15} />
+                  <Icon size={13} />
                   {tab.label}
                 </button>
               );
