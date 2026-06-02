@@ -129,27 +129,27 @@ export function BrandGuidelineClient() {
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-black dark:text-white transition-colors duration-300">
       
       {/* ════ HERO — Spec Cover ═══════════════════════════════════════════ */}
-      <header className="relative overflow-hidden bg-zinc-900 text-white border-b-4 border-black dark:border-zinc-800">
+      <header className="relative overflow-hidden bg-white dark:bg-zinc-950 text-black dark:text-white border-b-4 border-black dark:border-zinc-800">
         
         {/* Caution Tape Strip */}
-        <div className="absolute top-0 inset-x-0 h-3 caution-tape z-20 shadow-md" />
+        <div className="absolute top-0 inset-x-0 h-3 caution-tape z-20 shadow-sm" />
 
         {/* Blueprint Grid Overlay */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.08] dark:opacity-[0.04]"
+          className="pointer-events-none absolute inset-0 opacity-[0.05] dark:opacity-[0.04]"
           style={{
             backgroundImage:
-              "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
+              "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)",
             backgroundSize: "clamp(24px, 5vw, 44px) clamp(24px, 5vw, 44px)",
           }}
         />
 
         {/* Large Decorative Aura Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-yellow-500/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-yellow-500/[0.04] blur-[120px] rounded-full pointer-events-none" />
 
         {/* Decorative corner registration crosshairs */}
-        <CornerCrosshairs containerClass="absolute inset-0 p-4 sm:p-6" color="border-yellow-400/40" />
+        <CornerCrosshairs containerClass="absolute inset-0 p-4 sm:p-6" color="border-black/20 dark:border-yellow-400/40" />
 
         {/* Hero content */}
         <div className="relative z-10 mx-auto max-w-5xl px-5 sm:px-8 pt-20 sm:pt-24 md:pt-28 pb-10 sm:pb-14 flex flex-col items-center text-center">
@@ -170,37 +170,37 @@ export function BrandGuidelineClient() {
 
           {/* Eyebrow badge pills */}
           <div className="mb-6 flex flex-wrap items-center justify-center gap-2.5">
-            <span className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-4 py-2 backdrop-blur-md">
-              <span className="h-2 w-2 rounded-full bg-yellow-400 animate-pulse" />
-              <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-yellow-400" style={kf}>
+            <span className="inline-flex items-center gap-2 rounded-xl border border-black/10 dark:border-white/20 bg-black/5 dark:bg-white/5 px-4 py-2 backdrop-blur-md">
+              <span className="h-2 w-2 rounded-full bg-yellow-500 animate-pulse" />
+              <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-yellow-600 dark:text-yellow-400" style={kf}>
                 {t("Brand Guideline", "Brand Guideline")}
               </span>
             </span>
-            <span className="rounded-xl border border-white/20 bg-white/5 px-3.5 py-2 text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-white/60">
+            <span className="rounded-xl border border-black/10 dark:border-white/20 bg-black/5 dark:bg-white/5 px-3.5 py-2 text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-zinc-500 dark:text-white/60">
               v1.0
             </span>
-            <span className="rounded-xl border border-white/20 bg-white/5 px-3.5 py-2 text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-white/60">
+            <span className="rounded-xl border border-black/10 dark:border-white/20 bg-black/5 dark:bg-white/5 px-3.5 py-2 text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-zinc-500 dark:text-white/60">
               EN · ខ្មែរ
             </span>
           </div>
 
           {/* Main wordmark title */}
           <h1
-            className="max-w-full font-black tracking-tighter leading-[0.85] text-white select-none filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
+            className="max-w-full font-black tracking-tighter leading-[0.85] text-black dark:text-white select-none filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.05)]"
             style={{ fontSize: "clamp(4rem, 16vw, 9.5rem)" }}
           >
-            K<span className="text-yellow-400 relative">W<span className="absolute -top-4 -right-4 text-xs font-mono text-yellow-400/40 select-none hidden sm:inline">[DNA]</span></span>D
+            K<span className="text-yellow-500 relative">W<span className="absolute -top-4 -right-4 text-xs font-mono text-yellow-500/40 select-none hidden sm:inline">[DNA]</span></span>D
           </h1>
 
           {/* Interactive decorative indicator */}
           <div className="mt-6 mb-6 flex items-center justify-center gap-2">
             <div className="h-1.5 w-16 rounded-full bg-yellow-400" />
-            <Bolt className="w-5 h-5 text-yellow-400 animate-spin" style={{ animationDuration: '6s' }} />
+            <Bolt className="w-5 h-5 text-yellow-500 animate-spin" style={{ animationDuration: '6s' }} />
             <div className="h-1.5 w-16 rounded-full bg-yellow-400" />
           </div>
 
           {/* Description */}
-          <p className="max-w-md sm:max-w-xl text-sm sm:text-base text-zinc-300 font-medium leading-relaxed" style={kf}>
+          <p className="max-w-md sm:max-w-xl text-sm sm:text-base text-zinc-600 dark:text-zinc-300 font-semibold leading-relaxed" style={kf}>
             {t(
               "Visual identity, design standards, and usage rules that define KWD across every surface.",
               "អត្តសញ្ញាណដែលមើលឃើញ ស្តង់ដាររចនា និងច្បាប់ប្រើប្រាស់ដែលកំណត់ KWD ។"
@@ -208,8 +208,8 @@ export function BrandGuidelineClient() {
           </p>
         </div>
 
-        {/* Dual Marquee strip (moving in opposite directions) */}
-        <div className="relative z-10 border-t border-b-2 border-black dark:border-zinc-800 bg-black/60 backdrop-blur-sm divide-y divide-white/5 overflow-hidden">
+        {/* Dual Marquee strip (moving in opposite directions) - White Theme */}
+        <div className="relative z-10 border-t border-b-2 border-black dark:border-zinc-800 bg-zinc-50/80 dark:bg-black/60 backdrop-blur-sm divide-y divide-black/5 dark:divide-white/5 overflow-hidden">
           
           {/* Marquee Row 1 (Leftwards) */}
           <div className="flex py-3.5 select-none overflow-hidden">
@@ -222,15 +222,15 @@ export function BrandGuidelineClient() {
               >
                 {Array.from({ length: 5 }).map((_, i) => (
                   <span key={i} className="flex items-center">
-                    <Bolt className="text-yellow-400 w-4 h-4 mx-5" />
+                    <Bolt className="text-yellow-500 w-4 h-4 mx-5" />
                     {kh ? (
                       <span
-                        className="text-xs sm:text-sm text-white font-google-sans whitespace-nowrap"
+                        className="text-xs sm:text-sm text-black dark:text-white font-google-sans whitespace-nowrap"
                       >
                         រៀនដើម្បីដឹង · ប្រកួតដើម្បីពូកែ · ការពារដើម្បីជីវិត
                       </span>
                     ) : (
-                      <span className="text-[11px] sm:text-xs font-black uppercase tracking-[0.25em] text-white whitespace-nowrap">
+                      <span className="text-[11px] sm:text-xs font-black uppercase tracking-[0.25em] text-black dark:text-white whitespace-nowrap">
                         Learn to know · Compete to excel · Protect for life
                       </span>
                     )}
@@ -251,15 +251,15 @@ export function BrandGuidelineClient() {
               >
                 {Array.from({ length: 5 }).map((_, i) => (
                   <span key={i} className="flex items-center" style={{ direction: 'ltr' }}>
-                    <Bolt className="text-cyan-400 w-4 h-4 mx-5" />
+                    <Bolt className="text-cyan-600 w-4 h-4 mx-5" />
                     {kh ? (
                       <span
-                        className="text-xs sm:text-sm text-white font-google-sans whitespace-nowrap"
+                        className="text-xs sm:text-sm text-black dark:text-white font-google-sans whitespace-nowrap"
                       >
                         រៀនដើម្បីដឹង · ប្រកួតដើម្បីពូកែ · ការពារដើម្បីជីវិត
                       </span>
                     ) : (
-                      <span className="text-[11px] sm:text-xs font-black uppercase tracking-[0.25em] text-white whitespace-nowrap">
+                      <span className="text-[11px] sm:text-xs font-black uppercase tracking-[0.25em] text-black dark:text-white whitespace-nowrap">
                         Learn to know · Compete to excel · Protect for life
                       </span>
                     )}
