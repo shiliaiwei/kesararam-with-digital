@@ -67,7 +67,19 @@ interface ThemeSettings {
   layout: LayoutStyle;
   glowEnabled: boolean;
   microAnimations: boolean;
+  coverColor: string;
 }
+
+const COVER_PRESETS = [
+  { label: "Yellow", value: "#eab308" },
+  { label: "Black", value: "#09090b" },
+  { label: "Blue", value: "#0284c7" },
+  { label: "Green", value: "#10b981" },
+  { label: "Purple", value: "#7c3aed" },
+  { label: "Red", value: "#dc2626" },
+  { label: "Orange", value: "#ea580c" },
+  { label: "Slate", value: "#475569" },
+];
 
 const DEFAULT_THEME: ThemeSettings = {
   mode: "light",
@@ -78,6 +90,7 @@ const DEFAULT_THEME: ThemeSettings = {
   layout: "grid",
   glowEnabled: true,
   microAnimations: true,
+  coverColor: "#eab308",
 };
 
 export function StudentProfileDashboard({
@@ -473,15 +486,37 @@ export function StudentProfileDashboard({
                 theme.microAnimations ? "hover:translate-y-[-2px]" : ""
               }`}
             >
-              {/* Premium Tier-colored Top Banner Line */}
+              {/* Cover banner */}
               <div
-                className="absolute top-0 left-0 w-full h-[6px]"
+                className="absolute top-0 left-0 w-full"
                 style={{
-                  background: tier.borderGradient,
-                  backgroundSize: "300% 300%",
-                  animation: tier.animated && theme.glowEnabled ? "rankShimmer 3s ease infinite" : undefined,
+                  height: "80px",
+                  background: theme.coverColor || "#eab308",
+                  borderBottom: isBrutalist ? "3px solid #000" : undefined,
                 }}
-              />
+              >
+                {/* Caution stripe overlay for brutalist style */}
+                {isBrutalist && (
+                  <div style={{
+                    position: "absolute", bottom: 0, left: 0, right: 0, height: "5px",
+                    background: "repeating-linear-gradient(90deg,#000 0,#000 18px,transparent 18px,transparent 36px)",
+                  }} />
+                )}
+                {/* Edit cover button */}
+                <button
+                  onClick={() => { setDrawerTab("profile"); setIsEditProfileOpen(true); }}
+                  className="absolute bottom-2 right-2 flex items-center gap-1 px-2 py-1 text-[10px] font-black uppercase tracking-wide"
+                  style={{
+                    background: "rgba(0,0,0,0.5)", color: "#fff",
+                    border: "1px solid rgba(255,255,255,0.3)",
+                    borderRadius: isBrutalist ? "0" : "4px",
+                  }}
+                  title="Change cover"
+                >
+                  <Camera className="w-3 h-3" />
+                  Cover
+                </button>
+              </div>
               <style>{`
                 @keyframes rankShimmer {
                   0%   { background-position: 0% 50%; }
@@ -490,7 +525,7 @@ export function StudentProfileDashboard({
                 }
               `}</style>
 
-              <div className={`flex ${theme.layout === "sidebar" ? "flex-col items-center text-center" : "flex-col sm:flex-row"} gap-5 items-center`}>
+              <div className={`flex ${theme.layout === "sidebar" ? "flex-col items-center text-center" : "flex-col sm:flex-row"} gap-5 items-center`} style={{ paddingTop: "60px" }}>
                 {/* Custom Avatar Ring with Rank Showcase + Edit button */}
                 <div className="relative flex-shrink-0">
                   <div
@@ -1063,6 +1098,48 @@ export function StudentProfileDashboard({
                   {infoError && (
                     <p style={{ color: "#ef4444", fontSize: "12px", fontWeight: 700 }}>{infoError}</p>
                   )}
+                </div>
+
+                {/* Cover color picker */}
+                <div style={{ border: isDark ? "2px solid rgba(255,255,255,0.15)" : "2px solid #000", boxShadow: isDark ? "3px 3px 0 rgba(255,255,255,0.1)" : "3px 3px 0 #000" }}>
+                  <div style={{ padding: "6px 14px", background: "#eab308", borderBottom: "2px solid #000" }}>
+                    <span style={{ fontSize: "10px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em", color: "#000" }}>
+                      {kh ? "ពណ៌គម្រប" : "COVER COLOR"}
+                    </span>
+                  </div>
+                  <div style={{ padding: "14px", display: "flex", flexWrap: "wrap", gap: "8px" }}>
+                    {COVER_PRESETS.map(({ label, value }) => (
+                      <button
+                        key={value}
+                        onClick={() => saveThemeSettings({ ...theme, coverColor: value })}
+                        title={label}
+                        style={{
+                          width: "40px", height: "40px", background: value,
+                          border: theme.coverColor === value ? "3px solid #000" : "2px solid rgba(0,0,0,0.2)",
+                          boxShadow: theme.coverColor === value ? "3px 3px 0 #000" : "none",
+                          cursor: "pointer", flexShrink: 0,
+                        }}
+                      />
+                    ))}
+                    {/* Custom color */}
+                    <label title="Custom color" style={{ position: "relative", width: "40px", height: "40px", cursor: "pointer" }}>
+                      <div style={{
+                        width: "100%", height: "100%",
+                        background: `conic-gradient(red,yellow,lime,cyan,blue,magenta,red)`,
+                        border: "2px solid rgba(0,0,0,0.2)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        fontSize: "16px",
+                      }}>
+                        <Palette className="w-4 h-4" style={{ color: "#fff", filter: "drop-shadow(0 0 2px #000)" }} />
+                      </div>
+                      <input
+                        type="color"
+                        value={theme.coverColor || "#eab308"}
+                        onChange={(e) => saveThemeSettings({ ...theme, coverColor: e.target.value })}
+                        style={{ position: "absolute", opacity: 0, width: "100%", height: "100%", top: 0, left: 0, cursor: "pointer" }}
+                      />
+                    </label>
+                  </div>
                 </div>
 
                 {/* Avatar & Display Name via ProfileEditor */}
