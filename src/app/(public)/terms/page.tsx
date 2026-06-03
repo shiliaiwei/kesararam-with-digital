@@ -16,7 +16,7 @@ const SECTIONS = [
   {
     id: "s2",
     num: "២",
-    heading: { kh: "គោលបំណងនៃវេទិកា", en: "Purpose of the Platform" },
+    heading: { kh: "គោលបំណងនៃថ្នាល់", en: "Purpose of the Platform" },
     kh: "KWD (kesararamwithdigital.tech) ជាថ្នាល់សិក្សាឥតគិតថ្លៃ ពីរភាសា (ខ្មែរ–អង់គ្លេស) ដែលផ្ដោតលើទ្រឹស្ដីបើកបរ និងសញ្ញាចរាចរណ៍ ដើម្បីបង្កើនការយល់ដឹង និងសុវត្ថិភាពចរាចរណ៍។ បង្កើតដោយក្រុមយុវនារីខ្មែរពីសាលាបឋមសិក្សាកេសរារាម ក្នុងក្របខ័ណ្ឌ Technovation Girls 2026។ KWD គាំទ្រ SDG 4 និង SDG 11។",
     en: "KWD (kesararamwithdigital.tech) is a free, bilingual (Khmer–English) learning platform focused on driving theory and traffic signs, designed to improve road safety knowledge and awareness. Built by a team of young Cambodian women from Kesararam Primary School under the Technovation Girls 2026 programme. KWD supports SDG 4 (Quality Education) and SDG 11 (Sustainable Cities and Communities).",
   },
