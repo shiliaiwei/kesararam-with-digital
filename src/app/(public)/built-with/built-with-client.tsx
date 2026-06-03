@@ -121,7 +121,7 @@ export function BuiltWithClient() {
       <header className="border-b border-zinc-200 dark:border-zinc-800">
         <div className="max-w-5xl mx-auto px-6 py-12">
           <h1 className="text-2xl font-bold tracking-tight">
-            {t("Built With & Bibliography", "ឧបករណ៍ និងឯកសារយោង")}
+            {t("Bibliography", "ឯកសារយោង")}
           </h1>
           <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 max-w-xl leading-relaxed">
             {t(
