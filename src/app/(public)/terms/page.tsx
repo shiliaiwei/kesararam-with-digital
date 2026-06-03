@@ -103,7 +103,7 @@ export default function TermsPage() {
             {kh ? "ឯកសារច្បាប់" : "Legal Document"}
           </p>
           <h1 className="text-2xl font-bold tracking-tight text-zinc-900" style={kf}>
-            {kh ? "លក្ខខណ្ឌប្រើប្រាស់ KWD" : "KWD Terms of Service"}
+            {kh ? "លក្ខខណ្ឌប្រើប្រាស់ KWD" : "KWD Terms of Use"}
           </h1>
           <p className="mt-2 text-sm text-zinc-500 max-w-xl leading-relaxed" style={kf}>
             {kh

@@ -170,7 +170,7 @@ const CONTENT = {
     legalTitle: "Legal & Privacy",
     legalText: "KWD is committed to protecting user privacy, especially for students. Our platform follows Technovation's safety guidelines and Cambodia's data protection principles.",
     privacyBtn: "Privacy Policy",
-    termsBtn: "Terms of Service",
+    termsBtn: "Terms of Use",
   },
   kh: {
     eyebrow: "អំពីយើង",

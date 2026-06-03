@@ -169,7 +169,7 @@ export default function PrivacyPage() {
             <span style={kf}>© 2026 Kesararam With Digital · kesararamwithdigital.tech</span>
             <div className="flex gap-4">
               <Link href="/terms" className="hover:text-zinc-700 transition-colors" style={kf}>
-                {kh ? "លក្ខខណ្ឌប្រើប្រាស់" : "Terms of Service"}
+                {kh ? "លក្ខខណ្ឌប្រើប្រាស់" : "Terms of Use"}
               </Link>
               <Link href="/about" className="hover:text-zinc-700 transition-colors" style={kf}>
                 {kh ? "អំពីយើង" : "About"}

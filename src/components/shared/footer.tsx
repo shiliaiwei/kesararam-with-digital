@@ -153,7 +153,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/terms" className="text-sm text-zinc-600 hover:text-black font-medium transition-colors" style={kf}>
-                  {kh ? "លក្ខខណ្ឌប្រើប្រាស់" : "Terms of Service"}
+                  {kh ? "លក្ខខណ្ឌប្រើប្រាស់" : "Terms of Use"}
                 </Link>
               </li>
             </ul>
