@@ -351,24 +351,23 @@ export function AboutClient() {
       {/* ═══════════════════════════════════════════════════════════════════
           MISSION · VISION · VALUES — hierarchy via size, not just color
       ════════════════════════════════════════════════════════════════════ */}
-      <section className="border-t-2 border-black bg-zinc-950">
+      <section className="border-t border-zinc-200 bg-zinc-50">
         <div className="max-w-6xl mx-auto px-6 py-14">
           <div className="flex items-center gap-3 mb-8">
-            <div className="h-px flex-1 bg-white/10" />
-            <span className="text-[10px] font-black tracking-[0.25em] uppercase text-white/30" style={kf}>
+            <div className="h-px flex-1 bg-zinc-300" />
+            <span className="text-[10px] font-black tracking-[0.25em] uppercase text-zinc-400" style={kf}>
               {kh ? "បេសកកម្ម · ចក្ខុវិស័យ · គុណតម្លៃ" : "Mission · Vision · Values"}
             </span>
-            <div className="h-px flex-1 bg-white/10" />
+            <div className="h-px flex-1 bg-zinc-300" />
           </div>
 
-          {/* Mission is primary (full width), Vision+Values secondary (split) */}
           <div className="flex flex-col gap-4">
             {/* Mission — primary: larger, full row */}
-            <div className="p-8 border-2 border-white/10 flex flex-col gap-3"
+            <div className="p-8 bg-white border border-zinc-200 flex flex-col gap-3"
               style={{ borderLeftColor: c.mvv[0].color, borderLeftWidth: 4 }}>
               <span className="text-[10px] font-black tracking-widest uppercase"
                 style={{ color: c.mvv[0].color }}>{c.mvv[0].tag}</span>
-              <p className="text-white text-base md:text-lg leading-relaxed max-w-3xl" style={kf}>
+              <p className="text-zinc-900 text-base md:text-lg leading-relaxed max-w-3xl" style={kf}>
                 {c.mvv[0].text}
               </p>
             </div>
@@ -376,11 +375,11 @@ export function AboutClient() {
             {/* Vision + Values — secondary: side by side, smaller */}
             <div className="grid md:grid-cols-2 gap-4">
               {c.mvv.slice(1).map((m) => (
-                <div key={m.tag} className="p-6 border-2 border-white/10 flex flex-col gap-3"
+                <div key={m.tag} className="p-6 bg-white border border-zinc-200 flex flex-col gap-3"
                   style={{ borderLeftColor: m.color, borderLeftWidth: 4 }}>
                   <span className="text-[10px] font-black tracking-widest uppercase"
                     style={{ color: m.color }}>{m.tag}</span>
-                  <p className="text-white/70 text-sm leading-relaxed" style={kf}>{m.text}</p>
+                  <p className="text-zinc-600 text-sm leading-relaxed" style={kf}>{m.text}</p>
                 </div>
               ))}
             </div>
@@ -491,20 +490,20 @@ export function AboutClient() {
       {/* ═══════════════════════════════════════════════════════════════════
           LEGAL CTA
       ════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-zinc-950 border-t-4 border-yellow-400 py-12 px-6">
+      <section className="border-t border-zinc-200 bg-white py-12 px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
-            <p className="font-black text-white text-lg mb-1" style={kf}>{c.legalTitle}</p>
+            <p className="font-black text-zinc-900 text-lg mb-1" style={kf}>{c.legalTitle}</p>
             <p className="text-zinc-500 text-sm max-w-lg leading-relaxed" style={kf}>{c.legalText}</p>
           </div>
           <div className="flex gap-3 flex-shrink-0">
             <Link href="/privacy"
-              className="text-xs font-black px-5 py-2.5 bg-yellow-400 text-black border-2 border-yellow-400 hover:-translate-y-0.5 transition-all"
-              style={{ boxShadow: "3px 3px 0 #ca8a04", ...kf }}>
+              className="text-xs font-black px-5 py-2.5 bg-yellow-400 text-black border-2 border-black hover:-translate-y-0.5 transition-all"
+              style={{ boxShadow: "3px 3px 0 #000", ...kf }}>
               {c.privacyBtn}
             </Link>
             <Link href="/terms"
-              className="text-xs font-black px-5 py-2.5 bg-transparent text-white border-2 border-white/20 hover:border-white transition-all"
+              className="text-xs font-black px-5 py-2.5 bg-white text-zinc-700 border-2 border-zinc-300 hover:border-black hover:text-black transition-all"
               style={kf}>
               {c.termsBtn}
             </Link>
