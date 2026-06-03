@@ -426,7 +426,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
           </div>
 
           {/* Tier 2: Teacher Pro (Hero / Center-stage) */}
-          <div className="w-[92vw] xs:w-[88vw] md:w-auto shrink-0 snap-center relative md:scale-[1.06] md:-my-2 bg-gradient-to-b from-amber-400/20 via-amber-400/[0.06] to-transparent border-2 border-amber-400/70 shadow-[0_0_60px_rgba(251,191,36,0.22)] hover:shadow-[0_0_90px_rgba(251,191,36,0.35)] rounded-3xl p-4 xs:p-5 md:p-7 flex flex-col transition-all duration-300 group">
+          <div className="w-[92vw] xs:w-[88vw] md:w-auto shrink-0 snap-center relative md:scale-[1.06] md:-my-2 bg-gradient-to-b from-amber-400/20 via-amber-400/[0.06] to-transparent border-2 border-amber-400/70 shadow-[0_0_60px_rgba(251,191,36,0.22)] hover:shadow-[0_0_90px_rgba(251,191,36,0.35)] rounded-3xl p-4 xs:p-4 md:p-7 flex flex-col transition-all duration-300 group">
             {/* Animated gradient ring accent */}
             <div
               aria-hidden
@@ -438,9 +438,9 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
               {kh ? "ពេញនិយមបំផុត" : "Most Popular"}
             </div>
 
-            <div className="relative mb-6 mt-2">
-              <div className="flex items-center gap-2 mb-3">
-                <Crown size={20} className="text-amber-400" />
+            <div className="relative mb-3 mt-2">
+              <div className="flex items-center gap-2 mb-2">
+                <Crown size={18} className="text-amber-400" />
                 <span
                   className="text-sm font-bold text-amber-400"
                   style={khFont}
@@ -520,7 +520,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
             </button>
             {/* PSYCHOLOGY — Risk reversal under the CTA */}
             <p
-              className="text-[10px] text-white/50 text-center mb-6 flex items-center justify-center gap-1.5"
+              className="text-[10px] text-white/50 text-center mb-3 flex items-center justify-center gap-1.5"
               style={khFont}
             >
               <ShieldCheck size={12} className="text-green-400" />
@@ -529,50 +529,41 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                 : "Cancel anytime · No long-term contract"}
             </p>
 
-            <div className="relative flex flex-col gap-3 flex-1">
+            <div className="relative flex-1">
               <p
-                className="text-xs text-amber-400 uppercase tracking-widest font-black"
+                className="text-[10px] text-amber-400 uppercase tracking-widest font-black mb-2"
                 style={khFont}
               >
                 {kh ? "អ្វីដែលរួមបញ្ចូល" : "Everything you get"}
               </p>
-              {[
-                {
-                  en: "Unlimited live game sessions",
-                  kh: "វគ្គហ្គេមផ្ទាល់គ្មានដែនកំណត់",
-                },
-                { en: "All 8 question categories", kh: "ប្រភេទសំណួរទាំង ៨" },
-                {
-                  en: "Up to 50 students per session",
-                  kh: "រហូតដល់ ៥០ សិស្ស/វគ្គ",
-                },
-                {
-                  en: "Session analytics & reports",
-                  kh: "វិភាគ និងរបាយការណ៍វគ្គ",
-                },
-                { en: "Export results (CSV/PDF)", kh: "នាំចេញលទ្ធផល (CSV/PDF)" },
-                { en: "Advanced game modes", kh: "របៀបហ្គេមកម្រិតខ្ពស់" },
-                { en: "Remove KWD branding", kh: "លុបស្លាក KWD" },
-                {
-                  en: "Suar AI — unlimited queries",
-                  kh: "Suar AI — សំណួរគ្មានដែនកំណត់",
-                },
-              ].map((f, i) => (
-                <div key={i} className="flex items-start gap-2">
-                  <span className="mt-0.5 shrink-0 w-4 h-4 rounded-full bg-amber-400/20 flex items-center justify-center">
-                    <Check size={11} className="text-amber-400" />
-                  </span>
-                  <span className="text-sm text-white/90" style={khFont}>
-                    {kh ? f.kh : f.en}
-                  </span>
-                </div>
-              ))}
+              {/* 2-col grid on mobile so the card is half the height */}
+              <div className="grid grid-cols-2 md:grid-cols-1 gap-x-2 gap-y-1.5 md:gap-y-2.5">
+                {[
+                  { en: "Unlimited live sessions",    kh: "វគ្គផ្ទាល់គ្មានដែនកំណត់" },
+                  { en: "All 8 question categories",  kh: "ប្រភេទសំណួរទាំង ៨" },
+                  { en: "Up to 50 students/session",  kh: "៥០ សិស្ស/វគ្គ" },
+                  { en: "Analytics & reports",         kh: "វិភាគ & របាយការណ៍" },
+                  { en: "Export CSV / PDF",            kh: "នាំចេញ CSV/PDF" },
+                  { en: "Advanced game modes",         kh: "ហ្គេមកម្រិតខ្ពស់" },
+                  { en: "Remove KWD branding",         kh: "លុបស្លាក KWD" },
+                  { en: "Suar AI unlimited",           kh: "Suar AI គ្មានដែនកំណត់" },
+                ].map((f, i) => (
+                  <div key={i} className="flex items-center gap-1.5 min-w-0">
+                    <span className="shrink-0 w-3.5 h-3.5 rounded-full bg-amber-400/20 flex items-center justify-center">
+                      <Check size={9} className="text-amber-400" />
+                    </span>
+                    <span className="text-[11px] md:text-sm text-white/90 leading-tight truncate" style={khFont}>
+                      {kh ? f.kh : f.en}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
           {/* Tier 3: School & Institute */}
-          <div className="w-[85vw] md:w-auto shrink-0 snap-center bg-white/[0.03] border border-white/10 hover:border-purple-400/40 rounded-3xl p-5 md:p-6 flex flex-col transition-all duration-200 group backdrop-blur-sm">
-            <div className="mb-6">
+          <div className="w-[92vw] xs:w-[85vw] md:w-auto shrink-0 snap-center bg-white/[0.03] border border-white/10 hover:border-purple-400/40 rounded-3xl p-4 xs:p-5 md:p-6 flex flex-col transition-all duration-200 group backdrop-blur-sm">
+            <div className="mb-4">
               <div className="flex items-center gap-2 mb-3">
                 <Building2 size={20} className="text-purple-400" />
                 <span
@@ -670,65 +661,75 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
             </div>
 
             {/* Action buttons stacked */}
-            <div className="flex flex-col gap-2 mb-6">
+            <div className="flex flex-col gap-2 mb-4">
               <button
                 onClick={() => handleSelectPlan("school_public")}
                 className="w-full py-2.5 rounded-xl text-xs font-black transition-all bg-purple-600 text-white hover:bg-purple-500 shadow-md shadow-purple-600/20 hover:scale-[1.02]"
                 style={khFont}
               >
-                {kh ? "ដាក់ពាក្យឥឡូវនេះ - ផែនការសាលារៀន" : "Choose School Plan"}
+                {kh ? "ដាក់ពាក្យ - ផែនការសាលារៀន" : "Choose School Plan"}
               </button>
               <button
                 onClick={() => handleSelectPlan("school_private")}
                 className="w-full py-2.5 rounded-xl text-xs font-black transition-all border border-purple-500/40 text-purple-300 hover:bg-purple-500/10"
                 style={khFont}
               >
-                {kh
-                  ? "ដាក់ពាក្យឥឡូវនេះ - ផែនការវិទ្យាស្ថាន"
-                  : "Choose Institute Plan"}
+                {kh ? "ដាក់ពាក្យ - ផែនការវិទ្យាស្ថាន" : "Choose Institute Plan"}
               </button>
+
+              {/* Negotiate — larger institutions can discuss custom pricing */}
+              <a
+                href="https://t.me/kesararamwithdigital"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-2.5 rounded-xl text-xs font-black transition-all border border-dashed border-white/20 text-white/50 hover:border-purple-400/50 hover:text-purple-300 flex items-center justify-center gap-1.5"
+                style={khFont}
+              >
+                <MessageCircle size={13} />
+                {kh ? "💬 សុំចរចាតម្លៃ — ស្ថាប័នធំ" : "💬 Negotiate price — large institutions"}
+              </a>
+
+              {/* Negotiation note */}
+              <p className="text-[10px] text-white/30 text-center leading-snug px-1" style={khFont}>
+                {kh
+                  ? "ស្ថាប័នដែលមានគ្រូ ៣០+ ឬវគ្គ ១,០០០+ ទទួលបានតម្លៃពិសេស"
+                  : "Institutions with 30+ teachers or 1,000+ sessions qualify for custom pricing"}
+              </p>
             </div>
 
             {/* Combined Features */}
-            <div className="flex flex-col gap-3 flex-1">
+            <div className="flex-1">
               <p
-                className="text-xs text-purple-400 uppercase tracking-widest font-black"
+                className="text-[10px] text-purple-400 uppercase tracking-widest font-black mb-2"
                 style={khFont}
               >
                 {kh ? "អ្វីដែលរួមបញ្ចូល" : "What's included"}
               </p>
+              <div className="grid grid-cols-2 md:grid-cols-1 gap-x-2 gap-y-1.5 md:gap-y-2.5">
               {[
                 {
                   en: "Everything in Teacher Pro",
-                  kh: "អ្វីៗទាំងអស់ក្នុង Teacher Pro",
+                  kh: "អ្វីៗក្នុង Teacher Pro",
                 },
-                { en: "10 to 30 teacher accounts", kh: "ពី ១០ ទៅ ៣០ គណនីគ្រូ" },
+                { en: "10–30 teacher accounts", kh: "គណនីគ្រូ ១០–៣០" },
                 {
-                  en: "200 to 500 students per session",
+                  en: "200–500 students/session",
                   kh: "ពី ២០០ ទៅ ៥០០ សិស្ស/វគ្គ",
                 },
-                {
-                  en: "Admin class management dashboard",
-                  kh: "ផ្ទាំងគ្រប់គ្រងថ្នាក់ Admin",
-                },
-                {
-                  en: "Priority support & onboarding",
-                  kh: "ជំនួយអាទិភាព និងការណែនាំ",
-                },
-                {
-                  en: "White-labeled portal & custom branding",
-                  kh: "ជម្រើសផតថល និងសញ្ញាផ្ទាល់ខ្លួន",
-                },
+                { en: "Admin dashboard",          kh: "ផ្ទាំង Admin" },
+                { en: "Priority support",          kh: "ជំនួយអាទិភាព" },
+                { en: "Custom branding portal",    kh: "ផតថលផ្ទាល់ខ្លួន" },
               ].map((f, i) => (
-                <div key={i} className="flex items-start gap-2">
-                  <span className="mt-0.5 shrink-0 w-4 h-4 rounded-full bg-purple-400/20 flex items-center justify-center">
-                    <Check size={11} className="text-purple-400" />
+                <div key={i} className="flex items-center gap-1.5 min-w-0">
+                  <span className="shrink-0 w-3.5 h-3.5 rounded-full bg-purple-400/20 flex items-center justify-center">
+                    <Check size={9} className="text-purple-400" />
                   </span>
-                  <span className="text-sm text-white/80" style={khFont}>
+                  <span className="text-[11px] md:text-sm text-white/80 leading-tight truncate" style={khFont}>
                     {kh ? f.kh : f.en}
                   </span>
                 </div>
               ))}
+              </div>
             </div>
           </div>
         </div>
