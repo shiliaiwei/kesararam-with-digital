@@ -238,52 +238,49 @@ export function AboutClient() {
   return (
     <div className="min-h-screen bg-white">
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          HERO — Primary focal point: the title is the largest element.
-          Everything else is scaled down to make it stand out.
-      ════════════════════════════════════════════════════════════════════ */}
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          1. HERO — Attention
+          Psychology: High contrast anchors the eye (Von Restorff effect).
+          The title is the single largest element — everything else recedes.
+          Stats give immediate credibility (anchoring + social proof).
+          The team photo triggers the face-recognition response — humanizes.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="bg-zinc-950 border-b-4 border-yellow-400 overflow-hidden">
-        {/* top yellow rule */}
         <div className="h-1 bg-yellow-400" />
-
         <div className="max-w-6xl mx-auto px-6 py-14 md:py-20">
-          <div className="grid md:grid-cols-[1fr_320px] gap-10 items-end">
+          <div className="grid md:grid-cols-[1fr_300px] gap-10 items-end">
 
-            {/* Left: typographic focal point */}
             <div className="flex flex-col gap-6">
-              {/* Eyebrow */}
               <div className="flex items-center gap-2">
                 <div className="w-6 h-px bg-yellow-400" />
-                <span className="text-[10px] font-black tracking-[0.25em] uppercase text-yellow-400" style={kf}>
-                  {c.eyebrow}
-                </span>
+                <span className="text-[10px] font-black tracking-[0.25em] uppercase text-yellow-400" style={kf}>{c.eyebrow}</span>
               </div>
 
-              {/* Title — the primary focal point via scale */}
+              {/* Primary focal point — size creates hierarchy */}
               <div style={kf}>
-                <h1 className="font-black leading-none text-white" style={{ fontSize: "clamp(2.8rem, 8vw, 6rem)", letterSpacing: "-0.02em" }}>
+                <h1 className="font-black leading-[0.95] text-white" style={{ fontSize: "clamp(3rem, 9vw, 6.5rem)", letterSpacing: "-0.02em" }}>
                   {c.titleLine1}
                 </h1>
-                <h1 className="font-black leading-none text-yellow-400" style={{ fontSize: "clamp(2.8rem, 8vw, 6rem)", letterSpacing: "-0.02em" }}>
+                <h1 className="font-black leading-[0.95] text-yellow-400" style={{ fontSize: "clamp(3rem, 9vw, 6.5rem)", letterSpacing: "-0.02em" }}>
                   {c.titleLine2}
                 </h1>
               </div>
 
-              {/* Tagline — small to contrast with title */}
+              {/* Tagline: small contrast pulls attention back to the title */}
               <p className="text-white/50 text-sm max-w-md leading-relaxed" style={kf}>{c.tagline}</p>
 
-              {/* Stat pills */}
-              <div className="flex flex-wrap gap-3 pt-2">
+              {/* Stats: social proof before the user reads a single word of body */}
+              <div className="flex flex-wrap gap-2 pt-2 border-t border-white/10 mt-2">
                 {c.stats.map((s) => (
-                  <div key={s.label} className="flex items-baseline gap-2 border border-white/10 px-4 py-2">
-                    <span className="text-xl font-black text-white leading-none">{s.value}</span>
+                  <div key={s.label} className="flex items-baseline gap-2 px-4 py-2 border border-white/10 bg-white/5">
+                    <span className="text-2xl font-black text-white leading-none">{s.value}</span>
                     <span className="text-[10px] text-white/40 uppercase tracking-widest font-bold" style={kf}>{s.label}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right: team photo — secondary, aligned to bottom */}
+            {/* Face effect: real photo triggers trust faster than text */}
             <div
               className="relative w-full h-64 md:h-80 border-2 border-yellow-400 overflow-hidden flex-shrink-0"
               style={{ boxShadow: "8px 8px 0 #ca8a04" }}
@@ -293,7 +290,6 @@ export function AboutClient() {
                 className="w-full h-full object-cover pointer-events-none"
                 style={{ userSelect: "none" }} />
               <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
-              {/* caption strip */}
               <div className="absolute bottom-0 left-0 right-0 bg-yellow-400 px-3 py-1.5 flex items-center justify-between">
                 <span className="text-black font-black text-[10px] tracking-widest uppercase" style={kf}>
                   Team KWD · Technovation Girls 2026
@@ -306,80 +302,112 @@ export function AboutClient() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          STORY — Editorial layout: pull quote as anchor, story beside images
-      ════════════════════════════════════════════════════════════════════ */}
-      <section className="max-w-6xl mx-auto px-6 py-16 md:py-20">
-        <div className="grid md:grid-cols-[1fr_260px] gap-12 items-start">
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          2. STORY — Interest
+          Psychology: Chunking — 6 paragraphs split into 4 visual groups
+          reduces cognitive load. Serial Position Effect — para 1 (first)
+          and para 6 (last) get the strongest visual weight. Photos at
+          natural narrative breaks act as memory anchors (Picture
+          Superiority Effect). Para 4 (AI wisdom) gets a callout box —
+          it is the most quotable, shareable insight on the page.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="max-w-6xl mx-auto px-6 pt-16 pb-10">
 
-          {/* Left: pull quote + story */}
-          <div className="flex flex-col gap-8">
-            {/* Pull quote — secondary focal point via size contrast within white space */}
-            <blockquote className="border-l-4 border-yellow-400 pl-6">
-              <p className="text-2xl md:text-3xl font-black text-zinc-900 leading-snug" style={kf}>
-                {c.pullQuote}
-              </p>
-            </blockquote>
+        {/* Section label — tells users what chapter they're in */}
+        <div className="flex items-center gap-3 mb-10">
+          <span className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-400" style={kf}>
+            {kh ? "សេចក្តីផ្តើម និងដំណើរការ" : "Origin & Journey"}
+          </span>
+          <div className="h-px flex-1 bg-zinc-100" />
+        </div>
 
-            {/* Story paragraphs */}
-            <div className="grid md:grid-cols-2 gap-x-8 gap-y-4">
-              {c.story.map((para, i) => (
-                <p
-                  key={i}
-                  className={`leading-relaxed text-sm ${i === c.story.length - 1 ? "font-bold text-zinc-900 md:col-span-2" : "text-zinc-600"}`}
-                  style={kf}
-                >
-                  {para}
-                </p>
-              ))}
-            </div>
-          </div>
-
-          {/* Right: stacked photos */}
-          <div className="flex flex-col gap-3 flex-shrink-0" onContextMenu={e => e.preventDefault()}>
-            {[GALLERY[1], GALLERY[2]].map((src, i) => (
-              <div key={i} className="relative border-2 border-black overflow-hidden" style={{ boxShadow: "4px 4px 0 #000" }}>
-                <img src={src} alt="" draggable={false}
-                  className="w-full h-44 object-cover pointer-events-none"
-                  style={{ userSelect: "none" }} />
-                <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
-              </div>
-            ))}
+        {/* GROUP A — Para 1: Foundation (Serial Position: first = most remembered)
+            Full width, larger type. Sets the entire emotional tone. */}
+        <div className="grid md:grid-cols-[1fr_240px] gap-10 items-start mb-12">
+          <p className="text-base md:text-lg text-zinc-800 leading-relaxed font-medium" style={kf}>
+            {c.story[0]}
+          </p>
+          <div className="relative border border-zinc-200 overflow-hidden flex-shrink-0 hidden md:block" onContextMenu={e => e.preventDefault()}>
+            <img src={GALLERY[1]} alt="" draggable={false} className="w-full h-52 object-cover pointer-events-none" style={{ userSelect: "none" }} />
+            <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
           </div>
         </div>
+
+        {/* GROUP B — Paras 2 + 3: Challenge → Response (2-col)
+            Gestalt similarity: same size = same narrative weight (problem + response) */}
+        <div className="grid md:grid-cols-2 gap-8 mb-12 border-t border-zinc-100 pt-10">
+          {c.story.slice(1, 3).map((para, i) => (
+            <p key={i} className="text-sm text-zinc-600 leading-relaxed" style={kf}>{para}</p>
+          ))}
+        </div>
+
+        {/* GROUP C — Para 4: AI Mentor Wisdom (Callout)
+            Isolation effect: visually distinct = more memorable.
+            This is the most quotable sentence in the entire story. */}
+        <div className="border-l-4 border-yellow-400 bg-yellow-50 px-6 py-5 mb-12">
+          <p className="text-sm md:text-base text-zinc-800 leading-relaxed italic" style={kf}>
+            {c.story[3]}
+          </p>
+        </div>
+
+        {/* GROUP D — Para 5: Three teachings (with photo alongside)
+            The three-part structure in the text maps to a natural cognitive chunk. */}
+        <div className="grid md:grid-cols-[240px_1fr] gap-10 items-start mb-12 border-t border-zinc-100 pt-10">
+          <div className="relative border border-zinc-200 overflow-hidden flex-shrink-0 hidden md:block" onContextMenu={e => e.preventDefault()}>
+            <img src={GALLERY[2]} alt="" draggable={false} className="w-full h-52 object-cover pointer-events-none" style={{ userSelect: "none" }} />
+            <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
+          </div>
+          <p className="text-sm text-zinc-600 leading-relaxed" style={kf}>{c.story[4]}</p>
+        </div>
+
+        {/* GROUP E — Para 6: Closing declaration (Serial Position: last = most remembered)
+            Full width, bold, acts as the narrative peak — a "stamp" on everything above. */}
+        <div className="border-t-2 border-zinc-900 pt-8">
+          <p className="text-base md:text-lg font-bold text-zinc-900 leading-relaxed max-w-3xl" style={kf}>
+            {c.story[5]}
+          </p>
+        </div>
+
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          MISSION · VISION · VALUES — hierarchy via size, not just color
-      ════════════════════════════════════════════════════════════════════ */}
-      <section className="border-t border-zinc-200 bg-zinc-50">
-        <div className="max-w-6xl mx-auto px-6 py-14">
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          3. MISSION · VISION · VALUES — Desire
+          Psychology: Rule of Three — humans chunk information naturally
+          into threes. Mission is full-width (primary/largest) to establish
+          importance via size before users reach Vision and Values.
+          Color-coding gives each a distinct identity without extra words.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="bg-zinc-50 border-t border-zinc-200 border-b border-b-zinc-200 py-14">
+        <div className="max-w-6xl mx-auto px-6">
+
           <div className="flex items-center gap-3 mb-8">
             <div className="h-px flex-1 bg-zinc-300" />
-            <span className="text-[10px] font-black tracking-[0.25em] uppercase text-zinc-400" style={kf}>
+            <span className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-400" style={kf}>
               {kh ? "បេសកកម្ម · ចក្ខុវិស័យ · គុណតម្លៃ" : "Mission · Vision · Values"}
             </span>
             <div className="h-px flex-1 bg-zinc-300" />
           </div>
 
           <div className="flex flex-col gap-4">
-            {/* Mission — primary: larger, full row */}
-            <div className="p-8 bg-white border border-zinc-200 flex flex-col gap-3"
-              style={{ borderLeftColor: c.mvv[0].color, borderLeftWidth: 4 }}>
-              <span className="text-[10px] font-black tracking-widest uppercase"
-                style={{ color: c.mvv[0].color }}>{c.mvv[0].tag}</span>
-              <p className="text-zinc-900 text-base md:text-lg leading-relaxed max-w-3xl" style={kf}>
+            {/* Mission — full width, larger text = primary importance */}
+            <div className="bg-white border border-zinc-200 p-8 flex flex-col gap-3"
+              style={{ borderLeftWidth: 4, borderLeftColor: c.mvv[0].color }}>
+              <span className="text-[10px] font-black tracking-widest uppercase" style={{ color: c.mvv[0].color }}>
+                {c.mvv[0].tag}
+              </span>
+              <p className="text-zinc-900 text-base md:text-lg leading-relaxed max-w-4xl" style={kf}>
                 {c.mvv[0].text}
               </p>
             </div>
 
-            {/* Vision + Values — secondary: side by side, smaller */}
+            {/* Vision + Values — 2-col, smaller = secondary */}
             <div className="grid md:grid-cols-2 gap-4">
               {c.mvv.slice(1).map((m) => (
-                <div key={m.tag} className="p-6 bg-white border border-zinc-200 flex flex-col gap-3"
-                  style={{ borderLeftColor: m.color, borderLeftWidth: 4 }}>
-                  <span className="text-[10px] font-black tracking-widest uppercase"
-                    style={{ color: m.color }}>{m.tag}</span>
+                <div key={m.tag} className="bg-white border border-zinc-200 p-6 flex flex-col gap-3"
+                  style={{ borderLeftWidth: 4, borderLeftColor: m.color }}>
+                  <span className="text-[10px] font-black tracking-widest uppercase" style={{ color: m.color }}>
+                    {m.tag}
+                  </span>
                   <p className="text-zinc-600 text-sm leading-relaxed" style={kf}>{m.text}</p>
                 </div>
               ))}
@@ -388,26 +416,27 @@ export function AboutClient() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          TECHNOVATION ALIGNMENT
-      ════════════════════════════════════════════════════════════════════ */}
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          4. TECHNOVATION — Credibility signal
+          Psychology: Authority bias — alignment with a global institution
+          (Technovation Girls) raises perceived credibility immediately.
+          External links with ArrowUpRight signal transparency.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="max-w-6xl mx-auto px-6 py-14">
         <div className="flex items-center gap-3 mb-6">
-          <div className="bg-black text-yellow-400 text-[10px] font-black tracking-widest uppercase px-3 py-1">
+          <span className="bg-zinc-900 text-yellow-400 text-[10px] font-black tracking-widest uppercase px-3 py-1" style={kf}>
             {c.techSection}
-          </div>
-          <div className="h-px flex-1 bg-zinc-200" />
+          </span>
+          <div className="h-px flex-1 bg-zinc-100" />
         </div>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
           {c.techItems.map(({ label, text, href }) => (
             <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-              className="group flex flex-col gap-2 p-5 border-2 border-zinc-200 hover:border-black transition-all"
-              style={{ boxShadow: "0 0 0 0", transition: "box-shadow 0.1s, transform 0.1s" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = "4px 4px 0 #000"; (e.currentTarget as HTMLElement).style.transform = "translate(-2px,-2px)"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 0 0 0"; (e.currentTarget as HTMLElement).style.transform = ""; }}>
+              className="group flex flex-col gap-2 p-5 border border-zinc-200 bg-white hover:border-zinc-900 transition-colors"
+            >
               <div className="flex items-start justify-between gap-2">
                 <span className="text-[10px] font-black uppercase tracking-widest text-yellow-600" style={kf}>{label}</span>
-                <ArrowUpRight size={12} className="text-zinc-400 group-hover:text-black shrink-0 mt-0.5 transition-colors" />
+                <ArrowUpRight size={12} className="text-zinc-300 group-hover:text-zinc-900 shrink-0 mt-0.5 transition-colors" />
               </div>
               <p className="text-xs text-zinc-500 leading-relaxed flex-1" style={kf}>{text}</p>
             </a>
@@ -415,69 +444,84 @@ export function AboutClient() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          TEAM CARDS
-      ════════════════════════════════════════════════════════════════════ */}
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          5. TEAM — Trust / Connection
+          Psychology: The mere exposure effect + face recognition.
+          Seeing real names and roles builds emotional connection.
+          QR codes create active engagement (not passive reading).
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <TeamSection />
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          GALLERY — grayscale-to-color hover, lightbox
-      ════════════════════════════════════════════════════════════════════ */}
-      <section className="max-w-6xl mx-auto px-6 py-14">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="bg-black text-yellow-400 text-[10px] font-black tracking-widest uppercase px-3 py-1">
-            {c.galleryTitle}
-          </div>
-          <div className="h-px flex-1 bg-zinc-200" />
-          <span className="text-xs text-zinc-400 font-mono">{GALLERY.length} photos</span>
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          6. GALLERY — Memory anchor
+          Psychology: Picture superiority — images are remembered 6×
+          better than words. The grayscale-to-color hover creates a
+          reward loop that encourages exploration (operant conditioning).
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="border-t border-zinc-100 max-w-6xl mx-auto px-6 py-14">
+        <div className="flex items-center gap-3 mb-5">
+          <span className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-400" style={kf}>{c.galleryTitle}</span>
+          <div className="h-px flex-1 bg-zinc-100" />
+          <span className="text-[10px] text-zinc-300 font-mono">{GALLERY.length}</span>
         </div>
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-1.5">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-1">
           {GALLERY.map((src, i) => (
             <button key={i} onClick={() => openLightbox(i)}
-              className="relative aspect-square overflow-hidden border border-zinc-200 group"
+              className="relative aspect-square overflow-hidden border border-zinc-100 group"
               onMouseEnter={() => setHoveredImg(i)} onMouseLeave={() => setHoveredImg(null)}
               onContextMenu={e => e.preventDefault()}>
               <img src={src} alt="" draggable={false}
                 className="w-full h-full object-cover transition-all duration-300 pointer-events-none"
-                style={{ filter: hoveredImg === i ? "none" : "grayscale(100%) brightness(0.9)", transform: hoveredImg === i ? "scale(1.06)" : "scale(1)", userSelect: "none" }} />
+                style={{
+                  filter: hoveredImg === i ? "none" : "grayscale(100%) brightness(0.85)",
+                  transform: hoveredImg === i ? "scale(1.06)" : "scale(1)",
+                  userSelect: "none",
+                }} />
               <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
             </button>
           ))}
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          TESTIMONIALS
-      ════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-zinc-50 border-t-2 border-zinc-200 py-14">
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          7. TESTIMONIALS — Social proof
+          Psychology: Diverse source types (teacher, police, parent,
+          student) cover different cognitive concerns — expertise,
+          authority, emotion, relatability. The featured testimonial
+          (Mentor) is placed first and large because it comes from the
+          person with the most institutional credibility.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="bg-zinc-50 border-t border-zinc-200 py-14">
         <div className="max-w-6xl mx-auto px-6">
-          {/* First testimonial — large (focal point) */}
-          <div className="mb-8 p-8 md:p-12 bg-white border-2 border-black" style={{ boxShadow: "6px 6px 0 #eab308" }}>
-            <div className="text-6xl font-black text-yellow-400 leading-none mb-4">"</div>
-            <p className="text-lg md:text-xl text-zinc-800 leading-relaxed font-medium italic max-w-3xl" style={kf}>
+
+          {/* Featured: Mentor testimonial — largest, highest authority */}
+          <div className="mb-6 p-8 md:p-10 bg-white border border-zinc-200"
+            style={{ borderLeftWidth: 4, borderLeftColor: "#eab308" }}>
+            <p className="text-4xl font-black text-yellow-400 leading-none mb-3 select-none">"</p>
+            <p className="text-base md:text-lg text-zinc-800 leading-relaxed max-w-3xl" style={kf}>
               {c.testimonials[0].text}
             </p>
-            <div className="mt-6 flex items-center gap-3 border-t-2 border-zinc-100 pt-4">
-              <div className="w-8 h-8 bg-yellow-400 border-2 border-black flex-shrink-0" />
+            <div className="mt-6 pt-4 border-t border-zinc-100 flex items-center gap-3">
+              <div className="w-8 h-8 bg-yellow-400 border border-zinc-200 flex-shrink-0" />
               <div>
-                <p className="font-black text-sm text-black" style={kf}>{c.testimonials[0].name}</p>
+                <p className="font-black text-sm text-zinc-900" style={kf}>{c.testimonials[0].name}</p>
                 <p className="text-xs text-zinc-400" style={kf}>{c.testimonials[0].role}</p>
               </div>
             </div>
           </div>
 
-          {/* Remaining testimonials — smaller grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* Remaining: Teacher, Student, Police, Parent — 4-col grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {c.testimonials.slice(1).map((t, i) => {
-              const colors = ["#22c55e", "#3b82f6", "#f97316", "#a855f7"];
-              const color = colors[i % colors.length];
+              const accents = ["#22c55e", "#3b82f6", "#f97316", "#a855f7"];
               return (
-                <div key={t.name} className="bg-white border-2 border-zinc-200 p-5 flex flex-col gap-3 hover:border-black transition-colors">
-                  <p className="text-sm text-zinc-600 leading-relaxed italic flex-1" style={kf}>"{t.text}"</p>
-                  <div className="flex items-center gap-2 border-t border-zinc-100 pt-3">
-                    <div className="w-6 h-6 flex-shrink-0 border-2 border-black" style={{ backgroundColor: color }} />
+                <div key={t.name} className="bg-white border border-zinc-200 p-5 flex flex-col gap-4"
+                  style={{ borderTopWidth: 3, borderTopColor: accents[i] }}>
+                  <p className="text-sm text-zinc-600 leading-relaxed flex-1" style={kf}>"{t.text}"</p>
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 flex-shrink-0 border border-zinc-200" style={{ backgroundColor: accents[i] }} />
                     <div>
-                      <p className="font-black text-xs text-black" style={kf}>{t.name}</p>
+                      <p className="font-black text-xs text-zinc-900" style={kf}>{t.name}</p>
                       <p className="text-[10px] text-zinc-400" style={kf}>{t.role}</p>
                     </div>
                   </div>
@@ -488,23 +532,26 @@ export function AboutClient() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          LEGAL CTA
-      ════════════════════════════════════════════════════════════════════ */}
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          8. LEGAL — Action
+          Psychology: Peak-end rule — the last thing a user sees shapes
+          their memory of the whole page. Calm, light, frictionless.
+          One primary CTA (Privacy) + one secondary (Terms).
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <section className="border-t border-zinc-200 bg-white py-12 px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
-            <p className="font-black text-zinc-900 text-lg mb-1" style={kf}>{c.legalTitle}</p>
+            <p className="font-black text-zinc-900 text-base mb-1" style={kf}>{c.legalTitle}</p>
             <p className="text-zinc-500 text-sm max-w-lg leading-relaxed" style={kf}>{c.legalText}</p>
           </div>
           <div className="flex gap-3 flex-shrink-0">
             <Link href="/privacy"
-              className="text-xs font-black px-5 py-2.5 bg-yellow-400 text-black border-2 border-black hover:-translate-y-0.5 transition-all"
-              style={{ boxShadow: "3px 3px 0 #000", ...kf }}>
+              className="text-xs font-black px-5 py-2.5 bg-yellow-400 text-black border border-zinc-900 hover:bg-yellow-300 transition-colors"
+              style={kf}>
               {c.privacyBtn}
             </Link>
             <Link href="/terms"
-              className="text-xs font-black px-5 py-2.5 bg-white text-zinc-700 border-2 border-zinc-300 hover:border-black hover:text-black transition-all"
+              className="text-xs font-black px-5 py-2.5 bg-white text-zinc-600 border border-zinc-300 hover:border-zinc-900 hover:text-zinc-900 transition-colors"
               style={kf}>
               {c.termsBtn}
             </Link>
