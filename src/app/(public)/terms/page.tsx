@@ -115,18 +115,6 @@ export default function TermsPage() {
               ? "ធ្វើបច្ចុប្បន្នភាព មិថុនា ២០២៦ · KWD · Technovation Girls 2026 · ក្រុម #50777 · Junior Division · សៀមរាប, កម្ពុជា"
               : "Last updated June 2026 · KWD · Technovation Girls 2026 · Team #50777 · Junior Division · Siem Reap, Cambodia"}
           </p>
-          <div className="flex gap-3 mt-5 flex-wrap">
-            <Link href="/privacy"
-              className="text-xs font-semibold px-4 py-2 bg-zinc-900 text-white hover:bg-zinc-700 transition-colors"
-              style={kf}>
-              {kh ? "គោលការណ៍ភាពឯកជន" : "Privacy Policy"}
-            </Link>
-            <Link href="/about"
-              className="text-xs font-semibold px-4 py-2 border border-zinc-300 text-zinc-700 hover:border-zinc-900 hover:text-zinc-900 transition-colors"
-              style={kf}>
-              {kh ? "អំពី KWD" : "About KWD"}
-            </Link>
-          </div>
         </div>
       </header>
 
@@ -159,41 +147,18 @@ export default function TermsPage() {
             {SECTIONS.map((s) => (
               <section key={s.id} id={s.id} className="scroll-mt-24 py-10 first:pt-0">
 
-                {/* Section heading — bilingual */}
+                {/* Section heading */}
                 <div className="flex items-baseline gap-3 mb-5">
                   <span className="text-xs font-mono text-zinc-300 shrink-0">{s.num}</span>
-                  <div>
-                    <h2 className="text-base font-bold text-zinc-900 leading-snug" style={kf}>
-                      {kh ? s.heading.kh : s.heading.en}
-                    </h2>
-                    <p className="text-xs text-zinc-400 mt-0.5">
-                      {kh ? s.heading.en : s.heading.kh}
-                    </p>
-                  </div>
+                  <h2 className="text-base font-bold text-zinc-900 leading-snug" style={kf}>
+                    {kh ? s.heading.kh : s.heading.en}
+                  </h2>
                 </div>
 
-                {/* Primary language body */}
+                {/* Body — active language only */}
                 <div className="space-y-3">
                   {(kh ? s.kh : s.en).split("\n\n").map((para, i) => (
                     <p key={i} className="text-sm text-zinc-700 leading-relaxed" style={kf}>
-                      {para.split("\n").map((line, j) => (
-                        <span key={j}>
-                          {line}
-                          {j < para.split("\n").length - 1 && <br />}
-                        </span>
-                      ))}
-                    </p>
-                  ))}
-                </div>
-
-                {/* Secondary language body — always shown for bilingual reference */}
-                <div className="mt-5 pl-4 border-l-2 border-zinc-100 space-y-3">
-                  <p className="text-[10px] font-mono text-zinc-300 uppercase tracking-widest mb-2">
-                    {kh ? "EN" : "ខ្មែរ"}
-                  </p>
-                  {(kh ? s.en : s.kh).split("\n\n").map((para, i) => (
-                    <p key={i} className="text-xs text-zinc-400 leading-relaxed"
-                      style={kh ? {} : { fontFamily: '"GoogleSans", "Google Sans Khmer", Siemreap, sans-serif' }}>
                       {para.split("\n").map((line, j) => (
                         <span key={j}>
                           {line}
