@@ -26,30 +26,32 @@ interface PricingCardsProps {
 }
 
 /**
- * Live countdown to the promo deadline.
- * PSYCHOLOGY — Scarcity & urgency: a ticking clock makes the "limited offer"
- * concrete and time-bound, pushing the visitor to decide now rather than "later".
+ * PSYCHOLOGY — Price anchoring + loss aversion via step-up warning.
+ * Shows how much of the promo window has elapsed as a filling bar, with
+ * the current price on the left and the future standard price on the right.
+ * Seeing the bar tick toward the higher price makes the current deal feel
+ * like something to *capture* now — more visceral than a date countdown.
  */
-function usePromoCountdown(deadline: string) {
-  const [left, setLeft] = useState({ days: 0, hours: 0, mins: 0, secs: 0 });
+function usePriceStepUp(start: string, end: string) {
+  const [pct, setPct] = useState(0);
+  const [daysLeft, setDaysLeft] = useState(0);
 
   useEffect(() => {
-    const target = new Date(deadline).getTime();
-    const tick = () => {
-      const diff = Math.max(0, target - Date.now());
-      setLeft({
-        days: Math.floor(diff / 86400000),
-        hours: Math.floor((diff / 3600000) % 24),
-        mins: Math.floor((diff / 60000) % 60),
-        secs: Math.floor((diff / 1000) % 60),
-      });
+    const calc = () => {
+      const now = Date.now();
+      const s = new Date(start).getTime();
+      const e = new Date(end).getTime();
+      const elapsed = Math.max(0, now - s);
+      const total = e - s;
+      setPct(Math.min(100, Math.round((elapsed / total) * 100)));
+      setDaysLeft(Math.max(0, Math.ceil((e - now) / 86400000)));
     };
-    tick();
-    const id = setInterval(tick, 1000);
+    calc();
+    const id = setInterval(calc, 60000); // update every minute
     return () => clearInterval(id);
-  }, [deadline]);
+  }, [start, end]);
 
-  return left;
+  return { pct, daysLeft };
 }
 
 export function PricingCards({ lang = "en" }: PricingCardsProps) {
@@ -65,7 +67,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
   const pf = { fontFamily: '"GoogleSans", "Google Sans", sans-serif' };
   const khFont = pf;
 
-  const countdown = usePromoCountdown("2026-12-31T23:59:59");
+  const { pct, daysLeft } = usePriceStepUp("2026-01-01T00:00:00", "2026-12-31T23:59:59");
 
   // Scroll smoothly to checkout
   const handleSelectPlan = (planKey: string) => {
@@ -131,8 +133,6 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
 
   const checkout = getCheckoutDetails();
 
-  const pad = (n: number) => n.toString().padStart(2, "0");
-
   return (
     <section className="relative min-h-screen overflow-hidden bg-[#080808] text-white py-8 md:py-16 px-4" style={pf}>
       {/* ── Ambient premium background glows ── */}
@@ -159,8 +159,8 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
           <div className="inline-flex items-center gap-2 bg-amber-400/10 border border-amber-400/30 text-amber-400 text-xs font-black px-3 py-1.5 md:px-4 md:py-2 rounded-full mb-5 md:mb-7 uppercase tracking-widest">
             <Clock size={14} className="shrink-0 animate-pulse" />
             {kh
-              ? "ការផ្ដល់ជូនរហូតដល់ចុងឆ្នាំ ២០២៦ 🔥 បញ្ចុះតម្លៃ ៧០%"
-              : "Limited offer through end of 2026 🔥 70% OFF"}
+              ? "🔒 ចាក់សោតម្លៃ $៣/ខែ — មុនឡើង $១០ ខែ ១ ឆ្នាំ ២០២៧"
+              : "🔒 Lock in $3/mo — rises to $10 in Jan 2027"}
           </div>
 
           <h1
@@ -217,38 +217,79 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
             </div>
           </div>
 
-          {/* PSYCHOLOGY — Urgency made concrete with a live countdown */}
+          {/* PSYCHOLOGY — Price step-up warning bar.
+              Current promo price (left) → standard price (right).
+              The bar fills toward the right as the deadline approaches.
+              Loss aversion: watching the bar fill makes the current price
+              feel like something to lock in before it disappears. */}
           {promo && (
-            <div className="max-w-md mx-auto mb-7">
-              <p
-                className="text-[11px] md:text-xs text-amber-300/80 font-bold uppercase tracking-widest mb-2"
-                style={khFont}
-              >
-                {kh
-                  ? "🔥 តម្លៃ ៧០% នឹងបញ្ចប់ក្នុង"
-                  : "🔥 70% pricing ends in"}
-              </p>
-              <div className="flex items-center justify-center gap-1.5 md:gap-3">
-                {[
-                  { v: countdown.days, en: "Days", kh: "ថ្ងៃ" },
-                  { v: countdown.hours, en: "Hrs", kh: "ម៉ោង" },
-                  { v: countdown.mins, en: "Min", kh: "នាទី" },
-                  { v: countdown.secs, en: "Sec", kh: "វិ" },
-                ].map((u, i) => (
-                  <div key={i} className="flex flex-col items-center">
-                    <div className="w-[52px] xs:w-14 md:w-16 py-2 rounded-xl bg-white/5 border border-amber-400/20 backdrop-blur-sm">
-                      <span className="text-lg xs:text-xl md:text-2xl font-black text-amber-400 tabular-nums">
-                        {pad(u.v)}
-                      </span>
-                    </div>
-                    <span
-                      className="text-[8px] xs:text-[9px] md:text-[10px] text-white/40 font-bold uppercase tracking-wider mt-1.5"
-                      style={khFont}
-                    >
-                      {kh ? u.kh : u.en}
-                    </span>
+            <div className="max-w-sm mx-auto mb-7 px-1">
+              {/* Header label */}
+              <div className="flex items-center justify-between mb-2.5" style={khFont}>
+                <span className="text-[11px] font-bold text-white/50 uppercase tracking-widest">
+                  {kh ? "តម្លៃកំពុងផ្លាស់ប្ដូរ" : "Price rising soon"}
+                </span>
+                <span className="text-[11px] font-black text-amber-400">
+                  {daysLeft} {kh ? "ថ្ងៃទៀត" : "days left"}
+                </span>
+              </div>
+
+              {/* Price anchors above the bar */}
+              <div className="flex items-end justify-between mb-1.5">
+                <div className="flex flex-col items-start">
+                  <span className="text-[10px] text-white/40 font-semibold mb-0.5" style={khFont}>
+                    {kh ? "ឥឡូវ" : "Now"}
+                  </span>
+                  <span className="text-2xl font-black text-amber-400 leading-none">$3</span>
+                  <span className="text-[10px] text-amber-400/60 font-semibold" style={khFont}>
+                    /mo
+                  </span>
+                </div>
+
+                {/* Middle — arrow + "lock in" nudge */}
+                <div className="flex flex-col items-center gap-1 pb-1">
+                  <span className="text-[10px] font-black text-white/30 uppercase tracking-widest" style={khFont}>
+                    {kh ? "ចាក់សោតម្លៃ" : "lock in now"}
+                  </span>
+                  <div className="flex items-center gap-1 text-white/20">
+                    <div className="w-8 h-px bg-white/20" />
+                    <ArrowRight size={12} className="text-amber-400/60" />
+                    <div className="w-8 h-px bg-white/20" />
                   </div>
-                ))}
+                </div>
+
+                <div className="flex flex-col items-end">
+                  <span className="text-[10px] text-white/40 font-semibold mb-0.5" style={khFont}>
+                    {kh ? "បន្ទាប់មក" : "After promo"}
+                  </span>
+                  <span className="text-2xl font-black text-white/30 line-through leading-none">$10</span>
+                  <span className="text-[10px] text-white/25 font-semibold" style={khFont}>
+                    /mo
+                  </span>
+                </div>
+              </div>
+
+              {/* Progress bar — fills left→right as deadline approaches */}
+              <div className="relative h-3 rounded-full bg-white/8 overflow-hidden border border-white/10">
+                <div
+                  className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-amber-400 to-red-400 transition-all duration-1000"
+                  style={{ width: `${pct}%` }}
+                />
+                {/* Pulsing dot at the fill head */}
+                <div
+                  className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-amber-400 border-2 border-[#080808] shadow-[0_0_8px_rgba(251,191,36,0.8)]"
+                  style={{ left: `${pct}%` }}
+                />
+              </div>
+
+              {/* % label below */}
+              <div className="flex justify-between mt-1.5" style={khFont}>
+                <span className="text-[10px] text-amber-400/70 font-bold">
+                  {pct}% {kh ? "នៃរយៈពេលប្រូម៉ូ" : "of promo used"}
+                </span>
+                <span className="text-[10px] text-white/30 font-semibold">
+                  {kh ? "ចុះខែ ១២ ឆ្នាំ ២០២៦" : "ends Dec 31 2026"}
+                </span>
               </div>
             </div>
           )}
