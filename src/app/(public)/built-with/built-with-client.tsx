@@ -95,7 +95,7 @@ const SECTIONS = [
   { id: "ai",       title: { en: "AI Tools",     kh: "AI Tools" } },
   { id: "research", title: { en: "Research",     kh: "ស្រាវជ្រាវ" } },
   { id: "media",    title: { en: "Media",        kh: "មេឌៀ" } },
-  { id: "refs",     title: { en: "Bibliography", kh: "គន្ថនិទ្ទេស" } },
+  { id: "refs",     title: { en: "Bibliography", kh: "ឯកសារយោង" } },
 ];
 
 export function BuiltWithClient() {
@@ -195,7 +195,7 @@ export function BuiltWithClient() {
           </section>
 
           <section id="refs" className="scroll-mt-24">
-            <SectionHeading>{t("Bibliography", "គន្ថនិទ្ទេស")}</SectionHeading>
+            <SectionHeading>{t("Bibliography", "ឯកសារយោង")}</SectionHeading>
             <div className="divide-y divide-zinc-100 dark:divide-zinc-800 border-t border-b border-zinc-100 dark:border-zinc-800">
               {REFERENCES.map((ref, i) => {
                 const Icon = ref.icon;
