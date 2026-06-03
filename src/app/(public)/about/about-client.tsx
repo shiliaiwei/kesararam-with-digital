@@ -183,7 +183,7 @@ const CONTENT = {
       "កេសរារាម ជាមួយឌីជីថល (Kesararam With Digital) គឺជាក្រុមយុវនារីខ្មែរដែលចូលរួមយ៉ាងសកម្មក្នុងយុគសម័យ AI និងបច្ចេកវិទ្យាឌីជីថល ការបម្លែងចំណេះដឹងទៅជាការបង្កើត និងការអភិវឌ្ឍពិតប្រាកដ ដោយផ្តោតលើការប្រែក្លាយបញ្ហាទៅជាដំណោះស្រាយជាក់ស្តែង។",
       "គ្រូ Mentors បានបង្រៀនយើងថា AI មិនមែនជាការគំរាមកំហែងដែលត្រូវខ្លាចនោះទេ ប៉ុន្តែវាជាឧបករណ៍ដែលត្រូវចេះប្រើប្រាស់ឱ្យត្រូវទិសដៅ។ តួនាទីរបស់វាគឺជួយដុសខាត់ការគិតរបស់យើងឱ្យកាន់តែមុតស្រួច ពោលគឺមកដើម្បីជាកម្លាំងជំនួយដល់ការត្រិះរិះ មិនមែនមកជំនួសការគិតរបស់យើងឡើយ។",
       "វត្តអារាមបង្រៀនយើងឱ្យមានវិន័យ សាលារៀនបង្រៀនយើងឱ្យស្គាល់ទ្រឹស្ដី រីឯគ្រូ Mentors បណ្តុះយើងឱ្យចេះអនុវត្តផ្ទាល់។ ក្នុងនាមជាបេក្ខនារីនៃកម្មវិធី Technovation Girls ពួកយើងកំពុងរៀនគិត និងបោះជំហានធ្វើការដូចជាសហគ្រិនវ័យក្មេង ដែលអភិវឌ្ឍដំណោះស្រាយឌីជីថលថ្មីៗ ដើម្បីដោះស្រាយបញ្ហាសង្គម និងជំរុញការរីកចម្រើនជាតិ។",
-      "កេសរារាម ជាមួយឌីជីថល គឺជាគ្រុបរបស់យើង ដែលជាគ្រឹះសម្រាប់ស្មារតីសហគ្រិន និងការរួមគ្នារុញឆ្ពោះទៅភាពជាអ្នកដឹកនាំប្រកបដោយចក្ខុវិស័យ។",
+      "កេសរារាម ជាមួយឌីជីថល គឺជាក្រុមរបស់យើង ដែលជាគ្រឹះសម្រាប់ស្មារតីសហគ្រិន និងការរួមគ្នារុញឆ្ពោះទៅភាពជាអ្នកដឹកនាំប្រកបដោយចក្ខុវិស័យ។",
     ],
     stats: [
       { value: "5",       label: "សិស្ស" },
@@ -361,9 +361,11 @@ export function AboutClient() {
         </div>
 
         {/* GROUP E — Para 6: Closing declaration (Serial Position: last = most remembered)
-            Full width, bold, acts as the narrative peak — a "stamp" on everything above. */}
-        <div className="border-t-2 border-zinc-900 pt-8">
-          <p className="text-base md:text-lg font-bold text-zinc-900 leading-relaxed max-w-3xl" style={kf}>
+            Yellow bar signals "this is the conclusion". Large type, wide spacing,
+            isolated so the eye lands here naturally after reading everything above. */}
+        <div className="mt-6 pt-10 border-t border-zinc-200">
+          <div className="w-10 h-1 bg-yellow-400 mb-6" />
+          <p className="text-lg md:text-2xl font-black text-zinc-900 leading-snug max-w-3xl" style={kf}>
             {c.story[5]}
           </p>
         </div>
@@ -383,7 +385,7 @@ export function AboutClient() {
           <div className="flex items-center gap-3 mb-8">
             <div className="h-px flex-1 bg-zinc-300" />
             <span className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-400" style={kf}>
-              {kh ? "បេសកកម្ម · ចក្ខុវិស័យ · គុណតម្លៃ" : "Mission · Vision · Values"}
+              {kh ? "គោលបំណង · ចក្ខុវិស័យ · គុណតម្លៃ" : "Mission · Vision · Values"}
             </span>
             <div className="h-px flex-1 bg-zinc-300" />
           </div>
