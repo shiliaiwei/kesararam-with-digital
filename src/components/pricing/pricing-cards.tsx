@@ -94,15 +94,15 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
     let labelKh = "";
 
     if (selectedPlan === "teacher_pro") {
-      usd = promo ? (yearly ? 40 : 5) : yearly ? 80 : 10;
+      usd = promo ? (yearly ? 24 : 3) : yearly ? 80 : 10;
       labelEn = yearly
-        ? `Teacher Pro (Annual — ${promo ? "Promo 50% Off / " : ""}4 Mos Free)`
-        : `Teacher Pro (Monthly${promo ? " — Promo 50% Off" : ""})`;
+        ? `Teacher Pro (Annual — ${promo ? "Promo 70% Off / " : ""}4 Mos Free)`
+        : `Teacher Pro (Monthly${promo ? " — Promo 70% Off" : ""})`;
       labelKh = yearly
-        ? `គ្រូ Pro (ប្រចាំឆ្នាំ — ${promo ? "ប្រូម៉ូសិនចុះថ្លៃ ៥០% / " : ""}ឥតគិតថ្លៃ ៤ ខែ)`
-        : `គ្រូ Pro (ប្រចាំខែ${promo ? " — ប្រូម៉ូសិនចុះថ្លៃ ៥០%" : ""})`;
+        ? `គ្រូ Pro (ប្រចាំឆ្នាំ — ${promo ? "ប្រូម៉ូសិនចុះថ្លៃ ៧០% / " : ""}ឥតគិតថ្លៃ ៤ ខែ)`
+        : `គ្រូ Pro (ប្រចាំខែ${promo ? " — ប្រូម៉ូសិនចុះថ្លៃ ៧០%" : ""})`;
     } else if (selectedPlan === "school_public") {
-      usd = promo ? (yearly ? 170 : 19) : yearly ? 350 : 39;
+      usd = promo ? (yearly ? 108 : 12) : yearly ? 350 : 39;
       labelEn = yearly
         ? `School Plan (Annual — ${promo ? "Promo / " : ""}3 Mos Free)`
         : `School Plan (Monthly${promo ? " — Promo" : ""})`;
@@ -110,7 +110,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
         ? `ផែនការសាលារៀន (ប្រចាំឆ្នាំ — ${promo ? "ប្រូម៉ូសិន / " : ""}ឥតគិតថ្លៃ ៣ ខែ)`
         : `ផែនការសាលារៀន (ប្រចាំខែ${promo ? " — ប្រូម៉ូសិន" : ""})`;
     } else if (selectedPlan === "school_private") {
-      usd = promo ? (yearly ? 260 : 29) : yearly ? 530 : 59;
+      usd = promo ? (yearly ? 162 : 18) : yearly ? 530 : 59;
       labelEn = yearly
         ? `Institute Plan (Annual — ${promo ? "Promo / " : ""}3 Mos Free)`
         : `Institute Plan (Monthly${promo ? " — Promo" : ""})`;
@@ -156,8 +156,8 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
           <div className="inline-flex items-center gap-2 bg-amber-400/10 border border-amber-400/30 text-amber-400 text-xs font-black px-3 py-1.5 md:px-4 md:py-2 rounded-full mb-5 md:mb-7 uppercase tracking-widest">
             <Clock size={14} className="shrink-0 animate-pulse" />
             {kh
-              ? "ការផ្ដល់ជូនរហូតដល់ចុងឆ្នាំ ២០២៦ 🔥 បញ្ចុះតម្លៃ ៥០%"
-              : "Limited offer through end of 2026 🔥 50% OFF"}
+              ? "ការផ្ដល់ជូនរហូតដល់ចុងឆ្នាំ ២០២៦ 🔥 បញ្ចុះតម្លៃ ៧០%"
+              : "Limited offer through end of 2026 🔥 70% OFF"}
           </div>
 
           <h1
@@ -222,8 +222,8 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                 style={khFont}
               >
                 {kh
-                  ? "🔥 តម្លៃ ៥០% នឹងបញ្ចប់ក្នុង"
-                  : "🔥 50% pricing ends in"}
+                  ? "🔥 តម្លៃ ៧០% នឹងបញ្ចប់ក្នុង"
+                  : "🔥 70% pricing ends in"}
               </p>
               <div className="flex items-center justify-center gap-2 md:gap-3">
                 {[
@@ -409,7 +409,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
               <div className="flex flex-col mb-2">
                 <div className="flex items-end gap-2.5">
                   <span className="text-5xl md:text-6xl font-black text-white leading-none">
-                    {promo ? (yearly ? "$40" : "$5") : yearly ? "$80" : "$10"}
+                    {promo ? (yearly ? "$24" : "$3") : yearly ? "$80" : "$10"}
                   </span>
                   <div className="flex flex-col mb-1">
                     {promo && (
@@ -437,11 +437,11 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                     <TrendingDown size={13} />
                     {yearly
                       ? kh
-                        ? "សន្សំ ៥០% + ឥតគិតថ្លៃ ៤ខែ"
-                        : "Save 50% + 4 months free"
+                        ? "សន្សំ ៧០% + ឥតគិតថ្លៃ ៤ខែ"
+                        : "Save 70% + 4 months free"
                       : kh
-                        ? "បញ្ចុះ ៥០% (សន្សំ $៦០/ឆ្នាំ)"
-                        : "50% off — save $60/year"}
+                        ? "បញ្ចុះ ៧០% (សន្សំ $៨៤/ឆ្នាំ)"
+                        : "70% off — save $84/year"}
                   </div>
                 )}
               </div>
@@ -551,7 +551,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                   </p>
                   <div className="flex items-end gap-0.5">
                     <span className="text-2xl font-black text-white">
-                      {yearly ? "$170" : "$19"}
+                      {yearly ? "$108" : "$12"}
                     </span>
                     <span
                       className="text-white/50 text-[9px] mb-0.5"
@@ -570,11 +570,11 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                     <span className="line-through text-white/30">
                       {yearly ? "$350" : "$39"}
                     </span>
-                    <span className="text-green-400 ml-1">(-50%)</span>
+                    <span className="text-green-400 ml-1">(-70%)</span>
                   </div>
                   {yearly && (
                     <div className="text-[9px] font-bold text-green-400 mt-1 bg-green-500/10 border border-green-500/20 px-1.5 py-0.5 rounded w-fit">
-                      {kh ? "សន្សំ៖ $៥៨/ឆ្នាំ" : "Save: $58/yr"}
+                      {kh ? "សន្សំ៖ $៣៦/ឆ្នាំ" : "Save: $36/yr"}
                     </div>
                   )}
                 </div>
@@ -589,7 +589,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                   </p>
                   <div className="flex items-end gap-0.5">
                     <span className="text-2xl font-black text-white">
-                      {yearly ? "$260" : "$29"}
+                      {yearly ? "$162" : "$18"}
                     </span>
                     <span
                       className="text-white/50 text-[9px] mb-0.5"
@@ -608,11 +608,11 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                     <span className="line-through text-white/30">
                       {yearly ? "$530" : "$59"}
                     </span>
-                    <span className="text-green-400 ml-1">(-50%)</span>
+                    <span className="text-green-400 ml-1">(-70%)</span>
                   </div>
                   {yearly && (
                     <div className="text-[9px] font-bold text-green-400 mt-1 bg-green-500/10 border border-green-500/20 px-1.5 py-0.5 rounded w-fit">
-                      {kh ? "សន្សំ៖ $៨៨/ឆ្នាំ" : "Save: $88/yr"}
+                      {kh ? "សន្សំ៖ $៥៤/ឆ្នាំ" : "Save: $54/yr"}
                     </div>
                   )}
                 </div>
@@ -1065,16 +1065,16 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
             <div className="grid md:grid-cols-2 gap-x-8 gap-y-3 mt-5 pt-5 border-t border-white/10">
               {[
                 {
-                  en: "Pricing Promotion: Standard Teacher Pro rate is $10/month. Under promo (active through end of 2026), rates are discounted by 50% ($5/month). Standard rates for School are $39/mo ($350/yr) and Institute is $59/mo ($530/yr).",
-                  kh: "ការផ្សព្វផ្សាយតម្លៃ៖ តម្លៃធម្មតាសម្រាប់គ្រូ Pro គឺ ១០ ដុល្លារ/ខែ។ ក្រោមការបញ្ចុះតម្លៃប្រូម៉ូសិន (មានប្រសិទ្ធភាពរហូតដល់ចុងឆ្នាំ ២០២៦) តម្លៃត្រូវបានបញ្ចុះ ៥០% (៥ ដុល្លារ/ខែ)។ តម្លៃធម្មតាសម្រាប់សាលារៀនគឺ ៣៩ ដុល្លារ/ខែ (៣៥០ ដុល្លារ/ឆ្នាំ) និងវិទ្យាស្ថានគឺ ៥៩ ដុល្លារ/ខែ (៥៣០ ដុល្លារ/ឆ្នាំ)។",
+                  en: "Pricing Promotion: Standard Teacher Pro rate is $10/month. Under promo (active through end of 2026), rates are discounted by 70% ($3/month). Standard rates for School are $39/mo ($350/yr) and Institute is $59/mo ($530/yr).",
+                  kh: "ការផ្សព្វផ្សាយតម្លៃ៖ តម្លៃធម្មតាសម្រាប់គ្រូ Pro គឺ ១០ ដុល្លារ/ខែ។ ក្រោមការបញ្ចុះតម្លៃប្រូម៉ូសិន (មានប្រសិទ្ធភាពរហូតដល់ចុងឆ្នាំ ២០២៦) តម្លៃត្រូវបានបញ្ចុះ ៧០% (៣ ដុល្លារ/ខែ)។ តម្លៃធម្មតាសម្រាប់សាលារៀនគឺ ៣៩ ដុល្លារ/ខែ (៣៥០ ដុល្លារ/ឆ្នាំ) និងវិទ្យាស្ថានគឺ ៥៩ ដុល្លារ/ខែ (៥៣០ ដុល្លារ/ឆ្នាំ)។",
                 },
                 {
-                  en: "Annual Package (4 Months Free for Teacher Pro): Subscribers to 1-year plans receive 4 months free for Teacher Pro ($40/year promo, $80/year standard) and 3 months free for School plans ($170/year promo, $350/year standard) and Institute plans ($260/year promo, $530/year standard).",
-                  kh: "កញ្ចប់ប្រចាំឆ្នាំ៖ ការជាវប្រចាំឆ្នាំទទួលបានការបញ្ចុះតម្លៃ ៤ ខែឥតគិតថ្លៃសម្រាប់គ្រូ Pro (៤០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៨០ ដុល្លារ/ឆ្នាំ ធម្មតា) និង ៣ ខែឥតគិតថ្លៃសម្រាប់សាលារៀន (១៧០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៣៥០ ដុល្លារ/ឆ្នាំ ធម្មតា) និងវិទ្យាស្ថាន (២៦០ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៥៣០ ដុល្លារ/ឆ្នាំ ធម្មតា)។",
+                  en: "Annual Package (4 Months Free for Teacher Pro): Subscribers to 1-year plans receive 4 months free for Teacher Pro ($24/year promo, $80/year standard) and 3 months free for School plans ($108/year promo, $350/year standard) and Institute plans ($162/year promo, $530/year standard).",
+                  kh: "កញ្ចប់ប្រចាំឆ្នាំ៖ ការជាវប្រចាំឆ្នាំទទួលបានការបញ្ចុះតម្លៃ ៤ ខែឥតគិតថ្លៃសម្រាប់គ្រូ Pro (២៤ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៨០ ដុល្លារ/ឆ្នាំ ធម្មតា) និង ៣ ខែឥតគិតថ្លៃសម្រាប់សាលារៀន (១០៨ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៣៥០ ដុល្លារ/ឆ្នាំ ធម្មតា) និងវិទ្យាស្ថាន (១៦២ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៥៣០ ដុល្លារ/ឆ្នាំ ធម្មតា)។",
                 },
                 {
-                  en: "School & Institute Structure: Pricing covers schools and training institutes. Under promo, School plan is $19/mo ($170/yr) and Institute plan is $29/mo ($260/yr).",
-                  kh: "រចនាសម្ព័ន្ធសាលារៀន និងវិទ្យាស្ថាន៖ តម្លៃគ្របដណ្តប់ទាំងសាលារៀន និងវិទ្យាស្ថានបណ្តុះបណ្តាល។ ក្រោមតម្លៃប្រូម៉ូសិន ផែនការសាលារៀនគឺ ១៩ ដុល្លារ/ខែ (១៧០ ដុល្លារ/ឆ្នាំ) និងផែនការវិទ្យាស្ថានគឺ ២៩ ដុល្លារ/ខែ (២៦០ ដុល្លារ/ឆ្នាំ)។",
+                  en: "School & Institute Structure: Pricing covers schools and training institutes. Under promo, School plan is $12/mo ($108/yr) and Institute plan is $18/mo ($162/yr).",
+                  kh: "រចនាសម្ព័ន្ធសាលារៀន និងវិទ្យាស្ថាន៖ តម្លៃគ្របដណ្តប់ទាំងសាលារៀន និងវិទ្យាស្ថានបណ្តុះបណ្តាល។ ក្រោមតម្លៃប្រូម៉ូសិន ផែនការសាលារៀនគឺ ១២ ដុល្លារ/ខែ (១០៨ ដុល្លារ/ឆ្នាំ) និងផែនការវិទ្យាស្ថានគឺ ១៨ ដុល្លារ/ខែ (១៦២ ដុល្លារ/ឆ្នាំ)។",
                 },
                 {
                   en: "Billing & Cancellation: Subscriptions are billed monthly or annually. You can cancel at any time. Active access remains until the current cycle expires.",
