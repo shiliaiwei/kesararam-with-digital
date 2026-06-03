@@ -133,11 +133,11 @@ const CONTENT = {
     pullQuote: "The monastery taught us discipline. The school taught us theory. Our mentors are teaching us to apply what we have learned.",
     story: [
       "Kesararam is the name of a monastery and a primary school — the oldest seat of learning in our community. This place of great value has instilled in every child a clear understanding: the knowledge gained through education is the raw material for building the future, for education is the bridge toward opportunity and the very foundation of life's transformation.",
-      "We carry this spirit into a world where technology is advancing at remarkable speed. As AI and automated systems transform every sector of work, we must ensure that every young woman has an equal opportunity to learn, to create, and to grow in the digital age. And we are here — together — to change that reality.",
+      "We carry this conviction into a world where technology is advancing at remarkable speed. As AI and automated systems transform every sector of work, we must ensure that every young woman has an equal opportunity to learn, to create, and to grow in the digital age. And we are here — together — to change that reality.",
       "Kesararam With Digital is a team of young Cambodian women actively engaging with the age of AI and digital technology — transforming knowledge into real creation and development, with a clear focus on turning problems into tangible, practical solutions.",
       "Our mentors taught us that AI is not a threat to be feared, but a tool to be used with clear direction. Its role is to sharpen our thinking — to serve as a force that strengthens our reasoning, not to replace it.",
       "The monastery taught us discipline. The school taught us theory. Our mentors are teaching us to apply what we have learned. As candidates of the Technovation Girls program, we are learning to think and work like young entrepreneurs — developing new digital solutions to solve social problems and drive national progress.",
-      "Kesararam With Digital is our team — the foundation of an entrepreneurial spirit, and our collective drive toward becoming leaders guided by vision.",
+      "Kesararam With Digital is our team — the foundation of an entrepreneurial mindset, and our collective drive toward becoming leaders guided by vision.",
     ],
     stats: [
       { value: "5", label: "Students" },

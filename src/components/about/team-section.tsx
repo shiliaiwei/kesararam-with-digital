@@ -97,7 +97,6 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
 
           <div className="text-center">
             <p className="font-black text-white text-sm leading-tight tracking-wide">{member.displayName}</p>
-            <p className="text-[9px] mt-1 leading-relaxed text-center px-1" style={{ color: accent + "bb" }}>{member.role}</p>
           </div>
 
           <button
@@ -108,7 +107,7 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
           >
             {loading
               ? <span className="w-3 h-3 border-2 border-black border-t-transparent rounded-full animate-spin" />
-              : revealed ? "REFRESH QR" : "REVEAL QR"}
+              : revealed ? "REFRESH" : "UNLOCK PROFILE"}
           </button>
         </div>
 
