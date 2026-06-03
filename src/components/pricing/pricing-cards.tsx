@@ -62,12 +62,8 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
   const kh = lang === "kh";
   // Use Google Sans (EN) or Kantumruy Pro (KH) — never fall back to system font.
   // Kantumruy Pro has weights 400–700, far more legible on mobile than Siemreap.
-  const pf = {
-    fontFamily: kh
-      ? "var(--font-kh-header), 'Kantumruy Pro', sans-serif"
-      : '"GoogleSans", "Google Sans", sans-serif',
-  };
-  const khFont = pf; // alias kept so existing style={khFont} props need no change
+  const pf = { fontFamily: '"GoogleSans", "Google Sans", sans-serif' };
+  const khFont = pf;
 
   const countdown = usePromoCountdown("2026-12-31T23:59:59");
 

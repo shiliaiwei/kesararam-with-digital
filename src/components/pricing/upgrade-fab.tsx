@@ -23,11 +23,7 @@ export function UpgradeFab({ session }: UpgradeFabProps) {
   const router = useRouter();
   const { lang } = useLang();
   const kh = lang === "kh";
-  const kf = {
-    fontFamily: kh
-      ? "var(--font-kh-header), 'Kantumruy Pro', sans-serif"
-      : '"GoogleSans", "Google Sans", sans-serif',
-  };
+  const kf = { fontFamily: '"GoogleSans", "Google Sans", sans-serif' };
 
   useEffect(() => {
     setMounted(true);
