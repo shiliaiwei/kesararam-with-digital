@@ -60,7 +60,14 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
   >("teacher_pro");
 
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  // Use Google Sans (EN) or Kantumruy Pro (KH) — never fall back to system font.
+  // Kantumruy Pro has weights 400–700, far more legible on mobile than Siemreap.
+  const pf = {
+    fontFamily: kh
+      ? "var(--font-kh-header), 'Kantumruy Pro', sans-serif"
+      : '"GoogleSans", "Google Sans", sans-serif',
+  };
+  const khFont = pf; // alias kept so existing style={khFont} props need no change
 
   const countdown = usePromoCountdown("2026-12-31T23:59:59");
 
@@ -131,7 +138,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
   const pad = (n: number) => n.toString().padStart(2, "0");
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-[#080808] text-white py-8 md:py-16 px-4">
+    <section className="relative min-h-screen overflow-hidden bg-[#080808] text-white py-8 md:py-16 px-4" style={pf}>
       {/* ── Ambient premium background glows ── */}
       <div
         aria-hidden
@@ -161,7 +168,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
           </div>
 
           <h1
-            className="text-4xl md:text-7xl font-black mb-3 md:mb-4 tracking-tight leading-[1.05]"
+            className="text-2xl xs:text-3xl md:text-7xl font-black mb-3 md:mb-4 tracking-tight leading-[1.1] md:leading-[1.05]"
             style={khFont}
           >
             {kh ? (
@@ -225,21 +232,21 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                   ? "🔥 តម្លៃ ៧០% នឹងបញ្ចប់ក្នុង"
                   : "🔥 70% pricing ends in"}
               </p>
-              <div className="flex items-center justify-center gap-2 md:gap-3">
+              <div className="flex items-center justify-center gap-1.5 md:gap-3">
                 {[
                   { v: countdown.days, en: "Days", kh: "ថ្ងៃ" },
                   { v: countdown.hours, en: "Hrs", kh: "ម៉ោង" },
                   { v: countdown.mins, en: "Min", kh: "នាទី" },
-                  { v: countdown.secs, en: "Sec", kh: "វិនាទី" },
+                  { v: countdown.secs, en: "Sec", kh: "វិ" },
                 ].map((u, i) => (
                   <div key={i} className="flex flex-col items-center">
-                    <div className="w-14 md:w-16 py-2 rounded-xl bg-white/5 border border-amber-400/20 backdrop-blur-sm">
-                      <span className="text-xl md:text-2xl font-black text-amber-400 tabular-nums">
+                    <div className="w-[52px] xs:w-14 md:w-16 py-2 rounded-xl bg-white/5 border border-amber-400/20 backdrop-blur-sm">
+                      <span className="text-lg xs:text-xl md:text-2xl font-black text-amber-400 tabular-nums">
                         {pad(u.v)}
                       </span>
                     </div>
                     <span
-                      className="text-[9px] md:text-[10px] text-white/40 font-bold uppercase tracking-wider mt-1.5"
+                      className="text-[8px] xs:text-[9px] md:text-[10px] text-white/40 font-bold uppercase tracking-wider mt-1.5"
                       style={khFont}
                     >
                       {kh ? u.kh : u.en}
@@ -251,7 +258,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
           )}
 
           {/* Switch for Billing Cycle */}
-          <div className="flex items-center justify-center gap-3 mt-2 bg-white/5 border border-white/10 rounded-2xl p-3 md:p-4 max-w-xs md:max-w-sm mx-auto backdrop-blur-sm">
+          <div className="flex items-center justify-center gap-2 md:gap-3 mt-2 bg-white/5 border border-white/10 rounded-2xl p-2.5 md:p-4 max-w-[280px] xs:max-w-xs md:max-w-sm mx-auto backdrop-blur-sm">
             <span
               className={`text-sm font-bold transition-colors ${
                 !yearly ? "text-white" : "text-white/40"
@@ -282,7 +289,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
             >
               {kh ? "ប្រចាំឆ្នាំ" : "Yearly"}
               {/* PSYCHOLOGY — Default nudge toward the higher-value annual plan */}
-              <span className="ml-1 text-[10px] md:text-xs bg-green-500/20 text-green-400 px-1.5 md:px-2 py-0.5 rounded-full font-black">
+              <span className="ml-1 text-[9px] md:text-xs bg-green-500/20 text-green-400 px-1.5 md:px-2 py-0.5 rounded-full font-black whitespace-nowrap">
                 {kh ? "ឥតគិតថ្លៃ ៣-៤ ខែ" : "3-4 mo free"}
               </span>
             </span>
@@ -305,7 +312,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
             between a weak Free tier and a pricier School tier. */}
         <div className="max-w-6xl mx-auto flex md:grid md:grid-cols-3 gap-6 md:items-center overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-8 md:pb-0 mb-16 px-4 -mx-4 md:mx-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {/* Tier 1: Free */}
-          <div className="w-[85vw] md:w-auto shrink-0 snap-center bg-white/[0.03] border border-white/10 hover:border-white/25 rounded-3xl p-5 md:p-6 flex flex-col transition-all duration-200 group backdrop-blur-sm">
+          <div className="w-[92vw] xs:w-[85vw] md:w-auto shrink-0 snap-center bg-white/[0.03] border border-white/10 hover:border-white/25 rounded-3xl p-4 xs:p-5 md:p-6 flex flex-col transition-all duration-200 group backdrop-blur-sm">
             <div className="mb-6">
               <div className="flex items-center gap-2 mb-2">
                 <Zap size={20} className="text-zinc-400" />
@@ -382,7 +389,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
           </div>
 
           {/* Tier 2: Teacher Pro (Hero / Center-stage) */}
-          <div className="w-[88vw] md:w-auto shrink-0 snap-center relative md:scale-[1.06] md:-my-2 bg-gradient-to-b from-amber-400/20 via-amber-400/[0.06] to-transparent border-2 border-amber-400/70 shadow-[0_0_60px_rgba(251,191,36,0.22)] hover:shadow-[0_0_90px_rgba(251,191,36,0.35)] rounded-3xl p-5 md:p-7 flex flex-col transition-all duration-300 group">
+          <div className="w-[92vw] xs:w-[88vw] md:w-auto shrink-0 snap-center relative md:scale-[1.06] md:-my-2 bg-gradient-to-b from-amber-400/20 via-amber-400/[0.06] to-transparent border-2 border-amber-400/70 shadow-[0_0_60px_rgba(251,191,36,0.22)] hover:shadow-[0_0_90px_rgba(251,191,36,0.35)] rounded-3xl p-4 xs:p-5 md:p-7 flex flex-col transition-all duration-300 group">
             {/* Animated gradient ring accent */}
             <div
               aria-hidden
@@ -408,7 +415,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
               {/* PSYCHOLOGY — Price anchoring: large struck standard price beside promo */}
               <div className="flex flex-col mb-2">
                 <div className="flex items-end gap-2.5">
-                  <span className="text-5xl md:text-6xl font-black text-white leading-none">
+                  <span className="text-4xl xs:text-5xl md:text-6xl font-black text-white leading-none">
                     {promo ? (yearly ? "$24" : "$3") : yearly ? "$80" : "$10"}
                   </span>
                   <div className="flex flex-col mb-1">

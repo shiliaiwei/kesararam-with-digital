@@ -68,7 +68,11 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
   const [yearly, setYearly] = useState(false);
   const router = useRouter();
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const khFont = {
+    fontFamily: kh
+      ? "var(--font-kh-header), 'Kantumruy Pro', sans-serif"
+      : '"GoogleSans", "Google Sans", sans-serif',
+  };
 
   useEffect(() => {
     if (!open) return;
