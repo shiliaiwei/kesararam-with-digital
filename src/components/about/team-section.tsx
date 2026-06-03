@@ -159,7 +159,7 @@ export function TeamSection() {
             The Team
           </div>
           <h2 className="text-3xl md:text-4xl font-black text-black mb-2">
-            Built by Students.<br />Guided by Mentors.
+            Created by Students.<br />Shaped by Mentors.
           </h2>
           <p className="text-black/50 text-sm max-w-sm mx-auto">
             Reveal the QR code on each card. Scan it to view their full profile.
