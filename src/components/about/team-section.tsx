@@ -4,30 +4,31 @@ import { useState, useCallback } from "react";
 import QRCode from "react-qr-code";
 
 // Names and roles from KWD_អំពីពួកយើង.txt — do not alter
+// displayName = last name shown on the card face
 const STUDENTS = [
-  { id: "VSID-2026-001", name: "YIN DANAI",      role: "អ្នកអានសំលេង · អ្នកដឹកនាំក្រុម · ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា" },
-  { id: "VSID-2026-002", name: "CHANTHA KANIKA", role: "ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា · ការស្រាវជ្រាវ" },
-  { id: "VSID-2026-003", name: "ROZA NEUN",      role: "រចនា UI/UX · ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា" },
-  { id: "VSID-2026-004", name: "LIM MANY",       role: "ធានាគុណភាព និងតេស្ត · ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា" },
-  { id: "VSID-2026-005", name: "SUN RUNAMARA",   role: "ធានាគុណភាព និងតេស្ត · ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា" },
+  { id: "VSID-2026-001", name: "YIN DANAI",      displayName: "DANAI",    role: "អ្នកអានសំលេង · អ្នកដឹកនាំក្រុម · ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា" },
+  { id: "VSID-2026-002", name: "CHANTHA KANIKA", displayName: "KANIKA",   role: "ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា · ការស្រាវជ្រាវ" },
+  { id: "VSID-2026-003", name: "ROZA NEUN",      displayName: "NEUN",     role: "រចនា UI/UX · ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា" },
+  { id: "VSID-2026-004", name: "LIM MANY",       displayName: "MANY",     role: "ធានាគុណភាព និងតេស្ត · ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា" },
+  { id: "VSID-2026-005", name: "SUN RUNAMARA",   displayName: "RUNAMARA", role: "ធានាគុណភាព និងតេស្ត · ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា" },
 ];
 
 const MENTORS = [
   {
     id: "VSID-2026-M01",
-    name: "PHEAP PISETH",
+    name: "PHEAP PISETH", displayName: "PISETH",
     role: "គ្រូបង្រៀន · អ្នកដឹកនាំកម្មវិធី · ត្រួតពិនិត្យប្រសិទ្ធភាពការងារក្រុម",
     image: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248421/904da627410290a5ae64edr_xtkjjp.png",
   },
   {
     id: "VSID-2026-M02",
-    name: "SHILI AIWEI",
+    name: "SHILI AIWEI", displayName: "AIWEI",
     role: "គ្រូណែនាំ · គ្រប់គ្រងបច្ចេកទេស · គំនិតច្នៃប្រឌិត និងធនធានគម្រោង",
     image: "https://avatars.githubusercontent.com/u/70220432?v=4",
   },
 ];
 
-interface Member { id: string; name: string; role: string; image?: string; }
+interface Member { id: string; name: string; displayName: string; role: string; image?: string; }
 
 const CLIP = "polygon(0 12px, 12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px))";
 
@@ -95,7 +96,7 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
           </div>
 
           <div className="text-center">
-            <p className="font-black text-white text-sm leading-tight tracking-wide">{member.name}</p>
+            <p className="font-black text-white text-sm leading-tight tracking-wide">{member.displayName}</p>
             <p className="text-[9px] mt-1 leading-relaxed text-center px-1" style={{ color: accent + "bb" }}>{member.role}</p>
           </div>
 

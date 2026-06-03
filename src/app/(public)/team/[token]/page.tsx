@@ -4,50 +4,65 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
+// All names and roles verbatim from KWD_អំពីពួកយើង.txt
 const MEMBERS: Record<string, {
   lastName: string; fullName: string; role: string; type: "student" | "mentor";
   photo: string; contributions: string[]; quote: string;
 }> = {
   "VSID-2026-001": {
-    lastName: "YIN", fullName: "DANAI YIN", role: "Voice Reading · Team Lead", type: "student",
+    lastName: "DANAI", fullName: "YIN DANAI",
+    role: "អ្នកអានសំលេង · អ្នកដឹកនាំក្រុម · ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា",
+    type: "student",
     photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1773739866/DANAI_YIN_sezo2q.jpg",
-    contributions: ["Designed all UI screens", "Created the design system", "Led visual identity"],
+    contributions: ["Voice Reading & Team Lead", "Content review & editing", "Led team coordination"],
     quote: "Design is how we make technology feel human.",
   },
   "VSID-2026-002": {
-    lastName: "KANIKA", fullName: "CHANTHA KANIKA", role: "Content & Research", type: "student",
+    lastName: "KANIKA", fullName: "CHANTHA KANIKA",
+    role: "ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា · ការស្រាវជ្រាវ",
+    type: "student",
     photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1773739866/CHANTHA_KANIKA_gmh6w9.jpg",
-    contributions: ["Researched all 8 traffic sign categories", "Wrote bilingual content (KH/EN)", "Validated exam accuracy"],
+    contributions: ["Content review & editing", "Research on traffic signs & law", "Bilingual content validation"],
     quote: "Knowledge is the foundation of every safe road.",
   },
   "VSID-2026-003": {
-    lastName: "NEUN", fullName: "ROZA NEUN", role: "UI/UX Design", type: "student",
+    lastName: "NEUN", fullName: "ROZA NEUN",
+    role: "រចនា UI/UX · ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា",
+    type: "student",
     photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1773739867/Roza_Neun_ciz33b.jpg",
-    contributions: ["Built interactive quiz components", "Implemented live game UI", "Developed mobile-responsive layouts"],
-    quote: "Every line of code is a step toward something real.",
+    contributions: ["UI/UX Design", "Content review & editing", "Visual consistency across the platform"],
+    quote: "Every design decision is a step toward something real.",
   },
   "VSID-2026-004": {
-    lastName: "MANY", fullName: "LIN MANY", role: "QA & Testing", type: "student",
+    lastName: "MANY", fullName: "LIM MANY",
+    role: "ធានាគុណភាព និងតេស្ត · ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា",
+    type: "student",
     photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1773739866/Lin_Many_nffno6.jpg",
-    contributions: ["Designed the database schema", "Built API endpoints", "Implemented real-time game engine"],
-    quote: "The backend is the engine — invisible but essential.",
+    contributions: ["Quality assurance & testing", "Content review & editing", "Bug tracking and reporting"],
+    quote: "Quality is not an act — it is a habit.",
   },
   "VSID-2026-005": {
-    lastName: "RUNAMARA", fullName: "SUN RUNAMARA", role: "QA & Testing", type: "student",
+    lastName: "RUNAMARA", fullName: "SUN RUNAMARA",
+    role: "ធានាគុណភាព និងតេស្ត · ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា",
+    type: "student",
     photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1773739866/SUN_RUNAMARA_rmtlzf.jpg",
-    contributions: ["Tested all game modes and flows", "Reported and tracked bugs", "Ensured bilingual accuracy"],
-    quote: "Quality is not an act, it is a habit.",
+    contributions: ["Quality assurance & testing", "Content review & editing", "Bilingual accuracy checks"],
+    quote: "Every test is a promise to the user.",
   },
   "VSID-2026-M01": {
-    lastName: "PISETH", fullName: "PHEAP PISETH", role: "Teacher & Program Lead", type: "mentor",
+    lastName: "PISETH", fullName: "PHEAP PISETH",
+    role: "គ្រូបង្រៀន (Mentor) · អ្នកដឹកនាំកម្មវិធី · ការត្រួតពិនិត្យប្រសិទ្ធភាពការងារជាក្រុម",
+    type: "mentor",
     photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1775248418/481f63ff38a1842e9fce11ad5edr_xp2anf.png",
-    contributions: ["Program Lead connecting team with resources", "Resolved resource conflicts & challenges", "Mentored students throughout competition"],
+    contributions: ["Teacher & program lead", "Team performance oversight", "Connected team with resources"],
     quote: "Teaching is not filling a bucket — it is lighting a fire.",
   },
   "VSID-2026-M02": {
-    lastName: "史力爱卫", fullName: "史力爱卫", role: "Design, Technical & Project Management", type: "mentor",
+    lastName: "AIWEI", fullName: "SHILI AIWEI",
+    role: "គ្រូណែនាំ (Mentor) · គ្រប់គ្រងបច្ចេកទេស · គំនិតច្នៃប្រឌិត និងធនធានគម្រោង",
+    type: "mentor",
     photo: "https://avatars.githubusercontent.com/u/70220432?v=4",
-    contributions: ["Advised on software architecture", "Reviewed code quality", "Supported project management"],
+    contributions: ["Technical & creative direction", "Project development resources", "Innovation guidance"],
     quote: "Build with intention. Ship with confidence.",
   },
 };
