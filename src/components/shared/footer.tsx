@@ -28,6 +28,7 @@ export function Footer() {
     { label: nav.about, href: "/about" },
     { label: nav.login, href: "/login" },
     { label: kh ? "ម៉ាករបស់យើង" : "Brand Guideline", href: "/brand" },
+    { label: kh ? "បង្កើតជាមួយ" : "Built With", href: "/built-with" },
   ];
 
   return (
