@@ -10,7 +10,7 @@ import {
   SiPostgresql, SiShadcnui, SiLucide, SiFigma,
   SiAffinitydesigner, SiAnthropic, SiGooglegemini, SiOpenai,
   SiGithubcopilot, SiNotebooklm, SiKahoot, SiYoutube, SiGoogle,
-  SiGoogleplay, SiAffinity,
+  SiGoogleplay, SiAffinity, SiVscodium,
 } from "react-icons/si";
 import {
   BarChart2, ShieldCheck, PenTool, Layers, Cpu, Zap,
@@ -37,56 +37,101 @@ const DEV_TOOLS: Item[] = [
   { name: "Cloudinary",              icon: SiCloudinary,   note: { en: "Image hosting & management",      kh: "Image hosting & management" } },
   { name: "jose",                    icon: ShieldCheck,    note: { en: "JWT authentication",              kh: "JWT authentication" } },
   { name: "Zod",                     icon: SiZod,          note: { en: "Data validation",                 kh: "Data validation" } },
-  { name: "Git & GitHub",            icon: SiGithub,       note: { en: "Version control",                 kh: "Version control" } },
+  { name: "Git & GitHub",            icon: SiGithub,       note: { en: "Version control",                 kh: "ប្រព័ន្ធគ្រប់គ្រងកូដ (Version Control)" } },
+  { name: "VS Code / VSCodium",      icon: SiVscodium,     note: { en: "IDE / Code editor",             kh: "IDE / កម្មវិធីសរសេរកូដ" } },
+  { name: "Antigravity AI",          icon: BrainCircuit,   note: { en: "Autonomous coding assistant",      kh: "ជំនួយការសរសេរកូដ AI ស្វ័យប្រវត្ត" } },
+  { name: "Kiro AI",                 icon: BrainCircuit,   note: { en: "Autonomous coding assistant",      kh: "ជំនួយការសរសេរកូដ AI ស្វ័យប្រវត្ត" } },
 ];
 
 const DESIGN_TOOLS: Item[] = [
-  { name: "Tailwind CSS + shadcn/ui",icon: SiShadcnui,        note: { en: "Component system",  kh: "Component system" } },
-  { name: "lucide-react",            icon: SiLucide,           note: { en: "Icon set",          kh: "Icon set" } },
-  { name: "Recharts",                icon: BarChart2,          note: { en: "Data visualization",kh: "Data visualization" } },
-  { name: "Figma",                   icon: SiFigma,            note: { en: "UI/UX design",      kh: "UI/UX design" } },
-  { name: "Affinity Designer",       icon: SiAffinitydesigner, note: { en: "Vector & brand",   kh: "Vector & brand" } },
-  { name: "Adobe Creative Suite",    icon: Layers,             note: { en: "Graphic production",kh: "Graphic production" } },
-  { name: "Banana Pro",              icon: PenTool,            note: { en: "Design tool",       kh: "Design tool" } },
+  { name: "Tailwind CSS + shadcn/ui",icon: SiShadcnui,        note: { en: "Component system",  kh: "ប្រព័ន្ធសមាសភាគ (Component System)" } },
+  { name: "lucide-react",            icon: SiLucide,           note: { en: "Icon set",          kh: "បណ្ដុំរូបតំណាង (Icons)" } },
+  { name: "Recharts",                icon: BarChart2,          note: { en: "Data visualization",kh: "ការបង្ហាញទិន្នន័យជាក្រាហ្វិក" } },
+  { name: "Figma",                   icon: SiFigma,            note: { en: "UI/UX design",      kh: "រចនា UI/UX" } },
+  { name: "Affinity Designer",       icon: SiAffinitydesigner, note: { en: "Vector & brand",   kh: "រចនា Vector និងម៉ាកសញ្ញា" } },
+  { name: "Adobe Creative Suite",    icon: Layers,             note: { en: "Graphic production",kh: "ផលិតក្រាហ្វិក" } },
+  { name: "Banana Pro",              icon: PenTool,            note: { en: "Design tool",       kh: "ឧបករណ៍រចនា" } },
 ];
 
 const AI_TOOLS: Item[] = [
-  { name: "Claude (Anthropic)",   icon: SiAnthropic,     },
-  { name: "Google Gemini",        icon: SiGooglegemini,  },
-  { name: "OpenAI ChatGPT",       icon: SiOpenai,        },
-  { name: "GitHub Copilot",       icon: SiGithubcopilot, },
-  { name: "Google NotebookLM",    icon: SiNotebooklm,    },
-  { name: "Kimi AI",              icon: Cpu,             },
-  { name: "Grok",                 icon: Zap,             },
-  { name: "Google AI Studio",     icon: SiGoogle,        },
-  { name: "Qwen",                 icon: BrainCircuit,    },
-  { name: "DeepSeek",             icon: BrainCircuit,    },
+  { name: "Claude (Anthropic)",   icon: SiAnthropic,     note: { en: "Code writing & logic refinement", kh: "ជំនួយការសរសេរកូដ និងកែលម្អតក្កវិជ្ជា" } },
+  { name: "Google Gemini",        icon: SiGooglegemini,  note: { en: "Research, content generation & brainstorming", kh: "ស្រាវជ្រាវ បង្កើតមាតិកា និងបង្កើតគំនិត" } },
+  { name: "OpenAI ChatGPT",       icon: SiOpenai,        note: { en: "General productivity & problem solving", kh: "ការងារទូទៅ និងដោះស្រាយបញ្ហា" } },
+  { name: "GitHub Copilot",       icon: SiGithubcopilot, note: { en: "Inline code completions & suggestions", kh: "ជំនួយការសរសេរកូដ និងសំណើកូដបន្ទាត់" } },
+  { name: "Google NotebookLM",    icon: SiNotebooklm,    note: { en: "Source synthesis & documentation organization", kh: "ចងក្រងប្រភពឯកសារ និងរៀបចំឯកសារ" } },
+  { name: "Kimi AI",              icon: Cpu,             note: { en: "Long-context document analysis & research", kh: "វិភាគឯកសារវែងៗ និងស្រាវជ្រាវ" } },
+  { name: "Grok",                 icon: Zap,             note: { en: "Real-time info verification & testing ideas", kh: "ផ្ទៀងផ្ទាត់ព័ត៌មានភ្លាមៗ និងសាកល្បងគំនិត" } },
+  { name: "Google AI Studio",     icon: SiGoogle,        note: { en: "API experimentation & model configuration", kh: "ពិសោធន៍ API និងកំណត់រចនាសម្ព័ន្ធម៉ូដែល" } },
+  { name: "Qwen",                 icon: BrainCircuit,    note: { en: "Multilingual logic & auxiliary helper", kh: "តក្កវិជ្ជាពហុភាសា និងជំនួយការកូដបន្ថែម" } },
+  { name: "DeepSeek",             icon: BrainCircuit,    note: { en: "Algorithm design & code review assistant", kh: "រចនា algorithm និងជំនួយការពិនិត្យកូដ" } },
 ];
 
 const RESEARCH_TOOLS: Item[] = [
-  { name: "Google Search",                         icon: SiGoogle,     },
+  { name: "Google Search",                         icon: SiGoogle,     note: { en: "General information retrieval & developer docs", kh: "ស្វែងរកព័ត៌មានទូទៅ និងឯកសារអ្នកអភិវឌ្ឍន៍" } },
   { name: "MoEYS Cambodia",                        icon: Building2,    note: { en: "Ministry of Education, Youth and Sport", kh: "ក្រសួងអប់រំ យុវជន និងកីឡា" } },
-  { name: "Ministry of Public Works and Transport",icon: Building2,    },
-  { name: "Royal Government of Cambodia",          icon: Landmark,     note: { en: "Official documents", kh: "ឯកសារផ្លូវការ" } },
-  { name: "Official Cambodian Driving Theory App", icon: SiGoogleplay, note: { en: "Google Play Store",  kh: "Google Play Store" } },
-  { name: "YouTube",                               icon: SiYoutube,    },
-  { name: "Kahoot",                                icon: SiKahoot,     },
-  { name: "MOTET Cambodia",                        icon: Globe,        },
-  { name: "UN — Road Traffic Law Articles",        icon: Globe,        },
+  { name: "Ministry of Public Works and Transport",icon: Building2,    note: { en: "Official road traffic regulations & guidelines", kh: "ក្រសួងសាធារណការ និងដឹកជញ្ជូន (ច្បាប់ចរាចរណ៍)" } },
+  { name: "Royal Government of Cambodia",          icon: Landmark,     note: { en: "Official laws & documents", kh: "ច្បាប់ និងឯកសារផ្លូវការ" } },
+  { name: "Official Cambodian Driving Theory App", icon: SiGoogleplay, note: { en: "Mobile App by MPWT",  kh: "កម្មវិធីទូរស័ព្ទប្រឡងទ្រឹស្ដីបើកបរដោយក្រសួង" } },
+  { name: "YouTube",                               icon: SiYoutube,    note: { en: "Educational videos & safety animations", kh: "វីដេអូអប់រំ និងគំនូរជីវចលសុវត្ថិភាពចរាចរណ៍" } },
+  { name: "Kahoot",                                icon: SiKahoot,     note: { en: "Gamified learning design reference", kh: "ឯកសារយោងរចនាការរៀនបែបហ្គេម" } },
+  { name: "MOTET Cambodia",                        icon: Globe,        note: { en: "Ministry of Tourism official platform reference", kh: "ប្រភពយោងផ្លូវការនៃក្រសួងទេសចរណ៍" } },
+  { name: "UN — Road Traffic Law Articles",        icon: Globe,        note: { en: "International conventions on road traffic & signage standards", kh: "អនុសញ្ញាអន្តរជាតិស្តីពីចរាចរណ៍ផ្លូវគោក និងស្តង់ដារផ្លាកសញ្ញា" } },
 ];
 
 const MEDIA_ASSETS: Item[] = [
   { name: "Cloudinary",                             icon: SiCloudinary, note: { en: "Image hosting & management",    kh: "Image hosting & management" } },
   { name: "Google Sans · Inter · Stack Sans Notch", icon: Type,         note: { en: "Latin typefaces",               kh: "ហ្វុនត៍ឡាតាំង" } },
   { name: "Siemreap · Battambang · KhmerOS",        icon: Type,         note: { en: "Khmer typefaces",               kh: "ហ្វុនត៍ខ្មែរ" } },
+  { name: "Reward Illustrations & Avatars",         icon: PenTool,      note: { en: "Gamification & user profile assets", kh: "រូបភាពរង្វាន់ និងរូបតំណាងកម្រងព័ត៌មានសិស្ស" } },
 ];
 
 const REFERENCES: { name: string; url?: string; icon?: Item["icon"]; note?: { en: string; kh: string } }[] = [
-  { name: "Ministry of Education, Youth and Sport (MoEYS)",    icon: Building2, url: "https://cdp.moeys.gov.kh",         note: { en: "Cambodia Education Portal", kh: "គេហទំព័រអប់រំកម្ពុជា" } },
-  { name: "Cambodia Road Traffic Law",                          icon: BookOpen,                                           note: { en: "Official road signs handbook", kh: "សៀវភៅណែនាំសញ្ញាចរាចរណ៍ផ្លូវការ" } },
-  { name: "Technovation Girls — Curriculum & Safety Standards", icon: Globe,     url: "https://technovationchallenge.org" },
-  { name: "United Nations — SDG 4 & SDG 11",                   icon: Globe,     url: "https://sdgs.un.org/goals" },
-  { name: "Kesararam Primary School Community",                 icon: Building2,                                          note: { en: "Local partners & mentors", kh: "ដៃគូ និងអ្នកណែនាំ" } },
+  {
+    name: "Ministry of Education, Youth and Sport (MoEYS), Cambodia",
+    icon: Building2,
+    url: "https://cdp.moeys.gov.kh",
+    note: { en: "Official Cambodia Education Portal & educational curriculum guidelines", kh: "គេហទំព័រអប់រំកម្ពុជា និងគោលការណ៍ណែនាំកម្មវិធីសិក្សាអប់រំផ្លូវការ" }
+  },
+  {
+    name: "Cambodia Road Traffic Law & Signage Handbook",
+    icon: BookOpen,
+    url: "https://www.mpwt.gov.kh",
+    note: { en: "Official road signs handbook, Ministry of Public Works and Transport", kh: "សៀវភៅណែនាំសញ្ញាចរាចរណ៍ផ្លូវការ ក្រសួងសាធារណការ និងដឹកជញ្ជូន" }
+  },
+  {
+    name: "Ministry of Public Works and Transport (MPWT), Cambodia",
+    icon: Building2,
+    url: "https://www.mpwt.gov.kh",
+    note: { en: "Official laws, infrastructure guidelines & road safety regulations", kh: "ច្បាប់ផ្លូវការ គោលការណ៍ណែនាំហេដ្ឋារចនាសម្ព័ន្ធ និងបទប្បញ្ញត្តិសុវត្ថិភាពផ្លូវគោក" }
+  },
+  {
+    name: "Official Cambodian Driving Theory Examination App",
+    icon: SiGoogleplay,
+    url: "https://play.google.com/store/apps/details?id=kh.gov.mpwt.drivingtheorytest",
+    note: { en: "Mobile App by Ministry of Public Works and Transport for driver education", kh: "កម្មវិធីទូរស័ព្ទប្រឡងទ្រឹស្ដីបើកបរសម្រាប់ការអប់រំអ្នកបើកបរដោយក្រសួងសាធារណការ និងដឹកជញ្ជូន" }
+  },
+  {
+    name: "Technovation Girls — Curriculum, Safety Standards & Mentorship",
+    icon: Globe,
+    url: "https://technovationchallenge.org",
+    note: { en: "Global tech program curriculum, safety standards, and global mentorship framework", kh: "កម្មវិធីសិក្សាបច្ចេកវិទ្យាសកល ស្តង់ដារសុវត្ថិភាព និងក្របខ័ណ្ឌណែនាំសកល" }
+  },
+  {
+    name: "United Nations — Sustainable Development Goals (SDG 4 & SDG 11)",
+    icon: Globe,
+    url: "https://sdgs.un.org/goals",
+    note: { en: "Global framework for Quality Education (SDG 4) and Sustainable Cities and Communities (SDG 11)", kh: "ក្របខ័ណ្ឌសកលសម្រាប់ការអប់រំមានគុណភាព (SDG 4) និងទីក្រុង និងសហគមន៍ប្រកបដោយចីរភាព (SDG 11)" }
+  },
+  {
+    name: "Kesararam Primary School Community",
+    icon: Building2,
+    note: { en: "Siem Reap, Cambodia — implementation site, user feedback, and testing community", kh: "សាលាបឋមសិក្សាកេសរារាម ខេត្តសៀមរាប — ទីតាំងអនុវត្តផ្ទាល់ មតិកែលម្អ និងសហគមន៍ធ្វើតេស្ត" }
+  },
+  {
+    name: "Mentors & Coaches (Team #50777)",
+    icon: Globe,
+    note: { en: "Technical advisors and mentors providing codebase feedback & program guidance", kh: "ទីប្រឹក្សាបច្ចេកទេស និងគ្រូណែនាំដែលផ្តល់មតិកែលម្អលើកូដ និងការណែនាំកម្មវិធីសិក្សា" }
+  },
 ];
 
 const SECTIONS = [
