@@ -340,7 +340,7 @@ export function StudentProfileDashboard({
         </div>
 
         {/* ── Profile card ─────────────────────────────────────────────── */}
-        <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+        <div className="bg-white border-2 border-black overflow-hidden shadow-[4px_4px_0_#000]">
           <div className="h-1.5" style={{ background: tier.borderGradient }} />
           <div className="p-6 flex flex-col sm:flex-row gap-5 items-center sm:items-start">
 
@@ -348,11 +348,10 @@ export function StudentProfileDashboard({
             <div className="relative flex-shrink-0">
               <div style={{
                 padding: tier.id === "rookie" ? 3 : 5,
-                borderRadius: "50%",
                 background: tier.borderGradient,
               }}>
-                <div style={{ padding: "3px", borderRadius: "50%", background: "#fff" }}>
-                  <div style={{ borderRadius: "50%", overflow: "hidden", border: "2.5px solid #000" }}>
+                <div style={{ padding: "3px", background: "#fff" }}>
+                  <div style={{ overflow: "hidden", border: "2.5px solid #000" }}>
                     <AvatarDisplay avatar={user.avatar} name={name} size={88} radius={0} />
                   </div>
                 </div>
@@ -394,9 +393,9 @@ export function StudentProfileDashboard({
                     <span style={kf}>{kh ? "បន្ទាប់:" : "Next:"} {nextTier.label}</span>
                     <span className="text-blue-500 font-mono">{pointsRemaining.toLocaleString()} pts</span>
                   </div>
-                  <div className="w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                  <div className="w-full h-1.5 bg-gray-100 overflow-hidden">
                     <div
-                      className="h-full rounded-full transition-all duration-700"
+                      className="h-full transition-all duration-700"
                       style={{ width: `${nextProgress}%`, background: nextTier.labelGradient }}
                     />
                   </div>
@@ -418,7 +417,7 @@ export function StudentProfileDashboard({
             { label: kh ? "ការប្រកួត" : "Games Played", value: rankStats.totalGamesPlayed.toLocaleString(), color: "#10b981", Icon: BookOpen },
             { label: kh ? "ពិន្ទុខ្ពស់" : "Highest Score", value: rankStats.highestScore.toLocaleString(), color: "#8b5cf6", Icon: Target },
           ] as const).map(({ label, value, color, Icon }) => (
-            <div key={label} className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+            <div key={label} className="bg-white border-2 border-black p-5 shadow-[3px_3px_0_#000]">
               <div className="flex items-start justify-between mb-2">
                 <span className="text-3xl font-black tabular-nums tracking-tight" style={{ color }}>
                   {value}
@@ -436,10 +435,10 @@ export function StudentProfileDashboard({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
           {/* Classroom card */}
-          <div className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-            <div className="px-5 py-3.5 border-b border-gray-100 flex items-center justify-between">
+          <div className="bg-white border-2 border-black shadow-[4px_4px_0_#000] overflow-hidden">
+            <div className="px-5 py-3.5 border-b-2 border-black flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <div className="p-1.5 bg-amber-50 rounded-lg">
+                <div className="p-1.5 bg-amber-50">
                   <School size={16} className="text-amber-500" />
                 </div>
                 <h3 className="text-sm font-black uppercase tracking-wide text-gray-800" style={kf}>
@@ -455,7 +454,7 @@ export function StudentProfileDashboard({
             <div className="p-5">
               {studentClassInfo ? (
                 <div className="flex flex-col gap-4">
-                  <div className="bg-gray-50 rounded-lg px-4 py-3">
+                  <div className="bg-gray-50 px-4 py-3">
                     <p className="text-base font-black text-blue-600">
                       {studentClassInfo.className}
                       {studentClassInfo.section ? ` (${studentClassInfo.section})` : ""}
@@ -489,9 +488,9 @@ export function StudentProfileDashboard({
           </div>
 
           {/* Rank Tiers card */}
-          <div className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-            <div className="px-5 py-3.5 border-b border-gray-100 flex items-center gap-2">
-              <div className="p-1.5 bg-purple-50 rounded-lg">
+          <div className="bg-white border-2 border-black shadow-[4px_4px_0_#000] overflow-hidden">
+            <div className="px-5 py-3.5 border-b-2 border-black flex items-center gap-2">
+              <div className="p-1.5 bg-purple-50">
                 <Award size={16} className="text-purple-500" />
               </div>
               <h3 className="text-sm font-black uppercase tracking-wide text-gray-800" style={kf}>
@@ -510,7 +509,7 @@ export function StudentProfileDashboard({
                   return (
                     <div
                       key={tierItem.id}
-                      className="flex flex-col items-center gap-1 p-2.5 rounded-xl border-2 transition-all text-center relative overflow-hidden"
+                      className="flex flex-col items-center gap-1 p-2.5 border-2 transition-all text-center relative overflow-hidden"
                       style={{
                         borderColor: isCurrent ? tierItem.accent : unlocked ? `${tierItem.accent}44` : "transparent",
                         background: isCurrent ? `${tierItem.glow}15` : "transparent",
