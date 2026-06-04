@@ -905,6 +905,5 @@ export function StudentProfileDashboard({
         </div>
       </div>
     </div>
-    </div>
   );
 }
