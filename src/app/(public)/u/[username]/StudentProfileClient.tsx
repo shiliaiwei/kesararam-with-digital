@@ -42,15 +42,15 @@ interface StudentProfileClientProps {
 }
 
 const REWARD_ITEMS = [
-  { id: 1, name: "Notebook",       nameKh: "សៀវភៅកត់ត្រា",   cost: 500,  image: "/rewards/notebook.png" },
-  { id: 2, name: "Pencil",         nameKh: "ខ្មៅដៃ",            cost: 100,  image: "/rewards/pencil.png" },
-  { id: 3, name: "Pen",            nameKh: "ប៊ិច",               cost: 150,  image: "/rewards/pen.png" },
-  { id: 4, name: "Ruler",          nameKh: "បន្ទាត់",            cost: 200,  image: "/rewards/ruler.png" },
-  { id: 5, name: "Eraser",         nameKh: "ជ័រលុប",             cost: 80,   image: "/rewards/eraser.png" },
-  { id: 6, name: "Highlighter",    nameKh: "ប៊ិចសម្គាល់",        cost: 250,  image: "/rewards/highlighter.png" },
-  { id: 7, name: "Sticky Notes",   nameKh: "ក្រដាសសម្គាល់",      cost: 300,  image: "/rewards/sticky_notes.png" },
-  { id: 8, name: "Geometry Set",   nameKh: "ឧបករណ៍គណិត",       cost: 800,  image: "/rewards/geometry_set.png" },
-  { id: 9, name: "Study Planner",  nameKh: "ផែនការសិក្សា",       cost: 1200, image: "/rewards/study_planner.png" },
+  { id: 1, name: "Notebook",       nameKh: "សៀវភៅកត់ត្រា",   cost: 500,  image: "/rewards/notebook.webp" },
+  { id: 2, name: "Pencil",         nameKh: "ខ្មៅដៃ",            cost: 100,  image: "/rewards/pencil.webp" },
+  { id: 3, name: "Pen",            nameKh: "ប៊ិច",               cost: 150,  image: "/rewards/pen.webp" },
+  { id: 4, name: "Ruler",          nameKh: "បន្ទាត់",            cost: 200,  image: "/rewards/ruler.webp" },
+  { id: 5, name: "Eraser",         nameKh: "ជ័រលុប",             cost: 80,   image: "/rewards/eraser.webp" },
+  { id: 6, name: "Highlighter",    nameKh: "ប៊ិចសម្គាល់",        cost: 250,  image: "/rewards/highlighter.webp" },
+  { id: 7, name: "Sticky Notes",   nameKh: "ក្រដាសសម្គាល់",      cost: 300,  image: "/rewards/sticky_notes.webp" },
+  { id: 8, name: "Geometry Set",   nameKh: "ឧបករណ៍គណិត",       cost: 800,  image: "/rewards/geometry_set.webp" },
+  { id: 9, name: "Study Planner",  nameKh: "ផែនការសិក្សា",       cost: 1200, image: "/rewards/study_planner.webp" },
 ];
 
 const CAMBODIA_PROVINCES = [
