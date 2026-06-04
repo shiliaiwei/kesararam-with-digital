@@ -10,6 +10,7 @@ import {
   MapPin, GraduationCap, Calendar, Check, Zap, Shield,
   School,
 } from "lucide-react";
+import { CautionTape, SignShape } from "@/components/brand/brand-kit";
 
 export interface SerializableStudent {
   id: number;
@@ -134,16 +135,25 @@ function Avatar({ url, name, size = 96, changedAt }: {
   );
 }
 
-function StatCard({ icon: Icon, label, value, kh }: {
-  icon: React.ComponentType<any>; label: string; value: string | number; kh?: boolean;
+// Sign-style stat card: semantic color strip (like a road sign) + iconed badge,
+// flat brutalist (solid black border, hard offset shadow). No gradients / neon.
+function StatCard({ icon: Icon, label, value, kh, accent = "#eab308", iconFg = "text-black" }: {
+  icon: React.ComponentType<any>; label: string; value: string | number;
+  kh?: boolean; accent?: string; iconFg?: string;
 }) {
   return (
-    <div className="bg-white border-2 border-black p-5 flex flex-col gap-2" style={{ boxShadow: "3px 3px 0 #000" }}>
-      <div className="flex items-start justify-between">
-        <p className="text-3xl font-black text-black font-mono tabular-nums">{value}</p>
-        <Icon size={18} className="text-gray-400 mt-1 flex-shrink-0" />
+    <div className="bg-white border-2 border-black" style={{ boxShadow: "4px 4px 0 #000" }}>
+      <div style={{ height: 8, background: accent, borderBottom: "2px solid #000" }} />
+      <div className="p-4 flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <p className="text-4xl font-black text-black font-mono tabular-nums leading-none">{value}</p>
+          <p className={`text-[11px] font-black text-gray-500 uppercase tracking-wide mt-2 ${kh ? "font-google-sans" : ""}`}>{label}</p>
+        </div>
+        <div className="size-9 grid place-items-center border-2 border-black flex-shrink-0"
+          style={{ background: accent, boxShadow: "2px 2px 0 #000" }}>
+          <Icon size={18} className={iconFg} strokeWidth={2.5} />
+        </div>
       </div>
-      <p className={`text-[11px] font-black text-gray-500 uppercase tracking-wide ${kh ? "font-google-sans" : ""}`}>{label}</p>
     </div>
   );
 }
@@ -228,6 +238,9 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
         </span>
         <div className="w-16" />
       </div>
+
+      {/* ── Signature caution-tape strip ───────────────────────────────────── */}
+      <CautionTape variant="caution" height={10} />
 
       {/* ── Profile hero ───────────────────────────────────────────────────── */}
       <div className="bg-white border-b-2 border-black">
@@ -335,9 +348,10 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
       {student.isProfilePublic === false ? (
         <div className="max-w-xl mx-auto px-4 py-12">
           <div style={{ background: "#fff", border: "3px solid #000", boxShadow: "6px 6px 0 #000", padding: "40px" }} className="text-center">
-            <div style={{ width: "72px", height: "72px", background: "#eab308", border: "3px solid #000", boxShadow: "3px 3px 0 #000" }}
-              className="flex items-center justify-center mx-auto mb-6">
-              <Lock size={30} className="text-black" />
+            <div className="flex justify-center mb-6">
+              <SignShape shape="octagon" body="#ef4444" size={84}>
+                <Lock size={28} className="text-white" strokeWidth={2.5} />
+              </SignShape>
             </div>
             <h3 className={`text-xl font-black text-black mb-2 ${kh ? "font-google-sans" : ""}`} style={kf}>
               {kh ? "គណនីនេះជាគណនីឯកជន" : "This Profile is Private"}
@@ -462,10 +476,10 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                   </div>
                 ) : (
                   <div className="grid grid-cols-2 gap-3">
-                    <StatCard icon={Trophy}   kh={kh} label={kh ? "ចំណាត់ថ្នាក់"    : "Leaderboard Rank"} value={`#${rank}`} />
-                    <StatCard icon={Gamepad2} kh={kh} label={kh ? "ហ្គេមបានលេង"     : "Games Played"}     value={student.totalGamesPlayed.toLocaleString()} />
-                    <StatCard icon={Star}     kh={kh} label={kh ? "ពិន្ទុខ្ពស់"     : "Highest Score"}    value={student.highestScore.toLocaleString()} />
-                    <StatCard icon={Zap}      kh={kh} label={kh ? "ពិន្ទុសរុប"      : "Total Points"}     value={student.lifetimePoints.toLocaleString()} />
+                    <StatCard icon={Trophy}   kh={kh} accent="#eab308" iconFg="text-black" label={kh ? "ចំណាត់ថ្នាក់"    : "Leaderboard Rank"} value={`#${rank}`} />
+                    <StatCard icon={Gamepad2} kh={kh} accent="#3b82f6" iconFg="text-white" label={kh ? "ហ្គេមបានលេង"     : "Games Played"}     value={student.totalGamesPlayed.toLocaleString()} />
+                    <StatCard icon={Star}     kh={kh} accent="#22c55e" iconFg="text-black" label={kh ? "ពិន្ទុខ្ពស់"     : "Highest Score"}    value={student.highestScore.toLocaleString()} />
+                    <StatCard icon={Zap}      kh={kh} accent="#f97316" iconFg="text-black" label={kh ? "ពិន្ទុសរុប"      : "Total Points"}     value={student.lifetimePoints.toLocaleString()} />
                   </div>
                 )
               )}
@@ -573,6 +587,11 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
           </div>
         </div>
       )}
+
+      {/* ── Chevron tape divider ───────────────────────────────────────────── */}
+      <div className="mt-10 border-y-2 border-black">
+        <CautionTape variant="chevron" height={14} />
+      </div>
 
       {/* ── Footer ─────────────────────────────────────────────────────────── */}
       <footer className="mt-10 pb-10 text-center px-4">
