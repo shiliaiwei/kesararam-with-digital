@@ -167,6 +167,7 @@ export function SignShape({
   body = Y,
   border = K,
   size = 96,
+  shadow = true,
   className = "",
   contentClassName = "",
   children,
@@ -175,6 +176,7 @@ export function SignShape({
   body?: string;
   border?: string;
   size?: number;
+  shadow?: boolean;
   className?: string;
   contentClassName?: string;
   children?: ReactNode;
@@ -217,7 +219,7 @@ export function SignShape({
       style={{ width: isBanner ? size * 2 : size, height: size }}
     >
       <svg viewBox={`0 0 ${vbW} ${vbH}`} width="100%" height="100%" role="img" aria-hidden>
-        <g transform={`translate(${off},${off})`}>{draw(border, "none")}</g>
+        {shadow && <g transform={`translate(${off},${off})`}>{draw(border, "none")}</g>}
         {draw(body, border)}
       </svg>
       {children && (

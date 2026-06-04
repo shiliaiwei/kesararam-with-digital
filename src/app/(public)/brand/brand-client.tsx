@@ -11,14 +11,6 @@ import {
   SHAPES,
   type SignShapeName,
 } from "@/components/brand/brand-kit";
-import {
-  TriangleAlert,
-  OctagonAlert,
-  Ban,
-  Info,
-  TrafficCone,
-  Signpost,
-} from "lucide-react";
 
 const LOGO_VARIANTS = [
   { src: "/brand/kwd-black_nobackground.png", filename: "kwd-black_nobackground.png", label: { en: "Black (default)", kh: "ពណ៌ខ្មៅ (លំនាំដើម)" }, bg: "bg-white", invert: false },
@@ -67,17 +59,14 @@ const SECTIONS = [
   { id: "apply", title: { en: "Applications", kh: "ការប្រើប្រាស់" } },
 ];
 
-// Semantic body color + library icon for each road-sign shape.
-const SHAPE_STYLE: Record<
-  SignShapeName,
-  { body: string; fg: string; Icon: React.ComponentType<{ className?: string }> }
-> = {
-  diamond:  { body: "#eab308", fg: "text-black", Icon: TriangleAlert },
-  octagon:  { body: "#ef4444", fg: "text-white", Icon: OctagonAlert },
-  circle:   { body: "#3b82f6", fg: "text-white", Icon: Ban },
-  sign:     { body: "#22c55e", fg: "text-black", Icon: Info },
-  triangle: { body: "#f97316", fg: "text-black", Icon: TrafficCone },
-  banner:   { body: "#22c55e", fg: "text-white", Icon: Signpost },
+// Semantic body color + label text color for each road-sign shape.
+const SHAPE_STYLE: Record<SignShapeName, { body: string; fg: string }> = {
+  diamond:  { body: "#eab308", fg: "text-black" },
+  octagon:  { body: "#ef4444", fg: "text-white" },
+  circle:   { body: "#3b82f6", fg: "text-white" },
+  sign:     { body: "#22c55e", fg: "text-black" },
+  triangle: { body: "#f97316", fg: "text-black" },
+  banner:   { body: "#22c55e", fg: "text-white" },
 };
 
 export function BrandGuidelineClient() {
@@ -311,8 +300,8 @@ export function BrandGuidelineClient() {
 
             <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-8 max-w-2xl">
               {t(
-                "Reusable road-sign shapes and caution-tape patterns. All pure vector (SVG) — they stay crisp at any size, from a 16px icon to a 4K slide. Flat brutalist: solid black border, hard offset shadow, no gradients, no neon.",
-                "រូបរាងផ្លាកសញ្ញាចរាចរណ៍ និងខ្សែបូព្រមាន ដែលអាចប្រើឡើងវិញ។ ទាំងអស់ជា Vector (SVG) — ច្បាស់គ្រប់ទំហំ ចាប់ពីរូបតំណាង 16px ដល់ស្លាយ 4K។ រចនាបែប Brutalist៖ គែមខ្មៅ ស្រមោល offset រឹង គ្មាន gradient គ្មាន neon។"
+                "Reusable road-sign shapes and caution-tape patterns. All pure vector (SVG) — they stay crisp at any size, from a 16px icon to a 4K slide. Flat brutalist: solid black border, no shadow, no gradients, no neon. Khmer labels set in Siemreap / Google Sans.",
+                "រូបរាងផ្លាកសញ្ញាចរាចរណ៍ និងខ្សែបូព្រមាន ដែលអាចប្រើឡើងវិញ។ ទាំងអស់ជា Vector (SVG) — ច្បាស់គ្រប់ទំហំ ចាប់ពីរូបតំណាង 16px ដល់ស្លាយ 4K។ រចនាបែបរាបស្មើ៖ គែមខ្មៅ គ្មានស្រមោល គ្មាន gradient គ្មាន neon។ អក្សរខ្មែរប្រើ Siemreap / Google Sans។"
               )}
             </p>
 
@@ -328,8 +317,10 @@ export function BrandGuidelineClient() {
                     key={s.shape}
                     className="flex flex-col items-center text-center gap-3 border border-zinc-100 dark:border-zinc-800 p-5"
                   >
-                    <SignShape shape={s.shape} body={st.body} size={s.shape === "banner" ? 84 : 84}>
-                      <st.Icon className={`${st.fg} size-7`} />
+                    <SignShape shape={s.shape} body={st.body} size={84} shadow={false}>
+                      <span className={`font-learning font-bold leading-tight text-center px-1 ${st.fg} ${s.shape === "triangle" ? "text-[11px]" : "text-sm"}`}>
+                        {s.meaningKh}
+                      </span>
                     </SignShape>
                     <div>
                       <p className="text-sm font-bold text-zinc-800 dark:text-zinc-100">
@@ -389,6 +380,7 @@ export function BrandGuidelineClient() {
                       src={m.src}
                       alt={m.title.en}
                       fill
+                      unoptimized
                       className="object-cover select-none pointer-events-none"
                       sizes="(max-width: 640px) 100vw, 50vw"
                       onContextMenu={(e) => e.preventDefault()}
