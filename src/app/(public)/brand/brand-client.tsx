@@ -4,6 +4,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useLang } from "@/context/lang-context";
+import {
+  CautionTape,
+  SignShape,
+  TAPES,
+  SHAPES,
+  type SignShapeName,
+} from "@/components/brand/brand-kit";
+import {
+  TriangleAlert,
+  OctagonAlert,
+  Ban,
+  Info,
+  TrafficCone,
+  Signpost,
+} from "lucide-react";
 
 const LOGO_VARIANTS = [
   { src: "/brand/kwd-black_nobackground.png", filename: "kwd-black_nobackground.png", label: { en: "Black (default)", kh: "ពណ៌ខ្មៅ (លំនាំដើម)" }, bg: "bg-white", invert: false },
@@ -48,8 +63,22 @@ const SECTIONS = [
   { id: "color", title: { en: "Color Palette",kh: "ពណ៌" } },
   { id: "type",  title: { en: "Typography",   kh: "អក្សរ" } },
   { id: "dna",   title: { en: "Design DNA",   kh: "Design DNA" } },
+  { id: "kit",   title: { en: "Design Kit",   kh: "ឧបករណ៍រចនា" } },
   { id: "apply", title: { en: "Applications", kh: "ការប្រើប្រាស់" } },
 ];
+
+// Semantic body color + library icon for each road-sign shape.
+const SHAPE_STYLE: Record<
+  SignShapeName,
+  { body: string; fg: string; Icon: React.ComponentType<{ className?: string }> }
+> = {
+  diamond:  { body: "#eab308", fg: "text-black", Icon: TriangleAlert },
+  octagon:  { body: "#ef4444", fg: "text-white", Icon: OctagonAlert },
+  circle:   { body: "#3b82f6", fg: "text-white", Icon: Ban },
+  sign:     { body: "#22c55e", fg: "text-black", Icon: Info },
+  triangle: { body: "#f97316", fg: "text-black", Icon: TrafficCone },
+  banner:   { body: "#22c55e", fg: "text-white", Icon: Signpost },
+};
 
 export function BrandGuidelineClient() {
   const { lang } = useLang();
@@ -274,6 +303,79 @@ export function BrandGuidelineClient() {
                 ))}
               </div>
             </div>
+          </section>
+
+          {/* Design Kit — Shapes, Tape & Icons */}
+          <section id="kit" className="scroll-mt-24">
+            <SectionHeading>{t("Design Kit — Shapes, Tape & Icons", "ឧបករណ៍រចនា — រូបរាង, ខ្សែបូ និងរូបតំណាង")}</SectionHeading>
+
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-8 max-w-2xl">
+              {t(
+                "Reusable road-sign shapes and caution-tape patterns. All pure vector (SVG) — they stay crisp at any size, from a 16px icon to a 4K slide. Flat brutalist: solid black border, hard offset shadow, no gradients, no neon.",
+                "រូបរាងផ្លាកសញ្ញាចរាចរណ៍ និងខ្សែបូព្រមាន ដែលអាចប្រើឡើងវិញ។ ទាំងអស់ជា Vector (SVG) — ច្បាស់គ្រប់ទំហំ ចាប់ពីរូបតំណាង 16px ដល់ស្លាយ 4K។ រចនាបែប Brutalist៖ គែមខ្មៅ ស្រមោល offset រឹង គ្មាន gradient គ្មាន neon។"
+              )}
+            </p>
+
+            {/* Shapes */}
+            <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-4">
+              {t("Shapes", "រូបរាង")}
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 mb-12">
+              {SHAPES.map((s) => {
+                const st = SHAPE_STYLE[s.shape];
+                return (
+                  <div
+                    key={s.shape}
+                    className="flex flex-col items-center text-center gap-3 border border-zinc-100 dark:border-zinc-800 p-5"
+                  >
+                    <SignShape shape={s.shape} body={st.body} size={s.shape === "banner" ? 84 : 84}>
+                      <st.Icon className={`${st.fg} size-7`} />
+                    </SignShape>
+                    <div>
+                      <p className="text-sm font-bold text-zinc-800 dark:text-zinc-100">
+                        {t(s.en, s.kh)}
+                      </p>
+                      <p className="text-xs text-zinc-400 dark:text-zinc-500">
+                        {t(s.meaningEn, s.meaningKh)}
+                      </p>
+                      <code className="mt-1 inline-block text-[10px] font-mono text-zinc-400 dark:text-zinc-500">
+                        shape=&quot;{s.shape}&quot;
+                      </code>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Caution tape */}
+            <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-4">
+              {t("Caution Tape", "ខ្សែបូព្រមាន")}
+            </p>
+            <div className="space-y-5">
+              {TAPES.map((tp) => (
+                <div key={tp.variant} className="flex items-center gap-4">
+                  <div className="w-28 shrink-0">
+                    <p className="text-sm font-bold text-zinc-800 dark:text-zinc-100">
+                      {t(tp.en, tp.kh)}
+                    </p>
+                    <code className="text-[10px] font-mono text-zinc-400 dark:text-zinc-500">
+                      variant=&quot;{tp.variant}&quot;
+                    </code>
+                  </div>
+                  <div className="flex-1 border-2 border-black dark:border-zinc-700">
+                    <CautionTape variant={tp.variant} height={28} />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Usage note */}
+            <p className="mt-8 text-xs text-zinc-400 dark:text-zinc-500 font-mono leading-relaxed">
+              {t(
+                'import { CautionTape, SignShape } from "@/components/brand/brand-kit"',
+                'import { CautionTape, SignShape } from "@/components/brand/brand-kit"'
+              )}
+            </p>
           </section>
 
           {/* Applications */}
