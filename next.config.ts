@@ -3,6 +3,11 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
+  // Bundle the root-level brand-mockups/ files into the /api/brand-mockups
+  // serverless function so fs.readFileSync can find them in production.
+  outputFileTracingIncludes: {
+    "/api/brand-mockups": ["./brand-mockups/**/*"],
+  },
   typescript: {
     ignoreBuildErrors: true,
   },
