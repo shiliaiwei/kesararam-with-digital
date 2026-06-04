@@ -231,3 +231,19 @@ inverted/white on dark. Min height 24px. Clear space = height of the "K".
 
 For copy-paste component blocks → `references/patterns.md`.
 For the full token/hex table → `references/tokens.md`.
+For the learning/psychology/design **theories the product is built on** (design
+*toward* them) → `references/concepts.md`.
+
+---
+
+## Working rules (scope & git)
+
+- **Only touch what was asked.** Edit the files needed for the request; don't
+  reformat, "clean up", or change unrelated files in passing.
+- **Commit only the files you edited.** Stage them by path
+  (`git add <path> …`) — never `git add -A`/`.`. Leave unrelated working-tree
+  changes (e.g. `.DS_Store`, others' edits) untouched.
+- **Push only when the user explicitly asks** ("push"). Never push (or commit
+  unprompted) on your own, even after finishing a change.
+
+See also memory: [[git-push-discipline]].
