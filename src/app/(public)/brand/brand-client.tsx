@@ -49,12 +49,12 @@ const RULES: { en: string; kh: string }[] = [
 ];
 
 const MOCKUP_ASSETS: { src: string; title: { en: string; kh: string } }[] = [
-  { src: "/brand/tote_stationery_mockup.png",    title: { en: "Tote & Stationery",        kh: "កាបូប & Stationery" } },
-  { src: "/brand/educational_blocks_mockup.png", title: { en: "Educational Toys & Cards", kh: "ដុំឈើ & Learning Cards" } },
-  { src: "/brand/mug_bottle_mockup.png",         title: { en: "Mug & Bottle",             kh: "Mug & Bottle" } },
-  { src: "/brand/apparel_brand_mockup.png",      title: { en: "Brand Apparel",            kh: "Brand Apparel" } },
-  { src: "/brand/kwd-mockup-phone.png",          title: { en: "Mobile App",               kh: "កម្មវិធីទូរស័ព្ទ" } },
-  { src: "/brand/kwd-mockup-stationery.png",     title: { en: "Corporate Stationery",     kh: "ឧបករណ៍ការិយាល័យ" } },
+  { src: "/api/brand-mockups?file=tote_stationery.webp",    title: { en: "Tote & Stationery",        kh: "កាបូប & Stationery" } },
+  { src: "/api/brand-mockups?file=educational_blocks.webp", title: { en: "Educational Toys & Cards", kh: "ដុំឈើ & Learning Cards" } },
+  { src: "/api/brand-mockups?file=mug_bottle.webp",         title: { en: "Mug & Bottle",             kh: "Mug & Bottle" } },
+  { src: "/api/brand-mockups?file=apparel_brand.webp",      title: { en: "Brand Apparel",            kh: "Brand Apparel" } },
+  { src: "/api/brand-mockups?file=mobile_app.webp",          title: { en: "Mobile App",               kh: "កម្មវិធីទូរស័ព្ទ" } },
+  { src: "/api/brand-mockups?file=corporate_stationery.webp", title: { en: "Corporate Stationery",     kh: "ឧបករណ៍ការិយាល័យ" } },
 ];
 
 const SECTIONS = [
@@ -389,8 +389,10 @@ export function BrandGuidelineClient() {
                       src={m.src}
                       alt={m.title.en}
                       fill
-                      className="object-cover"
+                      className="object-cover select-none pointer-events-none"
                       sizes="(max-width: 640px) 100vw, 50vw"
+                      onContextMenu={(e) => e.preventDefault()}
+                      draggable={false}
                     />
                   </div>
                   <p className="mt-2 text-xs text-zinc-400 dark:text-zinc-500 font-mono uppercase tracking-wider">
