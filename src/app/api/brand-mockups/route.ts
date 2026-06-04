@@ -7,7 +7,7 @@ const ALLOWED_MOCKUPS = [
   "educational_blocks.webp",
   "mug_bottle.webp",
   "apparel_brand.webp",
-  "mobile_app.webp",
+  "desktop_app.webp",
   "corporate_stationery.webp",
 ];
 

@@ -46,7 +46,7 @@ def main():
         ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/educational_blocks_1780603316602.png", "educational_blocks.webp"),
         ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/mug_bottle_1780603333978.png", "mug_bottle.webp"),
         ("/Applications/XAMPP/xamppfiles/htdocs/KWD/kesararam/public/brand/apparel_brand_mockup.png", "apparel_brand.webp"),
-        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/mobile_app_1780603349973.png", "mobile_app.webp"),
+        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/desktop_app_1780603604871.png", "desktop_app.webp"),
         ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/corporate_stationery_1780603366176.png", "corporate_stationery.webp")
     ]
     

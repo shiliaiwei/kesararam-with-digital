@@ -53,7 +53,7 @@ const MOCKUP_ASSETS: { src: string; title: { en: string; kh: string } }[] = [
   { src: "/api/brand-mockups?file=educational_blocks.webp", title: { en: "Educational Toys & Cards", kh: "ដុំឈើ & Learning Cards" } },
   { src: "/api/brand-mockups?file=mug_bottle.webp",         title: { en: "Mug & Bottle",             kh: "Mug & Bottle" } },
   { src: "/api/brand-mockups?file=apparel_brand.webp",      title: { en: "Brand Apparel",            kh: "Brand Apparel" } },
-  { src: "/api/brand-mockups?file=mobile_app.webp",          title: { en: "Mobile App",               kh: "កម្មវិធីទូរស័ព្ទ" } },
+  { src: "/api/brand-mockups?file=desktop_app.webp",         title: { en: "Web & Desktop App",        kh: "កម្មវិធីវិប & កុំព្យូទ័រ" } },
   { src: "/api/brand-mockups?file=corporate_stationery.webp", title: { en: "Corporate Stationery",     kh: "ឧបករណ៍ការិយាល័យ" } },
 ];
 
