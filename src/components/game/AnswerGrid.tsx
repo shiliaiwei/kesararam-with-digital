@@ -7,19 +7,18 @@ import type { AnswerOption } from "@/lib/game-event-bus";
  * - Zero border-radius (sharp 2D UI)
  * - Distinct color-coded tiles per psychological learning principles
  * - White background for sign images (image_pick) so signs are clear
- * - Shape icons aid memory encoding (▲◆●■)
  */
 
 const ANSWER_CONFIG = [
-  { bg: "#e21b3c", label: "A", shape: "▲" }, // Red
-  { bg: "#1368ce", label: "B", shape: "◆" }, // Blue
-  { bg: "#d89e00", label: "C", shape: "●" }, // Gold
-  { bg: "#26890c", label: "D", shape: "■" }, // Green
+  { bg: "#e21b3c", label: "A" }, // Red
+  { bg: "#1368ce", label: "B" }, // Blue
+  { bg: "#d89e00", label: "C" }, // Gold
+  { bg: "#26890c", label: "D" }, // Green
 ];
 
 // Correct/wrong override colors
 const CORRECT_BG = "#26890c";
-const WRONG_BG   = "#e21b3c";
+const WRONG_BG = "#e21b3c";
 
 interface AnswerGridProps {
   answers: AnswerOption[];
@@ -70,23 +69,23 @@ export function AnswerGrid({
         const text = lang === "kh" ? (ans.answerKm || ans.answerEn) : ans.answerEn;
 
         // Active tile color
-        const tileBg = isCorrect 
-          ? CORRECT_BG 
-          : isMyWrong 
-          ? WRONG_BG 
-          : isOtherWrong 
-          ? "#f4f4f5" 
-          : cfg.bg;
+        const tileBg = isCorrect
+          ? CORRECT_BG
+          : isMyWrong
+            ? WRONG_BG
+            : isOtherWrong
+              ? "#f4f4f5"
+              : cfg.bg;
 
-        const borderColor = isCorrect 
-          ? CORRECT_BG 
-          : isMyWrong 
-          ? WRONG_BG 
-          : isOtherWrong 
-          ? "#e4e4e7" 
-          : isSelected && !revealed
-          ? "#ffffff"
-          : "#000000";
+        const borderColor = isCorrect
+          ? CORRECT_BG
+          : isMyWrong
+            ? WRONG_BG
+            : isOtherWrong
+              ? "#e4e4e7"
+              : isSelected && !revealed
+                ? "#ffffff"
+                : "#000000";
 
         const scale = isCorrect ? "scale(1.02)" : isSelected && !revealed ? "scale(0.98)" : "scale(1)";
 
@@ -162,9 +161,9 @@ export function AnswerGrid({
               <div style={{
                 backgroundColor: bottomBandBg,
                 color: "#ffffff",
-                fontSize: "10px",
+                fontSize: "11px",
                 fontWeight: 955,
-                padding: "5.5px 8px",
+                padding: "6px 8px",
                 width: "100%",
                 textAlign: "left",
                 flexShrink: 0,
@@ -174,7 +173,7 @@ export function AnswerGrid({
                 letterSpacing: "0.02em",
                 ...khFont,
               }}>
-                <span style={{ marginRight: "6px", opacity: 0.95 }}>{cfg.shape} {cfg.label}</span>
+                <span style={{ marginRight: "4px", opacity: 0.95 }}>{cfg.label}</span>
               </div>
 
               {/* Result badge */}
@@ -227,16 +226,17 @@ export function AnswerGrid({
               ...khFont,
             }}
           >
-            {/* Shape icon — Kahoot-style mnemonic */}
+            {/* Answer letter label */}
             <span style={{
-              fontSize: "20px",
+              fontSize: "16px",
               lineHeight: 1,
-              color: isOtherWrong ? "rgba(24,24,27,0.7)" : "rgba(255,255,255,0.85)",
+              fontWeight: 900,
+              color: isOtherWrong ? "rgba(24,24,27,0.7)" : "rgba(255,255,255,0.95)",
               flexShrink: 0,
               width: "22px",
               textAlign: "center",
             }}>
-              {cfg.shape}
+              {cfg.label}
             </span>
 
             {/* Answer text */}

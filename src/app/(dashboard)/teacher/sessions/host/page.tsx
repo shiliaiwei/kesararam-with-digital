@@ -1326,7 +1326,9 @@ export default function HostPage() {
             )}
           </div>
         </div>
-        <style>{`@keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }`}</style>
+        <style>{`@keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes pulse-once { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.05); } }
+        .animate-pulse-once { animation: pulse-once 0.6s ease-in-out; }`}</style>
       </div>
     );
   }
@@ -1359,10 +1361,6 @@ export default function HostPage() {
         {/* ── Top bar ── */}
         <div className="flex items-center justify-between px-5 py-3 flex-shrink-0 border-b-4 border-black bg-yellow-400 text-black">
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1.5 px-2.5 py-1 border-2 border-black bg-red-500 text-black shadow-[2px_2px_0_#000] font-black text-xs tracking-widest" style={{ borderRadius: "0px" }}>
-              <div className="w-2 h-2 bg-black animate-pulse" style={{ borderRadius: "0px" }} />
-              <span>LIVE</span>
-            </div>
             <span className="text-black font-black text-sm" style={khFont}>
               {kh ? `សំណួរ ${phase.qIndex + 1} / ${phase.total}` : `Q ${phase.qIndex + 1} / ${phase.total}`}
             </span>
@@ -1429,8 +1427,8 @@ export default function HostPage() {
                 <span className="text-zinc-500 text-xs font-bold">{phase.qIndex + 1} / {phase.total}</span>
               </div>
 
-              {/* Question image — compact stable wrapper */}
-              <div className="w-full h-48 border-2 border-black bg-white flex items-center justify-center mb-4 relative overflow-hidden shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px" }}>
+              {/* Question image — white background, bigger */}
+              <div className="w-full h-72 border-4 border-black bg-white flex items-center justify-center mb-6 relative overflow-hidden shadow-[6px_6px_0_#000]" style={{ borderRadius: "0px" }}>
                 {question?.imageUrl ? (
                   <img src={question.imageUrl} alt="question" className="h-full w-auto object-contain" style={{ maxHeight: "100%", maxWidth: "100%" }} />
                 ) : (
@@ -1441,19 +1439,19 @@ export default function HostPage() {
                 )}
               </div>
 
-              {/* Question text — stable min-height card */}
+              {/* Question text — bigger, high contrast */}
               <div className="text-center mb-8 min-h-[8rem] flex flex-col items-center justify-center px-2">
-                <div className="font-black text-3xl xl:text-4xl text-black leading-snug" style={khFont}>
+                <div className="font-black text-4xl xl:text-5xl text-black leading-snug" style={khFont}>
                   {kh && question?.questionKm ? question.questionKm : question?.questionEn}
                 </div>
                 {kh && question?.questionKm && question?.questionEn && (
-                  <div className="text-zinc-500 text-base font-bold mt-2">{question.questionEn}</div>
+                  <div className="text-zinc-600 text-lg font-bold mt-3">{question.questionEn}</div>
                 )}
               </div>
 
-              {/* Answers — image-pick (sign images) or text */}
+              {/* Answers — bigger, better contrast */}
               {answers.length > 0 && (
-                <div className={`grid gap-3.5 ${answers.length <= 2 ? "grid-cols-1 max-w-xl mx-auto" : "grid-cols-2"}`}>
+                <div className={`grid gap-4 ${answers.length <= 2 ? "grid-cols-1 max-w-2xl mx-auto" : "grid-cols-2"}`}>
                   {answers.map((ans, i) => {
                     const style = ANSWER_STYLES[i % ANSWER_STYLES.length];
                     const isCorrect = correctAnswerId !== null && ans.id === correctAnswerId;
@@ -1461,31 +1459,34 @@ export default function HostPage() {
                     const text = kh ? (ans.answerKm || ans.answerEn) : ans.answerEn;
                     const isImagePick = question?.gameType === "image_pick";
 
+                    // Calculate contrast text color
+                    const textColor = isCorrect ? "#000000" : isWrong ? "#52525b" : "#ffffff";
+
                     if (isImagePick && ans.imageUrl) {
                       return (
                         <div
                           key={ans.id}
-                          className="relative border-2 border-black transition-all duration-300 flex flex-col items-center justify-center overflow-hidden"
+                          className={`relative border-4 transition-all duration-300 flex flex-col items-center justify-center overflow-hidden ${isCorrect ? 'animate-pulse-once' : ''}`}
                           style={{
                             borderRadius: "0px",
-                            backgroundColor: isCorrect ? "#f0fdf4" : isWrong ? "#fafafa" : "#ffffff",
-                            borderColor: isCorrect ? "#22c55e" : isWrong ? "#e4e4e7" : style.bg,
+                            backgroundColor: isCorrect ? "#22c55e" : isWrong ? "#fafafa" : "#ffffff",
+                            borderColor: isCorrect ? "#15803d" : isWrong ? "#d4d4d8" : style.bg,
                             opacity: isWrong ? 0.4 : 1,
-                            boxShadow: isWrong ? "none" : `3px 3px 0px ${style.shadow ?? "#000"}`,
-                            height: "120px",
+                            boxShadow: isWrong ? "none" : `4px 4px 0px ${isCorrect ? '#15803d' : style.shadow ?? "#000"}`,
+                            height: "160px",
                           }}
                         >
                           {/* Color top strip */}
-                          <div className="absolute top-0 left-0 right-0 h-1.5" style={{ backgroundColor: isCorrect ? "#22c55e" : style.bg }} />
+                          <div className="absolute top-0 left-0 right-0 h-2" style={{ backgroundColor: isCorrect ? "#15803d" : style.bg }} />
                           <img
                             src={ans.imageUrl}
                             alt={text}
                             className="object-contain"
-                            style={{ height: "72px", width: "auto", maxWidth: "90%", padding: "2px 6px" }}
+                            style={{ height: "100px", width: "auto", maxWidth: "90%", padding: "4px 8px" }}
                             onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                           />
-                          {isCorrect && <span className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center bg-green-500 border-2 border-white text-white font-black text-sm shadow-[1px_1px_0_#000]">✓</span>}
-                          <div className="absolute bottom-0 left-0 right-0 text-center text-[10px] font-black text-white py-0.5 px-1 truncate" style={{ backgroundColor: style.bg }}>{style.label}</div>
+                          {isCorrect && <span className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white border-2 border-black text-green-600 font-black text-lg shadow-[2px_2px_0_#000]">✓</span>}
+                          <div className="absolute bottom-0 left-0 right-0 text-center text-xs font-black text-white py-1.5 px-2 truncate" style={{ backgroundColor: isCorrect ? '#15803d' : style.bg }}>{style.label}</div>
                         </div>
                       );
                     }
@@ -1493,21 +1494,22 @@ export default function HostPage() {
                     return (
                       <div
                         key={ans.id}
-                        className="flex items-center gap-4 px-5 py-4 border-2 border-black transition-all duration-300"
+                        className={`flex items-center gap-5 px-6 py-5 border-4 transition-all duration-300 ${isCorrect ? 'animate-pulse-once' : ''}`}
                         style={{
                           borderRadius: "0px",
-                          backgroundColor: isCorrect ? "#22c55e" : isWrong ? "#f4f4f5" : style.bg,
-                          color: "#000000",
+                          backgroundColor: isCorrect ? "#22c55e" : isWrong ? "#e4e4e7" : style.bg,
+                          borderColor: isCorrect ? "#15803d" : "#000000",
                           opacity: isWrong ? 0.3 : 1,
-                          boxShadow: isWrong ? "none" : "4px 4px 0px #000000",
+                          boxShadow: isWrong ? "none" : `5px 5px 0px ${isCorrect ? '#15803d' : '#000000'}`,
+                          minHeight: "72px",
                         }}
                       >
-                        <div className="w-9 h-9 border-2 border-black flex items-center justify-center bg-white font-black text-black text-base flex-shrink-0" style={{ borderRadius: "0px" }}>
+                        <div className="w-12 h-12 border-3 border-black flex items-center justify-center bg-white font-black text-black text-2xl flex-shrink-0" style={{ borderRadius: "0px", borderWidth: "3px" }}>
                           {style.label}
                         </div>
-                        <span className="font-black text-black text-base leading-tight flex-1" style={khFont}>{text}</span>
+                        <span className="font-black text-xl xl:text-2xl leading-tight flex-1" style={{ color: textColor, ...khFont }}>{text}</span>
                         {isCorrect && (
-                          <div className="w-6 h-6 flex items-center justify-center bg-white border-2 border-black text-green-600 font-black text-sm flex-shrink-0" style={{ borderRadius: "0px" }}>
+                          <div className="w-10 h-10 flex items-center justify-center bg-white border-3 border-black text-green-600 font-black text-2xl flex-shrink-0" style={{ borderRadius: "0px", borderWidth: "3px" }}>
                             ✓
                           </div>
                         )}

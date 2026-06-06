@@ -131,7 +131,7 @@ export default function StudentGamePage() {
 
   const [joining, setJoining] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [muted, setMuted] = useState(false);
+  const [muted, setMuted] = useState(true); // Default muted for clock ticks
   const [joinError, setJoinError] = useState<string | null>(null);
 
   const mutedRef = useRef(muted);
@@ -179,8 +179,9 @@ export default function StudentGamePage() {
     return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
   }, []);
 
+  // Enter fullscreen on lobby and lock during quiz
   useEffect(() => {
-    if (phase === "question" && typeof window !== "undefined") {
+    if ((phase === "lobby" || phase === "question") && typeof window !== "undefined") {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch((err) => {
           console.warn("Fullscreen request blocked or failed:", err);
@@ -329,8 +330,8 @@ export default function StudentGamePage() {
         <button
           onClick={() => setMuted(m => !m)}
           className={`flex items-center gap-1 px-2.5 py-1.5 rounded-none border text-xs font-black transition-all ${muted
-              ? "bg-red-950/40 border-red-500/60 text-red-400"
-              : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
+            ? "bg-red-950/40 border-red-500/60 text-red-400"
+            : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
             }`}
           title={muted ? "Unmute" : "Mute audio"}
         >
@@ -359,13 +360,7 @@ export default function StudentGamePage() {
       if (res.ok) {
         const data = await res.json();
         setAnswerResult({ isCorrect: data.isCorrect, pointsEarned: data.pointsEarned });
-        if (!mutedRef.current) {
-          if (data.isCorrect) {
-            sounds.correct();
-          } else {
-            sounds.incorrect();
-          }
-        }
+        // Sound effects for right/wrong removed as requested
       }
     } catch { /* silent */ }
   }, [answerSubmitted, currentQuestion, code]);
@@ -565,19 +560,22 @@ export default function StudentGamePage() {
             </div>
           )}
 
-          {/* Language Selection Card */}
+          {/* Language Selection Card - Khmer Recommended */}
           {sessionInfo && (
             <div className="w-full border-4 border-black bg-zinc-900 p-5 rounded-none shadow-[6px_6px_0_#000] text-white">
-              <div className="text-zinc-400 text-[10px] font-black uppercase tracking-widest mb-3.5 text-center" style={khFont}>
+              <div className="text-zinc-400 text-[10px] font-black uppercase tracking-widest mb-2 text-center" style={khFont}>
                 {kh ? "ជ្រើសរើសភាសាក្នុងហ្គេម" : "GAME LANGUAGE SELECTION"}
+              </div>
+              <div className="text-yellow-400 text-[9px] font-bold mb-3.5 text-center animate-pulse" style={khFont}>
+                {kh ? "⭐ អនុសាសន៍: ជ្រើសរើសភាសាខ្មែរ" : "⭐ Recommended: Select Khmer"}
               </div>
               <div className="flex gap-3">
                 <button
                   onClick={() => { if (sessionInfo.language === "both") setLang("kh"); }}
                   disabled={sessionInfo.language !== "both"}
                   className={`flex-1 py-3 px-4 border-2 border-black rounded-none font-black text-xs transition-all uppercase tracking-wider flex items-center justify-center gap-1.5 ${lang === "kh"
-                      ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5"
-                      : "bg-black border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 hover:bg-zinc-850"
+                    ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                    : "bg-black border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 hover:bg-zinc-850"
                     } ${sessionInfo.language !== "both" ? "cursor-not-allowed opacity-50" : ""}`}
                   style={{ fontFamily: "Siemreap, sans-serif" }}
                 >
@@ -588,8 +586,8 @@ export default function StudentGamePage() {
                   onClick={() => { if (sessionInfo.language === "both") setLang("en"); }}
                   disabled={sessionInfo.language !== "both"}
                   className={`flex-1 py-3 px-4 border-2 border-black rounded-none font-black text-xs transition-all uppercase tracking-wider flex items-center justify-center gap-1.5 ${lang === "en"
-                      ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5"
-                      : "bg-black border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 hover:bg-zinc-850"
+                    ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                    : "bg-black border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 hover:bg-zinc-850"
                     } ${sessionInfo.language !== "both" ? "cursor-not-allowed opacity-50" : ""}`}
                 >
                   English
@@ -616,8 +614,8 @@ export default function StudentGamePage() {
                   return (
                     <div key={p.userId}
                       className={`flex items-center gap-2.5 p-2.5 border-2 border-black transition-all duration-300 rounded-none shadow-[2px_2px_0_#000] ${isMe
-                          ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5"
-                          : "bg-black border-zinc-800 hover:border-zinc-750"
+                        ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                        : "bg-black border-zinc-800 hover:border-zinc-750"
                         }`}>
                       {/* Neubrutalist Avatar */}
                       <div className="w-8 h-8 rounded-none border-2 border-black flex items-center justify-center font-black text-xs text-white flex-shrink-0 relative shadow-[1px_1px_0_#000] overflow-hidden bg-white">
@@ -694,11 +692,7 @@ export default function StudentGamePage() {
       <div className="game-dot-bg fixed inset-0 z-50 flex flex-col rounded-none" style={{ userSelect: "none" }}>
         <div className="relative z-10 flex items-center justify-between px-4 py-2.5 bg-zinc-950 border-b border-zinc-800 flex-shrink-0 h-14 rounded-none">
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-red-950/40 border border-red-500 rounded-none">
-              <span className="w-1.5 h-1.5 rounded-none bg-red-500 animate-pulse" />
-              <span className="text-red-400 font-black text-[9px] tracking-widest uppercase">LIVE</span>
-            </div>
-            <span className="text-zinc-400 font-black text-xs uppercase tracking-widest hidden sm:inline" style={khFont}>
+            <span className="text-zinc-400 font-black text-xs uppercase tracking-widest" style={khFont}>
               {sessionInfo ? (MODE_LABELS[sessionInfo.gameMode] ?? sessionInfo.gameMode) : code}
             </span>
           </div>
@@ -719,8 +713,8 @@ export default function StudentGamePage() {
           <button
             onClick={() => setMuted(m => !m)}
             className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-none border text-xs font-black transition-all ${muted
-                ? "bg-red-950/40 border-red-500/60 text-red-400"
-                : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
+              ? "bg-red-950/40 border-red-500/60 text-red-400"
+              : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
               }`}
             title={muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}
           >
@@ -766,21 +760,21 @@ export default function StudentGamePage() {
 
 
 
-          {/* Question image (compact stable wrapper) */}
-          <div className={`shrink-0 w-full h-48 flex items-center justify-center p-2 relative overflow-hidden rounded-none ${currentQuestion.imageUrl
-              ? "border-2 border-black bg-zinc-950"
-              : "border-2 border-transparent bg-transparent"
+          {/* Question image (compact stable wrapper) - Always white background */}
+          <div className={`shrink-0 w-full h-48 flex items-center justify-center p-3 relative overflow-hidden rounded-none ${currentQuestion.imageUrl
+            ? "border-4 border-black bg-white shadow-[6px_6px_0_#000]"
+            : "border-2 border-transparent bg-transparent"
             }`}>
             {currentQuestion.imageUrl ? (
               <img src={currentQuestion.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
             ) : null}
           </div>
 
-          {/* Question text card (compact) */}
+          {/* Question text card (compact & smaller) */}
           <div
-            className="shrink-0 w-full min-h-[5rem] h-auto bg-zinc-900 border-2 border-black p-4 rounded-none text-white font-black flex items-center justify-center text-center select-text animate-fade-in"
+            className="shrink-0 w-full min-h-[4rem] h-auto bg-zinc-900 border-2 border-black p-3 rounded-none text-white font-black flex items-center justify-center text-center select-text animate-fade-in"
             style={{
-              fontSize: "clamp(1.1rem, 4vw, 1.75rem)",
+              fontSize: "clamp(0.95rem, 3.5vw, 1.4rem)",
               lineHeight: "1.3",
               ...khFont
             }}
