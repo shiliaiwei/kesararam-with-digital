@@ -265,28 +265,59 @@ export function BuiltWithClient() {
 
           <section id="refs" className="scroll-mt-24">
             <SectionHeading>{t("Bibliography", "ឯកសារយោង")}</SectionHeading>
-            <div className="divide-y divide-zinc-100 dark:divide-zinc-800 border-t border-b border-zinc-100 dark:border-zinc-800">
+            <div className="space-y-4">
               {REFERENCES.map((ref, i) => {
                 const Icon = ref.icon;
+                const isPdf = ref.url?.endsWith(".pdf");
                 return (
-                  <div key={i} className="flex items-start gap-3 py-3">
+                  <div
+                    key={i}
+                    className={`flex items-start gap-4 p-4 transition-all ${
+                      isPdf
+                        ? "bg-yellow-50 dark:bg-yellow-950/20 border-2 border-black dark:border-zinc-800 shadow-[4px_4px_0_#000] dark:shadow-[4px_4px_0_rgba(255,255,255,0.15)] my-4"
+                        : "border-b border-zinc-100 dark:border-zinc-800/50 last:border-0 py-3"
+                    }`}
+                  >
                     <span className="mt-0.5 shrink-0">
-                      {Icon && <Icon size={16} className={ICON_CLASS} />}
+                      {Icon && <Icon size={18} className={isPdf ? "text-yellow-600 dark:text-yellow-400" : ICON_CLASS} />}
                     </span>
-                    <div className="flex flex-col gap-0.5">
-                      <span className="text-sm font-medium text-zinc-800 dark:text-zinc-100">{ref.name}</span>
-                      {ref.note && (
-                        <span className="text-xs text-zinc-400 dark:text-zinc-500">{kh ? ref.note.kh : ref.note.en}</span>
-                      )}
-                      {ref.url && (
-                        <a
-                          href={ref.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs font-mono text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors"
-                        >
-                          {ref.url}
-                        </a>
+                    <div className="flex-1 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                      <div className="flex flex-col gap-0.5">
+                        <span className={`text-sm font-bold ${isPdf ? "text-black dark:text-white" : "text-zinc-800 dark:text-zinc-100"}`}>
+                          {ref.name}
+                        </span>
+                        {ref.note && (
+                          <span className={`text-xs ${isPdf ? "text-zinc-600 dark:text-zinc-400 font-medium" : "text-zinc-400 dark:text-zinc-500"}`}>
+                            {kh ? ref.note.kh : ref.note.en}
+                          </span>
+                        )}
+                        {ref.url && !isPdf && (
+                          <a
+                            href={ref.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs font-mono text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors"
+                          >
+                            {ref.url}
+                          </a>
+                        )}
+                      </div>
+                      {ref.url && isPdf && (
+                        <div className="shrink-0 self-start sm:self-center">
+                          <a
+                            href={ref.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-yellow-400 text-black border-2 border-black rounded-none font-black text-xs shadow-[2px_2px_0_#000] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[3px_3px_0_#000] transition-all"
+                          >
+                            <svg viewBox="0 0 24 24" fill="none" className="w-3.5 h-3.5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                              <polyline points="7 10 12 15 17 10" />
+                              <line x1="12" y1="15" x2="12" y2="3" />
+                            </svg>
+                            {kh ? "ទាញយកជា PDF" : "Download PDF"}
+                          </a>
+                        </div>
                       )}
                     </div>
                   </div>
