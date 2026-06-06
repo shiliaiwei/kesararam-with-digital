@@ -444,8 +444,8 @@ function RegisterFormInner() {
               <div className="flex flex-col gap-5 py-2">
                 <p className="text-zinc-650 font-bold text-sm text-center leading-relaxed font-system">
                   {kh
-                    ? "ចុះឈ្មោះជាមួយ Google ដើម្បីចូលរួមជាមួយ Kesararam Digital Classroom ភ្លាមៗ។"
-                    : "Sign up with Google to join Kesararam Digital Classroom instantly."}
+                    ? "ចុះឈ្មោះជាមួយ Google ដើម្បីចូលរួមជាមួយ Kesararam with Digital។"
+                    : "Sign up with Google to join Kesararam with Digital."}
                 </p>
                 <p className="text-xs text-zinc-400 font-bold text-center leading-relaxed font-system">
                   {kh
