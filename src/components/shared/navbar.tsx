@@ -409,7 +409,7 @@ export function Navbar({ session }: NavbarProps) {
               {showUpgrade && (
                 <button
                   onClick={() => { setMobileOpen(false); setUpgradeOpen(true); }}
-                  className="flex items-center justify-center gap-2 mt-2 px-4 py-3 text-base font-black bg-amber-400 text-black border-2 border-black shadow-[4px_4px_0_#000] uppercase tracking-wide"
+                  className={cn("flex items-center justify-center gap-2 mt-2 px-4 py-3 text-base font-black bg-amber-400 text-black border-2 border-black shadow-[4px_4px_0_#000] uppercase tracking-wide", brandFont)}
                 >
                   <Crown size={16} />
                   {kh ? "ធ្វើឱ្យប្រសើរឡើង" : "Upgrade Plan"}
