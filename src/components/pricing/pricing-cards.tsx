@@ -55,7 +55,27 @@ function usePriceStepUp(start: string, end: string) {
 }
 
 export function PricingCards({ lang = "en" }: PricingCardsProps) {
-  const [yearly, setYearly] = useState(false);
+  const [yearly, setYearly] = useState(true); // Default nudge to yearly
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const billingParam = searchParams.get("billing") || searchParams.get("yearly");
+    if (billingParam === "yearly" || billingParam === "true") {
+      setYearly(true);
+      localStorage.setItem("kwd-billing-cycle", "yearly");
+    } else if (billingParam === "monthly" || billingParam === "false") {
+      setYearly(false);
+      localStorage.setItem("kwd-billing-cycle", "monthly");
+    } else {
+      const saved = localStorage.getItem("kwd-billing-cycle");
+      if (saved === "yearly") {
+        setYearly(true);
+      } else if (saved === "monthly") {
+        setYearly(false);
+      }
+    }
+  }, []);
+
   const promo = true;
   const [selectedPlan, setSelectedPlan] = useState<
     "teacher_pro" | "school_public" | "school_private"
@@ -305,7 +325,11 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
               {kh ? "ប្រចាំខែ" : "Monthly"}
             </span>
             <button
-              onClick={() => setYearly(!yearly)}
+              onClick={() => {
+                const nextVal = !yearly;
+                setYearly(nextVal);
+                localStorage.setItem("kwd-billing-cycle", nextVal ? "yearly" : "monthly");
+              }}
               role="switch"
               aria-checked={yearly}
               className={`relative w-12 h-6 md:w-14 md:h-7 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${

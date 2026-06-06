@@ -65,10 +65,20 @@ const PLANS = [
 ];
 
 export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeModalProps) {
-  const [yearly, setYearly] = useState(false);
+  const [yearly, setYearly] = useState(true);
   const router = useRouter();
   const kh = lang === "kh";
   const khFont = { fontFamily: '"GoogleSans", "Google Sans", sans-serif' };
+
+  useEffect(() => {
+    if (!open) return;
+    const saved = localStorage.getItem("kwd-billing-cycle");
+    if (saved === "yearly") {
+      setYearly(true);
+    } else if (saved === "monthly") {
+      setYearly(false);
+    }
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -131,7 +141,11 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
                 {kh ? "ប្រចាំខែ" : "Monthly"}
               </span>
               <button
-                onClick={() => setYearly(v => !v)}
+                onClick={() => {
+                  const nextVal = !yearly;
+                  setYearly(nextVal);
+                  localStorage.setItem("kwd-billing-cycle", nextVal ? "yearly" : "monthly");
+                }}
                 role="switch"
                 aria-checked={yearly}
                 className={`relative w-9 h-5 rounded-full transition-all duration-300 ${yearly ? "bg-amber-400" : "bg-white/20"}`}

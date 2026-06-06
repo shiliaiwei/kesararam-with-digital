@@ -17,8 +17,17 @@ interface UpgradeFabProps {
 export function UpgradeFab({ session }: UpgradeFabProps) {
   const [expanded, setExpanded] = useState(false);
   const [dismissed, setDismissed] = useState(false);
-  const [yearly, setYearly] = useState(false);
+  const [yearly, setYearly] = useState(true);
   const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("kwd-billing-cycle");
+    if (saved === "yearly") {
+      setYearly(true);
+    } else if (saved === "monthly") {
+      setYearly(false);
+    }
+  }, [expanded]);
   const [subPlan, setSubPlan] = useState<string | null>(null);
   const router = useRouter();
   const { lang } = useLang();
@@ -109,7 +118,11 @@ export function UpgradeFab({ session }: UpgradeFabProps) {
                       {kh ? "ប្រចាំឆ្នាំ" : "Yearly"}
                     </span>
                     <button
-                      onClick={() => setYearly((v) => !v)}
+                      onClick={() => {
+                        const nextVal = !yearly;
+                        setYearly(nextVal);
+                        localStorage.setItem("kwd-billing-cycle", nextVal ? "yearly" : "monthly");
+                      }}
                       role="switch"
                       aria-checked={yearly}
                       className={`relative w-9 h-5 rounded-full transition-all duration-300 ${

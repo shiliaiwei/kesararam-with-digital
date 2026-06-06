@@ -379,58 +379,6 @@ function LoginFormInner() {
                   {kh ? "ចូលជាមួយ Google" : "Sign In with Google"}
                 </button>
 
-                {/* Gmail info collection notice */}
-                <div className="border-2 border-black p-4 bg-blue-50 text-left space-y-3 rounded-lg shadow-[2.5px_2.5px_0_#000]">
-                  <div className="flex items-center gap-1.5 font-black text-blue-900 uppercase text-xs tracking-wider font-system">
-                    <span className="material-symbols-rounded text-lg font-black text-blue-800">privacy_tip</span>
-                    <span>{kh ? "ការជូនដំណឹងអំពីឯកជនភាព" : "Privacy Notice"}</span>
-                  </div>
-                  <p className="text-[11px] font-bold text-zinc-700 leading-normal font-system">
-                    {kh
-                      ? "មុនពេលចូលប្រើប្រាស់ជាមួយ Google សូមពិនិត្យមើលព័ត៌មានដែលត្រូវបានប្រើប្រាស់ពីគណនីរបស់អ្នក៖"
-                      : "Before signing in with Google, please note what information is accessed from your account:"}
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-[11px] leading-relaxed pt-2 border-t border-blue-200 font-system">
-                    <div>
-                      <span className="font-black text-green-700 block mb-1 uppercase tracking-wide">
-                        {kh ? "✓ យើងប្រមូល៖" : "✓ WE COLLECT:"}
-                      </span>
-                      <ul className="text-zinc-650 space-y-1 font-bold">
-                        <li className="flex items-center gap-1">
-                          <Check className="size-3.5 text-green-600 shrink-0" />
-                          {kh ? "អាសយដ្ឋានអ៊ីមែល" : "Email Address"}
-                        </li>
-                        <li className="flex items-center gap-1">
-                          <Check className="size-3.5 text-green-600 shrink-0" />
-                          {kh ? "ឈ្មោះពេញ" : "Full Name"}
-                        </li>
-                        <li className="flex items-center gap-1">
-                          <Check className="size-3.5 text-green-600 shrink-0" />
-                          {kh ? "រូបភាពគណនី" : "Profile Avatar"}
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <span className="font-black text-red-650 block mb-1 uppercase tracking-wide">
-                        {kh ? "✗ មិនប្រមូល៖" : "✗ WE DO NOT COLLECT:"}
-                      </span>
-                      <ul className="text-zinc-655 space-y-1 font-bold">
-                        <li className="flex items-center gap-1">
-                          <X className="size-3.5 text-red-650 shrink-0" />
-                          {kh ? "លេខសម្ងាត់" : "Passwords"}
-                        </li>
-                        <li className="flex items-center gap-1">
-                          <X className="size-3.5 text-red-650 shrink-0" />
-                          {kh ? "សារឯកជន" : "Personal Chats"}
-                        </li>
-                        <li className="flex items-center gap-1">
-                          <X className="size-3.5 text-red-650 shrink-0" />
-                          {kh ? "ប្រអប់សំបុត្រ Gmail" : "Gmail Inbox"}
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
 
               </form>
             </div>
