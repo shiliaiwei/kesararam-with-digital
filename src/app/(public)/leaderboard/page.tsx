@@ -629,10 +629,10 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
     };
   });
 
-  const claimCount = claimData.claimCount;
-  const lastClaimedAt = claimData.lastClaimedAt;
+  const claimCount = isLoggedIn ? claimData.claimCount : 0;
+  const lastClaimedAt = isLoggedIn ? claimData.lastClaimedAt : null;
 
-  const claimed = lastClaimedAt !== null && (Date.now() - lastClaimedAt < cooldownMs);
+  const claimed = isLoggedIn && lastClaimedAt !== null && (Date.now() - lastClaimedAt < cooldownMs);
   const msRemaining = lastClaimedAt ? (lastClaimedAt + cooldownMs) - Date.now() : 0;
   const daysRemaining = Math.max(0, Math.ceil(msRemaining / (24 * 60 * 60 * 1000)));
 
