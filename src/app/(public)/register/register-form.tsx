@@ -17,7 +17,13 @@ import {
   BookOpen,
   Milestone,
   ShieldCheck,
-  School
+  School,
+  Mail,
+  GraduationCap,
+  Phone,
+  MapPin,
+  Layers,
+  Key
 } from "lucide-react";
 
 import { SECTIONS } from "../terms/page";
@@ -533,171 +539,221 @@ function RegisterFormInner() {
               </div>
             ) : (
               // Standard Email Registration Flow
-              <div className="flex flex-col gap-5 animate-fade-in font-system">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {/* Username */}
-                  <div className="flex flex-col gap-1.5 text-left">
-                    <label htmlFor="username" className="text-xs font-black uppercase tracking-wider text-black">
-                      {kh ? "ឈ្មោះគណនី *" : "Username *"}
-                    </label>
-                    <input
-                      type="text"
-                      id="username"
-                      name="username"
-                      required
-                      placeholder="sopheak01"
-                      className="w-full px-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                    />
+              <div className="flex flex-col gap-6 animate-fade-in font-system">
+                {/* Section 1: Personal Account Info */}
+                <div className="border-2 border-black rounded-xl p-5 bg-[#3b82f6]/5 hover:bg-[#3b82f6]/10 transition-colors shadow-[3px_3px_0_#000] space-y-4 text-left">
+                  <div className="flex items-center gap-2 border-b-2 border-black pb-2 mb-2">
+                    <User className="size-5 text-[#3b82f6] shrink-0" />
+                    <h3 className="text-xs font-black uppercase tracking-wider text-black">
+                      {kh ? "ព័ត៌មានគណនីផ្ទាល់ខ្លួន" : "Personal Account Info"}
+                    </h3>
                   </div>
 
-                  {/* Email */}
-                  <div className="flex flex-col gap-1.5 text-left">
-                    <label htmlFor="email" className="text-xs font-black uppercase tracking-wider text-black">
-                      {kh ? "អ៊ីមែល *" : "Email *"}
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      placeholder="sopheak@kwd.tech"
-                      className="w-full px-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                    />
-                  </div>
-                </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Username */}
+                    <div className="flex flex-col gap-1.5 text-left">
+                      <label htmlFor="username" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                        {kh ? "ឈ្មោះគណនី *" : "Username *"}
+                      </label>
+                      <div className="relative flex items-center">
+                        <User className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                        <input
+                          type="text"
+                          id="username"
+                          name="username"
+                          required
+                          placeholder="sopheak01"
+                          className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
+                        />
+                      </div>
+                    </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {/* Display Name */}
-                  <div className="flex flex-col gap-1.5 text-left">
-                    <label htmlFor="displayName" className="text-xs font-black uppercase tracking-wider text-black">
-                      {kh ? "ឈ្មោះពេញ" : "Full Name"}
-                    </label>
-                    <input
-                      type="text"
-                      id="displayName"
-                      name="displayName"
-                      placeholder="Sopheak Chan / ចាន់ សុភ័ក្ត្រ"
-                      className="w-full px-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                    />
-                  </div>
-
-                  {/* Password */}
-                  <div className="flex flex-col gap-1.5 text-left">
-                    <label htmlFor="password" className="text-xs font-black uppercase tracking-wider text-black">
-                      {kh ? "លេខសម្ងាត់ *" : "Password *"}
-                    </label>
-                    <input
-                      type="password"
-                      id="password"
-                      name="password"
-                      required
-                      placeholder="••••••••"
-                      className="w-full px-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                    />
-                  </div>
-                </div>
-
-                {/* School Name */}
-                <div className="flex flex-col gap-1.5 text-left">
-                  <label htmlFor="schoolName" className="text-xs font-black uppercase tracking-wider text-black">
-                    {kh ? "ឈ្មោះសាលារៀន *" : "School Name *"}
-                  </label>
-                  <input
-                    type="text"
-                    id="schoolName"
-                    name="schoolName"
-                    required
-                    placeholder="e.g. Wat Bo Primary School / សាលាបឋមសិក្សាវត្តបូ"
-                    className="w-full px-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {/* Province Dropdown */}
-                  <div className="flex flex-col gap-1.5 text-left">
-                    <label htmlFor="province" className="text-xs font-black uppercase tracking-wider text-black">
-                      {kh ? "ខេត្ត-ក្រុង *" : "Province *"}
-                    </label>
-                    <select
-                      id="province"
-                      name="province"
-                      required
-                      defaultValue=""
-                      className="w-full px-4 py-3 border-2 border-black rounded-lg text-sm font-black bg-white focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                    >
-                      <option value="" disabled>{kh ? "ជ្រើសរើសខេត្ត" : "Select Province"}</option>
-                      {CAMBODIA_PROVINCES.map((prov) => (
-                        <option key={prov.en} value={prov.en}>
-                          {kh ? prov.kh : prov.en}
-                        </option>
-                      ))}
-                    </select>
+                    {/* Email */}
+                    <div className="flex flex-col gap-1.5 text-left">
+                      <label htmlFor="email" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                        {kh ? "អ៊ីមែល *" : "Email *"}
+                      </label>
+                      <div className="relative flex items-center">
+                        <Mail className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          required
+                          placeholder="sopheak@kwd.tech"
+                          className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
+                        />
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Grade Dropdown (Student only) */}
-                  <div className="flex flex-col gap-1.5 text-left">
-                    <label htmlFor="gradeLevel" className="text-xs font-black uppercase tracking-wider text-black">
-                      {kh ? "ថ្នាក់ទី *" : "Grade *"}
-                    </label>
-                    <select
-                      id="gradeLevel"
-                      name="gradeLevel"
-                      required
-                      defaultValue=""
-                      className="w-full px-4 py-3 border-2 border-black rounded-lg text-sm font-black bg-white focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                    >
-                      <option value="" disabled>{kh ? "ជ្រើសរើសថ្នាក់" : "Select Grade"}</option>
-                      {GRADES.map((gr) => (
-                        <option key={gr.en} value={gr.en}>
-                          {kh ? gr.kh : gr.en}
-                        </option>
-                      ))}
-                    </select>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Display Name */}
+                    <div className="flex flex-col gap-1.5 text-left">
+                      <label htmlFor="displayName" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                        {kh ? "ឈ្មោះពេញ" : "Full Name"}
+                      </label>
+                      <div className="relative flex items-center">
+                        <User className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                        <input
+                          type="text"
+                          id="displayName"
+                          name="displayName"
+                          placeholder="Sopheak Chan / ចាន់ សុភ័ក្ត្រ"
+                          className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Password */}
+                    <div className="flex flex-col gap-1.5 text-left">
+                      <label htmlFor="password" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                        {kh ? "លេខសម្ងាត់ *" : "Password *"}
+                      </label>
+                      <div className="relative flex items-center">
+                        <Lock className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                        <input
+                          type="password"
+                          id="password"
+                          name="password"
+                          required
+                          placeholder="••••••••"
+                          className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                {/* Teacher Invite Code (Student only) */}
-                <div className="flex flex-col gap-1.5 text-left">
-                  <label htmlFor="inviteCode" className="text-xs font-black uppercase tracking-wider text-black">
-                    {kh ? "លេខកូដអញ្ជើញពីគ្រូ *" : "Teacher Invite Code *"}
-                  </label>
-                  <input
-                    type="text"
-                    id="inviteCode"
-                    name="inviteCode"
-                    required
-                    placeholder="KWD-XXXX-YYYY"
-                    className="w-full px-4 py-3 border-2 border-black rounded-lg text-sm font-black focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all placeholder:font-bold placeholder:text-zinc-300"
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {/* Section */}
-                  <div className="flex flex-col gap-1.5 text-left">
-                    <label htmlFor="section" className="text-xs font-black uppercase tracking-wider text-black">
-                      {kh ? "វេន (ស្រេចចិត្ត)" : "Section (Optional)"}
-                    </label>
-                    <input
-                      type="text"
-                      id="section"
-                      name="section"
-                      placeholder="e.g. Morning A / ព្រឹក A"
-                      className="w-full px-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                    />
+                {/* Section 2: School & Academic Details */}
+                <div className="border-2 border-black rounded-xl p-5 bg-[#22c55e]/5 hover:bg-[#22c55e]/10 transition-colors shadow-[3px_3px_0_#000] space-y-4 text-left">
+                  <div className="flex items-center gap-2 border-b-2 border-black pb-2 mb-2">
+                    <School className="size-5 text-[#22c55e] shrink-0" />
+                    <h3 className="text-xs font-black uppercase tracking-wider text-black">
+                      {kh ? "ព័ត៌មានសិក្សា និងសាលារៀន" : "School & Academic Details"}
+                    </h3>
                   </div>
 
-                  {/* Parent Contact (Student only) */}
+                  {/* School Name */}
                   <div className="flex flex-col gap-1.5 text-left">
-                    <label htmlFor="parentContact" className="text-xs font-black uppercase tracking-wider text-black">
-                      {kh ? "លេខទូរស័ព្ទអាណាព្យាបាល (ស្រេចចិត្ត)" : "Parent Phone (Optional)"}
+                    <label htmlFor="schoolName" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                      {kh ? "ឈ្មោះសាលារៀន *" : "School Name *"}
                     </label>
-                    <input
-                      type="text"
-                      id="parentContact"
-                      name="parentContact"
-                      placeholder="e.g. 012 345 678"
-                      className="w-full px-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                    />
+                    <div className="relative flex items-center">
+                      <School className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                      <input
+                        type="text"
+                        id="schoolName"
+                        name="schoolName"
+                        required
+                        placeholder="e.g. Wat Bo Primary School / សាលាបឋមសិក្សាវត្តបូ"
+                        className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Province Dropdown */}
+                    <div className="flex flex-col gap-1.5 text-left">
+                      <label htmlFor="province" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                        {kh ? "ខេត្ត-ក្រុង *" : "Province *"}
+                      </label>
+                      <div className="relative flex items-center">
+                        <MapPin className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                        <select
+                          id="province"
+                          name="province"
+                          required
+                          defaultValue=""
+                          className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-black bg-white focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
+                        >
+                          <option value="" disabled>{kh ? "ជ្រើសរើសខេត្ត" : "Select Province"}</option>
+                          {CAMBODIA_PROVINCES.map((prov) => (
+                            <option key={prov.en} value={prov.en}>
+                              {kh ? prov.kh : prov.en}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+
+                    {/* Grade Dropdown (Student only) */}
+                    <div className="flex flex-col gap-1.5 text-left">
+                      <label htmlFor="gradeLevel" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                        {kh ? "ថ្នាក់ទី *" : "Grade *"}
+                      </label>
+                      <div className="relative flex items-center">
+                        <GraduationCap className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                        <select
+                          id="gradeLevel"
+                          name="gradeLevel"
+                          required
+                          defaultValue=""
+                          className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-black bg-white focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
+                        >
+                          <option value="" disabled>{kh ? "ជ្រើសរើសថ្នាក់" : "Select Grade"}</option>
+                          {GRADES.map((gr) => (
+                            <option key={gr.en} value={gr.en}>
+                              {kh ? gr.kh : gr.en}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Teacher Invite Code (Student only) */}
+                  <div className="flex flex-col gap-1.5 text-left">
+                    <label htmlFor="inviteCode" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                      {kh ? "លេខកូដអញ្ជើញពីគ្រូ *" : "Teacher Invite Code *"}
+                    </label>
+                    <div className="relative flex items-center">
+                      <Key className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                      <input
+                        type="text"
+                        id="inviteCode"
+                        name="inviteCode"
+                        required
+                        placeholder="KWD-XXXX-YYYY"
+                        className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-black focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all placeholder:font-bold placeholder:text-zinc-300"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Section */}
+                    <div className="flex flex-col gap-1.5 text-left">
+                      <label htmlFor="section" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                        {kh ? "វេន (ស្រេចចិត្ត)" : "Section (Optional)"}
+                      </label>
+                      <div className="relative flex items-center">
+                        <Layers className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                        <input
+                          type="text"
+                          id="section"
+                          name="section"
+                          placeholder="e.g. Morning A / ព្រឹក A"
+                          className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Parent Contact (Student only) */}
+                    <div className="flex flex-col gap-1.5 text-left">
+                      <label htmlFor="parentContact" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                        {kh ? "លេខទូរស័ព្ទអាណាព្យាបាល (ស្រេចចិត្ត)" : "Parent Phone (Optional)"}
+                      </label>
+                      <div className="relative flex items-center">
+                        <Phone className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                        <input
+                          type="text"
+                          id="parentContact"
+                          name="parentContact"
+                          placeholder="e.g. 012 345 678"
+                          className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
 
