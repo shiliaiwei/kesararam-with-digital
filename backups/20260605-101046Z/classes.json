@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Grade 12C",
+    "teacher_id": 18,
+    "code": "CB2V50",
+    "created_at": "2026-06-01 07:17:09.420276",
+    "grade_level": "Grade 12",
+    "school_name": "Kesararam primary School",
+    "province": "Siem Reap",
+    "section": "KWD",
+    "status": "active"
+  }
+]

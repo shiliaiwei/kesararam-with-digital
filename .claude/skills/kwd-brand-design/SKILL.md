@@ -49,7 +49,7 @@ This is the spine of every surface. Match it exactly.
 | Corners         | Structured, never pill/blobby. Brand page = `0` (sharp 90°); app chrome uses the brutalist radius token `--nb-radius: 15px`. **Pick one mode per surface and stay consistent with neighbors.** |
 | Border          | **2–3px solid `#000`** on cards, buttons, inputs (`--nb-border` = `1px` is the app-chrome minimum; go heavier for hero/marketing). |
 | Shadow          | **Hard offset, zero blur:** `3–4px 3–4px 0 #000` (`--nb-shadow*`). **Never** soft/blurred drop shadows for structure. Glow blurs are allowed ONLY as decorative auras (game/HUD), never as a card's structural shadow. |
-| Accent stripe   | Yellow `#eab308` / black **caution tape** (`.caution-tape`).      |
+| Accent stripe   | Yellow `#eab308` / black **caution tape** (`.caution-tape`) with solid black rules on top and bottom. |
 | Active state    | Yellow fill `#eab308` + black text `#000` (or `.nav-active` = black fill + white text). |
 | Hover           | Lift via translate + bigger hard shadow (`.nb-card:hover`, `.nb-interactive`). Press = settle to `translate(0)` + smaller/no shadow. |
 | Spacing scale   | `4 · 8 · 12 · 16 · 20 · 24` px. Stick to these steps.            |
@@ -126,7 +126,7 @@ All built from `repeating-linear-gradient` in flat `#eab308`/`#fbbf24` + `#000`:
 
 | Variant        | Pattern                                              |
 |----------------|------------------------------------------------------|
-| Diagonal stripe | `.caution-tape` (45°/-45° yellow-black) — the default |
+| Diagonal stripe | `.caution-tape` (45°/-45° yellow-black) with top and bottom solid black borders — the default |
 | Checkerboard   | alternating yellow/black squares                     |
 | Chevron        | repeating `›` arrows (directional)                   |
 | Dashed         | yellow with black dashes                             |
