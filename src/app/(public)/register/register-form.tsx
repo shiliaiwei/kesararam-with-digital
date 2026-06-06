@@ -772,12 +772,20 @@ function RegisterFormInner() {
           </form>
         </div>
         
-        <p className="text-center text-xs text-zinc-500 mt-5 font-system font-bold">
-          {kh ? "មានគណនីរួចហើយ? " : "Already have an account? "}
-          <Link href="/login" className="font-black text-black hover:underline uppercase tracking-wide">
-            {kh ? "ចូលគណនី" : "Log In"}
-          </Link>
-        </p>
+        <div className="text-center space-y-2 mt-5 font-system font-bold">
+          <p className="text-xs text-zinc-500">
+            {kh ? "មានគណនីរួចហើយ? " : "Already have an account? "}
+            <Link href="/login" className="font-black text-black hover:underline uppercase tracking-wide">
+              {kh ? "ចូលគណនី" : "Log In"}
+            </Link>
+          </p>
+          <p className="text-[10px] text-zinc-400">
+            {kh ? "ត្រូវការជំនួយ? ទាក់ទងផ្នែកគាំទ្រ៖ " : "Need help? Contact support: "}
+            <a href="mailto:kesararamwithdigital@gmail.com" className="font-bold text-zinc-600 hover:underline hover:text-black transition-colors font-mono">
+              kesararamwithdigital@gmail.com
+            </a>
+          </p>
+        </div>
 
       </div>
 

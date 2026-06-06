@@ -284,12 +284,20 @@ function LoginFormInner() {
           </form>
         </div>
         
-        <p className="text-center text-xs text-zinc-500 mt-5 font-system font-bold">
-          {kh ? "មិនទាន់មានគណនីមែនទេ? " : "Don't have an account? "}
-          <Link href="/register" className="font-black text-black hover:underline uppercase tracking-wide">
-            {kh ? "ចុះឈ្មោះទីនេះ" : "Register Here"}
-          </Link>
-        </p>
+        <div className="text-center space-y-2 mt-5 font-system font-bold">
+          <p className="text-xs text-zinc-500">
+            {kh ? "មិនទាន់មានគណនីមែនទេ? " : "Don't have an account? "}
+            <Link href="/register" className="font-black text-black hover:underline uppercase tracking-wide">
+              {kh ? "ចុះឈ្មោះទីនេះ" : "Register Here"}
+            </Link>
+          </p>
+          <p className="text-[10px] text-zinc-400">
+            {kh ? "ត្រូវការជំនួយ? ទាក់ទងផ្នែកគាំទ្រ៖ " : "Need help? Contact support: "}
+            <a href="mailto:kesararamwithdigital@gmail.com" className="font-bold text-zinc-600 hover:underline hover:text-black transition-colors font-mono">
+              kesararamwithdigital@gmail.com
+            </a>
+          </p>
+        </div>
 
       </div>
 
