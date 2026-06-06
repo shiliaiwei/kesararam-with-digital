@@ -223,52 +223,9 @@ function PrivacyConfirmModal({
         <div className="flex-1 overflow-y-auto space-y-4 pr-1 text-sm font-semibold text-zinc-700">
           <p className="leading-relaxed">
             {kh
-              ? "មុនពេលចុះឈ្មោះគណនី សូមពិនិត្យមើលព័ត៌មានដែលយើងប្រើប្រាស់ពីគណនីរបស់អ្នកដើម្បីធានាឯកជនភាព និងសុវត្ថិភាព៖"
-              : "Before creating an account, please note what information is accessed from your account to ensure safety and privacy:"}
+              ? "មុនពេលចុះឈ្មោះគណនី សូមអាន និងយល់ព្រមលើលក្ខខណ្ឌប្រើប្រាស់របស់ KWD៖"
+              : "Before creating an account, please read and accept the KWD Terms of Use:"}
           </p>
-
-          <div className="border-2 border-black p-4 bg-blue-50/50 rounded-lg text-left space-y-3 shadow-[2.5px_2.5px_0_#000] shrink-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-system">
-              <div>
-                <span className="font-black text-green-700 block mb-1.5 uppercase tracking-wide">
-                  {kh ? "✓ យើងប្រមូល៖" : "✓ WE COLLECT:"}
-                </span>
-                <ul className="space-y-1.5 font-bold">
-                  <li className="flex items-center gap-1.5">
-                    <Check className="size-3.5 text-green-600 shrink-0" />
-                    {kh ? "អាសយដ្ឋានអ៊ីមែល" : "Email Address"}
-                  </li>
-                  <li className="flex items-center gap-1.5">
-                    <Check className="size-3.5 text-green-600 shrink-0" />
-                    {kh ? "ឈ្មោះពេញ" : "Full Name"}
-                  </li>
-                  <li className="flex items-center gap-1.5">
-                    <Check className="size-3.5 text-green-600 shrink-0" />
-                    {kh ? "រូបភាពគណនី" : "Profile Avatar"}
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <span className="font-black text-red-650 block mb-1.5 uppercase tracking-wide">
-                  {kh ? "✗ មិនប្រមូល៖" : "✗ WE DO NOT COLLECT:"}
-                </span>
-                <ul className="space-y-1.5 font-bold">
-                  <li className="flex items-center gap-1.5">
-                    <X className="size-3.5 text-red-650 shrink-0" />
-                    {kh ? "លេខសម្ងាត់" : "Passwords"}
-                  </li>
-                  <li className="flex items-center gap-1.5">
-                    <X className="size-3.5 text-red-650 shrink-0" />
-                    {kh ? "សារឯកជន" : "Personal Chats"}
-                  </li>
-                  <li className="flex items-center gap-1.5">
-                    <X className="size-3.5 text-red-650 shrink-0" />
-                    {kh ? "ប្រអប់សំបុត្រ Gmail" : "Gmail Inbox"}
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
 
           {/* KWD Terms of Use scroll section */}
           <div className="flex flex-col gap-1.5 pt-2">
