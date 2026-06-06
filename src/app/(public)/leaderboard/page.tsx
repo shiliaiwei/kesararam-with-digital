@@ -91,15 +91,15 @@ interface LeaderboardUser {
 
 // ── REWARD ITEMS DATA (Cleaned descriptions, Larger Typography, 4K cover image references) ──
 const REWARD_ITEMS = [
-  { id: 1, name: "Premium Executive Notebook", nameKh: "សៀវភៅកត់ត្រា", cost: 500, color: "#3b82f6", image: "/rewards/notebook.webp" },
-  { id: 2, name: "Premium Mechanical Pencil", nameKh: "ខ្មៅដៃ", cost: 100, color: "#eab308", image: "/rewards/pencil.webp" },
-  { id: 3, name: "Premium Fountain Pen", nameKh: "ប៊ិច", cost: 150, color: "#22c55e", image: "/rewards/pen.webp" },
-  { id: 4, name: "Premium Architectural Ruler", nameKh: "បន្ទាត់", cost: 200, color: "#f97316", image: "/rewards/ruler.webp" },
-  { id: 5, name: "Premium Designer Eraser", nameKh: "ជ័រលុប", cost: 80, color: "#a855f7", image: "/rewards/eraser.webp" },
-  { id: 6, name: "Premium Highlighter", nameKh: "ប៊ិចសម្គាល់", cost: 250, color: "#ef4444", image: "/rewards/highlighter.webp" },
-  { id: 7, name: "Premium Sticky Notes Set", nameKh: "ក្រដាសសម្គាល់", cost: 300, color: "#06b6d4", image: "/rewards/sticky_notes.webp" },
-  { id: 8, name: "Premium Geometry Kit", nameKh: "ឧបករណ៍គណិត", cost: 800, color: "#ec4899", image: "/rewards/geometry_set.webp" },
-  { id: 9, name: "Premium Study Planner", nameKh: "ផែនការសិក្សា", cost: 1200, color: "#84cc16", image: "/rewards/study_planner.webp" },
+  { id: 1, name: "Notebook", nameKh: "សៀវភៅកត់ត្រា", cost: 500, color: "#3b82f6", image: "/rewards/notebook.webp" },
+  { id: 2, name: "Pencil", nameKh: "ខ្មៅដៃ", cost: 100, color: "#eab308", image: "/rewards/pencil.webp" },
+  { id: 3, name: "Pen", nameKh: "ប៊ិច", cost: 150, color: "#22c55e", image: "/rewards/pen.webp" },
+  { id: 4, name: "Ruler", nameKh: "បន្ទាត់", cost: 200, color: "#f97316", image: "/rewards/ruler.webp" },
+  { id: 5, name: "Eraser", nameKh: "ជ័រលុប", cost: 80, color: "#a855f7", image: "/rewards/eraser.webp" },
+  { id: 6, name: "Highlighter", nameKh: "ប៊ិចសម្គាល់", cost: 250, color: "#ef4444", image: "/rewards/highlighter.webp" },
+  { id: 7, name: "Notes", nameKh: "ក្រដាសសម្គាល់", cost: 300, color: "#06b6d4", image: "/rewards/notes.webp" },
+  { id: 8, name: "Kit", nameKh: "ឧបករណ៍គណិត", cost: 800, color: "#ec4899", image: "/rewards/kit.webp" },
+  { id: 9, name: "Planner", nameKh: "ផែនការសិក្សា", cost: 1200, color: "#84cc16", image: "/rewards/planner.webp" },
 ];
 
 // ── Avatar ────────────────────────────────────────────────────────────────────
