@@ -568,9 +568,9 @@ export default function SoloPage() {
           </div>
         </div>
 
-        {/* Question image (Stable height wrapper - compact) */}
-        <div className={`shrink-0 w-full h-48 flex items-center justify-center p-2 relative overflow-hidden rounded-none ${q.imageUrl
-          ? "border-2 border-black bg-zinc-950"
+        {/* Question image (Stable height wrapper - white background for signs) */}
+        <div className={`shrink-0 w-full h-48 flex items-center justify-center p-3 relative overflow-hidden rounded-none ${q.imageUrl
+          ? "border-4 border-black bg-white shadow-[6px_6px_0_#000]"
           : "border-2 border-transparent bg-transparent"
           }`}>
           {q.imageUrl ? (
@@ -578,11 +578,11 @@ export default function SoloPage() {
           ) : null}
         </div>
 
-        {/* Question text card (compact) */}
+        {/* Question text card (compact & smaller) */}
         <div
-          className="shrink-0 w-full min-h-[5rem] h-auto bg-zinc-900 border-2 border-black p-4 rounded-none text-white font-black flex items-center justify-center text-center select-text animate-fade-in"
+          className="shrink-0 w-full min-h-[4rem] h-auto bg-zinc-900 border-2 border-black p-3 rounded-none text-white font-black flex items-center justify-center text-center select-text animate-fade-in"
           style={{
-            fontSize: "clamp(1.1rem, 4vw, 1.75rem)",
+            fontSize: "clamp(0.95rem, 3.5vw, 1.4rem)",
             lineHeight: "1.3",
             ...khFont
           }}
