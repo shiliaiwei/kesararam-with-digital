@@ -6,7 +6,12 @@ import { db } from "@/lib/db";
 
 // Mock dependencies
 vi.mock("@/lib/auth");
-vi.mock("@/lib/db");
+vi.mock("@/lib/db", () => ({
+  db: {
+    select: vi.fn(),
+    update: vi.fn(),
+  },
+}));
 
 describe("GET /api/user/preferences", () => {
   beforeEach(() => {
