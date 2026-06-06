@@ -96,22 +96,52 @@ export function BrandGuidelineClient() {
 
       {/* Page Header */}
       <header className="border-b border-zinc-200 dark:border-zinc-800">
-        <div className="max-w-5xl mx-auto px-6 py-12">
-          <h1 className="text-2xl font-bold tracking-tight">
-            {t("KWD Brand Guidelines", "អំពីម៉ាកយីហោ KWD")}
-          </h1>
-          <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 max-w-xl leading-relaxed">
-            {t(
-              "Visual identity, design standards, and usage rules that define KWD — Kesararam With Digital.",
-              "អត្តសញ្ញាណដែលមើលឃើញ ស្តង់ដាររចនា និងច្បាប់ប្រើប្រាស់ដែលកំណត់ KWD — Kesararam With Digital"
-            )}
-          </p>
-          <p className="mt-3 text-xs text-zinc-400 dark:text-zinc-500 font-mono">
-            {t(
-              "v1.0 · Last updated June 2026 · Technovation Girls 2026 · Team #50777 · Siem Reap, Cambodia",
-              "v1.0 · ធ្វើបច្ចុប្បន្នភាព មិថុនា ២០២៦ · Technovation Girls 2026 · ក្រុម #50777 · សៀមរាប"
-            )}
-          </p>
+        <div className="max-w-5xl mx-auto px-6 py-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div>
+            <h1 className="text-2xl font-bold tracking-tight">
+              {t("KWD Brand Guidelines", "អំពីម៉ាកយីហោ KWD")}
+            </h1>
+            <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 max-w-xl leading-relaxed">
+              {t(
+                "Visual identity, design standards, and usage rules that define KWD — Kesararam With Digital.",
+                "អត្តសញ្ញាណដែលមើលឃើញ ស្តង់ដាររចនា និងច្បាប់ប្រើប្រាស់ដែលកំណត់ KWD — Kesararam With Digital"
+              )}
+            </p>
+            <p className="mt-3 text-xs text-zinc-400 dark:text-zinc-500 font-mono">
+              {t(
+                "v1.0 · Last updated June 2026 · Technovation Girls 2026 · Team #50777 · Siem Reap, Cambodia",
+                "v1.0 · ធ្វើបច្ចុប្បន្នភាព មិថុនា ២០២៦ · Technovation Girls 2026 · ក្រុម #50777 · សៀមរាប"
+              )}
+            </p>
+          </div>
+          <div className="shrink-0 flex flex-col sm:flex-row gap-3">
+            <a
+              href="/report-kwd/អំពីពួកយើង_Brand_KWD.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-yellow-400 text-black border-2 border-black rounded-none font-bold text-sm shadow-[4px_4px_0_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_#000] transition-all"
+            >
+              <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              {t("Download Brand PDF", "ទាញយកលម្អិតម៉ាក KWD")}
+            </a>
+            <a
+              href="/report-kwd/ប្រព័ន្ធអប់រំសុវត្ថិភាពចរាចរណ៍ឌីជីថល_KWD-SYS-RPT-2026.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-white text-black border-2 border-black rounded-none font-bold text-sm shadow-[4px_4px_0_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_#000] transition-all dark:bg-zinc-900 dark:text-white dark:border-white dark:shadow-[4px_4px_0_#fff] dark:hover:shadow-[6px_6px_0_#fff]"
+            >
+              <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              {t("Download System Report PDF", "ទាញយករបាយការណ៍ប្រព័ន្ធ")}
+            </a>
+          </div>
         </div>
       </header>
 

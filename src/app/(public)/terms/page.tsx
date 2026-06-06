@@ -98,23 +98,41 @@ export default function TermsPage() {
 
       {/* Header */}
       <header className="border-b border-zinc-200">
-        <div className="max-w-5xl mx-auto px-6 py-12">
-          <p className="text-[10px] font-mono text-zinc-400 mb-3 uppercase tracking-widest">
-            {kh ? "ឯកសារច្បាប់" : "Legal Document"}
-          </p>
-          <h1 className="text-2xl font-bold tracking-tight text-zinc-900" style={kf}>
-            {kh ? "លក្ខខណ្ឌប្រើប្រាស់ KWD" : "KWD Terms of Use"}
-          </h1>
-          <p className="mt-2 text-sm text-zinc-500 max-w-xl leading-relaxed" style={kf}>
-            {kh
-              ? "ការប្រើប្រាស់ KWD មានន័យថាអ្នកយល់ព្រមនឹងលក្ខខណ្ឌទាំងនេះ។"
-              : "By using KWD you agree to these terms. Please read them carefully before using the platform."}
-          </p>
-          <p className="mt-3 text-xs text-zinc-400 font-mono">
-            {kh
-              ? "ធ្វើបច្ចុប្បន្នភាព មិថុនា ២០២៦ · KWD · Technovation Girls 2026 · ក្រុម #50777 · Junior Division · សៀមរាប, កម្ពុជា"
-              : "Last updated June 2026 · KWD · Technovation Girls 2026 · Team #50777 · Junior Division · Siem Reap, Cambodia"}
-          </p>
+        <div className="max-w-5xl mx-auto px-6 py-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div>
+            <p className="text-[10px] font-mono text-zinc-400 mb-3 uppercase tracking-widest">
+              {kh ? "ឯកសារច្បាប់" : "Legal Document"}
+            </p>
+            <h1 className="text-2xl font-bold tracking-tight text-zinc-900" style={kf}>
+              {kh ? "លក្ខខណ្ឌប្រើប្រាស់ KWD" : "KWD Terms of Use"}
+            </h1>
+            <p className="mt-2 text-sm text-zinc-500 max-w-xl leading-relaxed" style={kf}>
+              {kh
+                ? "ការប្រើប្រាស់ KWD មានន័យថាអ្នកយល់ព្រមនឹងលក្ខខណ្ឌទាំងនេះ។"
+                : "By using KWD you agree to these terms. Please read them carefully before using the platform."}
+            </p>
+            <p className="mt-3 text-xs text-zinc-400 font-mono">
+              {kh
+                ? "ធ្វើបច្ចុប្បន្នភាព មិថុនា ២០២៦ · KWD · Technovation Girls 2026 · ក្រុម #50777 · Junior Division · សៀមរាប, កម្ពុជា"
+                : "Last updated June 2026 · KWD · Technovation Girls 2026 · Team #50777 · Junior Division · Siem Reap, Cambodia"}
+            </p>
+          </div>
+          <div className="shrink-0">
+            <a
+              href="/report-kwd/លក្ខខណ្ឌប្រើប្រាស់_KWD.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-yellow-400 text-black border-2 border-black rounded-none font-bold text-sm shadow-[4px_4px_0_#000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_#000] transition-all"
+              style={kf}
+            >
+              <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              {kh ? "ទាញយកជា PDF" : "Download PDF"}
+            </a>
+          </div>
         </div>
       </header>
 
