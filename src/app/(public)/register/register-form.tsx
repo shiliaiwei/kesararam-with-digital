@@ -402,11 +402,9 @@ function RegisterFormInner() {
       <div className="w-full max-w-2xl animate-fade-in space-y-6">
         
         {/* Header logo */}
-        <div className="flex items-center justify-center gap-2.5">
-          <div className="p-1.5 bg-[#eab308] rounded-lg border-2 border-black inline-flex shadow-[2px_2px_0_#000]">
-            <img src="/brand/logo.png" alt="KWD Logo" className="h-7 w-auto object-contain" />
-          </div>
-          <span className="font-google-sans text-lg lg:text-xl font-black tracking-tight text-black uppercase">
+        <div className="flex flex-col items-center justify-center gap-3">
+          <img src="/brand/logo.png" alt="KWD Logo" className="h-20 w-auto object-contain" />
+          <span className="font-google-sans text-lg lg:text-xl font-black tracking-tight text-black uppercase text-center">
             KESARARAM WITH DIGITAL
           </span>
         </div>
