@@ -43,15 +43,15 @@ interface StudentProfileClientProps {
 }
 
 const REWARD_ITEMS = [
-  { id: 1, name: "Notebook",       nameKh: "សៀវភៅកត់ត្រា",   cost: 500,  image: "/rewards/notebook.webp" },
-  { id: 2, name: "Pencil",         nameKh: "ខ្មៅដៃ",            cost: 100,  image: "/rewards/pencil.webp" },
-  { id: 3, name: "Pen",            nameKh: "ប៊ិច",               cost: 150,  image: "/rewards/pen.webp" },
-  { id: 4, name: "Ruler",          nameKh: "បន្ទាត់",            cost: 200,  image: "/rewards/ruler.webp" },
-  { id: 5, name: "Eraser",         nameKh: "ជ័រលុប",             cost: 80,   image: "/rewards/eraser.webp" },
-  { id: 6, name: "Highlighter",    nameKh: "ប៊ិចសម្គាល់",        cost: 250,  image: "/rewards/highlighter.webp" },
-  { id: 7, name: "Notes",          nameKh: "ក្រដាសសម្គាល់",      cost: 300,  image: "/rewards/notes.webp" },
-  { id: 8, name: "Kit",            nameKh: "ឧបករណ៍គណិត",       cost: 800,  image: "/rewards/kit.webp" },
-  { id: 9, name: "Planner",        nameKh: "ផែនការសិក្សា",       cost: 1200, image: "/rewards/planner.webp" },
+  { id: 1, name: "Notebook", nameKh: "សៀវភៅកត់ត្រា", cost: 500, image: "/rewards/notebook.webp" },
+  { id: 2, name: "Pencil", nameKh: "ខ្មៅដៃ", cost: 100, image: "/rewards/pencil.webp" },
+  { id: 3, name: "Pen", nameKh: "ប៊ិច", cost: 150, image: "/rewards/pen.webp" },
+  { id: 4, name: "Ruler", nameKh: "បន្ទាត់", cost: 200, image: "/rewards/ruler.webp" },
+  { id: 5, name: "Eraser", nameKh: "ជ័រលុប", cost: 80, image: "/rewards/eraser.webp" },
+  { id: 6, name: "Highlighter", nameKh: "ប៊ិចសម្គាល់", cost: 250, image: "/rewards/highlighter.webp" },
+  { id: 7, name: "Notes", nameKh: "ក្រដាសសម្គាល់", cost: 300, image: "/rewards/notes.webp" },
+  { id: 8, name: "Kit", nameKh: "ឧបករណ៍គណិត", cost: 800, image: "/rewards/kit.webp" },
+  { id: 9, name: "Planner", nameKh: "ផែនការសិក្សា", cost: 1200, image: "/rewards/planner.webp" },
 ];
 
 const CAMBODIA_PROVINCES = [
@@ -80,7 +80,7 @@ function getBilingualGrade(grade: string | null | undefined): string {
   if (!grade) return "—";
   const n = grade.match(/\d+/)?.[0];
   if (!n) return grade;
-  const khNum: Record<string, string> = { "6":"៦","7":"៧","8":"៨","9":"៩","10":"១០","11":"១១","12":"១២" };
+  const khNum: Record<string, string> = { "6": "៦", "7": "៧", "8": "៨", "9": "៩", "10": "១០", "11": "១១", "12": "១២" };
   return khNum[n] ? `Grade ${n} / ថ្នាក់ទី ${khNum[n]}` : grade;
 }
 
@@ -170,13 +170,13 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
     id: number; name: string; nameKh: string; cost: number; image: string; claimedAt: number;
   }>>([]);
 
-  const isNamePublic     = student.isNamePublic     ?? true;
+  const isNamePublic = student.isNamePublic ?? true;
   const isUsernamePublic = student.isUsernamePublic ?? true;
-  const isSchoolPublic   = student.isSchoolPublic   ?? true;
+  const isSchoolPublic = student.isSchoolPublic ?? true;
   const isProvincePublic = student.isProvincePublic ?? true;
-  const isGradePublic    = student.isGradePublic    ?? true;
-  const isSectionPublic  = student.isSectionPublic  ?? true;
-  const isStatsPublic    = student.isStatsPublic    ?? true;
+  const isGradePublic = student.isGradePublic ?? true;
+  const isSectionPublic = student.isSectionPublic ?? true;
+  const isStatsPublic = student.isStatsPublic ?? true;
 
   const displayName = isNamePublic
     ? (student.displayName || student.username)
@@ -184,8 +184,8 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
 
   const gradeKh = student.gradeLevel
     ? (student.gradeLevel.toLowerCase().includes("grade")
-        ? student.gradeLevel.replace(/grade\s*/i, "ថ្នាក់ទី ")
-        : (student.gradeLevel.match(/\d+/) ? `ថ្នាក់ទី ${student.gradeLevel.match(/\d+/)?.[0]}` : student.gradeLevel))
+      ? student.gradeLevel.replace(/grade\s*/i, "ថ្នាក់ទី ")
+      : (student.gradeLevel.match(/\d+/) ? `ថ្នាក់ទី ${student.gradeLevel.match(/\d+/)?.[0]}` : student.gradeLevel))
     : "—";
 
   const joinedYear = student.createdAt ? new Date(student.createdAt).getFullYear() : 2026;
@@ -215,9 +215,9 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
   };
 
   const tabs = [
-    { id: "stats"   as const, label: kh ? "ស្ថិតិ"    : "Statistics", icon: Trophy    },
-    { id: "about"   as const, label: kh ? "ព័ត៌មាន"   : "About",      icon: UserCheck  },
-    { id: "rewards" as const, label: kh ? "រង្វាន់"   : "Rewards",    icon: Gift      },
+    { id: "stats" as const, label: kh ? "ស្ថិតិ" : "Statistics", icon: Trophy },
+    { id: "about" as const, label: kh ? "ព័ត៌មាន" : "About", icon: UserCheck },
+    { id: "rewards" as const, label: kh ? "រង្វាន់" : "Rewards", icon: Gift },
   ];
 
   return (
@@ -270,7 +270,7 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
 
             {/* Name + badges */}
             <div>
-              <h1 className={`text-xl font-black text-black leading-tight mb-0.5 ${kh ? "font-google-sans" : ""}`} style={kf}>
+              <h1 className={`text-xl font-black text-black leading-tight mb-0.5 ${kh ? "font-google-sans" : ""}`}>
                 {displayName}
               </h1>
               <p className="text-sm text-gray-500 font-mono">
@@ -476,10 +476,10 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                   </div>
                 ) : (
                   <div className="grid grid-cols-2 gap-3">
-                    <StatCard icon={Trophy}   kh={kh} accent="#eab308" iconFg="text-black" label={kh ? "ចំណាត់ថ្នាក់"    : "Leaderboard Rank"} value={`#${rank}`} />
-                    <StatCard icon={Gamepad2} kh={kh} accent="#3b82f6" iconFg="text-white" label={kh ? "ហ្គេមបានលេង"     : "Games Played"}     value={student.totalGamesPlayed.toLocaleString()} />
-                    <StatCard icon={Star}     kh={kh} accent="#22c55e" iconFg="text-black" label={kh ? "ពិន្ទុខ្ពស់"     : "Highest Score"}    value={student.highestScore.toLocaleString()} />
-                    <StatCard icon={Zap}      kh={kh} accent="#f97316" iconFg="text-black" label={kh ? "ពិន្ទុសរុប"      : "Total Points"}     value={student.lifetimePoints.toLocaleString()} />
+                    <StatCard icon={Trophy} kh={kh} accent="#eab308" iconFg="text-black" label={kh ? "ចំណាត់ថ្នាក់" : "Leaderboard Rank"} value={`#${rank}`} />
+                    <StatCard icon={Gamepad2} kh={kh} accent="#3b82f6" iconFg="text-white" label={kh ? "ហ្គេមបានលេង" : "Games Played"} value={student.totalGamesPlayed.toLocaleString()} />
+                    <StatCard icon={Star} kh={kh} accent="#22c55e" iconFg="text-black" label={kh ? "ពិន្ទុខ្ពស់" : "Highest Score"} value={student.highestScore.toLocaleString()} />
+                    <StatCard icon={Zap} kh={kh} accent="#f97316" iconFg="text-black" label={kh ? "ពិន្ទុសរុប" : "Total Points"} value={student.lifetimePoints.toLocaleString()} />
                   </div>
                 )
               )}
@@ -495,22 +495,23 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                   </div>
                   <dl className="divide-y divide-gray-100">
                     {([
-                      { label: kh ? "ឈ្មោះ"       : "Name",     value: isNamePublic     ? (student.displayName || student.username) : "Private", priv: !isNamePublic },
-                      { label: kh ? "ឈ្មោះគណនី"  : "Username", value: isUsernamePublic  ? `@${student.username}`                     : "@private", priv: !isUsernamePublic, mono: true },
-                      { label: kh ? "តួនាទី"      : "Role",     value: kh ? "សិស្សសាលា" : "Student", priv: false },
-                      { label: kh ? "សាលារៀន"     : "School",   value: isSchoolPublic    ? (student.schoolName || "—")                : "Private", priv: !isSchoolPublic },
-                      { label: kh ? "ថ្នាក់"       : "Grade",    value: isGradePublic
+                      { label: kh ? "ឈ្មោះ" : "Name", value: isNamePublic ? (student.displayName || student.username) : "Private", priv: !isNamePublic },
+                      { label: kh ? "ឈ្មោះគណនី" : "Username", value: isUsernamePublic ? `@${student.username}` : "@private", priv: !isUsernamePublic, mono: true },
+                      { label: kh ? "តួនាទី" : "Role", value: kh ? "សិស្សសាលា" : "Student", priv: false },
+                      { label: kh ? "សាលារៀន" : "School", value: isSchoolPublic ? (student.schoolName || "—") : "Private", priv: !isSchoolPublic },
+                      {
+                        label: kh ? "ថ្នាក់" : "Grade", value: isGradePublic
                           ? `${kh ? gradeKh : getBilingualGrade(student.gradeLevel)}${isSectionPublic && student.section ? `, ${kh ? "ថ្នាក់" : "Room"} ${student.section}` : ""}`
-                          : "Private", priv: !isGradePublic },
-                      { label: kh ? "ខេត្ត"        : "Province", value: isProvincePublic  ? getBilingualProvince(student.province)     : "Private", priv: !isProvincePublic },
-                      { label: kh ? "ពិន្ទុ"       : "Points",   value: isStatsPublic    ? `${student.lifetimePoints.toLocaleString()} PTS` : "Private", priv: !isStatsPublic, mono: true, accent: true },
-                      { label: kh ? "ចូលរួម"      : "Joined",   value: kh ? `ឆ្នាំ ${joinedYear}` : `${joinedYear}`, priv: false },
+                          : "Private", priv: !isGradePublic
+                      },
+                      { label: kh ? "ខេត្ត" : "Province", value: isProvincePublic ? getBilingualProvince(student.province) : "Private", priv: !isProvincePublic },
+                      { label: kh ? "ពិន្ទុ" : "Points", value: isStatsPublic ? `${student.lifetimePoints.toLocaleString()} PTS` : "Private", priv: !isStatsPublic, mono: true, accent: true },
+                      { label: kh ? "ចូលរួម" : "Joined", value: kh ? `ឆ្នាំ ${joinedYear}` : `${joinedYear}`, priv: false },
                     ] as { label: string; value: string; priv: boolean; mono?: boolean; accent?: boolean }[]).map(({ label, value, priv, mono, accent }) => (
                       <div key={label} className="flex items-start gap-3 px-5 py-3.5">
                         <dt className="text-[11px] font-bold text-gray-400 uppercase tracking-wide w-24 flex-shrink-0 mt-0.5" style={kf}>{label}</dt>
-                        <dd className={`flex-1 text-sm font-bold ${
-                          priv ? "text-gray-400 italic" : accent ? "text-emerald-600 font-mono" : mono ? "text-gray-700 font-mono" : "text-gray-900"
-                        } ${kh && !mono && !accent ? "font-google-sans" : ""}`} style={kh && !mono && !accent ? kf : {}}>
+                        <dd className={`flex-1 text-sm font-bold ${priv ? "text-gray-400 italic" : accent ? "text-emerald-600 font-mono" : mono ? "text-gray-700 font-mono" : "text-gray-900"
+                          } ${kh && !mono && !accent ? "font-google-sans" : ""}`} style={kh && !mono && !accent ? kf : {}}>
                           {value || "—"}
                         </dd>
                       </div>
