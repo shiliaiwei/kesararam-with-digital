@@ -1,8 +1,8 @@
 import os
 import sys
-from PIL import Image
+from PIL import Image, ImageFilter
 
-def paste_logo(bg_path, logo_path, out_path, logo_w, pos_x_pct, pos_y_pct, opacity=0.75):
+def paste_logo(bg_path, logo_path, out_path, logo_w, pos_x_pct, pos_y_pct, opacity=0.75, shadow_opacity=0.5, shadow_blur=4):
     if not os.path.exists(bg_path):
         print(f"Error: {bg_path} not found")
         return False
@@ -33,15 +33,29 @@ def paste_logo(bg_path, logo_path, out_path, logo_w, pos_x_pct, pos_y_pct, opaci
         logo_h = int(lh * logo_w / lw)
         logo_resized = logo.resize((logo_w, logo_h), Image.Resampling.LANCZOS)
         
-        # Adjust opacity
+        # Adjust logo opacity
         r, g, b, a = logo_resized.split()
         a_new = a.point(lambda p: int(p * opacity))
         logo_resized = Image.merge('RGBA', (r, g, b, a_new))
+        
+        # Create shadow/glow (black version of the logo)
+        shadow_r = Image.new('L', logo_resized.size, 0)
+        shadow_g = Image.new('L', logo_resized.size, 0)
+        shadow_b = Image.new('L', logo_resized.size, 0)
+        shadow_a = a_new.point(lambda p: int(p * shadow_opacity))
+        shadow = Image.merge('RGBA', (shadow_r, shadow_g, shadow_b, shadow_a))
+        
+        # Apply blur to the shadow to create a soft diffuse glow
+        shadow_blurred = shadow.filter(ImageFilter.GaussianBlur(radius=shadow_blur))
         
         # Position
         px = int(final_w * pos_x_pct - logo_w / 2)
         py = int(final_h * pos_y_pct - logo_h / 2)
         
+        # Paste shadow first
+        img_cropped.paste(shadow_blurred, (px, py), shadow_blurred)
+        
+        # Paste white logo on top
         img_cropped.paste(logo_resized, (px, py), logo_resized)
         
         # Ensure output directory exists
@@ -61,6 +75,7 @@ def main():
     white_logo = "public/brand/kwd-white_nobackground.png"
     
     # We place the KWD white logo directly on the item inside the image
+    # For lighter backgrounds/items, the shadow_opacity is increased to ensure premium contrast
     items = [
         {
             "name": "notebook",
@@ -70,7 +85,9 @@ def main():
             "width": 60,
             "x": 0.45,
             "y": 0.54,
-            "opacity": 0.65
+            "opacity": 0.65,
+            "shadow_opacity": 0.4,
+            "shadow_blur": 3
         },
         {
             "name": "pencil",
@@ -80,7 +97,9 @@ def main():
             "width": 30,
             "x": 0.54,
             "y": 0.525,
-            "opacity": 0.70
+            "opacity": 0.70,
+            "shadow_opacity": 0.5,
+            "shadow_blur": 4
         },
         {
             "name": "pen",
@@ -90,7 +109,9 @@ def main():
             "width": 30,
             "x": 0.35,
             "y": 0.50,
-            "opacity": 0.70
+            "opacity": 0.70,
+            "shadow_opacity": 0.5,
+            "shadow_blur": 4
         },
         {
             "name": "ruler",
@@ -100,7 +121,9 @@ def main():
             "width": 26,
             "x": 0.09,
             "y": 0.50,
-            "opacity": 0.70
+            "opacity": 0.85,
+            "shadow_opacity": 0.7,
+            "shadow_blur": 4
         },
         {
             "name": "eraser",
@@ -110,7 +133,9 @@ def main():
             "width": 55,
             "x": 0.45,
             "y": 0.55,
-            "opacity": 0.70
+            "opacity": 0.90,
+            "shadow_opacity": 0.8,
+            "shadow_blur": 5
         },
         {
             "name": "highlighter",
@@ -120,7 +145,9 @@ def main():
             "width": 50,
             "x": 0.61,
             "y": 0.50,
-            "opacity": 0.75
+            "opacity": 0.85,
+            "shadow_opacity": 0.7,
+            "shadow_blur": 4
         },
         {
             "name": "notes",
@@ -130,7 +157,9 @@ def main():
             "width": 55,
             "x": 0.50,
             "y": 0.33,
-            "opacity": 0.70
+            "opacity": 0.85,
+            "shadow_opacity": 0.7,
+            "shadow_blur": 4
         },
         {
             "name": "kit",
@@ -140,7 +169,9 @@ def main():
             "width": 65,
             "x": 0.35,
             "y": 0.22,
-            "opacity": 0.75
+            "opacity": 0.75,
+            "shadow_opacity": 0.5,
+            "shadow_blur": 3
         },
         {
             "name": "planner",
@@ -150,7 +181,9 @@ def main():
             "width": 75,
             "x": 0.43,
             "y": 0.26,
-            "opacity": 0.70
+            "opacity": 0.70,
+            "shadow_opacity": 0.5,
+            "shadow_blur": 3
         }
     ]
     
@@ -164,7 +197,9 @@ def main():
             logo_w=item["width"],
             pos_x_pct=item["x"],
             pos_y_pct=item["y"],
-            opacity=item["opacity"]
+            opacity=item["opacity"],
+            shadow_opacity=item["shadow_opacity"],
+            shadow_blur=item["shadow_blur"]
         )
 
 if __name__ == '__main__':
