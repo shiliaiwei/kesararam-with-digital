@@ -5,15 +5,15 @@ import { users } from "@/db/schema/users";
 import { eq } from "drizzle-orm";
 
 const REWARD_ITEMS = [
-  { id: 1, name: "Notebook", cost: 500 },
-  { id: 2, name: "Pencil", cost: 100 },
-  { id: 3, name: "Pen", cost: 150 },
-  { id: 4, name: "Ruler", cost: 200 },
-  { id: 5, name: "Eraser", cost: 80 },
-  { id: 6, name: "Highlighter", cost: 250 },
-  { id: 7, name: "Sticky Notes", cost: 300 },
-  { id: 8, name: "Geometry Set", cost: 800 },
-  { id: 9, name: "Study Planner", cost: 1200 },
+  { id: 1, name: "Premium Executive Notebook", cost: 500 },
+  { id: 2, name: "Premium Mechanical Pencil", cost: 100 },
+  { id: 3, name: "Premium Fountain Pen", cost: 150 },
+  { id: 4, name: "Premium Architectural Ruler", cost: 200 },
+  { id: 5, name: "Premium Designer Eraser", cost: 80 },
+  { id: 6, name: "Premium Highlighter", cost: 250 },
+  { id: 7, name: "Premium Sticky Notes Set", cost: 300 },
+  { id: 8, name: "Premium Geometry Kit", cost: 800 },
+  { id: 9, name: "Premium Study Planner", cost: 1200 },
 ];
 
 export async function POST(req: Request) {
