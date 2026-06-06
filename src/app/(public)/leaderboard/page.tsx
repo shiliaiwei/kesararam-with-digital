@@ -572,6 +572,14 @@ function ClaimBurst({ color }: { color: string }) {
           0% { background-position: 0px 0px; }
           100% { background-position: 32px 32px; }
         }
+        @keyframes shimmerProgress {
+          0% { background-position: -200px 0; }
+          100% { background-position: 200px 0; }
+        }
+        @keyframes buttonPulse {
+          0%, 100% { transform: scale(1); box-shadow: 4px 4px 0 #000; }
+          50% { transform: scale(1.02); box-shadow: 6px 6px 0 #000, 0 0 15px var(--pulse-color); }
+        }
       `}</style>
     </div>
   );
@@ -631,6 +639,14 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
   const [hovered, setHovered] = useState(false);
   const [showBurst, setShowBurst] = useState(false);
   const [pulse, setPulse] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setMousePos({ x, y });
+  };
 
   const canClaim = isLoggedIn && userPoints >= item.cost && !claimed;
   const rawPct = Math.min(100, (userPoints / item.cost) * 100);
@@ -665,34 +681,57 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
     onClaim(item);
   }
 
-  // Grayscale when claimed, colored when active
+  // Glowing shadow when hovered, color responsive when active
   const cardShadow = claimed
     ? "3px 3px 0 #000"
     : hovered && canClaim
-      ? "12px 12px 0 #000"
-      : isReady
-        ? "8px 8px 0 #000"
-        : "4px 4px 0 #000";
+      ? `12px 12px 0 #000, 0 10px 30px ${item.color}33`
+      : hovered
+        ? `10px 10px 0 #000, 0 8px 24px rgba(0,0,0,0.15)`
+        : isReady
+          ? `8px 8px 0 #000, 0 0 15px ${item.color}22`
+          : "4px 4px 0 #000";
 
   const cardTransform = claimed
     ? "none"
-    : hovered && canClaim
-      ? "translate(-4px,-4px)"
+    : hovered
+      ? "translate(-6px,-6px)"
       : "translate(0,0)";
 
   return (
     <div
-      className="relative flex flex-col overflow-hidden border-3 border-black select-none transition-all duration-100"
+      className="relative flex flex-col overflow-hidden border-3 border-black select-none transition-all duration-200 group"
       style={{
         boxShadow: cardShadow,
         transform: cardTransform,
         background: claimed ? "#f4f4f5" : "#ffffff",
         borderRadius: 0,
-      }}
+        "--mouse-x": `${mousePos.x}%`,
+        "--mouse-y": `${mousePos.y}%`,
+      } as React.CSSProperties}
       onMouseEnter={() => { if (!claimed) setHovered(true); }}
       onMouseLeave={() => setHovered(false)}
+      onPointerMove={handlePointerMove}
     >
       {showBurst && <ClaimBurst color={item.color} />}
+
+      {/* Premium Spotlight Pointer Glow Effect */}
+      {!claimed && hovered && (
+        <>
+          <div 
+            className="absolute inset-0 pointer-events-none z-10 transition-opacity duration-300"
+            style={{
+              background: `radial-gradient(circle 220px at var(--mouse-x, 50%) var(--mouse-y, 50%), ${item.color}15, transparent 80%)`
+            }}
+          />
+          <div 
+            className="absolute inset-0 pointer-events-none z-20 transition-opacity duration-300"
+            style={{
+              background: `radial-gradient(circle 100px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.12), transparent 80%)`
+            }}
+          />
+        </>
+      )}
 
       {/* Claimed diagonal tag overlay */}
       {claimed && (
@@ -703,27 +742,36 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
 
       {/* ── Premium 4K Mockup Cover Image Header ── */}
       <div className="relative h-44 w-full border-b-3 border-black overflow-hidden bg-zinc-100 flex items-center justify-center">
+        {/* Dynamic ambient backlight glowing halo */}
+        {!claimed && (
+          <div className="absolute inset-0 opacity-35 pointer-events-none z-0"
+            style={{
+              background: `radial-gradient(circle at center, ${item.color}44 0%, transparent 70%)`
+            }}
+          />
+        )}
+
         <img
           src={item.image}
           alt={item.name}
-          className="w-full h-full object-cover select-none"
+          className="w-full h-full object-cover select-none z-10"
           style={{
             filter: claimed ? "grayscale(100%) brightness(0.9)" : "none",
-            transform: hovered && !claimed ? "scale(1.05)" : "scale(1)",
-            transition: "transform 0.25s ease, filter 0.2s ease"
+            transform: hovered && !claimed ? "scale(1.08) rotate(0.5deg)" : "scale(1)",
+            transition: "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s ease"
           }}
         />
 
         {/* Lucide Badge Tag */}
         {bonusBadge && !claimed && (
-          <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 bg-black text-white text-[8px] font-black uppercase px-2 py-0.5 border-2 border-black shadow-[2px_2px_0_#000]">
+          <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5 bg-black text-white text-[8px] font-black uppercase px-2 py-0.5 border-2 border-black shadow-[2px_2px_0_#000]">
             <bonusBadge.icon size={10} strokeWidth={3.5} className="text-yellow-400" />
             <span>{bonusBadge.label}</span>
           </div>
         )}
 
         {/* Points cost tag overlay in bottom-right corner of the image */}
-        <div className="absolute bottom-3 right-3 bg-yellow-400 text-black border-2 border-black px-3 py-1 font-black shadow-[3px_3px_0_#000] flex flex-col items-center leading-none"
+        <div className="absolute bottom-3 right-3 bg-yellow-400 text-black border-2 border-black px-3 py-1 font-black shadow-[3px_3px_0_#000] flex flex-col items-center leading-none z-20"
           style={{ filter: claimed ? "grayscale(100%)" : "none" }}>
           <span className="text-[7px] font-black uppercase tracking-wider opacity-60">COST</span>
           <span className="text-sm font-mono font-black mt-0.5">{item.cost.toLocaleString()}</span>
@@ -731,12 +779,12 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
       </div>
 
       {/* Body Details */}
-      <div className="flex flex-col gap-3.5 px-3.5 py-4 flex-1">
+      <div className="flex flex-col gap-3.5 px-3.5 py-4 flex-1 z-10">
 
         {/* Name and Khmer translation (ENLARGED TYPOGRAPHY) */}
         <div className="flex justify-between items-start gap-2">
           <div>
-            <span className="font-black text-xl text-black block leading-tight tracking-tight uppercase" style={kf}>
+            <span className="font-black text-xl text-black block leading-tight tracking-tight uppercase group-hover:text-zinc-800 transition-colors" style={kf}>
               {kh ? item.nameKh : item.name}
             </span>
             <span className="text-[10px] text-zinc-400 font-bold block uppercase tracking-wide mt-1 leading-none">
@@ -757,7 +805,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
 
         {/* Scarcity indicator */}
         {scarcity !== null && !claimed && (
-          <div className="flex items-center gap-1.5 self-start bg-red-100 text-red-600 border border-red-200 text-[8px] font-black px-1.5 py-0.5 shadow-[1.5px_1.5px_0_#ef4444]">
+          <div className="flex items-center gap-1.5 self-start bg-red-100 text-red-600 border border-red-200 text-[8px] font-black px-1.5 py-0.5 shadow-[1.5px_1.5px_0_#ef4444] animate-pulse">
             <Info size={8} strokeWidth={3.5} />
             <span>{kh ? `នៅសល់ ${scarcity} ទៀត!` : `Only ${scarcity} left!`}</span>
           </div>
@@ -767,7 +815,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
         <div className="flex items-center gap-1.5">
           <div className="flex -space-x-1">
             {[0, 1, 2].map(i => (
-              <div key={i} className="w-3.5 h-3.5 rounded-full border border-black flex items-center justify-center text-[7px] font-black text-white"
+              <div key={i} className="w-3.5 h-3.5 rounded-full border border-black flex items-center justify-center text-[7px] font-black text-white transition-transform duration-200 group-hover:scale-110"
                 style={{ background: ["#f97316", "#3b82f6", "#a855f7"][i], zIndex: 3 - i }} >
                 {["A", "B", "C"][i]}
               </div>
@@ -790,15 +838,23 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
               </span>
             </div>
 
-            {/* Brutalist Flat Progress Bar */}
-            <div className="relative h-2.5 bg-zinc-100 border-2 border-black overflow-hidden" style={{ borderRadius: 0 }}>
-              <div className="h-full transition-all duration-500"
+            {/* Brutalist Flat Progress Bar with Animated Shimmer */}
+            <div className="relative h-3 bg-zinc-100 border-2 border-black overflow-hidden" style={{ borderRadius: 0 }}>
+              <div 
+                className="h-full transition-all duration-500 relative"
                 style={{
                   width: `${pct}%`,
                   background: isReady ? BRAND.green : isAlmostThere ? BRAND.yellow : item.color,
                   borderRight: pct > 0 ? "2px solid #000" : "none"
                 }}
-              />
+              >
+                {/* Active scan-line shimmer animation */}
+                {isReady && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-[shimmerProgress_1.5s_linear_infinite]" 
+                    style={{ backgroundSize: "200% 100%" }}
+                  />
+                )}
+              </div>
             </div>
 
             {/* Zeigarnik Effect micro-copy */}
@@ -831,24 +887,24 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
             </div>
           ) : !isLoggedIn ? (
             <a href="/login"
-              className="w-full py-2.5 font-black text-xs text-center border-3 border-black block leading-none transition-all"
+              className="w-full py-2.5 font-black text-xs text-center border-3 border-black block leading-none transition-all hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#000] active:translate-y-0 active:shadow-[2px_2px_0_#000]"
               style={{ background: BRAND.yellow, color: BRAND.black, boxShadow: "3px 3px 0 #000", ...kf }}>
               {kh ? "ចូលគណនី →" : "LOG IN TO CLAIM"}
             </a>
           ) : canClaim ? (
             <button
               onClick={handleClaim}
-              className="w-full py-2.5 font-black text-xs border-3 border-black relative overflow-hidden flex items-center justify-center gap-1.5 cursor-pointer leading-none"
+              className="w-full py-3 font-black text-xs border-3 border-black relative overflow-hidden flex items-center justify-center gap-1.5 cursor-pointer leading-none transition-all hover:-translate-y-1 hover:brightness-110 active:translate-y-0 active:shadow-[2px_2px_0_#000]"
               style={{
                 background: item.color,
                 color: BRAND.black,
-                boxShadow: pulse ? `0 0 0 3px ${item.color}55, 3px 3px 0 #000` : "3px 3px 0 #000",
-                transform: pulse ? "scale(1.02)" : "scale(1)",
-                transition: "all 0.15s ease",
+                boxShadow: "4px 4px 0 #000",
+                animation: "buttonPulse 2.5s ease-in-out infinite",
+                "--pulse-color": `${item.color}66`,
                 ...kf,
-              }}
+              } as React.CSSProperties}
             >
-              <Gift size={12} strokeWidth={3} />
+              <Gift size={12} strokeWidth={3} className="animate-bounce" />
               <span>{kh ? "ទទួលឥឡូវនេះ!" : "CLAIM NOW!"}</span>
             </button>
           ) : (
