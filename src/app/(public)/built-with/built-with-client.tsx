@@ -130,7 +130,31 @@ const REFERENCES: { name: string; url?: string; icon?: Item["icon"]; note?: { en
   {
     name: "Mentors & Coaches (Team #50777)",
     icon: Globe,
-    note: { en: "Technical advisors and mentors providing codebase feedback & program guidance", kh: "ទីប្រឹក្សាបច្ចេកទេស និងគ្រូណែនាំដែលផ្តល់មតិកែលម្អលើកូដ និងការណែនាំកម្មវិធីសិក្សា" }
+    note: { en: "Technical advisors and mentors providing codebase feedback & program guidance", kh: "ទីប្រឹក្សាបច្ទេកទេស និងគ្រូណែនាំដែលផ្តល់មតិកែលម្អលើកូដ និងការណែនាំកម្មវិធីសិក្សា" }
+  },
+  {
+    name: "KWD Privacy Policy (PDF Document)",
+    icon: BookOpen,
+    url: "/report-kwd/គោលការណ៍ភាពឯកជន_KWD.pdf",
+    note: { en: "Official Privacy Policy document for KWD (Khmer)", kh: "ឯកសារគោលការណ៍ភាពឯកជនផ្លូវការសម្រាប់ KWD (ភាសាខ្មែរ)" }
+  },
+  {
+    name: "KWD Terms of Use (PDF Document)",
+    icon: BookOpen,
+    url: "/report-kwd/លក្ខខណ្ឌប្រើប្រាស់_KWD.pdf",
+    note: { en: "Official Terms of Service document for KWD (Khmer)", kh: "ឯកសារលក្ខខណ្ឌប្រើប្រាស់ផ្លូវការសម្រាប់ KWD (ភាសាខ្មែរ)" }
+  },
+  {
+    name: "KWD Brand Guidelines (PDF Document)",
+    icon: BookOpen,
+    url: "/report-kwd/អំពីពួកយើង_Brand_KWD.pdf",
+    note: { en: "Official brand visual identity & logo guidelines for KWD (Khmer)", kh: "ឯកសារគោលការណ៍ណែនាំអត្តសញ្ញាណម៉ាក KWD (ភាសាខ្មែរ)" }
+  },
+  {
+    name: "KWD Digital Road Safety Education System Report (PDF Document)",
+    icon: BookOpen,
+    url: "/report-kwd/ប្រព័ន្ធអប់រំសុវត្ថិភាពចរាចរណ៍ឌីជីថល_KWD-SYS-RPT-2026.pdf",
+    note: { en: "Official system architecture, implementation details & SDG alignment report (Khmer)", kh: "របាយការណ៍ផ្លូវការស្តីពីស្ថាបត្យកម្មប្រព័ន្ធ ការអនុវត្ត និងគោលដៅ SDG (ភាសាខ្មែរ)" }
   },
 ];
 
