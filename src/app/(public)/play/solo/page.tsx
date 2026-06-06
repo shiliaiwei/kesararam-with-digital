@@ -536,35 +536,41 @@ export default function SoloPage() {
       </div>
 
       <div className="relative z-10 flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full justify-start sm:justify-center overflow-y-auto min-h-0">
-        {/* Q-index + difficulty + timer row (Stable row) */}
+        {/* Q-index + difficulty + timer row (Stable row) - Smaller labels */}
         <div className="flex items-center justify-between gap-2 px-3 py-2 w-full bg-zinc-900 border-2 border-black rounded-none h-16 flex-shrink-0">
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar flex-nowrap py-1">
-            <span className="shrink-0 text-zinc-300 text-xs font-black uppercase tracking-widest bg-zinc-850 px-3 py-1.5 rounded-none border border-zinc-800" style={khFont}>
+            <span className="shrink-0 text-zinc-300 text-[9px] sm:text-[10px] font-black uppercase tracking-widest bg-zinc-850 px-2 py-1 rounded-none border border-zinc-800" style={khFont}>
               {kh ? `${phase.qIndex + 1}/${phase.session.questions.length}` : `Q ${phase.qIndex + 1} / ${phase.session.questions.length}`}
             </span>
-            <span className="shrink-0 text-yellow-400 font-black text-xs uppercase bg-yellow-400/10 px-3 py-1.5 rounded-none border border-yellow-400/30" style={khFont}>
+            <span className="shrink-0 text-yellow-400 font-black text-[9px] sm:text-[10px] uppercase bg-yellow-400/10 px-2 py-1 rounded-none border border-yellow-400/30" style={khFont}>
               {q.difficulty || "Mixed"}
             </span>
             {q.topicCode && (
-              <span className="shrink-0 text-zinc-400 font-mono text-xs bg-zinc-850 px-3 py-1.5 rounded-none border border-zinc-800 tracking-wider">
+              <span className="shrink-0 text-zinc-400 font-mono text-[9px] sm:text-[10px] bg-zinc-850 px-2 py-1 rounded-none border border-zinc-800 tracking-wider">
                 {q.topicCode.trim()}
               </span>
             )}
+          </div>
+          <div className="flex items-center gap-2">
+            {/* Mute icon button */}
             <button
               onClick={() => setMuted(m => !m)}
-              className="shrink-0 p-2 rounded-none bg-zinc-850 border border-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all"
+              className={`shrink-0 p-1.5 rounded-none border transition-all ${muted
+                ? "bg-red-950/40 border-red-500/60 text-red-400"
+                : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
+                }`}
               title={muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}
             >
-              {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+              {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
             </button>
-          </div>
-          <div className="shrink-0 scale-90 origin-right">
-            <CountdownTimer
-              endsAt={phase.endsAt}
-              totalSeconds={phase.session.timePerQuestion}
-              onExpire={handleTimeout}
-              muted={muted}
-            />
+            <div className="shrink-0 scale-90 origin-right">
+              <CountdownTimer
+                endsAt={phase.endsAt}
+                totalSeconds={phase.session.timePerQuestion}
+                onExpire={handleTimeout}
+                muted={muted}
+              />
+            </div>
           </div>
         </div>
 

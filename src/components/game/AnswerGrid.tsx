@@ -176,27 +176,7 @@ export function AnswerGrid({
                 <span style={{ marginRight: "4px", opacity: 0.95 }}>{cfg.label}</span>
               </div>
 
-              {/* Result badge */}
-              {(isCorrect || isMyWrong) && (
-                <div style={{
-                  position: "absolute",
-                  top: "4px",
-                  right: "4px",
-                  width: "18px",
-                  height: "18px",
-                  backgroundColor: isCorrect ? CORRECT_BG : WRONG_BG,
-                  color: "#fff",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "11px",
-                  fontWeight: 900,
-                  borderRadius: 0,
-                  border: "1.5px solid #fff",
-                }}>
-                  {isCorrect ? "✓" : "✗"}
-                </div>
-              )}
+              {/* No result badge - removed */}
             </button>
           );
         }
@@ -251,13 +231,7 @@ export function AnswerGrid({
               {text}
             </span>
 
-            {/* Result icon */}
-            {isCorrect && (
-              <span style={{ color: isOtherWrong ? "#18181b" : "#fff", fontSize: "16px", fontWeight: 900, flexShrink: 0 }}>✓</span>
-            )}
-            {isMyWrong && (
-              <span style={{ color: "#fff", fontSize: "16px", fontWeight: 900, flexShrink: 0 }}>✗</span>
-            )}
+            {/* No result icons - removed */}
           </button>
         );
       })}

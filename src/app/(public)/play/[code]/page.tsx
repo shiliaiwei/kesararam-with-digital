@@ -731,31 +731,44 @@ export default function StudentGamePage() {
         </div>
 
         <div className="relative z-10 flex-1 flex flex-col p-2.5 sm:p-4 gap-2 max-w-2xl mx-auto w-full justify-start sm:justify-center overflow-hidden min-h-0">
-          {/* Subtle Stats Row (Low Capacity) */}
+          {/* Subtle Stats Row (Low Capacity) - Smaller labels */}
           <div className="flex items-center justify-between gap-2 px-1 w-full bg-transparent border-0 flex-shrink-0">
             <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar flex-nowrap">
-              <span className="shrink-0 text-zinc-300 text-[10px] sm:text-xs font-black uppercase tracking-wider bg-zinc-850 px-2.5 py-1 rounded-none border border-zinc-800" style={khFont}>
+              <span className="shrink-0 text-zinc-300 text-[9px] sm:text-[10px] font-black uppercase tracking-wider bg-zinc-850 px-2 py-0.5 rounded-none border border-zinc-800" style={khFont}>
                 {kh ? `${questionIndex + 1}/${totalQuestions}` : `Q ${questionIndex + 1} / ${totalQuestions}`}
               </span>
-              <span className="shrink-0 text-yellow-400 text-[10px] sm:text-xs font-black uppercase bg-yellow-400/10 px-2.5 py-1 rounded-none border border-yellow-400/30" style={khFont}>
+              <span className="shrink-0 text-yellow-400 text-[9px] sm:text-[10px] font-black uppercase bg-yellow-400/10 px-2 py-0.5 rounded-none border border-yellow-400/30" style={khFont}>
                 {currentQuestion.difficulty || "Mixed"}
               </span>
               {(currentQuestion as any).topicCode && (
-                <span className="shrink-0 text-zinc-400 font-mono text-[10px] sm:text-xs bg-zinc-850 px-2.5 py-1 rounded-none border border-zinc-800 tracking-wider">
+                <span className="shrink-0 text-zinc-400 font-mono text-[9px] sm:text-[10px] bg-zinc-850 px-2 py-0.5 rounded-none border border-zinc-800 tracking-wider">
                   {(currentQuestion as any).topicCode.trim()}
                 </span>
               )}
             </div>
-            {endsAt && (
-              <div className="shrink-0 scale-75 sm:scale-85 origin-right">
-                <CountdownTimer
-                  endsAt={endsAt}
-                  totalSeconds={timePerQuestion}
-                  onExpire={() => { }}
-                  muted={muted}
-                />
-              </div>
-            )}
+            <div className="flex items-center gap-2">
+              {/* Mute icon button */}
+              <button
+                onClick={() => setMuted(m => !m)}
+                className={`shrink-0 p-1.5 rounded-none border transition-all ${muted
+                  ? "bg-red-950/40 border-red-500/60 text-red-400"
+                  : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
+                  }`}
+                title={muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}
+              >
+                {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+              </button>
+              {endsAt && (
+                <div className="shrink-0 scale-75 sm:scale-85 origin-right">
+                  <CountdownTimer
+                    endsAt={endsAt}
+                    totalSeconds={timePerQuestion}
+                    onExpire={() => { }}
+                    muted={muted}
+                  />
+                </div>
+              )}
+            </div>
           </div>
 
 
