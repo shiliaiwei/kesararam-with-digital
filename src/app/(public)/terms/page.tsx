@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useLang } from "@/context/lang-context";
 
 // ── 10 sections verbatim from KWD_លក្ខខណ្ឌប្រើប្រាស់.txt ──────────────────
-const SECTIONS = [
+export const SECTIONS = [
   {
     id: "s1",
     num: "១",
