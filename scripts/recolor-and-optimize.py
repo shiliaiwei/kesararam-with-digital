@@ -25,15 +25,15 @@ def main():
     os.makedirs(dest_dir, exist_ok=True)
     
     mapping = [
-        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_notebook_v5_1780606680872.png", "notebook.webp"),
-        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_pencil_v5_1780606694164.png", "pencil.webp"),
-        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_pen_v5_1780606708954.png", "pen.webp"),
-        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_ruler_v4_1780606592435.png", "ruler.webp"),
-        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_eraser_v4_1780606626724.png", "eraser.webp"),
-        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_highlighter_v3_1780606023284.png", "highlighter.webp"),
-        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_sticky_notes_v3_1780606049771.png", "sticky_notes.webp"),
-        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_geometry_set_v3_1780606074919.png", "geometry_set.webp"),
-        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_study_planner_v3_1780606102940.png", "study_planner.webp")
+        ("/Users/Apple16/.gemini/antigravity-ide/brain/56393010-a813-4f18-8f2f-03b046024760/reward_notebook_v6_1780736248188.png", "notebook.webp"),
+        ("/Users/Apple16/.gemini/antigravity-ide/brain/56393010-a813-4f18-8f2f-03b046024760/reward_pencil_v6_1780736264869.png", "pencil.webp"),
+        ("/Users/Apple16/.gemini/antigravity-ide/brain/56393010-a813-4f18-8f2f-03b046024760/reward_pen_v6_1780736281738.png", "pen.webp"),
+        ("/Users/Apple16/.gemini/antigravity-ide/brain/56393010-a813-4f18-8f2f-03b046024760/reward_ruler_v5_1780736296036.png", "ruler.webp"),
+        ("/Users/Apple16/.gemini/antigravity-ide/brain/56393010-a813-4f18-8f2f-03b046024760/reward_eraser_v5_1780736311591.png", "eraser.webp"),
+        ("/Users/Apple16/.gemini/antigravity-ide/brain/56393010-a813-4f18-8f2f-03b046024760/reward_highlighter_v4_1780736327060.png", "highlighter.webp"),
+        ("/Users/Apple16/.gemini/antigravity-ide/brain/56393010-a813-4f18-8f2f-03b046024760/reward_sticky_notes_v4_1780736344095.png", "sticky_notes.webp"),
+        ("/Users/Apple16/.gemini/antigravity-ide/brain/56393010-a813-4f18-8f2f-03b046024760/reward_geometry_set_v4_1780736360473.png", "geometry_set.webp"),
+        ("/Users/Apple16/.gemini/antigravity-ide/brain/56393010-a813-4f18-8f2f-03b046024760/reward_study_planner_v4_1780736377887.png", "study_planner.webp")
     ]
     
     for src_path, dest_name in mapping:
