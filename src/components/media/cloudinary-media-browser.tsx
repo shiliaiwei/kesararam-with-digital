@@ -96,7 +96,8 @@ export function CloudinaryMediaBrowser({
       console.log('Images loaded:', data.resources?.length || 0);
       setImages(data.resources || []);
     } catch (err: any) {
-      console.error('Error loading images:', err);
+        const msg = err instanceof Error ? err.message : String(err);
+        console.error('Error loading images:', msg);
       setError(err.message || "Failed to load images. Please try again.");
       setImages([]);
     } finally {

@@ -10,7 +10,9 @@ export function Footer() {
   const tr = t[lang].footer;
   const nav = t[lang].nav;
   const kh = lang === "kh";
-  const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const kf = kh
+    ? { fontFamily: '"GoogleSans", "Google Sans", sans-serif', fontWeight: 700 }
+    : { fontFamily: '"StackSansNotch", sans-serif' };
 
   const LEARN_LINKS = [
     { label: kh ? "សញ្ញាចរាចរ" : "Traffic Signs", href: "/road-sign" },
@@ -26,6 +28,7 @@ export function Footer() {
     { label: nav.about, href: "/about" },
     { label: nav.login, href: "/login" },
     { label: kh ? "ម៉ាករបស់យើង" : "Brand Guideline", href: "/brand" },
+    { label: kh ? "ឯកសារយោង" : "Bibliography", href: "/built-with" },
   ];
 
   return (
@@ -41,8 +44,10 @@ export function Footer() {
           <p className="text-sm font-bold text-zinc-700 leading-relaxed text-center max-w-md" style={kf}>
             {tr.tagline}
           </p>
-          <p className="text-xs text-zinc-500 mt-2 text-center" style={{ fontFamily: "Siemreap, sans-serif" }}>
-            {"រៀន"} {"\u2014"} {"ប្រកួត"} {"\u2014"} {"ការពារជីវិត"}
+          <p className="text-xs text-zinc-500 mt-2 text-center" style={kf}>
+            {kh
+              ? "រៀនដើម្បីដឹង·ប្រកួតដើម្បីពូកែ·ការពារដើម្បីជីវិត"
+              : "Learn to know · Compete to excel · Protect for life"}
           </p>
         </div>
 
@@ -148,7 +153,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/terms" className="text-sm text-zinc-600 hover:text-black font-medium transition-colors" style={kf}>
-                  {kh ? "លក្ខខណ្ឌប្រើប្រាស់" : "Terms of Service"}
+                  {kh ? "លក្ខខណ្ឌប្រើប្រាស់" : "Terms of Use"}
                 </Link>
               </li>
             </ul>

@@ -20,6 +20,7 @@ export const users = pgTable("users", {
   displayName: text("display_name"),
   avatar: text("avatar"),
   avatarChangedAt: timestamp("avatar_changed_at"),
+  usernameChangedAt: timestamp("username_changed_at"),
   audioMuted: boolean("audio_muted").default(false).notNull(),
   isActive: boolean("is_active").default(true).notNull(),
   isSuspended: boolean("is_suspended").default(false).notNull(),
@@ -32,6 +33,21 @@ export const users = pgTable("users", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
   createdBy: integer("created_by"),
+  schoolName: text("school_name"),
+  province: text("province"),
+  gradeLevel: text("grade_level"),
+  section: text("section"),
+  parentContact: text("parent_contact"),
+  claimedRewards: text("claimed_rewards").default("[]").notNull(),
+  googleId: text("google_id").unique(),
+  isProfilePublic: boolean("is_profile_public").default(false).notNull(),
+  isNamePublic: boolean("is_name_public").default(false).notNull(),
+  isUsernamePublic: boolean("is_username_public").default(false).notNull(),
+  isSchoolPublic: boolean("is_school_public").default(false).notNull(),
+  isProvincePublic: boolean("is_province_public").default(false).notNull(),
+  isGradePublic: boolean("is_grade_public").default(false).notNull(),
+  isSectionPublic: boolean("is_section_public").default(false).notNull(),
+  isStatsPublic: boolean("is_stats_public").default(false).notNull(),
 });
 
 export const classes = pgTable("classes", {
@@ -42,6 +58,11 @@ export const classes = pgTable("classes", {
     .references(() => users.id),
   code: text("code").notNull().unique(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+  gradeLevel: text("grade_level"),
+  schoolName: text("school_name"),
+  province: text("province"),
+  section: text("section"),
+  status: text("status").default("active").notNull(), // active, locked, archived
 });
 
 export const classEnrollments = pgTable("class_enrollments", {
@@ -56,10 +77,26 @@ export const classEnrollments = pgTable("class_enrollments", {
   enrolledAt: timestamp("enrolled_at").defaultNow().notNull(),
 });
 
+export const inviteCodes = pgTable("invite_codes", {
+  id: serial("id").primaryKey(),
+  code: text("code").notNull().unique(),
+  teacherId: integer("teacher_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  classId: integer("class_id")
+    .references(() => classes.id, { onDelete: "cascade" }),
+  isUsed: boolean("is_used").default(false).notNull(),
+  usedById: integer("used_by_id").references(() => users.id, { onDelete: "set null" }),
+  usedAt: timestamp("used_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
 export type Class = typeof classes.$inferSelect;
 export type ClassEnrollment = typeof classEnrollments.$inferSelect;
+export type InviteCode = typeof inviteCodes.$inferSelect;
+export type NewInviteCode = typeof inviteCodes.$inferInsert;
 
 /**
  * Relations for classes
@@ -94,3 +131,22 @@ export const classEnrollmentsRelations = relations(
     }),
   })
 );
+
+/**
+ * Relations for invite codes
+ */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const inviteCodesRelations = relations(inviteCodes, ({ one }: any) => ({
+  teacher: one(users, {
+    fields: [inviteCodes.teacherId],
+    references: [users.id],
+  }),
+  usedBy: one(users, {
+    fields: [inviteCodes.usedById],
+    references: [users.id],
+  }),
+  class: one(classes, {
+    fields: [inviteCodes.classId],
+    references: [classes.id],
+  }),
+}));

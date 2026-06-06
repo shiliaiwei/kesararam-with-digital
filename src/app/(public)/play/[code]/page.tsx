@@ -274,7 +274,12 @@ export default function StudentGamePage() {
         if (!joinRes.ok) {
           const data = await joinRes.json();
           if (joinRes.status === 401) { router.push(`/login?redirect=/play/${code}`); return; }
-          if (joinRes.status === 403 || joinRes.status === 409) { setJoining(false); return; }
+          if (joinRes.status === 403) {
+            if (data.error && data.error.includes("complete your profile")) {
+              router.push("/profile/student");
+              return;
+            }
+          }
           setJoinError(sanitizeError(data.error) || "Failed to join session");
           setJoining(false);
           return;

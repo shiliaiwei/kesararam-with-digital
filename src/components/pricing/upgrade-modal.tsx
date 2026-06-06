@@ -31,7 +31,7 @@ const PLANS = [
     badge: { en: "Most Popular", kh: "ពេញនិយមបំផុត" },
     tagline: { en: "For teachers & instructors", kh: "សម្រាប់គ្រូ និងអ្នកបង្រៀន" },
     cta: { en: "Apply Now", kh: "ដាក់ពាក្យឥឡូវនេះ" },
-    scarcity: { en: "🔥 50% Off Promo active!", kh: "🔥 ប្រូម៉ូសិនបញ្ចុះតម្លៃ ៥០%!" },
+    scarcity: { en: "🔥 70% Off Promo active!", kh: "🔥 ប្រូម៉ូសិនបញ្ចុះតម្លៃ ៧០%!" },
     features: [
       { en: "Unlimited live game sessions", kh: "វគ្គហ្គេមផ្ទាល់គ្មានដែនកំណត់", icon: Zap },
       { en: "All 8 question categories", kh: "ប្រភេទសំណួរទាំង ៨", icon: Check },
@@ -65,10 +65,20 @@ const PLANS = [
 ];
 
 export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeModalProps) {
-  const [yearly, setYearly] = useState(false);
+  const [yearly, setYearly] = useState(true);
   const router = useRouter();
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const khFont = { fontFamily: '"GoogleSans", "Google Sans", sans-serif' };
+
+  useEffect(() => {
+    if (!open) return;
+    const saved = localStorage.getItem("kwd-billing-cycle");
+    if (saved === "yearly") {
+      setYearly(true);
+    } else if (saved === "monthly") {
+      setYearly(false);
+    }
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -131,7 +141,11 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
                 {kh ? "ប្រចាំខែ" : "Monthly"}
               </span>
               <button
-                onClick={() => setYearly(v => !v)}
+                onClick={() => {
+                  const nextVal = !yearly;
+                  setYearly(nextVal);
+                  localStorage.setItem("kwd-billing-cycle", nextVal ? "yearly" : "monthly");
+                }}
                 role="switch"
                 aria-checked={yearly}
                 className={`relative w-9 h-5 rounded-full transition-all duration-300 ${yearly ? "bg-amber-400" : "bg-white/20"}`}
@@ -154,7 +168,7 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
               
               // Define prices based on promo
               const getPrice = (key: string, isYearly: boolean) => {
-                if (key === "teacher_pro") return isYearly ? 3.33 : 5;
+                if (key === "teacher_pro") return isYearly ? 2 : 3;
                 return 0; // Handled separately
               };
               const getStandardPrice = (key: string, isYearly: boolean) => {
@@ -199,7 +213,7 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
                       </div>
                       {yearly && (
                         <div className="text-[10px] font-bold text-green-400 mt-1 bg-green-500/10 border border-green-500/20 px-1.5 py-0.5 rounded w-fit">
-                          {kh ? "សន្សំបាន៖ $២០/ឆ្នាំ" : "You Save: $20/yr"}
+                          {kh ? "សន្សំបាន៖ $១២/ឆ្នាំ" : "You Save: $12/yr"}
                         </div>
                       )}
                     </div>
@@ -209,12 +223,12 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
                         <span className="text-white/50 font-bold" style={khFont}>{kh ? "ផែនការសាលារៀន" : "School Plan"}</span>
                         <div className="flex flex-col items-end">
                           <div className="flex items-center gap-1.5">
-                            <span className="font-black text-white">${yearly ? 14.17 : 19}</span>
+                            <span className="font-black text-white">${yearly ? 9 : 12}</span>
                             <span className="text-white/35 text-[10px]">{kh ? "USD/ខែ" : "USD/mo"}</span>
                             <span className="line-through text-white/20 text-[10px]">${yearly ? 29.17 : 39}</span>
                           </div>
                           {yearly && (
-                            <span className="text-[9px] font-bold text-green-400 mt-0.5">{kh ? "សន្សំ៖ $៥៨/ឆ្នាំ" : "Save: $58/yr"}</span>
+                            <span className="text-[9px] font-bold text-green-400 mt-0.5">{kh ? "សន្សំ៖ $៣៦/ឆ្នាំ" : "Save: $36/yr"}</span>
                           )}
                         </div>
                       </div>
@@ -222,12 +236,12 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
                         <span className="text-white/50 font-bold" style={khFont}>{kh ? "ផែនការវិទ្យាស្ថាន" : "Institute Plan"}</span>
                         <div className="flex flex-col items-end">
                           <div className="flex items-center gap-1.5">
-                            <span className="font-black text-white">${yearly ? 21.67 : 29}</span>
+                            <span className="font-black text-white">${yearly ? 13.5 : 18}</span>
                             <span className="text-white/35 text-[10px]">{kh ? "USD/ខែ" : "USD/mo"}</span>
                             <span className="line-through text-white/20 text-[10px]">${yearly ? 44.17 : 59}</span>
                           </div>
                           {yearly && (
-                            <span className="text-[9px] font-bold text-green-400 mt-0.5">{kh ? "សន្សំ៖ $៨៨/ឆ្នាំ" : "Save: $88/yr"}</span>
+                            <span className="text-[9px] font-bold text-green-400 mt-0.5">{kh ? "សន្សំ៖ $៥៤/ឆ្នាំ" : "Save: $54/yr"}</span>
                           )}
                         </div>
                       </div>

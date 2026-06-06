@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AlertTriangle, Navigation, RefreshCw, Layers, ShieldAlert, Car, TriangleAlert, Info } from "lucide-react";
+import {
+  AlertTriangle, Navigation, RefreshCw, Layers,
+  ShieldAlert, Car, TriangleAlert, Info, ChevronDown, ChevronUp,
+} from "lucide-react";
 import { useLang } from "@/context/lang-context";
 
 interface MapboxTrafficMapProps {
@@ -10,15 +13,16 @@ interface MapboxTrafficMapProps {
   zoom?: number;
 }
 
-// ── Bilingual road safety alerts ─────────────────────────────────────────────
 const ROAD_ALERTS = [
   {
     id: 1,
     type: "accident",
     icon: Car,
     color: "bg-red-500",
+    borderColor: "border-l-red-500",
     title: { en: "Accident Risk Zone", km: "តំបន់ប្រថុយប្រថាន" },
     badge: { en: "Active Alert", km: "ការព្រមានសកម្ម" },
+    badgeColor: "bg-red-500",
     desc: {
       en: "National Road 6 — High accident frequency near Skun intersection. Drive carefully.",
       km: "ផ្លូវជាតិលេខ ៦ — ចំនួនគ្រោះថ្នាក់ខ្ពស់នៅជិតផ្លូវប្រសព្វស្គូន។ បើកបរដោយប្រុងប្រយ័ត្ន។",
@@ -29,8 +33,10 @@ const ROAD_ALERTS = [
     type: "congestion",
     icon: AlertTriangle,
     color: "bg-yellow-500",
+    borderColor: "border-l-yellow-500",
     title: { en: "Heavy Congestion", km: "ការស្ទះចរាចរណ៍ធ្ងន់" },
     badge: { en: "Peak Hours: 7–9am, 5–7pm", km: "ម៉ោងមមាញឹក: ៧–៩ព្រឹក, ៥–៧ល្ងាច" },
+    badgeColor: "bg-yellow-500",
     desc: {
       en: "Phnom Penh city center — Rush hour traffic. Expect delays on Monivong Blvd.",
       km: "មជ្ឈមណ្ឌលក្រុងភ្នំពេញ — ចរាចរណ៍ម៉ោងមមាញឹក។ រំពឹងការពន្យារពេលនៅផ្លូវវ៉ានីវ៉ុង។",
@@ -41,8 +47,10 @@ const ROAD_ALERTS = [
     type: "road",
     icon: TriangleAlert,
     color: "bg-orange-500",
+    borderColor: "border-l-orange-500",
     title: { en: "Road Construction", km: "ការសាងសង់ផ្លូវវិថី" },
     badge: { en: "Ongoing", km: "កំពុងដំណើរការ" },
+    badgeColor: "bg-orange-500",
     desc: {
       en: "National Road 4 — Lane closure near Kampong Speu. Reduce speed to 40km/h.",
       km: "ផ្លូវជាតិលេខ ៤ — បិទផ្លូវជិតកំពង់ស្ពឺ។ កាត់បន្ថយល្បឿនដល់ ៤០គ.ម/ម.",
@@ -53,8 +61,10 @@ const ROAD_ALERTS = [
     type: "safety",
     icon: ShieldAlert,
     color: "bg-blue-500",
+    borderColor: "border-l-blue-500",
     title: { en: "Safety Reminder", km: "ការរំលឹកសុវត្ថិភាព" },
     badge: { en: "Always Active", km: "សកម្មជានិច្ច" },
+    badgeColor: "bg-blue-500",
     desc: {
       en: "Wear seatbelts at all times. Drunk driving enforcement active on all major roads.",
       km: "ពាក់ខ្សែក្រវ៉ាត់សុវត្ថិភាពជានិច្ច។ ការអនុវត្តការបើកបរស្រវឹងសកម្មនៅគ្រប់ផ្លូវវិថីធំ។",
@@ -65,8 +75,10 @@ const ROAD_ALERTS = [
     type: "speed",
     icon: TriangleAlert,
     color: "bg-purple-500",
+    borderColor: "border-l-purple-500",
     title: { en: "Speed Camera Zone", km: "តំបន់កាមេរ៉ាល្បឿន" },
     badge: { en: "Enforced", km: "អនុវត្ត" },
+    badgeColor: "bg-purple-500",
     desc: {
       en: "National Road 1 — Speed cameras active between Phnom Penh and Neak Loeung.",
       km: "ផ្លូវជាតិលេខ ១ — កាមេរ៉ាល្បឿនសកម្មរវាងភ្នំពេញ និងនាគឡើង។",
@@ -77,8 +89,10 @@ const ROAD_ALERTS = [
     type: "flood",
     icon: AlertTriangle,
     color: "bg-cyan-600",
+    borderColor: "border-l-cyan-600",
     title: { en: "Flood Risk Road", km: "ផ្លូវវិថីប្រថុយទឹកជំនន់" },
     badge: { en: "Seasonal Warning", km: "ការព្រមានតាមរដូវ" },
+    badgeColor: "bg-cyan-600",
     desc: {
       en: "Mekong riverside roads — Flooding possible during rainy season. Check before travel.",
       km: "ផ្លូវវិថីតាមដងទន្លេមេគង្គ — ទឹកជំនន់អាចកើតមានក្នុងរដូវវស្សា។ ពិនិត្យមុនធ្វើដំណើរ។",
@@ -89,8 +103,10 @@ const ROAD_ALERTS = [
     type: "night",
     icon: ShieldAlert,
     color: "bg-zinc-700",
+    borderColor: "border-l-zinc-700",
     title: { en: "Night Driving Alert", km: "ការព្រមានបើកបរពេលយប់" },
     badge: { en: "8pm – 5am", km: "ម៉ោង ៨យប់ – ៥ព្រឹក" },
+    badgeColor: "bg-zinc-700",
     desc: {
       en: "Reduced visibility on rural roads at night. Use headlights and reduce speed.",
       km: "ការមើលឃើញថយចុះនៅផ្លូវវិថីជនបទពេលយប់។ ប្រើភ្លើងមុខ និងកាត់បន្ថយល្បឿន។",
@@ -101,13 +117,24 @@ const ROAD_ALERTS = [
     type: "checkpoint",
     icon: Car,
     color: "bg-green-600",
+    borderColor: "border-l-green-600",
     title: { en: "Police Checkpoint", km: "ចំណុចត្រួតពិនិត្យប៉ូលិស" },
     badge: { en: "Active", km: "សកម្ម" },
+    badgeColor: "bg-green-600",
     desc: {
       en: "National Road 5 — Document and vehicle inspection checkpoint near Prek Pnov.",
       km: "ផ្លូវជាតិលេខ ៥ — ចំណុចត្រួតពិនិត្យឯកសារ និងយានយន្តជិតព្រែកព្នៅ។",
     },
   },
+];
+
+const FILTER_TABS = [
+  { key: "all", en: "All", km: "ទាំងអស់" },
+  { key: "accident", en: "Accidents", km: "គ្រោះថ្នាក់" },
+  { key: "congestion", en: "Congestion", km: "ស្ទះ" },
+  { key: "road", en: "Construction", km: "សាងសង់" },
+  { key: "safety", en: "Safety", km: "សុវត្ថិភាព" },
+  { key: "checkpoint", en: "Checkpoint", km: "ចំណុចត្រួត" },
 ];
 
 const UI = {
@@ -117,7 +144,7 @@ const UI = {
     live: "Live",
     satellite: "Satellite",
     streets: "Streets",
-    legend: "Traffic Legend:",
+    legend: "Traffic:",
     smooth: "Smooth",
     moderate: "Moderate",
     heavy: "Heavy",
@@ -130,6 +157,9 @@ const UI = {
     loadingPowered: "Powered by Mapbox GL",
     mapFailed: "Map Failed to Load",
     retry: "Retry",
+    showAll: "Show all alerts",
+    showLess: "Show less",
+    noAlerts: "No alerts in this category",
   },
   km: {
     header: "ផែនទីចរាចរណ៍ផ្ទាល់",
@@ -137,7 +167,7 @@ const UI = {
     live: "ផ្ទាល់",
     satellite: "រូបភាពផ្កាយរណប",
     streets: "ផ្លូវវិថី",
-    legend: "សញ្ញា:",
+    legend: "ចរាចរណ៍:",
     smooth: "រលូន",
     moderate: "មធ្យម",
     heavy: "ធ្ងន់",
@@ -150,8 +180,13 @@ const UI = {
     loadingPowered: "ដំណើរការដោយ Mapbox GL",
     mapFailed: "ផែនទីបរាជ័យ",
     retry: "ព្យាយាមម្ដងទៀត",
+    showAll: "បង្ហាញការព្រមានទាំងអស់",
+    showLess: "បង្ហាញតិច",
+    noAlerts: "គ្មានការព្រមានក្នុងប្រភេទនេះ",
   },
 } as const;
+
+const VISIBLE_DEFAULT = 4;
 
 export function MapboxTrafficMap({
   lat = 11.5564,
@@ -163,22 +198,28 @@ export function MapboxTrafficMap({
   const [mapLoaded, setMapLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [mapStyle, setMapStyle] = useState<"streets" | "satellite">("streets");
+  const [activeFilter, setActiveFilter] = useState("all");
+  const [expanded, setExpanded] = useState(false);
   const { lang } = useLang();
   const isKh = lang === "kh";
   const kf = isKh ? { fontFamily: "Siemreap, sans-serif" } : {};
   const t = isKh ? UI.km : UI.en;
 
+  const filtered =
+    activeFilter === "all"
+      ? ROAD_ALERTS
+      : ROAD_ALERTS.filter((a) => a.type === activeFilter);
+  const visibleAlerts = expanded ? filtered : filtered.slice(0, VISIBLE_DEFAULT);
+
   useEffect(() => {
     if (!mapContainerRef.current) return;
     if (mapRef.current) return;
-
     let cancelled = false;
 
     const initMap = async () => {
       try {
         const mapboxgl = (await import("mapbox-gl")).default;
         if (cancelled) return;
-
         if (!document.getElementById("mapbox-gl-css")) {
           const link = document.createElement("link");
           link.id = "mapbox-gl-css";
@@ -186,9 +227,7 @@ export function MapboxTrafficMap({
           link.href = "https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css";
           document.head.appendChild(link);
         }
-
         mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN!;
-
         const map = new mapboxgl.Map({
           container: mapContainerRef.current!,
           style: "mapbox://styles/mapbox/streets-v12",
@@ -197,9 +236,7 @@ export function MapboxTrafficMap({
           attributionControl: false,
           trackResize: true,
         });
-
         mapRef.current = map;
-
         map.on("load", () => {
           if (cancelled) return;
           map.addSource("mapbox-traffic", {
@@ -227,46 +264,22 @@ export function MapboxTrafficMap({
           map.addControl(new mapboxgl.NavigationControl(), "top-right");
           map.addControl(new mapboxgl.FullscreenControl(), "top-right");
           map.addControl(new mapboxgl.AttributionControl({ compact: true }), "bottom-right");
-          requestAnimationFrame(() => {
-            if (mapRef.current) map.resize();
-          });
+          requestAnimationFrame(() => { if (mapRef.current) map.resize(); });
           setMapLoaded(true);
         });
-
         map.on("error", (e: any) => {
           if (cancelled) return;
-
-          // Mapbox error events often have non-enumerable props — extract carefully
           const err = e?.error;
-          const msg: string =
-            err?.message ||
-            e?.message ||
-            (typeof e === "string" ? e : "");
+          const msg: string = err?.message || e?.message || (typeof e === "string" ? e : "");
           const status: number = err?.status ?? 0;
-
-          // Non-fatal: HTTP tile errors (403/404), network failures,
-          // tile-related messages, OR completely empty/unknown error objects.
-          // An empty `msg` with status 0 almost always means a tile fetch
-          // that Mapbox already retries internally.
           const isNonFatal =
-            status === 403 ||
-            status === 404 ||
-            msg === "" ||
-            msg.includes("Failed to fetch") ||
-            msg.includes("tile") ||
-            msg.includes("network");
-
-          if (isNonFatal) {
-            console.warn("Mapbox non-fatal warning:", msg || `status=${status}`, e);
-            return;
-          }
-
-          // Truly fatal: invalid token scope, style not found, WebGL failure
+            status === 403 || status === 404 || msg === "" ||
+            msg.includes("Failed to fetch") || msg.includes("tile") || msg.includes("network");
+          if (isNonFatal) { console.warn("Mapbox non-fatal warning:", msg || `status=${status}`); return; }
           console.error("Mapbox fatal error:", msg, e);
           setError(msg || "Map failed to load.");
           setMapLoaded(true);
         });
-
       } catch (err) {
         if (cancelled) return;
         console.error("Mapbox init error:", err);
@@ -276,7 +289,6 @@ export function MapboxTrafficMap({
     };
 
     initMap();
-
     return () => {
       cancelled = true;
       if (mapRef.current) { mapRef.current.remove(); mapRef.current = null; }
@@ -304,56 +316,55 @@ export function MapboxTrafficMap({
     if (!mapRef.current) return;
     const next = mapStyle === "streets" ? "satellite" : "streets";
     setMapStyle(next);
-    mapRef.current.setStyle(next === "streets" ? "mapbox://styles/mapbox/streets-v12" : "mapbox://styles/mapbox/satellite-streets-v12");
+    mapRef.current.setStyle(
+      next === "streets" ? "mapbox://styles/mapbox/streets-v12" : "mapbox://styles/mapbox/satellite-streets-v12"
+    );
     mapRef.current.once("style.load", () => addTrafficLayer(mapRef.current));
   };
 
   return (
-    <div className="bg-white border-2 sm:border-4 border-black shadow-[4px_4px_0_#000] sm:shadow-[8px_8px_0_#000] overflow-hidden">
+    <div className="bg-white border-2 border-black shadow-[6px_6px_0_#000] overflow-hidden">
 
       {/* ── Header ─────────────────────────────────────────────────── */}
-      <div className="bg-red-500 border-b-2 sm:border-b-4 border-black px-3 sm:px-6 py-3 flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white border-2 border-black flex items-center justify-center shrink-0">
-            <Navigation size={16} className="text-red-500 sm:hidden" />
-            <Navigation size={20} className="text-red-500 hidden sm:block" />
+      <div className="bg-red-500 border-b-2 border-black px-4 sm:px-6 py-3 flex items-center justify-between gap-2">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="w-9 h-9 bg-white border-2 border-black flex items-center justify-center shrink-0">
+            <Navigation size={18} className="text-red-500" />
           </div>
           <div className="min-w-0">
-            <h3 className="text-sm sm:text-xl font-black text-white leading-tight truncate" style={kf}>{t.header}</h3>
-            <p className="text-[10px] sm:text-xs font-bold text-white/80 leading-tight hidden sm:block" style={kf}>{t.subheader}</p>
+            <h3 className="text-base sm:text-lg font-black text-white leading-tight" style={kf}>{t.header}</h3>
+            <p className="text-[11px] font-bold text-white/80 leading-tight" style={kf}>{t.subheader}</p>
           </div>
         </div>
-
-        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <div className="flex items-center gap-2 shrink-0">
           {mapLoaded && !error && (
             <button
               onClick={toggleStyle}
               aria-label="Toggle map style"
-              className="flex items-center gap-1 sm:gap-1.5 bg-white border-2 border-black px-2 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-black hover:bg-yellow-400 transition-colors"
+              className="flex items-center gap-1.5 bg-white border-2 border-black px-2.5 py-1.5 text-[11px] font-black hover:bg-yellow-400 transition-colors"
               style={kf}
             >
-              <Layers size={12} className="sm:hidden" />
-              <Layers size={14} className="hidden sm:block" />
-              <span className="hidden xs:inline">{mapStyle === "streets" ? t.satellite : t.streets}</span>
+              <Layers size={13} />
+              <span>{mapStyle === "streets" ? t.satellite : t.streets}</span>
             </button>
           )}
-          <div className="flex items-center gap-1.5 bg-white border-2 border-black px-2 sm:px-3 py-1 sm:py-1.5">
-            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-red-500 rounded-full animate-pulse" />
-            <span className="text-[10px] sm:text-xs font-black uppercase" style={kf}>{t.live}</span>
+          <div className="flex items-center gap-1.5 bg-white border-2 border-black px-2.5 py-1.5">
+            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+            <span className="text-[11px] font-black uppercase" style={kf}>{t.live}</span>
           </div>
         </div>
       </div>
 
       {/* ── Map ────────────────────────────────────────────────────── */}
-      <div className="relative w-full" style={{ height: "clamp(220px, 45vw, 480px)" }}>
+      <div className="relative w-full" style={{ height: "clamp(220px, 45vw, 460px)" }}>
         <div ref={mapContainerRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} />
 
         {!mapLoaded && !error && (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10 pointer-events-none">
             <div className="text-center px-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 border-4 border-black border-t-red-500 rounded-full animate-spin mx-auto mb-3" />
-              <p className="text-xs sm:text-sm font-bold text-gray-600" style={kf}>{t.loading}</p>
-              <p className="text-[10px] sm:text-xs text-gray-400 mt-1">{t.loadingPowered}</p>
+              <div className="w-10 h-10 border-4 border-black border-t-red-500 rounded-full animate-spin mx-auto mb-3" />
+              <p className="text-sm font-bold text-gray-600" style={kf}>{t.loading}</p>
+              <p className="text-xs text-gray-400 mt-1">{t.loadingPowered}</p>
             </div>
           </div>
         )}
@@ -381,79 +392,137 @@ export function MapboxTrafficMap({
       </div>
 
       {/* ── Traffic Legend ─────────────────────────────────────────── */}
-      <div className="bg-yellow-400 border-t-2 sm:border-t-4 border-black px-3 sm:px-6 py-2 sm:py-3 flex items-center gap-2 sm:gap-6 flex-wrap">
-        <div className="flex items-center gap-1.5">
-          <Info size={14} className="shrink-0" />
-          <span className="text-[10px] sm:text-xs font-black uppercase" style={kf}>{t.legend}</span>
+      <div className="bg-yellow-400 border-t-2 border-black px-4 sm:px-6 py-2.5 flex items-center gap-3 flex-wrap">
+        <div className="flex items-center gap-1.5 shrink-0">
+          <Info size={13} />
+          <span className="text-[11px] font-black uppercase" style={kf}>{t.legend}</span>
         </div>
-        {[
-          { color: "bg-green-500", label: { en: "Smooth", km: "រលូន" } },
-          { color: "bg-yellow-500", label: { en: "Moderate", km: "មធ្យម" } },
-          { color: "bg-red-500", label: { en: "Heavy", km: "ធ្ងន់" } },
-          { color: "bg-red-900", label: { en: "Stopped", km: "ឈប់" } },
-        ].map(({ color, label }) => (
-          <div key={label.en} className="flex items-center gap-1.5">
-            <div className={`w-4 sm:w-5 h-1.5 ${color} border border-black`} />
-            <span className="text-[10px] sm:text-xs font-bold" style={kf}>{isKh ? label.km : label.en}</span>
-          </div>
-        ))}
+        <div className="flex items-center gap-2 flex-wrap">
+          {[
+            { color: "bg-green-500", label: { en: t.smooth, km: t.smooth } },
+            { color: "bg-yellow-500", label: { en: t.moderate, km: t.moderate } },
+            { color: "bg-red-500", label: { en: t.heavy, km: t.heavy } },
+            { color: "bg-red-900", label: { en: t.stopped, km: t.stopped } },
+          ].map(({ color, label }) => (
+            <div key={label.en} className="flex items-center gap-1.5 bg-white border border-black px-2 py-0.5">
+              <div className={`w-3 h-3 rounded-full ${color}`} />
+              <span className="text-[11px] font-bold" style={kf}>{label.en}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* ── Road Alerts Panel ──────────────────────────────────────── */}
-      <div className="border-t-2 sm:border-t-4 border-black">
+      {/* ── Alerts Section ─────────────────────────────────────────── */}
+      <div className="border-t-2 border-black">
 
-        {/* Alert header */}
-        <div className="bg-black px-3 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2 min-w-0">
+        {/* Alerts header */}
+        <div className="bg-black px-4 sm:px-6 py-3 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
             <ShieldAlert size={16} className="text-yellow-400 shrink-0" />
-            <span className="text-xs sm:text-sm font-black text-white uppercase tracking-wide truncate" style={kf}>
+            <span className="text-sm font-black text-white uppercase tracking-wide" style={kf}>
               {t.alertsTitle}
+            </span>
+            <span className="bg-yellow-400 text-black text-[10px] font-black px-1.5 py-0.5 border border-white/30">
+              {filtered.length}
             </span>
           </div>
           <div className="flex items-center gap-1.5 shrink-0">
             <div className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse" />
-            <span className="text-[10px] sm:text-xs font-bold text-yellow-400 uppercase" style={kf}>{t.liveUpdates}</span>
+            <span className="text-[11px] font-bold text-yellow-400 uppercase" style={kf}>{t.liveUpdates}</span>
           </div>
         </div>
 
-        {/* Alert cards — 1 col mobile, 2 col tablet+ */}
-        <div className="grid grid-cols-1 sm:grid-cols-2">
-          {ROAD_ALERTS.map((alert, i) => {
-            const Icon = alert.icon;
-            const isRight = i % 2 === 0;
-            const isBottom = i < ROAD_ALERTS.length - (ROAD_ALERTS.length % 2 === 0 ? 2 : 1);
-            return (
-              <div
-                key={alert.id}
-                className={`flex items-start gap-3 sm:gap-4 px-3 sm:px-5 py-3 sm:py-4 border-black border-b-2 ${isRight ? "sm:border-r-2" : ""} ${isBottom ? "" : "border-b-0"}`}
-              >
-                <div className={`w-8 h-8 sm:w-10 sm:h-10 ${alert.color} border-2 border-black flex items-center justify-center shrink-0 mt-0.5`}>
-                  <Icon size={14} className="text-white sm:hidden" />
-                  <Icon size={18} className="text-white hidden sm:block" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-start gap-1.5 sm:gap-2 mb-1 flex-wrap">
-                    <span className="text-xs sm:text-sm font-black leading-tight" style={kf}>
-                      {isKh ? alert.title.km : alert.title.en}
-                    </span>
-                    <span className={`text-[9px] sm:text-[10px] font-black px-1.5 sm:px-2 py-0.5 border border-black ${alert.color} text-white uppercase shrink-0`} style={kf}>
-                      {isKh ? alert.badge.km : alert.badge.en}
-                    </span>
-                  </div>
-                  <p className="text-[11px] sm:text-xs text-gray-600 leading-relaxed" style={kf}>
-                    {isKh ? alert.desc.km : alert.desc.en}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+        {/* Filter tabs */}
+        <div className="bg-gray-50 border-b-2 border-black px-4 sm:px-6 py-2.5 overflow-x-auto">
+          <div className="flex gap-2 min-w-max">
+            {FILTER_TABS.map((tab) => {
+              const count = tab.key === "all"
+                ? ROAD_ALERTS.length
+                : ROAD_ALERTS.filter((a) => a.type === tab.key).length;
+              const isActive = activeFilter === tab.key;
+              if (count === 0 && tab.key !== "all") return null;
+              return (
+                <button
+                  key={tab.key}
+                  onClick={() => { setActiveFilter(tab.key); setExpanded(false); }}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-black border-2 border-black transition-colors whitespace-nowrap ${
+                    isActive ? "bg-black text-white" : "bg-white text-black hover:bg-yellow-400"
+                  }`}
+                  style={kf}
+                >
+                  {isKh ? tab.km : tab.en}
+                  <span
+                    className={`text-[10px] font-black px-1 py-0 rounded-sm border ${
+                      isActive ? "bg-yellow-400 text-black border-yellow-400" : "bg-gray-100 border-gray-300 text-gray-600"
+                    }`}
+                  >
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
+        {/* Alert cards */}
+        {filtered.length === 0 ? (
+          <div className="px-6 py-8 text-center text-sm text-gray-400 font-bold" style={kf}>
+            {t.noAlerts}
+          </div>
+        ) : (
+          <div className="divide-y-2 divide-black">
+            {visibleAlerts.map((alert) => {
+              const Icon = alert.icon;
+              return (
+                <div
+                  key={alert.id}
+                  className={`flex items-start gap-3 px-4 sm:px-6 py-4 border-l-4 ${alert.borderColor} hover:bg-gray-50 transition-colors`}
+                >
+                  <div className={`w-9 h-9 ${alert.color} border-2 border-black flex items-center justify-center shrink-0 mt-0.5`}>
+                    <Icon size={16} className="text-white" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                      <span className="text-sm font-black leading-tight" style={kf}>
+                        {isKh ? alert.title.km : alert.title.en}
+                      </span>
+                      <span
+                        className={`text-[10px] font-black px-1.5 py-0.5 border border-black ${alert.badgeColor} text-white uppercase`}
+                        style={kf}
+                      >
+                        {isKh ? alert.badge.km : alert.badge.en}
+                      </span>
+                    </div>
+                    <p className="text-xs text-gray-600 leading-relaxed" style={kf}>
+                      {isKh ? alert.desc.km : alert.desc.en}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Show more / less */}
+        {filtered.length > VISIBLE_DEFAULT && (
+          <button
+            onClick={() => setExpanded((v) => !v)}
+            className="w-full flex items-center justify-center gap-2 border-t-2 border-black bg-gray-50 hover:bg-yellow-400 transition-colors py-3 text-xs font-black uppercase"
+            style={kf}
+          >
+            {expanded ? (
+              <><ChevronUp size={14} /> {t.showLess}</>
+            ) : (
+              <><ChevronDown size={14} /> {t.showAll} ({filtered.length - VISIBLE_DEFAULT} more)</>
+            )}
+          </button>
+        )}
+
         {/* Bottom safety tip */}
-        <div className="bg-gray-50 border-t-2 border-black px-3 sm:px-6 py-2.5 sm:py-3 flex items-start sm:items-center gap-2 sm:gap-3">
-          <AlertTriangle size={14} className="text-yellow-600 shrink-0 mt-0.5 sm:mt-0" />
-          <p className="text-[11px] sm:text-xs text-gray-600 leading-relaxed" style={kf}>
-            <span className="font-black text-black">{t.stayAlert}</span>{" "}
+        <div className="bg-black px-4 sm:px-6 py-3 flex items-start sm:items-center gap-3">
+          <AlertTriangle size={14} className="text-yellow-400 shrink-0 mt-0.5 sm:mt-0" />
+          <p className="text-xs text-gray-300 leading-relaxed" style={kf}>
+            <span className="font-black text-yellow-400">{t.stayAlert}</span>{" "}
             {t.stayAlertMsg}
           </p>
         </div>

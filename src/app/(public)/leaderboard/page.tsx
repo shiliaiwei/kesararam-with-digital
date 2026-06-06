@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { gsap } from "gsap";
 import { useLang } from "@/context/lang-context";
 import { RankBadge as TierBadge, RankedAvatarRing, RankProgressBar, RankShowcase } from "@/components/shared/rank-label";
@@ -38,6 +39,40 @@ const BRAND = {
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
+const CAMBODIA_PROVINCES = [
+  { en: "Siem Reap", kh: "សៀមរាប" },
+  { en: "Phnom Penh", kh: "ភ្នំពេញ" },
+  { en: "Battambang", kh: "បាត់ដំបង" },
+  { en: "Banteay Meanchey", kh: "បន្ទាយមានជ័យ" },
+  { en: "Kampong Cham", kh: "កំពង់ចាម" },
+  { en: "Kampong Chhnang", kh: "កំពង់ឆ្នាំង" },
+  { en: "Kampong Speu", kh: "កំពង់ស្ពឺ" },
+  { en: "Kampong Thom", kh: "កំពង់ធំ" },
+  { en: "Kampot", kh: "កំពត" },
+  { en: "Kandal", kh: "កណ្តាល" },
+  { en: "Kep", kh: "កែប" },
+  { en: "Koh Kong", kh: "កោះកុង" },
+  { en: "Kratie", kh: "ក្រចេះ" },
+  { en: "Mondulkiri", kh: "មណ្ឌលគីរី" },
+  { en: "Oudar Meanchey", kh: "ឧត្តរមានជ័យ" },
+  { en: "Pailin", kh: "ប៉ៃលិន" },
+  { en: "Preah Sihanouk", kh: "ព្រះសីហនុ" },
+  { en: "Preah Vihear", kh: "ព្រះវិហារ" },
+  { en: "Prey Veng", kh: "ព្រៃវែង" },
+  { en: "Pursat", kh: "ពោធិ៍សាត់" },
+  { en: "Ratanakiri", kh: "រតនគីរី" },
+  { en: "Stung Treng", kh: "ស្ទឹងត្រែង" },
+  { en: "Svay Rieng", kh: "ស្វាយរៀង" },
+  { en: "Takeo", kh: "តាកែវ" },
+  { en: "Tboung Khmum", kh: "ត្បូងឃ្មុំ" },
+];
+
+function getProvinceKh(provinceEn: string | null | undefined): string {
+  if (!provinceEn) return "—";
+  const found = CAMBODIA_PROVINCES.find(p => p.en.toLowerCase() === provinceEn.toLowerCase());
+  return found ? found.kh : provinceEn;
+}
+
 interface LeaderboardUser {
   id: number;
   username: string;
@@ -48,19 +83,23 @@ interface LeaderboardUser {
   totalGamesPlayed: number;
   lifetimePoints: number;
   rank: number;
+  schoolName?: string | null;
+  province?: string | null;
+  gradeLevel?: string | null;
+  section?: string | null;
 }
 
 // ── REWARD ITEMS DATA (Cleaned descriptions, Larger Typography, 4K cover image references) ──
 const REWARD_ITEMS = [
-  { id: 1, name: "Notebook", nameKh: "សៀវភៅកត់ត្រា", cost: 500, color: "#3b82f6", image: "/rewards/notebook.png" },
-  { id: 2, name: "Pencil", nameKh: "ខ្មៅដៃ", cost: 100, color: "#eab308", image: "/rewards/pencil.png" },
-  { id: 3, name: "Pen", nameKh: "ប៊ិច", cost: 150, color: "#22c55e", image: "/rewards/pen.png" },
-  { id: 4, name: "Ruler", nameKh: "បន្ទាត់", cost: 200, color: "#f97316", image: "/rewards/ruler.png" },
-  { id: 5, name: "Eraser", nameKh: "ជ័រលុប", cost: 80, color: "#a855f7", image: "/rewards/eraser.png" },
-  { id: 6, name: "Highlighter", nameKh: "ប៊ិចសម្គាល់", cost: 250, color: "#ef4444", image: "/rewards/highlighter.png" },
-  { id: 7, name: "Sticky Notes", nameKh: "ក្រដាសសម្គាល់", cost: 300, color: "#06b6d4", image: "/rewards/sticky_notes.png" },
-  { id: 8, name: "Geometry Set", nameKh: "ឧបករណ៍គណិត", cost: 800, color: "#ec4899", image: "/rewards/geometry_set.png" },
-  { id: 9, name: "Study Planner", nameKh: "ផែនការសិក្សា", cost: 1200, color: "#84cc16", image: "/rewards/study_planner.png" },
+  { id: 1, name: "Premium Executive Notebook", nameKh: "សៀវភៅកត់ត្រា", cost: 500, color: "#3b82f6", image: "/rewards/notebook.webp" },
+  { id: 2, name: "Premium Mechanical Pencil", nameKh: "ខ្មៅដៃ", cost: 100, color: "#eab308", image: "/rewards/pencil.webp" },
+  { id: 3, name: "Premium Fountain Pen", nameKh: "ប៊ិច", cost: 150, color: "#22c55e", image: "/rewards/pen.webp" },
+  { id: 4, name: "Premium Architectural Ruler", nameKh: "បន្ទាត់", cost: 200, color: "#f97316", image: "/rewards/ruler.webp" },
+  { id: 5, name: "Premium Designer Eraser", nameKh: "ជ័រលុប", cost: 80, color: "#a855f7", image: "/rewards/eraser.webp" },
+  { id: 6, name: "Premium Highlighter", nameKh: "ប៊ិចសម្គាល់", cost: 250, color: "#ef4444", image: "/rewards/highlighter.webp" },
+  { id: 7, name: "Premium Sticky Notes Set", nameKh: "ក្រដាសសម្គាល់", cost: 300, color: "#06b6d4", image: "/rewards/sticky_notes.webp" },
+  { id: 8, name: "Premium Geometry Kit", nameKh: "ឧបករណ៍គណិត", cost: 800, color: "#ec4899", image: "/rewards/geometry_set.webp" },
+  { id: 9, name: "Premium Study Planner", nameKh: "ផែនការសិក្សា", cost: 1200, color: "#84cc16", image: "/rewards/study_planner.webp" },
 ];
 
 // ── Avatar ────────────────────────────────────────────────────────────────────
@@ -216,11 +255,12 @@ const PODIUM_CFG = [
   },
 ];
 
-function PodiumCard({ user, cfg, index, currentUser }: {
+function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
   user: LeaderboardUser | undefined;
   cfg: typeof PODIUM_CFG[number];
   index: number;
   currentUser: any | null;
+  onSelect: (user: LeaderboardUser) => void;
 }) {
   const { lang } = useLang();
   const kh = lang === "kh";
@@ -247,7 +287,8 @@ function PodiumCard({ user, cfg, index, currentUser }: {
 
       {/* Floating Avatar and Rank Badge Container */}
       <div
-        className="relative mb-2 flex flex-col items-center select-none"
+        className="relative mb-2 flex flex-col items-center select-none cursor-pointer"
+        onClick={() => { if (user) onSelect(user); }}
         style={{
           animation: isFirst
             ? "floatFirst 4s ease-in-out infinite"
@@ -858,6 +899,10 @@ export default function LeaderboardPage() {
   const [prevRanks, setPrevRanks] = useState<Record<number, number>>({});
   const [loading, setLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState<any | null>(null);
+  const router = useRouter();
+  const handleSelectUser = (user: LeaderboardUser) => {
+    router.push(`/u/${user.username}`);
+  };
 
   // Real-time tracking user points state
   const [userPoints, setUserPoints] = useState(0);
@@ -891,7 +936,36 @@ export default function LeaderboardPage() {
       .then(r => r.ok ? r.json() : null)
       .then(d => {
         if (d && !d.error) {
+          if (d.role === "student" && (!d.schoolName || !d.province || !d.gradeLevel)) {
+            router.push("/profile/student");
+            return;
+          }
           const lifetimePoints = d.lifetimePoints ?? 0;
+          
+          // Sync database claims to local storage for backward compatibility & seamless updates
+          if (d.claimedRewards && typeof window !== "undefined") {
+            try {
+              const dbClaims = JSON.parse(d.claimedRewards) as Array<{ id: number; claimedAt: number }>;
+              dbClaims.forEach(claim => {
+                const claimDataKey = `kwd_claim_data_${claim.id}`;
+                const localSaved = localStorage.getItem(claimDataKey);
+                let currentCount = 1;
+                if (localSaved) {
+                  try {
+                    currentCount = Math.max(1, JSON.parse(localSaved).claimCount ?? 1);
+                  } catch {}
+                }
+                localStorage.setItem(claimDataKey, JSON.stringify({
+                  claimCount: currentCount,
+                  lastClaimedAt: claim.claimedAt
+                }));
+                localStorage.setItem(`kwd_claimed_${claim.id}`, "1");
+              });
+            } catch (err) {
+              console.error("Failed to sync database claims to localStorage:", err);
+            }
+          }
+
           // Local storage subtraction deduction logic based on claim counts
           let activePoints = lifetimePoints;
           REWARD_ITEMS.forEach(item => {
@@ -930,9 +1004,26 @@ export default function LeaderboardPage() {
   const top3 = leaderboard.slice(0, 3);
   const rest = leaderboard.slice(3);
 
-  // Claim click handler — Local Points deduction
-  const handleClaimItem = (item: typeof REWARD_ITEMS[number]) => {
+  // Claim click handler — Database claim and Local Points deduction
+  const handleClaimItem = async (item: typeof REWARD_ITEMS[number]) => {
     setUserPoints(prev => Math.max(0, prev - item.cost));
+
+    try {
+      const res = await fetch("/api/user/claim", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ itemId: item.id }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.activePoints !== undefined) {
+          setUserPoints(data.activePoints);
+        }
+      }
+    } catch (err) {
+      console.error("Failed to persist claim to database:", err);
+    }
+
     const msg = kh
       ? `🎁 "${item.nameKh}" ត្រូវបានផ្ញើទៅគ្រូរបស់អ្នក!`
       : `🎁 "${item.name}" claim sent to your teacher!`;
@@ -996,7 +1087,7 @@ export default function LeaderboardPage() {
                 { cfg: PODIUM_CFG[1], user: top3[0] },
                 { cfg: PODIUM_CFG[2], user: top3[2] },
               ].map(({ cfg, user }, i) => (
-                <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} currentUser={currentUser} />
+                <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} currentUser={currentUser} onSelect={handleSelectUser} />
               ))}
             </div>
 
@@ -1031,20 +1122,39 @@ export default function LeaderboardPage() {
                         {moved > 0 && <span className="text-[8px] font-black text-green-500 leading-none">▲</span>}
                         {moved < 0 && <span className="text-[8px] font-black text-red-400 leading-none">▼</span>}
                       </div>
-                      <div className="col-span-7 flex items-center gap-2 min-w-0">
+                      <div 
+                        className="col-span-7 flex items-center gap-2 min-w-0 cursor-pointer select-none"
+                        onClick={() => handleSelectUser(user)}
+                      >
                         <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={30}>
                           <Avatar url={(currentUser && user.id === currentUser.id) ? currentUser.avatar : user.avatar} name={user.displayName || user.username} size={30} changedAt={user.avatarChangedAt} />
                         </RankedAvatarRing>
                         <div className="flex flex-col min-w-0">
-                          <div className="flex items-center gap-1.5 min-w-0">
+                          <div className="flex items-center gap-1.5 min-w-0 flex-wrap">
                             <span className="font-bold text-black text-xs md:text-sm truncate leading-tight font-kh-header">
                               {user.displayName || user.username}
                             </span>
                             <TierBadge lifetimePoints={user.lifetimePoints} size="xs" showEmoji={false} lang={lang} />
+                            {user.province && (
+                              <span className="inline-block px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wider bg-blue-100 text-blue-700 border border-blue-200">
+                                {user.province}
+                              </span>
+                            )}
+                            {user.gradeLevel && (
+                              <span className="inline-block px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wider bg-purple-100 text-purple-700 border border-purple-200">
+                                {user.gradeLevel}
+                              </span>
+                            )}
                           </div>
-                          {user.displayName && (
-                            <span className="text-[9px] text-zinc-400 truncate hidden sm:block">@{user.username}</span>
-                          )}
+                          <div className="flex items-center gap-1.5 text-[9px] text-zinc-400 truncate">
+                            {user.displayName && <span>@{user.username}</span>}
+                            {user.schoolName && (
+                              <>
+                                {user.displayName && <span>·</span>}
+                                <span className="truncate">{user.schoolName}</span>
+                              </>
+                            )}
+                          </div>
                         </div>
                       </div>
                       <span className="col-span-2 text-center text-xs font-bold text-zinc-400 tabular-nums hidden sm:block">
@@ -1190,6 +1300,7 @@ export default function LeaderboardPage() {
           </>
         )}
       </div>
+
     </div>
   );
 }

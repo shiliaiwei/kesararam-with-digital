@@ -1,0 +1,90 @@
+KWD — ឧបករណ៍ និងឯកសារយោង (Built With & Bibliography)
+Kesararam With Digital · Technovation Girls 2026 · ក្រុម #50777 · សៀមរាប, កម្ពុជា
+ធ្វើបច្ចុប្បន្នភាពចុងក្រោយ: មិថុនា ២០២៦
+
+
+១. ឧបករណ៍អភិវឌ្ឍន៍ (Development Tools)
+
+• Next.js 15 — React framework (App Router)
+• React 19 + TypeScript — UI និងកូដ
+• Tailwind CSS 4 — styling
+• Drizzle ORM — database ORM
+• Neon — Serverless PostgreSQL (ទិន្នន័យ)
+• Vercel — hosting និង deployment
+• jose — JWT authentication
+• Zod — data validation
+• Git និង GitHub — version control,
+• cloudinary
+• ide vscode, antigravity,kiro, etc,
+
+
+២. ឧបករណ៍រចនា (Design Tools)
+
+• Tailwind CSS + shadcn/ui — component system
+• lucide-react — icon set
+• Recharts — data visualization (charts)
+• Figma — UI/UX design
+• Banana pro , afinity design , adobe,
+
+
+៣. បញ្ញាសិប្បនិមិត្ត (AI Tools)
+
+• Google Gemini — • OpenAI
+• Claude (Anthropic)
+• លទ្ធផល AI ទាំងអស់ត្រូវបានត្រួតពិនិត្យ និងអនុម័តដោយក្រុមមុនការផ្សព្វផ្សាយ។
+• Kimi ai, grok, copilot, chatgpt, Notebook lm,qwen, google ai studio , deepseek,
+
+
+៤. ឧបករណ៍ស្រាវជ្រាវ (Research Tools)
+
+• Google Search
+
+• គេហទំព័រ MoEYS Cambodia ,Ministry of Public Works and Transport,
+
+Royal Government of Cambodia.
+
+Official Cambodian driving theory examination application [Mobile app]. Google Play Store.
+
+• ឯកសារច្បាប់ចរាចរណ៍ និងសៀវភៅសញ្ញាចរាចរណ៍ផ្លូវការ
+
+YouTUbe, Kahoot, motet cambodia , UN articale realtid traficlaw,
+
+
+៥. មេឌៀ និងធនធាន (Media & Assets)
+
+• Cloudinary — image hosting និងគ្រប់គ្រងរូបភាព
+• ហ្វុនត៍ឡាតាំង៖ Google Sans, Inter, Stack Sans Notch
+• ហ្វុនត៍ខ្មែរ៖ Siemreap, Battambang, KhmerOS
+• រូបភាពរង្វាន់ និងរូបតំណាង (Avatar) —
+
+
+៦. ឯកសារយោង និងសហគមន៍ (References & Community)
+
+• Technovation Girls — ក្របខ័ណ្ឌកម្មវិធី និងការណែនាំ (Mentorship)
+• គោលដៅអភិវឌ្ឍន៍ប្រកបដោយចីរភាព UN SDG 4 និង SDG 11
+
+Ministry of Public Works and Transport site.
+
+• សហគមន៍សាលាបឋមសិក្សាកេសរារាម
+• គ្រូណែនាំ និងគ្រូបង្ហាត់ (Mentors & Coaches)
+
+
+៧. គន្ថនិទ្ទេស (Bibliography)
+
+• Ministry of Education, Youth and Sport (MoEYS), Cambodia.
+
+https://cdp.moeys.gov.kh
+
+• Cambodia Road Traffic Law និងសៀវភៅណែនាំសញ្ញាចរាចរណ៍ផ្លូវការ។ [បន្ថែមលេខយោង]
+• Technovation Girls — Curriculum & Safety Standards.
+
+https://technovationchallenge.org
+
+• United Nations — Sustainable Development Goals (SDG 4 & 11).
+
+https://sdgs.un.org/goals
+
+• [បន្ថែមប្រភពពិតប្រាកដផ្សេងទៀតដែលក្រុមបានប្រើ]
+
+
+© ២០២៦ Kesararam With Digital · kesararamwithdigital.tech

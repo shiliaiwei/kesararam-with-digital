@@ -21,7 +21,14 @@ export async function createClass(formData: FormData) {
   }
 
   const name = (formData.get("name") as string).trim();
-  if (!name) return { error: "Class name is required." };
+  const gradeLevel = (formData.get("gradeLevel") as string)?.trim();
+  const schoolName = (formData.get("schoolName") as string)?.trim();
+  const province = (formData.get("province") as string)?.trim();
+  const section = (formData.get("section") as string)?.trim();
+
+  if (!name || !gradeLevel || !schoolName || !province) {
+    return { error: "Class name, grade, school, and province are required." };
+  }
 
   const code = randomCode(6);
 
@@ -30,10 +37,16 @@ export async function createClass(formData: FormData) {
       name,
       teacherId: session.id,
       code,
+      gradeLevel,
+      schoolName,
+      province,
+      section: section || null,
+      status: "active",
     });
     revalidatePath("/teacher/classes");
     return { success: true, code };
-  } catch {
+  } catch (e: any) {
+    console.error("[createClass] error:", e);
     return { error: "Failed to create class." };
   }
 }
@@ -66,6 +79,11 @@ export async function getTeacherClasses() {
         createdAt: classes.createdAt,
         teacherName: users.displayName,
         teacherEmail: users.email,
+        gradeLevel: classes.gradeLevel,
+        schoolName: classes.schoolName,
+        province: classes.province,
+        section: classes.section,
+        status: classes.status,
       })
       .from(classes)
       .leftJoin(users, eq(classes.teacherId, users.id));
@@ -79,6 +97,11 @@ export async function getTeacherClasses() {
       createdAt: classes.createdAt,
       teacherName: users.displayName,
       teacherEmail: users.email,
+      gradeLevel: classes.gradeLevel,
+      schoolName: classes.schoolName,
+      province: classes.province,
+      section: classes.section,
+      status: classes.status,
     })
     .from(classes)
     .leftJoin(users, eq(classes.teacherId, users.id))

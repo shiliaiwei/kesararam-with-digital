@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { users } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { users, classes, classEnrollments, inviteCodes } from "@/db/schema";
+import { eq, and } from "drizzle-orm";
 import { getSession } from "@/lib/auth";
 
 // GET /api/user/settings - Get user settings
@@ -25,9 +25,26 @@ export async function GET(request: NextRequest) {
     // Return user settings
     const settings = {
       displayName: user.displayName || user.username,
+      username: user.username,
       email: user.email,
+      role: user.role,
       avatar: user.avatar || "",
       audioMuted: user.audioMuted || false,
+      schoolName: user.schoolName || "",
+      province: user.province || "",
+      gradeLevel: user.gradeLevel || "",
+      section: user.section || "",
+      isProfilePublic: user.isProfilePublic ?? true,
+      isNamePublic: user.isNamePublic ?? true,
+      isUsernamePublic: user.isUsernamePublic ?? true,
+      isSchoolPublic: user.isSchoolPublic ?? true,
+      isProvincePublic: user.isProvincePublic ?? true,
+      isGradePublic: user.isGradePublic ?? true,
+      isSectionPublic: user.isSectionPublic ?? true,
+      isStatsPublic: user.isStatsPublic ?? true,
+      createdAt: user.createdAt.toISOString(),
+      usernameChangedAt: user.usernameChangedAt ? user.usernameChangedAt.toISOString() : null,
+      displayNameChangedAt: null,
       language: "en", // Default, can be stored in user table
       theme: "light", // Default, can be stored in user table
       notifications: {
@@ -57,37 +74,300 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const body = await request.json();
-    const { displayName, avatar, audioMuted } = body;
-
-    // Update user settings
-    const [updatedUser] = await db
-      .update(users)
-      .set({
-        displayName: displayName || null,
-        avatar: avatar || null,
-        audioMuted: audioMuted || false,
-        updatedAt: new Date(),
-      })
+    const [currentUser] = await db
+      .select()
+      .from(users)
       .where(eq(users.id, session.id))
-      .returning();
+      .limit(1);
 
-    if (!updatedUser) {
+    if (!currentUser) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
+
+    const body = await request.json();
+    const { displayName, username, email, avatar, audioMuted, schoolName, province, gradeLevel, section, isProfilePublic, isNamePublic, isUsernamePublic, isSchoolPublic, isProvincePublic, isGradePublic, isSectionPublic, isStatsPublic, inviteCode } = body;
+
+    // Check if this is an onboarding student (missing school details)
+    const isOnboarding = session.role === "student" && (!currentUser.schoolName || !currentUser.province || !currentUser.gradeLevel);
+
+    // Detect if this is a privacy-only update (safe, no 60-day restriction)
+    const PRIVACY_FIELDS = new Set(['isProfilePublic','isNamePublic','isUsernamePublic','isSchoolPublic','isProvincePublic','isGradePublic','isSectionPublic','isStatsPublic']);
+    const isPurePrivacyUpdate = Object.keys(body).every(k => PRIVACY_FIELDS.has(k));
+
+    // 1. 60-Day Cooldown Gate — only for sensitive field changes, not privacy toggles
+    if (!isOnboarding && !isPurePrivacyUpdate) {
+      const accountAgeMs = Date.now() - new Date(currentUser.createdAt).getTime();
+      const SIXTY_DAYS = 60 * 24 * 60 * 60 * 1000;
+      if (accountAgeMs < SIXTY_DAYS) {
+        const daysLeft = Math.ceil((SIXTY_DAYS - accountAgeMs) / (24 * 60 * 60 * 1000));
+        return NextResponse.json({
+          error: `For security, you must wait at least 60 days after signing up before you can modify your profile settings or email (${daysLeft} days remaining). For any trouble, contact support team at kesararamwithdigital@gmail.com. / ដើម្បីសុវត្ថិភាព អ្នកត្រូវរង់ចាំយ៉ាងហោចណាស់ ៦០ ថ្ងៃ បន្ទាប់ពីចុះឈ្មោះ មុននឹងកែប្រែព័ត៌មានគណនី ឬអ៊ីមែល (នៅសល់ ${daysLeft} ថ្ងៃ)។ បើមានបញ្ហាសូមទាក់ទងមកកាន់ក្រុមការងារគាំទ្រតាមរយៈ kesararamwithdigital@gmail.com ។`
+        }, { status: 400 });
+      }
+    }
+
+    // 2. Locked Fields Check for students post-onboarding
+    if (!isOnboarding && currentUser.role === "student" && currentUser.schoolName) {
+      if (
+        (schoolName !== undefined && schoolName !== currentUser.schoolName) ||
+        (province !== undefined && province !== currentUser.province) ||
+        (gradeLevel !== undefined && gradeLevel !== currentUser.gradeLevel) ||
+        (section !== undefined && section !== currentUser.section)
+      ) {
+        return NextResponse.json({
+          error: "School and grade details are locked once onboarding is complete. Only Support Staff can make changes. / ព័ត៌មានសាលារៀន និងកម្រិតថ្នាក់ត្រូវបានចាក់សោបន្ទាប់ពីការបំពេញព័ត៌មានដំបូងរួចរាល់។ មានតែក្រុមការងារគាំទ្រប៉ុណ្ណោះដែលអាចផ្លាស់ប្តូរបាន។"
+        }, { status: 400 });
+      }
+    }
+
+    const newDisplayName = displayName !== undefined ? (displayName || currentUser.username) : (currentUser.displayName || currentUser.username);
+
+    const updates: Record<string, any> = {
+      displayName: newDisplayName,
+      avatar: avatar !== undefined ? avatar : currentUser.avatar,
+      audioMuted: audioMuted !== undefined ? audioMuted : currentUser.audioMuted,
+      schoolName: schoolName !== undefined ? schoolName : currentUser.schoolName,
+      province: province !== undefined ? province : currentUser.province,
+      isProfilePublic: isProfilePublic !== undefined ? !!isProfilePublic : (currentUser.isProfilePublic ?? false),
+      isNamePublic: isNamePublic !== undefined ? !!isNamePublic : (currentUser.isNamePublic ?? false),
+      isUsernamePublic: isUsernamePublic !== undefined ? !!isUsernamePublic : (currentUser.isUsernamePublic ?? false),
+      isSchoolPublic: isSchoolPublic !== undefined ? !!isSchoolPublic : (currentUser.isSchoolPublic ?? false),
+      isProvincePublic: isProvincePublic !== undefined ? !!isProvincePublic : (currentUser.isProvincePublic ?? false),
+      isGradePublic: isGradePublic !== undefined ? !!isGradePublic : (currentUser.isGradePublic ?? false),
+      isSectionPublic: isSectionPublic !== undefined ? !!isSectionPublic : (currentUser.isSectionPublic ?? false),
+      isStatsPublic: isStatsPublic !== undefined ? !!isStatsPublic : (currentUser.isStatsPublic ?? false),
+      updatedAt: new Date(),
+    };
+
+    if (session.role === "student") {
+      updates.gradeLevel = gradeLevel !== undefined ? gradeLevel : currentUser.gradeLevel;
+      updates.section = section !== undefined ? section : currentUser.section;
+    }
+
+    // 3. Email Update & Uniqueness Validation
+    if (email !== undefined && email !== currentUser.email) {
+      const emailTrimmed = email.trim().toLowerCase();
+      if (!emailTrimmed || !emailTrimmed.includes("@")) {
+        return NextResponse.json({
+          error: "Please enter a valid email address. / សូមបញ្ចូលអាសយដ្ឋានអ៊ីមែលដែលមានសុពលភាព។"
+        }, { status: 400 });
+      }
+
+      const [existingEmailUser] = await db
+        .select()
+        .from(users)
+        .where(eq(users.email, emailTrimmed))
+        .limit(1);
+
+      if (existingEmailUser && existingEmailUser.id !== session.id) {
+        return NextResponse.json({
+          error: "This email is already registered by another account. / អ៊ីមែលនេះត្រូវបានចុះឈ្មោះដោយគណនីផ្សេងរួចហើយ។"
+        }, { status: 400 });
+      }
+
+      updates.email = emailTrimmed;
+    }
+
+    // 4. Username Update, Cooldown (1 year) & Uniqueness Validation
+    if (username !== undefined && username !== currentUser.username) {
+      const usernameClean = username.trim().toLowerCase();
+      if (!usernameClean || usernameClean.length < 3 || !/^[a-zA-Z0-9_]+$/.test(usernameClean)) {
+        return NextResponse.json({
+          error: "Username must be at least 3 characters long and contain only letters, numbers, and underscores. / ឈ្មោះគណនីត្រូវតែមានយ៉ាងហោចណាស់ ៣ តួអក្សរ និងអាចប្រើបានតែអក្សរ លេខ និងសញ្ញាគូសក្រោមប៉ុណ្ណោះ។"
+        }, { status: 400 });
+      }
+
+      // Check duplicate username
+      const [existingUsernameUser] = await db
+        .select()
+        .from(users)
+        .where(eq(users.username, usernameClean))
+        .limit(1);
+
+      if (existingUsernameUser && existingUsernameUser.id !== session.id) {
+        return NextResponse.json({
+          error: "This username is already taken by another account. / ឈ្មោះគណនីនេះត្រូវបានប្រើប្រាស់ដោយគណនីផ្សេងរួចហើយ។"
+        }, { status: 400 });
+      }
+
+      // Check 1-Year Cooldown
+      if (currentUser.usernameChangedAt) {
+        const usernameAgeMs = Date.now() - new Date(currentUser.usernameChangedAt).getTime();
+        const ONE_YEAR = 365 * 24 * 60 * 60 * 1000;
+        if (usernameAgeMs < ONE_YEAR) {
+          const daysLeft = Math.ceil((ONE_YEAR - usernameAgeMs) / (24 * 60 * 60 * 1000));
+          return NextResponse.json({
+            error: `You can only change your username once every 1 year (${daysLeft} days remaining). / អ្នកអាចផ្លាស់ប្តូរឈ្មោះគណនីបានតែម្តងគត់ក្នុងរយៈពេល ១ ឆ្នាំ (នៅសល់ ${daysLeft} ថ្ងៃ)។`
+          }, { status: 400 });
+        }
+      }
+
+      updates.username = usernameClean;
+      updates.usernameChangedAt = new Date();
+    }
+
+
+
+    if (isOnboarding) {
+      const inputCode = inviteCode || body.inviteCode;
+      if (!inputCode) {
+        return NextResponse.json({ error: "Teacher invitation code / Class code is required. / លេខកូដអញ្ជើញពីគ្រូ ឬលេខកូដថ្នាក់គឺចាំបាច់ត្រូវបំពេញ។" }, { status: 400 });
+      }
+
+      const trimmedCode = inputCode.trim();
+      let targetClassId: number | null = null;
+      let isInviteCodeTableMatch = false;
+      let teacherIdToEnroll: number | null = null;
+
+      // 1. Try to find in invite_codes first
+      const [inviteCodeRecord] = await db
+        .select()
+        .from(inviteCodes)
+        .where(eq(inviteCodes.code, trimmedCode))
+        .limit(1);
+
+      if (inviteCodeRecord) {
+        if (inviteCodeRecord.isUsed) {
+          return NextResponse.json({ error: "This invitation code has already been used. / លេខកូដអញ្ជើញនេះត្រូវបានប្រើប្រាស់រួចហើយ។" }, { status: 400 });
+        }
+        isInviteCodeTableMatch = true;
+        teacherIdToEnroll = inviteCodeRecord.teacherId;
+
+        if (inviteCodeRecord.classId) {
+          targetClassId = inviteCodeRecord.classId;
+        } else {
+          // Fallback: find the teacher's first class
+          const [firstClass] = await db
+            .select()
+            .from(classes)
+            .where(eq(classes.teacherId, inviteCodeRecord.teacherId))
+            .limit(1);
+          if (firstClass) {
+            targetClassId = firstClass.id;
+          }
+        }
+      } else {
+        // 2. Fallback: try classes.code directly
+        const [classRecord] = await db
+          .select()
+          .from(classes)
+          .where(eq(classes.code, trimmedCode))
+          .limit(1);
+
+        if (classRecord) {
+          targetClassId = classRecord.id;
+          teacherIdToEnroll = classRecord.teacherId;
+        }
+      }
+
+      if (!targetClassId) {
+        return NextResponse.json({ error: "Invalid invitation code or class code. / លេខកូដអញ្ជើញ ឬកូដថ្នាក់រៀនមិនត្រឹមត្រូវឡើយ។" }, { status: 400 });
+      }
+
+      // Fetch class details to inherit school, province, grade, section
+      const [classDetails] = await db
+        .select()
+        .from(classes)
+        .where(eq(classes.id, targetClassId))
+        .limit(1);
+
+      const finalSchoolName = classDetails?.schoolName || schoolName || currentUser.schoolName;
+      const finalProvince = classDetails?.province || province || currentUser.province;
+      const finalGradeLevel = classDetails?.gradeLevel || gradeLevel || currentUser.gradeLevel;
+      const finalSection = classDetails?.section || section || currentUser.section;
+
+      // Neon HTTP driver does not support transactions; perform writes sequentially.
+      const [updatedUser] = await db
+        .update(users)
+        .set({
+          ...updates,
+          schoolName: finalSchoolName,
+          province: finalProvince,
+          gradeLevel: finalGradeLevel,
+          section: finalSection || null,
+        })
+        .where(eq(users.id, session.id))
+        .returning();
+
+      // Enforce single-class active enrollment policy
+      // Delete any other active class enrollments for this student to ensure they can only be in one class at a time
+      await db.delete(classEnrollments).where(eq(classEnrollments.studentId, session.id));
+
+      await db.insert(classEnrollments).values({
+        classId: targetClassId!,
+        studentId: session.id,
+        enrolledBy: teacherIdToEnroll || session.id,
+        enrolledAt: new Date(),
+      });
+
+      // Mark invite code as used in the database
+      if (isInviteCodeTableMatch) {
+        await db
+          .update(inviteCodes)
+          .set({
+            isUsed: true,
+            usedById: session.id,
+            usedAt: new Date(),
+          })
+          .where(eq(inviteCodes.code, trimmedCode));
+      }
+
+      return NextResponse.json({ 
+        success: true,
+        user: {
+          displayName: updatedUser.displayName,
+          username: updatedUser.username,
+          email: updatedUser.email,
+          avatar: updatedUser.avatar,
+          audioMuted: updatedUser.audioMuted,
+          schoolName: updatedUser.schoolName,
+          province: updatedUser.province,
+          gradeLevel: updatedUser.gradeLevel,
+          section: updatedUser.section,
+          isNamePublic: updatedUser.isNamePublic,
+          isUsernamePublic: updatedUser.isUsernamePublic,
+          isSchoolPublic: updatedUser.isSchoolPublic,
+          isProvincePublic: updatedUser.isProvincePublic,
+          isGradePublic: updatedUser.isGradePublic,
+          isSectionPublic: updatedUser.isSectionPublic,
+          isStatsPublic: updatedUser.isStatsPublic,
+        }
+      });
+    }
+
+    // Standard settings update (non-onboarding)
+    const [updatedUser] = await db
+      .update(users)
+      .set(updates)
+      .where(eq(users.id, session.id))
+      .returning();
 
     return NextResponse.json({ 
       success: true,
       user: {
         displayName: updatedUser.displayName,
+        username: updatedUser.username,
+        email: updatedUser.email,
         avatar: updatedUser.avatar,
         audioMuted: updatedUser.audioMuted,
+        schoolName: updatedUser.schoolName,
+        province: updatedUser.province,
+        gradeLevel: updatedUser.gradeLevel,
+        section: updatedUser.section,
+        isNamePublic: updatedUser.isNamePublic,
+        isUsernamePublic: updatedUser.isUsernamePublic,
+        isSchoolPublic: updatedUser.isSchoolPublic,
+        isProvincePublic: updatedUser.isProvincePublic,
+        isGradePublic: updatedUser.isGradePublic,
+        isSectionPublic: updatedUser.isSectionPublic,
+        isStatsPublic: updatedUser.isStatsPublic,
       }
     });
   } catch (error) {
     console.error("Error updating settings:", error);
+    const errorMessage = error instanceof Error ? error.message : "Failed to update settings";
     return NextResponse.json(
-      { error: "Failed to update settings" },
+      { error: errorMessage },
       { status: 500 }
     );
   }

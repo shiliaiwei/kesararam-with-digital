@@ -2,785 +2,424 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useLang } from "@/context/lang-context";
+import {
+  CautionTape,
+  SignShape,
+  TAPES,
+  SHAPES,
+  type SignShapeName,
+} from "@/components/brand/brand-kit";
 
-const COLORS = [
-  { name: "Yellow",  hex: "#eab308", role: "Primary CTA, warning signs, brand accent" },
-  { name: "Black",   hex: "#000000", role: "Text, borders, structural elements" },
-  { name: "White",   hex: "#ffffff", role: "Background, negative space" },
-  { name: "Blue",    hex: "#3b82f6", role: "Informational signs, links, signals" },
-  { name: "Red",     hex: "#ef4444", role: "Prohibitory signs, danger, stop" },
-  { name: "Green",   hex: "#22c55e", role: "Success, active states, go" },
-  { name: "Orange",  hex: "#f97316", role: "Caution, attention, warning" },
-  { name: "Purple",  hex: "#a855f7", role: "Premium features, game modes" },
-  { name: "Cyan",    hex: "#06b6d4", role: "Accent, highlights, info" },
+const LOGO_VARIANTS = [
+  { src: "/brand/kwd-black_nobackground.png", filename: "kwd-black_nobackground.png", label: { en: "Black (default)", kh: "ពណ៌ខ្មៅ (លំនាំដើម)" }, bg: "bg-white", invert: false },
+  { src: "/brand/kwd-gray.png",               filename: "kwd-gray.png",               label: { en: "Gray",           kh: "ពណ៌ប្រផេះ" },          bg: "bg-white", invert: false },
+  { src: "/brand/kwd-green.png",              filename: "kwd-green.png",              label: { en: "Green",          kh: "ពណ៌បៃតង" },            bg: "bg-white", invert: false },
+  { src: "/brand/kwd-black_nobackground.png", filename: "kwd-black_nobackground.png (inverted)", label: { en: "White (on dark)", kh: "ពណ៌ស (លើខ្មៅ)" }, bg: "bg-zinc-900", invert: true },
 ];
 
-// ─── Official logo — ONE source of truth ───────────────────────────────────
-// Primary: kwd-black_nobackground.png — the ONLY logo used in this product.
-// All logo placements across UI must reference this single file.
-const LOGO_PRIMARY = "/brand/kwd-black_nobackground.png";
-
-const RULES = [
-  "Do not stretch, rotate, or distort the logo.",
-  "Do not apply drop shadows, gradients, or filters.",
-  "Do not place the logo on low-contrast backgrounds.",
-  "Maintain clear space equal to the height of K on all sides.",
-  "Use kwd-black_nobackground on light backgrounds only.",
-  "Minimum logo height is 24 px in any digital context.",
-  "Do not recolor, outline, or alter the logo in any way.",
-  "Only kwd-black_nobackground.png is the approved digital logo — no other variants.",
+const COLORS: { name: string; hex: string; role: { en: string; kh: string } }[] = [
+  { name: "Yellow", hex: "#eab308", role: { en: "CTA buttons · warning signs · brand accent",         kh: "ប៊ូតុង CTA · សញ្ញាព្រមាន · ពណ៌លេចធ្លោម៉ាក" } },
+  { name: "Black",  hex: "#000000", role: { en: "Text · borders · structure",                          kh: "អក្សរ · គែម · រចនាសម្ព័ន្ធ" } },
+  { name: "White",  hex: "#ffffff", role: { en: "Background · negative space",                         kh: "ផ្ទៃខាងក្រោយ · ចន្លោះទំនេរ" } },
+  { name: "Blue",   hex: "#3b82f6", role: { en: "Info · links · positive signals",                     kh: "ព័ត៌មាន · តំណ · សញ្ញាវិជ្ជមាន" } },
+  { name: "Red",    hex: "#ef4444", role: { en: "Prohibitory signs · danger · stop",                   kh: "សញ្ញាហាមឃាត់ · គ្រោះថ្នាក់ · ឈប់" } },
+  { name: "Green",  hex: "#22c55e", role: { en: "Success · active state · go signals",                 kh: "ជោគជ័យ · ស្ថានភាព Active · ទៅមុខ" } },
+  { name: "Orange", hex: "#f97316", role: { en: "Caution · attention",                                 kh: "ការប្រុងប្រយ័ត្ន · ការផ្ដោតអារម្មណ៍" } },
+  { name: "Purple", hex: "#a855f7", role: { en: "Premium features · special game modes",               kh: "មុខងារពិសេស · របៀបលេងហ្គេមពិសេស" } },
 ];
 
-const DESIGN_TOKENS = [
-  { token: "Border Radius",  value: "0px — always sharp" },
-  { token: "Border Width",   value: "2px standard · 4px emphasis" },
-  { token: "Shadow",         value: "4px 4px 0 #000 — hard, no blur" },
-  { token: "Hover",          value: "−0.5px translate · shadow 6px" },
-  { token: "Active",         value: "+2px translate · shadow removed" },
-  { token: "Transition",     value: "100–150ms only" },
-  { token: "Gradients",      value: "None — solid colors only" },
-  { token: "Motion",         value: "Purposeful only" },
+const RULES: { en: string; kh: string }[] = [
+  { en: "Do not stretch, rotate, or distort the logo.",           kh: "កុំទាញ បង្វិល ឬធ្វើឱ្យ logo ខូចទ្រង់ទ្រាយ។" },
+  { en: "Do not apply shadows, gradients, or filters.",           kh: "កុំដាក់ស្រមោល gradient ឬ filter លើ logo។" },
+  { en: "Do not place the logo on low-contrast backgrounds.",     kh: "កុំដាក់ logo លើ background ដែលមាន contrast ទាប។" },
+  { en: "Maintain clear space equal to the height of the 'K'.",  kh: "រក្សាចន្លោះទំនេរជុំវិញ logo ស្មើកម្ពស់អក្សរ K។" },
+  { en: "Use the black logo on light backgrounds only.",          kh: "ប្រើ kwd-black_nobackground លើ background ភ្លឺ; ប្រើ Inverted លើ background ងងឹត។" },
+  { en: "Minimum height: 24 px in any digital context.",          kh: "ឡូហ្គោត្រូវមានកម្ពស់យ៉ាងតិច ២៤ px ក្នុងបរិស្ថានឌីជីថល។" },
+  { en: "Do not recolor or add outlines to the logo.",            kh: "កុំផ្លាស់ប្ដូរពណ៌ ឬបន្ថែម outline លើឡូហ្គោ។" },
 ];
 
-// ─── Blank product mockup slots (user will drop images in later) ────────────
-const MOCKUP_COUNT = 5;
+const MOCKUP_ASSETS: { src: string; title: { en: string; kh: string } }[] = [
+  { src: "/api/brand-mockups?file=tote_stationery.webp",    title: { en: "Tote & Stationery",        kh: "កាបូប & Stationery" } },
+  { src: "/api/brand-mockups?file=educational_blocks.webp", title: { en: "Educational Toys & Cards", kh: "ដុំឈើ & Learning Cards" } },
+  { src: "/api/brand-mockups?file=mug_bottle.webp",         title: { en: "Mug & Bottle",             kh: "Mug & Bottle" } },
+  { src: "/api/brand-mockups?file=apparel_brand.webp",      title: { en: "Brand Apparel",            kh: "Brand Apparel" } },
+  { src: "/api/brand-mockups?file=desktop_app.webp",         title: { en: "Web & Desktop App",        kh: "កម្មវិធីវិប & កុំព្យូទ័រ" } },
+  { src: "/api/brand-mockups?file=corporate_stationery.webp", title: { en: "Corporate Stationery",     kh: "ឧបករណ៍ការិយាល័យ" } },
+];
+
+const SECTIONS = [
+  { id: "name",  title: { en: "Brand Name",   kh: "ឈ្មោះ Brand" } },
+  { id: "logo",  title: { en: "Logo",         kh: "និមិត្តសញ្ញា" } },
+  { id: "color", title: { en: "Color Palette",kh: "ពណ៌" } },
+  { id: "type",  title: { en: "Typography",   kh: "អក្សរ" } },
+  { id: "dna",   title: { en: "Design DNA",   kh: "Design DNA" } },
+  { id: "kit",   title: { en: "Design Kit",   kh: "ឧបករណ៍រចនា" } },
+  { id: "apply", title: { en: "Applications", kh: "ការប្រើប្រាស់" } },
+];
+
+// Semantic body color + label text color for each road-sign shape.
+const SHAPE_STYLE: Record<SignShapeName, { body: string; fg: string }> = {
+  diamond:  { body: "#eab308", fg: "text-black" },
+  octagon:  { body: "#ef4444", fg: "text-white" },
+  circle:   { body: "#3b82f6", fg: "text-white" },
+  sign:     { body: "#22c55e", fg: "text-black" },
+  triangle: { body: "#f97316", fg: "text-black" },
+  banner:   { body: "#22c55e", fg: "text-white" },
+};
 
 export function BrandGuidelineClient() {
   const { lang } = useLang();
   const kh = lang === "kh";
-  const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const kf = kh ? { fontFamily: '"GoogleSans", "Google Sans Khmer", sans-serif' } : {};
+  const t = (en: string, k: string) => (kh ? k : en);
+
+  const [active, setActive] = useState<string>(SECTIONS[0].id);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); });
+      },
+      { rootMargin: "-20% 0px -60% 0px", threshold: 0 }
+    );
+    SECTIONS.forEach((s) => {
+      const el = document.getElementById(s.id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div
-      className="min-h-screen bg-white text-black"
-      style={{
-        backgroundImage: "radial-gradient(circle, #d1d5db 1px, transparent 1px)",
-        backgroundSize: "24px 24px",
-      }}
-    >
-      <div className="max-w-2xl mx-auto px-4 md:px-6 py-14 md:py-20">
+    <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100" style={kf}>
 
-        {/* ── Hero logo ── */}
-        <div className="flex justify-center mb-16">
-          <Image
-            src={LOGO_PRIMARY}
-            alt="KWD"
-            width={180}
-            height={180}
-            className="object-contain"
-            priority
-          />
-        </div>
-
-        {/* ── Title ── */}
-        <div className="mb-12">
-          <span
-            className="inline-block text-[10px] font-black uppercase tracking-[0.25em] border border-black/20 px-3 py-1 rounded-full bg-white/80 mb-4"
-            style={kf}
-          >
-            {kh ? "ការណែនាំម៉ាក" : "Brand Guideline"}
-          </span>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-none mb-3 text-black" style={kf}>
-            KWD
+      {/* Page Header */}
+      <header className="border-b border-zinc-200 dark:border-zinc-800">
+        <div className="max-w-5xl mx-auto px-6 py-12">
+          <h1 className="text-2xl font-bold tracking-tight">
+            {t("KWD Brand Guidelines", "អំពីម៉ាកយីហោ KWD")}
           </h1>
-          <p className="text-sm text-zinc-500 font-medium max-w-md" style={kf}>
-            {kh
-              ? "ស្តង់ដារអត្តសញ្ញាណ ការរចនា និងការប្រើប្រាស់ម៉ាករបស់ KWD លើគ្រប់ផ្ទៃ"
-              : "The visual identity, design standards, and usage rules that define KWD across every surface."}
+          <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400 max-w-xl leading-relaxed">
+            {t(
+              "Visual identity, design standards, and usage rules that define KWD — Kesararam With Digital.",
+              "អត្តសញ្ញាណដែលមើលឃើញ ស្តង់ដាររចនា និងច្បាប់ប្រើប្រាស់ដែលកំណត់ KWD — Kesararam With Digital"
+            )}
+          </p>
+          <p className="mt-3 text-xs text-zinc-400 dark:text-zinc-500 font-mono">
+            {t(
+              "v1.0 · Last updated June 2026 · Technovation Girls 2026 · Team #50777 · Siem Reap, Cambodia",
+              "v1.0 · ធ្វើបច្ចុប្បន្នភាព មិថុនា ២០២៦ · Technovation Girls 2026 · ក្រុម #50777 · សៀមរាប"
+            )}
           </p>
         </div>
+      </header>
 
-        <div className="border-t border-black/10 mb-12" />
+      {/* Layout */}
+      <div className="max-w-5xl mx-auto px-6 py-12 flex gap-16">
 
-        {/* ── 01 Brand Name ── */}
-        <div className="mb-14">
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 mb-4">
-            01 — {kh ? "ឈ្មោះ និងន័យ" : "Brand Name & Meaning"}
-          </p>
-          <div className="space-y-4 text-sm md:text-base text-zinc-700 leading-relaxed font-medium" style={kf}>
-            <p>
-              <strong className="text-black font-black">KWD</strong>{" "}
-              {kh
-                ? "— Kesararam With Digital — ជាឈ្មោះដែលបញ្ចូលគ្នារវាងប្រពៃណីនិងបច្ចេកវិទ្យា។ Kesararam គឺជាវត្ត និងសាលាបឋមសិក្សា — ទីកន្លែងរៀនសូត្រចំណាស់បំផុតក្នុងសហគមន៍។ Digital គឺជាការប្តេជ្ញាចិត្តចំពោះការចូលប្រើ ការឈានដល់ និងភាពអចិន្ត្រៃយ៍។"
-                : "stands for Kesararam With Digital — a name that carries the weight of place, purpose, and transformation. Kesararam is a monastery and primary school, the oldest seat of learning in its community. The word With is not a conjunction — it is a declaration of partnership between tradition and technology. Digital is not a medium — it is a commitment to access, to reach, to permanence."}
-            </p>
-            <p style={kf}>
-              {kh
-                ? "KWD មានស្ថិតឡើង ដោយសារក្មេងស្រីខ្មែរពីកេសរារាមបានសម្រេចថា ចំណេះដឹងសុវត្ថិភាពចរាចរ — ចំណេះដឹងដែលជួយសង្គ្រោះជីវិត — គួរតែឥតគិតថ្លៃ អន្តរកម្ម និងអាចចូលប្រើបានដោយសិស្សគ្រប់រូបក្នុងភាសារបស់ពួកគេ។"
-                : "KWD exists because young Cambodian girls from Kesararam decided that road safety knowledge — knowledge that saves lives — should be free, interactive, and available to every student in their language. The name asserts that education does not abandon its roots when it enters the digital age. It carries them forward."}
-            </p>
-          </div>
-        </div>
-
-        <div className="border-t border-black/10 mb-12" />
-
-        {/* ── 02 Logo ── */}
-        <div className="mb-14">
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 mb-4">
-            02 — {kh ? "ឡូហ្គូ" : "Logo"}
-          </p>
-          <p className="text-sm text-zinc-500 font-medium mb-8" style={kf}>
-            {kh
-              ? "kwd-black_nobackground.png ជាឡូហ្គូចម្បង — ប្រើលើគ្រប់ផ្ទៃ។ វ៉ារ្យ៉ង់ពណ៌ (Gray, Green, Yellow) ត្រូវបានអនុញ្ញាតតែក្នុងបរិបទជាក់លាក់ប៉ុណ្ណោះ។"
-              : "kwd-black_nobackground.png is the primary logo — used across all surfaces. Color variants (Gray, Green, Yellow) are permitted only in specific approved contexts."}
-          </p>
-
-          {/* Official logo — single card */}
-          <div className="mb-10">
-            <div className="rounded-2xl overflow-hidden border-2 border-black/10 inline-block w-full max-w-xs">
-              <div className="h-40 flex items-center justify-center p-8 bg-white">
-                <Image
-                  src={LOGO_PRIMARY}
-                  alt="KWD — Official Logo"
-                  width={160}
-                  height={160}
-                  className="object-contain max-h-28"
-                  priority
-                />
-              </div>
-              <div className="px-4 py-3 bg-zinc-50 border-t border-black/8">
-                <p className="text-[10px] font-black uppercase tracking-wide text-zinc-800 leading-tight">
-                  kwd-black_nobackground.png
-                </p>
-                <p className="text-[9px] text-amber-500 font-black mt-0.5 uppercase tracking-wide">
-                  ★ Sole Official Logo — Always Use This
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Dark background preview */}
-          <div className="mb-10">
-            <p className="text-[9px] font-black uppercase tracking-widest text-zinc-300 mb-3">
-              On Dark Background
-            </p>
-            <div className="rounded-2xl overflow-hidden border-2 border-black/10 inline-block w-full max-w-xs">
-              <div className="h-40 flex items-center justify-center p-8 bg-zinc-900">
-                <Image
-                  src={LOGO_PRIMARY}
-                  alt="KWD — Official Logo on dark"
-                  width={160}
-                  height={160}
-                  className="object-contain max-h-28 invert"
-                />
-              </div>
-              <div className="px-4 py-3 bg-zinc-50 border-t border-black/8">
-                <p className="text-[10px] font-black uppercase tracking-wide text-zinc-800 leading-tight">
-                  kwd-black_nobackground.png <span className="text-zinc-400 font-medium">+ CSS invert</span>
-                </p>
-                <p className="text-[9px] text-zinc-400 font-medium mt-0.5">
-                  For dark surfaces — apply filter: invert(1)
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Color variants grid */}
-          <div className="mb-10">
-            <p className="text-[9px] font-black uppercase tracking-widest text-zinc-300 mb-3">
-              {kh ? "វ៉ារ្យ៉ង់ពណ៌ផ្លូវការ" : "Official Color Variants"}
-            </p>
-            <div className="grid grid-cols-3 gap-3">
-
-              {/* Gray */}
-              <div className="rounded-xl overflow-hidden border border-black/10">
-                <div className="h-24 flex items-center justify-center p-4 bg-white">
-                  <Image
-                    src="/brand/kwd-gray.png"
-                    alt="KWD Gray"
-                    width={80}
-                    height={80}
-                    className="object-contain max-h-14"
-                  />
-                </div>
-                <div className="px-2.5 py-2 bg-white border-t border-black/8">
-                  <p className="text-[9px] font-black uppercase tracking-wide text-zinc-700 leading-tight">kwd-gray.png</p>
-                  <p className="text-[8px] text-zinc-400 font-medium mt-0.5">{kh ? "ប្រើលើផ្ទៃស ឬប្រផេះ" : "On white / light neutral bg"}</p>
-                </div>
-              </div>
-
-              {/* Green */}
-              <div className="rounded-xl overflow-hidden border border-black/10">
-                <div className="h-24 flex items-center justify-center p-4 bg-white">
-                  <Image
-                    src="/brand/kwd-green.png"
-                    alt="KWD Green"
-                    width={80}
-                    height={80}
-                    className="object-contain max-h-14"
-                  />
-                </div>
-                <div className="px-2.5 py-2 bg-white border-t border-black/8">
-                  <p className="text-[9px] font-black uppercase tracking-wide text-zinc-700 leading-tight">kwd-green.png</p>
-                  <p className="text-[8px] text-zinc-400 font-medium mt-0.5">{kh ? "ស្ថានភាពជោគជ័យ · សកម្ម" : "Success state · active"}</p>
-                </div>
-              </div>
-
-              {/* Yellow */}
-              <div className="rounded-xl overflow-hidden border border-black/10">
-                <div className="h-24 flex items-center justify-center p-4 bg-white">
-                  <Image
-                    src="/brand/kwd-yellow.png"
-                    alt="KWD Yellow"
-                    width={80}
-                    height={80}
-                    className="object-contain max-h-14"
-                  />
-                </div>
-                <div className="px-2.5 py-2 bg-white border-t border-black/8">
-                  <p className="text-[9px] font-black uppercase tracking-wide text-zinc-700 leading-tight">kwd-yellow.png</p>
-                  <p className="text-[8px] text-amber-500 font-bold mt-0.5">{kh ? "ម៉ាកសញ្ញា · CTA" : "Brand accent · CTA"}</p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          {/* Usage rules */}
-          <div className="space-y-2">
-            {RULES.map((r, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <span className="text-[10px] font-black text-zinc-300 mt-0.5 flex-shrink-0">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <p className="text-sm text-zinc-600 font-medium leading-snug" style={kf}>{r}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="border-t border-black/10 mb-12" />
-
-        {/* ── 02.5 Product Mockups ── */}
-        <div className="mb-14">
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 mb-4">
-            {kh ? "ផលិតផល" : "Product Mockups"}
-          </p>
-          <p className="text-sm text-zinc-500 font-medium mb-6" style={kf}>
-            {kh
-              ? "KWD លើផលិតផល និងសម្ភារៈម៉ាក — រូបភាពនឹងត្រូវបន្ថែមនៅពេលក្រោយ។"
-              : "KWD applied across physical products and brand materials — images will be added later."}
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {Array.from({ length: MOCKUP_COUNT }).map((_, i) => (
-              <div
-                key={i}
-                className="rounded-xl overflow-hidden border-2 border-dashed border-black/15 bg-zinc-50 h-44 flex flex-col items-center justify-center gap-2"
+        {/* Sidebar Nav */}
+        <aside className="hidden lg:block w-44 shrink-0">
+          <nav className="sticky top-24 space-y-1">
+            {SECTIONS.map((s) => (
+              <a
+                key={s.id}
+                href={`#${s.id}`}
+                className={`block text-sm py-1 transition-colors ${
+                  active === s.id
+                    ? "text-zinc-900 dark:text-white font-semibold"
+                    : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
+                }`}
               >
-                <div className="w-8 h-8 rounded border-2 border-black/15 flex items-center justify-center">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    className="opacity-25"
-                  >
-                    <rect x="1" y="1" width="14" height="14" rx="1" stroke="#000" strokeWidth="1.5" />
-                    <path d="M1 11l4-4 3 3 3-4 4 5" stroke="#000" strokeWidth="1.5" strokeLinejoin="round" />
-                    <circle cx="11" cy="5" r="1.5" fill="#000" />
-                  </svg>
-                </div>
-                <p className="text-[9px] font-black uppercase tracking-widest text-black/20">
-                  Image {String(i + 1).padStart(2, "0")}
+                {t(s.title.en, s.title.kh)}
+              </a>
+            ))}
+          </nav>
+        </aside>
+
+        {/* Content */}
+        <main className="flex-1 min-w-0 space-y-16">
+
+          {/* Brand Name */}
+          <section id="name" className="scroll-mt-24">
+            <SectionHeading>{t("Brand Name & Meaning", "ឈ្មោះ Brand និងអត្ថន័យ")}</SectionHeading>
+            <div className="space-y-4 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+              {kh ? (
+                <>
+                  <p>KWD មានន័យថា Kesararam With Digital — ឈ្មោះដែលផ្ទុកន័យនៃទីកន្លែង គោលដៅ និងការផ្លាស់ប្ដូរ។ កេសរារាម ជាឈ្មោះវត្ត អារាម និងសាលាបឋមសិក្សា — ជាកន្លែងរៀនចំណាស់បំផុតក្នុងសហគមន៍របស់យើង។</p>
+                  <p>ពាក្យ With ប្រកាសពីភាពជាដៃគូរវាងប្រពៃណី និងបច្ចេកវិទ្យា។ ឌីជីថល (Digital) ជាការប្ដេជ្ញាផ្ដល់នូវឱកាសចូលរៀន (Access) ការពង្រីកវិសាលភាព (Reach) និងនិរន្តរភាព (Permanence)។</p>
+                  <p>KWD ត្រូវបានបង្កើតឡើងដោយយុវនារីខ្មែរ ក្រោមទស្សនវិស័យថា ការអប់រំអំពីសុវត្ថិភាពចរាចរណ៍គួរតែផ្ដល់ជូនដោយឥតគិតថ្លៃ មានអន្តរកម្ម និងងាយស្រួលចូលប្រើជាភាសាកំណើតរបស់សិស្ស។</p>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 pt-2 border-t border-zinc-100 dark:border-zinc-800">
+                    <strong className="text-zinc-700 dark:text-zinc-200">ការណែនាំ:</strong> ប្រើឈ្មោះពេញ «Kesararam With Digital» សម្រាប់ការណែនាំលើកដំបូង។ បន្ទាប់មកអាចប្រើ «KWD» បាន។
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p>KWD stands for <strong className="text-zinc-800 dark:text-zinc-100">Kesararam With Digital</strong> — a name carrying the weight of place, purpose, and transformation. Kesararam is the name of the monastery and primary school — the oldest seat of learning in our community.</p>
+                  <p>The word "With" declares a partnership between tradition and technology. "Digital" is a commitment to access, reach, and permanence.</p>
+                  <p>KWD was created by young Cambodian women from Kesararam Primary School with the vision that road safety education should be free, interactive, and accessible in students' native language.</p>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 pt-2 border-t border-zinc-100 dark:border-zinc-800">
+                    <strong className="text-zinc-700 dark:text-zinc-200">Recommendation:</strong> Use the full name "Kesararam With Digital" on first reference in press, presentations, and official documents. "KWD" may be used after.
+                  </p>
+                </>
+              )}
+            </div>
+          </section>
+
+          {/* Logo */}
+          <section id="logo" className="scroll-mt-24">
+            <SectionHeading>{t("Logo & Meaning", "និមិត្តសញ្ញា និងអត្ថន័យ")}</SectionHeading>
+            <div className="space-y-8 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+              <p>
+                {kh
+                  ? "និមិត្តសញ្ញាផ្លេកបន្ទោរលើឡូហ្គោ KWD មិនមែនជាការតុបតែង តែជាទស្សនវិជ្ជាស្នូលរបស់ម៉ាក — Flash Learning ឈរលើជំនឿថា ក្នុងយុគ AI ចំណេះដឹងត្រូវដើរក្នុងល្បឿននៃពន្លឺ។"
+                  : "The lightning bolt on the KWD logo is not ornamental — it is the core philosophy of the brand. It represents Flash Learning: in the age of AI, knowledge must move at the speed of light."}
+              </p>
+
+              {/* Logo Variants */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                {LOGO_VARIANTS.map((v, i) => (
+                  <div key={i} className="flex flex-col gap-2">
+                    <div className={`${v.bg} border border-zinc-200 dark:border-zinc-700 flex items-center justify-center p-4 aspect-square`}>
+                      <Image
+                        src={v.src}
+                        alt={v.label.en}
+                        width={72}
+                        height={72}
+                        className={`object-contain ${v.invert ? "invert" : ""}`}
+                      />
+                    </div>
+                    <p className="text-[10px] font-mono text-zinc-400 dark:text-zinc-500 break-all">{v.filename}</p>
+                    <p className="text-xs font-medium text-zinc-700 dark:text-zinc-300">{t(v.label.en, v.label.kh)}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Rules */}
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-3">
+                  {t("Usage Rules", "ច្បាប់ប្រើប្រាស់")}
                 </p>
+                <ul className="space-y-2">
+                  {RULES.map((r, i) => (
+                    <li key={i} className="flex gap-3 text-sm text-zinc-600 dark:text-zinc-300">
+                      <span className="shrink-0 text-zinc-300 dark:text-zinc-600 select-none">—</span>
+                      <span>{t(r.en, r.kh)}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
+          </section>
 
-        <div className="border-t border-black/10 mb-12" />
-
-        {/* ── 02.6 Card Print Sign ── */}
-        <div className="mb-14">
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 mb-4">
-            {kh ? "កាតព្រីនសញ្ញា" : "Card Print Sign"}
-          </p>
-          <p className="text-sm text-zinc-500 font-medium mb-8" style={kf}>
-            {kh
-              ? "ទម្រង់កាតដែលអាចបោះពុម្ពបាន — ប្រើ Google Sans Khmer សម្រាប់ភាសាខ្មែរ និង Inter សម្រាប់ភាសាអង់គ្លេស។"
-              : "Print-ready card format — uses Kantumruy Pro for Khmer text and Inter for English text."}
-          </p>
-
-          {/* Card preview grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-
-            {/* Card 1 — Light */}
-            <div
-              className="relative rounded-[10px] border-[3px] border-black overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
-              style={{ aspectRatio: "85/54", background: "#ffffff" }}
-            >
-              {/* glossy shine overlay */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none" />
-
-              <div className="flex h-full px-5 py-4 gap-4 items-center">
-                {/* Logo */}
-                <div className="w-[68px] h-[68px] rounded-full bg-white flex items-center justify-center overflow-hidden flex-shrink-0 shadow-md border border-black/5">
-                  <Image
-                    src={LOGO_PRIMARY}
-                    alt="KWD"
-                    width={46}
-                    height={46}
-                    className="object-contain"
+          {/* Color Palette */}
+          <section id="color" className="scroll-mt-24">
+            <SectionHeading>{t("Color Palette", "ពណ៌")}</SectionHeading>
+            <div className="divide-y divide-zinc-100 dark:divide-zinc-800 border-t border-b border-zinc-100 dark:border-zinc-800">
+              {COLORS.map(({ name, hex, role }) => (
+                <div key={hex} className="flex items-center gap-4 py-3">
+                  <div
+                    className="w-8 h-8 shrink-0 border border-zinc-200 dark:border-zinc-700"
+                    style={{ background: hex }}
                   />
+                  <span className="text-sm font-semibold text-zinc-800 dark:text-zinc-100 w-28 shrink-0">{name}</span>
+                  <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 w-20 shrink-0">{hex}</span>
+                  <span className="text-sm text-zinc-500 dark:text-zinc-400 leading-snug">{t(role.en, role.kh)}</span>
                 </div>
-                {/* Divider */}
-                <div className="w-px self-stretch bg-black/10" />
-                {/* Text block */}
-                <div className="flex-1 min-w-0">
-                  <p
-                    className="text-[11px] font-black uppercase tracking-[0.2em] text-black leading-none mb-1"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    KWD
-                  </p>
-                  <p
-                    className="text-[9px] font-semibold text-zinc-500 leading-snug mb-2"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    Kesararam With Digital
-                  </p>
-                  <p
-                    className="text-[10px] font-bold text-black leading-snug"
-                    style={{ fontFamily: "var(--font-kh-header)" }}
-                  >
-                    កេសរារាម ជាមួយ ឌីជីថល
-                  </p>
-                  <p
-                    className="text-[8px] text-zinc-400 mt-1 leading-snug"
-                    style={{ fontFamily: "var(--font-kh-body)" }}
-                  >
-                    ការអប់រំ · សុវត្ថិភាពចរាចរ
-                  </p>
+              ))}
+            </div>
+          </section>
+
+          {/* Typography */}
+          <section id="type" className="scroll-mt-24">
+            <SectionHeading>{t("Typography", "អក្សរ")}</SectionHeading>
+            <div className="space-y-4 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+              <div className="divide-y divide-zinc-100 dark:divide-zinc-800 border-t border-b border-zinc-100 dark:border-zinc-800">
+                {[
+                  { label: t("Khmer", "ខ្មែរ"),   value: "Siemreap, Google Sans, Battambang" },
+                  { label: t("English", "អង់គ្លេស"), value: "Inter" },
+                  { label: t("Labels", "ស្លាក"),    value: t("UPPERCASE · letter-spacing · Bold/Black weight", "UPPERCASE · letter-spacing · Bold/Black") },
+                ].map((row) => (
+                  <div key={row.label} className="flex gap-6 py-3">
+                    <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 w-20 shrink-0 pt-0.5">{row.label}</span>
+                    <span className="text-sm text-zinc-700 dark:text-zinc-200">{row.value}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Type Specimen */}
+              <div className="space-y-4 pt-2">
+                <div>
+                  <p className="text-[10px] font-mono text-zinc-400 mb-1">Display · 36px · Black</p>
+                  <p className="text-4xl font-black text-zinc-900 dark:text-white tracking-tight">KWD</p>
+                </div>
+                <div>
+                  <p className="text-[10px] font-mono text-zinc-400 mb-1">Heading · 20px · Bold</p>
+                  <p className="text-xl font-bold text-zinc-900 dark:text-white">Brand Guidelines</p>
+                </div>
+                <div>
+                  <p className="text-[10px] font-mono text-zinc-400 mb-1">Body · 14px · Regular</p>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-300">Education should be free, interactive, and accessible.</p>
                 </div>
               </div>
-              {/* bottom bar: caution tape */}
-              <div className="absolute bottom-0 left-0 right-0 h-[4px] caution-tape" />
             </div>
+          </section>
 
-            {/* Card 2 — Dark */}
-            <div
-              className="relative rounded-[10px] border-[3px] border-black overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
-              style={{ aspectRatio: "85/54", background: "#000000" }}
-            >
-              {/* glossy shine overlay */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none" />
-
-              <div className="flex h-full px-5 py-4 gap-4 items-center">
-                {/* Logo — inverted for dark bg */}
-                <div className="w-[68px] h-[68px] rounded-full bg-white flex items-center justify-center overflow-hidden flex-shrink-0 shadow-md border border-black/5">
-                  <Image
-                    src={LOGO_PRIMARY}
-                    alt="KWD"
-                    width={46}
-                    height={46}
-                    className="object-contain"
-                  />
-                </div>
-                {/* Divider */}
-                <div className="w-px self-stretch bg-white/15" />
-                {/* Text block */}
-                <div className="flex-1 min-w-0">
-                  <p
-                    className="text-[11px] font-black uppercase tracking-[0.2em] text-white leading-none mb-1"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    KWD
-                  </p>
-                  <p
-                    className="text-[9px] font-semibold text-white/50 leading-snug mb-2"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    Kesararam With Digital
-                  </p>
-                  <p
-                    className="text-[10px] font-bold text-white leading-snug"
-                    style={{ fontFamily: "var(--font-kh-header)" }}
-                  >
-                    កេសរារាម ជាមួយ ឌីជីថល
-                  </p>
-                  <p
-                    className="text-[8px] text-white/40 mt-1 leading-snug"
-                    style={{ fontFamily: "var(--font-kh-body)" }}
-                  >
-                    ការអប់រំ · សុវត្ថិភាពចរាចរ
-                  </p>
-                </div>
+          {/* Design DNA */}
+          <section id="dna" className="scroll-mt-24">
+            <SectionHeading>{t("Design DNA — Brutalist", "ប្រព័ន្ធរចនា DNA — Brutalist")}</SectionHeading>
+            <div className="space-y-4 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+              <div className="divide-y divide-zinc-100 dark:divide-zinc-800 border-t border-b border-zinc-100 dark:border-zinc-800">
+                {(kh ? [
+                  ["Border radius",   "0 — មុំទាំងអស់ស្រួច (90°)"],
+                  ["Border",         "2–3px ខ្មៅ #000 លើ cards ប៊ូតុង inputs"],
+                  ["Box shadow",     "3–4px offset solid #000"],
+                  ["Accent stripe",  "លឿង #eab308 / ខ្មៅ"],
+                  ["Active state",   "ផ្ទៃលឿង #eab308 · អក្សរខ្មៅ #000"],
+                  ["Spacing scale",  "4 · 8 · 12 · 16 · 20 · 24 px"],
+                ] : [
+                  ["Border radius",   "0 — all corners sharp (90°)"],
+                  ["Border",         "2–3px solid #000 on cards, buttons, inputs"],
+                  ["Box shadow",     "3–4px offset solid shadow (#000)"],
+                  ["Accent stripe",  "Yellow #eab308 / black caution pattern"],
+                  ["Active state",   "Yellow background #eab308 · black text #000"],
+                  ["Spacing scale",  "4 · 8 · 12 · 16 · 20 · 24 px"],
+                ]).map(([prop, val]) => (
+                  <div key={prop} className="flex gap-6 py-3">
+                    <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 w-28 shrink-0 pt-0.5">{prop}</span>
+                    <span className="text-sm text-zinc-700 dark:text-zinc-200">{val}</span>
+                  </div>
+                ))}
               </div>
-              {/* bottom bar: caution tape */}
-              <div className="absolute bottom-0 left-0 right-0 h-[4px] caution-tape" />
             </div>
+          </section>
 
-            {/* Card 3 — Yellow accent */}
-            <div
-              className="relative rounded-[10px] border-[3px] border-black overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
-              style={{ aspectRatio: "85/54", background: "#eab308" }}
-            >
-              {/* glossy shine overlay */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none" />
+          {/* Design Kit — Shapes, Tape & Icons */}
+          <section id="kit" className="scroll-mt-24">
+            <SectionHeading>{t("Design Kit — Shapes, Tape & Icons", "ឧបករណ៍រចនា — រូបរាង, ខ្សែបូ និងរូបតំណាង")}</SectionHeading>
 
-              <div className="flex h-full px-5 py-4 gap-4 items-center">
-                <div className="w-[68px] h-[68px] rounded-full bg-white flex items-center justify-center overflow-hidden flex-shrink-0 shadow-md border border-black/5">
-                  <Image
-                    src="/brand/kwd-yellow.png"
-                    alt="KWD Yellow"
-                    width={46}
-                    height={46}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="w-px self-stretch bg-black/20" />
-                <div className="flex-1 min-w-0">
-                  <p
-                    className="text-[11px] font-black uppercase tracking-[0.2em] text-black leading-none mb-1"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    KWD
-                  </p>
-                  <p
-                    className="text-[9px] font-semibold text-black/60 leading-snug mb-2"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    Kesararam With Digital
-                  </p>
-                  <p
-                    className="text-[10px] font-bold text-black leading-snug"
-                    style={{ fontFamily: "var(--font-kh-header)" }}
-                  >
-                    កេសរារាម ជាមួយ ឌីជីថល
-                  </p>
-                  <p
-                    className="text-[8px] text-black/50 mt-1 leading-snug"
-                    style={{ fontFamily: "var(--font-kh-body)" }}
-                  >
-                    ការអប់រំ · សុវត្ថិភាពចរាចរ
-                  </p>
-                </div>
-              </div>
-              {/* bottom bar: caution tape */}
-              <div className="absolute bottom-0 left-0 right-0 h-[4px] caution-tape" />
-            </div>
-
-            {/* Card 4 — Bilingual ID card style */}
-            <div
-              className="relative rounded-[10px] border-[3px] border-black overflow-hidden flex flex-col shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
-              style={{ aspectRatio: "85/54", background: "#ffffff" }}
-            >
-              {/* glossy shine overlay */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none" />
-              {/* header stripe */}
-              <div className="bg-black px-5 py-2 flex items-center justify-between flex-shrink-0">
-                <p
-                  className="text-[9px] font-black uppercase tracking-[0.25em] text-white"
-                  style={{ fontFamily: "var(--font-sans)" }}
-                >
-                  Official ID Card
-                </p>
-                <p
-                  className="text-[9px] font-bold text-white/60"
-                  style={{ fontFamily: "var(--font-kh-header)" }}
-                >
-                  កាតអត្តសញ្ញាណ
-                </p>
-              </div>
-              <div className="flex flex-1 px-5 py-3 gap-4 items-center min-h-0">
-                <div className="w-[60px] h-[60px] rounded-full bg-white flex items-center justify-center overflow-hidden flex-shrink-0 shadow-md border border-black/5">
-                  <Image
-                    src={LOGO_PRIMARY}
-                    alt="KWD"
-                    width={40}
-                    height={40}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p
-                    className="text-base font-black text-black leading-none"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    KWD
-                  </p>
-                  <p
-                    className="text-[8px] font-medium text-zinc-500 mt-0.5 leading-snug"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    kesararamwithdigital.tech
-                  </p>
-                  <p
-                    className="text-[9px] font-bold text-black mt-1.5 leading-snug"
-                    style={{ fontFamily: "var(--font-kh-header)" }}
-                  >
-                    វេទិកាអប់រំ — ឥតគិតថ្លៃ
-                  </p>
-                </div>
-                {/* accent dot */}
-                <div className="w-2 h-2 rounded-full bg-[#eab308] flex-shrink-0" />
-              </div>
-              {/* bottom bar: caution tape */}
-              <div className="absolute bottom-0 left-0 right-0 h-[4px] caution-tape" />
-            </div>
-
-            {/* Card 5 — Green on dark (sub-logo: kwd-green) */}
-            <div
-              className="relative rounded-[10px] border-[3px] border-black overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
-              style={{ aspectRatio: "85/54", background: "#111827" }}
-            >
-              {/* glossy shine overlay */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none" />
-              <div className="flex h-full px-5 py-4 gap-4 items-center">
-                <div className="w-[68px] h-[68px] rounded-full bg-white flex items-center justify-center overflow-hidden flex-shrink-0 shadow-md border border-white/5">
-                  <Image
-                    src="/brand/kwd-green.png"
-                    alt="KWD Green"
-                    width={46}
-                    height={46}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="w-px self-stretch bg-white/10" />
-                <div className="flex-1 min-w-0">
-                  <p
-                    className="text-[11px] font-black uppercase tracking-[0.2em] text-white leading-none mb-1"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    KWD
-                  </p>
-                  <p
-                    className="text-[9px] font-semibold text-white/50 leading-snug mb-2"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    Kesararam With Digital
-                  </p>
-                  <p
-                    className="text-[10px] font-bold text-[#22c55e] leading-snug"
-                    style={{ fontFamily: "var(--font-kh-header)" }}
-                  >
-                    កេសរារាម ជាមួយ ឌីជីថល
-                  </p>
-                  <p
-                    className="text-[8px] text-white/30 mt-1 leading-snug"
-                    style={{ fontFamily: "var(--font-kh-body)" }}
-                  >
-                    ការអប់រំ · សុវត្ថិភាពចរាចរ
-                  </p>
-                </div>
-              </div>
-              {/* bottom bar: caution tape */}
-              <div className="absolute bottom-0 left-0 right-0 h-[4px] caution-tape" />
-            </div>
-
-            {/* Card 6 — Gray / neutral (sub-logo: kwd-gray) */}
-            <div
-              className="relative rounded-[10px] border-[3px] border-black overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
-              style={{ aspectRatio: "85/54", background: "#f4f4f5" }}
-            >
-              {/* glossy shine overlay */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/10 pointer-events-none" />
-              <div className="flex h-full px-5 py-4 gap-4 items-center">
-                <div className="w-[68px] h-[68px] rounded-full bg-white flex items-center justify-center overflow-hidden flex-shrink-0 shadow-md border border-black/5">
-                  <Image
-                    src="/brand/kwd-gray.png"
-                    alt="KWD Gray"
-                    width={46}
-                    height={46}
-                    className="object-contain"
-                  />
-                </div>
-                <div className="w-px self-stretch bg-black/10" />
-                <div className="flex-1 min-w-0">
-                  <p
-                    className="text-[11px] font-black uppercase tracking-[0.2em] text-zinc-500 leading-none mb-1"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    KWD
-                  </p>
-                  <p
-                    className="text-[9px] font-semibold text-zinc-400 leading-snug mb-2"
-                    style={{ fontFamily: "var(--font-sans)" }}
-                  >
-                    Kesararam With Digital
-                  </p>
-                  <p
-                    className="text-[10px] font-bold text-zinc-600 leading-snug"
-                    style={{ fontFamily: "var(--font-kh-header)" }}
-                  >
-                    កេសរារាម ជាមួយ ឌីជីថល
-                  </p>
-                  <p
-                    className="text-[8px] text-zinc-400 mt-1 leading-snug"
-                    style={{ fontFamily: "var(--font-kh-body)" }}
-                  >
-                    ការអប់រំ · សុវត្ថិភាពចរាចរ
-                  </p>
-                </div>
-              </div>
-              {/* bottom bar: caution tape */}
-              <div className="absolute bottom-0 left-0 right-0 h-[4px] caution-tape" />
-            </div>
-
-          </div>
-
-          {/* Font spec table */}
-          <div className="border border-black/8 rounded-xl overflow-hidden">
-            <div className="grid grid-cols-3 bg-zinc-50 border-b border-black/8">
-              <p className="text-[9px] font-black uppercase tracking-widest text-zinc-400 px-4 py-2">Usage</p>
-              <p className="text-[9px] font-black uppercase tracking-widest text-zinc-400 px-4 py-2">Font (Google Fonts)</p>
-              <p className="text-[9px] font-black uppercase tracking-widest text-zinc-400 px-4 py-2">CSS Var</p>
-            </div>
-            {[
-              { usage: "English — All text", font: "Inter", note: "Latin UI font", css: "--font-sans" },
-              { usage: "Khmer — Headings", font: "Kantumruy Pro / Google Sans Khmer", note: "Heading style & brand elements", css: "--font-kh-header" },
-              { usage: "Khmer — Body copy", font: "Siemreap / Google Sans", note: "Standard text & secondary UI", css: "--font-kh-body" },
-            ].map(({ usage, font, note, css }) => (
-              <div key={css} className="grid grid-cols-3 border-b border-black/5 last:border-0">
-                <p className="text-[10px] font-medium text-zinc-600 px-4 py-2.5" style={kf}>{usage}</p>
-                <div className="px-4 py-2.5">
-                  <p className="text-[10px] font-bold text-black">{font}</p>
-                  <p className="text-[8px] text-zinc-400 font-medium mt-0.5">{note}</p>
-                </div>
-                <p className="text-[9px] font-mono text-zinc-400 px-4 py-2.5 self-center">{css}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="border-t border-black/10 mb-12" />
-
-        {/* ── 03 Color Palette ── */}
-        <div className="mb-14">
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 mb-4">
-            03 — {kh ? "ពណ៌" : "Color Palette"}
-          </p>
-          <p className="text-sm text-zinc-500 font-medium mb-8" style={kf}>
-            {kh
-              ? "ពណ៌ KWD ត្រូវបានជ្រើសរើសដោយផ្អែកលើប្រព័ន្ធសញ្ញាចរាចរ — ពណ៌នីមួយៗមានន័យ។"
-              : "KWD colors are drawn directly from the road sign system — every color carries meaning."}
-          </p>
-          <div className="grid grid-cols-3 md:grid-cols-5 gap-3">
-            {COLORS.map(({ name, hex, role }) => (
-              <div key={hex} className="group cursor-default">
-                <div
-                  className="h-12 rounded-lg mb-2 border border-black/8"
-                  style={{ background: hex }}
-                />
-                <p className="text-[10px] font-black text-black uppercase tracking-wide">{name}</p>
-                <p className="text-[9px] font-mono text-zinc-400">{hex}</p>
-                <p className="text-[9px] text-zinc-400 leading-snug mt-0.5 hidden group-hover:block">{role}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="border-t border-black/10 mb-12" />
-
-        {/* ── 04 Typography ── */}
-        <div className="mb-14">
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 mb-8">
-            04 — {kh ? "អក្សរ" : "Typography"}
-          </p>
-
-          <div className="space-y-8">
-            <div>
-              <p className="text-[9px] font-black uppercase tracking-widest text-zinc-300 mb-3">Primary — Inter</p>
-              <p className="text-5xl font-black text-black leading-none">Aa Bb Cc</p>
-              <p className="text-xs text-zinc-400 mt-2">All Latin text, UI labels, headings, body copy.</p>
-            </div>
-            <div>
-              <p className="text-[9px] font-black uppercase tracking-widest text-zinc-300 mb-3">Khmer — Siemreap</p>
-              <p className="text-4xl font-black text-black leading-none" style={{ fontFamily: "Siemreap, sans-serif" }}>ក ខ គ ឃ ង</p>
-              <p className="text-xs text-zinc-400 mt-2">All Khmer script content across the platform.</p>
-            </div>
-            <div className="space-y-3 border-t border-black/8 pt-6">
-              <p className="text-[9px] font-black uppercase tracking-widest text-zinc-300 mb-4">Type Scale</p>
-              <p className="text-5xl font-black text-black leading-none">Display / 900</p>
-              <p className="text-3xl font-black text-black">Heading / 900</p>
-              <p className="text-xl font-bold text-black">Subheading / 700</p>
-              <p className="text-base font-medium text-zinc-700">Body / 500</p>
-              <p className="text-xs font-black uppercase tracking-widest text-zinc-400">Label / 900 Uppercase</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-black/10 mb-12" />
-
-        {/* ── 05 Design System ── */}
-        <div className="mb-14">
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 mb-4">
-            05 — {kh ? "ប្រព័ន្ធរចនា" : "Design System"}
-          </p>
-          <p className="text-sm md:text-base text-zinc-700 leading-relaxed font-medium mb-8" style={kf}>
-            {kh
-              ? "KWD ប្រើប្រព័ន្ធ Neo-Brutalism — ដែលបង្កើតឡើងលើវេយ្យាករណ៍ដ៏ច្បាស់លាស់នៃហេដ្ឋារចនាសម្ព័ន្ធផ្លូវ។ ស៊ុមមានរចនាសម្ព័ន្ធ មិនមែនតុបតែង។ ស្រមោលមានទិសដៅ ដូចស្រមោលនៃសសរសញ្ញាផ្លូវ។ គ្មានជម្រាល គ្មានភាពទន់ភ្លន់ — ចំណុចប្រទាក់ទំនាក់ទំនងដោយភាពច្បាស់លាស់ដូចសញ្ញាឈប់។"
-              : "KWD uses a Neo-Brutalism design language — a system built on the visual grammar of road infrastructure. Borders are structural, not decorative. Shadows are hard and directional, like the shadow cast by a road sign post. There are no gradients, no blur, no softness. The interface communicates with the same clarity that a stop sign communicates."}
-          </p>
-          <div className="grid grid-cols-2 gap-x-8 gap-y-4">
-            {DESIGN_TOKENS.map(({ token, value }) => (
-              <div key={token} className="flex flex-col gap-0.5">
-                <p className="text-[9px] font-black uppercase tracking-widest text-zinc-300">{token}</p>
-                <p className="text-sm font-bold text-black">{value}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="border-t border-black/10 mb-12" />
-
-        {/* ── 06 Voice & Tone ── */}
-        <div className="mb-14">
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 mb-4">
-            06 — {kh ? "សំឡេង និងទឹកចិត្ត" : "Voice & Tone"}
-          </p>
-          <div className="space-y-4 text-sm md:text-base text-zinc-700 leading-relaxed font-medium" style={kf}>
-            <p>
-              {kh
-                ? "KWD និយាយដោយ ភាពច្បាស់លាស់ និងភាពកក់ក្ដៅ។ វេទិកានេះបង្កើតឡើងដោយក្មេងស្រីសម្រាប់សិស្ស — សំឡេងមិនដែលបង្ហាញការប្រមាថ ឬជាផ្លូវការ។ វាផ្ទាល់ ព្រោះសុវត្ថិភាពចរាចរផ្ទាល់។ វាកក់ក្ដៅ ព្រោះការរៀនសូត្រត្រូវការទំនុកចិត្ត។"
-                : "KWD speaks with precision and warmth. The platform is built by young girls for students — the voice is never condescending, never bureaucratic. It is direct because road safety is direct. It is warm because learning requires trust."}
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-8 max-w-2xl">
+              {t(
+                "Reusable road-sign shapes and caution-tape patterns. All pure vector (SVG) — they stay crisp at any size, from a 16px icon to a 4K slide. Flat brutalist: solid black border, no shadow, no gradients, no neon. Khmer labels set in Siemreap / Google Sans.",
+                "រូបរាងផ្លាកសញ្ញាចរាចរណ៍ និងខ្សែបូព្រមាន ដែលអាចប្រើឡើងវិញ។ ទាំងអស់ជា Vector (SVG) — ច្បាស់គ្រប់ទំហំ ចាប់ពីរូបតំណាង 16px ដល់ស្លាយ 4K។ រចនាបែបរាបស្មើ៖ គែមខ្មៅ គ្មានស្រមោល គ្មាន gradient គ្មាន neon។ អក្សរខ្មែរប្រើ Siemreap / Google Sans។"
+              )}
             </p>
-            <p style={kf}>
-              {kh
-                ? "ជាភាសាខ្មែរ វេទិកាប្រើការចុះបញ្ជីដែលគោរព ប៉ុន្តែអាចចូលប្រើបាន — ភាសារបស់មិត្តដែលមានចំណេះដឹង មិនមែនអាជ្ញាធរ។ ជាភាសាអង់គ្លេស ទឹកចិត្តច្បាស់ សកម្ម និងគ្មានពាក្យបច្ចេកទេស។"
-                : "In Khmer, the platform uses respectful but accessible register — the language of a knowledgeable peer, not an authority. In English, the tone is clear, active, and free of jargon."}
-            </p>
-          </div>
-          <div className="mt-6 space-y-2">
-            {[
-              kh ? "សរសេរដើម្បីឱ្យយល់ មិនមែនដើម្បីចាប់អារម្មណ៍។" : "Write to be understood, not to impress.",
-              kh ? "ប្រើសំឡេងសកម្ម។ បញ្ជាក់ពីអ្វីដែលអ្នកប្រើអាចធ្វើ។" : "Use active voice. State what the user can do.",
-              kh ? "សារកំហុសពន្យល់ពីអ្វីដែលបានកើតឡើង និងអ្វីដែលត្រូវធ្វើបន្ទាប់។" : "Error messages explain what happened and what to do next.",
-              kh ? "ស្លាកខ្លី។ ការពិពណ៌នាពេញលេញ។" : "Labels are short. Descriptions are complete.",
-              kh ? "ខ្លឹមសារពីរភាសាត្រូវតែមានន័យស្មើ — មិនមែនការបកប្រែពាក្យ ពាក្យ។" : "Bilingual content must carry equal meaning — not literal translation.",
-            ].map((p, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <span className="text-[10px] font-black text-zinc-300 mt-0.5 flex-shrink-0">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <p className="text-sm text-zinc-600 font-medium leading-snug" style={kf}>{p}</p>
-              </div>
-            ))}
-          </div>
-        </div>
 
-        {/* ── Footer ── */}
-        <div className="border-t border-black/10 pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <Image
-              src={LOGO_PRIMARY}
-              alt="KWD"
-              width={24}
-              height={24}
-              className="object-contain opacity-40"
-            />
-            <p className="text-xs text-zinc-400 font-medium" style={kf}>
-              &copy; {new Date().getFullYear()} KWD — Kesararam With Digital. Brand Guideline v1.0
+            {/* Shapes */}
+            <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-4">
+              {t("Shapes", "រូបរាង")}
             </p>
-          </div>
-          <div className="flex gap-4 text-xs font-bold">
-            <Link href="/terms" className="text-zinc-400 hover:text-black transition-colors" style={kf}>Terms</Link>
-            <Link href="/privacy" className="text-zinc-400 hover:text-black transition-colors" style={kf}>Privacy</Link>
-          </div>
-        </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 mb-12">
+              {SHAPES.map((s) => {
+                const st = SHAPE_STYLE[s.shape];
+                return (
+                  <div
+                    key={s.shape}
+                    className="flex flex-col items-center text-center gap-3 border border-zinc-100 dark:border-zinc-800 p-5"
+                  >
+                    <SignShape shape={s.shape} body={st.body} size={84} shadow={false}>
+                      <span className={`font-learning font-bold leading-tight text-center px-1 ${st.fg} ${s.shape === "triangle" ? "text-[11px]" : "text-sm"}`}>
+                        {s.meaningKh}
+                      </span>
+                    </SignShape>
+                    <div>
+                      <p className="text-sm font-bold text-zinc-800 dark:text-zinc-100">
+                        {t(s.en, s.kh)}
+                      </p>
+                      <p className="text-xs text-zinc-400 dark:text-zinc-500">
+                        {t(s.meaningEn, s.meaningKh)}
+                      </p>
+                      <code className="mt-1 inline-block text-[10px] font-mono text-zinc-400 dark:text-zinc-500">
+                        shape=&quot;{s.shape}&quot;
+                      </code>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
 
+            {/* Caution tape */}
+            <p className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-4">
+              {t("Caution Tape", "ខ្សែបូព្រមាន")}
+            </p>
+            <div className="space-y-5">
+              {TAPES.map((tp) => (
+                <div key={tp.variant} className="flex items-center gap-4">
+                  <div className="w-28 shrink-0">
+                    <p className="text-sm font-bold text-zinc-800 dark:text-zinc-100">
+                      {t(tp.en, tp.kh)}
+                    </p>
+                    <code className="text-[10px] font-mono text-zinc-400 dark:text-zinc-500">
+                      variant=&quot;{tp.variant}&quot;
+                    </code>
+                  </div>
+                  <div className="flex-1 border-2 border-black dark:border-zinc-700">
+                    <CautionTape variant={tp.variant} height={28} />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Usage note */}
+            <p className="mt-8 text-xs text-zinc-400 dark:text-zinc-500 font-mono leading-relaxed">
+              {t(
+                'import { CautionTape, SignShape } from "@/components/brand/brand-kit"',
+                'import { CautionTape, SignShape } from "@/components/brand/brand-kit"'
+              )}
+            </p>
+          </section>
+
+          {/* Applications */}
+          <section id="apply" className="scroll-mt-24">
+            <SectionHeading>{t("Applications & Mockups", "ការប្រើប្រាស់ & Mockups")}</SectionHeading>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {MOCKUP_ASSETS.map((m, i) => (
+                <div key={i}>
+                  <div className="aspect-[4/3] relative bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 overflow-hidden">
+                    <Image
+                      src={m.src}
+                      alt={m.title.en}
+                      fill
+                      unoptimized
+                      className="object-cover select-none pointer-events-none"
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      onContextMenu={(e) => e.preventDefault()}
+                      draggable={false}
+                    />
+                  </div>
+                  <p className="mt-2 text-xs text-zinc-400 dark:text-zinc-500 font-mono uppercase tracking-wider">
+                    {t(`Mockup ${i + 1}`, `គំរូ ${i + 1}`)}
+                  </p>
+                  <p className="text-sm font-medium text-zinc-700 dark:text-zinc-200">
+                    {t(m.title.en, m.title.kh)}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+        </main>
       </div>
+
+      {/* Footer */}
+      <footer className="border-t border-zinc-200 dark:border-zinc-800 py-6">
+        <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-400 dark:text-zinc-500">
+          <span>© {new Date().getFullYear()} Kesararam With Digital · kesararamwithdigital.tech</span>
+          <div className="flex gap-4">
+            <Link href="/terms"   className="hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors">{t("Terms", "លក្ខខណ្ឌ")}</Link>
+            <Link href="/privacy" className="hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors">{t("Privacy", "ឯកជនភាព")}</Link>
+          </div>
+        </div>
+      </footer>
+
     </div>
+  );
+}
+
+function SectionHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="text-base font-semibold text-zinc-900 dark:text-white border-b border-zinc-200 dark:border-zinc-800 pb-3 mb-6">
+      {children}
+    </h2>
   );
 }

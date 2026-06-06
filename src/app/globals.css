@@ -2,9 +2,66 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* ─── Google Sans (from public/Google_Sans) ─── */
+@font-face {
+  font-family: "GoogleSans";
+  src: url("/Google_Sans/static/GoogleSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GoogleSans";
+  src: url("/Google_Sans/static/GoogleSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "GoogleSans";
+  src: url("/Google_Sans/static/GoogleSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* ─── Stack Sans Notch (from public/Stack_Sans_Notch) ─── */
+@font-face {
+  font-family: "StackSansNotch";
+  src: url("/Stack_Sans_Notch/static/StackSansNotch-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "StackSansNotch";
+  src: url("/Stack_Sans_Notch/static/StackSansNotch-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "StackSansNotch";
+  src: url("/Stack_Sans_Notch/static/StackSansNotch-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "StackSansNotch";
+  src: url("/Stack_Sans_Notch/static/StackSansNotch-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* ─── Brand font utility classes ─── */
+.font-google-sans {
+  font-family: "GoogleSans", "Google Sans", sans-serif !important;
+  font-weight: 700;
+}
+.font-stack-notch,
+.font-english {
+  font-family: "StackSansNotch", sans-serif !important;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --breakpoint-xs: 390px;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
@@ -255,11 +312,13 @@
   background: repeating-linear-gradient(
     -45deg,
     #eab308 0px,
-    #eab308 12px,
-    #000000 12px,
-    #000000 24px
+    #eab308 8px,
+    #000000 8px,
+    #000000 16px
   );
-  height: 6px;
+  height: 12px;
+  border-top: 2px solid #000000;
+  border-bottom: 2px solid #000000;
 }
 
 /* ─── Khmer Fonts ─── */
@@ -269,6 +328,16 @@
 }
 .font-kh-body {
   font-family: var(--font-kh-body), "Google Sans Khmer", "Google Sans", sans-serif !important;
+}
+
+/* ─── Font usage by context (KWD brand rule) ─── */
+/* Learning / lesson / quiz content → Siemreap (the --font-kh-body face). */
+.font-learning {
+  font-family: var(--font-kh-body), "Siemreap", "Google Sans Khmer", sans-serif !important;
+}
+/* System chrome / function buttons → Inter (EN primary) + Google Sans Khmer (KH). */
+.font-system {
+  font-family: var(--font-sans), "Google Sans Khmer", "Google Sans", sans-serif !important;
 }
 
 /* ─── Active nav tab indicator ─── */

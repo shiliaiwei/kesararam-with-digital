@@ -522,6 +522,20 @@ export default function PlayPage() {
   const { lang } = useLang();
   const kh = lang === "kh";
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const router = useRouter();
+
+  useEffect(() => {
+    fetch("/api/auth/me")
+      .then(r => r.ok ? r.json() : null)
+      .then(d => {
+        if (d && !d.error) {
+          if (d.role === "student" && (!d.schoolName || !d.province || !d.gradeLevel)) {
+            router.push("/profile/student");
+          }
+        }
+      })
+      .catch(() => { });
+  }, [router]);
 
   return (
     <div style={{

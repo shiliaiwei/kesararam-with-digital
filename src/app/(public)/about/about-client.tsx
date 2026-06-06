@@ -1,25 +1,19 @@
 "use client";
 
-import { useState } from "react";import Link from "next/link";
+import { useState } from "react";
+import Link from "next/link";
 import { useLang } from "@/context/lang-context";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import { TeamSection } from "@/components/about/team-section";
 
-// ── Gallery images ────────────────────────────────────────────────────────────
-// Index 0 = hero cover | Index 1-2 = story sidebar | rest = gallery grid
-// All URLs pass through protect() which adds fl_attachment:false via Cloudinary
-// so "Save image as" downloads a renamed binary, not the original file.
-
+// ── Image protection helper ───────────────────────────────────────────────────
 const protect = (url: string) =>
   url.replace("/upload/", "/upload/fl_attachment:false,q_auto,f_auto/");
 
 const GALLERY = [
-  // ── Cover / Hero ──
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760771/00062File_rrjfgx.jpg",
-  // ── Story sidebar (2 shown) ──
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760771/00057File_d4gnzg.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760770/00056File_mlwsxx.jpg",
-  // ── Gallery grid ──
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760776/00041File_bhyh9b.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760782/00078File_mqcrbt.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760777/00074File_a4s9d1.jpg",
@@ -100,14 +94,12 @@ const GALLERY = [
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760769/00021File_qmiia3.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760767/00032File_lzjrbx.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775760767/00033File_zx07ep.jpg",
-  // ── Previous team photos kept ──
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775673217/photo_2026-04-09_02-29-33_zyueex.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775673274/photo_2026-04-09_02-29-29_nxuioi.jpg",
   "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775673225/DSC_0006_uzmstz.jpg",
 ];
 
 // ── Lightbox ──────────────────────────────────────────────────────────────────
-
 function Lightbox({ images, index, onClose, onPrev, onNext }: {
   images: string[]; index: number; onClose: () => void; onPrev: () => void; onNext: () => void;
 }) {
@@ -116,21 +108,8 @@ function Lightbox({ images, index, onClose, onPrev, onNext }: {
       <button onClick={(e) => { e.stopPropagation(); onPrev(); }} className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all z-10">
         <ChevronLeft className="text-white" size={24} />
       </button>
-      {/* Wrapper blocks right-click and drag */}
-      <div
-        className="relative max-h-[85vh] max-w-[90vw]"
-        onClick={e => e.stopPropagation()}
-        onContextMenu={e => e.preventDefault()}
-        onDragStart={e => e.preventDefault()}
-      >
-        <img
-          src={images[index]}
-          alt=""
-          draggable={false}
-          className="max-h-[85vh] max-w-[90vw] object-contain pointer-events-none"
-          style={{ userSelect: "none" }}
-        />
-        {/* Invisible overlay blocks right-click on the image itself */}
+      <div className="relative max-h-[85vh] max-w-[90vw]" onClick={e => e.stopPropagation()} onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()}>
+        <img src={images[index]} alt="" draggable={false} className="max-h-[85vh] max-w-[90vw] object-contain pointer-events-none" style={{ userSelect: "none" }} />
         <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} />
       </div>
       <button onClick={(e) => { e.stopPropagation(); onNext(); }} className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all z-10">
@@ -145,96 +124,104 @@ function Lightbox({ images, index, onClose, onPrev, onNext }: {
 }
 
 // ── Content ───────────────────────────────────────────────────────────────────
-
 const CONTENT = {
   en: {
-    badge: "About",
-    title: "Kesararam.\nWith Digital.",
-    tagline: "Young Cambodian girls building road safety education through technology.",
+    eyebrow: "About KWD",
+    titleLine1: "KESARARAM.",
+    titleLine2: "WITH DIGITAL.",
+    tagline: "Young Cambodian women advancing road safety education through digital innovation and technology.",
+    pullQuote: "The monastery taught us discipline. The school taught us theory. Our mentors are teaching us to apply what we have learned.",
     story: [
-      "Kesararam is a primary school. A monastery. The oldest place of learning in our community, where children grow up knowing that education does not just prepare them for life — it is the foundation of life.",
-      "We carry that belief into a world that technology is changing every single day. AI is changing how people work. Automation is changing every industry. But young girls from communities like ours are rarely in that picture. We are here to change that.",
-      "Kesararam With Digital is a team of young Cambodian girls stepping into the world of AI and technology — not to watch, but to create.",
-      "We have a mentor who believed in us before we believed in ourselves. Who taught us that AI is not something to fear — it is something to use with intention. Not to replace our thinking, but to sharpen it.",
-      "The monastery taught us discipline. The school taught us to think in theory. Our mentor is teaching us to think in practice. And through Technovation Girls we are learning to think like entrepreneurs who build for the world.",
-      "Kesararam. With Digital. Guided with purpose. Ready to lead.",
+      "Kesararam is the name of a monastery and a primary school — the oldest seat of learning in our community. This place of great value has instilled in every child a clear understanding: the knowledge gained through education is the raw material for building the future, for education is the bridge toward opportunity and the very foundation of life's transformation.",
+      "We carry this conviction into a world where technology is advancing at remarkable speed. As AI and automated systems transform every sector of work, we must ensure that every young woman has an equal opportunity to learn, to create, and to grow in the digital age. And we are here — together — to change that reality.",
+      "Kesararam With Digital is a team of young Cambodian women actively engaging with the age of AI and digital technology — transforming knowledge into real creation and development, with a clear focus on turning problems into tangible, practical solutions.",
+      "Our mentors taught us that AI is not a threat to be feared, but a tool to be used with clear direction. Its role is to sharpen our thinking — to serve as a force that strengthens our reasoning, not to replace it.",
+      "The monastery taught us discipline. The school taught us theory. Our mentors are teaching us to apply what we have learned. As candidates of the Technovation Girls program, we are learning to think and work like young entrepreneurs — developing new digital solutions to solve social problems and drive national progress.",
+      "Kesararam With Digital is our team — the foundation of an entrepreneurial mindset, and our collective drive toward becoming leaders guided by vision.",
+    ],
+    stats: [
+      { value: "5", label: "Students" },
+      { value: "2", label: "Mentors" },
+      { value: "2", label: "Languages" },
+      { value: "SDG 4 · 11", label: "UN Goals" },
     ],
     mvv: [
-      { title: "Mission", color: "#eab308", text: "Make Cambodia's driving theory and traffic sign education accessible to every student through modern, bilingual digital tools — reducing road accidents by building knowledge before the wheel." },
-      { title: "Vision", color: "#22c55e", text: "A Cambodia where every driver understands road safety and traffic signs deeply. Where young girls from monastery schools are recognized as technology creators, not just consumers." },
-      { title: "Values", color: "#3b82f6", text: "Accessibility. Accuracy. Student-first design. Bilingual by default. Empowerment through technology. Guided by the UN SDGs — Quality Education (SDG 4) and Sustainable Cities & Communities (SDG 11)." },
+      { tag: "Mission", color: "#eab308", text: "We are grounded in the belief that technology is the most effective bridge for transmitting and sharing knowledge. By modernising road safety education into a digital format, we have removed the barriers of location and time — allowing every student to study driving theory and traffic signs in two languages, easily, from any smartphone or computer with internet access. This is the essential foundation for reducing accidents and building a culture of responsible driving in Cambodia." },
+      { tag: "Vision",  color: "#22c55e", text: "To build the foundations of a safe, responsible, and knowledgeable driving culture in Cambodia — and to open a new chapter for young women in schools and communities, enabling them to become leaders in technology and creative builders of the digital world." },
+      { tag: "Values",  color: "#3b82f6", text: "A bilingual digital solution (Khmer–English) built to respond to students' needs, with a focus on accessibility and the highest level of accuracy. We use technology as a driving force to open educational opportunity, with a firm commitment to achieving the United Nations Sustainable Development Goals — Quality Education (SDG 4) and Sustainable Cities and Communities (SDG 11)." },
     ],
     techSection: "Technovation Alignment",
     techItems: [
-      { label: "Competition", text: "Technovation Girls — Global technology entrepreneurship program for girls.", href: "https://technovationchallenge.org/competition/" },
-      { label: "Curriculum", text: "AI in Action & Senior Division curriculum aligned with our platform.", href: "https://technovationchallenge.org/courses/ai-in-action-curriculum/" },
-      { label: "Submission Guidelines", text: "Our project follows Technovation's official submission standards.", href: "https://technovationchallenge.org/submission-guidelines/" },
-      { label: "Safety Standards", text: "Child safety and volunteer code of conduct strictly followed.", href: "https://technovationchallenge.org/safety/" },
-      { label: "Educator Standards", text: "Curriculum aligned with global education standards.", href: "https://www.technovation.org/educators/" },
-      { label: "SDG Alignment", text: "Supporting SDG 4 (Quality Education) and SDG 11 (Sustainable Cities & Communities).", href: "https://sdgs.un.org/goals" },
+      { label: "Competition",          text: "Technovation Girls — Global technology entrepreneurship for girls.", href: "https://technovationchallenge.org/competition/" },
+      { label: "Curriculum",           text: "AI in Action & Senior Division curriculum aligned with our platform.", href: "https://technovationchallenge.org/courses/ai-in-action-curriculum/" },
+      { label: "Submission",           text: "Follows Technovation's official submission standards.", href: "https://technovationchallenge.org/submission-guidelines/" },
+      { label: "Safety Standards",     text: "Child safety and volunteer code of conduct strictly followed.", href: "https://technovationchallenge.org/safety/" },
+      { label: "Educator Standards",   text: "Curriculum aligned with global education standards.", href: "https://www.technovation.org/educators/" },
+      { label: "SDG Alignment",        text: "SDG 4 (Quality Education) and SDG 11 (Sustainable Cities & Communities).", href: "https://sdgs.un.org/goals" },
     ],
     galleryTitle: "Our Journey",
-    gallerySubtitle: "Click any photo to view full size",
-    testimonialsTitle: "What People Say",
     testimonials: [
-      { icon: "🧑‍🏫", name: "Mentor", role: "Technovation Girls Mentor", text: "These girls didn't just build an app — they built confidence. Watching them go from 'I don't know how' to 'I built this' is the most rewarding thing I've ever been part of." },
-      { icon: "📚", name: "Teacher", role: "Kesararam Primary School", text: "KWD proves that road safety education can be engaging, bilingual, and student-led. Our students are proud to see their school on a global stage." },
-      { icon: "🎓", name: "Student", role: "KWD User", text: "I used to be afraid of the driving theory exam. Now I practice every day on KWD and I feel ready. The Khmer language support makes everything so much clearer." },
-      { icon: "👮", name: "Local Police Officer", role: "Traffic Safety Department", text: "We are impressed by this platform. It asks more questions and covers more types of questions than we expected from a student project. This kind of education can genuinely reduce road accidents in our community." },
-      { icon: "🏫", name: "Institute Teacher", role: "Public ICT TVET School", text: "As a teacher at a Public ICT TVET School, I recommend KWD to every new student. The variety of question types — from traffic signs to road laws — matches what students actually see on the official exam. This is exactly the kind of tool our students need." },
-      { icon: "👨‍👩‍👧", name: "Parent", role: "Parent of KWD Student", text: "I am so proud of this platform. My child uses it every day to study for the driving exam and has improved so much. The Khmer language makes it easy for our whole family to learn together." },
+      { name: "Mentor",            role: "Technovation Girls",          text: "These girls didn't just build an app — they built confidence. Watching them go from 'I don't know how' to 'I built this' is the most rewarding thing I've ever been part of." },
+      { name: "Teacher",           role: "Kesararam Primary School",    text: "KWD proves that road safety education can be engaging, bilingual, and student-led. Our students are proud to see their school on a global stage." },
+      { name: "Student",           role: "KWD User",                    text: "I used to be afraid of the driving theory exam. Now I practice every day on KWD and feel ready. The Khmer support makes everything so much clearer." },
+      { name: "Police Officer",    role: "Traffic Safety Department",   text: "We are impressed by this platform. It covers more than we expected from a student project. This kind of education can genuinely reduce road accidents." },
+      { name: "Parent",            role: "Parent of KWD Student",       text: "I am so proud of this platform. My child uses it every day to study for the exam. The Khmer language makes it easy for our whole family to learn together." },
     ],
     legalTitle: "Legal & Privacy",
     legalText: "KWD is committed to protecting user privacy, especially for students. Our platform follows Technovation's safety guidelines and Cambodia's data protection principles.",
     privacyBtn: "Privacy Policy",
-    termsBtn: "Terms of Service",
+    termsBtn: "Terms of Use",
   },
   kh: {
-    badge: "អំពីយើង",
-    title: "កេសរារាម.\nជាមួយឌីជីថល.",
-    tagline: "ក្មេងស្រីខ្មែរកំពុងបង្កើតការអប់រំសុវត្ថិភាពផ្លូវវិថីតាមរយៈបច្ចេកវិទ្យា។",
+    eyebrow: "អំពីយើង",
+    titleLine1: "កេសរារាម.",
+    titleLine2: "ជាមួយឌីជីថល.",
+    tagline: "ស្នាដៃយុវនារីខ្មែរ៖ លើកកម្ពស់ការអប់រំ យល់ដឹងពីសុវត្ថិភាពចរាចរណ៍ តាមរយៈនវានុវត្តន៍បច្ចេកវិទ្យា",
+    pullQuote: "វត្តអារាមបង្រៀនយើងឱ្យមានវិន័យ សាលារៀនបង្រៀនយើងឱ្យស្គាល់ទ្រឹស្ដី រីឯគ្រូ Mentors បណ្តុះយើងឱ្យចេះអនុវត្តផ្ទាល់។",
     story: [
-      "កេសរារាមគឺជាសាលាបឋមសិក្សា។ ជាវត្តអារាម។ ជាកន្លែងសិក្សាចំណាស់បំផុតក្នុងសហគមន៍យើង ដែលកុមារធំឡើងដោយដឹងថាការអប់រំមិនត្រឹមតែត្រៀមខ្លួនសម្រាប់ជីវិតប៉ុណ្ណោះ — វាជាគ្រឹះនៃជីវិត។",
-      "យើងនាំជំនឿនោះចូលក្នុងពិភពលោកដែលបច្ចេកវិទ្យាកំពុងផ្លាស់ប្តូររៀងរាល់ថ្ងៃ។ AI កំពុងផ្លាស់ប្តូររបៀបធ្វើការ។ ស្វ័យប្រវត្តិកម្មកំពុងផ្លាស់ប្តូររាល់ឧស្សាហកម្ម។ ប៉ុន្តែក្មេងស្រីពីសហគមន៍ដូចយើងកម្រនៅក្នុងរូបភាពនោះ។ យើងនៅទីនេះដើម្បីផ្លាស់ប្តូរវា។",
-      "Kesararam With Digital គឺជាក្រុមក្មេងស្រីខ្មែរដែលកំពុងជ្រៀតចូលក្នុងពិភព AI និងបច្ចេកវិទ្យា — មិនមែនដើម្បីមើល ប៉ុន្តែដើម្បីបង្កើត។",
-      "យើងមានអ្នកណែនាំដែលជឿជាក់លើយើងមុនពេលយើងជឿជាក់លើខ្លួនឯង។ ដែលបង្រៀនយើងថា AI មិនមែនជារឿងដែលត្រូវខ្លាច — វាជារឿងដែលត្រូវប្រើប្រាស់ដោយចេតនា។",
-      "វត្តបង្រៀនយើងនូវវិន័យ។ សាលាបង្រៀនយើងឱ្យគិតក្នុងទ្រឹស្ដី។ អ្នកណែនាំបង្រៀនយើងឱ្យគិតក្នុងការអនុវត្ត។ ហើយតាមរយៈ Technovation Girls យើងកំពុងរៀនគិតដូចជាអ្នកសហគ្រិនដែលបង្កើតសម្រាប់ពិភពលោក។",
-      "កេសរារាម ជាមួយ ឌីជីថល។ ដឹកនាំដោយគោលបំណង។ ត្រៀមខ្លួនដឹកនាំ។",
+      "កេសរារាម ជាឈ្មោះសម្គាល់នៃទីអារាម និងសាលារៀន ដែលជាថ្នាលបណ្ដុះចំណេះដឹងចំណាស់ជាងគេក្នុងសហគមន៍របស់យើង។ ទីគ្រឹះស្ថានដ៏មានតម្លៃមួយនេះ បានបណ្តុះស្មារតីកុមារគ្រប់រូបឱ្យដឹងច្បាស់ថា ចំណេះដឹងដែលទទួលបានពីការសិក្សា គឺជាវត្ថុធាតុដើមសម្រាប់កសាងអនាគត ព្រោះការអប់រំ គឺជាស្ពានឆ្ពោះទៅរកឱកាស និងជាមូលដ្ឋានគ្រឹះនៃការផ្លាស់ប្តូរជីវិត។",
+      "យើងយកស្មារតីមួយនេះទៅបង្ហាញពិភពលោក ដែលបច្ចេកវិទ្យាកំពុងដើរទៅមុខយ៉ាងលឿន។ នៅពេលដែល AI និងប្រព័ន្ធស្វ័យប្រវត្តិកំពុងផ្លាស់ប្ដូរគ្រប់វិស័យការងារ យើងត្រូវធានាថា រាល់យុវនារីមានឱកាសស្មើគ្នាក្នុងការរៀន បង្កើត និងរីកចម្រើនក្នុងយុគសម័យឌីជីថល។ ហើយពួកយើងនៅទីនេះ គឺដើម្បីរួមគ្នាផ្លាស់ប្ដូរតថភាពសង្គមមួយនេះឱ្យបាន។",
+      "កេសរារាម ជាមួយឌីជីថល (Kesararam With Digital) គឺជាក្រុមយុវនារីខ្មែរដែលចូលរួមយ៉ាងសកម្មក្នុងយុគសម័យ AI និងបច្ចេកវិទ្យាឌីជីថល ការបម្លែងចំណេះដឹងទៅជាការបង្កើត និងការអភិវឌ្ឍពិតប្រាកដ ដោយផ្តោតលើការប្រែក្លាយបញ្ហាទៅជាដំណោះស្រាយជាក់ស្តែង។",
+      "គ្រូ Mentors បានបង្រៀនយើងថា AI មិនមែនជាការគំរាមកំហែងដែលត្រូវខ្លាចនោះទេ ប៉ុន្តែវាជាឧបករណ៍ដែលត្រូវចេះប្រើប្រាស់ឱ្យត្រូវទិសដៅ។ តួនាទីរបស់វាគឺជួយដុសខាត់ការគិតរបស់យើងឱ្យកាន់តែមុតស្រួច ពោលគឺមកដើម្បីជាកម្លាំងជំនួយដល់ការត្រិះរិះ មិនមែនមកជំនួសការគិតរបស់យើងឡើយ។",
+      "វត្តអារាមបង្រៀនយើងឱ្យមានវិន័យ សាលារៀនបង្រៀនយើងឱ្យស្គាល់ទ្រឹស្ដី រីឯគ្រូ Mentors បណ្តុះយើងឱ្យចេះអនុវត្តផ្ទាល់។ ក្នុងនាមជាបេក្ខនារីនៃកម្មវិធី Technovation Girls ពួកយើងកំពុងរៀនគិត និងបោះជំហានធ្វើការដូចជាសហគ្រិនវ័យក្មេង ដែលអភិវឌ្ឍដំណោះស្រាយឌីជីថលថ្មីៗ ដើម្បីដោះស្រាយបញ្ហាសង្គម និងជំរុញការរីកចម្រើនជាតិ។",
+      "កេសរារាម ជាមួយឌីជីថល គឺជាក្រុមរបស់យើង ដែលជាគ្រឹះសម្រាប់ស្មារតីសហគ្រិន និងការរួមគ្នារុញឆ្ពោះទៅភាពជាអ្នកដឹកនាំប្រកបដោយចក្ខុវិស័យ។",
+    ],
+    stats: [
+      { value: "5",       label: "សិស្ស" },
+      { value: "2",       label: "គ្រូណែនាំ" },
+      { value: "2",       label: "ភាសា" },
+      { value: "SDG 4·11",label: "គោលដៅ UN" },
     ],
     mvv: [
-      { title: "បេសកកម្ម", color: "#eab308", text: "ធ្វើឱ្យការបើកបរ និងស្គាល់សញ្ញាចរាចរ អាចចូលប្រើបានដោយសិស្សគ្រប់រូប តាមរយៈឧបករណ៍ឌីជីថលទំនើប ជាភាសាខ្មែរ-អង់គ្លេស — កាត់បន្ថយគ្រោះថ្នាក់ចរាចរដោយបង្កើតចំណេះដឹងមុនពេលបើកបរ។" },
-      { title: "ចក្ខុវិស័យ", color: "#22c55e", text: "កម្ពុជាដែលអ្នកបើកបរ និងស្គាល់សញ្ញាចរាចរ រាល់រូបយល់ដឹងអំពីសុវត្ថិភាពផ្លូវវិថីយ៉ាងជ្រៅ។ ដែលក្មេងស្រីពីសាលាជិតវត្តអារាម ត្រូវបានទទួលស្គាល់ជាអ្នកបង្កើតបច្ចេកវិទ្យា មិនមែនត្រឹមតែជាអ្នកប្រើប្រាស់ប៉ុណ្ណោះ។" },
-      { title: "គុណតម្លៃ", color: "#3b82f6", text: "ភាពអាចចូលប្រើបាន។ ភាពត្រឹមត្រូវ។ ការរចនាដែលផ្តោតលើសិស្ស។ ជាភាសាពីរដោយលំនាំដើម។ ការផ្តល់អំណាចតាមរយៈបច្ចេកវិទ្យា។ ដឹកនាំដោយ SDG របស់អង្គការសហប្រជាជាតិ — ការអប់រំប្រកបដោយគុណភាព (SDG 4) និងទីក្រុងប្រកបដោយចីរភាព (SDG 11)។" },
+      { tag: "បេសកកម្ម", color: "#eab308", text: "យើងផ្តោតលើការជឿជាក់ថាបច្ចេកវិទ្យាគឺជាស្ពានដ៏មានប្រសិទ្ធភាពក្នុងការចម្លង និងចែករំលែកចំណេះដឹង។ តាមរយៈការធ្វើទំនើបកម្មការអប់រំចរាចរណ៍ទៅជាទម្រង់ឌីជីថល យើងបានធ្វើឱ្យការរៀនមិនមានដែនកំណត់ទីកន្លែង និងពេលវេលា ដើម្បីឱ្យសិស្សគ្រប់រូបអាចរៀនសូត្រទ្រឹស្ដី និងសញ្ញាចរាចរណ៍ពីរភាសាបានយ៉ាងងាយស្រួលដោយប្រើស្មាតហ្វូន ឬកុំព្យូទ័រ នៅគ្រប់ទីកន្លែងដែលមានអ៊ីនធឺណិត។ នេះជាគ្រឹះសំខាន់ក្នុងការកាត់បន្ថយគ្រោះថ្នាក់ និងបង្កើតវប្បធម៌បើកបរដែលមានការទទួលខុសត្រូវនៅកម្ពុជា។" },
+      { tag: "ចក្ខុវិស័យ",color: "#22c55e", text: "ចាក់គ្រឹះវប្បធម៌បើកបរដែលមានសុវត្ថិភាព ស្មារតីទទួលខុសត្រូវ និងចំណេះដឹងច្បាស់លាស់នៅកម្ពុជា ព្រមទាំងបើកទំព័រថ្មីសម្រាប់យុវនារីសាលា និងសហគមន៍ ក្នុងការក្លាយជាអ្នកដឹកនាំប្រើបច្ចេកវិទ្យា និងអ្នកបង្កើតពិភពឌីជីថលប្រកបដោយច្នៃប្រឌិត។" },
+      { tag: "គុណតម្លៃ", color: "#3b82f6", text: "ដំណោះស្រាយឌីជីថលពីរភាសា (ខ្មែរ–អង់គ្លេស) ដែលបង្កើតឡើងដើម្បីឆ្លើយតបតម្រូវការសិស្ស ដោយផ្តោតលើភាពងាយស្រួល និងភាពត្រឹមត្រូវកម្រិតខ្ពស់ យើងប្រើប្រាស់បច្ចេកវិទ្យាជាកម្លាំងចលករ ប្រកបដោយការប្តេជ្ញាចិត្តក្នុងការសម្រេចគោលដៅ SDG 4 (ការអប់រំប្រកបដោយគុណភាព) និង SDG 11 (ទីក្រុង និងសហគមន៍ប្រកបដោយចីរភាព)។" },
     ],
-    techSection: "ការតម្រឹមស្របជាមួយ Technovation",
+    techSection: "ការផ្សារភ្ជាប់ Technovation",
     techItems: [
-      { label: "ការប្រកួត", text: "Technovation Girls — កម្មវិធីសហគ្រិនភាពបច្ចេកវិទ្យាសកលសម្រាប់ក្មេងស្រី។", href: "https://technovationchallenge.org/competition/" },
-      { label: "កម្មវិធីសិក្សា", text: "AI in Action និងកម្មវិធីសិក្សា Junior Division ត្រូវបានតម្រឹមស្របជាមួយវេទិការបស់យើង។", href: "https://technovationchallenge.org/courses/ai-in-action-curriculum/" },
-      { label: "ការណែនាំការដាក់ស្នើ", text: "គម្រោងរបស់យើងអនុវត្តតាមស្តង់ដារការដាក់ស្នើផ្លូវការរបស់ Technovation។", href: "https://technovationchallenge.org/submission-guidelines/" },
-      { label: "ស្តង់ដារសុវត្ថិភាព", text: "សុវត្ថិភាពកុមារ និងក្រមប្រតិបត្តិអ្នកស្ម័គ្រចិត្តត្រូវបានអនុវត្តយ៉ាងតឹងរ៉ឹង។", href: "https://technovationchallenge.org/safety/" },
-      { label: "ស្តង់ដារអ្នកអប់រំ", text: "កម្មវិធីសិក្សាត្រូវបានតម្រឹមស្របជាមួយស្តង់ដារអប់រំសកល។", href: "https://www.technovation.org/educators/" },
-      { label: "ការតម្រឹម SDG", text: "គាំទ្រ SDG 4 (ការអប់រំប្រកបដោយគុណភាព) និង SDG 11 (ទីក្រុងប្រកបដោយចីរភាព)។", href: "https://sdgs.un.org/goals" },
+      { label: "ការប្រកួត",                text: "Technovation Girls — ការប្រកួតសហគ្រិនភាពបច្ចេកវិទ្យាពិភពលោក", href: "https://technovationchallenge.org/competition/" },
+      { label: "កម្មវិធីសិក្សា",           text: "AI in Action & Senior Division ដែលសមស្របនឹងថ្នាល់របស់យើង", href: "https://technovationchallenge.org/courses/ai-in-action-curriculum/" },
+      { label: "ការដាក់ស្នើ",             text: "ស្របតាម Submission Standards ផ្លូវការ", href: "https://technovationchallenge.org/submission-guidelines/" },
+      { label: "ស្តង់ដារសុវត្ថិភាព",       text: "ក្រមសីលធម៌ការពារកុមារ និងអ្នកស្ម័គ្រចិត្ត", href: "https://technovationchallenge.org/safety/" },
+      { label: "ស្តង់ដារអ្នកអប់រំ",        text: "ការអប់រំស្របតាមស្តង់ដារអន្តរជាតិ", href: "https://www.technovation.org/educators/" },
+      { label: "SDG",                      text: "SDG 4 (ការអប់រំ) · SDG 11 (ទីក្រុងប្រកបដោយចីរភាព)", href: "https://sdgs.un.org/goals" },
     ],
     galleryTitle: "ដំណើររបស់យើង",
-    gallerySubtitle: "ចុចលើរូបភាពណាមួយដើម្បីមើលពេញ",
-    testimonialsTitle: "អ្វីដែលមនុស្សនិយាយ",
     testimonials: [
-      { icon: "🧑‍🏫", name: "អ្នកណែនាំ", role: "Technovation Girls Mentor", text: "ក្មេងស្រីទាំងនេះមិនត្រឹមតែបង្កើតកម្មវិធីប៉ុណ្ណោះ — ពួកគេបង្កើតទំនុកចិត្ត។ ការមើលឃើញពួកគេផ្លាស់ប្តូរពី 'ខ្ញុំមិនដឹងរបៀប' ទៅ 'ខ្ញុំបង្កើតវា' គឺជារឿងដ៏ពេញចិត្តបំផុតដែលខ្ញុំធ្លាប់ចូលរួម។" },
-      { icon: "📚", name: "គ្រូ", role: "សាលាបឋមសិក្សាកេសរារាម", text: "KWD បង្ហាញថាការអប់រំសុវត្ថិភាពផ្លូវវិថីអាចទាក់ទាញ ជាភាសាពីរ និងដឹកនាំដោយសិស្ស។ សិស្សរបស់យើងមានមោទនភាពដែលឃើញសាលារបស់ពួកគេនៅលើឆាកសកល។" },
-      { icon: "🎓", name: "សិស្ស", role: "អ្នកប្រើ KWD", text: "ខ្ញុំធ្លាប់ខ្លាចការប្រឡងទ្រឹស្ដីបើកបរ។ ឥឡូវខ្ញុំហ្វឹកហ្វឺនរៀងរាល់ថ្ងៃនៅ KWD ហើយខ្ញុំត្រៀមខ្លួន។ ការគាំទ្រភាសាខ្មែរធ្វើឱ្យអ្វីៗច្បាស់ជាងច្រើន។" },
-      { icon: "👮", name: "ប៉ូលិសក្នុងស្រុក", role: "នាយកដ្ឋានសុវត្ថិភាពចរាចរ", text: "យើងមានការចាប់អារម្មណ៍ខ្លាំងចំពោះវេទិកានេះ។ វាមានសំណួរច្រើន និងប្រភេទសំណួរច្រើនជាងដែលយើងរំពឹងពីគម្រោងសិស្ស។ ការអប់រំប្រភេទនេះអាចកាត់បន្ថយគ្រោះថ្នាក់ចរាចរក្នុងសហគមន៍យើងបានពិតប្រាកដ។" },
-      { icon: "🏫", name: "គ្រូបង្រៀន (វិទ្យាស្ថាន)", role: "សាលា ICT TVET សាធារណៈ", text: "ក្នុងឋានៈជាគ្រូបង្រៀននៅសាលា ICT TVET សាធារណៈ ខ្ញុំណែនាំ KWD ដល់សិស្សថ្មីគ្រប់រូប។ ប្រភេទសំណួរចម្រុះ — ពីសញ្ញាចរាចរ ដល់ច្បាប់ចរាចរ — ត្រូវនឹងអ្វីដែលសិស្សប្រឈមមុខនៅក្នុងការប្រឡងផ្លូវការ។ នេះគឺជាឧបករណ៍ដែលសិស្សរបស់យើងត្រូវការពិតប្រាកដ។" },
-      { icon: "👨‍👩‍👧", name: "ឪពុកម្តាយ", role: "ឪពុកម្តាយរបស់សិស្ស KWD", text: "ខ្ញុំមានការពេញចិត្តខ្លាំងចំពោះវេទិកានេះ។ កូនរបស់ខ្ញុំប្រើប្រាស់វារៀងរាល់ថ្ងៃ ហើយបានប្រសើរឡើងច្រើនណាស់។ ភាសាខ្មែរធ្វើឱ្យទូទៅក្រុមគ្រួសាររបស់យើងអាចរៀនជាមួយគ្នា។" },
+      { name: "គ្រូណែនាំ",          role: "Technovation Girls",         text: "ពួកគេមិនបានបង្កើតតែ app ប៉ុណ្ណោះទេ — ពួកគេបានបង្កើតទំនុកចិត្ត។ ការមើលឃើញការផ្លាស់ប្ដូរពី «ខ្ញុំមិនដឹងទេ» ទៅ «ខ្ញុំបានធ្វើ» ជាបទពិសោធន៍ដ៏មានន័យ ហើយជាមោទនភាពដ៏ធំធេងបំផុត។" },
+      { name: "លោកគ្រូ",            role: "សាលាបឋមសិក្សាកេសរារាម",      text: "KWD បញ្ជាក់ថា ការអប់រំចរាចរអាចច្នៃប្រឌិត ២ ភាសា និងដឹកនាំដោយសិស្ស។ សិស្សរបស់យើងមោទនភាពដែលឈ្មោះសាលានៅលើឆាកអន្តរជាតិ។" },
+      { name: "សិស្ស",               role: "អ្នកប្រើ KWD",               text: "ពីការភ័យខ្លាចការប្រឡង ទៅជាការហ្វឹកហ្វឺនរៀងរាល់ថ្ងៃ ដោយ KWD — ភាសាខ្មែរ ច្បាស់ ងាយ យល់ ១០០%។" },
+      { name: "មន្ត្រីចរាចរ",        role: "នាយកដ្ឋានសុវត្ថិភាពចរាចរ",  text: "ប្រព័ន្ធសំណួរ និងប្រភេទវិញ្ញាសា មានស្តង់ដារខ្ពស់ ហួសពីការរំពឹងទុក។ ដំណោះស្រាយអប់រំដ៏ចំគោលដៅ ដែលនឹងកាត់បន្ថយគ្រោះថ្នាក់ចរាចរ។" },
+      { name: "ឪពុក/ម្ដាយ",          role: "ឪពុកម្ដាយរបស់សិស្ស KWD",    text: "ខ្ញុំមោទនភាពពីកម្មវិធីនេះ។ កូនខ្ញុំប្រើរៀងរាល់ថ្ងៃ ហើយយល់ដឹងច្រើនជាមុន។ ភាសាខ្មែរ ជួយឱ្យក្រុមគ្រួសារទាំងមូលរៀនជាមួយគ្នា។" },
     ],
     legalTitle: "ច្បាប់ និងភាពឯកជន",
-    legalText: "KWD ប្តេជ្ញាការពារភាពឯកជនរបស់អ្នកប្រើ ជាពិសេសសិស្ស។ វេទិការបស់យើងអនុវត្តតាមការណែនាំសុវត្ថិភាពរបស់ Technovation និងគោលការណ៍ការពារទិន្នន័យរបស់កម្ពុជា។",
+    legalText: "KWD ប្ដេជ្ញាការពារឯកជនភាពអ្នកប្រើ ជាពិសេសសិស្ស។ ថ្នាល់របស់យើងអនុវត្តតាមការណែនាំ Technovation និងគោលការណ៍ការពារទិន្នន័យកម្ពុជា។",
     privacyBtn: "គោលការណ៍ភាពឯកជន",
     termsBtn: "លក្ខខណ្ឌប្រើប្រាស់",
   },
 };
 
-// ── Main component ────────────────────────────────────────────────────────────
-
+// ── Main ──────────────────────────────────────────────────────────────────────
 export function AboutClient() {
   const { lang } = useLang();
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
@@ -242,7 +229,7 @@ export function AboutClient() {
 
   const c = CONTENT[lang === "kh" ? "kh" : "en"];
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const kf = kh ? { fontFamily: '"GoogleSans", "Google Sans Khmer", Siemreap, sans-serif' } : {};
 
   function openLightbox(i: number) { setLightboxIdx(i); }
   function closeLightbox() { setLightboxIdx(null); }
@@ -252,160 +239,329 @@ export function AboutClient() {
   return (
     <div className="min-h-screen bg-white">
 
-      {/* ── Hero ── */}
-      <div className="relative overflow-hidden border-b-4 border-black" style={{ background: "linear-gradient(135deg,#09090b 0%,#18181b 100%)" }}>
-        <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(circle,#fff 1px,transparent 1px)", backgroundSize: "20px 20px" }} />
-        <div className="absolute top-0 left-0 right-0 h-1 bg-yellow-400" />
-        <div className="relative max-w-5xl mx-auto px-6 py-16 md:py-20">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-            <div className="flex flex-col gap-4 max-w-xl">
-              <div className="flex items-center gap-3 flex-wrap">
-                <div className="inline-flex items-center gap-2 bg-yellow-400 text-black text-[10px] font-black tracking-widest uppercase px-3 py-1 border-2 border-yellow-400">
-                  <span className="w-1.5 h-1.5 bg-black rounded-full" />{c.badge}
-                </div>
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          1. HERO — Attention
+          Psychology: High contrast anchors the eye (Von Restorff effect).
+          The title is the single largest element — everything else recedes.
+          Stats give immediate credibility (anchoring + social proof).
+          The team photo triggers the face-recognition response — humanizes.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="bg-zinc-950 border-b-4 border-yellow-400 overflow-hidden">
+        <div className="h-1 bg-yellow-400" />
+        <div className="max-w-6xl mx-auto px-6 py-14 md:py-20">
+          <div className="grid md:grid-cols-[1fr_300px] gap-10 items-end">
+
+            <div className="flex flex-col gap-6">
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-px bg-yellow-400" />
+                <span className="text-[10px] font-black tracking-[0.25em] uppercase text-yellow-400" style={kf}>{c.eyebrow}</span>
               </div>
-              <h1 className="text-4xl md:text-6xl font-black text-white leading-tight whitespace-pre-line" style={khFont}>{c.title}</h1>
-              <p className="text-white/50 text-sm md:text-base leading-relaxed" style={khFont}>{c.tagline}</p>
+
+              {/* Primary focal point — size creates hierarchy */}
+              <div style={kf}>
+                <h1 className="font-black leading-[0.95] text-white" style={{ fontSize: "clamp(3rem, 9vw, 6.5rem)", letterSpacing: "-0.02em" }}>
+                  {c.titleLine1}
+                </h1>
+                <h1 className="font-black leading-[0.95] text-yellow-400" style={{ fontSize: "clamp(3rem, 9vw, 6.5rem)", letterSpacing: "-0.02em" }}>
+                  {c.titleLine2}
+                </h1>
+              </div>
+
+              {/* Tagline: small contrast pulls attention back to the title */}
+              <p className="text-white/50 text-sm max-w-md leading-relaxed" style={kf}>{c.tagline}</p>
+
+              {/* Stats: social proof before the user reads a single word of body */}
+              <div className="flex flex-wrap gap-2 pt-2 border-t border-white/10 mt-2">
+                {c.stats.map((s) => (
+                  <div key={s.label} className="flex items-baseline gap-2 px-4 py-2 border border-white/10 bg-white/5">
+                    <span className="text-2xl font-black text-white leading-none">{s.value}</span>
+                    <span className="text-[10px] text-white/40 uppercase tracking-widest font-bold" style={kf}>{s.label}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            {/* Hero team photo */}
-            <div className="relative w-full md:w-72 h-52 md:h-64 border-2 border-yellow-400 overflow-hidden flex-shrink-0" style={{ boxShadow:"6px 6px 0 #ca8a04" }}
+
+            {/* Face effect: real photo triggers trust faster than text */}
+            <div
+              className="relative w-full h-64 md:h-80 border-2 border-yellow-400 overflow-hidden flex-shrink-0"
+              style={{ boxShadow: "8px 8px 0 #ca8a04" }}
+              onContextMenu={e => e.preventDefault()}
+            >
+              <img src={GALLERY[0]} alt="Team KWD" draggable={false}
+                className="w-full h-full object-cover pointer-events-none"
+                style={{ userSelect: "none" }} />
+              <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
+              <div className="absolute bottom-0 left-0 right-0 bg-yellow-400 px-3 py-1.5 flex items-center justify-between">
+                <span className="text-black font-black text-[10px] tracking-widest uppercase" style={kf}>
+                  Team KWD · Technovation Girls 2026
+                </span>
+                <span className="text-black/50 text-[10px] font-bold">#50777</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          2. STORY — Interest
+          Psychology: Chunking — 6 paragraphs split into 4 visual groups
+          reduces cognitive load. Serial Position Effect — para 1 (first)
+          and para 6 (last) get the strongest visual weight. Photos at
+          natural narrative breaks act as memory anchors (Picture
+          Superiority Effect). Para 4 (AI wisdom) gets a callout box —
+          it is the most quotable, shareable insight on the page.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="max-w-6xl mx-auto px-6 pt-16 pb-10">
+
+        {/* Section label — tells users what chapter they're in */}
+        <div className="flex items-center gap-3 mb-10">
+          <span className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-400" style={kf}>
+            {kh ? "សេចក្តីផ្តើម និងដំណើរការ" : "Origin & Journey"}
+          </span>
+          <div className="h-px flex-1 bg-zinc-100" />
+        </div>
+
+        {/* GROUP A — Para 1: Foundation (Serial Position: first = most remembered)
+            Full width, larger type. Sets the entire emotional tone. */}
+        <div className="grid md:grid-cols-[1fr_240px] gap-10 items-start mb-12">
+          <p className="text-base md:text-lg text-zinc-800 leading-relaxed font-medium" style={kf}>
+            {c.story[0]}
+          </p>
+          <div className="relative border border-zinc-200 overflow-hidden flex-shrink-0 hidden md:block" onContextMenu={e => e.preventDefault()}>
+            <img src={GALLERY[1]} alt="" draggable={false} className="w-full h-52 object-cover pointer-events-none" style={{ userSelect: "none" }} />
+            <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
+          </div>
+        </div>
+
+        {/* GROUP B — Paras 2 + 3: Challenge → Response (2-col)
+            Gestalt similarity: same size = same narrative weight (problem + response) */}
+        <div className="grid md:grid-cols-2 gap-8 mb-12 border-t border-zinc-100 pt-10">
+          {c.story.slice(1, 3).map((para, i) => (
+            <p key={i} className="text-sm text-zinc-600 leading-relaxed" style={kf}>{para}</p>
+          ))}
+        </div>
+
+        {/* GROUP C — Para 4: AI Mentor Wisdom (Callout)
+            Isolation effect: visually distinct = more memorable.
+            This is the most quotable sentence in the entire story. */}
+        <div className="border-l-4 border-yellow-400 bg-yellow-50 px-6 py-5 mb-12">
+          <p className="text-sm md:text-base text-zinc-800 leading-relaxed italic" style={kf}>
+            {c.story[3]}
+          </p>
+        </div>
+
+        {/* GROUP D — Para 5: Three teachings (with photo alongside)
+            The three-part structure in the text maps to a natural cognitive chunk. */}
+        <div className="grid md:grid-cols-[240px_1fr] gap-10 items-start mb-12 border-t border-zinc-100 pt-10">
+          <div className="relative border border-zinc-200 overflow-hidden flex-shrink-0 hidden md:block" onContextMenu={e => e.preventDefault()}>
+            <img src={GALLERY[2]} alt="" draggable={false} className="w-full h-52 object-cover pointer-events-none" style={{ userSelect: "none" }} />
+            <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
+          </div>
+          <p className="text-sm text-zinc-600 leading-relaxed" style={kf}>{c.story[4]}</p>
+        </div>
+
+        {/* GROUP E — Para 6: Closing declaration (Serial Position: last = most remembered)
+            Yellow bar signals "this is the conclusion". Large type, wide spacing,
+            isolated so the eye lands here naturally after reading everything above. */}
+        <div className="mt-6 pt-10 border-t border-zinc-200">
+          <div className="w-10 h-1 bg-yellow-400 mb-6" />
+          <p className="text-lg md:text-2xl font-black text-zinc-900 leading-snug max-w-3xl" style={kf}>
+            {c.story[5]}
+          </p>
+        </div>
+
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          3. MISSION · VISION · VALUES — Desire
+          Psychology: Rule of Three — humans chunk information naturally
+          into threes. Mission is full-width (primary/largest) to establish
+          importance via size before users reach Vision and Values.
+          Color-coding gives each a distinct identity without extra words.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="bg-zinc-50 border-t border-zinc-200 border-b border-b-zinc-200 py-14">
+        <div className="max-w-6xl mx-auto px-6">
+
+          <div className="flex items-center gap-3 mb-8">
+            <div className="h-px flex-1 bg-zinc-300" />
+            <span className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-400" style={kf}>
+              {kh ? "គោលបំណង · ចក្ខុវិស័យ · គុណតម្លៃ" : "Mission · Vision · Values"}
+            </span>
+            <div className="h-px flex-1 bg-zinc-300" />
+          </div>
+
+          <div className="flex flex-col gap-4">
+            {/* Mission — full width, larger text = primary importance */}
+            <div className="bg-white border border-zinc-200 p-8 flex flex-col gap-3"
+              style={{ borderLeftWidth: 4, borderLeftColor: c.mvv[0].color }}>
+              <span className="text-[10px] font-black tracking-widest uppercase" style={{ color: c.mvv[0].color }}>
+                {c.mvv[0].tag}
+              </span>
+              <p className="text-zinc-900 text-base md:text-lg leading-relaxed max-w-4xl" style={kf}>
+                {c.mvv[0].text}
+              </p>
+            </div>
+
+            {/* Vision + Values — 2-col, smaller = secondary */}
+            <div className="grid md:grid-cols-2 gap-4">
+              {c.mvv.slice(1).map((m) => (
+                <div key={m.tag} className="bg-white border border-zinc-200 p-6 flex flex-col gap-3"
+                  style={{ borderLeftWidth: 4, borderLeftColor: m.color }}>
+                  <span className="text-[10px] font-black tracking-widest uppercase" style={{ color: m.color }}>
+                    {m.tag}
+                  </span>
+                  <p className="text-zinc-600 text-sm leading-relaxed" style={kf}>{m.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          4. TECHNOVATION — Credibility signal
+          Psychology: Authority bias — alignment with a global institution
+          (Technovation Girls) raises perceived credibility immediately.
+          External links with ArrowUpRight signal transparency.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="max-w-6xl mx-auto px-6 py-14">
+        <div className="flex items-center gap-3 mb-6">
+          <span className="bg-zinc-900 text-yellow-400 text-[10px] font-black tracking-widest uppercase px-3 py-1" style={kf}>
+            {c.techSection}
+          </span>
+          <div className="h-px flex-1 bg-zinc-100" />
+        </div>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+          {c.techItems.map(({ label, text, href }) => (
+            <a key={label} href={href} target="_blank" rel="noopener noreferrer"
+              className="group flex flex-col gap-2 p-5 border border-zinc-200 bg-white hover:border-zinc-900 transition-colors"
+            >
+              <div className="flex items-start justify-between gap-2">
+                <span className="text-[10px] font-black uppercase tracking-widest text-yellow-600" style={kf}>{label}</span>
+                <ArrowUpRight size={12} className="text-zinc-300 group-hover:text-zinc-900 shrink-0 mt-0.5 transition-colors" />
+              </div>
+              <p className="text-xs text-zinc-500 leading-relaxed flex-1" style={kf}>{text}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          5. TEAM — Trust / Connection
+          Psychology: The mere exposure effect + face recognition.
+          Seeing real names and roles builds emotional connection.
+          QR codes create active engagement (not passive reading).
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <TeamSection />
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          6. GALLERY — Memory anchor
+          Psychology: Picture superiority — images are remembered 6×
+          better than words. The grayscale-to-color hover creates a
+          reward loop that encourages exploration (operant conditioning).
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="border-t border-zinc-100 max-w-6xl mx-auto px-6 py-14">
+        <div className="flex items-center gap-3 mb-5">
+          <span className="text-[10px] font-black tracking-[0.2em] uppercase text-zinc-400" style={kf}>{c.galleryTitle}</span>
+          <div className="h-px flex-1 bg-zinc-100" />
+          <span className="text-[10px] text-zinc-300 font-mono">{GALLERY.length}</span>
+        </div>
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-1">
+          {GALLERY.map((src, i) => (
+            <button key={i} onClick={() => openLightbox(i)}
+              className="relative aspect-square overflow-hidden border border-zinc-100 group"
+              onMouseEnter={() => setHoveredImg(i)} onMouseLeave={() => setHoveredImg(null)}
               onContextMenu={e => e.preventDefault()}>
-              <img src={GALLERY[0]} alt="Team KWD" draggable={false} className="w-full h-full object-cover pointer-events-none" style={{ userSelect:"none" }} />
+              <img src={src} alt="" draggable={false}
+                className="w-full h-full object-cover transition-all duration-300 pointer-events-none"
+                style={{
+                  filter: hoveredImg === i ? "none" : "grayscale(100%) brightness(0.85)",
+                  transform: hoveredImg === i ? "scale(1.06)" : "scale(1)",
+                  userSelect: "none",
+                }} />
               <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
-              <div className="absolute bottom-0 left-0 right-0 bg-black/60 px-3 py-2">
-                <p className="text-white font-black text-xs" style={khFont}>Team KWD · Technovation Girls Cambodia</p>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          7. TESTIMONIALS — Social proof
+          Psychology: Diverse source types (teacher, police, parent,
+          student) cover different cognitive concerns — expertise,
+          authority, emotion, relatability. The featured testimonial
+          (Mentor) is placed first and large because it comes from the
+          person with the most institutional credibility.
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="bg-zinc-50 border-t border-zinc-200 py-14">
+        <div className="max-w-6xl mx-auto px-6">
+
+          {/* Featured: Mentor testimonial — largest, highest authority */}
+          <div className="mb-6 p-8 md:p-10 bg-white border border-zinc-200"
+            style={{ borderLeftWidth: 4, borderLeftColor: "#eab308" }}>
+            <p className="text-4xl font-black text-yellow-400 leading-none mb-3 select-none">"</p>
+            <p className="text-base md:text-lg text-zinc-800 leading-relaxed max-w-3xl" style={kf}>
+              {c.testimonials[0].text}
+            </p>
+            <div className="mt-6 pt-4 border-t border-zinc-100 flex items-center gap-3">
+              <div className="w-8 h-8 bg-yellow-400 border border-zinc-200 flex-shrink-0" />
+              <div>
+                <p className="font-black text-sm text-zinc-900" style={kf}>{c.testimonials[0].name}</p>
+                <p className="text-xs text-zinc-400" style={kf}>{c.testimonials[0].role}</p>
               </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      <div className="max-w-5xl mx-auto px-6 py-12 flex flex-col gap-16">
-
-        {/* ── Team Story ── */}
-        <div className="flex flex-col md:flex-row gap-10 items-start">
-          <div className="flex-1 flex flex-col gap-4">
-            {c.story.map((para, i) => (
-              <p key={i} className={`leading-relaxed text-zinc-700 ${i === c.story.length - 1 ? "font-black text-black text-base" : "text-sm md:text-base"}`} style={khFont}>{para}</p>
-            ))}
-          </div>
-          <div className="w-full md:w-64 flex-shrink-0 border-2 border-black overflow-hidden" style={{ boxShadow:"4px 4px 0 #000" }}
-            onContextMenu={e => e.preventDefault()}>
-            <div className="relative overflow-hidden">
-              <img src={GALLERY[1]} alt="Team" draggable={false} className="w-full h-48 object-cover pointer-events-none" style={{ userSelect:"none" }} />
-              <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
-            </div>
-            <div className="relative overflow-hidden border-t-2 border-black">
-              <img src={GALLERY[2]} alt="Team" draggable={false} className="w-full h-48 object-cover pointer-events-none" style={{ userSelect:"none" }} />
-              <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
-            </div>
-          </div>
-        </div>
-
-        {/* ── Mission Vision Values ── */}
-        <div>
-          <div className="inline-block bg-black text-yellow-400 text-[10px] font-black tracking-widest uppercase px-3 py-1 mb-5">
-            {kh ? "បេសកកម្ម · ចក្ខុវិស័យ · គុណតម្លៃ" : "Mission · Vision · Values"}
-          </div>
-          <div className="grid md:grid-cols-3 gap-5">
-            {c.mvv.map(({ title, color, text }) => (
-              <div key={title} className="bg-white border-2 border-black p-6 flex flex-col gap-3" style={{ boxShadow:`4px 4px 0 ${color}` }}>
-                <div className="w-8 h-2 border-2 border-black" style={{ backgroundColor: color }} />
-                <h3 className="text-lg font-black" style={khFont}>{title}</h3>
-                <p className="text-sm text-zinc-600 leading-relaxed" style={khFont}>{text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* ── Technovation Alignment ── */}
-        <div>
-          <div className="inline-block bg-black text-yellow-400 text-[10px] font-black tracking-widest uppercase px-3 py-1 mb-5">{c.techSection}</div>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {c.techItems.map(({ label, text, href }) => (
-              <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-                className="flex flex-col gap-2 p-4 bg-white border-2 border-black hover:-translate-y-1 transition-all"
-                style={{ boxShadow:"3px 3px 0 #000" }}>
-                <span className="text-[10px] font-black uppercase tracking-widest text-yellow-600" style={khFont}>{label}</span>
-                <p className="text-xs text-zinc-600 leading-relaxed flex-1" style={khFont}>{text}</p>
-                <span className="text-[10px] text-zinc-400 font-bold">↗ {href.replace("https://","").split("/")[0]}</span>
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* ── Gallery ── */}
-        <div>
-          <div className="flex items-end justify-between mb-5 flex-wrap gap-2">
-            <div>
-              <div className="inline-block bg-black text-yellow-400 text-[10px] font-black tracking-widest uppercase px-3 py-1 mb-2">{c.galleryTitle}</div>
-              <p className="text-xs text-zinc-400" style={khFont}>{c.gallerySubtitle}</p>
-            </div>
-          </div>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2">
-            {GALLERY.map((src, i) => (
-              <button key={i} onClick={() => openLightbox(i)}
-                className="relative aspect-square overflow-hidden border-2 border-black group"
-                onMouseEnter={() => setHoveredImg(i)} onMouseLeave={() => setHoveredImg(null)}
-                onContextMenu={e => e.preventDefault()}>
-                <img src={src} alt="" draggable={false}
-                  className="w-full h-full object-cover transition-all duration-400 pointer-events-none"
-                  style={{ filter: hoveredImg === i ? "none" : "grayscale(100%)", transform: hoveredImg === i ? "scale(1.08)" : "scale(1)", userSelect: "none" }} />
-                {/* Full-cover transparent shield — blocks right-click save */}
-                <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()} />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all" />
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* ── Testimonials ── */}
-        <div>
-          <div className="inline-block bg-black text-yellow-400 text-[10px] font-black tracking-widest uppercase px-3 py-1 mb-5">{c.testimonialsTitle}</div>
-          <div className="grid md:grid-cols-3 gap-5">
-            {c.testimonials.map(({ name, role, text }) => {
-              const initials = name.slice(0, 2).toUpperCase();
-              const colors = ["#eab308", "#22c55e", "#3b82f6"];
-              const ci = c.testimonials.indexOf({ name, role, text } as typeof c.testimonials[0]);
-              const color = colors[c.testimonials.findIndex(t => t.name === name)] ?? "#eab308";
+          {/* Remaining: Teacher, Student, Police, Parent — 4-col grid */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {c.testimonials.slice(1).map((t, i) => {
+              const accents = ["#22c55e", "#3b82f6", "#f97316", "#a855f7"];
               return (
-              <div key={name} className="bg-white border-2 border-black p-6 flex flex-col gap-3" style={{ boxShadow:"4px 4px 0 #eab308" }}>
-                <div className="text-yellow-400 text-2xl font-black leading-none">"</div>
-                <p className="text-sm text-zinc-700 leading-relaxed flex-1 italic" style={khFont}>{text}</p>
-                <div className="border-t-2 border-black pt-3 flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full flex items-center justify-center font-black text-white text-xs flex-shrink-0 border-2 border-black"
-                    style={{ backgroundColor: color }}>
-                    {initials}
-                  </div>
-                  <div>
-                    <p className="font-black text-sm text-black leading-tight" style={khFont}>{name}</p>
-                    <p className="text-[10px] text-zinc-400" style={khFont}>{role}</p>
+                <div key={t.name} className="bg-white border border-zinc-200 p-5 flex flex-col gap-4"
+                  style={{ borderTopWidth: 3, borderTopColor: accents[i] }}>
+                  <p className="text-sm text-zinc-600 leading-relaxed flex-1" style={kf}>"{t.text}"</p>
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 flex-shrink-0 border border-zinc-200" style={{ backgroundColor: accents[i] }} />
+                    <div>
+                      <p className="font-black text-xs text-zinc-900" style={kf}>{t.name}</p>
+                      <p className="text-[10px] text-zinc-400" style={kf}>{t.role}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
               );
             })}
           </div>
         </div>
+      </section>
 
-        {/* ── Legal ── */}
-        <div className="bg-zinc-950 border-2 border-black p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5" style={{ boxShadow:"4px 4px 0 #000" }}>
+      {/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          8. LEGAL — Action
+          Psychology: Peak-end rule — the last thing a user sees shapes
+          their memory of the whole page. Calm, light, frictionless.
+          One primary CTA (Privacy) + one secondary (Terms).
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
+      <section className="border-t border-zinc-200 bg-white py-12 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
-            <p className="font-black text-white text-lg mb-2" style={khFont}>{c.legalTitle}</p>
-            <p className="text-zinc-400 text-sm max-w-lg leading-relaxed" style={khFont}>{c.legalText}</p>
+            <p className="font-black text-zinc-900 text-base mb-1" style={kf}>{c.legalTitle}</p>
+            <p className="text-zinc-500 text-sm max-w-lg leading-relaxed" style={kf}>{c.legalText}</p>
           </div>
-          <div className="flex flex-wrap gap-3 flex-shrink-0">
-            <Link href="/privacy" className="text-xs font-black px-4 py-2 bg-yellow-400 text-black border-2 border-yellow-400 hover:-translate-y-0.5 transition-all" style={{ boxShadow:"3px 3px 0 #ca8a04", ...khFont }}>{c.privacyBtn}</Link>
-            <Link href="/terms" className="text-xs font-black px-4 py-2 bg-transparent text-white border-2 border-white/30 hover:border-white transition-all" style={khFont}>{c.termsBtn}</Link>
+          <div className="flex gap-3 flex-shrink-0">
+            <Link href="/privacy"
+              className="text-xs font-black px-5 py-2.5 bg-yellow-400 text-black border border-zinc-900 hover:bg-yellow-300 transition-colors"
+              style={kf}>
+              {c.privacyBtn}
+            </Link>
+            <Link href="/terms"
+              className="text-xs font-black px-5 py-2.5 bg-white text-zinc-600 border border-zinc-300 hover:border-zinc-900 hover:text-zinc-900 transition-colors"
+              style={kf}>
+              {c.termsBtn}
+            </Link>
           </div>
         </div>
+      </section>
 
-      </div>
-
-      {/* ── Team Section ── */}
-      <TeamSection />
-
-      {/* Lightbox */}
       {lightboxIdx !== null && (
         <Lightbox images={GALLERY} index={lightboxIdx} onClose={closeLightbox} onPrev={prevImg} onNext={nextImg} />
       )}

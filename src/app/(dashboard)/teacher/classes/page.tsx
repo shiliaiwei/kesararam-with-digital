@@ -43,13 +43,15 @@ export default async function TeacherClassesPage() {
             </div>
           </div>
           
-          {/* Create Class Button */}
-          <button className="flex items-center gap-2 px-4 py-3 bg-yellow-400 border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100">
-            <Plus size={20} className="text-black" />
-            <span className="font-black text-sm uppercase tracking-wide text-black">
-              New Class
-            </span>
-          </button>
+          <div className="flex items-center gap-3">
+            {/* Create Class Button */}
+            <button className="flex items-center gap-2 px-4 py-3 bg-yellow-400 border-2 border-black shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100">
+              <Plus size={20} className="text-black" />
+              <span className="font-black text-sm uppercase tracking-wide text-black">
+                New Class
+              </span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -101,11 +103,17 @@ export default async function TeacherClassesPage() {
               createdAt: c.createdAt,
               teacherName: c.teacherName ?? null,
               teacherEmail: c.teacherEmail ?? null,
+              gradeLevel: c.gradeLevel ?? null,
+              schoolName: c.schoolName ?? null,
+              province: c.province ?? null,
+              section: c.section ?? null,
+              status: c.status ?? null,
             }))}
             showTeacher={session.role === "admin"}
           />
         </div>
       </div>
+
     </div>
   );
 }

@@ -47,6 +47,11 @@ export async function createUser(formData: FormData) {
   const role =
     (formData.get("role") as "student" | "teacher" | "admin") ?? "student";
 
+  const schoolName = (formData.get("schoolName") as string)?.trim() || null;
+  const province = (formData.get("province") as string)?.trim() || null;
+  const gradeLevel = (formData.get("gradeLevel") as string)?.trim() || null;
+  const section = (formData.get("section") as string)?.trim() || null;
+
   if (!username || !email || !password || !role) {
     return { error: "All fields are required." };
   }
@@ -58,6 +63,10 @@ export async function createUser(formData: FormData) {
       displayName: displayName || null,
       passwordHash: hashPassword(password),
       role,
+      schoolName,
+      province,
+      gradeLevel: role === "student" ? gradeLevel : null,
+      section: section || null,
       isActive: true,
       loginAttempts: 0,
     }).returning({ id: users.id });
@@ -88,11 +97,20 @@ export async function updateUser(id: number, formData: FormData) {
   const isActive = formData.get("isActive") === "true";
   const newPassword = formData.get("password") as string;
 
+  const schoolName = (formData.get("schoolName") as string)?.trim() || null;
+  const province = (formData.get("province") as string)?.trim() || null;
+  const gradeLevel = (formData.get("gradeLevel") as string)?.trim() || null;
+  const section = (formData.get("section") as string)?.trim() || null;
+
   const updates: Record<string, unknown> = {
     displayName,
     email,
     role,
     isActive,
+    schoolName,
+    province,
+    gradeLevel: role === "student" ? gradeLevel : null,
+    section: section || null,
   };
   if (newPassword) updates.passwordHash = hashPassword(newPassword);
 

@@ -12,6 +12,9 @@
     "test:ui": "vitest --ui",
     "db:migrate": "tsx scripts/migrate.ts",
     "db:verify": "tsx scripts/verify-migration.ts",
+    "studio": "node node_modules/drizzle-kit/bin.cjs studio",
+    "backup": "node node_modules/tsx/dist/cli.mjs scripts/backup-db.ts",
+    "restore": "node node_modules/tsx/dist/cli.mjs scripts/restore-db.ts",
     "security:audit": "npm audit --audit-level=moderate",
     "security:check": "bash scripts/check-secrets.sh",
     "security:install-hooks": "bash scripts/install-git-hooks.sh",
@@ -67,14 +70,14 @@
     "@types/node": "^20.19.37",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@vitest/ui": "^3.2.0",
+    "@vitest/ui": "^4.1.8",
     "eslint": "^9",
     "eslint-config-next": "^15.0.3",
     "fast-check": "^3.23.2",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
     "typescript": "^5",
-    "vitest": "^3.2.0"
+    "vitest": "^4.1.8"
   },
   "overrides": {
     "path-to-regexp": ">=8.0.0",

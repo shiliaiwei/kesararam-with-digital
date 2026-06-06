@@ -4,50 +4,85 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
+// Three bilingual role tags per member — KH verbatim from KWD_អំពីពួកយើង.txt
+type RoleTag = { kh: string; en: string };
+
 const MEMBERS: Record<string, {
-  lastName: string; fullName: string; role: string; type: "student" | "mentor";
-  photo: string; contributions: string[]; quote: string;
+  lastName: string;
+  fullName: string;
+  roleTags: RoleTag[];
+  type: "student" | "mentor";
+  photo: string;
+  quote: string;
 }> = {
   "VSID-2026-001": {
-    lastName: "YIN", fullName: "DANAI YIN", role: "Voice Reading · Team Lead", type: "student",
+    lastName: "DANAI", fullName: "YIN DANAI", type: "student",
     photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1773739866/DANAI_YIN_sezo2q.jpg",
-    contributions: ["Designed all UI screens", "Created the design system", "Led visual identity"],
+    roleTags: [
+      { kh: "អ្នកអានសំលេង",                    en: "Voice Reading" },
+      { kh: "អ្នកដឹកនាំក្រុម",                  en: "Team Lead" },
+      { kh: "ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា", en: "Content Review & Editing" },
+    ],
     quote: "Design is how we make technology feel human.",
   },
   "VSID-2026-002": {
-    lastName: "KANIKA", fullName: "CHANTHA KANIKA", role: "Content & Research", type: "student",
+    lastName: "KANIKA", fullName: "CHANTHA KANIKA", type: "student",
     photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1773739866/CHANTHA_KANIKA_gmh6w9.jpg",
-    contributions: ["Researched all 8 traffic sign categories", "Wrote bilingual content (KH/EN)", "Validated exam accuracy"],
+    roleTags: [
+      { kh: "ត្រួតពិនិត្យ",                     en: "Review" },
+      { kh: "កែសម្រួលមាតិកា",                    en: "Content Editing" },
+      { kh: "ការស្រាវជ្រាវ",                     en: "Research" },
+    ],
     quote: "Knowledge is the foundation of every safe road.",
   },
   "VSID-2026-003": {
-    lastName: "NEUN", fullName: "ROZA NEUN", role: "UI/UX Design", type: "student",
+    lastName: "NEUN", fullName: "ROZA NEUN", type: "student",
     photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1773739867/Roza_Neun_ciz33b.jpg",
-    contributions: ["Built interactive quiz components", "Implemented live game UI", "Developed mobile-responsive layouts"],
-    quote: "Every line of code is a step toward something real.",
+    roleTags: [
+      { kh: "រចនា UI/UX",                        en: "UI/UX Design" },
+      { kh: "ត្រួតពិនិត្យ",                     en: "Review" },
+      { kh: "កែសម្រួលមាតិកា",                    en: "Content Editing" },
+    ],
+    quote: "Every design decision is a step toward something real.",
   },
   "VSID-2026-004": {
-    lastName: "MANY", fullName: "LIN MANY", role: "QA & Testing", type: "student",
+    lastName: "MANY", fullName: "LIM MANY", type: "student",
     photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1773739866/Lin_Many_nffno6.jpg",
-    contributions: ["Designed the database schema", "Built API endpoints", "Implemented real-time game engine"],
-    quote: "The backend is the engine — invisible but essential.",
+    roleTags: [
+      { kh: "ធានាគុណភាព",                        en: "Quality Assurance" },
+      { kh: "តេស្ត",                             en: "Testing" },
+      { kh: "ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា", en: "Content Review & Editing" },
+    ],
+    quote: "Quality is not an act — it is a habit.",
   },
   "VSID-2026-005": {
-    lastName: "RUNAMARA", fullName: "SUN RUNAMARA", role: "QA & Testing", type: "student",
+    lastName: "RUNAMARA", fullName: "SUN RUNAMARA", type: "student",
     photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1773739866/SUN_RUNAMARA_rmtlzf.jpg",
-    contributions: ["Tested all game modes and flows", "Reported and tracked bugs", "Ensured bilingual accuracy"],
-    quote: "Quality is not an act, it is a habit.",
+    roleTags: [
+      { kh: "ធានាគុណភាព",                        en: "Quality Assurance" },
+      { kh: "តេស្ត",                             en: "Testing" },
+      { kh: "ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា", en: "Content Review & Editing" },
+    ],
+    quote: "Every test is a promise to the user.",
   },
   "VSID-2026-M01": {
-    lastName: "PISETH", fullName: "PHEAP PISETH", role: "Teacher & Program Lead", type: "mentor",
+    lastName: "PISETH", fullName: "PHEAP PISETH", type: "mentor",
     photo: "https://res.cloudinary.com/dpgivqzrl/image/upload/f_auto,q_auto,w_400/v1775248418/481f63ff38a1842e9fce11ad5edr_xp2anf.png",
-    contributions: ["Program Lead connecting team with resources", "Resolved resource conflicts & challenges", "Mentored students throughout competition"],
+    roleTags: [
+      { kh: "គ្រូបង្រៀន",                        en: "Teacher & Mentor" },
+      { kh: "អ្នកដឹកនាំកម្មវិធី",               en: "Program Lead" },
+      { kh: "ការត្រួតពិនិត្យប្រសិទ្ធភាពការងារជាក្រុម", en: "Team Performance Oversight" },
+    ],
     quote: "Teaching is not filling a bucket — it is lighting a fire.",
   },
   "VSID-2026-M02": {
-    lastName: "史力爱卫", fullName: "史力爱卫", role: "Design, Technical & Project Management", type: "mentor",
+    lastName: "AIWEI", fullName: "SHILI AIWEI", type: "mentor",
     photo: "https://avatars.githubusercontent.com/u/70220432?v=4",
-    contributions: ["Advised on software architecture", "Reviewed code quality", "Supported project management"],
+    roleTags: [
+      { kh: "គ្រូណែនាំ",                         en: "Mentor" },
+      { kh: "គ្រប់គ្រងបច្ចេកទេស",               en: "Technical Management" },
+      { kh: "គំនិតច្នៃប្រឌិត និងធនធានគម្រោង",  en: "Creative Ideas & Project Resources" },
+    ],
     quote: "Build with intention. Ship with confidence.",
   },
 };
@@ -61,7 +96,6 @@ export default function TeamMemberPage() {
   const [status, setStatus] = useState<"loading" | "valid" | "expired">("loading");
   const [countdown, setCountdown] = useState(60);
 
-  // Verify token
   useEffect(() => {
     if (!code) { setStatus("expired"); return; }
     fetch("/api/team-token", {
@@ -81,16 +115,11 @@ export default function TeamMemberPage() {
       .catch(() => setStatus("expired"));
   }, [code]);
 
-  // 60-second countdown then redirect
   useEffect(() => {
     if (status !== "valid") return;
     const interval = setInterval(() => {
       setCountdown(c => {
-        if (c <= 1) {
-          clearInterval(interval);
-          router.replace("/");
-          return 0;
-        }
+        if (c <= 1) { clearInterval(interval); router.replace("/"); return 0; }
         return c - 1;
       });
     }, 1000);
@@ -99,7 +128,7 @@ export default function TeamMemberPage() {
 
   if (status === "loading") {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="min-h-screen bg-zinc-950 flex items-center justify-center">
         <div className="w-8 h-8 border-2 border-yellow-400 border-t-transparent rounded-full animate-spin" />
       </div>
     );
@@ -107,11 +136,10 @@ export default function TeamMemberPage() {
 
   if (status === "expired") {
     return (
-      <div className="min-h-screen bg-black flex flex-col items-center justify-center gap-5 px-4 text-center">
+      <div className="min-h-screen bg-zinc-950 flex flex-col items-center justify-center gap-5 px-4 text-center">
         <p className="text-white/20 text-xs uppercase tracking-widest">Access expired</p>
         <p className="text-white/50 text-sm max-w-xs">Please scan the QR code again to get a fresh link.</p>
-        <Link href="/about"
-          className="text-xs font-black uppercase tracking-widest px-5 py-2.5 bg-yellow-400 text-black">
+        <Link href="/about" className="text-xs font-black uppercase tracking-widest px-5 py-2.5 bg-yellow-400 text-black">
           Back to About
         </Link>
       </div>
@@ -122,110 +150,105 @@ export default function TeamMemberPage() {
 
   const isMentor = member.type === "mentor";
   const accent = isMentor ? "#f59e0b" : "#eab308";
+  const CLIP = "polygon(0 14px, 14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%)";
 
   return (
     <div className="min-h-screen bg-[#060606] flex items-center justify-center px-4 py-10 relative overflow-hidden">
-      {/* Background FUI decorations */}
-      <div className="absolute top-10 left-10 text-[10px] text-white/10 font-mono hidden md:block">SYS_CORE // VER_2.0.26</div>
-      <div className="absolute bottom-10 right-10 text-[10px] text-white/10 font-mono hidden md:block">VSID_LINK // AUTH_GRANTED</div>
-      <div className="absolute top-1/2 left-0 w-full h-px bg-yellow-400/5 -translate-y-1/2" />
-      <div className="absolute left-1/2 top-0 h-full w-px bg-yellow-400/5 -translate-x-1/2" />
+      {/* Subtle FUI grid */}
+      <div className="absolute inset-0 opacity-[0.03]"
+        style={{ backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)", backgroundSize: "40px 40px" }} />
+      <div className="absolute top-8 left-8 text-[9px] text-white/10 font-mono hidden md:block">KWD · VSID_AUTH · 2026</div>
+      <div className="absolute bottom-8 right-8 text-[9px] text-white/10 font-mono hidden md:block">TECHNOVATION GIRLS · #50777</div>
 
       <div className="w-full max-w-xs relative z-10">
 
-        {/* FUI framing */}
-        <div className="absolute -top-3 -left-3 w-6 h-6 border-t-[1.5px] border-l-[1.5px] border-yellow-500/50" />
-        <div className="absolute -top-3 -right-3 w-6 h-6 border-t-[1.5px] border-r-[1.5px] border-yellow-500/50" />
-        <div className="absolute -bottom-3 -left-3 w-6 h-6 border-b-[1.5px] border-l-[1.5px] border-yellow-500/50" />
-        <div className="absolute -bottom-3 -right-3 w-6 h-6 border-b-[1.5px] border-r-[1.5px] border-yellow-500/50" />
+        {/* Corner brackets */}
+        <div className="absolute -top-3 -left-3 w-5 h-5 border-t border-l border-yellow-500/40" />
+        <div className="absolute -top-3 -right-3 w-5 h-5 border-t border-r border-yellow-500/40" />
+        <div className="absolute -bottom-3 -left-3 w-5 h-5 border-b border-l border-yellow-500/40" />
+        <div className="absolute -bottom-3 -right-3 w-5 h-5 border-b border-r border-yellow-500/40" />
 
         {/* Card */}
-        <div className="bg-[#0c0c0c] border border-white/5 overflow-hidden shadow-[0_0_30px_rgba(234,179,8,0.05)] relative"
-          style={{ clipPath: "polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%)" }}>
+        <div className="bg-[#0c0c0c] border border-white/5 overflow-hidden" style={{ clipPath: CLIP }}>
 
-          {/* FUI Brand Logo */}
-          <div className="absolute top-4 right-4 z-20">
-            <img src="/brand/kwd-black-text.png" alt="KWD" className="h-4 opacity-50 brightness-0 invert object-contain" />
-          </div>
+          {/* Accent bar */}
+          <div className="h-[3px] w-full" style={{ backgroundColor: accent }} />
 
-          {/* Top color bar */}
-          <div className="h-1" style={{ backgroundColor: accent }} />
-
-          {/* Photo — full width, portrait crop, download restricted */}
-          <div className="relative w-full select-none" style={{ paddingBottom: "100%" }}
-            onContextMenu={e => e.preventDefault()}
-            onDragStart={e => e.preventDefault()}
-          >
-            <img
-              src={member.photo}
-              alt={member.lastName}
-              draggable={false}
+          {/* Photo */}
+          <div className="relative w-full select-none" style={{ paddingBottom: "90%" }}
+            onContextMenu={e => e.preventDefault()} onDragStart={e => e.preventDefault()}>
+            <img src={member.photo} alt={member.lastName} draggable={false}
               className="absolute inset-0 w-full h-full object-cover object-top pointer-events-none"
-              style={{ userSelect: "none", WebkitUserSelect: "none" }}
-            />
-            {/* Invisible overlay blocks right-click on image */}
+              style={{ userSelect: "none" }} />
             <div className="absolute inset-0" onContextMenu={e => e.preventDefault()} />
-            {/* Gradient overlay at bottom of photo */}
-            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#111] to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-transparent to-transparent" />
+
+            {/* KWD logo watermark */}
+            <div className="absolute top-3 right-3">
+              <img src="/brand/kwd-black_nobackground.png" alt="KWD" className="h-4 opacity-30 brightness-0 invert" />
+            </div>
           </div>
 
           {/* Info */}
-          <div className="px-5 pt-3 pb-5">
+          <div className="px-5 pt-4 pb-5 flex flex-col gap-4">
 
-            {/* Type badge */}
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-[9px] font-black uppercase tracking-widest"
-                style={{ color: accent }}>
-                {isMentor ? "Mentor" : "Student"} · KWD 2026
-              </span>
-              {/* Countdown dot */}
-              <div className="flex items-center gap-1.5">
-                <div className="w-1.5 h-1.5 rounded-full"
-                  style={{ backgroundColor: countdown > 15 ? "#22c55e" : "#ef4444" }} />
-                <span className="text-[9px] text-white/25 tabular-nums">{countdown}s</span>
+            {/* Header row */}
+            <div className="flex items-start justify-between gap-2">
+              <div>
+                <p className="text-[9px] font-black uppercase tracking-widest mb-1" style={{ color: accent }}>
+                  {isMentor ? "Mentor" : "Student"} · KWD 2026
+                </p>
+                <h1 className="text-3xl font-black text-white leading-none tracking-tight">{member.lastName}</h1>
+                <p className="text-xs text-white/30 mt-0.5">{member.fullName}</p>
+              </div>
+              {/* Countdown */}
+              <div className="flex items-center gap-1.5 shrink-0 mt-1">
+                <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: countdown > 15 ? "#22c55e" : "#ef4444" }} />
+                <span className="text-[9px] text-white/25 tabular-nums font-mono">{countdown}s</span>
               </div>
             </div>
 
-            {/* Last name — large */}
-            <h1 className="text-4xl font-black text-white leading-none mb-1 tracking-tight">
-              {member.lastName}
-            </h1>
-            <p className="text-xs text-white/40 mb-4">{member.role}</p>
-
-            {/* Divider */}
-            <div className="h-px bg-white/8 mb-4" />
-
-            {/* Contributions */}
-            <div className="flex flex-col gap-2 mb-4">
-              {member.contributions.map((c, i) => (
-                <div key={i} className="flex items-start gap-2">
-                  <span className="text-xs shrink-0 mt-0.5" style={{ color: accent }}>—</span>
-                  <span className="text-xs text-white/55 leading-relaxed">{c}</span>
+            {/* ── Three bilingual role tags (KH verbatim from doc + EN) ── */}
+            <div className="flex flex-col gap-1.5">
+              {member.roleTags.map((tag, i) => (
+                <div key={i}
+                  className="flex items-center justify-between gap-3 px-3 py-2 border"
+                  style={{ borderColor: accent + "30", backgroundColor: accent + "08" }}
+                >
+                  {/* Khmer — verbatim from source doc */}
+                  <span className="text-[11px] text-white/80 leading-snug"
+                    style={{ fontFamily: '"GoogleSans", "Google Sans Khmer", Siemreap, sans-serif' }}>
+                    {tag.kh}
+                  </span>
+                  {/* English translation */}
+                  <span className="text-[9px] font-bold uppercase tracking-wider shrink-0"
+                    style={{ color: accent + "99" }}>
+                    {tag.en}
+                  </span>
                 </div>
               ))}
             </div>
 
+            {/* Divider */}
+            <div className="h-px" style={{ backgroundColor: "rgba(255,255,255,0.06)" }} />
+
             {/* Quote */}
-            <p className="text-[11px] text-white/30 italic border-l-2 pl-3 leading-relaxed"
-              style={{ borderColor: accent + "60" }}>
+            <p className="text-[11px] text-white/30 italic leading-relaxed border-l-2 pl-3"
+              style={{ borderColor: accent + "50" }}>
               "{member.quote}"
             </p>
           </div>
 
           {/* Footer */}
-          <div className="px-5 py-3 border-t border-white/8 flex items-center justify-between">
-            <span className="text-[9px] text-white/20 uppercase tracking-widest">
-              Kesararam With Digital
-            </span>
-            <Link href="/about"
-              className="text-[9px] font-black uppercase tracking-widest text-white/30 hover:text-white transition-colors">
+          <div className="px-5 py-3 border-t flex items-center justify-between" style={{ borderColor: "rgba(255,255,255,0.05)" }}>
+            <span className="text-[9px] text-white/15 uppercase tracking-widest">Kesararam With Digital</span>
+            <Link href="/about" className="text-[9px] font-black uppercase tracking-widest text-white/25 hover:text-white transition-colors">
               ← About
             </Link>
           </div>
         </div>
 
-        {/* Redirect notice */}
-        <p className="text-center text-[9px] text-white/15 mt-4 uppercase tracking-widest">
+        <p className="text-center text-[9px] text-white/10 mt-4 uppercase tracking-widest font-mono">
           Redirecting in {countdown}s
         </p>
       </div>

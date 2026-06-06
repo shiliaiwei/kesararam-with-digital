@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { gameSessions, gameParticipants } from "@/db/schema/game";
+import { users } from "@/db/schema/users";
 import { getSession } from "@/lib/auth";
 import { broadcastEvent } from "@/lib/realtime-bus";
 import { eq, and } from "drizzle-orm";
@@ -12,6 +13,25 @@ export async function POST(
   const { code } = await params;
   const user = await getSession();
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  if (user.role === "student") {
+    const [dbUser] = await db
+      .select({
+        schoolName: users.schoolName,
+        province: users.province,
+        gradeLevel: users.gradeLevel,
+      })
+      .from(users)
+      .where(eq(users.id, user.id))
+      .limit(1);
+
+    if (!dbUser || !dbUser.schoolName || !dbUser.province || !dbUser.gradeLevel) {
+      return NextResponse.json(
+        { error: "Please complete your profile details (School, Province, Grade) before joining a live game. / សូមបំពេញព័ត៌មានគណនីរបស់អ្នក (សាលារៀន ខេត្ត ថ្នាក់ទី) មុននឹងចូលរួមលេងហ្គេមផ្ទាល់។" },
+        { status: 403 }
+      );
+    }
+  }
 
   const body = await req.json().catch(() => ({}));
   const displayName = body.displayName || user.name || "Player";
