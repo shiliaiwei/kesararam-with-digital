@@ -312,11 +312,13 @@
   background: repeating-linear-gradient(
     -45deg,
     #eab308 0px,
-    #eab308 12px,
-    #000000 12px,
-    #000000 24px
+    #eab308 8px,
+    #000000 8px,
+    #000000 16px
   );
-  height: 6px;
+  height: 12px;
+  border-top: 2px solid #000000;
+  border-bottom: 2px solid #000000;
 }
 
 /* ─── Khmer Fonts ─── */

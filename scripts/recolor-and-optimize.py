@@ -25,11 +25,11 @@ def main():
     os.makedirs(dest_dir, exist_ok=True)
     
     mapping = [
-        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_notebook_v3_1780605897861.png", "notebook.webp"),
-        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_pencil_v3_1780605927511.png", "pencil.webp"),
-        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_pen_v3_1780605950721.png", "pen.webp"),
-        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_ruler_v3_1780605975124.png", "ruler.webp"),
-        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_eraser_v3_1780605999372.png", "eraser.webp"),
+        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_notebook_v5_1780606680872.png", "notebook.webp"),
+        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_pencil_v5_1780606694164.png", "pencil.webp"),
+        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_pen_v5_1780606708954.png", "pen.webp"),
+        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_ruler_v4_1780606592435.png", "ruler.webp"),
+        ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_eraser_v4_1780606626724.png", "eraser.webp"),
         ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_highlighter_v3_1780606023284.png", "highlighter.webp"),
         ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_sticky_notes_v3_1780606049771.png", "sticky_notes.webp"),
         ("/Users/Apple16/.gemini/antigravity-ide/brain/9d45657a-b273-4530-9391-4d0494a7e365/reward_geometry_set_v3_1780606074919.png", "geometry_set.webp"),
