@@ -345,6 +345,7 @@ export function Navbar({ session }: NavbarProps) {
                     onClick={() => setMobileOpen(false)}
                     className={cn(
                       "px-4 py-3 text-base font-bold border-2 transition-all duration-100",
+                      brandFont,
                       active
                         ? "bg-yellow-400 text-black border-black shadow-[2px_2px_0_#ca8a04]"
                         : "border-black text-black hover:bg-yellow-300",
@@ -367,7 +368,7 @@ export function Navbar({ session }: NavbarProps) {
                             : "https://dashboard.kesararamwithdigital.tech/staff"
                       }
                       onClick={() => setMobileOpen(false)}
-                      className="mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center"
+                      className={cn("mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center", brandFont)}
                     >
                       Dashboard
                     </a>
@@ -376,7 +377,7 @@ export function Navbar({ session }: NavbarProps) {
                     <Link
                       href="/profile/student"
                       onClick={() => setMobileOpen(false)}
-                      className="mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center"
+                      className={cn("mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center", brandFont)}
                     >
                       My Profile
                     </Link>
@@ -384,7 +385,7 @@ export function Navbar({ session }: NavbarProps) {
                   <form action={logoutAction}>
                     <button
                       type="submit"
-                      className="w-full mt-1 px-4 py-3 text-base font-bold border-2 border-black text-center"
+                      className={cn("w-full mt-1 px-4 py-3 text-base font-bold border-2 border-black text-center", brandFont)}
                       style={{ color: "#ff0050" }}
                     >
                       Sign Out
@@ -395,7 +396,7 @@ export function Navbar({ session }: NavbarProps) {
                 <Link
                   href="/login"
                   onClick={() => setMobileOpen(false)}
-                  className="mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center"
+                  className={cn("mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center", brandFont)}
                 >
                   {tr.login}
                 </Link>
