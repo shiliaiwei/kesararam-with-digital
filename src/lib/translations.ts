@@ -13,12 +13,12 @@ export const t = {
 
     // Hero
     hero: {
-      badge: "Cambodia Driving Theory Platform",
+      badge: "Cambodia Road Safety Learning Platform",
       headline1: "Master Every",
       headline2: "Road Sign.",
-      headline3: "Pass Your Exam.",
-      subtitle: "ស្គាល់សញ្ញាចរាចរ — ប្រឡងជោគជ័យ",
-      desc: "Study traffic signs, road laws, and driving theory with interactive quizzes, flashcards, and live challenge sessions — in both Khmer and English.",
+      headline3: "Learn with Confidence.",
+      subtitle: "ស្គាល់សញ្ញាចរាចរ — រៀនដោយទំនុកចិត្ត",
+      desc: "Study traffic signs, road rules, and safety theory with interactive quizzes, flashcards, and live challenge sessions — in both Khmer and English.",
       startLearning: "Start Learning",
       createAccount: "Create Account",
       stats: {
@@ -43,7 +43,7 @@ export const t = {
       sectionTitle1: "Knowledge",
       sectionTitle2: "Categories",
       sectionDesc:
-        "Eight subject areas covering everything you need for the Cambodia driving theory exam.",
+        "Eight subject areas covering everything you need to master Cambodia's road safety knowledge.",
       studyNow: "Study now",
     },
 
@@ -64,7 +64,7 @@ export const t = {
       step3Title: "Join Live Challenges",
       step3Desc:
         "Compete in real-time sessions hosted by teachers. Earn points, climb the leaderboard, and claim rewards.",
-      ctaTitle: "Ready to start your exam preparation?",
+      ctaTitle: "Ready to start your road safety journey?",
       ctaSubtitle: "ចូលរៀន — ចូលប្រកួត — ជោគជ័យ",
       ctaExplore: "Explore Traffic Signs",
       ctaRegister: "Create free account",
@@ -73,7 +73,7 @@ export const t = {
     // Footer
     footer: {
       tagline:
-        "Master Cambodia's road rules. Ace the theory exam. Drive with confidence.",
+        "Master Cambodia's road rules. Know every sign. Travel with confidence.",
       learnTitle: "Learn",
       platformTitle: "Platform",
       contactTitle: "Contact",
@@ -94,17 +94,17 @@ export const t = {
 
     // Hero
     hero: {
-      badge: "វេទិកាបើកបរ និងស្គាល់សញ្ញាចរាចរ — កម្ពុជា",
+      badge: "វេទិកាសុវត្ថិភាពចរាចរណ៍ និងស្គាល់សញ្ញាចរាចរ — កម្ពុជា",
       headline1: "ស្គាល់គ្រប់",
       headline2: "សញ្ញាចរាចរ.",
-      headline3: "ប្រឡងជោគជ័យ.",
-      subtitle: "ស្គាល់សញ្ញាចរាចរ — ប្រឡងជោគជ័យ",
-      desc: "រៀនសញ្ញាចរាចរ ច្បាប់ផ្លូវវិថី និងទ្រឹស្ដីបើកបរ និងស្គាល់សញ្ញាចរាចរ ជាមួយតេស្ត ប័ណ្ណ និងវគ្គប្រកួតផ្ទាល់ — ជាភាសាខ្មែរ និងអង់គ្លេស.",
+      headline3: "រៀនដោយទំនុកចិត្ត.",
+      subtitle: "ស្គាល់សញ្ញាចរាចរ — រៀនដោយទំនុកចិត្ត",
+      desc: "រៀនសញ្ញាចរាចរ ច្បាប់ផ្លូវវិថី និងទ្រឹស្ដីសុវត្ថិភាពចរាចរណ៍ ជាមួយតេស្ត ប័ណ្ណ និងវគ្គប្រកួតផ្ទាល់ — ជាភាសាខ្មែរ និងអង់គ្លេស.",
       startLearning: "ចាប់ផ្ដើមរៀន",
       createAccount: "បង្កើតគណនី",
       stats: {
         categories: "ប្រភេទចំណេះដឹង",
-        questions: "សំណួរហ្វឹកហ្វឺន",
+        questions: "សំណួរសំរាប់រៀន",
         roles: "តួនាទីអ្នកប្រើ",
       },
       cardProgress: "វឌ្ឍនភាពសញ្ញាចរាចរ",
@@ -124,7 +124,7 @@ export const t = {
       sectionTitle1: "ចំណេះដឹង",
       sectionTitle2: "ប្រភេទ",
       sectionDesc:
-        "ប្រាំបីប្រធានបទ គ្របដណ្ដប់ចំណេះដឹងទាំងអស់ ដែលអ្នកត្រូវការ សម្រាប់ការបើកបរ និងស្គាល់សញ្ញាចរាចរ.",
+        "ប្រាំបីប្រធានបទ គ្របដណ្ដប់ចំណេះដឹងទាំងអស់ ដែលអ្នកត្រូវការ សម្រាប់សុវត្ថិភាពចរាចរណ៍ និងស្គាល់សញ្ញាចរាចរ.",
       studyNow: "រៀនឥឡូវ",
     },
 
@@ -132,20 +132,20 @@ export const t = {
     home: {
       statStudents: "សិស្សប្រើប្រាស់",
       statAreas: "ផ្នែកចំណេះដឹង",
-      statQuestions: "សំណួរហ្វឹកហ្វឺន",
-      statLive: "ប្រឡងផ្ទាល់",
+      statQuestions: "សំណួរសំរាប់រៀន",
+      statLive: "ប្រកួតផ្ទាល់",
       howBadge: "របៀបដំណើរការ",
       howTitle: "រៀនសុវត្ថិភាពចរាចរណ៍ក្នុងបីជំហានងាយៗ",
       step1Title: "ស្វែងរកប្រភេទ",
       step1Desc:
         "ស្វែងរកប្រភេទចំណេះដឹងទាំង ៨។ រៀនតាមមេរៀន សញ្ញាចរាចរ និងឯកសារយោង.",
-      step2Title: "រៀន និងហ្វឹកហ្វឺន",
+      step2Title: "រៀន និងសំរាប់រៀន",
       step2Desc:
         "ប្រើប្រាស់ប័ណ្ណ តេស្ត និង Suar AI ដើម្បីពង្រឹងការយល់ដឹង ជាភាសាខ្មែរ ឬអង់គ្លេស.",
       step3Title: "ចូលរួមប្រកួតផ្ទាល់",
       step3Desc:
-        "ប្រកួតក្នុងវគ្គប្រឡងផ្ទាល់ ដែលគ្រប់គ្រងដោយគ្រូ។ ទទួលពិន្ទុ ចូលក្នុងតារាងចំណាត់ថ្នាក់ និងទទួលរង្វាន់.",
-      ctaTitle: "ត្រៀមខ្លួន ចាប់ផ្ដើមត្រៀមប្រឡង?",
+        "ប្រកួតក្នុងវគ្គប្រកួតផ្ទាល់ ដែលគ្រប់គ្រងដោយគ្រូ។ ទទួលពិន្ទុ ចូលក្នុងតារាងចំណាត់ថ្នាក់ និងទទួលរង្វាន់.",
+      ctaTitle: "ត្រៀមខ្លួន ចាប់ផ្ដើមរៀនសុវត្ថិភាពចរាចរណ៍?",
       ctaSubtitle: "រៀនដើម្បីដឹង · ប្រកួតដើម្បីពូកែ · ការពារដើម្បីជីវិត",
       ctaExplore: "ស្វែងរកសញ្ញាចរាចរ",
       ctaRegister: "បង្កើតគណនីឥតគិតថ្លៃ",
@@ -153,7 +153,7 @@ export const t = {
 
     // Footer
     footer: {
-      tagline: "ស្ទាត់ច្បាប់ចរាចរ — ប្រឡងជោគជ័យ — បើកបរ និងស្គាល់សញ្ញាចរាចរ ដោយទំនុកចិត្ត។",
+      tagline: "ស្ទាត់ច្បាប់ចរាចរ — ស្គាល់គ្រប់សញ្ញា — រៀនដោយទំនុកចិត្ត។",
       learnTitle: "រៀន",
       platformTitle: "វេទិកា",
       contactTitle: "ទំនាក់ទំនង",
