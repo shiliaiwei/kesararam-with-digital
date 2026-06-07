@@ -545,7 +545,7 @@ export default function PlayPage() {
           </span>
         </div>
         <div className="card-grid">
-          {GAMEKIT_CARDS.map((g) => {
+          {GAMEKIT_CARDS.filter((g) => g.id !== "daily").map((g) => {
             const isPro = g.accessTier === "class-pro";
             return (
               <Link
@@ -595,33 +595,8 @@ export default function PlayPage() {
           })}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="bottom-cta">
-          <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 10, background: BRAND.yellow }} />
-          <div style={{ paddingLeft: 14 }}>
-            <div style={{
-              ...khFont, fontSize: "clamp(1.3rem, 2.6vw, 2rem)", fontWeight: 900,
-              lineHeight: 1.15, letterSpacing: "-1px", maxWidth: 600,
-            }}>
-              {kh
-                ? <span>មិនដឹងពីណាចាប់ផ្ដើម? ចាប់ផ្ដើមជាមួយ <span style={{ background: BRAND.yellow, padding: "0 8px", border: `3px solid ${BRAND.black}`, boxShadow: "3px 3px 0 #000" }}>សំណួរលឿន</span> — ត្រឹម ២ នាទី។</span>
-                : <span>Not sure where to start? Try <span style={{ background: BRAND.yellow, padding: "0 8px", border: `3px solid ${BRAND.black}`, boxShadow: "3px 3px 0 #000" }}>Quick Quiz</span> — just 2 minutes.</span>}
-            </div>
-          </div>
-          <Link href="/play/solo?mode=quick-quiz" className="bottom-cta-btn" style={{
-            ...khFont,
-            display: "flex", alignItems: "center", gap: 12, padding: "18px 44px",
-            background: BRAND.yellow, color: BRAND.black, border: `3px solid ${BRAND.black}`,
-            fontWeight: 900, fontSize: 16, letterSpacing: 2, textDecoration: "none",
-            boxShadow: `6px 6px 0 ${BRAND.black}`, whiteSpace: "nowrap",
-          }}
-            onMouseEnter={(e) => { e.currentTarget.style.transform = "translate(-3px,-3px)"; e.currentTarget.style.boxShadow = `9px 9px 0 ${BRAND.black}`; }}
-            onMouseLeave={(e) => { e.currentTarget.style.transform = "translate(0,0)"; e.currentTarget.style.boxShadow = `6px 6px 0 ${BRAND.black}`; }}
-          >
-            <Play size={16} fill="currentColor" strokeWidth={3} />
-            {kh ? "លេងឥឡូវ" : "PLAY NOW"}
-          </Link>
-        </div>
+        {/* Bottom spacing */}
+        <div style={{ height: 56 }} />
       </section>
 
       <style>{`

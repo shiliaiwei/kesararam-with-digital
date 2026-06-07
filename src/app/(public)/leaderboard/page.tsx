@@ -73,6 +73,26 @@ function getProvinceKh(provinceEn: string | null | undefined): string {
   return found ? found.kh : provinceEn;
 }
 
+// ── Leaderboard time windows + game-type filter ───────────────────────────────
+const WINDOW_TABS: { id: "weekly" | "monthly" | "all"; en: string; kh: string }[] = [
+  { id: "weekly", en: "Weekly", kh: "ប្រចាំសប្តាហ៍" },
+  { id: "monthly", en: "Monthly", kh: "ប្រចាំខែ" },
+  { id: "all", en: "All-Time", kh: "គ្រប់ពេល" },
+];
+
+// GameType values match the `gameType` column written into pointsLedger
+// (game IDs from the GameKit registry). Kept static to avoid importing
+// server-side format modules into this client page.
+const GAME_TYPES: { id: string; en: string; kh: string }[] = [
+  { id: "all", en: "All Games", kh: "គ្រប់ល្បែង" },
+  { id: "daily", en: "Daily Challenge", kh: "បញ្ហាប្រចាំថ្ងៃ" },
+  { id: "priority-puzzle", en: "Who Goes First?", kh: "តើអ្នកណាទៅមុន?" },
+  { id: "sign-match", en: "Sign Match", kh: "ផ្គូផ្គងសញ្ញា" },
+  { id: "catch-sign", en: "Catch the Sign", kh: "ចាប់សញ្ញា" },
+  { id: "light-hero", en: "Traffic Light Hero", kh: "វីរបុរសភ្លើងសញ្ញា" },
+  { id: "safety-adventure", en: "Road Safety Adventure", kh: "ដំណើរផ្សងព្រេងសុវត្ថិភាព" },
+];
+
 interface LeaderboardUser {
   id: number;
   username: string;
@@ -718,13 +738,13 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
       {/* Premium Spotlight Pointer Glow Effect */}
       {!claimed && hovered && (
         <>
-          <div 
+          <div
             className="absolute inset-0 pointer-events-none z-10 transition-opacity duration-300"
             style={{
               background: `radial-gradient(circle 220px at var(--mouse-x, 50%) var(--mouse-y, 50%), ${item.color}15, transparent 80%)`
             }}
           />
-          <div 
+          <div
             className="absolute inset-0 pointer-events-none z-20 transition-opacity duration-300"
             style={{
               background: `radial-gradient(circle 100px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.12), transparent 80%)`
@@ -840,7 +860,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
 
             {/* Brutalist Flat Progress Bar with Animated Shimmer */}
             <div className="relative h-3 bg-zinc-100 border-2 border-black overflow-hidden" style={{ borderRadius: 0 }}>
-              <div 
+              <div
                 className="h-full transition-all duration-500 relative"
                 style={{
                   width: `${pct}%`,
@@ -850,7 +870,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
               >
                 {/* Active scan-line shimmer animation */}
                 {isReady && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-[shimmerProgress_1.5s_linear_infinite]" 
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-[shimmerProgress_1.5s_linear_infinite]"
                     style={{ backgroundSize: "200% 100%" }}
                   />
                 )}
@@ -966,9 +986,18 @@ export default function LeaderboardPage() {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [countdown, setCountdown] = useState(60);
 
+  // Leaderboard filters: time window, province, game type
+  const [windowTab, setWindowTab] = useState<"weekly" | "monthly" | "all">("all");
+  const [province, setProvince] = useState("all");
+  const [gameType, setGameType] = useState("all");
+
   const fetchLeaderboard = useCallback(async () => {
     try {
-      const res = await fetch("/api/leaderboard?limit=50");
+      const params = new URLSearchParams({ limit: "50", window: windowTab });
+      if (province !== "all") params.set("province", province);
+      // Game-type filtering only applies to windowed (ledger-summed) boards.
+      if (windowTab !== "all" && gameType !== "all") params.set("gameType", gameType);
+      const res = await fetch(`/api/leaderboard?${params.toString()}`);
       if (!res.ok) return;
       const data = await res.json();
       const newBoard: LeaderboardUser[] = data.leaderboard || [];
@@ -982,12 +1011,15 @@ export default function LeaderboardPage() {
       setCountdown(60);
     } catch { /* silent */ }
     finally { setLoading(false); }
-  }, []);
+  }, [windowTab, province, gameType]);
 
   useEffect(() => {
     fetchLeaderboard();
     const iv = setInterval(fetchLeaderboard, 60000);
+    return () => clearInterval(iv);
+  }, [fetchLeaderboard]);
 
+  useEffect(() => {
     fetch("/api/auth/me")
       .then(r => r.ok ? r.json() : null)
       .then(d => {
@@ -997,7 +1029,7 @@ export default function LeaderboardPage() {
             return;
           }
           const lifetimePoints = d.lifetimePoints ?? 0;
-          
+
           // Sync database claims to local storage for backward compatibility & seamless updates
           if (d.claimedRewards && typeof window !== "undefined") {
             try {
@@ -1009,7 +1041,7 @@ export default function LeaderboardPage() {
                 if (localSaved) {
                   try {
                     currentCount = Math.max(1, JSON.parse(localSaved).claimCount ?? 1);
-                  } catch {}
+                  } catch { }
                 }
                 localStorage.setItem(claimDataKey, JSON.stringify({
                   claimCount: currentCount,
@@ -1047,9 +1079,7 @@ export default function LeaderboardPage() {
         }
       })
       .catch(() => { });
-
-    return () => clearInterval(iv);
-  }, [fetchLeaderboard]);
+  }, [router]);
 
   // Countdown ticker
   useEffect(() => {
@@ -1149,8 +1179,72 @@ export default function LeaderboardPage() {
 
             {/* Rankings Table */}
             <div>
+              {/* ── Filters: time window · province · game type ── */}
+              <div className="mb-4 flex flex-col gap-3">
+                {/* Window tabs */}
+                <div className="flex items-stretch gap-0 border-3 border-black bg-white" style={{ boxShadow: "3px 3px 0 #000", borderRadius: 0 }}>
+                  {WINDOW_TABS.map((w, i) => {
+                    const active = windowTab === w.id;
+                    return (
+                      <button
+                        key={w.id}
+                        onClick={() => setWindowTab(w.id)}
+                        className={`flex-1 px-2 py-2.5 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${i > 0 ? "border-l-3 border-black" : ""} ${active ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
+                        style={kf}
+                      >
+                        {kh ? w.kh : w.en}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Province + game-type selectors */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="flex flex-col gap-1">
+                    <label className="text-[9px] font-black uppercase tracking-widest text-zinc-500" style={kf}>
+                      {kh ? "ខេត្ត / ក្រុង" : "Province"}
+                    </label>
+                    <select
+                      value={province}
+                      onChange={e => setProvince(e.target.value)}
+                      className="border-3 border-black bg-white px-3 py-2 text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
+                      style={{ borderRadius: 0, boxShadow: "2px 2px 0 #000", ...kf }}
+                    >
+                      <option value="all">{kh ? "ខេត្ត/ក្រុងទាំងអស់" : "All Provinces"}</option>
+                      {CAMBODIA_PROVINCES.map(p => (
+                        <option key={p.en} value={p.en}>{kh ? p.kh : p.en}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="flex flex-col gap-1">
+                    <label className="text-[9px] font-black uppercase tracking-widest text-zinc-500" style={kf}>
+                      {kh ? "ប្រភេទល្បែង" : "Game Type"}
+                    </label>
+                    <select
+                      value={gameType}
+                      onChange={e => setGameType(e.target.value)}
+                      disabled={windowTab === "all"}
+                      className="border-3 border-black bg-white px-3 py-2 text-xs font-bold text-black focus:outline-none focus:bg-yellow-50 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:cursor-not-allowed"
+                      style={{ borderRadius: 0, boxShadow: windowTab === "all" ? "2px 2px 0 #d4d4d8" : "2px 2px 0 #000", ...kf }}
+                    >
+                      {GAME_TYPES.map(g => (
+                        <option key={g.id} value={g.id}>{kh ? g.kh : g.en}</option>
+                      ))}
+                    </select>
+                    {windowTab === "all" && (
+                      <span className="text-[8px] text-zinc-400 font-mono uppercase" style={kf}>
+                        {kh ? "ត្រងតាមល្បែង សម្រាប់ប្រចាំសប្តាហ៍/ខែ" : "Game filter applies to weekly/monthly"}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+
               <div className="flex items-center justify-between mb-3">
-                <h2 className="text-base md:text-lg font-black text-black tracking-tight uppercase">All Rankings</h2>
+                <h2 className="text-base md:text-lg font-black text-black tracking-tight uppercase" style={kf}>
+                  {kh ? "ចំណាត់ថ្នាក់ទាំងអស់" : "All Rankings"}
+                </h2>
                 {lastUpdated && (
                   <span className="text-[10px] text-zinc-400 font-mono">
                     UPDATED: {lastUpdated.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
@@ -1178,7 +1272,7 @@ export default function LeaderboardPage() {
                         {moved > 0 && <span className="text-[8px] font-black text-green-500 leading-none">▲</span>}
                         {moved < 0 && <span className="text-[8px] font-black text-red-400 leading-none">▼</span>}
                       </div>
-                      <div 
+                      <div
                         className="col-span-7 flex items-center gap-2 min-w-0 cursor-pointer select-none"
                         onClick={() => handleSelectUser(user)}
                       >
@@ -1222,13 +1316,17 @@ export default function LeaderboardPage() {
                     </div>
                   );
                 }) : (
-                  <div className="px-6 py-10 text-center text-zinc-400 text-sm">
-                    No rankings yet. Play live games to appear here.
+                  <div className="px-6 py-10 text-center text-zinc-400 text-sm" style={kf}>
+                    {kh
+                      ? "មិនទាន់មានចំណាត់ថ្នាក់ទេ។ លេងល្បែង GameKit ឬល្បែងផ្ទាល់ ដើម្បីបង្ហាញនៅទីនេះ។"
+                      : "No rankings yet. Play GameKit games or live games to appear here."}
                   </div>
                 )}
               </div>
-              <p className="text-center text-[9px] text-zinc-400 mt-2 font-mono uppercase">
-                Only live game scores count · Solo practice is not tracked
+              <p className="text-center text-[9px] text-zinc-400 mt-2 font-mono uppercase" style={kf}>
+                {kh
+                  ? "ពិន្ទុ GameKit និងល្បែងផ្ទាល់រាប់បញ្ចូល · ការលេងជាភ្ញៀវមិនត្រូវបានកត់ត្រា"
+                  : "GameKit + live game scores count · Guest plays are not recorded"}
               </p>
             </div>
 

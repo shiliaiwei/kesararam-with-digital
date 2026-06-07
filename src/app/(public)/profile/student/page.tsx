@@ -3,7 +3,8 @@ import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import { users, classes, classEnrollments } from "@/db/schema/users";
-import { eq } from "drizzle-orm";
+import { pointsLedger, userStreaks } from "@/db/schema/content";
+import { eq, sql, desc } from "drizzle-orm";
 import { CompleteProfileForm } from "@/components/profile/complete-profile-form";
 import { StudentProfileDashboard } from "@/components/profile/student-profile-dashboard";
 
@@ -108,6 +109,41 @@ export default async function StudentProfilePage() {
     console.error("Error fetching user profile:", error);
   }
 
+  // ── Per-game stats: total points + plays per GameKit game type ──────────────
+  let gameStats: { gameType: string; points: number; plays: number }[] = [];
+  let currentStreak = 0;
+  let longestStreak = 0;
+  try {
+    gameStats = await db
+      .select({
+        gameType: pointsLedger.gameType,
+        points: sql<number>`COALESCE(SUM(${pointsLedger.points}), 0)::int`,
+        plays: sql<number>`COUNT(*)::int`,
+      })
+      .from(pointsLedger)
+      .where(eq(pointsLedger.userId, session.id))
+      .groupBy(pointsLedger.gameType)
+      .orderBy(desc(sql`COALESCE(SUM(${pointsLedger.points}), 0)`));
+  } catch {
+    // Ledger table not available yet — fall back to empty list
+  }
+  try {
+    const streakRow = await db
+      .select({
+        currentStreak: userStreaks.currentStreak,
+        longestStreak: userStreaks.longestStreak,
+      })
+      .from(userStreaks)
+      .where(eq(userStreaks.userId, session.id))
+      .limit(1);
+    if (streakRow && streakRow.length > 0) {
+      currentStreak = streakRow[0].currentStreak || 0;
+      longestStreak = streakRow[0].longestStreak || 0;
+    }
+  } catch {
+    // Streak table not available yet — fall back to defaults
+  }
+
   // Fetch student class details
   let studentClassInfo: {
     className: string;
@@ -155,6 +191,9 @@ export default async function StudentProfilePage() {
       totalGamesPlayed={totalGamesPlayed}
       lifetimePoints={lifetimePoints}
       studentClassInfo={studentClassInfo}
+      gameStats={gameStats}
+      currentStreak={currentStreak}
+      longestStreak={longestStreak}
     />
   );
 }
