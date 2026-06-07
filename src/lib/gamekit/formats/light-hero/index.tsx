@@ -87,7 +87,7 @@ export const lightHeroFormat: GameFormat<LightHeroRound, KitCompletionResult> = 
     meta: {
         id: "light-hero",
         route: "/play/light-hero",
-        title: { en: "Traffic Light Hero", kh: "វីរបុរសភ្លើងសញ្ញា" },
+        title: { en: "Traffic Light Hero", kh: "បញ្ញាបរភ្លើងសញ្ញា" },
         description: { en: "Green go, red stop, yellow slow — tap the right action!", kh: "បៃតងទៅ ក្រហមឈប់ លឿងបន្ថយ — ប៉ះសកម្មភាពត្រឹមត្រូវ!" },
         brandColor: "#ef4444",
         Icon: TrafficCone,

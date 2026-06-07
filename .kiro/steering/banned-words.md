@@ -11,6 +11,9 @@ Never use the following words in any user-facing text, UI copy, translations, de
 - **ហ្វឹកហ្វឺន** (use "សំរាប់រៀន" or "សំណួរ" instead)
 - **ប្រឡង** (use "ប្រកួត" or "តេស្ត" instead)
 - **បើកបរ** (use "សុវត្ថិភាពចរាចរណ៍" or "ចរាចរណ៍" instead)
+- **ល្បែង** (use "សកម្មភាព" instead)
+- **វីរបុរស** (use "បញ្ញាបរ" instead)
+- **ផ្សងព្រែង** (use "ដំណើរ" instead)
 
 ## Why
 

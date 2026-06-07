@@ -84,12 +84,12 @@ const WINDOW_TABS: { id: "weekly" | "monthly" | "all"; en: string; kh: string }[
 // (game IDs from the GameKit registry). Kept static to avoid importing
 // server-side format modules into this client page.
 const GAME_TYPES: { id: string; en: string; kh: string }[] = [
-  { id: "all", en: "All Games", kh: "គ្រប់ល្បែង" },
+  { id: "all", en: "All Games", kh: "គ្រប់សកម្មភាព" },
   { id: "daily", en: "Daily Challenge", kh: "បញ្ហាប្រចាំថ្ងៃ" },
   { id: "priority-puzzle", en: "Who Goes First?", kh: "តើអ្នកណាទៅមុន?" },
   { id: "sign-match", en: "Sign Match", kh: "ផ្គូផ្គងសញ្ញា" },
   { id: "catch-sign", en: "Catch the Sign", kh: "ចាប់សញ្ញា" },
-  { id: "light-hero", en: "Traffic Light Hero", kh: "វីរបុរសភ្លើងសញ្ញា" },
+  { id: "light-hero", en: "Traffic Light Hero", kh: "បញ្ញាបរភ្លើងសញ្ញា" },
   { id: "safety-adventure", en: "Road Safety Adventure", kh: "ដំណើរផ្សងព្រេងសុវត្ថិភាព" },
 ];
 
@@ -1304,14 +1304,14 @@ export default function LeaderboardPage() {
                 }) : (
                   <div className="px-6 py-10 text-center text-zinc-400 text-sm" style={kf}>
                     {kh
-                      ? "មិនទាន់មានចំណាត់ថ្នាក់ទេ។ លេងល្បែង GameKit ឬល្បែងផ្ទាល់ ដើម្បីបង្ហាញនៅទីនេះ។"
+                      ? "មិនទាន់មានចំណាត់ថ្នាក់ទេ។ លេងសកម្មភាព GameKit ឬសកម្មភាពផ្ទាល់ ដើម្បីបង្ហាញនៅទីនេះ។"
                       : "No rankings yet. Play GameKit games or live games to appear here."}
                   </div>
                 )}
               </div>
               <p className="text-center text-[9px] text-zinc-400 mt-2 font-mono uppercase" style={kf}>
                 {kh
-                  ? "ពិន្ទុ GameKit និងល្បែងផ្ទាល់រាប់បញ្ចូល · ការលេងជាភ្ញៀវមិនត្រូវបានកត់ត្រា"
+                  ? "ពិន្ទុ GameKit និងសកម្មភាពផ្ទាល់រាប់បញ្ចូល · ការលេងជាភ្ញៀវមិនត្រូវបានកត់ត្រា"
                   : "GameKit + live game scores count · Guest plays are not recorded"}
               </p>
             </div>

@@ -60,7 +60,7 @@ const GAME_LABELS: Record<string, { en: string; kh: string; color: string; Icon:
   "priority-puzzle": { en: "Who Goes First?", kh: "តើអ្នកណាទៅមុន?", color: "#3b82f6", Icon: Target },
   "sign-match": { en: "Sign Match", kh: "ផ្គូផ្គងសញ្ញា", color: "#22c55e", Icon: BookOpen },
   "catch-sign": { en: "Catch the Sign", kh: "ចាប់សញ្ញា", color: "#f97316", Icon: Zap },
-  "light-hero": { en: "Traffic Light Hero", kh: "វីរបុរសភ្លើងសញ្ញា", color: "#ef4444", Icon: Trophy },
+  "light-hero": { en: "Traffic Light Hero", kh: "បញ្ញាបរភ្លើងសញ្ញា", color: "#ef4444", Icon: Trophy },
   "safety-adventure": { en: "Road Safety Adventure", kh: "ដំណើរផ្សងព្រេងសុវត្ថិភាព", color: "#a855f7", Icon: Award },
 };
 
@@ -461,7 +461,7 @@ export function StudentProfileDashboard({
                   <Gamepad2 size={16} className="text-yellow-500" />
                 </div>
                 <h3 className="text-sm font-black uppercase tracking-wide text-gray-800" style={kf}>
-                  {kh ? "ពិន្ទុតាមល្បែង" : "Points by Game"}
+                  {kh ? "ពិន្ទុតាមសកម្មភាព" : "Points by Game"}
                 </h3>
               </div>
               {(currentStreak > 0 || longestStreak > 0) && (

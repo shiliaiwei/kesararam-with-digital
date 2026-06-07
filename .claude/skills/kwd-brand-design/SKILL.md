@@ -268,6 +268,9 @@ Never use these words in any user-facing text, UI copy, translations, descriptio
 | **ហ្វឹកហ្វឺន** | សំរាប់រៀន or សំណួរ |
 | **ប្រឡង** | ប្រកួត or តេស្ត |
 | **បើកបរ** | សុវត្ថិភាពចរាចរណ៍ or ចរាចរណ៍ |
+| **ល្បែង** | សកម្មភាព |
+| **វីរបុរស** | បញ្ញាបរ |
+| **ផ្សងព្រែង** | ដំណើរ |
 
 **Why:** This project is a road safety education platform, NOT a "driving school" or "exam prep" tool. Always frame around learning, knowledge, and confidence.
 
