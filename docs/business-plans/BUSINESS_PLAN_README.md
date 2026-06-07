@@ -47,7 +47,7 @@
    - 50 players, unlimited sessions, all 8 categories
    - Analytics, advanced game modes
    
-3. **SCHOOL** - $39/month
+3. **SCHOOL** - $20/month
    - 100 players, 5 teacher accounts
    - Class management, full analytics
    

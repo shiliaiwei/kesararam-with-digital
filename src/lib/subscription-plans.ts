@@ -85,8 +85,8 @@ export const PLAN_DISPLAY = {
   school: {
     name: "School",
     nameKh: "សាលា",
-    price: 49,
-    priceLabel: "$49",
+    price: 20,
+    priceLabel: "$20",
     color: "#8b5cf6",
     badge: "Best Value",
   },

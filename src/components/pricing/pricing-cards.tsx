@@ -127,7 +127,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
         ? `គ្រូ Pro (ប្រចាំឆ្នាំ — ${promo ? "ប្រូម៉ូសិនចុះថ្លៃ ៧០% / " : ""}ឥតគិតថ្លៃ ៤ ខែ)`
         : `គ្រូ Pro (ប្រចាំខែ${promo ? " — ប្រូម៉ូសិនចុះថ្លៃ ៧០%" : ""})`;
     } else if (selectedPlan === "school_public") {
-      usd = promo ? (yearly ? 108 : 12) : yearly ? 350 : 39;
+      usd = promo ? (yearly ? 54 : 6) : yearly ? 180 : 20;
       labelEn = yearly
         ? `School Plan (Annual — ${promo ? "Promo / " : ""}3 Mos Free)`
         : `School Plan (Monthly${promo ? " — Promo" : ""})`;
@@ -135,7 +135,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
         ? `ផែនការសាលារៀន (ប្រចាំឆ្នាំ — ${promo ? "ប្រូម៉ូសិន / " : ""}ឥតគិតថ្លៃ ៣ ខែ)`
         : `ផែនការសាលារៀន (ប្រចាំខែ${promo ? " — ប្រូម៉ូសិន" : ""})`;
     } else if (selectedPlan === "school_private") {
-      usd = promo ? (yearly ? 162 : 18) : yearly ? 530 : 59;
+      usd = promo ? (yearly ? 135 : 15) : yearly ? 441 : 49;
       labelEn = yearly
         ? `Institute Plan (Annual — ${promo ? "Promo / " : ""}3 Mos Free)`
         : `Institute Plan (Monthly${promo ? " — Promo" : ""})`;
@@ -317,9 +317,8 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
           {/* Switch for Billing Cycle */}
           <div className="flex items-center justify-center gap-2 md:gap-3 mt-2 bg-white/5 border border-white/10 rounded-2xl p-2.5 md:p-4 max-w-[280px] xs:max-w-xs md:max-w-sm mx-auto backdrop-blur-sm">
             <span
-              className={`text-sm font-bold transition-colors ${
-                !yearly ? "text-white" : "text-white/40"
-              }`}
+              className={`text-sm font-bold transition-colors ${!yearly ? "text-white" : "text-white/40"
+                }`}
               style={khFont}
             >
               {kh ? "ប្រចាំខែ" : "Monthly"}
@@ -332,20 +331,17 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
               }}
               role="switch"
               aria-checked={yearly}
-              className={`relative w-12 h-6 md:w-14 md:h-7 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${
-                yearly ? "bg-amber-400" : "bg-white/20"
-              }`}
+              className={`relative w-12 h-6 md:w-14 md:h-7 rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 ${yearly ? "bg-amber-400" : "bg-white/20"
+                }`}
             >
               <span
-                className={`absolute top-1 left-1 w-4 h-4 md:w-5 md:h-5 bg-white rounded-full shadow-md transition-transform duration-300 ${
-                  yearly ? "translate-x-6 md:translate-x-7" : "translate-x-0"
-                }`}
+                className={`absolute top-1 left-1 w-4 h-4 md:w-5 md:h-5 bg-white rounded-full shadow-md transition-transform duration-300 ${yearly ? "translate-x-6 md:translate-x-7" : "translate-x-0"
+                  }`}
               />
             </button>
             <span
-              className={`text-sm font-bold transition-colors flex items-center gap-1.5 ${
-                yearly ? "text-white" : "text-white/40"
-              }`}
+              className={`text-sm font-bold transition-colors flex items-center gap-1.5 ${yearly ? "text-white" : "text-white/40"
+                }`}
               style={khFont}
             >
               {kh ? "ប្រចាំឆ្នាំ" : "Yearly"}
@@ -563,14 +559,14 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
               {/* 2-col grid on mobile so the card is half the height */}
               <div className="grid grid-cols-2 md:grid-cols-1 gap-x-2 gap-y-1.5 md:gap-y-2.5">
                 {[
-                  { en: "Unlimited live sessions",    kh: "វគ្គផ្ទាល់គ្មានដែនកំណត់" },
-                  { en: "All 8 question categories",  kh: "ប្រភេទសំណួរទាំង ៨" },
-                  { en: "Up to 50 students/session",  kh: "៥០ សិស្ស/វគ្គ" },
-                  { en: "Analytics & reports",         kh: "វិភាគ & របាយការណ៍" },
-                  { en: "Export CSV / PDF",            kh: "នាំចេញ CSV/PDF" },
-                  { en: "Advanced game modes",         kh: "ហ្គេមកម្រិតខ្ពស់" },
-                  { en: "Remove KWD branding",         kh: "លុបស្លាក KWD" },
-                  { en: "Suar AI unlimited",           kh: "Suar AI គ្មានដែនកំណត់" },
+                  { en: "Unlimited live sessions", kh: "វគ្គផ្ទាល់គ្មានដែនកំណត់" },
+                  { en: "All 8 question categories", kh: "ប្រភេទសំណួរទាំង ៨" },
+                  { en: "Up to 50 students/session", kh: "៥០ សិស្ស/វគ្គ" },
+                  { en: "Analytics & reports", kh: "វិភាគ & របាយការណ៍" },
+                  { en: "Export CSV / PDF", kh: "នាំចេញ CSV/PDF" },
+                  { en: "Advanced game modes", kh: "ហ្គេមកម្រិតខ្ពស់" },
+                  { en: "Remove KWD branding", kh: "លុបស្លាក KWD" },
+                  { en: "Suar AI unlimited", kh: "Suar AI គ្មានដែនកំណត់" },
                 ].map((f, i) => (
                   <div key={i} className="flex items-center gap-1.5 min-w-0">
                     <span className="shrink-0 w-3.5 h-3.5 rounded-full bg-amber-400/20 flex items-center justify-center">
@@ -610,7 +606,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                   </p>
                   <div className="flex items-end gap-0.5">
                     <span className="text-2xl font-black text-white">
-                      {yearly ? "$108" : "$12"}
+                      {yearly ? "$54" : "$6"}
                     </span>
                     <span
                       className="text-white/50 text-[9px] mb-0.5"
@@ -627,13 +623,13 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                   </div>
                   <div className="text-[9px] font-bold text-zinc-500 mt-0.5">
                     <span className="line-through text-white/30">
-                      {yearly ? "$350" : "$39"}
+                      {yearly ? "$180" : "$20"}
                     </span>
                     <span className="text-green-400 ml-1">(-70%)</span>
                   </div>
                   {yearly && (
                     <div className="text-[9px] font-bold text-green-400 mt-1 bg-green-500/10 border border-green-500/20 px-1.5 py-0.5 rounded w-fit">
-                      {kh ? "សន្សំ៖ $៣៦/ឆ្នាំ" : "Save: $36/yr"}
+                      {kh ? "សន្សំ៖ $១៨/ឆ្នាំ" : "Save: $18/yr"}
                     </div>
                   )}
                 </div>
@@ -648,7 +644,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                   </p>
                   <div className="flex items-end gap-0.5">
                     <span className="text-2xl font-black text-white">
-                      {yearly ? "$162" : "$18"}
+                      {yearly ? "$135" : "$15"}
                     </span>
                     <span
                       className="text-white/50 text-[9px] mb-0.5"
@@ -665,13 +661,13 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                   </div>
                   <div className="text-[9px] font-bold text-zinc-500 mt-0.5">
                     <span className="line-through text-white/30">
-                      {yearly ? "$530" : "$59"}
+                      {yearly ? "$441" : "$49"}
                     </span>
                     <span className="text-green-400 ml-1">(-70%)</span>
                   </div>
                   {yearly && (
                     <div className="text-[9px] font-bold text-green-400 mt-1 bg-green-500/10 border border-green-500/20 px-1.5 py-0.5 rounded w-fit">
-                      {kh ? "សន្សំ៖ $៥៤/ឆ្នាំ" : "Save: $54/yr"}
+                      {kh ? "សន្សំ៖ $៤៥/ឆ្នាំ" : "Save: $45/yr"}
                     </div>
                   )}
                 </div>
@@ -730,29 +726,29 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                 {kh ? "អ្វីដែលរួមបញ្ចូល" : "What's included"}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-1 gap-x-2 gap-y-1.5 md:gap-y-2.5">
-              {[
-                {
-                  en: "Everything in Teacher Pro",
-                  kh: "អ្វីៗក្នុង Teacher Pro",
-                },
-                { en: "10–30 teacher accounts", kh: "គណនីគ្រូ ១០–៣០" },
-                {
-                  en: "200–500 students/session",
-                  kh: "ពី ២០០ ទៅ ៥០០ សិស្ស/វគ្គ",
-                },
-                { en: "Admin dashboard",          kh: "ផ្ទាំង Admin" },
-                { en: "Priority support",          kh: "ជំនួយអាទិភាព" },
-                { en: "Custom branding portal",    kh: "ផតថលផ្ទាល់ខ្លួន" },
-              ].map((f, i) => (
-                <div key={i} className="flex items-center gap-1.5 min-w-0">
-                  <span className="shrink-0 w-3.5 h-3.5 rounded-full bg-purple-400/20 flex items-center justify-center">
-                    <Check size={9} className="text-purple-400" />
-                  </span>
-                  <span className="text-[11px] md:text-sm text-white/80 leading-tight truncate" style={khFont}>
-                    {kh ? f.kh : f.en}
-                  </span>
-                </div>
-              ))}
+                {[
+                  {
+                    en: "Everything in Teacher Pro",
+                    kh: "អ្វីៗក្នុង Teacher Pro",
+                  },
+                  { en: "10–30 teacher accounts", kh: "គណនីគ្រូ ១០–៣០" },
+                  {
+                    en: "200–500 students/session",
+                    kh: "ពី ២០០ ទៅ ៥០០ សិស្ស/វគ្គ",
+                  },
+                  { en: "Admin dashboard", kh: "ផ្ទាំង Admin" },
+                  { en: "Priority support", kh: "ជំនួយអាទិភាព" },
+                  { en: "Custom branding portal", kh: "ផតថលផ្ទាល់ខ្លួន" },
+                ].map((f, i) => (
+                  <div key={i} className="flex items-center gap-1.5 min-w-0">
+                    <span className="shrink-0 w-3.5 h-3.5 rounded-full bg-purple-400/20 flex items-center justify-center">
+                      <Check size={9} className="text-purple-400" />
+                    </span>
+                    <span className="text-[11px] md:text-sm text-white/80 leading-tight truncate" style={khFont}>
+                      {kh ? f.kh : f.en}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -843,20 +839,18 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                     <button
                       key={plan.id}
                       onClick={() => setSelectedPlan(plan.id as any)}
-                      className={`flex items-center justify-between p-3 md:p-4 border text-left rounded-xl transition-all ${
-                        selectedPlan === plan.id
-                          ? "bg-white/10 border-white text-white font-black scale-[1.01]"
-                          : "bg-white/5 border-white/10 text-white/60 hover:bg-white/[0.07]"
-                      }`}
+                      className={`flex items-center justify-between p-3 md:p-4 border text-left rounded-xl transition-all ${selectedPlan === plan.id
+                        ? "bg-white/10 border-white text-white font-black scale-[1.01]"
+                        : "bg-white/5 border-white/10 text-white/60 hover:bg-white/[0.07]"
+                        }`}
                       style={khFont}
                     >
                       <span>{plan.label}</span>
                       <span
-                        className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${
-                          selectedPlan === plan.id
-                            ? "border-amber-400"
-                            : "border-white/20"
-                        }`}
+                        className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${selectedPlan === plan.id
+                          ? "border-amber-400"
+                          : "border-white/20"
+                          }`}
                       >
                         {selectedPlan === plan.id && (
                           <span className="w-2 h-2 bg-amber-400 rounded-full" />
@@ -1134,16 +1128,16 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
             <div className="grid md:grid-cols-2 gap-x-8 gap-y-3 mt-5 pt-5 border-t border-white/10">
               {[
                 {
-                  en: "Pricing Promotion: Standard Teacher Pro rate is $10/month. Under promo (active through end of 2026), rates are discounted by 70% ($3/month). Standard rates for School are $39/mo ($350/yr) and Institute is $59/mo ($530/yr).",
-                  kh: "ការផ្សព្វផ្សាយតម្លៃ៖ តម្លៃធម្មតាសម្រាប់គ្រូ Pro គឺ ១០ ដុល្លារ/ខែ។ ក្រោមការបញ្ចុះតម្លៃប្រូម៉ូសិន (មានប្រសិទ្ធភាពរហូតដល់ចុងឆ្នាំ ២០២៦) តម្លៃត្រូវបានបញ្ចុះ ៧០% (៣ ដុល្លារ/ខែ)។ តម្លៃធម្មតាសម្រាប់សាលារៀនគឺ ៣៩ ដុល្លារ/ខែ (៣៥០ ដុល្លារ/ឆ្នាំ) និងវិទ្យាស្ថានគឺ ៥៩ ដុល្លារ/ខែ (៥៣០ ដុល្លារ/ឆ្នាំ)។",
+                  en: "Pricing Promotion: Standard Teacher Pro rate is $10/month. Under promo (active through end of 2026), rates are discounted by 70% ($3/month). Standard rates for School are $20/mo ($180/yr) and Institute is $49/mo ($441/yr).",
+                  kh: "ការផ្សព្វផ្សាយតម្លៃ៖ តម្លៃធម្មតាសម្រាប់គ្រូ Pro គឺ ១០ ដុល្លារ/ខែ។ ក្រោមការបញ្ចុះតម្លៃប្រូម៉ូសិន (មានប្រសិទ្ធភាពរហូតដល់ចុងឆ្នាំ ២០២៦) តម្លៃត្រូវបានបញ្ចុះ ៧០% (៣ ដុល្លារ/ខែ)។ តម្លៃធម្មតាសម្រាប់សាលារៀនគឺ ២០ ដុល្លារ/ខែ (១៨០ ដុល្លារ/ឆ្នាំ) និងវិទ្យាស្ថានគឺ ៤៩ ដុល្លារ/ខែ (៤៤១ ដុល្លារ/ឆ្នាំ)។",
                 },
                 {
-                  en: "Annual Package (4 Months Free for Teacher Pro): Subscribers to 1-year plans receive 4 months free for Teacher Pro ($24/year promo, $80/year standard) and 3 months free for School plans ($108/year promo, $350/year standard) and Institute plans ($162/year promo, $530/year standard).",
-                  kh: "កញ្ចប់ប្រចាំឆ្នាំ៖ ការជាវប្រចាំឆ្នាំទទួលបានការបញ្ចុះតម្លៃ ៤ ខែឥតគិតថ្លៃសម្រាប់គ្រូ Pro (២៤ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៨០ ដុល្លារ/ឆ្នាំ ធម្មតា) និង ៣ ខែឥតគិតថ្លៃសម្រាប់សាលារៀន (១០៨ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៣៥០ ដុល្លារ/ឆ្នាំ ធម្មតា) និងវិទ្យាស្ថាន (១៦២ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៥៣០ ដុល្លារ/ឆ្នាំ ធម្មតា)។",
+                  en: "Annual Package (4 Months Free for Teacher Pro): Subscribers to 1-year plans receive 4 months free for Teacher Pro ($24/year promo, $80/year standard) and 3 months free for School plans ($54/year promo, $180/year standard) and Institute plans ($135/year promo, $441/year standard).",
+                  kh: "កញ្ចប់ប្រចាំឆ្នាំ៖ ការជាវប្រចាំឆ្នាំទទួលបានការបញ្ចុះតម្លៃ ៤ ខែឥតគិតថ្លៃសម្រាប់គ្រូ Pro (២៤ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៨០ ដុល្លារ/ឆ្នាំ ធម្មតា) និង ៣ ខែឥតគិតថ្លៃសម្រាប់សាលារៀន (៥៤ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ១៨០ ដុល្លារ/ឆ្នាំ ធម្មតា) និងវិទ្យាស្ថាន (១៣៥ ដុល្លារ/ឆ្នាំ ប្រូម៉ូសិន, ៤៤១ ដុល្លារ/ឆ្នាំ ធម្មតា)។",
                 },
                 {
-                  en: "School & Institute Structure: Pricing covers schools and training institutes. Under promo, School plan is $12/mo ($108/yr) and Institute plan is $18/mo ($162/yr).",
-                  kh: "រចនាសម្ព័ន្ធសាលារៀន និងវិទ្យាស្ថាន៖ តម្លៃគ្របដណ្តប់ទាំងសាលារៀន និងវិទ្យាស្ថានបណ្តុះបណ្តាល។ ក្រោមតម្លៃប្រូម៉ូសិន ផែនការសាលារៀនគឺ ១២ ដុល្លារ/ខែ (១០៨ ដុល្លារ/ឆ្នាំ) និងផែនការវិទ្យាស្ថានគឺ ១៨ ដុល្លារ/ខែ (១៦២ ដុល្លារ/ឆ្នាំ)។",
+                  en: "School & Institute Structure: Pricing covers schools and training institutes. Under promo, School plan is $6/mo ($54/yr) and Institute plan is $15/mo ($135/yr).",
+                  kh: "រចនាសម្ព័ន្ធសាលារៀន និងវិទ្យាស្ថាន៖ តម្លៃគ្របដណ្តប់ទាំងសាលារៀន និងវិទ្យាស្ថានបណ្តុះបណ្តាល។ ក្រោមតម្លៃប្រូម៉ូសិន ផែនការសាលារៀនគឺ ៦ ដុល្លារ/ខែ (៥៤ ដុល្លារ/ឆ្នាំ) និងផែនការវិទ្យាស្ថានគឺ ១៥ ដុល្លារ/ខែ (១៣៥ ដុល្លារ/ឆ្នាំ)។",
                 },
                 {
                   en: "Billing & Cancellation: Subscriptions are billed monthly or annually. You can cancel at any time. Active access remains until the current cycle expires.",

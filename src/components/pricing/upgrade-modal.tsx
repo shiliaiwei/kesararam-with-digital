@@ -12,12 +12,12 @@ interface UpgradeModalProps {
 }
 
 const TRIGGER_MESSAGES: Record<string, { en: string; kh: string }> = {
-  session_limit:  { en: "You've hit the free plan session limit (1/month).", kh: "អ្នកបានដល់ដែនកំណត់វគ្គ (១/ខែ)។" },
-  player_limit:   { en: "Free plan supports up to 10 players per session.", kh: "ផែនការឥតគិតថ្លៃគាំទ្រ ១០ អ្នកលេង/វគ្គ។" },
+  session_limit: { en: "You've hit the free plan session limit (1/month).", kh: "អ្នកបានដល់ដែនកំណត់វគ្គ (១/ខែ)។" },
+  player_limit: { en: "Free plan supports up to 10 players per session.", kh: "ផែនការឥតគិតថ្លៃគាំទ្រ ១០ អ្នកលេង/វគ្គ។" },
   category_limit: { en: "Unlock all 8 question categories.", kh: "បើកប្រភេទសំណួរទាំង ៨។" },
-  analytics:      { en: "Analytics available on Teacher Pro and above.", kh: "វិភាគមានសម្រាប់ Teacher Pro ។" },
+  analytics: { en: "Analytics available on Teacher Pro and above.", kh: "វិភាគមានសម្រាប់ Teacher Pro ។" },
   advanced_modes: { en: "Advanced game modes require Teacher Pro.", kh: "របៀបហ្គេមកម្រិតខ្ពស់ត្រូវការ Teacher Pro។" },
-  export:         { en: "Export results to CSV/PDF with Teacher Pro.", kh: "នាំចេញលទ្ធផលជាមួយ Teacher Pro។" },
+  export: { en: "Export results to CSV/PDF with Teacher Pro.", kh: "នាំចេញលទ្ធផលជាមួយ Teacher Pro។" },
 };
 
 const PLANS = [
@@ -160,12 +160,12 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
               </span>
             </div>
           </div>
- 
+
           {/* Plan cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 px-4 sm:px-6 pb-4">
             {PLANS.map((plan) => {
               const Icon = plan.icon;
-              
+
               // Define prices based on promo
               const getPrice = (key: string, isYearly: boolean) => {
                 if (key === "teacher_pro") return isYearly ? 2 : 3;
@@ -181,11 +181,10 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
 
               return (
                 <div key={plan.key}
-                  className={`relative rounded-2xl p-5 flex flex-col transition-all duration-200 group ${
-                    plan.highlight
+                  className={`relative rounded-2xl p-5 flex flex-col transition-all duration-200 group ${plan.highlight
                       ? "bg-gradient-to-b from-amber-400/12 via-amber-400/5 to-transparent border-2 border-amber-400/50 shadow-[0_0_40px_rgba(251,191,36,0.12)]"
                       : "bg-white/4 border border-white/10 hover:border-white/20 hover:bg-white/6"
-                  }`}
+                    }`}
                 >
                   {plan.badge && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-400 text-black text-[10px] font-black px-3 py-0.5 rounded-full uppercase tracking-wider whitespace-nowrap shadow-lg">
@@ -223,12 +222,12 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
                         <span className="text-white/50 font-bold" style={khFont}>{kh ? "ផែនការសាលារៀន" : "School Plan"}</span>
                         <div className="flex flex-col items-end">
                           <div className="flex items-center gap-1.5">
-                            <span className="font-black text-white">${yearly ? 9 : 12}</span>
+                            <span className="font-black text-white">${yearly ? 4.5 : 6}</span>
                             <span className="text-white/35 text-[10px]">{kh ? "USD/ខែ" : "USD/mo"}</span>
-                            <span className="line-through text-white/20 text-[10px]">${yearly ? 29.17 : 39}</span>
+                            <span className="line-through text-white/20 text-[10px]">${yearly ? 15 : 20}</span>
                           </div>
                           {yearly && (
-                            <span className="text-[9px] font-bold text-green-400 mt-0.5">{kh ? "សន្សំ៖ $៣៦/ឆ្នាំ" : "Save: $36/yr"}</span>
+                            <span className="text-[9px] font-bold text-green-400 mt-0.5">{kh ? "សន្សំ៖ $១៨/ឆ្នាំ" : "Save: $18/yr"}</span>
                           )}
                         </div>
                       </div>
@@ -236,12 +235,12 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
                         <span className="text-white/50 font-bold" style={khFont}>{kh ? "ផែនការវិទ្យាស្ថាន" : "Institute Plan"}</span>
                         <div className="flex flex-col items-end">
                           <div className="flex items-center gap-1.5">
-                            <span className="font-black text-white">${yearly ? 13.5 : 18}</span>
+                            <span className="font-black text-white">${yearly ? 11.25 : 15}</span>
                             <span className="text-white/35 text-[10px]">{kh ? "USD/ខែ" : "USD/mo"}</span>
-                            <span className="line-through text-white/20 text-[10px]">${yearly ? 44.17 : 59}</span>
+                            <span className="line-through text-white/20 text-[10px]">${yearly ? 36.75 : 49}</span>
                           </div>
                           {yearly && (
-                            <span className="text-[9px] font-bold text-green-400 mt-0.5">{kh ? "សន្សំ៖ $៥៤/ឆ្នាំ" : "Save: $54/yr"}</span>
+                            <span className="text-[9px] font-bold text-green-400 mt-0.5">{kh ? "សន្សំ៖ $៤៥/ឆ្នាំ" : "Save: $45/yr"}</span>
                           )}
                         </div>
                       </div>
@@ -261,11 +260,10 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
                   {/* CTA */}
                   <button
                     onClick={() => { onClose(); router.push("/pricing"); }}
-                    className={`w-full py-3 rounded-xl text-sm font-black transition-all duration-200 mb-4 ${
-                      plan.highlight
+                    className={`w-full py-3 rounded-xl text-sm font-black transition-all duration-200 mb-4 ${plan.highlight
                         ? "bg-amber-400 text-black hover:bg-amber-300 shadow-[0_4px_20px_rgba(251,191,36,0.35)] hover:shadow-[0_6px_28px_rgba(251,191,36,0.5)] hover:-translate-y-0.5 active:translate-y-0"
                         : "border border-white/15 text-white hover:bg-white/8 hover:border-white/30"
-                    }`}
+                      }`}
                     style={khFont}
                   >
                     {kh ? plan.cta.kh : plan.cta.en}
