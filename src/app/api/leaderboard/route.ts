@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
   const gameType = searchParams.get("gameType") || "all";
 
   try {
-    const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.schoolName} IS NOT NULL AND ${users.province} IS NOT NULL AND ${users.gradeLevel} IS NOT NULL AND ${users.isStatsPublic} = true`;
+    const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.schoolName} IS NOT NULL AND ${users.province} IS NOT NULL AND ${users.gradeLevel} IS NOT NULL AND ${users.isStatsPublic} = true AND ${users.lifetimePoints} > 0`;
     const provinceFilter =
       province !== "all" ? sql` AND ${users.province} = ${province}` : sql``;
 

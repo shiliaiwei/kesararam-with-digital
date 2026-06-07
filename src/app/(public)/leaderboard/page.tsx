@@ -505,7 +505,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
   );
 }
 
-// ── Seeded fake social proof & details ───────────────────────────────────────
+// ── Social proof & badge data ─────────────────────────────────────────────
 const SOCIAL_PROOF: Record<number, number> = { 1: 47, 2: 112, 3: 89, 4: 63, 5: 134, 6: 38, 7: 71, 8: 19, 9: 12 };
 const SCARCITY: Record<number, number | null> = { 1: null, 2: null, 3: null, 4: null, 5: null, 6: 8, 7: null, 8: 5, 9: 3 };
 const BONUS_BADGE: Record<number, { label: string; icon: typeof Star } | null> = {
@@ -1166,7 +1166,8 @@ export default function LeaderboardPage() {
           </div>
         ) : (
           <>
-            {/* Podium */}
+            {/* Podium - only show if there are ranked users */}
+            {top3.length > 0 && (
             <div className="grid grid-cols-3 items-end gap-2 md:gap-6 w-full">
               {[
                 { cfg: PODIUM_CFG[0], user: top3[1] },
@@ -1176,20 +1177,21 @@ export default function LeaderboardPage() {
                 <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} currentUser={currentUser} onSelect={handleSelectUser} />
               ))}
             </div>
+            )}
 
             {/* Rankings Table */}
             <div>
-              {/* ── Filters: time window · province · game type ── */}
-              <div className="mb-4 flex flex-col gap-3">
+              {/* ── Filters: time window · province · game type (single row) ── */}
+              <div className="mb-4 flex flex-wrap items-end gap-3">
                 {/* Window tabs */}
-                <div className="flex items-stretch gap-0 border-3 border-black bg-white" style={{ boxShadow: "3px 3px 0 #000", borderRadius: 0 }}>
+                <div className="flex items-stretch gap-0 border-3 border-black bg-white flex-shrink-0" style={{ boxShadow: "3px 3px 0 #000", borderRadius: 0 }}>
                   {WINDOW_TABS.map((w, i) => {
                     const active = windowTab === w.id;
                     return (
                       <button
                         key={w.id}
                         onClick={() => setWindowTab(w.id)}
-                        className={`flex-1 px-2 py-2.5 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${i > 0 ? "border-l-3 border-black" : ""} ${active ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
+                        className={`px-3 py-2 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${i > 0 ? "border-l-3 border-black" : ""} ${active ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
                         style={kf}
                       >
                         {kh ? w.kh : w.en}
@@ -1198,49 +1200,33 @@ export default function LeaderboardPage() {
                   })}
                 </div>
 
-                {/* Province + game-type selectors */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="flex flex-col gap-1">
-                    <label className="text-[9px] font-black uppercase tracking-widest text-zinc-500" style={kf}>
-                      {kh ? "ខេត្ត / ក្រុង" : "Province"}
-                    </label>
-                    <select
-                      value={province}
-                      onChange={e => setProvince(e.target.value)}
-                      className="border-3 border-black bg-white px-3 py-2 text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
-                      style={{ borderRadius: 0, boxShadow: "2px 2px 0 #000", ...kf }}
-                    >
-                      <option value="all">{kh ? "ខេត្ត/ក្រុងទាំងអស់" : "All Provinces"}</option>
-                      {CAMBODIA_PROVINCES.map(p => (
-                        <option key={p.en} value={p.en}>{kh ? p.kh : p.en}</option>
-                      ))}
-                    </select>
-                  </div>
+                {/* Province */}
+                <select
+                  value={province}
+                  onChange={e => setProvince(e.target.value)}
+                  className="border-3 border-black bg-white px-3 py-2 text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
+                  style={{ borderRadius: 0, boxShadow: "2px 2px 0 #000", ...kf }}
+                >
+                  <option value="all">{kh ? "ខេត្ត/ក្រុងទាំងអស់" : "All Provinces"}</option>
+                  {CAMBODIA_PROVINCES.map(p => (
+                    <option key={p.en} value={p.en}>{kh ? p.kh : p.en}</option>
+                  ))}
+                </select>
 
-                  <div className="flex flex-col gap-1">
-                    <label className="text-[9px] font-black uppercase tracking-widest text-zinc-500" style={kf}>
-                      {kh ? "ប្រភេទល្បែង" : "Game Type"}
-                    </label>
-                    <select
-                      value={gameType}
-                      onChange={e => setGameType(e.target.value)}
-                      disabled={windowTab === "all"}
-                      className="border-3 border-black bg-white px-3 py-2 text-xs font-bold text-black focus:outline-none focus:bg-yellow-50 disabled:bg-zinc-100 disabled:text-zinc-400 disabled:cursor-not-allowed"
-                      style={{ borderRadius: 0, boxShadow: windowTab === "all" ? "2px 2px 0 #d4d4d8" : "2px 2px 0 #000", ...kf }}
-                    >
-                      {GAME_TYPES.map(g => (
-                        <option key={g.id} value={g.id}>{kh ? g.kh : g.en}</option>
-                      ))}
-                    </select>
-                    {windowTab === "all" && (
-                      <span className="text-[8px] text-zinc-400 font-mono uppercase" style={kf}>
-                        {kh ? "ត្រងតាមល្បែង សម្រាប់ប្រចាំសប្តាហ៍/ខែ" : "Game filter applies to weekly/monthly"}
-                      </span>
-                    )}
-                  </div>
-                </div>
+                {/* Game type (visible only for weekly/monthly) */}
+                {windowTab !== "all" && (
+                  <select
+                    value={gameType}
+                    onChange={e => setGameType(e.target.value)}
+                    className="border-3 border-black bg-white px-3 py-2 text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
+                    style={{ borderRadius: 0, boxShadow: "2px 2px 0 #000", ...kf }}
+                  >
+                    {GAME_TYPES.map(g => (
+                      <option key={g.id} value={g.id}>{kh ? g.kh : g.en}</option>
+                    ))}
+                  </select>
+                )}
               </div>
-
               <div className="flex items-center justify-between mb-3">
                 <h2 className="text-base md:text-lg font-black text-black tracking-tight uppercase" style={kf}>
                   {kh ? "ចំណាត់ថ្នាក់ទាំងអស់" : "All Rankings"}

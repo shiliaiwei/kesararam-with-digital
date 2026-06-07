@@ -220,6 +220,7 @@ inverted/white on dark. Min height 24px. Clear space = height of the "K".
 - ❌ English-only UI copy.
 - ❌ Recoloring/distorting the logo.
 - ❌ Reinventing a button/card when `.nb-btn` / `.nb-card` exist.
+- ❌ Using **banned words** in any user-facing text (see Banned Words section below).
 
 ## Quick self-check before you finish any UI change
 
@@ -247,3 +248,27 @@ For the learning/psychology/design **theories the product is built on** (design
   unprompted) on your own, even after finishing a change.
 
 See also memory: [[git-push-discipline]].
+
+---
+
+## Banned Words — Language Restrictions
+
+Never use these words in any user-facing text, UI copy, translations, descriptions, or generated content:
+
+### English
+| Banned | Use instead |
+|--------|-------------|
+| **exam** | "test", "quiz", "challenge", or "assessment" |
+| **driving** | "road safety", "traffic", or "travel" |
+
+### Khmer
+| Banned | Use instead |
+|--------|-------------|
+| **វេទិកា** | គេហទំព័រ |
+| **ហ្វឹកហ្វឺន** | សំរាប់រៀន or សំណួរ |
+| **ប្រឡង** | ប្រកួត or តេស្ត |
+| **បើកបរ** | សុវត្ថិភាពចរាចរណ៍ or ចរាចរណ៍ |
+
+**Why:** This project is a road safety education platform, NOT a "driving school" or "exam prep" tool. Always frame around learning, knowledge, and confidence.
+
+**Exceptions:** Internal DB slugs (e.g. `slug: "driving"`), the word "test" (quiz/test is fine), and technical documentation are exempt.
