@@ -17,7 +17,9 @@ import {
   Sparkles,
   Gauge,
   Users,
+  Lock,
 } from "lucide-react";
+import { GAMEKIT_CARDS } from "@/lib/gamekit/registry";
 
 // ─── BRAND COLORS ─────────────────────────────────────────────────────────────
 const BRAND = {
@@ -531,6 +533,66 @@ export default function PlayPage() {
           {GAME_MODES.map((mode) => (
             <GameCard key={mode.id} mode={mode} kh={kh} khFont={khFont} />
           ))}
+        </div>
+
+        {/* ═══ MORE GAMES (GameKit) ═══════════════════════════════════════ */}
+        <div className="modes-header" style={{ marginTop: 8 }}>
+          <h2 style={{ ...khFont, fontSize: "clamp(1.4rem, 2.6vw, 2rem)", fontWeight: 900, margin: 0, letterSpacing: "-1px" }}>
+            {kh ? "ហ្គេមបន្ថែម" : "More Games"}
+          </h2>
+          <span style={{ ...khFont, fontSize: 12, fontWeight: 700, color: "rgba(0,0,0,0.5)" }}>
+            {kh ? "លេងដើម្បីទទួលពិន្ទុ" : "Play to earn points"}
+          </span>
+        </div>
+        <div className="card-grid">
+          {GAMEKIT_CARDS.map((g) => {
+            const isPro = g.accessTier === "class-pro";
+            return (
+              <Link
+                key={g.id}
+                href={g.route}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  background: BRAND.white,
+                  border: `4px solid ${BRAND.black}`,
+                  boxShadow: `5px 5px 0 ${BRAND.black}`,
+                  textDecoration: "none",
+                  color: BRAND.black,
+                  position: "relative",
+                  overflow: "hidden",
+                }}
+              >
+                {/* banner */}
+                <div style={{ height: 88, background: g.brandColor, borderBottom: `4px solid ${BRAND.black}`, position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(0,0,0,0.14) 1.5px, transparent 1.5px)", backgroundSize: "14px 14px" }} />
+                  <div style={{ width: 52, height: 52, background: BRAND.white, border: `3px solid ${BRAND.black}`, boxShadow: `3px 3px 0 ${BRAND.black}`, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2 }}>
+                    <g.Icon size={24} strokeWidth={2.5} className="text-black" />
+                  </div>
+                  {/* badge */}
+                  {g.badge && (
+                    <span style={{ position: "absolute", top: 8, left: 8, background: BRAND.black, color: BRAND.white, fontSize: 9, fontWeight: 900, letterSpacing: 1, padding: "3px 7px", ...khFont }}>
+                      {kh ? g.badge.kh : g.badge.en}
+                    </span>
+                  )}
+                  {isPro && (
+                    <span style={{ position: "absolute", top: 8, right: 8, background: BRAND.white, border: `2px solid ${BRAND.black}`, display: "flex", alignItems: "center", justifyContent: "center", width: 26, height: 26 }}>
+                      <Lock size={13} className="text-black" />
+                    </span>
+                  )}
+                </div>
+                {/* content */}
+                <div style={{ padding: "14px 16px 16px", display: "flex", flexDirection: "column", flex: 1, gap: 8 }}>
+                  <h3 style={{ ...khFont, fontSize: 17, fontWeight: 900, margin: 0, lineHeight: 1.15 }}>{kh ? g.title.kh : g.title.en}</h3>
+                  <p style={{ ...khFont, fontSize: 12, fontWeight: 600, color: "rgba(0,0,0,0.6)", margin: 0, lineHeight: 1.4, flex: 1 }}>{kh ? g.description.kh : g.description.en}</p>
+                  <div style={{ marginTop: 4, padding: "10px 16px", background: BRAND.white, color: BRAND.black, border: `3px solid ${BRAND.black}`, fontWeight: 900, fontSize: 12, letterSpacing: 1.5, display: "flex", alignItems: "center", justifyContent: "center", gap: 6, boxShadow: `4px 4px 0 ${BRAND.black}` }}>
+                    {isPro ? <Lock size={13} /> : <Play size={13} fill="currentColor" strokeWidth={3} />}
+                    <span style={khFont}>{isPro ? (kh ? "ដោះសោដោយ Pro" : "PRO UNLOCK") : (kh ? "លេងឥឡូវ" : "PLAY NOW")}</span>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
         </div>
 
         {/* Bottom CTA */}

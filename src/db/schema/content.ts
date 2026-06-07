@@ -6,6 +6,7 @@ import {
   timestamp,
   boolean,
   unique,
+  index,
 } from "drizzle-orm/pg-core";
 import { users } from "./users";
 
@@ -135,18 +136,18 @@ export const trafficSigns = pgTable("traffic_signs", {
   imageUrl: text("image_url").notNull(),
   audioUrlEn: text("audio_url_en"),
   audioUrlKm: text("audio_url_km"),
-  
+
   // Classification
   signType: text("sign_type").notNull(), // warning | regulatory | informational | guide
   category: text("category"), // speed | parking | direction | etc
-  
+
   // Workflow
   status: text("status").notNull().default("pending"), // pending | approved | rejected | inactive
   createdBy: integer("created_by").references(() => users.id),
   approvedBy: integer("approved_by").references(() => users.id),
   approvedAt: timestamp("approved_at"),
   rejectionReason: text("rejection_reason"),
-  
+
   // Metadata
   isActive: boolean("is_active").default(false).notNull(),
   sortOrder: integer("sort_order").default(0).notNull(),
@@ -468,3 +469,102 @@ export type GameScore = typeof gameScores.$inferSelect;
 export type NewGameScore = typeof gameScores.$inferInsert;
 export type StaffCategoryAssignment = typeof staffCategoryAssignments.$inferSelect;
 export type NewStaffCategoryAssignment = typeof staffCategoryAssignments.$inferInsert;
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GameKit (traffic-game-kit) tables
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Daily Challenge attempts — one scored attempt per user per day (anti-replay)
+export const dailyAttempts = pgTable(
+  "daily_attempts",
+  {
+    id: serial("id").primaryKey(),
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    challengeDate: text("challenge_date").notNull(), // 'YYYY-MM-DD' (Asia/Phnom_Penh)
+    setId: integer("set_id")
+      .notNull()
+      .references(() => dailyChallengeSets.id),
+    score: integer("score").notNull().default(0),
+    correctCount: integer("correct_count").notNull().default(0),
+    totalQuestions: integer("total_questions").notNull().default(5),
+    streakAfter: integer("streak_after").notNull().default(0),
+    breakdown: text("breakdown"), // JSON: per-question {questionId, isCorrect, points}
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    // Anti-replay: a user can only have ONE attempt per challenge date
+    userDateUnique: unique("daily_attempts_user_date_unique").on(
+      table.userId,
+      table.challengeDate
+    ),
+  })
+);
+
+export type DailyAttempt = typeof dailyAttempts.$inferSelect;
+export type NewDailyAttempt = typeof dailyAttempts.$inferInsert;
+
+// Who Goes First? (Priority Puzzle) scenes — correctOrder is SERVER-ONLY
+export const priorityScenes = pgTable("priority_scenes", {
+  id: serial("id").primaryKey(),
+  topicId: integer("topic_id").references(() => topics.id, { onDelete: "set null" }),
+  titleEn: text("title_en").notNull().default(""),
+  titleKm: text("title_km").notNull().default(""),
+  layout: text("layout").notNull(), // JSON: { junction, hasTrafficLight, vehicles[] }
+  correctOrder: text("correct_order").notNull(), // JSON: string[] — never sent before scoring
+  explanationEn: text("explanation_en").notNull().default(""),
+  explanationKm: text("explanation_km").notNull().default(""),
+  difficulty: text("difficulty").default("medium"), // easy | medium | hard
+  status: text("status").notNull().default("draft"), // draft | approved | inactive
+  createdBy: integer("created_by").references(() => users.id),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export type PriorityScene = typeof priorityScenes.$inferSelect;
+export type NewPriorityScene = typeof priorityScenes.$inferInsert;
+
+// Generic GameKit attempts — records non-daily kid/other game plays
+export const gameAttempts = pgTable(
+  "game_attempts",
+  {
+    id: serial("id").primaryKey(),
+    userId: integer("user_id").references(() => users.id, { onDelete: "cascade" }), // null = guest (not persisted anyway)
+    gameId: text("game_id").notNull(), // GameFormat id, e.g. "sign-match"
+    score: integer("score").notNull().default(0),
+    correctCount: integer("correct_count").notNull().default(0),
+    totalRounds: integer("total_rounds").notNull().default(0),
+    breakdown: text("breakdown"), // JSON per-round
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    userGameIdx: index("game_attempts_user_game_idx").on(table.userId, table.gameId),
+  })
+);
+
+export type GameAttempt = typeof gameAttempts.$inferSelect;
+export type NewGameAttempt = typeof gameAttempts.$inferInsert;
+
+// Points ledger — one row per points-earning play, for time-windowed leaderboards
+export const pointsLedger = pgTable(
+  "points_ledger",
+  {
+    id: serial("id").primaryKey(),
+    userId: integer("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    source: text("source").notNull(), // "daily" | "sign-match" | "priority-puzzle" | "solo" | "live" | ...
+    gameType: text("game_type").notNull(), // GameFormat id / mode id
+    points: integer("points").notNull().default(0),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    userTimeIdx: index("points_ledger_user_time_idx").on(table.userId, table.createdAt),
+    timeIdx: index("points_ledger_time_idx").on(table.createdAt),
+  })
+);
+
+export type PointsLedgerRow = typeof pointsLedger.$inferSelect;
+export type NewPointsLedgerRow = typeof pointsLedger.$inferInsert;
