@@ -8,6 +8,7 @@ import { AnswerGrid } from "@/components/game/AnswerGrid";
 import { sounds } from "@/lib/game-sounds";
 import { GAME_MODE_CONFIG } from "@/lib/game-engine";
 import { Zap, Flame, ChevronRight, RotateCcw, Volume2, VolumeX, X, BookOpen, CheckCircle, XCircle } from "lucide-react";
+import { cloudinaryOptimize } from "@/lib/cloudinary";
 
 interface SoloQuestion {
   id: number;
@@ -540,7 +541,7 @@ export default function SoloPage() {
           : "border-2 border-transparent bg-transparent"
           }`}>
           {q.imageUrl ? (
-            <img src={q.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
+            <img src={cloudinaryOptimize(q.imageUrl, 800)} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
           ) : null}
         </div>
 

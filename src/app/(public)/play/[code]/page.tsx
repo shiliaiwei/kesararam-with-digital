@@ -13,6 +13,7 @@ import { Podium } from "@/components/game/Podium";
 import { ErrorBoundary } from "@/components/game/ErrorBoundary";
 import { sounds } from "@/lib/game-sounds";
 import { RankBadge as TierBadge } from "@/components/shared/rank-label";
+import { cloudinaryOptimize } from "@/lib/cloudinary";
 import {
   Zap, Trophy, Users, Clock, CheckCircle, XCircle,
   Loader2, Wifi, WifiOff, BookOpen, Target, Timer, Star,
@@ -779,7 +780,7 @@ export default function StudentGamePage() {
             : "border-2 border-transparent bg-transparent"
             }`}>
             {currentQuestion.imageUrl ? (
-              <img src={currentQuestion.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
+              <img src={cloudinaryOptimize(currentQuestion.imageUrl, 800)} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
             ) : null}
           </div>
 

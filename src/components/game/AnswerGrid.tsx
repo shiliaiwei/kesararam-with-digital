@@ -1,6 +1,7 @@
 "use client";
 
 import type { AnswerOption } from "@/lib/game-event-bus";
+import { cloudinaryOptimize } from "@/lib/cloudinary";
 
 /**
  * Kahoot-psychology 2D flat answer grid
@@ -139,7 +140,7 @@ export function AnswerGrid({
               }}>
                 {ans.imageUrl ? (
                   <img
-                    src={ans.imageUrl}
+                    src={cloudinaryOptimize(ans.imageUrl, 250)}
                     alt={text}
                     style={{
                       maxHeight: "62px",
