@@ -1,0 +1,115 @@
+{
+    "version": "1.0.0",
+    "description": "Automated file organization rules for KWD project",
+    "rules": {
+        "documentation": {
+            "extensions": [
+                ".md"
+            ],
+            "exclude": [
+                "README.md",
+                "SECURITY.md",
+                "CNAME"
+            ],
+            "destination": "docs/auto-organized/markdown",
+            "action": "move"
+        },
+        "scripts": {
+            "extensions": [
+                ".sh",
+                ".py"
+            ],
+            "exclude": [],
+            "destination": "docs/scripts",
+            "action": "move"
+        },
+        "data_files": {
+            "extensions": [
+                ".txt",
+                ".json",
+                ".csv"
+            ],
+            "exclude": [
+                "package.json",
+                "package-lock.json",
+                "pnpm-lock.yaml",
+                "tsconfig.json",
+                "components.json",
+                "vercel.json"
+            ],
+            "destination": "data-content/raw-data",
+            "action": "move"
+        },
+        "backup_files": {
+            "patterns": [
+                "*backup*",
+                "*_backup*",
+                "backup_*"
+            ],
+            "extensions": [
+                ".txt",
+                ".json",
+                ".sql",
+                ".docx"
+            ],
+            "destination": "docs/archive/auto-backups",
+            "action": "move"
+        },
+        "temp_files": {
+            "extensions": [
+                ".tmp",
+                ".log",
+                ".cache"
+            ],
+            "destination": "docs/archive/temp",
+            "action": "move"
+        },
+        "business_docs": {
+            "extensions": [
+                ".docx",
+                ".pdf",
+                ".xlsx"
+            ],
+            "destination": "docs/business-plans",
+            "action": "move"
+        }
+    },
+    "protected_files": [
+        "package.json",
+        "package-lock.json",
+        "pnpm-lock.yaml",
+        "tsconfig.json",
+        "tsconfig.tsbuildinfo",
+        "next.config.ts",
+        "next-env.d.ts",
+        "drizzle.config.ts",
+        "eslint.config.mjs",
+        "postcss.config.mjs",
+        "vitest.config.ts",
+        "components.json",
+        "vercel.json",
+        ".env.local",
+        ".gitignore",
+        ".npmrc",
+        "CNAME",
+        "README.md",
+        "SECURITY.md",
+        "PROJECT_STRUCTURE.md"
+    ],
+    "protected_directories": [
+        "node_modules",
+        ".git",
+        ".github",
+        ".vscode",
+        ".idea",
+        ".claude",
+        "src",
+        "public",
+        "scripts"
+    ],
+    "scan_directories": [
+        ".",
+        "data-content",
+        "docs"
+    ]
+}
