@@ -91,6 +91,9 @@ export default function RootLayout({
         {/* Preconnect to Cloudinary — reduces LCP for sign images */}
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        {/* Preload critical brand fonts (WOFF2) to speed first paint */}
+        <link rel="preload" href="/Google_Sans/static/GoogleSans-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/Google_Sans/static/GoogleSans-Bold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         {/* Preconnect to Google Fonts */}
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />

@@ -5,19 +5,24 @@
 /* ─── Google Sans (from public/Google_Sans) ─── */
 @font-face {
   font-family: "GoogleSans";
-  src: url("/Google_Sans/static/GoogleSans-Regular.ttf") format("truetype");
+  src: url("/Google_Sans/static/GoogleSans-Regular.woff2") format("woff2"),
+    url("/Google_Sans/static/GoogleSans-Regular.ttf") format("truetype");
   font-weight: 400;
   font-display: swap;
 }
+
 @font-face {
   font-family: "GoogleSans";
-  src: url("/Google_Sans/static/GoogleSans-Medium.ttf") format("truetype");
+  src: url("/Google_Sans/static/GoogleSans-Medium.woff2") format("woff2"),
+    url("/Google_Sans/static/GoogleSans-Medium.ttf") format("truetype");
   font-weight: 500;
   font-display: swap;
 }
+
 @font-face {
   font-family: "GoogleSans";
-  src: url("/Google_Sans/static/GoogleSans-Bold.ttf") format("truetype");
+  src: url("/Google_Sans/static/GoogleSans-Bold.woff2") format("woff2"),
+    url("/Google_Sans/static/GoogleSans-Bold.ttf") format("truetype");
   font-weight: 700;
   font-display: swap;
 }
@@ -25,25 +30,32 @@
 /* ─── Stack Sans Notch (from public/Stack_Sans_Notch) ─── */
 @font-face {
   font-family: "StackSansNotch";
-  src: url("/Stack_Sans_Notch/static/StackSansNotch-Regular.ttf") format("truetype");
+  src: url("/Stack_Sans_Notch/static/StackSansNotch-Regular.woff2") format("woff2"),
+    url("/Stack_Sans_Notch/static/StackSansNotch-Regular.ttf") format("truetype");
   font-weight: 400;
   font-display: swap;
 }
+
 @font-face {
   font-family: "StackSansNotch";
-  src: url("/Stack_Sans_Notch/static/StackSansNotch-Medium.ttf") format("truetype");
+  src: url("/Stack_Sans_Notch/static/StackSansNotch-Medium.woff2") format("woff2"),
+    url("/Stack_Sans_Notch/static/StackSansNotch-Medium.ttf") format("truetype");
   font-weight: 500;
   font-display: swap;
 }
+
 @font-face {
   font-family: "StackSansNotch";
-  src: url("/Stack_Sans_Notch/static/StackSansNotch-SemiBold.ttf") format("truetype");
+  src: url("/Stack_Sans_Notch/static/StackSansNotch-SemiBold.woff2") format("woff2"),
+    url("/Stack_Sans_Notch/static/StackSansNotch-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-display: swap;
 }
+
 @font-face {
   font-family: "StackSansNotch";
-  src: url("/Stack_Sans_Notch/static/StackSansNotch-Bold.ttf") format("truetype");
+  src: url("/Stack_Sans_Notch/static/StackSansNotch-Bold.woff2") format("woff2"),
+    url("/Stack_Sans_Notch/static/StackSansNotch-Bold.ttf") format("truetype");
   font-weight: 700;
   font-display: swap;
 }
@@ -53,6 +65,7 @@
   font-family: "GoogleSans", "Google Sans", sans-serif !important;
   font-weight: 700;
 }
+
 .font-stack-notch,
 .font-english {
   font-family: "StackSansNotch", sans-serif !important;
@@ -216,7 +229,8 @@
   --border: rgba(255, 255, 255, 0.08);
   --input: rgba(255, 255, 255, 0.06);
   --ring: #ffd700;
-  --radius: 0.9375rem; /* 15px */
+  --radius: 0.9375rem;
+  /* 15px */
   --sidebar: #1a2035;
   --sidebar-foreground: #f0f2f5;
   --sidebar-primary: #ffd700;
@@ -234,15 +248,19 @@
 .nb-border {
   border: var(--nb-border);
 }
+
 .nb-shadow {
   box-shadow: var(--nb-shadow);
 }
+
 .nb-shadow-sm {
   box-shadow: var(--nb-shadow-sm);
 }
+
 .nb-shadow-lg {
   box-shadow: var(--nb-shadow-lg);
 }
+
 .nb-shadow-xl {
   box-shadow: var(--nb-shadow-xl);
 }
@@ -255,6 +273,7 @@
     transform 0.1s ease,
     box-shadow 0.1s ease;
 }
+
 .nb-card:hover {
   transform: translate(-1px, -1px);
   box-shadow: var(--nb-shadow-lg);
@@ -269,10 +288,12 @@
     box-shadow 0.1s ease;
   cursor: pointer;
 }
+
 .nb-btn:hover {
   transform: translate(-1px, -1px);
   box-shadow: var(--nb-shadow-lg);
 }
+
 .nb-btn:active {
   transform: translate(0, 0);
   box-shadow: none;
@@ -289,33 +310,27 @@
 
 .dot-bg {
   background-color: #ffffff;
-  background-image: radial-gradient(
-    circle,
-    rgba(59, 130, 246, 0.18) 1px,
-    transparent 1px
-  );
+  background-image: radial-gradient(circle,
+      rgba(59, 130, 246, 0.18) 1px,
+      transparent 1px);
   background-size: 24px 24px;
 }
 
 .hero-dot-bg {
   background-color: #18181b;
-  background-image: radial-gradient(
-    circle,
-    rgba(6, 182, 212, 0.12) 1px,
-    transparent 1px
-  );
+  background-image: radial-gradient(circle,
+      rgba(6, 182, 212, 0.12) 1px,
+      transparent 1px);
   background-size: 28px 28px;
 }
 
 /* ─── Caution Tape Border (decorative) ─── */
 .caution-tape {
-  background: repeating-linear-gradient(
-    -45deg,
-    #eab308 0px,
-    #eab308 8px,
-    #000000 8px,
-    #000000 16px
-  );
+  background: repeating-linear-gradient(-45deg,
+      #eab308 0px,
+      #eab308 8px,
+      #000000 8px,
+      #000000 16px);
   height: 12px;
   border-top: 2px solid #000000;
   border-bottom: 2px solid #000000;
@@ -326,6 +341,7 @@
   font-family: var(--font-kh-header), "Google Sans Khmer", "Google Sans", sans-serif !important;
   font-weight: 700;
 }
+
 .font-kh-body {
   font-family: var(--font-kh-body), "Google Sans Khmer", "Google Sans", sans-serif !important;
 }
@@ -335,6 +351,7 @@
 .font-learning {
   font-family: var(--font-kh-body), "Siemreap", "Google Sans Khmer", sans-serif !important;
 }
+
 /* System chrome / function buttons → Inter (EN primary) + Google Sans Khmer (KH). */
 .font-system {
   font-family: var(--font-sans), "Google Sans Khmer", "Google Sans", sans-serif !important;
@@ -356,10 +373,12 @@
   border: var(--nb-border);
   border-radius: var(--nb-radius);
 }
+
 @keyframes nb-shimmer {
   0% {
     background-position: 200% 0;
   }
+
   100% {
     background-position: -200% 0;
   }
@@ -369,9 +388,11 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
     scroll-behavior: smooth;
@@ -380,13 +401,23 @@
 
 /* ─── Marquee Animations ─── */
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(calc(-100% - var(--gap))); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
 }
 
 @keyframes marquee-vertical {
-  from { transform: translateY(0); }
-  to { transform: translateY(calc(-100% - var(--gap))); }
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
 }
 
 .animate-marquee {
@@ -403,6 +434,7 @@
     transform: translateX(100%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -415,14 +447,19 @@
 
 /* ─── Category Card Animations ─── */
 @keyframes slide {
-  from { background-position: 0 0; }
-  to { background-position: 40px 40px; }
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 40px 40px;
+  }
 }
 
 /* ─── Game Quiz Dark Dot Background ─── */
 .game-dot-bg {
   background-color: #1a1a1f;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
   background-size: 10px 10px;
 }
 
@@ -431,17 +468,31 @@
   content: "";
   position: fixed;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.6) 100%);
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(0, 0, 0, 0.6) 100%);
   pointer-events: none;
   z-index: 0;
 }
 
 @keyframes bounce-in {
-  0% { opacity: 0; transform: scale(0.3); }
-  50% { transform: scale(1.05); }
-  70% { transform: scale(0.9); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  70% {
+    transform: scale(0.9);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
+
 .animate-bounce-in {
   animation: bounce-in 0.5s ease-out;
 }
@@ -449,10 +500,13 @@
 /* ─── KWD Cyber Arcade & HUD Styling ─── */
 
 @keyframes pulse-gold {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.65;
     box-shadow: 0 0 4px rgba(255, 215, 0, 0.3);
   }
+
   50% {
     opacity: 1;
     box-shadow: 0 0 14px rgba(255, 215, 0, 0.85);
@@ -464,6 +518,7 @@
     opacity: 0.5;
     box-shadow: 0 0 4px rgba(239, 68, 68, 0.3);
   }
+
   100% {
     opacity: 1;
     box-shadow: 0 0 16px rgba(239, 68, 68, 0.95), 0 0 4px rgba(239, 68, 68, 0.5);
@@ -477,8 +532,13 @@
 }
 
 @keyframes shimmer-sweep {
-  0% { left: -100%; }
-  100% { left: 100%; }
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
 }
 
 .animate-pulse-gold {
@@ -494,6 +554,7 @@
   position: relative;
   overflow: hidden;
 }
+
 .shimmer-sweep-btn::after {
   content: '';
   position: absolute;
@@ -501,12 +562,10 @@
   left: -100%;
   width: 60%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 215, 0, 0.25),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 215, 0, 0.25),
+      transparent);
   transform: skewX(-20deg);
   animation: shimmer-sweep 2.5s infinite;
   pointer-events: none;
@@ -524,14 +583,12 @@
   content: '';
   position: absolute;
   inset: -1.5px;
-  background: conic-gradient(
-    from 90deg,
-    transparent 0%,
-    rgba(255, 215, 0, 0.8) 25%,
-    transparent 50%,
-    rgba(245, 158, 11, 0.8) 75%,
-    transparent 100%
-  );
+  background: conic-gradient(from 90deg,
+      transparent 0%,
+      rgba(255, 215, 0, 0.8) 25%,
+      transparent 50%,
+      rgba(245, 158, 11, 0.8) 75%,
+      transparent 100%);
   animation: rotating-glow-border 4s linear infinite;
   border-radius: inherit;
   z-index: 0;
@@ -541,20 +598,25 @@
   mask-composite: exclude;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
-  padding: 1.5px; /* Border thickness */
+  padding: 1.5px;
+  /* Border thickness */
 }
 
 /* Sparkle element floating */
 @keyframes floating-sparkle {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) scale(1);
     opacity: 0.3;
   }
+
   50% {
     transform: translateY(-4px) scale(1.2);
     opacity: 0.8;
   }
 }
+
 .animate-sparkle-float {
   animation: floating-sparkle 3s ease-in-out infinite;
 }
@@ -563,10 +625,12 @@
 .nb-interactive {
   transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 .nb-interactive:hover {
   transform: translate(-3px, -3px);
   box-shadow: 7px 7px 0px #000000 !important;
 }
+
 .nb-interactive:active {
   transform: translate(0px, 0px);
   box-shadow: 2px 2px 0px #000000 !important;
@@ -592,6 +656,3 @@
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'liga';
 }
-
-
-
