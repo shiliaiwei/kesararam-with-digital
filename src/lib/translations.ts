@@ -54,7 +54,7 @@ export const t = {
       statQuestions: "Practice Questions",
       statLive: "Live Challenges",
       howBadge: "How It Works",
-      howTitle: "Pass your exam in three simple steps",
+      howTitle: "Learn road safety in three simple steps",
       step1Title: "Browse Categories",
       step1Desc:
         "Explore all 8 knowledge areas. Each section contains structured lessons, signs, and reference materials.",
@@ -135,7 +135,7 @@ export const t = {
       statQuestions: "សំណួរហ្វឹកហ្វឺន",
       statLive: "ប្រឡងផ្ទាល់",
       howBadge: "របៀបដំណើរការ",
-      howTitle: "ប្រឡងជាប់ក្នុងបីជំហានងាយៗ",
+      howTitle: "រៀនសុវត្ថិភាពចរាចរណ៍ក្នុងបីជំហានងាយៗ",
       step1Title: "ស្វែងរកប្រភេទ",
       step1Desc:
         "ស្វែងរកប្រភេទចំណេះដឹងទាំង ៨។ រៀនតាមមេរៀន សញ្ញាចរាចរ និងឯកសារយោង.",
