@@ -16,7 +16,6 @@ import {
   MessageCircle,
   Star,
   TrendingDown,
-  NotebookPen,
   Users,
   Lock,
 } from "lucide-react";
@@ -509,19 +508,6 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                   </div>
                 )}
               </div>
-
-              {/* PSYCHOLOGY — Value reframing: shrink the price next to a daily expense */}
-              {!yearly && promo && (
-                <p
-                  className="flex items-center gap-1.5 text-[11px] text-amber-300/80 mt-2 font-semibold"
-                  style={khFont}
-                >
-                  <NotebookPen size={13} />
-                  {kh
-                    ? "តម្លៃតិចជាងសៀវភៅសិក្សា ១ ក្បាលក្នុង ១ ខែ"
-                    : "Less than one notebook a month"}
-                </p>
-              )}
 
               <p className="text-white/50 text-xs mt-2" style={khFont}>
                 {kh
