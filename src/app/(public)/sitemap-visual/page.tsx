@@ -4,8 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { useLang } from "@/context/lang-context";
 import {
-    Home, BookOpen, Gamepad2, Trophy, Bot, Info, Users,
-    GraduationCap, LayoutDashboard, Settings, Shield, FileText,
+    Home, BookOpen, Gamepad2, Trophy, Bot, Info,
+    GraduationCap, FileText,
     ChevronDown, Globe, CircleUser, Sparkles, Palette, Wrench,
     ScrollText, Lock, UserPlus, LogIn,
 } from "lucide-react";
@@ -125,69 +125,6 @@ const SITEMAP: DomainGroup[] = [
                     { path: "/privacy", label: { en: "Privacy Policy", kh: "គោលការណ៍ឯកជនភាព" }, icon: Lock, live: true },
                 ],
             },
-        ],
-    },
-    {
-        id: "dashboard",
-        domain: "dashboard.kesararamwithdigital.tech",
-        icon: LayoutDashboard,
-        label: { en: "Dashboard", kh: "ផ្ទាំងគ្រប់គ្រង" },
-        desc: {
-            en: "Auth subdomain — Teacher, Staff & Admin dashboards (login required)",
-            kh: "ដែនរងផ្ទៀងផ្ទាត់ — ផ្ទាំងគ្រូ បុគ្គលិក និងអ្នកគ្រប់គ្រង (ត្រូវចូលគណនី)",
-        },
-        routes: [
-            {
-                path: "/teacher",
-                label: { en: "Teacher", kh: "គ្រូបង្រៀន" },
-                icon: GraduationCap,
-                children: [
-                    { path: "/teacher/overview", label: { en: "Overview", kh: "ទិដ្ឋភាពទូទៅ" } },
-                    { path: "/teacher/classes", label: { en: "Classes", kh: "ថ្នាក់រៀន" } },
-                    { path: "/teacher/sessions", label: { en: "Sessions", kh: "វគ្គប្រកួត" } },
-                    { path: "/teacher/sessions/host", label: { en: "Host Session", kh: "ដឹកនាំវគ្គ" } },
-                    { path: "/teacher/profile", label: { en: "Profile", kh: "ប្រវត្តិរូប" } },
-                ],
-            },
-            {
-                path: "/staff",
-                label: { en: "Staff", kh: "បុគ្គលិក" },
-                icon: Users,
-                children: [
-                    { path: "/staff/content", label: { en: "Content", kh: "មាតិកា" } },
-                    { path: "/staff/topics", label: { en: "Topics", kh: "ប្រធានបទ" } },
-                    { path: "/staff/learning-resources", label: { en: "Learning Resources", kh: "ធនធានសិក្សា" } },
-                    { path: "/staff/media", label: { en: "Media", kh: "មេឌៀ" } },
-                    { path: "/staff/submissions", label: { en: "Submissions", kh: "ការដាក់ស្នើ" } },
-                    { path: "/staff/classes", label: { en: "Classes", kh: "ថ្នាក់រៀន" } },
-                ],
-            },
-            {
-                path: "/admin",
-                label: { en: "Admin", kh: "អ្នកគ្រប់គ្រង" },
-                icon: Settings,
-                children: [
-                    { path: "/admin/overview", label: { en: "Overview", kh: "ទិដ្ឋភាពទូទៅ" } },
-                    { path: "/admin/users", label: { en: "Users", kh: "អ្នកប្រើប្រាស់" } },
-                    { path: "/admin/content", label: { en: "Content", kh: "មាតិកា" } },
-                    { path: "/admin/questions", label: { en: "Questions", kh: "សំណួរ" } },
-                    { path: "/admin/media", label: { en: "Media", kh: "មេឌៀ" } },
-                    { path: "/admin/review", label: { en: "Review", kh: "ត្រួតពិនិត្យ" } },
-                    { path: "/admin/road-markings", label: { en: "Road Markings", kh: "សញ្ញាសម្គាល់ផ្លូវ" } },
-                    { path: "/admin/game-sessions", label: { en: "Game Sessions", kh: "វគ្គហ្គេម" } },
-                    { path: "/admin/subscriptions", label: { en: "Subscriptions", kh: "ការជាវ" } },
-                    { path: "/admin/logs", label: { en: "Audit Logs", kh: "កំណត់ហេតុ" } },
-                ],
-            },
-            {
-                path: "/settings",
-                label: { en: "Settings", kh: "ការកំណត់" },
-                icon: Settings,
-                children: [
-                    { path: "/settings/notifications", label: { en: "Notifications", kh: "ការជូនដំណឹង" } },
-                ],
-            },
-            { path: "/chat", label: { en: "Chat", kh: "ជជែក" }, icon: Bot },
         ],
     },
 ];
@@ -409,7 +346,7 @@ export default function SitemapVisualPage() {
     const { lang, setLang } = useLang();
     const kh = lang === "kh";
 
-    const [activeDomain, setActiveDomain] = useState("public");
+    const [activeDomain] = useState("public");
     const [openMap, setOpenMap] = useState<Record<string, boolean>>({});
 
     const group = SITEMAP.find((g) => g.id === activeDomain)!;
@@ -462,24 +399,15 @@ export default function SitemapVisualPage() {
                         </button>
                     </div>
 
-                    {/* domain tabs */}
+                    {/* domain indicator (single public domain only) */}
                     <div className="flex flex-wrap items-center gap-2">
-                        {SITEMAP.map((g) => {
-                            const DIcon = g.icon;
-                            const active = g.id === activeDomain;
-                            return (
-                                <button
-                                    key={g.id}
-                                    onClick={() => { setActiveDomain(g.id); setOpenMap({}); }}
-                                    className={`flex items-center gap-2 px-3 py-2 border-2 border-black text-[11px] sm:text-xs font-bold transition-colors ${active ? "bg-black text-white" : "bg-white text-black hover:bg-black/5"
-                                        }`}
-                                    style={{ clipPath: "polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%)" }}
-                                >
-                                    <DIcon size={14} />
-                                    <span className="font-mono truncate max-w-[160px] sm:max-w-none">{g.domain}</span>
-                                </button>
-                            );
-                        })}
+                        <div
+                            className="flex items-center gap-2 px-3 py-2 border-2 border-black text-[11px] sm:text-xs font-bold bg-black text-white"
+                            style={{ clipPath: "polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%)" }}
+                        >
+                            <group.icon size={14} />
+                            <span className="font-mono truncate max-w-[200px] sm:max-w-none">{group.domain}</span>
+                        </div>
                     </div>
                 </div>
             </div>
