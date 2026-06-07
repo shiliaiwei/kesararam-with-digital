@@ -14,59 +14,60 @@ import {
 
 const LOGO_VARIANTS = [
   { src: "/brand/kwd-black_nobackground.png", filename: "kwd-black_nobackground.png", label: { en: "Black (default)", kh: "ពណ៌ខ្មៅ (លំនាំដើម)" }, bg: "bg-white", invert: false },
-  { src: "/brand/kwd-gray.png",               filename: "kwd-gray.png",               label: { en: "Gray",           kh: "ពណ៌ប្រផេះ" },          bg: "bg-white", invert: false },
-  { src: "/brand/kwd-green.png",              filename: "kwd-green.png",              label: { en: "Green",          kh: "ពណ៌បៃតង" },            bg: "bg-white", invert: false },
+  { src: "/brand/kwd-gray.png", filename: "kwd-gray.png", label: { en: "Gray", kh: "ពណ៌ប្រផេះ" }, bg: "bg-white", invert: false },
+  { src: "/brand/kwd-green.png", filename: "kwd-green.png", label: { en: "Green", kh: "ពណ៌បៃតង" }, bg: "bg-white", invert: false },
   { src: "/brand/kwd-black_nobackground.png", filename: "kwd-black_nobackground.png (inverted)", label: { en: "White (on dark)", kh: "ពណ៌ស (លើខ្មៅ)" }, bg: "bg-zinc-900", invert: true },
 ];
 
 const COLORS: { name: string; hex: string; role: { en: string; kh: string } }[] = [
-  { name: "Yellow", hex: "#eab308", role: { en: "CTA buttons · warning signs · brand accent",         kh: "ប៊ូតុង CTA · សញ្ញាព្រមាន · ពណ៌លេចធ្លោម៉ាក" } },
-  { name: "Black",  hex: "#000000", role: { en: "Text · borders · structure",                          kh: "អក្សរ · គែម · រចនាសម្ព័ន្ធ" } },
-  { name: "White",  hex: "#ffffff", role: { en: "Background · negative space",                         kh: "ផ្ទៃខាងក្រោយ · ចន្លោះទំនេរ" } },
-  { name: "Blue",   hex: "#3b82f6", role: { en: "Info · links · positive signals",                     kh: "ព័ត៌មាន · តំណ · សញ្ញាវិជ្ជមាន" } },
-  { name: "Red",    hex: "#ef4444", role: { en: "Prohibitory signs · danger · stop",                   kh: "សញ្ញាហាមឃាត់ · គ្រោះថ្នាក់ · ឈប់" } },
-  { name: "Green",  hex: "#22c55e", role: { en: "Success · active state · go signals",                 kh: "ជោគជ័យ · ស្ថានភាព Active · ទៅមុខ" } },
-  { name: "Orange", hex: "#f97316", role: { en: "Caution · attention",                                 kh: "ការប្រុងប្រយ័ត្ន · ការផ្ដោតអារម្មណ៍" } },
-  { name: "Purple", hex: "#a855f7", role: { en: "Premium features · special game modes",               kh: "មុខងារពិសេស · របៀបលេងហ្គេមពិសេស" } },
+  { name: "Yellow", hex: "#eab308", role: { en: "CTA buttons · warning signs · brand accent", kh: "ប៊ូតុង CTA · សញ្ញាព្រមាន · ពណ៌លេចធ្លោម៉ាក" } },
+  { name: "Black", hex: "#000000", role: { en: "Text · borders · structure", kh: "អក្សរ · គែម · រចនាសម្ព័ន្ធ" } },
+  { name: "White", hex: "#ffffff", role: { en: "Background · negative space", kh: "ផ្ទៃខាងក្រោយ · ចន្លោះទំនេរ" } },
+  { name: "Blue", hex: "#3b82f6", role: { en: "Info · links · positive signals", kh: "ព័ត៌មាន · តំណ · សញ្ញាវិជ្ជមាន" } },
+  { name: "Red", hex: "#ef4444", role: { en: "Prohibitory signs · danger · stop", kh: "សញ្ញាហាមឃាត់ · គ្រោះថ្នាក់ · ឈប់" } },
+  { name: "Green", hex: "#22c55e", role: { en: "Success · active state · go signals", kh: "ជោគជ័យ · ស្ថានភាព Active · ទៅមុខ" } },
+  { name: "Orange", hex: "#f97316", role: { en: "Caution · attention", kh: "ការប្រុងប្រយ័ត្ន · ការផ្ដោតអារម្មណ៍" } },
+  { name: "Purple", hex: "#a855f7", role: { en: "Premium features · special game modes", kh: "មុខងារពិសេស · របៀបលេងហ្គេមពិសេស" } },
 ];
 
 const RULES: { en: string; kh: string }[] = [
-  { en: "Do not stretch, rotate, or distort the logo.",           kh: "កុំទាញ បង្វិល ឬធ្វើឱ្យ logo ខូចទ្រង់ទ្រាយ។" },
-  { en: "Do not apply shadows, gradients, or filters.",           kh: "កុំដាក់ស្រមោល gradient ឬ filter លើ logo។" },
-  { en: "Do not place the logo on low-contrast backgrounds.",     kh: "កុំដាក់ logo លើ background ដែលមាន contrast ទាប។" },
-  { en: "Maintain clear space equal to the height of the 'K'.",  kh: "រក្សាចន្លោះទំនេរជុំវិញ logo ស្មើកម្ពស់អក្សរ K។" },
-  { en: "Use the black logo on light backgrounds only.",          kh: "ប្រើ kwd-black_nobackground លើ background ភ្លឺ; ប្រើ Inverted លើ background ងងឹត។" },
-  { en: "Minimum height: 24 px in any digital context.",          kh: "ឡូហ្គោត្រូវមានកម្ពស់យ៉ាងតិច ២៤ px ក្នុងបរិស្ថានឌីជីថល។" },
-  { en: "Do not recolor or add outlines to the logo.",            kh: "កុំផ្លាស់ប្ដូរពណ៌ ឬបន្ថែម outline លើឡូហ្គោ។" },
+  { en: "Do not stretch, rotate, or distort the logo.", kh: "កុំទាញ បង្វិល ឬធ្វើឱ្យ logo ខូចទ្រង់ទ្រាយ។" },
+  { en: "Do not apply shadows, gradients, or filters.", kh: "កុំដាក់ស្រមោល gradient ឬ filter លើ logo។" },
+  { en: "Do not place the logo on low-contrast backgrounds.", kh: "កុំដាក់ logo លើ background ដែលមាន contrast ទាប។" },
+  { en: "Maintain clear space equal to the height of the 'K'.", kh: "រក្សាចន្លោះទំនេរជុំវិញ logo ស្មើកម្ពស់អក្សរ K។" },
+  { en: "Use the black logo on light backgrounds only.", kh: "ប្រើ kwd-black_nobackground លើ background ភ្លឺ; ប្រើ Inverted លើ background ងងឹត។" },
+  { en: "Minimum height: 24 px in any digital context.", kh: "ឡូហ្គោត្រូវមានកម្ពស់យ៉ាងតិច ២៤ px ក្នុងបរិស្ថានឌីជីថល។" },
+  { en: "Do not recolor or add outlines to the logo.", kh: "កុំផ្លាស់ប្ដូរពណ៌ ឬបន្ថែម outline លើឡូហ្គោ។" },
 ];
 
 const MOCKUP_ASSETS: { src: string; title: { en: string; kh: string } }[] = [
-  { src: "/api/brand-mockups?file=tote_stationery.webp",    title: { en: "Tote & Stationery",        kh: "កាបូប & Stationery" } },
+  { src: "/api/brand-mockups?file=tote_stationery.webp", title: { en: "Tote & Stationery", kh: "កាបូប & Stationery" } },
   { src: "/api/brand-mockups?file=educational_blocks.webp", title: { en: "Educational Toys & Cards", kh: "ដុំឈើ & Learning Cards" } },
-  { src: "/api/brand-mockups?file=mug_bottle.webp",         title: { en: "Mug & Bottle",             kh: "Mug & Bottle" } },
-  { src: "/api/brand-mockups?file=apparel_brand.webp",      title: { en: "Brand Apparel",            kh: "Brand Apparel" } },
-  { src: "/api/brand-mockups?file=desktop_app.webp",         title: { en: "Web & Desktop App",        kh: "កម្មវិធីវិប & កុំព្យូទ័រ" } },
-  { src: "/api/brand-mockups?file=corporate_stationery.webp", title: { en: "Corporate Stationery",     kh: "ឧបករណ៍ការិយាល័យ" } },
+  { src: "/api/brand-mockups?file=mug_bottle.webp", title: { en: "Mug & Bottle", kh: "Mug & Bottle" } },
+  { src: "/api/brand-mockups?file=apparel_brand.webp", title: { en: "Brand Apparel", kh: "Brand Apparel" } },
+  { src: "/api/brand-mockups?file=desktop_app.webp", title: { en: "Web & Desktop App", kh: "កម្មវិធីវិប & កុំព្យូទ័រ" } },
+  { src: "/api/brand-mockups?file=corporate_stationery.webp", title: { en: "Corporate Stationery", kh: "ឧបករណ៍ការិយាល័យ" } },
 ];
 
 const SECTIONS = [
-  { id: "name",  title: { en: "Brand Name",   kh: "ឈ្មោះ Brand" } },
-  { id: "logo",  title: { en: "Logo",         kh: "និមិត្តសញ្ញា" } },
-  { id: "color", title: { en: "Color Palette",kh: "ពណ៌" } },
-  { id: "type",  title: { en: "Typography",   kh: "អក្សរ" } },
-  { id: "dna",   title: { en: "Design DNA",   kh: "Design DNA" } },
-  { id: "kit",   title: { en: "Design Kit",   kh: "ឧបករណ៍រចនា" } },
+  { id: "name", title: { en: "Brand Name", kh: "ឈ្មោះ Brand" } },
+  { id: "logo", title: { en: "Logo", kh: "និមិត្តសញ្ញា" } },
+  { id: "color", title: { en: "Color Palette", kh: "ពណ៌" } },
+  { id: "type", title: { en: "Typography", kh: "អក្សរ" } },
+  { id: "dna", title: { en: "Design DNA", kh: "Design DNA" } },
+  { id: "kit", title: { en: "Design Kit", kh: "ឧបករណ៍រចនា" } },
   { id: "apply", title: { en: "Applications", kh: "ការប្រើប្រាស់" } },
+  { id: "sitemap", title: { en: "Site Architecture", kh: "រចនាសម្ព័ន្ធគេហទំព័រ" } },
 ];
 
 // Semantic body color + label text color for each road-sign shape.
 const SHAPE_STYLE: Record<SignShapeName, { body: string; fg: string }> = {
-  diamond:  { body: "#eab308", fg: "text-black" },
-  octagon:  { body: "#ef4444", fg: "text-white" },
-  circle:   { body: "#3b82f6", fg: "text-white" },
-  sign:     { body: "#22c55e", fg: "text-black" },
+  diamond: { body: "#eab308", fg: "text-black" },
+  octagon: { body: "#ef4444", fg: "text-white" },
+  circle: { body: "#3b82f6", fg: "text-white" },
+  sign: { body: "#22c55e", fg: "text-black" },
   triangle: { body: "#f97316", fg: "text-black" },
-  banner:   { body: "#22c55e", fg: "text-white" },
+  banner: { body: "#22c55e", fg: "text-white" },
 };
 
 export function BrandGuidelineClient() {
@@ -125,11 +126,10 @@ export function BrandGuidelineClient() {
               <a
                 key={s.id}
                 href={`#${s.id}`}
-                className={`block text-sm py-1 transition-colors ${
-                  active === s.id
-                    ? "text-zinc-900 dark:text-white font-semibold"
-                    : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
-                }`}
+                className={`block text-sm py-1 transition-colors ${active === s.id
+                  ? "text-zinc-900 dark:text-white font-semibold"
+                  : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
+                  }`}
               >
                 {t(s.title.en, s.title.kh)}
               </a>
@@ -236,9 +236,9 @@ export function BrandGuidelineClient() {
             <div className="space-y-4 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
               <div className="divide-y divide-zinc-100 dark:divide-zinc-800 border-t border-b border-zinc-100 dark:border-zinc-800">
                 {[
-                  { label: t("Khmer", "ខ្មែរ"),   value: "Siemreap, Google Sans, Battambang" },
+                  { label: t("Khmer", "ខ្មែរ"), value: "Siemreap, Google Sans, Battambang" },
                   { label: t("English", "អង់គ្លេស"), value: "Inter" },
-                  { label: t("Labels", "ស្លាក"),    value: t("UPPERCASE · letter-spacing · Bold/Black weight", "UPPERCASE · letter-spacing · Bold/Black") },
+                  { label: t("Labels", "ស្លាក"), value: t("UPPERCASE · letter-spacing · Bold/Black weight", "UPPERCASE · letter-spacing · Bold/Black") },
                 ].map((row) => (
                   <div key={row.label} className="flex gap-6 py-3">
                     <span className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 w-20 shrink-0 pt-0.5">{row.label}</span>
@@ -271,19 +271,19 @@ export function BrandGuidelineClient() {
             <div className="space-y-4 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
               <div className="divide-y divide-zinc-100 dark:divide-zinc-800 border-t border-b border-zinc-100 dark:border-zinc-800">
                 {(kh ? [
-                  ["Border radius",   "0 — មុំទាំងអស់ស្រួច (90°)"],
-                  ["Border",         "2–3px ខ្មៅ #000 លើ cards ប៊ូតុង inputs"],
-                  ["Box shadow",     "3–4px offset solid #000"],
-                  ["Accent stripe",  "លឿង #eab308 / ខ្មៅ"],
-                  ["Active state",   "ផ្ទៃលឿង #eab308 · អក្សរខ្មៅ #000"],
-                  ["Spacing scale",  "4 · 8 · 12 · 16 · 20 · 24 px"],
+                  ["Border radius", "0 — មុំទាំងអស់ស្រួច (90°)"],
+                  ["Border", "2–3px ខ្មៅ #000 លើ cards ប៊ូតុង inputs"],
+                  ["Box shadow", "3–4px offset solid #000"],
+                  ["Accent stripe", "លឿង #eab308 / ខ្មៅ"],
+                  ["Active state", "ផ្ទៃលឿង #eab308 · អក្សរខ្មៅ #000"],
+                  ["Spacing scale", "4 · 8 · 12 · 16 · 20 · 24 px"],
                 ] : [
-                  ["Border radius",   "0 — all corners sharp (90°)"],
-                  ["Border",         "2–3px solid #000 on cards, buttons, inputs"],
-                  ["Box shadow",     "3–4px offset solid shadow (#000)"],
-                  ["Accent stripe",  "Yellow #eab308 / black caution pattern"],
-                  ["Active state",   "Yellow background #eab308 · black text #000"],
-                  ["Spacing scale",  "4 · 8 · 12 · 16 · 20 · 24 px"],
+                  ["Border radius", "0 — all corners sharp (90°)"],
+                  ["Border", "2–3px solid #000 on cards, buttons, inputs"],
+                  ["Box shadow", "3–4px offset solid shadow (#000)"],
+                  ["Accent stripe", "Yellow #eab308 / black caution pattern"],
+                  ["Active state", "Yellow background #eab308 · black text #000"],
+                  ["Spacing scale", "4 · 8 · 12 · 16 · 20 · 24 px"],
                 ]).map(([prop, val]) => (
                   <div key={prop} className="flex gap-6 py-3">
                     <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 w-28 shrink-0 pt-0.5">{prop}</span>
@@ -398,6 +398,27 @@ export function BrandGuidelineClient() {
             </div>
           </section>
 
+          {/* Sitemap */}
+          <section id="sitemap" className="scroll-mt-24">
+            <SectionHeading>{t("Site Architecture", "រចនាសម្ព័ន្ធគេហទំព័រ")}</SectionHeading>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6 max-w-2xl">
+              {t(
+                "Explore the full public page structure in the interactive HUD-style sitemap.",
+                "ស្វែងយល់ពីរចនាសម្ព័ន្ធទំព័រសាធារណៈទាំងមូលនៅក្នុងផែនទីគេហទំព័របែប HUD អន្តរកម្ម។"
+              )}
+            </p>
+            <Link
+              href="/sitemap-visual"
+              className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest border-2 border-black dark:border-white px-4 py-2.5 bg-white dark:bg-black text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors"
+            >
+              <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" />
+              </svg>
+              {t("View Sitemap", "មើលផែនទីគេហទំព័រ")}
+            </Link>
+          </section>
+
         </main>
       </div>
 
@@ -406,7 +427,7 @@ export function BrandGuidelineClient() {
         <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-400 dark:text-zinc-500">
           <span>© {new Date().getFullYear()} Kesararam With Digital · kesararamwithdigital.tech</span>
           <div className="flex gap-4">
-            <Link href="/terms"   className="hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors">{t("Terms", "លក្ខខណ្ឌ")}</Link>
+            <Link href="/terms" className="hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors">{t("Terms", "លក្ខខណ្ឌ")}</Link>
             <Link href="/privacy" className="hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors">{t("Privacy", "ឯកជនភាព")}</Link>
           </div>
         </div>
