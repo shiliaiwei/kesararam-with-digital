@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import { Search, ArrowLeft, X, Volume2, ChevronDown, ChevronUp } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { SaveCardButton } from "./save-card-button";
+import { cloudinaryOptimize } from "@/lib/cloudinary";
 
 interface Topic {
   id: number;
@@ -91,7 +92,7 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
           {topic.topic_code}{subGroup ? ` · ${isKh ? subGroup.km : subGroup.en}` : ""}
         </span>
       </div>
-      {topic.primary_image_url && <div className="w-full relative"><img src={topic.primary_image_url} alt={isKh ? topic.name_km : topic.name_en} className="w-full h-auto block select-none pointer-events-none" draggable={false} onContextMenu={(e) => e.preventDefault()} /><span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[9px] font-medium text-black pointer-events-none select-none" style={{ opacity: 0.30, whiteSpace: "nowrap" }}>{isKh ? 'រូបភាពបង្កើតដោយ AI · គ្រាន់តែជារូបភាពយោង' : 'AI-generated image · Reference illustration only'}</span></div>}
+      {topic.primary_image_url && <div className="w-full relative"><img src={cloudinaryOptimize(topic.primary_image_url)} alt={isKh ? topic.name_km : topic.name_en} className="w-full h-auto block select-none pointer-events-none" draggable={false} onContextMenu={(e) => e.preventDefault()} /><span className="absolute bottom-1 left-1/2 -translate-x-1/2 text-[9px] font-medium text-black pointer-events-none select-none" style={{ opacity: 0.30, whiteSpace: "nowrap" }}>{isKh ? 'រូបភាពបង្កើតដោយ AI · គ្រាន់តែជារូបភាពយោង' : 'AI-generated image · Reference illustration only'}</span></div>}
       <div className="px-4 pb-4 pt-3">
         {/* ── Question title — centered ── */}
         <p className="text-base font-black text-black text-center mb-3 leading-snug" style={kf}>

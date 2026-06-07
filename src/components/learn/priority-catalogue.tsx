@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, Fragment } from "react";
 import { Search, ArrowLeft, X, Volume2 } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { SaveCardButton } from "./save-card-button";
+import { cloudinaryOptimize } from "@/lib/cloudinary";
 
 interface Topic {
   id: number;
@@ -64,7 +65,7 @@ function ImageWithSkeleton({ src, alt }: { src: string; alt: string }) {
         <div className="absolute inset-0 bg-zinc-100 animate-pulse" />
       )}
       <img
-        src={src}
+        src={cloudinaryOptimize(src)}
         alt={alt}
         onLoad={() => setLoaded(true)}
         className={`max-h-full max-w-full object-contain transition-opacity duration-300 ${loaded ? "opacity-100" : "opacity-0"}`}
@@ -474,8 +475,9 @@ export function PriorityCatalogue() {
                     <div className="relative w-full overflow-hidden" style={{ paddingBottom: "100%" }}>
                       {topic.primary_image_url ? (
                         <img
-                          src={topic.primary_image_url}
+                          src={cloudinaryOptimize(topic.primary_image_url, 200)}
                           alt={topic.topic_code}
+                          loading="lazy"
                           className="absolute inset-0 w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-200"
                         />
                       ) : (
