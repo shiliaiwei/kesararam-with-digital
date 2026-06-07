@@ -16,7 +16,7 @@ import {
   MessageCircle,
   Star,
   TrendingDown,
-  Coffee,
+  NotebookPen,
   Users,
   Lock,
 } from "lucide-react";
@@ -516,10 +516,10 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                   className="flex items-center gap-1.5 text-[11px] text-amber-300/80 mt-2 font-semibold"
                   style={khFont}
                 >
-                  <Coffee size={13} />
+                  <NotebookPen size={13} />
                   {kh
-                    ? "តិចជាងកាហ្វេ ១ ពែងក្នុង ១ សប្ដាហ៍"
-                    : "Less than one coffee a week"}
+                    ? "តម្លៃតិចជាងសៀវភៅសិក្សា ១ ក្បាលក្នុង ១ ខែ"
+                    : "Less than one notebook a month"}
                 </p>
               )}
 
