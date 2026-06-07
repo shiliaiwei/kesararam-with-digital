@@ -28,7 +28,7 @@ const SUB_GROUPS: { key: string; en: string; km: string }[] = [
 
 const UI = {
   en: {
-    category: "SIGN CATEGORY",
+    category: "KNOWLEDGE CATEGORY",
     title: "Vehicle Technology",
     titleKm: "បច្ចេកវិទ្យាយានយន្ត",
     desc: "Learn how vehicles work, safety systems, and maintenance essentials. Understand engine mechanics, braking systems, lighting, and modern safety features.",

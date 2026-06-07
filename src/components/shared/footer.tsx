@@ -15,11 +15,11 @@ export function Footer() {
     : { fontFamily: '"StackSansNotch", sans-serif' };
 
   const LEARN_LINKS = [
-    { label: kh ? "សញ្ញាចរាចរ" : "Traffic Signs", href: "/road-sign" },
-    { label: kh ? "ច្បាប់ចរាចរ" : "Road Traffic Law", href: "/road-traffic" },
-    { label: kh ? "សិទ្ធិអាទិភាព" : "Right of Way", href: "/priority" },
-    { label: kh ? "ជំនាញបើកបរ" : "Driving Skills", href: "/driving" },
-    { label: kh ? "ប្រភេទទាំងអស់" : "All Categories", href: "/home" },
+    { label: kh ? "សញ្ញាចរាចរ" : "Traffic Signs", href: "/learn/road-sign" },
+    { label: kh ? "ច្បាប់ចរាចរ" : "Road Traffic Law", href: "/learn/road-traffic" },
+    { label: kh ? "សិទ្ធិអាទិភាព" : "Right of Way", href: "/learn/priority" },
+    { label: kh ? "ជំនាញបើកបរ" : "Driving Skills", href: "/learn/driving" },
+    { label: kh ? "ប្រភេទទាំងអស់" : "All Categories", href: "/learn" },
   ];
 
   const PLATFORM_LINKS = [
@@ -113,19 +113,6 @@ export function Footer() {
                 </svg>
                 <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-[9px] font-black px-2 py-0.5 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                   Telegram
-                </span>
-              </a>
-
-              {/* YouTube — red */}
-              <a href="#"
-                className="group relative flex items-center justify-center w-10 h-10 border-2 border-black transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5"
-                style={{ background: "#ff0000", boxShadow: "3px 3px 0 #000" }}
-                aria-label="YouTube">
-                <svg viewBox="0 0 24 24" fill="#fff" className="w-5 h-5">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                </svg>
-                <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-[9px] font-black px-2 py-0.5 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                  YouTube
                 </span>
               </a>
 

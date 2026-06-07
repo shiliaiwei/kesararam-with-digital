@@ -27,7 +27,7 @@ const SUB_GROUPS: { key: string; en: string; km: string }[] = [
 
 const UI = {
   en: {
-    category: "SIGN CATEGORY",
+    category: "KNOWLEDGE CATEGORY",
     title: "Driving Skills",
     titleKm: "ជំនាញបើកបរ",
     desc: "Learn proper driving techniques and best practices for road safety.",

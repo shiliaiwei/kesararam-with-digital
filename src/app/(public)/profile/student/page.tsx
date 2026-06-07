@@ -101,8 +101,8 @@ export default async function StudentProfilePage() {
         totalGamesPlayed = statsResult[0].totalGamesPlayed || 0;
         lifetimePoints = statsResult[0].lifetimePoints || 0;
       }
-    } catch (statsError) {
-      console.log("Stats columns not available yet, using defaults");
+    } catch {
+      // Stats columns not available yet — fall back to defaults
     }
   } catch (error) {
     console.error("Error fetching user profile:", error);

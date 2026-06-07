@@ -97,7 +97,7 @@ export function CategoryPageShell({
                 className="text-xs font-black tracking-widest uppercase bg-black text-white px-3 py-1.5 rounded-none w-fit"
                 style={khFont}
               >
-                {kh ? "ប្រភេទចំណេះដឹង" : "Sign Category"}
+                {kh ? "ប្រភេទចំណេះដឹង" : "Knowledge Category"}
               </span>
               <h1 className="text-4xl md:text-5xl font-black text-black leading-tight">
                 {kh ? titleKh : titleEn}

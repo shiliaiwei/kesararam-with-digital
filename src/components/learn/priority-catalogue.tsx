@@ -30,7 +30,7 @@ const SUB_GROUPS: { key: string; en: string; km: string }[] = [
 
 const UI = {
   en: {
-    category: "SIGN CATEGORY",
+    category: "KNOWLEDGE CATEGORY",
     title: "Right of Way",
     titleKm: "សិទ្ធិអាទិភាព",
     desc: "Understand priority rules and how to handle intersections correctly.",
