@@ -1,7 +1,7 @@
 import csv
 
-csv_file = '/Applications/XAMPP/xamppfiles/htdocs/KWD/kesararam/data-content/qa_categories/8_General.csv'
-txt_file = '/Applications/XAMPP/xamppfiles/htdocs/KWD/kesararam/data-content/qa_categories/8_General_Backup.txt'
+csv_file = '/Applications/XAMPP/xamppfiles/htdocs/KWD/kesararam/data-content/csv/8_General.csv'
+txt_file = '/Applications/XAMPP/xamppfiles/htdocs/KWD/kesararam/data-content/backups/8_General_Backup.txt'
 
 with open(csv_file, 'r', encoding='utf-8') as f:
     reader = csv.reader(f)
