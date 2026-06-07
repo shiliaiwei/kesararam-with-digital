@@ -27,65 +27,103 @@ type Item = {
 const ICON_CLASS = "text-zinc-600 dark:text-zinc-400";
 
 const DEV_TOOLS: Item[] = [
-  { name: "Next.js 15",              icon: SiNextdotjs,    note: { en: "React framework — App Router",   kh: "React framework — App Router" } },
-  { name: "React 19",                icon: SiReact,        note: { en: "UI library",                      kh: "UI library" } },
-  { name: "TypeScript",              icon: SiTypescript,   note: { en: "Type-safe application logic",     kh: "Type-safe application logic" } },
-  { name: "Tailwind CSS 4",          icon: SiTailwindcss,  note: { en: "Styling",                         kh: "Styling" } },
-  { name: "Drizzle ORM",             icon: SiDrizzle,      note: { en: "Database ORM",                    kh: "Database ORM" } },
-  { name: "Neon",                    icon: SiPostgresql,   note: { en: "Serverless PostgreSQL",           kh: "Serverless PostgreSQL" } },
-  { name: "Vercel",                  icon: SiVercel,       note: { en: "Hosting & deployment",            kh: "Hosting & deployment" } },
-  { name: "Cloudinary",              icon: SiCloudinary,   note: { en: "Image hosting & management",      kh: "Image hosting & management" } },
-  { name: "jose",                    icon: ShieldCheck,    note: { en: "JWT authentication",              kh: "JWT authentication" } },
-  { name: "Zod",                     icon: SiZod,          note: { en: "Data validation",                 kh: "Data validation" } },
-  { name: "Git & GitHub",            icon: SiGithub,       note: { en: "Version control",                 kh: "ប្រព័ន្ធគ្រប់គ្រងកូដ (Version Control)" } },
-  { name: "VS Code / VSCodium",      icon: SiVscodium,     note: { en: "IDE / Code editor",             kh: "IDE / កម្មវិធីសរសេរកូដ" } },
-  { name: "Antigravity AI",          icon: BrainCircuit,   note: { en: "Autonomous coding assistant",      kh: "ជំនួយការសរសេរកូដ AI ស្វ័យប្រវត្ត" } },
-  { name: "Kiro AI",                 icon: BrainCircuit,   note: { en: "Autonomous coding assistant",      kh: "ជំនួយការសរសេរកូដ AI ស្វ័យប្រវត្ត" } },
+  { name: "Next.js 15", icon: SiNextdotjs, note: { en: "React framework — App Router", kh: "React framework — App Router" } },
+  { name: "React 19", icon: SiReact, note: { en: "UI library", kh: "UI library" } },
+  { name: "TypeScript", icon: SiTypescript, note: { en: "Type-safe application logic", kh: "Type-safe application logic" } },
+  { name: "Tailwind CSS 4", icon: SiTailwindcss, note: { en: "Styling", kh: "Styling" } },
+  { name: "Drizzle ORM", icon: SiDrizzle, note: { en: "Database ORM", kh: "Database ORM" } },
+  { name: "Neon", icon: SiPostgresql, note: { en: "Serverless PostgreSQL", kh: "Serverless PostgreSQL" } },
+  { name: "Vercel", icon: SiVercel, note: { en: "Hosting & deployment", kh: "Hosting & deployment" } },
+  { name: "Cloudinary", icon: SiCloudinary, note: { en: "Image hosting & management", kh: "Image hosting & management" } },
+  { name: "jose", icon: ShieldCheck, note: { en: "JWT authentication", kh: "JWT authentication" } },
+  { name: "Zod", icon: SiZod, note: { en: "Data validation", kh: "Data validation" } },
+  { name: "Git & GitHub", icon: SiGithub, note: { en: "Version control", kh: "ប្រព័ន្ធគ្រប់គ្រងកូដ (Version Control)" } },
+  { name: "VS Code / VSCodium", icon: SiVscodium, note: { en: "IDE / Code editor", kh: "IDE / កម្មវិធីសរសេរកូដ" } },
+  { name: "Antigravity AI", icon: BrainCircuit, note: { en: "Autonomous coding assistant", kh: "ជំនួយការសរសេរកូដ AI ស្វ័យប្រវត្ត" } },
+  { name: "Kiro AI", icon: BrainCircuit, note: { en: "Autonomous coding assistant", kh: "ជំនួយការសរសេរកូដ AI ស្វ័យប្រវត្ត" } },
 ];
 
 const DESIGN_TOOLS: Item[] = [
-  { name: "Tailwind CSS + shadcn/ui",icon: SiShadcnui,        note: { en: "Component system",  kh: "ប្រព័ន្ធសមាសភាគ (Component System)" } },
-  { name: "lucide-react",            icon: SiLucide,           note: { en: "Icon set",          kh: "បណ្ដុំរូបតំណាង (Icons)" } },
-  { name: "Recharts",                icon: BarChart2,          note: { en: "Data visualization",kh: "ការបង្ហាញទិន្នន័យជាក្រាហ្វិក" } },
-  { name: "Figma",                   icon: SiFigma,            note: { en: "UI/UX design",      kh: "រចនា UI/UX" } },
-  { name: "Affinity Designer",       icon: SiAffinitydesigner, note: { en: "Vector & brand",   kh: "រចនា Vector និងម៉ាកសញ្ញា" } },
-  { name: "Adobe Creative Suite",    icon: Layers,             note: { en: "Graphic production",kh: "ផលិតក្រាហ្វិក" } },
-  { name: "Banana Pro",              icon: PenTool,            note: { en: "Design tool",       kh: "ឧបករណ៍រចនា" } },
+  { name: "Tailwind CSS + shadcn/ui", icon: SiShadcnui, note: { en: "Component system", kh: "ប្រព័ន្ធសមាសភាគ (Component System)" } },
+  { name: "lucide-react", icon: SiLucide, note: { en: "Icon set", kh: "បណ្ដុំរូបតំណាង (Icons)" } },
+  { name: "Recharts", icon: BarChart2, note: { en: "Data visualization", kh: "ការបង្ហាញទិន្នន័យជាក្រាហ្វិក" } },
+  { name: "Figma", icon: SiFigma, note: { en: "UI/UX design", kh: "រចនា UI/UX" } },
+  { name: "Affinity Designer", icon: SiAffinitydesigner, note: { en: "Vector & brand", kh: "រចនា Vector និងម៉ាកសញ្ញា" } },
+  { name: "Adobe Creative Suite", icon: Layers, note: { en: "Graphic production", kh: "ផលិតក្រាហ្វិក" } },
+  { name: "Banana Pro", icon: PenTool, note: { en: "Design tool", kh: "ឧបករណ៍រចនា" } },
 ];
 
 const AI_TOOLS: Item[] = [
-  { name: "Claude (Anthropic)",   icon: SiAnthropic,     note: { en: "Code writing & logic refinement", kh: "ជំនួយការសរសេរកូដ និងកែលម្អតក្កវិជ្ជា" } },
-  { name: "Google Gemini",        icon: SiGooglegemini,  note: { en: "Research, content generation & brainstorming", kh: "ស្រាវជ្រាវ បង្កើតមាតិកា និងបង្កើតគំនិត" } },
-  { name: "OpenAI ChatGPT",       icon: SiOpenai,        note: { en: "General productivity & problem solving", kh: "ការងារទូទៅ និងដោះស្រាយបញ្ហា" } },
-  { name: "GitHub Copilot",       icon: SiGithubcopilot, note: { en: "Inline code completions & suggestions", kh: "ជំនួយការសរសេរកូដ និងសំណើកូដបន្ទាត់" } },
-  { name: "Google NotebookLM",    icon: SiNotebooklm,    note: { en: "Source synthesis & documentation organization", kh: "ចងក្រងប្រភពឯកសារ និងរៀបចំឯកសារ" } },
-  { name: "Kimi AI",              icon: Cpu,             note: { en: "Long-context document analysis & research", kh: "វិភាគឯកសារវែងៗ និងស្រាវជ្រាវ" } },
-  { name: "Grok",                 icon: Zap,             note: { en: "Real-time info verification & testing ideas", kh: "ផ្ទៀងផ្ទាត់ព័ត៌មានភ្លាមៗ និងសាកល្បងគំនិត" } },
-  { name: "Google AI Studio",     icon: SiGoogle,        note: { en: "API experimentation & model configuration", kh: "ពិសោធន៍ API និងកំណត់រចនាសម្ព័ន្ធម៉ូដែល" } },
-  { name: "Qwen",                 icon: BrainCircuit,    note: { en: "Multilingual logic & auxiliary helper", kh: "តក្កវិជ្ជាពហុភាសា និងជំនួយការកូដបន្ថែម" } },
-  { name: "DeepSeek",             icon: BrainCircuit,    note: { en: "Algorithm design & code review assistant", kh: "រចនា algorithm និងជំនួយការពិនិត្យកូដ" } },
+  { name: "Claude (Anthropic)", icon: SiAnthropic, note: { en: "Code writing & logic refinement", kh: "ជំនួយការសរសេរកូដ និងកែលម្អតក្កវិជ្ជា" } },
+  { name: "Google Gemini", icon: SiGooglegemini, note: { en: "Research, content generation & brainstorming", kh: "ស្រាវជ្រាវ បង្កើតមាតិកា និងបង្កើតគំនិត" } },
+  { name: "OpenAI ChatGPT", icon: SiOpenai, note: { en: "General productivity & problem solving", kh: "ការងារទូទៅ និងដោះស្រាយបញ្ហា" } },
+  { name: "GitHub Copilot", icon: SiGithubcopilot, note: { en: "Inline code completions & suggestions", kh: "ជំនួយការសរសេរកូដ និងសំណើកូដបន្ទាត់" } },
+  { name: "Google NotebookLM", icon: SiNotebooklm, note: { en: "Source synthesis & documentation organization", kh: "ចងក្រងប្រភពឯកសារ និងរៀបចំឯកសារ" } },
+  { name: "Kimi AI", icon: Cpu, note: { en: "Long-context document analysis & research", kh: "វិភាគឯកសារវែងៗ និងស្រាវជ្រាវ" } },
+  { name: "Grok", icon: Zap, note: { en: "Real-time info verification & testing ideas", kh: "ផ្ទៀងផ្ទាត់ព័ត៌មានភ្លាមៗ និងសាកល្បងគំនិត" } },
+  { name: "Google AI Studio", icon: SiGoogle, note: { en: "API experimentation & model configuration", kh: "ពិសោធន៍ API និងកំណត់រចនាសម្ព័ន្ធម៉ូដែល" } },
+  { name: "Qwen", icon: BrainCircuit, note: { en: "Multilingual logic & auxiliary helper", kh: "តក្កវិជ្ជាពហុភាសា និងជំនួយការកូដបន្ថែម" } },
+  { name: "DeepSeek", icon: BrainCircuit, note: { en: "Algorithm design & code review assistant", kh: "រចនា algorithm និងជំនួយការពិនិត្យកូដ" } },
 ];
 
 const RESEARCH_TOOLS: Item[] = [
-  { name: "Google Search",                         icon: SiGoogle,     note: { en: "General information retrieval & developer docs", kh: "ស្វែងរកព័ត៌មានទូទៅ និងឯកសារអ្នកអភិវឌ្ឍន៍" } },
-  { name: "MoEYS Cambodia",                        icon: Building2,    note: { en: "Ministry of Education, Youth and Sport", kh: "ក្រសួងអប់រំ យុវជន និងកីឡា" } },
-  { name: "Ministry of Public Works and Transport",icon: Building2,    note: { en: "Official road traffic regulations & guidelines", kh: "ក្រសួងសាធារណការ និងដឹកជញ្ជូន (ច្បាប់ចរាចរណ៍)" } },
-  { name: "Royal Government of Cambodia",          icon: Landmark,     note: { en: "Official laws & documents", kh: "ច្បាប់ និងឯកសារផ្លូវការ" } },
-  { name: "Official Cambodian Driving Theory App", icon: SiGoogleplay, note: { en: "Mobile App by MPWT",  kh: "កម្មវិធីទូរស័ព្ទប្រឡងទ្រឹស្ដីបើកបរដោយក្រសួង" } },
-  { name: "YouTube",                               icon: SiYoutube,    note: { en: "Educational videos & safety animations", kh: "វីដេអូអប់រំ និងគំនូរជីវចលសុវត្ថិភាពចរាចរណ៍" } },
-  { name: "Kahoot",                                icon: SiKahoot,     note: { en: "Gamified learning design reference", kh: "ឯកសារយោងរចនាការរៀនបែបហ្គេម" } },
-  { name: "MOTET Cambodia",                        icon: Globe,        note: { en: "Ministry of Tourism official platform reference", kh: "ប្រភពយោងផ្លូវការនៃក្រសួងទេសចរណ៍" } },
-  { name: "UN — Road Traffic Law Articles",        icon: Globe,        note: { en: "International conventions on road traffic & signage standards", kh: "អនុសញ្ញាអន្តរជាតិស្តីពីចរាចរណ៍ផ្លូវគោក និងស្តង់ដារផ្លាកសញ្ញា" } },
+  { name: "Google Search", icon: SiGoogle, note: { en: "General information retrieval & developer docs", kh: "ស្វែងរកព័ត៌មានទូទៅ និងឯកសារអ្នកអភិវឌ្ឍន៍" } },
+  { name: "MoEYS Cambodia", icon: Building2, note: { en: "Ministry of Education, Youth and Sport", kh: "ក្រសួងអប់រំ យុវជន និងកីឡា" } },
+  { name: "Ministry of Public Works and Transport", icon: Building2, note: { en: "Official road traffic regulations & guidelines", kh: "ក្រសួងសាធារណការ និងដឹកជញ្ជូន (ច្បាប់ចរាចរណ៍)" } },
+  { name: "Royal Government of Cambodia", icon: Landmark, note: { en: "Official laws & documents", kh: "ច្បាប់ និងឯកសារផ្លូវការ" } },
+  { name: "Official Cambodian Driving Theory App", icon: SiGoogleplay, note: { en: "Mobile App by MPWT", kh: "កម្មវិធីទូរស័ព្ទប្រឡងទ្រឹស្ដីបើកបរដោយក្រសួង" } },
+  { name: "YouTube", icon: SiYoutube, note: { en: "Educational videos & safety animations", kh: "វីដេអូអប់រំ និងគំនូរជីវចលសុវត្ថិភាពចរាចរណ៍" } },
+  { name: "Kahoot", icon: SiKahoot, note: { en: "Gamified learning design reference", kh: "ឯកសារយោងរចនាការរៀនបែបហ្គេម" } },
+  { name: "MOTET Cambodia", icon: Globe, note: { en: "Ministry of Tourism official platform reference", kh: "ប្រភពយោងផ្លូវការនៃក្រសួងទេសចរណ៍" } },
+  { name: "UN — Road Traffic Law Articles", icon: Globe, note: { en: "International conventions on road traffic & signage standards", kh: "អនុសញ្ញាអន្តរជាតិស្តីពីចរាចរណ៍ផ្លូវគោក និងស្តង់ដារផ្លាកសញ្ញា" } },
 ];
 
 const MEDIA_ASSETS: Item[] = [
-  { name: "Cloudinary",                             icon: SiCloudinary, note: { en: "Image hosting & management",    kh: "Image hosting & management" } },
-  { name: "Google Sans · Inter · Stack Sans Notch", icon: Type,         note: { en: "Latin typefaces",               kh: "ហ្វុនត៍ឡាតាំង" } },
-  { name: "Siemreap · Battambang · KhmerOS",        icon: Type,         note: { en: "Khmer typefaces",               kh: "ហ្វុនត៍ខ្មែរ" } },
-  { name: "Reward Illustrations & Avatars",         icon: PenTool,      note: { en: "Gamification & user profile assets", kh: "រូបភាពរង្វាន់ និងរូបតំណាងកម្រងព័ត៌មានសិស្ស" } },
+  { name: "Cloudinary", icon: SiCloudinary, note: { en: "Image hosting & management", kh: "Image hosting & management" } },
+  { name: "Google Sans · Inter · Stack Sans Notch", icon: Type, note: { en: "Latin typefaces", kh: "ហ្វុនត៍ឡាតាំង" } },
+  { name: "Siemreap · Battambang · KhmerOS", icon: Type, note: { en: "Khmer typefaces", kh: "ហ្វុនត៍ខ្មែរ" } },
+  { name: "Reward Illustrations & Avatars", icon: PenTool, note: { en: "Gamification & user profile assets", kh: "រូបភាពរង្វាន់ និងរូបតំណាងកម្រងព័ត៌មានសិស្ស" } },
 ];
 
 const REFERENCES: { name: string; url?: string; icon?: Item["icon"]; note?: { en: string; kh: string } }[] = [
+  {
+    name: "Cambodia Road Traffic Signs (2007)",
+    icon: BookOpen,
+    note: { en: "Official source document for road sign definitions and categories", kh: "ឯកសារប្រភពផ្លូវការសម្រាប់និយមន័យ និងប្រភេទសញ្ញាចរាចរណ៍" }
+  },
+  {
+    name: "Cambodian Traffic Law (English)",
+    icon: BookOpen,
+    note: { en: "English translation of the national road traffic law", kh: "ការបកប្រែជាភាសាអង់គ្លេសនៃច្បាប់ចរាចរណ៍ផ្លូវគោកជាតិ" }
+  },
+  {
+    name: "Traffic Rules & Road Markings",
+    icon: BookOpen,
+    note: { en: "Reference for road rules and road-marking standards", kh: "ឯកសារយោងសម្រាប់ច្បាប់ផ្លូវ និងស្តង់ដារសញ្ញាសម្គាល់ផ្លូវ" }
+  },
+  {
+    name: "Driving Theory Q&A Sheets",
+    icon: BookOpen,
+    note: { en: "Question-and-answer source sheets for driving theory content", kh: "សន្លឹកសំណួរ-ចម្លើយជាប្រភពសម្រាប់មាតិកាទ្រឹស្ដីបើកបរ" }
+  },
+  {
+    name: "MoEYS Open Educational Resources (OER)",
+    icon: Building2,
+    url: "https://oer.moeys.gov.kh/",
+    note: { en: "Free textbooks & open educational resources, Ministry of Education, Youth and Sport", kh: "សៀវភៅសិក្សាឥតគិតថ្លៃ និងធនធានអប់រំបើកចំហ ក្រសួងអប់រំ យុវជន និងកីឡា" }
+  },
+  {
+    name: "MoEYS Curriculum Development Portal (CDP)",
+    icon: Building2,
+    url: "https://cdp.moeys.gov.kh",
+    note: { en: "Official curriculum development portal, Ministry of Education, Youth and Sport", kh: "គេហទំព័រអភិវឌ្ឍន៍កម្មវិធីសិក្សាផ្លូវការ ក្រសួងអប់រំ យុវជន និងកីឡា" }
+  },
+  {
+    name: "MPWT — Ministry of Public Works and Transport",
+    icon: Building2,
+    url: "https://www.mpwt.gov.kh",
+    note: { en: "Official portal (news: news.mpwt.gov.kh) for road traffic regulations & guidelines", kh: "គេហទំព័រផ្លូវការ (ព័ត៌មាន៖ news.mpwt.gov.kh) សម្រាប់បទប្បញ្ញត្តិ និងគោលការណ៍ណែនាំចរាចរណ៍ផ្លូវ" }
+  },
   {
     name: "Ministry of Education, Youth and Sport (MoEYS), Cambodia",
     icon: Building2,
@@ -159,12 +197,12 @@ const REFERENCES: { name: string; url?: string; icon?: Item["icon"]; note?: { en
 ];
 
 const SECTIONS = [
-  { id: "dev",      title: { en: "Development",  kh: "ឧបករណ៍អភិវឌ្ឍន៍" } },
-  { id: "design",   title: { en: "Design",       kh: "ឧបករណ៍រចនា" } },
-  { id: "ai",       title: { en: "AI Tools",     kh: "AI Tools" } },
-  { id: "research", title: { en: "Research",     kh: "ស្រាវជ្រាវ" } },
-  { id: "media",    title: { en: "Media",        kh: "មេឌៀ" } },
-  { id: "refs",     title: { en: "Bibliography", kh: "ឯកសារយោង" } },
+  { id: "dev", title: { en: "Development", kh: "ឧបករណ៍អភិវឌ្ឍន៍" } },
+  { id: "design", title: { en: "Design", kh: "ឧបករណ៍រចនា" } },
+  { id: "ai", title: { en: "AI Tools", kh: "AI Tools" } },
+  { id: "research", title: { en: "Research", kh: "ស្រាវជ្រាវ" } },
+  { id: "media", title: { en: "Media", kh: "មេឌៀ" } },
+  { id: "refs", title: { en: "Bibliography", kh: "ឯកសារយោង" } },
 ];
 
 export function BuiltWithClient() {
@@ -217,11 +255,10 @@ export function BuiltWithClient() {
               <a
                 key={s.id}
                 href={`#${s.id}`}
-                className={`block text-sm py-1 transition-colors ${
-                  active === s.id
+                className={`block text-sm py-1 transition-colors ${active === s.id
                     ? "text-zinc-900 dark:text-white font-semibold"
                     : "text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
-                }`}
+                  }`}
               >
                 {t(s.title.en, s.title.kh)}
               </a>
@@ -272,11 +309,10 @@ export function BuiltWithClient() {
                 return (
                   <div
                     key={i}
-                    className={`flex items-start gap-4 p-4 transition-all ${
-                      isPdf
+                    className={`flex items-start gap-4 p-4 transition-all ${isPdf
                         ? "bg-yellow-50 dark:bg-yellow-950/20 border-2 border-black dark:border-zinc-800 shadow-[4px_4px_0_#000] dark:shadow-[4px_4px_0_rgba(255,255,255,0.15)] my-4"
                         : "border-b border-zinc-100 dark:border-zinc-800/50 last:border-0 py-3"
-                    }`}
+                      }`}
                   >
                     <span className="mt-0.5 shrink-0">
                       {Icon && <Icon size={18} className={isPdf ? "text-yellow-600 dark:text-yellow-400" : ICON_CLASS} />}
@@ -334,8 +370,8 @@ export function BuiltWithClient() {
         <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-400 dark:text-zinc-500">
           <span>© {new Date().getFullYear()} Kesararam With Digital · kesararamwithdigital.tech</span>
           <div className="flex gap-4">
-            <Link href="/brand"   className="hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors">{t("Brand Guidelines", "គោលការណ៍ម៉ាក")}</Link>
-            <Link href="/terms"   className="hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors">{t("Terms", "លក្ខខណ្ឌ")}</Link>
+            <Link href="/brand" className="hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors">{t("Brand Guidelines", "គោលការណ៍ម៉ាក")}</Link>
+            <Link href="/terms" className="hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors">{t("Terms", "លក្ខខណ្ឌ")}</Link>
             <Link href="/privacy" className="hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors">{t("Privacy", "ឯកជនភាព")}</Link>
           </div>
         </div>
@@ -361,11 +397,10 @@ function IconGrid({ items, kh }: { items: Item[]; kh: boolean }) {
         return (
           <div
             key={i}
-            className={`flex items-center gap-3 py-3 ${
-              i < items.length - 1 || items.length % 2 === 0
+            className={`flex items-center gap-3 py-3 ${i < items.length - 1 || items.length % 2 === 0
                 ? "sm:border-b sm:border-zinc-100 sm:dark:border-zinc-800"
                 : ""
-            }`}
+              }`}
           >
             <span className="w-5 shrink-0 flex items-center justify-center">
               {Icon ? <Icon size={17} className={ICON_CLASS} /> : <span className="w-4" />}
