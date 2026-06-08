@@ -15,6 +15,7 @@ interface RouteNode {
     priority?: number;
     live?: boolean;     // a real visitable page
     dynamic?: boolean;  // dynamic segment (no direct link)
+    auth?: boolean;     // requires login / role
     children?: RouteNode[];
 }
 
@@ -29,7 +30,7 @@ interface DomainGroup {
 type ViewMode = "tree" | "table" | "flow";
 
 /* ──────────────────────────────────────────────────────────
-   REAL PROJECT STRUCTURE  (studied from src/app)
+   COMPLETE PROJECT STRUCTURE  (every page.tsx in src/app)
 ─────────────────────────────────────────────────────────── */
 const SITEMAP: DomainGroup[] = [
     {
@@ -37,8 +38,8 @@ const SITEMAP: DomainGroup[] = [
         domain: "kesararamwithdigital.tech",
         label: { en: "Public Site", kh: "គេហទំព័រសាធារណៈ" },
         desc: {
-            en: "Root — public site, knowledge categories, learning, leaderboard",
-            kh: "ទំព័រសាធារណៈ — ប្រភេទចំណេះដឹង ការរៀន តារាងចំណាត់ថ្នាក់",
+            en: "Root — public pages, learning, games, leaderboard, account",
+            kh: "ទំព័រសាធារណៈ — ការរៀន ហ្គេម តារាងចំណាត់ថ្នាក់ គណនី",
         },
         routes: [
             { path: "/", label: { en: "Home", kh: "ទំព័រដើម" }, priority: 1.0, live: true },
@@ -66,6 +67,7 @@ const SITEMAP: DomainGroup[] = [
                 children: [
                     { path: "/play/solo", label: { en: "Solo Mode", kh: "ម៉ូដតែឯង" }, live: true },
                     { path: "/play/category-quiz", label: { en: "Category Quiz", kh: "កម្រងសំណួរតាមប្រភេទ" }, live: true },
+                    { path: "/play/daily", label: { en: "Daily Challenge", kh: "បញ្ហាប្រចាំថ្ងៃ" }, live: true },
                     { path: "/play/priority-puzzle", label: { en: "Who Goes First?", kh: "តើអ្នកណាទៅមុន?" }, live: true },
                     { path: "/play/sign-match", label: { en: "Sign Match", kh: "ផ្គូផ្គងសញ្ញា" }, live: true },
                     { path: "/play/catch-sign", label: { en: "Catch the Sign", kh: "ចាប់សញ្ញា" }, live: true },
@@ -84,7 +86,7 @@ const SITEMAP: DomainGroup[] = [
                 children: [
                     { path: "/team", label: { en: "Team", kh: "ក្រុមការងារ" }, live: true },
                     { path: "/built-with", label: { en: "Built With", kh: "បង្កើតដោយ" }, live: true },
-                    { path: "/brand", label: { en: "Brand", kh: "ម៉ាកយីហោ" }, live: true },
+                    { path: "/brand", label: { en: "Brand Guideline", kh: "ម៉ាកយីហោ" }, live: true },
                 ],
             },
             { path: "/pricing", label: { en: "Pricing", kh: "តម្លៃ" }, priority: 0.5, live: true },
@@ -93,8 +95,10 @@ const SITEMAP: DomainGroup[] = [
                 label: { en: "Student Profile", kh: "ទម្រង់សិស្ស" },
                 priority: 0.4,
                 live: true,
+                auth: true,
                 children: [
-                    { path: "/u/[username]", label: { en: "Public Profile (by username)", kh: "ទម្រង់សាធារណៈ (តាមឈ្មោះ)" }, dynamic: true },
+                    { path: "/u/[username]", label: { en: "Public Profile (username)", kh: "ទម្រង់សាធារណៈ (ឈ្មោះ)" }, dynamic: true },
+                    { path: "/p/[memberId]", label: { en: "Member Card (id)", kh: "ប័ណ្ណសមាជិក (id)" }, dynamic: true },
                 ],
             },
             {
@@ -104,7 +108,7 @@ const SITEMAP: DomainGroup[] = [
                 live: true,
                 children: [
                     { path: "/register", label: { en: "Register", kh: "ចុះឈ្មោះ" }, live: true },
-                    { path: "/team/[token]", label: { en: "Team Invite (by token)", kh: "អញ្ជើញចូលក្រុម (តាមថូខឹន)" }, dynamic: true },
+                    { path: "/team/[token]", label: { en: "Team Invite (token)", kh: "អញ្ជើញចូលក្រុម (ថូខឹន)" }, dynamic: true },
                 ],
             },
             {
@@ -116,121 +120,332 @@ const SITEMAP: DomainGroup[] = [
                     { path: "/privacy", label: { en: "Privacy Policy", kh: "គោលការណ៍ឯកជនភាព" }, live: true },
                 ],
             },
+            { path: "/sitemap", label: { en: "Sitemap", kh: "ផែនទីគេហទំព័រ" }, priority: 0.2, live: true },
         ],
     },
 ];
 
+const DASHBOARD: DomainGroup[] = [
+    {
+        id: "shared",
+        domain: "/dashboard · /settings · /chat",
+        label: { en: "Shared Account Area", kh: "តំបន់គណនីរួម" },
+        desc: {
+            en: "Authenticated areas shared by all logged-in roles",
+            kh: "តំបន់សម្រាប់អ្នកប្រើដែលបានចូលគ្រប់តួនាទី",
+        },
+        routes: [
+            { path: "/dashboard", label: { en: "Dashboard", kh: "ផ្ទាំងគ្រប់គ្រង" }, live: true, auth: true },
+            { path: "/chat", label: { en: "Chat", kh: "ជជែក" }, live: true, auth: true },
+            {
+                path: "/settings",
+                label: { en: "Settings", kh: "ការកំណត់" },
+                live: true,
+                auth: true,
+                children: [
+                    { path: "/settings/notifications", label: { en: "Notifications", kh: "ការជូនដំណឹង" }, live: true, auth: true },
+                ],
+            },
+        ],
+    },
+    {
+        id: "admin",
+        domain: "/admin",
+        label: { en: "Admin Panel", kh: "ផ្ទាំងគ្រប់គ្រងប្រព័ន្ធ" },
+        desc: {
+            en: "System administration — content, users, media, logs, subscriptions",
+            kh: "គ្រប់គ្រងប្រព័ន្ធ — មាតិកា អ្នកប្រើ មេឌៀ កំណត់ត្រា ការជាវ",
+        },
+        routes: [
+            { path: "/admin", label: { en: "Admin Home", kh: "ទំព័រគ្រប់គ្រង" }, live: true, auth: true },
+            { path: "/admin/overview", label: { en: "Overview", kh: "ទិដ្ឋភាពទូទៅ" }, live: true, auth: true },
+            {
+                path: "/admin/content",
+                label: { en: "Content", kh: "មាតិកា" },
+                live: true,
+                auth: true,
+                children: [
+                    { path: "/admin/content/road-sign", label: { en: "Road Signs", kh: "សញ្ញាចរាចរណ៍" }, live: true, auth: true },
+                    { path: "/admin/content/road-traffic", label: { en: "Road Traffic", kh: "ចរាចរណ៍ផ្លូវ" }, live: true, auth: true },
+                    { path: "/admin/content/priority", label: { en: "Priority", kh: "អាទិភាព" }, live: true, auth: true },
+                    { path: "/admin/content/driving", label: { en: "Road Safety", kh: "សុវត្ថិភាពចរាចរណ៍" }, live: true, auth: true },
+                    { path: "/admin/content/technical", label: { en: "Technical", kh: "បច្ចេកទេស" }, live: true, auth: true },
+                    { path: "/admin/content/loading-people-goods", label: { en: "Loading People & Goods", kh: "ផ្ទុកមនុស្ស និងទំនិញ" }, live: true, auth: true },
+                    { path: "/admin/content/general-knowledge", label: { en: "General Knowledge", kh: "ចំណេះដឹងទូទៅ" }, live: true, auth: true },
+                    { path: "/admin/content/emergency", label: { en: "Emergency", kh: "អាសន្ន" }, live: true, auth: true },
+                    { path: "/admin/content/questions", label: { en: "Questions", kh: "សំណួរ" }, live: true, auth: true },
+                ],
+            },
+            { path: "/admin/questions", label: { en: "Questions Bank", kh: "ឃ្លាំងសំណួរ" }, live: true, auth: true },
+            { path: "/admin/review", label: { en: "Review Queue", kh: "ជួរត្រួតពិនិត្យ" }, live: true, auth: true },
+            { path: "/admin/road-markings", label: { en: "Road Markings", kh: "សញ្ញាសម្គាល់ផ្លូវ" }, live: true, auth: true },
+            { path: "/admin/media", label: { en: "Media Library", kh: "បណ្ណាល័យមេឌៀ" }, live: true, auth: true },
+            { path: "/admin/users", label: { en: "Users", kh: "អ្នកប្រើប្រាស់" }, live: true, auth: true },
+            { path: "/admin/subscriptions", label: { en: "Subscriptions", kh: "ការជាវ" }, live: true, auth: true },
+            { path: "/admin/game-sessions", label: { en: "Game Sessions", kh: "សម័យហ្គេម" }, live: true, auth: true },
+            { path: "/admin/logs", label: { en: "Audit Logs", kh: "កំណត់ត្រាសវនកម្ម" }, live: true, auth: true },
+            { path: "/admin/profile", label: { en: "Admin Profile", kh: "ទម្រង់អ្នកគ្រប់គ្រង" }, live: true, auth: true },
+        ],
+    },
+    {
+        id: "staff",
+        domain: "/staff",
+        label: { en: "Staff Panel", kh: "ផ្ទាំងបុគ្គលិក" },
+        desc: {
+            en: "Content authoring — topics, learning resources, submissions",
+            kh: "បង្កើតមាតិកា — ប្រធានបទ ធនធានរៀន ការដាក់ស្នើ",
+        },
+        routes: [
+            { path: "/staff", label: { en: "Staff Home", kh: "ទំព័របុគ្គលិក" }, live: true, auth: true },
+            {
+                path: "/staff/content",
+                label: { en: "Content", kh: "មាតិកា" },
+                live: true,
+                auth: true,
+                children: [
+                    { path: "/staff/content/create", label: { en: "Create Content", kh: "បង្កើតមាតិកា" }, live: true, auth: true },
+                    { path: "/staff/content/[categorySlug]/[id]", label: { en: "Edit Item (dynamic)", kh: "កែមាតិកា (ថាមវន្ត)" }, dynamic: true },
+                    { path: "/staff/content/road-sign", label: { en: "Road Signs", kh: "សញ្ញាចរាចរណ៍" }, live: true, auth: true },
+                    { path: "/staff/content/priority", label: { en: "Priority", kh: "អាទិភាព" }, live: true, auth: true },
+                    { path: "/staff/content/emergency", label: { en: "Emergency", kh: "អាសន្ន" }, live: true, auth: true },
+                ],
+            },
+            {
+                path: "/staff/topics",
+                label: { en: "Topics", kh: "ប្រធានបទ" },
+                live: true,
+                auth: true,
+                children: [
+                    { path: "/staff/topics/create", label: { en: "Create Topic", kh: "បង្កើតប្រធានបទ" }, live: true, auth: true },
+                ],
+            },
+            {
+                path: "/staff/learning-resources",
+                label: { en: "Learning Resources", kh: "ធនធានរៀន" },
+                live: true,
+                auth: true,
+                children: [
+                    { path: "/staff/learning-resources/create", label: { en: "Create Resource", kh: "បង្កើតធនធាន" }, live: true, auth: true },
+                ],
+            },
+            { path: "/staff/classes", label: { en: "Classes", kh: "ថ្នាក់រៀន" }, live: true, auth: true },
+            { path: "/staff/submissions", label: { en: "Submissions", kh: "ការដាក់ស្នើ" }, live: true, auth: true },
+            { path: "/staff/media", label: { en: "Media", kh: "មេឌៀ" }, live: true, auth: true },
+            { path: "/staff/profile", label: { en: "Staff Profile", kh: "ទម្រង់បុគ្គលិក" }, live: true, auth: true },
+        ],
+    },
+    {
+        id: "teacher",
+        domain: "/teacher",
+        label: { en: "Teacher Panel", kh: "ផ្ទាំងគ្រូបង្រៀន" },
+        desc: {
+            en: "Classes, live sessions, and student analytics",
+            kh: "ថ្នាក់រៀន សម័យផ្ទាល់ និងវិភាគសិស្ស",
+        },
+        routes: [
+            { path: "/teacher", label: { en: "Teacher Home", kh: "ទំព័រគ្រូ" }, live: true, auth: true },
+            { path: "/teacher/overview", label: { en: "Overview", kh: "ទិដ្ឋភាពទូទៅ" }, live: true, auth: true },
+            {
+                path: "/teacher/classes",
+                label: { en: "Classes", kh: "ថ្នាក់រៀន" },
+                live: true,
+                auth: true,
+                children: [
+                    { path: "/teacher/classes/[id]", label: { en: "Class Detail (dynamic)", kh: "ព័ត៌មានថ្នាក់ (ថាមវន្ត)" }, dynamic: true },
+                ],
+            },
+            {
+                path: "/teacher/sessions",
+                label: { en: "Live Sessions", kh: "សម័យផ្ទាល់" },
+                live: true,
+                auth: true,
+                children: [
+                    { path: "/teacher/sessions/host", label: { en: "Host Session", kh: "បើកសម័យ" }, live: true, auth: true },
+                    { path: "/teacher/sessions/[code]/analytics", label: { en: "Session Analytics (dynamic)", kh: "វិភាគសម័យ (ថាមវន្ត)" }, dynamic: true },
+                ],
+            },
+            { path: "/teacher/profile", label: { en: "Teacher Profile", kh: "ទម្រង់គ្រូ" }, live: true, auth: true },
+        ],
+    },
+];
+
+const ALL_DOMAINS = [...SITEMAP, ...DASHBOARD];
+
 /* ──────────────────────────────────────────────────────────
-   STATS
+   STATS + HELPERS
 ─────────────────────────────────────────────────────────── */
-function countRoutes(group: DomainGroup) {
-    const main = group.routes.length;
-    let sub = 0;
-    let live = 0;
-    let dynamic = 0;
-    group.routes.forEach((r) => {
-        if (r.live) live++;
-        if (r.dynamic) dynamic++;
-        if (r.children) {
-            sub += r.children.length;
-            r.children.forEach((c) => {
+function countRoutes(groups: DomainGroup[]) {
+    let main = 0, sub = 0, live = 0, dynamic = 0;
+    groups.forEach((g) => {
+        main += g.routes.length;
+        g.routes.forEach((r) => {
+            if (r.live) live++;
+            if (r.dynamic) dynamic++;
+            r.children?.forEach((c) => {
+                sub++;
                 if (c.live) live++;
                 if (c.dynamic) dynamic++;
             });
-        }
+        });
     });
     return { main, sub, total: main + sub, live, dynamic };
 }
 
-/* Flatten the tree into rows for the table view. */
 function flattenRoutes(group: DomainGroup) {
-    const rows: { node: RouteNode; depth: number; parent: string | null }[] = [];
+    const rows: { node: RouteNode; depth: number }[] = [];
     group.routes.forEach((r) => {
-        rows.push({ node: r, depth: 0, parent: null });
-        r.children?.forEach((c) => rows.push({ node: c, depth: 1, parent: r.path }));
+        rows.push({ node: r, depth: 0 });
+        r.children?.forEach((c) => rows.push({ node: c, depth: 1 }));
     });
     return rows;
 }
 
-/* KWD brand palette — used ONLY as small accent rules, never as fills. */
+/* KWD brand palette — accent rules only, never fills. */
 const ACCENT = "#eab308"; // brand yellow
 
-/* ──────────────────────────────────────────────────────────
-   STATUS TAG — text only, no icon, no fill
-─────────────────────────────────────────────────────────── */
-function Tag({ kind, kh }: { kind: "live" | "dynamic"; kh: boolean }) {
-    const label =
-        kind === "live"
-            ? kh ? "ដំណើរការ" : "LIVE"
-            : kh ? "ថាមវន្ត" : "DYNAMIC";
+/* status tag — text only, no icon, no fill */
+function Tag({ kind, kh }: { kind: "live" | "dynamic" | "auth"; kh: boolean }) {
+    const map = {
+        live: { t: kh ? "ដំណើរការ" : "LIVE", c: "#000" },
+        dynamic: { t: kh ? "ថាមវន្ត" : "DYNAMIC", c: ACCENT },
+        auth: { t: kh ? "ត្រូវចូល" : "AUTH", c: "#3b82f6" },
+    } as const;
+    const { t, c } = map[kind];
     return (
         <span
-            className="text-[9px] font-bold uppercase tracking-widest border border-black px-1.5 py-0.5 text-black"
-            style={{ borderColor: kind === "dynamic" ? ACCENT : "#000" }}
+            className="text-[8px] sm:text-[9px] font-bold uppercase tracking-widest border px-1.5 py-0.5 text-black"
+            style={{ borderColor: c }}
         >
-            {label}
+            {t}
         </span>
     );
 }
 
 /* ──────────────────────────────────────────────────────────
-   TREE VIEW — indented label list, brand-yellow connector rules
+   TREE VIEW — collapsible, animated grid-rows expand
 ─────────────────────────────────────────────────────────── */
-function TreeView({ group, kh }: { group: DomainGroup; kh: boolean }) {
+function TreeRow({
+    node,
+    kh,
+    openMap,
+    toggle,
+}: {
+    node: RouteNode;
+    kh: boolean;
+    openMap: Record<string, boolean>;
+    toggle: (p: string) => void;
+}) {
+    const label = kh ? node.label.kh : node.label.en;
+    const hasChildren = !!node.children?.length;
+    const isOpen = !!openMap[node.path];
+
+    const header = (
+        <div className="flex items-center gap-2 px-3 sm:px-4 py-3 flex-wrap">
+            {hasChildren && (
+                <span
+                    className="inline-block text-black/60 transition-transform duration-300 select-none"
+                    style={{ transform: isOpen ? "rotate(90deg)" : "rotate(0deg)" }}
+                    aria-hidden
+                >
+                    ▸
+                </span>
+            )}
+            <span className="text-base sm:text-lg font-bold text-black">{label}</span>
+            <code className="text-[11px] sm:text-xs font-mono text-black/55">{node.path}</code>
+            {node.live && <Tag kind="live" kh={kh} />}
+            {node.dynamic && <Tag kind="dynamic" kh={kh} />}
+            {node.auth && <Tag kind="auth" kh={kh} />}
+            {node.priority !== undefined && (
+                <span className="text-[10px] font-mono text-black/40 ml-auto">
+                    {kh ? "អាទិភាព" : "prio"} {node.priority.toFixed(1)}
+                </span>
+            )}
+        </div>
+    );
+
     return (
-        <div className="border-2 border-black">
-            {group.routes.map((r, i) => {
-                const label = kh ? r.label.kh : r.label.en;
-                return (
-                    <div key={r.path} className={i > 0 ? "border-t-2 border-black" : ""}>
-                        {/* parent row */}
-                        <div className="flex items-baseline gap-2 px-3 sm:px-4 py-3 flex-wrap">
-                            <span className="text-base sm:text-lg font-bold text-black">{label}</span>
-                            <code className="text-[11px] sm:text-xs font-mono text-black/55">{r.path}</code>
-                            {r.live && <Tag kind="live" kh={kh} />}
-                            {r.dynamic && <Tag kind="dynamic" kh={kh} />}
-                            {r.priority !== undefined && (
-                                <span className="text-[10px] font-mono text-black/40 ml-auto">
-                                    {kh ? "អាទិភាព" : "prio"} {r.priority.toFixed(1)}
-                                </span>
-                            )}
+        <div>
+            {hasChildren ? (
+                <button
+                    onClick={() => toggle(node.path)}
+                    className="w-full text-left hover:bg-black/[0.03] transition-colors"
+                >
+                    {header}
+                </button>
+            ) : node.live ? (
+                <Link href={node.path} className="block hover:bg-black/[0.03] transition-colors">
+                    {header}
+                </Link>
+            ) : (
+                <div className="opacity-90">{header}</div>
+            )}
+
+            {hasChildren && (
+                <div
+                    className="grid transition-all duration-300 ease-out"
+                    style={{ gridTemplateRows: isOpen ? "1fr" : "0fr", opacity: isOpen ? 1 : 0 }}
+                >
+                    <div className="overflow-hidden">
+                        <div
+                            className="ml-4 sm:ml-6 pl-3 sm:pl-4 pb-2"
+                            style={{ borderLeft: `3px solid ${ACCENT}` }}
+                        >
+                            {node.children!.map((c, ci) => {
+                                const cLabel = kh ? c.label.kh : c.label.en;
+                                const inner = (
+                                    <div
+                                        className="flex items-baseline gap-2 py-2 flex-wrap"
+                                        style={{
+                                            animation: isOpen ? `kwdSlideIn 0.3s ease both` : undefined,
+                                            animationDelay: `${ci * 35}ms`,
+                                        }}
+                                    >
+                                        <span className="text-black/40">—</span>
+                                        <span className="text-sm sm:text-base font-medium text-black">{cLabel}</span>
+                                        <code className="text-[10px] sm:text-[11px] font-mono text-black/50">{c.path}</code>
+                                        {c.live && <Tag kind="live" kh={kh} />}
+                                        {c.dynamic && <Tag kind="dynamic" kh={kh} />}
+                                        {c.auth && <Tag kind="auth" kh={kh} />}
+                                    </div>
+                                );
+                                return c.live ? (
+                                    <Link key={c.path} href={c.path} className="block hover:bg-black/[0.03] transition-colors">
+                                        {inner}
+                                    </Link>
+                                ) : (
+                                    <div key={c.path}>{inner}</div>
+                                );
+                            })}
                         </div>
-                        {/* children */}
-                        {r.children && (
-                            <div
-                                className="ml-4 sm:ml-6 pl-3 sm:pl-4 pb-2"
-                                style={{ borderLeft: `3px solid ${ACCENT}` }}
-                            >
-                                {r.children.map((c) => {
-                                    const cLabel = kh ? c.label.kh : c.label.en;
-                                    const inner = (
-                                        <div className="flex items-baseline gap-2 py-2 flex-wrap">
-                                            <span className="text-black/40">—</span>
-                                            <span className="text-sm sm:text-base font-medium text-black">{cLabel}</span>
-                                            <code className="text-[10px] sm:text-[11px] font-mono text-black/50">{c.path}</code>
-                                            {c.live && <Tag kind="live" kh={kh} />}
-                                            {c.dynamic && <Tag kind="dynamic" kh={kh} />}
-                                        </div>
-                                    );
-                                    return c.live ? (
-                                        <Link key={c.path} href={c.path} className="block hover:bg-black/[0.03]">
-                                            {inner}
-                                        </Link>
-                                    ) : (
-                                        <div key={c.path}>{inner}</div>
-                                    );
-                                })}
-                            </div>
-                        )}
                     </div>
-                );
-            })}
+                </div>
+            )}
+        </div>
+    );
+}
+
+function TreeView({
+    group,
+    kh,
+    openMap,
+    toggle,
+}: {
+    group: DomainGroup;
+    kh: boolean;
+    openMap: Record<string, boolean>;
+    toggle: (p: string) => void;
+}) {
+    return (
+        <div className="border-2 border-black divide-y-2 divide-black">
+            {group.routes.map((r) => (
+                <TreeRow key={r.path} node={r} kh={kh} openMap={openMap} toggle={toggle} />
+            ))}
         </div>
     );
 }
 
 /* ──────────────────────────────────────────────────────────
-   TABLE VIEW — Information Architecture as a data table
+   TABLE VIEW
 ─────────────────────────────────────────────────────────── */
 function TableView({ group, kh }: { group: DomainGroup; kh: boolean }) {
     const rows = flattenRoutes(group);
@@ -239,21 +454,11 @@ function TableView({ group, kh }: { group: DomainGroup; kh: boolean }) {
             <table className="w-full border-collapse text-left">
                 <thead>
                     <tr className="border-b-2 border-black">
-                        <th className="px-3 py-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-black">
-                            {kh ? "ទំព័រ" : "Page"}
-                        </th>
-                        <th className="px-3 py-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-black">
-                            {kh ? "ផ្លូវ (URL)" : "Path"}
-                        </th>
-                        <th className="px-3 py-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-black hidden sm:table-cell">
-                            {kh ? "កម្រិត" : "Level"}
-                        </th>
-                        <th className="px-3 py-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-black">
-                            {kh ? "ស្ថានភាព" : "Status"}
-                        </th>
-                        <th className="px-3 py-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-black hidden md:table-cell">
-                            {kh ? "អាទិភាព" : "Priority"}
-                        </th>
+                        <th className="px-3 py-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest">{kh ? "ទំព័រ" : "Page"}</th>
+                        <th className="px-3 py-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest">{kh ? "ផ្លូវ (URL)" : "Path"}</th>
+                        <th className="px-3 py-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest hidden sm:table-cell">{kh ? "កម្រិត" : "Level"}</th>
+                        <th className="px-3 py-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest">{kh ? "ស្ថានភាព" : "Status"}</th>
+                        <th className="px-3 py-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest hidden md:table-cell">{kh ? "អាទិភាព" : "Priority"}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -262,7 +467,7 @@ function TableView({ group, kh }: { group: DomainGroup; kh: boolean }) {
                         return (
                             <tr
                                 key={node.path}
-                                className={i > 0 ? "border-t border-black/20" : ""}
+                                className={`${i > 0 ? "border-t border-black/20" : ""} hover:bg-black/[0.03] transition-colors`}
                                 style={depth > 0 ? { borderLeft: `3px solid ${ACCENT}` } : undefined}
                             >
                                 <td className="px-3 py-2.5 align-top">
@@ -274,25 +479,16 @@ function TableView({ group, kh }: { group: DomainGroup; kh: boolean }) {
                                         {label}
                                     </span>
                                 </td>
-                                <td className="px-3 py-2.5 align-top">
-                                    <code className="text-[10px] sm:text-xs font-mono text-black/65">{node.path}</code>
-                                </td>
-                                <td className="px-3 py-2.5 align-top hidden sm:table-cell">
-                                    <span className="text-xs font-mono text-black/60">
-                                        {depth === 0 ? (kh ? "ចម្បង" : "Main") : (kh ? "រង" : "Sub")}
-                                    </span>
-                                </td>
+                                <td className="px-3 py-2.5 align-top"><code className="text-[10px] sm:text-xs font-mono text-black/65">{node.path}</code></td>
+                                <td className="px-3 py-2.5 align-top hidden sm:table-cell"><span className="text-xs font-mono text-black/60">{depth === 0 ? (kh ? "ចម្បង" : "Main") : (kh ? "រង" : "Sub")}</span></td>
                                 <td className="px-3 py-2.5 align-top">
                                     <div className="flex gap-1 flex-wrap">
                                         {node.live && <Tag kind="live" kh={kh} />}
                                         {node.dynamic && <Tag kind="dynamic" kh={kh} />}
+                                        {node.auth && <Tag kind="auth" kh={kh} />}
                                     </div>
                                 </td>
-                                <td className="px-3 py-2.5 align-top hidden md:table-cell">
-                                    <span className="text-xs font-mono text-black/60">
-                                        {node.priority !== undefined ? node.priority.toFixed(1) : "—"}
-                                    </span>
-                                </td>
+                                <td className="px-3 py-2.5 align-top hidden md:table-cell"><span className="text-xs font-mono text-black/60">{node.priority !== undefined ? node.priority.toFixed(1) : "—"}</span></td>
                             </tr>
                         );
                     })}
@@ -303,54 +499,35 @@ function TableView({ group, kh }: { group: DomainGroup; kh: boolean }) {
 }
 
 /* ──────────────────────────────────────────────────────────
-   FLOWCHART VIEW — root → branches → leaves, connector lines
-   Pure CSS boxes + brand-yellow connectors. No icons, no fills.
+   FLOWCHART VIEW
 ─────────────────────────────────────────────────────────── */
-function FlowNode({ label, path, accent }: { label: string; path?: string; accent?: boolean }) {
-    return (
-        <div
-            className="inline-flex flex-col items-center border-2 border-black bg-white px-3 py-2 text-center"
-            style={accent ? { boxShadow: `4px 4px 0 ${ACCENT}` } : undefined}
-        >
-            <span className="text-xs sm:text-sm font-bold text-black whitespace-nowrap">{label}</span>
-            {path && <code className="text-[9px] font-mono text-black/50">{path}</code>}
-        </div>
-    );
-}
-
 function FlowView({ group, kh }: { group: DomainGroup; kh: boolean }) {
     return (
         <div className="border-2 border-black p-4 sm:p-6 overflow-x-auto">
             <div className="flex flex-col items-center min-w-[640px]">
-                {/* root */}
-                <FlowNode label={kh ? group.label.kh : group.label.en} path={group.domain} accent />
-                {/* vertical stem */}
+                <div className="inline-flex flex-col items-center border-2 border-black bg-white px-3 py-2 text-center" style={{ boxShadow: `4px 4px 0 ${ACCENT}` }}>
+                    <span className="text-xs sm:text-sm font-bold whitespace-nowrap">{kh ? group.label.kh : group.label.en}</span>
+                    <code className="text-[9px] font-mono text-black/50">{group.domain}</code>
+                </div>
                 <div className="w-[2px] h-6" style={{ background: ACCENT }} />
-
-                {/* main routes row */}
                 <div className="w-full flex items-start justify-center gap-4 flex-wrap">
                     {group.routes.map((r) => {
                         const label = kh ? r.label.kh : r.label.en;
                         return (
                             <div key={r.path} className="flex flex-col items-center">
-                                <FlowNode label={label} path={r.path} />
+                                <div className="border-2 border-black bg-white px-3 py-2 text-center">
+                                    <span className="text-xs sm:text-sm font-bold whitespace-nowrap">{label}</span>
+                                    <code className="text-[9px] font-mono text-black/50 block">{r.path}</code>
+                                </div>
                                 {r.children && r.children.length > 0 && (
                                     <>
                                         <div className="w-[2px] h-5 bg-black/60" />
                                         <div className="flex flex-col gap-2 pl-3" style={{ borderLeft: `2px solid ${ACCENT}` }}>
-                                            {r.children.map((c) => {
-                                                const cLabel = kh ? c.label.kh : c.label.en;
-                                                return (
-                                                    <div
-                                                        key={c.path}
-                                                        className="border border-black bg-white px-2 py-1 text-left"
-                                                    >
-                                                        <span className="text-[11px] font-medium text-black whitespace-nowrap">
-                                                            {cLabel}
-                                                        </span>
-                                                    </div>
-                                                );
-                                            })}
+                                            {r.children.map((c) => (
+                                                <div key={c.path} className="border border-black bg-white px-2 py-1 text-left">
+                                                    <span className="text-[11px] font-medium whitespace-nowrap">{kh ? c.label.kh : c.label.en}</span>
+                                                </div>
+                                            ))}
                                         </div>
                                     </>
                                 )}
@@ -369,11 +546,24 @@ function FlowView({ group, kh }: { group: DomainGroup; kh: boolean }) {
 export default function SitemapPage() {
     const { lang, setLang } = useLang();
     const kh = lang === "kh";
-    const khFont = kh ? { fontFamily: "var(--font-kh-header), 'Google Sans Khmer', sans-serif" } : { fontFamily: "'GoogleSans', 'Google Sans', sans-serif" };
+    const khFont = kh
+        ? { fontFamily: "var(--font-kh-header), 'Google Sans Khmer', sans-serif" }
+        : { fontFamily: "'GoogleSans', 'Google Sans', sans-serif" };
 
     const [view, setView] = useState<ViewMode>("tree");
-    const group = SITEMAP[0];
-    const stats = countRoutes(group);
+    const [activeDomain, setActiveDomain] = useState("public");
+    const [openMap, setOpenMap] = useState<Record<string, boolean>>({});
+
+    const group = ALL_DOMAINS.find((g) => g.id === activeDomain)!;
+    const stats = countRoutes(ALL_DOMAINS);
+
+    const toggle = (p: string) => setOpenMap((m) => ({ ...m, [p]: !m[p] }));
+    const expandAll = () => {
+        const all: Record<string, boolean> = {};
+        group.routes.forEach((r) => { if (r.children) all[r.path] = true; });
+        setOpenMap(all);
+    };
+    const collapseAll = () => setOpenMap({});
 
     const VIEWS: { id: ViewMode; en: string; kh: string }[] = [
         { id: "tree", en: "Tree", kh: "មែកធាង" },
@@ -383,11 +573,14 @@ export default function SitemapPage() {
 
     return (
         <div className="min-h-screen bg-white text-black" style={khFont}>
-            {/* ── header ── */}
+            {/* keyframes for child slide-in */}
+            <style>{`@keyframes kwdSlideIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}`}</style>
+
+            {/* header */}
             <header className="border-b-2 border-black bg-white sticky top-0 z-40">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-start justify-between gap-4">
                     <div className="min-w-0">
-                        <h1 className="text-xl sm:text-3xl font-bold uppercase tracking-[0.15em] leading-none" style={{ borderBottom: `3px solid ${ACCENT}`, display: "inline-block", paddingBottom: 4 }}>
+                        <h1 className="text-xl sm:text-3xl font-bold uppercase tracking-[0.15em] leading-none inline-block" style={{ borderBottom: `3px solid ${ACCENT}`, paddingBottom: 4 }}>
                             {kh ? "ផែនទីគេហទំព័រ" : "SITEMAP"}
                         </h1>
                         <p className="text-[10px] sm:text-xs font-mono text-black/55 mt-2">
@@ -405,51 +598,74 @@ export default function SitemapPage() {
             </header>
 
             <main className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6">
-                {/* domain line */}
-                <div>
-                    <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-black/50 mb-1">
-                        {kh ? "ដែន" : "Domain"}
-                    </div>
-                    <div className="border-2 border-black p-4">
-                        <div className="text-lg sm:text-2xl font-bold">{kh ? group.label.kh : group.label.en}</div>
-                        <code className="text-[11px] sm:text-sm font-mono text-black/60 block mt-1">{group.domain}</code>
-                        <p className="text-xs sm:text-sm text-black/70 mt-2">{kh ? group.desc.kh : group.desc.en}</p>
-                    </div>
-                </div>
-
                 {/* stats */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
                     {[
-                        { v: stats.main, l: kh ? "ផ្លូវចម្បង" : "Main Routes" },
-                        { v: stats.sub, l: kh ? "ផ្លូវរង" : "Sub Routes" },
-                        { v: stats.total, l: kh ? "ទំព័រសរុប" : "Total Pages" },
-                        { v: stats.live, l: kh ? "ទំព័រដំណើរការ" : "Live Pages" },
+                        { v: stats.main, l: kh ? "ផ្លូវចម្បង" : "Main" },
+                        { v: stats.sub, l: kh ? "ផ្លូវរង" : "Sub" },
+                        { v: stats.total, l: kh ? "សរុប" : "Total" },
+                        { v: stats.live, l: kh ? "ដំណើរការ" : "Live" },
+                        { v: stats.dynamic, l: kh ? "ថាមវន្ត" : "Dynamic" },
                     ].map((s, i) => (
                         <div key={i} className="border-2 border-black p-3" style={{ borderTop: `4px solid ${ACCENT}` }}>
-                            <div className="text-2xl sm:text-4xl font-bold font-mono leading-none">{String(s.v).padStart(2, "0")}</div>
-                            <div className="text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-black/55 mt-2">{s.l}</div>
+                            <div className="text-2xl sm:text-3xl font-bold font-mono leading-none">{String(s.v).padStart(2, "0")}</div>
+                            <div className="text-[9px] font-bold uppercase tracking-widest text-black/55 mt-2">{s.l}</div>
                         </div>
                     ))}
                 </div>
 
-                {/* view switcher */}
-                <div className="flex items-center gap-0 border-2 border-black w-fit">
-                    {VIEWS.map((v, i) => {
-                        const active = view === v.id;
+                {/* domain tabs */}
+                <div className="flex flex-wrap gap-2">
+                    {ALL_DOMAINS.map((g) => {
+                        const active = g.id === activeDomain;
                         return (
                             <button
-                                key={v.id}
-                                onClick={() => setView(v.id)}
-                                className={`text-[11px] sm:text-xs font-bold uppercase tracking-widest px-3 sm:px-4 py-2 transition-colors ${i > 0 ? "border-l-2 border-black" : ""} ${active ? "bg-black text-white" : "bg-white text-black hover:bg-black/[0.06]"}`}
+                                key={g.id}
+                                onClick={() => { setActiveDomain(g.id); setOpenMap({}); }}
+                                className={`text-[11px] sm:text-xs font-bold uppercase tracking-widest border-2 border-black px-3 py-1.5 transition-colors ${active ? "bg-black text-white" : "bg-white text-black hover:bg-black/[0.06]"}`}
                             >
-                                {kh ? v.kh : v.en}
+                                {kh ? g.label.kh : g.label.en}
                             </button>
                         );
                     })}
                 </div>
 
+                {/* domain description */}
+                <div className="border-2 border-black p-4" style={{ borderLeft: `5px solid ${ACCENT}` }}>
+                    <code className="text-[11px] sm:text-sm font-mono text-black/60 block">{group.domain}</code>
+                    <p className="text-xs sm:text-sm text-black/70 mt-1">{kh ? group.desc.kh : group.desc.en}</p>
+                </div>
+
+                {/* controls: view switch + expand/collapse */}
+                <div className="flex items-center justify-between gap-3 flex-wrap">
+                    <div className="flex items-center border-2 border-black w-fit">
+                        {VIEWS.map((v, i) => {
+                            const active = view === v.id;
+                            return (
+                                <button
+                                    key={v.id}
+                                    onClick={() => setView(v.id)}
+                                    className={`text-[11px] sm:text-xs font-bold uppercase tracking-widest px-3 sm:px-4 py-2 transition-colors ${i > 0 ? "border-l-2 border-black" : ""} ${active ? "bg-black text-white" : "bg-white text-black hover:bg-black/[0.06]"}`}
+                                >
+                                    {kh ? v.kh : v.en}
+                                </button>
+                            );
+                        })}
+                    </div>
+                    {view === "tree" && (
+                        <div className="flex items-center gap-2">
+                            <button onClick={expandAll} className="text-[10px] font-bold uppercase tracking-widest border-2 border-black px-3 py-1.5 bg-white hover:bg-black hover:text-white transition-colors">
+                                {kh ? "បើកទាំងអស់" : "Expand All"}
+                            </button>
+                            <button onClick={collapseAll} className="text-[10px] font-bold uppercase tracking-widest border-2 border-black px-3 py-1.5 bg-white hover:bg-black hover:text-white transition-colors">
+                                {kh ? "បិទទាំងអស់" : "Collapse"}
+                            </button>
+                        </div>
+                    )}
+                </div>
+
                 {/* active view */}
-                {view === "tree" && <TreeView group={group} kh={kh} />}
+                {view === "tree" && <TreeView group={group} kh={kh} openMap={openMap} toggle={toggle} />}
                 {view === "table" && <TableView group={group} kh={kh} />}
                 {view === "flow" && <FlowView group={group} kh={kh} />}
             </main>
