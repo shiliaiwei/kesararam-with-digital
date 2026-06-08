@@ -1279,11 +1279,6 @@ export default function LeaderboardPage() {
                                 {user.province}
                               </span>
                             )}
-                            {user.gradeLevel && (
-                              <span className="inline-block px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wider bg-purple-100 text-purple-700 border border-purple-200">
-                                {user.gradeLevel}
-                              </span>
-                            )}
                           </div>
                           <div className="flex items-center gap-1.5 text-[9px] text-zinc-400 truncate">
                             {user.displayName && <span>@{user.username}</span>}
