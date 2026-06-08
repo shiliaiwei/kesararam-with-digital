@@ -289,6 +289,15 @@ export async function PUT(request: NextRequest) {
         .where(eq(classes.id, targetClassId))
         .limit(1);
 
+      if (classDetails) {
+        if (classDetails.status === "locked") {
+          return NextResponse.json({ error: "This class is locked. New students cannot join. / ថ្នាក់រៀននេះត្រូវបានចាក់សោ។ សិស្សថ្មីមិនអាចចូលរួមបានទេ។" }, { status: 400 });
+        }
+        if (classDetails.status === "archived") {
+          return NextResponse.json({ error: "This class has been archived. / ថ្នាក់រៀននេះត្រូវបានរក្សាទុកក្នុងប័ណ្ណសារហើយ។" }, { status: 400 });
+        }
+      }
+
       const finalSchoolName = classDetails?.schoolName || schoolName || currentUser.schoolName;
       const finalProvince = classDetails?.province || province || currentUser.province;
       const finalGradeLevel = classDetails?.gradeLevel || gradeLevel || currentUser.gradeLevel;
