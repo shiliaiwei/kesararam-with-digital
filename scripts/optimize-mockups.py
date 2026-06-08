@@ -37,7 +37,7 @@ def optimize_and_save_webp(src_path, dest_path, max_dim=1400, quality=80):
         return False
 
 def main():
-    dest_dir = "/Applications/XAMPP/xamppfiles/htdocs/KWD/kesararam/brand-mockups"
+    dest_dir = "/Applications/XAMPP/xamppfiles/htdocs/KWD/kesararam/docs/brand-assets/brand-mockups"
     os.makedirs(dest_dir, exist_ok=True)
     
     mockups = [

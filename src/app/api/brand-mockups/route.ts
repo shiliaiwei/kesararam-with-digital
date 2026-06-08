@@ -33,7 +33,7 @@ export async function GET(req: NextRequest) {
   }
 
   // Load file from server filesystem
-  const filePath = path.join(process.cwd(), "brand-mockups", file);
+  const filePath = path.join(process.cwd(), "docs", "brand-assets", "brand-mockups", file);
   
   if (!fs.existsSync(filePath)) {
     return NextResponse.json({ error: "File not found on server" }, { status: 404 });
