@@ -352,9 +352,9 @@
   font-family: var(--font-kh-body), "Siemreap", "Google Sans Khmer", sans-serif !important;
 }
 
-/* System chrome / function buttons → Inter (EN primary) + Google Sans Khmer (KH). */
+/* System chrome / function buttons → Google Sans (EN) + Google Sans Khmer (KH). */
 .font-system {
-  font-family: var(--font-sans), "Google Sans Khmer", "Google Sans", sans-serif !important;
+  font-family: "GoogleSans", "Google Sans", var(--font-sans), "Google Sans Khmer", sans-serif !important;
 }
 
 /* ─── Active nav tab indicator ─── */
@@ -391,6 +391,8 @@
 
   body {
     @apply bg-background text-foreground;
+    /* Google Sans as the system default UI font (KH falls back to Google Sans Khmer). */
+    font-family: "GoogleSans", "Google Sans", var(--font-sans), "Google Sans Khmer", sans-serif;
   }
 
   html {
