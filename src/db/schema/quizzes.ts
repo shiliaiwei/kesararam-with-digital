@@ -18,7 +18,7 @@ export const quizzes = pgTable("quizzes", {
   categoryId: integer("category_id"),
   level: text("level").notNull().default("beginner"),
   isPublished: boolean("is_published").default(false).notNull(),
-  createdBy: integer("created_by").references(() => users.id),
+  createdBy: integer("created_by").references(() => users.id, { onDelete: "set null" }),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
@@ -38,7 +38,7 @@ export const quizAttempts = pgTable("quiz_attempts", {
   id: serial("id").primaryKey(),
   userId: integer("user_id")
     .notNull()
-    .references(() => users.id),
+    .references(() => users.id, { onDelete: "cascade" }),
   categoryId: integer("category_id"),
   mode: text("mode").notNull(), // 'quiz', 'practice_test', 'challenge'
   totalQuestions: integer("total_questions").notNull(),
@@ -68,7 +68,7 @@ export const liveSessions = pgTable("challenge_sessions", {
   id: serial("id").primaryKey(),
   teacherId: integer("teacher_id")
     .notNull()
-    .references(() => users.id),
+    .references(() => users.id, { onDelete: "cascade" }),
   categoryId: integer("category_id"),
   quizId: integer("quiz_id").references(() => quizzes.id),
   roomCode: text("room_code").unique(),
@@ -88,7 +88,7 @@ export const sessionParticipants = pgTable("session_participants", {
     .references(() => liveSessions.id),
   studentId: integer("student_id")
     .notNull()
-    .references(() => users.id),
+    .references(() => users.id, { onDelete: "cascade" }),
   score: integer("score").default(0).notNull(),
   rank: integer("rank"),
   joinedAt: timestamp("joined_at").defaultNow().notNull(),
@@ -101,7 +101,7 @@ export const sessionAnswers = pgTable("session_answers", {
     .references(() => liveSessions.id),
   studentId: integer("student_id")
     .notNull()
-    .references(() => users.id),
+    .references(() => users.id, { onDelete: "cascade" }),
   contentId: integer("content_id")
     .notNull()
     .references(() => contentItems.id),
@@ -117,7 +117,7 @@ export const leaderboardEntries = pgTable(
     id: serial("id").primaryKey(),
     studentId: integer("student_id")
       .notNull()
-      .references(() => users.id),
+      .references(() => users.id, { onDelete: "cascade" }),
     categoryId: integer("category_id"), // NULL for overall rankings
     score: integer("score").default(0).notNull(),
     correctAnswers: integer("correct_answers").default(0).notNull(),

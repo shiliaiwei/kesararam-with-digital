@@ -70,11 +70,11 @@ export const classEnrollments = pgTable("class_enrollments", {
   id: serial("id").primaryKey(),
   classId: integer("class_id")
     .notNull()
-    .references(() => classes.id),
+    .references(() => classes.id, { onDelete: "cascade" }),
   studentId: integer("student_id")
     .notNull()
-    .references(() => users.id),
-  enrolledBy: integer("enrolled_by").references(() => users.id), // staff/admin who assigned
+    .references(() => users.id, { onDelete: "cascade" }),
+  enrolledBy: integer("enrolled_by").references(() => users.id, { onDelete: "set null" }), // staff/admin who assigned
   enrolledAt: timestamp("enrolled_at").defaultNow().notNull(),
 });
 
