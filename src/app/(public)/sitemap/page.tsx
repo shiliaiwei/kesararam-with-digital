@@ -85,8 +85,8 @@ const SITEMAP: DomainGroup[] = [
                 live: true,
                 children: [
                     { path: "/team", label: { en: "Team", kh: "ក្រុមការងារ" }, live: true },
-                    { path: "/built-with", label: { en: "Built With", kh: "បង្កើតដោយ" }, live: true },
-                    { path: "/brand", label: { en: "Brand Guideline", kh: "ម៉ាកយីហោ" }, live: true },
+                    { path: "/built-with", label: { en: "Bibliography", kh: "ឯកសារយោង" }, live: true },
+                    { path: "/brand", label: { en: "Brand Guideline", kh: "ម៉ាករបស់យើង" }, live: true },
                 ],
             },
             { path: "/pricing", label: { en: "Pricing", kh: "តម្លៃ" }, priority: 0.5, live: true },
@@ -113,11 +113,11 @@ const SITEMAP: DomainGroup[] = [
             },
             {
                 path: "/terms",
-                label: { en: "Legal", kh: "ផ្លូវច្បាប់" },
+                label: { en: "Terms of Use", kh: "លក្ខខណ្ឌប្រើប្រាស់" },
                 priority: 0.3,
                 live: true,
                 children: [
-                    { path: "/privacy", label: { en: "Privacy Policy", kh: "គោលការណ៍ឯកជនភាព" }, live: true },
+                    { path: "/privacy", label: { en: "Privacy Policy", kh: "គោលការណ៍ភាពឯកជន" }, live: true },
                 ],
             },
             { path: "/sitemap", label: { en: "Sitemap", kh: "ផែនទីគេហទំព័រ" }, priority: 0.2, live: true },
@@ -552,7 +552,13 @@ export default function SitemapPage() {
 
     const [view, setView] = useState<ViewMode>("tree");
     const [activeDomain, setActiveDomain] = useState("public");
-    const [openMap, setOpenMap] = useState<Record<string, boolean>>({});
+    // Expanded by default so every page (incl. Brand, Bibliography, Privacy) is visible.
+    const initialOpen = (): Record<string, boolean> => {
+        const all: Record<string, boolean> = {};
+        SITEMAP[0].routes.forEach((r) => { if (r.children) all[r.path] = true; });
+        return all;
+    };
+    const [openMap, setOpenMap] = useState<Record<string, boolean>>(initialOpen);
 
     const group = ALL_DOMAINS.find((g) => g.id === activeDomain)!;
     const stats = countRoutes(ALL_DOMAINS);
@@ -564,6 +570,14 @@ export default function SitemapPage() {
         setOpenMap(all);
     };
     const collapseAll = () => setOpenMap({});
+    // When switching domains, auto-expand that domain's parents.
+    const selectDomain = (id: string) => {
+        setActiveDomain(id);
+        const g = ALL_DOMAINS.find((x) => x.id === id)!;
+        const all: Record<string, boolean> = {};
+        g.routes.forEach((r) => { if (r.children) all[r.path] = true; });
+        setOpenMap(all);
+    };
 
     const VIEWS: { id: ViewMode; en: string; kh: string }[] = [
         { id: "tree", en: "Tree", kh: "មែកធាង" },
@@ -621,7 +635,7 @@ export default function SitemapPage() {
                         return (
                             <button
                                 key={g.id}
-                                onClick={() => { setActiveDomain(g.id); setOpenMap({}); }}
+                                onClick={() => selectDomain(g.id)}
                                 className={`text-[11px] sm:text-xs font-bold uppercase tracking-widest border-2 border-black px-3 py-1.5 transition-colors ${active ? "bg-black text-white" : "bg-white text-black hover:bg-black/[0.06]"}`}
                             >
                                 {kh ? g.label.kh : g.label.en}
