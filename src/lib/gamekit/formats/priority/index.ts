@@ -10,8 +10,8 @@ export const priorityFormat: GameFormat<PriorityRound, PriorityCompletionResult>
         route: "/play/priority-puzzle",
         title: { en: "Who Goes First?", kh: "តើអ្នកណាទៅមុន?" },
         description: {
-            en: "Tap the vehicles in the correct right-of-way order.",
-            kh: "ប៉ះរថយន្តតាមលំដាប់សិទ្ធិទៅមុនឱ្យបានត្រឹមត្រូវ។",
+            en: "Tap the one vehicle that goes first.",
+            kh: "ប៉ះរថយន្តដែលទៅមុនគេ។",
         },
         brandColor: "#06b6d4",
         Icon: Sparkles,

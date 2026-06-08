@@ -14,6 +14,7 @@ Never use the following words in any user-facing text, UI copy, translations, de
 - **ល្បែង** (use "សកម្មភាព" instead)
 - **វីរបុរស** (use "បញ្ញាបរ" instead)
 - **ផ្សងព្រែង** (use "ដំណើរ" instead)
+- **សេចក្តីថ្លែងការណ៍** (use "ប្រយោគ" instead)
 
 ## Why
 

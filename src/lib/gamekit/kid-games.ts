@@ -94,5 +94,5 @@ export const KID_GAMES: Record<string, KidGameSpec> = {
     "sign-match": { accessTier: "user", buildRounds: buildSignMatchRounds },
     "catch-sign": { accessTier: "user", buildRounds: buildCatchSignRounds },
     "light-hero": { accessTier: "user", buildRounds: buildLightHeroRounds },
-    "safety-adventure": { accessTier: "class-pro", buildRounds: buildSafetyAdventureRounds },
+    "safety-adventure": { accessTier: "user", buildRounds: buildSafetyAdventureRounds },
 };

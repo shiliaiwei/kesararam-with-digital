@@ -39,7 +39,7 @@ function CatchSignView({ round, lang, onRoundComplete }: RoundViewProps<CatchSig
     return (
         <div className="flex flex-col gap-4 w-full">
             <div className="bg-zinc-900 border-2 border-black p-4 text-center text-white font-black" style={{ fontSize: "clamp(1rem,4vw,1.4rem)", ...khFont }}>
-                {kh ? "ប៉ះ៖ " : "Tap: "}
+                {kh ? "ប៉ះ: " : "Tap: "}
                 <span className="text-yellow-400">{kh ? round.promptKm || round.promptEn : round.promptEn}</span>
             </div>
             <div className="grid grid-cols-2 gap-3">

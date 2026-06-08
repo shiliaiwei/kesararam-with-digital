@@ -50,7 +50,10 @@ export function AnswerGrid({
 
   const isImagePick = gameType === "image_pick";
   const khFont = lang === "kh" ? { fontFamily: "Siemreap, sans-serif" } : {};
-  const cols = answers.length <= 2 ? 1 : 2;
+  // Image-pick (priority / right-of-way scenarios) → single full-width column
+  // with large images so the intersection diagrams are easy to see.
+  // MCQ / true-false keep the compact 1- or 2-column text layout.
+  const cols = isImagePick ? 1 : answers.length <= 2 ? 1 : 2;
   const revealed = correctId !== null;
 
   return (
@@ -93,7 +96,6 @@ export function AnswerGrid({
         // ── IMAGE PICK (sign challenge) ─────────────────────────────────────
         if (isImagePick) {
           const topBandBg = isCorrect ? CORRECT_BG : isMyWrong ? WRONG_BG : isOtherWrong ? "#d4d4d8" : cfg.bg;
-          const bottomBandBg = isCorrect ? CORRECT_BG : isMyWrong ? WRONG_BG : isOtherWrong ? "#d4d4d8" : cfg.bg;
 
           return (
             <button
@@ -103,8 +105,8 @@ export function AnswerGrid({
               onClick={() => !disabled && onSelect(ans.id)}
               style={{
                 display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
+                flexDirection: "row",
+                alignItems: "stretch",
                 justifyContent: "flex-start",
                 overflow: "hidden",
                 border: `3px solid ${borderColor}`,
@@ -114,21 +116,29 @@ export function AnswerGrid({
                 transform: scale,
                 transition: "transform 0.12s ease, border-color 0.15s",
                 position: "relative",
-                height: "115px",
+                minHeight: "150px",
                 padding: 0,
                 outline: "none",
                 opacity: isOtherWrong ? 0.35 : 1,
+                boxShadow: isSelected || isCorrect ? "4px 4px 0 #000" : "none",
               }}
             >
-              {/* Colored top band — ABCD identity */}
+              {/* Colored left band — ABCD identity */}
               <div style={{
-                height: "4px",
-                width: "100%",
+                width: "44px",
                 backgroundColor: topBandBg,
+                color: "#ffffff",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "22px",
+                fontWeight: 955,
                 flexShrink: 0,
-              }} />
+              }}>
+                {cfg.label}
+              </div>
 
-              {/* Sign image area — white background */}
+              {/* Sign image area — white background, large image */}
               <div style={{
                 flex: 1,
                 display: "flex",
@@ -136,14 +146,14 @@ export function AnswerGrid({
                 justifyContent: "center",
                 width: "100%",
                 backgroundColor: "#ffffff",
-                padding: "4px 6px",
+                padding: "10px 12px",
               }}>
                 {ans.imageUrl ? (
                   <img
-                    src={cloudinaryOptimize(ans.imageUrl, 250)}
+                    src={cloudinaryOptimize(ans.imageUrl, 800)}
                     alt={text}
                     style={{
-                      maxHeight: "62px",
+                      maxHeight: "150px",
                       maxWidth: "100%",
                       objectFit: "contain",
                       display: "block",
@@ -152,32 +162,13 @@ export function AnswerGrid({
                     onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                   />
                 ) : (
-                  <span style={{ fontSize: "11px", fontWeight: 800, color: "#1a1a1a", textAlign: "center", padding: "0 4px", ...khFont }}>
+                  <span style={{ fontSize: "15px", fontWeight: 800, color: "#1a1a1a", textAlign: "center", padding: "0 4px", ...khFont }}>
                     {text}
                   </span>
                 )}
               </div>
 
-              {/* Colored bottom label band */}
-              <div style={{
-                backgroundColor: bottomBandBg,
-                color: "#ffffff",
-                fontSize: "11px",
-                fontWeight: 955,
-                padding: "6px 8px",
-                width: "100%",
-                textAlign: "left",
-                flexShrink: 0,
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                letterSpacing: "0.02em",
-                ...khFont,
-              }}>
-                <span style={{ marginRight: "4px", opacity: 0.95 }}>{cfg.label}</span>
-              </div>
-
-              {/* No result badge - removed */}
+              {/* Bottom-band removed: label moved to left band for a bigger image */}
             </button>
           );
         }

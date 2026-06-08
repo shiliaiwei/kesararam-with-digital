@@ -49,21 +49,29 @@ Guest plays are computed but **never persisted** — no DB write, no points.
 
 ## Game 2 — Who Goes First? (`/play/priority-puzzle`)
 
-**Format:** Junction scene, tap vehicles in right-of-way order.
+**Format:** Junction scene — tap the ONE vehicle that goes first (kid-simple single-tap).
 
 ### Round flow
 1. Server selects N random approved `priority_scenes` from DB (no `correctOrder` sent to client).
 2. The JunctionView renders an SVG crossroad with vehicle tiles showing:
    - **Vehicle heading** (facing the direction of travel)
    - **Turn intent arrow** (yellow badge: straight ↑ / left ↯ / right ↱)
-3. Player taps vehicles in the order they believe each should go. An order strip shows the
-   running sequence. Undo / Reset buttons allow correction before submitting.
-4. `POST /api/game/priority/complete` receives `{ submittedOrder[], timeTakenMs }` per scene.
-5. Server fetches `correctOrder` from DB, checks `arrayEquals(submitted, correct)`.
-6. Rule hints displayed during play:
+3. One simple rule-hint chip is shown (emergency / lights / give-way-right) so young
+   kids get a single visual cue instead of having to reason out the full sequence.
+4. Player taps a **single** vehicle — the one they think goes first. The tap auto-submits
+   (no ordering, no undo/reset, no submit button). This keeps the game playable for young
+   children who can't yet reason about a full right-of-way ordering.
+5. `POST /api/game/priority/complete` receives `{ submittedOrder: [pickedId], timeTakenMs }`.
+6. Server fetches `correctOrder` from DB. For single-tap submissions it checks
+   `pickedId === correctOrder[0]`. (Legacy full-order submissions are still accepted:
+   a complete correct permutation also scores as correct.)
+7. The result view shows **who goes first** (the answer) plus the full order for learning,
+   and the per-scene explanation.
+
+Rule cues used:
    - **Uncontrolled cross** → give way to the right
    - **Emergency vehicle** present → ambulance/fire engine always goes first
-   - **Traffic light** → follow signal order
+   - **Traffic light** → follow the signal
 
 ### Scoring mode
 `speed` — 30 s per scene.
@@ -127,14 +135,14 @@ Guest plays are computed but **never persisted** — no DB write, no points.
 
 ---
 
-## Game 6 — Road Safety Adventure (`/play/safety-adventure`) 🔒 Class-Pro
+## Game 6 — Road Safety Adventure (`/play/safety-adventure`)
 
 **Format:** Stepped scenario — choose the safe action at each situation.
 
-### Access gate
-Requires the student to be enrolled in a class whose teacher has an active
-`teacher_pro` or `school` subscription (`resolveAccess` in `src/lib/gamekit/access.ts`).
-Shows a locked card on the hub if the condition is not met.
+### Access
+`user` tier — open to everyone; logged-in players have their score recorded,
+guests can play unrecorded (same as the other kid games). Previously this was a
+`class-pro` gated premium game; it is now unlocked for all players.
 
 ### Round flow
 1. Server returns 3 scenario steps (static content — no DB query needed).

@@ -57,12 +57,15 @@ export function PriorityResultView({
                             </span>
                         </div>
                         <div className="flex items-center gap-1.5 text-xs text-zinc-600 mb-1" style={khFont}>
-                            <span className="font-bold">{kh ? "ចម្លើយត្រូវ៖" : "Correct order:"}</span>
+                            <span className="font-bold">{kh ? "ទៅមុនគេ: " : "Goes first:"}</span>
+                            <OrderBadges ids={s.correctOrder.slice(0, 1)} map={map} tone="ok" />
+                            <span className="text-zinc-400 ml-1">{kh ? "(លំដាប់ពេញ: " : "(full order: "}</span>
                             <OrderBadges ids={s.correctOrder} map={map} tone="ok" />
+                            <span className="text-zinc-400">)</span>
                         </div>
                         {!s.isCorrect && (
                             <div className="flex items-center gap-1.5 text-xs text-zinc-600 mb-1" style={khFont}>
-                                <span className="font-bold">{kh ? "អ្នកជ្រើស៖" : "You chose:"}</span>
+                                <span className="font-bold">{kh ? "អ្នកជ្រើស: " : "You chose:"}</span>
                                 <OrderBadges ids={s.submittedOrder} map={map} tone="bad" />
                             </div>
                         )}

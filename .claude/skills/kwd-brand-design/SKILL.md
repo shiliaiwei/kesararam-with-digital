@@ -267,10 +267,11 @@ Never use these words in any user-facing text, UI copy, translations, descriptio
 | **វេទិកា** | គេហទំព័រ |
 | **ហ្វឹកហ្វឺន** | សំរាប់រៀន or សំណួរ |
 | **ប្រឡង** | ប្រកួត or តេស្ត |
-| **បើកបរ** | សុវត្ថិភាពចរាចរណ៍ or ចរាចរណ៍ |
+| **បើកបរ** | សុវត្ថិភាពចរាចរណ៍ or Acts as a noun  ចរាចរណ៍  ,    acts as a verb, ចរាចរ 
 | **ល្បែង** | សកម្មភាព |
 | **វីរបុរស** | បញ្ញាបរ |
 | **ផ្សងព្រែង** | ដំណើរ |
+| **សេចក្តីថ្លែងការណ៍** | ប្រយោគ |
 
 **Why:** This project is a road safety education platform, NOT a "driving school" or "exam prep" tool. Always frame around learning, knowledge, and confidence.
 

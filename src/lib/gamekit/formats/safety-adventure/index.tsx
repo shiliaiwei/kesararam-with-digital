@@ -72,8 +72,8 @@ export const safetyAdventureFormat: GameFormat<AdventureRound, KitCompletionResu
         description: { en: "Make the safe choices on your journey to school.", kh: "ធ្វើការសម្រេចចិត្តប្រកបដោយសុវត្ថិភាពក្នុងដំណើរទៅសាលា។" },
         brandColor: "#a855f7",
         Icon: MapIcon,
-        accessTier: "class-pro",
-        badge: { en: "PRO", kh: "PRO" },
+        accessTier: "user",
+        badge: { en: "KIDS", kh: "កុមារ" },
     },
     config: { timed: false, secondsPerRound: 0, scoringMode: "equal", showStreakHud: true },
     fetchRounds: async () => {

@@ -394,8 +394,17 @@ export async function validatePriority(
             vehicles: { id: string }[];
         };
         const vehicleIds = layout.vehicles.map((v) => v.id);
-        const isPermutation = sameMultiset(r.submittedOrder, vehicleIds);
-        const isCorrect = isPermutation && arrayEquals(r.submittedOrder, correctOrder);
+        // Kid-simple single-tap: the client submits ONE vehicle id (the one it
+        // thinks goes first). It is correct when that id equals correctOrder[0].
+        // (Legacy full-order submissions are still accepted: a complete correct
+        // permutation also counts as correct.)
+        const firstPick = r.submittedOrder[0];
+        const isValidPick = !!firstPick && vehicleIds.includes(firstPick);
+        const isSingleTap = r.submittedOrder.length === 1;
+        const isCorrect = isSingleTap
+            ? isValidPick && firstPick === correctOrder[0]
+            : sameMultiset(r.submittedOrder, vehicleIds) &&
+            arrayEquals(r.submittedOrder, correctOrder);
         if (isCorrect) correctCount++;
 
         const s = calculateScore({
