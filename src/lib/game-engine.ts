@@ -136,7 +136,9 @@ export const GAME_MODE_CONFIG: Record<string, GameModeConfig> = {
   "quick-quiz": {
     defaultQuestionCount: 10,
     allowedQuestionCounts: [5, 10, 15, 20],
-    timePerQuestion: 30,
+    // Kid-paced: ~15-18s to read a short Q + 3-4 answers + ~7-10s to decide.
+    // 30s felt too long (disengagement); 25s fits a child's read+decide window.
+    timePerQuestion: 25,
     label: "Quick Quiz",
     labelKm: "សំណួរលឿន",
     color: "#eab308",
@@ -156,7 +158,9 @@ export const GAME_MODE_CONFIG: Record<string, GameModeConfig> = {
   "sign-challenge": {
     defaultQuestionCount: 15,
     allowedQuestionCounts: [5, 10, 15, 20, 30],
-    timePerQuestion: 20,
+    // Image recognition + 3 short answers: faster than text, but kids still need
+    // to scan the sign. 18s is a comfortable recognise+pick window.
+    timePerQuestion: 18,
     label: "Sign Challenge",
     labelKm: "ប្រឡងសញ្ញា",
     color: "#3b82f6",
@@ -166,7 +170,7 @@ export const GAME_MODE_CONFIG: Record<string, GameModeConfig> = {
   "mixed-practice": {
     defaultQuestionCount: 20,
     allowedQuestionCounts: [10, 20, 30, 40],
-    timePerQuestion: 30,
+    timePerQuestion: 25,
     label: "Mixed Practice",
     labelKm: "ហ្វឹកហាត់ចម្រុះ",
     color: "#a855f7",

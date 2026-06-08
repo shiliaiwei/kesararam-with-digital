@@ -349,7 +349,9 @@ export default function StudentGamePage() {
   );
 
   const submitAnswer = useCallback(async (answerId: number) => {
-    if (answerSubmitted || !currentQuestion || !code) return;
+    // Allow changing the answer until the question is revealed (time ends).
+    // Block only once the correct answer is shown.
+    if (correctAnswerId !== null || !currentQuestion || !code) return;
     setSelectedAnswer(answerId);
     setAnswerSubmitted(true);
     try {
@@ -364,7 +366,7 @@ export default function StudentGamePage() {
         // Sound effects for right/wrong removed as requested
       }
     } catch { /* silent */ }
-  }, [answerSubmitted, currentQuestion, code]);
+  }, [correctAnswerId, currentQuestion, code]);
 
   const handleAnswerSelect = useCallback((answerId: number) => submitAnswer(answerId), [submitAnswer]);
 
@@ -810,7 +812,7 @@ export default function StudentGamePage() {
                 answers={currentQuestion.answers}
                 selectedId={selectedAnswer}
                 correctId={correctAnswerId}
-                disabled={answerSubmitted}
+                disabled={correctAnswerId !== null}
                 lang={lang}
                 gameType={currentQuestion.gameType}
                 onSelect={handleAnswerSelect}

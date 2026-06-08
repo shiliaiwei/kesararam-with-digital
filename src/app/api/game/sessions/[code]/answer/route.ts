@@ -84,12 +84,28 @@ export async function POST(
   // 7. Calculate score (server-side only) with new difficulty-based system
   const remainingTimeMs = questionStartedAt
     ? Math.max(
-        0,
-        questionStartedAt.getTime() +
-          session.timePerQuestion * 1000 -
-          serverReceivedAt.getTime()
-      )
+      0,
+      questionStartedAt.getTime() +
+      session.timePerQuestion * 1000 -
+      serverReceivedAt.getTime()
+    )
     : 0;
+
+  // 7a. Look for an existing answer to THIS question (allow changing before time ends)
+  const [existing] = await db
+    .select()
+    .from(gameSessionAnswers)
+    .where(
+      and(
+        eq(gameSessionAnswers.sessionId, session.id),
+        eq(gameSessionAnswers.userId, user.id),
+        eq(gameSessionAnswers.questionId, questionId)
+      )
+    );
+
+  // The streak this answer builds on: prior answers' streak is preserved across
+  // re-answers via the stored prevStreak (so changing answers can't inflate it).
+  const baseStreak = existing ? existing.prevStreak : participant.currentStreak;
 
   const scoreResult = calculateScore({
     isCorrect,
@@ -97,12 +113,57 @@ export async function POST(
     scoringMode: session.scoringMode as "speed" | "equal",
     remainingTimeMs,
     totalTimeMs: session.timePerQuestion * 1000,
-    // Pass the streak AFTER this answer so the bonus formula is correct
-    currentStreak: isCorrect ? participant.currentStreak + 1 : 0,
+    currentStreak: isCorrect ? baseStreak + 1 : 0,
     targetGroup: session.targetGroup,
   });
 
-  // 8. Insert answer (unique constraint prevents replay)
+  // 8. Insert or UPDATE the answer (students may change choice before time ends)
+  if (existing) {
+    // Reverse the previous answer's contribution, then apply the new one.
+    await db
+      .update(gameSessionAnswers)
+      .set({
+        answerId: answerId ?? null,
+        answeredAt: new Date(answeredAt),
+        isCorrect,
+        speedScore: scoreResult.speedBonus,
+        streakBonus: scoreResult.streakBonus,
+        totalPoints: scoreResult.totalPoints,
+        remainingTimeMs,
+        prevStreak: baseStreak,
+      })
+      .where(eq(gameSessionAnswers.id, existing.id));
+
+    // participant.totalScore: remove old points, add new
+    // currentStreak: recompute from baseStreak (the streak before this question)
+    await db
+      .update(gameParticipants)
+      .set({
+        totalScore: sql`${gameParticipants.totalScore} - ${existing.totalPoints} + ${scoreResult.totalPoints}`,
+        correctAnswers: sql`${gameParticipants.correctAnswers} - ${existing.isCorrect ? 1 : 0} + ${isCorrect ? 1 : 0}`,
+        currentStreak: isCorrect ? baseStreak + 1 : 0,
+        lastSeenAt: serverReceivedAt,
+      })
+      .where(
+        and(
+          eq(gameParticipants.sessionId, session.id),
+          eq(gameParticipants.userId, user.id)
+        )
+      );
+
+    return NextResponse.json({
+      accepted: true,
+      changed: true,
+      isCorrect,
+      pointsEarned: scoreResult.totalPoints,
+      baseScore: scoreResult.baseScore,
+      speedBonus: scoreResult.speedBonus,
+      streakBonus: scoreResult.streakBonus,
+      difficulty: question?.difficulty,
+    });
+  }
+
+  // First answer for this question
   try {
     await db.insert(gameSessionAnswers).values({
       sessionId: session.id,
@@ -115,12 +176,13 @@ export async function POST(
       streakBonus: scoreResult.streakBonus,
       totalPoints: scoreResult.totalPoints,
       remainingTimeMs,
+      prevStreak: baseStreak,
     });
   } catch {
     return NextResponse.json({ error: "Already answered" }, { status: 409 });
   }
 
-  // 9. Update participant totals atomically
+  // Update participant totals atomically
   await db
     .update(gameParticipants)
     .set({

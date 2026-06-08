@@ -183,8 +183,8 @@ export function AnswerGrid({
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "12px",
-              padding: "10px 14px",
+              gap: "10px",
+              padding: "10px 12px",
               backgroundColor: tileBg,
               border: `3px solid ${borderColor}`,
               borderRadius: 0,
@@ -194,36 +194,42 @@ export function AnswerGrid({
               transition: "transform 0.12s ease, background-color 0.15s",
               outline: "none",
               userSelect: "none",
-              opacity: isOtherWrong ? 0.35 : 1,
+              opacity: isOtherWrong ? 0.45 : 1,
               ...khFont,
             }}
           >
             {/* Answer letter label */}
             <span style={{
-              fontSize: "16px",
+              fontSize: "15px",
               lineHeight: 1,
               fontWeight: 900,
               color: isOtherWrong ? "rgba(24,24,27,0.7)" : "rgba(255,255,255,0.95)",
               flexShrink: 0,
-              width: "22px",
+              width: "20px",
               textAlign: "center",
             }}>
               {cfg.label}
             </span>
 
-            {/* Answer text */}
+            {/* Answer text — smaller, centered, wraps cleanly (no mid-word cut) */}
             <span style={{
-              color: isOtherWrong ? "#18181b" : "#ffffff",
-              fontWeight: 900,
-              fontSize: "clamp(12px, 3.5vw, 16px)",
-              lineHeight: 1.25,
+              color: isOtherWrong ? "#71717a" : "#ffffff",
+              // Correct answer is bold; wrong answers are greyed.
+              fontWeight: isCorrect ? 900 : isOtherWrong ? 600 : 800,
+              fontSize: "clamp(11px, 3vw, 14px)",
+              lineHeight: 1.3,
               flex: 1,
-              textAlign: "left",
+              textAlign: "center",
+              whiteSpace: "normal",
+              overflowWrap: "break-word",
+              wordBreak: "normal",
+              hyphens: "auto",
             }}>
               {text}
             </span>
 
-            {/* No result icons - removed */}
+            {/* keep layout balanced with an invisible spacer matching the label */}
+            <span aria-hidden style={{ width: "20px", flexShrink: 0 }} />
           </button>
         );
       })}

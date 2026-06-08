@@ -18,6 +18,8 @@ import { UpgradeButton } from "@/components/pricing/upgrade-button";
 import { UpgradeModal } from "@/components/pricing/upgrade-modal";
 import { Lock } from "lucide-react";
 import QRCode from "react-qr-code";
+import { cloudinaryOptimize } from "@/lib/cloudinary";
+import { sounds } from "@/lib/game-sounds";
 
 // ── Answer color config ────────────────────────────────────────────────────
 const ANSWER_STYLES = [
@@ -39,7 +41,7 @@ type HostPhase =
   | { name: "setup" }
   | { name: "creating" }
   | { name: "lobby"; code: string; sessionId: number; participants: ParticipantInfo[]; gameMode: string; categories: string[]; difficulty: string; questionCount: number; timePerQuestion: number; scoringMode: string; maxPlayers: number }
-  | { name: "active"; code: string; sessionId: number; qIndex: number; total: number; leaderboard: LeaderboardEntry[]; question: QuestionPayload }
+  | { name: "active"; code: string; sessionId: number; qIndex: number; total: number; leaderboard: LeaderboardEntry[]; question: QuestionPayload; endsAt?: string }
   | { name: "round_end"; code: string; sessionId: number; leaderboard: LeaderboardEntry[]; qIndex: number; total: number; question: QuestionPayload; correctAnswerId: number | null }
   | { name: "ended"; code: string; sessionId: number; leaderboard: LeaderboardEntry[] };
 
@@ -397,6 +399,7 @@ export default function HostPage() {
             total: event.total,
             leaderboard: prevLeaderboard,
             question: event.question,
+            endsAt: event.endsAt,
           };
         }
         return p;
@@ -467,6 +470,48 @@ export default function HostPage() {
     } catch (err) { setError(`Network error: ${err instanceof Error ? err.message : "Unknown"}`); }
     finally { setControlling(false); }
   }
+
+  // ── Question countdown timer (host-driven auto-reveal) ──────────────────────
+  // Drives the water-fill bar and, when it reaches 0, plays an alert and
+  // auto-reveals the correct answer to every screen via control("reveal").
+  const [qFillPct, setQFillPct] = useState(0); // 0 → 100 as time elapses
+  const timeUpFiredRef = useRef(false);
+  const activeEndsAt = phase.name === "active" ? phase.endsAt : undefined;
+  const activeStartMsRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    // reset whenever a new question starts
+    timeUpFiredRef.current = false;
+    setQFillPct(0);
+    if (phase.name !== "active" || !activeEndsAt) {
+      activeStartMsRef.current = null;
+      return;
+    }
+    const endMs = new Date(activeEndsAt).getTime();
+    // Use the moment we received the question as the window start. This avoids
+    // depending on timePerQuestion and keeps the bar aligned to the real deadline.
+    const startMs = Date.now();
+    const totalMs = Math.max(1000, endMs - startMs);
+    activeStartMsRef.current = startMs;
+
+    const tick = () => {
+      const now = Date.now();
+      const elapsed = now - startMs;
+      const pct = Math.min(100, Math.max(0, (elapsed / totalMs) * 100));
+      setQFillPct(pct);
+      if (now >= endMs && !timeUpFiredRef.current) {
+        timeUpFiredRef.current = true;
+        try { sounds.question_end(); } catch { }
+        // auto-reveal the correct answer to all screens
+        control("reveal");
+      }
+    };
+    tick();
+    const id = setInterval(tick, 200);
+    return () => clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase.name, activeEndsAt]);
+
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -1366,9 +1411,27 @@ export default function HostPage() {
             </span>
           </div>
 
-          {/* Progress */}
-          <div className="flex-1 mx-8 h-4 border-2 border-black bg-white overflow-hidden" style={{ borderRadius: "0px" }}>
-            <div className="h-full bg-blue-400 transition-all duration-700" style={{ width: `${progress}%` }} />
+          {/* Question progress + time water-fill */}
+          <div className="flex-1 mx-8 flex flex-col gap-1.5">
+            {/* question position */}
+            <div className="h-2 border-2 border-black bg-white overflow-hidden" style={{ borderRadius: "0px" }}>
+              <div className="h-full bg-blue-400 transition-all duration-700" style={{ width: `${progress}%` }} />
+            </div>
+            {/* time water-fill — fills left→right as time elapses; red in final 20% */}
+            {isActive && (
+              <div className="h-4 border-2 border-black bg-white overflow-hidden relative" style={{ borderRadius: "0px" }}>
+                <div
+                  className="h-full transition-[width] duration-200 ease-linear"
+                  style={{
+                    width: `${qFillPct}%`,
+                    backgroundColor: qFillPct >= 80 ? "#ef4444" : "#22c55e",
+                  }}
+                />
+                <span className="absolute inset-0 flex items-center justify-center text-[10px] font-black text-black/70 select-none">
+                  {kh ? "ពេលវេលា" : "TIME"}
+                </span>
+              </div>
+            )}
           </div>
 
           {/* Controls */}
@@ -1430,7 +1493,7 @@ export default function HostPage() {
               {/* Question image — white background, bigger */}
               <div className="w-full h-72 border-4 border-black bg-white flex items-center justify-center mb-6 relative overflow-hidden shadow-[6px_6px_0_#000]" style={{ borderRadius: "0px" }}>
                 {question?.imageUrl ? (
-                  <img src={question.imageUrl} alt="question" className="h-full w-auto object-contain" style={{ maxHeight: "100%", maxWidth: "100%" }} />
+                  <img src={cloudinaryOptimize(question.imageUrl, 900)} alt="question" className="h-full w-auto object-contain" style={{ maxHeight: "100%", maxWidth: "100%" }} fetchPriority="high" decoding="async" />
                 ) : (
                   <div className="flex flex-col items-center gap-2 opacity-20">
                     <BookOpen size={48} className="text-zinc-500" />
@@ -1441,7 +1504,7 @@ export default function HostPage() {
 
               {/* Question text — bigger, high contrast */}
               <div className="text-center mb-8 min-h-[8rem] flex flex-col items-center justify-center px-2">
-                <div className="font-black text-4xl xl:text-5xl text-black leading-snug" style={khFont}>
+                <div className="font-black text-3xl xl:text-4xl text-black leading-snug" style={{ overflowWrap: "break-word", wordBreak: "normal", hyphens: "auto", ...khFont }}>
                   {kh && question?.questionKm ? question.questionKm : question?.questionEn}
                 </div>
                 {kh && question?.questionKm && question?.questionEn && (
@@ -1479,10 +1542,11 @@ export default function HostPage() {
                           {/* Color top strip */}
                           <div className="absolute top-0 left-0 right-0 h-2" style={{ backgroundColor: isCorrect ? "#15803d" : style.bg }} />
                           <img
-                            src={ans.imageUrl}
+                            src={cloudinaryOptimize(ans.imageUrl, 400)}
                             alt={text}
                             className="object-contain"
                             style={{ height: "100px", width: "auto", maxWidth: "90%", padding: "4px 8px" }}
+                            decoding="async"
                             onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                           />
                           {isCorrect && <span className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white border-2 border-black text-green-600 font-black text-lg shadow-[2px_2px_0_#000]">✓</span>}
@@ -1507,7 +1571,7 @@ export default function HostPage() {
                         <div className="w-12 h-12 border-3 border-black flex items-center justify-center bg-white font-black text-black text-2xl flex-shrink-0" style={{ borderRadius: "0px", borderWidth: "3px" }}>
                           {style.label}
                         </div>
-                        <span className="font-black text-xl xl:text-2xl leading-tight flex-1" style={{ color: textColor, ...khFont }}>{text}</span>
+                        <span className="font-black text-lg xl:text-xl leading-snug flex-1" style={{ color: textColor, overflowWrap: "break-word", wordBreak: "normal", hyphens: "auto", ...khFont }}>{text}</span>
                         {isCorrect && (
                           <div className="w-10 h-10 flex items-center justify-center bg-white border-3 border-black text-green-600 font-black text-2xl flex-shrink-0" style={{ borderRadius: "0px", borderWidth: "3px" }}>
                             ✓

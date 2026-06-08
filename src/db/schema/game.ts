@@ -78,6 +78,9 @@ export const gameSessionAnswers = pgTable(
     streakBonus: integer("streak_bonus").notNull().default(0),
     totalPoints: integer("total_points").notNull().default(0),
     remainingTimeMs: integer("remaining_time_ms").notNull().default(0),
+    // Streak value BEFORE this answer — lets us correctly reverse score/streak
+    // when a student changes their answer before the timer ends.
+    prevStreak: integer("prev_streak").notNull().default(0),
   },
   (table) => ({
     sessionUserQuestionUnique: unique("game_session_answers_session_user_question_unique").on(
