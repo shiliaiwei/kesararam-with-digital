@@ -1089,6 +1089,10 @@ export default function LeaderboardPage() {
 
   const top3 = leaderboard.slice(0, 3);
 
+  // Points, rewards, and tier progression are student-only features.
+  // Teachers, admins, and staff host/manage but do not earn points.
+  const isStudent = currentUser?.role === "student";
+
   // Claim click handler — Database claim and Local Points deduction
   const handleClaimItem = async (item: typeof REWARD_ITEMS[number]) => {
     setUserPoints(prev => Math.max(0, prev - item.cost));
@@ -1142,7 +1146,7 @@ export default function LeaderboardPage() {
                 )}
               </div>
             </div>
-            {currentUser && (
+            {currentUser && isStudent && (
               <div className="flex flex-col sm:items-end gap-1">
                 <span className="text-white/40 text-[9px] font-black uppercase tracking-widest">Your Points</span>
                 <div className="flex items-center gap-2">
@@ -1316,7 +1320,7 @@ export default function LeaderboardPage() {
             </div>
 
             {/* Rank Tier Showcase */}
-            {currentUser && (
+            {currentUser && isStudent && (
               <div className="bg-white border-3 border-black p-5" style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}>
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
                   <div>
@@ -1341,101 +1345,88 @@ export default function LeaderboardPage() {
             )}
 
             {/* ── Rewards Section (Psychology-driven redesign) ── */}
-            <div>
-              {/* Rewards Store Hero Banner */}
-              <div className="relative overflow-hidden border-3 border-black mb-6"
-                style={{
-                  background: "linear-gradient(135deg,#09090b 0%,#18181b 100%)",
-                  boxShadow: "4px 4px 0 #000",
-                  borderRadius: 0
-                }}>
-                <div className="absolute inset-0 opacity-[0.06]"
-                  style={{ backgroundImage: "radial-gradient(circle,#fff 1px,transparent 1px)", backgroundSize: "16px 16px" }} />
+            {isStudent && (
+              <div>
+                {/* Rewards Store Header — simplified, lighter weight */}
+                <div className="relative overflow-hidden border-2 border-black mb-6"
+                  style={{
+                    background: "#18181b",
+                    borderRadius: 0,
+                  }}>
+                  <div className="absolute inset-0 opacity-[0.05]"
+                    style={{ backgroundImage: "radial-gradient(circle,#fff 1px,transparent 1px)", backgroundSize: "16px 16px" }} />
 
-                {/* Rotating floating Lucide icons instead of emojis */}
-                <div className="absolute top-4 right-8 text-yellow-400/40 select-none animate-bounce" style={{ animationDuration: "3s" }}>
-                  <Gift size={32} strokeWidth={2} />
-                </div>
-                <div className="absolute bottom-4 right-20 text-yellow-400/20 select-none animate-pulse" style={{ animationDuration: "2.5s" }}>
-                  <Star size={24} strokeWidth={2.5} />
-                </div>
-
-                <div className="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 px-6 py-6 z-10">
-                  <div>
-                    <div className="inline-flex items-center gap-1.5 bg-yellow-400 text-black text-[9px] font-black tracking-widest uppercase px-2.5 py-1 border-2 border-black shadow-[2px_2px_0_#000] mb-3">
-                      <Gift size={10} strokeWidth={3} />
-                      <span>{kh ? "រង្វាន់" : "REWARDS STORE"}</span>
-                    </div>
-                    <h2 className="text-xl md:text-3xl font-black text-white leading-tight flex items-center gap-2" style={kf}>
-                      {kh ? "ទទួលបានរង្វាន់ដោយពិន្ទុ" : "Claim with Points"}
-                      <Trophy className="text-yellow-400" size={24} strokeWidth={2.5} />
-                    </h2>
-                    <p className="text-white/60 text-xs mt-1.5 max-w-xs" style={kf}>
-                      {kh
-                        ? "លេងហ្គេម ➔ ប្រមូលពិន្ទុ ➔ ទទួលបានរង្វាន់ពិតៗ!"
-                        : "Play games ➔ Earn points ➔ Get real prizes!"}
-                    </p>
-                  </div>
-
-                  {/* Points Balance Card (Endowment Effect) */}
-                  {currentUser ? (
-                    <div className="flex flex-col items-center gap-0.5 bg-white/5 border-2 border-white/10 rounded-none px-6 py-4 self-start sm:self-auto shadow-inner">
-                      <span className="text-white/50 text-[9px] font-black uppercase tracking-widest leading-none" style={kf}>
-                        {kh ? "ពិន្ទុផ្ទាល់ខ្លួន" : "YOUR BALANCE"}
-                      </span>
-                      <div className="flex items-end gap-1.5 mt-2">
-                        <AnimatedNumber value={userPoints} className="text-3xl font-black text-yellow-400 tabular-nums leading-none font-mono" />
-                        <span className="text-yellow-400/80 text-xs font-bold leading-none mb-0.5">PTS</span>
+                  <div className="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 px-5 py-5 z-10">
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 text-yellow-400 text-[10px] font-bold tracking-widest uppercase mb-2">
+                        <Gift size={12} strokeWidth={2.5} />
+                        <span>{kh ? "រង្វាន់" : "Rewards Store"}</span>
                       </div>
-                      <span className="text-white/35 text-[9px] mt-1.5" style={kf}>
-                        {kh ? "ប្រើដើម្បីប្តូររង្វាន់" : "Redeemable points"}
-                      </span>
+                      <h2 className="text-lg md:text-2xl font-bold text-white leading-tight" style={kf}>
+                        {kh ? "ទទួលបានរង្វាន់ដោយពិន្ទុ" : "Claim with Points"}
+                      </h2>
                     </div>
-                  ) : (
-                    <a href="/login"
-                      className="flex items-center gap-2 bg-yellow-400 text-black font-black text-xs px-5 py-3.5 border-3 border-black self-start"
-                      style={{ boxShadow: "4px 4px 0 #000", ...kf }}>
-                      <Lock size={12} strokeWidth={3} />
-                      {kh ? "ចូលគណនីដើម្បីទទួល" : "LOG IN TO CLAIM"}
-                    </a>
-                  )}
+
+                    {/* Points Balance Card */}
+                    {currentUser ? (
+                      <div className="flex flex-col items-center gap-0.5 bg-white/5 border border-white/15 px-5 py-3 self-start sm:self-auto">
+                        <span className="text-white/45 text-[9px] font-semibold uppercase tracking-widest leading-none" style={kf}>
+                          {kh ? "ពិន្ទុផ្ទាល់ខ្លួន" : "Your Balance"}
+                        </span>
+                        <div className="flex items-end gap-1.5 mt-1.5">
+                          <AnimatedNumber value={userPoints} className="text-2xl font-bold text-yellow-400 tabular-nums leading-none font-mono" />
+                          <span className="text-yellow-400/70 text-xs font-semibold leading-none mb-0.5">PTS</span>
+                        </div>
+                      </div>
+                    ) : (
+                      <a href="/login"
+                        className="inline-flex items-center gap-2 bg-yellow-400 text-black font-bold text-xs px-4 py-2.5 border-2 border-black self-start"
+                        style={kf}>
+                        <Lock size={12} strokeWidth={2.5} />
+                        {kh ? "ចូលគណនីដើម្បីទទួល" : "Log in to claim"}
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                {/* Claim Success Alerts */}
+                {claimMsg && (
+                  <div className="mb-5 flex items-center gap-3 px-4 py-3 rounded-none bg-green-500 text-white font-black text-xs border-3 border-black shadow-[3px_3px_0_#000]" style={kf}>
+                    <Check size={16} strokeWidth={3.5} className="bg-white text-green-500 rounded-full p-0.5" />
+                    <span>{claimMsg}</span>
+                  </div>
+                )}
+
+                {/* Responsive Cards Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+                  {REWARD_ITEMS.map((item, idx) => (
+                    <RewardCard
+                      key={item.id}
+                      item={item}
+                      userPoints={userPoints}
+                      isLoggedIn={!!currentUser}
+                      lang={lang}
+                      onClaim={handleClaimItem}
+                      userLifetimePoints={currentUser?.lifetimePoints ?? 0}
+                    />
+                  ))}
+                </div>
+
+                {/* How it works + delivery note — moved below the items, light weight */}
+                <div className="mt-6 flex flex-col items-center gap-1.5 text-center">
+                  <p className="text-[11px] text-zinc-500 font-medium" style={kf}>
+                    {kh
+                      ? "លេងហ្គេម ➔ ប្រមូលពិន្ទុ ➔ ទទួលបានរង្វាន់ពិតៗ"
+                      : "Play games ➔ Earn points ➔ Get real prizes"}
+                  </p>
+                  <p className="text-[10px] text-zinc-400" style={kf}>
+                    {kh
+                      ? "ពិន្ទុអាចប្រើដើម្បីប្តូររង្វាន់ · រង្វាន់ត្រូវបានប្រគល់ដោយគ្រូ · ទទួលបានតែម្តងក្នុងមួយធាតុ"
+                      : "Points are redeemable for rewards · Prizes delivered by your teacher · One claim per item"}
+                  </p>
                 </div>
               </div>
-
-              {/* Claim Success Alerts */}
-              {claimMsg && (
-                <div className="mb-5 flex items-center gap-3 px-4 py-3 rounded-none bg-green-500 text-white font-black text-xs border-3 border-black shadow-[3px_3px_0_#000]" style={kf}>
-                  <Check size={16} strokeWidth={3.5} className="bg-white text-green-500 rounded-full p-0.5" />
-                  <span>{claimMsg}</span>
-                </div>
-              )}
-
-              {/* Responsive Cards Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-                {REWARD_ITEMS.map((item, idx) => (
-                  <RewardCard
-                    key={item.id}
-                    item={item}
-                    userPoints={userPoints}
-                    isLoggedIn={!!currentUser}
-                    lang={lang}
-                    onClaim={handleClaimItem}
-                    userLifetimePoints={currentUser?.lifetimePoints ?? 0}
-                  />
-                ))}
-              </div>
-
-              {/* Spacing and Delivery disclaimer */}
-              <div className="flex items-center justify-center gap-3 mt-6">
-                <span className="text-zinc-300 text-[10px]">—</span>
-                <p className="text-[10px] text-zinc-400 text-center font-semibold" style={kf}>
-                  {kh
-                    ? "រង្វាន់ត្រូវបានប្រគល់ដោយគ្រូរបស់អ្នក · ទទួលបានតែម្តងក្នុងមួយធាតុ"
-                    : "Prizes delivered by your teacher · One claim per item"}
-                </p>
-                <span className="text-zinc-300 text-[10px]">—</span>
-              </div>
-            </div>
+            )}
           </>
         )}
       </div>

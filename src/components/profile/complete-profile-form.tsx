@@ -44,7 +44,7 @@ const GRADES = [
   { en: "Grade 12", kh: "ថ្នាក់ទី ១២" },
 ];
 
-export function CompleteProfileForm() {
+export function CompleteProfileForm({ mustRejoin = false }: { mustRejoin?: boolean }) {
   const { lang } = useLang();
   const kh = lang === "kh";
 
@@ -59,7 +59,7 @@ export function CompleteProfileForm() {
   const [head, setHead] = useState("Short 1.svg");
   const [isProfilePublic, setIsProfilePublic] = useState(false); // Default to Private (false)
   const [activeAvatarTab, setActiveAvatarTab] = useState<"head" | "face">("head");
-  
+
   const [loading, setLoading] = useState(false);
   const [prefillLoading, setPrefillLoading] = useState(true);
   const [error, setError] = useState("");
@@ -153,7 +153,7 @@ export function CompleteProfileForm() {
     }
     const usernameClean = username.trim().toLowerCase();
     if (!usernameClean || usernameClean.length < 3 || !/^[a-z0-9_]+$/.test(usernameClean)) {
-      setError(kh 
+      setError(kh
         ? "ឈ្មោះគណនីត្រូវតែមានយ៉ាងហោចណាស់ ៣ តួអក្សរ និងអាចប្រើបានតែអក្សរតូច លេខ និងសញ្ញាគូសក្រោម (_) ប៉ុណ្ណោះ។"
         : "Username must be at least 3 characters long and contain only lowercase letters, numbers, and underscores (_)."
       );
@@ -230,17 +230,23 @@ export function CompleteProfileForm() {
   return (
     <div className="min-h-screen dot-bg flex items-center justify-center px-4 py-16 select-none">
       <div className="w-full max-w-4xl animate-fade-in space-y-6">
-        
+
         {/* Official Header Banner */}
         <div className="bg-[#0284c7] text-white border-4 border-black p-6 shadow-[6px_6px_0_#000]" style={{ borderRadius: "0px" }}>
           <div className="flex items-center gap-4">
-            <span className="material-symbols-rounded text-yellow-400 text-3xl font-black">lock_open</span>
+            <span className="material-symbols-rounded text-yellow-400 text-3xl font-black">{mustRejoin ? "group_off" : "lock_open"}</span>
             <div className="space-y-0.5">
               <h2 className="text-xl md:text-2xl font-black uppercase font-stack-notch">
-                {kh ? "បង្កើតព័ត៌មានគណនីសិស្សថ្មី" : "Complete Student Profile Setup"}
+                {mustRejoin
+                  ? (kh ? "សូមចូលរួមថ្នាក់រៀនឡើងវិញ" : "Re-join a Classroom to Continue")
+                  : (kh ? "បង្កើតព័ត៌មានគណនីសិស្សថ្មី" : "Complete Student Profile Setup")}
               </h2>
               <p className="text-[10px] md:text-xs text-white/80 font-black uppercase tracking-wider font-mono">
-                {kh ? "សូមបំពេញព័ត៌មាន និងកំណត់រូបតំណាងខាងក្រោមមុននឹងប្រើប្រាស់ប្រព័ន្ធ" : "Please customize your character and complete details before using Kesararam"}
+                {mustRejoin
+                  ? (kh
+                    ? "អ្នកមិនមានថ្នាក់រៀននៅឡើយទេ។ សូមបញ្ចូលលេខកូដពីគ្រូ ដើម្បីបន្តប្រើប្រាស់គណនី និងលេងហ្គេម។"
+                    : "You are not in a class. Enter your teacher's class code to keep using your account and play.")
+                  : (kh ? "សូមបំពេញព័ត៌មាន និងកំណត់រូបតំណាងខាងក្រោមមុននឹងប្រើប្រាស់ប្រព័ន្ធ" : "Please customize your character and complete details before using Kesararam")}
               </p>
             </div>
           </div>
@@ -248,7 +254,7 @@ export function CompleteProfileForm() {
 
         {/* Content Panel Grid */}
         <div className="bg-white border-4 border-black p-6 md:p-8 shadow-[6px_6px_0_#000] grid grid-cols-1 lg:grid-cols-12 gap-8" style={{ borderRadius: "0px" }}>
-          
+
           {/* Left Column: Avatar Customizer (5 cols) */}
           <div className="lg:col-span-5 flex flex-col gap-5 border-2 lg:border-r-2 lg:border-b-0 lg:border-t-0 lg:border-l-0 border-black pr-0 lg:pr-6 pb-6 lg:pb-0">
             <div className="flex items-center gap-2 border-b-2 border-black pb-2">
@@ -276,9 +282,8 @@ export function CompleteProfileForm() {
               <button
                 type="button"
                 onClick={() => setActiveAvatarTab("head")}
-                className={`flex-1 py-2 font-black text-[11px] uppercase border-2 border-black transition-all ${
-                  activeAvatarTab === "head" ? "bg-yellow-400" : "bg-white hover:bg-gray-50"
-                }`}
+                className={`flex-1 py-2 font-black text-[11px] uppercase border-2 border-black transition-all ${activeAvatarTab === "head" ? "bg-yellow-400" : "bg-white hover:bg-gray-50"
+                  }`}
                 style={{ borderRadius: "0" }}
               >
                 {kh ? "សក់ / ក្បាល" : "Hair / Head"}
@@ -286,9 +291,8 @@ export function CompleteProfileForm() {
               <button
                 type="button"
                 onClick={() => setActiveAvatarTab("face")}
-                className={`flex-1 py-2 font-black text-[11px] uppercase border-2 border-black transition-all ${
-                  activeAvatarTab === "face" ? "bg-yellow-400" : "bg-white hover:bg-gray-50"
-                }`}
+                className={`flex-1 py-2 font-black text-[11px] uppercase border-2 border-black transition-all ${activeAvatarTab === "face" ? "bg-yellow-400" : "bg-white hover:bg-gray-50"
+                  }`}
                 style={{ borderRadius: "0" }}
               >
                 {kh ? "ទឹកមុខ" : "Face Expression"}
@@ -302,22 +306,20 @@ export function CompleteProfileForm() {
                 <button
                   type="button"
                   onClick={() => setAvatarItem("")}
-                  className={`w-full aspect-square border-2 font-black text-[9px] uppercase transition-all flex items-center justify-center ${
-                    selectedAvatarItem === "" ? "border-[#eab308] bg-yellow-100/50" : "border-zinc-200 bg-white"
-                  }`}
+                  className={`w-full aspect-square border-2 font-black text-[9px] uppercase transition-all flex items-center justify-center ${selectedAvatarItem === "" ? "border-[#eab308] bg-yellow-100/50" : "border-zinc-200 bg-white"
+                    }`}
                   style={{ borderRadius: "0" }}
                 >
                   {kh ? "គ្មាន" : "None"}
                 </button>
-                
+
                 {avatarItems.map((item) => (
                   <button
                     key={item}
                     type="button"
                     onClick={() => setAvatarItem(item)}
-                    className={`w-full aspect-square p-1 border-2 transition-all flex items-center justify-center bg-white ${
-                      selectedAvatarItem === item ? "border-[#eab308] bg-yellow-50" : "border-zinc-200 hover:border-black"
-                    }`}
+                    className={`w-full aspect-square p-1 border-2 transition-all flex items-center justify-center bg-white ${selectedAvatarItem === item ? "border-[#eab308] bg-yellow-50" : "border-zinc-200 hover:border-black"
+                      }`}
                     style={{ borderRadius: "0" }}
                   >
                     <img
@@ -334,7 +336,7 @@ export function CompleteProfileForm() {
           {/* Right Column: Onboarding Fields Form (7 cols) */}
           <div className="lg:col-span-7">
             <form onSubmit={handleSubmit} className="space-y-5" autoComplete="off">
-              
+
               <div className="flex items-center gap-2 border-b-2 border-black pb-2">
                 <User className="w-5 h-5 text-[#0284c7]" />
                 <h3 className="font-black text-black text-sm uppercase">
@@ -364,7 +366,7 @@ export function CompleteProfileForm() {
                   className="w-full px-4 py-2.5 border-2 border-black text-sm font-black focus:outline-none focus:shadow-[2px_2px_0_#0284c7] placeholder:text-zinc-300"
                   style={{ borderRadius: "0px" }}
                 />
-                
+
                 {lookupLoading && (
                   <div className="text-xs font-bold text-zinc-500 flex items-center gap-1.5 animate-pulse mt-1">
                     <Loader2 size={12} className="animate-spin text-[#0284c7]" />
@@ -391,7 +393,7 @@ export function CompleteProfileForm() {
                 <label className="text-sm font-black text-black">
                   {kh ? "ព័ត៌មានថ្នាក់ និងសាលារៀន (ស្វ័យប្រវត្ត)" : "Class & School Details (Auto-filled)"}
                 </label>
-                
+
                 {resolvedClass ? (
                   <div className="border-2 border-black bg-green-50 p-4 space-y-3 shadow-[3px_3px_0_#000]">
                     <div className="flex items-center gap-2 border-b border-green-200/50 pb-1.5 text-xs font-black text-green-800 uppercase">

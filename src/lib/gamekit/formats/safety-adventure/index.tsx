@@ -77,7 +77,7 @@ export const safetyAdventureFormat: GameFormat<AdventureRound, KitCompletionResu
     },
     config: { timed: false, secondsPerRound: 0, scoringMode: "equal", showStreakHud: true },
     fetchRounds: async () => {
-        const r = await fetch("/api/game/safety-adventure?count=3");
+        const r = await fetch("/api/game/safety-adventure?count=8");
         if (!r.ok) { const d = await r.json().catch(() => ({})); return { rounds: [], locked: d.locked ?? true, lockMessage: d.lockMessage }; }
         return r.json();
     },

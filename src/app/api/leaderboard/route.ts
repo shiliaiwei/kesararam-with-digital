@@ -150,7 +150,9 @@ export async function GET(req: NextRequest) {
         lifetimePoints: user.windowPoints,
         schoolName: (user.isSchoolPublic ?? true) ? user.schoolName : "Private / ឯកជន",
         province: (user.isProvincePublic ?? true) ? user.province : "Private / ឯកជន",
-        gradeLevel: (user.isGradePublic ?? true) ? user.gradeLevel : "Private / ឯកជន",
+        // Grade is an academic ranking field shown on the public leaderboard.
+        // Appearing here already requires public stats, so always show the real grade.
+        gradeLevel: user.gradeLevel,
         section: (user.isSectionPublic ?? true) ? user.section : "Private / ឯកជន",
       };
     });

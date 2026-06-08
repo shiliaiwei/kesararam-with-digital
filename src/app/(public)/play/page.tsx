@@ -415,6 +415,12 @@ export default function PlayPage() {
             router.push("/profile/student");
             return;
           }
+          // A student who no longer belongs to a class (e.g. removed/kicked by a
+          // teacher) must re-join via a class code before they can play.
+          if (d.role === "student" && d.hasClass === false) {
+            router.push("/profile/student");
+            return;
+          }
           // Auto-rejoin: if the student is already in an in-progress session
           // (lobby/active/paused), jump straight back in — no code re-entry.
           fetch("/api/game/my-session")

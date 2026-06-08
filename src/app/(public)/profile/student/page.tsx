@@ -85,6 +85,22 @@ export default async function StudentProfilePage() {
       return <CompleteProfileForm />;
     }
 
+    // Enforce class membership: a student who is not enrolled in any class
+    // (e.g. removed/kicked by a teacher, or never joined) must (re-)join with a
+    // class code before they can use their account to play.
+    try {
+      const enrollment = await db
+        .select({ id: classEnrollments.id })
+        .from(classEnrollments)
+        .where(eq(classEnrollments.studentId, session.id))
+        .limit(1);
+      if (!enrollment || enrollment.length === 0) {
+        return <CompleteProfileForm mustRejoin />;
+      }
+    } catch (err) {
+      console.error("Failed to verify class enrollment:", err);
+    }
+
     // Try to get stats separately - these columns might not exist yet
     try {
       const statsResult = await db

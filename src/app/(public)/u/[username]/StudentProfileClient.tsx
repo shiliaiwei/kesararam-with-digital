@@ -3,12 +3,11 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useLang } from "@/context/lang-context";
-import { RankBadge as TierBadge } from "@/components/shared/rank-label";
 import {
-  Trophy, Gift, ChevronLeft, Award, Star, CheckCircle2,
-  Gamepad2, ArrowRight, UserCheck, Share2, Lock,
-  MapPin, GraduationCap, Calendar, Check, Zap, Shield,
-  School,
+  Trophy, Gift, ChevronLeft, CheckCircle2,
+  Gamepad2, Star, Zap, Shield, Lock,
+  MapPin, GraduationCap, Calendar, ChevronDown,
+  School, Flame, Target, BookOpen, Award,
 } from "lucide-react";
 import { CautionTape, SignShape } from "@/components/brand/brand-kit";
 
@@ -37,9 +36,30 @@ export interface SerializableStudent {
   isStatsPublic?: boolean;
 }
 
+interface GameStat {
+  gameType: string;
+  points: number;
+  plays: number;
+}
+
 interface StudentProfileClientProps {
   student: SerializableStudent;
   rank: number;
+  gameStats?: GameStat[];
+}
+
+// Bilingual labels + brand color for each GameKit game type (matches ledger gameType).
+const GAME_LABELS: Record<string, { en: string; kh: string; color: string; Icon: React.ComponentType<any> }> = {
+  daily: { en: "Daily Challenge", kh: "បញ្ហាប្រចាំថ្ងៃ", color: "#eab308", Icon: Flame },
+  "priority-puzzle": { en: "Who Goes First?", kh: "តើអ្នកណាទៅមុន?", color: "#3b82f6", Icon: Target },
+  "sign-match": { en: "Sign Match", kh: "ផ្គូផ្គងសញ្ញា", color: "#22c55e", Icon: BookOpen },
+  "catch-sign": { en: "Catch the Sign", kh: "ចាប់សញ្ញា", color: "#f97316", Icon: Zap },
+  "light-hero": { en: "Traffic Light Hero", kh: "បញ្ញាបរភ្លើងសញ្ញា", color: "#ef4444", Icon: Trophy },
+  "safety-adventure": { en: "Road Safety Adventure", kh: "ដំណើរផ្សងព្រេងសុវត្ថិភាព", color: "#a855f7", Icon: Award },
+};
+
+function gameLabel(gameType: string) {
+  return GAME_LABELS[gameType] ?? { en: gameType, kh: gameType, color: "#71717a", Icon: Gamepad2 };
 }
 
 const REWARD_ITEMS = [
@@ -135,8 +155,7 @@ function Avatar({ url, name, size = 96, changedAt }: {
   );
 }
 
-// Sign-style stat card: semantic color strip (like a road sign) + iconed badge,
-// flat brutalist (solid black border, hard offset shadow). No gradients / neon.
+// Sign-style stat cell: semantic color strip + iconed badge, flat brutalist.
 function StatCard({ icon: Icon, label, value, kh, accent = "#eab308", iconFg = "text-black" }: {
   icon: React.ComponentType<any>; label: string; value: string | number;
   kh?: boolean; accent?: string; iconFg?: string;
@@ -158,20 +177,62 @@ function StatCard({ icon: Icon, label, value, kh, accent = "#eab308", iconFg = "
   );
 }
 
-export default function StudentProfileClient({ student, rank }: StudentProfileClientProps) {
+// Collapsible dropdown section (brutalist card with a clickable header).
+function Section({ id, title, icon: Icon, open, onToggle, kh, kf, count, children }: {
+  id: string; title: string; icon: React.ComponentType<any>;
+  open: boolean; onToggle: (id: string) => void; kh: boolean;
+  kf: React.CSSProperties; count?: number; children: React.ReactNode;
+}) {
+  return (
+    <div style={{ background: "#fff", border: "2px solid #000", boxShadow: "3px 3px 0 #000" }}>
+      <button
+        type="button"
+        onClick={() => onToggle(id)}
+        className="w-full flex items-center justify-between gap-2 text-left"
+        style={{ background: "#eab308", borderBottom: open ? "2px solid #000" : "none", padding: "10px 16px" }}
+      >
+        <span className="flex items-center gap-2">
+          <Icon size={15} className="text-black" />
+          <span className={`text-sm font-black uppercase tracking-wide text-black ${kh ? "font-google-sans" : ""}`} style={kf}>
+            {title}
+          </span>
+          {typeof count === "number" && (
+            <span className="text-[10px] font-black font-mono bg-black text-white px-2 py-0.5">{count}</span>
+          )}
+        </span>
+        <ChevronDown
+          size={18}
+          className="text-black flex-shrink-0 transition-transform"
+          style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
+          strokeWidth={2.5}
+        />
+      </button>
+      {open && <div>{children}</div>}
+    </div>
+  );
+}
+
+export default function StudentProfileClient({ student, rank, gameStats = [] }: StudentProfileClientProps) {
   const router = useRouter();
   const { lang } = useLang();
   const kh = lang === "kh";
   const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
 
-  const [activeTab, setActiveTab] = useState<"stats" | "about" | "rewards">("stats");
-  const [copied, setCopied] = useState(false);
   const [claimedItems, setClaimedItems] = useState<Array<{
     id: number; name: string; nameKh: string; cost: number; image: string; claimedAt: number;
   }>>([]);
 
+  // Collapsible section state (dropdowns). "info" (game info) open by default.
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({
+    info: true,
+    intro: false,
+    games: false,
+    rewards: false,
+  });
+  const toggleSection = (id: string) =>
+    setOpenSections((prev) => ({ ...prev, [id]: !prev[id] }));
+
   const isNamePublic = student.isNamePublic ?? true;
-  const isUsernamePublic = student.isUsernamePublic ?? true;
   const isSchoolPublic = student.isSchoolPublic ?? true;
   const isProvincePublic = student.isProvincePublic ?? true;
   const isGradePublic = student.isGradePublic ?? true;
@@ -206,19 +267,6 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
       setClaimedItems([]);
     }
   }, [student.claimedRewards]);
-
-  const handleShare = async () => {
-    const url = `${window.location.origin}/u/${student.username}`;
-    await navigator.clipboard.writeText(url);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
-  };
-
-  const tabs = [
-    { id: "stats" as const, label: kh ? "ស្ថិតិ" : "Statistics", icon: Trophy },
-    { id: "about" as const, label: kh ? "ព័ត៌មាន" : "About", icon: UserCheck },
-    { id: "rewards" as const, label: kh ? "រង្វាន់" : "Rewards", icon: Gift },
-  ];
 
   return (
     <div className="min-h-screen bg-[#f4f5f7]">
@@ -268,80 +316,14 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
               </div>
             </div>
 
-            {/* Name + badges */}
+            {/* Name only (no username, no role, no tier name, no rank badge) */}
             <div>
-              <h1 className={`text-xl font-black text-black leading-tight mb-0.5 ${kh ? "font-google-sans" : ""}`}>
+              <h1 className={`text-xl font-black text-black leading-tight ${kh ? "font-google-sans" : ""}`}>
                 {displayName}
               </h1>
-              <p className="text-sm text-gray-500 font-mono">
-                {isUsernamePublic ? `@${student.username}` : "@private"}
-              </p>
-              <div className="flex flex-wrap items-center gap-2 mt-2">
-                <TierBadge lifetimePoints={student.lifetimePoints} size="sm" lang={lang} />
-                <span
-                  className={`inline-flex items-center gap-1 text-[11px] font-black uppercase tracking-wide px-2 py-0.5 border-2 border-black ${kh ? "font-google-sans" : ""}`}
-                  style={{ background: "#eab308", color: "#000" }}
-                >
-                  <GraduationCap size={11} />
-                  {kh ? "សិស្ស" : "Student"}
-                </span>
-                {isStatsPublic && (
-                  <span className="inline-flex items-center gap-1 text-[11px] font-black font-mono px-2 py-0.5 border-2 border-black"
-                    style={{ background: "#000", color: "#eab308" }}>
-                    <Trophy size={11} />
-                    #{rank}
-                  </span>
-                )}
-              </div>
             </div>
           </div>
-
-          {/* Action buttons */}
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <button
-              onClick={handleShare}
-              className={`flex items-center gap-1.5 px-4 py-2 text-sm font-black uppercase ${kh ? "font-google-sans" : ""}`}
-              style={{ background: "#eab308", border: "2px solid #000", boxShadow: "3px 3px 0 #000", color: "#000" }}
-            >
-              {copied ? <Check size={14} /> : <Share2 size={14} />}
-              {copied ? (kh ? "បានចម្លង!" : "Copied!") : (kh ? "ចែករំលែក" : "Share")}
-            </button>
-            <button
-              onClick={() => router.push("/leaderboard")}
-              className={`flex items-center gap-1.5 px-4 py-2 text-sm font-black uppercase ${kh ? "font-google-sans" : ""}`}
-              style={{ background: "#fff", border: "2px solid #000", boxShadow: "3px 3px 0 #000", color: "#000" }}
-            >
-              <Award size={14} />
-              {kh ? "តារាងពិន្ទុ" : "Rank"}
-            </button>
-          </div>
         </div>
-
-        {/* Tabs */}
-        {student.isProfilePublic !== false && (
-          <div style={{ borderTop: "2px solid #000", display: "flex", overflowX: "auto" }}>
-            {tabs.map((tab) => {
-              const Icon = tab.icon;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-1.5 px-5 py-2.5 text-xs font-black uppercase tracking-wide whitespace-nowrap flex-shrink-0 ${kh ? "font-google-sans" : ""}`}
-                  style={{
-                    borderBottom: activeTab === tab.id ? "3px solid #eab308" : "3px solid transparent",
-                    background: activeTab === tab.id ? "#fffbeb" : "transparent",
-                    color: activeTab === tab.id ? "#000" : "#6b7280",
-                    borderRight: "1px solid rgba(0,0,0,0.08)",
-                    cursor: "pointer",
-                  }}
-                >
-                  <Icon size={13} />
-                  {tab.label}
-                </button>
-              );
-            })}
-          </div>
-        )}
       </div>
 
       {/* ── Private profile ────────────────────────────────────────────────── */}
@@ -361,33 +343,41 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                 ? "សិស្សនេះបានកំណត់ព័ត៌មានរបស់ពួកគេជាឯកជន។"
                 : "This student has set their profile to private."}
             </p>
-            <button
-              onClick={() => router.push("/play")}
-              className={`mt-6 inline-flex items-center gap-2 px-6 py-2.5 text-sm font-black uppercase ${kh ? "font-google-sans" : ""}`}
-              style={{ background: "#eab308", color: "#000", border: "2px solid #000", boxShadow: "3px 3px 0 #000" }}
-            >
-              <Zap size={14} />
-              {kh ? "ចូលរួមប្រកួតប្រជែង" : "Join Quiz Competition"}
-            </button>
           </div>
         </div>
 
       ) : (
 
-        /* ── Main Content ─────────────────────────────────────────────────── */
-        <div className="max-w-5xl mx-auto px-4 py-5">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        /* ── Main Content — single "Stats" view with dropdown sections ─────── */
+        <div className="max-w-2xl mx-auto px-4 py-5 space-y-4">
 
-            {/* ── Left Sidebar ──────────────────────────────────────────── */}
-            <div className="lg:col-span-4 space-y-4">
-
-              {/* Intro card */}
-              <div style={{ background: "#fff", border: "2px solid #000", boxShadow: "3px 3px 0 #000" }}>
-                <div style={{ background: "#eab308", borderBottom: "2px solid #000", padding: "6px 16px" }}>
-                  <span className={`text-[11px] font-black uppercase tracking-widest ${kh ? "font-google-sans" : ""}`} style={kf}>
-                    {kh ? "ប្រវត្តិ" : "Intro"}
-                  </span>
+          {!isStatsPublic ? (
+            <div style={{ background: "#fff", border: "2px solid #000", boxShadow: "3px 3px 0 #000", padding: "48px" }} className="text-center">
+              <Shield size={28} className="text-gray-200 mx-auto mb-3" />
+              <p className={`font-black text-gray-400 ${kh ? "font-google-sans" : ""}`} style={kf}>
+                {kh ? "ស្ថិតិត្រូវបានរក្សាការសម្ងាត់" : "Stats are private"}
+              </p>
+            </div>
+          ) : (
+            <>
+              {/* Game Info — shown by default */}
+              <Section
+                id="info" title={kh ? "ព័ត៌មានហ្គេម" : "Game Info"} icon={Trophy}
+                open={openSections.info} onToggle={toggleSection} kh={kh} kf={kf}
+              >
+                <div className="p-4 grid grid-cols-2 gap-3">
+                  <StatCard icon={Trophy} kh={kh} accent="#eab308" iconFg="text-black" label={kh ? "ចំណាត់ថ្នាក់" : "Leaderboard Rank"} value={`#${rank}`} />
+                  <StatCard icon={Gamepad2} kh={kh} accent="#3b82f6" iconFg="text-white" label={kh ? "ហ្គេមបានលេង" : "Games Played"} value={student.totalGamesPlayed.toLocaleString()} />
+                  <StatCard icon={Star} kh={kh} accent="#22c55e" iconFg="text-black" label={kh ? "ពិន្ទុខ្ពស់" : "Highest Score"} value={student.highestScore.toLocaleString()} />
+                  <StatCard icon={Zap} kh={kh} accent="#f97316" iconFg="text-black" label={kh ? "ពិន្ទុសរុប" : "Total Points"} value={student.lifetimePoints.toLocaleString()} />
                 </div>
+              </Section>
+
+              {/* Intro — studies at, grade, room, city, joined */}
+              <Section
+                id="intro" title={kh ? "ប្រវត្តិ" : "Intro"} icon={GraduationCap}
+                open={openSections.intro} onToggle={toggleSection} kh={kh} kf={kf}
+              >
                 <div className="p-4 space-y-3 text-sm">
                   {isSchoolPublic && student.schoolName && (
                     <div className="flex items-start gap-2.5 text-gray-800">
@@ -421,171 +411,99 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
                     </span>
                   </div>
                 </div>
-              </div>
+              </Section>
 
-              {/* Student ID card */}
-              <div style={{ background: "#fff", border: "2px solid #000", boxShadow: "3px 3px 0 #000", padding: "16px" }}>
-                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest font-mono mb-3">
-                  {kh ? "លេខសម្គាល់សិស្ស" : "Student ID"}
-                </p>
-                <div style={{ background: "#0284c7", border: "2px solid #000", padding: "16px", position: "relative", overflow: "hidden" }}>
-                  <div className="flex items-center justify-between mb-3 relative z-10">
-                    <span className="text-[10px] text-white/70 font-mono uppercase tracking-wider">Official</span>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/brand/kwd-black_nobackground.png" alt="KWD" className="h-5 brightness-0 invert opacity-80" />
-                  </div>
-                  <div className="text-2xl font-black text-white font-mono tracking-widest relative z-10">
-                    KWD-{student.id.toString().padStart(4, "0")}
-                  </div>
-                  <div className="flex items-center gap-1.5 mt-2 relative z-10">
-                    <div className="w-2 h-2 bg-emerald-400 border border-black" />
-                    <span className="text-[10px] text-white/70 font-mono uppercase tracking-wider">
-                      {kh ? "សិស្សសកម្ម" : "Active Student"}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Current Tier */}
-              {isStatsPublic && (
-                <div style={{ background: "#fff", border: "2px solid #000", boxShadow: "3px 3px 0 #000", padding: "20px" }} className="text-center">
-                  <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest font-mono mb-4" style={kf}>
-                    {kh ? "កម្រិតបច្ចុប្បន្ន" : "Current Tier"}
-                  </p>
-                  <div className="flex justify-center mb-3">
-                    <TierBadge lifetimePoints={student.lifetimePoints} size="md" lang={lang} />
-                  </div>
-                  <p className="text-sm font-black font-mono text-black">
-                    {student.lifetimePoints.toLocaleString()} PTS
-                  </p>
-                </div>
-              )}
-            </div>
-
-            {/* ── Right Main Content ─────────────────────────────────────── */}
-            <div className="lg:col-span-8 space-y-4">
-
-              {/* STATS tab */}
-              {activeTab === "stats" && (
-                !isStatsPublic ? (
-                  <div style={{ background: "#fff", border: "2px solid #000", boxShadow: "3px 3px 0 #000", padding: "48px" }} className="text-center">
-                    <Shield size={28} className="text-gray-200 mx-auto mb-3" />
-                    <p className={`font-black text-gray-400 ${kh ? "font-google-sans" : ""}`} style={kf}>
-                      {kh ? "ស្ថិតិត្រូវបានរក្សាការសម្ងាត់" : "Stats are private"}
+              {/* Game Modes — per-mode score breakdown */}
+              <Section
+                id="games" title={kh ? "ពិន្ទុតាមរបៀបលេង" : "Game Mode Scores"} icon={Gamepad2}
+                open={openSections.games} onToggle={toggleSection} kh={kh} kf={kf}
+                count={gameStats.length}
+              >
+                {gameStats.length === 0 ? (
+                  <div className="p-10 text-center">
+                    <Gamepad2 size={28} className="text-gray-200 mx-auto mb-3" />
+                    <p className={`text-sm font-bold text-gray-400 ${kh ? "font-google-sans" : ""}`} style={kf}>
+                      {kh ? "មិនទាន់មានពិន្ទុតាមរបៀបលេង" : "No game-mode scores yet"}
                     </p>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-2 gap-3">
-                    <StatCard icon={Trophy} kh={kh} accent="#eab308" iconFg="text-black" label={kh ? "ចំណាត់ថ្នាក់" : "Leaderboard Rank"} value={`#${rank}`} />
-                    <StatCard icon={Gamepad2} kh={kh} accent="#3b82f6" iconFg="text-white" label={kh ? "ហ្គេមបានលេង" : "Games Played"} value={student.totalGamesPlayed.toLocaleString()} />
-                    <StatCard icon={Star} kh={kh} accent="#22c55e" iconFg="text-black" label={kh ? "ពិន្ទុខ្ពស់" : "Highest Score"} value={student.highestScore.toLocaleString()} />
-                    <StatCard icon={Zap} kh={kh} accent="#f97316" iconFg="text-black" label={kh ? "ពិន្ទុសរុប" : "Total Points"} value={student.lifetimePoints.toLocaleString()} />
-                  </div>
-                )
-              )}
-
-              {/* ABOUT tab */}
-              {activeTab === "about" && (
-                <div style={{ background: "#fff", border: "2px solid #000", boxShadow: "3px 3px 0 #000" }}>
-                  <div style={{ background: "#eab308", borderBottom: "2px solid #000", padding: "8px 16px" }} className="flex items-center gap-2">
-                    <UserCheck size={15} className="text-black" />
-                    <h3 className={`text-sm font-black uppercase tracking-wide text-black ${kh ? "font-google-sans" : ""}`} style={kf}>
-                      {kh ? "ព័ត៌មានផ្ទាល់ខ្លួន" : "Student Information"}
-                    </h3>
-                  </div>
-                  <dl className="divide-y divide-gray-100">
-                    {([
-                      { label: kh ? "ឈ្មោះ" : "Name", value: isNamePublic ? (student.displayName || student.username) : "Private", priv: !isNamePublic },
-                      { label: kh ? "ឈ្មោះគណនី" : "Username", value: isUsernamePublic ? `@${student.username}` : "@private", priv: !isUsernamePublic, mono: true },
-                      { label: kh ? "តួនាទី" : "Role", value: kh ? "សិស្សសាលា" : "Student", priv: false },
-                      { label: kh ? "សាលារៀន" : "School", value: isSchoolPublic ? (student.schoolName || "—") : "Private", priv: !isSchoolPublic },
-                      {
-                        label: kh ? "ថ្នាក់" : "Grade", value: isGradePublic
-                          ? `${kh ? gradeKh : getBilingualGrade(student.gradeLevel)}${isSectionPublic && student.section ? `, ${kh ? "ថ្នាក់" : "Room"} ${student.section}` : ""}`
-                          : "Private", priv: !isGradePublic
-                      },
-                      { label: kh ? "ខេត្ត" : "Province", value: isProvincePublic ? getBilingualProvince(student.province) : "Private", priv: !isProvincePublic },
-                      { label: kh ? "ពិន្ទុ" : "Points", value: isStatsPublic ? `${student.lifetimePoints.toLocaleString()} PTS` : "Private", priv: !isStatsPublic, mono: true, accent: true },
-                      { label: kh ? "ចូលរួម" : "Joined", value: kh ? `ឆ្នាំ ${joinedYear}` : `${joinedYear}`, priv: false },
-                    ] as { label: string; value: string; priv: boolean; mono?: boolean; accent?: boolean }[]).map(({ label, value, priv, mono, accent }) => (
-                      <div key={label} className="flex items-start gap-3 px-5 py-3.5">
-                        <dt className="text-[11px] font-bold text-gray-400 uppercase tracking-wide w-24 flex-shrink-0 mt-0.5" style={kf}>{label}</dt>
-                        <dd className={`flex-1 text-sm font-bold ${priv ? "text-gray-400 italic" : accent ? "text-emerald-600 font-mono" : mono ? "text-gray-700 font-mono" : "text-gray-900"
-                          } ${kh && !mono && !accent ? "font-google-sans" : ""}`} style={kh && !mono && !accent ? kf : {}}>
-                          {value || "—"}
-                        </dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
-              )}
-
-              {/* REWARDS tab */}
-              {activeTab === "rewards" && (
-                <div style={{ background: "#fff", border: "2px solid #000", boxShadow: "3px 3px 0 #000" }}>
-                  <div style={{ background: "#eab308", borderBottom: "2px solid #000", padding: "8px 16px" }} className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <Gift size={15} className="text-black" />
-                      <h3 className={`text-sm font-black uppercase tracking-wide text-black ${kh ? "font-google-sans" : ""}`} style={kf}>
-                        {kh ? "ប្រវត្តិនៃការប្តូររង្វាន់" : "Claimed Rewards"}
-                      </h3>
-                    </div>
-                    <span className="text-[10px] font-black font-mono bg-black text-white px-2 py-0.5">
-                      {claimedItems.length}
-                    </span>
-                  </div>
-
-                  {!isStatsPublic ? (
-                    <div className="p-10 text-center">
-                      <Shield size={24} className="text-gray-200 mx-auto mb-3" />
-                      <p className={`font-black text-gray-400 text-sm ${kh ? "font-google-sans" : ""}`} style={kf}>{kh ? "ឯកជន" : "Private"}</p>
-                    </div>
-                  ) : claimedItems.length === 0 ? (
-                    <div className="p-10 text-center">
-                      <Gift size={28} className="text-gray-200 mx-auto mb-3" />
-                      <p className={`text-sm font-bold text-gray-400 ${kh ? "font-google-sans" : ""}`} style={kf}>
-                        {kh ? "មិនទាន់មានការប្តូររង្វាន់" : "No rewards claimed yet"}
-                      </p>
-                    </div>
-                  ) : (
-                    <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {claimedItems.map((item, idx) => (
-                        <div
-                          key={idx}
-                          className="flex items-center gap-3 p-3 bg-gray-50"
-                          style={{ border: "2px solid #000", boxShadow: "2px 2px 0 #000" }}
-                        >
-                          <div className="w-12 h-12 bg-white flex items-center justify-center flex-shrink-0"
-                            style={{ border: "2px solid #000" }}>
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={item.image} alt={item.name} className="w-8 h-8 object-contain" />
+                  <div className="divide-y-2 divide-gray-100">
+                    {gameStats.map((g) => {
+                      const meta = gameLabel(g.gameType);
+                      const Icon = meta.Icon;
+                      return (
+                        <div key={g.gameType} className="flex items-center gap-3 px-5 py-3">
+                          <div className="p-2 border-2 border-black flex-shrink-0" style={{ background: meta.color }}>
+                            <Icon size={16} className="text-black" strokeWidth={2.5} />
                           </div>
                           <div className="flex-1 min-w-0">
                             <p className={`text-sm font-black text-black truncate ${kh ? "font-google-sans" : ""}`} style={kf}>
-                              {kh ? item.nameKh : item.name}
+                              {kh ? meta.kh : meta.en}
                             </p>
-                            <p className="text-xs text-gray-500 font-mono font-bold">{item.cost} PTS</p>
-                            <div className="flex items-center gap-1 mt-1">
-                              <CheckCircle2 size={10} className="text-green-600" />
-                              <span className={`text-[10px] text-green-700 font-black uppercase ${kh ? "font-google-sans" : ""}`} style={kf}>
-                                {kh ? "បានប្តូរ" : "Claimed"}
+                            <p className="text-[11px] text-gray-500 font-bold uppercase tracking-wide" style={kf}>
+                              {g.plays.toLocaleString()} {kh ? "ដង" : g.plays === 1 ? "play" : "plays"}
+                            </p>
+                          </div>
+                          <span className="text-base font-black font-mono tabular-nums text-black flex-shrink-0">
+                            {g.points.toLocaleString()} <span className="text-[11px] text-gray-400">PTS</span>
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </Section>
+
+              {/* Items Claimed */}
+              <Section
+                id="rewards" title={kh ? "រង្វាន់ដែលបានប្តូរ" : "Items Claimed"} icon={Gift}
+                open={openSections.rewards} onToggle={toggleSection} kh={kh} kf={kf}
+                count={claimedItems.length}
+              >
+                {claimedItems.length === 0 ? (
+                  <div className="p-10 text-center">
+                    <Gift size={28} className="text-gray-200 mx-auto mb-3" />
+                    <p className={`text-sm font-bold text-gray-400 ${kh ? "font-google-sans" : ""}`} style={kf}>
+                      {kh ? "មិនទាន់មានការប្តូររង្វាន់" : "No rewards claimed yet"}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {claimedItems.map((item, idx) => (
+                      <div
+                        key={idx}
+                        className="flex items-center gap-3 p-3 bg-gray-50"
+                        style={{ border: "2px solid #000", boxShadow: "2px 2px 0 #000" }}
+                      >
+                        <div className="w-12 h-12 bg-white flex items-center justify-center flex-shrink-0"
+                          style={{ border: "2px solid #000" }}>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={item.image} alt={item.name} className="w-8 h-8 object-contain" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className={`text-sm font-black text-black truncate ${kh ? "font-google-sans" : ""}`} style={kf}>
+                            {kh ? item.nameKh : item.name}
+                          </p>
+                          <p className="text-xs text-gray-500 font-mono font-bold">{item.cost} PTS</p>
+                          <div className="flex items-center gap-1 mt-1">
+                            <CheckCircle2 size={10} className="text-green-600" />
+                            <span className={`text-[10px] text-green-700 font-black uppercase ${kh ? "font-google-sans" : ""}`} style={kf}>
+                              {kh ? "បានប្តូរ" : "Claimed"}
+                            </span>
+                            {item.claimedAt && (
+                              <span className="text-[10px] text-gray-400 font-mono ml-1">
+                                · {new Date(item.claimedAt).toLocaleDateString()}
                               </span>
-                              {item.claimedAt && (
-                                <span className="text-[10px] text-gray-400 font-mono ml-1">
-                                  · {new Date(item.claimedAt).toLocaleDateString()}
-                                </span>
-                              )}
-                            </div>
+                            )}
                           </div>
                         </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-
-            </div>
-          </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </Section>
+            </>
+          )}
         </div>
       )}
 
@@ -596,17 +514,9 @@ export default function StudentProfileClient({ student, rank }: StudentProfileCl
 
       {/* ── Footer ─────────────────────────────────────────────────────────── */}
       <footer className="mt-10 pb-10 text-center px-4">
-        <p className="text-xs text-gray-400 font-mono mb-4">
+        <p className="text-xs text-gray-400 font-mono">
           Kesararam with Digital © 2026 · kesararamwithdigital.tech
         </p>
-        <button
-          onClick={() => router.push("/play")}
-          className={`inline-flex items-center gap-2 px-6 py-2.5 text-sm font-black uppercase ${kh ? "font-google-sans" : ""}`}
-          style={{ background: "#eab308", color: "#000", border: "2px solid #000", boxShadow: "3px 3px 0 #000" }}
-        >
-          {kh ? "ចូលរួមប្រកួតប្រជែង" : "Join Quiz Competition"}
-          <ArrowRight size={14} />
-        </button>
       </footer>
 
     </div>

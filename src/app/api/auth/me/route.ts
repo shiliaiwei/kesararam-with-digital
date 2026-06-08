@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { users } from "@/db/schema/users";
+import { users, classEnrollments } from "@/db/schema/users";
 import { eq } from "drizzle-orm";
 
 export async function GET() {
@@ -35,5 +35,17 @@ export async function GET() {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 
-  return NextResponse.json(user);
+  // For students, report whether they currently belong to a class. A student
+  // who was kicked/removed has no enrollment and must re-join before playing.
+  let hasClass = true;
+  if (user.role === "student") {
+    const enrollment = await db
+      .select({ id: classEnrollments.id })
+      .from(classEnrollments)
+      .where(eq(classEnrollments.studentId, user.id))
+      .limit(1);
+    hasClass = enrollment.length > 0;
+  }
+
+  return NextResponse.json({ ...user, hasClass });
 }

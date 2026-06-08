@@ -7,6 +7,8 @@ import type { GameFormat, RoundViewProps, KitCompletionResult } from "@/lib/game
 interface LightHeroRound {
     kind: "light-hero";
     light: "green" | "red" | "yellow";
+    scenarioEn?: string;
+    scenarioKm?: string;
 }
 
 const ACTIONS = [
@@ -45,6 +47,13 @@ function LightHeroView({ round, lang, onRoundComplete }: RoundViewProps<LightHer
             <div className="text-center text-sm font-black text-zinc-300" style={khFont}>
                 {kh ? "តើអ្នកគួរធ្វើអ្វី?" : "What should you do?"}
             </div>
+            {/* Scenario context */}
+            {(round.scenarioEn || round.scenarioKm) && (
+                <div className="bg-zinc-900 border-2 border-black px-4 py-3 text-center text-white font-bold w-full"
+                    style={{ fontSize: "clamp(0.9rem,3.2vw,1.1rem)", ...khFont }}>
+                    {kh ? (round.scenarioKm || round.scenarioEn) : round.scenarioEn}
+                </div>
+            )}
             {/* Traffic light */}
             <div className="border-4 border-black bg-zinc-900 p-3 flex flex-col gap-2.5" style={{ boxShadow: "5px 5px 0 #000" }}>
                 {(["red", "yellow", "green"] as const).map((c) => (
@@ -96,7 +105,7 @@ export const lightHeroFormat: GameFormat<LightHeroRound, KitCompletionResult> = 
     },
     config: { timed: false, secondsPerRound: 0, scoringMode: "speed", showStreakHud: true },
     fetchRounds: async () => {
-        const r = await fetch("/api/game/light-hero?count=8");
+        const r = await fetch("/api/game/light-hero?count=9");
         if (!r.ok) { const d = await r.json().catch(() => ({})); return { rounds: [], locked: d.locked, lockMessage: d.lockMessage }; }
         return r.json();
     },

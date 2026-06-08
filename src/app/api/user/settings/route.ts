@@ -87,11 +87,29 @@ export async function PUT(request: NextRequest) {
     const body = await request.json();
     const { displayName, username, email, avatar, audioMuted, schoolName, province, gradeLevel, section, isProfilePublic, isNamePublic, isUsernamePublic, isSchoolPublic, isProvincePublic, isGradePublic, isSectionPublic, isStatsPublic, inviteCode } = body;
 
-    // Check if this is an onboarding student (missing school details)
-    const isOnboarding = session.role === "student" && (!currentUser.schoolName || !currentUser.province || !currentUser.gradeLevel);
+    // Determine if the student currently belongs to any class. A student with no
+    // enrollment (never joined, or removed/kicked by a teacher) must (re-)join
+    // with a class/invite code — treated as onboarding so they can submit a code
+    // even if their school/province/grade are already filled in.
+    let studentHasClass = true;
+    if (session.role === "student") {
+      const enrollment = await db
+        .select({ id: classEnrollments.id })
+        .from(classEnrollments)
+        .where(eq(classEnrollments.studentId, session.id))
+        .limit(1);
+      studentHasClass = enrollment.length > 0;
+    }
+
+    // Check if this is an onboarding student (missing school details) OR a student
+    // who must (re-)join a class and is submitting an invite/class code.
+    const isOnboarding =
+      session.role === "student" &&
+      ((!currentUser.schoolName || !currentUser.province || !currentUser.gradeLevel) ||
+        (!studentHasClass && !!(inviteCode || body.inviteCode)));
 
     // Detect if this is a privacy-only update (safe, no 60-day restriction)
-    const PRIVACY_FIELDS = new Set(['isProfilePublic','isNamePublic','isUsernamePublic','isSchoolPublic','isProvincePublic','isGradePublic','isSectionPublic','isStatsPublic']);
+    const PRIVACY_FIELDS = new Set(['isProfilePublic', 'isNamePublic', 'isUsernamePublic', 'isSchoolPublic', 'isProvincePublic', 'isGradePublic', 'isSectionPublic', 'isStatsPublic']);
     const isPurePrivacyUpdate = Object.keys(body).every(k => PRIVACY_FIELDS.has(k));
 
     // 1. 60-Day Cooldown Gate — only for sensitive field changes, not privacy toggles
@@ -312,7 +330,7 @@ export async function PUT(request: NextRequest) {
           .where(eq(inviteCodes.code, trimmedCode));
       }
 
-      return NextResponse.json({ 
+      return NextResponse.json({
         success: true,
         user: {
           displayName: updatedUser.displayName,
@@ -342,7 +360,7 @@ export async function PUT(request: NextRequest) {
       .where(eq(users.id, session.id))
       .returning();
 
-    return NextResponse.json({ 
+    return NextResponse.json({
       success: true,
       user: {
         displayName: updatedUser.displayName,
