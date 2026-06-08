@@ -500,18 +500,20 @@ export default function HostPage() {
 
   // ── Question countdown timer (host-driven auto-reveal) ──────────────────────
   // Drives the water-fill bar and, when it reaches 0, plays an alert and
-  // auto-reveals the correct answer to every screen via control("reveal").
+  // auto-reveals the correct answer to every screen by hitting the reveal
+  // endpoint directly (independent of the `controlling` guard so it can't be
+  // blocked by an in-flight control call).
   const [qFillPct, setQFillPct] = useState(0); // 0 → 100 as time elapses
   const timeUpFiredRef = useRef(false);
   const activeEndsAt = phase.name === "active" ? phase.endsAt : undefined;
-  const activeStartMsRef = useRef<number | null>(null);
+  const activeCodeRef = useRef(activeCode);
+  activeCodeRef.current = activeCode;
 
   useEffect(() => {
     // reset whenever a new question starts
     timeUpFiredRef.current = false;
     setQFillPct(0);
     if (phase.name !== "active" || !activeEndsAt) {
-      activeStartMsRef.current = null;
       return;
     }
     const endMs = new Date(activeEndsAt).getTime();
@@ -519,7 +521,18 @@ export default function HostPage() {
     // depending on timePerQuestion and keeps the bar aligned to the real deadline.
     const startMs = Date.now();
     const totalMs = Math.max(1000, endMs - startMs);
-    activeStartMsRef.current = startMs;
+
+    async function autoReveal() {
+      const c = activeCodeRef.current;
+      if (!c) return;
+      try {
+        await fetch(`/api/game/sessions/${c}/control`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "reveal" }),
+        });
+      } catch { /* network — will retry on next tick if still active */ }
+    }
 
     const tick = () => {
       const now = Date.now();
@@ -529,8 +542,7 @@ export default function HostPage() {
       if (now >= endMs && !timeUpFiredRef.current) {
         timeUpFiredRef.current = true;
         try { sounds.question_end(); } catch { }
-        // auto-reveal the correct answer to all screens
-        control("reveal");
+        autoReveal();
       }
     };
     tick();
@@ -1516,13 +1528,13 @@ export default function HostPage() {
             </button>
 
             <button
-              onClick={() => control(isActive ? "reveal" : "advance")}
+              onClick={() => control("advance")}
               disabled={controlling}
               className="flex items-center gap-2 px-5 py-2 border-2 border-black bg-green-400 text-black font-black text-sm shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-40"
               style={{ borderRadius: "0px" }}
             >
               {controlling ? <Loader2 size={15} className="animate-spin" /> : <SkipForward size={15} />}
-              {isActive ? (kh ? "បន្ទាប់" : "Next") : (kh ? "សំណួរបន្ទាប់" : "Next Q")}
+              {kh ? "សំណួរបន្ទាប់" : "Next Q"}
             </button>
           </div>
         </div>

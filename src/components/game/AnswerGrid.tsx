@@ -211,7 +211,7 @@ export function AnswerGrid({
               {cfg.label}
             </span>
 
-            {/* Answer text — smaller, centered, wraps cleanly (no mid-word cut) */}
+            {/* Answer text — smaller, left-aligned, wraps cleanly (no mid-word cut) */}
             <span style={{
               color: isOtherWrong ? "#71717a" : "#ffffff",
               // Correct answer is bold; wrong answers are greyed.
@@ -219,7 +219,7 @@ export function AnswerGrid({
               fontSize: "clamp(11px, 3vw, 14px)",
               lineHeight: 1.3,
               flex: 1,
-              textAlign: "center",
+              textAlign: "left",
               whiteSpace: "normal",
               overflowWrap: "break-word",
               wordBreak: "normal",
@@ -227,9 +227,6 @@ export function AnswerGrid({
             }}>
               {text}
             </span>
-
-            {/* keep layout balanced with an invisible spacer matching the label */}
-            <span aria-hidden style={{ width: "20px", flexShrink: 0 }} />
           </button>
         );
       })}

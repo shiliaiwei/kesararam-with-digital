@@ -505,7 +505,7 @@ export default function StudentGamePage() {
     const diffColor = DIFF_COLORS[sessionInfo?.difficulty ?? "mixed"] ?? "#a855f7";
 
     return (
-      <div className="min-h-screen flex flex-col relative overflow-hidden animate-fade-in"
+      <div className="h-screen flex flex-col relative overflow-hidden animate-fade-in"
         style={{
           backgroundColor: "#0d0d10",
           backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)",
@@ -683,7 +683,7 @@ export default function StudentGamePage() {
             </div>
 
             {participants.length > 0 ? (
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 w-full max-h-48 overflow-y-auto no-scrollbar">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 w-full">
                 {participants.map((p) => {
                   const isMe = p.userId === currentUserId;
                   return (
