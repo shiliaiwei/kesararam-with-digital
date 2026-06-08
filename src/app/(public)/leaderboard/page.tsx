@@ -1075,7 +1075,7 @@ export default function LeaderboardPage() {
             }
           });
           setCurrentUser(d);
-          setUserPoints(activePoints);
+          setUserPoints(Math.max(0, activePoints));
         }
       })
       .catch(() => { });
@@ -1088,7 +1088,6 @@ export default function LeaderboardPage() {
   }, []);
 
   const top3 = leaderboard.slice(0, 3);
-  const rest = leaderboard.slice(3);
 
   // Claim click handler — Database claim and Local Points deduction
   const handleClaimItem = async (item: typeof REWARD_ITEMS[number]) => {
@@ -1168,15 +1167,15 @@ export default function LeaderboardPage() {
           <>
             {/* Podium - only show if there are ranked users */}
             {top3.length > 0 && (
-            <div className="grid grid-cols-3 items-end gap-2 md:gap-6 w-full">
-              {[
-                { cfg: PODIUM_CFG[0], user: top3[1] },
-                { cfg: PODIUM_CFG[1], user: top3[0] },
-                { cfg: PODIUM_CFG[2], user: top3[2] },
-              ].map(({ cfg, user }, i) => (
-                <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} currentUser={currentUser} onSelect={handleSelectUser} />
-              ))}
-            </div>
+              <div className="grid grid-cols-3 items-end gap-2 md:gap-6 w-full">
+                {[
+                  { cfg: PODIUM_CFG[0], user: top3[1] },
+                  { cfg: PODIUM_CFG[1], user: top3[0] },
+                  { cfg: PODIUM_CFG[2], user: top3[2] },
+                ].map(({ cfg, user }, i) => (
+                  <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} currentUser={currentUser} onSelect={handleSelectUser} />
+                ))}
+              </div>
             )}
 
             {/* Rankings Table */}
@@ -1247,7 +1246,7 @@ export default function LeaderboardPage() {
                   <span className="col-span-4 sm:col-span-2 text-right">Points</span>
                 </div>
 
-                {rest.length > 0 ? rest.map((user) => {
+                {leaderboard.length > 0 ? leaderboard.map((user) => {
                   const prev = prevRanks[user.id];
                   const moved = prev !== undefined ? prev - user.rank : 0;
                   const tier = getRank(user.lifetimePoints);

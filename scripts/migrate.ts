@@ -11,7 +11,7 @@ const sql = neon(dbUrl);
 async function migrate() {
   try {
     console.log("Running migration: add_user_game_stats.sql");
-    
+
     // Run each statement separately
     await sql`
       ALTER TABLE users 
@@ -19,7 +19,7 @@ async function migrate() {
       ADD COLUMN IF NOT EXISTS total_games_played INTEGER DEFAULT 0 NOT NULL,
       ADD COLUMN IF NOT EXISTS lifetime_points INTEGER DEFAULT 0 NOT NULL
     `;
-    
+
     await sql`CREATE INDEX IF NOT EXISTS users_highest_score_idx ON users(highest_score DESC)`;
     await sql`CREATE INDEX IF NOT EXISTS users_lifetime_points_idx ON users(lifetime_points DESC)`;
 
@@ -65,7 +65,7 @@ async function migrate() {
         created_at TIMESTAMP DEFAULT now() NOT NULL
       )
     `;
-    
+
     console.log("Running migration: add_username_changed_at");
     await sql`
       ALTER TABLE users 
@@ -102,7 +102,19 @@ async function migrate() {
       ALTER COLUMN is_section_public SET DEFAULT false,
       ALTER COLUMN is_stats_public SET DEFAULT false
     `;
-    
+
+    console.log("Running migration: add_class_scope_to_game_sessions");
+    await sql`
+      ALTER TABLE game_sessions
+      ADD COLUMN IF NOT EXISTS class_id INTEGER REFERENCES classes(id) ON DELETE SET NULL
+    `;
+
+    console.log("Running migration: add_name_changed_count_to_classes");
+    await sql`
+      ALTER TABLE classes
+      ADD COLUMN IF NOT EXISTS name_changed_count INTEGER DEFAULT 0 NOT NULL
+    `;
+
     console.log("✅ Migration completed successfully!");
   } catch (error) {
     console.error("❌ Migration failed:", error);

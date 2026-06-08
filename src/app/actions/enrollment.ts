@@ -86,9 +86,25 @@ export async function assignStudentAction(classId: number, username: string) {
       return { error: "Student is already enrolled in this class." };
     }
 
-    // 5. Enforce single-class active enrollment policy
-    // Delete any other active class enrollments for this student
-    await db.delete(classEnrollments).where(eq(classEnrollments.studentId, student.id));
+    // 5. Single-class policy: a student may only belong to ONE class.
+    // Only add the student if they have NO class yet. Teachers cannot pull a
+    // student out of another teacher's class — the student must be removed
+    // there first (or use a teacher-provided join code to switch).
+    const [otherEnrollment] = await db
+      .select({
+        classId: classEnrollments.classId,
+        className: classes.name,
+      })
+      .from(classEnrollments)
+      .innerJoin(classes, eq(classEnrollments.classId, classes.id))
+      .where(eq(classEnrollments.studentId, student.id))
+      .limit(1);
+
+    if (otherEnrollment) {
+      return {
+        error: `Student already belongs to another class ("${otherEnrollment.className}"). A student can only be in one class. Remove them from that class first.`,
+      };
+    }
 
     // 6. Enroll student
     await db.insert(classEnrollments).values({
@@ -244,11 +260,22 @@ export async function updateClassDetailsAction(
     const province = details.province?.trim();
     const section = details.section?.trim();
 
-    if (name !== undefined) {
+    // Maximum number of times a teacher may rename a class.
+    const MAX_NAME_CHANGES = 2;
+    let bumpNameCount = false;
+
+    if (name !== undefined && name !== cls.name) {
       if (name.length < 1 || name.length > 80) {
         return { error: "Class name must be 1–80 characters." };
       }
+      // Teachers are limited to MAX_NAME_CHANGES renames; admins are exempt.
+      if (session.role !== "admin" && (cls.nameChangedCount ?? 0) >= MAX_NAME_CHANGES) {
+        return {
+          error: `You can only rename a class ${MAX_NAME_CHANGES} times. This limit has been reached.`,
+        };
+      }
       updates.name = name;
+      bumpNameCount = session.role !== "admin";
     }
     if (gradeLevel !== undefined) {
       if (gradeLevel.length > 40) return { error: "Grade level is too long." };
@@ -271,7 +298,16 @@ export async function updateClassDetailsAction(
       return { error: "Nothing to update." };
     }
 
-    await db.update(classes).set(updates).where(eq(classes.id, classId));
+    if (Object.keys(updates).length === 0) {
+      return { error: "Nothing to update." };
+    }
+
+    const dbUpdates: Record<string, any> = { ...updates };
+    if (bumpNameCount) {
+      dbUpdates.nameChangedCount = (cls.nameChangedCount ?? 0) + 1;
+    }
+
+    await db.update(classes).set(dbUpdates).where(eq(classes.id, classId));
 
     await logAudit({
       userId: session.id,
@@ -285,7 +321,14 @@ export async function updateClassDetailsAction(
 
     revalidatePath(`/teacher/classes/${classId}`);
     revalidatePath("/teacher/classes");
-    return { success: true, updates };
+    return {
+      success: true,
+      updates,
+      nameChangesRemaining:
+        session.role === "admin"
+          ? null
+          : Math.max(0, MAX_NAME_CHANGES - ((cls.nameChangedCount ?? 0) + (bumpNameCount ? 1 : 0))),
+    };
   } catch (e) {
     console.error("[updateClassDetailsAction] error:", e);
     return { error: "Failed to update class details." };

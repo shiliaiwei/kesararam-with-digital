@@ -269,7 +269,13 @@ const DASHBOARD: DomainGroup[] = [
     },
 ];
 
-const ALL_DOMAINS = [...SITEMAP, ...DASHBOARD];
+// The public sitemap must not expose internal-only areas. Admin and Staff
+// panels are intentionally excluded from everything the public page renders
+// (tabs, stats, tree, table, and flowchart).
+const PUBLIC_HIDDEN_DOMAIN_IDS = ["admin", "staff"];
+const ALL_DOMAINS = [...SITEMAP, ...DASHBOARD].filter(
+    (g) => !PUBLIC_HIDDEN_DOMAIN_IDS.includes(g.id)
+);
 
 /* ──────────────────────────────────────────────────────────
    STATS + HELPERS

@@ -63,6 +63,7 @@ export const classes = pgTable("classes", {
   province: text("province"),
   section: text("section"),
   status: text("status").default("active").notNull(), // active, locked, archived
+  nameChangedCount: integer("name_changed_count").default(0).notNull(),
 });
 
 export const classEnrollments = pgTable("class_enrollments", {

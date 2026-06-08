@@ -74,6 +74,34 @@ function NeubrutalistAvatar({ src, initials, userId, size = "md" }: Neubrutalist
     lg: "w-20 h-20 text-3xl"
   };
 
+  // Avatars are stored as JSON { face, head } (composite SVG layers). Parse and
+  // render the layered avatar; fall back to a plain image URL, then initials.
+  const parsed = (() => {
+    if (!src) return null;
+    try {
+      const o = JSON.parse(src) as { face?: string; head?: string };
+      if (o && (o.face || o.head)) return o;
+    } catch { /* not JSON — treat as URL */ }
+    return null;
+  })();
+
+  if (parsed) {
+    return (
+      <div className={`${sizeClasses[size]} border-4 border-black overflow-hidden relative`} style={{ borderRadius: "0px", background: "#FFD700" }}>
+        {parsed.head && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={`/avatar/head/${encodeURIComponent(parsed.head)}`} alt="" aria-hidden
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain" }} />
+        )}
+        {parsed.face && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", transform: "translateY(-6%) scale(0.62)", transformOrigin: "center" }} />
+        )}
+      </div>
+    );
+  }
+
   if (!src || failed) {
     return (
       <div

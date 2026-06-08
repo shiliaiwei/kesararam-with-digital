@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { gameSessions } from "@/db/schema/game";
 import { questions, answers, topics, categories } from "@/db/schema/content";
+import { classes } from "@/db/schema/users";
 import { getSession } from "@/lib/auth";
 import { generateSessionCode, GAME_MODE_TYPES, mapContentToGameType } from "@/lib/game-engine";
 import { selectRandomQuestions } from "@/lib/question-selector";
@@ -24,10 +25,34 @@ export async function POST(req: NextRequest) {
     gameType = "quick-quiz",
     maxPlayers = 50,
     language = "both",
+    classId = null,
   } = body;
 
   if (!categoryIds?.length) {
     return NextResponse.json({ error: "Select at least one category" }, { status: 400 });
+  }
+
+  // ── Validate optional class scoping ──
+  // When a classId is provided, only that class's students may join the game.
+  // The host must own the class (admins may scope to any class).
+  let scopedClassId: number | null = null;
+  if (classId != null) {
+    const parsedClassId = Number(classId);
+    if (!Number.isInteger(parsedClassId)) {
+      return NextResponse.json({ error: "Invalid class selection" }, { status: 400 });
+    }
+    const [cls] = await db
+      .select({ id: classes.id, teacherId: classes.teacherId })
+      .from(classes)
+      .where(eq(classes.id, parsedClassId))
+      .limit(1);
+    if (!cls) {
+      return NextResponse.json({ error: "Selected class not found" }, { status: 404 });
+    }
+    if (user.role !== "admin" && cls.teacherId !== user.id) {
+      return NextResponse.json({ error: "You do not own the selected class" }, { status: 403 });
+    }
+    scopedClassId = cls.id;
   }
 
   // ── Subscription enforcement (skip for admin) ──
@@ -147,6 +172,7 @@ export async function POST(req: NextRequest) {
       hostId: user.id,
       gameMode: gameType,
       category: firstCat?.slug ?? null,
+      classId: scopedClassId,
       difficulty: difficulty === "mixed" ? null : difficulty,
       questionIds,
       timePerQuestion,

@@ -33,6 +33,7 @@ interface ClassDetails {
   section: string;
   status: string;
   createdAt: Date;
+  nameChangedCount: number;
 }
 
 interface VerificationErrorDetails {
@@ -102,9 +103,22 @@ export function ClassRosterClient({
       if (res?.error) {
         toast.error(res.error);
       } else if (res?.success) {
-        setCls((prev) => ({ ...prev, name, gradeLevel, schoolName, province, section }));
+        const nameChanged = name !== cls.name;
+        setCls((prev) => ({
+          ...prev,
+          name,
+          gradeLevel,
+          schoolName,
+          province,
+          section,
+          nameChangedCount: nameChanged ? prev.nameChangedCount + 1 : prev.nameChangedCount,
+        }));
         setEditing(false);
-        toast.success("Class details updated.");
+        if (nameChanged && typeof res.nameChangesRemaining === "number") {
+          toast.success(`Class details updated. You can rename ${res.nameChangesRemaining} more time(s).`);
+        } else {
+          toast.success("Class details updated.");
+        }
       }
     });
   }
@@ -194,9 +208,14 @@ export function ClassRosterClient({
                   value={editName}
                   onChange={(e) => setEditName(e.target.value)}
                   maxLength={80}
-                  disabled={pendingEdit}
-                  className="w-full max-w-md px-3 py-2 border-2 border-black rounded-none text-2xl font-black uppercase focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-zinc-100"
+                  disabled={pendingEdit || cls.nameChangedCount >= 2}
+                  className="w-full max-w-md px-3 py-2 border-2 border-black rounded-none text-2xl font-black uppercase focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-zinc-100 disabled:cursor-not-allowed"
                 />
+                <span className="text-[10px] font-bold text-zinc-400">
+                  {cls.nameChangedCount >= 2
+                    ? "Rename limit reached (2 changes max)."
+                    : `Name changes used: ${cls.nameChangedCount} / 2`}
+                </span>
               </div>
               <div className="flex flex-col gap-1">
                 <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Grade Level / កម្រិតថ្នាក់</label>

@@ -17,7 +17,7 @@ import { cloudinaryOptimize } from "@/lib/cloudinary";
 import {
   Zap, Trophy, Users, Clock, CheckCircle, XCircle,
   Loader2, Wifi, WifiOff, BookOpen, Target, Timer, Star,
-  Maximize, Minimize, Flame, Volume2, VolumeX, Crown
+  Maximize, Minimize, Flame, Volume2, VolumeX, Crown, LogOut
 } from "lucide-react";
 
 type GamePhase = "lobby" | "question" | "results" | "leaderboard" | "podium";
@@ -948,12 +948,27 @@ export default function StudentGamePage() {
   // ── Podium ─────────────────────────────────────────────────────────────────
   if (phase === "podium") {
     return (
-      <div className="min-h-screen flex flex-col"
+      <div className="fixed inset-0 z-50 flex flex-col overflow-hidden"
         style={{ backgroundColor: "#0d0d14", backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px" }}>
-        {unifiedHeader}
-        <div className="flex-1 p-4 max-w-2xl mx-auto w-full pt-6">
-          <Podium podium={podium} finalLeaderboard={leaderboard} lang={lang} currentUserId={currentUserId} onPlayAgain={() => router.push("/play")} sessionCode={code} totalQuestions={totalQuestions} currentUserPoints={currentUserPoints} />
+        <div className="flex-shrink-0 relative z-10">
+          {unifiedHeader}
         </div>
+        {/* Only this region scrolls — page behind stays locked */}
+        <div className="flex-1 overflow-y-auto no-scrollbar overscroll-contain">
+          <div className="p-4 max-w-2xl mx-auto w-full pt-6 pb-28">
+            <Podium podium={podium} finalLeaderboard={leaderboard} lang={lang} currentUserId={currentUserId} onPlayAgain={() => router.push("/play")} sessionCode={code} totalQuestions={totalQuestions} currentUserPoints={currentUserPoints} />
+          </div>
+        </div>
+        {/* Small fixed exit button */}
+        <button
+          onClick={() => router.push("/play")}
+          className="fixed bottom-4 right-4 z-50 flex items-center gap-1.5 px-3 py-2 bg-black text-yellow-400 border-2 border-yellow-400 font-black text-xs uppercase tracking-wider shadow-[3px_3px_0_#eab308] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_#eab308] transition-all rounded-none"
+          style={khFont}
+          title={kh ? "ចាកចេញ" : "Exit"}
+        >
+          <LogOut size={13} />
+          {kh ? "ចេញ" : "Exit"}
+        </button>
       </div>
     );
   }

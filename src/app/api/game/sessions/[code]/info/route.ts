@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { gameSessions } from "@/db/schema/game";
-import { users } from "@/db/schema/users";
+import { users, classes } from "@/db/schema/users";
 import { eq } from "drizzle-orm";
 
 export async function GET(
@@ -16,6 +16,7 @@ export async function GET(
       status: gameSessions.status,
       gameMode: gameSessions.gameMode,
       category: gameSessions.category,
+      classId: gameSessions.classId,
       difficulty: gameSessions.difficulty,
       scoringMode: gameSessions.scoringMode,
       timePerQuestion: gameSessions.timePerQuestion,
@@ -35,10 +36,22 @@ export async function GET(
     .from(users)
     .where(eq(users.id, session.hostId));
 
+  let className: string | null = null;
+  if (session.classId != null) {
+    const [cls] = await db
+      .select({ name: classes.name })
+      .from(classes)
+      .where(eq(classes.id, session.classId))
+      .limit(1);
+    className = cls?.name ?? null;
+  }
+
   return NextResponse.json({
     status: session.status,
     gameMode: session.gameMode,
     category: session.category,
+    classId: session.classId,
+    className,
     difficulty: session.difficulty,
     scoringMode: session.scoringMode,
     timePerQuestion: session.timePerQuestion,

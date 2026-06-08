@@ -1,5 +1,5 @@
 import { pgTable, serial, varchar, integer, timestamp, boolean, text, index, unique } from "drizzle-orm/pg-core";
-import { users } from "./users";
+import { users, classes } from "./users";
 
 export const gameSessions = pgTable(
   "game_sessions",
@@ -11,6 +11,7 @@ export const gameSessions = pgTable(
       .references(() => users.id, { onDelete: "cascade" }),
     gameMode: varchar("game_mode", { length: 50 }).notNull(),
     category: varchar("category", { length: 100 }),
+    classId: integer("class_id").references(() => classes.id, { onDelete: "set null" }),
     difficulty: varchar("difficulty", { length: 20 }),
     questionIds: integer("question_ids").array().notNull(),
     currentQuestionIndex: integer("current_question_index").default(0),

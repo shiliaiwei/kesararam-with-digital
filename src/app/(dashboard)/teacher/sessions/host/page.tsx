@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useLang } from "@/context/lang-context";
 import { useGameRealtime } from "@/hooks/use-game-realtime";
 import { GAME_MODE_CONFIG } from "@/lib/game-engine";
+import { getTeacherClasses } from "@/app/actions/classes";
 import type { SSEEvent, ParticipantInfo, LeaderboardEntry, QuestionPayload } from "@/lib/game-event-bus";
 import {
   Play, Square, Users, BarChart2,
@@ -282,6 +283,8 @@ export default function HostPage() {
   const [copied, setCopied] = useState(false);
   const [controlling, setControlling] = useState(false);
   const [maxPlayers, setMaxPlayers] = useState(50);
+  const [teacherClasses, setTeacherClasses] = useState<{ id: number; name: string; gradeLevel: string | null; section: string | null; status: string }[]>([]);
+  const [selectedClassId, setSelectedClassId] = useState<number | null>(null);
   const [lobbyParticipants, setLobbyParticipants] = useState<ParticipantInfo[]>([]);
   const [questionCount, setQuestionCount] = useState(10);
 
@@ -328,6 +331,20 @@ export default function HostPage() {
           setSelectedCats([d.categories[0].id]);
         }
       });
+    // Load the teacher's classes so the game can optionally be restricted to one.
+    getTeacherClasses()
+      .then((rows) => {
+        setTeacherClasses(
+          (rows ?? []).map((c: any) => ({
+            id: c.id,
+            name: c.name,
+            gradeLevel: c.gradeLevel ?? null,
+            section: c.section ?? null,
+            status: c.status ?? "active",
+          }))
+        );
+      })
+      .catch(() => { /* non-fatal */ });
     fetch("/api/game/sessions")
       .then((r) => r.json())
       .then(async (d) => {
@@ -470,7 +487,7 @@ export default function HostPage() {
     const res = await fetch("/api/game/sessions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sessionName, categoryIds: selectedCats, difficulty, questionCount, timePerQuestion: cfg.timePerQuestion, scoringMode, language, gameType: selectedMode, maxPlayers, allowLateJoin: true }),
+      body: JSON.stringify({ sessionName, categoryIds: selectedCats, difficulty, questionCount, timePerQuestion: cfg.timePerQuestion, scoringMode, language, gameType: selectedMode, maxPlayers, classId: selectedClassId, allowLateJoin: true }),
     });
     if (!res.ok) { const err = await res.json(); setError(sanitizeError(err.error) || "Failed"); setPhase({ name: "setup" }); return; }
     const data = await res.json();
@@ -1037,6 +1054,54 @@ export default function HostPage() {
                       {n}
                     </button>
                   ))}
+                </div>
+              </GlassCard>
+
+              {/* Class Restriction */}
+              <GlassCard className="p-5">
+                <div className="flex items-center gap-1.5 mb-1 text-zinc-600 font-bold">
+                  <Users size={13} />
+                  <span className="text-xs font-black uppercase tracking-widest" style={khFont}>{kh ? "កំណត់ថ្នាក់" : "Restrict to Class"}</span>
+                </div>
+                <p className="text-[11px] font-bold text-zinc-500 mb-3" style={khFont}>
+                  {kh
+                    ? "ជ្រើសរើសថ្នាក់ ដើម្បីឲ្យតែសិស្សក្នុងថ្នាក់នោះអាចចូលរួមបាន។"
+                    : "Pick a class so only its enrolled students can join."}
+                </p>
+                <div className="flex flex-col gap-2">
+                  <button
+                    onClick={() => setSelectedClassId(null)}
+                    className={`w-full text-left px-3 py-2.5 border-2 border-black text-sm font-black transition-all duration-100 ${selectedClassId === null
+                      ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                      : "bg-white text-zinc-600 hover:bg-zinc-50"
+                      }`}
+                    style={{ borderRadius: "0px", ...khFont }}>
+                    {kh ? "បើកសម្រាប់សិស្សគ្រប់រូបដែលមានថ្នាក់" : "Open to any student with a class"}
+                  </button>
+                  {teacherClasses
+                    .filter((c) => c.status !== "archived")
+                    .map((c) => (
+                      <button
+                        key={c.id}
+                        onClick={() => setSelectedClassId(c.id)}
+                        className={`w-full text-left px-3 py-2.5 border-2 border-black text-sm font-black transition-all duration-100 ${selectedClassId === c.id
+                          ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                          : "bg-white text-zinc-600 hover:bg-zinc-50"
+                          }`}
+                        style={{ borderRadius: "0px", ...khFont }}>
+                        {c.name}
+                        {(c.gradeLevel || c.section) && (
+                          <span className="ml-1 text-[11px] font-bold text-zinc-400">
+                            · {[c.gradeLevel, c.section].filter(Boolean).join(" ")}
+                          </span>
+                        )}
+                      </button>
+                    ))}
+                  {teacherClasses.filter((c) => c.status !== "archived").length === 0 && (
+                    <p className="text-[11px] font-bold text-zinc-400" style={khFont}>
+                      {kh ? "មិនទាន់មានថ្នាក់" : "No classes yet."}
+                    </p>
+                  )}
                 </div>
               </GlassCard>
 
