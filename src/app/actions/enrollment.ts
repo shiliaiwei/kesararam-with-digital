@@ -215,3 +215,66 @@ export async function updateClassControlAction(classId: number, field: "status" 
     return { error: "Failed to update class." };
   }
 }
+
+export async function updateClassDetailsAction(
+  classId: number,
+  details: { name?: string; gradeLevel?: string }
+) {
+  const session = await getSession();
+  if (!session || (session.role !== "teacher" && session.role !== "admin")) {
+    return { error: "Unauthorized" };
+  }
+
+  try {
+    const headersList = await headers();
+    const ipAddress = headersList.get("x-forwarded-for") || headersList.get("x-real-ip") || "unknown";
+    const userAgent = headersList.get("user-agent") || "unknown";
+
+    const [cls] = await db.select().from(classes).where(eq(classes.id, classId)).limit(1);
+    if (!cls) return { error: "Class not found." };
+
+    if (session.role === "teacher" && cls.teacherId !== session.id) {
+      return { error: "You do not own this class." };
+    }
+
+    const updates: Record<string, string> = {};
+    const name = details.name?.trim();
+    const gradeLevel = details.gradeLevel?.trim();
+
+    if (name !== undefined) {
+      if (name.length < 1 || name.length > 80) {
+        return { error: "Class name must be 1–80 characters." };
+      }
+      updates.name = name;
+    }
+    if (gradeLevel !== undefined) {
+      if (gradeLevel.length > 40) {
+        return { error: "Grade level is too long." };
+      }
+      updates.gradeLevel = gradeLevel;
+    }
+
+    if (Object.keys(updates).length === 0) {
+      return { error: "Nothing to update." };
+    }
+
+    await db.update(classes).set(updates).where(eq(classes.id, classId));
+
+    await logAudit({
+      userId: session.id,
+      action: "CLASS_DETAILS_UPDATED",
+      targetType: "class",
+      targetId: String(classId),
+      ipAddress,
+      userAgent,
+      details: { ...updates, updatedBy: session.id },
+    });
+
+    revalidatePath(`/teacher/classes/${classId}`);
+    revalidatePath("/teacher/classes");
+    return { success: true, updates };
+  } catch (e) {
+    console.error("[updateClassDetailsAction] error:", e);
+    return { error: "Failed to update class details." };
+  }
+}
