@@ -218,7 +218,7 @@ export async function updateClassControlAction(classId: number, field: "status" 
 
 export async function updateClassDetailsAction(
   classId: number,
-  details: { name?: string; gradeLevel?: string }
+  details: { name?: string; gradeLevel?: string; schoolName?: string; province?: string; section?: string }
 ) {
   const session = await getSession();
   if (!session || (session.role !== "teacher" && session.role !== "admin")) {
@@ -240,6 +240,9 @@ export async function updateClassDetailsAction(
     const updates: Record<string, string> = {};
     const name = details.name?.trim();
     const gradeLevel = details.gradeLevel?.trim();
+    const schoolName = details.schoolName?.trim();
+    const province = details.province?.trim();
+    const section = details.section?.trim();
 
     if (name !== undefined) {
       if (name.length < 1 || name.length > 80) {
@@ -248,10 +251,20 @@ export async function updateClassDetailsAction(
       updates.name = name;
     }
     if (gradeLevel !== undefined) {
-      if (gradeLevel.length > 40) {
-        return { error: "Grade level is too long." };
-      }
+      if (gradeLevel.length > 40) return { error: "Grade level is too long." };
       updates.gradeLevel = gradeLevel;
+    }
+    if (schoolName !== undefined) {
+      if (schoolName.length > 120) return { error: "School name is too long." };
+      updates.schoolName = schoolName;
+    }
+    if (province !== undefined) {
+      if (province.length > 80) return { error: "Location is too long." };
+      updates.province = province;
+    }
+    if (section !== undefined) {
+      if (section.length > 40) return { error: "Section is too long." };
+      updates.section = section;
     }
 
     if (Object.keys(updates).length === 0) {

@@ -61,6 +61,9 @@ export function ClassRosterClient({
   const [editing, setEditing] = useState(false);
   const [editName, setEditName] = useState(cls.name);
   const [editGrade, setEditGrade] = useState(cls.gradeLevel);
+  const [editSchool, setEditSchool] = useState(cls.schoolName);
+  const [editProvince, setEditProvince] = useState(cls.province);
+  const [editSection, setEditSection] = useState(cls.section);
   const [pendingEdit, startEditTransition] = useTransition();
   const [copied, setCopied] = useState(false);
 
@@ -78,22 +81,28 @@ export function ClassRosterClient({
   function startEdit() {
     setEditName(cls.name);
     setEditGrade(cls.gradeLevel);
+    setEditSchool(cls.schoolName);
+    setEditProvince(cls.province);
+    setEditSection(cls.section);
     setEditing(true);
   }
 
   function saveEdit() {
     const name = editName.trim();
     const gradeLevel = editGrade.trim();
+    const schoolName = editSchool.trim();
+    const province = editProvince.trim();
+    const section = editSection.trim();
     if (!name) {
       toast.error("Class name cannot be empty.");
       return;
     }
     startEditTransition(async () => {
-      const res = await updateClassDetailsAction(cls.id, { name, gradeLevel });
+      const res = await updateClassDetailsAction(cls.id, { name, gradeLevel, schoolName, province, section });
       if (res?.error) {
         toast.error(res.error);
       } else if (res?.success) {
-        setCls((prev) => ({ ...prev, name, gradeLevel }));
+        setCls((prev) => ({ ...prev, name, gradeLevel, schoolName, province, section }));
         setEditing(false);
         toast.success("Class details updated.");
       }
@@ -199,6 +208,41 @@ export function ClassRosterClient({
                   disabled={pendingEdit}
                   className="w-full max-w-xs px-3 py-2 border-2 border-black rounded-none text-sm font-bold focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-zinc-100"
                 />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl">
+                <div className="flex flex-col gap-1">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400">School Name / ឈ្មោះសាលា</label>
+                  <input
+                    value={editSchool}
+                    onChange={(e) => setEditSchool(e.target.value)}
+                    maxLength={120}
+                    placeholder="e.g. Kesararam Primary School"
+                    disabled={pendingEdit}
+                    className="w-full px-3 py-2 border-2 border-black rounded-none text-sm font-bold focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-zinc-100"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Location / ទីតាំង (ខេត្ត)</label>
+                  <input
+                    value={editProvince}
+                    onChange={(e) => setEditProvince(e.target.value)}
+                    maxLength={80}
+                    placeholder="e.g. Siem Reap"
+                    disabled={pendingEdit}
+                    className="w-full px-3 py-2 border-2 border-black rounded-none text-sm font-bold focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-zinc-100"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Section / ផ្នែក</label>
+                  <input
+                    value={editSection}
+                    onChange={(e) => setEditSection(e.target.value)}
+                    maxLength={40}
+                    placeholder="e.g. A"
+                    disabled={pendingEdit}
+                    className="w-full px-3 py-2 border-2 border-black rounded-none text-sm font-bold focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-zinc-100"
+                  />
+                </div>
               </div>
               <div className="flex items-center gap-2 pt-1">
                 <button
