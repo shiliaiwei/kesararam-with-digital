@@ -54,6 +54,33 @@ interface NeubrutalistAvatarProps {
 function NeubrutalistAvatar({ src, initials, userId }: NeubrutalistAvatarProps) {
   const [failed, setFailed] = useState(false);
 
+  // Avatars are stored as JSON { face, head } composite layers.
+  const parsed = (() => {
+    if (!src) return null;
+    try {
+      const o = JSON.parse(src) as { face?: string; head?: string };
+      if (o && (o.face || o.head)) return o;
+    } catch { /* not JSON — treat as URL */ }
+    return null;
+  })();
+
+  if (parsed) {
+    return (
+      <div className="relative w-full h-full" style={{ background: "#FFD700" }}>
+        {parsed.head && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={`/avatar/head/${encodeURIComponent(parsed.head)}`} alt="" aria-hidden
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain" }} />
+        )}
+        {parsed.face && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", transform: "translateY(-6%) scale(0.62)", transformOrigin: "center" }} />
+        )}
+      </div>
+    );
+  }
+
   if (!src || failed) {
     return (
       <div className="w-full h-full flex items-center justify-center text-white font-black"
@@ -1235,7 +1262,7 @@ export default function HostPage() {
                     <div className="text-xs font-black uppercase tracking-widest mb-2.5 text-black">
                       {kh ? "លេខកូដបន្ទប់" : "Room Code"}
                     </div>
-                    <div className="text-4xl sm:text-6xl md:text-7xl font-mono font-black tracking-[0.12em] sm:tracking-[0.2em] pl-[0.12em] sm:pl-[0.2em] mb-2.5 text-black text-center md:text-left break-all select-all">
+                    <div className="text-4xl sm:text-5xl md:text-6xl font-mono font-black tracking-[0.1em] sm:tracking-[0.18em] pl-[0.1em] sm:pl-[0.18em] mb-2.5 text-black text-center md:text-left whitespace-nowrap select-all" style={{ overflowWrap: "normal", wordBreak: "keep-all" }}>
                       {phase.code}
                     </div>
                     <div className="text-sm mb-6 text-black font-bold text-center md:text-left break-words">

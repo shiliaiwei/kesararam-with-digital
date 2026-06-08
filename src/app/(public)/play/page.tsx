@@ -413,7 +413,16 @@ export default function PlayPage() {
         if (d && !d.error) {
           if (d.role === "student" && (!d.schoolName || !d.province || !d.gradeLevel)) {
             router.push("/profile/student");
+            return;
           }
+          // Auto-rejoin: if the student is already in an in-progress session
+          // (lobby/active/paused), jump straight back in — no code re-entry.
+          fetch("/api/game/my-session")
+            .then(r => r.ok ? r.json() : null)
+            .then(s => {
+              if (s && s.code) router.push(`/play/${s.code}`);
+            })
+            .catch(() => { });
         }
       })
       .catch(() => { });
