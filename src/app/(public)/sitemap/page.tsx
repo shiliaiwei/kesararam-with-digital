@@ -687,7 +687,7 @@ export default function SitemapPage() {
             <footer className="border-t-2 border-black mt-10 py-5">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4 flex-wrap">
                     <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-black/50">
-                        {kh ? "កេសារារាម វិត ឌីជីថល · ផែនទីគេហទំព័រ" : "Kesararam With Digital · Sitemap"}
+                        {kh ? "Kesararam With Digital · ផែនទីគេហទំព័រ" : "Kesararam With Digital · Sitemap"}
                     </span>
                     <Link href="/" className="text-[10px] sm:text-xs font-bold uppercase tracking-widest border-2 border-black px-3 py-1.5 hover:bg-black hover:text-white transition-colors">
                         {kh ? "ត្រឡប់ទៅដើម" : "Back Home"}
