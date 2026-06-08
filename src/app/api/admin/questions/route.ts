@@ -108,9 +108,9 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     type AnswerIn = { answerEn?: string; answerKm?: string; isCorrect?: boolean; imageUrl?: string };
     const { topicId, questionEn, questionKm, hintEn, hintKm, imageUrl, difficulty, pointsMultiplier, answers: answerList } = body as { topicId?: number; questionEn?: string; questionKm?: string; hintEn?: string; hintKm?: string; imageUrl?: string; difficulty?: string; pointsMultiplier?: number; answers?: unknown };
-    const answersArray = Array.isArray(answerList) ? (answerList as unknown[]).map(a => a as AnswerIn) : [];
+    const answersArray: AnswerIn[] = Array.isArray(answerList) ? (answerList as AnswerIn[]) : [];
 
-    if (!topicId || !questionEn || !answerList || answerList.length < 2) {
+    if (!topicId || !questionEn || answersArray.length < 2) {
       return NextResponse.json({ error: "Missing required fields: topicId, questionEn, and at least 2 answers" }, { status: 400 });
     }
 
