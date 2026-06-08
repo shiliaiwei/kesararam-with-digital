@@ -1182,16 +1182,16 @@ export default function HostPage() {
                   {kh ? "ហ្គេមរង់ចាំ" : "Waiting Room"}
                 </div>
               </div>
-              <h1 className="text-4xl font-black text-black tracking-tight" style={khFont}>{kh ? "រៀបចំខ្លួនលេង" : "Ready to Play"}</h1>
+              <h1 className="text-3xl sm:text-4xl font-black text-black tracking-tight" style={khFont}>{kh ? "រៀបចំខ្លួនលេង" : "Ready to Play"}</h1>
               <p className="mt-1 text-sm text-zinc-600 font-bold" style={{ ...khFont }}>
                 {kh ? "ចែករំលែកលេខកូដជាមួយអ្នករៀន" : "Share the room code with your students"}
               </p>
             </div>
-            <div className="flex items-center gap-3 shrink-0">
+            <div className="flex items-center gap-3 shrink-0 w-full md:w-auto">
               <button
                 onClick={() => { if (confirm(kh ? "បោះបង់ហ្គេមនេះ?" : "Cancel this game session?")) { control("terminate"); setTimeout(() => setPhase({ name: "setup" }), 500); } }}
                 disabled={controlling}
-                className="flex items-center gap-2 px-5 py-3 border-4 border-black bg-red-400 text-black font-black text-sm shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-all duration-100 disabled:opacity-50 rounded-none cursor-pointer"
+                className="flex-1 md:flex-none flex items-center justify-center gap-2 px-5 py-3 border-4 border-black bg-red-400 text-black font-black text-sm shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-all duration-100 disabled:opacity-50 rounded-none cursor-pointer"
               >
                 <Square size={14} />{kh ? "បោះបង់" : "Cancel"}
               </button>
@@ -1207,7 +1207,7 @@ export default function HostPage() {
                   control("start");
                 }}
                 disabled={controlling || phase.participants.length === 0}
-                className="flex items-center gap-2 px-7 py-3 border-4 border-black bg-emerald-400 text-black font-black text-sm shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-all duration-100 disabled:opacity-50 rounded-none cursor-pointer"
+                className="flex-1 md:flex-none flex items-center justify-center gap-2 px-7 py-3 border-4 border-black bg-emerald-400 text-black font-black text-sm shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-all duration-100 disabled:opacity-50 rounded-none cursor-pointer"
               >
                 {controlling ? <Loader2 size={16} className="animate-spin" /> : <Play size={16} />}
                 {kh ? "ចាប់ផ្តើម" : "Start Game"}
@@ -1348,25 +1348,48 @@ export default function HostPage() {
                 </p>
               </div>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3.5">
-                {phase.participants.map((p, i) => (
-                  <div
-                    key={p.userId}
-                    className="flex items-center gap-2.5 p-3 border-4 border-black bg-white shadow-[3px_3px_0_#000] rounded-none hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#000] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0_#000] transition-all"
-                    style={{
-                      animation: "fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-                    }}
-                  >
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3.5">
+                {phase.participants.map((p, i) => {
+                  // Newest 3 joiners get a "NEW" flash; others show READY.
+                  const isNew = i >= phase.participants.length - 3;
+                  return (
                     <div
-                      className="w-8 h-8 border-2 border-black flex items-center justify-center font-black text-sm flex-shrink-0 text-white rounded-none shadow-[1px_1px_0_#000] overflow-hidden bg-white"
+                      key={p.userId}
+                      className="relative flex items-center gap-3 p-3 border-4 border-black bg-white shadow-[4px_4px_0_#000] rounded-none hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#000] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0_#000] transition-all"
+                      style={{ animation: "fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards" }}
                     >
-                      <NeubrutalistAvatar src={p.avatar} initials={p.displayName.charAt(0).toUpperCase()} userId={p.userId} />
+                      {/* player number badge */}
+                      <span className="absolute -top-2.5 -left-2.5 w-6 h-6 bg-black text-yellow-400 text-[10px] font-black flex items-center justify-center border-2 border-yellow-400 z-10">
+                        {i + 1}
+                      </span>
+
+                      {/* avatar */}
+                      <div className="w-11 h-11 border-2 border-black flex items-center justify-center font-black text-sm flex-shrink-0 text-white rounded-none shadow-[2px_2px_0_#000] overflow-hidden bg-white">
+                        <NeubrutalistAvatar src={p.avatar} initials={p.displayName.charAt(0).toUpperCase()} userId={p.userId} />
+                      </div>
+
+                      {/* name + status labels */}
+                      <div className="min-w-0 flex-1">
+                        <span className="block text-xs font-black truncate text-black" style={{ ...khFont }}>
+                          {p.displayName}
+                        </span>
+                        <div className="flex items-center gap-1 mt-1 flex-wrap">
+                          {/* connection dot + label */}
+                          <span className="inline-flex items-center gap-1 text-[8px] font-black uppercase tracking-widest px-1.5 py-0.5 border border-black"
+                            style={{ background: p.isConnected ? "#22c55e" : "#e4e4e7", color: "#000" }}>
+                            <span className="w-1.5 h-1.5 rounded-full" style={{ background: p.isConnected ? "#000" : "#a1a1aa" }} />
+                            {p.isConnected ? (kh ? "រួចរាល់" : "READY") : (kh ? "ផ្ដាច់" : "OFF")}
+                          </span>
+                          {isNew && (
+                            <span className="text-[8px] font-black uppercase tracking-widest px-1.5 py-0.5 border border-black bg-yellow-400 text-black animate-pulse">
+                              {kh ? "ថ្មី" : "NEW"}
+                            </span>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                    <span className="text-xs font-black truncate text-black" style={{ ...khFont }}>
-                      {p.displayName}
-                    </span>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>
