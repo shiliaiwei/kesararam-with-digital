@@ -38,6 +38,9 @@ export async function POST(
     if (!canManageTeacherOwnedClass(session, cls.teacherId)) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
+    if (cls.isLocked) {
+      return NextResponse.json({ error: "Class is locked" }, { status: 400 });
+    }
 
     // Find the student
     const [student] = await db
