@@ -222,5 +222,5 @@ async function establishSessionAndRedirect(user: any, req: NextRequest, extraDbP
   });
 
   const redirectTo = getRedirectUrl(user.role);
-  return NextResponse.redirect(new URL(redirectTo, req.url).origin + redirectTo);
+  return NextResponse.redirect(new URL(redirectTo, req.url).toString());
 }
