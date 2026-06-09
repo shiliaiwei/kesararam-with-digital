@@ -101,12 +101,26 @@ export async function PUT(request: NextRequest) {
       studentHasClass = enrollment.length > 0;
     }
 
-    // Check if this is an onboarding student (missing school details) OR a student
-    // who must (re-)join a class and is submitting an invite/class code.
-    const isOnboarding =
+    // Onboarding = a user completing their FIRST profile setup. During onboarding
+    // the 60-day change cooldown does not apply; it only counts for changes made
+    // AFTER the initial setup is complete. This applies to both students and
+    // individual paid (teacher) accounts.
+    //
+    // Student onboarding: missing school details, OR must (re-)join a class and is
+    // submitting an invite/class code.
+    const isStudentOnboarding =
       session.role === "student" &&
       ((!currentUser.schoolName || !currentUser.province || !currentUser.gradeLevel) ||
         (!studentHasClass && !!(inviteCode || body.inviteCode)));
+
+    // Teacher (individual paid subscriber) onboarding: hasn't completed the owner
+    // profile setup yet — mirrors the dashboard's "incomplete profile" gate
+    // (missing school/organization name or province).
+    const isTeacherOnboarding =
+      session.role === "teacher" &&
+      (!currentUser.schoolName || !currentUser.province);
+
+    const isOnboarding = isStudentOnboarding || isTeacherOnboarding;
 
     // Detect if this is a privacy-only update (safe, no 60-day restriction)
     const PRIVACY_FIELDS = new Set(['isProfilePublic', 'isNamePublic', 'isUsernamePublic', 'isSchoolPublic', 'isProvincePublic', 'isGradePublic', 'isSectionPublic', 'isStatsPublic']);
@@ -226,7 +240,10 @@ export async function PUT(request: NextRequest) {
 
 
 
-    if (isOnboarding) {
+    // Student onboarding also enrolls the student into a class via invite/class
+    // code. Teacher onboarding skips this and falls through to the standard
+    // update below (which saves school/organization, province, name, avatar).
+    if (isStudentOnboarding) {
       const inputCode = inviteCode || body.inviteCode;
       if (!inputCode) {
         return NextResponse.json({ error: "Teacher invitation code / Class code is required. / លេខកូដអញ្ជើញពីគ្រូ ឬលេខកូដថ្នាក់គឺចាំបាច់ត្រូវបំពេញ។" }, { status: 400 });
