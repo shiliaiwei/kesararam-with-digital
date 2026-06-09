@@ -38,3 +38,35 @@ export function slugify(text: string): string {
     .replace(/\s+/g, "-")
     .replace(/[^\w-]/g, "");
 }
+
+/**
+ * Returns the CSS style object for positioning the avatar face expression SVG.
+ * Compensates for right-facing vs front-facing head shapes and viewBox differences.
+ */
+export function getAvatarFaceStyle(headName?: string | null) {
+  let translateX = "0%";
+  let translateY = "2%";
+  let scale = 0.48;
+
+  if (headName) {
+    const name = headName.toLowerCase();
+    const isFrontFacing =
+      name.includes("hijab") || name.includes("turban") || name.includes("bear");
+
+    if (!isFrontFacing) {
+      // Shift right-facing heads to align face features with the face area (nudge right)
+      translateX = "8%";
+    }
+  }
+
+  return {
+    position: "absolute" as const,
+    inset: 0,
+    width: "100%",
+    height: "100%",
+    objectFit: "contain" as const,
+    transform: `translate(${translateX}, ${translateY}) scale(${scale})`,
+    transformOrigin: "center",
+  };
+}
+

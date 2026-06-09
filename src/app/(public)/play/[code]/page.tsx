@@ -13,6 +13,7 @@ import { Podium } from "@/components/game/Podium";
 import { ErrorBoundary } from "@/components/game/ErrorBoundary";
 import { sounds } from "@/lib/game-sounds";
 import { RankBadge as TierBadge } from "@/components/shared/rank-label";
+import { getAvatarFaceStyle } from "@/lib/utils";
 import { cloudinaryOptimize } from "@/lib/cloudinary";
 import {
   Zap, Trophy, Users, Clock, CheckCircle, XCircle,
@@ -85,7 +86,7 @@ function NeubrutalistAvatar({ src, initials, userId }: NeubrutalistAvatarProps) 
         {parsed.face && (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", transform: "translateY(2%) scale(0.48)", transformOrigin: "center" }} />
+            style={getAvatarFaceStyle(parsed.head)} />
         )}
       </div>
     );
@@ -135,7 +136,7 @@ function TeacherAvatar({ src, name }: { src: string | null | undefined; name: st
         {parsed.face && (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", transform: "translateY(2%) scale(0.48)", transformOrigin: "center" }} />
+            style={getAvatarFaceStyle(parsed.head)} />
         )}
       </div>
     );

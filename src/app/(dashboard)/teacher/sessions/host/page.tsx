@@ -21,6 +21,7 @@ import { Lock } from "lucide-react";
 import QRCode from "react-qr-code";
 import { cloudinaryOptimize } from "@/lib/cloudinary";
 import { sounds } from "@/lib/game-sounds";
+import { getAvatarFaceStyle } from "@/lib/utils";
 
 // ── Answer color config ────────────────────────────────────────────────────
 const ANSWER_STYLES = [
@@ -76,7 +77,7 @@ function NeubrutalistAvatar({ src, initials, userId }: NeubrutalistAvatarProps) 
         {parsed.face && (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", transform: "translateY(2%) scale(0.48)", transformOrigin: "center" }} />
+            style={getAvatarFaceStyle(parsed.head)} />
         )}
       </div>
     );

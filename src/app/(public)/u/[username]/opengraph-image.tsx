@@ -2,6 +2,7 @@ import { ImageResponse } from "next/og";
 import { db } from "@/lib/db";
 import { users } from "@/db/schema/users";
 import { eq, and, sql, desc } from "drizzle-orm";
+import { getAvatarFaceStyle } from "@/lib/utils";
 
 export const runtime = "nodejs";
 
@@ -438,7 +439,7 @@ export default async function Image({ params }: { params: Promise<{ username: st
                       <img
                         src={`${baseUrl}/avatar/face/${encodeURIComponent(parsedAvatar.face)}`}
                         alt=""
-                        style={{ position: "absolute", top: 0, left: 0, width: "120px", height: "120px" }}
+                        style={getAvatarFaceStyle(parsedAvatar.head)}
                       />
                     )}
                   </div>

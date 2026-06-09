@@ -1,8 +1,4 @@
-/**
- * Renders a composite avatar (head layer + face layer) from a JSON avatar string.
- * Falls back to initials on a yellow background if no avatar is set.
- * Safe to use in both server and client components (no hooks).
- */
+import { getAvatarFaceStyle } from "@/lib/utils";
 
 interface AvatarDisplayProps {
   /** Serialised JSON: { face: string; head: string } */
@@ -70,18 +66,7 @@ export function AvatarDisplay({
             src={`/avatar/face/${encodeURIComponent(parsed.face)}`}
             alt=""
             aria-hidden
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "contain",
-              // Face expression sits smaller within the head (was filling 100%,
-              // which made features look oversized). Scale down + nudge up to the
-              // head's face area.
-              transform: "translateY(2%) scale(0.48)",
-              transformOrigin: "center",
-            }}
+            style={getAvatarFaceStyle(parsed.head)}
           />
         )}
       </div>

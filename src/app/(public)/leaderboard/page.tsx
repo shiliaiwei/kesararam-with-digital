@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { useLang } from "@/context/lang-context";
 import { RankBadge as TierBadge, RankedAvatarRing, RankProgressBar, RankShowcase } from "@/components/shared/rank-label";
 import { getRank } from "@/lib/rank-utils";
+import { getAvatarFaceStyle } from "@/lib/utils";
 import {
   Trophy,
   Gift,
@@ -177,7 +178,7 @@ function Avatar({ url, name, size = 40, ring, changedAt }: {
               src={`/avatar/face/${encodeURIComponent(parsed.face)}`}
               alt=""
               aria-hidden
-              className="absolute inset-0 w-full h-full object-contain"
+              style={getAvatarFaceStyle(parsed.head)}
             />
           )}
         </div>

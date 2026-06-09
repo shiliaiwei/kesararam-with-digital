@@ -10,6 +10,7 @@ import {
   School, Flame, Target, BookOpen, Award,
 } from "lucide-react";
 import { CautionTape, SignShape } from "@/components/brand/brand-kit";
+import { getAvatarFaceStyle } from "@/lib/utils";
 
 export interface SerializableStudent {
   id: number;
@@ -137,7 +138,7 @@ function Avatar({ url, name, size = 96, changedAt }: {
     return (
       <div className="w-full h-full relative" style={{ background: "#eab308" }}>
         {parsed.head && <img src={`/avatar/head/${encodeURIComponent(parsed.head)}`} alt="" aria-hidden className="absolute inset-0 w-full h-full object-contain" />}
-        {parsed.face && <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden className="absolute inset-0 w-full h-full object-contain" />}
+        {parsed.face && <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden style={getAvatarFaceStyle(parsed.head)} />}
       </div>
     );
   }

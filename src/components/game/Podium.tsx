@@ -5,6 +5,7 @@ import { Crown, Medal, Award, Star, TrendingUp, TrendingDown, Minus, Flame, Shar
 import { sounds } from "@/lib/game-sounds";
 import type { LeaderboardEntry } from "@/lib/game-event-bus";
 import { RankBadge as TierBadge } from "@/components/shared/rank-label";
+import { getAvatarFaceStyle } from "@/lib/utils";
 
 interface PodiumProps {
   podium: LeaderboardEntry[];
@@ -96,7 +97,7 @@ function NeubrutalistAvatar({ src, initials, userId, size = "md" }: Neubrutalist
         {parsed.face && (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", transform: "translateY(2%) scale(0.48)", transformOrigin: "center" }} />
+            style={getAvatarFaceStyle(parsed.head)} />
         )}
       </div>
     );
