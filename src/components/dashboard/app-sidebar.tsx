@@ -200,7 +200,15 @@ export function AppSidebar({
                 className="inline-block px-1.5 py-0.5 text-[9px] font-black uppercase tracking-widest rounded-none mt-0.5 border border-black"
                 style={{ background: "#e5e7eb", color: "#000" }}
               >
-                {role}
+                {role === "teacher"
+                  ? livePlan === "family"
+                    ? "family"
+                    : livePlan === "driving_school"
+                      ? "driving school"
+                      : livePlan === "school"
+                        ? "school"
+                        : "teacher"
+                  : role}
               </span>
             </div>
           </div>

@@ -3,7 +3,7 @@
  * Safe to import in both client and server components.
  */
 
-export type PlanTier = "free" | "teacher_pro" | "school" | "family" | "driving_school" | "individual";
+export type PlanTier = "free" | "teacher_pro" | "school" | "family" | "driving_school";
 
 export interface PlanLimits {
   maxPlayersPerSession: number;
@@ -91,20 +91,6 @@ export const PLAN_LIMITS: Record<PlanTier, PlanLimits> = {
     classManagement: true,
     prioritySupport: true,
   },
-  individual: {
-    maxPlayersPerSession: 50,
-    maxSessionsPerMonth: null,
-    allCategories: true,
-    maxCategories: 999,
-    analytics: true,
-    exportResults: true,
-    advancedGameModes: true,
-    removeBranding: true,
-    maxTeacherAccounts: 1,
-    maxStudentsPerSession: 50,
-    classManagement: false,
-    prioritySupport: false,
-  },
 };
 
 export const PLAN_DISPLAY = {
@@ -146,14 +132,6 @@ export const PLAN_DISPLAY = {
     price: 35,
     priceLabel: "$35",
     color: "#10b981",
-    badge: null,
-  },
-  individual: {
-    name: "Individual",
-    nameKh: "ឯកជន",
-    price: 10,
-    priceLabel: "$10",
-    color: "#ec4899",
     badge: null,
   },
 } as const;

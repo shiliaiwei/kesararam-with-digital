@@ -58,7 +58,7 @@ function AnimatedLogoText() {
   );
 }
 
-function ProfileMenu({ session, kh, showUpgrade }: { session: JWTPayload; kh: boolean; showUpgrade: boolean }) {
+function ProfileMenu({ session, kh, showUpgrade, subPlan }: { session: JWTPayload; kh: boolean; showUpgrade: boolean; subPlan: string | null }) {
   const brandFont = kh ? "font-google-sans" : "font-stack-notch";
   const [open, setOpen] = useState(false);
   const [lifetimePoints, setLifetimePoints] = useState(0);
@@ -143,7 +143,15 @@ function ProfileMenu({ session, kh, showUpgrade }: { session: JWTPayload; kh: bo
                   borderRadius: "0px",
                 }}
               >
-                {session.role}
+                {session.role === "teacher"
+                  ? subPlan === "family"
+                    ? "family"
+                    : subPlan === "driving_school"
+                      ? "driving school"
+                      : subPlan === "school"
+                        ? "school"
+                        : "teacher"
+                  : session.role}
               </span>
               {session.role === "student" && lifetimePoints > 0 && (
                 <TierBadge lifetimePoints={lifetimePoints} size="xs" lang={kh ? "kh" : "en"} />
@@ -298,7 +306,7 @@ export function Navbar({ session }: NavbarProps) {
               </button>
             )}
             {session ? (
-              <ProfileMenu session={session} kh={kh} showUpgrade={showUpgrade} />
+              <ProfileMenu session={session} kh={kh} showUpgrade={showUpgrade} subPlan={subPlan} />
             ) : (
               <Link
                 href="/login"

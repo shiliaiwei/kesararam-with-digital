@@ -27,7 +27,7 @@ interface UserOption {
 
 interface Props { initialRows: SubRow[]; allUsers: UserOption[]; adminId: number; }
 
-const PLAN_ICONS = { free: "bolt", teacher_pro: "crown", school: "domain", family: "group", driving_school: "directions_car", individual: "person" } as const;
+const PLAN_ICONS = { free: "bolt", teacher_pro: "crown", school: "domain", family: "group", driving_school: "directions_car" } as const;
 
 const STATUS_CONFIG: Record<SubStatus, { label: string; color: string; icon: string }> = {
   active:    { label: "Active",    color: "text-green-400 bg-green-400/10 border-green-400/30",  icon: "check_circle" },
@@ -74,13 +74,6 @@ const PLAN_FEATURES: Record<PlanTier, { label: string; icon: string; locked: boo
   driving_school: [
     { label: "Unlimited sessions", icon: "sports_esports", locked: false },
     { label: "Unlimited learners", icon: "group", locked: false },
-    { label: "All categories", icon: "lock_open", locked: false },
-    { label: "Analytics & reports", icon: "bar_chart", locked: false },
-    { label: "Export results", icon: "download", locked: false },
-  ],
-  individual: [
-    { label: "Unlimited sessions", icon: "sports_esports", locked: false },
-    { label: "50 players/session", icon: "group", locked: false },
     { label: "All categories", icon: "lock_open", locked: false },
     { label: "Analytics & reports", icon: "bar_chart", locked: false },
     { label: "Export results", icon: "download", locked: false },
@@ -325,7 +318,6 @@ function AssignDialog({ users: initialUsers, onClose, onSuccess }: {
     { key: "school",      icon: "domain",     label: "School",      price: "$49", desc: "Multi-teacher" },
     { key: "family",      icon: "group",      label: "Family",      price: "$5",  desc: "Up to 9 kids" },
     { key: "driving_school", icon: "directions_car", label: "Driving School", price: "$35", desc: "Unlimited learners" },
-    { key: "individual",  icon: "person",     label: "Individual",  price: "$10", desc: "Individual user" },
   ];
 
   return (
@@ -659,7 +651,6 @@ export function SubscriptionsManager({ initialRows, allUsers }: Props) {
           <option value="school">School</option>
           <option value="family">Family</option>
           <option value="driving_school">Driving School</option>
-          <option value="individual">Individual</option>
         </select>
         <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)}
           className="bg-[#111] border border-white/10 rounded-none px-3 py-2.5 text-sm text-white focus:outline-none">

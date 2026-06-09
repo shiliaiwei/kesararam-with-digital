@@ -1,9 +1,9 @@
 import { db } from "@/lib/db";
 import { subscriptions } from "@/db/schema";
 
-export type TrialPlan = "teacher_pro" | "school" | "family" | "driving_school" | "individual";
+export type TrialPlan = "teacher_pro" | "school" | "family" | "driving_school";
 
-const VALID_PLANS: TrialPlan[] = ["teacher_pro", "school", "family", "driving_school", "individual"];
+const VALID_PLANS: TrialPlan[] = ["teacher_pro", "school", "family", "driving_school"];
 
 export function normalizePlan(plan: string | null | undefined): TrialPlan {
     return VALID_PLANS.includes(plan as TrialPlan) ? (plan as TrialPlan) : "teacher_pro";

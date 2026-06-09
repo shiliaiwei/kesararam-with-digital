@@ -17,7 +17,6 @@ export const planEnum = pgEnum("plan_tier", [
   "school",
   "family",
   "driving_school",
-  "individual",
 ]);
 export const subStatusEnum = pgEnum("subscription_status", [
   "active",
@@ -189,14 +188,6 @@ export const PLAN_FEATURES = {
     analytics: true,
     customContent: true,
     priority: 4,
-  },
-  individual: {
-    name: "Individual",
-    maxStudents: 50,
-    maxClasses: 5,
-    analytics: true,
-    customContent: true,
-    priority: 2,
   },
 } as const;
 

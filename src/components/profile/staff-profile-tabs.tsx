@@ -58,7 +58,6 @@ export function StaffProfileTabs({
     school:         { label: "School",         icon: Building2, color: "#a855f7", bg: "bg-purple-500/15" },
     family:         { label: "Family Plan",    icon: Crown,     color: "#3b82f6", bg: "bg-blue-500/15" },
     driving_school: { label: "Driving School", icon: Car,       color: "#10b981", bg: "bg-emerald-500/15" },
-    individual:     { label: "Individual",     icon: Crown,     color: "#ec4899", bg: "bg-pink-500/15" },
   } as const;
   const pc = planConfig[plan as keyof typeof planConfig] ?? planConfig.free;
   const PlanIcon = pc.icon;
