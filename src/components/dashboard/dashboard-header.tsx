@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
 import { useLang } from "@/context/lang-context";
+import { LangSwitcher } from "@/components/shared/lang-switcher";
 
 const LABEL_MAP: Record<string, { en: string; kh: string }> = {
   admin: { en: "Admin", kh: "អ្នកគ្រប់គ្រង" },
@@ -69,11 +70,12 @@ export function DashboardHeader() {
           })}
         </div>
 
-        {/* Status Indicator */}
+        {/* Status Indicator & Language Switcher */}
         <div className="flex items-center gap-3">
+          <LangSwitcher />
           <div className="flex items-center gap-2 px-3 py-1.5 bg-green-400 border-2 border-black shadow-[2px_2px_0_#000]">
             <div className="w-2 h-2 bg-black animate-pulse" style={{ borderRadius: "0px" }} />
-            <span className="text-xs font-black uppercase tracking-widest text-black">
+            <span className="text-xs font-black uppercase tracking-widest text-black font-google-sans">
               {kh ? "អនឡាញ" : "Online"}
             </span>
           </div>

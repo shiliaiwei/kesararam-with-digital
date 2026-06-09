@@ -16,7 +16,7 @@ export function LangSwitcher({ className }: { className?: string }) {
       <button
         onClick={() => setLang("en")}
         className={cn(
-          "px-2.5 py-1 text-xs font-black transition-all duration-100",
+          "px-2.5 py-1 text-xs font-black transition-all duration-100 font-google-sans",
           lang === "en"
             ? "bg-yellow-400 text-black"
             : "bg-white text-zinc-500 hover:bg-zinc-100",
@@ -29,13 +29,12 @@ export function LangSwitcher({ className }: { className?: string }) {
       <button
         onClick={() => setLang("kh")}
         className={cn(
-          "px-2.5 py-1 text-xs font-black transition-all duration-100",
+          "px-2.5 py-1 text-xs font-black transition-all duration-100 font-google-sans",
           lang === "kh"
             ? "bg-yellow-400 text-black"
             : "bg-white text-zinc-500 hover:bg-zinc-100",
         )}
         aria-pressed={lang === "kh"}
-        style={{ fontFamily: "Siemreap, sans-serif" }}
       >
         ខ្មែរ
       </button>
