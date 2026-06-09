@@ -172,11 +172,10 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
         {/* ── Header & Scarcity Promo ── */}
         <div className="text-center mb-8 md:mb-14">
           <div className="inline-flex items-center gap-2 bg-amber-400/10 border border-amber-400/30 text-amber-400 text-xs font-black px-3 py-1.5 md:px-4 md:py-2 rounded-full mb-5 md:mb-7 uppercase tracking-widest">
-            <Lock size={13} className="shrink-0" />
-            <Clock size={14} className="shrink-0 animate-pulse" />
+            <Sparkles size={13} className="shrink-0" />
             {kh
-              ? "ចាក់សោតម្លៃ $៣/ខែ — មុនឡើង $១០ ខែ ១ ឆ្នាំ ២០២៧"
-              : "Lock in $3/mo — rises to $10 in Jan 2027"}
+              ? "ដោះសោសក្ដានុពលពេញលេញរបស់អ្នក"
+              : "Unlock your full teaching potential"}
           </div>
 
           <h1
@@ -224,68 +223,23 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
             </div>
           </div>
 
-          {/* PSYCHOLOGY — Price step-up warning bar (Teacher anchor). */}
+          {/* PSYCHOLOGY — Value proposition banner (replaces price step-up) */}
           {promo && (
             <div className="max-w-sm mx-auto mb-7 px-1">
-              <div className="flex items-center justify-between mb-2.5" style={khFont}>
-                <span className="text-[11px] font-bold text-white/50 uppercase tracking-widest">
-                  {kh ? "តម្លៃកំពុងផ្លាស់ប្ដូរ" : "Price rising soon"}
-                </span>
-                <span className="text-[11px] font-black text-amber-400">
-                  {daysLeft} {kh ? "ថ្ងៃទៀត" : "days left"}
-                </span>
-              </div>
-
-              <div className="flex items-end justify-between mb-1.5">
-                <div className="flex flex-col items-start">
-                  <span className="text-[10px] text-white/40 font-semibold mb-0.5" style={khFont}>
-                    {kh ? "ឥឡូវ" : "Now"}
-                  </span>
-                  <span className="text-2xl font-black text-amber-400 leading-none">$3</span>
-                  <span className="text-[10px] text-amber-400/60 font-semibold" style={khFont}>
-                    /mo
+              <div className="bg-amber-400/8 border border-amber-400/25 rounded-2xl p-4 text-center">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <Sparkles size={14} className="text-amber-400" />
+                  <span className="text-[11px] font-black text-amber-400 uppercase tracking-widest" style={khFont}>
+                    {kh ? "ប្រូម៉ូពិសេស" : "Special launch offer"}
                   </span>
                 </div>
-
-                <div className="flex flex-col items-center gap-1 pb-1">
-                  <span className="text-[10px] font-black text-white/30 uppercase tracking-widest" style={khFont}>
-                    {kh ? "ចាក់សោតម្លៃ" : "lock in now"}
-                  </span>
-                  <div className="flex items-center gap-1 text-white/20">
-                    <div className="w-8 h-px bg-white/20" />
-                    <ArrowRight size={12} className="text-amber-400/60" />
-                    <div className="w-8 h-px bg-white/20" />
-                  </div>
-                </div>
-
-                <div className="flex flex-col items-end">
-                  <span className="text-[10px] text-white/40 font-semibold mb-0.5" style={khFont}>
-                    {kh ? "បន្ទាប់មក" : "After promo"}
-                  </span>
-                  <span className="text-2xl font-black text-white/30 line-through leading-none">$10</span>
-                  <span className="text-[10px] text-white/25 font-semibold" style={khFont}>
-                    /mo
-                  </span>
-                </div>
-              </div>
-
-              <div className="relative h-3 rounded-full bg-white/8 overflow-hidden border border-white/10">
-                <div
-                  className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-amber-400 to-red-400 transition-all duration-1000"
-                  style={{ width: `${pct}%` }}
-                />
-                <div
-                  className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-amber-400 border-2 border-[#080808] shadow-[0_0_8px_rgba(251,191,36,0.8)]"
-                  style={{ left: `${pct}%` }}
-                />
-              </div>
-
-              <div className="flex justify-between mt-1.5" style={khFont}>
-                <span className="text-[10px] text-amber-400/70 font-bold">
-                  {pct}% {kh ? "នៃរយៈពេលប្រូម៉ូ" : "of promo used"}
-                </span>
-                <span className="text-[10px] text-white/30 font-semibold">
-                  {kh ? "ចុះខែ ១២ ឆ្នាំ ២០២៦" : "ends Dec 31 2026"}
+                <p className="text-white/50 text-xs font-bold leading-relaxed" style={khFont}>
+                  {kh
+                    ? "ធ្វើឱ្យប្រសើរឡើងថ្ងៃនេះ ហើយទទួលបានឧបករណ៍គ្រប់គ្រងថ្នាក់ របាយការណ៍ និងហ្គេមផ្ទាល់ គ្មានដែនកំណត់ សម្រាប់សិស្សរបស់អ្នក។"
+                    : "Upgrade today and give your students unlimited live games, full analytics, and every question category."}
+                </p>
+                <span className="inline-block mt-2 text-[10px] font-bold text-green-400 bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded-full">
+                  {kh ? `នៅសល់ ${daysLeft} ថ្ងៃក្នុងរយៈពេលប្រូម៉ូ` : `${daysLeft} days left at this price`}
                 </span>
               </div>
             </div>
@@ -748,11 +702,10 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                     <button
                       key={plan.id}
                       onClick={() => setSelectedPlan(plan.id)}
-                      className={`flex items-center justify-between p-3 md:p-4 border text-left rounded-xl transition-all ${
-                        selectedPlan === plan.id
-                          ? "bg-white/10 border-white text-white font-black scale-[1.01]"
-                          : "bg-white/5 border-white/10 text-white/60 hover:bg-white/[0.07]"
-                      }`}
+                      className={`flex items-center justify-between p-3 md:p-4 border text-left rounded-xl transition-all ${selectedPlan === plan.id
+                        ? "bg-white/10 border-white text-white font-black scale-[1.01]"
+                        : "bg-white/5 border-white/10 text-white/60 hover:bg-white/[0.07]"
+                        }`}
                       style={khFont}
                     >
                       <span>{plan.label}</span>
