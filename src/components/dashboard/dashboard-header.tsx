@@ -3,24 +3,31 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { ChevronRight, Home } from "lucide-react";
+import { useLang } from "@/context/lang-context";
 
-const LABEL_MAP: Record<string, string> = {
-  admin: "Admin",
-  teacher: "Teacher",
-  overview: "Overview",
-  users: "Users",
-  content: "Content",
-  media: "Media",
-  logs: "Logs",
-  classes: "Classes",
-  sessions: "Sessions",
-  profile: "Profile",
-  folders: "Folders",
-  categories: "Categories",
+const LABEL_MAP: Record<string, { en: string; kh: string }> = {
+  admin: { en: "Admin", kh: "អ្នកគ្រប់គ្រង" },
+  teacher: { en: "Teacher", kh: "គ្រូ" },
+  overview: { en: "Overview", kh: "ទិដ្ឋភាពទូទៅ" },
+  users: { en: "Users", kh: "អ្នកប្រើប្រាស់" },
+  content: { en: "Content", kh: "មាតិកា" },
+  media: { en: "Media", kh: "មេឌៀ" },
+  logs: { en: "Logs", kh: "កំណត់ហេតុ" },
+  classes: { en: "Classes", kh: "ថ្នាក់រៀន" },
+  sessions: { en: "Sessions", kh: "វគ្គផ្ទាល់" },
+  profile: { en: "Profile", kh: "ព័ត៌មាន" },
+  folders: { en: "Folders", kh: "ថត" },
+  categories: { en: "Categories", kh: "ប្រភេទ" },
+  host: { en: "Host", kh: "បង្កើត" },
+  staff: { en: "Staff", kh: "បុគ្គលិក" },
+  subscriptions: { en: "Subscriptions", kh: "សមាជិកភាព" },
+  questions: { en: "Questions", kh: "សំណួរ" },
 };
 
 export function DashboardHeader() {
   const pathname = usePathname();
+  const { lang } = useLang();
+  const kh = lang === "kh";
   const segments = pathname.split("/").filter(Boolean);
 
   return (
@@ -31,14 +38,15 @@ export function DashboardHeader() {
           <div className="flex items-center gap-2 px-3 py-1.5 bg-yellow-400 border-2 border-black shadow-[2px_2px_0_#000]">
             <Home size={16} className="text-black" />
             <span className="text-xs font-black uppercase tracking-widest text-black">
-              Dashboard
+              {kh ? "ផ្ទាំងគ្រប់គ្រង" : "Dashboard"}
             </span>
           </div>
-          
+
           {segments.map((seg, i) => {
             const isLast = i === segments.length - 1;
             const href = "/" + segments.slice(0, i + 1).join("/");
-            const label = LABEL_MAP[seg] || seg.charAt(0).toUpperCase() + seg.slice(1);
+            const mapped = LABEL_MAP[seg];
+            const label = mapped ? (kh ? mapped.kh : mapped.en) : seg.charAt(0).toUpperCase() + seg.slice(1);
 
             return (
               <div key={href} className="flex items-center gap-2">
@@ -66,7 +74,7 @@ export function DashboardHeader() {
           <div className="flex items-center gap-2 px-3 py-1.5 bg-green-400 border-2 border-black shadow-[2px_2px_0_#000]">
             <div className="w-2 h-2 bg-black animate-pulse" style={{ borderRadius: "0px" }} />
             <span className="text-xs font-black uppercase tracking-widest text-black">
-              Online
+              {kh ? "អនឡាញ" : "Online"}
             </span>
           </div>
         </div>
