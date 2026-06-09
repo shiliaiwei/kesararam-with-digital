@@ -100,6 +100,52 @@ export type Subscription = typeof subscriptions.$inferSelect;
 export type NewSubscription = typeof subscriptions.$inferInsert;
 
 /**
+ * Teacher applications — public, plan-driven sign-up requests.
+ * A pending row is created when someone applies for a paid plan from /pricing.
+ * No user account is created here: an admin reviews the request, verifies the
+ * KHQR payment, then provisions the teacher account + assigns the subscription
+ * (keeps the child-safety policy that teacher accounts are admin-created).
+ */
+export const applicationStatusEnum = pgEnum("application_status", [
+  "pending",
+  "approved",
+  "rejected",
+]);
+
+export const teacherApplications = pgTable(
+  "teacher_applications",
+  {
+    id: serial("id").primaryKey(),
+    // Applicant
+    displayName: text("display_name").notNull(),
+    email: text("email").notNull(), // school / Google email to allowlist on approval
+    phone: text("phone"), // phone or Telegram handle
+    schoolName: text("school_name"),
+    province: text("province"),
+    // Plan intent
+    plan: planEnum("plan").notNull(), // teacher_pro | school | driving_school
+    billingCycle: text("billing_cycle").notNull(), // "monthly" | "yearly"
+    seats: integer("seats"), // School: number of teacher accounts
+    academyName: text("academy_name"), // Academy (driving_school)
+    note: text("note"), // optional applicant message
+    // Workflow
+    status: applicationStatusEnum("status").notNull().default("pending"),
+    reviewedBy: integer("reviewed_by").references(() => users.id),
+    reviewedAt: timestamp("reviewed_at"),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
+    updatedAt: timestamp("updated_at").notNull().defaultNow(),
+  },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (table: any) => ({
+    statusIdx: index("teacher_apps_status_idx").on(table.status),
+    emailIdx: index("teacher_apps_email_idx").on(table.email),
+  }),
+);
+
+export type TeacherApplication = typeof teacherApplications.$inferSelect;
+export type NewTeacherApplication = typeof teacherApplications.$inferInsert;
+
+/**
  * Subscription plan features and limits
  */
 export const PLAN_FEATURES = {

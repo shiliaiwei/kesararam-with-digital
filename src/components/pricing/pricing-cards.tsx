@@ -117,12 +117,19 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
       ? "USD/ខែ"
       : "USD/month";
 
-  // Scroll smoothly to checkout (or sign in for Free)
+  // Free → sign in. Teacher/School/Academy → plan-aware application form.
+  // Family → scroll to the KHQR checkout below.
   const handleSelectPlan = (planKey: PlanKey | "free") => {
     if (planKey === "free") {
       window.location.href = "/login";
       return;
     }
+    if (planKey === "teacher_pro" || planKey === "school" || planKey === "driving_school") {
+      const cycle = yearly ? "yearly" : "monthly";
+      window.location.href = `/register/teacher?plan=${planKey}&cycle=${cycle}`;
+      return;
+    }
+    // Family (B2C self-serve) → KHQR checkout
     setSelectedPlan(planKey);
     setTimeout(() => {
       const el = document.getElementById("checkout-section");
