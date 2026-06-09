@@ -176,7 +176,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
             style={khFont}
           >
             {kh ? (
-              "ជ្រើសរើសផែនការរបស់អ្នក"
+              "ជ្រើសរើសកញ្ចប់សិក្សារបស់អ្នក"
             ) : (
               <>
                 Choose the plan that{" "}
@@ -188,7 +188,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
           </h1>
           <p className="text-white/55 text-sm md:text-xl max-w-2xl mx-auto mb-5 md:mb-6" style={khFont}>
             {kh
-              ? "សិស្សលេងឥតគិតថ្លៃជានិច្ច។ ឪពុកម្ដាយ គ្រូបង្រៀន និងសាលាបណ្តុះបណ្តាលទទួលបានឧបករណ៍កម្រិតខ្ពស់។"
+              ? "សិស្សរៀនហ្វ្រីជានិច្ច! មាតាបិតា និងគ្រឹះស្ថានទទួលបានប្រព័ន្ធគ្រប់គ្រងវៃឆ្លាត។"
               : "Students always play free. Parents, teachers & academies get advanced coaching tools."}
           </p>
 
