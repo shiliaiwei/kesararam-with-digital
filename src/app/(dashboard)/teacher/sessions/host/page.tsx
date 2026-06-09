@@ -16,7 +16,6 @@ import {
   Sparkles, Rocket, Maximize, Minimize,
 } from "lucide-react";
 import { UpgradeButton } from "@/components/pricing/upgrade-button";
-import { UpgradeModal } from "@/components/pricing/upgrade-modal";
 import { Lock } from "lucide-react";
 import QRCode from "react-qr-code";
 import { cloudinaryOptimize } from "@/lib/cloudinary";
@@ -293,8 +292,6 @@ export default function HostPage() {
   const [isTrial, setIsTrial] = useState(false);
   const [trialEndsAt, setTrialEndsAt] = useState<string | null>(null);
   const [endsAt, setEndsAt] = useState<string | null>(null);
-  const [upgradeModalOpen, setUpgradeModalOpen] = useState(false);
-  const [upgradeTrigger, setUpgradeTrigger] = useState("");
   const [questionCountWarning, setQuestionCountWarning] = useState<string | null>(null);
   const [actualQuestionCount, setActualQuestionCount] = useState<number | null>(null);
 
@@ -772,8 +769,7 @@ export default function HostPage() {
                             key={m.id}
                             onClick={() => {
                               if (isLocked) {
-                                setUpgradeTrigger("advanced_modes");
-                                setUpgradeModalOpen(true);
+                                window.location.href = "https://www.kesararamwithdigital.tech/pricing";
                               } else {
                                 setSelectedMode(m.id);
                                 setQuestionCount(m.defaultQuestionCount);
@@ -1252,12 +1248,6 @@ export default function HostPage() {
                 </GlassCard>
               </div>
             </div>
-            <UpgradeModal
-              open={upgradeModalOpen}
-              onClose={() => setUpgradeModalOpen(false)}
-              trigger={upgradeTrigger}
-              lang={lang}
-            />
           </div>
         </div>
       </div>

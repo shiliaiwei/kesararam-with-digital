@@ -13,7 +13,6 @@ import { logoutAction } from "@/app/actions/auth";
 import type { JWTPayload } from "@/lib/auth";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
 import { Crown } from "lucide-react";
-import { UpgradeModal } from "@/components/pricing/upgrade-modal";
 import { RankBadge as TierBadge } from "@/components/shared/rank-label";
 
 interface NavbarProps {
@@ -215,7 +214,6 @@ export function Navbar({ session }: NavbarProps) {
   const tr = t[lang].nav;
   const kh = lang === "kh";
   const brandFont = kh ? "font-google-sans" : "font-stack-notch";
-  const [upgradeOpen, setUpgradeOpen] = useState(false);
   const [subPlan, setSubPlan] = useState<string | null>(null);
 
   useEffect(() => {
@@ -250,7 +248,6 @@ export function Navbar({ session }: NavbarProps) {
 
   return (
     <>
-      <UpgradeModal open={upgradeOpen} onClose={() => setUpgradeOpen(false)} lang={lang} />
       <header className="sticky top-0 left-0 right-0 z-50 bg-white border-b-2 border-black">
         <nav className="flex items-center px-6 py-3 max-w-7xl mx-auto">
           {/* Logo — fixed width so nav never shifts */}
@@ -295,7 +292,7 @@ export function Navbar({ session }: NavbarProps) {
             {/* Upgrade CTA */}
             {showUpgrade && (
               <button
-                onClick={() => setUpgradeOpen(true)}
+                onClick={() => window.location.href = "https://www.kesararamwithdigital.tech/pricing"}
                 className={cn(
                   "flex items-center gap-1.5 px-3 py-1.5 text-xs bg-amber-400 text-black border-2 border-black shadow-[2px_2px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 whitespace-nowrap uppercase tracking-wide",
                   brandFont
@@ -416,7 +413,7 @@ export function Navbar({ session }: NavbarProps) {
               {/* Mobile upgrade button */}
               {showUpgrade && (
                 <button
-                  onClick={() => { setMobileOpen(false); setUpgradeOpen(true); }}
+                  onClick={() => { setMobileOpen(false); window.location.href = "https://www.kesararamwithdigital.tech/pricing"; }}
                   className={cn("flex items-center justify-center gap-2 mt-2 px-4 py-3 text-base font-black bg-amber-400 text-black border-2 border-black shadow-[4px_4px_0_#000] uppercase tracking-wide", brandFont)}
                 >
                   <Crown size={16} />
