@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { X, Check, Crown, Building2, Shield, Sparkles, Bot, Zap } from "lucide-react";
+import { X, Check, Crown, Building2, Shield, Sparkles, Bot, Zap, Car, Users } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 interface UpgradeModalProps {
@@ -32,34 +32,87 @@ const PLANS = [
     tagline: { en: "For teachers & instructors", kh: "សម្រាប់គ្រូ និងអ្នកបង្រៀន" },
     cta: { en: "Apply Now", kh: "ដាក់ពាក្យឥឡូវនេះ" },
     scarcity: { en: "🔥 70% Off Promo active!", kh: "🔥 ប្រូម៉ូសិនបញ្ចុះតម្លៃ ៧០%!" },
+    pricing: {
+      monthly: { price: 3, stdPrice: 10 },
+      yearly: { price: 2, stdPrice: 6.67, save: 56 },
+    },
     features: [
-      { en: "Unlimited live game sessions", kh: "វគ្គហ្គេមផ្ទាល់គ្មានដែនកំណត់", icon: Zap },
-      { en: "All 8 question categories", kh: "ប្រភេទសំណួរទាំង ៨", icon: Check },
-      { en: "Up to 50 students/session", kh: "រហូតដល់ ៥០ សិស្ស/វគ្គ", icon: Check },
-      { en: "Session analytics & reports", kh: "វិភាគ និងរបាយការណ៍", icon: Check },
-      { en: "Advanced game modes", kh: "របៀបហ្គេមកម្រិតខ្ពស់", icon: Check },
-      { en: "Suar AI — unlimited queries", kh: "Suar AI — សំណួរគ្មានដែនកំណត់", icon: Bot },
-      { en: "Export results (CSV/PDF)", kh: "នាំចេញលទ្ធផល (CSV/PDF)", icon: Check },
+      { en: "Unlimited live game sessions", kh: "វគ្គហ្គេមផ្ទាល់គ្មានដែនកំណត់" },
+      { en: "All 8 question categories", kh: "ប្រភេទសំណួរទាំង ៨" },
+      { en: "Up to 50 students/session", kh: "រហូតដល់ ៥០ សិស្ស/វគ្គ" },
+      { en: "Session analytics & reports", kh: "វិភាគ និងរបាយការណ៍" },
+      { en: "Advanced game modes", kh: "របៀបហ្គេមកម្រិតខ្ពស់" },
+      { en: "Suar AI — unlimited queries", kh: "Suar AI — សំណួរគ្មានដែនកំណត់" },
+      { en: "Export results (CSV/PDF)", kh: "នាំចេញលទ្ធផល (CSV/PDF)" },
     ],
   },
   {
-    key: "school_and_institute",
+    key: "family",
+    name: "Family Plan",
+    nameKh: "ផែនការគ្រួសារ",
+    icon: Users,
+    color: "#3b82f6",
+    highlight: false,
+    badge: null,
+    tagline: { en: "For kids & family learning", kh: "សម្រាប់កុមារ និងការរៀនក្នុងគ្រួសារ" },
+    cta: { en: "Apply Now", kh: "ដាក់ពាក្យឥឡូវនេះ" },
+    scarcity: null,
+    pricing: {
+      monthly: { price: 2, stdPrice: 5 },
+      yearly: { price: 1.67, stdPrice: 5, save: 40 },
+    },
+    features: [
+      { en: "Up to 9 children accounts", kh: "គណនីកូនៗរហូតដល់ ៩ នាក់" },
+      { en: "All question categories", kh: "ប្រភេទសំណួរទាំងអស់" },
+      { en: "Session analytics & reports", kh: "វិភាគ និងរបាយការណ៍" },
+      { en: "Export results to PDF", kh: "នាំចេញលទ្ធផលទៅជា PDF" },
+      { en: "Advanced game modes", kh: "របៀបហ្គេមកម្រិតខ្ពស់" },
+    ],
+  },
+  {
+    key: "driving_school",
+    name: "Driving School",
+    nameKh: "សាលាបង្រៀនបើកបរ",
+    icon: Car,
+    color: "#10b981",
+    highlight: false,
+    badge: null,
+    tagline: { en: "For driving academies", kh: "សម្រាប់សាលាបង្រៀនបើកបរ" },
+    cta: { en: "Apply Now", kh: "ដាក់ពាក្យឥឡូវនេះ" },
+    scarcity: null,
+    pricing: {
+      monthly: { price: 11, stdPrice: 35 },
+      yearly: { price: 9.17, stdPrice: 29.17, save: 240 },
+    },
+    features: [
+      { en: "Unlimited live sessions", kh: "វគ្គហ្គេមផ្ទាល់គ្មានដែនកំណត់" },
+      { en: "Up to 200 learners/session", kh: "សិស្សរហូតដល់ ២០០ នាក់/វគ្គ" },
+      { en: "All 8 question categories", kh: "ប្រភេទសំណួរទាំង ៨" },
+      { en: "Advanced analytics & reports", kh: "វិភាគ និងរបាយការណ៍កម្រិតខ្ពស់" },
+      { en: "Custom school branding", kh: "សញ្ញាសាលាផ្ទាល់ខ្លួន" },
+    ],
+  },
+  {
+    key: "school",
     name: "School & Institute",
     nameKh: "សាលា & វិទ្យាស្ថាន",
     icon: Building2,
     color: "#a855f7",
     highlight: false,
     badge: null,
-    tagline: { en: "For schools & training centers", kh: "សម្រាប់សាលារៀន និងវិទ្យាស្ថានបណ្តុះបណ្តាល" },
+    tagline: { en: "For schools & campuses", kh: "សម្រាប់សាលារៀន និងវិទ្យាស្ថាន" },
     cta: { en: "Apply Now", kh: "ដាក់ពាក្យឥឡូវនេះ" },
-    scarcity: { en: "🔥 School: $19/mo, Institute: $29/mo (Promo)", kh: "🔥 សាលារៀន៖ $19/ខែ, វិទ្យាស្ថាន៖ $29/ខែ" },
+    scarcity: null,
+    pricing: {
+      monthly: { price: 6, stdPrice: 20 },
+      yearly: { price: 4.5, stdPrice: 15, save: 126 },
+    },
     features: [
-      { en: "Everything in Teacher Pro", kh: "អ្វីៗទាំងអស់ក្នុង Teacher Pro", icon: Check },
-      { en: "10 to 30 teacher accounts", kh: "ពី ១០ ទៅ ៣០ គណនីគ្រូ", icon: Check },
-      { en: "200 to 500 students/session", kh: "ពី ២០០ ទៅ ៥០០ សិស្ស/វគ្គ", icon: Check },
-      { en: "Admin class management", kh: "ការគ្រប់គ្រងថ្នាក់ Admin", icon: Check },
-      { en: "Priority support & onboarding", kh: "ជំនួយអាទិភាព និងការណែនាំ", icon: Check },
-      { en: "White-labeled portal & branding", kh: "ជម្រើសផតថល និងសញ្ញាផ្ទាល់ខ្លួន", icon: Check },
+      { en: "Everything in Teacher Pro", kh: "អ្វីៗទាំងអស់ក្នុង Teacher Pro" },
+      { en: "10 to 30 teacher accounts", kh: "ពី ១០ ទៅ ៣០ គណនីគ្រូ" },
+      { en: "200 to 500 students/session", kh: "ពី ២០០ ទៅ ៥០០ សិស្ស/វគ្គ" },
+      { en: "Admin class management", kh: "ការគ្រប់គ្រងថ្នាក់ Admin" },
+      { en: "Priority support & onboarding", kh: "ជំនួយអាទិភាព និងការណែនាំ" },
     ],
   },
 ];
@@ -99,12 +152,12 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
   const triggerMsg = trigger ? TRIGGER_MESSAGES[trigger] : null;
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center">
+    <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-4">
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/85 backdrop-blur-lg" onClick={onClose} />
 
       {/* Sheet — slides up on mobile, centered on desktop */}
-      <div className="relative w-full sm:max-w-2xl bg-[#0c0c0c] sm:rounded-2xl rounded-t-3xl border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] overflow-hidden max-h-[95dvh] flex flex-col">
+      <div className="relative w-full sm:max-w-4xl bg-[#0c0c0c] sm:rounded-2xl rounded-t-3xl border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] overflow-hidden max-h-[95dvh] flex flex-col">
 
         {/* Ambient top glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-80 h-24 bg-amber-400/8 blur-3xl pointer-events-none" />
@@ -124,10 +177,15 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
         <div className="overflow-y-auto flex-1">
           {/* Header */}
           <div className="text-center px-6 pt-5 pb-4">
-            <div className="inline-flex items-center gap-1.5 bg-amber-400/10 border border-amber-400/25 text-amber-400 text-[11px] font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-widest">
+            <div className="inline-flex items-center gap-1.5 bg-amber-400/10 border border-amber-400/25 text-amber-400 text-[11px] font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-widest font-google-sans">
               <Sparkles size={10} />
               {kh ? "ធ្វើឱ្យប្រសើរឡើង" : "Upgrade"}
             </div>
+            {triggerMsg && (
+              <div className="max-w-md mx-auto text-amber-300 bg-amber-400/10 border border-amber-400/30 rounded-lg p-2.5 text-xs mb-3 font-semibold font-google-sans">
+                {kh ? triggerMsg.kh : triggerMsg.en}
+              </div>
+            )}
             <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight mb-1" style={khFont}>
               {kh ? "បើកដោះស្រាយសក្ដានុពលពេញលេញ" : "Unlock Full Power"}
             </h2>
@@ -162,123 +220,87 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
           </div>
 
           {/* Plan cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 px-4 sm:px-6 pb-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 px-4 sm:px-6 pb-6">
             {PLANS.map((plan) => {
               const Icon = plan.icon;
-
-              // Define prices based on promo
-              const getPrice = (key: string, isYearly: boolean) => {
-                if (key === "teacher_pro") return isYearly ? 2 : 3;
-                return 0; // Handled separately
-              };
-              const getStandardPrice = (key: string, isYearly: boolean) => {
-                if (key === "teacher_pro") return isYearly ? 6.67 : 10;
-                return 0; // Handled separately
-              };
-
-              const price = getPrice(plan.key, yearly);
-              const stdPrice = getStandardPrice(plan.key, yearly);
+              const price = yearly ? plan.pricing.yearly.price : plan.pricing.monthly.price;
+              const stdPrice = yearly ? plan.pricing.yearly.stdPrice : plan.pricing.monthly.stdPrice;
+              const saveAmount = yearly ? plan.pricing.yearly.save : null;
 
               return (
                 <div key={plan.key}
-                  className={`relative rounded-2xl p-5 flex flex-col transition-all duration-200 group ${plan.highlight
+                  className={`relative rounded-2xl p-5 flex flex-col justify-between transition-all duration-200 group ${plan.highlight
                       ? "bg-gradient-to-b from-amber-400/12 via-amber-400/5 to-transparent border-2 border-amber-400/50 shadow-[0_0_40px_rgba(251,191,36,0.12)]"
                       : "bg-white/4 border border-white/10 hover:border-white/20 hover:bg-white/6"
                     }`}
                 >
                   {plan.badge && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-400 text-black text-[10px] font-black px-3 py-0.5 rounded-full uppercase tracking-wider whitespace-nowrap shadow-lg">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-400 text-black text-[10px] font-black px-3 py-0.5 rounded-full uppercase tracking-wider whitespace-nowrap shadow-lg font-google-sans">
                       {kh ? plan.badge.kh : plan.badge.en}
                     </div>
                   )}
 
-                  {/* Plan name + icon */}
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${plan.highlight ? "bg-amber-400/15" : "bg-white/8"}`}>
-                      <Icon size={16} style={{ color: plan.color }} />
+                  <div>
+                    {/* Plan name + icon */}
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${plan.highlight ? "bg-amber-400/15" : "bg-white/8"}`}>
+                        <Icon size={16} style={{ color: plan.color }} />
+                      </div>
+                      <span className="font-black text-white text-base font-google-sans">
+                        {kh ? plan.nameKh : plan.name}
+                      </span>
                     </div>
-                    <span className="font-black text-white text-base" style={khFont}>
-                      {kh ? plan.nameKh : plan.name}
-                    </span>
-                  </div>
 
-                  {/* Price */}
-                  {plan.key === "teacher_pro" ? (
+                    {/* Price */}
                     <div className="flex flex-col mb-1">
                       <div className="flex items-end gap-1.5 mb-0.5 flex-wrap">
                         <span className="text-4xl font-black text-white leading-none">${price}</span>
                         <span className="text-white/35 text-xs mb-1" style={khFont}>{kh ? "USD/ខែ" : "USD/mo"}</span>
                         <span className="line-through text-white/20 text-xs ml-1.5 mb-1">${stdPrice}</span>
                       </div>
-                      {yearly && (
-                        <div className="text-[10px] font-bold text-green-400 mt-1 bg-green-500/10 border border-green-500/20 px-1.5 py-0.5 rounded w-fit">
-                          {kh ? "សន្សំបាន៖ $១២/ឆ្នាំ" : "You Save: $12/yr"}
+                      {yearly && saveAmount && (
+                        <div className="text-[10px] font-bold text-green-400 mt-1 bg-green-500/10 border border-green-500/20 px-1.5 py-0.5 rounded w-fit font-google-sans">
+                          {kh ? `សន្សំបាន៖ $${saveAmount}/ឆ្នាំ` : `You Save: $${saveAmount}/yr`}
                         </div>
                       )}
                     </div>
-                  ) : (
-                    <div className="flex flex-col gap-1 mb-2 border-b border-white/5 pb-2">
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-white/50 font-bold" style={khFont}>{kh ? "ផែនការសាលារៀន" : "School Plan"}</span>
-                        <div className="flex flex-col items-end">
-                          <div className="flex items-center gap-1.5">
-                            <span className="font-black text-white">${yearly ? 4.5 : 6}</span>
-                            <span className="text-white/35 text-[10px]">{kh ? "USD/ខែ" : "USD/mo"}</span>
-                            <span className="line-through text-white/20 text-[10px]">${yearly ? 15 : 20}</span>
-                          </div>
-                          {yearly && (
-                            <span className="text-[9px] font-bold text-green-400 mt-0.5">{kh ? "សន្សំ៖ $១៨/ឆ្នាំ" : "Save: $18/yr"}</span>
-                          )}
+
+                    <p className="text-white/35 text-xs mb-3 mt-1.5 leading-relaxed" style={khFont}>
+                      {kh ? plan.tagline.kh : plan.tagline.en}
+                    </p>
+
+                    {/* Scarcity */}
+                    {plan.scarcity && (
+                      <div className="text-[11px] text-amber-300 bg-amber-400/8 border border-amber-400/20 rounded-lg px-3 py-2 mb-3 font-semibold font-google-sans">
+                        {kh ? plan.scarcity.kh : plan.scarcity.en}
+                      </div>
+                    )}
+                  </div>
+
+                  <div>
+                    {/* CTA */}
+                    <button
+                      onClick={() => { onClose(); router.push("/pricing"); }}
+                      className={`w-full py-3 rounded-xl text-sm font-black transition-all duration-200 mb-4 ${plan.highlight
+                          ? "bg-amber-400 text-black hover:bg-amber-300 shadow-[0_4px_20px_rgba(251,191,36,0.35)] hover:shadow-[0_6px_28px_rgba(251,191,36,0.5)] hover:-translate-y-0.5 active:translate-y-0"
+                          : "border border-white/15 text-white hover:bg-white/8 hover:border-white/30"
+                        }`}
+                      style={khFont}
+                    >
+                      {kh ? plan.cta.kh : plan.cta.en}
+                    </button>
+
+                    {/* Features */}
+                    <div className="flex flex-col gap-2">
+                      {plan.features.map((f, i) => (
+                        <div key={i} className="flex items-start gap-2.5">
+                          <Check size={13} className="text-green-400 mt-0.5 shrink-0" />
+                          <span className="text-xs text-white/65 leading-relaxed font-google-sans">
+                            {kh ? f.kh : f.en}
+                          </span>
                         </div>
-                      </div>
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-white/50 font-bold" style={khFont}>{kh ? "ផែនការវិទ្យាស្ថាន" : "Institute Plan"}</span>
-                        <div className="flex flex-col items-end">
-                          <div className="flex items-center gap-1.5">
-                            <span className="font-black text-white">${yearly ? 11.25 : 15}</span>
-                            <span className="text-white/35 text-[10px]">{kh ? "USD/ខែ" : "USD/mo"}</span>
-                            <span className="line-through text-white/20 text-[10px]">${yearly ? 36.75 : 49}</span>
-                          </div>
-                          {yearly && (
-                            <span className="text-[9px] font-bold text-green-400 mt-0.5">{kh ? "សន្សំ៖ $៤៥/ឆ្នាំ" : "Save: $45/yr"}</span>
-                          )}
-                        </div>
-                      </div>
+                      ))}
                     </div>
-                  )}
-                  <p className="text-white/35 text-xs mb-3" style={khFont}>
-                    {kh ? plan.tagline.kh : plan.tagline.en}
-                  </p>
-
-                  {/* Scarcity */}
-                  {plan.scarcity && (
-                    <div className="text-[11px] text-amber-300 bg-amber-400/8 border border-amber-400/20 rounded-lg px-3 py-2 mb-3 font-semibold" style={khFont}>
-                      {kh ? plan.scarcity.kh : plan.scarcity.en}
-                    </div>
-                  )}
-
-                  {/* CTA */}
-                  <button
-                    onClick={() => { onClose(); router.push("/pricing"); }}
-                    className={`w-full py-3 rounded-xl text-sm font-black transition-all duration-200 mb-4 ${plan.highlight
-                        ? "bg-amber-400 text-black hover:bg-amber-300 shadow-[0_4px_20px_rgba(251,191,36,0.35)] hover:shadow-[0_6px_28px_rgba(251,191,36,0.5)] hover:-translate-y-0.5 active:translate-y-0"
-                        : "border border-white/15 text-white hover:bg-white/8 hover:border-white/30"
-                      }`}
-                    style={khFont}
-                  >
-                    {kh ? plan.cta.kh : plan.cta.en}
-                  </button>
-
-                  {/* Features */}
-                  <div className="flex flex-col gap-2">
-                    {plan.features.map((f, i) => (
-                      <div key={i} className="flex items-start gap-2.5">
-                        <Check size={13} className="text-green-400 mt-0.5 shrink-0" />
-                        <span className="text-xs text-white/65 leading-relaxed" style={khFont}>
-                          {kh ? f.kh : f.en}
-                        </span>
-                      </div>
-                    ))}
                   </div>
                 </div>
               );
