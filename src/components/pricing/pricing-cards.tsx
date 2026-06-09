@@ -126,7 +126,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
     }
     if (planKey === "teacher_pro" || planKey === "school" || planKey === "driving_school") {
       const cycle = yearly ? "yearly" : "monthly";
-      window.location.href = `/register/teacher?plan=${planKey}&cycle=${cycle}`;
+      window.location.href = `/register?plan=${planKey}&cycle=${cycle}`;
       return;
     }
     // Family (B2C self-serve) → KHQR checkout

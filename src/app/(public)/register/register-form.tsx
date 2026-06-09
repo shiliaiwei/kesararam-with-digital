@@ -285,8 +285,15 @@ function PrivacyConfirmModal({
 type Track = "student" | "teacher";
 
 function RegisterFormInner() {
-  const [track, setTrack] = useState<Track>("student");
-  const [selectedPlan, setSelectedPlan] = useState<"teacher_pro" | "family" | "driving_school">("teacher_pro");
+  const searchParams = useSearchParams();
+  const planParam = searchParams.get("plan");
+  
+  // Set initial plan/track based on query param
+  const initialTrack: Track = (planParam === "teacher_pro" || planParam === "school" || planParam === "driving_school" || planParam === "family") ? "teacher" : "student";
+  const initialPlan = (planParam === "school") ? "teacher_pro" : (planParam === "family" ? "family" : (planParam === "driving_school" ? "driving_school" : "teacher_pro"));
+
+  const [track, setTrack] = useState<Track>(initialTrack);
+  const [selectedPlan, setSelectedPlan] = useState<"teacher_pro" | "family" | "driving_school">(initialPlan as any);
   const accountType = track;
   const isTeacher = accountType === "teacher";
   const { lang } = useLang();
@@ -304,7 +311,6 @@ function RegisterFormInner() {
   const [pendingRegistrationType, setPendingRegistrationType] = useState<"google" | "email" | null>(null);
 
   const formRef = useRef<HTMLFormElement>(null);
-  const searchParams = useSearchParams();
   const urlError = searchParams.get("error") ?? "";
 
   const displayError = state?.error || googleError || urlError;
