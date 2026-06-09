@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     title: "KWD — Learn Anything. Understand Everything.",
     description: "Most students fail not because they're not smart — but because no one made learning easy. KWD changes that. Free, bilingual, built for Cambodia.",
     images: [{
-      url: "/brand/kwd-green_ofhdec.png",
+      url: "/brand/kwd-green.png",
       width: 1200,
       height: 630,
       alt: "KWD Logo",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "KWD — Learn Anything. Understand Everything.",
     description: "Most students fail not because they're not smart — but because no one made learning easy. KWD changes that. Free, bilingual, built for Cambodia.",
-    images: ["/brand/kwd-green_ofhdec.png"],
+    images: ["/brand/kwd-green.png"],
   },
 };
 
@@ -75,6 +75,46 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
+};
+
+const SITE_URL = "https://www.kesararamwithdigital.tech";
+
+// Schema.org structured data — helps search engines and LLMs identify the
+// organization behind the site and enables rich results.
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "EducationalOrganization"],
+      "@id": `${SITE_URL}/#organization`,
+      name: "Kesararam With Digital",
+      alternateName: "KWD",
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/brand/kwd-green.png`,
+        width: 512,
+        height: 512,
+      },
+      image: `${SITE_URL}/brand/kwd-green.png`,
+      description:
+        "KWD is Cambodia's free bilingual education platform that turns complex knowledge into something anyone can understand, remember, and use.",
+      email: "kesararamwithdigital@gmail.com",
+      foundingDate: "2025",
+      areaServed: { "@type": "Country", name: "Cambodia" },
+      sameAs: ["https://t.me/kesararamwithdigital"],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "KWD — Kesararam With Digital",
+      description:
+        "Free, bilingual education platform built for Cambodia. Learn anything, understand everything.",
+      inLanguage: ["en", "km"],
+      publisher: { "@id": `${SITE_URL}/#organization` },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -85,9 +125,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" type="image/png" sizes="32x32" href="/brand/kwd-green_ofhdec.png" />
-        <link rel="apple-touch-icon" href="/brand/kwd-green_ofhdec.png" />
-        <link rel="shortcut icon" href="/brand/kwd-green_ofhdec.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/brand/kwd-green.png" />
+        <link rel="apple-touch-icon" href="/brand/kwd-green.png" />
+        <link rel="shortcut icon" href="/brand/kwd-green.png" />
         {/* Preconnect to Cloudinary — reduces LCP for sign images */}
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
@@ -97,6 +137,11 @@ export default function RootLayout({
         {/* Preconnect to Google Fonts */}
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        {/* Schema.org structured data (Organization + WebSite) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
       </head>
       <body className={`${inter.variable} ${kantumruy.variable} ${siemreap.variable} font-sans antialiased overflow-x-hidden`}>
         <GoogleAnalytics />
