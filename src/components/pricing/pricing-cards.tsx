@@ -171,13 +171,6 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
       <div className="relative z-10">
         {/* ── Header & Scarcity Promo ── */}
         <div className="text-center mb-8 md:mb-14">
-          <div className="inline-flex items-center gap-2 bg-amber-400/10 border border-amber-400/30 text-amber-400 text-xs font-black px-3 py-1.5 md:px-4 md:py-2 rounded-full mb-5 md:mb-7 uppercase tracking-widest">
-            <Sparkles size={13} className="shrink-0" />
-            {kh
-              ? "ដោះសោសក្ដានុពលពេញលេញរបស់អ្នក"
-              : "Unlock your full teaching potential"}
-          </div>
-
           <h1
             className="text-2xl xs:text-3xl md:text-7xl font-black mb-3 md:mb-4 tracking-tight leading-[1.1] md:leading-[1.05]"
             style={khFont}
