@@ -18,6 +18,7 @@ import {
   Star,
   TrendingDown,
   Lock,
+  CreditCard,
 } from "lucide-react";
 
 interface PricingCardsProps {
@@ -436,7 +437,7 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                 { en: "Parental alerts", kh: "ការជូនដំណឹងដល់ឪពុកម្ដាយ" },
                 { en: "Full curriculum access", kh: "ចូលដំណើរការ Curriculum ពេញលេញ" },
                 { en: "3,300 practice questions", kh: "៣,៣០០ សំណួរអនុវត្ត" },
-                { en: "Up to 2 children", kh: "កូនរហូតដល់ ២ នាក់" },
+                { en: "Up to 9 children", kh: "កូនរហូតដល់ ៩ នាក់" },
                 { en: "Achievement certificates", kh: "វិញ្ញាបនបត្រ Achievement" },
               ].map((f, i) => (
                 <div key={i} className="flex items-start gap-2">
@@ -538,19 +539,48 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
             </p>
 
             <div className="relative flex-1">
-              <p className="text-[10px] text-amber-400 uppercase tracking-widest font-black mb-2" style={khFont}>
-                {kh ? "អ្វីដែលរួមបញ្ចូល" : "Everything you get"}
+              {/* Teacher Pro benefits */}
+              <p className="text-[10px] text-amber-400 uppercase tracking-widest font-black mb-2 flex items-center gap-1.5" style={khFont}>
+                <Crown size={11} className="text-amber-400" />
+                {kh ? "គ្រូ Pro ទទួលបាន" : "Every Teacher gets"}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-1 gap-x-2 gap-y-1.5 md:gap-y-2">
                 {[
                   { en: "Unlimited live sessions", kh: "វគ្គផ្ទាល់គ្មានដែនកំណត់" },
                   { en: "All 8 question categories", kh: "ប្រភេទសំណួរទាំង ៨" },
                   { en: "Up to 50 students/session", kh: "៥០ សិស្ស/វគ្គ" },
-                  { en: "Analytics & reports", kh: "វិភាគ & របាយការណ៍" },
+                  { en: "Per-student analytics & reports", kh: "វិភាគ & របាយការណ៍តាមសិស្ស" },
+                  { en: "Mistake tracking & weak spots", kh: "តាមដានកំហុស និងចំណុចខ្សោយ" },
                   { en: "Export CSV / PDF", kh: "នាំចេញ CSV/PDF" },
-                  { en: "Admin dashboard (School)", kh: "ផ្ទាំង Admin (សាលា)" },
+                  { en: "Advanced game modes", kh: "ហ្គេមកម្រិតខ្ពស់" },
                   { en: "Remove KWD branding", kh: "លុបស្លាក KWD" },
-                  { en: "Suar AI unlimited", kh: "Suar AI គ្មានដែនកំណត់" },
+                  { en: "Suar AI tutor unlimited", kh: "Suar AI គ្មានដែនកំណត់" },
+                ].map((f, i) => (
+                  <div key={i} className="flex items-center gap-1.5 min-w-0">
+                    <span className="shrink-0 w-3.5 h-3.5 rounded-full bg-amber-400/20 flex items-center justify-center">
+                      <Check size={9} className="text-amber-400" />
+                    </span>
+                    <span className="text-[11px] md:text-sm text-white/90 leading-tight truncate" style={khFont}>
+                      {kh ? f.kh : f.en}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* School adds */}
+              <div className="caution-tape h-2 my-3 rounded-sm opacity-80" aria-hidden />
+              <p className="text-[10px] text-amber-400 uppercase tracking-widest font-black mb-2 flex items-center gap-1.5" style={khFont}>
+                <Users size={11} className="text-amber-400" />
+                {kh ? "សាលា បន្ថែមលើនេះ" : "School adds on top"}
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-1 gap-x-2 gap-y-1.5 md:gap-y-2">
+                {[
+                  { en: "10–30 teacher accounts", kh: "គណនីគ្រូ ១០–៣០" },
+                  { en: "200–500 students/session", kh: "សិស្ស ២០០–៥០០/វគ្គ" },
+                  { en: "Admin dashboard & roles", kh: "ផ្ទាំង Admin និងតួនាទី" },
+                  { en: "School-wide leaderboards", kh: "តារាងពិន្ទុទូទាំងសាលា" },
+                  { en: "Custom branding portal", kh: "ផតថលផ្ទាល់ខ្លួន" },
+                  { en: "Priority support & onboarding", kh: "ជំនួយអាទិភាព និងការណែនាំ" },
                 ].map((f, i) => (
                   <div key={i} className="flex items-center gap-1.5 min-w-0">
                     <span className="shrink-0 w-3.5 h-3.5 rounded-full bg-amber-400/20 flex items-center justify-center">
@@ -815,10 +845,20 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                   </div>
                 </a>
 
+                {/* Stripe card payment — beta, launching after next month (Aug 2026) */}
+                <div className="flex items-center justify-between px-3 py-2.5 md:px-4 md:py-3 bg-zinc-900 border border-zinc-800 rounded-xl">
+                  <span className="text-xs font-bold text-zinc-300 flex items-center gap-2" style={khFont}>
+                    <CreditCard size={16} className="text-blue-400 shrink-0" />
+                    {kh ? "ទូទាត់តាមកាត (Stripe) — សាកល្បង Beta" : "Pay by card (Stripe) — Beta"}
+                  </span>
+                  <span className="text-[9px] font-black uppercase text-blue-400 bg-blue-400/10 px-2 py-0.5 rounded-md whitespace-nowrap" style={khFont}>
+                    {kh ? "សីហា ២០២៦" : "Aug 2026"}
+                  </span>
+                </div>
                 <p className="text-[10px] text-zinc-500 leading-relaxed text-center" style={khFont}>
                   {kh
-                    ? "គណនីនឹងត្រូវបានដំណើរការក្នុងរយៈពេល ២៤ ម៉ោងបន្ទាប់ពីទទួលបានការបញ្ជាក់។"
-                    : "Accounts are verified and upgraded within 24 hours of receiving proof."}
+                    ? "ការទូទាត់តាមកាតនឹងបើកដំណើរការក្នុងខែសីហា ២០២៦។ ឥឡូវនេះសូមប្រើ KHQR — គណនីបើកក្នុង ២៤ម៉ោងបន្ទាប់ពីបញ្ជាក់។"
+                    : "Card payment opens in August 2026. For now use KHQR — accounts are verified and upgraded within 24 hours of receiving proof."}
                 </p>
               </div>
             </div>
@@ -902,8 +942,8 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
                   kh: "កញ្ចប់ប្រចាំឆ្នាំ៖ ការជាវប្រចាំឆ្នាំទទួលបានខែឥតគិតថ្លៃ — គ្រូ Pro ៤ខែ ($២៤ ប្រូម៉ូ / $៨០ ធម្មតា), សាលា ៣ខែ ($៥៤/$១៨០), គ្រួសារ ($២០/$៦០), សាលាបណ្តុះបណ្តាល ($១១០/$៣៥០)។",
                 },
                 {
-                  en: "Who each plan is for: Free — students; Family — parents (up to 2 children); Teacher Pro — individual teachers; School — schools & NGOs; Academy — road-safety training academies.",
-                  kh: "ផែនការសម្រាប់នរណា៖ ឥតគិតថ្លៃ — សិស្ស; គ្រួសារ — ឪពុកម្ដាយ (កូនរហូត ២នាក់); គ្រូ Pro — គ្រូបង្រៀន; សាលា — សាលា និង NGO; សាលាបណ្តុះបណ្តាល — សាលាបណ្តុះបណ្តាលចរាចរណ៍។",
+                  en: "Who each plan is for: Free — students; Family — parents (up to 9 children); Teacher Pro — individual teachers; School — schools & NGOs; Academy — road-safety training academies.",
+                  kh: "ផែនការសម្រាប់នរណា៖ ឥតគិតថ្លៃ — សិស្ស; គ្រួសារ — ឪពុកម្ដាយ (កូនរហូត ៩នាក់); គ្រូ Pro — គ្រូបង្រៀន; សាលា — សាលា និង NGO; សាលាបណ្តុះបណ្តាល — សាលាបណ្តុះបណ្តាលចរាចរណ៍។",
                 },
                 {
                   en: "Billing & Cancellation: Subscriptions are billed monthly or annually. You can cancel at any time. Active access remains until the current cycle expires.",

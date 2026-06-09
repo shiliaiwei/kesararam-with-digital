@@ -113,7 +113,7 @@ export const PLAN_FEATURES = {
   },
   family: {
     name: "Family",
-    maxStudents: 2, // children tracked under one parent account
+    maxStudents: 9, // children tracked under one parent account
     maxClasses: 0,
     analytics: true, // child progress dashboard
     customContent: false,
