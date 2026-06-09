@@ -85,7 +85,7 @@ function NeubrutalistAvatar({ src, initials, userId }: NeubrutalistAvatarProps) 
         {parsed.face && (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", transform: "translateY(-6%) scale(0.62)", transformOrigin: "center" }} />
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", transform: "translateY(2%) scale(0.48)", transformOrigin: "center" }} />
         )}
       </div>
     );
@@ -135,7 +135,7 @@ function TeacherAvatar({ src, name }: { src: string | null | undefined; name: st
         {parsed.face && (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", transform: "translateY(-6%) scale(0.62)", transformOrigin: "center" }} />
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", transform: "translateY(2%) scale(0.48)", transformOrigin: "center" }} />
         )}
       </div>
     );

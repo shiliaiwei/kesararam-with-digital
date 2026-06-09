@@ -79,7 +79,7 @@ export function AvatarDisplay({
               // Face expression sits smaller within the head (was filling 100%,
               // which made features look oversized). Scale down + nudge up to the
               // head's face area.
-              transform: "translateY(-6%) scale(0.62)",
+              transform: "translateY(2%) scale(0.48)",
               transformOrigin: "center",
             }}
           />
