@@ -11,7 +11,13 @@ import {
 import { relations } from "drizzle-orm";
 import { users } from "./users";
 
-export const planEnum = pgEnum("plan_tier", ["free", "teacher_pro", "school"]);
+export const planEnum = pgEnum("plan_tier", [
+  "free",
+  "teacher_pro",
+  "school",
+  "family",
+  "driving_school",
+]);
 export const subStatusEnum = pgEnum("subscription_status", [
   "active",
   "expired",
@@ -43,6 +49,11 @@ export const subscriptions = pgTable(
       .references(() => users.id),
     /** Optional note from admin (e.g. "Promo - Phnom Penh school") */
     note: text("note"),
+    /** Stripe linkage — set when a user self-purchases via card checkout */
+    stripeCustomerId: text("stripe_customer_id"),
+    stripeSubscriptionId: text("stripe_subscription_id"),
+    stripePriceId: text("stripe_price_id"),
+    billingCycle: text("billing_cycle"), // "monthly" | "yearly" | null
     createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at").notNull().defaultNow(),
   },
@@ -100,13 +111,21 @@ export const PLAN_FEATURES = {
     customContent: false,
     priority: 0,
   },
+  family: {
+    name: "Family",
+    maxStudents: 2, // children tracked under one parent account
+    maxClasses: 0,
+    analytics: true, // child progress dashboard
+    customContent: false,
+    priority: 1,
+  },
   teacher_pro: {
     name: "Teacher Pro",
     maxStudents: 50,
     maxClasses: 5,
     analytics: true,
     customContent: true,
-    priority: 1,
+    priority: 2,
   },
   school: {
     name: "School",
@@ -114,7 +133,15 @@ export const PLAN_FEATURES = {
     maxClasses: -1, // unlimited
     analytics: true,
     customContent: true,
-    priority: 2,
+    priority: 3,
+  },
+  driving_school: {
+    name: "Driving School",
+    maxStudents: -1, // unlimited learners
+    maxClasses: -1, // unlimited
+    analytics: true,
+    customContent: true,
+    priority: 4,
   },
 } as const;
 

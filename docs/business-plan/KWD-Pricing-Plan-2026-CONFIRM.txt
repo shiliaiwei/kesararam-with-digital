@@ -1,0 +1,313 @@
+KESARARAM WITH DIGITAL · KWD
+Technovation Girls Cambodia 2026 · Team #50777
+kesararamwithdigital.tech · សៀមរាប · ព្រះរាជាណាចក្រកម្ពុជា
+
+======================================================================
+ឯកសារបញ្ជាក់ — ផែនការតម្លៃ និងកាតការជាវ (PRICING & SUBSCRIPTION CARDS)
+សម្រាប់បញ្ជាក់ព័ត៌មានមុនពេលសាងសង់ Frontend
+កំណែ v1 · កាលបរិច្ឆេទ ៩ មិថុនា ២០២៦
+======================================================================
+
+** សំគាល់ ** ឯកសារនេះគឺសម្រាប់ "បញ្ជាក់ព័ត៌មាន" តែប៉ុណ្ណោះ។
+យើងមិនទាន់កែ Frontend (pricing-cards.tsx) ឡើយ។
+សូមអ្នកអាន, កែតម្លៃ/ពាក្យ, រួចប្រាប់ខ្ញុំ "OK build" ទើបខ្ញុំសាងសង់កាត។
+
+
+======================================================================
+ផ្នែក A — រចនាសម្ព័ន្ធកាតការជាវ ៤ ប្រភេទ (4-CARD STRUCTURE)
+======================================================================
+ការផ្លាស់ប្ដូរសំខាន់ ៖
+  • លុបចេញ : Institute Plan ($49) — យកចេញទាំងស្រុង
+  • បន្ថែម  : Family Plan (ឪពុកម្ដាយ) ជាកាតដាច់ដោយឡែក
+  • បន្ថែម  : Driving School Plan (សាលាបង្រៀនបើកបរ) ជាកាតដាច់ដោយឡែក
+  • រួមបញ្ចូល : Teacher + School ទៅក្នុងកាតតែមួយ "School & Teacher Plan"
+
+----------------------------------------------------------------------
+កាតទី ១ — FREE (សិស្ស / STUDENT)
+----------------------------------------------------------------------
+  Label EN          : Free
+  Label KH          : ឥតគិតថ្លៃ
+  តម្លៃ              : $0 ជារៀងរហូត
+  អ្នកគោលដៅ         : សិស្ស និងអ្នករៀនទូទៅ (Students & curious learners)
+  ពណ៌កាត           : ប្រផេះ (zinc / neutral)
+  ប៊ូតុង             : "ចាប់ផ្ដើមឥតគិតថ្លៃ" / "Get Started Free"
+                      → ទៅ /login · មិនត្រូវការកាតឥណទាន
+
+  អ្វីដែលរួមបញ្ចូល (Included) ៖
+    ✓ ចូលរួមហ្គេមផ្ទាល់ជាសិស្ស (Join live games as student)
+    ✓ មើលប្រភេទសំណួរ ១ (Browse 1 question category)
+    ✓ ១០ សំណួរអនុវត្ត/ថ្ងៃ (10 practice questions/day)
+    ✓ មិនត្រូវការគណនីដើម្បីលេង (No account required to play)
+
+  អ្វីដែលជាប់សោ (Locked — Loss Aversion) ៖
+    🔒 រៀបចំវគ្គផ្ទាល់ (Host live sessions)
+    🔒 វិភាគ និងរបាយការណ៍ (Analytics & reports)
+    🔒 ប្រភេទសំណួរទាំងអស់ (All question categories)
+
+----------------------------------------------------------------------
+កាតទី ២ — FAMILY PLAN (ឪពុកម្ដាយ / PARENTS)
+----------------------------------------------------------------------
+  Label EN          : Family Plan
+  Label KH          : ផែនការគ្រួសារ
+  តម្លៃធម្មតា         : $5 / ខែ  ($60 / ឆ្នាំ)
+  តម្លៃប្រូម៉ូ (70%)   : $2 / ខែ  ($20 / ឆ្នាំ)   ← សូមបញ្ជាក់
+  អ្នកគោលដៅ         : ឪពុកម្ដាយដែលមានកូនអាយុ ១២–១៨ ឆ្នាំ
+  ផ្ទុក               : កូន ១–២ នាក់ ក្នុង ១ គណនី
+  ពណ៌កាត           : បៃតង (green — safety / family)
+  ប៊ូតុង             : "ការពារកូនរបស់អ្នក" / "Protect Your Child"
+
+  ហេតុផល Psychology ៖ Emotional Safety Motivation —
+    Cambodia Road Accident Rate ១៧.៨/100,000 → Concern → Willingness-to-Pay
+
+  អ្វីដែលរួមបញ្ចូល (Included) ៖
+    ✓ ផ្ទាំងតាមដានកូន (Child Progress Dashboard)
+    ✓ ការជូនដំណឹងដល់ឪពុកម្ដាយ (Parental Alerts)
+    ✓ ចូលដំណើរការ Curriculum ពេញលេញ (Full Curriculum Access)
+    ✓ ការអនុវត្ត 3,300 សំណួរ (3,300 Practice Quiz)
+    ✓ កូនរហូតដល់ ២ នាក់/គណនី (Up to 2 children/account)
+    ✓ វិញ្ញាបនបត្រ Achievement (Achievement Certificates)
+
+----------------------------------------------------------------------
+កាតទី ៣ — SCHOOL & TEACHER PLAN (សាលា & គ្រូបង្រៀន) ★ ពេញនិយម
+----------------------------------------------------------------------
+  Label EN          : School & Teacher Plan
+  Label KH          : ផែនការសាលា & គ្រូបង្រៀន
+  ស្លាក             : ★ ពេញនិយមបំផុត / Most Popular (កាតកណ្ដាល Hero)
+  ពណ៌កាត           : មាស (amber #eab308) — Hero
+  អ្នកគោលដៅ         : គ្រូបង្រៀនឯករាជ្យ + សាលា Private/Public + NGO អប់រំ
+
+  កាតនេះមាន ២ ជម្រើស (Two options in one card) ៖
+
+  ┌─ ជម្រើស A : TEACHER (គ្រូបង្រៀននីមួយៗ) ─────────────────┐
+  │  តម្លៃធម្មតា     : $10 / ខែ  ($80 / ឆ្នាំ)                  │
+  │  តម្លៃប្រូម៉ូ     : $3 / ខែ   ($24 / ឆ្នាំ — ឥតគិតថ្លៃ ៤ ខែ) │
+  │  ប៊ូតុង         : "ចាប់ផ្ដើមឥឡូវនេះ" / "Get Teacher"       │
+  └─────────────────────────────────────────────────────────┘
+
+  ┌─ ជម្រើស B : SCHOOL (សាលា / NGO) ───────────────────────┐
+  │  តម្លៃធម្មតា     : $20 / ខែ  ($180 / ឆ្នាំ)                 │
+  │  តម្លៃប្រូម៉ូ     : $6 / ខែ   ($54 / ឆ្នាំ — ឥតគិតថ្លៃ ៣ ខែ) │
+  │  ប៊ូតុង         : "ដាក់ពាក្យ - សាលា" / "Choose School"    │
+  └─────────────────────────────────────────────────────────┘
+
+  អ្វីដែលរួមបញ្ចូល — Teacher (Included) ៖
+    ✓ វគ្គផ្ទាល់គ្មានដែនកំណត់ (Unlimited live sessions)
+    ✓ ប្រភេទសំណួរទាំង ៨ (All 8 question categories)
+    ✓ ៥០ សិស្ស/វគ្គ (Up to 50 students/session)
+    ✓ វិភាគ & របាយការណ៍ (Analytics & reports)
+    ✓ នាំចេញ CSV/PDF (Export CSV / PDF)
+    ✓ ហ្គេមកម្រិតខ្ពស់ (Advanced game modes)
+    ✓ លុបស្លាក KWD (Remove KWD branding)
+    ✓ Suar AI គ្មានដែនកំណត់ (Suar AI unlimited)
+
+  អ្វីដែលរួមបញ្ចូល — School (បន្ថែមលើ Teacher) ៖
+    ✓ អ្វីៗក្នុង Teacher (Everything in Teacher)
+    ✓ គណនីគ្រូ ១០–៣០ (10–30 teacher accounts)
+    ✓ ២០០–៥០០ សិស្ស/វគ្គ (200–500 students/session)
+    ✓ ផ្ទាំង Admin (Admin dashboard)
+    ✓ ជំនួយអាទិភាព (Priority support)
+    ✓ ផតថលផ្ទាល់ខ្លួន (Custom branding portal)
+
+----------------------------------------------------------------------
+កាតទី ៤ — DRIVING SCHOOL PLAN (សាលាបង្រៀនបើកបរ)
+----------------------------------------------------------------------
+  Label EN          : Driving School Plan
+  Label KH          : ផែនការសាលាបង្រៀនបើកបរ
+  តម្លៃធម្មតា         : $35 / ខែ  ($350 / ឆ្នាំ)
+  តម្លៃប្រូម៉ូ (70%)   : $11 / ខែ  ($110 / ឆ្នាំ — ឥតគិតថ្លៃ ៣ ខែ)  ← សូមបញ្ជាក់
+  អ្នកគោលដៅ         : សាលាបង្រៀនបើកបរ / Driving Academy ឯកជន
+  ពណ៌កាត           : ខៀវ (blue — professional / institutional)
+  ប៊ូតុង             : "ដាក់ពាក្យ - សាលាបើកបរ" / "Choose Driving School"
+
+  ហេតុផល B2B ៖ Academy Lock-in ដោយ Student Data + Workflow;
+    TAM សាលាបង្រៀនបើកបរ ២,០០០+ — Digital Penetration ១–២% ប៉ុណ្ណោះ = ឱកាសធំ
+
+  អ្វីដែលរួមបញ្ចូល (Included) ៖
+    ✓ Quiz Bank ពេញ 3,300+ (Full Quiz Bank)
+    ✓ Mock Test AI (AI-powered Mock Tests)
+    ✓ ផ្ទាំងគ្រូបង្វឹក (Instructor Panel)
+    ✓ សិស្សគ្មានដែនកំណត់ (Unlimited Students)
+    ✓ ចេញវិញ្ញាបនបត្រ (Certificate Issuing)
+    ✓ តាមដានវឌ្ឍនភាពសិស្ស (Student Progress Tracking)
+    ✓ ជំនួយអាទិភាព (Priority support)
+
+
+======================================================================
+ផ្នែក B — តារាងសង្ខេបតម្លៃ (PRICE SUMMARY TABLE)
+======================================================================
+  Plan                 | ខែ ធម្មតា | ខែ ប្រូម៉ូ | ឆ្នាំ ធម្មតា | ឆ្នាំ ប្រូម៉ូ | ឥតគិតថ្លៃ
+  ----------------------------------------------------------------------------------------
+  Free (Student)       | $0        | $0        | $0          | $0          | —
+  Family Plan          | $5        | $2        | $60         | $20         | —
+  Teacher (in card 3)  | $10       | $3        | $80         | $24         | ៤ ខែ
+  School (in card 3)   | $20       | $6        | $180        | $54         | ៣ ខែ
+  Driving School Plan  | $35       | $11       | $350        | $110        | ៣ ខែ
+  ----------------------------------------------------------------------------------------
+  (Institute Plan $49 — បានលុបចេញ / REMOVED)
+
+  ** តម្លៃដែលត្រូវបញ្ជាក់ (NEED YOUR CONFIRMATION) **
+    1. Family ប្រូម៉ូ $2/ខែ — យល់ព្រម ឬប្ដូរ?
+    2. Driving School ប្រូម៉ូ $11/ខែ — យល់ព្រម ឬប្ដូរ?
+    3. Family ផ្ទុកកូន ២ នាក់ — ត្រូវ ឬប្ដូរ?
+    4. ប្រូម៉ូ 70% Off រហូតដល់ ៣១ ធ្នូ ២០២៦ — រក្សាទុក?
+
+
+======================================================================
+ផ្នែក C — ពាក្យ និងសារទាំងអស់នៅទំព័រ Pricing (ALL PRICING-PAGE COPY)
+======================================================================
+ទាំងនេះគឺពាក្យពិតប្រាកដដែលនឹងបង្ហាញនៅទំព័រ Pricing (EN + KH) ៖
+
+C.1 — ស្លាក Scarcity ខាងលើ (Scarcity Badge)
+----------------------------------------------------------------------
+  EN : 🔒 Lock in $3/mo — rises to $10 in Jan 2027
+  KH : 🔒 ចាក់សោតម្លៃ $៣/ខែ — មុនឡើង $១០ ខែ ១ ឆ្នាំ ២០២៧
+
+C.2 — ចំណងជើង (Header)
+----------------------------------------------------------------------
+  EN : Choose the plan that grows your class
+  KH : ជ្រើសរើសផែនការរបស់អ្នក
+  EN sub : Students always play free. Teachers & driving schools get
+           advanced coaching tools.
+  KH sub : សិស្សលេងឥតគិតថ្លៃជានិច្ច។ គ្រូបង្រៀន និងសាលាបើកបរទទួលបាន
+           ឧបករណ៍គ្រប់គ្រងកម្រិតខ្ពស់។
+
+C.3 — Social Proof (ភស្តុតាងសង្គម)
+----------------------------------------------------------------------
+  • ⭐ 4.9/5 (ការវាយតម្លៃ)
+  • 👥 Trusted by 120+ teachers & schools / គ្រូ និងសាលាជាង ១២០+ កំពុងប្រើ
+  • ✅ Activated within 24h / បើកគណនីក្នុង ២៤ម៉ោង
+
+C.4 — របារ Price Step-Up (Loss Aversion Bar)
+----------------------------------------------------------------------
+  EN : "Price rising soon" · Now $3/mo → After promo $10/mo · lock in now
+       · X days left · X% of promo used · ends Dec 31 2026
+  KH : "តម្លៃកំពុងផ្លាស់ប្ដូរ" · ឥឡូវ $៣/ខែ → បន្ទាប់មក $១០/ខែ · ចាក់សោតម្លៃ
+       · X ថ្ងៃទៀត · X% នៃរយៈពេលប្រូម៉ូ · ចុះខែ ១២ ឆ្នាំ ២០២៦
+
+C.5 — ប៊ូតុង Billing Cycle (Toggle)
+----------------------------------------------------------------------
+  EN : Monthly / Yearly  (badge: 3-4 mo free)
+  KH : ប្រចាំខែ / ប្រចាំឆ្នាំ  (ស្លាក: ឥតគិតថ្លៃ ៣-៤ ខែ)
+  → លំនាំដើម (default) = ប្រចាំឆ្នាំ (nudge toward annual)
+
+C.6 — របារ Trust ខាងលើ Checkout (Trust Strip)
+----------------------------------------------------------------------
+  • 🛡 Secure KHQR payment / ទូទាត់សុវត្ថិភាពតាម KHQR
+  • ⏰ Activated within 24 hours / បើកគណនីក្នុង ២៤ម៉ោង
+  • ✨ Funds local schools / គាំទ្រសាលាក្នុងស្រុក
+
+C.7 — ផ្នែក Checkout (KHQR Payment)
+----------------------------------------------------------------------
+  ចំណងជើង EN : Secure Payment via KHQR
+  ចំណងជើង KH : ទូទាត់ការជាវតាម KHQR
+  ពាក្យ EN     : Instant activation · All Cambodian banks accepted
+  ពាក្យ KH     : ផ្ទេរប្រាក់ភ្លាមៗពីធនាគារក្នុងស្រុកទាំងអស់
+
+  ជំហាន ៖
+    1. ជ្រើសរើសផែនការជាវ (Choose Your Plan Tier)
+       → ឥឡូវមាន ៤ ជម្រើស: Family · Teacher · School · Driving School
+         (Institute បានដកចេញ)
+    2. ស្កែនទូទាត់ប្រាក់តាម KHQR (Scan to Pay via KHQR)
+       → រូប /khqr.png · KESARARAM WITH DIGITAL
+    3. ផ្ញើវិក្កយបត្រដើម្បីបើកគណនី (Send Screenshot to Activate)
+       → Telegram: @kesararamwithdigital (លឿនជាង / Recommended)
+       → Email: kesararamwithdigital@gmail.com
+       → Stripe Credit Card: ជិតមកដល់ហើយ / Coming Soon
+
+  អត្រាប្ដូរ : 1 USD = 4,100 KHR
+  សំគាល់ Admin : ការតម្លើងគណនីត្រូវចាត់ចែងដោយដៃ ក្នុង ២៤ ម៉ោង
+                 បន្ទាប់ពីផ្ញើវិក្កយបត្រ (សុវត្ថិភាព + audit trail)
+
+C.8 — ប្លុក Impact & Roadmap (Reciprocity)
+----------------------------------------------------------------------
+  ចំណងជើង EN : Subscription Impact & Future Roadmap
+  ចំណងជើង KH : អត្ថប្រយោជន៍ការជាវសេវាកម្ម និងផែនការអនាគត
+  ពាក្យ EN : Every active subscription directly funds local school
+            deployments (like Kesararam Primary School), student
+            stationery rewards, server infrastructure, and bilingual
+            road safety education research.
+  ពាក្យ KH : រាល់ការជាវគាំទ្រដោយផ្ទាល់ដល់សាលាបឋមសិក្សាកេសរារាម
+            ក្នុងការផ្តល់រង្វាន់សម្ភារៈសិក្សាដល់សិស្ស ថ្លៃសេវាម៉ាស៊ីនបម្រើ
+            និងការស្រាវជ្រាវប្រព័ន្ធអប់រំពីរភាសា។
+
+  អត្ថប្រយោជន៍បច្ចុប្បន្ន (Active Benefits) ៖
+    ✓ បើកវគ្គហ្គេមផ្ទាល់គ្មានដែនកំណត់ (Unlimited live quiz sessions)
+    ✓ វិភាគលទ្ធផល + ទាញយក CSV/PDF (Analytics & exports)
+    ✓ Suar AI គ្មានដែនកំណត់ (Suar AI tutor unlimited)
+
+  ផែនការអនាគត (Future Roadmap) ៖
+    ⚡ បង្កើតវិញ្ញាបនបត្រស្វ័យប្រវត្ត (Auto pass certificates)
+    ⚡ ប្រឡងសាកល្បងស្វ័យប្រវត្ត (Auto mock-exam scoring)
+    ⚡ កែសម្រួលប្រភេទសំណួរផ្ទាល់ខ្លួន (Custom quiz editor)
+
+C.9 — លក្ខខណ្ឌនៃការជាវ (Subscription Terms — ធ្វើបច្ចុប្បន្នភាព)
+----------------------------------------------------------------------
+  1. ការផ្សព្វផ្សាយតម្លៃ : តម្លៃធម្មតា Teacher $10/ខែ · ក្រោមប្រូម៉ូ (រហូត
+     ៣១ ធ្នូ ២០២៦) បញ្ចុះ ៧០% → $3/ខែ។ School $20/ខែ ($180/ឆ្នាំ);
+     Family $5/ខែ ($60/ឆ្នាំ); Driving School $35/ខែ ($350/ឆ្នាំ)។
+     ** Institute បានដកចេញ **
+  2. កញ្ចប់ប្រចាំឆ្នាំ : Teacher ឥតគិតថ្លៃ ៤ ខែ ($24 promo / $80 std);
+     School ៣ ខែ ($54 promo / $180 std); Driving School ៣ ខែ
+     ($110 promo / $350 std)។
+  3. ការទូទាត់ និងលុបចោល : គិតថ្លៃប្រចាំខែ ឬឆ្នាំ · លុបចោលបានគ្រប់ពេល ·
+     ការចូលប្រើនៅតែមានរហូតចប់វដ្ត។
+  4. ការធ្វើឱ្យសកម្ម : Admin ចាត់ចែងដោយដៃ · សកម្មក្នុង ២៤ ម៉ោង។
+  5. គោលការណ៍សងប្រាក់ : មិនអាចសងវិញបាន បន្ទាប់ពីគណនីត្រូវតម្លើង
+     លើកលែងករណីបញ្ហាបច្ចេកទេសដែលក្រុមការងារបញ្ជាក់។
+
+
+======================================================================
+ផ្នែក D — ការផ្លាស់ប្ដូរ "អតិថិជនគោលដៅ" ក្នុងផែនការអាជីវកម្ម (សង្ខេបពេញ)
+(ពីដើមការសន្ទនា ដល់ឥឡូវ — FROM BEGINNING OF CONVERSATION)
+======================================================================
+ការវិវឌ្ឍ ៖ ពីការផ្តោតលើ Government តែឯង → ពង្រីកទៅ subscriber ច្រើនប្រភេទ
+ដើម្បីកំណើនលឿន។ ស្ថានភាពចុងក្រោយនៃអតិថិជនគោលដៅ ៖
+
+  1) គ្រូបង្រៀន — Teacher $10/ខែ
+     Entry point ចម្បង · Referral Growth (គ្រូ ១ ណែនាំ ២)
+
+  2) សិស្ស (១២–១៨ឆ្នាំ) — Free $0
+     Intrinsic Motivation · ការប្រកួត · ការទទួលស្គាល់សង្គម
+
+  3) សាលា Private/Public + NGO អប់រំ — School $20/ខែ
+     Plug-and-Play · NGO budget ពី Grant អន្តរជាតិ (មិនខ្ស័យ)
+
+  4) ឪពុកម្ដាយ (Parents) — Family $5/ខែ
+     Emotional Safety Motivation · Parent Facebook Groups ·
+     Viral "ខ្ញុំប្រលងជាប់ព្រោះ KWD"
+
+  5) ស្វ័យសិក្សា / មនុស្សធំ (Self-Study Adults) — ប្រើ School/Family
+     ត្រូវការប្រលងបាស់ផ្លូវ · TAM ១ លាន+/ឆ្នាំ · ជំនួស YouTube/Facebook
+
+  6) សាលាបង្រៀនបើកបរ (Driving Academies) — Driving School $35/ខែ
+     B2B Sticky · Lock-in · TAM ២,០០០+ · Digital Penetration ១–២%
+
+  ** ដកចេញជា Subscriber ដាច់ដោយឡែក **
+     • Corporate → រក្សាជា "Sponsor" តែប៉ុណ្ណោះ (មិនមែន Subscriber)
+     • NGO → បញ្ចូលក្នុង School Plan
+     • Institute Plan → លុបចេញទាំងស្រុង (ថ្មីៗនេះ)
+
+  ទីផ្សារ (Market) ៖
+     TAM : សិក្សា ៣.៤លាន + គ្រូ ១២០,០០០ + សាលា ១៣,៨០០
+           + ឪពុកម្ដាយ ១.២លាន+ + ស្វ័យសិក្សា ១លាន+/ឆ្នាំ
+           + សាលាបើកបរ ២,០០០+
+     ប្រភពចំណូល : Subscription (Free → Family → Teacher → School
+           → Driving School) + Future: Government Contract,
+           Corporate Sponsorship, Certification Fees, ASEAN Licensing
+
+
+======================================================================
+សំណួរសម្រាប់អ្នកបញ្ជាក់ (PLEASE CONFIRM)
+======================================================================
+  □ 1. កាត ៤ ប្រភេទ (Free · Family · School&Teacher · Driving School)
+       — រចនាសម្ព័ន្ធត្រឹមត្រូវ?
+  □ 2. Institute Plan លុបចេញ — យល់ព្រម?
+  □ 3. Family ៖ $5/ខែ ធម្មតា · $2/ខែ ប្រូម៉ូ · កូន ២ នាក់ — យល់ព្រម?
+  □ 4. Driving School ៖ $35/ខែ ធម្មតា · $11/ខែ ប្រូម៉ូ — យល់ព្រម?
+  □ 5. Teacher + School នៅក្នុងកាតតែមួយ — យល់ព្រម? ឬចង់ដាច់ ២ កាត?
+  □ 6. ពណ៌កាត (Free=ប្រផេះ · Family=បៃតង · School&Teacher=មាស Hero
+       · Driving=ខៀវ) — យល់ព្រម?
+
+  → ពេលអ្នកប្រាប់ "OK build" ខ្ញុំនឹងកែ pricing-cards.tsx ឲ្យត្រូវ
+    ឯកសារនេះ (រួមទាំង checkout selector, terms, promo logic)។
+======================================================================
