@@ -23,6 +23,9 @@
 
 # misc
 .DS_Store
+
+# database backups (contain user data / PII — never commit)
+/backups/
 *.pem
 
 # debug

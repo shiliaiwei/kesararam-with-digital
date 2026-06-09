@@ -9,6 +9,8 @@ export async function GET(req: NextRequest) {
   const province = searchParams.get("province");
   const gradeLevel = searchParams.get("gradeLevel");
   const section = searchParams.get("section");
+  const role = searchParams.get("role"); // "teacher" for teacher self-registration
+  const plan = searchParams.get("plan"); // trial plan: teacher_pro | school | family | driving_school
 
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://kesararamwithdigital.tech";
   const redirectUri = `${baseUrl}/api/auth/google/callback`;
@@ -27,8 +29,8 @@ export async function GET(req: NextRequest) {
 
   // Pack credentials inside base64url encoded state parameter
   let state = "login";
-  if (code) {
-    const stateObj = { code, schoolName, province, gradeLevel, section };
+  if (code || role) {
+    const stateObj = { code, schoolName, province, gradeLevel, section, role, plan };
     state = Buffer.from(JSON.stringify(stateObj)).toString("base64url");
   }
   googleUrl.searchParams.set("state", state);

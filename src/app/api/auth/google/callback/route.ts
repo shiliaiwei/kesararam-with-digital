@@ -4,6 +4,7 @@ import { users, inviteCodes } from "@/db/schema";
 import { sessions } from "@/db/schema/sessions";
 import { eq, or, and } from "drizzle-orm";
 import { signToken, getRedirectUrl } from "@/lib/auth";
+import { assignSignupTrial, normalizePlan } from "@/lib/trial";
 import { cookies } from "next/headers";
 import { createHash } from "crypto";
 
@@ -106,6 +107,21 @@ export async function GET(req: NextRequest) {
     // Clean google username (e.g. janesmith + 3 numbers)
     const derivedUsername = email.split("@")[0].replace(/[^a-zA-Z0-9]/g, "") + Math.floor(100 + Math.random() * 900);
 
+    // Decode the OAuth state to learn the intended account type (set during
+    // registration). Teachers can self-register via Google with a 7-day trial.
+    let intent: {
+      role?: string; plan?: string;
+      schoolName?: string | null; province?: string | null;
+    } = {};
+    if (state && state !== "login") {
+      try {
+        intent = JSON.parse(Buffer.from(state, "base64url").toString("utf8"));
+      } catch {
+        intent = {};
+      }
+    }
+    const desiredRole = intent.role === "teacher" ? "teacher" : "student";
+
     const [newUser] = await db
       .insert(users)
       .values({
@@ -114,16 +130,21 @@ export async function GET(req: NextRequest) {
         displayName: name || derivedUsername,
         passwordHash: randomPassword,
         googleId,
-        role: "student",
+        role: desiredRole,
         avatar: picture || null,
-        schoolName: null,
-        province: null,
+        schoolName: desiredRole === "teacher" ? (intent.schoolName || null) : null,
+        province: desiredRole === "teacher" ? (intent.province || null) : null,
         gradeLevel: null,
         section: null,
         isActive: true,
         loginAttempts: 0,
       })
       .returning();
+
+    // New teachers get a 7-day free trial (plan from state, default teacher_pro).
+    if (desiredRole === "teacher" && newUser?.id) {
+      await assignSignupTrial(newUser.id, normalizePlan(intent.plan));
+    }
 
     return await establishSessionAndRedirect(newUser, req);
 

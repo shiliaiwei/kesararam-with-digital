@@ -27,6 +27,11 @@ export const users = pgTable("users", {
   loginAttempts: integer("login_attempts").default(0).notNull(),
   lockedUntil: timestamp("locked_until"),
   lastLoginAt: timestamp("last_login_at"),
+  // ── 2FA (TOTP) — admin/staff ──
+  twoFactorEnabled: boolean("two_factor_enabled").default(false).notNull(),
+  twoFactorSecret: text("two_factor_secret"), // AES-256-GCM encrypted base32 TOTP secret
+  twoFactorBackupCodes: text("two_factor_backup_codes"), // JSON array of hashed one-time codes
+  twoFactorEnrolledAt: timestamp("two_factor_enrolled_at"),
   highestScore: integer("highest_score").default(0).notNull(),
   totalGamesPlayed: integer("total_games_played").default(0).notNull(),
   lifetimePoints: integer("lifetime_points").default(0).notNull(),

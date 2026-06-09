@@ -8,6 +8,13 @@ import { signToken, getRedirectUrl } from "@/lib/auth";
 import { cookies, headers } from "next/headers";
 import { createHash, timingSafeEqual } from "crypto";
 import { redirect } from "next/navigation";
+import {
+  verifyTotp,
+  consumeBackupCode,
+  signPending2fa,
+  verifyPending2fa,
+} from "@/lib/twofa";
+import { decryptSecret } from "@/lib/twofa-crypto";
 
 // In-memory IP rate limiter for login (5 attempts / 60s per IP)
 const ipRateMap = new Map<string, { count: number; resetAt: number }>();
@@ -15,10 +22,93 @@ const ipRateMap = new Map<string, { count: number; resetAt: number }>();
 export interface LoginState {
   error: string;
   redirectTo?: string;
+  // 2FA: set when the password was correct but a TOTP/backup code is still needed.
+  twoFactorRequired?: boolean;
+  pendingToken?: string;
 }
 
 function hashPassword(pw: string): string {
   return createHash("sha256").update(pw).digest("hex");
+}
+
+type DbUser = typeof users.$inferSelect;
+
+/**
+ * Issue the real session: rotate sessions, set the auth cookie, compute the
+ * post-login redirect. Shared by the normal login path and the 2FA-verify path.
+ */
+async function establishSession(user: DbUser, redirectParam: string): Promise<LoginState> {
+  const headersList = await headers();
+
+  try {
+    await db
+      .update(users)
+      .set({ loginAttempts: 0, lockedUntil: null, lastLoginAt: new Date() })
+      .where(eq(users.id, user.id));
+  } catch {
+    // non-fatal
+  }
+
+  const token = await signToken({
+    id: user.id,
+    email: user.email,
+    name: user.displayName ?? user.username,
+    role: user.role,
+    avatar: user.avatar ?? null,
+  });
+
+  const ipAddress = headersList.get("x-forwarded-for") || headersList.get("x-real-ip") || "unknown";
+  const userAgent = headersList.get("user-agent") || "unknown";
+
+  try {
+    await db
+      .update(sessions)
+      .set({ isActive: false, logoutAt: new Date() })
+      .where(and(eq(sessions.userId, user.id), eq(sessions.isActive, true)));
+  } catch (err) {
+    console.error("[login] Failed to invalidate previous sessions:", err);
+  }
+
+  try {
+    await db.insert(sessions).values({
+      userId: user.id,
+      token,
+      ipAddress,
+      userAgent,
+      isActive: true,
+      loginAt: new Date(),
+      lastActivityAt: new Date(),
+    });
+  } catch (err) {
+    console.error("[login] Failed to create session record:", err);
+  }
+
+  const cookieStore = await cookies();
+  cookieStore.set("kwd_token", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    domain:
+      process.env.NODE_ENV === "production"
+        ? ".kesararamwithdigital.tech"
+        : undefined,
+    maxAge: user.role === "student" ? 7 * 24 * 60 * 60 : 8 * 60 * 60,
+  });
+
+  let redirectTo = getRedirectUrl(user.role);
+  if (redirectParam) {
+    if (redirectParam.startsWith("/") && !redirectParam.startsWith("//")) {
+      redirectTo = redirectParam;
+    } else if (
+      redirectParam.startsWith("https://kesararamwithdigital.tech") ||
+      redirectParam.startsWith("https://dashboard.kesararamwithdigital.tech")
+    ) {
+      redirectTo = redirectParam;
+    }
+  }
+
+  return { error: "", redirectTo };
 }
 
 export async function loginAction(
@@ -79,7 +169,7 @@ export async function loginAction(
   }
 
   const hash = hashPassword(password);
-  
+
   const expectedHash = Buffer.from(user.passwordHash, 'utf8');
   const actualHash = Buffer.from(hash, 'utf8');
 
@@ -109,6 +199,21 @@ export async function loginAction(
           ? `Invalid credentials. ${remaining} attempt${remaining !== 1 ? "s" : ""} remaining.`
           : "Account locked due to too many failed attempts. Contact your administrator.",
     };
+  }
+
+  // 2FA: password is correct, but if the account has 2FA we stop here and
+  // require a TOTP/backup code before issuing a session.
+  if (user.twoFactorEnabled) {
+    try {
+      await db
+        .update(users)
+        .set({ loginAttempts: 0, lockedUntil: null })
+        .where(eq(users.id, user.id));
+    } catch (_) {
+      // non-fatal
+    }
+    const pendingToken = await signPending2fa(user.id);
+    return { error: "", twoFactorRequired: true, pendingToken };
   }
 
   // Success — reset attempts
@@ -179,7 +284,7 @@ export async function loginAction(
   });
 
   const redirectParam = (formData.get("redirect") as string) ?? "";
-  
+
   let redirectTo = getRedirectUrl(user.role);
   if (redirectParam) {
     if (redirectParam.startsWith("/") && !redirectParam.startsWith("//")) {
@@ -233,6 +338,7 @@ export async function logoutAction() {
 export interface RegisterState {
   error: string;
   success?: boolean;
+  redirectTo?: string;
 }
 
 async function autoAssignTeacherTrial(userId: number, adminId: number) {
@@ -264,7 +370,7 @@ export async function registerAction(
   const displayName = (formData.get("displayName") as string)?.trim();
   const password = formData.get("password") as string;
   const role = (formData.get("role") as string) || "student";
-  
+
   const schoolName = (formData.get("schoolName") as string)?.trim();
   const province = (formData.get("province") as string)?.trim();
   const gradeLevel = (formData.get("gradeLevel") as string)?.trim();
@@ -366,9 +472,76 @@ export async function registerAction(
       maxAge: newUser.role === "student" ? 7 * 24 * 60 * 60 : 8 * 60 * 60,
     });
 
-    return { error: "", success: true };
+    return { error: "", success: true, redirectTo: getRedirectUrl(newUser.role) };
   } catch (e: any) {
     console.error("[register] failed:", e);
     return { error: e.message || "Failed to register user." };
   }
+}
+
+/**
+ * Second login step: verify the TOTP (or a one-time backup code) using the
+ * short-lived pending token issued after a correct password, then issue the
+ * real session.
+ */
+export async function verifyTwoFactorLoginAction(
+  _prev: LoginState,
+  formData: FormData,
+): Promise<LoginState> {
+  const pendingToken = (formData.get("pendingToken") as string) ?? "";
+  const code = (formData.get("code") as string)?.trim() ?? "";
+  const redirectParam = (formData.get("redirect") as string) ?? "";
+
+  if (!pendingToken) {
+    return { error: "Your sign-in session expired. Please log in again." };
+  }
+  if (!code) {
+    return { error: "Enter the 6-digit code.", twoFactorRequired: true, pendingToken };
+  }
+
+  const uid = await verifyPending2fa(pendingToken);
+  if (!uid) {
+    return { error: "Your sign-in session expired. Please log in again." };
+  }
+
+  let user2fa: DbUser | undefined;
+  try {
+    const [found] = await db.select().from(users).where(eq(users.id, uid));
+    user2fa = found;
+  } catch {
+    return { error: "Service unavailable. Please try again later." };
+  }
+
+  if (!user2fa || !user2fa.isActive || !user2fa.twoFactorEnabled || !user2fa.twoFactorSecret) {
+    return { error: "Could not verify 2FA. Please log in again." };
+  }
+
+  let ok = false;
+  try {
+    ok = verifyTotp(code, decryptSecret(user2fa.twoFactorSecret));
+  } catch {
+    ok = false;
+  }
+
+  // Fall back to a one-time backup code; consume it on success.
+  if (!ok) {
+    const consumed = consumeBackupCode(user2fa.twoFactorBackupCodes, code);
+    if (consumed) {
+      ok = true;
+      try {
+        await db
+          .update(users)
+          .set({ twoFactorBackupCodes: consumed.remainingJson })
+          .where(eq(users.id, user2fa.id));
+      } catch {
+        // non-fatal
+      }
+    }
+  }
+
+  if (!ok) {
+    return { error: "Incorrect code. Try again.", twoFactorRequired: true, pendingToken };
+  }
+
+  return establishSession(user2fa, redirectParam);
 }
