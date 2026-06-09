@@ -41,7 +41,7 @@ export function CompleteTeacherProfileForm() {
   const [displayName, setDisplayName] = useState("");
   const [username, setUsername] = useState("");
   const [schoolName, setSchoolName] = useState("");
-  const [province, setProvince] = useState("Siem Reap");
+  const [province, setProvince] = useState("");
   const [face, setFace] = useState("Smile.svg");
   const [head, setHead] = useState("Short 1.svg");
   const [activeAvatarTab, setActiveAvatarTab] = useState<"head" | "face">("head");
@@ -340,6 +340,9 @@ export function CompleteTeacherProfileForm() {
                     className="w-full pl-10 pr-4 py-2.5 border-2 border-black text-sm font-black bg-white focus:outline-none focus:shadow-[2px_2px_0_#eab308]"
                     style={{ borderRadius: "0px" }}
                   >
+                    <option value="" disabled>
+                      {kh ? "ជ្រើសរើសខេត្ត-ក្រុង" : "Select Province"}
+                    </option>
                     {CAMBODIA_PROVINCES.map((prov) => (
                       <option key={prov.en} value={prov.en}>
                         {kh ? prov.kh : prov.en}
