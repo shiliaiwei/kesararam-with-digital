@@ -40,15 +40,6 @@ type DbUser = typeof users.$inferSelect;
 async function establishSession(user: DbUser, redirectParam: string): Promise<LoginState> {
   const headersList = await headers();
 
-  try {
-    await db
-      .update(users)
-      .set({ loginAttempts: 0, lockedUntil: null, lastLoginAt: new Date() })
-      .where(eq(users.id, user.id));
-  } catch {
-    // non-fatal
-  }
-
   const token = await signToken({
     id: user.id,
     email: user.email,
@@ -60,28 +51,34 @@ async function establishSession(user: DbUser, redirectParam: string): Promise<Lo
   const ipAddress = headersList.get("x-forwarded-for") || headersList.get("x-real-ip") || "unknown";
   const userAgent = headersList.get("user-agent") || "unknown";
 
-  try {
-    await db
+  await Promise.all([
+    db
+      .update(users)
+      .set({ loginAttempts: 0, lockedUntil: null, lastLoginAt: new Date() })
+      .where(eq(users.id, user.id))
+      .catch(() => {}),
+    db
       .update(sessions)
       .set({ isActive: false, logoutAt: new Date() })
-      .where(and(eq(sessions.userId, user.id), eq(sessions.isActive, true)));
-  } catch (err) {
-    console.error("[login] Failed to invalidate previous sessions:", err);
-  }
-
-  try {
-    await db.insert(sessions).values({
-      userId: user.id,
-      token,
-      ipAddress,
-      userAgent,
-      isActive: true,
-      loginAt: new Date(),
-      lastActivityAt: new Date(),
-    });
-  } catch (err) {
-    console.error("[login] Failed to create session record:", err);
-  }
+      .where(and(eq(sessions.userId, user.id), eq(sessions.isActive, true)))
+      .catch((err) => {
+        console.error("[login] Failed to invalidate previous sessions:", err);
+      }),
+    db
+      .insert(sessions)
+      .values({
+        userId: user.id,
+        token,
+        ipAddress,
+        userAgent,
+        isActive: true,
+        loginAt: new Date(),
+        lastActivityAt: new Date(),
+      })
+      .catch((err) => {
+        console.error("[login] Failed to create session record:", err);
+      }),
+  ]);
 
   const cookieStore = await cookies();
   cookieStore.set("kwd_token", token, {
@@ -216,16 +213,6 @@ export async function loginAction(
     return { error: "", twoFactorRequired: true, pendingToken };
   }
 
-  // Success — reset attempts
-  try {
-    await db
-      .update(users)
-      .set({ loginAttempts: 0, lockedUntil: null, lastLoginAt: new Date() })
-      .where(eq(users.id, user.id));
-  } catch (_) {
-    // non-fatal
-  }
-
   const token = await signToken({
     id: user.id,
     email: user.email,
@@ -238,9 +225,15 @@ export async function loginAction(
   const ipAddress = headersList.get("x-forwarded-for") || headersList.get("x-real-ip") || "unknown";
   const userAgent = headersList.get("user-agent") || "unknown";
 
-  // Invalidate all previous active sessions for this user
-  try {
-    await db
+  await Promise.all([
+    // Success — reset attempts
+    db
+      .update(users)
+      .set({ loginAttempts: 0, lockedUntil: null, lastLoginAt: new Date() })
+      .where(eq(users.id, user.id))
+      .catch(() => {}),
+    // Invalidate all previous active sessions for this user
+    db
       .update(sessions)
       .set({ isActive: false, logoutAt: new Date() })
       .where(
@@ -248,27 +241,26 @@ export async function loginAction(
           eq(sessions.userId, user.id),
           eq(sessions.isActive, true)
         )
-      );
-  } catch (err) {
-    console.error("[login] Failed to invalidate previous sessions:", err);
-    // non-fatal - continue with login
-  }
-
-  // Create new session record
-  try {
-    await db.insert(sessions).values({
-      userId: user.id,
-      token,
-      ipAddress,
-      userAgent,
-      isActive: true,
-      loginAt: new Date(),
-      lastActivityAt: new Date(),
-    });
-  } catch (err) {
-    console.error("[login] Failed to create session record:", err);
-    // non-fatal - continue with login
-  }
+      )
+      .catch((err) => {
+        console.error("[login] Failed to invalidate previous sessions:", err);
+      }),
+    // Create new session record
+    db
+      .insert(sessions)
+      .values({
+        userId: user.id,
+        token,
+        ipAddress,
+        userAgent,
+        isActive: true,
+        loginAt: new Date(),
+        lastActivityAt: new Date(),
+      })
+      .catch((err) => {
+        console.error("[login] Failed to create session record:", err);
+      }),
+  ]);
 
   const cookieStore = await cookies();
   cookieStore.set("kwd_token", token, {
@@ -429,10 +421,6 @@ export async function registerAction(
       avatar: users.avatar
     });
 
-    if (role === "teacher" && newUser?.id) {
-      await autoAssignTeacherTrial(newUser.id, newUser.id, plan);
-    }
-
     // Automatically log user in after successful registration
     const token = await signToken({
       id: newUser.id,
@@ -446,20 +434,30 @@ export async function registerAction(
     const ipAddress = headersList.get("x-forwarded-for") || headersList.get("x-real-ip") || "unknown";
     const userAgent = headersList.get("user-agent") || "unknown";
 
-    // Create session record (safely try/catch so db session insertion issues do not crash registration)
-    try {
-      await db.insert(sessions).values({
-        userId: newUser.id,
-        token,
-        ipAddress,
-        userAgent,
-        isActive: true,
-        loginAt: new Date(),
-        lastActivityAt: new Date(),
-      });
-    } catch (sessionErr) {
-      console.error("[registerAction] Non-fatal error creating session record:", sessionErr);
+    const concurrentActions: Promise<any>[] = [];
+
+    if (role === "teacher" && newUser?.id) {
+      concurrentActions.push(autoAssignTeacherTrial(newUser.id, newUser.id, plan));
     }
+
+    concurrentActions.push(
+      db
+        .insert(sessions)
+        .values({
+          userId: newUser.id,
+          token,
+          ipAddress,
+          userAgent,
+          isActive: true,
+          loginAt: new Date(),
+          lastActivityAt: new Date(),
+        })
+        .catch((sessionErr) => {
+          console.error("[registerAction] Non-fatal error creating session record:", sessionErr);
+        })
+    );
+
+    await Promise.all(concurrentActions);
 
     const cookieStore = await cookies();
     cookieStore.set("kwd_token", token, {

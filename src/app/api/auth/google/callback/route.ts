@@ -89,13 +89,17 @@ export async function GET(req: NextRequest) {
 
     if (existingUser) {
       // Returning user - Log them in cleanly (no invite code consumption needed)
+      let updatePromise: Promise<any> | undefined;
       if (!existingUser.googleId) {
-        await db
+        updatePromise = db
           .update(users)
           .set({ googleId })
-          .where(eq(users.id, existingUser.id));
+          .where(eq(users.id, existingUser.id))
+          .catch((err) => {
+            console.error("Failed to update googleId:", err);
+          });
       }
-      return await establishSessionAndRedirect(existingUser, req);
+      return await establishSessionAndRedirect(existingUser, req, updatePromise);
     }
 
     // New User! Register cleanly with Google details.
@@ -142,11 +146,14 @@ export async function GET(req: NextRequest) {
       .returning();
 
     // New teachers get a 7-day free trial (plan from state, default teacher_pro).
+    let trialPromise: Promise<any> | undefined;
     if (desiredRole === "teacher" && newUser?.id) {
-      await assignSignupTrial(newUser.id, normalizePlan(intent.plan));
+      trialPromise = assignSignupTrial(newUser.id, normalizePlan(intent.plan)).catch((err) => {
+        console.error("Failed to assign signup trial:", err);
+      });
     }
 
-    return await establishSessionAndRedirect(newUser, req);
+    return await establishSessionAndRedirect(newUser, req, trialPromise);
 
   } catch (err) {
     console.error("Google Authentication error:", err);
@@ -156,7 +163,7 @@ export async function GET(req: NextRequest) {
   }
 }
 
-async function establishSessionAndRedirect(user: any, req: NextRequest) {
+async function establishSessionAndRedirect(user: any, req: NextRequest, extraDbPromise?: Promise<any>) {
   const token = await signToken({
     id: user.id,
     email: user.email,
@@ -168,30 +175,37 @@ async function establishSessionAndRedirect(user: any, req: NextRequest) {
   const ipAddress = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown";
   const userAgent = req.headers.get("user-agent") || "unknown";
 
-  // Invalidate previous sessions
-  try {
-    await db
+  const promises: Promise<any>[] = [
+    // Invalidate previous sessions
+    db
       .update(sessions)
       .set({ isActive: false, logoutAt: new Date() })
-      .where(and(eq(sessions.userId, user.id), eq(sessions.isActive, true)));
-  } catch (err) {
-    console.error("Failed to invalidate old sessions:", err);
+      .where(and(eq(sessions.userId, user.id), eq(sessions.isActive, true)))
+      .catch((err) => {
+        console.error("Failed to invalidate old sessions:", err);
+      }),
+    // Create new session record
+    db
+      .insert(sessions)
+      .values({
+        userId: user.id,
+        token,
+        ipAddress,
+        userAgent,
+        isActive: true,
+        loginAt: new Date(),
+        lastActivityAt: new Date(),
+      })
+      .catch((err) => {
+        console.error("Failed to insert session record:", err);
+      }),
+  ];
+
+  if (extraDbPromise) {
+    promises.push(extraDbPromise);
   }
 
-  // Create new session record
-  try {
-    await db.insert(sessions).values({
-      userId: user.id,
-      token,
-      ipAddress,
-      userAgent,
-      isActive: true,
-      loginAt: new Date(),
-      lastActivityAt: new Date(),
-    });
-  } catch (err) {
-    console.error("Failed to insert session record:", err);
-  }
+  await Promise.all(promises);
 
   // Establish jwt cookie
   const cookieStore = await cookies();
