@@ -129,6 +129,19 @@ export function Footer() {
                 </span>
               </a>
 
+              {/* TikTok — black */}
+              <a href="https://www.tiktok.com/@kesararamwithdigital" target="_blank" rel="noopener noreferrer"
+                className="group relative flex items-center justify-center w-10 h-10 border-2 border-black transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5"
+                style={{ background: "#000000", boxShadow: "3px 3px 0 #000" }}
+                aria-label="TikTok">
+                <svg viewBox="0 0 24 24" fill="#fff" className="w-5 h-5">
+                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.73 4.12 1.13 1.09 2.69 1.63 4.26 1.62v3.94c-1.85-.02-3.66-.63-5.17-1.72-.19-.14-.36-.31-.53-.47v7.55c.02 1.48-.4 2.94-1.2 4.17-1.39 2.06-3.83 3.32-6.32 3.23-2.61-.06-5.1-1.48-6.41-3.75-1.57-2.6-1.3-6.09.67-8.42 1.63-1.89 4.15-2.83 6.64-2.5v3.97c-1.35-.3-2.8.15-3.69 1.18-.94 1.04-1.09 2.63-.37 3.82.68 1.18 2.08 1.88 3.44 1.76 1.46-.07 2.76-1.12 2.99-2.56.08-.41.06-.83.06-1.25V0h.03z" />
+                </svg>
+                <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-[9px] font-black px-2 py-0.5 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                  TikTok
+                </span>
+              </a>
+
 
             </div>
 

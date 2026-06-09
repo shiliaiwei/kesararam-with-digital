@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ProfileEditor } from "@/components/profile/profile-editor";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
-import { Pencil, Info, Settings, Crown, Clock, Zap, Building2 } from "lucide-react";
+import { Pencil, Info, Settings, Crown, Clock, Zap, Building2, Car } from "lucide-react";
 
 type Tab = "edit" | "info" | "settings";
 
@@ -53,9 +53,12 @@ export function StaffProfileTabs({
 
   // Plan badge config
   const planConfig = {
-    free:        { label: "Free",        icon: Zap,       color: "#6b7280", bg: "bg-zinc-500/15" },
-    teacher_pro: { label: "Teacher Pro", icon: Crown,     color: "#f59e0b", bg: "bg-amber-400/15" },
-    school:      { label: "School",      icon: Building2, color: "#a855f7", bg: "bg-purple-500/15" },
+    free:           { label: "Free",           icon: Zap,       color: "#6b7280", bg: "bg-zinc-500/15" },
+    teacher_pro:    { label: "Teacher Pro",    icon: Crown,     color: "#f59e0b", bg: "bg-amber-400/15" },
+    school:         { label: "School",         icon: Building2, color: "#a855f7", bg: "bg-purple-500/15" },
+    family:         { label: "Family Plan",    icon: Crown,     color: "#3b82f6", bg: "bg-blue-500/15" },
+    driving_school: { label: "Driving School", icon: Car,       color: "#10b981", bg: "bg-emerald-500/15" },
+    individual:     { label: "Individual",     icon: Crown,     color: "#ec4899", bg: "bg-pink-500/15" },
   } as const;
   const pc = planConfig[plan as keyof typeof planConfig] ?? planConfig.free;
   const PlanIcon = pc.icon;

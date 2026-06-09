@@ -286,7 +286,7 @@ type Track = "student" | "teacher";
 
 function RegisterFormInner() {
   const [track, setTrack] = useState<Track>("student");
-  const [selectedPlan, setSelectedPlan] = useState<"teacher_pro" | "family" | "driving_school">("teacher_pro");
+  const [selectedPlan, setSelectedPlan] = useState<"teacher_pro" | "family" | "driving_school" | "individual">("teacher_pro");
   const accountType = track;
   const isTeacher = accountType === "teacher";
   const { lang } = useLang();
@@ -490,7 +490,7 @@ function RegisterFormInner() {
                   },
                   {
                     key: "teacher",
-                    en: "Teacher / Family / Driving School", kh: "គ្រូបង្រៀន / គ្រួសារ / សាលាបង្រៀនបើកបរ",
+                    en: "Teacher / Family / Driving School / Individual", kh: "គ្រូបង្រៀន / គ្រួសារ / សាលាបង្រៀនបើកបរ / ឯកជន",
                     subEn: "7-day free trial", subKh: "សាកល្បងឥតគិតថ្លៃ ៧ ថ្ងៃ",
                   },
                 ] as const).map((opt) => (
@@ -516,8 +516,8 @@ function RegisterFormInner() {
             {isTeacher && (
               <p className="text-[11px] font-bold text-zinc-500 -mt-2 leading-relaxed">
                 {kh
-                  ? "គណនីគ្រូបង្រៀន គ្រួសារ និងសាលាបង្រៀនបើកបរ អាចចុះឈ្មោះដោយផ្ទាល់ — មិនត្រូវការការផ្ទៀងផ្ទាត់ពីបុគ្គលិកឡើយ។"
-                  : "Teacher, Family, and Driving School accounts can sign up directly — no manual staff verification needed."}
+                  ? "គណនីគ្រូបង្រៀន គ្រួសារ សាលាបង្រៀនបើកបរ និងឯកជន អាចចុះឈ្មោះដោយផ្ទាល់ — មិនត្រូវការការផ្ទៀងផ្ទាត់ពីបុគ្គលិកឡើយ។"
+                  : "Teacher, Family, Driving School, and Individual accounts can sign up directly — no manual staff verification needed."}
               </p>
             )}
 
@@ -526,9 +526,10 @@ function RegisterFormInner() {
                 <p className="text-[10px] font-black uppercase tracking-wider text-zinc-500">
                   {kh ? "ជ្រើសរើសប្រភេទផែនការ" : "Select subscription plan"}
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
                   {([
                     { key: "teacher_pro", en: "Teacher Pro", kh: "គ្រូ Pro", desc: "For 1 teacher" },
+                    { key: "individual", en: "Individual", kh: "ឯកជន", desc: "For 1 individual" },
                     { key: "family", en: "Family Plan", kh: "ផែនការគ្រួសារ", desc: "Up to 9 kids" },
                     { key: "driving_school", en: "Driving School", kh: "សាលាបង្រៀនបើកបរ", desc: "Unlimited learners" },
                   ] as const).map((pOpt) => (

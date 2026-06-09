@@ -337,7 +337,7 @@ async function autoAssignTeacherTrial(userId: number, adminId: number, plan: str
   try {
     const now = new Date();
     const trialEndsAt = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
-    const validPlan = ["teacher_pro", "family", "driving_school"].includes(plan) ? plan as any : "teacher_pro";
+    const validPlan = ["teacher_pro", "family", "driving_school", "individual"].includes(plan) ? plan as any : "teacher_pro";
     await db.insert(subscriptions).values({
       userId,
       plan: validPlan,
