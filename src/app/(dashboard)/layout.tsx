@@ -4,6 +4,10 @@ import { AppSidebar } from "@/components/dashboard/app-sidebar";
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { ToastProvider } from "@/components/ui/toast-container";
 import { getUserSubscription } from "@/lib/subscription";
+import { db } from "@/lib/db";
+import { users } from "@/db/schema";
+import { eq } from "drizzle-orm";
+import { CompleteTeacherProfileForm } from "@/components/profile/complete-teacher-profile-form";
 
 export default async function DashboardLayout({
   children,
@@ -14,6 +18,31 @@ export default async function DashboardLayout({
 
   if (!session) redirect("/login");
   if (session.role === "student") redirect("/profile/student");
+
+  // Check if teacher profile is incomplete
+  let isProfileIncomplete = false;
+  if (session.role === "teacher") {
+    try {
+      const [user] = await db
+        .select({ schoolName: users.schoolName, province: users.province })
+        .from(users)
+        .where(eq(users.id, session.id))
+        .limit(1);
+      if (!user || !user.schoolName || !user.province) {
+        isProfileIncomplete = true;
+      }
+    } catch (err) {
+      console.error("[DashboardLayout] profile check failed:", err);
+    }
+  }
+
+  if (isProfileIncomplete) {
+    return (
+      <ToastProvider>
+        <CompleteTeacherProfileForm />
+      </ToastProvider>
+    );
+  }
 
   // Fetch plan for teacher sidebar badge
   let planInfo = { plan: "free", isTrial: false, trialEndsAt: null as Date | null, endsAt: null as Date | null };

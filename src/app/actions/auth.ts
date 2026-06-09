@@ -341,13 +341,14 @@ export interface RegisterState {
   redirectTo?: string;
 }
 
-async function autoAssignTeacherTrial(userId: number, adminId: number) {
+async function autoAssignTeacherTrial(userId: number, adminId: number, plan: string = "teacher_pro") {
   try {
     const now = new Date();
     const trialEndsAt = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000);
+    const validPlan = ["teacher_pro", "family", "driving_school"].includes(plan) ? plan as any : "teacher_pro";
     await db.insert(subscriptions).values({
       userId,
-      plan: "teacher_pro",
+      plan: validPlan,
       status: "trial",
       isTrial: true,
       trialEndsAt,
@@ -376,6 +377,7 @@ export async function registerAction(
   const gradeLevel = (formData.get("gradeLevel") as string)?.trim();
   const section = (formData.get("section") as string)?.trim();
   const parentContact = (formData.get("parentContact") as string)?.trim();
+  const plan = (formData.get("plan") as string) || "teacher_pro";
 
   if (!username || !email || !password || !role) {
     return { error: "All required fields must be filled." };
@@ -428,7 +430,7 @@ export async function registerAction(
     });
 
     if (role === "teacher" && newUser?.id) {
-      await autoAssignTeacherTrial(newUser.id, newUser.id);
+      await autoAssignTeacherTrial(newUser.id, newUser.id, plan);
     }
 
     // Automatically log user in after successful registration

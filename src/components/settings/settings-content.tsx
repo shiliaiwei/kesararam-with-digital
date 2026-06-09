@@ -266,6 +266,20 @@ export function SettingsContent() {
     }));
   };
 
+  const handleSchoolNameBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    if (!val) return;
+    const cleaned = val.replace(/[^a-zA-Z0-9\s.,'()&-]/g, "");
+    const formatted = cleaned
+      .split(/\s+/)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+    setSettings(prev => ({
+      ...prev,
+      schoolName: formatted
+    }));
+  };
+
   // Check if student has completed onboarding (making school fields locked)
   const isStudentAndOnboarded = settings.role === "student" && !!settings.schoolName;
 
@@ -445,12 +459,16 @@ export function SettingsContent() {
                     onChange={(e) =>
                       setSettings({ ...settings, schoolName: e.target.value })
                     }
+                    onBlur={handleSchoolNameBlur}
                     className={`w-full p-3 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] ${
                       isStudentAndOnboarded ? "bg-zinc-50 cursor-not-allowed text-zinc-400" : ""
                     }`}
-                    placeholder="e.g. Wat Bo Primary School / សាលាបឋមសិក្សាវត្តបូ"
+                    placeholder="e.g. Kesararam With Digital"
                     style={{ borderRadius: "0" }}
                   />
+                  <span className="text-[10px] text-zinc-400 font-bold leading-normal block mt-1">
+                    * Please write in English, starting each word with a capital letter (e.g., Kesararam Primary School) / សូមសរសេរជាភាសាអង់គ្លេស និងចាប់ផ្តើមពាក្យនីមួយៗដោយអក្សរធំ (ឧ. Kesararam Primary School)
+                  </span>
                 </div>
 
                 {/* Province */}

@@ -282,20 +282,13 @@ function PrivacyConfirmModal({
 }
 
 // A "track" maps the chosen subscription plan to a role + registration path.
-//  - student        → role "student",  self-register (invite code)
-//  - teacher_pro     → role "teacher",  self-register (free 7-day trial)
-//  - school_academy  → role "teacher",  contact staff (admin provisions after payment)
-type Track = "student" | "teacher_pro" | "school_academy";
-
-function trackToRole(track: Track): "student" | "teacher" {
-  return track === "student" ? "student" : "teacher";
-}
+type Track = "student" | "teacher";
 
 function RegisterFormInner() {
   const [track, setTrack] = useState<Track>("student");
-  const accountType = trackToRole(track);
+  const [selectedPlan, setSelectedPlan] = useState<"teacher_pro" | "family" | "driving_school">("teacher_pro");
+  const accountType = track;
   const isTeacher = accountType === "teacher";
-  const isContactStaff = track === "school_academy";
   const { lang } = useLang();
   const kh = lang === "kh";
 
@@ -377,7 +370,31 @@ function RegisterFormInner() {
     setPendingRegistrationType(null);
   };
 
+  const handleSchoolNameBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    if (!val) return;
+    const cleaned = val.replace(/[^a-zA-Z0-9\s.,'()&-]/g, "");
+    const formatted = cleaned
+      .split(/\s+/)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+    e.target.value = formatted;
+  };
+
   const executeGoogleRegister = async () => {
+    if (isTeacher) {
+      const schoolNameEl = document.getElementById("schoolName") as HTMLInputElement;
+      const provinceEl = document.getElementById("province") as HTMLSelectElement;
+      const schoolName = schoolNameEl?.value?.trim() || "";
+      const province = provinceEl?.value || "";
+
+      const tparams = new URLSearchParams({ role: "teacher", plan: selectedPlan });
+      if (schoolName) tparams.set("schoolName", schoolName);
+      if (province) tparams.set("province", province);
+      window.location.href = `/api/auth/google?${tparams.toString()}`;
+      return;
+    }
+
     if (!showEmailReg) {
       window.location.href = "/api/auth/google";
       return;
@@ -389,15 +406,6 @@ function RegisterFormInner() {
     const schoolName = schoolNameEl?.value?.trim() || "";
     const province = provinceEl?.value || "";
     const section = sectionEl?.value?.trim() || "";
-
-    // Teacher self-registration via Google — no invite code, gets a 7-day trial.
-    if (isTeacher) {
-      const tparams = new URLSearchParams({ role: "teacher" });
-      if (schoolName) tparams.set("schoolName", schoolName);
-      if (province) tparams.set("province", province);
-      window.location.href = `/api/auth/google?${tparams.toString()}`;
-      return;
-    }
 
     const inviteCodeEl = document.getElementById("inviteCode") as HTMLInputElement;
     const code = inviteCodeEl?.value?.trim() || "";
@@ -466,14 +474,14 @@ function RegisterFormInner() {
           <form ref={formRef} action={formAction} className="p-6 lg:p-8 flex flex-col gap-5 bg-white" autoComplete="off">
             {/* role driven by the account-type toggle */}
             <input type="hidden" name="role" value={accountType} />
+            <input type="hidden" name="plan" value={selectedPlan} />
 
-            {/* Plan selector — the chosen subscription plan drives both the
-                role and whether the user self-registers or contacts staff. */}
+            {/* Plan selector — simplified to 2 main choices: Student and Teacher / Family / Driving School */}
             <div>
               <p className="text-[10px] font-black uppercase tracking-wider text-zinc-500 mb-2">
-                {kh ? "ជ្រើសរើសប្រភេទគណនី / ផែនការ" : "Choose your account / plan"}
+                {kh ? "ជ្រើសរើសប្រភេទគណនី" : "Choose your account type"}
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {([
                   {
                     key: "student",
@@ -481,14 +489,9 @@ function RegisterFormInner() {
                     subEn: "Free · invite code", subKh: "ឥតគិតថ្លៃ · លេខកូដអញ្ជើញ",
                   },
                   {
-                    key: "teacher_pro",
-                    en: "Teacher Pro", kh: "គ្រូ Pro",
-                    subEn: "Free 7-day trial", subKh: "សាកល្បងឥតគិតថ្លៃ ៧ ថ្ងៃ",
-                  },
-                  {
-                    key: "school_academy",
-                    en: "School / Academy", kh: "សាលា / បណ្តុះបណ្តាល",
-                    subEn: "Contact staff", subKh: "ទាក់ទងបុគ្គលិក",
+                    key: "teacher",
+                    en: "Teacher / Family / Driving School", kh: "គ្រូបង្រៀន / គ្រួសារ / សាលាបង្រៀនបើកបរ",
+                    subEn: "7-day free trial", subKh: "សាកល្បងឥតគិតថ្លៃ ៧ ថ្ងៃ",
                   },
                 ] as const).map((opt) => (
                   <button
@@ -497,7 +500,6 @@ function RegisterFormInner() {
                     onClick={() => {
                       setTrack(opt.key);
                       setGoogleError("");
-                      if (opt.key === "teacher_pro") setShowEmailReg(true);
                     }}
                     className={`flex flex-col items-start gap-0.5 py-2.5 px-3 border-2 border-black rounded-md transition-all text-left ${track === opt.key
                       ? "bg-[#eab308] shadow-[2px_2px_0_#000]"
@@ -510,49 +512,48 @@ function RegisterFormInner() {
                 ))}
               </div>
             </div>
-            {track === "teacher_pro" && (
+
+            {isTeacher && (
               <p className="text-[11px] font-bold text-zinc-500 -mt-2 leading-relaxed">
                 {kh
-                  ? "គ្រូបង្រៀនអាចបង្កើតគណនីបានដោយផ្ទាល់ — មិនត្រូវការការផ្ទៀងផ្ទាត់ពីអ្នកគ្រប់គ្រងទេ។ គណនីថ្មីទទួលបានការសាកល្បងឥតគិតថ្លៃ ៧ ថ្ងៃ។"
-                  : "Teachers can create an account directly — no admin verification needed. New accounts get a free 7-day trial."}
+                  ? "គណនីគ្រូបង្រៀន គ្រួសារ និងសាលាបង្រៀនបើកបរ អាចចុះឈ្មោះដោយផ្ទាល់ — មិនត្រូវការការផ្ទៀងផ្ទាត់ពីបុគ្គលិកឡើយ។"
+                  : "Teacher, Family, and Driving School accounts can sign up directly — no manual staff verification needed."}
               </p>
             )}
 
-            {/* Contact-staff branch — School & Academy plans are provisioned by
-                staff after payment, so we route to the application form. */}
-            {isContactStaff ? (
-              <div className="flex flex-col gap-4 py-2 animate-fade-in font-system">
-                <div className="border-2 border-black rounded-xl p-5 bg-[#22c55e]/5 shadow-[3px_3px_0_#000] space-y-3 text-left">
-                  <div className="flex items-center gap-2 border-b-2 border-black pb-2">
-                    <ShieldCheck className="size-5 text-[#22c55e] shrink-0" />
-                    <h3 className="text-xs font-black uppercase tracking-wider text-black">
-                      {kh ? "ផែនការសាលា និងបណ្តុះបណ្តាល" : "School & Academy plans"}
-                    </h3>
-                  </div>
-                  <p className="text-sm font-bold text-zinc-700 leading-relaxed">
-                    {kh
-                      ? "ផែនការសាលា និងបណ្តុះបណ្តាល ត្រូវបានរៀបចំដោយបុគ្គលិករបស់យើង។ សូមដាក់ពាក្យសុំ ហើយអ្នកគ្រប់គ្រងនឹងបើកគណនី និងផែនការ បន្ទាប់ពីផ្ទៀងផ្ទាត់ការទូទាត់។"
-                      : "School and Academy plans are set up by our staff. Submit an application and an administrator will create the accounts and plan after verifying payment."}
-                  </p>
+            {isTeacher && (
+              <div className="border-2 border-black rounded-xl p-4 bg-amber-50/50 shadow-[3px_3px_0_#000] flex flex-col gap-3 text-left">
+                <p className="text-[10px] font-black uppercase tracking-wider text-zinc-500">
+                  {kh ? "ជ្រើសរើសប្រភេទផែនការ" : "Select subscription plan"}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  {([
+                    { key: "teacher_pro", en: "Teacher Pro", kh: "គ្រូ Pro", desc: "For 1 teacher" },
+                    { key: "family", en: "Family Plan", kh: "ផែនការគ្រួសារ", desc: "Up to 9 kids" },
+                    { key: "driving_school", en: "Driving School", kh: "សាលាបង្រៀនបើកបរ", desc: "Unlimited learners" },
+                  ] as const).map((pOpt) => (
+                    <button
+                      key={pOpt.key}
+                      type="button"
+                      onClick={() => setSelectedPlan(pOpt.key)}
+                      className={`flex flex-col items-start gap-0.5 py-2 px-2.5 border-2 border-black rounded-md transition-all text-left ${selectedPlan === pOpt.key
+                        ? "bg-[#eab308] shadow-[2px_2px_0_#000] text-black font-black"
+                        : "bg-white text-zinc-500 hover:text-black"
+                        }`}
+                    >
+                      <span className="text-xs font-black uppercase tracking-wider">{kh ? pOpt.kh : pOpt.en}</span>
+                      <span className="text-[9px] font-bold opacity-70 leading-normal">{pOpt.desc}</span>
+                    </button>
+                  ))}
                 </div>
-                <Link
-                  href="/register/teacher?plan=school&cycle=monthly"
-                  className="w-full py-3.5 bg-[#eab308] hover:bg-[#d9a307] text-black font-black text-base border-2 border-black rounded-lg shadow-[4px_4px_0_#000] hover:shadow-[5px_5px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2.5 active:translate-x-0 active:translate-y-0 active:shadow-none uppercase tracking-wide"
-                >
-                  <School className="size-5 shrink-0" />
-                  {kh ? "ដាក់ពាក្យសុំ / ទាក់ទងបុគ្គលិក" : "Apply / Contact staff"}
-                </Link>
-                <p className="text-[11px] font-bold text-zinc-500 text-center leading-relaxed">
+                <p className="text-[11px] font-bold text-zinc-500 leading-normal">
                   {kh
-                    ? "សម្រាប់ផែនការគ្រួសារ ឬ ឥតគិតថ្លៃ សូមមើល "
-                    : "Looking for the Family or Free plan? See "}
-                  <Link href="/pricing" className="text-blue-600 underline">
-                    {kh ? "ផែនការទាំងអស់" : "all plans"}
-                  </Link>
+                    ? "* គណនីថ្មីទាំងអស់ទទួលបានការសាកល្បងឥតគិតថ្លៃរយៈពេល ៧ ថ្ងៃដោយស្វ័យប្រវត្តិ។"
+                    : "* All plans include an instant free 7-day trial on registration."}
                 </p>
               </div>
-            ) : (
-              !showEmailReg ? (
+            )}
+            {!showEmailReg ? (
                 // Simplified Google Flow
                 <div className="flex flex-col gap-5 py-2">
                   <p className="text-zinc-650 font-bold text-sm text-center leading-relaxed font-system">
@@ -705,7 +706,9 @@ function RegisterFormInner() {
                     {/* School Name */}
                     <div className="flex flex-col gap-1.5 text-left">
                       <label htmlFor="schoolName" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
-                        {kh ? "ឈ្មោះសាលារៀន *" : "School Name *"}
+                        {isTeacher
+                          ? (kh ? "ឈ្មោះសាលារៀន / ឈ្មោះអង្គភាព *" : "School / Organization Name *")
+                          : (kh ? "ឈ្មោះសាលារៀន *" : "School Name *")}
                       </label>
                       <div className="relative flex items-center">
                         <School className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
@@ -714,10 +717,16 @@ function RegisterFormInner() {
                           id="schoolName"
                           name="schoolName"
                           required
-                          placeholder="e.g. Wat Bo Primary School / សាលាបឋមសិក្សាវត្តបូ"
+                          placeholder={kh ? "ឧ. Kesararam With Digital" : "e.g. Kesararam With Digital"}
+                          onBlur={handleSchoolNameBlur}
                           className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
                         />
                       </div>
+                      <span className="text-[10px] text-zinc-400 font-bold leading-normal block">
+                        {kh
+                          ? "* សូមសរសេរជាភាសាអង់គ្លេស និងចាប់ផ្តើមពាក្យនីមួយៗដោយអក្សរធំ (ឧ. Kesararam Primary School)"
+                          : "* Please write in English, starting each word with a capital letter (e.g., Kesararam Primary School)"}
+                      </span>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -890,7 +899,7 @@ function RegisterFormInner() {
                   )}
                 </div>
               )
-            )}
+            }
           </form>
         </div>
 
