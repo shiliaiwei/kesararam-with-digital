@@ -14,13 +14,15 @@ export function DailyRoundView({
     lang,
     muted,
     onRoundComplete,
+    timerSeconds,
 }: RoundViewProps<DailyRound>) {
     const kh = lang === "kh";
     const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
     const [selectedId, setSelectedId] = useState<number | null>(null);
     const startRef = useRef(Date.now());
     const doneRef = useRef(false);
-    const endsAt = useRef(new Date(Date.now() + ROUND_SECONDS * 1000).toISOString()).current;
+    const limit = timerSeconds !== undefined ? timerSeconds : ROUND_SECONDS;
+    const [endsAt] = useState(() => limit ? new Date(Date.now() + limit * 1000).toISOString() : "");
 
     function finish(answerId: number | null) {
         if (doneRef.current) return;
@@ -42,14 +44,16 @@ export function DailyRoundView({
 
     return (
         <>
-            <div className="flex items-center justify-end">
-                <CountdownTimer
-                    endsAt={endsAt}
-                    totalSeconds={ROUND_SECONDS}
-                    muted={muted}
-                    onExpire={() => finish(null)}
-                />
-            </div>
+            {limit !== null && (
+                <div className="flex items-center justify-end">
+                    <CountdownTimer
+                        endsAt={endsAt}
+                        totalSeconds={limit}
+                        muted={muted}
+                        onExpire={() => finish(null)}
+                    />
+                </div>
+            )}
 
             {round.imageUrl && (
                 <div className="shrink-0 w-full h-44 flex items-center justify-center p-3 border-4 border-black bg-white" style={{ boxShadow: "6px 6px 0 #000" }}>

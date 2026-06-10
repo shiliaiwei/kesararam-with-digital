@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useLang } from "@/context/lang-context";
 import { Zap, Flame, Volume2, VolumeX, Lock, RotateCcw, ChevronRight, Trophy } from "lucide-react";
+import { CountdownTimer } from "@/components/game/CountdownTimer";
 import type { GameFormat, KitPhase, KitCompletionResult, RoundResult, I18nText } from "./types";
 
 const BRAND = { yellow: "#eab308", black: "#000", white: "#fff" };
@@ -25,7 +26,19 @@ export function GameKitShell<TRound, TResult extends KitCompletionResult>({
     const [muted, setMuted] = useState(true);
     const answersRef = useRef<RoundResult[]>([]);
 
+    // Timer customization state
+    const [timerMode, setTimerMode] = useState<"standard" | "custom" | "none">("standard");
+    const [customSeconds, setCustomSeconds] = useState<number>(30);
+    const [currentEndsAt, setCurrentEndsAt] = useState<string>("");
+
     const { meta, config } = format;
+
+    // Reset countdown on new round
+    useEffect(() => {
+        if (phase.name === "playing" && phase.secondsLimit) {
+            setCurrentEndsAt(new Date(Date.now() + phase.secondsLimit * 1000).toISOString());
+        }
+    }, [phase.name === "playing" ? phase.index : -1]);
 
     async function start() {
         setPhase({ name: "loading" });
@@ -46,11 +59,40 @@ export function GameKitShell<TRound, TResult extends KitCompletionResult>({
                 setPhase({ name: "locked", message: { en: "No rounds available right now.", kh: "មិនមានជុំលេងនៅពេលនេះ។" } });
                 return;
             }
+
+            let secondsLimit: number | null = null;
+            if (timerMode === "none") {
+                secondsLimit = null;
+            } else if (timerMode === "custom") {
+                secondsLimit = customSeconds;
+            } else {
+                secondsLimit = format.config.timed ? (format.config.secondsPerRound || 30) : null;
+            }
+
             answersRef.current = [];
-            setPhase({ name: "playing", rounds: data.rounds, index: 0, cosmeticScore: 0, streak: 0 });
+            setPhase({
+                name: "playing",
+                rounds: data.rounds,
+                index: 0,
+                cosmeticScore: 0,
+                streak: 0,
+                secondsLimit,
+            });
         } catch {
             setPhase({ name: "locked", message: { en: "Could not load the game.", kh: "មិនអាចផ្ទុកហ្គេមបានទេ។" } });
         }
+    }
+
+    function handleTimeExpire() {
+        if (phase.name !== "playing") return;
+        const currentRound = phase.rounds[phase.index];
+        onRoundComplete({
+            refId: (currentRound as any).sceneId || (currentRound as any).questionId || 0,
+            isCorrectGuess: false,
+            payload: {},
+            timeTakenMs: phase.secondsLimit ? phase.secondsLimit * 1000 : 30000,
+            difficulty: (currentRound as any).difficulty || "medium",
+        });
     }
 
     function onRoundComplete(result: RoundResult) {
@@ -118,6 +160,77 @@ export function GameKitShell<TRound, TResult extends KitCompletionResult>({
                     </div>
                 </div>
                 <div className="max-w-2xl mx-auto px-6 py-10 flex flex-col gap-6">
+                    {/* Time limit option */}
+                    <div className="border-4 border-black p-6 bg-zinc-50 shadow-[4px_4px_0_#000]" style={{ borderRadius: 0 }}>
+                        <h3 className="text-lg font-black mb-4 flex items-center gap-2" style={khFont}>
+                            <span>⏱️</span>
+                            <span>{kh ? "កំណត់រយៈពេលលេង" : "Choose Time Limit"}</span>
+                        </h3>
+                        
+                        <div className="flex flex-col gap-4">
+                            <label className="flex items-center gap-3 cursor-pointer select-none">
+                                <input
+                                    type="radio"
+                                    name="timerMode"
+                                    checked={timerMode === "standard"}
+                                    onChange={() => setTimerMode("standard")}
+                                    className="w-5 h-5 accent-black cursor-pointer"
+                                />
+                                <span className="text-sm font-bold text-black" style={khFont}>
+                                    {kh 
+                                        ? `ម៉ោងស្ដង់ដារ ${format.config.timed ? `(${format.config.secondsPerRound || 30} វិនាទី)` : "(គ្មានកំណត់)"}` 
+                                        : `Standard Mode ${format.config.timed ? `(${format.config.secondsPerRound || 30}s)` : "(No limit)"}`}
+                                </span>
+                            </label>
+
+                            <label className="flex items-center gap-3 cursor-pointer select-none">
+                                <input
+                                    type="radio"
+                                    name="timerMode"
+                                    checked={timerMode === "none"}
+                                    onChange={() => setTimerMode("none")}
+                                    className="w-5 h-5 accent-black cursor-pointer"
+                                />
+                                <span className="text-sm font-bold text-black" style={khFont}>
+                                    {kh ? "គ្មានដែនកំណត់ពេលវេលា (លេងសម្រាកកាយ)" : "No Time Limit (Relaxed Practice)"}
+                                </span>
+                            </label>
+
+                            <label className="flex items-center gap-3 cursor-pointer select-none">
+                                <input
+                                    type="radio"
+                                    name="timerMode"
+                                    checked={timerMode === "custom"}
+                                    onChange={() => setTimerMode("custom")}
+                                    className="w-5 h-5 accent-black cursor-pointer"
+                                />
+                                <span className="text-sm font-bold text-black" style={khFont}>
+                                    {kh ? "កំណត់ម៉ោងដោយខ្លួនឯង" : "Custom Time Limit"}
+                                </span>
+                            </label>
+
+                            {timerMode === "custom" && (
+                                <div className="pl-8 flex items-center gap-2.5 flex-wrap">
+                                    {[10, 15, 30, 45, 60].map((sec) => (
+                                        <button
+                                            key={sec}
+                                            type="button"
+                                            onClick={() => setCustomSeconds(sec)}
+                                            className={`px-4 py-2 border-2 border-black font-black text-xs transition-all ${
+                                                customSeconds === sec
+                                                    ? "bg-yellow-400 text-black shadow-[3px_3px_0_#000] -translate-y-0.5"
+                                                    : "bg-white text-zinc-500 hover:text-black hover:bg-zinc-100"
+                                            }`}
+                                            style={khFont}
+                                        >
+                                            {sec} {kh ? "វិនាទី" : "seconds"}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
                     <button
                         onClick={start}
                         className="w-full py-5 bg-black text-yellow-400 font-black text-xl border-2 border-black transition-all hover:-translate-y-0.5"
@@ -254,6 +367,18 @@ export function GameKitShell<TRound, TResult extends KitCompletionResult>({
                 <div className="h-full bg-yellow-400 transition-all duration-300" style={{ width: `${((phase.index + 1) / phase.rounds.length) * 100}%` }} />
             </div>
 
+            {/* Timer if shell-driven */}
+            {phase.name === "playing" && phase.secondsLimit && !config.timed && currentEndsAt && (
+                <div className="shrink-0 flex justify-center py-2 bg-zinc-950/20 border-b border-zinc-800/10">
+                    <CountdownTimer
+                        endsAt={currentEndsAt}
+                        totalSeconds={phase.secondsLimit}
+                        muted={muted}
+                        onExpire={handleTimeExpire}
+                    />
+                </div>
+            )}
+
             {/* Round */}
             <div className="relative z-10 flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full overflow-y-auto min-h-0">
                 <RoundView
@@ -264,6 +389,7 @@ export function GameKitShell<TRound, TResult extends KitCompletionResult>({
                     lang={lang}
                     muted={muted}
                     onRoundComplete={onRoundComplete}
+                    timerSeconds={phase.secondsLimit}
                 />
             </div>
         </div>

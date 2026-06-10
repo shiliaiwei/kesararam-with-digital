@@ -64,6 +64,8 @@ export interface RoundViewProps<TRound> {
     muted: boolean;
     /** Call exactly once when the user completes this round. */
     onRoundComplete: (result: RoundResult) => void;
+    /** Overridden timer limit (number of seconds, or null for no timer) */
+    timerSeconds?: number | null;
 }
 
 /** Shared authoritative result returned by every complete endpoint. */
@@ -118,5 +120,6 @@ export type KitPhase<TRound, TResult extends KitCompletionResult> =
         index: number;
         cosmeticScore: number;
         streak: number;
+        secondsLimit: number | null;
     }
     | { name: "results"; result: TResult };
