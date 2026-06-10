@@ -104,7 +104,7 @@ export const metadata: Metadata = {
     description:
       "Free bilingual (ខ្មែរ / English) road-safety learning for Cambodia: traffic signs, road rules, interactive quizzes, and live multiplayer games. Learn on any device, anytime.",
     images: [{
-      url: "/brand/kwd-green.png",
+      url: "/brand/og-cover.png",
       width: 1200,
       height: 630,
       alt: "KWD — Kesararam With Digital, bilingual road-safety learning for Cambodia",
@@ -115,7 +115,7 @@ export const metadata: Metadata = {
     title: "KWD — Learn Cambodia's Road Signs & Traffic Rules, Free & Bilingual",
     description:
       "Cambodia's free bilingual road-safety platform: traffic signs, road rules, quizzes, and live games in Khmer & English.",
-    images: ["/brand/kwd-green.png"],
+    images: ["/brand/og-cover.png"],
   },
 };
 
