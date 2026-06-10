@@ -392,7 +392,7 @@ function OtpCodeInput({ lang }: { lang: string }) {
           e.currentTarget.style.boxShadow = code.length === 6 ? `4px 4px 0 ${BRAND.yellow}` : "none";
         }}
       >
-        {kh ? "ចូលរួមលេង" : "JOIN GAME"}
+        {kh ? "ចូលរួមប្រកួត" : "JOIN THE CHALLENGE"}
         <ChevronRight size={18} strokeWidth={3} />
       </button>
     </div>
@@ -460,7 +460,7 @@ export default function PlayPage() {
               padding: "6px 14px", marginBottom: 18,
             }}>
               <Sparkles size={14} strokeWidth={2.5} />
-              {kh ? "រៀនតាមរយៈការលេង" : "Learn by playing"}
+              {kh ? "លេងដើម្បីរៀន រៀនដើម្បីសុវត្ថិភាព" : "Play to Learn, Learn for Safety"}
             </div>
 
             <h1 style={{
@@ -468,7 +468,7 @@ export default function PlayPage() {
               fontSize: "clamp(2.2rem, 5.5vw, 4rem)",
               fontWeight: 900, color: BRAND.black, lineHeight: 1.05, margin: 0, letterSpacing: "-2px",
             }}>
-              {kh ? "ត្រៀមខ្លួនលេងហើយឬនៅ?" : "Ready to play?"}
+              {kh ? "តើអ្នកត្រៀមខ្លួនក្លាយជាជើងឯកសុវត្ថិភាពចរាចរណ៍ហើយឬនៅ?" : "Ready to become a road safety champion?"}
             </h1>
 
             <p style={{
@@ -477,8 +477,8 @@ export default function PlayPage() {
               color: "rgba(0,0,0,0.7)", margin: "14px 0 26px", maxWidth: 460, lineHeight: 1.5,
             }}>
               {kh
-                ? "ជ្រើសរើសរបៀបលេង ហើយចាប់ផ្ដើមភ្លាមៗ — គ្មានការបង្កើតគណនី។"
-                : "Pick a mode and jump straight in — no sign-up needed to start."}
+                ? "ជ្រើសរើសរបៀបលេងដែលអ្នកពេញចិត្ត ដើម្បីសាកល្បងចំណេះដឹង និងសន្សំពិន្ទុភ្លាមៗ ដោយមិនបាច់បង្កើតគណនីឡើយ!"
+                : "Pick your favorite mode to test your road safety skills, earn points, and climb the ranks instantly — no sign-up required!"}
             </p>
 
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
@@ -490,7 +490,7 @@ export default function PlayPage() {
                 textDecoration: "none", boxShadow: `5px 5px 0 rgba(0,0,0,0.25)`,
               }}>
                 <Play size={16} fill="currentColor" strokeWidth={3} />
-                {kh ? "ចាប់ផ្ដើមលេង" : "START PLAYING"}
+                {kh ? "ចាប់ផ្ដើមការប្រកួត" : "START THE CHALLENGE"}
               </a>
               <Link href="/leaderboard" style={{
                 ...khFont,
@@ -500,7 +500,7 @@ export default function PlayPage() {
                 textDecoration: "none", boxShadow: `5px 5px 0 rgba(0,0,0,0.25)`,
               }}>
                 <Trophy size={16} strokeWidth={2.5} />
-                {kh ? "តារាងពិន្ទុ" : "Leaderboard"}
+                {kh ? "តារាងជើងឯក" : "Leaderboard"}
               </Link>
             </div>
           </div>
@@ -514,11 +514,11 @@ export default function PlayPage() {
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
                 <Users size={18} strokeWidth={2.5} />
                 <span style={{ ...khFont, fontSize: 14, fontWeight: 900, letterSpacing: 1 }}>
-                  {kh ? "មានកូដបន្ទប់?" : "Got a room code?"}
+                  {kh ? "លេងជាមួយមិត្តរួមថ្នាក់" : "Play with Classmates"}
                 </span>
               </div>
               <p style={{ ...khFont, fontSize: 11.5, fontWeight: 600, color: "rgba(0,0,0,0.55)", margin: "0 0 16px" }}>
-                {kh ? "ចូលរួមហ្គេមផ្ទាល់ដែលគ្រូបង្កើត។" : "Join a live game hosted by your teacher."}
+                {kh ? "បញ្ចូលកូដបន្ទប់៦ខ្ទង់ដែលលោកគ្រូ-អ្នកគ្រូបានផ្ដល់ឱ្យ ដើម្បីចាប់ផ្ដើមប្រកួតជាក្រុមផ្ទាល់ភ្លាមៗ!" : "Enter the 6-digit code shared by your teacher to join the live classroom challenge!"}
               </p>
               <OtpCodeInput lang={lang} />
             </div>
