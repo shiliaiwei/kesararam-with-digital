@@ -471,7 +471,7 @@ export default function PlayPage() {
               margin: 0,
               letterSpacing: kh ? "0px" : "-2px",
             }}>
-              {kh ? "តោះលេង ដើម្បីសុវត្ថិភាពចរាចរណ៍!" : "Ready to become a road safety champion?"}
+              {kh ? "លេងសប្បាយៗ យល់ដឹងច្បាប់ចរាចរណ៍!" : "Ready to become a road safety champion?"}
             </h1>
 
             <p style={{
