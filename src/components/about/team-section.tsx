@@ -38,7 +38,9 @@ function MemberCard({ member, isMentor, isKh }: { member: Member; isMentor: bool
   const [loading, setLoading] = useState(false);
   const accent = isMentor ? "#f59e0b" : "#eab308";
   const khFont = isKh ? { fontFamily: "Siemreap, sans-serif" } : undefined;
-  const displayName = isKh ? member.nameKh : member.name;
+  // Card face shows last name only; full name is revealed on the scanned profile.
+  const fullName = isKh ? member.nameKh : member.name;
+  const displayName = fullName.trim().split(/\s+/).pop();
   const role = isKh ? member.roleKh : member.roleEn;
 
   // Fetch a fresh token on each tap — no auto-refresh to prevent glitch
