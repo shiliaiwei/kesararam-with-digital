@@ -9,18 +9,39 @@ export const dynamic = "force-dynamic";
 
 type Window = "weekly" | "monthly" | "all";
 
+/**
+ * GET /api/leaderboard
+ *
+ * Query params:
+ *   window      = "weekly" | "monthly" | "all"   (default: "all")
+ *   province    = province name | "all"            (default: "all")
+ *   gameType    = game mode key | "all"            (default: "all")
+ *   source      = "live" | "solo" | "daily" | "all" (default: "all")
+ *   limit       = number (default: 50)
+ *   offset      = number (default: 0)
+ *
+ * Ranks are computed server-side by scanning ALL active student users
+ * with lifetimePoints > 0 (all-time) or pointsLedger rows within the
+ * time window (weekly/monthly). Ranks are dense (1, 2, 3 …).
+ *
+ * Live teacher sessions (source="live") count at FULL value for ranking.
+ * Solo practice sessions (source="solo") also count at full value.
+ * The `source` filter lets the client show "Live-only" or "Practice-only"
+ * leaderboards — but the default "all" mixes everything for the global rank.
+ */
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
-  const limit = parseInt(searchParams.get("limit") || "50", 10);
+  const limit = Math.min(parseInt(searchParams.get("limit") || "50", 10), 200);
   const offset = parseInt(searchParams.get("offset") || "0", 10);
   const windowParam = (searchParams.get("window") || "all") as Window;
   const province = searchParams.get("province") || "all";
   const gameType = searchParams.get("gameType") || "all";
+  const source = searchParams.get("source") || "all";
 
   try {
     // Any active student who has scored shows up. Profile completeness
     // (school/province/grade) and isStatsPublic are NOT required — students who
-    // played a live game appear even with a bare profile. Per-field privacy flags
+    // played any game appear even with a bare profile. Per-field privacy flags
     // (isNamePublic, isSchoolPublic, …) still anonymize the displayed values below.
     const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.lifetimePoints} > 0`;
     const provinceFilter =
@@ -47,8 +68,8 @@ export async function GET(req: NextRequest) {
       isSectionPublic: boolean | null;
     }[];
 
-    if (windowParam === "all") {
-      // All-time — rank by lifetimePoints (existing behavior).
+    if (windowParam === "all" && gameType === "all" && source === "all") {
+      // ── All-time, no filter — rank by lifetimePoints (fastest path) ───────
       rows = await db
         .select({
           id: users.id,
@@ -76,10 +97,18 @@ export async function GET(req: NextRequest) {
         .limit(limit)
         .offset(offset);
     } else {
-      // Weekly / monthly — rank by SUM(pointsLedger.points) within the window.
-      const start = windowStartDate(windowParam === "weekly" ? "weekly" : "monthly");
+      // ── Windowed or filtered — SUM(pointsLedger.points) within constraints ─
+      // For all-time with gameType/source filter we still use pointsLedger
+      // so we can filter by gameType and source columns.
+      const start =
+        windowParam !== "all"
+          ? windowStartDate(windowParam === "weekly" ? "weekly" : "monthly")
+          : "1970-01-01";
+
       const gameTypeFilter =
         gameType !== "all" ? sql` AND ${pointsLedger.gameType} = ${gameType}` : sql``;
+      const sourceFilter =
+        source !== "all" ? sql` AND ${pointsLedger.source} = ${source}` : sql``;
 
       rows = await db
         .select({
@@ -110,7 +139,7 @@ export async function GET(req: NextRequest) {
             gte(pointsLedger.createdAt, new Date(`${start}T00:00:00+07:00`))
           )
         )
-        .where(sql`${publicFilter}${provinceFilter}${gameTypeFilter}`)
+        .where(sql`${publicFilter}${provinceFilter}${gameTypeFilter}${sourceFilter}`)
         .groupBy(
           users.id,
           users.username,
@@ -135,6 +164,9 @@ export async function GET(req: NextRequest) {
         .offset(offset);
     }
 
+    // Rank is assigned by position in the sorted result + offset.
+    // Because results are ordered DESC by points and we paginate with offset,
+    // rank = offset + index + 1 is correct for the page slice.
     const rankedUsers = rows.map((user, index) => {
       const isNamePublic = user.isNamePublic ?? true;
       const isUsernamePublic = user.isUsernamePublic ?? true;
@@ -169,6 +201,7 @@ export async function GET(req: NextRequest) {
       window: windowParam,
       province,
       gameType,
+      source,
     });
   } catch (error) {
     console.error("Error fetching leaderboard:", error);
