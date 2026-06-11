@@ -81,17 +81,16 @@ const WINDOW_TABS: { id: "weekly" | "monthly" | "all"; en: string; kh: string }[
   { id: "all", en: "All-Time", kh: "គ្រប់ពេល" },
 ];
 
-// GameType values match the `gameType` column written into pointsLedger
-// (game IDs from the GameKit registry). Kept static to avoid importing
-// server-side format modules into this client page.
+// GameType values match the `gameType` column written into pointsLedger. Only
+// live teacher-hosted sessions feed the leaderboard, so these are the live game
+// modes (see GAME_MODE_CONFIG in src/lib/game-engine.ts). Kept static to avoid
+// importing server-side modules into this client page.
 const GAME_TYPES: { id: string; en: string; kh: string }[] = [
   { id: "all", en: "All Games", kh: "គ្រប់សកម្មភាព" },
-  { id: "daily", en: "Daily Challenge", kh: "បញ្ហាប្រចាំថ្ងៃ" },
-  { id: "priority-puzzle", en: "Who Goes First?", kh: "តើអ្នកណាទៅមុន?" },
-  { id: "sign-match", en: "Sign Match", kh: "ផ្គូផ្គងសញ្ញា" },
-  { id: "catch-sign", en: "Catch the Sign", kh: "ចាប់សញ្ញា" },
-  { id: "light-hero", en: "Traffic Light Hero", kh: "បញ្ញាបរភ្លើងសញ្ញា" },
-  { id: "safety-adventure", en: "Road Safety Adventure", kh: "ដំណើរផ្សងព្រេងសុវត្ថិភាព" },
+  { id: "quick-quiz", en: "Quick Quiz", kh: "សំណួរលឿន" },
+  { id: "speed-round", en: "Speed Round", kh: "វគ្គល្បឿន" },
+  { id: "sign-challenge", en: "Sign Challenge", kh: "បញ្ហាសញ្ញា" },
+  { id: "mixed-practice", en: "Mixed Practice", kh: "លំហាត់ចម្រុះ" },
 ];
 
 interface LeaderboardUser {

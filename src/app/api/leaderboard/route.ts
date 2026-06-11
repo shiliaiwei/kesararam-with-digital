@@ -18,7 +18,11 @@ export async function GET(req: NextRequest) {
   const gameType = searchParams.get("gameType") || "all";
 
   try {
-    const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.schoolName} IS NOT NULL AND ${users.province} IS NOT NULL AND ${users.gradeLevel} IS NOT NULL AND ${users.isStatsPublic} = true AND ${users.lifetimePoints} > 0`;
+    // Any active student who has scored shows up. Profile completeness
+    // (school/province/grade) and isStatsPublic are NOT required — students who
+    // played a live game appear even with a bare profile. Per-field privacy flags
+    // (isNamePublic, isSchoolPublic, …) still anonymize the displayed values below.
+    const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.lifetimePoints} > 0`;
     const provinceFilter =
       province !== "all" ? sql` AND ${users.province} = ${province}` : sql``;
 

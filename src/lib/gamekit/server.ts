@@ -1,12 +1,15 @@
 /**
- * GameKit server service — the SINGLE place that scores plays via calculateScore
- * and persists points (lifetimePoints + pointsLedger + attempt tables).
- * API routes are thin wrappers around these functions.
+ * GameKit server service — the SINGLE place that scores plays via calculateScore.
+ *
+ * IMPORTANT: solo / practice modes (daily challenge, priority puzzle, kid arcade
+ * games) record their OWN attempt + streak history here, but they do NOT touch the
+ * public leaderboard. Public ranking (users.lifetimePoints + pointsLedger) is fed
+ * ONLY by live teacher-hosted sessions — see
+ * src/app/api/game/sessions/[code]/control/route.ts (syncScoresToUserProfiles).
  */
 
 import { db } from "@/lib/db";
 import { sql, eq, and, inArray } from "drizzle-orm";
-import { users } from "@/db/schema/users";
 import {
     questions,
     answers,
@@ -15,7 +18,6 @@ import {
     userStreaks,
     priorityScenes,
     gameAttempts,
-    pointsLedger,
     type DailyChallengeSet,
 } from "@/db/schema/content";
 import { calculateScore } from "@/lib/game-engine";
@@ -48,31 +50,6 @@ function isUniqueViolation(e: unknown): boolean {
     return /duplicate key|unique constraint|daily_attempts_user_date_unique/i.test(
         msg
     );
-}
-
-/** Record one points-earning play in the ledger (windowed leaderboards). */
-async function recordLedger(
-    userId: number,
-    source: string,
-    gameType: string,
-    points: number
-) {
-    if (points <= 0) return;
-    await db.insert(pointsLedger).values({ userId, source, gameType, points });
-}
-
-/** Atomically add points to a user's lifetime total. */
-async function addLifetimePoints(userId: number, points: number) {
-    if (points <= 0) return;
-    await db
-        .update(users)
-        .set({
-            lifetimePoints: sql`${users.lifetimePoints} + ${points}`,
-            totalGamesPlayed: sql`${users.totalGamesPlayed} + 1`,
-            highestScore: sql`GREATEST(${users.highestScore}, ${points})`,
-            updatedAt: new Date(),
-        })
-        .where(eq(users.id, userId));
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -302,8 +279,8 @@ export async function recordDailyAttempt(
         });
     }
 
-    await addLifetimePoints(userId, totalScore);
-    await recordLedger(userId, "daily", "daily", totalScore);
+    // NOTE: daily challenge is a solo/practice mode — it records the attempt and
+    // streak above but does NOT contribute to the public leaderboard.
 
     return {
         totalScore,
@@ -428,14 +405,9 @@ export async function validatePriority(
         perRound.push({ refId: scene.id, isCorrect, pointsEarned: s.totalPoints });
     }
 
-    let persisted = false;
-    if (userId !== null && totalScore > 0) {
-        await addLifetimePoints(userId, totalScore);
-        await recordLedger(userId, "priority-puzzle", "priority-puzzle", totalScore);
-        persisted = true;
-    } else if (userId !== null) {
-        persisted = true; // logged-in play counts as recorded even at 0 points
-    }
+    // Priority puzzle is a solo/practice mode — it does NOT contribute to the
+    // public leaderboard (no lifetimePoints / pointsLedger writes).
+    const persisted = userId !== null;
 
     return {
         totalScore,
@@ -488,6 +460,8 @@ export async function recordGameAttempt(
         perRound.push({ refId: r.refId, isCorrect, pointsEarned: s.totalPoints });
     }
 
+    // Kid arcade games are solo/practice — record the attempt for the student's
+    // own history, but do NOT contribute to the public leaderboard.
     let persisted = false;
     if (userId !== null && willRecord) {
         await db.insert(gameAttempts).values({
@@ -498,8 +472,6 @@ export async function recordGameAttempt(
             totalRounds: rounds.length,
             breakdown: JSON.stringify(perRound),
         });
-        await addLifetimePoints(userId, totalScore);
-        await recordLedger(userId, gameId, gameId, totalScore);
         persisted = true;
     }
 
