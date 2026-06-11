@@ -436,6 +436,9 @@ export const gameScores = pgTable("game_scores", {
   difficulty: text("difficulty"),
   categoryBreakdown: text("category_breakdown"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+  scoreDifference: integer("score_difference").default(0),
+  scoreType: text("score_type").default("solo"),
+  gameType: text("game_type"),
 });
 
 // Staff Category Assignments

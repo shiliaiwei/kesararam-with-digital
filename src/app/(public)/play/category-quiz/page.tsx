@@ -217,6 +217,7 @@ export default function CategoryQuizPage() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [error, setError] = useState("");
   const [muted, setMuted] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
   // In-game state
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -228,6 +229,7 @@ export default function CategoryQuizPage() {
   const advanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
+    fetch("/api/auth/me").then(r => setIsAuthenticated(r.ok)).catch(() => setIsAuthenticated(false));
     fetch("/api/game/categories")
       .then((r) => r.json())
       .then((d) => setCategories(d.categories ?? []))
@@ -360,6 +362,13 @@ export default function CategoryQuizPage() {
         }),
       });
       const result = await res.json();
+      if (isAuthenticated === false) {
+        const todayStr = new Date().toISOString().slice(0, 10);
+        const key = `kwd_solo_plays_${todayStr}`;
+        const current = localStorage.getItem(key);
+        const count = current ? parseInt(current, 10) : 0;
+        localStorage.setItem(key, (count + 1).toString());
+      }
       setPhase({
         name: "results",
         session,

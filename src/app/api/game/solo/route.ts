@@ -16,6 +16,31 @@ export async function POST(req: NextRequest) {
   // Solo mode works for both authenticated and non-authenticated users
   const user = await getSession();
 
+  // Daily play limit check (authenticated students only)
+  if (user?.id && user.role === "student") {
+    const { getStudentPlayLimit, getSoloPlaysToday } = await import("./complete/route");
+    const limitInfo = await getStudentPlayLimit(user.id);
+    const playsToday = await getSoloPlaysToday(user.id);
+
+    if (playsToday >= limitInfo.limit) {
+      return NextResponse.json(
+        {
+          error: "daily_limit_reached",
+          playsToday,
+          playsAllowed: limitInfo.limit,
+          tier: limitInfo.tier,
+          message:
+            limitInfo.tier === "student"
+              ? `🛑 Daily student limit reached (${limitInfo.limit}/${limitInfo.limit} games). To continue practicing and start earning REAL claimable points for rewards, you MUST join your teacher's class immediately!`
+              : limitInfo.tier === "studentClass"
+              ? `⚡ Classroom daily limit reached (${limitInfo.limit}/${limitInfo.limit} games). To unlock unlimited play and host LIVE classroom games where you earn claimable points, force your teacher to upgrade to a Kesararam Subscription plan today!`
+              : `🛑 Daily limit reached (${limitInfo.limit}/${limitInfo.limit} games/day). Come back tomorrow or join a live session!`,
+        },
+        { status: 429 }
+      );
+    }
+  }
+
   const body = await req.json();
   const {
     categoryIds,

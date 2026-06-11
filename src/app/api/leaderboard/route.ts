@@ -108,7 +108,11 @@ export async function GET(req: NextRequest) {
       const gameTypeFilter =
         gameType !== "all" ? sql` AND ${pointsLedger.gameType} = ${gameType}` : sql``;
       const sourceFilter =
-        source !== "all" ? sql` AND ${pointsLedger.source} = ${source}` : sql``;
+        source !== "all"
+          ? source === "live"
+            ? sql` AND ${pointsLedger.source} LIKE 'live-session:%'`
+            : sql` AND ${pointsLedger.source} = ${source}`
+          : sql``;
 
       rows = await db
         .select({

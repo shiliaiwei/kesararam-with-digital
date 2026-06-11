@@ -14,6 +14,43 @@ export interface ScoreResult {
   totalPoints: number;
 }
 
+// ── SOLO SCORE ECONOMY ──────────────────────────────────────────────────────
+/**
+ * Solo practice earns 20% of the raw score calculated by calculateScore().
+ * This keeps solo grinding valuable for the leaderboard rank but ensures that
+ * only LIVE teacher-hosted sessions produce meaningful claimable points.
+ *
+ * Design intent:
+ *   - Students who only play solo still appear on the leaderboard (motivational)
+ *   - Reward claiming REQUIRES live game participation (drives class enrollment)
+ *   - Teachers must host live games → they need a subscription (business model)
+ */
+export const SOLO_SCORE_MULTIPLIER = 0.20; // 20% of raw score
+
+/**
+ * Daily solo play limits per user tier.
+ * These create psychological pressure to move up the funnel:
+ *   Guest → Register (free) → Join Class → Teacher subscribes
+ */
+export const PLAY_LIMITS = {
+  /** No account (guest) — tracked via localStorage on client */
+  guest: 9,
+  /** Registered student, NOT in any class */
+  student: 67,
+  /** Registered student, in a class whose teacher is on the free plan */
+  studentClass: 100,
+  /** Registered student, in a class whose teacher has an active subscription */
+  studentPro: 200,
+} as const;
+
+export type PlayLimitTier = keyof typeof PLAY_LIMITS;
+
+/** Banner text shown on all solo game mode cards. */
+export const SOLO_COMING_SOON_NOTE = {
+  en: "⚡ Practice mode — scores are for ranking only. Join a live class game to earn claimable reward points.",
+  kh: "⚡ វាសន័តិក្សា — ពិន្តុសម្រាប់តែចម្ណាត់ថ្នាកប័ណណឹ. ចូលចូលគ្រូត័មពិតប់តើលពិន្តុអាចត្រូវបានរង្វាន់.",
+} as const;
+
 /**
  * New scoring system based on difficulty (Logical scaling for rewards store):
  * - Easy: 1 point base

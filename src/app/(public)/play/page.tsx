@@ -128,25 +128,38 @@ function DifficultyDots({ level, kh }: { level: number; kh: boolean }) {
 }
 
 // ─── GAME MODE CARD ───────────────────────────────────────────────────────────
-function GameCard({ mode, kh, khFont }: {
+function GameCard({ mode, kh, khFont, isLimitReached }: {
   mode: typeof GAME_MODES[number];
   kh: boolean;
   khFont: React.CSSProperties;
+  isLimitReached: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
 
+  const cardShadow = isLimitReached
+    ? `4px 4px 0 ${BRAND.black}`
+    : hovered
+      ? `10px 10px 0 ${BRAND.black}`
+      : `5px 5px 0 ${BRAND.black}`;
+
+  const cardTransform = isLimitReached
+    ? "none"
+    : hovered
+      ? "translate(-4px, -4px)"
+      : "translate(0,0)";
+
   return (
     <Link
-      href={mode.href}
-      onMouseEnter={() => setHovered(true)}
+      href={isLimitReached ? "#limits" : mode.href}
+      onMouseEnter={() => { if (!isLimitReached) setHovered(true); }}
       onMouseLeave={() => setHovered(false)}
       style={{
         display: "flex",
         flexDirection: "column",
         background: BRAND.white,
         border: `4px solid ${BRAND.black}`,
-        boxShadow: hovered ? `10px 10px 0 ${BRAND.black}` : `5px 5px 0 ${BRAND.black}`,
-        transform: hovered ? "translate(-4px, -4px)" : "translate(0,0)",
+        boxShadow: cardShadow,
+        transform: cardTransform,
         transition: "transform 0.14s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.14s cubic-bezier(0.34,1.56,0.64,1)",
         textDecoration: "none",
         color: BRAND.black,
@@ -156,7 +169,7 @@ function GameCard({ mode, kh, khFont }: {
       }}
     >
       {/* POPULAR ribbon */}
-      {mode.popular && (
+      {mode.popular && !isLimitReached && (
         <div style={{
           position: "absolute",
           top: 14,
@@ -178,7 +191,7 @@ function GameCard({ mode, kh, khFont }: {
       {/* Colored illustration banner */}
       <div style={{
         height: 96,
-        background: mode.color,
+        background: isLimitReached ? "#e4e4e7" : mode.color,
         borderBottom: `4px solid ${BRAND.black}`,
         position: "relative",
         display: "flex",
@@ -213,15 +226,19 @@ function GameCard({ mode, kh, khFont }: {
           height: 56,
           background: BRAND.white,
           border: `3px solid ${BRAND.black}`,
-          boxShadow: hovered ? `5px 5px 0 ${BRAND.black}` : `3px 3px 0 ${BRAND.black}`,
+          boxShadow: !isLimitReached && hovered ? `5px 5px 0 ${BRAND.black}` : `3px 3px 0 ${BRAND.black}`,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          transform: hovered ? "rotate(-10deg) scale(1.08)" : "none",
+          transform: !isLimitReached && hovered ? "rotate(-10deg) scale(1.08)" : "none",
           transition: "transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s",
           zIndex: 2,
         }}>
-          <mode.Icon size={26} strokeWidth={2.5} style={{ color: mode.color === BRAND.yellow ? BRAND.yellowDark : mode.color }} />
+          {isLimitReached ? (
+            <Lock size={22} strokeWidth={2.5} className="text-zinc-400" />
+          ) : (
+            <mode.Icon size={26} strokeWidth={2.5} style={{ color: mode.color === BRAND.yellow ? BRAND.yellowDark : mode.color }} />
+          )}
         </div>
       </div>
 
@@ -237,7 +254,7 @@ function GameCard({ mode, kh, khFont }: {
           </span>
         </div>
 
-        <h3 style={{ ...khFont, fontSize: 19, fontWeight: 900, margin: 0, lineHeight: 1.15, letterSpacing: "-0.5px", color: hovered ? (mode.color === BRAND.yellow ? BRAND.yellowDark : mode.color) : BRAND.black, transition: "color 0.2s" }}>
+        <h3 style={{ ...khFont, fontSize: 19, fontWeight: 900, margin: 0, lineHeight: 1.15, letterSpacing: "-0.5px", color: !isLimitReached && hovered ? (mode.color === BRAND.yellow ? BRAND.yellowDark : mode.color) : BRAND.black, transition: "color 0.2s" }}>
           {kh ? mode.titleKh : mode.title}
         </h3>
 
@@ -251,8 +268,8 @@ function GameCard({ mode, kh, khFont }: {
         <div style={{
           marginTop: 4,
           padding: "11px 18px",
-          background: hovered ? mode.color : BRAND.white,
-          color: BRAND.black,
+          background: isLimitReached ? "#f4f4f5" : (hovered ? mode.color : BRAND.white),
+          color: isLimitReached ? "#9ca3af" : BRAND.black,
           border: `3px solid ${BRAND.black}`,
           fontWeight: 900,
           fontSize: 12,
@@ -406,6 +423,24 @@ export default function PlayPage() {
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
   const router = useRouter();
 
+  const [limits, setLimits] = useState<{
+    tier: string;
+    playsToday: number;
+    playsAllowed: number;
+    remaining: number;
+    isLimitReached: boolean;
+    nextTier: string | null;
+    upgradeMessage: { en: string; kh: string } | null;
+  } | null>(null);
+
+  // Read guest plays today from localStorage
+  const getGuestPlaysToday = () => {
+    if (typeof window === "undefined") return 0;
+    const todayStr = new Date().toISOString().slice(0, 10);
+    const countStr = localStorage.getItem(`kwd_solo_plays_${todayStr}`);
+    return countStr ? parseInt(countStr, 10) : 0;
+  };
+
   useEffect(() => {
     fetch("/api/auth/me")
       .then(r => r.ok ? r.json() : null)
@@ -432,6 +467,22 @@ export default function PlayPage() {
         }
       })
       .catch(() => { });
+
+    // Fetch limits
+    fetch("/api/game/solo/limits")
+      .then(r => r.ok ? r.json() : null)
+      .then(d => {
+        if (d) {
+          if (d.tier === "guest") {
+            const guestPlays = getGuestPlaysToday();
+            d.playsToday = guestPlays;
+            d.remaining = Math.max(0, d.playsAllowed - guestPlays);
+            d.isLimitReached = guestPlays >= d.playsAllowed;
+          }
+          setLimits(d);
+        }
+      })
+      .catch(() => {});
   }, [router]);
 
   return (
@@ -531,6 +582,139 @@ export default function PlayPage() {
         </div>
       </section>
 
+      {/* ═══ SCORES COMING SOON BANNER ══════════════════════════════════════ */}
+      <div style={{
+        maxWidth: 1200,
+        margin: "24px auto 0",
+        padding: "0 24px",
+      }}>
+        <div style={{
+          background: "#fffbeb",
+          border: `3px solid ${BRAND.black}`,
+          padding: "12px 16px",
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+          boxShadow: `3px 3px 0 ${BRAND.black}`,
+        }}>
+          <span style={{ fontSize: 16 }}>⚡</span>
+          <span style={{ ...khFont, fontSize: 12.5, fontWeight: 700, color: BRAND.yellowDark }}>
+            {kh
+              ? "ប្រព័ន្ធពិន្ទុកំពុងធ្វើបច្ចុប្បន្នភាព — រាល់ពិន្ទុហ្គេម Solo គឺសម្រាប់តែការអនុវត្តប៉ុណ្ណោះ និងមិនអាចប្រើដើម្បីប្តូររង្វាន់បានទេ"
+              : "Score system updating — solo scores are practice-only and cannot be used to claim rewards"}
+          </span>
+        </div>
+      </div>
+
+      {/* ═══ PLAY LIMITS WIDGET ════════════════════════════════════════════ */}
+      {limits && (
+        <div id="limits" style={{
+          maxWidth: 1200,
+          margin: "24px auto 0",
+          padding: "0 24px",
+        }}>
+          <div style={{
+            background: limits.isLimitReached ? "#fef2f2" : "#f0fdf4",
+            border: `3px solid ${BRAND.black}`,
+            boxShadow: `4px 4px 0 ${BRAND.black}`,
+            padding: "16px 20px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 12,
+            position: "relative",
+          }}>
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
+              <div>
+                <div style={{
+                  ...khFont,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 6,
+                  background: BRAND.black,
+                  color: limits.isLimitReached ? BRAND.red : BRAND.green,
+                  fontSize: 10,
+                  fontWeight: 900,
+                  letterSpacing: 1,
+                  textTransform: "uppercase",
+                  padding: "4px 10px",
+                  marginBottom: 6,
+                }}>
+                  <span>{kh ? "កម្រិតលេងថ្ងៃនេះ" : "Daily Play Limit Status"}</span>
+                </div>
+                <h3 style={{ ...khFont, fontSize: 16, fontWeight: 900, margin: 0 }}>
+                  {kh
+                    ? `បានលេង៖ ${limits.playsToday} / ${limits.playsAllowed} ហ្គេម`
+                    : `Plays Today: ${limits.playsToday} of ${limits.playsAllowed} games`}
+                </h3>
+              </div>
+
+              {limits.upgradeMessage && (
+                <div style={{
+                  ...khFont,
+                  fontSize: 12,
+                  fontWeight: 700,
+                  color: "rgba(0,0,0,0.65)",
+                  flex: 1,
+                  minWidth: 260,
+                }}>
+                  {kh ? limits.upgradeMessage.kh : limits.upgradeMessage.en}
+                </div>
+              )}
+
+              {limits.tier === "guest" && (
+                <Link href="/register" style={{
+                  ...khFont,
+                  background: BRAND.yellow,
+                  color: BRAND.black,
+                  border: `3px solid ${BRAND.black}`,
+                  boxShadow: `3px 3px 0 ${BRAND.black}`,
+                  padding: "8px 16px",
+                  fontWeight: 900,
+                  fontSize: 11,
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}>
+                  {kh ? "បង្កើតគណនី →" : "CREATE FREE ACCOUNT"}
+                </Link>
+              )}
+
+              {limits.tier === "student" && (
+                <Link href="/profile/student" style={{
+                  ...khFont,
+                  background: BRAND.yellow,
+                  color: BRAND.black,
+                  border: `3px solid ${BRAND.black}`,
+                  boxShadow: `3px 3px 0 ${BRAND.black}`,
+                  padding: "8px 16px",
+                  fontWeight: 900,
+                  fontSize: 11,
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}>
+                  {kh ? "ចូលរួមថ្នាក់គ្រូ →" : "JOIN TEACHER'S CLASS"}
+                </Link>
+              )}
+            </div>
+
+            {/* Progress bar */}
+            <div style={{
+              height: 12,
+              background: BRAND.white,
+              border: `2.5px solid ${BRAND.black}`,
+              position: "relative",
+              overflow: "hidden",
+            }}>
+              <div style={{
+                height: "100%",
+                width: `${Math.min(100, (limits.playsToday / limits.playsAllowed) * 100)}%`,
+                background: limits.isLimitReached ? BRAND.red : BRAND.green,
+                transition: "width 0.3s ease",
+              }} />
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* ═══ GAME MODES ════════════════════════════════════════════════════ */}
       <section id="modes" style={{ background: BRAND.white }}>
         <div className="modes-header">
@@ -551,7 +735,7 @@ export default function PlayPage() {
 
         <div className="card-grid">
           {GAME_MODES.map((mode) => (
-            <GameCard key={mode.id} mode={mode} kh={kh} khFont={khFont} />
+            <GameCard key={mode.id} mode={mode} kh={kh} khFont={khFont} isLimitReached={!!limits?.isLimitReached} />
           ))}
         </div>
 
@@ -567,10 +751,14 @@ export default function PlayPage() {
         <div className="card-grid">
           {GAMEKIT_CARDS.filter((g) => g.id !== "daily").map((g) => {
             const isPro = g.accessTier === "class-pro";
+            const isLimitReached = !!limits?.isLimitReached;
+            const isBlocked = isPro || isLimitReached;
+            const href = isLimitReached ? "#limits" : g.route;
+
             return (
               <Link
                 key={g.id}
-                href={g.route}
+                href={href}
                 style={{
                   display: "flex",
                   flexDirection: "column",
@@ -595,7 +783,7 @@ export default function PlayPage() {
                       {kh ? g.badge.kh : g.badge.en}
                     </span>
                   )}
-                  {isPro && (
+                  {isBlocked && (
                     <span style={{ position: "absolute", top: 8, right: 8, background: BRAND.white, border: `2px solid ${BRAND.black}`, display: "flex", alignItems: "center", justifyContent: "center", width: 26, height: 26 }}>
                       <Lock size={13} className="text-black" />
                     </span>
@@ -605,9 +793,29 @@ export default function PlayPage() {
                 <div style={{ padding: "14px 16px 16px", display: "flex", flexDirection: "column", flex: 1, gap: 8 }}>
                   <h3 style={{ ...khFont, fontSize: 17, fontWeight: 900, margin: 0, lineHeight: 1.15 }}>{kh ? g.title.kh : g.title.en}</h3>
                   <p style={{ ...khFont, fontSize: 12, fontWeight: 600, color: "rgba(0,0,0,0.6)", margin: 0, lineHeight: 1.4, flex: 1 }}>{kh ? g.description.kh : g.description.en}</p>
-                  <div style={{ marginTop: 4, padding: "10px 16px", background: BRAND.white, color: BRAND.black, border: `3px solid ${BRAND.black}`, fontWeight: 900, fontSize: 12, letterSpacing: 1.5, display: "flex", alignItems: "center", justifyContent: "center", gap: 6, boxShadow: `4px 4px 0 ${BRAND.black}` }}>
-                    {isPro ? <Lock size={13} /> : <Play size={13} fill="currentColor" strokeWidth={3} />}
-                    <span style={khFont}>{isPro ? (kh ? "ដោះសោដោយ Pro" : "PRO UNLOCK") : (kh ? "លេងឥឡូវ" : "PLAY NOW")}</span>
+                  <div style={{
+                    marginTop: 4,
+                    padding: "10px 16px",
+                    background: isBlocked ? "#f4f4f5" : BRAND.white,
+                    color: isBlocked ? "#9ca3af" : BRAND.black,
+                    border: `3px solid ${BRAND.black}`,
+                    fontWeight: 900,
+                    fontSize: 12,
+                    letterSpacing: 1.5,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 6,
+                    boxShadow: isBlocked ? "none" : `4px 4px 0 ${BRAND.black}`
+                  }}>
+                    {isBlocked ? <Lock size={13} /> : <Play size={13} fill="currentColor" strokeWidth={3} />}
+                    <span style={khFont}>
+                      {isPro
+                        ? (kh ? "ដោះសោដោយ Pro" : "PRO UNLOCK")
+                        : isLimitReached
+                          ? (kh ? "គ្រប់កំណត់" : "LIMIT REACHED")
+                          : (kh ? "លេងឥឡូវ" : "PLAY NOW")}
+                    </span>
                   </div>
                 </div>
               </Link>

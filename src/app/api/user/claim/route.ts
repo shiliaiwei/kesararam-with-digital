@@ -2,19 +2,9 @@ import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users } from "@/db/schema/users";
-import { eq } from "drizzle-orm";
-
-const REWARD_ITEMS = [
-  { id: 1, name: "Notebook", cost: 500 },
-  { id: 2, name: "Pencil", cost: 100 },
-  { id: 3, name: "Pen", cost: 150 },
-  { id: 4, name: "Ruler", cost: 200 },
-  { id: 5, name: "Eraser", cost: 80 },
-  { id: 6, name: "Highlighter", cost: 250 },
-  { id: 7, name: "Notes", cost: 300 },
-  { id: 8, name: "Kit", cost: 800 },
-  { id: 9, name: "Planner", cost: 1200 },
-];
+import { pointsLedger } from "@/db/schema/content";
+import { eq, and, sql } from "drizzle-orm";
+import { REWARD_ITEMS, getRewardItem } from "@/lib/rewards";
 
 export async function POST(req: Request) {
   const session = await getSession();
@@ -28,7 +18,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Item ID is required" }, { status: 400 });
     }
 
-    const itemToClaim = REWARD_ITEMS.find((r) => r.id === Number(itemId));
+    const itemToClaim = getRewardItem(Number(itemId));
     if (!itemToClaim) {
       return NextResponse.json({ error: "Reward item not found" }, { status: 400 });
     }
@@ -64,14 +54,26 @@ export async function POST(req: Request) {
       }
     });
 
-    const activePoints = user.lifetimePoints - spentPoints;
+    // 3. Sum points from ledger where source="live"
+    const [livePointsRow] = await db
+      .select({ total: sql<number>`COALESCE(SUM(${pointsLedger.points}), 0)::integer` })
+      .from(pointsLedger)
+      .where(
+        and(
+          eq(pointsLedger.userId, session.id),
+          eq(pointsLedger.source, "live")
+        )
+      );
+    const totalLivePoints = livePointsRow?.total ?? 0;
 
-    // 3. Verify points sufficiency
+    const activePoints = totalLivePoints - spentPoints;
+
+    // 4. Verify points sufficiency
     if (activePoints < itemToClaim.cost) {
-      return NextResponse.json({ error: "Insufficient points" }, { status: 400 });
+      return NextResponse.json({ error: "Insufficient live points" }, { status: 400 });
     }
 
-    // 4. Save new claim record
+    // 5. Save new claim record
     claims.push({
       id: itemToClaim.id,
       claimedAt: Date.now(),
@@ -88,6 +90,8 @@ export async function POST(req: Request) {
       success: true,
       claimedRewards: claims,
       activePoints: activePoints - itemToClaim.cost,
+      totalLivePoints,
+      lifetimePoints: user.lifetimePoints,
     });
   } catch (error) {
     console.error("Error claiming reward:", error);
