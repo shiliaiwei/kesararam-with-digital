@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { ProfileEditor } from "@/components/profile/profile-editor";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
-import { Pencil, Info, Settings, Crown, Clock, Zap, Building2, Car } from "lucide-react";
+import { Pencil, Info, Settings, Crown, Clock, Zap, Building2, Car, ShieldCheck } from "lucide-react";
+import { ChangePassword } from "@/components/account/change-password";
+import { TwoFactorSetup } from "@/components/account/two-factor-setup";
 
 type Tab = "edit" | "info" | "settings";
 
@@ -219,19 +221,23 @@ export function StaffProfileTabs({
             </h3>
           </div>
           <div className="p-5 flex flex-col gap-4">
-            {/* Password change goes here when implemented */}
-            <div className="border-2 border-black p-4 flex items-start gap-3">
-              <div className="w-1 self-stretch bg-[#f97316]" />
+            {/* Self-service password change */}
+            <ChangePassword />
+
+            {/* Two-Factor Authentication */}
+            <div className="border-2 border-black bg-yellow-50 p-4 flex items-start gap-3">
+              <ShieldCheck size={20} className="text-[#0284c7] shrink-0 mt-0.5" />
               <div>
-                <p className="font-black text-sm uppercase tracking-widest text-black">
-                  Change Password
+                <p className="font-black text-sm text-black">
+                  Enhanced access protected by Two-Factor Authentication (2FA/TOTP).
                 </p>
-                <p className="text-xs text-zinc-500 font-medium mt-1">
-                  Password changes are managed by an admin. Contact your
-                  administrator to update your password.
+                <p className="text-xs text-zinc-600 mt-1">
+                  ការការពារបន្ថែមដោយការផ្ទៀងផ្ទាត់ ២ ជាន់ (2FA/TOTP)។ ស្រេចចិត្ត។
                 </p>
               </div>
             </div>
+            <TwoFactorSetup />
+
             <div className="border-2 border-black p-4 flex items-start gap-3">
               <div className="w-1 self-stretch bg-[#3b82f6]" />
               <div>

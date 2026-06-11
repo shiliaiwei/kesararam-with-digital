@@ -143,6 +143,10 @@ export async function GET(req: NextRequest) {
             ? user.username
             : "Private Student / សិស្សឯកជន",
         username: isUsernamePublic ? user.username : `student_${user.id}`,
+        // Flags whether `username` is the real, profile-resolvable handle.
+        // Private usernames are anonymized to `student_<id>`, which has no
+        // public profile — the client must not link those rows to /u/.
+        isUsernamePublic,
         avatar: user.avatar,
         avatarChangedAt: user.avatarChangedAt,
         highestScore: user.highestScore,
