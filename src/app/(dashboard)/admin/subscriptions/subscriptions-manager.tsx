@@ -298,11 +298,12 @@ function AssignDialog({ users: initialUsers, onClose, onSuccess }: {
         body: JSON.stringify(payload),
       });
 
-      let data: any = {};
+      let data: unknown = {};
       try { data = await res.json(); } catch { /* empty body */ }
 
       if (!res.ok) {
-        setError(data.error ?? `Request failed (${res.status})`);
+        const errMsg = data && typeof data === "object" && "error" in data ? (data as any).error : undefined;
+        setError(errMsg ?? `Request failed (${res.status})`);
         return;
       }
       setSuccess(true);

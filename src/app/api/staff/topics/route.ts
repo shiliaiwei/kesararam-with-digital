@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
 
     // Build conditions
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const conditions: any[] = [];
+    const conditions: Array<Record<string, unknown>> = [];
 
     // Staff can see: their own content OR any rejected/draft content
     // Admin can see: everything

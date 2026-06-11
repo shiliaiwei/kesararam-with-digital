@@ -1,11 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { sql } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 
 
-export async function GET(_request: NextRequest) {
+export async function GET() {
   const session = await getSession();
   if (!session || session.role !== "admin") {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -13,7 +13,7 @@ export async function GET(_request: NextRequest) {
 
   try {
     // Try enriched query with sessions + subscriptions
-    let rows: any[];
+    let rows: Array<Record<string, unknown>>;
     try {
       rows = await sql`
         SELECT
@@ -21,6 +21,10 @@ export async function GET(_request: NextRequest) {
           u.username,
           u.email,
           u.display_name        AS "displayName",
+          u.school_name         AS "schoolName",
+          u.province            AS "province",
+          u.grade_level         AS "gradeLevel",
+          u.section             AS "section",
           u.role,
           u.is_active           AS "isActive",
           u.is_suspended        AS "isSuspended",
@@ -69,6 +73,10 @@ export async function GET(_request: NextRequest) {
           username,
           email,
           display_name        AS "displayName",
+          school_name         AS "schoolName",
+          province            AS "province",
+          grade_level         AS "gradeLevel",
+          section             AS "section",
           role,
           is_active           AS "isActive",
           is_suspended        AS "isSuspended",

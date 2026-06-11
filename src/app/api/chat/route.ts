@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
 
     // 2. Parse request body
     const body = await request.json();
-    const { message, provider = "google", conversationHistory = [] } = body;
+    const { message, provider = "google", conversationHistory = [] } = body as { message?: string; provider?: string; conversationHistory?: unknown };
 
     // 3. Validate required fields
     if (!message || typeof message !== "string" || message.trim().length === 0) {
@@ -88,7 +88,9 @@ export async function POST(request: NextRequest) {
 /**
  * Chat with Google Gemini API
  */
-async function chatWithGoogle(message: string, history: any[]): Promise<string> {
+type ChatMessage = { role: string; content: string };
+
+async function chatWithGoogle(message: string, history: ChatMessage[] = []): Promise<string> {
   const apiKey = process.env.GOOGLE_API_KEY;
   if (!apiKey) {
     throw new Error("Google API key not configured");
@@ -103,7 +105,7 @@ async function chatWithGoogle(message: string, history: any[]): Promise<string> 
       },
       body: JSON.stringify({
         contents: [
-          ...history.map((msg: any) => ({
+          ...history.map((msg) => ({
             role: msg.role === "user" ? "user" : "model",
             parts: [{ text: msg.content }],
           })),
@@ -127,7 +129,7 @@ async function chatWithGoogle(message: string, history: any[]): Promise<string> 
 /**
  * Chat with Imagine AI API
  */
-async function chatWithImagine(message: string, history: any[]): Promise<string> {
+async function chatWithImagine(message: string, history: ChatMessage[] = []): Promise<string> {
   const token = process.env.IMAGINE_TOKEN;
   if (!token) {
     throw new Error("Imagine API token not configured");
@@ -150,13 +152,13 @@ async function chatWithImagine(message: string, history: any[]): Promise<string>
   }
 
   const data = await response.json();
-  return data.data?.text || data.message || "No response from AI";
+  return (data && (data.data?.text || data.message)) || "No response from AI";
 }
 
 /**
  * Chat with Perplexity API
  */
-async function chatWithPerplexity(message: string, history: any[]): Promise<string> {
+async function chatWithPerplexity(message: string, history: ChatMessage[] = []): Promise<string> {
   const apiKey = process.env.PERPLEXITY_API_KEY;
   if (!apiKey) {
     throw new Error("Perplexity API key not configured");
@@ -175,7 +177,7 @@ async function chatWithPerplexity(message: string, history: any[]): Promise<stri
           role: "system",
           content: "You are Suar AI, a helpful assistant for a Cambodian driving education platform called KWD (Kesararam With Digital). Provide accurate, concise answers about Cambodian traffic laws, road signs, and driving safety. Be friendly and supportive to learners.",
         },
-        ...history,
+        ...history.map(h => ({ role: h.role, content: h.content })),
         {
           role: "user",
           content: message,

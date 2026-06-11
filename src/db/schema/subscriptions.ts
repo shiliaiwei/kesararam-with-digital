@@ -85,7 +85,7 @@ export const subscriptionsRelations = relations(subscriptions, ({ one }: any) =>
  * Relations for users (defined here to avoid circular dependency)
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const usersRelations = relations(users, ({ one, many }: any) => ({
+export const usersSubscriptionsRelations = relations(users, ({ one, many }: any) => ({
   subscription: one(subscriptions, {
     fields: [users.id],
     references: [subscriptions.userId],

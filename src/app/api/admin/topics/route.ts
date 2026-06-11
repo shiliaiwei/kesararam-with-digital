@@ -16,8 +16,7 @@ export async function GET(request: NextRequest) {
         const status = searchParams.get("status");
         const search = searchParams.get("search");
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const conditions: any[] = [];
+        const conditions: unknown[] = [];
 
         if (categoryId) conditions.push(eq(topics.categoryId, parseInt(categoryId)));
         if (status) conditions.push(eq(topics.status, status as "draft" | "pending" | "approved" | "rejected"));

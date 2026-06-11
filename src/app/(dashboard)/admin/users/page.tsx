@@ -3,18 +3,20 @@ import { users } from "@/db/schema";
 import { desc } from "drizzle-orm";
 import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { Users, UserPlus, Shield, Clock, Wifi } from "lucide-react";
+import { Users, UserPlus, Clock, Wifi } from "lucide-react";
 import { UsersTable } from "./users-table";
 import { sql } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
+
+type UserRow = Parameters<typeof UsersTable>[0]["initialUsers"][number];
 
 export default async function AdminUsersPage() {
   const session = await getSession();
   if (!session || session.role !== "admin") redirect("/login");
 
   // Fetch enriched users with online status, sessions, spending
-  let allUsers: any[] = [];
+  let allUsers: UserRow[] = [];
   try {
     const rows = await sql`
       SELECT
@@ -22,6 +24,10 @@ export default async function AdminUsersPage() {
         u.username,
         u.email,
         u.display_name   AS "displayName",
+        u.school_name    AS "schoolName",
+        u.province       AS "province",
+        u.grade_level    AS "gradeLevel",
+        u.section        AS "section",
         u.role,
         u.is_active      AS "isActive",
         u.is_suspended   AS "isSuspended",
@@ -61,18 +67,18 @@ export default async function AdminUsersPage() {
       GROUP BY u.id, sub.plan, sub.status, sub.is_trial, sub.trial_ends_at, sub.ends_at
       ORDER BY u.created_at DESC
     `;
-    allUsers = rows as any[];
+    allUsers = rows as UserRow[];
   } catch (err) {
     console.error("[admin users] DB error:", err);
     // Fallback to basic user list
     try {
       const basic = await db.select({
         id: users.id, username: users.username, email: users.email,
-        displayName: users.displayName, role: users.role,
+        displayName: users.displayName, schoolName: users.schoolName, province: users.province, gradeLevel: users.gradeLevel, section: users.section, role: users.role,
         isActive: users.isActive, loginAttempts: users.loginAttempts,
         createdAt: users.createdAt,
       }).from(users).orderBy(desc(users.createdAt));
-      allUsers = basic as any[];
+      allUsers = basic as UserRow[];
     } catch (e2) { console.error(e2); }
   }
 
@@ -120,7 +126,7 @@ export default async function AdminUsersPage() {
                 <stat.icon size={20} className="text-black" />
               </div>
               <div className="flex items-center gap-2">
-                {(stat as any).pulse && <span className="w-2.5 h-2.5 rounded-full bg-green-400 border border-black animate-pulse" />}
+                {stat.pulse && <span className="w-2.5 h-2.5 rounded-full bg-green-400 border border-black animate-pulse" />}
                 <span className="text-3xl font-black text-black">{stat.value}</span>
               </div>
             </div>

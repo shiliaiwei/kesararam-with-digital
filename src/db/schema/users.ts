@@ -6,6 +6,7 @@ import {
   timestamp,
   boolean,
   pgEnum,
+  uniqueIndex,
 } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 
@@ -18,6 +19,11 @@ export const users = pgTable("users", {
   passwordHash: text("password_hash").notNull(),
   role: roleEnum("role").notNull().default("student"),
   displayName: text("display_name"),
+  schoolName: text("school_name"),
+  province: text("province"),
+  gradeLevel: text("grade_level"),
+  section: text("section"),
+  classId: integer("class_id"),
   avatar: text("avatar"),
   avatarChangedAt: timestamp("avatar_changed_at"),
   usernameChangedAt: timestamp("username_changed_at"),
@@ -38,10 +44,6 @@ export const users = pgTable("users", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
   createdBy: integer("created_by"),
-  schoolName: text("school_name"),
-  province: text("province"),
-  gradeLevel: text("grade_level"),
-  section: text("section"),
   parentContact: text("parent_contact"),
   claimedRewards: text("claimed_rewards").default("[]").notNull(),
   googleId: text("google_id").unique(),
@@ -58,15 +60,15 @@ export const users = pgTable("users", {
 export const classes = pgTable("classes", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
+  schoolName: text("school_name"),
+  province: text("province"),
+  gradeLevel: text("grade_level"),
+  section: text("section"),
   teacherId: integer("teacher_id")
     .notNull()
     .references(() => users.id),
   code: text("code").notNull().unique(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-  gradeLevel: text("grade_level"),
-  schoolName: text("school_name"),
-  province: text("province"),
-  section: text("section"),
   status: text("status").default("active").notNull(), // active, locked, archived
   nameChangedCount: integer("name_changed_count").default(0).notNull(),
 });
@@ -81,7 +83,12 @@ export const classEnrollments = pgTable("class_enrollments", {
     .references(() => users.id, { onDelete: "cascade" }),
   enrolledBy: integer("enrolled_by").references(() => users.id, { onDelete: "set null" }), // staff/admin who assigned
   enrolledAt: timestamp("enrolled_at").defaultNow().notNull(),
-});
+}, (table) => ({
+  classStudentUnique: uniqueIndex("class_enrollments_class_student_unique").on(
+    table.classId,
+    table.studentId
+  ),
+}));
 
 export const inviteCodes = pgTable("invite_codes", {
   id: serial("id").primaryKey(),
@@ -105,10 +112,20 @@ export type InviteCode = typeof inviteCodes.$inferSelect;
 export type NewInviteCode = typeof inviteCodes.$inferInsert;
 
 /**
+ * Relations for users
+ */
+export const usersRelations = relations(users, ({ one, many }) => ({
+  currentClass: one(classes, {
+    fields: [users.classId],
+    references: [classes.id],
+  }),
+  enrollments: many(classEnrollments),
+}));
+
+/**
  * Relations for classes
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const classesRelations = relations(classes, ({ one, many }: any) => ({
+export const classesRelations = relations(classes, ({ one, many }) => ({
   teacher: one(users, {
     fields: [classes.teacherId],
     references: [users.id],
@@ -119,10 +136,9 @@ export const classesRelations = relations(classes, ({ one, many }: any) => ({
 /**
  * Relations for class enrollments
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const classEnrollmentsRelations = relations(
   classEnrollments,
-  ({ one }: any) => ({
+  ({ one }) => ({
     class: one(classes, {
       fields: [classEnrollments.classId],
       references: [classes.id],

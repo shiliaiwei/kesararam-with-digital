@@ -48,7 +48,7 @@ export async function GET(
         WHERE a.question_id = ${question.id}
         ORDER BY a.sort_order
       `;
-      (question as any).answers = answers;
+      (question as Record<string, unknown>)['answers'] = answers;
     }
 
     return NextResponse.json({ questions });
@@ -119,9 +119,9 @@ export async function POST(
     const question = questionResult[0];
 
     // Derive answer_type from answer count + image presence
-    const answerType = (answers: any[]) => {
+    const answerType = (answers: Record<string, unknown>[]) => {
       if (answers.length === 2) return 'multiple_choice'; // true/false
-      if (answers.some((a: any) => a.imageUrl)) return 'image_selection';
+      if (answers.some((a) => Boolean(a['imageUrl']))) return 'image_selection';
       return 'multiple_choice';
     };
 

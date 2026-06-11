@@ -72,7 +72,7 @@ export async function PUT(
     const body = await request.json();
 
     // Build update object
-    const updateData: any = {
+    const updateData: Record<string, unknown> = {
       updatedAt: new Date(),
     };
 

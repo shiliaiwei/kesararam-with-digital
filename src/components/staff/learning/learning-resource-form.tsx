@@ -18,7 +18,7 @@ interface Question {
   audioSourceEn: "url" | "cloudinary";
   audioUrlKm: string;
   audioSourceKm: "url" | "cloudinary";
-  answers: any[];
+  answers: unknown[];
   expanded: boolean;
 }
 
@@ -39,7 +39,7 @@ const DIFFICULTIES = [
   { value: "hard", label: "Hard", color: "bg-red-400" },
 ];
 
-export function LearningResourceForm({ initialData }: { initialData?: any }) {
+export function LearningResourceForm({ initialData }: { initialData?: Record<string, unknown> }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(

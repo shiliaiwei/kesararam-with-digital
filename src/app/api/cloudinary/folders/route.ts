@@ -35,32 +35,38 @@ export async function GET() {
 
     try {
       const result = await cloudinary.api.root_folders();
-      console.log("Root folders found:", result.folders.map((f: any) => f.name));
+      const rootFolders = Array.isArray(result?.folders) ? result.folders as Record<string, unknown>[] : [];
+      console.log("Root folders found:", rootFolders.map((f) => String(f.name ?? "")));
       
       // Add root folders
-      for (const folder of result.folders) {
+      for (const folder of rootFolders) {
+        const folderName = String(folder.name ?? "");
+        const folderPath = String(folder.path ?? "");
         folders.push({
-          name: folder.name.toUpperCase(),
-          path: folder.path,
+          name: folderName.toUpperCase(),
+          path: folderPath,
         });
 
         // Get subfolders for each root folder
         try {
-          const subResult = await cloudinary.api.sub_folders(folder.path);
-          console.log(`Subfolders in ${folder.path}:`, subResult.folders.map((f: any) => f.name));
+          const subResult = await cloudinary.api.sub_folders(folderPath);
+          const subFolders = Array.isArray(subResult?.folders) ? subResult.folders as Record<string, unknown>[] : [];
+          console.log(`Subfolders in ${folderPath}:`, subFolders.map((f) => String(f.name ?? "")));
           
-          for (const subfolder of subResult.folders) {
+          for (const subfolder of subFolders) {
+            const subName = String(subfolder.name ?? "");
+            const subPath = String(subfolder.path ?? "");
             folders.push({
-              name: `${folder.name}/${subfolder.name}`.toUpperCase(),
-              path: subfolder.path,
+              name: `${folderName}/${subName}`.toUpperCase(),
+              path: subPath,
             });
           }
         } catch (subErr) {
-          console.log(`No subfolders in ${folder.path}`);
+          console.log(`No subfolders in ${folderPath}`);
         }
       }
-    } catch (error: any) {
-      console.error("Error fetching folders:", error.message);
+    } catch (error) {
+      console.error("Error fetching folders:", error);
     }
 
     console.log(`Returning ${folders.length} folders`);
@@ -76,11 +82,12 @@ export async function GET() {
     response.headers.set("Expires", "0");
 
     return response;
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error in folders API:", error);
+    const maybeErr = typeof error === 'object' && error !== null ? error as { message?: unknown } : undefined;
     return NextResponse.json(
       { 
-        error: error.message || "Failed to fetch folders",
+        error: typeof maybeErr?.message === 'string' ? maybeErr.message : String(error) || "Failed to fetch folders",
         folders: [] 
       },
       { status: 500 }

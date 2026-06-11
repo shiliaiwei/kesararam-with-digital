@@ -25,18 +25,20 @@ export async function GET() {
       status: "success",
       config,
       resourceCount: result.resources?.length || 0,
-      sampleResources: result.resources?.slice(0, 2).map((r: any) => ({
-        public_id: r.public_id,
-        url: r.secure_url,
-      })) || [],
+      sampleResources: (result.resources?.slice(0, 2) || []).map((r: Record<string, unknown>) => ({
+          public_id: String(r.public_id ?? ""),
+          url: String(r.secure_url ?? ""),
+        })),
     });
-  } catch (error: any) {
-    return NextResponse.json({
-      status: "error",
-      config,
-      error: error.message,
-      errorDetails: error.error,
-      httpCode: error.http_code,
-    });
-  }
+    } catch (error) {
+      const msg = error instanceof Error ? error.message : String(error);
+      const errObj = error && typeof error === 'object' ? error as Record<string, unknown> : {};
+      return NextResponse.json({
+        status: "error",
+        config,
+        error: msg,
+        errorDetails: String(errObj.error ?? ""),
+        httpCode: errObj.http_code ?? null,
+      });
+    }
 }

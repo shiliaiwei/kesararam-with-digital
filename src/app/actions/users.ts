@@ -7,6 +7,7 @@ import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { getSession } from "@/lib/auth";
 import { hashPassword } from "@/lib/password";
+import { autoAssignStudentToMatchingClass } from "@/app/actions/classes";
 
 /** Auto-assign a 7-day Teacher Pro trial when a teacher account is created */
 async function autoAssignTeacherTrial(userId: number, adminId: number) {
@@ -39,6 +40,10 @@ export async function createUser(formData: FormData) {
     .toLowerCase();
   const email = ((formData.get("email") as string) ?? "").trim().toLowerCase();
   const displayName = ((formData.get("displayName") as string) ?? "").trim();
+  const schoolName = ((formData.get("schoolName") as string) ?? "").trim();
+  const province = ((formData.get("province") as string) ?? "").trim();
+  const gradeLevel = ((formData.get("gradeLevel") as string) ?? "").trim();
+  const section = ((formData.get("section") as string) ?? "").trim();
   const password = (formData.get("password") as string) ?? "";
   const role =
     (formData.get("role") as "student" | "teacher" | "admin") ?? "student";
@@ -52,11 +57,23 @@ export async function createUser(formData: FormData) {
     return { error: "All fields are required." };
   }
 
+  if ((role === "student" || role === "teacher") && (!schoolName || !province)) {
+    return { error: "School name and province are required." };
+  }
+
+  if (role === "student" && !gradeLevel) {
+    return { error: "Grade level is required for student accounts." };
+  }
+
   try {
     const [newUser] = await db.insert(users).values({
       username,
       email,
       displayName: displayName || null,
+      schoolName: schoolName || null,
+      province: province || null,
+      gradeLevel: gradeLevel || null,
+      section: section || null,
       passwordHash: hashPassword(password),
       role,
       schoolName,
@@ -70,6 +87,10 @@ export async function createUser(formData: FormData) {
     // Auto-assign 7-day Teacher Pro trial for new teacher accounts
     if (role === "teacher" && newUser?.id) {
       await autoAssignTeacherTrial(newUser.id, session.id);
+    }
+
+    if (role === "student" && newUser?.id) {
+      await autoAssignStudentToMatchingClass(newUser.id, session.id);
     }
 
     revalidatePath("/admin/users");
@@ -92,6 +113,10 @@ export async function updateUser(id: number, formData: FormData) {
   const role = formData.get("role") as "student" | "teacher" | "admin";
   const isActive = formData.get("isActive") === "true";
   const newPassword = formData.get("password") as string;
+  const schoolName = (formData.get("schoolName") as string)?.trim() || null;
+  const province = (formData.get("province") as string)?.trim() || null;
+  const gradeLevel = (formData.get("gradeLevel") as string)?.trim() || null;
+  const section = (formData.get("section") as string)?.trim() || null;
 
   const schoolName = (formData.get("schoolName") as string)?.trim() || null;
   const province = (formData.get("province") as string)?.trim() || null;

@@ -55,7 +55,11 @@ export async function GET(request: NextRequest) {
     `;
 
     // Derive question type from answer stats
-    const result = rows.map((q: any) => {
+    type Row = Record<string, unknown> & {
+      id: number; questionEn: string; questionKm?: string; topicId?: number; topicName?: string; categoryId?: number; categoryName?: string; answerCount?: number; hasImage?: boolean; correctCount?: number; isTrueFalse?: boolean; difficulty?: string; status?: string; createdAt?: string;
+    };
+
+    const result = (rows as Row[]).map((q) => {
       const ansCount = Number(q.answerCount ?? 0);
       const hasImage = Boolean(q.hasImage);
       const correctCount = Number(q.correctCount ?? 0);
@@ -84,12 +88,12 @@ export async function GET(request: NextRequest) {
 
     // Filter by type if specified
     const filtered = type && type !== "all"
-      ? result.filter((q: any) => q.questionType === type)
+      ? result.filter((q) => q.questionType === type)
       : result;
 
     return NextResponse.json({ questions: filtered, total: filtered.length });
-  } catch (error: any) {
-    console.error("[GET /api/admin/questions]", error?.message ?? error);
+  } catch (error: unknown) {
+    console.error("[GET /api/admin/questions]", error);
     return NextResponse.json({ error: "Failed to fetch questions", questions: [] }, { status: 500 });
   }
 }
@@ -102,18 +106,19 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { topicId, questionEn, questionKm, hintEn, hintKm, imageUrl, difficulty, pointsMultiplier, answers: answerList } = body;
+    type AnswerIn = { answerEn?: string; answerKm?: string; isCorrect?: boolean; imageUrl?: string };
+    const { topicId, questionEn, questionKm, hintEn, hintKm, imageUrl, difficulty, pointsMultiplier, answers: answerList } = body as { topicId?: number; questionEn?: string; questionKm?: string; hintEn?: string; hintKm?: string; imageUrl?: string; difficulty?: string; pointsMultiplier?: number; answers?: unknown };
+    const answersArray = Array.isArray(answerList) ? (answerList as unknown[]).map(a => a as AnswerIn) : [];
 
     if (!topicId || !questionEn || !answerList || answerList.length < 2) {
       return NextResponse.json({ error: "Missing required fields: topicId, questionEn, and at least 2 answers" }, { status: 400 });
     }
 
-    if (!answerList.some((a: any) => a.isCorrect)) {
+    if (!answersArray.some((a) => a.isCorrect)) {
       return NextResponse.json({ error: "At least one answer must be marked correct" }, { status: 400 });
     }
-
-    const hasImages = answerList.some((a: any) => a.imageUrl);
-    const multiCorrect = answerList.filter((a: any) => a.isCorrect).length > 1;
+    const hasImages = answersArray.some((a) => Boolean(a.imageUrl));
+    const multiCorrect = answersArray.filter((a) => a.isCorrect).length > 1;
     let answerType = "multiple_choice";
     if (hasImages) answerType = "image_selection";
     else if (multiCorrect) answerType = "checkbox";
@@ -150,8 +155,9 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json({ success: true, questionId }, { status: 201 });
-  } catch (error: any) {
-    console.error("[POST /api/admin/questions]", error?.message ?? error);
-    return NextResponse.json({ error: "Failed to create question", detail: error?.message }, { status: 500 });
+  } catch (error: unknown) {
+    console.error("[POST /api/admin/questions]", error);
+    const maybeErr = typeof error === 'object' && error !== null ? error as { message?: unknown } : undefined;
+    return NextResponse.json({ error: "Failed to create question", detail: typeof maybeErr?.message === 'string' ? maybeErr.message : String(error) }, { status: 500 });
   }
 }

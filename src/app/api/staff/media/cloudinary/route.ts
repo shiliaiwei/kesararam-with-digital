@@ -34,11 +34,11 @@ export async function GET(request: NextRequest) {
 
     try {
       // Fetch ALL resources using pagination (Cloudinary max_results cap is 500 per page)
-      let allResources: any[] = [];
+      let allResources: Record<string, unknown>[] = [];
       let nextCursor: string | undefined = undefined;
 
       do {
-        const params: any = {
+        const params: Record<string, unknown> = {
           type: "upload",
           resource_type: resourceType,
           max_results: 500,
@@ -61,27 +61,29 @@ export async function GET(request: NextRequest) {
 
       // Filter by allowed formats and transform — skip 0-byte broken assets
       const assets = allResources
-        .filter((resource: any) => {
-          const format = (resource.format || "").toLowerCase();
+        .filter((resource: Record<string, unknown>) => {
+          const format = String(resource.format ?? "").toLowerCase();
           if (!allowedFormats.includes(format)) return false;
-          if ((resource.bytes || 0) === 0) return false;
+          const bytes = typeof resource.bytes === 'number' ? resource.bytes : Number(resource.bytes ?? 0);
+          if (bytes === 0) return false;
           return true;
         })
-        .map((resource: any) => {
-          const pathParts = resource.public_id.split("/");
-          const filename = pathParts.pop() || resource.public_id;
+        .map((resource: Record<string, unknown>) => {
+          const public_id = String(resource.public_id ?? "");
+          const pathParts = public_id.split("/");
+          const filename = pathParts.pop() || public_id;
           const folder = pathParts.length > 0 ? pathParts.join("/") : "root";
 
           return {
-            public_id: resource.public_id,
-            secure_url: resource.secure_url,
-            format: resource.format,
-            resource_type: resource.resource_type,
-            width: resource.width,
-            height: resource.height,
-            duration: resource.duration,
-            bytes: resource.bytes,
-            created_at: resource.created_at,
+            public_id,
+            secure_url: String(resource.secure_url ?? ""),
+            format: String(resource.format ?? ""),
+            resource_type: String(resource.resource_type ?? ""),
+            width: typeof resource.width === 'number' ? resource.width : Number(resource.width ?? 0),
+            height: typeof resource.height === 'number' ? resource.height : Number(resource.height ?? 0),
+            duration: typeof resource.duration === 'number' ? resource.duration : Number(resource.duration ?? 0),
+            bytes: typeof resource.bytes === 'number' ? resource.bytes : Number(resource.bytes ?? 0),
+            created_at: String(resource.created_at ?? ""),
             filename,
             folder,
           };
@@ -100,21 +102,23 @@ export async function GET(request: NextRequest) {
       response.headers.set("Expires", "0");
 
       return response;
-    } catch (err: any) {
-      console.error("Failed to fetch resources:", err.message);
+    } catch (err: unknown) {
+      console.error("Failed to fetch resources:", err);
+      const maybeErr = typeof err === 'object' && err !== null ? err as { message?: unknown } : undefined;
       return NextResponse.json(
         {
-          error: err.message || "Failed to fetch assets",
+          error: typeof maybeErr?.message === 'string' ? maybeErr.message : String(err) || "Failed to fetch assets",
           assets: []
         },
         { status: 500 }
       );
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error in staff media cloudinary API:", error);
+    const maybeErr = typeof error === 'object' && error !== null ? error as { message?: unknown } : undefined;
     return NextResponse.json(
       {
-        error: error.message || "Failed to fetch assets",
+        error: typeof maybeErr?.message === 'string' ? maybeErr.message : String(error) || "Failed to fetch assets",
         assets: []
       },
       { status: 500 }

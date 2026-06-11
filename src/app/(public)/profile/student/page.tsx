@@ -33,6 +33,7 @@ export default async function StudentProfilePage() {
     province: string | null;
     gradeLevel: string | null;
     section: string | null;
+
   } = {
     displayName: session.name,
     username: session.name,
@@ -43,6 +44,7 @@ export default async function StudentProfilePage() {
     province: null,
     gradeLevel: null,
     section: null,
+
   };
 
   let highestScore = 0;
@@ -62,8 +64,10 @@ export default async function StudentProfilePage() {
         province: users.province,
         gradeLevel: users.gradeLevel,
         section: users.section,
+
       })
       .from(users)
+      .leftJoin(classes, eq(users.classId, classes.id))
       .where(eq(users.id, session.id))
       .limit(1);
 
@@ -78,6 +82,7 @@ export default async function StudentProfilePage() {
         province: result[0].province,
         gradeLevel: result[0].gradeLevel,
         section: result[0].section,
+
       };
     }
 
