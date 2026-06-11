@@ -97,6 +97,7 @@ const GAME_TYPES: { id: string; en: string; kh: string }[] = [
 interface LeaderboardUser {
   id: number;
   username: string;
+  isUsernamePublic?: boolean;
   displayName: string | null;
   avatar: string | null;
   avatarChangedAt: string | null;
@@ -308,7 +309,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
 
       {/* Floating Avatar and Rank Badge Container */}
       <div
-        className="relative mb-2 flex flex-col items-center select-none cursor-pointer"
+        className={`relative mb-2 flex flex-col items-center select-none ${user && user.isUsernamePublic !== false ? "cursor-pointer" : "cursor-default"}`}
         onClick={() => { if (user) onSelect(user); }}
         style={{
           animation: isFirst
@@ -978,6 +979,9 @@ export default function LeaderboardPage() {
   const [currentUser, setCurrentUser] = useState<any | null>(null);
   const router = useRouter();
   const handleSelectUser = (user: LeaderboardUser) => {
+    // Private usernames are anonymized to `student_<id>` and have no public
+    // profile — don't navigate (would 404 on /u/student_<id>).
+    if (user.isUsernamePublic === false) return;
     router.push(`/u/${user.username}`);
   };
 
@@ -1255,6 +1259,8 @@ export default function LeaderboardPage() {
                   const prev = prevRanks[user.id];
                   const moved = prev !== undefined ? prev - user.rank : 0;
                   const tier = getRank(user.lifetimePoints);
+                  // Anonymized (private-username) rows have no public profile.
+                  const linkable = user.isUsernamePublic !== false;
                   return (
                     <div key={user.id} className="grid grid-cols-12 px-3 md:px-5 py-2.5 border-t border-zinc-100 hover:bg-zinc-50 transition-colors items-center">
                       <div className="col-span-1 flex items-center gap-0.5">
@@ -1263,8 +1269,8 @@ export default function LeaderboardPage() {
                         {moved < 0 && <span className="text-[8px] font-black text-red-400 leading-none">▼</span>}
                       </div>
                       <div
-                        className="col-span-7 flex items-center gap-2 min-w-0 cursor-pointer select-none"
-                        onClick={() => handleSelectUser(user)}
+                        className={`col-span-7 flex items-center gap-2 min-w-0 select-none ${linkable ? "cursor-pointer" : "cursor-default"}`}
+                        onClick={linkable ? () => handleSelectUser(user) : undefined}
                       >
                         <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={30}>
                           <Avatar url={(currentUser && user.id === currentUser.id) ? currentUser.avatar : user.avatar} name={user.displayName || user.username} size={30} changedAt={user.avatarChangedAt} />
@@ -1282,7 +1288,7 @@ export default function LeaderboardPage() {
                             )}
                           </div>
                           <div className="flex items-center gap-1.5 text-[9px] text-zinc-400 truncate">
-                            {user.displayName && <span>@{user.username}</span>}
+                            {user.displayName && linkable && <span>@{user.username}</span>}
                             {user.schoolName && (
                               <>
                                 {user.displayName && <span>·</span>}
