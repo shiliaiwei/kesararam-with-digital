@@ -34,13 +34,13 @@ export const SOLO_SCORE_MULTIPLIER = 0.20; // 20% of raw score
  */
 export const PLAY_LIMITS = {
   /** No account (guest) — tracked via localStorage on client */
-  guest: 3,
+  guest: 9,
   /** Registered student, NOT in any class */
-  student: 5,
+  student: 67,
   /** Registered student, in a class whose teacher is on the free plan */
-  studentClass: 7,
+  studentClass: 100,
   /** Registered student, in a class whose teacher has an active subscription */
-  studentPro: 10,
+  studentPro: 200,
 } as const;
 
 export type PlayLimitTier = keyof typeof PLAY_LIMITS;

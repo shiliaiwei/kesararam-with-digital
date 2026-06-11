@@ -19,7 +19,7 @@ interface AnswerInput {
  * Determine the play-limit tier for an authenticated student.
  * Joins classEnrollments → classes to get the teacher, then checks subscription.
  */
-async function getStudentPlayLimit(userId: number): Promise<{
+export async function getStudentPlayLimit(userId: number): Promise<{
   limit: number;
   tier: "student" | "studentClass" | "studentPro";
 }> {
@@ -45,7 +45,7 @@ async function getStudentPlayLimit(userId: number): Promise<{
 }
 
 /** Count today's solo gameScores rows for this student (Asia/Phnom_Penh = UTC+7). */
-async function getSoloPlaysToday(userId: number): Promise<number> {
+export async function getSoloPlaysToday(userId: number): Promise<number> {
   const now = new Date();
   const todayOffset = new Date(now.getTime() + 7 * 60 * 60 * 1000);
   const dateStr = todayOffset.toISOString().slice(0, 10);
@@ -72,10 +72,10 @@ async function getSoloPlaysToday(userId: number): Promise<number> {
  *   ❌ NOT counted for reward claiming (only source="live" counts)
  *
  * ── Daily play limits (server-enforced for students) ─────────────────────────
- *   student (no class)       → 5 games/day
- *   student (class, free)    → 7 games/day
- *   student (class, pro)     → 10 games/day
- *   guest (no account)       → 3 games/day — enforced client-side via localStorage
+ *   student (no class)       → 67 games/day
+ *   student (class, free)    → 100 games/day
+ *   student (class, pro)     → 200 games/day
+ *   guest (no account)       → 9 games/day — enforced client-side via localStorage
  */
 export async function POST(req: NextRequest) {
   const session = await getSession();
@@ -115,10 +115,10 @@ export async function POST(req: NextRequest) {
           tier,
           message:
             tier === "student"
-              ? `Daily limit reached (${playsAllowed} games). Join your teacher's class to unlock ${PLAY_LIMITS.studentClass} games/day!`
+              ? `🛑 CRITICAL NOTICE: Student daily play limit reached (${playsAllowed}/${playsAllowed} games). ALL solo practice points are locked and CANNOT be used to claim rewards. To continue playing, unlock your account, and earn REAL claimable reward points, you MUST join your teacher's class immediately!`
               : tier === "studentClass"
-              ? `Daily limit reached (${playsAllowed} games). Your teacher can upgrade their plan to unlock ${PLAY_LIMITS.studentPro} games/day!`
-              : `Daily limit reached (${playsAllowed} games/day). Come back tomorrow or join a live session!`,
+              ? `⚡ ATTENTION: Classroom daily limit reached (${playsAllowed}/${playsAllowed} games). Solo play is restricted. To unlock unlimited play and host LIVE classroom games where you earn premium claimable points, FORCE your teacher to upgrade to a Kesararam Subscription plan today!`
+              : `🛑 Daily limit reached (${playsAllowed}/${playsAllowed} games/day). Come back tomorrow or join a live session!`,
         },
         { status: 429 }
       );
@@ -187,6 +187,9 @@ export async function POST(req: NextRequest) {
         correctAnswers: correctCount,
         timeTaken: timeTakenSeconds,
         categoryBreakdown: JSON.stringify(perQuestion),
+        scoreDifference: rawScore - soloPoints,
+        scoreType: "solo",
+        gameType: gameMode,
       });
 
       // source="solo" → excluded from claimable balance in /api/user/claim
@@ -214,14 +217,21 @@ export async function POST(req: NextRequest) {
       }
 
       playsToday += 1;
+      console.log(`[solo/complete] DB write success for user ${session.id}: RawScore=${rawScore}, PointsAwarded=${soloPoints}, Diff=${rawScore - soloPoints}, GameType=${gameMode}, ScoreType=solo`);
     } catch (err) {
       console.error("[solo/complete] DB write failed:", err);
     }
   }
 
+  const scoreDifference = rawScore - soloPoints;
+  console.log(`[solo/complete] Scoring audit recorded: GameMode/GameType=${gameMode}, ScoreType=solo, RawScore=${rawScore}, LedgerPoints=${soloPoints}, Difference=${scoreDifference}`);
+
   return NextResponse.json({
     rawScore,
     soloPoints,
+    scoreDifference,
+    scoreType: "solo",
+    gameType: gameMode,
     accuracyPercentage,
     timeTakenSeconds,
     correctAnswers: correctCount,

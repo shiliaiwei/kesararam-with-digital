@@ -384,7 +384,39 @@ function OtpCodeInput({ lang }: { lang: string }) {
           width: "100%",
           height: 50,
           background: code.length === 6 ? BRAND.black : "#e4e4e7",
-          // ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
+          color: code.length === 6 ? BRAND.white : "#a1a1aa",
+          border: `3px solid ${BRAND.black}`,
+          fontWeight: 900,
+          fontSize: 14,
+          letterSpacing: kh ? "0px" : "2px",
+          cursor: code.length === 6 ? "pointer" : "not-allowed",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 8,
+          transition: "all 0.1s",
+          boxShadow: code.length === 6 ? `4px 4px 0 ${BRAND.yellow}` : "none",
+          borderRadius: 0,
+        }}
+        onMouseEnter={(e) => {
+          if (code.length === 6) {
+            e.currentTarget.style.transform = "translate(-2px,-2px)";
+            e.currentTarget.style.boxShadow = `6px 6px 0 ${BRAND.yellow}`;
+          }
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = "translate(0,0)";
+          e.currentTarget.style.boxShadow = code.length === 6 ? `4px 4px 0 ${BRAND.yellow}` : "none";
+        }}
+      >
+        {kh ? "ចូលរួមលេង" : "JOIN GAME"}
+        <ChevronRight size={18} strokeWidth={3} />
+      </button>
+    </div>
+  );
+}
+
+// ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
 export default function PlayPage() {
   const { lang } = useLang();
   const kh = lang === "kh";
