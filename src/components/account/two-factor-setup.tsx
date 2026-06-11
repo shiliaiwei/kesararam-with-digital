@@ -2,9 +2,17 @@
 
 import { useEffect, useState } from "react";
 import QRCode from "react-qr-code";
-import { ShieldCheck, ShieldOff, Loader2, Copy, Check, KeyRound, AlertTriangle } from "lucide-react";
+import { ShieldCheck, ShieldOff, Loader2, Copy, Check, KeyRound, AlertTriangle, Smartphone, LifeBuoy } from "lucide-react";
 
 type Phase = "loading" | "off" | "setup" | "enabled";
+
+// Free TOTP authenticator apps we recommend (all work offline, scan the QR).
+const AUTH_APPS = [
+    "Google Authenticator",
+    "Microsoft Authenticator",
+    "Ente Auth",
+    "Aegis (Android)",
+];
 
 export function TwoFactorSetup() {
     const [phase, setPhase] = useState<Phase>("loading");
@@ -117,8 +125,27 @@ export function TwoFactorSetup() {
             {phase === "off" && (
                 <div className="space-y-4">
                     <p className="text-sm font-semibold text-zinc-600">
-                        Add a second step at login using an authenticator app like Google Authenticator or Ente Auth.
+                        Add a second step at login using a free authenticator app.
+                        <br />
+                        បន្ថែមជំហានទី ២ ពេលចូលគណនី ដោយប្រើកម្មវិធីផ្ទៀងផ្ទាត់ឥតគិតថ្លៃ។
                     </p>
+
+                    <div className="border-2 border-black bg-zinc-50 p-3">
+                        <p className="text-[11px] font-black uppercase tracking-widest text-zinc-500 mb-2">
+                            Recommended apps · កម្មវិធីណែនាំ
+                        </p>
+                        <ul className="grid grid-cols-2 gap-1.5">
+                            {AUTH_APPS.map((a) => (
+                                <li key={a} className="flex items-center gap-1.5 text-xs font-bold text-zinc-700">
+                                    <Smartphone size={13} className="text-zinc-500 shrink-0" /> {a}
+                                </li>
+                            ))}
+                        </ul>
+                        <p className="text-[11px] text-zinc-500 mt-2">
+                            Free · works offline · you scan a QR code on the next step.
+                        </p>
+                    </div>
+
                     <button
                         onClick={startSetup}
                         disabled={busy}
@@ -126,7 +153,7 @@ export function TwoFactorSetup() {
                         style={shadow}
                     >
                         {busy ? <Loader2 size={16} className="animate-spin" /> : <ShieldCheck size={16} />}
-                        Enable 2FA
+                        Enable 2FA · បើក
                     </button>
                 </div>
             )}
@@ -246,6 +273,32 @@ export function TwoFactorSetup() {
                     </div>
                 </div>
             )}
+
+            {/* Lost-device help — relevant in every phase */}
+            <div className="mt-5 border-t-2 border-zinc-200 pt-4">
+                <div className="flex items-start gap-2">
+                    <LifeBuoy size={16} className="text-[#f97316] shrink-0 mt-0.5" />
+                    <div className="text-xs font-semibold text-zinc-600 space-y-1">
+                        <p className="font-black text-zinc-800 uppercase tracking-wide text-[11px]">
+                            Lost your phone or app? · បាត់ទូរស័ព្ទ ឬកម្មវិធី?
+                        </p>
+                        <p>
+                            1. At login, enter one of your one-time <b>backup codes</b> instead of the app code.
+                            <br />
+                            <span className="text-zinc-500">
+                                ពេលចូលគណនី ប្រើ<b>កូដបម្រុង</b> (backup code) មួយ ជំនួសកូដពីកម្មវិធី។
+                            </span>
+                        </p>
+                        <p>
+                            2. No backup codes left? Ask an admin to reset 2FA on your account.
+                            <br />
+                            <span className="text-zinc-500">
+                                អស់កូដបម្រុង? ទាក់ទងអ្នកគ្រប់គ្រង (admin) ដើម្បីកំណត់ 2FA ឡើងវិញ។
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
