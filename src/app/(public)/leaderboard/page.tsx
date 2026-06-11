@@ -813,6 +813,10 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
             <span className="text-[10px] text-zinc-400 font-bold block uppercase tracking-wide mt-1 leading-none">
               {kh ? item.name : item.nameKh}
             </span>
+            <div className="inline-flex items-center gap-1 bg-red-100 text-red-700 border border-red-200 text-[8px] font-black px-1.5 py-0.5 rounded-sm mt-1.5 shadow-[1px_1px_0_#b91c1c]">
+              <span className="w-1.5 h-1.5 bg-red-600 rounded-full animate-ping" />
+              <span>{kh ? "ពិន្ទុហ្គេមផ្ទាល់ប៉ុណ្ណោះ" : "LIVE GAME POINTS ONLY"}</span>
+            </div>
           </div>
           {claimCount > 0 && (
             <div className="flex items-center gap-1 self-start bg-yellow-100 text-yellow-800 border border-yellow-200 text-[8px] font-black px-1.5 py-0.5 shadow-[1.5px_1.5px_0_#ca8a04] whitespace-nowrap">
@@ -978,6 +982,7 @@ export default function LeaderboardPage() {
   const [prevRanks, setPrevRanks] = useState<Record<number, number>>({});
   const [loading, setLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState<any | null>(null);
+  const [soloLimits, setSoloLimits] = useState<any>(null);
   const router = useRouter();
   const handleSelectUser = (user: LeaderboardUser) => {
     // Private usernames are anonymized to `student_<id>` and have no public
@@ -1038,6 +1043,7 @@ export default function LeaderboardPage() {
             return;
           }
           const lifetimePoints = d.lifetimePoints ?? 0;
+          const livePoints = d.livePoints ?? 0;
 
           // Sync database claims to local storage for backward compatibility & seamless updates
           if (d.claimedRewards && typeof window !== "undefined") {
@@ -1064,7 +1070,7 @@ export default function LeaderboardPage() {
           }
 
           // Local storage subtraction deduction logic based on claim counts
-          let activePoints = lifetimePoints;
+          let activePoints = livePoints;
           REWARD_ITEMS.forEach(item => {
             if (typeof window !== "undefined") {
               const claimDataStr = localStorage.getItem(`kwd_claim_data_${item.id}`);
@@ -1085,6 +1091,28 @@ export default function LeaderboardPage() {
           });
           setCurrentUser(d);
           setUserPoints(Math.max(0, activePoints));
+
+          // Fetch limits status for play limit widget
+          fetch("/api/game/solo/limits")
+            .then(r => r.ok ? r.json() : null)
+            .then(lim => {
+              if (lim) {
+                if (lim.tier === "guest") {
+                  // Count guest plays today from localStorage
+                  const guestPlays = (() => {
+                    if (typeof window === "undefined") return 0;
+                    const todayStr = new Date().toISOString().slice(0, 10);
+                    const countStr = localStorage.getItem(`kwd_solo_plays_${todayStr}`);
+                    return countStr ? parseInt(countStr, 10) : 0;
+                  })();
+                  lim.playsToday = guestPlays;
+                  lim.remaining = Math.max(0, lim.playsAllowed - guestPlays);
+                  lim.isLimitReached = guestPlays >= lim.playsAllowed;
+                }
+                setSoloLimits(lim);
+              }
+            })
+            .catch(() => {});
         }
       })
       .catch(() => { });
@@ -1156,14 +1184,28 @@ export default function LeaderboardPage() {
               </div>
             </div>
             {currentUser && isStudent && (
-              <div className="flex flex-col sm:items-end gap-1">
-                <span className="text-white/40 text-[9px] font-black uppercase tracking-widest">Your Points</span>
-                <div className="flex items-center gap-2">
-                  <AnimatedNumber value={userPoints} className="text-3xl md:text-4xl font-black text-yellow-400 tabular-nums" />
-                  <TierBadge lifetimePoints={userPoints} size="sm" lang={lang} />
+              <div className="flex flex-col sm:items-end gap-2 bg-zinc-900/60 backdrop-blur-md p-4 border border-zinc-800 shadow-xl rounded-xl">
+                <div className="flex items-center justify-between sm:justify-end gap-6 w-full">
+                  <div className="flex flex-col items-start sm:items-end">
+                    <span className="text-white/40 text-[9px] font-black uppercase tracking-widest">Total Score (Rank)</span>
+                    <div className="flex items-center gap-1.5 mt-0.5">
+                      <AnimatedNumber value={currentUser.lifetimePoints ?? 0} className="text-2xl font-black text-white tabular-nums" />
+                      <TierBadge lifetimePoints={currentUser.lifetimePoints ?? 0} size="sm" lang={lang} />
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-start sm:items-end">
+                    <span className="text-yellow-400/80 text-[9px] font-black uppercase tracking-widest flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-ping" />
+                      Claimable Balance
+                    </span>
+                    <div className="flex items-center gap-1.5 mt-0.5">
+                      <AnimatedNumber value={userPoints} className="text-2xl font-black text-yellow-400 tabular-nums" />
+                      <span className="text-[10px] text-yellow-400 font-bold">PTS</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="w-48 sm:w-56">
-                  <RankProgressBar lifetimePoints={userPoints} lang={lang} compact />
+                <div className="w-full sm:w-56 mt-1">
+                  <RankProgressBar lifetimePoints={currentUser.lifetimePoints ?? 0} lang={lang} compact />
                 </div>
               </div>
             )}
@@ -1383,26 +1425,72 @@ export default function LeaderboardPage() {
 
             {/* Rank Tier Showcase */}
             {currentUser && isStudent && (
-              <div className="bg-white border-3 border-black p-5" style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}>
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
-                  <div>
-                    <div className="inline-flex items-center gap-1.5 bg-black text-yellow-400 text-[9px] font-black tracking-widest uppercase px-2.5 py-1 mb-1.5 shadow-[2px_2px_0_#000]">
-                      <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse" />
-                      {kh ? "ថ្នាក់របស់អ្នក" : "Your Rank"}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                <div className="bg-white border-3 border-black p-5" style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}>
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 bg-black text-yellow-400 text-[9px] font-black tracking-widest uppercase px-2.5 py-1 mb-1.5 shadow-[2px_2px_0_#000]">
+                        <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse" />
+                        {kh ? "ថ្នាក់របស់អ្នក" : "Your Rank"}
+                      </div>
+                      <p className="text-xs text-zinc-500" style={kf}>
+                        Earn points → Level up → Unlock exclusive labels
+                      </p>
                     </div>
-                    <p className="text-xs text-zinc-500" style={kf}>
-                      Earn points → Level up → Unlock exclusive labels
+                    <div className="flex items-center gap-2">
+                      <TierBadge lifetimePoints={currentUser.lifetimePoints ?? 0} size="md" lang={lang} />
+                    </div>
+                  </div>
+                  <RankProgressBar lifetimePoints={currentUser.lifetimePoints ?? 0} lang={lang} />
+                  <div className="mt-4">
+                    <RankShowcase lifetimePoints={currentUser.lifetimePoints ?? 0} lang={lang} />
+                  </div>
+                </div>
 
-                    </p>
+                {/* Play Limits Showcase Card */}
+                {soloLimits && (
+                  <div className="border-3 border-black p-5 flex flex-col justify-between"
+                    style={{
+                      boxShadow: "4px 4px 0 #000",
+                      borderRadius: 0,
+                      background: soloLimits.isLimitReached ? "#fef2f2" : "#f0fdf4"
+                    }}>
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 bg-black text-[9px] font-black tracking-widest uppercase px-2.5 py-1 mb-1.5 shadow-[2px_2px_0_#000]"
+                        style={{ color: soloLimits.isLimitReached ? BRAND.red : BRAND.green }}>
+                        <span className="w-1.5 h-1.5 bg-current rounded-full animate-pulse" />
+                        {kh ? "កម្រិតលេងថ្ងៃនេះ" : "Daily Play Limit"}
+                      </div>
+                      <h3 className="text-lg font-black text-black leading-none mt-2" style={kf}>
+                        {kh
+                          ? `បានលេង៖ ${soloLimits.playsToday} / ${soloLimits.playsAllowed} ហ្គេម`
+                          : `Plays Today: ${soloLimits.playsToday} / ${soloLimits.playsAllowed} games`}
+                      </h3>
+                      {soloLimits.upgradeMessage && (
+                        <p className="text-xs text-zinc-600 font-bold mt-2 leading-relaxed" style={kf}>
+                          {kh ? soloLimits.upgradeMessage.kh : soloLimits.upgradeMessage.en}
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      {/* Progress bar */}
+                      <div className="h-3 bg-white border-2 border-black overflow-hidden relative mt-4">
+                        <div className="h-full transition-all duration-300"
+                          style={{
+                            width: `${Math.min(100, (soloLimits.playsToday / soloLimits.playsAllowed) * 100)}%`,
+                            background: soloLimits.isLimitReached ? BRAND.red : BRAND.green,
+                          }} />
+                      </div>
+                      <div className="mt-4 flex justify-end">
+                        {soloLimits.tier === "student" && (
+                          <Link href="/profile/student" className="px-3 py-1.5 text-[10px] font-black uppercase tracking-wider border-2 border-black bg-yellow-400 text-black shadow-[2px_2px_0_#000] hover:translate-y-[-1px] transition-transform" style={kf}>
+                            {kh ? "ចូលរួមថ្នាក់គ្រូ →" : "JOIN TEACHER'S CLASS"}
+                          </Link>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <TierBadge lifetimePoints={userPoints} size="md" lang={lang} />
-                  </div>
-                </div>
-                <RankProgressBar lifetimePoints={userPoints} lang={lang} />
-                <div className="mt-4">
-                  <RankShowcase lifetimePoints={userPoints} lang={lang} />
-                </div>
+                )}
               </div>
             )}
 
@@ -1431,14 +1519,17 @@ export default function LeaderboardPage() {
 
                     {/* Points Balance Card */}
                     {currentUser ? (
-                      <div className="flex flex-col items-center gap-0.5 bg-white/5 border border-white/15 px-5 py-3 self-start sm:self-auto">
+                      <div className="flex flex-col items-end gap-0.5 bg-white/5 border border-white/15 px-5 py-3 self-start sm:self-auto">
                         <span className="text-white/45 text-[9px] font-semibold uppercase tracking-widest leading-none" style={kf}>
-                          {kh ? "ពិន្ទុផ្ទាល់ខ្លួន" : "Your Balance"}
+                          {kh ? "ពិន្ទុផ្ទាល់ខ្លួន (ហ្គេមផ្ទាល់ប៉ុណ្ណោះ)" : "Claimable Balance (Live Only)"}
                         </span>
                         <div className="flex items-end gap-1.5 mt-1.5">
                           <AnimatedNumber value={userPoints} className="text-2xl font-bold text-yellow-400 tabular-nums leading-none font-mono" />
                           <span className="text-yellow-400/70 text-xs font-semibold leading-none mb-0.5">PTS</span>
                         </div>
+                        <span className="text-[8px] text-zinc-400 font-bold block mt-1" style={kf}>
+                          {kh ? "* មិនរួមបញ្ចូលពិន្ទុ Solo ទេ" : "* Solo practice points excluded"}
+                        </span>
                       </div>
                     ) : (
                       <a href="/login"

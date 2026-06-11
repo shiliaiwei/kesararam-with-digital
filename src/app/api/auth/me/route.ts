@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { users, classEnrollments } from "@/db/schema/users";
-import { eq } from "drizzle-orm";
+import { pointsLedger } from "@/db/schema/content";
+import { eq, and, sql } from "drizzle-orm";
 
 export async function GET() {
   const session = await getSession();
@@ -38,6 +39,8 @@ export async function GET() {
   // For students, report whether they currently belong to a class. A student
   // who was kicked/removed has no enrollment and must re-join before playing.
   let hasClass = true;
+  let livePoints = 0;
+
   if (user.role === "student") {
     const enrollment = await db
       .select({ id: classEnrollments.id })
@@ -45,7 +48,19 @@ export async function GET() {
       .where(eq(classEnrollments.studentId, user.id))
       .limit(1);
     hasClass = enrollment.length > 0;
+
+    // Fetch sum of live points from pointsLedger
+    const [livePointsRow] = await db
+      .select({ total: sql<number>`COALESCE(SUM(${pointsLedger.points}), 0)::integer` })
+      .from(pointsLedger)
+      .where(
+        and(
+          eq(pointsLedger.userId, user.id),
+          eq(pointsLedger.source, "live")
+        )
+      );
+    livePoints = livePointsRow?.total ?? 0;
   }
 
-  return NextResponse.json({ ...user, hasClass });
+  return NextResponse.json({ ...user, hasClass, livePoints });
 }
