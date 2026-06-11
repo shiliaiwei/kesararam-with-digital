@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { gameSessions, gameParticipants, gameSessionAnswers } from "@/db/schema/game";
-import { questions, answers, topics } from "@/db/schema/content";
+import { questions, answers, topics, pointsLedger } from "@/db/schema/content";
 import { users } from "@/db/schema/users";
 import { getSession } from "@/lib/auth";
 import { LeaderboardEntry } from "@/lib/game-event-bus";
@@ -29,7 +29,10 @@ async function buildLeaderboard(sessionId: number, prevRanks: Map<number, number
     }));
 }
 
-async function syncScoresToUserProfiles(sessionId: number) {
+// Live teacher-hosted sessions are the ONLY source of public-leaderboard points.
+// On game end we add each participant's score to their lifetime total AND write a
+// pointsLedger row (so weekly/monthly windowed boards include the play).
+async function syncScoresToUserProfiles(sessionId: number, gameMode: string) {
   console.log(`[syncScoresToUserProfiles] Syncing scores for session ${sessionId}`);
 
   try {
@@ -50,6 +53,16 @@ async function syncScoresToUserProfiles(sessionId: number) {
           updatedAt: new Date(),
         })
         .where(eq(users.id, participant.userId));
+
+      // Ledger row powers the weekly/monthly windowed leaderboards.
+      if (participant.totalScore > 0) {
+        await db.insert(pointsLedger).values({
+          userId: participant.userId,
+          source: `live-session:${sessionId}`,
+          gameType: gameMode,
+          points: participant.totalScore,
+        });
+      }
 
       console.log(`[syncScoresToUserProfiles] Updated user ${participant.userId}: +${participant.totalScore} points`);
     }
@@ -427,7 +440,7 @@ export async function POST(
         }
 
         // Sync scores to user profiles for leaderboard persistence
-        await syncScoresToUserProfiles(session.id);
+        await syncScoresToUserProfiles(session.id, session.gameMode);
 
         // Broadcast session_end to transition players cleanly to final podium
         await broadcastEvent(code.toUpperCase(), { type: "session_end", podium: leaderboard.slice(0, 3), finalLeaderboard: leaderboard });
@@ -495,7 +508,7 @@ export async function POST(
       }
 
       // Sync scores to user profiles for leaderboard persistence
-      await syncScoresToUserProfiles(session.id);
+      await syncScoresToUserProfiles(session.id, session.gameMode);
 
       await broadcastEvent(code.toUpperCase(), { type: "session_end", podium: leaderboard.slice(0, 3), finalLeaderboard: leaderboard });
 

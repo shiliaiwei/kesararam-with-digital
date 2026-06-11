@@ -7,6 +7,7 @@ import { useLang } from "@/context/lang-context";
 import { RankBadge as TierBadge, RankedAvatarRing, RankProgressBar, RankShowcase } from "@/components/shared/rank-label";
 import { getRank } from "@/lib/rank-utils";
 import { getAvatarFaceStyle } from "@/lib/utils";
+import { REWARD_ITEMS } from "@/lib/rewards";
 import {
   Trophy,
   Gift,
@@ -21,7 +22,10 @@ import {
   Flame,
   Crown,
   Info,
-  Award
+  Award,
+  Wifi,
+  BookOpen,
+  Calendar
 } from "lucide-react";
 
 // ─── BRAND COLORS ─────────────────────────────────────────────────────────────
@@ -81,17 +85,24 @@ const WINDOW_TABS: { id: "weekly" | "monthly" | "all"; en: string; kh: string }[
   { id: "all", en: "All-Time", kh: "គ្រប់ពេល" },
 ];
 
-// GameType values match the `gameType` column written into pointsLedger
-// (game IDs from the GameKit registry). Kept static to avoid importing
-// server-side format modules into this client page.
+// GameType values match the `gameType` column written into pointsLedger.
+// Includes both live teacher-hosted sessions AND solo practice game modes.
 const GAME_TYPES: { id: string; en: string; kh: string }[] = [
-  { id: "all", en: "All Games", kh: "គ្រប់សកម្មភាព" },
-  { id: "daily", en: "Daily Challenge", kh: "បញ្ហាប្រចាំថ្ងៃ" },
-  { id: "priority-puzzle", en: "Who Goes First?", kh: "តើអ្នកណាទៅមុន?" },
-  { id: "sign-match", en: "Sign Match", kh: "ផ្គូផ្គងសញ្ញា" },
-  { id: "catch-sign", en: "Catch the Sign", kh: "ចាប់សញ្ញា" },
-  { id: "light-hero", en: "Traffic Light Hero", kh: "បញ្ញាបរភ្លើងសញ្ញា" },
-  { id: "safety-adventure", en: "Road Safety Adventure", kh: "ដំណើរផ្សងព្រេងសុវត្ថិភាព" },
+  { id: "all",            en: "All Game Types",    kh: "គ្រប់ប្រភេទ" },
+  { id: "quick-quiz",     en: "Quick Quiz",         kh: "សំណួរលឿន" },
+  { id: "speed-round",    en: "Speed Round",        kh: "វគ្គល្បឿន" },
+  { id: "sign-challenge", en: "Sign Challenge",     kh: "ប្រឡងសញ្ញា" },
+  { id: "mixed-practice", en: "Mixed Practice",     kh: "ហ្វឹកហាត់ចម្រុះ" },
+  { id: "sign-match",     en: "Sign Match (Mini)",  kh: "ផ្គូផ្គងសញ្ញា" },
+  { id: "daily",          en: "Daily Challenge",    kh: "បញ្ហាប្រចាំថ្ងៃ" },
+];
+
+// Source filter — lets users view "Live only" vs "Solo practice" rankings.
+const SOURCE_TABS: { id: string; en: string; kh: string; icon: React.ElementType; color: string }[] = [
+  { id: "all",   en: "All Sources",   kh: "គ្រប់ប្រភព",          icon: Trophy,   color: "#eab308" },
+  { id: "live",  en: "🔴 Live Games",  kh: "🔴 ហ្គេមផ្ទាល់",      icon: Wifi,     color: "#ef4444" },
+  { id: "solo",  en: "🟡 Solo Practice",kh: "🟡 ហ្វឹកហាត់តែម្នាក់",icon: BookOpen, color: "#eab308" },
+  { id: "daily", en: "📅 Daily Challenge",kh: "📅 បញ្ហាប្រចាំថ្ងៃ", icon: Calendar, color: "#06b6d4" },
 ];
 
 interface LeaderboardUser {
@@ -111,18 +122,8 @@ interface LeaderboardUser {
   section?: string | null;
 }
 
-// ── REWARD ITEMS DATA (Cleaned descriptions, Larger Typography, 4K cover image references) ──
-const REWARD_ITEMS = [
-  { id: 1, name: "Notebook", nameKh: "សៀវភៅកត់ត្រា", cost: 500, color: "#3b82f6", image: "/rewards/notebook.webp" },
-  { id: 2, name: "Pencil", nameKh: "ខ្មៅដៃ", cost: 100, color: "#eab308", image: "/rewards/pencil.webp" },
-  { id: 3, name: "Pen", nameKh: "ប៊ិច", cost: 150, color: "#22c55e", image: "/rewards/pen.webp" },
-  { id: 4, name: "Ruler", nameKh: "បន្ទាត់", cost: 200, color: "#f97316", image: "/rewards/ruler.webp" },
-  { id: 5, name: "Eraser", nameKh: "ជ័រលុប", cost: 80, color: "#a855f7", image: "/rewards/eraser.webp" },
-  { id: 6, name: "Highlighter", nameKh: "ប៊ិចសម្គាល់", cost: 250, color: "#ef4444", image: "/rewards/highlighter.webp" },
-  { id: 7, name: "Notes", nameKh: "ក្រដាសសម្គាល់", cost: 300, color: "#06b6d4", image: "/rewards/notes.webp" },
-  { id: 8, name: "Kit", nameKh: "ឧបករណ៍គណិត", cost: 800, color: "#ec4899", image: "/rewards/kit.webp" },
-  { id: 9, name: "Planner", nameKh: "ផែនការសិក្សា", cost: 1200, color: "#84cc16", image: "/rewards/planner.webp" },
-];
+// REWARD_ITEMS is now imported from @/lib/rewards — single source of truth.
+// The import is at the top of this file.
 
 // ── Avatar ────────────────────────────────────────────────────────────────────
 
@@ -991,17 +992,20 @@ export default function LeaderboardPage() {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [countdown, setCountdown] = useState(60);
 
-  // Leaderboard filters: time window, province, game type
+  // Leaderboard filters: time window, province, game type, score source
   const [windowTab, setWindowTab] = useState<"weekly" | "monthly" | "all">("all");
   const [province, setProvince] = useState("all");
   const [gameType, setGameType] = useState("all");
+  const [sourceTab, setSourceTab] = useState("all");
 
   const fetchLeaderboard = useCallback(async () => {
     try {
       const params = new URLSearchParams({ limit: "50", window: windowTab });
       if (province !== "all") params.set("province", province);
-      // Game-type filtering only applies to windowed (ledger-summed) boards.
-      if (windowTab !== "all" && gameType !== "all") params.set("gameType", gameType);
+      // Game-type filter now works for all windows including all-time
+      if (gameType !== "all") params.set("gameType", gameType);
+      // Source filter: live, solo, daily, or all
+      if (sourceTab !== "all") params.set("source", sourceTab);
       const res = await fetch(`/api/leaderboard?${params.toString()}`);
       if (!res.ok) return;
       const data = await res.json();
@@ -1016,7 +1020,7 @@ export default function LeaderboardPage() {
       setCountdown(60);
     } catch { /* silent */ }
     finally { setLoading(false); }
-  }, [windowTab, province, gameType]);
+  }, [windowTab, province, gameType, sourceTab]);
 
   useEffect(() => {
     fetchLeaderboard();
@@ -1189,40 +1193,88 @@ export default function LeaderboardPage() {
 
             {/* Rankings Table */}
             <div>
-              {/* ── Filters: time window · province · game type (single row) ── */}
-              <div className="mb-4 flex flex-wrap items-end gap-3">
-                {/* Window tabs */}
-                <div className="flex items-stretch gap-0 border-3 border-black bg-white flex-shrink-0" style={{ boxShadow: "3px 3px 0 #000", borderRadius: 0 }}>
-                  {WINDOW_TABS.map((w, i) => {
-                    const active = windowTab === w.id;
+              {/* ── Score Source Legend ── */}
+              <div className="mb-3 flex flex-wrap gap-2 items-center">
+                <span className="text-[9px] font-black uppercase tracking-widest text-zinc-400" style={kf}>
+                  {kh ? "ប្រភពពិន្ទុ:" : "Score Source:"}
+                </span>
+                <div className="flex items-center gap-1.5 bg-red-50 border border-red-200 px-2 py-0.5">
+                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                  <span className="text-[9px] font-black text-red-600" style={kf}>
+                    {kh ? "ហ្គេមផ្ទាល់ (គ្រូ) = អាទិភាព" : "Live (Teacher) = Priority"}
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5 bg-yellow-50 border border-yellow-200 px-2 py-0.5">
+                  <span className="w-2 h-2 rounded-full bg-yellow-400" />
+                  <span className="text-[9px] font-black text-yellow-700" style={kf}>
+                    {kh ? "ហ្វឹកហាត់ស្នើ (Practice-only)" : "Solo Practice (Recommended)"}
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5 bg-cyan-50 border border-cyan-200 px-2 py-0.5">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                  <span className="text-[9px] font-black text-cyan-700" style={kf}>
+                    {kh ? "បញ្ហាប្រចាំថ្ងៃ" : "Daily Challenge"}
+                  </span>
+                </div>
+              </div>
+
+              {/* ── Filters: source · time window · province · game type ── */}
+              <div className="mb-4 flex flex-col gap-3">
+                {/* Source tabs — primary filter, always visible */}
+                <div className="flex flex-wrap gap-2">
+                  {SOURCE_TABS.map(s => {
+                    const active = sourceTab === s.id;
                     return (
                       <button
-                        key={w.id}
-                        onClick={() => setWindowTab(w.id)}
-                        className={`px-3 py-2 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${i > 0 ? "border-l-3 border-black" : ""} ${active ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
-                        style={kf}
+                        key={s.id}
+                        onClick={() => setSourceTab(s.id)}
+                        className={`px-3 py-1.5 text-[10px] font-black uppercase tracking-wider border-2 border-black transition-all ${active ? "shadow-[3px_3px_0_#000] -translate-x-0.5 -translate-y-0.5" : "shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5"}`}
+                        style={{
+                          background: active ? s.color : "#fff",
+                          color: active ? "#000" : "#71717a",
+                          borderRadius: 0,
+                          ...kf,
+                        }}
                       >
-                        {kh ? w.kh : w.en}
+                        {kh ? s.kh : s.en}
                       </button>
                     );
                   })}
                 </div>
 
-                {/* Province */}
-                <select
-                  value={province}
-                  onChange={e => setProvince(e.target.value)}
-                  className="border-3 border-black bg-white px-3 py-2 text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
-                  style={{ borderRadius: 0, boxShadow: "2px 2px 0 #000", ...kf }}
-                >
-                  <option value="all">{kh ? "ខេត្ត/ក្រុងទាំងអស់" : "All Provinces"}</option>
-                  {CAMBODIA_PROVINCES.map(p => (
-                    <option key={p.en} value={p.en}>{kh ? p.kh : p.en}</option>
-                  ))}
-                </select>
+                {/* Row 2: Window · Province · Game Type */}
+                <div className="flex flex-wrap items-end gap-3">
+                  {/* Window tabs */}
+                  <div className="flex items-stretch gap-0 border-3 border-black bg-white flex-shrink-0" style={{ boxShadow: "3px 3px 0 #000", borderRadius: 0 }}>
+                    {WINDOW_TABS.map((w, i) => {
+                      const active = windowTab === w.id;
+                      return (
+                        <button
+                          key={w.id}
+                          onClick={() => setWindowTab(w.id)}
+                          className={`px-3 py-2 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${i > 0 ? "border-l-3 border-black" : ""} ${active ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
+                          style={kf}
+                        >
+                          {kh ? w.kh : w.en}
+                        </button>
+                      );
+                    })}
+                  </div>
 
-                {/* Game type (visible only for weekly/monthly) */}
-                {windowTab !== "all" && (
+                  {/* Province */}
+                  <select
+                    value={province}
+                    onChange={e => setProvince(e.target.value)}
+                    className="border-3 border-black bg-white px-3 py-2 text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
+                    style={{ borderRadius: 0, boxShadow: "2px 2px 0 #000", ...kf }}
+                  >
+                    <option value="all">{kh ? "ខេត្ត/ក្រុងទាំងអស់" : "All Provinces"}</option>
+                    {CAMBODIA_PROVINCES.map(p => (
+                      <option key={p.en} value={p.en}>{kh ? p.kh : p.en}</option>
+                    ))}
+                  </select>
+
+                  {/* Game type — now visible for ALL windows */}
                   <select
                     value={gameType}
                     onChange={e => setGameType(e.target.value)}
@@ -1233,11 +1285,17 @@ export default function LeaderboardPage() {
                       <option key={g.id} value={g.id}>{kh ? g.kh : g.en}</option>
                     ))}
                   </select>
-                )}
+                </div>
               </div>
+
               <div className="flex items-center justify-between mb-3">
                 <h2 className="text-base md:text-lg font-black text-black tracking-tight uppercase" style={kf}>
-                  {kh ? "ចំណាត់ថ្នាក់ទាំងអស់" : "All Rankings"}
+                  {sourceTab !== "all"
+                    ? (kh
+                      ? `ចំណាត់ថ្នាក់ — ${SOURCE_TABS.find(s => s.id === sourceTab)?.kh ?? ""}`
+                      : `Rankings — ${SOURCE_TABS.find(s => s.id === sourceTab)?.en ?? ""}`)
+                    : (kh ? "ចំណាត់ថ្នាក់ទាំងអស់" : "All Rankings")
+                  }
                 </h2>
                 {lastUpdated && (
                   <span className="text-[10px] text-zinc-400 font-mono">
@@ -1245,6 +1303,7 @@ export default function LeaderboardPage() {
                   </span>
                 )}
               </div>
+
 
               <div className="bg-white border-3 border-black overflow-hidden" style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}>
                 {/* Table Header */}
@@ -1316,9 +1375,10 @@ export default function LeaderboardPage() {
               </div>
               <p className="text-center text-[9px] text-zinc-400 mt-2 font-mono uppercase" style={kf}>
                 {kh
-                  ? "ពិន្ទុ GameKit និងសកម្មភាពផ្ទាល់រាប់បញ្ចូល · ការលេងជាភ្ញៀវមិនត្រូវបានកត់ត្រា"
-                  : "GameKit + live game scores count · Guest plays are not recorded"}
+                  ? "ហ្គេមផ្ទាល់ (គ្រូ) + ហ្វឹកហាត់ + បញ្ហាប្រចាំថ្ងៃ = ពិន្ទុ · ចំណាត់ថ្នាក់ update ជាបន្ត · ភ្ញៀវមិនត្រូវបានកត់ត្រា"
+                  : "Live (teacher) + Solo practice + Daily challenge all count · Ranks update in real-time · Guest plays not recorded"}
               </p>
+
             </div>
 
             {/* Rank Tier Showcase */}
@@ -1414,8 +1474,8 @@ export default function LeaderboardPage() {
                   ))}
                 </div>
 
-                {/* How it works + delivery note — moved below the items, light weight */}
-                <div className="mt-6 flex flex-col items-center gap-1.5 text-center">
+                {/* How it works + delivery note */}
+                <div className="mt-6 flex flex-col items-center gap-2 text-center">
                   <p className="text-[11px] text-zinc-500 font-medium" style={kf}>
                     {kh
                       ? "លេងហ្គេម ➔ ប្រមូលពិន្ទុ ➔ ទទួលបានរង្វាន់ពិតៗ"
@@ -1425,6 +1485,31 @@ export default function LeaderboardPage() {
                     {kh
                       ? "ពិន្ទុអាចប្រើដើម្បីប្តូររង្វាន់ · រង្វាន់ត្រូវបានប្រគល់ដោយគ្រូ · ទទួលបានតែម្តងក្នុងមួយធាតុ"
                       : "Points are redeemable for rewards · Prizes delivered by your teacher · One claim per item"}
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-3 mt-1">
+                    <div className="flex items-center gap-1.5 bg-red-50 border border-red-200 px-2.5 py-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                      <span className="text-[9px] font-black text-red-600" style={kf}>
+                        {kh ? "ហ្គេមផ្ទាល់: ១៥–៤០ ពិន្ទុ/ម្ដង" : "Live game: 15–40 pts/session"}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1.5 bg-yellow-50 border border-yellow-200 px-2.5 py-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
+                      <span className="text-[9px] font-black text-yellow-700" style={kf}>
+                        {kh ? "ហ្វឹកហាត់: ៥–១៥ ពិន្ទុ/ម្ដង" : "Solo practice: 5–15 pts/session"}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1.5 bg-cyan-50 border border-cyan-200 px-2.5 py-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                      <span className="text-[9px] font-black text-cyan-700" style={kf}>
+                        {kh ? "បញ្ហាថ្ងៃ: ៥–១០ ពិន្ទុ/ថ្ងៃ" : "Daily challenge: 5–10 pts/day"}
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-[9px] text-zinc-400 font-mono uppercase mt-1" style={kf}>
+                    {kh
+                      ? "⚡ រង្វាន់ => ១–២ ខែ–មួយឆ្នាំ ត្រូវការ · ត្រូវការការខិតខំប្រឹងប្រែង"
+                      : "⚡ Rewards require weeks to a full school term of consistent play"}
                   </p>
                 </div>
               </div>
