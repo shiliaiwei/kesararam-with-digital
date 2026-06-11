@@ -13,10 +13,12 @@ import { Podium } from "@/components/game/Podium";
 import { ErrorBoundary } from "@/components/game/ErrorBoundary";
 import { sounds } from "@/lib/game-sounds";
 import { RankBadge as TierBadge } from "@/components/shared/rank-label";
+import { getAvatarFaceStyle } from "@/lib/utils";
+import { cloudinaryOptimize } from "@/lib/cloudinary";
 import {
   Zap, Trophy, Users, Clock, CheckCircle, XCircle,
   Loader2, Wifi, WifiOff, BookOpen, Target, Timer, Star,
-  Maximize, Minimize, Flame, Volume2, VolumeX, Crown
+  Maximize, Minimize, Flame, Volume2, VolumeX, Crown, LogOut
 } from "lucide-react";
 
 type GamePhase = "lobby" | "question" | "results" | "leaderboard" | "podium";
@@ -62,6 +64,34 @@ interface NeubrutalistAvatarProps {
 function NeubrutalistAvatar({ src, initials, userId }: NeubrutalistAvatarProps) {
   const [failed, setFailed] = useState(false);
 
+  // Avatars are stored as JSON { face, head } (composite SVG layers). Parse and
+  // render the layered avatar; fall back to a plain image URL, then initials.
+  const parsed = (() => {
+    if (!src) return null;
+    try {
+      const o = JSON.parse(src) as { face?: string; head?: string };
+      if (o && (o.face || o.head)) return o;
+    } catch { /* not JSON — treat as URL */ }
+    return null;
+  })();
+
+  if (parsed) {
+    return (
+      <div className="relative w-full h-full" style={{ background: "#FFD700" }}>
+        {parsed.head && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={`/avatar/head/${encodeURIComponent(parsed.head)}`} alt="" aria-hidden
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain" }} />
+        )}
+        {parsed.face && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
+            style={getAvatarFaceStyle(parsed.head)} />
+        )}
+      </div>
+    );
+  }
+
   if (!src || failed) {
     return (
       <div className="w-full h-full flex items-center justify-center text-white font-black"
@@ -85,6 +115,32 @@ function NeubrutalistAvatar({ src, initials, userId }: NeubrutalistAvatarProps) 
 
 function TeacherAvatar({ src, name }: { src: string | null | undefined; name: string }) {
   const [failed, setFailed] = useState(false);
+
+  const parsed = (() => {
+    if (!src) return null;
+    try {
+      const o = JSON.parse(src) as { face?: string; head?: string };
+      if (o && (o.face || o.head)) return o;
+    } catch { /* not JSON */ }
+    return null;
+  })();
+
+  if (parsed) {
+    return (
+      <div className="w-16 h-16 border-4 border-black mx-auto mb-3 shadow-[4px_4px_0_#000] overflow-hidden bg-[#FFD700] rounded-none relative">
+        {parsed.head && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={`/avatar/head/${encodeURIComponent(parsed.head)}`} alt="" aria-hidden
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain" }} />
+        )}
+        {parsed.face && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
+            style={getAvatarFaceStyle(parsed.head)} />
+        )}
+      </div>
+    );
+  }
 
   if (!src || failed) {
     return (
@@ -131,7 +187,7 @@ export default function StudentGamePage() {
 
   const [joining, setJoining] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [muted, setMuted] = useState(false);
+  const [muted, setMuted] = useState(true); // Default muted for clock ticks
   const [joinError, setJoinError] = useState<string | null>(null);
 
   const mutedRef = useRef(muted);
@@ -179,14 +235,33 @@ export default function StudentGamePage() {
     return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
   }, []);
 
+  // Enter fullscreen on lobby and lock during quiz
   useEffect(() => {
-    if (phase === "question" && typeof window !== "undefined") {
+    if ((phase === "lobby" || phase === "question") && typeof window !== "undefined") {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch((err) => {
           console.warn("Fullscreen request blocked or failed:", err);
         });
       }
     }
+  }, [phase]);
+
+  // Lock body scroll during the game so the page behind (footer/nav) can't leak
+  // through or scroll on mobile while a quiz is in progress.
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const lock = phase === "lobby" || phase === "question" || phase === "results" || phase === "leaderboard" || phase === "podium";
+    const { overflow, position, width } = document.body.style;
+    if (lock) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    }
+    return () => {
+      document.body.style.overflow = overflow;
+      document.documentElement.style.overflow = "";
+      document.body.style.position = position;
+      document.body.style.width = width;
+    };
   }, [phase]);
 
   const toggleFullscreen = async () => {
@@ -329,8 +404,8 @@ export default function StudentGamePage() {
         <button
           onClick={() => setMuted(m => !m)}
           className={`flex items-center gap-1 px-2.5 py-1.5 rounded-none border text-xs font-black transition-all ${muted
-              ? "bg-red-950/40 border-red-500/60 text-red-400"
-              : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
+            ? "bg-red-950/40 border-red-500/60 text-red-400"
+            : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
             }`}
           title={muted ? "Unmute" : "Mute audio"}
         >
@@ -347,7 +422,9 @@ export default function StudentGamePage() {
   );
 
   const submitAnswer = useCallback(async (answerId: number) => {
-    if (answerSubmitted || !currentQuestion || !code) return;
+    // Allow changing the answer until the question is revealed (time ends).
+    // Block only once the correct answer is shown.
+    if (correctAnswerId !== null || !currentQuestion || !code) return;
     setSelectedAnswer(answerId);
     setAnswerSubmitted(true);
     try {
@@ -359,16 +436,10 @@ export default function StudentGamePage() {
       if (res.ok) {
         const data = await res.json();
         setAnswerResult({ isCorrect: data.isCorrect, pointsEarned: data.pointsEarned });
-        if (!mutedRef.current) {
-          if (data.isCorrect) {
-            sounds.correct();
-          } else {
-            sounds.incorrect();
-          }
-        }
+        // Sound effects for right/wrong removed as requested
       }
     } catch { /* silent */ }
-  }, [answerSubmitted, currentQuestion, code]);
+  }, [correctAnswerId, currentQuestion, code]);
 
   const handleAnswerSelect = useCallback((answerId: number) => submitAnswer(answerId), [submitAnswer]);
 
@@ -435,7 +506,7 @@ export default function StudentGamePage() {
     const diffColor = DIFF_COLORS[sessionInfo?.difficulty ?? "mixed"] ?? "#a855f7";
 
     return (
-      <div className="min-h-screen flex flex-col relative overflow-hidden animate-fade-in"
+      <div className="h-screen flex flex-col relative overflow-hidden animate-fade-in"
         style={{
           backgroundColor: "#0d0d10",
           backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)",
@@ -565,19 +636,22 @@ export default function StudentGamePage() {
             </div>
           )}
 
-          {/* Language Selection Card */}
+          {/* Language Selection Card - Khmer Recommended */}
           {sessionInfo && (
             <div className="w-full border-4 border-black bg-zinc-900 p-5 rounded-none shadow-[6px_6px_0_#000] text-white">
-              <div className="text-zinc-400 text-[10px] font-black uppercase tracking-widest mb-3.5 text-center" style={khFont}>
+              <div className="text-zinc-400 text-[10px] font-black uppercase tracking-widest mb-2 text-center" style={khFont}>
                 {kh ? "ជ្រើសរើសភាសាក្នុងហ្គេម" : "GAME LANGUAGE SELECTION"}
+              </div>
+              <div className="text-yellow-400 text-[9px] font-bold mb-3.5 text-center animate-pulse" style={khFont}>
+                {kh ? "⭐ អនុសាសន៍: ជ្រើសរើសភាសាខ្មែរ" : "⭐ Recommended: Select Khmer"}
               </div>
               <div className="flex gap-3">
                 <button
                   onClick={() => { if (sessionInfo.language === "both") setLang("kh"); }}
                   disabled={sessionInfo.language !== "both"}
                   className={`flex-1 py-3 px-4 border-2 border-black rounded-none font-black text-xs transition-all uppercase tracking-wider flex items-center justify-center gap-1.5 ${lang === "kh"
-                      ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5"
-                      : "bg-black border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 hover:bg-zinc-850"
+                    ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                    : "bg-black border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 hover:bg-zinc-850"
                     } ${sessionInfo.language !== "both" ? "cursor-not-allowed opacity-50" : ""}`}
                   style={{ fontFamily: "Siemreap, sans-serif" }}
                 >
@@ -588,8 +662,8 @@ export default function StudentGamePage() {
                   onClick={() => { if (sessionInfo.language === "both") setLang("en"); }}
                   disabled={sessionInfo.language !== "both"}
                   className={`flex-1 py-3 px-4 border-2 border-black rounded-none font-black text-xs transition-all uppercase tracking-wider flex items-center justify-center gap-1.5 ${lang === "en"
-                      ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5"
-                      : "bg-black border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 hover:bg-zinc-850"
+                    ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                    : "bg-black border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 hover:bg-zinc-850"
                     } ${sessionInfo.language !== "both" ? "cursor-not-allowed opacity-50" : ""}`}
                 >
                   English
@@ -610,14 +684,14 @@ export default function StudentGamePage() {
             </div>
 
             {participants.length > 0 ? (
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 w-full max-h-48 overflow-y-auto no-scrollbar">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 w-full">
                 {participants.map((p) => {
                   const isMe = p.userId === currentUserId;
                   return (
                     <div key={p.userId}
                       className={`flex items-center gap-2.5 p-2.5 border-2 border-black transition-all duration-300 rounded-none shadow-[2px_2px_0_#000] ${isMe
-                          ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5"
-                          : "bg-black border-zinc-800 hover:border-zinc-750"
+                        ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                        : "bg-black border-zinc-800 hover:border-zinc-750"
                         }`}>
                       {/* Neubrutalist Avatar */}
                       <div className="w-8 h-8 rounded-none border-2 border-black flex items-center justify-center font-black text-xs text-white flex-shrink-0 relative shadow-[1px_1px_0_#000] overflow-hidden bg-white">
@@ -694,11 +768,7 @@ export default function StudentGamePage() {
       <div className="game-dot-bg fixed inset-0 z-50 flex flex-col rounded-none" style={{ userSelect: "none" }}>
         <div className="relative z-10 flex items-center justify-between px-4 py-2.5 bg-zinc-950 border-b border-zinc-800 flex-shrink-0 h-14 rounded-none">
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-red-950/40 border border-red-500 rounded-none">
-              <span className="w-1.5 h-1.5 rounded-none bg-red-500 animate-pulse" />
-              <span className="text-red-400 font-black text-[9px] tracking-widest uppercase">LIVE</span>
-            </div>
-            <span className="text-zinc-400 font-black text-xs uppercase tracking-widest hidden sm:inline" style={khFont}>
+            <span className="text-zinc-400 font-black text-xs uppercase tracking-widest" style={khFont}>
               {sessionInfo ? (MODE_LABELS[sessionInfo.gameMode] ?? sessionInfo.gameMode) : code}
             </span>
           </div>
@@ -719,8 +789,8 @@ export default function StudentGamePage() {
           <button
             onClick={() => setMuted(m => !m)}
             className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-none border text-xs font-black transition-all ${muted
-                ? "bg-red-950/40 border-red-500/60 text-red-400"
-                : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
+              ? "bg-red-950/40 border-red-500/60 text-red-400"
+              : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
               }`}
             title={muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}
           >
@@ -737,50 +807,63 @@ export default function StudentGamePage() {
         </div>
 
         <div className="relative z-10 flex-1 flex flex-col p-2.5 sm:p-4 gap-2 max-w-2xl mx-auto w-full justify-start sm:justify-center overflow-hidden min-h-0">
-          {/* Subtle Stats Row (Low Capacity) */}
+          {/* Subtle Stats Row (Low Capacity) - Smaller labels */}
           <div className="flex items-center justify-between gap-2 px-1 w-full bg-transparent border-0 flex-shrink-0">
             <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar flex-nowrap">
-              <span className="shrink-0 text-zinc-300 text-[10px] sm:text-xs font-black uppercase tracking-wider bg-zinc-850 px-2.5 py-1 rounded-none border border-zinc-800" style={khFont}>
+              <span className="shrink-0 text-zinc-300 text-[9px] sm:text-[10px] font-black uppercase tracking-wider bg-zinc-850 px-2 py-0.5 rounded-none border border-zinc-800" style={khFont}>
                 {kh ? `${questionIndex + 1}/${totalQuestions}` : `Q ${questionIndex + 1} / ${totalQuestions}`}
               </span>
-              <span className="shrink-0 text-yellow-400 text-[10px] sm:text-xs font-black uppercase bg-yellow-400/10 px-2.5 py-1 rounded-none border border-yellow-400/30" style={khFont}>
+              <span className="shrink-0 text-yellow-400 text-[9px] sm:text-[10px] font-black uppercase bg-yellow-400/10 px-2 py-0.5 rounded-none border border-yellow-400/30" style={khFont}>
                 {currentQuestion.difficulty || "Mixed"}
               </span>
               {(currentQuestion as any).topicCode && (
-                <span className="shrink-0 text-zinc-400 font-mono text-[10px] sm:text-xs bg-zinc-850 px-2.5 py-1 rounded-none border border-zinc-800 tracking-wider">
+                <span className="shrink-0 text-zinc-400 font-mono text-[9px] sm:text-[10px] bg-zinc-850 px-2 py-0.5 rounded-none border border-zinc-800 tracking-wider">
                   {(currentQuestion as any).topicCode.trim()}
                 </span>
               )}
             </div>
-            {endsAt && (
-              <div className="shrink-0 scale-75 sm:scale-85 origin-right">
-                <CountdownTimer
-                  endsAt={endsAt}
-                  totalSeconds={timePerQuestion}
-                  onExpire={() => { }}
-                  muted={muted}
-                />
-              </div>
-            )}
+            <div className="flex items-center gap-2">
+              {/* Mute icon button */}
+              <button
+                onClick={() => setMuted(m => !m)}
+                className={`shrink-0 p-1.5 rounded-none border transition-all ${muted
+                  ? "bg-red-950/40 border-red-500/60 text-red-400"
+                  : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
+                  }`}
+                title={muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}
+              >
+                {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+              </button>
+              {endsAt && (
+                <div className="shrink-0 scale-75 sm:scale-85 origin-right">
+                  <CountdownTimer
+                    endsAt={endsAt}
+                    totalSeconds={timePerQuestion}
+                    onExpire={() => { }}
+                    muted={muted}
+                  />
+                </div>
+              )}
+            </div>
           </div>
 
 
 
-          {/* Question image (compact stable wrapper) */}
-          <div className={`shrink-0 w-full h-48 flex items-center justify-center p-2 relative overflow-hidden rounded-none ${currentQuestion.imageUrl
-              ? "border-2 border-black bg-zinc-950"
-              : "border-2 border-transparent bg-transparent"
+          {/* Question image (compact stable wrapper) - Always white background */}
+          <div className={`shrink-0 w-full h-48 flex items-center justify-center p-3 relative overflow-hidden rounded-none ${currentQuestion.imageUrl
+            ? "border-4 border-black bg-white shadow-[6px_6px_0_#000]"
+            : "border-2 border-transparent bg-transparent"
             }`}>
             {currentQuestion.imageUrl ? (
-              <img src={currentQuestion.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
+              <img src={cloudinaryOptimize(currentQuestion.imageUrl, 800)} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
             ) : null}
           </div>
 
-          {/* Question text card (compact) */}
+          {/* Question text card (compact & smaller) */}
           <div
-            className="shrink-0 w-full min-h-[5rem] h-auto bg-zinc-900 border-2 border-black p-4 rounded-none text-white font-black flex items-center justify-center text-center select-text animate-fade-in"
+            className="shrink-0 w-full min-h-[4rem] h-auto bg-zinc-900 border-2 border-black p-3 rounded-none text-white font-black flex items-center justify-center text-center select-text animate-fade-in"
             style={{
-              fontSize: "clamp(1.1rem, 4vw, 1.75rem)",
+              fontSize: "clamp(0.95rem, 3.5vw, 1.4rem)",
               lineHeight: "1.3",
               ...khFont
             }}
@@ -802,7 +885,7 @@ export default function StudentGamePage() {
                 answers={currentQuestion.answers}
                 selectedId={selectedAnswer}
                 correctId={correctAnswerId}
-                disabled={answerSubmitted}
+                disabled={correctAnswerId !== null}
                 lang={lang}
                 gameType={currentQuestion.gameType}
                 onSelect={handleAnswerSelect}
@@ -866,12 +949,27 @@ export default function StudentGamePage() {
   // ── Podium ─────────────────────────────────────────────────────────────────
   if (phase === "podium") {
     return (
-      <div className="min-h-screen flex flex-col"
+      <div className="fixed inset-0 z-50 flex flex-col overflow-hidden"
         style={{ backgroundColor: "#0d0d14", backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)", backgroundSize: "28px 28px" }}>
-        {unifiedHeader}
-        <div className="flex-1 p-4 max-w-2xl mx-auto w-full pt-6">
-          <Podium podium={podium} finalLeaderboard={leaderboard} lang={lang} currentUserId={currentUserId} onPlayAgain={() => router.push("/play")} sessionCode={code} totalQuestions={totalQuestions} currentUserPoints={currentUserPoints} />
+        <div className="flex-shrink-0 relative z-10">
+          {unifiedHeader}
         </div>
+        {/* Only this region scrolls — page behind stays locked */}
+        <div className="flex-1 overflow-y-auto no-scrollbar overscroll-contain">
+          <div className="p-4 max-w-2xl mx-auto w-full pt-6 pb-28">
+            <Podium podium={podium} finalLeaderboard={leaderboard} lang={lang} currentUserId={currentUserId} onPlayAgain={() => router.push("/play")} sessionCode={code} totalQuestions={totalQuestions} currentUserPoints={currentUserPoints} />
+          </div>
+        </div>
+        {/* Small fixed exit button */}
+        <button
+          onClick={() => router.push("/play")}
+          className="fixed bottom-4 right-4 z-50 flex items-center gap-1.5 px-3 py-2 bg-black text-yellow-400 border-2 border-yellow-400 font-black text-xs uppercase tracking-wider shadow-[3px_3px_0_#eab308] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_#eab308] transition-all rounded-none"
+          style={khFont}
+          title={kh ? "ចាកចេញ" : "Exit"}
+        >
+          <LogOut size={13} />
+          {kh ? "ចេញ" : "Exit"}
+        </button>
       </div>
     );
   }

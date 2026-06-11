@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { db } from "@/lib/db";
 import { users } from "@/db/schema/users";
+import { pointsLedger } from "@/db/schema/content";
 import { eq, and, sql, desc } from "drizzle-orm";
 import StudentProfileClient, { SerializableStudent } from "./StudentProfileClient";
 
@@ -111,6 +112,23 @@ export default async function PublicStudentProfilePage({ params }: Props) {
   );
   const rank = studentIndex !== -1 ? studentIndex + 1 : 99;
 
+  // 2b. Per-game-mode breakdown (points + plays per GameKit game type)
+  let gameStats: { gameType: string; points: number; plays: number }[] = [];
+  try {
+    gameStats = await db
+      .select({
+        gameType: pointsLedger.gameType,
+        points: sql<number>`COALESCE(SUM(${pointsLedger.points}), 0)::int`,
+        plays: sql<number>`COUNT(*)::int`,
+      })
+      .from(pointsLedger)
+      .where(eq(pointsLedger.userId, student.id))
+      .groupBy(pointsLedger.gameType)
+      .orderBy(desc(sql`COALESCE(SUM(${pointsLedger.points}), 0)`));
+  } catch {
+    // Ledger table not available yet — fall back to empty list
+  }
+
   // 3. Serialize Date objects to strings to pass cleanly as client-side props
   const serializableStudent: SerializableStudent = {
     ...student,
@@ -118,5 +136,5 @@ export default async function PublicStudentProfilePage({ params }: Props) {
     createdAt: student.createdAt ? student.createdAt.toISOString() : new Date().toISOString(),
   };
 
-  return <StudentProfileClient student={serializableStudent} rank={rank} />;
+  return <StudentProfileClient student={serializableStudent} rank={rank} gameStats={gameStats} />;
 }

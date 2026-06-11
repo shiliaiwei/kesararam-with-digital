@@ -3,10 +3,10 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
-  // Bundle the root-level brand-mockups/ files into the /api/brand-mockups
+  // Bundle the docs/brand-assets/brand-mockups/ files into the /api/brand-mockups
   // serverless function so fs.readFileSync can find them in production.
   outputFileTracingIncludes: {
-    "/api/brand-mockups": ["./brand-mockups/**/*"],
+    "/api/brand-mockups": ["./docs/brand-assets/brand-mockups/**/*"],
   },
   typescript: {
     ignoreBuildErrors: true,
@@ -94,6 +94,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/Google_Sans/(.*)",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        source: "/Stack_Sans_Notch/(.*)",
         headers: [
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],

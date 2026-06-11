@@ -3,7 +3,8 @@ import { getSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import { users, classes, classEnrollments } from "@/db/schema/users";
-import { eq } from "drizzle-orm";
+import { pointsLedger, userStreaks } from "@/db/schema/content";
+import { eq, sql, desc } from "drizzle-orm";
 import { CompleteProfileForm } from "@/components/profile/complete-profile-form";
 import { StudentProfileDashboard } from "@/components/profile/student-profile-dashboard";
 
@@ -84,6 +85,22 @@ export default async function StudentProfilePage() {
       return <CompleteProfileForm />;
     }
 
+    // Enforce class membership: a student who is not enrolled in any class
+    // (e.g. removed/kicked by a teacher, or never joined) must (re-)join with a
+    // class code before they can use their account to play.
+    try {
+      const enrollment = await db
+        .select({ id: classEnrollments.id })
+        .from(classEnrollments)
+        .where(eq(classEnrollments.studentId, session.id))
+        .limit(1);
+      if (!enrollment || enrollment.length === 0) {
+        return <CompleteProfileForm mustRejoin />;
+      }
+    } catch (err) {
+      console.error("Failed to verify class enrollment:", err);
+    }
+
     // Try to get stats separately - these columns might not exist yet
     try {
       const statsResult = await db
@@ -101,11 +118,46 @@ export default async function StudentProfilePage() {
         totalGamesPlayed = statsResult[0].totalGamesPlayed || 0;
         lifetimePoints = statsResult[0].lifetimePoints || 0;
       }
-    } catch (statsError) {
-      console.log("Stats columns not available yet, using defaults");
+    } catch {
+      // Stats columns not available yet — fall back to defaults
     }
   } catch (error) {
     console.error("Error fetching user profile:", error);
+  }
+
+  // ── Per-game stats: total points + plays per GameKit game type ──────────────
+  let gameStats: { gameType: string; points: number; plays: number }[] = [];
+  let currentStreak = 0;
+  let longestStreak = 0;
+  try {
+    gameStats = await db
+      .select({
+        gameType: pointsLedger.gameType,
+        points: sql<number>`COALESCE(SUM(${pointsLedger.points}), 0)::int`,
+        plays: sql<number>`COUNT(*)::int`,
+      })
+      .from(pointsLedger)
+      .where(eq(pointsLedger.userId, session.id))
+      .groupBy(pointsLedger.gameType)
+      .orderBy(desc(sql`COALESCE(SUM(${pointsLedger.points}), 0)`));
+  } catch {
+    // Ledger table not available yet — fall back to empty list
+  }
+  try {
+    const streakRow = await db
+      .select({
+        currentStreak: userStreaks.currentStreak,
+        longestStreak: userStreaks.longestStreak,
+      })
+      .from(userStreaks)
+      .where(eq(userStreaks.userId, session.id))
+      .limit(1);
+    if (streakRow && streakRow.length > 0) {
+      currentStreak = streakRow[0].currentStreak || 0;
+      longestStreak = streakRow[0].longestStreak || 0;
+    }
+  } catch {
+    // Streak table not available yet — fall back to defaults
   }
 
   // Fetch student class details
@@ -155,6 +207,9 @@ export default async function StudentProfilePage() {
       totalGamesPlayed={totalGamesPlayed}
       lifetimePoints={lifetimePoints}
       studentClassInfo={studentClassInfo}
+      gameStats={gameStats}
+      currentStreak={currentStreak}
+      longestStreak={longestStreak}
     />
   );
 }

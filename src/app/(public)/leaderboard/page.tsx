@@ -6,6 +6,8 @@ import { gsap } from "gsap";
 import { useLang } from "@/context/lang-context";
 import { RankBadge as TierBadge, RankedAvatarRing, RankProgressBar, RankShowcase } from "@/components/shared/rank-label";
 import { getRank } from "@/lib/rank-utils";
+import { getAvatarFaceStyle } from "@/lib/utils";
+import { REWARD_ITEMS } from "@/lib/rewards";
 import {
   Trophy,
   Gift,
@@ -20,7 +22,10 @@ import {
   Flame,
   Crown,
   Info,
-  Award
+  Award,
+  Wifi,
+  BookOpen,
+  Calendar
 } from "lucide-react";
 
 // ─── BRAND COLORS ─────────────────────────────────────────────────────────────
@@ -73,9 +78,37 @@ function getProvinceKh(provinceEn: string | null | undefined): string {
   return found ? found.kh : provinceEn;
 }
 
+// ── Leaderboard time windows + game-type filter ───────────────────────────────
+const WINDOW_TABS: { id: "weekly" | "monthly" | "all"; en: string; kh: string }[] = [
+  { id: "weekly", en: "Weekly", kh: "ប្រចាំសប្តាហ៍" },
+  { id: "monthly", en: "Monthly", kh: "ប្រចាំខែ" },
+  { id: "all", en: "All-Time", kh: "គ្រប់ពេល" },
+];
+
+// GameType values match the `gameType` column written into pointsLedger.
+// Includes both live teacher-hosted sessions AND solo practice game modes.
+const GAME_TYPES: { id: string; en: string; kh: string }[] = [
+  { id: "all",            en: "All Game Types",    kh: "គ្រប់ប្រភេទ" },
+  { id: "quick-quiz",     en: "Quick Quiz",         kh: "សំណួរលឿន" },
+  { id: "speed-round",    en: "Speed Round",        kh: "វគ្គល្បឿន" },
+  { id: "sign-challenge", en: "Sign Challenge",     kh: "ប្រឡងសញ្ញា" },
+  { id: "mixed-practice", en: "Mixed Practice",     kh: "ហ្វឹកហាត់ចម្រុះ" },
+  { id: "sign-match",     en: "Sign Match (Mini)",  kh: "ផ្គូផ្គងសញ្ញា" },
+  { id: "daily",          en: "Daily Challenge",    kh: "បញ្ហាប្រចាំថ្ងៃ" },
+];
+
+// Source filter — lets users view "Live only" vs "Solo practice" rankings.
+const SOURCE_TABS: { id: string; en: string; kh: string; icon: React.ElementType; color: string }[] = [
+  { id: "all",   en: "All Sources",   kh: "គ្រប់ប្រភព",          icon: Trophy,   color: "#eab308" },
+  { id: "live",  en: "🔴 Live Games",  kh: "🔴 ហ្គេមផ្ទាល់",      icon: Wifi,     color: "#ef4444" },
+  { id: "solo",  en: "🟡 Solo Practice",kh: "🟡 ហ្វឹកហាត់តែម្នាក់",icon: BookOpen, color: "#eab308" },
+  { id: "daily", en: "📅 Daily Challenge",kh: "📅 បញ្ហាប្រចាំថ្ងៃ", icon: Calendar, color: "#06b6d4" },
+];
+
 interface LeaderboardUser {
   id: number;
   username: string;
+  isUsernamePublic?: boolean;
   displayName: string | null;
   avatar: string | null;
   avatarChangedAt: string | null;
@@ -89,18 +122,8 @@ interface LeaderboardUser {
   section?: string | null;
 }
 
-// ── REWARD ITEMS DATA (Cleaned descriptions, Larger Typography, 4K cover image references) ──
-const REWARD_ITEMS = [
-  { id: 1, name: "Premium Executive Notebook", nameKh: "សៀវភៅកត់ត្រា", cost: 500, color: "#3b82f6", image: "/rewards/notebook.webp" },
-  { id: 2, name: "Premium Mechanical Pencil", nameKh: "ខ្មៅដៃ", cost: 100, color: "#eab308", image: "/rewards/pencil.webp" },
-  { id: 3, name: "Premium Fountain Pen", nameKh: "ប៊ិច", cost: 150, color: "#22c55e", image: "/rewards/pen.webp" },
-  { id: 4, name: "Premium Architectural Ruler", nameKh: "បន្ទាត់", cost: 200, color: "#f97316", image: "/rewards/ruler.webp" },
-  { id: 5, name: "Premium Designer Eraser", nameKh: "ជ័រលុប", cost: 80, color: "#a855f7", image: "/rewards/eraser.webp" },
-  { id: 6, name: "Premium Highlighter", nameKh: "ប៊ិចសម្គាល់", cost: 250, color: "#ef4444", image: "/rewards/highlighter.webp" },
-  { id: 7, name: "Premium Sticky Notes Set", nameKh: "ក្រដាសសម្គាល់", cost: 300, color: "#06b6d4", image: "/rewards/sticky_notes.webp" },
-  { id: 8, name: "Premium Geometry Kit", nameKh: "ឧបករណ៍គណិត", cost: 800, color: "#ec4899", image: "/rewards/geometry_set.webp" },
-  { id: 9, name: "Premium Study Planner", nameKh: "ផែនការសិក្សា", cost: 1200, color: "#84cc16", image: "/rewards/study_planner.webp" },
-];
+// REWARD_ITEMS is now imported from @/lib/rewards — single source of truth.
+// The import is at the top of this file.
 
 // ── Avatar ────────────────────────────────────────────────────────────────────
 
@@ -157,7 +180,7 @@ function Avatar({ url, name, size = 40, ring, changedAt }: {
               src={`/avatar/face/${encodeURIComponent(parsed.face)}`}
               alt=""
               aria-hidden
-              className="absolute inset-0 w-full h-full object-contain"
+              style={getAvatarFaceStyle(parsed.head)}
             />
           )}
         </div>
@@ -287,7 +310,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
 
       {/* Floating Avatar and Rank Badge Container */}
       <div
-        className="relative mb-2 flex flex-col items-center select-none cursor-pointer"
+        className={`relative mb-2 flex flex-col items-center select-none ${user && user.isUsernamePublic !== false ? "cursor-pointer" : "cursor-default"}`}
         onClick={() => { if (user) onSelect(user); }}
         style={{
           animation: isFirst
@@ -485,7 +508,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
   );
 }
 
-// ── Seeded fake social proof & details ───────────────────────────────────────
+// ── Social proof & badge data ─────────────────────────────────────────────
 const SOCIAL_PROOF: Record<number, number> = { 1: 47, 2: 112, 3: 89, 4: 63, 5: 134, 6: 38, 7: 71, 8: 19, 9: 12 };
 const SCARCITY: Record<number, number | null> = { 1: null, 2: null, 3: null, 4: null, 5: null, 6: 8, 7: null, 8: 5, 9: 3 };
 const BONUS_BADGE: Record<number, { label: string; icon: typeof Star } | null> = {
@@ -572,6 +595,14 @@ function ClaimBurst({ color }: { color: string }) {
           0% { background-position: 0px 0px; }
           100% { background-position: 32px 32px; }
         }
+        @keyframes shimmerProgress {
+          0% { background-position: -200px 0; }
+          100% { background-position: 200px 0; }
+        }
+        @keyframes buttonPulse {
+          0%, 100% { transform: scale(1); box-shadow: 4px 4px 0 #000; }
+          50% { transform: scale(1.02); box-shadow: 6px 6px 0 #000, 0 0 15px var(--pulse-color); }
+        }
       `}</style>
     </div>
   );
@@ -621,16 +652,24 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
     };
   });
 
-  const claimCount = claimData.claimCount;
-  const lastClaimedAt = claimData.lastClaimedAt;
+  const claimCount = isLoggedIn ? claimData.claimCount : 0;
+  const lastClaimedAt = isLoggedIn ? claimData.lastClaimedAt : null;
 
-  const claimed = lastClaimedAt !== null && (Date.now() - lastClaimedAt < cooldownMs);
+  const claimed = isLoggedIn && lastClaimedAt !== null && (Date.now() - lastClaimedAt < cooldownMs);
   const msRemaining = lastClaimedAt ? (lastClaimedAt + cooldownMs) - Date.now() : 0;
   const daysRemaining = Math.max(0, Math.ceil(msRemaining / (24 * 60 * 60 * 1000)));
 
   const [hovered, setHovered] = useState(false);
   const [showBurst, setShowBurst] = useState(false);
   const [pulse, setPulse] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setMousePos({ x, y });
+  };
 
   const canClaim = isLoggedIn && userPoints >= item.cost && !claimed;
   const rawPct = Math.min(100, (userPoints / item.cost) * 100);
@@ -665,34 +704,57 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
     onClaim(item);
   }
 
-  // Grayscale when claimed, colored when active
+  // Glowing shadow when hovered, color responsive when active
   const cardShadow = claimed
     ? "3px 3px 0 #000"
     : hovered && canClaim
-      ? "12px 12px 0 #000"
-      : isReady
-        ? "8px 8px 0 #000"
-        : "4px 4px 0 #000";
+      ? `12px 12px 0 #000, 0 10px 30px ${item.color}33`
+      : hovered
+        ? `10px 10px 0 #000, 0 8px 24px rgba(0,0,0,0.15)`
+        : isReady
+          ? `8px 8px 0 #000, 0 0 15px ${item.color}22`
+          : "4px 4px 0 #000";
 
   const cardTransform = claimed
     ? "none"
-    : hovered && canClaim
-      ? "translate(-4px,-4px)"
+    : hovered
+      ? "translate(-6px,-6px)"
       : "translate(0,0)";
 
   return (
     <div
-      className="relative flex flex-col overflow-hidden border-3 border-black select-none transition-all duration-100"
+      className="relative flex flex-col overflow-hidden border-3 border-black select-none transition-all duration-200 group"
       style={{
         boxShadow: cardShadow,
         transform: cardTransform,
         background: claimed ? "#f4f4f5" : "#ffffff",
         borderRadius: 0,
-      }}
+        "--mouse-x": `${mousePos.x}%`,
+        "--mouse-y": `${mousePos.y}%`,
+      } as React.CSSProperties}
       onMouseEnter={() => { if (!claimed) setHovered(true); }}
       onMouseLeave={() => setHovered(false)}
+      onPointerMove={handlePointerMove}
     >
       {showBurst && <ClaimBurst color={item.color} />}
+
+      {/* Premium Spotlight Pointer Glow Effect */}
+      {!claimed && hovered && (
+        <>
+          <div
+            className="absolute inset-0 pointer-events-none z-10 transition-opacity duration-300"
+            style={{
+              background: `radial-gradient(circle 220px at var(--mouse-x, 50%) var(--mouse-y, 50%), ${item.color}15, transparent 80%)`
+            }}
+          />
+          <div
+            className="absolute inset-0 pointer-events-none z-20 transition-opacity duration-300"
+            style={{
+              background: `radial-gradient(circle 100px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.12), transparent 80%)`
+            }}
+          />
+        </>
+      )}
 
       {/* Claimed diagonal tag overlay */}
       {claimed && (
@@ -703,27 +765,36 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
 
       {/* ── Premium 4K Mockup Cover Image Header ── */}
       <div className="relative h-44 w-full border-b-3 border-black overflow-hidden bg-zinc-100 flex items-center justify-center">
+        {/* Dynamic ambient backlight glowing halo */}
+        {!claimed && (
+          <div className="absolute inset-0 opacity-35 pointer-events-none z-0"
+            style={{
+              background: `radial-gradient(circle at center, ${item.color}44 0%, transparent 70%)`
+            }}
+          />
+        )}
+
         <img
           src={item.image}
           alt={item.name}
-          className="w-full h-full object-cover select-none"
+          className="w-full h-full object-cover select-none z-10"
           style={{
             filter: claimed ? "grayscale(100%) brightness(0.9)" : "none",
-            transform: hovered && !claimed ? "scale(1.05)" : "scale(1)",
-            transition: "transform 0.25s ease, filter 0.2s ease"
+            transform: hovered && !claimed ? "scale(1.08) rotate(0.5deg)" : "scale(1)",
+            transition: "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s ease"
           }}
         />
 
         {/* Lucide Badge Tag */}
         {bonusBadge && !claimed && (
-          <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 bg-black text-white text-[8px] font-black uppercase px-2 py-0.5 border-2 border-black shadow-[2px_2px_0_#000]">
+          <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5 bg-black text-white text-[8px] font-black uppercase px-2 py-0.5 border-2 border-black shadow-[2px_2px_0_#000]">
             <bonusBadge.icon size={10} strokeWidth={3.5} className="text-yellow-400" />
             <span>{bonusBadge.label}</span>
           </div>
         )}
 
         {/* Points cost tag overlay in bottom-right corner of the image */}
-        <div className="absolute bottom-3 right-3 bg-yellow-400 text-black border-2 border-black px-3 py-1 font-black shadow-[3px_3px_0_#000] flex flex-col items-center leading-none"
+        <div className="absolute bottom-3 right-3 bg-yellow-400 text-black border-2 border-black px-3 py-1 font-black shadow-[3px_3px_0_#000] flex flex-col items-center leading-none z-20"
           style={{ filter: claimed ? "grayscale(100%)" : "none" }}>
           <span className="text-[7px] font-black uppercase tracking-wider opacity-60">COST</span>
           <span className="text-sm font-mono font-black mt-0.5">{item.cost.toLocaleString()}</span>
@@ -731,12 +802,12 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
       </div>
 
       {/* Body Details */}
-      <div className="flex flex-col gap-3.5 px-3.5 py-4 flex-1">
+      <div className="flex flex-col gap-3.5 px-3.5 py-4 flex-1 z-10">
 
         {/* Name and Khmer translation (ENLARGED TYPOGRAPHY) */}
         <div className="flex justify-between items-start gap-2">
           <div>
-            <span className="font-black text-xl text-black block leading-tight tracking-tight uppercase" style={kf}>
+            <span className="font-black text-xl text-black block leading-tight tracking-tight uppercase group-hover:text-zinc-800 transition-colors" style={kf}>
               {kh ? item.nameKh : item.name}
             </span>
             <span className="text-[10px] text-zinc-400 font-bold block uppercase tracking-wide mt-1 leading-none">
@@ -757,7 +828,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
 
         {/* Scarcity indicator */}
         {scarcity !== null && !claimed && (
-          <div className="flex items-center gap-1.5 self-start bg-red-100 text-red-600 border border-red-200 text-[8px] font-black px-1.5 py-0.5 shadow-[1.5px_1.5px_0_#ef4444]">
+          <div className="flex items-center gap-1.5 self-start bg-red-100 text-red-600 border border-red-200 text-[8px] font-black px-1.5 py-0.5 shadow-[1.5px_1.5px_0_#ef4444] animate-pulse">
             <Info size={8} strokeWidth={3.5} />
             <span>{kh ? `នៅសល់ ${scarcity} ទៀត!` : `Only ${scarcity} left!`}</span>
           </div>
@@ -767,7 +838,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
         <div className="flex items-center gap-1.5">
           <div className="flex -space-x-1">
             {[0, 1, 2].map(i => (
-              <div key={i} className="w-3.5 h-3.5 rounded-full border border-black flex items-center justify-center text-[7px] font-black text-white"
+              <div key={i} className="w-3.5 h-3.5 rounded-full border border-black flex items-center justify-center text-[7px] font-black text-white transition-transform duration-200 group-hover:scale-110"
                 style={{ background: ["#f97316", "#3b82f6", "#a855f7"][i], zIndex: 3 - i }} >
                 {["A", "B", "C"][i]}
               </div>
@@ -790,15 +861,23 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
               </span>
             </div>
 
-            {/* Brutalist Flat Progress Bar */}
-            <div className="relative h-2.5 bg-zinc-100 border-2 border-black overflow-hidden" style={{ borderRadius: 0 }}>
-              <div className="h-full transition-all duration-500"
+            {/* Brutalist Flat Progress Bar with Animated Shimmer */}
+            <div className="relative h-3 bg-zinc-100 border-2 border-black overflow-hidden" style={{ borderRadius: 0 }}>
+              <div
+                className="h-full transition-all duration-500 relative"
                 style={{
                   width: `${pct}%`,
                   background: isReady ? BRAND.green : isAlmostThere ? BRAND.yellow : item.color,
                   borderRight: pct > 0 ? "2px solid #000" : "none"
                 }}
-              />
+              >
+                {/* Active scan-line shimmer animation */}
+                {isReady && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-[shimmerProgress_1.5s_linear_infinite]"
+                    style={{ backgroundSize: "200% 100%" }}
+                  />
+                )}
+              </div>
             </div>
 
             {/* Zeigarnik Effect micro-copy */}
@@ -831,24 +910,24 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
             </div>
           ) : !isLoggedIn ? (
             <a href="/login"
-              className="w-full py-2.5 font-black text-xs text-center border-3 border-black block leading-none transition-all"
+              className="w-full py-2.5 font-black text-xs text-center border-3 border-black block leading-none transition-all hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#000] active:translate-y-0 active:shadow-[2px_2px_0_#000]"
               style={{ background: BRAND.yellow, color: BRAND.black, boxShadow: "3px 3px 0 #000", ...kf }}>
               {kh ? "ចូលគណនី →" : "LOG IN TO CLAIM"}
             </a>
           ) : canClaim ? (
             <button
               onClick={handleClaim}
-              className="w-full py-2.5 font-black text-xs border-3 border-black relative overflow-hidden flex items-center justify-center gap-1.5 cursor-pointer leading-none"
+              className="w-full py-3 font-black text-xs border-3 border-black relative overflow-hidden flex items-center justify-center gap-1.5 cursor-pointer leading-none transition-all hover:-translate-y-1 hover:brightness-110 active:translate-y-0 active:shadow-[2px_2px_0_#000]"
               style={{
                 background: item.color,
                 color: BRAND.black,
-                boxShadow: pulse ? `0 0 0 3px ${item.color}55, 3px 3px 0 #000` : "3px 3px 0 #000",
-                transform: pulse ? "scale(1.02)" : "scale(1)",
-                transition: "all 0.15s ease",
+                boxShadow: "4px 4px 0 #000",
+                animation: "buttonPulse 2.5s ease-in-out infinite",
+                "--pulse-color": `${item.color}66`,
                 ...kf,
-              }}
+              } as React.CSSProperties}
             >
-              <Gift size={12} strokeWidth={3} />
+              <Gift size={12} strokeWidth={3} className="animate-bounce" />
               <span>{kh ? "ទទួលឥឡូវនេះ!" : "CLAIM NOW!"}</span>
             </button>
           ) : (
@@ -901,6 +980,9 @@ export default function LeaderboardPage() {
   const [currentUser, setCurrentUser] = useState<any | null>(null);
   const router = useRouter();
   const handleSelectUser = (user: LeaderboardUser) => {
+    // Private usernames are anonymized to `student_<id>` and have no public
+    // profile — don't navigate (would 404 on /u/student_<id>).
+    if (user.isUsernamePublic === false) return;
     router.push(`/u/${user.username}`);
   };
 
@@ -910,9 +992,21 @@ export default function LeaderboardPage() {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [countdown, setCountdown] = useState(60);
 
+  // Leaderboard filters: time window, province, game type, score source
+  const [windowTab, setWindowTab] = useState<"weekly" | "monthly" | "all">("all");
+  const [province, setProvince] = useState("all");
+  const [gameType, setGameType] = useState("all");
+  const [sourceTab, setSourceTab] = useState("all");
+
   const fetchLeaderboard = useCallback(async () => {
     try {
-      const res = await fetch("/api/leaderboard?limit=50");
+      const params = new URLSearchParams({ limit: "50", window: windowTab });
+      if (province !== "all") params.set("province", province);
+      // Game-type filter now works for all windows including all-time
+      if (gameType !== "all") params.set("gameType", gameType);
+      // Source filter: live, solo, daily, or all
+      if (sourceTab !== "all") params.set("source", sourceTab);
+      const res = await fetch(`/api/leaderboard?${params.toString()}`);
       if (!res.ok) return;
       const data = await res.json();
       const newBoard: LeaderboardUser[] = data.leaderboard || [];
@@ -926,12 +1020,15 @@ export default function LeaderboardPage() {
       setCountdown(60);
     } catch { /* silent */ }
     finally { setLoading(false); }
-  }, []);
+  }, [windowTab, province, gameType, sourceTab]);
 
   useEffect(() => {
     fetchLeaderboard();
     const iv = setInterval(fetchLeaderboard, 60000);
+    return () => clearInterval(iv);
+  }, [fetchLeaderboard]);
 
+  useEffect(() => {
     fetch("/api/auth/me")
       .then(r => r.ok ? r.json() : null)
       .then(d => {
@@ -941,7 +1038,7 @@ export default function LeaderboardPage() {
             return;
           }
           const lifetimePoints = d.lifetimePoints ?? 0;
-          
+
           // Sync database claims to local storage for backward compatibility & seamless updates
           if (d.claimedRewards && typeof window !== "undefined") {
             try {
@@ -953,7 +1050,7 @@ export default function LeaderboardPage() {
                 if (localSaved) {
                   try {
                     currentCount = Math.max(1, JSON.parse(localSaved).claimCount ?? 1);
-                  } catch {}
+                  } catch { }
                 }
                 localStorage.setItem(claimDataKey, JSON.stringify({
                   claimCount: currentCount,
@@ -987,13 +1084,11 @@ export default function LeaderboardPage() {
             }
           });
           setCurrentUser(d);
-          setUserPoints(activePoints);
+          setUserPoints(Math.max(0, activePoints));
         }
       })
       .catch(() => { });
-
-    return () => clearInterval(iv);
-  }, [fetchLeaderboard]);
+  }, [router]);
 
   // Countdown ticker
   useEffect(() => {
@@ -1002,7 +1097,10 @@ export default function LeaderboardPage() {
   }, []);
 
   const top3 = leaderboard.slice(0, 3);
-  const rest = leaderboard.slice(3);
+
+  // Points, rewards, and tier progression are student-only features.
+  // Teachers, admins, and staff host/manage but do not earn points.
+  const isStudent = currentUser?.role === "student";
 
   // Claim click handler — Database claim and Local Points deduction
   const handleClaimItem = async (item: typeof REWARD_ITEMS[number]) => {
@@ -1057,7 +1155,7 @@ export default function LeaderboardPage() {
                 )}
               </div>
             </div>
-            {currentUser && (
+            {currentUser && isStudent && (
               <div className="flex flex-col sm:items-end gap-1">
                 <span className="text-white/40 text-[9px] font-black uppercase tracking-widest">Your Points</span>
                 <div className="flex items-center gap-2">
@@ -1080,27 +1178,132 @@ export default function LeaderboardPage() {
           </div>
         ) : (
           <>
-            {/* Podium */}
-            <div className="grid grid-cols-3 items-end gap-2 md:gap-6 w-full">
-              {[
-                { cfg: PODIUM_CFG[0], user: top3[1] },
-                { cfg: PODIUM_CFG[1], user: top3[0] },
-                { cfg: PODIUM_CFG[2], user: top3[2] },
-              ].map(({ cfg, user }, i) => (
-                <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} currentUser={currentUser} onSelect={handleSelectUser} />
-              ))}
-            </div>
+            {/* Podium - only show if there are ranked users */}
+            {top3.length > 0 && (
+              <div className="grid grid-cols-3 items-end gap-2 md:gap-6 w-full">
+                {[
+                  { cfg: PODIUM_CFG[0], user: top3[1] },
+                  { cfg: PODIUM_CFG[1], user: top3[0] },
+                  { cfg: PODIUM_CFG[2], user: top3[2] },
+                ].map(({ cfg, user }, i) => (
+                  <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} currentUser={currentUser} onSelect={handleSelectUser} />
+                ))}
+              </div>
+            )}
 
             {/* Rankings Table */}
             <div>
+              {/* ── Score Source Legend ── */}
+              <div className="mb-3 flex flex-wrap gap-2 items-center">
+                <span className="text-[9px] font-black uppercase tracking-widest text-zinc-400" style={kf}>
+                  {kh ? "ប្រភពពិន្ទុ:" : "Score Source:"}
+                </span>
+                <div className="flex items-center gap-1.5 bg-red-50 border border-red-200 px-2 py-0.5">
+                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                  <span className="text-[9px] font-black text-red-600" style={kf}>
+                    {kh ? "ហ្គេមផ្ទាល់ (គ្រូ) = អាទិភាព" : "Live (Teacher) = Priority"}
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5 bg-yellow-50 border border-yellow-200 px-2 py-0.5">
+                  <span className="w-2 h-2 rounded-full bg-yellow-400" />
+                  <span className="text-[9px] font-black text-yellow-700" style={kf}>
+                    {kh ? "ហ្វឹកហាត់ស្នើ (Practice-only)" : "Solo Practice (Recommended)"}
+                  </span>
+                </div>
+                <div className="flex items-center gap-1.5 bg-cyan-50 border border-cyan-200 px-2 py-0.5">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                  <span className="text-[9px] font-black text-cyan-700" style={kf}>
+                    {kh ? "បញ្ហាប្រចាំថ្ងៃ" : "Daily Challenge"}
+                  </span>
+                </div>
+              </div>
+
+              {/* ── Filters: source · time window · province · game type ── */}
+              <div className="mb-4 flex flex-col gap-3">
+                {/* Source tabs — primary filter, always visible */}
+                <div className="flex flex-wrap gap-2">
+                  {SOURCE_TABS.map(s => {
+                    const active = sourceTab === s.id;
+                    return (
+                      <button
+                        key={s.id}
+                        onClick={() => setSourceTab(s.id)}
+                        className={`px-3 py-1.5 text-[10px] font-black uppercase tracking-wider border-2 border-black transition-all ${active ? "shadow-[3px_3px_0_#000] -translate-x-0.5 -translate-y-0.5" : "shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5"}`}
+                        style={{
+                          background: active ? s.color : "#fff",
+                          color: active ? "#000" : "#71717a",
+                          borderRadius: 0,
+                          ...kf,
+                        }}
+                      >
+                        {kh ? s.kh : s.en}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Row 2: Window · Province · Game Type */}
+                <div className="flex flex-wrap items-end gap-3">
+                  {/* Window tabs */}
+                  <div className="flex items-stretch gap-0 border-3 border-black bg-white flex-shrink-0" style={{ boxShadow: "3px 3px 0 #000", borderRadius: 0 }}>
+                    {WINDOW_TABS.map((w, i) => {
+                      const active = windowTab === w.id;
+                      return (
+                        <button
+                          key={w.id}
+                          onClick={() => setWindowTab(w.id)}
+                          className={`px-3 py-2 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${i > 0 ? "border-l-3 border-black" : ""} ${active ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
+                          style={kf}
+                        >
+                          {kh ? w.kh : w.en}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Province */}
+                  <select
+                    value={province}
+                    onChange={e => setProvince(e.target.value)}
+                    className="border-3 border-black bg-white px-3 py-2 text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
+                    style={{ borderRadius: 0, boxShadow: "2px 2px 0 #000", ...kf }}
+                  >
+                    <option value="all">{kh ? "ខេត្ត/ក្រុងទាំងអស់" : "All Provinces"}</option>
+                    {CAMBODIA_PROVINCES.map(p => (
+                      <option key={p.en} value={p.en}>{kh ? p.kh : p.en}</option>
+                    ))}
+                  </select>
+
+                  {/* Game type — now visible for ALL windows */}
+                  <select
+                    value={gameType}
+                    onChange={e => setGameType(e.target.value)}
+                    className="border-3 border-black bg-white px-3 py-2 text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
+                    style={{ borderRadius: 0, boxShadow: "2px 2px 0 #000", ...kf }}
+                  >
+                    {GAME_TYPES.map(g => (
+                      <option key={g.id} value={g.id}>{kh ? g.kh : g.en}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
               <div className="flex items-center justify-between mb-3">
-                <h2 className="text-base md:text-lg font-black text-black tracking-tight uppercase">All Rankings</h2>
+                <h2 className="text-base md:text-lg font-black text-black tracking-tight uppercase" style={kf}>
+                  {sourceTab !== "all"
+                    ? (kh
+                      ? `ចំណាត់ថ្នាក់ — ${SOURCE_TABS.find(s => s.id === sourceTab)?.kh ?? ""}`
+                      : `Rankings — ${SOURCE_TABS.find(s => s.id === sourceTab)?.en ?? ""}`)
+                    : (kh ? "ចំណាត់ថ្នាក់ទាំងអស់" : "All Rankings")
+                  }
+                </h2>
                 {lastUpdated && (
                   <span className="text-[10px] text-zinc-400 font-mono">
                     UPDATED: {lastUpdated.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
                   </span>
                 )}
               </div>
+
 
               <div className="bg-white border-3 border-black overflow-hidden" style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}>
                 {/* Table Header */}
@@ -1111,10 +1314,12 @@ export default function LeaderboardPage() {
                   <span className="col-span-4 sm:col-span-2 text-right">Points</span>
                 </div>
 
-                {rest.length > 0 ? rest.map((user) => {
+                {leaderboard.length > 0 ? leaderboard.map((user) => {
                   const prev = prevRanks[user.id];
                   const moved = prev !== undefined ? prev - user.rank : 0;
                   const tier = getRank(user.lifetimePoints);
+                  // Anonymized (private-username) rows have no public profile.
+                  const linkable = user.isUsernamePublic !== false;
                   return (
                     <div key={user.id} className="grid grid-cols-12 px-3 md:px-5 py-2.5 border-t border-zinc-100 hover:bg-zinc-50 transition-colors items-center">
                       <div className="col-span-1 flex items-center gap-0.5">
@@ -1122,9 +1327,9 @@ export default function LeaderboardPage() {
                         {moved > 0 && <span className="text-[8px] font-black text-green-500 leading-none">▲</span>}
                         {moved < 0 && <span className="text-[8px] font-black text-red-400 leading-none">▼</span>}
                       </div>
-                      <div 
-                        className="col-span-7 flex items-center gap-2 min-w-0 cursor-pointer select-none"
-                        onClick={() => handleSelectUser(user)}
+                      <div
+                        className={`col-span-7 flex items-center gap-2 min-w-0 select-none ${linkable ? "cursor-pointer" : "cursor-default"}`}
+                        onClick={linkable ? () => handleSelectUser(user) : undefined}
                       >
                         <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={30}>
                           <Avatar url={(currentUser && user.id === currentUser.id) ? currentUser.avatar : user.avatar} name={user.displayName || user.username} size={30} changedAt={user.avatarChangedAt} />
@@ -1140,14 +1345,9 @@ export default function LeaderboardPage() {
                                 {user.province}
                               </span>
                             )}
-                            {user.gradeLevel && (
-                              <span className="inline-block px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wider bg-purple-100 text-purple-700 border border-purple-200">
-                                {user.gradeLevel}
-                              </span>
-                            )}
                           </div>
                           <div className="flex items-center gap-1.5 text-[9px] text-zinc-400 truncate">
-                            {user.displayName && <span>@{user.username}</span>}
+                            {user.displayName && linkable && <span>@{user.username}</span>}
                             {user.schoolName && (
                               <>
                                 {user.displayName && <span>·</span>}
@@ -1166,18 +1366,23 @@ export default function LeaderboardPage() {
                     </div>
                   );
                 }) : (
-                  <div className="px-6 py-10 text-center text-zinc-400 text-sm">
-                    No rankings yet. Play live games to appear here.
+                  <div className="px-6 py-10 text-center text-zinc-400 text-sm" style={kf}>
+                    {kh
+                      ? "មិនទាន់មានចំណាត់ថ្នាក់ទេ។ លេងសកម្មភាព GameKit ឬសកម្មភាពផ្ទាល់ ដើម្បីបង្ហាញនៅទីនេះ។"
+                      : "No rankings yet. Play GameKit games or live games to appear here."}
                   </div>
                 )}
               </div>
-              <p className="text-center text-[9px] text-zinc-400 mt-2 font-mono uppercase">
-                Only live game scores count · Solo practice is not tracked
+              <p className="text-center text-[9px] text-zinc-400 mt-2 font-mono uppercase" style={kf}>
+                {kh
+                  ? "ហ្គេមផ្ទាល់ (គ្រូ) + ហ្វឹកហាត់ + បញ្ហាប្រចាំថ្ងៃ = ពិន្ទុ · ចំណាត់ថ្នាក់ update ជាបន្ត · ភ្ញៀវមិនត្រូវបានកត់ត្រា"
+                  : "Live (teacher) + Solo practice + Daily challenge all count · Ranks update in real-time · Guest plays not recorded"}
               </p>
+
             </div>
 
             {/* Rank Tier Showcase */}
-            {currentUser && (
+            {currentUser && isStudent && (
               <div className="bg-white border-3 border-black p-5" style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}>
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
                   <div>
@@ -1202,101 +1407,113 @@ export default function LeaderboardPage() {
             )}
 
             {/* ── Rewards Section (Psychology-driven redesign) ── */}
-            <div>
-              {/* Rewards Store Hero Banner */}
-              <div className="relative overflow-hidden border-3 border-black mb-6"
-                style={{
-                  background: "linear-gradient(135deg,#09090b 0%,#18181b 100%)",
-                  boxShadow: "4px 4px 0 #000",
-                  borderRadius: 0
-                }}>
-                <div className="absolute inset-0 opacity-[0.06]"
-                  style={{ backgroundImage: "radial-gradient(circle,#fff 1px,transparent 1px)", backgroundSize: "16px 16px" }} />
+            {isStudent && (
+              <div>
+                {/* Rewards Store Header — simplified, lighter weight */}
+                <div className="relative overflow-hidden border-2 border-black mb-6"
+                  style={{
+                    background: "#18181b",
+                    borderRadius: 0,
+                  }}>
+                  <div className="absolute inset-0 opacity-[0.05]"
+                    style={{ backgroundImage: "radial-gradient(circle,#fff 1px,transparent 1px)", backgroundSize: "16px 16px" }} />
 
-                {/* Rotating floating Lucide icons instead of emojis */}
-                <div className="absolute top-4 right-8 text-yellow-400/40 select-none animate-bounce" style={{ animationDuration: "3s" }}>
-                  <Gift size={32} strokeWidth={2} />
-                </div>
-                <div className="absolute bottom-4 right-20 text-yellow-400/20 select-none animate-pulse" style={{ animationDuration: "2.5s" }}>
-                  <Star size={24} strokeWidth={2.5} />
-                </div>
-
-                <div className="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 px-6 py-6 z-10">
-                  <div>
-                    <div className="inline-flex items-center gap-1.5 bg-yellow-400 text-black text-[9px] font-black tracking-widest uppercase px-2.5 py-1 border-2 border-black shadow-[2px_2px_0_#000] mb-3">
-                      <Gift size={10} strokeWidth={3} />
-                      <span>{kh ? "រង្វាន់" : "REWARDS STORE"}</span>
-                    </div>
-                    <h2 className="text-xl md:text-3xl font-black text-white leading-tight flex items-center gap-2" style={kf}>
-                      {kh ? "ទទួលបានរង្វាន់ដោយពិន្ទុ" : "Claim with Points"}
-                      <Trophy className="text-yellow-400" size={24} strokeWidth={2.5} />
-                    </h2>
-                    <p className="text-white/60 text-xs mt-1.5 max-w-xs" style={kf}>
-                      {kh
-                        ? "លេងហ្គេម ➔ ប្រមូលពិន្ទុ ➔ ទទួលបានរង្វាន់ពិតៗ!"
-                        : "Play games ➔ Earn points ➔ Get real prizes!"}
-                    </p>
-                  </div>
-
-                  {/* Points Balance Card (Endowment Effect) */}
-                  {currentUser ? (
-                    <div className="flex flex-col items-center gap-0.5 bg-white/5 border-2 border-white/10 rounded-none px-6 py-4 self-start sm:self-auto shadow-inner">
-                      <span className="text-white/50 text-[9px] font-black uppercase tracking-widest leading-none" style={kf}>
-                        {kh ? "ពិន្ទុផ្ទាល់ខ្លួន" : "YOUR BALANCE"}
-                      </span>
-                      <div className="flex items-end gap-1.5 mt-2">
-                        <AnimatedNumber value={userPoints} className="text-3xl font-black text-yellow-400 tabular-nums leading-none font-mono" />
-                        <span className="text-yellow-400/80 text-xs font-bold leading-none mb-0.5">PTS</span>
+                  <div className="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 px-5 py-5 z-10">
+                    <div>
+                      <div className="inline-flex items-center gap-1.5 text-yellow-400 text-[10px] font-bold tracking-widest uppercase mb-2">
+                        <Gift size={12} strokeWidth={2.5} />
+                        <span>{kh ? "រង្វាន់" : "Rewards Store"}</span>
                       </div>
-                      <span className="text-white/35 text-[9px] mt-1.5" style={kf}>
-                        {kh ? "ប្រើដើម្បីប្តូររង្វាន់" : "Redeemable points"}
+                      <h2 className="text-lg md:text-2xl font-bold text-white leading-tight" style={kf}>
+                        {kh ? "ទទួលបានរង្វាន់ដោយពិន្ទុ" : "Claim with Points"}
+                      </h2>
+                    </div>
+
+                    {/* Points Balance Card */}
+                    {currentUser ? (
+                      <div className="flex flex-col items-center gap-0.5 bg-white/5 border border-white/15 px-5 py-3 self-start sm:self-auto">
+                        <span className="text-white/45 text-[9px] font-semibold uppercase tracking-widest leading-none" style={kf}>
+                          {kh ? "ពិន្ទុផ្ទាល់ខ្លួន" : "Your Balance"}
+                        </span>
+                        <div className="flex items-end gap-1.5 mt-1.5">
+                          <AnimatedNumber value={userPoints} className="text-2xl font-bold text-yellow-400 tabular-nums leading-none font-mono" />
+                          <span className="text-yellow-400/70 text-xs font-semibold leading-none mb-0.5">PTS</span>
+                        </div>
+                      </div>
+                    ) : (
+                      <a href="/login"
+                        className="inline-flex items-center gap-2 bg-yellow-400 text-black font-bold text-xs px-4 py-2.5 border-2 border-black self-start"
+                        style={kf}>
+                        <Lock size={12} strokeWidth={2.5} />
+                        {kh ? "ចូលគណនីដើម្បីទទួល" : "Log in to claim"}
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                {/* Claim Success Alerts */}
+                {claimMsg && (
+                  <div className="mb-5 flex items-center gap-3 px-4 py-3 rounded-none bg-green-500 text-white font-black text-xs border-3 border-black shadow-[3px_3px_0_#000]" style={kf}>
+                    <Check size={16} strokeWidth={3.5} className="bg-white text-green-500 rounded-full p-0.5" />
+                    <span>{claimMsg}</span>
+                  </div>
+                )}
+
+                {/* Responsive Cards Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+                  {REWARD_ITEMS.map((item, idx) => (
+                    <RewardCard
+                      key={item.id}
+                      item={item}
+                      userPoints={userPoints}
+                      isLoggedIn={!!currentUser}
+                      lang={lang}
+                      onClaim={handleClaimItem}
+                      userLifetimePoints={currentUser?.lifetimePoints ?? 0}
+                    />
+                  ))}
+                </div>
+
+                {/* How it works + delivery note */}
+                <div className="mt-6 flex flex-col items-center gap-2 text-center">
+                  <p className="text-[11px] text-zinc-500 font-medium" style={kf}>
+                    {kh
+                      ? "លេងហ្គេម ➔ ប្រមូលពិន្ទុ ➔ ទទួលបានរង្វាន់ពិតៗ"
+                      : "Play games ➔ Earn points ➔ Get real prizes"}
+                  </p>
+                  <p className="text-[10px] text-zinc-400" style={kf}>
+                    {kh
+                      ? "ពិន្ទុអាចប្រើដើម្បីប្តូររង្វាន់ · រង្វាន់ត្រូវបានប្រគល់ដោយគ្រូ · ទទួលបានតែម្តងក្នុងមួយធាតុ"
+                      : "Points are redeemable for rewards · Prizes delivered by your teacher · One claim per item"}
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-3 mt-1">
+                    <div className="flex items-center gap-1.5 bg-red-50 border border-red-200 px-2.5 py-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                      <span className="text-[9px] font-black text-red-600" style={kf}>
+                        {kh ? "ហ្គេមផ្ទាល់: ១៥–៤០ ពិន្ទុ/ម្ដង" : "Live game: 15–40 pts/session"}
                       </span>
                     </div>
-                  ) : (
-                    <a href="/login"
-                      className="flex items-center gap-2 bg-yellow-400 text-black font-black text-xs px-5 py-3.5 border-3 border-black self-start"
-                      style={{ boxShadow: "4px 4px 0 #000", ...kf }}>
-                      <Lock size={12} strokeWidth={3} />
-                      {kh ? "ចូលគណនីដើម្បីទទួល" : "LOG IN TO CLAIM"}
-                    </a>
-                  )}
+                    <div className="flex items-center gap-1.5 bg-yellow-50 border border-yellow-200 px-2.5 py-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-yellow-400" />
+                      <span className="text-[9px] font-black text-yellow-700" style={kf}>
+                        {kh ? "ហ្វឹកហាត់: ៥–១៥ ពិន្ទុ/ម្ដង" : "Solo practice: 5–15 pts/session"}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1.5 bg-cyan-50 border border-cyan-200 px-2.5 py-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                      <span className="text-[9px] font-black text-cyan-700" style={kf}>
+                        {kh ? "បញ្ហាថ្ងៃ: ៥–១០ ពិន្ទុ/ថ្ងៃ" : "Daily challenge: 5–10 pts/day"}
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-[9px] text-zinc-400 font-mono uppercase mt-1" style={kf}>
+                    {kh
+                      ? "⚡ រង្វាន់ => ១–២ ខែ–មួយឆ្នាំ ត្រូវការ · ត្រូវការការខិតខំប្រឹងប្រែង"
+                      : "⚡ Rewards require weeks to a full school term of consistent play"}
+                  </p>
                 </div>
               </div>
-
-              {/* Claim Success Alerts */}
-              {claimMsg && (
-                <div className="mb-5 flex items-center gap-3 px-4 py-3 rounded-none bg-green-500 text-white font-black text-xs border-3 border-black shadow-[3px_3px_0_#000]" style={kf}>
-                  <Check size={16} strokeWidth={3.5} className="bg-white text-green-500 rounded-full p-0.5" />
-                  <span>{claimMsg}</span>
-                </div>
-              )}
-
-              {/* Responsive Cards Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-                {REWARD_ITEMS.map((item, idx) => (
-                  <RewardCard
-                    key={item.id}
-                    item={item}
-                    userPoints={userPoints}
-                    isLoggedIn={!!currentUser}
-                    lang={lang}
-                    onClaim={handleClaimItem}
-                    userLifetimePoints={currentUser?.lifetimePoints ?? 0}
-                  />
-                ))}
-              </div>
-
-              {/* Spacing and Delivery disclaimer */}
-              <div className="flex items-center justify-center gap-3 mt-6">
-                <span className="text-zinc-300 text-[10px]">—</span>
-                <p className="text-[10px] text-zinc-400 text-center font-semibold" style={kf}>
-                  {kh
-                    ? "រង្វាន់ត្រូវបានប្រគល់ដោយគ្រូរបស់អ្នក · ទទួលបានតែម្តងក្នុងមួយធាតុ"
-                    : "Prizes delivered by your teacher · One claim per item"}
-                </p>
-                <span className="text-zinc-300 text-[10px]">—</span>
-              </div>
-            </div>
+            )}
           </>
         )}
       </div>

@@ -1,5 +1,5 @@
 import { db } from "../../lib/db";
-import { subscriptions, type Subscription, type NewSubscription, PLAN_FEATURES } from "../schema/subscriptions";
+import { subscriptions, type Subscription, type NewSubscription, type PlanTier, PLAN_FEATURES } from "../schema/subscriptions";
 import { users } from "../schema/users";
 import { eq, and, or, lt, gt, isNull, desc } from "drizzle-orm";
 
@@ -265,7 +265,7 @@ export async function hasActiveSubscription(userId: number): Promise<boolean> {
 /**
  * Get user's current plan tier
  */
-export async function getUserPlanTier(userId: number): Promise<"free" | "teacher_pro" | "school"> {
+export async function getUserPlanTier(userId: number): Promise<PlanTier> {
     const subscription = await getUserActiveSubscription(userId);
     return subscription?.plan || "free";
 }
@@ -297,8 +297,10 @@ export async function getSubscriptionStats() {
         trial: allSubs.filter((s) => s.isTrial).length,
         byPlan: {
             free: allSubs.filter((s) => s.plan === "free").length,
+            family: allSubs.filter((s) => s.plan === "family").length,
             teacher_pro: allSubs.filter((s) => s.plan === "teacher_pro").length,
             school: allSubs.filter((s) => s.plan === "school").length,
+            driving_school: allSubs.filter((s) => s.plan === "driving_school").length,
         },
     };
 

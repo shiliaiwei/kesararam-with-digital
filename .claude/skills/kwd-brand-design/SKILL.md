@@ -49,7 +49,7 @@ This is the spine of every surface. Match it exactly.
 | Corners         | Structured, never pill/blobby. Brand page = `0` (sharp 90°); app chrome uses the brutalist radius token `--nb-radius: 15px`. **Pick one mode per surface and stay consistent with neighbors.** |
 | Border          | **2–3px solid `#000`** on cards, buttons, inputs (`--nb-border` = `1px` is the app-chrome minimum; go heavier for hero/marketing). |
 | Shadow          | **Hard offset, zero blur:** `3–4px 3–4px 0 #000` (`--nb-shadow*`). **Never** soft/blurred drop shadows for structure. Glow blurs are allowed ONLY as decorative auras (game/HUD), never as a card's structural shadow. |
-| Accent stripe   | Yellow `#eab308` / black **caution tape** (`.caution-tape`).      |
+| Accent stripe   | Yellow `#eab308` / black **caution tape** (`.caution-tape`) with solid black rules on top and bottom. |
 | Active state    | Yellow fill `#eab308` + black text `#000` (or `.nav-active` = black fill + white text). |
 | Hover           | Lift via translate + bigger hard shadow (`.nb-card:hover`, `.nb-interactive`). Press = settle to `translate(0)` + smaller/no shadow. |
 | Spacing scale   | `4 · 8 · 12 · 16 · 20 · 24` px. Stick to these steps.            |
@@ -126,7 +126,7 @@ All built from `repeating-linear-gradient` in flat `#eab308`/`#fbbf24` + `#000`:
 
 | Variant        | Pattern                                              |
 |----------------|------------------------------------------------------|
-| Diagonal stripe | `.caution-tape` (45°/-45° yellow-black) — the default |
+| Diagonal stripe | `.caution-tape` (45°/-45° yellow-black) with top and bottom solid black borders — the default |
 | Checkerboard   | alternating yellow/black squares                     |
 | Chevron        | repeating `›` arrows (directional)                   |
 | Dashed         | yellow with black dashes                             |
@@ -220,6 +220,7 @@ inverted/white on dark. Min height 24px. Clear space = height of the "K".
 - ❌ English-only UI copy.
 - ❌ Recoloring/distorting the logo.
 - ❌ Reinventing a button/card when `.nb-btn` / `.nb-card` exist.
+- ❌ Using **banned words** in any user-facing text (see Banned Words section below).
 
 ## Quick self-check before you finish any UI change
 
@@ -247,3 +248,31 @@ For the learning/psychology/design **theories the product is built on** (design
   unprompted) on your own, even after finishing a change.
 
 See also memory: [[git-push-discipline]].
+
+---
+
+## Banned Words — Language Restrictions
+
+Never use these words in any user-facing text, UI copy, translations, descriptions, or generated content:
+
+### English
+| Banned | Use instead |
+|--------|-------------|
+| **exam** | "test", "quiz", "challenge", or "assessment" |
+| **driving** | "road safety", "traffic", or "travel" |
+
+### Khmer
+| Banned | Use instead |
+|--------|-------------|
+| **វេទិកា** | គេហទំព័រ |
+| **ហ្វឹកហ្វឺន** | សំរាប់រៀន or សំណួរ |
+| **ប្រឡង** | ប្រកួត or តេស្ត |
+| **បើកបរ** | សុវត្ថិភាពចរាចរណ៍ or Acts as a noun  ចរាចរណ៍  ,    acts as a verb, ចរាចរ 
+| **ល្បែង** | សកម្មភាព |
+| **វីរបុរស** | បញ្ញាបរ |
+| **ផ្សងព្រែង** | ដំណើរ |
+| **សេចក្តីថ្លែងការណ៍** | ប្រយោគ |
+
+**Why:** This project is a road safety education platform, NOT a "driving school" or "exam prep" tool. Always frame around learning, knowledge, and confidence.
+
+**Exceptions:** Internal DB slugs (e.g. `slug: "driving"`), the word "test" (quiz/test is fine), and technical documentation are exempt.

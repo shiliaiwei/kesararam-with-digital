@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLang } from "@/context/lang-context";
 import {
-  Users,
   ChevronRight,
   Zap,
   BookOpenCheck,
@@ -14,11 +13,13 @@ import {
   Flame,
   Clock,
   Swords,
-  CalendarDays,
   TriangleAlert,
-  Star,
-  GraduationCap
+  Sparkles,
+  Gauge,
+  Users,
+  Lock,
 } from "lucide-react";
+import { GAMEKIT_CARDS } from "@/lib/gamekit/registry";
 
 // ─── BRAND COLORS ─────────────────────────────────────────────────────────────
 const BRAND = {
@@ -34,20 +35,21 @@ const BRAND = {
   white: "#ffffff",
 };
 
-// ─── GAME MODES DATA (Alternating Yellow & Green Cards, Simplified Wording) ───
+// ─── GAME MODES DATA ──────────────────────────────────────────────────────────
 const GAME_MODES = [
   {
     id: "quick-quiz",
     number: "01",
     title: "Quick Quiz",
     titleKh: "សំណួរលឿន",
-    desc: "10 random questions. Fast, no pressure, zero setup. Perfect warm-up.",
-    descKh: "សំណួរចៃដន្យ ១០ — មិនបាច់បង្កើតគណនី",
+    desc: "10 random questions. Fast, no pressure. Perfect warm-up.",
+    descKh: "សំណួរចៃដន្យ ១០ — ឆាប់រហ័ស គ្មានសម្ពាធ ល្អសម្រាប់កម្ដៅខ្លួន។",
     href: "/play/solo?mode=quick-quiz",
     badge: "10 Qs",
     timer: "30s",
-    cta: "PLAY NOW",
-    ctaKh: "លេងឥឡូវ",
+    difficulty: 1,
+    popular: true,
+    color: BRAND.yellow,
     Icon: Zap,
   },
   {
@@ -55,13 +57,14 @@ const GAME_MODES = [
     number: "02",
     title: "Speed Round",
     titleKh: "វគ្គល្បឿន",
-    desc: "15 seconds per question. Think fast, tap faster. Adrenaline guaranteed.",
-    descKh: "ចុចឆាប់ — ១៥វិនាទីក្នុងមួយសំណួរ",
+    desc: "15 seconds per question. Think fast, tap faster.",
+    descKh: "១៥វិនាទីក្នុងមួយសំណួរ — គិតលឿន ចុចលឿន។",
     href: "/play/solo?mode=speed-round",
     badge: "20 Qs",
     timer: "15s",
-    cta: "PLAY NOW",
-    ctaKh: "លេងឥឡូវ",
+    difficulty: 3,
+    popular: false,
+    color: BRAND.red,
     Icon: Flame,
   },
   {
@@ -69,13 +72,14 @@ const GAME_MODES = [
     number: "03",
     title: "Sign Challenge",
     titleKh: "ប្រឡងសញ្ញា",
-    desc: "Test your visual memory. Identify traffic signs. Images only, no text.",
-    descKh: "ស្គាល់សញ្ញាចរាចរ — រូបភាពប៉ុណ្ណោះ",
+    desc: "Identify traffic signs from images only. Test your memory.",
+    descKh: "ស្គាល់សញ្ញាចរាចរពីរូបភាព — សាកល្បងការចងចាំ។",
     href: "/play/solo?mode=sign-challenge",
     badge: "15 Qs",
     timer: "20s",
-    cta: "PLAY NOW",
-    ctaKh: "លេងឥឡូវ",
+    difficulty: 2,
+    popular: false,
+    color: BRAND.cyan,
     Icon: TriangleAlert,
   },
   {
@@ -83,18 +87,193 @@ const GAME_MODES = [
     number: "04",
     title: "Mixed Practice",
     titleKh: "ហ្វឹកហាត់ចម្រុះ",
-    desc: "All question types mixed together. Complete practice experience.",
-    descKh: "ចម្រុះប្រភេទសំណួរទាំងអស់ — ហ្វឹកហាត់ពេញលេញ",
+    desc: "All question types together. The complete practice run.",
+    descKh: "ប្រភេទសំណួរទាំងអស់ — ហ្វឹកហាត់ពេញលេញ។",
     href: "/play/solo?mode=mixed-practice",
     badge: "20 Qs",
     timer: "30s",
-    cta: "PLAY NOW",
-    ctaKh: "លេងឥឡូវ",
+    difficulty: 2,
+    popular: false,
+    color: BRAND.purple,
     Icon: Swords,
   },
 ];
 
-// ─── OTP-STYLE CODE INPUT (Brutalist Theme) ───────────────────────────────────
+// ─── DIFFICULTY METER ─────────────────────────────────────────────────────────
+function DifficultyDots({ level, kh }: { level: number; kh: boolean }) {
+  const labels = kh
+    ? ["ងាយ", "មធ្យម", "ពិបាក"]
+    : ["Easy", "Medium", "Hard"];
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+      <Gauge size={13} strokeWidth={2.5} style={{ color: BRAND.black }} />
+      <div style={{ display: "flex", gap: 3 }}>
+        {[1, 2, 3].map((i) => (
+          <span
+            key={i}
+            style={{
+              width: 14,
+              height: 6,
+              border: `1.5px solid ${BRAND.black}`,
+              background: i <= level ? BRAND.black : BRAND.white,
+            }}
+          />
+        ))}
+      </div>
+      <span style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: 0.5 }}>
+        {labels[level - 1]}
+      </span>
+    </div>
+  );
+}
+
+// ─── GAME MODE CARD ───────────────────────────────────────────────────────────
+function GameCard({ mode, kh, khFont }: {
+  mode: typeof GAME_MODES[number];
+  kh: boolean;
+  khFont: React.CSSProperties;
+}) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <Link
+      href={mode.href}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        background: BRAND.white,
+        border: `4px solid ${BRAND.black}`,
+        boxShadow: hovered ? `10px 10px 0 ${BRAND.black}` : `5px 5px 0 ${BRAND.black}`,
+        transform: hovered ? "translate(-4px, -4px)" : "translate(0,0)",
+        transition: "transform 0.14s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.14s cubic-bezier(0.34,1.56,0.64,1)",
+        textDecoration: "none",
+        color: BRAND.black,
+        position: "relative",
+        overflow: "hidden",
+        height: "100%",
+      }}
+    >
+      {/* POPULAR ribbon */}
+      {mode.popular && (
+        <div style={{
+          position: "absolute",
+          top: 14,
+          right: -34,
+          transform: "rotate(45deg)",
+          background: BRAND.black,
+          color: BRAND.yellow,
+          fontSize: 9,
+          fontWeight: 900,
+          letterSpacing: 1.5,
+          padding: "4px 40px",
+          zIndex: 3,
+          ...khFont,
+        }}>
+          {kh ? "ពេញនិយម" : "POPULAR"}
+        </div>
+      )}
+
+      {/* Colored illustration banner */}
+      <div style={{
+        height: 96,
+        background: mode.color,
+        borderBottom: `4px solid ${BRAND.black}`,
+        position: "relative",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        overflow: "hidden",
+      }}>
+        {/* dot pattern */}
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "radial-gradient(rgba(0,0,0,0.14) 1.5px, transparent 1.5px)",
+          backgroundSize: "14px 14px",
+        }} />
+        {/* giant watermark number */}
+        <span style={{
+          position: "absolute",
+          left: 10,
+          bottom: -18,
+          fontSize: 80,
+          fontWeight: 900,
+          fontFamily: "Impact, 'Arial Black', sans-serif",
+          color: "rgba(0,0,0,0.12)",
+          lineHeight: 1,
+          userSelect: "none",
+        }}>
+          {mode.number}
+        </span>
+        {/* icon tile */}
+        <div style={{
+          width: 56,
+          height: 56,
+          background: BRAND.white,
+          border: `3px solid ${BRAND.black}`,
+          boxShadow: hovered ? `5px 5px 0 ${BRAND.black}` : `3px 3px 0 ${BRAND.black}`,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          transform: hovered ? "rotate(-10deg) scale(1.08)" : "none",
+          transition: "transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s",
+          zIndex: 2,
+        }}>
+          <mode.Icon size={26} strokeWidth={2.5} style={{ color: mode.color === BRAND.yellow ? BRAND.yellowDark : mode.color }} />
+        </div>
+      </div>
+
+      {/* Content */}
+      <div style={{ padding: "16px 18px 18px", display: "flex", flexDirection: "column", flex: 1, gap: 10 }}>
+        {/* meta chips */}
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <span style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 10, fontWeight: 800, fontFamily: "monospace", border: `2px solid ${BRAND.black}`, padding: "2px 7px" }}>
+            {mode.badge}
+          </span>
+          <span style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 10, fontWeight: 800, fontFamily: "monospace", border: `2px solid ${BRAND.black}`, padding: "2px 7px" }}>
+            <Clock size={11} strokeWidth={2.5} /> {mode.timer}
+          </span>
+        </div>
+
+        <h3 style={{ ...khFont, fontSize: 19, fontWeight: 900, margin: 0, lineHeight: 1.15, letterSpacing: "-0.5px", color: hovered ? (mode.color === BRAND.yellow ? BRAND.yellowDark : mode.color) : BRAND.black, transition: "color 0.2s" }}>
+          {kh ? mode.titleKh : mode.title}
+        </h3>
+
+        <p style={{ ...khFont, fontSize: 12.5, fontWeight: 600, color: "rgba(0,0,0,0.62)", margin: 0, lineHeight: 1.45, flex: 1 }}>
+          {kh ? mode.descKh : mode.desc}
+        </p>
+
+        <DifficultyDots level={mode.difficulty} kh={kh} />
+
+        {/* CTA */}
+        <div style={{
+          marginTop: 4,
+          padding: "11px 18px",
+          background: hovered ? mode.color : BRAND.white,
+          color: BRAND.black,
+          border: `3px solid ${BRAND.black}`,
+          fontWeight: 900,
+          fontSize: 12,
+          letterSpacing: 2,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 6,
+          transition: "all 0.14s cubic-bezier(0.34,1.56,0.64,1)",
+          boxShadow: hovered ? "none" : `4px 4px 0 ${BRAND.black}`,
+          transform: hovered ? "translate(3px,3px)" : "none",
+        }}>
+          <Play size={13} fill="currentColor" strokeWidth={3} />
+          <span style={khFont}>{kh ? "លេងឥឡូវ" : "PLAY NOW"}</span>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+// ─── OTP-STYLE CODE INPUT ─────────────────────────────────────────────────────
 function OtpCodeInput({ lang }: { lang: string }) {
   const kh = lang === "kh";
   const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
@@ -134,40 +313,40 @@ function OtpCodeInput({ lang }: { lang: string }) {
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 24, width: "100%" }}>
-      {/* Cells Grid */}
-      <div style={{ display: "flex", gap: 8, justifyContent: "center", flexWrap: "wrap", width: "100%" }}>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16, width: "100%" }}>
+      <div style={{ display: "flex", gap: 7, justifyContent: "center", flexWrap: "wrap", width: "100%" }}>
         {cells.map((cell, i) => (
           <input
             key={i}
             ref={(el) => { refs.current[i] = el; }}
             value={cell}
             maxLength={1}
+            inputMode="text"
+            autoComplete="off"
+            aria-label={`${kh ? "តួអក្សរកូដទី" : "Room code character"} ${i + 1}`}
             onChange={(e) => handleChange(i, e.target.value)}
             onKeyDown={(e) => handleKeyDown(i, e)}
             onPaste={handlePaste}
             style={{
-              width: 44,
-              height: 56,
+              width: 42,
+              height: 52,
               border: `3px solid ${BRAND.black}`,
               background: cell ? "#fefce8" : BRAND.white,
               color: BRAND.black,
-              fontSize: 22,
+              fontSize: 21,
               fontWeight: 900,
               fontFamily: "monospace",
               textAlign: "center",
               outline: "none",
-              cursor: "text",
-              transition: "transform 0.1s, box-shadow 0.1s, background-color 0.1s",
-              caretColor: BRAND.yellow,
               borderRadius: 0,
-              boxShadow: cell ? `4px 4px 0 ${BRAND.yellow}` : `3px 3px 0 ${BRAND.black}`,
-              transform: cell ? "translate(-2px, -2px)" : "none",
+              boxShadow: cell ? `3px 3px 0 ${BRAND.yellow}` : `3px 3px 0 ${BRAND.black}`,
+              transform: cell ? "translate(-1px,-1px)" : "none",
+              transition: "all 0.1s",
             }}
             onFocus={(e) => {
               e.target.style.borderColor = BRAND.yellow;
-              e.target.style.boxShadow = `4px 4px 0 ${BRAND.black}`;
-              e.target.style.transform = "translate(-2px, -2px)";
+              e.target.style.boxShadow = `3px 3px 0 ${BRAND.black}`;
+              e.target.style.transform = "translate(-1px,-1px)";
             }}
             onBlur={(e) => {
               if (!e.target.value) {
@@ -180,340 +359,43 @@ function OtpCodeInput({ lang }: { lang: string }) {
         ))}
       </div>
 
-      {/* Action Button */}
       <button
         onClick={join}
         disabled={code.length !== 6}
-        className="otp-join-btn"
         style={{
           ...khFont,
           width: "100%",
-          maxWidth: 360,
-          height: 54,
-          background: code.length === 6 ? BRAND.yellow : "#f4f4f5",
-          color: BRAND.black,
+          height: 50,
+          background: code.length === 6 ? BRAND.black : "#e4e4e7",
+          color: code.length === 6 ? BRAND.white : "#a1a1aa",
           border: `3px solid ${BRAND.black}`,
           fontWeight: 900,
-          fontSize: 16,
-          letterSpacing: 2,
+          fontSize: 14,
+          letterSpacing: kh ? "0px" : "2px",
           cursor: code.length === 6 ? "pointer" : "not-allowed",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          gap: 10,
+          gap: 8,
           transition: "all 0.1s",
-          boxShadow: code.length === 6 ? `6px 6px 0 ${BRAND.black}` : `2px 2px 0 ${BRAND.black}`,
+          boxShadow: code.length === 6 ? `4px 4px 0 ${BRAND.yellow}` : "none",
           borderRadius: 0,
-          position: "relative",
-          transform: "translate(0,0)",
         }}
         onMouseEnter={(e) => {
           if (code.length === 6) {
-            e.currentTarget.style.transform = "translate(-3px,-3px)";
-            e.currentTarget.style.boxShadow = `9px 9px 0 ${BRAND.black}`;
+            e.currentTarget.style.transform = "translate(-2px,-2px)";
+            e.currentTarget.style.boxShadow = `6px 6px 0 ${BRAND.yellow}`;
           }
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = "translate(0,0)";
-          e.currentTarget.style.boxShadow = code.length === 6 ? `6px 6px 0 ${BRAND.black}` : `2px 2px 0 ${BRAND.black}`;
-        }}
-        onMouseDown={(e) => {
-          if (code.length === 6) {
-            e.currentTarget.style.transform = "translate(3px,3px)";
-            e.currentTarget.style.boxShadow = "none";
-          }
-        }}
-        onMouseUp={(e) => {
-          if (code.length === 6) {
-            e.currentTarget.style.transform = "translate(-3px,-3px)";
-            e.currentTarget.style.boxShadow = `9px 9px 0 ${BRAND.black}`;
-          }
+          e.currentTarget.style.boxShadow = code.length === 6 ? `4px 4px 0 ${BRAND.yellow}` : "none";
         }}
       >
-        {kh ? "ចូលរួមលេងផ្ទាល់" : "JOIN ROOM NOW"}
-        <ChevronRight size={20} strokeWidth={3} />
+        {kh ? "ចូលរួមលេង" : "JOIN GAME"}
+        <ChevronRight size={18} strokeWidth={3} />
       </button>
     </div>
-  );
-}
-
-// ─── PREMIUM THEMES FOR EACH GAME MODE ───────────────────────────────────────
-const MODE_THEMES: Record<string, {
-  primary: string;       // Theme color for outline, badge, button hover
-  gradient: string;      // Premium linear gradient for top illustration area
-  cardBg: string;        // Soft, elegant background color for the card body
-  iconBg: string;        // Icon box background
-  patternColor: string;  // Color for radial dot pattern
-  shadowGlow: string;    // Shadow glow for the card on hover
-  numberStroke: string;  // Stroke color for the giant background watermark number
-}> = {
-  "quick-quiz": {
-    primary: "#EAB308", // Yellow
-    gradient: "linear-gradient(135deg, #FEF08A 0%, #FDE047 50%, #CA8A04 100%)",
-    cardBg: "#FCFDF2",
-    iconBg: "#FEF08A",
-    patternColor: "rgba(234, 179, 8, 0.12)",
-    shadowGlow: "rgba(234, 179, 8, 0.25)",
-    numberStroke: "rgba(234, 179, 8, 0.08)",
-  },
-  "speed-round": {
-    primary: "#EF4444", // Red/Orange
-    gradient: "linear-gradient(135deg, #FF8A80 0%, #FF5252 50%, #D50000 100%)",
-    cardBg: "#FFF5F5",
-    iconBg: "#FFE4E6",
-    patternColor: "rgba(239, 68, 68, 0.12)",
-    shadowGlow: "rgba(239, 68, 68, 0.25)",
-    numberStroke: "rgba(239, 68, 68, 0.08)",
-  },
-  "sign-challenge": {
-    primary: "#06B6D4", // Cyan
-    gradient: "linear-gradient(135deg, #A5F3FC 0%, #22D3EE 50%, #0891B2 100%)",
-    cardBg: "#F0FDFA",
-    iconBg: "#CFFAFE",
-    patternColor: "rgba(6, 182, 212, 0.12)",
-    shadowGlow: "rgba(6, 182, 212, 0.25)",
-    numberStroke: "rgba(6, 182, 212, 0.08)",
-  },
-  "mixed-practice": {
-    primary: "#A855F7", // Purple
-    gradient: "linear-gradient(135deg, #E9D5FF 0%, #C084FC 50%, #9333EA 100%)",
-    cardBg: "#FAF5FF",
-    iconBg: "#F3E8FF",
-    patternColor: "rgba(168, 85, 247, 0.12)",
-    shadowGlow: "rgba(168, 85, 247, 0.25)",
-    numberStroke: "rgba(168, 85, 247, 0.08)",
-  },
-  // Note: Only 4 game modes are active: quick-quiz, speed-round, sign-challenge, mixed-practice
-  // Other modes (survival-quiz, zen-review, final-practice) are hidden.
-};
-
-// ─── GAME MODE CARD (Premium & Creative Styling) ───────────────────────────────
-function GameCard({ mode, index, kh, khFont }: {
-  mode: typeof GAME_MODES[number];
-  index: number;
-  kh: boolean;
-  khFont: React.CSSProperties;
-}) {
-  const [hovered, setHovered] = useState(false);
-  const [pressed, setPressed] = useState(false);
-
-  // Retrieve theme for this specific game mode (fallback to quick-quiz just in case)
-  const theme = MODE_THEMES[mode.id] || MODE_THEMES["quick-quiz"];
-  const textColor = BRAND.black;
-  const borderColor = BRAND.black;
-
-  // Premium double-shadow combination
-  const cardShadow = pressed
-    ? `3px 3px 0 ${BRAND.black}`
-    : hovered
-      ? `12px 12px 0 ${BRAND.black}, 12px 12px 24px ${theme.shadowGlow}`
-      : `8px 8px 0 ${BRAND.black}`;
-
-  const cardTransform = pressed
-    ? "translate(5px, 5px)"
-    : hovered
-      ? "translate(-4px, -4px)"
-      : "translate(0, 0)";
-
-  return (
-    <Link
-      href={mode.href}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => { setHovered(false); setPressed(false); }}
-      onMouseDown={() => setPressed(true)}
-      onMouseUp={() => setPressed(false)}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        background: theme.cardBg,
-        border: `4px solid ${borderColor}`,
-        boxShadow: cardShadow,
-        transform: cardTransform,
-        transition: "transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease",
-        textDecoration: "none",
-        color: textColor,
-        position: "relative",
-        overflow: "hidden",
-        cursor: "pointer",
-        borderRadius: 0,
-        height: "100%",
-      }}
-    >
-      {/* Giant Outline Watermark Number */}
-      <div style={{
-        position: "absolute",
-        right: 12,
-        bottom: 24,
-        fontSize: 100,
-        fontWeight: 900,
-        lineHeight: 1,
-        fontFamily: "Impact, 'Arial Black', sans-serif",
-        color: "transparent",
-        WebkitTextStroke: `2px ${theme.numberStroke}`,
-        pointerEvents: "none",
-        userSelect: "none",
-        zIndex: 0,
-        transition: "transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
-        transform: hovered ? "scale(1.15) translate(-4px, -4px)" : "scale(1) translate(0, 0)",
-      }}>
-        {mode.number}
-      </div>
-
-      {/* Illustration Area */}
-      <div style={{
-        margin: "20px 20px 0",
-        height: 120,
-        background: theme.gradient,
-        border: `3px solid ${borderColor}`,
-        position: "relative",
-        overflow: "hidden",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 1,
-      }}>
-        {/* Pattern overlay */}
-        <div style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: `radial-gradient(${theme.patternColor} 1.5px, transparent 1.5px)`,
-          backgroundSize: "12px 12px",
-          opacity: 0.85,
-        }} />
-
-        {/* Glassmorphic border ring decoration */}
-        <div style={{
-          position: "absolute",
-          width: 86,
-          height: 86,
-          borderRadius: "50%",
-          border: "2px dashed rgba(255, 255, 255, 0.3)",
-          animation: hovered ? "spin 12s linear infinite" : "none",
-          pointerEvents: "none",
-        }} />
-
-        {/* Centered Icon with dynamic hover effects */}
-        <div style={{
-          width: 58,
-          height: 58,
-          background: BRAND.white,
-          border: `3px solid ${borderColor}`,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: textColor,
-          transform: hovered ? "rotate(-12deg) scale(1.12)" : "rotate(0deg)",
-          transition: "transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)",
-          boxShadow: hovered ? `5px 5px 0 ${borderColor}` : `3px 3px 0 ${borderColor}`,
-        }}>
-          <mode.Icon
-            size={26}
-            strokeWidth={2.5}
-            style={{
-              animation: hovered ? "pulse-subtle 1.2s infinite ease-in-out" : "none",
-              color: theme.primary,
-            }}
-          />
-        </div>
-
-        {/* Small count badge (Glassmorphic) */}
-        <div style={{
-          position: "absolute",
-          bottom: 8,
-          left: 8,
-          background: "rgba(0, 0, 0, 0.72)",
-          backdropFilter: "blur(8px)",
-          color: BRAND.white,
-          fontSize: 9,
-          fontFamily: "monospace",
-          fontWeight: 900,
-          padding: "3px 8px",
-          border: "1px solid rgba(255, 255, 255, 0.15)",
-        }}>
-          {mode.badge}
-        </div>
-
-        {/* Timer badge (Glassmorphic) */}
-        <div style={{
-          position: "absolute",
-          bottom: 8,
-          right: 8,
-          background: "rgba(0, 0, 0, 0.72)",
-          backdropFilter: "blur(8px)",
-          color: BRAND.white,
-          fontSize: 9,
-          fontFamily: "monospace",
-          fontWeight: 900,
-          padding: "3px 8px",
-          display: "flex",
-          alignItems: "center",
-          gap: 3,
-          border: "1px solid rgba(255, 255, 255, 0.15)",
-        }}>
-          <Clock size={10} style={{ color: theme.primary }} />
-          {mode.timer}
-        </div>
-      </div>
-
-      {/* Card Content */}
-      <div style={{
-        padding: "16px 20px 20px",
-        display: "flex",
-        flexDirection: "column",
-        flex: 1,
-        gap: 10,
-        position: "relative",
-        zIndex: 1,
-      }}>
-        <h3 style={{
-          ...khFont,
-          fontSize: 19,
-          fontWeight: 900,
-          margin: 0,
-          lineHeight: 1.15,
-          letterSpacing: "-0.5px",
-          transition: "color 0.2s ease",
-          color: hovered ? theme.primary : textColor,
-        }}>
-          {kh ? mode.titleKh : mode.title}
-        </h3>
-
-        <p style={{
-          ...khFont,
-          fontSize: 13,
-          fontWeight: 600,
-          color: "rgba(0, 0, 0, 0.65)",
-          margin: 0,
-          lineHeight: 1.45,
-          flex: 1,
-        }}>
-          {kh ? mode.descKh : mode.desc}
-        </p>
-
-        {/* Play CTA Button */}
-        <div style={{
-          marginTop: 8,
-          padding: "12px 20px",
-          background: hovered ? theme.primary : BRAND.white,
-          color: BRAND.black,
-          border: `3px solid ${borderColor}`,
-          fontWeight: 900,
-          fontSize: 12,
-          letterSpacing: 2,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 6,
-          transition: "all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1)",
-          borderRadius: 0,
-          boxShadow: hovered ? "none" : `4px 4px 0 ${borderColor}`,
-          transform: hovered ? "translate(3px, 3px)" : "none",
-        }}>
-          <span style={khFont}>{kh ? mode.ctaKh : mode.cta}</span>
-          <ChevronRight size={14} strokeWidth={3} />
-        </div>
-      </div>
-    </Link>
   );
 }
 
@@ -531,7 +413,22 @@ export default function PlayPage() {
         if (d && !d.error) {
           if (d.role === "student" && (!d.schoolName || !d.province || !d.gradeLevel)) {
             router.push("/profile/student");
+            return;
           }
+          // A student who no longer belongs to a class (e.g. removed/kicked by a
+          // teacher) must re-join via a class code before they can play.
+          if (d.role === "student" && d.hasClass === false) {
+            router.push("/profile/student");
+            return;
+          }
+          // Auto-rejoin: if the student is already in an in-progress session
+          // (lobby/active/paused), jump straight back in — no code re-entry.
+          fetch("/api/game/my-session")
+            .then(r => r.ok ? r.json() : null)
+            .then(s => {
+              if (s && s.code) router.push(`/play/${s.code}`);
+            })
+            .catch(() => { });
         }
       })
       .catch(() => { });
@@ -545,364 +442,229 @@ export default function PlayPage() {
       fontFamily: "system-ui, -apple-system, sans-serif",
       WebkitFontSmoothing: "antialiased",
     }}>
-
-      {/* ═══ SECTION 1: JOIN A LIVE GAME (HERO) ══════════════════════════ */}
-      <section style={{
-        background: BRAND.white,
-        position: "relative",
-        overflow: "hidden",
-        borderBottom: `4px solid ${BRAND.black}`,
-      }}>
-        {/* Retro Grid Background */}
+      {/* ═══ HERO — PLAY FIRST ═════════════════════════════════════════════ */}
+      <section style={{ position: "relative", overflow: "hidden", borderBottom: `4px solid ${BRAND.black}`, background: BRAND.yellow }}>
+        {/* dot pattern */}
         <div style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: "linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-          pointerEvents: "none",
+          position: "absolute", inset: 0,
+          backgroundImage: "radial-gradient(rgba(0,0,0,0.10) 2px, transparent 2px)",
+          backgroundSize: "26px 26px", pointerEvents: "none",
         }} />
+        <div className="play-hero">
+          <div className="play-hero-text">
+            <div style={{
+              ...khFont,
+              display: "inline-flex", alignItems: "center", gap: 7,
+              background: BRAND.black, color: BRAND.yellow,
+              fontSize: 12, fontWeight: 900, letterSpacing: kh ? "0.5px" : "2px", textTransform: "uppercase",
+              padding: "6px 14px", marginBottom: 18,
+            }}>
+              <Sparkles size={14} strokeWidth={2.5} />
+              {kh ? "លេងដើម្បីរៀន រៀនដើម្បីសុវត្ថិភាព" : "Play to Learn, Learn for Safety"}
+            </div>
 
-        <div className="play-hero-grid">
-          {/* Left Text Column */}
-          <div className="play-hero-left">
             <h1 style={{
               ...khFont,
-              fontSize: "clamp(2rem, 3.8vw, 3.2rem)",
-              fontWeight: 900,
-              color: BRAND.black,
-              lineHeight: 1.1,
-              margin: "0",
-              letterSpacing: "-1.5px",
-              whiteSpace: "nowrap" as const,
+              fontSize: "clamp(2.2rem, 5.5vw, 4rem)",
+              fontWeight: 900, color: BRAND.black,
+              lineHeight: kh ? 1.35 : 1.05,
+              margin: 0,
+              letterSpacing: kh ? "0px" : "-2px",
             }}>
-              <span style={{
-                background: BRAND.yellow,
-                padding: "10px 20px",
-                border: `3px solid ${BRAND.black}`,
-                boxShadow: `5px 5px 0 ${BRAND.black}`,
-                display: "inline-block",
-              }}>
-                {kh ? "កូដបន្ទប់" : "Room Code"}
-              </span>
+              {kh ? "លេងសប្បាយៗ យល់ដឹងច្បាប់ចរាចរណ៍!" : "Ready to become a road safety champion?"}
             </h1>
+
+            <p style={{
+              ...khFont,
+              fontSize: "clamp(1rem, 2vw, 1.25rem)", fontWeight: 600,
+              color: "rgba(0,0,0,0.7)", margin: "14px 0 26px", maxWidth: 460, lineHeight: 1.5,
+            }}>
+              {kh
+                ? "ជ្រើសរើសរបៀបលេង សន្សំពិន្ទុ និងរៀនច្បាប់ចរាចរណ៍ដោយសប្បាយៗ — មិនបាច់ចុះឈ្មោះ!"
+                : "Pick your favorite mode to test your road safety skills, earn points, and climb the ranks instantly — no sign-up required!"}
+            </p>
+
+            <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+              <a href="#modes" style={{
+                ...khFont,
+                display: "flex", alignItems: "center", gap: 10,
+                padding: "16px 34px", background: BRAND.black, color: BRAND.white,
+                border: `3px solid ${BRAND.black}`, fontWeight: 900, fontSize: 15,
+                letterSpacing: kh ? "0px" : "1.5px",
+                textDecoration: "none", boxShadow: `5px 5px 0 rgba(0,0,0,0.25)`,
+              }}>
+                <Play size={16} fill="currentColor" strokeWidth={3} />
+                {kh ? "ចាប់ផ្ដើមលេង" : "START THE CHALLENGE"}
+              </a>
+              <Link href="/leaderboard" style={{
+                ...khFont,
+                display: "flex", alignItems: "center", gap: 8,
+                padding: "16px 28px", background: BRAND.white, color: BRAND.black,
+                border: `3px solid ${BRAND.black}`, fontWeight: 900, fontSize: 14,
+                letterSpacing: kh ? "0px" : "1px",
+                textDecoration: "none", boxShadow: `5px 5px 0 rgba(0,0,0,0.25)`,
+              }}>
+                <Trophy size={16} strokeWidth={2.5} />
+                {kh ? "តារាងពិន្ទុ" : "Leaderboard"}
+              </Link>
+            </div>
           </div>
 
-          {/* Right Input Column */}
-          <div className="play-hero-right">
+          {/* Room code join — compact secondary */}
+          <div className="play-hero-join">
             <div style={{
-              background: BRAND.white,
-              border: `4px solid ${BRAND.black}`,
-              padding: "24px 20px",
-              boxShadow: `6px 6px 0 ${BRAND.black}`,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
+              background: BRAND.white, border: `4px solid ${BRAND.black}`,
+              padding: "22px 20px", boxShadow: `7px 7px 0 ${BRAND.black}`,
             }}>
-              <div style={{
-                ...khFont,
-                fontSize: 13,
-                fontWeight: 900,
-                letterSpacing: 3,
-                color: BRAND.black,
-                textAlign: "center",
-                marginBottom: 16,
-              }}>
-                {kh ? "បញ្ចូលលេខកូដបន្ទប់" : "ENTER ROOM CODE"}
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+                <Users size={18} strokeWidth={2.5} />
+                <span style={{ ...khFont, fontSize: 14, fontWeight: 900, letterSpacing: kh ? "0px" : "1px" }}>
+                  {kh ? "លេងជាមួយថ្នាក់រៀន" : "Play with Classmates"}
+                </span>
               </div>
-
+              <p style={{ ...khFont, fontSize: 11.5, fontWeight: 600, color: "rgba(0,0,0,0.55)", margin: "0 0 16px" }}>
+                {kh ? "បញ្ចូលកូដ ៦ ខ្ទង់ពីលោកគ្រូអ្នកគ្រូ ដើម្បីចាប់ផ្ដើមលេងជាមួយមិត្តភក្តិភ្លាមៗ!" : "Enter the 6-digit code shared by your teacher to join the live classroom challenge!"}
+              </p>
               <OtpCodeInput lang={lang} />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ═══ SECTION 2: CHOOSE YOUR MODE ═════════════════════════════════ */}
-      <section style={{
-        background: BRAND.white,
-        padding: "0",
-      }}>
-        {/* Responsive stamp mode header */}
-        <div className="mode-header">
-          <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-            <h2 style={{
-              ...khFont,
-              fontSize: "clamp(1.8rem, 3.2vw, 2.8rem)",
-              fontWeight: 900,
-              color: BRAND.black,
-              margin: 0,
-              letterSpacing: "-1.5px",
-            }}>
-              {kh ? "ជ្រើសរើសរបៀបលេង" : "Select a Game Mode"}
-            </h2>
-          </div>
-
-          {/* Leaderboard and Learn actions */}
-          <div className="mode-header-actions" style={{ display: "flex", gap: 14 }}>
-            <Link href="/leaderboard" style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              padding: "12px 24px",
-              background: BRAND.white,
-              color: BRAND.black,
-              border: `3px solid ${BRAND.black}`,
-              fontWeight: 900,
-              fontSize: 13,
-              letterSpacing: 1,
-              textDecoration: "none",
-              transition: "all 0.1s",
-              boxShadow: `4px 4px 0 ${BRAND.black}`,
-              ...khFont,
-            }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translate(-2px,-2px)";
-                e.currentTarget.style.boxShadow = `6px 6px 0 ${BRAND.black}`;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translate(0,0)";
-                e.currentTarget.style.boxShadow = `4px 4px 0 ${BRAND.black}`;
-              }}
-            >
-              <Trophy size={16} strokeWidth={2.5} />
-              {kh ? "តារាងពិន្ទុ" : "Leaderboard"}
-            </Link>
-
-            <Link href="/learn" style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              padding: "12px 24px",
-              background: BRAND.yellow,
-              color: BRAND.black,
-              border: `3px solid ${BRAND.black}`,
-              fontWeight: 900,
-              fontSize: 13,
-              letterSpacing: 1,
-              textDecoration: "none",
-              transition: "all 0.1s",
-              boxShadow: `4px 4px 0 ${BRAND.black}`,
-              ...khFont,
-            }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translate(-2px,-2px)";
-                e.currentTarget.style.boxShadow = `6px 6px 0 ${BRAND.black}`;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translate(0,0)";
-                e.currentTarget.style.boxShadow = `4px 4px 0 ${BRAND.black}`;
-              }}
-            >
-              <BookOpenCheck size={16} strokeWidth={2.5} />
-              {kh ? "រៀនទ្រឹស្តីសិន" : "Study First"}
-            </Link>
-          </div>
+      {/* ═══ GAME MODES ════════════════════════════════════════════════════ */}
+      <section id="modes" style={{ background: BRAND.white }}>
+        <div className="modes-header">
+          <h2 style={{ ...khFont, fontSize: "clamp(1.6rem, 3vw, 2.4rem)", fontWeight: 900, margin: 0, letterSpacing: "-1px" }}>
+            {kh ? "ជ្រើសរើសរបៀបលេង" : "Pick your game mode"}
+          </h2>
+          <Link href="/learn" style={{
+            ...khFont,
+            display: "flex", alignItems: "center", gap: 8, padding: "12px 22px",
+            background: BRAND.white, color: BRAND.black, border: `3px solid ${BRAND.black}`,
+            fontWeight: 900, fontSize: 13, letterSpacing: 1, textDecoration: "none",
+            boxShadow: `4px 4px 0 ${BRAND.black}`,
+          }}>
+            <BookOpenCheck size={16} strokeWidth={2.5} />
+            {kh ? "រៀនទ្រឹស្តីសិន" : "Study First"}
+          </Link>
         </div>
 
-        {/* Alternating Game Cards Grid */}
         <div className="card-grid">
-          {GAME_MODES.map((mode, index) => (
-            <GameCard key={mode.id} mode={mode} index={index} kh={kh} khFont={khFont} />
+          {GAME_MODES.map((mode) => (
+            <GameCard key={mode.id} mode={mode} kh={kh} khFont={khFont} />
           ))}
         </div>
 
-        {/* ═══ SECTION 3: QUICK QUIZ CALL TO ACTION ═══════════════════════ */}
-        <div className="bottom-cta-card">
-          <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 8, background: BRAND.yellow }} />
-
-          <div style={{ paddingLeft: 12 }}>
-            <div style={{
-              ...khFont,
-              fontSize: "clamp(1.4rem, 2.8vw, 2.1rem)",
-              fontWeight: 900,
-              color: BRAND.black,
-              lineHeight: 1.15,
-              letterSpacing: "-1px",
-              maxWidth: 620,
-            }}>
-              {kh
-                ? <span>ចាប់ផ្តើមជាមួយ <span style={{ background: BRAND.yellow, padding: "0 6px", border: `2.5px solid ${BRAND.black}` }}>សំណួររហ័ស</span> — ចំណាយពេលត្រឹមតែ ២ នាទី។</span>
-                : <span>Start with <span style={{ background: BRAND.yellow, padding: "0 8px", border: `3px solid ${BRAND.black}`, boxShadow: "3px 3px 0 #000" }}>Quick Quiz</span> — takes 2 minutes.</span>}
-            </div>
-          </div>
-
-          <Link href="/play/solo?mode=quick-quiz" className="bottom-cta-btn" style={{
-            ...khFont,
-            display: "flex",
-            alignItems: "center",
-            gap: 12,
-            padding: "20px 48px",
-            background: BRAND.yellow,
-            color: BRAND.black,
-            border: `3px solid ${BRAND.black}`,
-            fontWeight: 900,
-            fontSize: 16,
-            letterSpacing: 2,
-            textDecoration: "none",
-            boxShadow: `6px 6px 0 ${BRAND.black}`,
-            transition: "all 0.1s",
-            whiteSpace: "nowrap",
-            transform: "translate(0, 0)",
-          }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translate(-3px,-3px)";
-              e.currentTarget.style.boxShadow = `9px 9px 0 ${BRAND.black}`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "translate(0,0)";
-              e.currentTarget.style.boxShadow = `6px 6px 0 ${BRAND.black}`;
-            }}
-            onMouseDown={(e) => {
-              e.currentTarget.style.transform = "translate(3px,3px)";
-              e.currentTarget.style.boxShadow = "none";
-            }}
-            onMouseUp={(e) => {
-              e.currentTarget.style.transform = "translate(-3px,-3px)";
-              e.currentTarget.style.boxShadow = `9px 9px 0 ${BRAND.black}`;
-            }}
-          >
-            <Play size={16} fill="currentColor" strokeWidth={3} />
-            {kh ? "លេងឥឡូវ" : "PLAY NOW"}
-          </Link>
+        {/* ═══ MORE GAMES (GameKit) ═══════════════════════════════════════ */}
+        <div className="modes-header" style={{ marginTop: 8 }}>
+          <h2 style={{ ...khFont, fontSize: "clamp(1.4rem, 2.6vw, 2rem)", fontWeight: 900, margin: 0, letterSpacing: "-1px" }}>
+            {kh ? "ហ្គេមបន្ថែម" : "More Games"}
+          </h2>
+          <span style={{ ...khFont, fontSize: 12, fontWeight: 700, color: "rgba(0,0,0,0.5)" }}>
+            {kh ? "លេងដើម្បីទទួលពិន្ទុ" : "Play to earn points"}
+          </span>
         </div>
+        <div className="card-grid">
+          {GAMEKIT_CARDS.filter((g) => g.id !== "daily").map((g) => {
+            const isPro = g.accessTier === "class-pro";
+            return (
+              <Link
+                key={g.id}
+                href={g.route}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  background: BRAND.white,
+                  border: `4px solid ${BRAND.black}`,
+                  boxShadow: `5px 5px 0 ${BRAND.black}`,
+                  textDecoration: "none",
+                  color: BRAND.black,
+                  position: "relative",
+                  overflow: "hidden",
+                }}
+              >
+                {/* banner */}
+                <div style={{ height: 88, background: g.brandColor, borderBottom: `4px solid ${BRAND.black}`, position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(0,0,0,0.14) 1.5px, transparent 1.5px)", backgroundSize: "14px 14px" }} />
+                  <div style={{ width: 52, height: 52, background: BRAND.white, border: `3px solid ${BRAND.black}`, boxShadow: `3px 3px 0 ${BRAND.black}`, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2 }}>
+                    <g.Icon size={24} strokeWidth={2.5} className="text-black" />
+                  </div>
+                  {/* badge */}
+                  {g.badge && (
+                    <span style={{ position: "absolute", top: 8, left: 8, background: BRAND.black, color: BRAND.white, fontSize: 9, fontWeight: 900, letterSpacing: 1, padding: "3px 7px", ...khFont }}>
+                      {kh ? g.badge.kh : g.badge.en}
+                    </span>
+                  )}
+                  {isPro && (
+                    <span style={{ position: "absolute", top: 8, right: 8, background: BRAND.white, border: `2px solid ${BRAND.black}`, display: "flex", alignItems: "center", justifyContent: "center", width: 26, height: 26 }}>
+                      <Lock size={13} className="text-black" />
+                    </span>
+                  )}
+                </div>
+                {/* content */}
+                <div style={{ padding: "14px 16px 16px", display: "flex", flexDirection: "column", flex: 1, gap: 8 }}>
+                  <h3 style={{ ...khFont, fontSize: 17, fontWeight: 900, margin: 0, lineHeight: 1.15 }}>{kh ? g.title.kh : g.title.en}</h3>
+                  <p style={{ ...khFont, fontSize: 12, fontWeight: 600, color: "rgba(0,0,0,0.6)", margin: 0, lineHeight: 1.4, flex: 1 }}>{kh ? g.description.kh : g.description.en}</p>
+                  <div style={{ marginTop: 4, padding: "10px 16px", background: BRAND.white, color: BRAND.black, border: `3px solid ${BRAND.black}`, fontWeight: 900, fontSize: 12, letterSpacing: 1.5, display: "flex", alignItems: "center", justifyContent: "center", gap: 6, boxShadow: `4px 4px 0 ${BRAND.black}` }}>
+                    {isPro ? <Lock size={13} /> : <Play size={13} fill="currentColor" strokeWidth={3} />}
+                    <span style={khFont}>{isPro ? (kh ? "ដោះសោដោយ Pro" : "PRO UNLOCK") : (kh ? "លេងឥឡូវ" : "PLAY NOW")}</span>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* Bottom spacing */}
+        <div style={{ height: 56 }} />
       </section>
 
-      {/* ─── STYLES & MEDIA QUERIES ────────────────────────────────────────────── */}
       <style>{`
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-
-        @keyframes pulse-subtle {
-          0% { transform: scale(1); }
-          50% { transform: scale(1.08); }
-          100% { transform: scale(1); }
-        }
-
-        .play-hero-grid {
+        .play-hero {
           display: grid;
-          grid-template-columns: 1.1fr 0.9fr;
+          grid-template-columns: 1.2fr 0.8fr;
           gap: 48px;
           align-items: center;
           max-width: 1200px;
           margin: 0 auto;
-          padding: 24px 24px;
+          padding: 56px 24px;
+          position: relative;
+          z-index: 1;
         }
+        .play-hero-join { width: 100%; max-width: 380px; justify-self: end; }
 
-        .play-hero-left {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .play-hero-right {
-          width: 100%;
-          max-width: 440px;
-          justify-self: end;
-        }
-
-        .mode-header {
-          border-top: 4px solid #000000;
-          border-bottom: 4px solid #000000;
-          background: #ffffff;
-          padding: 24px 24px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          gap: 20px;
-          max-width: 1200px;
-          margin: 0 auto;
+        .modes-header {
+          display: flex; align-items: center; justify-content: space-between;
+          flex-wrap: wrap; gap: 16px;
+          max-width: 1200px; margin: 0 auto; padding: 40px 24px 8px;
         }
 
         .card-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 32px;
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 48px 24px;
+          display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;
+          max-width: 1200px; margin: 0 auto; padding: 24px 24px 16px;
         }
 
-        .bottom-cta-card {
-          border: 4px solid #000000;
-          background: #ffffff;
-          padding: 40px 40px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 32px;
-          max-width: 1200px;
-          margin: 40px auto 80px;
-          box-shadow: 12px 12px 0 #000000;
-          position: relative;
-          overflow: hidden;
+        .bottom-cta {
+          border: 4px solid #000; background: #fff;
+          padding: 36px 40px; display: flex; align-items: center; justify-content: space-between;
+          gap: 32px; max-width: 1200px; margin: 32px auto 72px;
+          box-shadow: 10px 10px 0 #000; position: relative; overflow: hidden;
         }
 
         @media (max-width: 1024px) {
-          .card-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            padding: 32px 16px;
-          }
-          .play-hero-grid {
-            gap: 32px;
-            padding: 20px 24px;
-          }
+          .card-grid { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+          .play-hero { gap: 32px; padding: 44px 24px; }
         }
-
-        @media (max-width: 991px) {
-          .play-hero-grid {
-            grid-template-columns: 1fr;
-            padding: 20px 24px 24px;
-            gap: 20px;
-          }
-          .play-hero-left {
-            align-items: center;
-            text-align: center;
-          }
-          .play-hero-right {
-            justify-self: center;
-            margin-top: 8px;
-          }
-          .bottom-cta-card {
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 32px 24px;
-            margin: 24px 16px 64px;
-            gap: 24px;
-          }
-          .bottom-cta-btn {
-            width: 100%;
-            justify-content: center;
-          }
+        @media (max-width: 860px) {
+          .play-hero { grid-template-columns: 1fr; gap: 28px; padding: 36px 24px; }
+          .play-hero-join { justify-self: stretch; max-width: none; }
         }
-
         @media (max-width: 640px) {
-          .card-grid {
-            grid-template-columns: 1fr;
-            gap: 24px;
-            padding: 24px 16px;
-          }
-          .play-hero-grid {
-            padding: 16px 16px 20px;
-          }
-          .mode-header {
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 24px 16px;
-            gap: 16px;
-          }
-          .mode-header-actions {
-            width: 100%;
-            justify-content: space-between;
-          }
-          .mode-header-actions > a {
-            flex: 1;
-            justify-content: center;
-            padding: 10px 12px !important;
-            font-size: 11px !important;
-          }
+          .card-grid { grid-template-columns: 1fr; gap: 20px; padding: 20px 16px 8px; }
+          .play-hero { padding: 28px 16px; }
+          .modes-header { padding: 32px 16px 4px; }
+          .bottom-cta { flex-direction: column; align-items: flex-start; padding: 28px 22px; margin: 24px 16px 56px; gap: 22px; }
+          .bottom-cta-btn { width: 100%; justify-content: center; }
         }
       `}</style>
     </div>

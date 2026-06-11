@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { Search, ArrowLeft, X, Volume2, ChevronDown, ChevronUp } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { SaveCardButton } from "./save-card-button";
+import { cloudinaryOptimize } from "@/lib/cloudinary";
 
 interface Topic {
   id: number;
@@ -27,7 +28,7 @@ const SUB_GROUPS: { key: string; en: string; km: string }[] = [
 
 const UI = {
   en: {
-    category: "SIGN CATEGORY",
+    category: "KNOWLEDGE CATEGORY",
     title: "Driving Skills",
     titleKm: "ជំនាញបើកបរ",
     desc: "Learn proper driving techniques and best practices for road safety.",
@@ -122,7 +123,7 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
       {topic.primary_image_url && (
         <div className="w-full relative">
           <img
-            src={topic.primary_image_url}
+            src={cloudinaryOptimize(topic.primary_image_url)}
             alt={isKh ? topic.name_km : topic.name_en}
             className="w-full h-auto block select-none pointer-events-none"
             draggable={false}

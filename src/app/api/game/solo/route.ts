@@ -144,6 +144,23 @@ export async function POST(req: NextRequest) {
       hasImage: ans.some(a => !!a.imageUrl),
       hasAudio: !!(q.audioUrlEn || q.audioUrlKm),
     });
+
+    // Shuffle answers
+    let shuffled = ans
+      .map(a => ({ ...a, _r: getSecureRandom() }))
+      .sort((a, b) => a._r - b._r);
+
+    // For image-pick (priority / right-of-way scenarios) show at most 3 large
+    // images: always keep one correct answer + up to 2 distractors, then
+    // re-shuffle so the correct option's position is random.
+    if (gt === "image_pick" && shuffled.length > 3) {
+      const correct = shuffled.find(a => a.isCorrect);
+      const distractors = shuffled.filter(a => !a.isCorrect).slice(0, correct ? 2 : 3);
+      shuffled = [...(correct ? [correct] : []), ...distractors]
+        .map(a => ({ ...a, _r: getSecureRandom() }))
+        .sort((a, b) => a._r - b._r);
+    }
+
     return {
       id: q.id,
       questionEn: q.questionEn,
@@ -155,9 +172,7 @@ export async function POST(req: NextRequest) {
       audioUrlKm: q.audioUrlKm ?? null,
       gameType: gt,
       difficulty: q.difficulty,
-      answers: ans
-        .map(a => ({ ...a, _r: getSecureRandom() }))
-        .sort((a, b) => a._r - b._r)
+      answers: shuffled
         .map(({ _r, ...a }) => ({
           id: a.id,
           answerEn: a.answerEn,

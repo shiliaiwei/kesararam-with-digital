@@ -69,6 +69,7 @@ export default async function ClassDetailPage({
         section: cls.section ?? "",
         status: cls.status ?? "active",
         createdAt: cls.createdAt,
+        nameChangedCount: cls.nameChangedCount ?? 0,
       }}
       initialRoster={roster.map((s) => ({
         id: s.id,

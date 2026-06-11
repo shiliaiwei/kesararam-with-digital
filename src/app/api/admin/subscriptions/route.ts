@@ -11,7 +11,7 @@ import { users } from "@/db/schema/users";
 import { getSession } from "@/lib/auth";
 import { eq, desc } from "drizzle-orm";
 
-const VALID_PLANS = ["free", "teacher_pro", "school"] as const;
+const VALID_PLANS = ["free", "teacher_pro", "school", "family", "driving_school"] as const;
 type PlanTier = typeof VALID_PLANS[number];
 
 // GET — uses drizzle (reads are fine, no null timestamp issue)

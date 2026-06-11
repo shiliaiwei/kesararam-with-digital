@@ -11,7 +11,13 @@ import {
 import { relations } from "drizzle-orm";
 import { users } from "./users";
 
-export const planEnum = pgEnum("plan_tier", ["free", "teacher_pro", "school"]);
+export const planEnum = pgEnum("plan_tier", [
+  "free",
+  "teacher_pro",
+  "school",
+  "family",
+  "driving_school",
+]);
 export const subStatusEnum = pgEnum("subscription_status", [
   "active",
   "expired",
@@ -43,6 +49,11 @@ export const subscriptions = pgTable(
       .references(() => users.id),
     /** Optional note from admin (e.g. "Promo - Phnom Penh school") */
     note: text("note"),
+    /** Stripe linkage — set when a user self-purchases via card checkout */
+    stripeCustomerId: text("stripe_customer_id"),
+    stripeSubscriptionId: text("stripe_subscription_id"),
+    stripePriceId: text("stripe_price_id"),
+    billingCycle: text("billing_cycle"), // "monthly" | "yearly" | null
     createdAt: timestamp("created_at").notNull().defaultNow(),
     updatedAt: timestamp("updated_at").notNull().defaultNow(),
   },
@@ -89,6 +100,52 @@ export type Subscription = typeof subscriptions.$inferSelect;
 export type NewSubscription = typeof subscriptions.$inferInsert;
 
 /**
+ * Teacher applications — public, plan-driven sign-up requests.
+ * A pending row is created when someone applies for a paid plan from /pricing.
+ * No user account is created here: an admin reviews the request, verifies the
+ * KHQR payment, then provisions the teacher account + assigns the subscription
+ * (keeps the child-safety policy that teacher accounts are admin-created).
+ */
+export const applicationStatusEnum = pgEnum("application_status", [
+  "pending",
+  "approved",
+  "rejected",
+]);
+
+export const teacherApplications = pgTable(
+  "teacher_applications",
+  {
+    id: serial("id").primaryKey(),
+    // Applicant
+    displayName: text("display_name").notNull(),
+    email: text("email").notNull(), // school / Google email to allowlist on approval
+    phone: text("phone"), // phone or Telegram handle
+    schoolName: text("school_name"),
+    province: text("province"),
+    // Plan intent
+    plan: planEnum("plan").notNull(), // teacher_pro | school | driving_school
+    billingCycle: text("billing_cycle").notNull(), // "monthly" | "yearly"
+    seats: integer("seats"), // School: number of teacher accounts
+    academyName: text("academy_name"), // Academy (driving_school)
+    note: text("note"), // optional applicant message
+    // Workflow
+    status: applicationStatusEnum("status").notNull().default("pending"),
+    reviewedBy: integer("reviewed_by").references(() => users.id),
+    reviewedAt: timestamp("reviewed_at"),
+    createdAt: timestamp("created_at").notNull().defaultNow(),
+    updatedAt: timestamp("updated_at").notNull().defaultNow(),
+  },
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (table: any) => ({
+    statusIdx: index("teacher_apps_status_idx").on(table.status),
+    emailIdx: index("teacher_apps_email_idx").on(table.email),
+  }),
+);
+
+export type TeacherApplication = typeof teacherApplications.$inferSelect;
+export type NewTeacherApplication = typeof teacherApplications.$inferInsert;
+
+/**
  * Subscription plan features and limits
  */
 export const PLAN_FEATURES = {
@@ -100,13 +157,21 @@ export const PLAN_FEATURES = {
     customContent: false,
     priority: 0,
   },
+  family: {
+    name: "Family",
+    maxStudents: 9, // children tracked under one parent account
+    maxClasses: 0,
+    analytics: true, // child progress dashboard
+    customContent: false,
+    priority: 1,
+  },
   teacher_pro: {
     name: "Teacher Pro",
     maxStudents: 50,
     maxClasses: 5,
     analytics: true,
     customContent: true,
-    priority: 1,
+    priority: 2,
   },
   school: {
     name: "School",
@@ -114,7 +179,15 @@ export const PLAN_FEATURES = {
     maxClasses: -1, // unlimited
     analytics: true,
     customContent: true,
-    priority: 2,
+    priority: 3,
+  },
+  driving_school: {
+    name: "Driving School",
+    maxStudents: -1, // unlimited learners
+    maxClasses: -1, // unlimited
+    analytics: true,
+    customContent: true,
+    priority: 4,
   },
 } as const;
 

@@ -71,21 +71,64 @@ export async function validateInviteCodeAction(code: string) {
   const cleaned = code.trim();
 
   try {
+    // 1. Try to find in invite_codes first
     const [found] = await db
       .select()
       .from(inviteCodes)
       .where(eq(inviteCodes.code, cleaned))
       .limit(1);
 
-    if (!found) {
-      return { error: "Invalid invitation code." };
+    if (found) {
+      if (found.isUsed) {
+        return { error: "This invitation code has already been used." };
+      }
+      let classId = found.classId;
+      if (!classId) {
+        const [firstClass] = await db
+          .select()
+          .from(classes)
+          .where(eq(classes.teacherId, found.teacherId))
+          .limit(1);
+        if (firstClass) {
+          classId = firstClass.id;
+        }
+      }
+      if (classId) {
+        const [cls] = await db
+          .select()
+          .from(classes)
+          .where(eq(classes.id, classId))
+          .limit(1);
+        if (cls) {
+          if (cls.status === "locked") {
+            return { error: "This class is locked. New students cannot join. / ថ្នាក់រៀននេះត្រូវបានចាក់សោ។ សិស្សថ្មីមិនអាចចូលរួមបានទេ។" };
+          }
+          if (cls.status === "archived") {
+            return { error: "This class has been archived. / ថ្នាក់រៀននេះត្រូវបានរក្សាទុកក្នុងប័ណ្ណសារហើយ។" };
+          }
+        }
+      }
+      return { success: true, valid: true };
     }
 
-    if (found.isUsed) {
-      return { error: "This invitation code has already been used." };
+    // 2. Fallback: try classes.code directly
+    const [classRecord] = await db
+      .select()
+      .from(classes)
+      .where(eq(classes.code, cleaned))
+      .limit(1);
+
+    if (classRecord) {
+      if (classRecord.status === "locked") {
+        return { error: "This class is locked. New students cannot join. / ថ្នាក់រៀននេះត្រូវបានចាក់សោ។ សិស្សថ្មីមិនអាចចូលរួមបានទេ។" };
+      }
+      if (classRecord.status === "archived") {
+        return { error: "This class has been archived. / ថ្នាក់រៀននេះត្រូវបានរក្សាទុកក្នុងប័ណ្ណសារហើយ។" };
+      }
+      return { success: true, valid: true };
     }
 
-    return { success: true, valid: true };
+    return { error: "Invalid invitation code or class code." };
   } catch (error) {
     console.error("Failed to validate code:", error);
     return { error: "Validation error." };

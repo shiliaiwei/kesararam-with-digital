@@ -4,8 +4,10 @@ import { users, inviteCodes } from "@/db/schema";
 import { sessions } from "@/db/schema/sessions";
 import { eq, or, and } from "drizzle-orm";
 import { signToken, getRedirectUrl } from "@/lib/auth";
+import { assignSignupTrial, normalizePlan } from "@/lib/trial";
 import { cookies } from "next/headers";
-import { createHash } from "crypto";
+import { randomBytes } from "crypto";
+import { hashPassword } from "@/lib/password";
 
 export const dynamic = "force-dynamic";
 
@@ -88,23 +90,41 @@ export async function GET(req: NextRequest) {
 
     if (existingUser) {
       // Returning user - Log them in cleanly (no invite code consumption needed)
+      let updatePromise: Promise<any> | undefined;
       if (!existingUser.googleId) {
-        await db
+        updatePromise = db
           .update(users)
           .set({ googleId })
-          .where(eq(users.id, existingUser.id));
+          .where(eq(users.id, existingUser.id))
+          .catch((err) => {
+            console.error("Failed to update googleId:", err);
+          });
       }
-      return await establishSessionAndRedirect(existingUser, req);
+      return await establishSessionAndRedirect(existingUser, req, updatePromise);
     }
 
     // New User! Register cleanly with Google details.
     // They will be gated on profile completion (/profile/student) to provide their invite code and school details before they can use the platform.
-    const randomPassword = createHash("sha256")
-      .update(Math.random().toString() + Date.now().toString())
-      .digest("hex");
+    // OAuth users never sign in with a password; store a strong random one.
+    const randomPassword = hashPassword(randomBytes(32).toString("hex"));
 
     // Clean google username (e.g. janesmith + 3 numbers)
     const derivedUsername = email.split("@")[0].replace(/[^a-zA-Z0-9]/g, "") + Math.floor(100 + Math.random() * 900);
+
+    // Decode the OAuth state to learn the intended account type (set during
+    // registration). Teachers can self-register via Google with a 7-day trial.
+    let intent: {
+      role?: string; plan?: string;
+      schoolName?: string | null; province?: string | null;
+    } = {};
+    if (state && state !== "login") {
+      try {
+        intent = JSON.parse(Buffer.from(state, "base64url").toString("utf8"));
+      } catch {
+        intent = {};
+      }
+    }
+    const desiredRole = intent.role === "teacher" ? "teacher" : "student";
 
     const [newUser] = await db
       .insert(users)
@@ -114,10 +134,10 @@ export async function GET(req: NextRequest) {
         displayName: name || derivedUsername,
         passwordHash: randomPassword,
         googleId,
-        role: "student",
+        role: desiredRole,
         avatar: picture || null,
-        schoolName: null,
-        province: null,
+        schoolName: desiredRole === "teacher" ? (intent.schoolName || null) : null,
+        province: desiredRole === "teacher" ? (intent.province || null) : null,
         gradeLevel: null,
         section: null,
         isActive: true,
@@ -125,7 +145,15 @@ export async function GET(req: NextRequest) {
       })
       .returning();
 
-    return await establishSessionAndRedirect(newUser, req);
+    // New teachers get a 7-day free trial (plan from state, default teacher_pro).
+    let trialPromise: Promise<any> | undefined;
+    if (desiredRole === "teacher" && newUser?.id) {
+      trialPromise = assignSignupTrial(newUser.id, normalizePlan(intent.plan)).catch((err) => {
+        console.error("Failed to assign signup trial:", err);
+      });
+    }
+
+    return await establishSessionAndRedirect(newUser, req, trialPromise);
 
   } catch (err) {
     console.error("Google Authentication error:", err);
@@ -135,7 +163,7 @@ export async function GET(req: NextRequest) {
   }
 }
 
-async function establishSessionAndRedirect(user: any, req: NextRequest) {
+async function establishSessionAndRedirect(user: any, req: NextRequest, extraDbPromise?: Promise<any>) {
   const token = await signToken({
     id: user.id,
     email: user.email,
@@ -147,30 +175,37 @@ async function establishSessionAndRedirect(user: any, req: NextRequest) {
   const ipAddress = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown";
   const userAgent = req.headers.get("user-agent") || "unknown";
 
-  // Invalidate previous sessions
-  try {
-    await db
+  const promises: Promise<any>[] = [
+    // Invalidate previous sessions
+    db
       .update(sessions)
       .set({ isActive: false, logoutAt: new Date() })
-      .where(and(eq(sessions.userId, user.id), eq(sessions.isActive, true)));
-  } catch (err) {
-    console.error("Failed to invalidate old sessions:", err);
+      .where(and(eq(sessions.userId, user.id), eq(sessions.isActive, true)))
+      .catch((err) => {
+        console.error("Failed to invalidate old sessions:", err);
+      }),
+    // Create new session record
+    db
+      .insert(sessions)
+      .values({
+        userId: user.id,
+        token,
+        ipAddress,
+        userAgent,
+        isActive: true,
+        loginAt: new Date(),
+        lastActivityAt: new Date(),
+      })
+      .catch((err) => {
+        console.error("Failed to insert session record:", err);
+      }),
+  ];
+
+  if (extraDbPromise) {
+    promises.push(extraDbPromise);
   }
 
-  // Create new session record
-  try {
-    await db.insert(sessions).values({
-      userId: user.id,
-      token,
-      ipAddress,
-      userAgent,
-      isActive: true,
-      loginAt: new Date(),
-      lastActivityAt: new Date(),
-    });
-  } catch (err) {
-    console.error("Failed to insert session record:", err);
-  }
+  await Promise.all(promises);
 
   // Establish jwt cookie
   const cookieStore = await cookies();
@@ -187,5 +222,5 @@ async function establishSessionAndRedirect(user: any, req: NextRequest) {
   });
 
   const redirectTo = getRedirectUrl(user.role);
-  return NextResponse.redirect(new URL(redirectTo, req.url).origin + redirectTo);
+  return NextResponse.redirect(new URL(redirectTo, req.url).toString());
 }

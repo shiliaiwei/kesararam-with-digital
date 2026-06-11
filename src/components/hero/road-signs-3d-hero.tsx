@@ -87,6 +87,14 @@ function interleave(a: string[], b: string[], c: string[]): string[] {
   return out;
 }
 
+// Optimize a Cloudinary URL for the hero: rasterize SVG to AVIF/WebP at display
+// size so the browser downloads small, fast-painting images instead of parsing
+// 60+ inline vector files. Max sign renders ~72px → request 160px for crisp 2x.
+function cdn(url: string): string {
+  if (!url.includes("/upload/")) return url;
+  return url.replace("/upload/", "/upload/f_auto,q_auto,w_160,c_fit/");
+}
+
 // Variable sizes to create a "busy" uneven rhythm
 const SIZES = [56, 48, 64, 52, 60, 44, 68, 50, 56, 48, 72, 52, 60, 44, 56, 64, 48, 56, 52, 68];
 
@@ -214,7 +222,7 @@ function DragRow({
               style={{ width: sz, height: sz }}
             >
               <img
-                src={src}
+                src={cdn(src)}
                 alt=""
                 width={sz}
                 height={sz}

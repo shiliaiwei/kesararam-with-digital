@@ -2,41 +2,46 @@
 
 import { useState, useCallback } from "react";
 import QRCode from "react-qr-code";
+import { useLang } from "@/context/lang-context";
 
-// Names and roles from KWD_អំពីពួកយើង.txt — do not alter
-// displayName = last name shown on the card face
+// Full name (Latin + Khmer) shown on the card face; role kept short and bilingual.
 const STUDENTS = [
-  { id: "VSID-2026-001", name: "YIN DANAI",      displayName: "DANAI",    role: "អ្នកអានសំលេង · អ្នកដឹកនាំក្រុម · ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា" },
-  { id: "VSID-2026-002", name: "CHANTHA KANIKA", displayName: "KANIKA",   role: "ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា · ការស្រាវជ្រាវ" },
-  { id: "VSID-2026-003", name: "ROZA NEUN",      displayName: "NEUN",     role: "រចនា UI/UX · ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា" },
-  { id: "VSID-2026-004", name: "LIM MANY",       displayName: "MANY",     role: "ធានាគុណភាព និងតេស្ត · ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា" },
-  { id: "VSID-2026-005", name: "SUN RUNAMARA",   displayName: "RUNAMARA", role: "ធានាគុណភាព និងតេស្ត · ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា" },
+  { id: "VSID-2026-001", name: "YIN DANAI",      nameKh: "យិន ដាណៃ",        roleEn: "Team Lead · Voice",     roleKh: "អ្នកដឹកនាំក្រុម · សំឡេង" },
+  { id: "VSID-2026-002", name: "CHANTHA KANIKA", nameKh: "ចាន់ថា កន្និកា",  roleEn: "Content & Research",    roleKh: "មាតិកា និងស្រាវជ្រាវ" },
+  { id: "VSID-2026-003", name: "ROZA NEUN",      nameKh: "នឿន សុវណ្ណរ៉ូហ្សា", roleEn: "UI/UX Design",          roleKh: "រចនា UI/UX" },
+  { id: "VSID-2026-004", name: "LIM MANY",       nameKh: "លីន ម៉ានី",        roleEn: "QA & Testing",          roleKh: "ធានាគុណភាព និងតេស្ត" },
+  { id: "VSID-2026-005", name: "SUN RUNAMARA",   nameKh: "សាន់ រុណអមរ៉ា",    roleEn: "QA & Testing",          roleKh: "ធានាគុណភាព និងតេស្ត" },
 ];
 
 const MENTORS = [
   {
     id: "VSID-2026-M01",
-    name: "PHEAP PISETH", displayName: "PISETH",
-    role: "គ្រូបង្រៀន · អ្នកដឹកនាំកម្មវិធី · ត្រួតពិនិត្យប្រសិទ្ធភាពការងារក្រុម",
+    name: "PHEAP PISETH", nameKh: "ភាព ពិសិទ្ធិ",
+    roleEn: "Technical Mentor", roleKh: "គ្រូណែនាំបច្ចេកទេស",
     image: "https://res.cloudinary.com/dpgivqzrl/image/upload/v1775248421/904da627410290a5ae64edr_xtkjjp.png",
   },
   {
     id: "VSID-2026-M02",
-    name: "SHILI AIWEI", displayName: "AIWEI",
-    role: "គ្រូណែនាំ · គ្រប់គ្រងបច្ចេកទេស · គំនិតច្នៃប្រឌិត និងធនធានគម្រោង",
+    name: "SRIE VI", nameKh: "ស្រុី វី",
+    roleEn: "Business Mentor", roleKh: "គ្រូណែនាំជំនួញ",
     image: "https://avatars.githubusercontent.com/u/70220432?v=4",
   },
 ];
 
-interface Member { id: string; name: string; displayName: string; role: string; image?: string; }
+interface Member { id: string; name: string; nameKh: string; roleEn: string; roleKh: string; image?: string; }
 
 const CLIP = "polygon(0 12px, 12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px))";
 
-function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean }) {
+function MemberCard({ member, isMentor, isKh }: { member: Member; isMentor: boolean; isKh: boolean }) {
   const [qrLink, setQrLink] = useState<string | null>(null);
   const [revealed, setRevealed] = useState(false);
   const [loading, setLoading] = useState(false);
   const accent = isMentor ? "#f59e0b" : "#eab308";
+  const khFont = isKh ? { fontFamily: "Siemreap, sans-serif" } : undefined;
+  // Card face shows last name only; full name is revealed on the scanned profile.
+  const fullName = isKh ? member.nameKh : member.name;
+  const displayName = fullName.trim().split(/\s+/).pop();
+  const role = isKh ? member.roleKh : member.roleEn;
 
   // Fetch a fresh token on each tap — no auto-refresh to prevent glitch
   const handleReveal = useCallback(async () => {
@@ -95,8 +100,9 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
             )}
           </div>
 
-          <div className="text-center">
-            <p className="font-black text-white text-sm leading-tight tracking-wide">{member.displayName}</p>
+          <div className="text-center w-full">
+            <p className="font-black text-white text-sm leading-tight tracking-wide" style={khFont}>{displayName}</p>
+            <p className="mt-1 text-[9px] font-bold uppercase tracking-wider leading-snug" style={{ color: accent, ...khFont }}>{role}</p>
           </div>
 
           <button
@@ -125,6 +131,7 @@ function MemberCard({ member, isMentor }: { member: Member; isMentor: boolean })
 }
 
 export function TeamSection() {
+  const { isKh } = useLang();
   return (
     <div className="bg-white py-16 px-6 border-t border-zinc-200">
       <div className="max-w-5xl mx-auto">
@@ -154,7 +161,7 @@ export function TeamSection() {
             <div className="flex-1 h-px" style={{ background: "linear-gradient(to right, #eab30840, transparent)" }} />
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-            {STUDENTS.map(m => <MemberCard key={m.id} member={m} isMentor={false} />)}
+            {STUDENTS.map(m => <MemberCard key={m.id} member={m} isMentor={false} isKh={isKh} />)}
           </div>
         </div>
 
@@ -168,7 +175,7 @@ export function TeamSection() {
             <div className="flex-1 h-px" style={{ background: "linear-gradient(to right, #f59e0b40, transparent)" }} />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-sm">
-            {MENTORS.map(m => <MemberCard key={m.id} member={m} isMentor={true} />)}
+            {MENTORS.map(m => <MemberCard key={m.id} member={m} isMentor={true} isKh={isKh} />)}
           </div>
         </div>
 

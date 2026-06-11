@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { gameSessions, gameParticipants } from "@/db/schema/game";
-import { users } from "@/db/schema/users";
+import { users, classEnrollments } from "@/db/schema/users";
 import { getSession } from "@/lib/auth";
 import { broadcastEvent } from "@/lib/realtime-bus";
 import { eq, and } from "drizzle-orm";
@@ -14,17 +14,20 @@ export async function POST(
   const user = await getSession();
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  if (user.role === "student") {
-    const [dbUser] = await db
-      .select({
-        schoolName: users.schoolName,
-        province: users.province,
-        gradeLevel: users.gradeLevel,
-      })
-      .from(users)
-      .where(eq(users.id, user.id))
-      .limit(1);
+  // Always source the avatar from the database — the JWT payload may be stale
+  // or missing the avatar, which is why students render as plain initials.
+  const [dbUser] = await db
+    .select({
+      schoolName: users.schoolName,
+      province: users.province,
+      gradeLevel: users.gradeLevel,
+      avatar: users.avatar,
+    })
+    .from(users)
+    .where(eq(users.id, user.id))
+    .limit(1);
 
+  if (user.role === "student") {
     if (!dbUser || !dbUser.schoolName || !dbUser.province || !dbUser.gradeLevel) {
       return NextResponse.json(
         { error: "Please complete your profile details (School, Province, Grade) before joining a live game. / សូមបំពេញព័ត៌មានគណនីរបស់អ្នក (សាលារៀន ខេត្ត ថ្នាក់ទី) មុននឹងចូលរួមលេងហ្គេមផ្ទាល់។" },
@@ -32,6 +35,8 @@ export async function POST(
       );
     }
   }
+
+  const resolvedAvatar = dbUser?.avatar ?? user.avatar ?? null;
 
   const body = await req.json().catch(() => ({}));
   const displayName = body.displayName || user.name || "Player";
@@ -47,6 +52,40 @@ export async function POST(
   if (session.status === "active")
     return NextResponse.json({ error: "Game already started — late join not allowed" }, { status: 403 });
 
+  // ── Class-membership gates (students only) ──
+  if (user.role === "student") {
+    // A student must belong to a class to play live games.
+    const studentEnrollments = await db
+      .select({ classId: classEnrollments.classId })
+      .from(classEnrollments)
+      .where(eq(classEnrollments.studentId, user.id));
+
+    if (studentEnrollments.length === 0) {
+      return NextResponse.json(
+        {
+          error:
+            "You are not in a class yet. Ask your teacher to add you with your class join code before playing a live game. / អ្នកមិនទាន់មានថ្នាក់រៀននៅឡើយទេ។ សូមសុំគ្រូបញ្ចូលអ្នកដោយប្រើលេខកូដថ្នាក់ មុននឹងលេងហ្គេមផ្ទាល់។",
+          needsClass: true,
+        },
+        { status: 403 }
+      );
+    }
+
+    // If the session is scoped to a specific class, only that class's students may join.
+    if (session.classId != null) {
+      const inClass = studentEnrollments.some((e) => e.classId === session.classId);
+      if (!inClass) {
+        return NextResponse.json(
+          {
+            error:
+              "This live game is restricted to a specific class. You are not enrolled in that class. / ហ្គេមផ្ទាល់នេះកំណត់សម្រាប់តែថ្នាក់ជាក់លាក់ប៉ុណ្ណោះ។ អ្នកមិនមែនជាសិស្សក្នុងថ្នាក់នោះទេ។",
+          },
+          { status: 403 }
+        );
+      }
+    }
+  }
+
   const existing = await db
     .select()
     .from(gameParticipants)
@@ -61,7 +100,7 @@ export async function POST(
   if (alreadyIn) {
     const updated = await db
       .update(gameParticipants)
-      .set({ isConnected: true, lastSeenAt: new Date() })
+      .set({ isConnected: true, lastSeenAt: new Date(), avatar: resolvedAvatar })
       .where(
         and(
           eq(gameParticipants.sessionId, session.id),
@@ -77,7 +116,7 @@ export async function POST(
         sessionId: session.id,
         userId: user.id,
         displayName,
-        avatar: user.avatar ?? null,
+        avatar: resolvedAvatar,
         totalScore: 0,
         correctAnswers: 0,
         currentStreak: 0,

@@ -6,13 +6,15 @@ import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { logoutAction } from "@/app/actions/auth";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
+import { useLang } from "@/context/lang-context";
 
 interface NavItem {
   label: string;
+  labelKh?: string;
   href?: string;
   icon: string;
   color: string;
-  children?: { label: string; href: string }[];
+  children?: { label: string; labelKh?: string; href: string }[];
 }
 
 const adminNav: NavItem[] = [
@@ -40,9 +42,9 @@ const adminNav: NavItem[] = [
 ];
 
 const teacherNav: NavItem[] = [
-  { label: "Classes", href: "/teacher/classes", icon: "school", color: "#3b82f6" },
-  { label: "Sessions", href: "/teacher/sessions", icon: "tv", color: "#22c55e" },
-  { label: "Host Game", href: "/teacher/sessions/host", icon: "sports_esports", color: "#ffd700" },
+  { label: "Classes", labelKh: "ថ្នាក់រៀន", href: "/teacher/classes", icon: "school", color: "#3b82f6" },
+  { label: "Sessions", labelKh: "វគ្គផ្ទាល់", href: "/teacher/sessions", icon: "tv", color: "#22c55e" },
+  { label: "Host Game", labelKh: "បង្កើតហ្គេម", href: "/teacher/sessions/host", icon: "sports_esports", color: "#ffd700" },
 ];
 
 const staffNav: NavItem[] = [
@@ -88,6 +90,8 @@ export function AppSidebar({
   endsAt = null,
 }: AppSidebarProps) {
   const pathname = usePathname();
+  const { lang } = useLang();
+  const kh = lang === "kh";
   const navItems = role === "admin" ? adminNav : role === "staff" ? staffNav : teacherNav;
   const profileHref = role === "admin" ? "/admin/profile" : role === "staff" ? "/staff/profile" : "/teacher/profile";
   const [expandedItems, setExpandedItems] = useState<string[]>(["Content"]);
@@ -159,7 +163,7 @@ export function AppSidebar({
             style={{ background: "#FFD700", boxShadow: "2px 2px 0px #000" }}
           >
             <Image
-              src="/brand/kwd-black.png"
+              src="/brand/kwd-black_nobackground.png"
               alt="KWD"
               width={22}
               height={22}
@@ -196,7 +200,15 @@ export function AppSidebar({
                 className="inline-block px-1.5 py-0.5 text-[9px] font-black uppercase tracking-widest rounded-none mt-0.5 border border-black"
                 style={{ background: "#e5e7eb", color: "#000" }}
               >
-                {role}
+                {role === "teacher"
+                  ? livePlan === "family"
+                    ? "family"
+                    : livePlan === "driving_school"
+                      ? "driving school"
+                      : livePlan === "school"
+                        ? "school"
+                        : "teacher"
+                  : role}
               </span>
             </div>
           </div>
@@ -224,10 +236,10 @@ export function AppSidebar({
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="text-[10px] font-black uppercase tracking-wider text-black">
-                        {livePlan === "school" ? "School Plan" : "Teacher Pro"}
+                        {livePlan === "school" ? (kh ? "ផែនការសាលា" : "School Plan") : (kh ? "គ្រូ Pro" : "Teacher Pro")}
                       </div>
                       <div className="text-[8px] text-green-700 font-black uppercase tracking-widest">
-                        Active License
+                        {kh ? "អាជ្ញាប័ណ្ណសកម្ម" : "Active License"}
                       </div>
                     </div>
                   </div>
@@ -262,7 +274,7 @@ export function AppSidebar({
                         className="text-[10px] font-black uppercase tracking-wider"
                         style={{ color: daysRemaining <= 3 ? "#ef4444" : "#000" }}
                       >
-                        {livePlan === "school" ? "School Plan" : "Teacher Pro"}
+                        {livePlan === "school" ? (kh ? "ផែនការសាលា" : "School Plan") : (kh ? "គ្រូ Pro" : "Teacher Pro")}
                       </span>
                     </div>
 
@@ -275,7 +287,7 @@ export function AppSidebar({
                         boxShadow: "1px 1px 0 #000",
                       }}
                     >
-                      {daysRemaining}d left
+                      {daysRemaining}{kh ? "ថ្ងៃទៀត" : "d left"}
                     </span>
                   </div>
 
@@ -283,10 +295,10 @@ export function AppSidebar({
                   <div className="mb-3.5">
                     <div className="flex justify-between items-center mb-1.5">
                       <span className="text-[8px] font-black text-black/40 uppercase tracking-widest">
-                        Renewal Window
+                        {kh ? "រយៈពេលបន្ត" : "Renewal Window"}
                       </span>
                       <span className="text-[8px] font-black text-black/60">
-                        {daysRemaining}/7 DAYS
+                        {daysRemaining}/7 {kh ? "ថ្ងៃ" : "DAYS"}
                       </span>
                     </div>
                     <div className="grid grid-cols-7 gap-1 bg-[#f3f4f6] p-1.5 border border-black" style={{ borderRadius: "0px" }}>
@@ -298,9 +310,8 @@ export function AppSidebar({
                         return (
                           <div
                             key={i}
-                            className={`h-4 border border-black transition-all duration-300 ${
-                              isUrgentDot ? "animate-pulse-red-alert" : ""
-                            }`}
+                            className={`h-4 border border-black transition-all duration-300 ${isUrgentDot ? "animate-pulse-red-alert" : ""
+                              }`}
                             style={{
                               borderRadius: "0px",
                               backgroundColor: isDotActive
@@ -326,7 +337,7 @@ export function AppSidebar({
                       boxShadow: "2.5px 2.5px 0px #000000",
                     }}
                   >
-                    Renew / Upgrade{" "}
+                    {kh ? "បន្ត / ធ្វើឱ្យប្រសើរ" : "Renew / Upgrade"}{" "}
                     <span
                       className="material-symbols-rounded transition-transform group-hover:translate-x-0.5"
                       style={{ fontSize: "10px" }}
@@ -359,10 +370,10 @@ export function AppSidebar({
                       </div>
                       <div className="flex-1 min-w-0 text-left">
                         <div className="text-[10px] font-black uppercase tracking-wider">
-                          Upgrade to Pro
+                          {kh ? "ធ្វើឱ្យប្រសើរទៅ Pro" : "Upgrade to Pro"}
                         </div>
                         <div className="text-[8px] text-black/60 font-bold uppercase tracking-widest">
-                          Get Live Quiz Power
+                          {kh ? "ទទួលបានហ្គេមផ្ទាល់គ្មានដែនកំណត់" : "Get Live Quiz Power"}
                         </div>
                       </div>
                     </div>
@@ -385,15 +396,14 @@ export function AppSidebar({
         {/* Account */}
         <div>
           <h2 className="text-[9px] font-black uppercase tracking-widest px-2 mb-2 text-zinc-400">
-            Account
+            {kh ? "គណនី" : "Account"}
           </h2>
           <Link
             href={profileHref}
-            className={`flex items-center gap-2.5 px-2.5 py-2 transition-all duration-100 ${
-              pathname.includes("/profile")
-                ? "bg-yellow-400 border-2 border-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5 text-black font-black"
-                : "hover:bg-yellow-50 hover:border-2 hover:border-black hover:shadow-[2px_2px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 text-zinc-700"
-            }`}
+            className={`flex items-center gap-2.5 px-2.5 py-2 transition-all duration-100 ${pathname.includes("/profile")
+              ? "bg-yellow-400 border-2 border-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5 text-black font-black"
+              : "hover:bg-yellow-50 hover:border-2 hover:border-black hover:shadow-[2px_2px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 text-zinc-700"
+              }`}
             style={{ borderRadius: "0px" }}
           >
             <div
@@ -404,14 +414,14 @@ export function AppSidebar({
                 person
               </span>
             </div>
-            <span className="font-bold text-xs uppercase tracking-wide">My Profile</span>
+            <span className="font-bold text-xs uppercase tracking-wide">{kh ? "ព័ត៌មានផ្ទាល់ខ្លួន" : "My Profile"}</span>
           </Link>
         </div>
 
         {/* Platform */}
         <div>
           <h2 className="text-[9px] font-black uppercase tracking-widest px-2 mb-2 text-zinc-400">
-            Platform
+            {kh ? "ប្រព័ន្ធ" : "Platform"}
           </h2>
           <div className="space-y-1.5">
             {navItems.map((item) => {
@@ -423,11 +433,10 @@ export function AppSidebar({
                   <div key={item.label} className="space-y-1">
                     <button
                       onClick={() => toggleExpand(item.label)}
-                      className={`w-full flex items-center justify-between gap-2.5 px-2.5 py-2 transition-all duration-100 ${
-                        hasActiveChild
-                          ? "bg-yellow-400 border-2 border-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5 text-black font-black"
-                          : "hover:bg-yellow-50 hover:border-2 hover:border-black hover:shadow-[2px_2px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 text-zinc-700"
-                      }`}
+                      className={`w-full flex items-center justify-between gap-2.5 px-2.5 py-2 transition-all duration-100 ${hasActiveChild
+                        ? "bg-yellow-400 border-2 border-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5 text-black font-black"
+                        : "hover:bg-yellow-50 hover:border-2 hover:border-black hover:shadow-[2px_2px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 text-zinc-700"
+                        }`}
                       style={{ borderRadius: "0px" }}
                     >
                       <div className="flex items-center gap-2.5">
@@ -440,7 +449,7 @@ export function AppSidebar({
                           </span>
                         </div>
                         <span className="font-bold text-xs uppercase tracking-wide">
-                          {item.label}
+                          {kh && item.labelKh ? item.labelKh : item.label}
                         </span>
                       </div>
                       <div className="text-black flex items-center">
@@ -464,14 +473,13 @@ export function AppSidebar({
                             <Link
                               key={child.href}
                               href={child.href}
-                              className={`block px-2.5 py-1.5 text-xs font-bold transition-all duration-100 ${
-                                isActive
-                                  ? "bg-yellow-400 border border-black shadow-[1px_1px_0_#000] text-black"
-                                  : "hover:bg-yellow-50 hover:border hover:border-black hover:shadow-[1px_1px_0_#000] text-zinc-600"
-                              }`}
+                              className={`block px-2.5 py-1.5 text-xs font-bold transition-all duration-100 ${isActive
+                                ? "bg-yellow-400 border border-black shadow-[1px_1px_0_#000] text-black"
+                                : "hover:bg-yellow-50 hover:border hover:border-black hover:shadow-[1px_1px_0_#000] text-zinc-600"
+                                }`}
                               style={{ borderRadius: "0px" }}
                             >
-                              {child.label}
+                              {kh && child.labelKh ? child.labelKh : child.label}
                             </Link>
                           );
                         })}
@@ -487,11 +495,10 @@ export function AppSidebar({
                 <Link
                   key={item.href}
                   href={item.href!}
-                  className={`flex items-center gap-2.5 px-2.5 py-2 transition-all duration-100 ${
-                    isActive
-                      ? "bg-yellow-400 border-2 border-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5 text-black font-black"
-                      : "hover:bg-yellow-50 hover:border-2 hover:border-black hover:shadow-[2px_2px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 text-zinc-700"
-                  }`}
+                  className={`flex items-center gap-2.5 px-2.5 py-2 transition-all duration-100 ${isActive
+                    ? "bg-yellow-400 border-2 border-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5 text-black font-black"
+                    : "hover:bg-yellow-50 hover:border-2 hover:border-black hover:shadow-[2px_2px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 text-zinc-700"
+                    }`}
                   style={{ borderRadius: "0px" }}
                 >
                   <div
@@ -502,7 +509,7 @@ export function AppSidebar({
                       {item.icon}
                     </span>
                   </div>
-                  <span className="font-bold text-xs uppercase tracking-wide">{item.label}</span>
+                  <span className="font-bold text-xs uppercase tracking-wide">{kh && item.labelKh ? item.labelKh : item.label}</span>
                 </Link>
               );
             })}
@@ -523,7 +530,7 @@ export function AppSidebar({
                 logout
               </span>
             </div>
-            <span className="font-bold text-xs uppercase tracking-wide">Log Out</span>
+            <span className="font-bold text-xs uppercase tracking-wide">{kh ? "ចាកចេញ" : "Log Out"}</span>
           </button>
         </form>
       </div>

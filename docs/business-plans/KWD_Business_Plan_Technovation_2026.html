@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="km">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KWD Platform - ផែនការអាជីវកម្ម ២០២៦</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Khmer', sans-serif;
+            line-height: 1.8;
+            color: #000;
+            background: #fff;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 3px solid #000;
+        }
+
+        .logo {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 800;
+            margin: 50px 0 25px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #000;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 35px 0 20px 0;
+        }
+
+        h4 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            font-weight: 400;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .meta {
+            font-size: 14px;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border: 2px solid #000;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #000;
+        }
+
+        th {
+            background: #000;
+            color: #fff;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+
+        ul,
+        ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 40px 0;
+            padding: 20px;
+            border: 2px solid #000;
+        }
+
+        .section {
+            margin: 60px 0;
+            page-break-inside: avoid;
+        }
+
+        .canvas-box {
+            background: #fff;
+            border: 3px solid #000;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .lean-canvas {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(2, auto);
+            gap: 0;
+            border: 3px solid #000;
+            margin: 30px 0;
+        }
+
+        .canvas-item {
+            border: 1px solid #000;
+            padding: 20px;
+            min-height: 200px;
+        }
+
+        .canvas-item h4 {
+            margin: 0 0 15px 0;
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .canvas-item ul {
+            margin: 10px 0 10px 20px;
+            font-size: 14px;
+        }
+
+        .highlight {
+            background: #f9f9f9;
+            padding: 20px;
+            border-left: 4px solid #000;
+            margin: 25px 0;
+        }
+
+        @media print {
+            body {
+                font-size: 12pt;
+            }
+
+            .chart-container {
+                height: 300px;
+                page-break-inside: avoid;
+            }
+
+            h2 {
+                page-break-before: always;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            h2 {
+                font-size: 26px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+
+            .chart-container {
+                height: 300px;
+                padding: 10px;
+            }
+
+            .lean-canvas {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th,
+            td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="../../public/brand/kwd-black_nobackground.png" alt="KWD Logo" class="logo">
+        <h1>ផែនការអាជីវកម្ម ៥ ឆ្នាំ</h1>
+        <p class="subtitle">វេទិកាអប់រំសុវត្ថិភាពចរាចរណ៍</p>
+        <p class="subtitle">Kesararam With Digital (KWD)</p>
+        <div class="meta">
+            <p><strong>កម្មវិធី:</strong> Technovation Girls 2026 | ក្រុមលេខ #50777</p>
+            <p><strong>ទីតាំង:</strong> ខេត្តសៀមរាប ព្រះរាជាណាចក្រកម្ពុជា</p>
+            <p><strong>កាលបរិច្ឆេទ:</strong> ថ្ងៃទី ៧ ខែមិថុនា ឆ្នាំ ២០២៦</p>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- សេចក្តីសង្ខេបប្រតិបត្តិការ -->
+        <section class="section">
+            <h2>១. សេចក្តីសង្ខេបប្រតិបត្តិការ</h2>
+
+            <h3>១.១. ទស្សនវិស័យ</h3>
+            <p>
+                KWD (Kesararam With Digital) គឺជាវេទិកាអប់រំសុវត្ថិភាពចរាចរណ៍ដែលមានភាសាទ្វេ (ខ្មែរ និង អង់គ្លេស)
+                ដោយឥតគិតថ្លៃ ដែលបង្កើតឡើងដោយក្រុមយុវនារីកម្ពុជាពីក្រុងសៀមរាប។
+                យើងមានគោលបំណងក្នុងការកាត់បន្ថយគ្រោះថ្នាក់ចរាចរណ៍
+                ក្នុងប្រទេសកម្ពុជា និងតំបន់អាស៊ីអាគ្នេយ៍ តាមរយៈការអប់រំដែលមានគុណភាព និងងាយស្រួលប្រើប្រាស់។
+            </p>
+
+            <h3>១.២. បញ្ហាដែលយើងដោះស្រាយ</h3>
+            <p>
+                ប្រទេសកម្ពុជាមានអត្រាគ្រោះថ្នាក់ចរាចរណ៍ខ្ពស់ជាងគេក្នុងតំបន់អាស៊ីអាគ្នេយ៍ ដែលមានអ្នកស្លាប់ជាង
+                <strong>៣,១០០ នាក់</strong>
+                ក្នុងមួយឆ្នាំ និងមានការខាតបង់សេដ្ឋកិច្ចស្មើនឹង <strong>៣.៨% នៃផលិតផលស្រុបក្នុងស្រុក (GDP)</strong>។
+
+                នេះកើតឡើងពីកង្វះការអប់រំសុវត្ថិភាពចរាចរណ៍ដែលមានគុណភាព និងងាយស្រួលទទួលបាន។
+            </p>
+
+            <h3>១.៣. ដំណោះស្រាយរបស់យើង</h3>
+            <p>
+                KWD ផ្តល់នូវវេទិកាអប់រំតាមរយៈបណ្តាញអ៊ីនធឺណិតដែលរួមបញ្ចូលនូវ៖
+            </p>
+            <ul>
+                <li><strong>មេរៀនអន្តរកម្ម:</strong> មេរៀនជាង ៥០០+ អំពីច្បាប់ចរាចរណ៍ និងសញ្ញាចរាចរណ៍</li>
+                <li><strong>ហ្គេមអប់រំ:</strong> ហ្គេមជាច្រើនប្រភេទដូចជា តេស្តរហ័ស, ការប្រកួតផ្ទាល់,
+                    និងការសម្រេចចិត្តអាទិភាព</li>
+                <li><strong>ប្រព័ន្ធគ្រប់គ្រង:</strong> សម្រាប់គ្រូបង្រៀន សាលារៀន និងស្ថាប័នអប់រំ</li>
+                <li><strong>វិភាគទិន្នន័យ:</strong> របាយការណ៍លម្អិតអំពីវឌ្ឍនភាពនិស្សិត</li>
+                <li><strong>ភាសាទ្វេ:</strong> គាំទ្រទាំងភាសាខ្មែរ និងអង់គ្លេស</li>
+            </ul>
+
+            <h3>១.៤. តម្លៃតាមរយៈទីផ្សារ</h3>
+            <p>
+                ទីផ្សារ EdTech ក្នុងតំបន់អាស៊ានមានតម្លៃ <strong>$១២.២៦ ពាន់លានដុល្លារ</strong> ក្នុងឆ្នាំ ២០២៦
+                និងរំពឹងថានឹងកើនទៅ <strong>$៤១.៥២ ពាន់លានដុល្លារ</strong> ក្នុងឆ្នាំ ២០៣២។
+                ប្រទេសកម្ពុជាមានប្រជាជនជិត <strong>១៧ លាននាក់</strong> ដែលក្នុងនោះ <strong>៦៥%</strong> មានអាយុក្រោម ៣០
+                ឆ្នាំ។
+            </p>
+
+            <h3>១.៥. ប្រាក់ចំណូលដែលរំពឹងទុក (ឆ្នាំ ១-៥)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ឆ្នាំ</th>
+                        <th>អ្នកប្រើប្រាស់</th>
+                        <th>ប្រាក់ចំណូលប្រចាំឆ្នាំ (ARR)</th>
+                        <th>ចំណេញសុទ្ធ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ឆ្នាំ ១</td>
+                        <td>៥,០០០</td>
+                        <td>$២៩,៦៤០</td>
+                        <td>$២៧,៥៩០</td>
+                    </tr>
+                    <tr>
+                        <td>ឆ្នាំ ២</td>
+                        <td>២៥,០០០</td>
+                        <td>$២៤៣,០០០</td>
+                        <td>$២០៣,៥០០</td>
+                    </tr>
+                    <tr>
+                        <td>ឆ្នាំ ៣</td>
+                        <td>៨០,០០០</td>
+                        <td>$៩៩៣,៤០០</td>
+                        <td>$៧៩៧,៦០០</td>
+                    </tr>
+                    <tr>
+                        <td>ឆ្នាំ ៤</td>
+                        <td>២០០,០០០</td>
+                        <td>$២,៩៤៤,០០០</td>
+                        <td>$២,៤៤៧,៦០០</td>
+                    </tr>
+                    <tr>
+                        <td>ឆ្នាំ ៥</td>
+                        <td>៤០០,០០០</td>
+                        <td>$៥,៩២៨,០០០</td>
+                        <td>$៤,៩៤១,២០០</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight">
+                <p><strong>ចំណុចសំខាន់៖</strong></p>
+                <ul>
+                    <li>មានចំណេញតាំងពីឆ្នាំទី ១</li>
+                    <li>ការរីកចម្រើនជាមធ្យម +២០០% ក្នុងមួយឆ្នាំ</li>
+                    <li>អត្រាចំណេញសរុប ៨០-៨៥%</li>
+                    <li>LTV:CAC ៣០-៤០:១ (ស្តង់ដារឧស្សាហកម្ម ៣:១)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Lean Canvas -->
+        <section class="section">
+            <h2>២. Lean Canvas - ផែនទីអាជីវកម្ម</h2>
+
+            <div class="lean-canvas">
+                <div class="canvas-item" style="grid-column: 1; grid-row: 1;">
+                    <h4>១. បញ្ហា</h4>
+                    <ul>
+                        <li>អត្រាគ្រោះថ្នាក់ចរាចរណ៍ខ្ពស់ (៣,១០០+ នាក់/ឆ្នាំ)</li>
+                        <li>កង្វះការអប់រំសុវត្ថិភាពចរាចរណ៍</li>
+                        <li>ការចូលប្រើមិនស្មើភាព</li>
+                        <li>ការបណ្តុះបណ្តាលមិនមានស្តង់ដារ</li>
+                    </ul>
+                </div>
+
+                <div class="canvas-item" style="grid-column: 2; grid-row: 1; grid-row-span: 2;">
+                    <h4>២. ដំណោះស្រាយ</h4>
+                    <ul>
+                        <li>វេទិកាអប់រំតាមអ៊ីនធឺណិត</li>
+                        <li>មេរៀនអន្តរកម្ម ៥០០+</li>
+                        <li>ហ្គេមអប់រំ ៦ ប្រភេទ</li>
+                        <li>ប្រព័ន្ធគ្រប់គ្រងគ្រូ-សិស្ស</li>
+                        <li>ភាសាទ្វេ (ខ្មែរ + EN)</li>
+                        <li>ឥតគិតថ្លៃ + តម្រូវការបង់ប្រាក់</li>
+                    </ul>
+                </div>
+
+                <div class="canvas-item" style="grid-column: 3; grid-row: 1;">
+                    <h4>៣. តម្លៃពិសេស</h4>
+                    <ul>
+                        <li>មេរៀនភាសាខ្មែរ ១០០%</li>
+                        <li>ការរៀនតាមរយៈហ្គេម</li>
+                        <li>មានចំណេញតាំងពីឆ្នាំ ១</li>
+                        <li>អនុលោមតាមស្តង់ដារអន្តរជាតិ</li>
+                    </ul>
+                </div>
+
+                <div class="canvas-item" style="grid-column: 4; grid-row: 1; grid-row-span: 2;">
+                    <h4>៤. អត្ថប្រយោជន៍មិនយុត្តិធម៌</h4>
+                    <ul>
+                        <li>វេទិកាភាសាខ្មែរដំបូងគេ</li>
+                        <li>ការជាប់ពាក់ព័ន្ធនឹងក្រសួងអប់រំ</li>
+                        <li>ប្រព័ន្ធ gamification ពេញលេញ</li>
+                        <li>Network effects ខ្លាំង</li>
+                    </ul>
+                </div>
+
+                <div class="canvas-item" style="grid-column: 5; grid-row: 1;">
+                    <h4>៥. ចំណុចខ្លាំង</h4>
+                    <ul>
+                        <li>ការប្រកួត Technovation Girls</li>
+                        <li>ក្រុមស្រ្តីវ័យក្មេងពីកម្ពុជា</li>
+                        <li>គាំទ្រដោយសហគមន៍</li>
+                        <li>តម្លាភាព ១០០%</li>
+                    </ul>
+                </div>
+
+                <div class="canvas-item" style="grid-column: 1; grid-row: 2;">
+                    <h4>៦. ទស្សនិកជនគោលដៅ</h4>
+                    <ul>
+                        <li><strong>B2C:</strong> សិស្សានុសិស្ស</li>
+                        <li><strong>B2B:</strong> សាលារៀន</li>
+                        <li><strong>B2G:</strong> ក្រសួងអប់រំ</li>
+                    </ul>
+                </div>
+
+                <div class="canvas-item" style="grid-column: 3; grid-row: 2;">
+                    <h4>៧. ឆានែលទីផ្សារ</h4>
+                    <ul>
+                        <li>Facebook / TikTok</li>
+                        <li>ដៃគូសាលារៀន</li>
+                        <li>ប្រព័ន្ធណែនាំ</li>
+                        <li>មាតិកា SEO</li>
+                    </ul>
+                </div>
+
+                <div class="canvas-item" style="grid-column: 5; grid-row: 2;">
+                    <h4>៨. ប្រាក់ចំណូល</h4>
+                    <ul>
+                        <li>ឥតគិតថ្លៃ: $០</li>
+                        <li>គ្រូ Pro: $១០/ខែ</li>
+                        <li>សាលារៀន: $២០/ខែ</li>
+                        <li>ស្ថាប័ន: $៤៩/ខែ</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="canvas-box">
+                <h4>៩. រចនាសម្ព័ន្ធថ្លៃដើម</h4>
+                <ul>
+                    <li><strong>ថេរ:</strong> Hosting ($៥០/ខែ), ឧបករណ៍អភិវឌ្ឍន៍ ($២០/ខែ)</li>
+                    <li><strong>អថេរ:</strong> ទីផ្សារ (៥-១០% នៃប្រាក់ចំណូល), ការគាំទ្រ (២-៥%)</li>
+                    <li><strong>ឆ្នាំ ១:</strong> $២,០៥០ សរុប | <strong>ឆ្នាំ ៥:</strong> $៩៨៦,៨០០ សរុប</li>
+                </ul>
+            </div>
+
+            <div class="canvas-box">
+                <h4>១០. ព្រឹត្តិការណ៍វាស់វែងសំខាន់ (Key Metrics)</h4>
+                <ul>
+                    <li><strong>សកម្មភាព:</strong> អ្នកប្រើប្រើសកម្មរាល់ថ្ងៃ (DAU), អត្រាបន្តរយៈពេលវែង (Retention)</li>
+                    <li><strong>ការរៀន:</strong> ចំនួនមេរៀនបញ្ចប់, ពិន្ទុមធ្យម, រយៈពេលវាគ្យ</li>
+                    <li><strong>ការលក់:</strong> អត្រាបំប្លែង (Free → Paid), ARR, Churn rate</li>
+                    <li><strong>សង្គម:</strong> អ្នកប្រើប្រាស់ធ្វើឲ្យយោងរាល់ខែ (Referral rate)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ការស្រាវជ្រាវទីផ្សារ -->
+        <section class="section">
+            <h2>៣. ការស្រាវជ្រាវទីផ្សារ</h2>
+
+            <h3>៣.១. ទំហំទីផ្សារ</h3>
+
+            <div class="chart-container">
+                <canvas id="marketSizeChart"></canvas>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ប្រភេទទីផ្សារ</th>
+                        <th>ទំហំបច្ចុប្បន្ន (២០២៦)</th>
+                        <th>ការរំពឹងទុក (២០៣២)</th>
+                        <th>CAGR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>EdTech អាស៊ាន</td>
+                        <td>$១២.២៦B</td>
+                        <td>$៤១.៥២B</td>
+                        <td>២២.៦%</td>
+                    </tr>
+                    <tr>
+                        <td>EdTech កម្ពុជា</td>
+                        <td>$៩៨M</td>
+                        <td>$៣៣០M</td>
+                        <td>២២.៥%</td>
+                    </tr>
+                    <tr>
+                        <td>សុវត្ថិភាពចរាចរណ៍ពិភពលោក</td>
+                        <td>$៨.៣B</td>
+                        <td>$១៦.២B</td>
+                        <td>១១.៨%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>៣.២. ទស្សនិកជនគោលដៅ</h3>
+
+            <h4>ក. ផ្នែកទស្សនិកជន B2C (សិស្ស និងក្រុមគ្រួសារ)</h4>
+            <ul>
+                <li><strong>វ័យ:</strong> ១២-២៥ ឆ្នាំ (និស្សិតវិទ្យាល័យ និងសាកលវិទ្យាល័យ)</li>
+                <li><strong>ចំនួន:</strong> ៣.៥ លាននាក់ ក្នុងកម្ពុជា</li>
+                <li><strong>អាកប្បកិរិយា:</strong> អ្នកប្រើប្រាស់ smartphone (៨៥%), សកម្មលើបណ្តាញសង្គម</li>
+                <li><strong>តម្រូវការ:</strong> រៀនឥតគិតថ្លៃ, ភាសាខ្មែរ, ការរៀនសប្បាយ</li>
+            </ul>
+
+            <h4>ខ. ផ្នែកទស្សនិកជន B2B (សាលារៀន និងស្ថាប័ន)</h4>
+            <ul>
+                <li><strong>សាលារៀនបឋមសិក្សា-មធ្យមសិក្សា:</strong> ១០,០០០+ សាលា ក្នុងកម្ពុជា</li>
+                <li><strong>សាលាបណ្តុះបណ្តាល:</strong> ២០០+ កន្លែង</li>
+                <li><strong>តម្រូវការ:</strong> ប្រព័ន្ធគ្រប់គ្រង, របាយការណ៍, អនុលោមច្បាប់</li>
+                <li><strong>ថ្លៃដែលអាចទទួលយក:</strong> $២០-៤៩/ខែ</li>
+            </ul>
+
+            <h4>គ. ផ្នែកទស្សនិកជន B2G (រដ្ឋាភិបាល)</h4>
+            <ul>
+                <li><strong>ក្រសួងអប់រំ យុវជន និងកីឡា:</strong> ដៃគូយុទ្ធសាស្រ្ត</li>
+                <li><strong>នាយកដ្ឋានចរាចរណ៍:</strong> សម្រាប់អាជ្ញាប័ណ្ណ</li>
+                <li><strong>អង្គការ NGO:</strong> UNDP, WHO, ADB</li>
+            </ul>
+
+            <h3>៣.៣. ការវិភាគគូប្រកួត</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>គូប្រកួត</th>
+                        <th>ចំណុចខ្លាំង</th>
+                        <th>ចំណុចខ្សោយ</th>
+                        <th>តម្លៃ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>សាលាបណ្តុះបណ្តាលប្រពៃណី</td>
+                        <td>• មានបទពិសោធន៍<br>• មានទីតាំងរាងកាយ</td>
+                        <td>• ថ្លៃ ($១៥០-៣០០)<br>• មិនមានភាសាខ្មែរ<br>• មិនអាចស្រួល</td>
+                        <td>$១៥០-៣០០</td>
+                    </tr>
+                    <tr>
+                        <td>App អន្តរជាតិ (Zutobi, iTheory)</td>
+                        <td>• UI ទំនើប<br>• មាតិកាច្រើន</td>
+                        <td>• គ្មានភាសាខ្មែរ<br>• មិនអនុលោមច្បាប់កម្ពុជា<br>• ថ្លៃ ($៥០-១០០)</td>
+                        <td>$៥០-១០០/ឆ្នាំ</td>
+                    </tr>
+                    <tr>
+                        <td>មាតិកា YouTube ដោយឥតគិតថ្លៃ</td>
+                        <td>• ឥតគិតថ្លៃ<br>• អាចចូលបាន</td>
+                        <td>• មិនមានរចនាសម្ព័ន្ធ<br>• គុណភាពមិនស្មើគ្នា<br>• គ្មានការតាមដាន</td>
+                        <td>ឥតគិតថ្លៃ</td>
+                    </tr>
+                    <tr>
+                        <td><strong>KWD</strong></td>
+                        <td>• <strong>ភាសាខ្មែរ ១០០%</strong><br>• អនុលោមច្បាប់កម្ពុជា<br>• Gamification<br>• ថ្លៃទាប
+                        </td>
+                        <td>• ថ្មី (តិចបទពិសោធន៍)<br>• បណ្តាញតូច</td>
+                        <td><strong>$០-៤៩/ខែ</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight">
+                <p><strong>អត្ថប្រយោជន៍ប្រកួតប្រជែងរបស់ KWD:</strong></p>
+                <ul>
+                    <li>វេទិកាភាសាខ្មែរប្រភេទនេះដំបូងគេ និងតែមួយគត់</li>
+                    <li>មាតិកាអនុលោមតាមច្បាប់កម្ពុជា ១០០%</li>
+                    <li>តម្លៃទាបជាង ៧០% ធៀបនឹងសាលាបណ្តុះបណ្តាល</li>
+                    <li>រូបមន្ត Freemium អនុញ្ញាតឲ្យបង្កើនអ្នកប្រើប្រាស់លឿន</li>
+                    <li>Gamification ជំរុញការចូលរួមខ្ពស់</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- យុទ្ធសាស្ត្រប្រាក់ចំណូល -->
+        <section class="section">
+            <h2>៤. យុទ្ធសាស្ត្រប្រាក់ចំណូល និងតម្លៃ</h2>
+
+            <h3>៤.១. រចនាសម្ព័ន្ធតម្លៃ</h3>
+
+            <div class="chart-container">
+                <canvas id="pricingChart"></canvas>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>កញ្ចប់</th>
+                        <th>តម្លៃ/ខែ</th>
+                        <th>អ្នកប្រើប្រាស់</th>
+                        <th>មុខងារសំខាន់</th>
+                        <th>ទស្សនិកជន</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ឥតគិតថ្លៃ</strong></td>
+                        <td>$០</td>
+                        <td>១០/session</td>
+                        <td>• ១ ប្រភេទមេរៀន<br>• ១ session/ខែ<br>• ហ្គេមជាមូលដ្ឋាន</td>
+                        <td>សិស្សបុគ្គល</td>
+                    </tr>
+                    <tr>
+                        <td><strong>គ្រូ Pro</strong></td>
+                        <td>$១០</td>
+                        <td>៥០/session</td>
+                        <td>• ប្រភេទទាំងអស់ (៨)<br>• Session គ្មានដែនកំណត់<br>• របាយការណ៍មូលដ្ឋាន<br>• ហ្គេមកម្រិតខ្ពស់
+                        </td>
+                        <td>គ្រូបង្រៀនឯករាជ្យ</td>
+                    </tr>
+                    <tr>
+                        <td><strong>សាលារៀន</strong></td>
+                        <td>$២០</td>
+                        <td>១០០ សិស្ស<br>៥ គ្រូ</td>
+                        <td>• គ្រប់គ្រងថ្នាក់រៀន<br>• របាយការណ៍លម្អិត<br>• ការគាំទ្រអាទិភាព<br>• ផ្ទាំងគ្រប់គ្រងសាលា
+                        </td>
+                        <td>សាលារៀនឯកជន/រដ្ឋ</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ស្ថាប័ន</strong></td>
+                        <td>$៤៩</td>
+                        <td>២០០ សិស្ស<br>១០ គ្រូ</td>
+                        <td>• គ្រប់មុខងារ<br>• API access<br>• White-label option<br>• ការគាំទ្រ 24/7<br>•
+                            ការបណ្តុះបណ្តាលផ្ទាល់ខ្លួន</td>
+                        <td>ស្ថាប័នបណ្តុះបណ្តាល</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>៤.២. យុទ្ធសាស្ត្រតម្លៃ - គោលការណ៍ចិត្តសាស្រ្ត</h3>
+
+            <h4>ក. ឥទ្ធិពលនៃការខាតបង់ (Loss Aversion)</h4>
+            <p>
+                កញ្ចប់ឥតគិតថ្លៃអនុញ្ញាតឲ្យអ្នកប្រើប្រាស់ទទួលបានតម្លៃមុនពេលទិញ។ នៅពេលគេឃើញអត្ថប្រយោជន៍
+                ពួកគេមិនចង់ "បាត់បង់" មុខងារកម្រិតខ្ពស់ទេ ដែលជំរុញឲ្យពួកគេធ្វើការតម្លើងកំណែ។
+            </p>
+
+            <h4>ខ. ឥទ្ធិពលជ្រើសរើស (Anchoring Effect)</h4>
+            <p>
+                កញ្ចប់ "ស្ថាប័ន" ($៤៩) ធ្វើឲ្យកញ្ចប់ "សាលារៀន" ($២០) មើលទៅថោកជាង។ នេះជាការប្រើប្រាស់
+                ជ្រើសរើសតម្លៃដើម្បីធ្វើឲ្យកញ្ចប់កណ្តាលមើលទៅសមរម្យជាង។
+            </p>
+
+            <h4>គ. គោលការណ៍ Scarcity</h4>
+            <p>
+                កញ្ចប់ឥតគិតថ្លៃមានដែនកំណត់ (១០ អ្នកប្រើប្រាស់, ១ session/ខែ) បង្កើតនូវអារម្មណ៍នៃកង្វះខាត
+                ដែលជំរុញឲ្យមានការតម្លើងកំណែ។
+            </p>
+
+            <h4>ឃ. សក្តានុពល Social Proof</h4>
+            <p>
+                ការបង្ហាញចំនួនអ្នកប្រើប្រាស់ និងសាលារៀនដែលបានចុះឈ្មោះបង្កើននូវទំនុកចិត្តនិងជំរុញឲ្យមានការបំប្លែង។
+            </p>
+        </section>
+
+        <!-- យុទ្ធសាស្ត្រទីផ្សារ -->
+        <section class="section">
+            <h2>៥. យុទ្ធសាស្ត្រទីផ្សារ</h2>
+
+            <h3>៥.១. ផែនការចូលទីផ្សារ (Go-to-Market)</h3>
+
+            <h4>ដំណាក់កាលទី ១ (ខែ ១-៦): ការបង្កើតមូលដ្ឋាន</h4>
+            <ul>
+                <li>គោលដៅ: ១,០០០ អ្នកប្រើប្រាស់សកម្ម, ១០ សាលារៀន</li>
+                <li>ឆានែល: Facebook, TikTok, សហគមន៍មូលដ្ឋាន</li>
+                <li>យុទ្ធសាស្ត្រ: Freemium + មាតិកាអប់រំឥតគិតថ្លៃ</li>
+                <li>ថវិកា: $៥០០ (មាតិកា + quảng cáo តូច)</li>
+            </ul>
+
+            <h4>ដំណាក់កាលទី ២ (ខែ ៧-១២): ការពង្រីក</h4>
+            <ul>
+                <li>គោលដៅ: ៥,០០០ អ្នកប្រើប្រាស់, ៥០ សាលារៀន</li>
+                <li>ឆានែល: ដៃគូសាលារៀន, ប្រព័ន្ធណែនាំ</li>
+                <li>យុទ្ធសាស្ត្រ: B2B partnership, ឱកាសសាកល្បង ១៥ ថ្ងៃ</li>
+                <li>ថវិកា: $១,០០០</li>
+            </ul>
+
+            <h4>ដំណាក់កាលទី ៣ (ឆ្នាំ ២): ការឈានដល់ប្រទេស</h4>
+            <ul>
+                <li>គោលដៅ: ២៥,០០០ អ្នកប្រើប្រាស់, ២០០ សាលារៀន</li>
+                <li>ឆានែល: SEO, មាតិកាទីផ្សារ, PR</li>
+                <li>យុទ្ធសាស្ត្រ: ដៃគូនឹងក្រសួងអប់រំ</li>
+                <li>ថវិកា: $៥,០០០</li>
+            </ul>
+
+            <h4>ដំណាក់កាលទី ៤ (ឆ្នាំ ៣-៥): ការពង្រីកតំបន់</h4>
+            <ul>
+                <li>គោលដៅ: ៤០០,០០០ អ្នកប្រើប្រាស់, ១,៥០០ សាលារៀន</li>
+                <li>ឆានែល: ការពង្រីកតំបន់ (ឡាវ, ថៃ), កម្មវិធី mobile</li>
+                <li>យុទ្ធសាស្ត្រ: ការបកប្រែភាសាថ្មី, ដៃគូតំបន់</li>
+                <li>ថវិកា: $២០,០០០+</li>
+            </ul>
+
+            <h3>៥.២. ឆានែលទទួលបានអតិថិជន</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ឆានែល</th>
+                        <th>គោលដៅ</th>
+                        <th>យុទ្ធសាស្ត្រ</th>
+                        <th>CAC រំពឹងទុក</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>មាតិកា Marketing</strong></td>
+                        <td>B2C</td>
+                        <td>• Blog SEO<br>• Video TikTok/YouTube<br>• Infographics</td>
+                        <td>$០.៥០-១</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Social Media</strong></td>
+                        <td>B2C</td>
+                        <td>• Facebook Group<br>• TikTok challenges<br>• User-generated content</td>
+                        <td>$១-២</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ប្រព័ន្ធណែនាំ</strong></td>
+                        <td>B2C</td>
+                        <td>• ពិន្ទុណែនាំ<br>• ការប្រកួតផ្តល់រង្វាន់<br>• រកប្រាក់បន្ថែម</td>
+                        <td>$០.២៥</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ដៃគូសាលារៀន</strong></td>
+                        <td>B2B</td>
+                        <td>• ឱកាសសាកល្បងឥតគិតថ្លៃ<br>• Workshop<br>• Co-branding</td>
+                        <td>$២០-៥០</td>
+                    </tr>
+                    <tr>
+                        <td><strong>B2G Partnership</strong></td>
+                        <td>B2G</td>
+                        <td>• អនុស្សារណៈយោគយល់<br>• កម្មវិធីសាកល្បង<br>• សហការឯកសារ</td>
+                        <td>$១០០-២០០</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>៥.៣. ផ្លូវបំប្លែង (Conversion Funnel) - AIDA Model</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ដំណាក់កាល</th>
+                        <th>សកម្មភាព</th>
+                        <th>អត្រាបំប្លែង</th>
+                        <th>គោលការណ៍ចិត្តសាស្រ្ត</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>A - Awareness</strong><br>(ការយល់ដឹង)</td>
+                        <td>• បង្ហោះ Social Media<br>• SEO Blog<br>• TikTok viral</td>
+                        <td>១០០,០០០<br>ការមើល/ខែ</td>
+                        <td>Attention triggers, Curiosity gap</td>
+                    </tr>
+                    <tr>
+                        <td><strong>I - Interest</strong><br>(ការចាប់អារម្មណ៍)</td>
+                        <td>• Landing page<br>• Video demo<br>• Testimonials</td>
+                        <td>១០% → ១០,០០០<br>ចូលមើលគេហទំព័រ</td>
+                        <td>Social proof, Authority, Storytelling</td>
+                    </tr>
+                    <tr>
+                        <td><strong>D - Desire</strong><br>(ការចង់បាន)</td>
+                        <td>• ឱកាសសាកល្បងឥតគិតថ្លៃ<br>• Gamified onboarding<br>• Quick wins</td>
+                        <td>៣០% → ៣,០០០<br>ការចុះឈ្មោះ</td>
+                        <td>Loss aversion, FOMO, Reciprocity</td>
+                    </tr>
+                    <tr>
+                        <td><strong>A - Action</strong><br>(សកម្មភាព)</td>
+                        <td>• Upsell prompts<br>• Limited features<br>• អត្ថប្រយោជន៍ច្បាស់</td>
+                        <td>៣% → ៩០<br>អតិថិជនបង់ប្រាក់</td>
+                        <td>Scarcity, Urgency, Clear CTA</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight">
+                <p><strong>អត្រាបំប្លែងសរុប:</strong> ០.០៩% (១០០K impressions → ៩០ អតិថិជនបង់ប្រាក់)</p>
+                <p><strong>Cost per Acquisition (CPA):</strong> $១-៥ (ផ្អែកលើឆានែល)</p>
+                <p><strong>Lifetime Value (LTV):</strong> $១២០-៥០០ (១-៣ ឆ្នាំ retention)</p>
+                <p><strong>LTV:CAC Ratio:</strong> ៤០:១ (ស្តង់ដារគឺ ៣:១)</p>
+            </div>
+
+            <h3>៥.៤. យុទ្ធសាស្ត្ររក្សាអតិថិជន (Retention Strategy)</h3>
+
+            <h4>Hooked Model (Nir Eyal)</h4>
+            <ol>
+                <li><strong>Trigger:</strong> ការជូនដំណឹងរាល់ថ្ងៃ, គោលដៅរស់ជីវិតប្រចាំសប្តាហ៍</li>
+                <li><strong>Action:</strong> ការចូលប្រើងាយស្រួល, មេរៀនខ្លី (២-៥ នាទី)</li>
+                <li><strong>Variable Reward:</strong> ពិន្ទុ, badges, ការឈ្នះហ្គេម, ការឡើងថ្នាក់</li>
+                <li><strong>Investment:</strong> ប្រវត្តិវឌ្ឍនភាព, avatar ផ្ទាល់ខ្លួន, សមាជិកភាពក្នុងសហគមន៍</li>
+            </ol>
+
+            <h4>អត្រារក្សារំពឹងទុក</h4>
+            <ul>
+                <li><strong>ខែទី ១:</strong> ៦០% (ឥតគិតថ្លៃ), ៨៥% (បង់ប្រាក់)</li>
+                <li><strong>ខែទី ៣:</strong> ៤០% (ឥតគិតថ្លៃ), ៧៥% (បង់ប្រាក់)</li>
+                <li><strong>ខែទី ១២:</strong> ២០% (ឥតគិតថ្លៃ), ៦៥% (បង់ប្រាក់)</li>
+            </ul>
+        </section>
+
+        <!-- ការព្យាករណ៍ហិរញ្ញវត្ថុ -->
+        <section class="section">
+            <h2>៦. ការព្យាករណ៍ហិរញ្ញវត្ថុ ៥ ឆ្នាំ</h2>
+
+            <h3>៦.១. ការរីកចម្រើនប្រាក់ចំណូល</h3>
+
+            <div class="chart-container">
+                <canvas id="revenueChart"></canvas>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th rowspan="2">ឆ្នាំ</th>
+                        <th colspan="3">អ្នកប្រើប្រាស់</th>
+                        <th rowspan="2">ARR</th>
+                        <th rowspan="2">ចំណាយ</th>
+                        <th rowspan="2">ចំណេញសុទ្ធ</th>
+                        <th rowspan="2">EBITDA %</th>
+                    </tr>
+                    <tr>
+                        <th>ឥតគិតថ្លៃ</th>
+                        <th>បង់ប្រាក់</th>
+                        <th>សរុប</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>១</td>
+                        <td>៤,៧៥០</td>
+                        <td>២៥០</td>
+                        <td>៥,០០០</td>
+                        <td>$២៩,៦៤០</td>
+                        <td>$២,០៥០</td>
+                        <td>$២៧,៥៩០</td>
+                        <td>៩៣.១%</td>
+                    </tr>
+                    <tr>
+                        <td>២</td>
+                        <td>២២,៥០០</td>
+                        <td>២,៥០០</td>
+                        <td>២៥,០០០</td>
+                        <td>$២៤៣,០០០</td>
+                        <td>$៣៩,៥០០</td>
+                        <td>$២០៣,៥០០</td>
+                        <td>៨៣.៧%</td>
+                    </tr>
+                    <tr>
+                        <td>៣</td>
+                        <td>៧២,០០០</td>
+                        <td>៨,០០០</td>
+                        <td>៨០,០០០</td>
+                        <td>$៩៩៣,៤០០</td>
+                        <td>$១៩៥,៨០០</td>
+                        <td>$៧៩៧,៦០០</td>
+                        <td>៨០.៣%</td>
+                    </tr>
+                    <tr>
+                        <td>៤</td>
+                        <td>១៨០,០០០</td>
+                        <td>២០,០០០</td>
+                        <td>២០០,០០០</td>
+                        <td>$២,៩៤៤,០០០</td>
+                        <td>$៤៩៦,៤០០</td>
+                        <td>$២,៤៤៧,៦០០</td>
+                        <td>៨៣.១%</td>
+                    </tr>
+                    <tr>
+                        <td>៥</td>
+                        <td>៣៦០,០០០</td>
+                        <td>៤០,០០០</td>
+                        <td>៤០០,០០០</td>
+                        <td>$៥,៩២៨,០០០</td>
+                        <td>$៩៨៦,៨០០</td>
+                        <td>$៤,៩៤១,២០០</td>
+                        <td>៨៣.៣%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>៦.២. ការបែងចែកប្រាក់ចំណូល</h3>
+
+            <div class="chart-container">
+                <canvas id="revenueBreakdownChart"></canvas>
+            </div>
+
+            <h3>៦.៣. រចនាសម្ព័ន្ធថ្លៃដើម</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ប្រភេទថ្លៃដើម</th>
+                        <th>ឆ្នាំ ១</th>
+                        <th>ឆ្នាំ ២</th>
+                        <th>ឆ្នាំ ៣</th>
+                        <th>ឆ្នាំ ៤</th>
+                        <th>ឆ្នាំ ៥</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Hosting & Infrastructure</td>
+                        <td>$៦០០</td>
+                        <td>$១,២០០</td>
+                        <td>$៣,៦០០</td>
+                        <td>$៩,៦០០</td>
+                        <td>$១៨,០០០</td>
+                    </tr>
+                    <tr>
+                        <td>ឧបករណ៍អភិវឌ្ឍន៍</td>
+                        <td>$២៤០</td>
+                        <td>$៣០០</td>
+                        <td>$៦០០</td>
+                        <td>$១,២០០</td>
+                        <td>$២,៤០០</td>
+                    </tr>
+                    <tr>
+                        <td>ទីផ្សារ & ការផ្សាយពាណិជ្ជកម្ម</td>
+                        <td>$៦០០</td>
+                        <td>$១០,០០០</td>
+                        <td>$៤០,០០០</td>
+                        <td>$១២០,០០០</td>
+                        <td>$២៤០,០០០</td>
+                    </tr>
+                    <tr>
+                        <td>ប្រាក់បៀវត្ស (៥ → ៦០ នាក់)</td>
+                        <td>$០</td>
+                        <td>$២៤,០០០</td>
+                        <td>$១៤៤,០០០</td>
+                        <td>$៣៤៨,០០០</td>
+                        <td>$៧០៨,០០០</td>
+                    </tr>
+                    <tr>
+                        <td>ការគាំទ្រ & ប្រតិបត្តិការ</td>
+                        <td>$៣០០</td>
+                        <td>$២,០០០</td>
+                        <td>$៥,០០០</td>
+                        <td>$១២,០០០</td>
+                        <td>$១២,០០០</td>
+                    </tr>
+                    <tr>
+                        <td>ច្បាប់ & ការគិតលើកជាន់</td>
+                        <td>$៣១០</td>
+                        <td>$២,០០០</td>
+                        <td>$២,៦០០</td>
+                        <td>$៥,៦០០</td>
+                        <td>$៦,៤០០</td>
+                    </tr>
+                    <tr>
+                        <td><strong>សរុប</strong></td>
+                        <td><strong>$២,០៥០</strong></td>
+                        <td><strong>$៣៩,៥០០</strong></td>
+                        <td><strong>$១៩៥,៨០០</strong></td>
+                        <td><strong>$៤៩៦,៤០០</strong></td>
+                        <td><strong>$៩៨៦,៨០០</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="chart-container">
+                <canvas id="profitChart"></canvas>
+            </div>
+        </section>
+
+        <!-- ក្រុម -->
+        <section class="section">
+            <h2>៧. ក្រុមការងារ និងសមត្ថភាព</h2>
+
+            <h3>៧.១. ក្រុមមូលដ្ឋាន</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>សមាជិក</th>
+                        <th>តួនាទី</th>
+                        <th>សមត្ថភាព</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ដាណៃ យីន</strong></td>
+                        <td>អ្នកដឹកនាំក្រុម<br>អ្នកអានសំលេង</td>
+                        <td>• ភាពជាអ្នកដឹកនាំ<br>• ការគិតយុទ្ធសាស្រ្ត<br>• ទំនាក់ទំនង</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ចន្ថា កានិកា</strong></td>
+                        <td>មាតិការ<br>ការស្រាវជ្រាវ</td>
+                        <td>• ការស្រាវជ្រាវទីផ្សារ<br>• ការសរសេរមាតិកា<br>• ការវិភាគទិន្នន័យ</td>
+                    </tr>
+                    <tr>
+                        <td><strong>រ៉ូហ្សា ន័ន</strong></td>
+                        <td>រចនា UI/UX</td>
+                        <td>• រចនាចំណុចប្រទាក់<br>• បទពិសោធន៍អ្នកប្រើប្រាស់<br>• Branding</td>
+                    </tr>
+                    <tr>
+                        <td><strong>លីន ម៉ានី</strong></td>
+                        <td>ធានាគុណភាព<br>ការតេស្ត</td>
+                        <td>• QA Testing<br>• ការតេស្តអ្នកប្រើប្រាស់<br>• បញ្ជីប្រតិក្រិយា</td>
+                    </tr>
+                    <tr>
+                        <td><strong>សុន រុណម៉ារ៉ា</strong></td>
+                        <td>ធានាគុណភាព<br>ការតេស្ត</td>
+                        <td>• QA Testing<br>• ការគ្រប់គ្រងគម្រោង<br>• ឯកសារ</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>៧.២. អ្នកណែនាំ</h3>
+            <ul>
+                <li><strong>ភាព ពិសិដ្ឋ:</strong> គ្រូណែនាំ & អ្នកដឹកនាំបច្ចេកទេស</li>
+                <li><strong>ស្រុី វី:</strong> គ្រូណែនាំ</li>
+            </ul>
+
+            <h3>៧.៣. ផែនការជ្រើសរើសបុគ្គលិក (ឆ្នាំ ១-៥)</h3>
+
+            <div class="chart-container">
+                <canvas id="teamGrowthChart"></canvas>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>តួនាទី</th>
+                        <th>ឆ្នាំ ១</th>
+                        <th>ឆ្នាំ ២</th>
+                        <th>ឆ្នាំ ៣</th>
+                        <th>ឆ្នាំ ៤</th>
+                        <th>ឆ្នាំ ៥</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>អ្នកបង្កើត (Founders)</td>
+                        <td>៥</td>
+                        <td>៥</td>
+                        <td>៥</td>
+                        <td>៥</td>
+                        <td>៥</td>
+                    </tr>
+                    <tr>
+                        <td>អ្នកអភិវឌ្ឍន៍ពេញម៉ោង</td>
+                        <td>០</td>
+                        <td>២</td>
+                        <td>៥</td>
+                        <td>១០</td>
+                        <td>២០</td>
+                    </tr>
+                    <tr>
+                        <td>អ្នកសរសេរមាតិកា</td>
+                        <td>០</td>
+                        <td>១</td>
+                        <td>៣</td>
+                        <td>៥</td>
+                        <td>៨</td>
+                    </tr>
+                    <tr>
+                        <td>ទីផ្សារ & ការលក់</td>
+                        <td>០</td>
+                        <td>១</td>
+                        <td>៣</td>
+                        <td>៦</td>
+                        <td>១២</td>
+                    </tr>
+                    <tr>
+                        <td>ការគាំទ្រអតិថិជន</td>
+                        <td>០</td>
+                        <td>១</td>
+                        <td>២</td>
+                        <td>៥</td>
+                        <td>១០</td>
+                    </tr>
+                    <tr>
+                        <td>រដ្ឋបាល & ហិរញ្ញវត្ថុ</td>
+                        <td>០</td>
+                        <td>០</td>
+                        <td>១</td>
+                        <td>២</td>
+                        <td>៥</td>
+                    </tr>
+                    <tr>
+                        <td><strong>សរុប</strong></td>
+                        <td><strong>៥</strong></td>
+                        <td><strong>១០</strong></td>
+                        <td><strong>១៩</strong></td>
+                        <td><strong>៣៣</strong></td>
+                        <td><strong>៦០</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ការគ្រប់គ្រងហានិភ័យ -->
+        <section class="section">
+            <h2>៨. ការគ្រប់គ្រងហានិភ័យ</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ហានិភ័យ</th>
+                        <th>កម្រិត</th>
+                        <th>ផលប៉ះពាល់</th>
+                        <th>យុទ្ធសាស្ត្រកាត់បន្ថយ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ការប្រកួតប្រជែង</strong><br>App ថ្មីចូលទីផ្សារ</td>
+                        <td>មធ្យម</td>
+                        <td>បាត់បង់ទីផ្សារ<br>សម្ពាធតម្លៃ</td>
+                        <td>• រក្សាភាសាខ្មែរជាអត្ថប្រយោជន៍<br>• បង្កើត Network effects<br>• នវានុវត្តន៍ជាប់លាប់<br>•
+                            ដៃគូគោលដៅ B2G</td>
+                    </tr>
+                    <tr>
+                        <td><strong>បច្ចេកទេស</strong><br>Server downtime, bugs</td>
+                        <td>ទាប</td>
+                        <td>បាត់បង់អ្នកប្រើប្រាស់<br>ការពិនិត្យយឺត</td>
+                        <td>• Infrastructure Serverless<br>• Monitoring 24/7<br>• Backup ប្រចាំថ្ងៃ<br>• ក្រុម QA ខ្លាំង
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>ហិរញ្ញវត្ថុ</strong><br>Burn rate ខ្ពស់</td>
+                        <td>ទាប</td>
+                        <td>អស់លុយមុនពេលចំណេញ</td>
+                        <td>• មានចំណេញតាំងពីឆ្នាំ ១<br>• រូបមន្ត Freemium<br>• ថ្លៃដើមទាប<br>• រីកចម្រើនបន្តិចម្តងៗ</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ច្បាប់</strong><br>ការផ្លាស់ប្តូរច្បាប់ចរាចរណ៍</td>
+                        <td>ទាប-មធ្យម</td>
+                        <td>ត្រូវធ្វើបច្ចុប្បន្នភាពមាតិកា</td>
+                        <td>• ដៃគូនឹងនាយកដ្ឋានចរាចរណ៍<br>• ប្រព័ន្ធអាប់ដេតលឿន<br>• ក្រុមច្បាប់ប្រឹក្សា</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ទីផ្សារ</strong><br>ការទទួលយកយឺត</td>
+                        <td>មធ្យម</td>
+                        <td>ការរីកចម្រើនយឺត<br>តិចជាង target</td>
+                        <td>• Freemium ដើម្បីកាត់បន្ថយរបារ<br>• ដៃគូសាលារៀន<br>• Social proof<br>• មាតិកាអប់រំឥតគិតថ្លៃ
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>ក្រុម</strong><br>សមាជិកចាកចេញ</td>
+                        <td>ទាប</td>
+                        <td>ការបាត់បង់ចំណេះដឹង<br>ការពន្យារពេល</td>
+                        <td>• ឯកសារច្បាស់<br>• វប្បធម៌ក្រុមខ្លាំង<br>• ការរក្សាទុកចំណេះដឹង<br>• ផ្តល់តម្លៃស្មើគ្នា</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ផែនទីផ្លូវអភិវឌ្ឍន៍ផលិតផល -->
+        <section class="section">
+            <h2>៩. ផែនទីផ្លូវអភិវឌ្ឍន៍ផលិតផល</h2>
+
+            <h3>៩.១. ឆ្នាំទី ១: មូលដ្ឋាន & PMF (Product-Market Fit)</h3>
+            <ul>
+                <li><strong>Q1-Q2:</strong> ការបើកដំណើរការ MVP, មេរៀន ៥០០+, ហ្គេម ៦ ប្រភេទ</li>
+                <li><strong>Q3:</strong> ប្រព័ន្ធគ្រប់គ្រងគ្រូ, របាយការណ៍មូលដ្ឋាន</li>
+                <li><strong>Q4:</strong> កម្មវិធី mobile (iOS/Android), ការបង្កើនប្រសិទ្ធភាព</li>
+                <li><strong>បច្ចេកវិទ្យា:</strong> Next.js, PostgreSQL, Vercel</li>
+            </ul>
+
+            <h3>៩.២. ឆ្នាំទី ២: ការពង្រីក B2B</h3>
+            <ul>
+                <li><strong>Q1:</strong> ផ្ទាំងគ្រប់គ្រងសាលារៀន, ការគ្រប់គ្រងថ្នាក់រៀន</li>
+                <li><strong>Q2:</strong> API សម្រាប់ការរួមបញ្ចូលភាគីទីបី</li>
+                <li><strong>Q3:</strong> របាយការណ៍កម្រិតខ្ពស់, ការវិភាគទិន្នន័យ</li>
+                <li><strong>Q4:</strong> កម្មវិធី mobile កម្រិតខ្ពស់, mode offline</li>
+            </ul>
+
+            <h3>៩.៣. ឆ្នាំទី ៣: AI & ការផ្តល់អនុសាសន៍</h3>
+            <ul>
+                <li><strong>Q1-Q2:</strong> ផ្លូវរៀនផ្តល់អនុសាសន៍ដោយ AI</li>
+                <li><strong>Q2-Q3:</strong> មេរៀនបែបសាច់ស្រួល (Adaptive Learning)</li>
+                <li><strong>Q3-Q4:</strong> Chatbot AI សម្រាប់ការគាំទ្រ, ការដោះស្រាយ voice</li>
+                <li><strong>ការរួមបញ្ចូល:</strong> OpenAI, Anthropic Claude</li>
+            </ul>
+
+            <h3>៩.៤. ឆ្នាំទី ៤: ការពង្រីកតំបន់</h3>
+            <ul>
+                <li><strong>Q1:</strong> ការបកប្រែភាសាឡាវ</li>
+                <li><strong>Q2:</strong> ការបកប្រែភាសាថៃ</li>
+                <li><strong>Q3:</strong> អនុលោមមាតិកាតាមប្រទេស</li>
+                <li><strong>Q4:</strong> ដៃគូតំបន់, ការផ្សព្វផ្សាយតំបន់</li>
+            </ul>
+
+            <h3>៩.៥. ឆ្នាំទី ៥: ស្ថាប័ន & នវានុវត្តន៍</h3>
+            <ul>
+                <li><strong>Q1-Q2:</strong> កម្មវិធីសាកល្បង VR/AR សម្រាប់ការបណ្តុះបណ្តាលពិតប្រាកដ</li>
+                <li><strong>Q2-Q3:</strong> ការរួមបញ្ចូលជាមួយរថយន្តស្វ័យប្រវត្តិ</li>
+                <li><strong>Q3-Q4:</strong> Platform B2G សម្រាប់អាជ្ញាប័ណ្ណរដ្ឋ</li>
+                <li><strong>ការស្រាវជ្រាវ:</strong> ML សម្រាប់ការព្យាករណ៍ហានិភ័យគ្រោះថ្នាក់</li>
+            </ul>
+
+            <div class="chart-container">
+                <canvas id="roadmapChart"></canvas>
+            </div>
+        </section>
+
+        <!-- ផលប៉ះពាល់សង្គម និងចីរភាព -->
+        <section class="section">
+            <h2>១០. ផលប៉ះពាល់សង្គម និងចីរភាព</h2>
+
+            <h3>១០.១. ការតម្រឹមជាមួយគោលដៅអភិវឌ្ឍន៍ប្រកបដោយចីរភាពរបស់អ.ស.ប (UN SDG)</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>SDG</th>
+                        <th>ការចូលរួម</th>
+                        <th>ផលប៉ះពាល់</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>SDG 4</strong><br>ការអប់រំមានគុណភាព</td>
+                        <td>• ការចូលប្រើការអប់រំឥតគិតថ្លៃ<br>• មាតិកាភាសាខ្មែរ<br>• ការរៀនតាមរយៈបច្ចេកវិទ្យា</td>
+                        <td>៤០០,០០០+ អ្នកប្រើប្រាស់<br>ដល់ឆ្នាំ ២០៣១</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SDG 11</strong><br>ទីក្រុងនិងសហគមន៍ប្រកបដោយចីរភាព</td>
+                        <td>• កាត់បន្ថយគ្រោះថ្នាក់ចរាចរណ៍<br>• ការអប់រំសុវត្ថិភាពផ្លូវ<br>• ការទទួលយកដោយទទួលខុសត្រូវ
+                        </td>
+                        <td>៣០០-៦០០ ជីវិតត្រូវបានសង្រ្គោះ/ឆ្នាំ<br>ការកាត់បន្ថយ ១០-២០%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SDG 5</strong><br>សមភាពយេនឌ័រ</td>
+                        <td>• ក្រុមស្រ្តីវ័យក្មេងអ្នកបង្កើត<br>• បំផុសគំនិតស្ត្រីក្នុងវិស័យបច្ចេកវិទ្យា<br>• រូបគំរូនារី
+                        </td>
+                        <td>ការឈានទៅភាពជាអ្នកដឹកនាំស្ត្រី<br>ក្នុងវិស័យបច្ចេកវិទ្យា</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>១០.២. ផលប៉ះពាល់រំពឹងទុក</h3>
+
+            <div class="highlight">
+                <h4>ផលប៉ះពាល់ផ្ទាល់</h4>
+                <ul>
+                    <li><strong>៤០០,០០០+ អ្នកប្រើប្រាស់</strong> ទទួលបានការអប់រំសុវត្ថិភាពចរាចរណ៍ដោយឆ្នាំ ២០៣១</li>
+                    <li><strong>១,៥០០+ សាលារៀន</strong> និងស្ថាប័នរួមបញ្ចូល KWD</li>
+                    <li><strong>៣០០-៦០០ ជីវិត</strong> ត្រូវបានសង្រ្គោះជារៀងរាល់ឆ្នាំ</li>
+                    <li><strong>១០-២០% ការកាត់បន្ថយ</strong> ក្នុងគ្រោះថ្នាក់ចរាចរណ៍</li>
+                </ul>
+
+                <h4>ផលប៉ះពាល់ប្រកបដោយចីរភាព</h4>
+                <ul>
+                    <li><strong>សេដ្ឋកិច្ច:</strong> សន្សំ $១១៧M-២៣៤M ក្នុងការខាតបង់គ្រោះថ្នាក់ចរាចរណ៍</li>
+                    <li><strong>សង្គម:</strong> បង្កើនការយល់ដឹងសុវត្ថិភាពផ្លូវ, ធ្វើឲ្យអាកប្បកិរិយាប្រសើរឡើង</li>
+                    <li><strong>បច្ចេកវិទ្យា:</strong> បង្កើតការងារ ៦០+ ដល់ឆ្នាំ ២០៣១</li>
+                    <li><strong>អប់រំ:</strong> កំណត់ស្តង់ដារសម្រាប់ការអប់រំតាមបច្ចេកវិទ្យាក្នុងកម្ពុជា</li>
+                </ul>
+            </div>
+
+            <h3>១០.៣. យុទ្ធសាស្ត្រចីរភាពយូរអង្វែង</h3>
+
+            <h4>ក. ចីរភាពហិរញ្ញវត្ថុ</h4>
+            <ul>
+                <li>រូបមន្ត Freemium អនុញ្ញាតឲ្យមានការរីកចម្រើនលឿន</li>
+                <li>មានចំណេញតាំងពីឆ្នាំទី ១</li>
+                <li>ការចំណូលប្រាក់ពីច្រើនប្រភេទ (B2C, B2B, B2G)</li>
+                <li>អត្រាចំណេញខ្ពស់ (៨០-៨៥%)</li>
+            </ul>
+
+            <h4>ខ. ចីរភាពបច្ចេកវិទ្យា</h4>
+            <ul>
+                <li>Infrastructure Serverless (Vercel, Neon)</li>
+                <li>Open-source stack (Next.js, PostgreSQL)</li>
+                <li>មានលទ្ធភាពពង្រីកខ្ពស់</li>
+                <li>ការអាប់ដេតងាយស្រួល និងថែទាំ</li>
+            </ul>
+
+            <h4>គ. ចីរភាពសហគមន៍</h4>
+            <ul>
+                <li>Network effects: កាន់តែច្រើនអ្នកប្រើប្រាស់ = តម្លៃកាន់តែច្រើន</li>
+                <li>មាតិកាដែលបង្កើតដោយអ្នកប្រើប្រាស់</li>
+                <li>សហគមន៍គ្រូ និងសិស្ស</li>
+                <li>ដៃគូជាយូរអង្វែងជាមួយសាលារៀន</li>
+            </ul>
+
+            <h3>១០.៤. យុទ្ធសាស្ត្រចាកចេញ (Exit Strategy)</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ជម្រើស</th>
+                        <th>ពេលវេលា</th>
+                        <th>តម្លៃវាយតម្លៃ</th>
+                        <th>អ្នកទិញសក្តានុពល</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ការទិញយក (Acquisition)</strong></td>
+                        <td>ឆ្នាំ ៤-៥</td>
+                        <td>$២៩.៥M-៥៩M<br>(៥-១០x ARR)</td>
+                        <td>• ក្រុមហ៊ុន EdTech តំបន់<br>• Google, Microsoft<br>• ក្រុមហ៊ុនរថយន្ត</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ការរួមបញ្ចូល (Merger)</strong></td>
+                        <td>ឆ្នាំ ៣-៤</td>
+                        <td>ជាដៃគូ<br>ការរីកចម្រើនលឿន</td>
+                        <td>• Platform EdTech តំបន់<br>• ក្រុមហ៊ុនសុវត្ថិភាព</td>
+                    </tr>
+                    <tr>
+                        <td><strong>IPO</strong></td>
+                        <td>ឆ្នាំ ៧-១០</td>
+                        <td>$១០០M+</td>
+                        <td>ទីផ្សារសាធារណៈ</td>
+                    </tr>
+                    <tr>
+                        <td><strong>រក្សាឯករាជ្យ</strong></td>
+                        <td>ជាប់លាប់</td>
+                        <td>ចំណេញត្រឡប់មកវិញ<br>ផលប៉ះពាល់សង្គម</td>
+                        <td>ក្រុមមូលដ្ឋាន</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- គោលការណ៍ចិត្តសាស្រ្តដែលប្រើ -->
+        <section class="section">
+            <h2>១១. គោលការណ៍ចិត្តសាស្រ្តដែលប្រើក្នុងផលិតផល</h2>
+
+            <h3>១១.១. Hooked Model (Nir Eyal)</h3>
+            <p>
+                យើងប្រើ Hooked Model ដើម្បីបង្កើតការយកចិត្តទុកដាក់របស់អ្នកប្រើប្រាស់ និងឲ្យពួកគេត្រលប់មកវិញជាប្រចាំ។
+            </p>
+            <ul>
+                <li><strong>Trigger:</strong> ការជូនដំណឹងប្រចាំថ្ងៃ, streak reminders, គោលដៅសប្តាហ៍</li>
+                <li><strong>Action:</strong> ការចូលប្រើងាយស្រួល, មេរៀនខ្លី ២-៥ នាទី, UI ស្រួលប្រើ</li>
+                <li><strong>Variable Reward:</strong> ពិន្ទុចៃដន្យ, badges, ការឈ្នះហ្គេម, ការឡើងថ្នាក់</li>
+                <li><strong>Investment:</strong> ប្រវត្តិវឌ្ឍនភាព, avatar, សមាជិកក្នុងសហគមន៍</li>
+            </ul>
+
+            <h3>១១.២. Loss Aversion (Daniel Kahneman)</h3>
+            <p>
+                មនុស្សខ្លាចការបាត់បង់ច្រើនជាងការទទួលបាន។ យើងប្រើនេះដោយ៖
+            </p>
+            <ul>
+                <li><strong>Streak counters:</strong> "អ្នកមានគោលដៅ streak ៧ ថ្ងៃ! កុំឲ្យវាបាត់បង់"</li>
+                <li><strong>កញ្ចប់ឥតគិតថ្លៃមានដែនកំណត់:</strong> នៅពេលអ្នកប្រើឃើញតម្លៃ ពួកគេមិនចង់បាត់បង់មុខងារ Premium
+                </li>
+                <li><strong>ពិន្ទុ និង badges:</strong> កុំបាត់បង់ការវិនិយោគពេលវេលារបស់អ្នក</li>
+            </ul>
+
+            <h3>១១.៣. Social Proof Theory (Robert Cialdini)</h3>
+            <p>
+                មនុស្សមើលអ្វីដែលអ្នកដទៃធ្វើ ជាពិសេសនៅពេលមិនច្បាស់។ យើងបង្ហាញ៖
+            </p>
+            <ul>
+                <li><strong>ចំនួនអ្នកប្រើប្រាស់:</strong> "ចូលរួមជាមួយ ៥,០០០+ សិស្ស"</li>
+                <li><strong>Leaderboard:</strong> "អ្នកគឺលេខ #១៣ ក្នុងខេត្តរបស់អ្នក"</li>
+                <li><strong>Testimonials:</strong> រឿងជោគជ័យពីសិស្សពិតប្រាកដ</li>
+                <li><strong>សាលារៀនដែលប្រើ:</strong> "ទុកចិត្តដោយសាលារៀន ២០០+"</li>
+            </ul>
+
+            <h3>១១.៤. Scarcity Principle</h3>
+            <p>
+                របស់ដែលកម្រមានតម្លៃច្រើនជាង។ យើងបង្កើតកង្វះខាតតាមរយៈ៖
+            </p>
+            <ul>
+                <li><strong>កញ្ចប់ឥតគិតថ្លៃមានដែនកំណត់:</strong> ១០ អ្នកលេង/session, ១ session/ខែ</li>
+                <li><strong>ឱកាសសាកល្បងកំណត់ពេល:</strong> "សាកល្បង ១៥ ថ្ងៃឥតគិតថ្លៃ"</li>
+                <li><strong>រង្វាន់កំណត់:</strong> "អ្នកឈ្នះដំបូង ១០០ នាក់ទទួល badge ពិសេស"</li>
+            </ul>
+
+            <h3>១១.៥. Gamification (Octalysis Framework)</h3>
+            <p>
+                ការប្រើបច្ចេកទេសហ្គេមដើម្បីបង្កើនការចូលរួម៖
+            </p>
+            <ul>
+                <li><strong>Points & Levels:</strong> ប្រព័ន្ធពិន្ទុច្បាស់, ការឡើងថ្នាក់</li>
+                <li><strong>Badges & Achievements:</strong> រង្វាន់វិចារសម្រាប់ការសម្រេចគោលដៅ</li>
+                <li><strong>Leaderboards:</strong> ការប្រកួតប្រជែងសង្គម</li>
+                <li><strong>Progress Bars:</strong> ការបង្ហាញវឌ្ឍនភាព</li>
+                <li><strong>Challenges:</strong> គោលដៅប្រចាំថ្ងៃ និងសប្តាហ៍</li>
+            </ul>
+
+            <h3>១១.៦. Self-Determination Theory</h3>
+            <p>
+                មនុស្សមានការលើកទឹកចិត្តខ្លាំងនៅពេលពួកគេមាន៖
+            </p>
+            <ul>
+                <li><strong>Autonomy (ស្វយ័តភាព):</strong> អនុញ្ញាតឲ្យសិស្សជ្រើសរើសមេរៀន និង avatar</li>
+                <li><strong>Competence (សមត្ថភាព):</strong> បង្ហាញវឌ្ឍនភាព, ពិន្ទុ, levels</li>
+                <li><strong>Relatedness (ទំនាក់ទំនង):</strong> សហគមន៍, leaderboard, ការចែករំលែក</li>
+            </ul>
+
+            <h3>១១.៧. Blue Ocean Strategy</h3>
+            <p>
+                ជំនួសនឹងការប្រកួតក្នុងទីផ្សារមានស្រាប់ (Red Ocean) យើងបង្កើតទីផ្សារថ្មី (Blue Ocean) ដោយ៖
+            </p>
+            <ul>
+                <li><strong>ភាសាខ្មែរ ១០០%:</strong> គ្មានអ្នកប្រកួតផ្សេងទៀតមាន</li>
+                <li><strong>Gamification + Education:</strong> ការរួមបញ្ចូលតែមួយគត់</li>
+                <li><strong>Freemium + B2B + B2G:</strong> ទីផ្សារទាំងបី</li>
+                <li><strong>តម្លៃទាប + គុណភាពខ្ពស់:</strong> តម្លៃថ្មី</li>
+            </ul>
+        </section>
+
+        <!-- សេចក្តីសន្និដ្ឋាន -->
+        <section class="section">
+            <h2>១២. សេចក្តីសន្និដ្ឋាន</h2>
+
+            <p>
+                KWD មិនមែនគ្រាន់តែជាកម្មវិធីប៉ុណ្ណោះទេ —
+                វាគឺជាចលនាសង្គមដើម្បីកាត់បន្ថយគ្រោះថ្នាក់ចរាចរណ៍និងសង្រ្គោះជីវិត។
+                ដោយបង្កើតដោយក្រុមយុវនារីកម្ពុជាពីក្រុងសៀមរាប យើងយល់ច្បាស់អំពីបញ្ហាដែលប្រទេសរបស់យើងកំពុងប្រឈម
+                និងមានចក្ខុវិស័យក្នុងការដោះស្រាយវាតាមរយៈបច្ចេកវិទ្យា។
+            </p>
+
+            <div class="highlight">
+                <h3>ហេតុអ្វីបានជា KWD នឹងទទួលបានជោគជ័យ៖</h3>
+                <ul>
+                    <li><strong>ទីផ្សារធំ & ការរីកចម្រើនលឿន:</strong> EdTech អាស៊ានកំពុងរីកចម្រើន ២២.៦% CAGR</li>
+                    <li><strong>បញ្ហាពិតប្រាកដ & តម្រូវការច្បាស់:</strong> ៣,១០០+ ការស្លាប់/ឆ្នាំ
+                        ត្រូវការដំណោះស្រាយបន្ទាន់</li>
+                    <li><strong>អត្ថប្រយោជន៍ប្រកួត:</strong> ភាសាខ្មែរ ១០០%, តម្លៃទាប, gamification ខ្លាំង</li>
+                    <li><strong>រូបមន្ត Freemium:</strong> កាត់បន្ថយរបារចូលប្រើ, ការរីកចម្រើនលឿន</li>
+                    <li><strong>មានចំណេញតាំងពីឆ្នាំទី ១:</strong> រូបមន្តអាជីវកម្មគ្មានហានិភ័យ</li>
+                    <li><strong>ក្រុមខ្លាំង:</strong> ក្រុមស្រ្តីវ័យក្មេងពីទីតាំង, ការគាំទ្រ Technovation</li>
+                    <li><strong>ផលប៉ះពាល់សង្គម:</strong> សង្រ្គោះជីវិត, SDG alignment, នវានុវត្តន៍សង្គម</li>
+                    <li><strong>មានលទ្ធភាពពង្រីក:</strong> ពង្រីកតំបន់ (ឡាវ, ថៃ), ការចំណូលច្រើនប្រភេទ</li>
+                </ul>
+            </div>
+
+            <h3>១២.១. ការអញ្ជើញវិនិយោគ</h3>
+
+            <p>
+                ខណៈពេលដែល KWD រួចហើយមានចំណេញជាមួយការវិនិយោគដំបូង $៥០ យើងកំពុងស្វែងរកដៃគូយុទ្ធសាស្រ្ត
+                ដើម្បីពង្រីកលឿនជាង និងបង្កើនផលប៉ះពាល់របស់យើង។
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ការវិនិយោគ</th>
+                        <th>ចំនួន</th>
+                        <th>តម្លៃវាយតម្លៃ</th>
+                        <th>ភាគហ៊ុន</th>
+                        <th>គោលបំណង</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ដំបូង (បានធ្វើ)</td>
+                        <td>$៥០</td>
+                        <td>-</td>
+                        <td>១០០%</td>
+                        <td>ការបើកដំណើរការ MVP</td>
+                    </tr>
+                    <tr>
+                        <td>Seed (ស្រេចចិត្ត)</td>
+                        <td>$៥០K-១៥០K</td>
+                        <td>$៥០០K-១M</td>
+                        <td>១០-១៥%</td>
+                        <td>ការពង្រីកទីផ្សារ, ក្រុម</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>១២.២. ការប្តេជ្ញាចិត្តរបស់យើង</h3>
+
+            <div class="highlight">
+                <p style="font-size: 18px; text-align: center; margin: 30px 0;">
+                    <strong>"យើងប្តេជ្ញាចិត្តកាត់បន្ថយគ្រោះថ្នាក់ចរាចរណ៍ក្នុងកម្ពុជា ១០-២០% ក្នុងរយៈពេល ៥ ឆ្នាំ
+                        ដោយការផ្តល់ការអប់រំសុវត្ថិភាពចរាចរណ៍ដែលមានគុណភាព ងាយស្រួលទទួលបាន និងសប្បាយ
+                        ដល់យុវជន ៤០០,០០០+ នាក់។"</strong>
+                </p>
+
+                <p style="font-size: 24px; text-align: center; font-weight: 800; margin: 40px 0;">
+                    សុវត្ថិភាពផ្លូវ។ ជីវិតរក្សា។ អនាគតកសាង។
+                </p>
+
+                <p style="text-align: center; font-size: 20px; margin: 30px 0;">
+                    Road Safety. Lives Saved. Future Built.
+                </p>
+            </div>
+
+            <h3>១២.៣. ទំនាក់ទំនង</h3>
+
+            <table>
+                <tbody>
+                    <tr>
+                        <td><strong>ក្រុម</strong></td>
+                        <td>Kesararam With Digital (KWD)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>កម្មវិធី</strong></td>
+                        <td>Technovation Girls 2026</td>
+                    </tr>
+                    <tr>
+                        <td><strong>លេខក្រុម</strong></td>
+                        <td>#50777</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ទីតាំង</strong></td>
+                        <td>ខេត្តសៀមរាប ព្រះរាជាណាចក្រកម្ពុជា</td>
+                    </tr>
+                    <tr>
+                        <td><strong>គេហទំព័រ</strong></td>
+                        <td>kesararamwithdigital.tech</td>
+                    </tr>
+                    <tr>
+                        <td><strong>កាលបរិច្ឆេទបង្កើត</strong></td>
+                        <td>ថ្ងៃទី ៧ ខែមិថុនា ឆ្នាំ ២០២៦</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </div>
+
+    <!-- JavaScript for Charts -->
+    <script>
+        // Market Size Chart
+        const marketSizeCtx = document.getElementById('marketSizeChart').getContext('2d');
+        new Chart(marketSizeCtx, {
+            type: 'bar',
+            data: {
+                labels: ['២០២៦', '២០២៧', '២០២៨', '២០២៩', '២០៣០', '២០៣១', '២០៣២'],
+                datasets: [{
+                    label: 'EdTech អាស៊ាន (ពាន់លានដុល្លារ)',
+                    data: [12.26, 15.04, 18.44, 22.62, 27.75, 34.03, 41.52],
+                    backgroundColor: '#000',
+                    borderColor: '#000',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            font: { size: 14, family: "'Noto Sans Khmer', sans-serif" }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'ការរីកចម្រើនទីផ្សារ EdTech អាស៊ាន (២០២៦-២០៣២)',
+                        font: { size: 16, weight: 'bold', family: "'Noto Sans Khmer', sans-serif" }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            font: { family: "'Noto Sans Khmer', sans-serif" }
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: { family: "'Noto Sans Khmer', sans-serif" }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Pricing Chart
+        const pricingCtx = document.getElementById('pricingChart').getContext('2d');
+        new Chart(pricingCtx, {
+            type: 'bar',
+            data: {
+                labels: ['ឥតគិតថ្លៃ', 'គ្រូ Pro', 'សាលារៀន', 'ស្ថាប័ន'],
+                datasets: [{
+                    label: 'តម្លៃ ($/ខែ)',
+                    data: [0, 10, 20, 49],
+                    backgroundColor: ['#f5f5f5', '#d4d4d4', '#a3a3a3', '#000'],
+                    borderColor: '#000',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'រចនាសម្ព័ន្ធតម្លៃ KWD',
+                        font: { size: 16, weight: 'bold', family: "'Noto Sans Khmer', sans-serif" }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            font: { family: "'Noto Sans Khmer', sans-serif" }
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: { family: "'Noto Sans Khmer', sans-serif" }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Revenue Chart
+        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(revenueCtx, {
+            type: 'line',
+            data: {
+                labels: ['ឆ្នាំ ១', 'ឆ្នាំ ២', 'ឆ្នាំ ៣', 'ឆ្នាំ ៤', 'ឆ្នាំ ៥'],
+                datasets: [{
+                    label: 'ARR ($)',
+                    data: [29640, 243000, 993400, 2944000, 5928000],
+                    borderColor: '#000',
+                    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            font: { size: 14, family: "'Noto Sans Khmer', sans-serif" }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'ការរីកចម្រើនប្រាក់ចំណូលប្រចាំឆ្នាំ (ARR)',
+                        font: { size: 16, weight: 'bold', family: "'Noto Sans Khmer', sans-serif" }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function (value) {
+                                return '$' + value.toLocaleString();
+                            },
+                            font: { family: "'Noto Sans Khmer', sans-serif" }
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: { family: "'Noto Sans Khmer', sans-serif" }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Revenue Breakdown Chart
+        const revenueBreakdownCtx = document.getElementById('revenueBreakdownChart').getContext('2d');
+        new Chart(revenueBreakdownCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['គ្រូ Pro (30%)', 'សាលារៀន (45%)', 'ស្ថាប័ន (25%)'],
+                datasets: [{
+                    data: [30, 45, 25],
+                    backgroundColor: ['#d4d4d4', '#a3a3a3', '#000'],
+                    borderColor: '#000',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { size: 14, family: "'Noto Sans Khmer', sans-serif" }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'ការបែងចែកប្រាក់ចំណូលតាមកញ្ចប់ (ឆ្នាំ ៥)',
+                        font: { size: 16, weight: 'bold', family: "'Noto Sans Khmer', sans-serif" }
+                    }
+                }
+            }
+        });
+
+        // Profit Chart
+        const profitCtx = document.getElementById('profitChart').getContext('2d');
+        new Chart(profitCtx, {
+            type: 'bar',
+            data: {
+                labels: ['ឆ្នាំ ១', 'ឆ្នាំ ២', 'ឆ្នាំ ៣', 'ឆ្នាំ ៤', 'ឆ្នាំ ៥'],
+                datasets: [
+                    {
+                        label: 'ARR',
+                        data: [29640, 243000, 993400, 2944000, 5928000],
+                        backgroundColor: '#000',
+                        borderColor: '#000',
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'ចំណាយ',
+                        data: [2050, 39500, 195800, 496400, 986800],
+                        backgroundColor: '#d4d4d4',
+                        borderColor: '#000',
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'ចំណេញសុទ្ធ',
+                        data: [27590, 203500, 797600, 2447600, 4941200],
+                        backgroundColor: '#a3a3a3',
+                        borderColor: '#000',
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            font: { size: 14, family: "'Noto Sans Khmer', sans-serif" }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'ប្រាក់ចំណូល, ចំណាយ និងចំណេញសុទ្ធ',
+                        font: { size: 16, weight: 'bold', family: "'Noto Sans Khmer', sans-serif" }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function (value) {
+                                return '$' + value.toLocaleString();
+                            },
+                            font: { family: "'Noto Sans Khmer', sans-serif" }
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: { family: "'Noto Sans Khmer', sans-serif" }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Team Growth Chart
+        const teamGrowthCtx = document.getElementById('teamGrowthChart').getContext('2d');
+        new Chart(teamGrowthCtx, {
+            type: 'line',
+            data: {
+                labels: ['ឆ្នាំ ១', 'ឆ្នាំ ២', 'ឆ្នាំ ៣', 'ឆ្នាំ ៤', 'ឆ្នាំ ៥'],
+                datasets: [{
+                    label: 'ចំនួនបុគ្គលិក',
+                    data: [5, 10, 19, 33, 60],
+                    borderColor: '#000',
+                    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            font: { size: 14, family: "'Noto Sans Khmer', sans-serif" }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'ផែនការការរីកចម្រើនក្រុមការងារ',
+                        font: { size: 16, weight: 'bold', family: "'Noto Sans Khmer', sans-serif" }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            font: { family: "'Noto Sans Khmer', sans-serif" }
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: { family: "'Noto Sans Khmer', sans-serif" }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Roadmap Chart (User Growth)
+        const roadmapCtx = document.getElementById('roadmapChart').getContext('2d');
+        new Chart(roadmapCtx, {
+            type: 'bar',
+            data: {
+                labels: ['ឆ្នាំ ១', 'ឆ្នាំ ២', 'ឆ្នាំ ៣', 'ឆ្នាំ ៤', 'ឆ្នាំ ៥'],
+                datasets: [{
+                    label: 'អ្នកប្រើប្រាស់សរុប',
+                    data: [5000, 25000, 80000, 200000, 400000],
+                    backgroundColor: '#000',
+                    borderColor: '#000',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            font: { size: 14, family: "'Noto Sans Khmer', sans-serif" }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'ការរីកចម្រើនអ្នកប្រើប្រាស់ (ឆ្នាំ ១-៥)',
+                        font: { size: 16, weight: 'bold', family: "'Noto Sans Khmer', sans-serif" }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function (value) {
+                                return value.toLocaleString();
+                            },
+                            font: { family: "'Noto Sans Khmer', sans-serif" }
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: { family: "'Noto Sans Khmer', sans-serif" }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

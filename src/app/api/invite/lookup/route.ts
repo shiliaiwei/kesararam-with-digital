@@ -78,6 +78,14 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Class not found / រកមិនឃើញថ្នាក់រៀន" }, { status: 404 });
     }
 
+    if (classDetails.status === "locked") {
+      return NextResponse.json({ error: "This class is locked. New students cannot join. / ថ្នាក់រៀននេះត្រូវបានចាក់សោ។ សិស្សថ្មីមិនអាចចូលរួមបានទេ។" }, { status: 400 });
+    }
+
+    if (classDetails.status === "archived") {
+      return NextResponse.json({ error: "This class has been archived. / ថ្នាក់រៀននេះត្រូវបានរក្សាទុកក្នុងប័ណ្ណសារហើយ។" }, { status: 400 });
+    }
+
     return NextResponse.json({
       success: true,
       classInfo: {

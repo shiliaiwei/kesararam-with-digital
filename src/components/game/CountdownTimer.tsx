@@ -30,9 +30,11 @@ export function CountdownTimer({ endsAt, totalSeconds, onExpire, muted }: Countd
       const left = Math.max(0, Math.ceil((end - now) / 1000));
       setRemaining(left);
 
-      if (!muted) {
-        if (left <= 5 && left > 0) sounds.urgent_tick();
-        else if (left > 5) sounds.countdown_tick();
+      // Clock tick sounds removed - only plays if explicitly unmuted
+      if (!muted && left <= 5 && left > 0) {
+        sounds.urgent_tick();
+      } else if (!muted && left > 5) {
+        sounds.countdown_tick();
       }
 
       const activeMs = now - mountedAtRef.current;

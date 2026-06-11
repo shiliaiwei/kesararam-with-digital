@@ -23,8 +23,8 @@ export interface TeamMember {
 export const TEAM_MEMBERS: TeamMember[] = [
   {
     id: "danai-yin",
-    name: "DANAI YIN",
-    nameKh: "ដាណៃ យីន",
+    name: "YIN DANAI",
+    nameKh: "យិន ដាណៃ",
     role: "student",
     age: 12,
     division: "Junior Division",
@@ -44,7 +44,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   {
     id: "chantha-kanika",
     name: "CHANTHA KANIKA",
-    nameKh: "ចន្ថា កានិកា",
+    nameKh: "ចាន់ថា កន្និកា",
     role: "student",
     age: 13,
     division: "Junior Division",
@@ -65,7 +65,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   {
     id: "roza-neun",
     name: "ROZA NEUN",
-    nameKh: "រ៉ូហ្សា ន័ន",
+    nameKh: "នឿន សុវណ្ណរ៉ូហ្សា",
     role: "student",
     age: 11,
     division: "Junior Division",
@@ -85,7 +85,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: "lin-many",
-    name: "LIN MANY",
+    name: "LIM MANY",
     nameKh: "លីន ម៉ានី",
     role: "student",
     age: 13,
@@ -107,7 +107,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   {
     id: "sun-runamara",
     name: "SUN RUNAMARA",
-    nameKh: "សុន រុណម៉ារ៉ា",
+    nameKh: "សាន់ រុណអមរ៉ា",
     role: "student",
     age: 11,
     division: "Junior Division",
@@ -128,7 +128,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   {
     id: "piseth-pheap",
     name: "PHEAP PISETH",
-    nameKh: "ភាព ពិសិដ្ឋ",
+    nameKh: "ភាព ពិសិទ្ធិ",
     role: "mentor",
     specialty: "Teacher · Program Lead — Connecting Team with Resources, Resolving Resource Conflicts & Mentoring Students",
     specialtyKh: "គ្រូបង្រៀន · អ្នកដឹកនាំកម្មវិធី — ភ្ជាប់ក្រុមជាមួយធនធាន ដោះស្រាយជម្លោះ និងណែនាំសិស្ស",
@@ -146,7 +146,7 @@ export const TEAM_MEMBERS: TeamMember[] = [
   },
   {
     id: "shiliaiwei",
-    name: "史力爱卫",
+    name: "SRIE VI",
     nameKh: "ស្រុី វី",
     role: "mentor",
     specialty: "University Student · Design, Technical & Project Management",

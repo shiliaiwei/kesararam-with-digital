@@ -52,7 +52,7 @@ Prefer composing these over writing new CSS. Tailwind tints (`amber-400`,
 ## Caution tape & hazard stripes
 
 ```tsx
-// Thin divider strip (6px) — the signature brand accent
+// Thin divider strip (12px) — the signature brand accent (includes top and bottom solid black borders)
 <div className="caution-tape" />
 
 // Diagonal hazard band for emphasis

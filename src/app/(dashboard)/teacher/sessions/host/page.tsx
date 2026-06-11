@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useLang } from "@/context/lang-context";
 import { useGameRealtime } from "@/hooks/use-game-realtime";
 import { GAME_MODE_CONFIG } from "@/lib/game-engine";
+import { getTeacherClasses } from "@/app/actions/classes";
 import type { SSEEvent, ParticipantInfo, LeaderboardEntry, QuestionPayload } from "@/lib/game-event-bus";
 import {
   Play, Square, Users, BarChart2,
@@ -15,9 +16,11 @@ import {
   Sparkles, Rocket, Maximize, Minimize,
 } from "lucide-react";
 import { UpgradeButton } from "@/components/pricing/upgrade-button";
-import { UpgradeModal } from "@/components/pricing/upgrade-modal";
 import { Lock } from "lucide-react";
 import QRCode from "react-qr-code";
+import { cloudinaryOptimize } from "@/lib/cloudinary";
+import { sounds } from "@/lib/game-sounds";
+import { getAvatarFaceStyle } from "@/lib/utils";
 
 // ── Answer color config ────────────────────────────────────────────────────
 const ANSWER_STYLES = [
@@ -39,7 +42,7 @@ type HostPhase =
   | { name: "setup" }
   | { name: "creating" }
   | { name: "lobby"; code: string; sessionId: number; participants: ParticipantInfo[]; gameMode: string; categories: string[]; difficulty: string; questionCount: number; timePerQuestion: number; scoringMode: string; maxPlayers: number }
-  | { name: "active"; code: string; sessionId: number; qIndex: number; total: number; leaderboard: LeaderboardEntry[]; question: QuestionPayload }
+  | { name: "active"; code: string; sessionId: number; qIndex: number; total: number; leaderboard: LeaderboardEntry[]; question: QuestionPayload; endsAt?: string }
   | { name: "round_end"; code: string; sessionId: number; leaderboard: LeaderboardEntry[]; qIndex: number; total: number; question: QuestionPayload; correctAnswerId: number | null }
   | { name: "ended"; code: string; sessionId: number; leaderboard: LeaderboardEntry[] };
 
@@ -51,6 +54,33 @@ interface NeubrutalistAvatarProps {
 
 function NeubrutalistAvatar({ src, initials, userId }: NeubrutalistAvatarProps) {
   const [failed, setFailed] = useState(false);
+
+  // Avatars are stored as JSON { face, head } composite layers.
+  const parsed = (() => {
+    if (!src) return null;
+    try {
+      const o = JSON.parse(src) as { face?: string; head?: string };
+      if (o && (o.face || o.head)) return o;
+    } catch { /* not JSON — treat as URL */ }
+    return null;
+  })();
+
+  if (parsed) {
+    return (
+      <div className="relative w-full h-full" style={{ background: "#FFD700" }}>
+        {parsed.head && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={`/avatar/head/${encodeURIComponent(parsed.head)}`} alt="" aria-hidden
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain" }} />
+        )}
+        {parsed.face && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={`/avatar/face/${encodeURIComponent(parsed.face)}`} alt="" aria-hidden
+            style={getAvatarFaceStyle(parsed.head)} />
+        )}
+      </div>
+    );
+  }
 
   if (!src || failed) {
     return (
@@ -253,6 +283,8 @@ export default function HostPage() {
   const [copied, setCopied] = useState(false);
   const [controlling, setControlling] = useState(false);
   const [maxPlayers, setMaxPlayers] = useState(50);
+  const [teacherClasses, setTeacherClasses] = useState<{ id: number; name: string; gradeLevel: string | null; section: string | null; status: string }[]>([]);
+  const [selectedClassId, setSelectedClassId] = useState<number | null>(null);
   const [lobbyParticipants, setLobbyParticipants] = useState<ParticipantInfo[]>([]);
   const [questionCount, setQuestionCount] = useState(10);
 
@@ -260,8 +292,6 @@ export default function HostPage() {
   const [isTrial, setIsTrial] = useState(false);
   const [trialEndsAt, setTrialEndsAt] = useState<string | null>(null);
   const [endsAt, setEndsAt] = useState<string | null>(null);
-  const [upgradeModalOpen, setUpgradeModalOpen] = useState(false);
-  const [upgradeTrigger, setUpgradeTrigger] = useState("");
   const [questionCountWarning, setQuestionCountWarning] = useState<string | null>(null);
   const [actualQuestionCount, setActualQuestionCount] = useState<number | null>(null);
 
@@ -299,6 +329,20 @@ export default function HostPage() {
           setSelectedCats([d.categories[0].id]);
         }
       });
+    // Load the teacher's classes so the game can optionally be restricted to one.
+    getTeacherClasses()
+      .then((rows) => {
+        setTeacherClasses(
+          (rows ?? []).map((c: any) => ({
+            id: c.id,
+            name: c.name,
+            gradeLevel: c.gradeLevel ?? null,
+            section: c.section ?? null,
+            status: c.status ?? "active",
+          }))
+        );
+      })
+      .catch(() => { /* non-fatal */ });
     fetch("/api/game/sessions")
       .then((r) => r.json())
       .then(async (d) => {
@@ -397,6 +441,7 @@ export default function HostPage() {
             total: event.total,
             leaderboard: prevLeaderboard,
             question: event.question,
+            endsAt: event.endsAt,
           };
         }
         return p;
@@ -440,7 +485,7 @@ export default function HostPage() {
     const res = await fetch("/api/game/sessions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sessionName, categoryIds: selectedCats, difficulty, questionCount, timePerQuestion: cfg.timePerQuestion, scoringMode, language, gameType: selectedMode, maxPlayers, allowLateJoin: true }),
+      body: JSON.stringify({ sessionName, categoryIds: selectedCats, difficulty, questionCount, timePerQuestion: cfg.timePerQuestion, scoringMode, language, gameType: selectedMode, maxPlayers, classId: selectedClassId, allowLateJoin: true }),
     });
     if (!res.ok) { const err = await res.json(); setError(sanitizeError(err.error) || "Failed"); setPhase({ name: "setup" }); return; }
     const data = await res.json();
@@ -467,6 +512,60 @@ export default function HostPage() {
     } catch (err) { setError(`Network error: ${err instanceof Error ? err.message : "Unknown"}`); }
     finally { setControlling(false); }
   }
+
+  // ── Question countdown timer (host-driven auto-reveal) ──────────────────────
+  // Drives the water-fill bar and, when it reaches 0, plays an alert and
+  // auto-reveals the correct answer to every screen by hitting the reveal
+  // endpoint directly (independent of the `controlling` guard so it can't be
+  // blocked by an in-flight control call).
+  const [qFillPct, setQFillPct] = useState(0); // 0 → 100 as time elapses
+  const timeUpFiredRef = useRef(false);
+  const activeEndsAt = phase.name === "active" ? phase.endsAt : undefined;
+  const activeCodeRef = useRef(activeCode);
+  activeCodeRef.current = activeCode;
+
+  useEffect(() => {
+    // reset whenever a new question starts
+    timeUpFiredRef.current = false;
+    setQFillPct(0);
+    if (phase.name !== "active" || !activeEndsAt) {
+      return;
+    }
+    const endMs = new Date(activeEndsAt).getTime();
+    // Use the moment we received the question as the window start. This avoids
+    // depending on timePerQuestion and keeps the bar aligned to the real deadline.
+    const startMs = Date.now();
+    const totalMs = Math.max(1000, endMs - startMs);
+
+    async function autoReveal() {
+      const c = activeCodeRef.current;
+      if (!c) return;
+      try {
+        await fetch(`/api/game/sessions/${c}/control`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "reveal" }),
+        });
+      } catch { /* network — will retry on next tick if still active */ }
+    }
+
+    const tick = () => {
+      const now = Date.now();
+      const elapsed = now - startMs;
+      const pct = Math.min(100, Math.max(0, (elapsed / totalMs) * 100));
+      setQFillPct(pct);
+      if (now >= endMs && !timeUpFiredRef.current) {
+        timeUpFiredRef.current = true;
+        try { sounds.question_end(); } catch { }
+        autoReveal();
+      }
+    };
+    tick();
+    const id = setInterval(tick, 200);
+    return () => clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase.name, activeEndsAt]);
+
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -670,8 +769,7 @@ export default function HostPage() {
                             key={m.id}
                             onClick={() => {
                               if (isLocked) {
-                                setUpgradeTrigger("advanced_modes");
-                                setUpgradeModalOpen(true);
+                                window.location.href = "https://www.kesararamwithdigital.tech/pricing";
                               } else {
                                 setSelectedMode(m.id);
                                 setQuestionCount(m.defaultQuestionCount);
@@ -956,6 +1054,54 @@ export default function HostPage() {
                 </div>
               </GlassCard>
 
+              {/* Class Restriction */}
+              <GlassCard className="p-5">
+                <div className="flex items-center gap-1.5 mb-1 text-zinc-600 font-bold">
+                  <Users size={13} />
+                  <span className="text-xs font-black uppercase tracking-widest" style={khFont}>{kh ? "កំណត់ថ្នាក់" : "Restrict to Class"}</span>
+                </div>
+                <p className="text-[11px] font-bold text-zinc-500 mb-3" style={khFont}>
+                  {kh
+                    ? "ជ្រើសរើសថ្នាក់ ដើម្បីឲ្យតែសិស្សក្នុងថ្នាក់នោះអាចចូលរួមបាន។"
+                    : "Pick a class so only its enrolled students can join."}
+                </p>
+                <div className="flex flex-col gap-2">
+                  <button
+                    onClick={() => setSelectedClassId(null)}
+                    className={`w-full text-left px-3 py-2.5 border-2 border-black text-sm font-black transition-all duration-100 ${selectedClassId === null
+                      ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                      : "bg-white text-zinc-600 hover:bg-zinc-50"
+                      }`}
+                    style={{ borderRadius: "0px", ...khFont }}>
+                    {kh ? "បើកសម្រាប់សិស្សគ្រប់រូបដែលមានថ្នាក់" : "Open to any student with a class"}
+                  </button>
+                  {teacherClasses
+                    .filter((c) => c.status !== "archived")
+                    .map((c) => (
+                      <button
+                        key={c.id}
+                        onClick={() => setSelectedClassId(c.id)}
+                        className={`w-full text-left px-3 py-2.5 border-2 border-black text-sm font-black transition-all duration-100 ${selectedClassId === c.id
+                          ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                          : "bg-white text-zinc-600 hover:bg-zinc-50"
+                          }`}
+                        style={{ borderRadius: "0px", ...khFont }}>
+                        {c.name}
+                        {(c.gradeLevel || c.section) && (
+                          <span className="ml-1 text-[11px] font-bold text-zinc-400">
+                            · {[c.gradeLevel, c.section].filter(Boolean).join(" ")}
+                          </span>
+                        )}
+                      </button>
+                    ))}
+                  {teacherClasses.filter((c) => c.status !== "archived").length === 0 && (
+                    <p className="text-[11px] font-bold text-zinc-400" style={khFont}>
+                      {kh ? "មិនទាន់មានថ្នាក់" : "No classes yet."}
+                    </p>
+                  )}
+                </div>
+              </GlassCard>
+
               {/* Error */}
               {error && (
                 <div className="px-4 py-3 border-2 border-black bg-red-400 text-black font-black text-sm shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px", ...khFont }}>
@@ -1102,12 +1248,6 @@ export default function HostPage() {
                 </GlassCard>
               </div>
             </div>
-            <UpgradeModal
-              open={upgradeModalOpen}
-              onClose={() => setUpgradeModalOpen(false)}
-              trigger={upgradeTrigger}
-              lang={lang}
-            />
           </div>
         </div>
       </div>
@@ -1137,16 +1277,16 @@ export default function HostPage() {
                   {kh ? "ហ្គេមរង់ចាំ" : "Waiting Room"}
                 </div>
               </div>
-              <h1 className="text-4xl font-black text-black tracking-tight" style={khFont}>{kh ? "រៀបចំខ្លួនលេង" : "Ready to Play"}</h1>
+              <h1 className="text-3xl sm:text-4xl font-black text-black tracking-tight" style={khFont}>{kh ? "រៀបចំខ្លួនលេង" : "Ready to Play"}</h1>
               <p className="mt-1 text-sm text-zinc-600 font-bold" style={{ ...khFont }}>
                 {kh ? "ចែករំលែកលេខកូដជាមួយអ្នករៀន" : "Share the room code with your students"}
               </p>
             </div>
-            <div className="flex items-center gap-3 shrink-0">
+            <div className="flex items-center gap-3 shrink-0 w-full md:w-auto">
               <button
                 onClick={() => { if (confirm(kh ? "បោះបង់ហ្គេមនេះ?" : "Cancel this game session?")) { control("terminate"); setTimeout(() => setPhase({ name: "setup" }), 500); } }}
                 disabled={controlling}
-                className="flex items-center gap-2 px-5 py-3 border-4 border-black bg-red-400 text-black font-black text-sm shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-all duration-100 disabled:opacity-50 rounded-none cursor-pointer"
+                className="flex-1 md:flex-none flex items-center justify-center gap-2 px-5 py-3 border-4 border-black bg-red-400 text-black font-black text-sm shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-all duration-100 disabled:opacity-50 rounded-none cursor-pointer"
               >
                 <Square size={14} />{kh ? "បោះបង់" : "Cancel"}
               </button>
@@ -1162,7 +1302,7 @@ export default function HostPage() {
                   control("start");
                 }}
                 disabled={controlling || phase.participants.length === 0}
-                className="flex items-center gap-2 px-7 py-3 border-4 border-black bg-emerald-400 text-black font-black text-sm shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-all duration-100 disabled:opacity-50 rounded-none cursor-pointer"
+                className="flex-1 md:flex-none flex items-center justify-center gap-2 px-7 py-3 border-4 border-black bg-emerald-400 text-black font-black text-sm shadow-[4px_4px_0_#000] hover:shadow-[6px_6px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0 active:translate-y-0 transition-all duration-100 disabled:opacity-50 rounded-none cursor-pointer"
               >
                 {controlling ? <Loader2 size={16} className="animate-spin" /> : <Play size={16} />}
                 {kh ? "ចាប់ផ្តើម" : "Start Game"}
@@ -1190,7 +1330,7 @@ export default function HostPage() {
                     <div className="text-xs font-black uppercase tracking-widest mb-2.5 text-black">
                       {kh ? "លេខកូដបន្ទប់" : "Room Code"}
                     </div>
-                    <div className="text-4xl sm:text-6xl md:text-7xl font-mono font-black tracking-[0.12em] sm:tracking-[0.2em] pl-[0.12em] sm:pl-[0.2em] mb-2.5 text-black text-center md:text-left break-all select-all">
+                    <div className="text-4xl sm:text-5xl md:text-6xl font-mono font-black tracking-[0.1em] sm:tracking-[0.18em] pl-[0.1em] sm:pl-[0.18em] mb-2.5 text-black text-center md:text-left whitespace-nowrap select-all" style={{ overflowWrap: "normal", wordBreak: "keep-all" }}>
                       {phase.code}
                     </div>
                     <div className="text-sm mb-6 text-black font-bold text-center md:text-left break-words">
@@ -1303,30 +1443,55 @@ export default function HostPage() {
                 </p>
               </div>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3.5">
-                {phase.participants.map((p, i) => (
-                  <div
-                    key={p.userId}
-                    className="flex items-center gap-2.5 p-3 border-4 border-black bg-white shadow-[3px_3px_0_#000] rounded-none hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#000] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0_#000] transition-all"
-                    style={{
-                      animation: "fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-                    }}
-                  >
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3.5">
+                {phase.participants.map((p, i) => {
+                  // Newest 3 joiners get a "NEW" flash; others show READY.
+                  const isNew = i >= phase.participants.length - 3;
+                  return (
                     <div
-                      className="w-8 h-8 border-2 border-black flex items-center justify-center font-black text-sm flex-shrink-0 text-white rounded-none shadow-[1px_1px_0_#000] overflow-hidden bg-white"
+                      key={p.userId}
+                      className="relative flex items-center gap-3 p-3 border-4 border-black bg-white shadow-[4px_4px_0_#000] rounded-none hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_#000] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0_#000] transition-all"
+                      style={{ animation: "fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards" }}
                     >
-                      <NeubrutalistAvatar src={p.avatar} initials={p.displayName.charAt(0).toUpperCase()} userId={p.userId} />
+                      {/* player number badge */}
+                      <span className="absolute -top-2.5 -left-2.5 w-6 h-6 bg-black text-yellow-400 text-[10px] font-black flex items-center justify-center border-2 border-yellow-400 z-10">
+                        {i + 1}
+                      </span>
+
+                      {/* avatar */}
+                      <div className="w-11 h-11 border-2 border-black flex items-center justify-center font-black text-sm flex-shrink-0 text-white rounded-none shadow-[2px_2px_0_#000] overflow-hidden bg-white">
+                        <NeubrutalistAvatar src={p.avatar} initials={p.displayName.charAt(0).toUpperCase()} userId={p.userId} />
+                      </div>
+
+                      {/* name + status labels */}
+                      <div className="min-w-0 flex-1">
+                        <span className="block text-xs font-black truncate text-black" style={{ ...khFont }}>
+                          {p.displayName}
+                        </span>
+                        <div className="flex items-center gap-1 mt-1 flex-wrap">
+                          {/* connection dot + label */}
+                          <span className="inline-flex items-center gap-1 text-[8px] font-black uppercase tracking-widest px-1.5 py-0.5 border border-black"
+                            style={{ background: p.isConnected ? "#22c55e" : "#e4e4e7", color: "#000" }}>
+                            <span className="w-1.5 h-1.5 rounded-full" style={{ background: p.isConnected ? "#000" : "#a1a1aa" }} />
+                            {p.isConnected ? (kh ? "រួចរាល់" : "READY") : (kh ? "ផ្ដាច់" : "OFF")}
+                          </span>
+                          {isNew && (
+                            <span className="text-[8px] font-black uppercase tracking-widest px-1.5 py-0.5 border border-black bg-yellow-400 text-black animate-pulse">
+                              {kh ? "ថ្មី" : "NEW"}
+                            </span>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                    <span className="text-xs font-black truncate text-black" style={{ ...khFont }}>
-                      {p.displayName}
-                    </span>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>
         </div>
-        <style>{`@keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }`}</style>
+        <style>{`@keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes pulse-once { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.05); } }
+        .animate-pulse-once { animation: pulse-once 0.6s ease-in-out; }`}</style>
       </div>
     );
   }
@@ -1359,18 +1524,32 @@ export default function HostPage() {
         {/* ── Top bar ── */}
         <div className="flex items-center justify-between px-5 py-3 flex-shrink-0 border-b-4 border-black bg-yellow-400 text-black">
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1.5 px-2.5 py-1 border-2 border-black bg-red-500 text-black shadow-[2px_2px_0_#000] font-black text-xs tracking-widest" style={{ borderRadius: "0px" }}>
-              <div className="w-2 h-2 bg-black animate-pulse" style={{ borderRadius: "0px" }} />
-              <span>LIVE</span>
-            </div>
             <span className="text-black font-black text-sm" style={khFont}>
               {kh ? `សំណួរ ${phase.qIndex + 1} / ${phase.total}` : `Q ${phase.qIndex + 1} / ${phase.total}`}
             </span>
           </div>
 
-          {/* Progress */}
-          <div className="flex-1 mx-8 h-4 border-2 border-black bg-white overflow-hidden" style={{ borderRadius: "0px" }}>
-            <div className="h-full bg-blue-400 transition-all duration-700" style={{ width: `${progress}%` }} />
+          {/* Question progress + time water-fill */}
+          <div className="flex-1 mx-8 flex flex-col gap-1.5">
+            {/* question position */}
+            <div className="h-2 border-2 border-black bg-white overflow-hidden" style={{ borderRadius: "0px" }}>
+              <div className="h-full bg-blue-400 transition-all duration-700" style={{ width: `${progress}%` }} />
+            </div>
+            {/* time water-fill — fills left→right as time elapses; red in final 20% */}
+            {isActive && (
+              <div className="h-4 border-2 border-black bg-white overflow-hidden relative" style={{ borderRadius: "0px" }}>
+                <div
+                  className="h-full transition-[width] duration-200 ease-linear"
+                  style={{
+                    width: `${qFillPct}%`,
+                    backgroundColor: qFillPct >= 80 ? "#ef4444" : "#22c55e",
+                  }}
+                />
+                <span className="absolute inset-0 flex items-center justify-center text-[10px] font-black text-black/70 select-none">
+                  {kh ? "ពេលវេលា" : "TIME"}
+                </span>
+              </div>
+            )}
           </div>
 
           {/* Controls */}
@@ -1405,13 +1584,13 @@ export default function HostPage() {
             </button>
 
             <button
-              onClick={() => control(isActive ? "reveal" : "advance")}
+              onClick={() => control("advance")}
               disabled={controlling}
               className="flex items-center gap-2 px-5 py-2 border-2 border-black bg-green-400 text-black font-black text-sm shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-40"
               style={{ borderRadius: "0px" }}
             >
               {controlling ? <Loader2 size={15} className="animate-spin" /> : <SkipForward size={15} />}
-              {isActive ? (kh ? "បន្ទាប់" : "Next") : (kh ? "សំណួរបន្ទាប់" : "Next Q")}
+              {kh ? "សំណួរបន្ទាប់" : "Next Q"}
             </button>
           </div>
         </div>
@@ -1429,10 +1608,10 @@ export default function HostPage() {
                 <span className="text-zinc-500 text-xs font-bold">{phase.qIndex + 1} / {phase.total}</span>
               </div>
 
-              {/* Question image — compact stable wrapper */}
-              <div className="w-full h-48 border-2 border-black bg-white flex items-center justify-center mb-4 relative overflow-hidden shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px" }}>
+              {/* Question image — white background, bigger */}
+              <div className="w-full h-72 border-4 border-black bg-white flex items-center justify-center mb-6 relative overflow-hidden shadow-[6px_6px_0_#000]" style={{ borderRadius: "0px" }}>
                 {question?.imageUrl ? (
-                  <img src={question.imageUrl} alt="question" className="h-full w-auto object-contain" style={{ maxHeight: "100%", maxWidth: "100%" }} />
+                  <img src={cloudinaryOptimize(question.imageUrl, 900)} alt="question" className="h-full w-auto object-contain" style={{ maxHeight: "100%", maxWidth: "100%" }} fetchPriority="high" decoding="async" />
                 ) : (
                   <div className="flex flex-col items-center gap-2 opacity-20">
                     <BookOpen size={48} className="text-zinc-500" />
@@ -1441,19 +1620,19 @@ export default function HostPage() {
                 )}
               </div>
 
-              {/* Question text — stable min-height card */}
+              {/* Question text — bigger, high contrast */}
               <div className="text-center mb-8 min-h-[8rem] flex flex-col items-center justify-center px-2">
-                <div className="font-black text-3xl xl:text-4xl text-black leading-snug" style={khFont}>
+                <div className="font-black text-3xl xl:text-4xl text-black leading-snug" style={{ overflowWrap: "break-word", wordBreak: "normal", hyphens: "auto", ...khFont }}>
                   {kh && question?.questionKm ? question.questionKm : question?.questionEn}
                 </div>
                 {kh && question?.questionKm && question?.questionEn && (
-                  <div className="text-zinc-500 text-base font-bold mt-2">{question.questionEn}</div>
+                  <div className="text-zinc-600 text-lg font-bold mt-3">{question.questionEn}</div>
                 )}
               </div>
 
-              {/* Answers — image-pick (sign images) or text */}
+              {/* Answers — bigger, better contrast */}
               {answers.length > 0 && (
-                <div className={`grid gap-3.5 ${answers.length <= 2 ? "grid-cols-1 max-w-xl mx-auto" : "grid-cols-2"}`}>
+                <div className={`grid gap-4 ${answers.length <= 2 ? "grid-cols-1 max-w-2xl mx-auto" : "grid-cols-2"}`}>
                   {answers.map((ans, i) => {
                     const style = ANSWER_STYLES[i % ANSWER_STYLES.length];
                     const isCorrect = correctAnswerId !== null && ans.id === correctAnswerId;
@@ -1461,31 +1640,35 @@ export default function HostPage() {
                     const text = kh ? (ans.answerKm || ans.answerEn) : ans.answerEn;
                     const isImagePick = question?.gameType === "image_pick";
 
+                    // Calculate contrast text color
+                    const textColor = isCorrect ? "#000000" : isWrong ? "#52525b" : "#ffffff";
+
                     if (isImagePick && ans.imageUrl) {
                       return (
                         <div
                           key={ans.id}
-                          className="relative border-2 border-black transition-all duration-300 flex flex-col items-center justify-center overflow-hidden"
+                          className={`relative border-4 transition-all duration-300 flex flex-col items-center justify-center overflow-hidden ${isCorrect ? 'animate-pulse-once' : ''}`}
                           style={{
                             borderRadius: "0px",
-                            backgroundColor: isCorrect ? "#f0fdf4" : isWrong ? "#fafafa" : "#ffffff",
-                            borderColor: isCorrect ? "#22c55e" : isWrong ? "#e4e4e7" : style.bg,
+                            backgroundColor: isCorrect ? "#22c55e" : isWrong ? "#fafafa" : "#ffffff",
+                            borderColor: isCorrect ? "#15803d" : isWrong ? "#d4d4d8" : style.bg,
                             opacity: isWrong ? 0.4 : 1,
-                            boxShadow: isWrong ? "none" : `3px 3px 0px ${style.shadow ?? "#000"}`,
-                            height: "120px",
+                            boxShadow: isWrong ? "none" : `4px 4px 0px ${isCorrect ? '#15803d' : style.shadow ?? "#000"}`,
+                            height: "160px",
                           }}
                         >
                           {/* Color top strip */}
-                          <div className="absolute top-0 left-0 right-0 h-1.5" style={{ backgroundColor: isCorrect ? "#22c55e" : style.bg }} />
+                          <div className="absolute top-0 left-0 right-0 h-2" style={{ backgroundColor: isCorrect ? "#15803d" : style.bg }} />
                           <img
-                            src={ans.imageUrl}
+                            src={cloudinaryOptimize(ans.imageUrl, 400)}
                             alt={text}
                             className="object-contain"
-                            style={{ height: "72px", width: "auto", maxWidth: "90%", padding: "2px 6px" }}
+                            style={{ height: "100px", width: "auto", maxWidth: "90%", padding: "4px 8px" }}
+                            decoding="async"
                             onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                           />
-                          {isCorrect && <span className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center bg-green-500 border-2 border-white text-white font-black text-sm shadow-[1px_1px_0_#000]">✓</span>}
-                          <div className="absolute bottom-0 left-0 right-0 text-center text-[10px] font-black text-white py-0.5 px-1 truncate" style={{ backgroundColor: style.bg }}>{style.label}</div>
+                          {isCorrect && <span className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white border-2 border-black text-green-600 font-black text-lg shadow-[2px_2px_0_#000]">✓</span>}
+                          <div className="absolute bottom-0 left-0 right-0 text-center text-xs font-black text-white py-1.5 px-2 truncate" style={{ backgroundColor: isCorrect ? '#15803d' : style.bg }}>{style.label}</div>
                         </div>
                       );
                     }
@@ -1493,21 +1676,22 @@ export default function HostPage() {
                     return (
                       <div
                         key={ans.id}
-                        className="flex items-center gap-4 px-5 py-4 border-2 border-black transition-all duration-300"
+                        className={`flex items-center gap-5 px-6 py-5 border-4 transition-all duration-300 ${isCorrect ? 'animate-pulse-once' : ''}`}
                         style={{
                           borderRadius: "0px",
-                          backgroundColor: isCorrect ? "#22c55e" : isWrong ? "#f4f4f5" : style.bg,
-                          color: "#000000",
+                          backgroundColor: isCorrect ? "#22c55e" : isWrong ? "#e4e4e7" : style.bg,
+                          borderColor: isCorrect ? "#15803d" : "#000000",
                           opacity: isWrong ? 0.3 : 1,
-                          boxShadow: isWrong ? "none" : "4px 4px 0px #000000",
+                          boxShadow: isWrong ? "none" : `5px 5px 0px ${isCorrect ? '#15803d' : '#000000'}`,
+                          minHeight: "72px",
                         }}
                       >
-                        <div className="w-9 h-9 border-2 border-black flex items-center justify-center bg-white font-black text-black text-base flex-shrink-0" style={{ borderRadius: "0px" }}>
+                        <div className="w-12 h-12 border-3 border-black flex items-center justify-center bg-white font-black text-black text-2xl flex-shrink-0" style={{ borderRadius: "0px", borderWidth: "3px" }}>
                           {style.label}
                         </div>
-                        <span className="font-black text-black text-base leading-tight flex-1" style={khFont}>{text}</span>
+                        <span className="font-black text-lg xl:text-xl leading-snug flex-1" style={{ color: textColor, overflowWrap: "break-word", wordBreak: "normal", hyphens: "auto", ...khFont }}>{text}</span>
                         {isCorrect && (
-                          <div className="w-6 h-6 flex items-center justify-center bg-white border-2 border-black text-green-600 font-black text-sm flex-shrink-0" style={{ borderRadius: "0px" }}>
+                          <div className="w-10 h-10 flex items-center justify-center bg-white border-3 border-black text-green-600 font-black text-2xl flex-shrink-0" style={{ borderRadius: "0px", borderWidth: "3px" }}>
                             ✓
                           </div>
                         )}

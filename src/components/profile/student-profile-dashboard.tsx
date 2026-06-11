@@ -7,6 +7,7 @@ import {
   Star, Trophy as TierTrophy, Gem, Crown, Mail, AtSign,
   Info, Globe, Lock, Eye, EyeOff, User, Shield, Pencil,
   ExternalLink, RefreshCw, ChevronRight, Send, KeyRound,
+  Flame, Gamepad2,
 } from "lucide-react";
 import {
   getRank, getNextRank, tierProgress, pointsToNextRank, RANK_TIERS,
@@ -48,6 +49,23 @@ interface StudentProfileDashboardProps {
     province: string | null;
     teacherName: string | null;
   } | null;
+  gameStats?: { gameType: string; points: number; plays: number }[];
+  currentStreak?: number;
+  longestStreak?: number;
+}
+
+// Bilingual labels + brand color for each GameKit game type (matches ledger gameType).
+const GAME_LABELS: Record<string, { en: string; kh: string; color: string; Icon: React.ComponentType<any> }> = {
+  daily: { en: "Daily Challenge", kh: "បញ្ហាប្រចាំថ្ងៃ", color: "#eab308", Icon: Flame },
+  "priority-puzzle": { en: "Who Goes First?", kh: "តើអ្នកណាទៅមុន?", color: "#3b82f6", Icon: Target },
+  "sign-match": { en: "Sign Match", kh: "ផ្គូផ្គងសញ្ញា", color: "#22c55e", Icon: BookOpen },
+  "catch-sign": { en: "Catch the Sign", kh: "ចាប់សញ្ញា", color: "#f97316", Icon: Zap },
+  "light-hero": { en: "Traffic Light Hero", kh: "បញ្ញាបរភ្លើងសញ្ញា", color: "#ef4444", Icon: Trophy },
+  "safety-adventure": { en: "Road Safety Adventure", kh: "ដំណើរផ្សងព្រេងសុវត្ថិភាព", color: "#a855f7", Icon: Award },
+};
+
+function gameLabel(gameType: string) {
+  return GAME_LABELS[gameType] ?? { en: gameType, kh: gameType, color: "#71717a", Icon: Gamepad2 };
 }
 
 type DrawerTab = "profile" | "privacy";
@@ -59,6 +77,9 @@ export function StudentProfileDashboard({
   totalGamesPlayed,
   lifetimePoints,
   studentClassInfo,
+  gameStats = [],
+  currentStreak = 0,
+  longestStreak = 0,
 }: StudentProfileDashboardProps) {
   const { lang } = useLang();
   const kh = lang === "kh";
@@ -430,6 +451,63 @@ export function StudentProfileDashboard({
             </div>
           ))}
         </div>
+
+        {/* ── Per-game stats breakdown ──────────────────────────────────── */}
+        {gameStats.length > 0 && (
+          <div className="bg-white border-2 border-black shadow-[4px_4px_0_#000] overflow-hidden">
+            <div className="px-5 py-3.5 border-b-2 border-black flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="p-1.5 bg-yellow-50">
+                  <Gamepad2 size={16} className="text-yellow-500" />
+                </div>
+                <h3 className="text-sm font-black uppercase tracking-wide text-gray-800" style={kf}>
+                  {kh ? "ពិន្ទុតាមសកម្មភាព" : "Points by Game"}
+                </h3>
+              </div>
+              {(currentStreak > 0 || longestStreak > 0) && (
+                <div className="flex items-center gap-1.5 text-[11px] font-black px-2 py-1 bg-orange-50 border-2 border-orange-200 text-orange-600">
+                  <Flame size={13} className="text-orange-500" />
+                  <span className="tabular-nums">{currentStreak}</span>
+                  <span className="text-orange-300">/</span>
+                  <span className="tabular-nums">{longestStreak}</span>
+                  <span className="uppercase tracking-wide text-[9px] text-orange-400" style={kf}>
+                    {kh ? "ថ្ងៃ" : "day"}
+                  </span>
+                </div>
+              )}
+            </div>
+            <div className="divide-y-2 divide-gray-100">
+              {gameStats.map((g) => {
+                const meta = gameLabel(g.gameType);
+                const Icon = meta.Icon;
+                return (
+                  <div key={g.gameType} className="flex items-center gap-3 px-5 py-3">
+                    <div
+                      className="p-2 border-2 border-black flex-shrink-0"
+                      style={{ backgroundColor: `${meta.color}1a` }}
+                    >
+                      <Icon size={16} style={{ color: meta.color }} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-black text-gray-800 truncate" style={kf}>
+                        {kh ? meta.kh : meta.en}
+                      </p>
+                      <p className="text-[10px] font-bold uppercase tracking-wide text-gray-400" style={kf}>
+                        {g.plays.toLocaleString()} {kh ? "ការលេង" : g.plays === 1 ? "play" : "plays"}
+                      </p>
+                    </div>
+                    <div className="text-right flex-shrink-0">
+                      <span className="text-xl font-black tabular-nums" style={{ color: meta.color }}>
+                        {g.points.toLocaleString()}
+                      </span>
+                      <p className="text-[9px] font-black uppercase tracking-wide text-gray-400">pts</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {/* ── Classroom + Rank Tiers ────────────────────────────────────── */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

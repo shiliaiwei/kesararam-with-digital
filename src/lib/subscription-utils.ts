@@ -191,6 +191,6 @@ export function canUpgradeTo(currentPlan: PlanTier, targetPlan: PlanTier): boole
  * Get upgrade path suggestions
  */
 export function getUpgradeSuggestions(currentPlan: PlanTier): PlanTier[] {
-    const allPlans: PlanTier[] = ["free", "teacher_pro", "school"];
+    const allPlans: PlanTier[] = ["free", "family", "teacher_pro", "school", "driving_school"];
     return allPlans.filter((plan) => canUpgradeTo(currentPlan, plan));
 }

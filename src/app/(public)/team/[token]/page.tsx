@@ -3,6 +3,10 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import { ShieldCheck } from "lucide-react";
+
+// Khmer display font — Google Sans Khmer, falling back to the loaded Kantumruy Pro face.
+const KH_FONT = '"Google Sans Khmer", var(--font-kh-header), "GoogleSans", sans-serif';
 
 // Three bilingual role tags per member — KH verbatim from KWD_អំពីពួកយើង.txt
 type RoleTag = { kh: string; en: string };
@@ -13,7 +17,6 @@ const MEMBERS: Record<string, {
   roleTags: RoleTag[];
   type: "student" | "mentor";
   photo: string;
-  quote: string;
 }> = {
   "VSID-2026-001": {
     lastName: "DANAI", fullName: "YIN DANAI", type: "student",
@@ -23,7 +26,6 @@ const MEMBERS: Record<string, {
       { kh: "អ្នកដឹកនាំក្រុម",                  en: "Team Lead" },
       { kh: "ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា", en: "Content Review & Editing" },
     ],
-    quote: "Design is how we make technology feel human.",
   },
   "VSID-2026-002": {
     lastName: "KANIKA", fullName: "CHANTHA KANIKA", type: "student",
@@ -33,7 +35,6 @@ const MEMBERS: Record<string, {
       { kh: "កែសម្រួលមាតិកា",                    en: "Content Editing" },
       { kh: "ការស្រាវជ្រាវ",                     en: "Research" },
     ],
-    quote: "Knowledge is the foundation of every safe road.",
   },
   "VSID-2026-003": {
     lastName: "NEUN", fullName: "ROZA NEUN", type: "student",
@@ -43,7 +44,6 @@ const MEMBERS: Record<string, {
       { kh: "ត្រួតពិនិត្យ",                     en: "Review" },
       { kh: "កែសម្រួលមាតិកា",                    en: "Content Editing" },
     ],
-    quote: "Every design decision is a step toward something real.",
   },
   "VSID-2026-004": {
     lastName: "MANY", fullName: "LIM MANY", type: "student",
@@ -53,7 +53,6 @@ const MEMBERS: Record<string, {
       { kh: "តេស្ត",                             en: "Testing" },
       { kh: "ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា", en: "Content Review & Editing" },
     ],
-    quote: "Quality is not an act — it is a habit.",
   },
   "VSID-2026-005": {
     lastName: "RUNAMARA", fullName: "SUN RUNAMARA", type: "student",
@@ -63,7 +62,6 @@ const MEMBERS: Record<string, {
       { kh: "តេស្ត",                             en: "Testing" },
       { kh: "ត្រួតពិនិត្យ និងកែសម្រួលមាតិកា", en: "Content Review & Editing" },
     ],
-    quote: "Every test is a promise to the user.",
   },
   "VSID-2026-M01": {
     lastName: "PISETH", fullName: "PHEAP PISETH", type: "mentor",
@@ -73,17 +71,15 @@ const MEMBERS: Record<string, {
       { kh: "អ្នកដឹកនាំកម្មវិធី",               en: "Program Lead" },
       { kh: "ការត្រួតពិនិត្យប្រសិទ្ធភាពការងារជាក្រុម", en: "Team Performance Oversight" },
     ],
-    quote: "Teaching is not filling a bucket — it is lighting a fire.",
   },
   "VSID-2026-M02": {
-    lastName: "AIWEI", fullName: "SHILI AIWEI", type: "mentor",
+    lastName: "VI", fullName: "SRIE VI", type: "mentor",
     photo: "https://avatars.githubusercontent.com/u/70220432?v=4",
     roleTags: [
       { kh: "គ្រូណែនាំ",                         en: "Mentor" },
       { kh: "គ្រប់គ្រងបច្ចេកទេស",               en: "Technical Management" },
       { kh: "គំនិតច្នៃប្រឌិត និងធនធានគម្រោង",  en: "Creative Ideas & Project Resources" },
     ],
-    quote: "Build with intention. Ship with confidence.",
   },
 };
 
@@ -93,6 +89,7 @@ export default function TeamMemberPage() {
   const code = params.token as string;
 
   const [member, setMember] = useState<typeof MEMBERS[string] | null>(null);
+  const [vsid, setVsid] = useState<string>("");
   const [status, setStatus] = useState<"loading" | "valid" | "expired">("loading");
   const [countdown, setCountdown] = useState(60);
 
@@ -107,6 +104,7 @@ export default function TeamMemberPage() {
       .then(d => {
         if (d.valid && d.id && MEMBERS[d.id]) {
           setMember(MEMBERS[d.id]);
+          setVsid(d.id);
           setStatus("valid");
         } else {
           setStatus("expired");
@@ -217,7 +215,7 @@ export default function TeamMemberPage() {
                 >
                   {/* Khmer — verbatim from source doc */}
                   <span className="text-[11px] text-white/80 leading-snug"
-                    style={{ fontFamily: '"GoogleSans", "Google Sans Khmer", Siemreap, sans-serif' }}>
+                    style={{ fontFamily: KH_FONT }}>
                     {tag.kh}
                   </span>
                   {/* English translation */}
@@ -232,11 +230,24 @@ export default function TeamMemberPage() {
             {/* Divider */}
             <div className="h-px" style={{ backgroundColor: "rgba(255,255,255,0.06)" }} />
 
-            {/* Quote */}
-            <p className="text-[11px] text-white/30 italic leading-relaxed border-l-2 pl-3"
-              style={{ borderColor: accent + "50" }}>
-              "{member.quote}"
-            </p>
+            {/* Verified identity — replaces the old quote */}
+            <div className="flex items-center justify-between gap-3 px-3 py-2.5 border"
+              style={{ borderColor: accent + "30", backgroundColor: accent + "08" }}>
+              <div className="flex items-center gap-2 min-w-0">
+                <ShieldCheck size={16} strokeWidth={2.5} style={{ color: accent, flexShrink: 0 }} />
+                <div className="flex flex-col leading-tight min-w-0">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-white/85 truncate">
+                    Verified Member
+                  </span>
+                  <span className="text-[9px] tracking-wide text-white/35 truncate" style={{ fontFamily: KH_FONT }}>
+                    សមាជិកដែលបានផ្ទៀងផ្ទាត់
+                  </span>
+                </div>
+              </div>
+              <span className="text-[9px] font-mono tabular-nums shrink-0" style={{ color: accent + "99" }}>
+                {vsid}
+              </span>
+            </div>
           </div>
 
           {/* Footer */}

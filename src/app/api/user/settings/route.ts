@@ -87,11 +87,43 @@ export async function PUT(request: NextRequest) {
     const body = await request.json();
     const { displayName, username, email, avatar, audioMuted, schoolName, province, gradeLevel, section, isProfilePublic, isNamePublic, isUsernamePublic, isSchoolPublic, isProvincePublic, isGradePublic, isSectionPublic, isStatsPublic, inviteCode } = body;
 
-    // Check if this is an onboarding student (missing school details)
-    const isOnboarding = session.role === "student" && (!currentUser.schoolName || !currentUser.province || !currentUser.gradeLevel);
+    // Determine if the student currently belongs to any class. A student with no
+    // enrollment (never joined, or removed/kicked by a teacher) must (re-)join
+    // with a class/invite code — treated as onboarding so they can submit a code
+    // even if their school/province/grade are already filled in.
+    let studentHasClass = true;
+    if (session.role === "student") {
+      const enrollment = await db
+        .select({ id: classEnrollments.id })
+        .from(classEnrollments)
+        .where(eq(classEnrollments.studentId, session.id))
+        .limit(1);
+      studentHasClass = enrollment.length > 0;
+    }
+
+    // Onboarding = a user completing their FIRST profile setup. During onboarding
+    // the 60-day change cooldown does not apply; it only counts for changes made
+    // AFTER the initial setup is complete. This applies to both students and
+    // individual paid (teacher) accounts.
+    //
+    // Student onboarding: missing school details, OR must (re-)join a class and is
+    // submitting an invite/class code.
+    const isStudentOnboarding =
+      session.role === "student" &&
+      ((!currentUser.schoolName || !currentUser.province || !currentUser.gradeLevel) ||
+        (!studentHasClass && !!(inviteCode || body.inviteCode)));
+
+    // Teacher (individual paid subscriber) onboarding: hasn't completed the owner
+    // profile setup yet — mirrors the dashboard's "incomplete profile" gate
+    // (missing school/organization name or province).
+    const isTeacherOnboarding =
+      session.role === "teacher" &&
+      (!currentUser.schoolName || !currentUser.province);
+
+    const isOnboarding = isStudentOnboarding || isTeacherOnboarding;
 
     // Detect if this is a privacy-only update (safe, no 60-day restriction)
-    const PRIVACY_FIELDS = new Set(['isProfilePublic','isNamePublic','isUsernamePublic','isSchoolPublic','isProvincePublic','isGradePublic','isSectionPublic','isStatsPublic']);
+    const PRIVACY_FIELDS = new Set(['isProfilePublic', 'isNamePublic', 'isUsernamePublic', 'isSchoolPublic', 'isProvincePublic', 'isGradePublic', 'isSectionPublic', 'isStatsPublic']);
     const isPurePrivacyUpdate = Object.keys(body).every(k => PRIVACY_FIELDS.has(k));
 
     // 1. 60-Day Cooldown Gate — only for sensitive field changes, not privacy toggles
@@ -208,7 +240,10 @@ export async function PUT(request: NextRequest) {
 
 
 
-    if (isOnboarding) {
+    // Student onboarding also enrolls the student into a class via invite/class
+    // code. Teacher onboarding skips this and falls through to the standard
+    // update below (which saves school/organization, province, name, avatar).
+    if (isStudentOnboarding) {
       const inputCode = inviteCode || body.inviteCode;
       if (!inputCode) {
         return NextResponse.json({ error: "Teacher invitation code / Class code is required. / លេខកូដអញ្ជើញពីគ្រូ ឬលេខកូដថ្នាក់គឺចាំបាច់ត្រូវបំពេញ។" }, { status: 400 });
@@ -271,6 +306,15 @@ export async function PUT(request: NextRequest) {
         .where(eq(classes.id, targetClassId))
         .limit(1);
 
+      if (classDetails) {
+        if (classDetails.status === "locked") {
+          return NextResponse.json({ error: "This class is locked. New students cannot join. / ថ្នាក់រៀននេះត្រូវបានចាក់សោ។ សិស្សថ្មីមិនអាចចូលរួមបានទេ។" }, { status: 400 });
+        }
+        if (classDetails.status === "archived") {
+          return NextResponse.json({ error: "This class has been archived. / ថ្នាក់រៀននេះត្រូវបានរក្សាទុកក្នុងប័ណ្ណសារហើយ។" }, { status: 400 });
+        }
+      }
+
       const finalSchoolName = classDetails?.schoolName || schoolName || currentUser.schoolName;
       const finalProvince = classDetails?.province || province || currentUser.province;
       const finalGradeLevel = classDetails?.gradeLevel || gradeLevel || currentUser.gradeLevel;
@@ -312,7 +356,7 @@ export async function PUT(request: NextRequest) {
           .where(eq(inviteCodes.code, trimmedCode));
       }
 
-      return NextResponse.json({ 
+      return NextResponse.json({
         success: true,
         user: {
           displayName: updatedUser.displayName,
@@ -342,7 +386,7 @@ export async function PUT(request: NextRequest) {
       .where(eq(users.id, session.id))
       .returning();
 
-    return NextResponse.json({ 
+    return NextResponse.json({
       success: true,
       user: {
         displayName: updatedUser.displayName,

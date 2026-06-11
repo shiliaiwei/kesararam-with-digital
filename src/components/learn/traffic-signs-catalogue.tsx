@@ -378,7 +378,7 @@ function DetailPanel({
         {/* ── ZONE 1: Visual anchor — full width image ── */}
         {topic.primary_image_url && (
           <div className="bg-white flex items-center justify-center relative" style={{ height: "240px" }}>
-            <ImageWithSkeleton src={topic.primary_image_url} alt={name} />
+            <ImageWithSkeleton src={cloudinaryThumb(topic.primary_image_url, 600)} alt={name} />
           </div>
         )}
 

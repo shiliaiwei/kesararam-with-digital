@@ -1,25 +1,25 @@
 "use client";
 
 import type { AnswerOption } from "@/lib/game-event-bus";
+import { cloudinaryOptimize } from "@/lib/cloudinary";
 
 /**
  * Kahoot-psychology 2D flat answer grid
  * - Zero border-radius (sharp 2D UI)
  * - Distinct color-coded tiles per psychological learning principles
  * - White background for sign images (image_pick) so signs are clear
- * - Shape icons aid memory encoding (▲◆●■)
  */
 
 const ANSWER_CONFIG = [
-  { bg: "#e21b3c", label: "A", shape: "▲" }, // Red
-  { bg: "#1368ce", label: "B", shape: "◆" }, // Blue
-  { bg: "#d89e00", label: "C", shape: "●" }, // Gold
-  { bg: "#26890c", label: "D", shape: "■" }, // Green
+  { bg: "#e21b3c", label: "A" }, // Red
+  { bg: "#1368ce", label: "B" }, // Blue
+  { bg: "#d89e00", label: "C" }, // Gold
+  { bg: "#26890c", label: "D" }, // Green
 ];
 
 // Correct/wrong override colors
 const CORRECT_BG = "#26890c";
-const WRONG_BG   = "#e21b3c";
+const WRONG_BG = "#e21b3c";
 
 interface AnswerGridProps {
   answers: AnswerOption[];
@@ -50,7 +50,10 @@ export function AnswerGrid({
 
   const isImagePick = gameType === "image_pick";
   const khFont = lang === "kh" ? { fontFamily: "Siemreap, sans-serif" } : {};
-  const cols = answers.length <= 2 ? 1 : 2;
+  // Image-pick (priority / right-of-way scenarios) → single full-width column
+  // with large images so the intersection diagrams are easy to see.
+  // MCQ / true-false keep the compact 1- or 2-column text layout.
+  const cols = isImagePick ? 1 : answers.length <= 2 ? 1 : 2;
   const revealed = correctId !== null;
 
   return (
@@ -70,30 +73,29 @@ export function AnswerGrid({
         const text = lang === "kh" ? (ans.answerKm || ans.answerEn) : ans.answerEn;
 
         // Active tile color
-        const tileBg = isCorrect 
-          ? CORRECT_BG 
-          : isMyWrong 
-          ? WRONG_BG 
-          : isOtherWrong 
-          ? "#f4f4f5" 
-          : cfg.bg;
+        const tileBg = isCorrect
+          ? CORRECT_BG
+          : isMyWrong
+            ? WRONG_BG
+            : isOtherWrong
+              ? "#f4f4f5"
+              : cfg.bg;
 
-        const borderColor = isCorrect 
-          ? CORRECT_BG 
-          : isMyWrong 
-          ? WRONG_BG 
-          : isOtherWrong 
-          ? "#e4e4e7" 
-          : isSelected && !revealed
-          ? "#ffffff"
-          : "#000000";
+        const borderColor = isCorrect
+          ? CORRECT_BG
+          : isMyWrong
+            ? WRONG_BG
+            : isOtherWrong
+              ? "#e4e4e7"
+              : isSelected && !revealed
+                ? "#ffffff"
+                : "#000000";
 
         const scale = isCorrect ? "scale(1.02)" : isSelected && !revealed ? "scale(0.98)" : "scale(1)";
 
         // ── IMAGE PICK (sign challenge) ─────────────────────────────────────
         if (isImagePick) {
           const topBandBg = isCorrect ? CORRECT_BG : isMyWrong ? WRONG_BG : isOtherWrong ? "#d4d4d8" : cfg.bg;
-          const bottomBandBg = isCorrect ? CORRECT_BG : isMyWrong ? WRONG_BG : isOtherWrong ? "#d4d4d8" : cfg.bg;
 
           return (
             <button
@@ -103,8 +105,8 @@ export function AnswerGrid({
               onClick={() => !disabled && onSelect(ans.id)}
               style={{
                 display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
+                flexDirection: "row",
+                alignItems: "stretch",
                 justifyContent: "flex-start",
                 overflow: "hidden",
                 border: `3px solid ${borderColor}`,
@@ -114,21 +116,29 @@ export function AnswerGrid({
                 transform: scale,
                 transition: "transform 0.12s ease, border-color 0.15s",
                 position: "relative",
-                height: "115px",
+                minHeight: "150px",
                 padding: 0,
                 outline: "none",
                 opacity: isOtherWrong ? 0.35 : 1,
+                boxShadow: isSelected || isCorrect ? "4px 4px 0 #000" : "none",
               }}
             >
-              {/* Colored top band — ABCD identity */}
+              {/* Colored left band — ABCD identity */}
               <div style={{
-                height: "4px",
-                width: "100%",
+                width: "44px",
                 backgroundColor: topBandBg,
+                color: "#ffffff",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "22px",
+                fontWeight: 955,
                 flexShrink: 0,
-              }} />
+              }}>
+                {cfg.label}
+              </div>
 
-              {/* Sign image area — white background */}
+              {/* Sign image area — white background, large image */}
               <div style={{
                 flex: 1,
                 display: "flex",
@@ -136,14 +146,14 @@ export function AnswerGrid({
                 justifyContent: "center",
                 width: "100%",
                 backgroundColor: "#ffffff",
-                padding: "4px 6px",
+                padding: "10px 12px",
               }}>
                 {ans.imageUrl ? (
                   <img
-                    src={ans.imageUrl}
+                    src={cloudinaryOptimize(ans.imageUrl, 800)}
                     alt={text}
                     style={{
-                      maxHeight: "62px",
+                      maxHeight: "150px",
                       maxWidth: "100%",
                       objectFit: "contain",
                       display: "block",
@@ -152,52 +162,13 @@ export function AnswerGrid({
                     onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                   />
                 ) : (
-                  <span style={{ fontSize: "11px", fontWeight: 800, color: "#1a1a1a", textAlign: "center", padding: "0 4px", ...khFont }}>
+                  <span style={{ fontSize: "15px", fontWeight: 800, color: "#1a1a1a", textAlign: "center", padding: "0 4px", ...khFont }}>
                     {text}
                   </span>
                 )}
               </div>
 
-              {/* Colored bottom label band */}
-              <div style={{
-                backgroundColor: bottomBandBg,
-                color: "#ffffff",
-                fontSize: "10px",
-                fontWeight: 955,
-                padding: "5.5px 8px",
-                width: "100%",
-                textAlign: "left",
-                flexShrink: 0,
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                letterSpacing: "0.02em",
-                ...khFont,
-              }}>
-                <span style={{ marginRight: "6px", opacity: 0.95 }}>{cfg.shape} {cfg.label}</span>
-              </div>
-
-              {/* Result badge */}
-              {(isCorrect || isMyWrong) && (
-                <div style={{
-                  position: "absolute",
-                  top: "4px",
-                  right: "4px",
-                  width: "18px",
-                  height: "18px",
-                  backgroundColor: isCorrect ? CORRECT_BG : WRONG_BG,
-                  color: "#fff",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "11px",
-                  fontWeight: 900,
-                  borderRadius: 0,
-                  border: "1.5px solid #fff",
-                }}>
-                  {isCorrect ? "✓" : "✗"}
-                </div>
-              )}
+              {/* Bottom-band removed: label moved to left band for a bigger image */}
             </button>
           );
         }
@@ -212,8 +183,8 @@ export function AnswerGrid({
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "12px",
-              padding: "10px 14px",
+              gap: "10px",
+              padding: "10px 12px",
               backgroundColor: tileBg,
               border: `3px solid ${borderColor}`,
               borderRadius: 0,
@@ -223,41 +194,39 @@ export function AnswerGrid({
               transition: "transform 0.12s ease, background-color 0.15s",
               outline: "none",
               userSelect: "none",
-              opacity: isOtherWrong ? 0.35 : 1,
+              opacity: isOtherWrong ? 0.45 : 1,
               ...khFont,
             }}
           >
-            {/* Shape icon — Kahoot-style mnemonic */}
+            {/* Answer letter label */}
             <span style={{
-              fontSize: "20px",
+              fontSize: "15px",
               lineHeight: 1,
-              color: isOtherWrong ? "rgba(24,24,27,0.7)" : "rgba(255,255,255,0.85)",
+              fontWeight: 900,
+              color: isOtherWrong ? "rgba(24,24,27,0.7)" : "rgba(255,255,255,0.95)",
               flexShrink: 0,
-              width: "22px",
+              width: "20px",
               textAlign: "center",
             }}>
-              {cfg.shape}
+              {cfg.label}
             </span>
 
-            {/* Answer text */}
+            {/* Answer text — smaller, left-aligned, wraps cleanly (no mid-word cut) */}
             <span style={{
-              color: isOtherWrong ? "#18181b" : "#ffffff",
-              fontWeight: 900,
-              fontSize: "clamp(12px, 3.5vw, 16px)",
-              lineHeight: 1.25,
+              color: isOtherWrong ? "#71717a" : "#ffffff",
+              // Correct answer is bold; wrong answers are greyed.
+              fontWeight: isCorrect ? 900 : isOtherWrong ? 600 : 800,
+              fontSize: "clamp(11px, 3vw, 14px)",
+              lineHeight: 1.3,
               flex: 1,
               textAlign: "left",
+              whiteSpace: "normal",
+              overflowWrap: "break-word",
+              wordBreak: "normal",
+              hyphens: "auto",
             }}>
               {text}
             </span>
-
-            {/* Result icon */}
-            {isCorrect && (
-              <span style={{ color: isOtherWrong ? "#18181b" : "#fff", fontSize: "16px", fontWeight: 900, flexShrink: 0 }}>✓</span>
-            )}
-            {isMyWrong && (
-              <span style={{ color: "#fff", fontSize: "16px", fontWeight: 900, flexShrink: 0 }}>✗</span>
-            )}
           </button>
         );
       })}

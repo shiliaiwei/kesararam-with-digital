@@ -7,6 +7,7 @@ import { CountdownTimer } from "@/components/game/CountdownTimer";
 import { AnswerGrid } from "@/components/game/AnswerGrid";
 import { sounds } from "@/lib/game-sounds";
 import { Zap, Flame, RotateCcw, ChevronRight, ArrowLeft, BookOpen } from "lucide-react";
+import { cloudinaryOptimize } from "@/lib/cloudinary";
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 
@@ -230,7 +231,7 @@ export default function CategoryQuizPage() {
     fetch("/api/game/categories")
       .then((r) => r.json())
       .then((d) => setCategories(d.categories ?? []))
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   async function handleCategorySelect(cat: Category) {
@@ -574,19 +575,19 @@ export default function CategoryQuizPage() {
             <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2" style={khFont}>
               {kh ? "ពិនិត្យមើលចម្លើយរបស់អ្នកឡើងវិញ" : "Review Your Answers"}
             </div>
-            
+
             {phase.session.questions.map((q, i) => {
               const record = phase.answers.find((a) => a.questionId === q.id);
               if (!record) return null;
-              
+
               const isCorrect = record.isCorrect;
               const selectedAnswer = q.answers.find(a => a.id === record.answerId);
               const correctAnswer = q.answers.find(a => a.isCorrect);
-              
+
               return (
                 <div key={q.id} className={`border-2 border-black p-4 bg-white`} style={{ boxShadow: "3px 3px 0 #000" }}>
                   <div className="flex items-start gap-3 mb-3">
-                    <div 
+                    <div
                       className="shrink-0 w-6 h-6 flex items-center justify-center text-white font-black text-xs border-2 border-black"
                       style={{ backgroundColor: isCorrect ? "#22c55e" : "#ef4444" }}
                     >
@@ -596,11 +597,11 @@ export default function CategoryQuizPage() {
                       {kh ? (q.questionKm || q.questionEn) : q.questionEn}
                     </div>
                   </div>
-                  
+
                   {/* Hide images if image_pick, else show */}
                   {q.imageUrl && q.gameType !== "image_pick" && (
                     <div className="mb-3 border-2 border-zinc-200 p-2 flex justify-center bg-zinc-50">
-                      <img src={q.imageUrl} alt="Question" className="max-h-24 w-auto object-contain" />
+                      <img src={cloudinaryOptimize(q.imageUrl, 300)} alt="Question" className="max-h-24 w-auto object-contain" />
                     </div>
                   )}
 
@@ -613,14 +614,14 @@ export default function CategoryQuizPage() {
                       </span>
                       {selectedAnswer ? (
                         <>
-                          {selectedAnswer.imageUrl && <img src={selectedAnswer.imageUrl} className="h-6 w-auto" alt="Answer" />}
+                          {selectedAnswer.imageUrl && <img src={cloudinaryOptimize(selectedAnswer.imageUrl, 120)} className="h-6 w-auto" alt="Answer" />}
                           <span className="flex-1 line-clamp-2">{kh ? (selectedAnswer.answerKm || selectedAnswer.answerEn) : selectedAnswer.answerEn}</span>
                         </>
                       ) : (
                         <span className="text-zinc-500 italic">{kh ? "អស់ម៉ោង" : "Time out"}</span>
                       )}
                     </div>
-                    
+
                     {/* Show Correct Answer if they were wrong */}
                     {!isCorrect && correctAnswer && (
                       <div className={`p-2 border-2 border-black bg-green-100 text-sm flex gap-2 items-center`} style={khFont}>
@@ -628,7 +629,7 @@ export default function CategoryQuizPage() {
                         <span className="font-bold">
                           {kh ? "ចម្លើយត្រូវ:" : "Correct answer:"}
                         </span>
-                        {correctAnswer.imageUrl && <img src={correctAnswer.imageUrl} className="h-6 w-auto" alt="Answer" />}
+                        {correctAnswer.imageUrl && <img src={cloudinaryOptimize(correctAnswer.imageUrl, 120)} className="h-6 w-auto" alt="Answer" />}
                         <span className="flex-1 line-clamp-2">{kh ? (correctAnswer.answerKm || correctAnswer.answerEn) : correctAnswer.answerEn}</span>
                       </div>
                     )}
@@ -651,8 +652,8 @@ export default function CategoryQuizPage() {
               {r.accuracyPercentage >= 80
                 ? kh ? "🏆 អស្ចារ្យណាស់!" : "🏆 Excellent work!"
                 : r.accuracyPercentage >= 50
-                ? kh ? "👍 ល្អ! រៀនបន្ថែម" : "👍 Good effort! Keep studying."
-                : kh ? "📖 សូមច្រើនស្តាប់ MORE" : "📖 Review this category more."}
+                  ? kh ? "👍 ល្អ! រៀនបន្ថែម" : "👍 Good effort! Keep studying."
+                  : kh ? "📖 សូមច្រើនស្តាប់ MORE" : "📖 Review this category more."}
             </div>
           </div>
 
@@ -750,7 +751,7 @@ export default function CategoryQuizPage() {
         {/* Image */}
         {q.imageUrl && q.gameType !== "image_pick" && (
           <div className="border-2 border-black bg-white flex items-center justify-center p-4" style={{ minHeight: 180 }}>
-            <img src={q.imageUrl} alt="question" className="max-h-44 w-auto object-contain" />
+            <img src={cloudinaryOptimize(q.imageUrl, 500)} alt="question" className="max-h-44 w-auto object-contain" />
           </div>
         )}
 

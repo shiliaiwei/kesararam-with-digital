@@ -15,11 +15,11 @@ export function Footer() {
     : { fontFamily: '"StackSansNotch", sans-serif' };
 
   const LEARN_LINKS = [
-    { label: kh ? "សញ្ញាចរាចរ" : "Traffic Signs", href: "/road-sign" },
-    { label: kh ? "ច្បាប់ចរាចរ" : "Road Traffic Law", href: "/road-traffic" },
-    { label: kh ? "សិទ្ធិអាទិភាព" : "Right of Way", href: "/priority" },
-    { label: kh ? "ជំនាញបើកបរ" : "Driving Skills", href: "/driving" },
-    { label: kh ? "ប្រភេទទាំងអស់" : "All Categories", href: "/home" },
+    { label: kh ? "សញ្ញាចរាចរ" : "Traffic Signs", href: "/learn/road-sign" },
+    { label: kh ? "ច្បាប់ចរាចរ" : "Road Traffic Law", href: "/learn/road-traffic" },
+    { label: kh ? "សិទ្ធិអាទិភាព" : "Right of Way", href: "/learn/priority" },
+    { label: kh ? "ជំនាញបើកបរ" : "Driving Skills", href: "/learn/driving" },
+    { label: kh ? "ប្រភេទទាំងអស់" : "All Categories", href: "/learn" },
   ];
 
   const PLATFORM_LINKS = [
@@ -116,19 +116,6 @@ export function Footer() {
                 </span>
               </a>
 
-              {/* YouTube — red */}
-              <a href="#"
-                className="group relative flex items-center justify-center w-10 h-10 border-2 border-black transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5"
-                style={{ background: "#ff0000", boxShadow: "3px 3px 0 #000" }}
-                aria-label="YouTube">
-                <svg viewBox="0 0 24 24" fill="#fff" className="w-5 h-5">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                </svg>
-                <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-[9px] font-black px-2 py-0.5 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                  YouTube
-                </span>
-              </a>
-
               {/* Facebook — blue */}
               <a href="https://web.facebook.com/kesararamprimaryschool" target="_blank" rel="noopener noreferrer"
                 className="group relative flex items-center justify-center w-10 h-10 border-2 border-black transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5"
@@ -139,6 +126,19 @@ export function Footer() {
                 </svg>
                 <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-[9px] font-black px-2 py-0.5 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                   Facebook
+                </span>
+              </a>
+
+              {/* TikTok — black */}
+              <a href="https://www.tiktok.com/@kesararamwithdigital" target="_blank" rel="noopener noreferrer"
+                className="group relative flex items-center justify-center w-10 h-10 border-2 border-black transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5"
+                style={{ background: "#000000", boxShadow: "3px 3px 0 #000" }}
+                aria-label="TikTok">
+                <svg viewBox="0 0 24 24" fill="#fff" className="w-5 h-5">
+                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.73 4.12 1.13 1.09 2.69 1.63 4.26 1.62v3.94c-1.85-.02-3.66-.63-5.17-1.72-.19-.14-.36-.31-.53-.47v7.55c.02 1.48-.4 2.94-1.2 4.17-1.39 2.06-3.83 3.32-6.32 3.23-2.61-.06-5.1-1.48-6.41-3.75-1.57-2.6-1.3-6.09.67-8.42 1.63-1.89 4.15-2.83 6.64-2.5v3.97c-1.35-.3-2.8.15-3.69 1.18-.94 1.04-1.09 2.63-.37 3.82.68 1.18 2.08 1.88 3.44 1.76 1.46-.07 2.76-1.12 2.99-2.56.08-.41.06-.83.06-1.25V0h.03z" />
+                </svg>
+                <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-[9px] font-black px-2 py-0.5 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                  TikTok
                 </span>
               </a>
 

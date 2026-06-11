@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -36,6 +36,24 @@ export default function LearnPage() {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+
+  // Live stats from /api/public/stats
+  const [stats, setStats] = useState(STATS);
+  useEffect(() => {
+    fetch("/api/public/stats")
+      .then(r => r.ok ? r.json() : null)
+      .then(d => {
+        if (d) {
+          setStats([
+            { value: d.questions > 0 ? `${d.questions}+` : "500+", labelEn: "Questions", labelKh: "\u179F\u17C6\u178E\u17BD\u179A", color: "#eab308" },
+            { value: String(d.categories || 8), labelEn: "Categories", labelKh: "\u1794\u17D2\u179A\u1797\u17C1\u1791", color: "#3b82f6" },
+            { value: String(d.sessions || 0), labelEn: "Live Sessions", labelKh: "\u179C\u1782\u17D2\u1782\u1795\u17D2\u1791\u17B6\u179B\u17CB", color: "#22c55e" },
+            { value: "KH/EN", labelEn: "Bilingual", labelKh: "\u1796\u17B8\u179A\u1797\u17B6\u179F\u17B6", color: "#a855f7" },
+          ]);
+        }
+      })
+      .catch(() => { });
+  }, []);
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -135,7 +153,7 @@ export default function LearnPage() {
       <div ref={statsRef} className="border-b-2 border-black bg-white py-8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {STATS.map(({ value, labelEn, labelKh, color }) => (
+            {stats.map(({ value, labelEn, labelKh, color }) => (
               <div
                 key={labelEn}
                 className="stat-card border-2 border-black p-5 flex flex-col gap-1"

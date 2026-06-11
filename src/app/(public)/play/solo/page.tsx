@@ -8,6 +8,7 @@ import { AnswerGrid } from "@/components/game/AnswerGrid";
 import { sounds } from "@/lib/game-sounds";
 import { GAME_MODE_CONFIG } from "@/lib/game-engine";
 import { Zap, Flame, ChevronRight, RotateCcw, Volume2, VolumeX, X, BookOpen, CheckCircle, XCircle } from "lucide-react";
+import { cloudinaryOptimize } from "@/lib/cloudinary";
 
 interface SoloQuestion {
   id: number;
@@ -370,127 +371,87 @@ export default function SoloPage() {
     const r = phase.result;
     return (
       <div className="min-h-screen bg-white rounded-none">
-        <div className="bg-yellow-400 border-b-2 border-black py-8 px-6 text-center rounded-none">
-          <div className="inline-block bg-black text-yellow-400 text-xs font-black tracking-widest uppercase px-3 py-1.5 mb-3 rounded-none" style={khFont}>{kh ? "ចប់ហ្គេម" : "Game Over"}</div>
-          {r.isNewPersonalBest && <div className="inline-block bg-black text-yellow-400 text-xs font-black px-3 py-1.5 mb-3 ml-2 border-2 border-black rounded-none" style={{ ...khFont }}>{kh ? "ពិន្ទុខ្ពស់បំផុតថ្មី!" : "New Personal Best!"}</div>}
-          <div className="text-6xl font-black text-black tabular-nums">{r.totalScore.toLocaleString()}</div>
-          <div className="text-black/60 font-bold mt-1" style={khFont}>{kh ? "ពិន្ទុ" : "points"}</div>
+        <div className="bg-yellow-400 border-b-4 border-black py-8 px-6 text-center rounded-none">
+          <div className="inline-block bg-black text-yellow-400 text-xs font-black tracking-widest uppercase px-4 py-2 mb-4 shadow-[3px_3px_0_#000]" style={{ borderRadius: "0px", ...khFont }}>
+            {kh ? "ចប់ហ្គេម" : "Game Over"}
+          </div>
+          {r.isNewPersonalBest && (
+            <div className="inline-block bg-black text-yellow-400 text-xs font-black px-4 py-2 mb-4 ml-2 border-2 border-black shadow-[3px_3px_0_#000]" style={{ borderRadius: "0px", ...khFont }}>
+              {kh ? "ពិន្ទុខ្ពស់បំផុតថ្មី!" : "New Personal Best!"}
+            </div>
+          )}
+          <div className="text-7xl font-black text-black tabular-nums mb-2">{r.totalScore.toLocaleString()}</div>
+          <div className="text-black/60 font-bold text-lg" style={khFont}>{kh ? "ពិន្ទុ" : "points"}</div>
         </div>
+
         <div className="max-w-lg mx-auto px-6 py-8 flex flex-col gap-6">
-          <div className="grid grid-cols-3 gap-3">
+          {/* Simple Statistics - Brutalist Style */}
+          <div className="grid grid-cols-3 gap-4">
             {[
-              { label: kh ? "ភាពត្រឹមត្រូវ" : "Accuracy", value: `${r.accuracyPercentage}%`, color: "#22c55e" },
-              { label: kh ? "ត្រូវ" : "Correct", value: `${r.correctAnswers}/${r.totalQuestions}`, color: "#3b82f6" },
-              { label: kh ? "ពេលវេលា" : "Time", value: `${r.timeTakenSeconds}s`, color: "#f97316" },
+              { label: kh ? "ភាពត្រឹមត្រូវ" : "Accuracy", value: `${r.accuracyPercentage}%`, color: "#22c55e", icon: "✓" },
+              { label: kh ? "ត្រូវ" : "Correct", value: `${r.correctAnswers}/${r.totalQuestions}`, color: "#3b82f6", icon: "Q" },
+              { label: kh ? "ពេលវេលា" : "Time", value: `${r.timeTakenSeconds}s`, color: "#f97316", icon: "⏱" },
             ].map(s => (
-              <div key={s.label} className="border-2 border-black p-4 text-center rounded-none">
-                <div className="text-2xl font-black" style={{ color: s.color }}>{s.value}</div>
-                <div className="text-xs font-bold text-zinc-500 mt-1" style={khFont}>{s.label}</div>
+              <div key={s.label} className="border-4 border-black p-5 text-center shadow-[4px_4px_0_#000]" style={{ borderRadius: "0px" }}>
+                <div className="text-3xl font-black mb-1" style={{ color: s.color }}>{s.value}</div>
+                <div className="text-xs font-black text-zinc-600 uppercase tracking-wider" style={khFont}>{s.label}</div>
               </div>
             ))}
           </div>
-          <div>
-            <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-3" style={khFont}>{kh ? "លទ្ធផលម្តងៗ" : "Question Breakdown"}</div>
-            <div className="flex gap-1.5 flex-wrap">
+
+          {/* Question Overview - Simple Grid */}
+          <div className="border-4 border-black p-5 bg-zinc-50 shadow-[4px_4px_0_#000]" style={{ borderRadius: "0px" }}>
+            <div className="text-sm font-black uppercase tracking-widest text-black mb-4" style={khFont}>
+              {kh ? "សង្ខេបលទ្ធផល" : "Results Overview"}
+            </div>
+            <div className="flex gap-2 flex-wrap justify-center">
               {r.perQuestion.map((q, i) => (
-                <div key={q.questionId} className="w-8 h-8 border-2 border-black flex items-center justify-center text-xs font-black text-white rounded-none"
-                  style={{ backgroundColor: q.isCorrect ? "#22c55e" : "#ef4444" }} title={`Q${i + 1}: ${q.isCorrect ? "+" + q.pointsEarned : "0"}`}>
+                <div
+                  key={q.questionId}
+                  className="w-10 h-10 border-3 border-black flex items-center justify-center text-sm font-black text-white shadow-[2px_2px_0_#000]"
+                  style={{
+                    backgroundColor: q.isCorrect ? "#22c55e" : "#ef4444",
+                    borderRadius: "0px",
+                    borderWidth: "3px"
+                  }}
+                  title={`Q${i + 1}: ${q.isCorrect ? "+" + q.pointsEarned : "0"} pts`}
+                >
                   {i + 1}
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Detailed Question Review */}
-          <div className="mt-2 space-y-4">
-            <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-2" style={khFont}>
-              {kh ? "ពិនិត្យមើលចម្លើយរបស់អ្នកឡើងវិញ" : "Review Your Answers"}
+          {/* Locked Statistics Message - For Students */}
+          <div className="border-4 border-yellow-400 bg-black p-6 text-center shadow-[6px_6px_0_#eab308]" style={{ borderRadius: "0px" }}>
+            <div className="text-yellow-400 text-4xl mb-3">🔒</div>
+            <div className="text-white font-black text-lg mb-2" style={khFont}>
+              {kh ? "ស្ថិតិលម្អិតត្រូវបានចាក់សោ" : "Detailed Statistics Locked"}
             </div>
-
-            {phase.session.questions.map((q, i) => {
-              const record = phase.answers.find((a) => a.questionId === q.id);
-              if (!record) return null;
-
-              const isCorrect = record.isCorrect;
-              const selectedAnswer = q.answers.find(a => a.id === record.answerId);
-              const correctAnswer = q.answers.find(a => a.isCorrect);
-
-              return (
-                <div key={q.id} className="border-2 border-black p-4 bg-white rounded-none">
-                  <div className="flex items-start gap-3 mb-3">
-                    <div
-                      className="shrink-0 w-6 h-6 flex items-center justify-center text-white font-black text-xs border-2 border-black rounded-none"
-                      style={{ backgroundColor: isCorrect ? "#22c55e" : "#ef4444" }}
-                    >
-                      {i + 1}
-                    </div>
-                    <div className="font-bold text-sm leading-snug" style={khFont}>
-                      {kh ? (q.questionKm || q.questionEn) : q.questionEn}
-                    </div>
-                  </div>
-
-                  {/* Hide images if image_pick, else show */}
-                  {q.imageUrl && q.gameType !== "image_pick" && (
-                    <div className="mb-3 border-2 border-black p-2 flex justify-center bg-zinc-50 rounded-none relative">
-                      <img src={q.imageUrl} alt="Question" className="max-h-24 w-auto object-contain rounded-none" />
-                    </div>
-                  )}
-
-                  <div className="space-y-2 ml-9">
-                    {/* Selected Answer */}
-                    <div className={`p-2 border-2 border-black text-sm flex gap-2 items-center rounded-none ${isCorrect ? 'bg-green-100' : 'bg-red-100'}`} style={khFont}>
-                      <span className="font-black shrink-0">{isCorrect ? '✓' : '✗'}</span>
-                      <span className="font-bold">
-                        {kh ? "អ្នកជ្រើសរើស:" : "You chose:"}
-                      </span>
-                      {selectedAnswer ? (
-                        <>
-                          {selectedAnswer.imageUrl && (
-                            <div className="relative border border-black p-1 bg-white rounded-none shrink-0 flex items-center justify-center">
-                              <img src={selectedAnswer.imageUrl} className="h-6 w-auto rounded-none" alt="Answer" />
-                              <div className="absolute bottom-0 right-0 bg-black/85 text-zinc-200 font-mono text-[6px] font-black px-0.5">
-                                Ref: OPT-{selectedAnswer.id}
-                              </div>
-                            </div>
-                          )}
-                          <span className="flex-1 line-clamp-2">{kh ? (selectedAnswer.answerKm || selectedAnswer.answerEn) : selectedAnswer.answerEn}</span>
-                        </>
-                      ) : (
-                        <span className="text-zinc-500 italic">{kh ? "អស់ម៉ោង" : "Time out"}</span>
-                      )}
-                    </div>
-
-                    {/* Show Correct Answer if they were wrong */}
-                    {!isCorrect && correctAnswer && (
-                      <div className="p-2 border-2 border-black bg-green-100 text-sm flex gap-2 items-center rounded-none" style={khFont}>
-                        <span className="font-black shrink-0 text-green-600">✓</span>
-                        <span className="font-bold">
-                          {kh ? "ចម្លើយត្រូវ:" : "Correct answer:"}
-                        </span>
-                        {correctAnswer.imageUrl && (
-                          <div className="relative border border-black p-1 bg-white rounded-none shrink-0 flex items-center justify-center">
-                            <img src={correctAnswer.imageUrl} className="h-6 w-auto rounded-none" alt="Answer" />
-                            <div className="absolute bottom-0 right-0 bg-black/85 text-zinc-200 font-mono text-[6px] font-black px-0.5">
-                              Ref: OPT-{correctAnswer.id}
-                            </div>
-                          </div>
-                        )}
-                        <span className="flex-1 line-clamp-2">{kh ? (correctAnswer.answerKm || correctAnswer.answerEn) : correctAnswer.answerEn}</span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
+            <div className="text-zinc-400 text-sm mb-4 font-bold" style={khFont}>
+              {kh
+                ? "សូមស្នើឱ្យគ្រូរបស់អ្នកដើម្បីដោះសោរស្ថិតិលម្អិត និងការវិភាគ"
+                : "Ask your teacher to unlock detailed statistics and analysis"}
+            </div>
+            <div className="inline-flex items-center gap-2 bg-yellow-400 text-black text-xs font-black px-4 py-2 border-2 border-yellow-400" style={{ borderRadius: "0px" }}>
+              <span style={khFont}>{kh ? "🎓 តម្រូវអោយមាន Teacher Pro" : "🎓 Requires Teacher Pro"}</span>
+            </div>
           </div>
-          <div className="flex gap-3">
-            <button onClick={() => { resetGameState(); setPhase({ name: "setup" }); }}
-              className="flex-1 py-4 bg-white text-black font-black border-2 border-black flex items-center justify-center gap-2 rounded-none"
-              style={{ ...khFont }}>
-              <RotateCcw size={16} />{kh ? "លេងម្តងទៀត" : "Play Again"}
+
+          {/* Action Buttons - Brutalist */}
+          <div className="flex gap-4">
+            <button
+              onClick={() => { resetGameState(); setPhase({ name: "setup" }); }}
+              className="flex-1 py-4 bg-yellow-400 text-black font-black border-4 border-black flex items-center justify-center gap-2 shadow-[4px_4px_0_#000] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[6px_6px_0_#000] active:translate-x-0 active:translate-y-0 active:shadow-[2px_2px_0_#000] transition-all"
+              style={{ borderRadius: "0px", ...khFont }}
+            >
+              <RotateCcw size={18} />{kh ? "លេងម្តងទៀត" : "Play Again"}
             </button>
-            <button onClick={() => router.push("/play")} className="flex-1 py-4 bg-black text-yellow-400 font-black border-2 border-black rounded-none"
-              style={{ ...khFont }}>
+            <button
+              onClick={() => router.push("/play")}
+              className="flex-1 py-4 bg-black text-yellow-400 font-black border-4 border-black shadow-[4px_4px_0_#eab308] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[6px_6px_0_#eab308] active:translate-x-0 active:translate-y-0 active:shadow-[2px_2px_0_#eab308] transition-all"
+              style={{ borderRadius: "0px", ...khFont }}
+            >
               {kh ? "ជ្រើសរើសរបៀបផ្សេង" : "Change Mode"}
             </button>
           </div>
@@ -536,53 +497,59 @@ export default function SoloPage() {
       </div>
 
       <div className="relative z-10 flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full justify-start sm:justify-center overflow-y-auto min-h-0">
-        {/* Q-index + difficulty + timer row (Stable row) */}
+        {/* Q-index + difficulty + timer row (Stable row) - Smaller labels */}
         <div className="flex items-center justify-between gap-2 px-3 py-2 w-full bg-zinc-900 border-2 border-black rounded-none h-16 flex-shrink-0">
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar flex-nowrap py-1">
-            <span className="shrink-0 text-zinc-300 text-xs font-black uppercase tracking-widest bg-zinc-850 px-3 py-1.5 rounded-none border border-zinc-800" style={khFont}>
+            <span className="shrink-0 text-zinc-300 text-[9px] sm:text-[10px] font-black uppercase tracking-widest bg-zinc-850 px-2 py-1 rounded-none border border-zinc-800" style={khFont}>
               {kh ? `${phase.qIndex + 1}/${phase.session.questions.length}` : `Q ${phase.qIndex + 1} / ${phase.session.questions.length}`}
             </span>
-            <span className="shrink-0 text-yellow-400 font-black text-xs uppercase bg-yellow-400/10 px-3 py-1.5 rounded-none border border-yellow-400/30" style={khFont}>
+            <span className="shrink-0 text-yellow-400 font-black text-[9px] sm:text-[10px] uppercase bg-yellow-400/10 px-2 py-1 rounded-none border border-yellow-400/30" style={khFont}>
               {q.difficulty || "Mixed"}
             </span>
             {q.topicCode && (
-              <span className="shrink-0 text-zinc-400 font-mono text-xs bg-zinc-850 px-3 py-1.5 rounded-none border border-zinc-800 tracking-wider">
+              <span className="shrink-0 text-zinc-400 font-mono text-[9px] sm:text-[10px] bg-zinc-850 px-2 py-1 rounded-none border border-zinc-800 tracking-wider">
                 {q.topicCode.trim()}
               </span>
             )}
+          </div>
+          <div className="flex items-center gap-2">
+            {/* Mute icon button */}
             <button
               onClick={() => setMuted(m => !m)}
-              className="shrink-0 p-2 rounded-none bg-zinc-850 border border-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-800 transition-all"
+              className={`shrink-0 p-1.5 rounded-none border transition-all ${muted
+                ? "bg-red-950/40 border-red-500/60 text-red-400"
+                : "bg-zinc-800 border-zinc-700 text-zinc-400 hover:text-white"
+                }`}
               title={muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}
             >
-              {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+              {muted ? <VolumeX size={14} /> : <Volume2 size={14} />}
             </button>
-          </div>
-          <div className="shrink-0 scale-90 origin-right">
-            <CountdownTimer
-              endsAt={phase.endsAt}
-              totalSeconds={phase.session.timePerQuestion}
-              onExpire={handleTimeout}
-              muted={muted}
-            />
+            <div className="shrink-0 scale-90 origin-right">
+              <CountdownTimer
+                endsAt={phase.endsAt}
+                totalSeconds={phase.session.timePerQuestion}
+                onExpire={handleTimeout}
+                muted={muted}
+              />
+            </div>
           </div>
         </div>
 
-        {/* Question image (Stable height wrapper - compact) */}
-        <div className={`shrink-0 w-full h-48 flex items-center justify-center p-2 relative overflow-hidden rounded-none ${q.imageUrl
-          ? "border-2 border-black bg-zinc-950"
+        {/* Question image (Stable height wrapper - white background for signs) */}
+        <div className={`shrink-0 w-full h-48 flex items-center justify-center p-3 relative overflow-hidden rounded-none ${q.imageUrl
+          ? "border-4 border-black bg-white shadow-[6px_6px_0_#000]"
           : "border-2 border-transparent bg-transparent"
           }`}>
           {q.imageUrl ? (
-            <img src={q.imageUrl} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
+            <img src={cloudinaryOptimize(q.imageUrl, 800)} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
           ) : null}
         </div>
 
-        {/* Question text card (compact) */}
+        {/* Question text card (compact & smaller) */}
         <div
-          className="shrink-0 w-full min-h-[5rem] h-auto bg-zinc-900 border-2 border-black p-4 rounded-none text-white font-black flex items-center justify-center text-center select-text animate-fade-in"
+          className="shrink-0 w-full min-h-[4rem] h-auto bg-zinc-900 border-2 border-black p-3 rounded-none text-white font-black flex items-center justify-center text-center select-text animate-fade-in"
           style={{
-            fontSize: "clamp(1.1rem, 4vw, 1.75rem)",
+            fontSize: "clamp(0.95rem, 3.5vw, 1.4rem)",
             lineHeight: "1.3",
             ...khFont
           }}

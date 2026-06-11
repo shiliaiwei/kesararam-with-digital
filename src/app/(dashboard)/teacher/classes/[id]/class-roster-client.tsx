@@ -2,11 +2,12 @@
 
 import { useState, useTransition } from "react";
 import Link from "next/link";
-import { assignStudentAction, removeStudentAction, updateClassControlAction } from "@/app/actions/enrollment";
+import { assignStudentAction, removeStudentAction, updateClassControlAction, updateClassDetailsAction } from "@/app/actions/enrollment";
 import { toast } from "sonner";
-import { 
-  ArrowLeft, Users, School, Calendar, Lock, Unlock, 
-  RefreshCw, Trash2, ShieldCheck, ShieldAlert, CheckCircle2, XCircle
+import {
+  ArrowLeft, Users, School, Calendar, Lock, Unlock,
+  RefreshCw, Trash2, ShieldCheck, ShieldAlert, CheckCircle2, XCircle,
+  Pencil, Copy, Check, Save, X
 } from "lucide-react";
 
 interface StudentRoster {
@@ -32,6 +33,7 @@ interface ClassDetails {
   section: string;
   status: string;
   createdAt: Date;
+  nameChangedCount: number;
 }
 
 interface VerificationErrorDetails {
@@ -52,9 +54,74 @@ export function ClassRosterClient({
   const [searchUsername, setSearchUsername] = useState("");
   const [verificationError, setVerificationError] = useState<VerificationErrorDetails | null>(null);
   const [generalError, setGeneralError] = useState("");
-  
+
   const [pendingAdd, startAddTransition] = useTransition();
   const [pendingControl, startControlTransition] = useTransition();
+
+  // Edit class name + grade
+  const [editing, setEditing] = useState(false);
+  const [editName, setEditName] = useState(cls.name);
+  const [editGrade, setEditGrade] = useState(cls.gradeLevel);
+  const [editSchool, setEditSchool] = useState(cls.schoolName);
+  const [editProvince, setEditProvince] = useState(cls.province);
+  const [editSection, setEditSection] = useState(cls.section);
+  const [pendingEdit, startEditTransition] = useTransition();
+  const [copied, setCopied] = useState(false);
+
+  function copyCode() {
+    navigator.clipboard
+      .writeText(cls.code)
+      .then(() => {
+        setCopied(true);
+        toast.success("Join code copied!");
+        setTimeout(() => setCopied(false), 1500);
+      })
+      .catch(() => toast.error("Could not copy."));
+  }
+
+  function startEdit() {
+    setEditName(cls.name);
+    setEditGrade(cls.gradeLevel);
+    setEditSchool(cls.schoolName);
+    setEditProvince(cls.province);
+    setEditSection(cls.section);
+    setEditing(true);
+  }
+
+  function saveEdit() {
+    const name = editName.trim();
+    const gradeLevel = editGrade.trim();
+    const schoolName = editSchool.trim();
+    const province = editProvince.trim();
+    const section = editSection.trim();
+    if (!name) {
+      toast.error("Class name cannot be empty.");
+      return;
+    }
+    startEditTransition(async () => {
+      const res = await updateClassDetailsAction(cls.id, { name, gradeLevel, schoolName, province, section });
+      if (res?.error) {
+        toast.error(res.error);
+      } else if (res?.success) {
+        const nameChanged = name !== cls.name;
+        setCls((prev) => ({
+          ...prev,
+          name,
+          gradeLevel,
+          schoolName,
+          province,
+          section,
+          nameChangedCount: nameChanged ? prev.nameChangedCount + 1 : prev.nameChangedCount,
+        }));
+        setEditing(false);
+        if (nameChanged && typeof res.nameChangesRemaining === "number") {
+          toast.success(`Class details updated. You can rename ${res.nameChangesRemaining} more time(s).`);
+        } else {
+          toast.success("Class details updated.");
+        }
+      }
+    });
+  }
 
   // Control action (lock, unlock, regenerate code)
   function handleControl(action: "status" | "code", value: string) {
@@ -126,28 +193,118 @@ export function ClassRosterClient({
     <div className="space-y-6">
       {/* Back button & Header */}
       <div className="border-b-4 border-black pb-6">
-        <Link 
-          href="/teacher/classes" 
+        <Link
+          href="/teacher/classes"
           className="inline-flex items-center gap-1 text-xs font-black uppercase tracking-wider text-zinc-500 hover:text-black mb-3 transition-colors"
         >
           <ArrowLeft size={14} /> Back to Classes / ត្រឡប់ទៅបញ្ជីថ្នាក់
         </Link>
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <h1 className="text-4xl font-black uppercase tracking-tighter text-black">
-              {cls.name}
-            </h1>
-            <p className="text-sm font-bold text-zinc-500 uppercase mt-1">
-              {cls.schoolName} · {cls.province} · {cls.gradeLevel} {cls.section ? `(${cls.section})` : ""}
-            </p>
-          </div>
+          {editing ? (
+            <div className="flex-1 space-y-2">
+              <div className="flex flex-col gap-1">
+                <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Class Name / ឈ្មោះថ្នាក់</label>
+                <input
+                  value={editName}
+                  onChange={(e) => setEditName(e.target.value)}
+                  maxLength={80}
+                  disabled={pendingEdit || cls.nameChangedCount >= 2}
+                  className="w-full max-w-md px-3 py-2 border-2 border-black rounded-none text-2xl font-black uppercase focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-zinc-100 disabled:cursor-not-allowed"
+                />
+                <span className="text-[10px] font-bold text-zinc-400">
+                  {cls.nameChangedCount >= 2
+                    ? "Rename limit reached (2 changes max)."
+                    : `Name changes used: ${cls.nameChangedCount} / 2`}
+                </span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Grade Level / កម្រិតថ្នាក់</label>
+                <input
+                  value={editGrade}
+                  onChange={(e) => setEditGrade(e.target.value)}
+                  maxLength={40}
+                  placeholder="e.g. Grade 12"
+                  disabled={pendingEdit}
+                  className="w-full max-w-xs px-3 py-2 border-2 border-black rounded-none text-sm font-bold focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-zinc-100"
+                />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl">
+                <div className="flex flex-col gap-1">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400">School Name / ឈ្មោះសាលា</label>
+                  <input
+                    value={editSchool}
+                    onChange={(e) => setEditSchool(e.target.value)}
+                    maxLength={120}
+                    placeholder="e.g. Kesararam Primary School"
+                    disabled={pendingEdit}
+                    className="w-full px-3 py-2 border-2 border-black rounded-none text-sm font-bold focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-zinc-100"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Location / ទីតាំង (ខេត្ត)</label>
+                  <input
+                    value={editProvince}
+                    onChange={(e) => setEditProvince(e.target.value)}
+                    maxLength={80}
+                    placeholder="e.g. Siem Reap"
+                    disabled={pendingEdit}
+                    className="w-full px-3 py-2 border-2 border-black rounded-none text-sm font-bold focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-zinc-100"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Section / ផ្នែក</label>
+                  <input
+                    value={editSection}
+                    onChange={(e) => setEditSection(e.target.value)}
+                    maxLength={40}
+                    placeholder="e.g. A"
+                    disabled={pendingEdit}
+                    className="w-full px-3 py-2 border-2 border-black rounded-none text-sm font-bold focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-zinc-100"
+                  />
+                </div>
+              </div>
+              <div className="flex items-center gap-2 pt-1">
+                <button
+                  onClick={saveEdit}
+                  disabled={pendingEdit}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 border-2 border-black bg-green-400 text-black font-black text-xs uppercase shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all disabled:opacity-50"
+                >
+                  <Save size={14} /> {pendingEdit ? "Saving..." : "Save / រក្សាទុក"}
+                </button>
+                <button
+                  onClick={() => setEditing(false)}
+                  disabled={pendingEdit}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 border-2 border-black bg-white text-black font-black text-xs uppercase shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all disabled:opacity-50"
+                >
+                  <X size={14} /> Cancel
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div className="flex items-center gap-3">
+                <h1 className="text-4xl font-black uppercase tracking-tighter text-black">
+                  {cls.name}
+                </h1>
+                <button
+                  onClick={startEdit}
+                  className="p-2 border-2 border-black bg-white hover:bg-zinc-100 shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] transition-all"
+                  title="Edit class name & grade / កែឈ្មោះ និងថ្នាក់"
+                >
+                  <Pencil size={16} />
+                </button>
+              </div>
+              <p className="text-sm font-bold text-zinc-500 uppercase mt-1">
+                {cls.schoolName} · {cls.province} · {cls.gradeLevel} {cls.section ? `(${cls.section})` : ""}
+              </p>
+            </div>
+          )}
 
           {/* Quick controls */}
           <div className="flex items-center gap-3">
             {/* Status indicators */}
-            <span className={`px-3 py-1.5 border-2 border-black font-black uppercase text-xs ${
-              cls.status === "locked" ? "bg-red-400" : "bg-green-400"
-            }`}>
+            <span className={`px-3 py-1.5 border-2 border-black font-black uppercase text-xs ${cls.status === "locked" ? "bg-red-400" : "bg-green-400"
+              }`}>
               {cls.status === "locked" ? "Locked / ថ្នាក់ជាប់សោ" : "Active / បើកចំហ"}
             </span>
 
@@ -197,11 +354,20 @@ export function ClassRosterClient({
         </div>
 
         <div className="border-2 border-black bg-white p-5 shadow-[4px_4px_0_#000] flex items-center justify-between">
-          <div>
+          <div className="min-w-0">
             <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Join Code / លេខកូដថ្នាក់</span>
-            <h2 className="text-2xl font-mono font-black text-black mt-1 tracking-widest">{cls.code}</h2>
+            <div className="flex items-center gap-2 mt-1">
+              <h2 className="text-2xl font-mono font-black text-black tracking-widest">{cls.code}</h2>
+              <button
+                onClick={copyCode}
+                className={`p-1.5 border-2 border-black shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all ${copied ? "bg-green-400" : "bg-white hover:bg-zinc-100"}`}
+                title="Copy join code / ចម្លងលេខកូដ"
+              >
+                {copied ? <Check size={14} /> : <Copy size={14} />}
+              </button>
+            </div>
           </div>
-          <div className="w-10 h-10 border-2 border-black bg-yellow-400 flex items-center justify-center shadow-[2px_2px_0_#000]">
+          <div className="w-10 h-10 border-2 border-black bg-yellow-400 flex items-center justify-center shadow-[2px_2px_0_#000] flex-shrink-0">
             <School size={20} className="text-black" />
           </div>
         </div>

@@ -1,0 +1,387 @@
+KESARARAM WITH DIGITAL · KWD
+Technovation Girls Cambodia 2026 · Team #50777
+kesararamwithdigital.tech · សៀមរាប · ព្រះរាជាណាចក្រកម្ពុជា
+
+======================================================================
+ផែនការអាជីវកម្ម — KWD-BPL-2026
+យុទ្ធសាស្ត្រអភិវឌ្ឍន៍ និងភាពនិរន្តរ៍ឆ្នាំទី១ ដល់ឆ្នាំទី៥
+កំណែ v1 · កាលបរិច្ឆេទ ៩ មិថុនា ២០២៦
+======================================================================
+
+ឯកសារសម្រាប់ : វិនិយោគិន · ដៃគូ · អ្នកឧបត្ថម្ភ · ក្រសួង · ដៃគូស្ថាប័ន
+ឯកសារនេះបញ្ជូនពត៌មានសម្ងាត់ ឬទិន្នន័យផ្តាច់ខ្លួនរបស់អ្នកប្រើឡើយ។
+
+======================================================================
+១. សេចក្តីសង្ខេបប្រតិបត្តិ (EXECUTIVE SUMMARY)
+======================================================================
+KWD (Kesararam With Digital) គឺជាប្រព័ន្ធអប់រំសុវត្ថិភាពចរាចរណ៍ឌីជីថលដែលផ្តោតទៅលើការផ្តល់ចំណេះដឹង បំណិន និងផ្នត់គំនិតទទួលខុសត្រូវដល់សិស្ស គ្រូបង្រៀន និងស្ថាប័នអប់រំក្នុងព្រះរាជាណាចក្រកម្ពុជា។ កម្មវិធីនេះត្រូវបានបង្កើតឡើងដោយក្រុមយុវនារីខ្មែរក្នុងនាមជាបេក្ខភាពនៃកម្មវិធី Technovation Girls Cambodia 2026 (Team #50777) ដោយរួមបញ្ចូលគ្នានូវការរៀន (Learn) ការអនុវត្ត (Practice) និងការប្រកួត (Compete)។
+
+យើងសម្គាល់ឃើញការគ្មាននៃខ្លឹមសារសុវត្ថិភាពចរាចរណ៍ដែលផ្តោតស្ថេរភាព ភាពងាយចូលប្រើ និងសុក្រឹតភាពនៅក្នុងវិស័យអប់រំខ្មែរ។ ៧៥% នៃយុវជនអាយុ ១៥-២៤ ឆ្នាំនៅកម្ពុជាប្រើប្រាស់ឧបករណ៍ឌីជីថលប្រចាំថ្ងៃ ប៉ុន្តែផ្នែកធំនៃខ្លឹមសារសុវត្ថិភាពចរាចរណ៍មិនមាននៅជាភាសាខ្មែរ និងមិនត្រូវបានរៀបចំតាមផ្នត់គំនិតការអប់រំទំនើបឡើយ។ KWD ឆ្លើយតបនឹងតម្រូវការនេះដោយផ្តល់ខ្លឹមសារដែលរៀបចំតាមរបៀបធ្វើដំណើររៀន (Learning Journey) គាំទ្រដោយ AI មាន Gamification ហើយអាចបន្តប្រើទៅអនាគត។
+
+KWD ដាក់ចេញនូវគំរូចំណូលដែលរំខានដោយ Subscription ៤ កម្រិត គឺ Teacher Pro ($10/ខែ) School Plan ($20/ខែ) Driving School Plan ($35/ខែ) និង Institute Plan ($49/ខែ)។ ដោយចំណាយប្រតិបត្តិការដំបូងត្រឹមតែ $50/ខែ ហើយត្រូវបានគ្រប់គ្រងដោយក្រុមការងារ ៧ នាក់ (សិស្ស ៥ នាក់ និងគ្រូបណ្តុះបណ្តាល ២ នាក់) KWD មានភាពធន់ខ្ពស់ក្នុងការសាកល្បងផលិតផល និងរីកចម្រើនទៅរក Profitability ក្នុងឆ្នាំទី ២។
+
+
+======================================================================
+២. (UNIQUE VALUE PROPOSITION)
+======================================================================
+រៀន-អនុវត្ត-ប្រកួត តាមរបៀបឌីជីថល ដោយផ្តោតលើបរិបទខ្មែរ និងផ្នត់គំនិតអប់រំទំនើប
+
+២.1 ភាសាខ្មែរជាមូលដ្ឋាន
+----------------------------------------------------------------------
+រាល់ខ្លឹមសារ ការប្រលង និងបទពិសោធន៍អ្នកប្រើប្រាស់ត្រូវរៀបចំជាភាសាខ្មែរដោយផ្តោតលើបរិបទវប្បធម៌ និងផ្លូវចរាចរណ៍កម្ពុជា។
+
+២.2 Gamification ផ្ទៀងផ្ទាត់ដោយវិទ្យាសាស្ត្រ
+----------------------------------------------------------------------
+យើងអនុវត្តទ្រឹស្តី Flow State (Csikszentmihalyi) Variable Reward Loop (Eyal) និង Self-Determination (Deci & Ryan) ដើម្បីបង្កើនការប្រកាន់ខ្ជាប់ (Retention) និងផ្ទុះការអប់រំ។
+
+២.5 Multi-tier SaaS ដែលរីកធំជាមួយស្ថាប័ន
+----------------------------------------------------------------------
+ពី Teacher Pro ទៅ Institute Plan គំរូអាជីវកម្មអាចចាប់ផ្តើមតូច ហើយរីកធំទៅរក B2B Government Contract។
+
+======================================================================
+៣. ដំណោះស្រាយ (SOLUTION)
+======================================================================
+KWD ផ្តល់នូវវេទិកាបង្រៀន-ប្រលង-ប្រកួត ដែលរៀបចំជា ៣ ផ្នែកមូលដ្ឋាន ៖
+
+៣.1 រៀន (Learn)
+----------------------------------------------------------------------
+មេរៀនវីដេអូ ខ្លឹមសារសរសេរ និង Quiz ដែលគ្របលើ ៨ ផ្នែកមុខវិជ្ជានៃច្បាប់ចរាចរណ៍ និងសុវត្ថិភាពចរាចរណ៍កម្ពុជា។ ខ្លឹមសារទាំងអស់ត្រូវសរសេរនិងផ្ទៀងផ្ទាត់ដោយបណ្តាញគ្រូបណ្តុះបណ្តាល ដោយយោងតាមច្បាប់ស្តាប័នជាតិ និងបទដ្ឋានសុវត្ថិភាពអន្តរជាតិ (WHO Global Status Report on Road Safety)។
+
+៣.2 អនុវត្ត (Practice)
+----------------------------------------------------------------------
+ការប្រលងបែបពិតលើ ៣,៣០០ សំណួរ ដោយផ្តោតលើការសាកល្បងពិតប្រាកដនៃការប្រលងបាស់ផ្លូវដោយអាជ្ញាធរ ក្នុងបរិបទក្តៅៗ និងបរិបទយុទ្ធសាស្ត្រ។
+
+៣.3 ប្រកួត (Compete)
+----------------------------------------------------------------------
+ការប្រកួតប្រចាំសប្តាហ៍ និងប្រចាំខែ ដែលផ្តល់រង្វាន់ឌីជីថល ការទទួលស្គាល់នៅក្នុងសហគមន៍ និងផ្តល់នូវការអនុវត្តទ្រឹស្តី Social Proof (Cialdini) ដើម្បីពង្រឹងការប្រកាន់ខ្ជាប់របស់សិស្ស។
+
+======================================================================
+៤. គំរូអាជីវកម្ម (BUSINESS MODEL — LEAN CANVAS)
+======================================================================
+KWD ប្រើប្រាស់គំរូ Lean Canvas (Ash Maurya) ផ្សំជាមួយគំរូ B2B/B2C Hybrid SaaS។ ការផ្តោតគឺ Recurring Revenue ដែលគាំទ្រដោយ Customer Lifetime Value (LTV) ខ្ពស់ និង Churn Rate ទាប។
+
+  • បញ្ហា:
+    ការអវត្តមាននៃខ្លឹមសារសុវត្ថិភាពចរាចរណ៍ឌីជីថលជាភាសាខ្មែរ; អត្រាគ្រោះថ្នាក់ចរាចរណ៍ខ្ពស់ក្នុងចំណោមយុវជន; គ្រូបង្រៀនមិនមានឧបករណ៍ត្រឹមត្រូវ។
+
+  • ដំណោះស្រាយ:
+    វេទិកា Learn-Practice-Compete ដែលរួមបញ្ចូលគ្នានូវ AI Tutoring, Gamification និងខ្លឹមសារខ្មែរ។
+
+  • សំណើតម្លៃប្លែកគ្នា:
+    ខ្លឹមសារខ្មែរ ១០០% + AI ផ្ទាល់ខ្លួន + ការប្រកួតសហគមន៍; ផ្តោតលើបរិបទកម្ពុជា។
+
+  • យុទ្ធសាស្ត្រប្រកួត:
+    ការបង្កើតស្តង់ដារខ្លឹមសារដែលធ្វើឲ្យដៃគូប្រកួតពិបាកប្រកួត; ការបណ្តាក់ទុនទៅលើទិន្នន័យសិស្ស និងបណ្តាញគ្រូ។
+
+  • ផ្នែកអតិថិជន:
+    គ្រូបង្រៀន (Teacher Pro $10) — ឪពុកម្ដាយ/ស្វ័យសិក្សា/សាលា/NGO (School Plan $20) — សាលាបង្រៀនបើកបរ (Driving School Plan $35) — ស្ថាប័នធំ/NGO ធំ (Institute Plan $49) — ក្រសួងអប់រំ (B2G)។
+
+  • ប្រភពចំណូល:
+    Subscription ៣ កម្រិត ($10, $20, $49/ខែ); Future: Government Contract, Corporate Sponsorship។
+
+  • រចនាសម្ព័ន្ធចំណាយ:
+    $50/ខែ ប្រតិបត្តិការ + ការវិនិយោគខ្លឹមសារ + ការវិនិយោគបណ្តាញ។
+
+  • រង្វាស់សំខាន់:
+    MRR, ARPU, LTV/CAC, Churn Rate, NPS, Daily Active Users, Course Completion Rate។
+
+  • ឆានែលចែកចាយ:
+    ផ្ទាល់តាមរយៈគ្រូ (Bottom-up); ដៃគូស្ថាប័ន (Top-down); ការប្រកួត Technovation; ប្រព័ន្ធផ្សព្វផ្សាយសង្គម។
+
+======================================================================
+៥. ប្រភពចំណូល (REVENUE SOURCES)
+======================================================================
+KWD ផ្តោតលើ Recurring Revenue Model ដែលផ្តល់ភាពមានប្រសិទ្ធភាពខ្ពស់ និង Predictability លើ Cashflow។ យើងផ្តោតលើ Customer Retention តាមរបៀប Hooked Model (Eyal) ដែលរួមមាន Trigger, Action, Variable Reward, Investment។
+
+៥.១ Subscription Tiers
+----------------------------------------------------------------------
+  Tier                  | Price        | Customer                                                        | Includes
+  ---------------------------------------------------------------------------------------------------------------------------------------
+  Teacher Pro           | $10 / ខែ     | គ្រូបង្រៀននីមួយៗ                                               | Curriculum ពេញលេញ + Quiz Bank + ការវាយតម្លៃសិស្ស + Reports
+  School Plan           | $20 / ខែ     | ស្វ័យសិក្សា / ឪពុកម្ដាយ / សាលា (Private/Public) + NGO          | Teacher Pro ៥ + Family & Personal Dashboard + Student Tracking + Admin Panel
+  Driving School Plan   | $35 / ខែ     | សាលាបង្រៀនបើកបរ / Driving Academy                              | Quiz Bank ពេញ + Mock Test AI + Instructor Panel + Unlimited Students + Certificate Issuing
+  Institute Plan        | $49 / ខែ     | ស្ថាប័នធំ មហាវិទ្យាល័យ + NGO ធំ                               | Customization + Single Sign-On + API Access + Dedicated Support
+
+៥.២ ប្រភពចំណូលបន្ទាប់បន្សំ
+----------------------------------------------------------------------
+  • Government Contracts (Year 3+) — បរិមាណធំ ផ្តួចផ្តើមដោយក្រសួងអប់រំ និងក្រសួងផ្លូវ និងដឹកជញ្ជូន។
+  • Corporate Sponsorship — ក្រុមហ៊ុនធានារ៉ាប់រងគ្រោះថ្នាក់ចរាចរណ៍ ក្រុមហ៊ុនរថយន្ត ក្រុមហ៊ុនធនាគារ (ជា Sponsor មិនមែន Subscriber)។
+  • Certification Fees — ការផ្តល់វិញ្ញាបនបត្រ Digital Driver Safety Certification ($5/នាក់)។
+  • Licensing និងការនាំចេញ Curriculum ទៅប្រទេសក្នុង ASEAN (Year 4-5)។
+
+======================================================================
+៦. ឱកាសទីផ្សារ និងអតិថិជនគោលដៅ (MARKET OPPORTUNITY)
+======================================================================
+ទីផ្សារសរុបនៅកម្ពុជាសម្រាប់ប្រព័ន្ធអប់រំសុវត្ថិភាពចរាចរណ៍ឌីជីថលគឺមានសក្តានុពលធំខ្លាំង។
+
+TAM: TAM (Total Addressable Market): ប្រជាជនវ័យសិក្សា ៣.៤ លាននាក់ + គ្រូបង្រៀន ១២០,០០០ នាក់ + សាលាប្រមាណ ១៣,៨០០ + ស្ថាប័នអប់រំធំប្រមាណ ៥០០ + ឪពុកម្ដាយ ១.២ លាន+ (ម្ចាស់ Smartphone) + ស្វ័យសិក្សាធំ ១ លាន+/ឆ្នាំ (Driver License Applicants) + សាលាបង្រៀនបើកបរ ២,០០០+ នៅទូទាំងប្រទេស។
+SAM: SAM (Serviceable Available Market): គ្រូបង្រៀនដែលប្រើប្រាស់ឧបករណ៍ឌីជីថលប្រចាំថ្ងៃប្រមាណ ៤០% (≈ ៤៨,០០០) + សាលា Internet Access ៦៥% (≈ ៩,០០០) + ឪពុកម្ដាយ Smartphone ៤០% (≈ ៤៨០,០០០) + ស្វ័យសិក្សា Online ៣០% (≈ ៣០០,០០០/ឆ្នាំ) + Academy ឌីជីថល ២០% (≈ ៤០០)។
+SOM: SOM (Serviceable Obtainable Market — Year 5): Capture 10% SAM គ្រូ ≈ ៤,៨០០ + ៩០០ សាលា + ១,០០០ ឪពុកម្ដាយ + ២,០០០ ស្វ័យសិក្សា + ៤០ Academy ។
+
+៦.១ អតិថិជនគោលដៅ
+----------------------------------------------------------------------
+
+  1) គ្រូបង្រៀន (២៥-៤៥ឆ្នាំ) — Teacher Pro $10/ខែ
+     ត្រូវការឧបករណ៍ឌីជីថលដើម្បីបង្រៀនកាន់តែមានប្រសិទ្ធភាព; ផ្តោតលើ Self-Efficacy (Bandura) — បង្កើតទំនុកចិត្តលើបច្ចេកវិទ្យាដោយការផ្តល់ឱកាសសាកល្បង។ Entry point ចម្បងរបស់ KWD — គ្រូ ១ នាក់ ណែនាំ ២ នាក់ → Referral Growth ។
+
+  2) សិស្ស (១២-១៨ឆ្នាំ)
+     ស្វែងរកការអប់រំដែលគួរឲ្យជក់ចិត្ត; ផ្តោតលើ Intrinsic Motivation (Pink — Drive); ការប្រកួត និងការទទួលស្គាល់សង្គម។
+
+  3) សាលា Private/Public + NGO អប់រំ — School Plan $20/ខែ
+     ត្រូវការដំណោះស្រាយ Plug-and-Play ដែលអាចគ្រប់គ្រងបាន; ផ្តោតលើ Status Quo Bias — ត្រូវការ Risk Reduction និង Pilot Programs។ NGO ដែលធ្វើការជាមួយសហគមន៍ (road safety awareness, youth programs) ចូលប្រើ School Plan ដោយផ្ទាល់ — Budget NGO ភាគច្រើនមកពី Grant អន្តរជាតិ មិនខ្ស័យ។
+
+  4) ស្ថាប័នធំ មហាវិទ្យាល័យ + NGO ធំ — Institute Plan $49/ខែ
+     ត្រូវការ Compliance និង Scalability; ផ្តោតលើ Loss Aversion (Kahneman) — Reframing: "ការមិនយក KWD គឺការខាតបង់ប្រសិទ្ធភាព"។ NGO ធំដូចជា UNICEF, WHO Cambodia, ADB Programs ប្រើ Institute Plan ជា Partner Subscription ហើយបង្ហាញ Impact Report ជូនដល់ Donor ។
+
+  5) ឪពុកម្ដាយ និង ស្វ័យសិក្សា (Parents & Self-Study Adults) — School Plan $20/ខែ
+     ឪពុកម្ដាយដែលមានកូនអាយុ ១២-១៨ ឆ្នាំ និង មនុស្សធំអាយុ ១៨-៤០ ឆ្នាំ ដែលត្រូវការប្រលងបាស់ផ្លូវ — ទាំងពីរក្រុមមកចូល School Plan $20/ខែ ។ School Plan ផ្តល់ Family & Personal Dashboard + Child Progress Alerts + Curriculum Access + Teacher Pro ៥ ។ ឪពុកម្ដាយជំរុញដោយ Emotional Safety (Cambodia Accident Rate ១៧.៨/100,000); ស្វ័យសិក្សាជំរុញដោយ License Exam — ទាំងពីរ Willingness-to-Pay ជាក់ស្ដែង ។ Viral Growth: "ខ្ញុំប្រលងជាប់ព្រោះ KWD" + Parent Facebook Groups = Organic Word-of-Mouth ។
+
+  6) សាលាបង្រៀនបើកបរ (Private Driving Schools / Academies) — Driving School Plan $35/ខែ
+     សាលាបង្រៀនបើកបរឯកជននៅទូទាំងខេត្ត-ក្រុង ដែលបង្រៀន Theory + Practical ។ ពួកគេបច្ចុប្បន្នពឹងផ្អែកលើសៀវភៅ Paper ឬ PDF Static — គ្មាន Structured Digital Curriculum ។ KWD ផ្តល់: Quiz Bank ពេញ (3,300+) + Mock Test AI + Instructor Panel + Unlimited Students + Certificate Issuing ។ B2B Sticky ខ្ពស់ — Academy Lock-in ដោយ Student Data + Workflow; Upsell Path: Driving School Plan → Institute Plan ។ TAM: សាលាបង្រៀនបើកបរ ២,០០០+ — Digital Penetration ១-២% ប៉ុណ្ណោះ = ឱកាសធំ ។
+
+======================================================================
+៧. ការវិភាគដៃគូប្រកួតប្រជែង (COMPETITOR ANALYSIS)
+======================================================================
+ទីផ្សារអប់រំសុវត្ថិភាពចរាចរណ៍ខ្មែរនៅឌីជីថលនៅឆ្នាំ ២០២៦ មានដៃគូប្រកួតប្រជែងតិចតួច។ KWD ផ្តោតលើគុណភាពខ្លឹមសារ និងបទពិសោធន៍អ្នកប្រើប្រាស់ដែលផ្តោតស្ថេរភាពយូរអង្វែង។
+
+  ដៃគូប្រកួត                          | ភាពខុសប្លែក                                     | តម្លៃ               | អ្នកគោលដៅ
+  ----------------------------------------------------------------------------------------------------------------------------------
+  KWD                                 | ខ្មែរ ១០០% + AI + Gamification + Subscription   | $10–49/ខែ           | B2C គ្រូ/ឪពុកម្ដាយ/ស្វ័យសិក្សា → B2B សាលា/Driving School/ស្ថាប័ន/NGO → B2G
+  App ច្បាប់ចរាចរណ៍ខ្មែរផ្សេងៗ        | PDF/Quiz Static; គ្មាន AI/Gamification          | ឥតគិតថ្លៃ ឬ One-time| B2C ផ្ទាល់
+  YouTube/Facebook Page               | វីដេអូឆ្ងាញ់ ប៉ុន្តែគ្មានរចនាសម្ព័ន្ធ           | ឥតគិតថ្លៃ           | B2C ផ្ទាល់
+  សៀវភៅសិក្សា & ប្រលងបាស់ផ្លូវ        | Offline Paper; គ្មានភាពងាយយល់                   | $5–10/លើក           | B2C ផ្ទាល់
+( Focus on App base on Cambodia and international)
+៧.១ Competitive Moat
+----------------------------------------------------------------------
+  • Network Effects — បណ្តាញគ្រូ និងសិស្សកើនឡើងតម្លៃរបស់ KWD ជារៀងរាល់ដង (Reed Law)។
+  • Switching Costs — ទិន្នន័យសិស្ស ការតាមដាន និងវឌ្ឍនភាពតាមដានដែលបាន Lock-in។
+  • Brand Trust — ឯកសណ្ឋានជាមួយ Technovation Girls Cambodia 2026 ផ្តល់ Social Proof ខ្ពស់។
+  • Content Moat — ៣,៣០០ សំណួរ + ៦០០ មេរៀននៅពេលចេញតង់ ហើយកើនឡើងជារៀងរាល់ខែ។
+
+======================================================================
+៨. យុទ្ធសាស្ត្រចូលទីផ្សារ (GO-TO-MARKET STRATEGY)
+======================================================================
+យុទ្ធសាស្ត្រ GTM របស់ KWD ផ្តោតលើការបង្កើតគំនិត Bottom-Up (តាមរយៈគ្រូ) ផ្សំជាមួយ Top-Down (តាមរយៈដៃគូស្ថាប័ន)។
+
+៨.១ Events & Campaign
+----------------------------------------------------------------------
+  • Technovation Girls Cambodia 2026 — ការចូលរួម Pitch Day និងការប្រកួត World Pitch ដែលផ្តល់ Media Exposure ខ្ពស់។
+  • KWD Roadshow ប្រចាំខែ — សិក្ខាសាលាដោយឥតគិតថ្លៃនៅសាលាសម្រាប់គ្រូ និងអ្នកគ្រប់គ្រងសាលា។
+  • Annual Khmer Digital Safety Summit — ការប្រកួតថ្នាក់ជាតិក្នុងការប្រលងសុវត្ថិភាពចរាចរណ៍ដោយឌីជីថល។
+  • School Hackathons — ការប្រកួតប្រចាំខែដែលជំរុញការប្រើប្រាស់ KWD ក្នុងសាលា។
+
+៨.២ Government Support
+----------------------------------------------------------------------
+  • ភាពជាដៃគូជាមួយក្រសួងផ្លូវ និងដឹកជញ្ជូន — KWD បានស្នើធ្វើជាដៃគូផ្តោតស្តង់ដារខ្លឹមសារ និងស្តង់ដារសុវត្ថិភាពចរាចរណ៍ឌីជីថល។
+  • អនុស្សារណៈយោគយល់ (MoU) ជាមួយក្រសួងអប់រំ យុវជន និងកីឡា — ការដាក់បញ្ចូលក្នុង Co-Curricular Activities ផ្លូវការ។
+  • Smart Cambodia Initiative — ការផ្តោតលើ Digital Cambodia 2030 និងវេទិកា SDG 4 (Quality Education) និង SDG 11 (Sustainable Cities)។
+  • ទស្សនកិច្ច និងការផ្តល់ប្រឹក្សា — ក្នុងបណ្តាខេត្តស្ទើរទាំងអស់ KWD ស្នើធ្វើជាអ្នកផ្តល់ប្រឹក្សាដល់ Workplace Safety និងបណ្តាញចរាចរណ៍។
+
+៨.៣ Media Support
+----------------------------------------------------------------------
+  • Khmer Media Partnership — Hang Meas, BTV, និង Cambodia Daily ផ្តល់សម្ភាសន៍ និងការផ្សាយ KWD Stories។
+  • Influencer Marketing — ការចូលរួមជាមួយ Tech YouTubers និង Educational Influencers (e.g., Sokha Sann, Khmer EduTube)។
+  • Press Release ប្រចាំខែ — បង្ហាញ Milestones Adoption និងភាពសម្រេចជោគជ័យរបស់សិស្ស។
+  • Podcast Hosting — Podcast ប្រចាំសប្តាហ៍ស្តីពីសុវត្ថិភាពចរាចរណ៍ និងបទពិសោធន៍គ្រូ។
+
+៨.៤ Partnerships
+
+======================================================================
+៩. យុទ្ធសាស្ត្រកំណត់តម្លៃ (PRICING STRATEGY)
+======================================================================
+KWD ប្រើប្រាស់ Value-Based Pricing ដែលផ្តោតលើ Cost of Alternatives (សៀវភៅសិក្សា ការប្រលងបាស់ផ្លូវ ការខាតបង់ពីគ្រោះថ្នាក់) មិនមែនលើ Cost-Plus។
+
+៩.១ Pricing Psychology
+----------------------------------------------------------------------
+  • Anchoring Effect (Tversky & Kahneman) — Institute Plan ($49) ដាក់ជា Anchor ដែលធ្វើឲ្យ School Plan ($20) ដូចជា "Most Popular Value"។
+  • Decoy Effect — Teacher Pro ($10) គឺ Entry Point ដែលជំរុញ Upsell ទៅ School Plan ($20)។
+  • Price Tiers ៣ — ផ្តោតលើ Goldilocks Effect (មនុស្សជ្រើសរើស Middle Option)។
+  • Annual Discount 15% — បង្កើន Retention និង Cashflow Predictability។
+
+៩.២ Upgrade Strategy
+----------------------------------------------------------------------
+KWD ប្រើ Land-and-Expand Strategy — ចាប់ផ្តើមជាមួយ Teacher Pro រួចបង្ហាញ Value Stack ហើយឈានទៅរក School និង Institute។
+
+======================================================================
+១០. យុទ្ធសាស្ត្រទីផ្សារ (MARKETING STRATEGY)
+======================================================================
+
+១០.១ Content Marketing
+----------------------------------------------------------------------
+  • Blog ប្រចាំសប្តាហ៍ស្តីពីសុវត្ថិភាពចរាចរណ៍ និង EdTech ខ្មែរ
+  • YouTube Channel — "KWD Stories" និង "Khmer Driver Series"
+  • Podcast — "ផ្លូវបើកបរ Podcast" សម្ភាសន៍គ្រូ និងសិស្ស
+  • SEO សម្រាប់ Keywords ខ្មែរ — "សុវត្ថិភាពចរាចរណ៍" "ប្រលងបាស់ផ្លូវ" "ច្បាប់ចរាចរណ៍ខ្មែរ"
+  • TikTok / Facebook Reels — Microcontent ៣០ វិនាទីពី Quiz Questions
+
+១០.២ Community Growth
+----------------------------------------------------------------------
+  • KWD Educator Network — បណ្តាញគ្រូ ៥០០+ ដោយឆ្នាំទី ៣
+  • Annual Khmer Digital Safety Summit — ការប្រកួតថ្នាក់ជាតិ
+  • Discord Server សម្រាប់ Power Users
+  • Referral Program — គ្រូម្នាក់ៗដែលណែនាំ ២ គ្រូបន្ថែម ទទួលបាន ១ ខែឥតគិតថ្លៃ
+
+
+======================================================================
+១១. ការបញ្ជាក់សុពលភាព (ARTICLES & VALIDATION)
+======================================================================
+  1) WHO Global Status Report on Road Safety (2023): កម្ពុជាមានអត្រាស្លាប់ពីគ្រោះថ្នាក់ចរាចរណ៍ ១៧.៨ នាក់ក្នុង ១០០,០០០ — ខ្ពស់ជាងមធ្យមភាគរបស់អាស៊ីអាគ្នេយ៍។
+
+  2) UNDP DigitalX Catalogs (digitalx.undp.org/catalogs/technovation-girls.html): ការប្រកាស់ឋានៈ Technovation Girls ជាដំណោះស្រាយឌីជីថលដែលត្រូវការបន្តរីក។
+
+  3) Technovation.org Strategic Plan: ការប្តេជ្ញាផ្តល់ការបណ្តុះបណ្តាលដល់ ២៥ លានក្មេងស្រីដោយឆ្នាំ ២០៣៧ — KWD ចូលរួមដោយផ្តោតលើ Cambodia Vertical។
+
+  4) UNESCO GEM Report 2026 — ក្មេងស្រីនៅក្នុង STEM (២៣%) មិនទាន់ស្មើគ្នាជាមួយក្មេងប្រុស (៤៨%) — KWD មានកម្មវិធីសម្រាប់ Gender Equality។
+
+  5) World Bank — From Learning to Earnings: Cambodia Path from Foundational Learning to STEM (2026): ការផ្តោតលើ Digital STEM ផ្តល់ Employment Premium ២១%។
+
+  6) MTLC — Technovation Challenge: ៧៨% នៃក្មេងស្រីបន្ទាប់ពីការចូលរួមមានចំណាប់អារម្មណ៍ខ្ពស់លើ Computer Science; ៦៥ ដង នៃអត្រាជាតិ ក្មេងស្រីសិក្សាមហាវិទ្យាល័យលើ CS។
+
+
+======================================================================
+១២. ការព្យាករហិរញ្ញវត្ថុ (FINANCIAL PROJECTION — YEAR 1-5)
+======================================================================
+ការព្យាករហិរញ្ញវត្ថុរបស់ KWD ផ្តោតលើ Recurring Revenue Compounding ដោយផ្តោតលើ Customer Retention និងការកើនឡើងនៃ Average Revenue Per User (ARPU) តាមរយៈ Upsell ពី Teacher Pro ទៅ School Plan ហើយទៅ Institute Plan។
+
+  រង្វាស់                       | ឆ្នាំទី ១     | ឆ្នាំទី ២     | ឆ្នាំទី ៣     | ឆ្នាំទី ៤     | ឆ្នាំទី ៥     
+  ------------------------------------------------------------------------------------------------------------------------
+  Teacher Pro Subscribers       | 50            | 100           | 200           | 500          | 1000         
+  School Plan Subscribers       | 10            | 30            | 80            | 180           | 350           
+  Institute Plan Subscribers    | 2             | 6             | 18            | 40            | 80            
+  Total ARR (USD)               | $7,392        | $58,728       | $173,784      | $366,720      | $671,040      
+  Operating Cost (USD)          | $7,600        | $45,200       | $104,400      | $217,600      | $394,800      
+  Net Profit (USD)              | -$208         | +$13,528      | +$69,384      | +$149,120     | +$276,240     
+  Gross Margin                  | 78%           | 82%           | 85%           | 87%           | 88%           
+  MRR (End of Year)             | $616          | $4,894        | $14,482       | $30,560       | $55,920       
+  LTV / CAC                     | 2.1x          | 3.4x          | 4.8x          | 5.7x          | 6.5x          
+  Churn Rate (Annual)           | 15%           | 12%           | 10%           | 8%            | 7%            
+  Net Revenue Retention         | 105%          | 112%          | 118%          | 122%          | 125%          
+
+១២.១ Assumptions
+----------------------------------------------------------------------
+  • ការចំណាយប្រតិបត្តិការដំបូងគឺ $50/ខែ សម្រាប់ឧបករណ៍ Workspace + Cloud Hosting + Domain។ បន្ថែមផ្នែករដ្ឋបាល បទពិសោធន៍សិស្ស និងការផ្សព្វផ្សាយត្រូវបន្ថែម។
+  • ការផ្តោតលើ Self-Determination Theory (Deci & Ryan) — Autonomy, Competence, Relatedness — ផ្តល់នូវការកើនឡើងនៃ Daily Active Users (DAU) និង Course Completion Rate ខ្ពស់។
+  • Habit Formation Loop (BJ Fogg, James Clear) — KWD បង្កើតការប្រើប្រាស់ប្រចាំថ្ងៃតាមរយៈ Notifications, Streaks, Social Comparison។
+  • Net Revenue Retention > 100% បង្ហាញពី Expansion Revenue ខ្ពស់តាមរយៈ Upsell ពី Teacher ទៅ School ទៅ Institute។
+
+======================================================================
+១៣. ការណែនាំអ្នកប្រើប្រាស់ (USER WALKTHROUGH)
+======================================================================
+ជំហានទី ១ — ការចុះឈ្មោះ និងការបង្ហាញខ្លួន (Onboarding) ៖ អ្នកប្រើប្រាស់ចុះឈ្មោះជាមួយ Email ឬលេខទូរស័ព្ទ; ការប្រកាសភាសា (ខ្មែរ/អង់គ្លេស); ការតេស្ត Diagnostic ដំបូងសម្រាប់ AI ដើម្បីកំណត់កម្រិត។
+
+ជំហានទី ២ — Learn ៖ បទពិសោធន៍មេរៀនវីដេអូ និង Quiz ដែលរៀបចំជា Microlearning Modules ៥-៧ នាទីក្នុង Module នីមួយៗ — ផ្តោតលើ Cognitive Load Theory (Sweller)។
+
+ជំហានទី ៣ — Practice ៖ Mock Test ដែលគ្រាប់សំណួរទាំងអស់ប្រែប្រួលដោយ AI; ការផ្តល់ Feedback ភ្លាមៗ; ការតាមដាន Mistake Patterns។
+
+ជំហានទី ៤ — Compete ៖ ការប្រកួតប្រចាំសប្តាហ៍; Leaderboard តាមសាលា និងតាមខេត្ត; រង្វាន់ឌីជីថល និងវិញ្ញាបនបត្រ Achievement។
+
+ជំហានទី ៥ — Track & Improve ៖ Dashboard សម្រាប់ឪពុកម្ដាយ និងគ្រូ ដែលបង្ហាញ Progress, Strengths, Weaknesses; ការផ្តល់ការណែនាំ Personalized។
+
+
+======================================================================
+១៤. បច្ចេកទេស (TECHNICAL ARCHITECTURE)
+======================================================================
+
+១៤.១ Tech Stack
+----------------------------------------------------------------------
+KWD ប្រើប្រាស់ Modern Cloud-Native Stack — Next.js + TypeScript + Tailwind CSS (Frontend); Node.js + tRPC (Backend); PostgreSQL + Drizzle ORM (Database); Vercel + Cloudflare (Deployment); OpenAI / Anthropic Claude API (AI Tutor)។
+
+១៤.២ Architecture
+----------------------------------------------------------------------
+រចនាសម្ព័ន្ធ Client-Server ផ្តោតលើ API និងបណ្តាញ Realtime ដើម្បីផ្តល់ភាពស្ថេរ និងសុវត្ថិភាព។ ស្រទាប់ Frontend - API/Realtime - Backend - Database។
+
+១៤.៣ Security & Privacy
+----------------------------------------------------------------------
+ការផ្ទុកទិន្នន័យសិស្សត្រូវការការគោរព ISO 27001 និងបទដ្ឋាន PDPA Cambodia។ HTTPS/TLS 1.3 ភ្ជាប់ទាំងអស់; Encrypted Data at Rest; Multi-Factor Authentication សម្រាប់គ្រូ និងអ្នកគ្រប់គ្រង។
+
+១៤.៤ Offline (PWA)
+----------------------------------------------------------------------
+Progressive Web App (PWA) ដែលអនុញ្ញាតឱ្យសិស្សអាចចូលរៀននៅ Offline ហើយ Sync ពេលមាន Internet។
+
+======================================================================
+១៥. សកម្មភាព · ធនធាន · ទំនាក់ទំនង · ចំណាយ (OPERATIONS CANVAS)
+======================================================================
+
+១៥.១ Key Activities
+----------------------------------------------------------------------
+  • ការអភិវឌ្ឍ និងថែទាំខ្លឹមសារខ្មែរ (Curriculum Development)
+  • ការអភិវឌ្ឍផលិតផល និង AI/ML Engineering
+  • ការគ្រប់គ្រងសហគមន៍គ្រូ និងសិស្ស (Community Management)
+  • ការផ្សព្វផ្សាយ និងការទាក់ទាញដៃគូ (BD & Marketing)
+  • ការគាំទ្រអតិថិជន (Customer Success)
+  • ការវាយតម្លៃ និងវាស់វែងផលប៉ះពាល់ (Impact Measurement)
+
+១៥.២ Key Resources
+----------------------------------------------------------------------
+  • ក្រុមការងារ ៧ នាក់ (សិស្ស ៥ នាក់ + គ្រូបណ្តុះបណ្តាល ២ នាក់) — ក្នុងឆ្នាំទី ១
+  • បណ្តាញគ្រូឯករាជ្យ (Freelance Khmer Educators) សម្រាប់ការអភិវឌ្ឍខ្លឹមសារ
+  • ទំនាក់ទំនងជាមួយ Technovation, UNDP DigitalX, និងបណ្តាញ Global Mentors
+  • Cloud Infrastructure (Vercel, Cloudflare, PostgreSQL)
+  • IP — Curriculum, Quiz Bank, AI Models 
+
+១៥.៣ Customer Relationships
+----------------------------------------------------------------------
+  • Self-Service ផ្ទាល់សម្រាប់ Teacher Pro — Onboarding + Knowledge Base
+  • Dedicated Account Manager សម្រាប់ School Plan និង Institute Plan
+  • សហគមន៍ Discord/Telegram សម្រាប់គ្រូដែលបានចូលរួម
+  • Annual KWD Educator Conference — ការផ្តោតលើ Belongingness (Maslow Level 3)
+  • Loyalty Program សម្រាប់សិស្ស — Streaks, Badges, Rewards
+
+១៥.៤ Cost Structure
+----------------------------------------------------------------------
+  • រដ្ឋបាល/ប្រតិបត្តិការ Workspace ($50/ខែ — ឆ្នាំទី ១)
+  • Cloud Infrastructure ($100-$2,000/ខែ ដោយ Scale)
+  • Content Production ($500-$5,000/ខែ — Freelance Educators)
+  • Marketing និង Community ($200-$8,000/ខែ)
+  • Personnel (កើនពី ៧ ទៅ ១៤ នាក់ដោយឆ្នាំទី ៥)
+
+======================================================================
+១៦. ផែនការអនុវត្ត (IMPLEMENTATION PLAN)
+======================================================================
+
+  [Q3 2026]  MVP Launch
+     បញ្ចេញ Beta ដល់ ៥០ គ្រូ Anchor; ការសាកល្បង AI Tutor V1; ការសម្រេច Brand Identity។
+
+  [Q4 2026]  School Plan Beta
+     ការផ្តោតលើ ៥ សាលា Pilot; ការវាស់វែង Course Completion Rate; ការត្រួតពិនិត្យ Product-Market Fit។
+
+  [Q1 2027]  Public Launch
+     ការផ្សព្វផ្សាយ Public; ការចូលរួមជាមួយ Smart Axiata; ការបញ្ចេញ Marketing Campaign។
+
+  [Q2 2027]  Institute Plan
+     ការផ្តោតលើ ៣ ស្ថាប័នធំ; ការអភិវឌ្ឍ SSO/API; ការដាក់ស្នើ MoU ជាមួយក្រសួងអប់រំ។
+
+  [Q3-Q4 2027]  Government Contract
+     ការផ្តោតលើ B2G Pilot ជាមួយក្រសួងផ្លូវ និងដឹកជញ្ជូន; ការចូលរួមជាមួយ UNDP DigitalX។
+
+  [2028-2030]  Scale & Expand
+     ការបន្ថែម Verticals ផ្សេងៗ; Regional Expansion; Series A; ការរីករាលដាល Strategy។
+
+======================================================================
+១៧. អ្នកឧបត្ថម្ភសក្តានុពល (POTENTIAL SPONSORS)
+======================================================================
+  • Technovation Foundation — Grants, Mentorship, Global Exposure
+  • UNDP Cambodia — Digital X Programs
+  • UNICEF Cambodia — Girls in STEM
+  • World Bank — From Learning to Earnings
+  • ADB — Secondary Education for Human Capital
+  • Google.org Impact Fund — AI for Social Good
+  • Microsoft Philanthropies
+  • Smart Axiata Foundation
+  • Wing Bank — Digital Payment Sponsor
+  • ABA Bank — Education Sponsor
+  • Ministry of Education, Youth and Sport — Government Contract
+  • Ministry of Public Works and Transport — Curriculum Endorsement
+
+======================================================================
+១៨. ផែនការអនាគត (FUTURE PLAN)
+======================================================================
+ឆ្នាំទី ១ (២០២៦) — MVP Launch — បញ្ចេញ Beta សម្រាប់ Teacher Pro; ចុះកិច្ចព្រមព្រៀង Pilot ជាមួយ ៣ សាលា Anchor។
+
+ឆ្នាំទី ២ (២០២៧) — Product Maturity — បង្ហាញ School Plan ពេញលេញ និង AI Tutor V2; ចូលរួមជាមួយ Ministry of Education។
+
+ឆ្នាំទី ៣ (២០២៨) — Institutional Scale — Institute Plan រួមជាមួយ SSO/API; ចូលដំណើរការ B2G Contracts ដំបូង។
+
+ឆ្នាំទី ៤ (២០២៩) — Regional Expansion — Pilot នៅប្រទេសឡាវ និងវៀតណាម; ការផ្តោតលើ Curriculum Localization។
+
+ឆ្នាំទី ៥ (២០៣០) — Education Vertical Expansion — បន្ថែម Curriculum លើ STEM, Civic Education, Health Literacy; Series A ($2-3M)។
+

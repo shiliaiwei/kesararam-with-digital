@@ -13,7 +13,6 @@ import { logoutAction } from "@/app/actions/auth";
 import type { JWTPayload } from "@/lib/auth";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
 import { Crown } from "lucide-react";
-import { UpgradeModal } from "@/components/pricing/upgrade-modal";
 import { RankBadge as TierBadge } from "@/components/shared/rank-label";
 
 interface NavbarProps {
@@ -58,7 +57,7 @@ function AnimatedLogoText() {
   );
 }
 
-function ProfileMenu({ session, kh, showUpgrade }: { session: JWTPayload; kh: boolean; showUpgrade: boolean }) {
+function ProfileMenu({ session, kh, showUpgrade, subPlan }: { session: JWTPayload; kh: boolean; showUpgrade: boolean; subPlan: string | null }) {
   const brandFont = kh ? "font-google-sans" : "font-stack-notch";
   const [open, setOpen] = useState(false);
   const [lifetimePoints, setLifetimePoints] = useState(0);
@@ -143,7 +142,15 @@ function ProfileMenu({ session, kh, showUpgrade }: { session: JWTPayload; kh: bo
                   borderRadius: "0px",
                 }}
               >
-                {session.role}
+                {session.role === "teacher"
+                  ? subPlan === "family"
+                    ? "family"
+                    : subPlan === "driving_school"
+                      ? "driving school"
+                      : subPlan === "school"
+                        ? "school"
+                        : "teacher"
+                  : session.role}
               </span>
               {session.role === "student" && lifetimePoints > 0 && (
                 <TierBadge lifetimePoints={lifetimePoints} size="xs" lang={kh ? "kh" : "en"} />
@@ -207,7 +214,6 @@ export function Navbar({ session }: NavbarProps) {
   const tr = t[lang].nav;
   const kh = lang === "kh";
   const brandFont = kh ? "font-google-sans" : "font-stack-notch";
-  const [upgradeOpen, setUpgradeOpen] = useState(false);
   const [subPlan, setSubPlan] = useState<string | null>(null);
 
   useEffect(() => {
@@ -242,7 +248,6 @@ export function Navbar({ session }: NavbarProps) {
 
   return (
     <>
-      <UpgradeModal open={upgradeOpen} onClose={() => setUpgradeOpen(false)} lang={lang} />
       <header className="sticky top-0 left-0 right-0 z-50 bg-white border-b-2 border-black">
         <nav className="flex items-center px-6 py-3 max-w-7xl mx-auto">
           {/* Logo — fixed width so nav never shifts */}
@@ -287,7 +292,7 @@ export function Navbar({ session }: NavbarProps) {
             {/* Upgrade CTA */}
             {showUpgrade && (
               <button
-                onClick={() => setUpgradeOpen(true)}
+                onClick={() => window.location.href = "https://www.kesararamwithdigital.tech/pricing"}
                 className={cn(
                   "flex items-center gap-1.5 px-3 py-1.5 text-xs bg-amber-400 text-black border-2 border-black shadow-[2px_2px_0_#000] hover:shadow-[4px_4px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 whitespace-nowrap uppercase tracking-wide",
                   brandFont
@@ -298,7 +303,7 @@ export function Navbar({ session }: NavbarProps) {
               </button>
             )}
             {session ? (
-              <ProfileMenu session={session} kh={kh} showUpgrade={showUpgrade} />
+              <ProfileMenu session={session} kh={kh} showUpgrade={showUpgrade} subPlan={subPlan} />
             ) : (
               <Link
                 href="/login"
@@ -345,6 +350,7 @@ export function Navbar({ session }: NavbarProps) {
                     onClick={() => setMobileOpen(false)}
                     className={cn(
                       "px-4 py-3 text-base font-bold border-2 transition-all duration-100",
+                      brandFont,
                       active
                         ? "bg-yellow-400 text-black border-black shadow-[2px_2px_0_#ca8a04]"
                         : "border-black text-black hover:bg-yellow-300",
@@ -367,7 +373,7 @@ export function Navbar({ session }: NavbarProps) {
                             : "https://dashboard.kesararamwithdigital.tech/staff"
                       }
                       onClick={() => setMobileOpen(false)}
-                      className="mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center"
+                      className={cn("mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center", brandFont)}
                     >
                       Dashboard
                     </a>
@@ -376,7 +382,7 @@ export function Navbar({ session }: NavbarProps) {
                     <Link
                       href="/profile/student"
                       onClick={() => setMobileOpen(false)}
-                      className="mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center"
+                      className={cn("mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center", brandFont)}
                     >
                       My Profile
                     </Link>
@@ -384,7 +390,7 @@ export function Navbar({ session }: NavbarProps) {
                   <form action={logoutAction}>
                     <button
                       type="submit"
-                      className="w-full mt-1 px-4 py-3 text-base font-bold border-2 border-black text-center"
+                      className={cn("w-full mt-1 px-4 py-3 text-base font-bold border-2 border-black text-center", brandFont)}
                       style={{ color: "#ff0050" }}
                     >
                       Sign Out
@@ -395,7 +401,7 @@ export function Navbar({ session }: NavbarProps) {
                 <Link
                   href="/login"
                   onClick={() => setMobileOpen(false)}
-                  className="mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center"
+                  className={cn("mt-2 px-4 py-3 text-base font-bold bg-yellow-400 text-black border-2 border-black shadow-[4px_4px_0_#000] text-center", brandFont)}
                 >
                   {tr.login}
                 </Link>
@@ -407,8 +413,8 @@ export function Navbar({ session }: NavbarProps) {
               {/* Mobile upgrade button */}
               {showUpgrade && (
                 <button
-                  onClick={() => { setMobileOpen(false); setUpgradeOpen(true); }}
-                  className="flex items-center justify-center gap-2 mt-2 px-4 py-3 text-base font-black bg-amber-400 text-black border-2 border-black shadow-[4px_4px_0_#000] uppercase tracking-wide"
+                  onClick={() => { setMobileOpen(false); window.location.href = "https://www.kesararamwithdigital.tech/pricing"; }}
+                  className={cn("flex items-center justify-center gap-2 mt-2 px-4 py-3 text-base font-black bg-amber-400 text-black border-2 border-black shadow-[4px_4px_0_#000] uppercase tracking-wide", brandFont)}
                 >
                   <Crown size={16} />
                   {kh ? "ធ្វើឱ្យប្រសើរឡើង" : "Upgrade Plan"}

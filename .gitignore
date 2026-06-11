@@ -23,6 +23,9 @@
 
 # misc
 .DS_Store
+
+# database backups (contain user data / PII — never commit)
+/backups/
 *.pem
 
 # debug
@@ -60,3 +63,13 @@ test-*.mjs
 *.pyc
 __pycache__/
 .idea/
+
+# documentation archives (backups and exports)
+/docs/archive/
+/docs/business-plans/*.docx
+/docs/business-plans/*.txt
+
+# auto-organized content (legacy)
+/docs/auto-organized/
+/docs/archive/auto-backups/
+/docs/archive/temp/

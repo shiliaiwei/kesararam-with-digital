@@ -107,18 +107,18 @@ function GuideMeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
             </p>
             <ol className="list-decimal pl-4 mt-1.5 space-y-1.5 font-semibold text-zinc-700">
               <li>
-                {kh 
-                  ? "ទៅកាន់ទំព័រចុះឈ្មោះ រួចបំពេញ ឈ្មោះសាលារៀន, ខេត្ត/ក្រុង, ថ្នាក់ទី។" 
+                {kh
+                  ? "ទៅកាន់ទំព័រចុះឈ្មោះ រួចបំពេញ ឈ្មោះសាលារៀន, ខេត្ត/ក្រុង, ថ្នាក់ទី។"
                   : "Go to registration, fill in your details (School, Province, Grade)."}
               </li>
               <li>
-                {kh 
-                  ? "បញ្ចូល «លេខកូដអញ្ជើញពីគ្រូ» ដែលគ្រូបានផ្តល់ជូន (កូដនីមួយៗប្រើបានតែម្តងប៉ុណ្ណោះ)។" 
+                {kh
+                  ? "បញ្ចូល «លេខកូដអញ្ជើញពីគ្រូ» ដែលគ្រូបានផ្តល់ជូន (កូដនីមួយៗប្រើបានតែម្តងប៉ុណ្ណោះ)។"
                   : "Input the Teacher Invite Code provided by your teacher (each code is single-use)."}
               </li>
               <li>
-                {kh 
-                  ? "ចុចលើប៊ូតុង «Register with Google» ដើម្បីភ្ជាប់គណនីរួចជាស្រេច។" 
+                {kh
+                  ? "ចុចលើប៊ូតុង «Register with Google» ដើម្បីភ្ជាប់គណនីរួចជាស្រេច។"
                   : "Click Register with Google to link and activate your account instantly."}
               </li>
             </ol>
@@ -131,17 +131,17 @@ function GuideMeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
               {kh ? "សម្រាប់គ្រូបង្រៀន" : "For Teachers"}
             </h3>
             <p className="font-bold leading-relaxed">
-              {kh ? "គណនីគ្រូបង្រៀន៖" : "Teacher Accounts Gating:"}
+              {kh ? "គណនីគ្រូបង្រៀន៖" : "Teacher Accounts:"}
             </p>
             <p className="text-zinc-700 font-semibold leading-relaxed mt-1">
               {kh
-                ? "ដើម្បីការពារឯកជនភាពសិស្ស និងសុវត្ថិភាព គណនីគ្រូបង្រៀនមិនអាចចុះឈ្មោះជាសាធារណៈបានទេ៖ គណនីគ្រូទាំងអស់ត្រូវតែបង្កើតឡើងដោយផ្ទាល់ពីសំណាក់ «អ្នកគ្រប់គ្រងប្រព័ន្ធសាលា (School Administrator)»។"
-                : "To protect student privacy and ensure a safe learning environment, teacher accounts cannot be registered publicly. All teacher accounts must be created exclusively by the School Administrator."}
+                ? "គ្រូបង្រៀនអាចបង្កើតគណនី «Teacher Pro» ដោយផ្ទាល់ — បំពេញឈ្មោះសាលា និងខេត្ត រួចចុះឈ្មោះតាមអ៊ីមែល ឬ Google។ គណនីថ្មីទទួលបានការសាកល្បងឥតគិតថ្លៃ ៧ ថ្ងៃ។"
+                : "Teachers can create a Teacher Pro account directly — enter your school and province, then register by email or Google. New accounts get a free 7-day trial."}
             </p>
             <p className="text-zinc-800 font-bold leading-relaxed mt-1.5 bg-green-100/60 p-2.5 border border-green-200 rounded">
               {kh
-                ? "* បន្ទាប់ពីអ្នកគ្រប់គ្រងប្រព័ន្ធចុះឈ្មោះអ៊ីមែលរបស់អ្នករួចរាល់ អ្នកអាចចូលគណនីបានភ្លាមៗតាមរយៈ Sign In with Google។"
-                : "* Once the Administrator registers your school email in the Admin Dashboard, you can sign in instantly using Sign In with Google."}
+                ? "* ផែនការ «សាលា» និង «បណ្តុះបណ្តាល» ត្រូវរៀបចំដោយបុគ្គលិក៖ ដាក់ពាក្យសុំ ហើយអ្នកគ្រប់គ្រងនឹងបើកគណនី បន្ទាប់ពីផ្ទៀងផ្ទាត់ការទូទាត់។"
+                : "* School & Academy plans are set up by staff: submit an application and an administrator activates the accounts after verifying payment."}
             </p>
           </div>
         </div>
@@ -250,8 +250,8 @@ function PrivacyConfirmModal({
             </div>
             {!hasScrolledToBottom && (
               <p className="text-[10px] font-black text-red-500 animate-pulse mt-1">
-                {kh 
-                  ? "* សូមអូសចុះក្រោមទៅចុងបញ្ចប់នៃលក្ខខណ្ឌប្រើប្រាស់ដើម្បីយល់ព្រម" 
+                {kh
+                  ? "* សូមអូសចុះក្រោមទៅចុងបញ្ចប់នៃលក្ខខណ្ឌប្រើប្រាស់ដើម្បីយល់ព្រម"
                   : "* Please scroll to the bottom of the Terms of Use to enable acceptance."}
               </p>
             )}
@@ -281,8 +281,21 @@ function PrivacyConfirmModal({
   );
 }
 
+// A "track" maps the chosen subscription plan to a role + registration path.
+type Track = "student" | "teacher";
+
 function RegisterFormInner() {
-  const role = "student";
+  const searchParams = useSearchParams();
+  const planParam = searchParams.get("plan");
+  
+  // Set initial plan/track based on query param
+  const initialTrack: Track = (planParam === "teacher_pro" || planParam === "school" || planParam === "driving_school" || planParam === "family") ? "teacher" : "student";
+  const initialPlan = (planParam === "school") ? "teacher_pro" : (planParam === "family" ? "family" : (planParam === "driving_school" ? "driving_school" : "teacher_pro"));
+
+  const [track, setTrack] = useState<Track>(initialTrack);
+  const [selectedPlan, setSelectedPlan] = useState<"teacher_pro" | "family" | "driving_school">(initialPlan as any);
+  const accountType = track;
+  const isTeacher = accountType === "teacher";
   const { lang } = useLang();
   const kh = lang === "kh";
 
@@ -290,45 +303,50 @@ function RegisterFormInner() {
     registerAction,
     initialState
   );
-  
+
   const [googleError, setGoogleError] = useState("");
   const [showGuide, setShowGuide] = useState(false);
   const [showEmailReg, setShowEmailReg] = useState(false);
   const [showPrivacyConfirm, setShowPrivacyConfirm] = useState(false);
   const [pendingRegistrationType, setPendingRegistrationType] = useState<"google" | "email" | null>(null);
-  
+
   const formRef = useRef<HTMLFormElement>(null);
-  const searchParams = useSearchParams();
   const urlError = searchParams.get("error") ?? "";
 
   const displayError = state?.error || googleError || urlError;
 
   useEffect(() => {
     if (state?.success) {
-      window.location.href = "/profile/student";
+      window.location.href = state.redirectTo || "/profile/student";
     }
-  }, [state?.success]);
+  }, [state?.success, state?.redirectTo]);
 
   const handleGoogleRegisterClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setGoogleError("");
 
     if (showEmailReg) {
-      const inviteCodeEl = document.getElementById("inviteCode") as HTMLInputElement;
-      const code = inviteCodeEl?.value?.trim() || "";
-
-      if (!code) {
-        setGoogleError(kh ? "សូមបញ្ចូលលេខកូដអញ្ជើញពីគ្រូ *" : "A teacher invite code is required for Google registration.");
-        return;
-      }
-
       const schoolNameEl = document.getElementById("schoolName") as HTMLInputElement;
       const provinceEl = document.getElementById("province") as HTMLSelectElement;
-      const gradeLevelEl = document.getElementById("gradeLevel") as HTMLSelectElement;
 
-      if (!schoolNameEl?.value?.trim() || !provinceEl?.value || !gradeLevelEl?.value) {
-        setGoogleError(kh ? "សូមបំពេញព័ត៌មានដែលចាំបាច់ទាំងអស់ *" : "Please fill in all required fields.");
-        return;
+      if (isTeacher) {
+        // Teachers: only school + province required (no invite code / grade).
+        if (!schoolNameEl?.value?.trim() || !provinceEl?.value) {
+          setGoogleError(kh ? "សូមបំពេញឈ្មោះសាលា និងខេត្ត *" : "Please fill in School Name and Province.");
+          return;
+        }
+      } else {
+        const inviteCodeEl = document.getElementById("inviteCode") as HTMLInputElement;
+        const code = inviteCodeEl?.value?.trim() || "";
+        if (!code) {
+          setGoogleError(kh ? "សូមបញ្ចូលលេខកូដអញ្ជើញពីគ្រូ *" : "A teacher invite code is required for Google registration.");
+          return;
+        }
+        const gradeLevelEl = document.getElementById("gradeLevel") as HTMLSelectElement;
+        if (!schoolNameEl?.value?.trim() || !provinceEl?.value || !gradeLevelEl?.value) {
+          setGoogleError(kh ? "សូមបំពេញព័ត៌មានដែលចាំបាច់ទាំងអស់ *" : "Please fill in all required fields.");
+          return;
+        }
       }
     }
 
@@ -358,11 +376,42 @@ function RegisterFormInner() {
     setPendingRegistrationType(null);
   };
 
+  const handleSchoolNameBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    if (!val) return;
+    const cleaned = val.replace(/[^a-zA-Z0-9\s.,'()&-]/g, "");
+    const formatted = cleaned
+      .split(/\s+/)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+    e.target.value = formatted;
+  };
+
   const executeGoogleRegister = async () => {
+    if (isTeacher) {
+      const schoolNameEl = document.getElementById("schoolName") as HTMLInputElement;
+      const provinceEl = document.getElementById("province") as HTMLSelectElement;
+      const schoolName = schoolNameEl?.value?.trim() || "";
+      const province = provinceEl?.value || "";
+
+      const tparams = new URLSearchParams({ role: "teacher", plan: selectedPlan });
+      if (schoolName) tparams.set("schoolName", schoolName);
+      if (province) tparams.set("province", province);
+      window.location.href = `/api/auth/google?${tparams.toString()}`;
+      return;
+    }
+
     if (!showEmailReg) {
       window.location.href = "/api/auth/google";
       return;
     }
+
+    const schoolNameEl = document.getElementById("schoolName") as HTMLInputElement;
+    const provinceEl = document.getElementById("province") as HTMLSelectElement;
+    const sectionEl = document.getElementById("section") as HTMLInputElement;
+    const schoolName = schoolNameEl?.value?.trim() || "";
+    const province = provinceEl?.value || "";
+    const section = sectionEl?.value?.trim() || "";
 
     const inviteCodeEl = document.getElementById("inviteCode") as HTMLInputElement;
     const code = inviteCodeEl?.value?.trim() || "";
@@ -378,16 +427,9 @@ function RegisterFormInner() {
     const params = new URLSearchParams({
       inviteCode: code,
     });
-    
-    const schoolNameEl = document.getElementById("schoolName") as HTMLInputElement;
-    const provinceEl = document.getElementById("province") as HTMLSelectElement;
-    const gradeLevelEl = document.getElementById("gradeLevel") as HTMLSelectElement;
-    const sectionEl = document.getElementById("section") as HTMLInputElement;
 
-    const schoolName = schoolNameEl?.value?.trim() || "";
-    const province = provinceEl?.value || "";
+    const gradeLevelEl = document.getElementById("gradeLevel") as HTMLSelectElement;
     const gradeLevel = gradeLevelEl?.value || "";
-    const section = sectionEl?.value?.trim() || "";
 
     if (schoolName) params.set("schoolName", schoolName);
     if (province) params.set("province", province);
@@ -400,7 +442,7 @@ function RegisterFormInner() {
   return (
     <div className="min-h-screen dot-bg flex flex-col items-center justify-center px-4 py-16">
       <div className="w-full max-w-2xl animate-fade-in space-y-6">
-        
+
         {/* Header logo */}
         <div className="flex flex-col items-center justify-center gap-3">
           <img src="/brand/logo.png" alt="KWD Logo" className="h-20 w-auto object-contain" />
@@ -436,342 +478,437 @@ function RegisterFormInner() {
 
           {/* Form Card Body */}
           <form ref={formRef} action={formAction} className="p-6 lg:p-8 flex flex-col gap-5 bg-white" autoComplete="off">
-            {/* hidden role input */}
-            <input type="hidden" name="role" value="student" />
+            {/* role driven by the account-type toggle */}
+            <input type="hidden" name="role" value={accountType} />
+            <input type="hidden" name="plan" value={selectedPlan} />
 
-            {!showEmailReg ? (
-              // Simplified Google Flow
-              <div className="flex flex-col gap-5 py-2">
-                <p className="text-zinc-650 font-bold text-sm text-center leading-relaxed font-system">
-                  {kh
-                    ? "ចុះឈ្មោះជាមួយ Google ដើម្បីចូលរួមជាមួយ Kesararam with Digital។"
-                    : "Sign up with Google to join Kesararam with Digital."}
-                </p>
-                <p className="text-xs text-zinc-400 font-bold text-center leading-relaxed font-system">
-                  {kh
-                    ? "* អ្នកនឹងត្រូវបំពេញព័ត៌មានគណនី និងបញ្ចូលលេខកូដអញ្ជើញបន្ទាប់ពីចុះឈ្មោះរួច។"
-                    : "* You will complete your profile details and invite code after signing up."}
-                </p>
-
-                {/* Error message */}
-                {displayError && (
-                  <div className="p-4 bg-[#fda4af] border-2 border-red-500 rounded-lg text-sm font-bold text-black shadow-[3px_3px_0_#000] flex items-start gap-2.5 text-left font-system">
-                    <ShieldAlert className="size-5 text-[#ef4444] shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-black text-xs uppercase tracking-wider text-red-950">
-                        {kh ? "កំហុស" : "Error"}
-                      </p>
-                      <p className="text-xs font-bold text-zinc-800 leading-normal mt-0.5">
-                        {displayError}
-                      </p>
-                    </div>
-                  </div>
-                )}
-
-                {/* Google Register Button */}
-                <button
-                  type="button"
-                  onClick={handleGoogleRegisterClick}
-                  className="w-full py-3.5 bg-[#eab308] hover:bg-[#d9a307] text-black font-black text-base border-2 border-black rounded-lg shadow-[4px_4px_0_#000] hover:shadow-[5px_5px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2.5 active:translate-x-0 active:translate-y-0 active:shadow-none font-system uppercase tracking-wide"
-                >
-                  <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22c-.22-.67-.35-1.37-.35-2.09z" fill="#FBBC05"/>
-                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
-                  </svg>
-                  {kh ? "ចុះឈ្មោះជាមួយ Google" : "Register with Google"}
-                </button>
-
-                {/* Toggle Link */}
-                <button
-                  type="button"
-                  onClick={() => setShowEmailReg(true)}
-                  className="text-xs font-black text-zinc-500 hover:text-black transition-all underline mt-2 block self-center animate-fade-in font-system uppercase tracking-wider"
-                >
-                  {kh ? "ឬ ចុះឈ្មោះដោយប្រើប្រាស់ អ៊ីមែល និង លេខសម្ងាត់" : "Or Register with Email and Password"}
-                </button>
+            {/* Plan selector — simplified to 2 main choices: Student and Teacher / Family / Driving School */}
+            <div>
+              <p className="text-[10px] font-black uppercase tracking-wider text-zinc-500 mb-2">
+                {kh ? "ជ្រើសរើសប្រភេទគណនី" : "Choose your account type"}
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {([
+                  {
+                    key: "student",
+                    en: "Student", kh: "សិស្ស",
+                    subEn: "Free · invite code", subKh: "ឥតគិតថ្លៃ · លេខកូដអញ្ជើញ",
+                  },
+                  {
+                    key: "teacher",
+                    en: "Teacher / Family / Driving School", kh: "គ្រូបង្រៀន / គ្រួសារ / សាលាបង្រៀនបើកបរ",
+                    subEn: "7-day free trial", subKh: "សាកល្បងឥតគិតថ្លៃ ៧ ថ្ងៃ",
+                  },
+                ] as const).map((opt) => (
+                  <button
+                    key={opt.key}
+                    type="button"
+                    onClick={() => {
+                      setTrack(opt.key);
+                      setGoogleError("");
+                    }}
+                    className={`flex flex-col items-start gap-0.5 py-2.5 px-3 border-2 border-black rounded-md transition-all text-left ${track === opt.key
+                      ? "bg-[#eab308] shadow-[2px_2px_0_#000]"
+                      : "bg-white text-zinc-500 hover:text-black"
+                      }`}
+                  >
+                    <span className="text-xs font-black uppercase tracking-wider">{kh ? opt.kh : opt.en}</span>
+                    <span className="text-[10px] font-bold opacity-70 normal-case tracking-normal">{kh ? opt.subKh : opt.subEn}</span>
+                  </button>
+                ))}
               </div>
-            ) : (
-              // Standard Email Registration Flow
-              <div className="flex flex-col gap-6 animate-fade-in font-system">
-                {/* Section 1: Personal Account Info */}
-                <div className="border-2 border-black rounded-xl p-5 bg-[#3b82f6]/5 hover:bg-[#3b82f6]/10 transition-colors shadow-[3px_3px_0_#000] space-y-4 text-left">
-                  <div className="flex items-center gap-2 border-b-2 border-black pb-2 mb-2">
-                    <User className="size-5 text-[#3b82f6] shrink-0" />
-                    <h3 className="text-xs font-black uppercase tracking-wider text-black">
-                      {kh ? "ព័ត៌មានគណនីផ្ទាល់ខ្លួន" : "Personal Account Info"}
-                    </h3>
-                  </div>
+            </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* Username */}
-                    <div className="flex flex-col gap-1.5 text-left">
-                      <label htmlFor="username" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
-                        {kh ? "ឈ្មោះគណនី *" : "Username *"}
-                      </label>
-                      <div className="relative flex items-center">
-                        <User className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
-                        <input
-                          type="text"
-                          id="username"
-                          name="username"
-                          required
-                          placeholder="sopheak01"
-                          className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                        />
-                      </div>
-                    </div>
+            {isTeacher && (
+              <p className="text-[11px] font-bold text-zinc-500 -mt-2 leading-relaxed">
+                {kh
+                  ? "គណនីគ្រូបង្រៀន គ្រួសារ និងសាលាបង្រៀនបើកបរ អាចចុះឈ្មោះដោយផ្ទាល់ — មិនត្រូវការការផ្ទៀងផ្ទាត់ពីបុគ្គលិកឡើយ។"
+                  : "Teacher, Family, and Driving School accounts can sign up directly — no manual staff verification needed."}
+              </p>
+            )}
 
-                    {/* Email */}
-                    <div className="flex flex-col gap-1.5 text-left">
-                      <label htmlFor="email" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
-                        {kh ? "អ៊ីមែល *" : "Email *"}
-                      </label>
-                      <div className="relative flex items-center">
-                        <Mail className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          required
-                          placeholder="sopheak@kwd.tech"
-                          className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* Display Name */}
-                    <div className="flex flex-col gap-1.5 text-left">
-                      <label htmlFor="displayName" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
-                        {kh ? "ឈ្មោះពេញ" : "Full Name"}
-                      </label>
-                      <div className="relative flex items-center">
-                        <User className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
-                        <input
-                          type="text"
-                          id="displayName"
-                          name="displayName"
-                          placeholder="Sopheak Chan / ចាន់ សុភ័ក្ត្រ"
-                          className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Password */}
-                    <div className="flex flex-col gap-1.5 text-left">
-                      <label htmlFor="password" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
-                        {kh ? "លេខសម្ងាត់ *" : "Password *"}
-                      </label>
-                      <div className="relative flex items-center">
-                        <Lock className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
-                        <input
-                          type="password"
-                          id="password"
-                          name="password"
-                          required
-                          placeholder="••••••••"
-                          className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                        />
-                      </div>
-                    </div>
-                  </div>
+            {isTeacher && (
+              <div className="border-2 border-black rounded-xl p-4 bg-amber-50/50 shadow-[3px_3px_0_#000] flex flex-col gap-3 text-left">
+                <p className="text-[10px] font-black uppercase tracking-wider text-zinc-500">
+                  {kh ? "ជ្រើសរើសប្រភេទផែនការ" : "Select subscription plan"}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  {([
+                    { key: "teacher_pro", en: "Teacher Pro", kh: "គ្រូ Pro", desc: "For 1 teacher" },
+                    { key: "family", en: "Family Plan", kh: "ផែនការគ្រួសារ", desc: "Up to 9 kids" },
+                    { key: "driving_school", en: "Driving School", kh: "សាលាបង្រៀនបើកបរ", desc: "Unlimited learners" },
+                  ] as const).map((pOpt) => (
+                    <button
+                      key={pOpt.key}
+                      type="button"
+                      onClick={() => setSelectedPlan(pOpt.key)}
+                      className={`flex flex-col items-start gap-0.5 py-2 px-2.5 border-2 border-black rounded-md transition-all text-left ${selectedPlan === pOpt.key
+                        ? "bg-[#eab308] shadow-[2px_2px_0_#000] text-black font-black"
+                        : "bg-white text-zinc-500 hover:text-black"
+                        }`}
+                    >
+                      <span className="text-xs font-black uppercase tracking-wider">{kh ? pOpt.kh : pOpt.en}</span>
+                      <span className="text-[9px] font-bold opacity-70 leading-normal">{pOpt.desc}</span>
+                    </button>
+                  ))}
                 </div>
-
-                {/* Section 2: School & Academic Details */}
-                <div className="border-2 border-black rounded-xl p-5 bg-[#22c55e]/5 hover:bg-[#22c55e]/10 transition-colors shadow-[3px_3px_0_#000] space-y-4 text-left">
-                  <div className="flex items-center gap-2 border-b-2 border-black pb-2 mb-2">
-                    <School className="size-5 text-[#22c55e] shrink-0" />
-                    <h3 className="text-xs font-black uppercase tracking-wider text-black">
-                      {kh ? "ព័ត៌មានសិក្សា និងសាលារៀន" : "School & Academic Details"}
-                    </h3>
-                  </div>
-
-                  {/* School Name */}
-                  <div className="flex flex-col gap-1.5 text-left">
-                    <label htmlFor="schoolName" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
-                      {kh ? "ឈ្មោះសាលារៀន *" : "School Name *"}
-                    </label>
-                    <div className="relative flex items-center">
-                      <School className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
-                      <input
-                        type="text"
-                        id="schoolName"
-                        name="schoolName"
-                        required
-                        placeholder="e.g. Wat Bo Primary School / សាលាបឋមសិក្សាវត្តបូ"
-                        className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* Province Dropdown */}
-                    <div className="flex flex-col gap-1.5 text-left">
-                      <label htmlFor="province" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
-                        {kh ? "ខេត្ត-ក្រុង *" : "Province *"}
-                      </label>
-                      <div className="relative flex items-center">
-                        <MapPin className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
-                        <select
-                          id="province"
-                          name="province"
-                          required
-                          defaultValue=""
-                          className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-black bg-white focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                        >
-                          <option value="" disabled>{kh ? "ជ្រើសរើសខេត្ត" : "Select Province"}</option>
-                          {CAMBODIA_PROVINCES.map((prov) => (
-                            <option key={prov.en} value={prov.en}>
-                              {kh ? prov.kh : prov.en}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-
-                    {/* Grade Dropdown (Student only) */}
-                    <div className="flex flex-col gap-1.5 text-left">
-                      <label htmlFor="gradeLevel" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
-                        {kh ? "ថ្នាក់ទី *" : "Grade *"}
-                      </label>
-                      <div className="relative flex items-center">
-                        <GraduationCap className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
-                        <select
-                          id="gradeLevel"
-                          name="gradeLevel"
-                          required
-                          defaultValue=""
-                          className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-black bg-white focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                        >
-                          <option value="" disabled>{kh ? "ជ្រើសរើសថ្នាក់" : "Select Grade"}</option>
-                          {GRADES.map((gr) => (
-                            <option key={gr.en} value={gr.en}>
-                              {kh ? gr.kh : gr.en}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Teacher Invite Code (Student only) */}
-                  <div className="flex flex-col gap-1.5 text-left">
-                    <label htmlFor="inviteCode" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
-                      {kh ? "លេខកូដអញ្ជើញពីគ្រូ *" : "Teacher Invite Code *"}
-                    </label>
-                    <div className="relative flex items-center">
-                      <Key className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
-                      <input
-                        type="text"
-                        id="inviteCode"
-                        name="inviteCode"
-                        required
-                        placeholder="KWD-XXXX-YYYY"
-                        className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-black focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all placeholder:font-bold placeholder:text-zinc-300"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {/* Section */}
-                    <div className="flex flex-col gap-1.5 text-left">
-                      <label htmlFor="section" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
-                        {kh ? "វេន (ស្រេចចិត្ត)" : "Section (Optional)"}
-                      </label>
-                      <div className="relative flex items-center">
-                        <Layers className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
-                        <input
-                          type="text"
-                          id="section"
-                          name="section"
-                          placeholder="e.g. Morning A / ព្រឹក A"
-                          className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Parent Contact (Student only) */}
-                    <div className="flex flex-col gap-1.5 text-left">
-                      <label htmlFor="parentContact" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
-                        {kh ? "លេខទូរស័ព្ទអាណាព្យាបាល (ស្រេចចិត្ត)" : "Parent Phone (Optional)"}
-                      </label>
-                      <div className="relative flex items-center">
-                        <Phone className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
-                        <input
-                          type="text"
-                          id="parentContact"
-                          name="parentContact"
-                          placeholder="e.g. 012 345 678"
-                          className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Error message */}
-                {displayError && (
-                  <div className="p-4 bg-[#fda4af] border-2 border-red-500 rounded-lg text-sm font-bold text-black shadow-[3px_3px_0_#000] flex items-start gap-2.5 text-left">
-                    <ShieldAlert className="size-5 text-[#ef4444] shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-black text-xs uppercase tracking-wider text-red-950">
-                        {kh ? "កំហុស" : "Error"}
-                      </p>
-                      <p className="text-xs font-bold text-zinc-800 leading-normal mt-0.5">
-                        {displayError}
-                      </p>
-                    </div>
-                  </div>
-                )}
-
-                {/* Submit Button */}
-                <button
-                  type="button"
-                  onClick={handleEmailRegisterClick}
-                  disabled={pending}
-                  className="w-full py-3.5 mt-2 bg-[#eab308] hover:bg-[#d9a307] text-black font-black text-base border-2 border-black rounded-lg shadow-[4px_4px_0_#000] hover:shadow-[5px_5px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-none disabled:translate-x-0 disabled:translate-y-0 uppercase tracking-wide font-system"
-                >
-                  {pending ? (kh ? "កំពុងចុះឈ្មោះ…" : "Registering…") : (kh ? "បង្កើតគណនី" : "Create Account")}
-                </button>
-
-                {/* Divider */}
-                <div className="flex items-center gap-2.5 my-1">
-                  <div className="flex-1 h-0.5 bg-black" />
-                  <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">{kh ? "ឬ" : "or"}</span>
-                  <div className="flex-1 h-0.5 bg-black" />
-                </div>
-
-                {/* Google Register Button */}
-                <button
-                  type="button"
-                  onClick={handleGoogleRegisterClick}
-                  className="w-full py-3.5 bg-white hover:bg-zinc-50 text-zinc-950 font-black text-base border-2 border-black rounded-lg shadow-[4px_4px_0_#000] hover:shadow-[5px_5px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2.5 active:translate-x-0 active:translate-y-0 active:shadow-none"
-                >
-                  <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22c-.22-.67-.35-1.37-.35-2.09z" fill="#FBBC05"/>
-                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/>
-                  </svg>
-                  {kh ? "ចុះឈ្មោះជាមួយ Google" : "Register with Google"}
-                </button>
-
-                {/* Toggle Link */}
-                <button
-                  type="button"
-                  onClick={() => setShowEmailReg(false)}
-                  className="text-xs font-black text-zinc-500 hover:text-black transition-all underline mt-2 block self-center animate-fade-in uppercase tracking-wider font-system"
-                >
-                  {kh ? "ប្រើប្រាស់ការចុះឈ្មោះរហ័សតាម Google" : "Use simplified Google Registration"}
-                </button>
+                <p className="text-[11px] font-bold text-zinc-500 leading-normal">
+                  {kh
+                    ? "* គណនីថ្មីទាំងអស់ទទួលបានការសាកល្បងឥតគិតថ្លៃរយៈពេល ៧ ថ្ងៃដោយស្វ័យប្រវត្តិ។"
+                    : "* All plans include an instant free 7-day trial on registration."}
+                </p>
               </div>
             )}
+            {!showEmailReg ? (
+                // Simplified Google Flow
+                <div className="flex flex-col gap-5 py-2">
+                  <p className="text-zinc-650 font-bold text-sm text-center leading-relaxed font-system">
+                    {kh
+                      ? "ចុះឈ្មោះជាមួយ Google ដើម្បីចូលរួមជាមួយ Kesararam with Digital។"
+                      : "Sign up with Google to join Kesararam with Digital."}
+                  </p>
+                  <p className="text-xs text-zinc-400 font-bold text-center leading-relaxed font-system">
+                    {kh
+                      ? "* អ្នកនឹងត្រូវបំពេញព័ត៌មានគណនី និងបញ្ចូលលេខកូដអញ្ជើញបន្ទាប់ពីចុះឈ្មោះរួច។"
+                      : "* You will complete your profile details and invite code after signing up."}
+                  </p>
+
+                  {/* Error message */}
+                  {displayError && (
+                    <div className="p-4 bg-[#fda4af] border-2 border-red-500 rounded-lg text-sm font-bold text-black shadow-[3px_3px_0_#000] flex items-start gap-2.5 text-left font-system">
+                      <ShieldAlert className="size-5 text-[#ef4444] shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-black text-xs uppercase tracking-wider text-red-950">
+                          {kh ? "កំហុស" : "Error"}
+                        </p>
+                        <p className="text-xs font-bold text-zinc-800 leading-normal mt-0.5">
+                          {displayError}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Google Register Button */}
+                  <button
+                    type="button"
+                    onClick={handleGoogleRegisterClick}
+                    className="w-full py-3.5 bg-[#eab308] hover:bg-[#d9a307] text-black font-black text-base border-2 border-black rounded-lg shadow-[4px_4px_0_#000] hover:shadow-[5px_5px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2.5 active:translate-x-0 active:translate-y-0 active:shadow-none font-system uppercase tracking-wide"
+                  >
+                    <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22c-.22-.67-.35-1.37-.35-2.09z" fill="#FBBC05" />
+                      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335" />
+                    </svg>
+                    {kh ? "ចុះឈ្មោះជាមួយ Google" : "Register with Google"}
+                  </button>
+
+                  {/* Toggle Link */}
+                  <button
+                    type="button"
+                    onClick={() => setShowEmailReg(true)}
+                    className="text-xs font-black text-zinc-500 hover:text-black transition-all underline mt-2 block self-center animate-fade-in font-system uppercase tracking-wider"
+                  >
+                    {kh ? "ឬ ចុះឈ្មោះដោយប្រើប្រាស់ អ៊ីមែល និង លេខសម្ងាត់" : "Or Register with Email and Password"}
+                  </button>
+                </div>
+              ) : (
+                // Standard Email Registration Flow
+                <div className="flex flex-col gap-6 animate-fade-in font-system">
+                  {/* Section 1: Personal Account Info */}
+                  <div className="border-2 border-black rounded-xl p-5 bg-[#3b82f6]/5 hover:bg-[#3b82f6]/10 transition-colors shadow-[3px_3px_0_#000] space-y-4 text-left">
+                    <div className="flex items-center gap-2 border-b-2 border-black pb-2 mb-2">
+                      <User className="size-5 text-[#3b82f6] shrink-0" />
+                      <h3 className="text-xs font-black uppercase tracking-wider text-black">
+                        {kh ? "ព័ត៌មានគណនីផ្ទាល់ខ្លួន" : "Personal Account Info"}
+                      </h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {/* Username */}
+                      <div className="flex flex-col gap-1.5 text-left">
+                        <label htmlFor="username" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                          {kh ? "ឈ្មោះគណនី *" : "Username *"}
+                        </label>
+                        <div className="relative flex items-center">
+                          <User className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                          <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            required
+                            placeholder="sopheak01"
+                            className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Email */}
+                      <div className="flex flex-col gap-1.5 text-left">
+                        <label htmlFor="email" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                          {kh ? "អ៊ីមែល *" : "Email *"}
+                        </label>
+                        <div className="relative flex items-center">
+                          <Mail className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                            placeholder="sopheak@kwd.tech"
+                            className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {/* Display Name */}
+                      <div className="flex flex-col gap-1.5 text-left">
+                        <label htmlFor="displayName" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                          {kh ? "ឈ្មោះពេញ" : "Full Name"}
+                        </label>
+                        <div className="relative flex items-center">
+                          <User className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                          <input
+                            type="text"
+                            id="displayName"
+                            name="displayName"
+                            placeholder="Sopheak Chan / ចាន់ សុភ័ក្ត្រ"
+                            className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Password */}
+                      <div className="flex flex-col gap-1.5 text-left">
+                        <label htmlFor="password" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                          {kh ? "លេខសម្ងាត់ *" : "Password *"}
+                        </label>
+                        <div className="relative flex items-center">
+                          <Lock className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                          <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            required
+                            placeholder="••••••••"
+                            className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Section 2: School & Academic Details */}
+                  <div className="border-2 border-black rounded-xl p-5 bg-[#22c55e]/5 hover:bg-[#22c55e]/10 transition-colors shadow-[3px_3px_0_#000] space-y-4 text-left">
+                    <div className="flex items-center gap-2 border-b-2 border-black pb-2 mb-2">
+                      <School className="size-5 text-[#22c55e] shrink-0" />
+                      <h3 className="text-xs font-black uppercase tracking-wider text-black">
+                        {kh ? "ព័ត៌មានសិក្សា និងសាលារៀន" : "School & Academic Details"}
+                      </h3>
+                    </div>
+
+                    {/* School Name */}
+                    <div className="flex flex-col gap-1.5 text-left">
+                      <label htmlFor="schoolName" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                        {isTeacher
+                          ? (kh ? "ឈ្មោះសាលារៀន / ឈ្មោះអង្គភាព *" : "School / Organization Name *")
+                          : (kh ? "ឈ្មោះសាលារៀន *" : "School Name *")}
+                      </label>
+                      <div className="relative flex items-center">
+                        <School className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                        <input
+                          type="text"
+                          id="schoolName"
+                          name="schoolName"
+                          required
+                          placeholder={kh ? "ឧ. Kesararam With Digital" : "e.g. Kesararam With Digital"}
+                          onBlur={handleSchoolNameBlur}
+                          className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
+                        />
+                      </div>
+                      <span className="text-[10px] text-zinc-400 font-bold leading-normal block">
+                        {kh
+                          ? "* សូមសរសេរជាភាសាអង់គ្លេស និងចាប់ផ្តើមពាក្យនីមួយៗដោយអក្សរធំ (ឧ. Kesararam Primary School)"
+                          : "* Please write in English, starting each word with a capital letter (e.g., Kesararam Primary School)"}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {/* Province Dropdown */}
+                      <div className="flex flex-col gap-1.5 text-left">
+                        <label htmlFor="province" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                          {kh ? "ខេត្ត-ក្រុង *" : "Province *"}
+                        </label>
+                        <div className="relative flex items-center">
+                          <MapPin className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                          <select
+                            id="province"
+                            name="province"
+                            required
+                            defaultValue=""
+                            className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-black bg-white focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
+                          >
+                            <option value="" disabled>{kh ? "ជ្រើសរើសខេត្ត" : "Select Province"}</option>
+                            {CAMBODIA_PROVINCES.map((prov) => (
+                              <option key={prov.en} value={prov.en}>
+                                {kh ? prov.kh : prov.en}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+
+                      {/* Grade Dropdown (Student only) */}
+                      {!isTeacher && (
+                        <div className="flex flex-col gap-1.5 text-left">
+                          <label htmlFor="gradeLevel" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                            {kh ? "ថ្នាក់ទី *" : "Grade *"}
+                          </label>
+                          <div className="relative flex items-center">
+                            <GraduationCap className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                            <select
+                              id="gradeLevel"
+                              name="gradeLevel"
+                              required
+                              defaultValue=""
+                              className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-black bg-white focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
+                            >
+                              <option value="" disabled>{kh ? "ជ្រើសរើសថ្នាក់" : "Select Grade"}</option>
+                              {GRADES.map((gr) => (
+                                <option key={gr.en} value={gr.en}>
+                                  {kh ? gr.kh : gr.en}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Teacher Invite Code (Student only) */}
+                    {!isTeacher && (
+                      <div className="flex flex-col gap-1.5 text-left">
+                        <label htmlFor="inviteCode" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                          {kh ? "លេខកូដអញ្ជើញពីគ្រូ *" : "Teacher Invite Code *"}
+                        </label>
+                        <div className="relative flex items-center">
+                          <Key className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                          <input
+                            type="text"
+                            id="inviteCode"
+                            name="inviteCode"
+                            required
+                            placeholder="KWD-XXXX-YYYY"
+                            className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-black focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all placeholder:font-bold placeholder:text-zinc-300"
+                          />
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {/* Section */}
+                      <div className="flex flex-col gap-1.5 text-left">
+                        <label htmlFor="section" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                          {kh ? "វេន (ស្រេចចិត្ត)" : "Section (Optional)"}
+                        </label>
+                        <div className="relative flex items-center">
+                          <Layers className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                          <input
+                            type="text"
+                            id="section"
+                            name="section"
+                            placeholder="e.g. Morning A / ព្រឹក A"
+                            className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Parent Contact (Student only) */}
+                      {!isTeacher && (
+                        <div className="flex flex-col gap-1.5 text-left">
+                          <label htmlFor="parentContact" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                            {kh ? "លេខទូរស័ព្ទអាណាព្យាបាល (ស្រេចចិត្ត)" : "Parent Phone (Optional)"}
+                          </label>
+                          <div className="relative flex items-center">
+                            <Phone className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                            <input
+                              type="text"
+                              id="parentContact"
+                              name="parentContact"
+                              placeholder="e.g. 012 345 678"
+                              className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Error message */}
+                  {displayError && (
+                    <div className="p-4 bg-[#fda4af] border-2 border-red-500 rounded-lg text-sm font-bold text-black shadow-[3px_3px_0_#000] flex items-start gap-2.5 text-left">
+                      <ShieldAlert className="size-5 text-[#ef4444] shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-black text-xs uppercase tracking-wider text-red-950">
+                          {kh ? "កំហុស" : "Error"}
+                        </p>
+                        <p className="text-xs font-bold text-zinc-800 leading-normal mt-0.5">
+                          {displayError}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Submit Button */}
+                  <button
+                    type="button"
+                    onClick={handleEmailRegisterClick}
+                    disabled={pending}
+                    className="w-full py-3.5 mt-2 bg-[#eab308] hover:bg-[#d9a307] text-black font-black text-base border-2 border-black rounded-lg shadow-[4px_4px_0_#000] hover:shadow-[5px_5px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-60 disabled:cursor-not-allowed disabled:shadow-none disabled:translate-x-0 disabled:translate-y-0 uppercase tracking-wide font-system"
+                  >
+                    {pending ? (kh ? "កំពុងចុះឈ្មោះ…" : "Registering…") : (kh ? "បង្កើតគណនី" : "Create Account")}
+                  </button>
+
+                  {/* Divider */}
+                  <div className="flex items-center gap-2.5 my-1">
+                    <div className="flex-1 h-0.5 bg-black" />
+                    <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">{kh ? "ឬ" : "or"}</span>
+                    <div className="flex-1 h-0.5 bg-black" />
+                  </div>
+
+                  {/* Google Register Button */}
+                  <button
+                    type="button"
+                    onClick={handleGoogleRegisterClick}
+                    className="w-full py-3.5 bg-white hover:bg-zinc-50 text-zinc-950 font-black text-base border-2 border-black rounded-lg shadow-[4px_4px_0_#000] hover:shadow-[5px_5px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2.5 active:translate-x-0 active:translate-y-0 active:shadow-none"
+                  >
+                    <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+                      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+                      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22c-.22-.67-.35-1.37-.35-2.09z" fill="#FBBC05" />
+                      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335" />
+                    </svg>
+                    {kh ? "ចុះឈ្មោះជាមួយ Google" : "Register with Google"}
+                  </button>
+
+                  {/* Toggle Link */}
+                  {!isTeacher && (
+                    <button
+                      type="button"
+                      onClick={() => setShowEmailReg(false)}
+                      className="text-xs font-black text-zinc-500 hover:text-black transition-all underline mt-2 block self-center animate-fade-in uppercase tracking-wider font-system"
+                    >
+                      {kh ? "ប្រើប្រាស់ការចុះឈ្មោះរហ័សតាម Google" : "Use simplified Google Registration"}
+                    </button>
+                  )}
+                </div>
+              )
+            }
           </form>
         </div>
-        
+
         <div className="text-center space-y-2 mt-5 font-system font-bold">
           <p className="text-xs text-zinc-500">
             {kh ? "មានគណនីរួចហើយ? " : "Already have an account? "}

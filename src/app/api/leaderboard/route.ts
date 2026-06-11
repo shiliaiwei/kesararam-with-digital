@@ -1,57 +1,193 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { users } from "@/db/schema/users";
-import { desc, sql } from "drizzle-orm";
+import { pointsLedger } from "@/db/schema/content";
+import { desc, sql, eq, and, gte } from "drizzle-orm";
+import { windowStartDate } from "@/lib/gamekit/dates";
 
+export const dynamic = "force-dynamic";
+
+type Window = "weekly" | "monthly" | "all";
+
+/**
+ * GET /api/leaderboard
+ *
+ * Query params:
+ *   window      = "weekly" | "monthly" | "all"   (default: "all")
+ *   province    = province name | "all"            (default: "all")
+ *   gameType    = game mode key | "all"            (default: "all")
+ *   source      = "live" | "solo" | "daily" | "all" (default: "all")
+ *   limit       = number (default: 50)
+ *   offset      = number (default: 0)
+ *
+ * Ranks are computed server-side by scanning ALL active student users
+ * with lifetimePoints > 0 (all-time) or pointsLedger rows within the
+ * time window (weekly/monthly). Ranks are dense (1, 2, 3 …).
+ *
+ * Live teacher sessions (source="live") count at FULL value for ranking.
+ * Solo practice sessions (source="solo") also count at full value.
+ * The `source` filter lets the client show "Live-only" or "Practice-only"
+ * leaderboards — but the default "all" mixes everything for the global rank.
+ */
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
-  const limit = parseInt(searchParams.get("limit") || "50");
-  const offset = parseInt(searchParams.get("offset") || "0");
+  const limit = Math.min(parseInt(searchParams.get("limit") || "50", 10), 200);
+  const offset = parseInt(searchParams.get("offset") || "0", 10);
+  const windowParam = (searchParams.get("window") || "all") as Window;
+  const province = searchParams.get("province") || "all";
+  const gameType = searchParams.get("gameType") || "all";
+  const source = searchParams.get("source") || "all";
 
   try {
-    // Get top users by highest score
-    const topUsers = await db
-      .select({
-        id: users.id,
-        username: users.username,
-        displayName: users.displayName,
-        avatar: users.avatar,
-        avatarChangedAt: users.avatarChangedAt,
-        highestScore: users.highestScore,
-        totalGamesPlayed: users.totalGamesPlayed,
-        lifetimePoints: users.lifetimePoints,
-        schoolName: users.schoolName,
-        province: users.province,
-        gradeLevel: users.gradeLevel,
-        section: users.section,
-        isNamePublic: users.isNamePublic,
-        isUsernamePublic: users.isUsernamePublic,
-        isSchoolPublic: users.isSchoolPublic,
-        isProvincePublic: users.isProvincePublic,
-        isGradePublic: users.isGradePublic,
-        isSectionPublic: users.isSectionPublic,
-      })
-      .from(users)
-      .where(sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.schoolName} IS NOT NULL AND ${users.province} IS NOT NULL AND ${users.gradeLevel} IS NOT NULL AND ${users.isStatsPublic} = true`)
-      .orderBy(desc(users.lifetimePoints), desc(users.highestScore))
-      .limit(limit)
-      .offset(offset);
+    // Any active student who has scored shows up. Profile completeness
+    // (school/province/grade) and isStatsPublic are NOT required — students who
+    // played any game appear even with a bare profile. Per-field privacy flags
+    // (isNamePublic, isSchoolPublic, …) still anonymize the displayed values below.
+    const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student' AND ${users.lifetimePoints} > 0`;
+    const provinceFilter =
+      province !== "all" ? sql` AND ${users.province} = ${province}` : sql``;
 
-    // Add rank to each user and mask details based on settings
-    const rankedUsers = topUsers.map((user, index) => {
+    let rows: {
+      id: number;
+      username: string;
+      displayName: string | null;
+      avatar: string | null;
+      avatarChangedAt: Date | null;
+      highestScore: number;
+      totalGamesPlayed: number;
+      windowPoints: number;
+      schoolName: string | null;
+      province: string | null;
+      gradeLevel: string | null;
+      section: string | null;
+      isNamePublic: boolean | null;
+      isUsernamePublic: boolean | null;
+      isSchoolPublic: boolean | null;
+      isProvincePublic: boolean | null;
+      isGradePublic: boolean | null;
+      isSectionPublic: boolean | null;
+    }[];
+
+    if (windowParam === "all" && gameType === "all" && source === "all") {
+      // ── All-time, no filter — rank by lifetimePoints (fastest path) ───────
+      rows = await db
+        .select({
+          id: users.id,
+          username: users.username,
+          displayName: users.displayName,
+          avatar: users.avatar,
+          avatarChangedAt: users.avatarChangedAt,
+          highestScore: users.highestScore,
+          totalGamesPlayed: users.totalGamesPlayed,
+          windowPoints: users.lifetimePoints,
+          schoolName: users.schoolName,
+          province: users.province,
+          gradeLevel: users.gradeLevel,
+          section: users.section,
+          isNamePublic: users.isNamePublic,
+          isUsernamePublic: users.isUsernamePublic,
+          isSchoolPublic: users.isSchoolPublic,
+          isProvincePublic: users.isProvincePublic,
+          isGradePublic: users.isGradePublic,
+          isSectionPublic: users.isSectionPublic,
+        })
+        .from(users)
+        .where(sql`${publicFilter}${provinceFilter}`)
+        .orderBy(desc(users.lifetimePoints), desc(users.highestScore))
+        .limit(limit)
+        .offset(offset);
+    } else {
+      // ── Windowed or filtered — SUM(pointsLedger.points) within constraints ─
+      // For all-time with gameType/source filter we still use pointsLedger
+      // so we can filter by gameType and source columns.
+      const start =
+        windowParam !== "all"
+          ? windowStartDate(windowParam === "weekly" ? "weekly" : "monthly")
+          : "1970-01-01";
+
+      const gameTypeFilter =
+        gameType !== "all" ? sql` AND ${pointsLedger.gameType} = ${gameType}` : sql``;
+      const sourceFilter =
+        source !== "all" ? sql` AND ${pointsLedger.source} = ${source}` : sql``;
+
+      rows = await db
+        .select({
+          id: users.id,
+          username: users.username,
+          displayName: users.displayName,
+          avatar: users.avatar,
+          avatarChangedAt: users.avatarChangedAt,
+          highestScore: users.highestScore,
+          totalGamesPlayed: users.totalGamesPlayed,
+          windowPoints: sql<number>`COALESCE(SUM(${pointsLedger.points}), 0)::int`,
+          schoolName: users.schoolName,
+          province: users.province,
+          gradeLevel: users.gradeLevel,
+          section: users.section,
+          isNamePublic: users.isNamePublic,
+          isUsernamePublic: users.isUsernamePublic,
+          isSchoolPublic: users.isSchoolPublic,
+          isProvincePublic: users.isProvincePublic,
+          isGradePublic: users.isGradePublic,
+          isSectionPublic: users.isSectionPublic,
+        })
+        .from(users)
+        .innerJoin(
+          pointsLedger,
+          and(
+            eq(pointsLedger.userId, users.id),
+            gte(pointsLedger.createdAt, new Date(`${start}T00:00:00+07:00`))
+          )
+        )
+        .where(sql`${publicFilter}${provinceFilter}${gameTypeFilter}${sourceFilter}`)
+        .groupBy(
+          users.id,
+          users.username,
+          users.displayName,
+          users.avatar,
+          users.avatarChangedAt,
+          users.highestScore,
+          users.totalGamesPlayed,
+          users.schoolName,
+          users.province,
+          users.gradeLevel,
+          users.section,
+          users.isNamePublic,
+          users.isUsernamePublic,
+          users.isSchoolPublic,
+          users.isProvincePublic,
+          users.isGradePublic,
+          users.isSectionPublic
+        )
+        .orderBy(desc(sql`COALESCE(SUM(${pointsLedger.points}), 0)`))
+        .limit(limit)
+        .offset(offset);
+    }
+
+    // Rank is assigned by position in the sorted result + offset.
+    // Because results are ordered DESC by points and we paginate with offset,
+    // rank = offset + index + 1 is correct for the page slice.
+    const rankedUsers = rows.map((user, index) => {
       const isNamePublic = user.isNamePublic ?? true;
       const isUsernamePublic = user.isUsernamePublic ?? true;
-      
       return {
         id: user.id,
         rank: offset + index + 1,
-        displayName: isNamePublic ? (user.displayName || user.username) : (isUsernamePublic ? user.username : "Private Student / សិស្សឯកជន"),
+        displayName: isNamePublic
+          ? user.displayName || user.username
+          : isUsernamePublic
+            ? user.username
+            : "Private Student / សិស្សឯកជន",
         username: isUsernamePublic ? user.username : `student_${user.id}`,
+        // Flags whether `username` is the real, profile-resolvable handle.
+        // Private usernames are anonymized to `student_<id>`, which has no
+        // public profile — the client must not link those rows to /u/.
+        isUsernamePublic,
         avatar: user.avatar,
         avatarChangedAt: user.avatarChangedAt,
         highestScore: user.highestScore,
         totalGamesPlayed: user.totalGamesPlayed,
-        lifetimePoints: user.lifetimePoints,
+        lifetimePoints: user.windowPoints,
         schoolName: (user.isSchoolPublic ?? true) ? user.schoolName : "Private / ឯកជន",
         province: (user.isProvincePublic ?? true) ? user.province : "Private / ឯកជន",
         gradeLevel: (user.isGradePublic ?? true) ? user.gradeLevel : "Private / ឯកជន",
@@ -62,6 +198,10 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({
       leaderboard: rankedUsers,
       total: rankedUsers.length,
+      window: windowParam,
+      province,
+      gameType,
+      source,
     });
   } catch (error) {
     console.error("Error fetching leaderboard:", error);
