@@ -7,10 +7,10 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   eslint: {
-    // Skip ESLint during Next.js builds on CI to avoid build failures from warnings.
-    // We still run lint in CI or locally; this prevents Vercel's build from failing.
+    // Skip ESLint during Next.js builds (e.g. Vercel) to avoid build failures from warnings.
+    // Linting is still enforced via the GitHub Actions workflow (`pnpm run lint`).
     ignoreDuringBuilds: true,
-  },
+  }
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 31536000, // 1 year for images
