@@ -3,7 +3,7 @@
 import { useState, useEffect, useTransition, useCallback } from "react";
 import {
   Search, Plus, Edit3, Trash2, Eye, UserCheck, UserX,
-  RefreshCw, Activity, Wifi, Clock, Crown, X,
+  RefreshCw, Activity, Wifi, Clock, Crown, X, ShieldCheck, ShieldOff, Loader2,
 } from "lucide-react";
 import { createUser, updateUser, deleteUser, toggleUserActive } from "@/app/actions/users";
 import { toast } from "sonner";
@@ -38,6 +38,7 @@ interface UserRow {
   isTrial?: boolean;
   trialEndsAt?: string | Date | null;
   planEndsAt?: string | Date | null;
+  twoFactorEnabled?: boolean;
 }
 
 const ROLE_CONFIG: Record<Role, { label: string; bg: string; text: string }> = {
@@ -248,7 +249,32 @@ function EditUserDialog({ user, onSuccess }: { user: UserRow; onSuccess: () => v
 }
 
 // ── User Detail Modal ─────────────────────────────────────────────────────────
-function UserDetailModal({ user, onClose }: { user: UserRow; onClose: () => void }) {
+function UserDetailModal({ user, onClose, onUpdated }: { user: UserRow; onClose: () => void; onUpdated?: () => void }) {
+  const [twoFA, setTwoFA] = useState(!!user.twoFactorEnabled);
+  const [confirmReset, setConfirmReset] = useState(false);
+  const [resetting, setResetting] = useState(false);
+
+  async function handleReset2FA() {
+    setResetting(true);
+    try {
+      const res = await fetch("/api/admin/users/reset-2fa", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: user.id }),
+      });
+      const d = await res.json();
+      if (!res.ok) throw new Error(d.error || "Reset failed");
+      setTwoFA(false);
+      setConfirmReset(false);
+      toast.success(`2FA reset for @${user.username}`);
+      onUpdated?.();
+    } catch (e: unknown) {
+      toast.error(e instanceof Error ? e.message : "Reset failed");
+    } finally {
+      setResetting(false);
+    }
+  }
+
   return (
     <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
       <div className="bg-white border-4 border-black w-full max-w-lg max-h-[90vh] overflow-y-auto" style={{ boxShadow: "8px 8px 0 #000" }}>
@@ -312,6 +338,58 @@ function UserDetailModal({ user, onClose }: { user: UserRow; onClose: () => void
                 <span className="font-bold text-zinc-800">{value}</span>
               </div>
             ))}
+          </div>
+
+          {/* Security / 2FA */}
+          <div className="border-2 border-black p-4" style={{ boxShadow: "3px 3px 0 #000" }}>
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-2">
+                {twoFA
+                  ? <ShieldCheck size={18} className="text-green-600" />
+                  : <ShieldOff size={18} className="text-zinc-400" />}
+                <div>
+                  <p className="text-xs font-black uppercase tracking-wide">Two-Factor Auth</p>
+                  <p className="text-[11px] font-bold text-zinc-500">
+                    {twoFA ? "Enabled · បានបើក" : "Off · បិទ"}
+                  </p>
+                </div>
+              </div>
+
+              {twoFA && !confirmReset && (
+                <button
+                  onClick={() => setConfirmReset(true)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-black uppercase border-2 border-black bg-white hover:bg-red-400 hover:shadow-[2px_2px_0_#000] transition-all"
+                >
+                  <ShieldOff size={13} /> Reset 2FA
+                </button>
+              )}
+
+              {twoFA && confirmReset && (
+                <div className="flex items-center gap-1.5">
+                  <button
+                    onClick={handleReset2FA}
+                    disabled={resetting}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-black uppercase bg-red-500 text-white border-2 border-black disabled:opacity-60"
+                  >
+                    {resetting ? <Loader2 size={13} className="animate-spin" /> : <ShieldOff size={13} />}
+                    Confirm
+                  </button>
+                  <button
+                    onClick={() => setConfirmReset(false)}
+                    disabled={resetting}
+                    className="px-3 py-2 text-xs font-black uppercase bg-white border-2 border-black"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              )}
+            </div>
+            {twoFA && confirmReset && (
+              <p className="text-[11px] font-bold text-zinc-500 mt-2">
+                Use only when the user lost their app AND backup codes. They will log in with password
+                only and can re-enrol from Settings → Security.
+              </p>
+            )}
           </div>
         </div>
       </div>
@@ -591,7 +669,13 @@ export function UsersTable({ initialUsers }: { initialUsers: UserRow[] }) {
       </div>
 
       {/* Detail modal */}
-      {selectedUser && <UserDetailModal user={selectedUser} onClose={() => setSelectedUser(null)} />}
+      {selectedUser && (
+        <UserDetailModal
+          user={selectedUser}
+          onClose={() => setSelectedUser(null)}
+          onUpdated={() => fetchUsers(true)}
+        />
+      )}
     </div>
   );
 }

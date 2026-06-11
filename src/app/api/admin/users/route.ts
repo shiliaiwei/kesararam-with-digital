@@ -29,6 +29,7 @@ export async function GET(_request: NextRequest) {
           u.created_at          AS "createdAt",
           u.lifetime_points     AS "lifetimePoints",
           u.total_games_played  AS "totalGamesPlayed",
+          u.two_factor_enabled  AS "twoFactorEnabled",
           COUNT(DISTINCT s.id)::int AS "totalSessions",
           COALESCE(SUM(
             CASE WHEN s.logout_at IS NOT NULL
@@ -76,6 +77,7 @@ export async function GET(_request: NextRequest) {
           created_at          AS "createdAt",
           lifetime_points     AS "lifetimePoints",
           total_games_played  AS "totalGamesPlayed",
+          two_factor_enabled  AS "twoFactorEnabled",
           0     AS "totalSessions",
           0     AS "timeSpent",
           false AS "isOnline",

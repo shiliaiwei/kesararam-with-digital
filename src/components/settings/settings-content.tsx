@@ -15,10 +15,13 @@ import {
   Target,
   Clock,
   Lock,
-  Info
+  Info,
+  ShieldCheck
 } from "lucide-react";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
 import { FACES, HEADS } from "../profile/profile-editor";
+import { TwoFactorSetup } from "@/components/account/two-factor-setup";
+import { ChangePassword } from "@/components/account/change-password";
 
 const CAMBODIA_PROVINCES = [
   { en: "Siem Reap", kh: "សៀមរាប" },
@@ -289,6 +292,7 @@ export function SettingsContent() {
     { id: "notifications", label: "Notifications", icon: Bell },
     { id: "preferences", label: "Preferences", icon: Palette },
     { id: "privacy", label: "Privacy", icon: Shield },
+    { id: "security", label: "Security", icon: Lock },
   ];
 
   const avatarItems = activeAvatarTab === "face" ? FACES : HEADS;
@@ -1090,16 +1094,61 @@ export function SettingsContent() {
                 </button>
               </div>
 
-              <div className="p-4 border-2 border-red-600 bg-red-50" style={{ borderRadius: "0" }}>
-                <h3 className="font-bold text-red-600 mb-2">Danger Zone</h3>
-                <p className="text-sm text-zinc-600 mb-4">
-                  Permanently delete your account and all associated data.
+              {settings.role === "student" ? (
+                <div className="p-4 border-2 border-black bg-zinc-50" style={{ borderRadius: "0" }}>
+                  <h3 className="font-bold text-black mb-2">Account Removal · ការលុបគណនី</h3>
+                  <p className="text-sm text-zinc-600">
+                    For your safety, students can&apos;t delete their own account. Ask your teacher or an
+                    admin if it needs to be removed.
+                    <br />
+                    ដើម្បីសុវត្ថិភាព សិស្សមិនអាចលុបគណនីខ្លួនឯងបានទេ។ សូមស្នើគ្រូ ឬអ្នកគ្រប់គ្រង
+                    ប្រសិនបើចង់លុបគណនី។
+                  </p>
+                </div>
+              ) : (
+                <div className="p-4 border-2 border-red-600 bg-red-50" style={{ borderRadius: "0" }}>
+                  <h3 className="font-bold text-red-600 mb-2">Danger Zone</h3>
+                  <p className="text-sm text-zinc-600 mb-4">
+                    Permanently delete your account and all associated data.
+                  </p>
+                  <button className="px-4 py-2 bg-red-400 border-2 border-black font-bold text-sm hover:bg-red-500" style={{ borderRadius: "0" }}>
+                    Delete Account
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Security Tab */}
+        {activeTab === "security" && (
+          <div className="space-y-6">
+            <h2 className="text-xl font-black text-black border-b-2 border-black pb-2">
+              Security / សុវត្ថិភាព
+            </h2>
+
+            <ChangePassword />
+
+            <div
+              className="flex items-start gap-3 p-4 border-2 border-black bg-yellow-50"
+              style={{ borderRadius: "0" }}
+            >
+              <ShieldCheck size={20} className="text-[#0284c7] shrink-0 mt-0.5" />
+              <div>
+                <h3 className="font-black text-black">
+                  Enhanced access protected by Two-Factor Authentication (2FA/TOTP).
+                </h3>
+                <p className="text-sm text-zinc-600 mt-1">
+                  ការការពារបន្ថែមដោយការផ្ទៀងផ្ទាត់ ២ ជាន់ (2FA/TOTP)។ បើកវាដើម្បីបន្ថែម
+                  ជំហានសុវត្ថិភាពមួយទៀតពេលចូលគណនី។
                 </p>
-                <button className="px-4 py-2 bg-red-400 border-2 border-black font-bold text-sm hover:bg-red-500" style={{ borderRadius: "0" }}>
-                  Delete Account
-                </button>
+                <p className="text-xs font-bold text-zinc-500 mt-2">
+                  Optional for every account · ស្រេចចិត្តសម្រាប់គ្រប់គណនី
+                </p>
               </div>
             </div>
+
+            <TwoFactorSetup />
           </div>
         )}
       </div>

@@ -4,13 +4,9 @@ import { db } from "@/lib/db";
 import { users } from "@/db/schema";
 import { subscriptions } from "@/db/schema/subscriptions";
 import { eq } from "drizzle-orm";
-import { createHash } from "crypto";
 import { revalidatePath } from "next/cache";
 import { getSession } from "@/lib/auth";
-
-function hashPassword(pw: string): string {
-  return createHash("sha256").update(pw).digest("hex");
-}
+import { hashPassword } from "@/lib/password";
 
 /** Auto-assign a 7-day Teacher Pro trial when a teacher account is created */
 async function autoAssignTeacherTrial(userId: number, adminId: number) {

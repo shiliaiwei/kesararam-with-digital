@@ -6,7 +6,7 @@ import { sessions } from "@/db/schema/sessions";
 import { eq, or, and } from "drizzle-orm";
 import { signToken, getRedirectUrl } from "@/lib/auth";
 import { cookies, headers } from "next/headers";
-import { createHash, timingSafeEqual } from "crypto";
+import { hashPassword, verifyPassword } from "@/lib/password";
 import { redirect } from "next/navigation";
 import {
   verifyTotp,
@@ -25,10 +25,6 @@ export interface LoginState {
   // 2FA: set when the password was correct but a TOTP/backup code is still needed.
   twoFactorRequired?: boolean;
   pendingToken?: string;
-}
-
-function hashPassword(pw: string): string {
-  return createHash("sha256").update(pw).digest("hex");
 }
 
 type DbUser = typeof users.$inferSelect;
@@ -165,15 +161,7 @@ export async function loginAction(
     return { error: "Your account is locked. Contact your administrator." };
   }
 
-  const hash = hashPassword(password);
-
-  const expectedHash = Buffer.from(user.passwordHash, 'utf8');
-  const actualHash = Buffer.from(hash, 'utf8');
-
-  let isValidPassword = false;
-  if (expectedHash.length === actualHash.length) {
-    isValidPassword = timingSafeEqual(expectedHash, actualHash);
-  }
+  const { valid: isValidPassword, needsUpgrade } = verifyPassword(password, user.passwordHash);
 
   if (!isValidPassword) {
     const newAttempts = (user.loginAttempts ?? 0) + 1;
@@ -196,6 +184,19 @@ export async function loginAction(
           ? `Invalid credentials. ${remaining} attempt${remaining !== 1 ? "s" : ""} remaining.`
           : "Account locked due to too many failed attempts. Contact your administrator.",
     };
+  }
+
+  // Transparently migrate legacy unsalted SHA-256 hashes to salted scrypt on a
+  // successful login, so existing accounts upgrade without a forced reset.
+  if (needsUpgrade) {
+    try {
+      await db
+        .update(users)
+        .set({ passwordHash: hashPassword(password) })
+        .where(eq(users.id, user.id));
+    } catch (_) {
+      // non-fatal — the user still authenticated with their correct password
+    }
   }
 
   // 2FA: password is correct, but if the account has 2FA we stop here and

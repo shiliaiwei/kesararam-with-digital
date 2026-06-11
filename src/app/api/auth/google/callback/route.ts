@@ -6,7 +6,8 @@ import { eq, or, and } from "drizzle-orm";
 import { signToken, getRedirectUrl } from "@/lib/auth";
 import { assignSignupTrial, normalizePlan } from "@/lib/trial";
 import { cookies } from "next/headers";
-import { createHash } from "crypto";
+import { randomBytes } from "crypto";
+import { hashPassword } from "@/lib/password";
 
 export const dynamic = "force-dynamic";
 
@@ -104,9 +105,8 @@ export async function GET(req: NextRequest) {
 
     // New User! Register cleanly with Google details.
     // They will be gated on profile completion (/profile/student) to provide their invite code and school details before they can use the platform.
-    const randomPassword = createHash("sha256")
-      .update(Math.random().toString() + Date.now().toString())
-      .digest("hex");
+    // OAuth users never sign in with a password; store a strong random one.
+    const randomPassword = hashPassword(randomBytes(32).toString("hex"));
 
     // Clean google username (e.g. janesmith + 3 numbers)
     const derivedUsername = email.split("@")[0].replace(/[^a-zA-Z0-9]/g, "") + Math.floor(100 + Math.random() * 900);
