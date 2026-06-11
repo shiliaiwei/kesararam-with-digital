@@ -224,6 +224,13 @@ export default function SoloPage() {
         }),
       });
       const result = await res.json();
+      if (isAuthenticated === false) {
+        const todayStr = new Date().toISOString().slice(0, 10);
+        const key = `kwd_solo_plays_${todayStr}`;
+        const current = localStorage.getItem(key);
+        const count = current ? parseInt(current, 10) : 0;
+        localStorage.setItem(key, (count + 1).toString());
+      }
       // Always use the server-authoritative totalScore
       setPhase({ name: "results", session, answers: answersRef.current, result });
       if (!muted) sounds.podium();
