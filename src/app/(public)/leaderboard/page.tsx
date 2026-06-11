@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { gsap } from "gsap";
 import { useLang } from "@/context/lang-context";
 import { RankBadge as TierBadge, RankedAvatarRing, RankProgressBar, RankShowcase } from "@/components/shared/rank-label";
@@ -99,10 +100,8 @@ const GAME_TYPES: { id: string; en: string; kh: string }[] = [
 
 // Source filter — lets users view "Live only" vs "Solo practice" rankings.
 const SOURCE_TABS: { id: string; en: string; kh: string; icon: React.ElementType; color: string }[] = [
-  { id: "all",   en: "All Sources",   kh: "គ្រប់ប្រភព",          icon: Trophy,   color: "#eab308" },
   { id: "live",  en: "🔴 Live Games",  kh: "🔴 ហ្គេមផ្ទាល់",      icon: Wifi,     color: "#ef4444" },
   { id: "solo",  en: "🟡 Solo Practice",kh: "🟡 ហ្វឹកហាត់តែម្នាក់",icon: BookOpen, color: "#eab308" },
-  { id: "daily", en: "📅 Daily Challenge",kh: "📅 បញ្ហាប្រចាំថ្ងៃ", icon: Calendar, color: "#06b6d4" },
 ];
 
 interface LeaderboardUser {
@@ -410,7 +409,8 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
 
       {/* Card Body */}
       <div
-        className="w-full flex flex-col items-center gap-1.5 pt-8 pb-4 px-2 md:px-3 border-3 border-black -mt-4 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] relative overflow-hidden"
+        className={`w-full flex flex-col items-center gap-1.5 pt-8 pb-4 px-2 md:px-3 border-3 border-black -mt-4 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] relative overflow-hidden ${user && user.isUsernamePublic !== false ? "cursor-pointer" : "cursor-default"}`}
+        onClick={user && user.isUsernamePublic !== false ? () => onSelect(user) : undefined}
         style={{
           backgroundColor: isFirst ? "#fffbeb" : "#fff",
           backgroundImage: isFirst
@@ -854,7 +854,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
         </div>
 
         {/* Progress Bar (Endowment & Goal Gradient loop) */}
-        {isLoggedIn && !claimed && (
+        {!claimed && (
           <div className="mt-1 border-t-2 border-dashed border-zinc-100 pt-2.5">
             <div className="flex justify-between items-center mb-1 font-mono text-[9px] font-black">
               <span className="text-zinc-500">
@@ -929,7 +929,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
                 animation: "buttonPulse 2.5s ease-in-out infinite",
                 "--pulse-color": `${item.color}66`,
                 ...kf,
-              } as React.CSSProperties}
+              } as any}
             >
               <Gift size={12} strokeWidth={3} className="animate-bounce" />
               <span>{kh ? "ទទួលឥឡូវនេះ!" : "CLAIM NOW!"}</span>
@@ -1001,7 +1001,7 @@ export default function LeaderboardPage() {
   const [windowTab, setWindowTab] = useState<"weekly" | "monthly" | "all">("all");
   const [province, setProvince] = useState("all");
   const [gameType, setGameType] = useState("all");
-  const [sourceTab, setSourceTab] = useState("all");
+  const [sourceTab, setSourceTab] = useState("live");
 
   const fetchLeaderboard = useCallback(async () => {
     try {
@@ -1252,12 +1252,6 @@ export default function LeaderboardPage() {
                     {kh ? "ហ្វឹកហាត់ស្នើ (Practice-only)" : "Solo Practice (Recommended)"}
                   </span>
                 </div>
-                <div className="flex items-center gap-1.5 bg-cyan-50 border border-cyan-200 px-2 py-0.5">
-                  <span className="w-2 h-2 rounded-full bg-cyan-400" />
-                  <span className="text-[9px] font-black text-cyan-700" style={kf}>
-                    {kh ? "បញ្ហាប្រចាំថ្ងៃ" : "Daily Challenge"}
-                  </span>
-                </div>
               </div>
 
               {/* ── Filters: source · time window · province · game type ── */}
@@ -1363,41 +1357,23 @@ export default function LeaderboardPage() {
                   // Anonymized (private-username) rows have no public profile.
                   const linkable = user.isUsernamePublic !== false;
                   return (
-                    <div key={user.id} className="grid grid-cols-12 px-3 md:px-5 py-2.5 border-t border-zinc-100 hover:bg-zinc-50 transition-colors items-center">
+                    <div
+                      key={user.id}
+                      className={`grid grid-cols-12 px-3 md:px-5 py-2.5 border-t border-zinc-100 hover:bg-zinc-50 transition-colors items-center ${linkable ? "cursor-pointer" : "cursor-default"}`}
+                      onClick={linkable ? () => handleSelectUser(user) : undefined}
+                    >
                       <div className="col-span-1 flex items-center gap-0.5">
                         <span className="text-xs font-black text-zinc-400">{user.rank}</span>
                         {moved > 0 && <span className="text-[8px] font-black text-green-500 leading-none">▲</span>}
                         {moved < 0 && <span className="text-[8px] font-black text-red-400 leading-none">▼</span>}
                       </div>
-                      <div
-                        className={`col-span-7 flex items-center gap-2 min-w-0 select-none ${linkable ? "cursor-pointer" : "cursor-default"}`}
-                        onClick={linkable ? () => handleSelectUser(user) : undefined}
-                      >
-                        <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={30}>
-                          <Avatar url={(currentUser && user.id === currentUser.id) ? currentUser.avatar : user.avatar} name={user.displayName || user.username} size={30} changedAt={user.avatarChangedAt} />
-                        </RankedAvatarRing>
-                        <div className="flex flex-col min-w-0">
-                          <div className="flex items-center gap-1.5 min-w-0 flex-wrap">
-                            <span className="font-bold text-black text-xs md:text-sm truncate leading-tight font-kh-header">
-                              {user.displayName || user.username}
-                            </span>
-                            <TierBadge lifetimePoints={user.lifetimePoints} size="xs" showEmoji={false} lang={lang} />
-                            {user.province && (
-                              <span className="inline-block px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wider bg-blue-100 text-blue-700 border border-blue-200">
-                                {user.province}
-                              </span>
-                            )}
-                          </div>
-                          <div className="flex items-center gap-1.5 text-[9px] text-zinc-400 truncate">
-                            {user.displayName && linkable && <span>@{user.username}</span>}
-                            {user.schoolName && (
-                              <>
-                                {user.displayName && <span>·</span>}
-                                <span className="truncate">{user.schoolName}</span>
-                              </>
-                            )}
-                          </div>
-                        </div>
+                      <div className="col-span-7 flex flex-col min-w-0 select-none">
+                        <span className="font-bold text-black text-xs md:text-sm truncate leading-tight font-kh-header">
+                          {user.displayName || user.username}
+                        </span>
+                        <span className="text-[10px] text-zinc-500 font-mono truncate mt-0.5">
+                          @{user.username}
+                        </span>
                       </div>
                       <span className="col-span-2 text-center text-xs font-bold text-zinc-400 tabular-nums hidden sm:block">
                         {user.totalGamesPlayed}
@@ -1417,8 +1393,8 @@ export default function LeaderboardPage() {
               </div>
               <p className="text-center text-[9px] text-zinc-400 mt-2 font-mono uppercase" style={kf}>
                 {kh
-                  ? "ហ្គេមផ្ទាល់ (គ្រូ) + ហ្វឹកហាត់ + បញ្ហាប្រចាំថ្ងៃ = ពិន្ទុ · ចំណាត់ថ្នាក់ update ជាបន្ត · ភ្ញៀវមិនត្រូវបានកត់ត្រា"
-                  : "Live (teacher) + Solo practice + Daily challenge all count · Ranks update in real-time · Guest plays not recorded"}
+                  ? "ហ្គេមផ្ទាល់ (គ្រូ) + ហ្វឹកហាត់ = ពិន្ទុ · ចំណាត់ថ្នាក់ update ជាបន្ត · ភ្ញៀវមិនត្រូវបានកត់ត្រា"
+                  : "Live (teacher) + Solo practice all count · Ranks update in real-time · Guest plays not recorded"}
               </p>
 
             </div>
@@ -1495,8 +1471,7 @@ export default function LeaderboardPage() {
             )}
 
             {/* ── Rewards Section (Psychology-driven redesign) ── */}
-            {isStudent && (
-              <div>
+            <div>
                 {/* Rewards Store Header — simplified, lighter weight */}
                 <div className="relative overflow-hidden border-2 border-black mb-6"
                   style={{
@@ -1604,7 +1579,6 @@ export default function LeaderboardPage() {
                   </p>
                 </div>
               </div>
-            )}
           </>
         )}
       </div>

@@ -772,7 +772,7 @@ export default function PlayPage() {
                 }}
               >
                 {/* banner */}
-                <div style={{ height: 88, background: g.brandColor, borderBottom: `4px solid ${BRAND.black}`, position: "relative", display: "flex", alignItems: "center", justifyContext: "center" }}>
+                <div style={{ height: 88, background: g.brandColor, borderBottom: `4px solid ${BRAND.black}`, position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(rgba(0,0,0,0.14) 1.5px, transparent 1.5px)", backgroundSize: "14px 14px" }} />
                   <div style={{ width: 52, height: 52, background: BRAND.white, border: `3px solid ${BRAND.black}`, boxShadow: `3px 3px 0 ${BRAND.black}`, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2 }}>
                     <g.Icon size={24} strokeWidth={2.5} className="text-black" />
