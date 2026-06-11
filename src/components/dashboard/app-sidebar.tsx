@@ -163,7 +163,7 @@ export function AppSidebar({
             style={{ background: "#FFD700", boxShadow: "2px 2px 0px #000" }}
           >
             <Image
-              src="/brand/kwd-black.png"
+              src="/brand/kwd-black_nobackground.png"
               alt="KWD"
               width={22}
               height={22}
