@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { gameSessions, gameParticipants, gameSessionAnswers } from "@/db/schema/game";
-import { questions } from "@/db/schema/content";
+import { questions, answers } from "@/db/schema/content";
 import { getSession } from "@/lib/auth";
-import { eq, and, sql } from "drizzle-orm";
+import { eq, and, sql, inArray } from "drizzle-orm";
 
 export async function GET(
   req: NextRequest,
@@ -91,6 +91,32 @@ export async function GET(
     })
   );
 
+  // ── Question text + answer options lookup (once) ─────────────────────────────
+  // Powers the per-student question-by-question breakdown: which option each
+  // student picked vs. the correct one, per question.
+  const qRows = qIds.length
+    ? await db
+        .select({ id: questions.id, en: questions.questionEn, km: questions.questionKm })
+        .from(questions)
+        .where(inArray(questions.id, qIds))
+    : [];
+  const qTextById = new Map(qRows.map((q) => [q.id, q]));
+
+  const optRows = qIds.length
+    ? await db
+        .select({ id: answers.id, questionId: answers.questionId, en: answers.answerEn, km: answers.answerKm, isCorrect: answers.isCorrect })
+        .from(answers)
+        .where(inArray(answers.questionId, qIds))
+    : [];
+  const optById = new Map(optRows.map((o) => [o.id, o]));
+  const correctByQ = new Map<number, { id: number; en: string; km: string }>();
+  for (const o of optRows) {
+    if (o.isCorrect) correctByQ.set(o.questionId, { id: o.id, en: o.en, km: o.km });
+  }
+
+  const ansByUserQ = new Map<string, (typeof allAnswers)[number]>();
+  for (const a of allAnswers) ansByUserQ.set(`${a.userId}:${a.questionId}`, a);
+
   // Per-student stats
   const perStudent = participants.map((p) => {
     const pAnswers = allAnswers.filter((a) => a.userId === p.userId);
@@ -101,6 +127,28 @@ export async function GET(
         ? Math.round(pAnswers.reduce((s, a) => s + (a.remainingTimeMs ?? 0), 0) / pTotal)
         : 0;
 
+    // Per-question detail in the session's question order.
+    const answersDetail = qIds.map((qId, idx) => {
+      const qt = qTextById.get(qId);
+      const correct = correctByQ.get(qId);
+      const a = ansByUserQ.get(`${p.userId}:${qId}`);
+      const chosen = a?.answerId ? optById.get(a.answerId) : undefined;
+      return {
+        index: idx,
+        questionId: qId,
+        questionEn: qt?.en ?? "",
+        questionKm: qt?.km ?? "",
+        answered: !!a,
+        isCorrect: a?.isCorrect ?? false,
+        chosenAnswerEn: chosen?.en ?? null,
+        chosenAnswerKm: chosen?.km ?? null,
+        correctAnswerEn: correct?.en ?? null,
+        correctAnswerKm: correct?.km ?? null,
+        remainingTimeMs: a?.remainingTimeMs ?? 0,
+        points: a?.totalPoints ?? 0,
+      };
+    });
+
     return {
       userId: p.userId,
       displayName: p.displayName,
@@ -110,6 +158,7 @@ export async function GET(
       incorrectAnswers: pTotal - pCorrect,
       averageRemainingMs: avgTime,
       rank: p.rank,
+      answers: answersDetail,
     };
   });
 

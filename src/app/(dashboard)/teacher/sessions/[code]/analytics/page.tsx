@@ -6,7 +6,7 @@ import { useLang } from "@/context/lang-context";
 import {
   BarChart2, Users, Target, Clock, AlertTriangle,
   Download, ArrowLeft, FileText, Crown, TrendingUp,
-  CheckCircle, XCircle, Zap, Medal
+  CheckCircle, XCircle, Zap, Medal, ChevronDown, ChevronRight, ListChecks
 } from "lucide-react";
 
 interface Analytics {
@@ -38,7 +38,23 @@ interface Analytics {
     incorrectAnswers: number;
     averageRemainingMs: number;
     rank: number | null;
+    answers: StudentAnswer[];
   }[];
+}
+
+interface StudentAnswer {
+  index: number;
+  questionId: number;
+  questionEn: string;
+  questionKm: string;
+  answered: boolean;
+  isCorrect: boolean;
+  chosenAnswerEn: string | null;
+  chosenAnswerKm: string | null;
+  correctAnswerEn: string | null;
+  correctAnswerKm: string | null;
+  remainingTimeMs: number;
+  points: number;
 }
 
 const RANK_COLORS = ["#ffd700", "#c0c0c0", "#cd7f32"];
@@ -65,6 +81,7 @@ export default function AnalyticsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [activeTab, setActiveTab] = useState<"questions" | "students">("questions");
+  const [expandedStudent, setExpandedStudent] = useState<number | null>(null);
 
   useEffect(() => {
     fetch(`/api/game/sessions/${code}/analytics`)
@@ -406,6 +423,71 @@ export default function AnalyticsPage() {
                     {s.averageRemainingMs > 0 ? `${(s.averageRemainingMs / 1000).toFixed(1)}s` : "—"}
                   </div>
                 </div>
+
+                {/* ── Per-question answer breakdown (expandable) ── */}
+                {(s.answers?.length ?? 0) > 0 && (
+                  <>
+                    <button
+                      onClick={() => setExpandedStudent(expandedStudent === s.userId ? null : s.userId)}
+                      className="mt-3 w-full flex items-center justify-center gap-1.5 py-2 border-2 border-black bg-zinc-50 hover:bg-yellow-50 font-black text-xs uppercase tracking-wider transition-colors"
+                      style={{ boxShadow: "2px 2px 0 #000", ...khFont }}
+                    >
+                      <ListChecks size={13} />
+                      {expandedStudent === s.userId
+                        ? (kh ? "លាក់ចម្លើយ" : "Hide answers")
+                        : (kh ? "មើលចម្លើយម្ដងមួយៗ" : "View each answer")}
+                      {expandedStudent === s.userId ? <ChevronDown size={13} /> : <ChevronRight size={13} />}
+                    </button>
+
+                    {expandedStudent === s.userId && (
+                      <div className="mt-2 flex flex-col gap-1.5">
+                        {s.answers.map((a) => {
+                          const chosen = kh ? (a.chosenAnswerKm || a.chosenAnswerEn) : (a.chosenAnswerEn || a.chosenAnswerKm);
+                          const correct = kh ? (a.correctAnswerKm || a.correctAnswerEn) : (a.correctAnswerEn || a.correctAnswerKm);
+                          const qText = kh ? (a.questionKm || a.questionEn) : (a.questionEn || a.questionKm);
+                          return (
+                            <div key={a.questionId}
+                              className="border-2 border-black p-2.5"
+                              style={{ background: !a.answered ? "#f4f4f5" : a.isCorrect ? "#f0fdf4" : "#fef2f2", borderLeftWidth: 5, borderLeftColor: !a.answered ? "#a1a1aa" : a.isCorrect ? "#22c55e" : "#ef4444" }}>
+                              <div className="flex items-start gap-2">
+                                <span className="text-[10px] font-black text-zinc-400 mt-0.5 flex-shrink-0">Q{a.index + 1}</span>
+                                <div className="flex-1 min-w-0">
+                                  <div className="text-xs font-bold leading-snug" style={khFont}>{qText}</div>
+                                  {!a.answered ? (
+                                    <div className="mt-1 text-[11px] font-bold text-zinc-400" style={khFont}>{kh ? "មិនបានឆ្លើយ" : "No answer"}</div>
+                                  ) : (
+                                    <div className="mt-1 flex flex-col gap-0.5 text-[11px] font-bold" style={khFont}>
+                                      <div className="flex items-center gap-1" style={{ color: a.isCorrect ? "#16a34a" : "#dc2626" }}>
+                                        {a.isCorrect ? <CheckCircle size={11} /> : <XCircle size={11} />}
+                                        <span className="text-zinc-500">{kh ? "ជ្រើស៖" : "Picked:"}</span>
+                                        <span>{chosen ?? "—"}</span>
+                                      </div>
+                                      {!a.isCorrect && (
+                                        <div className="flex items-center gap-1 text-green-700">
+                                          <CheckCircle size={11} />
+                                          <span className="text-zinc-500">{kh ? "ត្រឹមត្រូវ៖" : "Correct:"}</span>
+                                          <span>{correct ?? "—"}</span>
+                                        </div>
+                                      )}
+                                    </div>
+                                  )}
+                                </div>
+                                <div className="text-right flex-shrink-0">
+                                  {a.answered && a.isCorrect && <div className="text-[11px] font-black text-green-600">+{a.points}</div>}
+                                  {a.answered && a.remainingTimeMs > 0 && (
+                                    <div className="text-[10px] font-bold text-zinc-400 flex items-center gap-0.5 justify-end">
+                                      <Zap size={9} />{(a.remainingTimeMs / 1000).toFixed(1)}s
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </>
+                )}
               </div>
             );
           })}

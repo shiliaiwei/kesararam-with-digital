@@ -520,24 +520,6 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
 
       {/* Buttons - Brutalist Style */}
       <div className="flex flex-col sm:flex-row gap-4 mt-6 w-full max-w-2xl justify-center">
-        {myEntry && (
-          <button
-            onClick={handleDownloadShareCard}
-            disabled={isGeneratingCard}
-            className="flex-1 px-6 py-4 bg-yellow-400 text-black font-black border-4 border-black flex items-center justify-center gap-2 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[7px_7px_0_#000] active:translate-x-0 active:translate-y-0 active:shadow-[3px_3px_0_#000] disabled:opacity-50 transition-all text-base"
-            style={{ boxShadow: "5px 5px 0 #000", borderRadius: "0px", ...khFont }}
-          >
-            {isGeneratingCard ? (
-              <Loader2 size={18} className="animate-spin" />
-            ) : (
-              <Share2 size={18} />
-            )}
-            {isGeneratingCard
-              ? (kh ? "កំពុងបង្កើត..." : "Generating...")
-              : (kh ? "រក្សាទុកកាតលទ្ធផល" : "Save Result Card")}
-          </button>
-        )}
-
         {onPlayAgain && (
           <button
             onClick={onPlayAgain}

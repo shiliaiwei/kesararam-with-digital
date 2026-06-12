@@ -14,6 +14,7 @@ import {
   Zap, Trophy, Target, Swords, BookOpen, GraduationCap,
   Settings2, Globe, Layers, ChevronUp, ChevronDown,
   Sparkles, Rocket, Maximize, Minimize,
+  Hand, FastForward,
 } from "lucide-react";
 import { UpgradeButton } from "@/components/pricing/upgrade-button";
 import { Lock } from "lucide-react";
@@ -105,8 +106,9 @@ function sanitizeError(err: unknown): string {
   if (!err) return "";
   if (typeof err === "string") return err;
   if (typeof err === "object") {
-    if (err.message && typeof err.message === "string") return err.message;
-    if (err.error && typeof err.error === "string") return err.error;
+    const obj = err as Record<string, unknown>;
+    if (obj.message && typeof obj.message === "string") return obj.message;
+    if (obj.error && typeof obj.error === "string") return obj.error;
     try {
       return JSON.stringify(err);
     } catch {
@@ -287,6 +289,11 @@ export default function HostPage() {
   const [selectedClassId, setSelectedClassId] = useState<number | null>(null);
   const [lobbyParticipants, setLobbyParticipants] = useState<ParticipantInfo[]>([]);
   const [questionCount, setQuestionCount] = useState(10);
+  // Advance mode: "manual" = teacher clicks Next Q; "auto" = after the answer is
+  // revealed, auto-jump to the next question after AUTO_ADVANCE_MS. Teacher choice,
+  // persisted so it sticks across sessions.
+  const [advanceMode, setAdvanceMode] = useState<"manual" | "auto">("manual");
+  const [autoAdvanceIn, setAutoAdvanceIn] = useState<number | null>(null);
 
   const [subPlan, setSubPlan] = useState<string>("free");
   const [isTrial, setIsTrial] = useState(false);
@@ -566,6 +573,35 @@ export default function HostPage() {
     return () => clearInterval(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase.name, activeEndsAt]);
+
+  // ── Advance mode: load persisted teacher choice ─────────────────────────────
+  useEffect(() => {
+    const saved = typeof window !== "undefined" ? localStorage.getItem("kwd_host_advance_mode") : null;
+    if (saved === "auto" || saved === "manual") setAdvanceMode(saved);
+  }, []);
+  function pickAdvanceMode(mode: "manual" | "auto") {
+    setAdvanceMode(mode);
+    try { localStorage.setItem("kwd_host_advance_mode", mode); } catch { /* ignore */ }
+  }
+
+  // ── Auto-advance (host-driven) ──────────────────────────────────────────────
+  // In "auto" mode, once a question's answer is revealed (round_end), hold the
+  // correct answer + leaderboard on screen for AUTO_ADVANCE_MS, then advance to
+  // the next question. Combined with the auto-reveal timer above, this makes the
+  // whole game run hands-free. Manual mode leaves advancing to the teacher.
+  const AUTO_ADVANCE_MS = 5000;
+  useEffect(() => {
+    if (advanceMode !== "auto" || phase.name !== "round_end") { setAutoAdvanceIn(null); return; }
+    const start = Date.now();
+    setAutoAdvanceIn(Math.ceil(AUTO_ADVANCE_MS / 1000));
+    const iv = setInterval(() => {
+      const left = Math.ceil((AUTO_ADVANCE_MS - (Date.now() - start)) / 1000);
+      setAutoAdvanceIn(left > 0 ? left : 0);
+    }, 250);
+    const to = setTimeout(() => { control("advance"); }, AUTO_ADVANCE_MS);
+    return () => { clearInterval(iv); clearTimeout(to); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [advanceMode, phase.name]);
 
 
   useEffect(() => {
@@ -927,6 +963,32 @@ export default function HostPage() {
                       </button>
                     ))}
                   </div>
+                </GlassCard>
+
+                {/* Advance mode — Manual vs Auto */}
+                <GlassCard className="p-4">
+                  <div className="flex items-center gap-1.5 mb-3 text-zinc-600 font-bold">
+                    <FastForward size={12} />
+                    <span className="text-xs font-black uppercase tracking-widest" style={khFont}>{kh ? "ការបន្ត" : "Advance"}</span>
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    {(["manual", "auto"] as const).map((m) => (
+                      <button key={m} onClick={() => pickAdvanceMode(m)}
+                        className={`flex items-center justify-center gap-1.5 py-2 text-xs font-black border-2 border-black transition-all duration-100 ${advanceMode === m
+                          ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                          : "bg-white text-zinc-600 hover:bg-zinc-50"
+                          }`}
+                        style={{ borderRadius: "0px" }}>
+                        {m === "manual" ? <Hand size={11} /> : <FastForward size={11} />}
+                        {m === "manual" ? (kh ? "ដោយដៃ" : "Manual") : (kh ? "ស្វ័យ" : "Auto")}
+                      </button>
+                    ))}
+                  </div>
+                  <p className="text-[10px] font-bold text-zinc-400 mt-2 leading-snug" style={khFont}>
+                    {advanceMode === "auto"
+                      ? (kh ? "បង្ហាញចម្លើយ ៥វិ រួចបន្តដោយស្វ័យប្រវត្តិ" : "Shows answer 5s, then auto next")
+                      : (kh ? "គ្រូចុច «បន្ទាប់» ដោយខ្លួនឯង" : "Teacher clicks Next each time")}
+                  </p>
                 </GlassCard>
 
                 {/* Language */}
@@ -1557,6 +1619,18 @@ export default function HostPage() {
           <div className="flex items-center gap-2">
             {error && <span className="text-red-600 text-xs font-black max-w-xs truncate">{error}</span>}
 
+            {/* Manual / Auto advance toggle (flip live) */}
+            <div className="flex border-2 border-black shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px" }} title={kh ? "របៀបបន្ត" : "Advance mode"}>
+              {(["manual", "auto"] as const).map((m) => (
+                <button key={m} onClick={() => pickAdvanceMode(m)}
+                  className={`flex items-center gap-1 px-2.5 py-2 text-xs font-black uppercase tracking-wider transition-colors ${m === "auto" ? "border-l-2 border-black" : ""} ${advanceMode === m ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
+                  style={{ borderRadius: "0px" }}>
+                  {m === "manual" ? <Hand size={12} /> : <FastForward size={12} />}
+                  {m === "manual" ? (kh ? "ដៃ" : "Man") : (kh ? "ស្វ័យ" : "Auto")}
+                </button>
+              ))}
+            </div>
+
             {/* Fullscreen Toggle */}
             <button
               onClick={toggleFullscreen}
@@ -1587,11 +1661,13 @@ export default function HostPage() {
             <button
               onClick={() => control("advance")}
               disabled={controlling}
-              className="flex items-center gap-2 px-5 py-2 border-2 border-black bg-green-400 text-black font-black text-sm shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-40"
+              className={`flex items-center gap-2 px-5 py-2 border-2 border-black text-black font-black text-sm shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 disabled:opacity-40 ${!isActive && advanceMode === "auto" ? "bg-yellow-400" : "bg-green-400"}`}
               style={{ borderRadius: "0px" }}
             >
-              {controlling ? <Loader2 size={15} className="animate-spin" /> : <SkipForward size={15} />}
-              {kh ? "សំណួរបន្ទាប់" : "Next Q"}
+              {controlling ? <Loader2 size={15} className="animate-spin" /> : (!isActive && advanceMode === "auto") ? <FastForward size={15} /> : <SkipForward size={15} />}
+              {!isActive && advanceMode === "auto" && autoAdvanceIn !== null
+                ? (kh ? `បន្ទាប់ (${autoAdvanceIn})` : `Auto · ${autoAdvanceIn}s`)
+                : (kh ? "សំណួរបន្ទាប់" : "Next Q")}
             </button>
           </div>
         </div>
@@ -1703,8 +1779,17 @@ export default function HostPage() {
               )}
 
               {!isActive && (
-                <div className="mt-6 text-center text-sm font-black text-zinc-500" style={{ ...khFont }}>
-                  {kh ? "ចុច «សំណួរបន្ទាប់» ដើម្បីបន្ត" : "Click «Next Q» to continue"}
+                <div className="mt-6 text-center text-sm font-black text-zinc-500 flex items-center justify-center gap-1.5" style={{ ...khFont }}>
+                  {advanceMode === "auto" ? (
+                    <>
+                      <FastForward size={14} className="text-yellow-500" />
+                      {autoAdvanceIn !== null && autoAdvanceIn > 0
+                        ? (kh ? `បន្តដោយស្វ័យក្នុង ${autoAdvanceIn} វិនាទី…` : `Auto-advancing in ${autoAdvanceIn}s…`)
+                        : (kh ? "កំពុងបន្ត…" : "Advancing…")}
+                    </>
+                  ) : (
+                    kh ? "ចុច «សំណួរបន្ទាប់» ដើម្បីបន្ត" : "Click «Next Q» to continue"
+                  )}
                 </div>
               )}
             </div>
