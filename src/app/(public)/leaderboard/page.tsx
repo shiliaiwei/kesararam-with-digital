@@ -27,6 +27,9 @@ import {
   School,
   MapPin,
   GraduationCap,
+  Layers,
+  ChevronUp,
+  ChevronDown,
 } from "lucide-react";
 
 // ─── BRAND COLORS ─────────────────────────────────────────────────────────────
@@ -98,10 +101,13 @@ const GAME_TYPES: { id: string; en: string; kh: string }[] = [
   { id: "daily",          en: "Daily Challenge",    kh: "បញ្ហាប្រចាំថ្ងៃ" },
 ];
 
-// Source filter — lets users view "Live only" vs "Solo practice" rankings.
+// Source filter — one segmented control. NO emoji (brand rule): Lucide icon +
+// a semantic color dot per source. Values map to the API `source` param.
 const SOURCE_TABS: { id: string; en: string; kh: string; icon: React.ElementType; color: string }[] = [
-  { id: "live",  en: "🔴 Live Games",  kh: "🔴 ហ្គេមផ្ទាល់",      icon: Wifi,     color: "#ef4444" },
-  { id: "solo",  en: "🟡 Solo Practice",kh: "🟡 ហ្វឹកហាត់តែម្នាក់",icon: BookOpen, color: "#eab308" },
+  { id: "all",   en: "All Sources",     kh: "ប្រភពទាំងអស់",   icon: Layers,   color: "#eab308" },
+  { id: "live",  en: "Live Games",      kh: "ហ្គេមផ្ទាល់",     icon: Wifi,     color: "#ef4444" },
+  { id: "solo",  en: "Solo Practice",   kh: "ហ្វឹកហាត់",       icon: BookOpen, color: "#22c55e" },
+  { id: "daily", en: "Daily Challenge", kh: "បញ្ហាប្រចាំថ្ងៃ", icon: Calendar, color: "#06b6d4" },
 ];
 
 interface LeaderboardUser {
@@ -114,16 +120,12 @@ interface LeaderboardUser {
   highestScore: number;
   totalGamesPlayed: number;
   lifetimePoints: number;
-  schoolName: string | null;
-  province: string | null;
-  gradeLevel: string | null;
-  section: string | null;
-  className: string | null;
-  rank: number;
   schoolName?: string | null;
   province?: string | null;
   gradeLevel?: string | null;
   section?: string | null;
+  className: string | null;
+  rank: number;
 }
 
 // REWARD_ITEMS is now imported from @/lib/rewards — single source of truth.
@@ -1014,7 +1016,7 @@ export default function LeaderboardPage() {
   const [windowTab, setWindowTab] = useState<"weekly" | "monthly" | "all">("all");
   const [province, setProvince] = useState("all");
   const [gameType, setGameType] = useState("all");
-  const [sourceTab, setSourceTab] = useState("live");
+  const [sourceTab, setSourceTab] = useState("all");
 
   const fetchLeaderboard = useCallback(async () => {
     try {
@@ -1248,60 +1250,41 @@ export default function LeaderboardPage() {
 
             {/* Rankings Table */}
             <div>
-              {/* ── Score Source Legend ── */}
-              <div className="mb-3 flex flex-wrap gap-2 items-center">
-                <span className="text-[9px] font-black uppercase tracking-widest text-zinc-400" style={kf}>
-                  {kh ? "ប្រភពពិន្ទុ:" : "Score Source:"}
-                </span>
-                <div className="flex items-center gap-1.5 bg-red-50 border border-red-200 px-2 py-0.5">
-                  <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-                  <span className="text-[9px] font-black text-red-600" style={kf}>
-                    {kh ? "ហ្គេមផ្ទាល់ (គ្រូ) = អាទិភាព" : "Live (Teacher) = Priority"}
-                  </span>
-                </div>
-                <div className="flex items-center gap-1.5 bg-yellow-50 border border-yellow-200 px-2 py-0.5">
-                  <span className="w-2 h-2 rounded-full bg-yellow-400" />
-                  <span className="text-[9px] font-black text-yellow-700" style={kf}>
-                    {kh ? "ហ្វឹកហាត់ស្នើ (Practice-only)" : "Solo Practice (Recommended)"}
-                  </span>
-                </div>
-              </div>
-
-              {/* ── Filters: source · time window · province · game type ── */}
-              <div className="mb-4 flex flex-col gap-3">
-                {/* Source tabs — primary filter, always visible */}
-                <div className="flex flex-wrap gap-2">
+              {/* ── Filter toolbar — one bordered panel: source · window · filters ── */}
+              <div className="mb-4 border-3 border-black bg-white" style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}>
+                {/* Source — single segmented control. Black gaps form the dividers. */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-[2px] bg-black">
                   {SOURCE_TABS.map(s => {
                     const active = sourceTab === s.id;
+                    const Icon = s.icon;
                     return (
                       <button
                         key={s.id}
                         onClick={() => setSourceTab(s.id)}
-                        className={`px-3 py-1.5 text-[10px] font-black uppercase tracking-wider border-2 border-black transition-all ${active ? "shadow-[3px_3px_0_#000] -translate-x-0.5 -translate-y-0.5" : "shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5"}`}
-                        style={{
-                          background: active ? s.color : "#fff",
-                          color: active ? "#000" : "#71717a",
-                          borderRadius: 0,
-                          ...kf,
-                        }}
+                        className={`flex items-center justify-center gap-1.5 px-2 py-2.5 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${active ? "text-black" : "bg-white text-zinc-500 hover:bg-zinc-100 hover:text-black"}`}
+                        style={{ background: active ? s.color : undefined, ...kf }}
                       >
-                        {kh ? s.kh : s.en}
+                        <span className="w-2.5 h-2.5 rounded-full border border-black flex-shrink-0" style={{ background: active ? "#000" : s.color }} />
+                        <Icon size={13} strokeWidth={3} />
+                        <span>{kh ? s.kh : s.en}</span>
                       </button>
                     );
                   })}
                 </div>
 
-                {/* Row 2: Window · Province · Game Type */}
-                <div className="flex flex-wrap items-end gap-3">
-                  {/* Window tabs */}
-                  <div className="flex items-stretch gap-0 border-3 border-black bg-white flex-shrink-0" style={{ boxShadow: "3px 3px 0 #000", borderRadius: 0 }}>
+                {/* Caution-tape divider */}
+                <div className="caution-tape" />
+
+                {/* Window · province · game type */}
+                <div className="flex flex-wrap items-center gap-2 p-2.5">
+                  <div className="flex items-stretch border-2 border-black flex-shrink-0" style={{ borderRadius: 0 }}>
                     {WINDOW_TABS.map((w, i) => {
                       const active = windowTab === w.id;
                       return (
                         <button
                           key={w.id}
                           onClick={() => setWindowTab(w.id)}
-                          className={`px-3 py-2 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${i > 0 ? "border-l-3 border-black" : ""} ${active ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
+                          className={`px-3 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${i > 0 ? "border-l-2 border-black" : ""} ${active ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
                           style={kf}
                         >
                           {kh ? w.kh : w.en}
@@ -1310,12 +1293,11 @@ export default function LeaderboardPage() {
                     })}
                   </div>
 
-                  {/* Province */}
                   <select
                     value={province}
                     onChange={e => setProvince(e.target.value)}
-                    className="border-3 border-black bg-white px-3 py-2 text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
-                    style={{ borderRadius: 0, boxShadow: "2px 2px 0 #000", ...kf }}
+                    className="border-2 border-black bg-white px-2.5 py-1.5 text-[11px] md:text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
+                    style={{ borderRadius: 0, ...kf }}
                   >
                     <option value="all">{kh ? "ខេត្ត/ក្រុងទាំងអស់" : "All Provinces"}</option>
                     {CAMBODIA_PROVINCES.map(p => (
@@ -1323,12 +1305,11 @@ export default function LeaderboardPage() {
                     ))}
                   </select>
 
-                  {/* Game type — now visible for ALL windows */}
                   <select
                     value={gameType}
                     onChange={e => setGameType(e.target.value)}
-                    className="border-3 border-black bg-white px-3 py-2 text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
-                    style={{ borderRadius: 0, boxShadow: "2px 2px 0 #000", ...kf }}
+                    className="border-2 border-black bg-white px-2.5 py-1.5 text-[11px] md:text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
+                    style={{ borderRadius: 0, ...kf }}
                   >
                     {GAME_TYPES.map(g => (
                       <option key={g.id} value={g.id}>{kh ? g.kh : g.en}</option>
@@ -1337,30 +1318,32 @@ export default function LeaderboardPage() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between mb-3">
-                <h2 className="text-base md:text-lg font-black text-black tracking-tight uppercase" style={kf}>
-                  {sourceTab !== "all"
-                    ? (kh
-                      ? `ចំណាត់ថ្នាក់ — ${SOURCE_TABS.find(s => s.id === sourceTab)?.kh ?? ""}`
-                      : `Rankings — ${SOURCE_TABS.find(s => s.id === sourceTab)?.en ?? ""}`)
-                    : (kh ? "ចំណាត់ថ្នាក់ទាំងអស់" : "All Rankings")
-                  }
+              <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+                <h2 className="text-base md:text-lg font-black text-black tracking-tight uppercase flex items-center gap-2" style={kf}>
+                  <Trophy size={18} strokeWidth={2.5} className="text-yellow-500" />
+                  {kh ? "ចំណាត់ថ្នាក់" : "Rankings"}
+                  <span
+                    className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 border-2 border-black"
+                    style={{ background: SOURCE_TABS.find(s => s.id === sourceTab)?.color ?? "#eab308", color: "#000" }}
+                  >
+                    {kh ? SOURCE_TABS.find(s => s.id === sourceTab)?.kh : SOURCE_TABS.find(s => s.id === sourceTab)?.en}
+                  </span>
                 </h2>
                 {lastUpdated && (
-                  <span className="text-[10px] text-zinc-400 font-mono">
-                    UPDATED: {lastUpdated.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
+                  <span className="inline-flex items-center gap-1 text-[10px] text-zinc-400 font-mono">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                    {kh ? "ធ្វើបច្ចុប្បន្នភាព" : "UPDATED"} {lastUpdated.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
                   </span>
                 )}
               </div>
 
-
               <div className="bg-white border-3 border-black overflow-hidden" style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}>
                 {/* Table Header */}
-                <div className="grid grid-cols-12 bg-black px-3 md:px-5 py-2.5 text-[9px] md:text-[10px] font-black tracking-widest text-yellow-400 uppercase border-b-2 border-black">
+                <div className="grid grid-cols-12 bg-black px-3 md:px-5 py-2.5 text-[9px] md:text-[10px] font-black tracking-widest text-yellow-400 uppercase">
                   <span className="col-span-1">#</span>
-                  <span className="col-span-7 md:col-span-7">Student</span>
-                  <span className="col-span-2 text-center hidden sm:block">Games</span>
-                  <span className="col-span-4 sm:col-span-2 text-right">Points</span>
+                  <span className="col-span-7 sm:col-span-6">{kh ? "សិស្ស" : "Student"}</span>
+                  <span className="col-span-2 text-center hidden sm:block">{kh ? "ហ្គេម" : "Games"}</span>
+                  <span className="col-span-4 sm:col-span-3 text-right">{kh ? "ពិន្ទុ" : "Points"}</span>
                 </div>
 
                 {leaderboard.length > 0 ? leaderboard.map((user) => {
@@ -1369,51 +1352,87 @@ export default function LeaderboardPage() {
                   const tier = getRank(user.lifetimePoints);
                   // Anonymized (private-username) rows have no public profile.
                   const linkable = user.isUsernamePublic !== false;
+                  const isMe = !!currentUser && user.id === currentUser.id;
+                  const medal = user.rank === 1 ? "#eab308" : user.rank === 2 ? "#94a3b8" : user.rank === 3 ? "#cd7c3a" : null;
+                  const rowAvatar = isMe ? currentUser.avatar : user.avatar;
                   return (
                     <div
                       key={user.id}
-                      className={`grid grid-cols-12 px-3 md:px-5 py-2.5 border-t border-zinc-100 hover:bg-zinc-50 transition-colors items-center ${linkable ? "cursor-pointer" : "cursor-default"}`}
+                      className={`grid grid-cols-12 items-center px-3 md:px-5 py-2.5 border-t-2 border-black transition-colors ${isMe ? "bg-yellow-50" : "hover:bg-zinc-50"} ${linkable ? "cursor-pointer" : "cursor-default"}`}
+                      style={medal ? { boxShadow: `inset 4px 0 0 ${medal}` } : undefined}
                       onClick={linkable ? () => handleSelectUser(user) : undefined}
                     >
-                      <div className="col-span-1 flex items-center gap-0.5">
-                        <span className="text-xs font-black text-zinc-400">{user.rank}</span>
-                        {moved > 0 && <span className="text-[8px] font-black text-green-500 leading-none">▲</span>}
-                        {moved < 0 && <span className="text-[8px] font-black text-red-400 leading-none">▼</span>}
-                      </div>
-                      <div
-                        className={`col-span-7 flex flex-col min-w-0 select-none ${linkable ? "cursor-pointer" : "cursor-default"}`}
-                        onClick={linkable ? () => handleSelectUser(user) : undefined}
-                      >
-                        <span className="font-bold text-black text-xs md:text-sm truncate leading-tight font-kh-header">
-                          {user.displayName || user.username}
-                        </span>
-                        {user.displayName && (
-                          <span className="text-[10px] text-zinc-500 font-mono truncate mt-0.5">
-                            @{user.username}
+                      {/* Rank + movement */}
+                      <div className="col-span-1 flex items-center gap-1">
+                        {medal ? (
+                          <span
+                            className="inline-flex items-center justify-center w-6 h-6 rounded-full border-2 border-black font-black text-[11px] tabular-nums flex-shrink-0"
+                            style={{ background: medal, color: user.rank === 1 ? "#000" : "#fff" }}
+                          >
+                            {user.rank}
                           </span>
+                        ) : (
+                          <span className="text-sm font-black text-zinc-400 tabular-nums">{user.rank}</span>
                         )}
+                        {moved > 0 && <ChevronUp size={12} strokeWidth={4} className="text-green-500" />}
+                        {moved < 0 && <ChevronDown size={12} strokeWidth={4} className="text-red-500" />}
                       </div>
+
+                      {/* Avatar + name + meta */}
+                      <div className="col-span-7 sm:col-span-6 flex items-center gap-2.5 min-w-0">
+                        <Avatar url={rowAvatar} name={user.displayName || user.username} size={36} ring={medal ?? tier.accent} changedAt={user.avatarChangedAt} />
+                        <div className="flex flex-col min-w-0">
+                          <div className="flex items-center gap-1.5 min-w-0">
+                            <span className="font-bold text-black text-xs md:text-sm truncate leading-tight font-kh-header">
+                              {user.displayName || user.username}
+                            </span>
+                            {isMe && (
+                              <span className="text-[8px] font-black uppercase px-1 py-0.5 border border-black bg-yellow-400 text-black flex-shrink-0">
+                                {kh ? "អ្នក" : "You"}
+                              </span>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-1 mt-0.5 flex-wrap">
+                            <TierBadge lifetimePoints={user.lifetimePoints} size="xs" lang={lang} />
+                            {linkable ? (
+                              user.province && (
+                                <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-blue-700 bg-blue-50 border border-blue-200 px-1 py-0.5">
+                                  <MapPin size={8} />{kh ? getProvinceKh(user.province) : user.province}
+                                </span>
+                              )
+                            ) : (
+                              <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-zinc-500 bg-zinc-100 border border-zinc-300 px-1 py-0.5">
+                                <Lock size={8} />{kh ? "ឯកជន" : "Private"}
+                              </span>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                      <span className="col-span-2 text-center text-xs font-bold text-zinc-400 tabular-nums hidden sm:block">
+
+                      {/* Games */}
+                      <span className="col-span-2 text-center text-xs font-bold text-zinc-500 tabular-nums hidden sm:block">
                         {user.totalGamesPlayed}
                       </span>
-                      <span className="col-span-4 sm:col-span-2 text-right font-black tabular-nums text-xs md:text-sm" style={{ color: "#000" }}>
-                        {user.lifetimePoints.toLocaleString()}
-                      </span>
+
+                      {/* Points */}
+                      <div className="col-span-4 sm:col-span-3 text-right">
+                        <span className="font-black tabular-nums text-sm md:text-base text-black">{user.lifetimePoints.toLocaleString()}</span>
+                        <span className="block text-[8px] text-zinc-400 font-bold uppercase tracking-wider leading-none">pts</span>
+                      </div>
                     </div>
                   );
                 }) : (
-                  <div className="px-6 py-10 text-center text-zinc-400 text-sm" style={kf}>
+                  <div className="px-6 py-10 text-center text-zinc-400 text-sm border-t-2 border-black" style={kf}>
                     {kh
-                      ? "មិនទាន់មានចំណាត់ថ្នាក់ទេ។ លេងសកម្មភាព GameKit ឬសកម្មភាពផ្ទាល់ ដើម្បីបង្ហាញនៅទីនេះ។"
-                      : "No rankings yet. Play GameKit games or live games to appear here."}
+                      ? "មិនទាន់មានចំណាត់ថ្នាក់ទេ។ លេងសកម្មភាព ឬចូលរួមថ្នាក់ផ្ទាល់ ដើម្បីបង្ហាញនៅទីនេះ។"
+                      : "No rankings yet. Play games or join a live class to appear here."}
                   </div>
                 )}
               </div>
               <p className="text-center text-[9px] text-zinc-400 mt-2 font-mono uppercase" style={kf}>
                 {kh
-                  ? "ហ្គេមផ្ទាល់ (គ្រូ) + ហ្វឹកហាត់ = ពិន្ទុ · ចំណាត់ថ្នាក់ update ជាបន្ត · ភ្ញៀវមិនត្រូវបានកត់ត្រា"
-                  : "Live (teacher) + Solo practice all count · Ranks update in real-time · Guest plays not recorded"}
+                  ? "ហ្គេមផ្ទាល់ + ហ្វឹកហាត់ + បញ្ហាប្រចាំថ្ងៃ = ពិន្ទុ · ចំណាត់ថ្នាក់ផ្លាស់ប្ដូរបន្តផ្ទាល់ · ភ្ញៀវមិនកត់ត្រា"
+                  : "Live + Solo + Daily all count · Ranks update in real-time · Guest plays not recorded"}
               </p>
 
             </div>
