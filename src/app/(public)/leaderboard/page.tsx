@@ -9,7 +9,7 @@ import { useLang } from "@/context/lang-context";
 import { RankBadge as TierBadge, RankedAvatarRing, RankProgressBar, RankShowcase } from "@/components/shared/rank-label";
 import { getRank } from "@/lib/rank-utils";
 import { getAvatarFaceStyle } from "@/lib/utils";
-import { REWARD_ITEMS } from "@/lib/rewards";
+import { REWARD_ITEMS, getRewardRarity, RARITY_META } from "@/lib/rewards";
 import {
   Trophy,
   Gift,
@@ -507,13 +507,29 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
         <AnimatedNumber value={user?.lifetimePoints ?? 0} className={`font-black tabular-nums z-10 ${isFirst ? "text-xl md:text-3xl" : "text-base md:text-xl"}`} style={{ color: "#000" }} />
         <span className="text-[8px] text-zinc-500 font-bold uppercase tracking-wider z-10">pts</span>
       </div>
+      {/* ── Standing pedestal — premium podium step with embossed rank ── */}
       <div
-        className={`w-full border-3 border-t-0 border-black ${cfg.barH}`}
+        className={`relative w-full border-3 border-t-0 border-black ${cfg.barH} overflow-hidden flex items-center justify-center`}
         style={{
           background: cfg.pedestalBg,
           boxShadow: isFirst ? "8px 0 0 #000" : "4px 0 0 #000"
         }}
-      />
+      >
+        {/* embossed rank numeral — reads like a real podium step */}
+        <span
+          className="font-black leading-none select-none tabular-nums z-10"
+          style={{
+            fontSize: isFirst ? "clamp(42px,13vw,76px)" : "clamp(28px,9vw,52px)",
+            fontFamily: "monospace",
+            WebkitTextStroke: "2.5px #000",
+            WebkitTextFillColor: "rgba(255,255,255,0.6)",
+          }}
+        >
+          {cfg.rank}
+        </span>
+        {/* subtle top sheen */}
+        <div className="absolute top-0 left-0 w-full h-1/3 bg-white/25 pointer-events-none" />
+      </div>
     </div>
   );
 }
@@ -689,6 +705,12 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
   const scarcity = SCARCITY[item.id];
   const bonusBadge = BONUS_BADGE[item.id];
   const pointsNeeded = item.cost - userPoints;
+
+  // Rarity ("premium collectible") — derived from cost; drives ribbon, frame
+  // weight and the accent/aura on the card.
+  const rarity = getRewardRarity(item.cost);
+  const rmeta = RARITY_META[rarity];
+  const isElite = rarity === "legendary" || rarity === "mythic";
   const isAlmostThere = isLoggedIn && !claimed && rawPct >= 60 && rawPct < 100;
   const isReady = isLoggedIn && !claimed && rawPct >= 100;
 
@@ -714,16 +736,17 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
     onClaim(item);
   }
 
-  // Glowing shadow when hovered, color responsive when active
+  // Hard offset shadow (brutalist) + rarity-tinted aura. Higher rarity = bigger
+  // offset and a stronger coloured glow behind the solid shadow.
+  const baseOffset = isElite ? "7px 7px" : "5px 5px";
+  const hoverOffset = isElite ? "13px 13px" : "11px 11px";
   const cardShadow = claimed
     ? "3px 3px 0 #000"
-    : hovered && canClaim
-      ? `12px 12px 0 #000, 0 10px 30px ${item.color}33`
-      : hovered
-        ? `10px 10px 0 #000, 0 8px 24px rgba(0,0,0,0.15)`
-        : isReady
-          ? `8px 8px 0 #000, 0 0 15px ${item.color}22`
-          : "4px 4px 0 #000";
+    : hovered
+      ? `${hoverOffset} 0 #000, 0 12px 34px ${rmeta.glow}`
+      : isReady
+        ? `${baseOffset} 0 #000, 0 0 22px ${rmeta.glow}`
+        : `${baseOffset} 0 #000, 0 6px 18px ${rmeta.glow}`;
 
   const cardTransform = claimed
     ? "none"
@@ -733,12 +756,13 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
 
   return (
     <div
-      className="relative flex flex-col overflow-hidden border-3 border-black select-none transition-all duration-200 group"
+      className="relative flex flex-col overflow-hidden select-none transition-all duration-200 group"
       style={{
         boxShadow: cardShadow,
         transform: cardTransform,
         background: claimed ? "#f4f4f5" : "#ffffff",
         borderRadius: 0,
+        border: `${isElite ? 4 : 3}px solid #000`,
         "--mouse-x": `${mousePos.x}%`,
         "--mouse-y": `${mousePos.y}%`,
       } as React.CSSProperties}
@@ -747,6 +771,20 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
       onPointerMove={handlePointerMove}
     >
       {showBurst && <ClaimBurst color={item.color} />}
+
+      {/* ── Rarity ribbon — premium collectible banner ── */}
+      <div
+        className="relative z-30 flex items-center justify-between px-3 py-1.5 border-b-3 border-black"
+        style={{ background: rmeta.accent }}
+      >
+        <span className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.2em]" style={{ color: isElite ? "#000" : "#fff" }}>
+          <Sparkles size={11} strokeWidth={3} className={isElite ? "fill-black" : "fill-white"} />
+          {kh ? rmeta.labelKh : rmeta.label}
+        </span>
+        {isElite && (
+          <Crown size={13} strokeWidth={2.5} className="text-black" fill="currentColor" />
+        )}
+      </div>
 
       {/* Premium Spotlight Pointer Glow Effect */}
       {!claimed && hovered && (
@@ -803,11 +841,16 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
           </div>
         )}
 
-        {/* Points cost tag overlay in bottom-right corner of the image */}
-        <div className="absolute bottom-3 right-3 bg-yellow-400 text-black border-2 border-black px-3 py-1 font-black shadow-[3px_3px_0_#000] flex flex-col items-center leading-none z-20"
-          style={{ filter: claimed ? "grayscale(100%)" : "none" }}>
-          <span className="text-[7px] font-black uppercase tracking-wider opacity-60">COST</span>
-          <span className="text-sm font-mono font-black mt-0.5">{item.cost.toLocaleString()}</span>
+        {/* Premium cost medallion — black plate + rarity-accent star */}
+        <div className="absolute bottom-3 right-3 flex items-stretch border-2 border-black shadow-[3px_3px_0_#000] z-20"
+          style={{ filter: claimed ? "grayscale(100%)" : "none", borderRadius: 0 }}>
+          <div className="flex items-center justify-center px-1.5" style={{ background: rmeta.accent }}>
+            <Star size={12} strokeWidth={2.5} className="fill-current" style={{ color: isElite ? "#000" : "#fff" }} />
+          </div>
+          <div className="bg-black text-white px-2.5 py-1 flex flex-col items-center leading-none">
+            <span className="text-[7px] font-black uppercase tracking-wider text-zinc-400">{kh ? "តម្លៃ" : "COST"}</span>
+            <span className="text-base font-mono font-black tabular-nums" style={{ color: "#facc15" }}>{item.cost.toLocaleString()}</span>
+          </div>
         </div>
       </div>
 
@@ -920,31 +963,33 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
             </div>
           ) : !isLoggedIn ? (
             <a href="/login"
-              className="w-full py-2.5 font-black text-xs text-center border-3 border-black block leading-none transition-all hover:-translate-y-0.5 hover:shadow-[4px_4px_0_#000] active:translate-y-0 active:shadow-[2px_2px_0_#000]"
-              style={{ background: BRAND.yellow, color: BRAND.black, boxShadow: "3px 3px 0 #000", ...kf }}>
-              {kh ? "ចូលគណនី →" : "LOG IN TO CLAIM"}
+              className="w-full py-3 font-black text-xs text-center border-3 border-black flex items-center justify-center gap-1.5 uppercase tracking-wider leading-none transition-all hover:-translate-y-0.5 active:translate-y-0"
+              style={{ background: "#000", color: "#facc15", boxShadow: `4px 4px 0 ${rmeta.accent}`, ...kf }}>
+              <Lock size={12} strokeWidth={3} />
+              {kh ? "ចូលគណនីដើម្បីទទួល" : "LOG IN TO CLAIM"}
             </a>
           ) : canClaim ? (
             <button
               onClick={handleClaim}
-              className="w-full py-3 font-black text-xs border-3 border-black relative overflow-hidden flex items-center justify-center gap-1.5 cursor-pointer leading-none transition-all hover:-translate-y-1 hover:brightness-110 active:translate-y-0 active:shadow-[2px_2px_0_#000]"
+              className="w-full py-3.5 font-black text-sm border-3 border-black relative overflow-hidden flex items-center justify-center gap-2 cursor-pointer leading-none uppercase tracking-wider transition-all hover:-translate-y-1 hover:brightness-105 active:translate-y-0 active:shadow-[2px_2px_0_#000]"
               style={{
                 background: item.color,
                 color: BRAND.black,
-                boxShadow: "4px 4px 0 #000",
+                boxShadow: `5px 5px 0 #000, 0 0 22px ${rmeta.glow}`,
                 animation: "buttonPulse 2.5s ease-in-out infinite",
-                "--pulse-color": `${item.color}66`,
+                "--pulse-color": rmeta.glow,
                 ...kf,
               } as any}
             >
-              <Gift size={12} strokeWidth={3} className="animate-bounce" />
-              <span>{kh ? "ទទួលឥឡូវនេះ!" : "CLAIM NOW!"}</span>
+              <Gift size={15} strokeWidth={3} className="animate-bounce" />
+              <span>{kh ? "ទទួលឥឡូវនេះ!" : "CLAIM NOW"}</span>
             </button>
           ) : (
             <button disabled
-              className="w-full py-2.5 font-black text-xs border-2 border-zinc-200 text-zinc-400 bg-zinc-50 cursor-not-allowed leading-none flex items-center justify-center gap-1.5"
-              style={kf}>
-              <span>{kh ? `ត្រូវការ ${pointsNeeded.toLocaleString()} ពិន្ទុ` : `NEED ${pointsNeeded.toLocaleString()} PTS`}</span>
+              className="w-full py-3 font-black text-xs border-3 border-black bg-white text-black cursor-not-allowed leading-none flex items-center justify-center gap-1.5 uppercase tracking-wider"
+              style={{ boxShadow: `3px 3px 0 ${rmeta.accent}`, ...kf }}>
+              <Lock size={12} strokeWidth={3} className="text-zinc-500" />
+              <span>{kh ? `ខ្វះ ${pointsNeeded.toLocaleString()} ពិន្ទុ` : `${pointsNeeded.toLocaleString()} PTS TO UNLOCK`}</span>
             </button>
           )}
         </div>
