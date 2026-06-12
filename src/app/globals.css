@@ -336,6 +336,16 @@
   border-bottom: 2px solid #000000;
 }
 
+/* Hide scrollbars while keeping the element scrollable (game screens, chip
+   rows, sidebars). Was referenced across the app but never actually defined. */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* ─── Khmer Fonts ─── */
 .font-kh-header {
   font-family: var(--font-kh-header), "Google Sans Khmer", "Google Sans", sans-serif !important;

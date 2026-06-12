@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useLang } from "@/context/lang-context";
-import { Zap, Flame, Volume2, VolumeX, Lock, RotateCcw, ChevronRight, Trophy, ArrowLeft } from "lucide-react";
+import { Zap, Flame, Volume2, VolumeX, Lock, RotateCcw, ChevronRight, Trophy, ArrowLeft, X } from "lucide-react";
 import { CountdownTimer } from "@/components/game/CountdownTimer";
 import type { GameFormat, KitPhase, KitCompletionResult, RoundResult, I18nText } from "./types";
 
@@ -21,6 +22,7 @@ export function GameKitShell<TRound, TResult extends KitCompletionResult>({
     const { lang } = useLang();
     const kh = lang === "kh";
     const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+    const router = useRouter();
 
     const [phase, setPhase] = useState<KitPhase<TRound, TResult>>({ name: "setup" });
     const [muted, setMuted] = useState(true);
@@ -344,7 +346,17 @@ export function GameKitShell<TRound, TResult extends KitCompletionResult>({
         <div className="game-dot-bg fixed inset-0 z-50 flex flex-col" style={{ userSelect: "none" }}>
             {/* HUD */}
             <div className="flex items-center justify-between px-6 py-3 bg-zinc-950 border-b border-zinc-800 flex-shrink-0 h-14">
-                <span className="text-zinc-400 font-black text-xs uppercase tracking-widest" style={khFont}>{t(meta.title, kh)}</span>
+                <div className="flex items-center gap-3">
+                    {/* Escape — exit the game (confirm to avoid losing progress) */}
+                    <button
+                        onClick={() => { if (confirm(kh ? "ចាកចេញពីហ្គេម? ការរីកចម្រើននឹងបាត់បង់។" : "Exit the game? Your progress will be lost.")) router.push("/play"); }}
+                        aria-label={kh ? "ចាកចេញ" : "Exit"}
+                        className="flex items-center justify-center w-8 h-8 border border-zinc-700 bg-zinc-900 text-zinc-300 hover:bg-zinc-800 hover:text-white flex-shrink-0"
+                    >
+                        <X size={16} />
+                    </button>
+                    <span className="text-zinc-400 font-black text-xs uppercase tracking-widest" style={khFont}>{t(meta.title, kh)}</span>
+                </div>
                 <div className="flex items-center gap-2">
                     <div className="flex items-center gap-1.5 bg-yellow-400 border border-zinc-950 px-3 py-1">
                         <Zap size={12} className="text-black" />

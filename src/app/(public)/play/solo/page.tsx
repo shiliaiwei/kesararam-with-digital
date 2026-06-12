@@ -501,9 +501,19 @@ export default function SoloPage() {
   return (
     <div className="game-dot-bg fixed inset-0 z-50 flex flex-col rounded-none" style={{ userSelect: "none" }}>
       <div className="relative z-10 flex items-center justify-between px-6 py-3 bg-zinc-950 border-b border-zinc-800 flex-shrink-0 h-14 rounded-none">
-        <span className="text-zinc-400 font-black text-xs uppercase tracking-widest" style={khFont}>
-          {kh ? GAME_MODE_CONFIG[phase.session.gameMode]?.labelKm : GAME_MODE_CONFIG[phase.session.gameMode]?.label}
-        </span>
+        <div className="flex items-center gap-3">
+          {/* Escape — exit the game (confirm to avoid losing progress) */}
+          <button
+            onClick={() => { if (confirm(kh ? "ចាកចេញពីហ្គេម? ការរីកចម្រើននឹងបាត់បង់។" : "Exit the game? Your progress will be lost.")) router.push("/play"); }}
+            aria-label={kh ? "ចាកចេញ" : "Exit"}
+            className="flex items-center justify-center w-8 h-8 border border-zinc-700 bg-zinc-900 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded-none flex-shrink-0"
+          >
+            <X size={16} />
+          </button>
+          <span className="text-zinc-400 font-black text-xs uppercase tracking-widest" style={khFont}>
+            {kh ? GAME_MODE_CONFIG[phase.session.gameMode]?.labelKm : GAME_MODE_CONFIG[phase.session.gameMode]?.label}
+          </span>
+        </div>
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1.5 bg-yellow-400 border border-zinc-950 px-3 py-1 rounded-none">
             <Zap size={12} className="text-black" />
@@ -523,7 +533,7 @@ export default function SoloPage() {
           style={{ width: `${((phase.qIndex + 1) / phase.session.questions.length) * 100}%` }} />
       </div>
 
-      <div className="relative z-10 flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full justify-start sm:justify-center overflow-y-auto min-h-0">
+      <div className="relative z-10 flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full justify-start sm:justify-center overflow-y-auto no-scrollbar min-h-0">
         {/* Q-index + difficulty + timer row (Stable row) - Smaller labels */}
         <div className="flex items-center justify-between gap-2 px-3 py-2 w-full bg-zinc-900 border-2 border-black rounded-none h-16 flex-shrink-0">
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar flex-nowrap py-1">
@@ -562,15 +572,14 @@ export default function SoloPage() {
           </div>
         </div>
 
-        {/* Question image (Stable height wrapper - white background for signs) */}
-        <div className={`shrink-0 w-full h-48 flex items-center justify-center p-3 relative overflow-hidden rounded-none ${q.imageUrl
-          ? "border-4 border-black bg-white shadow-[6px_6px_0_#000]"
-          : "border-2 border-transparent bg-transparent"
-          }`}>
-          {q.imageUrl ? (
+        {/* Question image — only rendered when the question actually has one, so
+            text-only questions (e.g. sign challenge) don't reserve 192px of empty
+            space that pushes the answers into a scroll. */}
+        {q.imageUrl && (
+          <div className="shrink-0 w-full h-48 flex items-center justify-center p-3 relative overflow-hidden rounded-none border-4 border-black bg-white shadow-[6px_6px_0_#000]">
             <img src={cloudinaryOptimize(q.imageUrl, 800)} alt="question" className="h-full w-auto object-contain select-none pointer-events-none rounded-none" />
-          ) : null}
-        </div>
+          </div>
+        )}
 
         {/* Question text card (compact & smaller) */}
         <div
