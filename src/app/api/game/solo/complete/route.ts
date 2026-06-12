@@ -115,10 +115,10 @@ export async function POST(req: NextRequest) {
           tier,
           message:
             tier === "student"
-              ? `🛑 CRITICAL NOTICE: Student daily play limit reached (${playsAllowed}/${playsAllowed} games). ALL solo practice points are locked and CANNOT be used to claim rewards. To continue playing, unlock your account, and earn REAL claimable reward points, you MUST join your teacher's class immediately!`
+              ? `You've reached today's ${playsAllowed} plays. Solo practice helps you learn, but those points can't be redeemed for rewards — join your teacher's class to earn claimable points in live games.`
               : tier === "studentClass"
-              ? `⚡ ATTENTION: Classroom daily limit reached (${playsAllowed}/${playsAllowed} games). Solo play is restricted. To unlock unlimited play and host LIVE classroom games where you earn premium claimable points, FORCE your teacher to upgrade to a Kesararam Subscription plan today!`
-              : `🛑 Daily limit reached (${playsAllowed}/${playsAllowed} games/day). Come back tomorrow or join a live session!`,
+              ? `Your class has reached today's ${playsAllowed} plays. To unlock unlimited play and host live classroom games with premium claimable points, ask your teacher about a Kesararam plan.`
+              : `Daily limit reached (${playsAllowed}/${playsAllowed} games). Come back tomorrow, or join a live session to keep earning.`,
         },
         { status: 429 }
       );

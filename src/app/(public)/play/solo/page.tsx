@@ -208,6 +208,23 @@ export default function SoloPage() {
   }
 
   async function completeGame(session: SoloSession, timeTakenSeconds: number) {
+    // Locally-computed result — always well-formed so the results screen can
+    // never crash on a missing field if the server errors or returns an error
+    // body (e.g. a 401/limit response instead of a score).
+    const correctCount = answersRef.current.filter(a => a.isCorrect).length;
+    const accuracy = answersRef.current.length > 0 ? Math.round((correctCount / answersRef.current.length) * 100) : 0;
+    const fallbackResult = {
+      totalScore: myScore,
+      accuracyPercentage: accuracy,
+      timeTakenSeconds,
+      correctAnswers: correctCount,
+      totalQuestions: session.questions.length,
+      personalBest: myScore,
+      isNewPersonalBest: false,
+      perQuestion: [] as any[],
+    };
+
+    let result: typeof fallbackResult = fallbackResult;
     try {
       const res = await fetch("/api/game/solo/complete", {
         method: "POST",
@@ -223,7 +240,14 @@ export default function SoloPage() {
           scoringMode: "speed",
         }),
       });
-      const result = await res.json();
+      // Only trust a well-formed server result; otherwise keep the fallback so
+      // the player still sees their score instead of an error screen.
+      if (res.ok) {
+        const data = await res.json().catch(() => null);
+        if (data && typeof data.totalScore === "number") {
+          result = { ...fallbackResult, ...data, perQuestion: Array.isArray(data.perQuestion) ? data.perQuestion : [] };
+        }
+      }
       if (isAuthenticated === false) {
         const todayStr = new Date().toISOString().slice(0, 10);
         const key = `kwd_solo_plays_${todayStr}`;
@@ -231,15 +255,11 @@ export default function SoloPage() {
         const count = current ? parseInt(current, 10) : 0;
         localStorage.setItem(key, (count + 1).toString());
       }
-      // Always use the server-authoritative totalScore
-      setPhase({ name: "results", session, answers: answersRef.current, result });
-      if (!muted) sounds.podium();
     } catch {
-      // Fallback: use cosmetic display score if server fails
-      const correctCount = answersRef.current.filter(a => a.isCorrect).length;
-      const accuracy = answersRef.current.length > 0 ? Math.round((correctCount / answersRef.current.length) * 100) : 0;
-      setPhase({ name: "results", session, answers: answersRef.current, result: { totalScore: myScore, accuracyPercentage: accuracy, timeTakenSeconds, correctAnswers: correctCount, totalQuestions: session.questions.length, personalBest: myScore, isNewPersonalBest: false, perQuestion: [] } });
+      // network/parse failure — keep fallbackResult
     }
+    setPhase({ name: "results", session, answers: answersRef.current, result });
+    if (!muted) sounds.podium();
   }
   completeGameRef.current = completeGame;
 
