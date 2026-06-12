@@ -24,9 +24,7 @@ import {
   Wifi,
   BookOpen,
   Calendar,
-  School,
   MapPin,
-  GraduationCap,
   Layers,
   ChevronUp,
   ChevronDown,
@@ -293,6 +291,8 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
 }) {
   const { lang } = useLang();
   const kh = lang === "kh";
+  // Tier ("exclusive label") drives the avatar border colour.
+  const tier = user ? getRank(user.lifetimePoints) : null;
   const cardRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const isFirst = cfg.rank === 1;
@@ -376,6 +376,9 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
             width: isFirst ? 80 : 64,
             height: isFirst ? 80 : 64,
             background: cfg.pedestalBg,
+            // Tier-coloured ring outside the black border ("border profile based
+            // on exclusive label").
+            boxShadow: tier ? `0 0 0 3px ${tier.accent}` : undefined,
           }}
         >
           {userAvatar && (userAvatar.trim().startsWith("{") || userAvatar.startsWith("http") || userAvatar.startsWith("/")) ? (
@@ -482,21 +485,13 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
         </div>
 
         <span className="font-black text-center leading-tight w-full truncate text-[10px] md:text-sm font-kh-header z-10" style={{ color: "#000" }}>{name}</span>
+        {/* Consistent labels across all three: tier (exclusive) + province. */}
         {user && <TierBadge lifetimePoints={user.lifetimePoints} size="xs" />}
-        {user && (
+        {user && user.province && (
           <div className="flex flex-wrap justify-center gap-1 mt-1 z-10">
-            {user.schoolName && <span className="inline-flex items-center gap-1 px-1.5 py-0.5 border border-black bg-white text-[8px] font-black uppercase text-zinc-700"><School size={8} />{user.schoolName}</span>}
-            {user.province && <span className="inline-flex items-center gap-1 px-1.5 py-0.5 border border-black bg-blue-50 text-[8px] font-black uppercase text-blue-700"><MapPin size={8} />{user.province}</span>}
-            {user.gradeLevel && <span className="inline-flex items-center gap-1 px-1.5 py-0.5 border border-black bg-green-50 text-[8px] font-black uppercase text-green-700"><GraduationCap size={8} />{user.gradeLevel}</span>}
-            {isFirst && <span className="inline-flex items-center gap-1 px-1.5 py-0.5 border border-black bg-yellow-300 text-[8px] font-black uppercase text-black"><Award size={8} />Leader</span>}
-          </div>
-        )}
-
-        {/* Most Value Ribbon / Tag for 1st Place */}
-        {isFirst && (
-          <div className="flex items-center gap-1 bg-yellow-400 text-black text-[8px] font-black uppercase px-2 py-0.5 border-2 border-black shadow-[2px_2px_0_#000] my-0.5 animate-pulse z-10">
-            <Sparkles size={8} className="fill-black" />
-            <span>{kh ? "កំពូលជើងឯក" : "LEGENDARY"}</span>
+            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 border border-black bg-blue-50 text-[8px] font-black uppercase text-blue-700">
+              <MapPin size={8} />{kh ? getProvinceKh(user.province) : user.province}
+            </span>
           </div>
         )}
 
@@ -828,10 +823,6 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
             <span className="text-[10px] text-zinc-400 font-bold block uppercase tracking-wide mt-1 leading-none">
               {kh ? item.name : item.nameKh}
             </span>
-            <div className="inline-flex items-center gap-1 bg-red-100 text-red-700 border border-red-200 text-[8px] font-black px-1.5 py-0.5 rounded-sm mt-1.5 shadow-[1px_1px_0_#b91c1c]">
-              <span className="w-1.5 h-1.5 bg-red-600 rounded-full animate-ping" />
-              <span>{kh ? "ពិន្ទុហ្គេមផ្ទាល់ប៉ុណ្ណោះ" : "LIVE GAME POINTS ONLY"}</span>
-            </div>
           </div>
           {claimCount > 0 && (
             <div className="flex items-center gap-1 self-start bg-yellow-100 text-yellow-800 border border-yellow-200 text-[8px] font-black px-1.5 py-0.5 shadow-[1.5px_1.5px_0_#ca8a04] whitespace-nowrap">
@@ -1250,72 +1241,65 @@ export default function LeaderboardPage() {
 
             {/* Rankings Table */}
             <div>
-              {/* ── Filter toolbar — one bordered panel: source · window · filters ── */}
-              <div className="mb-4 border-3 border-black bg-white" style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}>
-                {/* Source — single segmented control. Black gaps form the dividers. */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-[2px] bg-black">
-                  {SOURCE_TABS.map(s => {
-                    const active = sourceTab === s.id;
-                    const Icon = s.icon;
+              {/* ── Source filter — icon + name chips only (no box/table) ── */}
+              <div className="mb-3 flex flex-wrap gap-2">
+                {SOURCE_TABS.map(s => {
+                  const active = sourceTab === s.id;
+                  const Icon = s.icon;
+                  return (
+                    <button
+                      key={s.id}
+                      onClick={() => setSourceTab(s.id)}
+                      className={`inline-flex items-center gap-1.5 px-3 py-2 text-[10px] md:text-xs font-black uppercase tracking-wider border-2 border-black transition-all ${active ? "shadow-[2px_2px_0_#000] -translate-y-0.5" : "hover:bg-zinc-50"}`}
+                      style={{ background: active ? s.color : "#fff", color: active ? "#000" : "#71717a", borderRadius: 0, ...kf }}
+                    >
+                      <Icon size={14} strokeWidth={3} />
+                      <span>{kh ? s.kh : s.en}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* ── Window + province + game type ── */}
+              <div className="mb-4 flex flex-wrap items-center gap-2">
+                <div className="flex items-stretch border-2 border-black flex-shrink-0" style={{ borderRadius: 0 }}>
+                  {WINDOW_TABS.map((w, i) => {
+                    const active = windowTab === w.id;
                     return (
                       <button
-                        key={s.id}
-                        onClick={() => setSourceTab(s.id)}
-                        className={`flex items-center justify-center gap-1.5 px-2 py-2.5 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${active ? "text-black" : "bg-white text-zinc-500 hover:bg-zinc-100 hover:text-black"}`}
-                        style={{ background: active ? s.color : undefined, ...kf }}
+                        key={w.id}
+                        onClick={() => setWindowTab(w.id)}
+                        className={`px-3 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${i > 0 ? "border-l-2 border-black" : ""} ${active ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
+                        style={kf}
                       >
-                        <span className="w-2.5 h-2.5 rounded-full border border-black flex-shrink-0" style={{ background: active ? "#000" : s.color }} />
-                        <Icon size={13} strokeWidth={3} />
-                        <span>{kh ? s.kh : s.en}</span>
+                        {kh ? w.kh : w.en}
                       </button>
                     );
                   })}
                 </div>
 
-                {/* Caution-tape divider */}
-                <div className="caution-tape" />
+                <select
+                  value={province}
+                  onChange={e => setProvince(e.target.value)}
+                  className="border-2 border-black bg-white px-2.5 py-1.5 text-[11px] md:text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
+                  style={{ borderRadius: 0, ...kf }}
+                >
+                  <option value="all">{kh ? "ខេត្ត/ក្រុងទាំងអស់" : "All Provinces"}</option>
+                  {CAMBODIA_PROVINCES.map(p => (
+                    <option key={p.en} value={p.en}>{kh ? p.kh : p.en}</option>
+                  ))}
+                </select>
 
-                {/* Window · province · game type */}
-                <div className="flex flex-wrap items-center gap-2 p-2.5">
-                  <div className="flex items-stretch border-2 border-black flex-shrink-0" style={{ borderRadius: 0 }}>
-                    {WINDOW_TABS.map((w, i) => {
-                      const active = windowTab === w.id;
-                      return (
-                        <button
-                          key={w.id}
-                          onClick={() => setWindowTab(w.id)}
-                          className={`px-3 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${i > 0 ? "border-l-2 border-black" : ""} ${active ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
-                          style={kf}
-                        >
-                          {kh ? w.kh : w.en}
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  <select
-                    value={province}
-                    onChange={e => setProvince(e.target.value)}
-                    className="border-2 border-black bg-white px-2.5 py-1.5 text-[11px] md:text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
-                    style={{ borderRadius: 0, ...kf }}
-                  >
-                    <option value="all">{kh ? "ខេត្ត/ក្រុងទាំងអស់" : "All Provinces"}</option>
-                    {CAMBODIA_PROVINCES.map(p => (
-                      <option key={p.en} value={p.en}>{kh ? p.kh : p.en}</option>
-                    ))}
-                  </select>
-
-                  <select
-                    value={gameType}
-                    onChange={e => setGameType(e.target.value)}
-                    className="border-2 border-black bg-white px-2.5 py-1.5 text-[11px] md:text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
-                    style={{ borderRadius: 0, ...kf }}
-                  >
-                    {GAME_TYPES.map(g => (
-                      <option key={g.id} value={g.id}>{kh ? g.kh : g.en}</option>
-                    ))}
-                  </select>
-                </div>
+                <select
+                  value={gameType}
+                  onChange={e => setGameType(e.target.value)}
+                  className="border-2 border-black bg-white px-2.5 py-1.5 text-[11px] md:text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
+                  style={{ borderRadius: 0, ...kf }}
+                >
+                  {GAME_TYPES.map(g => (
+                    <option key={g.id} value={g.id}>{kh ? g.kh : g.en}</option>
+                  ))}
+                </select>
               </div>
 
               <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
@@ -1392,17 +1376,13 @@ export default function LeaderboardPage() {
                               </span>
                             )}
                           </div>
+                          {/* Full name above, @username below — always shown */}
+                          <span className="text-[10px] text-zinc-400 font-mono truncate leading-tight">@{user.username}</span>
                           <div className="flex items-center gap-1 mt-0.5 flex-wrap">
                             <TierBadge lifetimePoints={user.lifetimePoints} size="xs" lang={lang} />
-                            {linkable ? (
-                              user.province && (
-                                <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-blue-700 bg-blue-50 border border-blue-200 px-1 py-0.5">
-                                  <MapPin size={8} />{kh ? getProvinceKh(user.province) : user.province}
-                                </span>
-                              )
-                            ) : (
-                              <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-zinc-500 bg-zinc-100 border border-zinc-300 px-1 py-0.5">
-                                <Lock size={8} />{kh ? "ឯកជន" : "Private"}
+                            {user.province && (
+                              <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-blue-700 bg-blue-50 border border-blue-200 px-1 py-0.5">
+                                <MapPin size={8} />{kh ? getProvinceKh(user.province) : user.province}
                               </span>
                             )}
                           </div>

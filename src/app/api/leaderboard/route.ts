@@ -172,30 +172,26 @@ export async function GET(req: NextRequest) {
     // Because results are ordered DESC by points and we paginate with offset,
     // rank = offset + index + 1 is correct for the page slice.
     const rankedUsers = rows.map((user, index) => {
-      const isNamePublic = user.isNamePublic ?? true;
-      const isUsernamePublic = user.isUsernamePublic ?? true;
+      // Name + username are ALWAYS public on the leaderboard — students cannot
+      // privatize their identity here. School/province/grade still respect their
+      // privacy flags, but when private we omit them (null) rather than show a
+      // "Private" placeholder label.
       return {
         id: user.id,
         rank: offset + index + 1,
-        displayName: isNamePublic
-          ? user.displayName || user.username
-          : isUsernamePublic
-            ? user.username
-            : "Private Student / សិស្សឯកជន",
-        username: isUsernamePublic ? user.username : `student_${user.id}`,
-        // Flags whether `username` is the real, profile-resolvable handle.
-        // Private usernames are anonymized to `student_<id>`, which has no
-        // public profile — the client must not link those rows to /u/.
-        isUsernamePublic,
+        displayName: user.displayName || user.username,
+        username: user.username,
+        // Always a real, profile-resolvable handle now — every row links to /u/.
+        isUsernamePublic: true,
         avatar: user.avatar,
         avatarChangedAt: user.avatarChangedAt,
         highestScore: user.highestScore,
         totalGamesPlayed: user.totalGamesPlayed,
         lifetimePoints: user.windowPoints,
-        schoolName: (user.isSchoolPublic ?? true) ? user.schoolName : "Private / ឯកជន",
-        province: (user.isProvincePublic ?? true) ? user.province : "Private / ឯកជន",
-        gradeLevel: (user.isGradePublic ?? true) ? user.gradeLevel : "Private / ឯកជន",
-        section: (user.isSectionPublic ?? true) ? user.section : "Private / ឯកជន",
+        schoolName: (user.isSchoolPublic ?? true) ? user.schoolName : null,
+        province: (user.isProvincePublic ?? true) ? user.province : null,
+        gradeLevel: (user.isGradePublic ?? true) ? user.gradeLevel : null,
+        section: (user.isSectionPublic ?? true) ? user.section : null,
       };
     });
 
