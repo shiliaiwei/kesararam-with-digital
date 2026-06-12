@@ -23,7 +23,6 @@ import {
   Award,
   Wifi,
   BookOpen,
-  Calendar,
   MapPin,
   Layers,
   ChevronUp,
@@ -105,7 +104,6 @@ const SOURCE_TABS: { id: string; en: string; kh: string; icon: React.ElementType
   { id: "all",   en: "All Sources",     kh: "ប្រភពទាំងអស់",   icon: Layers,   color: "#eab308" },
   { id: "live",  en: "Live Games",      kh: "ហ្គេមផ្ទាល់",     icon: Wifi,     color: "#ef4444" },
   { id: "solo",  en: "Solo Practice",   kh: "ហ្វឹកហាត់",       icon: BookOpen, color: "#22c55e" },
-  { id: "daily", en: "Daily Challenge", kh: "បញ្ហាប្រចាំថ្ងៃ", icon: Calendar, color: "#06b6d4" },
 ];
 
 interface LeaderboardUser {

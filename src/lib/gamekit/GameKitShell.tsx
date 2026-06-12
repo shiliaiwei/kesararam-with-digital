@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useLang } from "@/context/lang-context";
-import { Zap, Flame, Volume2, VolumeX, Lock, RotateCcw, ChevronRight, Trophy } from "lucide-react";
+import { Zap, Flame, Volume2, VolumeX, Lock, RotateCcw, ChevronRight, Trophy, ArrowLeft } from "lucide-react";
 import { CountdownTimer } from "@/components/game/CountdownTimer";
 import type { GameFormat, KitPhase, KitCompletionResult, RoundResult, I18nText } from "./types";
 
@@ -329,6 +329,10 @@ export function GameKitShell<TRound, TResult extends KitCompletionResult>({
                             <Trophy size={18} />{kh ? "ពិន្ទុ" : "Ranks"}
                         </Link>
                     </div>
+                    {/* Back to the activity hub (recent activity) */}
+                    <Link href="/play" className="mt-3 w-full py-3 bg-white text-black font-black border-4 border-black flex items-center justify-center gap-2" style={{ boxShadow: "4px 4px 0 #000", ...khFont }}>
+                        <ArrowLeft size={18} />{kh ? "ត្រឡប់ទៅសកម្មភាព" : "Back to Activities"}
+                    </Link>
                 </div>
             </div>
         );
