@@ -777,7 +777,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
       >
         <span className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.2em]" style={{ color: isElite ? "#000" : "#fff" }}>
           <Sparkles size={11} strokeWidth={3} className={isElite ? "fill-black" : "fill-white"} />
-          {kh ? rmeta.labelKh : rmeta.label}
+          {rmeta.label}
         </span>
         {isElite && (
           <Crown size={13} strokeWidth={2.5} className="text-black" fill="currentColor" />
@@ -1284,24 +1284,7 @@ export default function LeaderboardPage() {
 
             {/* Rankings Table */}
             <div>
-              {/* ── Source filter — icon + name chips only (no box/table) ── */}
-              <div className="mb-3 flex flex-wrap gap-2">
-                {SOURCE_TABS.map(s => {
-                  const active = sourceTab === s.id;
-                  const Icon = s.icon;
-                  return (
-                    <button
-                      key={s.id}
-                      onClick={() => setSourceTab(s.id)}
-                      className={`inline-flex items-center gap-1.5 px-3 py-2 text-[10px] md:text-xs font-black uppercase tracking-wider border-2 border-black transition-all ${active ? "shadow-[2px_2px_0_#000] -translate-y-0.5" : "hover:bg-zinc-50"}`}
-                      style={{ background: active ? s.color : "#fff", color: active ? "#000" : "#71717a", borderRadius: 0, ...kf }}
-                    >
-                      <Icon size={14} strokeWidth={3} />
-                      <span>{kh ? s.kh : s.en}</span>
-                    </button>
-                  );
-                })}
-              </div>
+              {/* Source filter removed — leaderboard always shows all sources. */}
 
               {/* ── Window + province + game type ── */}
               <div className="mb-4 flex flex-wrap items-center gap-2">
