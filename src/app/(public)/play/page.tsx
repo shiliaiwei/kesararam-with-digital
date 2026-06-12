@@ -597,11 +597,11 @@ export default function PlayPage() {
           gap: 10,
           boxShadow: `3px 3px 0 ${BRAND.black}`,
         }}>
-          <span style={{ fontSize: 16 }}>⚡</span>
+          <Zap size={16} strokeWidth={3} style={{ color: BRAND.yellowDark, flexShrink: 0 }} />
           <span style={{ ...khFont, fontSize: 12.5, fontWeight: 700, color: BRAND.yellowDark }}>
             {kh
-              ? "ប្រព័ន្ធពិន្ទុកំពុងធ្វើបច្ចុប្បន្នភាព — រាល់ពិន្ទុហ្គេម Solo គឺសម្រាប់តែការអនុវត្តប៉ុណ្ណោះ និងមិនអាចប្រើដើម្បីប្តូររង្វាន់បានទេ"
-              : "Score system updating — solo scores are practice-only and cannot be used to claim rewards"}
+              ? "ពិន្ទុហ្វឹកហាត់ម្នាក់ឯងជួយឱ្យអ្នករៀន — តែមិនរាប់បញ្ចូលសម្រាប់ប្តូររង្វាន់ទេ។ ប្រមូលពិន្ទុប្តូររង្វាន់នៅក្នុងហ្គេមផ្ទាល់ជាមួយគ្រូ។"
+              : "Solo practice points help you learn — they don't count toward reward claims. Earn claimable points in live teacher games."}
           </span>
         </div>
       </div>
@@ -659,23 +659,6 @@ export default function PlayPage() {
                 }}>
                   {kh ? limits.upgradeMessage.kh : limits.upgradeMessage.en}
                 </div>
-              )}
-
-              {limits.tier === "guest" && (
-                <Link href="/register" style={{
-                  ...khFont,
-                  background: BRAND.yellow,
-                  color: BRAND.black,
-                  border: `3px solid ${BRAND.black}`,
-                  boxShadow: `3px 3px 0 ${BRAND.black}`,
-                  padding: "8px 16px",
-                  fontWeight: 900,
-                  fontSize: 11,
-                  textDecoration: "none",
-                  whiteSpace: "nowrap",
-                }}>
-                  {kh ? "បង្កើតគណនី →" : "CREATE FREE ACCOUNT"}
-                </Link>
               )}
 
               {limits.tier === "student" && (

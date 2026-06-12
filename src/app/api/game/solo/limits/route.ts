@@ -40,8 +40,8 @@ export async function GET() {
       isLimitReached: false,
       nextTier: "student",
       upgradeMessage: {
-        en: `⚠️ WARNING: Daily play limit reached (9/9 guest games played). You are losing valuable progress! Register a free student account immediately to save your achievements, claim your rank, and unlock 67 daily plays!`,
-        kh: `⚠️ ប្រកាសអាសន្ន៖ ដែនកំណត់លេងប្រចាំថ្ងៃត្រូវបានប្រើអស់ហើយ (បានលេង ៩/៩ ហ្គេមជាភ្ញៀវ)។ អ្នកកំពុងបាត់បង់ការរីកចម្រើនដ៏មានតម្លៃ! សូមចុះឈ្មោះគណនីសិស្សឥតគិតថ្លៃជាបន្ទាន់ ដើម្បីរក្សាទុកសមិទ្ធផលរបស់អ្នក និងលេងបាន ៦៧ ហ្គេម/ថ្ងៃ!`,
+        en: `You've used today's 9 free guest games. Create a free student account to save your progress, keep your rank, and unlock up to 67 plays a day.`,
+        kh: `អ្នកបានលេងគ្រប់ ៩ ហ្គេមជាភ្ញៀវសម្រាប់ថ្ងៃនេះហើយ។ បង្កើតគណនីសិស្សឥតគិតថ្លៃ ដើម្បីរក្សាទុកការរីកចម្រើនរបស់អ្នក រក្សាចំណាត់ថ្នាក់ និងលេងបានរហូតដល់ ៦៧ ហ្គេម/ថ្ងៃ។`,
       },
     });
   }
@@ -96,14 +96,14 @@ export async function GET() {
   if (tier === "student") {
     nextTier = "studentClass";
     upgradeMessage = {
-      en: `🛑 CRITICAL NOTICE: Student daily play limit reached (67/67 games). ALL solo practice points are locked and CANNOT be used to claim rewards. To continue playing, unlock your account, and earn REAL claimable reward points, you MUST join your teacher's class immediately!`,
-      kh: `🛑 ប្រកាសអាសន្ន៖ ដែនកំណត់លេងប្រចាំថ្ងៃសម្រាប់គណនីសិស្សបានឈានដល់កម្រិតកំណត់ហើយ (៦៧/៦៧ ហ្គេម)។ រាល់ពិន្ទុហ្វឹកហាត់ទាំងអស់ត្រូវបានចាក់សោ ហើយមិនអាចប្តូរយករង្វាន់បានឡើយ។ ដើម្បីបន្តលេង និងចាប់ផ្តើមរកពិន្ទុពិតប្រាកដសម្រាប់ប្តូររង្វាន់ អ្នកត្រូវតែចូលរួមថ្នាក់រៀនរបស់គ្រូអ្នកជាបន្ទាន់!`,
+      en: `You've reached today's 67 plays. Solo practice helps you learn, but those points can't be redeemed for rewards — join your teacher's class to earn claimable points in live games.`,
+      kh: `អ្នកបានលេងគ្រប់ ៦៧ ហ្គេមសម្រាប់ថ្ងៃនេះហើយ។ ការហ្វឹកហាត់ម្នាក់ឯងជួយឱ្យអ្នករៀន ប៉ុន្តែពិន្ទុទាំងនោះមិនអាចប្តូររង្វាន់បានទេ — ចូលរួមថ្នាក់របស់គ្រូអ្នក ដើម្បីប្រមូលពិន្ទុដែលអាចប្តូររង្វាន់នៅក្នុងហ្គេមផ្ទាល់។`,
     };
   } else if (tier === "studentClass") {
     nextTier = "studentPro";
     upgradeMessage = {
-      en: `⚡ ATTENTION: Classroom daily limit reached (100/100 games). Solo play is restricted. To unlock unlimited play and host LIVE classroom games where you earn premium claimable points, FORCE your teacher to upgrade to a Kesararam Subscription plan today!`,
-      kh: `⚡ យកចិត្តទុកដាក់៖ ដែនកំណត់លេងប្រចាំថ្ងៃសម្រាប់ថ្នាក់រៀនត្រូវបានប្រើអស់ហើយ (១០០/១០០ ហ្គេម)។ ការលេងម្នាក់ឯងត្រូវបានដាក់កម្រិត។ ដើម្បីបើកការលេងគ្មានដែនកំណត់ និងបង្កើតហ្គេមផ្ទាល់ក្នុងថ្នាក់សម្រាប់ប្រមូលពិន្ទុប្តូររង្វាន់ សូមជំរុញឱ្យលោកគ្រូអ្នកគ្រូរបស់អ្នកដំឡើងគម្រោង Kesararam Subscription ថ្ងៃនេះ!`,
+      en: `Your class has reached today's 100 plays. To unlock unlimited play and host live classroom games with premium claimable points, ask your teacher about a Kesararam plan.`,
+      kh: `ថ្នាក់របស់អ្នកបានលេងគ្រប់ ១០០ ហ្គេមសម្រាប់ថ្ងៃនេះហើយ។ ដើម្បីលេងបានគ្មានដែនកំណត់ និងបង្កើតហ្គេមផ្ទាល់ក្នុងថ្នាក់ដែលមានពិន្ទុប្តូររង្វាន់ សូមសួរលោកគ្រូ/អ្នកគ្រូអំពីគម្រោង Kesararam។`,
     };
   }
   // studentPro — no upgrade needed, they're at the top
