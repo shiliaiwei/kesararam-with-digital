@@ -1,6 +1,6 @@
 import { db } from "../../lib/db";
 import { auditLogs, type NewAuditLog } from "../schema/audit";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, and } from "drizzle-orm";
 
 /**
  * Log an audit event
@@ -51,8 +51,12 @@ export async function getEntityAuditLogs(
     return await db
         .select()
         .from(auditLogs)
-        .where(eq(auditLogs.entityType, entityType))
-        .where(eq(auditLogs.entityId, entityId))
+        .where(
+            and(
+                eq(auditLogs.entityType, entityType),
+                eq(auditLogs.entityId, entityId)
+            )
+        )
         .orderBy(desc(auditLogs.createdAt))
         .limit(limit);
 }

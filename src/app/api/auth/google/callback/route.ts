@@ -5,7 +5,6 @@ import { sessions } from "@/db/schema/sessions";
 import { eq, or, and } from "drizzle-orm";
 import { signToken, getRedirectUrl } from "@/lib/auth";
 import { assignSignupTrial, normalizePlan } from "@/lib/trial";
-import { cookies } from "next/headers";
 import { randomBytes } from "crypto";
 import { hashPassword } from "@/lib/password";
 
@@ -77,6 +76,12 @@ export async function GET(req: NextRequest) {
     const googleUser = await userRes.json();
     const { sub: googleId, email, name, picture } = googleUser;
 
+    if (!googleId) {
+      return NextResponse.redirect(
+        `${loginUrl}?error=${encodeURIComponent("Google profile did not return a valid user ID.")}`
+      );
+    }
+
     if (!email) {
       return NextResponse.redirect(`${loginUrl}?error=Google+profile+did+not+return+an+email`);
     }
@@ -145,6 +150,10 @@ export async function GET(req: NextRequest) {
       })
       .returning();
 
+    if (!newUser) {
+      throw new Error("Failed to register new user in the database.");
+    }
+
     // New teachers get a 7-day free trial (plan from state, default teacher_pro).
     let trialPromise: Promise<any> | undefined;
     if (desiredRole === "teacher" && newUser?.id) {
@@ -157,6 +166,9 @@ export async function GET(req: NextRequest) {
 
   } catch (err) {
     console.error("Google Authentication error:", err);
+    if (err instanceof Error) {
+      console.error(err.stack);
+    }
     return NextResponse.redirect(
       `${loginUrl}?error=${encodeURIComponent("A server error occurred during authentication.")}`
     );
@@ -207,9 +219,11 @@ async function establishSessionAndRedirect(user: any, req: NextRequest, extraDbP
 
   await Promise.all(promises);
 
-  // Establish jwt cookie
-  const cookieStore = await cookies();
-  cookieStore.set("kwd_token", token, {
+  const redirectTo = getRedirectUrl(user.role);
+  const response = NextResponse.redirect(new URL(redirectTo, req.url).toString());
+
+  // Establish jwt cookie directly on the NextResponse object
+  response.cookies.set("kwd_token", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
@@ -221,6 +235,5 @@ async function establishSessionAndRedirect(user: any, req: NextRequest, extraDbP
     maxAge: user.role === "student" ? 7 * 24 * 60 * 60 : 8 * 60 * 60,
   });
 
-  const redirectTo = getRedirectUrl(user.role);
-  return NextResponse.redirect(new URL(redirectTo, req.url).toString());
+  return response;
 }
