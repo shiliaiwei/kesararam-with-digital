@@ -40,10 +40,6 @@ export async function createUser(formData: FormData) {
     .toLowerCase();
   const email = ((formData.get("email") as string) ?? "").trim().toLowerCase();
   const displayName = ((formData.get("displayName") as string) ?? "").trim();
-  const schoolName = ((formData.get("schoolName") as string) ?? "").trim();
-  const province = ((formData.get("province") as string) ?? "").trim();
-  const gradeLevel = ((formData.get("gradeLevel") as string) ?? "").trim();
-  const section = ((formData.get("section") as string) ?? "").trim();
   const password = (formData.get("password") as string) ?? "";
   const role =
     (formData.get("role") as "student" | "teacher" | "admin") ?? "student";
@@ -70,16 +66,12 @@ export async function createUser(formData: FormData) {
       username,
       email,
       displayName: displayName || null,
-      schoolName: schoolName || null,
-      province: province || null,
-      gradeLevel: gradeLevel || null,
-      section: section || null,
-      passwordHash: hashPassword(password),
-      role,
       schoolName,
       province,
       gradeLevel: role === "student" ? gradeLevel : null,
       section: section || null,
+      passwordHash: hashPassword(password),
+      role,
       isActive: true,
       loginAttempts: 0,
     }).returning({ id: users.id });
@@ -113,11 +105,6 @@ export async function updateUser(id: number, formData: FormData) {
   const role = formData.get("role") as "student" | "teacher" | "admin";
   const isActive = formData.get("isActive") === "true";
   const newPassword = formData.get("password") as string;
-  const schoolName = (formData.get("schoolName") as string)?.trim() || null;
-  const province = (formData.get("province") as string)?.trim() || null;
-  const gradeLevel = (formData.get("gradeLevel") as string)?.trim() || null;
-  const section = (formData.get("section") as string)?.trim() || null;
-
   const schoolName = (formData.get("schoolName") as string)?.trim() || null;
   const province = (formData.get("province") as string)?.trim() || null;
   const gradeLevel = (formData.get("gradeLevel") as string)?.trim() || null;
