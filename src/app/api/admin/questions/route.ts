@@ -110,7 +110,7 @@ export async function POST(request: NextRequest) {
     const { topicId, questionEn, questionKm, hintEn, hintKm, imageUrl, difficulty, pointsMultiplier, answers: answerList } = body as { topicId?: number; questionEn?: string; questionKm?: string; hintEn?: string; hintKm?: string; imageUrl?: string; difficulty?: string; pointsMultiplier?: number; answers?: unknown };
     const answersArray = Array.isArray(answerList) ? (answerList as unknown[]).map(a => a as AnswerIn) : [];
 
-    if (!topicId || !questionEn || !answerList || answerList.length < 2) {
+    if (!topicId || !questionEn || !answersArray || answersArray.length < 2) {
       return NextResponse.json({ error: "Missing required fields: topicId, questionEn, and at least 2 answers" }, { status: 400 });
     }
 
@@ -138,8 +138,8 @@ export async function POST(request: NextRequest) {
 
     const questionId = questionResult[0].id;
 
-    for (let i = 0; i < answerList.length; i++) {
-      const answer = answerList[i];
+    for (let i = 0; i < answersArray.length; i++) {
+      const answer = answersArray[i];
       const aType = answer.imageUrl ? "image_selection" : answerType;
       await sql`
         INSERT INTO answers (

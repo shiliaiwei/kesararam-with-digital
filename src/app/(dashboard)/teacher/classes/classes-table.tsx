@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { useLang } from "@/context/lang-context";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { createClass, deleteClass } from "@/app/actions/classes";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -224,6 +225,7 @@ export function ClassesTable({
   initialClasses: ClassRow[];
   showTeacher?: boolean;
 }) {
+  const router = useRouter();
   const [classes, setClasses] = useState(initialClasses);
   const [, startTransition] = useTransition();
   const { lang } = useLang();
@@ -351,11 +353,12 @@ export function ClassesTable({
                         <span className="sr-only">{kh ? "សកម្មភាព" : "Actions"}</span>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="end" className="border-2 border-black rounded-none">
-                        <DropdownMenuItem asChild>
-                          <Link href={`/teacher/classes/${c.id}`} className="cursor-pointer font-bold">
-                            <Eye className="size-4 mr-2" />
-                            {kh ? "មើលបញ្ជីឈ្មោះ" : "View Roster"}
-                          </Link>
+                        <DropdownMenuItem
+                          className="cursor-pointer font-bold"
+                          onClick={() => router.push(`/teacher/classes/${c.id}`)}
+                        >
+                          <Eye className="size-4 mr-2" />
+                          {kh ? "មើលបញ្ជីឈ្មោះ" : "View Roster"}
                         </DropdownMenuItem>
                         <DropdownMenuItem
                           className="text-destructive font-bold cursor-pointer hover:!bg-red-50"

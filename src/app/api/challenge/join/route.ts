@@ -99,11 +99,12 @@ export async function POST(request: NextRequest) {
     // 7. Check participant limit
     const currentParticipantCount = await getParticipantCount(challengeSession.id);
     
-    if (currentParticipantCount >= challengeSession.maxStudents) {
+    const maxStudents = challengeSession.maxStudents ?? 40;
+    if (currentParticipantCount >= maxStudents) {
       return NextResponse.json(
         {
           error: "Conflict",
-          message: `Session is full. Maximum ${challengeSession.maxStudents} participants allowed`,
+          message: `Session is full. Maximum ${maxStudents} participants allowed`,
         },
         { status: 409 }
       );
@@ -121,7 +122,7 @@ export async function POST(request: NextRequest) {
       sessionId: challengeSession.id,
       status: challengeSession.status,
       participantCount: currentParticipantCount + 1,
-      maxStudents: challengeSession.maxStudents,
+      maxStudents,
       categoryId: challengeSession.categoryId,
     });
   } catch (error) {

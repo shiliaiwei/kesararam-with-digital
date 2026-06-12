@@ -88,7 +88,7 @@ export async function GET() {
         max_results: 500,
       });
       
-      console.log(`Found ${result.resources.length} images in kwd/ folder`);
+      console.log(`Found ${result?.resources?.length ?? 0} images in kwd/ folder`);
     } catch (err) {
       console.error("Failed to fetch from kwd/ folder:", err);
       return NextResponse.json(

@@ -7,7 +7,7 @@ describe("Admin Approval Workflow API Integration", () => {
   describe("GET /api/admin/pending-content", () => {
     it("should require admin authentication", () => {
       // Simulate authorization check
-      const userRole = "student";
+      const userRole: string = "student";
       const isAuthorized = userRole === "admin";
 
       expect(isAuthorized).toBe(false);
@@ -65,7 +65,7 @@ describe("Admin Approval Workflow API Integration", () => {
 
   describe("POST /api/admin/approve/[contentId]", () => {
     it("should require admin authentication", () => {
-      const userRole = "staff";
+      const userRole: string = "staff";
       const isAuthorized = userRole === "admin";
 
       expect(isAuthorized).toBe(false);
@@ -120,14 +120,14 @@ describe("Admin Approval Workflow API Integration", () => {
 
   describe("POST /api/admin/reject/[contentId]", () => {
     it("should require admin authentication", () => {
-      const userRole = "staff";
+      const userRole: string = "staff";
       const isAuthorized = userRole === "admin";
 
       expect(isAuthorized).toBe(false);
     });
 
     it("should require comments when rejecting", () => {
-      const comments = "";
+      const comments: string = "";
       const isValid = !!(comments && comments.trim().length > 0);
 
       expect(isValid).toBe(false);
@@ -157,7 +157,7 @@ describe("Admin Approval Workflow API Integration", () => {
 
   describe("PUT /api/admin/toggle-active/[contentId]", () => {
     it("should require admin authentication", () => {
-      const userRole = "staff";
+      const userRole: string = "staff";
       const isAuthorized = userRole === "admin";
 
       expect(isAuthorized).toBe(false);

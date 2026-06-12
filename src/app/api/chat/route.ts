@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
 
     // 2. Parse request body
     const body = await request.json();
-    const { message, provider = "google", conversationHistory = [] } = body as { message?: string; provider?: string; conversationHistory?: unknown };
+    const { message, provider = "google", conversationHistory = [] } = body as { message?: string; provider?: string; conversationHistory?: ChatMessage[] };
 
     // 3. Validate required fields
     if (!message || typeof message !== "string" || message.trim().length === 0) {

@@ -114,7 +114,6 @@ export async function POST(
     remainingTimeMs,
     totalTimeMs: session.timePerQuestion * 1000,
     currentStreak: isCorrect ? baseStreak + 1 : 0,
-    targetGroup: session.targetGroup,
   });
 
   // 8. Insert or UPDATE the answer (students may change choice before time ends)

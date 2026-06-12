@@ -20,7 +20,7 @@ export async function GET() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    let recentSessions: Array<Record<string, unknown>> = [];
+    let recentSessions: any[] = [];
     try {
       recentSessions = await db
         .select({

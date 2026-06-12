@@ -18,7 +18,7 @@ describe("Challenge Session Participant Limit", () => {
   afterEach(async () => {
     if (testSessionId) {
       await db.delete(sessionParticipants).where(eq(sessionParticipants.sessionId, testSessionId));
-      await db.delete(sessions).where(eq(sessions.id, testSessionId));
+      await db.delete(liveSessions).where(eq(liveSessions.id, testSessionId));
       testSessionId = null;
     }
   });
@@ -36,7 +36,7 @@ describe("Challenge Session Participant Limit", () => {
           // Create a test session
           const roomCode = generateTestRoomCode();
           const [session] = await db
-            .insert(sessions)
+            .insert(liveSessions)
             .values({
               teacherId,
               categoryId,
@@ -105,7 +105,7 @@ describe("Challenge Session Participant Limit", () => {
           // Create a test session
           const roomCode = generateTestRoomCode();
           const [session] = await db
-            .insert(sessions)
+            .insert(liveSessions)
             .values({
               teacherId,
               categoryId,
@@ -160,7 +160,7 @@ describe("Challenge Session Participant Limit", () => {
           // Create a test session
           const roomCode = generateTestRoomCode();
           const [session] = await db
-            .insert(sessions)
+            .insert(liveSessions)
             .values({
               teacherId,
               categoryId,
@@ -222,7 +222,7 @@ describe("Challenge Session Participant Limit", () => {
           // Create a test session with maxStudents = 1
           const roomCode = generateTestRoomCode();
           const [session] = await db
-            .insert(sessions)
+            .insert(liveSessions)
             .values({
               teacherId,
               categoryId,
