@@ -261,6 +261,71 @@ export default function HostPage() {
     return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
   }, []);
 
+  // Screen Wake Lock API to keep the screen awake during active game hosting/streaming
+  const wakeLockRef = useRef<any>(null);
+
+  const requestWakeLock = useCallback(async () => {
+    if (typeof window === "undefined" || !("wakeLock" in navigator)) {
+      return;
+    }
+    try {
+      if (!wakeLockRef.current) {
+        wakeLockRef.current = await (navigator as any).wakeLock.request("screen");
+        console.log("Wake Lock is active");
+      }
+    } catch (err) {
+      console.error("Failed to request wake lock:", err);
+    }
+  }, []);
+
+  const releaseWakeLock = useCallback(async () => {
+    if (wakeLockRef.current) {
+      try {
+        await wakeLockRef.current.release();
+        wakeLockRef.current = null;
+        console.log("Wake Lock released");
+      } catch (err) {
+        console.error("Failed to release wake lock:", err);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    const shouldKeepAwake =
+      phase.name === "lobby" ||
+      phase.name === "active" ||
+      phase.name === "round_end";
+
+    if (shouldKeepAwake) {
+      requestWakeLock();
+    } else {
+      releaseWakeLock();
+    }
+
+    return () => {
+      releaseWakeLock();
+    };
+  }, [phase.name, requestWakeLock, releaseWakeLock]);
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      const shouldKeepAwake =
+        phase.name === "lobby" ||
+        phase.name === "active" ||
+        phase.name === "round_end";
+
+      if (document.visibilityState === "visible" && shouldKeepAwake) {
+        requestWakeLock();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [phase.name, requestWakeLock]);
+
+
 
 
   const toggleFullscreen = async () => {
