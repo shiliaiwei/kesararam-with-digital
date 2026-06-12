@@ -142,6 +142,19 @@ export function Footer() {
                 </span>
               </a>
 
+              {/* YouTube — red */}
+              <a href="https://www.youtube.com/@kesararamwithdigital" target="_blank" rel="noopener noreferrer"
+                className="group relative flex items-center justify-center w-10 h-10 border-2 border-black transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5"
+                style={{ background: "#ff0000", boxShadow: "3px 3px 0 #000" }}
+                aria-label="YouTube">
+                <svg viewBox="0 0 24 24" fill="#fff" className="w-5 h-5">
+                  <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.53 3.545 12 3.545 12 3.545s-7.53 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.022 0 12 0 12s0 3.978.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.858.507 9.388.507 9.388.507s7.53 0 9.388-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.978 24 12 24 12s0-3.978-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+                <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white text-[9px] font-black px-2 py-0.5 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                  YouTube
+                </span>
+              </a>
+
 
             </div>
 
