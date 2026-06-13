@@ -168,7 +168,7 @@ function WordBankView({ round, lang, onRoundComplete }: RoundViewProps<WordBankR
             <div className="flex flex-col gap-3 w-full">
                 <div className="text-center">
                     <div className="text-sm font-black text-zinc-300" style={khFontOf(kh)}>
-                        {kh ? `ធនាគារពាក្យ · ${filled}/${round.items.length}` : `Word bank · ${filled}/${round.items.length}`}
+                        {kh ? `ផ្គូផ្គងសញ្ញា · ${filled}/${round.items.length}` : `Matching Sign · ${filled}/${round.items.length}`}
                     </div>
                     <div className="text-xs font-bold text-zinc-500 mt-0.5" style={khFontOf(kh)}>
                         {kh ? "អូស ឬប៉ះពាក្យ រួចដាក់លើរូបសញ្ញាត្រឹមត្រូវ" : "Drag or tap a word onto the matching sign"}
@@ -219,7 +219,7 @@ export const wordBankFormat: GameFormat<WordBankRound, KitCompletionResult> = {
     meta: {
         id: "word-bank",
         route: "/play/word-bank",
-        title: { en: "Word Bank", kh: "ធនាគារពាក្យ" },
+        title: { en: "Matching Sign", kh: "ផ្គូផ្គងសញ្ញា" },
         description: {
             en: "Drag each word onto its matching road sign.",
             kh: "អូសពាក្យនីមួយៗ ទៅដាក់លើសញ្ញាចរាចរណ៍ដែលត្រូវគ្នា។",
