@@ -291,6 +291,213 @@ async function buildSafetyAdventureRounds(count: number) {
     return steps.slice(0, Math.max(1, Math.min(count, steps.length)));
 }
 
+// ── Safe Street Smart ─────────────────────────────────────────────────────────
+// Multiple-choice (3 options) quiz about road safety rules for kids.
+// All answers are static (no DB dependency); correctId is the right letter.
+
+interface SSSQuestion {
+    id: number;
+    promptEn: string;
+    promptKm: string;
+    emoji: string;
+    choices: { id: string; en: string; km: string }[];
+    correctId: string;
+}
+
+const SSS_QUESTIONS: SSSQuestion[] = [
+    {
+        id: 1, emoji: "🚦",
+        promptEn: "What do we do when the traffic light is RED?",
+        promptKm: "យើងធ្វើអ្វីនៅពេលភ្លើងចរាចរណ៍ពណ៌ក្រហម?",
+        choices: [
+            { id: "A", en: "Go", km: "ទៅ" },
+            { id: "B", en: "Stop", km: "ឈប់" },
+            { id: "C", en: "Dance", km: "រាំ" },
+        ],
+        correctId: "B",
+    },
+    {
+        id: 2, emoji: "⛑️",
+        promptEn: "What should we wear when riding a bicycle or bike?",
+        promptKm: "យើងគួរពាក់អ្វីនៅពេលជិះកង់ ឬម៉ូតូ?",
+        choices: [
+            { id: "A", en: "Shoes", km: "ស្បែកជើង" },
+            { id: "B", en: "Helmet", km: "មួកសុវត្ថិភាព" },
+            { id: "C", en: "Hat", km: "មួកស្លឹក" },
+        ],
+        correctId: "B",
+    },
+    {
+        id: 3, emoji: "🦓",
+        promptEn: "Where should we cross the road?",
+        promptKm: "យើងគួរឆ្លងផ្លូវនៅឯណា?",
+        choices: [
+            { id: "A", en: "Anywhere we want", km: "ណាក៏បាន" },
+            { id: "B", en: "At zebra crossing", km: "នៅផ្លូវឆ្លងកាត់" },
+            { id: "C", en: "Behind a tree", km: "នៅខាងក្រោយដើមឈើ" },
+        ],
+        correctId: "B",
+    },
+    {
+        id: 4, emoji: "🚗",
+        promptEn: "Why do we wear seatbelts in a car?",
+        promptKm: "ហេតុអ្វីបានជាយើងពាក់ខ្សែក្រវ៉ាត់សុវត្ថិភាពក្នុងឡាន?",
+        choices: [
+            { id: "A", en: "To look nice", km: "ដើម្បីមើលទៅស្អាត" },
+            { id: "B", en: "To be safe", km: "ដើម្បីសុវត្ថិភាព" },
+            { id: "C", en: "To sleep", km: "ដើម្បីដេក" },
+        ],
+        correctId: "B",
+    },
+    {
+        id: 5, emoji: "🏃",
+        promptEn: "Which of these is NOT safe on the road?",
+        promptKm: "អ្វីមួយក្នុងចំណោមនេះ មិនមានសុវត្ថិភាពនៅលើផ្លូវ?",
+        choices: [
+            { id: "A", en: "Walking on footpath", km: "ដើរលើចិញ្ចើមថ្នល់" },
+            { id: "B", en: "Crossing at zebra crossing", km: "ឆ្លងនៅផ្លូវឆ្លងកាត់" },
+            { id: "C", en: "Running in the middle of the road", km: "រត់នៅកណ្ដាលផ្លូវ" },
+        ],
+        correctId: "C",
+    },
+    {
+        id: 6, emoji: "🌙",
+        promptEn: "What should you do to be seen at night?",
+        promptKm: "តើអ្នកគួរធ្វើអ្វីដើម្បីឱ្យគេមើលឃើញអ្នកពេលយប់?",
+        choices: [
+            { id: "A", en: "Wear dark clothes", km: "ពាក់សម្លៀកបំពាក់ពណ៌ងងឹត" },
+            { id: "B", en: "Wear bright or reflective clothes", km: "ពាក់ សម្លៀក​ ភ្លឺ​ ឬ ឆ្លុះ​ ពន្លឺ" },
+            { id: "C", en: "Stay home", km: "នៅផ្ទះ" },
+        ],
+        correctId: "B",
+    },
+    {
+        id: 7, emoji: "📱",
+        promptEn: "Is it safe to use your phone while crossing the road?",
+        promptKm: "តើការប្រើទូរស័ព្ទពេលឆ្លងផ្លូវមានសុវត្ថិភាពទេ?",
+        choices: [
+            { id: "A", en: "Yes, it is fine", km: "បាទ/ចាស ដូចម្ដេចក៏បាន" },
+            { id: "B", en: "No, put the phone away", km: "ទេ គួរទុកទូរស័ព្ទ" },
+            { id: "C", en: "Only if texting", km: "ត្រឹមតែផ្ញើសារប៉ុណ្ណោះ" },
+        ],
+        correctId: "B",
+    },
+    {
+        id: 8, emoji: "🚑",
+        promptEn: "You hear an ambulance siren. What should you do?",
+        promptKm: "អ្នកឮស៊ីផ្លុំឡានពេទ្យ។ តើអ្នកគួរធ្វើអ្វី?",
+        choices: [
+            { id: "A", en: "Speed up", km: "បង្កើនល្បឿន" },
+            { id: "B", en: "Block the road", km: "រារាំងផ្លូវ" },
+            { id: "C", en: "Move aside and let it pass", km: "គេចទៅម្ខាង ឱ្យវាឆ្លង" },
+        ],
+        correctId: "C",
+    },
+    {
+        id: 9, emoji: "⚽",
+        promptEn: "A ball rolls into the street. What do you do?",
+        promptKm: "បាល់រមៀលចូលក្នុងផ្លូវ។ តើអ្នកធ្វើអ្វី?",
+        choices: [
+            { id: "A", en: "Run after it right away", km: "រត់ដេញតាមភ្លាមៗ" },
+            { id: "B", en: "Stop and wait for adult help", km: "ឈប់ ហើយរង់ចាំជំនួយ" },
+            { id: "C", en: "Ignore it", km: "មិនខ្វល់" },
+        ],
+        correctId: "B",
+    },
+    {
+        id: 10, emoji: "🚌",
+        promptEn: "You just got off the bus. How do you cross the road?",
+        promptKm: "អ្នកទើបចុះពីឡានក្រុង។ តើអ្នកឆ្លងផ្លូវយ៉ាងដូចម្ដេច?",
+        choices: [
+            { id: "A", en: "Cross right in front of the bus", km: "ឆ្លងពីមុខឡានភ្លាមៗ" },
+            { id: "B", en: "Wait for the bus to leave, look, then cross", km: "រង់ចាំឡានចេញ មើល ហើយឆ្លង" },
+            { id: "C", en: "Run as fast as you can", km: "រត់ឱ្យបានលឿន" },
+        ],
+        correctId: "B",
+    },
+    {
+        id: 11, emoji: "🚶",
+        promptEn: "There is no footpath. Where do you walk?",
+        promptKm: "គ្មានចិញ្ចើមថ្នល់។ តើអ្នកដើរនៅឯណា?",
+        choices: [
+            { id: "A", en: "In the middle of the road", km: "នៅកណ្ដាលផ្លូវ" },
+            { id: "B", en: "Facing oncoming traffic", km: "បែរមុខទៅរកចរាចរណ៍" },
+            { id: "C", en: "With your back to traffic", km: "បែរខ្នងដាក់ចរាចរណ៍" },
+        ],
+        correctId: "B",
+    },
+    {
+        id: 12, emoji: "🟡",
+        promptEn: "What does a YELLOW traffic light mean?",
+        promptKm: "ភ្លើងចរាចរណ៍ពណ៌លឿងមានន័យថាអ្វី?",
+        choices: [
+            { id: "A", en: "Speed up", km: "បង្កើនល្បឿន" },
+            { id: "B", en: "Go fast before red", km: "ទៅលឿនមុនភ្លើងក្រហម" },
+            { id: "C", en: "Slow down and prepare to stop", km: "បន្ថយល្បឿន ត្រៀមឈប់" },
+        ],
+        correctId: "C",
+    },
+    {
+        id: 13, emoji: "🛑",
+        promptEn: "What do you do at a STOP sign?",
+        promptKm: "អ្នកធ្វើអ្វីនៅសញ្ញាឈប់?",
+        choices: [
+            { id: "A", en: "Come to a full stop", km: "ឈប់ទាំងស្រុង" },
+            { id: "B", en: "Slow a little and roll through", km: "បន្ថយបន្តិចហើយបន្ត" },
+            { id: "C", en: "Honk and go", km: "បោ ហើយទៅ" },
+        ],
+        correctId: "A",
+    },
+    {
+        id: 14, emoji: "👀",
+        promptEn: "Before crossing the road you should look…",
+        promptKm: "មុនឆ្លងផ្លូវ អ្នកគួរមើល…",
+        choices: [
+            { id: "A", en: "Only left", km: "ខាងឆ្វេងតែម្ខាង" },
+            { id: "B", en: "Only right", km: "ខាងស្ដាំតែម្ខាង" },
+            { id: "C", en: "Left, right, then left again", km: "ឆ្វេង ស្ដាំ ហើយឆ្វេងម្ដងទៀត" },
+        ],
+        correctId: "C",
+    },
+    {
+        id: 15, emoji: "🌧️",
+        promptEn: "It is raining. Why should you be extra careful near roads?",
+        promptKm: "ភ្លៀងកំពុងធ្លាក់។ ហេតុអ្វីត្រូវប្រយ័ត្នជាងធម្មតានៅជិតផ្លូវ?",
+        choices: [
+            { id: "A", en: "Roads are prettier", km: "ផ្លូវស្អាតជាង" },
+            { id: "B", en: "Roads are slippery and visibility is lower", km: "ផ្លូវរអិល ហើយការមើលឃើញថយចុះ" },
+            { id: "C", en: "Cars go slower automatically", km: "ឡានថយល្បឿនដោយស្វ័យប្រវត្តិ" },
+        ],
+        correctId: "B",
+    },
+];
+
+function shuffleInPlaceSS<T>(a: T[]): T[] {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+async function buildSafeStreetSmartRounds(count: number) {
+    const rounds = Math.max(1, Math.min(count, 3));
+    const pool = shuffleInPlaceSS([...SSS_QUESTIONS]);
+    const questionsPerRound = 5;
+    const built: unknown[] = [];
+
+    for (let i = 0; i < rounds; i++) {
+        const group = pool.splice(0, questionsPerRound);
+        if (group.length === 0) break;
+        built.push({
+            kind: "safe-street-smart",
+            id: i + 1,
+            questions: group,
+        });
+    }
+    return built;
+}
+
 export const KID_GAMES: Record<string, KidGameSpec> = {
     "sign-match": { accessTier: "user", buildRounds: buildSignMatchRounds },
     "sign-connect": { accessTier: "user", buildRounds: buildSignConnectRounds },
@@ -299,4 +506,5 @@ export const KID_GAMES: Record<string, KidGameSpec> = {
     "catch-sign": { accessTier: "user", buildRounds: buildCatchSignRounds },
     "light-hero": { accessTier: "user", buildRounds: buildLightHeroRounds },
     "safety-adventure": { accessTier: "user", buildRounds: buildSafetyAdventureRounds },
+    "safe-street-smart": { accessTier: "user", buildRounds: buildSafeStreetSmartRounds },
 };

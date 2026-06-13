@@ -12,6 +12,7 @@ import { wordBankFormat } from "./formats/word-bank";
 import { catchSignFormat } from "./formats/catch-sign";
 import { lightHeroFormat } from "./formats/light-hero";
 import { safetyAdventureFormat } from "./formats/safety-adventure";
+import { safeStreetSmartFormat } from "./formats/safe-street-smart";
 import type { GameFormatMeta } from "./types";
 
 // Note: typed loosely as the array mixes different TRound/TResult generics.
@@ -28,6 +29,7 @@ export const GAMEKIT_FORMATS: { meta: GameFormatMeta }[] = [
     catchSignFormat as any,
     lightHeroFormat as any,
     safetyAdventureFormat as any,
+    safeStreetSmartFormat as any,
 ];
 
 /** Hub card metadata for all GameKit games (for /play). */

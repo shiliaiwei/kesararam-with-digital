@@ -67,7 +67,7 @@ function TickSignView({ round, lang, onRoundComplete }: RoundViewProps<TickSignR
     return (
         <div className="flex flex-col gap-3 w-full">
             <div className="bg-zinc-900 border-2 border-black p-3 text-center text-white font-black" style={{ ...khFont }}>
-                <span className="text-yellow-400">{kh ? "ធីកសញ្ញាដែលត្រឹមត្រូវ" : "Tick the correct safety sign"}</span>
+                <span className="text-yellow-400">{kh ? "ចុចសញ្ញាដែលត្រឹមត្រូវ" : "Click the correct safety sign"}</span>
             </div>
 
             {round.rows.map((row, ri) => {
@@ -143,10 +143,10 @@ export const tickSignFormat: GameFormat<TickSignRound, KitCompletionResult> = {
     meta: {
         id: "tick-sign",
         route: "/play/tick-sign",
-        title: { en: "Tick the Sign", kh: "ធីកសញ្ញា" },
+        title: { en: "Click the Sign", kh: "ចុចសញ្ញា" },
         description: {
-            en: "Tick the correct road sign for each name.",
-            kh: "ធីកសញ្ញាចរាចរណ៍ឱ្យត្រូវនឹងឈ្មោះនីមួយៗ។",
+            en: "Click the correct road sign for each name.",
+            kh: "ចុចសញ្ញាចរាចរណ៍ឱ្យត្រូវនឹងឈ្មោះនីមួយៗ។",
         },
         brandColor: "#14b8a6",
         Icon: ListChecks,
