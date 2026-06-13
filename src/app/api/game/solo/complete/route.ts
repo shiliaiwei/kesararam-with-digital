@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
-import { calculateScore, SOLO_SCORE_MULTIPLIER, PLAY_LIMITS } from "@/lib/game-engine";
+import { calculateScore, PLAY_LIMITS } from "@/lib/game-engine";
 import { db } from "@/lib/db";
 import { gameScores, pointsLedger } from "@/db/schema/content";
 import { users, classEnrollments, classes } from "@/db/schema/users";
@@ -64,12 +64,13 @@ export async function getSoloPlaysToday(userId: number): Promise<number> {
  *
  * ── Score system ─────────────────────────────────────────────────────────────
  *   rawScore   = calculateScore() per question (base + speed + streak bonus)
- *   soloPoints = CEIL(rawScore × 0.20)   ← 20% of raw, practice-only
+ *   soloPoints = rawScore   ← full value; solo is a SEPARATE practice currency
  *
  * Solo points are:
- *   ✅ Added to users.lifetimePoints (leaderboard rank)
- *   ✅ Written to pointsLedger with source="solo"
- *   ❌ NOT counted for reward claiming (only source="live" counts)
+ *   ❌ NOT added to users.lifetimePoints (that is LIVE priority points only / rank)
+ *   ✅ Written to pointsLedger with source="solo"  (separate solo board column)
+ *   ❌ NOT counted for reward claiming (only source="live-session:%" counts)
+ *      → exchanging solo points for store items is a planned future update.
  *
  * ── Daily play limits (server-enforced for students) ─────────────────────────
  *   student (no class)       → 67 games/day
@@ -160,13 +161,13 @@ export async function POST(req: NextRequest) {
       questionId: ans.questionId,
       isCorrect: ans.isCorrect,
       rawPoints: scoreResult.totalPoints,
-      soloPoints: Math.ceil(scoreResult.totalPoints * SOLO_SCORE_MULTIPLIER),
+      soloPoints: scoreResult.totalPoints,
       timeTakenMs: ans.timeTakenMs,
     });
   }
 
-  // Solo points = 20% of raw, always rounded up
-  const soloPoints = Math.ceil(rawScore * SOLO_SCORE_MULTIPLIER);
+  // Solo points = full raw score (separate practice currency, not claimable yet)
+  const soloPoints = rawScore;
 
   const accuracyPercentage =
     answerInputs.length > 0
@@ -177,7 +178,12 @@ export async function POST(req: NextRequest) {
   let newLifetimePoints: number | undefined;
 
   // ── Persist to DB (logged-in students only) ─────────────────────────────────
-  if (session?.id && session.role === "student" && soloPoints > 0) {
+  // A completed game ALWAYS counts as a play (recorded + counted toward the daily
+  // limit + totalGamesPlayed) even when the student scored 0 — otherwise an
+  // all-wrong run would silently bypass the daily limit and skew totals. Only the
+  // points writes (ledger row + lifetimePoints) are gated on soloPoints > 0 so we
+  // never insert a zero-point ledger row.
+  if (session?.id && session.role === "student") {
     try {
       await db.insert(gameScores).values({
         userId: session.id,
@@ -187,23 +193,27 @@ export async function POST(req: NextRequest) {
         correctAnswers: correctCount,
         timeTaken: timeTakenSeconds,
         categoryBreakdown: JSON.stringify(perQuestion),
-        scoreDifference: rawScore - soloPoints,
+        scoreDifference: 0,                        // solo records at full value now
         scoreType: "solo",
         gameType: gameMode,
       });
 
-      // source="solo" → excluded from claimable balance in /api/user/claim
-      await db.insert(pointsLedger).values({
-        userId: session.id,
-        source: "solo",
-        gameType: gameMode,
-        points: soloPoints,                       // only 20% goes to ledger
-      });
+      // source="solo" → its OWN board column; excluded from claimable balance and
+      // from lifetimePoints (live priority points only). Skip zero-point runs.
+      if (soloPoints > 0) {
+        await db.insert(pointsLedger).values({
+          userId: session.id,
+          source: "solo",
+          gameType: gameMode,
+          points: soloPoints,                     // full raw score to the solo ledger
+        });
+      }
 
+      // NOTE: solo does NOT touch lifetimePoints anymore. We only update the
+      // play counter + personal-best (highestScore) for display.
       const [updatedUser] = await db
         .update(users)
         .set({
-          lifetimePoints: sql`${users.lifetimePoints} + ${soloPoints}`,
           highestScore: sql`GREATEST(${users.highestScore}, ${rawScore})`,
           totalGamesPlayed: sql`${users.totalGamesPlayed} + 1`,
           updatedAt: new Date(),
@@ -223,8 +233,8 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  const scoreDifference = rawScore - soloPoints;
-  console.log(`[solo/complete] Scoring audit recorded: GameMode/GameType=${gameMode}, ScoreType=solo, RawScore=${rawScore}, LedgerPoints=${soloPoints}, Difference=${scoreDifference}`);
+  const scoreDifference = 0; // solo now records at full value
+  console.log(`[solo/complete] Scoring audit recorded: GameMode/GameType=${gameMode}, ScoreType=solo, RawScore=${rawScore}, SoloPoints=${soloPoints} (full value, separate currency)`);
 
   return NextResponse.json({
     rawScore,
@@ -244,6 +254,6 @@ export async function POST(req: NextRequest) {
     playsAllowed,
     remainingPlays: Math.max(0, playsAllowed - playsToday),
     tier,
-    note: "Solo scores are practice-only (20% of raw). Only live game scores count for reward claiming.",
+    note: "Solo scores are a separate practice currency (full value). Only live game scores count toward rank and reward claiming. Spending solo points is a planned future update.",
   });
 }

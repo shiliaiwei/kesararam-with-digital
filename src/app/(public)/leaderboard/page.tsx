@@ -86,18 +86,6 @@ const WINDOW_TABS: { id: "weekly" | "monthly" | "all"; en: string; kh: string }[
   { id: "all", en: "All-Time", kh: "គ្រប់ពេល" },
 ];
 
-// GameType values match the `gameType` column written into pointsLedger.
-// Includes both live teacher-hosted sessions AND solo practice game modes.
-const GAME_TYPES: { id: string; en: string; kh: string }[] = [
-  { id: "all",            en: "All Game Types",    kh: "គ្រប់ប្រភេទ" },
-  { id: "quick-quiz",     en: "Quick Quiz",         kh: "សំណួរលឿន" },
-  { id: "speed-round",    en: "Speed Round",        kh: "វគ្គល្បឿន" },
-  { id: "sign-challenge", en: "Sign Challenge",     kh: "ប្រឡងសញ្ញា" },
-  { id: "mixed-practice", en: "Mixed Practice",     kh: "ហ្វឹកហាត់ចម្រុះ" },
-  { id: "sign-match",     en: "Sign Match (Mini)",  kh: "ផ្គូផ្គងសញ្ញា" },
-  { id: "daily",          en: "Daily Challenge",    kh: "បញ្ហាប្រចាំថ្ងៃ" },
-];
-
 // Source filter — one segmented control. NO emoji (brand rule): Lucide icon +
 // a semantic color dot per source. Values map to the API `source` param.
 const SOURCE_TABS: { id: string; en: string; kh: string; icon: React.ElementType; color: string }[] = [
@@ -116,6 +104,8 @@ interface LeaderboardUser {
   highestScore: number;
   totalGamesPlayed: number;
   lifetimePoints: number;
+  priorityPoints?: number;
+  soloPoints?: number;
   schoolName?: string | null;
   province?: string | null;
   gradeLevel?: string | null;
@@ -649,7 +639,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
   userLifetimePoints?: number;
 }) {
   const kh = lang === "kh";
-  const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const kf = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
 
   const userRank = getRank(userLifetimePoints);
   const cooldownMs = TIER_COOLDOWNS[userRank.id] ?? TIER_COOLDOWNS.rookie;
@@ -1025,7 +1015,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
 export default function LeaderboardPage() {
   const { lang } = useLang();
   const kh = lang === "kh";
-  const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const kf = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
 
   const [leaderboard, setLeaderboard] = useState<LeaderboardUser[]>([]);
   const [prevRanks, setPrevRanks] = useState<Record<number, number>>({});
@@ -1049,15 +1039,12 @@ export default function LeaderboardPage() {
   // Leaderboard filters: time window, province, game type, score source
   const [windowTab, setWindowTab] = useState<"weekly" | "monthly" | "all">("all");
   const [province, setProvince] = useState("all");
-  const [gameType, setGameType] = useState("all");
   const [sourceTab, setSourceTab] = useState("all");
 
   const fetchLeaderboard = useCallback(async () => {
     try {
       const params = new URLSearchParams({ limit: "50", window: windowTab });
       if (province !== "all") params.set("province", province);
-      // Game-type filter now works for all windows including all-time
-      if (gameType !== "all") params.set("gameType", gameType);
       // Source filter: live, solo, daily, or all
       if (sourceTab !== "all") params.set("source", sourceTab);
       const res = await fetch(`/api/leaderboard?${params.toString()}`);
@@ -1074,7 +1061,7 @@ export default function LeaderboardPage() {
       setCountdown(60);
     } catch { /* silent */ }
     finally { setLoading(false); }
-  }, [windowTab, province, gameType, sourceTab]);
+  }, [windowTab, province, sourceTab]);
 
   useEffect(() => {
     fetchLeaderboard();
@@ -1286,7 +1273,7 @@ export default function LeaderboardPage() {
             <div>
               {/* Source filter removed — leaderboard always shows all sources. */}
 
-              {/* ── Window + province + game type ── */}
+              {/* ── Window + province ── */}
               <div className="mb-4 flex flex-wrap items-center gap-2">
                 <div className="flex items-stretch border-2 border-black flex-shrink-0" style={{ borderRadius: 0 }}>
                   {WINDOW_TABS.map((w, i) => {
@@ -1315,17 +1302,6 @@ export default function LeaderboardPage() {
                     <option key={p.en} value={p.en}>{kh ? p.kh : p.en}</option>
                   ))}
                 </select>
-
-                <select
-                  value={gameType}
-                  onChange={e => setGameType(e.target.value)}
-                  className="border-2 border-black bg-white px-2.5 py-1.5 text-[11px] md:text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
-                  style={{ borderRadius: 0, ...kf }}
-                >
-                  {GAME_TYPES.map(g => (
-                    <option key={g.id} value={g.id}>{kh ? g.kh : g.en}</option>
-                  ))}
-                </select>
               </div>
 
               <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
@@ -1351,9 +1327,10 @@ export default function LeaderboardPage() {
                 {/* Table Header */}
                 <div className="grid grid-cols-12 bg-black px-3 md:px-5 py-2.5 text-[9px] md:text-[10px] font-black tracking-widest text-yellow-400 uppercase">
                   <span className="col-span-1">#</span>
-                  <span className="col-span-7 sm:col-span-6">{kh ? "សិស្ស" : "Student"}</span>
+                  <span className="col-span-7 sm:col-span-4">{kh ? "សិស្ស" : "Student"}</span>
                   <span className="col-span-2 text-center hidden sm:block">{kh ? "ហ្គេម" : "Games"}</span>
-                  <span className="col-span-4 sm:col-span-3 text-right">{kh ? "ពិន្ទុ" : "Points"}</span>
+                  <span className="col-span-2 text-center hidden sm:block text-green-400">{kh ? "ហ្វឹកហាត់" : "Solo"}</span>
+                  <span className="col-span-4 sm:col-span-3 text-right">{kh ? "ពិន្ទុអាទិភាព" : "Priority"}</span>
                 </div>
 
                 {leaderboard.length > 0 ? leaderboard.map((user) => {
@@ -1389,7 +1366,7 @@ export default function LeaderboardPage() {
                       </div>
 
                       {/* Avatar + name + meta */}
-                      <div className="col-span-7 sm:col-span-6 flex items-center gap-2.5 min-w-0">
+                      <div className="col-span-7 sm:col-span-4 flex items-center gap-2.5 min-w-0">
                         <Avatar url={rowAvatar} name={user.displayName || user.username} size={36} ring={medal ?? tier.accent} changedAt={user.avatarChangedAt} />
                         <div className="flex flex-col min-w-0">
                           <div className="flex items-center gap-1.5 min-w-0">
@@ -1420,10 +1397,15 @@ export default function LeaderboardPage() {
                         {user.totalGamesPlayed}
                       </span>
 
-                      {/* Points */}
+                      {/* Solo practice score (separate currency, not claimable) */}
+                      <span className="col-span-2 text-center text-xs font-bold text-green-600 tabular-nums hidden sm:block">
+                        {(user.soloPoints ?? 0).toLocaleString()}
+                      </span>
+
+                      {/* Priority points = live currency = rank + claimable */}
                       <div className="col-span-4 sm:col-span-3 text-right">
-                        <span className="font-black tabular-nums text-sm md:text-base text-black">{user.lifetimePoints.toLocaleString()}</span>
-                        <span className="block text-[8px] text-zinc-400 font-bold uppercase tracking-wider leading-none">pts</span>
+                        <span className="font-black tabular-nums text-sm md:text-base text-black">{(user.priorityPoints ?? user.lifetimePoints).toLocaleString()}</span>
+                        <span className="block text-[8px] text-zinc-400 font-bold uppercase tracking-wider leading-none">{kh ? "ពិន្ទុអាទិភាព" : "priority pts"}</span>
                       </div>
                     </div>
                   );

@@ -47,6 +47,12 @@ export async function GET(req: NextRequest) {
     const provinceFilter =
       province !== "all" ? sql` AND ${users.province} = ${province}` : sql``;
 
+    // Per-user point buckets from the single ledger:
+    //   priority (live) = the rank + claimable currency
+    //   solo            = separate practice currency (not claimable yet)
+    const priorityExpr = sql<number>`COALESCE((SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = ${users.id} AND pl.source LIKE 'live-session:%'), 0)::int`;
+    const soloExpr = sql<number>`COALESCE((SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = ${users.id} AND pl.source = 'solo'), 0)::int`;
+
     let rows: {
       id: number;
       username: string;
@@ -56,6 +62,8 @@ export async function GET(req: NextRequest) {
       highestScore: number;
       totalGamesPlayed: number;
       windowPoints: number;
+      priorityPoints: number;
+      soloPoints: number;
       schoolName: string | null;
       province: string | null;
       gradeLevel: string | null;
@@ -80,6 +88,8 @@ export async function GET(req: NextRequest) {
           highestScore: users.highestScore,
           totalGamesPlayed: users.totalGamesPlayed,
           windowPoints: users.lifetimePoints,
+          priorityPoints: priorityExpr,
+          soloPoints: soloExpr,
           schoolName: users.schoolName,
           province: users.province,
           gradeLevel: users.gradeLevel,
@@ -124,6 +134,8 @@ export async function GET(req: NextRequest) {
           highestScore: users.highestScore,
           totalGamesPlayed: users.totalGamesPlayed,
           windowPoints: sql<number>`COALESCE(SUM(${pointsLedger.points}), 0)::int`,
+          priorityPoints: priorityExpr,
+          soloPoints: soloExpr,
           schoolName: users.schoolName,
           province: users.province,
           gradeLevel: users.gradeLevel,
@@ -163,6 +175,7 @@ export async function GET(req: NextRequest) {
           users.isGradePublic,
           users.isSectionPublic
         )
+        .having(sql`COALESCE(SUM(${pointsLedger.points}), 0) > 0`)
         .orderBy(desc(sql`COALESCE(SUM(${pointsLedger.points}), 0)`))
         .limit(limit)
         .offset(offset);
@@ -188,6 +201,8 @@ export async function GET(req: NextRequest) {
         highestScore: user.highestScore,
         totalGamesPlayed: user.totalGamesPlayed,
         lifetimePoints: user.windowPoints,
+        priorityPoints: user.priorityPoints,
+        soloPoints: user.soloPoints,
         schoolName: (user.isSchoolPublic ?? true) ? user.schoolName : null,
         province: (user.isProvincePublic ?? true) ? user.province : null,
         gradeLevel: (user.isGradePublic ?? true) ? user.gradeLevel : null,
