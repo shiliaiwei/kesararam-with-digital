@@ -75,8 +75,8 @@ async function buildWordBankRounds(count: number) {
             id: i + 1,
             items: group.map((s) => ({
                 id: s.id,
-                nameEn: s.nameEn,
-                nameKm: s.nameKm,
+                nameEn: (s.nameEn || "").trim(),
+                nameKm: (s.nameKm || "").trim(),
                 imageUrl: s.imageUrl,
             })),
         });
