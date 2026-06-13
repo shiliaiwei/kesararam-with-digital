@@ -68,7 +68,7 @@ export const safetyAdventureFormat: GameFormat<AdventureRound, KitCompletionResu
     meta: {
         id: "safety-adventure",
         route: "/play/safety-adventure",
-        title: { en: "Road Safety Adventure", kh: "Road Safety Adventure" },
+        title: { en: "Road Safety", kh: "Road Safety" },
         description: { en: "Make the safe choices on your journey to school.", kh: "ធ្វើការសម្រេចចិត្តប្រកបដោយសុវត្ថិភាពក្នុងដំណើរទៅសាលា។" },
         brandColor: "#a855f7",
         Icon: MapIcon,
