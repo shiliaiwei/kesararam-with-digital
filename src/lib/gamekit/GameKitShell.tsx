@@ -21,16 +21,14 @@ export function GameKitShell<TRound, TResult extends KitCompletionResult>({
 }) {
     const { lang } = useLang();
     const kh = lang === "kh";
-    const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+    const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
     const router = useRouter();
 
     const [phase, setPhase] = useState<KitPhase<TRound, TResult>>({ name: "setup" });
     const [muted, setMuted] = useState(true);
     const answersRef = useRef<RoundResult[]>([]);
 
-    // Timer customization state
-    const [timerMode, setTimerMode] = useState<"standard" | "custom" | "none">("standard");
-    const [customSeconds, setCustomSeconds] = useState<number>(30);
+    // Countdown end time for shell-driven timers (set per round)
     const [currentEndsAt, setCurrentEndsAt] = useState<string>("");
 
     const { meta, config } = format;
@@ -62,14 +60,9 @@ export function GameKitShell<TRound, TResult extends KitCompletionResult>({
                 return;
             }
 
-            let secondsLimit: number | null = null;
-            if (timerMode === "none") {
-                secondsLimit = null;
-            } else if (timerMode === "custom") {
-                secondsLimit = customSeconds;
-            } else {
-                secondsLimit = format.config.timed ? (format.config.secondsPerRound || 30) : null;
-            }
+            const secondsLimit: number | null = format.config.timed
+                ? (format.config.secondsPerRound || 30)
+                : null;
 
             answersRef.current = [];
             setPhase({
@@ -162,77 +155,6 @@ export function GameKitShell<TRound, TResult extends KitCompletionResult>({
                     </div>
                 </div>
                 <div className="max-w-2xl mx-auto px-6 py-10 flex flex-col gap-6">
-                    {/* Time limit option */}
-                    <div className="border-4 border-black p-6 bg-zinc-50 shadow-[4px_4px_0_#000]" style={{ borderRadius: 0 }}>
-                        <h3 className="text-lg font-black mb-4 flex items-center gap-2" style={khFont}>
-                            <span>⏱️</span>
-                            <span>{kh ? "កំណត់រយៈពេលលេង" : "Choose Time Limit"}</span>
-                        </h3>
-                        
-                        <div className="flex flex-col gap-4">
-                            <label className="flex items-center gap-3 cursor-pointer select-none">
-                                <input
-                                    type="radio"
-                                    name="timerMode"
-                                    checked={timerMode === "standard"}
-                                    onChange={() => setTimerMode("standard")}
-                                    className="w-5 h-5 accent-black cursor-pointer"
-                                />
-                                <span className="text-sm font-bold text-black" style={khFont}>
-                                    {kh 
-                                        ? `ម៉ោងស្ដង់ដារ ${format.config.timed ? `(${format.config.secondsPerRound || 30} វិនាទី)` : "(គ្មានកំណត់)"}` 
-                                        : `Standard Mode ${format.config.timed ? `(${format.config.secondsPerRound || 30}s)` : "(No limit)"}`}
-                                </span>
-                            </label>
-
-                            <label className="flex items-center gap-3 cursor-pointer select-none">
-                                <input
-                                    type="radio"
-                                    name="timerMode"
-                                    checked={timerMode === "none"}
-                                    onChange={() => setTimerMode("none")}
-                                    className="w-5 h-5 accent-black cursor-pointer"
-                                />
-                                <span className="text-sm font-bold text-black" style={khFont}>
-                                    {kh ? "គ្មានដែនកំណត់ពេលវេលា (លេងសម្រាកកាយ)" : "No Time Limit (Relaxed Practice)"}
-                                </span>
-                            </label>
-
-                            <label className="flex items-center gap-3 cursor-pointer select-none">
-                                <input
-                                    type="radio"
-                                    name="timerMode"
-                                    checked={timerMode === "custom"}
-                                    onChange={() => setTimerMode("custom")}
-                                    className="w-5 h-5 accent-black cursor-pointer"
-                                />
-                                <span className="text-sm font-bold text-black" style={khFont}>
-                                    {kh ? "កំណត់ម៉ោងដោយខ្លួនឯង" : "Custom Time Limit"}
-                                </span>
-                            </label>
-
-                            {timerMode === "custom" && (
-                                <div className="pl-8 flex items-center gap-2.5 flex-wrap">
-                                    {[10, 15, 30, 45, 60].map((sec) => (
-                                        <button
-                                            key={sec}
-                                            type="button"
-                                            onClick={() => setCustomSeconds(sec)}
-                                            className={`px-4 py-2 border-2 border-black font-black text-xs transition-all ${
-                                                customSeconds === sec
-                                                    ? "bg-yellow-400 text-black shadow-[3px_3px_0_#000] -translate-y-0.5"
-                                                    : "bg-white text-zinc-500 hover:text-black hover:bg-zinc-100"
-                                            }`}
-                                            style={khFont}
-                                        >
-                                            {sec} {kh ? "វិនាទី" : "seconds"}
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    </div>
-
                     <button
                         onClick={start}
                         className="w-full py-5 bg-black text-yellow-400 font-black text-xl border-2 border-black transition-all hover:-translate-y-0.5"
