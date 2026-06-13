@@ -8,7 +8,7 @@ export const priorityFormat: GameFormat<PriorityRound, PriorityCompletionResult>
     meta: {
         id: "priority-puzzle",
         route: "/play/priority-puzzle",
-        title: { en: "Who Goes First?", kh: "តើអ្នកណាទៅមុន?" },
+        title: { en: "Who Goes First?", kh: "Who Goes First?" },
         description: {
             en: "Tap the one vehicle that goes first.",
             kh: "ប៉ះរថយន្តដែលទៅមុនគេ។",

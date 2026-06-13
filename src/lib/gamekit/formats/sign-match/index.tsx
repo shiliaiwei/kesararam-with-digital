@@ -122,7 +122,7 @@ export const signMatchFormat: GameFormat<SignMatchRound, KitCompletionResult> = 
     meta: {
         id: "sign-match",
         route: "/play/sign-match",
-        title: { en: "Sign Match", kh: "ផ្គូផ្គងសញ្ញា" },
+        title: { en: "Sign Match", kh: "Sign Match" },
         description: { en: "Flip cards and match each sign to its meaning.", kh: "ត្រឡប់ប័ណ្ណ ហើយផ្គូផ្គងសញ្ញានីមួយៗទៅនឹងអត្ថន័យ។" },
         brandColor: "#22c55e",
         Icon: Grid2x2,

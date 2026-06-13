@@ -219,7 +219,7 @@ export const wordBankFormat: GameFormat<WordBankRound, KitCompletionResult> = {
     meta: {
         id: "word-bank",
         route: "/play/word-bank",
-        title: { en: "Matching Sign", kh: "ផ្គូផ្គងសញ្ញា" },
+        title: { en: "Matching Sign", kh: "Matching Sign" },
         description: {
             en: "Drag each word onto its matching road sign.",
             kh: "អូសពាក្យនីមួយៗ ទៅដាក់លើសញ្ញាចរាចរណ៍ដែលត្រូវគ្នា។",

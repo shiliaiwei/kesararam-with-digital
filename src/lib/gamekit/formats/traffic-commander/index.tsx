@@ -8,7 +8,7 @@ export const trafficCommanderFormat: GameFormat<TrafficRound, TrafficCompletionR
     meta: {
         id: "traffic-commander",
         route: "/play/traffic-commander",
-        title: { en: "Traffic Commander", kh: "មេបញ្ជាការចរាចរណ៍" },
+        title: { en: "Traffic Commander", kh: "Traffic Commander" },
         description: {
             en: "Draw each vehicle's path through the junction — in the right order.",
             kh: "គូរផ្លូវរថយន្តកាត់ផ្លូវប្រសព្វ តាមលំដាប់ត្រឹមត្រូវ។",

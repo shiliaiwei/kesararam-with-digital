@@ -219,7 +219,7 @@ export const safeStreetSmartFormat: GameFormat<SSSRound, KitCompletionResult> = 
     meta: {
         id: "safe-street-smart",
         route: "/play/safe-street-smart",
-        title: { en: "Safe Street Smart", kh: "ចំណេះដឹងផ្លូវសុវត្ថិភាព" },
+        title: { en: "Safe Street Smart", kh: "Safe Street Smart" },
         description: {
             en: "Choose the correct answer about road safety rules.",
             kh: "ជ្រើសរើសចម្លើយត្រឹមត្រូវអំពីច្បាប់សុវត្ថិភាពចរាចរណ៍។",

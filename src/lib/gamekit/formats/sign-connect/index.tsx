@@ -232,7 +232,7 @@ export const signConnectFormat: GameFormat<SignConnectRound, KitCompletionResult
     meta: {
         id: "sign-connect",
         route: "/play/sign-connect",
-        title: { en: "Connect the Signs", kh: "ភ្ជាប់សញ្ញា" },
+        title: { en: "Connect the Signs", kh: "Connect the Signs" },
         description: {
             en: "Tap a sign, then tap its meaning to connect them.",
             kh: "ប៉ះសញ្ញា រួចប៉ះអត្ថន័យរបស់វា ដើម្បីភ្ជាប់គ្នា។",

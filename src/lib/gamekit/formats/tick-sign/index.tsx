@@ -143,7 +143,7 @@ export const tickSignFormat: GameFormat<TickSignRound, KitCompletionResult> = {
     meta: {
         id: "tick-sign",
         route: "/play/tick-sign",
-        title: { en: "Click the Sign", kh: "ចុចសញ្ញា" },
+        title: { en: "Click the Sign", kh: "Click the Sign" },
         description: {
             en: "Click the correct road sign for each name.",
             kh: "ចុចសញ្ញាចរាចរណ៍ឱ្យត្រូវនឹងឈ្មោះនីមួយៗ។",

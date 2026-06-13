@@ -7,7 +7,7 @@ export const dailyFormat: GameFormat<DailyRound, DailyCompletionResult> = {
     meta: {
         id: "daily",
         route: "/play/daily",
-        title: { en: "Daily Challenge", kh: "បញ្ហាប្រចាំថ្ងៃ" },
+        title: { en: "Daily Challenge", kh: "Daily Challenge" },
         description: {
             en: "5 questions. Same for everyone. Keep your streak alive.",
             kh: "សំណួរ ៥ ដូចគ្នាសម្រាប់អ្នករាល់គ្នា — រក្សាស្ទ្រីករបស់អ្នក។",
