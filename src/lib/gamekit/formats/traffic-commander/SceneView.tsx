@@ -151,7 +151,7 @@ function Student({ x, y, kh }: { x: number; y: number; kh: boolean }) {
     );
 }
 
-function TrafficLightSprite({ x, y, rotation }: { x: number; y: number; rotation: number }) {
+function TrafficLightSprite({ x, y, rotation, active = "red" }: { x: number; y: number; rotation: number; active?: "red" | "yellow" | "green" }) {
     return (
         <g transform={`translate(${x} ${y}) rotate(${rotation})`} style={{ pointerEvents: "none" }} aria-hidden>
             {/* Pole */}
@@ -159,9 +159,9 @@ function TrafficLightSprite({ x, y, rotation }: { x: number; y: number; rotation
             {/* Head box */}
             <rect x={-1.5} y={-5} width={3} height={5} fill="#1f2937" stroke="#000" strokeWidth="0.4" rx={0.5} />
             {/* Lights */}
-            <circle cx={0} cy={-4.1} r={0.7} fill="#ef4444" /> {/* Red */}
-            <circle cx={0} cy={-2.5} r={0.7} fill="#facc15" /> {/* Yellow */}
-            <circle cx={0} cy={-0.9} r={0.7} fill="#22c55e" /> {/* Green */}
+            <circle cx={0} cy={-4.1} r={0.7} fill={active === "red" ? "#ef4444" : "#374151"} /> {/* Red */}
+            <circle cx={0} cy={-2.5} r={0.7} fill={active === "yellow" ? "#facc15" : "#374151"} /> {/* Yellow */}
+            <circle cx={0} cy={-0.9} r={0.7} fill={active === "green" ? "#22c55e" : "#374151"} /> {/* Green */}
         </g>
     );
 }
@@ -476,32 +476,24 @@ export function SceneView({
                     {/* Student figure at bottom right */}
                     <Student x={67} y={67} kh={kh} />
 
-                    {/* Traffic Lights if the intersection is controlled */}
-                    {round.layout.hasTrafficLight && (
+                    {/* Traffic Lights backdrop (replacing road signs as requested) */}
+                    {round.layout.hasTrafficLight ? (
                         <>
-                            <TrafficLightSprite x={31} y={35} rotation={0} />
-                            <TrafficLightSprite x={65} y={31} rotation={90} />
-                            <TrafficLightSprite x={69} y={65} rotation={180} />
-                            <TrafficLightSprite x={35} y={69} rotation={270} />
+                            {/* Controlled intersection: vertical red, horizontal green */}
+                            <TrafficLightSprite x={31} y={35} rotation={0} active="red" />
+                            <TrafficLightSprite x={65} y={31} rotation={90} active="green" />
+                            <TrafficLightSprite x={69} y={65} rotation={180} active="red" />
+                            <TrafficLightSprite x={35} y={69} rotation={270} active="green" />
+                        </>
+                    ) : (
+                        <>
+                            {/* Uncontrolled intersection: yellow warning lights */}
+                            <TrafficLightSprite x={31} y={35} rotation={0} active="yellow" />
+                            <TrafficLightSprite x={65} y={31} rotation={90} active="yellow" />
+                            <TrafficLightSprite x={69} y={65} rotation={180} active="yellow" />
+                            <TrafficLightSprite x={35} y={69} rotation={270} active="yellow" />
                         </>
                     )}
-
-                    {/* REAL road signs (from DB) on posts */}
-                    {signs.slice(0, 2).map((s, i) => {
-                        const slot = signSlots[i];
-                        return (
-                            <g key={`sign-${i}`} style={{ pointerEvents: "none" }}>
-                                <title>{kh ? s.nameKm || s.nameEn : s.nameEn}</title>
-                                <line x1={slot.x} y1={slot.y + 6} x2={slot.x} y2={slot.y + 12} stroke="#6b7280" strokeWidth="1" />
-                                <rect x={slot.x - 7} y={slot.y - 7} width={14} height={14} fill="#ffffff" stroke="#000" strokeWidth="0.6" rx={1} />
-                                <image
-                                    href={cloudinaryOptimize(s.imageUrl, 120)}
-                                    x={slot.x - 6.2} y={slot.y - 6.2} width={12.4} height={12.4}
-                                    preserveAspectRatio="xMidYMid meet"
-                                />
-                            </g>
-                        );
-                    })}
 
                     {/* pedestrian on the corner sidewalk */}
                     <Pedestrian x={30} y={30} />

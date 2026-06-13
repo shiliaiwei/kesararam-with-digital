@@ -39,14 +39,14 @@ function Student({ x, y, kh }: { x: number; y: number; kh: boolean }) {
     );
 }
 
-function TrafficLightSprite({ x, y, rotation }: { x: number; y: number; rotation: number }) {
+function TrafficLightSprite({ x, y, rotation, active = "red" }: { x: number; y: number; rotation: number; active?: "red" | "yellow" | "green" }) {
     return (
         <g transform={`translate(${x} ${y}) rotate(${rotation})`} style={{ pointerEvents: "none" }} aria-hidden>
             <line x1={0} y1={0} x2={0} y2={6} stroke="#374151" strokeWidth="1" />
             <rect x={-1.5} y={-5} width={3} height={5} fill="#1f2937" stroke="#000" strokeWidth="0.4" rx={0.5} />
-            <circle cx={0} cy={-4.1} r={0.7} fill="#ef4444" />
-            <circle cx={0} cy={-2.5} r={0.7} fill="#facc15" />
-            <circle cx={0} cy={-0.9} r={0.7} fill="#22c55e" />
+            <circle cx={0} cy={-4.1} r={0.7} fill={active === "red" ? "#ef4444" : "#374151"} />
+            <circle cx={0} cy={-2.5} r={0.7} fill={active === "yellow" ? "#facc15" : "#374151"} />
+            <circle cx={0} cy={-0.9} r={0.7} fill={active === "green" ? "#22c55e" : "#374151"} />
         </g>
     );
 }
@@ -129,13 +129,22 @@ function SceneReplay({ scene, replayKey, kh }: { scene: TrafficSceneResult; repl
             {/* Student figure at bottom right */}
             <Student x={67} y={67} kh={kh} />
 
-            {/* Traffic Lights if the intersection is controlled */}
-            {scene.hasTrafficLight && (
+            {/* Traffic Lights backdrop (replacing road signs as requested) */}
+            {scene.hasTrafficLight ? (
                 <>
-                    <TrafficLightSprite x={31} y={35} rotation={0} />
-                    <TrafficLightSprite x={65} y={31} rotation={90} />
-                    <TrafficLightSprite x={69} y={65} rotation={180} />
-                    <TrafficLightSprite x={35} y={69} rotation={270} />
+                    {/* Controlled intersection: vertical red, horizontal green */}
+                    <TrafficLightSprite x={31} y={35} rotation={0} active="red" />
+                    <TrafficLightSprite x={65} y={31} rotation={90} active="green" />
+                    <TrafficLightSprite x={69} y={65} rotation={180} active="red" />
+                    <TrafficLightSprite x={35} y={69} rotation={270} active="green" />
+                </>
+            ) : (
+                <>
+                    {/* Uncontrolled intersection: yellow warning lights */}
+                    <TrafficLightSprite x={31} y={35} rotation={0} active="yellow" />
+                    <TrafficLightSprite x={65} y={31} rotation={90} active="yellow" />
+                    <TrafficLightSprite x={69} y={65} rotation={180} active="yellow" />
+                    <TrafficLightSprite x={35} y={69} rotation={270} active="yellow" />
                 </>
             )}
 
