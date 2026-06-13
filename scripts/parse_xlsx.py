@@ -62,11 +62,6 @@ for r in range(1, sheet.max_row + 1):
                 gender_str = str(gender).strip()
                 no_str = str(no).strip() if no is not None else ""
                 
-                # Skip dropped out students
-                if "បោះបង់" in name_str:
-                    print(f"Skipping withdrawn student: {name_str}")
-                    continue
-                
                 students.append({
                     "no": no_str,
                     "name": name_str,
