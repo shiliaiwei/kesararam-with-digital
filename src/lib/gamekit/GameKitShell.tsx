@@ -318,7 +318,7 @@ export function GameKitShell<TRound, TResult extends KitCompletionResult>({
             )}
 
             {/* Round */}
-            <div className="relative z-10 flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full overflow-y-auto min-h-0">
+            <div className="relative z-10 flex-1 flex flex-col p-4 gap-4 max-w-2xl mx-auto w-full overflow-y-auto min-h-0 no-scrollbar">
                 <RoundView
                     key={phase.index}
                     round={phase.rounds[phase.index]}

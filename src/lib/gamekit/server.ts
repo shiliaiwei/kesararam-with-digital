@@ -658,6 +658,71 @@ export async function recordSignConnectAttempt(
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Word Bank (drag word→picture) — server-authoritative per-placement check
+// ─────────────────────────────────────────────────────────────────────────────
+
+interface WordBankPlacement {
+    pictureId: number;
+    chipId: number;
+}
+
+/**
+ * Score + record a Word-Bank play. A placement is correct iff the dropped chip's
+ * topic id equals the picture's topic id — re-checked here, never trusting the
+ * client's cosmetic correctness. Practice-only: records to gameAttempts (when
+ * willRecord), never the leaderboard. correctAnswers/totalRounds are reported per
+ * PLACEMENT so the results screen reads "matched X / Y".
+ */
+export async function recordWordBankAttempt(
+    userId: number | null,
+    willRecord: boolean,
+    rounds: { payload?: { placements?: WordBankPlacement[] } }[]
+): Promise<KitCompletionResult> {
+    let totalScore = 0;
+    let correct = 0;
+    let total = 0;
+    let streak = 0;
+    const perRound: KitCompletionResult["perRound"] = [];
+
+    for (const round of rounds) {
+        const placements = Array.isArray(round.payload?.placements) ? round.payload.placements : [];
+        for (const p of placements) {
+            total++;
+            const ok =
+                typeof p?.pictureId === "number" &&
+                typeof p?.chipId === "number" &&
+                p.pictureId === p.chipId;
+            if (ok) { correct++; streak++; } else { streak = 0; }
+            const s = calculateScore({
+                isCorrect: ok,
+                difficulty: "easy",
+                scoringMode: "equal",
+                remainingTimeMs: 0,
+                totalTimeMs: 1,
+                currentStreak: streak,
+            });
+            totalScore += s.totalPoints;
+            perRound.push({ refId: p.pictureId, isCorrect: ok, pointsEarned: s.totalPoints });
+        }
+    }
+
+    let persisted = false;
+    if (userId !== null && willRecord) {
+        await db.insert(gameAttempts).values({
+            userId,
+            gameId: "word-bank",
+            score: totalScore,
+            correctCount: correct,
+            totalRounds: total,
+            breakdown: JSON.stringify(perRound),
+        });
+        persisted = true;
+    }
+
+    return { totalScore, correctAnswers: correct, totalRounds: total, perRound, persisted };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Tick the Sign (worksheet) — server-authoritative per-row check
 // ─────────────────────────────────────────────────────────────────────────────
 

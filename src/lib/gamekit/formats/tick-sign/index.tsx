@@ -85,8 +85,9 @@ function TickSignView({ round, lang, onRoundComplete }: RoundViewProps<TickSignR
                         }}
                     >
                         <div className="w-20 sm:w-28 shrink-0 leading-tight" style={khFont}>
-                            <div className="font-black text-black text-xs sm:text-sm">{row.promptEn}</div>
-                            <div className="text-[10px] sm:text-xs text-zinc-500">{row.promptKm}</div>
+                            <div className="font-black text-black text-xs sm:text-sm">
+                                {kh ? row.promptKm : row.promptEn}
+                            </div>
                         </div>
                         <div className="grid grid-cols-4 gap-1.5 sm:gap-2 flex-1">
                             {row.choices.map((c) => {

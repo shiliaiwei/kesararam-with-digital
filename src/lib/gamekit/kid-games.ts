@@ -56,6 +56,34 @@ async function buildSignConnectRounds(count: number) {
     return built;
 }
 
+// Word Bank — N rounds, each 8 (sign image ↔ name) items. Player drags each name
+// chip onto its matching picture. The chip's id equals the picture's topic id; the
+// complete route re-checks equality on submit (see recordWordBankAttempt).
+//
+// Content: live published road-sign topics via getSignItems(). Folding in the 321
+// revived "ផ្គូផ្គង" matching questions needs a dedicated adapter + safe re-enable
+// (scripts/disable-matching-questions.ts) — treated as a follow-up; live sign topics
+// are the authoritative source so the game ships either way (per the spec's fallback).
+async function buildWordBankRounds(count: number) {
+    const rounds = Math.max(1, Math.min(count, 5));
+    const items = await getSignItems(rounds * 8);
+    const built: unknown[] = [];
+    for (let i = 0; i < rounds && items.length >= 8; i++) {
+        const group = items.splice(0, 8);
+        built.push({
+            kind: "word-bank",
+            id: i + 1,
+            items: group.map((s) => ({
+                id: s.id,
+                nameEn: s.nameEn,
+                nameKm: s.nameKm,
+                imageUrl: s.imageUrl,
+            })),
+        });
+    }
+    return built;
+}
+
 // Tick the Sign — worksheet pages: each row shows a sign name + 4 image choices
 // (1 correct + 3 random decoys); tick the correct one. Default 2 pages × 6 rows.
 // The correct choice's id equals the row's prompt topic id; the complete route
@@ -267,6 +295,7 @@ export const KID_GAMES: Record<string, KidGameSpec> = {
     "sign-match": { accessTier: "user", buildRounds: buildSignMatchRounds },
     "sign-connect": { accessTier: "user", buildRounds: buildSignConnectRounds },
     "tick-sign": { accessTier: "user", buildRounds: buildTickSignRounds },
+    "word-bank": { accessTier: "user", buildRounds: buildWordBankRounds },
     "catch-sign": { accessTier: "user", buildRounds: buildCatchSignRounds },
     "light-hero": { accessTier: "user", buildRounds: buildLightHeroRounds },
     "safety-adventure": { accessTier: "user", buildRounds: buildSafetyAdventureRounds },
