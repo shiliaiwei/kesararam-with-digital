@@ -28,6 +28,15 @@ import {
     arrayEquals,
 } from "./dates";
 import type { RoundResult } from "./types";
+import {
+    correctPath as tcCorrectPath,
+    exitPoint as tcExitPoint,
+    dist as tcDist,
+    type Pt as TcPt,
+    type LaneDir as TcLaneDir,
+    type Intent as TcIntent,
+} from "./formats/traffic-commander/geometry";
+import type { TrafficCompletionResult } from "./formats/traffic-commander/types";
 import type { DailyCompletionResult } from "./formats/daily/types";
 import type {
     PriorityRound,
@@ -416,6 +425,151 @@ export async function validatePriority(
         perRound,
         persisted,
         perScene,
+    };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Traffic Commander (supersedes Who Goes First) — Mode A: draw paths in priority order
+// ─────────────────────────────────────────────────────────────────────────────
+
+const TC_EXIT_RADIUS = 20; // how close a drawn path must reach the correct exit (0..100)
+
+interface TcSubmittedRound {
+    sceneId: number;
+    paths: Record<string, TcPt[]>;
+    drawOrder: string[];
+    timeTakenMs: number;
+}
+
+/** True iff any sampled point reaches within radius of the vehicle's correct exit. */
+function tcPathReachesExit(points: TcPt[], exit: TcPt): boolean {
+    if (!Array.isArray(points) || points.length < 2) return false;
+    return points.some((p) => tcDist(p, exit) <= TC_EXIT_RADIUS);
+}
+
+/**
+ * Validate Mode-A submissions server-side (answer key never leaves the server).
+ * Reuses each scene's correctOrder as the priority/draw order and derives the
+ * correct path geometrically from approach + intent. Partial credit per vehicle
+ * (path reaches the right exit) plus a bonus when the full draw order matches.
+ */
+export async function validateTrafficCommander(
+    userId: number | null,
+    rounds: TcSubmittedRound[]
+): Promise<TrafficCompletionResult> {
+    const sceneIds = rounds.map((r) => r.sceneId);
+    const scenes = sceneIds.length
+        ? await db
+            .select()
+            .from(priorityScenes)
+            .where(
+                and(
+                    inArray(priorityScenes.id, sceneIds),
+                    eq(priorityScenes.status, "approved")
+                )
+            )
+        : [];
+    const sceneById = new Map(scenes.map((s) => [s.id, s]));
+
+    let totalScore = 0;
+    let correctCount = 0;
+    const perRound: TrafficCompletionResult["perRound"] = [];
+    const sceneResults: TrafficCompletionResult["scenes"] = [];
+
+    for (const r of rounds) {
+        const scene = sceneById.get(r.sceneId);
+        if (!scene) continue;
+        const layout = JSON.parse(scene.layout) as {
+            junction: "cross" | "t_junction" | "roundabout";
+            hasTrafficLight: boolean;
+            vehicles: {
+                id: string;
+                approach: TcLaneDir;
+                intent: TcIntent;
+                kind: string;
+                pos: number;
+            }[];
+        };
+        const correctOrder = JSON.parse(scene.correctOrder) as string[];
+        const vehicles = layout.vehicles;
+
+        const correctPaths: Record<string, TcPt[]> = {};
+        let pathOk = 0;
+        let sceneScore = 0;
+
+        for (const v of vehicles) {
+            correctPaths[v.id] = tcCorrectPath(v.approach, v.intent, v.pos);
+            const exit = tcExitPoint(v.approach, v.intent);
+            const ok = tcPathReachesExit(r.paths?.[v.id] ?? [], exit);
+            if (ok) pathOk++;
+            const s = calculateScore({
+                isCorrect: ok,
+                difficulty: scene.difficulty ?? "medium",
+                scoringMode: "equal",
+                remainingTimeMs: 0,
+                totalTimeMs: 1,
+                currentStreak: 0,
+            });
+            sceneScore += s.totalPoints;
+        }
+
+        const orderCorrect = arrayEquals(r.drawOrder, correctOrder);
+        if (orderCorrect) {
+            const bonus = calculateScore({
+                isCorrect: true,
+                difficulty: scene.difficulty ?? "medium",
+                scoringMode: "equal",
+                remainingTimeMs: 0,
+                totalTimeMs: 1,
+                currentStreak: 0,
+            });
+            sceneScore += bonus.totalPoints;
+        }
+
+        const isCorrect = orderCorrect && pathOk === vehicles.length;
+        if (isCorrect) correctCount++;
+        totalScore += sceneScore;
+
+        perRound.push({ refId: scene.id, isCorrect, pointsEarned: sceneScore });
+        sceneResults.push({
+            sceneId: scene.id,
+            vehicles: vehicles.map((v) => ({
+                id: v.id,
+                approach: v.approach,
+                intent: v.intent,
+                kind: v.kind as TrafficCompletionResult["scenes"][number]["vehicles"][number]["kind"],
+                pos: v.pos,
+            })),
+            correctPaths,
+            correctOrder,
+            submittedOrder: r.drawOrder,
+            isCorrect,
+            explanationEn: scene.explanationEn,
+            explanationKm: scene.explanationKm,
+        });
+    }
+
+    // Solo/practice — record the attempt but NEVER touch the public leaderboard.
+    let persisted = false;
+    if (userId !== null) {
+        await db.insert(gameAttempts).values({
+            userId,
+            gameId: "traffic-commander",
+            score: totalScore,
+            correctCount,
+            totalRounds: rounds.length,
+            breakdown: JSON.stringify(perRound),
+        });
+        persisted = true;
+    }
+
+    return {
+        totalScore,
+        correctAnswers: correctCount,
+        totalRounds: rounds.length,
+        perRound,
+        persisted,
+        scenes: sceneResults,
     };
 }
 

@@ -4,7 +4,7 @@
  */
 
 import { dailyFormat } from "./formats/daily";
-import { priorityFormat } from "./formats/priority";
+import { trafficCommanderFormat } from "./formats/traffic-commander";
 import { signMatchFormat } from "./formats/sign-match";
 import { catchSignFormat } from "./formats/catch-sign";
 import { lightHeroFormat } from "./formats/light-hero";
@@ -12,10 +12,12 @@ import { safetyAdventureFormat } from "./formats/safety-adventure";
 import type { GameFormatMeta } from "./types";
 
 // Note: typed loosely as the array mixes different TRound/TResult generics.
+// Traffic Commander supersedes the old "Who Goes First" priority puzzle, which is
+// no longer listed in the hub (its format file + route remain for any deep links).
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const GAMEKIT_FORMATS: { meta: GameFormatMeta }[] = [
     dailyFormat as any,
-    priorityFormat as any,
+    trafficCommanderFormat as any,
     signMatchFormat as any,
     catchSignFormat as any,
     lightHeroFormat as any,
