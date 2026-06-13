@@ -6,6 +6,7 @@
 import { dailyFormat } from "./formats/daily";
 import { trafficCommanderFormat } from "./formats/traffic-commander";
 import { signMatchFormat } from "./formats/sign-match";
+import { signConnectFormat } from "./formats/sign-connect";
 import { catchSignFormat } from "./formats/catch-sign";
 import { lightHeroFormat } from "./formats/light-hero";
 import { safetyAdventureFormat } from "./formats/safety-adventure";
@@ -19,6 +20,7 @@ export const GAMEKIT_FORMATS: { meta: GameFormatMeta }[] = [
     dailyFormat as any,
     trafficCommanderFormat as any,
     signMatchFormat as any,
+    signConnectFormat as any,
     catchSignFormat as any,
     lightHeroFormat as any,
     safetyAdventureFormat as any,

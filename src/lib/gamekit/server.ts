@@ -27,7 +27,7 @@ import {
     sameMultiset,
     arrayEquals,
 } from "./dates";
-import type { RoundResult } from "./types";
+import type { RoundResult, KitCompletionResult } from "./types";
 import {
     correctPath as tcCorrectPath,
     exitPoint as tcExitPoint,
@@ -570,6 +570,90 @@ export async function validateTrafficCommander(
         perRound,
         persisted,
         scenes: sceneResults,
+    };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Connect the Signs (two-column line match) — server-authoritative pair check
+// ─────────────────────────────────────────────────────────────────────────────
+
+interface SignConnectPick {
+    signId: number;
+    meaningId: number;
+}
+
+/**
+ * Score + record a Connect-the-Signs play. A pair is correct iff the chosen
+ * meaning's topic id equals the sign's topic id — re-checked here, never trusting
+ * the client's cosmetic correctness. Practice-only: records to gameAttempts (when
+ * willRecord) but NEVER touches the public leaderboard. correctAnswers/totalRounds
+ * are reported per PAIR so the results screen reads "matched X / Y".
+ */
+export async function recordSignConnectAttempt(
+    userId: number | null,
+    willRecord: boolean,
+    rounds: { payload?: { picks?: SignConnectPick[] } }[]
+): Promise<KitCompletionResult> {
+    let totalScore = 0;
+    let correctPairs = 0;
+    let totalPairs = 0;
+    let streak = 0;
+    const perRound: KitCompletionResult["perRound"] = [];
+
+    rounds.forEach((r, idx) => {
+        const picks = Array.isArray(r.payload?.picks) ? r.payload.picks : [];
+        let roundPoints = 0;
+        let roundCorrect = 0;
+        for (const p of picks) {
+            totalPairs++;
+            const ok =
+                typeof p?.signId === "number" &&
+                typeof p?.meaningId === "number" &&
+                p.signId === p.meaningId;
+            if (ok) {
+                correctPairs++;
+                roundCorrect++;
+                streak++;
+            } else {
+                streak = 0;
+            }
+            const s = calculateScore({
+                isCorrect: ok,
+                difficulty: "easy",
+                scoringMode: "equal",
+                remainingTimeMs: 0,
+                totalTimeMs: 1,
+                currentStreak: streak,
+            });
+            roundPoints += s.totalPoints;
+        }
+        totalScore += roundPoints;
+        perRound.push({
+            refId: idx + 1,
+            isCorrect: picks.length > 0 && roundCorrect === picks.length,
+            pointsEarned: roundPoints,
+        });
+    });
+
+    let persisted = false;
+    if (userId !== null && willRecord) {
+        await db.insert(gameAttempts).values({
+            userId,
+            gameId: "sign-connect",
+            score: totalScore,
+            correctCount: correctPairs,
+            totalRounds: totalPairs,
+            breakdown: JSON.stringify(perRound),
+        });
+        persisted = true;
+    }
+
+    return {
+        totalScore,
+        correctAnswers: correctPairs,
+        totalRounds: totalPairs,
+        perRound,
+        persisted,
     };
 }
 

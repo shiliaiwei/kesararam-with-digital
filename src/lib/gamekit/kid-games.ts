@@ -27,6 +27,35 @@ async function buildSignMatchRounds(count: number) {
     ];
 }
 
+// Connect the Signs — N rounds, each 4 distinct (sign image ↔ meaning) pairs.
+// The right-column meaning's id equals the sign's topic id; the server re-checks
+// equality on submit (see recordSignConnectAttempt) so client picks are cosmetic.
+//
+// Content: live published road-sign topics via getSignItems(). The spec also wants
+// to fold in the 321 revived "ផ្គូផ្គង" matching questions; that data shape needs a
+// dedicated adapter + re-enable step (scripts/disable-matching-questions.ts) and the
+// quiz renderer regression must be avoided — treated as a follow-up. Live sign topics
+// are the authoritative source so the game ships either way (per the spec's fallback).
+async function buildSignConnectRounds(count: number) {
+    const rounds = Math.max(1, Math.min(count, 8));
+    const items = await getSignItems(rounds * 4);
+    const built: unknown[] = [];
+    for (let i = 0; i < rounds && items.length >= 4; i++) {
+        const group = items.splice(0, 4);
+        built.push({
+            kind: "sign-connect",
+            id: i + 1,
+            pairs: group.map((s) => ({
+                id: s.id,
+                nameEn: s.nameEn,
+                nameKm: s.nameKm,
+                imageUrl: s.imageUrl,
+            })),
+        });
+    }
+    return built;
+}
+
 // Catch the Sign — each round: a prompt sign + decoys; tap the prompt.
 async function buildCatchSignRounds(count: number) {
     const items = await getSignItems(count * 4);
@@ -195,6 +224,7 @@ async function buildSafetyAdventureRounds(count: number) {
 
 export const KID_GAMES: Record<string, KidGameSpec> = {
     "sign-match": { accessTier: "user", buildRounds: buildSignMatchRounds },
+    "sign-connect": { accessTier: "user", buildRounds: buildSignConnectRounds },
     "catch-sign": { accessTier: "user", buildRounds: buildCatchSignRounds },
     "light-hero": { accessTier: "user", buildRounds: buildLightHeroRounds },
     "safety-adventure": { accessTier: "user", buildRounds: buildSafetyAdventureRounds },
