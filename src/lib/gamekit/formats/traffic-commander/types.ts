@@ -20,6 +20,13 @@ export interface TLayout {
 /** Round mode — Phase 1 ships Mode A only. */
 export type TrafficMode = "A";
 
+/** A real road sign (from the DB) shown in the scene, chosen by scenario. */
+export interface SceneSign {
+    imageUrl: string;
+    nameEn: string;
+    nameKm: string;
+}
+
 /** Client-facing round — NO answer key. */
 export interface TrafficRound {
     sceneId: number;
@@ -28,6 +35,7 @@ export interface TrafficRound {
     mode: TrafficMode;
     layout: TLayout;
     difficulty: string | null;
+    signs?: SceneSign[];
 }
 
 /** What the client submits for one Mode-A round. */
