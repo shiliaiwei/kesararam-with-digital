@@ -73,3 +73,9 @@ __pycache__/
 /docs/auto-organized/
 /docs/archive/auto-backups/
 /docs/archive/temp/
+
+# Student login credentials — plaintext passwords, never commit
+/scripts/generated_credentials.txt
+/Grade5_Student_Credentials_JVNUPL.html
+/Grade5_Student_Credentials_JVNUPL.xlsx
+/Grade5_Student_Logins_KH.html
