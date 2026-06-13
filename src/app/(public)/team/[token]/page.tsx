@@ -5,8 +5,8 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
 
-// Khmer display font — Google Sans Khmer, falling back to the loaded Kantumruy Pro face.
-const KH_FONT = '"Google Sans Khmer", var(--font-kh-header), "GoogleSans", sans-serif';
+// Khmer display font — loaded Kantumruy Pro / Siemreap faces (next/font vars).
+const KH_FONT = 'var(--font-kh-header), var(--font-kh-body), "GoogleSans", sans-serif';
 
 // Three bilingual role tags per member — KH verbatim from KWD_អំពីពួកយើង.txt
 type RoleTag = { kh: string; en: string };

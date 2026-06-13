@@ -21,7 +21,7 @@ export function UpgradeButton({
   variant = "button",
 }: UpgradeButtonProps) {
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
   const defaultLabel = kh ? "ធ្វើឱ្យប្រសើរឡើង" : "Upgrade Plan";
 
   const handleRedirect = () => {

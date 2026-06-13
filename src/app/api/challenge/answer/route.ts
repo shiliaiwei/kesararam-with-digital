@@ -7,10 +7,18 @@ import { eq, and } from "drizzle-orm";
 
 /**
  * POST /api/challenge/answer
- * 
+ *
  * Records a participant's answer in a challenge session.
  * Calculates points with time bonus and updates participant score.
- * 
+ *
+ * ⚠️ LEGACY SCORING ENGINE — does NOT use calculateScore() (src/lib/game-engine.ts).
+ * Points = content.scorePoints + a separate time-bonus formula, feeding
+ * leaderboardEntries via challenge/complete → src/lib/ranking.ts. Kept for the
+ * legacy challenge subsystem; do not copy this formula into new game types.
+ * Known divergence: the stored per-answer `points` omits the time bonus that the
+ * aggregated participant.score includes (see below) — left as-is to avoid changing
+ * existing ranking values.
+ *
  * Requirements validated: 15.3
  */
 export async function POST(request: NextRequest) {
@@ -126,13 +134,16 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // 10. Record the answer
+    // 10. Record the answer. Store the FULL points earned (base + time bonus) so
+    //     the per-answer row reconciles with participant.score, which is also
+    //     incremented by `points` below. `timeBonus` is kept as a separate column
+    //     for breakdown/analytics.
     await db.insert(sessionAnswers).values({
       sessionId: parseInt(sessionId),
       studentId,
       contentId: parseInt(contentId),
       isCorrect,
-      points: isCorrect ? content.scorePoints : 0,
+      points,
       timeBonus,
     });
 

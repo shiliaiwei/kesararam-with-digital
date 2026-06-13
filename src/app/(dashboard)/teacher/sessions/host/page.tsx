@@ -236,7 +236,7 @@ export default function HostPage() {
   const router = useRouter();
   const { lang } = useLang();
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
 
   const [phase, setPhase] = useState<HostPhase>({ name: "setup" });
   const [isFullscreen, setIsFullscreen] = useState(false);

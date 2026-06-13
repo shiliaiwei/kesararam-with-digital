@@ -58,7 +58,7 @@ export function CategoryHero({
 }: CategoryHeroProps) {
     const { lang } = useLang();
     const isKh = lang === "kh";
-    const kf = isKh ? { fontFamily: "Siemreap, sans-serif" } : {};
+    const kf = isKh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
 
     const title = isKh ? titleKm : titleEn;
     const titleAlt = isKh ? titleEn : titleKm;

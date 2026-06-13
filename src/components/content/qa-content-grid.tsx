@@ -191,7 +191,7 @@ export function QAContentGrid({ categorySlug, initialContent = [] }: QAContentGr
                   <div className="flex items-center justify-between">
                     <h4
                       className="text-sm font-bold text-black uppercase"
-                      style={{ fontFamily: "Siemreap, sans-serif" }}
+                      style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}
                     >
                       សំណួរ (ខ្មែរ)
                     </h4>
@@ -207,7 +207,7 @@ export function QAContentGrid({ categorySlug, initialContent = [] }: QAContentGr
                   </div>
                   <p
                     className="text-base font-medium text-black"
-                    style={{ fontFamily: "Siemreap, sans-serif" }}
+                    style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}
                   >
                     {selectedItem.questionKm || selectedItem.questionEn}
                   </p>
@@ -228,13 +228,13 @@ export function QAContentGrid({ categorySlug, initialContent = [] }: QAContentGr
                 <div className="space-y-2">
                   <h4
                     className="text-sm font-bold text-green-600 uppercase"
-                    style={{ fontFamily: "Siemreap, sans-serif" }}
+                    style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}
                   >
                     ចម្លើយ (ខ្មែរ)
                   </h4>
                   <p
                     className="text-sm text-zinc-700 leading-relaxed"
-                    style={{ fontFamily: "Siemreap, sans-serif" }}
+                    style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}
                   >
                     {selectedItem.answerKm || selectedItem.answerEn}
                   </p>

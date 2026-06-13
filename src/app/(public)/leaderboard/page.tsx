@@ -1450,7 +1450,7 @@ export default function LeaderboardPage() {
                 </div>
 
                 {/* Play Limits Showcase Card */}
-                {soloLimits && (
+                {soloLimits && soloLimits.playsToday >= soloLimits.playsAllowed / 2 && (
                   <div className="border-3 border-black p-5 flex flex-col justify-between"
                     style={{
                       boxShadow: "4px 4px 0 #000",

@@ -455,7 +455,7 @@ function DetailPanel({
 export function TrafficSignsCatalogue() {
   const { lang } = useLang();
   const isKh = lang === "kh";
-  const kf = isKh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const kf = isKh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
   const t = isKh ? UI.kh : UI.en;
 
   const [topics, setTopics] = useState<Topic[]>([]);

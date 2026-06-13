@@ -229,7 +229,7 @@ export function AboutClient() {
 
   const c = CONTENT[lang === "kh" ? "kh" : "en"];
   const kh = lang === "kh";
-  const kf = kh ? { fontFamily: '"GoogleSans", "Google Sans Khmer", Siemreap, sans-serif' } : {};
+  const kf = kh ? { fontFamily: '"GoogleSans", var(--font-kh-body), var(--font-kh-header), sans-serif' } : {};
 
   function openLightbox(i: number) { setLightboxIdx(i); }
   function closeLightbox() { setLightboxIdx(null); }

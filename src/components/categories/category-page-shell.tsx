@@ -49,7 +49,7 @@ export function CategoryPageShell({
   const shadow = CATEGORY_SHADOW[slug] ?? "4px 4px 0 #000";
   const { lang } = useLang();
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
 
   // Mode translations
   const modes = [
@@ -104,7 +104,7 @@ export function CategoryPageShell({
               </h1>
               <p
                 className="text-lg text-black/70"
-                style={{ fontFamily: "Siemreap, sans-serif" }}
+                style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}
               >
                 {kh ? titleEn : titleKh}
               </p>

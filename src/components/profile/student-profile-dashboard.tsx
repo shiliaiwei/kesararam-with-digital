@@ -83,7 +83,7 @@ export function StudentProfileDashboard({
 }: StudentProfileDashboardProps) {
   const { lang } = useLang();
   const kh = lang === "kh";
-  const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const kf = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
   const name = user.displayName ?? user.username ?? "Student";
 
   // ── Drawer state ──────────────────────────────────────────────────────────

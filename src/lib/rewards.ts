@@ -5,10 +5,19 @@
  * leaderboard UI (src/app/(public)/leaderboard/page.tsx) so costs can never
  * drift between the two.
  *
- * ── Points Economy (2025 term) ────────────────────────────────────────────────
- *  • Live teacher game  → 15–40 pts per session (teacher-verified, competitive)
- *  • Solo practice game → 5–15 pts per session  (self-paced, practice-only)
- *  • Daily challenge    → 5–10 pts per day       (5 questions, once per day)
+ * ── Points Economy (how points are actually earned & what counts) ─────────────
+ *  Source of truth for the math: calculateScore() in src/lib/game-engine.ts
+ *  (base 1/2/3 by difficulty + speed bonus 0–3 + streak bonus +1/+2 per question).
+ *
+ *  • Live teacher game  → full summed score → users.lifetimePoints AND a
+ *      pointsLedger row source="live-session:{id}". This is the ONLY source that
+ *      counts toward CLAIMING rewards (see src/app/api/user/claim/route.ts).
+ *  • Solo practice game → CEIL(rawScore × 0.20) → users.lifetimePoints AND a
+ *      pointsLedger row source="solo". Counts for leaderboard RANK only — NOT
+ *      claimable.
+ *  • Daily challenge / priority / kid games → recorded as attempts + streaks only.
+ *      They do NOT write lifetimePoints or pointsLedger, so they affect neither
+ *      the public leaderboard nor the claimable balance.
  *
  * ── Reward cost ladder ("premium, aspirational") ─────────────────────────────
  *  Costs are deliberately HIGH to drive desire (perceived value), charm-priced

@@ -35,6 +35,21 @@ async function buildLeaderboard(sessionId: number, prevRanks: Map<number, number
 async function syncScoresToUserProfiles(sessionId: number, gameMode: string) {
   console.log(`[syncScoresToUserProfiles] Syncing scores for session ${sessionId}`);
 
+  // Atomically claim the session: flip scores_synced false→true in a single
+  // statement. Only the request that wins this update proceeds; a retried or
+  // duplicate "end" sees no row returned and skips, so points are never
+  // added to lifetimePoints / the ledger twice.
+  const [claimed] = await db
+    .update(gameSessions)
+    .set({ scoresSynced: true })
+    .where(and(eq(gameSessions.id, sessionId), eq(gameSessions.scoresSynced, false)))
+    .returning({ id: gameSessions.id });
+
+  if (!claimed) {
+    console.log(`[syncScoresToUserProfiles] Session ${sessionId} already synced — skipping`);
+    return;
+  }
+
   try {
     // Get all participants with their scores
     const participants = await db

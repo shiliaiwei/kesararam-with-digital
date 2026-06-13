@@ -281,7 +281,7 @@ export function TrafficSignForm({ sign, onClose, onSave }: TrafficSignFormProps)
                         value={formData.titleKm}
                         onChange={(e) => setFormData(prev => ({ ...prev, titleKm: e.target.value }))}
                         className="w-full p-3 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-                        style={{ fontFamily: "Siemreap, sans-serif" }}
+                        style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}
                         placeholder="ឧ.ទ. សញ្ញាឈប់"
                         required
                       />
@@ -296,7 +296,7 @@ export function TrafficSignForm({ sign, onClose, onSave }: TrafficSignFormProps)
                         onChange={(e) => setFormData(prev => ({ ...prev, descriptionKm: e.target.value }))}
                         rows={4}
                         className="w-full p-3 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] resize-none"
-                        style={{ fontFamily: "Siemreap, sans-serif" }}
+                        style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}
                         placeholder="ការពិពណ៌នាលម្អិតអំពីសញ្ញាចរាចរ..."
                         required
                       />

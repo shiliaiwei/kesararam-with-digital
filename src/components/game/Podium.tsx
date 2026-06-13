@@ -130,7 +130,7 @@ function NeubrutalistAvatar({ src, initials, userId, size = "md" }: Neubrutalist
 
 export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAgain, sessionCode, totalQuestions, currentUserPoints }: PodiumProps) {
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
   const [showConfetti, setShowConfetti] = useState(false);
   const [revealedIdx, setRevealedIdx] = useState<number[]>([]);
   const [isGeneratingCard, setIsGeneratingCard] = useState(false);

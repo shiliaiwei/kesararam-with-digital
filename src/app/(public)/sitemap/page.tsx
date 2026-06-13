@@ -553,7 +553,7 @@ export default function SitemapPage() {
     const { lang, setLang } = useLang();
     const kh = lang === "kh";
     const khFont = kh
-        ? { fontFamily: "var(--font-kh-header), 'Google Sans Khmer', sans-serif" }
+        ? { fontFamily: "var(--font-kh-header), var(--font-kh-body), sans-serif" }
         : { fontFamily: "'GoogleSans', 'Google Sans', sans-serif" };
 
     const [view, setView] = useState<ViewMode>("tree");

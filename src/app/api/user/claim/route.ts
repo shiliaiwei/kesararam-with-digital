@@ -54,14 +54,18 @@ export async function POST(req: Request) {
       }
     });
 
-    // 3. Sum points from ledger where source="live"
+    // 3. Sum claimable points from the ledger. Live teacher sessions write
+    //    source="live-session:{sessionId}" (see syncScoresToUserProfiles in
+    //    src/app/api/game/sessions/[code]/control/route.ts), so match the prefix
+    //    rather than an exact "live" — solo/daily sources stay excluded.
+    //    NOTE: the public leaderboard uses the same LIKE 'live-session:%' filter.
     const [livePointsRow] = await db
       .select({ total: sql<number>`COALESCE(SUM(${pointsLedger.points}), 0)::integer` })
       .from(pointsLedger)
       .where(
         and(
           eq(pointsLedger.userId, session.id),
-          eq(pointsLedger.source, "live")
+          sql`${pointsLedger.source} LIKE 'live-session:%'`
         )
       );
     const totalLivePoints = livePointsRow?.total ?? 0;

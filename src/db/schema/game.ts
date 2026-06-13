@@ -17,6 +17,10 @@ export const gameSessions = pgTable(
     currentQuestionIndex: integer("current_question_index").default(0),
     questionStartedAt: timestamp("question_started_at"),
     status: varchar("status", { length: 20 }).notNull().default("lobby"),
+    // One-shot guard: flipped true the first time final scores are synced to
+    // user profiles + the points ledger, so a retried/double "end" can't
+    // double-count live points. See syncScoresToUserProfiles.
+    scoresSynced: boolean("scores_synced").notNull().default(false),
     scoringMode: varchar("scoring_mode", { length: 20 }).notNull().default("speed"),
     timePerQuestion: integer("time_per_question").notNull().default(30),
     maxPlayers: integer("max_players").notNull().default(50),

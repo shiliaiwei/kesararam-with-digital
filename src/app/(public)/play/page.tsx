@@ -293,7 +293,7 @@ function GameCard({ mode, kh, khFont, isLimitReached }: {
 // ─── OTP-STYLE CODE INPUT ─────────────────────────────────────────────────────
 function OtpCodeInput({ lang }: { lang: string }) {
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
   const router = useRouter();
   const [cells, setCells] = useState(["", "", "", "", "", ""]);
   const refs = useRef<(HTMLInputElement | null)[]>([]);
@@ -420,7 +420,7 @@ function OtpCodeInput({ lang }: { lang: string }) {
 export default function PlayPage() {
   const { lang } = useLang();
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
   const router = useRouter();
 
   const [limits, setLimits] = useState<{
@@ -583,31 +583,33 @@ export default function PlayPage() {
       </section>
 
       {/* ═══ SCORES COMING SOON BANNER ══════════════════════════════════════ */}
-      <div style={{
-        maxWidth: 1200,
-        margin: "24px auto 0",
-        padding: "0 24px",
-      }}>
+      {limits && limits.playsToday >= limits.playsAllowed / 2 && (
         <div style={{
-          background: "#fffbeb",
-          border: `3px solid ${BRAND.black}`,
-          padding: "12px 16px",
-          display: "flex",
-          alignItems: "center",
-          gap: 10,
-          boxShadow: `3px 3px 0 ${BRAND.black}`,
+          maxWidth: 1200,
+          margin: "24px auto 0",
+          padding: "0 24px",
         }}>
-          <Zap size={16} strokeWidth={3} style={{ color: BRAND.yellowDark, flexShrink: 0 }} />
-          <span style={{ ...khFont, fontSize: 12.5, fontWeight: 700, color: BRAND.yellowDark }}>
-            {kh
-              ? "ពិន្ទុហ្វឹកហាត់ម្នាក់ឯងជួយឱ្យអ្នករៀន — តែមិនរាប់បញ្ចូលសម្រាប់ប្តូររង្វាន់ទេ។ ប្រមូលពិន្ទុប្តូររង្វាន់នៅក្នុងហ្គេមផ្ទាល់ជាមួយគ្រូ។"
-              : "Solo practice points help you learn — they don't count toward reward claims. Earn claimable points in live teacher games."}
-          </span>
+          <div style={{
+            background: "#fffbeb",
+            border: `3px solid ${BRAND.black}`,
+            padding: "12px 16px",
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            boxShadow: `3px 3px 0 ${BRAND.black}`,
+          }}>
+            <Zap size={16} strokeWidth={3} style={{ color: BRAND.yellowDark, flexShrink: 0 }} />
+            <span style={{ ...khFont, fontSize: 12.5, fontWeight: 700, color: BRAND.yellowDark }}>
+              {kh
+                ? "ពិន្ទុហ្វឹកហាត់ម្នាក់ឯងជួយឱ្យអ្នករៀន — តែមិនរាប់បញ្ចូលសម្រាប់ប្តូររង្វាន់ទេ។ ប្រមូលពិន្ទុប្តូររង្វាន់នៅក្នុងហ្គេមផ្ទាល់ជាមួយគ្រូ។"
+                : "Solo practice points help you learn — they don't count toward reward claims. Earn claimable points in live teacher games."}
+            </span>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* ═══ PLAY LIMITS WIDGET ════════════════════════════════════════════ */}
-      {limits && (
+      {limits && limits.playsToday >= limits.playsAllowed / 2 && (
         <div id="limits" style={{
           maxWidth: 1200,
           margin: "24px auto 0",

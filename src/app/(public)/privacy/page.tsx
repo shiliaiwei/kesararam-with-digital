@@ -74,7 +74,7 @@ const SECTIONS = [
 export default function PrivacyPage() {
   const { lang } = useLang();
   const kh = lang === "kh";
-  const kf = kh ? { fontFamily: '"GoogleSans", "Google Sans Khmer", Siemreap, sans-serif' } : {};
+  const kf = kh ? { fontFamily: '"GoogleSans", var(--font-kh-body), var(--font-kh-header), sans-serif' } : {};
   const [active, setActive] = useState(SECTIONS[0].id);
 
   useEffect(() => {

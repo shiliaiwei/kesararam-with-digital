@@ -100,7 +100,7 @@ function useAudio(url: string | null) {
 
 // ── Expanded answer card ──────────────────────────────────────────────────────
 function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof UI.en }) {
-  const kf = isKh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const kf = isKh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
   const audioUrlEn = topic.audio_url_en || "";
   const audioUrlKm = topic.audio_url_km || "";
   const audioUrl = isKh ? (audioUrlKm || audioUrlEn) : (audioUrlEn || audioUrlKm);
@@ -208,7 +208,7 @@ function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof
 export function DrivingCatalogue() {
   const { lang } = useLang();
   const isKh = lang === "kh";
-  const kf = isKh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const kf = isKh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
   const t = isKh ? UI.kh : UI.en;
 
   const [topics, setTopics] = useState<Topic[]>([]);

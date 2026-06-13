@@ -202,7 +202,7 @@ export function MapboxTrafficMap({
   const [expanded, setExpanded] = useState(false);
   const { lang } = useLang();
   const isKh = lang === "kh";
-  const kf = isKh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const kf = isKh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
   const t = isKh ? UI.km : UI.en;
 
   const filtered =

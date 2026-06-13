@@ -29,7 +29,7 @@ const adminNav: NavItem[] = [
       { label: "Traffic Signs", href: "/admin/content/road-sign" },
       { label: "Road Traffic Law", href: "/admin/content/road-traffic" },
       { label: "Right of Way", href: "/admin/content/priority" },
-      { label: "Driving Skills", href: "/admin/content/driving" },
+      { label: "Road Safety Skills", href: "/admin/content/driving" },
       { label: "Vehicle Technology", href: "/admin/content/technical" },
       { label: "Loading People & Goods", href: "/admin/content/loading-people-goods" },
       { label: "General Knowledge", href: "/admin/content/general-knowledge" },
@@ -57,7 +57,7 @@ const staffNav: NavItem[] = [
       { label: "Traffic Signs", href: "/staff/content/road-sign" },
       { label: "Road Traffic Law", href: "/staff/content/road-traffic" },
       { label: "Right of Way", href: "/staff/content/priority" },
-      { label: "Driving Skills", href: "/staff/content/driving" },
+      { label: "Road Safety Skills", href: "/staff/content/driving" },
       { label: "Vehicle Technology", href: "/staff/content/technical" },
       { label: "Loading People & Goods", href: "/staff/content/loading-people-goods" },
       { label: "General Knowledge", href: "/staff/content/general-knowledge" },
@@ -138,8 +138,18 @@ export function AppSidebar({
     return Math.max(0, Math.ceil((new Date(dateStr).getTime() - Date.now()) / 86400000));
   })();
 
-  const isSubscribed = livePlan === "teacher_pro" || livePlan === "school";
+  // Every paid plan counts as subscribed (family and driving_school were missing).
+  const isSubscribed = ["teacher_pro", "school", "family", "driving_school"].includes(livePlan);
   const isUrgent = isSubscribed && daysRemaining !== null && daysRemaining <= 7;
+
+  const planLabel = (p: string, khmer: boolean) =>
+    p === "school"
+      ? khmer ? "ផែនការសាលា" : "School Plan"
+      : p === "family"
+        ? khmer ? "ផែនការគ្រួសារ" : "Family Plan"
+        : p === "driving_school"
+          ? khmer ? "ផែនការសាលាចរាចរណ៍" : "Academy Plan"
+          : khmer ? "គ្រូ Pro" : "Teacher Pro";
 
   function isNavItemActive(href: string) {
     const targetPath = href.split("?")[0];
@@ -236,7 +246,7 @@ export function AppSidebar({
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="text-[10px] font-black uppercase tracking-wider text-black">
-                        {livePlan === "school" ? (kh ? "ផែនការសាលា" : "School Plan") : (kh ? "គ្រូ Pro" : "Teacher Pro")}
+                        {planLabel(livePlan, kh)}
                       </div>
                       <div className="text-[8px] text-green-700 font-black uppercase tracking-widest">
                         {kh ? "អាជ្ញាប័ណ្ណសកម្ម" : "Active License"}
@@ -274,7 +284,7 @@ export function AppSidebar({
                         className="text-[10px] font-black uppercase tracking-wider"
                         style={{ color: daysRemaining <= 3 ? "#ef4444" : "#000" }}
                       >
-                        {livePlan === "school" ? (kh ? "ផែនការសាលា" : "School Plan") : (kh ? "គ្រូ Pro" : "Teacher Pro")}
+                        {planLabel(livePlan, kh)}
                       </span>
                     </div>
 
@@ -415,6 +425,23 @@ export function AppSidebar({
               </span>
             </div>
             <span className="font-bold text-xs uppercase tracking-wide">{kh ? "ព័ត៌មានផ្ទាល់ខ្លួន" : "My Profile"}</span>
+          </Link>
+          {/* Settings (password + 2FA) — visible to every role/plan. "Settings"
+              stays English by product wording rule. */}
+          <Link
+            href={`${profileHref}?tab=settings`}
+            className="mt-1.5 flex items-center gap-2.5 px-2.5 py-2 transition-all duration-100 hover:bg-yellow-50 hover:border-2 hover:border-black hover:shadow-[2px_2px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 text-zinc-700"
+            style={{ borderRadius: "0px" }}
+          >
+            <div
+              className="w-6 h-6 border-2 border-black flex items-center justify-center flex-shrink-0"
+              style={{ background: "#22c55e" }}
+            >
+              <span className="material-symbols-rounded text-black" style={{ fontSize: "12px" }}>
+                shield_lock
+              </span>
+            </div>
+            <span className="font-bold text-xs uppercase tracking-wide">Settings · 2FA</span>
           </Link>
         </div>
 

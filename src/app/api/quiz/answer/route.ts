@@ -7,10 +7,15 @@ import { eq } from "drizzle-orm";
 
 /**
  * POST /api/quiz/answer
- * 
+ *
  * Submits an answer for a quiz question, validates it, calculates points,
  * and records the answer in the database.
- * 
+ *
+ * ⚠️ LEGACY SCORING ENGINE — does NOT use calculateScore() (src/lib/game-engine.ts).
+ * Points = content.scorePoints + a separate time-bonus formula, and feed
+ * leaderboardEntries via quiz/complete → src/lib/ranking.ts. Kept for the legacy
+ * quiz/challenge subsystem; do not copy this formula into new game types.
+ *
  * Requirements validated: 13.3, 26.1, 26.2
  */
 export async function POST(request: NextRequest) {

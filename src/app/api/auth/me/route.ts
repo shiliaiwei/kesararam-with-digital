@@ -49,14 +49,16 @@ export async function GET() {
       .limit(1);
     hasClass = enrollment.length > 0;
 
-    // Fetch sum of live points from pointsLedger
+    // Fetch sum of claimable live points. Live sessions write
+    // source="live-session:{sessionId}", so match the prefix (must stay in sync
+    // with the claim API and leaderboard, which use the same LIKE filter).
     const [livePointsRow] = await db
       .select({ total: sql<number>`COALESCE(SUM(${pointsLedger.points}), 0)::integer` })
       .from(pointsLedger)
       .where(
         and(
           eq(pointsLedger.userId, user.id),
-          eq(pointsLedger.source, "live")
+          sql`${pointsLedger.source} LIKE 'live-session:%'`
         )
       );
     livePoints = livePointsRow?.total ?? 0;

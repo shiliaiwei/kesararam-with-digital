@@ -73,7 +73,7 @@ const SHAPE_STYLE: Record<SignShapeName, { body: string; fg: string }> = {
 export function BrandGuidelineClient() {
   const { lang } = useLang();
   const kh = lang === "kh";
-  const kf = kh ? { fontFamily: '"GoogleSans", "Google Sans Khmer", sans-serif' } : {};
+  const kf = kh ? { fontFamily: '"GoogleSans", var(--font-kh-header), var(--font-kh-body), sans-serif' } : {};
   const t = (en: string, k: string) => (kh ? k : en);
 
   const [active, setActive] = useState<string>(SECTIONS[0].id);

@@ -80,7 +80,7 @@ const CATEGORIES = [
 export function CategoryShowcase({ lang = "en" }: CategoryShowcaseProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
 
   return (
     <div className="min-h-screen dot-bg py-20">
@@ -140,7 +140,7 @@ function ShowcaseCard({ category, index, lang }: ShowcaseCardProps) {
 
   const color = CATEGORY_COLORS[category.slug];
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
 
   // Initial entrance animation
   useEffect(() => {

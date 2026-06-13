@@ -17,7 +17,7 @@ export function DailyRoundView({
     timerSeconds,
 }: RoundViewProps<DailyRound>) {
     const kh = lang === "kh";
-    const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+    const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
     const [selectedId, setSelectedId] = useState<number | null>(null);
     const startRef = useRef(Date.now());
     const doneRef = useRef(false);

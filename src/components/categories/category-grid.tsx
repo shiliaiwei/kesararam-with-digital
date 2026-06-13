@@ -59,7 +59,7 @@ export function CategoryGrid() {
   const { lang } = useLang();
   const tr = t[lang].categories;
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
 
   return (
     <section className="dot-bg py-20 border-b-2 border-black">

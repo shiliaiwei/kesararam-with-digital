@@ -72,7 +72,7 @@ export function Hero() {
               {/* Khmer subtitle */}
               <p
                 className="mt-3 text-lg text-cyan-600"
-                style={{ fontFamily: "Siemreap, sans-serif" }}
+                style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}
               >
                 {tr.subtitle}
               </p>
@@ -82,7 +82,7 @@ export function Hero() {
             <p
               className="text-zinc-700 text-lg leading-relaxed max-w-md"
               style={
-                lang === "kh" ? { fontFamily: "Siemreap, sans-serif" } : {}
+                lang === "kh" ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {}
               }
             >
               {tr.desc}
@@ -103,7 +103,7 @@ export function Hero() {
                     className="text-xs text-zinc-600 font-medium"
                     style={
                       lang === "kh"
-                        ? { fontFamily: "Siemreap, sans-serif" }
+                        ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }
                         : {}
                     }
                   >
@@ -162,7 +162,7 @@ export function Hero() {
                         className="text-[10px] font-bold text-center"
                         style={
                           lang === "kh"
-                            ? { fontFamily: "Siemreap, sans-serif" }
+                            ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }
                             : {}
                         }
                       >
@@ -178,7 +178,7 @@ export function Hero() {
                     <span
                       style={
                         lang === "kh"
-                          ? { fontFamily: "Siemreap, sans-serif" }
+                          ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }
                           : {}
                       }
                     >

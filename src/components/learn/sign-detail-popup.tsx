@@ -49,7 +49,7 @@ export function SignDetailPopup({ topic, questions = [], onClose }: SignDetailPo
   const audioKmRef = useRef<HTMLAudioElement>(null);
 
   const isKh = lang === "kh";
-  const kf = isKh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const kf = isKh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
   const name = isKh ? topic.name_km : topic.name_en;
   const description = isKh ? topic.description_km : topic.description_en;
   const audioUrl = isKh ? topic.audio_url_km : topic.audio_url_en;

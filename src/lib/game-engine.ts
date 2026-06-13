@@ -47,12 +47,22 @@ export type PlayLimitTier = keyof typeof PLAY_LIMITS;
 
 /** Banner text shown on all solo game mode cards. */
 export const SOLO_COMING_SOON_NOTE = {
-  en: "⚡ Practice mode — scores are for ranking only. Join a live class game to earn claimable reward points.",
-  kh: "⚡ វាសន័តិក្សា — ពិន្តុសម្រាប់តែចម្ណាត់ថ្នាកប័ណណឹ. ចូលចូលគ្រូត័មពិតប់តើលពិន្តុអាចត្រូវបានរង្វាន់.",
+  en: "Practice mode — scores are for ranking only. Join a live class game to earn claimable reward points.",
+  kh: "របៀបអនុវត្ត — ពិន្ទុសម្រាប់តែចំណាត់ថ្នាក់ប៉ុណ្ណោះ។ ចូលរួមហ្គេមផ្ទាល់ក្នុងថ្នាក់ ដើម្បីទទួលពិន្ទុដែលអាចដូររង្វាន់បាន។",
 } as const;
 
 /**
- * New scoring system based on difficulty (Logical scaling for rewards store):
+ * calculateScore is the SINGLE SOURCE OF TRUTH for scoring. Every modern game
+ * type scores through it: live sessions, solo practice, daily challenge, priority
+ * puzzle, and kid arcade games.
+ *
+ * ⚠️ One legacy path does NOT use it — the old quiz/challenge routes
+ * (src/app/api/quiz/answer + src/app/api/challenge/answer) compute points from
+ * `content.scorePoints` + a separate time-bonus formula, and feed `leaderboardEntries`
+ * via src/lib/ranking.ts (read by /api/leaderboard/user/[userId]). Do NOT add a third
+ * scoring formula; route new game types through calculateScore instead.
+ *
+ * Difficulty-based scaling (logical scaling for the rewards store):
  * - Easy: 1 point base
  * - Medium: 2 points base
  * - Hard: 3 points base

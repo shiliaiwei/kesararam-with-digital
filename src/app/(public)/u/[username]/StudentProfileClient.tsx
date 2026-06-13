@@ -217,7 +217,7 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
   const router = useRouter();
   const { lang } = useLang();
   const kh = lang === "kh";
-  const kf = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const kf = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
 
   const [claimedItems, setClaimedItems] = useState<Array<{
     id: number; name: string; nameKh: string; cost: number; image: string; claimedAt: number;

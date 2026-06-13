@@ -184,7 +184,7 @@ export default function StudentGamePage() {
   const code = (params.code as string)?.toUpperCase();
   const { lang, setLang } = useLang();
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
 
   const [joining, setJoining] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -654,7 +654,7 @@ export default function StudentGamePage() {
                     ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5"
                     : "bg-black border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 hover:bg-zinc-850"
                     } ${sessionInfo.language !== "both" ? "cursor-not-allowed opacity-50" : ""}`}
-                  style={{ fontFamily: "Siemreap, sans-serif" }}
+                  style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}
                 >
                   ខ្មែរ (Khmer)
                   {sessionInfo.language === "km" && <span className="text-[8px] opacity-60 font-bold">({kh ? "គ្រូ" : "Locked"})</span>}

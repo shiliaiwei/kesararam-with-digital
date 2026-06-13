@@ -13,7 +13,7 @@ interface AdventureRound {
 
 function SafetyAdventureView({ round, lang, onRoundComplete }: RoundViewProps<AdventureRound>) {
     const kh = lang === "kh";
-    const khFont = kh ? { fontFamily: "Siemreap, sans-serif" } : {};
+    const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
     const [picked, setPicked] = useState<number | null>(null);
     const startRef = useRef(Date.now());
     const doneRef = useRef(false);

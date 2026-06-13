@@ -149,7 +149,7 @@ function TopicCard({
                 {topic.nameEn}
               </p>
               {topic.nameKm && (
-                <p className="text-xs text-zinc-500 leading-snug" style={{ fontFamily: "Siemreap, sans-serif" }}>
+                <p className="text-xs text-zinc-500 leading-snug" style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}>
                   {topic.nameKm}
                 </p>
               )}
