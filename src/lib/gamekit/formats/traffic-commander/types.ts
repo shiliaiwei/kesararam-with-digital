@@ -55,6 +55,7 @@ export interface TrafficSceneResult {
     isCorrect: boolean;
     explanationEn: string;
     explanationKm: string;
+    hasTrafficLight?: boolean;
 }
 
 export interface TrafficCompletionResult extends KitCompletionResult {

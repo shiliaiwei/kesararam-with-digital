@@ -546,6 +546,7 @@ export async function validateTrafficCommander(
             isCorrect,
             explanationEn: scene.explanationEn,
             explanationKm: scene.explanationKm,
+            hasTrafficLight: layout.hasTrafficLight,
         });
     }
 

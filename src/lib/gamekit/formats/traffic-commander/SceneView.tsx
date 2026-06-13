@@ -120,6 +120,110 @@ function Pedestrian({ x, y }: { x: number; y: number }) {
     );
 }
 
+function Student({ x, y, kh }: { x: number; y: number; kh: boolean }) {
+    const khStyle = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), sans-serif" } : { fontFamily: "monospace" };
+    return (
+        <g transform={`translate(${x} ${y})`} style={{ pointerEvents: "none" }} aria-hidden>
+            {/* Shadow */}
+            <ellipse cx={0} cy={3.4} rx={2.4} ry={1} fill="rgba(0,0,0,0.25)" />
+            {/* Arms/Shoulders */}
+            <rect x={-2.3} y={-0.6} width={1} height={3.4} rx={0.5} fill="#2563eb" />
+            <rect x={1.3} y={-0.6} width={1} height={3.4} rx={0.5} fill="#2563eb" />
+            {/* Body */}
+            <rect x={-1.9} y={-1} width={3.8} height={4} rx={1.4} fill="#e91e8c" stroke="#000" strokeWidth={0.3} />
+            {/* Backpack on back */}
+            <rect x={-1.3} y={0.8} width={2.6} height={1.6} rx={0.4} fill="#fbbf24" stroke="#000" strokeWidth={0.3} />
+            {/* Head */}
+            <circle cx={0} cy={-2.4} r={1.7} fill="#f1c27d" stroke="#000" strokeWidth={0.4} />
+            {/* Hair */}
+            <path d="M-1.5 -3.4 Q0 -4.8 1.5 -3.4" fill="none" stroke="#3b2a1a" strokeWidth={1} />
+            
+            {/* Line pointing to student */}
+            <path d="M 0 -1.5 L 0 -4.5" stroke="#000" strokeWidth="0.4" strokeDasharray="1 1" />
+            {/* Student label */}
+            <g transform="translate(0, -7)">
+                <rect x={-8} y={-2.2} width={16} height={4.4} fill="#fff" stroke="#000" strokeWidth="0.4" rx={0.8} />
+                <text x={0} y={0.8} textAnchor="middle" fontSize="2.5" fontWeight="900" fill="#000" style={khStyle}>
+                    {kh ? "សិស្ស" : "STUDENT"}
+                </text>
+            </g>
+        </g>
+    );
+}
+
+function TrafficLightSprite({ x, y, rotation }: { x: number; y: number; rotation: number }) {
+    return (
+        <g transform={`translate(${x} ${y}) rotate(${rotation})`} style={{ pointerEvents: "none" }} aria-hidden>
+            {/* Pole */}
+            <line x1={0} y1={0} x2={0} y2={6} stroke="#374151" strokeWidth="1" />
+            {/* Head box */}
+            <rect x={-1.5} y={-5} width={3} height={5} fill="#1f2937" stroke="#000" strokeWidth="0.4" rx={0.5} />
+            {/* Lights */}
+            <circle cx={0} cy={-4.1} r={0.7} fill="#ef4444" /> {/* Red */}
+            <circle cx={0} cy={-2.5} r={0.7} fill="#facc15" /> {/* Yellow */}
+            <circle cx={0} cy={-0.9} r={0.7} fill="#22c55e" /> {/* Green */}
+        </g>
+    );
+}
+
+function Landmarks({ kh }: { kh: boolean }) {
+    const khStyle = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), sans-serif" } : { fontFamily: "monospace" };
+    return (
+        <g style={{ pointerEvents: "none" }} aria-hidden>
+            {/* HOSPITAL (Top-Left) */}
+            <rect x={5} y={5} width={26} height={24} fill="#000" rx={2} />
+            <rect x={3} y={3} width={26} height={24} fill="#fff" stroke="#000" strokeWidth="0.8" rx={2} />
+            <rect x={8} y={11} width={16} height={10} fill="#f1f5f9" stroke="#000" strokeWidth="0.5" />
+            <rect x={12} y={7} width={8} height={4} fill="#f1f5f9" stroke="#000" strokeWidth="0.5" />
+            <rect x={15.2} y={8} width={1.6} height={4} fill="#ef4444" />
+            <rect x={14} y={9.2} width={4} height={1.6} fill="#ef4444" />
+            <rect x={10} y={13} width={2.5} height={2} fill="#93c5fd" stroke="#000" strokeWidth="0.4" />
+            <rect x={19.5} y={13} width={2.5} height={2} fill="#93c5fd" stroke="#000" strokeWidth="0.4" />
+            <rect x={14.5} y={17} width={3} height={4} fill="#64748b" stroke="#000" strokeWidth="0.4" />
+            <text x={16} y={24.5} textAnchor="middle" fontSize="2.8" fontWeight="900" fill="#000" style={khStyle}>
+                {kh ? "មន្ទីរពេទ្យ" : "HOSPITAL"}
+            </text>
+
+            {/* SCHOOL (Top-Right) */}
+            <rect x={71} y={5} width={26} height={24} fill="#000" rx={2} />
+            <rect x={69} y={3} width={26} height={24} fill="#fff" stroke="#000" strokeWidth="0.8" rx={2} />
+            <rect x={74} y={11} width={16} height={10} fill="#fef3c7" stroke="#000" strokeWidth="0.5" />
+            <polygon points="72,11 82,6 92,11" fill="#f59e0b" stroke="#000" strokeWidth="0.5" />
+            <circle cx={82} cy={14} r={2} fill="#fff" stroke="#000" strokeWidth="0.4" />
+            <line x1={82} y1={14} x2={82} y2={13} stroke="#000" strokeWidth="0.3" />
+            <line x1={82} y1={14} x2={83} y2={14} stroke="#000" strokeWidth="0.3" />
+            <rect x={80.5} y={17} width={3} height={4} fill="#b45309" stroke="#000" strokeWidth="0.4" />
+            <text x={82} y={24.5} textAnchor="middle" fontSize="2.8" fontWeight="900" fill="#000" style={khStyle}>
+                {kh ? "សាលារៀន" : "SCHOOL"}
+            </text>
+
+            {/* MARKET (Bottom-Left) */}
+            <rect x={5} y={74} width={26} height={24} fill="#000" rx={2} />
+            <rect x={3} y={72} width={26} height={24} fill="#fff" stroke="#000" strokeWidth="0.8" rx={2} />
+            <rect x={6} y={79} width={20} height={11} fill="#e0f2fe" stroke="#000" strokeWidth="0.5" />
+            <path d="M 5,79 L 27,79 L 25,76 L 7,76 Z" fill="#ef4444" stroke="#000" strokeWidth="0.5" />
+            <polygon points="9,79 12,79 11,76 8,76" fill="#fff" />
+            <polygon points="15,79 18,79 17,76 14,76" fill="#fff" />
+            <polygon points="21,79 24,79 23,76 20,76" fill="#fff" />
+            <rect x={12} y={84} width={8} height={6} fill="#fff" stroke="#000" strokeWidth="0.4" />
+            <text x={16} y={93.5} textAnchor="middle" fontSize="2.8" fontWeight="900" fill="#000" style={khStyle}>
+                {kh ? "ផ្សារ" : "MARKET"}
+            </text>
+
+            {/* HOUSE (Bottom-Right) */}
+            <rect x={71} y={74} width={26} height={24} fill="#000" rx={2} />
+            <rect x={69} y={72} width={26} height={24} fill="#fff" stroke="#000" strokeWidth="0.8" rx={2} />
+            <polygon points="72,80 82,74 92,80" fill="#f87171" stroke="#000" strokeWidth="0.5" />
+            <rect x={75} y={80} width={14} height={10} fill="#fef08a" stroke="#000" strokeWidth="0.5" />
+            <rect x={78} y={82} width={3} height={3} fill="#cbd5e1" stroke="#000" strokeWidth="0.4" />
+            <rect x={84} y={84} width={3} height={6} fill="#b45309" stroke="#000" strokeWidth="0.4" />
+            <text x={82} y={93.5} textAnchor="middle" fontSize="2.8" fontWeight="900" fill="#000" style={khStyle}>
+                {kh ? "ផ្ទះ" : "HOUSE"}
+            </text>
+        </g>
+    );
+}
+
 function OrderDots({ ids, vehicles }: { ids: string[]; vehicles: TVehicle[] }) {
     return (
         <span className="inline-flex items-center gap-1 align-middle">
@@ -284,8 +388,8 @@ export function SceneView({
         });
     }
 
-    // Real signs placed on posts in the two top corners.
-    const signSlots = [{ x: 17, y: 15 }, { x: 83, y: 15 }];
+    // Real signs placed on posts, moved closer to the sidewalks to avoid building overlaps.
+    const signSlots = [{ x: 31, y: 20 }, { x: 69, y: 20 }];
 
     return (
         <>
@@ -365,6 +469,22 @@ export function SceneView({
                         {[38, 42, 46, 50, 54, 58].map((y) => (<rect key={`cl${y}`} x={30.5} y={y - 1.1} width={4.5} height={2.2} />))}
                         {[38, 42, 46, 50, 54, 58].map((y) => (<rect key={`cr${y}`} x={65} y={y - 1.1} width={4.5} height={2.2} />))}
                     </g>
+
+                    {/* Landmarks backdrop */}
+                    <Landmarks kh={kh} />
+
+                    {/* Student figure at bottom right */}
+                    <Student x={67} y={67} kh={kh} />
+
+                    {/* Traffic Lights if the intersection is controlled */}
+                    {round.layout.hasTrafficLight && (
+                        <>
+                            <TrafficLightSprite x={31} y={35} rotation={0} />
+                            <TrafficLightSprite x={65} y={31} rotation={90} />
+                            <TrafficLightSprite x={69} y={65} rotation={180} />
+                            <TrafficLightSprite x={35} y={69} rotation={270} />
+                        </>
+                    )}
 
                     {/* REAL road signs (from DB) on posts */}
                     {signs.slice(0, 2).map((s, i) => {
