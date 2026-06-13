@@ -299,14 +299,13 @@ interface SSSQuestion {
     id: number;
     promptEn: string;
     promptKm: string;
-    emoji: string;
     choices: { id: string; en: string; km: string }[];
     correctId: string;
 }
 
 const SSS_QUESTIONS: SSSQuestion[] = [
     {
-        id: 1, emoji: "🚦",
+        id: 1,
         promptEn: "What do we do when the traffic light is RED?",
         promptKm: "យើងធ្វើអ្វីនៅពេលភ្លើងចរាចរណ៍ពណ៌ក្រហម?",
         choices: [
@@ -317,7 +316,7 @@ const SSS_QUESTIONS: SSSQuestion[] = [
         correctId: "B",
     },
     {
-        id: 2, emoji: "⛑️",
+        id: 2,
         promptEn: "What should we wear when riding a bicycle or bike?",
         promptKm: "យើងគួរពាក់អ្វីនៅពេលជិះកង់ ឬម៉ូតូ?",
         choices: [
@@ -328,7 +327,7 @@ const SSS_QUESTIONS: SSSQuestion[] = [
         correctId: "B",
     },
     {
-        id: 3, emoji: "🦓",
+        id: 3,
         promptEn: "Where should we cross the road?",
         promptKm: "យើងគួរឆ្លងផ្លូវនៅឯណា?",
         choices: [
@@ -339,7 +338,7 @@ const SSS_QUESTIONS: SSSQuestion[] = [
         correctId: "B",
     },
     {
-        id: 4, emoji: "🚗",
+        id: 4,
         promptEn: "Why do we wear seatbelts in a car?",
         promptKm: "ហេតុអ្វីបានជាយើងពាក់ខ្សែក្រវ៉ាត់សុវត្ថិភាពក្នុងឡាន?",
         choices: [
@@ -350,7 +349,7 @@ const SSS_QUESTIONS: SSSQuestion[] = [
         correctId: "B",
     },
     {
-        id: 5, emoji: "🏃",
+        id: 5,
         promptEn: "Which of these is NOT safe on the road?",
         promptKm: "អ្វីមួយក្នុងចំណោមនេះ មិនមានសុវត្ថិភាពនៅលើផ្លូវ?",
         choices: [
@@ -361,7 +360,7 @@ const SSS_QUESTIONS: SSSQuestion[] = [
         correctId: "C",
     },
     {
-        id: 6, emoji: "🌙",
+        id: 6,
         promptEn: "What should you do to be seen at night?",
         promptKm: "តើអ្នកគួរធ្វើអ្វីដើម្បីឱ្យគេមើលឃើញអ្នកពេលយប់?",
         choices: [
@@ -372,7 +371,7 @@ const SSS_QUESTIONS: SSSQuestion[] = [
         correctId: "B",
     },
     {
-        id: 7, emoji: "📱",
+        id: 7,
         promptEn: "Is it safe to use your phone while crossing the road?",
         promptKm: "តើការប្រើទូរស័ព្ទពេលឆ្លងផ្លូវមានសុវត្ថិភាពទេ?",
         choices: [
@@ -383,7 +382,7 @@ const SSS_QUESTIONS: SSSQuestion[] = [
         correctId: "B",
     },
     {
-        id: 8, emoji: "🚑",
+        id: 8,
         promptEn: "You hear an ambulance siren. What should you do?",
         promptKm: "អ្នកឮស៊ីផ្លុំឡានពេទ្យ។ តើអ្នកគួរធ្វើអ្វី?",
         choices: [
@@ -394,7 +393,7 @@ const SSS_QUESTIONS: SSSQuestion[] = [
         correctId: "C",
     },
     {
-        id: 9, emoji: "⚽",
+        id: 9,
         promptEn: "A ball rolls into the street. What do you do?",
         promptKm: "បាល់រមៀលចូលក្នុងផ្លូវ។ តើអ្នកធ្វើអ្វី?",
         choices: [
@@ -405,7 +404,7 @@ const SSS_QUESTIONS: SSSQuestion[] = [
         correctId: "B",
     },
     {
-        id: 10, emoji: "🚌",
+        id: 10,
         promptEn: "You just got off the bus. How do you cross the road?",
         promptKm: "អ្នកទើបចុះពីឡានក្រុង។ តើអ្នកឆ្លងផ្លូវយ៉ាងដូចម្ដេច?",
         choices: [
@@ -416,7 +415,7 @@ const SSS_QUESTIONS: SSSQuestion[] = [
         correctId: "B",
     },
     {
-        id: 11, emoji: "🚶",
+        id: 11,
         promptEn: "There is no footpath. Where do you walk?",
         promptKm: "គ្មានចិញ្ចើមថ្នល់។ តើអ្នកដើរនៅឯណា?",
         choices: [
@@ -427,7 +426,7 @@ const SSS_QUESTIONS: SSSQuestion[] = [
         correctId: "B",
     },
     {
-        id: 12, emoji: "🟡",
+        id: 12,
         promptEn: "What does a YELLOW traffic light mean?",
         promptKm: "ភ្លើងចរាចរណ៍ពណ៌លឿងមានន័យថាអ្វី?",
         choices: [
@@ -438,7 +437,7 @@ const SSS_QUESTIONS: SSSQuestion[] = [
         correctId: "C",
     },
     {
-        id: 13, emoji: "🛑",
+        id: 13,
         promptEn: "What do you do at a STOP sign?",
         promptKm: "អ្នកធ្វើអ្វីនៅសញ្ញាឈប់?",
         choices: [
@@ -449,7 +448,7 @@ const SSS_QUESTIONS: SSSQuestion[] = [
         correctId: "A",
     },
     {
-        id: 14, emoji: "👀",
+        id: 14,
         promptEn: "Before crossing the road you should look…",
         promptKm: "មុនឆ្លងផ្លូវ អ្នកគួរមើល…",
         choices: [
@@ -460,7 +459,7 @@ const SSS_QUESTIONS: SSSQuestion[] = [
         correctId: "C",
     },
     {
-        id: 15, emoji: "🌧️",
+        id: 15,
         promptEn: "It is raining. Why should you be extra careful near roads?",
         promptKm: "ភ្លៀងកំពុងធ្លាក់។ ហេតុអ្វីត្រូវប្រយ័ត្នជាងធម្មតានៅជិតផ្លូវ?",
         choices: [

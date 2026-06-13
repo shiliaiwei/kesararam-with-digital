@@ -1,7 +1,13 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { ShieldCheck, Check, X } from "lucide-react";
+import {
+    ShieldCheck, Check, X,
+    TrafficCone, HardHat, Footprints, Car, PersonStanding,
+    Moon, Smartphone, Ambulance, CircleDot, Bus,
+    CircleUser, Circle, OctagonAlert, Eye, CloudRain,
+    type LucideIcon,
+} from "lucide-react";
 import type { GameFormat, RoundViewProps, KitCompletionResult } from "@/lib/gamekit/types";
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -16,7 +22,6 @@ interface SSSQuestion {
     id: number;
     promptEn: string;
     promptKm: string;
-    emoji: string;       // decorative emoji / icon (no image dependency)
     choices: SSSChoice[];
     correctId: string;   // which choice id is correct
 }
@@ -33,8 +38,30 @@ function khFont(kh: boolean) {
         : {};
 }
 
+// Map question id → Lucide icon component
+const QUESTION_ICONS: Record<number, LucideIcon> = {
+    1:  TrafficCone,      // traffic light / RED
+    2:  HardHat,          // helmet
+    3:  Footprints,       // zebra crossing
+    4:  Car,              // seatbelt in car
+    5:  PersonStanding,   // running in road
+    6:  Moon,             // visible at night
+    7:  Smartphone,       // phone while crossing
+    8:  Ambulance,        // ambulance siren
+    9:  CircleDot,        // ball in street
+    10: Bus,              // getting off bus
+    11: CircleUser,       // walking with no footpath
+    12: Circle,           // yellow traffic light
+    13: OctagonAlert,     // STOP sign
+    14: Eye,              // look before crossing
+    15: CloudRain,        // rainy road
+};
+
 // Row background palette — alternating soft colours like the worksheet image
 const ROW_BG = ["#dbeafe", "#fce7f3", "#dcfce7", "#fef9c3", "#ede9fe"];
+
+// Icon accent colours matching the row palette
+const ICON_COLORS = ["#2563eb", "#db2777", "#16a34a", "#ca8a04", "#7c3aed"];
 
 // ── Round View ────────────────────────────────────────────────────────────────
 
@@ -98,6 +125,8 @@ function SafeStreetSmartView({ round, lang, onRoundComplete }: RoundViewProps<SS
                 const isFuture = qi > current;
                 const ans = answered[q.id];
                 const rowBg = ROW_BG[qi % ROW_BG.length];
+                const iconColor = ICON_COLORS[qi % ICON_COLORS.length];
+                const IconComp = QUESTION_ICONS[q.id] ?? ShieldCheck;
 
                 return (
                     <div
@@ -112,7 +141,13 @@ function SafeStreetSmartView({ round, lang, onRoundComplete }: RoundViewProps<SS
                     >
                         {/* Question prompt row */}
                         <div className="flex items-center gap-3 px-3 pt-3 pb-1">
-                            <span className="text-2xl select-none flex-shrink-0">{q.emoji}</span>
+                            {/* Lucide icon in a small bordered badge */}
+                            <span
+                                className="w-9 h-9 border-2 border-black flex items-center justify-center flex-shrink-0"
+                                style={{ background: "#fff", boxShadow: "2px 2px 0 #000" }}
+                            >
+                                <IconComp size={18} color={iconColor} strokeWidth={2.5} />
+                            </span>
                             <p className="font-black text-black text-sm sm:text-base leading-snug flex-1" style={khFont(kh)}>
                                 <span className="text-[#e91e8c] mr-1">{qi + 1}.</span>
                                 {kh ? q.promptKm : q.promptEn}
