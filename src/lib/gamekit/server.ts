@@ -658,6 +658,86 @@ export async function recordSignConnectAttempt(
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Tick the Sign (worksheet) — server-authoritative per-row check
+// ─────────────────────────────────────────────────────────────────────────────
+
+const TICK_ROW_TIME_MS = 15_000;
+
+interface TickPick {
+    promptId: number;
+    pickedId: number;
+    tMs?: number;
+}
+
+/**
+ * Score + record a Tick-the-Sign play. A row is correct iff the picked image's
+ * topic id equals the row's prompt topic id — re-checked here, never trusting the
+ * client's cosmetic correctness. Speed-scored per row with a rolling streak.
+ * Practice-only: records to gameAttempts (when willRecord), never the leaderboard.
+ * correctAnswers/totalRounds are reported per ROW so results read "X / 12".
+ */
+export async function recordTickSignAttempt(
+    userId: number | null,
+    willRecord: boolean,
+    rounds: { payload?: { picks?: TickPick[] } }[]
+): Promise<KitCompletionResult> {
+    let totalScore = 0;
+    let correctRows = 0;
+    let totalRows = 0;
+    let streak = 0;
+    const perRound: KitCompletionResult["perRound"] = [];
+
+    for (const round of rounds) {
+        const picks = Array.isArray(round.payload?.picks) ? round.payload.picks : [];
+        for (const p of picks) {
+            totalRows++;
+            const ok =
+                typeof p?.promptId === "number" &&
+                typeof p?.pickedId === "number" &&
+                p.promptId === p.pickedId;
+            if (ok) {
+                correctRows++;
+                streak++;
+            } else {
+                streak = 0;
+            }
+            const tMs = Math.max(0, Math.min(p?.tMs ?? TICK_ROW_TIME_MS, TICK_ROW_TIME_MS));
+            const s = calculateScore({
+                isCorrect: ok,
+                difficulty: "easy",
+                scoringMode: "speed",
+                remainingTimeMs: TICK_ROW_TIME_MS - tMs,
+                totalTimeMs: TICK_ROW_TIME_MS,
+                currentStreak: streak,
+            });
+            totalScore += s.totalPoints;
+            perRound.push({ refId: p.promptId, isCorrect: ok, pointsEarned: s.totalPoints });
+        }
+    }
+
+    let persisted = false;
+    if (userId !== null && willRecord) {
+        await db.insert(gameAttempts).values({
+            userId,
+            gameId: "tick-sign",
+            score: totalScore,
+            correctCount: correctRows,
+            totalRounds: totalRows,
+            breakdown: JSON.stringify(perRound),
+        });
+        persisted = true;
+    }
+
+    return {
+        totalScore,
+        correctAnswers: correctRows,
+        totalRounds: totalRows,
+        perRound,
+        persisted,
+    };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Generic kid/other GameKit games
 // ─────────────────────────────────────────────────────────────────────────────
 

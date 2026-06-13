@@ -56,6 +56,47 @@ async function buildSignConnectRounds(count: number) {
     return built;
 }
 
+// Tick the Sign — worksheet pages: each row shows a sign name + 4 image choices
+// (1 correct + 3 random decoys); tick the correct one. Default 2 pages × 6 rows.
+// The correct choice's id equals the row's prompt topic id; the complete route
+// re-checks each row server-side (see recordTickSignAttempt).
+function shuffleInPlace<T>(a: T[]): T[] {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+async function buildTickSignRounds(count: number) {
+    const pages = Math.max(1, Math.min(count, 4));
+    const need = pages * 6;
+    const pool = await getSignItems(Math.min(40, need + 12));
+    if (pool.length < 4) return [];
+
+    const rounds: unknown[] = [];
+    let promptIdx = 0;
+    for (let p = 0; p < pages; p++) {
+        const rows: unknown[] = [];
+        for (let r = 0; r < 6 && promptIdx < pool.length; r++) {
+            const prompt = pool[promptIdx++];
+            const decoys = shuffleInPlace(pool.filter((s) => s.id !== prompt.id)).slice(0, 3);
+            const choices = shuffleInPlace([prompt, ...decoys]).map((c) => ({
+                id: c.id,
+                imageUrl: c.imageUrl,
+            }));
+            rows.push({
+                promptId: prompt.id,
+                promptEn: prompt.nameEn,
+                promptKm: prompt.nameKm,
+                choices,
+            });
+        }
+        if (rows.length) rounds.push({ kind: "tick-sign", id: p + 1, rows });
+    }
+    return rounds;
+}
+
 // Catch the Sign — each round: a prompt sign + decoys; tap the prompt.
 async function buildCatchSignRounds(count: number) {
     const items = await getSignItems(count * 4);
@@ -225,6 +266,7 @@ async function buildSafetyAdventureRounds(count: number) {
 export const KID_GAMES: Record<string, KidGameSpec> = {
     "sign-match": { accessTier: "user", buildRounds: buildSignMatchRounds },
     "sign-connect": { accessTier: "user", buildRounds: buildSignConnectRounds },
+    "tick-sign": { accessTier: "user", buildRounds: buildTickSignRounds },
     "catch-sign": { accessTier: "user", buildRounds: buildCatchSignRounds },
     "light-hero": { accessTier: "user", buildRounds: buildLightHeroRounds },
     "safety-adventure": { accessTier: "user", buildRounds: buildSafetyAdventureRounds },
