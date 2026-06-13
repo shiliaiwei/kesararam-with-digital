@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { 
   User, 
   Bell, 
@@ -83,6 +83,7 @@ interface UserSettings {
   isSectionPublic?: boolean;
   isStatsPublic?: boolean;
   createdAt?: string; // Account creation timestamp
+  canChangeNameOnce?: boolean; // one-time full-name + username change available
   notifications: {
     email: boolean;
     push: boolean;
@@ -149,6 +150,8 @@ export function SettingsContent() {
 
   // 60-day cooldown timer state
   const [daysLeft, setDaysLeft] = useState(0);
+  // Identity values as loaded, to detect a name/username change on save.
+  const initialIdentity = useRef({ displayName: "", username: "" });
   const [activeAvatarTab, setActiveAvatarTab] = useState<"head" | "face">("head");
 
   useEffect(() => {
@@ -166,6 +169,8 @@ export function SettingsContent() {
     if (!settings.createdAt) return;
 
     const checkCooldown = () => {
+      // A one-time name/username change is allowed even within the 60-day window.
+      if (settings.canChangeNameOnce) { setDaysLeft(0); return; }
       const ageMs = Date.now() - new Date(settings.createdAt!).getTime();
       const SIXTY_DAYS = 60 * 24 * 60 * 60 * 1000;
       if (ageMs < SIXTY_DAYS) {
@@ -179,7 +184,7 @@ export function SettingsContent() {
     // Hourly check is perfectly fine for day calculations
     const interval = setInterval(checkCooldown, 3600000);
     return () => clearInterval(interval);
-  }, [settings.createdAt]);
+  }, [settings.createdAt, settings.canChangeNameOnce]);
 
   const fetchSettings = async () => {
     try {
@@ -187,6 +192,10 @@ export function SettingsContent() {
       const data = await response.json();
       if (data.settings) {
         setSettings(data.settings);
+        initialIdentity.current = {
+          displayName: data.settings.displayName || "",
+          username: data.settings.username || "",
+        };
       }
     } catch (error) {
       console.error("Error fetching settings:", error);
@@ -215,6 +224,24 @@ export function SettingsContent() {
       alert(`Please wait another ${daysLeft} days before saving changes. For any trouble, contact support team at kesararamwithdigital@gmail.com. / សូមរង់ចាំ ${daysLeft} ថ្ងៃទៀត មុនពេលរក្សាទុកការផ្លាស់ប្តូរ។ បើមានបញ្ហាសូមទាក់ទងក្រុមការងារគាំទ្រតាមរយៈ kesararamwithdigital@gmail.com ។`);
       return;
     }
+
+    // One-time-change warning. If the user is changing their full name and/or
+    // username while they still hold the one-time allowance, confirm first —
+    // after this save the normal cooldowns resume (name: 60 days, username: 1 year).
+    const nameChanged = (settings.displayName || "") !== initialIdentity.current.displayName;
+    const usernameChanged = (settings.username || "") !== initialIdentity.current.username;
+    if (settings.canChangeNameOnce && (nameChanged || usernameChanged)) {
+      const ok = confirm(
+        "This is your ONE-TIME change for your full name and username.\n" +
+        "After you save, you will NOT be able to change them again for a while " +
+        "(name: 60 days, username: 1 year). Continue?\n\n" +
+        "នេះជាការផ្លាស់ប្តូរតែម្តងគត់ សម្រាប់ឈ្មោះពេញ និងឈ្មោះគណនីរបស់អ្នក។\n" +
+        "បន្ទាប់ពីរក្សាទុក អ្នកនឹងមិនអាចផ្លាស់ប្តូរវាម្តងទៀតបានទេ ក្នុងរយៈពេលមួយ " +
+        "(ឈ្មោះ៖ ៦០ ថ្ងៃ, ឈ្មោះគណនី៖ ១ ឆ្នាំ)។ តើបន្តដែរឬទេ?"
+      );
+      if (!ok) return;
+    }
+
     setSaving(true);
     try {
       const response = await fetch("/api/user/settings", {
@@ -228,10 +255,17 @@ export function SettingsContent() {
         alert("Settings saved successfully! / រក្សាទុកព័ត៌មានគណនីដោយជោគជ័យ!");
         // Refresh values
         if (data.user) {
+          const consumed = settings.canChangeNameOnce && (nameChanged || usernameChanged);
           setSettings(prev => ({
             ...prev,
-            ...data.user
+            ...data.user,
+            // The one-time allowance is consumed server-side on a name/username change.
+            canChangeNameOnce: consumed ? false : prev.canChangeNameOnce,
           }));
+          initialIdentity.current = {
+            displayName: data.user.displayName || "",
+            username: data.user.username || "",
+          };
         }
       } else {
         alert(data.error || "Failed to save settings");

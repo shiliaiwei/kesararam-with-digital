@@ -45,6 +45,7 @@ export async function GET(request: NextRequest) {
       createdAt: user.createdAt.toISOString(),
       usernameChangedAt: user.usernameChangedAt ? user.usernameChangedAt.toISOString() : null,
       displayNameChangedAt: null,
+      canChangeNameOnce: user.canChangeNameOnce ?? false,
       language: "en", // Default, can be stored in user table
       theme: "light", // Default, can be stored in user table
       notifications: {
@@ -126,8 +127,24 @@ export async function PUT(request: NextRequest) {
     const PRIVACY_FIELDS = new Set(['isProfilePublic', 'isNamePublic', 'isUsernamePublic', 'isSchoolPublic', 'isProvincePublic', 'isGradePublic', 'isSectionPublic', 'isStatsPublic']);
     const isPurePrivacyUpdate = Object.keys(body).every(k => PRIVACY_FIELDS.has(k));
 
+    // One-time name/username change allowance. When granted (canChangeNameOnce),
+    // the user may change their full name and/or username ONCE, bypassing the
+    // 60-day post-signup cooldown — but NOT bundled with an email change. The
+    // allowance is consumed below, after which the normal cooldowns resume.
+    const wantsDisplayNameChange =
+      displayName !== undefined &&
+      (displayName || currentUser.username) !== (currentUser.displayName || currentUser.username);
+    const wantsUsernameChange =
+      username !== undefined && username.trim().toLowerCase() !== currentUser.username;
+    const wantsEmailChange =
+      email !== undefined && email.trim().toLowerCase() !== currentUser.email;
+    const isOneTimeNameChange =
+      !!currentUser.canChangeNameOnce &&
+      (wantsDisplayNameChange || wantsUsernameChange) &&
+      !wantsEmailChange;
+
     // 1. 60-Day Cooldown Gate — only for sensitive field changes, not privacy toggles
-    if (!isOnboarding && !isPurePrivacyUpdate) {
+    if (!isOnboarding && !isPurePrivacyUpdate && !isOneTimeNameChange) {
       const accountAgeMs = Date.now() - new Date(currentUser.createdAt).getTime();
       const SIXTY_DAYS = 60 * 24 * 60 * 60 * 1000;
       if (accountAgeMs < SIXTY_DAYS) {
@@ -170,6 +187,12 @@ export async function PUT(request: NextRequest) {
       isStatsPublic: isStatsPublic !== undefined ? !!isStatsPublic : (currentUser.isStatsPublic ?? false),
       updatedAt: new Date(),
     };
+
+    // Consume the one-time allowance once it's actually used for a name/username
+    // change, so the normal cooldowns resume from here on.
+    if (currentUser.canChangeNameOnce && (wantsDisplayNameChange || wantsUsernameChange)) {
+      updates.canChangeNameOnce = false;
+    }
 
     if (session.role === "student") {
       updates.gradeLevel = gradeLevel !== undefined ? gradeLevel : currentUser.gradeLevel;

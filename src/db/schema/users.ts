@@ -27,6 +27,10 @@ export const users = pgTable("users", {
   avatar: text("avatar"),
   avatarChangedAt: timestamp("avatar_changed_at"),
   usernameChangedAt: timestamp("username_changed_at"),
+  // One-time allowance: when true, the user may change their full name + username
+  // ONCE (bypassing the 60-day post-signup cooldown). Consumed on the next
+  // name/username change, after which the normal cooldowns resume.
+  canChangeNameOnce: boolean("can_change_name_once").default(false).notNull(),
   audioMuted: boolean("audio_muted").default(false).notNull(),
   isActive: boolean("is_active").default(true).notNull(),
   isSuspended: boolean("is_suspended").default(false).notNull(),
