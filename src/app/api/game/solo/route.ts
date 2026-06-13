@@ -128,6 +128,12 @@ export async function POST(req: NextRequest) {
     });
   }
 
+  if (compatible.length === 0) {
+    return NextResponse.json({
+      error: "No questions found compatible with the selected game mode."
+    }, { status: 404 });
+  }
+
   // Use the new truly random selection algorithm
   // This ensures unpredictable question selection that changes every time
   const selectedQuestions = selectRandomQuestions({

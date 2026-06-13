@@ -97,9 +97,25 @@ export default function SoloPage() {
     fetch("/api/auth/me").then(r => setIsAuthenticated(r.ok)).catch(() => setIsAuthenticated(false));
     fetch("/api/game/categories").then(r => r.json()).then(d => {
       setCategories(d.categories ?? []);
-      if (d.categories?.length) setSelectedCats([d.categories[0].id]);
+      if (d.categories?.length) {
+        const isSignMode = (searchParams.get("mode") ?? "quick-quiz") === "sign-challenge";
+        const initialCat = isSignMode 
+          ? (d.categories.find((c: any) => c.slug === "road-sign" || c.titleEn.toLowerCase().includes("sign")) ?? d.categories[0])
+          : d.categories[0];
+        setSelectedCats([initialCat.id]);
+      }
     }).catch(() => { });
   }, []);
+
+  // Auto-adjust categories when switching to sign-challenge
+  useEffect(() => {
+    if (selectedMode === "sign-challenge") {
+      const signCat = categories.find(c => c.slug === "road-sign" || c.titleEn.toLowerCase().includes("sign"));
+      if (signCat && (!selectedCats.includes(signCat.id) || selectedCats.length > 1)) {
+        setSelectedCats([signCat.id]);
+      }
+    }
+  }, [selectedMode, categories]);
 
   function resetGameState() {
     if (advanceTimerRef.current) { clearTimeout(advanceTimerRef.current); advanceTimerRef.current = null; }
@@ -346,10 +362,13 @@ export default function SoloPage() {
             <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-3" style={khFont}>{kh ? "ប្រភេទ" : "Categories"}</div>
             <div className="flex flex-wrap gap-2">
               {categories.map(cat => {
+                const isSignMode = selectedMode === "sign-challenge";
+                const isSignCat = cat.slug === "road-sign" || cat.titleEn.toLowerCase().includes("sign");
+                const disabled = isSignMode && !isSignCat;
                 const sel = selectedCats.includes(cat.id);
                 return (
-                  <button key={cat.id} onClick={() => setSelectedCats(prev => sel ? prev.filter(id => id !== cat.id) : [...prev, cat.id])}
-                    className="px-3 py-1.5 border-2 border-black text-sm font-bold transition-all duration-100 rounded-none"
+                  <button key={cat.id} disabled={disabled} onClick={() => setSelectedCats(prev => sel ? prev.filter(id => id !== cat.id) : [...prev, cat.id])}
+                    className="px-3 py-1.5 border-2 border-black text-sm font-bold transition-all duration-100 rounded-none disabled:opacity-40 disabled:cursor-not-allowed"
                     style={{ backgroundColor: sel ? "#000" : "#fff", color: sel ? "#ffd700" : "#000", boxShadow: sel ? "2px 2px 0 #ffd700" : "2px 2px 0 #000" }}>
                     <span style={khFont}>{kh ? cat.titleKm : cat.titleEn}</span>
                   </button>
@@ -489,6 +508,18 @@ export default function SoloPage() {
 
   // ── PLAYING ────────────────────────────────────────────────────────────────
   const q = phase.session.questions[phase.qIndex];
+  if (!q) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-center p-6 bg-zinc-900 border border-zinc-800">
+          <p className="text-red-500 font-bold mb-4" style={khFont}>{kh ? "មិនអាចស្វែងរកសំណួរបានទេ" : "No questions available."}</p>
+          <button onClick={() => setPhase({ name: "setup" })} className="px-4 py-2 bg-yellow-400 text-black font-bold" style={khFont}>
+            {kh ? "ត្រឡប់ក្រោយ" : "Go Back"}
+          </button>
+        </div>
+      </div>
+    );
+  }
   // correctId only shown after user selects or time runs out
   const correctId = phase.showCorrect ? (q.answers.find(a => a.isCorrect)?.id ?? null) : null;
   const effectiveLang = lang as "en" | "kh";
