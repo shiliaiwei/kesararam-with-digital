@@ -9,12 +9,12 @@ import { getTeacherClasses } from "@/app/actions/classes";
 import type { SSEEvent, ParticipantInfo, LeaderboardEntry, QuestionPayload } from "@/lib/game-event-bus";
 import {
   Play, Square, Users, BarChart2,
-  Copy, Check, ChevronRight, Loader2,
+  Copy, Check, ChevronRight, ChevronLeft, Loader2,
   SkipForward, Crown, TrendingUp, TrendingDown, Minus,
   Zap, Trophy, Target, Swords, BookOpen, GraduationCap,
   Settings2, Globe, Layers, ChevronUp, ChevronDown,
   Sparkles, Rocket, Maximize, Minimize,
-  Hand, FastForward,
+  Hand, FastForward, Medal, TriangleAlert,
 } from "lucide-react";
 import { UpgradeButton } from "@/components/pricing/upgrade-button";
 import { Lock } from "lucide-react";
@@ -749,7 +749,7 @@ export default function HostPage() {
 
     return (
       <div className="min-h-screen dot-bg text-black pb-12">
-        <div className="relative z-10 max-w-6xl mx-auto px-6 py-8">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
           {/* Header */}
           <div className="mb-8">
             <div className="flex items-center gap-3 mb-2">
@@ -758,7 +758,7 @@ export default function HostPage() {
                 {kh ? "បង្កើតហ្គេម" : "Create Game"}
               </div>
             </div>
-            <h1 className="text-4xl font-black tracking-tight" style={{ ...khFont }}>
+            <h1 className="text-3xl sm:text-4xl font-black tracking-tight" style={{ ...khFont }}>
               {kh ? "ហ្គេមផ្ទាល់" : "Live Game Session"}
             </h1>
             <p className="mt-1 text-sm text-zinc-600 font-bold" style={{ ...khFont }}>
@@ -858,7 +858,7 @@ export default function HostPage() {
                   };
 
                   return (
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                       {GAME_MODES.map((m) => {
                         const isSelected = selectedMode === m.id;
                         const isPremium = false; // All modes are now free
@@ -1395,7 +1395,7 @@ export default function HostPage() {
           backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.06) 1.5px, transparent 1.5px)",
           backgroundSize: "24px 24px"
         }}>
-        <div className="relative z-10 max-w-5xl mx-auto px-6 py-10">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
           {/* Header */}
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5 mb-8 border-b-4 border-black pb-6">
             <div>
@@ -1439,8 +1439,8 @@ export default function HostPage() {
           </div>
 
           {error && (
-            <div className="mb-6 px-4 py-3 border-4 border-black bg-red-400 text-black font-black text-sm shadow-[3px_3px_0_#000] rounded-none" style={khFont}>
-              ⚠ {error}
+            <div className="mb-6 px-4 py-3 border-4 border-black bg-red-400 text-black font-black text-sm shadow-[3px_3px_0_#000] rounded-none flex items-center gap-2" style={khFont}>
+              <TriangleAlert size={16} className="flex-shrink-0" /> {error}
             </div>
           )}
 
@@ -1650,15 +1650,15 @@ export default function HostPage() {
         }}
       >
         {/* ── Top bar ── */}
-        <div className="flex items-center justify-between px-5 py-3 flex-shrink-0 border-b-4 border-black bg-yellow-400 text-black">
-          <div className="flex items-center gap-4">
-            <span className="text-black font-black text-sm" style={khFont}>
+        <div className="flex items-center justify-between gap-2 px-3 sm:px-5 py-2 sm:py-3 flex-shrink-0 border-b-4 border-black bg-yellow-400 text-black">
+          <div className="flex items-center gap-4 flex-shrink-0">
+            <span className="text-black font-black text-xs sm:text-sm whitespace-nowrap" style={khFont}>
               {kh ? `សំណួរ ${phase.qIndex + 1} / ${phase.total}` : `Q ${phase.qIndex + 1} / ${phase.total}`}
             </span>
           </div>
 
           {/* Question progress + time water-fill */}
-          <div className="flex-1 mx-8 flex flex-col gap-1.5">
+          <div className="flex-1 min-w-0 mx-2 sm:mx-8 flex flex-col gap-1.5">
             {/* question position */}
             <div className="h-2 border-2 border-black bg-white overflow-hidden" style={{ borderRadius: "0px" }}>
               <div className="h-full bg-blue-400 transition-all duration-700" style={{ width: `${progress}%` }} />
@@ -1680,8 +1680,8 @@ export default function HostPage() {
             )}
           </div>
 
-          {/* Controls */}
-          <div className="flex items-center gap-2">
+          {/* Controls — desktop only; phones use the bottom dock below */}
+          <div className="hidden md:flex items-center gap-2">
             {error && <span className="text-red-600 text-xs font-black max-w-xs truncate">{error}</span>}
 
             {/* Manual / Auto advance toggle (flip live) */}
@@ -1740,10 +1740,10 @@ export default function HostPage() {
         {/* ── Body ── */}
         <div className="flex flex-1 overflow-hidden">
           {/* Left: Question area */}
-          <div className="flex-1 flex flex-col items-center justify-center px-8 py-6 overflow-y-auto">
+          <div className="flex-1 flex flex-col items-center justify-center px-4 py-4 md:px-8 md:py-6 overflow-y-auto">
             <div className="w-full max-w-3xl">
               {/* Round label */}
-              <div className="flex items-center justify-center gap-3 mb-6">
+              <div className="flex items-center justify-center gap-3 mb-3 md:mb-6">
                 <div className={`px-3 py-1 border-2 border-black text-xs font-black uppercase tracking-widest shadow-[2px_2px_0_#000] ${isActive ? "bg-blue-400 text-black" : "bg-green-400 text-black"}`} style={{ borderRadius: "0px" }}>
                   {isActive ? (kh ? "សំណួរ" : "Question") : (kh ? "ចប់វគ្គ" : "Round Over")}
                 </div>
@@ -1751,7 +1751,7 @@ export default function HostPage() {
               </div>
 
               {/* Question image — white background, bigger */}
-              <div className="w-full h-72 border-4 border-black bg-white flex items-center justify-center mb-6 relative overflow-hidden shadow-[6px_6px_0_#000]" style={{ borderRadius: "0px" }}>
+              <div className="w-full h-44 sm:h-60 md:h-72 border-4 border-black bg-white flex items-center justify-center mb-4 md:mb-6 relative overflow-hidden shadow-[4px_4px_0_#000] md:shadow-[6px_6px_0_#000]" style={{ borderRadius: "0px" }}>
                 {question?.imageUrl ? (
                   <img src={cloudinaryOptimize(question.imageUrl, 900)} alt="question" className="h-full w-auto object-contain" style={{ maxHeight: "100%", maxWidth: "100%" }} fetchPriority="high" decoding="async" />
                 ) : (
@@ -1763,18 +1763,18 @@ export default function HostPage() {
               </div>
 
               {/* Question text — bigger, high contrast */}
-              <div className="text-center mb-8 min-h-[8rem] flex flex-col items-center justify-center px-2">
-                <div className="font-black text-3xl xl:text-4xl text-black leading-snug" style={{ overflowWrap: "break-word", wordBreak: "normal", hyphens: "auto", ...khFont }}>
+              <div className="text-center mb-4 md:mb-8 min-h-[4rem] md:min-h-[8rem] flex flex-col items-center justify-center px-2">
+                <div className="font-black text-xl sm:text-2xl md:text-3xl xl:text-4xl text-black leading-snug" style={{ overflowWrap: "break-word", wordBreak: "normal", hyphens: "auto", ...khFont }}>
                   {kh && question?.questionKm ? question.questionKm : question?.questionEn}
                 </div>
                 {kh && question?.questionKm && question?.questionEn && (
-                  <div className="text-zinc-600 text-lg font-bold mt-3">{question.questionEn}</div>
+                  <div className="text-zinc-600 text-sm sm:text-lg font-bold mt-2 md:mt-3">{question.questionEn}</div>
                 )}
               </div>
 
               {/* Answers — bigger, better contrast */}
               {answers.length > 0 && (
-                <div className={`grid gap-4 ${answers.length <= 2 ? "grid-cols-1 max-w-2xl mx-auto" : "grid-cols-2"}`}>
+                <div className={`grid gap-2 sm:gap-4 ${answers.length <= 2 ? "grid-cols-1 max-w-2xl mx-auto" : "grid-cols-2"}`}>
                   {answers.map((ans, i) => {
                     const style = ANSWER_STYLES[i % ANSWER_STYLES.length];
                     const isCorrect = correctAnswerId !== null && ans.id === correctAnswerId;
@@ -1809,7 +1809,7 @@ export default function HostPage() {
                             decoding="async"
                             onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
                           />
-                          {isCorrect && <span className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white border-2 border-black text-green-600 font-black text-lg shadow-[2px_2px_0_#000]">✓</span>}
+                          {isCorrect && <span className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white border-2 border-black text-green-600 shadow-[2px_2px_0_#000]"><Check size={16} strokeWidth={3} /></span>}
                           <div className="absolute bottom-0 left-0 right-0 text-center text-xs font-black text-white py-1.5 px-2 truncate" style={{ backgroundColor: isCorrect ? '#15803d' : style.bg }}>{style.label}</div>
                         </div>
                       );
@@ -1818,23 +1818,23 @@ export default function HostPage() {
                     return (
                       <div
                         key={ans.id}
-                        className={`flex items-center gap-5 px-6 py-5 border-4 transition-all duration-300 ${isCorrect ? 'animate-pulse-once' : ''}`}
+                        className={`flex items-center gap-3 sm:gap-5 px-3 py-3 sm:px-6 sm:py-5 border-4 transition-all duration-300 ${isCorrect ? 'animate-pulse-once' : ''}`}
                         style={{
                           borderRadius: "0px",
                           backgroundColor: isCorrect ? "#22c55e" : isWrong ? "#e4e4e7" : style.bg,
                           borderColor: isCorrect ? "#15803d" : "#000000",
                           opacity: isWrong ? 0.3 : 1,
                           boxShadow: isWrong ? "none" : `5px 5px 0px ${isCorrect ? '#15803d' : '#000000'}`,
-                          minHeight: "72px",
+                          minHeight: "56px",
                         }}
                       >
-                        <div className="w-12 h-12 border-3 border-black flex items-center justify-center bg-white font-black text-black text-2xl flex-shrink-0" style={{ borderRadius: "0px", borderWidth: "3px" }}>
+                        <div className="w-9 h-9 sm:w-12 sm:h-12 border-2 sm:border-[3px] border-black flex items-center justify-center bg-white font-black text-black text-lg sm:text-2xl flex-shrink-0" style={{ borderRadius: "0px" }}>
                           {style.label}
                         </div>
-                        <span className="font-black text-lg xl:text-xl leading-snug flex-1" style={{ color: textColor, overflowWrap: "break-word", wordBreak: "normal", hyphens: "auto", ...khFont }}>{text}</span>
+                        <span className="font-black text-sm sm:text-lg xl:text-xl leading-snug flex-1" style={{ color: textColor, overflowWrap: "break-word", wordBreak: "normal", hyphens: "auto", ...khFont }}>{text}</span>
                         {isCorrect && (
-                          <div className="w-10 h-10 flex items-center justify-center bg-white border-3 border-black text-green-600 font-black text-2xl flex-shrink-0" style={{ borderRadius: "0px", borderWidth: "3px" }}>
-                            ✓
+                          <div className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center bg-white border-2 sm:border-[3px] border-black text-green-600 flex-shrink-0" style={{ borderRadius: "0px" }}>
+                            <Check size={18} strokeWidth={3} />
                           </div>
                         )}
                       </div>
@@ -1862,6 +1862,93 @@ export default function HostPage() {
 
 
         </div>
+
+        {/* ── Mobile control dock (thumb zone) — phones only ── */}
+        <div
+          className="md:hidden flex-shrink-0 border-t-4 border-black bg-white"
+          style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+        >
+          {error && (
+            <div className="px-3 py-1.5 bg-red-400 border-b-2 border-black text-black text-[11px] font-black truncate" style={khFont}>
+              {error}
+            </div>
+          )}
+
+          {/* Secondary controls row */}
+          <div className="grid grid-cols-4 gap-2 px-3 pt-3">
+            {/* Back */}
+            <button
+              onClick={() => control("back", isActive ? "active" : "round_end")}
+              disabled={controlling}
+              className="flex flex-col items-center justify-center gap-0.5 py-2 border-2 border-black bg-white text-black font-black text-[9px] uppercase tracking-wider shadow-[2px_2px_0_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all disabled:opacity-40"
+              style={{ borderRadius: "0px" }}
+            >
+              <ChevronLeft size={16} />
+              {kh ? "ថយ" : "Back"}
+            </button>
+
+            {/* Advance mode toggle */}
+            <button
+              onClick={() => pickAdvanceMode(advanceMode === "auto" ? "manual" : "auto")}
+              className={`flex flex-col items-center justify-center gap-0.5 py-2 border-2 border-black font-black text-[9px] uppercase tracking-wider shadow-[2px_2px_0_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all ${advanceMode === "auto" ? "bg-black text-yellow-400" : "bg-white text-black"}`}
+              style={{ borderRadius: "0px" }}
+            >
+              {advanceMode === "auto" ? <FastForward size={16} /> : <Hand size={16} />}
+              {advanceMode === "auto" ? (kh ? "ស្វ័យ" : "Auto") : (kh ? "ដៃ" : "Manual")}
+            </button>
+
+            {/* Fullscreen */}
+            <button
+              onClick={toggleFullscreen}
+              className="flex flex-col items-center justify-center gap-0.5 py-2 border-2 border-black bg-white text-black font-black text-[9px] uppercase tracking-wider shadow-[2px_2px_0_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all"
+              style={{ borderRadius: "0px" }}
+            >
+              {isFullscreen ? <Minimize size={16} /> : <Maximize size={16} />}
+              {isFullscreen ? (kh ? "បង្រួម" : "Min") : (kh ? "ពេញ" : "Full")}
+            </button>
+
+            {/* Exit (STOP) */}
+            <button
+              onClick={() => {
+                if (confirm(kh ? "បញ្ចប់ហ្គេម និងចាកចេញ?" : "End session and exit?")) {
+                  control("end");
+                  if (document.fullscreenElement) document.exitFullscreen().catch(() => { });
+                }
+              }}
+              disabled={controlling}
+              className="flex flex-col items-center justify-center gap-0.5 py-2 border-2 border-black bg-red-400 text-black font-black text-[9px] uppercase tracking-wider shadow-[2px_2px_0_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all disabled:opacity-40"
+              style={{ borderRadius: "0px" }}
+            >
+              <Square size={16} />
+              {kh ? "ចេញ" : "Exit"}
+            </button>
+          </div>
+
+          {/* Primary action — big, contextual */}
+          <div className="px-3 py-3">
+            <button
+              onClick={() => control(isActive ? "reveal" : "advance")}
+              disabled={controlling}
+              className={`w-full flex items-center justify-center gap-2.5 py-4 border-4 border-black text-black font-black text-lg shadow-[4px_4px_0_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_#000] transition-all disabled:opacity-50 ${!isActive && advanceMode === "auto" ? "bg-yellow-400" : "bg-green-400"}`}
+              style={{ borderRadius: "0px", ...khFont }}
+            >
+              {controlling ? (
+                <Loader2 size={22} className="animate-spin" />
+              ) : isActive ? (
+                <Check size={22} strokeWidth={3} />
+              ) : !isActive && advanceMode === "auto" ? (
+                <FastForward size={22} />
+              ) : (
+                <SkipForward size={22} />
+              )}
+              {isActive
+                ? (kh ? "បង្ហាញចម្លើយ" : "Reveal Answer")
+                : !isActive && advanceMode === "auto" && autoAdvanceIn !== null
+                  ? (kh ? `បន្ត (${autoAdvanceIn})` : `Auto · ${autoAdvanceIn}s`)
+                  : (kh ? "សំណួរបន្ទាប់" : "Next Question")}
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
@@ -1870,7 +1957,7 @@ export default function HostPage() {
   if (phase.name === "ended") {
     const RANK_COLORS = ["#FFD700", "#e4e4e7", "#fed7aa"];
     const leaderboardCount = phase.leaderboard.length;
-    let podiumItems: { entry: LeaderboardEntry; rank: number; colStyle: string; emoji: string }[] = [];
+    let podiumItems: { entry: LeaderboardEntry; rank: number; colStyle: string }[] = [];
 
     if (leaderboardCount === 1) {
       podiumItems = [
@@ -1878,7 +1965,6 @@ export default function HostPage() {
           entry: phase.leaderboard[0],
           rank: 1,
           colStyle: "w-full h-32 border-2 border-black bg-yellow-400 flex flex-col items-center justify-center shadow-[4px_4px_0_#000]",
-          emoji: "🥇",
         }
       ];
     } else if (leaderboardCount === 2) {
@@ -1887,13 +1973,11 @@ export default function HostPage() {
           entry: phase.leaderboard[1],
           rank: 2,
           colStyle: "w-full h-24 border-2 border-black bg-zinc-200 flex flex-col items-center justify-center shadow-[4px_4px_0_#000]",
-          emoji: "🥈",
         },
         {
           entry: phase.leaderboard[0],
           rank: 1,
           colStyle: "w-full h-32 border-2 border-black bg-yellow-400 flex flex-col items-center justify-center shadow-[4px_4px_0_#000]",
-          emoji: "🥇",
         }
       ];
     } else if (leaderboardCount >= 3) {
@@ -1902,19 +1986,16 @@ export default function HostPage() {
           entry: phase.leaderboard[1],
           rank: 2,
           colStyle: "w-full h-24 border-2 border-black bg-zinc-200 flex flex-col items-center justify-center shadow-[4px_4px_0_#000]",
-          emoji: "🥈",
         },
         {
           entry: phase.leaderboard[0],
           rank: 1,
           colStyle: "w-full h-32 border-2 border-black bg-yellow-400 flex flex-col items-center justify-center shadow-[4px_4px_0_#000]",
-          emoji: "🥇",
         },
         {
           entry: phase.leaderboard[2],
           rank: 3,
           colStyle: "w-full h-20 border-2 border-black bg-orange-300 flex flex-col items-center justify-center shadow-[4px_4px_0_#000]",
-          emoji: "🥉",
         }
       ];
     }
@@ -1922,7 +2003,7 @@ export default function HostPage() {
     return (
       <div className="min-h-screen dot-bg text-black pb-12 relative overflow-hidden">
         <Confetti />
-        <div className="relative z-10 max-w-2xl mx-auto px-6 py-12">
+        <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
           {/* Game over badge */}
           <div className="text-center mb-10">
             <div className="inline-flex items-center gap-2 px-4 py-2 border-2 border-black bg-yellow-400 text-black text-xs font-black uppercase tracking-widest mb-4 shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px" }}>
@@ -1952,7 +2033,12 @@ export default function HostPage() {
                     </div>
                     <div className="text-xs font-black text-center truncate w-full text-black" style={{ ...khFont }}>{entry.displayName}</div>
                     <div className={item.colStyle} style={{ borderRadius: "0px" }}>
-                      <div className="text-2xl mb-1">{item.emoji}</div>
+                      <Medal
+                        size={26}
+                        strokeWidth={2.5}
+                        className="mb-1"
+                        style={{ color: item.rank === 1 ? "#eab308" : item.rank === 2 ? "#71717a" : "#c2410c" }}
+                      />
                       <div className="font-black text-sm text-black">{entry.totalScore.toLocaleString()}</div>
                     </div>
                   </div>

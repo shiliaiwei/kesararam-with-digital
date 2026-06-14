@@ -7,6 +7,8 @@ import { useState, useEffect } from "react";
 import { logoutAction } from "@/app/actions/auth";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
 import { useLang } from "@/context/lang-context";
+import { useMobileNav } from "@/components/dashboard/mobile-nav-context";
+import { X } from "lucide-react";
 
 interface NavItem {
   label: string;
@@ -91,6 +93,7 @@ export function AppSidebar({
 }: AppSidebarProps) {
   const pathname = usePathname();
   const { lang } = useLang();
+  const { open, setOpen } = useMobileNav();
   const kh = lang === "kh";
   const navItems = role === "admin" ? adminNav : role === "staff" ? staffNav : teacherNav;
   const profileHref = role === "admin" ? "/admin/profile" : role === "staff" ? "/staff/profile" : "/teacher/profile";
@@ -162,10 +165,46 @@ export function AppSidebar({
     );
   }
 
+  // Auto-close the mobile drawer whenever the route changes (after a nav tap).
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname, setOpen]);
+
+  // Lock background scroll while the mobile drawer is open.
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [open]);
+
   return (
-    <div className="w-64 flex flex-col h-screen sticky top-0 overflow-hidden bg-white border-r-4 border-black">
+    <>
+      {/* ── Mobile backdrop ─────────────────────────────────────────────────── */}
+      <div
+        onClick={() => setOpen(false)}
+        aria-hidden
+        className={`md:hidden fixed inset-0 z-40 bg-black/50 transition-opacity duration-200 ${
+          open ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      />
+
+      <aside
+        className={`w-[min(17rem,85vw)] md:w-64 flex flex-col h-screen overflow-hidden bg-white border-r-4 border-black z-50 fixed inset-y-0 left-0 transition-transform duration-200 md:sticky md:top-0 md:translate-x-0 md:z-auto ${
+          open ? "translate-x-0 shadow-[8px_0_0_rgba(0,0,0,0.15)]" : "-translate-x-full md:shadow-none"
+        }`}
+      >
       {/* ── Brand Header ───────────────────────────────────────────────────── */}
       <div className="p-4 flex-shrink-0" style={{ borderBottom: "2px solid #000000" }}>
+        {/* Close button — mobile drawer only */}
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          aria-label={kh ? "បិទម៉ឺនុយ" : "Close menu"}
+          className="md:hidden absolute top-3 right-3 z-10 w-8 h-8 flex items-center justify-center border-2 border-black bg-red-400 text-black shadow-[2px_2px_0_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all"
+          style={{ borderRadius: "0px" }}
+        >
+          <X size={16} />
+        </button>
         <div className="flex items-center gap-3 mb-4">
           {/* Logo mark */}
           <div
@@ -561,6 +600,7 @@ export function AppSidebar({
           </button>
         </form>
       </div>
-    </div>
+      </aside>
+    </>
   );
 }

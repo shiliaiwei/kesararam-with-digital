@@ -2,9 +2,10 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { ChevronRight, Home } from "lucide-react";
+import { ChevronRight, Home, Menu } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 import { LangSwitcher } from "@/components/shared/lang-switcher";
+import { useMobileNav } from "@/components/dashboard/mobile-nav-context";
 
 const LABEL_MAP: Record<string, { en: string; kh: string }> = {
   admin: { en: "Admin", kh: "អ្នកគ្រប់គ្រង" },
@@ -28,14 +29,25 @@ const LABEL_MAP: Record<string, { en: string; kh: string }> = {
 export function DashboardHeader() {
   const pathname = usePathname();
   const { lang } = useLang();
+  const { toggle } = useMobileNav();
   const kh = lang === "kh";
   const segments = pathname.split("/").filter(Boolean);
 
   return (
-    <header className="bg-white border-b-4 border-black p-6 shadow-[0_4px_0_#000]">
-      <div className="flex items-center justify-between">
-        {/* Breadcrumb */}
-        <div className="flex items-center gap-2">
+    <header className="bg-white border-b-4 border-black p-4 sm:p-6 shadow-[0_4px_0_#000]">
+      <div className="flex items-center justify-between gap-3">
+        {/* Mobile menu toggle + Breadcrumb */}
+        <div className="flex items-center gap-2 min-w-0 overflow-x-auto no-scrollbar">
+          {/* Hamburger — opens the sidebar drawer on mobile only */}
+          <button
+            type="button"
+            onClick={toggle}
+            aria-label={kh ? "បើកម៉ឺនុយ" : "Open menu"}
+            className="md:hidden flex-shrink-0 w-10 h-10 flex items-center justify-center border-2 border-black bg-yellow-400 text-black shadow-[2px_2px_0_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all"
+            style={{ borderRadius: "0px" }}
+          >
+            <Menu size={18} />
+          </button>
           <div className="flex items-center gap-2 px-3 py-1.5 bg-yellow-400 border-2 border-black shadow-[2px_2px_0_#000]">
             <Home size={16} className="text-black" />
             <span className="text-xs font-black uppercase tracking-widest text-black">
@@ -71,9 +83,9 @@ export function DashboardHeader() {
         </div>
 
         {/* Status Indicator & Language Switcher */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
           <LangSwitcher />
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-green-400 border-2 border-black shadow-[2px_2px_0_#000]">
+          <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-green-400 border-2 border-black shadow-[2px_2px_0_#000]">
             <div className="w-2 h-2 bg-black animate-pulse" style={{ borderRadius: "0px" }} />
             <span className="text-xs font-black uppercase tracking-widest text-black font-google-sans">
               {kh ? "អនឡាញ" : "Online"}

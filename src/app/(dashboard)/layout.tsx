@@ -8,6 +8,7 @@ import { db } from "@/lib/db";
 import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { CompleteTeacherProfileForm } from "@/components/profile/complete-teacher-profile-form";
+import { MobileNavProvider } from "@/components/dashboard/mobile-nav-context";
 
 export default async function DashboardLayout({
   children,
@@ -55,26 +56,29 @@ export default async function DashboardLayout({
 
   return (
     <ToastProvider>
-      <div className="min-h-screen bg-white flex">
-        <AppSidebar
-          role={session.role as "admin" | "teacher" | "staff"}
-          name={session.name}
-          email={session.email}
-          avatar={session.avatar ?? null}
-          plan={planInfo.plan}
-          isTrial={planInfo.isTrial}
-          trialEndsAt={planInfo.trialEndsAt?.toISOString() ?? null}
-          endsAt={planInfo.endsAt?.toISOString() ?? null}
-        />
-        <div className="flex-1 flex flex-col">
-          <DashboardHeader />
-          <main className="flex-1 p-6 bg-white">
-            <div className="max-w-7xl mx-auto">
-              {children}
-            </div>
-          </main>
+      <MobileNavProvider>
+        <div className="min-h-screen bg-white flex">
+          <AppSidebar
+            role={session.role as "admin" | "teacher" | "staff"}
+            name={session.name}
+            email={session.email}
+            avatar={session.avatar ?? null}
+            plan={planInfo.plan}
+            isTrial={planInfo.isTrial}
+            trialEndsAt={planInfo.trialEndsAt?.toISOString() ?? null}
+            endsAt={planInfo.endsAt?.toISOString() ?? null}
+          />
+          {/* min-w-0 lets flex children shrink instead of forcing horizontal scroll on phones */}
+          <div className="flex-1 flex flex-col min-w-0">
+            <DashboardHeader />
+            <main className="flex-1 p-4 sm:p-6 bg-white">
+              <div className="max-w-7xl mx-auto">
+                {children}
+              </div>
+            </main>
+          </div>
         </div>
-      </div>
+      </MobileNavProvider>
     </ToastProvider>
   );
 }
