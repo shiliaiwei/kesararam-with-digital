@@ -55,6 +55,43 @@ const DIFF_COLORS: Record<string, string> = {
   easy: "#22c55e", medium: "#eab308", hard: "#ef4444", mixed: "#a855f7",
 };
 
+// ── Bilingual lobby labels (EN + ខ្មែរ) ─────────────────────────────────────
+const MODE_LABELS_KM: Record<string, string> = {
+  "quick-quiz": "សំណួរលឿន",
+  "speed-round": "វគ្គល្បឿន",
+  "sign-challenge": "ប្រកួតសញ្ញា",
+  "mixed-practice": "សំណួរចម្រុះ",
+};
+
+const DIFF_LABELS: Record<string, { en: string; kh: string }> = {
+  easy: { en: "Easy", kh: "ងាយ" },
+  medium: { en: "Medium", kh: "មធ្យម" },
+  hard: { en: "Hard", kh: "ពិបាក" },
+  mixed: { en: "Mixed", kh: "ចម្រុះ" },
+};
+
+const SCORING_LABELS: Record<string, { en: string; kh: string }> = {
+  speed: { en: "Speed", kh: "ល្បឿន" },
+  equal: { en: "Equal", kh: "ស្មើគ្នា" },
+};
+
+const CATEGORY_LABELS: Record<string, { en: string; kh: string }> = {
+  "road-sign": { en: "Road Signs", kh: "សញ្ញាចរាចរណ៍" },
+  "road-traffic": { en: "Traffic Law", kh: "ច្បាប់ចរាចរណ៍" },
+  "priority": { en: "Right of Way", kh: "សិទ្ធិអាទិភាព" },
+  "driving": { en: "Road Safety Skills", kh: "ជំនាញសុវត្ថិភាព" },
+  "technical": { en: "Vehicle Tech", kh: "បច្ចេកទេសយានយន្ត" },
+  "loading-people-goods": { en: "Loading People & Goods", kh: "ការផ្ទុកមនុស្ស និងទំនិញ" },
+  "general-knowledge": { en: "General Knowledge", kh: "ចំណេះដឹងទូទៅ" },
+  "emergency": { en: "Emergency", kh: "ពេលអាសន្ន" },
+};
+
+/** Bilingual game-mode label. */
+function modeLabelFor(mode: string | undefined, kh: boolean): string {
+  if (!mode) return "—";
+  return kh ? (MODE_LABELS_KM[mode] ?? MODE_LABELS[mode] ?? mode) : (MODE_LABELS[mode] ?? mode);
+}
+
 interface NeubrutalistAvatarProps {
   src: string | null | undefined;
   initials: string;
@@ -503,11 +540,11 @@ export default function StudentGamePage() {
 
   if (phase === "lobby") {
     const modeColor = "#fbbf24"; // Always high-contrast Neo-Brutalist Amber Yellow
-    const modeLabel = MODE_LABELS[sessionInfo?.gameMode ?? ""] ?? sessionInfo?.gameMode ?? "—";
+    const modeLabel = modeLabelFor(sessionInfo?.gameMode, kh);
     const diffColor = DIFF_COLORS[sessionInfo?.difficulty ?? "mixed"] ?? "#a855f7";
 
     return (
-      <div className="h-screen flex flex-col relative overflow-hidden animate-fade-in"
+      <div className="h-[100dvh] flex flex-col relative overflow-hidden animate-fade-in"
         style={{
           backgroundColor: "#0d0d10",
           backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)",
@@ -522,8 +559,10 @@ export default function StudentGamePage() {
           {unifiedHeader}
         </div>
 
-        {/* Scrollable container with high-impact neubrutalist cards */}
-        <div className="relative z-10 flex-1 overflow-y-auto no-scrollbar px-4.5 py-6 flex flex-col items-center justify-start gap-5 max-w-lg mx-auto w-full">
+        {/* Scrollable container with high-impact neubrutalist cards.
+            min-h-0 lets this flex child shrink below its content so overflow-y-auto
+            actually scrolls (without it the lobby clips and can't scroll). */}
+        <div className="relative z-10 flex-1 min-h-0 overflow-y-auto no-scrollbar px-4.5 py-6 pb-10 flex flex-col items-center justify-start gap-5 max-w-lg mx-auto w-full">
 
           {/* Header Status Badge */}
           <div className="flex items-center gap-2 px-3 py-1.5 border-2 border-black bg-red-500 text-black text-[10px] font-black tracking-widest uppercase shadow-[3px_3px_0_#000] select-none rounded-none animate-pulse">
@@ -585,7 +624,11 @@ export default function StudentGamePage() {
                 </div>
                 <div className="min-w-0 text-black">
                   <div className="text-black/60 text-[8px] font-black uppercase tracking-wider" style={khFont}>{kh ? "ប្រភេទ" : "CATEGORY"}</div>
-                  <div className="font-black text-xs capitalize truncate" style={khFont}>{sessionInfo.category?.replace(/-/g, " ") ?? "—"}</div>
+                  <div className="font-black text-xs capitalize truncate" style={khFont}>{(() => {
+                    const c = (sessionInfo.category ?? "").toLowerCase();
+                    const m = CATEGORY_LABELS[c];
+                    return m ? (kh ? m.kh : m.en) : (sessionInfo.category?.replace(/-/g, " ") ?? "—");
+                  })()}</div>
                 </div>
               </div>
 
@@ -596,9 +639,11 @@ export default function StudentGamePage() {
                 </div>
                 <div className="min-w-0 text-black">
                   <div className="text-black/60 text-[8px] font-black uppercase tracking-wider" style={khFont}>{kh ? "កម្រិត" : "DIFFICULTY"}</div>
-                  <div className="font-black text-xs capitalize truncate" style={khFont}>
-                    {sessionInfo.difficulty ?? "Mixed"}
-                  </div>
+                  <div className="font-black text-xs capitalize truncate" style={khFont}>{(() => {
+                    const d = (sessionInfo.difficulty ?? "mixed").toLowerCase();
+                    const m = DIFF_LABELS[d];
+                    return m ? (kh ? m.kh : m.en) : (sessionInfo.difficulty ?? "Mixed");
+                  })()}</div>
                 </div>
               </div>
 
@@ -609,7 +654,7 @@ export default function StudentGamePage() {
                 </div>
                 <div className="min-w-0 text-black">
                   <div className="text-black/60 text-[8px] font-black uppercase tracking-wider" style={khFont}>{kh ? "ពេលវេលា" : "TIME / Q"}</div>
-                  <div className="font-black text-xs">{sessionInfo.timePerQuestion}s</div>
+                  <div className="font-black text-xs" style={khFont}>{sessionInfo.timePerQuestion}{kh ? " វិ." : "s"}</div>
                 </div>
               </div>
 
@@ -620,7 +665,11 @@ export default function StudentGamePage() {
                 </div>
                 <div className="min-w-0 text-black">
                   <div className="text-black/60 text-[8px] font-black uppercase tracking-wider" style={khFont}>{kh ? "ពិន្ទុ" : "SCORING"}</div>
-                  <div className="font-black text-xs capitalize" style={khFont}>{sessionInfo.scoringMode}</div>
+                  <div className="font-black text-xs capitalize" style={khFont}>{(() => {
+                    const s = (sessionInfo.scoringMode ?? "").toLowerCase();
+                    const m = SCORING_LABELS[s];
+                    return m ? (kh ? m.kh : m.en) : sessionInfo.scoringMode;
+                  })()}</div>
                 </div>
               </div>
 
@@ -631,7 +680,7 @@ export default function StudentGamePage() {
                 </div>
                 <div className="min-w-0 text-black">
                   <div className="text-black/60 text-[8px] font-black uppercase tracking-wider" style={khFont}>{kh ? "សំណួរ" : "QUESTIONS"}</div>
-                  <div className="font-black text-xs">{sessionInfo.questionCount}Q</div>
+                  <div className="font-black text-xs" style={khFont}>{sessionInfo.questionCount}{kh ? " សំណួរ" : "Q"}</div>
                 </div>
               </div>
             </div>
@@ -643,8 +692,9 @@ export default function StudentGamePage() {
               <div className="text-zinc-400 text-[10px] font-black uppercase tracking-widest mb-2 text-center" style={khFont}>
                 {kh ? "ជ្រើសរើសភាសាក្នុងហ្គេម" : "GAME LANGUAGE SELECTION"}
               </div>
-              <div className="text-yellow-400 text-[9px] font-bold mb-3.5 text-center animate-pulse" style={khFont}>
-                {kh ? "⭐ អនុសាសន៍: ជ្រើសរើសភាសាខ្មែរ" : "⭐ Recommended: Select Khmer"}
+              <div className="text-yellow-400 text-[9px] font-bold mb-3.5 flex items-center justify-center gap-1.5 animate-pulse" style={khFont}>
+                <Star size={10} className="flex-shrink-0" />
+                <span>{kh ? "អនុសាសន៍៖ ជ្រើសរើសភាសាខ្មែរ" : "Recommended: Select Khmer"}</span>
               </div>
               <div className="flex gap-3">
                 <button
@@ -657,7 +707,7 @@ export default function StudentGamePage() {
                   style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}
                 >
                   ខ្មែរ (Khmer)
-                  {sessionInfo.language === "km" && <span className="text-[8px] opacity-60 font-bold">({kh ? "គ្រូ" : "Locked"})</span>}
+                  {sessionInfo.language === "km" && <span className="text-[8px] opacity-60 font-bold">({kh ? "ចាក់សោ" : "Locked"})</span>}
                 </button>
                 <button
                   onClick={() => { if (sessionInfo.language === "both") setLang("en"); }}
@@ -668,7 +718,7 @@ export default function StudentGamePage() {
                     } ${sessionInfo.language !== "both" ? "cursor-not-allowed opacity-50" : ""}`}
                 >
                   English
-                  {sessionInfo.language === "en" && <span className="text-[8px] opacity-60 font-bold">({kh ? "គ្រូ" : "Locked"})</span>}
+                  {sessionInfo.language === "en" && <span className="text-[8px] opacity-60 font-bold">({kh ? "ចាក់សោ" : "Locked"})</span>}
                 </button>
               </div>
             </div>
@@ -770,7 +820,7 @@ export default function StudentGamePage() {
         <div className="relative z-10 flex items-center justify-between px-4 py-2.5 bg-zinc-950 border-b border-zinc-800 flex-shrink-0 h-14 rounded-none">
           <div className="flex items-center gap-2">
             <span className="text-zinc-400 font-black text-xs uppercase tracking-widest" style={khFont}>
-              {sessionInfo ? (MODE_LABELS[sessionInfo.gameMode] ?? sessionInfo.gameMode) : code}
+              {sessionInfo ? modeLabelFor(sessionInfo.gameMode, kh) : code}
             </span>
           </div>
 
@@ -807,7 +857,7 @@ export default function StudentGamePage() {
           />
         </div>
 
-        <div className="relative z-10 flex-1 flex flex-col p-2.5 sm:p-4 gap-2 max-w-2xl mx-auto w-full justify-start sm:justify-center overflow-hidden min-h-0">
+        <div className="relative z-10 flex-1 min-h-0 flex flex-col p-2.5 sm:p-4 pb-6 gap-2 max-w-2xl mx-auto w-full justify-start sm:justify-center overflow-y-auto no-scrollbar">
           {/* Subtle Stats Row (Low Capacity) - Smaller labels */}
           <div className="flex items-center justify-between gap-2 px-1 w-full bg-transparent border-0 flex-shrink-0">
             <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar flex-nowrap">
