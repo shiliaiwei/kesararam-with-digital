@@ -108,19 +108,20 @@ The platform currently runs **two independent scoring engines** (unification is 
 | **Engine A** (modern) | `calculateScore()` | Live sessions, Solo, Daily, Priority, Kid games | `src/lib/game-engine.ts` |
 | **Engine B** (legacy) | `content.scorePoints` + time bonus | Quiz mode, Challenge mode | `src/app/api/quiz/answer`, `src/app/api/challenge/answer` |
 
-### Engine A — `calculateScore()` Algorithm
+### Engine A — `calculateScore()` Algorithm (Kahoot-style, June 2026)
 
 ```mermaid
 flowchart TD
     A["Answer submitted"] --> B{"Correct?"}
     B -- "No" --> Z["0 points"]
-    B -- "Yes" --> C["base score by difficulty<br/>easy = 1 · medium = 2 · hard = 3"]
-    C --> D{"Response time<br/>&lt; 500ms?"}
-    D -- "Yes (suspicious)" --> E["speed bonus = 0<br/>streak bonus = 0"]
-    D -- "No" --> F["speed bonus (speed mode only)<br/>= round(remainingTime / totalTime × 3)<br/>→ 0 to 3 points"]
-    F --> G["streak bonus<br/>streak 2-4 → +1 · streak 5+ → +2"]
-    E --> H["total = base + speed + streak<br/>(max 8 per question)"]
-    G --> H
+    B -- "Yes" --> C["base by difficulty<br/>easy = 600 · medium = 800 · hard = 1000"]
+    C --> M{"Scoring mode?"}
+    M -- "equal" --> EQ["timeScore = base<br/>(time ignored)"]
+    M -- "speed" --> F["response time floored at 500ms<br/>(anti-cheat, MIN_RESPONSE_MS)"]
+    F --> T["timeScore = round(base × (0.5 + 0.5 × remaining/total))<br/>half base (last second) … full base (instant)"]
+    EQ --> G
+    T --> G["+ streak bonus<br/>+100 per consecutive correct, cap +500"]
+    G --> H["total = timeScore + streak<br/>(~300 … ~1500 per question)"]
 ```
 
 ### Engine B — Legacy Algorithm (Quiz / Challenge)
@@ -138,7 +139,7 @@ total = points + timeBonus
 flowchart TD
     subgraph ENGINE_A["⚙️ Engine A — calculateScore()"]
         LIVE["🏫 Live Session<br/>(teacher-hosted)"]
-        SOLO["🎮 Solo Practice<br/>(×0.20 multiplier)"]
+        SOLO["🎮 Solo Practice<br/>(full value)"]
         DAILY["📅 Daily Challenge<br/>(+ streak milestone bonus)"]
         PRIO["🚦 Priority<br/>(Who Goes First)"]
         KID["🧒 Kid Arcade Games<br/>(sign-match, catch-sign, ...)"]
@@ -154,9 +155,9 @@ flowchart TD
     GP -->|"on END action<br/>(one-shot scores_synced guard)"| LP["users.lifetimePoints"]
     GP -->|"on END action"| PL["pointsLedger<br/>source = live-session:{id}"]
 
-    SOLO -->|"raw score"| GS["gameScores"]
-    SOLO -->|"20% of raw"| PL2["pointsLedger<br/>source = solo"]
-    SOLO -->|"20% of raw"| LP
+    SOLO -->|"full raw score"| GS["gameScores"]
+    SOLO -->|"full raw score"| PL2["pointsLedger<br/>source = solo"]
+    SOLO -->|"highest_score + games count<br/>(NOT lifetimePoints)"| UPROF["users"]
 
     DAILY --> DA["dailyAttempts + userStreaks"]
     PRIO --> NOTHING["(not stored — computed and returned only)"]
@@ -171,6 +172,7 @@ flowchart TD
     LP --> PUBLIC["🏆 Public Leaderboard<br/>(rank + tier)"]
     PL -->|"ONLY live-session:% sources"| CLAIM["🎁 Reward Claiming<br/>/api/user/claim"]
     PL2 -.->|"❌ excluded from claiming"| CLAIM
+    CLAIM --> RC["reward_claims<br/>pending → accepted → fulfilled<br/>(teacher approves; reject = refund)"]
 ```
 
 ### Per-Game Reference Table
@@ -178,7 +180,7 @@ flowchart TD
 | Game | Engine | Endpoint | Score stored in | Leaderboard | Claimable |
 | :--- | :--- | :--- | :--- | :---: | :---: |
 | **Live session** | A | `POST /api/game/sessions/[code]/answer` → `control (end)` | `gameSessionAnswers` → `gameParticipants` → `users.lifetimePoints` + `pointsLedger` | ✅ | ✅ **(only source)** |
-| **Solo practice** | A × 0.20 (ceil) | `POST /api/game/solo/complete` | `gameScores` (raw) + `pointsLedger` (20%) + `users.lifetimePoints` | ✅ | ❌ |
+| **Solo practice** | A (full value) | `POST /api/game/solo/complete` | `gameScores` (raw) + `pointsLedger` (source = solo); updates `highestScore` + games count — **NOT** `lifetimePoints` | solo board only | ❌ |
 | **Daily challenge** | A + streak bonus | `POST /api/game/daily/complete` | `dailyAttempts` + `userStreaks` | ❌ | ❌ |
 | **Priority (Who Goes First)** | A | `POST /api/game/priority/complete` | *(nothing — computed only)* | ❌ | ❌ |
 | **Kid arcade games** | A *(trusts client correctness)* | `POST /api/game/[gameId]/complete` | `gameAttempts` | ❌ | ❌ |
@@ -206,31 +208,44 @@ sequenceDiagram
     DB->>DB: INSERT pointsLedger (source = live-session:{id})
 ```
 
-### Reward Claiming Calculation
+### Reward Claiming + Fulfillment Workflow
 
 ```
 claimable = SUM(pointsLedger.points WHERE source LIKE 'live-session:%')
-          − SUM(cost of items already in users.claimedRewards)
+          − SUM(reward_claims.cost WHERE status <> 'rejected')   (pending/accepted/fulfilled hold the cost)
 
 claim succeeds when: claimable ≥ item cost   (validated against src/lib/rewards.ts catalog)
 ```
+
+A claim is a `reward_claims` row routed to the student's class teacher:
+
+```
+pending  ──teacher accepts──▶  accepted (preparing)  ──teacher marks given──▶  fulfilled
+   └────────────────── teacher rejects ──────────────────▶  rejected (cost refunded)
+```
+
+APIs: `POST /api/user/claim` (create + balance) · `GET /api/user/claim` (my claims) ·
+`GET /api/teacher/claims` · `PATCH /api/teacher/claims/[id]` (accept | reject | fulfill).
+Teacher UI: `/teacher/claims`. Accounting source of truth: `src/lib/claims.ts`.
 
 ### Management Guide — One Place to Tune Each Thing
 
 | To change... | Edit |
 | :--- | :--- |
-| Points per difficulty / speed / streak / anti-cheat | `calculateScore()` in `src/lib/game-engine.ts` (affects ALL Engine A games) |
-| Solo % of raw score | `SOLO_SCORE_MULTIPLIER` in `src/lib/game-engine.ts` |
+| Base points by difficulty | `DIFFICULTY_BASE` (600 / 800 / 1000) in `src/lib/game-engine.ts` |
+| Streak bonus step / cap / anti-cheat floor | `STREAK_BONUS_STEP` · `STREAK_BONUS_MAX` · `MIN_RESPONSE_MS` in `src/lib/game-engine.ts` |
+| Solo score value | full raw score, no multiplier (`SOLO_SCORE_MULTIPLIER` removed); writes `pointsLedger (source = solo)` only |
 | Daily play limits per tier | `PLAY_LIMITS` in `src/lib/game-engine.ts` |
 | Reward catalog & prices | `REWARD_ITEMS` in `src/lib/rewards.ts` (claim API + UI share it) |
-| What counts as claimable | `LIKE 'live-session:%'` filter in `src/app/api/user/claim/route.ts` |
+| Rank tier thresholds | `RANK_TIERS` in `src/lib/rank-utils.ts` |
+| What counts as claimable / claim accounting | `LIKE 'live-session:%'` filter + `src/lib/claims.ts` |
 
 ### ⚠️ Known Weak Spots
 
 1. **Two engines** — legacy Quiz/Challenge write to a separate `leaderboardEntries` board disconnected from `users.lifetimePoints`. Same student effort earns incompatible currencies.
 2. **Kid games trust the client** — `recordGameAttempt` accepts `isCorrectGuess` from the browser (practice-only, low stakes, but should be server-validated like `validatePriority`).
 3. **Priority game stores nothing** — player results are computed and discarded.
-4. **`scores_synced` migration required** — the live-session double-count guard needs `npm run db:migrate-scores-synced` before/with deploy.
+4. **Daily streak milestone bonus is un-rescaled** — `streakMilestoneBonus` still returns +2/+5/+15 (pre-Kahoot scale). Only affects the daily practice score (not rank), so cosmetic. (The `scores_synced` migration is applied to prod.)
 
 ### 🗺️ Roadmap — Engine Unification Plan
 
