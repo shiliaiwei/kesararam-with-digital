@@ -571,3 +571,50 @@ export const pointsLedger = pgTable(
 
 export type PointsLedgerRow = typeof pointsLedger.$inferSelect;
 export type NewPointsLedgerRow = typeof pointsLedger.$inferInsert;
+
+/**
+ * Reward claims — the student→teacher fulfillment workflow.
+ *
+ * A student spends LIVE priority points to claim a physical store item. The claim
+ * is routed to the teacher of the class the student belongs to, who then accepts
+ * and prepares to hand over the item (or rejects it, refunding the points).
+ *
+ * Status lifecycle:
+ *   pending   → student claimed, awaiting the teacher
+ *   accepted  → teacher accepted, preparing to give the item
+ *   fulfilled → item physically handed to the student (closed)
+ *   rejected  → teacher declined; cost is refunded (excluded from "spent")
+ *
+ * Spent-points accounting: a student's spent total = SUM(cost) of their claims
+ * whose status <> 'rejected'. Available balance = live priority points − spent.
+ * classId/teacherId are plain integers (resolved at claim time) so a later class
+ * change can't orphan an in-flight claim.
+ */
+export const rewardClaims = pgTable(
+  "reward_claims",
+  {
+    id: serial("id").primaryKey(),
+    studentId: integer("student_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    classId: integer("class_id"),
+    teacherId: integer("teacher_id"),
+    itemId: integer("item_id").notNull(),
+    itemName: text("item_name").notNull(),
+    cost: integer("cost").notNull(),
+    status: text("status").notNull().default("pending"), // pending | accepted | fulfilled | rejected
+    studentNote: text("student_note"),
+    teacherNote: text("teacher_note"),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    decidedAt: timestamp("decided_at"),
+    decidedBy: integer("decided_by"),
+    fulfilledAt: timestamp("fulfilled_at"),
+  },
+  (table) => ({
+    studentIdx: index("reward_claims_student_idx").on(table.studentId, table.createdAt),
+    teacherStatusIdx: index("reward_claims_teacher_status_idx").on(table.teacherId, table.status),
+  })
+);
+
+export type RewardClaim = typeof rewardClaims.$inferSelect;
+export type NewRewardClaim = typeof rewardClaims.$inferInsert;

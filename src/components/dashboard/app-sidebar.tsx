@@ -47,6 +47,7 @@ const teacherNav: NavItem[] = [
   { label: "Classes", labelKh: "ថ្នាក់រៀន", href: "/teacher/classes", icon: "school", color: "#3b82f6" },
   { label: "Sessions", labelKh: "វគ្គផ្ទាល់", href: "/teacher/sessions", icon: "tv", color: "#22c55e" },
   { label: "Host Game", labelKh: "បង្កើតហ្គេម", href: "/teacher/sessions/host", icon: "sports_esports", color: "#ffd700" },
+  { label: "Reward Claims", labelKh: "សំណើរង្វាន់", href: "/teacher/claims", icon: "redeem", color: "#a855f7" },
 ];
 
 const staffNav: NavItem[] = [

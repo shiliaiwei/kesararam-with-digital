@@ -1,107 +1,138 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { users } from "@/db/schema/users";
-import { pointsLedger } from "@/db/schema/content";
-import { eq, and, sql } from "drizzle-orm";
-import { REWARD_ITEMS, getRewardItem } from "@/lib/rewards";
+import { rewardClaims } from "@/db/schema/content";
+import { eq, and, inArray, desc } from "drizzle-orm";
+import { getRewardItem } from "@/lib/rewards";
+import {
+  resolveStudentClass,
+  getClaimBalance,
+  CLAIM_HELD_STATUSES,
+} from "@/lib/claims";
 
+/**
+ * POST /api/user/claim — a student claims a reward item.
+ *
+ * Creates a PENDING reward_claims row routed to the teacher of the student's
+ * class. The teacher accepts (→ prepares to hand over) or rejects (→ refund).
+ * Points are spent live: pending/accepted/fulfilled all hold the cost; only a
+ * rejection frees it again (see src/lib/claims.ts).
+ *
+ * Guards: must be a logged-in student, must belong to a class, must have enough
+ * available live points, and may not have an in-flight (pending/accepted) claim
+ * for the same item.
+ */
 export async function POST(req: Request) {
   const session = await getSession();
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+  if (session.role !== "student") {
+    return NextResponse.json(
+      { error: "Only students can claim rewards." },
+      { status: 403 }
+    );
+  }
 
   try {
-    const { itemId } = await req.json();
-    if (!itemId) {
-      return NextResponse.json({ error: "Item ID is required" }, { status: 400 });
-    }
-
-    const itemToClaim = getRewardItem(Number(itemId));
-    if (!itemToClaim) {
+    const { itemId, note } = await req.json();
+    const item = getRewardItem(Number(itemId));
+    if (!item) {
       return NextResponse.json({ error: "Reward item not found" }, { status: 400 });
     }
 
-    // 1. Fetch live user data to check points balance
-    const [user] = await db
-      .select({
-        id: users.id,
-        lifetimePoints: users.lifetimePoints,
-        claimedRewards: users.claimedRewards,
-      })
-      .from(users)
-      .where(eq(users.id, session.id))
-      .limit(1);
-
-    if (!user) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    // 1. The claim must route to a teacher — student must be in a class.
+    const klass = await resolveStudentClass(session.id);
+    if (!klass) {
+      return NextResponse.json(
+        {
+          error: "no_class",
+          message:
+            "Join a class first — reward claims are handed over by your teacher in class.",
+        },
+        { status: 422 }
+      );
     }
 
-    // 2. Parse current claims and calculate spent points
-    let claims: Array<{ id: number; claimedAt: number }> = [];
-    try {
-      claims = JSON.parse(user.claimedRewards || "[]");
-    } catch {
-      claims = [];
-    }
-
-    let spentPoints = 0;
-    claims.forEach((claim) => {
-      const item = REWARD_ITEMS.find((r) => r.id === claim.id);
-      if (item) {
-        spentPoints += item.cost;
-      }
-    });
-
-    // 3. Sum claimable points from the ledger. Live teacher sessions write
-    //    source="live-session:{sessionId}" (see syncScoresToUserProfiles in
-    //    src/app/api/game/sessions/[code]/control/route.ts), so match the prefix
-    //    rather than an exact "live" — solo/daily sources stay excluded.
-    //    NOTE: the public leaderboard uses the same LIKE 'live-session:%' filter.
-    const [livePointsRow] = await db
-      .select({ total: sql<number>`COALESCE(SUM(${pointsLedger.points}), 0)::integer` })
-      .from(pointsLedger)
+    // 2. Block a duplicate in-flight claim for the same item.
+    const [active] = await db
+      .select({ id: rewardClaims.id })
+      .from(rewardClaims)
       .where(
         and(
-          eq(pointsLedger.userId, session.id),
-          sql`${pointsLedger.source} LIKE 'live-session:%'`
+          eq(rewardClaims.studentId, session.id),
+          eq(rewardClaims.itemId, item.id),
+          inArray(rewardClaims.status, ["pending", "accepted"])
         )
+      )
+      .limit(1);
+    if (active) {
+      return NextResponse.json(
+        {
+          error: "already_pending",
+          message: `You already have a pending "${item.name}" claim with your teacher.`,
+        },
+        { status: 409 }
       );
-    const totalLivePoints = livePointsRow?.total ?? 0;
-
-    const activePoints = totalLivePoints - spentPoints;
-
-    // 4. Verify points sufficiency
-    if (activePoints < itemToClaim.cost) {
-      return NextResponse.json({ error: "Insufficient live points" }, { status: 400 });
     }
 
-    // 5. Save new claim record
-    claims.push({
-      id: itemToClaim.id,
-      claimedAt: Date.now(),
-    });
+    // 3. Check the available (live − spent) balance.
+    const balance = await getClaimBalance(session.id);
+    if (balance.available < item.cost) {
+      return NextResponse.json(
+        {
+          error: "insufficient_points",
+          message: "Not enough live points yet — keep playing live class games!",
+          available: balance.available,
+          cost: item.cost,
+        },
+        { status: 400 }
+      );
+    }
 
-    await db
-      .update(users)
-      .set({
-        claimedRewards: JSON.stringify(claims),
+    // 4. Create the pending claim.
+    const [claim] = await db
+      .insert(rewardClaims)
+      .values({
+        studentId: session.id,
+        classId: klass.classId,
+        teacherId: klass.teacherId,
+        itemId: item.id,
+        itemName: item.name,
+        cost: item.cost,
+        status: "pending",
+        studentNote: typeof note === "string" ? note.slice(0, 280) : null,
       })
-      .where(eq(users.id, user.id));
+      .returning();
 
     return NextResponse.json({
       success: true,
-      claimedRewards: claims,
-      activePoints: activePoints - itemToClaim.cost,
-      totalLivePoints,
-      lifetimePoints: user.lifetimePoints,
+      claim,
+      // available balance AFTER this claim is held
+      activePoints: balance.available - item.cost,
+      live: balance.live,
     });
   } catch (error) {
     console.error("Error claiming reward:", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
+}
+
+/**
+ * GET /api/user/claim — the logged-in student's claims + their claimable balance.
+ */
+export async function GET() {
+  const session = await getSession();
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  const [claims, balance] = await Promise.all([
+    db
+      .select()
+      .from(rewardClaims)
+      .where(eq(rewardClaims.studentId, session.id))
+      .orderBy(desc(rewardClaims.createdAt)),
+    getClaimBalance(session.id),
+  ]);
+
+  return NextResponse.json({ claims, balance, heldStatuses: CLAIM_HELD_STATUSES });
 }

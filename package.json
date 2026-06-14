@@ -19,15 +19,16 @@
     "db:migrate-2fa": "tsx scripts/migrate-2fa.ts",
     "db:migrate-gamekit": "tsx scripts/migrate-gamekit.ts",
     "db:migrate-scores-synced": "tsx scripts/migrate-scores-synced.ts",
+    "db:migrate-reward-claims": "tsx scripts/migrate-reward-claims.ts",
     "db:verify": "tsx scripts/verify-migration.ts",
     "db:reset-scores": "tsx scripts/reset-scores.ts",
     "studio": "node node_modules/drizzle-kit/bin.cjs studio",
     "backup": "node node_modules/tsx/dist/cli.mjs scripts/backup-db.ts",
     "restore": "node node_modules/tsx/dist/cli.mjs scripts/restore-db.ts",
-    "security:audit": "npm audit --audit-level=moderate",
+    "security:audit": "pnpm audit --audit-level=moderate",
     "security:check": "bash scripts/check-secrets.sh",
     "security:install-hooks": "bash scripts/install-git-hooks.sh",
-    "security:full": "npm run security:audit && npm run security:check && npm run lint && npm run test",
+    "security:full": "pnpm run security:audit && pnpm run security:check && pnpm run lint && pnpm run test",
     "security:generate-jwt": "node scripts/generate-jwt-secret.js"
   },
   "dependencies": {
@@ -96,7 +97,7 @@
   },
   "overrides": {
     "path-to-regexp": ">=8.0.0",
-    "esbuild": ">=0.24.2",
+    "esbuild": ">=0.28.1",
     "postcss": ">=8.4.49",
     "hono": ">=4.6.15",
     "@hono/node-server": ">=1.19.13",
@@ -106,7 +107,7 @@
   },
   "resolutions": {
     "path-to-regexp": ">=8.0.0",
-    "esbuild": ">=0.24.2",
+    "esbuild": ">=0.28.1",
     "postcss": ">=8.4.49",
     "hono": ">=4.6.15",
     "@hono/node-server": ">=1.19.13",

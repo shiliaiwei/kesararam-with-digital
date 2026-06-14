@@ -1081,52 +1081,26 @@ export default function LeaderboardPage() {
           const lifetimePoints = d.lifetimePoints ?? 0;
           const livePoints = d.livePoints ?? 0;
 
-          // Sync database claims to local storage for backward compatibility & seamless updates
-          if (d.claimedRewards && typeof window !== "undefined") {
-            try {
-              const dbClaims = JSON.parse(d.claimedRewards) as Array<{ id: number; claimedAt: number }>;
-              dbClaims.forEach(claim => {
-                const claimDataKey = `kwd_claim_data_${claim.id}`;
-                const localSaved = localStorage.getItem(claimDataKey);
-                let currentCount = 1;
-                if (localSaved) {
-                  try {
-                    currentCount = Math.max(1, JSON.parse(localSaved).claimCount ?? 1);
-                  } catch { }
-                }
-                localStorage.setItem(claimDataKey, JSON.stringify({
-                  claimCount: currentCount,
-                  lastClaimedAt: claim.claimedAt
-                }));
-                localStorage.setItem(`kwd_claimed_${claim.id}`, "1");
-              });
-            } catch (err) {
-              console.error("Failed to sync database claims to localStorage:", err);
-            }
-          }
-
-          // Local storage subtraction deduction logic based on claim counts
-          let activePoints = livePoints;
-          REWARD_ITEMS.forEach(item => {
-            if (typeof window !== "undefined") {
-              const claimDataStr = localStorage.getItem(`kwd_claim_data_${item.id}`);
-              if (claimDataStr) {
-                try {
-                  const data = JSON.parse(claimDataStr);
-                  const count = data.claimCount ?? 0;
-                  activePoints -= item.cost * count;
-                } catch {
-                  if (localStorage.getItem(`kwd_claimed_${item.id}`) === "1") {
-                    activePoints -= item.cost;
-                  }
-                }
-              } else if (localStorage.getItem(`kwd_claimed_${item.id}`) === "1") {
-                activePoints -= item.cost;
-              }
-            }
-          });
           setCurrentUser(d);
-          setUserPoints(Math.max(0, activePoints));
+
+          // Server-authoritative claimable balance: live priority points minus the
+          // cost of every non-rejected reward claim (GET /api/user/claim). This is
+          // the source of truth now that reward_claims drives the workflow — the
+          // old localStorage claim bookkeeping is gone.
+          if (d.role === "student") {
+            fetch("/api/user/claim")
+              .then(r => (r.ok ? r.json() : null))
+              .then(cd => {
+                if (cd?.balance && typeof cd.balance.available === "number") {
+                  setUserPoints(Math.max(0, cd.balance.available));
+                } else {
+                  setUserPoints(Math.max(0, livePoints || lifetimePoints));
+                }
+              })
+              .catch(() => setUserPoints(Math.max(0, livePoints || lifetimePoints)));
+          } else {
+            setUserPoints(Math.max(0, livePoints || lifetimePoints));
+          }
 
           // Fetch limits status for play limit widget
           fetch("/api/game/solo/limits")
@@ -1166,31 +1140,40 @@ export default function LeaderboardPage() {
   // Teachers, admins, and staff host/manage but do not earn points.
   const isStudent = currentUser?.role === "student";
 
-  // Claim click handler — Database claim and Local Points deduction
+  // Claim click handler — creates a PENDING claim routed to the student's teacher.
+  // Points are only deducted once the server confirms the claim was created; on
+  // any failure (not enough points / no class / already pending) we surface the
+  // server's message instead of silently spending points.
   const handleClaimItem = async (item: typeof REWARD_ITEMS[number]) => {
-    setUserPoints(prev => Math.max(0, prev - item.cost));
-
     try {
       const res = await fetch("/api/user/claim", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ itemId: item.id }),
       });
-      if (res.ok) {
-        const data = await res.json();
-        if (data.activePoints !== undefined) {
-          setUserPoints(data.activePoints);
-        }
-      }
-    } catch (err) {
-      console.error("Failed to persist claim to database:", err);
-    }
+      const data = await res.json().catch(() => ({}));
 
-    const msg = kh
-      ? `🎁 "${item.nameKh}" ត្រូវបានផ្ញើទៅគ្រូរបស់អ្នក!`
-      : `🎁 "${item.name}" claim sent to your teacher!`;
-    setClaimMsg(msg);
-    setTimeout(() => setClaimMsg(""), 5000);
+      if (!res.ok) {
+        const msg = data.message
+          || (kh ? `មិនអាចស្នើ "${item.nameKh}" បានទេ។` : `Couldn't claim "${item.name}".`);
+        setClaimMsg(`⚠️ ${msg}`);
+        setTimeout(() => setClaimMsg(""), 6000);
+        return;
+      }
+
+      if (typeof data.activePoints === "number") {
+        setUserPoints(data.activePoints);
+      }
+      const ok = kh
+        ? `🎁 "${item.nameKh}" ត្រូវបានផ្ញើទៅគ្រូរបស់អ្នក! រង់ចាំការយល់ព្រម។`
+        : `🎁 "${item.name}" claim sent to your teacher! Waiting for approval.`;
+      setClaimMsg(ok);
+      setTimeout(() => setClaimMsg(""), 6000);
+    } catch (err) {
+      console.error("Failed to submit claim:", err);
+      setClaimMsg(kh ? "មានបញ្ហាបណ្ដាញ។ សូមព្យាយាមម្ដងទៀត។" : "Network error. Please try again.");
+      setTimeout(() => setClaimMsg(""), 6000);
+    }
   };
 
   return (
