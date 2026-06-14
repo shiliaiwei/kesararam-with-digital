@@ -6,32 +6,36 @@
  * drift between the two.
  *
  * ── Points Economy (how points are actually earned & what counts) ─────────────
- *  Source of truth for the math: calculateScore() in src/lib/game-engine.ts
- *  (base 1/2/3 by difficulty + speed bonus 0–3 + streak bonus +1/+2 per question).
+ *  Source of truth for the math: calculateScore() in src/lib/game-engine.ts —
+ *  Kahoot-style time scoring: each correct answer is worth its difficulty base
+ *  (easy 600 / medium 800 / hard 1000) scaled 0.5–1.0× by answer speed, plus a
+ *  streak bonus of +100 per consecutive correct (cap +500). A correct answer is
+ *  worth ~300–1000 points; a typical 10-question game is several thousand.
  *
  *  • Live teacher game  → full summed score → users.lifetimePoints AND a
  *      pointsLedger row source="live-session:{id}". This is the ONLY source that
  *      counts toward CLAIMING rewards (see src/app/api/user/claim/route.ts).
- *  • Solo practice game → CEIL(rawScore × 0.20) → users.lifetimePoints AND a
- *      pointsLedger row source="solo". Counts for leaderboard RANK only — NOT
- *      claimable.
+ *  • Solo practice game → full rawScore → pointsLedger row source="solo".
+ *      Counts for the leaderboard SOLO column only — NOT lifetimePoints, NOT
+ *      claimable (spending solo points is a planned future update).
  *  • Daily challenge / priority / kid games → recorded as attempts + streaks only.
  *      They do NOT write lifetimePoints or pointsLedger, so they affect neither
- *      the public leaderboard nor the claimable balance.
+ *      the public leaderboard nor the claimable balance. (Phase 2 candidate.)
  *
  * ── Reward cost ladder ("premium, aspirational") ─────────────────────────────
  *  Costs are deliberately HIGH to drive desire (perceived value), charm-priced
- *  just under round numbers (left-digit effect), and anchored by a 20k Planner
- *  so the mid-tiers read as attainable by comparison. Rarity rises with cost:
- *   Eraser      (750)    COMMON    — the first realistic goal
- *   Pencil      (1,200)  COMMON
- *   Pen         (1,900)  RARE      — just under 2k (left-digit pull)
- *   Ruler       (2,800)  RARE
- *   Highlighter (4,200)  EPIC
- *   Notes       (6,000)  EPIC
- *   Notebook    (8,800)  LEGENDARY
- *   Kit         (13,500) LEGENDARY
- *   Planner     (20,000) MYTHIC    — the anchor / status trophy
+ *  just under round numbers (left-digit effect), and anchored by a 2M Planner
+ *  so the mid-tiers read as attainable by comparison. Tuned to the Kahoot-scale
+ *  points (~hundreds per question). Rarity rises with cost:
+ *   Eraser      (75,000)    COMMON    — the first realistic goal
+ *   Pencil      (120,000)   COMMON
+ *   Pen         (190,000)   RARE      — just under 200k (left-digit pull)
+ *   Ruler       (280,000)   RARE
+ *   Highlighter (420,000)   EPIC
+ *   Notes       (600,000)   EPIC
+ *   Notebook    (880,000)   LEGENDARY
+ *   Kit         (1,350,000) LEGENDARY
+ *   Planner     (2,000,000) MYTHIC    — the anchor / status trophy
  *
  *  Tune these freely; the claim API validates against this same list so costs
  *  can never drift between UI and server.
@@ -48,15 +52,15 @@ export interface RewardItem {
 }
 
 export const REWARD_ITEMS: RewardItem[] = [
-  { id: 5, name: "Eraser",      nameKh: "ជ័រលុប",           cost: 750,    color: "#a855f7", image: "/rewards/eraser.webp" },
-  { id: 2, name: "Pencil",      nameKh: "ខ្មៅដៃ",           cost: 1200,   color: "#eab308", image: "/rewards/pencil.webp" },
-  { id: 3, name: "Pen",         nameKh: "ប៊ិច",              cost: 1900,   color: "#22c55e", image: "/rewards/pen.webp" },
-  { id: 4, name: "Ruler",       nameKh: "បន្ទាត់",           cost: 2800,   color: "#f97316", image: "/rewards/ruler.webp" },
-  { id: 6, name: "Highlighter", nameKh: "ប៊ិចសម្គាល់",       cost: 4200,   color: "#ef4444", image: "/rewards/highlighter.webp" },
-  { id: 7, name: "Notes",       nameKh: "ក្រដាសសម្គាល់",     cost: 6000,   color: "#06b6d4", image: "/rewards/notes.webp" },
-  { id: 1, name: "Notebook",    nameKh: "សៀវភៅកត់ត្រា",      cost: 8800,   color: "#3b82f6", image: "/rewards/notebook.webp" },
-  { id: 8, name: "Kit",         nameKh: "ឧបករណ៍គណិត",       cost: 13500,  color: "#ec4899", image: "/rewards/kit.webp" },
-  { id: 9, name: "Planner",     nameKh: "ផែនការសិក្សា",      cost: 20000,  color: "#84cc16", image: "/rewards/planner.webp" },
+  { id: 5, name: "Eraser",      nameKh: "ជ័រលុប",           cost: 75000,    color: "#a855f7", image: "/rewards/eraser.webp" },
+  { id: 2, name: "Pencil",      nameKh: "ខ្មៅដៃ",           cost: 120000,   color: "#eab308", image: "/rewards/pencil.webp" },
+  { id: 3, name: "Pen",         nameKh: "ប៊ិច",              cost: 190000,   color: "#22c55e", image: "/rewards/pen.webp" },
+  { id: 4, name: "Ruler",       nameKh: "បន្ទាត់",           cost: 280000,   color: "#f97316", image: "/rewards/ruler.webp" },
+  { id: 6, name: "Highlighter", nameKh: "ប៊ិចសម្គាល់",       cost: 420000,   color: "#ef4444", image: "/rewards/highlighter.webp" },
+  { id: 7, name: "Notes",       nameKh: "ក្រដាសសម្គាល់",     cost: 600000,   color: "#06b6d4", image: "/rewards/notes.webp" },
+  { id: 1, name: "Notebook",    nameKh: "សៀវភៅកត់ត្រា",      cost: 880000,   color: "#3b82f6", image: "/rewards/notebook.webp" },
+  { id: 8, name: "Kit",         nameKh: "ឧបករណ៍គណិត",       cost: 1350000,  color: "#ec4899", image: "/rewards/kit.webp" },
+  { id: 9, name: "Planner",     nameKh: "ផែនការសិក្សា",      cost: 2000000,  color: "#84cc16", image: "/rewards/planner.webp" },
 ];
 
 /**
@@ -66,10 +70,10 @@ export const REWARD_ITEMS: RewardItem[] = [
 export type RewardRarity = "common" | "rare" | "epic" | "legendary" | "mythic";
 
 export function getRewardRarity(cost: number): RewardRarity {
-  if (cost >= 18000) return "mythic";
-  if (cost >= 8000) return "legendary";
-  if (cost >= 4000) return "epic";
-  if (cost >= 1800) return "rare";
+  if (cost >= 1800000) return "mythic";
+  if (cost >= 800000) return "legendary";
+  if (cost >= 400000) return "epic";
+  if (cost >= 180000) return "rare";
   return "common";
 }
 

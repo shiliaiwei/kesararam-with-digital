@@ -86,22 +86,25 @@ async function main() {
     WHERE role = 'student'
   `;
 
-  // 2. Empty every score-bearing table (guarded so a missing legacy table is skipped).
-  const empties = [
-    "DELETE FROM points_ledger",
-    "DELETE FROM game_scores",
-    "DELETE FROM game_attempts",
-    "DELETE FROM daily_attempts",
-    "DELETE FROM user_streaks",
-    "DELETE FROM quiz_attempts",
-    "DELETE FROM session_participants",
-    "DELETE FROM leaderboard_entries",
+  // 2. Empty every score-bearing table (guarded so a missing legacy table is
+  //    skipped). NOTE: these MUST be executed tagged templates — `sql.unsafe(str)`
+  //    only builds a fragment for interpolation and never runs on its own, so an
+  //    earlier version silently left these tables untouched.
+  const deleters: Array<[string, () => Promise<unknown>]> = [
+    ["points_ledger", () => sql`DELETE FROM points_ledger`],
+    ["game_scores", () => sql`DELETE FROM game_scores`],
+    ["game_attempts", () => sql`DELETE FROM game_attempts`],
+    ["daily_attempts", () => sql`DELETE FROM daily_attempts`],
+    ["user_streaks", () => sql`DELETE FROM user_streaks`],
+    ["quiz_attempts", () => sql`DELETE FROM quiz_attempts`],
+    ["session_participants", () => sql`DELETE FROM session_participants`],
+    ["leaderboard_entries", () => sql`DELETE FROM leaderboard_entries`],
   ];
-  for (const stmt of empties) {
+  for (const [table, run] of deleters) {
     try {
-      await sql.unsafe(stmt);
+      await run();
     } catch (e) {
-      console.warn(`  skipped: ${stmt} (${(e as Error).message})`);
+      console.warn(`  skipped: DELETE FROM ${table} (${(e as Error).message})`);
     }
   }
 
