@@ -1355,8 +1355,6 @@ export default function LeaderboardPage() {
                               </span>
                             )}
                           </div>
-                          {/* Display name is inside the tier label; username stays below. */}
-                          <span className="text-[10px] text-zinc-400 font-mono truncate leading-tight">@{user.username}</span>
                           <div className="flex items-center gap-1 mt-0.5 flex-wrap">
                             {user.province && (
                               <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-blue-700 bg-blue-50 border border-blue-200 px-1 py-0.5">

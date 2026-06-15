@@ -55,11 +55,6 @@ export const RANK_KEYFRAMES = `
     55%  { left: 130%; }
     100% { left: 130%; }
   }
-  @keyframes rankBorderBurst {
-    0%, 12%, 100% { transform: scale(1); opacity: 1; }
-    5%            { transform: scale(1.12); opacity: .45; }
-    8%            { transform: scale(.98); opacity: 1; }
-  }
   @keyframes rankStarBurst {
     0%, 2%   { transform: translate(-50%,-50%) translate(0,0) scale(.2) rotate(-20deg); opacity: 0; }
     5%       { transform: translate(-50%,-50%) translate(var(--star-x),var(--star-y)) scale(1.2) rotate(8deg); opacity: 1; }
@@ -69,7 +64,6 @@ export const RANK_KEYFRAMES = `
   @media (prefers-reduced-motion: reduce) {
     .rank-splash,
     .rank-shine,
-    .rank-border-burst,
     .rank-star-burst {
       animation: none !important;
     }
@@ -251,17 +245,6 @@ export function RankedAvatarRing({
                     animationDelay: `${Math.max(0, index) * 0.06}s`,
                 }}
             >
-                <span
-                    className="rank-border-burst pointer-events-none absolute"
-                    aria-hidden="true"
-                    style={{
-                        inset: -5,
-                        border: `3px solid ${tier.accent}`,
-                        borderRadius: "50%",
-                        animation: "rankBorderBurst 9s ease-in-out infinite",
-                        animationDelay: `${Math.max(0, index) * -0.35}s`,
-                    }}
-                />
                 {starBursts.map((star, starIndex) => (
                     <Star
                         key={starIndex}
