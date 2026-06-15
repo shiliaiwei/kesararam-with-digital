@@ -5,3 +5,4 @@ export * from "./audit";
 export * from "./sessions";
 export * from "./game";
 export * from "./subscriptions";
+export * from "./store-points";
