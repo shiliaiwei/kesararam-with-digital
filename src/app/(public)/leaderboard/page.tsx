@@ -20,7 +20,6 @@ import {
   Flame,
   Crown,
   Info,
-  Award,
   Wifi,
   BookOpen,
   MapPin,
@@ -279,8 +278,6 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
 }) {
   const { lang } = useLang();
   const kh = lang === "kh";
-  // Tier ("exclusive label") drives the avatar border colour.
-  const tier = user ? getRank(user.lifetimePoints) : null;
   const cardRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const isFirst = cfg.rank === 1;
@@ -357,47 +354,34 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
           }}
         />
 
-        {/* Creative Rank Emblem/Medal */}
-        <div
-          className="relative rounded-full flex items-center justify-center border-4 border-black overflow-hidden transition-transform duration-300 hover:scale-110"
-          style={{
-            width: isFirst ? 80 : 64,
-            height: isFirst ? 80 : 64,
-            background: cfg.pedestalBg,
-            // Tier-coloured ring outside the black border ("border profile based
-            // on exclusive label").
-            boxShadow: tier ? `0 0 0 3px ${tier.accent}` : undefined,
-          }}
-        >
-          {userAvatar && (userAvatar.trim().startsWith("{") || userAvatar.startsWith("http") || userAvatar.startsWith("/")) ? (
-            <Avatar url={userAvatar} name={name} size={isFirst ? 72 : 56} changedAt={user?.avatarChangedAt} />
-          ) : (
-            /* Inner circle with Rank Initials & Icon if no avatar */
-            <div
-              className="rounded-full bg-black flex flex-col items-center justify-center border-2 border-white/10 relative"
-              style={{
-                width: isFirst ? 58 : 46,
-                height: isFirst ? 58 : 46,
-              }}
+        {/* Tier info-sign frame around the podium avatar */}
+        {user ? (
+          <div className="relative transition-transform duration-300 hover:scale-105">
+            <RankedAvatarRing
+              lifetimePoints={user.lifetimePoints}
+              size={isFirst ? 72 : 56}
+              index={index}
             >
-              <span
-                className="font-black text-white font-mono leading-none tracking-tight"
-                style={{
-                  fontSize: isFirst ? "14px" : "11px",
-                }}
-              >
-                {initials}
-              </span>
-              {isFirst ? (
-                <Trophy size={isFirst ? 16 : 12} className="text-yellow-400 mt-1" />
-              ) : cfg.rank === 2 ? (
-                <Award size={isFirst ? 16 : 12} className="text-slate-300 mt-1" />
-              ) : (
-                <Star size={isFirst ? 16 : 12} className="text-orange-400 mt-1" />
-              )}
-            </div>
-          )}
-        </div>
+              <Avatar
+                url={userAvatar}
+                name={name}
+                size={isFirst ? 72 : 56}
+                changedAt={user.avatarChangedAt}
+              />
+            </RankedAvatarRing>
+          </div>
+        ) : (
+          <div
+            className="flex items-center justify-center border-[3px] border-black bg-zinc-800 font-black text-white"
+            style={{
+              width: isFirst ? 84 : 68,
+              height: isFirst ? 84 : 68,
+              boxShadow: "2px 2px 0 #000",
+            }}
+          >
+            {initials}
+          </div>
+        )}
 
         {/* Rank Badge - positioned below the profile so it never covers the face */}
         <div className="mt-2.5 scale-75 md:scale-100 z-10 filter drop-shadow-[2px_2px_0_rgba(0,0,0,0.85)]">
@@ -474,7 +458,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
 
         <span className="font-black text-center leading-tight w-full truncate text-[10px] md:text-sm font-kh-header z-10" style={{ color: "#000" }}>{name}</span>
         {/* Consistent labels across all three: tier (exclusive) + province. */}
-        {user && <TierBadge lifetimePoints={user.lifetimePoints} size="xs" />}
+        {user && <TierBadge lifetimePoints={user.lifetimePoints} size="xs" index={index} />}
         {user && user.province && (
           <div className="flex flex-wrap justify-center gap-1 mt-1 z-10">
             <span className="inline-flex items-center gap-1 px-1.5 py-0.5 border border-black bg-blue-50 text-[8px] font-black uppercase text-blue-700">
@@ -1316,10 +1300,9 @@ export default function LeaderboardPage() {
                   <span className="col-span-4 sm:col-span-3 text-right">{kh ? "ពិន្ទុអាទិភាព" : "Priority"}</span>
                 </div>
 
-                {leaderboard.length > 0 ? leaderboard.map((user) => {
+                {leaderboard.length > 0 ? leaderboard.map((user, rowIndex) => {
                   const prev = prevRanks[user.id];
                   const moved = prev !== undefined ? prev - user.rank : 0;
-                  const tier = getRank(user.lifetimePoints);
                   // Anonymized (private-username) rows have no public profile.
                   const linkable = user.isUsernamePublic !== false;
                   const isMe = !!currentUser && user.id === currentUser.id;
@@ -1350,12 +1333,24 @@ export default function LeaderboardPage() {
 
                       {/* Avatar + name + meta */}
                       <div className="col-span-7 sm:col-span-4 flex items-center gap-2.5 min-w-0">
-                        <Avatar url={rowAvatar} name={user.displayName || user.username} size={36} ring={medal ?? tier.accent} changedAt={user.avatarChangedAt} />
+                        <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={36} index={rowIndex}>
+                          <Avatar
+                            url={rowAvatar}
+                            name={user.displayName || user.username}
+                            size={36}
+                            changedAt={user.avatarChangedAt}
+                          />
+                        </RankedAvatarRing>
                         <div className="flex flex-col min-w-0">
-                          <div className="flex items-center gap-1.5 min-w-0">
+                          <div className="flex items-center gap-2 min-w-0">
                             <span className="font-bold text-black text-xs md:text-sm truncate leading-tight font-kh-header">
                               {user.displayName || user.username}
                             </span>
+                            <TierBadge
+                              lifetimePoints={user.lifetimePoints}
+                              size="xs"
+                              index={rowIndex}
+                            />
                             {isMe && (
                               <span className="text-[8px] font-black uppercase px-1 py-0.5 border border-black bg-yellow-400 text-black flex-shrink-0">
                                 {kh ? "អ្នក" : "You"}
@@ -1365,7 +1360,6 @@ export default function LeaderboardPage() {
                           {/* Full name above, @username below — always shown */}
                           <span className="text-[10px] text-zinc-400 font-mono truncate leading-tight">@{user.username}</span>
                           <div className="flex items-center gap-1 mt-0.5 flex-wrap">
-                            <TierBadge lifetimePoints={user.lifetimePoints} size="xs" lang={lang} />
                             {user.province && (
                               <span className="inline-flex items-center gap-0.5 text-[8px] font-black uppercase text-blue-700 bg-blue-50 border border-blue-200 px-1 py-0.5">
                                 <MapPin size={8} />{kh ? getProvinceKh(user.province) : user.province}

@@ -28,6 +28,8 @@ export interface RankTier {
     animated: boolean;
     /** Text color on the label badge */
     textColor: string;
+    /** Dark tier color used for the English tier name on white */
+    textDark: string;
 }
 
 export const RANK_TIERS: RankTier[] = [
@@ -43,10 +45,11 @@ export const RANK_TIERS: RankTier[] = [
         glow: "#a1a1aa",
         animated: false,
         textColor: "#fff",
+        textDark: "#3f3f46",
     },
     {
         id: "debut",
-        label: "Debut",
+        label: "Rising",
         labelKh: "ចាប់ផ្ដើម",
         emoji: "🎉",
         minPoints: 10000,
@@ -56,6 +59,7 @@ export const RANK_TIERS: RankTier[] = [
         glow: "#a78bfa",
         animated: false,
         textColor: "#fff",
+        textDark: "#5b21b6",
     },
     {
         id: "gold",
@@ -69,6 +73,7 @@ export const RANK_TIERS: RankTier[] = [
         glow: "#fbbf24",
         animated: true,
         textColor: "#000",
+        textDark: "#a16207",
     },
     {
         id: "platinum",
@@ -82,6 +87,7 @@ export const RANK_TIERS: RankTier[] = [
         glow: "#7dd3fc",
         animated: true,
         textColor: "#000",
+        textDark: "#0369a1",
     },
     {
         id: "diamond",
@@ -95,6 +101,7 @@ export const RANK_TIERS: RankTier[] = [
         glow: "#67e8f9",
         animated: true,
         textColor: "#000",
+        textDark: "#0e7490",
     },
     {
         id: "mythic",
@@ -108,6 +115,7 @@ export const RANK_TIERS: RankTier[] = [
         glow: "#f9a8d4",
         animated: true,
         textColor: "#fff",
+        textDark: "#9d174d",
     },
 ];
 

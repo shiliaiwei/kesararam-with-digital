@@ -14,9 +14,17 @@
  */
 
 import { getRank, getNextRank, tierProgress, pointsToNextRank, RANK_TIERS } from "@/lib/rank-utils";
-import { Sprout, PartyPopper, Star, Trophy, Gem, Crown } from "lucide-react";
+import {
+    Sprout,
+    PartyPopper,
+    Star,
+    Trophy,
+    Gem,
+    Crown,
+    type LucideIcon,
+} from "lucide-react";
 
-const TIER_ICONS: Record<string, React.ComponentType<any>> = {
+export const TIER_ICONS: Record<string, LucideIcon> = {
     rookie: Sprout,
     debut: PartyPopper,
     gold: Star,
@@ -26,116 +34,203 @@ const TIER_ICONS: Record<string, React.ComponentType<any>> = {
 };
 
 // ── Keyframe styles injected once ────────────────────────────────────────────
-const RANK_KEYFRAMES = `
+export const RANK_KEYFRAMES = `
   @keyframes rankShimmer {
     0%   { background-position: 0% 50%; }
     50%  { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
-  @keyframes rankGlow {
-    0%,100% { box-shadow: 0 0 6px 2px var(--rank-glow); }
-    50%      { box-shadow: 0 0 14px 5px var(--rank-glow); }
+  @keyframes rankPop {
+    0%   { transform: scale(.6); opacity: 0; }
+    65%  { transform: scale(1.08); }
+    100% { transform: scale(1); opacity: 1; }
   }
-  @keyframes rankPulse {
-    0%,100% { opacity: 1; }
-    50%      { opacity: 0.7; }
+  @keyframes rankShine {
+    0%   { left: -50%; }
+    55%  { left: 130%; }
+    100% { left: 130%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rank-splash,
+    .rank-shine {
+      animation: none !important;
+    }
+    .rank-shine {
+      display: none !important;
+    }
   }
 `;
 
-// ── RankBadge — small inline pill ────────────────────────────────────────────
+function formatThreshold(points: number) {
+    if (points === 0) return "START";
+    if (points >= 1000 && points % 1000 === 0) return `${points / 1000}K`;
+    return points.toLocaleString("en-US");
+}
+
+// ── RankBadge — tier info-sign nameplate ─────────────────────────────────────
 export function RankBadge({
     lifetimePoints,
     size = "sm",
     showEmoji = true,
-    lang = "en",
+    showPoints = false,
+    index = 0,
 }: {
     lifetimePoints: number;
     size?: "xs" | "sm" | "md";
     showEmoji?: boolean;
     lang?: string;
+    showPoints?: boolean;
+    index?: number;
 }) {
     const tier = getRank(lifetimePoints);
-    const isKh = lang === "kh";
-    const label = tier.label;
+    const Icon = TIER_ICONS[tier.id] || Star;
 
     const sizeStyles = {
-        xs: { fontSize: "8px", padding: "1px 5px", gap: 2 },
-        sm: { fontSize: "9px", padding: "2px 7px", gap: 3 },
-        md: { fontSize: "11px", padding: "3px 10px", gap: 4 },
+        xs: {
+            iconSize: 10,
+            iconPadding: "0 5px",
+            bodyPadding: "2px 6px",
+            labelSize: "8px",
+            pointsSize: "7px",
+            minHeight: 22,
+        },
+        sm: {
+            iconSize: 13,
+            iconPadding: "0 7px",
+            bodyPadding: "3px 8px",
+            labelSize: "10px",
+            pointsSize: "8px",
+            minHeight: 28,
+        },
+        md: {
+            iconSize: 16,
+            iconPadding: "0 9px",
+            bodyPadding: "4px 10px",
+            labelSize: "11px",
+            pointsSize: "8px",
+            minHeight: 34,
+        },
     }[size];
 
     return (
         <>
             <style>{RANK_KEYFRAMES}</style>
             <span
-                className="inline-flex items-center font-black uppercase tracking-widest select-none"
+                className="rank-splash relative inline-flex flex-shrink-0 items-stretch overflow-hidden bg-white font-system select-none"
+                aria-label={`${tier.label} tier`}
                 style={{
-                    ...sizeStyles,
-                    background: tier.labelGradient,
-                    backgroundSize: tier.animated ? "200% 200%" : "100%",
-                    animation: tier.animated ? "rankShimmer 2.5s ease infinite" : undefined,
-                    color: tier.textColor,
-                    borderRadius: 3,
-                    border: `1px solid rgba(255,255,255,0.25)`,
-                    boxShadow: `0 1px 4px ${tier.glow}66`,
-                    letterSpacing: "0.08em",
+                    minHeight: sizeStyles.minHeight,
+                    border: "3px solid #000",
+                    borderRadius: 0,
+                    boxShadow: "2px 2px 0 #000",
+                    animation: "rankPop .45s cubic-bezier(.34,1.56,.64,1) both",
+                    animationDelay: `${Math.max(0, index) * 0.06}s`,
                     whiteSpace: "nowrap",
                 }}
             >
-                {showEmoji && (
-                    (() => {
-                        const Icon = TIER_ICONS[tier.id] || Star;
-                        const iconSize = size === "xs" ? 9 : size === "sm" ? 10 : 12;
-                        return <Icon size={iconSize} style={{ marginRight: sizeStyles.gap, display: "inline-block" }} />;
-                    })()
+                <span
+                    className="relative z-[1] flex items-center justify-center"
+                    style={{
+                        minWidth: showEmoji ? undefined : size === "xs" ? 10 : 12,
+                        padding: showEmoji ? sizeStyles.iconPadding : 0,
+                        background: tier.accent,
+                        color: tier.textColor,
+                        borderRight: "3px solid #000",
+                    }}
+                    aria-hidden="true"
+                >
+                    {showEmoji && <Icon size={sizeStyles.iconSize} strokeWidth={2.5} />}
+                </span>
+                <span
+                    className="relative z-[1] flex flex-col justify-center bg-white"
+                    style={{
+                        padding: sizeStyles.bodyPadding,
+                        lineHeight: 1.15,
+                    }}
+                >
+                    <span
+                        className="font-black uppercase tracking-wider"
+                        style={{
+                            color: tier.textDark,
+                            fontSize: sizeStyles.labelSize,
+                            letterSpacing: "0.05em",
+                        }}
+                    >
+                        {tier.label}
+                    </span>
+                    {showPoints && (
+                        <span
+                            className="font-mono font-bold text-zinc-500"
+                            style={{ fontSize: sizeStyles.pointsSize, lineHeight: 1.1 }}
+                        >
+                            {formatThreshold(tier.minPoints)}
+                        </span>
+                    )}
+                </span>
+                {tier.animated && (
+                    <span
+                        className="rank-shine pointer-events-none absolute top-0 z-[2] h-full"
+                        aria-hidden="true"
+                        style={{
+                            left: "-50%",
+                            width: "45%",
+                            background: "linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent)",
+                            transform: "skewX(-18deg)",
+                            animation: "rankShine 2.4s ease-in-out infinite",
+                            animationDelay: `${Math.max(0, index) * 0.06}s`,
+                        }}
+                    />
                 )}
-                {label}
             </span>
         </>
     );
 }
 
-// ── RankedAvatarRing — wraps any avatar with a tier-colored animated border ──
+// ── RankedAvatarRing — matching square info-sign profile frame ───────────────
 export function RankedAvatarRing({
     lifetimePoints,
     size,
     children,
+    index = 0,
 }: {
     lifetimePoints: number;
     size: number;
     children: React.ReactNode;
+    index?: number;
 }) {
     const tier = getRank(lifetimePoints);
-    const pad = tier.id === "rookie" ? 2 : 3;
 
     return (
         <>
             <style>{RANK_KEYFRAMES}</style>
             <div
-                className="relative flex-shrink-0"
+                className="rank-splash relative inline-flex flex-shrink-0"
                 style={{
-                    width: size + pad * 2,
-                    height: size + pad * 2,
-                    padding: pad,
-                    borderRadius: "50%",
-                    background: tier.borderGradient,
-                    backgroundSize: tier.animated ? "300% 300%" : "100%",
-                    animation: tier.animated ? "rankShimmer 2s ease infinite" : undefined,
-                    // @ts-expect-error CSS custom property
-                    "--rank-glow": tier.glow,
+                    padding: 3,
+                    background: "#000",
+                    borderRadius: 0,
+                    filter: "drop-shadow(2px 2px 0 #000)",
+                    animation: "rankPop .45s cubic-bezier(.34,1.56,.64,1) both",
+                    animationDelay: `${Math.max(0, index) * 0.06}s`,
                 }}
             >
-                {tier.animated && (
-                    <div
-                        className="absolute inset-0 rounded-full pointer-events-none"
-                        style={{ animation: "rankGlow 2s ease-in-out infinite" }}
-                    />
-                )}
                 <div
-                    className="w-full h-full rounded-full overflow-hidden"
-                    style={{ background: "#fff" }}
+                    style={{
+                        padding: 3,
+                        background: tier.accent,
+                        borderRadius: 0,
+                    }}
                 >
-                    {children}
+                    <div
+                        className="overflow-hidden bg-white"
+                        style={{
+                            width: size,
+                            height: size,
+                            borderRadius: 0,
+                        }}
+                    >
+                        {children}
+                    </div>
                 </div>
             </div>
         </>

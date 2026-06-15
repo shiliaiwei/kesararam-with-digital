@@ -3,8 +3,7 @@
 import React, { useState, useEffect } from "react";
 import {
   BookOpen, GraduationCap, Award, Zap, Trophy, Target,
-  X, Camera, CheckCircle2, School, Sprout, PartyPopper,
-  Star, Trophy as TierTrophy, Gem, Crown, Mail, AtSign,
+  X, Camera, CheckCircle2, School, Star, Mail, AtSign,
   Info, Globe, Lock, Eye, EyeOff, User, Shield, Pencil,
   ExternalLink, RefreshCw, ChevronRight, Send, KeyRound,
   Flame, Gamepad2,
@@ -13,18 +12,9 @@ import {
   getRank, getNextRank, tierProgress, pointsToNextRank, RANK_TIERS,
 } from "@/lib/rank-utils";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
-import { RankBadge } from "@/components/shared/rank-label";
+import { RankBadge, RankedAvatarRing, TIER_ICONS } from "@/components/shared/rank-label";
 import { ProfileEditor } from "@/components/profile/profile-editor";
 import { useLang } from "@/context/lang-context";
-
-const TIER_ICONS: Record<string, React.ComponentType<any>> = {
-  rookie: Sprout,
-  debut: PartyPopper,
-  gold: Star,
-  platinum: TierTrophy,
-  diamond: Gem,
-  mythic: Crown,
-};
 
 interface StudentProfileDashboardProps {
   user: {
@@ -362,21 +352,14 @@ export function StudentProfileDashboard({
 
         {/* ── Profile card ─────────────────────────────────────────────── */}
         <div className="bg-white border-2 border-black overflow-hidden shadow-[4px_4px_0_#000]">
-          <div className="h-1.5" style={{ background: tier.borderGradient }} />
+          <div className="h-1.5" style={{ background: tier.accent }} />
           <div className="p-6 flex flex-col sm:flex-row gap-5 items-center sm:items-start">
 
             {/* Avatar */}
             <div className="relative flex-shrink-0">
-              <div style={{
-                padding: tier.id === "rookie" ? 3 : 5,
-                background: tier.borderGradient,
-              }}>
-                <div style={{ padding: "3px", background: "#fff" }}>
-                  <div style={{ overflow: "hidden", border: "2.5px solid #000" }}>
-                    <AvatarDisplay avatar={user.avatar} name={name} size={88} radius={0} />
-                  </div>
-                </div>
-              </div>
+              <RankedAvatarRing lifetimePoints={rankStats.lifetimePoints} size={88}>
+                <AvatarDisplay avatar={user.avatar} name={name} size={88} radius={0} />
+              </RankedAvatarRing>
               <button
                 onClick={() => setDrawerOpen(true)}
                 className="absolute bottom-0.5 right-0.5 w-6 h-6 bg-yellow-400 border-2 border-black flex items-center justify-center hover:bg-yellow-300 transition-colors"
@@ -398,7 +381,7 @@ export function StudentProfileDashboard({
                   <GraduationCap size={11} />
                   {kh ? "សិស្ស" : "Student"}
                 </span>
-                <RankBadge lifetimePoints={rankStats.lifetimePoints} size="md" />
+                <RankBadge lifetimePoints={rankStats.lifetimePoints} size="md" showPoints />
                 {rankStats.currentRank && (
                   <span className="inline-flex items-center gap-1 text-[11px] font-black px-2 py-0.5 bg-black text-yellow-400 border-2 border-black font-mono">
                     <Trophy size={11} />
