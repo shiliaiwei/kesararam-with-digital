@@ -1341,15 +1341,13 @@ export default function LeaderboardPage() {
                             changedAt={user.avatarChangedAt}
                           />
                         </RankedAvatarRing>
-                        <div className="flex flex-col min-w-0">
+                        <div className="flex flex-1 flex-col min-w-0">
                           <div className="flex items-center gap-2 min-w-0">
-                            <span className="font-bold text-black text-xs md:text-sm truncate leading-tight font-kh-header">
-                              {user.displayName || user.username}
-                            </span>
                             <TierBadge
                               lifetimePoints={user.lifetimePoints}
                               size="xs"
                               index={rowIndex}
+                              displayLabel={user.displayName || user.username}
                             />
                             {isMe && (
                               <span className="text-[8px] font-black uppercase px-1 py-0.5 border border-black bg-yellow-400 text-black flex-shrink-0">
@@ -1357,7 +1355,7 @@ export default function LeaderboardPage() {
                               </span>
                             )}
                           </div>
-                          {/* Full name above, @username below — always shown */}
+                          {/* Display name is inside the tier label; username stays below. */}
                           <span className="text-[10px] text-zinc-400 font-mono truncate leading-tight">@{user.username}</span>
                           <div className="flex items-center gap-1 mt-0.5 flex-wrap">
                             {user.province && (

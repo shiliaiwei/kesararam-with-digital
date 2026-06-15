@@ -45,19 +45,24 @@ export const RANK_KEYFRAMES = `
     65%  { transform: scale(1.08); }
     100% { transform: scale(1); opacity: 1; }
   }
+  @keyframes rankPlateIn {
+    0%   { transform: translateX(-14px) scaleX(.86); opacity: 0; }
+    70%  { transform: translateX(2px) scaleX(1.02); opacity: 1; }
+    100% { transform: translateX(0) scaleX(1); opacity: 1; }
+  }
   @keyframes rankShine {
     0%   { left: -50%; }
     55%  { left: 130%; }
     100% { left: 130%; }
   }
-  @keyframes rankOrbit {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
+  @keyframes rankRingPulse {
+    0%, 100% { transform: scale(.92); opacity: .4; }
+    50%      { transform: scale(1.08); opacity: 1; }
   }
   @media (prefers-reduced-motion: reduce) {
     .rank-splash,
     .rank-shine,
-    .rank-orbit {
+    .rank-ring-pulse {
       animation: none !important;
     }
     .rank-shine {
@@ -79,6 +84,7 @@ export function RankBadge({
     showEmoji = true,
     showPoints = false,
     index = 0,
+    displayLabel,
 }: {
     lifetimePoints: number;
     size?: "xs" | "sm" | "md";
@@ -86,9 +92,11 @@ export function RankBadge({
     lang?: string;
     showPoints?: boolean;
     index?: number;
+    displayLabel?: string;
 }) {
     const tier = getRank(lifetimePoints);
     const Icon = TIER_ICONS[tier.id] || Star;
+    const label = displayLabel?.trim() || tier.label;
 
     const sizeStyles = {
         xs: {
@@ -122,14 +130,18 @@ export function RankBadge({
             <style>{RANK_KEYFRAMES}</style>
             <span
                 className="rank-splash relative inline-flex flex-shrink-0 items-stretch overflow-hidden bg-white font-system select-none"
-                aria-label={`${tier.label} tier`}
+                aria-label={displayLabel ? `${label}, ${tier.label} tier` : `${tier.label} tier`}
                 style={{
+                    width: "fit-content",
+                    maxWidth: "100%",
+                    flexShrink: displayLabel ? 1 : 0,
                     minHeight: sizeStyles.minHeight,
                     border: "3px solid #000",
                     borderRadius: 0,
                     boxShadow: "2px 2px 0 #000",
-                    animation: "rankPop .45s cubic-bezier(.34,1.56,.64,1) both",
+                    animation: "rankPlateIn .4s cubic-bezier(.22,1,.36,1) both",
                     animationDelay: `${Math.max(0, index) * 0.06}s`,
+                    transformOrigin: "left center",
                     whiteSpace: "nowrap",
                 }}
             >
@@ -151,17 +163,19 @@ export function RankBadge({
                     style={{
                         padding: sizeStyles.bodyPadding,
                         lineHeight: 1.15,
+                        minWidth: 0,
                     }}
                 >
                     <span
-                        className="font-black uppercase tracking-wider"
+                        className={`truncate font-black ${displayLabel ? "" : "uppercase tracking-wider"}`}
                         style={{
                             color: tier.textDark,
                             fontSize: sizeStyles.labelSize,
-                            letterSpacing: "0.05em",
+                            letterSpacing: displayLabel ? "0.01em" : "0.05em",
+                            maxWidth: "100%",
                         }}
                     >
-                        {tier.label}
+                        {label}
                     </span>
                     {showPoints && (
                         <span
@@ -220,14 +234,14 @@ export function RankedAvatarRing({
                 }}
             >
                 <span
-                    className="rank-orbit pointer-events-none absolute"
+                    className="rank-ring-pulse pointer-events-none absolute"
                     aria-hidden="true"
                     style={{
                         inset: -5,
-                        border: `2px dashed ${tier.accent}`,
+                        border: `3px solid ${tier.accent}`,
                         borderRadius: "50%",
-                        animation: "rankOrbit 5s linear infinite",
-                        animationDelay: `${Math.max(0, index) * -0.12}s`,
+                        animation: "rankRingPulse 2.2s ease-in-out infinite",
+                        animationDelay: `${Math.max(0, index) * -0.1}s`,
                     }}
                 />
                 <div
