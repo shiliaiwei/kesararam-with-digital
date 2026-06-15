@@ -243,7 +243,7 @@ function DragRow({
 export function RoadSigns3DHero() {
   const { lang } = useLang();
   const kh = lang === "kh";
-  const kf = kh ? { fontFamily: "'Google Sans Khmer', var(--font-kh-header), var(--font-kh-body), 'Noto Sans Khmer', sans-serif" } : {};
+  const kf = kh ? { fontFamily: "'Google Sans', sans-serif" } : {};
 
   return (
     <section className="relative w-full overflow-hidden bg-white py-10 select-none">

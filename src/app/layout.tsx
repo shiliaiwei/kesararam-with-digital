@@ -288,6 +288,8 @@ export default function RootLayout({
         {/* Preconnect to Google Fonts */}
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        {/* Google Sans (now ships a Khmer subset, U+1780–17FF) — used for the hero heading */}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" />
         {/* Schema.org structured data (Organization + WebSite) */}
         <script
           type="application/ld+json"
