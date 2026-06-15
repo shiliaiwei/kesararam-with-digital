@@ -55,15 +55,26 @@ export const RANK_KEYFRAMES = `
     55%  { left: 130%; }
     100% { left: 130%; }
   }
-  @keyframes rankRingPulse {
-    0%, 100% { transform: scale(.92); opacity: .4; }
-    50%      { transform: scale(1.08); opacity: 1; }
+  @keyframes rankBorderBurst {
+    0%, 12%, 100% { transform: scale(1); opacity: 1; }
+    5%            { transform: scale(1.12); opacity: .45; }
+    8%            { transform: scale(.98); opacity: 1; }
+  }
+  @keyframes rankStarBurst {
+    0%, 2%   { transform: translate(-50%,-50%) translate(0,0) scale(.2) rotate(-20deg); opacity: 0; }
+    5%       { transform: translate(-50%,-50%) translate(var(--star-x),var(--star-y)) scale(1.2) rotate(8deg); opacity: 1; }
+    9%       { transform: translate(-50%,-50%) translate(var(--star-x),var(--star-y)) scale(.9) rotate(20deg); opacity: 1; }
+    14%,100% { transform: translate(-50%,-50%) translate(var(--star-x),var(--star-y)) scale(.35) rotate(35deg); opacity: 0; }
   }
   @media (prefers-reduced-motion: reduce) {
     .rank-splash,
     .rank-shine,
-    .rank-ring-pulse {
+    .rank-border-burst,
+    .rank-star-burst {
       animation: none !important;
+    }
+    .rank-star-burst {
+      display: none !important;
     }
     .rank-shine {
       display: none !important;
@@ -205,7 +216,7 @@ export function RankBadge({
     );
 }
 
-// ── RankedAvatarRing — circular tier frame with animated outer orbit ─────────
+// ── RankedAvatarRing — circular tier frame with a periodic star burst ────────
 export function RankedAvatarRing({
     lifetimePoints,
     size,
@@ -218,6 +229,13 @@ export function RankedAvatarRing({
     index?: number;
 }) {
     const tier = getRank(lifetimePoints);
+    const burstDistance = Math.round(size / 2 + 8);
+    const starBursts = [
+        { x: -burstDistance, y: -Math.round(burstDistance * 0.65), delay: 0 },
+        { x: burstDistance, y: -Math.round(burstDistance * 0.55), delay: 0.12 },
+        { x: Math.round(burstDistance * 0.75), y: burstDistance, delay: 0.24 },
+        { x: -Math.round(burstDistance * 0.75), y: burstDistance, delay: 0.36 },
+    ];
 
     return (
         <>
@@ -234,16 +252,34 @@ export function RankedAvatarRing({
                 }}
             >
                 <span
-                    className="rank-ring-pulse pointer-events-none absolute"
+                    className="rank-border-burst pointer-events-none absolute"
                     aria-hidden="true"
                     style={{
                         inset: -5,
                         border: `3px solid ${tier.accent}`,
                         borderRadius: "50%",
-                        animation: "rankRingPulse 2.2s ease-in-out infinite",
-                        animationDelay: `${Math.max(0, index) * -0.1}s`,
+                        animation: "rankBorderBurst 9s ease-in-out infinite",
+                        animationDelay: `${Math.max(0, index) * -0.35}s`,
                     }}
                 />
+                {starBursts.map((star, starIndex) => (
+                    <Star
+                        key={starIndex}
+                        className="rank-star-burst pointer-events-none absolute left-1/2 top-1/2 z-[2]"
+                        aria-hidden="true"
+                        size={size >= 72 ? 16 : 12}
+                        strokeWidth={3}
+                        style={{
+                            color: tier.accent,
+                            fill: tier.accent,
+                            animation: "rankStarBurst 9s ease-out infinite",
+                            animationDelay: `${(Math.max(0, index) * -0.35) + star.delay}s`,
+                            // @ts-expect-error CSS custom properties drive each star direction.
+                            "--star-x": `${star.x}px`,
+                            "--star-y": `${star.y}px`,
+                        }}
+                    />
+                ))}
                 <div
                     style={{
                         padding: 4,
