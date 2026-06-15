@@ -154,7 +154,7 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
   return (
     <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-4">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/85 backdrop-blur-lg" onClick={onClose} />
+      <div className="absolute inset-0 bg-black/85" onClick={onClose} />
 
       {/* Sheet — slides up on mobile, centered on desktop */}
       <div className="relative w-full sm:max-w-4xl bg-[#0c0c0c] sm:rounded-2xl rounded-t-3xl border border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.8)] overflow-hidden max-h-[95dvh] flex flex-col">

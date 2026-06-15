@@ -322,7 +322,7 @@ function AssignDialog({ users: initialUsers, onClose, onSuccess }: {
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
       <div className="bg-[#111] border-2 border-black rounded-none w-full max-w-lg shadow-[8px_8px_0_#000] overflow-hidden max-h-[92vh] flex flex-col">
 
         {/* Header */}
@@ -500,7 +500,7 @@ function EditDialog({ sub, onClose, onSuccess }: { sub: SubRow; onClose: () => v
   const planDisplay = PLAN_DISPLAY[sub.plan as PlanTier];
 
   return (
-    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
       <div className="bg-[#111] border-2 border-black rounded-none w-full max-w-sm shadow-[8px_8px_0_#000] overflow-hidden">
         <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
           <div>

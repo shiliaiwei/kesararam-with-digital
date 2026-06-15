@@ -87,7 +87,7 @@ export function SignDetailPopup({ topic, questions = [], onClose }: SignDetailPo
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style={{ backdropFilter: "blur(10px)", backgroundColor: "rgba(0,0,0,0.6)" }}
+      style={{ backgroundColor: "rgba(0,0,0,0.7)" }}
       onClick={onClose}
     >
       <div
