@@ -190,15 +190,31 @@ const structuredData = {
       url: `${SITE_URL}/learn`,
       occupationalCategory: "Road safety education",
       hasCourse: [
-        { "@type": "Course", name: "Road Traffic", url: `${SITE_URL}/learn/road-traffic`, provider: { "@id": `${SITE_URL}/#organization` } },
-        { "@type": "Course", name: "Road Signs", url: `${SITE_URL}/learn/road-sign`, provider: { "@id": `${SITE_URL}/#organization` } },
-        { "@type": "Course", name: "Priority & Right of Way", url: `${SITE_URL}/learn/priority`, provider: { "@id": `${SITE_URL}/#organization` } },
-        { "@type": "Course", name: "Driving", url: `${SITE_URL}/learn/driving`, provider: { "@id": `${SITE_URL}/#organization` } },
-        { "@type": "Course", name: "Technical Knowledge", url: `${SITE_URL}/learn/technical`, provider: { "@id": `${SITE_URL}/#organization` } },
-        { "@type": "Course", name: "Emergencies", url: `${SITE_URL}/learn/emergency`, provider: { "@id": `${SITE_URL}/#organization` } },
-        { "@type": "Course", name: "Loading People & Goods", url: `${SITE_URL}/learn/loading-people-goods`, provider: { "@id": `${SITE_URL}/#organization` } },
-        { "@type": "Course", name: "General Knowledge", url: `${SITE_URL}/learn/general-knowledge`, provider: { "@id": `${SITE_URL}/#organization` } },
-      ],
+        { slug: "road-traffic", name: "Road Traffic", description: "Core road-traffic rules and the law of the road — how to behave safely in everyday traffic." },
+        { slug: "road-sign", name: "Road Signs", description: "Recognize and understand Cambodian traffic signs — warning, prohibition, mandatory, information, and direction signs." },
+        { slug: "priority", name: "Priority & Right of Way", description: "Who goes first — intersections, roundabouts, signals, and right-of-way rules." },
+        { slug: "driving", name: "Driving", description: "Safe road-use theory and good road behavior for all road users." },
+        { slug: "technical", name: "Technical Knowledge", description: "Vehicle and technical fundamentals every road user should understand." },
+        { slug: "emergency", name: "Emergencies", description: "What to do in accidents and emergencies on the road." },
+        { slug: "loading-people-goods", name: "Loading People & Goods", description: "Rules for safely carrying passengers and cargo." },
+        { slug: "general-knowledge", name: "General Knowledge", description: "Broader road-safety awareness and everyday traffic know-how." },
+      ].map((c) => ({
+        "@type": "Course",
+        name: c.name,
+        description: c.description,
+        url: `${SITE_URL}/learn/${c.slug}`,
+        inLanguage: ["km", "en"],
+        provider: { "@id": `${SITE_URL}/#organization` },
+        // Free, self-paced online course → satisfies Google's "offers or
+        // hasCourseInstance" requirement for Course rich results.
+        offers: { "@type": "Offer", category: "Free", price: 0, priceCurrency: "USD" },
+        hasCourseInstance: {
+          "@type": "CourseInstance",
+          courseMode: "Online",
+          courseWorkload: "PT1H",
+          inLanguage: ["km", "en"],
+        },
+      })),
     },
     {
       // Q&A in machine-readable form — eligible for Google rich results and
