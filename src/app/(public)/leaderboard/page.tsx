@@ -93,6 +93,15 @@ const SOURCE_TABS: { id: string; en: string; kh: string; icon: React.ElementType
   { id: "solo",  en: "Solo Practice",   kh: "ហ្វឹកហាត់",       icon: BookOpen, color: "#22c55e" },
 ];
 
+const GAME_LABELS: Record<string, { en: string; kh: string }> = {
+  daily: { en: "Daily Challenge", kh: "បញ្ហាប្រចាំថ្ងៃ" },
+  "priority-puzzle": { en: "Who Goes First?", kh: "តើអ្នកណាទៅមុន?" },
+  "sign-match": { en: "Sign Match", kh: "ផ្គូផ្គងសញ្ញា" },
+  "catch-sign": { en: "Catch the Sign", kh: "ចាប់សញ្ញា" },
+  "light-hero": { en: "Traffic Light Hero", kh: "បញ្ញាបរភ្លើងសញ្ញា" },
+  "safety-adventure": { en: "Road Safety Adventure", kh: "ដំណើរផ្សងព្រេងសុវត្ថិភាព" },
+};
+
 interface LeaderboardUser {
   id: number;
   username: string;
@@ -239,33 +248,36 @@ function RankBadge({ rank }: { rank: 1 | 2 | 3 }) {
 const PODIUM_CFG = [
   {
     rank: 2 as const,
-    label: "Silver",
+    labelEn: "Strong Challenger",
+    labelKh: "អ្នកប្រកួតខ្លាំង",
     accentColor: "#94a3b8",
-    pedestalBg: "repeating-linear-gradient(-45deg, #f1f5f9, #f1f5f9 8px, #cbd5e1 8px, #cbd5e1 16px)",
-    shadowColor: "#000000",
-    scoreColor: "#475569",
-    barH: "h-20 md:h-28",
-    order: "order-2 md:order-1"
+    surfaceColor: "#f8fafc",
+    patternColor: "#cbd5e1",
+    pedestalBg: "repeating-linear-gradient(-45deg,#f8fafc 0 10px,#cbd5e1 10px 20px)",
+    pedestalHeight: "h-16 md:h-24",
+    order: "order-2 md:order-1",
   },
   {
     rank: 1 as const,
-    label: "Gold Champion",
+    labelEn: "Road Safety Champion",
+    labelKh: "ជើងឯកសុវត្ថិភាពចរាចរណ៍",
     accentColor: "#eab308",
-    pedestalBg: "repeating-linear-gradient(-45deg, #fef08a, #fef08a 8px, #facc15 8px, #facc15 16px)",
-    shadowColor: "#000000",
-    scoreColor: "#000",
-    barH: "h-24 md:h-36",
-    order: "order-1 md:order-2"
+    surfaceColor: "#fffbeb",
+    patternColor: "#facc15",
+    pedestalBg: "repeating-linear-gradient(-45deg,#fef08a 0 10px,#facc15 10px 20px)",
+    pedestalHeight: "h-20 md:h-32",
+    order: "order-1 md:order-2",
   },
   {
     rank: 3 as const,
-    label: "Bronze",
+    labelEn: "Rising Star",
+    labelKh: "តារាកំពុងរះ",
     accentColor: "#cd7c3a",
-    pedestalBg: "repeating-linear-gradient(-45deg, #ffedd5, #ffedd5 8px, #fed7aa 8px, #fed7aa 16px)",
-    shadowColor: "#000000",
-    scoreColor: "#92400e",
-    barH: "h-16 md:h-24",
-    order: "order-3"
+    surfaceColor: "#fff7ed",
+    patternColor: "#fed7aa",
+    pedestalBg: "repeating-linear-gradient(-45deg,#fff7ed 0 10px,#fed7aa 10px 20px)",
+    pedestalHeight: "h-14 md:h-20",
+    order: "order-3",
   },
 ];
 
@@ -279,93 +291,52 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
   const { lang } = useLang();
   const kh = lang === "kh";
   const cardRef = useRef<HTMLDivElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
   const isFirst = cfg.rank === 1;
   const name = user ? (user.displayName || user.username) : "—";
   const userAvatar = (currentUser && user && user.id === currentUser.id) ? currentUser.avatar : (user?.avatar ?? null);
   const initials = (name && name !== "—" ? name : "?").slice(0, 2).toUpperCase();
+  const linkable = !!user && user.isUsernamePublic !== false;
 
   useEffect(() => {
     if (!cardRef.current) return;
-    gsap.fromTo(cardRef.current, { opacity: 0, y: 30, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, delay: index * 0.08, ease: "back.out(1.2)" });
+    gsap.fromTo(
+      cardRef.current,
+      { opacity: 0, y: 36, scale: 0.94 },
+      { opacity: 1, y: 0, scale: 1, duration: 0.55, delay: index * 0.1, ease: "back.out(1.25)" },
+    );
   }, [index]);
 
-  useEffect(() => {
-    if (!isFirst || !glowRef.current) return;
-    gsap.to(glowRef.current, { opacity: 0.5, scale: 1.03, duration: 1.5, repeat: -1, yoyo: true, ease: "sine.inOut" });
-  }, [isFirst]);
-
   return (
-    <div ref={cardRef} className={`relative flex flex-col items-center w-full ${cfg.order}`}>
-      {isFirst && <div ref={glowRef} className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, rgba(234,179,8,0.25) 0%, transparent 70%)", opacity: 0.3 }} />}
-
-      {/* Floating Avatar and Rank Badge Container */}
+    <article
+      ref={cardRef}
+      className={`relative flex w-full flex-col items-center ${cfg.order}`}
+      aria-label={`${cfg.rank}. ${name}`}
+    >
+      {/* Avatar masthead */}
       <div
-        className={`relative mb-2 flex flex-col items-center select-none ${user && user.isUsernamePublic !== false ? "cursor-pointer" : "cursor-default"}`}
-        onClick={() => { if (user) onSelect(user); }}
-        style={{
-          animation: isFirst
-            ? "floatFirst 4s ease-in-out infinite"
-            : cfg.rank === 2
-              ? "floatSecond 4.4s ease-in-out infinite"
-              : "floatThird 4.8s ease-in-out infinite",
-        }}
+        className={`relative z-20 mb-[-30px] flex flex-col items-center select-none ${linkable ? "cursor-pointer" : "cursor-default"}`}
+        onClick={() => { if (linkable && user) onSelect(user); }}
       >
         {isFirst && (
-          <div className="absolute -top-7 left-1/2 -translate-x-1/2 z-10">
-            <Crown size={32} className="text-yellow-400 fill-yellow-400 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)] animate-bounce" style={{ animationDuration: "2s", transform: "rotate(-10deg)" }} />
+          <div
+            className="absolute -top-9 left-1/2 z-20 flex h-9 w-9 -translate-x-1/2 items-center justify-center border-[3px] border-black bg-yellow-400"
+            style={{ boxShadow: "3px 3px 0 #000", transform: "translateX(-50%) rotate(45deg)" }}
+          >
+            <Crown size={20} strokeWidth={2.5} className="text-black" style={{ transform: "rotate(-45deg)" }} />
           </div>
         )}
 
-        {/* Twinkling star decorations for 1st place champion */}
-        {isFirst && (
-          <>
-            <div className="absolute -left-6 top-4 text-yellow-500 pointer-events-none" style={{ animation: "twinkle 2s ease-in-out infinite" }}>
-              <Sparkles size={16} className="fill-yellow-400" />
-            </div>
-            <div className="absolute -right-6 top-8 text-yellow-500 pointer-events-none" style={{ animation: "twinkle 2.5s ease-in-out infinite 0.5s" }}>
-              <Star size={12} className="fill-yellow-400" />
-            </div>
-          </>
-        )}
-
-        {/* Double Orbital Rings (Redesigned Animation Style) */}
-        <div
-          className="absolute rounded-full border-2 border-dashed pointer-events-none"
-          style={{
-            width: isFirst ? 92 : 76,
-            height: isFirst ? 92 : 76,
-            borderColor: isFirst ? "#eab308" : cfg.accentColor,
-            animation: "spinCW 12s linear infinite",
-            opacity: 0.85,
-            top: -6,
-            boxShadow: isFirst ? "0 0 12px rgba(234,179,8,0.5)" : "none"
-          }}
-        />
-        <div
-          className="absolute rounded-full border border-dotted pointer-events-none"
-          style={{
-            width: isFirst ? 100 : 84,
-            height: isFirst ? 100 : 84,
-            borderColor: isFirst ? "#ca8a04" : `${cfg.accentColor}aa`,
-            animation: "spinCCW 8s linear infinite",
-            opacity: 0.6,
-            top: -10,
-          }}
-        />
-
-        {/* Tier info-sign frame around the podium avatar */}
         {user ? (
-          <div className="relative transition-transform duration-300 hover:scale-105">
+          <div className="relative transition-transform duration-200 hover:-translate-y-1">
             <RankedAvatarRing
               lifetimePoints={user.lifetimePoints}
-              size={isFirst ? 72 : 56}
+              size={isFirst ? 82 : 66}
               index={index}
             >
               <Avatar
                 url={userAvatar}
                 name={name}
-                size={isFirst ? 72 : 56}
+                size={isFirst ? 82 : 66}
                 changedAt={user.avatarChangedAt}
               />
             </RankedAvatarRing>
@@ -374,135 +345,95 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
           <div
             className="flex items-center justify-center border-[3px] border-black bg-zinc-800 font-black text-white"
             style={{
-              width: isFirst ? 84 : 68,
-              height: isFirst ? 84 : 68,
-              boxShadow: "2px 2px 0 #000",
+              width: isFirst ? 94 : 78,
+              height: isFirst ? 94 : 78,
+              borderRadius: "50%",
+              boxShadow: "3px 3px 0 #000",
             }}
           >
             {initials}
           </div>
         )}
 
-        {/* Rank Badge - positioned below the profile so it never covers the face */}
-        <div className="mt-2.5 scale-75 md:scale-100 z-10 filter drop-shadow-[2px_2px_0_rgba(0,0,0,0.85)]">
+        <div className="-mt-2 z-30" style={{ filter: "drop-shadow(2px 2px 0 #000)" }}>
           <RankBadge rank={cfg.rank} />
         </div>
       </div>
 
-      {/* Card Body */}
       <div
-        className={`w-full flex flex-col items-center gap-1.5 pt-8 pb-4 px-2 md:px-3 border-3 border-black -mt-4 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] relative overflow-hidden ${user && user.isUsernamePublic !== false ? "cursor-pointer" : "cursor-default"}`}
-        onClick={user && user.isUsernamePublic !== false ? () => onSelect(user) : undefined}
+        className={`relative flex w-full flex-col items-center overflow-hidden border-[3px] border-black px-3 pb-5 pt-12 text-center transition-transform duration-200 ${linkable ? "cursor-pointer hover:-translate-y-1" : "cursor-default"}`}
+        onClick={linkable && user ? () => onSelect(user) : undefined}
         style={{
-          backgroundColor: isFirst ? "#fffbeb" : "#fff",
-          backgroundImage: isFirst
-            ? "radial-gradient(#facc15 1px, transparent 1px)"
-            : "radial-gradient(#e2e8f0 1px, transparent 1px)",
-          backgroundSize: "8px 8px",
-          boxShadow: isFirst
-            ? `8px 8px 0 #000, 0 0 25px rgba(234,179,8,0.25)`
-            : `4px 4px 0 #000`,
+          backgroundColor: cfg.surfaceColor,
+          backgroundImage: `radial-gradient(${cfg.patternColor} 1px,transparent 1px)`,
+          backgroundSize: "12px 12px",
+          boxShadow: isFirst ? "8px 8px 0 #000" : "5px 5px 0 #000",
           borderRadius: 0,
-          borderWidth: isFirst ? "4px" : "3px",
-          animation: isFirst
-            ? "goldGlowShadow 3s ease-in-out infinite, panBackground 15s linear infinite"
-            : "panBackground 25s linear infinite"
         }}
       >
-        {/* Rising particle fountain (Redesigned Animation Style for 1st place) */}
-        {isFirst && (
-          <div className="absolute inset-0 overflow-hidden pointer-events-none z-20">
-            <div className="absolute text-yellow-400"
-              style={{
-                left: "15%",
-                bottom: "10%",
-                animation: "floatParticle 4s ease-in-out infinite",
-                animationDelay: "0s"
-              }}
-            >
-              <Star size={10} className="fill-yellow-400" />
-            </div>
-            <div className="absolute text-yellow-400"
-              style={{
-                right: "20%",
-                bottom: "20%",
-                animation: "floatParticle 4.5s ease-in-out infinite",
-                animationDelay: "1.5s"
-              }}
-            >
-              <Sparkles size={8} className="fill-yellow-400" />
-            </div>
-            <div className="absolute text-yellow-400"
-              style={{
-                left: "45%",
-                bottom: "5%",
-                animation: "floatParticle 5s ease-in-out infinite",
-                animationDelay: "3s"
-              }}
-            >
-              <Star size={6} className="fill-yellow-400" />
-            </div>
-          </div>
-        )}
+        <div className="absolute inset-x-0 top-0 h-3 border-b-[3px] border-black" style={{ background: cfg.accentColor }} />
 
-        {/* Shimmer sweep effect */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div
-            className="absolute top-0 left-0 w-[150%] h-full opacity-20 bg-gradient-to-r from-transparent via-white to-transparent"
-            style={{
-              transform: "skewX(-25deg)",
-              animation: isFirst ? "shimmerSweep 3.5s ease-in-out infinite" : "shimmerSweep 5s ease-in-out infinite",
-            }}
-          />
-        </div>
-
-        <span className="font-black text-center leading-tight w-full truncate text-[10px] md:text-sm font-kh-header z-10" style={{ color: "#000" }}>{name}</span>
-        {/* Consistent labels across all three: tier (exclusive) + province. */}
-        {user && <TierBadge lifetimePoints={user.lifetimePoints} size="xs" index={index} />}
-        {user && user.province && (
-          <div className="flex flex-wrap justify-center gap-1 mt-1 z-10">
-            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 border border-black bg-blue-50 text-[8px] font-black uppercase text-blue-700">
-              <MapPin size={8} />{kh ? getProvinceKh(user.province) : user.province}
-            </span>
-          </div>
-        )}
-
-        <span
-          className="text-[8px] md:text-[9px] font-black tracking-widest uppercase px-2 py-0.5 border-2 border-black text-white z-10"
+        <div
+          className="mb-3 inline-flex items-center gap-1.5 border-2 border-black px-2 py-1 text-[8px] font-black uppercase tracking-[0.16em]"
           style={{
-            backgroundColor: isFirst ? "#eab308" : "#000",
-            color: isFirst ? "#000" : "#fff"
+            background: isFirst ? "#eab308" : "#000",
+            color: isFirst ? "#000" : "#fff",
           }}
         >
-          {cfg.label}
+          {isFirst ? <Crown size={11} /> : <Trophy size={11} />}
+          {kh ? cfg.labelKh : cfg.labelEn}
+        </div>
+
+        <h3 className="z-10 w-full truncate text-sm font-black leading-tight text-black md:text-lg font-kh-header">
+          {name}
+        </h3>
+
+        <div className="z-10 mt-2 flex flex-wrap items-center justify-center gap-1.5">
+          {user && <TierBadge lifetimePoints={user.lifetimePoints} size="xs" index={index} />}
+          {user?.province && (
+            <span className="inline-flex items-center gap-1 border-2 border-black bg-blue-50 px-1.5 py-0.5 text-[8px] font-black uppercase text-blue-700">
+              <MapPin size={9} />
+              {kh ? getProvinceKh(user.province) : user.province}
+            </span>
+          )}
+        </div>
+
+        <div className="z-10 my-4 h-[3px] w-12 bg-black" />
+
+        <AnimatedNumber
+          value={user?.lifetimePoints ?? 0}
+          className={`z-10 font-black tabular-nums text-black ${isFirst ? "text-3xl md:text-4xl" : "text-2xl md:text-3xl"}`}
+        />
+        <span className="z-10 mt-0.5 text-[9px] font-black uppercase tracking-[0.18em] text-zinc-500">
+          {kh ? "ពិន្ទុសរុប" : "Lifetime points"}
         </span>
-        <AnimatedNumber value={user?.lifetimePoints ?? 0} className={`font-black tabular-nums z-10 ${isFirst ? "text-xl md:text-3xl" : "text-base md:text-xl"}`} style={{ color: "#000" }} />
-        <span className="text-[8px] text-zinc-500 font-bold uppercase tracking-wider z-10">pts</span>
+
+        {isFirst && (
+          <div className="absolute bottom-3 right-3 text-yellow-500" aria-hidden="true">
+            <Sparkles size={18} strokeWidth={2.5} />
+          </div>
+        )}
       </div>
-      {/* ── Standing pedestal — premium podium step with embossed rank ── */}
+
       <div
-        className={`relative w-full border-3 border-t-0 border-black ${cfg.barH} overflow-hidden flex items-center justify-center`}
+        className={`relative flex w-full items-center justify-center overflow-hidden border-[3px] border-t-0 border-black ${cfg.pedestalHeight}`}
         style={{
           background: cfg.pedestalBg,
-          boxShadow: isFirst ? "8px 0 0 #000" : "4px 0 0 #000"
+          boxShadow: isFirst ? "8px 8px 0 #000" : "5px 5px 0 #000",
         }}
       >
-        {/* embossed rank numeral — reads like a real podium step */}
         <span
-          className="font-black leading-none select-none tabular-nums z-10"
+          className="z-10 select-none font-mono font-black leading-none tabular-nums"
           style={{
-            fontSize: isFirst ? "clamp(42px,13vw,76px)" : "clamp(28px,9vw,52px)",
-            fontFamily: "monospace",
-            WebkitTextStroke: "2.5px #000",
-            WebkitTextFillColor: "rgba(255,255,255,0.6)",
+            fontSize: isFirst ? "clamp(48px,8vw,76px)" : "clamp(36px,6vw,56px)",
+            WebkitTextStroke: "2px #000",
+            WebkitTextFillColor: "rgba(255,255,255,.78)",
           }}
         >
           {cfg.rank}
         </span>
-        {/* subtle top sheen */}
-        <div className="absolute top-0 left-0 w-full h-1/3 bg-white/25 pointer-events-none" />
       </div>
-    </div>
+    </article>
   );
 }
 
@@ -1024,6 +955,7 @@ export default function LeaderboardPage() {
   const [windowTab, setWindowTab] = useState<"weekly" | "monthly" | "all">("all");
   const [province, setProvince] = useState("all");
   const [sourceTab, setSourceTab] = useState("all");
+  const [gameType, setGameType] = useState("all");
 
   const fetchLeaderboard = useCallback(async () => {
     try {
@@ -1031,6 +963,9 @@ export default function LeaderboardPage() {
       if (province !== "all") params.set("province", province);
       // Source filter: live, solo, daily, or all
       if (sourceTab !== "all") params.set("source", sourceTab);
+      // Game type filter: daily, catch-sign, etc.
+      if (gameType !== "all") params.set("gameType", gameType);
+
       const res = await fetch(`/api/leaderboard?${params.toString()}`);
       if (!res.ok) return;
       const data = await res.json();
@@ -1045,7 +980,7 @@ export default function LeaderboardPage() {
       setCountdown(60);
     } catch { /* silent */ }
     finally { setLoading(false); }
-  }, [windowTab, province, sourceTab]);
+  }, [windowTab, province, sourceTab, gameType]);
 
   useEffect(() => {
     fetchLeaderboard();
@@ -1225,7 +1160,21 @@ export default function LeaderboardPage() {
           <>
             {/* Podium - only show if there are ranked users */}
             {top3.length > 0 && (
-              <div className="grid grid-cols-3 items-end gap-2 md:gap-6 w-full">
+              <div className="flex flex-col gap-5 w-full">
+                {/* ── Bilingual "Top 3" section banner ── */}
+                <div className="flex items-center justify-center gap-3" aria-hidden="true">
+                  <span className="h-[3px] flex-1 max-w-[80px] bg-black" />
+                  <span
+                    className="inline-flex items-center gap-2 border-[3px] border-black bg-yellow-400 px-4 py-1.5 text-sm font-black uppercase tracking-[0.18em] text-black"
+                    style={{ boxShadow: "4px 4px 0 #000", borderRadius: 0 }}
+                  >
+                    <Crown size={16} strokeWidth={2.5} className="text-black" />
+                    {kh ? "កំពូល ៣ នាក់" : "Top 3"}
+                  </span>
+                  <span className="h-[3px] flex-1 max-w-[80px] bg-black" />
+                </div>
+
+                <div className="grid grid-cols-3 items-end gap-2 md:gap-6 w-full">
                 {[
                   { cfg: PODIUM_CFG[0], user: top3[1] },
                   { cfg: PODIUM_CFG[1], user: top3[0] },
@@ -1233,15 +1182,15 @@ export default function LeaderboardPage() {
                 ].map(({ cfg, user }, i) => (
                   <PodiumCard key={cfg.rank} user={user} cfg={cfg} index={i} currentUser={currentUser} onSelect={handleSelectUser} />
                 ))}
+                </div>
               </div>
             )}
 
             {/* Rankings Table */}
             <div>
-              {/* Source filter removed — leaderboard always shows all sources. */}
-
-              {/* ── Window + province ── */}
+              {/* ── Window + province + source + gameType ── */}
               <div className="mb-4 flex flex-wrap items-center gap-2">
+                {/* Time Window Tabs */}
                 <div className="flex items-stretch border-2 border-black flex-shrink-0" style={{ borderRadius: 0 }}>
                   {WINDOW_TABS.map((w, i) => {
                     const active = windowTab === w.id;
@@ -1258,6 +1207,24 @@ export default function LeaderboardPage() {
                   })}
                 </div>
 
+                {/* Source Tabs */}
+                <div className="flex items-stretch border-2 border-black flex-shrink-0" style={{ borderRadius: 0 }}>
+                  {SOURCE_TABS.map((s, i) => {
+                    const active = sourceTab === s.id;
+                    return (
+                      <button
+                        key={s.id}
+                        onClick={() => setSourceTab(s.id)}
+                        className={`px-3 py-1.5 text-[10px] md:text-xs font-black uppercase tracking-wider transition-colors ${i > 0 ? "border-l-2 border-black" : ""} ${active ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
+                        style={kf}
+                      >
+                        {kh ? s.kh : s.en}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Province Select */}
                 <select
                   value={province}
                   onChange={e => setProvince(e.target.value)}
@@ -1268,6 +1235,22 @@ export default function LeaderboardPage() {
                   {CAMBODIA_PROVINCES.map(p => (
                     <option key={p.en} value={p.en}>{kh ? p.kh : p.en}</option>
                   ))}
+                </select>
+
+                {/* Game Type Select */}
+                <select
+                  value={gameType}
+                  onChange={e => setGameType(e.target.value)}
+                  className="border-2 border-black bg-white px-2.5 py-1.5 text-[11px] md:text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
+                  style={{ borderRadius: 0, ...kf }}
+                >
+                  <option value="all">{kh ? "គ្រប់ប្រភេទហ្គេម" : "All Game Types"}</option>
+                  <option value="daily">{kh ? "បញ្ហាប្រចាំថ្ងៃ" : "Daily Challenge"}</option>
+                  <option value="priority-puzzle">{kh ? "តើអ្នកណាទៅមុន?" : "Who Goes First?"}</option>
+                  <option value="sign-match">{kh ? "ផ្គូផ្គងសញ្ញា" : "Sign Match"}</option>
+                  <option value="catch-sign">{kh ? "ចាប់សញ្ញា" : "Catch the Sign"}</option>
+                  <option value="light-hero">{kh ? "បញ្ញាបរភ្លើងសញ្ញា" : "Traffic Light Hero"}</option>
+                  <option value="safety-adventure">{kh ? "ដំណើរផ្សងព្រេងសុវត្ថិភាព" : "Road Safety Adventure"}</option>
                 </select>
               </div>
 
@@ -1281,6 +1264,13 @@ export default function LeaderboardPage() {
                   >
                     {kh ? SOURCE_TABS.find(s => s.id === sourceTab)?.kh : SOURCE_TABS.find(s => s.id === sourceTab)?.en}
                   </span>
+                  {gameType !== "all" && (
+                    <span
+                      className="inline-flex items-center gap-1 text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 border-2 border-black bg-black text-yellow-400"
+                    >
+                      {kh ? GAME_LABELS[gameType]?.kh || gameType : GAME_LABELS[gameType]?.en || gameType}
+                    </span>
+                  )}
                 </h2>
                 {lastUpdated && (
                   <span className="inline-flex items-center gap-1 text-[10px] text-zinc-400 font-mono">

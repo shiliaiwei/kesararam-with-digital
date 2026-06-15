@@ -6,7 +6,7 @@ import { useLang } from "@/context/lang-context";
 import {
   Trophy, Gift, ChevronLeft, CheckCircle2,
   Gamepad2, Star, Zap, Shield, Lock,
-  MapPin, GraduationCap, Calendar, ChevronDown,
+  MapPin, GraduationCap, Calendar,
   School, Flame, Target, BookOpen, Award,
 } from "lucide-react";
 import { CautionTape, SignShape } from "@/components/brand/brand-kit";
@@ -178,19 +178,17 @@ function StatCard({ icon: Icon, label, value, kh, accent = "#eab308", iconFg = "
   );
 }
 
-// Collapsible dropdown section (brutalist card with a clickable header).
-function Section({ id, title, icon: Icon, open, onToggle, kh, kf, count, children }: {
-  id: string; title: string; icon: React.ComponentType<any>;
-  open: boolean; onToggle: (id: string) => void; kh: boolean;
+// Static, always-open section (brutalist card with a header band). No tapping —
+// every block is visible so the whole profile reads in a single scroll.
+function Block({ title, icon: Icon, kh, kf, count, children }: {
+  title: string; icon: React.ComponentType<any>; kh: boolean;
   kf: React.CSSProperties; count?: number; children: React.ReactNode;
 }) {
   return (
     <div style={{ background: "#fff", border: "2px solid #000", boxShadow: "3px 3px 0 #000" }}>
-      <button
-        type="button"
-        onClick={() => onToggle(id)}
-        className="w-full flex items-center justify-between gap-2 text-left"
-        style={{ background: "#eab308", borderBottom: open ? "2px solid #000" : "none", padding: "10px 16px" }}
+      <div
+        className="w-full flex items-center justify-between gap-2"
+        style={{ background: "#eab308", borderBottom: "2px solid #000", padding: "10px 16px" }}
       >
         <span className="flex items-center gap-2">
           <Icon size={15} className="text-black" />
@@ -201,14 +199,8 @@ function Section({ id, title, icon: Icon, open, onToggle, kh, kf, count, childre
             <span className="text-[10px] font-black font-mono bg-black text-white px-2 py-0.5">{count}</span>
           )}
         </span>
-        <ChevronDown
-          size={18}
-          className="text-black flex-shrink-0 transition-transform"
-          style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
-          strokeWidth={2.5}
-        />
-      </button>
-      {open && <div>{children}</div>}
+      </div>
+      <div>{children}</div>
     </div>
   );
 }
@@ -222,16 +214,6 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
   const [claimedItems, setClaimedItems] = useState<Array<{
     id: number; name: string; nameKh: string; cost: number; image: string; claimedAt: number;
   }>>([]);
-
-  // Collapsible section state (dropdowns). "info" (game info) open by default.
-  const [openSections, setOpenSections] = useState<Record<string, boolean>>({
-    info: true,
-    intro: false,
-    games: false,
-    rewards: false,
-  });
-  const toggleSection = (id: string) =>
-    setOpenSections((prev) => ({ ...prev, [id]: !prev[id] }));
 
   const isNamePublic = student.isNamePublic ?? true;
   const isSchoolPublic = student.isSchoolPublic ?? true;
@@ -251,6 +233,29 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
     : "—";
 
   const joinedYear = student.createdAt ? new Date(student.createdAt).getFullYear() : 2026;
+
+  // ── One-line human summary shown under the name (respects privacy flags) ───
+  const gradeShort = student.gradeLevel
+    ? (kh ? gradeKh : (student.gradeLevel.match(/\d+/) ? `Grade ${student.gradeLevel.match(/\d+/)?.[0]}` : student.gradeLevel))
+    : null;
+  const provinceLabel = student.province
+    ? (kh ? (CAMBODIA_PROVINCES.find((p) => p.en.toLowerCase() === student.province!.toLowerCase())?.kh ?? student.province) : student.province)
+    : null;
+  const bioSentence = (() => {
+    const parts: string[] = [];
+    if (isStatsPublic) {
+      parts.push(kh
+        ? `ជាប់ចំណាត់ថ្នាក់ទី ${rank} ដោយមាន ${student.lifetimePoints.toLocaleString()} ពិន្ទុ`
+        : `Ranked #${rank} with ${student.lifetimePoints.toLocaleString()} points`);
+    }
+    const loc: string[] = [];
+    if (isGradePublic && gradeShort) loc.push(gradeShort);
+    if (isSchoolPublic && student.schoolName) loc.push(student.schoolName);
+    if (isProvincePublic && provinceLabel) loc.push(provinceLabel);
+    if (loc.length) parts.push(loc.join(" · "));
+    parts.push(kh ? `ចូលរួមឆ្នាំ ${joinedYear}` : `Joined ${joinedYear}`);
+    return parts.join(" — ");
+  })();
 
   // ── Rewards: real DB data only ────────────────────────────────────────────
   useEffect(() => {
@@ -317,11 +322,16 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
               </div>
             </div>
 
-            {/* Name only (no username, no role, no tier name, no rank badge) */}
-            <div>
+            {/* Name + one-line summary sentence */}
+            <div className="min-w-0">
               <h1 className={`text-xl font-black text-black leading-tight ${kh ? "font-google-sans" : ""}`}>
                 {displayName}
               </h1>
+              {student.isProfilePublic !== false && (
+                <p className={`mt-1 text-[13px] font-bold text-gray-600 leading-snug ${kh ? "font-google-sans" : ""}`} style={kf}>
+                  {bioSentence}
+                </p>
+              )}
             </div>
           </div>
         </div>
@@ -361,10 +371,10 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
             </div>
           ) : (
             <>
-              {/* Game Info — shown by default */}
-              <Section
-                id="info" title={kh ? "ព័ត៌មានហ្គេម" : "Game Info"} icon={Trophy}
-                open={openSections.info} onToggle={toggleSection} kh={kh} kf={kf}
+              {/* Game Info */}
+              <Block
+                title={kh ? "ព័ត៌មានហ្គេម" : "Game Info"} icon={Trophy}
+                kh={kh} kf={kf}
               >
                 <div className="p-4 grid grid-cols-2 gap-3">
                   <StatCard icon={Trophy} kh={kh} accent="#eab308" iconFg="text-black" label={kh ? "ចំណាត់ថ្នាក់" : "Leaderboard Rank"} value={`#${rank}`} />
@@ -372,12 +382,12 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
                   <StatCard icon={Star} kh={kh} accent="#22c55e" iconFg="text-black" label={kh ? "ពិន្ទុខ្ពស់" : "Highest Score"} value={student.highestScore.toLocaleString()} />
                   <StatCard icon={Zap} kh={kh} accent="#f97316" iconFg="text-black" label={kh ? "ពិន្ទុសរុប" : "Total Points"} value={student.lifetimePoints.toLocaleString()} />
                 </div>
-              </Section>
+              </Block>
 
               {/* Intro — studies at, grade, room, city, joined */}
-              <Section
-                id="intro" title={kh ? "ប្រវត្តិ" : "Intro"} icon={GraduationCap}
-                open={openSections.intro} onToggle={toggleSection} kh={kh} kf={kf}
+              <Block
+                title={kh ? "ប្រវត្តិ" : "Intro"} icon={GraduationCap}
+                kh={kh} kf={kf}
               >
                 <div className="p-4 space-y-3 text-sm">
                   {isSchoolPublic && student.schoolName && (
@@ -412,12 +422,12 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
                     </span>
                   </div>
                 </div>
-              </Section>
+              </Block>
 
               {/* Game Modes — per-mode score breakdown */}
-              <Section
-                id="games" title={kh ? "ពិន្ទុតាមរបៀបលេង" : "Game Mode Scores"} icon={Gamepad2}
-                open={openSections.games} onToggle={toggleSection} kh={kh} kf={kf}
+              <Block
+                title={kh ? "ពិន្ទុតាមរបៀបលេង" : "Game Mode Scores"} icon={Gamepad2}
+                kh={kh} kf={kf}
                 count={gameStats.length}
               >
                 {gameStats.length === 0 ? (
@@ -453,12 +463,12 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
                     })}
                   </div>
                 )}
-              </Section>
+              </Block>
 
               {/* Items Claimed */}
-              <Section
-                id="rewards" title={kh ? "រង្វាន់ដែលបានប្តូរ" : "Items Claimed"} icon={Gift}
-                open={openSections.rewards} onToggle={toggleSection} kh={kh} kf={kf}
+              <Block
+                title={kh ? "រង្វាន់ដែលបានប្តូរ" : "Items Claimed"} icon={Gift}
+                kh={kh} kf={kf}
                 count={claimedItems.length}
               >
                 {claimedItems.length === 0 ? (
@@ -502,7 +512,7 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
                     ))}
                   </div>
                 )}
-              </Section>
+              </Block>
             </>
           )}
         </div>

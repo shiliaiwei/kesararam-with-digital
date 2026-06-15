@@ -317,6 +317,19 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
         </p>
       </div>
 
+      {/* ── Bilingual "Top 3" section banner (matches public leaderboard) ── */}
+      <div className="flex items-center justify-center gap-3 w-full max-w-2xl -mt-2" aria-hidden="true">
+        <span className="h-[3px] flex-1 max-w-[80px] bg-yellow-400/30" />
+        <span
+          className="inline-flex items-center gap-2 border-4 border-black bg-yellow-400 px-4 py-1.5 text-sm font-black uppercase tracking-[0.18em] text-black shadow-[4px_4px_0_#000]"
+          style={{ borderRadius: 0, ...khFont }}
+        >
+          <Crown size={16} strokeWidth={2.5} className="text-black" />
+          {kh ? "កំពូល ៣ នាក់" : "Top 3"}
+        </span>
+        <span className="h-[3px] flex-1 max-w-[80px] bg-yellow-400/30" />
+      </div>
+
       {/* Podium - Brutalist Style */}
       <div className="flex items-end gap-6 justify-center mb-4">
         {ORDER.map((podiumIdx) => {
