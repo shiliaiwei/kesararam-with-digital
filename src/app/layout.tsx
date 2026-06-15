@@ -34,8 +34,9 @@ export const metadata: Metadata = {
     template: "%s | KWD — Kesararam With Digital",
   },
   description:
-    "KWD is Cambodia's free, fully bilingual (ខ្មែរ / English) road-safety education platform. Learn traffic signs, road rules, and safe-driving theory through interactive lessons, quizzes, and live multiplayer games — on any phone or computer, anytime.",
+    "KWD is Cambodia's free, fully bilingual (ខ្មែរ / English) road-safety education platform. Learn traffic signs, road rules, and safe road-use theory through interactive lessons, quizzes, and live multiplayer games — on any phone or computer, anytime.",
   applicationName: "KWD — Kesararam With Digital",
+  manifest: "/manifest.webmanifest",
   authors: [{ name: "Kesararam With Digital", url: "https://www.kesararamwithdigital.tech" }],
   creator: "Kesararam With Digital (Technovation Girls 2026, Team #50777)",
   publisher: "Kesararam With Digital",
@@ -46,12 +47,13 @@ export const metadata: Metadata = {
     "Cambodia traffic rules",
     "traffic signs Cambodia",
     "road safety Cambodia",
-    "learn driving rules Cambodia",
-    "Khmer driving theory",
+    "learn traffic rules Cambodia",
+    "Khmer road safety theory",
     "traffic law Cambodia",
     "road sign quiz",
     "traffic sign game",
-    "driving theory practice",
+    "license test practice Cambodia",
+    "road safety theory practice",
     "bilingual education Cambodia",
     "free education platform",
     "road safety education",
@@ -65,7 +67,8 @@ export const metadata: Metadata = {
     "សញ្ញាចរាចរណ៍",
     "សុវត្ថិភាពចរាចរណ៍",
     "សញ្ញាផ្លូវ",
-    "រៀនបើកបរ",
+    "រៀនសុវត្ថិភាពចរាចរណ៍",
+    "តេស្តសញ្ញាចរាចរណ៍",
     "ច្បាប់ផ្លូវគោក",
     "ការអប់រំ",
   ],
@@ -123,6 +126,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
+  themeColor: "#eab308",
 };
 
 const SITE_URL = "https://www.kesararamwithdigital.tech";
@@ -148,7 +152,7 @@ const structuredData = {
       image: `${SITE_URL}/brand/kwd-green.png`,
       slogan: "Learn the road. Stay safe. In Khmer and English.",
       description:
-        "KWD (Kesararam With Digital) is Cambodia's free, fully bilingual (Khmer & English) road-safety education platform — teaching traffic signs, road rules, and safe-driving theory through interactive lessons, quizzes, and live multiplayer games.",
+        "KWD (Kesararam With Digital) is Cambodia's free, fully bilingual (Khmer & English) road-safety education platform — teaching traffic signs, road rules, and safe road-use theory through interactive lessons, quizzes, and live multiplayer games.",
       email: "kesararamwithdigital@gmail.com",
       foundingDate: "2025",
       knowsLanguage: ["km", "en"],
@@ -179,7 +183,7 @@ const structuredData = {
       "@id": `${SITE_URL}/#program`,
       name: "Bilingual Road-Safety & Traffic-Sign Course",
       description:
-        "A free, self-paced road-safety curriculum in Khmer and English covering Cambodian traffic signs, priority and right-of-way rules, safe driving, technical knowledge, emergencies, and the carriage of people and goods.",
+        "A free, self-paced road-safety curriculum in Khmer and English covering Cambodian traffic signs, priority and right-of-way rules, safe road use, technical knowledge, emergencies, and the carriage of people and goods.",
       educationalProgramMode: "online",
       inLanguage: ["km", "en"],
       provider: { "@id": `${SITE_URL}/#organization` },
@@ -196,6 +200,55 @@ const structuredData = {
         { "@type": "Course", name: "General Knowledge", url: `${SITE_URL}/learn/general-knowledge`, provider: { "@id": `${SITE_URL}/#organization` } },
       ],
     },
+    {
+      // Q&A in machine-readable form — eligible for Google rich results and
+      // frequently quoted by AI assistants (ChatGPT, Claude, Perplexity, Gemini)
+      // when users ask how to learn Cambodian traffic signs / road rules.
+      "@type": "FAQPage",
+      "@id": `${SITE_URL}/#faq`,
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "Is KWD free?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. Students can learn road safety, study Cambodian traffic signs, and play quiz games for free. Paid plans add tools for teachers, schools, families, and academies.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "What languages does KWD support?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Everything is fully bilingual — Khmer (ខ្មែរ) and English — and switchable anywhere on the platform.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Where can I learn Cambodian traffic signs?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Start in the Road Signs category to study warning, prohibition, mandatory, information and direction signs, then practice with the Sign Match and Catch the Sign games — all bilingual and free.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Can I practice for a traffic license test with KWD?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. The Learn categories cover the road-safety theory and the games — especially Category Quiz and Daily Challenge — let you practice with quiz questions to check your knowledge before a license test.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Who made KWD?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "KWD (វិថីសុវត្ថិភាព · The Way of Safety) is built by Kesararam With Digital, a team of young Cambodian women in Siem Reap, as a Technovation Girls 2026 project (Team #50777).",
+          },
+        },
+      ],
+    },
   ],
 };
 
@@ -208,7 +261,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" type="image/png" sizes="32x32" href="/brand/kwd-green.png" />
-        <link rel="apple-touch-icon" href="/brand/kwd-green.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
         <link rel="shortcut icon" href="/brand/kwd-green.png" />
         {/* Preconnect to Cloudinary — reduces LCP for sign images */}
         <link rel="preconnect" href="https://res.cloudinary.com" />
