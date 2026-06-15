@@ -50,9 +50,14 @@ export const RANK_KEYFRAMES = `
     55%  { left: 130%; }
     100% { left: 130%; }
   }
+  @keyframes rankOrbit {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
   @media (prefers-reduced-motion: reduce) {
     .rank-splash,
-    .rank-shine {
+    .rank-shine,
+    .rank-orbit {
       animation: none !important;
     }
     .rank-shine {
@@ -186,7 +191,7 @@ export function RankBadge({
     );
 }
 
-// ── RankedAvatarRing — matching square info-sign profile frame ───────────────
+// ── RankedAvatarRing — circular tier frame with animated outer orbit ─────────
 export function RankedAvatarRing({
     lifetimePoints,
     size,
@@ -208,17 +213,28 @@ export function RankedAvatarRing({
                 style={{
                     padding: 3,
                     background: "#000",
-                    borderRadius: 0,
+                    borderRadius: "50%",
                     filter: "drop-shadow(2px 2px 0 #000)",
                     animation: "rankPop .45s cubic-bezier(.34,1.56,.64,1) both",
                     animationDelay: `${Math.max(0, index) * 0.06}s`,
                 }}
             >
+                <span
+                    className="rank-orbit pointer-events-none absolute"
+                    aria-hidden="true"
+                    style={{
+                        inset: -5,
+                        border: `2px dashed ${tier.accent}`,
+                        borderRadius: "50%",
+                        animation: "rankOrbit 5s linear infinite",
+                        animationDelay: `${Math.max(0, index) * -0.12}s`,
+                    }}
+                />
                 <div
                     style={{
-                        padding: 3,
+                        padding: 4,
                         background: tier.accent,
-                        borderRadius: 0,
+                        borderRadius: "50%",
                     }}
                 >
                     <div
@@ -226,7 +242,7 @@ export function RankedAvatarRing({
                         style={{
                             width: size,
                             height: size,
-                            borderRadius: 0,
+                            borderRadius: "50%",
                         }}
                     >
                         {children}
