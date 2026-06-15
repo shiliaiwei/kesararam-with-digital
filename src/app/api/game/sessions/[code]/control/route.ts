@@ -7,6 +7,7 @@ import { getSession } from "@/lib/auth";
 import { LeaderboardEntry } from "@/lib/game-event-bus";
 import { broadcastEvent } from "@/lib/realtime-bus";
 import { mapContentToGameType, type GameStatus } from "@/lib/game-engine";
+import { awardStorePoints } from "@/lib/store-points/award";
 import { eq, and, asc, sql } from "drizzle-orm";
 
 async function buildLeaderboard(sessionId: number, prevRanks: Map<number, number>): Promise<LeaderboardEntry[]> {
@@ -57,6 +58,17 @@ async function syncScoresToUserProfiles(sessionId: number, gameMode: string) {
       .from(gameParticipants)
       .where(eq(gameParticipants.sessionId, sessionId));
 
+    // Per-participant denominator for Store Points accuracy = questions answered.
+    const answeredRows = await db
+      .select({
+        userId: gameSessionAnswers.userId,
+        answered: sql<number>`COUNT(*)::int`,
+      })
+      .from(gameSessionAnswers)
+      .where(eq(gameSessionAnswers.sessionId, sessionId))
+      .groupBy(gameSessionAnswers.userId);
+    const answeredByUser = new Map(answeredRows.map((r) => [r.userId, r.answered]));
+
     // Update each user's profile with their game score
     for (const participant of participants) {
       await db
@@ -77,6 +89,25 @@ async function syncScoresToUserProfiles(sessionId: number, gameMode: string) {
           gameType: gameMode,
           points: participant.totalScore,
         });
+      }
+
+      // Store Points: one capped credit per participant per session (inert until
+      // cutover). Idempotent on session+user, so a retried "end" never re-awards.
+      const answered = answeredByUser.get(participant.userId) ?? participant.correctAnswers;
+      if (answered > 0) {
+        try {
+          await awardStorePoints({
+            userId: participant.userId,
+            gameType: gameMode,
+            attemptId: `live:${sessionId}`,
+            correctUnits: participant.correctAnswers,
+            totalUnits: answered,
+            valid: true,
+            idempotencyKey: `${participant.userId}:live:${sessionId}`,
+          });
+        } catch (err) {
+          console.error(`[syncScoresToUserProfiles] store-points award failed for user ${participant.userId}:`, err);
+        }
       }
 
       console.log(`[syncScoresToUserProfiles] Updated user ${participant.userId}: +${participant.totalScore} points`);

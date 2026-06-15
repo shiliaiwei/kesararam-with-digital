@@ -2,15 +2,18 @@
  * Reward-claim accounting — the SINGLE source of truth for a student's claimable
  * balance and the class/teacher a claim routes to.
  *
- * Currency model (see [[scoring-model]]): only LIVE teacher-session points
- * (pointsLedger source LIKE 'live-session:%') are claimable. A student's spent
- * total is the cost of every claim that is NOT rejected (pending/accepted/
- * fulfilled all hold the points); rejecting a claim refunds it automatically.
+ * Currency model (see [[scoring-model]]): post-cutover (STORE_POINTS_ENABLED) the
+ * claimable balance is the student's LIFETIME-EARNED Store Points; pre-cutover it
+ * is only LIVE teacher-session points (pointsLedger source LIKE 'live-session:%').
+ * A student's spent total is the cost of every claim that is NOT rejected
+ * (pending/accepted/fulfilled all hold the points); rejecting a claim refunds it.
  */
 import { db } from "@/lib/db";
 import { classes, classEnrollments } from "@/db/schema/users";
 import { pointsLedger, rewardClaims } from "@/db/schema/content";
 import { eq, and, sql, ne } from "drizzle-orm";
+import { STORE_POINTS_ENABLED } from "@/lib/store-points/award";
+import { getStoreBalances } from "@/lib/store-points/balance";
 
 /** Claim statuses that hold (spend) points. Rejected is the only refunding state. */
 export const CLAIM_HELD_STATUSES = ["pending", "accepted", "fulfilled"] as const;
@@ -58,15 +61,20 @@ export async function getSpentPoints(studentId: number): Promise<number> {
   return row?.total ?? 0;
 }
 
-/** Full balance snapshot: earned live points, spent, and what's left to claim. */
+/** Full balance snapshot: earned points, spent, and what's left to claim. */
 export async function getClaimBalance(studentId: number): Promise<{
   live: number;
   spent: number;
   available: number;
 }> {
-  const [live, spent] = await Promise.all([
-    getLivePoints(studentId),
+  // `live` carries the claimable EARNED total — Store Points lifetime-earned after
+  // cutover, legacy live-session points before. Spending is tracked the same way
+  // (non-rejected reward_claims), so no store_point_events spend rows are written.
+  const [earned, spent] = await Promise.all([
+    STORE_POINTS_ENABLED
+      ? getStoreBalances(studentId).then((b) => b.lifetimeEarned)
+      : getLivePoints(studentId),
     getSpentPoints(studentId),
   ]);
-  return { live, spent, available: Math.max(0, live - spent) };
+  return { live: earned, spent, available: Math.max(0, earned - spent) };
 }

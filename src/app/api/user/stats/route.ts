@@ -4,6 +4,8 @@ import { db } from "@/lib/db";
 import { users } from "@/db/schema/users";
 import { gameScores, userStreaks } from "@/db/schema/content";
 import { eq, desc, sql } from "drizzle-orm";
+import { STORE_POINTS_ENABLED } from "@/lib/store-points/award";
+import { getStoreBalances } from "@/lib/store-points/balance";
 
 export async function GET() {
   const user = await getSession();
@@ -22,6 +24,12 @@ export async function GET() {
       })
       .from(users)
       .where(eq(users.id, user.id));
+
+    // Post-cutover: the displayed points + tier come from the Store Points ledger.
+    if (STORE_POINTS_ENABLED && userProfile) {
+      const balances = await getStoreBalances(user.id);
+      userProfile.lifetimePoints = balances.lifetimeEarned;
+    }
 
     // Get streak data (optional - may not exist)
     let streakData = null;
@@ -61,13 +69,18 @@ export async function GET() {
     let currentRank: number | null = null;
     if (userProfile && userProfile.lifetimePoints > 0) {
       try {
+        // Count students strictly ahead — by Store Points lifetime-earned after
+        // cutover, by legacy lifetimePoints before.
+        const aheadCond = STORE_POINTS_ENABLED
+          ? sql`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = ${users.id} AND spe.delta > 0), 0) > ${userProfile.lifetimePoints}`
+          : sql`${users.lifetimePoints} > ${userProfile.lifetimePoints}`;
         const [rankResult] = await db
           .select({
             rank: sql<number>`COUNT(*) + 1`,
           })
           .from(users)
           .where(
-            sql`${users.lifetimePoints} > ${userProfile.lifetimePoints} AND ${users.isActive} = true AND ${users.role} = 'student'`
+            sql`${aheadCond} AND ${users.isActive} = true AND ${users.role} = 'student'`
           );
         currentRank = rankResult?.rank || null;
       } catch (err) {

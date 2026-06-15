@@ -7,6 +7,8 @@ import { pointsLedger, userStreaks } from "@/db/schema/content";
 import { eq, sql, desc } from "drizzle-orm";
 import { CompleteProfileForm } from "@/components/profile/complete-profile-form";
 import { StudentProfileDashboard } from "@/components/profile/student-profile-dashboard";
+import { STORE_POINTS_ENABLED } from "@/lib/store-points/award";
+import { getStoreBalances } from "@/lib/store-points/balance";
 
 export const metadata: Metadata = {
   title: "My Profile — KWD Quiz",
@@ -122,6 +124,14 @@ export default async function StudentProfilePage() {
         highestScore = statsResult[0].highestScore || 0;
         totalGamesPlayed = statsResult[0].totalGamesPlayed || 0;
         lifetimePoints = statsResult[0].lifetimePoints || 0;
+      }
+
+      // Post-cutover: the SSR points + tier come from the Store Points ledger
+      // (the dashboard re-fetches /api/user/stats, but seed the correct value to
+      // avoid a flash of the legacy number).
+      if (STORE_POINTS_ENABLED) {
+        const balances = await getStoreBalances(session.id);
+        lifetimePoints = balances.lifetimeEarned;
       }
     } catch {
       // Stats columns not available yet — fall back to defaults

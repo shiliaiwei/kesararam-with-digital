@@ -21,11 +21,13 @@ import {
     type DailyChallengeSet,
 } from "@/db/schema/content";
 import { calculateScore } from "@/lib/game-engine";
+import { awardStorePoints } from "@/lib/store-points/award";
 import {
     computeStreak,
     streakMilestoneBonus,
     sameMultiset,
     arrayEquals,
+    todayInPhnomPenh,
 } from "./dates";
 import type { RoundResult, KitCompletionResult } from "./types";
 import {
@@ -59,6 +61,34 @@ function isUniqueViolation(e: unknown): boolean {
     return /duplicate key|unique constraint|daily_attempts_user_date_unique/i.test(
         msg
     );
+}
+
+/**
+ * Credit Store Points for a recorded solo/practice play. Inert until cutover
+ * (awardStorePoints returns `disabled` when STORE_POINTS_ENABLED is off, before
+ * any DB read). Never lets an award failure break the play recording — the
+ * legacy score is already persisted by the caller.
+ */
+async function tryAwardStorePoints(ctx: {
+    userId: number;
+    gameType: string;
+    correctUnits: number;
+    totalUnits: number;
+    idempotencyKey: string;
+}): Promise<void> {
+    try {
+        await awardStorePoints({
+            userId: ctx.userId,
+            gameType: ctx.gameType,
+            attemptId: ctx.idempotencyKey,
+            correctUnits: ctx.correctUnits,
+            totalUnits: ctx.totalUnits,
+            valid: true,
+            idempotencyKey: ctx.idempotencyKey,
+        });
+    } catch (e) {
+        console.error("[store-points] award failed:", e);
+    }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -291,6 +321,15 @@ export async function recordDailyAttempt(
     // NOTE: daily challenge is a solo/practice mode — it records the attempt and
     // streak above but does NOT contribute to the public leaderboard.
 
+    // Store Points: one capped credit per day for this mode (inert until cutover).
+    await tryAwardStorePoints({
+        userId,
+        gameType: "daily",
+        correctUnits: correctCount,
+        totalUnits: set.questionIds.length,
+        idempotencyKey: `${userId}:daily:${today}`,
+    });
+
     return {
         totalScore,
         correctAnswers: correctCount,
@@ -417,6 +456,22 @@ export async function validatePriority(
     // Priority puzzle is a solo/practice mode — it does NOT contribute to the
     // public leaderboard (no lifetimePoints / pointsLedger writes).
     const persisted = userId !== null;
+
+    // Store Points (inert until cutover). No attempt row exists for priority, so
+    // the idempotency key is the day + sorted scene set — a network retry of the
+    // same play is a no-op; daily-best-diff handles legitimate replays.
+    if (userId !== null) {
+        const key = `${userId}:priority-puzzle:${todayInPhnomPenh()}:${[...sceneIds]
+            .sort((a, b) => a - b)
+            .join("-")}`;
+        await tryAwardStorePoints({
+            userId,
+            gameType: "priority-puzzle",
+            correctUnits: correctCount,
+            totalUnits: rounds.length,
+            idempotencyKey: key,
+        });
+    }
 
     return {
         totalScore,
@@ -553,15 +608,25 @@ export async function validateTrafficCommander(
     // Solo/practice — record the attempt but NEVER touch the public leaderboard.
     let persisted = false;
     if (userId !== null) {
-        await db.insert(gameAttempts).values({
-            userId,
-            gameId: "traffic-commander",
-            score: totalScore,
-            correctCount,
-            totalRounds: rounds.length,
-            breakdown: JSON.stringify(perRound),
-        });
+        const [row] = await db
+            .insert(gameAttempts)
+            .values({
+                userId,
+                gameId: "traffic-commander",
+                score: totalScore,
+                correctCount,
+                totalRounds: rounds.length,
+                breakdown: JSON.stringify(perRound),
+            })
+            .returning({ id: gameAttempts.id });
         persisted = true;
+        await tryAwardStorePoints({
+            userId,
+            gameType: "traffic-commander",
+            correctUnits: correctCount,
+            totalUnits: rounds.length,
+            idempotencyKey: `${userId}:traffic-commander:${row?.id ?? totalScore}`,
+        });
     }
 
     return {
@@ -638,15 +703,25 @@ export async function recordSignConnectAttempt(
 
     let persisted = false;
     if (userId !== null && willRecord) {
-        await db.insert(gameAttempts).values({
-            userId,
-            gameId: "sign-connect",
-            score: totalScore,
-            correctCount: correctPairs,
-            totalRounds: totalPairs,
-            breakdown: JSON.stringify(perRound),
-        });
+        const [row] = await db
+            .insert(gameAttempts)
+            .values({
+                userId,
+                gameId: "sign-connect",
+                score: totalScore,
+                correctCount: correctPairs,
+                totalRounds: totalPairs,
+                breakdown: JSON.stringify(perRound),
+            })
+            .returning({ id: gameAttempts.id });
         persisted = true;
+        await tryAwardStorePoints({
+            userId,
+            gameType: "sign-connect",
+            correctUnits: correctPairs,
+            totalUnits: totalPairs,
+            idempotencyKey: `${userId}:sign-connect:${row?.id ?? totalScore}`,
+        });
     }
 
     return {
@@ -709,15 +784,25 @@ export async function recordWordBankAttempt(
 
     let persisted = false;
     if (userId !== null && willRecord) {
-        await db.insert(gameAttempts).values({
-            userId,
-            gameId: "word-bank",
-            score: totalScore,
-            correctCount: correct,
-            totalRounds: total,
-            breakdown: JSON.stringify(perRound),
-        });
+        const [row] = await db
+            .insert(gameAttempts)
+            .values({
+                userId,
+                gameId: "word-bank",
+                score: totalScore,
+                correctCount: correct,
+                totalRounds: total,
+                breakdown: JSON.stringify(perRound),
+            })
+            .returning({ id: gameAttempts.id });
         persisted = true;
+        await tryAwardStorePoints({
+            userId,
+            gameType: "word-bank",
+            correctUnits: correct,
+            totalUnits: total,
+            idempotencyKey: `${userId}:word-bank:${row?.id ?? totalScore}`,
+        });
     }
 
     return { totalScore, correctAnswers: correct, totalRounds: total, perRound, persisted };
@@ -783,15 +868,25 @@ export async function recordTickSignAttempt(
 
     let persisted = false;
     if (userId !== null && willRecord) {
-        await db.insert(gameAttempts).values({
-            userId,
-            gameId: "tick-sign",
-            score: totalScore,
-            correctCount: correctRows,
-            totalRounds: totalRows,
-            breakdown: JSON.stringify(perRound),
-        });
+        const [row] = await db
+            .insert(gameAttempts)
+            .values({
+                userId,
+                gameId: "tick-sign",
+                score: totalScore,
+                correctCount: correctRows,
+                totalRounds: totalRows,
+                breakdown: JSON.stringify(perRound),
+            })
+            .returning({ id: gameAttempts.id });
         persisted = true;
+        await tryAwardStorePoints({
+            userId,
+            gameType: "tick-sign",
+            correctUnits: correctRows,
+            totalUnits: totalRows,
+            idempotencyKey: `${userId}:tick-sign:${row?.id ?? totalScore}`,
+        });
     }
 
     return {
@@ -848,15 +943,25 @@ export async function recordGameAttempt(
     // own history, but do NOT contribute to the public leaderboard.
     let persisted = false;
     if (userId !== null && willRecord) {
-        await db.insert(gameAttempts).values({
-            userId,
-            gameId,
-            score: totalScore,
-            correctCount,
-            totalRounds: rounds.length,
-            breakdown: JSON.stringify(perRound),
-        });
+        const [row] = await db
+            .insert(gameAttempts)
+            .values({
+                userId,
+                gameId,
+                score: totalScore,
+                correctCount,
+                totalRounds: rounds.length,
+                breakdown: JSON.stringify(perRound),
+            })
+            .returning({ id: gameAttempts.id });
         persisted = true;
+        await tryAwardStorePoints({
+            userId,
+            gameType: gameId,
+            correctUnits: correctCount,
+            totalUnits: rounds.length,
+            idempotencyKey: `${userId}:${gameId}:${row?.id ?? totalScore}`,
+        });
     }
 
     return {

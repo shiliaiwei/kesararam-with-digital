@@ -4,10 +4,97 @@ import { users } from "@/db/schema/users";
 import { pointsLedger } from "@/db/schema/content";
 import { desc, sql, eq, and, gte } from "drizzle-orm";
 import { windowStartDate } from "@/lib/gamekit/dates";
+import { STORE_POINTS_ENABLED } from "@/lib/store-points/award";
 
 export const dynamic = "force-dynamic";
 
 type Window = "weekly" | "monthly" | "all";
+
+/**
+ * Store Points leaderboard (post-cutover). Ranks active students by EARNED Store
+ * Points (delta > 0) within the window — all plays count, so the live/solo source
+ * split is gone. `priorityPoints` carries the claimable store balance (lifetime
+ * earn − spend); `soloPoints` is retired (0). Response shape mirrors the legacy
+ * path so the page renders unchanged, just with small numbers.
+ */
+async function storePointsLeaderboard(opts: {
+  limit: number;
+  offset: number;
+  windowParam: Window;
+  province: string;
+  gameType: string;
+}) {
+  const { limit, offset, windowParam, province, gameType } = opts;
+  const start =
+    windowParam === "all"
+      ? "1970-01-01"
+      : windowStartDate(windowParam === "weekly" ? "weekly" : "monthly");
+  const gameTypeCond =
+    gameType !== "all" ? sql` AND spe.game_type = ${gameType}` : sql``;
+
+  // Ranking metric: earned (delta>0) within the window, optionally one game type.
+  const windowExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = ${users.id} AND spe.delta > 0 AND spe.play_date >= ${start}${gameTypeCond}), 0)::int`;
+  // Claimable store balance = lifetime SUM of every delta (earn − spend/hold).
+  const balanceExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = ${users.id}), 0)::int`;
+
+  const provinceFilter =
+    province !== "all" ? sql` AND ${users.province} = ${province}` : sql``;
+  const publicFilter = sql`${users.isActive} = true AND ${users.role} = 'student'`;
+
+  const rows = await db
+    .select({
+      id: users.id,
+      username: users.username,
+      displayName: users.displayName,
+      avatar: users.avatar,
+      avatarChangedAt: users.avatarChangedAt,
+      highestScore: users.highestScore,
+      totalGamesPlayed: users.totalGamesPlayed,
+      windowPoints: windowExpr,
+      storeBalance: balanceExpr,
+      schoolName: users.schoolName,
+      province: users.province,
+      gradeLevel: users.gradeLevel,
+      section: users.section,
+      isSchoolPublic: users.isSchoolPublic,
+      isProvincePublic: users.isProvincePublic,
+      isGradePublic: users.isGradePublic,
+      isSectionPublic: users.isSectionPublic,
+    })
+    .from(users)
+    .where(sql`${publicFilter}${provinceFilter} AND ${windowExpr} > 0`)
+    .orderBy(desc(windowExpr), desc(users.highestScore))
+    .limit(limit)
+    .offset(offset);
+
+  const rankedUsers = rows.map((user, index) => ({
+    id: user.id,
+    rank: offset + index + 1,
+    displayName: user.displayName || user.username,
+    username: user.username,
+    isUsernamePublic: true,
+    avatar: user.avatar,
+    avatarChangedAt: user.avatarChangedAt,
+    highestScore: user.highestScore,
+    totalGamesPlayed: user.totalGamesPlayed,
+    lifetimePoints: user.windowPoints,
+    priorityPoints: user.storeBalance,
+    soloPoints: 0,
+    schoolName: (user.isSchoolPublic ?? true) ? user.schoolName : null,
+    province: (user.isProvincePublic ?? true) ? user.province : null,
+    gradeLevel: (user.isGradePublic ?? true) ? user.gradeLevel : null,
+    section: (user.isSectionPublic ?? true) ? user.section : null,
+  }));
+
+  return NextResponse.json({
+    leaderboard: rankedUsers,
+    total: rankedUsers.length,
+    window: windowParam,
+    province,
+    gameType,
+    source: "all",
+  });
+}
 
 /**
  * GET /api/leaderboard
@@ -39,6 +126,17 @@ export async function GET(req: NextRequest) {
   const source = searchParams.get("source") || "all";
 
   try {
+    // Post-cutover: rank by the Store Points ledger (all plays, small numbers).
+    if (STORE_POINTS_ENABLED) {
+      return await storePointsLeaderboard({
+        limit,
+        offset,
+        windowParam,
+        province,
+        gameType,
+      });
+    }
+
     // Any active student who has scored shows up. Profile completeness
     // (school/province/grade) and isStatsPublic are NOT required — students who
     // played any game appear even with a bare profile. Per-field privacy flags

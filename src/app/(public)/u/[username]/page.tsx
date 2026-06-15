@@ -3,7 +3,10 @@ import type { Metadata } from "next";
 import { db } from "@/lib/db";
 import { users } from "@/db/schema/users";
 import { pointsLedger } from "@/db/schema/content";
+import { storePointEvents } from "@/db/schema/store-points";
 import { eq, and, sql, desc } from "drizzle-orm";
+import { STORE_POINTS_ENABLED } from "@/lib/store-points/award";
+import { getStoreBalances } from "@/lib/store-points/balance";
 import StudentProfileClient, { SerializableStudent } from "./StudentProfileClient";
 
 interface Props {
@@ -98,35 +101,72 @@ export default async function PublicStudentProfilePage({ params }: Props) {
 
   const student = result[0];
 
-  // 2. Fetch the ranked list to calculate the exact real-time leaderboard rank
-  const activeStudents = await db
-    .select({
-      username: users.username,
-    })
-    .from(users)
-    .where(sql`${users.isActive} = true AND ${users.role} = 'student'`)
-    .orderBy(desc(users.lifetimePoints), desc(users.highestScore));
-
-  const studentIndex = activeStudents.findIndex(
-    (u) => u.username.toLowerCase() === username.toLowerCase()
-  );
-  const rank = studentIndex !== -1 ? studentIndex + 1 : 99;
-
-  // 2b. Per-game-mode breakdown (points + plays per GameKit game type)
+  // Post-cutover: the public number is Store Points lifetime-earned, the rank is
+  // by that same ledger, and the breakdown comes from store_point_events.
+  let rank = 99;
   let gameStats: { gameType: string; points: number; plays: number }[] = [];
-  try {
-    gameStats = await db
+
+  if (STORE_POINTS_ENABLED) {
+    // Show the small Store Points number instead of the legacy thousands.
+    const balances = await getStoreBalances(student.id);
+    student.lifetimePoints = balances.lifetimeEarned;
+
+    // Rank by lifetime-earned Store Points (delta > 0), students only.
+    const lifetimeExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = ${users.id} AND spe.delta > 0), 0)::int`;
+    const ranked = await db
+      .select({ username: users.username })
+      .from(users)
+      .where(sql`${users.isActive} = true AND ${users.role} = 'student'`)
+      .orderBy(desc(lifetimeExpr), desc(users.highestScore));
+    const idx = ranked.findIndex(
+      (u) => u.username.toLowerCase() === username.toLowerCase()
+    );
+    rank = idx !== -1 ? idx + 1 : 99;
+
+    try {
+      gameStats = await db
+        .select({
+          gameType: storePointEvents.gameType,
+          points: sql<number>`COALESCE(SUM(CASE WHEN ${storePointEvents.delta} > 0 THEN ${storePointEvents.delta} ELSE 0 END), 0)::int`,
+          plays: sql<number>`COUNT(*)::int`,
+        })
+        .from(storePointEvents)
+        .where(and(eq(storePointEvents.userId, student.id), eq(storePointEvents.reason, "play")))
+        .groupBy(storePointEvents.gameType)
+        .orderBy(desc(sql`COALESCE(SUM(CASE WHEN ${storePointEvents.delta} > 0 THEN ${storePointEvents.delta} ELSE 0 END), 0)`));
+    } catch {
+      // Ledger not available yet — empty breakdown.
+    }
+  } else {
+    // 2. Legacy ranked list for the exact real-time leaderboard rank.
+    const activeStudents = await db
       .select({
-        gameType: pointsLedger.gameType,
-        points: sql<number>`COALESCE(SUM(${pointsLedger.points}), 0)::int`,
-        plays: sql<number>`COUNT(*)::int`,
+        username: users.username,
       })
-      .from(pointsLedger)
-      .where(eq(pointsLedger.userId, student.id))
-      .groupBy(pointsLedger.gameType)
-      .orderBy(desc(sql`COALESCE(SUM(${pointsLedger.points}), 0)`));
-  } catch {
-    // Ledger table not available yet — fall back to empty list
+      .from(users)
+      .where(sql`${users.isActive} = true AND ${users.role} = 'student'`)
+      .orderBy(desc(users.lifetimePoints), desc(users.highestScore));
+
+    const studentIndex = activeStudents.findIndex(
+      (u) => u.username.toLowerCase() === username.toLowerCase()
+    );
+    rank = studentIndex !== -1 ? studentIndex + 1 : 99;
+
+    // 2b. Per-game-mode breakdown (points + plays per GameKit game type)
+    try {
+      gameStats = await db
+        .select({
+          gameType: pointsLedger.gameType,
+          points: sql<number>`COALESCE(SUM(${pointsLedger.points}), 0)::int`,
+          plays: sql<number>`COUNT(*)::int`,
+        })
+        .from(pointsLedger)
+        .where(eq(pointsLedger.userId, student.id))
+        .groupBy(pointsLedger.gameType)
+        .orderBy(desc(sql`COALESCE(SUM(${pointsLedger.points}), 0)`));
+    } catch {
+      // Ledger table not available yet — fall back to empty list
+    }
   }
 
   // 3. Serialize Date objects to strings to pass cleanly as client-side props

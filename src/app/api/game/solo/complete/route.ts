@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { calculateScore, PLAY_LIMITS } from "@/lib/game-engine";
+import { awardStorePoints } from "@/lib/store-points/award";
 import { db } from "@/lib/db";
 import { gameScores, pointsLedger } from "@/db/schema/content";
 import { users, classEnrollments, classes } from "@/db/schema/users";
@@ -185,18 +186,38 @@ export async function POST(req: NextRequest) {
   // never insert a zero-point ledger row.
   if (session?.id && session.role === "student") {
     try {
-      await db.insert(gameScores).values({
-        userId: session.id,
-        gameMode,
-        score: rawScore,                          // raw score stored for display/audit
-        totalQuestions: answerInputs.length,
-        correctAnswers: correctCount,
-        timeTaken: timeTakenSeconds,
-        categoryBreakdown: JSON.stringify(perQuestion),
-        scoreDifference: 0,                        // solo records at full value now
-        scoreType: "solo",
-        gameType: gameMode,
-      });
+      const [scoreRow] = await db
+        .insert(gameScores)
+        .values({
+          userId: session.id,
+          gameMode,
+          score: rawScore,                          // raw score stored for display/audit
+          totalQuestions: answerInputs.length,
+          correctAnswers: correctCount,
+          timeTaken: timeTakenSeconds,
+          categoryBreakdown: JSON.stringify(perQuestion),
+          scoreDifference: 0,                        // solo records at full value now
+          scoreType: "solo",
+          gameType: gameMode,
+        })
+        .returning({ id: gameScores.id });
+
+      // Store Points: one capped credit per play (inert until cutover; the guard
+      // in awardStorePoints short-circuits when STORE_POINTS_ENABLED is off). Runs
+      // in parallel with the legacy solo ledger above.
+      try {
+        await awardStorePoints({
+          userId: session.id,
+          gameType: gameMode,
+          attemptId: scoreRow ? String(scoreRow.id) : null,
+          correctUnits: correctCount,
+          totalUnits: answerInputs.length,
+          valid: true,
+          idempotencyKey: `${session.id}:${gameMode}:${scoreRow?.id ?? rawScore}`,
+        });
+      } catch (err) {
+        console.error("[solo/complete] store-points award failed:", err);
+      }
 
       // source="solo" → its OWN board column; excluded from claimable balance and
       // from lifetimePoints (live priority points only). Skip zero-point runs.

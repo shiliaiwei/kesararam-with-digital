@@ -3,6 +3,8 @@ import { db } from "@/lib/db";
 import { users } from "@/db/schema/users";
 import { eq, and, sql, desc } from "drizzle-orm";
 import { getAvatarFaceStyle } from "@/lib/utils";
+import { STORE_POINTS_ENABLED } from "@/lib/store-points/award";
+import { getStoreBalances } from "@/lib/store-points/balance";
 
 export const runtime = "nodejs";
 
@@ -81,19 +83,37 @@ export default async function Image({ params }: { params: Promise<{ username: st
 
   const student = result[0];
 
-  // 2. Fetch the ranked list to calculate ranking
-  const activeStudents = await db
-    .select({
-      username: users.username,
-    })
-    .from(users)
-    .where(sql`${users.isActive} = true AND ${users.role} = 'student'`)
-    .orderBy(desc(users.lifetimePoints), desc(users.highestScore));
+  // Post-cutover: the card shows Store Points lifetime-earned and ranks by it.
+  let activeStudents: { username: string }[];
+  if (STORE_POINTS_ENABLED) {
+    const balances = await getStoreBalances(student.id);
+    student.lifetimePoints = balances.lifetimeEarned;
+    const lifetimeExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = ${users.id} AND spe.delta > 0), 0)::int`;
+    activeStudents = await db
+      .select({ username: users.username })
+      .from(users)
+      .where(sql`${users.isActive} = true AND ${users.role} = 'student'`)
+      .orderBy(desc(lifetimeExpr), desc(users.highestScore));
+  } else {
+    // 2. Legacy ranked list for ranking.
+    activeStudents = await db
+      .select({
+        username: users.username,
+      })
+      .from(users)
+      .where(sql`${users.isActive} = true AND ${users.role} = 'student'`)
+      .orderBy(desc(users.lifetimePoints), desc(users.highestScore));
+  }
 
   const studentIndex = activeStudents.findIndex(
     (u) => u.username.toLowerCase() === username.toLowerCase()
   );
   const rank = studentIndex !== -1 ? studentIndex + 1 : 99;
+
+  // Tier thresholds follow the active economy's scale (small numbers post-cutover).
+  const TIER = STORE_POINTS_ENABLED
+    ? { mythic: 1500, diamond: 700, platinum: 350, gold: 150, debut: 50 }
+    : { mythic: 10000, diamond: 5000, platinum: 2500, gold: 1000, debut: 300 };
 
   const name = student.displayName || student.username;
   const gradeVal = student.gradeLevel ? student.gradeLevel.replace(/\D/g, '') : String((student.id % 10) + 3);
@@ -102,21 +122,21 @@ export default async function Image({ params }: { params: Promise<{ username: st
   // Determinate rank tier badge name
   const tierName = (() => {
     const pts = student.lifetimePoints;
-    if (pts >= 10000) return "MYTHIC";
-    if (pts >= 5000) return "DIAMOND";
-    if (pts >= 2500) return "PLATINUM";
-    if (pts >= 1000) return "GOLD";
-    if (pts >= 300) return "DEBUT";
+    if (pts >= TIER.mythic) return "MYTHIC";
+    if (pts >= TIER.diamond) return "DIAMOND";
+    if (pts >= TIER.platinum) return "PLATINUM";
+    if (pts >= TIER.gold) return "GOLD";
+    if (pts >= TIER.debut) return "DEBUT";
     return "ROOKIE";
   })();
 
   const tierColor = (() => {
     const pts = student.lifetimePoints;
-    if (pts >= 10000) return "#ec4899"; // pink
-    if (pts >= 5000) return "#06b6d4"; // cyan
-    if (pts >= 2500) return "#3b82f6"; // blue
-    if (pts >= 1000) return "#eab308"; // yellow
-    if (pts >= 300) return "#22c55e"; // green
+    if (pts >= TIER.mythic) return "#ec4899"; // pink
+    if (pts >= TIER.diamond) return "#06b6d4"; // cyan
+    if (pts >= TIER.platinum) return "#3b82f6"; // blue
+    if (pts >= TIER.gold) return "#eab308"; // yellow
+    if (pts >= TIER.debut) return "#22c55e"; // green
     return "#71717a"; // zinc
   })();
 
