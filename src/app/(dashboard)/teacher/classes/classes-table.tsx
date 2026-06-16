@@ -40,10 +40,8 @@ interface ClassRow {
   createdAt: Date;
   teacherName: string | null;
   teacherEmail: string | null;
-  gradeLevel: string | null;
   schoolName: string | null;
   province: string | null;
-  section: string | null;
   status: string | null;
 }
 
@@ -73,16 +71,6 @@ const CAMBODIA_PROVINCES = [
   { en: "Svay Rieng", kh: "ស្វាយរៀង" },
   { en: "Takeo", kh: "តាកែវ" },
   { en: "Tboung Khmum", kh: "ត្បូងឃ្មុំ" },
-];
-
-const GRADES = [
-  { en: "Grade 6", kh: "ថ្នាក់ទី ៦" },
-  { en: "Grade 7", kh: "ថ្នាក់ទី ៧" },
-  { en: "Grade 8", kh: "ថ្នាក់ទី ៨" },
-  { en: "Grade 9", kh: "ថ្នាក់ទី ៩" },
-  { en: "Grade 10", kh: "ថ្នាក់ទី ១០" },
-  { en: "Grade 11", kh: "ថ្នាក់ទី ១១" },
-  { en: "Grade 12", kh: "ថ្នាក់ទី ១២" },
 ];
 
 function CreateClassDialog({
@@ -124,7 +112,7 @@ function CreateClassDialog({
           <DialogHeader>
             <DialogTitle className="text-2xl font-black uppercase tracking-tight font-google-sans">{kh ? "បង្កើតថ្នាក់រៀន" : "Create Class"}</DialogTitle>
             <DialogDescription className="text-sm font-bold text-zinc-500">
-              {kh ? "សិស្សត្រូវតែផ្ទៀងផ្ទាត់សាលា ខេត្ត និងកម្រិតថ្នាក់ ដើម្បីចូលរួមដោយស្វ័យប្រវត្តិ។" : "Students must match the school, province, and grade details to auto-join."}
+              {kh ? "សិស្សត្រូវតែផ្ទៀងផ្ទាត់សាលា និងខេត្ត ដើម្បីចូលរួមដោយស្វ័យប្រវត្តិ។" : "Students must match the school and province details to auto-join."}
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-2">
@@ -150,51 +138,21 @@ function CreateClassDialog({
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
-              <div className="grid gap-1.5">
-                <Label htmlFor="province" className="text-xs font-black uppercase tracking-widest">Province / ខេត្ត *</Label>
-                <BrandSelect
-                  id="province"
-                  name="province"
-                  required
-                  defaultValue=""
-                  fullWidth
-                  ariaLabel={kh ? "ខេត្ត" : "Province"}
-                  placeholder={kh ? "ជ្រើសរើសខេត្ត" : "Select Province"}
-                  className="px-3 py-2 text-sm"
-                  options={CAMBODIA_PROVINCES.map((prov) => ({
-                    value: prov.en,
-                    label: kh ? prov.kh : prov.en,
-                  }))}
-                />
-              </div>
-
-              <div className="grid gap-1.5">
-                <Label htmlFor="grade" className="text-xs font-black uppercase tracking-widest">Grade / ថ្នាក់ *</Label>
-                <BrandSelect
-                  id="grade"
-                  name="gradeLevel"
-                  required
-                  defaultValue=""
-                  fullWidth
-                  ariaLabel={kh ? "កម្រិតថ្នាក់" : "Grade"}
-                  placeholder={kh ? "ជ្រើសរើសកម្រិតថ្នាក់" : "Select Grade"}
-                  className="px-3 py-2 text-sm"
-                  options={GRADES.map((gr) => ({
-                    value: gr.en,
-                    label: kh ? gr.kh : gr.en,
-                  }))}
-                />
-              </div>
-            </div>
-
             <div className="grid gap-1.5">
-              <Label htmlFor="section" className="text-xs font-black uppercase tracking-widest">Section / វេន (Optional)</Label>
-              <Input
-                id="section"
-                name="section"
-                placeholder="e.g. Morning A / Group 1"
-                className="border-2 border-black rounded-none focus:outline-none focus:ring-0 focus:shadow-[2px_2px_0_#000]"
+              <Label htmlFor="province" className="text-xs font-black uppercase tracking-widest">Province / ខេត្ត *</Label>
+              <BrandSelect
+                id="province"
+                name="province"
+                required
+                defaultValue=""
+                fullWidth
+                ariaLabel={kh ? "ខេត្ត" : "Province"}
+                placeholder={kh ? "ជ្រើសរើសខេត្ត" : "Select Province"}
+                className="px-3 py-2 text-sm"
+                options={CAMBODIA_PROVINCES.map((prov) => ({
+                  value: prov.en,
+                  label: kh ? prov.kh : prov.en,
+                }))}
               />
             </div>
 
@@ -267,7 +225,6 @@ export function ClassesTable({
             <TableRow>
               <TableHead className="font-black text-black text-xs uppercase tracking-widest font-google-sans">{kh ? "ព័ត៌មានលម្អិតថ្នាក់" : "Class Details"}</TableHead>
               <TableHead className="font-black text-black text-xs uppercase tracking-widest hidden md:table-cell font-google-sans">{kh ? "សាលារៀន / ទីតាំង" : "School / Location"}</TableHead>
-              <TableHead className="font-black text-black text-xs uppercase tracking-widest hidden sm:table-cell font-google-sans">{kh ? "ថ្នាក់" : "Grade"}</TableHead>
               <TableHead className="font-black text-black text-xs uppercase tracking-widest font-google-sans">{kh ? "លេខកូដចូលរួម" : "Join Code"}</TableHead>
               <TableHead className="font-black text-black text-xs uppercase tracking-widest font-google-sans">{kh ? "ស្ថានភាព" : "Status"}</TableHead>
               {showTeacher && (
@@ -278,12 +235,9 @@ export function ClassesTable({
           </TableHeader>
           <TableBody>
             {classes.map((c) => {
-              const displayProvince = kh 
+              const displayProvince = kh
                 ? (CAMBODIA_PROVINCES.find(p => p.en === c.province)?.kh || c.province)
                 : c.province;
-              const displayGrade = kh 
-                ? (GRADES.find(g => g.en === c.gradeLevel)?.kh || c.gradeLevel)
-                : c.gradeLevel;
               const displayStatus = c.status === "locked"
                 ? (kh ? "បានចាក់សោ" : "locked")
                 : c.status === "archived"
@@ -296,11 +250,6 @@ export function ClassesTable({
                     <Link href={`/teacher/classes/${c.id}`} className="font-black text-sm text-blue-600 hover:underline">
                       {c.name}
                     </Link>
-                    {c.section && (
-                      <span className="block text-[11px] font-bold text-zinc-400 uppercase mt-0.5">
-                        {kh ? "វេន" : "Section"}: {c.section}
-                      </span>
-                    )}
                   </TableCell>
                   <TableCell className="hidden md:table-cell font-bold text-zinc-700">
                     {c.schoolName ? (
@@ -308,15 +257,6 @@ export function ClassesTable({
                         <div>{c.schoolName}</div>
                         <div className="text-xs text-zinc-400 font-bold uppercase">{displayProvince}</div>
                       </>
-                    ) : (
-                      <span className="text-zinc-300">—</span>
-                    )}
-                  </TableCell>
-                  <TableCell className="hidden sm:table-cell">
-                    {c.gradeLevel ? (
-                      <span className="inline-block px-2.5 py-0.5 text-xs font-black bg-purple-100 text-purple-700 border border-purple-300">
-                        {displayGrade}
-                      </span>
                     ) : (
                       <span className="text-zinc-300">—</span>
                     )}
@@ -377,7 +317,7 @@ export function ClassesTable({
             {classes.length === 0 && (
               <TableRow>
                 <TableCell
-                  colSpan={showTeacher ? 7 : 6}
+                  colSpan={showTeacher ? 6 : 5}
                   className="text-center text-zinc-400 py-12 text-sm font-bold uppercase tracking-wider font-google-sans"
                 >
                   {kh ? "មិនទាន់មានថ្នាក់នៅឡើយទេ។ បង្កើតមួយដើម្បីចាប់ផ្តើម។" : "No classes yet. Create one to get started."}

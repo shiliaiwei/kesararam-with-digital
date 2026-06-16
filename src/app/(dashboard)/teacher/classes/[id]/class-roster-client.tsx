@@ -5,7 +5,7 @@ import Link from "next/link";
 import { assignStudentAction, removeStudentAction, updateClassControlAction, updateClassDetailsAction } from "@/app/actions/enrollment";
 import { toast } from "sonner";
 import {
-  ArrowLeft, Users, School, Calendar, Lock, Unlock,
+  ArrowLeft, Users, School, Lock, Unlock,
   RefreshCw, Trash2, ShieldCheck, ShieldAlert, CheckCircle2, XCircle,
   Pencil, Copy, Check, Save, X
 } from "lucide-react";
@@ -17,8 +17,6 @@ interface StudentRoster {
   email: string;
   schoolName: string;
   province: string;
-  gradeLevel: string;
-  section: string;
   lifetimePoints: number;
   enrolledAt: Date;
 }
@@ -29,8 +27,6 @@ interface ClassDetails {
   code: string;
   schoolName: string;
   province: string;
-  gradeLevel: string;
-  section: string;
   status: string;
   createdAt: Date;
   nameChangedCount: number;
@@ -39,7 +35,6 @@ interface ClassDetails {
 interface VerificationErrorDetails {
   school: { student: string; class: string; match: boolean };
   province: { student: string; class: string; match: boolean };
-  grade: { student: string; class: string; match: boolean };
 }
 
 export function ClassRosterClient({
@@ -58,13 +53,11 @@ export function ClassRosterClient({
   const [pendingAdd, startAddTransition] = useTransition();
   const [pendingControl, startControlTransition] = useTransition();
 
-  // Edit class name + grade
+  // Edit class name + location
   const [editing, setEditing] = useState(false);
   const [editName, setEditName] = useState(cls.name);
-  const [editGrade, setEditGrade] = useState(cls.gradeLevel);
   const [editSchool, setEditSchool] = useState(cls.schoolName);
   const [editProvince, setEditProvince] = useState(cls.province);
-  const [editSection, setEditSection] = useState(cls.section);
   const [pendingEdit, startEditTransition] = useTransition();
   const [copied, setCopied] = useState(false);
 
@@ -81,25 +74,21 @@ export function ClassRosterClient({
 
   function startEdit() {
     setEditName(cls.name);
-    setEditGrade(cls.gradeLevel);
     setEditSchool(cls.schoolName);
     setEditProvince(cls.province);
-    setEditSection(cls.section);
     setEditing(true);
   }
 
   function saveEdit() {
     const name = editName.trim();
-    const gradeLevel = editGrade.trim();
     const schoolName = editSchool.trim();
     const province = editProvince.trim();
-    const section = editSection.trim();
     if (!name) {
       toast.error("Class name cannot be empty.");
       return;
     }
     startEditTransition(async () => {
-      const res = await updateClassDetailsAction(cls.id, { name, gradeLevel, schoolName, province, section });
+      const res = await updateClassDetailsAction(cls.id, { name, schoolName, province });
       if (res?.error) {
         toast.error(res.error);
       } else if (res?.success) {
@@ -107,10 +96,8 @@ export function ClassRosterClient({
         setCls((prev) => ({
           ...prev,
           name,
-          gradeLevel,
           schoolName,
           province,
-          section,
           nameChangedCount: nameChanged ? prev.nameChangedCount + 1 : prev.nameChangedCount,
         }));
         setEditing(false);
@@ -217,17 +204,6 @@ export function ClassRosterClient({
                     : `Name changes used: ${cls.nameChangedCount} / 2`}
                 </span>
               </div>
-              <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Grade Level / កម្រិតថ្នាក់</label>
-                <input
-                  value={editGrade}
-                  onChange={(e) => setEditGrade(e.target.value)}
-                  maxLength={40}
-                  placeholder="e.g. Grade 12"
-                  disabled={pendingEdit}
-                  className="w-full max-w-xs px-3 py-2 border-2 border-black rounded-none text-sm font-bold focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-zinc-100"
-                />
-              </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl">
                 <div className="flex flex-col gap-1">
                   <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400">School Name / ឈ្មោះសាលា</label>
@@ -247,17 +223,6 @@ export function ClassRosterClient({
                     onChange={(e) => setEditProvince(e.target.value)}
                     maxLength={80}
                     placeholder="e.g. Siem Reap"
-                    disabled={pendingEdit}
-                    className="w-full px-3 py-2 border-2 border-black rounded-none text-sm font-bold focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-zinc-100"
-                  />
-                </div>
-                <div className="flex flex-col gap-1">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Section / ផ្នែក</label>
-                  <input
-                    value={editSection}
-                    onChange={(e) => setEditSection(e.target.value)}
-                    maxLength={40}
-                    placeholder="e.g. A"
                     disabled={pendingEdit}
                     className="w-full px-3 py-2 border-2 border-black rounded-none text-sm font-bold focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-zinc-100"
                   />
@@ -289,13 +254,13 @@ export function ClassRosterClient({
                 <button
                   onClick={startEdit}
                   className="p-2 border-2 border-black bg-white hover:bg-zinc-100 shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] transition-all"
-                  title="Edit class name & grade / កែឈ្មោះ និងថ្នាក់"
+                  title="Edit class name & location / កែឈ្មោះ និងទីតាំង"
                 >
                   <Pencil size={16} />
                 </button>
               </div>
               <p className="text-sm font-bold text-zinc-500 uppercase mt-1">
-                {cls.schoolName} · {cls.province} · {cls.gradeLevel} {cls.section ? `(${cls.section})` : ""}
+                {cls.schoolName} · {cls.province}
               </p>
             </div>
           )}
@@ -340,16 +305,6 @@ export function ClassRosterClient({
           </div>
           <div className="w-10 h-10 border-2 border-black bg-blue-400 flex items-center justify-center shadow-[2px_2px_0_#000]">
             <Users size={20} className="text-black" />
-          </div>
-        </div>
-
-        <div className="border-2 border-black bg-white p-5 shadow-[4px_4px_0_#000] flex items-center justify-between">
-          <div>
-            <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400">Grade Level / កម្រិតថ្នាក់</span>
-            <h2 className="text-2xl font-black text-black mt-1 uppercase">{cls.gradeLevel || "N/A"}</h2>
-          </div>
-          <div className="w-10 h-10 border-2 border-black bg-purple-400 flex items-center justify-center shadow-[2px_2px_0_#000]">
-            <Calendar size={20} className="text-black" />
           </div>
         </div>
 
@@ -401,7 +356,7 @@ export function ClassRosterClient({
                       </td>
                       <td className="px-4 py-3 hidden sm:table-cell font-bold text-zinc-500 text-xs">
                         <div>{student.schoolName}</div>
-                        <div className="text-[10px] text-zinc-400 font-black uppercase">{student.province} · {student.gradeLevel}</div>
+                        <div className="text-[10px] text-zinc-400 font-black uppercase">{student.province}</div>
                       </td>
                       <td className="px-4 py-3 text-center font-black font-mono">
                         {student.lifetimePoints ?? 0}

@@ -45,8 +45,6 @@ async function fetchClassProfile(classId: number) {
       name: classes.name,
       schoolName: classes.schoolName,
       province: classes.province,
-      gradeLevel: classes.gradeLevel,
-      section: classes.section,
       teacherId: classes.teacherId,
       code: classes.code,
       status: classes.status,
@@ -110,11 +108,9 @@ export async function createClass(formData: FormData) {
   const name = readText(formData, "name");
   const schoolName = readText(formData, "schoolName");
   const province = readText(formData, "province");
-  const gradeLevel = readText(formData, "gradeLevel");
-  const section = readText(formData, "section") || null;
 
-  if (!name || !gradeLevel || !schoolName || !province) {
-    return { error: "Class name, grade, school, and province are required." };
+  if (!name || !schoolName || !province) {
+    return { error: "Class name, school, and province are required." };
   }
 
   const code = randomCode(6);
@@ -124,8 +120,6 @@ export async function createClass(formData: FormData) {
       name,
       schoolName,
       province,
-      gradeLevel,
-      section,
       teacherId: session.id,
       code,
       status: "active",
@@ -170,8 +164,6 @@ export async function getTeacherClasses() {
     name: classes.name,
     schoolName: classes.schoolName,
     province: classes.province,
-    gradeLevel: classes.gradeLevel,
-    section: classes.section,
     code: classes.code,
     createdAt: classes.createdAt,
     status: classes.status,
@@ -320,8 +312,6 @@ export async function autoAssignStudentToMatchingClass(studentId: number, enroll
       name: classes.name,
       schoolName: classes.schoolName,
       province: classes.province,
-      gradeLevel: classes.gradeLevel,
-      section: classes.section,
       teacherId: classes.teacherId,
       code: classes.code,
       status: classes.status,

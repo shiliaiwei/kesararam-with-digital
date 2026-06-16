@@ -76,8 +76,6 @@ export function CompleteProfileForm({
     className: string;
     schoolName: string | null;
     province: string | null;
-    gradeLevel: string | null;
-    section: string | null;
   } | null>(null);
   const [lookupLoading, setLookupLoading] = useState(false);
   const [lookupError, setLookupError] = useState("");
@@ -506,16 +504,6 @@ export function CompleteProfileForm({
                         <span className="text-zinc-400 block uppercase text-[9px] tracking-wider">Province / ខេត្ត-ក្រុង</span>
                         <span className="text-black text-sm">{resolvedClass.province || "—"}</span>
                       </div>
-                      <div>
-                        <span className="text-zinc-400 block uppercase text-[9px] tracking-wider">Grade / ថ្នាក់ទី</span>
-                        <span className="text-black text-sm">{resolvedClass.gradeLevel || "—"}</span>
-                      </div>
-                      {resolvedClass.section && (
-                        <div className="col-span-2 border-t border-green-200/30 pt-2">
-                          <span className="text-zinc-400 block uppercase text-[9px] tracking-wider">Section / វេនសិក្សា</span>
-                          <span className="text-black text-sm">{resolvedClass.section}</span>
-                        </div>
-                      )}
                     </div>
                   </div>
                 ) : joinOnly ? (

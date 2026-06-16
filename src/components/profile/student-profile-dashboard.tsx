@@ -31,8 +31,6 @@ interface StudentProfileDashboardProps {
   lifetimePoints: number;
   studentClassInfo: {
     className: string;
-    section: string | null;
-    gradeLevel: string | null;
     schoolName: string | null;
     province: string | null;
     teacherName: string | null;
@@ -516,7 +514,6 @@ export function StudentProfileDashboard({
                   <div className="bg-gray-50 px-4 py-3">
                     <p className="text-base font-black text-blue-600">
                       {studentClassInfo.className}
-                      {studentClassInfo.section ? ` (${studentClassInfo.section})` : ""}
                     </p>
                   </div>
                   <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-xs">
@@ -524,7 +521,6 @@ export function StudentProfileDashboard({
                       [kh ? "សាលារៀន" : "School", studentClassInfo.schoolName],
                       [kh ? "ខេត្ត" : "Province", studentClassInfo.province],
                       [kh ? "គ្រូបង្រៀន" : "Teacher", studentClassInfo.teacherName ?? "—"],
-                      [kh ? "ថ្នាក់" : "Grade", studentClassInfo.gradeLevel],
                     ] as [string, string | null][]).map(([lbl, val]) => (
                       <div key={lbl}>
                         <p className="text-[9px] font-black uppercase tracking-widest text-gray-400 mb-0.5" style={kf}>{lbl}</p>

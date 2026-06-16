@@ -351,7 +351,7 @@ export default function HostPage() {
   const [copied, setCopied] = useState(false);
   const [controlling, setControlling] = useState(false);
   const [maxPlayers, setMaxPlayers] = useState(50);
-  const [teacherClasses, setTeacherClasses] = useState<{ id: number; name: string; gradeLevel: string | null; section: string | null; status: string }[]>([]);
+  const [teacherClasses, setTeacherClasses] = useState<{ id: number; name: string; status: string }[]>([]);
   const [selectedClassId, setSelectedClassId] = useState<number | null>(null);
   const [lobbyParticipants, setLobbyParticipants] = useState<ParticipantInfo[]>([]);
   const [questionCount, setQuestionCount] = useState(10);
@@ -419,8 +419,6 @@ export default function HostPage() {
           (rows ?? []).map((c: any) => ({
             id: c.id,
             name: c.name,
-            gradeLevel: c.gradeLevel ?? null,
-            section: c.section ?? null,
             status: c.status ?? "active",
           }))
         );
@@ -1283,11 +1281,6 @@ export default function HostPage() {
                           }`}
                         style={{ borderRadius: "0px", ...khFont }}>
                         {c.name}
-                        {(c.gradeLevel || c.section) && (
-                          <span className="ml-1 text-[11px] font-bold text-zinc-400">
-                            · {[c.gradeLevel, c.section].filter(Boolean).join(" ")}
-                          </span>
-                        )}
                       </button>
                     ))}
                   {teacherClasses.filter((c) => c.status !== "archived").length === 0 && (

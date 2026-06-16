@@ -63,8 +63,6 @@ export const classes = pgTable("classes", {
   name: text("name").notNull(),
   schoolName: text("school_name"),
   province: text("province"),
-  gradeLevel: text("grade_level"),
-  section: text("section"),
   teacherId: integer("teacher_id")
     .notNull()
     .references(() => users.id),

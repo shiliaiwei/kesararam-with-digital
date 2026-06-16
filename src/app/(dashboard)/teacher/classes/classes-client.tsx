@@ -11,10 +11,8 @@ interface ClassRow {
   createdAt: Date;
   teacherName: string | null;
   teacherEmail: string | null;
-  gradeLevel: string | null;
   schoolName: string | null;
   province: string | null;
-  section: string | null;
   status: string | null;
 }
 

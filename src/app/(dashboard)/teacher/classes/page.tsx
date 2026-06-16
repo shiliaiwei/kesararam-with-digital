@@ -22,10 +22,8 @@ export default async function TeacherClassesPage() {
         createdAt: c.createdAt,
         teacherName: c.teacherName ?? null,
         teacherEmail: c.teacherEmail ?? null,
-        gradeLevel: c.gradeLevel ?? null,
         schoolName: c.schoolName ?? null,
         province: c.province ?? null,
-        section: c.section ?? null,
         status: c.status ?? null,
       }))}
       role={session.role}

@@ -63,8 +63,6 @@ export default async function ClassDetailPage({
         code: cls.code,
         schoolName: cls.schoolName ?? "",
         province: cls.province ?? "",
-        gradeLevel: cls.gradeLevel ?? "",
-        section: cls.section ?? "",
         status: cls.status ?? "active",
         createdAt: cls.createdAt,
         nameChangedCount: cls.nameChangedCount ?? 0,
@@ -76,9 +74,6 @@ export default async function ClassDetailPage({
         email: s.email,
         schoolName: s.schoolName ?? "",
         province: s.province ?? "",
-        // Grade/section are class-level now (students no longer carry their own).
-        gradeLevel: cls.gradeLevel ?? "",
-        section: cls.section ?? "",
         lifetimePoints: s.lifetimePoints,
         enrolledAt: s.enrolledAt,
       }))}

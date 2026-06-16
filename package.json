@@ -22,6 +22,7 @@
     "db:migrate-reward-claims": "tsx scripts/migrate-reward-claims.ts",
     "db:migrate-store-points": "tsx scripts/migrate-store-points.ts",
     "db:migrate-drop-student-fields": "tsx scripts/migrate-drop-student-fields.ts",
+    "db:migrate-drop-class-fields": "tsx scripts/migrate-drop-class-fields.ts",
     "db:verify": "tsx scripts/verify-migration.ts",
     "db:reset-scores": "tsx scripts/reset-scores.ts",
     "studio": "node node_modules/drizzle-kit/bin.cjs studio",

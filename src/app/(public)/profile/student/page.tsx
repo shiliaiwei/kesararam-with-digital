@@ -186,8 +186,6 @@ export default async function StudentProfilePage({
   // Fetch student class details
   let studentClassInfo: {
     className: string;
-    section: string | null;
-    gradeLevel: string | null;
     schoolName: string | null;
     province: string | null;
     teacherName: string | null;
@@ -197,8 +195,6 @@ export default async function StudentProfilePage({
     const classResult = await db
       .select({
         className: classes.name,
-        section: classes.section,
-        gradeLevel: classes.gradeLevel,
         schoolName: classes.schoolName,
         province: classes.province,
         teacherName: users.displayName,
@@ -212,8 +208,6 @@ export default async function StudentProfilePage({
     if (classResult && classResult.length > 0) {
       studentClassInfo = {
         className: classResult[0].className,
-        section: classResult[0].section,
-        gradeLevel: classResult[0].gradeLevel,
         schoolName: classResult[0].schoolName,
         province: classResult[0].province,
         teacherName: classResult[0].teacherName,

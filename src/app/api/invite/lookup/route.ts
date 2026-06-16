@@ -92,8 +92,6 @@ export async function GET(request: NextRequest) {
         className: classDetails.name,
         schoolName: classDetails.schoolName,
         province: classDetails.province,
-        gradeLevel: classDetails.gradeLevel,
-        section: classDetails.section,
       }
     });
 
