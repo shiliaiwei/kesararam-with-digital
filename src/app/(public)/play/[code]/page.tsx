@@ -407,6 +407,12 @@ export default function StudentGamePage() {
               router.push("/profile/student");
               return;
             }
+            // Live sessions require a class link. Send the student to link a
+            // class with their teacher's code, then return to this game.
+            if (data.needsClass) {
+              router.push(`/profile/student?joinClass=1&redirect=/play/${code}`);
+              return;
+            }
           }
           setJoinError(sanitizeError(data.error) || "Failed to join session");
           setJoining(false);

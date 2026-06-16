@@ -337,12 +337,8 @@ function RegisterFormInner() {
           return;
         }
       } else {
-        const inviteCodeEl = document.getElementById("inviteCode") as HTMLInputElement;
-        const code = inviteCodeEl?.value?.trim() || "";
-        if (!code) {
-          setGoogleError(kh ? "សូមបញ្ចូលលេខកូដអញ្ជើញពីគ្រូ *" : "A teacher invite code is required for Google registration.");
-          return;
-        }
+        // Students: invite code is OPTIONAL — they can join a class later. Only
+        // school, province and grade are required to complete their profile.
         const gradeLevelEl = document.getElementById("gradeLevel") as HTMLSelectElement;
         if (!schoolNameEl?.value?.trim() || !provinceEl?.value || !gradeLevelEl?.value) {
           setGoogleError(kh ? "សូមបំពេញព័ត៌មានដែលចាំបាច់ទាំងអស់ *" : "Please fill in all required fields.");
@@ -417,17 +413,19 @@ function RegisterFormInner() {
     const inviteCodeEl = document.getElementById("inviteCode") as HTMLInputElement;
     const code = inviteCodeEl?.value?.trim() || "";
 
-    // Validate invite code
-    const { validateInviteCodeAction } = await import("@/app/actions/invites");
-    const validateRes = await validateInviteCodeAction(code);
-    if (validateRes.error) {
-      setGoogleError(validateRes.error);
-      return;
-    }
+    const params = new URLSearchParams();
 
-    const params = new URLSearchParams({
-      inviteCode: code,
-    });
+    // Invite code is optional. Only validate + forward it when the student
+    // actually entered one.
+    if (code) {
+      const { validateInviteCodeAction } = await import("@/app/actions/invites");
+      const validateRes = await validateInviteCodeAction(code);
+      if (validateRes.error) {
+        setGoogleError(validateRes.error);
+        return;
+      }
+      params.set("inviteCode", code);
+    }
 
     const gradeLevelEl = document.getElementById("gradeLevel") as HTMLSelectElement;
     const gradeLevel = gradeLevelEl?.value || "";
@@ -570,8 +568,8 @@ function RegisterFormInner() {
                   </p>
                   <p className="text-xs text-zinc-400 font-bold text-center leading-relaxed font-system">
                     {kh
-                      ? "* អ្នកនឹងត្រូវបំពេញព័ត៌មានគណនី និងបញ្ចូលលេខកូដអញ្ជើញបន្ទាប់ពីចុះឈ្មោះរួច។"
-                      : "* You will complete your profile details and invite code after signing up."}
+                      ? "* អ្នកនឹងបំពេញព័ត៌មានគណនីបន្ទាប់ពីចុះឈ្មោះ។ លេខកូដអញ្ជើញពីគ្រូគឺស្រេចចិត្ត — ចាំបាច់សម្រាប់តែការលេងផ្ទាល់ប៉ុណ្ណោះ។"
+                      : "* You'll complete your profile after signing up. A teacher invite code is optional — only needed for live games."}
                   </p>
 
                   {/* Error message */}
@@ -792,7 +790,7 @@ function RegisterFormInner() {
                     {!isTeacher && (
                       <div className="flex flex-col gap-1.5 text-left">
                         <label htmlFor="inviteCode" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
-                          {kh ? "លេខកូដអញ្ជើញពីគ្រូ *" : "Teacher Invite Code *"}
+                          {kh ? "លេខកូដអញ្ជើញពីគ្រូ (ស្រេចចិត្ត)" : "Teacher Invite Code (Optional)"}
                         </label>
                         <div className="relative flex items-center">
                           <Key className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
@@ -800,11 +798,15 @@ function RegisterFormInner() {
                             type="text"
                             id="inviteCode"
                             name="inviteCode"
-                            required
                             placeholder="KWD-XXXX-YYYY"
                             className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-black focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all placeholder:font-bold placeholder:text-zinc-300"
                           />
                         </div>
+                        <span className="text-[10px] text-zinc-400 font-bold leading-normal block">
+                          {kh
+                            ? "* មិនមានកូដ? អ្នកអាចលេងម្នាក់ឯង និងចូលរួមថ្នាក់រៀននៅពេលក្រោយ។ កូដចាំបាច់សម្រាប់តែការលេងផ្ទាល់ជាមួយគ្រូប៉ុណ្ណោះ។"
+                            : "* No code? You can play solo and join a class later. A code is only needed for live games with your teacher."}
+                        </span>
                       </div>
                     )}
 

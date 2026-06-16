@@ -20,7 +20,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function StudentProfilePage() {
+export default async function StudentProfilePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ joinClass?: string; redirect?: string }>;
+}) {
+  const sp = await searchParams;
   const session = await getSession();
   if (!session || session.role !== "student") redirect("/login");
 
@@ -92,20 +97,31 @@ export default async function StudentProfilePage() {
       return <CompleteProfileForm />;
     }
 
-    // Enforce class membership: a student who is not enrolled in any class
-    // (e.g. removed/kicked by a teacher, or never joined) must (re-)join with a
-    // class code before they can use their account to play.
-    try {
-      const enrollment = await db
-        .select({ id: classEnrollments.id })
-        .from(classEnrollments)
-        .where(eq(classEnrollments.studentId, session.id))
-        .limit(1);
-      if (!enrollment || enrollment.length === 0) {
-        return <CompleteProfileForm mustRejoin />;
+    // Class membership is OPTIONAL: a student can play solo and appear on the
+    // leaderboard without joining a class. A class link is only required to join
+    // a live teacher session. When the student is explicitly trying to link a
+    // class (e.g. redirected here after a live-join was blocked), show the
+    // join-class form; otherwise fall through to their dashboard.
+    if (sp?.joinClass) {
+      let hasClass = false;
+      try {
+        const enrollment = await db
+          .select({ id: classEnrollments.id })
+          .from(classEnrollments)
+          .where(eq(classEnrollments.studentId, session.id))
+          .limit(1);
+        hasClass = !!enrollment && enrollment.length > 0;
+      } catch (err) {
+        console.error("Failed to verify class enrollment:", err);
       }
-    } catch (err) {
-      console.error("Failed to verify class enrollment:", err);
+      if (!hasClass) {
+        return (
+          <CompleteProfileForm
+            joinOnly
+            redirectTo={typeof sp.redirect === "string" ? sp.redirect : "/play"}
+          />
+        );
+      }
     }
 
     // Try to get stats separately - these columns might not exist yet

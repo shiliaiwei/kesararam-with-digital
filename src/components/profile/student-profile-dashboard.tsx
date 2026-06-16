@@ -540,9 +540,18 @@ export function StudentProfileDashboard({
                   <p className="text-sm font-bold text-gray-500 mb-1" style={kf}>
                     {kh ? "អ្នកមិនទាន់ចុះឈ្មោះ" : "Not enrolled in a class yet."}
                   </p>
-                  <p className="text-xs text-gray-400" style={kf}>
-                    {kh ? "សូមស្នើសុំលេខកូដថ្នាក់ពីគ្រូ" : "Ask your teacher for a class code."}
+                  <p className="text-xs text-gray-400 mb-3" style={kf}>
+                    {kh
+                      ? "អ្នកអាចលេងម្នាក់ឯងបាន។ ការលេងផ្ទាល់ជាមួយគ្រូ ត្រូវការលេខកូដថ្នាក់។"
+                      : "You can play solo. Live games with a teacher need a class code."}
                   </p>
+                  <a
+                    href="/profile/student?joinClass=1"
+                    className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-black uppercase border-2 border-black bg-yellow-400 hover:bg-yellow-300 shadow-[3px_3px_0_#000] hover:shadow-[4px_4px_0_#000] active:shadow-none transition-all text-black"
+                    style={kf}
+                  >
+                    {kh ? "ចូលរួមថ្នាក់រៀន" : "Join a Class"}
+                  </a>
                 </div>
               )}
             </div>

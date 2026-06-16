@@ -44,7 +44,27 @@ const GRADES = [
   { en: "Grade 12", kh: "ថ្នាក់ទី ១២" },
 ];
 
-export function CompleteProfileForm({ mustRejoin = false }: { mustRejoin?: boolean }) {
+/**
+ * Student onboarding / class-linking form.
+ *
+ * Modes:
+ *  - default   → first profile setup. Invite code is OPTIONAL: a student can fill
+ *                school/province/grade manually and play solo, or paste a teacher
+ *                code to auto-fill + enroll in a class.
+ *  - mustRejoin → softer copy for a student prompted to (re)join a class.
+ *  - joinOnly  → focused class-link screen (code REQUIRED) for an already
+ *                onboarded student who needs a class to enter a live game.
+ *                On success they are sent to `redirectTo`.
+ */
+export function CompleteProfileForm({
+  mustRejoin = false,
+  joinOnly = false,
+  redirectTo,
+}: {
+  mustRejoin?: boolean;
+  joinOnly?: boolean;
+  redirectTo?: string;
+}) {
   const { lang } = useLang();
   const kh = lang === "kh";
 
@@ -141,16 +161,56 @@ export function CompleteProfileForm({ mustRejoin = false }: { mustRejoin?: boole
     fetchCurrent();
   }, []);
 
+  const finishSuccess = () => {
+    if (joinOnly && redirectTo) {
+      window.location.href = redirectTo;
+    } else {
+      // Reload to release the gate and show the dashboard.
+      window.location.reload();
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!inviteCode.trim()) {
-      setError(kh ? "សូមបញ្ចូលលេខកូដអញ្ជើញពីគ្រូ" : "Please enter your teacher invite code.");
+    setError("");
+
+    const code = inviteCode.trim();
+
+    // ── Join-only mode: a class code is REQUIRED ──────────────────────────────
+    if (joinOnly) {
+      if (!code) {
+        setError(kh ? "សូមបញ្ចូលលេខកូដអញ្ជើញពីគ្រូ" : "Please enter your teacher invite code.");
+        return;
+      }
+      if (!resolvedClass) {
+        setError(kh
+          ? "សូមបញ្ចូលលេខកូដអញ្ជើញដែលត្រឹមត្រូវ ដើម្បីទាញយកព័ត៌មានថ្នាក់ និងសាលារៀន"
+          : "Please enter a valid invitation code to resolve class details.");
+        return;
+      }
+
+      setLoading(true);
+      try {
+        const response = await fetch("/api/user/settings", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ inviteCode: code }),
+        });
+        if (!response.ok) {
+          const errData = await response.json();
+          throw new Error(errData.error || "Failed to join class");
+        }
+        finishSuccess();
+      } catch (err: any) {
+        console.error("Error joining class:", err);
+        setError(err.message || (kh ? "បានកើតកំហុស សូមព្យាយាមម្តងទៀត" : "Failed to join class. Please try again."));
+      } finally {
+        setLoading(false);
+      }
       return;
     }
-    if (!resolvedClass) {
-      setError(kh ? "សូមបញ្ចូលលេខកូដអញ្ជើញដែលត្រឹមត្រូវ ដើម្បីទាញយកព័ត៌មានថ្នាក់ និងសាលារៀន" : "Please enter a valid invitation code to resolve class details.");
-      return;
-    }
+
+    // ── Default onboarding mode: invite code is OPTIONAL ───────────────────────
     const usernameClean = username.trim().toLowerCase();
     if (!usernameClean || usernameClean.length < 3 || !/^[a-z0-9_]+$/.test(usernameClean)) {
       setError(kh
@@ -164,24 +224,52 @@ export function CompleteProfileForm({ mustRejoin = false }: { mustRejoin?: boole
       return;
     }
 
-    setLoading(true);
-    setError("");
+    // If a code was entered, it must resolve to a class before we submit it.
+    if (code && !resolvedClass) {
+      setError(kh
+        ? "សូមបញ្ចូលលេខកូដអញ្ជើញដែលត្រឹមត្រូវ ឬលុបវាចេញ ដើម្បីបន្តដោយគ្មានថ្នាក់រៀន។"
+        : "Enter a valid invitation code, or clear it to continue without a class.");
+      return;
+    }
 
+    // No code → the student must supply their own school/province/grade.
+    if (!code) {
+      if (!schoolName.trim() || !province || !gradeLevel) {
+        setError(kh
+          ? "សូមបំពេញ ឈ្មោះសាលារៀន ខេត្ត និងថ្នាក់ទី។"
+          : "Please fill in your School, Province, and Grade.");
+        return;
+      }
+    }
+
+    setLoading(true);
     try {
+      const payload: Record<string, any> = {
+        displayName: displayName.trim(),
+        username: usernameClean,
+        avatar: JSON.stringify({ face, head }),
+        isProfilePublic,
+      };
+
+      if (code && resolvedClass) {
+        // Joining a class: inherit the class's school details + enroll.
+        payload.inviteCode = code;
+        payload.schoolName = resolvedClass.schoolName || "";
+        payload.province = resolvedClass.province || "";
+        payload.gradeLevel = resolvedClass.gradeLevel || "";
+        payload.section = resolvedClass.section || null;
+      } else {
+        // Solo: save the student's own school details, no enrollment.
+        payload.schoolName = schoolName.trim();
+        payload.province = province;
+        payload.gradeLevel = gradeLevel;
+        payload.section = section.trim() || null;
+      }
+
       const response = await fetch("/api/user/settings", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          schoolName: resolvedClass.schoolName || "",
-          province: resolvedClass.province || "",
-          gradeLevel: resolvedClass.gradeLevel || "",
-          section: resolvedClass.section || null,
-          inviteCode: inviteCode.trim(),
-          displayName: displayName.trim(),
-          username: usernameClean,
-          avatar: JSON.stringify({ face, head }),
-          isProfilePublic,
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
@@ -189,8 +277,7 @@ export function CompleteProfileForm({ mustRejoin = false }: { mustRejoin?: boole
         throw new Error(errData.error || "Failed to save profile settings");
       }
 
-      // Success - reload the page to release the gate and show dashboard
-      window.location.reload();
+      finishSuccess();
     } catch (err: any) {
       console.error("Error completing profile:", err);
       setError(err.message || (kh ? "បានកើតកំហុសក្នុងការរក្សាទុកទិន្នន័យ" : "Failed to save profile details. Please try again."));
@@ -227,35 +314,49 @@ export function CompleteProfileForm({ mustRejoin = false }: { mustRejoin?: boole
     );
   }
 
+  const heading = joinOnly
+    ? (kh ? "ចូលរួមថ្នាក់រៀន ដើម្បីលេងផ្ទាល់" : "Join a Classroom for Live Games")
+    : mustRejoin
+      ? (kh ? "សូមចូលរួមថ្នាក់រៀនឡើងវិញ" : "Re-join a Classroom to Continue")
+      : (kh ? "បង្កើតព័ត៌មានគណនីសិស្សថ្មី" : "Complete Student Profile Setup");
+
+  const subHeading = joinOnly
+    ? (kh
+      ? "ការលេងផ្ទាល់ជាមួយគ្រូ ត្រូវការលេខកូដថ្នាក់។ បញ្ចូលលេខកូដពីគ្រូ ដើម្បីភ្ជាប់ និងបន្ត។"
+      : "Live teacher games require a class. Enter your teacher's code to link your class and continue.")
+    : mustRejoin
+      ? (kh
+        ? "បញ្ចូលលេខកូដពីគ្រូ ដើម្បីភ្ជាប់ថ្នាក់រៀន — ឬលេងម្នាក់ឯងដោយបំពេញព័ត៌មានសាលារៀនខ្លួនឯង។"
+        : "Enter your teacher's code to link a class — or play solo by filling in your own school details.")
+      : (kh ? "សូមបំពេញព័ត៌មាន និងកំណត់រូបតំណាងខាងក្រោមមុននឹងប្រើប្រាស់ប្រព័ន្ធ" : "Please customize your character and complete details before using Kesararam");
+
+  const selectClass =
+    "w-full px-4 py-2.5 border-2 border-black text-sm font-bold bg-white focus:outline-none focus:shadow-[2px_2px_0_#0284c7]";
+
   return (
     <div className="min-h-screen dot-bg flex items-center justify-center px-4 py-16 select-none">
-      <div className="w-full max-w-4xl animate-fade-in space-y-6">
+      <div className={`w-full ${joinOnly ? "max-w-xl" : "max-w-4xl"} animate-fade-in space-y-6`}>
 
         {/* Official Header Banner */}
         <div className="bg-[#0284c7] text-white border-4 border-black p-6 shadow-[6px_6px_0_#000]" style={{ borderRadius: "0px" }}>
           <div className="flex items-center gap-4">
-            <span className="material-symbols-rounded text-yellow-400 text-3xl font-black">{mustRejoin ? "group_off" : "lock_open"}</span>
+            <span className="material-symbols-rounded text-yellow-400 text-3xl font-black">{joinOnly || mustRejoin ? "group_add" : "lock_open"}</span>
             <div className="space-y-0.5">
               <h2 className="text-xl md:text-2xl font-black uppercase font-roboto">
-                {mustRejoin
-                  ? (kh ? "សូមចូលរួមថ្នាក់រៀនឡើងវិញ" : "Re-join a Classroom to Continue")
-                  : (kh ? "បង្កើតព័ត៌មានគណនីសិស្សថ្មី" : "Complete Student Profile Setup")}
+                {heading}
               </h2>
               <p className="text-[10px] md:text-xs text-white/80 font-black uppercase tracking-wider font-mono">
-                {mustRejoin
-                  ? (kh
-                    ? "អ្នកមិនមានថ្នាក់រៀននៅឡើយទេ។ សូមបញ្ចូលលេខកូដពីគ្រូ ដើម្បីបន្តប្រើប្រាស់គណនី និងលេងហ្គេម។"
-                    : "You are not in a class. Enter your teacher's class code to keep using your account and play.")
-                  : (kh ? "សូមបំពេញព័ត៌មាន និងកំណត់រូបតំណាងខាងក្រោមមុននឹងប្រើប្រាស់ប្រព័ន្ធ" : "Please customize your character and complete details before using Kesararam")}
+                {subHeading}
               </p>
             </div>
           </div>
         </div>
 
         {/* Content Panel Grid */}
-        <div className="bg-white border-4 border-black p-6 md:p-8 shadow-[6px_6px_0_#000] grid grid-cols-1 lg:grid-cols-12 gap-8" style={{ borderRadius: "0px" }}>
+        <div className={`bg-white border-4 border-black p-6 md:p-8 shadow-[6px_6px_0_#000] grid grid-cols-1 ${joinOnly ? "" : "lg:grid-cols-12"} gap-8`} style={{ borderRadius: "0px" }}>
 
-          {/* Left Column: Avatar Customizer (5 cols) */}
+          {/* Left Column: Avatar Customizer (hidden in join-only mode) */}
+          {!joinOnly && (
           <div className="lg:col-span-5 flex flex-col gap-5 border-2 lg:border-r-2 lg:border-b-0 lg:border-t-0 lg:border-l-0 border-black pr-0 lg:pr-6 pb-6 lg:pb-0">
             <div className="flex items-center gap-2 border-b-2 border-black pb-2">
               <Palette className="w-5 h-5 text-[#0284c7]" />
@@ -332,15 +433,18 @@ export function CompleteProfileForm({ mustRejoin = false }: { mustRejoin?: boole
               </div>
             </div>
           </div>
+          )}
 
-          {/* Right Column: Onboarding Fields Form (7 cols) */}
-          <div className="lg:col-span-7">
+          {/* Right Column: Onboarding Fields Form */}
+          <div className={joinOnly ? "" : "lg:col-span-7"}>
             <form onSubmit={handleSubmit} className="space-y-5" autoComplete="off">
 
               <div className="flex items-center gap-2 border-b-2 border-black pb-2">
                 <User className="w-5 h-5 text-[#0284c7]" />
                 <h3 className="font-black text-black text-sm uppercase">
-                  {kh ? "២. បំពេញព័ត៌មានផ្ទាល់ខ្លួន" : "2. Complete Profile Details"}
+                  {joinOnly
+                    ? (kh ? "បញ្ចូលលេខកូដថ្នាក់" : "Enter Your Class Code")
+                    : (kh ? "២. បំពេញព័ត៌មានផ្ទាល់ខ្លួន" : "2. Complete Profile Details")}
                 </h3>
               </div>
 
@@ -354,14 +458,15 @@ export function CompleteProfileForm({ mustRejoin = false }: { mustRejoin?: boole
               {/* Teacher Invite Code */}
               <div className="flex flex-col gap-1.5">
                 <label htmlFor="inviteCode" className="text-sm font-black text-black">
-                  {kh ? "លេខកូដអញ្ជើញពីគ្រូ *" : "Teacher Invite Code *"}
+                  {joinOnly
+                    ? (kh ? "លេខកូដអញ្ជើញពីគ្រូ *" : "Teacher Invite Code *")
+                    : (kh ? "លេខកូដអញ្ជើញពីគ្រូ (ស្រេចចិត្ត)" : "Teacher Invite Code (Optional)")}
                 </label>
                 <input
                   type="text"
                   id="inviteCode"
                   value={inviteCode}
                   onChange={(e) => setInviteCode(e.target.value)}
-                  required
                   placeholder="KWD-XXXX-YYYY"
                   className="w-full px-4 py-2.5 border-2 border-black text-sm font-black focus:outline-none focus:shadow-[2px_2px_0_#0284c7] placeholder:text-zinc-300"
                   style={{ borderRadius: "0px" }}
@@ -382,16 +487,22 @@ export function CompleteProfileForm({ mustRejoin = false }: { mustRejoin?: boole
                 )}
 
                 <p className="text-[10px] text-zinc-400 font-bold leading-normal">
-                  {kh
-                    ? "* សូមបញ្ចូលលេខកូដអញ្ជើញដែលទទួលបានពីគ្រូបង្រៀនរបស់អ្នកដើម្បីចុះឈ្មោះចូលរៀន។"
-                    : "* Please enter the invitation code provided by your teacher."}
+                  {joinOnly
+                    ? (kh
+                      ? "* សូមបញ្ចូលលេខកូដអញ្ជើញដែលទទួលបានពីគ្រូបង្រៀនរបស់អ្នក។"
+                      : "* Enter the invitation code provided by your teacher.")
+                    : (kh
+                      ? "* មិនមានកូដ? អ្នកអាចលេងម្នាក់ឯងបាន — គ្រាន់តែបំពេញព័ត៌មានសាលារៀនខាងក្រោម។ កូដចាំបាច់សម្រាប់តែការលេងផ្ទាល់ជាមួយគ្រូ។"
+                      : "* No code? You can still play solo — just fill in your school details below. A code is only needed for live games with your teacher.")}
                 </p>
               </div>
 
-              {/* Inherited Class & School Details */}
+              {/* Class & School Details */}
               <div className="flex flex-col gap-1.5 pt-1">
                 <label className="text-sm font-black text-black">
-                  {kh ? "ព័ត៌មានថ្នាក់ និងសាលារៀន (ស្វ័យប្រវត្ត)" : "Class & School Details (Auto-filled)"}
+                  {resolvedClass
+                    ? (kh ? "ព័ត៌មានថ្នាក់ និងសាលារៀន (ស្វ័យប្រវត្ត)" : "Class & School Details (Auto-filled)")
+                    : (kh ? "ព័ត៌មានសាលារៀន" : "School Details")}
                 </label>
 
                 {resolvedClass ? (
@@ -425,69 +536,137 @@ export function CompleteProfileForm({ mustRejoin = false }: { mustRejoin?: boole
                       )}
                     </div>
                   </div>
-                ) : (
+                ) : joinOnly ? (
                   <div className="border-2 border-black border-dashed p-6 text-center bg-zinc-50 text-zinc-400 font-bold text-xs space-y-2">
                     <span className="material-symbols-rounded text-2xl font-black text-zinc-300 block">school</span>
                     <p>
                       {kh
-                        ? "សូមបញ្ចូលលេខកូដអញ្ជើញពីគ្រូ ដើម្បីទាញយកព័ត៌មានថ្នាក់ និងសាលារៀនដោយស្វ័យប្រវត្តិ។"
-                        : "Enter your Teacher Invite Code to automatically load your class and school details."}
+                        ? "សូមបញ្ចូលលេខកូដអញ្ជើញពីគ្រូ ដើម្បីទាញយកព័ត៌មានថ្នាក់ និងសាលារៀន។"
+                        : "Enter your Teacher Invite Code to load your class and school details."}
                     </p>
+                  </div>
+                ) : (
+                  // Manual school details (solo — no class code).
+                  <div className="border-2 border-black p-4 bg-zinc-50 space-y-4 shadow-[3px_3px_0_#000]">
+                    <div className="flex flex-col gap-1.5">
+                      <label htmlFor="schoolName" className="text-xs font-black text-zinc-700 uppercase tracking-wide">
+                        {kh ? "ឈ្មោះសាលារៀន *" : "School Name *"}
+                      </label>
+                      <input
+                        type="text"
+                        id="schoolName"
+                        value={schoolName}
+                        onChange={(e) => setSchoolName(e.target.value)}
+                        placeholder={kh ? "ឧ. Kesararam Primary School" : "e.g. Kesararam Primary School"}
+                        className="w-full px-4 py-2.5 border-2 border-black text-sm font-bold bg-white focus:outline-none focus:shadow-[2px_2px_0_#0284c7] placeholder:text-zinc-300"
+                        style={{ borderRadius: "0px" }}
+                      />
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="flex flex-col gap-1.5">
+                        <label htmlFor="province" className="text-xs font-black text-zinc-700 uppercase tracking-wide">
+                          {kh ? "ខេត្ត-ក្រុង *" : "Province *"}
+                        </label>
+                        <select
+                          id="province"
+                          value={province}
+                          onChange={(e) => setProvince(e.target.value)}
+                          className={selectClass}
+                          style={{ borderRadius: "0px" }}
+                        >
+                          {CAMBODIA_PROVINCES.map((prov) => (
+                            <option key={prov.en} value={prov.en}>{kh ? prov.kh : prov.en}</option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="flex flex-col gap-1.5">
+                        <label htmlFor="gradeLevel" className="text-xs font-black text-zinc-700 uppercase tracking-wide">
+                          {kh ? "ថ្នាក់ទី *" : "Grade *"}
+                        </label>
+                        <select
+                          id="gradeLevel"
+                          value={gradeLevel}
+                          onChange={(e) => setGradeLevel(e.target.value)}
+                          className={selectClass}
+                          style={{ borderRadius: "0px" }}
+                        >
+                          <option value="">{kh ? "ជ្រើសរើសថ្នាក់" : "Select Grade"}</option>
+                          {GRADES.map((gr) => (
+                            <option key={gr.en} value={gr.en}>{kh ? gr.kh : gr.en}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <label htmlFor="section" className="text-xs font-black text-zinc-700 uppercase tracking-wide">
+                        {kh ? "វេន (ស្រេចចិត្ត)" : "Section (Optional)"}
+                      </label>
+                      <input
+                        type="text"
+                        id="section"
+                        value={section}
+                        onChange={(e) => setSection(e.target.value)}
+                        placeholder={kh ? "ឧ. ព្រឹក A" : "e.g. Morning A"}
+                        className="w-full px-4 py-2.5 border-2 border-black text-sm font-bold bg-white focus:outline-none focus:shadow-[2px_2px_0_#0284c7] placeholder:text-zinc-300"
+                        style={{ borderRadius: "0px" }}
+                      />
+                    </div>
                   </div>
                 )}
               </div>
 
-              {/* Username (Editable) */}
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="username" className="text-sm font-black text-black">
-                  {kh ? "ឈ្មោះគណនី *" : "Username *"}
-                </label>
-                <div className="relative flex items-center">
-                  <span className="absolute left-4 text-sm font-black text-zinc-400 font-mono">@</span>
-                  <input
-                    type="text"
-                    id="username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, ""))}
-                    required
-                    minLength={3}
-                    maxLength={30}
-                    placeholder="username"
-                    className="w-full pl-8 pr-4 py-2.5 border-2 border-black text-sm font-black focus:outline-none focus:shadow-[2px_2px_0_#0284c7] font-mono"
-                    style={{ borderRadius: "0px" }}
-                  />
-                </div>
-                <p className="text-[10px] text-zinc-400 font-bold leading-normal">
-                  {kh
-                    ? "* ឈ្មោះគណនីផ្ទាល់ខ្លួនរបស់អ្នកសម្រាប់ការស្វែងរក។ អាចប្រើប្រាស់បានតែ អក្សរតូច លេខ និង សញ្ញាគូសក្រោម (_) ប៉ុណ្ណោះ។"
-                    : "* Your customized account username for lookup. Only lowercase letters, numbers, and underscores (_) are allowed."}
-                </p>
-              </div>
+              {/* Username + Display Name (onboarding only) */}
+              {!joinOnly && (
+                <>
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="username" className="text-sm font-black text-black">
+                      {kh ? "ឈ្មោះគណនី *" : "Username *"}
+                    </label>
+                    <div className="relative flex items-center">
+                      <span className="absolute left-4 text-sm font-black text-zinc-400 font-mono">@</span>
+                      <input
+                        type="text"
+                        id="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, ""))}
+                        required
+                        minLength={3}
+                        maxLength={30}
+                        placeholder="username"
+                        className="w-full pl-8 pr-4 py-2.5 border-2 border-black text-sm font-black focus:outline-none focus:shadow-[2px_2px_0_#0284c7] font-mono"
+                        style={{ borderRadius: "0px" }}
+                      />
+                    </div>
+                    <p className="text-[10px] text-zinc-400 font-bold leading-normal">
+                      {kh
+                        ? "* ឈ្មោះគណនីផ្ទាល់ខ្លួនរបស់អ្នកសម្រាប់ការស្វែងរក។ អាចប្រើប្រាស់បានតែ អក្សរតូច លេខ និង សញ្ញាគូសក្រោម (_) ប៉ុណ្ណោះ។"
+                        : "* Your customized account username for lookup. Only lowercase letters, numbers, and underscores (_) are allowed."}
+                    </p>
+                  </div>
 
-              {/* Display Name */}
-              <div className="flex flex-col gap-1.5">
-                <label htmlFor="displayName" className="text-sm font-black text-black">
-                  {kh ? "ឈ្មោះបង្ហាញលើប្រព័ន្ធ *" : "Display Name *"}
-                </label>
-                <input
-                  type="text"
-                  id="displayName"
-                  value={displayName}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                  required
-                  maxLength={40}
-                  placeholder={kh ? "ឧ. សុខ ម៉ារ៉ា" : "e.g. Sok Mara"}
-                  className="w-full px-4 py-2.5 border-2 border-black text-sm font-black focus:outline-none focus:shadow-[2px_2px_0_#0284c7] placeholder:text-zinc-300"
-                  style={{ borderRadius: "0px" }}
-                />
-                <p className="text-[10px] text-zinc-400 font-bold leading-normal">
-                  {kh
-                    ? "* ឈ្មោះនេះនឹងបង្ហាញលើតារាងពិន្ទុឆ្នើម និងគណនីរបស់អ្នក។"
-                    : "* This name will represent you on the leaderboards and your profile."}
-                </p>
-              </div>
-
-
+                  <div className="flex flex-col gap-1.5">
+                    <label htmlFor="displayName" className="text-sm font-black text-black">
+                      {kh ? "ឈ្មោះបង្ហាញលើប្រព័ន្ធ *" : "Display Name *"}
+                    </label>
+                    <input
+                      type="text"
+                      id="displayName"
+                      value={displayName}
+                      onChange={(e) => setDisplayName(e.target.value)}
+                      required
+                      maxLength={40}
+                      placeholder={kh ? "ឧ. សុខ ម៉ារ៉ា" : "e.g. Sok Mara"}
+                      className="w-full px-4 py-2.5 border-2 border-black text-sm font-black focus:outline-none focus:shadow-[2px_2px_0_#0284c7] placeholder:text-zinc-300"
+                      style={{ borderRadius: "0px" }}
+                    />
+                    <p className="text-[10px] text-zinc-400 font-bold leading-normal">
+                      {kh
+                        ? "* ឈ្មោះនេះនឹងបង្ហាញលើតារាងពិន្ទុឆ្នើម និងគណនីរបស់អ្នក។"
+                        : "* This name will represent you on the leaderboards and your profile."}
+                    </p>
+                  </div>
+                </>
+              )}
 
               {/* Actions Panel */}
               <div className="flex flex-col sm:flex-row gap-3 pt-3">
@@ -515,7 +694,9 @@ export function CompleteProfileForm({ mustRejoin = false }: { mustRejoin?: boole
                   ) : (
                     <>
                       <Save size={16} />
-                      {kh ? "រក្សាទុកព័ត៌មានគណនី" : "Complete Profile Setup"}
+                      {joinOnly
+                        ? (kh ? "ចូលរួមថ្នាក់រៀន" : "Join Class")
+                        : (kh ? "រក្សាទុកព័ត៌មានគណនី" : "Complete Profile Setup")}
                     </>
                   )}
                 </button>

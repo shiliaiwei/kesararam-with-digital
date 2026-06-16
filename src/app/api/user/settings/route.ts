@@ -267,12 +267,24 @@ export async function PUT(request: NextRequest) {
     // code. Teacher onboarding skips this and falls through to the standard
     // update below (which saves school/organization, province, name, avatar).
     if (isStudentOnboarding) {
-      const inputCode = inviteCode || body.inviteCode;
-      if (!inputCode) {
-        return NextResponse.json({ error: "Teacher invitation code / Class code is required. / លេខកូដអញ្ជើញពីគ្រូ ឬលេខកូដថ្នាក់គឺចាំបាច់ត្រូវបំពេញ។" }, { status: 400 });
-      }
+      const inputCode = (inviteCode || body.inviteCode || "").trim();
 
-      const trimmedCode = inputCode.trim();
+      // Class-less onboarding: a student can complete their profile and play
+      // solo WITHOUT a teacher invite code. A class link is required only to join
+      // a live teacher session (enforced at /api/game/sessions/[code]/join).
+      if (!inputCode) {
+        const finalSchoolName = schoolName ?? currentUser.schoolName;
+        const finalProvince = province ?? currentUser.province;
+        const finalGradeLevel = gradeLevel ?? currentUser.gradeLevel;
+        if (!finalSchoolName || !finalProvince || !finalGradeLevel) {
+          return NextResponse.json(
+            { error: "School, Province, and Grade are required. / សូមបំពេញ សាលារៀន ខេត្ត និងថ្នាក់ទី។" },
+            { status: 400 }
+          );
+        }
+        // Fall through to the standard settings update below (no class enrollment).
+      } else {
+      const trimmedCode = inputCode;
       let targetClassId: number | null = null;
       let isInviteCodeTableMatch = false;
       let teacherIdToEnroll: number | null = null;
@@ -400,6 +412,7 @@ export async function PUT(request: NextRequest) {
           isStatsPublic: updatedUser.isStatsPublic,
         }
       });
+      }
     }
 
     // Standard settings update (non-onboarding)
