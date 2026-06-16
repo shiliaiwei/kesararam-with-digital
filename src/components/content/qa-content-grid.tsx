@@ -99,7 +99,7 @@ export function QAContentGrid({ categorySlug, initialContent = [] }: QAContentGr
                     </span>
                   )}
                 </div>
-                <h3 className="font-bold text-base text-black mb-2 line-clamp-2">
+                <h3 className="font-bold text-base text-black mb-2 line-clamp-2 font-learning">
                   {kh ? item.questionKm || item.questionEn : item.questionEn}
                 </h3>
                 {item.subtopic && (

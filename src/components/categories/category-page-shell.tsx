@@ -97,15 +97,15 @@ export function CategoryPageShell({
               >
                 {kh ? "ប្រភេទចំណេះដឹង" : "Knowledge Category"}
               </span>
-              <h1 className="text-4xl md:text-5xl font-black text-black leading-tight font-system">
+              <h1 className="text-4xl md:text-5xl font-black text-black leading-tight font-learning">
                 {kh ? titleKh : titleEn}
               </h1>
               <p
-                className={`text-lg text-black/70 ${kh ? "font-english" : "font-system"}`}
+                className="text-lg text-black/70 font-learning"
               >
                 {kh ? titleEn : titleKh}
               </p>
-              <p className="text-sm text-black/80 max-w-2xl leading-relaxed font-english">
+              <p className="text-sm text-black/80 max-w-2xl leading-relaxed font-learning">
                 {descEn}
               </p>
 

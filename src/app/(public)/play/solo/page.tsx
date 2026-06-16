@@ -74,6 +74,7 @@ export default function SoloPage() {
   const { lang } = useLang();
   const kh = lang === "kh";
   const khFont = kh ? { fontFamily: "var(--font-system)" } : {};
+  const qaFont = kh ? { fontFamily: "var(--font-learning)" } : {};
 
   const [phase, setPhase] = useState<Phase>({ name: "setup" });
   const [selectedMode, setSelectedMode] = useState(searchParams.get("mode") ?? "quick-quiz");
@@ -620,7 +621,7 @@ export default function SoloPage() {
           style={{
             fontSize: "clamp(0.95rem, 3.5vw, 1.4rem)",
             lineHeight: "1.3",
-            ...khFont
+            ...qaFont
           }}
         >
           <div className="w-full py-1">

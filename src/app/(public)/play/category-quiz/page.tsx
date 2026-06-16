@@ -213,6 +213,7 @@ export default function CategoryQuizPage() {
   const { lang } = useLang();
   const kh = lang === "kh";
   const khFont = kh ? { fontFamily: "var(--font-system)" } : {};
+  const qaFont = kh ? { fontFamily: "var(--font-learning)" } : {};
 
   const [phase, setPhase] = useState<Phase>({ name: "select" });
   const [categories, setCategories] = useState<Category[]>([]);
@@ -604,7 +605,7 @@ export default function CategoryQuizPage() {
                     >
                       {i + 1}
                     </div>
-                    <div className="font-bold text-sm leading-snug" style={khFont}>
+                    <div className="font-bold text-sm leading-snug" style={qaFont}>
                       {kh ? (q.questionKm || q.questionEn) : q.questionEn}
                     </div>
                   </div>
@@ -618,7 +619,7 @@ export default function CategoryQuizPage() {
 
                   <div className="space-y-2 ml-9">
                     {/* Selected Answer */}
-                    <div className={`p-2 border-2 border-black text-sm flex gap-2 items-center ${isCorrect ? 'bg-green-100' : 'bg-red-100'}`} style={khFont}>
+                    <div className={`p-2 border-2 border-black text-sm flex gap-2 items-center ${isCorrect ? 'bg-green-100' : 'bg-red-100'}`} style={qaFont}>
                       <span className="font-black shrink-0">{isCorrect ? '✓' : '✗'}</span>
                       <span className="font-bold">
                         {kh ? "អ្នកជ្រើសរើស:" : "You chose:"}
@@ -635,7 +636,7 @@ export default function CategoryQuizPage() {
 
                     {/* Show Correct Answer if they were wrong */}
                     {!isCorrect && correctAnswer && (
-                      <div className={`p-2 border-2 border-black bg-green-100 text-sm flex gap-2 items-center`} style={khFont}>
+                      <div className={`p-2 border-2 border-black bg-green-100 text-sm flex gap-2 items-center`} style={qaFont}>
                         <span className="font-black shrink-0 text-green-600">✓</span>
                         <span className="font-bold">
                           {kh ? "ចម្លើយត្រូវ:" : "Correct answer:"}
@@ -769,7 +770,7 @@ export default function CategoryQuizPage() {
         {/* Question */}
         <div
           className="bg-zinc-900/80 backdrop-blur-sm border-2 border-zinc-700 p-4 text-white font-black text-base sm:text-lg leading-snug break-words"
-          style={{ boxShadow: `3px 3px 0 ${catMeta.color}`, ...khFont }}
+          style={{ boxShadow: `3px 3px 0 ${catMeta.color}`, ...qaFont }}
         >
           {effectiveLang === "kh" ? q.questionKm || q.questionEn : q.questionEn}
         </div>

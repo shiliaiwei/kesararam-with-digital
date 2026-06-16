@@ -264,6 +264,8 @@ export default function RootLayout({
         {/* Preload official local KWD font stack */}
         <link rel="preload" href="/Roboto/Roboto-VariableFont_wdth,wght.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/Kantumruy_Pro/static/KantumruyPro-Regular.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
+        <link rel="preload" href="/Kantumruy_Pro/static/KantumruyPro-Bold.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
         {/* Material Symbols icon font */}
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />

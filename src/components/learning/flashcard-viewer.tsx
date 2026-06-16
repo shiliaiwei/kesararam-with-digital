@@ -105,7 +105,7 @@ export function FlashcardViewer({ flashcards, language }: FlashcardViewerProps) 
 
           {/* Text */}
           <div className="text-center space-y-4">
-            <p className="text-3xl font-black">
+            <p className="text-3xl font-black font-learning">
               {isFlipped
                 ? language === "en"
                   ? currentCard.answerEn
@@ -152,7 +152,7 @@ export function FlashcardViewer({ flashcards, language }: FlashcardViewerProps) 
                 </button>
                 {showHint && (
                   <div className="mt-2 p-4 bg-yellow-100 border-2 border-yellow-600">
-                    <p className="text-sm font-medium">
+                    <p className="text-sm font-medium font-learning">
                       💡{" "}
                       {language === "en"
                         ? currentCard.hintEn

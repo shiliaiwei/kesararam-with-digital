@@ -123,7 +123,7 @@ export function QuizViewer({ questions, language, onComplete }: QuizViewerProps)
 
         {/* Question Text */}
         <div className="mb-6">
-          <h2 className="text-2xl font-black mb-4">
+          <h2 className="text-2xl font-black mb-4 font-learning">
             {language === "en"
               ? currentQuestion.questionEn
               : currentQuestion.questionKm}
@@ -162,7 +162,7 @@ export function QuizViewer({ questions, language, onComplete }: QuizViewerProps)
               </button>
               {showHint && (
                 <div className="mt-2 p-4 bg-yellow-100 border-2 border-yellow-600">
-                  <p className="text-sm font-medium">
+                  <p className="text-sm font-medium font-learning">
                     💡{" "}
                     {language === "en"
                       ? currentQuestion.hintEn
@@ -210,7 +210,7 @@ export function QuizViewer({ questions, language, onComplete }: QuizViewerProps)
                       String.fromCharCode(65 + index)
                     )}
                   </span>
-                  <span className="flex-1">
+                  <span className="flex-1 font-learning">
                     {language === "en" ? answer.answerEn : answer.answerKm}
                   </span>
                   {answer.imageUrl && (
@@ -241,7 +241,7 @@ export function QuizViewer({ questions, language, onComplete }: QuizViewerProps)
                 : "✗ Incorrect"}
             </p>
             {selectedAnswer !== correctAnswer?.id && (
-              <p className="text-sm">
+              <p className="text-sm font-learning">
                 The correct answer is:{" "}
                 <span className="font-bold">
                   {language === "en"

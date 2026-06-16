@@ -146,7 +146,7 @@ export function QADetailPopup({ qaItem, onClose }: QADetailPopupProps) {
             </div>
           )}
 
-          <p className="text-lg sm:text-xl font-bold text-black leading-relaxed">
+          <p className="text-lg sm:text-xl font-bold text-black leading-relaxed font-learning">
             {lang === "en" ? qaItem.question_en : qaItem.question_km}
           </p>
         </div>
@@ -158,7 +158,7 @@ export function QADetailPopup({ qaItem, onClose }: QADetailPopupProps) {
           </h4>
           {correctAnswer && (
             <div className="bg-white border-2 border-green-600 p-4">
-              <p className="text-base sm:text-lg font-bold text-black">
+              <p className="text-base sm:text-lg font-bold text-black font-learning">
                 {lang === "en" ? correctAnswer.answer_en : correctAnswer.answer_km}
               </p>
             </div>
@@ -171,7 +171,7 @@ export function QADetailPopup({ qaItem, onClose }: QADetailPopupProps) {
             <h4 className="font-black text-sm sm:text-base mb-3">
               {t.explanation}
             </h4>
-            <p className="text-sm sm:text-base text-zinc-800 leading-relaxed whitespace-pre-wrap">
+            <p className="text-sm sm:text-base text-zinc-800 leading-relaxed whitespace-pre-wrap font-learning">
               {lang === "en" ? qaItem.hint_en : qaItem.hint_km}
             </p>
           </div>
@@ -248,10 +248,10 @@ export function QADetailPopup({ qaItem, onClose }: QADetailPopupProps) {
           <h4 className="font-black text-sm mb-2 text-zinc-600">
             {t.relatedTopic}
           </h4>
-          <p className="text-sm sm:text-base font-bold text-black">
+          <p className="text-sm sm:text-base font-bold text-black font-learning">
             {lang === "en" ? qaItem.topic.name_en : qaItem.topic.name_km}
           </p>
-          <p className="text-xs sm:text-sm text-zinc-600 mt-1">
+          <p className="text-xs sm:text-sm text-zinc-600 mt-1 font-learning">
             {lang === "en" ? qaItem.topic.description_en : qaItem.topic.description_km}
           </p>
         </div>

@@ -46,11 +46,66 @@
   unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
 }
 
+@font-face {
+  font-family: "KWD Kantumruy Pro";
+  src: url("/Kantumruy_Pro/static/KantumruyPro-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
+}
+
+@font-face {
+  font-family: "KWD Kantumruy Pro";
+  src: url("/Kantumruy_Pro/static/KantumruyPro-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
+}
+
+@font-face {
+  font-family: "KWD Kantumruy Pro";
+  src: url("/Kantumruy_Pro/static/KantumruyPro-SemiBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
+}
+
+@font-face {
+  font-family: "KWD Kantumruy Pro";
+  src: url("/Kantumruy_Pro/static/KantumruyPro-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700 900;
+  font-display: swap;
+  unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
+}
+
+@font-face {
+  font-family: "KWD Kantumruy Pro";
+  src: url("/Kantumruy_Pro/static/KantumruyPro-Italic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
+}
+
+@font-face {
+  font-family: "KWD Kantumruy Pro";
+  src: url("/Kantumruy_Pro/static/KantumruyPro-BoldItalic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 700 900;
+  font-display: swap;
+  unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
+}
+
 :root {
   --font-en: "KWD Roboto";
   --font-kh-ui: "KWD Google Sans Khmer";
+  --font-kh-learning: "KWD Kantumruy Pro";
   --font-system: "KWD Roboto", "KWD Google Sans Khmer", sans-serif;
-  --font-learning: "KWD Google Sans Khmer", "KWD Roboto", sans-serif;
+  --font-learning: "KWD Kantumruy Pro", "KWD Roboto", sans-serif;
   --font-kh-header: var(--font-kh-ui);
   --font-kh-body: var(--font-kh-ui);
   --font-sans: var(--font-system);
@@ -60,12 +115,12 @@
 /* Responsive language-based stacks to ensure numbers/symbols render in the matching context font */
 html.lang-kh {
   --font-system: "KWD Google Sans Khmer", "KWD Roboto", sans-serif;
-  --font-learning: "KWD Google Sans Khmer", "KWD Roboto", sans-serif;
+  --font-learning: "KWD Kantumruy Pro", "KWD Roboto", sans-serif;
 }
 
 html.lang-en {
   --font-system: "KWD Roboto", "KWD Google Sans Khmer", sans-serif;
-  --font-learning: "KWD Roboto", "KWD Google Sans Khmer", sans-serif;
+  --font-learning: "KWD Roboto", "KWD Kantumruy Pro", sans-serif;
 }
 
 /* Brand font utility classes */

@@ -158,7 +158,7 @@ export function LiveChallenge({
             </div>
           )}
 
-          <h2 className="text-2xl font-black mb-6">
+          <h2 className="text-2xl font-black mb-6 font-learning">
             {language === "en"
               ? currentQuestion.questionEn
               : currentQuestion.questionKm}
@@ -183,7 +183,7 @@ export function LiveChallenge({
                     <span className="w-10 h-10 bg-gray-100 border-2 border-black flex items-center justify-center font-black text-xl">
                       {String.fromCharCode(65 + index)}
                     </span>
-                    <span className="flex-1">
+                    <span className="flex-1 font-learning">
                       {language === "en" ? answer.answerEn : answer.answerKm}
                     </span>
                   </div>

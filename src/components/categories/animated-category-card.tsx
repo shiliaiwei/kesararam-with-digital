@@ -508,13 +508,13 @@ export function AnimatedCategoryCard({
           transition: "transform 0.3s ease",
         }}
       >
-        <h3 className="font-black text-lg text-black leading-tight font-system">
+        <h3 className="font-black text-lg text-black leading-tight font-learning">
           {kh ? titleKh : titleEn}
         </h3>
         <p className="text-xs text-zinc-400 font-learning">
           {titleKh}
         </p>
-        <p className="text-sm text-zinc-600 leading-relaxed mt-1 flex-1 font-english">
+        <p className="text-sm text-zinc-600 leading-relaxed mt-1 flex-1 font-learning">
           {descEn}
         </p>
 
