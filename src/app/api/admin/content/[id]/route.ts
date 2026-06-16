@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
-import { contentItems } from "@/db/schema";
+import { contentItems, users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { getSession } from "@/lib/auth";
 
@@ -91,6 +91,36 @@ export async function DELETE(
 
     const { id } = await params;
     const contentId = parseInt(id);
+
+    // Check if content exists
+    const [existingContent] = await db
+      .select()
+      .from(contentItems)
+      .where(eq(contentItems.id, contentId))
+      .limit(1);
+
+    if (!existingContent) {
+      return NextResponse.json({ error: "Content not found" }, { status: 404 });
+    }
+
+    // Check if inserted by staff and approved by admin
+    if (existingContent.createdBy) {
+      const creator = await db
+        .select({ role: users.role })
+        .from(users)
+        .where(eq(users.id, existingContent.createdBy))
+        .then((r) => r[0]);
+
+      if (
+        creator?.role === "staff" &&
+        (existingContent.status === "approved" || existingContent.approvedBy !== null)
+      ) {
+        return NextResponse.json(
+          { error: "Cannot delete content created by staff and approved by admin" },
+          { status: 400 }
+        );
+      }
+    }
 
     await db.delete(contentItems).where(eq(contentItems.id, contentId));
 

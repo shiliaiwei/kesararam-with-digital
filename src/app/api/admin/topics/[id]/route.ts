@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { db, sql } from "@/lib/db";
-import { topics } from "@/db/schema";
+import { topics, users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
-// Admin-only: delete any topic regardless of status
+// Admin-only: delete any topic regardless of status (unless inserted by staff and approved by admin)
 export async function DELETE(
   _req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -15,9 +15,40 @@ export async function DELETE(
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
     const { id } = await params;
-    const existing = await db.select({ id: topics.id }).from(topics).where(eq(topics.id, parseInt(id)));
+    const topicId = parseInt(id);
+
+    const existing = await db
+      .select({
+        id: topics.id,
+        status: topics.status,
+        createdBy: topics.createdBy,
+        approvedBy: topics.approvedBy,
+      })
+      .from(topics)
+      .where(eq(topics.id, topicId));
+
     if (!existing[0]) return NextResponse.json({ error: "Not found" }, { status: 404 });
-    await sql`DELETE FROM topics WHERE id = ${parseInt(id)}`;
+
+    const topic = existing[0];
+    if (topic.createdBy) {
+      const creator = await db
+        .select({ role: users.role })
+        .from(users)
+        .where(eq(users.id, topic.createdBy))
+        .then((r) => r[0]);
+
+      if (
+        creator?.role === "staff" &&
+        (topic.status === "approved" || topic.approvedBy !== null)
+      ) {
+        return NextResponse.json(
+          { error: "Cannot delete topics created by staff and approved by admin" },
+          { status: 400 }
+        );
+      }
+    }
+
+    await sql`DELETE FROM topics WHERE id = ${topicId}`;
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("[DELETE /api/admin/topics/[id]]", error);

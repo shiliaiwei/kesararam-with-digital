@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { contentItems, staffActivityMetrics } from "@/db/schema/content";
+import { users } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 
 // GET /api/staff/content/[id] - Get single content item
@@ -191,6 +192,25 @@ export async function DELETE(
         { error: "Can only delete pending content" },
         { status: 403 }
       );
+    }
+
+    // Check if inserted by staff and approved by admin
+    if (existing.createdBy) {
+      const creator = await db
+        .select({ role: users.role })
+        .from(users)
+        .where(eq(users.id, existing.createdBy))
+        .then((r) => r[0]);
+
+      if (
+        creator?.role === "staff" &&
+        (existing.status === "approved" || existing.approvedBy !== null)
+      ) {
+        return NextResponse.json(
+          { error: "Cannot delete content created by staff and approved by admin" },
+          { status: 400 }
+        );
+      }
     }
 
     // Delete content

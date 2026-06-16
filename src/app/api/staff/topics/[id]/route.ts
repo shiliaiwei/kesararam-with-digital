@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { db, sql } from "@/lib/db";
-import { topics, categories } from "@/db/schema";
+import { topics, categories, users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
 export async function GET(
@@ -163,6 +163,25 @@ export async function DELETE(
     if (!existing[0]) return NextResponse.json({ error: "Topic not found" }, { status: 404 });
 
     const t = existing[0];
+
+    // Check if inserted by staff and approved by admin
+    if (t.createdBy) {
+      const creator = await db
+        .select({ role: users.role })
+        .from(users)
+        .where(eq(users.id, t.createdBy))
+        .then((r) => r[0]);
+
+      if (
+        creator?.role === "staff" &&
+        (t.status === "approved" || t.approvedBy !== null)
+      ) {
+        return NextResponse.json(
+          { error: "Cannot delete topics created by staff and approved by admin" },
+          { status: 400 }
+        );
+      }
+    }
 
     // Admin can delete anything
     // Staff can delete:
