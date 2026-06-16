@@ -11,6 +11,7 @@ export interface ScoreResult {
   baseScore: number;
   speedBonus: number;
   streakBonus: number;
+  variableDopamineBonus?: number;
   totalPoints: number;
 }
 
@@ -89,6 +90,44 @@ export const SOLO_COMING_SOON_NOTE = {
  *   streakBonus = consecutive-correct bonus (0 … 5)
  *   totalPoints = baseScore + speedBonus + streakBonus
  */
+export function getDeterministicDopamineBonus(
+  attemptId?: string | number | null,
+  questionId?: string | number | null
+): number {
+  if (!attemptId && !questionId) {
+    return Math.floor(Math.random() * 5) + 1;
+  }
+  const seedStr = `${attemptId || ""}:${questionId || ""}`;
+  let hash = 0;
+  for (let i = 0; i < seedStr.length; i++) {
+    hash = seedStr.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return Math.abs(hash % 5) + 1;
+}
+
+/**
+ * Speed-Tap Pacing Algorithm
+ * Calculates the recommended response window (ms) to balance points/hour,
+ * streak growth, low mistake rate, and low fatigue based on the Yerkes-Dodson focus curve.
+ */
+export function calculateSpeedTapPacing(params: {
+  currentStreak: number;
+  difficulty: Difficulty;
+  baseTimeMs?: number;
+}): number {
+  const baseTime = params.baseTimeMs || 15000;
+  const diffScale: Record<Difficulty, number> = {
+    easy: 0.8,
+    medium: 1.0,
+    hard: 1.3,
+  };
+  const difficultyFactor = diffScale[params.difficulty] || 1.0;
+  const pacingConstant = 10;
+  const streakFactor = 1 + (Math.min(params.currentStreak, 10) / pacingConstant);
+  const rawWindow = baseTime * difficultyFactor * streakFactor;
+  return Math.max(5000, Math.min(30000, Math.round(rawWindow)));
+}
+
 export function calculateScore(params: {
   isCorrect: boolean;
   difficulty?: string | null;
@@ -96,8 +135,11 @@ export function calculateScore(params: {
   remainingTimeMs: number;
   totalTimeMs: number;
   currentStreak: number;
+  attemptId?: string | number | null;
+  questionId?: string | number | null;
+  enableVariableReward?: boolean;
 }): ScoreResult {
-  if (!params.isCorrect) return { baseScore: 0, speedBonus: 0, streakBonus: 0, totalPoints: 0 };
+  if (!params.isCorrect) return { baseScore: 0, speedBonus: 0, streakBonus: 0, variableDopamineBonus: 0, totalPoints: 0 };
 
   // 1. Base value by difficulty.
   const base = DIFFICULTY_BASE[params.difficulty?.toLowerCase() || "medium"] || DIFFICULTY_BASE.medium;
@@ -108,18 +150,30 @@ export function calculateScore(params: {
     STREAK_BONUS_MAX
   );
 
-  // 3. Equal mode → flat base for a correct answer (no time component).
-  const totalTimeMs = Math.max(0, params.totalTimeMs);
-  if (params.scoringMode !== "speed" || totalTimeMs === 0) {
-    return { baseScore: base, speedBonus: 0, streakBonus, totalPoints: base + streakBonus };
+  // 3. Variable Reward: deterministically generate unpredictable bonus (+1..+5)
+  let variableDopamineBonus = 0;
+  if (params.enableVariableReward || params.attemptId || params.questionId) {
+    variableDopamineBonus = getDeterministicDopamineBonus(params.attemptId, params.questionId);
   }
 
-  // 4. Sanitize the clock. remaining ∈ [0, total]; response time gets a 500ms floor.
+  // 4. Equal mode → flat base for a correct answer (no time component).
+  const totalTimeMs = Math.max(0, params.totalTimeMs);
+  if (params.scoringMode !== "speed" || totalTimeMs === 0) {
+    return {
+      baseScore: base,
+      speedBonus: 0,
+      streakBonus,
+      variableDopamineBonus,
+      totalPoints: base + streakBonus + variableDopamineBonus,
+    };
+  }
+
+  // 5. Sanitize the clock. remaining ∈ [0, total]; response time gets a 500ms floor.
   const safeRemaining = Math.max(0, Math.min(params.remainingTimeMs, totalTimeMs));
   const responseTimeMs = Math.max(MIN_RESPONSE_MS, totalTimeMs - safeRemaining);
   const effectiveRemaining = Math.max(0, totalTimeMs - responseTimeMs);
 
-  // 5. Fast-answer bonus: 0 … half of the difficulty base.
+  // 6. Fast-answer bonus: 0 … half of the difficulty base.
   const speedBonusMax = Math.round(base / 2);
   const speedBonus = Math.round(speedBonusMax * (effectiveRemaining / totalTimeMs));
 
@@ -127,7 +181,8 @@ export function calculateScore(params: {
     baseScore: base,
     speedBonus,
     streakBonus,
-    totalPoints: base + speedBonus + streakBonus,
+    variableDopamineBonus,
+    totalPoints: base + speedBonus + streakBonus + variableDopamineBonus,
   };
 }
 

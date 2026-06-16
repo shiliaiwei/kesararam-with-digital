@@ -34,28 +34,55 @@ export function previousDay(ymd: string): string {
  * - otherwise (gap / no prior)  -> current = 1
  * longest = max(prev.longest, current).
  */
+/**
+ * Consecutive-day streak computation (pure).
+ * - lastPlayDate === today      -> unchanged (defensive; anti-replay prevents)
+ * - lastPlayDate === yesterday  -> current = prev.currentStreak + 1
+ * - hasStreakShield / Freeze    -> current = prev.currentStreak + 1 (resume streak after 1 missed day)
+ * - otherwise (gap / no prior)  -> current = 1
+ * longest = max(prev.longest, current).
+ *
+ * Streak Psychology - Loss Aversion & Consistency:
+ * - 3 Days: Habit Lock-In. The user has enough sunk cost that breaking the streak causes emotional pain.
+ * - 7 Days: Identity Shift. The student identifies as a daily learning participant.
+ * - 30 Days: Habit Crystallization. Hardwired daily routine.
+ */
 export function computeStreak(
     prev: Pick<UserStreak, "currentStreak" | "longestStreak" | "lastPlayDate"> | null,
-    today: string
-): { current: number; longest: number } {
+    today: string,
+    opts?: { hasStreakShield?: boolean }
+): { current: number; longest: number; shieldUsed: boolean } {
     const prevCurrent = prev?.currentStreak ?? 0;
     const prevLongest = prev?.longestStreak ?? 0;
     const last = prev?.lastPlayDate ?? null;
 
     let current: number;
+    let shieldUsed = false;
+
     if (last === today) {
         current = prevCurrent > 0 ? prevCurrent : 1; // unchanged
     } else if (last === previousDay(today)) {
         current = prevCurrent + 1;
+    } else if (opts?.hasStreakShield && last && last === previousDay(previousDay(today))) {
+        // Streak Shield / Freeze: missed exactly one day, shield preserves it
+        current = prevCurrent + 1;
+        shieldUsed = true;
     } else {
         current = 1;
     }
 
     const longest = Math.max(prevLongest, current);
-    return { current, longest };
+    return { current, longest, shieldUsed };
 }
 
-/** Milestone bonus added once for reaching a consecutive-day streak. */
+/** 
+ * Milestone bonus added once for reaching a consecutive-day streak.
+ * 
+ * Streak Psychology Milestones:
+ * - Day 3 Milestone (+2): Acknowledges the "Habit Lock-In" transition threshold.
+ * - Day 7 Milestone (+5): Celebrates the "Identity Integration" milestone.
+ * - Day 30 Milestone (+15): Rewards complete "Habit Crystallization".
+ */
 export function streakMilestoneBonus(currentStreak: number): number {
     if (currentStreak >= 30) return 15;
     if (currentStreak >= 7) return 5;
