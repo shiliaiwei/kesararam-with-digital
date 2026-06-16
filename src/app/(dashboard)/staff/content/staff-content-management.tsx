@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { BrandSelect } from "@/components/ui/brand-select";
 import {
   BookOpen, Plus, Edit2, Trash2, Eye, EyeOff, Search,
   X, Check, RefreshCw, Image as ImageIcon,
@@ -94,24 +95,21 @@ function ContentForm({
           <div className="grid grid-cols-3 gap-3">
             <label className="flex flex-col gap-1">
               <span className="text-[10px] font-black uppercase">Category</span>
-              <select value={form.categoryId} onChange={(e) => set("categoryId", Number(e.target.value))}
-                className="border-2 border-black px-2 py-1.5 text-sm font-bold focus:outline-none">
-                {CATEGORIES.map((c, i) => <option key={c.slug} value={i + 1}>{c.titleEn}</option>)}
-              </select>
+              <BrandSelect value={String(form.categoryId)} onValueChange={(v) => set("categoryId", Number(v))}
+                fullWidth ariaLabel="Category" className="px-2 py-1.5 text-sm"
+                options={CATEGORIES.map((c, i) => ({ value: String(i + 1), label: c.titleEn }))} />
             </label>
             <label className="flex flex-col gap-1">
               <span className="text-[10px] font-black uppercase">Type</span>
-              <select value={form.type} onChange={(e) => set("type", e.target.value)}
-                className="border-2 border-black px-2 py-1.5 text-sm font-bold focus:outline-none">
-                {["sign","rule","skill","fact","warning","procedure"].map(t => <option key={t} value={t}>{t}</option>)}
-              </select>
+              <BrandSelect value={form.type} onValueChange={(v) => set("type", v)}
+                fullWidth ariaLabel="Type" className="px-2 py-1.5 text-sm"
+                options={["sign","rule","skill","fact","warning","procedure"].map(t => ({ value: t, label: t }))} />
             </label>
             <label className="flex flex-col gap-1">
               <span className="text-[10px] font-black uppercase">Difficulty</span>
-              <select value={form.difficulty ?? "medium"} onChange={(e) => set("difficulty", e.target.value)}
-                className="border-2 border-black px-2 py-1.5 text-sm font-bold focus:outline-none">
-                {["easy","medium","hard"].map(d => <option key={d} value={d}>{d}</option>)}
-              </select>
+              <BrandSelect value={form.difficulty ?? "medium"} onValueChange={(v) => set("difficulty", v)}
+                fullWidth ariaLabel="Difficulty" className="px-2 py-1.5 text-sm"
+                options={["easy","medium","hard"].map(d => ({ value: d, label: d }))} />
             </label>
           </div>
 

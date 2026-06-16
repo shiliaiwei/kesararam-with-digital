@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Plus, Search, Filter, Edit, Trash2, Eye, BookOpen } from "lucide-react";
+import { BrandSelect } from "@/components/ui/brand-select";
 
 interface LearningResource {
   id: number;
@@ -104,18 +105,17 @@ export function LearningResourceList() {
           style={{ boxShadow: "4px 4px 0 #000" }}
         >
           <label className="block font-bold mb-2">Category</label>
-          <select
+          <BrandSelect
             value={categoryFilter}
-            onChange={(e) => setCategoryFilter(e.target.value)}
-            className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-          >
-            <option value="">All Categories</option>
-            {CATEGORIES.map((cat) => (
-              <option key={cat.id} value={cat.id}>
-                {cat.icon} {cat.name}
-              </option>
-            ))}
-          </select>
+            onValueChange={setCategoryFilter}
+            fullWidth
+            ariaLabel="Filter by category"
+            className="px-4 py-2"
+            options={[
+              { value: "", label: "All Categories" },
+              ...CATEGORIES.map((cat) => ({ value: String(cat.id), label: `${cat.icon} ${cat.name}` })),
+            ]}
+          />
         </div>
       )}
 

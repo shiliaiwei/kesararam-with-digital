@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import type { RoadMarking } from "@/db/schema";
+import { BrandSelect } from "@/components/ui/brand-select";
 import {
   createRoadMarking,
   updateRoadMarking,
@@ -513,18 +514,17 @@ export function RoadMarkingsTable({ initialRows }: { initialRows: Row[] }) {
               className="w-full pl-9 pr-3 py-2 border-2 border-black shadow-[2px_2px_0_#000] text-sm font-medium focus:outline-none focus:shadow-[4px_4px_0_#000] transition-all"
             />
           </div>
-          <select
+          <BrandSelect
             value={categoryFilter}
-            onChange={(e) => setCategoryFilter(e.target.value)}
-            className="border-2 border-black shadow-[2px_2px_0_#000] px-3 py-2 text-sm font-bold uppercase tracking-widest focus:outline-none bg-white"
-          >
-            <option value="all">All</option>
-            {CATEGORIES.map((c) => (
-              <option key={c.value} value={c.value}>
-                {c.label}
-              </option>
-            ))}
-          </select>
+            onValueChange={setCategoryFilter}
+            ariaLabel="Filter by category"
+            className="px-3 py-2 text-sm tracking-widest"
+            triggerStyle={{ boxShadow: "2px 2px 0 #000" }}
+            options={[
+              { value: "all", label: "All" },
+              ...CATEGORIES.map((c) => ({ value: c.value, label: c.label })),
+            ]}
+          />
         </div>
         <CreateDialog onSuccess={refresh} />
       </div>

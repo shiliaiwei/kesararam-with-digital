@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Eye, Check, X, Search, AlertCircle, ChevronDown, XCircle } from "lucide-react";
 import { TopicReviewModal } from "./topic-review-modal";
+import { BrandSelect } from "@/components/ui/brand-select";
 
 interface Topic {
   id: number;
@@ -236,32 +237,32 @@ export function AdminReviewQueue() {
 
           {/* Category filter */}
           <div className="relative">
-            <select
+            <BrandSelect
               value={categoryFilter}
-              onChange={(e) => setCategoryFilter(e.target.value)}
-              className="w-full appearance-none px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] bg-white"
-            >
-              <option value="">All Categories</option>
-              {CATEGORIES.map((cat) => (
-                <option key={cat.id} value={cat.id}>{cat.name}</option>
-              ))}
-            </select>
-            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-500" size={16} />
+              onValueChange={setCategoryFilter}
+              fullWidth
+              ariaLabel="Filter by category"
+              className="px-4 py-2"
+              options={[
+                { value: "", label: "All Categories" },
+                ...CATEGORIES.map((cat) => ({ value: String(cat.id), label: cat.name })),
+              ]}
+            />
           </div>
 
           {/* Created By filter */}
           <div className="relative">
-            <select
+            <BrandSelect
               value={creatorFilter}
-              onChange={(e) => setCreatorFilter(e.target.value)}
-              className="w-full appearance-none px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] bg-white"
-            >
-              <option value="">All Staff</option>
-              {creators.map((name) => (
-                <option key={name} value={name}>{name}</option>
-              ))}
-            </select>
-            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-500" size={16} />
+              onValueChange={setCreatorFilter}
+              fullWidth
+              ariaLabel="Filter by creator"
+              className="px-4 py-2"
+              options={[
+                { value: "", label: "All Staff" },
+                ...creators.map((name) => ({ value: name, label: name })),
+              ]}
+            />
           </div>
 
           {/* Type / sub-group filter */}

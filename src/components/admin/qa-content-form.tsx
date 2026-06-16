@@ -4,6 +4,7 @@ import { useState } from "react";
 import { X, Save, Image as ImageIcon, Volume2 } from "lucide-react";
 import Image from "next/image";
 import { CloudinaryMediaBrowser } from "@/components/media/cloudinary-media-browser";
+import { BrandSelect } from "@/components/ui/brand-select";
 
 interface ContentItem {
   id?: number;
@@ -164,17 +165,18 @@ export function QAContentForm({
                     <label className="block text-sm font-bold text-black mb-2">
                       Difficulty
                     </label>
-                    <select
+                    <BrandSelect
                       value={formData.difficulty || "medium"}
-                      onChange={(e) =>
-                        setFormData((prev) => ({ ...prev, difficulty: e.target.value }))
-                      }
-                      className="w-full p-3 border-2 border-black font-medium focus:outline-none"
-                    >
-                      <option value="easy">Easy</option>
-                      <option value="medium">Medium</option>
-                      <option value="hard">Hard</option>
-                    </select>
+                      onValueChange={(v) => setFormData((prev) => ({ ...prev, difficulty: v }))}
+                      fullWidth
+                      ariaLabel="Difficulty"
+                      className="p-3"
+                      options={[
+                        { value: "easy", label: "Easy" },
+                        { value: "medium", label: "Medium" },
+                        { value: "hard", label: "Hard" },
+                      ]}
+                    />
                   </div>
 
                   <div>

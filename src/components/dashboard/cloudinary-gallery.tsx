@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { BrandSelect } from "@/components/ui/brand-select";
 import {
   Card,
   CardContent,
@@ -199,36 +200,34 @@ export function CloudinaryGallery() {
               <span className="text-xs font-black uppercase tracking-widest text-black">
                 Folder filter
               </span>
-              <select
+              <BrandSelect
                 value={selectedFolder}
-                onChange={(e) => setSelectedFolder(e.target.value)}
-                className="h-10 border-2 border-black bg-white px-2 text-sm font-bold focus:outline-none focus:ring-0 uppercase"
-              >
-                <option value="">ALL FOLDERS</option>
-                {folders.map((folder) => (
-                  <option key={folder.name} value={folder.name}>
-                    {folder.name} ({folder.count})
-                  </option>
-                ))}
-              </select>
+                onValueChange={setSelectedFolder}
+                fullWidth
+                ariaLabel="Folder filter"
+                className="h-10 px-2 text-sm"
+                options={[
+                  { value: "", label: "ALL FOLDERS" },
+                  ...folders.map((folder) => ({ value: folder.name, label: `${folder.name} (${folder.count})` })),
+                ]}
+              />
             </label>
 
             <label className="flex flex-col gap-1">
               <span className="text-xs font-black uppercase tracking-widest text-black">
                 Category filter
               </span>
-              <select
+              <BrandSelect
                 value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="h-10 border-2 border-black bg-white px-2 text-sm font-bold focus:outline-none focus:ring-0 uppercase"
-              >
-                <option value="">ALL CATEGORIES</option>
-                {categories.map((category) => (
-                  <option key={category.name} value={category.name}>
-                    {category.name} ({category.count})
-                  </option>
-                ))}
-              </select>
+                onValueChange={setSelectedCategory}
+                fullWidth
+                ariaLabel="Category filter"
+                className="h-10 px-2 text-sm"
+                options={[
+                  { value: "", label: "ALL CATEGORIES" },
+                  ...categories.map((category) => ({ value: category.name, label: `${category.name} (${category.count})` })),
+                ]}
+              />
             </label>
           </div>
 

@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useLang } from "@/context/lang-context";
 import { toast } from "sonner";
+import { BrandSelect } from "@/components/ui/brand-select";
 
 interface Message {
   role: "user" | "assistant";
@@ -102,16 +103,18 @@ export function AIChat() {
             {kh ? "ស្វ័រ AI" : "Suar AI"}
           </h2>
         </div>
-        <select
+        <BrandSelect
           value={provider}
-          onChange={(e) => setProvider(e.target.value as any)}
-          className="px-3 py-1 border-2 border-black rounded-none font-bold text-sm bg-white"
-          style={khFont}
-        >
-          <option value="google">Google Gemini</option>
-          <option value="perplexity">Perplexity</option>
-          <option value="imagine">Imagine AI</option>
-        </select>
+          onValueChange={(v) => setProvider(v as typeof provider)}
+          fontStyle={khFont}
+          ariaLabel={kh ? "ផ្ដល់សេវា AI" : "AI provider"}
+          className="px-3 py-1 text-sm"
+          options={[
+            { value: "google", label: "Google Gemini" },
+            { value: "perplexity", label: "Perplexity" },
+            { value: "imagine", label: "Imagine AI" },
+          ]}
+        />
       </div>
 
       {/* Messages */}

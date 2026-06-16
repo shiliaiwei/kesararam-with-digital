@@ -8,6 +8,7 @@ import {
   SlidersHorizontal, AlertCircle,
 } from "lucide-react";
 import { CldUploadWidget } from "next-cloudinary";
+import { BrandSelect } from "@/components/ui/brand-select";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -454,29 +455,31 @@ export function MediaLibrary() {
           </div>
 
           {/* Format filter */}
-          <select
+          <BrandSelect
             value={formatFilter}
-            onChange={(e) => setFormatFilter(e.target.value)}
-            className="py-1.5 px-2 text-[10px] font-black uppercase focus:outline-none"
-            style={{ border: "2px solid #000" }}
-          >
-            <option value="all">All Formats</option>
-            {availableFormats.map((f) => (
-              <option key={f} value={f}>{f.toUpperCase()}</option>
-            ))}
-          </select>
+            onValueChange={setFormatFilter}
+            ariaLabel="Format filter"
+            size="sm"
+            className="py-1.5 px-2"
+            options={[
+              { value: "all", label: "All Formats" },
+              ...availableFormats.map((f) => ({ value: f, label: f.toUpperCase() })),
+            ]}
+          />
 
           {/* Sort */}
-          <select
+          <BrandSelect
             value={sortKey}
-            onChange={(e) => setSortKey(e.target.value as SortKey)}
-            className="py-1.5 px-2 text-[10px] font-black uppercase focus:outline-none"
-            style={{ border: "2px solid #000" }}
-          >
-            <option value="date">Newest First</option>
-            <option value="name">Name A–Z</option>
-            <option value="size">Largest First</option>
-          </select>
+            onValueChange={(v) => setSortKey(v as SortKey)}
+            ariaLabel="Sort"
+            size="sm"
+            className="py-1.5 px-2"
+            options={[
+              { value: "date", label: "Newest First" },
+              { value: "name", label: "Name A–Z" },
+              { value: "size", label: "Largest First" },
+            ]}
+          />
 
           {/* View toggle */}
           <div className="flex" style={{ border: "2px solid #000" }}>

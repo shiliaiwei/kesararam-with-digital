@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Plus, Search, Edit, Trash2, Eye, Volume2, CheckCircle, XCircle } from "lucide-react";
 import Image from "next/image";
+import { BrandSelect } from "@/components/ui/brand-select";
 import { TrafficSignForm } from "./traffic-sign-form";
 
 interface TrafficSign {
@@ -177,16 +178,18 @@ export function TrafficSignsContent() {
             className="w-full pl-10 pr-4 py-2 border-2 border-black font-medium text-sm focus:outline-none focus:shadow-[2px_2px_0_#000]"
           />
         </div>
-        <select
+        <BrandSelect
           value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          className="px-4 py-2 border-2 border-black font-medium text-sm focus:outline-none"
-        >
-          <option value="all">All Status</option>
-          <option value="pending">Pending</option>
-          <option value="approved">Approved</option>
-          <option value="rejected">Rejected</option>
-        </select>
+          onValueChange={setStatusFilter}
+          ariaLabel="Filter by status"
+          className="px-4 py-2 text-sm"
+          options={[
+            { value: "all", label: "All Status" },
+            { value: "pending", label: "Pending" },
+            { value: "approved", label: "Approved" },
+            { value: "rejected", label: "Rejected" },
+          ]}
+        />
         <div className="text-sm text-zinc-600">
           {filteredSigns.length} of {data.length} signs
         </div>

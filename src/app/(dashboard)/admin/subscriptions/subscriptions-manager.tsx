@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import { PLAN_DISPLAY, PLAN_LIMITS, type PlanTier } from "@/lib/subscription-plans";
+import { BrandSelect } from "@/components/ui/brand-select";
 
 type SubStatus = "active" | "expired" | "cancelled" | "trial";
 
@@ -644,23 +645,25 @@ export function SubscriptionsManager({ initialRows, allUsers }: Props) {
           <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search user..."
             className="w-full bg-white/5 border border-white/10 rounded-none pl-8 pr-3 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-amber-400/50" />
         </div>
-        <select value={filterPlan} onChange={e => setFilterPlan(e.target.value)}
-          className="bg-[#111] border border-white/10 rounded-none px-3 py-2.5 text-sm text-white focus:outline-none">
-          <option value="all">All Plans</option>
-          <option value="free">Free</option>
-          <option value="teacher_pro">Teacher Pro</option>
-          <option value="school">School</option>
-          <option value="family">Family</option>
-          <option value="driving_school">Driving School</option>
-        </select>
-        <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)}
-          className="bg-[#111] border border-white/10 rounded-none px-3 py-2.5 text-sm text-white focus:outline-none">
-          <option value="all">All Status</option>
-          <option value="active">Active</option>
-          <option value="trial">Trial</option>
-          <option value="expired">Expired</option>
-          <option value="cancelled">Cancelled</option>
-        </select>
+        <BrandSelect value={filterPlan} onValueChange={setFilterPlan} variant="dark"
+          ariaLabel="Filter by plan" className="px-3 py-2.5 text-sm"
+          options={[
+            { value: "all", label: "All Plans" },
+            { value: "free", label: "Free" },
+            { value: "teacher_pro", label: "Teacher Pro" },
+            { value: "school", label: "School" },
+            { value: "family", label: "Family" },
+            { value: "driving_school", label: "Driving School" },
+          ]} />
+        <BrandSelect value={filterStatus} onValueChange={setFilterStatus} variant="dark"
+          ariaLabel="Filter by status" className="px-3 py-2.5 text-sm"
+          options={[
+            { value: "all", label: "All Status" },
+            { value: "active", label: "Active" },
+            { value: "trial", label: "Trial" },
+            { value: "expired", label: "Expired" },
+            { value: "cancelled", label: "Cancelled" },
+          ]} />
       </div>
 
       <div className="bg-white/5 border border-white/10 rounded-none overflow-hidden">

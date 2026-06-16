@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useLang } from "@/context/lang-context";
 import { Loader2, Save, LogOut, User, Palette, School, MapPin } from "lucide-react";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
+import { BrandSelect } from "@/components/ui/brand-select";
 import { FACES, HEADS } from "./profile-editor";
 
 const CAMBODIA_PROVINCES = [
@@ -332,23 +333,20 @@ export function CompleteTeacherProfileForm() {
                 </label>
                 <div className="relative flex items-center">
                   <MapPin className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
-                  <select
+                  <BrandSelect
                     id="province"
                     value={province}
-                    onChange={(e) => setProvince(e.target.value)}
+                    onValueChange={setProvince}
                     required
-                    className="w-full pl-10 pr-4 py-2.5 border-2 border-black text-sm font-black bg-white focus:outline-none focus:shadow-[2px_2px_0_#eab308]"
-                    style={{ borderRadius: "0px" }}
-                  >
-                    <option value="" disabled>
-                      {kh ? "ជ្រើសរើសខេត្ត-ក្រុង" : "Select Province"}
-                    </option>
-                    {CAMBODIA_PROVINCES.map((prov) => (
-                      <option key={prov.en} value={prov.en}>
-                        {kh ? prov.kh : prov.en}
-                      </option>
-                    ))}
-                  </select>
+                    fullWidth
+                    ariaLabel={kh ? "ខេត្ត-ក្រុង" : "Province"}
+                    placeholder={kh ? "ជ្រើសរើសខេត្ត-ក្រុង" : "Select Province"}
+                    className="pl-10 pr-4 py-2.5 text-sm"
+                    options={CAMBODIA_PROVINCES.map((prov) => ({
+                      value: prov.en,
+                      label: kh ? prov.kh : prov.en,
+                    }))}
+                  />
                 </div>
               </div>
 

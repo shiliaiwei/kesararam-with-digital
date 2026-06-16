@@ -10,6 +10,7 @@ import { RankBadge as TierBadge, RankedAvatarRing, RankProgressBar, RankShowcase
 import { getRank } from "@/lib/rank-utils";
 import { getAvatarFaceStyle } from "@/lib/utils";
 import { REWARD_ITEMS, getRewardRarity, RARITY_META } from "@/lib/rewards";
+import { BrandSelect } from "@/components/ui/brand-select";
 import {
   Trophy,
   Gift,
@@ -114,6 +115,7 @@ interface LeaderboardUser {
   lifetimePoints: number;
   priorityPoints?: number;
   soloPoints?: number;
+  accuracy?: number;
   schoolName?: string | null;
   province?: string | null;
   gradeLevel?: string | null;
@@ -1224,34 +1226,29 @@ export default function LeaderboardPage() {
                   })}
                 </div>
 
-                {/* Province Select */}
-                <select
+                {/* Province Select — brutalist BrandSelect (native popup can't be brand-styled) */}
+                <BrandSelect
+                  ariaLabel={kh ? "ខេត្ត/ក្រុង" : "Province"}
                   value={province}
-                  onChange={e => setProvince(e.target.value)}
-                  className="border-2 border-black bg-white px-2.5 py-1.5 text-[11px] md:text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
-                  style={{ borderRadius: 0, ...kf }}
-                >
-                  <option value="all">{kh ? "ខេត្ត/ក្រុងទាំងអស់" : "All Provinces"}</option>
-                  {CAMBODIA_PROVINCES.map(p => (
-                    <option key={p.en} value={p.en}>{kh ? p.kh : p.en}</option>
-                  ))}
-                </select>
+                  onValueChange={setProvince}
+                  fontStyle={kf}
+                  options={[
+                    { value: "all", label: kh ? "ខេត្ត/ក្រុងទាំងអស់" : "All Provinces" },
+                    ...CAMBODIA_PROVINCES.map(p => ({ value: p.en, label: kh ? p.kh : p.en })),
+                  ]}
+                />
 
-                {/* Game Type Select */}
-                <select
+                {/* Game Type Select — brutalist BrandSelect */}
+                <BrandSelect
+                  ariaLabel={kh ? "ប្រភេទហ្គេម" : "Game Type"}
                   value={gameType}
-                  onChange={e => setGameType(e.target.value)}
-                  className="border-2 border-black bg-white px-2.5 py-1.5 text-[11px] md:text-xs font-bold text-black focus:outline-none focus:bg-yellow-50"
-                  style={{ borderRadius: 0, ...kf }}
-                >
-                  <option value="all">{kh ? "គ្រប់ប្រភេទហ្គេម" : "All Game Types"}</option>
-                  <option value="daily">{kh ? "បញ្ហាប្រចាំថ្ងៃ" : "Daily Challenge"}</option>
-                  <option value="priority-puzzle">{kh ? "តើអ្នកណាទៅមុន?" : "Who Goes First?"}</option>
-                  <option value="sign-match">{kh ? "ផ្គូផ្គងសញ្ញា" : "Sign Match"}</option>
-                  <option value="catch-sign">{kh ? "ចាប់សញ្ញា" : "Catch the Sign"}</option>
-                  <option value="light-hero">{kh ? "បញ្ញាបរភ្លើងសញ្ញា" : "Traffic Light Hero"}</option>
-                  <option value="safety-adventure">{kh ? "ដំណើរផ្សងព្រេងសុវត្ថិភាព" : "Road Safety Adventure"}</option>
-                </select>
+                  onValueChange={setGameType}
+                  fontStyle={kf}
+                  options={[
+                    { value: "all", label: kh ? "គ្រប់ប្រភេទហ្គេម" : "All Game Types" },
+                    ...Object.entries(GAME_LABELS).map(([value, l]) => ({ value, label: kh ? l.kh : l.en })),
+                  ]}
+                />
               </div>
 
               <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
@@ -1284,10 +1281,10 @@ export default function LeaderboardPage() {
                 {/* Table Header */}
                 <div className="grid grid-cols-12 bg-black px-3 md:px-5 py-2.5 text-[9px] md:text-[10px] font-black tracking-widest text-yellow-400 uppercase">
                   <span className="col-span-1">#</span>
-                  <span className="col-span-7 sm:col-span-4">{kh ? "សិស្ស" : "Student"}</span>
-                  <span className="col-span-2 text-center hidden sm:block">{kh ? "ហ្គេម" : "Games"}</span>
-                  <span className="col-span-2 text-center hidden sm:block text-green-400">{kh ? "ហ្វឹកហាត់" : "Solo"}</span>
-                  <span className="col-span-4 sm:col-span-3 text-right">{kh ? "ពិន្ទុអាទិភាព" : "Priority"}</span>
+                  <span className="col-span-6 sm:col-span-4">{kh ? "សិស្ស" : "Student"}</span>
+                  <span className="col-span-5 sm:col-span-2 text-right">{kh ? "ពិន្ទុសរុប" : "Total"}</span>
+                  <span className="col-span-2 text-center hidden sm:block text-red-400">{kh ? "ផ្ទាល់" : "Live"}</span>
+                  <span className="col-span-3 text-right hidden sm:block text-green-400">{kh ? "ត្រឹមត្រូវ" : "Accuracy"}</span>
                 </div>
 
                 {leaderboard.length > 0 ? leaderboard.map((user, rowIndex) => {
@@ -1322,7 +1319,7 @@ export default function LeaderboardPage() {
                       </div>
 
                       {/* Avatar + name + meta */}
-                      <div className="col-span-7 sm:col-span-4 flex items-center gap-2.5 min-w-0">
+                      <div className="col-span-6 sm:col-span-4 flex items-center gap-2.5 min-w-0">
                         <RankedAvatarRing lifetimePoints={user.lifetimePoints} size={36} index={rowIndex}>
                           <Avatar
                             url={rowAvatar}
@@ -1356,20 +1353,24 @@ export default function LeaderboardPage() {
                       </div>
 
                       {/* Games */}
-                      <span className="col-span-2 text-center text-xs font-bold text-zinc-500 tabular-nums hidden sm:block">
-                        {user.totalGamesPlayed}
-                      </span>
-
-                      {/* Solo practice score (separate currency, not claimable) */}
-                      <span className="col-span-2 text-center text-xs font-bold text-green-600 tabular-nums hidden sm:block">
-                        {(user.soloPoints ?? 0).toLocaleString()}
-                      </span>
-
-                      {/* Priority points = live currency = rank + claimable */}
-                      <div className="col-span-4 sm:col-span-3 text-right">
-                        <span className="font-black tabular-nums text-sm md:text-base text-black">{(user.priorityPoints ?? user.lifetimePoints).toLocaleString()}</span>
-                        <span className="block text-[8px] text-zinc-400 font-bold uppercase tracking-wider leading-none">{kh ? "ពិន្ទុអាទិភាព" : "priority pts"}</span>
+                      {/* Total points = the headline ranking metric */}
+                      <div className="col-span-5 sm:col-span-2 text-right">
+                        <span className="font-black tabular-nums text-sm md:text-base text-black">{user.lifetimePoints.toLocaleString()}</span>
+                        <span className="block text-[8px] text-zinc-400 font-bold uppercase tracking-wider leading-none sm:hidden">{kh ? "ពិន្ទុ" : "total"}</span>
                       </div>
+
+                      {/* Live (priority) points — claimable, live sessions only */}
+                      <span className="col-span-2 text-center text-xs font-bold text-red-600 tabular-nums hidden sm:block">
+                        {(user.priorityPoints ?? 0).toLocaleString()}
+                      </span>
+
+                      {/* Accuracy across recorded plays */}
+                      <span
+                        className="col-span-3 text-right text-xs md:text-sm font-black tabular-nums hidden sm:block"
+                        style={{ color: (user.accuracy ?? 0) >= 80 ? "#16a34a" : (user.accuracy ?? 0) >= 50 ? "#854d0e" : "#a1a1aa" }}
+                      >
+                        {(user.accuracy ?? 0)}%
+                      </span>
                     </div>
                   );
                 }) : (
@@ -1382,8 +1383,8 @@ export default function LeaderboardPage() {
               </div>
               <p className="text-center text-[9px] text-zinc-400 mt-2 font-mono uppercase" style={kf}>
                 {kh
-                  ? "ហ្គេមផ្ទាល់ + ហ្វឹកហាត់ + បញ្ហាប្រចាំថ្ងៃ = ពិន្ទុ · ចំណាត់ថ្នាក់ផ្លាស់ប្ដូរបន្តផ្ទាល់ · ភ្ញៀវមិនកត់ត្រា"
-                  : "Live + Solo + Daily all count · Ranks update in real-time · Guest plays not recorded"}
+                  ? "ពិន្ទុសរុប = គ្រប់ហ្គេម · ផ្ទាល់ = អាចដោះបាន · ត្រឹមត្រូវ = មធ្យមភាគ · ចំណាត់ថ្នាក់ផ្លាស់ប្ដូរបន្តផ្ទាល់"
+                  : "Total = all plays · Live = claimable · Accuracy = avg correct · Ranks update in real-time"}
               </p>
 
             </div>

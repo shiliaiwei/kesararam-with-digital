@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { registerAction } from "@/app/actions/auth";
 import { useLang } from "@/context/lang-context";
 import { SignShape, CautionTape } from "@/components/brand/brand-kit";
+import { BrandSelect } from "@/components/ui/brand-select";
 import {
   User,
   Lock,
@@ -743,20 +744,20 @@ function RegisterFormInner() {
                         </label>
                         <div className="relative flex items-center">
                           <MapPin className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
-                          <select
+                          <BrandSelect
                             id="province"
                             name="province"
                             required
                             defaultValue=""
-                            className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-black bg-white focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                          >
-                            <option value="" disabled>{kh ? "ជ្រើសរើសខេត្ត" : "Select Province"}</option>
-                            {CAMBODIA_PROVINCES.map((prov) => (
-                              <option key={prov.en} value={prov.en}>
-                                {kh ? prov.kh : prov.en}
-                              </option>
-                            ))}
-                          </select>
+                            fullWidth
+                            ariaLabel={kh ? "ខេត្ត-ក្រុង" : "Province"}
+                            placeholder={kh ? "ជ្រើសរើសខេត្ត" : "Select Province"}
+                            className="pl-10 pr-4 py-3 text-sm"
+                            options={CAMBODIA_PROVINCES.map((prov) => ({
+                              value: prov.en,
+                              label: kh ? prov.kh : prov.en,
+                            }))}
+                          />
                         </div>
                       </div>
 
@@ -768,20 +769,20 @@ function RegisterFormInner() {
                           </label>
                           <div className="relative flex items-center">
                             <GraduationCap className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
-                            <select
+                            <BrandSelect
                               id="gradeLevel"
                               name="gradeLevel"
                               required
                               defaultValue=""
-                              className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-black bg-white focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                            >
-                              <option value="" disabled>{kh ? "ជ្រើសរើសថ្នាក់" : "Select Grade"}</option>
-                              {GRADES.map((gr) => (
-                                <option key={gr.en} value={gr.en}>
-                                  {kh ? gr.kh : gr.en}
-                                </option>
-                              ))}
-                            </select>
+                              fullWidth
+                              ariaLabel={kh ? "ថ្នាក់ទី" : "Grade"}
+                              placeholder={kh ? "ជ្រើសរើសថ្នាក់" : "Select Grade"}
+                              className="pl-10 pr-4 py-3 text-sm"
+                              options={GRADES.map((gr) => ({
+                                value: gr.en,
+                                label: kh ? gr.kh : gr.en,
+                              }))}
+                            />
                           </div>
                         </div>
                       )}

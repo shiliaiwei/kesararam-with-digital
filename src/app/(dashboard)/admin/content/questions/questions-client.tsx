@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { Plus, Search, Edit, Trash2, BookOpen } from "lucide-react";
+import { BrandSelect } from "@/components/ui/brand-select";
 
 interface Question {
     id: number;
@@ -91,14 +92,16 @@ export default function AdminQuestionsClient() {
                         className="w-full pl-10 pr-4 py-2 border-2 border-black font-medium text-sm focus:outline-none focus:bg-yellow-50"
                     />
                 </div>
-                <select
+                <BrandSelect
                     value={typeFilter}
-                    onChange={(e) => setTypeFilter(e.target.value)}
-                    className="px-4 py-2 border-2 border-black font-medium text-sm focus:outline-none bg-white"
-                >
-                    <option value="all">All Types</option>
-                    {QUESTION_TYPES.map(t => <option key={t.value} value={t.value}>{t.label}</option>)}
-                </select>
+                    onValueChange={setTypeFilter}
+                    ariaLabel="Filter by type"
+                    className="px-4 py-2 text-sm"
+                    options={[
+                        { value: "all", label: "All Types" },
+                        ...QUESTION_TYPES.map(t => ({ value: t.value, label: t.label })),
+                    ]}
+                />
                 <span className="text-sm text-zinc-600 font-bold whitespace-nowrap">{filtered.length} questions</span>
             </div>
 

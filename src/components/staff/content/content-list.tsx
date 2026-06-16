@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { BrandSelect } from "@/components/ui/brand-select";
 import {
   Plus,
   Search,
@@ -209,34 +210,36 @@ export function ContentList() {
             {/* Status Filter */}
             <div>
               <label className="block font-bold mb-2">Status</label>
-              <select
+              <BrandSelect
                 value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-              >
-                <option value="">All Statuses</option>
-                <option value="pending">Pending</option>
-                <option value="active">Approved</option>
-                <option value="rejected">Rejected</option>
-                <option value="inactive">Inactive</option>
-              </select>
+                onValueChange={setStatusFilter}
+                fullWidth
+                ariaLabel="Filter by status"
+                className="px-4 py-2"
+                options={[
+                  { value: "", label: "All Statuses" },
+                  { value: "pending", label: "Pending" },
+                  { value: "active", label: "Approved" },
+                  { value: "rejected", label: "Rejected" },
+                  { value: "inactive", label: "Inactive" },
+                ]}
+              />
             </div>
 
             {/* Category Filter */}
             <div>
               <label className="block font-bold mb-2">Category</label>
-              <select
+              <BrandSelect
                 value={categoryFilter}
-                onChange={(e) => setCategoryFilter(e.target.value)}
-                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-              >
-                <option value="">All Categories</option>
-                {CATEGORIES.map((cat) => (
-                  <option key={cat.id} value={cat.id}>
-                    {cat.name}
-                  </option>
-                ))}
-              </select>
+                onValueChange={setCategoryFilter}
+                fullWidth
+                ariaLabel="Filter by category"
+                className="px-4 py-2"
+                options={[
+                  { value: "", label: "All Categories" },
+                  ...CATEGORIES.map((cat) => ({ value: String(cat.id), label: cat.name })),
+                ]}
+              />
             </div>
           </div>
 

@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { Key, Copy, CheckCircle2, XCircle, Plus, RefreshCw } from "lucide-react";
 import { generateInviteCode } from "@/app/actions/invites";
+import { BrandSelect } from "@/components/ui/brand-select";
 import { toast } from "sonner";
 
 interface InviteCodeRow {
@@ -117,19 +118,16 @@ export function InvitesClient({ initialCodes, classes }: InvitesClientProps) {
           </div>
           
           <div className="flex flex-wrap items-center gap-3">
-            <select
-              value={selectedClassId || ""}
-              onChange={(e) => setSelectedClassId(e.target.value ? Number(e.target.value) : null)}
-              className="px-3 py-2.5 border-2 border-black font-black text-xs uppercase bg-white focus:outline-none focus:shadow-[2px_2px_0_#000] min-w-[200px]"
-              style={{ borderRadius: "0px" }}
-            >
-              <option value="">No Class Link (General Invite)</option>
-              {classes.map((cl) => (
-                <option key={cl.id} value={cl.id}>
-                  Link to: {cl.name}
-                </option>
-              ))}
-            </select>
+            <BrandSelect
+              value={selectedClassId ? String(selectedClassId) : ""}
+              onValueChange={(v) => setSelectedClassId(v ? Number(v) : null)}
+              ariaLabel="Link invite to class"
+              className="px-3 py-2.5 text-xs min-w-[200px]"
+              options={[
+                { value: "", label: "No Class Link (General Invite)" },
+                ...classes.map((cl) => ({ value: String(cl.id), label: `Link to: ${cl.name}` })),
+              ]}
+            />
 
             <button
               onClick={handleGenerate}

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Plus, Trash2, ChevronDown, ChevronUp } from "lucide-react";
 import { MediaSelector } from "../media/media-selector";
+import { BrandSelect } from "@/components/ui/brand-select";
 
 interface Answer {
   id: string;
@@ -309,21 +310,16 @@ export function QAForm({ questions, onChange }: QAFormProps) {
                             <label className="block font-bold mb-2 text-sm">
                               Answer Type
                             </label>
-                            <select
+                            <BrandSelect
                               value={answer.answerType}
-                              onChange={(e) =>
-                                updateAnswer(question.id, answer.id, {
-                                  answerType: e.target.value,
-                                })
+                              onValueChange={(v) =>
+                                updateAnswer(question.id, answer.id, { answerType: v })
                               }
-                              className="w-full px-3 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-                            >
-                              {ANSWER_TYPES.map((type) => (
-                                <option key={type.value} value={type.value}>
-                                  {type.label}
-                                </option>
-                              ))}
-                            </select>
+                              fullWidth
+                              ariaLabel="Answer type"
+                              className="px-3 py-2"
+                              options={ANSWER_TYPES.map((type) => ({ value: type.value, label: type.label }))}
+                            />
                           </div>
 
                           {/* Answer Text */}

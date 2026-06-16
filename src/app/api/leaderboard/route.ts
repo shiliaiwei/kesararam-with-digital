@@ -36,6 +36,10 @@ async function storePointsLeaderboard(opts: {
   const windowExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = ${users.id} AND spe.delta > 0 AND spe.play_date >= ${start}${gameTypeCond}), 0)::int`;
   // Claimable store balance = lifetime SUM of every delta (earn − spend/hold).
   const balanceExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = ${users.id}), 0)::int`;
+  // Live-session Store Points = the "priority" subtotal (attempt_id like 'live:%').
+  const liveExpr = sql<number>`COALESCE((SELECT SUM(spe.delta) FROM store_point_events spe WHERE spe.user_id = ${users.id} AND spe.delta > 0 AND spe.attempt_id LIKE 'live:%'${gameTypeCond}), 0)::int`;
+  // Average accuracy across recorded plays (0..100).
+  const accuracyExpr = sql<number>`COALESCE((SELECT ROUND(AVG(spe.accuracy) * 100) FROM store_point_events spe WHERE spe.user_id = ${users.id} AND spe.reason = 'play'${gameTypeCond}), 0)::int`;
 
   const provinceFilter =
     province !== "all" ? sql` AND ${users.province} = ${province}` : sql``;
@@ -52,6 +56,8 @@ async function storePointsLeaderboard(opts: {
       totalGamesPlayed: users.totalGamesPlayed,
       windowPoints: windowExpr,
       storeBalance: balanceExpr,
+      livePoints: liveExpr,
+      accuracy: accuracyExpr,
       schoolName: users.schoolName,
       province: users.province,
       gradeLevel: users.gradeLevel,
@@ -78,8 +84,9 @@ async function storePointsLeaderboard(opts: {
     highestScore: user.highestScore,
     totalGamesPlayed: user.totalGamesPlayed,
     lifetimePoints: user.windowPoints,
-    priorityPoints: user.storeBalance,
+    priorityPoints: user.livePoints,
     soloPoints: 0,
+    accuracy: user.accuracy,
     schoolName: (user.isSchoolPublic ?? true) ? user.schoolName : null,
     province: (user.isProvincePublic ?? true) ? user.province : null,
     gradeLevel: (user.isGradePublic ?? true) ? user.gradeLevel : null,
@@ -150,6 +157,8 @@ export async function GET(req: NextRequest) {
     //   solo            = separate practice currency (not claimable yet)
     const priorityExpr = sql<number>`COALESCE((SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = ${users.id} AND pl.source LIKE 'live-session:%'), 0)::int`;
     const soloExpr = sql<number>`COALESCE((SELECT SUM(pl.points) FROM points_ledger pl WHERE pl.user_id = ${users.id} AND pl.source = 'solo'), 0)::int`;
+    // Average accuracy across recorded solo plays (0..100).
+    const accuracyExpr = sql<number>`COALESCE((SELECT ROUND(AVG(CASE WHEN gs.total_questions > 0 THEN gs.correct_answers::numeric / gs.total_questions END) * 100) FROM game_scores gs WHERE gs.user_id = ${users.id}), 0)::int`;
 
     let rows: {
       id: number;
@@ -162,6 +171,7 @@ export async function GET(req: NextRequest) {
       windowPoints: number;
       priorityPoints: number;
       soloPoints: number;
+      accuracy: number;
       schoolName: string | null;
       province: string | null;
       gradeLevel: string | null;
@@ -188,6 +198,7 @@ export async function GET(req: NextRequest) {
           windowPoints: users.lifetimePoints,
           priorityPoints: priorityExpr,
           soloPoints: soloExpr,
+          accuracy: accuracyExpr,
           schoolName: users.schoolName,
           province: users.province,
           gradeLevel: users.gradeLevel,
@@ -234,6 +245,7 @@ export async function GET(req: NextRequest) {
           windowPoints: sql<number>`COALESCE(SUM(${pointsLedger.points}), 0)::int`,
           priorityPoints: priorityExpr,
           soloPoints: soloExpr,
+          accuracy: accuracyExpr,
           schoolName: users.schoolName,
           province: users.province,
           gradeLevel: users.gradeLevel,
@@ -301,6 +313,7 @@ export async function GET(req: NextRequest) {
         lifetimePoints: user.windowPoints,
         priorityPoints: user.priorityPoints,
         soloPoints: user.soloPoints,
+        accuracy: user.accuracy,
         schoolName: (user.isSchoolPublic ?? true) ? user.schoolName : null,
         province: (user.isProvincePublic ?? true) ? user.province : null,
         gradeLevel: (user.isGradePublic ?? true) ? user.gradeLevel : null,

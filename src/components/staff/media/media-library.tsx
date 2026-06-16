@@ -13,6 +13,7 @@ import {
   Cloud,
 } from "lucide-react";
 import { CloudinaryBrowser } from "./cloudinary-browser";
+import { BrandSelect } from "@/components/ui/brand-select";
 
 interface MediaItem {
   id: number;
@@ -546,19 +547,14 @@ function AddMediaModal({
 
           <div>
             <label className="block font-bold mb-2">Type</label>
-            <select
+            <BrandSelect
               value={formData.type}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, type: e.target.value }))
-              }
-              className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-            >
-              {MEDIA_TYPES.map((type) => (
-                <option key={type.value} value={type.value}>
-                  {type.label}
-                </option>
-              ))}
-            </select>
+              onValueChange={(v) => setFormData((prev) => ({ ...prev, type: v }))}
+              fullWidth
+              ariaLabel="Type"
+              className="px-4 py-2"
+              options={MEDIA_TYPES.map((type) => ({ value: type.value, label: type.label }))}
+            />
           </div>
 
           <div>

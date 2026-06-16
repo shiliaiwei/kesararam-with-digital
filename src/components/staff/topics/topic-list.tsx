@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Plus, Search, Eye, Edit, Trash2, Send, Filter } from "lucide-react";
+import { BrandSelect } from "@/components/ui/brand-select";
 
 interface Topic {
   id: number;
@@ -159,34 +160,36 @@ export function TopicList() {
 
           {/* Category Filter */}
           <div>
-            <select
+            <BrandSelect
               value={categoryFilter}
-              onChange={(e) => setCategoryFilter(e.target.value)}
-              className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-            >
-              <option value="">All Categories</option>
-              {CATEGORIES.map((cat) => (
-                <option key={cat.id} value={cat.id}>
-                  {cat.name}
-                </option>
-              ))}
-            </select>
+              onValueChange={setCategoryFilter}
+              fullWidth
+              ariaLabel="Filter by category"
+              className="px-4 py-2"
+              options={[
+                { value: "", label: "All Categories" },
+                ...CATEGORIES.map((cat) => ({ value: String(cat.id), label: cat.name })),
+              ]}
+            />
           </div>
 
           {/* Status Filter */}
           <div>
-            <select
+            <BrandSelect
               value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-            >
-              <option value="">All Status</option>
-              <option value="draft">Draft</option>
-              <option value="pending">Pending</option>
-              <option value="approved">Approved</option>
-              <option value="published">Published</option>
-              <option value="rejected">Rejected</option>
-            </select>
+              onValueChange={setStatusFilter}
+              fullWidth
+              ariaLabel="Filter by status"
+              className="px-4 py-2"
+              options={[
+                { value: "", label: "All Status" },
+                { value: "draft", label: "Draft" },
+                { value: "pending", label: "Pending" },
+                { value: "approved", label: "Approved" },
+                { value: "published", label: "Published" },
+                { value: "rejected", label: "Rejected" },
+              ]}
+            />
           </div>
         </div>
       </div>

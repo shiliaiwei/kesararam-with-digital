@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Plus, Search, Edit, Trash2, CheckCircle, XCircle, Filter } from "lucide-react";
+import { BrandSelect } from "@/components/ui/brand-select";
 import Image from "next/image";
 import { QAContentForm } from "./qa-content-form";
 
@@ -205,26 +206,30 @@ export function QAContentManagement({
             className="w-full pl-10 pr-4 py-2 border-2 border-black font-medium text-sm focus:outline-none focus:shadow-[2px_2px_0_#000]"
           />
         </div>
-        <select
+        <BrandSelect
           value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          className="px-4 py-2 border-2 border-black font-medium text-sm focus:outline-none"
-        >
-          <option value="all">All Status</option>
-          <option value="pending">Pending</option>
-          <option value="approved">Approved</option>
-          <option value="rejected">Rejected</option>
-        </select>
-        <select
+          onValueChange={setStatusFilter}
+          ariaLabel="Filter by status"
+          className="px-4 py-2 text-sm"
+          options={[
+            { value: "all", label: "All Status" },
+            { value: "pending", label: "Pending" },
+            { value: "approved", label: "Approved" },
+            { value: "rejected", label: "Rejected" },
+          ]}
+        />
+        <BrandSelect
           value={difficultyFilter}
-          onChange={(e) => setDifficultyFilter(e.target.value)}
-          className="px-4 py-2 border-2 border-black font-medium text-sm focus:outline-none"
-        >
-          <option value="all">All Difficulty</option>
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
+          onValueChange={setDifficultyFilter}
+          ariaLabel="Filter by difficulty"
+          className="px-4 py-2 text-sm"
+          options={[
+            { value: "all", label: "All Difficulty" },
+            { value: "easy", label: "Easy" },
+            { value: "medium", label: "Medium" },
+            { value: "hard", label: "Hard" },
+          ]}
+        />
         <div className="text-sm text-zinc-600">
           {filteredContent.length} of {data.length} items
         </div>

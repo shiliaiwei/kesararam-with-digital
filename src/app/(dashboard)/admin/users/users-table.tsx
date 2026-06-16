@@ -8,6 +8,7 @@ import {
 import { createUser, updateUser, deleteUser, toggleUserActive } from "@/app/actions/users";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { BrandSelect } from "@/components/ui/brand-select";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 type Role = "student" | "teacher" | "admin" | "staff";
@@ -485,21 +486,23 @@ export function UsersTable({ initialUsers }: { initialUsers: UserRow[] }) {
           </div>
 
           {/* Filters */}
-          <select value={roleFilter} onChange={e => setRoleFilter(e.target.value)}
-            className="px-3 py-2.5 border-2 border-black font-bold text-sm bg-white focus:outline-none">
-            <option value="all">All Roles</option>
-            <option value="admin">Admin</option>
-            <option value="staff">Staff</option>
-            <option value="teacher">Teacher</option>
-            <option value="student">Student</option>
-          </select>
+          <BrandSelect value={roleFilter} onValueChange={setRoleFilter}
+            ariaLabel="Filter by role" className="px-3 py-2.5"
+            options={[
+              { value: "all", label: "All Roles" },
+              { value: "admin", label: "Admin" },
+              { value: "staff", label: "Staff" },
+              { value: "teacher", label: "Teacher" },
+              { value: "student", label: "Student" },
+            ]} />
 
-          <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)}
-            className="px-3 py-2.5 border-2 border-black font-bold text-sm bg-white focus:outline-none">
-            <option value="all">All Status</option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-          </select>
+          <BrandSelect value={statusFilter} onValueChange={setStatusFilter}
+            ariaLabel="Filter by status" className="px-3 py-2.5"
+            options={[
+              { value: "all", label: "All Status" },
+              { value: "active", label: "Active" },
+              { value: "inactive", label: "Inactive" },
+            ]} />
 
           {/* Online only toggle */}
           <button onClick={() => setOnlineFilter(v => !v)}

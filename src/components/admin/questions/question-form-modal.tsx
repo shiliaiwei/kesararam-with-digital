@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { X, Plus, Trash2, Lightbulb, AlertCircle, CheckCircle, Zap, RefreshCw, Clipboard, Settings, Image as ImageIcon } from "lucide-react";
 import { useToast } from "@/components/ui/toast-container";
+import { BrandSelect } from "@/components/ui/brand-select";
 
 interface QuestionFormModalProps {
     initialData?: any;
@@ -366,20 +367,15 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                         <div className="grid grid-cols-2 gap-3">
                             <div>
                                 <label className="block text-xs font-black uppercase mb-1">Category *</label>
-                                <select value={catId || ""} onChange={e => { setCatId(Number(e.target.value)); setTopicId(null); setTopicData(null); }}
-                                    className="w-full px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none" required>
-                                    <option value="">Choose category...</option>
-                                    {categories.map(c => <option key={c.id} value={c.id}>{c.titleEn}</option>)}
-                                </select>
+                                <BrandSelect value={catId ? String(catId) : ""} onValueChange={v => { setCatId(Number(v)); setTopicId(null); setTopicData(null); }}
+                                    fullWidth ariaLabel="Category" className="px-3 py-2 text-sm" required
+                                    options={[{ value: "", label: "Choose category..." }, ...categories.map(c => ({ value: String(c.id), label: c.titleEn }))]} />
                             </div>
                             <div>
                                 <label className="block text-xs font-black uppercase mb-1">Topic *</label>
-                                <select value={topicId || ""} onChange={e => handleTopicChange(Number(e.target.value))}
-                                    className="w-full px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none disabled:bg-gray-100"
-                                    disabled={!catId} required>
-                                    <option value="">Choose topic...</option>
-                                    {filteredTopics.map(t => <option key={t.id} value={t.id}>{t.nameEn} ({t.topicCode})</option>)}
-                                </select>
+                                <BrandSelect value={topicId ? String(topicId) : ""} onValueChange={v => handleTopicChange(Number(v))}
+                                    fullWidth ariaLabel="Topic" className="px-3 py-2 text-sm" disabled={!catId} required
+                                    options={[{ value: "", label: "Choose topic..." }, ...filteredTopics.map(t => ({ value: String(t.id), label: `${t.nameEn} (${t.topicCode})` }))]} />
                             </div>
                         </div>
                     )}
@@ -527,20 +523,21 @@ export function QuestionFormModal({ initialData, preSelectedTopic, onClose, onSu
                                                 )}
                                                 <div className="flex-1 space-y-1">
                                                     <div className="flex gap-1">
-                                                        <select
-                                                            value={ans.imageUrl === topicData?.primaryImageUrl ? "correct" : distImages.includes(ans.imageUrl || "") ? ans.imageUrl : (ans.imageUrl ? "custom" : "")}
-                                                            onChange={e => {
-                                                                const val = e.target.value;
+                                                        <BrandSelect
+                                                            value={ans.imageUrl === topicData?.primaryImageUrl ? "correct" : distImages.includes(ans.imageUrl || "") ? (ans.imageUrl || "") : (ans.imageUrl ? "custom" : "")}
+                                                            onValueChange={val => {
                                                                 if (val === "correct") updateAnswer(ans.id, "imageUrl", topicData?.primaryImageUrl || "");
                                                                 else if (val !== "custom" && val !== "") updateAnswer(ans.id, "imageUrl", val);
                                                             }}
-                                                            className="w-24 px-1 py-1 border-2 border-black text-xs font-bold focus:outline-none flex-shrink-0 bg-zinc-50"
-                                                        >
-                                                            <option value="">Select...</option>
-                                                            {topicData?.primaryImageUrl && <option value="correct">Correct Sign</option>}
-                                                            {distImages.map((img, idx) => <option key={idx} value={img}>Random {idx + 1}</option>)}
-                                                            <option value="custom">Custom</option>
-                                                        </select>
+                                                            ariaLabel="Answer image source"
+                                                            className="px-1 py-1 text-xs flex-shrink-0"
+                                                            options={[
+                                                                { value: "", label: "Select..." },
+                                                                ...(topicData?.primaryImageUrl ? [{ value: "correct", label: "Correct Sign" }] : []),
+                                                                ...distImages.map((img, idx) => ({ value: img, label: `Random ${idx + 1}` })),
+                                                                { value: "custom", label: "Custom" },
+                                                            ]}
+                                                        />
                                                         <input type="url" value={ans.imageUrl || ""} onChange={e => updateAnswer(ans.id, "imageUrl", e.target.value)}
                                                             className="w-full px-2 py-1.5 border-2 border-black text-xs font-medium focus:outline-none"
                                                             placeholder="Or paste URL..." />
@@ -842,20 +839,15 @@ function JsonImportMode({ topicId, topicData, catId, isPreSelected, preSelectedT
                 <div className="grid grid-cols-2 gap-3">
                     <div>
                         <label className="block text-xs font-black uppercase mb-1">Category *</label>
-                        <select value={localCatId || ""} onChange={e => { setLocalCatId(Number(e.target.value)); setLocalTopicId(null); setCatId(Number(e.target.value)); }}
-                            className="w-full px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none">
-                            <option value="">Choose category...</option>
-                            {categories.map(c => <option key={c.id} value={c.id}>{c.titleEn}</option>)}
-                        </select>
+                        <BrandSelect value={localCatId ? String(localCatId) : ""} onValueChange={v => { setLocalCatId(Number(v)); setLocalTopicId(null); setCatId(Number(v)); }}
+                            fullWidth ariaLabel="Category" className="px-3 py-2 text-sm"
+                            options={[{ value: "", label: "Choose category..." }, ...categories.map(c => ({ value: String(c.id), label: c.titleEn }))]} />
                     </div>
                     <div>
                         <label className="block text-xs font-black uppercase mb-1">Topic *</label>
-                        <select value={localTopicId || ""} onChange={e => { setLocalTopicId(Number(e.target.value)); setTopicId(Number(e.target.value)); }}
-                            className="w-full px-3 py-2 border-2 border-black text-sm font-medium focus:outline-none disabled:bg-gray-100"
-                            disabled={!localCatId}>
-                            <option value="">Choose topic...</option>
-                            {filteredTopics.map(t => <option key={t.id} value={t.id}>{t.nameEn} ({t.topicCode})</option>)}
-                        </select>
+                        <BrandSelect value={localTopicId ? String(localTopicId) : ""} onValueChange={v => { setLocalTopicId(Number(v)); setTopicId(Number(v)); }}
+                            fullWidth ariaLabel="Topic" className="px-3 py-2 text-sm" disabled={!localCatId}
+                            options={[{ value: "", label: "Choose topic..." }, ...filteredTopics.map(t => ({ value: String(t.id), label: `${t.nameEn} (${t.topicCode})` }))]} />
                     </div>
                 </div>
             )}

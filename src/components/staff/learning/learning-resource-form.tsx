@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Save, X, BookOpen } from "lucide-react";
 import { MediaSelector } from "../media/media-selector";
+import { BrandSelect } from "@/components/ui/brand-select";
 import { QAForm } from "../content/qa-form";
 
 interface Question {
@@ -260,19 +261,14 @@ export function LearningResourceForm({ initialData }: { initialData?: Record<str
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label className="block font-bold mb-2">Difficulty</label>
-            <select
+            <BrandSelect
               value={formData.difficulty}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, difficulty: e.target.value }))
-              }
-              className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-            >
-              {DIFFICULTIES.map((diff) => (
-                <option key={diff.value} value={diff.value}>
-                  {diff.label}
-                </option>
-              ))}
-            </select>
+              onValueChange={(v) => setFormData((prev) => ({ ...prev, difficulty: v }))}
+              fullWidth
+              ariaLabel="Difficulty"
+              className="px-4 py-2"
+              options={DIFFICULTIES.map((diff) => ({ value: diff.value, label: diff.label }))}
+            />
           </div>
 
           <div>

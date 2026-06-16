@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { X, Volume2, Save, Eye, Image as ImageIcon } from "lucide-react";
 import Image from "next/image";
+import { BrandSelect } from "@/components/ui/brand-select";
 import { CloudinaryMediaBrowser } from "@/components/media/cloudinary-media-browser";
 
 interface TrafficSign {
@@ -154,17 +155,20 @@ export function TrafficSignForm({ sign, onClose, onSave }: TrafficSignFormProps)
                   <label className="block text-sm font-bold text-black mb-2">
                     Sign Type
                   </label>
-                  <select
+                  <BrandSelect
                     value={formData.signType}
-                    onChange={(e) => setFormData(prev => ({ ...prev, signType: e.target.value }))}
-                    className="w-full p-3 border-2 border-black font-medium focus:outline-none"
+                    onValueChange={(v) => setFormData(prev => ({ ...prev, signType: v }))}
                     required
-                  >
-                    <option value="regulatory">Regulatory</option>
-                    <option value="warning">Warning</option>
-                    <option value="informational">Informational</option>
-                    <option value="guide">Guide</option>
-                  </select>
+                    fullWidth
+                    ariaLabel="Sign Type"
+                    className="p-3"
+                    options={[
+                      { value: "regulatory", label: "Regulatory" },
+                      { value: "warning", label: "Warning" },
+                      { value: "informational", label: "Informational" },
+                      { value: "guide", label: "Guide" },
+                    ]}
+                  />
                 </div>
 
                 {/* Category */}

@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Plus, Search, RefreshCw, Edit, Trash2, HelpCircle, ChevronRight, ArrowLeft, BookOpen, CircleDot, CheckCheck, Type, Puzzle, Images, MapPin, CheckSquare, Layers } from "lucide-react";
 import { QuestionFormModal } from "./question-form-modal";
+import { BrandSelect } from "@/components/ui/brand-select";
 import { useToast } from "@/components/ui/toast-container";
 
 interface Question {
@@ -648,16 +649,17 @@ export function QuestionManagementPanel() {
                                 </div>
 
                                 {/* Type filter */}
-                                <select value={typeFilter} onChange={e => setTypeFilter(e.target.value)} className="px-2 py-1.5 border-2 border-black text-xs font-bold bg-white focus:outline-none">
-                                    <option value="all">All Types</option>
-                                    <option value="mcq">MCQ</option>
-                                    <option value="true-false">True/False</option>
-                                    <option value="type-answer">Type Answer</option>
-                                    <option value="puzzle">Puzzle</option>
-                                    <option value="image-match">Image Match</option>
-                                    <option value="pin-location">Pin Location</option>
-                                    <option value="multi-select">Multi-Select</option>
-                                </select>
+                                <BrandSelect value={typeFilter} onValueChange={setTypeFilter} ariaLabel="Filter by type" className="px-2 py-1.5 text-xs"
+                                    options={[
+                                        { value: "all", label: "All Types" },
+                                        { value: "mcq", label: "MCQ" },
+                                        { value: "true-false", label: "True/False" },
+                                        { value: "type-answer", label: "Type Answer" },
+                                        { value: "puzzle", label: "Puzzle" },
+                                        { value: "image-match", label: "Image Match" },
+                                        { value: "pin-location", label: "Pin Location" },
+                                        { value: "multi-select", label: "Multi-Select" },
+                                    ]} />
 
                                 {/* Difficulty pills */}
                                 <div className="flex items-center gap-1 flex-wrap">
@@ -767,10 +769,9 @@ export function QuestionManagementPanel() {
                                                 </td>
                                                 <td className="px-4 py-3">
                                                     {/* Quick status toggle */}
-                                                    <select
+                                                    <BrandSelect
                                                         value={q.status || "draft"}
-                                                        onChange={async (e) => {
-                                                            const newStatus = e.target.value;
+                                                        onValueChange={async (newStatus) => {
                                                             try {
                                                                 await fetch(`/api/admin/questions/${q.id}/status`, {
                                                                     method: "PATCH",
@@ -784,15 +785,18 @@ export function QuestionManagementPanel() {
                                                                 showToast("Failed to update status", "error");
                                                             }
                                                         }}
-                                                        className="text-xs font-black px-2 py-1 border-2 border-black focus:outline-none"
-                                                        style={{ backgroundColor: statusColors[q.status || "draft"] || "#71717a", color: "#fff" }}
-                                                    >
-                                                        <option value="draft">Draft</option>
-                                                        <option value="pending">Pending</option>
-                                                        <option value="approved">Approved</option>
-                                                        <option value="published">Published</option>
-                                                        <option value="rejected">Rejected</option>
-                                                    </select>
+                                                        size="sm"
+                                                        ariaLabel="Question status"
+                                                        className="px-2 py-1 text-xs"
+                                                        triggerStyle={{ backgroundColor: statusColors[q.status || "draft"] || "#71717a", color: "#fff", borderColor: "#000" }}
+                                                        options={[
+                                                            { value: "draft", label: "Draft" },
+                                                            { value: "pending", label: "Pending" },
+                                                            { value: "approved", label: "Approved" },
+                                                            { value: "published", label: "Published" },
+                                                            { value: "rejected", label: "Rejected" },
+                                                        ]}
+                                                    />
                                                 </td>
                                                 <td className="px-4 py-3 text-xs font-bold text-zinc-600">{q.answerCount}</td>
                                                 <td className="px-4 py-3">

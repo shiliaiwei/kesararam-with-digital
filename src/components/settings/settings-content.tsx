@@ -19,6 +19,7 @@ import {
   ShieldCheck
 } from "lucide-react";
 import { AvatarDisplay } from "@/components/shared/avatar-display";
+import { BrandSelect } from "@/components/ui/brand-select";
 import { FACES, HEADS } from "../profile/profile-editor";
 import { TwoFactorSetup } from "@/components/account/two-factor-setup";
 import { ChangePassword } from "@/components/account/change-password";
@@ -514,24 +515,19 @@ export function SettingsContent() {
                   <label className="block text-sm font-bold text-black mb-2">
                     Province / ខេត្ត-ក្រុង
                   </label>
-                  <select
+                  <BrandSelect
                     value={settings.province || ""}
                     disabled={isStudentAndOnboarded}
-                    onChange={(e) =>
-                      setSettings({ ...settings, province: e.target.value })
-                    }
-                    className={`w-full p-3 border-2 border-black font-bold bg-white focus:outline-none focus:shadow-[2px_2px_0_#000] ${
-                      isStudentAndOnboarded ? "bg-zinc-50 cursor-not-allowed text-zinc-400" : ""
-                    }`}
-                    style={{ borderRadius: "0" }}
-                  >
-                    <option value="" disabled>Select Province / ជ្រើសរើសខេត្ត</option>
-                    {CAMBODIA_PROVINCES.map((prov) => (
-                      <option key={prov.en} value={prov.en}>
-                        {prov.en} / {prov.kh}
-                      </option>
-                    ))}
-                  </select>
+                    onValueChange={(v) => setSettings({ ...settings, province: v })}
+                    fullWidth
+                    ariaLabel="Province / ខេត្ត-ក្រុង"
+                    placeholder="Select Province / ជ្រើសរើសខេត្ត"
+                    className="p-3"
+                    options={CAMBODIA_PROVINCES.map((prov) => ({
+                      value: prov.en,
+                      label: `${prov.en} / ${prov.kh}`,
+                    }))}
+                  />
                 </div>
 
                 {/* Grade Level (Student only) */}
@@ -540,24 +536,19 @@ export function SettingsContent() {
                     <label className="block text-sm font-bold text-black mb-2">
                       Grade Level / ថ្នាក់ទី
                     </label>
-                    <select
+                    <BrandSelect
                       value={settings.gradeLevel || ""}
                       disabled={isStudentAndOnboarded}
-                      onChange={(e) =>
-                        setSettings({ ...settings, gradeLevel: e.target.value })
-                      }
-                      className={`w-full p-3 border-2 border-black font-bold bg-white focus:outline-none focus:shadow-[2px_2px_0_#000] ${
-                        isStudentAndOnboarded ? "bg-zinc-50 cursor-not-allowed text-zinc-400" : ""
-                      }`}
-                      style={{ borderRadius: "0" }}
-                    >
-                      <option value="" disabled>Select Grade / ជ្រើសរើសថ្នាក់</option>
-                      {GRADES.map((gr) => (
-                        <option key={gr.en} value={gr.en}>
-                          {gr.en} / {gr.kh}
-                        </option>
-                      ))}
-                    </select>
+                      onValueChange={(v) => setSettings({ ...settings, gradeLevel: v })}
+                      fullWidth
+                      ariaLabel="Grade Level / ថ្នាក់ទី"
+                      placeholder="Select Grade / ជ្រើសរើសថ្នាក់"
+                      className="p-3"
+                      options={GRADES.map((gr) => ({
+                        value: gr.en,
+                        label: `${gr.en} / ${gr.kh}`,
+                      }))}
+                    />
                   </div>
                 )}
 
@@ -908,17 +899,17 @@ export function SettingsContent() {
                   <Globe className="inline mr-2" size={16} />
                   Language
                 </label>
-                <select
+                <BrandSelect
                   value={settings.language}
-                  onChange={(e) =>
-                    setSettings({ ...settings, language: e.target.value })
-                  }
-                  className="w-full p-3 border-2 border-black font-medium focus:outline-none"
-                  style={{ borderRadius: "0" }}
-                >
-                  <option value="en">English</option>
-                  <option value="kh">ខ្មែរ (Khmer)</option>
-                </select>
+                  onValueChange={(v) => setSettings({ ...settings, language: v })}
+                  fullWidth
+                  ariaLabel="Language"
+                  className="p-3"
+                  options={[
+                    { value: "en", label: "English" },
+                    { value: "kh", label: "ខ្មែរ (Khmer)" },
+                  ]}
+                />
               </div>
 
               <div>
@@ -926,18 +917,18 @@ export function SettingsContent() {
                   <Palette className="inline mr-2" size={16} />
                   Theme
                 </label>
-                <select
+                <BrandSelect
                   value={settings.theme}
-                  onChange={(e) =>
-                    setSettings({ ...settings, theme: e.target.value })
-                  }
-                  className="w-full p-3 border-2 border-black font-medium focus:outline-none"
-                  style={{ borderRadius: "0" }}
-                >
-                  <option value="light">Light</option>
-                  <option value="dark">Dark</option>
-                  <option value="auto">Auto</option>
-                </select>
+                  onValueChange={(v) => setSettings({ ...settings, theme: v })}
+                  fullWidth
+                  ariaLabel="Theme"
+                  className="p-3"
+                  options={[
+                    { value: "light", label: "Light" },
+                    { value: "dark", label: "Dark" },
+                    { value: "auto", label: "Auto" },
+                  ]}
+                />
               </div>
 
               <div className="flex items-center justify-between p-4 border-2 border-black" style={{ borderRadius: "0" }}>

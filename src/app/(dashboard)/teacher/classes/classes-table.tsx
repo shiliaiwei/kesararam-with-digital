@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClass, deleteClass } from "@/app/actions/classes";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { BrandSelect } from "@/components/ui/brand-select";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -152,38 +153,38 @@ function CreateClassDialog({
             <div className="grid grid-cols-2 gap-3">
               <div className="grid gap-1.5">
                 <Label htmlFor="province" className="text-xs font-black uppercase tracking-widest">Province / ខេត្ត *</Label>
-                <select
+                <BrandSelect
                   id="province"
                   name="province"
                   required
                   defaultValue=""
-                  className="w-full px-3 py-2 border-2 border-black rounded-none text-sm font-bold bg-white focus:outline-none"
-                >
-                  <option value="" disabled>{kh ? "ជ្រើសរើសខេត្ត" : "Select Province"}</option>
-                  {CAMBODIA_PROVINCES.map((prov) => (
-                    <option key={prov.en} value={prov.en}>
-                      {kh ? prov.kh : prov.en}
-                    </option>
-                  ))}
-                </select>
+                  fullWidth
+                  ariaLabel={kh ? "ខេត្ត" : "Province"}
+                  placeholder={kh ? "ជ្រើសរើសខេត្ត" : "Select Province"}
+                  className="px-3 py-2 text-sm"
+                  options={CAMBODIA_PROVINCES.map((prov) => ({
+                    value: prov.en,
+                    label: kh ? prov.kh : prov.en,
+                  }))}
+                />
               </div>
 
               <div className="grid gap-1.5">
                 <Label htmlFor="grade" className="text-xs font-black uppercase tracking-widest">Grade / ថ្នាក់ *</Label>
-                <select
+                <BrandSelect
                   id="grade"
                   name="gradeLevel"
                   required
                   defaultValue=""
-                  className="w-full px-3 py-2 border-2 border-black rounded-none text-sm font-bold bg-white focus:outline-none"
-                >
-                  <option value="" disabled>{kh ? "ជ្រើសរើសកម្រិតថ្នាក់" : "Select Grade"}</option>
-                  {GRADES.map((gr) => (
-                    <option key={gr.en} value={gr.en}>
-                      {kh ? gr.kh : gr.en}
-                    </option>
-                  ))}
-                </select>
+                  fullWidth
+                  ariaLabel={kh ? "កម្រិតថ្នាក់" : "Grade"}
+                  placeholder={kh ? "ជ្រើសរើសកម្រិតថ្នាក់" : "Select Grade"}
+                  className="px-3 py-2 text-sm"
+                  options={GRADES.map((gr) => ({
+                    value: gr.en,
+                    label: kh ? gr.kh : gr.en,
+                  }))}
+                />
               </div>
             </div>
 

@@ -2,6 +2,7 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { Plus, Search, Edit, Trash2, Send, Globe, Clock, FileText, XCircle, CheckCircle, Image as ImageIcon, Music, RefreshCw, HelpCircle, ChevronDown, ChevronUp, Circle, Save, X, Loader2, Lock, AlertTriangle } from "lucide-react";
 import { TopicFormModal } from "./topic-form-modal";
+import { BrandSelect } from "@/components/ui/brand-select";
 import { useToast } from "@/components/ui/toast-container";
 
 interface Topic { id: number; topicCode: string; topic_code: string; nameEn: string; name_en: string; nameKm: string; name_km: string; status: string; questionCount?: number; question_count?: number; createdAt: string; created_at: string; updatedAt: string; updated_at: string; subGroup: string | null; sub_group: string | null; createdBy: number; created_by: number; primaryImageUrl?: string | null; primary_image_url?: string | null; audioUrlEn?: string | null; audio_url_en?: string | null; rejectionReason?: string | null; rejection_reason?: string | null; descriptionEn?: string; description_en?: string; descriptionKm?: string; description_km?: string; lawReference?: string | null; law_reference?: string | null; audioUrlKm?: string | null; audio_url_km?: string | null; audioSourceEn?: string; audio_source_en?: string; audioSourceKm?: string; audio_source_km?: string; primaryImageSource?: string; primary_image_source?: string; categoryId?: number; category_id?: number; }
@@ -50,9 +51,8 @@ function QuestionForm({ topicId, initial, onSave, onCancel }: { topicId: number;
         <textarea value={qKm} onChange={e => setQKm(e.target.value)} rows={2} className="border-2 border-black px-2 py-1.5 text-sm focus:outline-none resize-none" placeholder="Question (Khmer)" />
       </div>
       <div className="grid grid-cols-3 gap-2">
-        <select value={diff} onChange={e => setDiff(e.target.value)} className="border-2 border-black px-2 py-1.5 text-sm font-bold bg-white focus:outline-none">
-          <option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option>
-        </select>
+        <BrandSelect value={diff} onValueChange={setDiff} ariaLabel="Difficulty" className="px-2 py-1.5 text-sm"
+          options={[{ value: "easy", label: "Easy" }, { value: "medium", label: "Medium" }, { value: "hard", label: "Hard" }]} />
         <input value={imgUrl} onChange={e => setImgUrl(e.target.value)} className="col-span-2 border-2 border-black px-2 py-1.5 text-sm focus:outline-none" placeholder="Image URL — shown above answers (use for Image Pick questions)" />
       </div>
       <div className="space-y-1.5">
@@ -197,7 +197,7 @@ export function CategoryContentManager({ categoryId, categoryName, categorySlug,
         </div>
         <div className="flex gap-2">
           <div className="flex-1 relative"><Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={15} /><input type="text" placeholder="Search by name or code..." value={search} onChange={e => setSearch(e.target.value)} className="w-full pl-9 pr-3 py-2 border-2 border-black text-sm font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]" /></div>
-          {subGroups.length > 0 && <select value={subGroupFilter} onChange={e => setSubGroupFilter(e.target.value)} className="px-3 py-2 border-2 border-black text-sm font-bold bg-white focus:outline-none min-w-[130px]"><option value="">All Types</option>{subGroups.map(sg => <option key={sg} value={sg}>{sg}</option>)}</select>}
+          {subGroups.length > 0 && <BrandSelect value={subGroupFilter} onValueChange={setSubGroupFilter} ariaLabel="Filter by type" className="px-3 py-2 text-sm min-w-[130px]" options={[{ value: "", label: "All Types" }, ...subGroups.map(sg => ({ value: sg, label: sg }))]} />}
         </div>
       </div>
       <div className="bg-white border-2 border-black overflow-hidden" style={{ boxShadow: "4px 4px 0 #000" }}>

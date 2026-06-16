@@ -4,6 +4,7 @@ import { useState } from "react";
 import { X, Send, Eye, Lock } from "lucide-react";
 import { MediaSelector } from "../media/media-selector";
 import { useToast } from "@/components/ui/toast-container";
+import { BrandSelect } from "@/components/ui/brand-select";
 
 interface TopicFormModalProps {
   categoryId?: number;
@@ -203,23 +204,20 @@ export function TopicFormModal({
               <label className="block font-bold mb-2">
                 Category <span className="text-red-500">*</span>
               </label>
-              <select
+              <BrandSelect
                 name="categoryId"
-                value={formData.categoryId}
-                onChange={(e) => setFormData(prev => ({
+                value={String(formData.categoryId ?? "")}
+                onValueChange={(v) => setFormData(prev => ({
                   ...prev,
-                  categoryId: parseInt(e.target.value),
+                  categoryId: parseInt(v),
                   subGroup: "" // Reset sub-group when category changes
                 }))}
                 disabled={!isAdmin && !!propCategoryId} // Lock category for staff when coming from category page
-                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-gray-100 disabled:cursor-not-allowed"
-              >
-                {CATEGORIES.map((cat) => (
-                  <option key={cat.id} value={cat.id}>
-                    {cat.name}
-                  </option>
-                ))}
-              </select>
+                fullWidth
+                ariaLabel="Category"
+                className="px-4 py-2"
+                options={CATEGORIES.map((cat) => ({ value: String(cat.id), label: cat.name }))}
+              />
               {!isAdmin && !!propCategoryId && (
                 <p className="text-xs text-blue-600 mt-1 font-bold">
                   ℹ️ Category is locked based on your selection from the left panel
@@ -229,20 +227,19 @@ export function TopicFormModal({
 
             <div>
               <label className="block font-bold mb-2">Sub-group / Type</label>
-              <select
+              <BrandSelect
                 name="subGroup"
-                value={formData.subGroup}
-                onChange={handleChange}
+                value={String(formData.subGroup ?? "")}
+                onValueChange={(v) => handleChange({ target: { name: "subGroup", value: v } } as any)}
                 disabled={isReadOnly}
-                className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] disabled:bg-gray-100 disabled:cursor-not-allowed"
-              >
-                <option value="">Select Type</option>
-                {SUB_GROUPS[currentCategorySlug]?.map((sg) => (
-                  <option key={sg} value={sg}>
-                    {sg}
-                  </option>
-                ))}
-              </select>
+                fullWidth
+                ariaLabel="Sub-group / Type"
+                className="px-4 py-2"
+                options={[
+                  { value: "", label: "Select Type" },
+                  ...(SUB_GROUPS[currentCategorySlug]?.map((sg) => ({ value: sg, label: sg })) ?? []),
+                ]}
+              />
             </div>
 
             <div>

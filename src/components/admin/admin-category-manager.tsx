@@ -7,6 +7,7 @@ import {
   HelpCircle, ChevronDown, ChevronUp, CheckCircle, Circle, Save, Loader2
 } from "lucide-react";
 import { TopicReviewModal } from "./topic-review-modal";
+import { BrandSelect } from "@/components/ui/brand-select";
 import { TopicFormModal } from "@/components/staff/content/topic-form-modal";
 import { useToast } from "@/components/ui/toast-container";
 
@@ -205,11 +206,9 @@ export function AdminCategoryManager({ categoryId, categoryName, categorySlug }:
               className="w-full pl-9 pr-3 py-2 border-2 border-black text-sm font-medium focus:outline-none" />
           </div>
           {subGroups.length > 0 && (
-            <select value={subGroupFilter} onChange={e => setSubGroupFilter(e.target.value)}
-              className="px-3 py-2 border-2 border-black text-sm font-bold bg-white focus:outline-none">
-              <option value="">All Types</option>
-              {subGroups.map(sg => <option key={sg} value={sg}>{sg}</option>)}
-            </select>
+            <BrandSelect value={subGroupFilter} onValueChange={setSubGroupFilter}
+              ariaLabel="Filter by type" className="px-3 py-2 text-sm"
+              options={[{ value: "", label: "All Types" }, ...subGroups.map(sg => ({ value: sg, label: sg }))]} />
           )}
         </div>
       </div>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Save, X, Send } from "lucide-react";
+import { BrandSelect } from "@/components/ui/brand-select";
 import { MediaSelector } from "../media/media-selector";
 
 interface TopicFormData {
@@ -165,20 +166,19 @@ export function TopicForm({ initialData }: { initialData?: any }) {
             <label className="block font-bold mb-2">
               Category <span className="text-red-500">*</span>
             </label>
-            <select
+            <BrandSelect
               name="categoryId"
-              value={formData.categoryId}
-              onChange={handleChange}
+              value={String(formData.categoryId ?? "")}
+              onValueChange={(v) => handleChange({ target: { name: "categoryId", value: v } } as any)}
               required
-              className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-            >
-              <option value="">Select Category</option>
-              {CATEGORIES.map((cat) => (
-                <option key={cat.id} value={cat.id}>
-                  {cat.name}
-                </option>
-              ))}
-            </select>
+              fullWidth
+              ariaLabel="Category"
+              className="px-4 py-2"
+              options={[
+                { value: "", label: "Select Category" },
+                ...CATEGORIES.map((cat) => ({ value: String(cat.id), label: cat.name })),
+              ]}
+            />
           </div>
         </div>
 
@@ -186,19 +186,18 @@ export function TopicForm({ initialData }: { initialData?: any }) {
         {formData.categoryId && selectedCategory && (
           <div>
             <label className="block font-bold mb-2">Sub-group / Type</label>
-            <select
+            <BrandSelect
               name="subGroup"
-              value={formData.subGroup}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-            >
-              <option value="">Select Sub-group</option>
-              {SUB_GROUPS[selectedCategory.slug]?.map((sg) => (
-                <option key={sg} value={sg}>
-                  {sg}
-                </option>
-              ))}
-            </select>
+              value={String(formData.subGroup ?? "")}
+              onValueChange={(v) => handleChange({ target: { name: "subGroup", value: v } } as any)}
+              fullWidth
+              ariaLabel="Sub-group / Type"
+              className="px-4 py-2"
+              options={[
+                { value: "", label: "Select Sub-group" },
+                ...(SUB_GROUPS[selectedCategory.slug]?.map((sg) => ({ value: sg, label: sg })) ?? []),
+              ]}
+            />
           </div>
         )}
 

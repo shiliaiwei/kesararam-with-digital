@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { Search, X, Image as ImageIcon, Music, Check, SortAsc, SortDesc, Folder } from "lucide-react";
+import { BrandSelect } from "@/components/ui/brand-select";
 
 interface CloudinaryAsset {
   public_id: string;
@@ -208,16 +209,17 @@ export function CloudinarySelectorModal({
             {/* Folder filter */}
             <div className="relative">
               <Folder className="absolute left-2.5 top-1/2 -translate-y-1/2 text-zinc-400 pointer-events-none" size={14} />
-              <select
+              <BrandSelect
                 value={selectedFolder}
-                onChange={(e) => setSelectedFolder(e.target.value)}
-                className="pl-8 pr-3 py-2 border-2 border-black font-bold text-sm focus:outline-none focus:shadow-[2px_2px_0_#000] bg-white appearance-none"
-              >
-                <option value="all">All Folders</option>
-                {folders.map((f) => (
-                  <option key={f} value={f}>{f}</option>
-                ))}
-              </select>
+                onValueChange={setSelectedFolder}
+                fullWidth
+                ariaLabel="Folder filter"
+                className="pl-8 pr-3 py-2 text-sm"
+                options={[
+                  { value: "all", label: "All Folders" },
+                  ...folders.map((f) => ({ value: f, label: f })),
+                ]}
+              />
             </div>
           </div>
 

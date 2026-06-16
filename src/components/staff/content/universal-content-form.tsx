@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Save, X, Image as ImageIcon, Music, Video, Tag } from "lucide-react";
+import { BrandSelect } from "@/components/ui/brand-select";
 import { QAForm } from "./qa-form";
 import { MediaSelector } from "../media/media-selector";
 
@@ -165,20 +166,19 @@ export function UniversalContentForm({ initialData }: { initialData?: any }) {
             <label className="block font-bold mb-2">
               Category <span className="text-red-500">*</span>
             </label>
-            <select
+            <BrandSelect
               name="categoryId"
-              value={formData.categoryId}
-              onChange={handleChange}
+              value={String(formData.categoryId ?? "")}
+              onValueChange={(v) => handleChange({ target: { name: "categoryId", value: v } } as any)}
               required
-              className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-            >
-              <option value="">Select Category</option>
-              {CATEGORIES.map((cat) => (
-                <option key={cat.id} value={cat.id}>
-                  {cat.name}
-                </option>
-              ))}
-            </select>
+              fullWidth
+              ariaLabel="Category"
+              className="px-4 py-2"
+              options={[
+                { value: "", label: "Select Category" },
+                ...CATEGORIES.map((cat) => ({ value: String(cat.id), label: cat.name })),
+              ]}
+            />
           </div>
 
           {/* Content Type */}
@@ -186,19 +186,16 @@ export function UniversalContentForm({ initialData }: { initialData?: any }) {
             <label className="block font-bold mb-2">
               Content Type <span className="text-red-500">*</span>
             </label>
-            <select
+            <BrandSelect
               name="type"
               value={formData.type}
-              onChange={handleChange}
+              onValueChange={(v) => handleChange({ target: { name: "type", value: v } } as any)}
               required
-              className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-            >
-              {CONTENT_TYPES.map((type) => (
-                <option key={type.value} value={type.value}>
-                  {type.label}
-                </option>
-              ))}
-            </select>
+              fullWidth
+              ariaLabel="Content Type"
+              className="px-4 py-2"
+              options={CONTENT_TYPES.map((type) => ({ value: type.value, label: type.label }))}
+            />
           </div>
         </div>
 
@@ -440,18 +437,15 @@ export function UniversalContentForm({ initialData }: { initialData?: any }) {
           {/* Difficulty */}
           <div>
             <label className="block font-bold mb-2">Difficulty</label>
-            <select
+            <BrandSelect
               name="difficulty"
               value={formData.difficulty}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000]"
-            >
-              {DIFFICULTIES.map((diff) => (
-                <option key={diff.value} value={diff.value}>
-                  {diff.label}
-                </option>
-              ))}
-            </select>
+              onValueChange={(v) => handleChange({ target: { name: "difficulty", value: v } } as any)}
+              fullWidth
+              ariaLabel="Difficulty"
+              className="px-4 py-2"
+              options={DIFFICULTIES.map((diff) => ({ value: diff.value, label: diff.label }))}
+            />
           </div>
 
           {/* Subtopic */}
