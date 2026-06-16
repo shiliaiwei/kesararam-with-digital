@@ -134,7 +134,8 @@ function avatarSrc(url: string | null, changedAt?: string | null): string | null
   const base = url.startsWith("https://res.cloudinary.com/")
     ? `/api/profile-image?imageUrl=${encodeURIComponent(url)}`
     : url;
-  return changedAt ? `${base}&v=${new Date(changedAt).getTime()}` : base;
+  if (!changedAt) return base;
+  return `${base}${base.includes("?") ? "&" : "?"}v=${new Date(changedAt).getTime()}`;
 }
 
 function Avatar({ url, name, size = 40, ring, changedAt }: {
@@ -181,6 +182,7 @@ function Avatar({ url, name, size = 40, ring, changedAt }: {
               src={`/avatar/face/${encodeURIComponent(parsed.face)}`}
               alt=""
               aria-hidden
+              fill
               style={getAvatarFaceStyle(parsed.head)}
             />
           )}
