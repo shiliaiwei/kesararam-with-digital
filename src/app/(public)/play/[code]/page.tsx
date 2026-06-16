@@ -273,11 +273,19 @@ export default function StudentGamePage() {
     return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
   }, []);
 
-  // Enter fullscreen on lobby and lock during quiz
+  // Enter fullscreen on lobby and lock during quiz.
+  // NOTE: iPhone Safari does NOT implement Element.requestFullscreen (only iPad /
+  // <video> do), so the method is `undefined` there — calling it unguarded throws
+  // a synchronous TypeError that `.catch()` can't see and breaks the whole game
+  // view. Feature-detect (incl. the webkit prefix) before calling.
   useEffect(() => {
     if ((phase === "lobby" || phase === "question") && typeof window !== "undefined") {
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch((err) => {
+      const el = document.documentElement as HTMLElement & {
+        webkitRequestFullscreen?: () => Promise<void> | void;
+      };
+      const request = el.requestFullscreen ?? el.webkitRequestFullscreen;
+      if (!document.fullscreenElement && typeof request === "function") {
+        Promise.resolve(request.call(el)).catch((err) => {
           console.warn("Fullscreen request blocked or failed:", err);
         });
       }
@@ -304,10 +312,16 @@ export default function StudentGamePage() {
 
   const toggleFullscreen = async () => {
     try {
+      const el = document.documentElement as HTMLElement & {
+        webkitRequestFullscreen?: () => Promise<void> | void;
+      };
+      const doc = document as Document & { webkitExitFullscreen?: () => Promise<void> | void };
       if (!document.fullscreenElement) {
-        await document.documentElement.requestFullscreen();
+        const request = el.requestFullscreen ?? el.webkitRequestFullscreen;
+        if (typeof request === "function") await request.call(el);
       } else {
-        await document.exitFullscreen();
+        const exit = document.exitFullscreen ?? doc.webkitExitFullscreen;
+        if (typeof exit === "function") await exit.call(document);
       }
     } catch (err) {
       console.error("Error toggling fullscreen:", err);

@@ -340,6 +340,9 @@ function OtpCodeInput({ lang }: { lang: string }) {
             maxLength={1}
             inputMode="text"
             autoComplete="off"
+            autoCapitalize="characters"
+            autoCorrect="off"
+            spellCheck={false}
             aria-label={`${kh ? "តួអក្សរកូដទី" : "Room code character"} ${i + 1}`}
             onChange={(e) => handleChange(i, e.target.value)}
             onKeyDown={(e) => handleKeyDown(i, e)}
