@@ -88,6 +88,7 @@ export default function SoloPage() {
   const [myScore, setMyScore] = useState(0);
   const [myStreak, setMyStreak] = useState(0);
   const [muted, setMuted] = useState(false);
+  const [showExitConfirm, setShowExitConfirm] = useState(false);
 
   const answersRef = useRef<AnswerRecord[]>([]);
   const sessionStartRef = useRef(0);
@@ -536,7 +537,7 @@ export default function SoloPage() {
         <div className="flex items-center gap-3">
           {/* Escape — exit the game (confirm to avoid losing progress) */}
           <button
-            onClick={() => { if (confirm(kh ? "ចាកចេញពីហ្គេម? ការរីកចម្រើននឹងបាត់បង់។" : "Exit the game? Your progress will be lost.")) router.push("/play"); }}
+            onClick={() => setShowExitConfirm(true)}
             aria-label={kh ? "ចាកចេញ" : "Exit"}
             className="flex items-center justify-center w-8 h-8 border border-zinc-700 bg-zinc-900 text-zinc-300 hover:bg-zinc-800 hover:text-white rounded-none flex-shrink-0"
           >
@@ -669,6 +670,52 @@ export default function SoloPage() {
           )}
         </div>
       </div>
+
+      {/* Custom Exit Confirm Modal */}
+      {showExitConfirm && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 transition-opacity duration-200">
+          <div 
+            className="bg-white border-4 border-black w-[90%] sm:w-[400px] text-black shadow-[6px_6px_0_#000] rounded-none overflow-hidden animate-in fade-in-0 zoom-in-95 duration-150"
+          >
+            {/* Caution tape at the top */}
+            <div 
+              className="h-6 border-b-4 border-black" 
+              style={{ background: "repeating-linear-gradient(45deg, #000, #000 10px, #eab308 10px, #eab308 20px)" }} 
+            />
+            
+            {/* Content */}
+            <div className="p-6 flex flex-col gap-4">
+              <div>
+                <h2 className="text-xl font-black font-system">
+                  {kh ? "ចាកចេញពីហ្គេម?" : "Exit the game?"}
+                </h2>
+                <p className="text-sm text-zinc-600 mt-2 font-system">
+                  {kh ? "ការរីកចម្រើននឹងបាត់បង់។" : "Your progress will be lost."}
+                </p>
+              </div>
+              
+              {/* Buttons */}
+              <div className="flex gap-3 mt-2">
+                <button
+                  onClick={() => setShowExitConfirm(false)}
+                  className="flex-1 py-2.5 bg-white text-black font-black border-2 border-black shadow-[3px_3px_0_#000] hover:bg-zinc-50 active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_#000] transition-all duration-100 font-system"
+                >
+                  {kh ? "បោះបង់" : "Cancel"}
+                </button>
+                <button
+                  onClick={() => {
+                    setShowExitConfirm(false);
+                    router.push("/play");
+                  }}
+                  className="flex-1 py-2.5 bg-red-500 text-white font-black border-2 border-black shadow-[3px_3px_0_#000] hover:bg-red-600 active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0_#000] transition-all duration-100 font-system"
+                >
+                  {kh ? "ចាកចេញ" : "Exit"}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
