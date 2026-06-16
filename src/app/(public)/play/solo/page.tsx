@@ -6,7 +6,7 @@ import { useLang } from "@/context/lang-context";
 import { CountdownTimer } from "@/components/game/CountdownTimer";
 import { AnswerGrid } from "@/components/game/AnswerGrid";
 import { sounds } from "@/lib/game-sounds";
-import { GAME_MODE_CONFIG } from "@/lib/game-engine";
+import { calculateScore, GAME_MODE_CONFIG } from "@/lib/game-engine";
 import { Zap, Flame, ChevronRight, RotateCcw, Volume2, VolumeX, X, BookOpen, CheckCircle, XCircle } from "lucide-react";
 import { cloudinaryOptimize } from "@/lib/cloudinary";
 
@@ -195,15 +195,16 @@ export default function SoloPage() {
     if (isCorrect) {
       const newStreak = myStreak + 1;
       setMyStreak(newStreak);
-      // Cosmetic display score uses same difficulty-based rules as server:
-      // base = easy:1 medium:2 hard:3, speedBonus = +1 if answered in first half, streakBonus = +1 or +2
-      const diffMap: Record<string, number> = { easy: 1, medium: 2, hard: 3 };
-      const base = diffMap[q.difficulty?.toLowerCase() ?? "medium"] ?? 2;
       const totalMs = phase.session.timePerQuestion * 1000;
-      const isSuspicious = timeTakenMs < 500;
-      const speedBonus = (!isSuspicious && (totalMs - timeTakenMs) / totalMs >= 0.5) ? 1 : 0;
-      const streakBonus = isSuspicious ? 0 : newStreak >= 5 ? 2 : newStreak >= 2 ? 1 : 0;
-      setMyScore(s => s + base + speedBonus + streakBonus);
+      const score = calculateScore({
+        isCorrect: true,
+        difficulty: q.difficulty ?? "medium",
+        scoringMode: "speed",
+        remainingTimeMs: Math.max(0, totalMs - timeTakenMs),
+        totalTimeMs: totalMs,
+        currentStreak: newStreak,
+      });
+      setMyScore(s => s + score.totalPoints);
       if (!muted) { if (newStreak > 2) sounds.streak(); else sounds.correct(); }
     } else {
       setMyStreak(0);

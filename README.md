@@ -108,20 +108,20 @@ The platform currently runs **two independent scoring engines** (unification is 
 | **Engine A** (modern) | `calculateScore()` | Live sessions, Solo, Daily, Priority, Kid games | `src/lib/game-engine.ts` |
 | **Engine B** (legacy) | `content.scorePoints` + time bonus | Quiz mode, Challenge mode | `src/app/api/quiz/answer`, `src/app/api/challenge/answer` |
 
-### Engine A — `calculateScore()` Algorithm (Kahoot-style, June 2026)
+### Engine A — `calculateScore()` Algorithm (Simple Live Scale, June 2026)
 
 ```mermaid
 flowchart TD
     A["Answer submitted"] --> B{"Correct?"}
     B -- "No" --> Z["0 points"]
-    B -- "Yes" --> C["base by difficulty<br/>easy = 600 · medium = 800 · hard = 1000"]
+    B -- "Yes" --> C["base by difficulty<br/>easy = +2 · medium = +4 · hard = +6"]
     C --> M{"Scoring mode?"}
     M -- "equal" --> EQ["timeScore = base<br/>(time ignored)"]
     M -- "speed" --> F["response time floored at 500ms<br/>(anti-cheat, MIN_RESPONSE_MS)"]
-    F --> T["timeScore = round(base × (0.5 + 0.5 × remaining/total))<br/>half base (last second) … full base (instant)"]
+    F --> T["speedBonus = round((base / 2) × remaining/total)<br/>easy up to +1 · medium up to +2 · hard up to +3"]
     EQ --> G
-    T --> G["+ streak bonus<br/>+100 per consecutive correct, cap +500"]
-    G --> H["total = timeScore + streak<br/>(~300 … ~1500 per question)"]
+    T --> G["+ streak bonus<br/>+1 per consecutive correct after the first, cap +5"]
+    G --> H["total = base + speedBonus + streakBonus"]
 ```
 
 ### Engine B — Legacy Algorithm (Quiz / Challenge)
@@ -232,7 +232,7 @@ Teacher UI: `/teacher/claims`. Accounting source of truth: `src/lib/claims.ts`.
 
 | To change... | Edit |
 | :--- | :--- |
-| Base points by difficulty | `DIFFICULTY_BASE` (600 / 800 / 1000) in `src/lib/game-engine.ts` |
+| Base points by difficulty | `DIFFICULTY_BASE` (2 / 4 / 6) in `src/lib/game-engine.ts` |
 | Streak bonus step / cap / anti-cheat floor | `STREAK_BONUS_STEP` · `STREAK_BONUS_MAX` · `MIN_RESPONSE_MS` in `src/lib/game-engine.ts` |
 | Solo score value | full raw score, no multiplier (`SOLO_SCORE_MULTIPLIER` removed); writes `pointsLedger (source = solo)` only |
 | Daily play limits per tier | `PLAY_LIMITS` in `src/lib/game-engine.ts` |
@@ -245,7 +245,7 @@ Teacher UI: `/teacher/claims`. Accounting source of truth: `src/lib/claims.ts`.
 1. **Two engines** — legacy Quiz/Challenge write to a separate `leaderboardEntries` board disconnected from `users.lifetimePoints`. Same student effort earns incompatible currencies.
 2. **Kid games trust the client** — `recordGameAttempt` accepts `isCorrectGuess` from the browser (practice-only, low stakes, but should be server-validated like `validatePriority`).
 3. **Priority game stores nothing** — player results are computed and discarded.
-4. **Daily streak milestone bonus is un-rescaled** — `streakMilestoneBonus` still returns +2/+5/+15 (pre-Kahoot scale). Only affects the daily practice score (not rank), so cosmetic. (The `scores_synced` migration is applied to prod.)
+4. **Daily streak milestone bonus is intentionally small** — `streakMilestoneBonus` returns +2/+5/+15 for 3/7/30-day milestones. Only affects the daily practice score (not Store Points).
 
 ### 🗺️ Roadmap — Engine Unification Plan
 

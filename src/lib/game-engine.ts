@@ -1,6 +1,6 @@
 /**
- * Game Engine — server-side only
- * All scoring, validation, and state transitions live here.
+ * Game Engine — shared scoring plus server-side state helpers.
+ * Authoritative writes still happen on the server; client imports are cosmetic.
  */
 
 export type ScoringMode = "speed" | "equal";
@@ -14,26 +14,24 @@ export interface ScoreResult {
   totalPoints: number;
 }
 
-// ── KAHOOT-STYLE SCORING CONSTANTS ──────────────────────────────────────────
+// ── SIMPLE LIVE SCORING CONSTANTS ───────────────────────────────────────────
 /**
- * Base points a correct answer is worth (the MAX, earned by answering instantly).
- * Harder questions are worth more so points differ by question difficulty.
- * Mirrors Kahoot's 1000-point standard scale, tiered by difficulty.
+ * Base labels shown to learners. Harder questions start higher, then speed and
+ * streak add small bonuses on top.
  */
 export const DIFFICULTY_BASE: Record<string, number> = {
-  easy: 600,
-  medium: 800,
-  hard: 1000,
+  easy: 2,
+  medium: 4,
+  hard: 6,
 };
 
-/** Streak bonus: +100 per consecutive correct answer beyond the first, capped at +500. */
-export const STREAK_BONUS_STEP = 100;
-export const STREAK_BONUS_MAX = 500;
+/** Streak bonus: +1 per consecutive correct answer beyond the first, capped at +5. */
+export const STREAK_BONUS_STEP = 1;
+export const STREAK_BONUS_MAX = 5;
 
 /**
- * Minimum response time (ms) ever credited. Answers faster than this (bots / lucky
- * mashing) are clamped UP to this floor, so a script cannot farm the full base by
- * answering at ~0ms — it gets at most the 500ms-equivalent score.
+ * Minimum response time (ms) ever credited. Answers faster than this are clamped
+ * up before the speed bonus is calculated.
  */
 export const MIN_RESPONSE_MS = 500;
 
@@ -72,26 +70,24 @@ export const SOLO_COMING_SOON_NOTE = {
  * via src/lib/ranking.ts (read by /api/leaderboard/user/[userId]). Do NOT add a third
  * scoring formula; route new game types through calculateScore instead.
  *
- * ── Kahoot-style time scoring ────────────────────────────────────────────────
- * Each correct answer is worth its difficulty `base` (600/800/1000), scaled by how
- * fast it was answered. Wrong answers are worth 0. This mirrors Kahoot exactly:
+ * ── Simple time scoring ──────────────────────────────────────────────────────
+ * Each correct answer starts with its difficulty base:
  *
- *   speed mode:  timeScore = round(base × (0.5 + 0.5 × remaining/total))
- *                          → answer instantly  ≈ full base
- *                          → answer last second = base / 2 (guaranteed floor)
- *   equal mode:  flat base for a correct answer (time ignored)
+ *   easy +2 · medium +4 · hard +6
  *
- * On top of timeScore we add an optional streak bonus: +100 per consecutive
- * correct answer beyond the first, capped at +500 (motivational, not a multiplier).
+ * Speed mode adds a small fast-answer bonus on top:
  *
- * Anti-cheat: response time is floored at 500ms (MIN_RESPONSE_MS) so impossibly
- * fast bot/mash answers can earn at most the 500ms-equivalent — never a clean max.
+ *   speedBonus = round((base / 2) × effectiveRemaining / totalTime)
+ *              → easy up to +1 · medium up to +2 · hard up to +3
+ *
+ * Equal mode ignores time. Streak adds +1 per consecutive correct answer beyond
+ * the first, capped at +5. Wrong answers are always 0 and reset streak upstream.
  *
  * Returned breakdown keeps the existing columns meaningful:
- *   baseScore  = the guaranteed floor portion (base / 2)
- *   speedBonus = the time-earned portion on top of the floor (0 … base / 2)
- *   streakBonus = the consecutive-correct bonus (0 … 500)
- *   totalPoints = timeScore + streakBonus
+ *   baseScore = difficulty base (2 / 4 / 6)
+ *   speedBonus = fast-answer bonus (0 … base / 2)
+ *   streakBonus = consecutive-correct bonus (0 … 5)
+ *   totalPoints = baseScore + speedBonus + streakBonus
  */
 export function calculateScore(params: {
   isCorrect: boolean;
@@ -103,10 +99,10 @@ export function calculateScore(params: {
 }): ScoreResult {
   if (!params.isCorrect) return { baseScore: 0, speedBonus: 0, streakBonus: 0, totalPoints: 0 };
 
-  // 1. Base value by difficulty (the max this question is worth).
+  // 1. Base value by difficulty.
   const base = DIFFICULTY_BASE[params.difficulty?.toLowerCase() || "medium"] || DIFFICULTY_BASE.medium;
 
-  // 2. Streak bonus: 1st correct = 0, then +100 per extra consecutive correct, cap +500.
+  // 2. Streak bonus: 1st correct = 0, then +1 per extra consecutive correct, cap +5.
   const streakBonus = Math.min(
     Math.max(params.currentStreak - 1, 0) * STREAK_BONUS_STEP,
     STREAK_BONUS_MAX
@@ -118,23 +114,20 @@ export function calculateScore(params: {
     return { baseScore: base, speedBonus: 0, streakBonus, totalPoints: base + streakBonus };
   }
 
-  // 4. Sanitize the clock. remaining ∈ [0, total]; response time gets a 500ms
-  //    floor so impossibly-fast answers can't farm the full base.
+  // 4. Sanitize the clock. remaining ∈ [0, total]; response time gets a 500ms floor.
   const safeRemaining = Math.max(0, Math.min(params.remainingTimeMs, totalTimeMs));
   const responseTimeMs = Math.max(MIN_RESPONSE_MS, totalTimeMs - safeRemaining);
   const effectiveRemaining = Math.max(0, totalTimeMs - responseTimeMs);
 
-  // 5. Kahoot time curve: factor 0.5 … 1.0 of the base.
-  const factor = 0.5 + 0.5 * (effectiveRemaining / totalTimeMs);
-  const timeScore = Math.round(base * factor);
-  const baseScore = Math.round(base * 0.5); // guaranteed floor portion
-  const speedBonus = timeScore - baseScore; // time-earned portion (0 … base/2)
+  // 5. Fast-answer bonus: 0 … half of the difficulty base.
+  const speedBonusMax = Math.round(base / 2);
+  const speedBonus = Math.round(speedBonusMax * (effectiveRemaining / totalTimeMs));
 
   return {
-    baseScore,
+    baseScore: base,
     speedBonus,
     streakBonus,
-    totalPoints: timeScore + streakBonus,
+    totalPoints: base + speedBonus + streakBonus,
   };
 }
 
