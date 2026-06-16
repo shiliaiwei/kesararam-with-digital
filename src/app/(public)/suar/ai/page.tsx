@@ -31,7 +31,7 @@ export default function SuarAIPage() {
             <p
               className="mt-3 text-zinc-600 text-base leading-relaxed"
               style={
-                lang === "kh" ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {}
+                lang === "kh" ? { fontFamily: "var(--font-system)" } : {}
               }
             >
               {lang === "kh"

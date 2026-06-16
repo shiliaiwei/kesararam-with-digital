@@ -213,7 +213,7 @@ function GameCard({ mode, kh, khFont, isLimitReached }: {
           bottom: -18,
           fontSize: 80,
           fontWeight: 900,
-          fontFamily: "Impact, 'Arial Black', sans-serif",
+          fontFamily: "var(--font-system)",
           color: "rgba(0,0,0,0.12)",
           lineHeight: 1,
           userSelect: "none",
@@ -246,10 +246,10 @@ function GameCard({ mode, kh, khFont, isLimitReached }: {
       <div style={{ padding: "16px 18px 18px", display: "flex", flexDirection: "column", flex: 1, gap: 10 }}>
         {/* meta chips */}
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-          <span style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 10, fontWeight: 800, fontFamily: "monospace", border: `2px solid ${BRAND.black}`, padding: "2px 7px" }}>
+          <span style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 10, fontWeight: 800, fontFamily: "var(--font-en)", border: `2px solid ${BRAND.black}`, padding: "2px 7px" }}>
             {mode.badge}
           </span>
-          <span style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 10, fontWeight: 800, fontFamily: "monospace", border: `2px solid ${BRAND.black}`, padding: "2px 7px" }}>
+          <span style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 10, fontWeight: 800, fontFamily: "var(--font-en)", border: `2px solid ${BRAND.black}`, padding: "2px 7px" }}>
             <Clock size={11} strokeWidth={2.5} /> {mode.timer}
           </span>
         </div>
@@ -293,7 +293,7 @@ function GameCard({ mode, kh, khFont, isLimitReached }: {
 // ─── OTP-STYLE CODE INPUT ─────────────────────────────────────────────────────
 function OtpCodeInput({ lang }: { lang: string }) {
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-system)" } : {};
   const router = useRouter();
   const [cells, setCells] = useState(["", "", "", "", "", ""]);
   const refs = useRef<(HTMLInputElement | null)[]>([]);
@@ -355,7 +355,7 @@ function OtpCodeInput({ lang }: { lang: string }) {
               color: BRAND.black,
               fontSize: 21,
               fontWeight: 900,
-              fontFamily: "monospace",
+              fontFamily: "var(--font-en)",
               textAlign: "center",
               outline: "none",
               borderRadius: 0,
@@ -423,7 +423,7 @@ function OtpCodeInput({ lang }: { lang: string }) {
 export default function PlayPage() {
   const { lang } = useLang();
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-system)" } : {};
   const router = useRouter();
 
   const [limits, setLimits] = useState<{
@@ -493,7 +493,7 @@ export default function PlayPage() {
       minHeight: "100vh",
       background: BRAND.white,
       color: BRAND.black,
-      fontFamily: "system-ui, -apple-system, sans-serif",
+      fontFamily: "var(--font-system)",
       WebkitFontSmoothing: "antialiased",
     }}>
       {/* ═══ HERO — PLAY FIRST ═════════════════════════════════════════════ */}

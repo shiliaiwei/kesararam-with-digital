@@ -21,7 +21,7 @@ export function GameKitShell<TRound, TResult extends KitCompletionResult>({
 }) {
     const { lang } = useLang();
     const kh = lang === "kh";
-    const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+    const khFont = kh ? { fontFamily: "var(--font-system)" } : {};
     const router = useRouter();
 
     const [phase, setPhase] = useState<KitPhase<TRound, TResult>>({ name: "setup" });

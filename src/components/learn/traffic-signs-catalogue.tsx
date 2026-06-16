@@ -205,7 +205,7 @@ function DetailPanel({
 
       // Build the content
       canvas.innerHTML = `
-        <div style="width: 100%; height: 100%; display: flex; flex-direction: column; font-family: ${isKh ? 'Siemreap, sans-serif' : 'system-ui, sans-serif'};">
+        <div style="width: 100%; height: 100%; display: flex; flex-direction: column; font-family: ${isKh ? "'KWD Battambang Khmer', 'KWD Roboto', sans-serif" : "'KWD Roboto', sans-serif"};">
           <!-- Header with logo -->
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
             <div style="display: flex; align-items: center; gap: 20px;">
@@ -455,7 +455,7 @@ function DetailPanel({
 export function TrafficSignsCatalogue() {
   const { lang } = useLang();
   const isKh = lang === "kh";
-  const kf = isKh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+  const kf = isKh ? { fontFamily: "var(--font-learning)" } : {};
   const t = isKh ? UI.kh : UI.en;
 
   const [topics, setTopics] = useState<Topic[]>([]);

@@ -552,9 +552,7 @@ function FlowView({ group, kh }: { group: DomainGroup; kh: boolean }) {
 export default function SitemapPage() {
     const { lang, setLang } = useLang();
     const kh = lang === "kh";
-    const khFont = kh
-        ? { fontFamily: "var(--font-kh-header), var(--font-kh-body), sans-serif" }
-        : { fontFamily: "'GoogleSans', 'Google Sans', sans-serif" };
+    const khFont = { fontFamily: "var(--font-system)" };
 
     const [view, setView] = useState<ViewMode>("tree");
     const [activeDomain, setActiveDomain] = useState("public");

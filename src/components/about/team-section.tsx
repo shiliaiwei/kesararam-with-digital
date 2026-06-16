@@ -37,7 +37,7 @@ function MemberCard({ member, isMentor, isKh }: { member: Member; isMentor: bool
   const [revealed, setRevealed] = useState(false);
   const [loading, setLoading] = useState(false);
   const accent = isMentor ? "#f59e0b" : "#eab308";
-  const khFont = isKh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : undefined;
+  const khFont = isKh ? { fontFamily: "var(--font-system)" } : undefined;
   // Card face shows last name only; full name is revealed on the scanned profile.
   const fullName = isKh ? member.nameKh : member.name;
   const displayName = fullName.trim().split(/\s+/).pop();

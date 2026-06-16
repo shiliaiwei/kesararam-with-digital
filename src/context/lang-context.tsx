@@ -30,6 +30,16 @@ export function LangProvider({ children }: { children: ReactNode }) {
     if (saved === "en" || saved === "kh") setLangState(saved);
   }, []);
 
+  useEffect(() => {
+    if (lang === "kh") {
+      document.documentElement.classList.add("lang-kh");
+      document.documentElement.classList.remove("lang-en");
+    } else {
+      document.documentElement.classList.add("lang-en");
+      document.documentElement.classList.remove("lang-kh");
+    }
+  }, [lang]);
+
   function setLang(l: Lang) {
     setLangState(l);
     localStorage.setItem("kwd_lang", l);

@@ -49,7 +49,7 @@ export function AnswerGrid({
   }
 
   const isImagePick = gameType === "image_pick";
-  const khFont = lang === "kh" ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+  const khFont = lang === "kh" ? { fontFamily: "var(--font-learning)" } : {};
   // Image-pick (priority / right-of-way scenarios) → single full-width column
   // with large images so the intersection diagrams are easy to see.
   // MCQ / true-false keep the compact 1- or 2-column text layout.

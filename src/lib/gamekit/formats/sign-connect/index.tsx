@@ -44,7 +44,7 @@ const COLORS: Record<ItemState, { bg: string; border: string }> = {
 
 function SignConnectView({ round, lang, onRoundComplete }: RoundViewProps<SignConnectRound>) {
     const kh = lang === "kh";
-    const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+    const khFont = kh ? { fontFamily: "var(--font-learning)" } : {};
 
     const startRef = useRef(Date.now());
     const doneRef = useRef(false);

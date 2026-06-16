@@ -121,7 +121,7 @@ export function UpgradeModal({ open, onClose, trigger, lang = "en" }: UpgradeMod
   const [yearly, setYearly] = useState(true);
   const router = useRouter();
   const kh = lang === "kh";
-  const khFont = { fontFamily: '"GoogleSans", "Google Sans", sans-serif' };
+  const khFont = { fontFamily: "var(--font-system)" };
 
   useEffect(() => {
     if (!open) return;

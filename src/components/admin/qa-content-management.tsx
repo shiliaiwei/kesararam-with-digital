@@ -285,7 +285,7 @@ export function QAContentManagement({
                     </h3>
                     <p
                       className="text-sm text-zinc-600"
-                      style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}
+                      style={{ fontFamily: "var(--font-system)" }}
                     >
                       {content.questionKm}
                     </p>

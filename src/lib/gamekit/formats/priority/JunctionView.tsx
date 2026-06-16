@@ -38,7 +38,7 @@ const INTENT_DELTA: Record<VehicleIntent, number> = {
 };
 
 function Student({ x, y, kh }: { x: number; y: number; kh: boolean }) {
-    const khStyle = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), sans-serif" } : { fontFamily: "monospace" };
+    const khStyle = kh ? { fontFamily: "var(--font-learning)" } : { fontFamily: "var(--font-en)" };
     return (
         <g transform={`translate(${x} ${y})`} style={{ pointerEvents: "none" }} aria-hidden>
             <ellipse cx={0} cy={3.4} rx={2.4} ry={1} fill="rgba(0,0,0,0.25)" />
@@ -72,7 +72,7 @@ function TrafficLightSprite({ x, y, rotation, active = "red" }: { x: number; y: 
 }
 
 function Landmarks({ kh }: { kh: boolean }) {
-    const khStyle = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), sans-serif" } : { fontFamily: "monospace" };
+    const khStyle = kh ? { fontFamily: "var(--font-learning)" } : { fontFamily: "var(--font-en)" };
     return (
         <g style={{ pointerEvents: "none" }} aria-hidden>
             {/* HOSPITAL (Top-Left) */}

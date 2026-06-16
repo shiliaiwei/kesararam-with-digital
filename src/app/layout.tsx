@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Kantumruy_Pro, Siemreap } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { LangProvider } from "@/context/lang-context";
 import { ErrorDebugPanel } from "@/components/ErrorDebugPanel";
@@ -7,26 +6,6 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@/components/google-analytics";
 import "./globals.css";
-
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const kantumruy = Kantumruy_Pro({
-  variable: "--font-kh-header",
-  subsets: ["khmer"],
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-
-const siemreap = Siemreap({
-  variable: "--font-kh-body",
-  subsets: ["khmer"],
-  display: "swap",
-  weight: ["400"],
-});
 
 export const metadata: Metadata = {
   title: {
@@ -282,21 +261,21 @@ export default function RootLayout({
         {/* Preconnect to Cloudinary — reduces LCP for sign images */}
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
-        {/* Preload critical brand fonts (WOFF2) to speed first paint */}
-        <link rel="preload" href="/Google_Sans/static/GoogleSans-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/Google_Sans/static/GoogleSans-Bold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        {/* Preconnect to Google Fonts */}
+        {/* Preload official local KWD font stack */}
+        <link rel="preload" href="/Roboto/Roboto-VariableFont_wdth,wght.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/Battambang/Battambang-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/Battambang/Battambang-Bold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        {/* Material Symbols icon font */}
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-        {/* Google Sans (now ships a Khmer subset, U+1780–17FF) — used for the hero heading */}
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" />
         {/* Schema.org structured data (Organization + WebSite) */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className={`${inter.variable} ${kantumruy.variable} ${siemreap.variable} font-sans antialiased overflow-x-hidden`}>
+      <body className="font-system antialiased overflow-x-hidden">
         <GoogleAnalytics />
         <LangProvider>
           {children}

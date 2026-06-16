@@ -242,7 +242,7 @@ function RankBadge({ rank }: { rank: 1 | 2 | 3 }) {
     <svg width="44" height="44" viewBox="0 0 52 52" fill="none">
       <polygon points="26,2 48,14 48,38 26,50 4,38 4,14" fill={c.fill} stroke="#000" strokeWidth="3" />
       <polygon points="26,5 45,16 45,22 26,11" fill="rgba(255,255,255,0.25)" />
-      <text x="26" y="32" textAnchor="middle" fontSize="13" fontWeight="900" fill={c.text} fontFamily="monospace">{c.label}</text>
+      <text x="26" y="32" textAnchor="middle" fontSize="13" fontWeight="900" fill={c.text} fontFamily="KWD Roboto">{c.label}</text>
     </svg>
   );
 }
@@ -558,7 +558,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
   userLifetimePoints?: number;
 }) {
   const kh = lang === "kh";
-  const kf = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+  const kf = kh ? { fontFamily: "var(--font-system)" } : {};
 
   const userRank = getRank(userLifetimePoints);
   const cooldownMs = TIER_COOLDOWNS[userRank.id] ?? TIER_COOLDOWNS.rookie;
@@ -934,7 +934,7 @@ function RewardCard({ item, userPoints, isLoggedIn, onClaim, lang, userLifetimeP
 export default function LeaderboardPage() {
   const { lang } = useLang();
   const kh = lang === "kh";
-  const kf = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+  const kf = kh ? { fontFamily: "var(--font-system)" } : {};
 
   const [leaderboard, setLeaderboard] = useState<LeaderboardUser[]>([]);
   const [prevRanks, setPrevRanks] = useState<Record<number, number>>({});

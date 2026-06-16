@@ -9,28 +9,28 @@ Google Sans is a variable font with these axes:
   wght
 
 This means all the styles are contained in these files:
-  GoogleSans-VariableFont_GRAD,opsz,wght.ttf
-  GoogleSans-Italic-VariableFont_GRAD,opsz,wght.ttf
+  Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.ttf
+  Google_Sans/GoogleSans-Italic-VariableFont_GRAD,opsz,wght.ttf
 
 If your app fully supports variable fonts, you can now pick intermediate styles
 that aren’t available as static fonts. Not all apps support variable fonts, and
 in those cases you can use the static font files for Google Sans:
-  static/GoogleSans_17pt-Regular.ttf
-  static/GoogleSans_17pt-Medium.ttf
-  static/GoogleSans_17pt-SemiBold.ttf
-  static/GoogleSans_17pt-Bold.ttf
-  static/GoogleSans-Regular.ttf
-  static/GoogleSans-Medium.ttf
-  static/GoogleSans-SemiBold.ttf
-  static/GoogleSans-Bold.ttf
-  static/GoogleSans_17pt-Italic.ttf
-  static/GoogleSans_17pt-MediumItalic.ttf
-  static/GoogleSans_17pt-SemiBoldItalic.ttf
-  static/GoogleSans_17pt-BoldItalic.ttf
-  static/GoogleSans-Italic.ttf
-  static/GoogleSans-MediumItalic.ttf
-  static/GoogleSans-SemiBoldItalic.ttf
-  static/GoogleSans-BoldItalic.ttf
+  Google_Sans/static/GoogleSans_17pt-Regular.ttf
+  Google_Sans/static/GoogleSans_17pt-Medium.ttf
+  Google_Sans/static/GoogleSans_17pt-SemiBold.ttf
+  Google_Sans/static/GoogleSans_17pt-Bold.ttf
+  Google_Sans/static/GoogleSans-Regular.ttf
+  Google_Sans/static/GoogleSans-Medium.ttf
+  Google_Sans/static/GoogleSans-SemiBold.ttf
+  Google_Sans/static/GoogleSans-Bold.ttf
+  Google_Sans/static/GoogleSans_17pt-Italic.ttf
+  Google_Sans/static/GoogleSans_17pt-MediumItalic.ttf
+  Google_Sans/static/GoogleSans_17pt-SemiBoldItalic.ttf
+  Google_Sans/static/GoogleSans_17pt-BoldItalic.ttf
+  Google_Sans/static/GoogleSans-Italic.ttf
+  Google_Sans/static/GoogleSans-MediumItalic.ttf
+  Google_Sans/static/GoogleSans-SemiBoldItalic.ttf
+  Google_Sans/static/GoogleSans-BoldItalic.ttf
 
 Get started
 -----------

@@ -26,7 +26,7 @@ function ExpiredScreen({ name, vsid }: { name?: string; vsid?: string }) {
   return (
     <div
       className="min-h-screen flex items-center justify-center p-6"
-      style={{ background: "#000", fontFamily: "'Arial Black', Arial, sans-serif" }}
+      style={{ background: "#000", fontFamily: "var(--font-system)" }}
     >
       <div
         className="text-center"
@@ -106,7 +106,7 @@ function PublicMemberContent() {
     return (
       <div
         className="min-h-screen flex items-center justify-center"
-        style={{ background: "#FFEE00", fontFamily: "'Arial Black', Arial, sans-serif" }}
+        style={{ background: "#FFEE00", fontFamily: "var(--font-system)" }}
       >
         <div style={{ border: "3px solid #000", boxShadow: "6px 6px 0 #000", background: "#fff", padding: 32 }}>
           <p className="font-black text-2xl uppercase">MEMBER NOT FOUND</p>
@@ -119,7 +119,7 @@ function PublicMemberContent() {
     return (
       <div
         className="min-h-screen flex items-center justify-center"
-        style={{ background: "#000", fontFamily: "'Arial Black', Arial, sans-serif" }}
+        style={{ background: "#000", fontFamily: "var(--font-system)" }}
       >
         <p className="font-black text-lg uppercase animate-pulse" style={{ color: "#FFEE00" }}>
           VERIFYING...
@@ -138,7 +138,7 @@ function PublicMemberContent() {
   const timeLabel = `${mins}:${String(secs).padStart(2, "0")}`;
 
   return (
-    <div className="min-h-screen" style={{ background: "#f5f5f5", fontFamily: "'Arial Black', Arial, sans-serif" }}>
+    <div className="min-h-screen" style={{ background: "#f5f5f5", fontFamily: "var(--font-system)" }}>
       {/* Top bar */}
       <div
         className="flex items-center justify-between px-4 py-3"
@@ -239,7 +239,7 @@ export default function PublicMemberPage() {
       fallback={
         <div
           className="min-h-screen flex items-center justify-center"
-          style={{ background: "#000", fontFamily: "'Arial Black', Arial, sans-serif" }}
+          style={{ background: "#000", fontFamily: "var(--font-system)" }}
         >
           <p className="font-black text-lg uppercase animate-pulse" style={{ color: "#FFEE00" }}>
             LOADING...

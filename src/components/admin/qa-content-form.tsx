@@ -311,7 +311,7 @@ export function QAContentForm({
                         }
                         rows={3}
                         className="w-full p-3 border-2 border-black font-medium focus:outline-none resize-none"
-                        style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}
+                        style={{ fontFamily: "var(--font-system)" }}
                         placeholder="បញ្ចូលសំណួរ..."
                         required
                       />
@@ -328,7 +328,7 @@ export function QAContentForm({
                         }
                         rows={6}
                         className="w-full p-3 border-2 border-black font-medium focus:outline-none resize-none"
-                        style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}
+                        style={{ fontFamily: "var(--font-system)" }}
                         placeholder="បញ្ចូលចម្លើយលម្អិត..."
                         required
                       />

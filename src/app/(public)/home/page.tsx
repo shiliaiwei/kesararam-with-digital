@@ -60,7 +60,7 @@ export default function HomePage() {
   const { lang } = useLang();
   const tr = t[lang].home;
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-system)" } : {};
 
   const [stats, setStats] = useState<Stats | null>(null);
   const [inView, setInView] = useState(false);

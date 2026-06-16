@@ -74,7 +74,7 @@ export default function AnalyticsPage() {
   const router = useRouter();
   const { lang } = useLang();
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-system)" } : {};
   const printRef = useRef<HTMLDivElement>(null);
 
   const [data, setData] = useState<Analytics | null>(null);

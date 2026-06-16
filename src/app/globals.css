@@ -2,73 +2,145 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-/* ─── Google Sans (from public/Google_Sans) ─── */
+/* KWD official local fonts.
+   English -> Roboto. Khmer UI -> Google Sans. Learning/Q&A Khmer -> Battambang.
+   Khmer faces are limited with unicode-range so English text still falls back
+   to Roboto even inside Khmer UI or learning containers. */
 @font-face {
-  font-family: "GoogleSans";
-  src: url("/Google_Sans/static/GoogleSans-Regular.woff2") format("woff2"),
-    url("/Google_Sans/static/GoogleSans-Regular.ttf") format("truetype");
+  font-family: "KWD Roboto";
+  src: url("/Roboto/Roboto-VariableFont_wdth,wght.woff2") format("woff2"),
+    url("/Roboto/Roboto-VariableFont_wdth,wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0100-024F, U+1E00-1EFF, U+2000-206F, U+20A0-20CF, U+2190-21FF;
+}
+
+@font-face {
+  font-family: "KWD Roboto";
+  src: url("/Roboto/Roboto-Italic-VariableFont_wdth,wght.woff2") format("woff2"),
+    url("/Roboto/Roboto-Italic-VariableFont_wdth,wght.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0100-024F, U+1E00-1EFF, U+2000-206F, U+20A0-20CF, U+2190-21FF;
+}
+
+@font-face {
+  font-family: "KWD Google Sans Khmer";
+  src: url("/Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.woff2") format("woff2"),
+    url("/Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
+}
+
+@font-face {
+  font-family: "KWD Google Sans Khmer";
+  src: url("/Google_Sans/GoogleSans-Italic-VariableFont_GRAD,opsz,wght.woff2") format("woff2"),
+    url("/Google_Sans/GoogleSans-Italic-VariableFont_GRAD,opsz,wght.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
+}
+
+@font-face {
+  font-family: "KWD Battambang Khmer";
+  src: url("/Battambang/Battambang-Thin.woff2") format("woff2"),
+    url("/Battambang/Battambang-Thin.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
+}
+
+@font-face {
+  font-family: "KWD Battambang Khmer";
+  src: url("/Battambang/Battambang-Light.woff2") format("woff2"),
+    url("/Battambang/Battambang-Light.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
+}
+
+@font-face {
+  font-family: "KWD Battambang Khmer";
+  src: url("/Battambang/Battambang-Regular.woff2") format("woff2"),
+    url("/Battambang/Battambang-Regular.ttf") format("truetype");
+  font-style: normal;
   font-weight: 400;
   font-display: swap;
+  unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
 }
 
 @font-face {
-  font-family: "GoogleSans";
-  src: url("/Google_Sans/static/GoogleSans-Medium.woff2") format("woff2"),
-    url("/Google_Sans/static/GoogleSans-Medium.ttf") format("truetype");
-  font-weight: 500;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "GoogleSans";
-  src: url("/Google_Sans/static/GoogleSans-Bold.woff2") format("woff2"),
-    url("/Google_Sans/static/GoogleSans-Bold.ttf") format("truetype");
+  font-family: "KWD Battambang Khmer";
+  src: url("/Battambang/Battambang-Bold.woff2") format("woff2"),
+    url("/Battambang/Battambang-Bold.ttf") format("truetype");
+  font-style: normal;
   font-weight: 700;
   font-display: swap;
-}
-
-/* ─── Stack Sans Notch (from public/Stack_Sans_Notch) ─── */
-@font-face {
-  font-family: "StackSansNotch";
-  src: url("/Stack_Sans_Notch/static/StackSansNotch-Regular.woff2") format("woff2"),
-    url("/Stack_Sans_Notch/static/StackSansNotch-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-display: swap;
+  unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
 }
 
 @font-face {
-  font-family: "StackSansNotch";
-  src: url("/Stack_Sans_Notch/static/StackSansNotch-Medium.woff2") format("woff2"),
-    url("/Stack_Sans_Notch/static/StackSansNotch-Medium.ttf") format("truetype");
-  font-weight: 500;
+  font-family: "KWD Battambang Khmer";
+  src: url("/Battambang/Battambang-Black.woff2") format("woff2"),
+    url("/Battambang/Battambang-Black.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 900;
   font-display: swap;
+  unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
 }
 
-@font-face {
-  font-family: "StackSansNotch";
-  src: url("/Stack_Sans_Notch/static/StackSansNotch-SemiBold.woff2") format("woff2"),
-    url("/Stack_Sans_Notch/static/StackSansNotch-SemiBold.ttf") format("truetype");
-  font-weight: 600;
-  font-display: swap;
+:root {
+  --font-en: "KWD Roboto";
+  --font-kh-ui: "KWD Google Sans Khmer";
+  --font-kh-learning: "KWD Battambang Khmer";
+  --font-system: var(--font-en), var(--font-kh-ui), sans-serif;
+  --font-learning: var(--font-kh-learning), var(--font-en), var(--font-kh-ui), sans-serif;
+  --font-kh-header: var(--font-kh-ui);
+  --font-kh-body: var(--font-kh-ui);
+  --font-sans: var(--font-system);
+  --font-mono: var(--font-en);
 }
 
-@font-face {
-  font-family: "StackSansNotch";
-  src: url("/Stack_Sans_Notch/static/StackSansNotch-Bold.woff2") format("woff2"),
-    url("/Stack_Sans_Notch/static/StackSansNotch-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-display: swap;
+/* Responsive language-based stacks to ensure numbers/symbols render in the matching context font */
+html.lang-kh {
+  --font-system: var(--font-kh-ui), var(--font-en), sans-serif;
+  --font-learning: var(--font-kh-learning), var(--font-en), var(--font-kh-ui), sans-serif;
 }
 
-/* ─── Brand font utility classes ─── */
+html.lang-en {
+  --font-system: var(--font-en), var(--font-kh-ui), sans-serif;
+  --font-learning: var(--font-en), var(--font-kh-learning), var(--font-kh-ui), sans-serif;
+}
+
+/* Brand font utility classes */
 .font-google-sans {
-  font-family: "GoogleSans", "Google Sans", sans-serif !important;
+  font-family: var(--font-system) !important;
   font-weight: 700;
 }
 
-.font-stack-notch,
 .font-english {
-  font-family: "StackSansNotch", sans-serif !important;
+  font-family: var(--font-en), sans-serif !important;
+}
+
+.font-roboto {
+  font-family: var(--font-en), sans-serif !important;
+}
+
+.font-kh-ui {
+  font-family: var(--font-system) !important;
+}
+
+.font-kh-learning,
+.font-qa,
+.font-learning {
+  font-family: var(--font-learning) !important;
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -77,8 +149,8 @@
   --breakpoint-xs: 390px;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-system);
+  --font-mono: var(--font-en);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -346,26 +418,23 @@
   display: none;
 }
 
-/* ─── Khmer Fonts ─── */
+/* Khmer/UI compatibility helpers */
 .font-kh-header {
-  font-family: var(--font-kh-header), "Google Sans Khmer", "Google Sans", sans-serif !important;
+  font-family: var(--font-system) !important;
   font-weight: 700;
 }
 
 .font-kh-body {
-  font-family: var(--font-kh-body), "Google Sans Khmer", "Google Sans", sans-serif !important;
+  font-family: var(--font-system) !important;
 }
 
-/* ─── Font usage by context (KWD brand rule) ─── */
-/* Learning / lesson / quiz content → Siemreap (the --font-kh-body face). */
+/* Font usage by context (KWD brand rule). */
 .font-learning {
-  font-family: var(--font-kh-body), "Siemreap", "Google Sans Khmer", sans-serif !important;
+  font-family: var(--font-learning) !important;
 }
 
-/* System chrome / function buttons → Google Sans (EN) + Kantumruy Pro / Siemreap (KH). */
 .font-system {
-  font-family: "GoogleSans", "Google Sans", var(--font-kh-header), var(--font-kh-body),
-    "Noto Sans Khmer", sans-serif !important;
+  font-family: var(--font-system) !important;
 }
 
 /* ─── Active nav tab indicator ─── */
@@ -402,11 +471,7 @@
 
   body {
     @apply bg-background text-foreground;
-    /* Bilingual default: Google Sans renders Latin; Khmer glyphs fall through to
-       the self-hosted Kantumruy Pro / Siemreap (next/font vars) so Khmer text
-       NEVER hits the browser's system default font. */
-    font-family: "GoogleSans", "Google Sans", var(--font-kh-header), var(--font-kh-body),
-      "Noto Sans Khmer", "Khmer OS", sans-serif;
+    font-family: var(--font-system);
   }
 
   /* Browsers render form controls with the SYSTEM font by default — force them

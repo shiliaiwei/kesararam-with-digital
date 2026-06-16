@@ -237,7 +237,7 @@ export default function HostPage() {
   const router = useRouter();
   const { lang } = useLang();
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-system)" } : {};
 
   const [phase, setPhase] = useState<HostPhase>({ name: "setup" });
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -362,6 +362,7 @@ export default function HostPage() {
   // Host-screen display language for question/answer text (projector only — does
   // not change what students see). Defaults to the session's creation language.
   const [displayLang, setDisplayLang] = useState<"both" | "kh" | "en">("both");
+  const qaFont = displayLang !== "en" ? { fontFamily: "var(--font-learning)" } : {};
   // Game audio mute (host SFX). Persisted so it sticks across sessions.
   const [muted, setMuted] = useState(false);
   // Advance mode: "manual" = teacher clicks Next Q; "auto" = after the answer is
@@ -1864,7 +1865,7 @@ export default function HostPage() {
 
               {/* Question text — bigger, high contrast */}
               <div className="text-center mb-4 md:mb-8 min-h-[4rem] md:min-h-[8rem] flex flex-col items-center justify-center px-2">
-                <div className="font-black text-xl sm:text-2xl md:text-3xl xl:text-4xl text-black leading-snug" style={{ overflowWrap: "break-word", wordBreak: "normal", hyphens: "auto", ...khFont }}>
+                <div className="font-black text-xl sm:text-2xl md:text-3xl xl:text-4xl text-black leading-snug" style={{ overflowWrap: "break-word", wordBreak: "normal", hyphens: "auto", ...qaFont }}>
                   {displayLang === "en" ? question?.questionEn : (question?.questionKm || question?.questionEn)}
                 </div>
                 {displayLang === "both" && question?.questionKm && question?.questionEn && (
@@ -1931,7 +1932,7 @@ export default function HostPage() {
                         <div className="w-9 h-9 sm:w-12 sm:h-12 border-2 sm:border-[3px] border-black flex items-center justify-center bg-white font-black text-black text-lg sm:text-2xl flex-shrink-0" style={{ borderRadius: "0px" }}>
                           {style.label}
                         </div>
-                        <span className="font-black text-sm sm:text-lg xl:text-xl leading-snug flex-1" style={{ color: textColor, overflowWrap: "break-word", wordBreak: "normal", hyphens: "auto", ...khFont }}>{text}</span>
+                        <span className="font-black text-sm sm:text-lg xl:text-xl leading-snug flex-1" style={{ color: textColor, overflowWrap: "break-word", wordBreak: "normal", hyphens: "auto", ...qaFont }}>{text}</span>
                         {isCorrect && (
                           <div className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center bg-white border-2 sm:border-[3px] border-black text-green-600 flex-shrink-0" style={{ borderRadius: "0px" }}>
                             <Check size={18} strokeWidth={3} />

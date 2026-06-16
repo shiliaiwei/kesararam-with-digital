@@ -226,7 +226,7 @@ export function TrafficSignsContent() {
             <div className="p-4 space-y-3">
               <div>
                 <h3 className="font-black text-lg text-black">{sign.titleEn}</h3>
-                <p className="text-sm text-zinc-600" style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}>
+                <p className="text-sm text-zinc-600" style={{ fontFamily: "var(--font-system)" }}>
                   {sign.titleKm}
                 </p>
               </div>

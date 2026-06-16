@@ -221,7 +221,8 @@ export default function StudentGamePage() {
   const code = (params.code as string)?.toUpperCase();
   const { lang, setLang } = useLang();
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-system)" } : {};
+  const qaFont = kh ? { fontFamily: "var(--font-learning)" } : {};
 
   const [joining, setJoining] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -718,7 +719,7 @@ export default function StudentGamePage() {
                     ? "bg-yellow-400 border-yellow-400 text-black shadow-[4px_4px_0_#000] -translate-x-0.5 -translate-y-0.5"
                     : "bg-black border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 hover:bg-zinc-850"
                     } ${sessionInfo.language !== "both" ? "cursor-not-allowed opacity-50" : ""}`}
-                  style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}
+                  style={{ fontFamily: "var(--font-system)" }}
                 >
                   ខ្មែរ (Khmer)
                   {sessionInfo.language === "km" && <span className="text-[8px] opacity-60 font-bold">({kh ? "ចាក់សោ" : "Locked"})</span>}
@@ -930,7 +931,7 @@ export default function StudentGamePage() {
             style={{
               fontSize: "clamp(0.95rem, 3.5vw, 1.4rem)",
               lineHeight: "1.3",
-              ...khFont
+              ...qaFont
             }}
           >
             <div className="w-full py-1">

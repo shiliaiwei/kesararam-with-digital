@@ -28,7 +28,7 @@ function shuffle<T>(arr: T[]): T[] {
 
 function SignMatchView({ round, lang, onRoundComplete }: RoundViewProps<SignMatchRound>) {
     const kh = lang === "kh";
-    const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+    const khFont = kh ? { fontFamily: "var(--font-learning)" } : {};
     const doneRef = useRef(false);
     const startRef = useRef(Date.now());
 

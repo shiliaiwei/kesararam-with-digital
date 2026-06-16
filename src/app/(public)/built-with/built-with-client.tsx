@@ -80,8 +80,8 @@ const RESEARCH_TOOLS: Item[] = [
 
 const MEDIA_ASSETS: Item[] = [
   { name: "Cloudinary", icon: SiCloudinary, note: { en: "Image hosting & management", kh: "Image hosting & management" } },
-  { name: "Google Sans · Inter · Stack Sans Notch", icon: Type, note: { en: "Latin typefaces", kh: "ហ្វុនត៍ឡាតាំង" } },
-  { name: "Siemreap · Battambang · KhmerOS", icon: Type, note: { en: "Khmer typefaces", kh: "ហ្វុនត៍ខ្មែរ" } },
+  { name: "Roboto", icon: Type, note: { en: "English typeface", kh: "ហ្វុនត៍អង់គ្លេស" } },
+  { name: "Google Sans · Battambang", icon: Type, note: { en: "Khmer UI and learning typefaces", kh: "ហ្វុនត៍ខ្មែរសម្រាប់ UI និងមាតិការៀន" } },
   { name: "Reward Illustrations & Avatars", icon: PenTool, note: { en: "Gamification & user profile assets", kh: "រូបភាពរង្វាន់ និងរូបតំណាងកម្រងព័ត៌មានសិស្ស" } },
 ];
 
@@ -208,7 +208,7 @@ const SECTIONS = [
 export function BuiltWithClient() {
   const { lang } = useLang();
   const kh = lang === "kh";
-  const kf = kh ? { fontFamily: '"GoogleSans", var(--font-kh-header), var(--font-kh-body), sans-serif' } : {};
+  const kf = kh ? { fontFamily: "var(--font-system)" } : {};
   const t = (en: string, k: string) => (kh ? k : en);
   const [active, setActive] = useState(SECTIONS[0].id);
 

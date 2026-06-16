@@ -14,7 +14,7 @@ interface Message {
 export function AIChat() {
   const { lang } = useLang();
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-system)" } : {};
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");

@@ -35,7 +35,7 @@ export interface SSSRound {
 
 function khFont(kh: boolean) {
     return kh
-        ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }
+        ? { fontFamily: "var(--font-learning)" }
         : {};
 }
 

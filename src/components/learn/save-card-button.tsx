@@ -147,14 +147,13 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
             };
 
             await Promise.all([
-                loadFont('Inter', 'https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2', 'bold'),
-                loadFont('GoogleSansKhmer', '/Google_Sans/static/GoogleSans-Bold.ttf', 'bold'),
-                loadFont('GoogleSansKhmer', '/Google_Sans/static/GoogleSans-Regular.ttf', 'normal'),
-                loadFont('GoogleSansKhmer', '/Google_Sans/static/GoogleSans-Medium.ttf', '500'),
+                loadFont('KWDRoboto', '/Roboto/Roboto-VariableFont_wdth,wght.woff2', '100 900'),
+                loadFont('KWDBattambang', '/Battambang/Battambang-Regular.woff2', 'normal'),
+                loadFont('KWDBattambang', '/Battambang/Battambang-Bold.woff2', 'bold'),
             ]);
 
-            const fontEN = (size: number, weight = 'bold') => `${weight} ${size}px Inter, system-ui, Arial, sans-serif`;
-            const fontKH = (size: number, weight = 'bold') => `${weight} ${size}px GoogleSansKhmer, "Google Sans", Inter, sans-serif`;
+            const fontEN = (size: number, weight = 'bold') => `${weight} ${size}px KWDRoboto, sans-serif`;
+            const fontKH = (size: number, weight = 'bold') => `${weight} ${size}px KWDBattambang, KWDRoboto, sans-serif`;
             const font = (size: number, weight = 'bold') => isKh ? fontKH(size, weight) : fontEN(size, weight);
 
             const loadImg = (src: string, timeout = 4000) => new Promise<HTMLImageElement | null>((resolve) => {

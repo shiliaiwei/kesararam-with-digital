@@ -50,7 +50,7 @@ export function PublicProfileLink({ username }: { username: string }) {
             padding: "8px 12px",
             border: "2px solid #000",
             fontSize: "12px",
-            fontFamily: "monospace",
+            fontFamily: "var(--font-en)",
             background: "#f4f4f5",
             color: "#27272a",
             outline: "none",

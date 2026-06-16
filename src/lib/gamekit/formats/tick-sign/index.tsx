@@ -23,7 +23,7 @@ interface TickSignRound {
 
 function TickSignView({ round, lang, onRoundComplete }: RoundViewProps<TickSignRound>) {
     const kh = lang === "kh";
-    const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+    const khFont = kh ? { fontFamily: "var(--font-learning)" } : {};
 
     const startRef = useRef(Date.now());
     const rowStartRef = useRef(Date.now());

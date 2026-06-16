@@ -141,7 +141,7 @@ export function MediaManagement() {
     : items;
 
   return (
-    <div className="flex h-[calc(100vh-120px)] gap-0" style={{ fontFamily: "'Arial Black', Arial, sans-serif" }}>
+    <div className="flex h-[calc(100vh-120px)] gap-0" style={{ fontFamily: "var(--font-system)" }}>
 
       {/* Sidebar */}
       <div className="w-52 flex-shrink-0 flex flex-col" style={{ border: "2px solid #000", borderRight: "none", background: "#fff" }}>

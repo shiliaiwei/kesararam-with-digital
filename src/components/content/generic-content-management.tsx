@@ -74,7 +74,7 @@ export function GenericContentManagement({
           </Link>
           <div>
             <h1 className="text-2xl font-black text-black">{category.titleEn} Content</h1>
-            <p className="text-sm text-zinc-600" style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}>
+            <p className="text-sm text-zinc-600" style={{ fontFamily: "var(--font-learning)" }}>
               {category.titleKm} • {category.description}
             </p>
           </div>
@@ -140,7 +140,7 @@ export function GenericContentManagement({
             <div className="p-4 space-y-3">
               <div>
                 <h3 className="font-black text-lg text-black">{item.titleEn}</h3>
-                <p className="text-sm text-zinc-600" style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}>
+                <p className="text-sm text-zinc-600" style={{ fontFamily: "var(--font-learning)" }}>
                   {item.titleKm}
                 </p>
               </div>
@@ -149,7 +149,7 @@ export function GenericContentManagement({
                 <p className="text-sm text-zinc-700 line-clamp-2">
                   {item.descriptionEn}
                 </p>
-                <p className="text-sm text-zinc-600 line-clamp-2" style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}>
+                <p className="text-sm text-zinc-600 line-clamp-2" style={{ fontFamily: "var(--font-learning)" }}>
                   {item.descriptionKm}
                 </p>
               </div>

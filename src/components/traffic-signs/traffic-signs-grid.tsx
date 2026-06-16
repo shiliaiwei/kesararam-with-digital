@@ -64,7 +64,7 @@ function SignDetailPanel({
   const audioRef = useRef<HTMLAudioElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const isKh = lang === "kh";
-  const kf = isKh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+  const kf = isKh ? { fontFamily: "var(--font-learning)" } : {};
   const name = isKh ? sign.titleKm : sign.titleEn;
   const description = isKh ? sign.descriptionKm : sign.descriptionEn;
   const audioUrl = isKh ? sign.audioUrlKm : sign.audioUrlEn;
@@ -141,7 +141,7 @@ function SignDetailPanel({
         {/* Content */}
         <div className="p-5 space-y-3">
           <h2 className="text-2xl font-black leading-tight">{name}</h2>
-          <p className="text-lg text-zinc-600" style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}>
+          <p className="text-lg text-zinc-600" style={{ fontFamily: "var(--font-learning)" }}>
             {isKh ? sign.titleEn : sign.titleKm}
           </p>
 

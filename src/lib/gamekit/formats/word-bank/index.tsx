@@ -40,7 +40,7 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 function khFontOf(kh: boolean) {
-    return kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+    return kh ? { fontFamily: "var(--font-learning)" } : {};
 }
 
 // ── A draggable word chip (also tappable for the tap-to-place fallback) ──

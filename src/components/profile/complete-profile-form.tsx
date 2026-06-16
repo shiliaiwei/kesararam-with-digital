@@ -236,7 +236,7 @@ export function CompleteProfileForm({ mustRejoin = false }: { mustRejoin?: boole
           <div className="flex items-center gap-4">
             <span className="material-symbols-rounded text-yellow-400 text-3xl font-black">{mustRejoin ? "group_off" : "lock_open"}</span>
             <div className="space-y-0.5">
-              <h2 className="text-xl md:text-2xl font-black uppercase font-stack-notch">
+              <h2 className="text-xl md:text-2xl font-black uppercase font-roboto">
                 {mustRejoin
                   ? (kh ? "សូមចូលរួមថ្នាក់រៀនឡើងវិញ" : "Re-join a Classroom to Continue")
                   : (kh ? "បង្កើតព័ត៌មានគណនីសិស្សថ្មី" : "Complete Student Profile Setup")}

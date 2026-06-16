@@ -32,7 +32,7 @@ export function UpgradeFab({ session }: UpgradeFabProps) {
   const router = useRouter();
   const { lang } = useLang();
   const kh = lang === "kh";
-  const kf = { fontFamily: '"GoogleSans", "Google Sans", sans-serif' };
+  const kf = { fontFamily: "var(--font-system)" };
 
   useEffect(() => {
     setMounted(true);

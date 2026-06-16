@@ -170,23 +170,21 @@ Icons must come from an **icon library**, never from emoji or Unicode glyphs.
 
 | Use       | Font stack                                              |
 |-----------|--------------------------------------------------------|
-| English   | `Inter` (`--font-sans`); brand fonts `StackSansNotch` (`.font-english`/`.font-stack-notch`), `GoogleSans` (`.font-google-sans`) |
-| Khmer     | `Siemreap` / `Kantumruy_Pro` — `.font-kh-header`, `.font-kh-body`; also "Google Sans Khmer", "Battambang" |
+| English   | Roboto (`--font-en` / `.font-roboto`)                   |
+| Khmer     | Google Sans (`var(--font-kh-ui)`) or Battambang (`var(--font-kh-learning)`) |
 | Labels    | UPPERCASE · `tracking-wide`/`tracking-wider` · `font-bold`/`font-black` |
-| Mono      | `--font-mono` (Geist Mono) for filenames, versions, technical chips |
+| Mono      | `--font-mono` (Roboto) for technical chips and numbers |
 
 ### Font by context (hard rule)
 Pick the face by **where the text lives**, not by language alone:
 
 | Context                                   | Font                                   | Class            |
 |-------------------------------------------|----------------------------------------|------------------|
-| **Learning / lesson / quiz content**      | **Siemreap** (the `--font-kh-body` face) | `.font-learning` |
-| **System chrome / function buttons / UI** | **Inter** (EN primary) + **Google Sans Khmer** (KH) | `.font-system` |
-| Khmer headings                            | Kantumruy Pro                          | `.font-kh-header`|
+| **Learning / lesson / quiz content / Q&A**| **Battambang** (for Khmer) + **Roboto** (for English) | `.font-learning` |
+| **System chrome / buttons / UI / pricing**| **Google Sans** (for Khmer) + **Roboto** (for English) | `.font-system`  |
 
-- Learning content (readable, lesson body) → `.font-learning` (Siemreap).
-- Buttons, nav, toolbars, dialogs, settings — anything "system" → `.font-system`
-  (Inter for English, Google Sans Khmer for Khmer).
+- Learning / Q&A / Category titles & descriptions → `.font-learning` (Battambang for Khmer, Roboto for English).
+- Buttons, nav, toolbars, dialogs, settings, pricing — anything UI/system → `.font-system` (Google Sans for Khmer, Roboto for English).
 
 **Always design bilingually.** This app is EN + ខ្មែរ everywhere. New copy needs
 both languages (use the `useLang()` / `t(en, kh)` pattern seen across pages), and

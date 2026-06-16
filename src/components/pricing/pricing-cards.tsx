@@ -95,8 +95,8 @@ export function PricingCards({ lang = "en" }: PricingCardsProps) {
   const [selectedPlan, setSelectedPlan] = useState<PlanKey>("teacher_pro");
 
   const kh = lang === "kh";
-  // Google Sans (EN) / Kantumruy Pro (KH) — never fall back to system font.
-  const pf = { fontFamily: '"GoogleSans", "Google Sans", sans-serif' };
+  // KWD official font stack: Roboto for English, Google Sans for Khmer UI.
+  const pf = { fontFamily: "var(--font-system)" };
   const khFont = pf;
 
   const { pct, daysLeft } = usePriceStepUp("2026-01-01T00:00:00", "2026-12-31T23:59:59");

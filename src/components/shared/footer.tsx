@@ -11,8 +11,8 @@ export function Footer() {
   const nav = t[lang].nav;
   const kh = lang === "kh";
   const kf = kh
-    ? { fontFamily: '"GoogleSans", "Google Sans", sans-serif', fontWeight: 700 }
-    : { fontFamily: '"StackSansNotch", sans-serif' };
+    ? { fontFamily: "var(--font-system)", fontWeight: 700 }
+    : { fontFamily: "var(--font-en)" };
 
   const LEARN_LINKS = [
     { label: kh ? "សញ្ញាចរាចរ" : "Traffic Signs", href: "/learn/road-sign" },

@@ -180,7 +180,7 @@ export function TopicDetailView({ categorySlug, topicId }: TopicDetailViewProps)
             </div>
             <h1 className="text-xl md:text-2xl font-black leading-snug">{topic.nameEn}</h1>
             {topic.nameKm && (
-              <p className="text-sm text-zinc-600 mt-0.5" style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}>
+              <p className="text-sm text-zinc-600 mt-0.5" style={{ fontFamily: "var(--font-system)" }}>
                 {topic.nameKm}
               </p>
             )}
@@ -229,7 +229,7 @@ export function TopicDetailView({ categorySlug, topicId }: TopicDetailViewProps)
             </div>
             <div>
               <span className="text-[10px] font-black uppercase tracking-widest text-zinc-400 block mb-2">Answer (Khmer)</span>
-              <p className="text-sm leading-relaxed whitespace-pre-wrap text-zinc-800" style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}>
+              <p className="text-sm leading-relaxed whitespace-pre-wrap text-zinc-800" style={{ fontFamily: "var(--font-system)" }}>
                 {topic.descriptionKm || "—"}
               </p>
             </div>

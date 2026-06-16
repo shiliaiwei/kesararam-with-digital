@@ -14,7 +14,7 @@ const RANK_COLORS = ["#ffd700", "#c0c0c0", "#cd7f32"];
 
 export function LeaderboardPanel({ entries, currentUserId, lang }: LeaderboardPanelProps) {
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-system)" } : {};
   const [animatingRanks, setAnimatingRanks] = useState<Set<number>>(new Set());
 
   // Trigger animation when rank changes

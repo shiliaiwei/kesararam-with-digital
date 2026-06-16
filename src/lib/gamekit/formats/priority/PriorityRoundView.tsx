@@ -14,7 +14,7 @@ export function PriorityRoundView({
     onRoundComplete,
 }: RoundViewProps<PriorityRound>) {
     const kh = lang === "kh";
-    const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+    const khFont = kh ? { fontFamily: "var(--font-learning)" } : {};
     const [picked, setPicked] = useState<string | null>(null);
     const startRef = useRef(Date.now());
     const doneRef = useRef(false);

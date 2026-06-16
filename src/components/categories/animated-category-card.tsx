@@ -383,7 +383,7 @@ export function AnimatedCategoryCard({
   const color = CATEGORY_COLORS[slug];
   const shadow = CATEGORY_SHADOW[slug];
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-learning)" } : {};
 
   const IconScene = ICON_SCENES[slug];
 
@@ -512,7 +512,7 @@ export function AnimatedCategoryCard({
         <h3 className="font-black text-lg text-black leading-tight" style={khFont}>
           {kh ? titleKh : titleEn}
         </h3>
-        <p className="text-xs text-zinc-400" style={{ fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" }}>
+        <p className="text-xs text-zinc-400" style={{ fontFamily: "var(--font-learning)" }}>
           {titleKh}
         </p>
         <p className="text-sm text-zinc-600 leading-relaxed mt-1 flex-1" style={khFont}>

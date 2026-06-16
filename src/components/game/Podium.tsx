@@ -130,7 +130,7 @@ function NeubrutalistAvatar({ src, initials, userId, size = "md" }: Neubrutalist
 
 export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAgain, sessionCode, totalQuestions, currentUserPoints }: PodiumProps) {
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+  const khFont = kh ? { fontFamily: "var(--font-system)" } : {};
   const [showConfetti, setShowConfetti] = useState(false);
   const [revealedIdx, setRevealedIdx] = useState<number[]>([]);
   const [isGeneratingCard, setIsGeneratingCard] = useState(false);
@@ -217,7 +217,7 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
 
       // Player Name
       ctx.fillStyle = "#ffffff";
-      ctx.font = "bold 42px 'Siemreap', system-ui, -apple-system, sans-serif";
+      ctx.font = `bold 42px ${kh ? '"KWD Battambang Khmer", "KWD Roboto", sans-serif' : '"KWD Roboto", sans-serif'}`;
       ctx.fillText(myEntry.displayName, 400, 130);
 
       // Rank Badge Container - Brutalist
@@ -245,11 +245,11 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
       else if (isRank3) badgeColor = "#cd7f32";
 
       ctx.fillStyle = badgeColor;
-      ctx.font = "bold 72px system-ui, -apple-system, sans-serif";
+      ctx.font = 'bold 72px "KWD Roboto", sans-serif';
       ctx.fillText(`#${myRank}`, 400, 245);
 
       ctx.fillStyle = "#000000";
-      ctx.font = "bold 18px 'Siemreap', system-ui, -apple-system, sans-serif";
+      ctx.font = `bold 18px ${kh ? '"KWD Battambang Khmer", "KWD Roboto", sans-serif' : '"KWD Roboto", sans-serif'}`;
       ctx.fillText(kh ? "ចំណាត់ថ្នាក់ចុងក្រោយ" : "FINAL RANK", 400, 280);
 
       // Score Box
@@ -260,12 +260,12 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
       ctx.strokeRect(200, 320, 400, 70);
 
       ctx.fillStyle = "#eab308";
-      ctx.font = "bold 38px system-ui, -apple-system, sans-serif";
+      ctx.font = 'bold 38px "KWD Roboto", sans-serif';
       ctx.fillText(`${myEntry.totalScore.toLocaleString()} PTS`, 400, 365);
 
       // Stats Row
       ctx.fillStyle = "#ffffff";
-      ctx.font = "bold 16px 'Siemreap', system-ui, -apple-system, sans-serif";
+      ctx.font = `bold 16px ${kh ? '"KWD Battambang Khmer", "KWD Roboto", sans-serif' : '"KWD Roboto", sans-serif'}`;
 
       const streakText = kh
         ? `🔥 ជាប់គ្នា: ${myEntry.currentStreak}`
@@ -279,7 +279,7 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
 
       // Room code
       ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
-      ctx.font = "14px system-ui, -apple-system, sans-serif";
+      ctx.font = '14px "KWD Roboto", sans-serif';
       ctx.fillText(
         kh ? `លេខកូដបន្ទប់: ${sessionCode || ""}` : `Room Code: ${sessionCode || ""}`,
         400,

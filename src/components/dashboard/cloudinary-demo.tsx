@@ -85,8 +85,8 @@ export function CloudinaryDemo() {
               },
               fonts: {
                 default: null,
-                "'Inter', sans-serif": {
-                  url: "https://fonts.googleapis.com/css?family=Inter",
+                "'KWD Roboto', sans-serif": {
+                  url: "/Roboto/Roboto-VariableFont_wdth,wght.woff2",
                   active: true
                 }
               }

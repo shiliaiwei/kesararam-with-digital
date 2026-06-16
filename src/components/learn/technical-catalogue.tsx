@@ -101,7 +101,7 @@ function useAudio(url: string | null) {
 
 // ── Answer card ───────────────────────────────────────────────────────────────
 function AnswerCard({ topic, isKh, t }: { topic: Topic; isKh: boolean; t: typeof UI.en }) {
-  const kf = isKh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+  const kf = isKh ? { fontFamily: "var(--font-learning)" } : {};
   const answer = isKh ? topic.description_km : topic.description_en;
   const subGroup = SUB_GROUPS.find((s) => s.key === topic.sub_group);
 
@@ -173,7 +173,7 @@ function FooterRow({ topic, isKh, t, accentPlay, accentStop }: {
   topic: Topic; isKh: boolean; t: typeof UI.en;
   accentPlay: string; accentStop: string;
 }) {
-  const kf = isKh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+  const kf = isKh ? { fontFamily: "var(--font-learning)" } : {};
   const audioUrlEn = topic.audio_url_en || "";
   const audioUrlKm = topic.audio_url_km || "";
   const audioUrl = isKh ? (audioUrlKm || audioUrlEn) : (audioUrlEn || audioUrlKm);
@@ -199,7 +199,7 @@ function FooterRow({ topic, isKh, t, accentPlay, accentStop }: {
 export function TechnicalCatalogue() {
   const { lang } = useLang();
   const isKh = lang === "kh";
-  const kf = isKh ? { fontFamily: "var(--font-kh-body), var(--font-kh-header), 'Noto Sans Khmer', sans-serif" } : {};
+  const kf = isKh ? { fontFamily: "var(--font-learning)" } : {};
   const t = isKh ? UI.kh : UI.en;
 
   const [topics, setTopics] = useState<Topic[]>([]);

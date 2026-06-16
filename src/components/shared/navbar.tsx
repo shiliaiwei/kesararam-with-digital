@@ -41,7 +41,7 @@ function AnimatedLogoText() {
   }, []);
 
   return (
-    <div className="font-black text-[10px] uppercase tracking-widest text-black leading-none flex flex-col font-stack-notch" style={{ width: "120px" }}>
+    <div className="font-black text-[10px] uppercase tracking-widest text-black leading-none flex flex-col font-roboto" style={{ width: "120px" }}>
       <span>KESARARAM.</span>
       <span>WITH.</span>
       {/* Fixed-height container prevents CLS when word changes */}
@@ -58,7 +58,7 @@ function AnimatedLogoText() {
 }
 
 function ProfileMenu({ session, kh, showUpgrade, subPlan }: { session: JWTPayload; kh: boolean; showUpgrade: boolean; subPlan: string | null }) {
-  const brandFont = kh ? "font-google-sans" : "font-stack-notch";
+  const brandFont = kh ? "font-google-sans" : "font-roboto";
   const [open, setOpen] = useState(false);
   const [lifetimePoints, setLifetimePoints] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
@@ -213,7 +213,7 @@ export function Navbar({ session }: NavbarProps) {
   const { lang } = useLang();
   const tr = t[lang].nav;
   const kh = lang === "kh";
-  const brandFont = kh ? "font-google-sans" : "font-stack-notch";
+  const brandFont = kh ? "font-google-sans" : "font-roboto";
   const [subPlan, setSubPlan] = useState<string | null>(null);
 
   useEffect(() => {
