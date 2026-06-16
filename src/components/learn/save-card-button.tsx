@@ -148,12 +148,11 @@ export function SaveCardButton({ topic, isKh, size = 'md' }: SaveCardButtonProps
 
             await Promise.all([
                 loadFont('KWDRoboto', '/Roboto/Roboto-VariableFont_wdth,wght.woff2', '100 900'),
-                loadFont('KWDBattambang', '/Battambang/Battambang-Regular.woff2', 'normal'),
-                loadFont('KWDBattambang', '/Battambang/Battambang-Bold.woff2', 'bold'),
+                loadFont('KWDGoogleSans', '/Google_Sans/GoogleSans-VariableFont_GRAD,opsz,wght.woff2', '400 700'),
             ]);
 
             const fontEN = (size: number, weight = 'bold') => `${weight} ${size}px KWDRoboto, sans-serif`;
-            const fontKH = (size: number, weight = 'bold') => `${weight} ${size}px KWDBattambang, KWDRoboto, sans-serif`;
+            const fontKH = (size: number, weight = 'bold') => `${weight} ${size}px KWDGoogleSans, KWDRoboto, sans-serif`;
             const font = (size: number, weight = 'bold') => isKh ? fontKH(size, weight) : fontEN(size, weight);
 
             const loadImg = (src: string, timeout = 4000) => new Promise<HTMLImageElement | null>((resolve) => {

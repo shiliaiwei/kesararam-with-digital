@@ -64,7 +64,7 @@ This is a cheat-sheet; if they disagree, globals.css wins (and update this file)
 ## Fonts (loaded in `src/app/layout.tsx` + `globals.css`)
 
 - English: Roboto (`--font-en` / `var(--font-en)`)
-- Khmer: Google Sans (`KWD Google Sans Khmer` / `var(--font-kh-ui)`) and Battambang (`KWD Battambang Khmer` / `var(--font-kh-learning)`)
+- Khmer: Google Sans (`KWD Google Sans Khmer` / `var(--font-kh-ui)`)
 - Mono: Roboto (`--font-mono` / `var(--font-mono)`)
 
 ## Icon libraries (installed) — NO emoji / Unicode symbols

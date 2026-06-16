@@ -383,7 +383,6 @@ export function AnimatedCategoryCard({
   const color = CATEGORY_COLORS[slug];
   const shadow = CATEGORY_SHADOW[slug];
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "var(--font-learning)" } : {};
 
   const IconScene = ICON_SCENES[slug];
 
@@ -509,26 +508,25 @@ export function AnimatedCategoryCard({
           transition: "transform 0.3s ease",
         }}
       >
-        <h3 className="font-black text-lg text-black leading-tight" style={khFont}>
+        <h3 className="font-black text-lg text-black leading-tight font-system">
           {kh ? titleKh : titleEn}
         </h3>
-        <p className="text-xs text-zinc-400" style={{ fontFamily: "var(--font-learning)" }}>
+        <p className="text-xs text-zinc-400 font-learning">
           {titleKh}
         </p>
-        <p className="text-sm text-zinc-600 leading-relaxed mt-1 flex-1" style={khFont}>
+        <p className="text-sm text-zinc-600 leading-relaxed mt-1 flex-1 font-english">
           {descEn}
         </p>
 
         {/* Study now button */}
         <div className="mt-3 pt-3 border-t-2 border-black flex items-center justify-between">
           <span
-            className="text-xs font-black px-3 py-1 border-2 border-black"
+            className="text-xs font-black px-3 py-1 border-2 border-black font-system"
             style={{
               backgroundColor: isHovered ? "#000" : color,
               color: isHovered ? "#fff" : "#000",
               borderRadius: "3px",
               transition: "background-color 0.25s ease, color 0.25s ease",
-              ...khFont,
             }}
           >
             {studyNowText}

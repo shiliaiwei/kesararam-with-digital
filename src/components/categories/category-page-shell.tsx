@@ -49,7 +49,6 @@ export function CategoryPageShell({
   const shadow = CATEGORY_SHADOW[slug] ?? "4px 4px 0 #000";
   const { lang } = useLang();
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "var(--font-learning)" } : {};
 
   // Mode translations
   const modes = [
@@ -94,21 +93,19 @@ export function CategoryPageShell({
             {/* Content */}
             <div className="flex flex-col gap-2 flex-1">
               <span
-                className="text-xs font-black tracking-widest uppercase bg-black text-white px-3 py-1.5 rounded-none w-fit"
-                style={khFont}
+                className="text-xs font-black tracking-widest uppercase bg-black text-white px-3 py-1.5 rounded-none w-fit font-system"
               >
                 {kh ? "ប្រភេទចំណេះដឹង" : "Knowledge Category"}
               </span>
-              <h1 className="text-4xl md:text-5xl font-black text-black leading-tight">
+              <h1 className="text-4xl md:text-5xl font-black text-black leading-tight font-system">
                 {kh ? titleKh : titleEn}
               </h1>
               <p
-                className="text-lg text-black/70"
-                style={{ fontFamily: "var(--font-learning)" }}
+                className={`text-lg text-black/70 ${kh ? "font-english" : "font-system"}`}
               >
                 {kh ? titleEn : titleKh}
               </p>
-              <p className="text-sm text-black/80 max-w-2xl leading-relaxed" style={khFont}>
+              <p className="text-sm text-black/80 max-w-2xl leading-relaxed font-english">
                 {descEn}
               </p>
 
@@ -117,9 +114,8 @@ export function CategoryPageShell({
                 {modes.map((mode) => (
                   <span
                     key={mode.en}
-                    className="px-3 py-1.5 bg-white border-2 border-black rounded-none text-xs font-bold shadow-[2px_2px_0_#000] cursor-not-allowed opacity-60"
+                    className="px-3 py-1.5 bg-white border-2 border-black rounded-none text-xs font-bold shadow-[2px_2px_0_#000] cursor-not-allowed opacity-60 font-system"
                     title={kh ? "មកដល់ឆាប់ៗ" : "Coming soon — content managed by admin"}
-                    style={khFont}
                   >
                     {kh ? mode.kh : mode.en}
                   </span>
@@ -152,10 +148,10 @@ export function CategoryPageShell({
             >
               <FaClipboardList size={28} className="text-black" />
             </div>
-            <h3 className="text-xl font-black mb-2" style={khFont}>
+            <h3 className="text-xl font-black mb-2 font-system">
               {kh ? "មិនទាន់មានមាតិកា" : "No content yet"}
             </h3>
-            <p className="text-sm text-zinc-500" style={khFont}>
+            <p className="text-sm text-zinc-500 font-system">
               {kh
                 ? "អ្នកគ្រប់គ្រងនឹងបោះពុម្ពមាតិកាសម្រាប់ប្រភេទនេះឆាប់ៗនេះ។"
                 : "An administrator will publish content for this category soon. Check back later."}

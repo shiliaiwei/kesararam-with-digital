@@ -15,7 +15,7 @@ streaks, badges, timers, rewards store, avatars, student ID, bilingual copy).
 | Concept | What it is | Where in KWD |
 |---|---|---|
 | **Flash Learning** (brand's own thesis) | Knowledge delivered fast, in micro-bursts — "at the speed of light" (the logo lightning bolt) | Whole quiz/play loop; brand page "Logo & Meaning" |
-| **Mother-tongue / L1 instruction** | People learn faster in their native language | Every screen is EN + Khmer; Battambang for lesson content |
+| **Mother-tongue / L1 instruction** | People learn faster in their native language | Every screen is EN + Khmer; Google Sans for lesson content |
 | **Retrieval practice (testing effect)** | Recalling answers strengthens memory more than re-reading | Quizzes, category quiz, multiplayer code games |
 | **Immediate feedback** | Correct/incorrect signalled instantly → faster correction | Quiz answer states, sounds, confetti |
 | **Multimedia & dual-coding (Mayer / Paivio)** | Words + images, and color + label, encode better than text alone | Icons beside labels, road-sign imagery, mockups |

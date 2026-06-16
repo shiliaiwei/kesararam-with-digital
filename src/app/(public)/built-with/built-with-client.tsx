@@ -81,7 +81,7 @@ const RESEARCH_TOOLS: Item[] = [
 const MEDIA_ASSETS: Item[] = [
   { name: "Cloudinary", icon: SiCloudinary, note: { en: "Image hosting & management", kh: "Image hosting & management" } },
   { name: "Roboto", icon: Type, note: { en: "English typeface", kh: "ហ្វុនត៍អង់គ្លេស" } },
-  { name: "Google Sans · Battambang", icon: Type, note: { en: "Khmer UI and learning typefaces", kh: "ហ្វុនត៍ខ្មែរសម្រាប់ UI និងមាតិការៀន" } },
+  { name: "Google Sans Khmer", icon: Type, note: { en: "Khmer UI and learning typefaces", kh: "ហ្វុនត៍ខ្មែរសម្រាប់ UI និងមាតិការៀន" } },
   { name: "Reward Illustrations & Avatars", icon: PenTool, note: { en: "Gamification & user profile assets", kh: "រូបភាពរង្វាន់ និងរូបតំណាងកម្រងព័ត៌មានសិស្ស" } },
 ];
 

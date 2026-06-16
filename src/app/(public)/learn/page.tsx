@@ -30,7 +30,6 @@ const STATS = [
 export default function LearnPage() {
   const { lang } = useLang();
   const kh = lang === "kh";
-  const khFont = kh ? { fontFamily: "var(--font-system)" } : {};
   const heroRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -104,16 +103,15 @@ export default function LearnPage() {
               </div>
               <h1
                 ref={headingRef}
-                className="text-5xl md:text-6xl font-black leading-tight"
-                style={{ color: "#eab308", ...khFont }}
+                className="text-5xl md:text-6xl font-black leading-tight font-system"
+                style={{ color: "#eab308" }}
               >
                 {kh ? "រៀន" : "LEARN"}
                 <span className="text-white">.</span>
               </h1>
               <p
                 ref={subRef}
-                className="text-lg md:text-xl text-white/60 max-w-lg leading-relaxed"
-                style={khFont}
+                className="text-lg md:text-xl text-white/60 max-w-lg leading-relaxed font-system"
               >
                 {kh
                   ? "រៀនបើកបរ និងស្គាល់សញ្ញាចរាចរ — ៨ ប្រភេទ ២ ភាសា"
@@ -122,15 +120,14 @@ export default function LearnPage() {
               <div ref={ctaRef} className="flex flex-wrap gap-3">
                 <Link
                   href="/play"
-                  className="px-6 py-3 bg-yellow-400 text-black font-black border-2 border-yellow-400 transition-all duration-100 hover:-translate-y-1"
-                  style={{ boxShadow: "4px 4px 0 #ca8a04", ...khFont }}
+                  className="px-6 py-3 bg-yellow-400 text-black font-black border-2 border-yellow-400 transition-all duration-100 hover:-translate-y-1 font-system"
+                  style={{ boxShadow: "4px 4px 0 #ca8a04" }}
                 >
                   {kh ? "លេងឥឡូវ →" : "Play Now →"}
                 </Link>
                 <Link
                   href="/leaderboard"
-                  className="px-6 py-3 bg-transparent text-white font-black border-2 border-white/40 hover:border-white transition-all duration-100"
-                  style={khFont}
+                  className="px-6 py-3 bg-transparent text-white font-black border-2 border-white/40 hover:border-white transition-all duration-100 font-system"
                 >
                   {kh ? "ចំណាត់ថ្នាក់" : "Leaderboard"}
                 </Link>
@@ -160,7 +157,7 @@ export default function LearnPage() {
                 style={{ boxShadow: `4px 4px 0 ${color}` }}
               >
                 <span className="text-3xl font-black" style={{ color }}>{value}</span>
-                <span className="text-sm font-bold text-zinc-500" style={khFont}>{kh ? labelKh : labelEn}</span>
+                <span className="text-sm font-bold text-zinc-500 font-system">{kh ? labelKh : labelEn}</span>
               </div>
             ))}
           </div>
@@ -172,17 +169,17 @@ export default function LearnPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <div>
-              <div className="inline-block bg-black text-white text-xs font-black tracking-widest uppercase px-3 py-1.5 mb-3" style={khFont}>
+              <div className="inline-block bg-black text-white text-xs font-black tracking-widest uppercase px-3 py-1.5 mb-3 font-system">
                 {kh ? "ប្រភេទចំណេះដឹង" : "Knowledge Categories"}
               </div>
-              <h2 className="text-4xl md:text-5xl font-black text-black leading-tight" style={khFont}>
+              <h2 className="text-4xl md:text-5xl font-black text-black leading-tight font-system">
                 {kh ? "ប្រភេទ" : "Eight"}{" "}
                 <span className="underline decoration-yellow-400 decoration-4">
                   {kh ? "ទាំង ៨" : "Categories"}
                 </span>
               </h2>
             </div>
-            <p className="text-zinc-500 max-w-xs text-sm leading-relaxed" style={khFont}>
+            <p className="text-zinc-500 max-w-xs text-sm leading-relaxed font-system">
               {kh ? "ជ្រើសរើសប្រភេទ ហើយចាប់ផ្តើមរៀន" : "Pick a category and start studying at your own pace."}
             </p>
           </div>
@@ -207,16 +204,16 @@ export default function LearnPage() {
       {/* ── CTA ── */}
       <section className="bg-black border-t-4 border-yellow-400 py-16">
         <div className="max-w-4xl mx-auto px-6 text-center flex flex-col items-center gap-6">
-          <h2 className="text-4xl md:text-5xl font-black text-white" style={khFont}>
+          <h2 className="text-4xl md:text-5xl font-black text-white font-system">
             {kh ? "ត្រៀមខ្លួនហើយ?" : "Ready to test yourself?"}
           </h2>
-          <p className="text-white/50 text-lg" style={khFont}>
+          <p className="text-white/50 text-lg font-system">
             {kh ? "រៀនដើម្បីដឹង · ប្រកួតដើម្បីពូកែ · ការពារដើម្បីជីវិត" : "Learn to know, compete to excel, protect for life."}
           </p>
           <Link
             href="/play"
-            className="px-10 py-4 bg-yellow-400 text-black font-black border-2 border-yellow-400 text-lg transition-all hover:-translate-y-1"
-            style={{ boxShadow: "6px 6px 0 #ca8a04", ...khFont }}
+            className="px-10 py-4 bg-yellow-400 text-black font-black border-2 border-yellow-400 text-lg transition-all hover:-translate-y-1 font-system"
+            style={{ boxShadow: "6px 6px 0 #ca8a04" }}
           >
             {kh ? "លេងឥឡូវ →" : "Start Playing →"}
           </Link>

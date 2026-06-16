@@ -236,8 +236,7 @@ export function BrandGuidelineClient() {
             <div className="space-y-4 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
               <div className="divide-y divide-zinc-100 dark:divide-zinc-800 border-t border-b border-zinc-100 dark:border-zinc-800">
                 {[
-                  { label: t("Khmer UI", "UI ខ្មែរ"), value: "Google Sans" },
-                  { label: t("Khmer Learning", "មាតិការៀនខ្មែរ"), value: "Battambang" },
+                  { label: t("Khmer", "ខ្មែរ"), value: "Google Sans Khmer" },
                   { label: t("English", "អង់គ្លេស"), value: "Roboto" },
                   { label: t("Labels", "ស្លាក"), value: t("UPPERCASE · letter-spacing · Bold/Black weight", "UPPERCASE · letter-spacing · Bold/Black") },
                 ].map((row) => (
@@ -301,8 +300,8 @@ export function BrandGuidelineClient() {
 
             <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-8 max-w-2xl">
               {t(
-                "Reusable road-sign shapes and caution-tape patterns. All pure vector (SVG) — they stay crisp at any size, from a 16px icon to a 4K slide. Flat brutalist: solid black border, no shadow, no gradients, no neon. Khmer UI labels use Google Sans; Khmer learning text uses Battambang.",
-                "រូបរាងផ្លាកសញ្ញាចរាចរណ៍ និងខ្សែបូព្រមាន ដែលអាចប្រើឡើងវិញ។ ទាំងអស់ជា Vector (SVG) — ច្បាស់គ្រប់ទំហំ ចាប់ពីរូបតំណាង 16px ដល់ស្លាយ 4K។ រចនាបែបរាបស្មើ៖ គែមខ្មៅ គ្មានស្រមោល គ្មាន gradient គ្មាន neon។ អក្សរ UI ខ្មែរ ប្រើ Google Sans; អក្សរមាតិការៀនខ្មែរ ប្រើ Battambang។"
+                "Reusable road-sign shapes and caution-tape patterns. All pure vector (SVG) — they stay crisp at any size, from a 16px icon to a 4K slide. Flat brutalist: solid black border, no shadow, no gradients, no neon. Khmer text everywhere uses Google Sans.",
+                "រូបរាងផ្លាកសញ្ញាចរាចរណ៍ និងខ្សែបូព្រមាន ដែលអាចប្រើឡើងវិញ។ ទាំងអស់ជា Vector (SVG) — ច្បាស់គ្រប់ទំហំ ចាប់ពីរូបតំណាង 16px ដល់ស្លាយ 4K។ រចនាបែបរាបស្មើ៖ គែមខ្មៅ គ្មានស្រមោល គ្មាន gradient គ្មាន neon។ អក្សរខ្មែរគ្រប់ទីកន្លែងប្រើប្រាស់ Google Sans។"
               )}
             </p>
 

@@ -171,20 +171,16 @@ Icons must come from an **icon library**, never from emoji or Unicode glyphs.
 | Use       | Font stack                                              |
 |-----------|--------------------------------------------------------|
 | English   | Roboto (`--font-en` / `.font-roboto`)                   |
-| Khmer     | Google Sans (`var(--font-kh-ui)`) or Battambang (`var(--font-kh-learning)`) |
+| Khmer     | Google Sans (`KWD Google Sans Khmer` / `var(--font-kh-ui)`) |
 | Labels    | UPPERCASE · `tracking-wide`/`tracking-wider` · `font-bold`/`font-black` |
 | Mono      | `--font-mono` (Roboto) for technical chips and numbers |
 
-### Font by context (hard rule)
-Pick the face by **where the text lives**, not by language alone:
+### Font standard (hard rule)
+KWD uses a strict two-font standard:
+1. **Google Sans** for all Khmer text (UI, headers, buttons, body text, learning content, and Q&A).
+2. **Roboto** for all English text and fallbacks.
 
-| Context                                   | Font                                   | Class            |
-|-------------------------------------------|----------------------------------------|------------------|
-| **Learning / lesson / quiz content / Q&A**| **Battambang** (for Khmer) + **Roboto** (for English) | `.font-learning` |
-| **System chrome / buttons / UI / pricing**| **Google Sans** (for Khmer) + **Roboto** (for English) | `.font-system`  |
-
-- Learning / Q&A / Category titles & descriptions → `.font-learning` (Battambang for Khmer, Roboto for English).
-- Buttons, nav, toolbars, dialogs, settings, pricing — anything UI/system → `.font-system` (Google Sans for Khmer, Roboto for English).
+- All elements utilize `var(--font-system)` or `var(--font-learning)` which dynamically swap priority stacks (`lang-kh` / `lang-en` document root class) to ensure numbers/punctuation align with the active locale's typeface.
 
 **Always design bilingually.** This app is EN + ខ្មែរ everywhere. New copy needs
 both languages (use the `useLang()` / `t(en, kh)` pattern seen across pages), and

@@ -205,7 +205,7 @@ function DetailPanel({
 
       // Build the content
       canvas.innerHTML = `
-        <div style="width: 100%; height: 100%; display: flex; flex-direction: column; font-family: ${isKh ? "'KWD Battambang Khmer', 'KWD Roboto', sans-serif" : "'KWD Roboto', sans-serif"};">
+        <div style="width: 100%; height: 100%; display: flex; flex-direction: column; font-family: ${isKh ? "'KWD Google Sans Khmer', 'KWD Roboto', sans-serif" : "'KWD Roboto', sans-serif"};">
           <!-- Header with logo -->
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
             <div style="display: flex; align-items: center; gap: 20px;">

@@ -211,13 +211,13 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
 
       // Brand Title
       ctx.fillStyle = "#000000";
-      ctx.font = "bold 24px system-ui, -apple-system, sans-serif";
+      ctx.font = 'bold 24px "KWD Roboto", sans-serif';
       ctx.textAlign = "center";
       ctx.fillText("KESARARAM LIVE GAME", 400, 48);
 
       // Player Name
       ctx.fillStyle = "#ffffff";
-      ctx.font = `bold 42px ${kh ? '"KWD Battambang Khmer", "KWD Roboto", sans-serif' : '"KWD Roboto", sans-serif'}`;
+      ctx.font = `bold 42px ${kh ? '"KWD Google Sans Khmer", "KWD Roboto", sans-serif' : '"KWD Roboto", sans-serif'}`;
       ctx.fillText(myEntry.displayName, 400, 130);
 
       // Rank Badge Container - Brutalist
@@ -249,7 +249,7 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
       ctx.fillText(`#${myRank}`, 400, 245);
 
       ctx.fillStyle = "#000000";
-      ctx.font = `bold 18px ${kh ? '"KWD Battambang Khmer", "KWD Roboto", sans-serif' : '"KWD Roboto", sans-serif'}`;
+      ctx.font = `bold 18px ${kh ? '"KWD Google Sans Khmer", "KWD Roboto", sans-serif' : '"KWD Roboto", sans-serif'}`;
       ctx.fillText(kh ? "ចំណាត់ថ្នាក់ចុងក្រោយ" : "FINAL RANK", 400, 280);
 
       // Score Box
@@ -265,7 +265,7 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
 
       // Stats Row
       ctx.fillStyle = "#ffffff";
-      ctx.font = `bold 16px ${kh ? '"KWD Battambang Khmer", "KWD Roboto", sans-serif' : '"KWD Roboto", sans-serif'}`;
+      ctx.font = `bold 16px ${kh ? '"KWD Google Sans Khmer", "KWD Roboto", sans-serif' : '"KWD Roboto", sans-serif'}`;
 
       const streakText = kh
         ? `🔥 ជាប់គ្នា: ${myEntry.currentStreak}`

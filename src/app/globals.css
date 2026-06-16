@@ -3,7 +3,7 @@
 @import "shadcn/tailwind.css";
 
 /* KWD official local fonts.
-   English -> Roboto. Khmer UI -> Google Sans. Learning/Q&A Khmer -> Battambang.
+   English -> Roboto. Khmer -> Google Sans.
    Khmer faces are limited with unicode-range so English text still falls back
    to Roboto even inside Khmer UI or learning containers. */
 @font-face {
@@ -46,62 +46,11 @@
   unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
 }
 
-@font-face {
-  font-family: "KWD Battambang Khmer";
-  src: url("/Battambang/Battambang-Thin.woff2") format("woff2"),
-    url("/Battambang/Battambang-Thin.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 100;
-  font-display: swap;
-  unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
-}
-
-@font-face {
-  font-family: "KWD Battambang Khmer";
-  src: url("/Battambang/Battambang-Light.woff2") format("woff2"),
-    url("/Battambang/Battambang-Light.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
-}
-
-@font-face {
-  font-family: "KWD Battambang Khmer";
-  src: url("/Battambang/Battambang-Regular.woff2") format("woff2"),
-    url("/Battambang/Battambang-Regular.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
-}
-
-@font-face {
-  font-family: "KWD Battambang Khmer";
-  src: url("/Battambang/Battambang-Bold.woff2") format("woff2"),
-    url("/Battambang/Battambang-Bold.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
-}
-
-@font-face {
-  font-family: "KWD Battambang Khmer";
-  src: url("/Battambang/Battambang-Black.woff2") format("woff2"),
-    url("/Battambang/Battambang-Black.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 900;
-  font-display: swap;
-  unicode-range: U+0020-U+003F, U+1780-17FF, U+19E0-19FF, U+200B-200D, U+25CC;
-}
-
 :root {
   --font-en: "KWD Roboto";
   --font-kh-ui: "KWD Google Sans Khmer";
-  --font-kh-learning: "KWD Battambang Khmer";
-  --font-system: var(--font-en), var(--font-kh-ui), sans-serif;
-  --font-learning: var(--font-kh-learning), var(--font-en), var(--font-kh-ui), sans-serif;
+  --font-system: "KWD Roboto", "KWD Google Sans Khmer", sans-serif;
+  --font-learning: "KWD Google Sans Khmer", "KWD Roboto", sans-serif;
   --font-kh-header: var(--font-kh-ui);
   --font-kh-body: var(--font-kh-ui);
   --font-sans: var(--font-system);
@@ -110,13 +59,13 @@
 
 /* Responsive language-based stacks to ensure numbers/symbols render in the matching context font */
 html.lang-kh {
-  --font-system: var(--font-kh-ui), var(--font-en), sans-serif;
-  --font-learning: var(--font-kh-learning), var(--font-en), var(--font-kh-ui), sans-serif;
+  --font-system: "KWD Google Sans Khmer", "KWD Roboto", sans-serif;
+  --font-learning: "KWD Google Sans Khmer", "KWD Roboto", sans-serif;
 }
 
 html.lang-en {
-  --font-system: var(--font-en), var(--font-kh-ui), sans-serif;
-  --font-learning: var(--font-en), var(--font-kh-learning), var(--font-kh-ui), sans-serif;
+  --font-system: "KWD Roboto", "KWD Google Sans Khmer", sans-serif;
+  --font-learning: "KWD Roboto", "KWD Google Sans Khmer", sans-serif;
 }
 
 /* Brand font utility classes */
