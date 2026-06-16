@@ -15,12 +15,13 @@ import {
   Settings2, Globe, Layers, ChevronUp, ChevronDown,
   Sparkles, Rocket, Maximize, Minimize,
   Hand, FastForward, Medal, TriangleAlert,
+  Volume2, VolumeX, Languages, Timer,
 } from "lucide-react";
 import { UpgradeButton } from "@/components/pricing/upgrade-button";
 import { Lock } from "lucide-react";
 import QRCode from "react-qr-code";
 import { cloudinaryOptimize } from "@/lib/cloudinary";
-import { sounds } from "@/lib/game-sounds";
+import { sounds, setSoundsMuted, getSoundsMuted } from "@/lib/game-sounds";
 import { getAvatarFaceStyle } from "@/lib/utils";
 
 // ── Answer color config ────────────────────────────────────────────────────
@@ -354,6 +355,15 @@ export default function HostPage() {
   const [selectedClassId, setSelectedClassId] = useState<number | null>(null);
   const [lobbyParticipants, setLobbyParticipants] = useState<ParticipantInfo[]>([]);
   const [questionCount, setQuestionCount] = useState(10);
+  // Seconds per question — chosen at setup, applied to every question. Can also be
+  // changed live during the game (applies to the next question). Default comes from
+  // the selected game mode.
+  const [timePerQuestion, setTimePerQuestion] = useState(30);
+  // Host-screen display language for question/answer text (projector only — does
+  // not change what students see). Defaults to the session's creation language.
+  const [displayLang, setDisplayLang] = useState<"both" | "kh" | "en">("both");
+  // Game audio mute (host SFX). Persisted so it sticks across sessions.
+  const [muted, setMuted] = useState(false);
   // Advance mode: "manual" = teacher clicks Next Q; "auto" = after the answer is
   // revealed, auto-jump to the next question after AUTO_ADVANCE_MS. Teacher choice,
   // persisted so it sticks across sessions.
@@ -554,11 +564,10 @@ export default function HostPage() {
     setQuestionCountWarning(null);
     setActualQuestionCount(null);
     setPhase({ name: "creating" });
-    const cfg = GAME_MODE_CONFIG[selectedMode];
     const res = await fetch("/api/game/sessions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ sessionName, categoryIds: selectedCats, difficulty, questionCount, timePerQuestion: cfg.timePerQuestion, scoringMode, language, gameType: selectedMode, maxPlayers, classId: selectedClassId, allowLateJoin: true }),
+      body: JSON.stringify({ sessionName, categoryIds: selectedCats, difficulty, questionCount, timePerQuestion, scoringMode, language, gameType: selectedMode, maxPlayers, classId: selectedClassId, allowLateJoin: true }),
     });
     if (!res.ok) { const err = await res.json(); setError(sanitizeError(err.error) || "Failed"); setPhase({ name: "setup" }); return; }
     const data = await res.json();
@@ -569,7 +578,7 @@ export default function HostPage() {
       name: "lobby", code: data.sessionCode, sessionId: data.sessionId, participants: [],
       gameMode: selectedMode, categories: catNames, difficulty,
       questionCount: data.questionCount ?? questionCount,
-      timePerQuestion: cfg.timePerQuestion, scoringMode, maxPlayers,
+      timePerQuestion, scoringMode, maxPlayers,
     });
   }
 
@@ -647,6 +656,41 @@ export default function HostPage() {
   function pickAdvanceMode(mode: "manual" | "auto") {
     setAdvanceMode(mode);
     try { localStorage.setItem("kwd_host_advance_mode", mode); } catch { /* ignore */ }
+  }
+
+  // ── Mute: load persisted choice, then keep the sound engine in sync ──────────
+  useEffect(() => {
+    const saved = typeof window !== "undefined" ? localStorage.getItem("kwd_host_muted") : null;
+    if (saved === "1") setMuted(true);
+  }, []);
+  useEffect(() => {
+    setSoundsMuted(muted);
+    try { localStorage.setItem("kwd_host_muted", muted ? "1" : "0"); } catch { /* ignore */ }
+  }, [muted]);
+
+  // Default the per-question time to the selected mode's default when the mode
+  // changes (teacher can still override in setup or live).
+  useEffect(() => {
+    setTimePerQuestion(GAME_MODE_CONFIG[selectedMode]?.timePerQuestion ?? 30);
+  }, [selectedMode]);
+
+  // Host-screen language follows the creation language until the teacher toggles it.
+  useEffect(() => {
+    setDisplayLang(language === "km" ? "kh" : language === "en" ? "en" : "both");
+  }, [language]);
+
+  // Change the per-question time mid-game — persists to the session so the NEXT
+  // question's server-computed deadline uses it. Applies to all later questions.
+  async function setLiveTime(seconds: number) {
+    setTimePerQuestion(seconds);
+    if (!("code" in phase)) return;
+    try {
+      await fetch(`/api/game/sessions/${(phase as any).code}/control`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "set_time", timePerQuestion: seconds }),
+      });
+    } catch { /* best-effort; next question still uses prior value */ }
   }
 
   // ── Auto-advance (host-driven) ──────────────────────────────────────────────
@@ -1053,6 +1097,29 @@ export default function HostPage() {
                     {advanceMode === "auto"
                       ? (kh ? "បង្ហាញចម្លើយ ៥វិ រួចបន្តដោយស្វ័យប្រវត្តិ" : "Shows answer 5s, then auto next")
                       : (kh ? "គ្រូចុច «បន្ទាប់» ដោយខ្លួនឯង" : "Teacher clicks Next each time")}
+                  </p>
+                </GlassCard>
+
+                {/* Time per question */}
+                <GlassCard className="p-4">
+                  <div className="flex items-center gap-1.5 mb-3 text-zinc-600 font-bold">
+                    <Timer size={12} />
+                    <span className="text-xs font-black uppercase tracking-widest" style={khFont}>{kh ? "ពេល/សំណួរ" : "Time / Question"}</span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-1.5">
+                    {[10, 20, 30, 45, 60].map((s) => (
+                      <button key={s} onClick={() => setTimePerQuestion(s)}
+                        className={`py-2 text-xs font-black border-2 border-black transition-all duration-100 ${timePerQuestion === s
+                          ? "bg-yellow-400 text-black shadow-[2px_2px_0_#000] -translate-x-0.5 -translate-y-0.5"
+                          : "bg-white text-zinc-600 hover:bg-zinc-50"
+                          }`}
+                        style={{ borderRadius: "0px" }}>
+                        {s}{kh ? "វិ" : "s"}
+                      </button>
+                    ))}
+                  </div>
+                  <p className="text-[10px] font-bold text-zinc-400 mt-2 leading-snug" style={khFont}>
+                    {kh ? "អនុវត្តគ្រប់សំណួរ · ប្ដូរបានពេលលេងផ្ទាល់" : "All questions · adjustable live"}
                   </p>
                 </GlassCard>
 
@@ -1696,6 +1763,39 @@ export default function HostPage() {
               ))}
             </div>
 
+            {/* Time per question (live — applies to the next question) */}
+            <div className="flex border-2 border-black shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px" }} title={kh ? "ពេល/សំណួរ (បន្ទាប់)" : "Time per question (next)"}>
+              <span className="flex items-center px-1.5 bg-white text-black"><Timer size={12} /></span>
+              {[10, 20, 30, 45, 60].map((s) => (
+                <button key={s} onClick={() => setLiveTime(s)}
+                  className={`px-1.5 py-2 text-[11px] font-black border-l-2 border-black transition-colors ${timePerQuestion === s ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
+                  style={{ borderRadius: "0px" }}>
+                  {s}
+                </button>
+              ))}
+            </div>
+
+            {/* Host-screen language (projector only — does not change student devices) */}
+            <div className="flex border-2 border-black shadow-[2px_2px_0_#000]" style={{ borderRadius: "0px" }} title={kh ? "ភាសាអេក្រង់គ្រូ" : "Screen language"}>
+              {(["both", "kh", "en"] as const).map((l, i) => (
+                <button key={l} onClick={() => setDisplayLang(l)}
+                  className={`flex items-center px-2 py-2 text-xs font-black uppercase transition-colors ${i > 0 ? "border-l-2 border-black" : ""} ${displayLang === l ? "bg-black text-yellow-400" : "bg-white text-black hover:bg-zinc-100"}`}
+                  style={{ borderRadius: "0px" }}>
+                  {l === "both" ? <Languages size={12} /> : l.toUpperCase()}
+                </button>
+              ))}
+            </div>
+
+            {/* Mute toggle */}
+            <button
+              onClick={() => setMuted((m) => !m)}
+              title={muted ? (kh ? "បើកសំឡេង" : "Unmute") : (kh ? "បិទសំឡេង" : "Mute")}
+              className={`flex items-center px-3 py-2 border-2 border-black font-black text-sm shadow-[2px_2px_0_#000] hover:shadow-[3px_3px_0_#000] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all duration-100 ${muted ? "bg-red-400 text-black" : "bg-white text-black"}`}
+              style={{ borderRadius: "0px" }}
+            >
+              {muted ? <VolumeX size={13} /> : <Volume2 size={13} />}
+            </button>
+
             {/* Fullscreen Toggle */}
             <button
               onClick={toggleFullscreen}
@@ -1765,9 +1865,9 @@ export default function HostPage() {
               {/* Question text — bigger, high contrast */}
               <div className="text-center mb-4 md:mb-8 min-h-[4rem] md:min-h-[8rem] flex flex-col items-center justify-center px-2">
                 <div className="font-black text-xl sm:text-2xl md:text-3xl xl:text-4xl text-black leading-snug" style={{ overflowWrap: "break-word", wordBreak: "normal", hyphens: "auto", ...khFont }}>
-                  {kh && question?.questionKm ? question.questionKm : question?.questionEn}
+                  {displayLang === "en" ? question?.questionEn : (question?.questionKm || question?.questionEn)}
                 </div>
-                {kh && question?.questionKm && question?.questionEn && (
+                {displayLang === "both" && question?.questionKm && question?.questionEn && (
                   <div className="text-zinc-600 text-sm sm:text-lg font-bold mt-2 md:mt-3">{question.questionEn}</div>
                 )}
               </div>
@@ -1779,7 +1879,7 @@ export default function HostPage() {
                     const style = ANSWER_STYLES[i % ANSWER_STYLES.length];
                     const isCorrect = correctAnswerId !== null && ans.id === correctAnswerId;
                     const isWrong = correctAnswerId !== null && ans.id !== correctAnswerId;
-                    const text = kh ? (ans.answerKm || ans.answerEn) : ans.answerEn;
+                    const text = displayLang === "en" ? ans.answerEn : (ans.answerKm || ans.answerEn);
                     const isImagePick = question?.gameType === "image_pick";
 
                     // Calculate contrast text color

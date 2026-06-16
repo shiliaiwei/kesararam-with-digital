@@ -7,6 +7,16 @@
 
 let ctx: AudioContext | null = null;
 
+// Global mute — the host can silence all game audio. Every synthesized sound
+// routes through playTone/playNoise, so guarding those two covers everything.
+let _muted = false;
+export function setSoundsMuted(m: boolean) {
+  _muted = m;
+}
+export function getSoundsMuted(): boolean {
+  return _muted;
+}
+
 function getCtx(): AudioContext {
   if (!ctx) ctx = new AudioContext();
   if (ctx.state === "suspended") ctx.resume();
@@ -20,6 +30,7 @@ function playTone(
   gain = 0.3,
   startDelay = 0
 ) {
+  if (_muted) return;
   try {
     const ac = getCtx();
     const osc = ac.createOscillator();
@@ -40,6 +51,7 @@ function playTone(
 
 /** Synthesized noise burst — used for clap/snap effects */
 function playNoise(duration: number, gain = 0.15, startDelay = 0) {
+  if (_muted) return;
   try {
     const ac = getCtx();
     const bufferSize = ac.sampleRate * duration;

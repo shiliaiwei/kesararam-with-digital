@@ -211,10 +211,22 @@ export async function POST(
     }
 
     const body = await req.json();
-    const { action } = body as { action: "start" | "advance" | "pause" | "reveal" | "resume" | "end" | "terminate" | "back" };
+    const { action } = body as { action: "start" | "advance" | "pause" | "reveal" | "resume" | "end" | "terminate" | "back" | "set_time" };
     console.log(`[CONTROL] Action: ${action}`);
 
     const currentStatus = session.status as GameStatus;
+
+    // ── SET TIME (change seconds/question live; applies to the NEXT question, as
+    // each question's deadline is computed from session.timePerQuestion on start/
+    // advance/back). Host-only control, valid in any phase. ─────────────────────
+    if (action === "set_time") {
+      const raw = Number((body as { timePerQuestion?: number }).timePerQuestion);
+      const seconds = Math.max(5, Math.min(300, Math.round(raw || session.timePerQuestion)));
+      await db.update(gameSessions)
+        .set({ timePerQuestion: seconds })
+        .where(eq(gameSessions.id, session.id));
+      return NextResponse.json({ status: currentStatus, timePerQuestion: seconds });
+    }
 
     // ── TERMINATE (delete lobby before starting) ──────────────────────────────
     if (action === "terminate") {
