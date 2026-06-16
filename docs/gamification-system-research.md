@@ -9,14 +9,15 @@ technical roadmap for Kesararam With Digital.
 - Product timezone: Asia/Phnom_Penh
 - Audience: students, teachers, administrators, product designers, and engineers
 
-> ## Final decisions (recorded 2026-06-16)
+> ## Final decisions (recorded 2026-06-16, updated 2026-06-17)
 >
 > These supersede any conflicting proposal below. The spendable economy is a
 > single currency, **Store Points**, defined fully in
 > [`store-points-economy.md`](./store-points-economy.md).
 >
-> 1. **One spendable currency: Store Points.** Max 60 per play; based on accuracy,
->    completion, and learning units; **no speed, no streak**. The four-value model
+> 1. **One spendable currency: Store Points.** Max 60 per play; based on valid
+>    completion, accuracy, and real learning-unit count; full 60-point credit
+>    requires 30+ validated units; **no speed, no streak**. The four-value model
 >    in §1 below is background only and is NOT the system of record.
 > 2. **Students only.** Only accounts with `role = 'student'` earn or store points.
 >    Staff, teachers, and admins never earn or store; their plays record learning

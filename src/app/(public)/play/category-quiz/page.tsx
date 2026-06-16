@@ -357,6 +357,7 @@ export default function CategoryQuizPage() {
         body: JSON.stringify({
           sessionId: session.sessionId,
           answers: answersRef.current,
+          totalQuestions: session.questions.length,
           timeTakenSeconds,
           gameMode: "category-quiz",
           difficulty: "mixed",

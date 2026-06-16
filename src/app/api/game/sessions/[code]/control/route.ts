@@ -33,7 +33,7 @@ async function buildLeaderboard(sessionId: number, prevRanks: Map<number, number
 // Live teacher-hosted sessions are the ONLY source of public-leaderboard points.
 // On game end we add each participant's score to their lifetime total AND write a
 // pointsLedger row (so weekly/monthly windowed boards include the play).
-async function syncScoresToUserProfiles(sessionId: number, gameMode: string) {
+async function syncScoresToUserProfiles(sessionId: number, gameMode: string, totalUnits: number) {
   console.log(`[syncScoresToUserProfiles] Syncing scores for session ${sessionId}`);
 
   // Atomically claim the session: flip scores_synced false→true in a single
@@ -58,17 +58,9 @@ async function syncScoresToUserProfiles(sessionId: number, gameMode: string) {
       .from(gameParticipants)
       .where(eq(gameParticipants.sessionId, sessionId));
 
-    // Per-participant denominator for Store Points accuracy = questions answered.
-    const answeredRows = await db
-      .select({
-        userId: gameSessionAnswers.userId,
-        answered: sql<number>`COUNT(*)::int`,
-      })
-      .from(gameSessionAnswers)
-      .where(eq(gameSessionAnswers.sessionId, sessionId))
-      .groupBy(gameSessionAnswers.userId);
-    const answeredByUser = new Map(answeredRows.map((r) => [r.userId, r.answered]));
-
+    // Store Points accuracy is measured against the full live question list.
+    // Skipped/unanswered questions count as incorrect so a short answer set
+    // cannot inflate accuracy or reach a higher per-play cap.
     // Update each user's profile with their game score
     for (const participant of participants) {
       await db
@@ -93,15 +85,14 @@ async function syncScoresToUserProfiles(sessionId: number, gameMode: string) {
 
       // Store Points: one capped credit per participant per session (inert until
       // cutover). Idempotent on session+user, so a retried "end" never re-awards.
-      const answered = answeredByUser.get(participant.userId) ?? participant.correctAnswers;
-      if (answered > 0) {
+      if (totalUnits > 0) {
         try {
           await awardStorePoints({
             userId: participant.userId,
             gameType: gameMode,
             attemptId: `live:${sessionId}`,
             correctUnits: participant.correctAnswers,
-            totalUnits: answered,
+            totalUnits,
             valid: true,
             idempotencyKey: `${participant.userId}:live:${sessionId}`,
           });
@@ -498,7 +489,7 @@ export async function POST(
         }
 
         // Sync scores to user profiles for leaderboard persistence
-        await syncScoresToUserProfiles(session.id, session.gameMode);
+        await syncScoresToUserProfiles(session.id, session.gameMode, session.questionIds.length);
 
         // Broadcast session_end to transition players cleanly to final podium
         await broadcastEvent(code.toUpperCase(), { type: "session_end", podium: leaderboard.slice(0, 3), finalLeaderboard: leaderboard });
@@ -566,7 +557,7 @@ export async function POST(
       }
 
       // Sync scores to user profiles for leaderboard persistence
-      await syncScoresToUserProfiles(session.id, session.gameMode);
+      await syncScoresToUserProfiles(session.id, session.gameMode, session.questionIds.length);
 
       await broadcastEvent(code.toUpperCase(), { type: "session_end", podium: leaderboard.slice(0, 3), finalLeaderboard: leaderboard });
 

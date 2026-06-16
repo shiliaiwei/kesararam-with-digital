@@ -3,9 +3,9 @@ import { getSession } from "@/lib/auth";
 import { calculateScore, PLAY_LIMITS } from "@/lib/game-engine";
 import { awardStorePoints } from "@/lib/store-points/award";
 import { db } from "@/lib/db";
-import { gameScores, pointsLedger } from "@/db/schema/content";
+import { answers, gameScores, pointsLedger } from "@/db/schema/content";
 import { users, classEnrollments, classes } from "@/db/schema/users";
-import { eq, sql, and, gte, count } from "drizzle-orm";
+import { eq, sql, and, gte, count, inArray } from "drizzle-orm";
 import { getUserSubscription } from "@/lib/subscription";
 
 interface AnswerInput {
@@ -36,7 +36,7 @@ export async function getStudentPlayLimit(userId: number): Promise<{
 
   try {
     const { plan } = await getUserSubscription(row.teacherId);
-    const isPro = plan !== "free" && plan !== "trial";
+    const isPro = plan !== "free";
     return isPro
       ? { limit: PLAY_LIMITS.studentPro, tier: "studentPro" }
       : { limit: PLAY_LIMITS.studentClass, tier: "studentClass" };
@@ -85,21 +85,28 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const {
     answers: answerInputs,
+    totalQuestions,
     timeTakenSeconds,
     timePerQuestion = 30,
     scoringMode = "speed",
     gameMode = "quick-quiz",
   } = body as {
     answers: AnswerInput[];
+    totalQuestions?: number;
     timeTakenSeconds: number;
     gameMode?: string;
     timePerQuestion?: number;
     scoringMode?: string;
   };
+  const submittedAnswers = Array.isArray(answerInputs) ? answerInputs : [];
+  const declaredTotalQuestions = Number.isFinite(totalQuestions)
+    ? Math.max(0, Math.floor(Number(totalQuestions)))
+    : 0;
+  const totalUnits = Math.max(submittedAnswers.length, declaredTotalQuestions);
 
   // ── Server-side daily limit check (authenticated students) ──────────────────
   let playsToday = 0;
-  let playsAllowed = PLAY_LIMITS.guest;
+  let playsAllowed: number = PLAY_LIMITS.guest;
   let tier: string = "guest";
 
   if (session?.id && session.role === "student") {
@@ -133,6 +140,25 @@ export async function POST(req: NextRequest) {
   let correctCount = 0;
   let streak = 0;
 
+  const submittedAnswerIds = [
+    ...new Set(
+      submittedAnswers
+        .map((ans) => ans.answerId)
+        .filter((id): id is number => typeof id === "number"),
+    ),
+  ];
+  const verifiedAnswers = submittedAnswerIds.length > 0
+    ? await db
+        .select({
+          id: answers.id,
+          questionId: answers.questionId,
+          isCorrect: answers.isCorrect,
+        })
+        .from(answers)
+        .where(inArray(answers.id, submittedAnswerIds))
+    : [];
+  const verifiedAnswerById = new Map(verifiedAnswers.map((ans) => [ans.id, ans]));
+
   const perQuestion: {
     questionId: number;
     isCorrect: boolean;
@@ -141,13 +167,18 @@ export async function POST(req: NextRequest) {
     timeTakenMs: number;
   }[] = [];
 
-  for (const ans of answerInputs) {
-    if (ans.isCorrect) streak++;
+  for (const ans of submittedAnswers) {
+    const verified = typeof ans.answerId === "number"
+      ? verifiedAnswerById.get(ans.answerId)
+      : undefined;
+    const isCorrect = !!verified && verified.questionId === ans.questionId && verified.isCorrect;
+
+    if (isCorrect) streak++;
     else streak = 0;
 
     const remainingTimeMs = Math.max(0, totalTimeMs - ans.timeTakenMs);
     const scoreResult = calculateScore({
-      isCorrect: ans.isCorrect,
+      isCorrect,
       difficulty: ans.difficulty ?? "medium",
       scoringMode: scoringMode as "speed" | "equal",
       remainingTimeMs,
@@ -156,11 +187,11 @@ export async function POST(req: NextRequest) {
     });
 
     rawScore += scoreResult.totalPoints;
-    if (ans.isCorrect) correctCount++;
+    if (isCorrect) correctCount++;
 
     perQuestion.push({
       questionId: ans.questionId,
-      isCorrect: ans.isCorrect,
+      isCorrect,
       rawPoints: scoreResult.totalPoints,
       soloPoints: scoreResult.totalPoints,
       timeTakenMs: ans.timeTakenMs,
@@ -171,8 +202,8 @@ export async function POST(req: NextRequest) {
   const soloPoints = rawScore;
 
   const accuracyPercentage =
-    answerInputs.length > 0
-      ? Math.round((correctCount / answerInputs.length) * 100)
+    totalUnits > 0
+      ? Math.round((correctCount / totalUnits) * 100)
       : 0;
 
   let isNewPersonalBest = false;
@@ -192,7 +223,7 @@ export async function POST(req: NextRequest) {
           userId: session.id,
           gameMode,
           score: rawScore,                          // raw score stored for display/audit
-          totalQuestions: answerInputs.length,
+          totalQuestions: totalUnits,
           correctAnswers: correctCount,
           timeTaken: timeTakenSeconds,
           categoryBreakdown: JSON.stringify(perQuestion),
@@ -211,7 +242,7 @@ export async function POST(req: NextRequest) {
           gameType: gameMode,
           attemptId: scoreRow ? String(scoreRow.id) : null,
           correctUnits: correctCount,
-          totalUnits: answerInputs.length,
+          totalUnits,
           valid: true,
           idempotencyKey: `${session.id}:${gameMode}:${scoreRow?.id ?? rawScore}`,
         });
@@ -266,7 +297,7 @@ export async function POST(req: NextRequest) {
     accuracyPercentage,
     timeTakenSeconds,
     correctAnswers: correctCount,
-    totalQuestions: answerInputs.length,
+    totalQuestions: totalUnits,
     isNewPersonalBest,
     newLifetimePoints,
     perQuestion,

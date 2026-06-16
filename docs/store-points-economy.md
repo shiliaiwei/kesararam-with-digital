@@ -6,7 +6,9 @@ the system the product records scores against — the single source of truth.
 - **Status: FINAL spec** (supersedes the four-value Mastery/XP/Season/Reward model
   in `docs/gamification-system-research.md` for the spendable economy)
 - Maximum earned from one play: 60 Store Points
-- Typical successful play: 30-50 Store Points
+- Full 60-point credit requires 30 or more validated learning units
+- Shorter live and solo plays scale down by the actual question/unit count
+- Typical successful play: 8-48 Store Points, depending on length
 - Eligible modes: every current solo and live game
 - **Eligible users: account `role = 'student'` ONLY** — staff, teachers, and
   admins never earn or store Store Points (see §1.1)
@@ -16,6 +18,7 @@ the system the product records scores against — the single source of truth.
   calibration in §7.2 (that ratio sizes prices, not balances).
 - Research and calibration date: June 15, 2026
 - Spec finalized: June 16, 2026
+- Score model v2: June 17, 2026
 - Product timezone: Asia/Phnom_Penh
 
 This report supersedes the large Store Credit examples in
@@ -66,7 +69,8 @@ One play must award:
 ```text
 Minimum: 0 Store Points
 Maximum: 60 Store Points
-Typical result at about 80% accuracy: 30-50 Store Points
+Typical result at about 80% accuracy: 8-48 Store Points, depending on how many
+validated learning units were played.
 ```
 
 Do not award thousands of points. Do not multiply a question by 600, 800, or
@@ -135,29 +139,36 @@ if the play is incomplete, invalid, or accuracy is below 40%:
   Store Points = 0
 
 otherwise:
-  units = min(valid learning units, 10)
+  units = min(valid learning units, 30)
   accuracy = correct learning units / total valid learning units
 
-  performance = round(50 * accuracy * units / 10)
-  completion_bonus = 5
-  quality_bonus = 5 if accuracy >= 80%, otherwise 0
+  performance = round(60 * accuracy * units / 30)
+  completion_bonus = 0
+  quality_bonus = 0
 
-  Store Points = min(60, performance + completion_bonus + quality_bonus)
+  Store Points = min(60, performance)
 ```
+
+This v2 formula removes the old completion and quality bonuses. The result is
+more accuracy-based and easier to audit: a perfect short play earns the short
+play's proportional value, while a perfect 30-question play can reach the full
+60-point ceiling.
 
 ### 3.3 Result table
 
 | Eligible units | 40% accuracy | 60% accuracy | 80% accuracy | 100% accuracy |
 |---:|---:|---:|---:|---:|
-| 5 | 15 | 20 | 30 | 35 |
-| 6 | 17 | 23 | 34 | 40 |
-| 8 | 21 | 29 | 42 | 50 |
-| 9 | 23 | 32 | 46 | 55 |
-| 10 or more | 25 | 35 | 50 | 60 |
+| 5 | 4 | 6 | 8 | 10 |
+| 6 | 5 | 7 | 10 | 12 |
+| 8 | 6 | 10 | 13 | 16 |
+| 9 | 7 | 11 | 14 | 18 |
+| 10 | 8 | 12 | 16 | 20 |
+| 15 | 12 | 18 | 24 | 30 |
+| 20 | 16 | 24 | 32 | 40 |
+| 30 or more | 24 | 36 | 48 | 60 |
 
 This table keeps one play below or equal to 60 points while recognizing that a
-five-question activity requires less effort than a standard ten-question
-activity.
+five-question activity requires less effort than a 30-question activity.
 
 ## 4. Worked examples
 
@@ -168,11 +179,11 @@ Dara answers 4 of 5 correctly:
 ```text
 units = 5
 accuracy = 4 / 5 = 80%
-performance = round(50 * 0.80 * 5 / 10) = 20
-completion bonus = 5
-quality bonus = 5
+performance = round(60 * 0.80 * 5 / 30) = 8
+completion bonus = 0
+quality bonus = 0
 
-Store Points = 30
+Store Points = 8
 ```
 
 ### Ten-question Quick Quiz
@@ -182,11 +193,11 @@ Dara answers 8 of 10 correctly:
 ```text
 units = 10
 accuracy = 8 / 10 = 80%
-performance = round(50 * 0.80 * 10 / 10) = 40
-completion bonus = 5
-quality bonus = 5
+performance = round(60 * 0.80 * 10 / 30) = 16
+completion bonus = 0
+quality bonus = 0
 
-Store Points = 50
+Store Points = 16
 ```
 
 ### Twenty-question Mixed Practice
@@ -194,13 +205,13 @@ Store Points = 50
 Dara answers 16 of 20 correctly:
 
 ```text
-reward units = min(20, 10) = 10
+reward units = min(20, 30) = 20
 accuracy = 16 / 20 = 80%
-performance = round(50 * 0.80 * 10 / 10) = 40
-completion bonus = 5
-quality bonus = 5
+performance = round(60 * 0.80 * 20 / 30) = 32
+completion bonus = 0
+quality bonus = 0
 
-Store Points = 50
+Store Points = 32
 ```
 
 The longer activity gives stronger mastery evidence, but one play still cannot
@@ -227,21 +238,21 @@ The estimates use each mode's current default activity size and approximately
 
 | Game type | Mode | Default validated units | Estimated Store Points | Perfect-play maximum |
 |---|---|---:|---:|---:|
-| Quick Quiz | Solo or live | 10 questions | 50 | 60 |
-| Speed Round | Solo or live | 20 questions | 50 | 60 |
-| Sign Challenge | Solo or live | 15 questions | 50 | 60 |
-| Mixed Practice | Solo or live | 20 questions | 50 | 60 |
-| Daily Challenge | Solo | 5 questions | 30 | 35 |
-| Who Goes First? | Solo | 5 scenes | 30 | 35 |
-| Traffic Commander | Solo | 5 normalized scenes | 30 | 35 |
-| Sign Match | Solo | 6 sign pairs | 34 | 40 |
-| Catch the Sign | Solo | 8 signs | 42 | 50 |
-| Traffic Light Hero | Solo | 9 decisions | 46 | 55 |
-| Safe Street Smart | Solo | 10 questions | 50 | 60 |
-| Road Safety Adventure | Solo | 8 decisions | 42 | 50 |
-| Connect the Signs | Solo | 20 pairs | 50 | 60 |
-| Matching Sign Word Bank | Solo | 16 placements | 50 | 60 |
-| Click the Sign | Solo | 12 worksheet rows | 50 | 60 |
+| Quick Quiz | Solo or live | 10 questions | 16 | 20 |
+| Speed Round | Solo or live | 20 questions | 32 | 40 |
+| Sign Challenge | Solo or live | 15 questions | 24 | 30 |
+| Mixed Practice | Solo or live | 20 questions | 32 | 40 |
+| Daily Challenge | Solo | 5 questions | 8 | 10 |
+| Who Goes First? | Solo | 5 scenes | 8 | 10 |
+| Traffic Commander | Solo | 5 normalized scenes | 8 | 10 |
+| Sign Match | Solo | 6 sign pairs | 10 | 12 |
+| Catch the Sign | Solo | 8 signs | 13 | 16 |
+| Traffic Light Hero | Solo | 9 decisions | 14 | 18 |
+| Safe Street Smart | Solo | 10 questions | 16 | 20 |
+| Road Safety Adventure | Solo | 8 decisions | 13 | 16 |
+| Connect the Signs | Solo | 20 pairs | 32 | 40 |
+| Matching Sign Word Bank | Solo | 16 placements | 26 | 32 |
+| Click the Sign | Solo | 12 worksheet rows | 19 | 24 |
 
 Every listed game is eligible for Store Points. Live and solo use the same
 formula. A live game does not pay more merely because a teacher hosted it.
@@ -382,7 +393,7 @@ owning account's `role = 'student'` (see §1.1). A failed check inserts no row.
 Recommended score version:
 
 ```text
-store_score_version = 1
+store_score_version = 2
 ```
 
 Store claims should create hold, spend, release, or refund events instead of
@@ -404,17 +415,10 @@ supersedes the earlier convert-300:1 plan.
    `claimed_rewards`.
 4. Ensure `store_point_events` is **empty** (the new ledger starts at zero).
 5. Reward prices: apply the table in §7.2 (the 300:1 ratio sizes prices only).
-6. Start all new plays on `store_score_version = 1`; only `role = 'student'`
+6. Start all new plays on `store_score_version = 2`; only `role = 'student'`
    accounts ever earn (see §1.1).
 7. Do not show any legacy raw score anywhere after the freeze.
 8. Show learners a short fresh-start notice (English and Khmer).
-
-Example:
-
-```text
-Legacy balance: 14,451
-Converted balance: ceil(14,451 / 300) = 49 Store Points
-```
 
 ## 11. User-facing result
 

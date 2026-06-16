@@ -8,8 +8,8 @@
  * ── Store Points Economy (post-cutover, see docs/store-points-economy.md) ─────
  *  Source of truth for the math: calculateStorePoints() in
  *  src/lib/store-points/score.ts — small-number, server-authoritative: no speed,
- *  no streak. A valid play is worth at most 60 (performance + completion + quality
- *  bonuses), credited via the single writer awardStorePoints(). All student plays
+ *  no streak. A valid play is worth at most 60, with full credit requiring 30+
+ *  validated units, credited via the single writer awardStorePoints(). All student plays
  *  (live, solo, daily, priority, kid games) earn into the store_point_events ledger,
  *  subject to daily best-difference and a 300/week cap. Balances are DERIVED
  *  (getStoreBalances): store balance / lifetime earned / weekly earned.

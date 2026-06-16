@@ -5,8 +5,10 @@ Engineering roadmap to build the economy defined in
 shippable, and reversible. Do them in order; do not skip the guard or the tests.
 
 - Spec of record: `docs/store-points-economy.md`
-- Decisions: single currency, **students only**, convert legacy **300:1**
-- Golden rules: server-authoritative, max **60 per play**, **no speed / no streak**
+- Decisions: single currency, **students only**, fresh-start ledger; the legacy
+  300:1 ratio sizes reward prices only
+- Golden rules: server-authoritative, max **60 per play**, 30-unit scale,
+  **no speed / no streak**
 
 Legend: ☐ task · ✅ acceptance check · ↩ rollback
 
@@ -64,10 +66,10 @@ Files:
     if (!p.valid || p.totalUnits <= 0) return zero();
     const accuracy = p.correctUnits / p.totalUnits;
     if (accuracy < 0.40) return { ...zero(), accuracy };
-    const units = Math.min(p.totalUnits, 10);
-    const performance = Math.round(50 * accuracy * units / 10);
-    const completionBonus = 5;
-    const qualityBonus = accuracy >= 0.80 ? 5 : 0;
+    const units = Math.min(p.totalUnits, 30);
+    const performance = Math.round(60 * accuracy * units / 30);
+    const completionBonus = 0;
+    const qualityBonus = 0;
     const points = Math.min(60, performance + completionBonus + qualityBonus);
     return { points, accuracy, performance, completionBonus, qualityBonus };
   }
@@ -77,7 +79,7 @@ Files:
   scenes, etc.). A scene with many objects = **one** unit unless the server
   defines more.
 - new test `src/lib/store-points/score.test.ts` — assert the exact §3.3 table
-  (5u/40%=15 … 10u/100%=60) and the §4 worked examples
+  (5u/100%=10, 10u/100%=20, 30u/100%=60) and the §4 worked examples
 - ✅ Tests reproduce the spec result table and worked examples exactly
 - ↩ delete the new files (nothing imports them yet)
 
@@ -162,7 +164,7 @@ Files:
   `DIFFICULTY_BASE`, `STREAK_BONUS_*`, `streakMilestoneBonus`) — keep a transient
   **Match Score** for in-game feedback only (spec: never spendable, never mastery)
 - ☐ Stop mixing legacy raw scores into any leaderboard (spec §10.9)
-- ☐ Show the bilingual conversion notice to learners (spec §10.10)
+- ☐ Show the bilingual fresh-start notice to learners (spec §10)
 - ✅ All §12 acceptance criteria pass
 - ↩ flag back to false restores legacy scoring
 
@@ -170,8 +172,8 @@ Files:
 
 ## Phase 7 — Tests & pilot
 
-- ☐ Tests per spec §12: every game type, 40% threshold, 60 cap, daily best-diff,
-  weekly 300 cap, replay, 300:1 conversion, refunds, **and the role guard**
+- ☐ Tests per spec §12: every game type, 40% threshold, 30-unit scale, 60 cap,
+  daily best-diff, weekly 300 cap, replay, refunds, **and the role guard**
 - ☐ Bilingual (EN + Khmer) on all earning/price/result copy
 - ☐ 4-week pilot; review the 300 weekly cap against real completion/redemption
 - ✅ CI green; pilot metrics collected

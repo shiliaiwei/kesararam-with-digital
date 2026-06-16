@@ -8,13 +8,16 @@ import { resolveUnits, DEFAULT_UNITS } from "./units";
 
 // Spec §3.3 — exact result table. Tuples: [eligibleUnits, accuracy, expectedPoints].
 const RESULT_TABLE: [number, number, number][] = [
-  [5, 0.4, 15], [5, 0.6, 20], [5, 0.8, 30], [5, 1.0, 35],
-  [6, 0.4, 17], [6, 0.6, 23], [6, 0.8, 34], [6, 1.0, 40],
-  [8, 0.4, 21], [8, 0.6, 29], [8, 0.8, 42], [8, 1.0, 50],
-  [9, 0.4, 23], [9, 0.6, 32], [9, 0.8, 46], [9, 1.0, 55],
-  [10, 0.4, 25], [10, 0.6, 35], [10, 0.8, 50], [10, 1.0, 60],
-  // "10 or more" — units cap at 10
-  [20, 0.4, 25], [20, 0.6, 35], [20, 0.8, 50], [20, 1.0, 60],
+  [5, 0.4, 4], [5, 0.6, 6], [5, 0.8, 8], [5, 1.0, 10],
+  [6, 0.4, 5], [6, 0.6, 7], [6, 0.8, 10], [6, 1.0, 12],
+  [8, 0.4, 6], [8, 0.6, 10], [8, 0.8, 13], [8, 1.0, 16],
+  [9, 0.4, 7], [9, 0.6, 11], [9, 0.8, 14], [9, 1.0, 18],
+  [10, 0.4, 8], [10, 0.6, 12], [10, 0.8, 16], [10, 1.0, 20],
+  [15, 0.4, 12], [15, 0.6, 18], [15, 0.8, 24], [15, 1.0, 30],
+  [20, 0.4, 16], [20, 0.6, 24], [20, 0.8, 32], [20, 1.0, 40],
+  [30, 0.4, 24], [30, 0.6, 36], [30, 0.8, 48], [30, 1.0, 60],
+  // "30 or more" — units cap at 30
+  [100, 0.4, 24], [100, 0.6, 36], [100, 0.8, 48], [100, 1.0, 60],
 ];
 
 describe("storePointsFromAccuracy — spec §3.3 result table", () => {
@@ -26,14 +29,17 @@ describe("storePointsFromAccuracy — spec §3.3 result table", () => {
 });
 
 describe("calculateStorePoints — spec §4 worked examples", () => {
-  it("5-question Daily Challenge, 4/5 correct → 30", () => {
-    expect(calculateStorePoints({ valid: true, totalUnits: 5, correctUnits: 4 }).points).toBe(30);
+  it("5-question Daily Challenge, 4/5 correct → 8", () => {
+    expect(calculateStorePoints({ valid: true, totalUnits: 5, correctUnits: 4 }).points).toBe(8);
   });
-  it("10-question Quick Quiz, 8/10 → 50", () => {
-    expect(calculateStorePoints({ valid: true, totalUnits: 10, correctUnits: 8 }).points).toBe(50);
+  it("10-question Quick Quiz, 8/10 → 16", () => {
+    expect(calculateStorePoints({ valid: true, totalUnits: 10, correctUnits: 8 }).points).toBe(16);
   });
-  it("20-question Mixed Practice, 16/20 → 50 (units capped at 10)", () => {
-    expect(calculateStorePoints({ valid: true, totalUnits: 20, correctUnits: 16 }).points).toBe(50);
+  it("20-question Mixed Practice, 16/20 → 32", () => {
+    expect(calculateStorePoints({ valid: true, totalUnits: 20, correctUnits: 16 }).points).toBe(32);
+  });
+  it("30-question Speed Round, 30/30 → 60", () => {
+    expect(calculateStorePoints({ valid: true, totalUnits: 30, correctUnits: 30 }).points).toBe(60);
   });
   it("unsuccessful 3/10 (30%) → 0", () => {
     expect(calculateStorePoints({ valid: true, totalUnits: 10, correctUnits: 3 }).points).toBe(0);
@@ -53,10 +59,10 @@ describe("calculateStorePoints — guards", () => {
     ).toBeLessThanOrEqual(STORE_POINTS_MAX_PER_PLAY);
   });
   it("exactly 40% accuracy is eligible (boundary)", () => {
-    expect(calculateStorePoints({ valid: true, totalUnits: 10, correctUnits: 4 }).points).toBe(25);
+    expect(calculateStorePoints({ valid: true, totalUnits: 10, correctUnits: 4 }).points).toBe(8);
   });
   it("clamps correctUnits above totalUnits", () => {
-    expect(calculateStorePoints({ valid: true, totalUnits: 5, correctUnits: 99 }).points).toBe(35);
+    expect(calculateStorePoints({ valid: true, totalUnits: 5, correctUnits: 99 }).points).toBe(10);
   });
 });
 

@@ -78,7 +78,7 @@ export default function SoloPage() {
 
   const [phase, setPhase] = useState<Phase>({ name: "setup" });
   const [selectedMode, setSelectedMode] = useState(searchParams.get("mode") ?? "quick-quiz");
-  const [categories, setCategories] = useState<{ id: number; titleEn: string; titleKm: string }[]>([]);
+  const [categories, setCategories] = useState<{ id: number; titleEn: string; titleKm: string; slug?: string | null }[]>([]);
   const [selectedCats, setSelectedCats] = useState<number[]>([]);
   const [difficulty, setDifficulty] = useState("mixed");
   const [questionCount, setQuestionCount] = useState<number>(
@@ -251,6 +251,7 @@ export default function SoloPage() {
         body: JSON.stringify({
           sessionId: session.sessionId,
           answers: answersRef.current,
+          totalQuestions: session.questions.length,
           timeTakenSeconds,
           gameMode: session.gameMode,
           difficulty,

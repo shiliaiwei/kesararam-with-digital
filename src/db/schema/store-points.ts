@@ -42,7 +42,7 @@ export const storePointEvents = pgTable(
     qualityBonus: integer("quality_bonus").notNull().default(0),
     delta: integer("delta").notNull().default(0), // signed: + earn, - spend/hold
     reason: text("reason").notNull().default("play"), // play | legacy_migration | hold | spend | release | refund
-    scoreVersion: integer("score_version").notNull().default(1),
+    scoreVersion: integer("score_version").notNull().default(2),
     idempotencyKey: text("idempotency_key").notNull().unique(),
     createdAt: timestamp("created_at").defaultNow().notNull(),
   },
@@ -60,4 +60,4 @@ export type StorePointEventRow = typeof storePointEvents.$inferSelect;
 export type NewStorePointEventRow = typeof storePointEvents.$inferInsert;
 
 /** Current Store Points score model version (spec §9). */
-export const STORE_SCORE_VERSION = 1;
+export const STORE_SCORE_VERSION = 2;

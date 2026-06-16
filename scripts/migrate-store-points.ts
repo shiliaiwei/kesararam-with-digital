@@ -37,7 +37,7 @@ async function main() {
       quality_bonus       INTEGER NOT NULL DEFAULT 0,
       delta               INTEGER NOT NULL DEFAULT 0,
       reason              TEXT NOT NULL DEFAULT 'play',
-      score_version       INTEGER NOT NULL DEFAULT 1,
+      score_version       INTEGER NOT NULL DEFAULT 2,
       idempotency_key     TEXT NOT NULL UNIQUE,
       created_at          TIMESTAMP NOT NULL DEFAULT NOW()
     )
