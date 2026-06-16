@@ -20,10 +20,7 @@ import {
   ShieldCheck,
   School,
   Mail,
-  GraduationCap,
-  Phone,
   MapPin,
-  Layers,
   Key
 } from "lucide-react";
 
@@ -57,16 +54,6 @@ const CAMBODIA_PROVINCES = [
   { en: "Svay Rieng", kh: "ស្វាយរៀង" },
   { en: "Takeo", kh: "តាកែវ" },
   { en: "Tboung Khmum", kh: "ត្បូងឃ្មុំ" },
-];
-
-const GRADES = [
-  { en: "Grade 6", kh: "ថ្នាក់ទី ៦" },
-  { en: "Grade 7", kh: "ថ្នាក់ទី ៧" },
-  { en: "Grade 8", kh: "ថ្នាក់ទី ៨" },
-  { en: "Grade 9", kh: "ថ្នាក់ទី ៩" },
-  { en: "Grade 10", kh: "ថ្នាក់ទី ១០" },
-  { en: "Grade 11", kh: "ថ្នាក់ទី ១១" },
-  { en: "Grade 12", kh: "ថ្នាក់ទី ១២" },
 ];
 
 function GuideMeModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
@@ -338,10 +325,9 @@ function RegisterFormInner() {
         }
       } else {
         // Students: invite code is OPTIONAL — they can join a class later. Only
-        // school, province and grade are required to complete their profile.
-        const gradeLevelEl = document.getElementById("gradeLevel") as HTMLSelectElement;
-        if (!schoolNameEl?.value?.trim() || !provinceEl?.value || !gradeLevelEl?.value) {
-          setGoogleError(kh ? "សូមបំពេញព័ត៌មានដែលចាំបាច់ទាំងអស់ *" : "Please fill in all required fields.");
+        // school and province are required to complete their profile.
+        if (!schoolNameEl?.value?.trim() || !provinceEl?.value) {
+          setGoogleError(kh ? "សូមបំពេញ ឈ្មោះសាលា និងខេត្ត *" : "Please fill in School Name and Province.");
           return;
         }
       }
@@ -405,10 +391,8 @@ function RegisterFormInner() {
 
     const schoolNameEl = document.getElementById("schoolName") as HTMLInputElement;
     const provinceEl = document.getElementById("province") as HTMLSelectElement;
-    const sectionEl = document.getElementById("section") as HTMLInputElement;
     const schoolName = schoolNameEl?.value?.trim() || "";
     const province = provinceEl?.value || "";
-    const section = sectionEl?.value?.trim() || "";
 
     const inviteCodeEl = document.getElementById("inviteCode") as HTMLInputElement;
     const code = inviteCodeEl?.value?.trim() || "";
@@ -427,13 +411,8 @@ function RegisterFormInner() {
       params.set("inviteCode", code);
     }
 
-    const gradeLevelEl = document.getElementById("gradeLevel") as HTMLSelectElement;
-    const gradeLevel = gradeLevelEl?.value || "";
-
     if (schoolName) params.set("schoolName", schoolName);
     if (province) params.set("province", province);
-    if (gradeLevel) params.set("gradeLevel", gradeLevel);
-    if (section) params.set("section", section);
 
     window.location.href = `/api/auth/google?${params.toString()}`;
   };
@@ -734,56 +713,28 @@ function RegisterFormInner() {
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {/* Province Dropdown */}
-                      <div className="flex flex-col gap-1.5 text-left">
-                        <label htmlFor="province" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
-                          {kh ? "ខេត្ត-ក្រុង *" : "Province *"}
-                        </label>
-                        <div className="relative flex items-center">
-                          <MapPin className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
-                          <BrandSelect
-                            id="province"
-                            name="province"
-                            required
-                            defaultValue=""
-                            fullWidth
-                            ariaLabel={kh ? "ខេត្ត-ក្រុង" : "Province"}
-                            placeholder={kh ? "ជ្រើសរើសខេត្ត" : "Select Province"}
-                            className="pl-10 pr-4 py-3 text-sm"
-                            options={CAMBODIA_PROVINCES.map((prov) => ({
-                              value: prov.en,
-                              label: kh ? prov.kh : prov.en,
-                            }))}
-                          />
-                        </div>
+                    {/* Province Dropdown */}
+                    <div className="flex flex-col gap-1.5 text-left">
+                      <label htmlFor="province" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
+                        {kh ? "ខេត្ត-ក្រុង *" : "Province *"}
+                      </label>
+                      <div className="relative flex items-center">
+                        <MapPin className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
+                        <BrandSelect
+                          id="province"
+                          name="province"
+                          required
+                          defaultValue=""
+                          fullWidth
+                          ariaLabel={kh ? "ខេត្ត-ក្រុង" : "Province"}
+                          placeholder={kh ? "ជ្រើសរើសខេត្ត" : "Select Province"}
+                          className="pl-10 pr-4 py-3 text-sm"
+                          options={CAMBODIA_PROVINCES.map((prov) => ({
+                            value: prov.en,
+                            label: kh ? prov.kh : prov.en,
+                          }))}
+                        />
                       </div>
-
-                      {/* Grade Dropdown (Student only) */}
-                      {!isTeacher && (
-                        <div className="flex flex-col gap-1.5 text-left">
-                          <label htmlFor="gradeLevel" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
-                            {kh ? "ថ្នាក់ទី *" : "Grade *"}
-                          </label>
-                          <div className="relative flex items-center">
-                            <GraduationCap className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
-                            <BrandSelect
-                              id="gradeLevel"
-                              name="gradeLevel"
-                              required
-                              defaultValue=""
-                              fullWidth
-                              ariaLabel={kh ? "ថ្នាក់ទី" : "Grade"}
-                              placeholder={kh ? "ជ្រើសរើសថ្នាក់" : "Select Grade"}
-                              className="pl-10 pr-4 py-3 text-sm"
-                              options={GRADES.map((gr) => ({
-                                value: gr.en,
-                                label: kh ? gr.kh : gr.en,
-                              }))}
-                            />
-                          </div>
-                        </div>
-                      )}
                     </div>
 
                     {/* Teacher Invite Code (Student only) */}
@@ -809,44 +760,6 @@ function RegisterFormInner() {
                         </span>
                       </div>
                     )}
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {/* Section */}
-                      <div className="flex flex-col gap-1.5 text-left">
-                        <label htmlFor="section" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
-                          {kh ? "វេន (ស្រេចចិត្ត)" : "Section (Optional)"}
-                        </label>
-                        <div className="relative flex items-center">
-                          <Layers className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
-                          <input
-                            type="text"
-                            id="section"
-                            name="section"
-                            placeholder="e.g. Morning A / ព្រឹក A"
-                            className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Parent Contact (Student only) */}
-                      {!isTeacher && (
-                        <div className="flex flex-col gap-1.5 text-left">
-                          <label htmlFor="parentContact" className="text-[10px] font-black uppercase tracking-wider text-zinc-700">
-                            {kh ? "លេខទូរស័ព្ទអាណាព្យាបាល (ស្រេចចិត្ត)" : "Parent Phone (Optional)"}
-                          </label>
-                          <div className="relative flex items-center">
-                            <Phone className="absolute left-3.5 text-zinc-400 size-4 pointer-events-none" />
-                            <input
-                              type="text"
-                              id="parentContact"
-                              name="parentContact"
-                              placeholder="e.g. 012 345 678"
-                              className="w-full pl-10 pr-4 py-3 border-2 border-black rounded-lg text-sm font-medium focus:outline-none focus:border-black focus:shadow-[3px_3px_0_#3b82f6] transition-all"
-                            />
-                          </div>
-                        </div>
-                      )}
-                    </div>
                   </div>
 
                   {/* Error message */}

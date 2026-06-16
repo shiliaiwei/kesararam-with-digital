@@ -32,8 +32,6 @@ export async function GET(request: NextRequest) {
       audioMuted: user.audioMuted || false,
       schoolName: user.schoolName || "",
       province: user.province || "",
-      gradeLevel: user.gradeLevel || "",
-      section: user.section || "",
       isProfilePublic: user.isProfilePublic ?? true,
       isNamePublic: user.isNamePublic ?? true,
       isUsernamePublic: user.isUsernamePublic ?? true,
@@ -86,7 +84,7 @@ export async function PUT(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { displayName, username, email, avatar, audioMuted, schoolName, province, gradeLevel, section, isProfilePublic, isNamePublic, isUsernamePublic, isSchoolPublic, isProvincePublic, isGradePublic, isSectionPublic, isStatsPublic, inviteCode } = body;
+    const { displayName, username, email, avatar, audioMuted, schoolName, province, isProfilePublic, isNamePublic, isUsernamePublic, isSchoolPublic, isProvincePublic, isGradePublic, isSectionPublic, isStatsPublic, inviteCode } = body;
 
     // Determine if the student currently belongs to any class. A student with no
     // enrollment (never joined, or removed/kicked by a teacher) must (re-)join
@@ -111,7 +109,7 @@ export async function PUT(request: NextRequest) {
     // submitting an invite/class code.
     const isStudentOnboarding =
       session.role === "student" &&
-      ((!currentUser.schoolName || !currentUser.province || !currentUser.gradeLevel) ||
+      ((!currentUser.schoolName || !currentUser.province) ||
         (!studentHasClass && !!(inviteCode || body.inviteCode)));
 
     // Teacher (individual paid subscriber) onboarding: hasn't completed the owner
@@ -159,12 +157,10 @@ export async function PUT(request: NextRequest) {
     if (!isOnboarding && currentUser.role === "student" && currentUser.schoolName) {
       if (
         (schoolName !== undefined && schoolName !== currentUser.schoolName) ||
-        (province !== undefined && province !== currentUser.province) ||
-        (gradeLevel !== undefined && gradeLevel !== currentUser.gradeLevel) ||
-        (section !== undefined && section !== currentUser.section)
+        (province !== undefined && province !== currentUser.province)
       ) {
         return NextResponse.json({
-          error: "School and grade details are locked once onboarding is complete. Only Support Staff can make changes. / ព័ត៌មានសាលារៀន និងកម្រិតថ្នាក់ត្រូវបានចាក់សោបន្ទាប់ពីការបំពេញព័ត៌មានដំបូងរួចរាល់។ មានតែក្រុមការងារគាំទ្រប៉ុណ្ណោះដែលអាចផ្លាស់ប្តូរបាន។"
+          error: "School details are locked once onboarding is complete. Only Support Staff can make changes. / ព័ត៌មានសាលារៀនត្រូវបានចាក់សោបន្ទាប់ពីការបំពេញព័ត៌មានដំបូងរួចរាល់។ មានតែក្រុមការងារគាំទ្រប៉ុណ្ណោះដែលអាចផ្លាស់ប្តូរបាន។"
         }, { status: 400 });
       }
     }
@@ -192,11 +188,6 @@ export async function PUT(request: NextRequest) {
     // change, so the normal cooldowns resume from here on.
     if (currentUser.canChangeNameOnce && (wantsDisplayNameChange || wantsUsernameChange)) {
       updates.canChangeNameOnce = false;
-    }
-
-    if (session.role === "student") {
-      updates.gradeLevel = gradeLevel !== undefined ? gradeLevel : currentUser.gradeLevel;
-      updates.section = section !== undefined ? section : currentUser.section;
     }
 
     // 3. Email Update & Uniqueness Validation
@@ -275,10 +266,9 @@ export async function PUT(request: NextRequest) {
       if (!inputCode) {
         const finalSchoolName = schoolName ?? currentUser.schoolName;
         const finalProvince = province ?? currentUser.province;
-        const finalGradeLevel = gradeLevel ?? currentUser.gradeLevel;
-        if (!finalSchoolName || !finalProvince || !finalGradeLevel) {
+        if (!finalSchoolName || !finalProvince) {
           return NextResponse.json(
-            { error: "School, Province, and Grade are required. / សូមបំពេញ សាលារៀន ខេត្ត និងថ្នាក់ទី។" },
+            { error: "School and Province are required. / សូមបំពេញ សាលារៀន និងខេត្ត។" },
             { status: 400 }
           );
         }
@@ -352,18 +342,15 @@ export async function PUT(request: NextRequest) {
 
       const finalSchoolName = classDetails?.schoolName || schoolName || currentUser.schoolName;
       const finalProvince = classDetails?.province || province || currentUser.province;
-      const finalGradeLevel = classDetails?.gradeLevel || gradeLevel || currentUser.gradeLevel;
-      const finalSection = classDetails?.section || section || currentUser.section;
 
       // Neon HTTP driver does not support transactions; perform writes sequentially.
+      // Grade/section live on the class now, not the student — enrollment links them.
       const [updatedUser] = await db
         .update(users)
         .set({
           ...updates,
           schoolName: finalSchoolName,
           province: finalProvince,
-          gradeLevel: finalGradeLevel,
-          section: finalSection || null,
         })
         .where(eq(users.id, session.id))
         .returning();
@@ -401,8 +388,6 @@ export async function PUT(request: NextRequest) {
           audioMuted: updatedUser.audioMuted,
           schoolName: updatedUser.schoolName,
           province: updatedUser.province,
-          gradeLevel: updatedUser.gradeLevel,
-          section: updatedUser.section,
           isNamePublic: updatedUser.isNamePublic,
           isUsernamePublic: updatedUser.isUsernamePublic,
           isSchoolPublic: updatedUser.isSchoolPublic,
@@ -432,8 +417,6 @@ export async function PUT(request: NextRequest) {
         audioMuted: updatedUser.audioMuted,
         schoolName: updatedUser.schoolName,
         province: updatedUser.province,
-        gradeLevel: updatedUser.gradeLevel,
-        section: updatedUser.section,
         isNamePublic: updatedUser.isNamePublic,
         isUsernamePublic: updatedUser.isUsernamePublic,
         isSchoolPublic: updatedUser.isSchoolPublic,

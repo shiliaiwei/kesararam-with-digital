@@ -25,8 +25,6 @@ interface StudentProfileDashboardProps {
     avatarChangedAt: Date | null;
     schoolName: string | null;
     province: string | null;
-    gradeLevel: string | null;
-    section: string | null;
   };
   highestScore: number;
   totalGamesPlayed: number;

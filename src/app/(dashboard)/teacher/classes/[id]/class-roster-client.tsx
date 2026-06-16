@@ -503,7 +503,7 @@ export function ClassRosterClient({
                       </div>
 
                       {/* Province Verification */}
-                      <div className="flex items-center justify-between border-b pb-1.5">
+                      <div className="flex items-center justify-between">
                         <div>
                           <div className="font-black text-zinc-400 uppercase text-[9px] tracking-wider">Province / ខេត្ត</div>
                           <div className="font-bold text-zinc-700 mt-0.5">{verificationError.province.student}</div>
@@ -511,22 +511,6 @@ export function ClassRosterClient({
                         <div className="flex items-center gap-1">
                           <span className="text-[10px] text-zinc-400 font-mono font-bold mr-1">vs {verificationError.province.class}</span>
                           {verificationError.province.match ? (
-                            <CheckCircle2 size={16} className="text-green-500 shrink-0" />
-                          ) : (
-                            <XCircle size={16} className="text-red-500 shrink-0" />
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Grade Verification */}
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <div className="font-black text-zinc-400 uppercase text-[9px] tracking-wider">Grade / ថ្នាក់</div>
-                          <div className="font-bold text-zinc-700 mt-0.5">{verificationError.grade.student}</div>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <span className="text-[10px] text-zinc-400 font-mono font-bold mr-1">vs {verificationError.grade.class}</span>
-                          {verificationError.grade.match ? (
                             <CheckCircle2 size={16} className="text-green-500 shrink-0" />
                           ) : (
                             <XCircle size={16} className="text-red-500 shrink-0" />

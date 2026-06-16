@@ -38,8 +38,6 @@ export default async function StudentProfilePage({
     avatarChangedAt: Date | null;
     schoolName: string | null;
     province: string | null;
-    gradeLevel: string | null;
-    section: string | null;
 
   } = {
     displayName: session.name,
@@ -49,8 +47,6 @@ export default async function StudentProfilePage({
     avatarChangedAt: null,
     schoolName: null,
     province: null,
-    gradeLevel: null,
-    section: null,
 
   };
 
@@ -69,8 +65,6 @@ export default async function StudentProfilePage({
         avatarChangedAt: users.avatarChangedAt,
         schoolName: users.schoolName,
         province: users.province,
-        gradeLevel: users.gradeLevel,
-        section: users.section,
 
       })
       .from(users)
@@ -87,13 +81,11 @@ export default async function StudentProfilePage({
         avatarChangedAt: result[0].avatarChangedAt,
         schoolName: result[0].schoolName,
         province: result[0].province,
-        gradeLevel: result[0].gradeLevel,
-        section: result[0].section,
 
       };
     }
 
-    if (!user.schoolName || !user.province || !user.gradeLevel) {
+    if (!user.schoolName || !user.province) {
       return <CompleteProfileForm />;
     }
 

@@ -141,8 +141,6 @@ async function main() {
         loginAttempts: 0,
         schoolName: targetClass.schoolName,
         province: targetClass.province,
-        gradeLevel: targetClass.gradeLevel,
-        section: targetClass.section,
         classId: targetClass.id,
       })
       .returning({ id: schema.users.id });

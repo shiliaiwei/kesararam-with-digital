@@ -48,8 +48,6 @@ export default async function ClassDetailPage({
       email: users.email,
       schoolName: users.schoolName,
       province: users.province,
-      gradeLevel: users.gradeLevel,
-      section: users.section,
       lifetimePoints: users.lifetimePoints,
       enrolledAt: classEnrollments.enrolledAt,
     })
@@ -78,8 +76,9 @@ export default async function ClassDetailPage({
         email: s.email,
         schoolName: s.schoolName ?? "",
         province: s.province ?? "",
-        gradeLevel: s.gradeLevel ?? "",
-        section: s.section ?? "",
+        // Grade/section are class-level now (students no longer carry their own).
+        gradeLevel: cls.gradeLevel ?? "",
+        section: cls.section ?? "",
         lifetimePoints: s.lifetimePoints,
         enrolledAt: s.enrolledAt,
       }))}

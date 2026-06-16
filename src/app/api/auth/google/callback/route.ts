@@ -143,8 +143,6 @@ export async function GET(req: NextRequest) {
         avatar: picture || null,
         schoolName: desiredRole === "teacher" ? (intent.schoolName || null) : null,
         province: desiredRole === "teacher" ? (intent.province || null) : null,
-        gradeLevel: null,
-        section: null,
         isActive: true,
         loginAttempts: 0,
       })

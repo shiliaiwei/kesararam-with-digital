@@ -118,8 +118,6 @@ interface LeaderboardUser {
   accuracy?: number;
   schoolName?: string | null;
   province?: string | null;
-  gradeLevel?: string | null;
-  section?: string | null;
   className: string | null;
   rank: number;
 }
@@ -997,7 +995,7 @@ export default function LeaderboardPage() {
       .then(r => r.ok ? r.json() : null)
       .then(d => {
         if (d && !d.error) {
-          if (d.role === "student" && (!d.schoolName || !d.province || !d.gradeLevel)) {
+          if (d.role === "student" && (!d.schoolName || !d.province)) {
             router.push("/profile/student");
             return;
           }

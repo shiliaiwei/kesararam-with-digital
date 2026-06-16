@@ -103,8 +103,6 @@ async function main() {
         loginAttempts: 0,
         schoolName: cls.schoolName,
         province: cls.province,
-        gradeLevel: cls.gradeLevel,
-        section: cls.section,
         classId: cls.id,
       })
       .returning({ id: schema.users.id });

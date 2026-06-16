@@ -60,12 +60,8 @@ async function storePointsLeaderboard(opts: {
       accuracy: accuracyExpr,
       schoolName: users.schoolName,
       province: users.province,
-      gradeLevel: users.gradeLevel,
-      section: users.section,
       isSchoolPublic: users.isSchoolPublic,
       isProvincePublic: users.isProvincePublic,
-      isGradePublic: users.isGradePublic,
-      isSectionPublic: users.isSectionPublic,
     })
     .from(users)
     .where(sql`${publicFilter}${provinceFilter} AND ${windowExpr} > 0`)
@@ -89,8 +85,6 @@ async function storePointsLeaderboard(opts: {
     accuracy: user.accuracy,
     schoolName: (user.isSchoolPublic ?? true) ? user.schoolName : null,
     province: (user.isProvincePublic ?? true) ? user.province : null,
-    gradeLevel: (user.isGradePublic ?? true) ? user.gradeLevel : null,
-    section: (user.isSectionPublic ?? true) ? user.section : null,
   }));
 
   return NextResponse.json({
@@ -174,8 +168,6 @@ export async function GET(req: NextRequest) {
       accuracy: number;
       schoolName: string | null;
       province: string | null;
-      gradeLevel: string | null;
-      section: string | null;
       isNamePublic: boolean | null;
       isUsernamePublic: boolean | null;
       isSchoolPublic: boolean | null;
@@ -201,8 +193,6 @@ export async function GET(req: NextRequest) {
           accuracy: accuracyExpr,
           schoolName: users.schoolName,
           province: users.province,
-          gradeLevel: users.gradeLevel,
-          section: users.section,
           isNamePublic: users.isNamePublic,
           isUsernamePublic: users.isUsernamePublic,
           isSchoolPublic: users.isSchoolPublic,
@@ -248,8 +238,6 @@ export async function GET(req: NextRequest) {
           accuracy: accuracyExpr,
           schoolName: users.schoolName,
           province: users.province,
-          gradeLevel: users.gradeLevel,
-          section: users.section,
           isNamePublic: users.isNamePublic,
           isUsernamePublic: users.isUsernamePublic,
           isSchoolPublic: users.isSchoolPublic,
@@ -276,8 +264,6 @@ export async function GET(req: NextRequest) {
           users.totalGamesPlayed,
           users.schoolName,
           users.province,
-          users.gradeLevel,
-          users.section,
           users.isNamePublic,
           users.isUsernamePublic,
           users.isSchoolPublic,
@@ -316,8 +302,6 @@ export async function GET(req: NextRequest) {
         accuracy: user.accuracy,
         schoolName: (user.isSchoolPublic ?? true) ? user.schoolName : null,
         province: (user.isProvincePublic ?? true) ? user.province : null,
-        gradeLevel: (user.isGradePublic ?? true) ? user.gradeLevel : null,
-        section: (user.isSectionPublic ?? true) ? user.section : null,
       };
     });
 

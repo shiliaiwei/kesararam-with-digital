@@ -20,7 +20,6 @@ export async function POST(
     .select({
       schoolName: users.schoolName,
       province: users.province,
-      gradeLevel: users.gradeLevel,
       avatar: users.avatar,
     })
     .from(users)
@@ -28,9 +27,9 @@ export async function POST(
     .limit(1);
 
   if (user.role === "student") {
-    if (!dbUser || !dbUser.schoolName || !dbUser.province || !dbUser.gradeLevel) {
+    if (!dbUser || !dbUser.schoolName || !dbUser.province) {
       return NextResponse.json(
-        { error: "Please complete your profile details (School, Province, Grade) before joining a live game. / សូមបំពេញព័ត៌មានគណនីរបស់អ្នក (សាលារៀន ខេត្ត ថ្នាក់ទី) មុននឹងចូលរួមលេងហ្គេមផ្ទាល់។" },
+        { error: "Please complete your profile details (School, Province) before joining a live game. / សូមបំពេញព័ត៌មានគណនីរបស់អ្នក (សាលារៀន ខេត្ត) មុននឹងចូលរួមលេងហ្គេមផ្ទាល់។" },
         { status: 403 }
       );
     }

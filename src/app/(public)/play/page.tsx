@@ -449,7 +449,7 @@ export default function PlayPage() {
       .then(r => r.ok ? r.json() : null)
       .then(d => {
         if (d && !d.error) {
-          if (d.role === "student" && (!d.schoolName || !d.province || !d.gradeLevel)) {
+          if (d.role === "student" && (!d.schoolName || !d.province)) {
             router.push("/profile/student");
             return;
           }

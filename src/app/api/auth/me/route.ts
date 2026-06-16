@@ -29,7 +29,6 @@ export async function GET() {
       claimedRewards: users.claimedRewards,
       schoolName: users.schoolName,
       province: users.province,
-      gradeLevel: users.gradeLevel,
     })
     .from(users)
     .where(eq(users.id, session.id))

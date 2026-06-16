@@ -46,8 +46,6 @@ export async function createUser(formData: FormData) {
 
   const schoolName = (formData.get("schoolName") as string)?.trim() || null;
   const province = (formData.get("province") as string)?.trim() || null;
-  const gradeLevel = (formData.get("gradeLevel") as string)?.trim() || null;
-  const section = (formData.get("section") as string)?.trim() || null;
 
   if (!username || !email || !password || !role) {
     return { error: "All fields are required." };
@@ -57,10 +55,6 @@ export async function createUser(formData: FormData) {
     return { error: "School name and province are required." };
   }
 
-  if (role === "student" && !gradeLevel) {
-    return { error: "Grade level is required for student accounts." };
-  }
-
   try {
     const [newUser] = await db.insert(users).values({
       username,
@@ -68,8 +62,6 @@ export async function createUser(formData: FormData) {
       displayName: displayName || null,
       schoolName,
       province,
-      gradeLevel: role === "student" ? gradeLevel : null,
-      section: section || null,
       passwordHash: hashPassword(password),
       role,
       isActive: true,
@@ -107,8 +99,6 @@ export async function updateUser(id: number, formData: FormData) {
   const newPassword = formData.get("password") as string;
   const schoolName = (formData.get("schoolName") as string)?.trim() || null;
   const province = (formData.get("province") as string)?.trim() || null;
-  const gradeLevel = (formData.get("gradeLevel") as string)?.trim() || null;
-  const section = (formData.get("section") as string)?.trim() || null;
 
   const updates: Record<string, unknown> = {
     displayName,
@@ -117,8 +107,6 @@ export async function updateUser(id: number, formData: FormData) {
     isActive,
     schoolName,
     province,
-    gradeLevel: role === "student" ? gradeLevel : null,
-    section: section || null,
   };
   if (newPassword) updates.passwordHash = hashPassword(newPassword);
 

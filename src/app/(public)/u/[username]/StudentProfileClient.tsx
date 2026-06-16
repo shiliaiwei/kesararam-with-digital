@@ -42,16 +42,12 @@ export interface SerializableStudent {
   createdAt: string;
   schoolName: string | null;
   province: string | null;
-  gradeLevel: string | null;
-  section: string | null;
   claimedRewards: string;
   isProfilePublic?: boolean;
   isNamePublic?: boolean;
   isUsernamePublic?: boolean;
   isSchoolPublic?: boolean;
   isProvincePublic?: boolean;
-  isGradePublic?: boolean;
-  isSectionPublic?: boolean;
   isStatsPublic?: boolean;
 }
 
@@ -151,14 +147,6 @@ function getBilingualProvince(en: string | null | undefined): string {
   if (!en) return "—";
   const found = CAMBODIA_PROVINCES.find(p => p.en.toLowerCase() === en.toLowerCase());
   return found ? `${found.en} / ${found.kh}` : en;
-}
-
-function getBilingualGrade(grade: string | null | undefined): string {
-  if (!grade) return "—";
-  const n = grade.match(/\d+/)?.[0];
-  if (!n) return grade;
-  const khNum: Record<string, string> = { "6": "៦", "7": "៧", "8": "៨", "9": "៩", "10": "១០", "11": "១១", "12": "១២" };
-  return khNum[n] ? `Grade ${n} / ថ្នាក់ទី ${khNum[n]}` : grade;
 }
 
 function avatarSrc(url: string | null, changedAt?: string | null): string | null {
@@ -340,25 +328,14 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
   const isUsernamePublic = student.isUsernamePublic ?? true;
   const isSchoolPublic = student.isSchoolPublic ?? true;
   const isProvincePublic = student.isProvincePublic ?? true;
-  const isGradePublic = student.isGradePublic ?? true;
-  const isSectionPublic = student.isSectionPublic ?? true;
   const isStatsPublic = student.isStatsPublic ?? true;
 
   const displayName = isNamePublic
     ? (student.displayName || student.username)
     : t("Private Student", "សិស្សឯកជន");
 
-  const gradeKh = student.gradeLevel
-    ? (student.gradeLevel.toLowerCase().includes("grade")
-      ? student.gradeLevel.replace(/grade\s*/i, "ថ្នាក់ទី ")
-      : (student.gradeLevel.match(/\d+/) ? `ថ្នាក់ទី ${student.gradeLevel.match(/\d+/)?.[0]}` : student.gradeLevel))
-    : "—";
-
   const joinedYear = student.createdAt ? new Date(student.createdAt).getFullYear() : 2026;
 
-  const gradeShort = student.gradeLevel
-    ? (kh ? gradeKh : (student.gradeLevel.match(/\d+/) ? `Grade ${student.gradeLevel.match(/\d+/)?.[0]}` : student.gradeLevel))
-    : null;
   const provinceLabel = student.province
     ? (kh ? (CAMBODIA_PROVINCES.find((p) => p.en.toLowerCase() === student.province!.toLowerCase())?.kh ?? student.province) : student.province)
     : null;
@@ -370,7 +347,6 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
         : `Ranked #${rank} with ${student.lifetimePoints.toLocaleString()} points`);
     }
     const loc: string[] = [];
-    if (isGradePublic && gradeShort) loc.push(gradeShort);
     if (isSchoolPublic && student.schoolName) loc.push(student.schoolName);
     if (isProvincePublic && provinceLabel) loc.push(provinceLabel);
     if (loc.length) parts.push(loc.join(" · "));
@@ -575,15 +551,6 @@ export default function StudentProfileClient({ student, rank, gameStats = [] }: 
                       <div className="space-y-3 p-4">
                         {isSchoolPublic && student.schoolName && (
                           <FactRow icon={School} label={t("Studies At", "សិក្សានៅ")} value={student.schoolName} kh={kh} kf={kf} />
-                        )}
-                        {isGradePublic && student.gradeLevel && (
-                          <FactRow
-                            icon={GraduationCap}
-                            label={t("Grade / Room", "ថ្នាក់ / បន្ទប់")}
-                            value={`${kh ? gradeKh : getBilingualGrade(student.gradeLevel)}${isSectionPublic && student.section ? `, ${t("Room", "បន្ទប់")} ${student.section}` : ""}`}
-                            kh={kh}
-                            kf={kf}
-                          />
                         )}
                         {isProvincePublic && student.province && (
                           <FactRow icon={MapPin} label={t("Province", "ខេត្ត")} value={getBilingualProvince(student.province)} kh={kh} kf={kf} />

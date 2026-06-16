@@ -55,8 +55,6 @@ export async function POST(
       .select({
         schoolName: users.schoolName,
         province: users.province,
-        gradeLevel: users.gradeLevel,
-        section: users.section,
       })
       .from(users)
       .where(eq(users.id, student.id))
@@ -114,8 +112,6 @@ export async function GET(
         displayName: users.displayName,
         schoolName: users.schoolName,
         province: users.province,
-        gradeLevel: users.gradeLevel,
-        section: users.section,
       })
       .from(classEnrollments)
       .leftJoin(users, eq(classEnrollments.studentId, users.id))

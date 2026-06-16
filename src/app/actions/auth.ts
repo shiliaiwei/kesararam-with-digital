@@ -367,9 +367,6 @@ export async function registerAction(
 
   const schoolName = (formData.get("schoolName") as string)?.trim();
   const province = (formData.get("province") as string)?.trim();
-  const gradeLevel = (formData.get("gradeLevel") as string)?.trim();
-  const section = (formData.get("section") as string)?.trim();
-  const parentContact = (formData.get("parentContact") as string)?.trim();
   const plan = (formData.get("plan") as string) || "teacher_pro";
 
   if (!username || !email || !password || !role) {
@@ -377,8 +374,8 @@ export async function registerAction(
   }
 
   if (role === "student") {
-    if (!schoolName || !province || !gradeLevel) {
-      return { error: "School Name, Province, and Grade are required for students." };
+    if (!schoolName || !province) {
+      return { error: "School Name and Province are required for students." };
     }
   } else if (role === "teacher") {
     if (!schoolName || !province) {
@@ -408,9 +405,6 @@ export async function registerAction(
       role: role as "student" | "teacher",
       schoolName,
       province,
-      gradeLevel: role === "student" ? gradeLevel : null,
-      section: section || null,
-      parentContact: role === "student" ? parentContact : null,
       isActive: true,
       loginAttempts: 0,
     }).returning({

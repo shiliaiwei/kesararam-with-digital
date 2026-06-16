@@ -70,8 +70,6 @@ export default async function Image({ params }: { params: Promise<{ username: st
       createdAt: users.createdAt,
       schoolName: users.schoolName,
       province: users.province,
-      gradeLevel: users.gradeLevel,
-      section: users.section,
     })
     .from(users)
     .where(and(eq(users.username, username), eq(users.isActive, true), eq(users.role, "student")))
@@ -116,7 +114,6 @@ export default async function Image({ params }: { params: Promise<{ username: st
     : { mythic: 10000, diamond: 5000, platinum: 2500, gold: 1000, debut: 300 };
 
   const name = student.displayName || student.username;
-  const gradeVal = student.gradeLevel ? student.gradeLevel.replace(/\D/g, '') : String((student.id % 10) + 3);
   const joinedYear = student.createdAt ? new Date(student.createdAt).getFullYear() : 2026;
 
   // Determinate rank tier badge name
@@ -539,7 +536,6 @@ export default async function Image({ params }: { params: Promise<{ username: st
                 { label: "NAME", value: name },
                 { label: "ROLE", value: "Student" },
                 { label: "SCHOOL", value: "Kesararam Primary School" },
-                { label: "GRADE", value: `Grade ${gradeVal}` },
                 { label: "PROVINCE", value: student.province || "Siem Reap" },
                 { label: "POINTS", value: `${student.lifetimePoints.toLocaleString()} PTS` },
                 { label: "JOINED", value: `${joinedYear}` },

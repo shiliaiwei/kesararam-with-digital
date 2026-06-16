@@ -11,7 +11,6 @@ import { headers } from "next/headers";
 export interface VerificationDetails {
   school: { student: string; class: string; match: boolean };
   province: { student: string; class: string; match: boolean };
-  grade: { student: string; class: string; match: boolean };
 }
 
 export async function assignStudentAction(classId: number, username: string) {
@@ -60,9 +59,8 @@ export async function assignStudentAction(classId: number, username: string) {
     // 3. Match rules (exact case-insensitive string comparisons)
     const schoolMatch = (student.schoolName || "").trim().toLowerCase() === (cls.schoolName || "").trim().toLowerCase();
     const provinceMatch = (student.province || "").trim().toLowerCase() === (cls.province || "").trim().toLowerCase();
-    const gradeMatch = (student.gradeLevel || "").trim() === (cls.gradeLevel || "").trim();
 
-    const isMatch = schoolMatch && provinceMatch && gradeMatch;
+    const isMatch = schoolMatch && provinceMatch;
 
     if (!isMatch) {
       return {
@@ -70,7 +68,6 @@ export async function assignStudentAction(classId: number, username: string) {
         details: {
           school: { student: student.schoolName ?? "—", class: cls.schoolName ?? "—", match: schoolMatch },
           province: { student: student.province ?? "—", class: cls.province ?? "—", match: provinceMatch },
-          grade: { student: student.gradeLevel ?? "—", class: cls.gradeLevel ?? "—", match: gradeMatch }
         } as VerificationDetails
       };
     }

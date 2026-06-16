@@ -26,8 +26,6 @@ export default async function AdminUsersPage() {
         u.display_name   AS "displayName",
         u.school_name    AS "schoolName",
         u.province       AS "province",
-        u.grade_level    AS "gradeLevel",
-        u.section        AS "section",
         u.role,
         u.is_active      AS "isActive",
         u.is_suspended   AS "isSuspended",
@@ -74,7 +72,7 @@ export default async function AdminUsersPage() {
     try {
       const basic = await db.select({
         id: users.id, username: users.username, email: users.email,
-        displayName: users.displayName, schoolName: users.schoolName, province: users.province, gradeLevel: users.gradeLevel, section: users.section, role: users.role,
+        displayName: users.displayName, schoolName: users.schoolName, province: users.province, role: users.role,
         isActive: users.isActive, loginAttempts: users.loginAttempts,
         createdAt: users.createdAt,
       }).from(users).orderBy(desc(users.createdAt));

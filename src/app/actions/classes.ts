@@ -29,8 +29,6 @@ async function fetchStudentProfile(studentId: number) {
       displayName: users.displayName,
       schoolName: users.schoolName,
       province: users.province,
-      gradeLevel: users.gradeLevel,
-      section: users.section,
       classId: users.classId,
     })
     .from(users)
@@ -214,8 +212,6 @@ export async function searchStudents(query: string) {
       role: users.role,
       schoolName: users.schoolName,
       province: users.province,
-      gradeLevel: users.gradeLevel,
-      section: users.section,
       classId: users.classId,
       className: classes.name,
     })
@@ -259,8 +255,6 @@ export async function getClassStudents(classId: number) {
       displayName: users.displayName,
       schoolName: users.schoolName,
       province: users.province,
-      gradeLevel: users.gradeLevel,
-      section: users.section,
       classId: users.classId,
     })
     .from(classEnrollments)
@@ -297,8 +291,6 @@ export async function assignStudentToClass(formData: FormData) {
       displayName: users.displayName,
       schoolName: users.schoolName,
       province: users.province,
-      gradeLevel: users.gradeLevel,
-      section: users.section,
       classId: users.classId,
     })
     .from(users)
@@ -341,8 +333,7 @@ export async function autoAssignStudentToMatchingClass(studentId: number, enroll
     .where(
       and(
         ilike(classes.schoolName, student.schoolName ?? ""),
-        ilike(classes.province, student.province ?? ""),
-        ilike(classes.gradeLevel, student.gradeLevel ?? "")
+        ilike(classes.province, student.province ?? "")
       )
     )
     .orderBy(desc(classes.createdAt))

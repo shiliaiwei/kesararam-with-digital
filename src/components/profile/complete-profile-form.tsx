@@ -34,16 +34,6 @@ const CAMBODIA_PROVINCES = [
   { en: "Tboung Khmum", kh: "ត្បូងឃ្មុំ" },
 ];
 
-const GRADES = [
-  { en: "Grade 6", kh: "ថ្នាក់ទី ៦" },
-  { en: "Grade 7", kh: "ថ្នាក់ទី ៧" },
-  { en: "Grade 8", kh: "ថ្នាក់ទី ៨" },
-  { en: "Grade 9", kh: "ថ្នាក់ទី ៩" },
-  { en: "Grade 10", kh: "ថ្នាក់ទី ១០" },
-  { en: "Grade 11", kh: "ថ្នាក់ទី ១១" },
-  { en: "Grade 12", kh: "ថ្នាក់ទី ១២" },
-];
-
 /**
  * Student onboarding / class-linking form.
  *
@@ -73,8 +63,6 @@ export function CompleteProfileForm({
   const [username, setUsername] = useState("");
   const [schoolName, setSchoolName] = useState("");
   const [province, setProvince] = useState("Siem Reap"); // Default to Siem Reap as requested
-  const [gradeLevel, setGradeLevel] = useState("");
-  const [section, setSection] = useState("");
   const [face, setFace] = useState("Smile.svg");
   const [head, setHead] = useState("Short 1.svg");
   const [isProfilePublic, setIsProfilePublic] = useState(false); // Default to Private (false)
@@ -116,8 +104,6 @@ export function CompleteProfileForm({
           setResolvedClass(data.classInfo);
           setSchoolName(data.classInfo.schoolName || "");
           setProvince(data.classInfo.province || "");
-          setGradeLevel(data.classInfo.gradeLevel || "");
-          setSection(data.classInfo.section || "");
         }
       } catch (err) {
         console.error("Error looking up code:", err);
@@ -232,12 +218,12 @@ export function CompleteProfileForm({
       return;
     }
 
-    // No code → the student must supply their own school/province/grade.
+    // No code → the student must supply their own school + province.
     if (!code) {
-      if (!schoolName.trim() || !province || !gradeLevel) {
+      if (!schoolName.trim() || !province) {
         setError(kh
-          ? "សូមបំពេញ ឈ្មោះសាលារៀន ខេត្ត និងថ្នាក់ទី។"
-          : "Please fill in your School, Province, and Grade.");
+          ? "សូមបំពេញ ឈ្មោះសាលារៀន និងខេត្ត។"
+          : "Please fill in your School and Province.");
         return;
       }
     }
@@ -256,14 +242,10 @@ export function CompleteProfileForm({
         payload.inviteCode = code;
         payload.schoolName = resolvedClass.schoolName || "";
         payload.province = resolvedClass.province || "";
-        payload.gradeLevel = resolvedClass.gradeLevel || "";
-        payload.section = resolvedClass.section || null;
       } else {
         // Solo: save the student's own school details, no enrollment.
         payload.schoolName = schoolName.trim();
         payload.province = province;
-        payload.gradeLevel = gradeLevel;
-        payload.section = section.trim() || null;
       }
 
       const response = await fetch("/api/user/settings", {
@@ -562,54 +544,21 @@ export function CompleteProfileForm({
                         style={{ borderRadius: "0px" }}
                       />
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="flex flex-col gap-1.5">
-                        <label htmlFor="province" className="text-xs font-black text-zinc-700 uppercase tracking-wide">
-                          {kh ? "ខេត្ត-ក្រុង *" : "Province *"}
-                        </label>
-                        <select
-                          id="province"
-                          value={province}
-                          onChange={(e) => setProvince(e.target.value)}
-                          className={selectClass}
-                          style={{ borderRadius: "0px" }}
-                        >
-                          {CAMBODIA_PROVINCES.map((prov) => (
-                            <option key={prov.en} value={prov.en}>{kh ? prov.kh : prov.en}</option>
-                          ))}
-                        </select>
-                      </div>
-                      <div className="flex flex-col gap-1.5">
-                        <label htmlFor="gradeLevel" className="text-xs font-black text-zinc-700 uppercase tracking-wide">
-                          {kh ? "ថ្នាក់ទី *" : "Grade *"}
-                        </label>
-                        <select
-                          id="gradeLevel"
-                          value={gradeLevel}
-                          onChange={(e) => setGradeLevel(e.target.value)}
-                          className={selectClass}
-                          style={{ borderRadius: "0px" }}
-                        >
-                          <option value="">{kh ? "ជ្រើសរើសថ្នាក់" : "Select Grade"}</option>
-                          {GRADES.map((gr) => (
-                            <option key={gr.en} value={gr.en}>{kh ? gr.kh : gr.en}</option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
                     <div className="flex flex-col gap-1.5">
-                      <label htmlFor="section" className="text-xs font-black text-zinc-700 uppercase tracking-wide">
-                        {kh ? "វេន (ស្រេចចិត្ត)" : "Section (Optional)"}
+                      <label htmlFor="province" className="text-xs font-black text-zinc-700 uppercase tracking-wide">
+                        {kh ? "ខេត្ត-ក្រុង *" : "Province *"}
                       </label>
-                      <input
-                        type="text"
-                        id="section"
-                        value={section}
-                        onChange={(e) => setSection(e.target.value)}
-                        placeholder={kh ? "ឧ. ព្រឹក A" : "e.g. Morning A"}
-                        className="w-full px-4 py-2.5 border-2 border-black text-sm font-bold bg-white focus:outline-none focus:shadow-[2px_2px_0_#0284c7] placeholder:text-zinc-300"
+                      <select
+                        id="province"
+                        value={province}
+                        onChange={(e) => setProvince(e.target.value)}
+                        className={selectClass}
                         style={{ borderRadius: "0px" }}
-                      />
+                      >
+                        {CAMBODIA_PROVINCES.map((prov) => (
+                          <option key={prov.en} value={prov.en}>{kh ? prov.kh : prov.en}</option>
+                        ))}
+                      </select>
                     </div>
                   </div>
                 )}

@@ -52,15 +52,6 @@ const CAMBODIA_PROVINCES = [
   { en: "Tboung Khmum", kh: "ត្បូងឃ្មុំ" },
 ];
 
-const GRADES = [
-  { en: "Grade 6", kh: "ថ្នាក់ទី ៦" },
-  { en: "Grade 7", kh: "ថ្នាក់ទី ៧" },
-  { en: "Grade 8", kh: "ថ្នាក់ទី ៨" },
-  { en: "Grade 9", kh: "ថ្នាក់ទី ៩" },
-  { en: "Grade 10", kh: "ថ្នាក់ទី ១០" },
-  { en: "Grade 11", kh: "ថ្នាក់ទី ១១" },
-  { en: "Grade 12", kh: "ថ្នាក់ទី ១២" },
-];
 
 interface UserSettings {
   displayName: string;
@@ -73,15 +64,11 @@ interface UserSettings {
   theme: string;
   schoolName?: string;
   province?: string;
-  gradeLevel?: string;
-  section?: string;
   isProfilePublic?: boolean;
   isNamePublic?: boolean;
   isUsernamePublic?: boolean;
   isSchoolPublic?: boolean;
   isProvincePublic?: boolean;
-  isGradePublic?: boolean;
-  isSectionPublic?: boolean;
   isStatsPublic?: boolean;
   createdAt?: string; // Account creation timestamp
   canChangeNameOnce?: boolean; // one-time full-name + username change available
@@ -123,15 +110,11 @@ export function SettingsContent() {
     theme: "light",
     schoolName: "",
     province: "",
-    gradeLevel: "",
-    section: "",
     isProfilePublic: true,
     isNamePublic: true,
     isUsernamePublic: true,
     isSchoolPublic: true,
     isProvincePublic: true,
-    isGradePublic: true,
-    isSectionPublic: true,
     isStatsPublic: true,
     createdAt: "",
     notifications: {
@@ -481,7 +464,7 @@ export function SettingsContent() {
                   <div className="bg-blue-50 border-2 border-[#0284c7] p-3 text-xs text-black font-bold flex items-center gap-2">
                     <Info className="text-[#0284c7] flex-shrink-0" size={16} />
                     <span>
-                      School and Grade information is locked. Contact Support Staff to make changes. / ព័ត៌មានសាលារៀន និងកម្រិតថ្នាក់ត្រូវបានចាក់សោ។ សូមទាក់ទងក្រុមការងារគាំទ្រដើម្បីកែប្រែ។
+                      School information is locked. Contact Support Staff to make changes. / ព័ត៌មានសាលារៀនត្រូវបានចាក់សោ។ សូមទាក់ទងក្រុមការងារគាំទ្រដើម្បីកែប្រែ។
                     </span>
                   </div>
                 )}
@@ -530,49 +513,6 @@ export function SettingsContent() {
                   />
                 </div>
 
-                {/* Grade Level (Student only) */}
-                {settings.role === "student" && (
-                  <div>
-                    <label className="block text-sm font-bold text-black mb-2">
-                      Grade Level / ថ្នាក់ទី
-                    </label>
-                    <BrandSelect
-                      value={settings.gradeLevel || ""}
-                      disabled={isStudentAndOnboarded}
-                      onValueChange={(v) => setSettings({ ...settings, gradeLevel: v })}
-                      fullWidth
-                      ariaLabel="Grade Level / ថ្នាក់ទី"
-                      placeholder="Select Grade / ជ្រើសរើសថ្នាក់"
-                      className="p-3"
-                      options={GRADES.map((gr) => ({
-                        value: gr.en,
-                        label: `${gr.en} / ${gr.kh}`,
-                      }))}
-                    />
-                  </div>
-                )}
-
-                {/* Section (Student only) */}
-                {settings.role === "student" && (
-                  <div>
-                    <label className="block text-sm font-bold text-black mb-2">
-                      Section / វេន
-                    </label>
-                    <input
-                      type="text"
-                      value={settings.section || ""}
-                      disabled={isStudentAndOnboarded}
-                      onChange={(e) =>
-                        setSettings({ ...settings, section: e.target.value })
-                      }
-                      className={`w-full p-3 border-2 border-black font-medium focus:outline-none focus:shadow-[2px_2px_0_#000] ${
-                        isStudentAndOnboarded ? "bg-zinc-50 cursor-not-allowed text-zinc-400" : ""
-                      }`}
-                      placeholder="e.g. Morning A / ព្រឹក A"
-                      style={{ borderRadius: "0" }}
-                    />
-                  </div>
-                )}
               </div>
 
               {/* Right Side: Interactive Character Builder (5 Cols - Student Only) */}
@@ -1035,44 +975,6 @@ export function SettingsContent() {
                           type="checkbox"
                           checked={settings.isProvincePublic ?? true}
                           onChange={(e) => setSettings({ ...settings, isProvincePublic: e.target.checked })}
-                          className="sr-only peer"
-                        />
-                        <div className="w-11 h-6 bg-zinc-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                      </label>
-                    </div>
-                  )}
-
-                  {/* Grade Visibility */}
-                  {settings.role === "student" && (
-                    <div className="flex items-center justify-between p-3 border-2 border-black bg-white" style={{ borderRadius: "0" }}>
-                      <div>
-                        <h4 className="font-bold text-xs md:text-sm text-black">Grade Level / កម្រិតថ្នាក់</h4>
-                        <p className="text-[10px] md:text-xs text-zinc-500">Show grade level on public pages. / បង្ហាញកម្រិតថ្នាក់នៅលើទំព័រសាធារណៈ។</p>
-                      </div>
-                      <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
-                        <input
-                          type="checkbox"
-                          checked={settings.isGradePublic ?? true}
-                          onChange={(e) => setSettings({ ...settings, isGradePublic: e.target.checked })}
-                          className="sr-only peer"
-                        />
-                        <div className="w-11 h-6 bg-zinc-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-                      </label>
-                    </div>
-                  )}
-
-                  {/* Section Visibility */}
-                  {settings.role === "student" && (
-                    <div className="flex items-center justify-between p-3 border-2 border-black bg-white" style={{ borderRadius: "0" }}>
-                      <div>
-                        <h4 className="font-bold text-xs md:text-sm text-black">Section (Room) / វេនសិក្សា</h4>
-                        <p className="text-[10px] md:text-xs text-zinc-500">Show class section on public pages. / បង្ហាញវេនសិក្សានៅលើទំព័រសាធារណៈ។</p>
-                      </div>
-                      <label className="relative inline-flex items-center cursor-pointer flex-shrink-0">
-                        <input
-                          type="checkbox"
-                          checked={settings.isSectionPublic ?? true}
-                          onChange={(e) => setSettings({ ...settings, isSectionPublic: e.target.checked })}
                           className="sr-only peer"
                         />
                         <div className="w-11 h-6 bg-zinc-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>

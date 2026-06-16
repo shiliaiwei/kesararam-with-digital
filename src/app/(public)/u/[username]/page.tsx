@@ -79,16 +79,12 @@ export default async function PublicStudentProfilePage({ params }: Props) {
       createdAt: users.createdAt,
       schoolName: users.schoolName,
       province: users.province,
-      gradeLevel: users.gradeLevel,
-      section: users.section,
       claimedRewards: users.claimedRewards,
       isProfilePublic: users.isProfilePublic,
       isNamePublic: users.isNamePublic,
       isUsernamePublic: users.isUsernamePublic,
       isSchoolPublic: users.isSchoolPublic,
       isProvincePublic: users.isProvincePublic,
-      isGradePublic: users.isGradePublic,
-      isSectionPublic: users.isSectionPublic,
       isStatsPublic: users.isStatsPublic,
     })
     .from(users)
