@@ -34,7 +34,11 @@ function assertReady() {
   const byTopic = new Map();
   for (const q of items) {
     if (q.categorySlug !== "road-sign") throw new Error(`${q.id}: not road-sign`);
-    if (!q.questionImageUrl) throw new Error(`${q.id}: missing question image`);
+    if (q.questionType === "image_selection") {
+      if (q.questionImageUrl) throw new Error(`${q.id}: image_selection must NOT have a stem image`);
+    } else if (!q.questionImageUrl) {
+      throw new Error(`${q.id}: missing question image`);
+    }
     if ((q.answers ?? []).filter((a) => a.isCorrect).length !== 1) {
       throw new Error(`${q.id}: must have exactly one correct answer`);
     }

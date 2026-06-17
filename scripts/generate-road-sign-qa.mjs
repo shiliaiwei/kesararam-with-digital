@@ -12,29 +12,39 @@ const outJson = "docs/qa-rewrite/categories/cat-01-road-sign.json";
 const outMd = "docs/qa-rewrite/categories/cat-01-road-sign.md";
 
 const bannedKm = [
-  "ត្រូវ ឬ មិនត្រឹមត្រូវ",
-  "ដ៏",
-  "ជានិច្ច",
-  "សេចក្តីថ្លែងការណ៍មួយណា",
-  "ថ្លែងការណ៍",
-  "ប៉ប៉ោរ",
-  "នូវ",
-  "នៃ",
-  "ឡើយ",
-  "ពុំ",
-  "ត្រូវបាន",
-  "ទាំងឡាយ",
-  "នានា",
-  "ជាអាទិ៍",
-  "ប្រការ",
-  "អនុលោម",
-  "បទប្បញ្ញត្តិ",
-  "នីតិវិធី",
-  "ប្រតិបត្តិ",
-  "ដ៏សែន",
-  "&",
-  "*",
+  "ត្រូវ ឬ មិនត្រឹមត្រូវ", "ដ៏", "ជានិច្ច", "សេចក្តីថ្លែងការណ៍មួយណា", "ថ្លែងការណ៍",
+  "ប៉ប៉ោរ", "នូវ", "នៃ", "ឡើយ", "ពុំ", "ត្រូវបាន", "ទាំងឡាយ", "នានា", "ជាអាទិ៍",
+  "ប្រការ", "អនុលោម", "បទប្បញ្ញត្តិ", "នីតិវិធី", "ប្រតិបត្តិ", "ដ៏សែន", "&", "*", "៖",
 ];
+
+// ── Per-sub-group STANDARD semantics (the "logical standard list") ────────────
+const G = {
+  "Warning Signs": { typeKm: "សញ្ញាព្រមាន", typeEn: "Warning sign", actionKm: "បន្ថយល្បឿន និងប្រុងប្រយ័ត្ន", actionEn: "slow down and stay alert", whyKm: "ដើម្បីជៀសវាងគ្រោះថ្នាក់ដែលនៅខាងមុខ", whyEn: "It helps you avoid the danger ahead", penaltyKm: "គ្រោះថ្នាក់ ឬ ការបុកគ្នា", penaltyEn: "an accident or a crash" },
+  "Prohibitory Signs": { typeKm: "សញ្ញាហាមឃាត់", typeEn: "Prohibitory sign", actionKm: "មិនធ្វើអ្វីដែលសញ្ញានេះហាម", actionEn: "not do what the sign forbids", whyKm: "ដើម្បីសុវត្ថិភាព និងសណ្ដាប់ធ្នាប់លើផ្លូវ", whyEn: "It keeps the road safe and orderly", penaltyKm: "ការខុសច្បាប់ និងការពិន័យ", penaltyEn: "breaking the law and a fine" },
+  "Informative Signs": { typeKm: "សញ្ញាព័ត៌មាន", typeEn: "Informative sign", actionKm: "អានព័ត៌មាន ហើយធ្វើតាម", actionEn: "read the information and follow it", whyKm: "ដើម្បីណែនាំ និងជួយឱ្យធ្វើដំណើរស្រួល", whyEn: "It guides drivers and makes travel easier", penaltyKm: "ការវង្វេងផ្លូវ ឬ ការច្រឡំ", penaltyEn: "getting lost or confused" },
+  "Supplementary Signs": { typeKm: "សញ្ញាបន្ថែម", typeEn: "Supplementary sign", actionKm: "អានព័ត៌មានបន្ថែម ហើយធ្វើតាមសញ្ញាសំខាន់", actionEn: "read the extra information and follow the main sign", whyKm: "ដើម្បីបញ្ជាក់ន័យសញ្ញាសំខាន់ឱ្យច្បាស់", whyEn: "It makes the main sign clearer", penaltyKm: "ការយល់ច្រឡំន័យសញ្ញា", penaltyEn: "misunderstanding the sign" },
+  "Longitudinal Markings": { typeKm: "បន្ទាត់តាមបណ្ដោយផ្លូវ", typeEn: "Longitudinal marking", actionKm: "បើកក្នុងគន្លងរបស់ខ្លួន", actionEn: "stay in your own lane", whyKm: "ដើម្បីបែងចែកគន្លង និងរក្សាសុវត្ថិភាព", whyEn: "It separates lanes and keeps traffic safe", penaltyKm: "ការបុកនឹងរថយន្តក្នុងគន្លងផ្សេង", penaltyEn: "hitting a vehicle in another lane" },
+  "Temporary Signs": { typeKm: "សញ្ញាបណ្ដោះអាសន្ន", typeEn: "Temporary sign", actionKm: "ធ្វើតាមសញ្ញាបណ្ដោះអាសន្ននេះជាមុនសិន", actionEn: "follow this temporary sign first", whyKm: "ព្រោះមានការងារ ឬ ការផ្លាស់ប្ដូរលើផ្លូវ", whyEn: "There are roadworks or changes on the road", penaltyKm: "គ្រោះថ្នាក់ក្នុងតំបន់ការងារ", penaltyEn: "an accident in the work zone" },
+  "Traffic Lights": { typeKm: "ភ្លើងសញ្ញាចរាចរ", typeEn: "Traffic light", actionKm: "ធ្វើតាមពណ៌ភ្លើង", actionEn: "obey the light colour", whyKm: "ដើម្បីបញ្ជាការចរាចរនៅផ្លូវប្រសព្វ", whyEn: "It controls traffic at the junction", penaltyKm: "ការខុសច្បាប់ និងការបុកគ្នា", penaltyEn: "breaking the law and a crash" },
+  "Priority Signs": { typeKm: "សញ្ញាអាទិភាព", typeEn: "Priority sign", actionKm: "ផ្តល់សិទ្ធិ ឬ ឈប់ឱ្យយានដទៃទៅមុន", actionEn: "give way or stop to let other vehicles go first", whyKm: "ដើម្បីកំណត់អ្នកមានសិទ្ធិទៅមុននៅផ្លូវប្រសព្វ", whyEn: "It decides who goes first at the junction", penaltyKm: "ការបុកគ្នានៅផ្លូវប្រសព្វ និងការពិន័យ", penaltyEn: "a crash at the junction and a fine" },
+  "Sign Posts": { typeKm: "បង្គោលសញ្ញា", typeEn: "Sign post", actionKm: "អានព័ត៌មានលើបង្គោល", actionEn: "read the information on the post", whyKm: "ដើម្បីណែនាំទិសដៅ ឬ ចម្ងាយ", whyEn: "It shows direction or distance", penaltyKm: "ការទៅខុសផ្លូវ", penaltyEn: "taking the wrong road" },
+  "Other Road Markings": { typeKm: "សញ្ញាសម្គាល់លើផ្លូវ", typeEn: "Road marking", actionKm: "ធ្វើតាមសញ្ញាសម្គាល់លើផ្លូវ", actionEn: "follow the road marking", whyKm: "ដើម្បីណែនាំ និងរៀបចំចរាចរ", whyEn: "It guides and organises traffic", penaltyKm: "ការបង្កគ្រោះថ្នាក់", penaltyEn: "causing an accident" },
+  "Arrows Markings": { typeKm: "សញ្ញាព្រួញលើផ្លូវ", typeEn: "Arrow marking", actionKm: "ទៅតាមទិសព្រួញ", actionEn: "go in the direction of the arrow", whyKm: "ដើម្បីបង្ហាញទិសដៅគន្លង", whyEn: "It shows the lane direction", penaltyKm: "ការបើកខុសទិស និងការបុកគ្នា", penaltyEn: "wrong-way driving and a crash" },
+  "Street Name Signs": { typeKm: "ស្លាកឈ្មោះផ្លូវ", typeEn: "Street name sign", actionKm: "អានឈ្មោះផ្លូវ", actionEn: "read the street name", whyKm: "ដើម្បីដឹងឈ្មោះផ្លូវ និងទីតាំង", whyEn: "It shows the street name and location", penaltyKm: "ការវង្វេងផ្លូវ", penaltyEn: "getting lost" },
+  "Traffic Police Signals": { typeKm: "សញ្ញាដៃប៉ូលិសចរាចរ", typeEn: "Traffic police signal", actionKm: "ធ្វើតាមការបញ្ជារបស់ប៉ូលិសចរាចរ", actionEn: "follow the traffic police's command", whyKm: "ព្រោះប៉ូលិសមានសិទ្ធិលើសសញ្ញា និងភ្លើង", whyEn: "Police override signs and lights", penaltyKm: "ការខុសច្បាប់ និងការពិន័យ", penaltyEn: "breaking the law and a fine" },
+  "Buildup Area Boundary Signs": { typeKm: "សញ្ញាព្រំដែនតំបន់ប្រជុំជន", typeEn: "Built-up area boundary sign", actionKm: "បន្ថយល្បឿនពេលចូលតំបន់ប្រជុំជន", actionEn: "slow down when entering a built-up area", whyKm: "ព្រោះមានមនុស្ស និងចរាចរច្រើន", whyEn: "There are many people and vehicles", penaltyKm: "ការបុកមនុស្សថ្មើរជើង", penaltyEn: "hitting pedestrians" },
+  "Transverse Markings": { typeKm: "បន្ទាត់ទទឹងផ្លូវ", typeEn: "Transverse marking", actionKm: "ឈប់នៅពីមុខបន្ទាត់", actionEn: "stop before the line", whyKm: "ដើម្បីកំណត់កន្លែងឈប់", whyEn: "It marks where to stop", penaltyKm: "ការបុកអ្នកថ្មើរជើង ឬ យានដទៃ", penaltyEn: "hitting pedestrians or other vehicles" },
+};
+const DEFAULT_G = { typeKm: "សញ្ញាចរាចរ", typeEn: "Traffic sign", actionKm: "ធ្វើតាមអ្វីដែលសញ្ញានេះប្រាប់", actionEn: "do what the sign says", whyKm: "ដើម្បីសុវត្ថិភាពលើផ្លូវ", whyEn: "It keeps the road safe", penaltyKm: "គ្រោះថ្នាក់ ឬ ការពិន័យ", penaltyEn: "an accident or a fine" };
+const groupOf = (sg) => G[(sg || "").trim()] || DEFAULT_G;
+const ALL_TYPES = [...Object.values(G), DEFAULT_G].map((g) => ({ km: g.typeKm, en: g.typeEn }));
+
+// Standard wrong-answer pools (deliberately incorrect)
+const ACTION_BAD = [{ km: "បន្តបើកលឿនដដែល", en: "Keep driving at the same speed" }, { km: "បង្កើនល្បឿន", en: "Speed up" }, { km: "មិនអើពើនឹងសញ្ញា", en: "Ignore the sign" }, { km: "បត់ត្រឡប់ភ្លាម", en: "Make a U-turn at once" }];
+const WHY_BAD = [{ km: "ដើម្បីតុបតែងផ្លូវឱ្យស្អាត", en: "It decorates the road" }, { km: "ដើម្បីបង្ហាញឈ្មោះម្ចាស់ផ្លូវ", en: "It shows the road owner's name" }, { km: "គ្មានន័យពិសេសអ្វីទេ", en: "It has no special meaning" }];
+const PENALTY_BAD = [{ km: "ការទទួលរង្វាន់", en: "a reward" }, { km: "គ្មានផលអ្វីទាំងអស់", en: "nothing at all" }, { km: "ការបើកលឿនជាងមុន", en: "driving faster than before" }];
+const WRONG_BELIEF = { km: "បន្តបើកលឿនដដែលដោយមិនអើពើ", en: "keep driving fast and ignore it" };
+const NAMES = [{ km: "ប៊ុន", en: "Bun" }, { km: "សុខ", en: "Sok" }, { km: "ដារ៉ា", en: "Dara" }, { km: "សុភា", en: "Sophea" }, { km: "រតនា", en: "Ratana" }, { km: "វិសាល", en: "Visal" }];
 
 function readEnvValue(key) {
   const env = readFileSync(".env.local", "utf8");
@@ -49,6 +59,7 @@ function readEnvValue(key) {
 function cleanKm(value) {
   return String(value || "")
     .replace(/\s+/g, " ")
+    .replace(/៖/g, "")
     .replace(/ដើម្?បិ|ដម្បិ|ដំណ្បិ|ដំ្បី|ដើម្បីិ|ដំម្បី/g, "ដើម្បី")
     .replace(/អោយ/g, "ឱ្យ")
     .replace(/សិទ្ឋិ/g, "សិទ្ធិ")
@@ -65,208 +76,123 @@ function cleanKm(value) {
 }
 
 function cleanEn(value) {
-  return String(value || "")
-    .replace(/\s+/g, " ")
-    .replace(/\s+\./g, ".")
-    .trim();
+  return String(value || "").replace(/\s+/g, " ").replace(/\s+\./g, ".").trim();
 }
 
-function idFor(topic, slot) {
-  return `RS-${topic.id}-${String(slot).padStart(2, "0")}`;
-}
+const cap = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s);
+const inlineEn = (s) => cleanEn(s).replace(/\s*\.\s*$/, "");
+function idFor(topic, slot) { return `RS-${topic.id}-${String(slot).padStart(2, "0")}`; }
 
 function answer(answerKm, answerEn, isCorrect, answerType = "multiple_choice", imageUrl = undefined) {
-  return {
-    answerKm,
-    answerEn,
-    isCorrect,
-    answerType,
-    ...(imageUrl ? { imageUrl } : {}),
-  };
+  return { answerKm, answerEn, isCorrect, answerType, ...(imageUrl ? { imageUrl } : {}) };
 }
 
 function hash(input) {
   let n = 2166136261;
-  for (const ch of input) {
-    n ^= ch.charCodeAt(0);
-    n = Math.imul(n, 16777619);
-  }
+  for (const ch of input) { n ^= ch.charCodeAt(0); n = Math.imul(n, 16777619); }
   return n >>> 0;
 }
 
-function distractorTopics(topics, topic, slot, count) {
-  const seen = new Set([topic.id]);
-  const start = hash(`${topic.id}:${topic.topicCode}:${slot}`) % topics.length;
-  const picked = [];
-  for (let offset = 1; picked.length < count && offset <= topics.length * 2; offset++) {
-    const candidate = topics[(start + offset * 17) % topics.length];
-    if (!candidate || seen.has(candidate.id)) continue;
-    seen.add(candidate.id);
-    picked.push(candidate);
-  }
-  if (picked.length !== count) {
-    throw new Error(`Not enough distractors for topic ${topic.topicCode}`);
-  }
+// Deterministic order, SAME sub-group first (plausible distractors), then the rest.
+function groupDistractors(topics, topic, slot, count) {
+  const key = (t) => hash(`${topic.id}:${slot}:${t.id}`);
+  const same = topics.filter((t) => t.id !== topic.id && t.subGroup === topic.subGroup).sort((a, b) => key(a) - key(b));
+  const other = topics.filter((t) => t.id !== topic.id && t.subGroup !== topic.subGroup).sort((a, b) => key(a) - key(b));
+  const picked = [...same, ...other].slice(0, count);
+  if (picked.length !== count) throw new Error(`Not enough distractors for ${topic.topicCode}`);
   return picked;
 }
 
-function textChoiceAnswers(topic, distractors) {
-  return [
-    answer(topic.nameKm, topic.nameEn, true),
-    ...distractors.map((d) => answer(d.nameKm, d.nameEn, false)),
-  ];
+// 3 type names other than the topic's own group type.
+function typeDistractors(topic, slot, count) {
+  const own = groupOf(topic.subGroup).typeKm;
+  const pool = ALL_TYPES.filter((t) => t.km !== own).sort((a, b) => hash(`${topic.id}:${slot}:${a.km}`) - hash(`${topic.id}:${slot}:${b.km}`));
+  return pool.slice(0, count);
+}
+
+// 3 wrong answers from a fixed pool, deterministically ordered, never equal to the correct one.
+function badChoices(topic, slot, pool, correctKm, count) {
+  return pool.filter((p) => p.km !== correctKm).sort((a, b) => hash(`${topic.id}:${slot}:${a.km}`) - hash(`${topic.id}:${slot}:${b.km}`)).slice(0, count);
 }
 
 function item(topic, slot, difficulty, questionType, questionKm, questionEn, answers, explanationKm, explanationEn) {
   const correct = answers.find((a) => a.isCorrect);
   return {
-    id: idFor(topic, slot),
-    topicId: topic.id,
-    topicCode: topic.topicCode,
-    categoryId: topic.categoryId,
-    categorySlug: topic.categorySlug,
-    subGroup: topic.subGroup,
-    difficulty,
-    questionType,
-    questionImageUrl: topic.imageUrl,
-    questionKm,
-    questionEn,
-    answers,
-    answerKm: correct?.answerKm ?? "",
-    answerEn: correct?.answerEn ?? "",
-    explanationKm,
-    explanationEn,
+    id: idFor(topic, slot), topicId: topic.id, topicCode: topic.topicCode,
+    categoryId: topic.categoryId, categorySlug: topic.categorySlug, subGroup: topic.subGroup,
+    difficulty, questionType,
+    // Sign Challenge (image_selection) shows NO image above the question; the sign images are the options.
+    questionImageUrl: questionType === "image_selection" ? null : topic.imageUrl,
+    questionKm, questionEn, answers,
+    answerKm: correct?.answerKm ?? "", answerEn: correct?.answerEn ?? "",
+    explanationKm, explanationEn,
   };
 }
 
-function buildTopicItems(topic, topics) {
-  const d1 = distractorTopics(topics, topic, 1, 3);
-  const d3 = distractorTopics(topics, topic, 3, 3);
-  const d4 = distractorTopics(topics, topic, 4, 3);
+function buildTopicItems(topic, topics, idx) {
+  const g = groupOf(topic.subGroup);
+  const nm = NAMES[idx % NAMES.length];
+  const nm2 = NAMES[(idx + 2) % NAMES.length];
+  const meaning = answer(topic.nameKm, topic.nameEn, true);
+  const meaningDistract = groupDistractors(topics, topic, 1, 3).map((d) => answer(d.nameKm, d.nameEn, false));
+  const imgDistract = groupDistractors(topics, topic, 3, 3).map((d) => answer(d.nameKm, d.nameEn, false, "image_selection", d.imageUrl));
+  const typeDistract = typeDistractors(topic, 4, 3).map((d) => answer(d.km, d.en, false));
+  const actAll = [answer(g.actionKm, cap(g.actionEn), true), ...badChoices(topic, 5, ACTION_BAD, g.actionKm, 3).map((d) => answer(d.km, d.en, false))];
+  const actAll6 = [answer(g.actionKm, cap(g.actionEn), true), ...badChoices(topic, 6, ACTION_BAD, g.actionKm, 3).map((d) => answer(d.km, d.en, false))];
+  const whyAll = [answer(g.whyKm, g.whyEn, true), ...badChoices(topic, 8, WHY_BAD, g.whyKm, 3).map((d) => answer(d.km, d.en, false))];
+  const penAll = [answer(g.penaltyKm, cap(g.penaltyEn), true), ...badChoices(topic, 9, PENALTY_BAD, g.penaltyKm, 3).map((d) => answer(d.km, cap(d.en), false))];
 
   return [
-    item(
-      topic,
-      1,
-      "easy",
-      "multiple_choice",
-      "សញ្ញានេះមានន័យអ្វី?",
-      "What does this sign mean?",
-      textChoiceAnswers(topic, d1),
+    // 1 easy — meaning (sign shown)
+    item(topic, 1, "easy", "multiple_choice",
+      "ឃើញសញ្ញានេះនៅតាមផ្លូវ តើវាប្រាប់អ្នកបើកបរយ៉ាងណា?",
+      "You see this sign on the road. What does it tell the driver?",
+      [meaning, ...meaningDistract],
       "មើលរូបសញ្ញា ហើយចាំអត្ថន័យឱ្យច្បាស់ មុនធ្វើដំណើរបន្ត។",
-      "Look at the sign and know its meaning before you continue."
-    ),
-    item(
-      topic,
-      2,
-      "easy",
-      "true_false",
-      "ត្រូវ ឬ ខុស៖ ឃើញសញ្ញានេះ អ្នកបើកបរគួរធ្វើតាម។",
-      "True or False: A driver should follow this sign.",
+      "Look at the sign and know its meaning before you continue."),
+    // 2 easy — True/False scenario (true), sign shown
+    item(topic, 2, "easy", "true_false",
+      `ពេលឃើញសញ្ញានេះ អ្នកបើកបរគួរ${g.actionKm}។`,
+      `When a driver sees this sign, they should ${g.actionEn}.`,
       [answer("ត្រូវ", "True", true), answer("ខុស", "False", false)],
-      "សញ្ញាចរាចរប្រាប់ឱ្យអ្នកបើកបរដឹងពីរបៀបបើកឱ្យមានសុវត្ថិភាព។",
-      "Traffic signs tell drivers how to move safely."
-    ),
-    item(
-      topic,
-      3,
-      "easy",
-      "image_selection",
-      "តើរូបណាជាសញ្ញានេះ?",
-      "Which image matches this sign?",
-      [
-        answer(topic.nameKm, topic.nameEn, true, "image_selection", topic.imageUrl),
-        ...d3.map((d) => answer(d.nameKm, d.nameEn, false, "image_selection", d.imageUrl)),
-      ],
-      "រូបត្រឹមត្រូវត្រូវដូចសញ្ញាក្នុងប្រធានបទនេះ។",
-      "The correct image must match the sign in this topic."
-    ),
-    item(
-      topic,
-      4,
-      "easy",
-      "multiple_choice",
-      "សញ្ញានេះស្ថិតក្នុងប្រធានបទអ្វី?",
-      "Which topic does this sign belong to?",
-      textChoiceAnswers(topic, d4),
-      "ឈ្មោះប្រធានបទជួយឱ្យចាំសញ្ញា និងអត្ថន័យបានងាយ។",
-      "The topic name helps you remember the sign and its meaning."
-    ),
-    item(
-      topic,
-      5,
-      "medium",
-      "multiple_choice",
-      "ឃើញសញ្ញានេះ តើគួរធ្វើអ្វី?",
-      "What should you do when you see this sign?",
-      [
-        answer("បន្ថយល្បឿន មើលផ្លូវ ហើយធ្វើតាមសញ្ញា", "Slow down, check the road, and follow the sign", true),
-        answer("បង្កើនល្បឿនឆ្លងឱ្យលឿន", "Speed up to pass quickly", false),
-        answer("មើលទូរស័ព្ទ មុនបើកបន្ត", "Check your phone before moving on", false),
-        answer("មិនអើពើ ព្រោះផ្លូវទំនេរ", "Ignore it because the road is clear", false),
-      ],
-      "សញ្ញានេះជួយឱ្យអ្នកសម្រេចចិត្តបានត្រឹមត្រូវនៅលើផ្លូវ។",
-      "This sign helps you make the right decision on the road."
-    ),
-    item(
-      topic,
-      6,
-      "medium",
-      "scenario",
-      "អ្នកជិតដល់កន្លែងមានសញ្ញានេះ ហើយមានរថយន្តជុំវិញ។ តើគួរធ្វើអ្វី?",
-      "You are near this sign and vehicles are around you. What should you do?",
-      [
-        answer("រក្សាល្បឿនសុវត្ថិភាព ហើយធ្វើតាមសញ្ញា", "Keep a safe speed and follow the sign", true),
-        answer("បើកជ្រៀតមុនគេ", "Push ahead before others", false),
-        answer("ឈប់កណ្ដាលផ្លូវភ្លាម", "Stop suddenly in the middle of the road", false),
-        answer("មិនមើលកញ្ចក់ក្រោយ", "Do not check mirrors", false),
-      ],
-      "នៅកន្លែងមានរថយន្តច្រើន ការធ្វើតាមសញ្ញាជួយកាត់បន្ថយការប៉ះទង្គិច។",
-      "Around other vehicles, following the sign lowers crash risk."
-    ),
-    item(
-      topic,
-      7,
-      "medium",
-      "true_false",
-      "ត្រូវ ឬ ខុស៖ បើគ្មានប៉ូលិស អ្នកបើកបរអាចមិនធ្វើតាមសញ្ញានេះ។",
-      "True or False: If no police are present, a driver may ignore this sign.",
+      `សញ្ញានេះប្រាប់ឱ្យអ្នកបើកបរ${g.actionKm}។`,
+      `This sign tells the driver to ${g.actionEn}.`),
+    // 3 easy — Sign Challenge: text stem, image options, NO stem image
+    item(topic, 3, "easy", "image_selection",
+      `តើសញ្ញាមួយណាមានន័យថា "${topic.nameKm}"?`,
+      `Which sign means "${inlineEn(topic.nameEn)}"?`,
+      [answer(topic.nameKm, topic.nameEn, true, "image_selection", topic.imageUrl), ...imgDistract],
+      "ជ្រើសរើសរូបសញ្ញាដែលត្រូវនឹងអត្ថន័យក្នុងសំណួរ។",
+      "Pick the sign image that matches the meaning in the question."),
+    // 4 easy — fact: sign type (sign shown)
+    item(topic, 4, "easy", "multiple_choice",
+      "សញ្ញានេះជាសញ្ញាប្រភេទណា?", "What type of sign is this?",
+      [answer(g.typeKm, g.typeEn, true), ...typeDistract],
+      `សញ្ញានេះជា${g.typeKm}។`, `This is a ${g.typeEn.toLowerCase()}.`),
+    // 5 medium — correct action (sign shown)
+    item(topic, 5, "medium", "multiple_choice",
+      "ឃើញសញ្ញានេះ តើអ្នកបើកបរគួរធ្វើអ្វី?", "Seeing this sign, what should the driver do?",
+      actAll, `ពេលឃើញសញ្ញានេះ គួរ${g.actionKm}។`, `When you see this sign, you should ${g.actionEn}.`),
+    // 6 medium — scenario apply
+    item(topic, 6, "medium", "scenario",
+      `${nm.km}កំពុងបើកបរ ហើយឃើញសញ្ញានេះនៅខាងមុខ។ តើ${nm.km}គួរធ្វើអ្វី?`,
+      `${nm.en} is driving and sees this sign ahead. What should ${nm.en} do?`,
+      actAll6, `${nm.km}គួរ${g.actionKm} ដើម្បីសុវត្ថិភាព។`, `${nm.en} should ${g.actionEn} to stay safe.`),
+    // 7 medium — True/False misconception (false), sign shown
+    item(topic, 7, "medium", "true_false",
+      `${nm2.km}គិតថា ពេលឃើញសញ្ញានេះ ${nm2.km}អាច${WRONG_BELIEF.km}។`,
+      `${nm2.en} thinks that when seeing this sign, ${nm2.en} can ${WRONG_BELIEF.en}.`,
       [answer("ត្រូវ", "True", false), answer("ខុស", "False", true)],
-      "អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា ទោះមានប៉ូលិស ឬគ្មានក៏ដោយ។",
-      "Drivers must follow signs whether police are present or not."
-    ),
-    item(
-      topic,
-      8,
-      "hard",
-      "multiple_choice",
-      "ហេតុអ្វីការធ្វើតាមសញ្ញានេះសំខាន់?",
-      "Why is following this sign important?",
-      [
-        answer("ជួយកុំឱ្យបុកគ្នា និងរក្សាសណ្តាប់ធ្នាប់លើផ្លូវ", "It helps prevent crashes and keeps road order", true),
-        answer("ជួយឱ្យបើកលឿនជាងគេ", "It helps you drive faster than everyone", false),
-        answer("ជួយឱ្យចតកន្លែងណាក៏បាន", "It lets you park anywhere", false),
-        answer("គ្រាន់តែធ្វើឱ្យផ្លូវស្អាត", "It only makes the road look nice", false),
-      ],
-      "សញ្ញាចរាចរជួយឱ្យអ្នកប្រើផ្លូវយល់គ្នា និងធ្វើដំណើរបានសុវត្ថិភាព។",
-      "Traffic signs help road users understand each other and travel safely."
-    ),
-    item(
-      topic,
-      9,
-      "hard",
-      "multiple_choice",
-      "បំពេញចន្លោះ៖ មិនគោរពសញ្ញានេះ អាចនាំឱ្យ ___។",
-      "Fill in the blank: Ignoring this sign may lead to ___.",
-      [
-        answer("ផាកពិន័យ ឬគ្រោះថ្នាក់", "A fine or a crash", true),
-        answer("ទទួលរង្វាន់", "A reward", false),
-        answer("បើកបានលឿនជាងមុន", "Driving faster than before", false),
-        answer("គ្មានហានិភ័យទេ", "No risk", false),
-      ],
-      "ការមិនគោរពសញ្ញា អាចបង្កគ្រោះថ្នាក់ដល់ខ្លួនឯង និងអ្នកផ្សេង។",
-      "Ignoring signs can endanger you and other people."
-    ),
+      `អ្នកបើកបរត្រូវធ្វើតាមសញ្ញា គ្រប់ពេល។`,
+      "A driver must follow the sign every time."),
+    // 8 hard — why / safety (sign shown)
+    item(topic, 8, "hard", "multiple_choice",
+      "ហេតុអ្វីសញ្ញានេះមានសារៈសំខាន់សម្រាប់សុវត្ថិភាព?", "Why is this sign important for safety?",
+      whyAll, g.whyKm + "។", g.whyEn + "."),
+    // 9 hard — penalty (fill-in-the-blank, no ៖), sign shown
+    item(topic, 9, "hard", "multiple_choice",
+      "មិនធ្វើតាមសញ្ញានេះ អាចនាំឱ្យកើតមាន ___ ។", "Not following this sign can lead to ___.",
+      penAll, `មិនធ្វើតាមសញ្ញានេះ អាចនាំឱ្យកើត${g.penaltyKm}។`, `Not following this sign can lead to ${g.penaltyEn}.`),
   ];
 }
 
@@ -276,7 +202,11 @@ function validate(data) {
   const problems = [];
 
   for (const q of items) {
-    if (!q.questionImageUrl) problems.push(`${q.id}: missing question image`);
+    if (q.questionType === "image_selection") {
+      if (q.questionImageUrl) problems.push(`${q.id}: image_selection must NOT show a stem image`);
+    } else if (!q.questionImageUrl) {
+      problems.push(`${q.id}: missing question image`);
+    }
     if ((q.answers || []).length > 4) problems.push(`${q.id}: more than 4 answers`);
     if (q.questionType === "true_false" && q.answers.length !== 2) problems.push(`${q.id}: true_false must have 2 answers`);
     if (q.questionType !== "true_false" && q.answers.length !== 4) problems.push(`${q.id}: non true_false must have 4 answers`);
@@ -294,10 +224,7 @@ function validate(data) {
   }
 
   for (const [topicId, topicItems] of byTopic.entries()) {
-    const counts = topicItems.reduce((acc, q) => {
-      acc[q.difficulty] = (acc[q.difficulty] || 0) + 1;
-      return acc;
-    }, {});
+    const counts = topicItems.reduce((acc, q) => { acc[q.difficulty] = (acc[q.difficulty] || 0) + 1; return acc; }, {});
     if (topicItems.length !== 9) problems.push(`topic ${topicId}: expected 9 questions`);
     if (counts.easy !== 4 || counts.medium !== 3 || counts.hard !== 2) {
       problems.push(`topic ${topicId}: bad difficulty mix ${JSON.stringify(counts)}`);
@@ -324,15 +251,14 @@ function toMarkdown(data) {
       lastTopic = q.topicCode;
       lines.push("");
       lines.push(`## ${q.topicCode} - topic_id ${q.topicId}${q.subGroup ? ` - ${q.subGroup}` : ""}`);
-      lines.push(`Image: ${q.questionImageUrl}`);
       lines.push("");
     }
-    lines.push(`### ${q.id} - ${q.difficulty} - ${q.questionType}`);
+    lines.push(`### ${q.id} - ${q.difficulty} - ${q.questionType}${q.questionImageUrl ? " (sign shown)" : ""}`);
     lines.push(`KM: ${q.questionKm}`);
     lines.push(`EN: ${q.questionEn}`);
     q.answers.forEach((a, index) => {
       const mark = a.isCorrect ? "[correct]" : "[ ]";
-      const img = a.imageUrl ? ` - img: ${a.imageUrl}` : "";
+      const img = a.imageUrl ? ` - img` : "";
       lines.push(`${index + 1}. ${mark} ${a.answerKm} / ${a.answerEn}${img}`);
     });
     lines.push(`Explain KM: ${q.explanationKm}`);
@@ -344,17 +270,9 @@ function toMarkdown(data) {
 }
 
 const rows = await sql.query(`
-  SELECT
-    t.id,
-    t.topic_code,
-    t.name_en,
-    t.name_km,
-    t.sub_group,
-    t.primary_image_url,
-    c.id AS category_id,
-    c.slug AS category_slug
-  FROM topics t
-  JOIN categories c ON c.id = t.category_id
+  SELECT t.id, t.topic_code, t.name_en, t.name_km, t.sub_group, t.primary_image_url,
+         c.id AS category_id, c.slug AS category_slug
+  FROM topics t JOIN categories c ON c.id = t.category_id
   WHERE c.slug = 'road-sign'
   ORDER BY t.id
 `);
@@ -372,20 +290,15 @@ const topics = rows.map((row) => ({
 
 const data = {
   meta: {
-    category: "road-sign",
-    categoryId: 1,
-    version: "full-v1",
+    category: "road-sign", categoryId: 1, version: "full-v2-standard",
     status: "for-review - not inserted",
-    topicsTotal: topics.length,
-    topicsAuthored: topics.length,
-    questionsPerTopic: 9,
-    difficultyMix: { easy: 4, medium: 3, hard: 2 },
-    images: true,
-    answerLimit: "maximum 4 answers per question; true_false uses 2 answers for game detection",
+    topicsTotal: topics.length, topicsAuthored: topics.length,
+    questionsPerTopic: 9, difficultyMix: { easy: 4, medium: 3, hard: 2 }, images: true,
+    answerLimit: "maximum 4 answers per question; true_false uses 2",
     source: "live DB topics ordered by topic id",
-    note: "Every question links the topic primary_image_url. Image-selection uses the current topic image plus three deterministic distractor images from road-sign only. No gameplay-calculation values are embedded in answers.",
+    note: "Approved styles: scenario True/False (no prefix, no ៖), driver's-eye meaning, Sign Challenge = text stem + image options (no stem image). Slots 4/5/6/8/9 use per-sub-group standard answers. No gameplay-calculation values embedded.",
   },
-  items: topics.flatMap((topic) => buildTopicItems(topic, topics)),
+  items: topics.flatMap((topic, idx) => buildTopicItems(topic, topics, idx)),
 };
 
 validate(data);
