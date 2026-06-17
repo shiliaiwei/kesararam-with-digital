@@ -103,10 +103,19 @@ export const RANK_KEYFRAMES = `
       opacity: 0.95;
     }
   }
+  @keyframes techRingRotate {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes techRingPulse {
+    0%   { opacity: 0.35; }
+    100% { opacity: 0.85; }
+  }
   @media (prefers-reduced-motion: reduce) {
     .rank-splash,
     .rank-shine,
-    .rank-star-burst {
+    .rank-star-burst,
+    .tech-hud-ring {
       animation: none !important;
       box-shadow: none !important;
     }
@@ -290,6 +299,58 @@ export function RankedAvatarRing({
                     "--glow-color": tier.glow,
                 }}
             >
+                {/* Tech/Magnetic HUD Ring Overlay */}
+                <svg
+                    className="tech-hud-ring pointer-events-none absolute"
+                    style={{
+                        width: size + 32,
+                        height: size + 32,
+                        top: "50%",
+                        left: "50%",
+                        marginTop: -Math.round((size + 32) / 2),
+                        marginLeft: -Math.round((size + 32) / 2),
+                        animation: "techRingRotate 16s linear infinite",
+                    }}
+                    viewBox="0 0 100 100"
+                >
+                    {/* Outer dashed tech segment ring */}
+                    <circle
+                        cx="50"
+                        cy="50"
+                        r="45"
+                        fill="none"
+                        stroke={tier.accent}
+                        strokeWidth="2"
+                        strokeDasharray="18 8 35 12 8 8"
+                        className="opacity-90"
+                    />
+                    {/* Inner thin tech ring */}
+                    <circle
+                        cx="50"
+                        cy="50"
+                        r="39"
+                        fill="none"
+                        stroke={tier.accent}
+                        strokeWidth="0.8"
+                        strokeDasharray="4 2"
+                        className="opacity-60"
+                        style={{
+                            animation: "techRingPulse 3s ease-in-out infinite alternate",
+                        }}
+                    />
+                    {/* Tiny tick marks / magnetic accents */}
+                    <circle
+                        cx="50"
+                        cy="50"
+                        r="42"
+                        fill="none"
+                        stroke={tier.glow}
+                        strokeWidth="1.2"
+                        strokeDasharray="1 14"
+                        className="opacity-95"
+                    />
+                </svg>
+
                 {starBursts.map((star, starIndex) => (
                     <Star
                         key={starIndex}
