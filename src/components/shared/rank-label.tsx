@@ -61,11 +61,20 @@ export const RANK_KEYFRAMES = `
     9%       { transform: translate(-50%,-50%) translate(var(--star-x),var(--star-y)) scale(.9) rotate(20deg); opacity: 1; }
     14%,100% { transform: translate(-50%,-50%) translate(var(--star-x),var(--star-y)) scale(.35) rotate(35deg); opacity: 0; }
   }
+  @keyframes tierGlow {
+    0%, 100% {
+      box-shadow: 0 0 6px var(--glow-color);
+    }
+    50% {
+      box-shadow: 0 0 20px var(--glow-color);
+    }
+  }
   @media (prefers-reduced-motion: reduce) {
     .rank-splash,
     .rank-shine,
     .rank-star-burst {
       animation: none !important;
+      box-shadow: none !important;
     }
     .rank-star-burst {
       display: none !important;
@@ -241,8 +250,10 @@ export function RankedAvatarRing({
                     background: "#000",
                     borderRadius: "50%",
                     filter: "drop-shadow(2px 2px 0 #000)",
-                    animation: "rankPop .45s cubic-bezier(.34,1.56,.64,1) both",
-                    animationDelay: `${Math.max(0, index) * 0.06}s`,
+                    animation: "rankPop .45s cubic-bezier(.34,1.56,.64,1) both, tierGlow 3s ease-in-out infinite",
+                    animationDelay: `${Math.max(0, index) * 0.06}s, ${3 + Math.max(0, index) * 0.2}s`,
+                    // @ts-expect-error custom CSS properties
+                    "--glow-color": tier.glow,
                 }}
             >
                 {starBursts.map((star, starIndex) => (
