@@ -27,8 +27,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
-      "questionEn": "How do you correctly understand \"Who can be infected HIV?\"?",
+      "questionKm": "តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?",
+      "questionEn": "Who can be infected HIV?",
       "answers": [
         {
           "answerKm": "ហ៊ាន",
@@ -70,8 +70,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"គ្រប់គ្នា\"។",
-      "questionEn": "When you face the question \"Who can be infected HIV?\", you know the correct answer is \"Everyone\".",
+      "questionKm": "\"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\" ចម្លើយគឺ \"គ្រប់គ្នា\"?",
+      "questionEn": "\"Who can be infected HIV?\" Answer: \"Everyone\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -101,8 +101,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
-      "questionEn": "Which answer do you choose correctly for \"Who can be infected HIV?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "Correct answer: \"Who can be infected HIV?\"?",
       "answers": [
         {
           "answerKm": "ជំងឺកាមរោគ",
@@ -144,8 +144,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"Who can be infected HIV?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "Road rules: \"Who can be infected HIV?\"?",
       "answers": [
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
@@ -187,8 +187,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
-      "questionEn": "What correct action must you take regarding \"Who can be infected HIV?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "Correct action: \"Who can be infected HIV?\"?",
       "answers": [
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
@@ -230,8 +230,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"Who can be infected HIV?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "Situation: \"Who can be infected HIV?\"?",
       "answers": [
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
@@ -273,8 +273,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ហ៊ាន\" គឺជាចម្លើយសម្រាប់ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
-      "questionEn": "Is it correct if you believe that \"Dare\" is the answer for \"Who can be infected HIV?\"?",
+      "questionKm": "\"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\" ចម្លើយគឺ \"ហ៊ាន\"?",
+      "questionEn": "\"Who can be infected HIV?\" Answer: \"Dare\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -304,8 +304,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"Who can be infected HIV?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "Why respect the rule: \"Who can be infected HIV?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -347,8 +347,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"Who can be infected HIV?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "Consequence if ignored: \"Who can be infected HIV?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -390,8 +390,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
-      "questionEn": "How do you correctly understand \"How can HIV infect?\"?",
+      "questionKm": "តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?",
+      "questionEn": "How can HIV infect?",
       "answers": [
         {
           "answerKm": "គ្រប់គ្នា",
@@ -433,8 +433,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន\"។",
-      "questionEn": "When you face the question \"How can HIV infect?\", you know the correct answer is \"Through sex, shared needles, contaminated blood transfusions, and from mother to child\".",
+      "questionKm": "\"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\" ចម្លើយគឺ \"តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន\"?",
+      "questionEn": "\"How can HIV infect?\" Answer: \"Through sex, shared needles, contaminated blood transfusions, and from mother to child\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -464,8 +464,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
-      "questionEn": "Which answer do you choose correctly for \"How can HIV infect?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
+      "questionEn": "Correct answer: \"How can HIV infect?\"?",
       "answers": [
         {
           "answerKm": "ហ៊ាន",
@@ -507,8 +507,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"How can HIV infect?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
+      "questionEn": "Road rules: \"How can HIV infect?\"?",
       "answers": [
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
@@ -550,8 +550,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
-      "questionEn": "What correct action must you take regarding \"How can HIV infect?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
+      "questionEn": "Correct action: \"How can HIV infect?\"?",
       "answers": [
         {
           "answerKm": "ជំងឺកាមរោគ",
@@ -593,8 +593,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"How can HIV infect?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
+      "questionEn": "Situation: \"How can HIV infect?\"?",
       "answers": [
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
@@ -636,8 +636,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"គាំទ្រនិងមិនរើសអើង\" គឺជាចម្លើយសម្រាប់ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
-      "questionEn": "Is it correct if you believe that \"Suport and not discrimination\" is the answer for \"How can HIV infect?\"?",
+      "questionKm": "\"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\" ចម្លើយគឺ \"គាំទ្រនិងមិនរើសអើង\"?",
+      "questionEn": "\"How can HIV infect?\" Answer: \"Suport and not discrimination\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -667,8 +667,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"How can HIV infect?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
+      "questionEn": "Why respect the rule: \"How can HIV infect?\"?",
       "answers": [
         {
           "answerKm": "ដើម្បីធានាសុវត្ថិភាព បង្ការគ្រោះថ្នាក់ និងរក្សាសណ្តាប់ធ្នាប់លើដងផ្លូវ",
@@ -710,8 +710,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"How can HIV infect?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
+      "questionEn": "Consequence if ignored: \"How can HIV infect?\"?",
       "answers": [
         {
           "answerKm": "ការទទួលបានប្រាក់រង្វាន់លើកទឹកចិត្តពីសាលាក្រុង",
@@ -753,8 +753,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
-      "questionEn": "How do you correctly understand \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
+      "questionKm": "មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?",
+      "questionEn": "Up to now, is there a medicine that can cure the HIV/AIDS?",
       "answers": [
         {
           "answerKm": "ទេ វាមិនមានទេ។",
@@ -796,8 +796,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ទេ វាមិនមានទេ។\"។",
-      "questionEn": "When you face the question \"Up to now, is there a medicine that can cure the HIV/AIDS?\", you know the correct answer is \"No, there isn't.\".",
+      "questionKm": "\"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\" ចម្លើយគឺ \"ទេ វាមិនមានទេ។\"?",
+      "questionEn": "\"Up to now, is there a medicine that can cure the HIV/AIDS?\" Answer: \"No, there isn't.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -827,8 +827,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
-      "questionEn": "Which answer do you choose correctly for \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
+      "questionEn": "Correct answer: \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
       "answers": [
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
@@ -870,8 +870,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
+      "questionEn": "Road rules: \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
       "answers": [
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
@@ -913,8 +913,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
-      "questionEn": "What correct action must you take regarding \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
+      "questionEn": "Correct action: \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
       "answers": [
         {
           "answerKm": "ទេ វាមិនមានទេ។",
@@ -956,8 +956,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"Up to now, is there a medicine that can cure the HIV/AIDS?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
+      "questionEn": "Situation: \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
       "answers": [
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
@@ -999,8 +999,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"គ្រប់គ្នា\" គឺជាចម្លើយសម្រាប់ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
-      "questionEn": "Is it correct if you believe that \"Everyone\" is the answer for \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
+      "questionKm": "\"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\" ចម្លើយគឺ \"គ្រប់គ្នា\"?",
+      "questionEn": "\"Up to now, is there a medicine that can cure the HIV/AIDS?\" Answer: \"Everyone\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1030,8 +1030,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
+      "questionEn": "Why respect the rule: \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
       "answers": [
         {
           "answerKm": "គ្រាន់តែដើម្បីប្រឡងយកប័ណ្ណបើកបរឱ្យជាប់ងាយស្រួលប៉ុណ្ណោះ",
@@ -1073,8 +1073,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
+      "questionEn": "Consequence if ignored: \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
       "answers": [
         {
           "answerKm": "វាអាចនាំឱ្យមានការផាកពិន័យ ត្រូវទទួលខុសត្រូវតាមច្បាប់ ឬបង្កគ្រោះថ្នាក់ធ្ងន់ធ្ងរ",
@@ -1116,8 +1116,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
-      "questionEn": "How do you correctly understand \"How can you realize that someone have HIV?\"?",
+      "questionKm": "តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?",
+      "questionEn": "How can you realize that someone have HIV?",
       "answers": [
         {
           "answerKm": "បាទ",
@@ -1159,8 +1159,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ដោយការធ្វើតេស្តឈាម។\"។",
-      "questionEn": "When you face the question \"How can you realize that someone have HIV?\", you know the correct answer is \"By testing the blood.\".",
+      "questionKm": "\"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\" ចម្លើយគឺ \"ដោយការធ្វើតេស្តឈាម។\"?",
+      "questionEn": "\"How can you realize that someone have HIV?\" Answer: \"By testing the blood.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1190,8 +1190,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
-      "questionEn": "Which answer do you choose correctly for \"How can you realize that someone have HIV?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
+      "questionEn": "Correct answer: \"How can you realize that someone have HIV?\"?",
       "answers": [
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
@@ -1233,8 +1233,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"How can you realize that someone have HIV?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
+      "questionEn": "Road rules: \"How can you realize that someone have HIV?\"?",
       "answers": [
         {
           "answerKm": "ហ៊ាន",
@@ -1276,8 +1276,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
-      "questionEn": "What correct action must you take regarding \"How can you realize that someone have HIV?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
+      "questionEn": "Correct action: \"How can you realize that someone have HIV?\"?",
       "answers": [
         {
           "answerKm": "គ្រប់គ្នា",
@@ -1319,8 +1319,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"How can you realize that someone have HIV?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
+      "questionEn": "Situation: \"How can you realize that someone have HIV?\"?",
       "answers": [
         {
           "answerKm": "ដោយការធ្វើតេស្តឈាម។",
@@ -1362,8 +1362,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ទេ វាមិនមានទេ។\" គឺជាចម្លើយសម្រាប់ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
-      "questionEn": "Is it correct if you believe that \"No, there isn't.\" is the answer for \"How can you realize that someone have HIV?\"?",
+      "questionKm": "\"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\" ចម្លើយគឺ \"ទេ វាមិនមានទេ។\"?",
+      "questionEn": "\"How can you realize that someone have HIV?\" Answer: \"No, there isn't.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1393,8 +1393,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"How can you realize that someone have HIV?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
+      "questionEn": "Why respect the rule: \"How can you realize that someone have HIV?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -1436,8 +1436,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"How can you realize that someone have HIV?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
+      "questionEn": "Consequence if ignored: \"How can you realize that someone have HIV?\"?",
       "answers": [
         {
           "answerKm": "ការឡើងថ្នាក់បើកបរភ្លាមៗដោយមិនបាច់ពិនិត្យ",
@@ -1479,8 +1479,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
-      "questionEn": "How do you correctly understand \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
+      "questionKm": "តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?",
+      "questionEn": "Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?",
       "answers": [
         {
           "answerKm": "ទេ វាមិនមានទេ។",
@@ -1522,8 +1522,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា\"។",
-      "questionEn": "When you face the question \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\", you know the correct answer is \"Have sex with condom properly and all time\".",
+      "questionKm": "\"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\" ចម្លើយគឺ \"រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា\"?",
+      "questionEn": "\"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\" Answer: \"Have sex with condom properly and all time\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1553,8 +1553,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
-      "questionEn": "Which answer do you choose correctly for \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
+      "questionEn": "Correct answer: \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
       "answers": [
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
@@ -1596,8 +1596,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
+      "questionEn": "Road rules: \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
       "answers": [
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
@@ -1639,8 +1639,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
-      "questionEn": "What correct action must you take regarding \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
+      "questionEn": "Correct action: \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
       "answers": [
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
@@ -1682,8 +1682,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
+      "questionEn": "Situation: \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
       "answers": [
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
@@ -1725,8 +1725,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។\" គឺជាចម្លើយសម្រាប់ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
-      "questionEn": "Is it correct if you believe that \"Let him or her work as usual.\" is the answer for \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
+      "questionKm": "\"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\" ចម្លើយគឺ \"អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។\"?",
+      "questionEn": "\"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\" Answer: \"Let him or her work as usual.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1756,8 +1756,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
+      "questionEn": "Why respect the rule: \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -1799,8 +1799,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
+      "questionEn": "Consequence if ignored: \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -1842,8 +1842,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
-      "questionEn": "How do you correctly understand \"What disease that can push to infect HIV?\"?",
+      "questionKm": "តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?",
+      "questionEn": "What disease that can push to infect HIV?",
       "answers": [
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
@@ -1885,8 +1885,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ជំងឺកាមរោគ\"។",
-      "questionEn": "When you face the question \"What disease that can push to infect HIV?\", you know the correct answer is \"Sexually transmitted disease\".",
+      "questionKm": "\"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\" ចម្លើយគឺ \"ជំងឺកាមរោគ\"?",
+      "questionEn": "\"What disease that can push to infect HIV?\" Answer: \"Sexually transmitted disease\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1916,8 +1916,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
-      "questionEn": "Which answer do you choose correctly for \"What disease that can push to infect HIV?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "Correct answer: \"What disease that can push to infect HIV?\"?",
       "answers": [
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
@@ -1959,8 +1959,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"What disease that can push to infect HIV?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "Road rules: \"What disease that can push to infect HIV?\"?",
       "answers": [
         {
           "answerKm": "ជំងឺកាមរោគ",
@@ -2002,8 +2002,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
-      "questionEn": "What correct action must you take regarding \"What disease that can push to infect HIV?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "Correct action: \"What disease that can push to infect HIV?\"?",
       "answers": [
         {
           "answerKm": "ហ៊ាន",
@@ -2045,8 +2045,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"What disease that can push to infect HIV?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "Situation: \"What disease that can push to infect HIV?\"?",
       "answers": [
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
@@ -2088,8 +2088,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"គាំទ្រនិងមិនរើសអើង\" គឺជាចម្លើយសម្រាប់ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
-      "questionEn": "Is it correct if you believe that \"Suport and not discrimination\" is the answer for \"What disease that can push to infect HIV?\"?",
+      "questionKm": "\"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\" ចម្លើយគឺ \"គាំទ្រនិងមិនរើសអើង\"?",
+      "questionEn": "\"What disease that can push to infect HIV?\" Answer: \"Suport and not discrimination\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2119,8 +2119,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"What disease that can push to infect HIV?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "Why respect the rule: \"What disease that can push to infect HIV?\"?",
       "answers": [
         {
           "answerKm": "ដើម្បីធានាសុវត្ថិភាព បង្ការគ្រោះថ្នាក់ និងរក្សាសណ្តាប់ធ្នាប់លើដងផ្លូវ",
@@ -2162,8 +2162,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"What disease that can push to infect HIV?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "Consequence if ignored: \"What disease that can push to infect HIV?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -2205,8 +2205,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
-      "questionEn": "How do you correctly understand \"Is a person with HIV allowed to take a test for driver license?\"?",
+      "questionKm": "តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?",
+      "questionEn": "Is a person with HIV allowed to take a test for driver license?",
       "answers": [
         {
           "answerKm": "បាទ",
@@ -2248,8 +2248,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"បាទ\"។",
-      "questionEn": "When you face the question \"Is a person with HIV allowed to take a test for driver license?\", you know the correct answer is \"Yes\".",
+      "questionKm": "\"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\" ចម្លើយគឺ \"បាទ\"?",
+      "questionEn": "\"Is a person with HIV allowed to take a test for driver license?\" Answer: \"Yes\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2279,8 +2279,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
-      "questionEn": "Which answer do you choose correctly for \"Is a person with HIV allowed to take a test for driver license?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
+      "questionEn": "Correct answer: \"Is a person with HIV allowed to take a test for driver license?\"?",
       "answers": [
         {
           "answerKm": "ដោយការធ្វើតេស្តឈាម។",
@@ -2322,8 +2322,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"Is a person with HIV allowed to take a test for driver license?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
+      "questionEn": "Road rules: \"Is a person with HIV allowed to take a test for driver license?\"?",
       "answers": [
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
@@ -2365,8 +2365,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
-      "questionEn": "What correct action must you take regarding \"Is a person with HIV allowed to take a test for driver license?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
+      "questionEn": "Correct action: \"Is a person with HIV allowed to take a test for driver license?\"?",
       "answers": [
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
@@ -2408,8 +2408,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"Is a person with HIV allowed to take a test for driver license?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
+      "questionEn": "Situation: \"Is a person with HIV allowed to take a test for driver license?\"?",
       "answers": [
         {
           "answerKm": "ហ៊ាន",
@@ -2451,8 +2451,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ហ៊ាន\" គឺជាចម្លើយសម្រាប់ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
-      "questionEn": "Is it correct if you believe that \"Dare\" is the answer for \"Is a person with HIV allowed to take a test for driver license?\"?",
+      "questionKm": "\"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\" ចម្លើយគឺ \"ហ៊ាន\"?",
+      "questionEn": "\"Is a person with HIV allowed to take a test for driver license?\" Answer: \"Dare\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2482,8 +2482,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"Is a person with HIV allowed to take a test for driver license?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
+      "questionEn": "Why respect the rule: \"Is a person with HIV allowed to take a test for driver license?\"?",
       "answers": [
         {
           "answerKm": "ដើម្បីចៀសវាងការបង់ពន្ធបន្តិចបន្តួចជូនរដ្ឋ",
@@ -2525,8 +2525,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"Is a person with HIV allowed to take a test for driver license?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
+      "questionEn": "Consequence if ignored: \"Is a person with HIV allowed to take a test for driver license?\"?",
       "answers": [
         {
           "answerKm": "វាអាចនាំឱ្យមានការផាកពិន័យ ត្រូវទទួលខុសត្រូវតាមច្បាប់ ឬបង្កគ្រោះថ្នាក់ធ្ងន់ធ្ងរ",
@@ -2568,8 +2568,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
-      "questionEn": "How do you correctly understand \"Realizing the driver with HIV, dare you ride on that car?\"?",
+      "questionKm": "ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?",
+      "questionEn": "Realizing the driver with HIV, dare you ride on that car?",
       "answers": [
         {
           "answerKm": "គ្រប់គ្នា",
@@ -2611,8 +2611,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ហ៊ាន\"។",
-      "questionEn": "When you face the question \"Realizing the driver with HIV, dare you ride on that car?\", you know the correct answer is \"Dare\".",
+      "questionKm": "\"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\" ចម្លើយគឺ \"ហ៊ាន\"?",
+      "questionEn": "\"Realizing the driver with HIV, dare you ride on that car?\" Answer: \"Dare\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2642,8 +2642,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
-      "questionEn": "Which answer do you choose correctly for \"Realizing the driver with HIV, dare you ride on that car?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
+      "questionEn": "Correct answer: \"Realizing the driver with HIV, dare you ride on that car?\"?",
       "answers": [
         {
           "answerKm": "គ្រប់គ្នា",
@@ -2685,8 +2685,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"Realizing the driver with HIV, dare you ride on that car?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
+      "questionEn": "Road rules: \"Realizing the driver with HIV, dare you ride on that car?\"?",
       "answers": [
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
@@ -2728,8 +2728,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
-      "questionEn": "What correct action must you take regarding \"Realizing the driver with HIV, dare you ride on that car?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
+      "questionEn": "Correct action: \"Realizing the driver with HIV, dare you ride on that car?\"?",
       "answers": [
         {
           "answerKm": "ជំងឺកាមរោគ",
@@ -2771,8 +2771,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"Realizing the driver with HIV, dare you ride on that car?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
+      "questionEn": "Situation: \"Realizing the driver with HIV, dare you ride on that car?\"?",
       "answers": [
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
@@ -2814,8 +2814,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\" គឺជាចម្លើយសម្រាប់ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
-      "questionEn": "Is it correct if you believe that \"Have sex using condom properly and all time.\" is the answer for \"Realizing the driver with HIV, dare you ride on that car?\"?",
+      "questionKm": "\"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\" ចម្លើយគឺ \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\"?",
+      "questionEn": "\"Realizing the driver with HIV, dare you ride on that car?\" Answer: \"Have sex using condom properly and all time.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2845,8 +2845,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"Realizing the driver with HIV, dare you ride on that car?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
+      "questionEn": "Why respect the rule: \"Realizing the driver with HIV, dare you ride on that car?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -2888,8 +2888,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"Realizing the driver with HIV, dare you ride on that car?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
+      "questionEn": "Consequence if ignored: \"Realizing the driver with HIV, dare you ride on that car?\"?",
       "answers": [
         {
           "answerKm": "ការទទួលបានប្រាក់រង្វាន់លើកទឹកចិត្តពីសាលាក្រុង",
@@ -2931,8 +2931,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
-      "questionEn": "How do you correctly understand \"Realizing that you have HIV, what practice shall you choose?\"?",
+      "questionKm": "ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?",
+      "questionEn": "Realizing that you have HIV, what practice shall you choose?",
       "answers": [
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
@@ -2974,8 +2974,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\"។",
-      "questionEn": "When you face the question \"Realizing that you have HIV, what practice shall you choose?\", you know the correct answer is \"Have sex using condom properly and all time.\".",
+      "questionKm": "\"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\" ចម្លើយគឺ \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\"?",
+      "questionEn": "\"Realizing that you have HIV, what practice shall you choose?\" Answer: \"Have sex using condom properly and all time.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3005,8 +3005,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
-      "questionEn": "Which answer do you choose correctly for \"Realizing that you have HIV, what practice shall you choose?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
+      "questionEn": "Correct answer: \"Realizing that you have HIV, what practice shall you choose?\"?",
       "answers": [
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
@@ -3048,8 +3048,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"Realizing that you have HIV, what practice shall you choose?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
+      "questionEn": "Road rules: \"Realizing that you have HIV, what practice shall you choose?\"?",
       "answers": [
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
@@ -3091,8 +3091,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
-      "questionEn": "What correct action must you take regarding \"Realizing that you have HIV, what practice shall you choose?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
+      "questionEn": "Correct action: \"Realizing that you have HIV, what practice shall you choose?\"?",
       "answers": [
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
@@ -3134,8 +3134,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"Realizing that you have HIV, what practice shall you choose?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
+      "questionEn": "Situation: \"Realizing that you have HIV, what practice shall you choose?\"?",
       "answers": [
         {
           "answerKm": "បាទ",
@@ -3177,8 +3177,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"គ្រប់គ្នា\" គឺជាចម្លើយសម្រាប់ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
-      "questionEn": "Is it correct if you believe that \"Everyone\" is the answer for \"Realizing that you have HIV, what practice shall you choose?\"?",
+      "questionKm": "\"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\" ចម្លើយគឺ \"គ្រប់គ្នា\"?",
+      "questionEn": "\"Realizing that you have HIV, what practice shall you choose?\" Answer: \"Everyone\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3208,8 +3208,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"Realizing that you have HIV, what practice shall you choose?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
+      "questionEn": "Why respect the rule: \"Realizing that you have HIV, what practice shall you choose?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -3251,8 +3251,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"Realizing that you have HIV, what practice shall you choose?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
+      "questionEn": "Consequence if ignored: \"Realizing that you have HIV, what practice shall you choose?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -3294,8 +3294,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
-      "questionEn": "How do you correctly understand \"On what principle is blood testing for HIV conducted?\"?",
+      "questionKm": "តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?",
+      "questionEn": "On what principle is blood testing for HIV conducted?",
       "answers": [
         {
           "answerKm": "ទេ វាមិនមានទេ។",
@@ -3337,8 +3337,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា\"។",
-      "questionEn": "When you face the question \"On what principle is blood testing for HIV conducted?\", you know the correct answer is \"Voluntary, confidential, and counseling\".",
+      "questionKm": "\"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\" ចម្លើយគឺ \"ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា\"?",
+      "questionEn": "\"On what principle is blood testing for HIV conducted?\" Answer: \"Voluntary, confidential, and counseling\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3368,8 +3368,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
-      "questionEn": "Which answer do you choose correctly for \"On what principle is blood testing for HIV conducted?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
+      "questionEn": "Correct answer: \"On what principle is blood testing for HIV conducted?\"?",
       "answers": [
         {
           "answerKm": "ហ៊ាន",
@@ -3411,8 +3411,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"On what principle is blood testing for HIV conducted?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
+      "questionEn": "Road rules: \"On what principle is blood testing for HIV conducted?\"?",
       "answers": [
         {
           "answerKm": "ជំងឺកាមរោគ",
@@ -3454,8 +3454,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
-      "questionEn": "What correct action must you take regarding \"On what principle is blood testing for HIV conducted?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
+      "questionEn": "Correct action: \"On what principle is blood testing for HIV conducted?\"?",
       "answers": [
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
@@ -3497,8 +3497,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"On what principle is blood testing for HIV conducted?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
+      "questionEn": "Situation: \"On what principle is blood testing for HIV conducted?\"?",
       "answers": [
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
@@ -3540,8 +3540,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ដោយការធ្វើតេស្តឈាម។\" គឺជាចម្លើយសម្រាប់ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
-      "questionEn": "Is it correct if you believe that \"By testing the blood.\" is the answer for \"On what principle is blood testing for HIV conducted?\"?",
+      "questionKm": "\"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\" ចម្លើយគឺ \"ដោយការធ្វើតេស្តឈាម។\"?",
+      "questionEn": "\"On what principle is blood testing for HIV conducted?\" Answer: \"By testing the blood.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3571,8 +3571,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"On what principle is blood testing for HIV conducted?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
+      "questionEn": "Why respect the rule: \"On what principle is blood testing for HIV conducted?\"?",
       "answers": [
         {
           "answerKm": "គ្រាន់តែដើម្បីប្រឡងយកប័ណ្ណបើកបរឱ្យជាប់ងាយស្រួលប៉ុណ្ណោះ",
@@ -3614,8 +3614,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"On what principle is blood testing for HIV conducted?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
+      "questionEn": "Consequence if ignored: \"On what principle is blood testing for HIV conducted?\"?",
       "answers": [
         {
           "answerKm": "វាអាចនាំឱ្យមានការផាកពិន័យ ត្រូវទទួលខុសត្រូវតាមច្បាប់ ឬបង្កគ្រោះថ្នាក់ធ្ងន់ធ្ងរ",
@@ -3657,8 +3657,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
-      "questionEn": "How do you correctly understand \"Realizing someone with HIV at your workplace, what shall you do?\"?",
+      "questionKm": "ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?",
+      "questionEn": "Realizing someone with HIV at your workplace, what shall you do?",
       "answers": [
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
@@ -3700,8 +3700,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។\"។",
-      "questionEn": "When you face the question \"Realizing someone with HIV at your workplace, what shall you do?\", you know the correct answer is \"Let him or her work as usual.\".",
+      "questionKm": "\"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\" ចម្លើយគឺ \"អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។\"?",
+      "questionEn": "\"Realizing someone with HIV at your workplace, what shall you do?\" Answer: \"Let him or her work as usual.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3731,8 +3731,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
-      "questionEn": "Which answer do you choose correctly for \"Realizing someone with HIV at your workplace, what shall you do?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
+      "questionEn": "Correct answer: \"Realizing someone with HIV at your workplace, what shall you do?\"?",
       "answers": [
         {
           "answerKm": "ជំងឺកាមរោគ",
@@ -3774,8 +3774,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"Realizing someone with HIV at your workplace, what shall you do?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
+      "questionEn": "Road rules: \"Realizing someone with HIV at your workplace, what shall you do?\"?",
       "answers": [
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
@@ -3817,8 +3817,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
-      "questionEn": "What correct action must you take regarding \"Realizing someone with HIV at your workplace, what shall you do?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
+      "questionEn": "Correct action: \"Realizing someone with HIV at your workplace, what shall you do?\"?",
       "answers": [
         {
           "answerKm": "គ្រប់គ្នា",
@@ -3860,8 +3860,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"Realizing someone with HIV at your workplace, what shall you do?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
+      "questionEn": "Situation: \"Realizing someone with HIV at your workplace, what shall you do?\"?",
       "answers": [
         {
           "answerKm": "ហ៊ាន",
@@ -3903,8 +3903,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\" គឺជាចម្លើយសម្រាប់ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
-      "questionEn": "Is it correct if you believe that \"Have sex using condom properly and all time.\" is the answer for \"Realizing someone with HIV at your workplace, what shall you do?\"?",
+      "questionKm": "\"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\" ចម្លើយគឺ \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\"?",
+      "questionEn": "\"Realizing someone with HIV at your workplace, what shall you do?\" Answer: \"Have sex using condom properly and all time.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3934,8 +3934,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"Realizing someone with HIV at your workplace, what shall you do?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
+      "questionEn": "Why respect the rule: \"Realizing someone with HIV at your workplace, what shall you do?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -3977,8 +3977,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"Realizing someone with HIV at your workplace, what shall you do?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
+      "questionEn": "Consequence if ignored: \"Realizing someone with HIV at your workplace, what shall you do?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -4020,8 +4020,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
-      "questionEn": "How do you correctly understand \"How shall you do toward a victim of HIV?\"?",
+      "questionKm": "តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?",
+      "questionEn": "How shall you do toward a victim of HIV?",
       "answers": [
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
@@ -4063,8 +4063,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"គាំទ្រនិងមិនរើសអើង\"។",
-      "questionEn": "When you face the question \"How shall you do toward a victim of HIV?\", you know the correct answer is \"Suport and not discrimination\".",
+      "questionKm": "\"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\" ចម្លើយគឺ \"គាំទ្រនិងមិនរើសអើង\"?",
+      "questionEn": "\"How shall you do toward a victim of HIV?\" Answer: \"Suport and not discrimination\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -4094,8 +4094,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
-      "questionEn": "Which answer do you choose correctly for \"How shall you do toward a victim of HIV?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
+      "questionEn": "Correct answer: \"How shall you do toward a victim of HIV?\"?",
       "answers": [
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
@@ -4137,8 +4137,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"How shall you do toward a victim of HIV?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
+      "questionEn": "Road rules: \"How shall you do toward a victim of HIV?\"?",
       "answers": [
         {
           "answerKm": "ជំងឺកាមរោគ",
@@ -4180,8 +4180,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
-      "questionEn": "What correct action must you take regarding \"How shall you do toward a victim of HIV?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
+      "questionEn": "Correct action: \"How shall you do toward a victim of HIV?\"?",
       "answers": [
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
@@ -4223,8 +4223,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"How shall you do toward a victim of HIV?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
+      "questionEn": "Situation: \"How shall you do toward a victim of HIV?\"?",
       "answers": [
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
@@ -4266,8 +4266,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ហ៊ាន\" គឺជាចម្លើយសម្រាប់ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
-      "questionEn": "Is it correct if you believe that \"Dare\" is the answer for \"How shall you do toward a victim of HIV?\"?",
+      "questionKm": "\"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\" ចម្លើយគឺ \"ហ៊ាន\"?",
+      "questionEn": "\"How shall you do toward a victim of HIV?\" Answer: \"Dare\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -4297,8 +4297,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"How shall you do toward a victim of HIV?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
+      "questionEn": "Why respect the rule: \"How shall you do toward a victim of HIV?\"?",
       "answers": [
         {
           "answerKm": "គ្រាន់តែដើម្បីប្រឡងយកប័ណ្ណបើកបរឱ្យជាប់ងាយស្រួលប៉ុណ្ណោះ",
@@ -4340,8 +4340,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"How shall you do toward a victim of HIV?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
+      "questionEn": "Consequence if ignored: \"How shall you do toward a victim of HIV?\"?",
       "answers": [
         {
           "answerKm": "ការឡើងថ្នាក់បើកបរភ្លាមៗដោយមិនបាច់ពិនិត្យ",

@@ -27,8 +27,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?\"?",
-      "questionEn": "How do you correctly understand \"Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?\"?",
+      "questionKm": "ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?",
+      "questionEn": "Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?",
       "answers": [
         {
           "answerKm": "១៦ ត",
@@ -70,8 +70,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"០៣ ម\"។",
-      "questionEn": "When you face the question \"Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?\", you know the correct answer is \"03m\".",
+      "questionKm": "\"ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?\" ចម្លើយគឺ \"០៣ ម\"?",
+      "questionEn": "\"Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?\" Answer: \"03m\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -101,8 +101,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?\"?",
-      "questionEn": "Which answer do you choose correctly for \"Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?\"?",
+      "questionEn": "Correct answer: \"Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?\"?",
       "answers": [
         {
           "answerKm": "០៣ ម",
@@ -144,8 +144,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?\"?",
+      "questionEn": "Road rules: \"Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?\"?",
       "answers": [
         {
           "answerKm": "មិនអនុញ្ញាតទាល់តែសោះ។",
@@ -187,8 +187,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?\"?",
-      "questionEn": "What correct action must you take regarding \"Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?\"?",
+      "questionEn": "Correct action: \"Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?\"?",
       "answers": [
         {
           "answerKm": "២៥ ត",
@@ -230,8 +230,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?\"?",
+      "questionEn": "Situation: \"Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?\"?",
       "answers": [
         {
           "answerKm": "១៩ ត",
@@ -273,8 +273,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ផ្ទុកនៅកណ្តាលរថយន្ត។\" គឺជាចម្លើយសម្រាប់ \"ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?\"?",
-      "questionEn": "Is it correct if you believe that \"Load in the center of the vehicle.\" is the answer for \"Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?\"?",
+      "questionKm": "\"ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?\" ចម្លើយគឺ \"ផ្ទុកនៅកណ្តាលរថយន្ត។\"?",
+      "questionEn": "\"Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?\" Answer: \"Load in the center of the vehicle.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -304,8 +304,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?\"?",
+      "questionEn": "Why respect the rule: \"Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -347,8 +347,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"ការផ្ទុកទំនិញ តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកដែលលាតសន្ធឹងទៅខាងក្រោយឡានដែលមានក្រណាត់ក្រហមនៅចុងបញ្ចប់?\"?",
+      "questionEn": "Consequence if ignored: \"Loading goods, how long is allowed to load protruded to the back of the truck with red cloth at the end?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -390,8 +390,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងរបស់ឡាន?\"?",
-      "questionEn": "How do you correctly understand \"If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?\"?",
+      "questionKm": "ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងរបស់ឡាន?",
+      "questionEn": "If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?",
       "answers": [
         {
           "answerKm": "២៥ ត",
@@ -433,8 +433,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងរបស់ឡាន?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"មិនអនុញ្ញាតទាល់តែសោះ។\"។",
-      "questionEn": "When you face the question \"If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?\", you know the correct answer is \"Not allow at all.\".",
+      "questionKm": "\"ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងរបស់ឡាន?\" ចម្លើយគឺ \"មិនអនុញ្ញាតទាល់តែសោះ។\"?",
+      "questionEn": "\"If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?\" Answer: \"Not allow at all.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -464,8 +464,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងរបស់ឡាន?\"?",
-      "questionEn": "Which answer do you choose correctly for \"If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងរបស់ឡាន?\"?",
+      "questionEn": "Correct answer: \"If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?\"?",
       "answers": [
         {
           "answerKm": "២៥ ត",
@@ -507,8 +507,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងរបស់ឡាន?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងរបស់ឡាន?\"?",
+      "questionEn": "Road rules: \"If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?\"?",
       "answers": [
         {
           "answerKm": "មិនអនុញ្ញាតទាល់តែសោះ។",
@@ -550,8 +550,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងរបស់ឡាន?\"?",
-      "questionEn": "What correct action must you take regarding \"If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងរបស់ឡាន?\"?",
+      "questionEn": "Correct action: \"If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?\"?",
       "answers": [
         {
           "answerKm": "០៣ ម",
@@ -593,8 +593,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងរបស់ឡាន?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងរបស់ឡាន?\"?",
+      "questionEn": "Situation: \"If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?\"?",
       "answers": [
         {
           "answerKm": "២៥ ត",
@@ -636,8 +636,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"០៣ ម\" គឺជាចម្លើយសម្រាប់ \"ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងរបស់ឡាន?\"?",
-      "questionEn": "Is it correct if you believe that \"03m\" is the answer for \"If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?\"?",
+      "questionKm": "\"ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងរបស់ឡាន?\" ចម្លើយគឺ \"០៣ ម\"?",
+      "questionEn": "\"If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?\" Answer: \"03m\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -667,8 +667,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងរបស់ឡាន?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងរបស់ឡាន?\"?",
+      "questionEn": "Why respect the rule: \"If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?\"?",
       "answers": [
         {
           "answerKm": "ដើម្បីធានាសុវត្ថិភាព បង្ការគ្រោះថ្នាក់ និងរក្សាសណ្តាប់ធ្នាប់លើដងផ្លូវ",
@@ -710,8 +710,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងរបស់ឡាន?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"ប្រសិនបើទទឹងរបស់រថយន្តគឺ 2.5m តើរយៈពេលប៉ុន្មានអនុញ្ញាតឱ្យផ្ទុកទំនិញដែលលាតសន្ធឹងទៅម្ខាងរបស់ឡាន?\"?",
+      "questionEn": "Consequence if ignored: \"If the width of the vehicle is 2.5m, how long is allowed to load goods protruded to the both side of the truck?\"?",
       "answers": [
         {
           "answerKm": "ការទទួលបានប្រាក់រង្វាន់លើកទឹកចិត្តពីសាលាក្រុង",
@@ -753,8 +753,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
-      "questionEn": "How do you correctly understand \"Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?\"?",
+      "questionKm": "បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?",
+      "questionEn": "Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?",
       "answers": [
         {
           "answerKm": "២៥ ត",
@@ -796,8 +796,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"២៥ ត\"។",
-      "questionEn": "When you face the question \"Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?\", you know the correct answer is \"25T\".",
+      "questionKm": "\"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?\" ចម្លើយគឺ \"២៥ ត\"?",
+      "questionEn": "\"Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?\" Answer: \"25T\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -827,8 +827,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
-      "questionEn": "Which answer do you choose correctly for \"Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
+      "questionEn": "Correct answer: \"Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "០១ម",
@@ -870,8 +870,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
+      "questionEn": "Road rules: \"Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "មិនអនុញ្ញាតទាល់តែសោះ។",
@@ -913,8 +913,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
-      "questionEn": "What correct action must you take regarding \"Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
+      "questionEn": "Correct action: \"Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "មិនលើសពី 4.20 ម។",
@@ -956,8 +956,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
+      "questionEn": "Situation: \"Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "មិនអនុញ្ញាតទាល់តែសោះ។",
@@ -999,8 +999,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"មិនអនុញ្ញាតទាល់តែសោះ។\" គឺជាចម្លើយសម្រាប់ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
-      "questionEn": "Is it correct if you believe that \"Not allow at all.\" is the answer for \"Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?\"?",
+      "questionKm": "\"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?\" ចម្លើយគឺ \"មិនអនុញ្ញាតទាល់តែសោះ។\"?",
+      "questionEn": "\"Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?\" Answer: \"Not allow at all.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1030,8 +1030,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
+      "questionEn": "Why respect the rule: \"Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "ដើម្បីចៀសវាងការបង់ពន្ធបន្តិចបន្តួចជូនរដ្ឋ",
@@ -1073,8 +1073,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សបី (កង់១០) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
+      "questionEn": "Consequence if ignored: \"Driving on National road 4, how many tons is a maximum weight of vehicles with three axles (10 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -1116,8 +1116,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) អនុញ្ញាត?\"?",
-      "questionEn": "How do you correctly understand \"Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?\"?",
+      "questionKm": "បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) អនុញ្ញាត?",
+      "questionEn": "Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?",
       "answers": [
         {
           "answerKm": "6T",
@@ -1159,8 +1159,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) អនុញ្ញាត?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"៣៥ ត\"។",
-      "questionEn": "When you face the question \"Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?\", you know the correct answer is \"35T\".",
+      "questionKm": "\"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) អនុញ្ញាត?\" ចម្លើយគឺ \"៣៥ ត\"?",
+      "questionEn": "\"Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?\" Answer: \"35T\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1190,8 +1190,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) អនុញ្ញាត?\"?",
-      "questionEn": "Which answer do you choose correctly for \"Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) អនុញ្ញាត?\"?",
+      "questionEn": "Correct answer: \"Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "៣៥ ត",
@@ -1233,8 +1233,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) អនុញ្ញាត?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) អនុញ្ញាត?\"?",
+      "questionEn": "Road rules: \"Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "មិនអនុញ្ញាតទាល់តែសោះ។",
@@ -1276,8 +1276,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) អនុញ្ញាត?\"?",
-      "questionEn": "What correct action must you take regarding \"Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) អនុញ្ញាត?\"?",
+      "questionEn": "Correct action: \"Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "១៩ ត",
@@ -1319,8 +1319,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) អនុញ្ញាត?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) អនុញ្ញាត?\"?",
+      "questionEn": "Situation: \"Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "០៣ ម",
@@ -1362,8 +1362,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"០៣ ម\" គឺជាចម្លើយសម្រាប់ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) អនុញ្ញាត?\"?",
-      "questionEn": "Is it correct if you believe that \"03m\" is the answer for \"Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?\"?",
+      "questionKm": "\"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) អនុញ្ញាត?\" ចម្លើយគឺ \"០៣ ម\"?",
+      "questionEn": "\"Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?\" Answer: \"03m\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1393,8 +1393,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) អនុញ្ញាត?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) អនុញ្ញាត?\"?",
+      "questionEn": "Why respect the rule: \"Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "ដើម្បីចៀសវាងការបង់ពន្ធបន្តិចបន្តួចជូនរដ្ឋ",
@@ -1436,8 +1436,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) អនុញ្ញាត?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះអតិបរមាចំនួនប៉ុន្មានតោន (កង់១២) អនុញ្ញាត?\"?",
+      "questionEn": "Consequence if ignored: \"Driving on National road 4, how many tons is a maximum weight of vehicles with four axles (12 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -1479,8 +1479,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
-      "questionEn": "How do you correctly understand \"Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?\"?",
+      "questionKm": "បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?",
+      "questionEn": "Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?",
       "answers": [
         {
           "answerKm": "មិនអនុញ្ញាតទាល់តែសោះ។",
@@ -1522,8 +1522,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"40T\"។",
-      "questionEn": "When you face the question \"Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?\", you know the correct answer is \"40T\".",
+      "questionKm": "\"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?\" ចម្លើយគឺ \"40T\"?",
+      "questionEn": "\"Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?\" Answer: \"40T\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1553,8 +1553,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
-      "questionEn": "Which answer do you choose correctly for \"Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
+      "questionEn": "Correct answer: \"Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "6T",
@@ -1596,8 +1596,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
+      "questionEn": "Road rules: \"Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "៣៥ ត",
@@ -1639,8 +1639,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
-      "questionEn": "What correct action must you take regarding \"Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
+      "questionEn": "Correct action: \"Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "៣៥ ត",
@@ -1682,8 +1682,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
+      "questionEn": "Situation: \"Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "40T",
@@ -1725,8 +1725,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"១៩ ត\" គឺជាចម្លើយសម្រាប់ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
-      "questionEn": "Is it correct if you believe that \"19T\" is the answer for \"Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?\"?",
+      "questionKm": "\"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?\" ចម្លើយគឺ \"១៩ ត\"?",
+      "questionEn": "\"Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?\" Answer: \"19T\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1756,8 +1756,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
+      "questionEn": "Why respect the rule: \"Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -1799,8 +1799,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សប្រាំ (១៦កង់) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
+      "questionEn": "Consequence if ignored: \"Driving on National road 4, how many tons is a maximum weight of vehicles with five axles (16 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -1842,8 +1842,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?\"?",
-      "questionEn": "How do you correctly understand \"Loading goods, how long protruded to the back of vehicle is allowed without sign?\"?",
+      "questionKm": "ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?",
+      "questionEn": "Loading goods, how long protruded to the back of vehicle is allowed without sign?",
       "answers": [
         {
           "answerKm": "មិនអនុញ្ញាតទាល់តែសោះ។",
@@ -1885,8 +1885,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"០១ម\"។",
-      "questionEn": "When you face the question \"Loading goods, how long protruded to the back of vehicle is allowed without sign?\", you know the correct answer is \"01m\".",
+      "questionKm": "\"ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?\" ចម្លើយគឺ \"០១ម\"?",
+      "questionEn": "\"Loading goods, how long protruded to the back of vehicle is allowed without sign?\" Answer: \"01m\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1916,8 +1916,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?\"?",
-      "questionEn": "Which answer do you choose correctly for \"Loading goods, how long protruded to the back of vehicle is allowed without sign?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?\"?",
+      "questionEn": "Correct answer: \"Loading goods, how long protruded to the back of vehicle is allowed without sign?\"?",
       "answers": [
         {
           "answerKm": "មិនអនុញ្ញាតទាល់តែសោះ។",
@@ -1959,8 +1959,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"Loading goods, how long protruded to the back of vehicle is allowed without sign?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?\"?",
+      "questionEn": "Road rules: \"Loading goods, how long protruded to the back of vehicle is allowed without sign?\"?",
       "answers": [
         {
           "answerKm": "40T",
@@ -2002,8 +2002,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?\"?",
-      "questionEn": "What correct action must you take regarding \"Loading goods, how long protruded to the back of vehicle is allowed without sign?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?\"?",
+      "questionEn": "Correct action: \"Loading goods, how long protruded to the back of vehicle is allowed without sign?\"?",
       "answers": [
         {
           "answerKm": "០១ម",
@@ -2045,8 +2045,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"Loading goods, how long protruded to the back of vehicle is allowed without sign?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?\"?",
+      "questionEn": "Situation: \"Loading goods, how long protruded to the back of vehicle is allowed without sign?\"?",
       "answers": [
         {
           "answerKm": "០៣ ម",
@@ -2088,8 +2088,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"០៣ ម\" គឺជាចម្លើយសម្រាប់ \"ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?\"?",
-      "questionEn": "Is it correct if you believe that \"03m\" is the answer for \"Loading goods, how long protruded to the back of vehicle is allowed without sign?\"?",
+      "questionKm": "\"ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?\" ចម្លើយគឺ \"០៣ ម\"?",
+      "questionEn": "\"Loading goods, how long protruded to the back of vehicle is allowed without sign?\" Answer: \"03m\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2119,8 +2119,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"Loading goods, how long protruded to the back of vehicle is allowed without sign?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?\"?",
+      "questionEn": "Why respect the rule: \"Loading goods, how long protruded to the back of vehicle is allowed without sign?\"?",
       "answers": [
         {
           "answerKm": "គ្រាន់តែដើម្បីប្រឡងយកប័ណ្ណបើកបរឱ្យជាប់ងាយស្រួលប៉ុណ្ណោះ",
@@ -2162,8 +2162,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"Loading goods, how long protruded to the back of vehicle is allowed without sign?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"ការ​ផ្ទុក​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​មាន​សញ្ញា​នៅ​ខាង​ក្រោយ​រយៈពេល​ប៉ុន្មាន?\"?",
+      "questionEn": "Consequence if ignored: \"Loading goods, how long protruded to the back of vehicle is allowed without sign?\"?",
       "answers": [
         {
           "answerKm": "វាអាចនាំឱ្យមានការផាកពិន័យ ត្រូវទទួលខុសត្រូវតាមច្បាប់ ឬបង្កគ្រោះថ្នាក់ធ្ងន់ធ្ងរ",
@@ -2205,8 +2205,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?\"?",
-      "questionEn": "How do you correctly understand \"Loading goods, how high of goods from the earth is allowed?\"?",
+      "questionKm": "ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?",
+      "questionEn": "Loading goods, how high of goods from the earth is allowed?",
       "answers": [
         {
           "answerKm": "40T",
@@ -2248,8 +2248,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"មិនលើសពី 4.20 ម។\"។",
-      "questionEn": "When you face the question \"Loading goods, how high of goods from the earth is allowed?\", you know the correct answer is \"Not more than 4.20m\".",
+      "questionKm": "\"ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?\" ចម្លើយគឺ \"មិនលើសពី 4.20 ម។\"?",
+      "questionEn": "\"Loading goods, how high of goods from the earth is allowed?\" Answer: \"Not more than 4.20m\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2279,8 +2279,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?\"?",
-      "questionEn": "Which answer do you choose correctly for \"Loading goods, how high of goods from the earth is allowed?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?\"?",
+      "questionEn": "Correct answer: \"Loading goods, how high of goods from the earth is allowed?\"?",
       "answers": [
         {
           "answerKm": "6T",
@@ -2322,8 +2322,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"Loading goods, how high of goods from the earth is allowed?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?\"?",
+      "questionEn": "Road rules: \"Loading goods, how high of goods from the earth is allowed?\"?",
       "answers": [
         {
           "answerKm": "មិនលើសពី 4.20 ម។",
@@ -2365,8 +2365,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?\"?",
-      "questionEn": "What correct action must you take regarding \"Loading goods, how high of goods from the earth is allowed?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?\"?",
+      "questionEn": "Correct action: \"Loading goods, how high of goods from the earth is allowed?\"?",
       "answers": [
         {
           "answerKm": "ដំឡើងសញ្ញារបស់សារធាតុ។",
@@ -2408,8 +2408,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"Loading goods, how high of goods from the earth is allowed?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?\"?",
+      "questionEn": "Situation: \"Loading goods, how high of goods from the earth is allowed?\"?",
       "answers": [
         {
           "answerKm": "៣៥ ត",
@@ -2451,8 +2451,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ដំឡើងសញ្ញារបស់សារធាតុ។\" គឺជាចម្លើយសម្រាប់ \"ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?\"?",
-      "questionEn": "Is it correct if you believe that \"Install the sign of the substance.\" is the answer for \"Loading goods, how high of goods from the earth is allowed?\"?",
+      "questionKm": "\"ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?\" ចម្លើយគឺ \"ដំឡើងសញ្ញារបស់សារធាតុ។\"?",
+      "questionEn": "\"Loading goods, how high of goods from the earth is allowed?\" Answer: \"Install the sign of the substance.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2482,8 +2482,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"Loading goods, how high of goods from the earth is allowed?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?\"?",
+      "questionEn": "Why respect the rule: \"Loading goods, how high of goods from the earth is allowed?\"?",
       "answers": [
         {
           "answerKm": "ដើម្បីធានាសុវត្ថិភាព បង្ការគ្រោះថ្នាក់ និងរក្សាសណ្តាប់ធ្នាប់លើដងផ្លូវ",
@@ -2525,8 +2525,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"Loading goods, how high of goods from the earth is allowed?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"ការ​ផ្ទុក​ទំនិញ តើ​ទំនិញ​ពី​ផែនដី​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ខ្ពស់​ប៉ុណ្ណា?\"?",
+      "questionEn": "Consequence if ignored: \"Loading goods, how high of goods from the earth is allowed?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -2568,8 +2568,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
-      "questionEn": "How do you correctly understand \"What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?",
+      "questionEn": "What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?",
       "answers": [
         {
           "answerKm": "ផ្ទុកនៅកណ្តាលរថយន្ត។",
@@ -2611,8 +2611,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"10T\"។",
-      "questionEn": "When you face the question \"What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?\", you know the correct answer is \"10T\".",
+      "questionKm": "\"តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\" ចម្លើយគឺ \"10T\"?",
+      "questionEn": "\"What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?\" Answer: \"10T\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2642,8 +2642,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
-      "questionEn": "Which answer do you choose correctly for \"What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
+      "questionEn": "Correct answer: \"What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?\"?",
       "answers": [
         {
           "answerKm": "10T",
@@ -2685,8 +2685,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
+      "questionEn": "Road rules: \"What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?\"?",
       "answers": [
         {
           "answerKm": "6T",
@@ -2728,8 +2728,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
-      "questionEn": "What correct action must you take regarding \"What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
+      "questionEn": "Correct action: \"What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?\"?",
       "answers": [
         {
           "answerKm": "២៥ ត",
@@ -2771,8 +2771,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
+      "questionEn": "Situation: \"What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?\"?",
       "answers": [
         {
           "answerKm": "មិនអនុញ្ញាតទាល់តែសោះ។",
@@ -2814,8 +2814,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"មិនអនុញ្ញាតទាល់តែសោះ។\" គឺជាចម្លើយសម្រាប់ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
-      "questionEn": "Is it correct if you believe that \"Not allow at all.\" is the answer for \"What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "\"តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\" ចម្លើយគឺ \"មិនអនុញ្ញាតទាល់តែសោះ។\"?",
+      "questionEn": "\"What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?\" Answer: \"Not allow at all.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2845,8 +2845,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
+      "questionEn": "Why respect the rule: \"What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -2888,8 +2888,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សនីមួយៗ (កង់បួន) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
+      "questionEn": "Consequence if ignored: \"What is maximum weight on each axle (four wheels) of vehicle or trailer allowed?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -2931,8 +2931,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
-      "questionEn": "How do you correctly understand \"Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?\"?",
+      "questionKm": "បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?",
+      "questionEn": "Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?",
       "answers": [
         {
           "answerKm": "6T",
@@ -2974,8 +2974,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"១៦ ត\"។",
-      "questionEn": "When you face the question \"Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?\", you know the correct answer is \"16T\".",
+      "questionKm": "\"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?\" ចម្លើយគឺ \"១៦ ត\"?",
+      "questionEn": "\"Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?\" Answer: \"16T\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3005,8 +3005,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
-      "questionEn": "Which answer do you choose correctly for \"Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
+      "questionEn": "Correct answer: \"Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "១៩ ត",
@@ -3048,8 +3048,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
+      "questionEn": "Road rules: \"Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "១៩ ត",
@@ -3091,8 +3091,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
-      "questionEn": "What correct action must you take regarding \"Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
+      "questionEn": "Correct action: \"Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "០៣ ម",
@@ -3134,8 +3134,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
+      "questionEn": "Situation: \"Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "មិនអនុញ្ញាតទាល់តែសោះ។",
@@ -3177,8 +3177,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ដំឡើងសញ្ញារបស់សារធាតុ។\" គឺជាចម្លើយសម្រាប់ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
-      "questionEn": "Is it correct if you believe that \"Install the sign of the substance.\" is the answer for \"Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?\"?",
+      "questionKm": "\"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?\" ចម្លើយគឺ \"ដំឡើងសញ្ញារបស់សារធាតុ។\"?",
+      "questionEn": "\"Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?\" Answer: \"Install the sign of the substance.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3208,8 +3208,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
+      "questionEn": "Why respect the rule: \"Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "ដើម្បីចៀសវាងការបង់ពន្ធបន្តិចបន្តួចជូនរដ្ឋ",
@@ -3251,8 +3251,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"បើកបរលើផ្លូវជាតិលេខ៤ តើយានជំនិះដែលមានអ័ក្សពីរ (កង់៦) អនុញ្ញាតបានប៉ុន្មានតោន?\"?",
+      "questionEn": "Consequence if ignored: \"Driving on National road 4, how many tons is a maximum weight of vehicles with two axles (6 wheels) allowed?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -3294,8 +3294,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
-      "questionEn": "How do you correctly understand \"What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?",
+      "questionEn": "What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?",
       "answers": [
         {
           "answerKm": "១៩ ត",
@@ -3337,8 +3337,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"១៩ ត\"។",
-      "questionEn": "When you face the question \"What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?\", you know the correct answer is \"19T\".",
+      "questionKm": "\"តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\" ចម្លើយគឺ \"១៩ ត\"?",
+      "questionEn": "\"What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?\" Answer: \"19T\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3368,8 +3368,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
-      "questionEn": "Which answer do you choose correctly for \"What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
+      "questionEn": "Correct answer: \"What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?\"?",
       "answers": [
         {
           "answerKm": "6T",
@@ -3411,8 +3411,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
+      "questionEn": "Road rules: \"What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?\"?",
       "answers": [
         {
           "answerKm": "10T",
@@ -3454,8 +3454,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
-      "questionEn": "What correct action must you take regarding \"What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
+      "questionEn": "Correct action: \"What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?\"?",
       "answers": [
         {
           "answerKm": "មិនអនុញ្ញាតទាល់តែសោះ។",
@@ -3497,8 +3497,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
+      "questionEn": "Situation: \"What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?\"?",
       "answers": [
         {
           "answerKm": "ដំឡើងសញ្ញារបស់សារធាតុ។",
@@ -3540,8 +3540,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ដំឡើងសញ្ញារបស់សារធាតុ។\" គឺជាចម្លើយសម្រាប់ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
-      "questionEn": "Is it correct if you believe that \"Install the sign of the substance.\" is the answer for \"What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "\"តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\" ចម្លើយគឺ \"ដំឡើងសញ្ញារបស់សារធាតុ។\"?",
+      "questionEn": "\"What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?\" Answer: \"Install the sign of the substance.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3571,8 +3571,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
+      "questionEn": "Why respect the rule: \"What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?\"?",
       "answers": [
         {
           "answerKm": "គ្រាន់តែដើម្បីប្រឡងយកប័ណ្ណបើកបរឱ្យជាប់ងាយស្រួលប៉ុណ្ណោះ",
@@ -3614,8 +3614,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សភ្លោះ (កង់ប្រាំបី) របស់យានជំនិះ ឬរ៉ឺម៉កអនុញ្ញាត?\"?",
+      "questionEn": "Consequence if ignored: \"What is maximum weight on twin axles (eight wheels) of vehicle or trailer allowed?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -3657,8 +3657,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?\"?",
-      "questionEn": "How do you correctly understand \"Loading small goods but heavy, how shall you arrange to load?\"?",
+      "questionKm": "ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?",
+      "questionEn": "Loading small goods but heavy, how shall you arrange to load?",
       "answers": [
         {
           "answerKm": "មិនអនុញ្ញាតទាល់តែសោះ។",
@@ -3700,8 +3700,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ផ្ទុកនៅកណ្តាលរថយន្ត។\"។",
-      "questionEn": "When you face the question \"Loading small goods but heavy, how shall you arrange to load?\", you know the correct answer is \"Load in the center of the vehicle.\".",
+      "questionKm": "\"ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?\" ចម្លើយគឺ \"ផ្ទុកនៅកណ្តាលរថយន្ត។\"?",
+      "questionEn": "\"Loading small goods but heavy, how shall you arrange to load?\" Answer: \"Load in the center of the vehicle.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3731,8 +3731,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?\"?",
-      "questionEn": "Which answer do you choose correctly for \"Loading small goods but heavy, how shall you arrange to load?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?\"?",
+      "questionEn": "Correct answer: \"Loading small goods but heavy, how shall you arrange to load?\"?",
       "answers": [
         {
           "answerKm": "មិនអនុញ្ញាតទាល់តែសោះ។",
@@ -3774,8 +3774,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"Loading small goods but heavy, how shall you arrange to load?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?\"?",
+      "questionEn": "Road rules: \"Loading small goods but heavy, how shall you arrange to load?\"?",
       "answers": [
         {
           "answerKm": "ផ្ទុកនៅកណ្តាលរថយន្ត។",
@@ -3817,8 +3817,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?\"?",
-      "questionEn": "What correct action must you take regarding \"Loading small goods but heavy, how shall you arrange to load?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?\"?",
+      "questionEn": "Correct action: \"Loading small goods but heavy, how shall you arrange to load?\"?",
       "answers": [
         {
           "answerKm": "២៥ ត",
@@ -3860,8 +3860,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"Loading small goods but heavy, how shall you arrange to load?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?\"?",
+      "questionEn": "Situation: \"Loading small goods but heavy, how shall you arrange to load?\"?",
       "answers": [
         {
           "answerKm": "មិនអនុញ្ញាតទាល់តែសោះ។",
@@ -3903,8 +3903,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"មិនអនុញ្ញាតទាល់តែសោះ។\" គឺជាចម្លើយសម្រាប់ \"ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?\"?",
-      "questionEn": "Is it correct if you believe that \"Not allow at all.\" is the answer for \"Loading small goods but heavy, how shall you arrange to load?\"?",
+      "questionKm": "\"ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?\" ចម្លើយគឺ \"មិនអនុញ្ញាតទាល់តែសោះ។\"?",
+      "questionEn": "\"Loading small goods but heavy, how shall you arrange to load?\" Answer: \"Not allow at all.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3934,8 +3934,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"Loading small goods but heavy, how shall you arrange to load?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?\"?",
+      "questionEn": "Why respect the rule: \"Loading small goods but heavy, how shall you arrange to load?\"?",
       "answers": [
         {
           "answerKm": "ដើម្បីធានាសុវត្ថិភាព បង្ការគ្រោះថ្នាក់ និងរក្សាសណ្តាប់ធ្នាប់លើដងផ្លូវ",
@@ -3977,8 +3977,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"Loading small goods but heavy, how shall you arrange to load?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"ផ្ទុកទំនិញតូច ប៉ុន្តែធ្ងន់ តើអ្នកត្រូវរៀបចំផ្ទុកដោយរបៀបណា?\"?",
+      "questionEn": "Consequence if ignored: \"Loading small goods but heavy, how shall you arrange to load?\"?",
       "answers": [
         {
           "answerKm": "ការឡើងថ្នាក់បើកបរភ្លាមៗដោយមិនបាច់ពិនិត្យ",
@@ -4020,8 +4020,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?\"?",
-      "questionEn": "How do you correctly understand \"For vehicle loading accident substance like gas or fuel, what sign shall install to notice?\"?",
+      "questionKm": "ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?",
+      "questionEn": "For vehicle loading accident substance like gas or fuel, what sign shall install to notice?",
       "answers": [
         {
           "answerKm": "០១ម",
@@ -4063,8 +4063,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ដំឡើងសញ្ញារបស់សារធាតុ។\"។",
-      "questionEn": "When you face the question \"For vehicle loading accident substance like gas or fuel, what sign shall install to notice?\", you know the correct answer is \"Install the sign of the substance.\".",
+      "questionKm": "\"ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?\" ចម្លើយគឺ \"ដំឡើងសញ្ញារបស់សារធាតុ។\"?",
+      "questionEn": "\"For vehicle loading accident substance like gas or fuel, what sign shall install to notice?\" Answer: \"Install the sign of the substance.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -4094,8 +4094,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?\"?",
-      "questionEn": "Which answer do you choose correctly for \"For vehicle loading accident substance like gas or fuel, what sign shall install to notice?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?\"?",
+      "questionEn": "Correct answer: \"For vehicle loading accident substance like gas or fuel, what sign shall install to notice?\"?",
       "answers": [
         {
           "answerKm": "ផ្ទុកនៅកណ្តាលរថយន្ត។",
@@ -4137,8 +4137,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"For vehicle loading accident substance like gas or fuel, what sign shall install to notice?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?\"?",
+      "questionEn": "Road rules: \"For vehicle loading accident substance like gas or fuel, what sign shall install to notice?\"?",
       "answers": [
         {
           "answerKm": "មិនអនុញ្ញាតទាល់តែសោះ។",
@@ -4180,8 +4180,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?\"?",
-      "questionEn": "What correct action must you take regarding \"For vehicle loading accident substance like gas or fuel, what sign shall install to notice?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?\"?",
+      "questionEn": "Correct action: \"For vehicle loading accident substance like gas or fuel, what sign shall install to notice?\"?",
       "answers": [
         {
           "answerKm": "10T",
@@ -4223,8 +4223,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"For vehicle loading accident substance like gas or fuel, what sign shall install to notice?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?\"?",
+      "questionEn": "Situation: \"For vehicle loading accident substance like gas or fuel, what sign shall install to notice?\"?",
       "answers": [
         {
           "answerKm": "មិនអនុញ្ញាតទាល់តែសោះ។",
@@ -4266,8 +4266,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"មិនអនុញ្ញាតទាល់តែសោះ។\" គឺជាចម្លើយសម្រាប់ \"ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?\"?",
-      "questionEn": "Is it correct if you believe that \"Not allow at all.\" is the answer for \"For vehicle loading accident substance like gas or fuel, what sign shall install to notice?\"?",
+      "questionKm": "\"ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?\" ចម្លើយគឺ \"មិនអនុញ្ញាតទាល់តែសោះ។\"?",
+      "questionEn": "\"For vehicle loading accident substance like gas or fuel, what sign shall install to notice?\" Answer: \"Not allow at all.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -4297,8 +4297,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"For vehicle loading accident substance like gas or fuel, what sign shall install to notice?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?\"?",
+      "questionEn": "Why respect the rule: \"For vehicle loading accident substance like gas or fuel, what sign shall install to notice?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -4340,8 +4340,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"For vehicle loading accident substance like gas or fuel, what sign shall install to notice?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"ចំពោះ​ការ​ផ្ទុក​សារធាតុ​គ្រោះថ្នាក់​ដូចជា ហ្គាស ឬ​ឥន្ធនៈ តើ​ត្រូវ​ដំឡើង​ផ្លាកសញ្ញា​អ្វី?\"?",
+      "questionEn": "Consequence if ignored: \"For vehicle loading accident substance like gas or fuel, what sign shall install to notice?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -4383,8 +4383,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) របស់យានជំនិះ ឬសណ្តោងអនុញ្ញាត?\"?",
-      "questionEn": "How do you correctly understand \"What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) របស់យានជំនិះ ឬសណ្តោងអនុញ្ញាត?",
+      "questionEn": "What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?",
       "answers": [
         {
           "answerKm": "10T",
@@ -4426,8 +4426,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) របស់យានជំនិះ ឬសណ្តោងអនុញ្ញាត?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"6T\"។",
-      "questionEn": "When you face the question \"What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?\", you know the correct answer is \"6T\".",
+      "questionKm": "\"តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) របស់យានជំនិះ ឬសណ្តោងអនុញ្ញាត?\" ចម្លើយគឺ \"6T\"?",
+      "questionEn": "\"What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?\" Answer: \"6T\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -4457,8 +4457,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) របស់យានជំនិះ ឬសណ្តោងអនុញ្ញាត?\"?",
-      "questionEn": "Which answer do you choose correctly for \"What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) របស់យានជំនិះ ឬសណ្តោងអនុញ្ញាត?\"?",
+      "questionEn": "Correct answer: \"What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?\"?",
       "answers": [
         {
           "answerKm": "មិនលើសពី 4.20 ម។",
@@ -4500,8 +4500,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) របស់យានជំនិះ ឬសណ្តោងអនុញ្ញាត?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) របស់យានជំនិះ ឬសណ្តោងអនុញ្ញាត?\"?",
+      "questionEn": "Road rules: \"What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?\"?",
       "answers": [
         {
           "answerKm": "មិនអនុញ្ញាតទាល់តែសោះ។",
@@ -4543,8 +4543,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) របស់យានជំនិះ ឬសណ្តោងអនុញ្ញាត?\"?",
-      "questionEn": "What correct action must you take regarding \"What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) របស់យានជំនិះ ឬសណ្តោងអនុញ្ញាត?\"?",
+      "questionEn": "Correct action: \"What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?\"?",
       "answers": [
         {
           "answerKm": "40T",
@@ -4586,8 +4586,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) របស់យានជំនិះ ឬសណ្តោងអនុញ្ញាត?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) របស់យានជំនិះ ឬសណ្តោងអនុញ្ញាត?\"?",
+      "questionEn": "Situation: \"What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?\"?",
       "answers": [
         {
           "answerKm": "6T",
@@ -4629,8 +4629,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"មិនអនុញ្ញាតទាល់តែសោះ។\" គឺជាចម្លើយសម្រាប់ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) របស់យានជំនិះ ឬសណ្តោងអនុញ្ញាត?\"?",
-      "questionEn": "Is it correct if you believe that \"Not allow at all.\" is the answer for \"What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "\"តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) របស់យានជំនិះ ឬសណ្តោងអនុញ្ញាត?\" ចម្លើយគឺ \"មិនអនុញ្ញាតទាល់តែសោះ។\"?",
+      "questionEn": "\"What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?\" Answer: \"Not allow at all.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -4660,8 +4660,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) របស់យានជំនិះ ឬសណ្តោងអនុញ្ញាត?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) របស់យានជំនិះ ឬសណ្តោងអនុញ្ញាត?\"?",
+      "questionEn": "Why respect the rule: \"What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?\"?",
       "answers": [
         {
           "answerKm": "ដើម្បីចៀសវាងការបង់ពន្ធបន្តិចបន្តួចជូនរដ្ឋ",
@@ -4703,8 +4703,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) របស់យានជំនិះ ឬសណ្តោងអនុញ្ញាត?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"តើទម្ងន់អតិបរមានៅលើអ័ក្សខាងមុខតែមួយ (កង់ពីរ) របស់យានជំនិះ ឬសណ្តោងអនុញ្ញាត?\"?",
+      "questionEn": "Consequence if ignored: \"What is maximum weight on the front single axles (two wheels) of vehicle or trailer allowed?\"?",
       "answers": [
         {
           "answerKm": "ការទទួលបានប្រាក់រង្វាន់លើកទឹកចិត្តពីសាលាក្រុង",
@@ -4746,8 +4746,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?\"?",
-      "questionEn": "How do you correctly understand \"Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?\"?",
+      "questionKm": "ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?",
+      "questionEn": "Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?",
       "answers": [
         {
           "answerKm": "០៣ ម",
@@ -4789,8 +4789,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"មិនអនុញ្ញាតទាល់តែសោះ។\"។",
-      "questionEn": "When you face the question \"Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?\", you know the correct answer is \"Not allow at all.\".",
+      "questionKm": "\"ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?\" ចម្លើយគឺ \"មិនអនុញ្ញាតទាល់តែសោះ។\"?",
+      "questionEn": "\"Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?\" Answer: \"Not allow at all.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -4820,8 +4820,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?\"?",
-      "questionEn": "Which answer do you choose correctly for \"Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?\"?",
+      "questionEn": "Correct answer: \"Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?\"?",
       "answers": [
         {
           "answerKm": "ផ្ទុកនៅកណ្តាលរថយន្ត។",
@@ -4863,8 +4863,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?\"?",
+      "questionEn": "Road rules: \"Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?\"?",
       "answers": [
         {
           "answerKm": "២៥ ត",
@@ -4906,8 +4906,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?\"?",
-      "questionEn": "What correct action must you take regarding \"Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?\"?",
+      "questionEn": "Correct action: \"Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?\"?",
       "answers": [
         {
           "answerKm": "១៦ ត",
@@ -4949,8 +4949,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?\"?",
+      "questionEn": "Situation: \"Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?\"?",
       "answers": [
         {
           "answerKm": "មិនអនុញ្ញាតទាល់តែសោះ។",
@@ -4992,8 +4992,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ដំឡើងសញ្ញារបស់សារធាតុ។\" គឺជាចម្លើយសម្រាប់ \"ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?\"?",
-      "questionEn": "Is it correct if you believe that \"Install the sign of the substance.\" is the answer for \"Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?\"?",
+      "questionKm": "\"ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?\" ចម្លើយគឺ \"ដំឡើងសញ្ញារបស់សារធាតុ។\"?",
+      "questionEn": "\"Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?\" Answer: \"Install the sign of the substance.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -5023,8 +5023,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?\"?",
+      "questionEn": "Why respect the rule: \"Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -5066,8 +5066,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"ការ​ដាក់​ទំនិញ តើ​ត្រូវ​អនុញ្ញាត​ឱ្យ​ផ្ទុក​ទំនិញ​ប៉ុន្មាន​ម៉ែត្រ​ពី​មុខ​រថយន្ត?\"?",
+      "questionEn": "Consequence if ignored: \"Loading goods, how many meters is allowed to load goods protruded to the front of the vehicle?\"?",
       "answers": [
         {
           "answerKm": "ការឡើងថ្នាក់បើកបរភ្លាមៗដោយមិនបាច់ពិនិត្យ",

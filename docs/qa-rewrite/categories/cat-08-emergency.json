@@ -27,8 +27,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?\"?",
-      "questionEn": "How do you correctly understand \"When a victim having wound with blooding, how can you help stop blooding?\"?",
+      "questionKm": "ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?",
+      "questionEn": "When a victim having wound with blooding, how can you help stop blooding?",
       "answers": [
         {
           "answerKm": "ផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ ហើយយកដៃទាំងពីរចុចទ្រូងរបស់គាត់។",
@@ -70,8 +70,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ប្រើក្រណាត់ ឬបង់រុំល្អដើម្បីរឹតបន្តឹងជុំវិញមុខរបួស ចងឱ្យជិតបន្តិច។\"។",
-      "questionEn": "When you face the question \"When a victim having wound with blooding, how can you help stop blooding?\", you know the correct answer is \"Use good cloth or bandage to tight around the wound, fasten a bit tightly.\".",
+      "questionKm": "\"ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?\" ចម្លើយគឺ \"ប្រើក្រណាត់ ឬបង់រុំល្អដើម្បីរឹតបន្តឹងជុំវិញមុខរបួស ចងឱ្យជិតបន្តិច។\"?",
+      "questionEn": "\"When a victim having wound with blooding, how can you help stop blooding?\" Answer: \"Use good cloth or bandage to tight around the wound, fasten a bit tightly.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -101,8 +101,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?\"?",
-      "questionEn": "Which answer do you choose correctly for \"When a victim having wound with blooding, how can you help stop blooding?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?\"?",
+      "questionEn": "Correct answer: \"When a victim having wound with blooding, how can you help stop blooding?\"?",
       "answers": [
         {
           "answerKm": "ឱ្យ​គាត់​ដេក ឬ​ឱ្យ​គាត់​ផ្អៀង​ទៅ​ម្ខាង ដើម្បី​ឱ្យ​ខ្យល់​ចូល​បាន​យ៉ាង​ងាយ",
@@ -144,8 +144,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"When a victim having wound with blooding, how can you help stop blooding?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?\"?",
+      "questionEn": "Road rules: \"When a victim having wound with blooding, how can you help stop blooding?\"?",
       "answers": [
         {
           "answerKm": "ទុក​ដៃ​ដែល​បាក់​នោះ​ដោយ​មិន​បាច់​ធ្វើ​ចលនា បន្ទាប់​មក​ប្រើ​ដែក ឬ​ក្តារ​ឈើ​ដើម្បី​ពុះ​ដៃ រួច​ចង​នឹង​ក្រណាត់ ឬ​ស្នាម​នៅ​ក ដើម្បី​ទ្រទ្រង់​ដៃ​ដែល​បាក់។",
@@ -187,8 +187,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?\"?",
-      "questionEn": "What correct action must you take regarding \"When a victim having wound with blooding, how can you help stop blooding?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?\"?",
+      "questionEn": "Correct action: \"When a victim having wound with blooding, how can you help stop blooding?\"?",
       "answers": [
         {
           "answerKm": "ដោយប្រើម្រាមដៃចុចនៅផ្នែកម្ខាងរបស់ក។",
@@ -230,8 +230,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"When a victim having wound with blooding, how can you help stop blooding?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?\"?",
+      "questionEn": "Situation: \"When a victim having wound with blooding, how can you help stop blooding?\"?",
       "answers": [
         {
           "answerKm": "សន្លប់, ដកដង្ហើម, ជីពចរ, ឈាម, និងបាក់ឆ្អឹង។",
@@ -273,8 +273,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ម៉ាស្សា 15 ដង និង 2 ដងរបស់ការសង្គ្រោះពីមាត់\" គឺជាចម្លើយសម្រាប់ \"ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?\"?",
-      "questionEn": "Is it correct if you believe that \"Massage 15 times and 2 times of mouth-to-mouth resuscitation\" is the answer for \"When a victim having wound with blooding, how can you help stop blooding?\"?",
+      "questionKm": "\"ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?\" ចម្លើយគឺ \"ម៉ាស្សា 15 ដង និង 2 ដងរបស់ការសង្គ្រោះពីមាត់\"?",
+      "questionEn": "\"When a victim having wound with blooding, how can you help stop blooding?\" Answer: \"Massage 15 times and 2 times of mouth-to-mouth resuscitation\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -304,8 +304,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"When a victim having wound with blooding, how can you help stop blooding?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?\"?",
+      "questionEn": "Why respect the rule: \"When a victim having wound with blooding, how can you help stop blooding?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -347,8 +347,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"When a victim having wound with blooding, how can you help stop blooding?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"ពេល​ជនរងគ្រោះ​មាន​របួស​ហូរ​ឈាម តើ​អ្នក​អាច​ជួយ​បញ្ឈប់​ការ​ហូរ​ឈាម​ដោយ​របៀប​ណា​?\"?",
+      "questionEn": "Consequence if ignored: \"When a victim having wound with blooding, how can you help stop blooding?\"?",
       "answers": [
         {
           "answerKm": "ការទទួលបានប្រាក់រង្វាន់លើកទឹកចិត្តពីសាលាក្រុង",
@@ -390,8 +390,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?\"?",
-      "questionEn": "How do you correctly understand \"When there is someone has an accident, what are main points needed to check to help him or her?\"?",
+      "questionKm": "ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?",
+      "questionEn": "When there is someone has an accident, what are main points needed to check to help him or her?",
       "answers": [
         {
           "answerKm": "ដោយប្រើម្រាមដៃចុចនៅផ្នែកម្ខាងរបស់ក។",
@@ -433,8 +433,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"សន្លប់, ដកដង្ហើម, ជីពចរ, ឈាម, និងបាក់ឆ្អឹង។\"។",
-      "questionEn": "When you face the question \"When there is someone has an accident, what are main points needed to check to help him or her?\", you know the correct answer is \"Unconsciousness, no breathing, no pulse, blooding, and bone break.\".",
+      "questionKm": "\"ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?\" ចម្លើយគឺ \"សន្លប់, ដកដង្ហើម, ជីពចរ, ឈាម, និងបាក់ឆ្អឹង។\"?",
+      "questionEn": "\"When there is someone has an accident, what are main points needed to check to help him or her?\" Answer: \"Unconsciousness, no breathing, no pulse, blooding, and bone break.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -464,8 +464,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?\"?",
-      "questionEn": "Which answer do you choose correctly for \"When there is someone has an accident, what are main points needed to check to help him or her?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?\"?",
+      "questionEn": "Correct answer: \"When there is someone has an accident, what are main points needed to check to help him or her?\"?",
       "answers": [
         {
           "answerKm": "2 ទៅ 3 នាទី។",
@@ -507,8 +507,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"When there is someone has an accident, what are main points needed to check to help him or her?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?\"?",
+      "questionEn": "Road rules: \"When there is someone has an accident, what are main points needed to check to help him or her?\"?",
       "answers": [
         {
           "answerKm": "2 ទៅ 3 នាទី។",
@@ -550,8 +550,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?\"?",
-      "questionEn": "What correct action must you take regarding \"When there is someone has an accident, what are main points needed to check to help him or her?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?\"?",
+      "questionEn": "Correct action: \"When there is someone has an accident, what are main points needed to check to help him or her?\"?",
       "answers": [
         {
           "answerKm": "សន្លប់, ដកដង្ហើម, ជីពចរ, ឈាម, និងបាក់ឆ្អឹង។",
@@ -593,8 +593,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"When there is someone has an accident, what are main points needed to check to help him or her?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?\"?",
+      "questionEn": "Situation: \"When there is someone has an accident, what are main points needed to check to help him or her?\"?",
       "answers": [
         {
           "answerKm": "ប្រហែល 15 ដងក្នុងមួយនាទី",
@@ -636,8 +636,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ឱ្យ​គាត់​ដេក ឬ​ឱ្យ​គាត់​ផ្អៀង​ទៅ​ម្ខាង ដើម្បី​ឱ្យ​ខ្យល់​ចូល​បាន​យ៉ាង​ងាយ\" គឺជាចម្លើយសម្រាប់ \"ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?\"?",
-      "questionEn": "Is it correct if you believe that \"Let him/her lie down or let him/her incline to one side so that the air can easily get through\" is the answer for \"When there is someone has an accident, what are main points needed to check to help him or her?\"?",
+      "questionKm": "\"ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?\" ចម្លើយគឺ \"ឱ្យ​គាត់​ដេក ឬ​ឱ្យ​គាត់​ផ្អៀង​ទៅ​ម្ខាង ដើម្បី​ឱ្យ​ខ្យល់​ចូល​បាន​យ៉ាង​ងាយ\"?",
+      "questionEn": "\"When there is someone has an accident, what are main points needed to check to help him or her?\" Answer: \"Let him/her lie down or let him/her incline to one side so that the air can easily get through\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -667,8 +667,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"When there is someone has an accident, what are main points needed to check to help him or her?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?\"?",
+      "questionEn": "Why respect the rule: \"When there is someone has an accident, what are main points needed to check to help him or her?\"?",
       "answers": [
         {
           "answerKm": "គ្រាន់តែដើម្បីប្រឡងយកប័ណ្ណបើកបរឱ្យជាប់ងាយស្រួលប៉ុណ្ណោះ",
@@ -710,8 +710,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"When there is someone has an accident, what are main points needed to check to help him or her?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"ពេល​មាន​នរណា​ម្នាក់​ជួប​ឧបទ្ទវហេតុ តើ​មាន​ចំណុច​សំខាន់​អ្វី​ខ្លះ​ដែល​ត្រូវ​ពិនិត្យ​ដើម្បី​ជួយ​គាត់?\"?",
+      "questionEn": "Consequence if ignored: \"When there is someone has an accident, what are main points needed to check to help him or her?\"?",
       "answers": [
         {
           "answerKm": "វាអាចនាំឱ្យមានការផាកពិន័យ ត្រូវទទួលខុសត្រូវតាមច្បាប់ ឬបង្កគ្រោះថ្នាក់ធ្ងន់ធ្ងរ",
@@ -753,8 +753,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?\"?",
-      "questionEn": "How do you correctly understand \"How do you realize that the victim's pulse does not work?\"?",
+      "questionKm": "តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?",
+      "questionEn": "How do you realize that the victim's pulse does not work?",
       "answers": [
         {
           "answerKm": "ឱ្យ​គាត់​ដេក ឬ​ឱ្យ​គាត់​ផ្អៀង​ទៅ​ម្ខាង ដើម្បី​ឱ្យ​ខ្យល់​ចូល​បាន​យ៉ាង​ងាយ",
@@ -796,8 +796,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ដោយប្រើម្រាមដៃចុចនៅផ្នែកម្ខាងរបស់ក។\"។",
-      "questionEn": "When you face the question \"How do you realize that the victim's pulse does not work?\", you know the correct answer is \"By using fingers to press at the a side of the neck.\".",
+      "questionKm": "\"តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?\" ចម្លើយគឺ \"ដោយប្រើម្រាមដៃចុចនៅផ្នែកម្ខាងរបស់ក។\"?",
+      "questionEn": "\"How do you realize that the victim's pulse does not work?\" Answer: \"By using fingers to press at the a side of the neck.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -827,8 +827,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?\"?",
-      "questionEn": "Which answer do you choose correctly for \"How do you realize that the victim's pulse does not work?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?\"?",
+      "questionEn": "Correct answer: \"How do you realize that the victim's pulse does not work?\"?",
       "answers": [
         {
           "answerKm": "ប្រហែល 15 ដងក្នុងមួយនាទី",
@@ -870,8 +870,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"How do you realize that the victim's pulse does not work?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?\"?",
+      "questionEn": "Road rules: \"How do you realize that the victim's pulse does not work?\"?",
       "answers": [
         {
           "answerKm": "ដោយប្រើម្រាមដៃចុចនៅផ្នែកម្ខាងរបស់ក។",
@@ -913,8 +913,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?\"?",
-      "questionEn": "What correct action must you take regarding \"How do you realize that the victim's pulse does not work?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?\"?",
+      "questionEn": "Correct action: \"How do you realize that the victim's pulse does not work?\"?",
       "answers": [
         {
           "answerKm": "ឱ្យ​គាត់​ដេក ឬ​ឱ្យ​គាត់​ផ្អៀង​ទៅ​ម្ខាង ដើម្បី​ឱ្យ​ខ្យល់​ចូល​បាន​យ៉ាង​ងាយ",
@@ -956,8 +956,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"How do you realize that the victim's pulse does not work?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?\"?",
+      "questionEn": "Situation: \"How do you realize that the victim's pulse does not work?\"?",
       "answers": [
         {
           "answerKm": "ចុច 15 ដងហើយផ្លុំ 2 ដង",
@@ -999,8 +999,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ម៉ាស្សា 15 ដង និង 2 ដងរបស់ការសង្គ្រោះពីមាត់\" គឺជាចម្លើយសម្រាប់ \"តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?\"?",
-      "questionEn": "Is it correct if you believe that \"Massage 15 times and 2 times of mouth-to-mouth resuscitation\" is the answer for \"How do you realize that the victim's pulse does not work?\"?",
+      "questionKm": "\"តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?\" ចម្លើយគឺ \"ម៉ាស្សា 15 ដង និង 2 ដងរបស់ការសង្គ្រោះពីមាត់\"?",
+      "questionEn": "\"How do you realize that the victim's pulse does not work?\" Answer: \"Massage 15 times and 2 times of mouth-to-mouth resuscitation\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1030,8 +1030,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"How do you realize that the victim's pulse does not work?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?\"?",
+      "questionEn": "Why respect the rule: \"How do you realize that the victim's pulse does not work?\"?",
       "answers": [
         {
           "answerKm": "ដើម្បីធានាសុវត្ថិភាព បង្ការគ្រោះថ្នាក់ និងរក្សាសណ្តាប់ធ្នាប់លើដងផ្លូវ",
@@ -1073,8 +1073,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"How do you realize that the victim's pulse does not work?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"តើ​ធ្វើ​ដូចម្តេច​ទើប​ដឹង​ថា ជីពចរ​របស់​ជនរងគ្រោះ​មិន​ដំណើរការ?\"?",
+      "questionEn": "Consequence if ignored: \"How do you realize that the victim's pulse does not work?\"?",
       "answers": [
         {
           "answerKm": "ការឡើងថ្នាក់បើកបរភ្លាមៗដោយមិនបាច់ពិនិត្យ",
@@ -1116,8 +1116,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?\"?",
-      "questionEn": "How do you correctly understand \"How do you realize that the victim is not breathing?\"?",
+      "questionKm": "ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?",
+      "questionEn": "How do you realize that the victim is not breathing?",
       "answers": [
         {
           "answerKm": "ប្រហែល 15 ដងក្នុងមួយនាទី",
@@ -1159,8 +1159,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ជន​រង​គ្រោះ​មិន​មាន​ចលនា​ឡើង​ចុះ​ក្រោម និង​មិន​មាន​ដង្ហើម​តាម​មាត់ និង​ច្រមុះ។\"។",
-      "questionEn": "When you face the question \"How do you realize that the victim is not breathing?\", you know the correct answer is \"The victim does not have movement up and down and no breathing through mouth and nose.\".",
+      "questionKm": "\"ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?\" ចម្លើយគឺ \"ជន​រង​គ្រោះ​មិន​មាន​ចលនា​ឡើង​ចុះ​ក្រោម និង​មិន​មាន​ដង្ហើម​តាម​មាត់ និង​ច្រមុះ។\"?",
+      "questionEn": "\"How do you realize that the victim is not breathing?\" Answer: \"The victim does not have movement up and down and no breathing through mouth and nose.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1190,8 +1190,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?\"?",
-      "questionEn": "Which answer do you choose correctly for \"How do you realize that the victim is not breathing?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?\"?",
+      "questionEn": "Correct answer: \"How do you realize that the victim is not breathing?\"?",
       "answers": [
         {
           "answerKm": "ជន​រង​គ្រោះ​មិន​មាន​ចលនា​ឡើង​ចុះ​ក្រោម និង​មិន​មាន​ដង្ហើម​តាម​មាត់ និង​ច្រមុះ។",
@@ -1233,8 +1233,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"How do you realize that the victim is not breathing?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?\"?",
+      "questionEn": "Road rules: \"How do you realize that the victim is not breathing?\"?",
       "answers": [
         {
           "answerKm": "ធ្វើ CPR ដោយផ្លុំខ្យល់ចូលតាមមាត់ជនរងគ្រោះ ហើយចុចទ្រូងដោយដៃពីរ។",
@@ -1276,8 +1276,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?\"?",
-      "questionEn": "What correct action must you take regarding \"How do you realize that the victim is not breathing?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?\"?",
+      "questionEn": "Correct action: \"How do you realize that the victim is not breathing?\"?",
       "answers": [
         {
           "answerKm": "ទុក​ដៃ​ដែល​បាក់​នោះ​ដោយ​មិន​បាច់​ធ្វើ​ចលនា បន្ទាប់​មក​ប្រើ​ដែក ឬ​ក្តារ​ឈើ​ដើម្បី​ពុះ​ដៃ រួច​ចង​នឹង​ក្រណាត់ ឬ​ស្នាម​នៅ​ក ដើម្បី​ទ្រទ្រង់​ដៃ​ដែល​បាក់។",
@@ -1319,8 +1319,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"How do you realize that the victim is not breathing?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?\"?",
+      "questionEn": "Situation: \"How do you realize that the victim is not breathing?\"?",
       "answers": [
         {
           "answerKm": "ប្រហែល 15 ដងក្នុងមួយនាទី",
@@ -1362,8 +1362,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ធ្វើ CPR ដោយផ្លុំខ្យល់ចូលតាមមាត់ជនរងគ្រោះ ហើយចុចទ្រូងដោយដៃពីរ។\" គឺជាចម្លើយសម្រាប់ \"ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?\"?",
-      "questionEn": "Is it correct if you believe that \"Do the CPR by blowing the air in through the victim's mouth and press his or her chest by two hands.\" is the answer for \"How do you realize that the victim is not breathing?\"?",
+      "questionKm": "\"ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?\" ចម្លើយគឺ \"ធ្វើ CPR ដោយផ្លុំខ្យល់ចូលតាមមាត់ជនរងគ្រោះ ហើយចុចទ្រូងដោយដៃពីរ។\"?",
+      "questionEn": "\"How do you realize that the victim is not breathing?\" Answer: \"Do the CPR by blowing the air in through the victim's mouth and press his or her chest by two hands.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1393,8 +1393,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"How do you realize that the victim is not breathing?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?\"?",
+      "questionEn": "Why respect the rule: \"How do you realize that the victim is not breathing?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -1436,8 +1436,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"How do you realize that the victim is not breathing?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"ធ្វើ​ម៉េច​ដឹង​ថា​ជនរងគ្រោះ​មិន​ដកដង្ហើម​?\"?",
+      "questionEn": "Consequence if ignored: \"How do you realize that the victim is not breathing?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -1479,8 +1479,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?\"?",
-      "questionEn": "How do you correctly understand \"How do you realize that the victim got broken arm(s) or leg(s)?\"?",
+      "questionKm": "តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?",
+      "questionEn": "How do you realize that the victim got broken arm(s) or leg(s)?",
       "answers": [
         {
           "answerKm": "ធ្វើ CPR ដោយផ្លុំខ្យល់ចូលតាមមាត់ជនរងគ្រោះ ហើយចុចទ្រូងដោយដៃពីរ។",
@@ -1522,8 +1522,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ដោយ​ដឹង​ថា ជន​រង​គ្រោះ​មាន​របួស​ដៃ និង​ជើង​ជា​ខ្លាំង ពេល​ចង់​រើ​ខ្លួន​។\"។",
-      "questionEn": "When you face the question \"How do you realize that the victim got broken arm(s) or leg(s)?\", you know the correct answer is \"Realizing that the victim gets a lot of hurt at the arms and legs when he/she want to move his/her them.\".",
+      "questionKm": "\"តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?\" ចម្លើយគឺ \"ដោយ​ដឹង​ថា ជន​រង​គ្រោះ​មាន​របួស​ដៃ និង​ជើង​ជា​ខ្លាំង ពេល​ចង់​រើ​ខ្លួន​។\"?",
+      "questionEn": "\"How do you realize that the victim got broken arm(s) or leg(s)?\" Answer: \"Realizing that the victim gets a lot of hurt at the arms and legs when he/she want to move his/her them.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1553,8 +1553,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?\"?",
-      "questionEn": "Which answer do you choose correctly for \"How do you realize that the victim got broken arm(s) or leg(s)?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?\"?",
+      "questionEn": "Correct answer: \"How do you realize that the victim got broken arm(s) or leg(s)?\"?",
       "answers": [
         {
           "answerKm": "ប្រហែល 15 ដងក្នុងមួយនាទី",
@@ -1596,8 +1596,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"How do you realize that the victim got broken arm(s) or leg(s)?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?\"?",
+      "questionEn": "Road rules: \"How do you realize that the victim got broken arm(s) or leg(s)?\"?",
       "answers": [
         {
           "answerKm": "ប្រហែល 15 ដងក្នុងមួយនាទី",
@@ -1639,8 +1639,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?\"?",
-      "questionEn": "What correct action must you take regarding \"How do you realize that the victim got broken arm(s) or leg(s)?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?\"?",
+      "questionEn": "Correct action: \"How do you realize that the victim got broken arm(s) or leg(s)?\"?",
       "answers": [
         {
           "answerKm": "ផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ ហើយយកដៃទាំងពីរចុចទ្រូងរបស់គាត់។",
@@ -1682,8 +1682,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"How do you realize that the victim got broken arm(s) or leg(s)?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?\"?",
+      "questionEn": "Situation: \"How do you realize that the victim got broken arm(s) or leg(s)?\"?",
       "answers": [
         {
           "answerKm": "ដោយ​ដឹង​ថា ជន​រង​គ្រោះ​មាន​របួស​ដៃ និង​ជើង​ជា​ខ្លាំង ពេល​ចង់​រើ​ខ្លួន​។",
@@ -1725,8 +1725,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ម៉ាស្សា 15 ដង និង 2 ដងរបស់ការសង្គ្រោះពីមាត់\" គឺជាចម្លើយសម្រាប់ \"តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?\"?",
-      "questionEn": "Is it correct if you believe that \"Massage 15 times and 2 times of mouth-to-mouth resuscitation\" is the answer for \"How do you realize that the victim got broken arm(s) or leg(s)?\"?",
+      "questionKm": "\"តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?\" ចម្លើយគឺ \"ម៉ាស្សា 15 ដង និង 2 ដងរបស់ការសង្គ្រោះពីមាត់\"?",
+      "questionEn": "\"How do you realize that the victim got broken arm(s) or leg(s)?\" Answer: \"Massage 15 times and 2 times of mouth-to-mouth resuscitation\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1756,8 +1756,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"How do you realize that the victim got broken arm(s) or leg(s)?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?\"?",
+      "questionEn": "Why respect the rule: \"How do you realize that the victim got broken arm(s) or leg(s)?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -1799,8 +1799,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"How do you realize that the victim got broken arm(s) or leg(s)?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"តើ​អ្នក​ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ឬ​ជើង​ដោយ​របៀប​ណា?\"?",
+      "questionEn": "Consequence if ignored: \"How do you realize that the victim got broken arm(s) or leg(s)?\"?",
       "answers": [
         {
           "answerKm": "ការឡើងថ្នាក់បើកបរភ្លាមៗដោយមិនបាច់ពិនិត្យ",
@@ -1842,8 +1842,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?\"?",
-      "questionEn": "How do you correctly understand \"When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?\"?",
+      "questionKm": "នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?",
+      "questionEn": "When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?",
       "answers": [
         {
           "answerKm": "ម៉ាស្សា 15 ដង និង 2 ដងរបស់ការសង្គ្រោះពីមាត់",
@@ -1885,8 +1885,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ម៉ាស្សា 15 ដង និង 2 ដងរបស់ការសង្គ្រោះពីមាត់\"។",
-      "questionEn": "When you face the question \"When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?\", you know the correct answer is \"Massage 15 times and 2 times of mouth-to-mouth resuscitation\".",
+      "questionKm": "\"នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?\" ចម្លើយគឺ \"ម៉ាស្សា 15 ដង និង 2 ដងរបស់ការសង្គ្រោះពីមាត់\"?",
+      "questionEn": "\"When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?\" Answer: \"Massage 15 times and 2 times of mouth-to-mouth resuscitation\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1916,8 +1916,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?\"?",
-      "questionEn": "Which answer do you choose correctly for \"When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?\"?",
+      "questionEn": "Correct answer: \"When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?\"?",
       "answers": [
         {
           "answerKm": "ទុក​ដៃ​ដែល​បាក់​នោះ​ដោយ​មិន​បាច់​ធ្វើ​ចលនា បន្ទាប់​មក​ប្រើ​ដែក ឬ​ក្តារ​ឈើ​ដើម្បី​ពុះ​ដៃ រួច​ចង​នឹង​ក្រណាត់ ឬ​ស្នាម​នៅ​ក ដើម្បី​ទ្រទ្រង់​ដៃ​ដែល​បាក់។",
@@ -1959,8 +1959,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?\"?",
+      "questionEn": "Road rules: \"When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?\"?",
       "answers": [
         {
           "answerKm": "ប្រើក្រណាត់ ឬបង់រុំល្អដើម្បីរឹតបន្តឹងជុំវិញមុខរបួស ចងឱ្យជិតបន្តិច។",
@@ -2002,8 +2002,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?\"?",
-      "questionEn": "What correct action must you take regarding \"When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?\"?",
+      "questionEn": "Correct action: \"When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?\"?",
       "answers": [
         {
           "answerKm": "ចុច 15 ដងហើយផ្លុំ 2 ដង",
@@ -2045,8 +2045,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?\"?",
+      "questionEn": "Situation: \"When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?\"?",
       "answers": [
         {
           "answerKm": "បាទ ដោយការជួយតាមរយៈ First Aids។",
@@ -2088,8 +2088,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ចាប់ពី 5 នាទីឡើងទៅ។\" គឺជាចម្លើយសម្រាប់ \"នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?\"?",
-      "questionEn": "Is it correct if you believe that \"From 5 minutes and up.\" is the answer for \"When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?\"?",
+      "questionKm": "\"នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?\" ចម្លើយគឺ \"ចាប់ពី 5 នាទីឡើងទៅ។\"?",
+      "questionEn": "\"When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?\" Answer: \"From 5 minutes and up.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2119,8 +2119,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?\"?",
+      "questionEn": "Why respect the rule: \"When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -2162,8 +2162,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"នៅពេលដែលជនរងគ្រោះមិនអាចដកដង្ហើមបាន ហើយជីពចរមិនដំណើរការ តើអ្នកជួយសង្គ្រោះបេះដូង (CPR) យ៉ាងដូចម្តេច?\"?",
+      "questionEn": "Consequence if ignored: \"When the victim cannot breathe and the pulse does not work, how do you help cardiopulmonary resuscitation (CPR)?\"?",
       "answers": [
         {
           "answerKm": "វាអាចនាំឱ្យមានការផាកពិន័យ ត្រូវទទួលខុសត្រូវតាមច្បាប់ ឬបង្កគ្រោះថ្នាក់ធ្ងន់ធ្ងរ",
@@ -2205,8 +2205,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?\"?",
-      "questionEn": "How do you correctly understand \"If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?\"?",
+      "questionKm": "ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?",
+      "questionEn": "If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?",
       "answers": [
         {
           "answerKm": "បាទ ដោយការជួយតាមរយៈ First Aids។",
@@ -2248,8 +2248,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ឱ្យ​គាត់​ដេក ឬ​ឱ្យ​គាត់​ផ្អៀង​ទៅ​ម្ខាង ដើម្បី​ឱ្យ​ខ្យល់​ចូល​បាន​យ៉ាង​ងាយ\"។",
-      "questionEn": "When you face the question \"If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?\", you know the correct answer is \"Let him/her lie down or let him/her incline to one side so that the air can easily get through\".",
+      "questionKm": "\"ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?\" ចម្លើយគឺ \"ឱ្យ​គាត់​ដេក ឬ​ឱ្យ​គាត់​ផ្អៀង​ទៅ​ម្ខាង ដើម្បី​ឱ្យ​ខ្យល់​ចូល​បាន​យ៉ាង​ងាយ\"?",
+      "questionEn": "\"If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?\" Answer: \"Let him/her lie down or let him/her incline to one side so that the air can easily get through\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2279,8 +2279,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?\"?",
-      "questionEn": "Which answer do you choose correctly for \"If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?\"?",
+      "questionEn": "Correct answer: \"If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?\"?",
       "answers": [
         {
           "answerKm": "បាទ ដោយការជួយតាមរយៈ First Aids។",
@@ -2322,8 +2322,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?\"?",
+      "questionEn": "Road rules: \"If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?\"?",
       "answers": [
         {
           "answerKm": "ឱ្យ​គាត់​ដេក ឬ​ឱ្យ​គាត់​ផ្អៀង​ទៅ​ម្ខាង ដើម្បី​ឱ្យ​ខ្យល់​ចូល​បាន​យ៉ាង​ងាយ",
@@ -2365,8 +2365,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?\"?",
-      "questionEn": "What correct action must you take regarding \"If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?\"?",
+      "questionEn": "Correct action: \"If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?\"?",
       "answers": [
         {
           "answerKm": "2 ទៅ 3 នាទី។",
@@ -2408,8 +2408,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?\"?",
+      "questionEn": "Situation: \"If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?\"?",
       "answers": [
         {
           "answerKm": "ដោយ​ដឹង​ថា ជន​រង​គ្រោះ​មាន​របួស​ដៃ និង​ជើង​ជា​ខ្លាំង ពេល​ចង់​រើ​ខ្លួន​។",
@@ -2451,8 +2451,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ម៉ាស្សា 15 ដង និង 2 ដងរបស់ការសង្គ្រោះពីមាត់\" គឺជាចម្លើយសម្រាប់ \"ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?\"?",
-      "questionEn": "Is it correct if you believe that \"Massage 15 times and 2 times of mouth-to-mouth resuscitation\" is the answer for \"If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?\"?",
+      "questionKm": "\"ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?\" ចម្លើយគឺ \"ម៉ាស្សា 15 ដង និង 2 ដងរបស់ការសង្គ្រោះពីមាត់\"?",
+      "questionEn": "\"If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?\" Answer: \"Massage 15 times and 2 times of mouth-to-mouth resuscitation\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2482,8 +2482,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?\"?",
+      "questionEn": "Why respect the rule: \"If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?\"?",
       "answers": [
         {
           "answerKm": "ដើម្បីធានាសុវត្ថិភាព បង្ការគ្រោះថ្នាក់ និងរក្សាសណ្តាប់ធ្នាប់លើដងផ្លូវ",
@@ -2525,8 +2525,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"ប្រសិនបើជនរងគ្រោះសន្លប់។ តើ​អ្នក​អាច​ជួយ​បាន​យ៉ាង​ដូច​ម្ដេច​ប្រសិន​បើ​អ្នក​ប៉ះ​ស្មា​គាត់ ប៉ុន្តែ​គាត់​រហូត​ដល់​សន្លប់?\"?",
+      "questionEn": "Consequence if ignored: \"If victim is unconscious. How can you help if you touch his/her shoulders but he/she is till unconscious?\"?",
       "answers": [
         {
           "answerKm": "ការឡើងថ្នាក់បើកបរភ្លាមៗដោយមិនបាច់ពិនិត្យ",
@@ -2568,8 +2568,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?\"?",
-      "questionEn": "How do you correctly understand \"If the victim is not breathing, how can you help him or her?\"?",
+      "questionKm": "បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?",
+      "questionEn": "If the victim is not breathing, how can you help him or her?",
       "answers": [
         {
           "answerKm": "ឱ្យ​គាត់​ដេក ឬ​ឱ្យ​គាត់​ផ្អៀង​ទៅ​ម្ខាង ដើម្បី​ឱ្យ​ខ្យល់​ចូល​បាន​យ៉ាង​ងាយ",
@@ -2611,8 +2611,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ធ្វើ CPR ដោយផ្លុំខ្យល់ចូលតាមមាត់ជនរងគ្រោះ ហើយចុចទ្រូងដោយដៃពីរ។\"។",
-      "questionEn": "When you face the question \"If the victim is not breathing, how can you help him or her?\", you know the correct answer is \"Do the CPR by blowing the air in through the victim's mouth and press his or her chest by two hands.\".",
+      "questionKm": "\"បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?\" ចម្លើយគឺ \"ធ្វើ CPR ដោយផ្លុំខ្យល់ចូលតាមមាត់ជនរងគ្រោះ ហើយចុចទ្រូងដោយដៃពីរ។\"?",
+      "questionEn": "\"If the victim is not breathing, how can you help him or her?\" Answer: \"Do the CPR by blowing the air in through the victim's mouth and press his or her chest by two hands.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2642,8 +2642,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?\"?",
-      "questionEn": "Which answer do you choose correctly for \"If the victim is not breathing, how can you help him or her?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?\"?",
+      "questionEn": "Correct answer: \"If the victim is not breathing, how can you help him or her?\"?",
       "answers": [
         {
           "answerKm": "2 ទៅ 3 នាទី។",
@@ -2685,8 +2685,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"If the victim is not breathing, how can you help him or her?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?\"?",
+      "questionEn": "Road rules: \"If the victim is not breathing, how can you help him or her?\"?",
       "answers": [
         {
           "answerKm": "ធ្វើ CPR ដោយផ្លុំខ្យល់ចូលតាមមាត់ជនរងគ្រោះ ហើយចុចទ្រូងដោយដៃពីរ។",
@@ -2728,8 +2728,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?\"?",
-      "questionEn": "What correct action must you take regarding \"If the victim is not breathing, how can you help him or her?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?\"?",
+      "questionEn": "Correct action: \"If the victim is not breathing, how can you help him or her?\"?",
       "answers": [
         {
           "answerKm": "ឱ្យ​គាត់​ដេក ឬ​ឱ្យ​គាត់​ផ្អៀង​ទៅ​ម្ខាង ដើម្បី​ឱ្យ​ខ្យល់​ចូល​បាន​យ៉ាង​ងាយ",
@@ -2771,8 +2771,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"If the victim is not breathing, how can you help him or her?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?\"?",
+      "questionEn": "Situation: \"If the victim is not breathing, how can you help him or her?\"?",
       "answers": [
         {
           "answerKm": "ឱ្យ​គាត់​ដេក ឬ​ឱ្យ​គាត់​ផ្អៀង​ទៅ​ម្ខាង ដើម្បី​ឱ្យ​ខ្យល់​ចូល​បាន​យ៉ាង​ងាយ",
@@ -2814,8 +2814,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ម៉ាស្សា 15 ដង និង 2 ដងរបស់ការសង្គ្រោះពីមាត់\" គឺជាចម្លើយសម្រាប់ \"បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?\"?",
-      "questionEn": "Is it correct if you believe that \"Massage 15 times and 2 times of mouth-to-mouth resuscitation\" is the answer for \"If the victim is not breathing, how can you help him or her?\"?",
+      "questionKm": "\"បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?\" ចម្លើយគឺ \"ម៉ាស្សា 15 ដង និង 2 ដងរបស់ការសង្គ្រោះពីមាត់\"?",
+      "questionEn": "\"If the victim is not breathing, how can you help him or her?\" Answer: \"Massage 15 times and 2 times of mouth-to-mouth resuscitation\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2845,8 +2845,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"If the victim is not breathing, how can you help him or her?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?\"?",
+      "questionEn": "Why respect the rule: \"If the victim is not breathing, how can you help him or her?\"?",
       "answers": [
         {
           "answerKm": "ដើម្បីធានាសុវត្ថិភាព បង្ការគ្រោះថ្នាក់ និងរក្សាសណ្តាប់ធ្នាប់លើដងផ្លូវ",
@@ -2888,8 +2888,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"If the victim is not breathing, how can you help him or her?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"បើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកអាចជួយគាត់ដោយរបៀបណា?\"?",
+      "questionEn": "Consequence if ignored: \"If the victim is not breathing, how can you help him or her?\"?",
       "answers": [
         {
           "answerKm": "ការទទួលបានប្រាក់រង្វាន់លើកទឹកចិត្តពីសាលាក្រុង",
@@ -2931,8 +2931,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?\"?",
-      "questionEn": "How do you correctly understand \"How many minutes can you help victim with no breathing?\"?",
+      "questionKm": "តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?",
+      "questionEn": "How many minutes can you help victim with no breathing?",
       "answers": [
         {
           "answerKm": "2 ទៅ 3 នាទី។",
@@ -2974,8 +2974,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"2 ទៅ 3 នាទី។\"។",
-      "questionEn": "When you face the question \"How many minutes can you help victim with no breathing?\", you know the correct answer is \"2 to 3 minutes\".",
+      "questionKm": "\"តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?\" ចម្លើយគឺ \"2 ទៅ 3 នាទី។\"?",
+      "questionEn": "\"How many minutes can you help victim with no breathing?\" Answer: \"2 to 3 minutes\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3005,8 +3005,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?\"?",
-      "questionEn": "Which answer do you choose correctly for \"How many minutes can you help victim with no breathing?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?\"?",
+      "questionEn": "Correct answer: \"How many minutes can you help victim with no breathing?\"?",
       "answers": [
         {
           "answerKm": "ប្រហែល 15 ដងក្នុងមួយនាទី",
@@ -3048,8 +3048,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"How many minutes can you help victim with no breathing?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?\"?",
+      "questionEn": "Road rules: \"How many minutes can you help victim with no breathing?\"?",
       "answers": [
         {
           "answerKm": "ធ្វើ CPR ដោយផ្លុំខ្យល់ចូលតាមមាត់ជនរងគ្រោះ ហើយចុចទ្រូងដោយដៃពីរ។",
@@ -3091,8 +3091,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?\"?",
-      "questionEn": "What correct action must you take regarding \"How many minutes can you help victim with no breathing?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?\"?",
+      "questionEn": "Correct action: \"How many minutes can you help victim with no breathing?\"?",
       "answers": [
         {
           "answerKm": "ដោយប្រើម្រាមដៃចុចនៅផ្នែកម្ខាងរបស់ក។",
@@ -3134,8 +3134,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"How many minutes can you help victim with no breathing?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?\"?",
+      "questionEn": "Situation: \"How many minutes can you help victim with no breathing?\"?",
       "answers": [
         {
           "answerKm": "ម៉ាស្សា 15 ដង និង 2 ដងរបស់ការសង្គ្រោះពីមាត់",
@@ -3177,8 +3177,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ឱ្យ​គាត់​ដេក ឬ​ឱ្យ​គាត់​ផ្អៀង​ទៅ​ម្ខាង ដើម្បី​ឱ្យ​ខ្យល់​ចូល​បាន​យ៉ាង​ងាយ\" គឺជាចម្លើយសម្រាប់ \"តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?\"?",
-      "questionEn": "Is it correct if you believe that \"Let him/her lie down or let him/her incline to one side so that the air can easily get through\" is the answer for \"How many minutes can you help victim with no breathing?\"?",
+      "questionKm": "\"តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?\" ចម្លើយគឺ \"ឱ្យ​គាត់​ដេក ឬ​ឱ្យ​គាត់​ផ្អៀង​ទៅ​ម្ខាង ដើម្បី​ឱ្យ​ខ្យល់​ចូល​បាន​យ៉ាង​ងាយ\"?",
+      "questionEn": "\"How many minutes can you help victim with no breathing?\" Answer: \"Let him/her lie down or let him/her incline to one side so that the air can easily get through\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3208,8 +3208,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"How many minutes can you help victim with no breathing?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?\"?",
+      "questionEn": "Why respect the rule: \"How many minutes can you help victim with no breathing?\"?",
       "answers": [
         {
           "answerKm": "គ្រាន់តែដើម្បីប្រឡងយកប័ណ្ណបើកបរឱ្យជាប់ងាយស្រួលប៉ុណ្ណោះ",
@@ -3251,8 +3251,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"How many minutes can you help victim with no breathing?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"តើអ្នកអាចជួយជនរងគ្រោះដោយដកដង្ហើមបានប៉ុន្មាននាទី?\"?",
+      "questionEn": "Consequence if ignored: \"How many minutes can you help victim with no breathing?\"?",
       "answers": [
         {
           "answerKm": "វាអាចនាំឱ្យមានការផាកពិន័យ ត្រូវទទួលខុសត្រូវតាមច្បាប់ ឬបង្កគ្រោះថ្នាក់ធ្ងន់ធ្ងរ",
@@ -3294,8 +3294,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?\"?",
-      "questionEn": "How do you correctly understand \"If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?\"?",
+      "questionKm": "ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?",
+      "questionEn": "If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?",
       "answers": [
         {
           "answerKm": "ប្រើក្រណាត់ ឬបង់រុំល្អដើម្បីរឹតបន្តឹងជុំវិញមុខរបួស ចងឱ្យជិតបន្តិច។",
@@ -3337,8 +3337,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ប្រហែល 15 ដងក្នុងមួយនាទី\"។",
-      "questionEn": "When you face the question \"If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?\", you know the correct answer is \"About 15 times per minute\".",
+      "questionKm": "\"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?\" ចម្លើយគឺ \"ប្រហែល 15 ដងក្នុងមួយនាទី\"?",
+      "questionEn": "\"If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?\" Answer: \"About 15 times per minute\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3368,8 +3368,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?\"?",
-      "questionEn": "Which answer do you choose correctly for \"If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?\"?",
+      "questionEn": "Correct answer: \"If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?\"?",
       "answers": [
         {
           "answerKm": "2 ទៅ 3 នាទី។",
@@ -3411,8 +3411,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?\"?",
+      "questionEn": "Road rules: \"If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?\"?",
       "answers": [
         {
           "answerKm": "សន្លប់, ដកដង្ហើម, ជីពចរ, ឈាម, និងបាក់ឆ្អឹង។",
@@ -3454,8 +3454,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?\"?",
-      "questionEn": "What correct action must you take regarding \"If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?\"?",
+      "questionEn": "Correct action: \"If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?\"?",
       "answers": [
         {
           "answerKm": "ចាប់ពី 5 នាទីឡើងទៅ។",
@@ -3497,8 +3497,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?\"?",
+      "questionEn": "Situation: \"If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?\"?",
       "answers": [
         {
           "answerKm": "ឱ្យ​គាត់​ដេក ឬ​ឱ្យ​គាត់​ផ្អៀង​ទៅ​ម្ខាង ដើម្បី​ឱ្យ​ខ្យល់​ចូល​បាន​យ៉ាង​ងាយ",
@@ -3540,8 +3540,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ម៉ាស្សា 15 ដង និង 2 ដងរបស់ការសង្គ្រោះពីមាត់\" គឺជាចម្លើយសម្រាប់ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?\"?",
-      "questionEn": "Is it correct if you believe that \"Massage 15 times and 2 times of mouth-to-mouth resuscitation\" is the answer for \"If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?\"?",
+      "questionKm": "\"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?\" ចម្លើយគឺ \"ម៉ាស្សា 15 ដង និង 2 ដងរបស់ការសង្គ្រោះពីមាត់\"?",
+      "questionEn": "\"If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?\" Answer: \"Massage 15 times and 2 times of mouth-to-mouth resuscitation\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3571,8 +3571,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?\"?",
+      "questionEn": "Why respect the rule: \"If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -3614,8 +3614,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម តើអ្នកត្រូវផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ប៉ុន្មានដងក្នុងមួយនាទី?\"?",
+      "questionEn": "Consequence if ignored: \"If the victim is not breathing, how many times per minutes shall you blow the air in through his or her mouth?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -3657,8 +3657,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?\"?",
-      "questionEn": "How do you correctly understand \"When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?\"?",
+      "questionKm": "នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?",
+      "questionEn": "When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?",
       "answers": [
         {
           "answerKm": "ធ្វើ CPR ដោយផ្លុំខ្យល់ចូលតាមមាត់ជនរងគ្រោះ ហើយចុចទ្រូងដោយដៃពីរ។",
@@ -3700,8 +3700,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ចុច 15 ដងហើយផ្លុំ 2 ដង\"។",
-      "questionEn": "When you face the question \"When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?\", you know the correct answer is \"Press 15 times and blow 2 times\".",
+      "questionKm": "\"នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?\" ចម្លើយគឺ \"ចុច 15 ដងហើយផ្លុំ 2 ដង\"?",
+      "questionEn": "\"When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?\" Answer: \"Press 15 times and blow 2 times\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3731,8 +3731,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?\"?",
-      "questionEn": "Which answer do you choose correctly for \"When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?\"?",
+      "questionEn": "Correct answer: \"When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?\"?",
       "answers": [
         {
           "answerKm": "សន្លប់, ដកដង្ហើម, ជីពចរ, ឈាម, និងបាក់ឆ្អឹង។",
@@ -3774,8 +3774,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?\"?",
+      "questionEn": "Road rules: \"When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?\"?",
       "answers": [
         {
           "answerKm": "ម៉ាស្សា 15 ដង និង 2 ដងរបស់ការសង្គ្រោះពីមាត់",
@@ -3817,8 +3817,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?\"?",
-      "questionEn": "What correct action must you take regarding \"When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?\"?",
+      "questionEn": "Correct action: \"When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?\"?",
       "answers": [
         {
           "answerKm": "ផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ ហើយយកដៃទាំងពីរចុចទ្រូងរបស់គាត់។",
@@ -3860,8 +3860,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?\"?",
+      "questionEn": "Situation: \"When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?\"?",
       "answers": [
         {
           "answerKm": "ប្រហែល 15 ដងក្នុងមួយនាទី",
@@ -3903,8 +3903,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ធ្វើ CPR ដោយផ្លុំខ្យល់ចូលតាមមាត់ជនរងគ្រោះ ហើយចុចទ្រូងដោយដៃពីរ។\" គឺជាចម្លើយសម្រាប់ \"នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?\"?",
-      "questionEn": "Is it correct if you believe that \"Do the CPR by blowing the air in through the victim's mouth and press his or her chest by two hands.\" is the answer for \"When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?\"?",
+      "questionKm": "\"នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?\" ចម្លើយគឺ \"ធ្វើ CPR ដោយផ្លុំខ្យល់ចូលតាមមាត់ជនរងគ្រោះ ហើយចុចទ្រូងដោយដៃពីរ។\"?",
+      "questionEn": "\"When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?\" Answer: \"Do the CPR by blowing the air in through the victim's mouth and press his or her chest by two hands.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3934,8 +3934,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?\"?",
+      "questionEn": "Why respect the rule: \"When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -3977,8 +3977,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"នៅពេលដែលជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ ហើយអ្នកនៅម្នាក់ឯង តើអ្នកត្រូវធ្វើដូចម្តេចដើម្បី PCR និងផ្លុំខ្យល់ចូល?\"?",
+      "questionEn": "Consequence if ignored: \"When victim not breathing and pulse not working and you are alone, how shall you do PCR and blow the air in?\"?",
       "answers": [
         {
           "answerKm": "ការឡើងថ្នាក់បើកបរភ្លាមៗដោយមិនបាច់ពិនិត្យ",
@@ -4020,8 +4020,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?\"?",
-      "questionEn": "How do you correctly understand \"Can you touch an accident victim?\"?",
+      "questionKm": "តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?",
+      "questionEn": "Can you touch an accident victim?",
       "answers": [
         {
           "answerKm": "ប្រើក្រណាត់ ឬបង់រុំល្អដើម្បីរឹតបន្តឹងជុំវិញមុខរបួស ចងឱ្យជិតបន្តិច។",
@@ -4063,8 +4063,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"បាទ ដោយការជួយតាមរយៈ First Aids។\"។",
-      "questionEn": "When you face the question \"Can you touch an accident victim?\", you know the correct answer is \"Yes, by helping through First Aids.\".",
+      "questionKm": "\"តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?\" ចម្លើយគឺ \"បាទ ដោយការជួយតាមរយៈ First Aids។\"?",
+      "questionEn": "\"Can you touch an accident victim?\" Answer: \"Yes, by helping through First Aids.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -4094,8 +4094,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?\"?",
-      "questionEn": "Which answer do you choose correctly for \"Can you touch an accident victim?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?\"?",
+      "questionEn": "Correct answer: \"Can you touch an accident victim?\"?",
       "answers": [
         {
           "answerKm": "ទុក​ដៃ​ដែល​បាក់​នោះ​ដោយ​មិន​បាច់​ធ្វើ​ចលនា បន្ទាប់​មក​ប្រើ​ដែក ឬ​ក្តារ​ឈើ​ដើម្បី​ពុះ​ដៃ រួច​ចង​នឹង​ក្រណាត់ ឬ​ស្នាម​នៅ​ក ដើម្បី​ទ្រទ្រង់​ដៃ​ដែល​បាក់។",
@@ -4137,8 +4137,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"Can you touch an accident victim?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?\"?",
+      "questionEn": "Road rules: \"Can you touch an accident victim?\"?",
       "answers": [
         {
           "answerKm": "ដោយប្រើម្រាមដៃចុចនៅផ្នែកម្ខាងរបស់ក។",
@@ -4180,8 +4180,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?\"?",
-      "questionEn": "What correct action must you take regarding \"Can you touch an accident victim?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?\"?",
+      "questionEn": "Correct action: \"Can you touch an accident victim?\"?",
       "answers": [
         {
           "answerKm": "2 ទៅ 3 នាទី។",
@@ -4223,8 +4223,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"Can you touch an accident victim?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?\"?",
+      "questionEn": "Situation: \"Can you touch an accident victim?\"?",
       "answers": [
         {
           "answerKm": "សន្លប់, ដកដង្ហើម, ជីពចរ, ឈាម, និងបាក់ឆ្អឹង។",
@@ -4266,8 +4266,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ជន​រង​គ្រោះ​មិន​មាន​ចលនា​ឡើង​ចុះ​ក្រោម និង​មិន​មាន​ដង្ហើម​តាម​មាត់ និង​ច្រមុះ។\" គឺជាចម្លើយសម្រាប់ \"តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?\"?",
-      "questionEn": "Is it correct if you believe that \"The victim does not have movement up and down and no breathing through mouth and nose.\" is the answer for \"Can you touch an accident victim?\"?",
+      "questionKm": "\"តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?\" ចម្លើយគឺ \"ជន​រង​គ្រោះ​មិន​មាន​ចលនា​ឡើង​ចុះ​ក្រោម និង​មិន​មាន​ដង្ហើម​តាម​មាត់ និង​ច្រមុះ។\"?",
+      "questionEn": "\"Can you touch an accident victim?\" Answer: \"The victim does not have movement up and down and no breathing through mouth and nose.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -4297,8 +4297,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"Can you touch an accident victim?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?\"?",
+      "questionEn": "Why respect the rule: \"Can you touch an accident victim?\"?",
       "answers": [
         {
           "answerKm": "ដើម្បីធានាសុវត្ថិភាព បង្ការគ្រោះថ្នាក់ និងរក្សាសណ្តាប់ធ្នាប់លើដងផ្លូវ",
@@ -4340,8 +4340,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"Can you touch an accident victim?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"តើអ្នកអាចប៉ះជនរងគ្រោះដោយគ្រោះថ្នាក់បានទេ?\"?",
+      "questionEn": "Consequence if ignored: \"Can you touch an accident victim?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -4383,8 +4383,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?\"?",
-      "questionEn": "How do you correctly understand \"Realizing the victim got broken arm, how shall you do?\"?",
+      "questionKm": "ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?",
+      "questionEn": "Realizing the victim got broken arm, how shall you do?",
       "answers": [
         {
           "answerKm": "ទុក​ដៃ​ដែល​បាក់​នោះ​ដោយ​មិន​បាច់​ធ្វើ​ចលនា បន្ទាប់​មក​ប្រើ​ដែក ឬ​ក្តារ​ឈើ​ដើម្បី​ពុះ​ដៃ រួច​ចង​នឹង​ក្រណាត់ ឬ​ស្នាម​នៅ​ក ដើម្បី​ទ្រទ្រង់​ដៃ​ដែល​បាក់។",
@@ -4426,8 +4426,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ទុក​ដៃ​ដែល​បាក់​នោះ​ដោយ​មិន​បាច់​ធ្វើ​ចលនា បន្ទាប់​មក​ប្រើ​ដែក ឬ​ក្តារ​ឈើ​ដើម្បី​ពុះ​ដៃ រួច​ចង​នឹង​ក្រណាត់ ឬ​ស្នាម​នៅ​ក ដើម្បី​ទ្រទ្រង់​ដៃ​ដែល​បាក់។\"។",
-      "questionEn": "When you face the question \"Realizing the victim got broken arm, how shall you do?\", you know the correct answer is \"Leave the broken arm with no moving then use metal or wooden board to splint the arm, and then tie with cloth or scaft at the neck to suport the broken arm.\".",
+      "questionKm": "\"ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?\" ចម្លើយគឺ \"ទុក​ដៃ​ដែល​បាក់​នោះ​ដោយ​មិន​បាច់​ធ្វើ​ចលនា បន្ទាប់​មក​ប្រើ​ដែក ឬ​ក្តារ​ឈើ​ដើម្បី​ពុះ​ដៃ រួច​ចង​នឹង​ក្រណាត់ ឬ​ស្នាម​នៅ​ក ដើម្បី​ទ្រទ្រង់​ដៃ​ដែល​បាក់។\"?",
+      "questionEn": "\"Realizing the victim got broken arm, how shall you do?\" Answer: \"Leave the broken arm with no moving then use metal or wooden board to splint the arm, and then tie with cloth or scaft at the neck to suport the broken arm.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -4457,8 +4457,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?\"?",
-      "questionEn": "Which answer do you choose correctly for \"Realizing the victim got broken arm, how shall you do?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?\"?",
+      "questionEn": "Correct answer: \"Realizing the victim got broken arm, how shall you do?\"?",
       "answers": [
         {
           "answerKm": "បាទ ដោយការជួយតាមរយៈ First Aids។",
@@ -4500,8 +4500,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"Realizing the victim got broken arm, how shall you do?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?\"?",
+      "questionEn": "Road rules: \"Realizing the victim got broken arm, how shall you do?\"?",
       "answers": [
         {
           "answerKm": "ប្រើក្រណាត់ ឬបង់រុំល្អដើម្បីរឹតបន្តឹងជុំវិញមុខរបួស ចងឱ្យជិតបន្តិច។",
@@ -4543,8 +4543,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?\"?",
-      "questionEn": "What correct action must you take regarding \"Realizing the victim got broken arm, how shall you do?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?\"?",
+      "questionEn": "Correct action: \"Realizing the victim got broken arm, how shall you do?\"?",
       "answers": [
         {
           "answerKm": "ទុក​ដៃ​ដែល​បាក់​នោះ​ដោយ​មិន​បាច់​ធ្វើ​ចលនា បន្ទាប់​មក​ប្រើ​ដែក ឬ​ក្តារ​ឈើ​ដើម្បី​ពុះ​ដៃ រួច​ចង​នឹង​ក្រណាត់ ឬ​ស្នាម​នៅ​ក ដើម្បី​ទ្រទ្រង់​ដៃ​ដែល​បាក់។",
@@ -4586,8 +4586,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"Realizing the victim got broken arm, how shall you do?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?\"?",
+      "questionEn": "Situation: \"Realizing the victim got broken arm, how shall you do?\"?",
       "answers": [
         {
           "answerKm": "ដោយប្រើម្រាមដៃចុចនៅផ្នែកម្ខាងរបស់ក។",
@@ -4629,8 +4629,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ដោយ​ដឹង​ថា ជន​រង​គ្រោះ​មាន​របួស​ដៃ និង​ជើង​ជា​ខ្លាំង ពេល​ចង់​រើ​ខ្លួន​។\" គឺជាចម្លើយសម្រាប់ \"ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?\"?",
-      "questionEn": "Is it correct if you believe that \"Realizing that the victim gets a lot of hurt at the arms and legs when he/she want to move his/her them.\" is the answer for \"Realizing the victim got broken arm, how shall you do?\"?",
+      "questionKm": "\"ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?\" ចម្លើយគឺ \"ដោយ​ដឹង​ថា ជន​រង​គ្រោះ​មាន​របួស​ដៃ និង​ជើង​ជា​ខ្លាំង ពេល​ចង់​រើ​ខ្លួន​។\"?",
+      "questionEn": "\"Realizing the victim got broken arm, how shall you do?\" Answer: \"Realizing that the victim gets a lot of hurt at the arms and legs when he/she want to move his/her them.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -4660,8 +4660,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"Realizing the victim got broken arm, how shall you do?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?\"?",
+      "questionEn": "Why respect the rule: \"Realizing the victim got broken arm, how shall you do?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -4703,8 +4703,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"Realizing the victim got broken arm, how shall you do?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"ដឹង​ថា​ជន​រង​គ្រោះ​បាក់​ដៃ​ធ្វើ​ម៉េច?\"?",
+      "questionEn": "Consequence if ignored: \"Realizing the victim got broken arm, how shall you do?\"?",
       "answers": [
         {
           "answerKm": "វាអាចនាំឱ្យមានការផាកពិន័យ ត្រូវទទួលខុសត្រូវតាមច្បាប់ ឬបង្កគ្រោះថ្នាក់ធ្ងន់ធ្ងរ",
@@ -4746,8 +4746,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?\"?",
-      "questionEn": "How do you correctly understand \"How many minutes of no breathing does it cause the victim dead?\"?",
+      "questionKm": "អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?",
+      "questionEn": "How many minutes of no breathing does it cause the victim dead?",
       "answers": [
         {
           "answerKm": "ទុក​ដៃ​ដែល​បាក់​នោះ​ដោយ​មិន​បាច់​ធ្វើ​ចលនា បន្ទាប់​មក​ប្រើ​ដែក ឬ​ក្តារ​ឈើ​ដើម្បី​ពុះ​ដៃ រួច​ចង​នឹង​ក្រណាត់ ឬ​ស្នាម​នៅ​ក ដើម្បី​ទ្រទ្រង់​ដៃ​ដែល​បាក់។",
@@ -4789,8 +4789,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ចាប់ពី 5 នាទីឡើងទៅ។\"។",
-      "questionEn": "When you face the question \"How many minutes of no breathing does it cause the victim dead?\", you know the correct answer is \"From 5 minutes and up.\".",
+      "questionKm": "\"អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?\" ចម្លើយគឺ \"ចាប់ពី 5 នាទីឡើងទៅ។\"?",
+      "questionEn": "\"How many minutes of no breathing does it cause the victim dead?\" Answer: \"From 5 minutes and up.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -4820,8 +4820,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?\"?",
-      "questionEn": "Which answer do you choose correctly for \"How many minutes of no breathing does it cause the victim dead?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?\"?",
+      "questionEn": "Correct answer: \"How many minutes of no breathing does it cause the victim dead?\"?",
       "answers": [
         {
           "answerKm": "ប្រើក្រណាត់ ឬបង់រុំល្អដើម្បីរឹតបន្តឹងជុំវិញមុខរបួស ចងឱ្យជិតបន្តិច។",
@@ -4863,8 +4863,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"How many minutes of no breathing does it cause the victim dead?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?\"?",
+      "questionEn": "Road rules: \"How many minutes of no breathing does it cause the victim dead?\"?",
       "answers": [
         {
           "answerKm": "បាទ ដោយការជួយតាមរយៈ First Aids។",
@@ -4906,8 +4906,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?\"?",
-      "questionEn": "What correct action must you take regarding \"How many minutes of no breathing does it cause the victim dead?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?\"?",
+      "questionEn": "Correct action: \"How many minutes of no breathing does it cause the victim dead?\"?",
       "answers": [
         {
           "answerKm": "ប្រហែល 15 ដងក្នុងមួយនាទី",
@@ -4949,8 +4949,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"How many minutes of no breathing does it cause the victim dead?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?\"?",
+      "questionEn": "Situation: \"How many minutes of no breathing does it cause the victim dead?\"?",
       "answers": [
         {
           "answerKm": "ចាប់ពី 5 នាទីឡើងទៅ។",
@@ -4992,8 +4992,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ម៉ាស្សា 15 ដង និង 2 ដងរបស់ការសង្គ្រោះពីមាត់\" គឺជាចម្លើយសម្រាប់ \"អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?\"?",
-      "questionEn": "Is it correct if you believe that \"Massage 15 times and 2 times of mouth-to-mouth resuscitation\" is the answer for \"How many minutes of no breathing does it cause the victim dead?\"?",
+      "questionKm": "\"អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?\" ចម្លើយគឺ \"ម៉ាស្សា 15 ដង និង 2 ដងរបស់ការសង្គ្រោះពីមាត់\"?",
+      "questionEn": "\"How many minutes of no breathing does it cause the victim dead?\" Answer: \"Massage 15 times and 2 times of mouth-to-mouth resuscitation\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -5023,8 +5023,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"How many minutes of no breathing does it cause the victim dead?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?\"?",
+      "questionEn": "Why respect the rule: \"How many minutes of no breathing does it cause the victim dead?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -5066,8 +5066,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"How many minutes of no breathing does it cause the victim dead?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"អត់​ដង្ហើម​ប៉ុន្មាន​នាទី​ទើប​ធ្វើ​ឲ្យ​ជន​រង​គ្រោះ​ស្លាប់?\"?",
+      "questionEn": "Consequence if ignored: \"How many minutes of no breathing does it cause the victim dead?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -5109,8 +5109,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?\"?",
-      "questionEn": "How do you correctly understand \"If victim no breathing and the pulse no working, how can you help?\"?",
+      "questionKm": "ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?",
+      "questionEn": "If victim no breathing and the pulse no working, how can you help?",
       "answers": [
         {
           "answerKm": "បាទ ដោយការជួយតាមរយៈ First Aids។",
@@ -5152,8 +5152,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ ហើយយកដៃទាំងពីរចុចទ្រូងរបស់គាត់។\"។",
-      "questionEn": "When you face the question \"If victim no breathing and the pulse no working, how can you help?\", you know the correct answer is \"Blow the air in through his or her mouth and bring the two hands press his or her chest.\".",
+      "questionKm": "\"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?\" ចម្លើយគឺ \"ផ្លុំខ្យល់ចូលតាមមាត់របស់គាត់ ហើយយកដៃទាំងពីរចុចទ្រូងរបស់គាត់។\"?",
+      "questionEn": "\"If victim no breathing and the pulse no working, how can you help?\" Answer: \"Blow the air in through his or her mouth and bring the two hands press his or her chest.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -5183,8 +5183,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?\"?",
-      "questionEn": "Which answer do you choose correctly for \"If victim no breathing and the pulse no working, how can you help?\"?",
+      "questionKm": "ចម្លើយត្រូវ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?\"?",
+      "questionEn": "Correct answer: \"If victim no breathing and the pulse no working, how can you help?\"?",
       "answers": [
         {
           "answerKm": "ដោយប្រើម្រាមដៃចុចនៅផ្នែកម្ខាងរបស់ក។",
@@ -5226,8 +5226,8 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?\" ដូចម្ដេច?",
-      "questionEn": "According to road rules, how do you correctly define \"If victim no breathing and the pulse no working, how can you help?\"?",
+      "questionKm": "ច្បាប់ចរាចរណ៍ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?\"?",
+      "questionEn": "Road rules: \"If victim no breathing and the pulse no working, how can you help?\"?",
       "answers": [
         {
           "answerKm": "ដោយ​ដឹង​ថា ជន​រង​គ្រោះ​មាន​របួស​ដៃ និង​ជើង​ជា​ខ្លាំង ពេល​ចង់​រើ​ខ្លួន​។",
@@ -5269,8 +5269,8 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?\"?",
-      "questionEn": "What correct action must you take regarding \"If victim no breathing and the pulse no working, how can you help?\"?",
+      "questionKm": "សកម្មភាពត្រូវ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?\"?",
+      "questionEn": "Correct action: \"If victim no breathing and the pulse no working, how can you help?\"?",
       "answers": [
         {
           "answerKm": "ប្រើក្រណាត់ ឬបង់រុំល្អដើម្បីរឹតបន្តឹងជុំវិញមុខរបួស ចងឱ្យជិតបន្តិច។",
@@ -5312,8 +5312,8 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
-      "questionEn": "In a real scenario, if you encounter \"If victim no breathing and the pulse no working, how can you help?\", which answer do you choose?",
+      "questionKm": "ស្ថានភាព \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?\"?",
+      "questionEn": "Situation: \"If victim no breathing and the pulse no working, how can you help?\"?",
       "answers": [
         {
           "answerKm": "ដោយប្រើម្រាមដៃចុចនៅផ្នែកម្ខាងរបស់ក។",
@@ -5355,8 +5355,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ប្រើក្រណាត់ ឬបង់រុំល្អដើម្បីរឹតបន្តឹងជុំវិញមុខរបួស ចងឱ្យជិតបន្តិច។\" គឺជាចម្លើយសម្រាប់ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?\"?",
-      "questionEn": "Is it correct if you believe that \"Use good cloth or bandage to tight around the wound, fasten a bit tightly.\" is the answer for \"If victim no breathing and the pulse no working, how can you help?\"?",
+      "questionKm": "\"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?\" ចម្លើយគឺ \"ប្រើក្រណាត់ ឬបង់រុំល្អដើម្បីរឹតបន្តឹងជុំវិញមុខរបួស ចងឱ្យជិតបន្តិច។\"?",
+      "questionEn": "\"If victim no breathing and the pulse no working, how can you help?\" Answer: \"Use good cloth or bandage to tight around the wound, fasten a bit tightly.\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -5386,8 +5386,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?\"?",
-      "questionEn": "Why must you understand and respect the rule for \"If victim no breathing and the pulse no working, how can you help?\"?",
+      "questionKm": "ហេតុអ្វីត្រូវគោរពច្បាប់ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?\"?",
+      "questionEn": "Why respect the rule: \"If victim no breathing and the pulse no working, how can you help?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -5429,8 +5429,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?\"?",
-      "questionEn": "What legal consequences may you face if you ignore \"If victim no breathing and the pulse no working, how can you help?\"?",
+      "questionKm": "ផលវិបាកបើមិនអើពើ \"ប្រសិនបើជនរងគ្រោះមិនដកដង្ហើម ហើយជីពចរមិនដំណើរការ តើអ្នកអាចជួយយ៉ាងដូចម្តេច?\"?",
+      "questionEn": "Consequence if ignored: \"If victim no breathing and the pulse no working, how can you help?\"?",
       "answers": [
         {
           "answerKm": "ការឡើងថ្នាក់បើកបរភ្លាមៗដោយមិនបាច់ពិនិត្យ",
