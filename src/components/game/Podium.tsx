@@ -325,7 +325,7 @@ export function Podium({ podium, finalLeaderboard, currentUserId, lang, onPlayAg
           style={{ borderRadius: 0, ...khFont }}
         >
           <Crown size={16} strokeWidth={2.5} className="text-black" />
-          {kh ? "កំពូល ៣ នាក់" : "Top 3"}
+          {kh ? "អ្នកពូកែទាំង ៣" : "Top 3"}
         </span>
         <span className="h-[3px] flex-1 max-w-[80px] bg-yellow-400/30" />
       </div>
