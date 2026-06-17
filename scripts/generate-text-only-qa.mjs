@@ -40,7 +40,7 @@ const bannedKm = [
   "ប្រការ", "អនុលោម", "បទប្បញ្ញត្តិ", "នីតិវិធី", "ប្រតិបត្តិ", "ដ៏សែន", "&", "*", "៖",
 ];
 
-const NAMES = ["ប៊ុន", "សុខ", "ដារ៉ា", "សុភា", "រតនា", "វិសាល", "កុសល", "លីដា", "ធីតា", "ណារី"];
+// NAMES array removed as proper names are no longer used in scenarios.
 
 function readEnvValue(key) {
   const env = readFileSync(".env.local", "utf8");
@@ -53,9 +53,10 @@ function readEnvValue(key) {
 }
 
 function cleanKm(value) {
-  return String(value || "")
+  let cleaned = String(value || "")
     .replace(/\s+/g, " ")
     .replace(/៖/g, "")
+    .replace(/^\s*ចម្លើយគឺ\s*:?\s*/g, "")
     .replace(/ចម្លើយគឺ/g, "")
     .replace(/ត្រូវ ឬ មិនត្រឹមត្រូវ/g, "ត្រូវ ឬ ខុស")
     .replace(/ដើម្?បិ|ដម្បិ|ដំណ្បិ|ដំ្បី|ដើម្បីិ|ដំម្បី/g, "ដើម្បី")
@@ -71,14 +72,22 @@ function cleanKm(value) {
     .replace(/ជានិច្ច/g, "គ្រប់ពេល")
     .replace(/\s+([។៕,])/g, "$1")
     .trim();
+  // Strip any leading/trailing colons, spaces, or Khmer signs
+  cleaned = cleaned.replace(/^[:\s\u17d6]+/, "").trim();
+  cleaned = cleaned.replace(/[:\u17d6]+$/, "").trim();
+  return cleaned;
 }
 
 function cleanEn(value) {
-  return String(value || "")
+  let cleaned = String(value || "")
     .replace(/\s+/g, " ")
     .replace(/\s+\./g, ".")
-    .replace(/^The answer is:?\s*/i, "")
+    .replace(/^\s*The answer is\s*:?\s*/i, "")
     .trim();
+  // Strip any leading/trailing colons or spaces
+  cleaned = cleaned.replace(/^[:\s]+/, "").trim();
+  cleaned = cleaned.replace(/[:]+$/, "").trim();
+  return cleaned;
 }
 
 function cleanQuestionEn(value) {
@@ -147,9 +156,6 @@ async function main() {
     const correctAnsKm = cleanKm(t.description_km);
     const prefix = catConfig.prefix;
 
-    const nm = NAMES[idx % NAMES.length];
-    const nm2 = NAMES[(idx + 3) % NAMES.length];
-
     // Helper to get distractors for current slot
     const getSlotDistractors = (slotNum) => {
       const dists = getDistractors(topics, t, slotNum, 3);
@@ -169,12 +175,12 @@ async function main() {
       id: `${prefix}-${t.id}-01`, topicId: t.id, topicCode: t.topic_code,
       categoryId: catConfig.id, categorySlug: slug, subGroup: t.sub_group,
       difficulty: "easy", questionType: "multiple_choice", questionImageUrl: null,
-      questionKm: `តើការយល់ដឹងត្រឹមត្រូវអំពី "${cleanTopicNameKm}" គឺជាអ្វី?`,
-      questionEn: `What is the correct understanding for "${cleanTopicNameEn}"?`,
+      questionKm: `តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ "${cleanTopicNameKm}"?`,
+      questionEn: `How do you correctly understand "${cleanTopicNameEn}"?`,
       answers: shuffle(s1Answers, hash(`${t.id}:1`)),
       answerKm: correctAnsKm, answerEn: correctAnsEn,
-      explanationKm: `យោងតាមច្បាប់ សេចក្តីពន្យល់គឺ "${correctAnsKm}"។`,
-      explanationEn: `According to the rules, the correct explanation is: ${correctAnsEn}.`
+      explanationKm: `ការយល់ដឹងត្រឹមត្រូវគឺ "${correctAnsKm}"។`,
+      explanationEn: `The correct understanding is: ${correctAnsEn}.`
     });
 
     // Slot 2: easy True / False — basic rule
@@ -186,8 +192,8 @@ async function main() {
       id: `${prefix}-${t.id}-02`, topicId: t.id, topicCode: t.topic_code,
       categoryId: catConfig.id, categorySlug: slug, subGroup: t.sub_group,
       difficulty: "easy", questionType: "true_false", questionImageUrl: null,
-      questionKm: `ចម្លើយពិតប្រាកដគឺ "${correctAnsKm}" សម្រាប់សំណួរ "${cleanTopicNameKm}"`,
-      questionEn: `The correct answer is "${correctAnsEn}" for the question: "${cleanTopicNameEn}"`,
+      questionKm: `នៅពេលអ្នកជួបសំណួរ "${cleanTopicNameKm}" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ "${correctAnsKm}"។`,
+      questionEn: `When you face the question "${cleanTopicNameEn}", you know the correct answer is "${correctAnsEn}".`,
       answers: s2Answers, // T/F always has True first, False second
       answerKm: "ត្រូវ", answerEn: "True",
       explanationKm: `ពិតប្រាកដណាស់ ចម្លើយគឺ "${correctAnsKm}"។`,
@@ -204,8 +210,8 @@ async function main() {
       id: `${prefix}-${t.id}-03`, topicId: t.id, topicCode: t.topic_code,
       categoryId: catConfig.id, categorySlug: slug, subGroup: t.sub_group,
       difficulty: "easy", questionType: "multiple_choice", questionImageUrl: null,
-      questionKm: `ចំពោះសំណួរ "${cleanTopicNameKm}" តើចម្លើយមួយណាត្រឹមត្រូវ?`,
-      questionEn: `Regarding the question "${cleanTopicNameEn}" which option is correct?`,
+      questionKm: `តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ "${cleanTopicNameKm}"?`,
+      questionEn: `Which answer do you choose correctly for "${cleanTopicNameEn}"?`,
       answers: shuffle(s3Answers, hash(`${t.id}:3`)),
       answerKm: correctAnsKm, answerEn: correctAnsEn,
       explanationKm: `ចម្លើយត្រឹមត្រូវគឺ "${correctAnsKm}"។`,
@@ -222,12 +228,12 @@ async function main() {
       id: `${prefix}-${t.id}-04`, topicId: t.id, topicCode: t.topic_code,
       categoryId: catConfig.id, categorySlug: slug, subGroup: t.sub_group,
       difficulty: "easy", questionType: "multiple_choice", questionImageUrl: null,
-      questionKm: `យោងតាមច្បាប់ចរាចរណ៍ "${cleanTopicNameKm}"`,
-      questionEn: `According to road traffic regulations: ${cleanTopicNameEn}`,
+      questionKm: `យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ "${cleanTopicNameKm}" ដូចម្ដេច?`,
+      questionEn: `According to road rules, how do you correctly define "${cleanTopicNameEn}"?`,
       answers: shuffle(s4Answers, hash(`${t.id}:4`)),
       answerKm: correctAnsKm, answerEn: correctAnsEn,
-      explanationKm: `ព័ត៌មានពិតប្រាកដគឺ "${correctAnsKm}"។`,
-      explanationEn: `The verified fact is: ${correctAnsEn}.`
+      explanationKm: `ចម្លើយត្រឹមត្រូវគឺ "${correctAnsKm}"។`,
+      explanationEn: `The correct definition is: ${correctAnsEn}.`
     });
 
     // Slot 5: medium MCQ — correct action
@@ -240,8 +246,8 @@ async function main() {
       id: `${prefix}-${t.id}-05`, topicId: t.id, topicCode: t.topic_code,
       categoryId: catConfig.id, categorySlug: slug, subGroup: t.sub_group,
       difficulty: "medium", questionType: "multiple_choice", questionImageUrl: null,
-      questionKm: `តើអ្នកបើកបរត្រូវធ្វើដូចម្តេចឱ្យបានត្រឹមត្រូវចំពោះ "${cleanTopicNameKm}"?`,
-      questionEn: `What is the correct action for the driver regarding "${cleanTopicNameEn}"?`,
+      questionKm: `តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ "${cleanTopicNameKm}"?`,
+      questionEn: `What correct action must you take regarding "${cleanTopicNameEn}"?`,
       answers: shuffle(s5Answers, hash(`${t.id}:5`)),
       answerKm: correctAnsKm, answerEn: correctAnsEn,
       explanationKm: `សកម្មភាពត្រឹមត្រូវគឺ "${correctAnsKm}"។`,
@@ -258,12 +264,12 @@ async function main() {
       id: `${prefix}-${t.id}-06`, topicId: t.id, topicCode: t.topic_code,
       categoryId: catConfig.id, categorySlug: slug, subGroup: t.sub_group,
       difficulty: "medium", questionType: "scenario", questionImageUrl: null,
-      questionKm: `${nm} សួរថា "${cleanTopicNameKm}" តើ ${nm} គួរទទួលបានចម្លើយបែបណា?`,
-      questionEn: `${nm} is asking "${cleanTopicNameEn}" What answer should ${nm} receive?`,
+      questionKm: `នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង "${cleanTopicNameKm}" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?`,
+      questionEn: `In a real scenario, if you encounter "${cleanTopicNameEn}", which answer do you choose?`,
       answers: shuffle(s6Answers, hash(`${t.id}:6`)),
       answerKm: correctAnsKm, answerEn: correctAnsEn,
-      explanationKm: `${nm} ត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ "${correctAnsKm}"។`,
-      explanationEn: `${nm} needs to know that the correct answer is: ${correctAnsEn}.`
+      explanationKm: `អ្នកត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ "${correctAnsKm}"។`,
+      explanationEn: `You need to know that the correct answer is: ${correctAnsEn}.`
     });
 
     // Slot 7: medium True / False — common misconception
@@ -277,12 +283,12 @@ async function main() {
       id: `${prefix}-${t.id}-07`, topicId: t.id, topicCode: t.topic_code,
       categoryId: catConfig.id, categorySlug: slug, subGroup: t.sub_group,
       difficulty: "medium", questionType: "true_false", questionImageUrl: null,
-      questionKm: `${nm2} គិតថា "${s7Dist.km}" គឺជាចម្លើយសម្រាប់សំណួរ "${cleanTopicNameKm}"`,
-      questionEn: `${nm2} believes that "${s7Dist.en}" is the answer to: "${cleanTopicNameEn}"`,
+      questionKm: `តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា "${s7Dist.km}" គឺជាចម្លើយសម្រាប់ "${cleanTopicNameKm}"?`,
+      questionEn: `Is it correct if you believe that "${s7Dist.en}" is the answer for "${cleanTopicNameEn}"?`,
       answers: s7Answers,
       answerKm: "ខុស", answerEn: "False",
-      explanationKm: `ការយល់ឃើញរបស់ ${nm2} គឺខុសហើយ។ ចម្លើយពិតប្រាកដគឺ "${correctAnsKm}"។`,
-      explanationEn: `${nm2}'s belief is false. The correct fact is: ${correctAnsEn}.`
+      explanationKm: `ការយល់ឃើញនេះគឺមិនត្រឹមត្រូវទេ។ ចម្លើយពិតប្រាកដគឺ "${correctAnsKm}"។`,
+      explanationEn: `This belief is incorrect. The correct fact is: ${correctAnsEn}.`
     });
 
     // Slot 8: hard MCQ — why / safety purpose
@@ -296,8 +302,8 @@ async function main() {
       id: `${prefix}-${t.id}-08`, topicId: t.id, topicCode: t.topic_code,
       categoryId: catConfig.id, categorySlug: slug, subGroup: t.sub_group,
       difficulty: "hard", questionType: "multiple_choice", questionImageUrl: null,
-      questionKm: `ហេតុអ្វីបានជាការយល់ដឹង និងការអនុវត្តច្បាប់ចំពោះ "${cleanTopicNameKm}" មានសារៈសំខាន់?`,
-      questionEn: `Why is understanding and applying the rule for: ${cleanTopicNameEn} highly important?`,
+      questionKm: `ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ "${cleanTopicNameKm}"?`,
+      questionEn: `Why must you understand and respect the rule for "${cleanTopicNameEn}"?`,
       answers: shuffle(s8Answers, hash(`${t.id}:8`)),
       answerKm: "ដើម្បីធានាសុវត្ថិភាព បង្ការគ្រោះថ្នាក់ និងរក្សាសណ្តាប់ធ្នាប់លើដងផ្លូវ",
       answerEn: "To ensure safety, prevent accidents, and maintain road order",
@@ -316,8 +322,8 @@ async function main() {
       id: `${prefix}-${t.id}-09`, topicId: t.id, topicCode: t.topic_code,
       categoryId: catConfig.id, categorySlug: slug, subGroup: t.sub_group,
       difficulty: "hard", questionType: "multiple_choice", questionImageUrl: null,
-      questionKm: `តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកបើកបរមិនអើពើនឹង "${cleanTopicNameKm}"?`,
-      questionEn: `What consequences may occur under traffic rules if a driver ignores the fact: ${cleanTopicNameEn}`,
+      questionKm: `តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង "${cleanTopicNameKm}"?`,
+      questionEn: `What legal consequences may you face if you ignore "${cleanTopicNameEn}"?`,
       answers: shuffle(s9Answers, hash(`${t.id}:9`)),
       answerKm: "វាអាចនាំឱ្យមានការផាកពិន័យ ត្រូវទទួលខុសត្រូវតាមច្បាប់ ឬបង្កគ្រោះថ្នាក់ធ្ងន់ធ្ងរ",
       answerEn: "It can lead to traffic fines, legal liability, or severe accidents",

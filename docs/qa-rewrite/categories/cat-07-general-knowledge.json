@@ -27,38 +27,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើការយល់ដឹងត្រឹមត្រូវអំពី \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\" គឺជាអ្វី?",
-      "questionEn": "What is the correct understanding for \"Who can be infected HIV?\"?",
+      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "How do you correctly understand \"Who can be infected HIV?\"?",
       "answers": [
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គ្រប់គ្នា",
-          "answerEn": "The answer is Everyone",
+          "answerEn": "Everyone",
           "isCorrect": true,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "គ្រប់គ្នា",
-      "answerEn": "The answer is Everyone",
-      "explanationKm": "យោងតាមច្បាប់ សេចក្តីពន្យល់គឺ \"គ្រប់គ្នា\"។",
-      "explanationEn": "According to the rules, the correct explanation is: The answer is Everyone."
+      "answerEn": "Everyone",
+      "explanationKm": "ការយល់ដឹងត្រឹមត្រូវគឺ \"គ្រប់គ្នា\"។",
+      "explanationEn": "The correct understanding is: Everyone."
     },
     {
       "id": "GK-521-02",
@@ -70,8 +70,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "ចម្លើយពិតប្រាកដគឺ \"គ្រប់គ្នា\" សម្រាប់សំណួរ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"",
-      "questionEn": "The correct answer is \"The answer is Everyone\" for the question: \"Who can be infected HIV?\"",
+      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"គ្រប់គ្នា\"។",
+      "questionEn": "When you face the question \"Who can be infected HIV?\", you know the correct answer is \"Everyone\".",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -89,7 +89,7 @@
       "answerKm": "ត្រូវ",
       "answerEn": "True",
       "explanationKm": "ពិតប្រាកដណាស់ ចម្លើយគឺ \"គ្រប់គ្នា\"។",
-      "explanationEn": "Indeed, the correct answer is: The answer is Everyone."
+      "explanationEn": "Indeed, the correct answer is: Everyone."
     },
     {
       "id": "GK-521-03",
@@ -101,38 +101,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ចំពោះសំណួរ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\" តើចម្លើយមួយណាត្រឹមត្រូវ?",
-      "questionEn": "Regarding the question \"Who can be infected HIV?\" which option is correct?",
+      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "Which answer do you choose correctly for \"Who can be infected HIV?\"?",
       "answers": [
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "បាទ",
-          "answerEn": "The answer is Yes",
+          "answerEn": "Yes",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គ្រប់គ្នា",
-          "answerEn": "The answer is Everyone",
+          "answerEn": "Everyone",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "គ្រប់គ្នា",
-      "answerEn": "The answer is Everyone",
+      "answerEn": "Everyone",
       "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"គ្រប់គ្នា\"។",
-      "explanationEn": "The correct answer is: The answer is Everyone."
+      "explanationEn": "The correct answer is: Everyone."
     },
     {
       "id": "GK-521-04",
@@ -144,38 +144,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"",
-      "questionEn": "According to road traffic regulations: Who can be infected HIV?",
+      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\" ដូចម្ដេច?",
+      "questionEn": "According to road rules, how do you correctly define \"Who can be infected HIV?\"?",
       "answers": [
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-          "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+          "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ទេ វាមិនមានទេ។",
-          "answerEn": "The answer is No, there isn't.",
+          "answerEn": "No, there isn't.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គ្រប់គ្នា",
-          "answerEn": "The answer is Everyone",
+          "answerEn": "Everyone",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-          "answerEn": "The answer is By testing the blood.",
+          "answerEn": "By testing the blood.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "គ្រប់គ្នា",
-      "answerEn": "The answer is Everyone",
-      "explanationKm": "ព័ត៌មានពិតប្រាកដគឺ \"គ្រប់គ្នា\"។",
-      "explanationEn": "The verified fact is: The answer is Everyone."
+      "answerEn": "Everyone",
+      "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"គ្រប់គ្នា\"។",
+      "explanationEn": "The correct definition is: Everyone."
     },
     {
       "id": "GK-521-05",
@@ -187,38 +187,38 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកបើកបរត្រូវធ្វើដូចម្តេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
-      "questionEn": "What is the correct action for the driver regarding \"Who can be infected HIV?\"?",
+      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "What correct action must you take regarding \"Who can be infected HIV?\"?",
       "answers": [
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-          "answerEn": "The answer is Have sex with condom properly and all time",
+          "answerEn": "Have sex with condom properly and all time",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-          "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+          "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ទេ វាមិនមានទេ។",
-          "answerEn": "The answer is No, there isn't.",
+          "answerEn": "No, there isn't.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គ្រប់គ្នា",
-          "answerEn": "The answer is Everyone",
+          "answerEn": "Everyone",
           "isCorrect": true,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "គ្រប់គ្នា",
-      "answerEn": "The answer is Everyone",
+      "answerEn": "Everyone",
       "explanationKm": "សកម្មភាពត្រឹមត្រូវគឺ \"គ្រប់គ្នា\"។",
-      "explanationEn": "The correct action is: The answer is Everyone."
+      "explanationEn": "The correct action is: Everyone."
     },
     {
       "id": "GK-521-06",
@@ -230,38 +230,38 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "ប៊ុន សួរថា \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\" តើ ប៊ុន គួរទទួលបានចម្លើយបែបណា?",
-      "questionEn": "ប៊ុន is asking \"Who can be infected HIV?\" What answer should ប៊ុន receive?",
+      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
+      "questionEn": "In a real scenario, if you encounter \"Who can be infected HIV?\", which answer do you choose?",
       "answers": [
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គ្រប់គ្នា",
-          "answerEn": "The answer is Everyone",
+          "answerEn": "Everyone",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-          "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+          "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "គ្រប់គ្នា",
-      "answerEn": "The answer is Everyone",
-      "explanationKm": "ប៊ុន ត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"គ្រប់គ្នា\"។",
-      "explanationEn": "ប៊ុន needs to know that the correct answer is: The answer is Everyone."
+      "answerEn": "Everyone",
+      "explanationKm": "អ្នកត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"គ្រប់គ្នា\"។",
+      "explanationEn": "You need to know that the correct answer is: Everyone."
     },
     {
       "id": "GK-521-07",
@@ -273,8 +273,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "សុភា គិតថា \"ហ៊ាន\" គឺជាចម្លើយសម្រាប់សំណួរ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"",
-      "questionEn": "សុភា believes that \"The answer is Dare\" is the answer to: \"Who can be infected HIV?\"",
+      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ហ៊ាន\" គឺជាចម្លើយសម្រាប់ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "Is it correct if you believe that \"Dare\" is the answer for \"Who can be infected HIV?\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -291,8 +291,8 @@
       ],
       "answerKm": "ខុស",
       "answerEn": "False",
-      "explanationKm": "ការយល់ឃើញរបស់ សុភា គឺខុសហើយ។ ចម្លើយពិតប្រាកដគឺ \"គ្រប់គ្នា\"។",
-      "explanationEn": "សុភា's belief is false. The correct fact is: The answer is Everyone."
+      "explanationKm": "ការយល់ឃើញនេះគឺមិនត្រឹមត្រូវទេ។ ចម្លើយពិតប្រាកដគឺ \"គ្រប់គ្នា\"។",
+      "explanationEn": "This belief is incorrect. The correct fact is: Everyone."
     },
     {
       "id": "GK-521-08",
@@ -304,8 +304,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាការយល់ដឹង និងការអនុវត្តច្បាប់ចំពោះ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\" មានសារៈសំខាន់?",
-      "questionEn": "Why is understanding and applying the rule for: Who can be infected HIV? highly important?",
+      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "Why must you understand and respect the rule for \"Who can be infected HIV?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -347,8 +347,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកបើកបរមិនអើពើនឹង \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
-      "questionEn": "What consequences may occur under traffic rules if a driver ignores the fact: Who can be infected HIV?",
+      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើអ្នកណាអាចឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "What legal consequences may you face if you ignore \"Who can be infected HIV?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -390,38 +390,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើការយល់ដឹងត្រឹមត្រូវអំពី \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\" គឺជាអ្វី?",
-      "questionEn": "What is the correct understanding for \"How can HIV infect?\"?",
+      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
+      "questionEn": "How do you correctly understand \"How can HIV infect?\"?",
       "answers": [
         {
           "answerKm": "គ្រប់គ្នា",
-          "answerEn": "The answer is Everyone",
+          "answerEn": "Everyone",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-          "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+          "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ទេ វាមិនមានទេ។",
-          "answerEn": "The answer is No, there isn't.",
+          "answerEn": "No, there isn't.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-      "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
-      "explanationKm": "យោងតាមច្បាប់ សេចក្តីពន្យល់គឺ \"តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន\"។",
-      "explanationEn": "According to the rules, the correct explanation is: The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child."
+      "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+      "explanationKm": "ការយល់ដឹងត្រឹមត្រូវគឺ \"តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន\"។",
+      "explanationEn": "The correct understanding is: Through sex, shared needles, contaminated blood transfusions, and from mother to child."
     },
     {
       "id": "GK-522-02",
@@ -433,8 +433,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "ចម្លើយពិតប្រាកដគឺ \"តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន\" សម្រាប់សំណួរ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"",
-      "questionEn": "The correct answer is \"The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child\" for the question: \"How can HIV infect?\"",
+      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន\"។",
+      "questionEn": "When you face the question \"How can HIV infect?\", you know the correct answer is \"Through sex, shared needles, contaminated blood transfusions, and from mother to child\".",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -452,7 +452,7 @@
       "answerKm": "ត្រូវ",
       "answerEn": "True",
       "explanationKm": "ពិតប្រាកដណាស់ ចម្លើយគឺ \"តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន\"។",
-      "explanationEn": "Indeed, the correct answer is: The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child."
+      "explanationEn": "Indeed, the correct answer is: Through sex, shared needles, contaminated blood transfusions, and from mother to child."
     },
     {
       "id": "GK-522-03",
@@ -464,38 +464,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ចំពោះសំណួរ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\" តើចម្លើយមួយណាត្រឹមត្រូវ?",
-      "questionEn": "Regarding the question \"How can HIV infect?\" which option is correct?",
+      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
+      "questionEn": "Which answer do you choose correctly for \"How can HIV infect?\"?",
       "answers": [
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-          "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+          "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គ្រប់គ្នា",
-          "answerEn": "The answer is Everyone",
+          "answerEn": "Everyone",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-      "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+      "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
       "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន\"។",
-      "explanationEn": "The correct answer is: The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child."
+      "explanationEn": "The correct answer is: Through sex, shared needles, contaminated blood transfusions, and from mother to child."
     },
     {
       "id": "GK-522-04",
@@ -507,38 +507,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"",
-      "questionEn": "According to road traffic regulations: How can HIV infect?",
+      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\" ដូចម្ដេច?",
+      "questionEn": "According to road rules, how do you correctly define \"How can HIV infect?\"?",
       "answers": [
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-          "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+          "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "បាទ",
-          "answerEn": "The answer is Yes",
+          "answerEn": "Yes",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-      "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
-      "explanationKm": "ព័ត៌មានពិតប្រាកដគឺ \"តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន\"។",
-      "explanationEn": "The verified fact is: The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child."
+      "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+      "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន\"។",
+      "explanationEn": "The correct definition is: Through sex, shared needles, contaminated blood transfusions, and from mother to child."
     },
     {
       "id": "GK-522-05",
@@ -550,38 +550,38 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកបើកបរត្រូវធ្វើដូចម្តេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
-      "questionEn": "What is the correct action for the driver regarding \"How can HIV infect?\"?",
+      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
+      "questionEn": "What correct action must you take regarding \"How can HIV infect?\"?",
       "answers": [
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-          "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+          "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-      "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+      "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
       "explanationKm": "សកម្មភាពត្រឹមត្រូវគឺ \"តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន\"។",
-      "explanationEn": "The correct action is: The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child."
+      "explanationEn": "The correct action is: Through sex, shared needles, contaminated blood transfusions, and from mother to child."
     },
     {
       "id": "GK-522-06",
@@ -593,38 +593,38 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "សុខ សួរថា \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\" តើ សុខ គួរទទួលបានចម្លើយបែបណា?",
-      "questionEn": "សុខ is asking \"How can HIV infect?\" What answer should សុខ receive?",
+      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
+      "questionEn": "In a real scenario, if you encounter \"How can HIV infect?\", which answer do you choose?",
       "answers": [
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-          "answerEn": "The answer is Let him or her work as usual.",
+          "answerEn": "Let him or her work as usual.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-          "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+          "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
           "isCorrect": true,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-      "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
-      "explanationKm": "សុខ ត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន\"។",
-      "explanationEn": "សុខ needs to know that the correct answer is: The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child."
+      "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+      "explanationKm": "អ្នកត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន\"។",
+      "explanationEn": "You need to know that the correct answer is: Through sex, shared needles, contaminated blood transfusions, and from mother to child."
     },
     {
       "id": "GK-522-07",
@@ -636,8 +636,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "រតនា គិតថា \"គាំទ្រនិងមិនរើសអើង\" គឺជាចម្លើយសម្រាប់សំណួរ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"",
-      "questionEn": "រតនា believes that \"The answer is Suport and not discrimination\" is the answer to: \"How can HIV infect?\"",
+      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"គាំទ្រនិងមិនរើសអើង\" គឺជាចម្លើយសម្រាប់ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
+      "questionEn": "Is it correct if you believe that \"Suport and not discrimination\" is the answer for \"How can HIV infect?\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -654,8 +654,8 @@
       ],
       "answerKm": "ខុស",
       "answerEn": "False",
-      "explanationKm": "ការយល់ឃើញរបស់ រតនា គឺខុសហើយ។ ចម្លើយពិតប្រាកដគឺ \"តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន\"។",
-      "explanationEn": "រតនា's belief is false. The correct fact is: The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child."
+      "explanationKm": "ការយល់ឃើញនេះគឺមិនត្រឹមត្រូវទេ។ ចម្លើយពិតប្រាកដគឺ \"តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន\"។",
+      "explanationEn": "This belief is incorrect. The correct fact is: Through sex, shared needles, contaminated blood transfusions, and from mother to child."
     },
     {
       "id": "GK-522-08",
@@ -667,8 +667,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាការយល់ដឹង និងការអនុវត្តច្បាប់ចំពោះ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\" មានសារៈសំខាន់?",
-      "questionEn": "Why is understanding and applying the rule for: How can HIV infect? highly important?",
+      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
+      "questionEn": "Why must you understand and respect the rule for \"How can HIV infect?\"?",
       "answers": [
         {
           "answerKm": "ដើម្បីធានាសុវត្ថិភាព បង្ការគ្រោះថ្នាក់ និងរក្សាសណ្តាប់ធ្នាប់លើដងផ្លូវ",
@@ -710,8 +710,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកបើកបរមិនអើពើនឹង \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
-      "questionEn": "What consequences may occur under traffic rules if a driver ignores the fact: How can HIV infect?",
+      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើមេរោគអេដស៍អាចឆ្លងដោយរបៀបណា?\"?",
+      "questionEn": "What legal consequences may you face if you ignore \"How can HIV infect?\"?",
       "answers": [
         {
           "answerKm": "ការទទួលបានប្រាក់រង្វាន់លើកទឹកចិត្តពីសាលាក្រុង",
@@ -753,38 +753,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើការយល់ដឹងត្រឹមត្រូវអំពី \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\" គឺជាអ្វី?",
-      "questionEn": "What is the correct understanding for \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
+      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
+      "questionEn": "How do you correctly understand \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
       "answers": [
         {
           "answerKm": "ទេ វាមិនមានទេ។",
-          "answerEn": "The answer is No, there isn't.",
+          "answerEn": "No, there isn't.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "បាទ",
-          "answerEn": "The answer is Yes",
+          "answerEn": "Yes",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-          "answerEn": "The answer is Have sex with condom properly and all time",
+          "answerEn": "Have sex with condom properly and all time",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ទេ វាមិនមានទេ។",
-      "answerEn": "The answer is No, there isn't.",
-      "explanationKm": "យោងតាមច្បាប់ សេចក្តីពន្យល់គឺ \"ទេ វាមិនមានទេ។\"។",
-      "explanationEn": "According to the rules, the correct explanation is: The answer is No, there isn't.."
+      "answerEn": "No, there isn't.",
+      "explanationKm": "ការយល់ដឹងត្រឹមត្រូវគឺ \"ទេ វាមិនមានទេ។\"។",
+      "explanationEn": "The correct understanding is: No, there isn't.."
     },
     {
       "id": "GK-523-02",
@@ -796,8 +796,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "ចម្លើយពិតប្រាកដគឺ \"ទេ វាមិនមានទេ។\" សម្រាប់សំណួរ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"",
-      "questionEn": "The correct answer is \"The answer is No, there isn't.\" for the question: \"Up to now, is there a medicine that can cure the HIV/AIDS?\"",
+      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ទេ វាមិនមានទេ។\"។",
+      "questionEn": "When you face the question \"Up to now, is there a medicine that can cure the HIV/AIDS?\", you know the correct answer is \"No, there isn't.\".",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -815,7 +815,7 @@
       "answerKm": "ត្រូវ",
       "answerEn": "True",
       "explanationKm": "ពិតប្រាកដណាស់ ចម្លើយគឺ \"ទេ វាមិនមានទេ។\"។",
-      "explanationEn": "Indeed, the correct answer is: The answer is No, there isn't.."
+      "explanationEn": "Indeed, the correct answer is: No, there isn't.."
     },
     {
       "id": "GK-523-03",
@@ -827,38 +827,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ចំពោះសំណួរ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\" តើចម្លើយមួយណាត្រឹមត្រូវ?",
-      "questionEn": "Regarding the question \"Up to now, is there a medicine that can cure the HIV/AIDS?\" which option is correct?",
+      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
+      "questionEn": "Which answer do you choose correctly for \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
       "answers": [
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-          "answerEn": "The answer is Let him or her work as usual.",
+          "answerEn": "Let him or her work as usual.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ទេ វាមិនមានទេ។",
-          "answerEn": "The answer is No, there isn't.",
+          "answerEn": "No, there isn't.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ទេ វាមិនមានទេ។",
-      "answerEn": "The answer is No, there isn't.",
+      "answerEn": "No, there isn't.",
       "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"ទេ វាមិនមានទេ។\"។",
-      "explanationEn": "The correct answer is: The answer is No, there isn't.."
+      "explanationEn": "The correct answer is: No, there isn't.."
     },
     {
       "id": "GK-523-04",
@@ -870,38 +870,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"",
-      "questionEn": "According to road traffic regulations: Up to now, is there a medicine that can cure the HIV/AIDS?",
+      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\" ដូចម្ដេច?",
+      "questionEn": "According to road rules, how do you correctly define \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
       "answers": [
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-          "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+          "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ទេ វាមិនមានទេ។",
-          "answerEn": "The answer is No, there isn't.",
+          "answerEn": "No, there isn't.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ទេ វាមិនមានទេ។",
-      "answerEn": "The answer is No, there isn't.",
-      "explanationKm": "ព័ត៌មានពិតប្រាកដគឺ \"ទេ វាមិនមានទេ។\"។",
-      "explanationEn": "The verified fact is: The answer is No, there isn't.."
+      "answerEn": "No, there isn't.",
+      "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"ទេ វាមិនមានទេ។\"។",
+      "explanationEn": "The correct definition is: No, there isn't.."
     },
     {
       "id": "GK-523-05",
@@ -913,38 +913,38 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកបើកបរត្រូវធ្វើដូចម្តេចឱ្យបានត្រឹមត្រូវចំពោះ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
-      "questionEn": "What is the correct action for the driver regarding \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
+      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
+      "questionEn": "What correct action must you take regarding \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
       "answers": [
         {
           "answerKm": "ទេ វាមិនមានទេ។",
-          "answerEn": "The answer is No, there isn't.",
+          "answerEn": "No, there isn't.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ទេ វាមិនមានទេ។",
-      "answerEn": "The answer is No, there isn't.",
+      "answerEn": "No, there isn't.",
       "explanationKm": "សកម្មភាពត្រឹមត្រូវគឺ \"ទេ វាមិនមានទេ។\"។",
-      "explanationEn": "The correct action is: The answer is No, there isn't.."
+      "explanationEn": "The correct action is: No, there isn't.."
     },
     {
       "id": "GK-523-06",
@@ -956,38 +956,38 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "ដារ៉ា សួរថា \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\" តើ ដារ៉ា គួរទទួលបានចម្លើយបែបណា?",
-      "questionEn": "ដារ៉ា is asking \"Up to now, is there a medicine that can cure the HIV/AIDS?\" What answer should ដារ៉ា receive?",
+      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
+      "questionEn": "In a real scenario, if you encounter \"Up to now, is there a medicine that can cure the HIV/AIDS?\", which answer do you choose?",
       "answers": [
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-          "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+          "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ទេ វាមិនមានទេ។",
-          "answerEn": "The answer is No, there isn't.",
+          "answerEn": "No, there isn't.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-          "answerEn": "The answer is By testing the blood.",
+          "answerEn": "By testing the blood.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គ្រប់គ្នា",
-          "answerEn": "The answer is Everyone",
+          "answerEn": "Everyone",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ទេ វាមិនមានទេ។",
-      "answerEn": "The answer is No, there isn't.",
-      "explanationKm": "ដារ៉ា ត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ទេ វាមិនមានទេ។\"។",
-      "explanationEn": "ដារ៉ា needs to know that the correct answer is: The answer is No, there isn't.."
+      "answerEn": "No, there isn't.",
+      "explanationKm": "អ្នកត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ទេ វាមិនមានទេ។\"។",
+      "explanationEn": "You need to know that the correct answer is: No, there isn't.."
     },
     {
       "id": "GK-523-07",
@@ -999,8 +999,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "វិសាល គិតថា \"គ្រប់គ្នា\" គឺជាចម្លើយសម្រាប់សំណួរ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"",
-      "questionEn": "វិសាល believes that \"The answer is Everyone\" is the answer to: \"Up to now, is there a medicine that can cure the HIV/AIDS?\"",
+      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"គ្រប់គ្នា\" គឺជាចម្លើយសម្រាប់ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
+      "questionEn": "Is it correct if you believe that \"Everyone\" is the answer for \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1017,8 +1017,8 @@
       ],
       "answerKm": "ខុស",
       "answerEn": "False",
-      "explanationKm": "ការយល់ឃើញរបស់ វិសាល គឺខុសហើយ។ ចម្លើយពិតប្រាកដគឺ \"ទេ វាមិនមានទេ។\"។",
-      "explanationEn": "វិសាល's belief is false. The correct fact is: The answer is No, there isn't.."
+      "explanationKm": "ការយល់ឃើញនេះគឺមិនត្រឹមត្រូវទេ។ ចម្លើយពិតប្រាកដគឺ \"ទេ វាមិនមានទេ។\"។",
+      "explanationEn": "This belief is incorrect. The correct fact is: No, there isn't.."
     },
     {
       "id": "GK-523-08",
@@ -1030,8 +1030,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាការយល់ដឹង និងការអនុវត្តច្បាប់ចំពោះ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\" មានសារៈសំខាន់?",
-      "questionEn": "Why is understanding and applying the rule for: Up to now, is there a medicine that can cure the HIV/AIDS? highly important?",
+      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
+      "questionEn": "Why must you understand and respect the rule for \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
       "answers": [
         {
           "answerKm": "គ្រាន់តែដើម្បីប្រឡងយកប័ណ្ណបើកបរឱ្យជាប់ងាយស្រួលប៉ុណ្ណោះ",
@@ -1073,8 +1073,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកបើកបរមិនអើពើនឹង \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
-      "questionEn": "What consequences may occur under traffic rules if a driver ignores the fact: Up to now, is there a medicine that can cure the HIV/AIDS?",
+      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"មក​ដល់​ពេល​នេះ តើ​មាន​ថ្នាំ​ណា​អាច​ព្យាបាល​មេរោគ​អេដស៍​បាន​ទេ?\"?",
+      "questionEn": "What legal consequences may you face if you ignore \"Up to now, is there a medicine that can cure the HIV/AIDS?\"?",
       "answers": [
         {
           "answerKm": "វាអាចនាំឱ្យមានការផាកពិន័យ ត្រូវទទួលខុសត្រូវតាមច្បាប់ ឬបង្កគ្រោះថ្នាក់ធ្ងន់ធ្ងរ",
@@ -1116,38 +1116,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើការយល់ដឹងត្រឹមត្រូវអំពី \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\" គឺជាអ្វី?",
-      "questionEn": "What is the correct understanding for \"How can you realize that someone have HIV?\"?",
+      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
+      "questionEn": "How do you correctly understand \"How can you realize that someone have HIV?\"?",
       "answers": [
         {
           "answerKm": "បាទ",
-          "answerEn": "The answer is Yes",
+          "answerEn": "Yes",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-          "answerEn": "The answer is By testing the blood.",
+          "answerEn": "By testing the blood.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-          "answerEn": "The answer is Have sex with condom properly and all time",
+          "answerEn": "Have sex with condom properly and all time",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-      "answerEn": "The answer is By testing the blood.",
-      "explanationKm": "យោងតាមច្បាប់ សេចក្តីពន្យល់គឺ \"ដោយការធ្វើតេស្តឈាម។\"។",
-      "explanationEn": "According to the rules, the correct explanation is: The answer is By testing the blood.."
+      "answerEn": "By testing the blood.",
+      "explanationKm": "ការយល់ដឹងត្រឹមត្រូវគឺ \"ដោយការធ្វើតេស្តឈាម។\"។",
+      "explanationEn": "The correct understanding is: By testing the blood.."
     },
     {
       "id": "GK-524-02",
@@ -1159,8 +1159,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "ចម្លើយពិតប្រាកដគឺ \"ដោយការធ្វើតេស្តឈាម។\" សម្រាប់សំណួរ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"",
-      "questionEn": "The correct answer is \"The answer is By testing the blood.\" for the question: \"How can you realize that someone have HIV?\"",
+      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ដោយការធ្វើតេស្តឈាម។\"។",
+      "questionEn": "When you face the question \"How can you realize that someone have HIV?\", you know the correct answer is \"By testing the blood.\".",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1178,7 +1178,7 @@
       "answerKm": "ត្រូវ",
       "answerEn": "True",
       "explanationKm": "ពិតប្រាកដណាស់ ចម្លើយគឺ \"ដោយការធ្វើតេស្តឈាម។\"។",
-      "explanationEn": "Indeed, the correct answer is: The answer is By testing the blood.."
+      "explanationEn": "Indeed, the correct answer is: By testing the blood.."
     },
     {
       "id": "GK-524-03",
@@ -1190,38 +1190,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ចំពោះសំណួរ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\" តើចម្លើយមួយណាត្រឹមត្រូវ?",
-      "questionEn": "Regarding the question \"How can you realize that someone have HIV?\" which option is correct?",
+      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
+      "questionEn": "Which answer do you choose correctly for \"How can you realize that someone have HIV?\"?",
       "answers": [
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-          "answerEn": "The answer is Let him or her work as usual.",
+          "answerEn": "Let him or her work as usual.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-          "answerEn": "The answer is By testing the blood.",
+          "answerEn": "By testing the blood.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-      "answerEn": "The answer is By testing the blood.",
+      "answerEn": "By testing the blood.",
       "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"ដោយការធ្វើតេស្តឈាម។\"។",
-      "explanationEn": "The correct answer is: The answer is By testing the blood.."
+      "explanationEn": "The correct answer is: By testing the blood.."
     },
     {
       "id": "GK-524-04",
@@ -1233,38 +1233,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"",
-      "questionEn": "According to road traffic regulations: How can you realize that someone have HIV?",
+      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\" ដូចម្ដេច?",
+      "questionEn": "According to road rules, how do you correctly define \"How can you realize that someone have HIV?\"?",
       "answers": [
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-          "answerEn": "The answer is By testing the blood.",
+          "answerEn": "By testing the blood.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-      "answerEn": "The answer is By testing the blood.",
-      "explanationKm": "ព័ត៌មានពិតប្រាកដគឺ \"ដោយការធ្វើតេស្តឈាម។\"។",
-      "explanationEn": "The verified fact is: The answer is By testing the blood.."
+      "answerEn": "By testing the blood.",
+      "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"ដោយការធ្វើតេស្តឈាម។\"។",
+      "explanationEn": "The correct definition is: By testing the blood.."
     },
     {
       "id": "GK-524-05",
@@ -1276,38 +1276,38 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកបើកបរត្រូវធ្វើដូចម្តេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
-      "questionEn": "What is the correct action for the driver regarding \"How can you realize that someone have HIV?\"?",
+      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
+      "questionEn": "What correct action must you take regarding \"How can you realize that someone have HIV?\"?",
       "answers": [
         {
           "answerKm": "គ្រប់គ្នា",
-          "answerEn": "The answer is Everyone",
+          "answerEn": "Everyone",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-          "answerEn": "The answer is By testing the blood.",
+          "answerEn": "By testing the blood.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-      "answerEn": "The answer is By testing the blood.",
+      "answerEn": "By testing the blood.",
       "explanationKm": "សកម្មភាពត្រឹមត្រូវគឺ \"ដោយការធ្វើតេស្តឈាម។\"។",
-      "explanationEn": "The correct action is: The answer is By testing the blood.."
+      "explanationEn": "The correct action is: By testing the blood.."
     },
     {
       "id": "GK-524-06",
@@ -1319,38 +1319,38 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "សុភា សួរថា \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\" តើ សុភា គួរទទួលបានចម្លើយបែបណា?",
-      "questionEn": "សុភា is asking \"How can you realize that someone have HIV?\" What answer should សុភា receive?",
+      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
+      "questionEn": "In a real scenario, if you encounter \"How can you realize that someone have HIV?\", which answer do you choose?",
       "answers": [
         {
           "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-          "answerEn": "The answer is By testing the blood.",
+          "answerEn": "By testing the blood.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គ្រប់គ្នា",
-          "answerEn": "The answer is Everyone",
+          "answerEn": "Everyone",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ទេ វាមិនមានទេ។",
-          "answerEn": "The answer is No, there isn't.",
+          "answerEn": "No, there isn't.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-          "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+          "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-      "answerEn": "The answer is By testing the blood.",
-      "explanationKm": "សុភា ត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ដោយការធ្វើតេស្តឈាម។\"។",
-      "explanationEn": "សុភា needs to know that the correct answer is: The answer is By testing the blood.."
+      "answerEn": "By testing the blood.",
+      "explanationKm": "អ្នកត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ដោយការធ្វើតេស្តឈាម។\"។",
+      "explanationEn": "You need to know that the correct answer is: By testing the blood.."
     },
     {
       "id": "GK-524-07",
@@ -1362,8 +1362,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "កុសល គិតថា \"ទេ វាមិនមានទេ។\" គឺជាចម្លើយសម្រាប់សំណួរ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"",
-      "questionEn": "កុសល believes that \"The answer is No, there isn't.\" is the answer to: \"How can you realize that someone have HIV?\"",
+      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ទេ វាមិនមានទេ។\" គឺជាចម្លើយសម្រាប់ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
+      "questionEn": "Is it correct if you believe that \"No, there isn't.\" is the answer for \"How can you realize that someone have HIV?\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1380,8 +1380,8 @@
       ],
       "answerKm": "ខុស",
       "answerEn": "False",
-      "explanationKm": "ការយល់ឃើញរបស់ កុសល គឺខុសហើយ។ ចម្លើយពិតប្រាកដគឺ \"ដោយការធ្វើតេស្តឈាម។\"។",
-      "explanationEn": "កុសល's belief is false. The correct fact is: The answer is By testing the blood.."
+      "explanationKm": "ការយល់ឃើញនេះគឺមិនត្រឹមត្រូវទេ។ ចម្លើយពិតប្រាកដគឺ \"ដោយការធ្វើតេស្តឈាម។\"។",
+      "explanationEn": "This belief is incorrect. The correct fact is: By testing the blood.."
     },
     {
       "id": "GK-524-08",
@@ -1393,8 +1393,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាការយល់ដឹង និងការអនុវត្តច្បាប់ចំពោះ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\" មានសារៈសំខាន់?",
-      "questionEn": "Why is understanding and applying the rule for: How can you realize that someone have HIV? highly important?",
+      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
+      "questionEn": "Why must you understand and respect the rule for \"How can you realize that someone have HIV?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -1436,8 +1436,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកបើកបរមិនអើពើនឹង \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
-      "questionEn": "What consequences may occur under traffic rules if a driver ignores the fact: How can you realize that someone have HIV?",
+      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើ​អ្នក​អាច​ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍​ដោយ​របៀប​ណា?\"?",
+      "questionEn": "What legal consequences may you face if you ignore \"How can you realize that someone have HIV?\"?",
       "answers": [
         {
           "answerKm": "ការឡើងថ្នាក់បើកបរភ្លាមៗដោយមិនបាច់ពិនិត្យ",
@@ -1479,38 +1479,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើការយល់ដឹងត្រឹមត្រូវអំពី \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\" គឺជាអ្វី?",
-      "questionEn": "What is the correct understanding for \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
+      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
+      "questionEn": "How do you correctly understand \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
       "answers": [
         {
           "answerKm": "ទេ វាមិនមានទេ។",
-          "answerEn": "The answer is No, there isn't.",
+          "answerEn": "No, there isn't.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គ្រប់គ្នា",
-          "answerEn": "The answer is Everyone",
+          "answerEn": "Everyone",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-          "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+          "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-          "answerEn": "The answer is Have sex with condom properly and all time",
+          "answerEn": "Have sex with condom properly and all time",
           "isCorrect": true,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-      "answerEn": "The answer is Have sex with condom properly and all time",
-      "explanationKm": "យោងតាមច្បាប់ សេចក្តីពន្យល់គឺ \"រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា\"។",
-      "explanationEn": "According to the rules, the correct explanation is: The answer is Have sex with condom properly and all time."
+      "answerEn": "Have sex with condom properly and all time",
+      "explanationKm": "ការយល់ដឹងត្រឹមត្រូវគឺ \"រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា\"។",
+      "explanationEn": "The correct understanding is: Have sex with condom properly and all time."
     },
     {
       "id": "GK-525-02",
@@ -1522,8 +1522,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "ចម្លើយពិតប្រាកដគឺ \"រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា\" សម្រាប់សំណួរ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"",
-      "questionEn": "The correct answer is \"The answer is Have sex with condom properly and all time\" for the question: \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"",
+      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា\"។",
+      "questionEn": "When you face the question \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\", you know the correct answer is \"Have sex with condom properly and all time\".",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1541,7 +1541,7 @@
       "answerKm": "ត្រូវ",
       "answerEn": "True",
       "explanationKm": "ពិតប្រាកដណាស់ ចម្លើយគឺ \"រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា\"។",
-      "explanationEn": "Indeed, the correct answer is: The answer is Have sex with condom properly and all time."
+      "explanationEn": "Indeed, the correct answer is: Have sex with condom properly and all time."
     },
     {
       "id": "GK-525-03",
@@ -1553,38 +1553,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ចំពោះសំណួរ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\" តើចម្លើយមួយណាត្រឹមត្រូវ?",
-      "questionEn": "Regarding the question \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\" which option is correct?",
+      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
+      "questionEn": "Which answer do you choose correctly for \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
       "answers": [
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-          "answerEn": "The answer is Have sex with condom properly and all time",
+          "answerEn": "Have sex with condom properly and all time",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-      "answerEn": "The answer is Have sex with condom properly and all time",
+      "answerEn": "Have sex with condom properly and all time",
       "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា\"។",
-      "explanationEn": "The correct answer is: The answer is Have sex with condom properly and all time."
+      "explanationEn": "The correct answer is: Have sex with condom properly and all time."
     },
     {
       "id": "GK-525-04",
@@ -1596,38 +1596,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"",
-      "questionEn": "According to road traffic regulations: Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?",
+      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\" ដូចម្ដេច?",
+      "questionEn": "According to road rules, how do you correctly define \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
       "answers": [
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-          "answerEn": "The answer is Have sex with condom properly and all time",
+          "answerEn": "Have sex with condom properly and all time",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-          "answerEn": "The answer is By testing the blood.",
+          "answerEn": "By testing the blood.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-      "answerEn": "The answer is Have sex with condom properly and all time",
-      "explanationKm": "ព័ត៌មានពិតប្រាកដគឺ \"រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា\"។",
-      "explanationEn": "The verified fact is: The answer is Have sex with condom properly and all time."
+      "answerEn": "Have sex with condom properly and all time",
+      "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា\"។",
+      "explanationEn": "The correct definition is: Have sex with condom properly and all time."
     },
     {
       "id": "GK-525-05",
@@ -1639,38 +1639,38 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកបើកបរត្រូវធ្វើដូចម្តេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
-      "questionEn": "What is the correct action for the driver regarding \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
+      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
+      "questionEn": "What correct action must you take regarding \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
       "answers": [
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-          "answerEn": "The answer is Let him or her work as usual.",
+          "answerEn": "Let him or her work as usual.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-          "answerEn": "The answer is Have sex with condom properly and all time",
+          "answerEn": "Have sex with condom properly and all time",
           "isCorrect": true,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-      "answerEn": "The answer is Have sex with condom properly and all time",
+      "answerEn": "Have sex with condom properly and all time",
       "explanationKm": "សកម្មភាពត្រឹមត្រូវគឺ \"រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា\"។",
-      "explanationEn": "The correct action is: The answer is Have sex with condom properly and all time."
+      "explanationEn": "The correct action is: Have sex with condom properly and all time."
     },
     {
       "id": "GK-525-06",
@@ -1682,38 +1682,38 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "រតនា សួរថា \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\" តើ រតនា គួរទទួលបានចម្លើយបែបណា?",
-      "questionEn": "រតនា is asking \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\" What answer should រតនា receive?",
+      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
+      "questionEn": "In a real scenario, if you encounter \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\", which answer do you choose?",
       "answers": [
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-          "answerEn": "The answer is Let him or her work as usual.",
+          "answerEn": "Let him or her work as usual.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-          "answerEn": "The answer is Have sex with condom properly and all time",
+          "answerEn": "Have sex with condom properly and all time",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-      "answerEn": "The answer is Have sex with condom properly and all time",
-      "explanationKm": "រតនា ត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា\"។",
-      "explanationEn": "រតនា needs to know that the correct answer is: The answer is Have sex with condom properly and all time."
+      "answerEn": "Have sex with condom properly and all time",
+      "explanationKm": "អ្នកត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា\"។",
+      "explanationEn": "You need to know that the correct answer is: Have sex with condom properly and all time."
     },
     {
       "id": "GK-525-07",
@@ -1725,8 +1725,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "លីដា គិតថា \"អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។\" គឺជាចម្លើយសម្រាប់សំណួរ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"",
-      "questionEn": "លីដា believes that \"The answer is Let him or her work as usual.\" is the answer to: \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"",
+      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។\" គឺជាចម្លើយសម្រាប់ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
+      "questionEn": "Is it correct if you believe that \"Let him or her work as usual.\" is the answer for \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1743,8 +1743,8 @@
       ],
       "answerKm": "ខុស",
       "answerEn": "False",
-      "explanationKm": "ការយល់ឃើញរបស់ លីដា គឺខុសហើយ។ ចម្លើយពិតប្រាកដគឺ \"រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា\"។",
-      "explanationEn": "លីដា's belief is false. The correct fact is: The answer is Have sex with condom properly and all time."
+      "explanationKm": "ការយល់ឃើញនេះគឺមិនត្រឹមត្រូវទេ។ ចម្លើយពិតប្រាកដគឺ \"រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា\"។",
+      "explanationEn": "This belief is incorrect. The correct fact is: Have sex with condom properly and all time."
     },
     {
       "id": "GK-525-08",
@@ -1756,8 +1756,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាការយល់ដឹង និងការអនុវត្តច្បាប់ចំពោះ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\" មានសារៈសំខាន់?",
-      "questionEn": "Why is understanding and applying the rule for: Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases? highly important?",
+      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
+      "questionEn": "Why must you understand and respect the rule for \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -1799,8 +1799,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកបើកបរមិនអើពើនឹង \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
-      "questionEn": "What consequences may occur under traffic rules if a driver ignores the fact: Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?",
+      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើ​មាន​វិធានការ​ណា​ខ្លះ​ដែល​អាច​ការពារ​ខ្លួន​ឯង​ពី​ការ​ឆ្លង​មេរោគ​អេដស៍ និង​ជំងឺ​កាម​រោគ?\"?",
+      "questionEn": "What legal consequences may you face if you ignore \"Are any measures that can prevent yourself from being infected with HIV and sexually transmitted diseases?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -1842,38 +1842,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើការយល់ដឹងត្រឹមត្រូវអំពី \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\" គឺជាអ្វី?",
-      "questionEn": "What is the correct understanding for \"What disease that can push to infect HIV?\"?",
+      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "How do you correctly understand \"What disease that can push to infect HIV?\"?",
       "answers": [
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-          "answerEn": "The answer is Have sex with condom properly and all time",
+          "answerEn": "Have sex with condom properly and all time",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-          "answerEn": "The answer is By testing the blood.",
+          "answerEn": "By testing the blood.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "បាទ",
-          "answerEn": "The answer is Yes",
+          "answerEn": "Yes",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ជំងឺកាមរោគ",
-      "answerEn": "The answer is Sexually transmitted disease",
-      "explanationKm": "យោងតាមច្បាប់ សេចក្តីពន្យល់គឺ \"ជំងឺកាមរោគ\"។",
-      "explanationEn": "According to the rules, the correct explanation is: The answer is Sexually transmitted disease."
+      "answerEn": "Sexually transmitted disease",
+      "explanationKm": "ការយល់ដឹងត្រឹមត្រូវគឺ \"ជំងឺកាមរោគ\"។",
+      "explanationEn": "The correct understanding is: Sexually transmitted disease."
     },
     {
       "id": "GK-526-02",
@@ -1885,8 +1885,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "ចម្លើយពិតប្រាកដគឺ \"ជំងឺកាមរោគ\" សម្រាប់សំណួរ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"",
-      "questionEn": "The correct answer is \"The answer is Sexually transmitted disease\" for the question: \"What disease that can push to infect HIV?\"",
+      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ជំងឺកាមរោគ\"។",
+      "questionEn": "When you face the question \"What disease that can push to infect HIV?\", you know the correct answer is \"Sexually transmitted disease\".",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -1904,7 +1904,7 @@
       "answerKm": "ត្រូវ",
       "answerEn": "True",
       "explanationKm": "ពិតប្រាកដណាស់ ចម្លើយគឺ \"ជំងឺកាមរោគ\"។",
-      "explanationEn": "Indeed, the correct answer is: The answer is Sexually transmitted disease."
+      "explanationEn": "Indeed, the correct answer is: Sexually transmitted disease."
     },
     {
       "id": "GK-526-03",
@@ -1916,38 +1916,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ចំពោះសំណួរ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\" តើចម្លើយមួយណាត្រឹមត្រូវ?",
-      "questionEn": "Regarding the question \"What disease that can push to infect HIV?\" which option is correct?",
+      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "Which answer do you choose correctly for \"What disease that can push to infect HIV?\"?",
       "answers": [
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-          "answerEn": "The answer is By testing the blood.",
+          "answerEn": "By testing the blood.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ជំងឺកាមរោគ",
-      "answerEn": "The answer is Sexually transmitted disease",
+      "answerEn": "Sexually transmitted disease",
       "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"ជំងឺកាមរោគ\"។",
-      "explanationEn": "The correct answer is: The answer is Sexually transmitted disease."
+      "explanationEn": "The correct answer is: Sexually transmitted disease."
     },
     {
       "id": "GK-526-04",
@@ -1959,38 +1959,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"",
-      "questionEn": "According to road traffic regulations: What disease that can push to infect HIV?",
+      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\" ដូចម្ដេច?",
+      "questionEn": "According to road rules, how do you correctly define \"What disease that can push to infect HIV?\"?",
       "answers": [
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-          "answerEn": "The answer is Let him or her work as usual.",
+          "answerEn": "Let him or her work as usual.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ជំងឺកាមរោគ",
-      "answerEn": "The answer is Sexually transmitted disease",
-      "explanationKm": "ព័ត៌មានពិតប្រាកដគឺ \"ជំងឺកាមរោគ\"។",
-      "explanationEn": "The verified fact is: The answer is Sexually transmitted disease."
+      "answerEn": "Sexually transmitted disease",
+      "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"ជំងឺកាមរោគ\"។",
+      "explanationEn": "The correct definition is: Sexually transmitted disease."
     },
     {
       "id": "GK-526-05",
@@ -2002,38 +2002,38 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកបើកបរត្រូវធ្វើដូចម្តេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
-      "questionEn": "What is the correct action for the driver regarding \"What disease that can push to infect HIV?\"?",
+      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "What correct action must you take regarding \"What disease that can push to infect HIV?\"?",
       "answers": [
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-          "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+          "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ជំងឺកាមរោគ",
-      "answerEn": "The answer is Sexually transmitted disease",
+      "answerEn": "Sexually transmitted disease",
       "explanationKm": "សកម្មភាពត្រឹមត្រូវគឺ \"ជំងឺកាមរោគ\"។",
-      "explanationEn": "The correct action is: The answer is Sexually transmitted disease."
+      "explanationEn": "The correct action is: Sexually transmitted disease."
     },
     {
       "id": "GK-526-06",
@@ -2045,38 +2045,38 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "វិសាល សួរថា \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\" តើ វិសាល គួរទទួលបានចម្លើយបែបណា?",
-      "questionEn": "វិសាល is asking \"What disease that can push to infect HIV?\" What answer should វិសាល receive?",
+      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
+      "questionEn": "In a real scenario, if you encounter \"What disease that can push to infect HIV?\", which answer do you choose?",
       "answers": [
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-          "answerEn": "The answer is Let him or her work as usual.",
+          "answerEn": "Let him or her work as usual.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": true,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ជំងឺកាមរោគ",
-      "answerEn": "The answer is Sexually transmitted disease",
-      "explanationKm": "វិសាល ត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ជំងឺកាមរោគ\"។",
-      "explanationEn": "វិសាល needs to know that the correct answer is: The answer is Sexually transmitted disease."
+      "answerEn": "Sexually transmitted disease",
+      "explanationKm": "អ្នកត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ជំងឺកាមរោគ\"។",
+      "explanationEn": "You need to know that the correct answer is: Sexually transmitted disease."
     },
     {
       "id": "GK-526-07",
@@ -2088,8 +2088,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "ធីតា គិតថា \"គាំទ្រនិងមិនរើសអើង\" គឺជាចម្លើយសម្រាប់សំណួរ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"",
-      "questionEn": "ធីតា believes that \"The answer is Suport and not discrimination\" is the answer to: \"What disease that can push to infect HIV?\"",
+      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"គាំទ្រនិងមិនរើសអើង\" គឺជាចម្លើយសម្រាប់ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "Is it correct if you believe that \"Suport and not discrimination\" is the answer for \"What disease that can push to infect HIV?\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2106,8 +2106,8 @@
       ],
       "answerKm": "ខុស",
       "answerEn": "False",
-      "explanationKm": "ការយល់ឃើញរបស់ ធីតា គឺខុសហើយ។ ចម្លើយពិតប្រាកដគឺ \"ជំងឺកាមរោគ\"។",
-      "explanationEn": "ធីតា's belief is false. The correct fact is: The answer is Sexually transmitted disease."
+      "explanationKm": "ការយល់ឃើញនេះគឺមិនត្រឹមត្រូវទេ។ ចម្លើយពិតប្រាកដគឺ \"ជំងឺកាមរោគ\"។",
+      "explanationEn": "This belief is incorrect. The correct fact is: Sexually transmitted disease."
     },
     {
       "id": "GK-526-08",
@@ -2119,8 +2119,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាការយល់ដឹង និងការអនុវត្តច្បាប់ចំពោះ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\" មានសារៈសំខាន់?",
-      "questionEn": "Why is understanding and applying the rule for: What disease that can push to infect HIV? highly important?",
+      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "Why must you understand and respect the rule for \"What disease that can push to infect HIV?\"?",
       "answers": [
         {
           "answerKm": "ដើម្បីធានាសុវត្ថិភាព បង្ការគ្រោះថ្នាក់ និងរក្សាសណ្តាប់ធ្នាប់លើដងផ្លូវ",
@@ -2162,8 +2162,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកបើកបរមិនអើពើនឹង \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
-      "questionEn": "What consequences may occur under traffic rules if a driver ignores the fact: What disease that can push to infect HIV?",
+      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើជំងឺអ្វីខ្លះដែលអាចជំរុញឱ្យឆ្លងមេរោគអេដស៍?\"?",
+      "questionEn": "What legal consequences may you face if you ignore \"What disease that can push to infect HIV?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -2205,38 +2205,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើការយល់ដឹងត្រឹមត្រូវអំពី \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\" គឺជាអ្វី?",
-      "questionEn": "What is the correct understanding for \"Is a person with HIV allowed to take a test for driver license?\"?",
+      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
+      "questionEn": "How do you correctly understand \"Is a person with HIV allowed to take a test for driver license?\"?",
       "answers": [
         {
           "answerKm": "បាទ",
-          "answerEn": "The answer is Yes",
+          "answerEn": "Yes",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ទេ វាមិនមានទេ។",
-          "answerEn": "The answer is No, there isn't.",
+          "answerEn": "No, there isn't.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "បាទ",
-      "answerEn": "The answer is Yes",
-      "explanationKm": "យោងតាមច្បាប់ សេចក្តីពន្យល់គឺ \"បាទ\"។",
-      "explanationEn": "According to the rules, the correct explanation is: The answer is Yes."
+      "answerEn": "Yes",
+      "explanationKm": "ការយល់ដឹងត្រឹមត្រូវគឺ \"បាទ\"។",
+      "explanationEn": "The correct understanding is: Yes."
     },
     {
       "id": "GK-527-02",
@@ -2248,8 +2248,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "ចម្លើយពិតប្រាកដគឺ \"បាទ\" សម្រាប់សំណួរ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"",
-      "questionEn": "The correct answer is \"The answer is Yes\" for the question: \"Is a person with HIV allowed to take a test for driver license?\"",
+      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"បាទ\"។",
+      "questionEn": "When you face the question \"Is a person with HIV allowed to take a test for driver license?\", you know the correct answer is \"Yes\".",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2267,7 +2267,7 @@
       "answerKm": "ត្រូវ",
       "answerEn": "True",
       "explanationKm": "ពិតប្រាកដណាស់ ចម្លើយគឺ \"បាទ\"។",
-      "explanationEn": "Indeed, the correct answer is: The answer is Yes."
+      "explanationEn": "Indeed, the correct answer is: Yes."
     },
     {
       "id": "GK-527-03",
@@ -2279,38 +2279,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ចំពោះសំណួរ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\" តើចម្លើយមួយណាត្រឹមត្រូវ?",
-      "questionEn": "Regarding the question \"Is a person with HIV allowed to take a test for driver license?\" which option is correct?",
+      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
+      "questionEn": "Which answer do you choose correctly for \"Is a person with HIV allowed to take a test for driver license?\"?",
       "answers": [
         {
           "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-          "answerEn": "The answer is By testing the blood.",
+          "answerEn": "By testing the blood.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-          "answerEn": "The answer is Have sex with condom properly and all time",
+          "answerEn": "Have sex with condom properly and all time",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "បាទ",
-          "answerEn": "The answer is Yes",
+          "answerEn": "Yes",
           "isCorrect": true,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "បាទ",
-      "answerEn": "The answer is Yes",
+      "answerEn": "Yes",
       "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"បាទ\"។",
-      "explanationEn": "The correct answer is: The answer is Yes."
+      "explanationEn": "The correct answer is: Yes."
     },
     {
       "id": "GK-527-04",
@@ -2322,38 +2322,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"",
-      "questionEn": "According to road traffic regulations: Is a person with HIV allowed to take a test for driver license?",
+      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\" ដូចម្ដេច?",
+      "questionEn": "According to road rules, how do you correctly define \"Is a person with HIV allowed to take a test for driver license?\"?",
       "answers": [
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-          "answerEn": "The answer is Have sex with condom properly and all time",
+          "answerEn": "Have sex with condom properly and all time",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "បាទ",
-          "answerEn": "The answer is Yes",
+          "answerEn": "Yes",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-          "answerEn": "The answer is By testing the blood.",
+          "answerEn": "By testing the blood.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "បាទ",
-      "answerEn": "The answer is Yes",
-      "explanationKm": "ព័ត៌មានពិតប្រាកដគឺ \"បាទ\"។",
-      "explanationEn": "The verified fact is: The answer is Yes."
+      "answerEn": "Yes",
+      "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"បាទ\"។",
+      "explanationEn": "The correct definition is: Yes."
     },
     {
       "id": "GK-527-05",
@@ -2365,38 +2365,38 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកបើកបរត្រូវធ្វើដូចម្តេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
-      "questionEn": "What is the correct action for the driver regarding \"Is a person with HIV allowed to take a test for driver license?\"?",
+      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
+      "questionEn": "What correct action must you take regarding \"Is a person with HIV allowed to take a test for driver license?\"?",
       "answers": [
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-          "answerEn": "The answer is Let him or her work as usual.",
+          "answerEn": "Let him or her work as usual.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "បាទ",
-          "answerEn": "The answer is Yes",
+          "answerEn": "Yes",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "បាទ",
-      "answerEn": "The answer is Yes",
+      "answerEn": "Yes",
       "explanationKm": "សកម្មភាពត្រឹមត្រូវគឺ \"បាទ\"។",
-      "explanationEn": "The correct action is: The answer is Yes."
+      "explanationEn": "The correct action is: Yes."
     },
     {
       "id": "GK-527-06",
@@ -2408,38 +2408,38 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "កុសល សួរថា \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\" តើ កុសល គួរទទួលបានចម្លើយបែបណា?",
-      "questionEn": "កុសល is asking \"Is a person with HIV allowed to take a test for driver license?\" What answer should កុសល receive?",
+      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
+      "questionEn": "In a real scenario, if you encounter \"Is a person with HIV allowed to take a test for driver license?\", which answer do you choose?",
       "answers": [
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "បាទ",
-          "answerEn": "The answer is Yes",
+          "answerEn": "Yes",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-          "answerEn": "The answer is By testing the blood.",
+          "answerEn": "By testing the blood.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "បាទ",
-      "answerEn": "The answer is Yes",
-      "explanationKm": "កុសល ត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"បាទ\"។",
-      "explanationEn": "កុសល needs to know that the correct answer is: The answer is Yes."
+      "answerEn": "Yes",
+      "explanationKm": "អ្នកត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"បាទ\"។",
+      "explanationEn": "You need to know that the correct answer is: Yes."
     },
     {
       "id": "GK-527-07",
@@ -2451,8 +2451,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "ណារី គិតថា \"ហ៊ាន\" គឺជាចម្លើយសម្រាប់សំណួរ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"",
-      "questionEn": "ណារី believes that \"The answer is Dare\" is the answer to: \"Is a person with HIV allowed to take a test for driver license?\"",
+      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ហ៊ាន\" គឺជាចម្លើយសម្រាប់ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
+      "questionEn": "Is it correct if you believe that \"Dare\" is the answer for \"Is a person with HIV allowed to take a test for driver license?\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2469,8 +2469,8 @@
       ],
       "answerKm": "ខុស",
       "answerEn": "False",
-      "explanationKm": "ការយល់ឃើញរបស់ ណារី គឺខុសហើយ។ ចម្លើយពិតប្រាកដគឺ \"បាទ\"។",
-      "explanationEn": "ណារី's belief is false. The correct fact is: The answer is Yes."
+      "explanationKm": "ការយល់ឃើញនេះគឺមិនត្រឹមត្រូវទេ។ ចម្លើយពិតប្រាកដគឺ \"បាទ\"។",
+      "explanationEn": "This belief is incorrect. The correct fact is: Yes."
     },
     {
       "id": "GK-527-08",
@@ -2482,8 +2482,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាការយល់ដឹង និងការអនុវត្តច្បាប់ចំពោះ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\" មានសារៈសំខាន់?",
-      "questionEn": "Why is understanding and applying the rule for: Is a person with HIV allowed to take a test for driver license? highly important?",
+      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
+      "questionEn": "Why must you understand and respect the rule for \"Is a person with HIV allowed to take a test for driver license?\"?",
       "answers": [
         {
           "answerKm": "ដើម្បីចៀសវាងការបង់ពន្ធបន្តិចបន្តួចជូនរដ្ឋ",
@@ -2525,8 +2525,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកបើកបរមិនអើពើនឹង \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
-      "questionEn": "What consequences may occur under traffic rules if a driver ignores the fact: Is a person with HIV allowed to take a test for driver license?",
+      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើ​អ្នក​ផ្ទុក​មេរោគ​អេដស៍​ត្រូវ​បាន​អនុញ្ញាត​ឱ្យ​ប្រឡង​យក​ប័ណ្ណ​បើកបរ​ឬ​ទេ?\"?",
+      "questionEn": "What legal consequences may you face if you ignore \"Is a person with HIV allowed to take a test for driver license?\"?",
       "answers": [
         {
           "answerKm": "វាអាចនាំឱ្យមានការផាកពិន័យ ត្រូវទទួលខុសត្រូវតាមច្បាប់ ឬបង្កគ្រោះថ្នាក់ធ្ងន់ធ្ងរ",
@@ -2568,38 +2568,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើការយល់ដឹងត្រឹមត្រូវអំពី \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\" គឺជាអ្វី?",
-      "questionEn": "What is the correct understanding for \"Realizing the driver with HIV, dare you ride on that car?\"?",
+      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
+      "questionEn": "How do you correctly understand \"Realizing the driver with HIV, dare you ride on that car?\"?",
       "answers": [
         {
           "answerKm": "គ្រប់គ្នា",
-          "answerEn": "The answer is Everyone",
+          "answerEn": "Everyone",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-          "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+          "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ហ៊ាន",
-      "answerEn": "The answer is Dare",
-      "explanationKm": "យោងតាមច្បាប់ សេចក្តីពន្យល់គឺ \"ហ៊ាន\"។",
-      "explanationEn": "According to the rules, the correct explanation is: The answer is Dare."
+      "answerEn": "Dare",
+      "explanationKm": "ការយល់ដឹងត្រឹមត្រូវគឺ \"ហ៊ាន\"។",
+      "explanationEn": "The correct understanding is: Dare."
     },
     {
       "id": "GK-528-02",
@@ -2611,8 +2611,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "ចម្លើយពិតប្រាកដគឺ \"ហ៊ាន\" សម្រាប់សំណួរ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"",
-      "questionEn": "The correct answer is \"The answer is Dare\" for the question: \"Realizing the driver with HIV, dare you ride on that car?\"",
+      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ហ៊ាន\"។",
+      "questionEn": "When you face the question \"Realizing the driver with HIV, dare you ride on that car?\", you know the correct answer is \"Dare\".",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2630,7 +2630,7 @@
       "answerKm": "ត្រូវ",
       "answerEn": "True",
       "explanationKm": "ពិតប្រាកដណាស់ ចម្លើយគឺ \"ហ៊ាន\"។",
-      "explanationEn": "Indeed, the correct answer is: The answer is Dare."
+      "explanationEn": "Indeed, the correct answer is: Dare."
     },
     {
       "id": "GK-528-03",
@@ -2642,38 +2642,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ចំពោះសំណួរ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\" តើចម្លើយមួយណាត្រឹមត្រូវ?",
-      "questionEn": "Regarding the question \"Realizing the driver with HIV, dare you ride on that car?\" which option is correct?",
+      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
+      "questionEn": "Which answer do you choose correctly for \"Realizing the driver with HIV, dare you ride on that car?\"?",
       "answers": [
         {
           "answerKm": "គ្រប់គ្នា",
-          "answerEn": "The answer is Everyone",
+          "answerEn": "Everyone",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ទេ វាមិនមានទេ។",
-          "answerEn": "The answer is No, there isn't.",
+          "answerEn": "No, there isn't.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-          "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+          "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ហ៊ាន",
-      "answerEn": "The answer is Dare",
+      "answerEn": "Dare",
       "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"ហ៊ាន\"។",
-      "explanationEn": "The correct answer is: The answer is Dare."
+      "explanationEn": "The correct answer is: Dare."
     },
     {
       "id": "GK-528-04",
@@ -2685,38 +2685,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"",
-      "questionEn": "According to road traffic regulations: Realizing the driver with HIV, dare you ride on that car?",
+      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\" ដូចម្ដេច?",
+      "questionEn": "According to road rules, how do you correctly define \"Realizing the driver with HIV, dare you ride on that car?\"?",
       "answers": [
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ទេ វាមិនមានទេ។",
-          "answerEn": "The answer is No, there isn't.",
+          "answerEn": "No, there isn't.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-          "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+          "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": true,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ហ៊ាន",
-      "answerEn": "The answer is Dare",
-      "explanationKm": "ព័ត៌មានពិតប្រាកដគឺ \"ហ៊ាន\"។",
-      "explanationEn": "The verified fact is: The answer is Dare."
+      "answerEn": "Dare",
+      "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"ហ៊ាន\"។",
+      "explanationEn": "The correct definition is: Dare."
     },
     {
       "id": "GK-528-05",
@@ -2728,38 +2728,38 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកបើកបរត្រូវធ្វើដូចម្តេចឱ្យបានត្រឹមត្រូវចំពោះ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
-      "questionEn": "What is the correct action for the driver regarding \"Realizing the driver with HIV, dare you ride on that car?\"?",
+      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
+      "questionEn": "What correct action must you take regarding \"Realizing the driver with HIV, dare you ride on that car?\"?",
       "answers": [
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-          "answerEn": "The answer is Have sex with condom properly and all time",
+          "answerEn": "Have sex with condom properly and all time",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-          "answerEn": "The answer is By testing the blood.",
+          "answerEn": "By testing the blood.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ហ៊ាន",
-      "answerEn": "The answer is Dare",
+      "answerEn": "Dare",
       "explanationKm": "សកម្មភាពត្រឹមត្រូវគឺ \"ហ៊ាន\"។",
-      "explanationEn": "The correct action is: The answer is Dare."
+      "explanationEn": "The correct action is: Dare."
     },
     {
       "id": "GK-528-06",
@@ -2771,38 +2771,38 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "លីដា សួរថា \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\" តើ លីដា គួរទទួលបានចម្លើយបែបណា?",
-      "questionEn": "លីដា is asking \"Realizing the driver with HIV, dare you ride on that car?\" What answer should លីដា receive?",
+      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
+      "questionEn": "In a real scenario, if you encounter \"Realizing the driver with HIV, dare you ride on that car?\", which answer do you choose?",
       "answers": [
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "បាទ",
-          "answerEn": "The answer is Yes",
+          "answerEn": "Yes",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ហ៊ាន",
-      "answerEn": "The answer is Dare",
-      "explanationKm": "លីដា ត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ហ៊ាន\"។",
-      "explanationEn": "លីដា needs to know that the correct answer is: The answer is Dare."
+      "answerEn": "Dare",
+      "explanationKm": "អ្នកត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ហ៊ាន\"។",
+      "explanationEn": "You need to know that the correct answer is: Dare."
     },
     {
       "id": "GK-528-07",
@@ -2814,8 +2814,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "ប៊ុន គិតថា \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\" គឺជាចម្លើយសម្រាប់សំណួរ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"",
-      "questionEn": "ប៊ុន believes that \"The answer is Have sex using condom properly and all time.\" is the answer to: \"Realizing the driver with HIV, dare you ride on that car?\"",
+      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\" គឺជាចម្លើយសម្រាប់ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
+      "questionEn": "Is it correct if you believe that \"Have sex using condom properly and all time.\" is the answer for \"Realizing the driver with HIV, dare you ride on that car?\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2832,8 +2832,8 @@
       ],
       "answerKm": "ខុស",
       "answerEn": "False",
-      "explanationKm": "ការយល់ឃើញរបស់ ប៊ុន គឺខុសហើយ។ ចម្លើយពិតប្រាកដគឺ \"ហ៊ាន\"។",
-      "explanationEn": "ប៊ុន's belief is false. The correct fact is: The answer is Dare."
+      "explanationKm": "ការយល់ឃើញនេះគឺមិនត្រឹមត្រូវទេ។ ចម្លើយពិតប្រាកដគឺ \"ហ៊ាន\"។",
+      "explanationEn": "This belief is incorrect. The correct fact is: Dare."
     },
     {
       "id": "GK-528-08",
@@ -2845,8 +2845,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាការយល់ដឹង និងការអនុវត្តច្បាប់ចំពោះ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\" មានសារៈសំខាន់?",
-      "questionEn": "Why is understanding and applying the rule for: Realizing the driver with HIV, dare you ride on that car? highly important?",
+      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
+      "questionEn": "Why must you understand and respect the rule for \"Realizing the driver with HIV, dare you ride on that car?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -2888,8 +2888,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកបើកបរមិនអើពើនឹង \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
-      "questionEn": "What consequences may occur under traffic rules if a driver ignores the fact: Realizing the driver with HIV, dare you ride on that car?",
+      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ដឹង​ថា​អ្នក​បើក​ផ្ទុក​មេរោគ​អេដស៍​ហ៊ាន​ជិះ​ឡាន​នោះ​ទេ?\"?",
+      "questionEn": "What legal consequences may you face if you ignore \"Realizing the driver with HIV, dare you ride on that car?\"?",
       "answers": [
         {
           "answerKm": "ការទទួលបានប្រាក់រង្វាន់លើកទឹកចិត្តពីសាលាក្រុង",
@@ -2931,38 +2931,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើការយល់ដឹងត្រឹមត្រូវអំពី \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\" គឺជាអ្វី?",
-      "questionEn": "What is the correct understanding for \"Realizing that you have HIV, what practice shall you choose?\"?",
+      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
+      "questionEn": "How do you correctly understand \"Realizing that you have HIV, what practice shall you choose?\"?",
       "answers": [
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-          "answerEn": "The answer is Let him or her work as usual.",
+          "answerEn": "Let him or her work as usual.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-      "answerEn": "The answer is Have sex using condom properly and all time.",
-      "explanationKm": "យោងតាមច្បាប់ សេចក្តីពន្យល់គឺ \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\"។",
-      "explanationEn": "According to the rules, the correct explanation is: The answer is Have sex using condom properly and all time.."
+      "answerEn": "Have sex using condom properly and all time.",
+      "explanationKm": "ការយល់ដឹងត្រឹមត្រូវគឺ \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\"។",
+      "explanationEn": "The correct understanding is: Have sex using condom properly and all time.."
     },
     {
       "id": "GK-529-02",
@@ -2974,8 +2974,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "ចម្លើយពិតប្រាកដគឺ \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\" សម្រាប់សំណួរ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"",
-      "questionEn": "The correct answer is \"The answer is Have sex using condom properly and all time.\" for the question: \"Realizing that you have HIV, what practice shall you choose?\"",
+      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\"។",
+      "questionEn": "When you face the question \"Realizing that you have HIV, what practice shall you choose?\", you know the correct answer is \"Have sex using condom properly and all time.\".",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -2993,7 +2993,7 @@
       "answerKm": "ត្រូវ",
       "answerEn": "True",
       "explanationKm": "ពិតប្រាកដណាស់ ចម្លើយគឺ \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\"។",
-      "explanationEn": "Indeed, the correct answer is: The answer is Have sex using condom properly and all time.."
+      "explanationEn": "Indeed, the correct answer is: Have sex using condom properly and all time.."
     },
     {
       "id": "GK-529-03",
@@ -3005,38 +3005,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ចំពោះសំណួរ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\" តើចម្លើយមួយណាត្រឹមត្រូវ?",
-      "questionEn": "Regarding the question \"Realizing that you have HIV, what practice shall you choose?\" which option is correct?",
+      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
+      "questionEn": "Which answer do you choose correctly for \"Realizing that you have HIV, what practice shall you choose?\"?",
       "answers": [
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "បាទ",
-          "answerEn": "The answer is Yes",
+          "answerEn": "Yes",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-      "answerEn": "The answer is Have sex using condom properly and all time.",
+      "answerEn": "Have sex using condom properly and all time.",
       "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\"។",
-      "explanationEn": "The correct answer is: The answer is Have sex using condom properly and all time.."
+      "explanationEn": "The correct answer is: Have sex using condom properly and all time.."
     },
     {
       "id": "GK-529-04",
@@ -3048,38 +3048,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"",
-      "questionEn": "According to road traffic regulations: Realizing that you have HIV, what practice shall you choose?",
+      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\" ដូចម្ដេច?",
+      "questionEn": "According to road rules, how do you correctly define \"Realizing that you have HIV, what practice shall you choose?\"?",
       "answers": [
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-          "answerEn": "The answer is Let him or her work as usual.",
+          "answerEn": "Let him or her work as usual.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-      "answerEn": "The answer is Have sex using condom properly and all time.",
-      "explanationKm": "ព័ត៌មានពិតប្រាកដគឺ \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\"។",
-      "explanationEn": "The verified fact is: The answer is Have sex using condom properly and all time.."
+      "answerEn": "Have sex using condom properly and all time.",
+      "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\"។",
+      "explanationEn": "The correct definition is: Have sex using condom properly and all time.."
     },
     {
       "id": "GK-529-05",
@@ -3091,38 +3091,38 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកបើកបរត្រូវធ្វើដូចម្តេចឱ្យបានត្រឹមត្រូវចំពោះ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
-      "questionEn": "What is the correct action for the driver regarding \"Realizing that you have HIV, what practice shall you choose?\"?",
+      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
+      "questionEn": "What correct action must you take regarding \"Realizing that you have HIV, what practice shall you choose?\"?",
       "answers": [
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-      "answerEn": "The answer is Have sex using condom properly and all time.",
+      "answerEn": "Have sex using condom properly and all time.",
       "explanationKm": "សកម្មភាពត្រឹមត្រូវគឺ \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\"។",
-      "explanationEn": "The correct action is: The answer is Have sex using condom properly and all time.."
+      "explanationEn": "The correct action is: Have sex using condom properly and all time.."
     },
     {
       "id": "GK-529-06",
@@ -3134,38 +3134,38 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "ធីតា សួរថា \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\" តើ ធីតា គួរទទួលបានចម្លើយបែបណា?",
-      "questionEn": "ធីតា is asking \"Realizing that you have HIV, what practice shall you choose?\" What answer should ធីតា receive?",
+      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
+      "questionEn": "In a real scenario, if you encounter \"Realizing that you have HIV, what practice shall you choose?\", which answer do you choose?",
       "answers": [
         {
           "answerKm": "បាទ",
-          "answerEn": "The answer is Yes",
+          "answerEn": "Yes",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គ្រប់គ្នា",
-          "answerEn": "The answer is Everyone",
+          "answerEn": "Everyone",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-      "answerEn": "The answer is Have sex using condom properly and all time.",
-      "explanationKm": "ធីតា ត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\"។",
-      "explanationEn": "ធីតា needs to know that the correct answer is: The answer is Have sex using condom properly and all time.."
+      "answerEn": "Have sex using condom properly and all time.",
+      "explanationKm": "អ្នកត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\"។",
+      "explanationEn": "You need to know that the correct answer is: Have sex using condom properly and all time.."
     },
     {
       "id": "GK-529-07",
@@ -3177,8 +3177,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "សុខ គិតថា \"គ្រប់គ្នា\" គឺជាចម្លើយសម្រាប់សំណួរ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"",
-      "questionEn": "សុខ believes that \"The answer is Everyone\" is the answer to: \"Realizing that you have HIV, what practice shall you choose?\"",
+      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"គ្រប់គ្នា\" គឺជាចម្លើយសម្រាប់ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
+      "questionEn": "Is it correct if you believe that \"Everyone\" is the answer for \"Realizing that you have HIV, what practice shall you choose?\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3195,8 +3195,8 @@
       ],
       "answerKm": "ខុស",
       "answerEn": "False",
-      "explanationKm": "ការយល់ឃើញរបស់ សុខ គឺខុសហើយ។ ចម្លើយពិតប្រាកដគឺ \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\"។",
-      "explanationEn": "សុខ's belief is false. The correct fact is: The answer is Have sex using condom properly and all time.."
+      "explanationKm": "ការយល់ឃើញនេះគឺមិនត្រឹមត្រូវទេ។ ចម្លើយពិតប្រាកដគឺ \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\"។",
+      "explanationEn": "This belief is incorrect. The correct fact is: Have sex using condom properly and all time.."
     },
     {
       "id": "GK-529-08",
@@ -3208,8 +3208,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាការយល់ដឹង និងការអនុវត្តច្បាប់ចំពោះ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\" មានសារៈសំខាន់?",
-      "questionEn": "Why is understanding and applying the rule for: Realizing that you have HIV, what practice shall you choose? highly important?",
+      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
+      "questionEn": "Why must you understand and respect the rule for \"Realizing that you have HIV, what practice shall you choose?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -3251,8 +3251,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកបើកបរមិនអើពើនឹង \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
-      "questionEn": "What consequences may occur under traffic rules if a driver ignores the fact: Realizing that you have HIV, what practice shall you choose?",
+      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ដឹង​ថា​អ្នក​មាន​មេរោគ​អេដស៍ តើ​អ្នក​ត្រូវ​ជ្រើសរើស​ទម្លាប់​មួយ​ណា?\"?",
+      "questionEn": "What legal consequences may you face if you ignore \"Realizing that you have HIV, what practice shall you choose?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -3294,38 +3294,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើការយល់ដឹងត្រឹមត្រូវអំពី \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\" គឺជាអ្វី?",
-      "questionEn": "What is the correct understanding for \"On what principle is blood testing for HIV conducted?\"?",
+      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
+      "questionEn": "How do you correctly understand \"On what principle is blood testing for HIV conducted?\"?",
       "answers": [
         {
           "answerKm": "ទេ វាមិនមានទេ។",
-          "answerEn": "The answer is No, there isn't.",
+          "answerEn": "No, there isn't.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-          "answerEn": "The answer is Let him or her work as usual.",
+          "answerEn": "Let him or her work as usual.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-      "answerEn": "The answer is Voluntary, confidential, and counseling",
-      "explanationKm": "យោងតាមច្បាប់ សេចក្តីពន្យល់គឺ \"ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា\"។",
-      "explanationEn": "According to the rules, the correct explanation is: The answer is Voluntary, confidential, and counseling."
+      "answerEn": "Voluntary, confidential, and counseling",
+      "explanationKm": "ការយល់ដឹងត្រឹមត្រូវគឺ \"ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា\"។",
+      "explanationEn": "The correct understanding is: Voluntary, confidential, and counseling."
     },
     {
       "id": "GK-530-02",
@@ -3337,8 +3337,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "ចម្លើយពិតប្រាកដគឺ \"ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា\" សម្រាប់សំណួរ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"",
-      "questionEn": "The correct answer is \"The answer is Voluntary, confidential, and counseling\" for the question: \"On what principle is blood testing for HIV conducted?\"",
+      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា\"។",
+      "questionEn": "When you face the question \"On what principle is blood testing for HIV conducted?\", you know the correct answer is \"Voluntary, confidential, and counseling\".",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3356,7 +3356,7 @@
       "answerKm": "ត្រូវ",
       "answerEn": "True",
       "explanationKm": "ពិតប្រាកដណាស់ ចម្លើយគឺ \"ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា\"។",
-      "explanationEn": "Indeed, the correct answer is: The answer is Voluntary, confidential, and counseling."
+      "explanationEn": "Indeed, the correct answer is: Voluntary, confidential, and counseling."
     },
     {
       "id": "GK-530-03",
@@ -3368,38 +3368,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ចំពោះសំណួរ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\" តើចម្លើយមួយណាត្រឹមត្រូវ?",
-      "questionEn": "Regarding the question \"On what principle is blood testing for HIV conducted?\" which option is correct?",
+      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
+      "questionEn": "Which answer do you choose correctly for \"On what principle is blood testing for HIV conducted?\"?",
       "answers": [
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": true,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-      "answerEn": "The answer is Voluntary, confidential, and counseling",
+      "answerEn": "Voluntary, confidential, and counseling",
       "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា\"។",
-      "explanationEn": "The correct answer is: The answer is Voluntary, confidential, and counseling."
+      "explanationEn": "The correct answer is: Voluntary, confidential, and counseling."
     },
     {
       "id": "GK-530-04",
@@ -3411,38 +3411,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"",
-      "questionEn": "According to road traffic regulations: On what principle is blood testing for HIV conducted?",
+      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\" ដូចម្ដេច?",
+      "questionEn": "According to road rules, how do you correctly define \"On what principle is blood testing for HIV conducted?\"?",
       "answers": [
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-      "answerEn": "The answer is Voluntary, confidential, and counseling",
-      "explanationKm": "ព័ត៌មានពិតប្រាកដគឺ \"ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា\"។",
-      "explanationEn": "The verified fact is: The answer is Voluntary, confidential, and counseling."
+      "answerEn": "Voluntary, confidential, and counseling",
+      "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា\"។",
+      "explanationEn": "The correct definition is: Voluntary, confidential, and counseling."
     },
     {
       "id": "GK-530-05",
@@ -3454,38 +3454,38 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកបើកបរត្រូវធ្វើដូចម្តេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
-      "questionEn": "What is the correct action for the driver regarding \"On what principle is blood testing for HIV conducted?\"?",
+      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
+      "questionEn": "What correct action must you take regarding \"On what principle is blood testing for HIV conducted?\"?",
       "answers": [
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "បាទ",
-          "answerEn": "The answer is Yes",
+          "answerEn": "Yes",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-      "answerEn": "The answer is Voluntary, confidential, and counseling",
+      "answerEn": "Voluntary, confidential, and counseling",
       "explanationKm": "សកម្មភាពត្រឹមត្រូវគឺ \"ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា\"។",
-      "explanationEn": "The correct action is: The answer is Voluntary, confidential, and counseling."
+      "explanationEn": "The correct action is: Voluntary, confidential, and counseling."
     },
     {
       "id": "GK-530-06",
@@ -3497,38 +3497,38 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "ណារី សួរថា \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\" តើ ណារី គួរទទួលបានចម្លើយបែបណា?",
-      "questionEn": "ណារី is asking \"On what principle is blood testing for HIV conducted?\" What answer should ណារី receive?",
+      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
+      "questionEn": "In a real scenario, if you encounter \"On what principle is blood testing for HIV conducted?\", which answer do you choose?",
       "answers": [
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-          "answerEn": "The answer is Have sex with condom properly and all time",
+          "answerEn": "Have sex with condom properly and all time",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-          "answerEn": "The answer is By testing the blood.",
+          "answerEn": "By testing the blood.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-      "answerEn": "The answer is Voluntary, confidential, and counseling",
-      "explanationKm": "ណារី ត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា\"។",
-      "explanationEn": "ណារី needs to know that the correct answer is: The answer is Voluntary, confidential, and counseling."
+      "answerEn": "Voluntary, confidential, and counseling",
+      "explanationKm": "អ្នកត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា\"។",
+      "explanationEn": "You need to know that the correct answer is: Voluntary, confidential, and counseling."
     },
     {
       "id": "GK-530-07",
@@ -3540,8 +3540,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "ដារ៉ា គិតថា \"ដោយការធ្វើតេស្តឈាម។\" គឺជាចម្លើយសម្រាប់សំណួរ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"",
-      "questionEn": "ដារ៉ា believes that \"The answer is By testing the blood.\" is the answer to: \"On what principle is blood testing for HIV conducted?\"",
+      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ដោយការធ្វើតេស្តឈាម។\" គឺជាចម្លើយសម្រាប់ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
+      "questionEn": "Is it correct if you believe that \"By testing the blood.\" is the answer for \"On what principle is blood testing for HIV conducted?\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3558,8 +3558,8 @@
       ],
       "answerKm": "ខុស",
       "answerEn": "False",
-      "explanationKm": "ការយល់ឃើញរបស់ ដារ៉ា គឺខុសហើយ។ ចម្លើយពិតប្រាកដគឺ \"ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា\"។",
-      "explanationEn": "ដារ៉ា's belief is false. The correct fact is: The answer is Voluntary, confidential, and counseling."
+      "explanationKm": "ការយល់ឃើញនេះគឺមិនត្រឹមត្រូវទេ។ ចម្លើយពិតប្រាកដគឺ \"ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា\"។",
+      "explanationEn": "This belief is incorrect. The correct fact is: Voluntary, confidential, and counseling."
     },
     {
       "id": "GK-530-08",
@@ -3571,8 +3571,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាការយល់ដឹង និងការអនុវត្តច្បាប់ចំពោះ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\" មានសារៈសំខាន់?",
-      "questionEn": "Why is understanding and applying the rule for: On what principle is blood testing for HIV conducted? highly important?",
+      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
+      "questionEn": "Why must you understand and respect the rule for \"On what principle is blood testing for HIV conducted?\"?",
       "answers": [
         {
           "answerKm": "គ្រាន់តែដើម្បីប្រឡងយកប័ណ្ណបើកបរឱ្យជាប់ងាយស្រួលប៉ុណ្ណោះ",
@@ -3614,8 +3614,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកបើកបរមិនអើពើនឹង \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
-      "questionEn": "What consequences may occur under traffic rules if a driver ignores the fact: On what principle is blood testing for HIV conducted?",
+      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើការធ្វើតេស្តឈាមរកមេរោគអេដស៍ធ្វើឡើងដោយគោលការណ៍អ្វី?\"?",
+      "questionEn": "What legal consequences may you face if you ignore \"On what principle is blood testing for HIV conducted?\"?",
       "answers": [
         {
           "answerKm": "វាអាចនាំឱ្យមានការផាកពិន័យ ត្រូវទទួលខុសត្រូវតាមច្បាប់ ឬបង្កគ្រោះថ្នាក់ធ្ងន់ធ្ងរ",
@@ -3657,38 +3657,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើការយល់ដឹងត្រឹមត្រូវអំពី \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\" គឺជាអ្វី?",
-      "questionEn": "What is the correct understanding for \"Realizing someone with HIV at your workplace, what shall you do?\"?",
+      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
+      "questionEn": "How do you correctly understand \"Realizing someone with HIV at your workplace, what shall you do?\"?",
       "answers": [
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-          "answerEn": "The answer is Let him or her work as usual.",
+          "answerEn": "Let him or her work as usual.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-      "answerEn": "The answer is Let him or her work as usual.",
-      "explanationKm": "យោងតាមច្បាប់ សេចក្តីពន្យល់គឺ \"អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។\"។",
-      "explanationEn": "According to the rules, the correct explanation is: The answer is Let him or her work as usual.."
+      "answerEn": "Let him or her work as usual.",
+      "explanationKm": "ការយល់ដឹងត្រឹមត្រូវគឺ \"អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។\"។",
+      "explanationEn": "The correct understanding is: Let him or her work as usual.."
     },
     {
       "id": "GK-531-02",
@@ -3700,8 +3700,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "ចម្លើយពិតប្រាកដគឺ \"អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។\" សម្រាប់សំណួរ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"",
-      "questionEn": "The correct answer is \"The answer is Let him or her work as usual.\" for the question: \"Realizing someone with HIV at your workplace, what shall you do?\"",
+      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។\"។",
+      "questionEn": "When you face the question \"Realizing someone with HIV at your workplace, what shall you do?\", you know the correct answer is \"Let him or her work as usual.\".",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3719,7 +3719,7 @@
       "answerKm": "ត្រូវ",
       "answerEn": "True",
       "explanationKm": "ពិតប្រាកដណាស់ ចម្លើយគឺ \"អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។\"។",
-      "explanationEn": "Indeed, the correct answer is: The answer is Let him or her work as usual.."
+      "explanationEn": "Indeed, the correct answer is: Let him or her work as usual.."
     },
     {
       "id": "GK-531-03",
@@ -3731,38 +3731,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ចំពោះសំណួរ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\" តើចម្លើយមួយណាត្រឹមត្រូវ?",
-      "questionEn": "Regarding the question \"Realizing someone with HIV at your workplace, what shall you do?\" which option is correct?",
+      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
+      "questionEn": "Which answer do you choose correctly for \"Realizing someone with HIV at your workplace, what shall you do?\"?",
       "answers": [
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-          "answerEn": "The answer is Have sex with condom properly and all time",
+          "answerEn": "Have sex with condom properly and all time",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-          "answerEn": "The answer is Let him or her work as usual.",
+          "answerEn": "Let him or her work as usual.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-          "answerEn": "The answer is By testing the blood.",
+          "answerEn": "By testing the blood.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-      "answerEn": "The answer is Let him or her work as usual.",
+      "answerEn": "Let him or her work as usual.",
       "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។\"។",
-      "explanationEn": "The correct answer is: The answer is Let him or her work as usual.."
+      "explanationEn": "The correct answer is: Let him or her work as usual.."
     },
     {
       "id": "GK-531-04",
@@ -3774,38 +3774,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"",
-      "questionEn": "According to road traffic regulations: Realizing someone with HIV at your workplace, what shall you do?",
+      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\" ដូចម្ដេច?",
+      "questionEn": "According to road rules, how do you correctly define \"Realizing someone with HIV at your workplace, what shall you do?\"?",
       "answers": [
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-          "answerEn": "The answer is Let him or her work as usual.",
+          "answerEn": "Let him or her work as usual.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គ្រប់គ្នា",
-          "answerEn": "The answer is Everyone",
+          "answerEn": "Everyone",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ទេ វាមិនមានទេ។",
-          "answerEn": "The answer is No, there isn't.",
+          "answerEn": "No, there isn't.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-          "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+          "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-      "answerEn": "The answer is Let him or her work as usual.",
-      "explanationKm": "ព័ត៌មានពិតប្រាកដគឺ \"អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។\"។",
-      "explanationEn": "The verified fact is: The answer is Let him or her work as usual.."
+      "answerEn": "Let him or her work as usual.",
+      "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។\"។",
+      "explanationEn": "The correct definition is: Let him or her work as usual.."
     },
     {
       "id": "GK-531-05",
@@ -3817,38 +3817,38 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកបើកបរត្រូវធ្វើដូចម្តេចឱ្យបានត្រឹមត្រូវចំពោះ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
-      "questionEn": "What is the correct action for the driver regarding \"Realizing someone with HIV at your workplace, what shall you do?\"?",
+      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
+      "questionEn": "What correct action must you take regarding \"Realizing someone with HIV at your workplace, what shall you do?\"?",
       "answers": [
         {
           "answerKm": "គ្រប់គ្នា",
-          "answerEn": "The answer is Everyone",
+          "answerEn": "Everyone",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ទេ វាមិនមានទេ។",
-          "answerEn": "The answer is No, there isn't.",
+          "answerEn": "No, there isn't.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-          "answerEn": "The answer is Let him or her work as usual.",
+          "answerEn": "Let him or her work as usual.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "តាមរយៈការរួមភេទ ការចាក់ម្ជុលរួមគ្នា ការបញ្ចូលឈាមដែលមានមេរោគ និងពីម្តាយទៅកូន",
-          "answerEn": "The answer is Through sex, shared needles, contaminated blood transfusions, and from mother to child",
+          "answerEn": "Through sex, shared needles, contaminated blood transfusions, and from mother to child",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-      "answerEn": "The answer is Let him or her work as usual.",
+      "answerEn": "Let him or her work as usual.",
       "explanationKm": "សកម្មភាពត្រឹមត្រូវគឺ \"អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។\"។",
-      "explanationEn": "The correct action is: The answer is Let him or her work as usual.."
+      "explanationEn": "The correct action is: Let him or her work as usual.."
     },
     {
       "id": "GK-531-06",
@@ -3860,38 +3860,38 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "ប៊ុន សួរថា \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\" តើ ប៊ុន គួរទទួលបានចម្លើយបែបណា?",
-      "questionEn": "ប៊ុន is asking \"Realizing someone with HIV at your workplace, what shall you do?\" What answer should ប៊ុន receive?",
+      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
+      "questionEn": "In a real scenario, if you encounter \"Realizing someone with HIV at your workplace, what shall you do?\", which answer do you choose?",
       "answers": [
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-          "answerEn": "The answer is Let him or her work as usual.",
+          "answerEn": "Let him or her work as usual.",
           "isCorrect": true,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-      "answerEn": "The answer is Let him or her work as usual.",
-      "explanationKm": "ប៊ុន ត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។\"។",
-      "explanationEn": "ប៊ុន needs to know that the correct answer is: The answer is Let him or her work as usual.."
+      "answerEn": "Let him or her work as usual.",
+      "explanationKm": "អ្នកត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។\"។",
+      "explanationEn": "You need to know that the correct answer is: Let him or her work as usual.."
     },
     {
       "id": "GK-531-07",
@@ -3903,8 +3903,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "សុភា គិតថា \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\" គឺជាចម្លើយសម្រាប់សំណួរ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"",
-      "questionEn": "សុភា believes that \"The answer is Have sex using condom properly and all time.\" is the answer to: \"Realizing someone with HIV at your workplace, what shall you do?\"",
+      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។\" គឺជាចម្លើយសម្រាប់ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
+      "questionEn": "Is it correct if you believe that \"Have sex using condom properly and all time.\" is the answer for \"Realizing someone with HIV at your workplace, what shall you do?\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -3921,8 +3921,8 @@
       ],
       "answerKm": "ខុស",
       "answerEn": "False",
-      "explanationKm": "ការយល់ឃើញរបស់ សុភា គឺខុសហើយ។ ចម្លើយពិតប្រាកដគឺ \"អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។\"។",
-      "explanationEn": "សុភា's belief is false. The correct fact is: The answer is Let him or her work as usual.."
+      "explanationKm": "ការយល់ឃើញនេះគឺមិនត្រឹមត្រូវទេ។ ចម្លើយពិតប្រាកដគឺ \"អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។\"។",
+      "explanationEn": "This belief is incorrect. The correct fact is: Let him or her work as usual.."
     },
     {
       "id": "GK-531-08",
@@ -3934,8 +3934,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាការយល់ដឹង និងការអនុវត្តច្បាប់ចំពោះ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\" មានសារៈសំខាន់?",
-      "questionEn": "Why is understanding and applying the rule for: Realizing someone with HIV at your workplace, what shall you do? highly important?",
+      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
+      "questionEn": "Why must you understand and respect the rule for \"Realizing someone with HIV at your workplace, what shall you do?\"?",
       "answers": [
         {
           "answerKm": "វាមិនមានសារៈសំខាន់អ្វីទេសម្រាប់អ្នកប្រើប្រាស់ផ្លូវធម្មតា",
@@ -3977,8 +3977,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកបើកបរមិនអើពើនឹង \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
-      "questionEn": "What consequences may occur under traffic rules if a driver ignores the fact: Realizing someone with HIV at your workplace, what shall you do?",
+      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"ដឹងថាអ្នកផ្ទុកមេរោគអេដស៍នៅកន្លែងធ្វើការរបស់អ្នក តើអ្នកត្រូវធ្វើដូចម្តេច?\"?",
+      "questionEn": "What legal consequences may you face if you ignore \"Realizing someone with HIV at your workplace, what shall you do?\"?",
       "answers": [
         {
           "answerKm": "គ្មានផលវិបាកតាមច្បាប់ ឬការផ្លាស់ប្តូរហានិភ័យសុវត្ថិភាពទេ",
@@ -4020,38 +4020,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើការយល់ដឹងត្រឹមត្រូវអំពី \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\" គឺជាអ្វី?",
-      "questionEn": "What is the correct understanding for \"How shall you do toward a victim of HIV?\"?",
+      "questionKm": "តើអ្នកយល់ដឹងយ៉ាងណាដែរចំពោះ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
+      "questionEn": "How do you correctly understand \"How shall you do toward a victim of HIV?\"?",
       "answers": [
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-          "answerEn": "The answer is Let him or her work as usual.",
+          "answerEn": "Let him or her work as usual.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": true,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "គាំទ្រនិងមិនរើសអើង",
-      "answerEn": "The answer is Suport and not discrimination",
-      "explanationKm": "យោងតាមច្បាប់ សេចក្តីពន្យល់គឺ \"គាំទ្រនិងមិនរើសអើង\"។",
-      "explanationEn": "According to the rules, the correct explanation is: The answer is Suport and not discrimination."
+      "answerEn": "Suport and not discrimination",
+      "explanationKm": "ការយល់ដឹងត្រឹមត្រូវគឺ \"គាំទ្រនិងមិនរើសអើង\"។",
+      "explanationEn": "The correct understanding is: Suport and not discrimination."
     },
     {
       "id": "GK-532-02",
@@ -4063,8 +4063,8 @@
       "difficulty": "easy",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "ចម្លើយពិតប្រាកដគឺ \"គាំទ្រនិងមិនរើសអើង\" សម្រាប់សំណួរ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"",
-      "questionEn": "The correct answer is \"The answer is Suport and not discrimination\" for the question: \"How shall you do toward a victim of HIV?\"",
+      "questionKm": "នៅពេលអ្នកជួបសំណួរ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\" អ្នកដឹងថាចម្លើយត្រឹមត្រូវគឺ \"គាំទ្រនិងមិនរើសអើង\"។",
+      "questionEn": "When you face the question \"How shall you do toward a victim of HIV?\", you know the correct answer is \"Suport and not discrimination\".",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -4082,7 +4082,7 @@
       "answerKm": "ត្រូវ",
       "answerEn": "True",
       "explanationKm": "ពិតប្រាកដណាស់ ចម្លើយគឺ \"គាំទ្រនិងមិនរើសអើង\"។",
-      "explanationEn": "Indeed, the correct answer is: The answer is Suport and not discrimination."
+      "explanationEn": "Indeed, the correct answer is: Suport and not discrimination."
     },
     {
       "id": "GK-532-03",
@@ -4094,38 +4094,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ចំពោះសំណួរ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\" តើចម្លើយមួយណាត្រឹមត្រូវ?",
-      "questionEn": "Regarding the question \"How shall you do toward a victim of HIV?\" which option is correct?",
+      "questionKm": "តើអ្នកជ្រើសរើសចម្លើយមួយណាឱ្យបានត្រឹមត្រូវសម្រាប់ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
+      "questionEn": "Which answer do you choose correctly for \"How shall you do toward a victim of HIV?\"?",
       "answers": [
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ទេ វាមិនមានទេ។",
-          "answerEn": "The answer is No, there isn't.",
+          "answerEn": "No, there isn't.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-          "answerEn": "The answer is Let him or her work as usual.",
+          "answerEn": "Let him or her work as usual.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "គាំទ្រនិងមិនរើសអើង",
-      "answerEn": "The answer is Suport and not discrimination",
+      "answerEn": "Suport and not discrimination",
       "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"គាំទ្រនិងមិនរើសអើង\"។",
-      "explanationEn": "The correct answer is: The answer is Suport and not discrimination."
+      "explanationEn": "The correct answer is: Suport and not discrimination."
     },
     {
       "id": "GK-532-04",
@@ -4137,38 +4137,38 @@
       "difficulty": "easy",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"",
-      "questionEn": "According to road traffic regulations: How shall you do toward a victim of HIV?",
+      "questionKm": "យោងតាមច្បាប់ចរាចរណ៍ តើអ្នកកំណត់ចម្លើយត្រឹមត្រូវសម្រាប់ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\" ដូចម្ដេច?",
+      "questionEn": "According to road rules, how do you correctly define \"How shall you do toward a victim of HIV?\"?",
       "answers": [
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-          "answerEn": "The answer is Have sex with condom properly and all time",
+          "answerEn": "Have sex with condom properly and all time",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ដោយការធ្វើតេស្តឈាម។",
-          "answerEn": "The answer is By testing the blood.",
+          "answerEn": "By testing the blood.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "គាំទ្រនិងមិនរើសអើង",
-      "answerEn": "The answer is Suport and not discrimination",
-      "explanationKm": "ព័ត៌មានពិតប្រាកដគឺ \"គាំទ្រនិងមិនរើសអើង\"។",
-      "explanationEn": "The verified fact is: The answer is Suport and not discrimination."
+      "answerEn": "Suport and not discrimination",
+      "explanationKm": "ចម្លើយត្រឹមត្រូវគឺ \"គាំទ្រនិងមិនរើសអើង\"។",
+      "explanationEn": "The correct definition is: Suport and not discrimination."
     },
     {
       "id": "GK-532-05",
@@ -4180,38 +4180,38 @@
       "difficulty": "medium",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអ្នកបើកបរត្រូវធ្វើដូចម្តេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
-      "questionEn": "What is the correct action for the driver regarding \"How shall you do toward a victim of HIV?\"?",
+      "questionKm": "តើអ្នកត្រូវធ្វើសកម្មភាពដូចម្ដេចឱ្យបានត្រឹមត្រូវចំពោះ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
+      "questionEn": "What correct action must you take regarding \"How shall you do toward a victim of HIV?\"?",
       "answers": [
         {
           "answerKm": "អនុញ្ញាតឱ្យគាត់ធ្វើការដូចធម្មតា។",
-          "answerEn": "The answer is Let him or her work as usual.",
+          "answerEn": "Let him or her work as usual.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ការប្រឹក្សាដោយស្ម័គ្រចិត្ត ការសម្ងាត់ និងការប្រឹក្សា",
-          "answerEn": "The answer is Voluntary, confidential, and counseling",
+          "answerEn": "Voluntary, confidential, and counseling",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "រួមភេទជាមួយស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា",
-          "answerEn": "The answer is Have sex with condom properly and all time",
+          "answerEn": "Have sex with condom properly and all time",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": true,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "គាំទ្រនិងមិនរើសអើង",
-      "answerEn": "The answer is Suport and not discrimination",
+      "answerEn": "Suport and not discrimination",
       "explanationKm": "សកម្មភាពត្រឹមត្រូវគឺ \"គាំទ្រនិងមិនរើសអើង\"។",
-      "explanationEn": "The correct action is: The answer is Suport and not discrimination."
+      "explanationEn": "The correct action is: Suport and not discrimination."
     },
     {
       "id": "GK-532-06",
@@ -4223,38 +4223,38 @@
       "difficulty": "medium",
       "questionType": "scenario",
       "questionImageUrl": null,
-      "questionKm": "សុខ សួរថា \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\" តើ សុខ គួរទទួលបានចម្លើយបែបណា?",
-      "questionEn": "សុខ is asking \"How shall you do toward a victim of HIV?\" What answer should សុខ receive?",
+      "questionKm": "នៅក្នុងស្ថានភាពជាក់ស្ដែង ប្រសិនបើអ្នកជួបនឹង \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\" តើអ្នកសម្រេចចិត្តជ្រើសរើសចម្លើយមួយណា?",
+      "questionEn": "In a real scenario, if you encounter \"How shall you do toward a victim of HIV?\", which answer do you choose?",
       "answers": [
         {
           "answerKm": "រួមភេទដោយប្រើស្រោមអនាម័យឲ្យបានត្រឹមត្រូវ និងគ្រប់ពេលវេលា។",
-          "answerEn": "The answer is Have sex using condom properly and all time.",
+          "answerEn": "Have sex using condom properly and all time.",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "គាំទ្រនិងមិនរើសអើង",
-          "answerEn": "The answer is Suport and not discrimination",
+          "answerEn": "Suport and not discrimination",
           "isCorrect": true,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ជំងឺកាមរោគ",
-          "answerEn": "The answer is Sexually transmitted disease",
+          "answerEn": "Sexually transmitted disease",
           "isCorrect": false,
           "answerType": "multiple_choice"
         },
         {
           "answerKm": "ហ៊ាន",
-          "answerEn": "The answer is Dare",
+          "answerEn": "Dare",
           "isCorrect": false,
           "answerType": "multiple_choice"
         }
       ],
       "answerKm": "គាំទ្រនិងមិនរើសអើង",
-      "answerEn": "The answer is Suport and not discrimination",
-      "explanationKm": "សុខ ត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"គាំទ្រនិងមិនរើសអើង\"។",
-      "explanationEn": "សុខ needs to know that the correct answer is: The answer is Suport and not discrimination."
+      "answerEn": "Suport and not discrimination",
+      "explanationKm": "អ្នកត្រូវដឹងថាចម្លើយត្រឹមត្រូវគឺ \"គាំទ្រនិងមិនរើសអើង\"។",
+      "explanationEn": "You need to know that the correct answer is: Suport and not discrimination."
     },
     {
       "id": "GK-532-07",
@@ -4266,8 +4266,8 @@
       "difficulty": "medium",
       "questionType": "true_false",
       "questionImageUrl": null,
-      "questionKm": "រតនា គិតថា \"ហ៊ាន\" គឺជាចម្លើយសម្រាប់សំណួរ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"",
-      "questionEn": "រតនា believes that \"The answer is Dare\" is the answer to: \"How shall you do toward a victim of HIV?\"",
+      "questionKm": "តើវាជាការត្រឹមត្រូវទេ ប្រសិនបើអ្នកគិតថា \"ហ៊ាន\" គឺជាចម្លើយសម្រាប់ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
+      "questionEn": "Is it correct if you believe that \"Dare\" is the answer for \"How shall you do toward a victim of HIV?\"?",
       "answers": [
         {
           "answerKm": "ត្រូវ",
@@ -4284,8 +4284,8 @@
       ],
       "answerKm": "ខុស",
       "answerEn": "False",
-      "explanationKm": "ការយល់ឃើញរបស់ រតនា គឺខុសហើយ។ ចម្លើយពិតប្រាកដគឺ \"គាំទ្រនិងមិនរើសអើង\"។",
-      "explanationEn": "រតនា's belief is false. The correct fact is: The answer is Suport and not discrimination."
+      "explanationKm": "ការយល់ឃើញនេះគឺមិនត្រឹមត្រូវទេ។ ចម្លើយពិតប្រាកដគឺ \"គាំទ្រនិងមិនរើសអើង\"។",
+      "explanationEn": "This belief is incorrect. The correct fact is: Suport and not discrimination."
     },
     {
       "id": "GK-532-08",
@@ -4297,8 +4297,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "ហេតុអ្វីបានជាការយល់ដឹង និងការអនុវត្តច្បាប់ចំពោះ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\" មានសារៈសំខាន់?",
-      "questionEn": "Why is understanding and applying the rule for: How shall you do toward a victim of HIV? highly important?",
+      "questionKm": "ហេតុអ្វីបានជាអ្នកត្រូវតែយល់ដឹង និងគោរពច្បាប់ចំពោះ \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
+      "questionEn": "Why must you understand and respect the rule for \"How shall you do toward a victim of HIV?\"?",
       "answers": [
         {
           "answerKm": "គ្រាន់តែដើម្បីប្រឡងយកប័ណ្ណបើកបរឱ្យជាប់ងាយស្រួលប៉ុណ្ណោះ",
@@ -4340,8 +4340,8 @@
       "difficulty": "hard",
       "questionType": "multiple_choice",
       "questionImageUrl": null,
-      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកបើកបរមិនអើពើនឹង \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
-      "questionEn": "What consequences may occur under traffic rules if a driver ignores the fact: How shall you do toward a victim of HIV?",
+      "questionKm": "តើអាចមានផលវិបាកអ្វីខ្លះតាមច្បាប់ចរាចរណ៍ ប្រសិនបើអ្នកមិនអើពើនឹង \"តើអ្នកត្រូវធ្វើដូចម្តេចចំពោះជនរងគ្រោះដោយសារមេរោគអេដស៍?\"?",
+      "questionEn": "What legal consequences may you face if you ignore \"How shall you do toward a victim of HIV?\"?",
       "answers": [
         {
           "answerKm": "ការឡើងថ្នាក់បើកបរភ្លាមៗដោយមិនបាច់ពិនិត្យ",
