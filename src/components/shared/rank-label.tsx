@@ -63,10 +63,44 @@ export const RANK_KEYFRAMES = `
   }
   @keyframes tierGlow {
     0%, 100% {
-      box-shadow: 0 0 6px var(--glow-color);
+      box-shadow: 0 0 5px var(--glow-color), 0 0 10px var(--glow-color);
+      opacity: 0.95;
+    }
+    45% {
+      box-shadow: 0 0 5px var(--glow-color), 0 0 10px var(--glow-color);
+      opacity: 0.95;
+    }
+    46% {
+      box-shadow: 0 0 2px var(--glow-color), 0 0 4px var(--glow-color);
+      opacity: 0.35;
+    }
+    47% {
+      box-shadow: 0 0 14px var(--glow-color), 0 0 22px var(--glow-color);
+      opacity: 1;
+    }
+    48% {
+      box-shadow: 0 0 2px var(--glow-color), 0 0 4px var(--glow-color);
+      opacity: 0.25;
     }
     50% {
-      box-shadow: 0 0 20px var(--glow-color);
+      box-shadow: 0 0 18px var(--glow-color), 0 0 30px var(--glow-color);
+      opacity: 1;
+    }
+    52% {
+      box-shadow: 0 0 5px var(--glow-color), 0 0 10px var(--glow-color);
+      opacity: 0.95;
+    }
+    53% {
+      box-shadow: 0 0 2px var(--glow-color), 0 0 4px var(--glow-color);
+      opacity: 0.35;
+    }
+    54% {
+      box-shadow: 0 0 14px var(--glow-color), 0 0 22px var(--glow-color);
+      opacity: 1;
+    }
+    55% {
+      box-shadow: 0 0 5px var(--glow-color), 0 0 10px var(--glow-color);
+      opacity: 0.95;
     }
   }
   @media (prefers-reduced-motion: reduce) {
