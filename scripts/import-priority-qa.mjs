@@ -42,23 +42,14 @@ function assertReady() {
     if ((q.answers ?? []).filter((a) => a.isCorrect).length !== 1) {
       throw new Error(`${q.id}: must have exactly one correct answer`);
     }
-    if (q.answers.length > 4) throw new Error(`${q.id}: more than 4 answers`);
-    if (q.questionType === "true_false" && q.answers.length !== 2) {
-      throw new Error(`${q.id}: true_false must have 2 answers`);
-    }
-    if (q.questionType !== "true_false" && q.answers.length !== 4) {
-      throw new Error(`${q.id}: non true_false must have 4 answers`);
-    }
-    if (q.questionType === "image_selection" && q.answers.some((a) => !a.imageUrl)) {
-      throw new Error(`${q.id}: image_selection answer missing image`);
-    }
+    if (q.answers.length !== 3) throw new Error(`${q.id}: priority question must have exactly 3 options`);
     const list = byTopic.get(q.topicId) ?? [];
     list.push(q);
     byTopic.set(q.topicId, list);
   }
 
   if (byTopic.size !== 70) throw new Error(`Expected 70 topics, got ${byTopic.size}`);
-  if (items.length !== 630) throw new Error(`Expected 630 questions, got ${items.length}`);
+  if (items.length !== 70) throw new Error(`Expected 70 questions, got ${items.length}`);
 }
 
 async function countPriorityRows() {
@@ -226,10 +217,10 @@ console.log("After:", after);
 console.log("Expected game type counts from JSON:", modeCounts);
 console.log("DB game type counts:", dbModeCounts);
 
-if (after.topics !== 70 || after.questions !== 630 || after.answers !== 2240) {
+if (after.topics !== 70 || after.questions !== 70 || after.answers !== 210) {
   throw new Error(`Unexpected DB totals after import: ${JSON.stringify(after)}`);
 }
-if (dbModeCounts.mcq !== 420 || dbModeCounts.true_false !== 140 || dbModeCounts.image_pick !== 70) {
+if (dbModeCounts.mcq !== 70 || dbModeCounts.true_false !== 0 || dbModeCounts.image_pick !== 0) {
   throw new Error(`Unexpected game type counts: ${JSON.stringify(dbModeCounts)}`);
 }
 
