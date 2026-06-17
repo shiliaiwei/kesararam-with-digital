@@ -5,8 +5,8 @@
  * 1. Questions are selected randomly from all available categories
  * 2. No predictable patterns - each session is unique
  * 3. Questions are distributed across categories when multiple are selected
- * 4. Time-based seed ensures different questions at different times
- * 5. User-specific randomization prevents same questions for different users
+ * 4. Crypto randomness avoids predictable time/user seed patterns
+ * 5. The answer order can reuse the same secure shuffle helper
  */
 
 interface QuestionCandidate {
@@ -34,52 +34,56 @@ function getSecureRandom(): number {
 }
 
 /**
- * Generate a time-based seed that changes every hour
- * This ensures different question sets at different times
- */
-function getTimeSeed(): number {
-    const now = Date.now();
-    // Change seed every hour
-    const hoursSinceEpoch = Math.floor(now / (1000 * 60 * 60));
-    return hoursSinceEpoch;
-}
-
-/**
- * Generate a unique session seed based on time and user
- */
-function generateSessionSeed(userId?: number, sessionTime?: number): number {
-    const timeSeed = sessionTime || Date.now();
-    const userSeed = userId || Math.floor(getSecureRandom() * 1000000);
-
-    // Combine time and user seeds with prime numbers for better distribution
-    return (timeSeed * 31 + userSeed * 37) % Number.MAX_SAFE_INTEGER;
-}
-
-/**
- * Seeded random number generator (for reproducible randomness in tests)
- * Uses a Linear Congruential Generator (LCG) algorithm
- */
-class SeededRandom {
-    private seed: number;
-
-    constructor(seed: number) {
-        this.seed = seed % 2147483647;
-        if (this.seed <= 0) this.seed += 2147483646;
-    }
-
-    next(): number {
-        this.seed = (this.seed * 16807) % 2147483647;
-        return (this.seed - 1) / 2147483646;
-    }
-}
-
-/**
  * Fisher-Yates shuffle with cryptographic randomness
  */
-function shuffleArray<T>(array: T[]): T[] {
+export function shuffleArray<T>(array: T[]): T[] {
     const shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
         const j = Math.floor(getSecureRandom() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
+/**
+ * Deterministic 32-bit seed from a string (FNV-1a).
+ */
+function hashSeed(str: string): number {
+    let h = 0x811c9dc5;
+    for (let i = 0; i < str.length; i++) {
+        h ^= str.charCodeAt(i);
+        h = Math.imul(h, 0x01000193);
+    }
+    return h >>> 0;
+}
+
+/**
+ * Seeded PRNG (mulberry32) — deterministic stream from a numeric seed.
+ */
+function mulberry32(seed: number): () => number {
+    let a = seed >>> 0;
+    return function () {
+        a = (a + 0x6d2b79f5) | 0;
+        let t = Math.imul(a ^ (a >>> 15), 1 | a);
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+}
+
+/**
+ * Deterministic Fisher-Yates shuffle from a string seed.
+ *
+ * Same seed → same order every time (stable), different seed → different order.
+ * Use this for LIVE play so a question's answer order is fixed for its whole
+ * duration and identical for every player (fair), yet still unpredictable:
+ * the seed mixes the random session code with the question id, and the order
+ * never encodes which answer is correct.
+ */
+export function seededShuffle<T>(array: T[], seed: string): T[] {
+    const rand = mulberry32(hashSeed(seed));
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(rand() * (i + 1));
         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     return shuffled;
@@ -149,13 +153,12 @@ function distributeAcrossCategories(
  * 
  * Features:
  * - Cryptographically secure randomness
- * - Time-based variation (different questions each hour)
- * - User-specific randomization
+ * - Fresh server-side randomness on every request
  * - Category distribution for variety
  * - No predictable patterns
  */
 export function selectRandomQuestions(options: SelectionOptions): QuestionCandidate[] {
-    const { questions, questionCount, categoryIds, userId, sessionTime } = options;
+    const { questions, questionCount, categoryIds } = options;
 
     if (questions.length === 0) {
         return [];
@@ -166,27 +169,14 @@ export function selectRandomQuestions(options: SelectionOptions): QuestionCandid
         return shuffleArray(questions);
     }
 
-    // Generate unique session seed
-    const sessionSeed = generateSessionSeed(userId, sessionTime);
-
-    // Add session-specific randomness to each question
-    const questionsWithRandom = questions.map(q => ({
-        ...q,
-        _randomScore: getSecureRandom() + (sessionSeed % 1000) / 1000,
-    }));
-
-    // Sort by random score (this adds another layer of randomness)
-    questionsWithRandom.sort((a, b) => a._randomScore - b._randomScore);
-
     // Distribute across categories for variety
     const selected = distributeAcrossCategories(
-        questionsWithRandom,
+        questions,
         categoryIds,
         questionCount
     );
 
-    // Remove the temporary random score
-    return selected.map(({ _randomScore, ...q }) => q);
+    return selected;
 }
 
 /**

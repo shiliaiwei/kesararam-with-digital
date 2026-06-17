@@ -69,6 +69,7 @@ export async function GET(
               // Import what we need for catch-up
               const { questions, answers } = await import("@/db/schema/content");
               const { mapContentToGameType } = await import("@/lib/game-engine");
+              const { seededShuffle } = await import("@/lib/question-selector");
               const { eq: eqFn, asc } = await import("drizzle-orm");
 
               const qId = session.questionIds[session.currentQuestionIndex ?? 0];
@@ -95,7 +96,7 @@ export async function GET(
                     imageUrl: q.imageUrl ?? null, audioUrlEn: q.audioUrlEn ?? null,
                     audioUrlKm: q.audioUrlKm ?? null,
                     gameType: mapContentToGameType({ answerCount: ans.length, hasImage: ans.some(a => !!a.imageUrl), hasAudio: !!(q.audioUrlEn || q.audioUrlKm) }),
-                    answers: ans.map(a => ({ id: a.id, answerEn: a.answerEn, answerKm: a.answerKm, imageUrl: a.imageUrl ?? null })),
+                    answers: seededShuffle(ans, `${session.sessionCode}:${qId}`).map(a => ({ id: a.id, answerEn: a.answerEn, answerKm: a.answerKm, imageUrl: a.imageUrl ?? null })),
                   },
                   startsAt: session.questionStartedAt?.toISOString() ?? new Date().toISOString(),
                   endsAt,

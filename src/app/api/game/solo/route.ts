@@ -3,14 +3,8 @@ import { db } from "@/lib/db";
 import { questions, answers, topics, categories } from "@/db/schema/content";
 import { getSession } from "@/lib/auth";
 import { GAME_MODE_TYPES, mapContentToGameType } from "@/lib/game-engine";
-import { selectRandomQuestions } from "@/lib/question-selector";
+import { selectRandomQuestions, shuffleArray } from "@/lib/question-selector";
 import { eq, and, inArray, sql } from "drizzle-orm";
-
-function getSecureRandom(): number {
-  const arr = new Uint32Array(1);
-  crypto.getRandomValues(arr);
-  return arr[0] / (0xffffffff + 1);
-}
 
 export async function POST(req: NextRequest) {
   // Solo mode works for both authenticated and non-authenticated users
@@ -80,6 +74,7 @@ export async function POST(req: NextRequest) {
       audioUrlEn: questions.audioUrlEn,
       audioUrlKm: questions.audioUrlKm,
       difficulty: questions.difficulty,
+      categoryId: categories.id,
       categorySlug: categories.slug,
       topicCode: topics.topicCode,
     })
@@ -137,10 +132,7 @@ export async function POST(req: NextRequest) {
   // Use the new truly random selection algorithm
   // This ensures unpredictable question selection that changes every time
   const selectedQuestions = selectRandomQuestions({
-    questions: compatible.map(q => ({
-      ...q,
-      categoryId: categoryIds[0], // Will be properly mapped from the query
-    })),
+    questions: compatible,
     questionCount,
     categoryIds,
     userId: user?.id,
@@ -177,9 +169,7 @@ export async function POST(req: NextRequest) {
     });
 
     // Shuffle answers
-    let shuffled = ans
-      .map(a => ({ ...a, _r: getSecureRandom() }))
-      .sort((a, b) => a._r - b._r);
+    const shuffled = shuffleArray(ans);
 
     return {
       id: q.id,
@@ -193,7 +183,7 @@ export async function POST(req: NextRequest) {
       gameType: gt,
       difficulty: q.difficulty,
       answers: shuffled
-        .map(({ _r, ...a }) => ({
+        .map((a) => ({
           id: a.id,
           answerEn: a.answerEn,
           answerKm: a.answerKm,

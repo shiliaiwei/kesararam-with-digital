@@ -8,6 +8,7 @@ import { LeaderboardEntry } from "@/lib/game-event-bus";
 import { broadcastEvent } from "@/lib/realtime-bus";
 import { mapContentToGameType, type GameStatus } from "@/lib/game-engine";
 import { awardStorePoints } from "@/lib/store-points/award";
+import { seededShuffle } from "@/lib/question-selector";
 import { eq, and, asc, sql } from "drizzle-orm";
 
 async function buildLeaderboard(sessionId: number, prevRanks: Map<number, number>): Promise<LeaderboardEntry[]> {
@@ -251,7 +252,7 @@ export async function POST(
         .set({ status: "active", startedAt: now, currentQuestionIndex: 0, questionStartedAt: now })
         .where(eq(gameSessions.id, session.id));
 
-      const q = await getQuestionPayload(firstQId);
+      const q = await getQuestionPayload(firstQId, session.sessionCode);
       const endsAt = new Date(now.getTime() + session.timePerQuestion * 1000);
 
       await broadcastEvent(code.toUpperCase(), {
@@ -354,7 +355,7 @@ export async function POST(
           .where(eq(gameSessions.id, session.id));
 
         // 4. Fetch question payload
-        const q = await getQuestionPayload(currentQId);
+        const q = await getQuestionPayload(currentQId, session.sessionCode);
         const endsAt = new Date(now.getTime() + session.timePerQuestion * 1000);
 
         // 5. Broadcast question_start to make students see the question again
@@ -512,7 +513,7 @@ export async function POST(
         .where(eq(gameSessions.id, session.id));
 
       // Fetch next question payload
-      const q = await getQuestionPayload(nextQId);
+      const q = await getQuestionPayload(nextQId, session.sessionCode);
       const endsAt = new Date(nextNow.getTime() + session.timePerQuestion * 1000);
 
       // Start the next question for all clients without visual glitches
@@ -579,7 +580,7 @@ export async function POST(
   }
 }
 
-async function getQuestionPayload(questionId: number) {
+async function getQuestionPayload(questionId: number, sessionCode: string) {
   try {
     console.log(`[getQuestionPayload] Fetching question ${questionId}`);
 
@@ -652,10 +653,10 @@ async function getQuestionPayload(questionId: number) {
       audioUrlKm: q.audioUrlKm ?? null,
       difficulty: q.difficulty ?? null,
       gameType,
-      answers: ans
-        .map(a => ({ ...a, _r: Math.random() }))
-        .sort((a, b) => a._r - b._r)
-        .map(({ _r, ...a }) => ({
+      // Stable per (session, question) — identical order in control/state/events,
+      // fixed for the whole question, unpredictable across sessions.
+      answers: seededShuffle(ans, `${sessionCode}:${questionId}`)
+        .map((a) => ({
           id: a.id,
           answerEn: a.answerEn,
           answerKm: a.answerKm,

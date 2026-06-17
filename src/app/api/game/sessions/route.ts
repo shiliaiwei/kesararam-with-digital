@@ -83,6 +83,7 @@ export async function POST(req: NextRequest) {
       audioUrlEn: questions.audioUrlEn,
       audioUrlKm: questions.audioUrlKm,
       difficulty: questions.difficulty,
+      categoryId: topics.categoryId,
     })
     .from(questions)
     .innerJoin(topics, eq(questions.topicId, topics.id))
@@ -138,10 +139,7 @@ export async function POST(req: NextRequest) {
   // Use the new truly random selection algorithm
   // This ensures unpredictable question selection that changes every time
   const selectedQuestions = selectRandomQuestions({
-    questions: compatible.map(q => ({
-      ...q,
-      categoryId: categoryIds[0], // Will be properly mapped from the query
-    })),
+    questions: compatible,
     questionCount,
     categoryIds,
     userId: user.id,

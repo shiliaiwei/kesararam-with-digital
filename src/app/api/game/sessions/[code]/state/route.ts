@@ -4,6 +4,7 @@ import { gameSessions, gameParticipants } from "@/db/schema/game";
 import { questions, answers } from "@/db/schema/content";
 import { getSession } from "@/lib/auth";
 import { mapContentToGameType } from "@/lib/game-engine";
+import { seededShuffle } from "@/lib/question-selector";
 import { eq, and } from "drizzle-orm";
 
 export async function GET(
@@ -49,10 +50,11 @@ export async function GET(
           hasImage: ans.some(a => !!a.imageUrl),
           hasAudio: !!(q.audioUrlEn || q.audioUrlKm),
         }),
-        answers: ans
-          .map((a) => ({ ...a, _r: Math.random() }))
-          .sort((a, b) => a._r - b._r)
-          .map(({ _r, ...a }) => ({
+        // Stable per (session, question): fixed order for the whole question and
+        // identical for every player, but unpredictable across sessions — and the
+        // order never reveals which answer is correct.
+        answers: seededShuffle(ans, `${session.sessionCode}:${qId}`)
+          .map((a) => ({
             id: a.id,
             answerEn: a.answerEn,
             answerKm: a.answerKm,
