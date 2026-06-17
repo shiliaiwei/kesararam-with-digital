@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   AlertTriangle, Navigation, RefreshCw, Layers,
   ShieldAlert, Car, TriangleAlert, Info, ChevronDown, ChevronUp,
+  Plus, Minus, Locate, Maximize2, Minimize2,
 } from "lucide-react";
 import { useLang } from "@/context/lang-context";
 
@@ -25,7 +26,7 @@ const ROAD_ALERTS = [
     badgeColor: "bg-red-500",
     desc: {
       en: "National Road 6 — High accident frequency near Skun intersection. Drive carefully.",
-      km: "ផ្លូវជាតិលេខ ៦ — ចំនួនគ្រោះថ្នាក់ខ្ពស់នៅជិតផ្លូវប្រសព្វស្គូន។ បើកបរដោយប្រុងប្រយ័ត្ន។",
+      km: "ផ្លូវជាតិលេខ ៦ — ចំនួនគ្រោះថ្នាក់ខ្ពស់នៅជិតផ្លូវប្រសព្វស្គូន។ ធ្វើដំណើរដោយប្រុងប្រយ័ត្ន។",
     },
   },
   {
@@ -66,8 +67,8 @@ const ROAD_ALERTS = [
     badge: { en: "Always Active", km: "សកម្មជានិច្ច" },
     badgeColor: "bg-blue-500",
     desc: {
-      en: "Wear seatbelts at all times. Drunk driving enforcement active on all major roads.",
-      km: "ពាក់ខ្សែក្រវ៉ាត់សុវត្ថិភាពជានិច្ច។ ការអនុវត្តការបើកបរស្រវឹងសកម្មនៅគ្រប់ផ្លូវវិថីធំ។",
+      en: "Wear seatbelts at all times. Sobriety checkpoints active on all major roads.",
+      km: "ពាក់ខ្សែក្រវ៉ាត់សុវត្ថិភាពជានិច្ច។ ការត្រួតពិនិត្យជាតិស្រវឹងសកម្មនៅគ្រប់ផ្លូវវិថីធំ។",
     },
   },
   {
@@ -104,7 +105,7 @@ const ROAD_ALERTS = [
     icon: ShieldAlert,
     color: "bg-zinc-700",
     borderColor: "border-l-zinc-700",
-    title: { en: "Night Driving Alert", km: "ការព្រមានបើកបរពេលយប់" },
+    title: { en: "Night Travel Alert", km: "ការព្រមានធ្វើដំណើរពេលយប់" },
     badge: { en: "8pm – 5am", km: "ម៉ោង ៨យប់ – ៥ព្រឹក" },
     badgeColor: "bg-zinc-700",
     desc: {
@@ -152,7 +153,7 @@ const UI = {
     alertsTitle: "Traffic & Road Safety Alerts",
     liveUpdates: "Live Updates",
     stayAlert: "Stay Alert:",
-    stayAlertMsg: "Always follow traffic signs, keep safe distance, and never use your phone while driving.",
+    stayAlertMsg: "Always follow traffic signs, keep safe distance, and never use your phone while on the road.",
     loading: "Loading traffic data...",
     loadingPowered: "Powered by Mapbox GL",
     mapFailed: "Map Failed to Load",
@@ -175,7 +176,7 @@ const UI = {
     alertsTitle: "ការព្រមានចរាចរណ៍",
     liveUpdates: "ផ្ទាល់",
     stayAlert: "ប្រុងប្រយ័ត្ន:",
-    stayAlertMsg: "តែងតែអនុវត្តតាមសញ្ញាចរាចរណ៍ រក្សាចម្ងាយសុវត្ថិភាព និងកុំប្រើទូរស័ព្ទពេលបើកបរ។",
+    stayAlertMsg: "តែងតែអនុវត្តតាមសញ្ញាចរាចរណ៍ រក្សាចម្ងាយសុវត្ថិភាព និងកុំប្រើទូរស័ព្ទក្នុងពេលធ្វើដំណើរលើផ្លូវ។",
     loading: "កំពុងផ្ទុក...",
     loadingPowered: "ដំណើរការដោយ Mapbox GL",
     mapFailed: "ផែនទីបរាជ័យ",
@@ -200,6 +201,10 @@ export function MapboxTrafficMap({
   const [mapStyle, setMapStyle] = useState<"streets" | "satellite">("streets");
   const [activeFilter, setActiveFilter] = useState("all");
   const [expanded, setExpanded] = useState(false);
+  const [isExpandedHeight, setIsExpandedHeight] = useState(false);
+  const [isLegendOpen, setIsLegendOpen] = useState(false);
+  const [isLocating, setIsLocating] = useState(false);
+
   const { lang } = useLang();
   const isKh = lang === "kh";
   const kf = isKh ? { fontFamily: "var(--font-system)" } : {};
@@ -210,6 +215,22 @@ export function MapboxTrafficMap({
       ? ROAD_ALERTS
       : ROAD_ALERTS.filter((a) => a.type === activeFilter);
   const visibleAlerts = expanded ? filtered : filtered.slice(0, VISIBLE_DEFAULT);
+
+  // Resize map canvas on height toggle
+  useEffect(() => {
+    if (!mapRef.current) return;
+    const interval = setInterval(() => {
+      mapRef.current?.resize();
+    }, 50);
+    const timeout = setTimeout(() => {
+      clearInterval(interval);
+      mapRef.current?.resize();
+    }, 350);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
+  }, [isExpandedHeight]);
 
   useEffect(() => {
     if (!mapContainerRef.current) return;
@@ -235,6 +256,7 @@ export function MapboxTrafficMap({
           zoom,
           attributionControl: false,
           trackResize: true,
+          cooperativeGestures: true,
         });
         mapRef.current = map;
         map.on("load", () => {
@@ -261,8 +283,6 @@ export function MapboxTrafficMap({
               "line-opacity": 0.9,
             },
           });
-          map.addControl(new mapboxgl.NavigationControl(), "top-right");
-          map.addControl(new mapboxgl.FullscreenControl(), "top-right");
           map.addControl(new mapboxgl.AttributionControl({ compact: true }), "bottom-right");
           requestAnimationFrame(() => { if (mapRef.current) map.resize(); });
           setMapLoaded(true);
@@ -322,42 +342,165 @@ export function MapboxTrafficMap({
     mapRef.current.once("style.load", () => addTrafficLayer(mapRef.current));
   };
 
+  const toggleHeight = () => {
+    setIsExpandedHeight((prev) => !prev);
+  };
+
+  const locateUser = () => {
+    if (!mapRef.current) return;
+    if (!("geolocation" in navigator)) {
+      alert(isKh ? "កម្មវិធីរុករករបស់អ្នកមិនគាំទ្រទីតាំងភូមិសាស្ត្រទេ" : "Geolocation is not supported by your browser.");
+      return;
+    }
+
+    setIsLocating(true);
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { longitude, latitude } = position.coords;
+        if (mapRef.current) {
+          mapRef.current.flyTo({
+            center: [longitude, latitude],
+            zoom: 14,
+            essential: true,
+          });
+        }
+        setIsLocating(false);
+      },
+      (err) => {
+        console.error("Geolocation error:", err);
+        alert(isKh ? "មិនអាចទទួលបានទីតាំងបច្ចុប្បន្នរបស់អ្នកទេ" : "Unable to retrieve your location.");
+        setIsLocating(false);
+      },
+      { enableHighAccuracy: true, timeout: 5000 }
+    );
+  };
+
   return (
     <div className="bg-white border-2 border-black shadow-[6px_6px_0_#000] overflow-hidden">
 
       {/* ── Header ─────────────────────────────────────────────────── */}
-      <div className="bg-red-500 border-b-2 border-black px-4 sm:px-6 py-3 flex items-center justify-between gap-2">
-        <div className="flex items-center gap-3 min-w-0">
-          <div className="w-9 h-9 bg-white border-2 border-black flex items-center justify-center shrink-0">
-            <Navigation size={18} className="text-red-500" />
+      <div className="bg-red-500 border-b-2 border-black px-4 py-3 flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2.5 min-w-0">
+          <div className="w-8 h-8 bg-white border-2 border-black flex items-center justify-center shrink-0">
+            <Navigation size={16} className="text-red-500" />
           </div>
           <div className="min-w-0">
-            <h3 className="text-base sm:text-lg font-black text-white leading-tight" style={kf}>{t.header}</h3>
-            <p className="text-[11px] font-bold text-white/80 leading-tight" style={kf}>{t.subheader}</p>
+            <h3 className="text-sm sm:text-base font-black text-white leading-tight" style={kf}>{t.header}</h3>
+            <p className="text-[10px] font-bold text-white/80 leading-tight" style={kf}>{t.subheader}</p>
           </div>
         </div>
-        <div className="flex items-center gap-2 shrink-0">
-          {mapLoaded && !error && (
-            <button
-              onClick={toggleStyle}
-              aria-label="Toggle map style"
-              className="flex items-center gap-1.5 bg-white border-2 border-black px-2.5 py-1.5 text-[11px] font-black hover:bg-yellow-400 transition-colors"
-              style={kf}
-            >
-              <Layers size={13} />
-              <span>{mapStyle === "streets" ? t.satellite : t.streets}</span>
-            </button>
-          )}
-          <div className="flex items-center gap-1.5 bg-white border-2 border-black px-2.5 py-1.5">
-            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-            <span className="text-[11px] font-black uppercase" style={kf}>{t.live}</span>
-          </div>
+        <div className="flex items-center gap-1.5 bg-white border-2 border-black px-2 py-1 shrink-0">
+          <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+          <span className="text-[10px] font-black uppercase" style={kf}>{t.live}</span>
         </div>
       </div>
 
       {/* ── Map ────────────────────────────────────────────────────── */}
-      <div className="relative w-full" style={{ height: "clamp(220px, 45vw, 460px)" }}>
+      <div className={`relative w-full transition-all duration-300 ${isExpandedHeight ? "h-[65vh] md:h-[600px]" : "h-[260px] sm:h-[350px] md:h-[450px]"}`} style={{ minHeight: isExpandedHeight ? "380px" : "240px" }}>
         <div ref={mapContainerRef} style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }} />
+
+        {/* Floating Custom Brutalist Map Controls */}
+        {mapLoaded && !error && (
+          <div className="absolute top-3 right-3 flex flex-col gap-2 z-20">
+            {/* Zoom Button Group */}
+            <div className="flex flex-col bg-white border-2 border-black shadow-[2px_2px_0_#000]">
+              <button
+                onClick={() => mapRef.current?.zoomIn()}
+                aria-label="Zoom in"
+                className="p-2 hover:bg-yellow-400 border-b-2 border-black transition-colors"
+              >
+                <Plus size={16} strokeWidth={2.5} />
+              </button>
+              <button
+                onClick={() => mapRef.current?.zoomOut()}
+                aria-label="Zoom out"
+                className="p-2 hover:bg-yellow-400 transition-colors"
+              >
+                <Minus size={16} strokeWidth={2.5} />
+              </button>
+            </div>
+
+            {/* Locate Me */}
+            <button
+              onClick={locateUser}
+              aria-label="Locate me"
+              disabled={isLocating}
+              className={`p-2 bg-white border-2 border-black shadow-[2px_2px_0_#000] hover:bg-yellow-400 transition-all ${
+                isLocating ? "animate-pulse" : ""
+              }`}
+            >
+              <Locate size={16} className={isLocating ? "text-yellow-500 animate-spin" : "text-black"} strokeWidth={2.5} />
+            </button>
+
+            {/* Map Style Toggle */}
+            <button
+              onClick={toggleStyle}
+              aria-label="Toggle map style"
+              className="p-2 bg-white border-2 border-black shadow-[2px_2px_0_#000] hover:bg-yellow-400 transition-all flex items-center justify-center"
+            >
+              <Layers size={16} strokeWidth={2.5} />
+            </button>
+
+            {/* Height Toggle */}
+            <button
+              onClick={toggleHeight}
+              aria-label={isExpandedHeight ? "Collapse map" : "Expand map"}
+              className="p-2 bg-white border-2 border-black shadow-[2px_2px_0_#000] hover:bg-yellow-400 transition-all flex items-center justify-center"
+            >
+              {isExpandedHeight ? <Minimize2 size={16} strokeWidth={2.5} /> : <Maximize2 size={16} strokeWidth={2.5} />}
+            </button>
+          </div>
+        )}
+
+        {/* Floating Custom Collapsible Legend */}
+        {mapLoaded && !error && (
+          <div className="absolute bottom-3 left-3 z-20 max-w-[200px] sm:max-w-[280px]">
+            {isLegendOpen ? (
+              <div className="bg-white border-2 border-black p-2.5 shadow-[3px_3px_0_#000] flex flex-col gap-2">
+                <div className="flex items-center justify-between border-b border-black pb-1.5 gap-2">
+                  <div className="flex items-center gap-1.5">
+                    <Info size={13} className="text-black" />
+                    <span className="text-[10px] font-black uppercase tracking-wider" style={kf}>
+                      {isKh ? "ចរាចរណ៍" : "Traffic"}
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => setIsLegendOpen(false)}
+                    className="text-[10px] font-black uppercase text-zinc-500 hover:text-black"
+                    style={kf}
+                  >
+                    {isKh ? "លាក់" : "Hide"}
+                  </button>
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  {[
+                    { color: "bg-green-500", label: t.smooth },
+                    { color: "bg-yellow-500", label: t.moderate },
+                    { color: "bg-red-500", label: t.heavy },
+                    { color: "bg-red-900", label: t.stopped },
+                  ].map(({ color, label }) => (
+                    <div key={label} className="flex items-center gap-1.5">
+                      <div className={`w-2.5 h-2.5 rounded-full ${color} border border-black`} />
+                      <span className="text-[10px] font-bold text-zinc-800" style={kf}>
+                        {label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <button
+                onClick={() => setIsLegendOpen(true)}
+                className="bg-yellow-400 border-2 border-black px-2.5 py-1.5 shadow-[2px_2px_0_#000] hover:bg-yellow-500 active:shadow-[1px_1px_0_#000] flex items-center gap-1.5 transition-all"
+              >
+                <Info size={12} className="text-black" strokeWidth={2.5} />
+                <span className="text-[10px] font-black uppercase tracking-wider" style={kf}>
+                  {isKh ? "សញ្ញាចរាចរណ៍" : "Legend"}
+                </span>
+              </button>
+            )}
+          </div>
+        )}
 
         {!mapLoaded && !error && (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10 pointer-events-none">
@@ -389,27 +532,6 @@ export function MapboxTrafficMap({
             </div>
           </div>
         )}
-      </div>
-
-      {/* ── Traffic Legend ─────────────────────────────────────────── */}
-      <div className="bg-yellow-400 border-t-2 border-black px-4 sm:px-6 py-2.5 flex items-center gap-3 flex-wrap">
-        <div className="flex items-center gap-1.5 shrink-0">
-          <Info size={13} />
-          <span className="text-[11px] font-black uppercase" style={kf}>{t.legend}</span>
-        </div>
-        <div className="flex items-center gap-2 flex-wrap">
-          {[
-            { color: "bg-green-500", label: { en: t.smooth, km: t.smooth } },
-            { color: "bg-yellow-500", label: { en: t.moderate, km: t.moderate } },
-            { color: "bg-red-500", label: { en: t.heavy, km: t.heavy } },
-            { color: "bg-red-900", label: { en: t.stopped, km: t.stopped } },
-          ].map(({ color, label }) => (
-            <div key={label.en} className="flex items-center gap-1.5 bg-white border border-black px-2 py-0.5">
-              <div className={`w-3 h-3 rounded-full ${color}`} />
-              <span className="text-[11px] font-bold" style={kf}>{label.en}</span>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* ── Alerts Section ─────────────────────────────────────────── */}
