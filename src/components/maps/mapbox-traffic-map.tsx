@@ -21,12 +21,12 @@ const ROAD_ALERTS = [
     icon: Car,
     color: "bg-red-500",
     borderColor: "border-l-red-500",
-    title: { en: "Accident Risk Zone", km: "តំបន់ប្រថុយប្រថាន" },
-    badge: { en: "Active Alert", km: "ការព្រមានសកម្ម" },
+    title: { en: "Accident Risk Zone", km: "តំបន់គ្រោះថ្នាក់" },
+    badge: { en: "Active Warning", km: "ការព្រមាន" },
     badgeColor: "bg-red-500",
     desc: {
       en: "National Road 6 — High accident frequency near Skun intersection. Drive carefully.",
-      km: "ផ្លូវជាតិលេខ ៦ — ចំនួនគ្រោះថ្នាក់ខ្ពស់នៅជិតផ្លូវប្រសព្វស្គូន។ ធ្វើដំណើរដោយប្រុងប្រយ័ត្ន។",
+      km: "ផ្លូវជាតិលេខ ៦ — ឧស្សាហ៍មានគ្រោះថ្នាក់នៅជិតផ្លូវបំបែកស្គូន។ ធ្វើដំណើរដោយប្រុងប្រយ័ត្ន។",
     },
   },
   {
@@ -35,12 +35,12 @@ const ROAD_ALERTS = [
     icon: AlertTriangle,
     color: "bg-yellow-500",
     borderColor: "border-l-yellow-500",
-    title: { en: "Heavy Congestion", km: "ការស្ទះចរាចរណ៍ធ្ងន់" },
+    title: { en: "Heavy Congestion", km: "ស្ទះផ្លូវខ្លាំង" },
     badge: { en: "Peak Hours: 7–9am, 5–7pm", km: "ម៉ោងមមាញឹក: ៧–៩ព្រឹក, ៥–៧ល្ងាច" },
     badgeColor: "bg-yellow-500",
     desc: {
       en: "Phnom Penh city center — Rush hour traffic. Expect delays on Monivong Blvd.",
-      km: "មជ្ឈមណ្ឌលក្រុងភ្នំពេញ — ចរាចរណ៍ម៉ោងមមាញឹក។ រំពឹងការពន្យារពេលនៅផ្លូវវ៉ានីវ៉ុង។",
+      km: "កណ្តាលក្រុងភ្នំពេញ — ស្ទះខ្លាំងម៉ោងមមាញឹក។ អាចយឺតយ៉ាវនៅផ្លូវមុនីវង្ស។",
     },
   },
   {
@@ -49,12 +49,12 @@ const ROAD_ALERTS = [
     icon: TriangleAlert,
     color: "bg-orange-500",
     borderColor: "border-l-orange-500",
-    title: { en: "Road Construction", km: "ការសាងសង់ផ្លូវវិថី" },
-    badge: { en: "Ongoing", km: "កំពុងដំណើរការ" },
+    title: { en: "Road Construction", km: "កំពុងធ្វើផ្លូវ" },
+    badge: { en: "Ongoing", km: "កំពុងធ្វើ" },
     badgeColor: "bg-orange-500",
     desc: {
       en: "National Road 4 — Lane closure near Kampong Speu. Reduce speed to 40km/h.",
-      km: "ផ្លូវជាតិលេខ ៤ — បិទផ្លូវជិតកំពង់ស្ពឺ។ កាត់បន្ថយល្បឿនដល់ ៤០គ.ម/ម.",
+      km: "ផ្លូវជាតិលេខ ៤ — បិទគន្លងផ្លូវជិតកំពង់ស្ពឺ។ សូមបន្ថយល្បឿនត្រឹម ៤០គ.ម/ម៉ោង។",
     },
   },
   {
@@ -63,12 +63,12 @@ const ROAD_ALERTS = [
     icon: ShieldAlert,
     color: "bg-blue-500",
     borderColor: "border-l-blue-500",
-    title: { en: "Safety Reminder", km: "ការរំលឹកសុវត្ថិភាព" },
-    badge: { en: "Always Active", km: "សកម្មជានិច្ច" },
+    title: { en: "Safety Reminder", km: "រំលឹកសុវត្ថិភាព" },
+    badge: { en: "Always Active", km: "ជាប្រចាំ" },
     badgeColor: "bg-blue-500",
     desc: {
       en: "Wear seatbelts at all times. Sobriety checkpoints active on all major roads.",
-      km: "ពាក់ខ្សែក្រវ៉ាត់សុវត្ថិភាពជានិច្ច។ ការត្រួតពិនិត្យជាតិស្រវឹងសកម្មនៅគ្រប់ផ្លូវវិថីធំ។",
+      km: "ពាក់ខ្សែក្រវ៉ាត់សុវត្ថិភាពជានិច្ច។ ត្រួតពិនិត្យជាតិស្រវឹងនៅគ្រប់ផ្លូវធំ។",
     },
   },
   {
@@ -77,12 +77,12 @@ const ROAD_ALERTS = [
     icon: TriangleAlert,
     color: "bg-purple-500",
     borderColor: "border-l-purple-500",
-    title: { en: "Speed Camera Zone", km: "តំបន់កាមេរ៉ាល្បឿន" },
-    badge: { en: "Enforced", km: "អនុវត្ត" },
+    title: { en: "Speed Camera Zone", km: "កាមេរ៉ាចាប់ល្បឿន" },
+    badge: { en: "Enforced", km: "ចាប់ល្បឿន" },
     badgeColor: "bg-purple-500",
     desc: {
       en: "National Road 1 — Speed cameras active between Phnom Penh and Neak Loeung.",
-      km: "ផ្លូវជាតិលេខ ១ — កាមេរ៉ាល្បឿនសកម្មរវាងភ្នំពេញ និងនាគឡើង។",
+      km: "ផ្លូវជាតិលេខ ១ — មានកាមេរ៉ាចាប់ល្បឿនចន្លោះភ្នំពេញ និងអ្នកលឿង។",
     },
   },
   {
@@ -91,12 +91,12 @@ const ROAD_ALERTS = [
     icon: AlertTriangle,
     color: "bg-cyan-600",
     borderColor: "border-l-cyan-600",
-    title: { en: "Flood Risk Road", km: "ផ្លូវវិថីប្រថុយទឹកជំនន់" },
-    badge: { en: "Seasonal Warning", km: "ការព្រមានតាមរដូវ" },
+    title: { en: "Flood Risk Road", km: "ផ្លូវងាយលិចទឹក" },
+    badge: { en: "Seasonal Warning", km: "តាមរដូវ" },
     badgeColor: "bg-cyan-600",
     desc: {
       en: "Mekong riverside roads — Flooding possible during rainy season. Check before travel.",
-      km: "ផ្លូវវិថីតាមដងទន្លេមេគង្គ — ទឹកជំនន់អាចកើតមានក្នុងរដូវវស្សា។ ពិនិត្យមុនធ្វើដំណើរ។",
+      km: "ផ្លូវតាមមាត់ទន្លេមេគង្គ — អាចលិចទឹកនៅរដូវវស្សា។ ពិនិត្យមុនធ្វើដំណើរ។",
     },
   },
   {
@@ -105,12 +105,12 @@ const ROAD_ALERTS = [
     icon: ShieldAlert,
     color: "bg-zinc-700",
     borderColor: "border-l-zinc-700",
-    title: { en: "Night Travel Alert", km: "ការព្រមានធ្វើដំណើរពេលយប់" },
+    title: { en: "Night Travel Alert", km: "ធ្វើដំណើរពេលយប់" },
     badge: { en: "8pm – 5am", km: "ម៉ោង ៨យប់ – ៥ព្រឹក" },
     badgeColor: "bg-zinc-700",
     desc: {
       en: "Reduced visibility on rural roads at night. Use headlights and reduce speed.",
-      km: "ការមើលឃើញថយចុះនៅផ្លូវវិថីជនបទពេលយប់។ ប្រើភ្លើងមុខ និងកាត់បន្ថយល្បឿន។",
+      km: "ងងឹតពិបាកមើលផ្លូវនៅជនបទពេលយប់។ ប្រើភ្លើងនិងបន្ថយល្បឿន។",
     },
   },
   {
@@ -119,12 +119,12 @@ const ROAD_ALERTS = [
     icon: Car,
     color: "bg-green-600",
     borderColor: "border-l-green-600",
-    title: { en: "Police Checkpoint", km: "ចំណុចត្រួតពិនិត្យប៉ូលិស" },
-    badge: { en: "Active", km: "សកម្ម" },
+    title: { en: "Police Checkpoint", km: "ប៉ុស្តិ៍ត្រួតពិនិត្យ" },
+    badge: { en: "Active", km: "មានត្រួតពិនិត្យ" },
     badgeColor: "bg-green-600",
     desc: {
       en: "National Road 5 — Document and vehicle inspection checkpoint near Prek Pnov.",
-      km: "ផ្លូវជាតិលេខ ៥ — ចំណុចត្រួតពិនិត្យឯកសារ និងយានយន្តជិតព្រែកព្នៅ។",
+      km: "ផ្លូវជាតិលេខ ៥ — ត្រួតពិនិត្យឯកសារនិងយានយន្តនៅជិតព្រែកព្នៅ។",
     },
   },
 ];
@@ -133,9 +133,9 @@ const FILTER_TABS = [
   { key: "all", en: "All", km: "ទាំងអស់" },
   { key: "accident", en: "Accidents", km: "គ្រោះថ្នាក់" },
   { key: "congestion", en: "Congestion", km: "ស្ទះ" },
-  { key: "road", en: "Construction", km: "សាងសង់" },
+  { key: "road", en: "Construction", km: "ធ្វើផ្លូវ" },
   { key: "safety", en: "Safety", km: "សុវត្ថិភាព" },
-  { key: "checkpoint", en: "Checkpoint", km: "ចំណុចត្រួត" },
+  { key: "checkpoint", en: "Checkpoint", km: "ត្រួតពិនិត្យ" },
 ];
 
 const UI = {
@@ -176,7 +176,7 @@ const UI = {
     alertsTitle: "ការព្រមានចរាចរណ៍",
     liveUpdates: "ផ្ទាល់",
     stayAlert: "ប្រុងប្រយ័ត្ន:",
-    stayAlertMsg: "តែងតែអនុវត្តតាមសញ្ញាចរាចរណ៍ រក្សាចម្ងាយសុវត្ថិភាព និងកុំប្រើទូរស័ព្ទក្នុងពេលធ្វើដំណើរលើផ្លូវ។",
+    stayAlertMsg: "គោរពសញ្ញាចរាចរណ៍ រក្សាចម្ងាយសុវត្ថិភាព និងកុំប្រើទូរស័ព្ទពេលធ្វើដំណើរ។",
     loading: "កំពុងផ្ទុក...",
     loadingPowered: "ដំណើរការដោយ Mapbox GL",
     mapFailed: "ផែនទីបរាជ័យ",
