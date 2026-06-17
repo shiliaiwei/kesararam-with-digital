@@ -6,7 +6,6 @@ import {
     TrafficCone, HardHat, Footprints, Car, PersonStanding,
     Moon, Smartphone, Ambulance, CircleDot, Bus,
     CircleUser, Circle, OctagonAlert, Eye, CloudRain,
-    TrafficLight,
     type LucideIcon,
 } from "lucide-react";
 import type { GameFormat, RoundViewProps, KitCompletionResult } from "@/lib/gamekit/types";
@@ -39,7 +38,7 @@ function qaFont() {
 
 // Map question id → Lucide icon component
 const QUESTION_ICONS: Record<number, LucideIcon> = {
-    1:  TrafficLight,     // traffic light / RED
+    1:  TrafficCone,      // traffic light / RED
     2:  HardHat,          // helmet
     3:  Footprints,       // zebra crossing
     4:  Car,              // seatbelt in car
@@ -50,7 +49,7 @@ const QUESTION_ICONS: Record<number, LucideIcon> = {
     9:  CircleDot,        // ball in street
     10: Bus,              // getting off bus
     11: CircleUser,       // walking with no footpath
-    12: TrafficLight,     // yellow traffic light
+    12: TrafficCone,      // yellow traffic light
     13: OctagonAlert,     // STOP sign
     14: Eye,              // look before crossing
     15: CloudRain,        // rainy road
@@ -92,10 +91,13 @@ function SafeStreetSmartView({ round, lang, onRoundComplete }: RoundViewProps<SS
         if (next >= round.questions.length) {
             doneRef.current = true;
             const allCorrect = picksRef.current.every((x) => x.correct);
+            const correctUnits = picksRef.current.filter((x) => x.correct).length;
             setTimeout(() => {
                 onRoundComplete({
                     refId: round.id,
                     isCorrectGuess: allCorrect,
+                    correctUnits,
+                    unitCount: picksRef.current.length,
                     payload: { picks: picksRef.current },
                     timeTakenMs: Date.now() - startRef.current,
                     difficulty: "easy",
