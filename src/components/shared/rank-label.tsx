@@ -270,54 +270,61 @@ export function RankedAvatarRing({
                         left: "50%",
                         marginTop: -Math.round((size + 32) / 2),
                         marginLeft: -Math.round((size + 32) / 2),
-                        animation: "techRingRotate 22s linear infinite",
+                        animation: "techRingRotate 32s linear infinite",
                     }}
                     viewBox="0 0 100 100"
                 >
-                    {/* Outer dashed tech segment ring (magnetic sweep) */}
+                    {/* Outer helper solid ring */}
                     <circle
                         cx="50"
                         cy="50"
                         r="45"
                         fill="none"
                         stroke={tier.accent}
-                        strokeWidth="2.2"
-                        strokeDasharray="24 10 12 8"
+                        strokeWidth="0.6"
+                        className="opacity-30"
+                    />
+                    {/* Main dashed tactical segments */}
+                    <circle
+                        cx="50"
+                        cy="50"
+                        r="45"
+                        fill="none"
+                        stroke={tier.accent}
+                        strokeWidth="2"
+                        strokeDasharray="80 40"
                         pathLength="360"
                         className="opacity-95"
                         style={{
-                            animation: "magneticSweep 10s linear infinite",
+                            animation: "magneticSweep 24s linear infinite",
                         }}
                     />
-                    {/* Inner thin tech ring (electric spark style) */}
+                    {/* Inner tactical tick notches */}
                     <circle
                         cx="50"
                         cy="50"
-                        r="39"
-                        fill="none"
-                        stroke={tier.accent}
-                        strokeWidth="0.8"
-                        strokeDasharray="6 3"
-                        pathLength="360"
-                        className="opacity-75"
-                        style={{
-                            animation: "magneticSweepReverse 6s linear infinite, electricSpark 2s ease-in-out infinite alternate",
-                        }}
-                    />
-                    {/* Tiny tick marks / magnetic accents */}
-                    <circle
-                        cx="50"
-                        cy="50"
-                        r="42"
+                        r="41"
                         fill="none"
                         stroke={tier.glow}
                         strokeWidth="1.2"
-                        strokeDasharray="2 18"
+                        strokeDasharray="2 28"
                         pathLength="360"
-                        className="opacity-90"
+                        className="opacity-80"
                         style={{
-                            animation: "magneticSweep 14s linear infinite",
+                            animation: "magneticSweepReverse 30s linear infinite, electricSpark 4s ease-in-out infinite alternate",
                         }}
+                    />
+                    {/* Center thin helper dashed ring */}
+                    <circle
+                        cx="50"
+                        cy="50"
+                        r="38"
+                        fill="none"
+                        stroke={tier.accent}
+                        strokeWidth="0.5"
+                        strokeDasharray="4 8"
+                        pathLength="360"
+                        className="opacity-40"
                     />
                 </svg>
                 <div
