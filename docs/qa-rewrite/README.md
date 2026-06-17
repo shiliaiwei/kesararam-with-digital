@@ -1,7 +1,7 @@
 # KWD Q&A Rewrite — Build Spec (locked v2)
 
-> **Status:** Old Q&A **dropped on 2026-06-17** — `questions` & `answers` are now **empty** (0 / 0). DB has no quiz content until the new set is authored and inserted.
-> The new set is **not built yet** (only the v2 sample exists). Authoring + insert is the next step.
+> **Status (2026-06-17):** Category 1 `road-sign` is **LIVE** with the approved standard set — **2,223 questions / 7,904 answers** (247 topics × 9), built by `scripts/generate-road-sign-qa.mjs` and imported via `scripts/import-road-sign-qa.mjs --replace`.
+> The other 7 categories are still **empty** — author next using the per-category prompts (e.g. [`prompt-priority.md`](prompt-priority.md)).
 
 ## Targets (approved)
 - **≥ 5,715 questions**, covering **all 8 categories**.
