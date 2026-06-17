@@ -383,7 +383,7 @@ function PodiumCard({ user, cfg, index, currentUser, onSelect }: {
           }}
         >
           {isFirst ? <Crown size={11} /> : <Trophy size={11} />}
-          {kh ? cfg.labelKh : cfg.labelEn}
+          {cfg.labelEn}
         </div>
 
         <h3 className="z-10 w-full truncate text-sm font-black leading-tight text-black md:text-lg font-kh-header">
