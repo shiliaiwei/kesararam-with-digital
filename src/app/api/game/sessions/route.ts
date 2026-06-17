@@ -106,18 +106,23 @@ export async function POST(req: NextRequest) {
   const qIds = allQuestions.map((q) => q.id);
 
   const answerCounts = await db
-    .select({ questionId: answers.questionId, count: sql<number>`count(*)::int` })
+    .select({
+      questionId: answers.questionId,
+      count: sql<number>`count(*)::int`,
+      hasImage: sql<boolean>`bool_or(${answers.imageUrl} is not null)`,
+    })
     .from(answers)
     .where(inArray(answers.questionId, qIds))
     .groupBy(answers.questionId);
 
-  const countMap = new Map(answerCounts.map((a) => [a.questionId, a.count]));
+  const countMap = new Map(answerCounts.map((a) => [a.questionId, { count: a.count, hasImage: a.hasImage }]));
 
   const compatible = allQuestions.filter((q) => {
-    const cnt = countMap.get(q.id) ?? 0;
+    const stats = countMap.get(q.id);
+    if (!stats || stats.count === 0) return false;
     const gt = mapContentToGameType({
-      answerCount: cnt,
-      hasImage: !!q.imageUrl,
+      answerCount: stats.count,
+      hasImage: stats.hasImage,
       hasAudio: !!(q.audioUrlEn || q.audioUrlKm),
     });
     return allowedTypes.includes(gt);
